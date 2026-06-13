@@ -162,6 +162,25 @@ Closeout gate (`npm test --prefix packages/efficacy-core`):
 TypeScript gate (`tsc --noEmit --project packages/efficacy-core/tsconfig.json`):
 Clean — no errors.
 
+### Phase 1 — Adversarial Audit Log (2026-06-13, commit `78a7ca0a` + follow-up)
+
+Adversarial review found that `computeTimeToMastery` used every input card id instead
+of only cards matching the requested `objectiveId`, so an out-of-objective review could
+shift mastery timing. It also rounded sub-day mastery intervals. Commit `78a7ca0a`
+added regression tests and fixed the metric to filter by objective and preserve
+fractional days.
+
+Supervisor follow-up reran gates via `source "$HOME/.nvm/nvm.sh"` and fixed only the
+issues exposed by those gates:
+- Aligned existing time-to-mastery test fixtures with the new per-objective contract.
+- Added `packages/efficacy-core/eslint.config.mjs` so the package lint script runs.
+
+Verification:
+- `CI=true npm run test --prefix packages/efficacy-core` → `Test Files 5 passed (5)` · `Tests 46 passed (46)`
+- `npm run lint --prefix packages/efficacy-core` → pass
+- `npx tsc --noEmit --project packages/efficacy-core/tsconfig.json` → pass
+- `CI=true npm test` → knowledge-space-core root suite `18 passed (18)` · `262 passed (262)`
+
 ## Phase 2 — Cohort Aggregation (Convex)
 
 - [ ] Task: Batched aggregation queries by class/cohort + time window (TDD, no N+1)

@@ -34,7 +34,7 @@ describe('computeTimeToMastery', () => {
   it('returns reachedMastery=false and null daysToMastery when there are no reviews', () => {
     const result = computeTimeToMastery({
       objectiveId: 'obj_quadratic',
-      cards: [makeCard({ cardId: 'c1', reps: 0, stability: 0 })],
+      cards: [makeCard({ cardId: 'c1', objectiveId: 'obj_quadratic', reps: 0, stability: 0 })],
       reviewLogs: [],
       masteryThreshold: MASTERY_RETENTION,
     });
@@ -52,7 +52,7 @@ describe('computeTimeToMastery', () => {
     const baseMs = COHORT_WINDOW_START_MS;
     const result = computeTimeToMastery({
       objectiveId: 'obj_quadratic',
-      cards: [makeCard({ cardId: 'c1' })],
+      cards: [makeCard({ cardId: 'c1', objectiveId: 'obj_quadratic' })],
       reviewLogs: [
         makeReviewLog({
           reviewId: 'r1',
@@ -83,7 +83,7 @@ describe('computeTimeToMastery', () => {
     const baseMs = COHORT_WINDOW_START_MS;
     const result = computeTimeToMastery({
       objectiveId: 'obj_quadratic',
-      cards: [makeCard({ cardId: 'c1' })],
+      cards: [makeCard({ cardId: 'c1', objectiveId: 'obj_quadratic' })],
       reviewLogs: [
         makeReviewLog({
           reviewId: 'r1',
@@ -106,7 +106,7 @@ describe('computeTimeToMastery', () => {
     const baseMs = COHORT_WINDOW_START_MS;
     const result = computeTimeToMastery({
       objectiveId: 'obj_quadratic',
-      cards: [makeCard({ cardId: 'c1' })],
+      cards: [makeCard({ cardId: 'c1', objectiveId: 'obj_quadratic' })],
       reviewLogs: [
         makeReviewLog({
           reviewId: 'r1',
@@ -197,6 +197,7 @@ describe('computeTimeToMastery', () => {
           reviewId: 'r_target_mastery',
           cardId: 'c_target',
           reviewedAtMs: baseMs + 5 * MS_PER_DAY,
+          stateBefore: { stability: 5, difficulty: 0, state: 'learning', reps: 1, lapses: 0 },
           stateAfter: { stability: 300, difficulty: 0, state: 'review', reps: 2, lapses: 0 },
         }),
       ],
@@ -226,6 +227,7 @@ describe('computeTimeToMastery', () => {
           reviewId: 'r2',
           cardId: 'c1',
           reviewedAtMs: baseMs + 12 * 60 * 60 * 1000,
+          stateBefore: { stability: 5, difficulty: 0, state: 'learning', reps: 1, lapses: 0 },
           stateAfter: { stability: 300, difficulty: 0, state: 'review', reps: 2, lapses: 0 },
         }),
       ],
@@ -238,7 +240,7 @@ describe('computeTimeToMastery', () => {
   it('ignores reviews referencing cards not in the input card set (defensive)', () => {
     const result = computeTimeToMastery({
       objectiveId: 'obj_quadratic',
-      cards: [makeCard({ cardId: 'c1' })],
+      cards: [makeCard({ cardId: 'c1', objectiveId: 'obj_quadratic' })],
       reviewLogs: [
         // Review for an unknown card; must be ignored
         makeReviewLog({
@@ -260,7 +262,7 @@ describe('computeTimeToMastery', () => {
     const baseMs = COHORT_WINDOW_START_MS;
     const result = computeTimeToMastery({
       objectiveId: 'obj_quadratic',
-      cards: [makeCard({ cardId: 'c1' })],
+      cards: [makeCard({ cardId: 'c1', objectiveId: 'obj_quadratic' })],
       reviewLogs: [
         makeReviewLog({
           reviewId: 'r1',
@@ -304,7 +306,7 @@ describe('computeTimeToMastery', () => {
     const baseMs = COHORT_WINDOW_START_MS;
     const result = computeTimeToMastery({
       objectiveId: 'obj_trace',
-      cards: [makeCard({ cardId: 'c1' })],
+      cards: [makeCard({ cardId: 'c1', objectiveId: 'obj_trace' })],
       reviewLogs: [
         makeReviewLog({
           reviewId: 'r1',
