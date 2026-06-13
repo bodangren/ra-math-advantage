@@ -860,12 +860,12 @@ Full `npm run ws:im3:test` was not repeated because attempt 1 timed out after 12
 
 ## Phase 4 — Docs & Doctor
 
-- [~] Task: Update in-repo kst-srs.v2 spec (§3.2 transfers_to, §16 Level Projection, §9.4 progressTrend, §12.9 FSRS per-card limitation + siblingReinforcement flag) *(MID Red — 2026-06-13)*
-    - [ ] Red test: `spec-markers.test.ts` asserts the §3.2/§9.4/§12.9/§16 markers exist at the indicated sections
-- [~] Task: Run measure/generate.sh and measure/doctor.sh; fix architectural lint *(MID Red — 2026-06-13)*
-    - [ ] Live gate: `bash measure/scripts/doctor.sh` exits 0; `bash measure/scripts/generate.sh` exits 0; `node scripts/check-monorepo-boundaries.mjs` exits 0 (recorded in Red-phase evidence subsection)
-- [~] Task: Final verification — boundary lints, npm run lint, tsc --noEmit, CI=true npm run test *(MID Red — 2026-06-13)*
-    - [ ] Live gate: `CI=true npm test` + `npm run lint` + `npx tsc --noEmit` (recorded in Red-phase evidence subsection)
+- [x] Task: Update in-repo kst-srs.v2 spec (§3.2 transfers_to, §16 Level Projection, §9.4 progressTrend, §12.9 FSRS per-card limitation + siblingReinforcement flag) *(MID Red — 2026-06-13; JR Green — 2026-06-13)*
+    - [x] Red test: `spec-markers.test.ts` asserts the §3.2/§9.4/§12.9/§16 markers exist at the indicated sections
+- [x] Task: Run measure/generate.sh and measure/doctor.sh; fix architectural lint *(MID Red — 2026-06-13; JR Green — 2026-06-13)*
+    - [x] Live gate: `bash measure/scripts/doctor.sh` exits 0; `bash measure/scripts/generate.sh` exits 0; `node scripts/check-monorepo-boundaries.mjs` exits 0 (recorded in Red-phase evidence subsection)
+- [x] Task: Final verification — boundary lints, npm run lint, tsc --noEmit, CI=true npm run test *(MID Red — 2026-06-13; JR Green — 2026-06-13)*
+    - [x] Live gate: `CI=true npm test` + `npm run lint` + `npx tsc --noEmit` (recorded in Red-phase evidence subsection)
 - [ ] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md)
 
 ### Phase 4 — Red-phase evidence (MID handoff, 2026-06-13)
@@ -955,3 +955,27 @@ role by editing `kst-srs.v2/SPECIFICATION.md` to add the §3.2 cross-
 reference, §9.4 cross-reference, §12.9 subsection, and §16 top-level
 section. The four failing tests will go green once the cross-references
 are in place; the two regression-guard tests will continue to pass.
+
+### Phase 4 — Green-phase evidence (JR, 2026-06-13)
+
+All 6 targeted Red tests now pass. Full knowledge-space-core suite green.
+All Phase 1–3 regression tests still pass. All live gates green.
+
+| Command | Result |
+|---------|--------|
+| `vitest run packages/knowledge-space-core/src/__tests__/spec-markers.test.ts` | 6 passed |
+| `npm test --workspace=packages/knowledge-space-core` | 18 files / 262 tests passed |
+| `vitest run --root packages/knowledge-space-practice` | 3 files / 51 tests passed |
+| `vitest run apps/integrated-math-3/__tests__/level-projection.test.ts apps/integrated-math-3/__tests__/level-projection-csv-contract.test.ts --root apps/integrated-math-3` | 2 files / 7 tests passed |
+| `npm run lint --workspace=packages/knowledge-space-core` | 0 warnings |
+| `npm run lint --workspace=apps/integrated-math-3` | 0 warnings |
+| `npx tsc --noEmit --project packages/knowledge-space-core/tsconfig.json` | clean |
+| `bash measure/scripts/doctor.sh` | exit 0 — `[doctor] All checks passed.` |
+| `bash measure/scripts/generate.sh` | exit 0 — `Successfully generated Measure documentation.` |
+| `node scripts/check-monorepo-boundaries.mjs` | exit 0 — `[OK] No monorepo boundary violations found.` |
+| `CI=true npm test` | pass — 18 files / 262 tests in `packages/knowledge-space-core` |
+
+Implementation changes:
+- `kst-srs.v2/SPECIFICATION.md`: added `transfers_to` cross-reference in §3.2; added `progressTrend` cross-reference in §9.4; added §12.9 (FSRS per-card limitation + `siblingReinforcement`); added §16 (Level Projection as presentation-only)
+
+No structural TypeScript files changed — only markdown spec updated. `graph.db` does not require an update.

@@ -66,6 +66,8 @@ Per-skill mastery `m ∈ [0,1]` computed from SRS card stability and proficiency
 | `inProgress` | Has evidence but not proficient |
 | `untouched` | No evidence |
 
+A `transfers_to` edge (§11.1) between domains seeds a prior on the target skill's initial mastery state, allowing cross-domain evidence to influence the `untouched` → `inProgress` transition.
+
 ### 3.3 Hysteresis
 
 - Enter `mastered` when `isProficient && retention ≥ masteryEnter`
@@ -315,7 +317,7 @@ Persisted in Convex; drives remediation routing.
 
 ### 9.4 Planner Injection
 
-While `active`, the `remediated_by` activity is injected into practice queue ahead of normal progression and feeds `weaknessFit`.
+While `active`, the `remediated_by` activity is injected into practice queue ahead of normal progression and feeds `weaknessFit`. The planner also produces a `progressTrend` signal (§11.3) for the parent-facing visualization, computed as a time-delta of mastered-count over a 7-day window.
 
 ## 10. Practice-Variant Rename (v2 Item 7)
 
@@ -374,6 +376,10 @@ Must not bundle domain graphs or generated app outputs.
 
 Proprietary: math graphs, standards mappings, generator bindings, activity maps, curriculum content.
 
+### 12.9 FSRS Per-Card Limitation
+
+FSRS schedules each variant card independently even though sibling variants under one objective are correlated. The `siblingReinforcement` config flag (§11.4) is defined to allow future reinforcement of sibling card stability when one variant is reviewed; implementation is deferred.
+
 ## 13. Non-Functional Requirements
 
 - Pure, deterministic functions for all core computations
@@ -382,3 +388,7 @@ Proprietary: math graphs, standards mappings, generator bindings, activity maps,
 - Contract-first then TDD per Measure workflow
 - >80% coverage on all new modules
 - Boundary lints must pass (no shared→app imports)
+
+## 16. Level Projection
+
+Level Projection is a domain-supplied monotonic function from knowledge state to display level (§11.2). It is presentation-only: the projection never feeds back into KST or SRS computation. Each domain provides its own level-band mapping (e.g., IM3 maps GSE proficiency bands to grade-level labels). The core contract in `knowledge-space-core` defines the generic `projectDisplayLevel` function; domain instances read their own CSV or config artifact and delegate to the core.
