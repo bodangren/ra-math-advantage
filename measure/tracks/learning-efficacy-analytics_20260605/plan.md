@@ -82,6 +82,54 @@ Files changed in attempt 2:
   (this Red Notes/Run Log + this Remediation subsection).
 The 5 Red test files and the fixtures file are unchanged from attempt 1.
 
+### Phase 1 — Re-Verification (MID attempt 3, 2026-06-13)
+
+Re-ran the targeted Red command at HEAD `f7ef274b` to confirm the canonical
+missing-implementation failure mode still reproduces for a fresh MID session.
+No source files or build config were created or modified between attempt 2 and
+attempt 3 (worktree is clean per `git status --porcelain`).
+
+Build-graph baseline (graph.db mtime 2026-06-13 10:41, TypeScript project, no
+rescan needed):
+- `build-graph search ./graph.db "stabilityToRetention"`
+  → 1 hit in `packages/srs-engine/src/srs/srs-proficiency.ts` (canonical
+  retention-normalization function reused by the time-to-mastery suite).
+- `build-graph search ./graph.db "PracticeSubmissionEnvelopeSchema"`
+  → 18 field hits in `packages/practice-core/src/practice/submission.schema.ts`
+  + `packages/practice-core/src/practice/contract.ts` (canonical schema
+  reused by the accuracy suite).
+- `build-graph search ./graph.db "efficacy"` → 0 hits → greenfield surface
+  (Phase 1 adds all nodes; blast radius = 0).
+- Symbol existence confirmed via `packages/{srs-engine,practice-core}/src/index.ts`:
+  `createMockSrsCard`, `createMockSrsReviewLog`, `createMockPracticeEnvelope`,
+  `practiceSubmissionEnvelopeSchema` are all exported from the package roots
+  the fixtures import them from.
+
+Targeted Red command re-run (single bounded run, no watch, CI=true):
+`CI=true npx vitest run --dir packages/efficacy-core __tests__/metrics`
+
+Result at 2026-06-13 (MID attempt 3, pre-impl HEAD `f7ef274b`):
+- `Test Files  5 failed (5)` · `Tests  no tests`
+- Failure mode for every suite (identical to attempt 2): `Error: Cannot find
+  module '../../src/...' imported from ...` — i.e., the expected
+  missing-implementation Red state.
+- 5 suites fail for the expected missing-implementation reason:
+  - `__tests__/metrics/contracts.test.ts`       → `../../src/contracts`
+  - `__tests__/metrics/retention.test.ts`       → `../../src/metrics/retention`
+  - `__tests__/metrics/time-to-mastery.test.ts` → `../../src/metrics/time-to-mastery`
+  - `__tests__/metrics/accuracy.test.ts`        → `../../src/metrics/accuracy`
+  - `__tests__/metrics/review-success.test.ts`  → `../../src/metrics/review-success`
+- 0 false-pass tests, 0 stale-durable-record failures.
+
+Verdict: Red state is canonical and reproducible. Tests are properly wired
+to the canonical SRS/practice-core fixtures; the 5 Red files are durable and
+ready to be flipped Green by the next role (Green/impl).
+
+Files changed in attempt 3:
+- MODIFIED `measure/tracks/learning-efficacy-analytics_20260605/plan.md`
+  (this Re-Verification subsection).
+No test files touched, no src/ files added, no build/runtime config touched.
+
 ## Phase 2 — Cohort Aggregation (Convex)
 
 - [ ] Task: Batched aggregation queries by class/cohort + time window (TDD, no N+1)
