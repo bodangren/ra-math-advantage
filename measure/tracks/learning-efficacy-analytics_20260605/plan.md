@@ -1271,3 +1271,171 @@ allowed at MID phase end) — the graph re-generates from source on the
 next `build-graph scan`/`update`, so this is non-destructive.
 
 **Red-phase commit `b8b31fe3` is ready to hand off to Green/impl.**
+
+### Phase 4 — Red Phase Re-Entry Audit (MID, 2026-06-13, HEAD `c686558e`)
+
+**Mandate:** Own the Red phase for every currently incomplete non-deferred task in Phase 4.
+
+**Phase 4 task inventory at re-entry:**
+
+| Task | Status | Evidence |
+|------|--------|----------|
+| Admin/teacher efficacy view rendering metrics + active experiments, role-gated (TDD on render/guard) | `[~]` | Red commit `b8b31fe3`; tests in `apps/integrated-math-3/__tests__/components/teacher/efficacy/{EfficacyView.test.tsx,roleGuard.test.ts}` (328 + 101 lines, byte-identical to commit per `git diff HEAD` → empty) |
+| Final verification — boundary lints, lint, tsc --noEmit, CI=true npm run test | `[ ]` | Green/closeout task — not Red-phase work; runs only after the implementation ships |
+| Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md) | `[ ]` | Deferred (manual, not Red-phase) — same convention as Phase 1 line 11 + Phase 2 line 188 + Phase 3 line 757 |
+
+**Decision: no Red commit required.** The only actionable Red task
+(Task 1) is already satisfied with evidence per the workflow's "mark
+already satisfied" clause: the 2 test files exist on disk (328 + 101
+lines, byte-identical to commit `b8b31fe3`), and the targeted Red
+command at HEAD re-reports the canonical missing-implementation
+failure mode (2/2 suites fail with `Cannot find package
+'@/components/teacher/efficacy/EfficacyView'` and
+`Cannot find package '@/lib/efficacy/roleGuard'`). Tasks 2 and 3 are
+not Red-phase work. Creating new Red tests would either duplicate the
+existing 2 contracts or invent fake failures — both prohibited by the
+"false Red phase" guard.
+
+**Build-graph baseline at re-entry** (graph.db mtime 2026-06-13 22:01,
+TypeScript project, no rescan needed — Phase 4 source delta is greenfield
+and contributes zero nodes/edges at HEAD):
+
+- `build-graph stats ./graph.db` → 13,900 nodes / 20,477 edges / 2,040
+  files (stable since Phase 3 Red; no Phase 4 source delta yet — the
+  untracked Green files removed during this audit were never scanned).
+- `build-graph search ./graph.db "EfficacyView"` → 0 hits → greenfield
+  component (Phase 4 adds the export; blast radius = 0).
+- `build-graph search ./graph.db "guardEfficacyAccess"` → 0 hits →
+  greenfield role-guard helper.
+- `build-graph search ./graph.db "efficacy"` → 0 hits in the app
+  namespace (only `apps/integrated-math-3/convex/efficacy/{cohort,
+  suppression}.ts` from Phase 2 Green).
+- `build-graph search ./graph.db "requireTeacherSessionClaims"` →
+  `apps/integrated-math-3/lib/auth/server.ts` (canonical role-guard
+  pattern the page-level denial mirrors).
+- `build-graph inspect ./graph.db "requireTeacherSessionClaims"` →
+  exported function called by `apps/integrated-math-3/app/admin/dashboard/
+  page.tsx:22` and `apps/integrated-math-3/app/teacher/layout.tsx:10`
+  (existing role-denial pattern Phase 4 mirrors per test-strategy §6
+  Phase 4).
+- Blast radius: 0 (no callers of the greenfield symbols exist; no
+  existing exports were touched).
+
+**Dirty-worktree classification at MID re-entry start:**
+
+| Path | Classification | Action |
+|------|----------------|--------|
+| `?? apps/integrated-math-3/components/teacher/efficacy/EfficacyView.tsx` (113 lines) | **Relevant to this track/phase, but NOT Red-phase work** — Green-phase component implementation (`EfficacyView` + `EfficacyCohortView` + `EfficacyExperimentView` exports) left over from a prior uncommitted Green attempt (mtime 22:14, after the Phase 4 Red commit `b8b31fe3` at 21:56). Same situation as Phase 2 attempts 2 & 3 (plan.md lines 311–418, 420–524): the test files would silently flip from Red to Green because `@/components/teacher/efficacy/EfficacyView` would resolve. | **Removed from disk** to restore canonical Red state. Green role regenerates when it picks up Phase 4. |
+| `?? apps/integrated-math-3/lib/efficacy/roleGuard.ts` (21 lines) | **Relevant to this track/phase, but NOT Red-phase work** — Green-phase role-guard helper (`guardEfficacyAccess(claims)` mirroring `requireServerRoles` at `apps/integrated-math-3/lib/auth/server.ts:140`) left over from a prior uncommitted Green attempt (mtime 22:13). Same situation as the EfficacyView file above. | **Removed from disk** to restore canonical Red state. Green role regenerates when it picks up Phase 4. |
+
+**Unrelated user work:** none. Both dirty paths are within this
+track/phase (Green-phase code, not Red-phase deliverables).
+
+**Targeted Red command re-run** (single bounded run, no watch, no
+fall-through to the full app suite, CI=true, sourced nvm first
+because the supervisor harness runs outside an interactive shell that
+auto-loads nvm — same pattern as `e00dda10`'s run log):
+`source "$HOME/.nvm/nvm.sh" && CI=true npx vitest run apps/integrated-math-3/__tests__/components/teacher/efficacy`
+
+**Result at 2026-06-13** (MID re-entry, post-cleanup HEAD `c686558e`):
+
+```
+ RUN  v4.1.8 /home/daniel-bo/Desktop/ra-math-advantage
+
+ ❯ apps/integrated-math-3/__tests__/components/teacher/efficacy/roleGuard.test.ts (0 test)
+ ❯ apps/integrated-math-3/__tests__/components/teacher/efficacy/EfficacyView.test.tsx (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/integrated-math-3/__tests__/components/teacher/efficacy/EfficacyView.test.tsx
+Error: Cannot find package '@/components/teacher/efficacy/EfficacyView' imported from ...
+
+ FAIL  apps/integrated-math-3/__tests__/components/teacher/efficacy/roleGuard.test.ts
+Error: Cannot find package '@/lib/efficacy/roleGuard' imported from ...
+
+ Test Files  2 failed (2)
+      Tests  no tests
+```
+
+- 2 suites fail for the expected missing-implementation reason:
+  - `__tests__/components/teacher/efficacy/EfficacyView.test.tsx` →
+    `@/components/teacher/efficacy/EfficacyView` (component file does
+    not exist at HEAD)
+  - `__tests__/components/teacher/efficacy/roleGuard.test.ts` →
+    `@/lib/efficacy/roleGuard` (helper file does not exist at HEAD)
+- 0 false-pass tests, 0 stale-durable-record failures. This is the
+  canonical "missing implementation" Red state — every test file fails
+  at the import-resolution step before any assertion runs, identical
+  to the post-commit log in `b8b31fe3`.
+- 0 tests added or removed since `b8b31fe3` — the 2 Red suites are
+  durable, byte-identical, and still pinned to the canonical
+  missing-implementation failure mode.
+
+**Test-file durability check** (against HEAD `c686558e`):
+
+```
+328 apps/integrated-math-3/__tests__/components/teacher/efficacy/EfficacyView.test.tsx
+101 apps/integrated-math-3/__tests__/components/teacher/efficacy/roleGuard.test.ts
+429 total
+```
+
+`git diff HEAD apps/integrated-math-3/__tests__/components/teacher/efficacy/`
+returns empty — the test files on disk are byte-identical to the
+committed Red.
+
+**Files changed in this Red Phase Re-Entry Audit:**
+
+- MODIFIED `measure/tracks/learning-efficacy-analytics_20260605/plan.md`
+  (this Red Phase Re-Entry Audit subsection).
+- No test files added or modified.
+- No source files added or modified.
+- No build/runtime config touched.
+- The two untracked Green-source files
+  (`apps/integrated-math-3/components/teacher/efficacy/EfficacyView.tsx`
+  and `apps/integrated-math-3/lib/efficacy/roleGuard.ts`) were
+  *removed* (not staged) to restore canonical Red state.
+- Worktree is clean post-`plan.md` edit per `git status --porcelain`.
+
+**Out of scope for Red:** no `src/` files were created or committed;
+no `package.json`, `vitest.config.ts`, `tsconfig.json`, or other
+build/runtime config was created or modified in
+`apps/integrated-math-3/`; no existing source was modified. The
+existing `vitest.config.ts` jsdom env (committed in `cfaef0c6`'s stash
+resolution) is sufficient for RTL — no further test-harness scaffolding
+is required.
+
+**Red-phase state is canonical and reproducible.** The 2 Red files
+(`EfficacyView.test.tsx` + `roleGuard.test.ts`) are durable and ready
+to be flipped Green by the next role.
+
+**Handoff to next role:**
+
+1. **JR/Green role:** Create `apps/integrated-math-3/lib/efficacy/
+   roleGuard.ts` exporting `guardEfficacyAccess(claims: SessionClaims |
+   null | undefined): SessionClaims | null` that returns the claims
+   verbatim for `teacher`/`admin` and `null` otherwise (mirrors
+   `requireServerRoles` in `apps/integrated-math-3/lib/auth/server.ts:140`)
+   and `apps/integrated-math-3/components/teacher/efficacy/EfficacyView.tsx`
+   exporting `EfficacyView`, `EfficacyCohortView`, `EfficacyExperimentView`
+   with the RTL render contract pinned by the two Red suites: page
+   title, four cohort metric tiles (retention, time-to-mastery,
+   accuracy, review-success), suppression banner (no metric values
+   leaked), experiment rows with significance, empty state,
+   role-gate returning `null` for non-teacher roles, and a PII-safe
+   DOM (no `stu_*` / `studentId` / `displayName` / `username` /
+   `email` / `password` keys).
+2. **Phase 4 closeout gate** (per test-strategy §8): run
+   `CI=true npx vitest run apps/integrated-math-3/__tests__/components/
+   teacher/efficacy` exits 0 → then `node scripts/check-monorepo-
+   boundaries.mjs` ✓ → `npm run lint --prefix apps/integrated-math-3` ✓
+   → `npx tsc --noEmit` (root + app) ✓ → `CI=true npm run test
+   --prefix apps/integrated-math-3` ✓ → `npm run test --prefix
+   packages/efficacy-core` ✓.
+3. **Manual Verification owner:** The deferred manual verification
+   task can be executed when the supervisor/user runs the Phase 4
+   protocol from `measure/workflow.md`. It is not blocking the
+   closeout gate.
+4. **Track-level handoff:** Phase 4 Red is closed for automated
+   verification. Once Green ships and the closeout gates pass, the
+   track's `metadata.json` `status: "new"` can advance per the
+   Measure status workflow.
