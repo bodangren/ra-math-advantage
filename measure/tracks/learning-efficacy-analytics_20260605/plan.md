@@ -754,7 +754,7 @@ commit `24871c80`.
 
 - [x] Task: Deterministic sticky A/B assignment primitive + experiment registry (TDD) — `<this commit>`
 - [x] Task: Experiment analysis report (variant comparison, sample size, significance indicator) (TDD) — `<this commit>`
-- [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
+- [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md) — deferred (manual, not Red-phase)
 
 ### Phase 3 — Red Notes (MID role, 2026-06-13)
 
@@ -950,6 +950,147 @@ eslint.config.mjs, package.json, vitest.config.ts}` + `graph.db`) and
 the Phase 2 `stash@{0}` are preserved per the dirty-worktree protocol.
 
 **Red-phase commit is ready to hand off to Green/impl.**
+
+### Phase 3 — Red Phase Re-Entry Audit (MID, 2026-06-13, HEAD `5a4fdfd2`)
+
+**Mandate:** Own the Red phase for every currently incomplete non-deferred task in Phase 3.
+
+**Phase 3 task inventory at re-entry:**
+
+| Task | Status | Evidence |
+|------|--------|----------|
+| Deterministic sticky A/B assignment primitive + experiment registry (TDD) | `[x]` | Red commit `5a4fdfd2`; tests in `packages/efficacy-core/__tests__/experiment/{assign,registry}.test.ts` (192 + 128 lines, byte-identical to commit) |
+| Experiment analysis report (variant comparison, sample size, significance indicator) (TDD) | `[x]` | Red commit `5a4fdfd2`; tests in `packages/efficacy-core/__tests__/experiment/report.test.ts` (223 lines, byte-identical to commit) |
+| Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md) | `[ ]` | Deferred (manual, not Red-phase) — same convention as Phase 1 line 11 + Phase 2 line 188 |
+
+**Decision: no Red commit required.** Both actionable Red tasks are
+already satisfied with evidence per the workflow's "mark already
+satisfied" clause: the 3 test files exist on disk (192 + 128 + 223
+lines, byte-identical to commit `5a4fdfd2`), and the targeted Red
+command at HEAD re-reports the canonical missing-implementation
+failure mode (3/3 suites fail with `ERR_MODULE_NOT_FOUND` for
+`../../src/experiment/{assign,registry,report}`). The Manual
+Verification task is by-convention deferred. Creating new Red tests
+would either duplicate the existing contracts or invent fake failures
+— both prohibited by the "false Red phase" guard.
+
+**Build-graph baseline at re-entry** (graph.db mtime 2026-06-13,
+TypeScript project, no rescan needed — Phase 3 source delta is
+greenfield and contributes zero nodes/edges at HEAD):
+
+- `build-graph stats ./graph.db` → 13,909 nodes / 20,490 edges /
+  2,042 files (stable since Phase 2 Green `cfaef0c6`).
+- `build-graph search ./graph.db "experiment"` → 0 hits → greenfield
+  (Phase 3 implementation modules don't exist yet; tests will
+  surface the missing-impl state at Green time).
+- `build-graph search ./graph.db "assign"` → 10 unrelated matches
+  (`assignBalances`, `assignLessonToClassAction`, etc. — all
+  lesson/ledger/balance assignment, none A/B-variant assignment).
+  Confirmed via `build-graph inspect assignBalances` → mini-ledger
+  function with `param_flow` edges from `accounts`, `rng`, `totals`.
+- `build-graph search ./graph.db "registry"` → 19 unrelated matches
+  (`SCHEMA_REGISTRY.*` math-content schemas, `activityRegistry.*`
+  bus-math-v2 activities — none experiment-registry).
+- `build-graph search ./graph.db "computeExperimentReport"` →
+  0 hits → greenfield.
+- Blast radius: 0 (no callers of the greenfield symbols exist; no
+  existing exports were touched).
+
+**Dirty-worktree classification at MID re-entry start:**
+
+| Path | Classification | Action |
+|------|----------------|--------|
+| `M graph.db` (binary, +4 KB) | **Generated/ignorable** — build-graph SQLite artifact from a post-Phase-2-Green rescan; not part of any commit (project ignores `graph.db` in commit policy; pre-commit hook gates it via `ALLOW_GRAPH_DB=1`). | **Preserve dirty (do not stage).** |
+
+**Unrelated user work:** none. The only dirty path is the generated
+`graph.db` artifact. The four paths listed as dirty at the prior
+attempt 3 start (`apps/integrated-math-3/{__tests__/lib/srs/export-verification.test.ts,
+eslint.config.mjs, package.json, vitest.config.ts}` + `graph.db`) and
+the Phase 2 `stash@{0}` were all resolved in the JR role's
+`cfaef0c6` "Phase 2 stashed loose ends" commit + the Phase 3 Red
+commit `5a4fdfd2` itself.
+
+**Targeted Red command re-run** (single bounded run, no watch, no
+fall-through, CI=true):
+`CI=true npx vitest run packages/efficacy-core/__tests__/experiment`
+
+**Result at 2026-06-13 (MID re-entry, HEAD `5a4fdfd2`):**
+
+- `Test Files  3 failed (3)` · `Tests  no tests`
+- Failure mode for every suite: vite `import-analysis` error
+  (`Cannot find module '../../src/experiment/{assign,registry,report}'
+  imported from ...`)
+- 3 suites fail for the expected missing-implementation reason:
+  - `__tests__/experiment/assign.test.ts`   → `../../src/experiment/assign`
+  - `__tests__/experiment/registry.test.ts` → `../../src/experiment/registry`
+  - `__tests__/experiment/report.test.ts`   → `../../src/experiment/report`
+- 0 false-pass tests, 0 stale-durable-record failures. This is the
+  canonical "missing implementation" Red state, identical to the
+  post-commit log in `5a4fdfd2`.
+- 0 tests added or removed since `5a4fdfd2` — the 3 Red suites are
+  durable, byte-identical, and still pinned to the canonical
+  missing-implementation failure mode.
+
+**Test-file durability check** (against HEAD `5a4fdfd2`):
+
+```
+192 packages/efficacy-core/__tests__/experiment/assign.test.ts
+128 packages/efficacy-core/__tests__/experiment/registry.test.ts
+223 packages/efficacy-core/__tests__/experiment/report.test.ts
+543 total
+```
+
+`git diff HEAD packages/efficacy-core/__tests__/experiment/` returns
+empty — the test files on disk are byte-identical to the committed
+Red.
+
+**Files changed in this Red Phase Re-Entry Audit:**
+
+- MODIFIED `measure/tracks/learning-efficacy-analytics_20260605/plan.md`
+  (line 757: added `— deferred (manual, not Red-phase)` annotation
+  matching Phase 1 line 11 + Phase 2 line 188; this Red Phase Re-Entry
+  Audit subsection).
+- No test files added or modified.
+- No source files added or modified.
+- No build/runtime config touched.
+- `graph.db` left dirty per the classification table above.
+
+**Out of scope for Red:** no `src/` files were created or committed;
+no `package.json`, `vitest.config.ts`, `tsconfig.json`, or other
+build/runtime config was created or modified in
+`packages/efficacy-core/`; no existing source was modified.
+Worktree remains clean post-`plan.md` edit except for the generated
+`graph.db` artifact.
+
+**Red-phase state is canonical and reproducible.** The 3 Red files
+(`assign.test.ts` + `registry.test.ts` + `report.test.ts`) are durable
+and ready to be flipped Green by the next role.
+
+**Handoff to next role:**
+
+1. **JR/Green role:** Create `packages/efficacy-core/src/experiment/assign.ts`
+   (exporting `assign`, `AssignVariant`, with an injectable `HashFn`),
+   `packages/efficacy-core/src/experiment/registry.ts` (exporting
+   `createExperimentRegistry`, `ExperimentEntry`, `ExperimentStatus`
+   with the guardrail caps), and
+   `packages/efficacy-core/src/experiment/report.ts` (exporting
+   `computeExperimentReport`, `ExperimentReport`,
+   `ExperimentSignificance` with the `'none' | 'weak' | 'strong'`
+   discriminator) until every assertion in the 3 suites passes.
+2. **Phase 3 closeout gate** (per test-strategy §8): run
+   `npm run test --prefix packages/efficacy-core` (full pkg) **and**
+   `CI=true npx vitest run packages/efficacy-core/__tests__/experiment`
+   exits 0 with non-zero test count.
+3. **Manual Verification owner:** The deferred manual verification
+   task can be executed when the supervisor/user runs the Phase 3
+   protocol from `measure/workflow.md`. It is not blocking subsequent
+   Red phases.
+4. **Strategy/Plan owner for Phase 4:** Phase 3 Red is closed for
+   automated verification. Phase 4 (Efficacy View & Verification)
+   follows; its symbols (RTL render of efficacy view + role denial)
+   are currently greenfield per
+   `build-graph search ./graph.db "efficacy"` → 0 hits in this
+   track's namespace.
 
 ## Phase 4 — Efficacy View & Verification
 
