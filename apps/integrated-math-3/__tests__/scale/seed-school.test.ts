@@ -27,7 +27,7 @@ import {
   type SchoolSeedInput,
   type SchoolSeedResult,
 } from '@/lib/scale/seed-school';
-import { SCALE_STUDENT_COUNT_SCHOOL } from '@/__tests__/_fixtures/scale/student-roster';
+import { SCALE_STUDENT_COUNT_CLASS, SCALE_STUDENT_COUNT_SCHOOL } from '@/__tests__/_fixtures/scale/student-roster';
 import {
   SCALE_CARDS_PER_STUDENT,
   SCALE_REVIEWS_PER_CARD,
