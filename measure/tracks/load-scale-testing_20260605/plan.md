@@ -71,9 +71,34 @@ Verification: harness runs green; `tsc --noEmit` on TS helpers.
 
 ## Phase 2 — Hot-Path Drivers & Cost Capture
 
-- [ ] Task: Drivers for teacher proficiency/dashboard, daily-practice queue, gradebook/heatmaps, curriculum summaries
-- [ ] Task: Capture Convex insights (docs/bytes/time/OCC) into a comparable report
+- [~] Task: Drivers for teacher proficiency/dashboard, daily-practice queue, gradebook/heatmaps, curriculum summaries (Red phase — MID role)
+- [~] Task: Capture Convex insights (docs/bytes/time/OCC) into a comparable report (Red phase — MID role)
 - [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
+
+### Phase 2 — Red-phase work (MID role, 2026-06-14)
+
+- **Started Red phase for both P2 implementation tasks.** Per test-strategy.md §5 P2, the contract-first TDD surface is: (a) `lib/scale/cost-record.ts` Zod schema and reducer, (b) `lib/scale/insights-client.ts` adapter + parser of recorded `npx convex insights` JSON, (c) thin driver functions per hot path (daily-practice, gradebook, heatmap, proficiency, curriculum summaries) returning a cost record. The test-strategy.md §7 P2 Red command runs three Vitest files: `cost-record.test.ts`, `insights-parser.test.ts`, `drivers.test.ts`.
+- **Test conventions followed** — see `__tests__/scale/seed-class.test.ts` and `seed-school.test.ts` for the established Red style: explicit `import { describe, it, expect } from 'vitest'`, contract-shape guards, JSON-serializability guard, source-boundary guard (`expect(source).not.toMatch(/@\/__tests__/)`), and `fileURLToPath(import.meta.url)` for any test that resolves to app-root paths (lesson 2026-05-03). Drivers test uses an in-memory `InsightsClient` fake to keep the harness read-only and bounded (test-strategy §2 + §5).
+- **Hot-path symbols targeted** (per `build-graph search`):
+  - Daily practice queue: `apps/integrated-math-3/convex/queue/queue.ts:resolveDailyPracticeQueue` + `getDailyPracticeQueueHandler` (file-path-disambiguated to avoid IM1 collision).
+  - Proficiency: `apps/integrated-math-3/convex/objectiveProficiency.ts:getObjectiveProficiencyHandler` + `packages/srs-engine/src/srs/objective-proficiency.ts:computeObjectiveProficiency` + `packages/srs-engine/src/srs/srs-proficiency.ts:aggregateCardsToEvidence`.
+  - Heatmap: `apps/integrated-math-3/lib/teacher/competency-heatmap.ts` (IM3) + `packages/teacher-reporting-core/src/teacher-reporting/competency-heatmap.ts` (core).
+  - Gradebook export: `apps/integrated-math-3/lib/teacher/gradebook-export.ts` (IM3 wrapper) + `packages/teacher-reporting-core/src/teacher-reporting/gradebook-export.ts` (core).
+  - Curriculum summaries: not yet discovered by build-graph — driver is contract-shaped against a function the Green role will provide under `lib/scale/curriculum-summary.ts`.
+- **Fake harness boundary enforced** — drivers are tested through an injected `InsightsClient` interface. Each driver call records `(path, fn, args, returnedCostRecord)` on the fake. The drivers test asserts: (a) the fake received exactly one call per hot path with the expected Convex function name (proves the driver targets the right symbol), (b) the cost record returned has non-null `docsRead`/`bytesRead`/`fnTimeMs`/`occConflicts`, (c) no driver invokes a `mutate*` call on the fake (proves read-only contract). No real Convex calls, no real `npx convex insights` shell-outs — that is the live-behavior gate owned by the UMV/Green role.
+- **build-graph baseline**: `build-graph stats ./graph.db` → 13,924 nodes / 2,042 files / 20,502 edges. Fresh enough (mtime ~6h ago, well under 24h) — no rescan needed. Phase 2 net-new modules (`lib/scale/cost-record.ts`, `lib/scale/insights-client.ts`, `lib/scale/drivers/*`, `scripts/scale/run.mjs`) per lesson 2026-06-06 do not require `update` until they export symbols outside `scripts/`.
+- **Dirty worktree at MID start**: `git status --porcelain` clean. No unrelated user work to preserve.
+- **Targeted Red command (test-strategy §7, P2 row, verbatim)** — run from `apps/integrated-math-3/`:
+  ```
+  CI=true ../../node_modules/.bin/vitest run __tests__/scale/cost-record.test.ts __tests__/scale/insights-parser.test.ts __tests__/scale/drivers.test.ts
+  ```
+- **Red result (2026-06-14, after attempt-1 900s timeout was re-entered)**: **3 test files failed, 0 tests ran** — all three suites failed at import time because the production modules do not exist yet. Failures are the *expected missing-behavior* Red signal: `cost-record.test.ts` errors with `Failed to resolve import "@/lib/scale/cost-record"`, `insights-parser.test.ts` with `Failed to resolve import "@/lib/scale/insights-parser"`, and `drivers.test.ts` with the same `@/lib/scale/cost-record` and `@/lib/scale/drivers` resolutions. Duration 60.37s (most of it Vitest's environment spin-up). This is the correct Red state: tests fail because the implementation is missing, not because the test files or fixtures are stale.
+- **Test files created (all under `apps/integrated-math-3/__tests__/scale/`)**:
+  - `cost-record.test.ts` (313 lines) — module surface, Zod schema validation (negative numbers, missing fields, non-integers, empty-string path), `emptyCostRecord` / `mergeCostRecords` reducers (OCC aggregation, cross-path merge rejection), JSON-serializability guard, source-boundary contract.
+  - `insights-parser.test.ts` (247 lines) — module surface, per-path fixture parsing (daily-practice/gradebook/heatmap/proficiency/curriculum-summaries), multi-`perFunction` aggregation, pagination (continueCursor + isDone traversal), malformed-input rejection, source-boundary contract.
+  - `drivers.test.ts` (199 lines) — module surface, per-driver contract (exactly one `InsightsClient.query` call, expected Convex symbol fragment, non-null cost fields), read-only contract (no `mutate*` calls), driver-coverage invariant (DRIVERS keys == SCALE_HOT_PATHS), per-path source-boundary contract.
+- **Fixtures created (8 files under `apps/integrated-math-3/__tests__/_fixtures/insights/`)**: `daily-practice.json`, `gradebook.json`, `heatmap.json`, `proficiency.json`, `curriculum-summaries.json` (one per hot path), `proficiency-page-1.json` + `proficiency-page-2.json` (pagination pair), `malformed-missing-occ.json` (parser-rejection fixture).
+- **build-graph baseline**: `build-graph stats ./graph.db` → 13,924 nodes / 2,042 files / 20,502 edges. Unchanged from prior audits; the harness-only additions (`lib/scale/cost-record.ts`, `lib/scale/insights-parser.ts`, `lib/scale/drivers/*.ts`, `scripts/scale/run.mjs`) per lesson 2026-06-06 do not require `update` until they export symbols outside `scripts/`.
 
 ## Phase 3 — Budgets & CI
 

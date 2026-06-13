@@ -1,0 +1,24 @@
+{
+  "deployment": "scale-isolated-im3",
+  "startTimeMs": 1718280000000,
+  "endTimeMs": 1718283600000,
+  "totals": {
+    "functionExecutionTimeMs": 4127,
+    "databaseDocsRead": 1842,
+    "databaseBytesRead": 4123456,
+    "databaseDocsWritten": 0,
+    "databaseBytesWritten": 0,
+    "occConflicts": 0
+  },
+  "perFunction": [
+    {
+      "functionName": "queue/getDailyPracticeQueueHandler",
+      "functionType": "query",
+      "executionCount": 30,
+      "functionExecutionTimeMs": 2143,
+      "databaseDocsRead": 1620,
+      "databaseBytesRead": 3847291,
+      "occConflicts": 0
+    }
+  ]
+}

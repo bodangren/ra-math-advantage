@@ -1,0 +1,24 @@
+{
+  "deployment": "scale-isolated-im3",
+  "startTimeMs": 1718280000000,
+  "endTimeMs": 1718283600000,
+  "totals": {
+    "functionExecutionTimeMs": 3214,
+    "databaseDocsRead": 2410,
+    "databaseBytesRead": 5612010,
+    "databaseDocsWritten": 0,
+    "databaseBytesWritten": 0,
+    "occConflicts": 0
+  },
+  "perFunction": [
+    {
+      "functionName": "lib/teacher/gradebook-export:exportGradebook",
+      "functionType": "query",
+      "executionCount": 1,
+      "functionExecutionTimeMs": 3214,
+      "databaseDocsRead": 2410,
+      "databaseBytesRead": 5612010,
+      "occConflicts": 0
+    }
+  ]
+}

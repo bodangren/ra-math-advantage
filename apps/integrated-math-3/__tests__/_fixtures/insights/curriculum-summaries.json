@@ -1,0 +1,24 @@
+{
+  "deployment": "scale-isolated-im3",
+  "startTimeMs": 1718280000000,
+  "endTimeMs": 1718283600000,
+  "totals": {
+    "functionExecutionTimeMs": 2234,
+    "databaseDocsRead": 1812,
+    "databaseBytesRead": 4099712,
+    "databaseDocsWritten": 0,
+    "databaseBytesWritten": 0,
+    "occConflicts": 0
+  },
+  "perFunction": [
+    {
+      "functionName": "lib/scale/curriculum-summary:summarizeCurriculum",
+      "functionType": "query",
+      "executionCount": 9,
+      "functionExecutionTimeMs": 2234,
+      "databaseDocsRead": 1812,
+      "databaseBytesRead": 4099712,
+      "occConflicts": 0
+    }
+  ]
+}

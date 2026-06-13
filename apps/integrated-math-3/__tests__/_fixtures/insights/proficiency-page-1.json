@@ -1,0 +1,26 @@
+{
+  "deployment": "scale-isolated-im3",
+  "startTimeMs": 1718280000000,
+  "endTimeMs": 1718283600000,
+  "isDone": false,
+  "continueCursor": "page-1-token",
+  "totals": {
+    "functionExecutionTimeMs": 2210,
+    "databaseDocsRead": 920,
+    "databaseBytesRead": 2014321,
+    "databaseDocsWritten": 0,
+    "databaseBytesWritten": 0,
+    "occConflicts": 0
+  },
+  "perFunction": [
+    {
+      "functionName": "convex/objectiveProficiency:getObjectiveProficiencyHandler",
+      "functionType": "query",
+      "executionCount": 15,
+      "functionExecutionTimeMs": 2210,
+      "databaseDocsRead": 920,
+      "databaseBytesRead": 2014321,
+      "occConflicts": 0
+    }
+  ]
+}

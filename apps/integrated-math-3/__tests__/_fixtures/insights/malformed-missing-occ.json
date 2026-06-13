@@ -1,0 +1,13 @@
+{
+  "deployment": "scale-isolated-im3",
+  "startTimeMs": 1718280000000,
+  "endTimeMs": 1718283600000,
+  "totals": {
+    "functionExecutionTimeMs": 800,
+    "databaseDocsRead": 0,
+    "databaseBytesRead": 0,
+    "databaseDocsWritten": 0,
+    "databaseBytesWritten": 0
+  },
+  "perFunction": []
+}

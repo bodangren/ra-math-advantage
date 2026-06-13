@@ -1,0 +1,24 @@
+{
+  "deployment": "scale-isolated-im3",
+  "startTimeMs": 1718280000000,
+  "endTimeMs": 1718283600000,
+  "totals": {
+    "functionExecutionTimeMs": 5512,
+    "databaseDocsRead": 3204,
+    "databaseBytesRead": 7820123,
+    "databaseDocsWritten": 0,
+    "databaseBytesWritten": 0,
+    "occConflicts": 0
+  },
+  "perFunction": [
+    {
+      "functionName": "lib/teacher/competency-heatmap:buildCompetencyHeatmap",
+      "functionType": "query",
+      "executionCount": 1,
+      "functionExecutionTimeMs": 5512,
+      "databaseDocsRead": 3204,
+      "databaseBytesRead": 7820123,
+      "occConflicts": 0
+    }
+  ]
+}
