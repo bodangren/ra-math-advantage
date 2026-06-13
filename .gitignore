@@ -52,3 +52,9 @@ graph-bm2.db
 
 # measure automation-supervisor run outputs
 /measure/runs/
+
+# scale harness runner output (regenerated on every run; do not commit)
+/scale-report.json
+/scale-evaluation.json
+apps/*/scale-report.json
+apps/*/scale-evaluation.json
