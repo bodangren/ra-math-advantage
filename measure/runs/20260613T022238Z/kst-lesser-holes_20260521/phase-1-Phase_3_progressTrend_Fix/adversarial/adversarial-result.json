@@ -1,0 +1,21 @@
+{
+  "status": "pass",
+  "summary": "Adversarial audit found and fixed graph-scope leakage in progressTrend: external mastered ids no longer affect the time-delta for the visualized knowledge space. Relevant live tests, package gates, npm test, root lint, and root build pass; root npx tsc --noEmit remains a known root-config TS18003 due include: [].",
+  "findings": [],
+  "evidence": [
+    "packages/knowledge-space-practice/src/__tests__/progress-trend.test.ts: added regression for ignoring mastered ids outside the visualized graph",
+    "packages/knowledge-space-practice/src/projections/visualization.ts: progressTrend delta now counts only skill/task_blueprint ids in the visualized graph",
+    "packages/knowledge-space-practice/src/__tests__/projections.test.ts: boundary test typechecks without Node ambient globals",
+    "apps/integrated-math-3/lib/level-projection/im3-level-projection.ts: removed unused CSV header binding that failed root lint",
+    "node node_modules/vitest/vitest.mjs run packages/knowledge-space-practice/src/__tests__/progress-trend.test.ts --root packages/knowledge-space-practice: pass, 10 tests",
+    "node node_modules/vitest/vitest.mjs run --root packages/knowledge-space-practice: pass, 3 files / 51 tests",
+    "npm test: pass, knowledge-space-core 17 files / 256 tests",
+    "npm run lint --workspace=packages/knowledge-space-practice: pass",
+    "npx tsc --noEmit --project packages/knowledge-space-practice/tsconfig.json: pass",
+    "npm run build --workspace=packages/knowledge-space-practice: pass",
+    "node node_modules/vitest/vitest.mjs run apps/integrated-math-3/__tests__/level-projection.test.ts apps/integrated-math-3/__tests__/level-projection-csv-contract.test.ts --root apps/integrated-math-3: pass, 7 tests",
+    "npm run lint: pass",
+    "npm run build: pass",
+    "npx tsc --noEmit: known root-config failure TS18003 because root tsconfig include is []"
+  ]
+}

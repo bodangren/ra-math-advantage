@@ -839,6 +839,25 @@ Implementation changes:
 - `visualization.ts`: added `ProgressTrendHistory` import; added 4th `history: ProgressTrendHistory = []` parameter to `projectParentVisualization`; replaced static-ratio logic (masteredCount/totalSkillNodes with 0.7/0.3 thresholds) with time-delta logic (7-day window, delta of masteredNodeIds.length between first and last snapshot in window)
 - `graph.db`: updated with changed file (25 → 26 nodes, 26 → 27 edges)
 
+### Phase 3 — Adversarial audit evidence (2026-06-13)
+
+Audit found one live behavior gap: `progressTrend` counted every id in `masteredNodeIds`, so unrelated mastered ids outside the visualized graph could flip a stable graph-local trend to `improving`. Added a regression test and scoped the delta to skill/task-blueprint ids present in the visualized graph. Also fixed two gate issues surfaced while auditing: the practice boundary test now typechecks without Node ambient globals, and the Phase 2 IM3 level projection parser no longer triggers the root lint unused-binding warning.
+
+| Command | Result |
+|---------|--------|
+| `node node_modules/vitest/vitest.mjs run packages/knowledge-space-practice/src/__tests__/progress-trend.test.ts --root packages/knowledge-space-practice` | 10 passed |
+| `node node_modules/vitest/vitest.mjs run --root packages/knowledge-space-practice` | 3 files / 51 tests passed |
+| `npm test` | pass — 17 files / 256 tests in `packages/knowledge-space-core` |
+| `npm run lint --workspace=packages/knowledge-space-practice` | pass |
+| `npx tsc --noEmit --project packages/knowledge-space-practice/tsconfig.json` | clean |
+| `npm run build --workspace=packages/knowledge-space-practice` | pass |
+| `node node_modules/vitest/vitest.mjs run apps/integrated-math-3/__tests__/level-projection.test.ts apps/integrated-math-3/__tests__/level-projection-csv-contract.test.ts --root apps/integrated-math-3` | 7 passed |
+| `npm run lint` | pass |
+| `npm run build` | pass |
+| `npx tsc --noEmit` | known root-config failure: TS18003 because root `tsconfig.json` has `include: []`; package-level TypeScript gates above passed |
+
+Full `npm run ws:im3:test` was not repeated because attempt 1 timed out after 120s while tests were still running; bounded IM3 tests for the touched level-projection file passed, and root lint/build passed after the lint fix.
+
 ## Phase 4 — Docs & Doctor
 
 - [ ] Task: Update in-repo kst-srs.v2 spec (§3.2 transfers_to, §16 Level Projection, §9.4 progressTrend, §12.9 FSRS per-card limitation + siblingReinforcement flag)

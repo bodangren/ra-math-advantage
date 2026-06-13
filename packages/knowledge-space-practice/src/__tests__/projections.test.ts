@@ -229,8 +229,10 @@ describe('Visualization projections', () => {
 // ---------------------------------------------------------------------------
 describe('Cross-domain smoke test (English/GSE)', () => {
   it('projection source files contain no math-domain or app imports (boundary check)', async () => {
-    const { readFileSync } = await import('node:fs');
-    const { resolve } = await import('node:path');
+    const fsModule = 'node:fs';
+    const { readFileSync } = (await import(fsModule)) as {
+      readFileSync: (path: URL, encoding: 'utf-8') => string;
+    };
     const projectionFiles = [
       '../projections/activity-map.ts',
       '../projections/srs.ts',
@@ -241,7 +243,8 @@ describe('Cross-domain smoke test (English/GSE)', () => {
       '../projections/types.ts',
     ];
     for (const file of projectionFiles) {
-      const content = readFileSync(resolve(__dirname, file), 'utf-8');
+      const fileUrl = new URL(file, import.meta.url);
+      const content = readFileSync(fileUrl, 'utf-8');
       expect(content, `${file} must not import from apps/`).not.toMatch(/from ['"].*apps\//);
       expect(content, `${file} must not import from math-content`).not.toMatch(/from ['"].*math-content/);
       expect(content, `${file} must not import from convex/_generated`).not.toMatch(/from ['"].*convex\/_generated/);

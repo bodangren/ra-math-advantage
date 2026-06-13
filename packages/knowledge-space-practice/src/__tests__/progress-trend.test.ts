@@ -90,6 +90,26 @@ describe('progressTrend time-delta (FR3)', () => {
 
       expect(viz.progressTrend).toBe('stable');
     });
+
+    it('ignores mastered ids outside the visualized knowledge-space graph', () => {
+      const learnerState: Record<string, string> = {};
+      const historyWithExternalGrowth = flatHistory.map((snapshot, index) => ({
+        ...snapshot,
+        masteredNodeIds:
+          index === 0
+            ? snapshot.masteredNodeIds
+            : [...snapshot.masteredNodeIds, 'external.skill.not-in-this-graph'],
+      }));
+
+      const viz = projectParentVisualization(
+        nodes,
+        edges,
+        learnerState,
+        historyWithExternalGrowth,
+      );
+
+      expect(viz.progressTrend).toBe('stable');
+    });
   });
 
   describe('Declining history', () => {

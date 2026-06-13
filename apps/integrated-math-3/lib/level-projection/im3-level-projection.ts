@@ -12,8 +12,7 @@ const CSV_PATH = resolve(__dirname, 'gse-to-im3-advantage.csv');
 
 function loadLevels(): DisplayLevel[] {
   const raw = readFileSync(CSV_PATH, 'utf8');
-  const lines = raw.split(/\r?\n/).filter((line) => line.length > 0);
-  const [_header, ...rows] = lines;
+  const rows = raw.split(/\r?\n/).filter((line) => line.length > 0).slice(1);
   return rows.map((row) => {
     const [id, title, minMasteryStr] = row.split(',');
     return {

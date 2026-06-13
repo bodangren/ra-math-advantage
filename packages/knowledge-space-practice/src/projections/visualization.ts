@@ -232,13 +232,14 @@ export function projectParentVisualization(
   const blockers = studentViz.blocked.map((n) => n.title);
 
   // Progress trend — time-delta over a 7-day window (FR3 fix)
-  const totalSkillNodes = studentViz.mastered.length +
-    studentViz.ready.length +
-    studentViz.blocked.length +
-    studentViz.reviewDue.length;
+  const trendNodeIds = new Set(
+    nodes
+      .filter((n) => n.kind === 'skill' || n.kind === 'task_blueprint')
+      .map((n) => n.id),
+  );
 
   let progressTrend: ParentVisualizationV1['progressTrend'] = 'unknown';
-  if (totalSkillNodes > 0 && history.length >= 2) {
+  if (trendNodeIds.size > 0 && history.length >= 2) {
     const now = Math.max(...history.map((s) => s.timestamp));
     const windowStart = now - 7 * 24 * 60 * 60 * 1000;
     const inWindow = history
@@ -246,9 +247,11 @@ export function projectParentVisualization(
       .sort((a, b) => a.timestamp - b.timestamp);
 
     if (inWindow.length >= 2) {
+      const countMasteredInGraph = (nodeIds: string[]) =>
+        nodeIds.filter((nodeId) => trendNodeIds.has(nodeId)).length;
       const delta =
-        inWindow[inWindow.length - 1].masteredNodeIds.length -
-        inWindow[0].masteredNodeIds.length;
+        countMasteredInGraph(inWindow[inWindow.length - 1].masteredNodeIds) -
+        countMasteredInGraph(inWindow[0].masteredNodeIds);
       if (delta > 0) progressTrend = 'improving';
       else if (delta === 0) progressTrend = 'stable';
       else progressTrend = 'declining';
