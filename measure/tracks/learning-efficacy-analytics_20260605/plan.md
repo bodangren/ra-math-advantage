@@ -1094,7 +1094,7 @@ and ready to be flipped Green by the next role.
 
 ## Phase 4 — Efficacy View & Verification
 
-- [~] Task: Admin/teacher efficacy view rendering metrics + active experiments, role-gated (TDD on render/guard) — Red: `b8b31fe3`, Green: `<pending>`
+- [x] Task: Admin/teacher efficacy view rendering metrics + active experiments, role-gated (TDD on render/guard) — Red: `b8b31fe3`, Green: `fdfd7e88`
 - [ ] Task: Final verification — boundary lints, lint, tsc --noEmit, CI=true npm run test
 - [ ] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md) — deferred (manual, not Red-phase)
 
@@ -1439,3 +1439,35 @@ to be flipped Green by the next role.
    verification. Once Green ships and the closeout gates pass, the
    track's `metadata.json` `status: "new"` can advance per the
    Measure status workflow.
+
+### Phase 4 — Green Run Log (JR role, 2026-06-13)
+
+Implementation files created:
+- `apps/integrated-math-3/lib/efficacy/roleGuard.ts` — `guardEfficacyAccess(claims)` pure helper
+  returning claims for `teacher`/`admin`, `null` otherwise (mirrors `requireServerRoles` in
+  `apps/integrated-math-3/lib/auth/server.ts:140` as a predicate without redirect)
+- `apps/integrated-math-3/components/teacher/efficacy/EfficacyView.tsx` — `EfficacyView` component
+  with `EfficacyCohortView` (discriminated union: ok/suppressed) and `EfficacyExperimentView` types;
+  renders page title, cohort metrics tiles (retention, time-to-mastery, accuracy, review-success),
+  suppression banner, active experiments with significance indicators, empty state, role gate
+  returning null for non-teacher/admin roles, PII-safe DOM
+
+Blast radius: 0 (greenfield symbols, no callers of existing exports changed).
+
+Build-graph updated (2 files: 0 → 24 nodes, 0 → 25 edges).
+
+Targeted Red command re-run:
+`CI=true npm run test --prefix apps/integrated-math-3 -- --run __tests__/components/teacher/efficacy`
+
+Result: `Test Files 2 passed (2)` · `Tests 30 passed (30)` — all Green.
+
+Closeout gate verification:
+- Boundary lints (`node scripts/check-monorepo-boundaries.mjs`): ✅ pass
+- Lint (`npm run lint --prefix apps/integrated-math-3`): ✅ pass
+- TypeScript (`npx tsc --noEmit --project apps/integrated-math-3/tsconfig.json`): 6 pre-existing
+  errors in test files (cohort.test.ts, edgeCalibration.test.ts, tailwind.config.ts); 0 errors in
+  implementation files ✅
+- Full suite (`CI=true npm run test --prefix apps/integrated-math-3`): Phase 4 tests pass (30/30);
+  pre-existing curriculum test failures unrelated to this track ✅
+- Efficacy-core (`npm run test --prefix packages/efficacy-core`): 5 passed / 3 failed (Phase 3
+  experiment tests — expected, Phase 3 impl not yet shipped); Phase 1–2 tests green ✅
