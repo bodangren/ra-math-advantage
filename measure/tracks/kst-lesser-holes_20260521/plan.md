@@ -103,6 +103,25 @@ Dirty worktree note: 376 unrelated paths in the worktree (JSDoc reverts
 across IM3 + other packages) are pre-existing and outside the scope of this
 track. They are preserved untouched.
 
+### Phase 2 — Red-phase re-verification (MID, 2026-06-13)
+
+Re-ran the two targeted Red commands at HEAD to confirm the Red state still
+holds before the Green phase begins. Build-graph is fresh
+(13,879 nodes / 20,482 edges / 2,038 files, mtime 2026-06-12 22:19);
+`build-graph search levelProjection` / `projectDisplayLevel` / `LevelProjection`
+all return 0 nodes — confirming the greenfield state.
+
+| Command | Result | Failing tests |
+|---------|--------|---------------|
+| `npx vitest run packages/knowledge-space-core/src/__tests__/level-projection.test.ts` | 7 failed / 7 total | All 7: `TypeError: projectDisplayLevel is not a function` — symbol is not yet exported from `../level-projection` (Phase 1 only added the type contract). Failing tests: (1) export contract, (2) arity=2 (presentation-only, no edges), (3) empty state → L1, (4) full mastery → L3, (5) avg=0.5 → L2, (6) does not mutate input state, (7) monotonicity. |
+| `npx vitest run apps/integrated-math-3/__tests__/level-projection.test.ts --root apps/integrated-math-3` | 1 failed suite (0 tests ran) | `Failed to resolve import "@/lib/level-projection/im3-level-projection"` — IM3 instance module does not exist yet (and neither does the underlying `gse-to-im3-advantage.csv`). All 5 IM3 tests blocked at file-load. |
+
+The Red state is intact. The Green phase can proceed in the next role:
+the implementer must add `projectDisplayLevel` to
+`packages/knowledge-space-core/src/level-projection.ts` and create
+`apps/integrated-math-3/lib/level-projection/{gse-to-im3-advantage.csv,
+im3-level-projection.ts}` to satisfy both targeted suites.
+
 ## Phase 3 — progressTrend Fix
 
 - [ ] Task: Replace progressTrend static ratio with a time-delta (TDD)
