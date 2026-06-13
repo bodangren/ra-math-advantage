@@ -37,8 +37,8 @@ jobs:
             --once \
             --evaluate \
             --deployment="$IM3_SCALE_URL" \
-            --baseline=apps/integrated-math-3/baselines/default.json \
-            --out=scale-evaluation.json
+            --baseline=baselines/default.json \
+            --out=../scale-evaluation.json
 
       - name: Upload scale evaluation report
         if: always()

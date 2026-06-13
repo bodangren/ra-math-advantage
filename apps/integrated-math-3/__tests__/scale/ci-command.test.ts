@@ -99,4 +99,16 @@ describe('scale — Phase 3 Red: CI command-construction proof (FR5)', () => {
       expect(source).not.toMatch(/https:\/\/[a-z0-9-]+\.convex\.cloud/);
     });
   });
+
+  describe('CI contract — runner path resolution (runner resolves --baseline and --out relative to APP_ROOT)', () => {
+    it('--baseline value does not include the apps/integrated-math-3 prefix (runner APP_ROOT already includes it)', () => {
+      const source = readFileSync(CI_WORKFLOW, 'utf8');
+      expect(source).not.toMatch(/--baseline=apps\/integrated-math-3\//);
+    });
+
+    it('--out value uses ../ prefix so the artifact lands at the repo root (where upload-artifact expects it)', () => {
+      const source = readFileSync(CI_WORKFLOW, 'utf8');
+      expect(source).toMatch(/--out=\.\.\//);
+    });
+  });
 });
