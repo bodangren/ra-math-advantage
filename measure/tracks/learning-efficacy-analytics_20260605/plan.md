@@ -1095,7 +1095,7 @@ and ready to be flipped Green by the next role.
 ## Phase 4 — Efficacy View & Verification
 
 - [x] Task: Admin/teacher efficacy view rendering metrics + active experiments, role-gated (TDD on render/guard) — Red: `b8b31fe3`, Green: `ec667b9c`
-- [ ] Task: Final verification — boundary lints, lint, tsc --noEmit, CI=true npm run test
+- [~] Task: Final verification — boundary lints, lint, tsc --noEmit, CI=true npm run test
 - [ ] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md) — deferred (manual, not Red-phase)
 
 ### Phase 4 — Red Notes (MID role, 2026-06-13)
@@ -1676,6 +1676,213 @@ remains for the MID role to perform.
    task can be executed when the supervisor/user runs the Phase 4
    protocol from `measure/workflow.md`. It is not blocking the
    closeout gate.
+
+4. **Track-level handoff:** Phase 4 Red is closed for automated
+   verification. Once Task 2 (closeout gate) and Task 3 (manual
+   verification) are checked off, the track's `metadata.json`
+   `status: "new"` can advance per the Measure status workflow.
+
+### Phase 4 — Red Phase Re-Entry Audit (MID attempt 5, 2026-06-13, HEAD `1f9e5cc8`)
+
+**Mandate:** Own the Red phase for every currently incomplete non-deferred task in Phase 4.
+
+**Phase 4 task inventory at re-entry:**
+
+| Task | Status (at HEAD) | Status (at MID start, dirty) | Evidence |
+|------|------------------|------------------------------|----------|
+| Admin/teacher efficacy view rendering metrics + active experiments, role-gated (TDD on render/guard) | `[x]` | `[x]` | Red commit `b8b31fe3`; Green commit `ec667b9c`; targeted command at HEAD reports `Test Files 2 passed (2) · Tests 30 passed (30)`; tests in `apps/integrated-math-3/__tests__/components/teacher/efficacy/{EfficacyView.test.tsx,roleGuard.test.ts}` (327 + 100 lines, byte-identical to HEAD per `git diff HEAD` → empty) |
+| Final verification — boundary lints, lint, tsc --noEmit, CI=true npm run test | `[ ]` | `[~]` (dirty, see classification below) | **Green/closeout gate — NOT Red-phase work** (same classification as MID attempt 4 audit above + Phase 2 line 1284 + Phase 3 equivalent). Per the Green Run Log at lines 1464–1473, the gate has been *partially* executed by the JR Green role with these results: boundary lints ✅, lint ✅, tsc 0 errors in impl files (6 pre-existing test-file errors unrelated to this track), full suite Phase 4 30/30 (pre-existing curriculum failures unrelated), efficacy-core Phase 1–2 green / Phase 3 still red (impl not yet shipped). No new Red tests can be authored without inventing fake failures or duplicating pre-existing CI gates. |
+| Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md) | `[ ]` | `[ ]` | Deferred (manual, not Red-phase) — same convention as Phase 1 line 11 + Phase 2 line 188 + Phase 3 line 757 + MID attempt 4 audit above |
+
+**Decision: no Red commit required.** The MID role's mandate is owned for
+all three Phase 4 tasks, but no new Red tests are authored because:
+
+- **Task 1** is already satisfied with evidence — the 30/30 Red contracts
+  exist on disk, are byte-identical to commit `b8b31fe3`, and currently
+  pass against the implementation shipped at `ec667b9c`. Per the
+  "false Red phase" guard: "If the new tests pass at HEAD, … mark the
+  task as already satisfied with evidence instead of creating a false
+  Red phase."
+- **Task 2** is the closeout/verification gate (not a Red-phase task).
+  Its "tests" are the pre-existing CI commands (`check-monorepo-boundaries.mjs`,
+  `npm run lint`, `npx tsc --noEmit`, `CI=true npm run test`) which
+  ARE the contract — there is no new feature contract to pin via
+  failing tests. Writing a meta-test for "CI gate passes" would either
+  invent a fake failure or duplicate the gate, both prohibited.
+- **Task 3** is deferred (manual verification protocol).
+
+**Build-Graph baseline at re-entry** (graph.db mtime 2026-06-13 22:53,
+TypeScript project, no rescan needed — Phase 4 Green delta is already
+scanned into graph.db by the JR role's Green commit `ec667b9c`):
+
+- `build-graph stats ./graph.db` → 13,924 nodes / 20,502 edges / 2,042
+  files (stable since MID attempt 4 audit; matches the post-Green
+  baseline at HEAD `1f9e5cc8`).
+- `build-graph search ./graph.db "EfficacyView"` → 3 hits in
+  `apps/integrated-math-3/components/teacher/efficacy/EfficacyView.tsx`
+  (file + `EfficacyView` function + `EfficacyViewProps` interface, all
+  with `exported` tags) → confirms Phase 4 Green delta is in the graph.
+- `build-graph search ./graph.db "guardEfficacyAccess"` → 1 hit in
+  `apps/integrated-math-3/lib/efficacy/roleGuard.ts:11` (function,
+  exported, JSDoc-summarized as the defense-in-depth role guard
+  mirroring `requireServerRoles`) → confirms Phase 4 Green delta is in
+  the graph.
+- `build-graph search ./graph.db "efficacy"` → 9 hits across:
+  `EfficacyView.tsx` (file + function + 3 interfaces + 1 type_alias),
+  `roleGuard.ts` (function), and the Phase 2 `convex/efficacy/{cohort,
+  suppression}.ts` Green delta. All within this track's namespace.
+- `build-graph callers ./graph.db EfficacyView` → 0 callers → the
+  component is exported but no page yet imports it (Phase 4 ships the
+  component + helper; wiring into `app/teacher/efficacy/page.tsx` is
+  the next role's call, deliberately out of scope for the Phase 4
+  TDD-on-render/guard task).
+- `build-graph callers ./graph.db guardEfficacyAccess` → 0 callers
+  → the helper is consumed only by the `EfficacyView` component
+  (within-file import) until a route page wires it; blast radius
+  outside this track remains 0.
+- `build-graph inspect ./graph.db guardEfficacyAccess` → exported,
+  6 lines (lib/efficacy/roleGuard.ts:11–17), 0 outgoing edges (pure
+  predicate), 2 incoming edges (`contains` ← `file:roleGuard.ts`,
+  `param_flow` ← `param:claims`). Confirms the helper's pure-predicate
+  shape and its lack of external imports.
+- Blast radius: 0 (no existing exports were touched; no callers of
+  greenfield symbols exist outside the new files).
+- Per-task graph protocol: post-edit `build-graph update` was run by
+  the JR Green role at commit `ec667b9c`; no further updates needed
+  for this audit (no test/source/config edits).
+
+**Dirty-worktree classification at MID re-entry start:**
+
+| Path | Classification | Action |
+|------|----------------|--------|
+| `M measure/tracks/learning-efficacy-analytics_20260605/plan.md` (1-line: Task 2 flipped from `[ ]` → `[~]`) | **Track-relevant** — Phase 4 task marker. The `[~]` flag claims engagement with Task 2 (the closeout gate). Not authored by this MID session — appeared in the worktree at MID start, presumably set by a prior agent or the supervisor harness when handing off this Phase 4 cycle. Consistent with the JR Green Run Log's partial closeout-gate execution (the gate has been started; the remaining sub-checks await Phase 3 Green to clean up the 3 failing efficacy-core suites). | **Fold into this Red Phase Re-Entry Audit commit** with explicit plan notes (this subsection). The `[~]` marker is preserved because (a) the closeout gate is in progress per the Green Run Log, (b) reverting it to `[ ]` would erase the JR/Green/Supervisor's signal that the gate has been touched, and (c) per the MID dirty-worktree protocol "If dirty changes are relevant, fold them into the Red-phase plan/test commit with explicit plan notes." |
+
+**Unrelated user work:** none. The only dirty path is the
+track-relevant `plan.md` task-marker flip described in the table.
+
+**Targeted Red command re-run** (single bounded run, no watch, no
+fall-through to the full app suite, CI=true, sourced nvm first because
+the supervisor harness runs outside an interactive shell that auto-loads
+nvm; ran from `apps/integrated-math-3/` because the app's
+`vitest.config.ts` defines the `@` → `./` alias — same convention as
+MID attempt 4 audit's run log):
+
+```
+source "$HOME/.nvm/nvm.sh" && cd apps/integrated-math-3 && \
+  CI=true npx vitest run __tests__/components/teacher/efficacy
+```
+
+**Result at 2026-06-13 (MID attempt 5, HEAD `1f9e5cc8`):**
+
+```
+ RUN  v4.1.8 /home/daniel-bo/Desktop/ra-math-advantage/apps/integrated-math-3
+
+ ✓ __tests__/components/teacher/efficacy/roleGuard.test.ts (9 tests) 71ms
+ ✓ __tests__/components/teacher/efficacy/EfficacyView.test.tsx (21 tests) 2059ms
+       ✓ renders the page title  1129ms
+
+ Test Files  2 passed (2)
+      Tests  30 passed (30)
+   Start at  23:48:11
+   Duration  9.12s (transform 853ms, setup 2.80s, import 628ms, tests 2.13s, environment 8.90s)
+```
+
+- 2 suites pass with 30 tests — identical to the Green Run Log at
+  commit `ec667b9c` (30/30) and the MID attempt 4 audit's re-run.
+- 0 false-pass tests, 0 stale-durable-record failures.
+- The 30 tests cover exactly the contracts pinned by the Red phase:
+  `guardEfficacyAccess` (9 tests: teacher / admin / student / undefined /
+  null / unknown / mixed / non-empty custom role / structural shape)
+  and `EfficacyView` (21 tests: page title, retention tile, time-to-
+  mastery tile, accuracy tile, review-success tile, suppression
+  banner, no-leak guard, experiment list, significance indicator,
+  empty state, role-gate returning null for student, PII-safe DOM,
+  aria-roles, etc.).
+- The 2 test files on disk are byte-identical to the committed Red at
+  `b8b31fe3` (`git diff HEAD apps/integrated-math-3/__tests__/components/teacher/efficacy/`
+  returns empty). The Red phase contracts are durable.
+
+**Test-file durability check** (against HEAD `1f9e5cc8`):
+
+```
+ 327 apps/integrated-math-3/__tests__/components/teacher/efficacy/EfficacyView.test.tsx
+ 100 apps/integrated-math-3/__tests__/components/teacher/efficacy/roleGuard.test.ts
+ 427 total
+```
+
+`git diff HEAD apps/integrated-math-3/__tests__/components/teacher/efficacy/`
+returns empty — the test files on disk are byte-identical to HEAD
+`1f9e5cc8`. Identical to the MID attempt 4 audit's line counts and
+durability check.
+
+**Files changed in this Red Phase Re-Entry Audit (MID attempt 5):**
+
+- MODIFIED `measure/tracks/learning-efficacy-analytics_20260605/plan.md`
+  (line 1098: Task 2 flipped from `[ ]` → `[~]` by another agent at
+  MID start, preserved per dirty-worktree protocol; this Red Phase
+  Re-Entry Audit (MID attempt 5) subsection appended).
+- No test files added or modified.
+- No source files added or modified.
+- No build/runtime config touched.
+- Worktree is clean post-`plan.md` edit per `git status --porcelain`.
+
+**Out of scope for Red:** no `src/` files were created or committed;
+no `package.json`, `vitest.config.ts`, `tsconfig.json`, or other
+build/runtime config was created or modified in
+`apps/integrated-math-3/`; no existing source was modified. The
+Green-phase implementation files are committed at `ec667b9c` (not
+authored by this MID session, not modified by this audit). The
+generated `graph.db` is tracked but currently un-dirty per
+`git status --porcelain` (mtime updated 22:53 but content hash
+matches HEAD; pre-commit hook gates via `ALLOW_GRAPH_DB=1`).
+
+**Red-phase state is canonical and post-Green.** The 2 Red files
+(`EfficacyView.test.tsx` + `roleGuard.test.ts`) are durable, byte-
+identical to the committed Red at `b8b31fe3`, and currently **pass
+30/30** against the implementation shipped at `ec667b9c`. The Red
+phase is closed: tests written, implementation shipped, no Red work
+remains for the MID role to perform in Phase 4. The `[~]` marker on
+Task 2 reflects the in-progress closeout gate (owned by JR/Green/
+Supervisor), not new Red-phase work.
+
+**Handoff to next role:**
+
+1. **JR/Green role / Supervisor / User:** Task 2 ("Final verification")
+   is the only remaining non-deferred work item in Phase 4. The
+   gate has been partially executed per the Green Run Log
+   (lines 1464–1473) with these results:
+   - Boundary lints (`node scripts/check-monorepo-boundaries.mjs`): ✅ pass
+   - Lint (`npm run lint --prefix apps/integrated-math-3`): ✅ pass
+   - TypeScript: 0 errors in implementation files; 6 pre-existing
+     errors in test files (`cohort.test.ts` type mismatches,
+     `edgeCalibration.test.ts`, `tailwind.config.ts`) — these are
+     pre-existing Red-phase test-file issues, NOT Phase 4 regressions.
+   - Full suite (`CI=true npm run test --prefix apps/integrated-math-3`):
+     Phase 4 tests pass (30/30); pre-existing curriculum test failures
+     unrelated to this track.
+   - Efficacy-core (`npm run test --prefix packages/efficacy-core`):
+     Phase 1–2 metrics + cohort green (5/5); Phase 3 experiment tests
+     still failing (3 suites) because Phase 3 Green has not yet
+     shipped — this is the next track-pending work item.
+   Mark Task 2 `[x]` with a closeout commit SHA once the supervisor
+   confirms the pre-existing failures and Phase 3 Green status are
+   not blockers for track closure. If Phase 3 Green ships first,
+   re-run the efficacy-core sub-check; otherwise document the Phase 3
+   gap as a known follow-up before flipping Task 2 to `[x]`.
+
+2. **Phase 3 Green owner:** Phase 3 implementation
+   (`packages/efficacy-core/src/experiment/{assign,registry,report}.ts`)
+   remains the only Red-phase test suite still in the
+   missing-implementation state. The Red tests are durable at
+   `5a4fdfd2` (3 suites, 543 total lines). Flipping Phase 3 to Green
+   would also clear the 3 remaining `efficacy-core` failures from the
+   Phase 4 closeout gate's efficacy-core sub-check, but is **out of
+   scope for the Phase 4 MID Red re-entry audit**.
+
+3. **Manual Verification owner:** The deferred Phase 4 manual
+   verification task can be executed when the supervisor/user runs the
+   Phase 4 protocol from `measure/workflow.md`. It is not blocking
+   the closeout gate.
 
 4. **Track-level handoff:** Phase 4 Red is closed for automated
    verification. Once Task 2 (closeout gate) and Task 3 (manual
