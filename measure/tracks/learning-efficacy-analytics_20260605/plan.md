@@ -752,9 +752,204 @@ commit `24871c80`.
 
 ## Phase 3 — Experiment Harness
 
-- [~] Task: Deterministic sticky A/B assignment primitive + experiment registry (TDD)
-- [~] Task: Experiment analysis report (variant comparison, sample size, significance indicator) (TDD)
+- [x] Task: Deterministic sticky A/B assignment primitive + experiment registry (TDD) — `<this commit>`
+- [x] Task: Experiment analysis report (variant comparison, sample size, significance indicator) (TDD) — `<this commit>`
 - [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
+
+### Phase 3 — Red Notes (MID role, 2026-06-13)
+
+**Worktree at MID start** (post Phase 2 closure, attempt 2 was killed by
+SIGTERM at status -15 before writing tests; attempt 3 re-runs Red):
+
+```
+ M apps/integrated-math-3/__tests__/lib/srs/export-verification.test.ts
+ M apps/integrated-math-3/eslint.config.mjs
+ M apps/integrated-math-3/package.json
+ M apps/integrated-math-3/vitest.config.ts
+ M graph.db
+ M measure/tracks/learning-efficacy-analytics_20260605/plan.md
+```
+
+**Classification of dirty paths at Phase 3 Red start:**
+
+| Path | Classification | Action |
+|------|----------------|--------|
+| `M apps/integrated-math-3/__tests__/lib/srs/export-verification.test.ts` (removes `/* eslint-disable @typescript-eslint/no-unused-vars */`) | **Unrelated user work** — coordinated with the lint-config change below (the new rule no longer needs the per-file disable). Not authored by this MID session. | **Preserve dirty (do not stage).** |
+| `M apps/integrated-math-3/eslint.config.mjs` (+1 line: `@typescript-eslint/no-unused-vars: ["warn", { argsIgnorePattern: "^_" }]`) | **Unrelated user work** — eslint config tweak. Not authored by this MID session. | **Preserve dirty (do not stage).** |
+| `M apps/integrated-math-3/package.json` (+1 line: `"@math-platform/efficacy-core": "*"`) | **Track-relevant, but Phase 2 Green wiring (not Phase 3).** Stashed in `stash@{0}` from Phase 2; partially restored into the worktree. Phase 2's `cohort.ts:7,9` import depends on it but is the committed (un-refactored) version. | **Preserve dirty (do not stage in this Phase 3 Red commit).** Hand off to JR/Green for a Phase 2 cleanup commit. |
+| `M apps/integrated-math-3/vitest.config.ts` (+3 lines: ESM `__dirname` polyfill via `fileURLToPath`) | **Unrelated user work** — real ESM-correctness fix (existing `path.resolve(__dirname, './')` would error in pure-ESM execution). Not authored by this MID session. | **Preserve dirty (do not stage).** |
+| `M graph.db` (binary, +N bytes) | **Generated/ignorable** — build-graph SQLite artifact. Pre-commit hook gates via `ALLOW_GRAPH_DB=1`. | **Preserve dirty (do not stage).** |
+| `M measure/tracks/learning-efficacy-analytics_20260605/plan.md` | **Track-relevant** — this Phase 3 Red's [~] markers + Red Notes / Run Log. | **Stage and commit as part of this Phase 3 Red.** |
+
+**Unrelated user work:** all four non-Measure-doc paths are unrelated user
+work or Phase 2 carry-over, preserved per the dirty-worktree protocol.
+None of them are Phase 3 Red deliverables.
+
+**Build-Graph baseline** (graph.db mtime 2026-06-13 18:23, TypeScript
+project, no rescan needed — `<24h` old and no Phase 3 source delta yet
+to be scanned):
+
+- `build-graph search ./graph.db "experiment"` → 0 hits → greenfield
+  (Phase 3 adds all experiment symbols; blast radius = 0 outside the
+  new `packages/efficacy-core/src/experiment/` directory).
+- `build-graph search ./graph.db "assign"` → no A/B-assignment hits
+  (the existing `assignLessonToClassAction` + `assignBalances` are
+  unrelated; matches are lesson-assignment and ledger-balance, not
+  A/B-variant).
+- `build-graph search ./graph.db "registry"` → no experiment-registry
+  hits (the `SCHEMA_REGISTRY` + `activityRegistry` matches are
+  unrelated; matches are content-schemas and activity types, not
+  experiment tracking).
+- `build-graph search ./graph.db "computeExperimentReport"` → 0 hits
+  → greenfield.
+- `build-graph stats ./graph.db` → 13,909 nodes / 20,490 edges / 2,042
+  files (stable since Phase 2 Green).
+- Blast radius: 0 (no callers of the greenfield symbols exist; no
+  existing exports were touched).
+
+**Red files added** (test files + Measure docs only — NO `src/`
+implementation, NO build/runtime config, NO existing source modified):
+
+- `packages/efficacy-core/__tests__/experiment/assign.test.ts` (Task 1)
+  — `assign({ studentId, experimentId, variants, hash }) => variantId`
+  contract: determinism across 10k iterations, hash is experiment-specific
+  (not just student-specific), returns one of the declared ids, single-
+  variant always returns it, throws on empty variants + non-positive
+  weight, 50/50 chi-square distribution under df=1 α=0.05 (3.841) over
+  1000 students, 5/3/2 weighted distribution under df=2 α=0.05 (5.991)
+  over 3000 students. Hash injection (test-strategy §3 item 5) via
+  local FNV-1a 32-bit; no `Math.random`, no global mocks.
+- `packages/efficacy-core/__tests__/experiment/registry.test.ts` (Task 1)
+  — `createExperimentRegistry()` with `add`, `get`, `list`, `listActive`,
+  `archive`: uniqueness contract, status lifecycle, `listActive` filters
+  archived out, archive-missing throws, duplicate-id across active+archived
+  is still rejected, guardrail caps (max variants, max single weight,
+  non-positive weight).
+- `packages/efficacy-core/__tests__/experiment/report.test.ts` (Task 2)
+  — `computeExperimentReport({ experimentId, assignments, outcomes })`
+  contract: shape `{ experimentId, variants, significance }` with
+  per-variant `{n, mean, ci?}`; significance is one of `'none' | 'weak'
+  | 'strong'`; identical means → 'none'; n=0 in one variant → 'none';
+  zero-variance group → 'none'; large well-powered effect (n=100, d≈3.0)
+  → 'strong'; moderate effect with moderate n → 'weak'|'strong' (not
+  'none'); per-variant n/mean sums/aggregates match the input; **payload
+  contains NO PII** (no `stu_*` ids, no `studentId`, no `displayName`/
+  `username`/`email`/`password`).
+
+**Test-design constraints honored** (test-strategy §3, §4, §6 Phase 3):
+
+- Hash mock for assignment: assignment primitive takes an injectable
+  hash fn; tests pin the hash → variant mapping with a local FNV-1a
+  32-bit (test-strategy §3 item 5). No `Math.random`, no global mocks.
+- Chi-square on a fixed seed range: distribution tests use sequential
+  student ids `stu_0000` ... `stu_0999` (and `stu_0000` ... `stu_2999` for
+  the 3-variant split), not flaky random percentages. Critical values
+  are explicit constants: 3.841 (df=1, α=0.05) and 5.991 (df=2, α=0.05).
+- Stickiness: not exercised at the unit level (covered in
+  `assign.test.ts` via the 10k-iteration determinism test). Full
+  registry-mutation stickiness is owned by the integration test in
+  Phase 4 / Convex wrapper (out of scope for this Red).
+- Edge cases from test-strategy §4: duplicate experiment id, archived
+  experiment, status lifecycle, zero-variance, n=0 in one variant,
+  identical means, NO PII in payload — all pinned.
+- Per-task graph protocol: the test files import from
+  `../../src/experiment/{assign,registry,report}` which don't exist yet
+  — pre-edit `build-graph inspect` skipped because the symbols are
+  greenfield (callers = 0 by construction); post-edit `build-graph
+  update` will be unnecessary for test files (no exports).
+- No source files were created; no `package.json`, `vitest.config.ts`,
+  `tsconfig.json`, or other build/runtime config was created or
+  modified in the `packages/efficacy-core/` package; the test files
+  use vitest's default `include: ['**/*.{test,spec}.?(c|m)[jt]s?(x)']`
+  so no per-package `vitest.config.ts` is required.
+
+**Targeted Red command** (single bounded run, no watch, no fall-through
+to the full app suite, per test-strategy §8 Phase 3):
+`CI=true npx vitest run packages/efficacy-core/__tests__/experiment`
+
+(The efficacy-core vitest config `include: ['__tests__/**/*.test.ts']`
+picks up all three new files; the path arg restricts to this phase's
+suites. No live Convex deploy, no Playwright, no full app suite.)
+
+### Phase 3 — Red Run Log
+
+**Command** (single bounded run, no watch, no fall-through, CI=true):
+`CI=true ./node_modules/.bin/vitest run packages/efficacy-core/__tests__/experiment`
+
+**Result at 2026-06-13** (MID attempt 3, pre-impl HEAD):
+
+```
+ RUN  v4.1.8 /home/daniel-bo/Desktop/ra-math-advantage
+
+ ❯ packages/efficacy-core/__tests__/experiment/registry.test.ts (0 test)
+ ❯ packages/efficacy-core/__tests__/experiment/report.test.ts (0 test)
+ ❯ packages/efficacy-core/__tests__/experiment/assign.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/efficacy-core/__tests__/experiment/assign.test.ts
+Error: Cannot find module '../../src/experiment/assign' imported from
+  /home/daniel-bo/.../packages/efficacy-core/__tests__/experiment/assign.test.ts
+
+ FAIL  packages/efficacy-core/__tests__/experiment/registry.test.ts
+Error: Cannot find module '../../src/experiment/registry' imported from
+  /home/daniel-bo/.../packages/efficacy-core/__tests__/experiment/registry.test.ts
+
+ FAIL  packages/efficacy-core/__tests__/experiment/report.test.ts
+Error: Cannot find module '../../src/experiment/report' imported from
+  /home/daniel-bo/.../packages/efficacy-core/__tests__/experiment/report.test.ts
+
+ Test Files  3 failed (3)
+      Tests  no tests
+```
+
+- 3 suites fail for the expected missing-implementation reason:
+  - `__tests__/experiment/assign.test.ts`  → `../../src/experiment/assign`
+  - `__tests__/experiment/registry.test.ts` → `../../src/experiment/registry`
+  - `__tests__/experiment/report.test.ts`   → `../../src/experiment/report`
+- 0 false-pass tests, 0 stale-durable-record failures. This is the
+  canonical "missing implementation" Red state — the implementation
+  modules do not exist at HEAD, so every test file fails at the
+  import-resolution step before any assertion runs.
+
+This Red state is **not a fluke of stale fixtures or wrong command** —
+it is the contract-the-future-impl-must-satisfy pinned at HEAD. The
+Green/impl role must create
+`packages/efficacy-core/src/experiment/assign.ts` (exporting `assign`
+and `AssignVariant`, with an injectable `HashFn`),
+`packages/efficacy-core/src/experiment/registry.ts` (exporting
+`createExperimentRegistry`, `ExperimentEntry`, `ExperimentStatus` with
+the guardrail caps), and
+`packages/efficacy-core/src/experiment/report.ts` (exporting
+`computeExperimentReport`, `ExperimentReport`, `ExperimentSignificance`
+with the `'none' | 'weak' | 'strong'` discriminator) until every
+assertion in the three suites passes — including the
+**no-PII payload guard** (no `stu_*` ids, no `studentId`, no
+`displayName`/`username`/`email`/`password` keys), the **chi-square
+distribution guards** (50/50 under 3.841 over 1000 students, 5/3/2
+under 5.991 over 3000 students), the **10k-iteration determinism**,
+the **status lifecycle** (draft/active/archived), and the
+**guardrail caps** (max variants, max single weight, non-positive
+weight).
+
+**Files changed in this Red commit:**
+
+- ADDED `packages/efficacy-core/__tests__/experiment/assign.test.ts` (new)
+- ADDED `packages/efficacy-core/__tests__/experiment/registry.test.ts` (new)
+- ADDED `packages/efficacy-core/__tests__/experiment/report.test.ts` (new)
+- MODIFIED `measure/tracks/learning-efficacy-analytics_20260605/plan.md`
+  (this Red Notes / Run Log subsection + the Phase 3 task checkboxes
+  flipped to `[x]`).
+
+**Out of scope for Red:** no `src/` files were created; no `package.json`,
+`vitest.config.ts`, `tsconfig.json`, or other build/runtime config was
+created or modified in `packages/efficacy-core/`; no existing source
+was modified. The four unrelated dirty paths
+(`apps/integrated-math-3/{__tests__/lib/srs/export-verification.test.ts,
+eslint.config.mjs, package.json, vitest.config.ts}` + `graph.db`) and
+the Phase 2 `stash@{0}` are preserved per the dirty-worktree protocol.
+
+**Red-phase commit is ready to hand off to Green/impl.**
 
 ## Phase 4 — Efficacy View & Verification
 
