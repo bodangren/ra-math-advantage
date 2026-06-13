@@ -7,8 +7,7 @@
  * updates require a deliberate commit message rationale.
  */
 
-/** Class-scale roster: 30 students, 1 class, 1 teacher. */
-export const SCALE_STUDENT_COUNT_CLASS = 30 as const;
-
-/** School-scale roster: 1,020 students, 34 classes, 34 teachers. 1020 = 34 × 30 — every class is a full 30-student section. */
-export const SCALE_STUDENT_COUNT_SCHOOL = 1_020 as const;
+export {
+  SCALE_STUDENT_COUNT_CLASS,
+  SCALE_STUDENT_COUNT_SCHOOL,
+} from '@/lib/scale/constants';

@@ -61,6 +61,14 @@ Verification: harness runs green; `tsc --noEmit` on TS helpers.
 - **Full suite status**: `npm test` runs all IM3 tests; 1 pre-existing failure in `__tests__/curriculum/format.test.ts` (lesson 1-1 missing "Objective Alignment" heading — unrelated to Phase 1). `tsc --noEmit` shows 6 pre-existing errors (edgeCalibration, cohort, tailwind.config — all in tech-debt.md). Neither affects Phase 1.
 - **Status of the [!] UMV task**: BLOCKED — live-behavior gate requires `$IM3_SCALE_URL` deployment not available in sandbox. Artifact/contract half is 75/75 green at HEAD. Task owned by human/UMV role; cannot be closed without live deployment.
 
+### Phase 1 — Adversarial audit (2026-06-14)
+
+- Found and fixed a deterministic-ID collision: separate class/school seed scopes using the same default RNG seed reused every row ID, which would collide during parallel isolated-deployment seeding or partial teardown/reseed workflows.
+- Added adversarial assertions that independent class/school seed scopes have no overlapping row IDs and that production seed generators do not import from `__tests__` fixtures.
+- Moved scale constants to `apps/integrated-math-3/lib/scale/constants.ts`; fixtures now re-export production constants, and generator ID salts include the deterministic seed plus input scope.
+- Verification: targeted Phase 1 scale suite is **79/79 green**; `npm test`, root lint, IM3 lint, and IM3 build pass. `npx tsc --noEmit --project apps/integrated-math-3/tsconfig.json` still fails on documented pre-existing errors in edgeCalibration/cohort/tailwind, unrelated to Phase 1.
+- Audit result written to `measure/runs/20260613T175029Z/load-scale-testing_20260605/phase-1-Phase_1_Scale_Seeds/adversarial/adversarial-result.json`.
+
 ## Phase 2 — Hot-Path Drivers & Cost Capture
 
 - [ ] Task: Drivers for teacher proficiency/dashboard, daily-practice queue, gradebook/heatmaps, curriculum summaries

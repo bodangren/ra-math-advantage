@@ -10,16 +10,13 @@
  */
 
 import {
-  SCALE_STUDENT_COUNT_CLASS,
-  SCALE_STUDENT_COUNT_SCHOOL,
-} from '@/__tests__/_fixtures/scale/student-roster';
-import {
   SCALE_CARDS_PER_STUDENT,
-  SCALE_REVIEWS_PER_CARD,
-  SCALE_SUBMISSIONS_PER_STUDENT,
   SCALE_CLASSES_PER_SCHOOL,
+  SCALE_REVIEWS_PER_CARD,
+  SCALE_STUDENT_COUNT_CLASS,
+  SCALE_SUBMISSIONS_PER_STUDENT,
   SCALE_TEACHERS_PER_SCHOOL,
-} from '@/__tests__/_fixtures/scale/density';
+} from '@/lib/scale/constants';
 
 export const SCALE_RNG_SEED = 'load-2026' as const;
 
@@ -48,16 +45,6 @@ export interface SchoolSeedResult {
   };
 }
 
-function mulberry32(seed: number) {
-  let t = seed >>> 0;
-  return () => {
-    t += 0x6d2b79f5;
-    let r = Math.imul(t ^ (t >>> 15), 1 | t);
-    r ^= r + Math.imul(r ^ (r >>> 7), 61 | r);
-    return ((r ^ (r >>> 14)) >>> 0) / 4294967296;
-  };
-}
-
 function hashString(str: string): number {
   let hash = 0;
   for (let i = 0; i < str.length; i++) {
@@ -67,9 +54,11 @@ function hashString(str: string): number {
 }
 
 export function generateSchoolSeed(input: SchoolSeedInput): SchoolSeedResult {
-  const seedNum = hashString(input.rngSeed ?? SCALE_RNG_SEED);
-  const rng = mulberry32(seedNum);
-  const salt = (seedNum >>> 0).toString(36);
+  const scopeNum = hashString([
+    input.rngSeed ?? SCALE_RNG_SEED,
+    input.organizationSlug,
+  ].join('|'));
+  const salt = (scopeNum >>> 0).toString(36);
   let seq = 0;
   const id = (prefix: string) => `${prefix}${salt}${(seq++).toString(36)}`;
 

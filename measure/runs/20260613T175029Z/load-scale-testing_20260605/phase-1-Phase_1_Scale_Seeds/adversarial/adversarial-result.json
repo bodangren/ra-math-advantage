@@ -1,0 +1,18 @@
+{
+  "status": "fail",
+  "summary": "Adversarial audit found and fixed Phase 1 seed-scope ID collisions plus production-to-test fixture coupling; targeted scale tests, npm test, lint, and build pass, but the required TypeScript gate remains red on documented pre-existing IM3 errors outside Phase 1.",
+  "findings": [
+    "npx tsc --noEmit --project apps/integrated-math-3/tsconfig.json still fails on pre-existing errors in __tests__/convex/edgeCalibration.test.ts, __tests__/convex/efficacy/cohort.test.ts, and tailwind.config.ts."
+  ],
+  "evidence": [
+    "apps/integrated-math-3/__tests__/scale/seed-class.test.ts: added no-overlap row ID assertions and production source-boundary assertion",
+    "apps/integrated-math-3/__tests__/scale/seed-school.test.ts: added no-overlap row ID assertions and production source-boundary assertion",
+    "apps/integrated-math-3/lib/scale/constants.ts: production-owned scale constants",
+    "apps/integrated-math-3/lib/scale/seed-class.ts and seed-school.ts: ID salt now includes deterministic seed scope input",
+    "PATH=/home/daniel-bo/.nvm/versions/node/v24.4.0/bin:$PATH CI=true ../../node_modules/.bin/vitest run __tests__/scale/seed-class.test.ts __tests__/scale/seed-school.test.ts — pass, 79 tests",
+    "PATH=/home/daniel-bo/.nvm/versions/node/v24.4.0/bin:$PATH CI=true npm test — pass, 262 tests",
+    "PATH=/home/daniel-bo/.nvm/versions/node/v24.4.0/bin:$PATH npm run lint — pass",
+    "PATH=/home/daniel-bo/.nvm/versions/node/v24.4.0/bin:$PATH npm run --workspace=apps/integrated-math-3 build — pass",
+    "PATH=/home/daniel-bo/.nvm/versions/node/v24.4.0/bin:$PATH npx tsc --noEmit --project apps/integrated-math-3/tsconfig.json — fail on documented pre-existing errors"
+  ]
+}

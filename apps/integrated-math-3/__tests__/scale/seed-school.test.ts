@@ -20,6 +20,9 @@
  * teacher. Same per-student density (cards/reviews/submissions). Same frozen
  * RNG seed for determinism.
  */
+import { readFileSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { describe, it, expect } from 'vitest';
 import {
   generateSchoolSeed,
@@ -40,6 +43,9 @@ import { SCALE_RNG_SEED_VALUE } from '@/__tests__/_fixtures/scale/rng';
 const SCHOOL_INPUT: SchoolSeedInput = {
   organizationSlug: 'school-scale',
 };
+
+const TEST_DIR = dirname(fileURLToPath(import.meta.url));
+const APP_ROOT = resolve(TEST_DIR, '../..');
 
 describe('scale — Phase 1 Red: generateSchoolSeed (1,000-student school)', () => {
   describe('module surface', () => {
@@ -163,6 +169,30 @@ describe('scale — Phase 1 Red: generateSchoolSeed (1,000-student school)', () 
       const a = generateSchoolSeed(SCHOOL_INPUT);
       const b = generateSchoolSeed(SCHOOL_INPUT);
       expect(b).toEqual(a);
+    });
+
+    it('different school seed scopes do not reuse row IDs', () => {
+      const a = generateSchoolSeed(SCHOOL_INPUT);
+      const b = generateSchoolSeed({ organizationSlug: 'school-scale-parallel' });
+      const idsA = new Set([
+        ...a.teachers.map((t) => t.id),
+        ...a.classes.map((c) => c.id),
+        ...a.students.map((s) => s.id),
+        ...a.enrollments.map((e) => e.id),
+        ...a.srsCards.map((c) => c.id),
+        ...a.reviewLog.map((r) => r.id),
+        ...a.submissions.map((s) => s.id),
+      ]);
+      const collisions = [
+        ...b.teachers.map((t) => t.id),
+        ...b.classes.map((c) => c.id),
+        ...b.students.map((s) => s.id),
+        ...b.enrollments.map((e) => e.id),
+        ...b.srsCards.map((c) => c.id),
+        ...b.reviewLog.map((r) => r.id),
+        ...b.submissions.map((s) => s.id),
+      ].filter((id) => idsA.has(id));
+      expect(collisions).toEqual([]);
     });
 
     it('same default seed yields identical student IDs (in order)', () => {
@@ -355,6 +385,16 @@ describe('scale — Phase 1 Red: generateSchoolSeed (1,000-student school)', () 
       for (const student of result.students) {
         expect(student.organizationSlug).toBe(SCHOOL_INPUT.organizationSlug);
       }
+    });
+  });
+
+  describe('source boundary contract', () => {
+    it('does not import test fixtures from production seed generator code', () => {
+      const source = readFileSync(
+        resolve(APP_ROOT, 'lib/scale/seed-school.ts'),
+        'utf8',
+      );
+      expect(source).not.toMatch(/@\/__tests__/);
     });
   });
 

@@ -18,6 +18,9 @@
  * table against a snapshot fixture — that test is owned by the Green role,
  * not this Red role.
  */
+import { readFileSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { describe, it, expect } from 'vitest';
 import {
   generateClassSeed,
@@ -38,6 +41,9 @@ const CLASS_INPUT: ClassSeedInput = {
   className: 'IM3 Period 1',
   teacherUsername: 'teacher@class-scale',
 };
+
+const TEST_DIR = dirname(fileURLToPath(import.meta.url));
+const APP_ROOT = resolve(TEST_DIR, '../..');
 
 describe('scale — Phase 1 Red: generateClassSeed (30-student class)', () => {
   describe('module surface', () => {
@@ -112,6 +118,34 @@ describe('scale — Phase 1 Red: generateClassSeed (30-student class)', () => {
       const a = generateClassSeed(CLASS_INPUT);
       const b = generateClassSeed(CLASS_INPUT);
       expect(b).toEqual(a);
+    });
+
+    it('different class seed scopes do not reuse row IDs', () => {
+      const a = generateClassSeed(CLASS_INPUT);
+      const b = generateClassSeed({
+        organizationSlug: 'class-scale-parallel',
+        className: 'IM3 Period 2',
+        teacherUsername: 'teacher@class-scale-parallel',
+      });
+      const idsA = new Set([
+        a.teacher.id,
+        a.classRoom.id,
+        ...a.students.map((s) => s.id),
+        ...a.enrollments.map((e) => e.id),
+        ...a.srsCards.map((c) => c.id),
+        ...a.reviewLog.map((r) => r.id),
+        ...a.submissions.map((s) => s.id),
+      ]);
+      const collisions = [
+        b.teacher.id,
+        b.classRoom.id,
+        ...b.students.map((s) => s.id),
+        ...b.enrollments.map((e) => e.id),
+        ...b.srsCards.map((c) => c.id),
+        ...b.reviewLog.map((r) => r.id),
+        ...b.submissions.map((s) => s.id),
+      ].filter((id) => idsA.has(id));
+      expect(collisions).toEqual([]);
     });
 
     it('same default seed yields identical student IDs (in order)', () => {
@@ -267,6 +301,16 @@ describe('scale — Phase 1 Red: generateClassSeed (30-student class)', () => {
       for (const student of result.students) {
         expect(student.organizationSlug).toBe(CLASS_INPUT.organizationSlug);
       }
+    });
+  });
+
+  describe('source boundary contract', () => {
+    it('does not import test fixtures from production seed generator code', () => {
+      const source = readFileSync(
+        resolve(APP_ROOT, 'lib/scale/seed-class.ts'),
+        'utf8',
+      );
+      expect(source).not.toMatch(/@\/__tests__/);
     });
   });
 
