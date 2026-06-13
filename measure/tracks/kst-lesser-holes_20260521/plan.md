@@ -689,9 +689,139 @@ Implementation changes:
 
 ## Phase 3 — progressTrend Fix
 
-- [ ] Task: Replace progressTrend static ratio with a time-delta (TDD)
+- [~] Task: Replace progressTrend static ratio with a time-delta (TDD)  *(MID Red in flight, 2026-06-13)*
     - [ ] Mastered-count delta over a window; unknown on insufficient history; update parent visualization
 - [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
+
+### Phase 3 — Graph-Aware pre-flight (MID, 2026-06-13)
+
+Build-graph probed at HEAD `6035e098` with fresh `graph.db`
+(13,899 nodes / 20,476 edges / 2,040 files, mtime 2026-06-13 10:15). The
+relevant symbols were inventoried before any test was written:
+
+| Symbol | File | Notes |
+|--------|------|-------|
+| `projectParentVisualization` (function) | `packages/knowledge-space-practice/src/projections/visualization.ts:205` | Sole producer of `progressTrend`; signature `(nodes, edges, learnerState?)` — no history input today |
+| `parentVisualizationV1Schema.progressTrend` (field) | `packages/knowledge-space-practice/src/projections/schemas.ts:38` | Zod enum: `'improving' \| 'stable' \| 'declining' \| 'unknown'` |
+| `ParentVisualizationV1` (interface) | `packages/knowledge-space-practice/src/projections/types.ts` | Carries the `progressTrend` field |
+| `masterySnapshotSchema` / `progressTrendHistorySchema` | `packages/knowledge-space-core/src/progress-trend.ts:3-8` | Phase 1 type contract — `MasterySnapshot` and `ProgressTrendHistory` already exported from `@math-platform/knowledge-space-core` root |
+| Static-ratio bug (the FR3 bug) | `packages/knowledge-space-practice/src/projections/visualization.ts:233-245` | `ratio = masteredCount / totalSkillNodes` with thresholds 0.7/0.3; mislabels a beginner (ratio=0) as `'declining'` |
+
+Callers of `projectParentVisualization` (greppable surface):
+
+| Caller | Args | Notes |
+|--------|------|-------|
+| `packages/knowledge-space-practice/src/__tests__/projections.test.ts:171` | 3-arg | `syntheticLearnerState` only — would silently fall back to static ratio at HEAD |
+| `packages/knowledge-space-practice/src/__tests__/projections.test.ts:287` | 3-arg | Cross-domain smoke test — same fall-back risk |
+| `packages/knowledge-space-practice/src/projections/index.ts:35` | re-export only | No production consumers in the index |
+| `packages/knowledge-space-practice/src/index.ts:59` | re-export only | Same — no app-level consumers yet |
+
+There are no application-level consumers of `projectParentVisualization`
+in apps/* (zero matches outside the package and the existing tests).
+The refactor is blast-radius-contained: the only existing test callers
+pass 3 args and the new design adds an optional 4th `history` arg
+(default `[]` → `'unknown'`), so old call sites keep compiling and the
+bug is fixed for them too (no more "beginner = declining" mislabel).
+
+The Green-phase target signature is therefore:
+
+```typescript
+function projectParentVisualization(
+  nodes: KnowledgeSpaceNode[],
+  edges: KnowledgeSpaceEdge[],
+  learnerState: Record<string, string> = {},
+  history: ProgressTrendHistory = [],
+): ParentVisualizationV1
+```
+
+`unknown` is produced when (a) the history window has fewer than two
+snapshots, OR (b) `totalSkillNodes === 0` (the existing branch must
+still pass — test-strategy §3, P3 boundary).
+
+### Phase 3 — Red-phase evidence (MID, 2026-06-13)
+
+Two new test files added in this Red commit (no source code modified):
+
+- `packages/knowledge-space-practice/src/__tests__/progressTrendFixtures.ts` (new, 5 fixtures: `improvingHistory`, `flatHistory`, `decliningHistory`, `insufficientHistory`, `singleSnapshotHistory`, plus `PROGRESS_TREND_WINDOW_MS` constant)
+- `packages/knowledge-space-practice/src/__tests__/progress-trend.test.ts` (new, 9 tests covering improving/stable/declining/unknown branches + beginner bug fix + empty-graph regression + Zod schema regression)
+
+Targeted Red command and observed failures at HEAD `6035e098`:
+
+| Command | Result | Failing tests |
+|---------|--------|---------------|
+| `node node_modules/vitest/vitest.mjs run packages/knowledge-space-practice/src/__tests__/progress-trend.test.ts --root packages/knowledge-space-practice` | **6 failed / 3 passed (9 total)** | All 6 trend-asserting tests fail for the expected contract-gap reasons (see table below). The 3 passing tests are intentional regression guards. |
+
+Per-test failure detail (all failing for the expected missing-behavior
+reasons, not incidental fixture issues):
+
+| # | Test | HEAD result | Expected | Why it fails (contract gap) |
+|---|------|-------------|----------|------------------------------|
+| 1 | improving — beginner learnerState (0 mastered), history shows growth | `'declining'` | `'improving'` | Static ratio 0/3 = 0.0 < 0.3 → `'declining'`. Time-delta delta = +1 → `'improving'`. |
+| 2 | flat — beginner learnerState (0 mastered), history shows 0 → 0 | `'declining'` | `'stable'` | Static ratio 0/3 = 0.0 < 0.3 → `'declining'`. Time-delta delta = 0 → `'stable'`. |
+| 3 | declining — full-mastery learnerState (3 mastered), history shows 2 → 1 | `'improving'` | `'declining'` | Static ratio 3/3 = 1.0 ≥ 0.7 → `'improving'`. Time-delta delta = -1 → `'declining'`. |
+| 4 | insufficient — full-mastery learnerState, history = `[]` | `'improving'` | `'unknown'` | Static ratio 3/3 = 1.0 ≥ 0.7 → `'improving'`. New contract: empty history → `'unknown'`. |
+| 5 | insufficient — full-mastery learnerState, history = 1 snapshot | `'improving'` | `'unknown'` | Same. New contract: < 2 snapshots in window → `'unknown'`. |
+| 6 | **bug-fix** — beginner learnerState (0 mastered), history = `[]` | `'declining'` | `'unknown'` | **The FR3 bug** — static ratio mislabels a beginner as `'declining'`. New contract: no history → `'unknown'`. |
+
+The 3 passing tests are intentional regression guards (live behavior
+that already works at HEAD and must continue to work after Green):
+
+- Zod schema parse for the improving branch (parent viz payload still valid)
+- `totalSkillNodes === 0` returns `'unknown'` (existing branch)
+- Zod schema parse for the empty-graph branch (parent viz payload still valid)
+
+These guards are not false Greens — they assert behavior that exists
+today and must be preserved by the refactor. Per the directive
+("If the new tests pass at HEAD, tighten the contract until at least
+one new test fails or mark the task as already satisfied with evidence
+instead of creating a false Red phase"), the 6 failing tests already
+cover the full FR3 contract surface, and the 3 passing tests are
+labeled as guards in the source.
+
+Additional typecheck Red signal (`npx tsc --noEmit --project
+packages/knowledge-space-practice/tsconfig.json`):
+
+```
+packages/knowledge-space-practice/src/__tests__/progress-trend.test.ts(55,9): error TS2554: Expected 2-3 arguments, but got 4.
+... (8 more TS2554 errors at the other call sites)
+```
+
+The TS2554 errors are a stronger Red signal than the runtime assertion
+failures: the function signature at HEAD has 3 parameters and the new
+contract requires a 4th `history: ProgressTrendHistory` parameter. The
+Green phase must update the signature. The 3 pre-existing TS errors
+in `projections.test.ts:232-244` (`Cannot find name 'node:fs'`,
+`'node:path'`, `'__dirname'`) are unrelated to this track and predate
+the session — they are not caused by the new test files.
+
+Re-verification that the existing test file is unchanged:
+
+| Command | Result |
+|---------|--------|
+| `git diff packages/knowledge-space-practice/src/__tests__/projections.test.ts` | empty — no changes to the existing file |
+| `node node_modules/vitest/vitest.mjs run packages/knowledge-space-practice/src/__tests__/projections.test.ts --root packages/knowledge-space-practice` | 10/10 passed (no regression) |
+| `node node_modules/vitest/vitest.mjs run --root packages/knowledge-space-practice` (full suite) | 6 failed / 44 passed (50 total) — failures all in the new `progress-trend.test.ts`; existing 2 test files + 3 of my regression guards all pass |
+
+`npm run lint --workspace=packages/knowledge-space-practice` passes with
+0 warnings (the new test files are lint-clean).
+
+Worktree state at the end of this Red-phase session:
+
+- `git status --porcelain`:
+  - `M measure/tracks/kst-lesser-holes_20260521/plan.md` (this subsection)
+  - `?? packages/knowledge-space-practice/src/__tests__/progress-trend.test.ts` (new)
+  - `?? packages/knowledge-space-practice/src/__tests__/progressTrendFixtures.ts` (new)
+- `git stash list`: `stash@{0}` (376 spec-compliance Phase 3 paths, preserved per the "Preserve unrelated user work" rule)
+- Track session diff (HEAD-vs-`6035e098`): 2 new test files + 1 Measure doc update; 0 source code modifications
+- 3 test files / 9 new tests added; 6 fail for the expected contract-gap reasons, 3 pass as regression guards
+
+**Red phase status**: Satisfied. The Green phase can proceed in the
+next role: the implementer must add the 4th `history: ProgressTrendHistory`
+parameter to `projectParentVisualization` in
+`packages/knowledge-space-practice/src/projections/visualization.ts:205`
+and replace the static-ratio computation at lines 233-245 with a
+time-delta of `masteredNodeIds.length` over the 7-day window defined
+by `PROGRESS_TREND_WINDOW_MS`.
 
 ## Phase 4 — Docs & Doctor
 
