@@ -67,7 +67,7 @@ root exports, and package subpath exports.
 - [x] Task: Implement the Level Projection (TDD)  *(MID Red — 2026-06-13; JR Green — 2026-06-13)* [checkpoint: 79a73434]
     - [x] Domain-supplied monotonic knowledge-state → display-level function; presentation-only
     - [x] IM3 instance derived from the existing CSV level mapping
-- [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
 
 ### Phase 2 — Red-phase evidence (MID handoff, 2026-06-13)
 
