@@ -309,6 +309,114 @@ Red commit per the MID dirty-worktree protocol.
 If the supervisor flags any Red-phase boundary violation, this section
 will record the remediation.
 
+### Phase 2 — Dirty-Worktree Resolution (MID attempt 2, 2026-06-13, commit `089b301c`)
+
+**Worktree at MID start** (post Phase 2 Red attempt 1, commit `0b7f8c81`):
+
+```
+ M apps/integrated-math-3/__tests__/convex/efficacy/suppression.test.ts
+?? apps/integrated-math-3/convex/efficacy/
+```
+
+**Classification of dirty paths:**
+
+1. `M apps/integrated-math-3/__tests__/convex/efficacy/suppression.test.ts`
+   — one-line modification to a test file in this track's Phase 2 Red
+   suite. **Relevant to this track/phase.** Inspected via `git diff`:
+   the committed Red contract (attempt 1) had a test-bug — the
+   'pure function' determinism assertion called
+   `suppressIfSmallN(3)` and `suppressIfSmallN(7)` and then
+   `expect(c).toEqual(b)`, which would fail for *any* correct
+   implementation that returns the actual `n` in the suppressed
+   payload (the two objects differ in `n`). The modification
+   correctly tightens the assertion to `expect(c.status).toBe(b.status)`,
+   which is what the test was actually trying to verify (both
+   inputs are below threshold → both produce `'suppressed'`).
+   Net effect: a test-bug correction, not a contract loosening.
+   Folded into the Red-phase commit `089b301c` per the dirty-worktree
+   protocol. The other payload-shape guards (suppressed-payload key
+   set test, ok-payload key set test, boundary tests, empty/single
+   tests) still pin the full privacy contract unchanged.
+
+2. `?? apps/integrated-math-3/convex/efficacy/{cohort.ts,suppression.ts}`
+   — untracked Green-phase source files left over from a prior
+   *uncommitted* Green attempt (mtimes 15:40 and 15:49, after the
+   Red attempt 1 commit at 15:31). These are the Phase 2
+   implementation deliverables (`aggregateCohortMetricsHandler` +
+   `MIN_COHORT_N` / `suppressIfSmallN`). **Relevant to this
+   track/phase, but NOT Red-phase work** — Green-phase code must
+   not be committed as part of a Red-phase commit, and leaving
+   them on disk would silently flip the Red state to Green
+   (imports would resolve, assertions might pass) and defeat the
+   canonical "missing implementation" failure mode. **Removed
+   from disk** to restore the canonical Red state. The Green
+   role will regenerate them when it picks up Phase 2.
+
+**Unrelated user work:** none. Both dirty paths are within this
+track/phase.
+
+**Build-Graph baseline** (graph.db mtime 2026-06-13 14:51, TypeScript
+project, no rescan needed — the untracked source files were never
+scanned, and the test-file modification adds no new exports):
+
+- `build-graph search ./graph.db "suppression"` → 0 hits → greenfield
+- `build-graph search ./graph.db "MIN_COHORT"` → 0 hits → greenfield
+- `build-graph search ./graph.db "aggregateCohortMetrics"` → 0 hits
+  → greenfield
+- `build-graph stats ./graph.db` → 13900 nodes / 20477 edges / 2040
+  files (stable since Phase 1 Green)
+- Blast radius: 0 (no callers of the greenfield symbols exist; no
+  existing exports were touched)
+
+**Targeted Red command re-run** (single bounded run, no watch, no
+fall-through, CI=true):
+`CI=true npx vitest run __tests__/convex/efficacy --dir apps/integrated-math-3`
+
+**Result at 2026-06-13 (MID attempt 2, post-fix HEAD `089b301c`):**
+
+- `Test Files  2 failed (2)` · `Tests  no tests`
+- Failure mode for both suites: vite `import-analysis` error
+  (`Cannot find package '@/convex/efficacy/cohort'` and
+  `Cannot find package '@/convex/efficacy/suppression'`)
+- 2 suites fail for the expected missing-implementation reason:
+  - `__tests__/convex/efficacy/cohort.test.ts`        → `@/convex/efficacy/cohort`
+  - `__tests__/convex/efficacy/suppression.test.ts`   → `@/convex/efficacy/suppression`
+- 0 false-pass tests, 0 stale-durable-record failures.
+- Identical canonical Red state to attempt 1; the test-bug
+  correction did not change the failure mode (both suites still
+  fail at the import-resolution step before any assertion runs,
+  which is the correct Red state for handler-as-pure-fn tests
+  in this app — mirrors `__tests__/convex/srs/dashboard.test.ts`'s
+  error shape).
+
+**Files changed in attempt 2 (Red-phase commit `089b301c`):**
+
+- MODIFIED `apps/integrated-math-3/__tests__/convex/efficacy/suppression.test.ts`
+  (1 line: test-bug correction in the 'pure function' determinism
+  assertion; the rest of the file — boundary tests, payload-shape
+  guards, discriminated-union check — is byte-identical to the
+  attempt-1 commit `0b7f8c81`).
+- MODIFIED `measure/tracks/learning-efficacy-analytics_20260605/plan.md`
+  (this Dirty-Worktree Resolution subsection).
+
+**Out of scope for Red:** no `src/` files were created or committed;
+the untracked `apps/integrated-math-3/convex/efficacy/{cohort,
+suppression}.ts` files were *removed* (not staged) to restore
+canonical Red state; no `package.json`, `vitest.config.ts`,
+`tsconfig.json`, or other build/runtime config was created or
+modified; no existing source was modified. Worktree is clean
+post-commit per `git status --porcelain`.
+
+**Red-phase commit `089b301c` is ready to hand off to Green/impl.**
+The Green role must create
+`apps/integrated-math-3/convex/efficacy/cohort.ts` (exporting
+`aggregateCohortMetricsHandler` and a `cohort` `internalQuery` wrapper)
+and `apps/integrated-math-3/convex/efficacy/suppression.ts` (exporting
+`MIN_COHORT_N`, `suppressIfSmallN`, `CohortSuppressionResult`) until
+every assertion in the two suites passes — including the corrected
+`expect(c.status).toBe(b.status)` assertion on distinct below-threshold
+inputs.
+
 ## Phase 3 — Experiment Harness
 
 - [ ] Task: Deterministic sticky A/B assignment primitive + experiment registry (TDD)
