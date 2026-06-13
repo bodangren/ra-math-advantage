@@ -507,6 +507,65 @@ the MID role.
 - Track session diff (HEAD-vs-f6fc05ec) = 4 test files + 1 plan.md (5 files; no source code)
 - Gate sees zero non-test/non-Measure changes — gate will pass.
 
+### Phase 2 — Red-phase boundary re-establishment (MID, 2026-06-13, supervisor re-gate #5)
+
+The previous attempt (mid-attempt-2) committed three Green-phase
+deliverables (`db03fb6f`, `99a585d3`, `2421503e`) under the original
+directive to "fold [relevant dirty changes] into the Red-phase plan/test
+commit with explicit plan notes". The supervisor flagged this as a
+Red-phase boundary violation — the Red phase must not modify or
+introduce non-test/non-Measure files, regardless of how they entered
+the dirty worktree.
+
+This attempt re-establishes the Red-phase boundary by reverting the
+three offending commits in reverse order:
+
+| Revert commit | Restores state of |
+|---------------|-------------------|
+| `c6995c51` (Reverts `2421503e`) | `measure/tracks/kst-lesser-holes_20260521/plan.md` checkpoint line |
+| `564dcff3` (Reverts `99a585d3`) | `graph.db` |
+| `87d11366` (Reverts `db03fb6f`) | `packages/knowledge-space-core/src/index.ts` (+1 export), `packages/knowledge-space-core/src/level-projection.ts` (+implementation), `apps/integrated-math-3/lib/level-projection/gse-to-im3-advantage.csv` (new), `apps/integrated-math-3/lib/level-projection/im3-level-projection.ts` (new), `measure/tracks/kst-lesser-holes_20260521/plan.md` (subsections) |
+
+**Why `git revert` and not `git reset --hard`**:
+`reset --hard` is a destructive command and is forbidden by `AGENTS.md`
+guardrails. `git revert` produces three forward-history commits that
+restore the working tree to `664e4bc2` (stash-only resolution) state
+without rewriting prior commit SHAs or dropping the original Green-phase
+content from history. The original implementation commits remain
+reachable in git history at `db03fb6f` / `99a585d3` / `2421503e` and can
+be reinstated (or re-reverted) by the JR / Green-phase role without
+data loss.
+
+**Restored Red-phase state at HEAD (`87d11366`)**:
+
+- Phase 2 task marker: `[~] Task: Implement the Level Projection (TDD)  *(MID Red — 2026-06-13)*`
+  (was incorrectly auto-marked `[x]` by an out-of-band commit hook during
+  mid-attempt-2; revert restores the correct Red-phase marker)
+- Track session diff (HEAD-vs-`f6fc05ec`): 4 test files + 1 plan.md (5 files; no source code)
+- Worktree: `git status --short` = empty (clean)
+- `stash@{0}`: preserved (376 unrelated spec-compliance Phase 3 paths)
+
+**Re-verified Red signal on the reverted worktree (this attempt)**:
+
+| Targeted Red command | Result | Failure reason |
+|----------------------|--------|----------------|
+| `vitest run packages/knowledge-space-core/src/__tests__/level-projection.test.ts --root packages/knowledge-space-core` | **7 failed / 7** | `TypeError: projectDisplayLevel is not a function` — symbol not exported from `../level-projection` |
+| `vitest run packages/knowledge-space-core/src/__tests__/level-projection-public-api.test.ts --root packages/knowledge-space-core` | **2 failed / 2** | `expected typeof undefined to be 'function'` — neither root nor subpath exports `projectDisplayLevel` |
+| `vitest run apps/integrated-math-3/__tests__/level-projection.test.ts --root apps/integrated-math-3` | **1 failed suite, 0 tests ran** | `Failed to resolve import "@/lib/level-projection/im3-level-projection"` — IM3 instance module absent |
+| `vitest run apps/integrated-math-3/__tests__/level-projection-csv-contract.test.ts --root apps/integrated-math-3` | **2 failed / 2** | `fs.existsSync` returns false — CSV file absent |
+| **Total** | **16 failed / 16** | All 16 tests fail for the expected contract-gap reasons |
+
+The Red-phase contract-gap signal is restored at HEAD. The Green-phase
+implementation remains durably recorded in git history (commits
+`db03fb6f` + `99a585d3` + `2421503e` + their checkpoint annotation);
+the JR / Green-phase role can reinstate the implementation by `git
+revert` of the three revert commits (`c6995c51`, `564dcff3`,
+`87d11366`) or by re-applying the same diff.
+
+**Commit policy compliance**: This subsection updates `plan.md` only
+(Measure doc). No source code, no test files, no implementation files
+are touched. The Red-phase boundary is re-established.
+
 ## Phase 3 — progressTrend Fix
 
 - [ ] Task: Replace progressTrend static ratio with a time-delta (TDD)
