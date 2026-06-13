@@ -195,6 +195,50 @@ describe('computeTimeToMastery', () => {
     expect(result.n).toBe(0);
   });
 
+  it('counts only reviews up to and including the mastery review (not later reviews)', () => {
+    const baseMs = COHORT_WINDOW_START_MS;
+    const result = computeTimeToMastery({
+      objectiveId: 'obj_quadratic',
+      cards: [makeCard({ cardId: 'c1' })],
+      reviewLogs: [
+        makeReviewLog({
+          reviewId: 'r1',
+          cardId: 'c1',
+          reviewedAtMs: baseMs,
+          stateBefore: { stability: 0, difficulty: 0, state: 'new', reps: 0, lapses: 0 },
+          stateAfter: { stability: 5, difficulty: 0, state: 'learning', reps: 1, lapses: 0 },
+        }),
+        makeReviewLog({
+          reviewId: 'r2',
+          cardId: 'c1',
+          reviewedAtMs: baseMs + 3 * MS_PER_DAY,
+          stateBefore: { stability: 5, difficulty: 0, state: 'learning', reps: 1, lapses: 0 },
+          stateAfter: { stability: 200, difficulty: 0, state: 'review', reps: 2, lapses: 0 },
+        }),
+        makeReviewLog({
+          reviewId: 'r3',
+          cardId: 'c1',
+          reviewedAtMs: baseMs + 10 * MS_PER_DAY,
+          stateBefore: { stability: 200, difficulty: 0, state: 'review', reps: 2, lapses: 0 },
+          stateAfter: { stability: 300, difficulty: 0, state: 'review', reps: 3, lapses: 0 },
+        }),
+        makeReviewLog({
+          reviewId: 'r4',
+          cardId: 'c1',
+          reviewedAtMs: baseMs + 20 * MS_PER_DAY,
+          stateBefore: { stability: 300, difficulty: 0, state: 'review', reps: 3, lapses: 0 },
+          stateAfter: { stability: 400, difficulty: 0, state: 'review', reps: 4, lapses: 0 },
+        }),
+      ],
+      masteryThreshold: MASTERY_RETENTION,
+    });
+
+    expect(result.value.reachedMastery).toBe(true);
+    expect(result.value.daysToMastery).toBe(3);
+    expect(result.value.reviewsToMastery).toBe(2);
+    expect(result.n).toBe(4);
+  });
+
   it('echoes objectiveId, threshold, and lastReviewAtMs in the inputs descriptor for traceability', () => {
     const baseMs = COHORT_WINDOW_START_MS;
     const result = computeTimeToMastery({

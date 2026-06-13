@@ -37,9 +37,12 @@ export function computeTimeToMastery(
   const firstReviewAtMs = new Date(relevant[0].reviewedAt).getTime();
 
   let masteryReviewAtMs: number | null = null;
-  for (const log of relevant) {
+  let reviewsToMasteryCount = 0;
+  for (let i = 0; i < relevant.length; i++) {
+    const log = relevant[i];
     if (stabilityToRetention(log.stateAfter.stability) >= masteryThreshold) {
       masteryReviewAtMs = new Date(log.reviewedAt).getTime();
+      reviewsToMasteryCount = i + 1;
       break;
     }
   }
@@ -53,7 +56,7 @@ export function computeTimeToMastery(
     value: {
       objectiveId,
       daysToMastery,
-      reviewsToMastery: relevant.length,
+      reviewsToMastery: reachedMastery ? reviewsToMasteryCount : relevant.length,
       reachedMastery,
     },
     n: relevant.length,
