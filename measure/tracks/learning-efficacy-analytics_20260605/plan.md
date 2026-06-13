@@ -183,8 +183,8 @@ Verification:
 
 ## Phase 2 — Cohort Aggregation (Convex)
 
-- [x] Task: Batched aggregation queries by class/cohort + time window (TDD, no N+1) — `cdfdede2`
-- [x] Task: Small-n suppression / privacy guardrails (TDD) — `cdfdede2`
+- [x] Task: Batched aggregation queries by class/cohort + time window (TDD, no N+1) — `42021342`
+- [x] Task: Small-n suppression / privacy guardrails (TDD) — `42021342`
 - [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
 
 ### Phase 2 — Red Notes (MID role, 2026-06-13)
@@ -523,7 +523,7 @@ inputs, the no-N+1 budget `<=6` over 25 students, the time-window
 inclusive-start/exclusive-end boundary, the privacy payload-key set
 guards, and the `MIN_COHORT_N` k-anonymity range `[5, 30]`.
 
-### Phase 2 — Green Run Log (JR role, 2026-06-13, commit `cdfdede2`)
+### Phase 2 — Green Run Log (JR role, 2026-06-13, commit `42021342`)
 
 Implementation files created:
 - `apps/integrated-math-3/convex/efficacy/suppression.ts` — `MIN_COHORT_N` (10),
