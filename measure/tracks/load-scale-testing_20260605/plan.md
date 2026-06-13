@@ -71,8 +71,8 @@ Verification: harness runs green; `tsc --noEmit` on TS helpers.
 
 ## Phase 2 — Hot-Path Drivers & Cost Capture
 
-- [~] Task: Drivers for teacher proficiency/dashboard, daily-practice queue, gradebook/heatmaps, curriculum summaries (Red phase — MID role)
-- [~] Task: Capture Convex insights (docs/bytes/time/OCC) into a comparable report (Red phase — MID role)
+- [x] Task: Drivers for teacher proficiency/dashboard, daily-practice queue, gradebook/heatmaps, curriculum summaries (Red phase — MID role) [checkpoint: ed568f49]
+- [x] Task: Capture Convex insights (docs/bytes/time/OCC) into a comparable report (Red phase — MID role) [checkpoint: ed568f49]
 - [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
 
 ### Phase 2 — Red-phase work (MID role, 2026-06-14)
@@ -99,6 +99,19 @@ Verification: harness runs green; `tsc --noEmit` on TS helpers.
   - `drivers.test.ts` (199 lines) — module surface, per-driver contract (exactly one `InsightsClient.query` call, expected Convex symbol fragment, non-null cost fields), read-only contract (no `mutate*` calls), driver-coverage invariant (DRIVERS keys == SCALE_HOT_PATHS), per-path source-boundary contract.
 - **Fixtures created (8 files under `apps/integrated-math-3/__tests__/_fixtures/insights/`)**: `daily-practice.json`, `gradebook.json`, `heatmap.json`, `proficiency.json`, `curriculum-summaries.json` (one per hot path), `proficiency-page-1.json` + `proficiency-page-2.json` (pagination pair), `malformed-missing-occ.json` (parser-rejection fixture).
 - **build-graph baseline**: `build-graph stats ./graph.db` → 13,924 nodes / 2,042 files / 20,502 edges. Unchanged from prior audits; the harness-only additions (`lib/scale/cost-record.ts`, `lib/scale/insights-parser.ts`, `lib/scale/drivers/*.ts`, `scripts/scale/run.mjs`) per lesson 2026-06-06 do not require `update` until they export symbols outside `scripts/`.
+
+### Phase 2 — GREEN role implementation (JR role, 2026-06-14)
+
+- **Implemented all three Phase 2 production modules** to make the Red tests pass.
+  - `lib/scale/cost-record.ts` — Zod schema (`costRecordSchema`), `emptyCostRecord(path)`, `mergeCostRecords(a, b)` (sums numeric fields, rejects cross-path merge), `SCALE_HOT_PATHS` constant tuple, `CostRecord` / `HotPath` types.
+  - `lib/scale/insights-parser.ts` — `parseInsightsJson(json, path)` extracts cost from `totals` (not perFunction sum), validates perFunction entries for shape/OCC/negative/non-integer; `continueInsightsCursor(json)` surfaces `isDone` + `continueCursor` for pagination. Empty-string path rejected at runtime.
+  - `lib/scale/drivers/` — barrel `index.ts` + `types.ts` + 5 individual driver files (`dailyPractice.ts`, `gradebook.ts`, `heatmap.ts`, `proficiency.ts`, `curriculumSummaries.ts`). Each is a thin `async function` calling `client.query()` with the documented Convex symbol. `InsightsClient` interface + `HotPathDriver` type exported from `types.ts` to avoid circular imports.
+- **Targeted Red command (test-strategy §7 P2 row)**: `CI=true ../../node_modules/.bin/vitest run __tests__/scale/cost-record.test.ts __tests__/scale/insights-parser.test.ts __tests__/scale/drivers.test.ts` → **3 files passed, 71 tests passed, 0 failed**, duration 31.49s.
+- **Phase 1 regression check**: `CI=true ../../node_modules/.bin/vitest run __tests__/scale/seed-class.test.ts __tests__/scale/seed-school.test.ts` → **2 files passed, 79 tests passed, 0 failed**. No regressions.
+- **tsc --noEmit**: 7 errors — 6 pre-existing (edgeCalibration, cohort, tailwind — in tech-debt.md), 1 in `drivers.test.ts:135` (`Property 'mutate' does not exist on type 'FakeCall'` — test-file type annotation gap, test runs correctly via vitest/esbuild). None in production code.
+- **Green commit**: `ed568f49` — `feat(scale): implement Phase 2 cost-record, insights-parser, and hot-path drivers`.
+- **graph.db updated** (pre-commit hook blocks graph.db commits): `build-graph update ./graph.db` added 50 nodes / 42 edges across 9 new files. Not committed per hook policy.
+- **Status of UMV task**: `[ ]` — live-behavior gate (`node apps/integrated-math-3/scripts/scale/run.mjs --paths=daily-practice,gradebook,heatmap,proficiency --once --deployment=$IM3_SCALE_URL`) requires isolated deployment not available in sandbox.
 
 ## Phase 3 — Budgets & CI
 
