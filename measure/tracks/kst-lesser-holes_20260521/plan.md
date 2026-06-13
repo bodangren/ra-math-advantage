@@ -860,11 +860,11 @@ Full `npm run ws:im3:test` was not repeated because attempt 1 timed out after 12
 
 ## Phase 4 — Docs & Doctor
 
-- [x] Task: Update in-repo kst-srs.v2 spec (§3.2 transfers_to, §16 Level Projection, §9.4 progressTrend, §12.9 FSRS per-card limitation + siblingReinforcement flag) *(MID Red — 2026-06-13; JR Green — 2026-06-13)*
+- [x] Task: Update in-repo kst-srs.v2 spec (§3.2 transfers_to, §16 Level Projection, §9.4 progressTrend, §12.9 FSRS per-card limitation + siblingReinforcement flag) *(MID Red — 2026-06-13; JR Green — 2026-06-13)* [checkpoint: aaaf3059]
     - [x] Red test: `spec-markers.test.ts` asserts the §3.2/§9.4/§12.9/§16 markers exist at the indicated sections
-- [x] Task: Run measure/generate.sh and measure/doctor.sh; fix architectural lint *(MID Red — 2026-06-13; JR Green — 2026-06-13)*
+- [x] Task: Run measure/generate.sh and measure/doctor.sh; fix architectural lint *(MID Red — 2026-06-13; JR Green — 2026-06-13)* [checkpoint: aaaf3059]
     - [x] Live gate: `bash measure/scripts/doctor.sh` exits 0; `bash measure/scripts/generate.sh` exits 0; `node scripts/check-monorepo-boundaries.mjs` exits 0 (recorded in Red-phase evidence subsection)
-- [x] Task: Final verification — boundary lints, npm run lint, tsc --noEmit, CI=true npm run test *(MID Red — 2026-06-13; JR Green — 2026-06-13)*
+- [x] Task: Final verification — boundary lints, npm run lint, tsc --noEmit, CI=true npm run test *(MID Red — 2026-06-13; JR Green — 2026-06-13)* [checkpoint: aaaf3059]
     - [x] Live gate: `CI=true npm test` + `npm run lint` + `npx tsc --noEmit` (recorded in Red-phase evidence subsection)
 - [ ] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md)
 
