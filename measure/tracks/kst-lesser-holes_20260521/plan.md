@@ -64,9 +64,9 @@ root exports, and package subpath exports.
 
 ## Phase 2 — Level Projection
 
-- [~] Task: Implement the Level Projection (TDD)  *(MID Red — 2026-06-13)*
-    - [~] Domain-supplied monotonic knowledge-state → display-level function; presentation-only
-    - [~] IM3 instance derived from the existing CSV level mapping
+- [x] Task: Implement the Level Projection (TDD)  *(MID Red — 2026-06-13; JR Green — 2026-06-13)*
+    - [x] Domain-supplied monotonic knowledge-state → display-level function; presentation-only
+    - [x] IM3 instance derived from the existing CSV level mapping
 - [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
 
 ### Phase 2 — Red-phase evidence (MID handoff, 2026-06-13)
@@ -665,6 +665,27 @@ re-applying the same diff.
 (Measure doc). No source code, no test files, no `graph.db`, and no
 non-Measure docs are touched. The Red-phase boundary is honored
 end-to-end across all previous MID attempts and this one.
+
+### Phase 2 — Green-phase evidence (JR, 2026-06-13)
+
+All 16 targeted Red tests now pass. Full knowledge-space-core suite green.
+
+| Command | Result |
+|---------|--------|
+| `vitest run packages/knowledge-space-core/src/__tests__/level-projection.test.ts` | 7 passed |
+| `vitest run packages/knowledge-space-core/src/__tests__/level-projection-public-api.test.ts` | 2 passed |
+| `vitest run apps/integrated-math-3/__tests__/level-projection.test.ts` | 5 passed |
+| `vitest run apps/integrated-math-3/__tests__/level-projection-csv-contract.test.ts` | 2 passed |
+| `npm test --workspace=packages/knowledge-space-core` | 17 files / 256 tests passed |
+| `npm run lint --workspace=packages/knowledge-space-core` | 0 warnings |
+| `npx tsc --noEmit --project packages/knowledge-space-core/tsconfig.json` | clean |
+
+Implementation changes:
+- `level-projection.ts`: added `displayLevelItemSchema`, `DisplayLevel` (single item), `DisplayLevelBand` (array), `projectDisplayLevel(state, levels)` function
+- `index.ts`: re-exported `projectDisplayLevel`, `displayLevelItemSchema`, `DisplayLevelBand`
+- `gse-to-im3-advantage.csv`: new — 4-level band mapping (below/approaching/at/above grade level)
+- `im3-level-projection.ts`: new — `projectIm3Level` reads CSV and delegates to `projectDisplayLevel`
+- `graph.db`: updated with 3 changed files
 
 ## Phase 3 — progressTrend Fix
 

@@ -1,0 +1,5 @@
+id,title,minMastery
+below-grade-level,Below Grade Level,0
+approaching-grade-level,Approaching Grade Level,0.4
+at-grade-level,At Grade Level,0.7
+above-grade-level,Above Grade Level,0.9
