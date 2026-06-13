@@ -51,6 +51,7 @@ const APP_ROOT = resolve(TEST_DIR, '../..');
 type FakeCall = {
   fn: string;
   args: unknown;
+  mutate?: boolean;
 };
 
 class FakeInsightsClient implements InsightsClient {

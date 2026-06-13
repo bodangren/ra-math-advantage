@@ -7,7 +7,17 @@
     "databaseDocsRead": 0,
     "databaseBytesRead": 0,
     "databaseDocsWritten": 0,
-    "databaseBytesWritten": 0
+    "databaseBytesWritten": 0,
+    "occConflicts": 0
   },
-  "perFunction": []
+  "perFunction": [
+    {
+      "functionName": "queue/getDailyPracticeQueueHandler",
+      "functionType": "query",
+      "executionCount": 1,
+      "functionExecutionTimeMs": 800,
+      "databaseDocsRead": 0,
+      "databaseBytesRead": 0
+    }
+  ]
 }
