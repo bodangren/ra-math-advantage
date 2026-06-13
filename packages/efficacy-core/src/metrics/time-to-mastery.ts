@@ -16,9 +16,11 @@ export function computeTimeToMastery(
 ): MetricResult<TimeToMasteryStat, { objectiveId: string; masteryThreshold: number; firstReviewAtMs: number | null }> {
   const { objectiveId, cards, reviewLogs, masteryThreshold } = input;
 
-  const cardIds = new Set(cards.map((c) => c.cardId));
+  const objectiveCardIds = new Set(
+    cards.filter((card) => card.objectiveId === objectiveId).map((card) => card.cardId),
+  );
   const relevant = reviewLogs
-    .filter((r) => cardIds.has(r.cardId))
+    .filter((review) => objectiveCardIds.has(review.cardId))
     .sort((a, b) => new Date(a.reviewedAt).getTime() - new Date(b.reviewedAt).getTime());
 
   if (relevant.length === 0) {
@@ -49,7 +51,7 @@ export function computeTimeToMastery(
 
   const reachedMastery = masteryReviewAtMs !== null;
   const daysToMastery = reachedMastery
-    ? Math.round((masteryReviewAtMs! - firstReviewAtMs) / MS_PER_DAY)
+    ? (masteryReviewAtMs! - firstReviewAtMs) / MS_PER_DAY
     : null;
 
   return {

@@ -145,11 +145,10 @@ describe('computeTimeToMastery', () => {
     const result = computeTimeToMastery({
       objectiveId: 'obj_quadratic',
       cards: [
-        makeCard({ cardId: 'c_a', problemFamilyId: 'pf_a' }),
-        makeCard({ cardId: 'c_b', problemFamilyId: 'pf_b' }),
+        makeCard({ cardId: 'c_a', objectiveId: 'obj_quadratic', problemFamilyId: 'pf_a' }),
+        makeCard({ cardId: 'c_b', objectiveId: 'obj_quadratic', problemFamilyId: 'pf_b' }),
       ],
       reviewLogs: [
-        // c_a first review (objective baseline)
         makeReviewLog({
           reviewId: 'r1',
           cardId: 'c_a',
@@ -157,7 +156,6 @@ describe('computeTimeToMastery', () => {
           stateBefore: { stability: 0, difficulty: 0, state: 'new', reps: 0, lapses: 0 },
           stateAfter: { stability: 5, difficulty: 0, state: 'learning', reps: 1, lapses: 0 },
         }),
-        // c_b reaches mastery 3 days later
         makeReviewLog({
           reviewId: 'r2',
           cardId: 'c_b',
@@ -172,6 +170,69 @@ describe('computeTimeToMastery', () => {
     expect(result.value.reachedMastery).toBe(true);
     expect(result.value.daysToMastery).toBe(3);
     expect(result.value.reviewsToMastery).toBe(2);
+  });
+
+  it('ignores cards from other objectives even when their reviews reach mastery earlier', () => {
+    const baseMs = COHORT_WINDOW_START_MS;
+    const result = computeTimeToMastery({
+      objectiveId: 'obj_target',
+      cards: [
+        makeCard({ cardId: 'c_target', objectiveId: 'obj_target' }),
+        makeCard({ cardId: 'c_other', objectiveId: 'obj_other' }),
+      ],
+      reviewLogs: [
+        makeReviewLog({
+          reviewId: 'r_other',
+          cardId: 'c_other',
+          reviewedAtMs: baseMs,
+          stateAfter: { stability: 300, difficulty: 0, state: 'review', reps: 1, lapses: 0 },
+        }),
+        makeReviewLog({
+          reviewId: 'r_target_first',
+          cardId: 'c_target',
+          reviewedAtMs: baseMs + 2 * MS_PER_DAY,
+          stateAfter: { stability: 5, difficulty: 0, state: 'learning', reps: 1, lapses: 0 },
+        }),
+        makeReviewLog({
+          reviewId: 'r_target_mastery',
+          cardId: 'c_target',
+          reviewedAtMs: baseMs + 5 * MS_PER_DAY,
+          stateAfter: { stability: 300, difficulty: 0, state: 'review', reps: 2, lapses: 0 },
+        }),
+      ],
+      masteryThreshold: MASTERY_RETENTION,
+    });
+
+    expect(result.value.reachedMastery).toBe(true);
+    expect(result.value.daysToMastery).toBe(3);
+    expect(result.value.reviewsToMastery).toBe(2);
+    expect(result.n).toBe(2);
+    expect(result.inputs.firstReviewAtMs).toBe(baseMs + 2 * MS_PER_DAY);
+  });
+
+  it('preserves fractional days instead of rounding sub-day mastery intervals', () => {
+    const baseMs = COHORT_WINDOW_START_MS;
+    const result = computeTimeToMastery({
+      objectiveId: 'obj_quadratic',
+      cards: [makeCard({ cardId: 'c1', objectiveId: 'obj_quadratic' })],
+      reviewLogs: [
+        makeReviewLog({
+          reviewId: 'r1',
+          cardId: 'c1',
+          reviewedAtMs: baseMs,
+          stateAfter: { stability: 5, difficulty: 0, state: 'learning', reps: 1, lapses: 0 },
+        }),
+        makeReviewLog({
+          reviewId: 'r2',
+          cardId: 'c1',
+          reviewedAtMs: baseMs + 12 * 60 * 60 * 1000,
+          stateAfter: { stability: 300, difficulty: 0, state: 'review', reps: 2, lapses: 0 },
+        }),
+      ],
+      masteryThreshold: MASTERY_RETENTION,
+    });
+
+    expect(result.value.daysToMastery).toBe(0.5);
   });
 
   it('ignores reviews referencing cards not in the input card set (defensive)', () => {
