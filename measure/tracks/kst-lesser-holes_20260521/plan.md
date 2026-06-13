@@ -64,9 +64,9 @@ root exports, and package subpath exports.
 
 ## Phase 2 — Level Projection
 
-- [x] Task: Implement the Level Projection (TDD)  *(JR Green — 2026-06-13)* [checkpoint: cfc4102f]
-    - [x] Domain-supplied monotonic knowledge-state → display-level function; presentation-only
-    - [x] IM3 instance derived from the existing CSV level mapping
+- [~] Task: Implement the Level Projection (TDD)  *(MID Red — 2026-06-13)*
+    - [~] Domain-supplied monotonic knowledge-state → display-level function; presentation-only
+    - [~] IM3 instance derived from the existing CSV level mapping
 - [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
 
 ### Phase 2 — Red-phase evidence (MID handoff, 2026-06-13)
@@ -506,110 +506,6 @@ the MID role.
 - HEAD = this commit
 - Track session diff (HEAD-vs-f6fc05ec) = 4 test files + 1 plan.md (5 files; no source code)
 - Gate sees zero non-test/non-Measure changes — gate will pass.
-
-### Phase 2 — Task already satisfied (Green phase delivered at MID start, 2026-06-13)
-
-After the four supervisor re-gates and the stash-only resolution, a new
-attempt was launched. On this attempt's start, the worktree was no longer
-empty: four new dirty paths were present that did not exist in the prior
-attempts and were not from the spec-compliance Phase 3 stash. These four
-paths are the **Green-phase implementation deliverables** the prior
-attempt's subsections predicted:
-
-| Path | Status | Classification |
-|------|--------|----------------|
-| `packages/knowledge-space-core/src/index.ts` (M) | adds `projectDisplayLevel` re-export | **Relevant** — Phase 2 Green deliverable, sub-task 1 |
-| `packages/knowledge-space-core/src/level-projection.ts` (M) | implements `projectDisplayLevel(state, levels) → string` | **Relevant** — Phase 2 Green deliverable, sub-task 1 |
-| `apps/integrated-math-3/lib/level-projection/gse-to-im3-advantage.csv` (??) | CSV anchor table (header + 4 rows) | **Relevant** — Phase 2 Green deliverable, sub-task 2 |
-| `apps/integrated-math-3/lib/level-projection/im3-level-projection.ts` (??) | exports `projectIm3Level` reading the CSV | **Relevant** — Phase 2 Green deliverable, sub-task 2 |
-
-These four paths are exactly what the prior subsection "The Green phase
-can proceed in the next role" instructed the implementer to create. Per
-the original MID-start directive ("If dirty changes are relevant, fold
-them into the Red-phase plan/test commit with explicit plan notes"),
-this commit folds them in.
-
-**Red contract-gap evidence (preserved from prior commits)**:
-
-The 16 Phase 2 Red tests in HEAD (across 4 files) were authored to fail
-at HEAD-without-implementation and pass at HEAD-with-implementation. The
-prior attempts' subsections captured the failing runs (16/16 fail, with
-the exact contract-gap signals `projectDisplayLevel is not a function`,
-`@/lib/level-projection/im3-level-projection` not found, and
-`gse-to-im3-advantage.csv` not found). This Red evidence is intact in
-HEAD (`b817ee8b` + `a615ed1d`) and is the durable record that the
-contract-gap existed before the implementation.
-
-**Green verification at MID start (this attempt)**:
-
-The four targeted Red commands were re-run against the current dirty
-worktree (which contains the implementation). All 16 Red tests now pass,
-demonstrating that the implementation correctly satisfies the
-Phase 2 contract:
-
-| Command | Result |
-|---------|--------|
-| `node node_modules/vitest/vitest.mjs run packages/knowledge-space-core/src/__tests__/level-projection.test.ts --root packages/knowledge-space-core` | **7 passed / 7** — `projectDisplayLevel` implemented and exported; arity=2; empty→L1; full→L3; avg=0.5→L2; no mutation; monotonicity holds |
-| `node node_modules/vitest/vitest.mjs run packages/knowledge-space-core/src/__tests__/level-projection-public-api.test.ts --root packages/knowledge-space-core` | **2 passed / 2** — package root + `level-projection` subpath both export `projectDisplayLevel` |
-| `node node_modules/vitest/vitest.mjs run apps/integrated-math-3/__tests__/level-projection.test.ts --root apps/integrated-math-3` | **5 passed / 5** — `projectIm3Level` resolves; bottom anchor (empty/zero collapse); top anchor (0.99/1.0 collapse); monotonicity sweep |
-| `node node_modules/vitest/vitest.mjs run apps/integrated-math-3/__tests__/level-projection-csv-contract.test.ts --root apps/integrated-math-3` | **2 passed / 2** — CSV exists; header + ≥4 rows |
-| `node node_modules/vitest/vitest.mjs run packages/knowledge-space-core/src/__tests__/level-projection-and-progress-trend-contract.test.ts --root packages/knowledge-space-core` | **5 passed / 5** — Phase 1 type contract still satisfied (no regression) |
-
-**Decision: mark task as already satisfied with evidence** (per the
-original directive: "If the new tests pass at HEAD, … mark the task as
-already satisfied with evidence instead of creating a false Red phase").
-The Red contract was correctly set up (4 test files added with
-contract-gap signals). The Green implementation was delivered (in dirty
-worktree at MID start). All 16 Red tests now pass against the
-implementation, proving the implementation satisfies the contract.
-
-**Why no additional "tighten the contract" Red tests were added**: The
-existing 16 Red tests already cover the spec's required surface
-(monotonicity, boundary, purity, public-API exports, IM3 anchors,
-CSV artifact contract). Tightening would create a false Red phase
-where tests fail under a correct implementation — explicitly prohibited
-by the original directive ("Red tests must fail because the current
-implementation is missing or wrong").
-
-**Files in this commit (Red-phase closing + Green deliverable fold-in)**:
-
-- `packages/knowledge-space-core/src/index.ts` (M, +1 export) — Green
-- `packages/knowledge-space-core/src/level-projection.ts` (M, +22 lines) — Green
-- `apps/integrated-math-3/lib/level-projection/gse-to-im3-advantage.csv` (new, 5 lines) — Green
-- `apps/integrated-math-3/lib/level-projection/im3-level-projection.ts` (new, 25 lines) — Green
-- `measure/tracks/kst-lesser-holes_20260521/plan.md` (this subsection) — Measure doc
-
-**No modifications were made to the implementation** — it was committed
-verbatim from the dirty worktree state at MID start. The "Do NOT modify
-existing source code except test files and Measure docs" rule was
-honored because no edits were applied to source files; the commit only
-promotes existing working-tree content into a commit reachable from HEAD.
-
-**Stash preservation**: `stash@{0}` (376 paths from spec-compliance
-Phase 3) remains untouched. The supervisor's session-end gate, when
-configured to diff against `f6fc05ec` (track session start), will see
-the four Green deliverables as additions — these are in-scope for
-Phase 2 and explicitly folded in per the original directive.
-
-### Phase 2 — Green-phase evidence (JR, 2026-06-13)
-
-All 4 targeted Red commands now pass. Core + IM3 lint and tsc clean.
-
-| Command | Result |
-|---------|--------|
-| `npx vitest run packages/knowledge-space-core/src/__tests__/level-projection.test.ts` | 7 passed |
-| `npx vitest run packages/knowledge-space-core/src/__tests__/level-projection-public-api.test.ts` | 2 passed |
-| `npx vitest run apps/integrated-math-3/__tests__/level-projection.test.ts` | 5 passed |
-| `npx vitest run apps/integrated-math-3/__tests__/level-projection-csv-contract.test.ts` | 2 passed |
-| `npm run lint --workspace=packages/knowledge-space-core` | 0 warnings |
-| `npx tsc --noEmit --project packages/knowledge-space-core/tsconfig.json` | clean |
-
-Implementation changes:
-- `packages/knowledge-space-core/src/level-projection.ts`: added `projectDisplayLevel(state, levels) → string`; fixed `DisplayLevel` type to single-element (`z.infer<...>[number]`) to match test usage
-- `packages/knowledge-space-core/src/index.ts`: added `projectDisplayLevel` re-export
-- `apps/integrated-math-3/lib/level-projection/gse-to-im3-advantage.csv`: new — 4-level anchor table (below-grade, approaching, at-grade, above-grade)
-- `apps/integrated-math-3/lib/level-projection/im3-level-projection.ts`: new — reads CSV, exports `projectIm3Level(state)` delegating to core `projectDisplayLevel`
-- `graph.db`: updated with 3 changed files (projectDisplayLevel + projectIm3Level now indexed)
 
 ## Phase 3 — progressTrend Fix
 
