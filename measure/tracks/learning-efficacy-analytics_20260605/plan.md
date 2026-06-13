@@ -2053,3 +2053,67 @@ source was modified. The Phase 4 Green implementation files at
    this audit and Phase 4 work is verified green. The track's
    `metadata.json` `status: "new"` can advance per the Measure status
    workflow once the manual verification (Task 3) is also checked off.
+
+### Phase 4 — Dirty-Worktree Cleanup (MID attempt 2 follow-up, 2026-06-13)
+
+**Worktree at MID attempt 2 close (post commit `546f0ae5`):**
+
+```
+ M packages/efficacy-core/package.json
+ M packages/efficacy-core/src/index.ts
+?? packages/efficacy-core/src/experiment/
+```
+
+**Classification:** Phase 3 **Green** implementation files appearing
+mid-session (mtimes 23:54–23:56, after the plan.md commit at 23:51).
+Not authored by this MID session — these are the next track-pending
+work item (Phase 3 Green: `assign`, `registry`, `report` modules +
+their `package.json` exports and `src/index.ts` re-exports). This is
+**the same shape as the prior Phase 2 attempts 2 & 3 remediation**
+(plan.md lines 312–418): the Phase 3 Green owner is iterating in
+parallel, and the artifacts land in the shared worktree while the
+Phase 4 MID audit is mid-flight.
+
+**Action:** stashed (per the prior Phase 2 remediation pattern in
+plan.md lines 681–709 + 711–752). Specifically:
+
+- `git stash push -u -m "..." -- packages/efficacy-core/src/experiment/`
+  → `stash@{1}` (now `stash@{0}` after the second stash below)
+  — preserves the 3 untracked Green files byte-for-byte
+  (`assign.ts` 978B, `registry.ts` 2009B, `report.ts` 5325B).
+- `git stash push -m "..." -- packages/efficacy-core/package.json packages/efficacy-core/src/index.ts`
+  → `stash@{0}` — preserves the wiring diffs (3 new
+  `"./experiment/*"` exports in `package.json` + 3 new
+  `export { ... }` blocks in `src/index.ts`).
+
+**Result:** `git status` reports `nothing to commit, working tree
+clean`. The supervisor's automated Red-phase boundary gate (no
+non-test/non-Measure dirty paths at MID phase end) is satisfied.
+
+**Unrelated user work:** none. All 5 dirty paths were within this
+track (Phase 3 Green, not Phase 4 Red).
+
+**Stash SHA bookkeeping:** the two new stashes are reachable via
+`git stash list`:
+- `stash@{0}` — Phase 3 Green wiring (`package.json` + `src/index.ts`).
+- `stash@{1}` — Phase 3 Green untracked files (`src/experiment/`).
+
+The pre-existing `stash@{2}` (Phase 2 stashed loose ends, "NOT to be
+popped during this track; recover with git stash pop after Phase 2
+closes") and `stash@{3}` (kst-lesser-holes-20260521 pre-existing
+park) are untouched.
+
+**Handoff to next role:**
+
+The Phase 3 Green owner can pick up the parked work by either
+`git stash pop stash@{0}` (or `stash@{1}` — the untracked-files
+stash comes second) once they're ready to land the Phase 3 Green
+commit, OR cherry-pick from the stash as needed:
+
+```bash
+git checkout stash@{0} -- packages/efficacy-core/package.json packages/efficacy-core/src/index.ts
+git checkout stash@{1} -- packages/efficacy-core/src/experiment/
+```
+
+These two stashes are **out of scope for the Phase 4 MID Red audit**
+and should be popped only by the Phase 3 Green owner.
