@@ -50,6 +50,16 @@ Verification: harness runs green; `tsc --noEmit` on TS helpers.
 - **Single targeted Red command chosen**: same as test-strategy.md §7 Phase 1 row, plus `--testTimeout=30000` for stability against the per-entry `expect()` flakiness. Result recorded above. No new Red file to commit; the audit is captured in this plan block.
 - **Status of the [~] UMV task**: unchanged from attempt 2 — held open by the live-behavior gate. The artifact/contract half remains 75/75 green at HEAD; GREEN role or human/UMV owns the closeout.
 
+### Phase 1 — GREEN role audit (JR role, 2026-06-14)
+
+- **No new implementation needed.** Both Phase 1 code tasks (`seed-class.ts`, `seed-school.ts`) are already `[x]` with full TDD cycles on disk: Red commits `d4267286` + `db177e5b` (75 cases) and Green commit `1f1f3af0` implementing both generators. The implementations are correct and complete.
+- **Applied MID-recommended test fix.** The MID audit (attempt 3) identified that FK-integrity loops in `seed-school.test.ts` use per-entry `expect()` which is ergonomically slow at school scale (61,200 review-log entries × per-entry expect → 5695ms, exceeding default 5s vitest timeout). Applied the MID's recommended fix: replaced per-entry `expect(studentIds.has(r.studentId)).toBe(true)` loops with aggregate `const dangling = result.reviewLog.filter(...); expect(dangling).toEqual([])` for both `reviewLog.studentId` and `reviewLog.cardId` checks. This preserves assertion intent (every FK resolves) while finishing in <100ms. Test-file-only change, fully within GREEN role permission surface.
+- **Re-verified Green at HEAD with default timeout.** Targeted run from `apps/integrated-math-3/`: `CI=true ../../node_modules/.bin/vitest run __tests__/scale/seed-class.test.ts __tests__/scale/seed-school.test.ts` → **2 files passed, 75 tests passed, 0 failed**, duration 19.57s. No `--testTimeout` override needed. Previously-flaky tests now stable: `reviewLog.studentId` <100ms, `reviewLog.cardId` <100ms.
+- **Green commit**: `ec401e0b` — tightens FK-integrity loops + plan.md audit block.
+- **build-graph baseline**: `build-graph stats ./graph.db` → 13,924 nodes / 2,042 files / 20,502 edges. No Phase-1-relevant symbols missing. The scale generators (`lib/scale/seed-class.ts`, `lib/scale/seed-school.ts`) are not indexed in graph.db (added after last scan); per test-strategy §6 they do not require a rescan.
+- **Full suite status**: `npm test` runs all IM3 tests; 1 pre-existing failure in `__tests__/curriculum/format.test.ts` (lesson 1-1 missing "Objective Alignment" heading — unrelated to Phase 1). `tsc --noEmit` shows 6 pre-existing errors (edgeCalibration, cohort, tailwind.config — all in tech-debt.md). Neither affects Phase 1.
+- **Status of the [~] UMV task**: held open by the live-behavior gate (`node apps/integrated-math-3/scripts/scale/seed.mjs --scale=class --deployment=$IM3_SCALE_URL` exits 0 + follow-up read returns expected roster size). Requires an isolated `$IM3_SCALE_URL` deployment that the sandbox cannot provision. The artifact/contract half is 75/75 green at HEAD with stable default-timeout runs; the live gate is the only remaining item. GREEN role cannot close this task.
+
 ## Phase 2 — Hot-Path Drivers & Cost Capture
 
 - [ ] Task: Drivers for teacher proficiency/dashboard, daily-practice queue, gradebook/heatmaps, curriculum summaries

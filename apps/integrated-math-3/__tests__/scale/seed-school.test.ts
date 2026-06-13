@@ -270,21 +270,17 @@ describe('scale — Phase 1 Red: generateSchoolSeed (1,000-student school)', () 
     });
 
     it('every reviewLog.studentId is in the generated student set', () => {
-      for (const review of result.reviewLog) {
-        expect(
-          studentIds.has(review.studentId),
-          `dangling reviewLog.studentId: ${review.studentId}`,
-        ).toBe(true);
-      }
+      const dangling = result.reviewLog.filter(
+        (r) => !studentIds.has(r.studentId),
+      );
+      expect(dangling, 'dangling reviewLog.studentId entries').toEqual([]);
     });
 
     it('every reviewLog.cardId is in the generated srs_cards set', () => {
-      for (const review of result.reviewLog) {
-        expect(
-          cardIds.has(review.cardId),
-          `dangling reviewLog.cardId: ${review.cardId}`,
-        ).toBe(true);
-      }
+      const dangling = result.reviewLog.filter(
+        (r) => !cardIds.has(r.cardId),
+      );
+      expect(dangling, 'dangling reviewLog.cardId entries').toEqual([]);
     });
 
     it('every submission.studentId is in the generated student set', () => {
