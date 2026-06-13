@@ -417,6 +417,112 @@ every assertion in the two suites passes — including the corrected
 `expect(c.status).toBe(b.status)` assertion on distinct below-threshold
 inputs.
 
+### Phase 2 — Re-Verification (MID attempt 3, 2026-06-13)
+
+**Worktree at MID start:**
+
+```
+?? apps/integrated-math-3/convex/efficacy/
+```
+
+**Classification of dirty paths:**
+
+1. `?? apps/integrated-math-3/convex/efficacy/{cohort.ts,suppression.ts}`
+   — untracked Green-phase source files (`aggregateCohortMetricsHandler`
+   + `cohort` `internalQuery` wrapper; `MIN_COHORT_N` + `suppressIfSmallN`
+   + `CohortSuppressionResult`). These are *not* the Red-phase
+   deliverables. They are the Phase 2 implementation that the Green
+   role owns. **Relevant to this track/phase but NOT Red-phase work** —
+   Green-phase code must not be staged in a Red-phase commit, and
+   leaving the files on disk would silently flip the Red state to
+   Green (the `@/convex/efficacy/cohort` and
+   `@/convex/efficacy/suppression` imports would resolve, and the
+   failure mode would no longer be the canonical missing-implementation
+   `ERR_MODULE_NOT_FOUND`). Same protocol as attempt 2
+   (commit `089b301c`): **removed from disk** to restore canonical Red
+   state. The Green role will regenerate them when it picks up Phase 2.
+
+**Unrelated user work:** none. The only dirty path is within this
+track/phase.
+
+**Build-Graph baseline** (graph.db mtime 2026-06-13 14:51, TypeScript
+project, no rescan needed — the untracked source files were never
+scanned, and no test-file exports changed since attempt 2):
+
+- `build-graph search ./graph.db "cohort"` → 0 hits → still greenfield
+- `build-graph search ./graph.db "suppressIfSmallN"` → 0 hits → still
+  greenfield
+- `build-graph search ./graph.db "MIN_COHORT"` → 0 hits → still
+  greenfield
+- `build-graph search ./graph.db "aggregateCohortMetrics"` → 0 hits
+  → still greenfield
+- `build-graph search ./graph.db "getPracticeStatsHandler"` → 1 hit in
+  `apps/integrated-math-3/convex/srs/dashboard.ts` (canonical handler-
+  as-pure-fn pattern, still mirrored by `cohort.test.ts`)
+- `build-graph inspect ./graph.db "getPracticeStatsHandler"` →
+  `function:getPracticeStatsHandler (./apps/integrated-math-3/convex/srs/
+  dashboard.ts:58–99)` with `param_flow` edges from `args` + `ctx`
+  and `tags: ["exported"]` (canonical `internalQuery`-wrapping
+  pattern, mirrored by the untracked `cohort.ts` wrapper that the
+  Green role will recreate)
+- `build-graph stats ./graph.db` → 13900 nodes / 20477 edges / 2040
+  files (stable since Phase 1 Green)
+- Blast radius: 0 (no callers of the greenfield symbols exist; no
+  existing exports were touched)
+
+**Targeted Red command re-run** (single bounded run, no watch, no
+fall-through, CI=true):
+`CI=true npx vitest run __tests__/convex/efficacy --dir apps/integrated-math-3`
+
+**Result at 2026-06-13 (MID attempt 3, post-cleanup HEAD `3a5edc42`):**
+
+- `Test Files  2 failed (2)` · `Tests  no tests`
+- Failure mode for both suites: vite `import-analysis` error
+  (`Cannot find package '@/convex/efficacy/cohort'` and
+  `Cannot find package '@/convex/efficacy/suppression'`)
+- 2 suites fail for the expected missing-implementation reason:
+  - `__tests__/convex/efficacy/cohort.test.ts`        → `@/convex/efficacy/cohort`
+  - `__tests__/convex/efficacy/suppression.test.ts`   → `@/convex/efficacy/suppression`
+- 0 false-pass tests, 0 stale-durable-record failures.
+- Identical canonical Red state to attempts 1 and 2; the dirty-
+  worktree cleanup did not change the failure mode (both suites
+  still fail at the import-resolution step before any assertion
+  runs, which is the correct Red state for handler-as-pure-fn tests
+  in this app — mirrors `__tests__/convex/srs/dashboard.test.ts`'s
+  error shape).
+- 0 tests added or removed since attempt 2 — the two Red suites
+  are durable, byte-identical, and still pinned to the canonical
+  missing-implementation failure mode.
+
+**Files changed in attempt 3 (this Red-phase commit):**
+
+- MODIFIED `measure/tracks/learning-efficacy-analytics_20260605/plan.md`
+  (this Re-Verification subsection).
+- The two Red test files are unchanged from attempt 2 (committed at
+  `0b7f8c81` + `089b301c`).
+- The untracked `apps/integrated-math-3/convex/efficacy/{cohort,suppression}.ts`
+  files were *removed* (not staged) to restore canonical Red state.
+
+**Out of scope for Red:** no `src/` files were created or committed;
+no `package.json`, `vitest.config.ts`, `tsconfig.json`, or other
+build/runtime config was created or modified; no existing source was
+modified. Worktree is clean post-`plan.md` edit per
+`git status --porcelain`.
+
+**Red-phase state is canonical and reproducible.** The 2 Red files
+(`cohort.test.ts` + `suppression.test.ts`) are durable and ready to
+be flipped Green by the next role. The Green role must create
+`apps/integrated-math-3/convex/efficacy/cohort.ts` (exporting
+`aggregateCohortMetricsHandler` and a `cohort` `internalQuery` wrapper
+mirroring `apps/integrated-math-3/convex/srs/dashboard.ts:110-117`)
+and `apps/integrated-math-3/convex/efficacy/suppression.ts` (exporting
+`MIN_COHORT_N`, `suppressIfSmallN`, `CohortSuppressionResult`) until
+every assertion in the two suites passes — including the corrected
+`expect(c.status).toBe(b.status)` assertion on distinct below-threshold
+inputs, the no-N+1 budget `<=6` over 25 students, the time-window
+inclusive-start/exclusive-end boundary, the privacy payload-key set
+guards, and the `MIN_COHORT_N` k-anonymity range `[5, 30]`.
+
 ## Phase 3 — Experiment Harness
 
 - [ ] Task: Deterministic sticky A/B assignment primitive + experiment registry (TDD)
