@@ -658,6 +658,44 @@ warranted because:
    greenfield per `build-graph search ./graph.db "experiment"` → 0 hits in
    this track's namespace.
 
+### Phase 2 — MID Attempt 3 Gate Remediation (2026-06-13)
+
+Supervisor flagged MID attempt 2 with: "Mid role changed non-test/non-Measure
+files, which violates the Red-phase boundary" for `cohort.ts`, `package.json`,
+`vitest.config.ts`, `graph.db`. Attempt 2 documented these as preserved-per-protocol
+unrelated/track-relevant dirty paths, but the supervisor's automated gate enforces
+a clean worktree at MID phase end regardless of authorship or classification.
+
+Remediation (commit-only, no logic changes):
+
+- `git checkout -- graph.db` — discarded the generated build-graph SQLite
+  delta. Regenerates on next `build-graph scan`.
+- `git stash push -m "learning-efficacy-analytics_20260605: park Phase 2
+  non-test/non-Measure dirty paths so MID Red-phase gate passes (NOT to be
+  popped during this track); recover with git stash pop after Phase 2
+  closes" -- apps/integrated-math-3/convex/efficacy/cohort.ts
+  apps/integrated-math-3/package.json apps/integrated-math-3/vitest.config.ts`
+  — parked the three non-test/non-Measure dirty paths intact in
+  `stash@{0}` (stash SHA `241ecaf0`). The stash preserves the work
+  byte-for-byte; popping it later restores `package.json` (track-relevant
+  Green wiring), `vitest.config.ts` (unrelated ESM `__dirname` polyfill),
+  and `cohort.ts` (unrelated contract-changing refactor — still flagged
+  for supervisor review before any commit).
+
+Worktree state after remediation: `git status --porcelain` reports only
+this `plan.md` edit. The four flagged paths are no longer present in the
+working directory.
+
+**Updated handoff (supersedes items 1–2 above for these three files):**
+
+- The JR/Green role should run `git stash pop stash@{0}` when ready to
+  fold in the parked work; or cherry-pick from the stash via
+  `git checkout stash@{0} -- apps/integrated-math-3/package.json` for the
+  track-relevant `package.json` line only, leaving the contract-changing
+  `cohort.ts` and unrelated `vitest.config.ts` deltas for separate
+  treatment.
+- The pre-existing `stash@{1}` (`kst-lesser-holes-20260521`) is untouched.
+
 ## Phase 3 — Experiment Harness
 
 - [ ] Task: Deterministic sticky A/B assignment primitive + experiment registry (TDD)
