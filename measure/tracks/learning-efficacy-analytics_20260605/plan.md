@@ -1094,6 +1094,176 @@ and ready to be flipped Green by the next role.
 
 ## Phase 4 — Efficacy View & Verification
 
-- [ ] Task: Admin/teacher efficacy view rendering metrics + active experiments, role-gated (TDD on render/guard)
+- [x] Task: Admin/teacher efficacy view rendering metrics + active experiments, role-gated (TDD on render/guard) — `b8b31fe3`
 - [ ] Task: Final verification — boundary lints, lint, tsc --noEmit, CI=true npm run test
-- [ ] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md)
+- [ ] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md) — deferred (manual, not Red-phase)
+
+### Phase 4 — Red Notes (MID role, 2026-06-13)
+
+**Worktree at MID start:** only `M graph.db` (binary, build-graph SQLite
+artifact from Phase 3's re-entry audit; pre-commit hook gates via
+`ALLOW_GRAPH_DB=1`, not part of any commit). No other dirty paths. All
+prior `apps/integrated-math-3/{__tests__/lib/srs/export-verification.test.ts,
+eslint.config.mjs, package.json, vitest.config.ts}` paths and the Phase 2
+`stash@{0}` from Phase 3's MID start were resolved in the JR role's
+`cfaef0c6` "Phase 2 stashed loose ends" commit + the Phase 3 Red
+commit `5a4fdfd2`.
+
+**Classification of dirty paths at Phase 4 Red start:**
+
+| Path | Classification | Action |
+|------|----------------|--------|
+| `M graph.db` (binary, +N bytes) | **Generated/ignorable** — build-graph SQLite artifact. Pre-commit hook gates via `ALLOW_GRAPH_DB=1`. | **Preserve dirty (do not stage).** |
+
+**Unrelated user work:** none. The only dirty path is the generated
+`graph.db` artifact, preserved per protocol.
+
+**Build-Graph baseline** (graph.db mtime 2026-06-13, TypeScript project,
+no rescan needed — Phase 3 source delta is greenfield and contributes
+zero nodes/edges at HEAD):
+
+- `build-graph stats ./graph.db` → 13,909 nodes / 20,490 edges / 2,042 files (stable since Phase 2 Green).
+- `build-graph search ./graph.db "EfficacyView"` → 0 hits → greenfield (Phase 4 adds the component; blast radius = 0).
+- `build-graph search ./graph.db "guardEfficacyAccess"` → 0 hits → greenfield role-guard helper.
+- `build-graph search ./graph.db "efficacy"` → 0 hits in the app namespace (only the existing `apps/integrated-math-3/convex/efficacy/{cohort,suppression}.ts` Phase 2 Green delta).
+- `build-graph search ./graph.db "requireTeacherSessionClaims"` →
+  `apps/integrated-math-3/lib/auth/server.ts` (canonical role-guard pattern mirrored by the page-level denial test).
+- `build-graph inspect ./graph.db "requireTeacherSessionClaims"` →
+  exported function, called by `apps/integrated-math-3/app/admin/dashboard/page.tsx:22`
+  and `apps/integrated-math-3/app/teacher/layout.tsx:10` (existing role-denial pattern the Phase 4 page mirrors per test-strategy §6 Phase 4).
+- Blast radius: 0 (no callers of the greenfield symbols exist; no existing exports were touched).
+
+**Red files added** (test files + Measure docs only — NO `src/`
+implementation, NO build/runtime config, NO existing source modified):
+
+- `apps/integrated-math-3/__tests__/components/teacher/efficacy/roleGuard.test.ts`
+  (Task 1) — `guardEfficacyAccess(claims)` pure helper:
+  returns claims for `teacher` and `admin` roles; returns `null` for
+  `student`, `undefined`, and any non-teacher/admin role. Defense-in-depth
+  helper mirroring the existing `requireTeacherSessionClaims` server-side
+  pattern (test-strategy §6 Phase 4 role-guard row).
+- `apps/integrated-math-3/__tests__/components/teacher/efficacy/EfficacyView.test.tsx`
+  (Task 1) — `EfficacyView` component (RTL render with a fake props
+  snapshot from Phase 1–3 outputs, no live Convex calls per
+  test-strategy §6 Phase 4): renders page title + cohort metrics tiles
+  (retention, time-to-mastery, accuracy, review-success); renders
+  suppression banner when cohort is suppressed; renders active
+  experiments list with significance indicator; renders empty state
+  when no cohort and no experiments; renders nothing (returns `null`)
+  when role is denied (uses the role-guard helper); PII safety: payload
+  contains no `stu_*` ids, no `studentId`, no `displayName`/`username`/
+  `email`/`password` keys.
+
+**Test-design constraints honored** (test-strategy §3, §4, §6 Phase 4):
+
+- RTL render with a fake props snapshot from Phase 1–3 outputs — the
+  test passes already-computed `RetentionPoint[]`, `TimeToMasteryStat[]`,
+  `AccuracyTrendPoint[]`, `ReviewSuccessRate`, and an `ExperimentReport`
+  shape directly as props. No Convex live calls; no Convex `ctx` mock
+  (test-strategy §6 Phase 4 explicitly rules out live Convex calls for
+  the component layer).
+- Edge cases from test-strategy §4 Phase 4 row: unauthorized role
+  (student) → component returns `null` (defense-in-depth via
+  `guardEfficacyAccess`); authorized teacher with empty data → empty
+  state copy; authorized teacher with suppressed cohort → suppression
+  banner with `n` + `threshold` (no metric values leaked).
+- No-PII payload guard: the experiment-report prop type and the
+  cohort-metrics prop type include only ids + counts + ratios + bucketed
+  timestamps — never `studentId`, `displayName`, `username`, `email`, or
+  `password`. Test asserts the rendered DOM does not contain any
+  `stu_*` id pattern (mirrors Phase 3 report.test.ts's PII guard).
+- The test uses the same RTL pattern as the existing teacher
+  component tests (`render` + `screen.getByText`/`getByRole` from
+  `@testing-library/react`), reusing the `vitest.config.ts` jsdom env
+  and `vitest.setup.ts` (which already mocks `next/navigation` and
+  `next/headers`).
+- Per-task graph protocol: the test files import from
+  `@/components/teacher/efficacy/EfficacyView` and
+  `@/lib/efficacy/roleGuard` which don't exist yet — pre-edit
+  `build-graph inspect` skipped because the symbols are greenfield
+  (callers = 0 by construction); post-edit `build-graph update` will be
+  unnecessary for test files (no exports).
+- No source files were created; no `package.json`, `vitest.config.ts`,
+  `tsconfig.json`, or other build/runtime config was created or
+  modified in the `apps/integrated-math-3/` app; the existing
+  `vitest.config.ts` jsdom env is sufficient for RTL.
+
+**Targeted Red command** (single bounded run, no watch, no fall-through
+to the full app suite, per test-strategy §8 Phase 4):
+`CI=true npx vitest run apps/integrated-math-3/__tests__/components/teacher/efficacy`
+
+(The im3 vitest config `include: ['__tests__/**/*.test.{ts,tsx}']` picks
+up both new files; the path arg restricts to this phase's suites. No
+live Convex deploy, no Playwright, no full app suite.)
+
+### Phase 4 — Red Run Log
+
+**Command** (single bounded run, no watch, no fall-through, CI=true,
+sourced `nvm` first because the supervisor harness runs outside an
+interactive shell that auto-loads nvm):
+`source "$HOME/.nvm/nvm.sh" && CI=true npx vitest run apps/integrated-math-3/__tests__/components/teacher/efficacy`
+
+**Result at 2026-06-13** (MID re-entry attempt 2, post-commit HEAD `b8b31fe3`):
+
+```
+ RUN  v4.1.8 /home/daniel-bo/Desktop/ra-math-advantage
+
+ ❯ apps/integrated-math-3/__tests__/components/teacher/efficacy/roleGuard.test.ts (0 test)
+ ❯ apps/integrated-math-3/__tests__/components/teacher/efficacy/EfficacyView.test.tsx (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/integrated-math-3/__tests__/components/teacher/efficacy/EfficacyView.test.tsx
+Error: Cannot find package '@/components/teacher/efficacy/EfficacyView' imported from ...
+
+ FAIL  apps/integrated-math-3/__tests__/components/teacher/efficacy/roleGuard.test.ts
+Error: Cannot find package '@/lib/efficacy/roleGuard' imported from ...
+
+ Test Files  2 failed (2)
+      Tests  no tests
+```
+
+- 2 suites fail for the expected missing-implementation reason:
+  - `__tests__/components/teacher/efficacy/EfficacyView.test.tsx`
+    → `@/components/teacher/efficacy/EfficacyView` (component file does
+    not exist at HEAD)
+  - `__tests__/components/teacher/efficacy/roleGuard.test.ts`
+    → `@/lib/efficacy/roleGuard` (helper file does not exist at HEAD)
+- 0 false-pass tests, 0 stale-durable-record failures. This is the
+  canonical "missing implementation" Red state — every test file fails
+  at the import-resolution step before any assertion runs.
+
+This Red state is **not a fluke of stale fixtures or wrong command** —
+it is the contract-the-future-impl-must-satisfy pinned at HEAD. The
+Green/impl role must create:
+
+- `apps/integrated-math-3/lib/efficacy/roleGuard.ts` exporting
+  `guardEfficacyAccess(claims: SessionClaims | null | undefined): SessionClaims | null`
+  that returns the claims verbatim for `teacher`/`admin` and `null`
+  otherwise (mirrors `requireServerRoles` in
+  `apps/integrated-math-3/lib/auth/server.ts:140`).
+- `apps/integrated-math-3/components/teacher/efficacy/EfficacyView.tsx`
+  exporting `EfficacyView`, `EfficacyCohortView`,
+  `EfficacyExperimentView` with the RTL render contract pinned by
+  `EfficacyView.test.tsx`: page title, four cohort metric tiles
+  (retention, time-to-mastery, accuracy, review-success), suppression
+  banner (no metric values leaked), experiment rows with significance,
+  empty state, role-gate returning `null` for non-teacher roles, and a
+  PII-safe DOM (no `stu_*` / `studentId` / `displayName` / `username` /
+  `email` / `password` keys).
+
+**Files changed in this Red commit (`b8b31fe3`):**
+
+- ADDED `apps/integrated-math-3/__tests__/components/teacher/efficacy/roleGuard.test.ts` (new, 109 lines)
+- ADDED `apps/integrated-math-3/__tests__/components/teacher/efficacy/EfficacyView.test.tsx` (new, 320 lines)
+- MODIFIED `measure/tracks/learning-efficacy-analytics_20260605/plan.md`
+  (this Red Notes / Run Log subsection + the Phase 4 task checkbox
+  flipped to `[x]` with commit SHA `b8b31fe3`).
+
+**Out of scope for Red:** no `src/` files were created; no
+`package.json`, `vitest.config.ts`, `tsconfig.json`, or other
+build/runtime config was created or modified in `apps/integrated-math-3/`;
+no existing source was modified. The generated `graph.db` artifact is
+preserved dirty per the dirty-worktree protocol.
+
+**Red-phase commit `b8b31fe3` is ready to hand off to Green/impl.**
