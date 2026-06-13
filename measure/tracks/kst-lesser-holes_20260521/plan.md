@@ -326,6 +326,37 @@ dirty paths remain unchanged across this commit and continue to be
 unrelated user work that cannot be reverted/hidden per the
 "Preserve unrelated user work" rule.
 
+### Phase 2 — Red-phase re-verification at current HEAD (MID, 2026-06-13)
+
+Re-ran the four targeted Red commands at `f762ee23` (current HEAD) to
+confirm the Red state is still intact and no Green-phase leakage has
+occurred. Build-graph remains fresh
+(13,879 nodes / 20,482 edges / 2,038 files); `build-graph search
+projectDisplayLevel` and `build-graph search projectIm3Level` both
+return 0 nodes — greenfield preserved.
+
+| Command | Result | Failing tests |
+|---------|--------|---------------|
+| `node node_modules/vitest/vitest.mjs run packages/knowledge-space-core/src/__tests__/level-projection.test.ts --root packages/knowledge-space-core` | 7 failed / 7 total | All 7: `TypeError: projectDisplayLevel is not a function` — symbol not yet exported from `../level-projection` (only the Phase 1 type contract is present in `packages/knowledge-space-core/src/level-projection.ts`). |
+| `node node_modules/vitest/vitest.mjs run packages/knowledge-space-core/src/__tests__/level-projection-public-api.test.ts --root packages/knowledge-space-core` | 2 failed / 2 total | (1) `projectDisplayLevel` not re-exported from `@math-platform/knowledge-space-core` root; (2) `projectDisplayLevel` not exported from `level-projection` subpath. Both fail with `expected undefined to be 'function'`. |
+| `node node_modules/vitest/vitest.mjs run apps/integrated-math-3/__tests__/level-projection.test.ts --root apps/integrated-math-3` | 1 failed suite (0 tests ran) | `Failed to resolve import "@/lib/level-projection/im3-level-projection"` — IM3 instance module and underlying `gse-to-im3-advantage.csv` are not yet present. |
+| `node node_modules/vitest/vitest.mjs run apps/integrated-math-3/__tests__/level-projection-csv-contract.test.ts --root apps/integrated-math-3` | 2 failed / 2 total | (1) CSV file does not exist at `apps/integrated-math-3/lib/level-projection/gse-to-im3-advantage.csv`; (2) well-formed check (header + ≥3 rows) fails because the file does not exist. |
+
+Total Red tests: 7 + 2 + 5 (suite-load-failure) + 2 = 16 tests, all
+failing for the expected contract-gap reasons. **Red phase is satisfied.**
+The Green phase can proceed in the next role: the implementer must add
+`projectDisplayLevel` to `packages/knowledge-space-core/src/level-projection.ts`,
+re-export it from the package root + subpath, and create
+`apps/integrated-math-3/lib/level-projection/{gse-to-im3-advantage.csv,
+im3-level-projection.ts}` to satisfy all four targeted suites.
+
+The 376 pre-existing dirty paths in the worktree continue to be
+unrelated user work from the spec-compliance-and-process-integrity_20260612
+track's in-progress Phase 3 (JSDoc typed-param surface) and are preserved
+per the "Preserve unrelated user work" rule. No additional test files,
+no source code changes, and no re-classification of the dirty paths is
+required at this point.
+
 ## Phase 3 — progressTrend Fix
 
 - [ ] Task: Replace progressTrend static ratio with a time-delta (TDD)
