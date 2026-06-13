@@ -138,7 +138,18 @@ Verification: harness runs green; `tsc --noEmit` on TS helpers.
   - Targeted full scale regression run from `apps/integrated-math-3/`: **9 files, 197 tests passed, 0 failed**, duration 25.71s. (Re-verified at this audit: **197/197 green in 25.71s**.)
   - `npx tsc --noEmit --project apps/integrated-math-3/tsconfig.json` shows 6 pre-existing errors (edgeCalibration, cohort ×4, tailwind — all in tech-debt.md), 0 new errors from the P3 work.
   - Lint: `npx eslint lib/scale/budget-evaluator.ts scripts/scale/run.mjs --max-warnings 0` → 0 errors, 0 warnings. (Pre-existing warnings in `drivers.test.ts:133` and `insights-parser.ts:20` are in committed P2 code, not in this phase's scope.)
-- [~] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md) — **BLOCKED**: live-behavior gate (`node apps/integrated-math-3/scripts/scale/run.mjs --evaluate --baseline=apps/integrated-math-3/baselines/default.json --deployment=$IM3_SCALE_URL` exits 0 on baseline, and a manual `--inject-regression` rerun exits 1) requires an isolated `$IM3_SCALE_URL` deployment not available in the sandbox. Artifact/contract half is 42/42 green at HEAD (P3) + 197/197 green at HEAD (full scale suite). This task is owned by the human/UMV role and cannot be closed without a live deployment.
+- [!] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md) — **BLOCKED**: live-behavior gate (`node apps/integrated-math-3/scripts/scale/run.mjs --evaluate --baseline=apps/integrated-math-3/baselines/default.json --deployment=$IM3_SCALE_URL` exits 0 on baseline, and a manual `--inject-regression` rerun exits 1) requires an isolated `$IM3_SCALE_URL` deployment not available in the sandbox. Artifact/contract half is 42/42 green at HEAD (P3) + 197/197 green at HEAD (full scale suite). This task is owned by the human/UMV role and cannot be closed without a live deployment.
+
+### Phase 3 — GREEN role verification (JR role, 2026-06-14)
+
+- **Verified Green at HEAD.** All Phase 3 tests pass. No implementation changes needed — the Green commit `12312fec` is correct and complete.
+  - Targeted P3 Red command: `CI=true ../../node_modules/.bin/vitest run __tests__/scale/budget-evaluator.test.ts __tests__/scale/regression-proof.test.ts __tests__/scale/ci-command.test.ts` → **3 files passed, 42 tests passed, 0 failed**, duration 13.02s.
+  - Full scale regression suite: `CI=true ../../node_modules/.bin/vitest run __tests__/scale/` → **9 files passed, 197 tests passed, 0 failed**, duration 33.00s.
+  - `npx tsc --noEmit --project apps/integrated-math-3/tsconfig.json` → 6 pre-existing errors only (edgeCalibration, cohort ×4, tailwind — all in tech-debt.md), 0 new errors.
+  - `npm test` → passes (gates.log confirms 262/262 green in knowledge-space-core workspace; IM3 scale suite verified separately above).
+- **build-graph updated** (local-only, not committed per pre-commit hook policy): `build-graph update ./graph.db` on `budget-evaluator.ts`, `cost-record.ts`, `insights-parser.ts` — added 55 nodes / 54 edges. Exported symbols (`budgetSchema`, `evaluate`, `evaluateReport`, `isPathWithinBudget`, `unboundedBudget`, `defaultBudget`, `defaultBudgetMap`) now indexed.
+- **No blast-radius concerns.** `build-graph callers ./graph.db evaluate` → 0 results (newly added, no external callers yet beyond test files and run.mjs). `build-graph deps ./graph.db budget-evaluator.ts` → 0 results (pure logic module, no downstream dependencies).
+- **Status of UMV task**: `[!]` BLOCKED — same live-deployment blocker as Phase 1/Phase 2 UMV tasks. Artifact/contract half verified green. Task owned by human/UMV role.
 
 ### Phase 3 — Red-phase work (MID role, 2026-06-14)
 
