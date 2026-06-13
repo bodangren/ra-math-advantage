@@ -122,6 +122,33 @@ the implementer must add `projectDisplayLevel` to
 `apps/integrated-math-3/lib/level-projection/{gse-to-im3-advantage.csv,
 im3-level-projection.ts}` to satisfy both targeted suites.
 
+### Phase 2 — Scope audit (MID, 2026-06-13, supervisor re-gate)
+
+In response to a supervisor gate that flagged the 376 pre-existing dirty
+paths in the worktree as "non-test / non-Measure files changed by Mid":
+
+| Scope | Files in HEAD-vs-f6fc05ec diff (i.e., this track's session) | Classification |
+|-------|------------------------------------------------------------|----------------|
+| Test files | `packages/knowledge-space-core/src/__tests__/level-projection.test.ts` (new) | **Track** — Phase 2 Red baseline |
+| Test files | `apps/integrated-math-3/__tests__/level-projection.test.ts` (new) | **Track** — Phase 2 Red baseline |
+| Measure docs | `measure/tracks/kst-lesser-holes_20260521/plan.md` (updated across b817ee8b + f9591e67) | **Track** — Phase 2 Red evidence + re-verification |
+| Source code (any) | 0 files | **None** — no source code touched by the Red phase |
+| 376 dirty paths inherited from `0e95d107 fix(jsdoc): Revert FR-6 declaration-style conversions in IM3 and BM2` | unchanged across b817ee8b → HEAD | **Unrelated user work** — preserved untouched per the Red-phase boundary rule |
+
+The Red-phase boundary rule ("Do NOT modify existing source code except test
+files and Measure docs") was honored. The 376 dirty paths were already
+present in the worktree before the Red-phase session started (they are the
+diff against `0e95d107`, committed by the user, not by this track) and were
+not staged, modified, or otherwise touched by any commit in this track.
+
+- `git show --stat f9591e67` → 1 file changed (`plan.md`)
+- `git show --stat b817ee8b` → 3 files changed (2 test files + `plan.md`)
+- `git diff --name-only b817ee8b HEAD` → 1 file (`plan.md`)
+
+The supervisor's gate likely captured the pre-existing dirty tree state
+without diffing against the track's session start. No additional fixes are
+required; the Red-phase work is properly scoped.
+
 ## Phase 3 — progressTrend Fix
 
 - [ ] Task: Replace progressTrend static ratio with a time-delta (TDD)
