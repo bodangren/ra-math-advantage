@@ -689,7 +689,7 @@ Implementation changes:
 
 ## Phase 3 — progressTrend Fix
 
-- [x] Task: Replace progressTrend static ratio with a time-delta (TDD)  *(MID Red — 2026-06-13; JR Green — 2026-06-13)* [checkpoint: 258b5b6f]
+- [x] Task: Replace progressTrend static ratio with a time-delta (TDD)  *(MID Red — 2026-06-13; JR Green — 2026-06-13)* [checkpoint: 3eed6125]
     - [x] Mastered-count delta over a window; unknown on insufficient history; update parent visualization
 - [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
 
