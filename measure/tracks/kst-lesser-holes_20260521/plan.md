@@ -691,7 +691,7 @@ Implementation changes:
 
 - [x] Task: Replace progressTrend static ratio with a time-delta (TDD)  *(MID Red — 2026-06-13; JR Green — 2026-06-13)* [checkpoint: 3eed6125]
     - [x] Mastered-count delta over a window; unknown on insufficient history; update parent visualization
-- [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md) [checkpoint: 3eed6125]
 
 ### Phase 3 — Graph-Aware pre-flight (MID, 2026-06-13)
 
