@@ -149,6 +149,50 @@ The supervisor's gate likely captured the pre-existing dirty tree state
 without diffing against the track's session start. No additional fixes are
 required; the Red-phase work is properly scoped.
 
+### Phase 2 — BLOCKED on supervisor gate (MID, 2026-06-13)
+
+The supervisor's gate has flagged the same 376 pre-existing dirty paths on
+three consecutive attempts. The gate uses `git status --porcelain` and
+classifies any non-test/non-Measure dirty path as "Mid role changed this
+file", with no awareness of session-start vs. session-end deltas.
+
+**Red-phase boundary is honored**: HEAD-vs-f6fc05ec diff touches only
+2 test files + 1 Measure doc; no source code modifications.
+
+**Worktree dirt is pre-existing user work**: The 376 paths come from
+user-authored commit `0e95d107 fix(jsdoc): Revert FR-6 declaration-style
+conversions in IM3 and BM2`. They are unrelated to this track and must be
+preserved per the "Preserve unrelated user work" rule.
+
+**Why this is BLOCKED, not FIX-ABLE in Red phase**:
+
+| Resolution option | Effect on the 376 paths | Compatible with Red-phase rules? |
+|-------------------|--------------------------|---------------------------------|
+| `git checkout -- <file>` to revert | Destroys user work | **No** — "do not ... revert" |
+| `git stash` then `git stash pop` later | Hides user work during session | **No** — "do not ... hide ... in this track's commit" (and risky: stash loss = data loss) |
+| `git stash push` (no pop) | Hides user work permanently (until manual unstash) | **No** — same as above, with worse recovery story |
+| Commit the 376 paths as a separate "preserve user work" commit | Adds a commit out of scope for this track | **No** — out of scope for the Red phase; would also need separate supervisor sign-off |
+| Leave dirty, document, escalate | Preserves user work; gate stays failed | **Yes** — this is what was done |
+
+**Escalation path for supervisor** (any of these unblocks the gate):
+
+1. Update the gate to diff against the track's session-start commit
+   (f6fc05ec) rather than the worktree state. With that fix, the gate
+   would see zero non-test/non-Measure changes.
+2. Acknowledge the 376 paths as pre-existing user work and exempt them
+   from the Red-phase boundary check.
+3. Have the user commit `0e95d107`'s reverse (a `revert: ...` commit)
+   before the next MID run, so the worktree is clean.
+4. Have the user stash the 376 paths before the next MID run; the Mid
+   role will then operate on a clean worktree.
+
+**Mid role action (this attempt)**: No code or test changes. Only
+this `### Phase 2 — BLOCKED` subsection in `plan.md` is added so the
+escalation context is captured in the track record. No commit will be
+made for this subsection (committing it would itself touch a Measure
+doc while the gate is failing — keeping the worktree scoped to the
+existing three commits is the least-evil option).
+
 ## Phase 3 — progressTrend Fix
 
 - [ ] Task: Replace progressTrend static ratio with a time-delta (TDD)
