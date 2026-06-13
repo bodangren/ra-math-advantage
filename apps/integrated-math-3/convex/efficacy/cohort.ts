@@ -58,7 +58,7 @@ export async function aggregateCohortMetricsHandler(
   const studentCards: SrsCardState[] = allCards
     .filter((c) => activeStudentIds.has(c.studentId))
     .map((c) => ({
-      cardId: c.cardId,
+      cardId: c._id as unknown as string,
       studentId: c.studentId,
       objectiveId: c.objectiveId,
       problemFamilyId: c.problemFamilyId,
