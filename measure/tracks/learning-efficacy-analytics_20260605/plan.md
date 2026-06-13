@@ -557,6 +557,18 @@ Lint (`npm run lint`): 1 pre-existing warning in `cohort.test.ts:134` (`_fn` unu
 in `makeFakeCtx` helper — Red-phase test file, not modified by Green). Implementation files
 clean.
 
+### Phase 2 — Green Follow-Up Fix (JR role, 2026-06-13, commit `24871c80`)
+
+Fix: `cohort.ts:61` used `c.cardId` but the Convex `srs_cards` schema has no `cardId` field.
+Changed to `c._id as unknown as string` to satisfy `SrsCardState.cardId`. Fixes tsc error
+TS2339 on the implementation file. Test file errors (4 in `cohort.test.ts`) are pre-existing
+Red-phase type mismatches, not implementation regressions.
+
+Verification:
+- `CI=true npx vitest run __tests__/convex/efficacy` (from `apps/integrated-math-3`) → `Test Files 2 passed (2)` · `Tests 18 passed (18)`
+- `npx tsc --noEmit` → 0 errors in implementation files (4 pre-existing in test file)
+- `npx eslint convex/efficacy/` → clean
+
 ### Phase 2 — Red Phase Re-Entry Audit (MID, 2026-06-13, HEAD `8bfe1029`)
 
 **Mandate:** Own the Red phase for every currently incomplete non-deferred task in Phase 2.
