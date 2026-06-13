@@ -29,6 +29,7 @@
     "@math-platform/component-approval": "*",
     "@math-platform/core-auth": "*",
     "@math-platform/core-convex": "*",
+    "@math-platform/efficacy-core": "*",
     "@math-platform/graphing-core": "*",
     "@math-platform/lesson-renderer": "*",
     "@math-platform/practice-core": "*",

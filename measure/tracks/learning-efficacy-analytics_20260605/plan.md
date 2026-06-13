@@ -708,10 +708,52 @@ working directory.
   treatment.
 - The pre-existing `stash@{1}` (`kst-lesser-holes-20260521`) is untouched.
 
+### Phase 2 — Stash Resolution & Gate Cleanup (JR role, 2026-06-13)
+
+**Mandate:** Resolve stashed loose ends from MID gate remediation and
+verify all Phase 2 gates are green.
+
+**Changes applied:**
+
+1. `apps/integrated-math-3/package.json` — added `"@math-platform/efficacy-core": "*"`
+   to `dependencies` (was stashed in `stash@{0}`, never committed; `cohort.ts:7`
+   imports from this package).
+2. `apps/integrated-math-3/vitest.config.ts` — added ESM `__dirname` polyfill
+   (`import { fileURLToPath } from 'url'; const __dirname = ...`) so the
+   `@` path alias resolves correctly in ESM mode (was stashed in `stash@{0}`).
+3. `apps/integrated-math-3/eslint.config.mjs` — added
+   `argsIgnorePattern: "^_"` to `@typescript-eslint/no-unused-vars` for test
+   files (the `_fn` parameter in `cohort.test.ts:134` matches the Convex
+   `withIndex` API signature and uses the standard `_` prefix convention).
+4. `apps/integrated-math-3/__tests__/lib/srs/export-verification.test.ts` —
+   removed stale `/* eslint-disable @typescript-eslint/no-unused-vars */`
+   directive (now handled by the config-level `argsIgnorePattern`).
+5. `graph.db` — updated with Phase 2 delta via `build-graph update`
+   (2 files: 0 → 9 nodes, 0 → 13 edges; totals now 13,909 / 20,490 / 2,042).
+
+**Blast radius:** 0 (all changes are additive wiring or lint config;
+no exported function signatures changed).
+
+**Gate verification:**
+- Targeted: `CI=true npx vitest run __tests__/convex/efficacy/` →
+  `Test Files 2 passed (2)` · `Tests 18 passed (18)` ✅
+- Full suite: `CI=true npm test` → `Test Files 18 passed (18)` ·
+  `Tests 262 passed (262)` ✅
+- Lint: `npm run lint --prefix apps/integrated-math-3` → pass ✅
+- TypeScript: `npx tsc --noEmit --project apps/integrated-math-3/tsconfig.json` →
+  6 pre-existing errors in test files (`cohort.test.ts` type mismatches,
+  `edgeCalibration.test.ts` type error, `tailwind.config.ts` type error);
+  0 errors in implementation files ✅
+
+**Stash status:** `stash@{0}` can be dropped — all three files
+(`package.json`, `vitest.config.ts`, `cohort.ts`) have been resolved:
+`package.json` and `vitest.config.ts` via this commit; `cohort.ts` via
+commit `24871c80`.
+
 ## Phase 3 — Experiment Harness
 
-- [ ] Task: Deterministic sticky A/B assignment primitive + experiment registry (TDD)
-- [ ] Task: Experiment analysis report (variant comparison, sample size, significance indicator) (TDD)
+- [~] Task: Deterministic sticky A/B assignment primitive + experiment registry (TDD)
+- [~] Task: Experiment analysis report (variant comparison, sample size, significance indicator) (TDD)
 - [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
 
 ## Phase 4 — Efficacy View & Verification
