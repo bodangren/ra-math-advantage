@@ -866,7 +866,7 @@ Full `npm run ws:im3:test` was not repeated because attempt 1 timed out after 12
     - [x] Live gate: `bash measure/scripts/doctor.sh` exits 0; `bash measure/scripts/generate.sh` exits 0; `node scripts/check-monorepo-boundaries.mjs` exits 0 (recorded in Red-phase evidence subsection)
 - [x] Task: Final verification — boundary lints, npm run lint, tsc --noEmit, CI=true npm run test *(MID Red — 2026-06-13; JR Green — 2026-06-13)* [checkpoint: aaaf3059]
     - [x] Live gate: `CI=true npm test` + `npm run lint` + `npx tsc --noEmit` (recorded in Red-phase evidence subsection)
-- [ ] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md) [checkpoint: ea369553]
 
 ### Phase 4 — Red-phase evidence (MID handoff, 2026-06-13)
 
