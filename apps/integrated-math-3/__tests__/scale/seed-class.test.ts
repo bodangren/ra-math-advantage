@@ -269,4 +269,31 @@ describe('scale — Phase 1 Red: generateClassSeed (30-student class)', () => {
       }
     });
   });
+
+  describe('result shape contract (downstream budget / snapshot consumer guard)', () => {
+    const result = generateClassSeed(CLASS_INPUT);
+
+    it('result.counts exposes exactly the expected keys (no drift for snapshot diffs)', () => {
+      // The Green/closeout convex-test insertion test compares per-table row
+      // counts against a snapshot fixture. The fixture compares against the
+      // keys in this list, so any unannounced new key is a contract break.
+      expect(Object.keys(result.counts).sort()).toEqual(
+        ['enrollments', 'reviewLog', 'srsCards', 'students', 'submissions'],
+      );
+    });
+
+    it('result is JSON-serializable (no Map/Set/Date/BigInt in the payload)', () => {
+      // The harness writes the generator output to disk and to reports.
+      // If the implementation ever returns a non-JSON-serializable value
+      // (e.g. a Map, Set, Date, or BigInt) the write path silently fails.
+      // This guard pins the contract that the payload is plain JSON.
+      let serialized: string;
+      expect(() => {
+        serialized = JSON.stringify(result);
+      }).not.toThrow();
+      const roundTripped = JSON.parse(serialized!);
+      expect(roundTripped.counts).toEqual(result.counts);
+      expect(roundTripped.organization.slug).toBe(result.organization.slug);
+    });
+  });
 });
