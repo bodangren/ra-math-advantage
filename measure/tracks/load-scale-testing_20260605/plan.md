@@ -5,13 +5,13 @@ Verification: harness runs green; `tsc --noEmit` on TS helpers.
 
 ## Phase 1 — Scale Seeds
 
-- [x] Task: Deterministic 30-student class seed (enrollments, cards, reviews, submissions) (TDD on generators)
+- [x] Task: Deterministic 30-student class seed (enrollments, cards, reviews, submissions) (TDD on generators) [checkpoint: 1f1f3af0]
   - Red tests: `apps/integrated-math-3/__tests__/scale/seed-class.test.ts` (34 cases: module surface, density realism, determinism, FK integrity, organization/classroom/teacher wiring, result shape contract — counts-keys guard + JSON-serializability guard for downstream snapshot/budget consumers).
   - Fixtures: `apps/integrated-math-3/__tests__/_fixtures/scale/{student-roster,density,rng}.ts` pin `SCALE_STUDENT_COUNT_CLASS=30`, frozen `SCALE_RNG_SEED_VALUE='load-2026'`, density constants.
   - Targeted Red command: `../../node_modules/.bin/vitest run __tests__/scale/seed-class.test.ts __tests__/scale/seed-school.test.ts` (from `apps/integrated-math-3/`).
   - Green commit: `1f1f3af0` — implements `apps/integrated-math-3/lib/scale/seed-class.ts` with mulberry32 PRNG, seed-derived salt for deterministic IDs.
   - Green result: **34 tests passed, 0 failed** (targeted run).
-- [x] Task: Deterministic 1,020-student school seed at realistic density
+- [x] Task: Deterministic 1,020-student school seed at realistic density [checkpoint: 1f1f3af0] [checkpoint: a5e092e6]
   - Red tests: `apps/integrated-math-3/__tests__/scale/seed-school.test.ts` (41 cases: module surface, density realism, class distribution, determinism, FK integrity, organization wiring, single-enrollment invariant, result shape contract — counts-keys guard + JSON-serializability guard).
   - Fixtures: `SCALE_STUDENT_COUNT_SCHOOL` corrected to 1020 (34×30) so every class is a full 30-student section. `SCALE_CLASSES_PER_SCHOOL=34`, `SCALE_TEACHERS_PER_SCHOOL=34`.
   - Targeted Red command: same as Task 1 (joint run).
