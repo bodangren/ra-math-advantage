@@ -1,0 +1,49 @@
+name: Scale Benchmarks
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Weekly on Mondays at 06:00 UTC (off-peak for the IM3 school-day window).
+    - cron: '0 6 * * 1'
+
+concurrency:
+  group: scale-benchmarks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  evaluate-scale-budget:
+    name: Evaluate scale harness budgets
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24.4.0'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run scale harness evaluation against ${{ secrets.IM3_SCALE_URL }}
+        env:
+          IM3_SCALE_URL: ${{ secrets.IM3_SCALE_URL }}
+        run: |
+          node apps/integrated-math-3/scripts/scale/run.mjs \
+            --paths=daily-practice,gradebook,heatmap,proficiency,curriculum-summaries \
+            --once \
+            --evaluate \
+            --deployment="$IM3_SCALE_URL" \
+            --baseline=apps/integrated-math-3/baselines/default.json \
+            --out=scale-evaluation.json
+
+      - name: Upload scale evaluation report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: scale-evaluation-report
+          path: scale-evaluation.json
+          retention-days: 30

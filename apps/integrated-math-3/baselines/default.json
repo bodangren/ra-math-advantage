@@ -1,0 +1,41 @@
+{
+  "generatedAt": "2026-06-14T00:00:00Z",
+  "deployment": "https://example.convex.cloud",
+  "paths": [
+    {
+      "path": "daily-practice",
+      "docsRead": 1500,
+      "bytesRead": 3000000,
+      "fnTimeMs": 2200,
+      "occConflicts": 0
+    },
+    {
+      "path": "gradebook",
+      "docsRead": 1200,
+      "bytesRead": 2500000,
+      "fnTimeMs": 1800,
+      "occConflicts": 0
+    },
+    {
+      "path": "heatmap",
+      "docsRead": 1800,
+      "bytesRead": 3500000,
+      "fnTimeMs": 2500,
+      "occConflicts": 0
+    },
+    {
+      "path": "proficiency",
+      "docsRead": 2200,
+      "bytesRead": 4000000,
+      "fnTimeMs": 2800,
+      "occConflicts": 1
+    },
+    {
+      "path": "curriculum-summaries",
+      "docsRead": 900,
+      "bytesRead": 1800000,
+      "fnTimeMs": 1500,
+      "occConflicts": 0
+    }
+  ]
+}
