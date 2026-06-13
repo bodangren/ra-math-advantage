@@ -114,6 +114,10 @@ describe('Phase 4 — kst-srs.v2/SPECIFICATION.md cross-reference markers', () =
       section32,
       '§3.2 must cross-reference the `transfers_to` edge type so that the cross-domain prior-seeding surface is surfaced inside the Knowledge State & Mastery chapter.',
     ).toMatch(/transfers_to/);
+    expect(
+      section32,
+      '§3.2 must preserve the track boundary that transfers_to consumption is future/deferred work, not implemented behavior.',
+    ).toMatch(/future|deferred/i);
   });
 
   it('§9.4 cross-references the progressTrend parent-facing signal', () => {

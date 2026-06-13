@@ -66,7 +66,7 @@ Per-skill mastery `m ∈ [0,1]` computed from SRS card stability and proficiency
 | `inProgress` | Has evidence but not proficient |
 | `untouched` | No evidence |
 
-A `transfers_to` edge (§11.1) between domains seeds a prior on the target skill's initial mastery state, allowing cross-domain evidence to influence the `untouched` → `inProgress` transition.
+A future `transfers_to` consumption path (§11.1) may seed a prior on the target skill's initial mastery state, allowing cross-domain evidence to influence the `untouched` → `inProgress` transition. The edge type is available now for data collection; prior seeding is deferred.
 
 ### 3.3 Hysteresis
 
