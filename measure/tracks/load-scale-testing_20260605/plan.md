@@ -73,7 +73,7 @@ Verification: harness runs green; `tsc --noEmit` on TS helpers.
 
 - [x] Task: Drivers for teacher proficiency/dashboard, daily-practice queue, gradebook/heatmaps, curriculum summaries (Red phase — MID role) [checkpoint: ed568f49]
 - [x] Task: Capture Convex insights (docs/bytes/time/OCC) into a comparable report (Red phase — MID role) [checkpoint: ed568f49]
-- [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
+- [!] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md) — **BLOCKED**: live-behavior gate (`node apps/integrated-math-3/scripts/scale/run.mjs --paths=daily-practice,gradebook,heatmap,proficiency --once --deployment=$IM3_SCALE_URL` writes report with non-null docsRead/bytesRead per path) requires an isolated `$IM3_SCALE_URL` deployment not available in the sandbox. Artifact/contract tests are 71/71 green at HEAD. This task is owned by the human/UMV role and cannot be closed without a live deployment.
 
 ### Phase 2 — Red-phase work (MID role, 2026-06-14)
 
