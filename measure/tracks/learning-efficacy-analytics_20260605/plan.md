@@ -6,8 +6,8 @@ Verification: boundary lints + per-app lint/test + `tsc --noEmit`.
 
 ## Phase 1 — Metric Contracts & Pure Logic
 
-- [x] Task: Define outcome-metric contracts (retention, time-to-mastery, accuracy, review-success)
-- [x] Task: Implement pure metric functions from SRS card/review/submission fixtures (TDD)
+- [x] Task: Define outcome-metric contracts (retention, time-to-mastery, accuracy, review-success) — `a732c7c7`
+- [x] Task: Implement pure metric functions from SRS card/review/submission fixtures (TDD) — `a732c7c7`
 - [ ] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md) — deferred (manual, not Red-phase)
 
 ### Phase 1 — Red Notes (MID role, 2026-06-13)
