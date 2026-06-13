@@ -689,8 +689,8 @@ Implementation changes:
 
 ## Phase 3 — progressTrend Fix
 
-- [~] Task: Replace progressTrend static ratio with a time-delta (TDD)  *(MID Red in flight, 2026-06-13)*
-    - [ ] Mastered-count delta over a window; unknown on insufficient history; update parent visualization
+- [x] Task: Replace progressTrend static ratio with a time-delta (TDD)  *(MID Red — 2026-06-13; JR Green — 2026-06-13)* [checkpoint: 258b5b6f]
+    - [x] Mastered-count delta over a window; unknown on insufficient history; update parent visualization
 - [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
 
 ### Phase 3 — Graph-Aware pre-flight (MID, 2026-06-13)
@@ -822,6 +822,22 @@ parameter to `projectParentVisualization` in
 and replace the static-ratio computation at lines 233-245 with a
 time-delta of `masteredNodeIds.length` over the 7-day window defined
 by `PROGRESS_TREND_WINDOW_MS`.
+
+### Phase 3 — Green-phase evidence (JR, 2026-06-13)
+
+All 9 targeted Red tests now pass. Full knowledge-space-practice suite green.
+
+| Command | Result |
+|---------|--------|
+| `vitest run packages/knowledge-space-practice/src/__tests__/progress-trend.test.ts` | 9 passed |
+| `vitest run --root packages/knowledge-space-practice` (full suite) | 3 files / 50 tests passed |
+| `npm run lint --workspace=packages/knowledge-space-practice` | 0 warnings |
+| `npx tsc --noEmit --project packages/knowledge-space-practice/tsconfig.json` | clean (3 pre-existing errors in projections.test.ts only, unrelated to this track) |
+| `vitest run --root packages/knowledge-space-core` (cross-package regression) | 17 files / 256 tests passed |
+
+Implementation changes:
+- `visualization.ts`: added `ProgressTrendHistory` import; added 4th `history: ProgressTrendHistory = []` parameter to `projectParentVisualization`; replaced static-ratio logic (masteredCount/totalSkillNodes with 0.7/0.3 thresholds) with time-delta logic (7-day window, delta of masteredNodeIds.length between first and last snapshot in window)
+- `graph.db`: updated with changed file (25 → 26 nodes, 26 → 27 edges)
 
 ## Phase 4 — Docs & Doctor
 

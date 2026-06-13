@@ -1,4 +1,4 @@
-import type { KnowledgeSpaceNode, KnowledgeSpaceEdge } from '@math-platform/knowledge-space-core';
+import type { KnowledgeSpaceNode, KnowledgeSpaceEdge, ProgressTrendHistory } from '@math-platform/knowledge-space-core';
 import type {
   VisualNodeV1,
   VisualEdgeV1,
@@ -200,12 +200,14 @@ export function projectStudentVisualization(
  * @param nodes - Knowledge space nodes
  * @param edges - Knowledge space edges
  * @param learnerState - Optional mapping from node IDs to mastery states
+ * @param history - Optional mastery snapshots for time-delta trend computation
  * @returns ParentVisualizationV1 validated against parentVisualizationV1Schema
  */
 export function projectParentVisualization(
   nodes: KnowledgeSpaceNode[],
   edges: KnowledgeSpaceEdge[],
   learnerState: Record<string, string> = {},
+  history: ProgressTrendHistory = [],
 ): ParentVisualizationV1 {
   const studentViz = projectStudentVisualization(
     nodes,
@@ -229,19 +231,28 @@ export function projectParentVisualization(
   // Blockers from blocked nodes
   const blockers = studentViz.blocked.map((n) => n.title);
 
-  // Progress trend
-  const masteredCount = studentViz.mastered.length;
+  // Progress trend — time-delta over a 7-day window (FR3 fix)
   const totalSkillNodes = studentViz.mastered.length +
     studentViz.ready.length +
     studentViz.blocked.length +
     studentViz.reviewDue.length;
 
   let progressTrend: ParentVisualizationV1['progressTrend'] = 'unknown';
-  if (totalSkillNodes > 0) {
-    const ratio = masteredCount / totalSkillNodes;
-    if (ratio >= 0.7) progressTrend = 'improving';
-    else if (ratio >= 0.3) progressTrend = 'stable';
-    else progressTrend = 'declining';
+  if (totalSkillNodes > 0 && history.length >= 2) {
+    const now = Math.max(...history.map((s) => s.timestamp));
+    const windowStart = now - 7 * 24 * 60 * 60 * 1000;
+    const inWindow = history
+      .filter((s) => s.timestamp >= windowStart)
+      .sort((a, b) => a.timestamp - b.timestamp);
+
+    if (inWindow.length >= 2) {
+      const delta =
+        inWindow[inWindow.length - 1].masteredNodeIds.length -
+        inWindow[0].masteredNodeIds.length;
+      if (delta > 0) progressTrend = 'improving';
+      else if (delta === 0) progressTrend = 'stable';
+      else progressTrend = 'declining';
+    }
   }
 
   // All visual nodes for parent view
