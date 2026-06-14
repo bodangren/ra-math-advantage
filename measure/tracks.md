@@ -2,6 +2,35 @@
 
 This file tracks all major tracks for the project.
 
+## Practice Primitives & Components Program
+
+See [Practice Primitives Roadmap](./practice-primitives-roadmap.md). Builds a reusable
+math **primitive layer** (visualization + interaction engines) once in
+`packages/activity-components`, then wraps each primitive in `practice.v1` components and
+adopts them downstream across IM1/IM2/IM3/PreCalc. Primitives-first; grouped by domain
+family. Implementation sequences **after** the in-progress `spec-compliance-and-process-integrity`
+remediation clears.
+
+Reconciliation: this program absorbs the overlapping skill-graph renderer tracks — **T15
+(geometry-stats-renderers)** folds into Tracks C/D, **T16 (trig-advanced-renderers)**
+becomes the seed of Track E (see those entries below).
+
+- [ ] **T0: Primitive Layer Contract** — **NEW**
+   *Establish the `primitives/` contract (`MathPrimitiveProps`), consumption rules, the canonical P1–P13 catalog, a reference migration (`CoordinatePlane`/P1), boundary enforcement, and T15/T16 reconciliation. Foundation for A–F. No end-user behavior change.*
+   *Link: [./tracks/primitive-layer-contract_20260615/](./tracks/primitive-layer-contract_20260615/)*
+- [ ] **Track A: Coordinate & Functions** — **PLANNED**
+   *Primitives P1 (CoordinatePlane) + P2 (FunctionPlot w/ sliders) → `equation-solver`, `function-analyzer` practice components. Depends on T0.*
+- [ ] **Track B: Number line & Algebra Manipulatives** — **PLANNED**
+   *Primitives P3 (NumberLine) + P11 (AlgebraManipulatives) + P12 (MathInput) → inequality/interval + factoring components. Depends on T0.*
+- [ ] **Track C: Geometry & Transformations** — **PLANNED**
+   *Primitives P4 (GeometryCanvas) + P5 (TransformationOverlay) + P13 (proof builder) → geometry-explorer, transformation, proof-builder. Absorbs T15 geometry scope. IM2 has zero components today. Depends on T0.*
+- [ ] **Track D: Statistics & Probability** — **PLANNED**
+   *Primitives P8 (StatChart/Distribution) + P9 (DataTable) + P10 (ProbabilitySimulator) → `statistical-explorer`. Absorbs T15 stats scope. Depends on T0.*
+- [ ] **Track E: Trigonometry & Advanced** — **PLANNED**
+   *Primitives P6 (UnitCircle) + P7 (PolarPlane) + P2-trig → `unit-circle-trainer`, trig graphing. Seeded by T16 trig-advanced-renderers. Depends on T0.*
+- [ ] **Track F: Interaction & Assessment** — **PLANNED**
+   *Generalized P13 DnD surface → `drag-drop-categorization`; port `tiered-assessment` from BM2 into the shared package. Depends on T0.*
+
 ## Skill Graph Program Roadmap
 
 The 13 tracks below build a domain-neutral knowledge-space pipeline (reusable across math, English/GSE, Chinese, science) and apply the math instantiation across IM1, IM2, IM3, and AP Precalculus.
