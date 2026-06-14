@@ -6,9 +6,23 @@ Verification: boundary lints + integrity check + `tsc --noEmit`.
 
 ## Phase 1 — Taxonomy Schema & Detection Mapping
 
-- [ ] Task: Define misconception node schema + validation (Contract-First)
-- [ ] Task: Map misconceptions to distractors/answer-pattern detection signals (reuse distractors.ts) (TDD)
+- [~] Task: Define misconception node schema + validation (Contract-First) — **RED phase written; awaiting Green implementation**
+- [~] Task: Map misconceptions to distractors/answer-pattern detection signals (reuse distractors.ts) (TDD) — **RED phase written; awaiting Green implementation**
 - [ ] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md)
+
+### Phase 1 — Red Phase Result (2026-06-15)
+
+- Source under test (does not exist yet):
+  - `apps/integrated-math-3/lib/practice/misconception-taxonomy.ts`
+  - `apps/integrated-math-3/lib/practice/misconception-mapping.ts`
+- Tests added:
+  - `apps/integrated-math-3/__tests__/lib/practice/misconception-taxonomy.test.ts` (schema/integrity contract test)
+  - `apps/integrated-math-3/__tests__/lib/practice/misconception-mapping.test.ts` (live behavior test for `mapDistractorToMisconception`)
+  - `apps/integrated-math-3/__tests__/lib/practice/misconception-content.fixtures.ts` (shared fixtures: `IM3_M1_SKILL_SET`, builders)
+- Bounded Red command:
+  `PATH="/opt/codex-desktop/resources/node-runtime/bin:$PATH" CI=true ./node_modules/.bin/vitest run apps/integrated-math-3/__tests__/lib/practice/misconception-taxonomy.test.ts apps/integrated-math-3/__tests__/lib/practice/misconception-mapping.test.ts`
+- Expected failure mode: both files error at module-resolution time (no IM3 taxonomy/mapping source exists). Green phase must ship the source modules + a non-empty IM3 M1 taxonomy with valid detection-signals referencing `DistractorType` from `@math-platform/math-content/algebraic`.
+- See commit `test(misconception): add Phase 1 Red tests for taxonomy schema and detection mapping`.
 
 ## Phase 2 — Author Prioritized Content
 
