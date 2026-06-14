@@ -6,8 +6,8 @@ Verification: boundary lints + integrity check + `tsc --noEmit`.
 
 ## Phase 1 — Taxonomy Schema & Detection Mapping
 
-- [x] Task: Define misconception node schema + validation (Contract-First) — **GREEN phase shipped** (commit pending)
-- [x] Task: Map misconceptions to distractors/answer-pattern detection signals (reuse distractors.ts) (TDD) — **GREEN phase shipped** (commit pending)
+- [x] Task: Define misconception node schema + validation (Contract-First) [1b955786]
+- [x] Task: Map misconceptions to distractors/answer-pattern detection signals (reuse distractors.ts) (TDD) [1b955786]
 - [ ] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md)
 
 ### Phase 1 — Red Phase Result (2026-06-15)
