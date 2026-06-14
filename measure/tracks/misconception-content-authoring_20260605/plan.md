@@ -8,7 +8,7 @@ Verification: boundary lints + integrity check + `tsc --noEmit`.
 
 - [x] Task: Define misconception node schema + validation (Contract-First) [1b955786]
 - [x] Task: Map misconceptions to distractors/answer-pattern detection signals (reuse distractors.ts) (TDD) [1b955786]
-- [ ] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md) [checkpoint: 8bc39b9d]
 
 ### Phase 1 — Red Phase Result (2026-06-15)
 
