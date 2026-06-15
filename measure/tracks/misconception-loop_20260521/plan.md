@@ -86,9 +86,9 @@ Commit: `cdb64f0b` — `feat(knowledge-space): add remediated_by edge type and m
 
 ## Phase 2 — Rating Reconciliation
 
-- [~] Task: Reconcile computeBaseRating with the v2 rating-cap rule (TDD) [in-progress: Red tests authored 2026-06-15; re-verified 2026-06-15]
-    - [x] Cap at Hard by default; Again only when misconception is severe — Red tests authored
-    - [x] Tests for both the cap and the severe paths — Red tests authored
+- [x] Task: Reconcile computeBaseRating with the v2 rating-cap rule (TDD) [green: 717760f4]
+    - [x] Cap at Hard by default; Again only when misconception is severe — Red tests authored [green: 717760f4]
+    - [x] Tests for both the cap and the severe paths — Red tests authored [green: 717760f4]
 - [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md) — deferred (manual, not Red-phase)
 
 ### Phase 2 — Red-phase evidence (MID agent, 2026-06-15)
@@ -171,6 +171,41 @@ Pre-flight: `graph.db` mtime within 24h; ran `build-graph update` for the 4 phas
 All 10 failing assertions are the recorded `expected 'Hard' / received 'Again'` (or the analogous severe-Hard vs. v1 Again-on-any-tag cases) — failures are due to **missing implementation** (v2 cap rule + `severityByTag` arg), not durable-record staleness. No new test files authored, no source edits; only this plan note + the deferred-annotation on the UMV task were touched in this pass.
 
 Phase 2 Red is **complete and intact**. Handoff to JR (Green): implement the `computeBaseRating(parts, options?)` signature per the §"Planned new API contract" block above; all 10 currently-red assertions plus the existing 25 (practice-core) + 20 (IM3) + 20 (BM2) untouched existing tests must remain green after the Green commit.
+
+### Phase 2 — Green-phase evidence (JR agent, 2026-06-15)
+
+Commit: `717760f4` — `feat(practice-core): add severity-aware rating cap to computeBaseRating`
+
+#### Green results (all 3 targeted Red commands now pass)
+
+| # | Command | Result |
+|---|---------|--------|
+| 1 | `node_modules/.bin/vitest run -t "rating cap" --root packages/practice-core` | **24 passed (24)** |
+| 2 | `node_modules/.bin/vitest run srs-rating --root apps/integrated-math-3` | **23 passed (23)** |
+| 3 | `node_modules/.bin/vitest run srs-rating --root apps/bus-math-v2` | **23 passed (23)** |
+
+#### Live gates
+
+| Gate | Command | Result |
+|------|---------|--------|
+| Full test suite (practice-core) | `npm test --workspace=packages/practice-core` | **187 passed (187)** |
+| Lint | `npm run lint` | **0 errors, 0 warnings** |
+| TypeScript | `npx tsc --noEmit --project packages/practice-core/tsconfig.json` | **Clean** (7 pre-existing errors in `generator-qa/__tests__/`, unrelated) |
+| Graph update | `build-graph update ./graph.db packages/practice-core/src/practice/srs-rating.ts packages/practice-core/src/index.ts` | **Updated 2 files (12 → 15 nodes)** |
+
+#### Implementation summary
+
+**`packages/practice-core/src/practice/srs-rating.ts`:**
+- Added `SeverityByTag` and `ComputeBaseRatingOptions` exported types
+- Extended `computeBaseRating` signature: `computeBaseRating(parts, options?)`
+- v2 precedence when `options` is provided: incorrect > severe (Again) > minor/missing (cap at Hard) > hints > Good
+- v1 backward compatibility when `options` is omitted: any misconception tag → Again
+- Updated docstring to document the new rules and backward-compat contract
+
+**`packages/practice-core/src/index.ts`:**
+- Added `SeverityByTag` and `ComputeBaseRatingOptions` to barrel exports
+
+**No test files were modified.** The existing v1 tests (practice-core 11 tests, IM3 20 tests, BM2 20 tests) pass without changes because they call `computeBaseRating(parts)` without `options`, triggering the v1 backward-compatible path. The new Phase 2 cap tests (practice-core 24 tests, IM3 3 tests, BM2 3 tests) pass because they call `computeBaseRating(parts, { severityByTag })`, triggering the v2 severity-aware path.
 
 
 ## Phase 3 — Lifecycle Engine
