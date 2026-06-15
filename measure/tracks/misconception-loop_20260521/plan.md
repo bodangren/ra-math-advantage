@@ -5,11 +5,11 @@ Depends on: Track 1.
 
 ## Phase 1 — Contract & Schema
 
-- [~] Task: Add the remediated_by edge type
-    - [~] Extend EdgeType union + Zod schemas; add §2.7 endpoint-pairing rule (misconception → worked_example/task_blueprint/skill)
-    - [~] Extend validation (INVALID_EDGE_PAIRING coverage)
-- [~] Task: Define misconception lifecycle types and Convex schema
-    - [~] active/resolved state; severity model; per-student misconception state table
+- [x] Task: Add the remediated_by edge type
+    - [x] Extend EdgeType union + Zod schemas; add §2.7 endpoint-pairing rule (misconception → worked_example/task_blueprint/skill)
+    - [x] Extend validation (INVALID_EDGE_PAIRING coverage)
+- [x] Task: Define misconception lifecycle types and Convex schema
+    - [x] active/resolved state; severity model; per-student misconception state table
 - [ ] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md)
 
 ### Phase 1 — Red-phase evidence (MID agent, 2026-06-15)
@@ -42,6 +42,47 @@ Pre-flight: `graph.db` mtime < 24h (knowledge-space-core has 22 files, IM3 has 5
 - ✅ All three commands are **bounded**: single-file filter, no watch mode, no full-suite smoke. Each command runs < 1s.
 - ✅ None of the tests are "smoke" tests that can accidentally run the real T6 (`runRealT6Loop` is intentionally-red and owned by P4 per test-strategy §8).
 - ✅ Dirty worktree: only `test-strategy.md` was untracked at MID start (the strategy doc itself). No source code changes in this Red commit.
+
+### Phase 1 — Green-phase evidence (JR agent, 2026-06-15)
+
+Commit: `cdb64f0b` — `feat(knowledge-space): add remediated_by edge type and misconception lifecycle types`
+
+#### Green results (all 3 targeted Red commands now pass)
+
+| # | Command | Result |
+|---|---------|--------|
+| 1 | `node_modules/.bin/vitest run edge-type-remediated-by --root packages/knowledge-space-core` | **14 passed (14)** |
+| 2 | `node_modules/.bin/vitest run misconception-lifecycle-types --root packages/knowledge-space-practice` | **16 passed (16)** |
+| 3 | `node_modules/.bin/vitest run misconceptionStateSchema --root apps/integrated-math-3` | **5 passed (5)** |
+
+#### Live gates
+
+| Gate | Command | Result |
+|------|---------|--------|
+| Full test suite (knowledge-space-core) | `npm test --workspace=packages/knowledge-space-core` | **276 passed (276)** |
+| Full test suite (knowledge-space-practice) | `npm test --workspace=packages/knowledge-space-practice` | **67 passed (67)** |
+| Lint | `npm run lint` | **0 errors, 0 warnings** |
+| TypeScript | `npx tsc --noEmit --project packages/knowledge-space-core/tsconfig.json` | **Clean** |
+| Graph update | `build-graph update ./graph.db <changed-files>` | **Updated 6 files (74 → 90 nodes)** |
+
+#### Implementation summary
+
+**knowledge-space-core (types.ts, schemas.ts, validation.ts):**
+- Added `'remediated_by'` to `EdgeType` union and `edgeTypeSchema` zod enum
+- Added endpoint pairing rule: `sourceKinds: ['misconception'], targetKinds: ['worked_example', 'task_blueprint', 'skill']`
+- Rule mirrored in both `schemas.ts` (for zod superRefine) and `validation.ts` (for `getInvalidEdgePairings`)
+
+**knowledge-space-practice (misconception-loop.ts):**
+- Created new module exporting: `misconceptionSeveritySchema`, `misconceptionLifecycleStatusSchema`, `studentMisconceptionStateSchema`, `getMisconceptionSeverity` accessor
+- Severity accessor defaults to `'minor'` for unknown/missing metadata values
+
+**IM3 Convex (misconceptionState.ts, schema.ts):**
+- Created `misconceptionState.ts` with Convex validators: `misconceptionLifecycleStatusValidator`, `misconceptionSeverityValidator`, `studentMisconceptionStateValidator`
+- Added `student_misconception_state` table to schema with `by_student_misconception` (unique) and `by_student_status` indexes
+
+**Test fixes (edge-type-remediated-by.test.ts, edge-type-transfers-to.test.ts):**
+- Fixed 2 zod-accept test fixtures that referenced nodes not in the graph (dangling edge detection)
+- Added `case 'remediated_by':` to exhaustiveness switch in transfers-to test
 
 ## Phase 2 — Rating Reconciliation
 
