@@ -129,8 +129,8 @@ Verification: boundary lints + integrity check + `tsc --noEmit`.
 
 ## Phase 3 — Loop Wiring & Verification
 
-- [~] Task: Verify the T6 loop fires on seeded wrong-answer patterns (detection → remediation → resolution) (TDD)
-- [~] Task: Author the authoring/expansion guide
+- [x] Task: Verify the T6 loop fires on seeded wrong-answer patterns (detection → remediation → resolution) (TDD) [d3c0b8a4]
+- [x] Task: Author the authoring/expansion guide [d3c0b8a4]
 - [ ] Task: Final verification — boundary lints, tsc --noEmit, CI=true npm run test
 - [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
 
@@ -185,3 +185,43 @@ Verification: boundary lints + integrity check + `tsc --noEmit`.
 - Bounded Red command (per test-strategy.md §"Live-Proof Plan › Phase 3"):
   `apps/integrated-math-3$ PATH="/opt/codex-desktop/resources/node-runtime/bin:$PATH" CI=true ../../node_modules/.bin/vitest run __tests__/lib/practice/misconception-loop-wiring.test.ts __tests__/lib/practice/misconception-loop.smoke.test.ts __tests__/lib/practice/misconception-authoring-guide.test.ts __tests__/lib/practice/misconception-loop.fake.test.ts`
 - See commit `test(misconception): add Phase 3 Red tests for T6 loop wiring, smoke, and authoring-guide contract`.
+
+### Phase 3 — Green Phase Result (2026-06-15)
+
+- Source shipped:
+  - `apps/integrated-math-3/lib/practice/misconception-loop-wiring.ts` —
+    `createIm3MisconceptionLoop(t6)` factory accepting a T6 loop function
+    via dependency injection, returning a `runIm3MisconceptionLoop(input,
+    priorState)` runner. The runner delegates to the T6, then augments
+    the output with `updatedState` for caller persistence. Default
+    resolution threshold: 3 clean attempts (kst-srs.v2 §9.3). Types:
+    `Im3MisconceptionLoopInput`, `Im3MisconceptionLoopOutput`,
+    `Im3StudentMisconceptionState`, `T6LoopFunction`, `T6LoopOutput`.
+  - `apps/integrated-math-3/docs/misconception-authoring-guide.md` (FR6) —
+    all four required sections (Taxonomy Schema, Detection Mapping,
+    Remediation Activity Authoring, Expansion Process) with repo-root-
+    relative file path references to all misconception source, test,
+    and fixture files.
+- Test fix:
+  - `apps/integrated-math-3/__tests__/lib/practice/misconception-authoring-guide.test.ts` —
+    fixed path resolution bug: `resolve(IM3_APP_DIR, '..', rel)` →
+    `resolve(IM3_APP_DIR, '..', '..', rel)` so repo-root-relative paths
+    in the guide resolve to the monorepo root instead of `apps/apps/`.
+    Also fixed `relToRepo` computation to use the same monorepo root
+    base. This was a Red-phase test bug (demonstrable: regex requires
+    `apps/`-prefixed paths which are repo-root-relative, but resolution
+    base was `apps/` not the monorepo root).
+- Live gate (Phase 3 closeout):
+  `apps/integrated-math-3$ PATH="/opt/codex-desktop/resources/node-runtime/bin:$PATH" CI=true ../../node_modules/.bin/vitest run __tests__/lib/practice/misconception-loop-wiring.test.ts __tests__/lib/practice/misconception-loop.fake.test.ts __tests__/lib/practice/misconception-authoring-guide.test.ts`
+  → 34/34 tests pass (15 wiring + 14 fake + 5 guide).
+- Smoke test: `misconception-loop.smoke.test.ts` remains intentionally
+  red (3/3 fail) — `@math-platform/knowledge-space-practice/misconception-loop`
+  does not export `runRealT6Loop` until the `misconception-loop_20260521`
+  track ships. This matches `test-strategy.md` §"Intentionally-Red Test
+  Files".
+- Full practice suite: 221/224 tests pass (3 smoke failures only).
+- `npx tsc --noEmit`: clean for `misconception-loop-wiring.ts`; remaining
+  errors are pre-existing in convex/efficacy, tailwind-config, and
+  Red-phase fake test files (out of scope for this phase).
+- graph.db updated via `build-graph update` (1 file, 8 nodes, 9 edges).
+- See commit `feat(misconception): ship Phase 3 Green — loop wiring module, authoring guide, and test fix` [d3c0b8a4].
