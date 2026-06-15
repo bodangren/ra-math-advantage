@@ -25,7 +25,8 @@ export type EdgeType =
   | 'common_misconception_with'
   | 'rendered_by'
   | 'generated_by'
-  | 'evidenced_by';
+  | 'evidenced_by'
+  | 'remediated_by';
 
 export type ConfidenceLevel = 'low' | 'medium' | 'high';
 

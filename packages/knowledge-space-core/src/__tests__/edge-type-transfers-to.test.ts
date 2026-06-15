@@ -121,6 +121,7 @@ describe('EdgeType union — exhaustiveness (kst-srs.v2 §11.1)', () => {
       case 'rendered_by':
       case 'generated_by':
       case 'evidenced_by':
+      case 'remediated_by':
         reached = true;
         break;
       default:

@@ -30,6 +30,7 @@ const EDGE_ENDPOINT_RULES: EdgeEndpointRule[] = [
   { edgeType: 'transfers_to', sourceKinds: ['skill', 'concept'], targetKinds: ['skill', 'concept'], crossDomainOnly: true },
   { edgeType: 'common_misconception_with', targetKinds: ['misconception'] },
   { edgeType: 'contains', sourceKinds: ['domain', 'content_group', 'instructional_unit'], targetKinds: ['content_group', 'instructional_unit', 'worked_example', 'skill', 'concept', 'task_blueprint'] },
+  { edgeType: 'remediated_by', sourceKinds: ['misconception'], targetKinds: ['worked_example', 'task_blueprint', 'skill'] },
 ];
 
 /**

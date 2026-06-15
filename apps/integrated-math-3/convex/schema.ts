@@ -7,6 +7,10 @@ import {
   srsRatingValidator,
 } from "./srs/validators";
 import { sessionConfigValidator } from "./srs/sessions";
+import {
+  misconceptionLifecycleStatusValidator,
+  misconceptionSeverityValidator,
+} from "./misconceptionState";
 
 export const textContentValidator = v.object({
   markdown: v.string(),
@@ -764,4 +768,17 @@ export default defineSchema({
   })
     .index("by_edge", ["edgeId"])
     .index("by_flagged_at", ["flaggedAt"]),
+
+  student_misconception_state: defineTable({
+    studentId: v.string(),
+    misconceptionId: v.string(),
+    status: misconceptionLifecycleStatusValidator,
+    severity: misconceptionSeverityValidator,
+    cleanStreak: v.number(),
+    firstDetectedAt: v.number(),
+    lastUpdatedAt: v.number(),
+    affectedSkills: v.array(v.string()),
+  })
+    .index("by_student_misconception", ["studentId", "misconceptionId"])
+    .index("by_student_status", ["studentId", "status"]),
 });

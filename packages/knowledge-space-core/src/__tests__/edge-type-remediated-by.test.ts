@@ -178,7 +178,7 @@ describe('EdgeType union — exhaustiveness (kst-srs.v2 §9.1, spec FR1)', () =>
 describe('zod — remediated_by edge type', () => {
   it('accepts a remediated_by edge (misconception → worked_example)', () => {
     const space: KnowledgeSpace = {
-      nodes: [misconception, workedExample, standard, otherMisconception, otherSkill],
+      nodes: [misconception, workedExample, taskBlueprint, skill, standard, otherMisconception, otherSkill],
       edges: [
         ...alignments,
         makeEdge('edge.remed-we', 'remediated_by', misconception.id, workedExample.id),
@@ -191,7 +191,7 @@ describe('zod — remediated_by edge type', () => {
 
   it('accepts a remediated_by edge (misconception → task_blueprint)', () => {
     const space: KnowledgeSpace = {
-      nodes: [misconception, taskBlueprint, standard, otherMisconception, otherSkill],
+      nodes: [misconception, workedExample, taskBlueprint, skill, standard, otherMisconception, otherSkill],
       edges: [
         ...alignments,
         makeEdge('edge.remed-bp', 'remediated_by', misconception.id, taskBlueprint.id),
