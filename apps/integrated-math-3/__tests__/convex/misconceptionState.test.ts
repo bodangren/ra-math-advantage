@@ -487,6 +487,32 @@ describe('recordCleanAttemptHandler — increment + resolve (spec FR3, kst-srs.v
     expect(ctx.patchSpy).not.toHaveBeenCalled();
   });
 
+  it('rejects a non-positive resolution threshold before mutating state', async () => {
+    const seeded: StudentMisconceptionStateRow = {
+      _id: 'student_misconception_state_1' as Id<'student_misconception_state'>,
+      _creationTime: FIXED_NOW_MS,
+      studentId: STUDENT_A,
+      misconceptionId: MISCONCEPTION_SIGN_ERROR,
+      status: 'active',
+      severity: 'minor',
+      cleanStreak: 1,
+      firstDetectedAt: FIXED_NOW_MS,
+      lastUpdatedAt: FIXED_NOW_MS,
+      affectedSkills: [SKILL_FACTORING],
+    };
+    ctx.rows.push(seeded);
+
+    await expect(
+      recordCleanAttemptHandler(
+        ctx as unknown as Parameters<typeof recordCleanAttemptHandler>[0],
+        makeCleanAttemptArgs({ resolutionThreshold: 0 }),
+      ),
+    ).rejects.toThrow(/resolutionThreshold/);
+    expect(ctx.patchSpy).not.toHaveBeenCalled();
+    expect(ctx.rows[0]?.cleanStreak).toBe(1);
+    expect(ctx.rows[0]?.status).toBe('active');
+  });
+
   it('handles a missing row gracefully (returns null without throwing) — caller is responsible for detection-first', async () => {
     await expect(
       recordCleanAttemptHandler(

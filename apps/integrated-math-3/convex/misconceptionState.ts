@@ -101,6 +101,12 @@ export async function recordCleanAttemptHandler(
   ctx: MutationCtx,
   args: RecordCleanAttemptArgs,
 ) {
+  if (!Number.isInteger(args.resolutionThreshold) || args.resolutionThreshold <= 0) {
+    throw new Error(
+      `recordCleanAttemptHandler: resolutionThreshold must be a positive integer, received ${args.resolutionThreshold}`,
+    );
+  }
+
   const existing = await ctx.db
     .query("student_misconception_state")
     .withIndex("by_student_misconception", (q) =>
