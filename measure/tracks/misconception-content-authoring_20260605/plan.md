@@ -225,3 +225,10 @@ Verification: boundary lints + integrity check + `tsc --noEmit`.
   Red-phase fake test files (out of scope for this phase).
 - graph.db updated via `build-graph update` (1 file, 8 nodes, 9 edges).
 - See commit `feat(misconception): ship Phase 3 Green — loop wiring module, authoring guide, and test fix` [d3c0b8a4].
+
+### Phase 3 — Adversarial Audit Result (2026-06-15)
+
+- Added regression coverage proving `updatedState.cleanStreaks` persists T6 state transitions across sequential clean submissions; the test failed before the fix because the runner copied `priorState.cleanStreaks` instead of T6 output state.
+- Fixed `createIm3MisconceptionLoop` to prefer `t6Output.updatedState` when provided, preserving active/resolved lifecycle state for caller persistence while retaining backward-compatible fallback behavior.
+- Targeted loop/fake tests pass; root `CI=true npm test` passes for `packages/knowledge-space-core`.
+- Blocking closeout findings remain: Phase 3 real T6 smoke test fails because `@math-platform/knowledge-space-practice/misconception-loop` is not exported, IM3 full suite has unrelated existing curriculum/checkpoint failures plus the smoke failure, `npm run lint` fails on pre-existing warnings, and IM3 `npx tsc --noEmit` fails on pre-existing Convex/efficacy/Tailwind errors.

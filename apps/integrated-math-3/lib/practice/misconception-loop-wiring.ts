@@ -48,6 +48,7 @@ export interface T6LoopOutput {
   readonly active: readonly string[];
   readonly resolved: readonly string[];
   readonly injected: readonly RemediationActivityRef[];
+  readonly updatedState?: Im3StudentMisconceptionState;
 }
 
 /** Output from the wiring runner, augmented with persisted state. */
@@ -102,10 +103,15 @@ export function createIm3MisconceptionLoop(
       resolutionThreshold: threshold,
     });
 
-    const updatedState: Im3StudentMisconceptionState = {
-      active: [...t6Output.active],
-      cleanStreaks: { ...priorState.cleanStreaks },
-    };
+    const updatedState: Im3StudentMisconceptionState = t6Output.updatedState
+      ? {
+          active: [...t6Output.updatedState.active],
+          cleanStreaks: { ...t6Output.updatedState.cleanStreaks },
+        }
+      : {
+          active: [...t6Output.active],
+          cleanStreaks: { ...priorState.cleanStreaks },
+        };
 
     return {
       detected: t6Output.detected,

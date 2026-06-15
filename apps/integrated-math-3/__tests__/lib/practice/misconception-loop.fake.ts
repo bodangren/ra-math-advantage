@@ -76,6 +76,7 @@ export interface FakeT6LoopOutput {
    * in registry order. Empty when no misconception is active.
    */
   injected: readonly RemediationActivityRef[];
+  updatedState: FakeStudentMisconceptionState;
 }
 
 const ALL_TAXONOMY_SLUGS: ReadonlySet<string> = new Set(
@@ -147,17 +148,24 @@ export function fakeT6Loop(input: FakeT6LoopInput): FakeT6LoopOutput {
 
   const injected: RemediationActivityRef[] = [];
   for (const slug of Array.from(activeSet).sort()) {
+    if (!isCanonicalIm3MisconceptionTag(slug)) continue;
     const remediations = IM3_MISCONCEPTION_REMEDIATIONS[slug] ?? [];
     for (const rem of remediations) {
       injected.push(rem);
     }
   }
 
+  const active = Array.from(activeSet).sort();
+
   return {
     detected,
-    active: Array.from(activeSet).sort(),
+    active,
     resolved: resolved.sort(),
     injected,
+    updatedState: {
+      active,
+      cleanStreaks,
+    },
   };
 }
 

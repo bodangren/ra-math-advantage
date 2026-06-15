@@ -196,6 +196,32 @@ describe('createIm3MisconceptionLoop — (b) active→resolved transition after 
     expect(result.resolved).toContain(KNOWN_SLUG);
     expect(result.active).not.toContain(KNOWN_SLUG);
     expect(result.updatedState.active).not.toContain(KNOWN_SLUG);
+    expect(result.updatedState.cleanStreaks[KNOWN_SLUG]).toBe(0);
+  });
+
+  it('persists clean streak increments in updatedState across sequential calls', () => {
+    let state: FakeStudentMisconceptionState = {
+      active: [KNOWN_SLUG],
+      cleanStreaks: { [KNOWN_SLUG]: 0 },
+    };
+    const cleanSubmission = makeAlgebraicSubmission([
+      { partId: 'p1', isCorrect: true },
+    ]);
+
+    const firstClean = run(buildInput(cleanSubmission), state);
+    expect(firstClean.resolved).toEqual([]);
+    expect(firstClean.updatedState.cleanStreaks[KNOWN_SLUG]).toBe(1);
+
+    state = firstClean.updatedState;
+    const secondClean = run(buildInput(cleanSubmission), state);
+    expect(secondClean.resolved).toEqual([]);
+    expect(secondClean.updatedState.cleanStreaks[KNOWN_SLUG]).toBe(2);
+
+    state = secondClean.updatedState;
+    const thirdClean = run(buildInput(cleanSubmission), state);
+    expect(thirdClean.resolved).toEqual([KNOWN_SLUG]);
+    expect(thirdClean.updatedState.active).not.toContain(KNOWN_SLUG);
+    expect(thirdClean.updatedState.cleanStreaks[KNOWN_SLUG]).toBe(0);
   });
 
   it('resolves each active slug independently based on its own clean streak', () => {

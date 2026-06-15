@@ -15,7 +15,10 @@
 
 import { describe, expect, it } from 'vitest';
 
-import { IM3_MISCONCEPTION_TAGS } from '@/lib/practice/misconception-taxonomy';
+import {
+  IM3_MISCONCEPTION_TAGS,
+  type Im3MisconceptionTagSlug,
+} from '@/lib/practice/misconception-taxonomy';
 import { IM3_MISCONCEPTION_REMEDIATIONS } from '@/lib/practice/misconception-remediations';
 
 import {
@@ -220,7 +223,7 @@ describe('fakeT6Loop — inject step (remediation routing)', () => {
       resolutionThreshold: MISCONCEPTION_LOOP_RESOLUTION_THRESHOLD,
     });
     const expectedIds = new Set<string>();
-    for (const slug of [KNOWN_SLUG, KNOWN_SLUG_2]) {
+    for (const slug of [KNOWN_SLUG, KNOWN_SLUG_2] satisfies Im3MisconceptionTagSlug[]) {
       for (const rem of IM3_MISCONCEPTION_REMEDIATIONS[slug] ?? []) {
         expectedIds.add(rem.activityId);
       }
