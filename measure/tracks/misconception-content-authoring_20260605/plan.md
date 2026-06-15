@@ -125,6 +125,7 @@ Verification: boundary lints + integrity check + `tsc --noEmit`.
 - Added live curriculum-node resolution coverage to ensure every remediation activity ID exists in `apps/integrated-math-3/curriculum/skill-graph/module-1/nodes.json`.
 - Replaced placeholder `math.im3.worked_example.*` IDs with real `math.im3.example.*` node IDs.
 - Relevant misconception/practice/root test gates passed; project-level lint and IM3 typecheck still fail on pre-existing unrelated scale, Convex/efficacy, and Tailwind issues.
+- Supervisor gate correction: adversarial result status updated to `pass` because no blocking Phase 2 content findings remain; reran `CI=true npm test` and targeted Phase 2 integrity test successfully.
 
 ## Phase 3 — Loop Wiring & Verification
 
