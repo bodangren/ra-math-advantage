@@ -204,3 +204,76 @@ describe('mapPracticeToSrsRating', () => {
     expect(result.timingFeatures?.baselineSampleCount).toBe(42);
   });
 });
+
+// ---------------------------------------------------------------------------
+// Phase 2 (Track 6 misconception-loop_20260521) — BM2 consumer-view rating
+// cap Red proof. The rating-cap contract lives in `@math-platform/practice-
+// core` and applies to every app consumer (not just IM3). This describe
+// block asserts the same severity-aware contract from BM2's re-export path,
+// demonstrating the package-wide invariant. The `rateWithCap` helper mirrors
+// the practice-core and IM3 patterns — same narrowly-scoped `as unknown as`
+// cast to forward the not-yet-existing `options` argument.
+// ---------------------------------------------------------------------------
+
+type Severity = 'minor' | 'severe';
+type SeverityByTag = Readonly<Record<string, Severity>>;
+
+function rateWithCap(
+  parts: Parameters<typeof computeBaseRating>[0],
+  options?: { severityByTag?: SeverityByTag },
+): ReturnType<typeof computeBaseRating> {
+  const loose = computeBaseRating as unknown as (
+    parts: Parameters<typeof computeBaseRating>[0],
+    options?: { severityByTag?: SeverityByTag },
+  ) => ReturnType<typeof computeBaseRating>;
+  return loose(parts, options);
+}
+
+const BM2_TAG = 'math.bm2.misconception.sign-error';
+
+describe('computeBaseRating — rating cap (Phase 2, BM2 consumer view)', () => {
+  it('rating cap (BM2) — caps at Hard for a minor misconception tag, public package import', () => {
+    const rating = rateWithCap(
+      [
+        {
+          isCorrect: true,
+          hintsUsed: 0,
+          revealStepsSeen: 0,
+          misconceptionTags: [BM2_TAG],
+        },
+      ],
+      { severityByTag: { [BM2_TAG]: 'minor' } },
+    );
+    expect(rating).toBe('Hard');
+  });
+
+  it('rating cap (BM2) — forces Again for a severe misconception tag, public package import', () => {
+    const rating = rateWithCap(
+      [
+        {
+          isCorrect: true,
+          hintsUsed: 0,
+          revealStepsSeen: 0,
+          misconceptionTags: [BM2_TAG],
+        },
+      ],
+      { severityByTag: { [BM2_TAG]: 'severe' } },
+    );
+    expect(rating).toBe('Again');
+  });
+
+  it('rating cap (BM2) — defaults a tag with no severityByTag entry to "minor" and caps at Hard', () => {
+    const rating = rateWithCap(
+      [
+        {
+          isCorrect: true,
+          hintsUsed: 0,
+          revealStepsSeen: 0,
+          misconceptionTags: [BM2_TAG],
+        },
+      ],
+      { severityByTag: {} },
+    );
+    expect(rating).toBe('Hard');
+  });
+});

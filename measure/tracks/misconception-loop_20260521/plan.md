@@ -97,17 +97,19 @@ Targeted Red commands chosen per `test-strategy.md` §5 P2 + §7:
 
 1. `npx vitest run -t "rating cap" --root packages/practice-core` — live-behavior: new `computeBaseRating(parts, { severityByTag })` signature asserts the cap-at-Hard / Again-on-severe truth table.
 2. `npx vitest run srs-rating --root apps/integrated-math-3` — live-behavior consumer view through the public `@math-platform/practice-core/srs-rating` import path; per test-strategy §6 ("two suites, not one").
+3. `npx vitest run srs-rating --root apps/bus-math-v2` — live-behavior second-consumer view (package-wide invariant). The rating-cap contract lives in `@math-platform/practice-core` and is consumed by both IM3 and BM2; this third suite proves the contract is package-wide, not IM3-local.
 
 Pre-flight: `graph.db` mtime < 24h (knowledge-space-core 22 files, IM3 540, total 2048); `build-graph stats ./graph.db` clean (13986 nodes / 20548 edges / 2048 files); `computeBaseRating` lives at `packages/practice-core/src/practice/srs-rating.ts:88-123`; `getMisconceptionSeverity` (Phase 1 deliverable) at `packages/knowledge-space-practice/src/misconception-loop.ts:55-60` is the canonical severity accessor (defaults to `'minor'` for missing metadata). The new test consumes the same `'minor'` default the accessor returns, so Phase 1 ↔ Phase 2 share one source of severity truth (per test-strategy §3).
 
 Dirty worktree at MID start: only `graph.db` was modified (scratch mutation from `build-graph stats`). Restored via `git restore graph.db` before commit — no source/track changes were folded in.
 
-#### Targeted Red results (all 2 commands run 2026-06-15, bounded — no watch, no full-suite smoke)
+#### Targeted Red results (all 3 commands run 2026-06-15, bounded — no watch, no full-suite smoke)
 
 | # | Command | Result | Why it fails (right reason) |
 |---|---------|--------|-----------------------------|
 | 1 | `node_modules/.bin/vitest run -t "rating cap" --root packages/practice-core` | **6 failed / 18 passed** (24 new) | v1 `computeBaseRating` (`packages/practice-core/src/practice/srs-rating.ts:101-103`) returns `Again` for any non-empty `misconceptionTags` array. The new truth-table rows that expect `Hard` (cap) for minor misconceptions fail. The 18 passes are: (a) severe-Again rows that match the v1 behavior (regression guard for the preserved path), (b) baseline rows with no misconception tag (Good / Hard / empty / undefined), (c) purity guards (referential transparency + no mutation), (d) the incorrect-priority rows. |
 | 2 | `node_modules/.bin/vitest run srs-rating --root apps/integrated-math-3` | **2 failed / 21 passed** (3 new in this suite) | Same v1 contract through the public package import. The 2 failures are the IM3-misconception-tag cap-at-Hard cases; the 1 pass is the severe-Again case (matches v1). The other 20 are the unchanged existing suite (test-strategy §6 says the existing tests will be reconciled in Green). |
+| 3 | `node_modules/.bin/vitest run srs-rating --root apps/bus-math-v2` | **2 failed / 21 passed** (3 new in this suite) | Second-consumer proof — same v1 contract through BM2's re-export path. The 2 failures are the cap-at-Hard cases; the 1 pass is the severe-Again case. The other 20 are the unchanged existing BM2 suite. This proves the rating-cap contract is package-wide, not IM3-local. |
 
 Full-suite regression check (not part of the Red command — recorded as a guard):
 
@@ -115,10 +117,16 @@ Full-suite regression check (not part of the Red command — recorded as a guard
 |---------|--------|
 | `node_modules/.bin/vitest run --root packages/practice-core` (full pkg suite, post-Red) | **6 failed / 181 passed (187 total)** — 6 fails = the new rating-cap Red rows above; no regression in the 25 existing `srs-rating.test.ts` tests. |
 
-#### Red tests authored (all currently failing as expected; committed atomically)
+#### Red tests authored (all currently failing as expected; committed atomically across two commits)
 
+Commit `17a4e37e`:
 - `packages/practice-core/src/__tests__/srs-rating-cap.test.ts` (1 describe block, **24 tests**) — live-behavior for FR2 (rating cap). Covers: cap-at-Hard for minor misconception (4 cases), severe-Again (3 cases), incorrect-priority (2 cases), no-misconception baseline (4 cases), parameterized 9-row truth table, purity guard (2 cases).
 - `apps/integrated-math-3/__tests__/lib/practice/srs-rating.test.ts` (1 new describe block, **3 tests**, existing 20 tests untouched) — live-behavior consumer view per test-strategy §6. Uses IM3-shaped misconception tag strings (`math.im3.misconception.sign-error`, `math.im3.misconception.linear-misuse`).
+- `measure/tracks/misconception-loop_20260521/plan.md` (Phase 2 Red-phase evidence block + `[~]` marker on parent task).
+
+Commit `fixup` (this attempt — strengthens the second-consumer coverage):
+- `apps/bus-math-v2/__tests__/lib/practice/srs-rating.test.ts` (1 new describe block, **3 tests**, existing 20 tests untouched) — live-behavior second-consumer view. Uses a BM2-shaped misconception tag string (`math.bm2.misconception.sign-error`). Proves the rating-cap contract is package-wide.
+- `measure/tracks/misconception-loop_20260521/plan.md` (updated Red-phase evidence with the BM2 command, the second-consumer row, and the second-committed-files list).
 
 #### Planned new API contract (Red-phase contract only — Implementer owns the actual signature in Green)
 
