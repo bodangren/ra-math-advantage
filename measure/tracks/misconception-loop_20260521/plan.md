@@ -558,3 +558,55 @@ These two tasks are operational verification steps, not TDD-style deliverables. 
 
 Phase 5 Red is **complete and intact**. Handoff to JR (Green): (a) update `kst-srs.v2/SPECIFICATION.md` to add the cross-references + new sections per the spec-parity test assertions; (b) commit the carry-over `apps/integrated-math-3/package.json` + `package-lock.json` dep change in the Green commit (this is the right place for the `package.json` mutation per the supervisor's boundary rule); (c) re-run the four live gates (`npm run doctor`, `npm run generate`, `npm run lint`, `tsc --noEmit`, `CI=true npm test`) as the final closeout per test-strategy §5 P5. The 7 currently-red assertions plus the existing 276 (knowledge-space-core) + 108 (knowledge-space-practice) + IM3 misconception-loop surface (wiring, smoke, fake, persistence, schema, lifecycle, planner, projection) must remain green after the Green commit.
 
+### Phase 5 — Red-phase re-verification (MID agent, 2026-06-15, second pass)
+
+Second MID pass re-ran the targeted Red command and the operational checks at HEAD (commit `ab766c1c` already in place; worktree dirty with two relevant-track files at start). Goal: confirm the Red state for Task 1 is intact and that the "already satisfied with evidence" annotations for Tasks 2 + 3 still hold against the current tree (the previous attempt's evidence was captured before the spec-parity test was committed, so the npm-test count is stale).
+
+Pre-flight: `graph.db` mtime < 24h (20,119,552 bytes); `build-graph stats ./graph.db` clean (14005 nodes / 20501 edges / 2048 files). Spec section surface confirmed via `grep -nE "^## |^### "`: `kst-srs.v2/SPECIFICATION.md` has §3.1–§3.5 (no `### 3.7` heading), §13 (no numbered subsections — no `### 13.3`), §9.1–§9.4 (the misconception-loop section is present). The 7 currently-red assertions target exactly the missing content: §3.2 does not mention `remediated_by` or cross-reference §9; §3.7 doesn't exist; §8.4 does not mention rating-cap or cross-reference §9.2; §13.3 doesn't exist. This is "spec content missing" Red, not "durable record stale" Red.
+
+Dirty worktree at MID start (carry-over from the previous attempt, classified in the attempt's Red-phase evidence block): `apps/integrated-math-3/package.json` + `package-lock.json` — adds `@math-platform/knowledge-space-practice` to IM3's `dependencies`. **Relevant to this track** (Phase 4 dep-track prerequisite for the IM3 smoke test to import `runRealT6Loop` from `@math-platform/knowledge-space-practice/misconception-loop` at module-resolution time per test-strategy §8). Per the supervisor's Red-phase boundary rule (non-test/non-Measure files must NOT be in a Red commit), these remain in the worktree dirty state and are explicitly handed off to the JR Green closeout to commit in the Green phase (the right phase for `package.json` mutations). No new test files authored; only `plan.md` is touched in this Red commit.
+
+#### Targeted Red re-verification (Task 1)
+
+| # | Command | Re-verified result | Matches recorded |
+|---|---------|--------------------|------------------|
+| 1 | `node_modules/.bin/vitest run src/__tests__/phase5-spec-section-3-2-3-7-8-4-13-3-implementation.test.ts --root packages/knowledge-space-core` | **7 failed / 2 passed (9 total)** | ✅ (1.60s wall) |
+
+All 7 failing assertions target the missing spec content (no `### 3.7` heading, no `### 13.3` heading, no `remediated_by` in §3.2, no `§9` cross-ref in §3.2, no rating-cap mention in §8.4, no `§9.2` cross-ref in §8.4, no misconception-lifecycle NFR text in §13.3) — failures are due to **spec content missing**, not durable-record staleness. The 2 passes are the "section exists" sanity checks for §3.2 and §8.4 (which exist in the spec for unrelated reasons, per the test design).
+
+#### Operational-check re-verification (Tasks 2 + 3)
+
+| Gate | Command | Result | Status |
+|------|---------|--------|--------|
+| `doctor.sh` | `bash measure/scripts/doctor.sh` | exit 0, "[OK] No monorepo boundary violations found." | ✅ Clean |
+| `generate.sh` | `bash measure/scripts/generate.sh` | exit 0, "Successfully generated Measure documentation." | ✅ Clean |
+| Monorepo boundary lint | `node scripts/check-monorepo-boundaries.mjs` | exit 0, "[OK] No monorepo boundary violations found." | ✅ Clean |
+| Root lint | `npm run lint` | exit 0 (knowledge-space-core + IM3 both clean, 0 warnings) | ✅ Clean |
+| `tsc --noEmit` (knowledge-space-core) | `npx tsc --noEmit -p packages/knowledge-space-core/tsconfig.json` | exit 0, clean | ✅ Clean |
+| `tsc --noEmit` (knowledge-space-practice) | `npx tsc --noEmit -p packages/knowledge-space-practice/tsconfig.json` | exit 0, clean | ✅ Clean |
+| `tsc --noEmit` (IM3 convex) | `npx tsc --noEmit -p apps/integrated-math-3/convex/tsconfig.json` | exit 2, **1 pre-existing error** in `apps/integrated-math-3/lib/activities/review-queue.ts:1` ("Cannot find module `@/convex/_generated/dataModel`") — unchanged from Phase 3 Green evidence block, NOT introduced by Phase 5 | ✅ Same as Phase 3 |
+| `CI=true npm test` (root, full) | `CI=true npm test` | **7 failed / 278 passed (285 total)** — the 7 failures are exactly the Phase 5 spec-parity test (Task 1's Red signal); the other 278 are the prior suite intact. This is the EXPECTED state: `CI=true npm test` is the final live gate owned by the JR Green closeout, and it will pass after Task 1's spec update unblocks the 7 spec-parity assertions. | ⏸ Blocked on Task 1's Green |
+
+#### Revised already-satisfied evidence (Tasks 2 + 3)
+
+The previous attempt's evidence block (lines 543–550) recorded `npm test (root) → 276 passed (276)`, but that figure was captured **before** the spec-parity test was committed. With the spec-parity test in place at HEAD, the correct count is **278 passed + 7 expected red (285 total)**, with the 7 reds being the Task 1 Red signal. The "already satisfied" annotations for Tasks 2 and 3 still hold:
+
+- **Task 2** is fully satisfied: `doctor.sh` + `generate.sh` + monorepo boundary lint all pass cleanly. The phase's architectural lint baseline is intact.
+- **Task 3** is satisfied for the script-level checks (`npm run lint`, `tsc --noEmit` on both packages). The `CI=true npm test` final-gate layer is blocked on Task 1's Green (the spec update unblocks the 7 spec-parity assertions, which in turn unblocks the root `npm test`).
+
+These two tasks remain operational verification steps, not TDD-style deliverables. The JR Green agent will re-run all four commands as the final closeout per test-strategy §5 P5; the spec update is the only change required to unblock the `CI=true npm test` final gate.
+
+#### Failure-mode verification (rules compliance, second pass)
+
+- ✅ Tests fail because **the spec is missing the planned content**, not because a durable record is stale. The 7 runtime failures are `toMatch` / `toBeGreaterThan(0)` assertions on the live `kst-srs.v2/SPECIFICATION.md` text — no `graph.db` / fixture-cache staleness involved.
+- ✅ The command is **bounded**: single filename filter (`phase5-spec-section-3-2-3-7-8-4-13-3-implementation.test.ts`), no watch mode, no full-suite smoke. Total wall time: 1.60s.
+- ✅ Tests don't intercept the full monorepo suite or the real T6. The P4-owned `misconception-loop.smoke.test.ts` is unchanged; the package-level `runRealT6Loop` tests are unchanged. None of the new tests run the real T6.
+- ✅ Live-behavior pairing: this Phase 5 artifact gate is paired with the live aggregate suite per test-strategy §5 P5 (`npm run doctor`, `npm run lint`, `tsc --noEmit`, `CI=true npm test`) — owned by the JR Green closeout.
+- ✅ **Red-phase boundary compliance** (per the supervisor's attempt-2 feedback): this Red commit contains ONLY `plan.md` (this re-verification block). The carry-over `apps/integrated-math-3/package.json` + `package-lock.json` are NOT in the Red commit; they remain in the worktree dirty state and are explicitly handed off to the JR Green closeout. No test files were authored in this pass (the spec-parity test is already in place at `ab766c1c`); only the plan.md annotation was touched.
+
+#### Graph-update policy for this pass
+
+The tracked `graph.db` was not mutated in this pass — no source files were edited, so `build-graph update` is a no-op. The graph baseline is the same as the prior phase (14005 nodes / 20501 edges / 2048 files), and the `phase5-spec-section-3-2-3-7-8-4-13-3-implementation.test.ts` file was indexed by the prior `build-graph update` after the `ab766c1c` commit (visible in `build-graph search` as a `file` node in `packages/knowledge-space-core`).
+
+Phase 5 Red-phase is **complete and intact**. Handoff to JR (Green) — refreshed: (a) update `kst-srs.v2/SPECIFICATION.md` to add the cross-references + new sections per the 7 spec-parity test assertions; (b) commit the carry-over `apps/integrated-math-3/package.json` + `package-lock.json` dep change in the Green commit (the right place for the `package.json` mutation per the supervisor's boundary rule); (c) re-run the four live gates (`bash measure/scripts/doctor.sh`, `bash measure/scripts/generate.sh`, `npm run lint`, `tsc --noEmit`, `CI=true npm test`) as the final closeout per test-strategy §5 P5. The 7 currently-red assertions must flip green, AND the existing 278 (knowledge-space-core) + 108 (knowledge-space-practice) + IM3 misconception-loop surface (wiring, smoke, fake, persistence, schema, lifecycle, planner, projection) must remain green after the Green commit. The IM3 convex tsc pre-existing error in `lib/activities/review-queue.ts:1` is unchanged from Phase 3 and is NOT a Phase 5 failure.
+
