@@ -17,13 +17,6 @@ interface InsightsPerFunctionEntry {
   occConflicts: number;
 }
 
-interface InsightsJson {
-  isDone?: boolean;
-  continueCursor?: string | null;
-  totals?: Record<string, unknown>;
-  perFunction: InsightsPerFunctionEntry[];
-}
-
 function isObject(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
 }

@@ -130,7 +130,7 @@ describe('scale — Phase 2 Red: drivers (FR2 / FR3)', () => {
         it('invokes exactly one InsightsClient.query with the documented hot-path function', async () => {
           const fake = new FakeInsightsClient();
           const driver = DRIVERS[path];
-          const rec = await driver(fake, { studentIds: SAMPLE_STUDENT_IDS });
+          await driver(fake, { studentIds: SAMPLE_STUDENT_IDS });
 
           expect(fake.calls).toHaveLength(1);
           expect(fake.calls[0]!.mutate).toBeUndefined();
