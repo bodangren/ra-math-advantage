@@ -1010,12 +1010,6 @@ Sixteen candidate tracks identified from a full-roadmap review. Each is registry
    *Surface `equivalent_to` mastery to students ("already mastered in IM2 → skip") at runtime. Verified: equivalence edges authored in Skill Graph T13 but unused at runtime. High payoff from an existing asset. Size: M. Depends on: wire-kst-pipeline (KST learner state). Readiness: blocked on KST T1.*
    *Link: [./tracks/transfer-credit-runtime_20260605/](./tracks/transfer-credit-runtime_20260605/)*
 
-- [x] **Track: Misconception Content Authoring** — **COMPLETED** (closeout 2026-06-15)
-   *Author the misconception taxonomy + remediation content that feeds the KST T6 mechanism (`remediated_by` edges, lifecycle). T6 builds the machinery; without content it is inert. Size: M. Depends on: misconception-loop (KST T6) mechanism. Readiness: pairs with KST T6.*
-   *Shipped: 9 source-grounded IM3 misconception tags + 19 remediation activities; integrity check covers detection-mapping coverage, no orphan remediations, curriculum-node resolution, no circular edges. T6 loop wired via DI factory `createIm3MisconceptionLoop(t6)` with fake-harness plumbing + bounded smoke gate; authoring guide at `apps/integrated-math-3/docs/misconception-authoring-guide.md` covers taxonomy/detection/remediation/expansion.*
-   *Closeout gates: 77/77 green tests pass; root `npm run lint` clean; root `CI=true npm test` 262/262 pass; `tsc --noEmit` clean for new files (5 pre-existing errors in convex/edgeCalibration, convex/efficacy/cohort, tailwind.config.ts — out of scope). 3/3 failures in `misconception-loop.smoke.test.ts` are documented intentionally-red per test-strategy.md §"Intentionally-Red Test Files"; they flip green when the active `misconception-loop_20260521` track ships its `runRealT6Loop` export.*
-   *Link: [./archive/misconception-content-authoring_20260605/](./archive/misconception-content-authoring_20260605/)*
-
 ### Tier 3 — Strategic / longer-horizon (i18n intentionally excluded)
 
 - [ ] **Track: Onboarding + Roster Import** — **PLANNED**
@@ -1054,6 +1048,12 @@ Sixteen candidate tracks identified from a full-roadmap review. Each is registry
 - [x] **Track: IM1 Practice Readiness** — **COMPLETED** (2026-06-11)
   *Audit Remediation (2026-06-09) #2/#6. Took IM1 from 0% generator coverage to a working Module-1 vertical slice: coverage matrix landed; 6 deterministic Module-1 generators in `packages/math-content/src/problem-families/im1/` (all green at numSeeds=50); 6 STUB blueprints replaced with real worked/guided/independent specs; `/student/practice` route wired in apps/integrated-math-1; audit refreshed to 6/138 served with 132-skill long tail tracked in gap-queue + audit doc.*
   *Link: [./archive/im1-practice-readiness_20260609/](./archive/im1-practice-readiness_20260609/)*
+
+- [x] **Track: Misconception Content Authoring** — **COMPLETED** (2026-06-15)
+  *Author the misconception taxonomy + remediation content that feeds the KST T6 mechanism (`remediated_by` edges, lifecycle). T6 builds the machinery; without content it is inert. Size: M. Depends on: misconception-loop (KST T6) mechanism.*
+  *Shipped: 9 source-grounded IM3 misconception tags + 19 remediation activities; integrity check covers detection-mapping coverage, no orphan remediations, curriculum-node resolution, no circular edges. T6 loop wired via DI factory `createIm3MisconceptionLoop(t6)` with fake-harness plumbing + bounded smoke gate; authoring guide at `apps/integrated-math-3/docs/misconception-authoring-guide.md` covers taxonomy/detection/remediation/expansion.*
+  *Closeout gates: 77/77 green tests pass; root `npm run lint` clean; root `CI=true npm test` 262/262 pass; `tsc --noEmit` clean for new files (5 pre-existing errors in convex/edgeCalibration, convex/efficacy/cohort, tailwind.config.ts — out of scope). 3/3 failures in `misconception-loop.smoke.test.ts` are documented intentionally-red per test-strategy.md §"Intentionally-Red Test Files"; they flip green when the active `misconception-loop_20260521` track ships its `runRealT6Loop` export.*
+  *Link: [./archive/misconception-content-authoring_20260605/](./archive/misconception-content-authoring_20260605/)*
 
 ## Tech Debt Resolution (2026-04-29)
 
