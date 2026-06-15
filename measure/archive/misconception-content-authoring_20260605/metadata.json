@@ -1,0 +1,13 @@
+{
+  "track_id": "misconception-content-authoring_20260605",
+  "type": "feature",
+  "status": "done",
+  "created_at": "2026-06-05T00:00:00Z",
+  "updated_at": "2026-06-15T00:00:00Z",
+  "closed_at": "2026-06-15T00:00:00Z",
+  "description": "Author the misconception taxonomy + remediation content that feeds the KST Track 6 mechanism (remediated_by edges, lifecycle). T6 builds the machinery; without content it is inert. Tier 2 backlog. Pairs with misconception-loop (KST T6).",
+  "program": "High-Leverage Backlog",
+  "estimated_tasks": 14,
+  "actual_tasks": 10,
+  "deviation_notes": "Estimated 14 tasks; actual 10 (3 Phase 1 + 3 Phase 2 + 4 Phase 3). Red/Green/Adversarial rollups consolidated per task. Closure note: real T6 wiring (misconception-loop_20260521) remains an active sibling track; only the content + DI factory + smoke gate are owned here. The 3 smoke failures in misconception-loop.smoke.test.ts are documented intentionally-red and flip green when the dep track ships."
+}
