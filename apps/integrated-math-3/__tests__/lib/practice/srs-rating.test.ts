@@ -204,3 +204,79 @@ describe('mapPracticeToSrsRating', () => {
     expect(result.timingFeatures?.baselineSampleCount).toBe(42);
   });
 });
+
+// ---------------------------------------------------------------------------
+// Phase 2 (Track 6 misconception-loop_20260521) — IM3-side rating-cap Red
+// proof via the public package import path. Per test-strategy §6
+// ("two suites, not one"), the new severity-aware contract is asserted from
+// the consumer side too. The `rateWithCap` helper mirrors the package-level
+// pattern in `packages/practice-core/src/__tests__/srs-rating-cap.test.ts`
+// and uses the same narrowly-scoped `as never` cast to forward the not-yet-
+// existing `options` argument.
+// ---------------------------------------------------------------------------
+
+type Severity = 'minor' | 'severe';
+type SeverityByTag = Readonly<Record<string, Severity>>;
+
+function rateWithCap(
+  parts: Parameters<typeof computeBaseRating>[0],
+  options?: { severityByTag?: SeverityByTag },
+): ReturnType<typeof computeBaseRating> {
+  const loose = computeBaseRating as unknown as (
+    parts: Parameters<typeof computeBaseRating>[0],
+    options?: { severityByTag?: SeverityByTag },
+  ) => ReturnType<typeof computeBaseRating>;
+  return loose(parts, options);
+}
+
+const IM3_TAG_SIGN_ERROR = 'math.im3.misconception.sign-error';
+const IM3_TAG_LINEAR = 'math.im3.misconception.linear-misuse';
+
+describe('computeBaseRating — rating cap (Phase 2, IM3 consumer view)', () => {
+  it('rating cap (IM3) — caps at Hard for a minor IM3 misconception tag, public package import', () => {
+    const rating = rateWithCap(
+      [
+        {
+          isCorrect: true,
+          hintsUsed: 0,
+          revealStepsSeen: 0,
+          misconceptionTags: [IM3_TAG_SIGN_ERROR],
+        },
+      ],
+      { severityByTag: { [IM3_TAG_SIGN_ERROR]: 'minor' } },
+    );
+    expect(rating).toBe('Hard');
+  });
+
+  it('rating cap (IM3) — forces Again for a severe IM3 misconception tag, public package import', () => {
+    const rating = rateWithCap(
+      [
+        {
+          isCorrect: true,
+          hintsUsed: 0,
+          revealStepsSeen: 0,
+          misconceptionTags: [IM3_TAG_LINEAR],
+        },
+      ],
+      { severityByTag: { [IM3_TAG_LINEAR]: 'severe' } },
+    );
+    expect(rating).toBe('Again');
+  });
+
+  it('rating cap (IM3) — defaults a tag with no severityByTag entry to "minor" and caps at Hard', () => {
+    // Same default-severity invariant as the package test, validated
+    // through the consumer-side import path.
+    const rating = rateWithCap(
+      [
+        {
+          isCorrect: true,
+          hintsUsed: 0,
+          revealStepsSeen: 0,
+          misconceptionTags: [IM3_TAG_SIGN_ERROR],
+        },
+      ],
+      { severityByTag: {} },
+    );
+    expect(rating).toBe('Hard');
+  });
+});

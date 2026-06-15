@@ -86,10 +86,67 @@ Commit: `cdb64f0b` — `feat(knowledge-space): add remediated_by edge type and m
 
 ## Phase 2 — Rating Reconciliation
 
-- [ ] Task: Reconcile computeBaseRating with the v2 rating-cap rule (TDD)
-    - [ ] Cap at Hard by default; Again only when misconception is severe
-    - [ ] Tests for both the cap and the severe paths
+- [~] Task: Reconcile computeBaseRating with the v2 rating-cap rule (TDD) [in-progress: Red tests authored 2026-06-15]
+    - [x] Cap at Hard by default; Again only when misconception is severe — Red tests authored
+    - [x] Tests for both the cap and the severe paths — Red tests authored
 - [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
+
+### Phase 2 — Red-phase evidence (MID agent, 2026-06-15)
+
+Targeted Red commands chosen per `test-strategy.md` §5 P2 + §7:
+
+1. `npx vitest run -t "rating cap" --root packages/practice-core` — live-behavior: new `computeBaseRating(parts, { severityByTag })` signature asserts the cap-at-Hard / Again-on-severe truth table.
+2. `npx vitest run srs-rating --root apps/integrated-math-3` — live-behavior consumer view through the public `@math-platform/practice-core/srs-rating` import path; per test-strategy §6 ("two suites, not one").
+
+Pre-flight: `graph.db` mtime < 24h (knowledge-space-core 22 files, IM3 540, total 2048); `build-graph stats ./graph.db` clean (13986 nodes / 20548 edges / 2048 files); `computeBaseRating` lives at `packages/practice-core/src/practice/srs-rating.ts:88-123`; `getMisconceptionSeverity` (Phase 1 deliverable) at `packages/knowledge-space-practice/src/misconception-loop.ts:55-60` is the canonical severity accessor (defaults to `'minor'` for missing metadata). The new test consumes the same `'minor'` default the accessor returns, so Phase 1 ↔ Phase 2 share one source of severity truth (per test-strategy §3).
+
+Dirty worktree at MID start: only `graph.db` was modified (scratch mutation from `build-graph stats`). Restored via `git restore graph.db` before commit — no source/track changes were folded in.
+
+#### Targeted Red results (all 2 commands run 2026-06-15, bounded — no watch, no full-suite smoke)
+
+| # | Command | Result | Why it fails (right reason) |
+|---|---------|--------|-----------------------------|
+| 1 | `node_modules/.bin/vitest run -t "rating cap" --root packages/practice-core` | **6 failed / 18 passed** (24 new) | v1 `computeBaseRating` (`packages/practice-core/src/practice/srs-rating.ts:101-103`) returns `Again` for any non-empty `misconceptionTags` array. The new truth-table rows that expect `Hard` (cap) for minor misconceptions fail. The 18 passes are: (a) severe-Again rows that match the v1 behavior (regression guard for the preserved path), (b) baseline rows with no misconception tag (Good / Hard / empty / undefined), (c) purity guards (referential transparency + no mutation), (d) the incorrect-priority rows. |
+| 2 | `node_modules/.bin/vitest run srs-rating --root apps/integrated-math-3` | **2 failed / 21 passed** (3 new in this suite) | Same v1 contract through the public package import. The 2 failures are the IM3-misconception-tag cap-at-Hard cases; the 1 pass is the severe-Again case (matches v1). The other 20 are the unchanged existing suite (test-strategy §6 says the existing tests will be reconciled in Green). |
+
+Full-suite regression check (not part of the Red command — recorded as a guard):
+
+| Command | Result |
+|---------|--------|
+| `node_modules/.bin/vitest run --root packages/practice-core` (full pkg suite, post-Red) | **6 failed / 181 passed (187 total)** — 6 fails = the new rating-cap Red rows above; no regression in the 25 existing `srs-rating.test.ts` tests. |
+
+#### Red tests authored (all currently failing as expected; committed atomically)
+
+- `packages/practice-core/src/__tests__/srs-rating-cap.test.ts` (1 describe block, **24 tests**) — live-behavior for FR2 (rating cap). Covers: cap-at-Hard for minor misconception (4 cases), severe-Again (3 cases), incorrect-priority (2 cases), no-misconception baseline (4 cases), parameterized 9-row truth table, purity guard (2 cases).
+- `apps/integrated-math-3/__tests__/lib/practice/srs-rating.test.ts` (1 new describe block, **3 tests**, existing 20 tests untouched) — live-behavior consumer view per test-strategy §6. Uses IM3-shaped misconception tag strings (`math.im3.misconception.sign-error`, `math.im3.misconception.linear-misuse`).
+
+#### Planned new API contract (Red-phase contract only — Implementer owns the actual signature in Green)
+
+```ts
+// Proposed in `packages/practice-core/src/practice/srs-rating.ts`:
+export type SeverityByTag = Readonly<Record<string, 'minor' | 'severe'>>;
+export type ComputeBaseRatingOptions = { severityByTag?: SeverityByTag };
+
+export function computeBaseRating(
+  parts: SrsRatingInput['parts'],
+  options?: ComputeBaseRatingOptions,
+): SrsRating;
+```
+
+Precedence rule (live, asserted by the truth table):
+`incorrect` > `severe` (per-tag) > `minor/missing` (cap at `Hard`) > `hints/reveals` (`Hard`) > `Good` (no aids).
+
+Default-severity invariant (mirrors `getMisconceptionSeverity`): a tag absent from `severityByTag` is treated as `'minor'` → cap. An empty `severityByTag` does NOT regress to the v1 "Again for any tag" behavior.
+
+#### Failure-mode verification (rules compliance)
+
+- ✅ Tests fail because **implementation is missing/wrong**, not because of a stale durable record. The 6 failing assertions are runtime `toBe('Hard')` checks against the v1 implementation's `return 'Again'` (srs-rating.ts:101-103) — no `graph.db` / fixture-cache staleness involved.
+- ✅ Both commands are **bounded**: package uses `-t "rating cap"` filter (single-name match); IM3 uses the targeted `srs-rating` filename filter. Neither command runs the full monorepo suite.
+- ✅ No new "smoke" tests that could accidentally run the real T6. The P4-owned `misconception-loop.smoke.test.ts` is unchanged and still red on its own pre-existing cause (missing `runRealT6Loop`), not affected by this commit.
+- ✅ Dirty worktree: only `graph.db` at MID start (scratch from `build-graph stats`); restored before commit. No unrelated user work was present.
+- ✅ Two test files modified/added: one new (`packages/practice-core/src/__tests__/srs-rating-cap.test.ts`), one extended with a new `describe` block (`apps/integrated-math-3/__tests__/lib/practice/srs-rating.test.ts`). The existing IM3 describe blocks (20 tests) and the existing practice-core `srs-rating.test.ts` are untouched — their v1 behavior is still asserted and still passes; reconciliation happens in Green per test-strategy §6.
+- ✅ `tsc --noEmit` clean for both test files (the new `loose` helper in each file uses `as unknown as` to forward the not-yet-existing `options` arg without producing a `never` call signature). The cast is removable in Green when the Implementer adds the second `options` parameter to `computeBaseRating`.
+
 
 ## Phase 3 — Lifecycle Engine
 
