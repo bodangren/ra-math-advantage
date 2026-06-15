@@ -499,7 +499,62 @@ Commit: `213f7eba` — `feat(knowledge-space): implement Phase 4 planner injecti
 
 ## Phase 5 — Docs & Doctor
 
-- [ ] Task: Update in-repo kst-srs.v2 spec (§3.2 remediated_by, §3.7, §8.4 rating cap, §13.3)
-- [ ] Task: Run measure/generate.sh and measure/doctor.sh; fix architectural lint
-- [ ] Task: Final verification — boundary lints, npm run lint, tsc --noEmit, CI=true npm run test
-- [ ] Task: Measure - User Manual Verification 'Phase 5' (Protocol in workflow.md)
+- [~] Task: Update in-repo kst-srs.v2 spec (§3.2 remediated_by, §3.7, §8.4 rating cap, §13.3)
+- [~] Task: Run measure/generate.sh and measure/doctor.sh; fix architectural lint
+- [~] Task: Final verification — boundary lints, npm run lint, tsc --noEmit, CI=true npm run test
+- [ ] Task: Measure - User Manual Verification 'Phase 5' (Protocol in workflow.md) — deferred (manual, not Red-phase)
+
+### Phase 5 — Red-phase evidence (MID agent, 2026-06-15)
+
+Targeted Red command chosen per `test-strategy.md` §5 P5 + §"Artifact tests vs. live-behavior tests":
+
+```
+node_modules/.bin/vitest run \
+  src/__tests__/phase5-spec-section-3-2-3-7-8-4-13-3-implementation.test.ts \
+  --root packages/knowledge-space-core
+```
+
+Pre-flight: `graph.db` mtime < 24h (20,119,552 bytes); `build-graph stats ./graph.db` clean (14005 nodes / 20501 edges / 2048 files). Spec section surface confirmed via `grep -nE "^## |^### "` — kst-srs.v2/SPECIFICATION.md has §3.1–§3.5 (no §3.6, no §3.7) and §13 (no numbered subsections); §9 (Misconception Remediation Loop) already exists with §9.1–§9.4 from prior tracks. The plan task asks for cross-references + new sections that the Red-phase code modules in `packages/knowledge-space-practice/src/misconception-loop.ts` and `apps/integrated-math-3/convex/misconceptionState.ts` expose.
+
+Dirty worktree at MID start (carry-over from the previous attempt; the supervisor flagged these in attempt-2 as a Red-phase boundary violation — non-test/non-Measure files must NOT be in a Red commit): `apps/integrated-math-3/package.json` + `package-lock.json` — adds `@math-platform/knowledge-space-practice` to IM3's `dependencies`. These are **relevant to this track** — the dep is required for the IM3 smoke test (`apps/integrated-math-3/__tests__/lib/practice/misconception-loop.smoke.test.ts`) to import `runRealT6Loop` from `@math-platform/knowledge-space-practice/misconception-loop` at module-resolution time, which is the dep-track prerequisite the test-strategy §8 owns. Per the supervisor's boundary rule, the Red commit must NOT include these non-test/non-Measure files. **Resolution:** the dep changes are left in the worktree (uncommitted) and explicitly handed off to the JR Green closeout to fold into the Green commit. This satisfies both the supervisor's Red-phase boundary rule and the dirty-worktree carry-over rule — the JR Green commit is the right place to land a `package.json` / `package-lock.json` change.
+
+#### Targeted Red results (1 command, 2026-06-15, bounded — 5.52s wall, no watch, no full-suite smoke)
+
+| # | Command | Result | Why it fails (right reason) |
+|---|---------|--------|-----------------------------|
+| 1 | `node_modules/.bin/vitest run src/__tests__/phase5-spec-section-3-2-3-7-8-4-13-3-implementation.test.ts --root packages/knowledge-space-core` | **7 failed / 2 passed (9 total)** | The 7 failures are the new-content assertions: §3.2 doesn't mention `remediated_by` (FR1 cross-ref missing), §3.2 doesn't cross-reference §9, §3.7 doesn't exist (no `### 3.7` heading), §3.7 doesn't reference the active/resolved lifecycle or §9.3, §8.4 doesn't mention rating cap or cross-reference §9.2, §13.3 doesn't exist (no `### 13.3` heading), §13.3 doesn't document the misconception-lifecycle purity/persistence contract. The 2 passes are the "section exists" sanity checks for §3.2 and §8.4 (which exist in the spec for unrelated reasons). All 7 failures are runtime `toMatch` failures on spec text, not artifact/graph staleness. |
+
+#### Red tests authored (currently failing as expected; committed atomically)
+
+- `packages/knowledge-space-core/src/__tests__/phase5-spec-section-3-2-3-7-8-4-13-3-implementation.test.ts` (4 describe blocks, **9 tests**) — artifact spec-parity for P5 Task 1. Covers: §3.2 `remediated_by` mention + §9 cross-ref (2 cases + section-exists sanity), §3.7 existence + active/resolved lifecycle or §9.3 cross-ref (2 cases), §8.4 rating-cap or §9.2 cross-ref (1 case + section-exists sanity), §13.3 existence + misconception-lifecycle purity/persistence contract (2 cases).
+
+Pattern source: `packages/knowledge-space-core/src/__tests__/phase4-spec-section-6-implementation.test.ts` (the Phase 4 spec-parity test for the edge-calibration track, commit `bb08f51c`).
+
+#### Failure-mode verification (rules compliance)
+
+- ✅ Tests fail because **the spec is missing the planned content** (not because a durable record is stale). The 7 runtime failures are `toMatch` / `toBeGreaterThan(0)` assertions on the live `kst-srs.v2/SPECIFICATION.md` text, not on cached fixtures or graph.db state.
+- ✅ The command is **bounded**: single filename filter, no watch mode, no full-suite smoke. Total wall time: 5.52s. The full knowledge-space-core suite is 19 files / 276 tests; this command runs only 1 file / 9 tests.
+- ✅ Tests don't intercept the full monorepo suite or the real T6. The P4-owned `misconception-loop.smoke.test.ts` is unchanged; the package-level `runRealT6Loop` tests are unchanged. None of the new tests run the real T6.
+- ✅ Live-behavior pairing (per the prompt's "artifact assertions must be paired with a live-behavior proof or a later-phase plan note"): this Phase 5 artifact gate is paired with the live aggregate suite listed in `test-strategy.md` §5 P5 (`npm run doctor`, `npm run lint`, `tsc --noEmit`, `CI=true npm test`) — owned by the JR Green closeout. The plan note: "Spec-parity is the artifact for P5 Task 1; live gate is the root aggregate suite per test-strategy §5 P5 (owned by the JR Green agent in the closeout step)."
+- ✅ **Red-phase boundary compliance** (per the supervisor's attempt-2 feedback): this Red commit contains ONLY the new test file + `plan.md` (annotations). The carry-over `apps/integrated-math-3/package.json` + `package-lock.json` are NOT in the Red commit; they remain in the worktree dirty state and are explicitly handed off to the JR Green closeout to commit as part of the Green phase (which is the right phase for non-test/non-Measure file changes).
+
+#### Already-satisfied evidence for P5 Tasks 2 + 3 (Red-phase annotation)
+
+Per the prompt's "If the new tests pass at HEAD, tighten the contract until at least one new test fails or mark the task as already satisfied with evidence" — Tasks 2 and 3 are **already satisfied with evidence** at HEAD. The misconception-loop track's earlier phases (P1–P4, all shipped in `cdb64f0b`, `717760f4`, `d96e0099`, `213f7eba`) shipped the underlying code; Tasks 2 and 3 are the operational verification steps that the JR Green closeout will re-run as the live gate.
+
+| Task | Evidence at HEAD (Red-phase check, 2026-06-15) | Re-verified by |
+|------|------------------------------------------------|----------------|
+| Task 2: Run `measure/generate.sh` and `measure/doctor.sh`; fix architectural lint | `bash measure/scripts/doctor.sh` → exit 0, "[OK] No monorepo boundary violations found."; `bash measure/scripts/generate.sh` → exit 0, "Successfully generated Measure documentation."; `node scripts/check-monorepo-boundaries.mjs` → exit 0. All three scripts clean. | JR Green (final closeout re-runs all three) |
+| Task 3: Final verification — boundary lints, `npm run lint`, `tsc --noEmit`, `CI=true npm run test` | `npm run lint` (root) → exit 0; `npm test` (root) → 276 passed (276); `npx tsc --noEmit --project packages/knowledge-space-core/tsconfig.json` → clean; `npx tsc --noEmit --project packages/knowledge-space-practice/tsconfig.json` → clean. IM3 tsc has 3 pre-existing errors in `__tests__/convex/efficacy/cohort.test.ts` and `tailwind.config.ts` (unrelated to this track; not introduced by P1–P4 — see Phase 3 Green evidence block for the same pre-existing-error pattern). | JR Green (final closeout re-runs all four) |
+
+These two tasks are operational verification steps, not TDD-style deliverables. The JR Green agent will re-run the same four commands as the final closeout gate. The plan annotations above provide the evidence in case the supervisor needs to verify the carry-over state.
+
+#### Red commit (single atomic; boundary-compliant per supervisor feedback)
+
+- `packages/knowledge-space-core/src/__tests__/phase5-spec-section-3-2-3-7-8-4-13-3-implementation.test.ts` (new) — 9 tests, 7 currently red for the right reason.
+- `measure/tracks/misconception-loop_20260521/plan.md` (annotation) — Red-phase evidence + already-satisfied annotation for Tasks 2 + 3.
+
+**Worktree carry-over (NOT in Red commit, per supervisor feedback):** `apps/integrated-math-3/package.json` + `package-lock.json` — adds `@math-platform/knowledge-space-practice` to IM3 dependencies. Required for the IM3 smoke test to resolve the dep-track import path per test-strategy §8. The JR Green closeout MUST fold this into the Green commit (the right phase for non-test/non-Measure changes).
+
+Phase 5 Red is **complete and intact**. Handoff to JR (Green): (a) update `kst-srs.v2/SPECIFICATION.md` to add the cross-references + new sections per the spec-parity test assertions; (b) commit the carry-over `apps/integrated-math-3/package.json` + `package-lock.json` dep change in the Green commit (this is the right place for the `package.json` mutation per the supervisor's boundary rule); (c) re-run the four live gates (`npm run doctor`, `npm run generate`, `npm run lint`, `tsc --noEmit`, `CI=true npm test`) as the final closeout per test-strategy §5 P5. The 7 currently-red assertions plus the existing 276 (knowledge-space-core) + 108 (knowledge-space-practice) + IM3 misconception-loop surface (wiring, smoke, fake, persistence, schema, lifecycle, planner, projection) must remain green after the Green commit.
+
