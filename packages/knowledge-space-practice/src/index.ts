@@ -27,12 +27,16 @@ export {
   misconceptionLifecycleStatusSchema,
   studentMisconceptionStateSchema,
   getMisconceptionSeverity,
+  runRealT6Loop,
 } from './misconception-loop';
 
 export type {
   MisconceptionSeverity,
   MisconceptionLifecycleStatus,
   StudentMisconceptionState,
+  StudentMisconceptionLoopState,
+  RunRealT6LoopInput,
+  RunRealT6LoopOutput,
 } from './misconception-loop';
 
 export {
