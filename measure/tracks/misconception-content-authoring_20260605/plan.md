@@ -54,7 +54,7 @@ Verification: boundary lints + integrity check + `tsc --noEmit`.
 
 - [x] Task: Author source-grounded misconceptions for the prioritized skill set (IM3 M1 + common algebra) [4f326854]
 - [x] Task: Author/map remediation activities; link via remediated_by edges; integrity check passes [4f326854]
-- [x] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md) [checkpoint: pending]
+- [x] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md) [checkpoint: bc69ac71]
 
 ### Phase 2 — Red Phase Result (2026-06-15)
 
