@@ -213,7 +213,7 @@ Commit: `717760f4` — `feat(practice-core): add severity-aware rating cap to co
 - [x] Task: Implement active/resolved lifecycle transitions (TDD) [green: d96e0099]
     - [x] Active on detection; resolved after N consecutive clean attempts on affected skills
 - [x] Task: Implement Convex persistence for per-student misconception state (TDD) [green: d96e0099]
-- [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
+- [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md) — deferred (manual, not Red-phase)
 
 ### Phase 3 — Red-phase evidence (MID agent, 2026-06-15)
 
@@ -378,6 +378,21 @@ The following tests are red at HEAD and unrelated to the Phase 3 implementation:
 - Affected skills are copied (`[...args.affectedSkills]`) on the write path because Convex validators require a mutable `string[]` while the public API keeps the `readonly` type for consumer-side safety
 
 **No test files were modified.** The existing Phase 1 tests (16 lifecycle-types + 3 public-api + 5 schema) pass without changes because they exercise the Phase 1 zod/accessor surface, which is unchanged. The 16 new Phase 3 lifecycle tests + 13 new Phase 3 persistence tests flip green because they exercise the new `runRealT6Loop` + handler exports this commit added.
+
+### Phase 3 — Red-phase re-verification (MID agent, 2026-06-15)
+
+Phase 3 is **already satisfied with evidence**. Both non-deferred Red-phase tasks are complete and shipped in commit `d96e0099`; the only remaining `[ ]` task is the UMV (User Manual Verification), explicitly deferred per the same pattern used in Phase 1 / Phase 2.
+
+Pre-flight: worktree clean at MID start (`git status --porcelain`: empty); `graph.db` mtime < 24h (20,119,552 bytes); `build-graph stats ./graph.db` clean (13973 nodes / 20495 edges / 2046 files). `runRealT6Loop` confirmed exported from `packages/knowledge-space-practice/src/misconception-loop.ts:115-182` with the v3 contract (`detected | active | resolved | updatedState`); `recordMisconceptionDetectionHandler` / `recordCleanAttemptHandler` / `getStudentActiveMisconceptionsHandler` confirmed at `apps/integrated-math-3/convex/misconceptionState.ts:58-147` with the Convex bindings at lines 153-179.
+
+| # | Command | Result | Recorded Red-phase result | Status |
+|---|---------|--------|---------------------------|--------|
+| 1 | `node_modules/.bin/vitest run misconception-lifecycle --root packages/knowledge-space-practice` | **34 passed (34)** | 16 failed / 18 passed (Red) | ✅ Green intact |
+| 2 | `node_modules/.bin/vitest run misconceptionState --root apps/integrated-math-3` | **18 passed (18)** | 13 failed / 5 passed (Red) | ✅ Green intact |
+
+Both targeted Red commands pass at HEAD — no regressions, no missing exports, no stale durable records. No new Red tests authored (per the "mark as already satisfied with evidence instead of creating a false Red phase" rule). UMV task annotated as deferred for plan.md consistency with the Phase 1 / Phase 2 annotations above. No source code or test files modified in this pass — only the UMV annotation in plan.md.
+
+Phase 3 Red-phase is **complete and intact**. Handoff to JR (Green): already shipped in `d96e0099`. The next phase (Phase 4 — Integration) owns the remaining intentionally-red IM3 smoke + wiring suites (`misconception-loop.smoke.test.ts`, `misconception-loop-wiring.test.ts`) which require the planner injection / `runRealT6Loop` ship integration.
 
 ## Phase 4 — Integration
 
