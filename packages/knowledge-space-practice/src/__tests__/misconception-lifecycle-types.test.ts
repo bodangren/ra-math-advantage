@@ -50,7 +50,6 @@ import {
   studentMisconceptionStateSchema,
   getMisconceptionSeverity,
   type MisconceptionSeverity,
-  type MisconceptionLifecycleStatus,
   type StudentMisconceptionState,
 } from '../misconception-loop';
 
