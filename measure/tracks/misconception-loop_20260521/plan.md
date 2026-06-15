@@ -86,10 +86,10 @@ Commit: `cdb64f0b` — `feat(knowledge-space): add remediated_by edge type and m
 
 ## Phase 2 — Rating Reconciliation
 
-- [~] Task: Reconcile computeBaseRating with the v2 rating-cap rule (TDD) [in-progress: Red tests authored 2026-06-15]
+- [~] Task: Reconcile computeBaseRating with the v2 rating-cap rule (TDD) [in-progress: Red tests authored 2026-06-15; re-verified 2026-06-15]
     - [x] Cap at Hard by default; Again only when misconception is severe — Red tests authored
     - [x] Tests for both the cap and the severe paths — Red tests authored
-- [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
+- [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md) — deferred (manual, not Red-phase)
 
 ### Phase 2 — Red-phase evidence (MID agent, 2026-06-15)
 
@@ -154,6 +154,23 @@ Default-severity invariant (mirrors `getMisconceptionSeverity`): a tag absent fr
 - ✅ Dirty worktree: only `graph.db` at MID start (scratch from `build-graph stats`); restored before commit. No unrelated user work was present.
 - ✅ Two test files modified/added: one new (`packages/practice-core/src/__tests__/srs-rating-cap.test.ts`), one extended with a new `describe` block (`apps/integrated-math-3/__tests__/lib/practice/srs-rating.test.ts`). The existing IM3 describe blocks (20 tests) and the existing practice-core `srs-rating.test.ts` are untouched — their v1 behavior is still asserted and still passes; reconciliation happens in Green per test-strategy §6.
 - ✅ `tsc --noEmit` clean for both test files (the new `loose` helper in each file uses `as unknown as` to forward the not-yet-existing `options` arg without producing a `never` call signature). The cast is removable in Green when the Implementer adds the second `options` parameter to `computeBaseRating`.
+
+
+### Phase 2 — Red-phase re-verification (MID agent, 2026-06-15, second pass)
+
+Second MID pass re-ran the three recorded targeted Red commands at HEAD (commits `17a4e37e` + `e931dee2` already in place; worktree clean at start). Goal: confirm the Red state is intact and not a stale durable record before the Green handoff.
+
+Pre-flight: `graph.db` mtime within 24h; ran `build-graph update` for the 4 phase-2 files (test files plus `packages/knowledge-space-practice/src/misconception-loop.ts`) to bring the in-memory graph current — added 32 new nodes, 33 new edges, no removals. The tracked `graph.db` was then restored via `git restore graph.db` per the pre-commit hook policy (`build-graph` side-effects on the tracked binary are scratch by default; only dedicated `chore(graph)` commits with `ALLOW_GRAPH_DB=1` update the tracked artifact). `build-graph inspect computeBaseRating` (against the refreshed scratch graph) confirms the v1 signature is still at `packages/practice-core/src/practice/srs-rating.ts:88–123` with the v1 docstring rule "Any misconception tag → Again". `build-graph callers computeBaseRating` returns 0 (rating computation is internal to `practice-core`; consumer surface is through the package's barrel re-export, not a direct symbol edge), confirming the contract-change blast radius is contained to the two existing test suites the Red phase already covers.
+
+| # | Command | Re-verified result | Matches recorded |
+|---|---------|--------------------|------------------|
+| 1 | `node_modules/.bin/vitest run -t "rating cap" --root packages/practice-core` | **6 failed / 18 passed (24 new)** | ✅ |
+| 2 | `node_modules/.bin/vitest run srs-rating --root apps/integrated-math-3` | **2 failed / 21 passed (23 total)** | ✅ |
+| 3 | `node_modules/.bin/vitest run srs-rating --root apps/bus-math-v2` | **2 failed / 21 passed (23 total)** | ✅ |
+
+All 10 failing assertions are the recorded `expected 'Hard' / received 'Again'` (or the analogous severe-Hard vs. v1 Again-on-any-tag cases) — failures are due to **missing implementation** (v2 cap rule + `severityByTag` arg), not durable-record staleness. No new test files authored, no source edits; only this plan note + the deferred-annotation on the UMV task were touched in this pass.
+
+Phase 2 Red is **complete and intact**. Handoff to JR (Green): implement the `computeBaseRating(parts, options?)` signature per the §"Planned new API contract" block above; all 10 currently-red assertions plus the existing 25 (practice-core) + 20 (IM3) + 20 (BM2) untouched existing tests must remain green after the Green commit.
 
 
 ## Phase 3 — Lifecycle Engine
