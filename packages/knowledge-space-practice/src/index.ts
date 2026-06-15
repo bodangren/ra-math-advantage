@@ -86,6 +86,10 @@ export {
   teacherVisualizationV1Schema,
 } from './projections';
 
+// Planner — domain-neutral planner injection
+export { planRemediationInjection } from './planner/injection';
+export type { PlannedActivity, PlanRemediationInjectionInput } from './planner/injection';
+
 export type {
   ProjectedActivity,
   SrsProjectionEntry,

@@ -107,6 +107,7 @@ export interface StudentVisualizationV1 {
   reviewDue: VisualNodeV1[];
   recommendedNext: VisualNodeV1[];
   edges: VisualEdgeV1[];
+  activeMisconceptionCount: number;
 }
 
 export interface ParentVisualizationV1 {
@@ -141,6 +142,7 @@ export interface TeacherVisualizationV1 {
   misconceptionClusters: Array<{ label: string; relatedNodeIds: string[] }>;
   interventionGroups: InterventionGroup[];
   standardsCoverage: Array<{ standardId: string; title: string; proficiencyRate: number }>;
+  activeMisconceptionStudentCount: number;
 }
 
 // Re-export blueprint types used by projection callers

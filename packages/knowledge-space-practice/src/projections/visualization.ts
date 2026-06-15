@@ -116,6 +116,7 @@ export function projectStudentVisualization(
   nodes: KnowledgeSpaceNode[],
   edges: KnowledgeSpaceEdge[],
   learnerState: Record<string, 'mastered' | 'ready' | 'blocked' | 'review_due'> = {},
+  options?: { readonly activeMisconceptionSlugs?: readonly string[] },
 ): StudentVisualizationV1 {
   const nodeMap = new Map(nodes.map((n) => [n.id, n]));
   const masteredIds = new Set(
@@ -185,6 +186,7 @@ export function projectStudentVisualization(
     reviewDue,
     recommendedNext,
     edges: visualEdges,
+    activeMisconceptionCount: options?.activeMisconceptionSlugs?.length ?? 0,
   };
 }
 
@@ -295,6 +297,7 @@ export function projectTeacherVisualization(
   nodes: KnowledgeSpaceNode[],
   edges: KnowledgeSpaceEdge[],
   classStats: Record<string, { mastered: number; total: number }> = {},
+  options?: { readonly perStudentActiveMisconceptions?: Record<string, readonly string[]> },
 ): TeacherVisualizationV1 {
   const nodeMap = new Map(nodes.map((n) => [n.id, n]));
 
@@ -407,6 +410,12 @@ export function projectTeacherVisualization(
   });
   standardsCoverage.sort((a, b) => a.standardId.localeCompare(b.standardId));
 
+  const activeMisconceptionStudentCount = options?.perStudentActiveMisconceptions
+    ? Object.values(options.perStudentActiveMisconceptions).filter(
+        (slugs) => slugs.length > 0,
+      ).length
+    : 0;
+
   return {
     schemaVersion: 'v1',
     heatmap,
@@ -415,5 +424,6 @@ export function projectTeacherVisualization(
     misconceptionClusters,
     interventionGroups,
     standardsCoverage,
+    activeMisconceptionStudentCount,
   };
 }

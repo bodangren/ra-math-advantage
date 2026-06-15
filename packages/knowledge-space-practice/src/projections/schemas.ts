@@ -28,6 +28,7 @@ export const studentVisualizationV1Schema = z.object({
   reviewDue: z.array(visualNodeV1Schema),
   recommendedNext: z.array(visualNodeV1Schema),
   edges: z.array(visualEdgeV1Schema),
+  activeMisconceptionCount: z.number().int().min(0),
 });
 
 export const parentVisualizationV1Schema = z.object({
@@ -80,4 +81,5 @@ export const teacherVisualizationV1Schema = z.object({
   misconceptionClusters: z.array(misconceptionClusterSchema),
   interventionGroups: z.array(interventionGroupSchema),
   standardsCoverage: z.array(standardsCoverageSchema),
+  activeMisconceptionStudentCount: z.number().int().min(0),
 });
