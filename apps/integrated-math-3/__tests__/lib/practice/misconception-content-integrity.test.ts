@@ -41,6 +41,8 @@
 
 import { describe, expect, it } from 'vitest';
 
+import nodesJson from '@/curriculum/skill-graph/module-1/nodes.json';
+
 import {
   IM3_M1_SKILL_SET,
   REMEDIATION_ACTIVITY_KINDS,
@@ -68,6 +70,10 @@ import {
 
 const VALID_KINDS: ReadonlySet<RemediationActivityKind> = new Set(
   REMEDIATION_ACTIVITY_KINDS as readonly RemediationActivityKind[],
+);
+
+const MODULE_1_NODE_IDS: ReadonlySet<string> = new Set(
+  nodesJson.nodes.map((node) => node.id),
 );
 
 function errorCodes(result: IntegrityResult): readonly IntegrityError['code'][] {
@@ -117,6 +123,19 @@ describe('IM3_MISCONCEPTION_REMEDIATIONS — authored registry shape', () => {
 
         expect(typeof rem.sourceRef, `sourceRef on ${slug}`).toBe('string');
         expect(rem.sourceRef.length).toBeGreaterThan(0);
+      }
+    }
+  });
+
+  it('every live remediation target resolves to a real Module 1 curriculum node', () => {
+    for (const [slug, remediations] of Object.entries(
+      IM3_MISCONCEPTION_REMEDIATIONS,
+    )) {
+      for (const rem of remediations as readonly RemediationActivityRef[]) {
+        expect(
+          MODULE_1_NODE_IDS.has(rem.activityId),
+          `${slug} references missing curriculum node ${rem.activityId}`,
+        ).toBe(true);
       }
     }
   });

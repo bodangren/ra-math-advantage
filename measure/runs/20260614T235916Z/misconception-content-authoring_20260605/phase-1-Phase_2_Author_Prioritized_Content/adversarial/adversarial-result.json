@@ -1,0 +1,21 @@
+{
+  "status": "fail",
+  "summary": "Adversarial audit found and fixed a Phase 2 correctness gap: remediation worked_example IDs were placeholders that did not resolve to real Module 1 curriculum nodes. Added live node-resolution coverage and replaced placeholders with real node IDs. No blocking Phase 2 content findings remain, but project-level lint and IM3 typecheck still fail on pre-existing unrelated files.",
+  "findings": [
+    "Project-level lint fails on pre-existing warnings in apps/integrated-math-3/__tests__/scale/drivers.test.ts:133 and apps/integrated-math-3/lib/scale/insights-parser.ts:20.",
+    "IM3 typecheck fails on pre-existing errors in apps/integrated-math-3/__tests__/convex/edgeCalibration.test.ts, apps/integrated-math-3/__tests__/convex/efficacy/cohort.test.ts, and apps/integrated-math-3/tailwind.config.ts."
+  ],
+  "evidence": [
+    "Read measure/index.md, measure/workflow.md, measure/tracks.md, measure/tracks/misconception-content-authoring_20260605/spec.md, plan.md, and test-strategy.md.",
+    "Inspected git diff/stat since 496858af82ba0a5de89f2d046c369dc2d4a90b21 and changed files apps/integrated-math-3/lib/practice/misconception-remediations.ts and apps/integrated-math-3/__tests__/lib/practice/misconception-content-integrity.test.ts.",
+    "Added adversarial assertion that every live remediation target resolves to a real ID in apps/integrated-math-3/curriculum/skill-graph/module-1/nodes.json.",
+    "Replaced placeholder worked_example remediation IDs with real math.im3.example.* node IDs.",
+    "PATH=... CI=true ../../node_modules/.bin/vitest run __tests__/lib/practice/misconception-content-integrity.test.ts: pass, 20/20 tests.",
+    "PATH=... CI=true ../../node_modules/.bin/vitest run __tests__/lib/practice/misconception-taxonomy.test.ts __tests__/lib/practice/misconception-mapping.test.ts __tests__/lib/practice/misconception-content-integrity.test.ts: pass, 42/42 tests.",
+    "PATH=... CI=true ../../node_modules/.bin/vitest run __tests__/lib/practice: pass, 222/222 tests.",
+    "PATH=... CI=true npm test: pass, packages/knowledge-space-core 262/262 tests.",
+    "PATH=... npm run build: pass.",
+    "PATH=... npm run lint: fail only on pre-existing unrelated warnings after audit-file warnings were fixed.",
+    "PATH=... npx tsc --noEmit --project apps/integrated-math-3/tsconfig.json: fail on pre-existing unrelated Convex/efficacy/tailwind errors documented in Phase 2 plan."
+  ]
+}

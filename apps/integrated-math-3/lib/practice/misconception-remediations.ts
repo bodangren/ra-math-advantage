@@ -16,7 +16,6 @@
 
 import {
   IM3_MISCONCEPTION_TAGS,
-  allIm3MisconceptionTagSlugs,
   type Im3MisconceptionTagSlug,
 } from './misconception-taxonomy';
 
@@ -81,7 +80,7 @@ export const IM3_MISCONCEPTION_REMEDIATIONS: Readonly<
 > = {
   'sign-error-in-factored-form': [
     {
-      activityId: 'math.im3.worked_example.1.4.sign-error-in-factors',
+      activityId: 'math.im3.example.1.4.019',
       activityKind: 'worked_example',
       label: 'Worked example: identifying and correcting sign errors when factoring quadratics',
       sourceRef: 'apps/integrated-math-3/curriculum/skill-graph/module-1/nodes.json',
@@ -95,7 +94,7 @@ export const IM3_MISCONCEPTION_REMEDIATIONS: Readonly<
   ],
   'average-rate-as-mean-of-endpoints': [
     {
-      activityId: 'math.im3.worked_example.1.1.average-rate-of-change',
+      activityId: 'math.im3.example.1.1.004',
       activityKind: 'worked_example',
       label: 'Worked example: average rate of change vs. mean of endpoints',
       sourceRef: 'apps/integrated-math-3/curriculum/skill-graph/module-1/nodes.json',
@@ -109,7 +108,7 @@ export const IM3_MISCONCEPTION_REMEDIATIONS: Readonly<
   ],
   'vertex-y-as-solution': [
     {
-      activityId: 'math.im3.worked_example.1.1.vertex-vs-roots',
+      activityId: 'math.im3.example.1.1.005',
       activityKind: 'worked_example',
       label: 'Worked example: distinguishing vertex y-coordinate from x-intercepts',
       sourceRef: 'apps/integrated-math-3/curriculum/skill-graph/module-1/nodes.json',
@@ -123,7 +122,7 @@ export const IM3_MISCONCEPTION_REMEDIATIONS: Readonly<
   ],
   'quadratic-formula-sign-flip': [
     {
-      activityId: 'math.im3.worked_example.1.6.quadratic-formula-sign-tracking',
+      activityId: 'math.im3.example.1.6.036',
       activityKind: 'worked_example',
       label: 'Worked example: tracking the ± sign in the quadratic formula',
       sourceRef: 'apps/integrated-math-3/curriculum/skill-graph/module-1/nodes.json',
@@ -137,7 +136,7 @@ export const IM3_MISCONCEPTION_REMEDIATIONS: Readonly<
   ],
   'discriminant-misread-zero-vs-positive': [
     {
-      activityId: 'math.im3.worked_example.1.6.discriminant-cases',
+      activityId: 'math.im3.example.1.6.039',
       activityKind: 'worked_example',
       label: 'Worked example: discriminant zero vs. positive — solution count conclusions',
       sourceRef: 'apps/integrated-math-3/curriculum/skill-graph/module-1/nodes.json',
@@ -152,7 +151,7 @@ export const IM3_MISCONCEPTION_REMEDIATIONS: Readonly<
   ],
   'completing-square-offset-error': [
     {
-      activityId: 'math.im3.worked_example.1.6.completing-the-square-offset',
+      activityId: 'math.im3.example.1.5.029',
       activityKind: 'worked_example',
       label: 'Worked example: the (b/2)^2 offset in completing the square',
       sourceRef: 'apps/integrated-math-3/curriculum/skill-graph/module-1/nodes.json',
@@ -166,7 +165,7 @@ export const IM3_MISCONCEPTION_REMEDIATIONS: Readonly<
   ],
   'omitted-root-in-multi-step': [
     {
-      activityId: 'math.im3.worked_example.1.4.both-roots-required',
+      activityId: 'math.im3.example.1.4.021',
       activityKind: 'worked_example',
       label: 'Worked example: why both roots must be recorded',
       sourceRef: 'apps/integrated-math-3/curriculum/skill-graph/module-1/nodes.json',
@@ -186,7 +185,7 @@ export const IM3_MISCONCEPTION_REMEDIATIONS: Readonly<
   ],
   'complex-root-omits-i': [
     {
-      activityId: 'math.im3.worked_example.1.6.complex-roots-with-i',
+      activityId: 'math.im3.example.1.6.038',
       activityKind: 'worked_example',
       label: 'Worked example: reporting complex roots with the imaginary unit',
       sourceRef: 'apps/integrated-math-3/curriculum/skill-graph/module-1/nodes.json',
@@ -201,7 +200,7 @@ export const IM3_MISCONCEPTION_REMEDIATIONS: Readonly<
   ],
   'inequality-direction-flip': [
     {
-      activityId: 'math.im3.worked_example.1.7.inequality-direction-rule',
+      activityId: 'math.im3.example.1.7.041',
       activityKind: 'worked_example',
       label: 'Worked example: flipping inequality direction on multiply/divide by negative',
       sourceRef: 'apps/integrated-math-3/curriculum/skill-graph/module-1/nodes.json',
@@ -288,7 +287,7 @@ export function checkMisconceptionContentIntegrity(
   const errors: IntegrityError[] = [];
 
   // (a) every taxonomy tag has ≥1 remediation
-  for (const [slug, _node] of Object.entries(taxonomy)) {
+  for (const slug of Object.keys(taxonomy)) {
     const rem = remediations[slug];
     if (!rem || rem.length === 0) {
       errors.push({

@@ -120,6 +120,12 @@ Verification: boundary lints + integrity check + `tsc --noEmit`.
 - graph.db updated via `build-graph update` (1 file, 20 nodes, 20 edges).
 - See commit `feat(misconception): ship Phase 2 Green — IM3 remediation registry + integrity check` [4f326854].
 
+### Phase 2 — Adversarial Audit Result (2026-06-15)
+
+- Added live curriculum-node resolution coverage to ensure every remediation activity ID exists in `apps/integrated-math-3/curriculum/skill-graph/module-1/nodes.json`.
+- Replaced placeholder `math.im3.worked_example.*` IDs with real `math.im3.example.*` node IDs.
+- Relevant misconception/practice/root test gates passed; project-level lint and IM3 typecheck still fail on pre-existing unrelated scale, Convex/efficacy, and Tailwind issues.
+
 ## Phase 3 — Loop Wiring & Verification
 
 - [ ] Task: Verify the T6 loop fires on seeded wrong-answer patterns (detection → remediation → resolution) (TDD)
