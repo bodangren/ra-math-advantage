@@ -88,9 +88,9 @@ describe('IM3 misconception authoring guide — document contract', () => {
     ).toBeGreaterThan(0);
     for (const rel of referenced) {
       if (isAbsolute(rel)) continue;
-      const candidate = resolve(IM3_APP_DIR, '..', rel);
+      const candidate = resolve(IM3_APP_DIR, '..', '..', rel);
       const relToRepo = relative(
-        resolve(IM3_APP_DIR, '..'),
+        resolve(IM3_APP_DIR, '..', '..'),
         candidate,
       );
       expect(
