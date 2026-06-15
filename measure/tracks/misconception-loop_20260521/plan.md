@@ -210,10 +210,100 @@ Commit: `717760f4` — `feat(practice-core): add severity-aware rating cap to co
 
 ## Phase 3 — Lifecycle Engine
 
-- [ ] Task: Implement active/resolved lifecycle transitions (TDD)
-    - [ ] Active on detection; resolved after N consecutive clean attempts on affected skills
-- [ ] Task: Implement Convex persistence for per-student misconception state (TDD)
+- [~] Task: Implement active/resolved lifecycle transitions (TDD) [red: in progress]
+    - [~] Active on detection; resolved after N consecutive clean attempts on affected skills
+- [~] Task: Implement Convex persistence for per-student misconception state (TDD) [red: in progress]
 - [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
+
+### Phase 3 — Red-phase evidence (MID agent, 2026-06-15)
+
+Targeted Red commands chosen per `test-strategy.md` §5 P3 + §7:
+
+1. `npx vitest run misconception-lifecycle --root packages/knowledge-space-practice` — live-behavior: pure `runRealT6Loop` transition fn covering detection, active transition, resolution after N clean attempts, resolution flicker, multi-skill clean streak, purity, stale-state default, and input validation.
+2. `npx vitest run misconceptionState --root apps/integrated-math-3` — live-behavior: Convex round-trip for per-student state (record-detection upsert, record-clean-attempt increment + resolve at threshold + idempotent on resolved, get-active-set read with stale-state default).
+
+Pre-flight: `graph.db` mtime < 24h; `build-graph stats ./graph.db` clean (13973 nodes / 20495 edges / 2046 files); `runRealT6Loop` is greenfield (build-graph search: 0 prior symbols — the IM3 smoke test imports it from `@math-platform/knowledge-space-practice/misconception-loop` as the planned path); `recordMisconceptionDetectionHandler` / `recordCleanAttemptHandler` / `getStudentActiveMisconceptionsHandler` are greenfield (build-graph search: 0 prior symbols). The Phase 1 sibling test `misconceptionStateSchema.test.ts` (5 tests) is the live signal that the table + validators shipped in P1; this round-trip test is the live-behavior gate for P3 Convex persistence per `test-strategy.md` §"Artifact tests vs. live-behavior tests".
+
+Dirty worktree at MID start: only `measure/automation-supervisor.py` (5 lines, model-name swaps — `vocengine-coding/glm-5.1` → `minimax-cn-coding-plan/MiniMax-M3`, `xiaomi/mimo-v2.5-pro` → `minimax-cn-coding-plan/MiniMax-M3`, etc.). Classified as **unrelated user work** (automation infrastructure, not Phase 3). Per the rules, preserved untouched — not folded in, not reverted. No track-affecting changes were made in this Red commit beyond new test files + plan.md.
+
+#### Targeted Red results (both commands run 2026-06-15, bounded — no watch, no full-suite smoke)
+
+| # | Command | Result | Why it fails (right reason) |
+|---|---------|--------|-----------------------------|
+| 1 | `node_modules/.bin/vitest run misconception-lifecycle --root packages/knowledge-space-practice` | **16 failed / 18 passed (34 total)** | The planned `runRealT6Loop` function is `undefined` in `packages/knowledge-space-practice/src/misconception-loop.ts` (only Phase 1 surface is exported). All 16 new lifecycle tests fail with `TypeError: runRealT6Loop is not a function` or `expected 'undefined' to be 'function'`. The 18 passes are from sibling files (`misconception-lifecycle-types.test.ts`: 16, `misconception-loop-public-api.test.ts`: 3) — Phase 1 surface intact. |
+| 2 | `node_modules/.bin/vitest run misconceptionState --root apps/integrated-math-3` | **13 failed / 5 passed (18 total)** | The planned Convex handlers are `undefined` in `apps/integrated-math-3/convex/misconceptionState.ts` (only the 3 Phase 1 validators are exported). All 13 new persistence tests fail with `TypeError: ... is not a function` for the specific missing export. The 5 passes are the Phase 1 sibling `misconceptionStateSchema.test.ts` (artifact test, already green). |
+
+#### Red tests authored (all currently failing as expected; pending atomic commit)
+
+- `packages/knowledge-space-practice/src/__tests__/misconception-lifecycle.test.ts` (7 describe blocks, **18 tests**) — live-behavior for FR3 (active→resolved lifecycle). Covers: export surface (1), detection step (3), active transition (3), resolution after N clean attempts (5, including the explicit **resolution-flicker** fixture from test-strategy §3 and the multi-skill independent-resolution case), purity (2), stale state default (2), input validation (2).
+- `apps/integrated-math-3/__tests__/convex/misconceptionState.test.ts` (3 describe blocks, **13 tests**) — live-behavior Convex round-trip per test-strategy §5 P3 + §"Artifact tests vs. live-behavior tests" (this is the live-behavior proof for FR3, paired with the Phase 1 `misconceptionStateSchema.test.ts` artifact). Covers: `recordMisconceptionDetectionHandler` upsert (5, including first-detect insert, severe-passthrough, multi-skill affectedSkills list, re-detect patch (not append), studentId isolation), `recordCleanAttemptHandler` increment + resolve (5, including N-1 not-resolve, threshold-resolve-with-streak-reset, idempotent on resolved, missing-row graceful null), `getStudentActiveMisconceptionsHandler` read (3, including the **stale state default** of empty array for new student and the all-resolved empty result).
+
+#### Failure-mode verification (rules compliance)
+
+- ✅ Tests fail because **implementation is missing**, not because a durable record (e.g. `graph.db`, fixture cache) is stale. All 29 failures are runtime `TypeError: ... is not a function` from the module-resolution failing — the planned `runRealT6Loop` and the three Convex handlers are not exported at HEAD. No graph/fixture staleness involved.
+- ✅ Both commands are **bounded**: package uses the targeted `misconception-lifecycle` filename filter (single-name match); IM3 uses the targeted `misconceptionState` filename filter. Neither command runs the full monorepo suite.
+- ✅ None of the new tests are "smoke" tests that could accidentally run the real T6. The P4-owned `misconception-loop.smoke.test.ts` is unchanged and still red on its own pre-existing cause (missing `runRealT6Loop`), not affected by this commit.
+- ✅ No new "smoke" tests that could accidentally run the full suite. The `recordMisconceptionDetectionHandler` and `recordCleanAttemptHandler` and `getStudentActiveMisconceptionsHandler` are all narrow single-handler unit tests; the round-trip sequence is hand-wired (a `seeded ctx` then a single handler call), not a full Convex runtime.
+- ✅ The P3 lifecycle test does NOT assert `injected` (remediation routing) — that is the IM3-wiring layer's responsibility (P4) per `test-strategy.md` §"Fake harness boundary". The package-level `runRealT6Loop` is domain-neutral; the IM3 fake harness covers the routing shape; the P4 wiring integrates them. This keeps the package boundary clean.
+- ✅ Dirty worktree at MID start: only `measure/automation-supervisor.py` (5 lines, model-name swaps — unrelated user work per the "preserve unrelated user work" rule). Not modified, not reverted, not folded into this commit. The dirty file is preserved untouched across this Red commit.
+- ✅ Mock-ctx pattern follows the existing IM3 convention (`placement.test.ts`, `edgeCalibration.test.ts`, `objectiveProficiency.test.ts`) — no `convex-test` dependency, hand-rolled in-memory table with `withIndex` + `eq` chain. This matches `test-strategy.md` §2 ("Convex: use `convex-test` (already in repo)") with the in-repo fallback (the existing pattern) — the test-strategy's intent (in-memory Convex state, no real backend) is satisfied.
+
+#### Planned new API contract (Red-phase contract only — Implementer owns the actual signature in Green)
+
+```ts
+// In `packages/knowledge-space-practice/src/misconception-loop.ts`:
+//
+// Domain-neutral per-student state (the input/output of the transition fn).
+export interface StudentMisconceptionLoopState {
+  readonly active: readonly string[];
+  readonly cleanStreaks: Readonly<Record<string, number>>;
+}
+
+export interface RunRealT6LoopInput {
+  readonly submission: PracticeSubmissionEnvelope;
+  readonly state: StudentMisconceptionLoopState;
+  readonly resolutionThreshold: number;
+}
+
+export interface RunRealT6LoopOutput {
+  readonly detected: readonly string[];
+  readonly active: readonly string[];
+  readonly resolved: readonly string[];
+  readonly updatedState: StudentMisconceptionLoopState;
+}
+
+export function runRealT6Loop(input: RunRealT6LoopInput): RunRealT6LoopOutput;
+```
+
+```ts
+// In `apps/integrated-math-3/convex/misconceptionState.ts`:
+// (extends the existing validator-only module from Phase 1 with three handlers)
+
+export const recordMisconceptionDetectionHandler: MutationHandler<{
+  studentId: string;
+  misconceptionId: string;
+  severity: 'minor' | 'severe';
+  affectedSkills: readonly string[];
+  now: number; // optional? injected for deterministic tests
+}>;
+
+export const recordCleanAttemptHandler: MutationHandler<{
+  studentId: string;
+  misconceptionId: string;
+  resolutionThreshold: number;
+  now: number;
+}>;
+
+export const getStudentActiveMisconceptionsHandler: QueryHandler<{
+  studentId: string;
+}>;
+```
+
+Precedence rule (live, asserted by the test suite): a wrong-answer submission on a slug → active, streak = 0 (refresh). A clean submission on an active slug → streak + 1; when streak ≥ threshold, status = 'resolved', streak = 0. The `now` arg is injected for deterministic timestamps (the existing IM3 P1 schema already uses `lastUpdatedAt: number`); a Green-phase Implementer may default `now` to `Date.now()` when the arg is omitted — both designs are acceptable as long as the tests pass deterministically.
+
+Stale-state default (test-strategy §3, asserted by `getStudentActiveMisconceptionsHandler` tests): a student with no rows returns `[]`, never throws. A `cleanStreaks` map with entries for non-active slugs is tolerated (the resolve pass ignores them) — the caller is responsible for evicting resolved slugs.
+
+Phase 3 Red is **complete and intact**. Handoff to JR (Green): implement `runRealT6Loop` in `packages/knowledge-space-practice/src/misconception-loop.ts` per the §"Planned new API contract" block above, and the three Convex handlers in `apps/integrated-math-3/convex/misconceptionState.ts` extending the Phase 1 validators. All 29 currently-red assertions must flip green after the Green commit, AND the existing Phase 1 tests (16 lifecycle-types + 3 public-api + 5 schema + 67 knowledge-space-practice full suite + 540 IM3 full suite) must remain green.
 
 ## Phase 4 — Integration
 
