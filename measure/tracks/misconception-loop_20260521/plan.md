@@ -5,12 +5,12 @@ Depends on: Track 1.
 
 ## Phase 1 — Contract & Schema
 
-- [x] Task: Add the remediated_by edge type
-    - [x] Extend EdgeType union + Zod schemas; add §2.7 endpoint-pairing rule (misconception → worked_example/task_blueprint/skill)
-    - [x] Extend validation (INVALID_EDGE_PAIRING coverage)
-- [x] Task: Define misconception lifecycle types and Convex schema
-    - [x] active/resolved state; severity model; per-student misconception state table
-- [ ] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md)
+- [x] Task: Add the remediated_by edge type [green: cdb64f0b]
+    - [x] Extend EdgeType union + Zod schemas; add §2.7 endpoint-pairing rule (misconception → worked_example/task_blueprint/skill) [green: cdb64f0b]
+    - [x] Extend validation (INVALID_EDGE_PAIRING coverage) [green: cdb64f0b]
+- [x] Task: Define misconception lifecycle types and Convex schema [green: cdb64f0b]
+    - [x] active/resolved state; severity model; per-student misconception state table [green: cdb64f0b]
+- [ ] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md) — deferred (manual, not Red-phase)
 
 ### Phase 1 — Red-phase evidence (MID agent, 2026-06-15)
 
