@@ -131,8 +131,8 @@ Verification: boundary lints + integrity check + `tsc --noEmit`.
 
 - [x] Task: Verify the T6 loop fires on seeded wrong-answer patterns (detection → remediation → resolution) (TDD) [d3c0b8a4]
 - [x] Task: Author the authoring/expansion guide [d3c0b8a4]
-- [ ] Task: Final verification — boundary lints, tsc --noEmit, CI=true npm run test
-- [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
+- [x] Task: Final verification — boundary lints, tsc --noEmit, CI=true npm run test [d7113baf]
+- [x] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md) [checkpoint: d7113baf]
 
 ### Phase 3 — Red Phase Result (2026-06-15)
 
