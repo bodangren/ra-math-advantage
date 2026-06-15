@@ -52,9 +52,9 @@ Verification: boundary lints + integrity check + `tsc --noEmit`.
 
 ## Phase 2 — Author Prioritized Content
 
-- [~] Task: Author source-grounded misconceptions for the prioritized skill set (IM3 M1 + common algebra)
-- [~] Task: Author/map remediation activities; link via remediated_by edges; integrity check passes
-- [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
+- [x] Task: Author source-grounded misconceptions for the prioritized skill set (IM3 M1 + common algebra) [4f326854]
+- [x] Task: Author/map remediation activities; link via remediated_by edges; integrity check passes [4f326854]
+- [x] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md) [checkpoint: pending]
 
 ### Phase 2 — Red Phase Result (2026-06-15)
 
@@ -94,6 +94,31 @@ Verification: boundary lints + integrity check + `tsc --noEmit`.
   `misconception-loop.smoke.test.ts` files that the Phase 3 Red role
   will add. See test-strategy.md §"Per-Phase Test Approach › Phase 3".
 - See commit `test(misconception): add Phase 2 Red tests for IM3 misconception-content integrity check`.
+
+### Phase 2 — Green Phase Result (2026-06-15)
+
+- Source shipped:
+  - `apps/integrated-math-3/lib/practice/misconception-remediations.ts` —
+    `IM3_MISCONCEPTION_REMEDIATIONS` registry (9 taxonomy slugs mapped to
+    19 remediation activities: worked examples + skill practice nodes,
+    all source-grounded in M1 curriculum),
+    `getRemediationsForMisconception(slug)` safe lookup returning `[]`
+    for unknown slugs, and `checkMisconceptionContentIntegrity(args?)`
+    validating (a) every taxonomy tag has ≥1 remediation, (b) no orphan
+    remediation entries, (c) all `affectedSkills` resolve to known
+    IM3 M1 skill IDs, (d) no circular `remediated_by` edges, and
+    (e) every remediation activity ID references a known curriculum
+    node. Types: `RemediationActivityKind`, `RemediationActivityRef`,
+    `IntegrityResult`, `IntegrityError`.
+- Live gate (Phase 2 closeout):
+  `apps/integrated-math-3$ PATH="/opt/codex-desktop/resources/node-runtime/bin:$PATH" CI=true ../../node_modules/.bin/vitest run __tests__/lib/practice/misconception-content-integrity.test.ts`
+  → 19/19 tests pass in 2.3s.
+- Full practice suite: 186/186 tests pass (all 10 practice test files).
+- `npx tsc --noEmit`: clean for the new file; remaining errors are
+  pre-existing and owned by convex/efficacy and tailwind-config tracks
+  (out of scope for this phase).
+- graph.db updated via `build-graph update` (1 file, 20 nodes, 20 edges).
+- See commit `feat(misconception): ship Phase 2 Green — IM3 remediation registry + integrity check` [4f326854].
 
 ## Phase 3 — Loop Wiring & Verification
 
