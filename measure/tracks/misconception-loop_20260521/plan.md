@@ -399,7 +399,7 @@ Phase 3 Red-phase is **complete and intact**. Handoff to JR (Green): already shi
 - [x] Task: Implement planner injection of remediated_by activities (TDD) [green: 213f7eba]
     - [x] Active misconception's remedy injected ahead of normal progression; weaknessFit hook for Track 4 [green: 213f7eba]
 - [x] Task: Add active-misconception counts to student and teacher projections (TDD) [green: 213f7eba]
-- [ ] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md)
+- [ ] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md) — deferred (manual, not Red-phase)
 
 ### Phase 4 — Red-phase evidence (MID agent, 2026-06-15, second attempt)
 
