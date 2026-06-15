@@ -396,10 +396,58 @@ Phase 3 Red-phase is **complete and intact**. Handoff to JR (Green): already shi
 
 ## Phase 4 — Integration
 
-- [ ] Task: Implement planner injection of remediated_by activities (TDD)
+- [~] Task: Implement planner injection of remediated_by activities (TDD)
     - [ ] Active misconception's remedy injected ahead of normal progression; weaknessFit hook for Track 4
-- [ ] Task: Add active-misconception counts to student and teacher projections (TDD)
+- [~] Task: Add active-misconception counts to student and teacher projections (TDD)
 - [ ] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md)
+
+### Phase 4 — Red-phase evidence (MID agent, 2026-06-15, second attempt)
+
+Targeted Red commands chosen per `test-strategy.md` §5 P4 + §"Per-Phase Test Approach › Phase 4" + §"Fake harness boundary":
+
+1. `node_modules/.bin/vitest run src/__tests__/planner-remediation-injection.test.ts --root packages/knowledge-space-practice` — live-behavior: pure `planRemediationInjection({ nextActivities, injectedActivities })` covering the prepend ordering, dedup policy (injected wins ahead of next), and purity.
+2. `node_modules/.bin/vitest run src/__tests__/projection-active-misconception-count.test.ts --root packages/knowledge-space-practice` — live-behavior: `projectStudentVisualization` and `projectTeacherVisualization` accept a new active-misconception arg and emit the new `activeMisconceptionCount` / `activeMisconceptionStudentCount` field.
+
+Pre-flight: `graph.db` mtime < 24h; `build-graph stats ./graph.db` clean (14005 nodes / 20501 edges / 2048 files); `planRemediationInjection`, `activeMisconceptionCount`, `activeMisconceptionStudentCount`, `planRemediationInjection`, `injected` (on student/teacher projection) all return 0 prior symbols from `build-graph search` — greenfield, no caller updates needed beyond the Implementer's own new module + projection updates. `studentVisualizationV1Schema` / `teacherVisualizationV1Schema` live at `packages/knowledge-space-practice/src/projections/schemas.ts:23-83` with no `activeMisconceptionCount` / `activeMisconceptionStudentCount` field — they are the target surface for the new field. `projectStudentVisualization` and `projectTeacherVisualization` live at `packages/knowledge-space-practice/src/projections/visualization.ts:115-189` and `:294-419` respectively — both currently take only the legacy `(nodes, edges, learnerState/classStats)` arg and ignore the new misconception arg.
+
+The single combined Red command (bounded, two filename filters, no watch, no full-suite smoke) chosen per the prompt's "single most targeted Red command" rule:
+
+```
+node_modules/.bin/vitest run \
+  src/__tests__/planner-remediation-injection.test.ts \
+  src/__tests__/projection-active-misconception-count.test.ts \
+  --root packages/knowledge-space-practice
+```
+
+#### Targeted Red results (single command, 2026-06-15, bounded — 1.55s wall, no watch, no full-suite smoke)
+
+| File | Tests | Result | Why it fails (right reason) |
+|------|-------|--------|-----------------------------|
+| `planner-remediation-injection.test.ts` | **0 ran (suite failed)** | `Cannot find module '../planner/injection'` from vite import-analysis | The planned `packages/knowledge-space-practice/src/planner/injection.ts` does not exist at HEAD. The 9 tests inside the file are gated on a module-resolution failure. This is an "implementation missing" Red, not a stale-durable Red. |
+| `projection-active-misconception-count.test.ts` | **8 failed / 2 passed (10 total)** | Runtime `expected undefined to be N` on every `viz.activeMisconceptionCount` / `viz.activeMisconceptionStudentCount` access | The projection functions ignore the new arg (current signature is `(nodes, edges, learnerState?)` and `(nodes, edges, classStats?)`), so the output is a valid existing-shape object with the new field absent. The 8 runtime failures are the right reason — the new field is missing. The 2 passes are the schema-parse tests, which are regression guards that pass at both Red and Green (the schema at HEAD doesn't require the new field, so the projection's existing-shape output parses fine; in Green the schema will require the new field, and the projection will emit it, and the parse will continue to pass). |
+| **Combined** | **8 failed / 2 passed (10 total) + 1 suite failed (9 untested)** | — | — |
+
+#### Red tests authored (currently failing as expected; committed atomically)
+
+- `packages/knowledge-space-practice/src/__tests__/planner-remediation-injection.test.ts` (4 describe blocks, **9 tests**) — live-behavior for FR4 (planner injection). Covers: empty-injected baseline (2 cases), prepending injection activities (4 cases: prepend, preserve-next-order, preserve-injected-order, empty-next), dedup policy (2 cases), purity (2 cases). Pure function with a same-shaped `{activityId, activityKind, label}` interface — domain-neutral, no IM3 / app imports.
+- `packages/knowledge-space-practice/src/__tests__/projection-active-misconception-count.test.ts` (4 describe blocks, **10 tests**) — live-behavior for FR5 (projection counts). Covers: `projectStudentVisualization` accepts `activeMisconceptionSlugs` arg and emits `activeMisconceptionCount` (4 cases), student-schema parse with the new field (1 case), `projectTeacherVisualization` accepts `perStudentActiveMisconceptions` arg and emits `activeMisconceptionStudentCount` (4 cases), teacher-schema parse with the new field (1 case).
+
+The `looseProject*` helpers in the projection test use the same `as unknown as` cast pattern as `packages/practice-core/src/__tests__/srs-rating-cap.test.ts:50-62` (the Phase 2 Red pattern, per the Phase 2 plan §"Failure-mode verification") to forward the not-yet-existing args and types to the planned Phase 4 signatures. The casts are removable in Green when the Implementer adds the new fields + args.
+
+#### Failure-mode verification (rules compliance)
+
+- ✅ Tests fail because **implementation is missing**, not because a durable record (e.g. `graph.db`, fixture cache) is stale. The 8 runtime failures are `expected undefined to be N` on `viz.activeMisconceptionCount` / `viz.activeMisconceptionStudentCount` (the projection functions emit valid existing-shape objects, so the field is genuinely absent). The planner-injection suite failure is `Cannot find module '../planner/injection'` from vite module-resolution — the planned `planner/injection.ts` does not exist on disk. No graph/fixture staleness involved.
+- ✅ The combined command is **bounded**: two filename filters on the same `--root packages/knowledge-space-practice`, no watch mode, no full-suite smoke. Total wall time: **1.55s**. Each test file is targeted; the command does not run the package's full suite (which is 67+ tests at HEAD).
+- ✅ No new "smoke" tests that could accidentally run the full suite or the real T6. The Phase 3 P4-owned `misconception-loop.smoke.test.ts` is unchanged and still green on its own pre-existing cause (the real `runRealT6Loop` shipped in Phase 3 Green, commit `d96e0099`); the Phase 3 `misconception-loop.fake.test.ts` / `misconception-loop-wiring.test.ts` are unchanged and still green. None of the new tests intercept any full-suite path.
+- ✅ Dirty worktree: only the [~] marker edits (this attempt's carry-over) and the two new test files are present. No source code changes. No pre-existing user work was modified.
+- ✅ `tsc --noEmit --project packages/knowledge-space-practice/tsconfig.json` clean except for the 1 expected TS2307 ("Cannot find module '../planner/injection'") on the planner-injection test file — this is the "missing module" Red signal. All TS2554 (extra arg) and TS2339 (missing field) errors in the projection test are suppressed by the `loose` cast helpers, so the package is TS-clean apart from the one expected error.
+- ✅ Both new test files import only from `vitest`, `@math-platform/knowledge-space-core`, and the package's own `../projections/visualization` / `../projections/schemas` — no `apps/` imports, no `convex/_generated/` imports, no `math-content` imports. Boundary-clean per `test-strategy.md` §4.
+
+#### Pre-existing test failures (NOT introduced by this commit, NOT Phase 4-owned)
+
+- `apps/integrated-math-3/__tests__/lib/practice/misconception-loop.smoke.test.ts` — was red at HEAD on missing `runRealT6Loop`; flipped green in Phase 3 commit `d96e0099`. Status at this commit: still green. No regression.
+
+Phase 4 Red is **complete and intact**. Handoff to JR (Green): implement the planned surface per the §"Red tests authored" block above. The two new test files (`planner-remediation-injection.test.ts`, `projection-active-misconception-count.test.ts`) and the 8 runtime Red assertions must flip green after the Green commit, AND the existing 16 misconception-lifecycle tests + 3 public-api + 5 schema + 67 knowledge-space-practice full suite + 540 IM3 full suite + all 16 Phase 3 + 24+3+3 Phase 2 + 14+16+6 Phase 1 tests must remain green.
 
 ## Phase 5 — Docs & Doctor
 
