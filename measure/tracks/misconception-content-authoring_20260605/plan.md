@@ -52,9 +52,48 @@ Verification: boundary lints + integrity check + `tsc --noEmit`.
 
 ## Phase 2 — Author Prioritized Content
 
-- [ ] Task: Author source-grounded misconceptions for the prioritized skill set (IM3 M1 + common algebra)
-- [ ] Task: Author/map remediation activities; link via remediated_by edges; integrity check passes
+- [~] Task: Author source-grounded misconceptions for the prioritized skill set (IM3 M1 + common algebra)
+- [~] Task: Author/map remediation activities; link via remediated_by edges; integrity check passes
 - [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
+
+### Phase 2 — Red Phase Result (2026-06-15)
+
+- Source under test (did not exist at HEAD):
+  - `apps/integrated-math-3/lib/practice/misconception-remediations.ts`
+    exporting `IM3_MISCONCEPTION_REMEDIATIONS`,
+    `getRemediationsForMisconception(slug)`, `checkMisconceptionContentIntegrity(args?)`,
+    and the supporting `RemediationActivityKind` / `RemediationActivityRef` /
+    `IntegrityResult` / `IntegrityError` types.
+- Tests added:
+  - `apps/integrated-math-3/__tests__/lib/practice/misconception-content-integrity.test.ts`
+    (document/artifact contract test per test-strategy.md §"Per-Phase Test
+    Approach › Phase 2"). Covers (a) detection-mapping coverage for the
+    prioritized skill set, (b) every taxonomy tag has ≥1 `remediated_by`
+    edge, (c) no orphan remediation entries, (d) all `affectedSkills`
+    resolve to known IM3 M1 skill IDs; plus edge cases for empty registry
+    (vacuously ok), unknown affected-skill IDs, unknown remediation-activity
+    IDs, and circular `remediated_by` (activity ID equals parent slug).
+  - `apps/integrated-math-3/__tests__/lib/practice/misconception-content.fixtures.ts`
+    extended with `REMEDIATION_ACTIVITY_KINDS`, `makeMisconceptionNode`,
+    `makeRemediationActivity`, and the supporting fixture types — used by
+    the integrity test to construct synthetic negative-path registries
+    without coupling to the live source types.
+- Bounded Red command (exact, run from the IM3 app dir to pick up the `@/`
+  alias defined in `apps/integrated-math-3/vitest.config.ts`):
+  `apps/integrated-math-3$ PATH="/opt/codex-desktop/resources/node-runtime/bin:$PATH" CI=true ../../node_modules/.bin/vitest run __tests__/lib/practice/misconception-content-integrity.test.ts`
+- Observed failure: **1 test file failed, 0 tests collected** — the suite
+  errored at module-resolution time:
+  `Error: Failed to resolve import "@/lib/practice/misconception-remediations" from "__tests__/lib/practice/misconception-content-integrity.test.ts". Does the file exist?`
+  This is the expected Red signal (the Green phase must ship the
+  remediation registry + integrity-check function before any of the
+  assertions can be exercised).
+- Live-behavior pairing (per the prompt's artifact-assertion rule): the
+  Phase 2 deliverable IS the authored content artifact + integrity check.
+  The live runtime gate (real T6 consumption of authored content) is
+  owned by Phase 3 — the `misconception-loop-wiring.test.ts` and the
+  `misconception-loop.smoke.test.ts` files that the Phase 3 Red role
+  will add. See test-strategy.md §"Per-Phase Test Approach › Phase 3".
+- See commit `test(misconception): add Phase 2 Red tests for IM3 misconception-content integrity check`.
 
 ## Phase 3 — Loop Wiring & Verification
 
