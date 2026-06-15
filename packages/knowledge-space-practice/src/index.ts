@@ -23,6 +23,19 @@ export type {
 } from './blueprints';
 
 export {
+  misconceptionSeveritySchema,
+  misconceptionLifecycleStatusSchema,
+  studentMisconceptionStateSchema,
+  getMisconceptionSeverity,
+} from './misconception-loop';
+
+export type {
+  MisconceptionSeverity,
+  MisconceptionLifecycleStatus,
+  StudentMisconceptionState,
+} from './misconception-loop';
+
+export {
   variantParameterSchema,
   gradingRuleSchema,
   workedStepSchema,

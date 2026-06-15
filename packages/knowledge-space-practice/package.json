@@ -9,6 +9,7 @@
     ".": "./src/index.ts",
     "./types": "./src/types.ts",
     "./schemas": "./src/schemas.ts",
+    "./misconception-loop": "./src/misconception-loop.ts",
     "./blueprints": "./src/blueprints/index.ts",
     "./projections": "./src/projections/index.ts"
   },
