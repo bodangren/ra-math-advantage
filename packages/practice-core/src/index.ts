@@ -62,6 +62,8 @@ export {
   type SrsRating,
   type SrsRatingInput,
   type SrsRatingResult,
+  type SeverityByTag,
+  type ComputeBaseRatingOptions,
   computeBaseRating,
   applyTimingToRating,
   mapPracticeToSrsRating,

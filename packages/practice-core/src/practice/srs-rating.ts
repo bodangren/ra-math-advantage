@@ -68,14 +68,35 @@ export type SrsRatingResult = {
 };
 
 /**
+ * Per-tag severity map for misconception-aware rating.
+ *
+ * Tags absent from the map default to `'minor'` (cap at Hard).
+ * An empty map does NOT regress to the v1 "Again for any tag" behavior.
+ */
+export type SeverityByTag = Readonly<Record<string, 'minor' | 'severe'>>;
+
+/**
+ * Options for {@link computeBaseRating}.
+ */
+export type ComputeBaseRatingOptions = {
+  /** Per-tag severity lookup. Absent tags default to `'minor'`. */
+  severityByTag?: SeverityByTag;
+};
+
+/**
  * Compute a base SRS rating from practice submission parts.
  *
  * Rules (in order of priority):
  * 1. Any incorrect part → Again
- * 2. Any misconception tag → Again
+ * 2. Misconception severity (when `options.severityByTag` is provided):
+ *    a. Any severe tag → Again
+ *    b. Any minor/unknown tag → Hard (cap)
  * 3. Any hints or reveal steps used → Hard
  * 4. All correct with no aids → Good
  * 5. No correctness data → Again (conservative default)
+ *
+ * Backward compatibility: when `options` is omitted entirely, the v1 behavior
+ * is preserved (any misconception tag → Again).
  *
  * @example
  * ```ts
@@ -85,13 +106,18 @@ export type SrsRatingResult = {
  * // base === 'Hard' because hints were used
  * ```
  */
-export function computeBaseRating(parts: SrsRatingInput['parts']): SrsRating {
+export function computeBaseRating(
+  parts: SrsRatingInput['parts'],
+  options?: ComputeBaseRatingOptions,
+): SrsRating {
   if (parts.length === 0) {
     return 'Again';
   }
 
   let allCorrect = true;
   let hasAid = false;
+  let hasSevere = false;
+  let hasMinor = false;
 
   for (const part of parts) {
     if (part.isCorrect === false) {
@@ -99,7 +125,20 @@ export function computeBaseRating(parts: SrsRatingInput['parts']): SrsRating {
     }
 
     if (part.misconceptionTags && part.misconceptionTags.length > 0) {
-      return 'Again';
+      if (options) {
+        // v2 severity-aware path
+        for (const tag of part.misconceptionTags) {
+          const severity = options.severityByTag?.[tag] ?? 'minor';
+          if (severity === 'severe') {
+            hasSevere = true;
+          } else {
+            hasMinor = true;
+          }
+        }
+      } else {
+        // v1 backward-compatible path: any tag → Again
+        return 'Again';
+      }
     }
 
     if ((part.hintsUsed ?? 0) > 0 || (part.revealStepsSeen ?? 0) > 0) {
@@ -113,6 +152,15 @@ export function computeBaseRating(parts: SrsRatingInput['parts']): SrsRating {
 
   if (!allCorrect) {
     return 'Again';
+  }
+
+  // v2 precedence: severe > minor (cap) > hints > Good
+  if (hasSevere) {
+    return 'Again';
+  }
+
+  if (hasMinor) {
+    return 'Hard';
   }
 
   if (hasAid) {
