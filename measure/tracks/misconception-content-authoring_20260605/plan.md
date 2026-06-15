@@ -129,7 +129,59 @@ Verification: boundary lints + integrity check + `tsc --noEmit`.
 
 ## Phase 3 — Loop Wiring & Verification
 
-- [ ] Task: Verify the T6 loop fires on seeded wrong-answer patterns (detection → remediation → resolution) (TDD)
-- [ ] Task: Author the authoring/expansion guide
+- [~] Task: Verify the T6 loop fires on seeded wrong-answer patterns (detection → remediation → resolution) (TDD)
+- [~] Task: Author the authoring/expansion guide
 - [ ] Task: Final verification — boundary lints, tsc --noEmit, CI=true npm run test
 - [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
+
+### Phase 3 — Red Phase Result (2026-06-15)
+
+- Source under test (does not exist at HEAD; will be shipped by Green phase):
+  - `apps/integrated-math-3/lib/practice/misconception-loop-wiring.ts` —
+    exports `runIm3MisconceptionLoop` (or a similarly-named orchestrator) that
+    consumes a `PracticeSubmissionEnvelope` plus the per-student misconception
+    state and returns `{ detected, active, resolved, injected }`.
+  - The Phase 3 authoring guide markdown (location TBD by Green phase;
+    tests assert against a known relative path under
+    `apps/integrated-math-3/`).
+  - The `misconception-loop_20260521` track's T6 exports
+    (intentionally red — see `test-strategy.md` §"Intentionally-Red Test
+    Files"; goes green when the dependency track ships its
+    `remediated_by` edge type, lifecycle engine, and rating-cap
+    reconciliation).
+- Tests added (this commit, Red phase):
+  - `apps/integrated-math-3/__tests__/lib/practice/misconception-loop.fake.ts` —
+    fake T6 harness (the prompt's "fake mode intercepts the exact command
+    path" rule). Exports a `fakeT6Loop` function that the wiring test
+    injects via `vi.mock` to simulate the not-yet-shipped T6 mechanism.
+    Includes a direct unit test (`misconception-loop.fake.test.ts`-style
+    assertions) that proves the fake intercepts the wiring module's
+    call site so the wiring tests cannot accidentally call the real
+    (not-yet-existing) T6.
+  - `apps/integrated-math-3/__tests__/lib/practice/misconception-loop-wiring.test.ts` —
+    integration test using the fake harness. Asserts (a) detection
+    fires on the seeded misconception tag, (b) the loop transitions
+    active→resolved after N clean attempts, (c) the remediation
+    activity is injected. Source module under test does not exist at
+    HEAD → fails at module-resolution time.
+  - `apps/integrated-math-3/__tests__/lib/practice/misconception-loop.smoke.test.ts` —
+    bounded non-fake smoke test. Imports the real T6 exports from
+    `misconception-loop_20260521` (planned location:
+    `@math-platform/knowledge-space-practice/misconception-loop`,
+    import path may be updated by Green phase once the dep track
+    ships). Asserts only that the export exists, has the expected
+    `function` type, and that a minimal valid call does not throw.
+    Does NOT assert behavioral correctness.
+  - `apps/integrated-math-3/__tests__/lib/practice/misconception-authoring-guide.test.ts` —
+    document contract test. Verifies the authoring guide markdown
+    file exists, has all four required sections
+    (Taxonomy Schema, Detection Mapping, Remediation Activity
+    Authoring, Expansion Process), and that every referenced file
+    path inside the guide resolves to a real path on disk.
+  - `apps/integrated-math-3/__tests__/lib/practice/misconception-content.fixtures.ts` —
+    extended with `makeAlgebraicSubmission(parts)` and
+    `MISCONCEPTION_LOOP_RESOLUTION_THRESHOLD` per
+    `test-strategy.md` §"Shared Fixtures & Mocks".
+- Bounded Red command (per test-strategy.md §"Live-Proof Plan › Phase 3"):
+  `apps/integrated-math-3$ PATH="/opt/codex-desktop/resources/node-runtime/bin:$PATH" CI=true ../../node_modules/.bin/vitest run __tests__/lib/practice/misconception-loop-wiring.test.ts __tests__/lib/practice/misconception-loop.smoke.test.ts __tests__/lib/practice/misconception-authoring-guide.test.ts __tests__/lib/practice/misconception-loop.fake.test.ts`
+- See commit `test(misconception): add Phase 3 Red tests for T6 loop wiring, smoke, and authoring-guide contract`.

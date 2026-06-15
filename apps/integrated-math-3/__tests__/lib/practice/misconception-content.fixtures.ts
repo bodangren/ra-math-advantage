@@ -1,12 +1,19 @@
 /**
  * Shared fixtures for the IM3 misconception content authoring track.
  *
- * Phase 1 (Taxonomy Schema & Detection Mapping) and Phase 2 (Author Prioritized
- * Content) both pull from this file. Keep the data source-grounded (research /
- * curriculum), not invented at the keyboard.
+ * Phase 1 (Taxonomy Schema & Detection Mapping), Phase 2 (Author Prioritized
+ * Content), and Phase 3 (Loop Wiring & Verification) all pull from this file.
+ * Keep the data source-grounded (research / curriculum), not invented at the
+ * keyboard.
  */
 
 import type { DistractorType } from '@math-platform/math-content/algebraic';
+import {
+  practiceSubmissionEnvelopeSchema,
+  type PracticeSubmissionEnvelope,
+  type PracticeSubmissionPart,
+} from '@math-platform/practice-core/contract';
+import { toConvexActivityId } from '@math-platform/practice-core';
 
 /**
  * Prioritized IM3 Module 1 + common-algebra skill set the misconception
@@ -145,3 +152,69 @@ export function makeRemediationActivity(
     ...overrides,
   };
 }
+
+/**
+ * Default activityId used by `makeAlgebraicSubmission` when none is supplied.
+ * Source: a real worked-example activity in the IM3 M1 curriculum.
+ */
+export const DEFAULT_ALGEBRAIC_ACTIVITY_ID = 'math.im3.example.1.1.001';
+
+/**
+ * Build a `PracticeSubmissionEnvelope` (validated against
+ * `practiceSubmissionEnvelopeSchema`) seeded with the given misconception tags
+ * and per-part answer data. The factory is the single seam for the
+ * Phase 3 loop-wiring tests to drive seeded wrong-answer patterns into the
+ * T6 mechanism (real or fake) — see `test-strategy.md` §"Shared Fixtures &
+ * Mocks".
+ *
+ * Each `partsSpec` entry produces a `PracticeSubmissionPart` with a
+ * unique `partId` and the requested `misconceptionTags`. Pass an empty
+ * `misconceptionTags` array for a clean (correct) attempt; pass tags
+ * matching the authored taxonomy to drive a wrong-answer pattern.
+ */
+export interface AlgebraicSubmissionPartSpec {
+  partId: string;
+  isCorrect: boolean;
+  misconceptionTags?: readonly string[];
+  hintsUsed?: number;
+  revealStepsSeen?: number;
+}
+
+export function makeAlgebraicSubmission(
+  partsSpec: readonly AlgebraicSubmissionPartSpec[],
+  overrides: {
+    activityId?: string;
+    attemptNumber?: number;
+  } = {},
+): PracticeSubmissionEnvelope {
+  const submittedAt = new Date('2026-06-15T12:00:00.000Z').toISOString();
+  const parts: PracticeSubmissionPart[] = partsSpec.map((spec) => ({
+    partId: spec.partId,
+    rawAnswer: spec.isCorrect ? 'correct' : 'incorrect',
+    isCorrect: spec.isCorrect,
+    misconceptionTags: spec.misconceptionTags
+      ? [...spec.misconceptionTags]
+      : [],
+    hintsUsed: spec.hintsUsed ?? 0,
+    revealStepsSeen: spec.revealStepsSeen ?? 0,
+  }));
+  return practiceSubmissionEnvelopeSchema.parse({
+    contractVersion: 'practice.v1',
+    activityId: toConvexActivityId(overrides.activityId ?? DEFAULT_ALGEBRAIC_ACTIVITY_ID),
+    mode: 'independent_practice',
+    status: 'submitted',
+    attemptNumber: overrides.attemptNumber ?? 1,
+    submittedAt,
+    answers: Object.fromEntries(
+      partsSpec.map((spec) => [spec.partId, spec.isCorrect ? 'correct' : 'incorrect']),
+    ),
+    parts,
+  });
+}
+
+/**
+ * N consecutive clean attempts on a misconception's affected skills required
+ * to transition the misconception from `active` to `resolved`. Matches the
+ * kst-srs.v2 §9.3 lifecycle rule.
+ */
+export const MISCONCEPTION_LOOP_RESOLUTION_THRESHOLD = 3 as const;
