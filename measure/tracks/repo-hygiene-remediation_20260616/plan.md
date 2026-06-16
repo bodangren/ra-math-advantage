@@ -11,11 +11,11 @@
 
 ## Phase 2: Resolve Remaining Stashes
 
-- [ ] Task 2.1: Evaluate each stash
-  - [ ] stash@{0}: "unrelated: efficacy-core A/B testing" — create WIP branch or drop
-  - [ ] stash@{1-4}: "learning-efficacy-analytics_20260605" — create WIP branch
-  - [ ] stash@{5}: "kst-lesser-holes: park spec-compliance Phase 3 dirty paths" — drop (superseded by spec-compliance track)
-  - [ ] Verify `git stash list` returns empty
+- [x] Task 2.1: Evaluate each stash
+  - [x] stash@{0}: "unrelated: efficacy-core A/B testing" — create WIP branch or drop
+  - [x] stash@{1-4}: "learning-efficacy-analytics_20260605" — create WIP branch
+  - [x] stash@{5}: "kst-lesser-holes: park spec-compliance Phase 3 dirty paths" — drop (superseded by spec-compliance track)
+  - [x] Verify `git stash list` returns empty
 
 ## Phase 3: Fix BM2 Pre-existing Test Reds
 
