@@ -25,7 +25,7 @@
     {
       "id": "math.im3.example.4.1.001",
       "kind": "worked_example",
-      "title": "Example 1: Add and Subtract Functions; Multiply and Divide Functions",
+      "title": "Example 1: Add, Subtract, Multiply, and Divide Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-1, Example 1)"
@@ -43,7 +43,7 @@
     {
       "id": "math.im3.example.4.1.002",
       "kind": "worked_example",
-      "title": "Example 2: Add and Subtract Functions; Multiply and Divide Functions",
+      "title": "Example 2: Composition of Functions with Ordered Pairs",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-1, Example 2)"
@@ -61,7 +61,7 @@
     {
       "id": "math.im3.example.4.2.003",
       "kind": "worked_example",
-      "title": "Example 1: Find an Inverse Relation; Inverse Functions; Inverses with Restricted Domains; Interpret Inverse Functions",
+      "title": "Example 1: Find the Inverse of a Relation",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-2, Example 1)"
@@ -79,7 +79,7 @@
     {
       "id": "math.im3.example.4.2.004",
       "kind": "worked_example",
-      "title": "Example 2: Find an Inverse Relation; Inverse Functions; Inverses with Restricted Domains; Interpret Inverse Functions",
+      "title": "Example 2: Find the Inverse of a Linear Function",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-2, Example 2)"
@@ -97,7 +97,7 @@
     {
       "id": "math.im3.example.4.2.005",
       "kind": "worked_example",
-      "title": "Example 3: Find an Inverse Relation; Inverse Functions; Inverses with Restricted Domains; Interpret Inverse Functions",
+      "title": "Example 3: Find the Inverse of a Quadratic Function (Restricted Domain)",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-2, Example 3)"
@@ -115,7 +115,7 @@
     {
       "id": "math.im3.example.4.2.006",
       "kind": "worked_example",
-      "title": "Example 4: Find an Inverse Relation; Inverse Functions; Inverses with Restricted Domains; Interpret Inverse Functions",
+      "title": "Example 4: Real-World Inverse Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-2, Example 4)"
@@ -133,7 +133,7 @@
     {
       "id": "math.im3.example.4.2.007",
       "kind": "worked_example",
-      "title": "Example 5: Use Compositions to Verify Inverses; Verify Inverse Functions",
+      "title": "Example 5: Verify Inverse Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-2, Example 5)"
@@ -151,7 +151,7 @@
     {
       "id": "math.im3.example.4.2.008",
       "kind": "worked_example",
-      "title": "Example 6: Use Compositions to Verify Inverses; Verify Inverse Functions",
+      "title": "Example 6: Inverses of Geometric Formulas",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-2, Example 6)"
@@ -169,7 +169,7 @@
     {
       "id": "math.im3.example.4.3.009",
       "kind": "worked_example",
-      "title": "Example 1: Find Roots; Simplify Using Absolute Value; Radical and Exponential Forms",
+      "title": "Example 1: Simplify Square Roots",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-3, Example 1)"
@@ -187,7 +187,7 @@
     {
       "id": "math.im3.example.4.3.010",
       "kind": "worked_example",
-      "title": "Example 2: Find Roots; Simplify Using Absolute Value; Radical and Exponential Forms",
+      "title": "Example 2: Simplify Higher Roots",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-3, Example 2)"
@@ -205,7 +205,7 @@
     {
       "id": "math.im3.example.4.3.011",
       "kind": "worked_example",
-      "title": "Example 3: Find Roots; Simplify Using Absolute Value; Radical and Exponential Forms",
+      "title": "Example 3: Convert Between Radical and Exponential Forms",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-3, Example 3)"
@@ -223,7 +223,7 @@
     {
       "id": "math.im3.example.4.3.012",
       "kind": "worked_example",
-      "title": "Example 4: Use Rational Exponents; Evaluate Expressions with Rational Exponents; Simplify Expressions with Rational Exponents",
+      "title": "Example 4: Real-World Applications",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-3, Example 4)"
@@ -241,7 +241,7 @@
     {
       "id": "math.im3.example.4.3.013",
       "kind": "worked_example",
-      "title": "Example 5: Use Rational Exponents; Evaluate Expressions with Rational Exponents; Simplify Expressions with Rational Exponents",
+      "title": "Example 5: Evaluate Expressions with Rational Exponents",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-3, Example 5)"
@@ -259,7 +259,7 @@
     {
       "id": "math.im3.example.4.3.014",
       "kind": "worked_example",
-      "title": "Example 6: Use Rational Exponents; Evaluate Expressions with Rational Exponents; Simplify Expressions with Rational Exponents",
+      "title": "Example 6: Simplify Products and Powers",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-3, Example 6)"
@@ -277,7 +277,7 @@
     {
       "id": "math.im3.example.4.4.015",
       "kind": "worked_example",
-      "title": "Example 1: Identify Domain and Range Algebraically; Graph a Transformed Square Root Function; Analyze the Graph of a Square Root Function; Graph a Square Root Inequality",
+      "title": "Example 1: Identify Domain and Range",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-4, Example 1)"
@@ -295,7 +295,7 @@
     {
       "id": "math.im3.example.4.4.016",
       "kind": "worked_example",
-      "title": "Example 2: Identify Domain and Range Algebraically; Graph a Transformed Square Root Function; Analyze the Graph of a Square Root Function; Graph a Square Root Inequality",
+      "title": "Example 2: Graph and Describe Transformations",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-4, Example 2)"
@@ -313,7 +313,7 @@
     {
       "id": "math.im3.example.4.4.017",
       "kind": "worked_example",
-      "title": "Example 3: Identify Domain and Range Algebraically; Graph a Transformed Square Root Function; Analyze the Graph of a Square Root Function; Graph a Square Root Inequality",
+      "title": "Example 3: Reflexes Application",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-4, Example 3)"
@@ -331,7 +331,7 @@
     {
       "id": "math.im3.example.4.4.018",
       "kind": "worked_example",
-      "title": "Example 4: Identify Domain and Range Algebraically; Graph a Transformed Square Root Function; Analyze the Graph of a Square Root Function; Graph a Square Root Inequality",
+      "title": "Example 4: Graph Radical Inequalities",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-4, Example 4)"
@@ -349,7 +349,7 @@
     {
       "id": "math.im3.example.4.4.019",
       "kind": "worked_example",
-      "title": "Example 5: Graph Cube Root Functions; Compare Radical Functions; Write a Radical Function",
+      "title": "Example 5: Cube Root Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-4, Example 5)"
@@ -367,7 +367,7 @@
     {
       "id": "math.im3.example.4.4.020",
       "kind": "worked_example",
-      "title": "Example 6: Graph Cube Root Functions; Compare Radical Functions; Write a Radical Function",
+      "title": "Example 6: Compare Functions to Graphs",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-4, Example 6)"
@@ -385,7 +385,7 @@
     {
       "id": "math.im3.example.4.4.021",
       "kind": "worked_example",
-      "title": "Example 7: Graph Cube Root Functions; Compare Radical Functions; Write a Radical Function",
+      "title": "Example 7: Write Functions from Graphs",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-4, Example 7)"
@@ -403,7 +403,7 @@
     {
       "id": "math.im3.example.4.5.022",
       "kind": "worked_example",
-      "title": "Example 1: Simplify Expressions with the Product Property; Simplify Expressions with the Quotient Property",
+      "title": "Example 1: Simplify Products of Radicals",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-5, Example 1)"
@@ -421,7 +421,7 @@
     {
       "id": "math.im3.example.4.5.023",
       "kind": "worked_example",
-      "title": "Example 2: Simplify Expressions with the Product Property; Simplify Expressions with the Quotient Property",
+      "title": "Example 2: Simplify Quotients with Radicals",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-5, Example 2)"
@@ -439,7 +439,7 @@
     {
       "id": "math.im3.example.4.5.024",
       "kind": "worked_example",
-      "title": "Example 3: Add and Subtract Radicals; Multiply Radicals; Use the Distributive Property to Multiply Radicals",
+      "title": "Example 3: Add and Subtract Radical Expressions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-5, Example 3)"
@@ -457,7 +457,7 @@
     {
       "id": "math.im3.example.4.5.025",
       "kind": "worked_example",
-      "title": "Example 4: Add and Subtract Radicals; Multiply Radicals; Use the Distributive Property to Multiply Radicals",
+      "title": "Example 4: Multiply Radical Expressions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-5, Example 4)"
@@ -475,7 +475,7 @@
     {
       "id": "math.im3.example.4.5.026",
       "kind": "worked_example",
-      "title": "Example 5: Add and Subtract Radicals; Multiply Radicals; Use the Distributive Property to Multiply Radicals",
+      "title": "Example 5: Real-World Radical Expressions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-5, Example 5)"
@@ -493,7 +493,7 @@
     {
       "id": "math.im3.example.4.5.027",
       "kind": "worked_example",
-      "title": "Example 6: Rationalize the Denominator; Use Conjugates to Rationalize the Denominator",
+      "title": "Example 6: Divide and Rationalize",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-5, Example 6)"
@@ -511,7 +511,7 @@
     {
       "id": "math.im3.example.4.5.028",
       "kind": "worked_example",
-      "title": "Example 7: Rationalize the Denominator; Use Conjugates to Rationalize the Denominator",
+      "title": "Example 7: More Complex Rationalization",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-5, Example 7)"
@@ -529,7 +529,7 @@
     {
       "id": "math.im3.example.4.6.029",
       "kind": "worked_example",
-      "title": "Example 1: Solve a Square Root Equation; Solve a Cube Root Equation; Identify Extraneous Solutions; Solve a Radical Equation",
+      "title": "Example 1: Solve Square Root Equations",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-6, Example 1)"
@@ -547,7 +547,7 @@
     {
       "id": "math.im3.example.4.6.030",
       "kind": "worked_example",
-      "title": "Example 2: Solve a Square Root Equation; Solve a Cube Root Equation; Identify Extraneous Solutions; Solve a Radical Equation",
+      "title": "Example 2: Solve Cube Root Equations",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-6, Example 2)"
@@ -565,7 +565,7 @@
     {
       "id": "math.im3.example.4.6.031",
       "kind": "worked_example",
-      "title": "Example 3: Solve a Square Root Equation; Solve a Cube Root Equation; Identify Extraneous Solutions; Solve a Radical Equation",
+      "title": "Example 3: Equations with Multiple Radicals",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-6, Example 3)"
@@ -583,7 +583,7 @@
     {
       "id": "math.im3.example.4.6.032",
       "kind": "worked_example",
-      "title": "Example 4: Solve a Square Root Equation; Solve a Cube Root Equation; Identify Extraneous Solutions; Solve a Radical Equation",
+      "title": "Example 4: Equations with Rational Exponents",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-6, Example 4)"
@@ -601,7 +601,7 @@
     {
       "id": "math.im3.example.4.6.033",
       "kind": "worked_example",
-      "title": "Example 5: Solve a Radical Equation by Graphing; Solve a Radical Equation by Using a System; Confirm Solutions by Using Technology",
+      "title": "Example 5: Use a Graphing Calculator",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-6, Example 5)"
@@ -619,7 +619,7 @@
     {
       "id": "math.im3.example.4.6.034",
       "kind": "worked_example",
-      "title": "Example 6: Solve a Radical Equation by Graphing; Solve a Radical Equation by Using a System; Confirm Solutions by Using Technology",
+      "title": "Example 6: Use a System of Equations",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-6, Example 6)"
@@ -637,7 +637,7 @@
     {
       "id": "math.im3.example.4.6.035",
       "kind": "worked_example",
-      "title": "Example 7: Solve a Radical Equation by Graphing; Solve a Radical Equation by Using a System; Confirm Solutions by Using Technology",
+      "title": "Example 7: Geometry Applications",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-6, Example 7)"

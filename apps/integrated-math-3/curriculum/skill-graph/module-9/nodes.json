@@ -25,7 +25,7 @@
     {
       "id": "math.im3.example.9.1.001",
       "kind": "worked_example",
-      "title": "Example 1: Draw an Angle in Standard Position; Draw an Angle with More Than One Rotation; Identify Coterminal Angles",
+      "title": "Example 1: Draw Angles in Standard Position",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-1, Example 1)"
@@ -37,13 +37,13 @@
         "lesson": "1",
         "exampleNumber": 1,
         "sourceLesson": "9-1",
-        "rawText": "9-1, Examples 1-3 \u2014 Draw an Angle in Standard Position; Draw an Angle with More Than One Rotation; Identify Coterminal Angles"
+        "rawText": "9-1, Examples 1-3 — Draw an Angle in Standard Position; Draw an Angle with More Than One Rotation; Identify Coterminal Angles"
       }
     },
     {
       "id": "math.im3.example.9.1.002",
       "kind": "worked_example",
-      "title": "Example 2: Draw an Angle in Standard Position; Draw an Angle with More Than One Rotation; Identify Coterminal Angles",
+      "title": "Example 2: Find Coterminal Angles",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-1, Example 2)"
@@ -55,13 +55,13 @@
         "lesson": "1",
         "exampleNumber": 2,
         "sourceLesson": "9-1",
-        "rawText": "9-1, Examples 1-3 \u2014 Draw an Angle in Standard Position; Draw an Angle with More Than One Rotation; Identify Coterminal Angles"
+        "rawText": "9-1, Examples 1-3 — Draw an Angle in Standard Position; Draw an Angle with More Than One Rotation; Identify Coterminal Angles"
       }
     },
     {
       "id": "math.im3.example.9.1.003",
       "kind": "worked_example",
-      "title": "Example 3: Draw an Angle in Standard Position; Draw an Angle with More Than One Rotation; Identify Coterminal Angles",
+      "title": "Example 3: Convert Between Degrees and Radians",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-1, Example 3)"
@@ -73,13 +73,13 @@
         "lesson": "1",
         "exampleNumber": 3,
         "sourceLesson": "9-1",
-        "rawText": "9-1, Examples 1-3 \u2014 Draw an Angle in Standard Position; Draw an Angle with More Than One Rotation; Identify Coterminal Angles"
+        "rawText": "9-1, Examples 1-3 — Draw an Angle in Standard Position; Draw an Angle with More Than One Rotation; Identify Coterminal Angles"
       }
     },
     {
       "id": "math.im3.example.9.1.004",
       "kind": "worked_example",
-      "title": "Example 4: Convert Degrees to Radians; Convert Radians to Degrees; Find Arc Length",
+      "title": "Example 4: Arc Length Problems",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-1, Example 4)"
@@ -91,7 +91,7 @@
         "lesson": "1",
         "exampleNumber": 4,
         "sourceLesson": "9-1",
-        "rawText": "9-1, Examples 4-6 \u2014 Convert Degrees to Radians; Convert Radians to Degrees; Find Arc Length"
+        "rawText": "9-1, Examples 4-6 — Convert Degrees to Radians; Convert Radians to Degrees; Find Arc Length"
       }
     },
     {
@@ -109,7 +109,7 @@
         "lesson": "1",
         "exampleNumber": 5,
         "sourceLesson": "9-1",
-        "rawText": "9-1, Examples 4-6 \u2014 Convert Degrees to Radians; Convert Radians to Degrees; Find Arc Length"
+        "rawText": "9-1, Examples 4-6 — Convert Degrees to Radians; Convert Radians to Degrees; Find Arc Length"
       }
     },
     {
@@ -127,13 +127,13 @@
         "lesson": "1",
         "exampleNumber": 6,
         "sourceLesson": "9-1",
-        "rawText": "9-1, Examples 4-6 \u2014 Convert Degrees to Radians; Convert Radians to Degrees; Find Arc Length"
+        "rawText": "9-1, Examples 4-6 — Convert Degrees to Radians; Convert Radians to Degrees; Find Arc Length"
       }
     },
     {
       "id": "math.im3.example.9.2.007",
       "kind": "worked_example",
-      "title": "Example 1: Evaluate Trigonometric Functions; Find Trigonometric Ratios",
+      "title": "Example 1: Find Trigonometric Values from Points on the Terminal Side",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-2, Example 1)"
@@ -145,13 +145,13 @@
         "lesson": "2",
         "exampleNumber": 1,
         "sourceLesson": "9-2",
-        "rawText": "9-2, Examples 1-2 \u2014 Evaluate Trigonometric Functions; Find Trigonometric Ratios"
+        "rawText": "9-2, Examples 1-2 — Evaluate Trigonometric Functions; Find Trigonometric Ratios"
       }
     },
     {
       "id": "math.im3.example.9.2.008",
       "kind": "worked_example",
-      "title": "Example 2: Evaluate Trigonometric Functions; Find Trigonometric Ratios",
+      "title": "Example 2: Find Values Given Another Trigonometric Function",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-2, Example 2)"
@@ -163,13 +163,13 @@
         "lesson": "2",
         "exampleNumber": 2,
         "sourceLesson": "9-2",
-        "rawText": "9-2, Examples 1-2 \u2014 Evaluate Trigonometric Functions; Find Trigonometric Ratios"
+        "rawText": "9-2, Examples 1-2 — Evaluate Trigonometric Functions; Find Trigonometric Ratios"
       }
     },
     {
       "id": "math.im3.example.9.2.009",
       "kind": "worked_example",
-      "title": "Example 3: Evaluate Trigonometric Functions Given a Point; Evaluate Trigonometric Functions of Quadrantal Angles",
+      "title": "Example 3: Evaluate Trigonometric Functions Using Reference Angles",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-2, Example 3)"
@@ -181,13 +181,13 @@
         "lesson": "2",
         "exampleNumber": 3,
         "sourceLesson": "9-2",
-        "rawText": "9-2, Examples 3-4 \u2014 Evaluate Trigonometric Functions Given a Point; Evaluate Trigonometric Functions of Quadrantal Angles"
+        "rawText": "9-2, Examples 3-4 — Evaluate Trigonometric Functions Given a Point; Evaluate Trigonometric Functions of Quadrantal Angles"
       }
     },
     {
       "id": "math.im3.example.9.2.010",
       "kind": "worked_example",
-      "title": "Example 4: Evaluate Trigonometric Functions Given a Point; Evaluate Trigonometric Functions of Quadrantal Angles",
+      "title": "Example 4: Exact Values at Special Angles",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-2, Example 4)"
@@ -199,13 +199,13 @@
         "lesson": "2",
         "exampleNumber": 4,
         "sourceLesson": "9-2",
-        "rawText": "9-2, Examples 3-4 \u2014 Evaluate Trigonometric Functions Given a Point; Evaluate Trigonometric Functions of Quadrantal Angles"
+        "rawText": "9-2, Examples 3-4 — Evaluate Trigonometric Functions Given a Point; Evaluate Trigonometric Functions of Quadrantal Angles"
       }
     },
     {
       "id": "math.im3.example.9.2.011",
       "kind": "worked_example",
-      "title": "Example 5: Find Reference Angles; Use a Reference Angle to Find a Trigonometric Value; Use Trigonometric Functions",
+      "title": "Example 5: Real-World Trigonometry Applications",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-2, Example 5)"
@@ -217,7 +217,7 @@
         "lesson": "2",
         "exampleNumber": 5,
         "sourceLesson": "9-2",
-        "rawText": "9-2, Examples 5-7 \u2014 Find Reference Angles; Use a Reference Angle to Find a Trigonometric Value; Use Trigonometric Functions"
+        "rawText": "9-2, Examples 5-7 — Find Reference Angles; Use a Reference Angle to Find a Trigonometric Value; Use Trigonometric Functions"
       }
     },
     {
@@ -235,7 +235,7 @@
         "lesson": "2",
         "exampleNumber": 6,
         "sourceLesson": "9-2",
-        "rawText": "9-2, Examples 5-7 \u2014 Find Reference Angles; Use a Reference Angle to Find a Trigonometric Value; Use Trigonometric Functions"
+        "rawText": "9-2, Examples 5-7 — Find Reference Angles; Use a Reference Angle to Find a Trigonometric Value; Use Trigonometric Functions"
       }
     },
     {
@@ -253,13 +253,13 @@
         "lesson": "2",
         "exampleNumber": 7,
         "sourceLesson": "9-2",
-        "rawText": "9-2, Examples 5-7 \u2014 Find Reference Angles; Use a Reference Angle to Find a Trigonometric Value; Use Trigonometric Functions"
+        "rawText": "9-2, Examples 5-7 — Find Reference Angles; Use a Reference Angle to Find a Trigonometric Value; Use Trigonometric Functions"
       }
     },
     {
       "id": "math.im3.example.9.4.014",
       "kind": "worked_example",
-      "title": "Example 1: Identify the Amplitude and Period from a Graph; Identify the Amplitude and Period from an Equation",
+      "title": "Example 1: Identify Characteristics from Graphs",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-4, Example 1)"
@@ -271,13 +271,13 @@
         "lesson": "4",
         "exampleNumber": 1,
         "sourceLesson": "9-4",
-        "rawText": "9-4, Examples 1-2 \u2014 Identify the Amplitude and Period from a Graph; Identify the Amplitude and Period from an Equation"
+        "rawText": "9-4, Examples 1-2 — Identify the Amplitude and Period from a Graph; Identify the Amplitude and Period from an Equation"
       }
     },
     {
       "id": "math.im3.example.9.4.015",
       "kind": "worked_example",
-      "title": "Example 2: Identify the Amplitude and Period from a Graph; Identify the Amplitude and Period from an Equation",
+      "title": "Example 2: Find Amplitude and Period from Equations",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-4, Example 2)"
@@ -289,13 +289,13 @@
         "lesson": "4",
         "exampleNumber": 2,
         "sourceLesson": "9-4",
-        "rawText": "9-4, Examples 1-2 \u2014 Identify the Amplitude and Period from a Graph; Identify the Amplitude and Period from an Equation"
+        "rawText": "9-4, Examples 1-2 — Identify the Amplitude and Period from a Graph; Identify the Amplitude and Period from an Equation"
       }
     },
     {
       "id": "math.im3.example.9.4.016",
       "kind": "worked_example",
-      "title": "Example 3: Graph a Sine Function; Graph a Cosine Function; Characteristics of the Sine and Cosine Functions",
+      "title": "Example 3: Graph Sine Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-4, Example 3)"
@@ -307,13 +307,13 @@
         "lesson": "4",
         "exampleNumber": 3,
         "sourceLesson": "9-4",
-        "rawText": "9-4, Examples 3-5 \u2014 Graph a Sine Function; Graph a Cosine Function; Characteristics of the Sine and Cosine Functions"
+        "rawText": "9-4, Examples 3-5 — Graph a Sine Function; Graph a Cosine Function; Characteristics of the Sine and Cosine Functions"
       }
     },
     {
       "id": "math.im3.example.9.4.017",
       "kind": "worked_example",
-      "title": "Example 4: Graph a Sine Function; Graph a Cosine Function; Characteristics of the Sine and Cosine Functions",
+      "title": "Example 4: Graph Cosine Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-4, Example 4)"
@@ -325,13 +325,13 @@
         "lesson": "4",
         "exampleNumber": 4,
         "sourceLesson": "9-4",
-        "rawText": "9-4, Examples 3-5 \u2014 Graph a Sine Function; Graph a Cosine Function; Characteristics of the Sine and Cosine Functions"
+        "rawText": "9-4, Examples 3-5 — Graph a Sine Function; Graph a Cosine Function; Characteristics of the Sine and Cosine Functions"
       }
     },
     {
       "id": "math.im3.example.9.4.018",
       "kind": "worked_example",
-      "title": "Example 5: Graph a Sine Function; Graph a Cosine Function; Characteristics of the Sine and Cosine Functions",
+      "title": "Example 5: Real-World Modeling with Trigonometric Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-4, Example 5)"
@@ -343,13 +343,13 @@
         "lesson": "4",
         "exampleNumber": 5,
         "sourceLesson": "9-4",
-        "rawText": "9-4, Examples 3-5 \u2014 Graph a Sine Function; Graph a Cosine Function; Characteristics of the Sine and Cosine Functions"
+        "rawText": "9-4, Examples 3-5 — Graph a Sine Function; Graph a Cosine Function; Characteristics of the Sine and Cosine Functions"
       }
     },
     {
       "id": "math.im3.example.9.4.019",
       "kind": "worked_example",
-      "title": "Example 6: Model Periodic Situations",
+      "title": "Example 6: Write Functions from Real-World Situations",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-4, Example 6)"
@@ -361,13 +361,13 @@
         "lesson": "4",
         "exampleNumber": 6,
         "sourceLesson": "9-4",
-        "rawText": "9-4, Example 6 \u2014 Model Periodic Situations"
+        "rawText": "9-4, Example 6 — Model Periodic Situations"
       }
     },
     {
       "id": "math.im3.example.9.5.020",
       "kind": "worked_example",
-      "title": "Example 1: Graph a Tangent Function with a Dilation; Graph a Tangent Function with a Dilation and a Reflection",
+      "title": "Example 1: Graph Tangent Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-5, Example 1)"
@@ -379,13 +379,13 @@
         "lesson": "5",
         "exampleNumber": 1,
         "sourceLesson": "9-5",
-        "rawText": "9-5, Examples 1-2 \u2014 Graph a Tangent Function with a Dilation; Graph a Tangent Function with a Dilation and a Reflection"
+        "rawText": "9-5, Examples 1-2 — Graph a Tangent Function with a Dilation; Graph a Tangent Function with a Dilation and a Reflection"
       }
     },
     {
       "id": "math.im3.example.9.5.021",
       "kind": "worked_example",
-      "title": "Example 2: Graph a Tangent Function with a Dilation; Graph a Tangent Function with a Dilation and a Reflection",
+      "title": "Example 2: Graph Cosecant and Secant Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-5, Example 2)"
@@ -397,13 +397,13 @@
         "lesson": "5",
         "exampleNumber": 2,
         "sourceLesson": "9-5",
-        "rawText": "9-5, Examples 1-2 \u2014 Graph a Tangent Function with a Dilation; Graph a Tangent Function with a Dilation and a Reflection"
+        "rawText": "9-5, Examples 1-2 — Graph a Tangent Function with a Dilation; Graph a Tangent Function with a Dilation and a Reflection"
       }
     },
     {
       "id": "math.im3.example.9.5.022",
       "kind": "worked_example",
-      "title": "Example 3: Graph a Cosecant Function; Graph a Cotangent Function; Apply a Reciprocal Trigonometric Function",
+      "title": "Example 3: Graph Cotangent Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-5, Example 3)"
@@ -415,13 +415,13 @@
         "lesson": "5",
         "exampleNumber": 3,
         "sourceLesson": "9-5",
-        "rawText": "9-5, Examples 3-5 \u2014 Graph a Cosecant Function; Graph a Cotangent Function; Apply a Reciprocal Trigonometric Function"
+        "rawText": "9-5, Examples 3-5 — Graph a Cosecant Function; Graph a Cotangent Function; Apply a Reciprocal Trigonometric Function"
       }
     },
     {
       "id": "math.im3.example.9.5.023",
       "kind": "worked_example",
-      "title": "Example 4: Graph a Cosecant Function; Graph a Cotangent Function; Apply a Reciprocal Trigonometric Function",
+      "title": "Example 4: Graph Secant Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-5, Example 4)"
@@ -433,13 +433,13 @@
         "lesson": "5",
         "exampleNumber": 4,
         "sourceLesson": "9-5",
-        "rawText": "9-5, Examples 3-5 \u2014 Graph a Cosecant Function; Graph a Cotangent Function; Apply a Reciprocal Trigonometric Function"
+        "rawText": "9-5, Examples 3-5 — Graph a Cosecant Function; Graph a Cotangent Function; Apply a Reciprocal Trigonometric Function"
       }
     },
     {
       "id": "math.im3.example.9.5.024",
       "kind": "worked_example",
-      "title": "Example 5: Graph a Cosecant Function; Graph a Cotangent Function; Apply a Reciprocal Trigonometric Function",
+      "title": "Example 5: Real-World Applications",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-5, Example 5)"
@@ -451,13 +451,13 @@
         "lesson": "5",
         "exampleNumber": 5,
         "sourceLesson": "9-5",
-        "rawText": "9-5, Examples 3-5 \u2014 Graph a Cosecant Function; Graph a Cotangent Function; Apply a Reciprocal Trigonometric Function"
+        "rawText": "9-5, Examples 3-5 — Graph a Cosecant Function; Graph a Cotangent Function; Apply a Reciprocal Trigonometric Function"
       }
     },
     {
       "id": "math.im3.example.9.6.025",
       "kind": "worked_example",
-      "title": "Example 1: Graph a Phase Shift; Graph a Transformation of a Trigonometric Function",
+      "title": "Example 1: Analyze Simple Translations",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-6, Example 1)"
@@ -469,13 +469,13 @@
         "lesson": "6",
         "exampleNumber": 1,
         "sourceLesson": "9-6",
-        "rawText": "9-6, Examples 1-2 \u2014 Graph a Phase Shift; Graph a Transformation of a Trigonometric Function"
+        "rawText": "9-6, Examples 1-2 — Graph a Phase Shift; Graph a Transformation of a Trigonometric Function"
       }
     },
     {
       "id": "math.im3.example.9.6.026",
       "kind": "worked_example",
-      "title": "Example 2: Graph a Phase Shift; Graph a Transformation of a Trigonometric Function",
+      "title": "Example 2: Analyze Functions with Amplitude Changes",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-6, Example 2)"
@@ -487,13 +487,13 @@
         "lesson": "6",
         "exampleNumber": 2,
         "sourceLesson": "9-6",
-        "rawText": "9-6, Examples 1-2 \u2014 Graph a Phase Shift; Graph a Transformation of a Trigonometric Function"
+        "rawText": "9-6, Examples 1-2 — Graph a Phase Shift; Graph a Transformation of a Trigonometric Function"
       }
     },
     {
       "id": "math.im3.example.9.6.027",
       "kind": "worked_example",
-      "title": "Example 3: Graph a Vertical Shift; Model Translations of Trigonometric Functions; Write a Trigonometric Function from a Graph",
+      "title": "Example 3: Functions with Vertical Shifts",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-6, Example 3)"
@@ -505,13 +505,13 @@
         "lesson": "6",
         "exampleNumber": 3,
         "sourceLesson": "9-6",
-        "rawText": "9-6, Examples 3-5 \u2014 Graph a Vertical Shift; Model Translations of Trigonometric Functions; Write a Trigonometric Function from a Graph"
+        "rawText": "9-6, Examples 3-5 — Graph a Vertical Shift; Model Translations of Trigonometric Functions; Write a Trigonometric Function from a Graph"
       }
     },
     {
       "id": "math.im3.example.9.6.028",
       "kind": "worked_example",
-      "title": "Example 4: Graph a Vertical Shift; Model Translations of Trigonometric Functions; Write a Trigonometric Function from a Graph",
+      "title": "Example 4: Real-World Modeling with Translations",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-6, Example 4)"
@@ -523,13 +523,13 @@
         "lesson": "6",
         "exampleNumber": 4,
         "sourceLesson": "9-6",
-        "rawText": "9-6, Examples 3-5 \u2014 Graph a Vertical Shift; Model Translations of Trigonometric Functions; Write a Trigonometric Function from a Graph"
+        "rawText": "9-6, Examples 3-5 — Graph a Vertical Shift; Model Translations of Trigonometric Functions; Write a Trigonometric Function from a Graph"
       }
     },
     {
       "id": "math.im3.example.9.6.029",
       "kind": "worked_example",
-      "title": "Example 5: Graph a Vertical Shift; Model Translations of Trigonometric Functions; Write a Trigonometric Function from a Graph",
+      "title": "Example 5: Write Equations from Graphs",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-6, Example 5)"
@@ -541,13 +541,13 @@
         "lesson": "6",
         "exampleNumber": 5,
         "sourceLesson": "9-6",
-        "rawText": "9-6, Examples 3-5 \u2014 Graph a Vertical Shift; Model Translations of Trigonometric Functions; Write a Trigonometric Function from a Graph"
+        "rawText": "9-6, Examples 3-5 — Graph a Vertical Shift; Model Translations of Trigonometric Functions; Write a Trigonometric Function from a Graph"
       }
     },
     {
       "id": "math.im3.example.9.7.030",
       "kind": "worked_example",
-      "title": "Example 1: Evaluate Inverse Trigonometric Functions; Find a Trigonometric Value by Using a Calculator",
+      "title": "Example 1: Evaluate Inverse Trigonometric Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-7, Example 1)"
@@ -559,13 +559,13 @@
         "lesson": "7",
         "exampleNumber": 1,
         "sourceLesson": "9-7",
-        "rawText": "9-7, Examples 1-2 \u2014 Evaluate Inverse Trigonometric Functions; Find a Trigonometric Value by Using a Calculator"
+        "rawText": "9-7, Examples 1-2 — Evaluate Inverse Trigonometric Functions; Find a Trigonometric Value by Using a Calculator"
       }
     },
     {
       "id": "math.im3.example.9.7.031",
       "kind": "worked_example",
-      "title": "Example 2: Evaluate Inverse Trigonometric Functions; Find a Trigonometric Value by Using a Calculator",
+      "title": "Example 2: Evaluate Composite Expressions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-7, Example 2)"
@@ -577,13 +577,13 @@
         "lesson": "7",
         "exampleNumber": 2,
         "sourceLesson": "9-7",
-        "rawText": "9-7, Examples 1-2 \u2014 Evaluate Inverse Trigonometric Functions; Find a Trigonometric Value by Using a Calculator"
+        "rawText": "9-7, Examples 1-2 — Evaluate Inverse Trigonometric Functions; Find a Trigonometric Value by Using a Calculator"
       }
     },
     {
       "id": "math.im3.example.9.7.032",
       "kind": "worked_example",
-      "title": "Example 3: Find an Angle Measure by Using a Graphing Calculator; Use Inverse Trigonometric Functions",
+      "title": "Example 3: Solve Trigonometric Equations",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-7, Example 3)"
@@ -595,13 +595,13 @@
         "lesson": "7",
         "exampleNumber": 3,
         "sourceLesson": "9-7",
-        "rawText": "9-7, Examples 3-4 \u2014 Find an Angle Measure by Using a Graphing Calculator; Use Inverse Trigonometric Functions"
+        "rawText": "9-7, Examples 3-4 — Find an Angle Measure by Using a Graphing Calculator; Use Inverse Trigonometric Functions"
       }
     },
     {
       "id": "math.im3.example.9.7.033",
       "kind": "worked_example",
-      "title": "Example 4: Find an Angle Measure by Using a Graphing Calculator; Use Inverse Trigonometric Functions",
+      "title": "Example 4: Real-World Applications",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-7, Example 4)"
@@ -613,7 +613,7 @@
         "lesson": "7",
         "exampleNumber": 4,
         "sourceLesson": "9-7",
-        "rawText": "9-7, Examples 3-4 \u2014 Find an Angle Measure by Using a Graphing Calculator; Use Inverse Trigonometric Functions"
+        "rawText": "9-7, Examples 3-4 — Find an Angle Measure by Using a Graphing Calculator; Use Inverse Trigonometric Functions"
       }
     },
     {

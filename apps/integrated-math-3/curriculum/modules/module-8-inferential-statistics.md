@@ -23,6 +23,10 @@ Confidence intervals and inference.
 
 ## Skills Developed
 
-- Evaluating data reliability
-- Interpreting distributions
-- Making evidence-based conclusions
+- Classify sampling methods and identify bias in samples and survey questions
+- Explore experimental probabilities and fair decision making
+- Compare theoretical and experimental probabilities
+- Describe and compare distributions by finding their mean and standard deviation
+- Classify variables and analyze probability distributions to determine expected outcomes
+- Use statistics and normal distributions to analyze data
+- Use sample data to make inferences about populations

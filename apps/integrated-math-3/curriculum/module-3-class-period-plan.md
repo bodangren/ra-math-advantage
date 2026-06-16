@@ -34,19 +34,19 @@ It follows the planning model in `curriculum/course-spec.md`:
 
 | Period | Day Type | Source Textbook Lesson | Primary Objective | Worked Examples | Embedded Objectives | Notes |
 |--------|----------|------------------------|-------------------|-----------------|---------------------|-------|
-| 1 | `instruction` | `3-1` | `3a. Solve polynomial equations by graphing.` | `3-1, Examples 1-2 — Solve a Polynomial Equation by Graphing; Solve a Polynomial Equation by Using a System` | — | Graphing-based solution work, including modeled/system interpretation. |
+| 1 | `instruction` | `3-1` | `3a. Solve polynomial equations by graphing.` | `3-1, Examples 1-2 — Solve Polynomial Equations by Graphing; Solve Polynomial Equations with Higher Degrees` | — | Graphing-based solution work across standard and higher-degree equations. |
 | 2 | `mastery` | — | — | — | — | Mastery cycle on `3a` and readiness for algebraic solution methods. |
-| 3 | `instruction` | `3-2` | `3b. Solve polynomial equations by factoring.` | `3-2, Examples 1-5 — Factor Sums and Differences of Cubes; Factor by Grouping; Combine Cubes and Squares; Solve a Polynomial Equation by Factoring; Write and Solve a Polynomial Equation by Factoring` | — | Factoring structures and polynomial-equation solving. |
+| 3 | `instruction` | `3-2` | `3b. Solve polynomial equations by factoring.` | `3-2, Examples 1-5 — 3; Example 2; Example 3; Example 4; Example 5` | — | Factoring structures and polynomial-equation solving. |
 | 4 | `instruction` | `3-2` | `3c. Solve polynomial equations by writing them in quadratic form and factoring.` | `3-2, Examples 6-7 — Write Expressions in Quadratic Form; Solve Equations in Quadratic Form` | `3b` | Quadratic-form rewriting and solving, including non-real solutions. |
 | 5 | `jigsaw` | — | — | — | — | Stretch-problem session built from factoring structures and quadratic-form examples. |
 | 6 | `mastery` | — | — | — | — | Mastery cycle on `3b-3c`. |
-| 7 | `instruction` | `3-3` | `3d. Prove polynomial identities and use them to describe numerical relationships.` | `3-3, Examples 1-2 — Transform One Side; Use Polynomial Identities` | — | Proof, transformation, and interpretation day. |
-| 8 | `instruction` | `3-4` | `3e. Evaluate functions by using synthetic substitution.` | `3-4, Examples 1-2 — Synthetic Substitution; Apply the Remainder Theorem` | `3f` | Evaluate efficiently and interpret remainder-as-value. |
-| 9 | `instruction` | `3-4` | `3f. Use the Factor Theorem to determine factors of polynomials.` | `3-4, Example 3 — Use the Factor Theorem` | `3e` | Factor testing and depressed-polynomial reasoning. |
+| 7 | `instruction` | `3-3` | `3d. Prove polynomial identities and use them to describe numerical relationships.` | `3-3, Examples 1-2 — Prove Polynomial Identities; Apply Polynomial Identities to Geometric Problems` | — | Proof, transformation, and interpretation day. |
+| 8 | `instruction` | `3-4` | `3e. Evaluate functions by using synthetic substitution.` | `3-4, Examples 1-2 — Use Synthetic Substitution to Evaluate Polynomials; Apply Polynomials to Real-World Situations` | `3f` | Evaluate efficiently and interpret remainder-as-value. |
+| 9 | `instruction` | `3-4` | `3f. Use the Factor Theorem to determine factors of polynomials.` | `3-4, Examples 3 — Find Remaining Factors Using the Factor Theorem` | `3e` | Factor testing and depressed-polynomial reasoning. |
 | 10 | `mastery` | — | — | — | — | Mastery cycle on `3d-3f`. |
 | 11 | `jigsaw` | — | — | — | — | Stretch-problem session built from identity, remainder, and factor-theorem examples. |
-| 12 | `instruction` | `3-5` | `3g. Use the Fundamental Theorem of Algebra to determine the number and type of roots of polynomial equations.` | `3-5, Examples 1-2 — Determine the Number and Type of Roots; Find the Number of Positive and Negative Zeros` | — | Degree, multiplicity, sign changes, and root-type reasoning. |
-| 13 | `instruction` | `3-5` | `3h. Determine the number and type of roots of polynomial equations, find zeros, and use zeros to graph polynomial functions.` | `3-5, Examples 3-4 and Apply Example 5 — Use Synthetic Substitution to Find Zeros; Use a Graph to Write a Polynomial Function; Use Zeros to Graph a Polynomial Function` | `3g` | Full synthesis day: zeros, factors, graph behavior, and modeling reasonableness. |
+| 12 | `instruction` | `3-5` | `3g. Use the Fundamental Theorem of Algebra to determine the number and type of roots of polynomial equations.` | `3-5, Examples 1-2 — Solve Equations and State Number and Type of Roots; Use Descartes' Rule of Signs` | — | Degree, multiplicity, sign changes, and root-type reasoning. |
+| 13 | `instruction` | `3-5` | `3h. Determine the number and type of roots of polynomial equations, find zeros, and use zeros to graph polynomial functions.` | `3-5, Examples 3-5 — Find All Zeros and Sketch Graphs; Write Polynomials from Graphs; Apply Zeros to Real-World Problems` | `3g` | Full synthesis day: zeros, factors, graph behavior, and modeling reasonableness. |
 | 14 | `mastery` | — | — | — | — | Module-wide differentiated SRS practice across Module 3 objectives. |
 | 15 | `review` | — | — | — | — | Module 3 review across `3a-3h`. |
 | 16 | `test` | — | — | — | — | Module 3 assessment. |

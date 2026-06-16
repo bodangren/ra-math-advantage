@@ -25,7 +25,7 @@
     {
       "id": "math.im3.example.8.1.001",
       "kind": "worked_example",
-      "title": "Example 1: Classify a Random Sample; Identify Sample Bias; Identify Biased Questions",
+      "title": "Example 1: Identify and Classify Samples",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-1, Example 1)"
@@ -43,7 +43,7 @@
     {
       "id": "math.im3.example.8.1.002",
       "kind": "worked_example",
-      "title": "Example 2: Classify a Random Sample; Identify Sample Bias; Identify Biased Questions",
+      "title": "Example 2: Identify Biased and Unbiased Samples",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-1, Example 2)"
@@ -61,7 +61,7 @@
     {
       "id": "math.im3.example.8.1.003",
       "kind": "worked_example",
-      "title": "Example 3: Classify a Random Sample; Identify Sample Bias; Identify Biased Questions",
+      "title": "Example 3: Classify Study Types",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-1, Example 3)"
@@ -79,7 +79,7 @@
     {
       "id": "math.im3.example.8.1.004",
       "kind": "worked_example",
-      "title": "Example 4: Classify Study Types; Design a Survey; Draw Conclusions from a Study; Identify Bias in Studies",
+      "title": "Example 4: Design an Unbiased Survey",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-1, Example 4)"
@@ -97,7 +97,7 @@
     {
       "id": "math.im3.example.8.1.005",
       "kind": "worked_example",
-      "title": "Example 5: Classify Study Types; Design a Survey; Draw Conclusions from a Study; Identify Bias in Studies",
+      "title": "Example 5: Draw Conclusions from a Study",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-1, Example 5)"
@@ -115,7 +115,7 @@
     {
       "id": "math.im3.example.8.1.006",
       "kind": "worked_example",
-      "title": "Example 6: Classify Study Types; Design a Survey; Draw Conclusions from a Study; Identify Bias in Studies",
+      "title": "Example 6: Identify Control and Experimental Groups",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-1, Example 6)"
@@ -151,7 +151,7 @@
     {
       "id": "math.im3.example.8.2.008",
       "kind": "worked_example",
-      "title": "Example 1: Find Probabilities",
+      "title": "Example 1: Compare Theoretical and Experimental Probability",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-2, Example 1)"
@@ -169,7 +169,7 @@
     {
       "id": "math.im3.example.8.2.009",
       "kind": "worked_example",
-      "title": "Example 2: Design and Run a Simulation; Run and Evaluate a Simulation",
+      "title": "Example 2: Design a Simulation",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-2, Example 2)"
@@ -205,7 +205,7 @@
     {
       "id": "math.im3.example.8.3.011",
       "kind": "worked_example",
-      "title": "Example 1: Find a Standard Deviation; Calculate Statistics; Compare Distributions",
+      "title": "Example 1: Calculate Standard Deviation from a Table",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-3, Example 1)"
@@ -223,7 +223,7 @@
     {
       "id": "math.im3.example.8.3.012",
       "kind": "worked_example",
-      "title": "Example 2: Find a Standard Deviation; Calculate Statistics; Compare Distributions",
+      "title": "Example 2: Use Technology to Find Mean and Standard Deviation",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-3, Example 2)"
@@ -241,7 +241,7 @@
     {
       "id": "math.im3.example.8.3.013",
       "kind": "worked_example",
-      "title": "Example 3: Find a Standard Deviation; Calculate Statistics; Compare Distributions",
+      "title": "Example 3: Compare Distributions Using Mean and Standard Deviation",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-3, Example 3)"
@@ -259,7 +259,7 @@
     {
       "id": "math.im3.example.8.4.014",
       "kind": "worked_example",
-      "title": "Example 1: Classify Random Variables; Analyze a Probability Distribution; Misleading Distributions",
+      "title": "Example 1: Classify Random Variables",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-4, Example 1)"
@@ -277,7 +277,7 @@
     {
       "id": "math.im3.example.8.4.015",
       "kind": "worked_example",
-      "title": "Example 2: Classify Random Variables; Analyze a Probability Distribution; Misleading Distributions",
+      "title": "Example 2: Construct a Probability Distribution",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-4, Example 2)"
@@ -295,7 +295,7 @@
     {
       "id": "math.im3.example.8.4.016",
       "kind": "worked_example",
-      "title": "Example 3: Classify Random Variables; Analyze a Probability Distribution; Misleading Distributions",
+      "title": "Example 3: Determine if Data Follow a Normal Distribution",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-4, Example 3)"
@@ -313,7 +313,7 @@
     {
       "id": "math.im3.example.8.4.017",
       "kind": "worked_example",
-      "title": "Example 4: Approximate Data by Using a Normal Distribution; Use the Empirical Rule to Analyze Data",
+      "title": "Example 4: The Empirical Rule",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-4, Example 4)"
@@ -331,7 +331,7 @@
     {
       "id": "math.im3.example.8.4.018",
       "kind": "worked_example",
-      "title": "Example 5: Approximate Data by Using a Normal Distribution; Use the Empirical Rule to Analyze Data",
+      "title": "Example 5: Calculate z-Values",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-4, Example 5)"
@@ -349,7 +349,7 @@
     {
       "id": "math.im3.example.8.4.019",
       "kind": "worked_example",
-      "title": "Example 6: Use z-Values to Locate Position; Find Area Under the Standard Normal Curve by Using a Table; Find Area Under the Standard Normal Curve by Using a Calculator",
+      "title": "Example 6: Find Areas Under the Normal Curve",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-4, Example 6)"
@@ -367,7 +367,7 @@
     {
       "id": "math.im3.example.8.4.020",
       "kind": "worked_example",
-      "title": "Example 7: Use z-Values to Locate Position; Find Area Under the Standard Normal Curve by Using a Table; Find Area Under the Standard Normal Curve by Using a Calculator",
+      "title": "Example 7: Apply Normal Distribution to Real Data",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-4, Example 7)"
@@ -403,7 +403,7 @@
     {
       "id": "math.im3.example.8.5.022",
       "kind": "worked_example",
-      "title": "Example 1: Find the Maximum Error of the Estimate; Estimate a Population Mean",
+      "title": "Example 1: Find Maximum Error for Means",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-5, Example 1)"
@@ -421,7 +421,7 @@
     {
       "id": "math.im3.example.8.5.023",
       "kind": "worked_example",
-      "title": "Example 2: Find the Maximum Error of the Estimate; Estimate a Population Mean",
+      "title": "Example 2: Construct Confidence Intervals for Means",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-5, Example 2)"

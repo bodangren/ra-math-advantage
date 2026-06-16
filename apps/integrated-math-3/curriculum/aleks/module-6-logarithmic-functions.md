@@ -42,3 +42,9 @@ Source: `curriculum/ALEKS-practice-problems.htm`
 - Solving an exponential equation by using logarithms: Decimal answers, basic (4m)
 - Solving an exponential equation by using logarithms: Decimal answers, advanced (4m)
 - Solving an exponential equation by using logarithms: Exact answers in logarithmic form (7m)
+
+## ALEKS Gap
+
+**Declared topics: 29. Listed topics: 21. Gap: 8 topics.**
+
+Lessons 6-4 (Natural Logarithms) and 6-5 (Using Exponential and Logarithmic Functions) have no ALEKS topic mapping. This is a known gap. The implementation package (`module-6.json`) uses worked-example-derived SRS substitutes and cross-references L5-3 ALEKS topics for these periods where possible.

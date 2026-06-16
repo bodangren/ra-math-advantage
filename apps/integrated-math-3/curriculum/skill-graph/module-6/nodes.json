@@ -25,7 +25,7 @@
     {
       "id": "math.im3.example.6.1.001",
       "kind": "worked_example",
-      "title": "Example 1: Logarithmic to Exponential Form; Exponential to Logarithmic Form; Evaluate Logarithmic Expressions; Find Inverses of Exponential Functions",
+      "title": "Example 1: Write Equations in Exponential Form",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-1, Example 1)"
@@ -37,13 +37,13 @@
         "lesson": "1",
         "exampleNumber": 1,
         "sourceLesson": "6-1",
-        "rawText": "6-1, Examples 1-4 \u2014 Logarithmic to Exponential Form; Exponential to Logarithmic Form; Evaluate Logarithmic Expressions; Find Inverses of Exponential Functions"
+        "rawText": "6-1, Examples 1-4 — Logarithmic to Exponential Form; Exponential to Logarithmic Form; Evaluate Logarithmic Expressions; Find Inverses of Exponential Functions"
       }
     },
     {
       "id": "math.im3.example.6.1.002",
       "kind": "worked_example",
-      "title": "Example 2: Logarithmic to Exponential Form; Exponential to Logarithmic Form; Evaluate Logarithmic Expressions; Find Inverses of Exponential Functions",
+      "title": "Example 2: Write Equations in Logarithmic Form",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-1, Example 2)"
@@ -55,13 +55,13 @@
         "lesson": "1",
         "exampleNumber": 2,
         "sourceLesson": "6-1",
-        "rawText": "6-1, Examples 1-4 \u2014 Logarithmic to Exponential Form; Exponential to Logarithmic Form; Evaluate Logarithmic Expressions; Find Inverses of Exponential Functions"
+        "rawText": "6-1, Examples 1-4 — Logarithmic to Exponential Form; Exponential to Logarithmic Form; Evaluate Logarithmic Expressions; Find Inverses of Exponential Functions"
       }
     },
     {
       "id": "math.im3.example.6.1.003",
       "kind": "worked_example",
-      "title": "Example 3: Logarithmic to Exponential Form; Exponential to Logarithmic Form; Evaluate Logarithmic Expressions; Find Inverses of Exponential Functions",
+      "title": "Example 3: Evaluate Logarithmic Expressions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-1, Example 3)"
@@ -73,13 +73,13 @@
         "lesson": "1",
         "exampleNumber": 3,
         "sourceLesson": "6-1",
-        "rawText": "6-1, Examples 1-4 \u2014 Logarithmic to Exponential Form; Exponential to Logarithmic Form; Evaluate Logarithmic Expressions; Find Inverses of Exponential Functions"
+        "rawText": "6-1, Examples 1-4 — Logarithmic to Exponential Form; Exponential to Logarithmic Form; Evaluate Logarithmic Expressions; Find Inverses of Exponential Functions"
       }
     },
     {
       "id": "math.im3.example.6.1.004",
       "kind": "worked_example",
-      "title": "Example 4: Logarithmic to Exponential Form; Exponential to Logarithmic Form; Evaluate Logarithmic Expressions; Find Inverses of Exponential Functions",
+      "title": "Example 4: Write Equations from Real-World Contexts",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-1, Example 4)"
@@ -91,13 +91,13 @@
         "lesson": "1",
         "exampleNumber": 4,
         "sourceLesson": "6-1",
-        "rawText": "6-1, Examples 1-4 \u2014 Logarithmic to Exponential Form; Exponential to Logarithmic Form; Evaluate Logarithmic Expressions; Find Inverses of Exponential Functions"
+        "rawText": "6-1, Examples 1-4 — Logarithmic to Exponential Form; Exponential to Logarithmic Form; Evaluate Logarithmic Expressions; Find Inverses of Exponential Functions"
       }
     },
     {
       "id": "math.im3.example.6.1.005",
       "kind": "worked_example",
-      "title": "Example 5: Graph Logarithmic Functions; Graph Transformations of Logarithmic Functions; Compare Logarithmic Functions; Write Logarithmic Functions From Graphs",
+      "title": "Example 5: Graph Logarithmic Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-1, Example 5)"
@@ -109,13 +109,13 @@
         "lesson": "1",
         "exampleNumber": 5,
         "sourceLesson": "6-1",
-        "rawText": "6-1, Examples 5-8 \u2014 Graph Logarithmic Functions; Graph Transformations of Logarithmic Functions; Compare Logarithmic Functions; Write Logarithmic Functions From Graphs"
+        "rawText": "6-1, Examples 5-8 — Graph Logarithmic Functions; Graph Transformations of Logarithmic Functions; Compare Logarithmic Functions; Write Logarithmic Functions From Graphs"
       }
     },
     {
       "id": "math.im3.example.6.1.006",
       "kind": "worked_example",
-      "title": "Example 6: Graph Logarithmic Functions; Graph Transformations of Logarithmic Functions; Compare Logarithmic Functions; Write Logarithmic Functions From Graphs",
+      "title": "Example 6: Graph Transformed Logarithmic Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-1, Example 6)"
@@ -127,13 +127,13 @@
         "lesson": "1",
         "exampleNumber": 6,
         "sourceLesson": "6-1",
-        "rawText": "6-1, Examples 5-8 \u2014 Graph Logarithmic Functions; Graph Transformations of Logarithmic Functions; Compare Logarithmic Functions; Write Logarithmic Functions From Graphs"
+        "rawText": "6-1, Examples 5-8 — Graph Logarithmic Functions; Graph Transformations of Logarithmic Functions; Compare Logarithmic Functions; Write Logarithmic Functions From Graphs"
       }
     },
     {
       "id": "math.im3.example.6.1.007",
       "kind": "worked_example",
-      "title": "Example 7: Graph Logarithmic Functions; Graph Transformations of Logarithmic Functions; Compare Logarithmic Functions; Write Logarithmic Functions From Graphs",
+      "title": "Example 7: Compare Logarithmic Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-1, Example 7)"
@@ -145,13 +145,13 @@
         "lesson": "1",
         "exampleNumber": 7,
         "sourceLesson": "6-1",
-        "rawText": "6-1, Examples 5-8 \u2014 Graph Logarithmic Functions; Graph Transformations of Logarithmic Functions; Compare Logarithmic Functions; Write Logarithmic Functions From Graphs"
+        "rawText": "6-1, Examples 5-8 — Graph Logarithmic Functions; Graph Transformations of Logarithmic Functions; Compare Logarithmic Functions; Write Logarithmic Functions From Graphs"
       }
     },
     {
       "id": "math.im3.example.6.1.008",
       "kind": "worked_example",
-      "title": "Example 8: Graph Logarithmic Functions; Graph Transformations of Logarithmic Functions; Compare Logarithmic Functions; Write Logarithmic Functions From Graphs",
+      "title": "Example 8: Identify Transformations",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-1, Example 8)"
@@ -163,13 +163,13 @@
         "lesson": "1",
         "exampleNumber": 8,
         "sourceLesson": "6-1",
-        "rawText": "6-1, Examples 5-8 \u2014 Graph Logarithmic Functions; Graph Transformations of Logarithmic Functions; Compare Logarithmic Functions; Write Logarithmic Functions From Graphs"
+        "rawText": "6-1, Examples 5-8 — Graph Logarithmic Functions; Graph Transformations of Logarithmic Functions; Compare Logarithmic Functions; Write Logarithmic Functions From Graphs"
       }
     },
     {
       "id": "math.im3.example.6.2.009",
       "kind": "worked_example",
-      "title": "Example 3: Product Property of Logarithms; Quotient Property of Logarithms; Power Property of Logarithms",
+      "title": "Example 3: Approximate Logarithms Using Known Values",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-2, Example 3)"
@@ -181,13 +181,13 @@
         "lesson": "2",
         "exampleNumber": 3,
         "sourceLesson": "6-2",
-        "rawText": "6-2, Examples 3-5 \u2014 Product Property of Logarithms; Quotient Property of Logarithms; Power Property of Logarithms"
+        "rawText": "6-2, Examples 3-5 — Product Property of Logarithms; Quotient Property of Logarithms; Power Property of Logarithms"
       }
     },
     {
       "id": "math.im3.example.6.2.010",
       "kind": "worked_example",
-      "title": "Example 4: Product Property of Logarithms; Quotient Property of Logarithms; Power Property of Logarithms",
+      "title": "Example 4: Approximate Logarithms Using Known Values",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-2, Example 4)"
@@ -199,13 +199,13 @@
         "lesson": "2",
         "exampleNumber": 4,
         "sourceLesson": "6-2",
-        "rawText": "6-2, Examples 3-5 \u2014 Product Property of Logarithms; Quotient Property of Logarithms; Power Property of Logarithms"
+        "rawText": "6-2, Examples 3-5 — Product Property of Logarithms; Quotient Property of Logarithms; Power Property of Logarithms"
       }
     },
     {
       "id": "math.im3.example.6.2.011",
       "kind": "worked_example",
-      "title": "Example 5: Product Property of Logarithms; Quotient Property of Logarithms; Power Property of Logarithms",
+      "title": "Example 5: Change of Base with Different Bases",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-2, Example 5)"
@@ -217,13 +217,13 @@
         "lesson": "2",
         "exampleNumber": 5,
         "sourceLesson": "6-2",
-        "rawText": "6-2, Examples 3-5 \u2014 Product Property of Logarithms; Quotient Property of Logarithms; Power Property of Logarithms"
+        "rawText": "6-2, Examples 3-5 — Product Property of Logarithms; Quotient Property of Logarithms; Power Property of Logarithms"
       }
     },
     {
       "id": "math.im3.example.6.3.012",
       "kind": "worked_example",
-      "title": "Example 1: Find Common Logarithms by Using Technology; Solve a Logarithmic Equation by Using Exponential Form; Solve an Exponential Equation by Using Logarithms; Solve an Exponential Inequality by Using Logarithms",
+      "title": "Example 1: Evaluate Common Logarithms with a Calculator",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-3, Example 1)"
@@ -235,13 +235,13 @@
         "lesson": "3",
         "exampleNumber": 1,
         "sourceLesson": "6-3",
-        "rawText": "6-3, Examples 1-4 \u2014 Find Common Logarithms by Using Technology; Solve a Logarithmic Equation by Using Exponential Form; Solve an Exponential Equation by Using Logarithms; Solve an Exponential Inequality by Using Logarithms"
+        "rawText": "6-3, Examples 1-4 — Find Common Logarithms by Using Technology; Solve a Logarithmic Equation by Using Exponential Form; Solve an Exponential Equation by Using Logarithms; Solve an Exponential Inequality by Using Logarithms"
       }
     },
     {
       "id": "math.im3.example.6.3.013",
       "kind": "worked_example",
-      "title": "Example 2: Find Common Logarithms by Using Technology; Solve a Logarithmic Equation by Using Exponential Form; Solve an Exponential Equation by Using Logarithms; Solve an Exponential Inequality by Using Logarithms",
+      "title": "Example 2: Apply Common Logarithms to Real-World Problems",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-3, Example 2)"
@@ -253,13 +253,13 @@
         "lesson": "3",
         "exampleNumber": 2,
         "sourceLesson": "6-3",
-        "rawText": "6-3, Examples 1-4 \u2014 Find Common Logarithms by Using Technology; Solve a Logarithmic Equation by Using Exponential Form; Solve an Exponential Equation by Using Logarithms; Solve an Exponential Inequality by Using Logarithms"
+        "rawText": "6-3, Examples 1-4 — Find Common Logarithms by Using Technology; Solve a Logarithmic Equation by Using Exponential Form; Solve an Exponential Equation by Using Logarithms; Solve an Exponential Inequality by Using Logarithms"
       }
     },
     {
       "id": "math.im3.example.6.3.014",
       "kind": "worked_example",
-      "title": "Example 3: Find Common Logarithms by Using Technology; Solve a Logarithmic Equation by Using Exponential Form; Solve an Exponential Equation by Using Logarithms; Solve an Exponential Inequality by Using Logarithms",
+      "title": "Example 3: Solve Exponential Equations",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-3, Example 3)"
@@ -271,13 +271,13 @@
         "lesson": "3",
         "exampleNumber": 3,
         "sourceLesson": "6-3",
-        "rawText": "6-3, Examples 1-4 \u2014 Find Common Logarithms by Using Technology; Solve a Logarithmic Equation by Using Exponential Form; Solve an Exponential Equation by Using Logarithms; Solve an Exponential Inequality by Using Logarithms"
+        "rawText": "6-3, Examples 1-4 — Find Common Logarithms by Using Technology; Solve a Logarithmic Equation by Using Exponential Form; Solve an Exponential Equation by Using Logarithms; Solve an Exponential Inequality by Using Logarithms"
       }
     },
     {
       "id": "math.im3.example.6.3.015",
       "kind": "worked_example",
-      "title": "Example 4: Find Common Logarithms by Using Technology; Solve a Logarithmic Equation by Using Exponential Form; Solve an Exponential Equation by Using Logarithms; Solve an Exponential Inequality by Using Logarithms",
+      "title": "Example 4: Solve Logarithmic Inequalities",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-3, Example 4)"
@@ -289,13 +289,13 @@
         "lesson": "3",
         "exampleNumber": 4,
         "sourceLesson": "6-3",
-        "rawText": "6-3, Examples 1-4 \u2014 Find Common Logarithms by Using Technology; Solve a Logarithmic Equation by Using Exponential Form; Solve an Exponential Equation by Using Logarithms; Solve an Exponential Inequality by Using Logarithms"
+        "rawText": "6-3, Examples 1-4 — Find Common Logarithms by Using Technology; Solve a Logarithmic Equation by Using Exponential Form; Solve an Exponential Equation by Using Logarithms; Solve an Exponential Inequality by Using Logarithms"
       }
     },
     {
       "id": "math.im3.example.6.3.016",
       "kind": "worked_example",
-      "title": "Example 5: Change of Base Formula; Use the Change of Base Formula",
+      "title": "Example 5: Express Logarithms in Terms of Common Logarithms",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-3, Example 5)"
@@ -307,13 +307,13 @@
         "lesson": "3",
         "exampleNumber": 5,
         "sourceLesson": "6-3",
-        "rawText": "6-3, Examples 5-6 \u2014 Change of Base Formula; Use the Change of Base Formula"
+        "rawText": "6-3, Examples 5-6 — Change of Base Formula; Use the Change of Base Formula"
       }
     },
     {
       "id": "math.im3.example.6.3.017",
       "kind": "worked_example",
-      "title": "Example 6: Change of Base Formula; Use the Change of Base Formula",
+      "title": "Example 6: Use Estimation in Real-World Models",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-3, Example 6)"
@@ -325,13 +325,13 @@
         "lesson": "3",
         "exampleNumber": 6,
         "sourceLesson": "6-3",
-        "rawText": "6-3, Examples 5-6 \u2014 Change of Base Formula; Use the Change of Base Formula"
+        "rawText": "6-3, Examples 5-6 — Change of Base Formula; Use the Change of Base Formula"
       }
     },
     {
       "id": "math.im3.example.6.4.018",
       "kind": "worked_example",
-      "title": "Example 1: Write Equivalent Logarithmic Equations; Write Equivalent Exponential Equations; Simplify Logarithmic Expressions",
+      "title": "Example 1: Write Exponential Equations in Logarithmic Form",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-4, Example 1)"
@@ -343,13 +343,13 @@
         "lesson": "4",
         "exampleNumber": 1,
         "sourceLesson": "6-4",
-        "rawText": "6-4, Examples 1-3 \u2014 Write Equivalent Logarithmic Equations; Write Equivalent Exponential Equations; Simplify Logarithmic Expressions"
+        "rawText": "6-4, Examples 1-3 — Write Equivalent Logarithmic Equations; Write Equivalent Exponential Equations; Simplify Logarithmic Expressions"
       }
     },
     {
       "id": "math.im3.example.6.4.019",
       "kind": "worked_example",
-      "title": "Example 2: Write Equivalent Logarithmic Equations; Write Equivalent Exponential Equations; Simplify Logarithmic Expressions",
+      "title": "Example 2: Write Logarithmic Equations in Exponential Form",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-4, Example 2)"
@@ -361,13 +361,13 @@
         "lesson": "4",
         "exampleNumber": 2,
         "sourceLesson": "6-4",
-        "rawText": "6-4, Examples 1-3 \u2014 Write Equivalent Logarithmic Equations; Write Equivalent Exponential Equations; Simplify Logarithmic Expressions"
+        "rawText": "6-4, Examples 1-3 — Write Equivalent Logarithmic Equations; Write Equivalent Exponential Equations; Simplify Logarithmic Expressions"
       }
     },
     {
       "id": "math.im3.example.6.4.020",
       "kind": "worked_example",
-      "title": "Example 3: Write Equivalent Logarithmic Equations; Write Equivalent Exponential Equations; Simplify Logarithmic Expressions",
+      "title": "Example 3: Write as a Single Logarithm",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-4, Example 3)"
@@ -379,13 +379,13 @@
         "lesson": "4",
         "exampleNumber": 3,
         "sourceLesson": "6-4",
-        "rawText": "6-4, Examples 1-3 \u2014 Write Equivalent Logarithmic Equations; Write Equivalent Exponential Equations; Simplify Logarithmic Expressions"
+        "rawText": "6-4, Examples 1-3 — Write Equivalent Logarithmic Equations; Write Equivalent Exponential Equations; Simplify Logarithmic Expressions"
       }
     },
     {
       "id": "math.im3.example.6.4.021",
       "kind": "worked_example",
-      "title": "Example 4: Solve Exponential Equations with Base \\e\\; Solve Natural Logarithmic Equations",
+      "title": "Example 4: Solve Equations with Natural Logarithms",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-4, Example 4)"
@@ -397,13 +397,13 @@
         "lesson": "4",
         "exampleNumber": 4,
         "sourceLesson": "6-4",
-        "rawText": "6-4, Examples 4-5 \u2014 Solve Exponential Equations with Base \\e\\; Solve Natural Logarithmic Equations"
+        "rawText": "6-4, Examples 4-5 — Solve Exponential Equations with Base \\e\\; Solve Natural Logarithmic Equations"
       }
     },
     {
       "id": "math.im3.example.6.4.022",
       "kind": "worked_example",
-      "title": "Example 5: Solve Exponential Equations with Base \\e\\; Solve Natural Logarithmic Equations",
+      "title": "Example 5: Solve Equations with [\\ln] Terms",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-4, Example 5)"
@@ -415,13 +415,13 @@
         "lesson": "4",
         "exampleNumber": 5,
         "sourceLesson": "6-4",
-        "rawText": "6-4, Examples 4-5 \u2014 Solve Exponential Equations with Base \\e\\; Solve Natural Logarithmic Equations"
+        "rawText": "6-4, Examples 4-5 — Solve Exponential Equations with Base \\e\\; Solve Natural Logarithmic Equations"
       }
     },
     {
       "id": "math.im3.example.6.4.023",
       "kind": "worked_example",
-      "title": "Example 6: Apply Functions with Base \\e\\; Examine Logarithmic Data",
+      "title": "Example 6: Continuously Compounded Interest",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-4, Example 6)"
@@ -433,13 +433,13 @@
         "lesson": "4",
         "exampleNumber": 6,
         "sourceLesson": "6-4",
-        "rawText": "6-4, Examples 6-7 \u2014 Apply Functions with Base \\e\\; Examine Logarithmic Data"
+        "rawText": "6-4, Examples 6-7 — Apply Functions with Base \\e\\; Examine Logarithmic Data"
       }
     },
     {
       "id": "math.im3.example.6.4.024",
       "kind": "worked_example",
-      "title": "Example 7: Apply Functions with Base \\e\\; Examine Logarithmic Data",
+      "title": "Example 7: Use Logarithmic Regression",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-4, Example 7)"
@@ -451,13 +451,13 @@
         "lesson": "4",
         "exampleNumber": 7,
         "sourceLesson": "6-4",
-        "rawText": "6-4, Examples 6-7 \u2014 Apply Functions with Base \\e\\; Examine Logarithmic Data"
+        "rawText": "6-4, Examples 6-7 — Apply Functions with Base \\e\\; Examine Logarithmic Data"
       }
     },
     {
       "id": "math.im3.example.6.5.025",
       "kind": "worked_example",
-      "title": "Example 1: Continuous Exponential Growth (Parts A-B)",
+      "title": "Example 1: Population Growth and Television Price Models",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-5, Example 1)"
@@ -469,7 +469,7 @@
         "lesson": "5",
         "exampleNumber": 1,
         "sourceLesson": "6-5",
-        "rawText": "6-5, Example 1 \u2014 Continuous Exponential Growth (Parts A-B)"
+        "rawText": "6-5, Example 1 — Continuous Exponential Growth (Parts A-B)"
       }
     },
     {

@@ -2,7 +2,7 @@
 
 Source: `curriculum/ALEKS-practice-problems.htm`
 
-- Total topics: 86
+- Total topics: 82
 - Estimated time: 7h 13m
 
 ## Lessons

@@ -4,11 +4,8 @@ Source: (Module 6, Lesson 6-5, Int3_0605_practice.docx)
 
 ## Today's Goals
 
-* Write exponential growth and decay equations from real-world data.
-* Use exponential models to make predictions.
-* Apply the natural logarithm to solve for time in continuously compounded growth and decay problems.
-* Solve real-world problems involving half-life, depreciation, and population growth.
-* Use regression to fit exponential models to data.
+* Write and solve exponential growth equations and inequalities.
+* Write and solve exponential decay equations.
 
 ## Vocabulary
 
@@ -239,6 +236,11 @@ As [t \to \infty], [e^{-0.5t} \to 0], so [f(t) \to \frac{c}{1 + 0} = c]. Since t
 * Discrete exponential [y = ab^t] models situations with fixed time periods (annual growth, compound interest periods).
 * Continuous exponential [y = ae^{kt}] models situations where growth/decay happens continuously (radioactive decay, heat transfer, continuously compounded interest).
 
+
+## Objective Alignment
+
+- **6i.** Write and solve exponential growth equations and inequalities. Proficiency means a student can model growth situations with exponential equations or inequalities, solve them, and explain what the result means in context.
+- **6j.** Write and solve exponential decay equations. Proficiency means a student can model decay situations correctly, solve for unknown quantities, and interpret decay behavior using the model parameters.
 ## Review Notes
 
 * Images: ![](media/image1.JPG) — Problem 15 data verification image; ![](media/image2.JPG) — Problem 17 table of values.

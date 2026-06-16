@@ -4,22 +4,20 @@ Source: (Module 8, Lesson 8-4, Int3_0804_practice.docx)
 
 ## Today's Goals
 
-* Classify random variables as discrete or continuous.
-* Construct probability distributions and histograms.
-* Use the empirical rule (68-95-99.7 rule) for normal distributions.
-* Find and interpret z-values for standard normal distributions.
-* Find areas under the normal curve using z-tables.
+* Classify variables and analyze probability distributions to determine expected outcomes.
+* Analyze normally distributed variables by using the Empirical Rule.
+* Analyze standardized data and distributions by using z-values.
 
 ## Vocabulary
 
-* **Random Variable** — A variable that represents a numerical outcome of a random phenomenon.
+* **Probability Distribution** — A mapping of each outcome of a statistical experiment to its probability of occurrence.
 * **Discrete Random Variable** — A random variable with a countable number of possible values.
 * **Continuous Random Variable** — A random variable that can take any value within an interval.
-* **Probability Distribution** — A table, graph, or rule that assigns probabilities to values of a random variable.
+* **Outcome** — The result of a single event.
+* **Sample Space** — The set of all possible outcomes in a distribution.
 * **Normal Distribution** — A symmetric, bell-shaped distribution where data values cluster around the mean.
-* **Standard Normal Distribution** — A normal distribution with mean [μ = 0] and standard deviation [σ = 1].
-* **z-Value (z-score)** — The number of standard deviations a value [X] is from the mean: [z = (X - μ) / σ].
-* **Empirical Rule (68-95-99.7 Rule)** — About 68% of data within 1 SD, 95% within 2 SD, 99.7% within 3 SD of the mean.
+* **z-Value** — The number of standard deviations a given data value is from the mean.
+* **Standard Normal Distribution** — A normal distribution with mean 0 and standard deviation 1.
 
 ## Explore: What Makes a Distribution Normal?
 
@@ -172,6 +170,12 @@ If 8 phones represent 5.8%, then total phones ≈ 8 / 0.058 ≈ 138.
 21. Describe the relationship between the z-value, position of an interval of X in the normal distribution, area under the normal curve, and probability of the interval occurring.
 The z-value indicates how many standard deviations X is from the mean. The z-value's position determines the area under the normal curve, which equals the probability of X falling in that interval.
 
+
+## Objective Alignment
+
+- **8f.** Classify variables and analyze probability distributions to determine expected outcomes. Proficiency means a student can identify discrete and continuous variables, interpret a probability distribution, and use it to reason about likely outcomes.
+- **8g.** Analyze normally distributed variables by using the Empirical Rule. Proficiency means a student can use the 68-95-99.7 rule to estimate proportions within one, two, or three standard deviations of the mean.
+- **8h.** Analyze standardized data and distributions by using z-values. Proficiency means a student can compute and interpret z-scores and use them to compare values across distributions.
 ## Review Notes
 
 * Image references in this lesson:

@@ -4,13 +4,13 @@ Source: (Module 3, Lesson 3-5, Int3_0305_practice.docx)
 
 ## Today's Goals
 
-* Solve polynomial equations and state the number and type of roots.
-* Use Descartes' Rule of Signs to determine the possible numbers of positive, negative, and imaginary zeros.
-* Find all zeros of polynomial functions and use them to sketch accurate graphs.
+* Use the Fundamental Theorem of Algebra to determine the number and type of roots of polynomial equations.
+* Determine the number and type of roots of polynomial equations, find zeros, and use zeros to graph polynomial functions.
 
 ## Vocabulary
 
 * **Root** — A value that makes a polynomial equal to zero; also called a zero of the function.
+* **Multiplicity** — The number of times a number is a zero for a given polynomial.
 * **Positive Real Zero** — A zero that is a positive real number; corresponds to a sign change in [f(x)] based on Descartes' Rule of Signs.
 * **Negative Real Zero** — A zero that is a negative real number; found by analyzing [f(-x)].
 * **Imaginary Zero** — A zero that is a complex number with no real part; comes in conjugate pairs when coefficients are real.
@@ -252,6 +252,11 @@ If profit is 0 in 2012 (x = 2) and 2017 (x = 7), then [x = 2] and [x = 7] are ze
 
 **66. FIND THE ERROR:** The graph shows a polynomial function. Brianne says the function is a 4th degree polynomial. Amrita says the function is a 2nd degree polynomial. Is either of them correct? Explain your reasoning.
 
+
+## Objective Alignment
+
+- **3g.** Use the Fundamental Theorem of Algebra to determine the number and type of roots of polynomial equations. Proficiency means a student can state how many roots a polynomial must have, including complex roots, and use degree to reason about possible solution types.
+- **3h.** Determine the number and type of roots of polynomial equations, find zeros, and use zeros to graph polynomial functions. Proficiency means a student can combine algebraic and graphical evidence to find zeros, classify roots, and use those zeros to sketch polynomial graphs.
 ## Review Notes
 
 * Images referenced in the worksheet:

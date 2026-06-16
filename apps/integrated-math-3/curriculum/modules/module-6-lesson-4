@@ -4,17 +4,13 @@ Source: (Module 6, Lesson 6-4, Int3_0604_practice.docx)
 
 ## Today's Goals
 
-* Convert between exponential and logarithmic forms using the natural logarithm.
-* Write logarithmic expressions as a single logarithm.
-* Solve equations involving natural logarithms.
-* Apply natural logarithms to real-world problems involving continuous growth and decay.
-* Use regression with logarithmic models to make predictions.
+* Simplify expressions with natural logarithms.
+* Solve exponential equations by using natural logarithms.
 
 ## Vocabulary
 
+* **Natural Base Exponential Function** — An exponential function with base [e], written as [y = e^x].
 * **Natural Logarithm** — A logarithm with base [e], written [\ln x]; the inverse of the exponential function [e^x].
-* **Continuously Compounded Interest** — Interest calculated as [A = Pe^{rt}], where [P] is principal, [r] is rate, and [t] is time.
-* **Natural Logarithm Function** — [f(x) = \ln x], defined for [x > 0].
 
 ## Explore: Where Does [e] Come From?
 
@@ -251,6 +247,11 @@ For [x = 0.5]: [\ln 0.5 \approx -0.693], and [0.5 > -0.693] is true.
 For [x = e]: [\ln e = 1] and [e \approx 2.718 > 1] is true.
 In fact, [x > \ln x] is always true for all [x > 0], since the function [f(x) = x - \ln x] has derivative [1 - 1/x] which is positive for [x > 1], and [f(1) = 1 > 0].
 
+
+## Objective Alignment
+
+- **6g.** Simplify expressions with natural logarithms. Proficiency means a student can simplify `ln` expressions accurately and use properties of logarithms while respecting domains.
+- **6h.** Solve exponential equations by using natural logarithms. Proficiency means a student can apply `ln` to both sides of an equation when appropriate, solve for the variable, and interpret the exact or approximate solution.
 ## Review Notes
 
 * Images: ![](media/image1.png) — Festival attendance data table; ![](media/image2.png) — Decay compound data table; ![](media/image3.png) — Cell colonies data table; ![](media/image4.png) — Visitor data table; ![](media/image5.wmf) — Expression for analysis in problem 57.

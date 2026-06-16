@@ -4,16 +4,15 @@ Source: (Module 8, Lesson 8-2, Int3_0802_practice.docx)
 
 ## Today's Goals
 
-* Distinguish between theoretical and experimental probability.
-* Design and run simulations to estimate probabilities.
-* Evaluate simulations to test whether real-world results match expected probabilities.
+* Compare theoretical and experimental probabilities.
+* Determine whether models are consistent with results from simulations of real-life situations.
 
 ## Vocabulary
 
 * **Theoretical Probability** — The probability based on mathematical reasoning about equally likely outcomes.
 * **Experimental Probability** — The probability based on the results of an experiment or simulation.
+* **Probability Model** — A mathematical representation of a random event consisting of the sample space and the probability of each outcome.
 * **Simulation** — A model used to replicate a real-world situation to estimate probabilities.
-* **Trial** — A single repetition of a simulation.
 
 ## Explore: How Do Predictions Compare to Actual Results?
 
@@ -166,6 +165,11 @@ Yes — If the spinner has three equal sections, the theoretical probability of 
 24. Can a coin toss be used to simulate an experiment with two possible outcomes?
 *Always* — A coin toss has exactly two equally likely outcomes (heads or tails), making it ideal for simulating any two-outcome situation.
 
+
+## Objective Alignment
+
+- **8c.** Compare theoretical and experimental probabilities. Proficiency means a student can compute both theoretical and experimental probabilities and compare them to evaluate how closely data matches expectation.
+- **8d.** Determine whether models are consistent with results from simulations of real-life situations. Proficiency means a student can interpret simulation results, compare them to a proposed model, and decide whether the model is plausible based on evidence.
 ## Review Notes
 
 * Image references in this lesson:

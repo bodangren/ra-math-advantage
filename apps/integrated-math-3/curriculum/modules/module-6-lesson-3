@@ -4,17 +4,12 @@ Source: (Module 6, Lesson 6-3, Int3_0603_practice.docx)
 
 ## Today's Goals
 
-* Evaluate common logarithms using a calculator.
-* Solve exponential equations using logarithms.
-* Solve logarithmic inequalities.
-* Express logarithms in terms of common logarithms using the Change of Base Formula.
-* Apply common logarithms to real-world problems involving population growth, sound intensity, and financial models.
+* Solve exponential equations by using common logarithms.
+* Evaluate logarithmic expressions by using the Change of Base Formula.
 
 ## Vocabulary
 
 * **Common Logarithm** — A logarithm with base 10, written [\log x] (the base 10 is implied).
-* **Change of Base Formula** — [\log_b x = \frac{\log x}{\log b}] or [\log_b x = \frac{\ln x}{\ln b}]
-* **Exponential Equation** — An equation where the variable appears in an exponent.
 
 ## Explore: Why Do We Need Common Logarithms?
 
@@ -254,6 +249,11 @@ Using calculator: [9^{1.3} \approx 20.29], so [x \approx 18.29]. The year is app
 
 **54. FIND THE ERROR** Claudia tried to find [\log_7 8] and got an unexpected result. Explain her error.
 
+
+## Objective Alignment
+
+- **6e.** Solve exponential equations by using common logarithms. Proficiency means a student can apply base-10 logarithms to solve equations when rewriting with a common base is not practical and interpret the result correctly.
+- **6f.** Evaluate logarithmic expressions by using the Change of Base Formula. Proficiency means a student can use change of base to evaluate logs on technology or by hand and explain why the method works.
 ## Review Notes
 
 * Images: ![](media/image1.png) — Example 6 reference diagram; ![](media/image2.JPG) — Problem 45 graph; ![](media/image3.png) — Problem 51 (Sam and Rosamaria error analysis); ![](media/image4.png) — Problem 54 (Claudia's calculator error).

@@ -172,6 +172,10 @@ Expand each binomial.
 
 **30. WRITE** Explain how to write out the terms of Pascal's triangle.
 
+
+## Objective Alignment
+
+- **2i.** Expand powers of binomials by using Pascal's Triangle and the Binomial Theorem. Proficiency means a student can generate correct coefficients, write all terms in order, and explain how exponents and coefficients follow binomial patterns.
 ## Review Notes
 
 * Pascal's Triangle coefficients can also be calculated using the combination formula: [\binom{n}{k} = \frac{n!}{k!(n-k)!}]

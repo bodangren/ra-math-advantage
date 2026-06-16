@@ -2,20 +2,18 @@
 
 Source: (Module 8, Lesson 8-3, Int3_0803_practice.docx)
 
-## Today's Goals
+## Today's Goal
 
-* Calculate and interpret the standard deviation of a data set.
-* Use technology to find the mean and standard deviation.
-* Compare distributions using mean and standard deviation.
+* Describe distributions by finding their mean and standard deviation.
 
 ## Vocabulary
 
-* **Mean** — The average of a data set, found by dividing the sum of values by the number of values.
-* **Standard Deviation** — A measure of the spread of data values from the mean.
-* **Population Standard Deviation** — The standard deviation of an entire population.
-* **Sample Standard Deviation** — The standard deviation of a sample from a population.
-* **Bimodal Distribution** — A distribution with two distinct peaks or modes.
+* **Descriptive Statistics** — Measures of center and measures of spread or variation.
+* **Distribution** — A graph or table that shows the theoretical frequency of each possible data value.
+* **Symmetric Distribution** — A distribution where the data are distributed symmetrically about the center.
+* **Outlier** — An extremely high or low value when compared to the rest of the values in a data set.
 * **Variance** — The average of the squared differences from the mean.
+* **Standard Deviation** — A measure of the spread of data values from the mean.
 
 ## Explore: What Does Spread Tell Us?
 
@@ -124,6 +122,10 @@ For a symmetric set, the mean and median are equal. Choose values that balance a
 4. Find the mean of the squared deviations (this is the variance).
 5. Take the square root of the variance to get the standard deviation.
 
+
+## Objective Alignment
+
+- **8e.** Describe distributions by finding their mean and standard deviation. Proficiency means a student can compute or interpret mean and standard deviation and use those values to describe center and spread.
 ## Review Notes
 
 * Image references in this lesson:

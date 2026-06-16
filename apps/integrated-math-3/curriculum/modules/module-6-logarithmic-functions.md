@@ -23,6 +23,11 @@ Solving real-world problems.
 
 ## Skills Developed
 
-- Rewriting expressions flexibly
-- Solving non-linear equations
-- Interpreting logarithmic scales
+- Write and evaluate logarithms
+- Graph logarithmic functions
+- Simplify logarithmic expressions
+- Solve logarithmic equations
+- Solve exponential equations by using common logarithms
+- Solve exponential equations by using natural logarithms
+- Write and solve exponential growth and decay equations using logarithms
+- Model datasets with natural logarithmic functions using technology

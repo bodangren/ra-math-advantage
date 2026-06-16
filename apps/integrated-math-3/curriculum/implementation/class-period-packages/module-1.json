@@ -11,7 +11,7 @@
       "sourceLesson": "1-1",
       "objectiveCode": "1a",
       "objective": "Graph quadratic functions.",
-      "workedExamples": "1-1, Examples 1-3 — Graph Using a Table; Compare Quadratic Functions; Real-World Application (Modeling)",
+      "workedExamples": "1-1, Examples 1-3 — Graph Quadratic Functions and State Domain and Range; Compare Quadratic Functions Using Graphs and Tables; Quadratic Revenue Functions",
       "embeddedObjectives": [],
       "aleksSrsPractice": [
         "ALEKS M1-L1-1.01",
@@ -34,8 +34,8 @@
       "notes": "Graph from equation/table/context; key features and interpretation.",
       "dailyPhases": {
         "warmUp": "Activate prior knowledge for 1a with one retrieval prompt tied to 1-1.",
-        "conceptDevelopment": "Use 1-1, Examples 1-3 — Graph Using a Table; Compare Quadratic Functions; Real-World Application (Modeling) to develop: Graph quadratic functions..",
-        "guidedPractice": "Students complete a scaffolded problem modeled on 1-1, Examples 1-3 — Graph Using a Table; Compare Quadratic Functions; Real-World Application (Modeling); teacher checks notation and reasoning.",
+        "conceptDevelopment": "Use 1-1, Examples 1-3 — Graph Quadratic Functions and State Domain and Range; Compare Quadratic Functions Using Graphs and Tables; Quadratic Revenue Functions to develop: Graph quadratic functions..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 1-1, Examples 1-3 — Graph Quadratic Functions and State Domain and Range; Compare Quadratic Functions Using Graphs and Tables; Quadratic Revenue Functions; teacher checks notation and reasoning.",
         "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M1-L1-1.01, ALEKS M1-L1-1.02, ALEKS M1-L1-1.03, ALEKS M1-L1-1.04, ALEKS M1-L1-1.05, ALEKS M1-L1-1.06, ALEKS M1-L1-1.10, ALEKS M1-L1-1.11, ALEKS M1-L1-1.12, ALEKS M1-L1-1.13, ALEKS M1-L1-1.14, ALEKS M1-L1-1.15, ALEKS M1-L1-1.16, ALEKS M1-L1-1.17, ALEKS M1-L1-1.18, ALEKS M1-L1-1.19.",
         "assessment": "Exit ticket: one fresh problem assessing 1a and one short explanation prompt.",
         "capReflection": "CAP reflection: Name the strategy that helped you persist with graph quadratic functions.."
@@ -49,7 +49,7 @@
       "sourceLesson": "1-1",
       "objectiveCode": "1b",
       "objective": "Find and interpret the average rate of change.",
-      "workedExamples": "1-1, Examples 4-6 — From an Equation; From a Table; From a Graph (Estimation + Algebra)",
+      "workedExamples": "1-1, Examples 4-6 — Average Rate of Change of Quadratic Functions; Average Rate of Change from Graphs; Interpret Average Rate of Change in Context",
       "embeddedObjectives": [],
       "aleksSrsPractice": [
         "ALEKS M1-L1-1.07",
@@ -59,8 +59,8 @@
       "notes": "Average rate of change from equation, table, and graph.",
       "dailyPhases": {
         "warmUp": "Activate prior knowledge for 1b with one retrieval prompt tied to 1-1.",
-        "conceptDevelopment": "Use 1-1, Examples 4-6 — From an Equation; From a Table; From a Graph (Estimation + Algebra) to develop: Find and interpret the average rate of change..",
-        "guidedPractice": "Students complete a scaffolded problem modeled on 1-1, Examples 4-6 — From an Equation; From a Table; From a Graph (Estimation + Algebra); teacher checks notation and reasoning.",
+        "conceptDevelopment": "Use 1-1, Examples 4-6 — Average Rate of Change of Quadratic Functions; Average Rate of Change from Graphs; Interpret Average Rate of Change in Context to develop: Find and interpret the average rate of change..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 1-1, Examples 4-6 — Average Rate of Change of Quadratic Functions; Average Rate of Change from Graphs; Interpret Average Rate of Change in Context; teacher checks notation and reasoning.",
         "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M1-L1-1.07, ALEKS M1-L1-1.08, ALEKS M1-L1-1.09.",
         "assessment": "Exit ticket: one fresh problem assessing 1b and one short explanation prompt.",
         "capReflection": "CAP reflection: Name the strategy that helped you persist with find and interpret the average rate of change.."
@@ -93,7 +93,7 @@
       "sourceLesson": "1-2",
       "objectiveCode": "1c",
       "objective": "Solve quadratic equations by graphing.",
-      "workedExamples": "1-2, Examples 1-3 — One Real Solution; Two Real Solutions; Estimate Roots",
+      "workedExamples": "1-2, Examples 1-3 — Use Related Graphs to Determine Solutions; Find Two Numbers with Given Sum and Product Using Quadratic Equations; Solve by Graphing When Exact Roots Cannot Be Found",
       "embeddedObjectives": [],
       "aleksSrsPractice": [
         "ALEKS M1-L1-2.02"
@@ -101,8 +101,8 @@
       "notes": "Reading exact and estimated roots from graphs.",
       "dailyPhases": {
         "warmUp": "Activate prior knowledge for 1c with one retrieval prompt tied to 1-2.",
-        "conceptDevelopment": "Use 1-2, Examples 1-3 — One Real Solution; Two Real Solutions; Estimate Roots to develop: Solve quadratic equations by graphing..",
-        "guidedPractice": "Students complete a scaffolded problem modeled on 1-2, Examples 1-3 — One Real Solution; Two Real Solutions; Estimate Roots; teacher checks notation and reasoning.",
+        "conceptDevelopment": "Use 1-2, Examples 1-3 — Use Related Graphs to Determine Solutions; Find Two Numbers with Given Sum and Product Using Quadratic Equations; Solve by Graphing When Exact Roots Cannot Be Found to develop: Solve quadratic equations by graphing..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 1-2, Examples 1-3 — Use Related Graphs to Determine Solutions; Find Two Numbers with Given Sum and Product Using Quadratic Equations; Solve by Graphing When Exact Roots Cannot Be Found; teacher checks notation and reasoning.",
         "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M1-L1-2.02.",
         "assessment": "Exit ticket: one fresh problem assessing 1c and one short explanation prompt.",
         "capReflection": "CAP reflection: Name the strategy that helped you persist with solve quadratic equations by graphing.."
@@ -116,7 +116,7 @@
       "sourceLesson": "1-2",
       "objectiveCode": "1d",
       "objective": "Interpret solutions (roots) in context.",
-      "workedExamples": "1-2, Examples 4-5 — Solve by Using a Table; Solve by Using a Calculator",
+      "workedExamples": "1-2, Examples 4-5 — Use Tables to Determine Zeros; Solve Using the Height Formula in Physics",
       "embeddedObjectives": [],
       "aleksSrsPractice": [
         "ALEKS M1-L1-2.01"
@@ -124,8 +124,8 @@
       "notes": "Interpreting approximate solutions in numeric and modeling contexts.",
       "dailyPhases": {
         "warmUp": "Activate prior knowledge for 1d with one retrieval prompt tied to 1-2.",
-        "conceptDevelopment": "Use 1-2, Examples 4-5 — Solve by Using a Table; Solve by Using a Calculator to develop: Interpret solutions (roots) in context..",
-        "guidedPractice": "Students complete a scaffolded problem modeled on 1-2, Examples 4-5 — Solve by Using a Table; Solve by Using a Calculator; teacher checks notation and reasoning.",
+        "conceptDevelopment": "Use 1-2, Examples 4-5 — Use Tables to Determine Zeros; Solve Using the Height Formula in Physics to develop: Interpret solutions (roots) in context..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 1-2, Examples 4-5 — Use Tables to Determine Zeros; Solve Using the Height Formula in Physics; teacher checks notation and reasoning.",
         "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M1-L1-2.01.",
         "assessment": "Exit ticket: one fresh problem assessing 1d and one short explanation prompt.",
         "capReflection": "CAP reflection: Name the strategy that helped you persist with interpret solutions (roots) in context.."
@@ -154,18 +154,18 @@
       "sourceLesson": "1-3",
       "objectiveCode": "1e",
       "objective": "Understand and use the imaginary unit i.",
-      "workedExamples": "1-3, Examples 1-3 — Square Roots of Negative Numbers; Products of Pure Imaginary Numbers; Equation with Pure Imaginary Solutions",
+      "workedExamples": "1-3, Examples 1, 3 — Simplify Expressions with Imaginary Numbers; Solve Quadratic Equations with Complex Solutions",
       "embeddedObjectives": [],
       "aleksSrsPractice": [
         "ALEKS M1-L1-3.01",
         "ALEKS M1-L1-3.02",
         "ALEKS M1-L1-3.06"
       ],
-      "notes": "Introduces `i`, negative roots, and non-real quadratic solutions.",
+      "notes": "Introduces `i`, negative roots, and non-real quadratic solutions. (Note: lesson 1-3 has no Example 2 — numbering skips from 1 to 3.)",
       "dailyPhases": {
         "warmUp": "Activate prior knowledge for 1e with one retrieval prompt tied to 1-3.",
-        "conceptDevelopment": "Use 1-3, Examples 1-3 — Square Roots of Negative Numbers; Products of Pure Imaginary Numbers; Equation with Pure Imaginary Solutions to develop: Understand and use the imaginary unit i..",
-        "guidedPractice": "Students complete a scaffolded problem modeled on 1-3, Examples 1-3 — Square Roots of Negative Numbers; Products of Pure Imaginary Numbers; Equation with Pure Imaginary Solutions; teacher checks notation and reasoning.",
+        "conceptDevelopment": "Use 1-3, Examples 1, 3 — Simplify Expressions with Imaginary Numbers; Solve Quadratic Equations with Complex Solutions to develop: Understand and use the imaginary unit i..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 1-3, Examples 1, 3 — Simplify Expressions with Imaginary Numbers; Solve Quadratic Equations with Complex Solutions; teacher checks notation and reasoning.",
         "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M1-L1-3.01, ALEKS M1-L1-3.02, ALEKS M1-L1-3.06.",
         "assessment": "Exit ticket: one fresh problem assessing 1e and one short explanation prompt.",
         "capReflection": "CAP reflection: Name the strategy that helped you persist with understand and use the imaginary unit i.."
@@ -179,18 +179,18 @@
       "sourceLesson": "1-3",
       "objectiveCode": "1f",
       "objective": "Perform operations with complex numbers.",
-      "workedExamples": "1-3, Examples 4-7 — Equate Complex Numbers; Add or Subtract Complex Numbers; Multiply Complex Numbers; Divide Complex Numbers",
+      "workedExamples": "1-3, Examples 4-7 — Find Values of x and y in Complex Equations; Add, Subtract, and Multiply Complex Numbers; Add, Subtract, and Multiply Complex Numbers; Divide Complex Numbers",
       "embeddedObjectives": [],
       "aleksSrsPractice": [
         "ALEKS M1-L1-3.03",
         "ALEKS M1-L1-3.04",
         "ALEKS M1-L1-3.05"
       ],
-      "notes": "Full operations day on complex-number arithmetic and matching real/imaginary parts.",
+      "notes": "Full operations day on complex-number arithmetic and matching real/imaginary parts. (Note: Examples 5 and 6 are combined in the lesson source.)",
       "dailyPhases": {
         "warmUp": "Activate prior knowledge for 1f with one retrieval prompt tied to 1-3.",
-        "conceptDevelopment": "Use 1-3, Examples 4-7 — Equate Complex Numbers; Add or Subtract Complex Numbers; Multiply Complex Numbers; Divide Complex Numbers to develop: Perform operations with complex numbers..",
-        "guidedPractice": "Students complete a scaffolded problem modeled on 1-3, Examples 4-7 — Equate Complex Numbers; Add or Subtract Complex Numbers; Multiply Complex Numbers; Divide Complex Numbers; teacher checks notation and reasoning.",
+        "conceptDevelopment": "Use 1-3, Examples 4-7 — Find Values of x and y in Complex Equations; Add, Subtract, and Multiply Complex Numbers; Add, Subtract, and Multiply Complex Numbers; Divide Complex Numbers to develop: Perform operations with complex numbers..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 1-3, Examples 4-7 — Find Values of x and y in Complex Equations; Add, Subtract, and Multiply Complex Numbers; Add, Subtract, and Multiply Complex Numbers; Divide Complex Numbers; teacher checks notation and reasoning.",
         "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M1-L1-3.03, ALEKS M1-L1-3.04, ALEKS M1-L1-3.05.",
         "assessment": "Exit ticket: one fresh problem assessing 1f and one short explanation prompt.",
         "capReflection": "CAP reflection: Name the strategy that helped you persist with perform operations with complex numbers.."
@@ -223,7 +223,7 @@
       "sourceLesson": "1-4",
       "objectiveCode": "1h",
       "objective": "Solve quadratic equations by factoring.",
-      "workedExamples": "1-4, Examples 1-4 — Factor by Using the Distributive Property; Factor a Trinomial; Solve an Equation by Factoring; Factor a Trinomial Where a Is Not 1",
+      "workedExamples": "1-4, Examples 1-4 — Solve Equations by Factoring; Solve Equations by Factoring; Geometry and Area Problems; Factor Trinomials with [a ≠ 1]",
       "embeddedObjectives": [],
       "aleksSrsPractice": [
         "ALEKS M1-L1-4.01",
@@ -234,11 +234,11 @@
         "ALEKS M1-L1-4.07",
         "ALEKS M1-L1-4.08"
       ],
-      "notes": "Standard-form setup, factoring, and Zero Product Property in routine cases.",
+      "notes": "Standard-form setup, factoring, and Zero Product Property in routine cases. (Note: Examples 1 and 2 are combined in the lesson source.)",
       "dailyPhases": {
         "warmUp": "Activate prior knowledge for 1h with one retrieval prompt tied to 1-4.",
-        "conceptDevelopment": "Use 1-4, Examples 1-4 — Factor by Using the Distributive Property; Factor a Trinomial; Solve an Equation by Factoring; Factor a Trinomial Where a Is Not 1 to develop: Solve quadratic equations by factoring..",
-        "guidedPractice": "Students complete a scaffolded problem modeled on 1-4, Examples 1-4 — Factor by Using the Distributive Property; Factor a Trinomial; Solve an Equation by Factoring; Factor a Trinomial Where a Is Not 1; teacher checks notation and reasoning.",
+        "conceptDevelopment": "Use 1-4, Examples 1-4 — Solve Equations by Factoring; Solve Equations by Factoring; Geometry and Area Problems; Factor Trinomials with [a ≠ 1] to develop: Solve quadratic equations by factoring..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 1-4, Examples 1-4 — Solve Equations by Factoring; Solve Equations by Factoring; Geometry and Area Problems; Factor Trinomials with [a ≠ 1]; teacher checks notation and reasoning.",
         "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M1-L1-4.01, ALEKS M1-L1-4.02, ALEKS M1-L1-4.03, ALEKS M1-L1-4.04, ALEKS M1-L1-4.05, ALEKS M1-L1-4.07, ALEKS M1-L1-4.08.",
         "assessment": "Exit ticket: one fresh problem assessing 1h and one short explanation prompt.",
         "capReflection": "CAP reflection: Name the strategy that helped you persist with solve quadratic equations by factoring.."
@@ -252,7 +252,7 @@
       "sourceLesson": "1-4",
       "objectiveCode": "1j",
       "objective": "Recognize special factor patterns (GCF, trinomials, difference of squares).",
-      "workedExamples": "1-4, Examples 5-7 — Factor a Difference of Squares; Factor a Perfect Square Trinomial; Complex Solutions",
+      "workedExamples": "1-4, Examples 5-7 — 7 — Difference of Squares and Perfect Squares; Example 6; Example 7",
       "embeddedObjectives": [
         ", ",
         ", "
@@ -261,11 +261,11 @@
         "ALEKS M1-L1-4.06",
         "ALEKS M1-L1-4.09"
       ],
-      "notes": "Special-product factoring plus the extension to complex solutions.",
+      "notes": "Special-product factoring plus the extension to complex solutions. (Note: Examples 5, 6, and 7 are combined under a single header in the lesson source.)",
       "dailyPhases": {
         "warmUp": "Activate prior knowledge for 1j with one retrieval prompt tied to 1-4.",
-        "conceptDevelopment": "Use 1-4, Examples 5-7 — Factor a Difference of Squares; Factor a Perfect Square Trinomial; Complex Solutions to develop: Recognize special factor patterns (GCF, trinomials, difference of squares)..",
-        "guidedPractice": "Students complete a scaffolded problem modeled on 1-4, Examples 5-7 — Factor a Difference of Squares; Factor a Perfect Square Trinomial; Complex Solutions; teacher checks notation and reasoning.",
+        "conceptDevelopment": "Use 1-4, Examples 5-7 — 7 — Difference of Squares and Perfect Squares; Example 6; Example 7 to develop: Recognize special factor patterns (GCF, trinomials, difference of squares)..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 1-4, Examples 5-7 — 7 — Difference of Squares and Perfect Squares; Example 6; Example 7; teacher checks notation and reasoning.",
         "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M1-L1-4.06, ALEKS M1-L1-4.09.",
         "assessment": "Exit ticket: one fresh problem assessing 1j and one short explanation prompt.",
         "capReflection": "CAP reflection: Name the strategy that helped you persist with recognize special factor patterns (gcf, trinomials, difference of squares).."
@@ -294,7 +294,7 @@
       "sourceLesson": "1-5",
       "objectiveCode": "1k",
       "objective": "Solve quadratic equations by completing the square.",
-      "workedExamples": "1-5, Examples 1-5 — Solve a Quadratic Equation with Rational Roots; Solve a Quadratic Equation with Irrational Roots; Solve a Quadratic Equation with Complex Solutions; Complete the Square; Solve by Completing the Square",
+      "workedExamples": "1-5, Examples 1-6 — 3 — Use the Square Root Property; Example 2; Example 3; Find the Value of c That Completes the Square; Solve Equations by Completing the Square; Solve Equations by Completing the Square",
       "embeddedObjectives": [],
       "aleksSrsPractice": [
         "ALEKS M1-L1-5.01",
@@ -306,11 +306,11 @@
         "ALEKS M1-L1-5.07",
         "ALEKS M1-L1-5.08"
       ],
-      "notes": "Square Root Property and full completing-the-square workflow.",
+      "notes": "Square Root Property and full completing-the-square workflow. (Note: Examples 1-3 are combined, and Examples 5-6 are combined in the lesson source.)",
       "dailyPhases": {
         "warmUp": "Activate prior knowledge for 1k with one retrieval prompt tied to 1-5.",
-        "conceptDevelopment": "Use 1-5, Examples 1-5 — Solve a Quadratic Equation with Rational Roots; Solve a Quadratic Equation with Irrational Roots; Solve a Quadratic Equation with Complex Solutions; Complete the Square; Solve by Completing the Square to develop: Solve quadratic equations by completing the square..",
-        "guidedPractice": "Students complete a scaffolded problem modeled on 1-5, Examples 1-5 — Solve a Quadratic Equation with Rational Roots; Solve a Quadratic Equation with Irrational Roots; Solve a Quadratic Equation with Complex Solutions; Complete the Square; Solve by Completing the Square; teacher checks notation and reasoning.",
+        "conceptDevelopment": "Use 1-5, Examples 1-6 — 3 — Use the Square Root Property; Example 2; Example 3; Find the Value of c That Completes the Square; Solve Equations by Completing the Square; Solve Equations by Completing the Square to develop: Solve quadratic equations by completing the square..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 1-5, Examples 1-6 — 3 — Use the Square Root Property; Example 2; Example 3; Find the Value of c That Completes the Square; Solve Equations by Completing the Square; Solve Equations by Completing the Square; teacher checks notation and reasoning.",
         "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M1-L1-5.01, ALEKS M1-L1-5.02, ALEKS M1-L1-5.03, ALEKS M1-L1-5.04, ALEKS M1-L1-5.05, ALEKS M1-L1-5.06, ALEKS M1-L1-5.07, ALEKS M1-L1-5.08.",
         "assessment": "Exit ticket: one fresh problem assessing 1k and one short explanation prompt.",
         "capReflection": "CAP reflection: Name the strategy that helped you persist with solve quadratic equations by completing the square.."
@@ -324,7 +324,7 @@
       "sourceLesson": "1-5",
       "objectiveCode": "1m",
       "objective": "Connect completing the square to vertex form.",
-      "workedExamples": "1-5, Examples 7-11 — Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function",
+      "workedExamples": "1-5, Examples 7-11 — Solve Equations with [a ≠ 1] by Completing the Square; Solve Equations with [a ≠ 1] by Completing the Square; Write Functions in Vertex Form; Write Functions in Vertex Form; Apply to Projectile Motion",
       "embeddedObjectives": [
         ", "
       ],
@@ -332,11 +332,11 @@
         "ALEKS M1-L1-5.09",
         "ALEKS M1-L1-5.10"
       ],
-      "notes": "Vertex form, graph interpretation, and modeling after the online-only Example 6 placeholder.",
+      "notes": "Vertex form, graph interpretation, and modeling. (Note: Examples 7-8 are combined, and Examples 9-10 are combined in the lesson source.)",
       "dailyPhases": {
         "warmUp": "Activate prior knowledge for 1m with one retrieval prompt tied to 1-5.",
-        "conceptDevelopment": "Use 1-5, Examples 7-11 — Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function to develop: Connect completing the square to vertex form..",
-        "guidedPractice": "Students complete a scaffolded problem modeled on 1-5, Examples 7-11 — Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function; teacher checks notation and reasoning.",
+        "conceptDevelopment": "Use 1-5, Examples 7-11 — Solve Equations with [a ≠ 1] by Completing the Square; Solve Equations with [a ≠ 1] by Completing the Square; Write Functions in Vertex Form; Write Functions in Vertex Form; Apply to Projectile Motion to develop: Connect completing the square to vertex form..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 1-5, Examples 7-11 — Solve Equations with [a ≠ 1] by Completing the Square; Solve Equations with [a ≠ 1] by Completing the Square; Write Functions in Vertex Form; Write Functions in Vertex Form; Apply to Projectile Motion; teacher checks notation and reasoning.",
         "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M1-L1-5.09, ALEKS M1-L1-5.10.",
         "assessment": "Exit ticket: one fresh problem assessing 1m and one short explanation prompt.",
         "capReflection": "CAP reflection: Name the strategy that helped you persist with connect completing the square to vertex form.."
@@ -350,7 +350,7 @@
       "sourceLesson": "1-6",
       "objectiveCode": "1n",
       "objective": "Use the Quadratic Formula to solve equations.",
-      "workedExamples": "1-6, Examples 1-3 — Use the Quadratic Formula; Non-Factorable Equation; Imaginary Solutions",
+      "workedExamples": "1-6, Examples 1-3 — Use the Quadratic Formula; Solve More Complex Equations; Solve More Complex Equations",
       "embeddedObjectives": [],
       "aleksSrsPractice": [
         "ALEKS M1-L1-6.01",
@@ -358,11 +358,11 @@
         "ALEKS M1-L1-6.03",
         "ALEKS M1-L1-6.06"
       ],
-      "notes": "Routine, non-factorable, and imaginary-solution cases.",
+      "notes": "Routine, non-factorable, and imaginary-solution cases. (Note: Examples 2 and 3 are combined in the lesson source.)",
       "dailyPhases": {
         "warmUp": "Activate prior knowledge for 1n with one retrieval prompt tied to 1-6.",
-        "conceptDevelopment": "Use 1-6, Examples 1-3 — Use the Quadratic Formula; Non-Factorable Equation; Imaginary Solutions to develop: Use the Quadratic Formula to solve equations..",
-        "guidedPractice": "Students complete a scaffolded problem modeled on 1-6, Examples 1-3 — Use the Quadratic Formula; Non-Factorable Equation; Imaginary Solutions; teacher checks notation and reasoning.",
+        "conceptDevelopment": "Use 1-6, Examples 1-3 — Use the Quadratic Formula; Solve More Complex Equations; Solve More Complex Equations to develop: Use the Quadratic Formula to solve equations..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 1-6, Examples 1-3 — Use the Quadratic Formula; Solve More Complex Equations; Solve More Complex Equations; teacher checks notation and reasoning.",
         "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M1-L1-6.01, ALEKS M1-L1-6.02, ALEKS M1-L1-6.03, ALEKS M1-L1-6.06.",
         "assessment": "Exit ticket: one fresh problem assessing 1n and one short explanation prompt.",
         "capReflection": "CAP reflection: Name the strategy that helped you persist with use the quadratic formula to solve equations.."
@@ -376,7 +376,7 @@
       "sourceLesson": "1-6",
       "objectiveCode": "1o",
       "objective": "Use the discriminant to determine the number and type of solutions.",
-      "workedExamples": "1-6, Examples 4-5 — Use the Discriminant; Determine Without Solving",
+      "workedExamples": "1-6, Examples 4-5 — Use the Discriminant; Use the Discriminant",
       "embeddedObjectives": [],
       "aleksSrsPractice": [
         "ALEKS M1-L1-6.04",
@@ -385,8 +385,8 @@
       "notes": "Prediction and classification before solving.",
       "dailyPhases": {
         "warmUp": "Activate prior knowledge for 1o with one retrieval prompt tied to 1-6.",
-        "conceptDevelopment": "Use 1-6, Examples 4-5 — Use the Discriminant; Determine Without Solving to develop: Use the discriminant to determine the number and type of solutions..",
-        "guidedPractice": "Students complete a scaffolded problem modeled on 1-6, Examples 4-5 — Use the Discriminant; Determine Without Solving; teacher checks notation and reasoning.",
+        "conceptDevelopment": "Use 1-6, Examples 4-5 — Use the Discriminant; Use the Discriminant to develop: Use the discriminant to determine the number and type of solutions..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 1-6, Examples 4-5 — Use the Discriminant; Use the Discriminant; teacher checks notation and reasoning.",
         "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M1-L1-6.04, ALEKS M1-L1-6.05.",
         "assessment": "Exit ticket: one fresh problem assessing 1o and one short explanation prompt.",
         "capReflection": "CAP reflection: Name the strategy that helped you persist with use the discriminant to determine the number and type of solutions.."
@@ -419,17 +419,17 @@
       "sourceLesson": "1-7",
       "objectiveCode": "1p",
       "objective": "Graph quadratic inequalities in two variables.",
-      "workedExamples": "1-7, Examples 1-2 — Graph a Quadratic Inequality (≤); Graph a Quadratic Inequality (>)",
+      "workedExamples": "1-7, Examples 1-2 — Graph Quadratic Inequalities; Example 2",
       "embeddedObjectives": [],
       "aleksSrsPractice": [
         "ALEKS M1-L1-7.03",
         "ALEKS M1-L1-7.04"
       ],
-      "notes": "Boundary, shading, and solid/dashed decisions.",
+      "notes": "Boundary, shading, and solid/dashed decisions. (Note: Examples 1 and 2 are combined in the lesson source.)",
       "dailyPhases": {
         "warmUp": "Activate prior knowledge for 1p with one retrieval prompt tied to 1-7.",
-        "conceptDevelopment": "Use 1-7, Examples 1-2 — Graph a Quadratic Inequality (≤); Graph a Quadratic Inequality (>) to develop: Graph quadratic inequalities in two variables..",
-        "guidedPractice": "Students complete a scaffolded problem modeled on 1-7, Examples 1-2 — Graph a Quadratic Inequality (≤); Graph a Quadratic Inequality (>); teacher checks notation and reasoning.",
+        "conceptDevelopment": "Use 1-7, Examples 1-2 — Graph Quadratic Inequalities; Example 2 to develop: Graph quadratic inequalities in two variables..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 1-7, Examples 1-2 — Graph Quadratic Inequalities; Example 2; teacher checks notation and reasoning.",
         "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M1-L1-7.03, ALEKS M1-L1-7.04.",
         "assessment": "Exit ticket: one fresh problem assessing 1p and one short explanation prompt.",
         "capReflection": "CAP reflection: Name the strategy that helped you persist with graph quadratic inequalities in two variables.."
@@ -443,17 +443,17 @@
       "sourceLesson": "1-7",
       "objectiveCode": "1q",
       "objective": "Solve quadratic inequalities in one variable by graphing.",
-      "workedExamples": "1-7, Examples 3-5 — Solve x^2 + x - 6 < 0 by Graphing; Solve x^2 - 3x - 4 ≥ 0 by Graphing; Solve a Quadratic Inequality in Context",
+      "workedExamples": "1-7, Examples 3-5 — Solve Inequalities by Graphing; Solve Inequalities by Graphing; Real-World Quadratic Inequalities",
       "embeddedObjectives": [],
       "aleksSrsPractice": [
         "ALEKS M1-L1-7.01",
         "ALEKS M1-L1-7.02"
       ],
-      "notes": "Includes interval interpretation and contextual meaning of solution sets.",
+      "notes": "Includes interval interpretation and contextual meaning of solution sets. (Note: Examples 3 and 4 are combined in the lesson source.)",
       "dailyPhases": {
         "warmUp": "Activate prior knowledge for 1q with one retrieval prompt tied to 1-7.",
-        "conceptDevelopment": "Use 1-7, Examples 3-5 — Solve x^2 + x - 6 < 0 by Graphing; Solve x^2 - 3x - 4 ≥ 0 by Graphing; Solve a Quadratic Inequality in Context to develop: Solve quadratic inequalities in one variable by graphing..",
-        "guidedPractice": "Students complete a scaffolded problem modeled on 1-7, Examples 3-5 — Solve x^2 + x - 6 < 0 by Graphing; Solve x^2 - 3x - 4 ≥ 0 by Graphing; Solve a Quadratic Inequality in Context; teacher checks notation and reasoning.",
+        "conceptDevelopment": "Use 1-7, Examples 3-5 — Solve Inequalities by Graphing; Solve Inequalities by Graphing; Real-World Quadratic Inequalities to develop: Solve quadratic inequalities in one variable by graphing..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 1-7, Examples 3-5 — Solve Inequalities by Graphing; Solve Inequalities by Graphing; Real-World Quadratic Inequalities; teacher checks notation and reasoning.",
         "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M1-L1-7.01, ALEKS M1-L1-7.02.",
         "assessment": "Exit ticket: one fresh problem assessing 1q and one short explanation prompt.",
         "capReflection": "CAP reflection: Name the strategy that helped you persist with solve quadratic inequalities in one variable by graphing.."
@@ -486,17 +486,17 @@
       "sourceLesson": "1-8",
       "objectiveCode": "1s",
       "objective": "Solve systems involving a linear and a quadratic equation.",
-      "workedExamples": "1-8, Examples 1-4 — Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing",
+      "workedExamples": "1-8, Examples 1-4 — Solve by Substitution or Elimination; Solve by Substitution or Elimination; Use Systems to Solve Quadratic Equations; Apply to Civil Engineering",
       "embeddedObjectives": [],
       "aleksSrsPractice": [
         "ALEKS M1-L1-8.01",
         "ALEKS M1-L1-8.02"
       ],
-      "notes": "Linear-quadratic systems through algebraic and graphical methods.",
+      "notes": "Linear-quadratic systems through algebraic and graphical methods. (Note: Examples 1 and 2 are combined in the lesson source.)",
       "dailyPhases": {
         "warmUp": "Activate prior knowledge for 1s with one retrieval prompt tied to 1-8.",
-        "conceptDevelopment": "Use 1-8, Examples 1-4 — Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing to develop: Solve systems involving a linear and a quadratic equation..",
-        "guidedPractice": "Students complete a scaffolded problem modeled on 1-8, Examples 1-4 — Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing; teacher checks notation and reasoning.",
+        "conceptDevelopment": "Use 1-8, Examples 1-4 — Solve by Substitution or Elimination; Solve by Substitution or Elimination; Use Systems to Solve Quadratic Equations; Apply to Civil Engineering to develop: Solve systems involving a linear and a quadratic equation..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 1-8, Examples 1-4 — Solve by Substitution or Elimination; Solve by Substitution or Elimination; Use Systems to Solve Quadratic Equations; Apply to Civil Engineering; teacher checks notation and reasoning.",
         "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M1-L1-8.01, ALEKS M1-L1-8.02.",
         "assessment": "Exit ticket: one fresh problem assessing 1s and one short explanation prompt.",
         "capReflection": "CAP reflection: Name the strategy that helped you persist with solve systems involving a linear and a quadratic equation.."
@@ -510,7 +510,7 @@
       "sourceLesson": "1-8",
       "objectiveCode": "1t",
       "objective": "Solve systems of two quadratic equations.",
-      "workedExamples": "1-8, Examples 5-7 — Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation",
+      "workedExamples": "1-8, Examples 5-7 — Solve by Graphing; Solve Quadratic-Quadratic Systems Algebraically; More Systems Leading to Quadratic Equations",
       "embeddedObjectives": [],
       "aleksSrsPractice": [
         "ALEKS M1-L1-8.03"
@@ -518,8 +518,8 @@
       "notes": "Systems of two quadratic relations and interpretation through intersection structure.",
       "dailyPhases": {
         "warmUp": "Activate prior knowledge for 1t with one retrieval prompt tied to 1-8.",
-        "conceptDevelopment": "Use 1-8, Examples 5-7 — Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation to develop: Solve systems of two quadratic equations..",
-        "guidedPractice": "Students complete a scaffolded problem modeled on 1-8, Examples 5-7 — Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation; teacher checks notation and reasoning.",
+        "conceptDevelopment": "Use 1-8, Examples 5-7 — Solve by Graphing; Solve Quadratic-Quadratic Systems Algebraically; More Systems Leading to Quadratic Equations to develop: Solve systems of two quadratic equations..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 1-8, Examples 5-7 — Solve by Graphing; Solve Quadratic-Quadratic Systems Algebraically; More Systems Leading to Quadratic Equations; teacher checks notation and reasoning.",
         "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M1-L1-8.03.",
         "assessment": "Exit ticket: one fresh problem assessing 1t and one short explanation prompt.",
         "capReflection": "CAP reflection: Name the strategy that helped you persist with solve systems of two quadratic equations.."

@@ -25,7 +25,7 @@
     {
       "id": "math.im3.example.1.1.001",
       "kind": "worked_example",
-      "title": "Example 1: Graph Using a Table; Compare Quadratic Functions; Real-World Application (Modeling)",
+      "title": "Example 1: Graph Quadratic Functions and State Domain and Range",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 1)"
@@ -43,7 +43,7 @@
     {
       "id": "math.im3.example.1.1.002",
       "kind": "worked_example",
-      "title": "Example 2: Graph Using a Table; Compare Quadratic Functions; Real-World Application (Modeling)",
+      "title": "Example 2: Compare Quadratic Functions Using Graphs and Tables",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 2)"
@@ -61,7 +61,7 @@
     {
       "id": "math.im3.example.1.1.003",
       "kind": "worked_example",
-      "title": "Example 3: Graph Using a Table; Compare Quadratic Functions; Real-World Application (Modeling)",
+      "title": "Example 3: Quadratic Revenue Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 3)"
@@ -79,7 +79,7 @@
     {
       "id": "math.im3.example.1.1.004",
       "kind": "worked_example",
-      "title": "Example 4: From an Equation; From a Table; From a Graph (Estimation + Algebra)",
+      "title": "Example 4: Average Rate of Change of Quadratic Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 4)"
@@ -97,7 +97,7 @@
     {
       "id": "math.im3.example.1.1.005",
       "kind": "worked_example",
-      "title": "Example 5: From an Equation; From a Table; From a Graph (Estimation + Algebra)",
+      "title": "Example 5: Average Rate of Change from Graphs",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 5)"
@@ -115,7 +115,7 @@
     {
       "id": "math.im3.example.1.1.006",
       "kind": "worked_example",
-      "title": "Example 6: From an Equation; From a Table; From a Graph (Estimation + Algebra)",
+      "title": "Example 6: Interpret Average Rate of Change in Context",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 6)"
@@ -133,7 +133,7 @@
     {
       "id": "math.im3.example.1.2.007",
       "kind": "worked_example",
-      "title": "Example 1: One Real Solution; Two Real Solutions; Estimate Roots",
+      "title": "Example 1: Use Related Graphs to Determine Solutions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-2, Example 1)"
@@ -151,7 +151,7 @@
     {
       "id": "math.im3.example.1.2.008",
       "kind": "worked_example",
-      "title": "Example 2: One Real Solution; Two Real Solutions; Estimate Roots",
+      "title": "Example 2: Find Two Numbers with Given Sum and Product Using Quadratic Equations",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-2, Example 2)"
@@ -169,7 +169,7 @@
     {
       "id": "math.im3.example.1.2.009",
       "kind": "worked_example",
-      "title": "Example 3: One Real Solution; Two Real Solutions; Estimate Roots",
+      "title": "Example 3: Solve by Graphing When Exact Roots Cannot Be Found",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-2, Example 3)"
@@ -187,7 +187,7 @@
     {
       "id": "math.im3.example.1.2.010",
       "kind": "worked_example",
-      "title": "Example 4: Solve by Using a Table; Solve by Using a Calculator",
+      "title": "Example 4: Use Tables to Determine Zeros",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-2, Example 4)"
@@ -205,7 +205,7 @@
     {
       "id": "math.im3.example.1.2.011",
       "kind": "worked_example",
-      "title": "Example 5: Solve by Using a Table; Solve by Using a Calculator",
+      "title": "Example 5: Solve Using the Height Formula in Physics",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-2, Example 5)"
@@ -223,7 +223,7 @@
     {
       "id": "math.im3.example.1.3.012",
       "kind": "worked_example",
-      "title": "Example 1: Square Roots of Negative Numbers; Products of Pure Imaginary Numbers; Equation with Pure Imaginary Solutions",
+      "title": "Example 1: Simplify Expressions with Imaginary Numbers",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-3, Example 1)"
@@ -259,7 +259,7 @@
     {
       "id": "math.im3.example.1.3.014",
       "kind": "worked_example",
-      "title": "Example 3: Square Roots of Negative Numbers; Products of Pure Imaginary Numbers; Equation with Pure Imaginary Solutions",
+      "title": "Example 3: Solve Quadratic Equations with Complex Solutions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-3, Example 3)"
@@ -277,7 +277,7 @@
     {
       "id": "math.im3.example.1.3.015",
       "kind": "worked_example",
-      "title": "Example 4: Equate Complex Numbers; Add or Subtract Complex Numbers; Multiply Complex Numbers; Divide Complex Numbers",
+      "title": "Example 4: Find Values of x and y in Complex Equations",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-3, Example 4)"
@@ -295,7 +295,7 @@
     {
       "id": "math.im3.example.1.3.016",
       "kind": "worked_example",
-      "title": "Example 5: Equate Complex Numbers; Add or Subtract Complex Numbers; Multiply Complex Numbers; Divide Complex Numbers",
+      "title": "Example 5: Add, Subtract, and Multiply Complex Numbers",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-3, Example 5)"
@@ -313,7 +313,7 @@
     {
       "id": "math.im3.example.1.3.017",
       "kind": "worked_example",
-      "title": "Example 6: Equate Complex Numbers; Add or Subtract Complex Numbers; Multiply Complex Numbers; Divide Complex Numbers",
+      "title": "Example 6: Add, Subtract, and Multiply Complex Numbers",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-3, Example 6)"
@@ -331,7 +331,7 @@
     {
       "id": "math.im3.example.1.3.018",
       "kind": "worked_example",
-      "title": "Example 7: Equate Complex Numbers; Add or Subtract Complex Numbers; Multiply Complex Numbers; Divide Complex Numbers",
+      "title": "Example 7: Divide Complex Numbers",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-3, Example 7)"
@@ -349,7 +349,7 @@
     {
       "id": "math.im3.example.1.4.019",
       "kind": "worked_example",
-      "title": "Example 1: Factor by Using the Distributive Property; Factor a Trinomial; Solve an Equation by Factoring; Factor a Trinomial Where a Is Not 1",
+      "title": "Example 1: Solve Equations by Factoring",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-4, Example 1)"
@@ -367,7 +367,7 @@
     {
       "id": "math.im3.example.1.4.020",
       "kind": "worked_example",
-      "title": "Example 2: Factor by Using the Distributive Property; Factor a Trinomial; Solve an Equation by Factoring; Factor a Trinomial Where a Is Not 1",
+      "title": "Example 2: Solve Equations by Factoring",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-4, Example 2)"
@@ -385,7 +385,7 @@
     {
       "id": "math.im3.example.1.4.021",
       "kind": "worked_example",
-      "title": "Example 3: Factor by Using the Distributive Property; Factor a Trinomial; Solve an Equation by Factoring; Factor a Trinomial Where a Is Not 1",
+      "title": "Example 3: Geometry and Area Problems",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-4, Example 3)"
@@ -403,7 +403,7 @@
     {
       "id": "math.im3.example.1.4.022",
       "kind": "worked_example",
-      "title": "Example 4: Factor by Using the Distributive Property; Factor a Trinomial; Solve an Equation by Factoring; Factor a Trinomial Where a Is Not 1",
+      "title": "Example 4: Factor Trinomials with [a \u2260 1]",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-4, Example 4)"
@@ -421,7 +421,7 @@
     {
       "id": "math.im3.example.1.4.023",
       "kind": "worked_example",
-      "title": "Example 5: Factor a Difference of Squares; Factor a Perfect Square Trinomial; Complex Solutions",
+      "title": "Example 5: 7 \u2014 Difference of Squares and Perfect Squares",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-4, Example 5)"
@@ -439,7 +439,7 @@
     {
       "id": "math.im3.example.1.4.024",
       "kind": "worked_example",
-      "title": "Example 6: Factor a Difference of Squares; Factor a Perfect Square Trinomial; Complex Solutions",
+      "title": "Example 6: Example 6",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-4, Example 6)"
@@ -457,7 +457,7 @@
     {
       "id": "math.im3.example.1.4.025",
       "kind": "worked_example",
-      "title": "Example 7: Factor a Difference of Squares; Factor a Perfect Square Trinomial; Complex Solutions",
+      "title": "Example 7: Example 7",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-4, Example 7)"
@@ -475,7 +475,7 @@
     {
       "id": "math.im3.example.1.5.026",
       "kind": "worked_example",
-      "title": "Example 1: Solve a Quadratic Equation with Rational Roots; Solve a Quadratic Equation with Irrational Roots; Solve a Quadratic Equation with Complex Solutions; Complete the Square; Solve by Completing the Square",
+      "title": "Example 1: 3 \u2014 Use the Square Root Property",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 1)"
@@ -493,7 +493,7 @@
     {
       "id": "math.im3.example.1.5.027",
       "kind": "worked_example",
-      "title": "Example 2: Solve a Quadratic Equation with Rational Roots; Solve a Quadratic Equation with Irrational Roots; Solve a Quadratic Equation with Complex Solutions; Complete the Square; Solve by Completing the Square",
+      "title": "Example 2: Example 2",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 2)"
@@ -511,7 +511,7 @@
     {
       "id": "math.im3.example.1.5.028",
       "kind": "worked_example",
-      "title": "Example 3: Solve a Quadratic Equation with Rational Roots; Solve a Quadratic Equation with Irrational Roots; Solve a Quadratic Equation with Complex Solutions; Complete the Square; Solve by Completing the Square",
+      "title": "Example 3: Example 3",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 3)"
@@ -529,7 +529,7 @@
     {
       "id": "math.im3.example.1.5.029",
       "kind": "worked_example",
-      "title": "Example 4: Solve a Quadratic Equation with Rational Roots; Solve a Quadratic Equation with Irrational Roots; Solve a Quadratic Equation with Complex Solutions; Complete the Square; Solve by Completing the Square",
+      "title": "Example 4: Find the Value of c That Completes the Square",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 4)"
@@ -547,7 +547,7 @@
     {
       "id": "math.im3.example.1.5.030",
       "kind": "worked_example",
-      "title": "Example 5: Solve a Quadratic Equation with Rational Roots; Solve a Quadratic Equation with Irrational Roots; Solve a Quadratic Equation with Complex Solutions; Complete the Square; Solve by Completing the Square",
+      "title": "Example 5: Solve Equations by Completing the Square",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 5)"
@@ -565,7 +565,7 @@
     {
       "id": "math.im3.example.1.5.031",
       "kind": "worked_example",
-      "title": "Example 7: Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function",
+      "title": "Example 7: Solve Equations with [a \u2260 1] by Completing the Square",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 7)"
@@ -583,7 +583,7 @@
     {
       "id": "math.im3.example.1.5.032",
       "kind": "worked_example",
-      "title": "Example 8: Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function",
+      "title": "Example 8: Solve Equations with [a \u2260 1] by Completing the Square",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 8)"
@@ -601,7 +601,7 @@
     {
       "id": "math.im3.example.1.5.033",
       "kind": "worked_example",
-      "title": "Example 9: Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function",
+      "title": "Example 9: Write Functions in Vertex Form",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 9)"
@@ -619,7 +619,7 @@
     {
       "id": "math.im3.example.1.5.034",
       "kind": "worked_example",
-      "title": "Example 10: Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function",
+      "title": "Example 10: Write Functions in Vertex Form",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 10)"
@@ -637,7 +637,7 @@
     {
       "id": "math.im3.example.1.5.035",
       "kind": "worked_example",
-      "title": "Example 11: Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function",
+      "title": "Example 11: Apply to Projectile Motion",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 11)"
@@ -655,7 +655,7 @@
     {
       "id": "math.im3.example.1.6.036",
       "kind": "worked_example",
-      "title": "Example 1: Use the Quadratic Formula; Non-Factorable Equation; Imaginary Solutions",
+      "title": "Example 1: Use the Quadratic Formula",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-6, Example 1)"
@@ -673,7 +673,7 @@
     {
       "id": "math.im3.example.1.6.037",
       "kind": "worked_example",
-      "title": "Example 2: Use the Quadratic Formula; Non-Factorable Equation; Imaginary Solutions",
+      "title": "Example 2: Solve More Complex Equations",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-6, Example 2)"
@@ -691,7 +691,7 @@
     {
       "id": "math.im3.example.1.6.038",
       "kind": "worked_example",
-      "title": "Example 3: Use the Quadratic Formula; Non-Factorable Equation; Imaginary Solutions",
+      "title": "Example 3: Solve More Complex Equations",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-6, Example 3)"
@@ -709,7 +709,7 @@
     {
       "id": "math.im3.example.1.6.039",
       "kind": "worked_example",
-      "title": "Example 4: Use the Discriminant; Determine Without Solving",
+      "title": "Example 4: Use the Discriminant",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-6, Example 4)"
@@ -727,7 +727,7 @@
     {
       "id": "math.im3.example.1.6.040",
       "kind": "worked_example",
-      "title": "Example 5: Use the Discriminant; Determine Without Solving",
+      "title": "Example 5: Use the Discriminant",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-6, Example 5)"
@@ -745,7 +745,7 @@
     {
       "id": "math.im3.example.1.7.041",
       "kind": "worked_example",
-      "title": "Example 1: Graph a Quadratic Inequality (\u2264); Graph a Quadratic Inequality (>)",
+      "title": "Example 1: Graph Quadratic Inequalities",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-7, Example 1)"
@@ -763,7 +763,7 @@
     {
       "id": "math.im3.example.1.7.042",
       "kind": "worked_example",
-      "title": "Example 2: Graph a Quadratic Inequality (\u2264); Graph a Quadratic Inequality (>)",
+      "title": "Example 2: Example 2",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-7, Example 2)"
@@ -781,7 +781,7 @@
     {
       "id": "math.im3.example.1.7.043",
       "kind": "worked_example",
-      "title": "Example 3: Solve x^2 + x - 6 < 0 by Graphing; Solve x^2 - 3x - 4 \u2265 0 by Graphing; Solve a Quadratic Inequality in Context",
+      "title": "Example 3: Solve Inequalities by Graphing",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-7, Example 3)"
@@ -799,7 +799,7 @@
     {
       "id": "math.im3.example.1.7.044",
       "kind": "worked_example",
-      "title": "Example 4: Solve x^2 + x - 6 < 0 by Graphing; Solve x^2 - 3x - 4 \u2265 0 by Graphing; Solve a Quadratic Inequality in Context",
+      "title": "Example 4: Solve Inequalities by Graphing",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-7, Example 4)"
@@ -817,7 +817,7 @@
     {
       "id": "math.im3.example.1.7.045",
       "kind": "worked_example",
-      "title": "Example 5: Solve x^2 + x - 6 < 0 by Graphing; Solve x^2 - 3x - 4 \u2265 0 by Graphing; Solve a Quadratic Inequality in Context",
+      "title": "Example 5: Real-World Quadratic Inequalities",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-7, Example 5)"
@@ -835,7 +835,7 @@
     {
       "id": "math.im3.example.1.8.046",
       "kind": "worked_example",
-      "title": "Example 1: Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing",
+      "title": "Example 1: Solve by Substitution or Elimination",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 1)"
@@ -853,7 +853,7 @@
     {
       "id": "math.im3.example.1.8.047",
       "kind": "worked_example",
-      "title": "Example 2: Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing",
+      "title": "Example 2: Solve by Substitution or Elimination",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 2)"
@@ -871,7 +871,7 @@
     {
       "id": "math.im3.example.1.8.048",
       "kind": "worked_example",
-      "title": "Example 3: Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing",
+      "title": "Example 3: Use Systems to Solve Quadratic Equations",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 3)"
@@ -889,7 +889,7 @@
     {
       "id": "math.im3.example.1.8.049",
       "kind": "worked_example",
-      "title": "Example 4: Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing",
+      "title": "Example 4: Apply to Civil Engineering",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 4)"
@@ -907,7 +907,7 @@
     {
       "id": "math.im3.example.1.8.050",
       "kind": "worked_example",
-      "title": "Example 5: Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation",
+      "title": "Example 5: Solve by Graphing",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 5)"
@@ -925,7 +925,7 @@
     {
       "id": "math.im3.example.1.8.051",
       "kind": "worked_example",
-      "title": "Example 6: Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation",
+      "title": "Example 6: Solve Quadratic-Quadratic Systems Algebraically",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 6)"
@@ -943,7 +943,7 @@
     {
       "id": "math.im3.example.1.8.052",
       "kind": "worked_example",
-      "title": "Example 7: Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation",
+      "title": "Example 7: More Systems Leading to Quadratic Equations",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 7)"
@@ -2732,7 +2732,7 @@
     {
       "id": "math.im3.example.2.1.001",
       "kind": "worked_example",
-      "title": "Example 1: End Behavior and Degree of a Monomial Function; Graph a Power Function by Using a Table",
+      "title": "Example 1: Describe End Behavior",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-2-class-period-plan.md (2-1, Example 1)"
@@ -2750,7 +2750,7 @@
     {
       "id": "math.im3.example.2.1.002",
       "kind": "worked_example",
-      "title": "Example 2: End Behavior and Degree of a Monomial Function; Graph a Power Function by Using a Table",
+      "title": "Example 2: Graph Polynomial Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-2-class-period-plan.md (2-1, Example 2)"
@@ -2768,7 +2768,7 @@
     {
       "id": "math.im3.example.2.1.003",
       "kind": "worked_example",
-      "title": "Example 3: Degrees and Leading Coefficients; Evaluate and Graph a Polynomial Function; Zeros of a Polynomial Function; Compare Polynomial Functions",
+      "title": "Example 3: Degree and Leading Coefficient",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-2-class-period-plan.md (2-1, Example 3)"
@@ -2786,7 +2786,7 @@
     {
       "id": "math.im3.example.2.1.004",
       "kind": "worked_example",
-      "title": "Example 4: Degrees and Leading Coefficients; Evaluate and Graph a Polynomial Function; Zeros of a Polynomial Function; Compare Polynomial Functions",
+      "title": "Example 4: Real-World Applications",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-2-class-period-plan.md (2-1, Example 4)"
@@ -2804,7 +2804,7 @@
     {
       "id": "math.im3.example.2.1.005",
       "kind": "worked_example",
-      "title": "Example 5: Degrees and Leading Coefficients; Evaluate and Graph a Polynomial Function; Zeros of a Polynomial Function; Compare Polynomial Functions",
+      "title": "Example 5: Real Zeros from Graphs",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-2-class-period-plan.md (2-1, Example 5)"
@@ -2822,7 +2822,7 @@
     {
       "id": "math.im3.example.2.1.006",
       "kind": "worked_example",
-      "title": "Example 6: Degrees and Leading Coefficients; Evaluate and Graph a Polynomial Function; Zeros of a Polynomial Function; Compare Polynomial Functions",
+      "title": "Example 6: Compare Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-2-class-period-plan.md (2-1, Example 6)"
@@ -2840,7 +2840,7 @@
     {
       "id": "math.im3.example.2.2.007",
       "kind": "worked_example",
-      "title": "Example 2: Identify Extrema; Analyze a Polynomial Function; support from Example 5 \u2014 Find Average Rate of Change",
+      "title": "Example 2: Find Extrema Using a Table",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-2-class-period-plan.md (2-2, Example 2)"
@@ -2858,7 +2858,7 @@
     {
       "id": "math.im3.example.2.2.008",
       "kind": "worked_example",
-      "title": "Example 3: Identify Extrema; Analyze a Polynomial Function; support from Example 5 \u2014 Find Average Rate of Change",
+      "title": "Example 3: Key Features from Graphs",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-2-class-period-plan.md (2-2, Example 3)"
@@ -2876,7 +2876,7 @@
     {
       "id": "math.im3.example.2.3.009",
       "kind": "worked_example",
-      "title": "Example 2: Add Polynomials; Subtract Polynomials; support from Example 1 \u2014 Identify Polynomials",
+      "title": "Example 2: Add or Subtract",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-2-class-period-plan.md (2-3, Example 2)"
@@ -2894,7 +2894,7 @@
     {
       "id": "math.im3.example.2.3.010",
       "kind": "worked_example",
-      "title": "Example 3: Add Polynomials; Subtract Polynomials; support from Example 1 \u2014 Identify Polynomials",
+      "title": "Example 3: Add or Subtract",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-2-class-period-plan.md (2-3, Example 3)"
@@ -2912,7 +2912,7 @@
     {
       "id": "math.im3.example.2.3.011",
       "kind": "worked_example",
-      "title": "Example 4: Simplify by Using the Distributive Property; Multiply Binomials; support from Apply Example 7 \u2014 Write and Simplify a Polynomial Expression",
+      "title": "Example 4: Multiply",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-2-class-period-plan.md (2-3, Example 4)"
@@ -2930,7 +2930,7 @@
     {
       "id": "math.im3.example.2.3.012",
       "kind": "worked_example",
-      "title": "Example 5: Simplify by Using the Distributive Property; Multiply Binomials; support from Apply Example 7 \u2014 Write and Simplify a Polynomial Expression",
+      "title": "Example 5: Multiply",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-2-class-period-plan.md (2-3, Example 5)"
@@ -2948,7 +2948,7 @@
     {
       "id": "math.im3.example.2.4.013",
       "kind": "worked_example",
-      "title": "Example 1: Divide a Polynomial by a Monomial; Divide a Polynomial by a Binomial; Find a Quotient with a Remainder",
+      "title": "Example 1: Simplify Expressions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-2-class-period-plan.md (2-4, Example 1)"
@@ -2966,7 +2966,7 @@
     {
       "id": "math.im3.example.2.4.014",
       "kind": "worked_example",
-      "title": "Example 2: Divide a Polynomial by a Monomial; Divide a Polynomial by a Binomial; Find a Quotient with a Remainder",
+      "title": "Example 2: Long Division",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-2-class-period-plan.md (2-4, Example 2)"
@@ -2984,7 +2984,7 @@
     {
       "id": "math.im3.example.2.4.015",
       "kind": "worked_example",
-      "title": "Example 3: Divide a Polynomial by a Monomial; Divide a Polynomial by a Binomial; Find a Quotient with a Remainder",
+      "title": "Example 3: Long Division",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-2-class-period-plan.md (2-4, Example 3)"
@@ -3002,7 +3002,7 @@
     {
       "id": "math.im3.example.2.4.016",
       "kind": "worked_example",
-      "title": "Example 4: Use Synthetic Division; Divisor with a Coefficient Other Than 1",
+      "title": "Example 4: Synthetic Division",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-2-class-period-plan.md (2-4, Example 4)"
@@ -3020,7 +3020,7 @@
     {
       "id": "math.im3.example.2.4.017",
       "kind": "worked_example",
-      "title": "Example 5: Use Synthetic Division; Divisor with a Coefficient Other Than 1",
+      "title": "Example 5: Synthetic Division",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-2-class-period-plan.md (2-4, Example 5)"
@@ -3056,7 +3056,7 @@
     {
       "id": "math.im3.example.2.5.019",
       "kind": "worked_example",
-      "title": "Example 2: Use the Binomial Theorem; Coefficients Other Than 1",
+      "title": "Example 2: Probability Applications",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-2-class-period-plan.md (2-5, Example 2)"
@@ -3074,7 +3074,7 @@
     {
       "id": "math.im3.example.2.5.020",
       "kind": "worked_example",
-      "title": "Example 3: Use the Binomial Theorem; Coefficients Other Than 1",
+      "title": "Example 3: Expand Binomials",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-2-class-period-plan.md (2-5, Example 3)"
@@ -3563,7 +3563,7 @@
     {
       "id": "math.im3.example.3.1.001",
       "kind": "worked_example",
-      "title": "Example 1: Solve a Polynomial Equation by Graphing; Solve a Polynomial Equation by Using a System",
+      "title": "Example 1: Solve Polynomial Equations by Graphing",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-1, Example 1)"
@@ -3581,7 +3581,7 @@
     {
       "id": "math.im3.example.3.1.002",
       "kind": "worked_example",
-      "title": "Example 2: Solve a Polynomial Equation by Graphing; Solve a Polynomial Equation by Using a System",
+      "title": "Example 2: Solve Polynomial Equations with Higher Degrees",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-1, Example 2)"
@@ -3599,7 +3599,7 @@
     {
       "id": "math.im3.example.3.2.003",
       "kind": "worked_example",
-      "title": "Example 1: Factor Sums and Differences of Cubes; Factor by Grouping; Combine Cubes and Squares; Solve a Polynomial Equation by Factoring; Write and Solve a Polynomial Equation by Factoring",
+      "title": "Example 1: 3",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-2, Example 1)"
@@ -3617,7 +3617,7 @@
     {
       "id": "math.im3.example.3.2.004",
       "kind": "worked_example",
-      "title": "Example 2: Factor Sums and Differences of Cubes; Factor by Grouping; Combine Cubes and Squares; Solve a Polynomial Equation by Factoring; Write and Solve a Polynomial Equation by Factoring",
+      "title": "Example 2: Example 2",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-2, Example 2)"
@@ -3635,7 +3635,7 @@
     {
       "id": "math.im3.example.3.2.005",
       "kind": "worked_example",
-      "title": "Example 3: Factor Sums and Differences of Cubes; Factor by Grouping; Combine Cubes and Squares; Solve a Polynomial Equation by Factoring; Write and Solve a Polynomial Equation by Factoring",
+      "title": "Example 3: Example 3",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-2, Example 3)"
@@ -3653,7 +3653,7 @@
     {
       "id": "math.im3.example.3.2.006",
       "kind": "worked_example",
-      "title": "Example 4: Factor Sums and Differences of Cubes; Factor by Grouping; Combine Cubes and Squares; Solve a Polynomial Equation by Factoring; Write and Solve a Polynomial Equation by Factoring",
+      "title": "Example 4: Example 4",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-2, Example 4)"
@@ -3671,7 +3671,7 @@
     {
       "id": "math.im3.example.3.2.007",
       "kind": "worked_example",
-      "title": "Example 5: Factor Sums and Differences of Cubes; Factor by Grouping; Combine Cubes and Squares; Solve a Polynomial Equation by Factoring; Write and Solve a Polynomial Equation by Factoring",
+      "title": "Example 5: Example 5",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-2, Example 5)"
@@ -3689,7 +3689,7 @@
     {
       "id": "math.im3.example.3.2.008",
       "kind": "worked_example",
-      "title": "Example 6: Write Expressions in Quadratic Form; Solve Equations in Quadratic Form",
+      "title": "Example 6: Write Expressions in Quadratic Form",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-2, Example 6)"
@@ -3707,7 +3707,7 @@
     {
       "id": "math.im3.example.3.2.009",
       "kind": "worked_example",
-      "title": "Example 7: Write Expressions in Quadratic Form; Solve Equations in Quadratic Form",
+      "title": "Example 7: Solve Equations in Quadratic Form",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-2, Example 7)"
@@ -3725,7 +3725,7 @@
     {
       "id": "math.im3.example.3.3.010",
       "kind": "worked_example",
-      "title": "Example 1: Transform One Side; Use Polynomial Identities",
+      "title": "Example 1: Prove Polynomial Identities",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-3, Example 1)"
@@ -3743,7 +3743,7 @@
     {
       "id": "math.im3.example.3.3.011",
       "kind": "worked_example",
-      "title": "Example 2: Transform One Side; Use Polynomial Identities",
+      "title": "Example 2: Apply Polynomial Identities to Geometric Problems",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-3, Example 2)"
@@ -3761,7 +3761,7 @@
     {
       "id": "math.im3.example.3.4.012",
       "kind": "worked_example",
-      "title": "Example 1: Synthetic Substitution; Apply the Remainder Theorem",
+      "title": "Example 1: Use Synthetic Substitution to Evaluate Polynomials",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-4, Example 1)"
@@ -3779,7 +3779,7 @@
     {
       "id": "math.im3.example.3.4.013",
       "kind": "worked_example",
-      "title": "Example 2: Synthetic Substitution; Apply the Remainder Theorem",
+      "title": "Example 2: Apply Polynomials to Real-World Situations",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-4, Example 2)"
@@ -3797,7 +3797,7 @@
     {
       "id": "math.im3.example.3.4.014",
       "kind": "worked_example",
-      "title": "Example 3: Use the Factor Theorem",
+      "title": "Example 3: Find Remaining Factors Using the Factor Theorem",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-4, Example 3)"
@@ -3815,7 +3815,7 @@
     {
       "id": "math.im3.example.3.5.015",
       "kind": "worked_example",
-      "title": "Example 1: Determine the Number and Type of Roots; Find the Number of Positive and Negative Zeros",
+      "title": "Example 1: Solve Equations and State Number and Type of Roots",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-5, Example 1)"
@@ -3833,7 +3833,7 @@
     {
       "id": "math.im3.example.3.5.016",
       "kind": "worked_example",
-      "title": "Example 2: Determine the Number and Type of Roots; Find the Number of Positive and Negative Zeros",
+      "title": "Example 2: Use Descartes' Rule of Signs",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-5, Example 2)"
@@ -4246,7 +4246,7 @@
     {
       "id": "math.im3.example.4.1.001",
       "kind": "worked_example",
-      "title": "Example 1: Add and Subtract Functions; Multiply and Divide Functions",
+      "title": "Example 1: Add, Subtract, Multiply, and Divide Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-1, Example 1)"
@@ -4264,7 +4264,7 @@
     {
       "id": "math.im3.example.4.1.002",
       "kind": "worked_example",
-      "title": "Example 2: Add and Subtract Functions; Multiply and Divide Functions",
+      "title": "Example 2: Composition of Functions with Ordered Pairs",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-1, Example 2)"
@@ -4282,7 +4282,7 @@
     {
       "id": "math.im3.example.4.2.003",
       "kind": "worked_example",
-      "title": "Example 1: Find an Inverse Relation; Inverse Functions; Inverses with Restricted Domains; Interpret Inverse Functions",
+      "title": "Example 1: Find the Inverse of a Relation",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-2, Example 1)"
@@ -4300,7 +4300,7 @@
     {
       "id": "math.im3.example.4.2.004",
       "kind": "worked_example",
-      "title": "Example 2: Find an Inverse Relation; Inverse Functions; Inverses with Restricted Domains; Interpret Inverse Functions",
+      "title": "Example 2: Find the Inverse of a Linear Function",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-2, Example 2)"
@@ -4318,7 +4318,7 @@
     {
       "id": "math.im3.example.4.2.005",
       "kind": "worked_example",
-      "title": "Example 3: Find an Inverse Relation; Inverse Functions; Inverses with Restricted Domains; Interpret Inverse Functions",
+      "title": "Example 3: Find the Inverse of a Quadratic Function (Restricted Domain)",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-2, Example 3)"
@@ -4336,7 +4336,7 @@
     {
       "id": "math.im3.example.4.2.006",
       "kind": "worked_example",
-      "title": "Example 4: Find an Inverse Relation; Inverse Functions; Inverses with Restricted Domains; Interpret Inverse Functions",
+      "title": "Example 4: Real-World Inverse Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-2, Example 4)"
@@ -4354,7 +4354,7 @@
     {
       "id": "math.im3.example.4.2.007",
       "kind": "worked_example",
-      "title": "Example 5: Use Compositions to Verify Inverses; Verify Inverse Functions",
+      "title": "Example 5: Verify Inverse Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-2, Example 5)"
@@ -4372,7 +4372,7 @@
     {
       "id": "math.im3.example.4.2.008",
       "kind": "worked_example",
-      "title": "Example 6: Use Compositions to Verify Inverses; Verify Inverse Functions",
+      "title": "Example 6: Inverses of Geometric Formulas",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-2, Example 6)"
@@ -4390,7 +4390,7 @@
     {
       "id": "math.im3.example.4.3.009",
       "kind": "worked_example",
-      "title": "Example 1: Find Roots; Simplify Using Absolute Value; Radical and Exponential Forms",
+      "title": "Example 1: Simplify Square Roots",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-3, Example 1)"
@@ -4408,7 +4408,7 @@
     {
       "id": "math.im3.example.4.3.010",
       "kind": "worked_example",
-      "title": "Example 2: Find Roots; Simplify Using Absolute Value; Radical and Exponential Forms",
+      "title": "Example 2: Simplify Higher Roots",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-3, Example 2)"
@@ -4426,7 +4426,7 @@
     {
       "id": "math.im3.example.4.3.011",
       "kind": "worked_example",
-      "title": "Example 3: Find Roots; Simplify Using Absolute Value; Radical and Exponential Forms",
+      "title": "Example 3: Convert Between Radical and Exponential Forms",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-3, Example 3)"
@@ -4444,7 +4444,7 @@
     {
       "id": "math.im3.example.4.3.012",
       "kind": "worked_example",
-      "title": "Example 4: Use Rational Exponents; Evaluate Expressions with Rational Exponents; Simplify Expressions with Rational Exponents",
+      "title": "Example 4: Real-World Applications",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-3, Example 4)"
@@ -4462,7 +4462,7 @@
     {
       "id": "math.im3.example.4.3.013",
       "kind": "worked_example",
-      "title": "Example 5: Use Rational Exponents; Evaluate Expressions with Rational Exponents; Simplify Expressions with Rational Exponents",
+      "title": "Example 5: Evaluate Expressions with Rational Exponents",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-3, Example 5)"
@@ -4480,7 +4480,7 @@
     {
       "id": "math.im3.example.4.3.014",
       "kind": "worked_example",
-      "title": "Example 6: Use Rational Exponents; Evaluate Expressions with Rational Exponents; Simplify Expressions with Rational Exponents",
+      "title": "Example 6: Simplify Products and Powers",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-3, Example 6)"
@@ -4498,7 +4498,7 @@
     {
       "id": "math.im3.example.4.4.015",
       "kind": "worked_example",
-      "title": "Example 1: Identify Domain and Range Algebraically; Graph a Transformed Square Root Function; Analyze the Graph of a Square Root Function; Graph a Square Root Inequality",
+      "title": "Example 1: Identify Domain and Range",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-4, Example 1)"
@@ -4516,7 +4516,7 @@
     {
       "id": "math.im3.example.4.4.016",
       "kind": "worked_example",
-      "title": "Example 2: Identify Domain and Range Algebraically; Graph a Transformed Square Root Function; Analyze the Graph of a Square Root Function; Graph a Square Root Inequality",
+      "title": "Example 2: Graph and Describe Transformations",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-4, Example 2)"
@@ -4534,7 +4534,7 @@
     {
       "id": "math.im3.example.4.4.017",
       "kind": "worked_example",
-      "title": "Example 3: Identify Domain and Range Algebraically; Graph a Transformed Square Root Function; Analyze the Graph of a Square Root Function; Graph a Square Root Inequality",
+      "title": "Example 3: Reflexes Application",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-4, Example 3)"
@@ -4552,7 +4552,7 @@
     {
       "id": "math.im3.example.4.4.018",
       "kind": "worked_example",
-      "title": "Example 4: Identify Domain and Range Algebraically; Graph a Transformed Square Root Function; Analyze the Graph of a Square Root Function; Graph a Square Root Inequality",
+      "title": "Example 4: Graph Radical Inequalities",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-4, Example 4)"
@@ -4570,7 +4570,7 @@
     {
       "id": "math.im3.example.4.4.019",
       "kind": "worked_example",
-      "title": "Example 5: Graph Cube Root Functions; Compare Radical Functions; Write a Radical Function",
+      "title": "Example 5: Cube Root Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-4, Example 5)"
@@ -4588,7 +4588,7 @@
     {
       "id": "math.im3.example.4.4.020",
       "kind": "worked_example",
-      "title": "Example 6: Graph Cube Root Functions; Compare Radical Functions; Write a Radical Function",
+      "title": "Example 6: Compare Functions to Graphs",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-4, Example 6)"
@@ -4606,7 +4606,7 @@
     {
       "id": "math.im3.example.4.4.021",
       "kind": "worked_example",
-      "title": "Example 7: Graph Cube Root Functions; Compare Radical Functions; Write a Radical Function",
+      "title": "Example 7: Write Functions from Graphs",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-4, Example 7)"
@@ -4624,7 +4624,7 @@
     {
       "id": "math.im3.example.4.5.022",
       "kind": "worked_example",
-      "title": "Example 1: Simplify Expressions with the Product Property; Simplify Expressions with the Quotient Property",
+      "title": "Example 1: Simplify Products of Radicals",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-5, Example 1)"
@@ -4642,7 +4642,7 @@
     {
       "id": "math.im3.example.4.5.023",
       "kind": "worked_example",
-      "title": "Example 2: Simplify Expressions with the Product Property; Simplify Expressions with the Quotient Property",
+      "title": "Example 2: Simplify Quotients with Radicals",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-5, Example 2)"
@@ -4660,7 +4660,7 @@
     {
       "id": "math.im3.example.4.5.024",
       "kind": "worked_example",
-      "title": "Example 3: Add and Subtract Radicals; Multiply Radicals; Use the Distributive Property to Multiply Radicals",
+      "title": "Example 3: Add and Subtract Radical Expressions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-5, Example 3)"
@@ -4678,7 +4678,7 @@
     {
       "id": "math.im3.example.4.5.025",
       "kind": "worked_example",
-      "title": "Example 4: Add and Subtract Radicals; Multiply Radicals; Use the Distributive Property to Multiply Radicals",
+      "title": "Example 4: Multiply Radical Expressions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-5, Example 4)"
@@ -4696,7 +4696,7 @@
     {
       "id": "math.im3.example.4.5.026",
       "kind": "worked_example",
-      "title": "Example 5: Add and Subtract Radicals; Multiply Radicals; Use the Distributive Property to Multiply Radicals",
+      "title": "Example 5: Real-World Radical Expressions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-5, Example 5)"
@@ -4714,7 +4714,7 @@
     {
       "id": "math.im3.example.4.5.027",
       "kind": "worked_example",
-      "title": "Example 6: Rationalize the Denominator; Use Conjugates to Rationalize the Denominator",
+      "title": "Example 6: Divide and Rationalize",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-5, Example 6)"
@@ -4732,7 +4732,7 @@
     {
       "id": "math.im3.example.4.5.028",
       "kind": "worked_example",
-      "title": "Example 7: Rationalize the Denominator; Use Conjugates to Rationalize the Denominator",
+      "title": "Example 7: More Complex Rationalization",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-5, Example 7)"
@@ -4750,7 +4750,7 @@
     {
       "id": "math.im3.example.4.6.029",
       "kind": "worked_example",
-      "title": "Example 1: Solve a Square Root Equation; Solve a Cube Root Equation; Identify Extraneous Solutions; Solve a Radical Equation",
+      "title": "Example 1: Solve Square Root Equations",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-6, Example 1)"
@@ -4768,7 +4768,7 @@
     {
       "id": "math.im3.example.4.6.030",
       "kind": "worked_example",
-      "title": "Example 2: Solve a Square Root Equation; Solve a Cube Root Equation; Identify Extraneous Solutions; Solve a Radical Equation",
+      "title": "Example 2: Solve Cube Root Equations",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-6, Example 2)"
@@ -4786,7 +4786,7 @@
     {
       "id": "math.im3.example.4.6.031",
       "kind": "worked_example",
-      "title": "Example 3: Solve a Square Root Equation; Solve a Cube Root Equation; Identify Extraneous Solutions; Solve a Radical Equation",
+      "title": "Example 3: Equations with Multiple Radicals",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-6, Example 3)"
@@ -4804,7 +4804,7 @@
     {
       "id": "math.im3.example.4.6.032",
       "kind": "worked_example",
-      "title": "Example 4: Solve a Square Root Equation; Solve a Cube Root Equation; Identify Extraneous Solutions; Solve a Radical Equation",
+      "title": "Example 4: Equations with Rational Exponents",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-6, Example 4)"
@@ -4822,7 +4822,7 @@
     {
       "id": "math.im3.example.4.6.033",
       "kind": "worked_example",
-      "title": "Example 5: Solve a Radical Equation by Graphing; Solve a Radical Equation by Using a System; Confirm Solutions by Using Technology",
+      "title": "Example 5: Use a Graphing Calculator",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-6, Example 5)"
@@ -4840,7 +4840,7 @@
     {
       "id": "math.im3.example.4.6.034",
       "kind": "worked_example",
-      "title": "Example 6: Solve a Radical Equation by Graphing; Solve a Radical Equation by Using a System; Confirm Solutions by Using Technology",
+      "title": "Example 6: Use a System of Equations",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-6, Example 6)"
@@ -4858,7 +4858,7 @@
     {
       "id": "math.im3.example.4.6.035",
       "kind": "worked_example",
-      "title": "Example 7: Solve a Radical Equation by Graphing; Solve a Radical Equation by Using a System; Confirm Solutions by Using Technology",
+      "title": "Example 7: Geometry Applications",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-4-class-period-plan.md (4-6, Example 7)"
@@ -5497,7 +5497,7 @@
     {
       "id": "math.im3.example.5.1.001",
       "kind": "worked_example",
-      "title": "Example 1: Graph Exponential Growth Functions; Graph Transformations of Exponential Growth Functions; Analyze Graphs of Exponential Functions; Use Exponential Growth Functions",
+      "title": "Example 1: Graph Basic Exponential Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-1, Example 1)"
@@ -5515,7 +5515,7 @@
     {
       "id": "math.im3.example.5.1.002",
       "kind": "worked_example",
-      "title": "Example 2: Graph Exponential Growth Functions; Graph Transformations of Exponential Growth Functions; Analyze Graphs of Exponential Functions; Use Exponential Growth Functions",
+      "title": "Example 2: Graph Transformed Exponential Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-1, Example 2)"
@@ -5533,7 +5533,7 @@
     {
       "id": "math.im3.example.5.1.003",
       "kind": "worked_example",
-      "title": "Example 3: Graph Exponential Growth Functions; Graph Transformations of Exponential Growth Functions; Analyze Graphs of Exponential Functions; Use Exponential Growth Functions",
+      "title": "Example 3: Write Functions from Graphs",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-1, Example 3)"
@@ -5551,7 +5551,7 @@
     {
       "id": "math.im3.example.5.1.004",
       "kind": "worked_example",
-      "title": "Example 4: Graph Exponential Growth Functions; Graph Transformations of Exponential Growth Functions; Analyze Graphs of Exponential Functions; Use Exponential Growth Functions",
+      "title": "Example 4: Real-World Exponential Models",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-1, Example 4)"
@@ -5569,7 +5569,7 @@
     {
       "id": "math.im3.example.5.1.005",
       "kind": "worked_example",
-      "title": "Example 5: Interpret Exponential Functions; Graph Exponential Decay Functions; Graph Transformations of Exponential Decay Functions; Compare Exponential Functions",
+      "title": "Example 5: Exponential Growth vs. Decay",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-1, Example 5)"
@@ -5587,7 +5587,7 @@
     {
       "id": "math.im3.example.5.1.006",
       "kind": "worked_example",
-      "title": "Example 6: Interpret Exponential Functions; Graph Exponential Decay Functions; Graph Transformations of Exponential Decay Functions; Compare Exponential Functions",
+      "title": "Example 6: Decay Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-1, Example 6)"
@@ -5605,7 +5605,7 @@
     {
       "id": "math.im3.example.5.1.007",
       "kind": "worked_example",
-      "title": "Example 7: Interpret Exponential Functions; Graph Exponential Decay Functions; Graph Transformations of Exponential Decay Functions; Compare Exponential Functions",
+      "title": "Example 7: Complex Transformations with Decay",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-1, Example 7)"
@@ -5623,7 +5623,7 @@
     {
       "id": "math.im3.example.5.1.008",
       "kind": "worked_example",
-      "title": "Example 8: Interpret Exponential Functions; Graph Exponential Decay Functions; Graph Transformations of Exponential Decay Functions; Compare Exponential Functions",
+      "title": "Example 8: Piecewise Functions with Exponential Parts",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-1, Example 8)"
@@ -5641,7 +5641,7 @@
     {
       "id": "math.im3.example.5.2.009",
       "kind": "worked_example",
-      "title": "Example 1: Solve Exponential Equations Algebraically; Solve an Exponential Equation by Graphing; Use the Compound Interest Formula",
+      "title": "Example 1: Solve Exponential Equations",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-2, Example 1)"
@@ -5659,7 +5659,7 @@
     {
       "id": "math.im3.example.5.2.010",
       "kind": "worked_example",
-      "title": "Example 2: Solve Exponential Equations Algebraically; Solve an Exponential Equation by Graphing; Use the Compound Interest Formula",
+      "title": "Example 2: Real-World Exponential Equations",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-2, Example 2)"
@@ -5677,7 +5677,7 @@
     {
       "id": "math.im3.example.5.2.011",
       "kind": "worked_example",
-      "title": "Example 3: Solve Exponential Equations Algebraically; Solve an Exponential Equation by Graphing; Use the Compound Interest Formula",
+      "title": "Example 3: Compound Interest with Multiple Compounding Periods",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-2, Example 3)"
@@ -5695,7 +5695,7 @@
     {
       "id": "math.im3.example.5.2.012",
       "kind": "worked_example",
-      "title": "Example 4: Solve Exponential Inequalities Algebraically",
+      "title": "Example 4: Solve Exponential Inequalities",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-2, Example 4)"
@@ -5713,7 +5713,7 @@
     {
       "id": "math.im3.example.5.3.013",
       "kind": "worked_example",
-      "title": "Example 1: Expressions with Base e; Graph Functions with Base e; Apply Functions with Base e; Solve an Exponential Equation by Using Technology",
+      "title": "Example 1: Simplify Expressions with [e]",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-3, Example 1)"
@@ -5731,7 +5731,7 @@
     {
       "id": "math.im3.example.5.3.014",
       "kind": "worked_example",
-      "title": "Example 2: Expressions with Base e; Graph Functions with Base e; Apply Functions with Base e; Solve an Exponential Equation by Using Technology",
+      "title": "Example 2: Graph Natural Exponential Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-3, Example 2)"
@@ -5749,7 +5749,7 @@
     {
       "id": "math.im3.example.5.3.015",
       "kind": "worked_example",
-      "title": "Example 3: Expressions with Base e; Graph Functions with Base e; Apply Functions with Base e; Solve an Exponential Equation by Using Technology",
+      "title": "Example 3: Continuous Compounding Applications",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-3, Example 3)"
@@ -5767,7 +5767,7 @@
     {
       "id": "math.im3.example.5.3.016",
       "kind": "worked_example",
-      "title": "Example 4: Expressions with Base e; Graph Functions with Base e; Apply Functions with Base e; Solve an Exponential Equation by Using Technology",
+      "title": "Example 4: Solve Equations with [e] Using a Graphing Calculator",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-3, Example 4)"
@@ -5785,7 +5785,7 @@
     {
       "id": "math.im3.example.5.4.017",
       "kind": "worked_example",
-      "title": "Example 1: Identify Geometric Sequences; Graph Geometric Sequences; Find the nth Term",
+      "title": "Example 1: Graph Geometric Sequences",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-4, Example 1)"
@@ -5803,7 +5803,7 @@
     {
       "id": "math.im3.example.5.4.018",
       "kind": "worked_example",
-      "title": "Example 2: Identify Geometric Sequences; Graph Geometric Sequences; Find the nth Term",
+      "title": "Example 2: Real-World Geometric Sequences",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-4, Example 2)"
@@ -5821,7 +5821,7 @@
     {
       "id": "math.im3.example.5.4.019",
       "kind": "worked_example",
-      "title": "Example 3: Identify Geometric Sequences; Graph Geometric Sequences; Find the nth Term",
+      "title": "Example 3: Write Equations for the nth Term",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-4, Example 3)"
@@ -5839,7 +5839,7 @@
     {
       "id": "math.im3.example.5.4.020",
       "kind": "worked_example",
-      "title": "Example 4: Write an Equation for the nth Term; Recursive and Explicit Formulas; Find Geometric Means",
+      "title": "Example 4: Convert Between Recursive and Explicit Forms",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-4, Example 4)"
@@ -5857,7 +5857,7 @@
     {
       "id": "math.im3.example.5.4.021",
       "kind": "worked_example",
-      "title": "Example 5: Write an Equation for the nth Term; Recursive and Explicit Formulas; Find Geometric Means",
+      "title": "Example 5: Find Geometric Means",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-4, Example 5)"
@@ -5875,7 +5875,7 @@
     {
       "id": "math.im3.example.5.4.022",
       "kind": "worked_example",
-      "title": "Example 6: Write an Equation for the nth Term; Recursive and Explicit Formulas; Find Geometric Means",
+      "title": "Example 6: Geometric Series",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-4, Example 6)"
@@ -5893,7 +5893,7 @@
     {
       "id": "math.im3.example.5.4.023",
       "kind": "worked_example",
-      "title": "Example 7: Find the Sum of a Geometric Series",
+      "title": "Example 7: Real-World Series Applications",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-4, Example 7)"
@@ -5947,7 +5947,7 @@
     {
       "id": "math.im3.example.5.5.026",
       "kind": "worked_example",
-      "title": "Example 1: Examine Scatter Plots; Model Data by Using Technology",
+      "title": "Example 1: Create and Analyze Scatter Plots",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-5, Example 1)"
@@ -5965,7 +5965,7 @@
     {
       "id": "math.im3.example.5.5.027",
       "kind": "worked_example",
-      "title": "Example 2: Examine Scatter Plots; Model Data by Using Technology",
+      "title": "Example 2: Regression Analysis for Real-World Data",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-5, Example 2)"
@@ -6392,7 +6392,7 @@
     {
       "id": "math.im3.example.6.1.001",
       "kind": "worked_example",
-      "title": "Example 1: Logarithmic to Exponential Form; Exponential to Logarithmic Form; Evaluate Logarithmic Expressions; Find Inverses of Exponential Functions",
+      "title": "Example 1: Write Equations in Exponential Form",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-1, Example 1)"
@@ -6410,7 +6410,7 @@
     {
       "id": "math.im3.example.6.1.002",
       "kind": "worked_example",
-      "title": "Example 2: Logarithmic to Exponential Form; Exponential to Logarithmic Form; Evaluate Logarithmic Expressions; Find Inverses of Exponential Functions",
+      "title": "Example 2: Write Equations in Logarithmic Form",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-1, Example 2)"
@@ -6428,7 +6428,7 @@
     {
       "id": "math.im3.example.6.1.003",
       "kind": "worked_example",
-      "title": "Example 3: Logarithmic to Exponential Form; Exponential to Logarithmic Form; Evaluate Logarithmic Expressions; Find Inverses of Exponential Functions",
+      "title": "Example 3: Evaluate Logarithmic Expressions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-1, Example 3)"
@@ -6446,7 +6446,7 @@
     {
       "id": "math.im3.example.6.1.004",
       "kind": "worked_example",
-      "title": "Example 4: Logarithmic to Exponential Form; Exponential to Logarithmic Form; Evaluate Logarithmic Expressions; Find Inverses of Exponential Functions",
+      "title": "Example 4: Write Equations from Real-World Contexts",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-1, Example 4)"
@@ -6464,7 +6464,7 @@
     {
       "id": "math.im3.example.6.1.005",
       "kind": "worked_example",
-      "title": "Example 5: Graph Logarithmic Functions; Graph Transformations of Logarithmic Functions; Compare Logarithmic Functions; Write Logarithmic Functions From Graphs",
+      "title": "Example 5: Graph Logarithmic Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-1, Example 5)"
@@ -6482,7 +6482,7 @@
     {
       "id": "math.im3.example.6.1.006",
       "kind": "worked_example",
-      "title": "Example 6: Graph Logarithmic Functions; Graph Transformations of Logarithmic Functions; Compare Logarithmic Functions; Write Logarithmic Functions From Graphs",
+      "title": "Example 6: Graph Transformed Logarithmic Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-1, Example 6)"
@@ -6500,7 +6500,7 @@
     {
       "id": "math.im3.example.6.1.007",
       "kind": "worked_example",
-      "title": "Example 7: Graph Logarithmic Functions; Graph Transformations of Logarithmic Functions; Compare Logarithmic Functions; Write Logarithmic Functions From Graphs",
+      "title": "Example 7: Compare Logarithmic Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-1, Example 7)"
@@ -6518,7 +6518,7 @@
     {
       "id": "math.im3.example.6.1.008",
       "kind": "worked_example",
-      "title": "Example 8: Graph Logarithmic Functions; Graph Transformations of Logarithmic Functions; Compare Logarithmic Functions; Write Logarithmic Functions From Graphs",
+      "title": "Example 8: Identify Transformations",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-1, Example 8)"
@@ -6536,7 +6536,7 @@
     {
       "id": "math.im3.example.6.2.009",
       "kind": "worked_example",
-      "title": "Example 3: Product Property of Logarithms; Quotient Property of Logarithms; Power Property of Logarithms",
+      "title": "Example 3: Approximate Logarithms Using Known Values",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-2, Example 3)"
@@ -6554,7 +6554,7 @@
     {
       "id": "math.im3.example.6.2.010",
       "kind": "worked_example",
-      "title": "Example 4: Product Property of Logarithms; Quotient Property of Logarithms; Power Property of Logarithms",
+      "title": "Example 4: Approximate Logarithms Using Known Values",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-2, Example 4)"
@@ -6572,7 +6572,7 @@
     {
       "id": "math.im3.example.6.2.011",
       "kind": "worked_example",
-      "title": "Example 5: Product Property of Logarithms; Quotient Property of Logarithms; Power Property of Logarithms",
+      "title": "Example 5: Change of Base with Different Bases",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-2, Example 5)"
@@ -6590,7 +6590,7 @@
     {
       "id": "math.im3.example.6.3.012",
       "kind": "worked_example",
-      "title": "Example 1: Find Common Logarithms by Using Technology; Solve a Logarithmic Equation by Using Exponential Form; Solve an Exponential Equation by Using Logarithms; Solve an Exponential Inequality by Using Logarithms",
+      "title": "Example 1: Evaluate Common Logarithms with a Calculator",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-3, Example 1)"
@@ -6608,7 +6608,7 @@
     {
       "id": "math.im3.example.6.3.013",
       "kind": "worked_example",
-      "title": "Example 2: Find Common Logarithms by Using Technology; Solve a Logarithmic Equation by Using Exponential Form; Solve an Exponential Equation by Using Logarithms; Solve an Exponential Inequality by Using Logarithms",
+      "title": "Example 2: Apply Common Logarithms to Real-World Problems",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-3, Example 2)"
@@ -6626,7 +6626,7 @@
     {
       "id": "math.im3.example.6.3.014",
       "kind": "worked_example",
-      "title": "Example 3: Find Common Logarithms by Using Technology; Solve a Logarithmic Equation by Using Exponential Form; Solve an Exponential Equation by Using Logarithms; Solve an Exponential Inequality by Using Logarithms",
+      "title": "Example 3: Solve Exponential Equations",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-3, Example 3)"
@@ -6644,7 +6644,7 @@
     {
       "id": "math.im3.example.6.3.015",
       "kind": "worked_example",
-      "title": "Example 4: Find Common Logarithms by Using Technology; Solve a Logarithmic Equation by Using Exponential Form; Solve an Exponential Equation by Using Logarithms; Solve an Exponential Inequality by Using Logarithms",
+      "title": "Example 4: Solve Logarithmic Inequalities",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-3, Example 4)"
@@ -6662,7 +6662,7 @@
     {
       "id": "math.im3.example.6.3.016",
       "kind": "worked_example",
-      "title": "Example 5: Change of Base Formula; Use the Change of Base Formula",
+      "title": "Example 5: Express Logarithms in Terms of Common Logarithms",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-3, Example 5)"
@@ -6680,7 +6680,7 @@
     {
       "id": "math.im3.example.6.3.017",
       "kind": "worked_example",
-      "title": "Example 6: Change of Base Formula; Use the Change of Base Formula",
+      "title": "Example 6: Use Estimation in Real-World Models",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-3, Example 6)"
@@ -6698,7 +6698,7 @@
     {
       "id": "math.im3.example.6.4.018",
       "kind": "worked_example",
-      "title": "Example 1: Write Equivalent Logarithmic Equations; Write Equivalent Exponential Equations; Simplify Logarithmic Expressions",
+      "title": "Example 1: Write Exponential Equations in Logarithmic Form",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-4, Example 1)"
@@ -6716,7 +6716,7 @@
     {
       "id": "math.im3.example.6.4.019",
       "kind": "worked_example",
-      "title": "Example 2: Write Equivalent Logarithmic Equations; Write Equivalent Exponential Equations; Simplify Logarithmic Expressions",
+      "title": "Example 2: Write Logarithmic Equations in Exponential Form",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-4, Example 2)"
@@ -6734,7 +6734,7 @@
     {
       "id": "math.im3.example.6.4.020",
       "kind": "worked_example",
-      "title": "Example 3: Write Equivalent Logarithmic Equations; Write Equivalent Exponential Equations; Simplify Logarithmic Expressions",
+      "title": "Example 3: Write as a Single Logarithm",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-4, Example 3)"
@@ -6752,7 +6752,7 @@
     {
       "id": "math.im3.example.6.4.021",
       "kind": "worked_example",
-      "title": "Example 4: Solve Exponential Equations with Base \\e\\; Solve Natural Logarithmic Equations",
+      "title": "Example 4: Solve Equations with Natural Logarithms",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-4, Example 4)"
@@ -6770,7 +6770,7 @@
     {
       "id": "math.im3.example.6.4.022",
       "kind": "worked_example",
-      "title": "Example 5: Solve Exponential Equations with Base \\e\\; Solve Natural Logarithmic Equations",
+      "title": "Example 5: Solve Equations with [\\ln] Terms",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-4, Example 5)"
@@ -6788,7 +6788,7 @@
     {
       "id": "math.im3.example.6.4.023",
       "kind": "worked_example",
-      "title": "Example 6: Apply Functions with Base \\e\\; Examine Logarithmic Data",
+      "title": "Example 6: Continuously Compounded Interest",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-4, Example 6)"
@@ -6806,7 +6806,7 @@
     {
       "id": "math.im3.example.6.4.024",
       "kind": "worked_example",
-      "title": "Example 7: Apply Functions with Base \\e\\; Examine Logarithmic Data",
+      "title": "Example 7: Use Logarithmic Regression",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-4, Example 7)"
@@ -6824,7 +6824,7 @@
     {
       "id": "math.im3.example.6.5.025",
       "kind": "worked_example",
-      "title": "Example 1: Continuous Exponential Growth (Parts A-B)",
+      "title": "Example 1: Population Growth and Television Price Models",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-5, Example 1)"
@@ -7310,7 +7310,7 @@
     {
       "id": "math.im3.example.7.1.001",
       "kind": "worked_example",
-      "title": "Example 1: Simplify a Rational Expression; Simplify by Using \\-1\\",
+      "title": "Example 1: Simplify Rational Expressions (Problems 1\u20136)",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-7-class-period-plan.md (7-1, Example 1)"
@@ -7328,7 +7328,7 @@
     {
       "id": "math.im3.example.7.1.002",
       "kind": "worked_example",
-      "title": "Example 2: Simplify a Rational Expression; Simplify by Using \\-1\\",
+      "title": "Example 2: Simplify More Complex Rational Expressions (Problems 7\u201310)",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-7-class-period-plan.md (7-1, Example 2)"
@@ -7346,7 +7346,7 @@
     {
       "id": "math.im3.example.7.1.003",
       "kind": "worked_example",
-      "title": "Example 3: Multiply and Divide Rational Expressions; Multiply and Divide Polynomial Expressions",
+      "title": "Example 3: Multiply and Divide with Multiple Variables (Problems 11\u201316)",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-7-class-period-plan.md (7-1, Example 3)"
@@ -7364,7 +7364,7 @@
     {
       "id": "math.im3.example.7.1.004",
       "kind": "worked_example",
-      "title": "Example 4: Multiply and Divide Rational Expressions; Multiply and Divide Polynomial Expressions",
+      "title": "Example 4: Application Problems (Problems 17\u201319)",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-7-class-period-plan.md (7-1, Example 4)"
@@ -7382,7 +7382,7 @@
     {
       "id": "math.im3.example.7.2.005",
       "kind": "worked_example",
-      "title": "Example 1: Add and Subtract Rational Expressions with Monomial Denominators; Add and Subtract Rational Expressions with Polynomial Denominators; Use Addition and Subtraction of Rational Expressions",
+      "title": "Example 1: Add and Subtract Basic Rational Expressions (Problems 1\u20136)",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-7-class-period-plan.md (7-2, Example 1)"
@@ -7400,7 +7400,7 @@
     {
       "id": "math.im3.example.7.2.006",
       "kind": "worked_example",
-      "title": "Example 2: Add and Subtract Rational Expressions with Monomial Denominators; Add and Subtract Rational Expressions with Polynomial Denominators; Use Addition and Subtraction of Rational Expressions",
+      "title": "Example 2: Add and Subtract with Binomial Denominators (Problems 7\u201312)",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-7-class-period-plan.md (7-2, Example 2)"
@@ -7418,7 +7418,7 @@
     {
       "id": "math.im3.example.7.2.007",
       "kind": "worked_example",
-      "title": "Example 3: Add and Subtract Rational Expressions with Monomial Denominators; Add and Subtract Rational Expressions with Polynomial Denominators; Use Addition and Subtraction of Rational Expressions",
+      "title": "Example 3: Application Problems (Problems 13\u201315)",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-7-class-period-plan.md (7-2, Example 3)"
@@ -7436,7 +7436,7 @@
     {
       "id": "math.im3.example.7.2.008",
       "kind": "worked_example",
-      "title": "Example 4: Simplify Complex Fractions by Using Different LCDs; Simplify Complex Fractions by Using the Same LCD",
+      "title": "Example 4: Simplify Complex Fractions (Problems 16\u201319)",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-7-class-period-plan.md (7-2, Example 4)"
@@ -7454,7 +7454,7 @@
     {
       "id": "math.im3.example.7.2.009",
       "kind": "worked_example",
-      "title": "Example 5: Simplify Complex Fractions by Using Different LCDs; Simplify Complex Fractions by Using the Same LCD",
+      "title": "Example 5: Simplify Complex Fractions (Problems 16\u201319)",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-7-class-period-plan.md (7-2, Example 5)"
@@ -7472,7 +7472,7 @@
     {
       "id": "math.im3.example.7.3.010",
       "kind": "worked_example",
-      "title": "Example 1: Limitations on the Domains of Reciprocal Functions; Graph a Reciprocal Function by Using a Table; Analyze a Reciprocal Function",
+      "title": "Example 1: Determine Excluded Values (Problems 1\u20136)",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-7-class-period-plan.md (7-3, Example 1)"
@@ -7490,7 +7490,7 @@
     {
       "id": "math.im3.example.7.3.011",
       "kind": "worked_example",
-      "title": "Example 2: Limitations on the Domains of Reciprocal Functions; Graph a Reciprocal Function by Using a Table; Analyze a Reciprocal Function",
+      "title": "Example 2: Identify Asymptotes, Domain, Range, and Intercepts (Problems 7\u201310)",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-7-class-period-plan.md (7-3, Example 2)"
@@ -7508,7 +7508,7 @@
     {
       "id": "math.im3.example.7.3.012",
       "kind": "worked_example",
-      "title": "Example 3: Limitations on the Domains of Reciprocal Functions; Graph a Reciprocal Function by Using a Table; Analyze a Reciprocal Function",
+      "title": "Example 3: Real-World Application (Problems 11\u201312)",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-7-class-period-plan.md (7-3, Example 3)"
@@ -7526,7 +7526,7 @@
     {
       "id": "math.im3.example.7.3.013",
       "kind": "worked_example",
-      "title": "Example 4: Graph a Transformation of a Reciprocal Function; Write a Reciprocal Function from a Graph",
+      "title": "Example 4: Graph Transformed Reciprocal Functions (Problems 13\u201316)",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-7-class-period-plan.md (7-3, Example 4)"
@@ -7544,7 +7544,7 @@
     {
       "id": "math.im3.example.7.3.014",
       "kind": "worked_example",
-      "title": "Example 5: Graph a Transformation of a Reciprocal Function; Write a Reciprocal Function from a Graph",
+      "title": "Example 5: Write Functions from Graphs (Problems 17\u201322)",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-7-class-period-plan.md (7-3, Example 5)"
@@ -7562,7 +7562,7 @@
     {
       "id": "math.im3.example.7.4.015",
       "kind": "worked_example",
-      "title": "Example 1: Graph with No Horizontal Asymptotes; Use Graphs of Rational Functions; Compare Rational Functions",
+      "title": "Example 1: Graph Basic Rational Functions (Problems 1\u20134)",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-7-class-period-plan.md (7-4, Example 1)"
@@ -7580,7 +7580,7 @@
     {
       "id": "math.im3.example.7.4.016",
       "kind": "worked_example",
-      "title": "Example 2: Graph with No Horizontal Asymptotes; Use Graphs of Rational Functions; Compare Rational Functions",
+      "title": "Example 2: Real-World Rational Functions (Problems 5\u20137)",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-7-class-period-plan.md (7-4, Example 2)"
@@ -7598,7 +7598,7 @@
     {
       "id": "math.im3.example.7.4.017",
       "kind": "worked_example",
-      "title": "Example 3: Graph with No Horizontal Asymptotes; Use Graphs of Rational Functions; Compare Rational Functions",
+      "title": "Example 3: Compare Functions and Graphs (Problems 8\u201310)",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-7-class-period-plan.md (7-4, Example 3)"
@@ -7616,7 +7616,7 @@
     {
       "id": "math.im3.example.7.4.018",
       "kind": "worked_example",
-      "title": "Example 4: Graph with Oblique Asymptotes; Graph with Point Discontinuity",
+      "title": "Example 4: Find Zeros and Asymptotes (Problems 11\u201316)",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-7-class-period-plan.md (7-4, Example 4)"
@@ -7634,7 +7634,7 @@
     {
       "id": "math.im3.example.7.4.019",
       "kind": "worked_example",
-      "title": "Example 5: Graph with Oblique Asymptotes; Graph with Point Discontinuity",
+      "title": "Example 5: Graph Functions with Point Discontinuity (Problems 17\u201322)",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-7-class-period-plan.md (7-4, Example 5)"
@@ -7652,7 +7652,7 @@
     {
       "id": "math.im3.example.7.5.020",
       "kind": "worked_example",
-      "title": "Example 1: Direct Variation; Joint Variation",
+      "title": "Example 1: Direct Variation (Problems 1\u20136)",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-7-class-period-plan.md (7-5, Example 1)"
@@ -7670,7 +7670,7 @@
     {
       "id": "math.im3.example.7.5.021",
       "kind": "worked_example",
-      "title": "Example 2: Direct Variation; Joint Variation",
+      "title": "Example 2: Joint Variation (Problems 7\u201312)",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-7-class-period-plan.md (7-5, Example 2)"
@@ -7688,7 +7688,7 @@
     {
       "id": "math.im3.example.7.5.022",
       "kind": "worked_example",
-      "title": "Example 3: Inverse Variation; Combined Variation; Write and Solve a Combined Variation",
+      "title": "Example 3: Inverse Variation (Problems 13\u201318)",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-7-class-period-plan.md (7-5, Example 3)"
@@ -7706,7 +7706,7 @@
     {
       "id": "math.im3.example.7.5.023",
       "kind": "worked_example",
-      "title": "Example 4: Inverse Variation; Combined Variation; Write and Solve a Combined Variation",
+      "title": "Example 4: Combined Variation (Problems 19\u201322)",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-7-class-period-plan.md (7-5, Example 4)"
@@ -7724,7 +7724,7 @@
     {
       "id": "math.im3.example.7.5.024",
       "kind": "worked_example",
-      "title": "Example 5: Inverse Variation; Combined Variation; Write and Solve a Combined Variation",
+      "title": "Example 5: Application Problems (Problems 23\u201325)",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-7-class-period-plan.md (7-5, Example 5)"
@@ -7742,7 +7742,7 @@
     {
       "id": "math.im3.example.7.6.025",
       "kind": "worked_example",
-      "title": "Example 1: Solve a Rational Equation; Solve a Rational Equation with an Extraneous Solution",
+      "title": "Example 1: Solve Rational Equations (Problems 1\u20136)",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-7-class-period-plan.md (7-6, Example 1)"
@@ -7760,7 +7760,7 @@
     {
       "id": "math.im3.example.7.6.026",
       "kind": "worked_example",
-      "title": "Example 2: Solve a Rational Equation; Solve a Rational Equation with an Extraneous Solution",
+      "title": "Example 2: Solve More Complex Rational Equations (Problems 7\u201312)",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-7-class-period-plan.md (7-6, Example 2)"
@@ -7778,7 +7778,7 @@
     {
       "id": "math.im3.example.7.6.027",
       "kind": "worked_example",
-      "title": "Example 3: Mixture Problem; Distance Problem; Work Problem",
+      "title": "Example 3: 5 \u2014 Application Problems (Problems 13\u201318)",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-7-class-period-plan.md (7-6, Example 3)"
@@ -7796,7 +7796,7 @@
     {
       "id": "math.im3.example.7.6.028",
       "kind": "worked_example",
-      "title": "Example 4: Mixture Problem; Distance Problem; Work Problem",
+      "title": "Example 4: Example 4",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-7-class-period-plan.md (7-6, Example 4)"
@@ -7814,7 +7814,7 @@
     {
       "id": "math.im3.example.7.6.029",
       "kind": "worked_example",
-      "title": "Example 5: Mixture Problem; Distance Problem; Work Problem",
+      "title": "Example 5: Example 5",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-7-class-period-plan.md (7-6, Example 5)"
@@ -8440,7 +8440,7 @@
     {
       "id": "math.im3.example.8.1.001",
       "kind": "worked_example",
-      "title": "Example 1: Classify a Random Sample; Identify Sample Bias; Identify Biased Questions",
+      "title": "Example 1: Identify and Classify Samples",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-1, Example 1)"
@@ -8458,7 +8458,7 @@
     {
       "id": "math.im3.example.8.1.002",
       "kind": "worked_example",
-      "title": "Example 2: Classify a Random Sample; Identify Sample Bias; Identify Biased Questions",
+      "title": "Example 2: Identify Biased and Unbiased Samples",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-1, Example 2)"
@@ -8476,7 +8476,7 @@
     {
       "id": "math.im3.example.8.1.003",
       "kind": "worked_example",
-      "title": "Example 3: Classify a Random Sample; Identify Sample Bias; Identify Biased Questions",
+      "title": "Example 3: Classify Study Types",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-1, Example 3)"
@@ -8494,7 +8494,7 @@
     {
       "id": "math.im3.example.8.1.004",
       "kind": "worked_example",
-      "title": "Example 4: Classify Study Types; Design a Survey; Draw Conclusions from a Study; Identify Bias in Studies",
+      "title": "Example 4: Design an Unbiased Survey",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-1, Example 4)"
@@ -8512,7 +8512,7 @@
     {
       "id": "math.im3.example.8.1.005",
       "kind": "worked_example",
-      "title": "Example 5: Classify Study Types; Design a Survey; Draw Conclusions from a Study; Identify Bias in Studies",
+      "title": "Example 5: Draw Conclusions from a Study",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-1, Example 5)"
@@ -8530,7 +8530,7 @@
     {
       "id": "math.im3.example.8.1.006",
       "kind": "worked_example",
-      "title": "Example 6: Classify Study Types; Design a Survey; Draw Conclusions from a Study; Identify Bias in Studies",
+      "title": "Example 6: Identify Control and Experimental Groups",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-1, Example 6)"
@@ -8566,7 +8566,7 @@
     {
       "id": "math.im3.example.8.2.008",
       "kind": "worked_example",
-      "title": "Example 1: Find Probabilities",
+      "title": "Example 1: Compare Theoretical and Experimental Probability",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-2, Example 1)"
@@ -8584,7 +8584,7 @@
     {
       "id": "math.im3.example.8.2.009",
       "kind": "worked_example",
-      "title": "Example 2: Design and Run a Simulation; Run and Evaluate a Simulation",
+      "title": "Example 2: Design a Simulation",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-2, Example 2)"
@@ -8620,7 +8620,7 @@
     {
       "id": "math.im3.example.8.3.011",
       "kind": "worked_example",
-      "title": "Example 1: Find a Standard Deviation; Calculate Statistics; Compare Distributions",
+      "title": "Example 1: Calculate Standard Deviation from a Table",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-3, Example 1)"
@@ -8638,7 +8638,7 @@
     {
       "id": "math.im3.example.8.3.012",
       "kind": "worked_example",
-      "title": "Example 2: Find a Standard Deviation; Calculate Statistics; Compare Distributions",
+      "title": "Example 2: Use Technology to Find Mean and Standard Deviation",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-3, Example 2)"
@@ -8656,7 +8656,7 @@
     {
       "id": "math.im3.example.8.3.013",
       "kind": "worked_example",
-      "title": "Example 3: Find a Standard Deviation; Calculate Statistics; Compare Distributions",
+      "title": "Example 3: Compare Distributions Using Mean and Standard Deviation",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-3, Example 3)"
@@ -8674,7 +8674,7 @@
     {
       "id": "math.im3.example.8.4.014",
       "kind": "worked_example",
-      "title": "Example 1: Classify Random Variables; Analyze a Probability Distribution; Misleading Distributions",
+      "title": "Example 1: Classify Random Variables",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-4, Example 1)"
@@ -8692,7 +8692,7 @@
     {
       "id": "math.im3.example.8.4.015",
       "kind": "worked_example",
-      "title": "Example 2: Classify Random Variables; Analyze a Probability Distribution; Misleading Distributions",
+      "title": "Example 2: Construct a Probability Distribution",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-4, Example 2)"
@@ -8710,7 +8710,7 @@
     {
       "id": "math.im3.example.8.4.016",
       "kind": "worked_example",
-      "title": "Example 3: Classify Random Variables; Analyze a Probability Distribution; Misleading Distributions",
+      "title": "Example 3: Determine if Data Follow a Normal Distribution",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-4, Example 3)"
@@ -8728,7 +8728,7 @@
     {
       "id": "math.im3.example.8.4.017",
       "kind": "worked_example",
-      "title": "Example 4: Approximate Data by Using a Normal Distribution; Use the Empirical Rule to Analyze Data",
+      "title": "Example 4: The Empirical Rule",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-4, Example 4)"
@@ -8746,7 +8746,7 @@
     {
       "id": "math.im3.example.8.4.018",
       "kind": "worked_example",
-      "title": "Example 5: Approximate Data by Using a Normal Distribution; Use the Empirical Rule to Analyze Data",
+      "title": "Example 5: Calculate z-Values",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-4, Example 5)"
@@ -8764,7 +8764,7 @@
     {
       "id": "math.im3.example.8.4.019",
       "kind": "worked_example",
-      "title": "Example 6: Use z-Values to Locate Position; Find Area Under the Standard Normal Curve by Using a Table; Find Area Under the Standard Normal Curve by Using a Calculator",
+      "title": "Example 6: Find Areas Under the Normal Curve",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-4, Example 6)"
@@ -8782,7 +8782,7 @@
     {
       "id": "math.im3.example.8.4.020",
       "kind": "worked_example",
-      "title": "Example 7: Use z-Values to Locate Position; Find Area Under the Standard Normal Curve by Using a Table; Find Area Under the Standard Normal Curve by Using a Calculator",
+      "title": "Example 7: Apply Normal Distribution to Real Data",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-4, Example 7)"
@@ -8818,7 +8818,7 @@
     {
       "id": "math.im3.example.8.5.022",
       "kind": "worked_example",
-      "title": "Example 1: Find the Maximum Error of the Estimate; Estimate a Population Mean",
+      "title": "Example 1: Find Maximum Error for Means",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-5, Example 1)"
@@ -8836,7 +8836,7 @@
     {
       "id": "math.im3.example.8.5.023",
       "kind": "worked_example",
-      "title": "Example 2: Find the Maximum Error of the Estimate; Estimate a Population Mean",
+      "title": "Example 2: Construct Confidence Intervals for Means",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-5, Example 2)"
@@ -9343,7 +9343,7 @@
     {
       "id": "math.im3.example.9.1.001",
       "kind": "worked_example",
-      "title": "Example 1: Draw an Angle in Standard Position; Draw an Angle with More Than One Rotation; Identify Coterminal Angles",
+      "title": "Example 1: Draw Angles in Standard Position",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-1, Example 1)"
@@ -9361,7 +9361,7 @@
     {
       "id": "math.im3.example.9.1.002",
       "kind": "worked_example",
-      "title": "Example 2: Draw an Angle in Standard Position; Draw an Angle with More Than One Rotation; Identify Coterminal Angles",
+      "title": "Example 2: Find Coterminal Angles",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-1, Example 2)"
@@ -9379,7 +9379,7 @@
     {
       "id": "math.im3.example.9.1.003",
       "kind": "worked_example",
-      "title": "Example 3: Draw an Angle in Standard Position; Draw an Angle with More Than One Rotation; Identify Coterminal Angles",
+      "title": "Example 3: Convert Between Degrees and Radians",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-1, Example 3)"
@@ -9397,7 +9397,7 @@
     {
       "id": "math.im3.example.9.1.004",
       "kind": "worked_example",
-      "title": "Example 4: Convert Degrees to Radians; Convert Radians to Degrees; Find Arc Length",
+      "title": "Example 4: Arc Length Problems",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-1, Example 4)"
@@ -9451,7 +9451,7 @@
     {
       "id": "math.im3.example.9.2.007",
       "kind": "worked_example",
-      "title": "Example 1: Evaluate Trigonometric Functions; Find Trigonometric Ratios",
+      "title": "Example 1: Find Trigonometric Values from Points on the Terminal Side",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-2, Example 1)"
@@ -9469,7 +9469,7 @@
     {
       "id": "math.im3.example.9.2.008",
       "kind": "worked_example",
-      "title": "Example 2: Evaluate Trigonometric Functions; Find Trigonometric Ratios",
+      "title": "Example 2: Find Values Given Another Trigonometric Function",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-2, Example 2)"
@@ -9487,7 +9487,7 @@
     {
       "id": "math.im3.example.9.2.009",
       "kind": "worked_example",
-      "title": "Example 3: Evaluate Trigonometric Functions Given a Point; Evaluate Trigonometric Functions of Quadrantal Angles",
+      "title": "Example 3: Evaluate Trigonometric Functions Using Reference Angles",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-2, Example 3)"
@@ -9505,7 +9505,7 @@
     {
       "id": "math.im3.example.9.2.010",
       "kind": "worked_example",
-      "title": "Example 4: Evaluate Trigonometric Functions Given a Point; Evaluate Trigonometric Functions of Quadrantal Angles",
+      "title": "Example 4: Exact Values at Special Angles",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-2, Example 4)"
@@ -9523,7 +9523,7 @@
     {
       "id": "math.im3.example.9.2.011",
       "kind": "worked_example",
-      "title": "Example 5: Find Reference Angles; Use a Reference Angle to Find a Trigonometric Value; Use Trigonometric Functions",
+      "title": "Example 5: Real-World Trigonometry Applications",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-2, Example 5)"
@@ -9577,7 +9577,7 @@
     {
       "id": "math.im3.example.9.4.014",
       "kind": "worked_example",
-      "title": "Example 1: Identify the Amplitude and Period from a Graph; Identify the Amplitude and Period from an Equation",
+      "title": "Example 1: Identify Characteristics from Graphs",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-4, Example 1)"
@@ -9595,7 +9595,7 @@
     {
       "id": "math.im3.example.9.4.015",
       "kind": "worked_example",
-      "title": "Example 2: Identify the Amplitude and Period from a Graph; Identify the Amplitude and Period from an Equation",
+      "title": "Example 2: Find Amplitude and Period from Equations",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-4, Example 2)"
@@ -9613,7 +9613,7 @@
     {
       "id": "math.im3.example.9.4.016",
       "kind": "worked_example",
-      "title": "Example 3: Graph a Sine Function; Graph a Cosine Function; Characteristics of the Sine and Cosine Functions",
+      "title": "Example 3: Graph Sine Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-4, Example 3)"
@@ -9631,7 +9631,7 @@
     {
       "id": "math.im3.example.9.4.017",
       "kind": "worked_example",
-      "title": "Example 4: Graph a Sine Function; Graph a Cosine Function; Characteristics of the Sine and Cosine Functions",
+      "title": "Example 4: Graph Cosine Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-4, Example 4)"
@@ -9649,7 +9649,7 @@
     {
       "id": "math.im3.example.9.4.018",
       "kind": "worked_example",
-      "title": "Example 5: Graph a Sine Function; Graph a Cosine Function; Characteristics of the Sine and Cosine Functions",
+      "title": "Example 5: Real-World Modeling with Trigonometric Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-4, Example 5)"
@@ -9667,7 +9667,7 @@
     {
       "id": "math.im3.example.9.4.019",
       "kind": "worked_example",
-      "title": "Example 6: Model Periodic Situations",
+      "title": "Example 6: Write Functions from Real-World Situations",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-4, Example 6)"
@@ -9685,7 +9685,7 @@
     {
       "id": "math.im3.example.9.5.020",
       "kind": "worked_example",
-      "title": "Example 1: Graph a Tangent Function with a Dilation; Graph a Tangent Function with a Dilation and a Reflection",
+      "title": "Example 1: Graph Tangent Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-5, Example 1)"
@@ -9703,7 +9703,7 @@
     {
       "id": "math.im3.example.9.5.021",
       "kind": "worked_example",
-      "title": "Example 2: Graph a Tangent Function with a Dilation; Graph a Tangent Function with a Dilation and a Reflection",
+      "title": "Example 2: Graph Cosecant and Secant Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-5, Example 2)"
@@ -9721,7 +9721,7 @@
     {
       "id": "math.im3.example.9.5.022",
       "kind": "worked_example",
-      "title": "Example 3: Graph a Cosecant Function; Graph a Cotangent Function; Apply a Reciprocal Trigonometric Function",
+      "title": "Example 3: Graph Cotangent Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-5, Example 3)"
@@ -9739,7 +9739,7 @@
     {
       "id": "math.im3.example.9.5.023",
       "kind": "worked_example",
-      "title": "Example 4: Graph a Cosecant Function; Graph a Cotangent Function; Apply a Reciprocal Trigonometric Function",
+      "title": "Example 4: Graph Secant Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-5, Example 4)"
@@ -9757,7 +9757,7 @@
     {
       "id": "math.im3.example.9.5.024",
       "kind": "worked_example",
-      "title": "Example 5: Graph a Cosecant Function; Graph a Cotangent Function; Apply a Reciprocal Trigonometric Function",
+      "title": "Example 5: Real-World Applications",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-5, Example 5)"
@@ -9775,7 +9775,7 @@
     {
       "id": "math.im3.example.9.6.025",
       "kind": "worked_example",
-      "title": "Example 1: Graph a Phase Shift; Graph a Transformation of a Trigonometric Function",
+      "title": "Example 1: Analyze Simple Translations",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-6, Example 1)"
@@ -9793,7 +9793,7 @@
     {
       "id": "math.im3.example.9.6.026",
       "kind": "worked_example",
-      "title": "Example 2: Graph a Phase Shift; Graph a Transformation of a Trigonometric Function",
+      "title": "Example 2: Analyze Functions with Amplitude Changes",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-6, Example 2)"
@@ -9811,7 +9811,7 @@
     {
       "id": "math.im3.example.9.6.027",
       "kind": "worked_example",
-      "title": "Example 3: Graph a Vertical Shift; Model Translations of Trigonometric Functions; Write a Trigonometric Function from a Graph",
+      "title": "Example 3: Functions with Vertical Shifts",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-6, Example 3)"
@@ -9829,7 +9829,7 @@
     {
       "id": "math.im3.example.9.6.028",
       "kind": "worked_example",
-      "title": "Example 4: Graph a Vertical Shift; Model Translations of Trigonometric Functions; Write a Trigonometric Function from a Graph",
+      "title": "Example 4: Real-World Modeling with Translations",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-6, Example 4)"
@@ -9847,7 +9847,7 @@
     {
       "id": "math.im3.example.9.6.029",
       "kind": "worked_example",
-      "title": "Example 5: Graph a Vertical Shift; Model Translations of Trigonometric Functions; Write a Trigonometric Function from a Graph",
+      "title": "Example 5: Write Equations from Graphs",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-6, Example 5)"
@@ -9865,7 +9865,7 @@
     {
       "id": "math.im3.example.9.7.030",
       "kind": "worked_example",
-      "title": "Example 1: Evaluate Inverse Trigonometric Functions; Find a Trigonometric Value by Using a Calculator",
+      "title": "Example 1: Evaluate Inverse Trigonometric Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-7, Example 1)"
@@ -9883,7 +9883,7 @@
     {
       "id": "math.im3.example.9.7.031",
       "kind": "worked_example",
-      "title": "Example 2: Evaluate Inverse Trigonometric Functions; Find a Trigonometric Value by Using a Calculator",
+      "title": "Example 2: Evaluate Composite Expressions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-7, Example 2)"
@@ -9901,7 +9901,7 @@
     {
       "id": "math.im3.example.9.7.032",
       "kind": "worked_example",
-      "title": "Example 3: Find an Angle Measure by Using a Graphing Calculator; Use Inverse Trigonometric Functions",
+      "title": "Example 3: Solve Trigonometric Equations",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-7, Example 3)"
@@ -9919,7 +9919,7 @@
     {
       "id": "math.im3.example.9.7.033",
       "kind": "worked_example",
-      "title": "Example 4: Find an Angle Measure by Using a Graphing Calculator; Use Inverse Trigonometric Functions",
+      "title": "Example 4: Real-World Applications",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-7, Example 4)"

@@ -47,28 +47,37 @@ describe('parseClassPeriodPlan', () => {
 
   it('parses worked example numbers from the Worked Examples column', () => {
     const result = parseClassPeriodPlan(im3Module1ClassPeriodPlan);
-    // 1-1, Examples 1-3 should produce single example group with numbers [1,2,3]
+    // 1-1, Examples 1-3 — Title A; Title B; Title C should produce
+    // 3 individual entries, one per example number with its own title
     const lesson11Examples = result.lessons.find(
       (l) => l.lessonRef === '1-1',
     )!.examples;
-    // There are two instruction rows for 1-1 (periods 1 and 2), each with examples
-    expect(lesson11Examples.length).toBeGreaterThanOrEqual(2);
-    const firstGroup = lesson11Examples[0];
-    expect(firstGroup.lessonRef).toBe('1-1');
-    expect(firstGroup.exampleNumbers).toEqual([1, 2, 3]);
-    expect(firstGroup.title).toBe(
-      'Graph Using a Table; Compare Quadratic Functions; Real-World Application (Modeling)',
-    );
+    // Period 1: 3 individual examples (1, 2, 3); Period 2: 3 individual (4, 5, 6)
+    expect(lesson11Examples).toHaveLength(6);
+    const ex1 = lesson11Examples.find((e) => e.exampleNumbers[0] === 1);
+    expect(ex1).toBeDefined();
+    expect(ex1!.lessonRef).toBe('1-1');
+    expect(ex1!.exampleNumbers).toEqual([1]);
+    expect(ex1!.title).toBe('Graph Using a Table');
+    const ex2 = lesson11Examples.find((e) => e.exampleNumbers[0] === 2);
+    expect(ex2!.title).toBe('Compare Quadratic Functions');
+    const ex3 = lesson11Examples.find((e) => e.exampleNumbers[0] === 3);
+    expect(ex3!.title).toBe('Real-World Application (Modeling)');
   });
 
   it('parses example ranges correctly (e.g., Examples 4-6)', () => {
     const result = parseClassPeriodPlan(im3Module1ClassPeriodPlan);
-    // Period 2: 1-1, Examples 4-6
+    // Period 2: 1-1, Examples 4-6 — From an Equation; From a Table; From a Graph (Estimation + Algebra)
     const period2Examples = result.lessons
       .find((l) => l.lessonRef === '1-1')!
-      .examples.find((e) => e.exampleNumbers[0] === 4);
-    expect(period2Examples).toBeDefined();
-    expect(period2Examples!.exampleNumbers).toEqual([4, 5, 6]);
+      .examples.filter((e) => e.exampleNumbers[0] >= 4);
+    expect(period2Examples).toHaveLength(3);
+    expect(period2Examples[0].exampleNumbers).toEqual([4]);
+    expect(period2Examples[0].title).toBe('From an Equation');
+    expect(period2Examples[1].exampleNumbers).toEqual([5]);
+    expect(period2Examples[1].title).toBe('From a Table');
+    expect(period2Examples[2].exampleNumbers).toEqual([6]);
+    expect(period2Examples[2].title).toBe('From a Graph (Estimation + Algebra)');
   });
 
   it('preserves raw example text as source reference', () => {

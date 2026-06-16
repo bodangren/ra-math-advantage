@@ -44,9 +44,17 @@ Dependencies:
 
 ## Active Tracks
 
+- [x] **Track: Fix KST Worked-Example Node Titles** — **COMPLETED**
+   *Parser was joining semicolon-separated example titles into one group string; all worked_example nodes got the same fabricated group title. Fixed parser to split titles 1:1 with example numbers. Audited and fixed 55 class period plan cells that had descriptive group titles instead of source example headings. Regenerated nodes.json (250+ titles patched), draft-nodes.json, 9 per-module nodes.json, and activity-map.json (655 activities). 237/237 source-matched nodes verified; 0 mismatches.*
+   *Link: [./tracks/fix-kst-node-titles_20260615/](./tracks/fix-kst-node-titles_20260615/)*
+
 - [~] **Track: Spec Compliance and Process Integrity Remediation** — **CRITICAL / IN PROGRESS**
    *Adversarial review of the past 24 hours found systematic spec violations, automation-self-approved "manual" verification, FR-6 source mutations, missing FR-5 type annotations, and a hazardous repository state (detached HEAD, 28 stashes, dirty graph.db). This track fixes every identified issue before any dependent track proceeds.*
    *Link: [./tracks/spec-compliance-and-process-integrity_20260612/](./tracks/spec-compliance-and-process-integrity_20260612/)*
+
+- [ ] **Track: Repository Hygiene Remediation** — **IN PROGRESS**
+   *Remediate repo hygiene debt: commit 96 dirty files from fix-kst-node-titles, resolve 6 remaining stashes, fix BM2 pre-existing test reds (UserMenu AuthProvider, GradebookDrillDown timeout), fix IM3 React 19 eslint violations (20 errors across 14 files), verify TypeScript/lint/tests pass.*
+   *Link: [./tracks/repo-hygiene-remediation_20260616/](./tracks/repo-hygiene-remediation_20260616/)*
 
 - [ ] **Program: Knowledge Space Engine Alignment (kst-srs.v2)**
    *Bring the implementation into alignment with the `kst-srs.v2` specification. The KST packages (`knowledge-space-core`, `knowledge-space-practice`) implement the v1 contract but are wired into no production route; the SRS half is live but nothing converts proficiency output into a knowledge-space learner state. This program wires the KST pipeline end-to-end and adds the v2 improvements: time-aware mastery, weighted readiness, edge calibration, a next-skill planner, adaptive placement, the misconception remediation loop, and the practice-variant rename. Source: gse-knowledge-space `SPECIFICATION.md` (kst-srs.v2) + `IMPROVEMENT-PLAN.md`.*

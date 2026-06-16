@@ -26,6 +26,11 @@ Clearing denominators and checking solutions.
 
 ## Skills Developed
 
-- Understanding discontinuities
-- Algebraic precision
-- Modeling proportional relationships
+- Multiply and divide rational expressions
+- Add and subtract rational expressions
+- Graph and analyze reciprocal functions
+- Graph and analyze rational functions
+- Recognize and solve direct variation equations
+- Recognize and solve joint variation equations
+- Recognize and solve inverse variation equations
+- Solve rational equations and inequalities algebraically and by graphing

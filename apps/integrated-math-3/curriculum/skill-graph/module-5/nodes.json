@@ -25,7 +25,7 @@
     {
       "id": "math.im3.example.5.1.001",
       "kind": "worked_example",
-      "title": "Example 1: Graph Exponential Growth Functions; Graph Transformations of Exponential Growth Functions; Analyze Graphs of Exponential Functions; Use Exponential Growth Functions",
+      "title": "Example 1: Graph Basic Exponential Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-1, Example 1)"
@@ -37,13 +37,13 @@
         "lesson": "1",
         "exampleNumber": 1,
         "sourceLesson": "5-1",
-        "rawText": "5-1, Examples 1-4 \u2014 Graph Exponential Growth Functions; Graph Transformations of Exponential Growth Functions; Analyze Graphs of Exponential Functions; Use Exponential Growth Functions"
+        "rawText": "5-1, Examples 1-4 — Graph Exponential Growth Functions; Graph Transformations of Exponential Growth Functions; Analyze Graphs of Exponential Functions; Use Exponential Growth Functions"
       }
     },
     {
       "id": "math.im3.example.5.1.002",
       "kind": "worked_example",
-      "title": "Example 2: Graph Exponential Growth Functions; Graph Transformations of Exponential Growth Functions; Analyze Graphs of Exponential Functions; Use Exponential Growth Functions",
+      "title": "Example 2: Graph Transformed Exponential Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-1, Example 2)"
@@ -55,13 +55,13 @@
         "lesson": "1",
         "exampleNumber": 2,
         "sourceLesson": "5-1",
-        "rawText": "5-1, Examples 1-4 \u2014 Graph Exponential Growth Functions; Graph Transformations of Exponential Growth Functions; Analyze Graphs of Exponential Functions; Use Exponential Growth Functions"
+        "rawText": "5-1, Examples 1-4 — Graph Exponential Growth Functions; Graph Transformations of Exponential Growth Functions; Analyze Graphs of Exponential Functions; Use Exponential Growth Functions"
       }
     },
     {
       "id": "math.im3.example.5.1.003",
       "kind": "worked_example",
-      "title": "Example 3: Graph Exponential Growth Functions; Graph Transformations of Exponential Growth Functions; Analyze Graphs of Exponential Functions; Use Exponential Growth Functions",
+      "title": "Example 3: Write Functions from Graphs",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-1, Example 3)"
@@ -73,13 +73,13 @@
         "lesson": "1",
         "exampleNumber": 3,
         "sourceLesson": "5-1",
-        "rawText": "5-1, Examples 1-4 \u2014 Graph Exponential Growth Functions; Graph Transformations of Exponential Growth Functions; Analyze Graphs of Exponential Functions; Use Exponential Growth Functions"
+        "rawText": "5-1, Examples 1-4 — Graph Exponential Growth Functions; Graph Transformations of Exponential Growth Functions; Analyze Graphs of Exponential Functions; Use Exponential Growth Functions"
       }
     },
     {
       "id": "math.im3.example.5.1.004",
       "kind": "worked_example",
-      "title": "Example 4: Graph Exponential Growth Functions; Graph Transformations of Exponential Growth Functions; Analyze Graphs of Exponential Functions; Use Exponential Growth Functions",
+      "title": "Example 4: Real-World Exponential Models",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-1, Example 4)"
@@ -91,13 +91,13 @@
         "lesson": "1",
         "exampleNumber": 4,
         "sourceLesson": "5-1",
-        "rawText": "5-1, Examples 1-4 \u2014 Graph Exponential Growth Functions; Graph Transformations of Exponential Growth Functions; Analyze Graphs of Exponential Functions; Use Exponential Growth Functions"
+        "rawText": "5-1, Examples 1-4 — Graph Exponential Growth Functions; Graph Transformations of Exponential Growth Functions; Analyze Graphs of Exponential Functions; Use Exponential Growth Functions"
       }
     },
     {
       "id": "math.im3.example.5.1.005",
       "kind": "worked_example",
-      "title": "Example 5: Interpret Exponential Functions; Graph Exponential Decay Functions; Graph Transformations of Exponential Decay Functions; Compare Exponential Functions",
+      "title": "Example 5: Exponential Growth vs. Decay",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-1, Example 5)"
@@ -109,13 +109,13 @@
         "lesson": "1",
         "exampleNumber": 5,
         "sourceLesson": "5-1",
-        "rawText": "5-1, Examples 5-8 \u2014 Interpret Exponential Functions; Graph Exponential Decay Functions; Graph Transformations of Exponential Decay Functions; Compare Exponential Functions"
+        "rawText": "5-1, Examples 5-8 — Interpret Exponential Functions; Graph Exponential Decay Functions; Graph Transformations of Exponential Decay Functions; Compare Exponential Functions"
       }
     },
     {
       "id": "math.im3.example.5.1.006",
       "kind": "worked_example",
-      "title": "Example 6: Interpret Exponential Functions; Graph Exponential Decay Functions; Graph Transformations of Exponential Decay Functions; Compare Exponential Functions",
+      "title": "Example 6: Decay Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-1, Example 6)"
@@ -127,13 +127,13 @@
         "lesson": "1",
         "exampleNumber": 6,
         "sourceLesson": "5-1",
-        "rawText": "5-1, Examples 5-8 \u2014 Interpret Exponential Functions; Graph Exponential Decay Functions; Graph Transformations of Exponential Decay Functions; Compare Exponential Functions"
+        "rawText": "5-1, Examples 5-8 — Interpret Exponential Functions; Graph Exponential Decay Functions; Graph Transformations of Exponential Decay Functions; Compare Exponential Functions"
       }
     },
     {
       "id": "math.im3.example.5.1.007",
       "kind": "worked_example",
-      "title": "Example 7: Interpret Exponential Functions; Graph Exponential Decay Functions; Graph Transformations of Exponential Decay Functions; Compare Exponential Functions",
+      "title": "Example 7: Complex Transformations with Decay",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-1, Example 7)"
@@ -145,13 +145,13 @@
         "lesson": "1",
         "exampleNumber": 7,
         "sourceLesson": "5-1",
-        "rawText": "5-1, Examples 5-8 \u2014 Interpret Exponential Functions; Graph Exponential Decay Functions; Graph Transformations of Exponential Decay Functions; Compare Exponential Functions"
+        "rawText": "5-1, Examples 5-8 — Interpret Exponential Functions; Graph Exponential Decay Functions; Graph Transformations of Exponential Decay Functions; Compare Exponential Functions"
       }
     },
     {
       "id": "math.im3.example.5.1.008",
       "kind": "worked_example",
-      "title": "Example 8: Interpret Exponential Functions; Graph Exponential Decay Functions; Graph Transformations of Exponential Decay Functions; Compare Exponential Functions",
+      "title": "Example 8: Piecewise Functions with Exponential Parts",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-1, Example 8)"
@@ -163,13 +163,13 @@
         "lesson": "1",
         "exampleNumber": 8,
         "sourceLesson": "5-1",
-        "rawText": "5-1, Examples 5-8 \u2014 Interpret Exponential Functions; Graph Exponential Decay Functions; Graph Transformations of Exponential Decay Functions; Compare Exponential Functions"
+        "rawText": "5-1, Examples 5-8 — Interpret Exponential Functions; Graph Exponential Decay Functions; Graph Transformations of Exponential Decay Functions; Compare Exponential Functions"
       }
     },
     {
       "id": "math.im3.example.5.2.009",
       "kind": "worked_example",
-      "title": "Example 1: Solve Exponential Equations Algebraically; Solve an Exponential Equation by Graphing; Use the Compound Interest Formula",
+      "title": "Example 1: Solve Exponential Equations",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-2, Example 1)"
@@ -181,13 +181,13 @@
         "lesson": "2",
         "exampleNumber": 1,
         "sourceLesson": "5-2",
-        "rawText": "5-2, Examples 1-3 \u2014 Solve Exponential Equations Algebraically; Solve an Exponential Equation by Graphing; Use the Compound Interest Formula"
+        "rawText": "5-2, Examples 1-3 — Solve Exponential Equations Algebraically; Solve an Exponential Equation by Graphing; Use the Compound Interest Formula"
       }
     },
     {
       "id": "math.im3.example.5.2.010",
       "kind": "worked_example",
-      "title": "Example 2: Solve Exponential Equations Algebraically; Solve an Exponential Equation by Graphing; Use the Compound Interest Formula",
+      "title": "Example 2: Real-World Exponential Equations",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-2, Example 2)"
@@ -199,13 +199,13 @@
         "lesson": "2",
         "exampleNumber": 2,
         "sourceLesson": "5-2",
-        "rawText": "5-2, Examples 1-3 \u2014 Solve Exponential Equations Algebraically; Solve an Exponential Equation by Graphing; Use the Compound Interest Formula"
+        "rawText": "5-2, Examples 1-3 — Solve Exponential Equations Algebraically; Solve an Exponential Equation by Graphing; Use the Compound Interest Formula"
       }
     },
     {
       "id": "math.im3.example.5.2.011",
       "kind": "worked_example",
-      "title": "Example 3: Solve Exponential Equations Algebraically; Solve an Exponential Equation by Graphing; Use the Compound Interest Formula",
+      "title": "Example 3: Compound Interest with Multiple Compounding Periods",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-2, Example 3)"
@@ -217,13 +217,13 @@
         "lesson": "2",
         "exampleNumber": 3,
         "sourceLesson": "5-2",
-        "rawText": "5-2, Examples 1-3 \u2014 Solve Exponential Equations Algebraically; Solve an Exponential Equation by Graphing; Use the Compound Interest Formula"
+        "rawText": "5-2, Examples 1-3 — Solve Exponential Equations Algebraically; Solve an Exponential Equation by Graphing; Use the Compound Interest Formula"
       }
     },
     {
       "id": "math.im3.example.5.2.012",
       "kind": "worked_example",
-      "title": "Example 4: Solve Exponential Inequalities Algebraically",
+      "title": "Example 4: Solve Exponential Inequalities",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-2, Example 4)"
@@ -235,13 +235,13 @@
         "lesson": "2",
         "exampleNumber": 4,
         "sourceLesson": "5-2",
-        "rawText": "5-2, Example 4 \u2014 Solve Exponential Inequalities Algebraically"
+        "rawText": "5-2, Example 4 — Solve Exponential Inequalities Algebraically"
       }
     },
     {
       "id": "math.im3.example.5.3.013",
       "kind": "worked_example",
-      "title": "Example 1: Expressions with Base e; Graph Functions with Base e; Apply Functions with Base e; Solve an Exponential Equation by Using Technology",
+      "title": "Example 1: Simplify Expressions with [e]",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-3, Example 1)"
@@ -253,13 +253,13 @@
         "lesson": "3",
         "exampleNumber": 1,
         "sourceLesson": "5-3",
-        "rawText": "5-3, Examples 1-4 \u2014 Expressions with Base e; Graph Functions with Base e; Apply Functions with Base e; Solve an Exponential Equation by Using Technology"
+        "rawText": "5-3, Examples 1-4 — Expressions with Base e; Graph Functions with Base e; Apply Functions with Base e; Solve an Exponential Equation by Using Technology"
       }
     },
     {
       "id": "math.im3.example.5.3.014",
       "kind": "worked_example",
-      "title": "Example 2: Expressions with Base e; Graph Functions with Base e; Apply Functions with Base e; Solve an Exponential Equation by Using Technology",
+      "title": "Example 2: Graph Natural Exponential Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-3, Example 2)"
@@ -271,13 +271,13 @@
         "lesson": "3",
         "exampleNumber": 2,
         "sourceLesson": "5-3",
-        "rawText": "5-3, Examples 1-4 \u2014 Expressions with Base e; Graph Functions with Base e; Apply Functions with Base e; Solve an Exponential Equation by Using Technology"
+        "rawText": "5-3, Examples 1-4 — Expressions with Base e; Graph Functions with Base e; Apply Functions with Base e; Solve an Exponential Equation by Using Technology"
       }
     },
     {
       "id": "math.im3.example.5.3.015",
       "kind": "worked_example",
-      "title": "Example 3: Expressions with Base e; Graph Functions with Base e; Apply Functions with Base e; Solve an Exponential Equation by Using Technology",
+      "title": "Example 3: Continuous Compounding Applications",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-3, Example 3)"
@@ -289,13 +289,13 @@
         "lesson": "3",
         "exampleNumber": 3,
         "sourceLesson": "5-3",
-        "rawText": "5-3, Examples 1-4 \u2014 Expressions with Base e; Graph Functions with Base e; Apply Functions with Base e; Solve an Exponential Equation by Using Technology"
+        "rawText": "5-3, Examples 1-4 — Expressions with Base e; Graph Functions with Base e; Apply Functions with Base e; Solve an Exponential Equation by Using Technology"
       }
     },
     {
       "id": "math.im3.example.5.3.016",
       "kind": "worked_example",
-      "title": "Example 4: Expressions with Base e; Graph Functions with Base e; Apply Functions with Base e; Solve an Exponential Equation by Using Technology",
+      "title": "Example 4: Solve Equations with [e] Using a Graphing Calculator",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-3, Example 4)"
@@ -307,13 +307,13 @@
         "lesson": "3",
         "exampleNumber": 4,
         "sourceLesson": "5-3",
-        "rawText": "5-3, Examples 1-4 \u2014 Expressions with Base e; Graph Functions with Base e; Apply Functions with Base e; Solve an Exponential Equation by Using Technology"
+        "rawText": "5-3, Examples 1-4 — Expressions with Base e; Graph Functions with Base e; Apply Functions with Base e; Solve an Exponential Equation by Using Technology"
       }
     },
     {
       "id": "math.im3.example.5.4.017",
       "kind": "worked_example",
-      "title": "Example 1: Identify Geometric Sequences; Graph Geometric Sequences; Find the nth Term",
+      "title": "Example 1: Graph Geometric Sequences",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-4, Example 1)"
@@ -325,13 +325,13 @@
         "lesson": "4",
         "exampleNumber": 1,
         "sourceLesson": "5-4",
-        "rawText": "5-4, Examples 1-3 \u2014 Identify Geometric Sequences; Graph Geometric Sequences; Find the nth Term"
+        "rawText": "5-4, Examples 1-3 — Identify Geometric Sequences; Graph Geometric Sequences; Find the nth Term"
       }
     },
     {
       "id": "math.im3.example.5.4.018",
       "kind": "worked_example",
-      "title": "Example 2: Identify Geometric Sequences; Graph Geometric Sequences; Find the nth Term",
+      "title": "Example 2: Real-World Geometric Sequences",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-4, Example 2)"
@@ -343,13 +343,13 @@
         "lesson": "4",
         "exampleNumber": 2,
         "sourceLesson": "5-4",
-        "rawText": "5-4, Examples 1-3 \u2014 Identify Geometric Sequences; Graph Geometric Sequences; Find the nth Term"
+        "rawText": "5-4, Examples 1-3 — Identify Geometric Sequences; Graph Geometric Sequences; Find the nth Term"
       }
     },
     {
       "id": "math.im3.example.5.4.019",
       "kind": "worked_example",
-      "title": "Example 3: Identify Geometric Sequences; Graph Geometric Sequences; Find the nth Term",
+      "title": "Example 3: Write Equations for the nth Term",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-4, Example 3)"
@@ -361,13 +361,13 @@
         "lesson": "4",
         "exampleNumber": 3,
         "sourceLesson": "5-4",
-        "rawText": "5-4, Examples 1-3 \u2014 Identify Geometric Sequences; Graph Geometric Sequences; Find the nth Term"
+        "rawText": "5-4, Examples 1-3 — Identify Geometric Sequences; Graph Geometric Sequences; Find the nth Term"
       }
     },
     {
       "id": "math.im3.example.5.4.020",
       "kind": "worked_example",
-      "title": "Example 4: Write an Equation for the nth Term; Recursive and Explicit Formulas; Find Geometric Means",
+      "title": "Example 4: Convert Between Recursive and Explicit Forms",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-4, Example 4)"
@@ -379,13 +379,13 @@
         "lesson": "4",
         "exampleNumber": 4,
         "sourceLesson": "5-4",
-        "rawText": "5-4, Examples 4-6 \u2014 Write an Equation for the nth Term; Recursive and Explicit Formulas; Find Geometric Means"
+        "rawText": "5-4, Examples 4-6 — Write an Equation for the nth Term; Recursive and Explicit Formulas; Find Geometric Means"
       }
     },
     {
       "id": "math.im3.example.5.4.021",
       "kind": "worked_example",
-      "title": "Example 5: Write an Equation for the nth Term; Recursive and Explicit Formulas; Find Geometric Means",
+      "title": "Example 5: Find Geometric Means",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-4, Example 5)"
@@ -397,13 +397,13 @@
         "lesson": "4",
         "exampleNumber": 5,
         "sourceLesson": "5-4",
-        "rawText": "5-4, Examples 4-6 \u2014 Write an Equation for the nth Term; Recursive and Explicit Formulas; Find Geometric Means"
+        "rawText": "5-4, Examples 4-6 — Write an Equation for the nth Term; Recursive and Explicit Formulas; Find Geometric Means"
       }
     },
     {
       "id": "math.im3.example.5.4.022",
       "kind": "worked_example",
-      "title": "Example 6: Write an Equation for the nth Term; Recursive and Explicit Formulas; Find Geometric Means",
+      "title": "Example 6: Geometric Series",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-4, Example 6)"
@@ -415,13 +415,13 @@
         "lesson": "4",
         "exampleNumber": 6,
         "sourceLesson": "5-4",
-        "rawText": "5-4, Examples 4-6 \u2014 Write an Equation for the nth Term; Recursive and Explicit Formulas; Find Geometric Means"
+        "rawText": "5-4, Examples 4-6 — Write an Equation for the nth Term; Recursive and Explicit Formulas; Find Geometric Means"
       }
     },
     {
       "id": "math.im3.example.5.4.023",
       "kind": "worked_example",
-      "title": "Example 7: Find the Sum of a Geometric Series",
+      "title": "Example 7: Real-World Series Applications",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-4, Example 7)"
@@ -433,7 +433,7 @@
         "lesson": "4",
         "exampleNumber": 7,
         "sourceLesson": "5-4",
-        "rawText": "5-4, Example 7 \u2014 Find the Sum of a Geometric Series"
+        "rawText": "5-4, Example 7 — Find the Sum of a Geometric Series"
       }
     },
     {
@@ -451,7 +451,7 @@
         "lesson": "4",
         "exampleNumber": 8,
         "sourceLesson": "5-4",
-        "rawText": "5-4, Examples 8-9 \u2014 Find the First Term in a Series; Sum in Sigma Notation"
+        "rawText": "5-4, Examples 8-9 — Find the First Term in a Series; Sum in Sigma Notation"
       }
     },
     {
@@ -469,13 +469,13 @@
         "lesson": "4",
         "exampleNumber": 9,
         "sourceLesson": "5-4",
-        "rawText": "5-4, Examples 8-9 \u2014 Find the First Term in a Series; Sum in Sigma Notation"
+        "rawText": "5-4, Examples 8-9 — Find the First Term in a Series; Sum in Sigma Notation"
       }
     },
     {
       "id": "math.im3.example.5.5.026",
       "kind": "worked_example",
-      "title": "Example 1: Examine Scatter Plots; Model Data by Using Technology",
+      "title": "Example 1: Create and Analyze Scatter Plots",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-5, Example 1)"
@@ -487,13 +487,13 @@
         "lesson": "5",
         "exampleNumber": 1,
         "sourceLesson": "5-5",
-        "rawText": "5-5, Examples 1-2 \u2014 Examine Scatter Plots; Model Data by Using Technology"
+        "rawText": "5-5, Examples 1-2 — Examine Scatter Plots; Model Data by Using Technology"
       }
     },
     {
       "id": "math.im3.example.5.5.027",
       "kind": "worked_example",
-      "title": "Example 2: Examine Scatter Plots; Model Data by Using Technology",
+      "title": "Example 2: Regression Analysis for Real-World Data",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-5-class-period-plan.md (5-5, Example 2)"
@@ -505,7 +505,7 @@
         "lesson": "5",
         "exampleNumber": 2,
         "sourceLesson": "5-5",
-        "rawText": "5-5, Examples 1-2 \u2014 Examine Scatter Plots; Model Data by Using Technology"
+        "rawText": "5-5, Examples 1-2 — Examine Scatter Plots; Model Data by Using Technology"
       }
     },
     {

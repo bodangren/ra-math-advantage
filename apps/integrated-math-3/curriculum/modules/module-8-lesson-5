@@ -4,19 +4,17 @@ Source: (Module 8, Lesson 8-5, Int3_0805_practice.docx)
 
 ## Today's Goals
 
-* Calculate the maximum error of estimate for a confidence interval.
-* Construct and interpret confidence intervals for population means and population proportions.
-* Determine the effect of sample size on the maximum error.
+* Use sample data to infer a population mean by using confidence intervals.
+* Use sample data to infer a population proportion by using confidence intervals.
 
 ## Vocabulary
 
-* **Confidence Interval** — A range of values used to estimate a population parameter.
-* **Maximum Error of Estimate** — The margin of error that accounts for the desired confidence level.
-* **Population Mean (μ)** — The average of all values in a population.
-* **Sample Mean (x̄)** — The average of a sample from the population.
-* **Population Proportion (p)** — The proportion of a population that has a certain characteristic.
-* **Sample Proportion (p̂)** — The proportion of a sample that has a certain characteristic.
-* **Confidence Level** — The probability that a confidence interval contains the true population parameter.
+* **Inferential Statistics** — Using data from a sample to make inferences about the corresponding population.
+* **Sampling Error** — The variation between samples of the same population due to randomness.
+* **Standard Error of the Mean** — The standard deviation of the sampling distribution of the mean.
+* **Confidence Interval** — An estimate of the population parameter using a sample statistic, stated as a range with a specific degree of certainty.
+* **Maximum Error of the Estimate** — The maximum difference between the estimate of the population parameter and its actual value.
+* **Population Proportion** — The number of members in the population with a particular characteristic divided by the total number of members.
 
 ## Explore: How Accurate Are Our Estimates?
 
@@ -184,6 +182,11 @@ Maximum error decreases as sample size increases because [E ∝ 1/√n]. Larger 
 17. Survey students in your class about weekly television hours. Find the sample mean and sample standard deviation. Use a 90% confidence level to estimate the mean for all students.
 Collect the data, calculate [x̄] and [s], then use the 90% confidence interval formula to estimate the population mean.
 
+
+## Objective Alignment
+
+- **8i.** Use sample data to infer a population mean by using confidence intervals. Proficiency means a student can interpret a confidence interval for a population mean and explain what the interval says about the likely range of the parameter.
+- **8j.** Use sample data to infer a population proportion by using confidence intervals. Proficiency means a student can interpret a confidence interval for a population proportion and relate the interval to a statistical claim about the population.
 ## Review Notes
 
 * Image references in this lesson:

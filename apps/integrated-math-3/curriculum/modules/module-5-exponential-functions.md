@@ -23,6 +23,11 @@ Applying exponential models to real-world contexts.
 
 ## Skills Developed
 
-- Modeling change over time
-- Recognizing exponential structure
-- Interpreting parameters
+- Graph exponential growth functions
+- Graph exponential decay functions
+- Solve exponential equations
+- Solve exponential inequalities
+- Understand the natural base e, and use it to solve problems
+- Understand and use geometric sequences
+- Derive formulas for geometric series
+- Find sums of geometric series

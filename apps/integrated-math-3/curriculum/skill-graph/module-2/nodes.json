@@ -25,7 +25,7 @@
     {
       "id": "math.im3.example.2.1.001",
       "kind": "worked_example",
-      "title": "Example 1: End Behavior and Degree of a Monomial Function; Graph a Power Function by Using a Table",
+      "title": "Example 1: Describe End Behavior",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-2-class-period-plan.md (2-1, Example 1)"
@@ -37,13 +37,13 @@
         "lesson": "1",
         "exampleNumber": 1,
         "sourceLesson": "2-1",
-        "rawText": "2-1, Examples 1-2 \u2014 End Behavior and Degree of a Monomial Function; Graph a Power Function by Using a Table"
+        "rawText": "2-1, Examples 1-2 — End Behavior and Degree of a Monomial Function; Graph a Power Function by Using a Table"
       }
     },
     {
       "id": "math.im3.example.2.1.002",
       "kind": "worked_example",
-      "title": "Example 2: End Behavior and Degree of a Monomial Function; Graph a Power Function by Using a Table",
+      "title": "Example 2: Graph Polynomial Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-2-class-period-plan.md (2-1, Example 2)"
@@ -55,13 +55,13 @@
         "lesson": "1",
         "exampleNumber": 2,
         "sourceLesson": "2-1",
-        "rawText": "2-1, Examples 1-2 \u2014 End Behavior and Degree of a Monomial Function; Graph a Power Function by Using a Table"
+        "rawText": "2-1, Examples 1-2 — End Behavior and Degree of a Monomial Function; Graph a Power Function by Using a Table"
       }
     },
     {
       "id": "math.im3.example.2.1.003",
       "kind": "worked_example",
-      "title": "Example 3: Degrees and Leading Coefficients; Evaluate and Graph a Polynomial Function; Zeros of a Polynomial Function; Compare Polynomial Functions",
+      "title": "Example 3: Degree and Leading Coefficient",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-2-class-period-plan.md (2-1, Example 3)"
@@ -73,13 +73,13 @@
         "lesson": "1",
         "exampleNumber": 3,
         "sourceLesson": "2-1",
-        "rawText": "2-1, Examples 3-6 \u2014 Degrees and Leading Coefficients; Evaluate and Graph a Polynomial Function; Zeros of a Polynomial Function; Compare Polynomial Functions"
+        "rawText": "2-1, Examples 3-6 — Degrees and Leading Coefficients; Evaluate and Graph a Polynomial Function; Zeros of a Polynomial Function; Compare Polynomial Functions"
       }
     },
     {
       "id": "math.im3.example.2.1.004",
       "kind": "worked_example",
-      "title": "Example 4: Degrees and Leading Coefficients; Evaluate and Graph a Polynomial Function; Zeros of a Polynomial Function; Compare Polynomial Functions",
+      "title": "Example 4: Real-World Applications",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-2-class-period-plan.md (2-1, Example 4)"
@@ -91,13 +91,13 @@
         "lesson": "1",
         "exampleNumber": 4,
         "sourceLesson": "2-1",
-        "rawText": "2-1, Examples 3-6 \u2014 Degrees and Leading Coefficients; Evaluate and Graph a Polynomial Function; Zeros of a Polynomial Function; Compare Polynomial Functions"
+        "rawText": "2-1, Examples 3-6 — Degrees and Leading Coefficients; Evaluate and Graph a Polynomial Function; Zeros of a Polynomial Function; Compare Polynomial Functions"
       }
     },
     {
       "id": "math.im3.example.2.1.005",
       "kind": "worked_example",
-      "title": "Example 5: Degrees and Leading Coefficients; Evaluate and Graph a Polynomial Function; Zeros of a Polynomial Function; Compare Polynomial Functions",
+      "title": "Example 5: Real Zeros from Graphs",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-2-class-period-plan.md (2-1, Example 5)"
@@ -109,13 +109,13 @@
         "lesson": "1",
         "exampleNumber": 5,
         "sourceLesson": "2-1",
-        "rawText": "2-1, Examples 3-6 \u2014 Degrees and Leading Coefficients; Evaluate and Graph a Polynomial Function; Zeros of a Polynomial Function; Compare Polynomial Functions"
+        "rawText": "2-1, Examples 3-6 — Degrees and Leading Coefficients; Evaluate and Graph a Polynomial Function; Zeros of a Polynomial Function; Compare Polynomial Functions"
       }
     },
     {
       "id": "math.im3.example.2.1.006",
       "kind": "worked_example",
-      "title": "Example 6: Degrees and Leading Coefficients; Evaluate and Graph a Polynomial Function; Zeros of a Polynomial Function; Compare Polynomial Functions",
+      "title": "Example 6: Compare Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-2-class-period-plan.md (2-1, Example 6)"
@@ -127,13 +127,13 @@
         "lesson": "1",
         "exampleNumber": 6,
         "sourceLesson": "2-1",
-        "rawText": "2-1, Examples 3-6 \u2014 Degrees and Leading Coefficients; Evaluate and Graph a Polynomial Function; Zeros of a Polynomial Function; Compare Polynomial Functions"
+        "rawText": "2-1, Examples 3-6 — Degrees and Leading Coefficients; Evaluate and Graph a Polynomial Function; Zeros of a Polynomial Function; Compare Polynomial Functions"
       }
     },
     {
       "id": "math.im3.example.2.2.007",
       "kind": "worked_example",
-      "title": "Example 2: Identify Extrema; Analyze a Polynomial Function; support from Example 5 \u2014 Find Average Rate of Change",
+      "title": "Example 2: Find Extrema Using a Table",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-2-class-period-plan.md (2-2, Example 2)"
@@ -145,13 +145,13 @@
         "lesson": "2",
         "exampleNumber": 2,
         "sourceLesson": "2-2",
-        "rawText": "2-2, Examples 2-3 \u2014 Identify Extrema; Analyze a Polynomial Function; support from Example 5 \u2014 Find Average Rate of Change"
+        "rawText": "2-2, Examples 2-3 — Identify Extrema; Analyze a Polynomial Function; support from Example 5 — Find Average Rate of Change"
       }
     },
     {
       "id": "math.im3.example.2.2.008",
       "kind": "worked_example",
-      "title": "Example 3: Identify Extrema; Analyze a Polynomial Function; support from Example 5 \u2014 Find Average Rate of Change",
+      "title": "Example 3: Key Features from Graphs",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-2-class-period-plan.md (2-2, Example 3)"
@@ -163,13 +163,13 @@
         "lesson": "2",
         "exampleNumber": 3,
         "sourceLesson": "2-2",
-        "rawText": "2-2, Examples 2-3 \u2014 Identify Extrema; Analyze a Polynomial Function; support from Example 5 \u2014 Find Average Rate of Change"
+        "rawText": "2-2, Examples 2-3 — Identify Extrema; Analyze a Polynomial Function; support from Example 5 — Find Average Rate of Change"
       }
     },
     {
       "id": "math.im3.example.2.3.009",
       "kind": "worked_example",
-      "title": "Example 2: Add Polynomials; Subtract Polynomials; support from Example 1 \u2014 Identify Polynomials",
+      "title": "Example 2: Add or Subtract",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-2-class-period-plan.md (2-3, Example 2)"
@@ -181,13 +181,13 @@
         "lesson": "3",
         "exampleNumber": 2,
         "sourceLesson": "2-3",
-        "rawText": "2-3, Examples 2-3 \u2014 Add Polynomials; Subtract Polynomials; support from Example 1 \u2014 Identify Polynomials"
+        "rawText": "2-3, Examples 2-3 — Add Polynomials; Subtract Polynomials; support from Example 1 — Identify Polynomials"
       }
     },
     {
       "id": "math.im3.example.2.3.010",
       "kind": "worked_example",
-      "title": "Example 3: Add Polynomials; Subtract Polynomials; support from Example 1 \u2014 Identify Polynomials",
+      "title": "Example 3: Add or Subtract",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-2-class-period-plan.md (2-3, Example 3)"
@@ -199,13 +199,13 @@
         "lesson": "3",
         "exampleNumber": 3,
         "sourceLesson": "2-3",
-        "rawText": "2-3, Examples 2-3 \u2014 Add Polynomials; Subtract Polynomials; support from Example 1 \u2014 Identify Polynomials"
+        "rawText": "2-3, Examples 2-3 — Add Polynomials; Subtract Polynomials; support from Example 1 — Identify Polynomials"
       }
     },
     {
       "id": "math.im3.example.2.3.011",
       "kind": "worked_example",
-      "title": "Example 4: Simplify by Using the Distributive Property; Multiply Binomials; support from Apply Example 7 \u2014 Write and Simplify a Polynomial Expression",
+      "title": "Example 4: Multiply",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-2-class-period-plan.md (2-3, Example 4)"
@@ -217,13 +217,13 @@
         "lesson": "3",
         "exampleNumber": 4,
         "sourceLesson": "2-3",
-        "rawText": "2-3, Examples 4-5 \u2014 Simplify by Using the Distributive Property; Multiply Binomials; support from Apply Example 7 \u2014 Write and Simplify a Polynomial Expression"
+        "rawText": "2-3, Examples 4-5 — Simplify by Using the Distributive Property; Multiply Binomials; support from Apply Example 7 — Write and Simplify a Polynomial Expression"
       }
     },
     {
       "id": "math.im3.example.2.3.012",
       "kind": "worked_example",
-      "title": "Example 5: Simplify by Using the Distributive Property; Multiply Binomials; support from Apply Example 7 \u2014 Write and Simplify a Polynomial Expression",
+      "title": "Example 5: Multiply",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-2-class-period-plan.md (2-3, Example 5)"
@@ -235,13 +235,13 @@
         "lesson": "3",
         "exampleNumber": 5,
         "sourceLesson": "2-3",
-        "rawText": "2-3, Examples 4-5 \u2014 Simplify by Using the Distributive Property; Multiply Binomials; support from Apply Example 7 \u2014 Write and Simplify a Polynomial Expression"
+        "rawText": "2-3, Examples 4-5 — Simplify by Using the Distributive Property; Multiply Binomials; support from Apply Example 7 — Write and Simplify a Polynomial Expression"
       }
     },
     {
       "id": "math.im3.example.2.4.013",
       "kind": "worked_example",
-      "title": "Example 1: Divide a Polynomial by a Monomial; Divide a Polynomial by a Binomial; Find a Quotient with a Remainder",
+      "title": "Example 1: Simplify Expressions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-2-class-period-plan.md (2-4, Example 1)"
@@ -253,13 +253,13 @@
         "lesson": "4",
         "exampleNumber": 1,
         "sourceLesson": "2-4",
-        "rawText": "2-4, Examples 1-3 \u2014 Divide a Polynomial by a Monomial; Divide a Polynomial by a Binomial; Find a Quotient with a Remainder"
+        "rawText": "2-4, Examples 1-3 — Divide a Polynomial by a Monomial; Divide a Polynomial by a Binomial; Find a Quotient with a Remainder"
       }
     },
     {
       "id": "math.im3.example.2.4.014",
       "kind": "worked_example",
-      "title": "Example 2: Divide a Polynomial by a Monomial; Divide a Polynomial by a Binomial; Find a Quotient with a Remainder",
+      "title": "Example 2: Long Division",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-2-class-period-plan.md (2-4, Example 2)"
@@ -271,13 +271,13 @@
         "lesson": "4",
         "exampleNumber": 2,
         "sourceLesson": "2-4",
-        "rawText": "2-4, Examples 1-3 \u2014 Divide a Polynomial by a Monomial; Divide a Polynomial by a Binomial; Find a Quotient with a Remainder"
+        "rawText": "2-4, Examples 1-3 — Divide a Polynomial by a Monomial; Divide a Polynomial by a Binomial; Find a Quotient with a Remainder"
       }
     },
     {
       "id": "math.im3.example.2.4.015",
       "kind": "worked_example",
-      "title": "Example 3: Divide a Polynomial by a Monomial; Divide a Polynomial by a Binomial; Find a Quotient with a Remainder",
+      "title": "Example 3: Long Division",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-2-class-period-plan.md (2-4, Example 3)"
@@ -289,13 +289,13 @@
         "lesson": "4",
         "exampleNumber": 3,
         "sourceLesson": "2-4",
-        "rawText": "2-4, Examples 1-3 \u2014 Divide a Polynomial by a Monomial; Divide a Polynomial by a Binomial; Find a Quotient with a Remainder"
+        "rawText": "2-4, Examples 1-3 — Divide a Polynomial by a Monomial; Divide a Polynomial by a Binomial; Find a Quotient with a Remainder"
       }
     },
     {
       "id": "math.im3.example.2.4.016",
       "kind": "worked_example",
-      "title": "Example 4: Use Synthetic Division; Divisor with a Coefficient Other Than 1",
+      "title": "Example 4: Synthetic Division",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-2-class-period-plan.md (2-4, Example 4)"
@@ -307,13 +307,13 @@
         "lesson": "4",
         "exampleNumber": 4,
         "sourceLesson": "2-4",
-        "rawText": "2-4, Examples 4-5 \u2014 Use Synthetic Division; Divisor with a Coefficient Other Than 1"
+        "rawText": "2-4, Examples 4-5 — Use Synthetic Division; Divisor with a Coefficient Other Than 1"
       }
     },
     {
       "id": "math.im3.example.2.4.017",
       "kind": "worked_example",
-      "title": "Example 5: Use Synthetic Division; Divisor with a Coefficient Other Than 1",
+      "title": "Example 5: Synthetic Division",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-2-class-period-plan.md (2-4, Example 5)"
@@ -325,7 +325,7 @@
         "lesson": "4",
         "exampleNumber": 5,
         "sourceLesson": "2-4",
-        "rawText": "2-4, Examples 4-5 \u2014 Use Synthetic Division; Divisor with a Coefficient Other Than 1"
+        "rawText": "2-4, Examples 4-5 — Use Synthetic Division; Divisor with a Coefficient Other Than 1"
       }
     },
     {
@@ -343,13 +343,13 @@
         "lesson": "5",
         "exampleNumber": 1,
         "sourceLesson": "2-5",
-        "rawText": "2-5, Example 1 \u2014 Use Pascal's Triangle"
+        "rawText": "2-5, Example 1 — Use Pascal's Triangle"
       }
     },
     {
       "id": "math.im3.example.2.5.019",
       "kind": "worked_example",
-      "title": "Example 2: Use the Binomial Theorem; Coefficients Other Than 1",
+      "title": "Example 2: Probability Applications",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-2-class-period-plan.md (2-5, Example 2)"
@@ -361,13 +361,13 @@
         "lesson": "5",
         "exampleNumber": 2,
         "sourceLesson": "2-5",
-        "rawText": "2-5, Examples 2-3 \u2014 Use the Binomial Theorem; Coefficients Other Than 1"
+        "rawText": "2-5, Examples 2-3 — Use the Binomial Theorem; Coefficients Other Than 1"
       }
     },
     {
       "id": "math.im3.example.2.5.020",
       "kind": "worked_example",
-      "title": "Example 3: Use the Binomial Theorem; Coefficients Other Than 1",
+      "title": "Example 3: Expand Binomials",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-2-class-period-plan.md (2-5, Example 3)"
@@ -379,7 +379,7 @@
         "lesson": "5",
         "exampleNumber": 3,
         "sourceLesson": "2-5",
-        "rawText": "2-5, Examples 2-3 \u2014 Use the Binomial Theorem; Coefficients Other Than 1"
+        "rawText": "2-5, Examples 2-3 — Use the Binomial Theorem; Coefficients Other Than 1"
       }
     },
     {

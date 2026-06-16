@@ -25,9 +25,8 @@ Source: `curriculum/ALEKS-practice-problems.htm`
 - Composition of two functions: Advanced (9m)
 - Word problem involving composition of two functions (5m)
 
-### Lesson 4-2 (7 Topics)
+### Lesson 4-2 (6 Topics)
 
-- Solving an equation using the odd-root property: Problem type 1 (2m)
 - Determining whether two functions are inverses of each other (9m)
 - Inverse functions: Linear, discrete (9m)
 - Inverse functions: Quadratic, square root (10m)
@@ -98,8 +97,9 @@ Source: `curriculum/ALEKS-practice-problems.htm`
 - Rationalizing a denominator: Quotient involving a higher radical (4m)
 - Rationalizing a denominator: Quotient involving higher radicals and monomials (4m)
 
-### Lesson 4-6 (12 Topics)
+### Lesson 4-6 (13 Topics)
 
+- Solving an equation using the odd-root property: Problem type 1 (2m)
 - Introduction to solving a radical equation (2m)
 - Solving a radical equation that simplifies to a linear equation: One radical, basic (3m)
 - Solving a radical equation that simplifies to a linear equation: One radical, advanced (3m)

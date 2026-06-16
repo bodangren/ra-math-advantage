@@ -4,18 +4,13 @@ Source: (Module 6, Lesson 6-1, Int3_0601_practice.docx)
 
 ## Today's Goals
 
-* Write equations in exponential form and logarithmic form.
-* Evaluate logarithmic expressions.
-* Graph logarithmic functions and identify key features.
-* Compare logarithmic functions using transformations.
+* Write logarithmic expressions in exponential form and write exponential expressions in logarithmic form.
+* Graph and analyze logarithmic functions.
 
 ## Vocabulary
 
 * **Logarithm** — The exponent to which a base [b] must be raised to produce a given number [N]; written [log_b N].
 * **Logarithmic Function** — A function of the form [f(x) = log_b x] where [b > 0] and [b ≠ 1].
-* **Common Logarithm** — A logarithm with base 10, written [\log x].
-* **Natural Logarithm** — A logarithm with base [e], written [\ln x].
-* **Asymptote** — A line that a graph approaches but never crosses.
 
 ## Explore: What Is a Logarithm?
 
@@ -240,6 +235,11 @@ Similar to [g(x)], identify the vertical shift from the graph's position relativ
 
 **53. FIND THE ERROR** Elisa and Matthew are evaluating [\log_{1/7} 49]. Is either of them correct? Explain your reasoning.
 
+
+## Objective Alignment
+
+- **6a.** Write logarithmic expressions in exponential form and write exponential expressions in logarithmic form. Proficiency means a student can convert accurately between the two forms and explain how each statement expresses the same relationship.
+- **6b.** Graph and analyze logarithmic functions. Proficiency means a student can graph logarithmic functions, identify asymptotes and transformations, and describe domain, range, and key behavior.
 ## Review Notes
 
 * Image references from source worksheet (graphs for Examples 7 and 8, problem 53) could not be fully transcribed. Consult the original DOCX for complete diagrams.

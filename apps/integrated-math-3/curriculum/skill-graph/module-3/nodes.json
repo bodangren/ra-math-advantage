@@ -25,7 +25,7 @@
     {
       "id": "math.im3.example.3.1.001",
       "kind": "worked_example",
-      "title": "Example 1: Solve a Polynomial Equation by Graphing; Solve a Polynomial Equation by Using a System",
+      "title": "Example 1: Solve Polynomial Equations by Graphing",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-1, Example 1)"
@@ -37,13 +37,13 @@
         "lesson": "1",
         "exampleNumber": 1,
         "sourceLesson": "3-1",
-        "rawText": "3-1, Examples 1-2 \u2014 Solve a Polynomial Equation by Graphing; Solve a Polynomial Equation by Using a System"
+        "rawText": "3-1, Examples 1-2 — Solve a Polynomial Equation by Graphing; Solve a Polynomial Equation by Using a System"
       }
     },
     {
       "id": "math.im3.example.3.1.002",
       "kind": "worked_example",
-      "title": "Example 2: Solve a Polynomial Equation by Graphing; Solve a Polynomial Equation by Using a System",
+      "title": "Example 2: Solve Polynomial Equations with Higher Degrees",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-1, Example 2)"
@@ -55,13 +55,13 @@
         "lesson": "1",
         "exampleNumber": 2,
         "sourceLesson": "3-1",
-        "rawText": "3-1, Examples 1-2 \u2014 Solve a Polynomial Equation by Graphing; Solve a Polynomial Equation by Using a System"
+        "rawText": "3-1, Examples 1-2 — Solve a Polynomial Equation by Graphing; Solve a Polynomial Equation by Using a System"
       }
     },
     {
       "id": "math.im3.example.3.2.003",
       "kind": "worked_example",
-      "title": "Example 1: Factor Sums and Differences of Cubes; Factor by Grouping; Combine Cubes and Squares; Solve a Polynomial Equation by Factoring; Write and Solve a Polynomial Equation by Factoring",
+      "title": "Example 1: 3",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-2, Example 1)"
@@ -73,13 +73,13 @@
         "lesson": "2",
         "exampleNumber": 1,
         "sourceLesson": "3-2",
-        "rawText": "3-2, Examples 1-5 \u2014 Factor Sums and Differences of Cubes; Factor by Grouping; Combine Cubes and Squares; Solve a Polynomial Equation by Factoring; Write and Solve a Polynomial Equation by Factoring"
+        "rawText": "3-2, Examples 1-5 — Factor Sums and Differences of Cubes; Factor by Grouping; Combine Cubes and Squares; Solve a Polynomial Equation by Factoring; Write and Solve a Polynomial Equation by Factoring"
       }
     },
     {
       "id": "math.im3.example.3.2.004",
       "kind": "worked_example",
-      "title": "Example 2: Factor Sums and Differences of Cubes; Factor by Grouping; Combine Cubes and Squares; Solve a Polynomial Equation by Factoring; Write and Solve a Polynomial Equation by Factoring",
+      "title": "Example 2: Example 2",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-2, Example 2)"
@@ -91,13 +91,13 @@
         "lesson": "2",
         "exampleNumber": 2,
         "sourceLesson": "3-2",
-        "rawText": "3-2, Examples 1-5 \u2014 Factor Sums and Differences of Cubes; Factor by Grouping; Combine Cubes and Squares; Solve a Polynomial Equation by Factoring; Write and Solve a Polynomial Equation by Factoring"
+        "rawText": "3-2, Examples 1-5 — Factor Sums and Differences of Cubes; Factor by Grouping; Combine Cubes and Squares; Solve a Polynomial Equation by Factoring; Write and Solve a Polynomial Equation by Factoring"
       }
     },
     {
       "id": "math.im3.example.3.2.005",
       "kind": "worked_example",
-      "title": "Example 3: Factor Sums and Differences of Cubes; Factor by Grouping; Combine Cubes and Squares; Solve a Polynomial Equation by Factoring; Write and Solve a Polynomial Equation by Factoring",
+      "title": "Example 3: Example 3",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-2, Example 3)"
@@ -109,13 +109,13 @@
         "lesson": "2",
         "exampleNumber": 3,
         "sourceLesson": "3-2",
-        "rawText": "3-2, Examples 1-5 \u2014 Factor Sums and Differences of Cubes; Factor by Grouping; Combine Cubes and Squares; Solve a Polynomial Equation by Factoring; Write and Solve a Polynomial Equation by Factoring"
+        "rawText": "3-2, Examples 1-5 — Factor Sums and Differences of Cubes; Factor by Grouping; Combine Cubes and Squares; Solve a Polynomial Equation by Factoring; Write and Solve a Polynomial Equation by Factoring"
       }
     },
     {
       "id": "math.im3.example.3.2.006",
       "kind": "worked_example",
-      "title": "Example 4: Factor Sums and Differences of Cubes; Factor by Grouping; Combine Cubes and Squares; Solve a Polynomial Equation by Factoring; Write and Solve a Polynomial Equation by Factoring",
+      "title": "Example 4: Example 4",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-2, Example 4)"
@@ -127,13 +127,13 @@
         "lesson": "2",
         "exampleNumber": 4,
         "sourceLesson": "3-2",
-        "rawText": "3-2, Examples 1-5 \u2014 Factor Sums and Differences of Cubes; Factor by Grouping; Combine Cubes and Squares; Solve a Polynomial Equation by Factoring; Write and Solve a Polynomial Equation by Factoring"
+        "rawText": "3-2, Examples 1-5 — Factor Sums and Differences of Cubes; Factor by Grouping; Combine Cubes and Squares; Solve a Polynomial Equation by Factoring; Write and Solve a Polynomial Equation by Factoring"
       }
     },
     {
       "id": "math.im3.example.3.2.007",
       "kind": "worked_example",
-      "title": "Example 5: Factor Sums and Differences of Cubes; Factor by Grouping; Combine Cubes and Squares; Solve a Polynomial Equation by Factoring; Write and Solve a Polynomial Equation by Factoring",
+      "title": "Example 5: Example 5",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-2, Example 5)"
@@ -145,13 +145,13 @@
         "lesson": "2",
         "exampleNumber": 5,
         "sourceLesson": "3-2",
-        "rawText": "3-2, Examples 1-5 \u2014 Factor Sums and Differences of Cubes; Factor by Grouping; Combine Cubes and Squares; Solve a Polynomial Equation by Factoring; Write and Solve a Polynomial Equation by Factoring"
+        "rawText": "3-2, Examples 1-5 — Factor Sums and Differences of Cubes; Factor by Grouping; Combine Cubes and Squares; Solve a Polynomial Equation by Factoring; Write and Solve a Polynomial Equation by Factoring"
       }
     },
     {
       "id": "math.im3.example.3.2.008",
       "kind": "worked_example",
-      "title": "Example 6: Write Expressions in Quadratic Form; Solve Equations in Quadratic Form",
+      "title": "Example 6: Write Expressions in Quadratic Form",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-2, Example 6)"
@@ -163,13 +163,13 @@
         "lesson": "2",
         "exampleNumber": 6,
         "sourceLesson": "3-2",
-        "rawText": "3-2, Examples 6-7 \u2014 Write Expressions in Quadratic Form; Solve Equations in Quadratic Form"
+        "rawText": "3-2, Examples 6-7 — Write Expressions in Quadratic Form; Solve Equations in Quadratic Form"
       }
     },
     {
       "id": "math.im3.example.3.2.009",
       "kind": "worked_example",
-      "title": "Example 7: Write Expressions in Quadratic Form; Solve Equations in Quadratic Form",
+      "title": "Example 7: Solve Equations in Quadratic Form",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-2, Example 7)"
@@ -181,13 +181,13 @@
         "lesson": "2",
         "exampleNumber": 7,
         "sourceLesson": "3-2",
-        "rawText": "3-2, Examples 6-7 \u2014 Write Expressions in Quadratic Form; Solve Equations in Quadratic Form"
+        "rawText": "3-2, Examples 6-7 — Write Expressions in Quadratic Form; Solve Equations in Quadratic Form"
       }
     },
     {
       "id": "math.im3.example.3.3.010",
       "kind": "worked_example",
-      "title": "Example 1: Transform One Side; Use Polynomial Identities",
+      "title": "Example 1: Prove Polynomial Identities",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-3, Example 1)"
@@ -199,13 +199,13 @@
         "lesson": "3",
         "exampleNumber": 1,
         "sourceLesson": "3-3",
-        "rawText": "3-3, Examples 1-2 \u2014 Transform One Side; Use Polynomial Identities"
+        "rawText": "3-3, Examples 1-2 — Transform One Side; Use Polynomial Identities"
       }
     },
     {
       "id": "math.im3.example.3.3.011",
       "kind": "worked_example",
-      "title": "Example 2: Transform One Side; Use Polynomial Identities",
+      "title": "Example 2: Apply Polynomial Identities to Geometric Problems",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-3, Example 2)"
@@ -217,13 +217,13 @@
         "lesson": "3",
         "exampleNumber": 2,
         "sourceLesson": "3-3",
-        "rawText": "3-3, Examples 1-2 \u2014 Transform One Side; Use Polynomial Identities"
+        "rawText": "3-3, Examples 1-2 — Transform One Side; Use Polynomial Identities"
       }
     },
     {
       "id": "math.im3.example.3.4.012",
       "kind": "worked_example",
-      "title": "Example 1: Synthetic Substitution; Apply the Remainder Theorem",
+      "title": "Example 1: Use Synthetic Substitution to Evaluate Polynomials",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-4, Example 1)"
@@ -235,13 +235,13 @@
         "lesson": "4",
         "exampleNumber": 1,
         "sourceLesson": "3-4",
-        "rawText": "3-4, Examples 1-2 \u2014 Synthetic Substitution; Apply the Remainder Theorem"
+        "rawText": "3-4, Examples 1-2 — Synthetic Substitution; Apply the Remainder Theorem"
       }
     },
     {
       "id": "math.im3.example.3.4.013",
       "kind": "worked_example",
-      "title": "Example 2: Synthetic Substitution; Apply the Remainder Theorem",
+      "title": "Example 2: Apply Polynomials to Real-World Situations",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-4, Example 2)"
@@ -253,13 +253,13 @@
         "lesson": "4",
         "exampleNumber": 2,
         "sourceLesson": "3-4",
-        "rawText": "3-4, Examples 1-2 \u2014 Synthetic Substitution; Apply the Remainder Theorem"
+        "rawText": "3-4, Examples 1-2 — Synthetic Substitution; Apply the Remainder Theorem"
       }
     },
     {
       "id": "math.im3.example.3.4.014",
       "kind": "worked_example",
-      "title": "Example 3: Use the Factor Theorem",
+      "title": "Example 3: Find Remaining Factors Using the Factor Theorem",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-4, Example 3)"
@@ -271,13 +271,13 @@
         "lesson": "4",
         "exampleNumber": 3,
         "sourceLesson": "3-4",
-        "rawText": "3-4, Example 3 \u2014 Use the Factor Theorem"
+        "rawText": "3-4, Example 3 — Use the Factor Theorem"
       }
     },
     {
       "id": "math.im3.example.3.5.015",
       "kind": "worked_example",
-      "title": "Example 1: Determine the Number and Type of Roots; Find the Number of Positive and Negative Zeros",
+      "title": "Example 1: Solve Equations and State Number and Type of Roots",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-5, Example 1)"
@@ -289,13 +289,13 @@
         "lesson": "5",
         "exampleNumber": 1,
         "sourceLesson": "3-5",
-        "rawText": "3-5, Examples 1-2 \u2014 Determine the Number and Type of Roots; Find the Number of Positive and Negative Zeros"
+        "rawText": "3-5, Examples 1-2 — Determine the Number and Type of Roots; Find the Number of Positive and Negative Zeros"
       }
     },
     {
       "id": "math.im3.example.3.5.016",
       "kind": "worked_example",
-      "title": "Example 2: Determine the Number and Type of Roots; Find the Number of Positive and Negative Zeros",
+      "title": "Example 2: Use Descartes' Rule of Signs",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-5, Example 2)"
@@ -307,7 +307,7 @@
         "lesson": "5",
         "exampleNumber": 2,
         "sourceLesson": "3-5",
-        "rawText": "3-5, Examples 1-2 \u2014 Determine the Number and Type of Roots; Find the Number of Positive and Negative Zeros"
+        "rawText": "3-5, Examples 1-2 — Determine the Number and Type of Roots; Find the Number of Positive and Negative Zeros"
       }
     },
     {

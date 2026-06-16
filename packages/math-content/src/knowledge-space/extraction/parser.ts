@@ -239,13 +239,26 @@ function parseWorkedExamplesCell(cell: string): ExtractedWorkedExample[] {
     allNumbers.push(...parseRange(part));
   }
 
-  // Always produce a single grouped entry for the entire cell
-  examples.push({
-    lessonRef,
-    exampleNumbers: allNumbers,
-    title: titles.join('; ') || undefined,
-    rawText: cell,
-  });
+  // If the count of semicolon-separated titles matches the example number
+  // count, create one entry per example with its individual title.
+  // Otherwise, fall back to a single grouped entry.
+  if (titles.length > 0 && titles.length === allNumbers.length) {
+    for (let i = 0; i < allNumbers.length; i++) {
+      examples.push({
+        lessonRef,
+        exampleNumbers: [allNumbers[i]],
+        title: titles[i] || undefined,
+        rawText: cell,
+      });
+    }
+  } else {
+    examples.push({
+      lessonRef,
+      exampleNumbers: allNumbers,
+      title: titles.join('; ') || undefined,
+      rawText: cell,
+    });
+  }
 
   return examples;
 }

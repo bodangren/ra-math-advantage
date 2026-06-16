@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-04-14T23:49:17.095Z",
-  "rootDir": "/Users/daniel.bodanske/Desktop/ra-integrated-math-3",
+  "generatedAt": "2026-06-15T13:46:51.375Z",
+  "rootDir": "/home/daniel-bo/Desktop/ra-math-advantage/apps/integrated-math-3",
   "summary": {
     "moduleCount": 9,
     "lessonCount": 52,
@@ -51,7 +51,7 @@
       },
       {
         "module": 7,
-        "declaredTopics": 86,
+        "declaredTopics": 82,
         "listedTopics": 82,
         "documentedException": true
       },
@@ -193,7 +193,7 @@
         },
         {
           "module": 7,
-          "declaredTopics": 86,
+          "declaredTopics": 82,
           "listedTopics": 82,
           "documentedException": true
         },

@@ -4,13 +4,13 @@ Source: (Module 3, Lesson 3-4, Int3_0304_practice.docx)
 
 ## Today's Goals
 
-* Use synthetic substitution to evaluate polynomials at given values.
-* Apply the Remainder Theorem to determine function values.
-* Use the Factor Theorem to find remaining factors of polynomials when one factor is known.
+* Evaluate functions by using synthetic substitution.
+* Use the Factor Theorem to determine factors of polynomials.
 
 ## Vocabulary
 
 * **Synthetic Substitution** — A streamlined method for evaluating a polynomial at a given value by using only the coefficients and basic arithmetic operations.
+* **Depressed Polynomial** — The quotient obtained when a polynomial is divided by a binomial factor; it has a degree one less than the original polynomial.
 * **Remainder Theorem** — If a polynomial [f(x)] is divided by [(x - c)], the remainder equals [f(c)].
 * **Factor Theorem** — A polynomial [f(x)] has a factor [(x - c)] if and only if [f(c) = 0]. This is a special case of the Remainder Theorem.
 
@@ -194,7 +194,7 @@ Full factorization: [(x + 2)(x - 2)(x^2 + 2x + 4)]
 
 **Problem 29:** [x^4 + 2x^3 + 2x^2 - 2x - 3]; factor is [x - 1]
 
-**Problem 30:** [3x^3 - 19x^2 - 15x + 7]; factor is [x - 7]
+**Problem 30:** [x^3 + 2x^2 - x - 2]; factor is [x + 2]
 
 **Problem 31:** [x^3 + 2x^2 - x - 2]; factor is [x + 1]
 
@@ -303,6 +303,11 @@ Full factorization: [(x + 2)(x - 2)(x^2 + 2x + 4)]
 
 ![](media/image3.png)
 
+
+## Objective Alignment
+
+- **3e.** Evaluate functions by using synthetic substitution. Proficiency means a student can use synthetic substitution to evaluate a polynomial at a given value and interpret the result accurately.
+- **3f.** Use the Factor Theorem to determine factors of polynomials. Proficiency means a student can test candidate zeros efficiently and decide whether a linear expression is a factor based on the function value.
 ## Review Notes
 
 * Images referenced in the worksheet:

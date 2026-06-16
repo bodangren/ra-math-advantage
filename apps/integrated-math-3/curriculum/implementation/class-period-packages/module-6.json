@@ -11,18 +11,16 @@
       "sourceLesson": "6-1",
       "objectiveCode": "6a",
       "objective": "Write logarithmic expressions in exponential form and write exponential expressions in logarithmic form.",
-      "workedExamples": "6-1, Examples 1-4 — Logarithmic to Exponential Form; Exponential to Logarithmic Form; Evaluate Logarithmic Expressions; Find Inverses of Exponential Functions",
+      "workedExamples": "6-1, Examples 1-4 — Write Equations in Exponential Form; Write Equations in Logarithmic Form; Evaluate Logarithmic Expressions; Write Equations from Real-World Contexts",
       "embeddedObjectives": [],
-      "aleksSrsPractice": [
-        "ALEKS M6-L6-1.01",
-        "ALEKS M6-L6-1.02"
-      ],
-      "notes": "Form conversion and inverse-relationship groundwork.",
+      "aleksSrsPractice": [],
+      "srsSubstitute": "Generate worked-example-derived SRS items from 6-1, Examples 1-4 — Write Equations in Exponential Form; Write Equations in Logarithmic Form; Evaluate Logarithmic Expressions; Write Equations from Real-World Contexts.",
+      "notes": "Form conversion and real-world-context groundwork.",
       "dailyPhases": {
         "warmUp": "Activate prior knowledge for 6a with one retrieval prompt tied to 6-1.",
-        "conceptDevelopment": "Use 6-1, Examples 1-4 — Logarithmic to Exponential Form; Exponential to Logarithmic Form; Evaluate Logarithmic Expressions; Find Inverses of Exponential Functions to develop: Write logarithmic expressions in exponential form and write exponential expressions in logarithmic form..",
-        "guidedPractice": "Students complete a scaffolded problem modeled on 6-1, Examples 1-4 — Logarithmic to Exponential Form; Exponential to Logarithmic Form; Evaluate Logarithmic Expressions; Find Inverses of Exponential Functions; teacher checks notation and reasoning.",
-        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M6-L6-1.01, ALEKS M6-L6-1.02.",
+        "conceptDevelopment": "Use 6-1, Examples 1-4 — Write Equations in Exponential Form; Write Equations in Logarithmic Form; Evaluate Logarithmic Expressions; Write Equations from Real-World Contexts to develop: Write logarithmic expressions in exponential form and write exponential expressions in logarithmic form..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 6-1, Examples 1-4 — Write Equations in Exponential Form; Write Equations in Logarithmic Form; Evaluate Logarithmic Expressions; Write Equations from Real-World Contexts; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete worked-example-derived SRS practice because no direct ALEKS export is available.",
         "assessment": "Exit ticket: one fresh problem assessing 6a and one short explanation prompt.",
         "capReflection": "CAP reflection: Name the strategy that helped you persist with write logarithmic expressions in exponential form and write exponential expressions in logarithmic form.."
       }
@@ -35,20 +33,16 @@
       "sourceLesson": "6-1",
       "objectiveCode": "6b",
       "objective": "Graph and analyze logarithmic functions.",
-      "workedExamples": "6-1, Examples 5-8 — Graph Logarithmic Functions; Graph Transformations of Logarithmic Functions; Compare Logarithmic Functions; Write Logarithmic Functions From Graphs",
+      "workedExamples": "6-1, Examples 5-8 — Graph Logarithmic Functions; Graph Transformed Logarithmic Functions; Compare Logarithmic Functions; Identify Transformations",
       "embeddedObjectives": [],
-      "aleksSrsPractice": [
-        "ALEKS M6-L6-1.03",
-        "ALEKS M6-L6-1.04",
-        "ALEKS M6-L6-1.05",
-        "ALEKS M6-L6-1.06"
-      ],
+      "aleksSrsPractice": [],
+      "srsSubstitute": "Generate worked-example-derived SRS items from 6-1, Examples 5-8 — Graph Logarithmic Functions; Graph Transformed Logarithmic Functions; Compare Logarithmic Functions; Identify Transformations.",
       "notes": "Graph features, transformations, comparisons, and graph-to-rule work.",
       "dailyPhases": {
         "warmUp": "Activate prior knowledge for 6b with one retrieval prompt tied to 6-1.",
-        "conceptDevelopment": "Use 6-1, Examples 5-8 — Graph Logarithmic Functions; Graph Transformations of Logarithmic Functions; Compare Logarithmic Functions; Write Logarithmic Functions From Graphs to develop: Graph and analyze logarithmic functions..",
-        "guidedPractice": "Students complete a scaffolded problem modeled on 6-1, Examples 5-8 — Graph Logarithmic Functions; Graph Transformations of Logarithmic Functions; Compare Logarithmic Functions; Write Logarithmic Functions From Graphs; teacher checks notation and reasoning.",
-        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M6-L6-1.03, ALEKS M6-L6-1.04, ALEKS M6-L6-1.05, ALEKS M6-L6-1.06.",
+        "conceptDevelopment": "Use 6-1, Examples 5-8 — Graph Logarithmic Functions; Graph Transformed Logarithmic Functions; Compare Logarithmic Functions; Identify Transformations to develop: Graph and analyze logarithmic functions..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 6-1, Examples 5-8 — Graph Logarithmic Functions; Graph Transformed Logarithmic Functions; Compare Logarithmic Functions; Identify Transformations; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete worked-example-derived SRS practice because no direct ALEKS export is available.",
         "assessment": "Exit ticket: one fresh problem assessing 6b and one short explanation prompt.",
         "capReflection": "CAP reflection: Name the strategy that helped you persist with graph and analyze logarithmic functions.."
       }
@@ -80,20 +74,16 @@
       "sourceLesson": "6-2",
       "objectiveCode": "6c",
       "objective": "Solve logarithmic equations using properties of equality.",
-      "workedExamples": "6-2, Examples 1-2 and Apply Example 6 — Solve a Logarithmic Equation by Using Definitions; Solve a Logarithmic Equation by Using Properties of Equality; Solve a Logarithmic Equation by Using Properties",
+      "workedExamples": "6-2, Examples 1-2 and Apply Example 6 — Solve Logarithmic Equations; Solve Equations with Logarithms on Both Sides; Real-World Applications",
       "embeddedObjectives": [],
-      "aleksSrsPractice": [
-        "ALEKS M6-L6-2.04",
-        "ALEKS M6-L6-2.05",
-        "ALEKS M6-L6-2.06",
-        "ALEKS M6-L6-2.01"
-      ],
+      "aleksSrsPractice": [],
+      "srsSubstitute": "Generate worked-example-derived SRS items from 6-2, Examples 1-2 and Apply Example 6 — Solve Logarithmic Equations; Solve Equations with Logarithms on Both Sides; Real-World Applications.",
       "notes": "Equation solving with checking for extraneous solutions.",
       "dailyPhases": {
         "warmUp": "Activate prior knowledge for 6c with one retrieval prompt tied to 6-2.",
-        "conceptDevelopment": "Use 6-2, Examples 1-2 and Apply Example 6 — Solve a Logarithmic Equation by Using Definitions; Solve a Logarithmic Equation by Using Properties of Equality; Solve a Logarithmic Equation by Using Properties to develop: Solve logarithmic equations using properties of equality..",
-        "guidedPractice": "Students complete a scaffolded problem modeled on 6-2, Examples 1-2 and Apply Example 6 — Solve a Logarithmic Equation by Using Definitions; Solve a Logarithmic Equation by Using Properties of Equality; Solve a Logarithmic Equation by Using Properties; teacher checks notation and reasoning.",
-        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M6-L6-2.04, ALEKS M6-L6-2.05, ALEKS M6-L6-2.06, ALEKS M6-L6-2.01.",
+        "conceptDevelopment": "Use 6-2, Examples 1-2 and Apply Example 6 — Solve Logarithmic Equations; Solve Equations with Logarithms on Both Sides; Real-World Applications to develop: Solve logarithmic equations using properties of equality..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 6-2, Examples 1-2 and Apply Example 6 — Solve Logarithmic Equations; Solve Equations with Logarithms on Both Sides; Real-World Applications; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete worked-example-derived SRS practice because no direct ALEKS export is available.",
         "assessment": "Exit ticket: one fresh problem assessing 6c and one short explanation prompt.",
         "capReflection": "CAP reflection: Name the strategy that helped you persist with solve logarithmic equations using properties of equality.."
       }
@@ -106,18 +96,16 @@
       "sourceLesson": "6-2",
       "objectiveCode": "6d",
       "objective": "Simplify and evaluate expressions by using the properties of logarithms.",
-      "workedExamples": "6-2, Examples 3-5 — Product Property of Logarithms; Quotient Property of Logarithms; Power Property of Logarithms",
+      "workedExamples": "6-2, Examples 3-5 — Approximate Logarithms Using Known Values; Approximate Logarithms Using Known Values; Change of Base with Different Bases",
       "embeddedObjectives": [],
-      "aleksSrsPractice": [
-        "ALEKS M6-L6-2.02",
-        "ALEKS M6-L6-2.03"
-      ],
+      "aleksSrsPractice": [],
+      "srsSubstitute": "Generate worked-example-derived SRS items from 6-2, Examples 3-5 — Approximate Logarithms Using Known Values; Approximate Logarithms Using Known Values; Change of Base with Different Bases.",
       "notes": "Property fluency through approximation and expression rewriting.",
       "dailyPhases": {
         "warmUp": "Activate prior knowledge for 6d with one retrieval prompt tied to 6-2.",
-        "conceptDevelopment": "Use 6-2, Examples 3-5 — Product Property of Logarithms; Quotient Property of Logarithms; Power Property of Logarithms to develop: Simplify and evaluate expressions by using the properties of logarithms..",
-        "guidedPractice": "Students complete a scaffolded problem modeled on 6-2, Examples 3-5 — Product Property of Logarithms; Quotient Property of Logarithms; Power Property of Logarithms; teacher checks notation and reasoning.",
-        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M6-L6-2.02, ALEKS M6-L6-2.03.",
+        "conceptDevelopment": "Use 6-2, Examples 3-5 — Approximate Logarithms Using Known Values; Approximate Logarithms Using Known Values; Change of Base with Different Bases to develop: Simplify and evaluate expressions by using the properties of logarithms..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 6-2, Examples 3-5 — Approximate Logarithms Using Known Values; Approximate Logarithms Using Known Values; Change of Base with Different Bases; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete worked-example-derived SRS practice because no direct ALEKS export is available.",
         "assessment": "Exit ticket: one fresh problem assessing 6d and one short explanation prompt.",
         "capReflection": "CAP reflection: Name the strategy that helped you persist with simplify and evaluate expressions by using the properties of logarithms.."
       }
@@ -145,20 +133,16 @@
       "sourceLesson": "6-3",
       "objectiveCode": "6e",
       "objective": "Solve exponential equations by using common logarithms.",
-      "workedExamples": "6-3, Examples 1-4 — Find Common Logarithms by Using Technology; Solve a Logarithmic Equation by Using Exponential Form; Solve an Exponential Equation by Using Logarithms; Solve an Exponential Inequality by Using Logarithms",
+      "workedExamples": "6-3, Examples 1-4 — Evaluate Common Logarithms with a Calculator; Apply Common Logarithms to Real-World Problems; Solve Exponential Equations; Solve Logarithmic Inequalities",
       "embeddedObjectives": [],
-      "aleksSrsPractice": [
-        "ALEKS M6-L6-3.03",
-        "ALEKS M6-L6-3.04",
-        "ALEKS M6-L6-3.05",
-        "ALEKS M6-L6-3.01"
-      ],
+      "aleksSrsPractice": [],
+      "srsSubstitute": "Generate worked-example-derived SRS items from 6-3, Examples 1-4 — Evaluate Common Logarithms with a Calculator; Apply Common Logarithms to Real-World Problems; Solve Exponential Equations; Solve Logarithmic Inequalities.",
       "notes": "Common-log solving, technology, and inequality reasoning.",
       "dailyPhases": {
         "warmUp": "Activate prior knowledge for 6e with one retrieval prompt tied to 6-3.",
-        "conceptDevelopment": "Use 6-3, Examples 1-4 — Find Common Logarithms by Using Technology; Solve a Logarithmic Equation by Using Exponential Form; Solve an Exponential Equation by Using Logarithms; Solve an Exponential Inequality by Using Logarithms to develop: Solve exponential equations by using common logarithms..",
-        "guidedPractice": "Students complete a scaffolded problem modeled on 6-3, Examples 1-4 — Find Common Logarithms by Using Technology; Solve a Logarithmic Equation by Using Exponential Form; Solve an Exponential Equation by Using Logarithms; Solve an Exponential Inequality by Using Logarithms; teacher checks notation and reasoning.",
-        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M6-L6-3.03, ALEKS M6-L6-3.04, ALEKS M6-L6-3.05, ALEKS M6-L6-3.01.",
+        "conceptDevelopment": "Use 6-3, Examples 1-4 — Evaluate Common Logarithms with a Calculator; Apply Common Logarithms to Real-World Problems; Solve Exponential Equations; Solve Logarithmic Inequalities to develop: Solve exponential equations by using common logarithms..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 6-3, Examples 1-4 — Evaluate Common Logarithms with a Calculator; Apply Common Logarithms to Real-World Problems; Solve Exponential Equations; Solve Logarithmic Inequalities; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete worked-example-derived SRS practice because no direct ALEKS export is available.",
         "assessment": "Exit ticket: one fresh problem assessing 6e and one short explanation prompt.",
         "capReflection": "CAP reflection: Name the strategy that helped you persist with solve exponential equations by using common logarithms.."
       }
@@ -171,17 +155,16 @@
       "sourceLesson": "6-3",
       "objectiveCode": "6f",
       "objective": "Evaluate logarithmic expressions by using the Change of Base Formula.",
-      "workedExamples": "6-3, Examples 5-6 — Change of Base Formula; Use the Change of Base Formula",
+      "workedExamples": "6-3, Examples 5-6 — Express Logarithms in Terms of Common Logarithms; Use Estimation in Real-World Models",
       "embeddedObjectives": [],
-      "aleksSrsPractice": [
-        "ALEKS M6-L6-3.02"
-      ],
+      "aleksSrsPractice": [],
+      "srsSubstitute": "Generate worked-example-derived SRS items from 6-3, Examples 5-6 — Express Logarithms in Terms of Common Logarithms; Use Estimation in Real-World Models.",
       "notes": "Change-of-base evaluation and application modeling.",
       "dailyPhases": {
         "warmUp": "Activate prior knowledge for 6f with one retrieval prompt tied to 6-3.",
-        "conceptDevelopment": "Use 6-3, Examples 5-6 — Change of Base Formula; Use the Change of Base Formula to develop: Evaluate logarithmic expressions by using the Change of Base Formula..",
-        "guidedPractice": "Students complete a scaffolded problem modeled on 6-3, Examples 5-6 — Change of Base Formula; Use the Change of Base Formula; teacher checks notation and reasoning.",
-        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M6-L6-3.02.",
+        "conceptDevelopment": "Use 6-3, Examples 5-6 — Express Logarithms in Terms of Common Logarithms; Use Estimation in Real-World Models to develop: Evaluate logarithmic expressions by using the Change of Base Formula..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 6-3, Examples 5-6 — Express Logarithms in Terms of Common Logarithms; Use Estimation in Real-World Models; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete worked-example-derived SRS practice because no direct ALEKS export is available.",
         "assessment": "Exit ticket: one fresh problem assessing 6f and one short explanation prompt.",
         "capReflection": "CAP reflection: Name the strategy that helped you persist with evaluate logarithmic expressions by using the change of base formula.."
       }
@@ -213,15 +196,15 @@
       "sourceLesson": "6-4",
       "objectiveCode": "6g",
       "objective": "Simplify expressions with natural logarithms.",
-      "workedExamples": "6-4, Examples 1-3 — Write Equivalent Logarithmic Equations; Write Equivalent Exponential Equations; Simplify Logarithmic Expressions",
+      "workedExamples": "6-4, Examples 1-3 — Write Exponential Equations in Logarithmic Form; Write Logarithmic Equations in Exponential Form; Write as a Single Logarithm",
       "embeddedObjectives": [],
       "aleksSrsPractice": [],
-      "srsSubstitute": "Generate worked-example-derived SRS items from 6-4, Examples 1-3 — Write Equivalent Logarithmic Equations; Write Equivalent Exponential Equations; Simplify Logarithmic Expressions.",
+      "srsSubstitute": "Generate worked-example-derived SRS items from 6-4, Examples 1-3 — Write Exponential Equations in Logarithmic Form; Write Logarithmic Equations in Exponential Form; Write as a Single Logarithm.",
       "notes": "Natural-log notation and expression simplification.",
       "dailyPhases": {
         "warmUp": "Activate prior knowledge for 6g with one retrieval prompt tied to 6-4.",
-        "conceptDevelopment": "Use 6-4, Examples 1-3 — Write Equivalent Logarithmic Equations; Write Equivalent Exponential Equations; Simplify Logarithmic Expressions to develop: Simplify expressions with natural logarithms..",
-        "guidedPractice": "Students complete a scaffolded problem modeled on 6-4, Examples 1-3 — Write Equivalent Logarithmic Equations; Write Equivalent Exponential Equations; Simplify Logarithmic Expressions; teacher checks notation and reasoning.",
+        "conceptDevelopment": "Use 6-4, Examples 1-3 — Write Exponential Equations in Logarithmic Form; Write Logarithmic Equations in Exponential Form; Write as a Single Logarithm to develop: Simplify expressions with natural logarithms..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 6-4, Examples 1-3 — Write Exponential Equations in Logarithmic Form; Write Logarithmic Equations in Exponential Form; Write as a Single Logarithm; teacher checks notation and reasoning.",
         "independentPractice": "Students complete worked-example-derived SRS practice because no direct ALEKS export is available.",
         "assessment": "Exit ticket: one fresh problem assessing 6g and one short explanation prompt.",
         "capReflection": "CAP reflection: Name the strategy that helped you persist with simplify expressions with natural logarithms.."
@@ -235,19 +218,16 @@
       "sourceLesson": "6-4",
       "objectiveCode": "6h",
       "objective": "Solve exponential equations by using natural logarithms.",
-      "workedExamples": "6-4, Examples 4-5 — Solve Exponential Equations with Base \\`e\\`; Solve Natural Logarithmic Equations",
+      "workedExamples": "6-4, Examples 4-5 — Solve Equations with Natural Logarithms; Solve Equations with [\\ln] Terms",
       "embeddedObjectives": [],
-      "aleksSrsPractice": [
-        "ALEKS M6-L6-3.03",
-        "ALEKS M6-L6-3.04",
-        "ALEKS M6-L6-3.05"
-      ],
+      "aleksSrsPractice": [],
+      "srsSubstitute": "Generate worked-example-derived SRS items from 6-4, Examples 4-5 — Solve Equations with Natural Logarithms; Solve Equations with [\\ln] Terms.",
       "notes": "Core natural-logarithm solving day.",
       "dailyPhases": {
         "warmUp": "Activate prior knowledge for 6h with one retrieval prompt tied to 6-4.",
-        "conceptDevelopment": "Use 6-4, Examples 4-5 — Solve Exponential Equations with Base \\`e\\`; Solve Natural Logarithmic Equations to develop: Solve exponential equations by using natural logarithms..",
-        "guidedPractice": "Students complete a scaffolded problem modeled on 6-4, Examples 4-5 — Solve Exponential Equations with Base \\`e\\`; Solve Natural Logarithmic Equations; teacher checks notation and reasoning.",
-        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M6-L6-3.03, ALEKS M6-L6-3.04, ALEKS M6-L6-3.05.",
+        "conceptDevelopment": "Use 6-4, Examples 4-5 — Solve Equations with Natural Logarithms; Solve Equations with [\\ln] Terms to develop: Solve exponential equations by using natural logarithms..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 6-4, Examples 4-5 — Solve Equations with Natural Logarithms; Solve Equations with [\\ln] Terms; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete worked-example-derived SRS practice because no direct ALEKS export is available.",
         "assessment": "Exit ticket: one fresh problem assessing 6h and one short explanation prompt.",
         "capReflection": "CAP reflection: Name the strategy that helped you persist with solve exponential equations by using natural logarithms.."
       }
@@ -260,18 +240,16 @@
       "sourceLesson": "6-4",
       "objectiveCode": "6h",
       "objective": "Solve exponential equations by using natural logarithms.",
-      "workedExamples": "6-4, Examples 6-7 — Apply Functions with Base \\`e\\`; Examine Logarithmic Data",
+      "workedExamples": "6-4, Examples 6-7 — Continuously Compounded Interest; Use Logarithmic Regression",
       "embeddedObjectives": [],
-      "aleksSrsPractice": [
-        "ALEKS M6-L5-3.01",
-        "ALEKS M6-L5-3.02"
-      ],
+      "aleksSrsPractice": [],
+      "srsSubstitute": "Generate worked-example-derived SRS items from 6-4, Examples 6-7 — Continuously Compounded Interest; Use Logarithmic Regression.",
       "notes": "Applied `ln` modeling and data analysis extension.",
       "dailyPhases": {
         "warmUp": "Activate prior knowledge for 6h with one retrieval prompt tied to 6-4.",
-        "conceptDevelopment": "Use 6-4, Examples 6-7 — Apply Functions with Base \\`e\\`; Examine Logarithmic Data to develop: Solve exponential equations by using natural logarithms..",
-        "guidedPractice": "Students complete a scaffolded problem modeled on 6-4, Examples 6-7 — Apply Functions with Base \\`e\\`; Examine Logarithmic Data; teacher checks notation and reasoning.",
-        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M6-L5-3.01, ALEKS M6-L5-3.02.",
+        "conceptDevelopment": "Use 6-4, Examples 6-7 — Continuously Compounded Interest; Use Logarithmic Regression to develop: Solve exponential equations by using natural logarithms..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 6-4, Examples 6-7 — Continuously Compounded Interest; Use Logarithmic Regression; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete worked-example-derived SRS practice because no direct ALEKS export is available.",
         "assessment": "Exit ticket: one fresh problem assessing 6h and one short explanation prompt.",
         "capReflection": "CAP reflection: Name the strategy that helped you persist with solve exponential equations by using natural logarithms.."
       }
@@ -303,18 +281,16 @@
       "sourceLesson": "6-5",
       "objectiveCode": "6i",
       "objective": "Write and solve exponential growth equations and inequalities.",
-      "workedExamples": "6-5, Example 1 — Continuous Exponential Growth (Parts A-B)",
+      "workedExamples": "6-5, Examples 1 — Population Growth and Television Price Models",
       "embeddedObjectives": [],
-      "aleksSrsPractice": [
-        "ALEKS M6-L5-1.02",
-        "ALEKS M6-L5-3.02"
-      ],
+      "aleksSrsPractice": [],
+      "srsSubstitute": "Generate worked-example-derived SRS items from 6-5, Examples 1 — Population Growth and Television Price Models.",
       "notes": "Build continuous growth models and solve for time.",
       "dailyPhases": {
         "warmUp": "Activate prior knowledge for 6i with one retrieval prompt tied to 6-5.",
-        "conceptDevelopment": "Use 6-5, Example 1 — Continuous Exponential Growth (Parts A-B) to develop: Write and solve exponential growth equations and inequalities..",
-        "guidedPractice": "Students complete a scaffolded problem modeled on 6-5, Example 1 — Continuous Exponential Growth (Parts A-B); teacher checks notation and reasoning.",
-        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M6-L5-1.02, ALEKS M6-L5-3.02.",
+        "conceptDevelopment": "Use 6-5, Examples 1 — Population Growth and Television Price Models to develop: Write and solve exponential growth equations and inequalities..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 6-5, Examples 1 — Population Growth and Television Price Models; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete worked-example-derived SRS practice because no direct ALEKS export is available.",
         "assessment": "Exit ticket: one fresh problem assessing 6i and one short explanation prompt.",
         "capReflection": "CAP reflection: Name the strategy that helped you persist with write and solve exponential growth equations and inequalities.."
       }
@@ -327,18 +303,16 @@
       "sourceLesson": "6-5",
       "objectiveCode": "6i",
       "objective": "Write and solve exponential growth equations and inequalities.",
-      "workedExamples": "6-5, Example 1 — Continuous Exponential Growth (Part C and Check)",
+      "workedExamples": "6-5, Examples 1 — Population Growth and Television Price Models",
       "embeddedObjectives": [],
-      "aleksSrsPractice": [
-        "ALEKS M6-L5-1.01",
-        "ALEKS M6-L5-1.02"
-      ],
+      "aleksSrsPractice": [],
+      "srsSubstitute": "Generate worked-example-derived SRS items from 6-5, Examples 1 — Population Growth and Television Price Models.",
       "notes": "Growth comparisons and inequality-style modeling continuation.",
       "dailyPhases": {
         "warmUp": "Activate prior knowledge for 6i with one retrieval prompt tied to 6-5.",
-        "conceptDevelopment": "Use 6-5, Example 1 — Continuous Exponential Growth (Part C and Check) to develop: Write and solve exponential growth equations and inequalities..",
-        "guidedPractice": "Students complete a scaffolded problem modeled on 6-5, Example 1 — Continuous Exponential Growth (Part C and Check); teacher checks notation and reasoning.",
-        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M6-L5-1.01, ALEKS M6-L5-1.02.",
+        "conceptDevelopment": "Use 6-5, Examples 1 — Population Growth and Television Price Models to develop: Write and solve exponential growth equations and inequalities..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 6-5, Examples 1 — Population Growth and Television Price Models; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete worked-example-derived SRS practice because no direct ALEKS export is available.",
         "assessment": "Exit ticket: one fresh problem assessing 6i and one short explanation prompt.",
         "capReflection": "CAP reflection: Name the strategy that helped you persist with write and solve exponential growth equations and inequalities.."
       }
@@ -366,17 +340,16 @@
       "sourceLesson": "6-5",
       "objectiveCode": "6j",
       "objective": "Write and solve exponential decay equations.",
-      "workedExamples": "6-5, Example 2 and Apply Example 3 — Continuous Exponential Decay; Radiocarbon Dating",
+      "workedExamples": "6-5, Example 2 and Apply Example 3 — Radioactive Decay; Carbon Dating Applications",
       "embeddedObjectives": [],
-      "aleksSrsPractice": [
-        "ALEKS M6-L5-1.01"
-      ],
+      "aleksSrsPractice": [],
+      "srsSubstitute": "Generate worked-example-derived SRS items from 6-5, Example 2 and Apply Example 3 — Radioactive Decay; Carbon Dating Applications.",
       "notes": "Decay modeling, half-life interpretation, and dating applications.",
       "dailyPhases": {
         "warmUp": "Activate prior knowledge for 6j with one retrieval prompt tied to 6-5.",
-        "conceptDevelopment": "Use 6-5, Example 2 and Apply Example 3 — Continuous Exponential Decay; Radiocarbon Dating to develop: Write and solve exponential decay equations..",
-        "guidedPractice": "Students complete a scaffolded problem modeled on 6-5, Example 2 and Apply Example 3 — Continuous Exponential Decay; Radiocarbon Dating; teacher checks notation and reasoning.",
-        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M6-L5-1.01.",
+        "conceptDevelopment": "Use 6-5, Example 2 and Apply Example 3 — Radioactive Decay; Carbon Dating Applications to develop: Write and solve exponential decay equations..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 6-5, Example 2 and Apply Example 3 — Radioactive Decay; Carbon Dating Applications; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete worked-example-derived SRS practice because no direct ALEKS export is available.",
         "assessment": "Exit ticket: one fresh problem assessing 6j and one short explanation prompt.",
         "capReflection": "CAP reflection: Name the strategy that helped you persist with write and solve exponential decay equations.."
       }

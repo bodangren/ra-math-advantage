@@ -108,6 +108,11 @@ The mixed exercises section provides practice with all skills from the lesson. P
 * Finding values of [m] such that [x^2 + x + m + 1 = 0] has exactly one solution. (Problem 57)
 * Comparing three methods for solving [x^2 - 2x - 15 = 0] and explaining which method is preferred. (Problem 58)
 
+
+## Objective Alignment
+
+- **1n.** Use the Quadratic Formula to solve equations. Proficiency means a student can identify `a`, `b`, and `c`, substitute accurately into the formula, simplify exact values, and report all solutions correctly.
+- **1o.** Use the discriminant to determine the number and type of solutions. Proficiency means a student can compute `b^2 - 4ac`, predict whether solutions are two real, one real, or two complex values, and connect that result to the graph.
 ## Review Notes
 
 * Images referenced in the worksheet (graphs for Problems 36-38 showing parabolas with different numbers of x-intercepts, the stopping distance table in Problem 50, the rectangular box diagram in Problem 51, the carnival game diagram in Problem 52, the four equations in Problem 53, and Tama and Jonathan's work in Problem 54) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and values.

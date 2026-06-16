@@ -25,7 +25,7 @@
     {
       "id": "math.im3.example.1.1.001",
       "kind": "worked_example",
-      "title": "Example 1: Graph Using a Table; Compare Quadratic Functions; Real-World Application (Modeling)",
+      "title": "Example 1: Graph Quadratic Functions and State Domain and Range",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 1)"
@@ -37,13 +37,13 @@
         "lesson": "1",
         "exampleNumber": 1,
         "sourceLesson": "1-1",
-        "rawText": "1-1, Examples 1-3 \u2014 Graph Using a Table; Compare Quadratic Functions; Real-World Application (Modeling)"
+        "rawText": "1-1, Examples 1-3 — Graph Using a Table; Compare Quadratic Functions; Real-World Application (Modeling)"
       }
     },
     {
       "id": "math.im3.example.1.1.002",
       "kind": "worked_example",
-      "title": "Example 2: Graph Using a Table; Compare Quadratic Functions; Real-World Application (Modeling)",
+      "title": "Example 2: Compare Quadratic Functions Using Graphs and Tables",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 2)"
@@ -55,13 +55,13 @@
         "lesson": "1",
         "exampleNumber": 2,
         "sourceLesson": "1-1",
-        "rawText": "1-1, Examples 1-3 \u2014 Graph Using a Table; Compare Quadratic Functions; Real-World Application (Modeling)"
+        "rawText": "1-1, Examples 1-3 — Graph Using a Table; Compare Quadratic Functions; Real-World Application (Modeling)"
       }
     },
     {
       "id": "math.im3.example.1.1.003",
       "kind": "worked_example",
-      "title": "Example 3: Graph Using a Table; Compare Quadratic Functions; Real-World Application (Modeling)",
+      "title": "Example 3: Quadratic Revenue Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 3)"
@@ -73,13 +73,13 @@
         "lesson": "1",
         "exampleNumber": 3,
         "sourceLesson": "1-1",
-        "rawText": "1-1, Examples 1-3 \u2014 Graph Using a Table; Compare Quadratic Functions; Real-World Application (Modeling)"
+        "rawText": "1-1, Examples 1-3 — Graph Using a Table; Compare Quadratic Functions; Real-World Application (Modeling)"
       }
     },
     {
       "id": "math.im3.example.1.1.004",
       "kind": "worked_example",
-      "title": "Example 4: From an Equation; From a Table; From a Graph (Estimation + Algebra)",
+      "title": "Example 4: Average Rate of Change of Quadratic Functions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 4)"
@@ -91,13 +91,13 @@
         "lesson": "1",
         "exampleNumber": 4,
         "sourceLesson": "1-1",
-        "rawText": "1-1, Examples 4-6 \u2014 From an Equation; From a Table; From a Graph (Estimation + Algebra)"
+        "rawText": "1-1, Examples 4-6 — From an Equation; From a Table; From a Graph (Estimation + Algebra)"
       }
     },
     {
       "id": "math.im3.example.1.1.005",
       "kind": "worked_example",
-      "title": "Example 5: From an Equation; From a Table; From a Graph (Estimation + Algebra)",
+      "title": "Example 5: Average Rate of Change from Graphs",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 5)"
@@ -109,13 +109,13 @@
         "lesson": "1",
         "exampleNumber": 5,
         "sourceLesson": "1-1",
-        "rawText": "1-1, Examples 4-6 \u2014 From an Equation; From a Table; From a Graph (Estimation + Algebra)"
+        "rawText": "1-1, Examples 4-6 — From an Equation; From a Table; From a Graph (Estimation + Algebra)"
       }
     },
     {
       "id": "math.im3.example.1.1.006",
       "kind": "worked_example",
-      "title": "Example 6: From an Equation; From a Table; From a Graph (Estimation + Algebra)",
+      "title": "Example 6: Interpret Average Rate of Change in Context",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 6)"
@@ -127,13 +127,13 @@
         "lesson": "1",
         "exampleNumber": 6,
         "sourceLesson": "1-1",
-        "rawText": "1-1, Examples 4-6 \u2014 From an Equation; From a Table; From a Graph (Estimation + Algebra)"
+        "rawText": "1-1, Examples 4-6 — From an Equation; From a Table; From a Graph (Estimation + Algebra)"
       }
     },
     {
       "id": "math.im3.example.1.2.007",
       "kind": "worked_example",
-      "title": "Example 1: One Real Solution; Two Real Solutions; Estimate Roots",
+      "title": "Example 1: Use Related Graphs to Determine Solutions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-2, Example 1)"
@@ -145,13 +145,13 @@
         "lesson": "2",
         "exampleNumber": 1,
         "sourceLesson": "1-2",
-        "rawText": "1-2, Examples 1-3 \u2014 One Real Solution; Two Real Solutions; Estimate Roots"
+        "rawText": "1-2, Examples 1-3 — One Real Solution; Two Real Solutions; Estimate Roots"
       }
     },
     {
       "id": "math.im3.example.1.2.008",
       "kind": "worked_example",
-      "title": "Example 2: One Real Solution; Two Real Solutions; Estimate Roots",
+      "title": "Example 2: Find Two Numbers with Given Sum and Product Using Quadratic Equations",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-2, Example 2)"
@@ -163,13 +163,13 @@
         "lesson": "2",
         "exampleNumber": 2,
         "sourceLesson": "1-2",
-        "rawText": "1-2, Examples 1-3 \u2014 One Real Solution; Two Real Solutions; Estimate Roots"
+        "rawText": "1-2, Examples 1-3 — One Real Solution; Two Real Solutions; Estimate Roots"
       }
     },
     {
       "id": "math.im3.example.1.2.009",
       "kind": "worked_example",
-      "title": "Example 3: One Real Solution; Two Real Solutions; Estimate Roots",
+      "title": "Example 3: Solve by Graphing When Exact Roots Cannot Be Found",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-2, Example 3)"
@@ -181,13 +181,13 @@
         "lesson": "2",
         "exampleNumber": 3,
         "sourceLesson": "1-2",
-        "rawText": "1-2, Examples 1-3 \u2014 One Real Solution; Two Real Solutions; Estimate Roots"
+        "rawText": "1-2, Examples 1-3 — One Real Solution; Two Real Solutions; Estimate Roots"
       }
     },
     {
       "id": "math.im3.example.1.2.010",
       "kind": "worked_example",
-      "title": "Example 4: Solve by Using a Table; Solve by Using a Calculator",
+      "title": "Example 4: Use Tables to Determine Zeros",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-2, Example 4)"
@@ -199,13 +199,13 @@
         "lesson": "2",
         "exampleNumber": 4,
         "sourceLesson": "1-2",
-        "rawText": "1-2, Examples 4-5 \u2014 Solve by Using a Table; Solve by Using a Calculator"
+        "rawText": "1-2, Examples 4-5 — Solve by Using a Table; Solve by Using a Calculator"
       }
     },
     {
       "id": "math.im3.example.1.2.011",
       "kind": "worked_example",
-      "title": "Example 5: Solve by Using a Table; Solve by Using a Calculator",
+      "title": "Example 5: Solve Using the Height Formula in Physics",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-2, Example 5)"
@@ -217,13 +217,13 @@
         "lesson": "2",
         "exampleNumber": 5,
         "sourceLesson": "1-2",
-        "rawText": "1-2, Examples 4-5 \u2014 Solve by Using a Table; Solve by Using a Calculator"
+        "rawText": "1-2, Examples 4-5 — Solve by Using a Table; Solve by Using a Calculator"
       }
     },
     {
       "id": "math.im3.example.1.3.012",
       "kind": "worked_example",
-      "title": "Example 1: Square Roots of Negative Numbers; Products of Pure Imaginary Numbers; Equation with Pure Imaginary Solutions",
+      "title": "Example 1: Simplify Expressions with Imaginary Numbers",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-3, Example 1)"
@@ -235,7 +235,7 @@
         "lesson": "3",
         "exampleNumber": 1,
         "sourceLesson": "1-3",
-        "rawText": "1-3, Examples 1-3 \u2014 Square Roots of Negative Numbers; Products of Pure Imaginary Numbers; Equation with Pure Imaginary Solutions"
+        "rawText": "1-3, Examples 1-3 — Square Roots of Negative Numbers; Products of Pure Imaginary Numbers; Equation with Pure Imaginary Solutions"
       }
     },
     {
@@ -253,13 +253,13 @@
         "lesson": "3",
         "exampleNumber": 2,
         "sourceLesson": "1-3",
-        "rawText": "1-3, Examples 1-3 \u2014 Square Roots of Negative Numbers; Products of Pure Imaginary Numbers; Equation with Pure Imaginary Solutions"
+        "rawText": "1-3, Examples 1-3 — Square Roots of Negative Numbers; Products of Pure Imaginary Numbers; Equation with Pure Imaginary Solutions"
       }
     },
     {
       "id": "math.im3.example.1.3.014",
       "kind": "worked_example",
-      "title": "Example 3: Square Roots of Negative Numbers; Products of Pure Imaginary Numbers; Equation with Pure Imaginary Solutions",
+      "title": "Example 3: Solve Quadratic Equations with Complex Solutions",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-3, Example 3)"
@@ -271,13 +271,13 @@
         "lesson": "3",
         "exampleNumber": 3,
         "sourceLesson": "1-3",
-        "rawText": "1-3, Examples 1-3 \u2014 Square Roots of Negative Numbers; Products of Pure Imaginary Numbers; Equation with Pure Imaginary Solutions"
+        "rawText": "1-3, Examples 1-3 — Square Roots of Negative Numbers; Products of Pure Imaginary Numbers; Equation with Pure Imaginary Solutions"
       }
     },
     {
       "id": "math.im3.example.1.3.015",
       "kind": "worked_example",
-      "title": "Example 4: Equate Complex Numbers; Add or Subtract Complex Numbers; Multiply Complex Numbers; Divide Complex Numbers",
+      "title": "Example 4: Find Values of x and y in Complex Equations",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-3, Example 4)"
@@ -289,13 +289,13 @@
         "lesson": "3",
         "exampleNumber": 4,
         "sourceLesson": "1-3",
-        "rawText": "1-3, Examples 4-7 \u2014 Equate Complex Numbers; Add or Subtract Complex Numbers; Multiply Complex Numbers; Divide Complex Numbers"
+        "rawText": "1-3, Examples 4-7 — Equate Complex Numbers; Add or Subtract Complex Numbers; Multiply Complex Numbers; Divide Complex Numbers"
       }
     },
     {
       "id": "math.im3.example.1.3.016",
       "kind": "worked_example",
-      "title": "Example 5: Equate Complex Numbers; Add or Subtract Complex Numbers; Multiply Complex Numbers; Divide Complex Numbers",
+      "title": "Example 5: Add, Subtract, and Multiply Complex Numbers",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-3, Example 5)"
@@ -307,13 +307,13 @@
         "lesson": "3",
         "exampleNumber": 5,
         "sourceLesson": "1-3",
-        "rawText": "1-3, Examples 4-7 \u2014 Equate Complex Numbers; Add or Subtract Complex Numbers; Multiply Complex Numbers; Divide Complex Numbers"
+        "rawText": "1-3, Examples 4-7 — Equate Complex Numbers; Add or Subtract Complex Numbers; Multiply Complex Numbers; Divide Complex Numbers"
       }
     },
     {
       "id": "math.im3.example.1.3.017",
       "kind": "worked_example",
-      "title": "Example 6: Equate Complex Numbers; Add or Subtract Complex Numbers; Multiply Complex Numbers; Divide Complex Numbers",
+      "title": "Example 6: Add, Subtract, and Multiply Complex Numbers",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-3, Example 6)"
@@ -325,13 +325,13 @@
         "lesson": "3",
         "exampleNumber": 6,
         "sourceLesson": "1-3",
-        "rawText": "1-3, Examples 4-7 \u2014 Equate Complex Numbers; Add or Subtract Complex Numbers; Multiply Complex Numbers; Divide Complex Numbers"
+        "rawText": "1-3, Examples 4-7 — Equate Complex Numbers; Add or Subtract Complex Numbers; Multiply Complex Numbers; Divide Complex Numbers"
       }
     },
     {
       "id": "math.im3.example.1.3.018",
       "kind": "worked_example",
-      "title": "Example 7: Equate Complex Numbers; Add or Subtract Complex Numbers; Multiply Complex Numbers; Divide Complex Numbers",
+      "title": "Example 7: Divide Complex Numbers",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-3, Example 7)"
@@ -343,13 +343,13 @@
         "lesson": "3",
         "exampleNumber": 7,
         "sourceLesson": "1-3",
-        "rawText": "1-3, Examples 4-7 \u2014 Equate Complex Numbers; Add or Subtract Complex Numbers; Multiply Complex Numbers; Divide Complex Numbers"
+        "rawText": "1-3, Examples 4-7 — Equate Complex Numbers; Add or Subtract Complex Numbers; Multiply Complex Numbers; Divide Complex Numbers"
       }
     },
     {
       "id": "math.im3.example.1.4.019",
       "kind": "worked_example",
-      "title": "Example 1: Factor by Using the Distributive Property; Factor a Trinomial; Solve an Equation by Factoring; Factor a Trinomial Where a Is Not 1",
+      "title": "Example 1: Solve Equations by Factoring",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-4, Example 1)"
@@ -361,13 +361,13 @@
         "lesson": "4",
         "exampleNumber": 1,
         "sourceLesson": "1-4",
-        "rawText": "1-4, Examples 1-4 \u2014 Factor by Using the Distributive Property; Factor a Trinomial; Solve an Equation by Factoring; Factor a Trinomial Where a Is Not 1"
+        "rawText": "1-4, Examples 1-4 — Factor by Using the Distributive Property; Factor a Trinomial; Solve an Equation by Factoring; Factor a Trinomial Where a Is Not 1"
       }
     },
     {
       "id": "math.im3.example.1.4.020",
       "kind": "worked_example",
-      "title": "Example 2: Factor by Using the Distributive Property; Factor a Trinomial; Solve an Equation by Factoring; Factor a Trinomial Where a Is Not 1",
+      "title": "Example 2: Solve Equations by Factoring",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-4, Example 2)"
@@ -379,13 +379,13 @@
         "lesson": "4",
         "exampleNumber": 2,
         "sourceLesson": "1-4",
-        "rawText": "1-4, Examples 1-4 \u2014 Factor by Using the Distributive Property; Factor a Trinomial; Solve an Equation by Factoring; Factor a Trinomial Where a Is Not 1"
+        "rawText": "1-4, Examples 1-4 — Factor by Using the Distributive Property; Factor a Trinomial; Solve an Equation by Factoring; Factor a Trinomial Where a Is Not 1"
       }
     },
     {
       "id": "math.im3.example.1.4.021",
       "kind": "worked_example",
-      "title": "Example 3: Factor by Using the Distributive Property; Factor a Trinomial; Solve an Equation by Factoring; Factor a Trinomial Where a Is Not 1",
+      "title": "Example 3: Geometry and Area Problems",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-4, Example 3)"
@@ -397,13 +397,13 @@
         "lesson": "4",
         "exampleNumber": 3,
         "sourceLesson": "1-4",
-        "rawText": "1-4, Examples 1-4 \u2014 Factor by Using the Distributive Property; Factor a Trinomial; Solve an Equation by Factoring; Factor a Trinomial Where a Is Not 1"
+        "rawText": "1-4, Examples 1-4 — Factor by Using the Distributive Property; Factor a Trinomial; Solve an Equation by Factoring; Factor a Trinomial Where a Is Not 1"
       }
     },
     {
       "id": "math.im3.example.1.4.022",
       "kind": "worked_example",
-      "title": "Example 4: Factor by Using the Distributive Property; Factor a Trinomial; Solve an Equation by Factoring; Factor a Trinomial Where a Is Not 1",
+      "title": "Example 4: Factor Trinomials with [a ≠ 1]",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-4, Example 4)"
@@ -415,13 +415,13 @@
         "lesson": "4",
         "exampleNumber": 4,
         "sourceLesson": "1-4",
-        "rawText": "1-4, Examples 1-4 \u2014 Factor by Using the Distributive Property; Factor a Trinomial; Solve an Equation by Factoring; Factor a Trinomial Where a Is Not 1"
+        "rawText": "1-4, Examples 1-4 — Factor by Using the Distributive Property; Factor a Trinomial; Solve an Equation by Factoring; Factor a Trinomial Where a Is Not 1"
       }
     },
     {
       "id": "math.im3.example.1.4.023",
       "kind": "worked_example",
-      "title": "Example 5: Factor a Difference of Squares; Factor a Perfect Square Trinomial; Complex Solutions",
+      "title": "Example 5: 7 — Difference of Squares and Perfect Squares",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-4, Example 5)"
@@ -433,13 +433,13 @@
         "lesson": "4",
         "exampleNumber": 5,
         "sourceLesson": "1-4",
-        "rawText": "1-4, Examples 5-7 \u2014 Factor a Difference of Squares; Factor a Perfect Square Trinomial; Complex Solutions"
+        "rawText": "1-4, Examples 5-7 — Factor a Difference of Squares; Factor a Perfect Square Trinomial; Complex Solutions"
       }
     },
     {
       "id": "math.im3.example.1.4.024",
       "kind": "worked_example",
-      "title": "Example 6: Factor a Difference of Squares; Factor a Perfect Square Trinomial; Complex Solutions",
+      "title": "Example 6: Example 6",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-4, Example 6)"
@@ -451,13 +451,13 @@
         "lesson": "4",
         "exampleNumber": 6,
         "sourceLesson": "1-4",
-        "rawText": "1-4, Examples 5-7 \u2014 Factor a Difference of Squares; Factor a Perfect Square Trinomial; Complex Solutions"
+        "rawText": "1-4, Examples 5-7 — Factor a Difference of Squares; Factor a Perfect Square Trinomial; Complex Solutions"
       }
     },
     {
       "id": "math.im3.example.1.4.025",
       "kind": "worked_example",
-      "title": "Example 7: Factor a Difference of Squares; Factor a Perfect Square Trinomial; Complex Solutions",
+      "title": "Example 7: Example 7",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-4, Example 7)"
@@ -469,13 +469,13 @@
         "lesson": "4",
         "exampleNumber": 7,
         "sourceLesson": "1-4",
-        "rawText": "1-4, Examples 5-7 \u2014 Factor a Difference of Squares; Factor a Perfect Square Trinomial; Complex Solutions"
+        "rawText": "1-4, Examples 5-7 — Factor a Difference of Squares; Factor a Perfect Square Trinomial; Complex Solutions"
       }
     },
     {
       "id": "math.im3.example.1.5.026",
       "kind": "worked_example",
-      "title": "Example 1: Solve a Quadratic Equation with Rational Roots; Solve a Quadratic Equation with Irrational Roots; Solve a Quadratic Equation with Complex Solutions; Complete the Square; Solve by Completing the Square",
+      "title": "Example 1: 3 — Use the Square Root Property",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 1)"
@@ -487,13 +487,13 @@
         "lesson": "5",
         "exampleNumber": 1,
         "sourceLesson": "1-5",
-        "rawText": "1-5, Examples 1-5 \u2014 Solve a Quadratic Equation with Rational Roots; Solve a Quadratic Equation with Irrational Roots; Solve a Quadratic Equation with Complex Solutions; Complete the Square; Solve by Completing the Square"
+        "rawText": "1-5, Examples 1-5 — Solve a Quadratic Equation with Rational Roots; Solve a Quadratic Equation with Irrational Roots; Solve a Quadratic Equation with Complex Solutions; Complete the Square; Solve by Completing the Square"
       }
     },
     {
       "id": "math.im3.example.1.5.027",
       "kind": "worked_example",
-      "title": "Example 2: Solve a Quadratic Equation with Rational Roots; Solve a Quadratic Equation with Irrational Roots; Solve a Quadratic Equation with Complex Solutions; Complete the Square; Solve by Completing the Square",
+      "title": "Example 2: Example 2",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 2)"
@@ -505,13 +505,13 @@
         "lesson": "5",
         "exampleNumber": 2,
         "sourceLesson": "1-5",
-        "rawText": "1-5, Examples 1-5 \u2014 Solve a Quadratic Equation with Rational Roots; Solve a Quadratic Equation with Irrational Roots; Solve a Quadratic Equation with Complex Solutions; Complete the Square; Solve by Completing the Square"
+        "rawText": "1-5, Examples 1-5 — Solve a Quadratic Equation with Rational Roots; Solve a Quadratic Equation with Irrational Roots; Solve a Quadratic Equation with Complex Solutions; Complete the Square; Solve by Completing the Square"
       }
     },
     {
       "id": "math.im3.example.1.5.028",
       "kind": "worked_example",
-      "title": "Example 3: Solve a Quadratic Equation with Rational Roots; Solve a Quadratic Equation with Irrational Roots; Solve a Quadratic Equation with Complex Solutions; Complete the Square; Solve by Completing the Square",
+      "title": "Example 3: Example 3",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 3)"
@@ -523,13 +523,13 @@
         "lesson": "5",
         "exampleNumber": 3,
         "sourceLesson": "1-5",
-        "rawText": "1-5, Examples 1-5 \u2014 Solve a Quadratic Equation with Rational Roots; Solve a Quadratic Equation with Irrational Roots; Solve a Quadratic Equation with Complex Solutions; Complete the Square; Solve by Completing the Square"
+        "rawText": "1-5, Examples 1-5 — Solve a Quadratic Equation with Rational Roots; Solve a Quadratic Equation with Irrational Roots; Solve a Quadratic Equation with Complex Solutions; Complete the Square; Solve by Completing the Square"
       }
     },
     {
       "id": "math.im3.example.1.5.029",
       "kind": "worked_example",
-      "title": "Example 4: Solve a Quadratic Equation with Rational Roots; Solve a Quadratic Equation with Irrational Roots; Solve a Quadratic Equation with Complex Solutions; Complete the Square; Solve by Completing the Square",
+      "title": "Example 4: Find the Value of c That Completes the Square",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 4)"
@@ -541,13 +541,13 @@
         "lesson": "5",
         "exampleNumber": 4,
         "sourceLesson": "1-5",
-        "rawText": "1-5, Examples 1-5 \u2014 Solve a Quadratic Equation with Rational Roots; Solve a Quadratic Equation with Irrational Roots; Solve a Quadratic Equation with Complex Solutions; Complete the Square; Solve by Completing the Square"
+        "rawText": "1-5, Examples 1-5 — Solve a Quadratic Equation with Rational Roots; Solve a Quadratic Equation with Irrational Roots; Solve a Quadratic Equation with Complex Solutions; Complete the Square; Solve by Completing the Square"
       }
     },
     {
       "id": "math.im3.example.1.5.030",
       "kind": "worked_example",
-      "title": "Example 5: Solve a Quadratic Equation with Rational Roots; Solve a Quadratic Equation with Irrational Roots; Solve a Quadratic Equation with Complex Solutions; Complete the Square; Solve by Completing the Square",
+      "title": "Example 5: Solve Equations by Completing the Square",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 5)"
@@ -559,13 +559,13 @@
         "lesson": "5",
         "exampleNumber": 5,
         "sourceLesson": "1-5",
-        "rawText": "1-5, Examples 1-5 \u2014 Solve a Quadratic Equation with Rational Roots; Solve a Quadratic Equation with Irrational Roots; Solve a Quadratic Equation with Complex Solutions; Complete the Square; Solve by Completing the Square"
+        "rawText": "1-5, Examples 1-5 — Solve a Quadratic Equation with Rational Roots; Solve a Quadratic Equation with Irrational Roots; Solve a Quadratic Equation with Complex Solutions; Complete the Square; Solve by Completing the Square"
       }
     },
     {
       "id": "math.im3.example.1.5.031",
       "kind": "worked_example",
-      "title": "Example 7: Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function",
+      "title": "Example 7: Solve Equations with [a ≠ 1] by Completing the Square",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 7)"
@@ -577,13 +577,13 @@
         "lesson": "5",
         "exampleNumber": 7,
         "sourceLesson": "1-5",
-        "rawText": "1-5, Examples 7-11 \u2014 Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function"
+        "rawText": "1-5, Examples 7-11 — Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function"
       }
     },
     {
       "id": "math.im3.example.1.5.032",
       "kind": "worked_example",
-      "title": "Example 8: Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function",
+      "title": "Example 8: Solve Equations with [a ≠ 1] by Completing the Square",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 8)"
@@ -595,13 +595,13 @@
         "lesson": "5",
         "exampleNumber": 8,
         "sourceLesson": "1-5",
-        "rawText": "1-5, Examples 7-11 \u2014 Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function"
+        "rawText": "1-5, Examples 7-11 — Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function"
       }
     },
     {
       "id": "math.im3.example.1.5.033",
       "kind": "worked_example",
-      "title": "Example 9: Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function",
+      "title": "Example 9: Write Functions in Vertex Form",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 9)"
@@ -613,13 +613,13 @@
         "lesson": "5",
         "exampleNumber": 9,
         "sourceLesson": "1-5",
-        "rawText": "1-5, Examples 7-11 \u2014 Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function"
+        "rawText": "1-5, Examples 7-11 — Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function"
       }
     },
     {
       "id": "math.im3.example.1.5.034",
       "kind": "worked_example",
-      "title": "Example 10: Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function",
+      "title": "Example 10: Write Functions in Vertex Form",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 10)"
@@ -631,13 +631,13 @@
         "lesson": "5",
         "exampleNumber": 10,
         "sourceLesson": "1-5",
-        "rawText": "1-5, Examples 7-11 \u2014 Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function"
+        "rawText": "1-5, Examples 7-11 — Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function"
       }
     },
     {
       "id": "math.im3.example.1.5.035",
       "kind": "worked_example",
-      "title": "Example 11: Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function",
+      "title": "Example 11: Apply to Projectile Motion",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 11)"
@@ -649,13 +649,13 @@
         "lesson": "5",
         "exampleNumber": 11,
         "sourceLesson": "1-5",
-        "rawText": "1-5, Examples 7-11 \u2014 Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function"
+        "rawText": "1-5, Examples 7-11 — Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function"
       }
     },
     {
       "id": "math.im3.example.1.6.036",
       "kind": "worked_example",
-      "title": "Example 1: Use the Quadratic Formula; Non-Factorable Equation; Imaginary Solutions",
+      "title": "Example 1: Use the Quadratic Formula",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-6, Example 1)"
@@ -667,13 +667,13 @@
         "lesson": "6",
         "exampleNumber": 1,
         "sourceLesson": "1-6",
-        "rawText": "1-6, Examples 1-3 \u2014 Use the Quadratic Formula; Non-Factorable Equation; Imaginary Solutions"
+        "rawText": "1-6, Examples 1-3 — Use the Quadratic Formula; Non-Factorable Equation; Imaginary Solutions"
       }
     },
     {
       "id": "math.im3.example.1.6.037",
       "kind": "worked_example",
-      "title": "Example 2: Use the Quadratic Formula; Non-Factorable Equation; Imaginary Solutions",
+      "title": "Example 2: Solve More Complex Equations",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-6, Example 2)"
@@ -685,13 +685,13 @@
         "lesson": "6",
         "exampleNumber": 2,
         "sourceLesson": "1-6",
-        "rawText": "1-6, Examples 1-3 \u2014 Use the Quadratic Formula; Non-Factorable Equation; Imaginary Solutions"
+        "rawText": "1-6, Examples 1-3 — Use the Quadratic Formula; Non-Factorable Equation; Imaginary Solutions"
       }
     },
     {
       "id": "math.im3.example.1.6.038",
       "kind": "worked_example",
-      "title": "Example 3: Use the Quadratic Formula; Non-Factorable Equation; Imaginary Solutions",
+      "title": "Example 3: Solve More Complex Equations",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-6, Example 3)"
@@ -703,13 +703,13 @@
         "lesson": "6",
         "exampleNumber": 3,
         "sourceLesson": "1-6",
-        "rawText": "1-6, Examples 1-3 \u2014 Use the Quadratic Formula; Non-Factorable Equation; Imaginary Solutions"
+        "rawText": "1-6, Examples 1-3 — Use the Quadratic Formula; Non-Factorable Equation; Imaginary Solutions"
       }
     },
     {
       "id": "math.im3.example.1.6.039",
       "kind": "worked_example",
-      "title": "Example 4: Use the Discriminant; Determine Without Solving",
+      "title": "Example 4: Use the Discriminant",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-6, Example 4)"
@@ -721,13 +721,13 @@
         "lesson": "6",
         "exampleNumber": 4,
         "sourceLesson": "1-6",
-        "rawText": "1-6, Examples 4-5 \u2014 Use the Discriminant; Determine Without Solving"
+        "rawText": "1-6, Examples 4-5 — Use the Discriminant; Determine Without Solving"
       }
     },
     {
       "id": "math.im3.example.1.6.040",
       "kind": "worked_example",
-      "title": "Example 5: Use the Discriminant; Determine Without Solving",
+      "title": "Example 5: Use the Discriminant",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-6, Example 5)"
@@ -739,13 +739,13 @@
         "lesson": "6",
         "exampleNumber": 5,
         "sourceLesson": "1-6",
-        "rawText": "1-6, Examples 4-5 \u2014 Use the Discriminant; Determine Without Solving"
+        "rawText": "1-6, Examples 4-5 — Use the Discriminant; Determine Without Solving"
       }
     },
     {
       "id": "math.im3.example.1.7.041",
       "kind": "worked_example",
-      "title": "Example 1: Graph a Quadratic Inequality (\u2264); Graph a Quadratic Inequality (>)",
+      "title": "Example 1: Graph Quadratic Inequalities",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-7, Example 1)"
@@ -757,13 +757,13 @@
         "lesson": "7",
         "exampleNumber": 1,
         "sourceLesson": "1-7",
-        "rawText": "1-7, Examples 1-2 \u2014 Graph a Quadratic Inequality (\u2264); Graph a Quadratic Inequality (>)"
+        "rawText": "1-7, Examples 1-2 — Graph a Quadratic Inequality (≤); Graph a Quadratic Inequality (>)"
       }
     },
     {
       "id": "math.im3.example.1.7.042",
       "kind": "worked_example",
-      "title": "Example 2: Graph a Quadratic Inequality (\u2264); Graph a Quadratic Inequality (>)",
+      "title": "Example 2: Example 2",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-7, Example 2)"
@@ -775,13 +775,13 @@
         "lesson": "7",
         "exampleNumber": 2,
         "sourceLesson": "1-7",
-        "rawText": "1-7, Examples 1-2 \u2014 Graph a Quadratic Inequality (\u2264); Graph a Quadratic Inequality (>)"
+        "rawText": "1-7, Examples 1-2 — Graph a Quadratic Inequality (≤); Graph a Quadratic Inequality (>)"
       }
     },
     {
       "id": "math.im3.example.1.7.043",
       "kind": "worked_example",
-      "title": "Example 3: Solve x^2 + x - 6 < 0 by Graphing; Solve x^2 - 3x - 4 \u2265 0 by Graphing; Solve a Quadratic Inequality in Context",
+      "title": "Example 3: Solve Inequalities by Graphing",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-7, Example 3)"
@@ -793,13 +793,13 @@
         "lesson": "7",
         "exampleNumber": 3,
         "sourceLesson": "1-7",
-        "rawText": "1-7, Examples 3-5 \u2014 Solve x^2 + x - 6 < 0 by Graphing; Solve x^2 - 3x - 4 \u2265 0 by Graphing; Solve a Quadratic Inequality in Context"
+        "rawText": "1-7, Examples 3-5 — Solve x^2 + x - 6 < 0 by Graphing; Solve x^2 - 3x - 4 ≥ 0 by Graphing; Solve a Quadratic Inequality in Context"
       }
     },
     {
       "id": "math.im3.example.1.7.044",
       "kind": "worked_example",
-      "title": "Example 4: Solve x^2 + x - 6 < 0 by Graphing; Solve x^2 - 3x - 4 \u2265 0 by Graphing; Solve a Quadratic Inequality in Context",
+      "title": "Example 4: Solve Inequalities by Graphing",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-7, Example 4)"
@@ -811,13 +811,13 @@
         "lesson": "7",
         "exampleNumber": 4,
         "sourceLesson": "1-7",
-        "rawText": "1-7, Examples 3-5 \u2014 Solve x^2 + x - 6 < 0 by Graphing; Solve x^2 - 3x - 4 \u2265 0 by Graphing; Solve a Quadratic Inequality in Context"
+        "rawText": "1-7, Examples 3-5 — Solve x^2 + x - 6 < 0 by Graphing; Solve x^2 - 3x - 4 ≥ 0 by Graphing; Solve a Quadratic Inequality in Context"
       }
     },
     {
       "id": "math.im3.example.1.7.045",
       "kind": "worked_example",
-      "title": "Example 5: Solve x^2 + x - 6 < 0 by Graphing; Solve x^2 - 3x - 4 \u2265 0 by Graphing; Solve a Quadratic Inequality in Context",
+      "title": "Example 5: Real-World Quadratic Inequalities",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-7, Example 5)"
@@ -829,13 +829,13 @@
         "lesson": "7",
         "exampleNumber": 5,
         "sourceLesson": "1-7",
-        "rawText": "1-7, Examples 3-5 \u2014 Solve x^2 + x - 6 < 0 by Graphing; Solve x^2 - 3x - 4 \u2265 0 by Graphing; Solve a Quadratic Inequality in Context"
+        "rawText": "1-7, Examples 3-5 — Solve x^2 + x - 6 < 0 by Graphing; Solve x^2 - 3x - 4 ≥ 0 by Graphing; Solve a Quadratic Inequality in Context"
       }
     },
     {
       "id": "math.im3.example.1.8.046",
       "kind": "worked_example",
-      "title": "Example 1: Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing",
+      "title": "Example 1: Solve by Substitution or Elimination",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 1)"
@@ -847,13 +847,13 @@
         "lesson": "8",
         "exampleNumber": 1,
         "sourceLesson": "1-8",
-        "rawText": "1-8, Examples 1-4 \u2014 Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing"
+        "rawText": "1-8, Examples 1-4 — Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing"
       }
     },
     {
       "id": "math.im3.example.1.8.047",
       "kind": "worked_example",
-      "title": "Example 2: Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing",
+      "title": "Example 2: Solve by Substitution or Elimination",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 2)"
@@ -865,13 +865,13 @@
         "lesson": "8",
         "exampleNumber": 2,
         "sourceLesson": "1-8",
-        "rawText": "1-8, Examples 1-4 \u2014 Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing"
+        "rawText": "1-8, Examples 1-4 — Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing"
       }
     },
     {
       "id": "math.im3.example.1.8.048",
       "kind": "worked_example",
-      "title": "Example 3: Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing",
+      "title": "Example 3: Use Systems to Solve Quadratic Equations",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 3)"
@@ -883,13 +883,13 @@
         "lesson": "8",
         "exampleNumber": 3,
         "sourceLesson": "1-8",
-        "rawText": "1-8, Examples 1-4 \u2014 Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing"
+        "rawText": "1-8, Examples 1-4 — Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing"
       }
     },
     {
       "id": "math.im3.example.1.8.049",
       "kind": "worked_example",
-      "title": "Example 4: Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing",
+      "title": "Example 4: Apply to Civil Engineering",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 4)"
@@ -901,13 +901,13 @@
         "lesson": "8",
         "exampleNumber": 4,
         "sourceLesson": "1-8",
-        "rawText": "1-8, Examples 1-4 \u2014 Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing"
+        "rawText": "1-8, Examples 1-4 — Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing"
       }
     },
     {
       "id": "math.im3.example.1.8.050",
       "kind": "worked_example",
-      "title": "Example 5: Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation",
+      "title": "Example 5: Solve by Graphing",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 5)"
@@ -919,13 +919,13 @@
         "lesson": "8",
         "exampleNumber": 5,
         "sourceLesson": "1-8",
-        "rawText": "1-8, Examples 5-7 \u2014 Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation"
+        "rawText": "1-8, Examples 5-7 — Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation"
       }
     },
     {
       "id": "math.im3.example.1.8.051",
       "kind": "worked_example",
-      "title": "Example 6: Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation",
+      "title": "Example 6: Solve Quadratic-Quadratic Systems Algebraically",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 6)"
@@ -937,13 +937,13 @@
         "lesson": "8",
         "exampleNumber": 6,
         "sourceLesson": "1-8",
-        "rawText": "1-8, Examples 5-7 \u2014 Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation"
+        "rawText": "1-8, Examples 5-7 — Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation"
       }
     },
     {
       "id": "math.im3.example.1.8.052",
       "kind": "worked_example",
-      "title": "Example 7: Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation",
+      "title": "Example 7: More Systems Leading to Quadratic Equations",
       "domain": "math.im3",
       "sourceRefs": [
         "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 7)"
@@ -955,7 +955,7 @@
         "lesson": "8",
         "exampleNumber": 7,
         "sourceLesson": "1-8",
-        "rawText": "1-8, Examples 5-7 \u2014 Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation"
+        "rawText": "1-8, Examples 5-7 — Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation"
       }
     },
     {

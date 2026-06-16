@@ -4,13 +4,13 @@ Source: (Module 3, Lesson 3-2, Int3_0302_practice.docx)
 
 ## Today's Goals
 
-* Factor polynomial expressions completely, including sums and differences of cubes, polynomials with multiple variables, and expressions requiring grouping.
-* Solve polynomial equations using factoring techniques and the Zero Product Property.
-* Write expressions in quadratic form to solve higher-degree polynomial equations.
+* Solve polynomial equations by factoring.
+* Solve polynomial equations in quadratic form and factoring.
 
 ## Vocabulary
 
 * **Factoring Completely** — Expressing a polynomial as a product of factors that cannot be factored further using real number coefficients.
+* **Prime Polynomial** — A polynomial that cannot be written as a product of two polynomials with integral coefficients.
 * **Sum of Cubes** — A polynomial of the form [a^3 + b^3] that factors as [(a + b)(a^2 - ab + b^2)].
 * **Difference of Cubes** — A polynomial of the form [a^3 - b^3] that factors as [(a - b)(a^2 + ab + b^2)].
 * **Quadratic Form** — An expression of degree [2n] that can be written as [au^2 + bu + c] where [u = x^n].
@@ -237,6 +237,11 @@ How can recognizing patterns like the difference of squares or sum/difference of
 
 **73. CREATE** The cubic form of an equation is [ax^3 + bx^2 + cx + d = 0]. Write an equation with degree 6 that can be written in cubic form.
 
+
+## Objective Alignment
+
+- **3b.** Solve polynomial equations by factoring. Proficiency means a student can factor polynomial expressions and use those factors to find all solutions that follow from the factorization.
+- **3c.** Solve polynomial equations by writing them in quadratic form and factoring. Proficiency means a student can recognize quadratic structure inside a higher-degree equation, substitute strategically, solve the resulting quadratic, and convert back to the original variable.
 ## Review Notes
 
 * ![](media/image1.png) referenced in Example 4 (problems 11-14) — diagram could not be fully described without visual reference. Teachers should consult the original worksheet.
