@@ -19,10 +19,21 @@
 
 ## Phase 3: Fix BM2 Pre-existing Test Reds
 
-- [ ] Task 3.1: Fix UserMenu test — wrap `<UserMenu>` in `<AuthProvider>` provider
-  - [ ] File: `apps/bus-math-v2/__tests__/components/user-menu.test.tsx`
-  - [ ] Add AuthProvider wrapper to all 9 test cases
-  - [ ] Verify tests pass
+- [x] Task 3.1: Fix UserMenu test — point mock at the resolved AuthProvider module
+  - [x] File: `apps/bus-math-v2/__tests__/components/user-menu.test.tsx`
+  - [x] Root cause: `packages/app-shell/src/components/UserMenu.tsx:3` imports `useAuth` via the package-relative path `../auth/AuthProvider`. Mocking `@/components/auth/AuthProvider` (app-level re-export) or `@math-platform/app-shell/auth` (package barrel subpath) does not intercept that module record — the real `useAuth` runs and throws "useAuth must be used within an AuthProvider" in all 9 tests.
+  - [x] Fix: compute the absolute path to `packages/app-shell/src/auth/AuthProvider.tsx` inside `vi.hoisted` and pass that to `vi.mock`. Also mock `@math-platform/app-shell/auth` as defense-in-depth for any consumer that imports through the barrel.
+  - [x] Verified: `npx vitest run __tests__/components/user-menu.test.tsx` → was 9 failed (all `useAuth must be used within an AuthProvider`); now 5 passed / 4 failed. The 4 remaining failures are unrelated to mock resolution — they assert a Dashboard link not implemented in `UserMenu` (see Task 3.1b).
+
+- [ ] Task 3.1b: Implement role-aware Dashboard link in `<UserMenu>` (deferred from Task 3.1)
+  - [ ] File: `packages/app-shell/src/components/UserMenu.tsx`
+  - [ ] `UserMenu` already accepts a `dashboardHref` prop (declared on line 13) but never renders a Dashboard link or branches on `profile.role`.
+  - [ ] Test expectations (see `apps/bus-math-v2/__tests__/components/user-menu.test.tsx` lines 134–177):
+    - Render a "Dashboard" link inside the dropdown menu when authenticated.
+    - `profile.role === 'student'` → href `/student/dashboard`.
+    - `profile.role === 'teacher'` or `'admin'` → href `/teacher/dashboard`.
+  - [ ] Decide: hard-code the role→href mapping, or accept a `dashboardHref` map / `getDashboardHref(profile)` callback. Existing `dashboardHref?: string` prop suggests the latter is more composable; review `apps/bus-math-v2` and other consumers for current call sites before changing the API.
+  - [ ] Verify: 9/9 tests in `user-menu.test.tsx` pass.
 
 - [ ] Task 3.2: Fix GradebookDrillDown flaky timeout
   - [ ] File: `apps/bus-math-v2/__tests__/components/teacher/GradebookDrillDown.integration.test.tsx`

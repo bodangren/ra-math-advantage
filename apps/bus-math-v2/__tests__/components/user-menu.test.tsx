@@ -13,7 +13,22 @@ vi.mock('next/navigation', () => ({
   usePathname: () => '/',
 }));
 
-// Mock AuthProvider
+// UserMenu lives inside @math-platform/app-shell and imports `../auth/AuthProvider`
+// via a package-relative path, so the mocked specifier must resolve to that exact
+// module file. Mocking only `@math-platform/app-shell/auth` does not intercept the
+// internal relative import and leaves the real AuthProvider in place. The path is
+// computed inside `vi.hoisted` so it is available when vi.mock runs (which is
+// hoisted above all other imports).
+const { authProviderPath } = vi.hoisted(() => {
+  // Repo layout: apps/bus-math-v2/__tests__/components/user-menu.test.tsx
+  // Target:     packages/app-shell/src/auth/AuthProvider.tsx
+  // Use the workspace path (process.cwd is the bus-math-v2 app when tests run).
+  const fromCwd = (rel: string) => `${process.cwd()}/${rel}`;
+  return {
+    authProviderPath: fromCwd('../../packages/app-shell/src/auth/AuthProvider.tsx'),
+  };
+});
+
 const mockSignOut = vi.fn();
 
 type MockProfile = {
@@ -42,8 +57,15 @@ const mockAuthContext: {
   signOut: mockSignOut,
 };
 
-vi.mock('@/components/auth/AuthProvider', () => ({
+vi.mock(authProviderPath, () => ({
   useAuth: () => mockAuthContext,
+  AuthProvider: ({ children }: { children: React.ReactNode }) => children,
+}));
+
+// Also mock the package subpath in case any code path imports through it.
+vi.mock('@math-platform/app-shell/auth', () => ({
+  useAuth: () => mockAuthContext,
+  AuthProvider: ({ children }: { children: React.ReactNode }) => children,
 }));
 
 describe('UserMenu', () => {
