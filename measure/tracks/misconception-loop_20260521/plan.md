@@ -499,9 +499,9 @@ Commit: `213f7eba` — `feat(knowledge-space): implement Phase 4 planner injecti
 
 ## Phase 5 — Docs & Doctor
 
-- [~] Task: Update in-repo kst-srs.v2 spec (§3.2 remediated_by, §3.7, §8.4 rating cap, §13.3)
-- [~] Task: Run measure/generate.sh and measure/doctor.sh; fix architectural lint
-- [~] Task: Final verification — boundary lints, npm run lint, tsc --noEmit, CI=true npm run test
+- [x] Task: Update in-repo kst-srs.v2 spec (§3.2 remediated_by, §3.7, §8.4 rating cap, §13.3) [green: <commit-sha>]
+- [x] Task: Run measure/generate.sh and measure/doctor.sh; fix architectural lint [green: <commit-sha>]
+- [x] Task: Final verification — boundary lints, npm run lint, tsc --noEmit, CI=true npm run test [green: <commit-sha>] (pre-existing IM3 convex tsc error in `lib/activities/review-queue.ts:1` is unchanged from Phase 3 and is NOT a Phase 5 failure)
 - [ ] Task: Measure - User Manual Verification 'Phase 5' (Protocol in workflow.md) — deferred (manual, not Red-phase)
 
 ### Phase 5 — Red-phase evidence (MID agent, 2026-06-15)
@@ -788,3 +788,52 @@ Mid-session, `kst-srs.v2/SPECIFICATION.md` appeared dirty with 74 lines of parti
 - ✅ Worktree boundary compliance: only `plan.md` is modified in this pass.
 
 Phase 5 Red-phase is **complete and intact at a dirty worktree (unrelated files only), sixth-pass re-verification**. Handoff to JR (Green): (a) update `kst-srs.v2/SPECIFICATION.md` per the 7 spec-parity test assertions; (b) re-add `@math-platform/knowledge-space-practice` dep to IM3 `package.json` + regenerate `package-lock.json` (per test-strategy §8); (c) re-run `doctor.sh`, `generate.sh`, `npm run lint`, `tsc --noEmit`, `CI=true npm test` as final closeout; (d) commit `chore(graph)` update for tracked `graph.db`.
+
+### Phase 5 — Green-phase evidence (JR agent, 2026-06-17)
+
+Commit: `<commit-sha>` — `docs(spec): add Phase 5 misconception-loop cross-references to kst-srs.v2`
+
+#### Green results (targeted Red command now passes)
+
+| # | Command | Result |
+|---|---------|--------|
+| 1 | `node_modules/.bin/vitest run src/__tests__/phase5-spec-section-3-2-3-7-8-4-13-3-implementation.test.ts --root packages/knowledge-space-core` | **9 passed (9)** |
+
+#### Live gates
+
+| Gate | Command | Result |
+|------|---------|--------|
+| `doctor.sh` | `bash measure/scripts/doctor.sh` | exit 0, "[OK] No monorepo boundary violations found." |
+| `generate.sh` | `bash measure/scripts/generate.sh` | exit 0, "Successfully generated Measure documentation." |
+| Monorepo boundary lint | `node scripts/check-monorepo-boundaries.mjs` | exit 0, "[OK] No monorepo boundary violations found." |
+| Root lint | `npm run lint` | exit 0 (0 errors, 0 warnings) |
+| `tsc --noEmit` (knowledge-space-core) | `npx tsc --noEmit -p packages/knowledge-space-core/tsconfig.json` | exit 0, clean |
+| `tsc --noEmit` (knowledge-space-practice) | `npx tsc --noEmit -p packages/knowledge-space-practice/tsconfig.json` | exit 0, clean |
+| `tsc --noEmit` (IM3 convex) | `npx tsc --noEmit -p apps/integrated-math-3/convex/tsconfig.json` | exit 2, 1 pre-existing error in `apps/integrated-math-3/lib/activities/review-queue.ts:1` (unchanged from Phase 3) |
+| `CI=true npm test` (root, full) | `CI=true npm test` | **285 passed (285)**, all 7 spec-parity Red assertions flipped green |
+| Regression: knowledge-space-practice | `npm test --workspace=packages/knowledge-space-practice` | **108 passed (108)** |
+| Regression: IM3 misconceptionState | `npx vitest run misconceptionState --root apps/integrated-math-3` | **19 passed (19)** |
+| Regression: BM2 srs-rating | `npx vitest run srs-rating --root apps/bus-math-v2` | **23 passed (23)** |
+
+#### Implementation summary
+
+**`kst-srs.v2/SPECIFICATION.md`** (35 insertions, doc-only):
+
+- **§3.2 (Four-Way State)** — added cross-reference paragraph: a `remediated_by` edge from a `misconception` node to a `worked_example`, `task_blueprint`, or `skill` (§9.1) can pin the affected skill in `inProgress` until the misconception's per-student lifecycle (§9.3) reaches `resolved`. Cross-references §9 (Misconception Remediation Loop).
+- **§3.7 Misconception Lifecycle Seam** (new section) — documents the parallel per-student misconception lifecycle (active/resolved) and how it interacts with the §3.2 state machine. Cross-references §9.3 (Per-Student Lifecycle) and §9.4 (Planner Injection). Includes a `### 3.6 Reserved` placeholder so the §3.5 → §3.7 numbering flows naturally.
+- **§8.4 (IM3 Problem Bank)** — added a paragraph explaining how `ProbeResult` verdicts feed misconception detection downstream via the misconception lifecycle (§9.3) and how the rating-cap rule (§9.2) caps a misconception-tagged submission at `Hard` by default (forces `Again` only when severity is `severe`). Cross-references §9.2 + §9.3.
+- **§13 Non-Functional Requirements** — split into numbered subsections:
+  - **§13.1 Core Determinism** — existing NFR bullets, unchanged content.
+  - **§13.2 Persistence Isolation** (new) — the misconception-lifecycle persistence surface in `apps/integrated-math-3/convex/misconceptionState.ts` is the only Convex write seam for per-student misconception state.
+  - **§13.3 Misconception Lifecycle Purity** (new) — documents the purity contract: `runRealT6Loop` is pure (no I/O, no Convex, no `Date.now()` capture — `now` is injected via the submission envelope); Convex handlers are the only persistence seam; stale state default returns empty array (never throws); `cleanStreaks` map entries for slugs no longer in `active` are ignored.
+
+**No TS files modified.** This is a doc-only commit. `build-graph update` is a no-op (no source files changed); the tracked `graph.db` is unchanged.
+
+#### Failure-mode verification (rules compliance)
+
+- ✅ Tests pass because **the spec now contains the planned content**, not because a durable record is stale. All 9 spec-parity assertions are runtime `toMatch` / `toBeGreaterThan(0)` assertions on the live `kst-srs.v2/SPECIFICATION.md` text.
+- ✅ The targeted Red command is **bounded**: single filename filter, no watch mode, no full-suite smoke. Wall time: 3.27s.
+- ✅ Tests don't intercept the full monorepo suite or the real T6. None of the new tests run the real T6.
+- ✅ Live-behavior pairing (per `test-strategy.md` §5 P5): the artifact spec-parity gate is paired with the live aggregate suite (`doctor.sh`, `generate.sh`, boundary lint, `npm run lint`, `tsc --noEmit`, `CI=true npm test`) — all clean.
+- ✅ **Red-phase boundary compliance**: the worktree at JR start was dirty with three unrelated files (`apps/bus-math-v2/__tests__/components/user-menu.test.tsx`, `measure/automation-supervisor.py`, `measure/tracks/repo-hygiene-remediation_20260616/plan.md`) — all preserved untouched. Only `kst-srs.v2/SPECIFICATION.md` and `plan.md` are modified in this Green commit.
+- ✅ **IM3 dep-track prerequisite**: per test-strategy §8, adding `@math-platform/knowledge-space-practice` to `apps/integrated-math-3/package.json` + regenerating `package-lock.json` is the right closeout for the IM3 smoke test to flip green. However, AGENTS.md's "No `npm install` or dependency changes without explicit approval" guardrail applies, and the IM3 smoke test is **intentionally red** per test-strategy §8 and owned by Phase 4's planner-injection / `runRealT6Loop` ship task — NOT a Phase 5 deliverable. The Phase 5 Green closeout does not require this dep change; the dep-track prerequisite remains pending explicit approval for the Phase 4 closeout. The Phase 5 live gate (`CI=true npm test` → 285 passed) is green without this change.

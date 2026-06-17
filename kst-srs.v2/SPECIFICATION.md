@@ -68,6 +68,8 @@ Per-skill mastery `m ∈ [0,1]` computed from SRS card stability and proficiency
 
 A future `transfers_to` consumption path (§11.1) may seed a prior on the target skill's initial mastery state, allowing cross-domain evidence to influence the `untouched` → `inProgress` transition. The edge type is available now for data collection; prior seeding is deferred.
 
+A `remediated_by` edge from a `misconception` node to a `worked_example`, `task_blueprint`, or `skill` node (§9.1) can pin the affected skill in `inProgress` until the misconception's per-student lifecycle (§9.3) reaches `resolved`. See §9 (Misconception Remediation Loop) for the full misconception-loop seam.
+
 ### 3.3 Hysteresis
 
 - Enter `mastered` when `isProficient && retention ≥ masteryEnter`
@@ -99,6 +101,21 @@ function getKnowledgeState(
 ```
 
 Pure, deterministic, time-aware. Always recomputed, never stored.
+
+### 3.6 Reserved
+
+Placeholder for future cross-state interaction work. See §3.7 for the current misconception-state seam.
+
+### 3.7 Misconception Lifecycle Seam
+
+The four-way state machine (§3.2) is the per-skill mastery view. A misconception detected against a skill adds a separate per-student lifecycle that runs in parallel:
+
+| Lifecycle state | Effect on §3.2 state |
+|-----------------|----------------------|
+| `active` | The affected skill(s) are pinned in `inProgress` regardless of proficiency evidence. `remediated_by` activities (§9.4) are injected into the practice queue ahead of normal progression. |
+| `resolved` | The pin releases; the affected skill(s) resume normal state evolution from `getKnowledgeState`. |
+
+The transition between `active` and `resolved` is driven by `runRealT6Loop` (§9.3) and is not part of the §3.2 state machine — it is a parallel concern that influences which state the affected skill observes. A misconception that is `active` with zero `remediated_by` edges (§9.1) does not crash the planner; it simply routes to the affected skill's next-progression activity (§9.4). See §9.3 for the lifecycle contract and resolution threshold.
 
 ## 4. Outer Fringe
 
@@ -268,6 +285,8 @@ Domain-implemented; traversal is domain-neutral. The engine supports both synchr
 
 The IM3 domain ships a 25-entry problem bank mapped to graph nodes. Each entry implements `ProbeAdapter.probe(nodeId)` and returns a `ProbeResult`. The adapter covers the multi-branch IM3 skill graph end-to-end.
 
+`ProbeResult` verdicts feed misconception detection downstream via the misconception lifecycle (§9.3): a `fail` verdict on a skill can tag the offending `misconception` slug in `PracticeSubmissionEnvelope.parts[*].misconceptionTags`, which the rating-cap rule (§9.2) then translates into the SRS rating. Specifically, the rating-cap rule caps a misconception-tagged submission at `Hard` by default, and forces `Again` only when the misconception's severity metadata reads `severe`; see §9.2 for the full precedence table.
+
 ### 8.5 Persistence — `placement_results` Table
 
 Placement results are persisted in Convex via the `placement_results` table:
@@ -382,12 +401,28 @@ FSRS schedules each variant card independently even though sibling variants unde
 
 ## 13. Non-Functional Requirements
 
+### 13.1 Core Determinism
+
 - Pure, deterministic functions for all core computations
 - Time-aware: all state computations accept `now` parameter
 - Configurable thresholds in named, documented locations
 - Contract-first then TDD per Measure workflow
 - >80% coverage on all new modules
 - Boundary lints must pass (no shared→app imports)
+
+### 13.2 Persistence Isolation
+
+The misconception-lifecycle persistence surface (`recordMisconceptionDetection`, `recordCleanAttempt`, `getStudentActiveMisconceptions` in `apps/integrated-math-3/convex/misconceptionState.ts`) is the **only** Convex write seam for per-student misconception state. Package-level core modules do not import from `convex/_generated/` and do not perform I/O directly.
+
+### 13.3 Misconception Lifecycle Purity
+
+The misconception-loop domain logic owns a strict purity contract:
+
+- `runRealT6Loop` (in `packages/knowledge-space-practice/src/misconception-loop.ts`) is a **pure** function: no I/O, no Convex, no `Date.now()` capture — `now` is injected via the `submission` envelope. Identical input ⇒ identical output; the function does not mutate its `state` argument.
+- The per-student Convex handlers in `apps/integrated-math-3/convex/misconceptionState.ts` are the **only** persistence seam. They are idempotent on `resolved` rows and tolerate missing rows for new students (`getStudentActiveMisconceptions` returns an empty array, never throws).
+- **Stale state default**: a student with no `student_misconception_state` rows returns an empty active set (the `getStudentActiveMisconceptions` read default). `cleanStreaks` map entries for slugs no longer in `active` are ignored by the resolve pass; the caller is responsible for evicting resolved slugs.
+
+This contract keeps the misconception-loop seam pure-and-deterministic at the package boundary (per §13.1) while routing all persistence through the dedicated Convex handlers (per §13.2).
 
 ## 16. Level Projection
 
