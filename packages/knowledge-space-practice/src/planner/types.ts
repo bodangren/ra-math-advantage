@@ -23,7 +23,7 @@ import { z } from 'zod';
 // the Convex settings table; the planner assumes the input has already
 // been validated and never re-parses.
 
-export const priorityWeightsSchema = z.object({
+export const priorityWeightsSchema = z.strictObject({
   a: z.number().finite().min(0),
   b: z.number().finite().min(0),
   c: z.number().finite().min(0),
