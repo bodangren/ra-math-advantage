@@ -72,10 +72,32 @@ Depends on: Track 2 (weighted readiness). weaknessFit integrates Track 6.
 
 ## Phase 3 — Composite Planner and Integration
 
-- [ ] Task: Implement composite priority(B) (TDD)
+- [~] Task: Implement composite priority(B) (TDD) [red: c932981d]
     - [ ] Weighted sum of the four terms; configurable weights
-- [ ] Task: Wire recommendedNext to top-N by priority; update visualization (TDD)
+    - [ ] Bulk precompute API: `computePriorities(input, weights): ReadonlyMap<string, number>` matching the per-node oracle for every node in the graph.
+- [~] Task: Wire recommendedNext to top-N by priority; update visualization (TDD) [red: 6bb677a6, integration: a1675f34]
+    - [ ] Top-N by priority over ready+unknown set; default N=5; nodeId.localeCompare tie-break.
+    - [ ] Integration: extend `projections.test.ts` with one ranked-output assertion that the visualization's `recommendedNext` matches the planner's top-N.
 - [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
+
+### Phase 3 Red-phase evidence (MID, 2026-06-18)
+
+- Authored 3 Red-phase test files (no implementation) per test-strategy.md §2 / §5 / §7:
+    - `packages/knowledge-space-practice/src/__tests__/priority.test.ts` — 8 test groups (default equal weights, single-weight collapse a/b/c/d, zero+scaled weights, missing readiness default, empty graph, determinism+purity, bulk precompute API). 19 test cases anchored in hand-calculated expected values from the chain fixture (chain.n1..n4, goal = n4, readiness = 0.1/0.2/0.3/0.4).
+    - `packages/knowledge-space-practice/src/__tests__/recommended-next.test.ts` — 7 test groups (empty/single-node, top-N by priority descending, single-weight regression, ready-before-unknown ordering, tie-break stability, determinism+purity). 19 test cases including ready-vs-unknown ranking, default topN=5 slice, and nodeId.localeCompare ascending tie-break.
+    - Extended `packages/knowledge-space-practice/src/__tests__/projections.test.ts` with one integration assertion: `viz.recommendedNext.map(n => n.nodeId)` must equal `getRecommendedNext(input, defaultPriorityWeights, 5)` for a hand-rolled 3-node fixture (rank.z, rank.a, rank.m) engineered so the pre-track `[...ready, ...unknown].sort(nodeId).slice(0, 5)` order differs from the planner's top-N at index 1.
+- Targeted Red commands (each must fail before its impl is authored; all 3 fail with `Cannot find module`):
+    - `npx vitest run priority --root packages/knowledge-space-practice` → 1 failed suite, 0 tests (`Cannot find module '../planner/priority'`).
+    - `npx vitest run recommended-next --root packages/knowledge-space-practice` → 1 failed suite, 0 tests (`Cannot find module '../planner/recommended-next'`).
+    - `npx vitest run projections --root packages/knowledge-space-practice` → 1 failed suite, 0 tests (`Cannot find module '../planner/recommended-next'` — projections.test.ts now imports the ranker for the integration assertion).
+- Aggregate suite confirmation: `npx vitest run --root packages/knowledge-space-practice` → 3 failed (Phase 3 reds) | 12 passed (261 tests) | 15 files total. No regression in existing tests; planner-contract, planner-contract-adversarial, unlock-value, goal-proximity, weakness-fit, and projections (other than the new integration test) all 261/261 green. The 3 failures are isolated to the new test files and represent the missing implementation surface.
+- `npx eslint src --max-warnings 0` in workspace → clean.
+- `npx tsc --noEmit` in workspace → only the 3 expected `Cannot find module '../planner/{priority,recommended-next}'` errors (Red signal); no other TypeScript errors.
+- Build-graph findings: `getPriority` / `computePriorities` / `getRecommendedNext` still yield 0 hits in the greenfield (confirmed: planner/priority.ts, planner/recommended-next.ts not yet authored). `build-graph stats` (mtime today, 14059 nodes / 20533 edges) confirms the schema and visualization wiring surface is unchanged; only the planner output shape and the `recommendedNext` field's *content/ordering* are expected to change. `build-graph inspect recommendedNext` → `field:studentVisualizationV1Schema.recommendedNext` (schemas.ts:29) is the single low-blast-radius surface.
+- Red-phase boundary: tests authored in test files only, no source code under `packages/knowledge-space-practice/src/planner/` modified, no `apps/` or `convex/` touched. The visualization integration test in `projections.test.ts` adds a new describe block with one assertion; the visualization source itself is untouched (per Red-phase rule "Do NOT modify existing source code except test files and Measure docs"). The schema is unaffected (`studentVisualizationV1Schema` `recommendedNext` shape unchanged — only the content/ordering changes after Green).
+- Commits: `c932981d` (priority Red), `6bb677a6` (recommended-next Red), `a1675f34` (projections integration).
+- `graph.db` was not modified during this Red phase — only read-only `build-graph` queries (`stats`, `search`, `inspect`) were issued. The committed state of `graph.db` is preserved.
+- Dirty worktree at MID start: `git status --porcelain` was clean. No unrelated user work to preserve.
 
 ## Phase 4 — Docs & Doctor
 
