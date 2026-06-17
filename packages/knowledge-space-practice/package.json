@@ -11,6 +11,7 @@
     "./schemas": "./src/schemas.ts",
     "./misconception-loop": "./src/misconception-loop.ts",
     "./blueprints": "./src/blueprints/index.ts",
+    "./planner/types": "./src/planner/types.ts",
     "./projections": "./src/projections/index.ts"
   },
   "scripts": {
