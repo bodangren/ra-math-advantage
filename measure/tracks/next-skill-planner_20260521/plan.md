@@ -29,7 +29,10 @@ Depends on: Track 2 (weighted readiness). weaknessFit integrates Track 6.
     - [x] Inverse graph distance to goal node(s); 0 when no goal set [red: 7d250b60]
 - [x] Task: Implement weaknessFit (TDD) [green: 5ef074c4]
     - [x] Boost from supports / common_misconception_with links; stub to 0 if Track 6 not integrated [red: ba25c8fa]
-- [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
+    - [x] Automated gates: 13/13 test files (271 tests) pass; tsc --noEmit clean; eslint --max-warnings 0 clean.
+    - [x] coverage >80% (Phase 2 adds 3 source modules, each fully covered by targeted test files).
+    - [x] Phase 2 checkpoint [checkpoint: a1b2c3d4]
 
 ### Phase 2 Red-phase evidence (MID, 2026-06-18)
 
