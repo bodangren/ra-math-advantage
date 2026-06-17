@@ -105,8 +105,10 @@ describe('unlockValue — balanced tree', () => {
 
   it('returns 0 for every leaf in a balanced tree', () => {
     const graph = makePlannerTree({ depth: 3, branching: 2 });
-    // Every node whose id matches `tree.n3.*.*` is a leaf at depth 3.
-    const leaves = graph.nodes.filter((n) => /^tree\.n3\./.test(n.id));
+    // For depth=3, leaf nodes have prefix `tree.n2.` (the number is the
+    // parent's level in makePlannerTree). Nodes are: tree.root, tree.n1.*,
+    // tree.n2.*. Only tree.n2.* are leaves.
+    const leaves = graph.nodes.filter((n) => /^tree\.n2\./.test(n.id));
     expect(leaves.length).toBeGreaterThan(0);
     for (const leaf of leaves) {
       expect(getUnlockValue(leaf.id, graph)).toBe(0);
