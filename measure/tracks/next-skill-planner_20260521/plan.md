@@ -8,6 +8,8 @@ Depends on: Track 2 (weighted readiness). weaknessFit integrates Track 6.
 - [~] Task: Define planner types and priority weight config
     - [~] Priority score type; configurable weights a/b/c/d; planner input/output types
     - Red result (MID, 2026-06-17): `npx vitest run planner-contract --root packages/knowledge-space-practice` → 1 failed suite, 0 tests. Module `../planner/types` not found (expected — types.ts not yet authored).
+    - Red re-verified (MID, 2026-06-17, 20:02): same failure, cleaned up unused `z` import. Aggregate pkg suite green (8 files, 108 tests).
+    - Build-graph findings (fresh db, 14059 nodes): `recommendedNext` is a single field at `visualization.ts:162`; `unlockValue`/`goalProximity`/`weaknessFit`/`priorityWeights` yield 0 results (greenfield). `KnowledgeSpaceNode`/`KnowledgeSpaceEdge` are the canonical input shapes at `knowledge-space-core/src/types.ts`. Planner types should consume subset fields (id, kind, title, domain) per the contract test shapes.
 - [ ] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md)
 
 ## Phase 2 — Scoring Terms
