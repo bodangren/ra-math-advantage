@@ -689,3 +689,52 @@ The tracked `graph.db` was not mutated in this pass — no source files were edi
 
 Phase 5 Red-phase is **complete and intact at a clean worktree, fourth-pass re-verification**. Handoff to JR (Green) — refreshed, fourth pass: (a) update `kst-srs.v2/SPECIFICATION.md` to add the cross-references + new sections per the 7 spec-parity test assertions; (b) **re-add the `@math-platform/knowledge-space-practice` dep to `apps/integrated-math-3/package.json` and regenerate `package-lock.json`** (per test-strategy §8, the dep is the JR Green handoff for the IM3 smoke test to resolve its import — this is the right place for `package.json` mutations per the supervisor's boundary rule); (c) re-run the four live gates (`bash measure/scripts/doctor.sh`, `bash measure/scripts/generate.sh`, `npm run lint`, `tsc --noEmit`, `CI=true npm test`) as the final closeout per test-strategy §5 P5; (d) commit a `chore(graph)` update for the tracked `graph.db` to pick up the spec-parity test file + any new package surface from the Green closeout. The 7 currently-red assertions must flip green, AND the existing 278 (knowledge-space-core) + 108 (knowledge-space-practice) + IM3 misconception-loop surface (wiring, smoke, fake, persistence, schema, lifecycle, planner, projection) must remain green after the Green commit. The IM3 convex tsc pre-existing error in `lib/activities/review-queue.ts:1` is unchanged from Phase 3 and is NOT a Phase 5 failure.
 
+
+### Phase 5 — Red-phase re-verification (MID agent, 2026-06-17, fifth pass)
+
+Fifth MID pass re-runs the targeted Red command + all operational checks at HEAD (the fourth-pass re-verification commit is the most recent plan.md entry; no source code changes since then). Goal: confirm the Red state for Task 1 is intact and that the "already satisfied with evidence" annotations for Tasks 2 + 3 still hold.
+
+Pre-flight: `graph.db` mtime < 24h (re-fetched via `build-graph stats` — 14005 nodes / 20501 edges / 2048 files). The Phase 5 spec-parity test file is on disk at `ab766c1c` but not in the tracked `graph.db` (per existing scratch policy). `build-graph search runRealT6Loop` confirms the Phase 3 production surface (`runRealT6Loop`, `RunRealT6LoopInput`, `RunRealT6LoopOutput`) is present in the tracked graph at `packages/knowledge-space-practice/src/misconception-loop.ts`. No new symbols from Phase 4/5 are in the tracked graph (per scratch policy, the JR Green `chore(graph)` commit picks them up at track closeout).
+
+Dirty worktree at MID start: **three** files are uncommitted:
+1. `apps/bus-math-v2/__tests__/components/user-menu.test.tsx` (staged `M`) — mock path update. **Unrelated** — owned by `repo-hygiene-remediation_20260616` Phase 3 Task 3.1. Preserved untouched.
+2. `measure/automation-supervisor.py` (unstaged ` M`) — 156-line review a/b/c refactor + model-name changes. **Unrelated** — centrally managed infrastructure. Preserved untouched.
+3. `measure/tracks/repo-hygiene-remediation_20260616/plan.md` (unstaged ` M`) — `[~]` marker on different track. **Unrelated**. Preserved untouched.
+
+No source files (test or implementation) were modified in this pass; only `plan.md` is touched.
+
+#### Targeted Red re-verification (Task 1)
+
+| # | Command | Re-verified result | Matches recorded |
+|---|---------|--------------------|------------------|
+| 1 | `node_modules/.bin/vitest run src/__tests__/phase5-spec-section-3-2-3-7-8-4-13-3-implementation.test.ts --root packages/knowledge-space-core` | **7 failed / 2 passed (9 total)**, 683ms wall | ✅ (matches all 4 prior passes) |
+
+All 7 failures are **spec content missing**, not durable-record staleness.
+
+#### Operational-check re-verification (Tasks 2 + 3)
+
+| Gate | Command | Result | Status |
+|------|---------|--------|--------|
+| `doctor.sh` | `bash measure/scripts/doctor.sh` | exit 0, "[OK] No monorepo boundary violations found." | ✅ Clean |
+| `generate.sh` | `bash measure/scripts/generate.sh` | exit 0, "Successfully generated Measure documentation." | ✅ Clean |
+| Monorepo boundary lint | `node scripts/check-monorepo-boundaries.mjs` | exit 0, "[OK] No monorepo boundary violations found." | ✅ Clean |
+| Root lint | `npm run lint` | exit 0 (0 errors, 0 warnings) | ✅ Clean |
+| `tsc --noEmit` (knowledge-space-core) | `npx tsc --noEmit -p packages/knowledge-space-core/tsconfig.json` | exit 0 | ✅ Clean |
+| `tsc --noEmit` (knowledge-space-practice) | `npx tsc --noEmit -p packages/knowledge-space-practice/tsconfig.json` | exit 0 | ✅ Clean |
+| `tsc --noEmit` (IM3 convex) | `npx tsc --noEmit -p apps/integrated-math-3/convex/tsconfig.json` | exit 2, 1 pre-existing error (unchanged from Phase 3) | ✅ Same as Phase 3 |
+| `CI=true npm test` (root, full) | `CI=true npm test` | **7 failed / 278 passed (285 total)**, 10.64s wall | ⏸ Blocked on Task 1's Green |
+
+#### Already-satisfied evidence (Tasks 2 + 3)
+
+- **Task 2**: `doctor.sh` + `generate.sh` + boundary lint all pass cleanly.
+- **Task 3**: Script-level checks clean. `CI=true npm test` blocked on Task 1's Green.
+
+#### Failure-mode verification (rules compliance)
+
+- ✅ 7 Red failures are **spec content missing**, not durable-record staleness.
+- ✅ Bounded command (single file filter, 683ms).
+- ✅ No new tests authored, no non-test/non-Measure files modified.
+- ✅ Already-satisfied with evidence applied to Tasks 2 + 3.
+- ✅ Three dirty worktree files preserved untouched — all unrelated to this track.
+
+Phase 5 Red-phase is **complete and intact at a dirty worktree (unrelated files only), fifth-pass re-verification**. Handoff to JR (Green): (a) update `kst-srs.v2/SPECIFICATION.md` per the 7 spec-parity test assertions; (b) re-add `@math-platform/knowledge-space-practice` dep to IM3 `package.json` + regenerate `package-lock.json` (per test-strategy §8); (c) re-run `doctor.sh`, `generate.sh`, `npm run lint`, `tsc --noEmit`, `CI=true npm test` as final closeout; (d) commit `chore(graph)` update for tracked `graph.db`.
