@@ -914,3 +914,57 @@ Commit: `9d0e1b07` — `docs(spec): add Phase 5 misconception-loop cross-referen
 - ✅ Live-behavior pairing (per `test-strategy.md` §5 P5): the artifact spec-parity gate is paired with the live aggregate suite (`doctor.sh`, `generate.sh`, boundary lint, `npm run lint`, `tsc --noEmit`, `CI=true npm test`) — all clean.
 - ✅ **Red-phase boundary compliance**: the worktree at JR start was dirty with three unrelated files (`apps/bus-math-v2/__tests__/components/user-menu.test.tsx`, `measure/automation-supervisor.py`, `measure/tracks/repo-hygiene-remediation_20260616/plan.md`) — all preserved untouched. Only `kst-srs.v2/SPECIFICATION.md` and `plan.md` are modified in this Green commit.
 - ✅ **IM3 dep-track prerequisite**: per test-strategy §8, adding `@math-platform/knowledge-space-practice` to `apps/integrated-math-3/package.json` + regenerating `package-lock.json` is the right closeout for the IM3 smoke test to flip green. However, AGENTS.md's "No `npm install` or dependency changes without explicit approval" guardrail applies, and the IM3 smoke test is **intentionally red** per test-strategy §8 and owned by Phase 4's planner-injection / `runRealT6Loop` ship task — NOT a Phase 5 deliverable. The Phase 5 Green closeout does not require this dep change; the dep-track prerequisite remains pending explicit approval for the Phase 4 closeout. The Phase 5 live gate (`CI=true npm test` → 285 passed) is green without this change.
+
+### Phase 5 — Review A evidence (review_a agent, 2026-06-17)
+
+Commit: `678aceb9` — `chore(graph): index Phase 1–5 misconception-loop source files into tracked graph.db`
+
+#### Review focus
+
+- Correctness of `computeBaseRating` v2 severity-aware cap rule and backward-compat path.
+- Correctness of `runRealT6Loop` active→resolved transition and purity.
+- Correctness of Convex `misconceptionState.ts` handlers and schema.
+- Correctness of `planRemediationInjection` ordering/dedup and projection count fields.
+- Architecture: boundary compliance, no shared→app imports, no new utility libraries.
+- Tests meaningfully prove live behavior (no faked gates).
+- Tracked `graph.db` completeness for Graph-Aware Mode.
+
+#### Findings
+
+- ✅ Implementation matches `spec.md` FR1–FR5 and `kst-srs.v2` §9 / §3.7 / §8.4 / §13.3.
+- ✅ No unnecessary abstractions or utility libraries introduced.
+- ✅ All package boundaries respected (`packages/` do not import `apps/` or `convex/_generated/`).
+- ✅ Tests are live-behavior proofs (zod parse, truth table, pure transition fns, Convex round-trip, projection fields).
+- ⚠️ The JR Green `chore(graph)` commit (`e676a7ef`) indexed only Phase 1–5 **test** files; the Phase 1–4 **source** files (`misconception-loop.ts`, `srs-rating.ts`, `misconceptionState.ts`, `planner/injection.ts`, projection/schema files, `knowledge-space-core` edge-type files, `SPECIFICATION.md`) were never indexed into the tracked `graph.db`. This leaves Graph-Aware Mode callers/inspect queries incomplete for the track's production surface.
+
+#### Fix applied
+
+- Ran `build-graph update ./graph.db <changed-source-files>` to index the 14 missing source files (238 nodes / 242 edges updated; total nodes 14005 → 14059, edges 20501 → 20533, files 2048 → 2056).
+- Verified new symbols are queryable: `planRemediationInjection`, `computeBaseRating`, `runRealT6Loop`, `recordMisconceptionDetectionHandler`, `activeMisconceptionStudentCount`, `teacherVisualizationV1Schema.activeMisconceptionStudentCount`.
+- Note: `build-graph audit ./graph.db` was attempted but exceeded the supervisor timeout (status 124) on this repository size; it is not a blocking gate for this track and was skipped in Review A.
+
+#### Verification commands (all pass)
+
+| Gate | Command | Result |
+|------|---------|--------|
+| Spec-parity | `node_modules/.bin/vitest run src/__tests__/phase5-spec-section-3-2-3-7-8-4-13-3-implementation.test.ts --root packages/knowledge-space-core` | **9 passed (9)** |
+| Phase 1 edge type | `node_modules/.bin/vitest run edge-type-remediated-by --root packages/knowledge-space-core` | **14 passed (14)** |
+| Phase 2 rating cap | `node_modules/.bin/vitest run -t "rating cap" --root packages/practice-core` | **24 passed (24)** |
+| Phase 2 IM3 consumer | `npx vitest run __tests__/lib/practice/srs-rating --root apps/integrated-math-3` | **23 passed (23)** |
+| Phase 2 BM2 consumer | `npx vitest run srs-rating --root apps/bus-math-v2` | **23 passed (23)** |
+| Phase 3 lifecycle | `node_modules/.bin/vitest run misconception-lifecycle --root packages/knowledge-space-practice` | **34 passed (34)** |
+| Phase 3 Convex | `npx vitest run __tests__/convex/misconceptionState --root apps/integrated-math-3` | **19 passed (19)** |
+| Phase 4 planner/projection | `node_modules/.bin/vitest run planner-remediation-injection projection-active-misconception-count --root packages/knowledge-space-practice` | **20 passed (20)** |
+| Phase 4 IM3 smoke/wiring/fake | `cd apps/integrated-math-3 && npx vitest run __tests__/lib/practice/misconception-loop` | **33 passed (33)** |
+| knowledge-space-practice suite | `npm test --workspace=packages/knowledge-space-practice` | **108 passed (108)** |
+| Root knowledge-space-core suite | `CI=true npm test` | **285 passed (285)** |
+| Root lint | `npm run lint` | **0 errors, 0 warnings** |
+| Boundary lint | `node scripts/check-monorepo-boundaries.mjs` | **exit 0** |
+| Doctor | `bash measure/scripts/doctor.sh` | **exit 0** |
+| Type-check ksc | `npx tsc --noEmit --project packages/knowledge-space-core/tsconfig.json` | **clean** |
+| Type-check ksp | `npx tsc --noEmit --project packages/knowledge-space-practice/tsconfig.json` | **clean** |
+| Type-check IM3 convex | `npx tsc --noEmit --project apps/integrated-math-3/convex/tsconfig.json` | **1 pre-existing error** in `lib/activities/review-queue.ts:1` (unchanged, not introduced by this track) |
+
+#### Handoff
+
+Phase 5 is complete and passes Review A. The only file changed by Review A is the tracked `graph.db` (source-symbol indexing) plus this `plan.md` evidence block. Three unrelated worktree files (`apps/bus-math-v2/__tests__/components/user-menu.test.tsx`, `measure/automation-supervisor.py`, `measure/tracks/repo-hygiene-remediation_20260616/plan.md`) remain untouched and are owned by other tracks.
