@@ -2,7 +2,6 @@ import { describe, it, expect } from 'vitest';
 
 import {
   priorityWeightsSchema,
-  type PriorityWeights,
   type PriorityScore,
   type PlannerInput,
   type PlannerOutput,
