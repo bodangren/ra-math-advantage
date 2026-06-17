@@ -43,6 +43,28 @@ describe('Planner contract — priority weights schema', () => {
       const result = priorityWeightsSchema.safeParse({ a: '1' as unknown, b: 1, c: 1, d: 1 });
       expect(result.success).toBe(false);
     });
+
+    it('rejects unknown extra keys (strict contract: only a/b/c/d allowed)', () => {
+      const result = priorityWeightsSchema.safeParse({
+        a: 1,
+        b: 1,
+        c: 1,
+        d: 1,
+        e: 1,
+      });
+      expect(result.success).toBe(false);
+    });
+
+    it('rejects unknown extra keys when value type is invalid (defense-in-depth)', () => {
+      const result = priorityWeightsSchema.safeParse({
+        a: 1,
+        b: 1,
+        c: 1,
+        d: 1,
+        unknownWeight: 'high',
+      });
+      expect(result.success).toBe(false);
+    });
   });
 
   it('accepts valid zero and positive weights', () => {
