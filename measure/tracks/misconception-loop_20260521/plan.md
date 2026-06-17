@@ -499,9 +499,9 @@ Commit: `213f7eba` — `feat(knowledge-space): implement Phase 4 planner injecti
 
 ## Phase 5 — Docs & Doctor
 
-- [x] Task: Update in-repo kst-srs.v2 spec (§3.2 remediated_by, §3.7, §8.4 rating cap, §13.3) [green: <commit-sha>]
-- [x] Task: Run measure/generate.sh and measure/doctor.sh; fix architectural lint [green: <commit-sha>]
-- [x] Task: Final verification — boundary lints, npm run lint, tsc --noEmit, CI=true npm run test [green: <commit-sha>] (pre-existing IM3 convex tsc error in `lib/activities/review-queue.ts:1` is unchanged from Phase 3 and is NOT a Phase 5 failure)
+- [x] Task: Update in-repo kst-srs.v2 spec (§3.2 remediated_by, §3.7, §8.4 rating cap, §13.3) [green: 9d0e1b07]
+- [x] Task: Run measure/generate.sh and measure/doctor.sh; fix architectural lint [green: 9d0e1b07]
+- [x] Task: Final verification — boundary lints, npm run lint, tsc --noEmit, CI=true npm run test [green: 9d0e1b07] (pre-existing IM3 convex tsc error in `lib/activities/review-queue.ts:1` is unchanged from Phase 3 and is NOT a Phase 5 failure)
 - [ ] Task: Measure - User Manual Verification 'Phase 5' (Protocol in workflow.md) — deferred (manual, not Red-phase)
 
 ### Phase 5 — Red-phase evidence (MID agent, 2026-06-15)
@@ -791,7 +791,7 @@ Phase 5 Red-phase is **complete and intact at a dirty worktree (unrelated files 
 
 ### Phase 5 — Green-phase evidence (JR agent, 2026-06-17)
 
-Commit: `<commit-sha>` — `docs(spec): add Phase 5 misconception-loop cross-references to kst-srs.v2`
+Commit: `9d0e1b07` — `docs(spec): add Phase 5 misconception-loop cross-references to kst-srs.v2`
 
 #### Green results (targeted Red command now passes)
 
