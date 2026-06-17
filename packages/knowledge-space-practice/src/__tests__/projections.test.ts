@@ -26,6 +26,9 @@ import {
   syntheticLearnerState,
 } from '../projections/fixtures';
 
+import { getRecommendedNext } from '../planner/recommended-next';
+import { defaultPriorityWeights } from './planner-fixtures';
+
 // ---------------------------------------------------------------------------
 // Task 1.1: Activity map projection test
 // ---------------------------------------------------------------------------
@@ -220,6 +223,79 @@ describe('Visualization projections', () => {
 
       const result = teacherVisualizationV1Schema.safeParse(viz);
       expect(result.success).toBe(true);
+    });
+  });
+
+  // -------------------------------------------------------------------------
+  // Phase 3 (Track 4 next-skill-planner_20260521) — ranked recommendedNext
+  // -------------------------------------------------------------------------
+  //
+  // FR5: `recommendedNext` becomes top-N by `priority`, replacing the
+  // pre-track `[...ready, ...unknown].slice(0, 5)` placeholder. This test
+  // pins the integration: the visualization's `recommendedNext` must
+  // equal the planner's top-N ranking for the same input, with
+  // `defaultPriorityWeights` and N=5.
+  //
+  // The hand-rolled fixture below is deliberately engineered so the
+  // pre-track order (`[...ready, ...unknown].sort(nodeId).slice(0, 5)`)
+  // differs from the planner's order at index 1. This ensures the test
+  // fails at HEAD with a live-behavior signal (not just an import
+  // failure) once the planner module exists but the visualization still
+  // uses the pre-track slice.
+  describe('Student visualization — recommendedNext is top-N by priority (Phase 3 integration)', () => {
+    const rankNodes = [
+      {
+        id: 'rank.z',
+        kind: 'skill' as const,
+        title: 'Z skill',
+        domain: 'math.test.rank',
+        reviewStatus: 'draft' as const,
+        metadata: {},
+      },
+      {
+        id: 'rank.a',
+        kind: 'skill' as const,
+        title: 'A skill',
+        domain: 'math.test.rank',
+        reviewStatus: 'draft' as const,
+        metadata: {},
+      },
+      {
+        id: 'rank.m',
+        kind: 'skill' as const,
+        title: 'M skill',
+        domain: 'math.test.rank',
+        reviewStatus: 'draft' as const,
+        metadata: {},
+      },
+    ];
+    const rankEdges: [] = [];
+    const rankLearnerState: Record<string, 'mastered' | 'ready' | 'blocked' | 'review_due'> = {
+      'rank.z': 'ready',
+      'rank.a': 'ready',
+    };
+
+    it('viz.recommendedNext matches getRecommendedNext(input, defaultPriorityWeights, 5)', () => {
+      const viz = projectStudentVisualization(
+        rankNodes as never,
+        rankEdges as never,
+        rankLearnerState,
+      );
+
+      const plannerInput = {
+        nodes: rankNodes.map((n) => ({ id: n.id, kind: n.kind, title: n.title, domain: n.domain })),
+        edges: [],
+        readinessByNode: {
+          'rank.z': 0.1,
+          'rank.a': 0.5,
+          'rank.m': 0.0,
+        },
+        goalNodeIds: [],
+        misconceptionLinks: [],
+      };
+      const expected = getRecommendedNext(plannerInput, defaultPriorityWeights, 5);
+
+      expect(viz.recommendedNext.map((n) => n.nodeId)).toEqual(expected);
     });
   });
 });
