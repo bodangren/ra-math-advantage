@@ -738,3 +738,53 @@ All 7 failures are **spec content missing**, not durable-record staleness.
 - ✅ Three dirty worktree files preserved untouched — all unrelated to this track.
 
 Phase 5 Red-phase is **complete and intact at a dirty worktree (unrelated files only), fifth-pass re-verification**. Handoff to JR (Green): (a) update `kst-srs.v2/SPECIFICATION.md` per the 7 spec-parity test assertions; (b) re-add `@math-platform/knowledge-space-practice` dep to IM3 `package.json` + regenerate `package-lock.json` (per test-strategy §8); (c) re-run `doctor.sh`, `generate.sh`, `npm run lint`, `tsc --noEmit`, `CI=true npm test` as final closeout; (d) commit `chore(graph)` update for tracked `graph.db`.
+
+### Phase 5 — Red-phase re-verification (MID agent, 2026-06-17, sixth pass)
+
+Sixth MID pass re-runs the targeted Red command + all operational checks at HEAD. Goal: confirm the Red state for Task 1 is intact and that the "already satisfied with evidence" annotations for Tasks 2 + 3 still hold.
+
+Pre-flight: `graph.db` mtime < 24h (14005 nodes / 20501 edges / 2048 files — unchanged from prior passes). `build-graph search runRealT6Loop` confirms the Phase 3 production surface at `packages/knowledge-space-practice/src/misconception-loop.ts:115–182` (exported, 2 incoming edges: `contains` + `param_flow`, 0 outgoing edges — pure function). `build-graph inspect computeBaseRating` confirms the v2 severity-aware contract at `packages/practice-core/src/practice/srs-rating.ts:109–171` with the full docstring documenting cap-at-Hard, severe-Again, and v1 backward-compat rules. `build-graph search remediated_by` confirms the `checkMisconceptionContentIntegrity` symbol at `apps/integrated-math-3/lib/practice/misconception-remediations.ts` validates the `remediated_by` edge type in the IM3 taxonomy layer.
+
+Dirty worktree at MID start: **three** files uncommitted (same classification as the fifth pass):
+1. `apps/bus-math-v2/__tests__/components/user-menu.test.tsx` (staged `M`) — mock path update. **Unrelated** — owned by `repo-hygiene-remediation_20260616` Phase 3 Task 3.1. Preserved untouched.
+2. `measure/automation-supervisor.py` (unstaged ` M`) — 156-line review a/b/c refactor + model-name changes. **Unrelated** — centrally managed infrastructure. Preserved untouched.
+3. `measure/tracks/repo-hygiene-remediation_20260616/plan.md` (unstaged ` M`) — `[~]` marker on different track. **Unrelated**. Preserved untouched.
+
+No source files (test or implementation) were modified in this pass; only `plan.md` is touched.
+
+#### Targeted Red re-verification (Task 1)
+
+| # | Command | Re-verified result | Matches recorded |
+|---|---------|--------------------|------------------|
+| 1 | `node_modules/.bin/vitest run src/__tests__/phase5-spec-section-3-2-3-7-8-4-13-3-implementation.test.ts --root packages/knowledge-space-core` | **7 failed / 2 passed (9 total)**, 1.62s wall | ✅ (matches all 5 prior passes) |
+
+All 7 failing assertions target exactly the missing spec content (no `### 3.7` heading, no `### 13.3` heading, no `remediated_by` in §3.2, no `§9` cross-ref in §3.2, no rating-cap mention in §8.4, no `§9.2` cross-ref in §8.4, no misconception-lifecycle NFR text in §13.3) — failures are due to **spec content missing**, not durable-record staleness. The 2 passes are the "section exists" sanity checks for §3.2 and §8.4.
+
+#### Operational-check re-verification (Tasks 2 + 3)
+
+| Gate | Command | Result | Status |
+|------|---------|--------|--------|
+| `doctor.sh` | `bash measure/scripts/doctor.sh` | exit 0, "[OK] No monorepo boundary violations found." | ✅ Clean |
+| `generate.sh` | `bash measure/scripts/generate.sh` | exit 0, "Successfully generated Measure documentation." | ✅ Clean |
+| Monorepo boundary lint | `node scripts/check-monorepo-boundaries.mjs` | exit 0, "[OK] No monorepo boundary violations found." | ✅ Clean |
+| `CI=true npm test` (root, full) | `CI=true npm test` | **7 failed / 278 passed (285 total)**, 10.08s wall — the 7 failures are exactly the Phase 5 spec-parity test (Task 1's Red signal) | ⏸ Blocked on Task 1's Green |
+
+#### Already-satisfied evidence (Tasks 2 + 3)
+
+- **Task 2**: `doctor.sh` + `generate.sh` + boundary lint all pass cleanly. Architectural lint baseline intact.
+- **Task 3**: Script-level checks clean. `CI=true npm test` blocked on Task 1's Green (the spec update unblocks the 7 spec-parity assertions).
+
+#### Boundary-compliance: SPECIFICATION.md restore
+
+Mid-session, `kst-srs.v2/SPECIFICATION.md` appeared dirty with 74 lines of partial Green-phase spec updates (adding `remediated_by` cross-ref to §3.2, new §3.6 Reserved, new §3.7 Misconception Lifecycle Seam). These changes are relevant to Phase 5 Task 1 but are Green-phase implementation — not test files or Measure docs. Per Red-phase boundary compliance, the file was restored to HEAD via `git restore kst-srs.v2/SPECIFICATION.md`. The Green-phase spec updates are the JR Green agent's deliverable (per the handoff list below).
+
+#### Failure-mode verification (rules compliance, sixth pass)
+
+- ✅ 7 Red failures are **spec content missing**, not durable-record staleness.
+- ✅ Bounded command (single file filter, 1.62s).
+- ✅ No new tests authored, no non-test/non-Measure files modified.
+- ✅ Already-satisfied with evidence applied to Tasks 2 + 3.
+- ✅ Three unrelated dirty worktree files preserved untouched. `kst-srs.v2/SPECIFICATION.md` restored to HEAD (Green-phase implementation).
+- ✅ Worktree boundary compliance: only `plan.md` is modified in this pass.
+
+Phase 5 Red-phase is **complete and intact at a dirty worktree (unrelated files only), sixth-pass re-verification**. Handoff to JR (Green): (a) update `kst-srs.v2/SPECIFICATION.md` per the 7 spec-parity test assertions; (b) re-add `@math-platform/knowledge-space-practice` dep to IM3 `package.json` + regenerate `package-lock.json` (per test-strategy §8); (c) re-run `doctor.sh`, `generate.sh`, `npm run lint`, `tsc --noEmit`, `CI=true npm test` as final closeout; (d) commit `chore(graph)` update for tracked `graph.db`.
