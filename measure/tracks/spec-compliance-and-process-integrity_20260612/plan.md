@@ -122,6 +122,12 @@
   - [ ] Replace "npm not on PATH" and "Not available in sandbox" with actual command output
   - [ ] If a command timed out, record "timed out at N seconds", not "PASS"
 
+- [x] Task 5.5: Harden automation supervisor prompts for goal-loop verification — 1ddc14b
+  - [x] File: `measure/automation-supervisor.py`
+  - [x] Prefix the JR, phase acceptance, adversarial, final acceptance, and closeout role prompts with `/goal`
+  - [x] Require the Measure skill and build-graph skill where applicable so goal-looped roles preserve workflow and structural verification duties
+  - [x] Verified with `python3 -m py_compile measure/automation-supervisor.py` and a text assertion for exactly five `/goal` prompts
+
 ## Phase 6: kst-lesser-holes_20260521 Phase 1 Quality
 
 - [ ] Task 6.1: Record real adversarial findings

@@ -49,7 +49,7 @@ Dependencies:
    *Link: [./archive/fix-kst-node-titles_20260615/](./archive/fix-kst-node-titles_20260615/)*
 
 - [~] **Track: Spec Compliance and Process Integrity Remediation** — **CRITICAL / IN PROGRESS**
-   *Adversarial review of the past 24 hours found systematic spec violations, automation-self-approved "manual" verification, FR-6 source mutations, missing FR-5 type annotations, and a hazardous repository state (detached HEAD, 28 stashes, dirty graph.db). This track fixes every identified issue before any dependent track proceeds.*
+   *Adversarial review of the past 24 hours found systematic spec violations, automation-self-approved "manual" verification, FR-6 source mutations, missing FR-5 type annotations, and a hazardous repository state (detached HEAD, 28 stashes, dirty graph.db). This track fixes every identified issue before any dependent track proceeds. Current addendum: harden automation-supervisor prompts with goal-loop verification for implementation, acceptance, adversarial, and closeout roles.*
    *Link: [./tracks/spec-compliance-and-process-integrity_20260612/](./tracks/spec-compliance-and-process-integrity_20260612/)*
 
 - [~] **Track: Repository Hygiene Remediation** — **IN PROGRESS**
