@@ -791,6 +791,83 @@ Phase 5 Red-phase is **complete and intact at a dirty worktree (unrelated files 
 
 ### Phase 5 — Green-phase evidence (JR agent, 2026-06-17)
 
+Four atomic Green commits (boundary-clean; unrelated worktree files preserved untouched):
+
+| Commit | Subject | Scope |
+|--------|---------|-------|
+| `9d0e1b07` | `docs(spec): add Phase 5 misconception-loop cross-references to kst-srs.v2` | `kst-srs.v2/SPECIFICATION.md` (Task 1 deliverable) |
+| `9c61214a` | `docs(track-6): record Phase 5 Green evidence in plan.md` | `measure/tracks/misconception-loop_20260521/plan.md` (this section) |
+| `7b9e873f` | `chore(deps): add @math-platform/knowledge-space-practice to IM3 dependencies` | `apps/integrated-math-3/package.json` + `package-lock.json` (test-strategy §8 dep-track prerequisite) |
+| `e676a7ef` | `chore(graph): index Phase 1–5 misconception-loop test files into tracked graph.db` | `graph.db` (Per-Task Graph Protocol, scratch-policy bypass via `ALLOW_GRAPH_DB=1`) |
+
+#### Targeted Red re-verification (Task 1)
+
+| Command | Result |
+|---------|--------|
+| `node_modules/.bin/vitest run src/__tests__/phase5-spec-section-3-2-3-7-8-4-13-3-implementation.test.ts --root packages/knowledge-space-core` | **9 passed (9)** — the 7 Phase 5 spec-parity assertions unblocked by the SPECIFICATION.md update at `9d0e1b07` |
+
+#### Live gates (Tasks 2 + 3 + dep-track closeout per test-strategy §5 P5)
+
+| Gate | Command | Result |
+|------|---------|--------|
+| `doctor.sh` | `bash measure/scripts/doctor.sh` | exit 0, "[OK] No monorepo boundary violations found." |
+| `generate.sh` | `bash measure/scripts/generate.sh` | exit 0, "Successfully generated Measure documentation." |
+| Monorepo boundary lint | `node scripts/check-monorepo-boundaries.mjs` | exit 0 |
+| Root lint | `npm run lint` | exit 0 (0 errors, 0 warnings) |
+| `tsc --noEmit` (knowledge-space-core) | `npx tsc --noEmit -p packages/knowledge-space-core/tsconfig.json` | exit 0 |
+| `tsc --noEmit` (knowledge-space-practice) | `npx tsc --noEmit -p packages/knowledge-space-practice/tsconfig.json` | exit 0 |
+| Root test suite | `CI=true npm test` | **285 passed (285)** — Phase 5 spec-parity suite unblocked |
+| IM3 smoke (bounded) | `cd apps/integrated-math-3 && npx vitest run __tests__/lib/practice/misconception-loop.smoke` | **3 passed (3)** — unblocked by dep at `7b9e873f` |
+
+#### Regression checks (Phase 1–4 surface intact)
+
+| Targeted filter | Result |
+|-----------------|--------|
+| `node_modules/.bin/vitest run edge-type-remediated-by --root packages/knowledge-space-core` | **14 passed (14)** (Phase 1) |
+| `node_modules/.bin/vitest run -t "rating cap" --root packages/practice-core` | **24 passed (24)** (Phase 2 practice-core) |
+| `node_modules/.bin/vitest run srs-rating --root packages/practice-core` | **49 passed (49)** (Phase 2 regression) |
+| `node_modules/.bin/vitest run misconception-lifecycle --root packages/knowledge-space-practice` | **34 passed (34)** (Phase 3) |
+| `node_modules/.bin/vitest run planner-remediation-injection projection-active-misconception-count --root packages/knowledge-space-practice` | **20 passed (20)** (Phase 4) |
+| `cd apps/integrated-math-3 && npx vitest run __tests__/lib/practice/srs-rating` | **23 passed (23)** (Phase 2 IM3 regression) |
+| `node_modules/.bin/vitest run srs-rating --root apps/bus-math-v2` | **23 passed (23)** (Phase 2 BM2 regression) |
+| `cd apps/integrated-math-3 && npx vitest run __tests__/convex/misconceptionState` | **19 passed (19)** (Phase 1+3 Convex regression) |
+| `cd apps/integrated-math-3 && npx vitest run __tests__/lib/practice/misconception-loop` | **33 passed (33)** (Phase 3+4 IM3 wiring + fake + smoke regression) |
+
+Full `apps/integrated-math-3` test suite was NOT re-run (timed out at 900s on prior attempt; the misconception-loop surface is bounded + targeted above).
+
+#### Implementation summary
+
+**kst-srs.v2/SPECIFICATION.md (Task 1 deliverable, commit `9d0e1b07`):**
+- §3.2 (Four-Way State): added cross-reference paragraph noting that a `remediated_by` edge (§9.1) can pin the affected skill in `inProgress` until the misconception's per-student lifecycle (§9.3) reaches `resolved`. Cross-references §9.
+- §3.6 Reserved: placeholder so §3.5 → §3.7 numbering flows naturally.
+- §3.7 Misconception Lifecycle Seam (new): documents the parallel per-student misconception lifecycle (active/resolved) and how it interacts with the §3.2 state machine. Cross-references §9.3 + §9.4.
+- §8.4 (IM3 Problem Bank): added paragraph explaining how ProbeResult verdicts feed misconception detection downstream via the lifecycle (§9.3) and how the rating-cap rule (§9.2) caps a misconception-tagged submission at Hard by default (forces Again only when severity is severe). Cross-references §9.2 + §9.3.
+- §13 (Non-Functional Requirements): split into §13.1 Core Determinism (existing bullets, unchanged), §13.2 Persistence Isolation (new — the misconceptionState.ts Convex surface is the only persistence seam), §13.3 Misconception Lifecycle Purity (new — `runRealT6Loop` is pure, Convex handlers are the only persistence seam, stale state defaults to empty).
+
+**apps/integrated-math-3/package.json + package-lock.json (test-strategy §8 dep-track prerequisite, commit `7b9e873f`):**
+- Added `"@math-platform/knowledge-space-practice": "*"` to IM3 dependencies.
+- Regenerated lockfile (benign reorder: dep already hoisted to root `node_modules`; declaring it in IM3's manifest makes the intent visible to npm and ensures correct module resolution for the smoke test).
+- No new transitive dependencies.
+
+**graph.db (Phase 5 Per-Task Graph Protocol, commit `e676a7ef`):**
+- Indexed 7 Phase 1–5 misconception-loop test files (14 → 53 nodes, 15 → 63 edges; 14005 → 14045 total nodes).
+- Scratch-policy bypass via `ALLOW_GRAPH_DB=1` env var per the pre-commit hook policy.
+
+#### Failure-mode verification (rules compliance)
+
+- ✅ Tests fail (before Green) because **the spec was missing the planned content** (not because a durable record is stale). Now Green because the spec content was added in `9d0e1b07`.
+- ✅ Targeted Red command (single filename filter, no watch, no full-suite smoke) is **bounded** (576ms wall at the post-Green re-run).
+- ✅ No new tests authored in this Green commit; the spec-parity test (Phase 5 Red commit `ab766c1c`) is unchanged and flipped green via the spec update.
+- ✅ **No test modifications** — only docs and dep changes.
+- ✅ **No new architectural patterns or utility libraries** — pure spec docs + a single dep declaration.
+- ✅ **Boundary compliance** (per the supervisor's strict rule): the Green commit `c069aedf` from the previous JR attempt bundled unrelated files (user-menu.test.tsx, automation-supervisor.py, repo-hygiene plan.md); reset via `git reset HEAD~1` and re-committed only the plan.md delta. The 3 unrelated dirty files remain preserved untouched in the worktree at JR-end (owned by their respective tracks).
+- ✅ The IM3 smoke test (which was the dep-track prerequisite blocker) flips green after `7b9e873f` lands — verified by `cd apps/integrated-math-3 && npx vitest run __tests__/lib/practice/misconception-loop.smoke` → 3 passed (3).
+- ✅ **Commit policy**: 4 atomic Green commits (`9d0e1b07`, `9c61214a`, `7b9e873f`, `e676a7ef`) follow the Measure workflow's atomic-commits-per-task rule. Each commit has a Conventional Commits message and a detailed body explaining scope and rationale.
+
+Phase 5 Green is **complete and intact at a clean Green-relevant worktree (3 unrelated preserved files only), fourth-pass re-verification**. All four non-deferred Phase 5 tasks are GREEN at HEAD. Handoff to Review or UMV.
+
+### Phase 5 — Green-phase evidence (JR agent, 2026-06-17)
+
 Commit: `9d0e1b07` — `docs(spec): add Phase 5 misconception-loop cross-references to kst-srs.v2`
 
 #### Green results (targeted Red command now passes)
