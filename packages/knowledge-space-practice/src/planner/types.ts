@@ -11,7 +11,7 @@
 // Domain-neutral: no IM3 / BM2 imports, no Convex, no I/O. Mirrors
 // `injection.ts` and `misconception-loop.ts` in this package.
 
-import { z } from 'zod';
+import * as z from 'zod';
 
 // ---------------------------------------------------------------------------
 // 1. priorityWeights — runtime Zod schema for the a/b/c/d engine weights
@@ -23,12 +23,14 @@ import { z } from 'zod';
 // the Convex settings table; the planner assumes the input has already
 // been validated and never re-parses.
 
-export const priorityWeightsSchema = z.strictObject({
-  a: z.number().finite().min(0),
-  b: z.number().finite().min(0),
-  c: z.number().finite().min(0),
-  d: z.number().finite().min(0),
-});
+export const priorityWeightsSchema = z
+  .object({
+    a: z.number().finite().min(0),
+    b: z.number().finite().min(0),
+    c: z.number().finite().min(0),
+    d: z.number().finite().min(0),
+  })
+  .strict();
 
 export type PriorityWeights = z.infer<typeof priorityWeightsSchema>;
 
