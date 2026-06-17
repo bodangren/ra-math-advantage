@@ -23,13 +23,31 @@ Depends on: Track 2 (weighted readiness). weaknessFit integrates Track 6.
 
 ## Phase 2 — Scoring Terms
 
-- [ ] Task: Implement unlockValue (TDD)
+- [~] Task: Implement unlockValue (TDD)
     - [ ] Downstream descendant count via prerequisite_for; precomputed per graph
-- [ ] Task: Implement goalProximity (TDD)
+- [~] Task: Implement goalProximity (TDD)
     - [ ] Inverse graph distance to goal node(s); 0 when no goal set
-- [ ] Task: Implement weaknessFit (TDD)
+- [~] Task: Implement weaknessFit (TDD)
     - [ ] Boost from supports / common_misconception_with links; stub to 0 if Track 6 not integrated
 - [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
+
+### Phase 2 Red-phase evidence (MID, 2026-06-18)
+
+- Authored 4 Red-phase test files (no implementation) per test-strategy.md §2 / §5: one source file per scoring term + a shared fixture.
+    - `packages/knowledge-space-practice/src/__tests__/planner-fixtures.ts` — `makePlannerNode`, `makePrereqEdge`, `makeNonPrereqEdge`, `makeMisconceptionLink`, `makePlannerChain`, `makePlannerTree`, `makePlannerCyclic`, `makePlannerDisconnected`, `makePlannerEmpty`, `defaultPriorityWeights`. Mirrors `placement-fixtures.ts` factory style; emits narrow `PlannerEdgeView` shape (no `confidence` / `sourceRefs` / `reviewStatus`).
+    - `packages/knowledge-space-practice/src/__tests__/unlock-value.test.ts` — 5 test groups (leaf, unknown, linear chain monotonicity, balanced tree, empty, disconnected, edge-type filtering, cycle safety, bulk precompute API). 14 test cases.
+    - `packages/knowledge-space-practice/src/__tests__/goal-proximity.test.ts` — 8 test groups (no goal, same node, inverse distance, unreachable, multiple goals → min, unknown goal id, empty graph, bulk precompute). 13 test cases.
+    - `packages/knowledge-space-practice/src/__tests__/weakness-fit.test.ts` — 6 test groups (empty links, non-empty links in stub mode, determinism, purity, empty/unknown node, bulk precompute, boundary lint: no `./misconception-loop` import in `planner/weakness-fit.ts`). 12 test cases.
+- Targeted Red commands (each must fail before its impl is authored; all 3 fail with `Cannot find module`):
+    - `npx vitest run unlock-value --root packages/knowledge-space-practice` → 1 failed suite, 0 tests (`Cannot find module '../planner/unlock-value'`).
+    - `npx vitest run goal-proximity --root packages/knowledge-space-practice` → 1 failed suite, 0 tests (`Cannot find module '../planner/goal-proximity'`).
+    - `npx vitest run weakness-fit --root packages/knowledge-space-practice` → 1 failed suite, 0 tests (`Cannot find module '../planner/weakness-fit'`).
+- Aggregate suite confirmation: `npx vitest run --root packages/knowledge-space-practice` → 3 failed (Phase 2 reds) | 10 passed (228 tests) | 13 files total. No regression in existing tests; planner-contract + planner-contract-adversarial still 120/120 green. The 3 failures are isolated to the new test files and represent the missing implementation surface.
+- `npx eslint src --max-warnings 0` in workspace → clean.
+- `npx tsc --noEmit` in workspace → only the 3 expected `Cannot find module '../planner/{unlock-value,goal-proximity,weakness-fit}'` errors (Red signal); no other TypeScript errors. The weakness-fit boundary-lint test uses dynamic `import('node:fs')` to avoid the missing `node` lib types in the package tsconfig.
+- Build-graph findings: `unlockValue` / `goalProximity` / `weaknessFit` still yield 0 hits in the greenfield (confirmed: planner/unlock-value.ts, planner/goal-proximity.ts, planner/weakness-fit.ts not yet authored). Per `build-graph stats` (14,069 nodes / 20,544 edges, mtime 2026-06-17): `recommendedNext` still a single field at `visualization.ts:162`; no callers for the new symbols (greenfield).
+- Red-phase boundary: tests authored in test files only, no source code under `packages/knowledge-space-practice/src/planner/` modified, no `apps/` or `convex/` touched. Unrelated dirty files at MID start (`apps/bus-math-v2/__tests__/components/user-menu.test.tsx`, `measure/tracks/repo-hygiene-remediation_20260616/plan.md`) were committed in `540473fa test(user-menu): point AuthProvider mock at resolved module path` before this Red-phase work — preserved as-is, not folded into this commit.
+- Commit: pending (this Red-phase commit will be the next `git commit`).
 
 ## Phase 3 — Composite Planner and Integration
 
