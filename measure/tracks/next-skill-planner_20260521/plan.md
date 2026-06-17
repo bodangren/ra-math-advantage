@@ -23,11 +23,11 @@ Depends on: Track 2 (weighted readiness). weaknessFit integrates Track 6.
 
 ## Phase 2 — Scoring Terms
 
-- [~] Task: Implement unlockValue (TDD)
+- [x] Task: Implement unlockValue (TDD) [green: 5ef074c4]
     - [x] Downstream descendant count via prerequisite_for; precomputed per graph [red: 41ba9480]
-- [~] Task: Implement goalProximity (TDD)
+- [x] Task: Implement goalProximity (TDD) [green: 5ef074c4]
     - [x] Inverse graph distance to goal node(s); 0 when no goal set [red: 7d250b60]
-- [~] Task: Implement weaknessFit (TDD)
+- [x] Task: Implement weaknessFit (TDD) [green: 5ef074c4]
     - [x] Boost from supports / common_misconception_with links; stub to 0 if Track 6 not integrated [red: ba25c8fa]
 - [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
 
@@ -49,6 +49,23 @@ Depends on: Track 2 (weighted readiness). weaknessFit integrates Track 6.
 - Red-phase boundary: tests authored in test files only, no source code under `packages/knowledge-space-practice/src/planner/` modified, no `apps/` or `convex/` touched. Unrelated dirty files at MID start (`apps/bus-math-v2/__tests__/components/user-menu.test.tsx`, `measure/tracks/repo-hygiene-remediation_20260616/plan.md`) were committed in `540473fa test(user-menu): point AuthProvider mock at resolved module path` before this Red-phase work — preserved as-is, not folded into this commit.
 - Commits: `41ba9480` (unlock-value Red), `7d250b60` (goal-proximity Red), `ba25c8fa` (weakness-fit Red), `59fd782e` (Red evidence block), `91f3aff9` (per-task SHAs).
 - `graph.db` was observed dirty in the supervisor's pre-gate check (20295680 → 20312064 bytes). Read-only `build-graph` queries (`stats`, `search`, `audit`) issued during the Red phase do not modify the file; the modification likely originated outside this session (pre-existing dirty state from a prior automation run, or a side-effect of an unrelated tool). Per the Red-phase rule "Do NOT modify existing source code except test files and Measure docs" — and the Phase 1 plan entry that established the same boundary ("Red-phase boundary clean: no source code, no graph.db modified") — the corrective action was to `git checkout -- graph.db` to restore the committed state. Post-revert: `git status` clean; `build-graph stats ./graph.db` returns the committed 14,059 / 20,533 / 2,056 figures from `678aceb9`; aggregate `npx vitest run --root packages/knowledge-space-practice` still 3 failed (Phase 2 reds, expected) | 10 passed (228 tests). Boundary fix noted here for the supervisor's review.
+
+### Phase 2 Green-phase evidence (JR, 2026-06-18)
+
+- Authored 3 source files implementing the scoring terms:
+    - `packages/knowledge-space-practice/src/planner/unlock-value.ts` — `getUnlockValue` (DFS counting distinct downstream descendants via `prerequisite_for` edges) + `computeUnlockValues` (bulk precompute returning `ReadonlyMap<string, number>`).
+    - `packages/knowledge-space-practice/src/planner/goal-proximity.ts` — `getGoalProximity` (reverse-edge BFS from goal nodes; proximity = 1/(distance+1); multi-goal min-distance) + `computeGoalProximities` (bulk precompute).
+    - `packages/knowledge-space-practice/src/planner/weakness-fit.ts` — `getWeaknessFit` (stub returns 0) + `computeWeaknessFitMap` (bulk precompute returning all zeros). No import from `./misconception-loop` (boundary guard per test-strategy §4).
+- Targeted Green commands (all pass):
+    - `npx vitest run unlock-value --root packages/knowledge-space-practice` → 1 passed (16 tests).
+    - `npx vitest run goal-proximity --root packages/knowledge-space-practice` → 1 passed (14 tests).
+    - `npx vitest run weakness-fit --root packages/knowledge-space-practice` → 1 passed (13 tests).
+- Aggregate suite confirmation: `npx vitest run --root packages/knowledge-space-practice` → 13 passed | 13 files total | 271 tests pass. No regression.
+- `npx eslint packages/knowledge-space-practice/src --max-warnings 0` → clean.
+- `npx tsc --noEmit --project packages/knowledge-space-practice/tsconfig.json` → clean.
+- Test fix: corrected leaf-node regex in `unlock-value.test.ts` from `/^tree\.n3\./` to `/^tree\.n2\./` — `makePlannerTree` uses the parent's level in child IDs, so depth=3 leaves are `tree.n2.*` not `tree.n3.*`. The Mid-authored regex contradicted the Mid-authored fixture; no test assertions removed.
+- Build-graph: `update ./graph.db` with the 3 new files → 25 nodes / 25 edges added (greenfield, 0 existing callers). `graph.db` reverted post-commit per pre-commit hook policy.
+- Commit: `5ef074c4` — feat(planner): implement Phase 2 scoring terms (unlockValue, goalProximity, weaknessFit).
 
 ## Phase 3 — Composite Planner and Integration
 
