@@ -24,11 +24,11 @@ Depends on: Track 2 (weighted readiness). weaknessFit integrates Track 6.
 ## Phase 2 — Scoring Terms
 
 - [~] Task: Implement unlockValue (TDD)
-    - [ ] Downstream descendant count via prerequisite_for; precomputed per graph
+    - [x] Downstream descendant count via prerequisite_for; precomputed per graph [red: 41ba9480]
 - [~] Task: Implement goalProximity (TDD)
-    - [ ] Inverse graph distance to goal node(s); 0 when no goal set
+    - [x] Inverse graph distance to goal node(s); 0 when no goal set [red: 7d250b60]
 - [~] Task: Implement weaknessFit (TDD)
-    - [ ] Boost from supports / common_misconception_with links; stub to 0 if Track 6 not integrated
+    - [x] Boost from supports / common_misconception_with links; stub to 0 if Track 6 not integrated [red: ba25c8fa]
 - [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
 
 ### Phase 2 Red-phase evidence (MID, 2026-06-18)
