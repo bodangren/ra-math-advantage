@@ -32,7 +32,7 @@ Depends on: Track 2 (weighted readiness). weaknessFit integrates Track 6.
 - [x] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
     - [x] Automated gates: 13/13 test files (271 tests) pass; tsc --noEmit clean; eslint --max-warnings 0 clean.
     - [x] coverage >80% (Phase 2 adds 3 source modules, each fully covered by targeted test files).
-    - [x] Phase 2 checkpoint [checkpoint: a1b2c3d4]
+    - [x] Phase 2 checkpoint [checkpoint: 6788c8e2]
 
 ### Phase 2 Red-phase evidence (MID, 2026-06-18)
 
