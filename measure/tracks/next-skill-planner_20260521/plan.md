@@ -5,8 +5,9 @@ Depends on: Track 2 (weighted readiness). weaknessFit integrates Track 6.
 
 ## Phase 1 — Contract & Schema
 
-- [ ] Task: Define planner types and priority weight config
-    - [ ] Priority score type; configurable weights a/b/c/d; planner input/output types
+- [~] Task: Define planner types and priority weight config
+    - [~] Priority score type; configurable weights a/b/c/d; planner input/output types
+    - Red result (MID, 2026-06-17): `npx vitest run planner-contract --root packages/knowledge-space-practice` → 1 failed suite, 0 tests. Module `../planner/types` not found (expected — types.ts not yet authored).
 - [ ] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md)
 
 ## Phase 2 — Scoring Terms
