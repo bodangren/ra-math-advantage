@@ -67,10 +67,7 @@ Dependencies:
    - [ ] **Track 3: Edge Calibration Loop**
       *Data-driven prerequisite-edge validation: a Beta-Bernoulli posterior per `prerequisite_for` edge from paired proficiency verdicts, with recency decay and a curriculum-order confounding guardrail, producing a human review queue. (Item 3.) Depends on Track 1.*
       *Link: [./tracks/edge-calibration_20260521/](./tracks/edge-calibration_20260521/)*
-   - [x] **Track 4: Next-Skill Planner** — **COMPLETED / ARCHIVED**
-       *Rank the outer-fringe ready set by a composite priority score (readiness + downstream unlock value + goal proximity + weakness fit); `recommendedNext` becomes top-N by priority. Implemented 6 source modules (types, unlockValue, goalProximity, weaknessFit stub, priority, recommendedNext). 17 test files / 360 tests pass. All 5 ACs met. (Item 4.) Depends on Track 2; weaknessFit integrates Track 6.*
-       *Link: [./measure/archive/next-skill-planner_20260521/](./measure/archive/next-skill-planner_20260521/)*
-   - [ ] **Track 5: Adaptive Placement**
+    - [ ] **Track 5: Adaptive Placement**
       *Cold-start diagnostic: an adaptive tree-walk that locates a new student's mastery frontier in O(log n) probes, with an abstract probe interface and an IM3 problem-bank reference implementation. (Item 5.) Depends on Track 1.*
       *Link: [./tracks/adaptive-placement_20260521/](./tracks/adaptive-placement_20260521/)*
    - [ ] **Track 6: Misconception Remediation Loop**
@@ -1056,6 +1053,10 @@ Sixteen candidate tracks identified from a full-roadmap review. Each is registry
 - [x] **Track: IM1 Practice Readiness** — **COMPLETED** (2026-06-11)
   *Audit Remediation (2026-06-09) #2/#6. Took IM1 from 0% generator coverage to a working Module-1 vertical slice: coverage matrix landed; 6 deterministic Module-1 generators in `packages/math-content/src/problem-families/im1/` (all green at numSeeds=50); 6 STUB blueprints replaced with real worked/guided/independent specs; `/student/practice` route wired in apps/integrated-math-1; audit refreshed to 6/138 served with 132-skill long tail tracked in gap-queue + audit doc.*
   *Link: [./archive/im1-practice-readiness_20260609/](./archive/im1-practice-readiness_20260609/)*
+
+- [x] **Track 4: Next-Skill Planner** — **COMPLETED / ARCHIVED** (2026-06-18)
+   *Rank the outer-fringe ready set by a composite priority score (readiness + downstream unlock value + goal proximity + weakness fit); `recommendedNext` becomes top-N by priority. Implemented 6 source modules (types, unlockValue, goalProximity, weaknessFit stub, priority, recommendedNext). 17 test files / 360 tests pass. All 5 ACs met. (Item 4, kst-srs.v2 program.) Depends on Track 2; weaknessFit stub pending Track 6 integration.*
+   *Link: [./measure/archive/next-skill-planner_20260521/](./measure/archive/next-skill-planner_20260521/)*
 
 - [x] **Track: Misconception Content Authoring** — **COMPLETED** (2026-06-15)
   *Author the misconception taxonomy + remediation content that feeds the KST T6 mechanism (`remediated_by` edges, lifecycle). T6 builds the machinery; without content it is inert. Size: M. Depends on: misconception-loop (KST T6) mechanism.*
