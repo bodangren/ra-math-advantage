@@ -60,10 +60,10 @@ describe('priority — default equal weights (a=b=c=d=1)', () => {
     expect(closeTo(getPriority('chain.n1', graph, defaultPriorityWeights), 3.35)).toBe(true);
   });
 
-  it('composite for chain.n2 = readiness + unlockValue + goalProximity + weaknessFit (2 + 2/3)', () => {
+  it('composite for chain.n2 = readiness + unlockValue + goalProximity + weaknessFit (0.2 + 2 + 1/3 ≈ 2.53)', () => {
     const graph = makePlannerChain({ length: 4, goalIds: ['chain.n4'], readiness: CHAIN_READINESS });
-    // 0.2 + 2 + 1/3 + 0 = 2 + 2/3
-    expect(closeTo(getPriority('chain.n2', graph, defaultPriorityWeights), 2 + 2 / 3)).toBe(true);
+    // 0.2 + 2 + 1/3 + 0 ≈ 2.5333
+    expect(closeTo(getPriority('chain.n2', graph, defaultPriorityWeights), 0.2 + 2 + 1 / 3)).toBe(true);
   });
 
   it('composite for chain.n3 = 1.8 (readiness 0.3 + unlock 1 + proximity 0.5)', () => {

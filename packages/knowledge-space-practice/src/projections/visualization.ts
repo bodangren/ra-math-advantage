@@ -9,6 +9,7 @@ import type {
   PrerequisiteGap,
   InterventionGroup,
 } from './types';
+import { getRecommendedNext } from '../planner/recommended-next';
 
 // ---------------------------------------------------------------------------
 // Node state helpers
@@ -158,8 +159,57 @@ export function projectStudentVisualization(
     }
   }
 
-  // Recommended next: first ready nodes, then unknown nodes
-  const recommendedNext: VisualNodeV1[] = [...ready, ...unknown].slice(0, 5);
+  // Phase 3 (Track 4 next-skill-planner): recommendedNext is top-5 by
+  // composite priority (FR5). Derive readiness from learnerState for the
+  // planner-ready/unknown partition; default equal weights.
+  const defaultWeights = { a: 1, b: 1, c: 1, d: 1 } as const;
+
+  const plannerReadiness: Record<string, number> = {};
+  for (const node of skillAndTaskNodes) {
+    const ls = learnerState[node.id];
+    plannerReadiness[node.id] =
+      ls === 'ready' || ls === 'review_due' ? 0.5
+      : ls === 'mastered' ? 1
+      : 0;
+  }
+
+  const plannerInput = {
+    nodes: skillAndTaskNodes.map((n) => ({
+      id: n.id,
+      kind: n.kind,
+      title: n.title,
+      domain: n.domain,
+    })),
+    edges: edges
+      .filter((e) => e.type === 'prerequisite_for')
+      .map((e) => ({
+        id: e.id,
+        type: e.type,
+        sourceId: e.sourceId,
+        targetId: e.targetId,
+        weight: e.weight,
+      })),
+    readinessByNode: plannerReadiness,
+    goalNodeIds: [],
+    misconceptionLinks: [],
+  };
+
+  const rankedIds = getRecommendedNext(plannerInput, defaultWeights, 5);
+
+  const recommendedNext: VisualNodeV1[] = rankedIds
+    .map((id) => {
+      const node = nodeMap.get(id);
+      if (!node) return null;
+      const state = computeNodeState(
+        node.id,
+        learnerState,
+        nodeMap,
+        edges,
+        masteredIds,
+      );
+      return toVisualNode(node, state);
+    })
+    .filter((n): n is VisualNodeV1 => n !== null);
 
   const visualEdges = toVisualEdges(edges, ['prerequisite', 'supports', 'extends']);
 
@@ -171,7 +221,7 @@ export function projectStudentVisualization(
   sortNodes(ready);
   sortNodes(blocked);
   sortNodes(reviewDue);
-  sortNodes(recommendedNext);
+  // recommendedNext is already sorted by the planner (priority desc, nodeId tie-break)
   visualEdges.sort((a, b) => {
     const srcCmp = a.sourceId.localeCompare(b.sourceId);
     if (srcCmp !== 0) return srcCmp;
