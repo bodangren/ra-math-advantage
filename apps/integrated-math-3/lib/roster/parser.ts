@@ -170,6 +170,22 @@ export function parseRoster(csv: string): RosterParseResult {
       }
     }
 
+    // Per-row identifier check: at least one of email or sisId must
+    // be present so the row can be linked to a student account in
+    // Phase 2 (FR2: "name, email/identifier, section"). Without
+    // this check, a row with name only would silently slip into the
+    // dry-run "created" count and then fail to enroll at the
+    // mutation step — surfacing it here gives the teacher a
+    // row-level error to fix.
+    if (!rowData.email && !rowData.sisId) {
+      errors.push({
+        rowIndex,
+        column: 'email',
+        code: 'missing_required',
+        message: 'Missing required column',
+      });
+    }
+
     if (sisIdVal) {
       rowData.sisId = sisIdVal;
     }
