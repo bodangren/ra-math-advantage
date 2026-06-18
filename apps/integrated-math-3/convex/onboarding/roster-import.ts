@@ -36,48 +36,12 @@ interface ImportRosterResult {
   errors: RosterImportError[];
 }
 
-interface RosterImportDoc {
-  _id: Id<'roster_imports'>;
-  _creationTime: number;
-  classId: Id<'classes'>;
-  importedBy: Id<'profiles'>;
-  importedAt: number;
-  source: {
-    fileName?: string;
-    rowCount: number;
-  };
-  created: number;
-  updated: number;
-  skipped: number;
-  errors: RosterImportError[];
-  createdStudentIds: Id<'profiles'>[];
-}
-
-type LooseMutationCtx = {
-  db: {
-    get: (id: Id<any>) => Promise<any | null>;
-    query: (table: string) => any;
-    insert: (table: string, doc: Record<string, unknown>) => Promise<Id<any>>;
-    patch: (id: Id<any>, updates: Record<string, unknown>) => Promise<void>;
-  };
-};
-
-type LooseQueryCtx = LooseMutationCtx;
-
 function isValidEmail(email: string): boolean {
   return email.includes('@') && email.indexOf('@') < email.lastIndexOf('.');
 }
 
-function isEnrollmentMatch(
-  enrollment: any,
-  classId: Id<'classes'>,
-  studentId: Id<'profiles'>,
-): boolean {
-  return enrollment.classId === classId && enrollment.studentId === studentId;
-}
-
 export async function importRosterMutation(
-  ctx: LooseMutationCtx,
+  ctx: MutationCtx,
   args: ImportRosterArgs,
 ): Promise<ImportRosterResult> {
   const classDoc = await ctx.db.get(args.classId);
@@ -90,24 +54,27 @@ export async function importRosterMutation(
   }
 
   const teacher = await ctx.db.get(args.importedBy);
+  if (!teacher) {
+    throw new Error('importedBy profile not found');
+  }
   const orgId: Id<'organizations'> = teacher.organizationId;
 
-  const allProfiles: any[] = await ctx.db
+  const allProfiles: Doc<'profiles'>[] = await ctx.db
     .query('profiles')
     .withIndex('by_username')
     .collect();
-  const profileByEmail = new Map<string, any>();
+  const profileByEmail = new Map<string, Doc<'profiles'>>();
   for (const p of allProfiles) {
     if (p.role === 'student') {
       profileByEmail.set(p.username, p);
     }
   }
 
-  const allCredentials: any[] = await ctx.db
+  const allCredentials: Doc<'auth_credentials'>[] = await ctx.db
     .query('auth_credentials')
     .withIndex('by_username')
     .collect();
-  const credentialByUsername = new Map<string, any>();
+  const credentialByUsername = new Map<string, Doc<'auth_credentials'>>();
   for (const c of allCredentials) {
     credentialByUsername.set(c.username, c);
   }
@@ -134,7 +101,6 @@ export async function importRosterMutation(
     }
 
     let profile = profileByEmail.get(email);
-    let isNewStudent = false;
 
     if (!profile) {
       const profileId = await ctx.db.insert('profiles', {
@@ -147,7 +113,7 @@ export async function importRosterMutation(
         updatedAt: now,
       });
 
-      let cred = credentialByUsername.get(email);
+      const cred = credentialByUsername.get(email);
       if (!cred) {
         await ctx.db.insert('auth_credentials', {
           profileId,
@@ -165,20 +131,23 @@ export async function importRosterMutation(
 
       profile = {
         _id: profileId,
+        _creationTime: now,
+        organizationId: orgId,
         username: email,
         role: 'student',
-        organizationId: orgId,
         displayName: row.name,
+        metadata: {},
+        createdAt: now,
+        updatedAt: now,
       };
       profileByEmail.set(email, profile);
-      isNewStudent = true;
       created++;
       createdStudentIds.push(profileId);
     } else {
       const existingEnrollment = await ctx.db
         .query('class_enrollments')
-        .withIndex('by_class_and_student', (q: any) =>
-          q.eq('classId', args.classId).eq('studentId', profile._id),
+        .withIndex('by_class_and_student', (q) =>
+          q.eq('classId', args.classId).eq('studentId', profile!._id),
         )
         .unique();
 
@@ -212,11 +181,11 @@ export async function importRosterMutation(
     createdStudentIds,
   });
 
-  return { importId: importId as unknown as Id<'roster_imports'>, created, updated, skipped, errors };
+  return { importId, created, updated, skipped, errors };
 }
 
 export async function getImportSummary(
-  ctx: LooseQueryCtx,
+  ctx: QueryCtx,
   args: { classId: Id<'classes'>; importId: Id<'roster_imports'> },
 ): Promise<{
   importId: Id<'roster_imports'>;
@@ -254,7 +223,7 @@ export async function getImportSummary(
 }
 
 export async function listImportsForClass(
-  ctx: LooseQueryCtx,
+  ctx: QueryCtx,
   args: { classId: Id<'classes'> },
 ): Promise<
   Array<{
@@ -268,9 +237,9 @@ export async function listImportsForClass(
     errors: RosterImportError[];
   }>
 > {
-  const results: any[] = await ctx.db
+  const results: Doc<'roster_imports'>[] = await ctx.db
     .query('roster_imports')
-    .withIndex('by_class', (q: any) => q.eq('classId', args.classId))
+    .withIndex('by_class', (q) => q.eq('classId', args.classId))
     .collect();
 
   return results
@@ -307,7 +276,7 @@ export const importRosterMutationConvex = internalMutation({
       }),
     ),
   },
-  handler: importRosterMutation as any,
+  handler: importRosterMutation,
 });
 
 export const getImportSummaryQuery = internalQuery({
@@ -315,12 +284,12 @@ export const getImportSummaryQuery = internalQuery({
     classId: v.id('classes'),
     importId: v.id('roster_imports'),
   },
-  handler: getImportSummary as any,
+  handler: getImportSummary,
 });
 
 export const listImportsForClassQuery = internalQuery({
   args: {
     classId: v.id('classes'),
   },
-  handler: listImportsForClass as any,
+  handler: listImportsForClass,
 });

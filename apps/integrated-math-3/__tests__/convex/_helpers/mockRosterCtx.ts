@@ -114,17 +114,17 @@ type EqBuilder = {
   eq: (field: string, value: unknown) => EqBuilder;
 };
 
-function makeIndexChain<T extends Record<string, unknown>>(
+function makeIndexChain<T>(
   rows: T[],
-): { withIndex: ReturnType<typeof vi.fn>; queryMock: { withIndex: ReturnType<typeof vi.fn> } } {
+): { withIndex: (...args: unknown[]) => unknown; queryMock: { withIndex: (...args: unknown[]) => unknown } } {
   const withIndex = vi.fn().mockImplementation(
     (_indexName: string, builder?: (q: EqBuilder) => unknown) => {
       let filtered: T[] = [...rows];
       const eqChain: EqBuilder = {
         eq: (field: string, value: unknown) => {
-          filtered = filtered.filter(
-            (d) => (d as unknown as Record<string, unknown>)[field] === value,
-          );
+          filtered = (filtered as unknown as Array<Record<string, unknown>>).filter(
+            (d) => d[field] === value,
+          ) as unknown as T[];
           return eqChain;
         },
       };

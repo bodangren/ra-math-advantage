@@ -70,13 +70,17 @@ function getField(
   return field.fieldType;
 }
 
+function exportArgsOf(wrapper: unknown): string {
+  return (wrapper as { exportArgs(): string }).exportArgs();
+}
+
 describe('roster-import Convex wrappers — args validator correctness', () => {
   it('getImportSummaryQuery.args.importId is v.id("roster_imports")', async () => {
     const { getImportSummaryQuery } = await import(
       '@/convex/onboarding/roster-import'
     );
 
-    const args = parseArgs(getImportSummaryQuery.exportArgs());
+    const args = parseArgs(exportArgsOf(getImportSummaryQuery));
     const importId = getField(args, 'importId');
     expect(importId.type).toBe('id');
     if (importId.type !== 'id') {
@@ -90,7 +94,7 @@ describe('roster-import Convex wrappers — args validator correctness', () => {
       '@/convex/onboarding/roster-import'
     );
 
-    const args = parseArgs(getImportSummaryQuery.exportArgs());
+    const args = parseArgs(exportArgsOf(getImportSummaryQuery));
     const classId = getField(args, 'classId');
     expect(classId.type).toBe('id');
     if (classId.type !== 'id') {
@@ -104,7 +108,7 @@ describe('roster-import Convex wrappers — args validator correctness', () => {
       '@/convex/onboarding/roster-import'
     );
 
-    const args = parseArgs(importRosterMutationConvex.exportArgs());
+    const args = parseArgs(exportArgsOf(importRosterMutationConvex));
     const importedBy = getField(args, 'importedBy');
     expect(importedBy.type).toBe('id');
     if (importedBy.type !== 'id') {
@@ -118,7 +122,7 @@ describe('roster-import Convex wrappers — args validator correctness', () => {
       '@/convex/onboarding/roster-import'
     );
 
-    const args = parseArgs(importRosterMutationConvex.exportArgs());
+    const args = parseArgs(exportArgsOf(importRosterMutationConvex));
     const classId = getField(args, 'classId');
     expect(classId.type).toBe('id');
     if (classId.type !== 'id') {
@@ -132,7 +136,7 @@ describe('roster-import Convex wrappers — args validator correctness', () => {
       '@/convex/onboarding/roster-import'
     );
 
-    const args = parseArgs(listImportsForClassQuery.exportArgs());
+    const args = parseArgs(exportArgsOf(listImportsForClassQuery));
     const classId = getField(args, 'classId');
     expect(classId.type).toBe('id');
     if (classId.type !== 'id') {
@@ -146,7 +150,7 @@ describe('roster-import Convex wrappers — args validator correctness', () => {
       '@/convex/onboarding/roster-import'
     );
 
-    const args = parseArgs(importRosterMutationConvex.exportArgs());
+    const args = parseArgs(exportArgsOf(importRosterMutationConvex));
     const rows = getField(args, 'rows');
     expect(rows.type).toBe('array');
     if (rows.type !== 'array') {
@@ -168,7 +172,7 @@ describe('roster-import Convex wrappers — args validator correctness', () => {
       '@/convex/onboarding/roster-import'
     );
 
-    const args = parseArgs(importRosterMutationConvex.exportArgs());
+    const args = parseArgs(exportArgsOf(importRosterMutationConvex));
     const sourceField = args.value['source'];
     expect(sourceField).toBeDefined();
     expect(sourceField!.optional).toBe(true);
