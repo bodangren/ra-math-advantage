@@ -143,12 +143,34 @@ Depends on: Track 2 (weighted readiness). weaknessFit integrates Track 6.
 - Build-graph: no symbol changes (test-only commit); `graph.db` reverted post-commit per pre-commit hook policy.
 - Commit: `b9bba86f` — test(planner): add Phase 3 adversarial coverage.
 
-## Phase 4 — Docs & Doctor
+## Phase 4 — Docs & Doctor [checkpoint: 1d461811]
 
-- [~] Task: Update in-repo kst-srs.v2 spec §7 (Next-Skill Planner) and visualization §recommendedNext contract
-- [~] Task: Run measure/generate.sh and measure/doctor.sh; fix architectural lint
-- [~] Task: Final verification — boundary lints, npm run lint, tsc --noEmit, CI=true npm run test
-- [~] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md)
+- [x] Task: Update in-repo kst-srs.v2 spec §7 (Next-Skill Planner) and visualization §recommendedNext contract [1d461811]
+- [x] Task: Run measure/generate.sh and measure/doctor.sh; fix architectural lint [1d461811]
+- [x] Task: Final verification — boundary lints, npm run lint, tsc --noEmit, CI=true npm run test [1d461811]
+- [x] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md) [1d461811]
+
+### Phase 4 Green-phase evidence (JR, 2026-06-18)
+
+- Updated `kst-srs.v2/SPECIFICATION.md` §7 with implementation-accurate contract details from Phases 1-3:
+    - §7.4 Output: expanded with `getRecommendedNext` behavior, `topN = 5` default, ready-before-unknown partitioning, `nodeId.localeCompare` ascending tie-break, `PlannerOutput` type.
+    - §7.5 Priority Score Type: `PriorityScore` discriminated union (`ranked` | `unranked` | `mastered`) with `PriorityScoreTerms` breakdown.
+    - §7.6 Zod Contract: `priorityWeightsSchema` as a Zod `strictObject` with `z.number().finite().min(0)` for a/b/c/d — rejects NaN, ±Infinity, negatives, extra keys.
+    - §7.7 Planner Types: `PlannerInput` / `PlannerOutput` interfaces, `PlannerNodeView`, `PlannerEdgeView`.
+    - §7.8 Function Signatures: `getPriority` and `getRecommendedNext` signatures.
+    - §7.9 Bulk Precompute APIs: `computePriorities`, `computeUnlockValues`, `computeGoalProximities`, `computeWeaknessFitMap`.
+    - §7.10 Package Boundary: domain-neutral, no `apps/` or `convex/_generated/` imports, pure functions, `weaknessFit` stub pending Track 6.
+    - §7.11 Cycle Safety and Precomputation: iterative DFS (cycle-safe) for `unlockValue`, BFS for `goalProximity`, all terms precomputed for composite scoring.
+- Targeted Green command: `npx vitest run kst-srs-v2-planner-parity --root packages/knowledge-space-practice` → 1 passed (15 tests). All 9 previously-failing implementation-accurate contract-detail assertions now pass. The 6 high-level overview assertions continue to pass.
+- Aggregate suite: `npx vitest run --root packages/knowledge-space-practice` → 17 passed | 360 tests pass. No regression.
+- `bash measure/scripts/generate.sh` → `Successfully generated Measure documentation.` (exit 0).
+- `bash measure/scripts/doctor.sh` → `[OK] No monorepo boundary violations found.` (exit 0).
+- `npm run lint` (root) → clean.
+- `npx tsc --noEmit --project packages/knowledge-space-practice/tsconfig.json` → clean.
+- `CI=true npm test` (root) → 20 files / 285 tests pass in `packages/knowledge-space-core`.
+- Stale §10/§6.4 references in the plan and test-strategy noted in the Red-phase evidence block — these are the spec-section-numbering discrepancy from the MID's discovery that the planner is at §7, not §10 or §6.4. The source code comments (`types.ts:3`, `priority.ts:4`, `recommended-next.ts:4`) already cite §7 correctly. The plan and test-strategy references are pre-existing MID artifacts; fixing them is a low-priority documentation cleanup that does not block this phase.
+- Commit: `1d461811` — docs(kst-srs.v2): update §7 with implementation-accurate planner contract details.
+- `graph.db` not updated (spec is Markdown, not TypeScript — build-graph only tracks .ts/.tsx files).
 
 ### Phase 4 Red-phase evidence (MID, 2026-06-18)
 
