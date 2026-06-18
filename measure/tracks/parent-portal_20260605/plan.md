@@ -429,3 +429,70 @@ The dispatcher is intentionally a presentational component: it consumes `links` 
 - `measure/generated/routes.md` (modified, `/parent` route entry regenerated) — generated artifact (regenerated because Phase 2 added `app/parent/page.tsx`); preserved, NOT staged.
 
 Phase-end worktree cleanup of unrelated user work remains the supervisor's job, not the Red-phase commit.
+
+### Phase 3 — Red-phase boundary fix (MID attempt-2, 2026-06-19)
+
+Supervisor gate flagged the Phase 3 Red-phase attempt for a non-test /
+non-Measure file change in violation of the Red-phase boundary rule:
+
+> Mid role changed non-test/non-Measure files, which violates the
+> Red-phase boundary:
+> - graph.db
+
+**Root cause:** read-only `build-graph` queries (`stats`, `search
+ParentDashboard`, `search ParentEmptyStates`, `search
+parentVisualizationV1`) executed against the SQLite-backed `graph.db`
+silently updated the file's mtime/journal during this attempt's
+graph-context probe. The content of `graph.db` was not edited by the
+MID agent — only the file's mtime was bumped by the scanner. The
+supervisor gate treats any dirty `graph.db` as a Red-phase boundary
+violation.
+
+This is the same SQLite-mtime class of issue flagged in Phase 1 (see
+"Phase 1 — Red-phase boundary fix (MID, 2026-06-19, post-supervisor-gate)"
+section above). Phase 2 attempt-3 explicitly verified that
+read-only `build-graph` queries no longer dirty `graph.db` on the
+`search` path, but attempt-2 of Phase 3 re-introduced the issue by
+combining `stats` + multiple `search` calls in quick succession.
+
+**Fix applied (this attempt, doc-only commit):**
+
+- `git checkout HEAD -- graph.db` → restored file to committed state.
+- Verified: `git status --porcelain` no longer lists `graph.db`;
+  `git diff graph.db` is empty (content matches HEAD).
+- The Phase 3 Red test commit (`24024b48`) does NOT stage `graph.db`.
+- All structural facts this attempt would have probed (`build-graph
+  stats` / `search ParentEmptyStates` etc.) are already recorded in
+  the Red-phase evidence section above (pre-supervision probe, in the
+  same `plan.md` file). This attempt does NOT re-run those probes —
+  the graph-context baseline was captured once and is stable.
+
+**Re-verified Red state at HEAD (this attempt, no graph probes run):**
+
+```
+npx vitest run __tests__/components/parent/ParentEmptyStates.test.tsx
+```
+
+→ **1 failed suite, 0 tests executed.**
+Failure: `Failed to resolve import "@/components/parent/ParentEmptyStates"
+from "__tests__/components/parent/ParentEmptyStates.test.tsx"`
+(implementation missing). Same Red signal as the original attempt —
+the test fails because the implementation is missing, not because of
+stale durable records.
+
+**Dirty worktree at MID attempt-2 end (this commit's stage):**
+- `apps/integrated-math-3/__tests__/lib/onboarding/student-flow.test.ts` (modified) — unrelated user work; preserved, NOT staged.
+- `measure/automation-supervisor.py` (modified) — unrelated user work; preserved, NOT staged.
+- `measure/generated/routes.md` (modified, regenerated) — generated artifact; preserved, NOT staged.
+- `graph.db` — restored to HEAD by `git checkout HEAD -- graph.db`. No
+  longer in `git status --porcelain`. No mtime change from this
+  attempt's vitest run (only content-equal updates, which git
+  ignores).
+
+**Lesson learned (already in plan.md Phase 1 section; reinforced here):**
+do NOT run `build-graph` read-only queries against `graph.db` during
+Red-phase attempts. Either (a) snapshot+restore graph.db around the
+probe, or (b) skip the probe entirely once the baseline is recorded
+in plan.md. The 2026-06-19 Phase 3 Red-phase evidence section above
+is the authoritative baseline; future MID-attempts in this track can
+reference it instead of re-probing.
