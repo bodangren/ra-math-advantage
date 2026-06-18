@@ -168,7 +168,7 @@ Depends on: Track 2 (weighted readiness). weaknessFit integrates Track 6.
 - `npm run lint` (root) → clean.
 - `npx tsc --noEmit --project packages/knowledge-space-practice/tsconfig.json` → clean.
 - `CI=true npm test` (root) → 20 files / 285 tests pass in `packages/knowledge-space-core`.
-- Stale §10/§6.4 references in the plan and test-strategy noted in the Red-phase evidence block — these are the spec-section-numbering discrepancy from the MID's discovery that the planner is at §7, not §10 or §6.4. The source code comments (`types.ts:3`, `priority.ts:4`, `recommended-next.ts:4`) already cite §7 correctly. The plan and test-strategy references are pre-existing MID artifacts; fixing them is a low-priority documentation cleanup that does not block this phase.
+- Reviewer A corrected the stale §10/§6.4 references in `spec.md` and `test-strategy.md` to §7; the live `kst-srs.v2/SPECIFICATION.md` has always placed the Next-Skill Planner at §7.
 - Commit: `1d461811` — docs(kst-srs.v2): update §7 with implementation-accurate planner contract details.
 - `graph.db` not updated (spec is Markdown, not TypeScript — build-graph only tracks .ts/.tsx files).
 

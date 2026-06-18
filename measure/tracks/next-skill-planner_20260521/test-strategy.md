@@ -10,7 +10,7 @@ Contract-first then per-task TDD; >80% line coverage on new modules.
 | 1 Contract & Schema | weight-config Zod parse; `PlannerInput`/`Output`/`PriorityScore` type round-trips | none | weights schema + score field shape (no Convex tables — pure types) | `vitest run` in `knowledge-space-practice` |
 | 2 Scoring Terms | pure-math unit tests for `unlockValue`, `goalProximity`, `weaknessFit` (incl. property tests on graph traversal) | none — keep core domain-neutral | – | targeted file filters per term |
 | 3 Composite + Wire | `priority(B)` weighted-sum unit; `recommendedNext` top-N ordering test against multi-skill ready set | `buildStudentVisualizationV1` end-to-end on a fixture graph | visualization schema unaffected (`StudentVisualizationV1`) | targeted `visualization.test.ts` filter, then pkg suite |
-| 4 Docs & Doctor | – | – | spec parity (kst-srs.v2 §10, §6.4) + boundary lints | `npm run doctor`, root lint, `tsc --noEmit`, `CI=true npm test` |
+| 4 Docs & Doctor | – | – | spec parity (kst-srs.v2 §7) + boundary lints | `npm run doctor`, root lint, `tsc --noEmit`, `CI=true npm test` |
 
 Bias ~75% effort to **Phase 2 unit tests** (pure math + graph traversal — cheapest, highest leverage). Phase 3 carries the only integration test (visualization wiring); no e2e in this track.
 
@@ -77,7 +77,7 @@ Ran `build-graph stats` (fresh `graph.db`, 14,059 nodes / 20,533 edges, mtime to
 | P1 | `npx vitest run planner-contract --root packages/knowledge-space-practice` | `npm test --workspace=packages/knowledge-space-practice` + `npx tsc --noEmit` (workspace) |
 | P2 | `npx vitest run unlock-value --root packages/knowledge-space-practice` then `goal-proximity`, then `weakness-fit` (each red before its impl) | `npm test --workspace=packages/knowledge-space-practice` (full pkg suite) |
 | P3 | `npx vitest run priority --root packages/knowledge-space-practice` **and** `npx vitest run recommended-next --root packages/knowledge-space-practice` (must fail against current slice-of-5) | pkg suite + `npx vitest run projections --root packages/knowledge-space-practice` (visualization wiring stays green with new ordering) |
-| P4 | `npm run doctor` (expect lint failure if spec text not updated for §10/§6.4) | `npm run lint && CI=true npm test && npx tsc --noEmit` at repo root — **the production gate** |
+| P4 | `npm run doctor` (expect lint failure if spec text not updated for §7) | `npm run lint && CI=true npm test && npx tsc --noEmit` at repo root — **the production gate** |
 
 ### Artifact tests vs. live-behavior tests
 

@@ -32,7 +32,7 @@ priority score.
   `priority(B) = a·readiness(B) + b·unlockValue(B) + c·goalProximity(B) +
   d·weaknessFit(B)`, with `a, b, c, d` configurable engine weights.
 - FR5 — recommendedNext. `recommendedNext` becomes top-N by `priority`, replacing
-  the `slice(0, 5)` placeholder. Visualization §10 / §6.4 updated.
+  the `slice(0, 5)` placeholder. Visualization §7 updated.
 
 ## Non-Functional Requirements
 
