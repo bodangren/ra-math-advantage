@@ -123,6 +123,26 @@ Depends on: Track 2 (weighted readiness). weaknessFit integrates Track 6.
 - Dirty worktree at MID start: `git status --porcelain` was clean. No unrelated user work to preserve.
 - Re-verified (MID, 2026-06-18, 11:09 CST): targeted `npx vitest run priority recommended-next projections --root packages/knowledge-space-practice` → 3 failed suites, 0 tests (all `Cannot find module '../planner/{priority,recommended-next}'`). Aggregate suite: 3 failed (Phase 3 reds) | 12 passed (261 tests). No new tests authored this turn — the Red phase was already complete from the prior MID session and the re-verification confirms the state is stable. `visualization.ts:162` still holds the `[...ready, ...unknown].slice(0, 5)` placeholder (Green work). `graph.db` mtime unchanged at `2026-06-18 06:29`. Worktree remains clean. Green implementation of `planner/priority.ts` + `planner/recommended-next.ts` + visualization wiring is unblocked and ready for the JR role.
 
+### Phase 3 Adversarial coverage (Auditor, 2026-06-18)
+
+- Authored `packages/knowledge-space-practice/src/__tests__/planner-phase3-adversarial.test.ts` — 37 new tests, anchored in live behavior (real planner functions, real visualization pipeline, real `syntheticMathFixture`). No fake harnesses. Categories:
+    - **boundary** — `getRecommendedNext` `topN` with NaN, ±Infinity, -1, fractional, larger-than-N, -0; `getUnlockValue` self-loops; `getGoalProximity` with goal in a disconnected component
+    - **failure-path** — empty candidate set, non-skill kinds, planner input with non-existent nodes
+    - **integration** — `syntheticMathFixture` round-trip through `projectStudentVisualization`: `recommendedNext` length, stability, identity with `getRecommendedNext` on the projected planner input, all-mastered empty case, length≤5 across multiple learner states
+    - **regression** — pre-track `[...ready, ...unknown].sort(nodeId).slice(0, 5)` semantics preserved in degenerate cases
+    - **property** — shuffled `input.nodes` order and shuffled `readinessByNode` keys produce identical ranker output
+    - **precomputation invariant (NFR)** — `computePriorities` bulk precompute matches per-node oracle on heterogeneous (chain + tree) graphs
+    - **exhaustive edge type filtering** — every non-prereq edge type used elsewhere in the knowledge-space package is confirmed to be ignored by the ranker
+- Auditor findings: **no blocking correctness bugs found**. The implementation is sound. Two minor code-quality observations (NOT defects):
+    1. `projectStudentVisualization` recomputes `computeNodeState` for each ranked id rather than reusing the precomputed `stateByNodeId` — wasted work, not a correctness issue.
+    2. The `plannerReadiness` ternary `ls === 'review_due' ? 0.5` is dead code: the candidate filter `state === 'ready' || state === 'unknown'` excludes `review_due`, so this branch is unreachable.
+- Targeted adversarial commands: `npx vitest run planner-phase3-adversarial --root packages/knowledge-space-practice` → 1 passed (37 tests).
+- Aggregate suite confirmation: `npx vitest run --root packages/knowledge-space-practice` → 16 passed (345 tests). No regression.
+- `npx eslint packages/knowledge-space-practice/src --max-warnings 0` → clean.
+- `npx tsc --noEmit --project packages/knowledge-space-practice/tsconfig.json` → clean.
+- Build-graph: no symbol changes (test-only commit); `graph.db` reverted post-commit per pre-commit hook policy.
+- Commit: `b9bba86f` — test(planner): add Phase 3 adversarial coverage.
+
 ## Phase 4 — Docs & Doctor
 
 - [ ] Task: Update in-repo kst-srs.v2 spec §10 (Next-Skill Planner) and §6.4 recommendedNext
