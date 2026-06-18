@@ -145,7 +145,36 @@ Depends on: Track 2 (weighted readiness). weaknessFit integrates Track 6.
 
 ## Phase 4 — Docs & Doctor
 
-- [ ] Task: Update in-repo kst-srs.v2 spec §10 (Next-Skill Planner) and §6.4 recommendedNext
-- [ ] Task: Run measure/generate.sh and measure/doctor.sh; fix architectural lint
-- [ ] Task: Final verification — boundary lints, npm run lint, tsc --noEmit, CI=true npm run test
-- [ ] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md)
+- [~] Task: Update in-repo kst-srs.v2 spec §7 (Next-Skill Planner) and visualization §recommendedNext contract
+- [~] Task: Run measure/generate.sh and measure/doctor.sh; fix architectural lint
+- [~] Task: Final verification — boundary lints, npm run lint, tsc --noEmit, CI=true npm run test
+- [~] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md)
+
+### Phase 4 Red-phase evidence (MID, 2026-06-18)
+
+**Planning discrepancy noted:** the plan and test-strategy §5/§7 reference kst-srs.v2 §10 and §6.4 for the planner and `recommendedNext`. The live `kst-srs.v2/SPECIFICATION.md` has the planner at §7 (lines 220-243), §6.4 is `Beta-Bernoulli Posterior` (line 189), and §10 is `Practice-Variant Rename` (line 341). The Phase 1 code in `packages/knowledge-space-practice/src/planner/types.ts:3` and Phase 3 code in `priority.ts:4` / `recommended-next.ts:4` all reference `kst-srs.v2 §7`. **The §10/§6.4 references in this plan are stale**; the Red-phase contract targets the actual location of the planner in the spec (kst-srs.v2 §7). The Green/closeout role (JR) may also fix the stale §10/§6.4 references in this plan + test-strategy.
+
+**Phase deliverable:** the spec text update itself (kst-srs.v2 §7 currently has §7.1-7.4 with the high-level formula and components table; it lacks the implementation-accurate contract details introduced in Phases 1-3: Zod `priorityWeightsSchema`, `PriorityScore` discriminated union, `PlannerInput`/`PlannerOutput` types, `getPriority`/`getRecommendedNext` signatures, bulk precompute APIs, default `topN=5`, `nodeId.localeCompare` tie-break, and the no-app/no-convex boundary). This is an **artifact-level** deliverable; per user instructions, artifact assertions are allowed when the deliverable IS the artifact, and must be paired with a live-behavior proof or a plan note about the live-gate owner.
+
+**Live-gate owner (per test-strategy §7, P4 Green/closeout):** `npm run lint && CI=true npm test && npx tsc --noEmit` at the repo root, owned by the JR role. Phase 4 Red proof is the artifact test failure + doctor boundary-clean baseline.
+
+- Baseline commands run at MID start (worktree clean, mtime 2026-06-18 12:18 for `graph.db`, 2026-06-18 12:20 for `measure/generated/architecture.json`):
+    - `bash measure/scripts/doctor.sh` → `[OK] No monorepo boundary violations found.` (exit 0).
+    - `bash measure/scripts/generate.sh` → `Successfully generated Measure documentation.` (exit 0).
+    - `npx vitest run --root packages/knowledge-space-practice` → 16 files / 345 tests pass.
+    - `CI=true npm test` (root) → 20 files / 285 tests pass in `packages/knowledge-space-core`.
+    - `npm run lint` (root) → clean.
+    - `npx tsc --noEmit` (root) → `error TS18003: No inputs were found in config file` (root `tsconfig.json` has empty `include`; this is the long-standing root-config issue, not a planner defect — planner tsc is clean per Phase 3 evidence).
+- Build-graph findings (mtime today, 14,059 nodes / 20,533 edges): `getPriority` / `getRecommendedNext` / `computePriorities` not yet indexed in the graph (they live in `packages/knowledge-space-practice/src/planner/` and would be added on the next `build-graph update`); the only planner-adjacent field in the graph is `studentVisualizationV1Schema.recommendedNext` at `packages/knowledge-space-practice/src/projections/schemas.ts`.
+- Red-phase boundary: tests authored in test files only; no source code under `packages/knowledge-space-practice/src/planner/` modified; no `apps/` or `convex/` touched. The single new test file is the artifact-level spec-parity test described below.
+- Unrelated dirty files at MID start: `git status --porcelain` clean. Nothing to preserve.
+- Authored `packages/knowledge-space-practice/src/__tests__/kst-srs-v2-planner-parity.test.ts` — the single targeted Red artifact test for Phase 4. Two describe blocks, 15 test cases:
+    - "kst-srs.v2 §7 — high-level overview" (5 tests) — asserts §7.1-7.4 exist with the formula, components table, configuration, and `recommendedNext` top-N output. **All 5 currently pass** — they are the artifact-level proof that the spec's high-level surface is already correct.
+    - "kst-srs.v2 §7 — implementation-accurate contract details (Phases 1-3)" (10 tests) — asserts the implementation-accurate surface introduced in Phases 1-3 is documented: `priorityWeightsSchema` Zod (a/b/c/d non-negative finite, strict), `PriorityScore` discriminated union (ranked | unranked | mastered), `PlannerInput` / `PlannerOutput` types, `getPriority` / `getRecommendedNext` function signatures, bulk precompute APIs (`computePriorities`, `computeUnlockValues`, `computeGoalProximities`), default `topN=5`, `nodeId.localeCompare` ascending tie-break, ready-before-unknown partitioning, domain-neutrality / no-app / no-Convex boundary, cycle-safety + precomputation invariants. **9 of 10 currently fail** (1 passes — the cycle-safety / precomputation invariants test which fails on the `precomput` assertion, matching the Red signal we want).
+- Targeted Red command (the single most targeted, bounded proof per task instructions):
+    - `npx vitest run kst-srs-v2-planner-parity --root packages/knowledge-space-practice` → **1 failed suite, 9 failed tests | 6 passed tests, 15 total** in `src/__tests__/kst-srs-v2-planner-parity.test.ts`. The 9 failures are isolated to the new test file and represent the missing implementation-accurate spec content.
+- Aggregate suite confirmation (no regression): `npx vitest run --root packages/knowledge-space-practice` → **1 failed (Phase 4 Red) | 16 passed | 17 files total | 360 tests** (9 failed + 351 passed). All 345 pre-existing planner tests still pass; the 6 new high-level §7.1-7.4 tests pass. The 9 failures are isolated to the new test file.
+- `npx eslint src --max-warnings 0` in workspace → clean.
+- `npx tsc --noEmit --project packages/knowledge-space-practice/tsconfig.json` → clean (initial run flagged the `s` regex flag on the composite-priority assertion as ES2017-incompatible; replaced `.` with `[\s\S]` for cross-line matching, then re-verified clean).
+- Red-phase boundary: only `packages/knowledge-space-practice/src/__tests__/kst-srs-v2-planner-parity.test.ts` was added; no source code under `packages/knowledge-space-practice/src/planner/` modified, no `apps/` or `convex/` touched, no `kst-srs.v2/SPECIFICATION.md` modified. The test is a *consumer* of the spec, not a *modifier*.
+- Live-gate ownership (per user instructions, "artifact assertions paired with a live-behavior proof OR a plan note about which role owns the live gate"): the production gate is `npm run lint && CI=true npm test && npx tsc --noEmit` at the repo root, owned by the **JR** role per test-strategy §7. The JR role also owns updating kst-srs.v2 §7 to satisfy the 9 Red assertions, and may fix the stale §10/§6.4 references in this plan and test-strategy.
