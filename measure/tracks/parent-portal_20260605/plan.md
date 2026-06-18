@@ -243,6 +243,59 @@ All failures are genuine Red signals: implementation is missing, not stale durab
 - `measure/automation-supervisor.py` (modified) — unrelated user work.
 - `graph.db` — generated artifact; mtime unchanged by this attempt's read-only `build-graph` queries.
 
+### Phase 2 — Red-phase path-bug fix (MID attempt-3, 2026-06-19)
+
+Re-verification of the MID attempt-2 Red state at HEAD uncovered a path-
+resolution bug in `projection-boundary.test.ts`: the test's REPO_ROOT was
+computed with only 4 `../` levels from `__dirname`, but the test file
+sits 5 directories deep below the repo root. The bug produced a doubled
+`apps/apps/integrated-math-3/...` path that masked the genuine Red
+signal — every directory the test was scanning simply did not exist
+on disk for the wrong reason.
+
+**Fix applied (MID attempt-3, this commit):**
+
+- Corrected `REPO_ROOT = resolve(__dirname, '../../../../')` to
+  `resolve(__dirname, '../../../../../')` (5 levels up).
+- Updated the comment block to record the actual depth (5 directories,
+  not 4) and to flag the prior off-by-one as a masking bug.
+- Re-ran all four Red commands; the projection-boundary test now
+  fails for the right reason — the real parent UI directories
+  (`apps/integrated-math-3/components/parent/`,
+  `apps/integrated-math-3/app/parent/`) do not exist yet.
+
+**Re-verified Red state at HEAD (MID attempt-3):**
+
+```
+npx vitest run __tests__/components/parent/ParentDashboard.test.tsx \
+              __tests__/components/parent/StudentSwitcher.test.tsx \
+              __tests__/components/parent/parent-privacy.test.tsx \
+              __tests__/components/parent/projection-boundary.test.ts
+```
+
+Combined run: **4 failed suites, 3 tests failed, 0 tests passed.**
+
+| File | Result | Failure mode |
+|------|--------|--------------|
+| ParentDashboard.test.tsx | 1 failed suite, 0 tests executed | module-not-found `@/components/parent/ParentDashboard` |
+| StudentSwitcher.test.tsx | 1 failed suite, 0 tests executed | module-not-found `@/components/parent/StudentSwitcher` |
+| parent-privacy.test.tsx | 1 failed suite, 0 tests executed | module-not-found `@/components/parent/ParentDashboard` |
+| projection-boundary.test.ts | 1 failed suite, **3 tests failed** | real parent UI directories missing at correct paths |
+
+All failures are genuine Red signals: implementation is missing, not
+stale durable records. Build-graph probes (`build-graph stats`,
+`build-graph search ParentDashboard`, `build-graph search
+StudentSwitcher`) returned 0 hits for parent UI components and 0
+mtime change to `graph.db` (the Phase 1 boundary lesson was applied:
+read-only queries against the SQLite-backed graph.db no longer dirty
+the worktree at HEAD because the scanner does not perform writes on
+the search path).
+
+**Dirty worktree at MID attempt-3 start (preserved, NOT staged):**
+- `apps/integrated-math-3/__tests__/lib/onboarding/student-flow.test.ts` (modified) — unrelated user work.
+- `measure/automation-supervisor.py` (modified) — unrelated user work.
+- `graph.db` — generated artifact; mtime unchanged by this attempt's read-only `build-graph` queries.
+
 ## Phase 3 — States & Verification
 
 - [ ] Task: Empty/pending states (pre-link, no-activity)

@@ -44,11 +44,14 @@ import { fileURLToPath } from 'node:url';
 //
 // Test file lives at
 //   apps/integrated-math-3/__tests__/components/parent/projection-boundary.test.ts
-// which is 4 levels below the monorepo root. Going up 4 `..`s lands on
-// the repo root.
+// which is 5 directories below the monorepo root (parent/ -> components/
+// -> __tests__/ -> integrated-math-3/ -> apps/ -> repo_root). Going up
+// 5 `..`s lands on the repo root. The previous version used 4 levels,
+// which produced doubled `apps/apps/integrated-math-3/...` paths and
+// masked a real Red signal behind a path-resolution bug.
 
 const __dirname = resolve(fileURLToPath(import.meta.url), '..');
-const REPO_ROOT = resolve(__dirname, '../../../../');
+const REPO_ROOT = resolve(__dirname, '../../../../../');
 const PARENT_COMPONENTS_DIR = join(
   REPO_ROOT,
   'apps',
