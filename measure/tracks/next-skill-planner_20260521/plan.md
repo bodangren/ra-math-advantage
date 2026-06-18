@@ -78,7 +78,7 @@ Depends on: Track 2 (weighted readiness). weaknessFit integrates Track 6.
 - [x] Task: Wire recommendedNext to top-N by priority; update visualization (TDD) [red: 6bb677a6, integration: a1675f34, green: bee22186]
     - [x] Top-N by priority over ready+unknown set; default N=5; nodeId.localeCompare tie-break.
     - [x] Integration: extend `projections.test.ts` with one ranked-output assertion that the visualization's `recommendedNext` matches the planner's top-N.
-- [x] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md) [green: 8291d94]
     - [x] Automated gates: 15/15 test files (307 tests) pass; tsc --noEmit clean; eslint --max-warnings 0 clean.
     - [x] All 3 new/modified source files have dedicated test coverage (priority: 21, recommended-next: 19, projections integration: 1).
     - [x] Phase 3 checkpoint [checkpoint: 8291d94]
