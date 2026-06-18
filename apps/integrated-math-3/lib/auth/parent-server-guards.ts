@@ -45,8 +45,7 @@ export async function requireParentRequestClaims(
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
   }
 
-  const parentRef = (internal as Record<string, Record<string, unknown>>).parent.listParentLinks;
-  const links = await fetchInternalQuery(parentRef, {
+  const links = await fetchInternalQuery(internal.parent.links.listParentLinksQuery, {
     parentId: claims.sub,
   });
 

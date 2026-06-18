@@ -59,7 +59,9 @@ vi.mock('@/lib/convex/server', () => ({
   fetchInternalQuery: mockFetchInternalQuery,
   internal: {
     parent: {
-      listParentLinks: 'parent:listParentLinks',
+      links: {
+        listParentLinksQuery: 'parent:links:listParentLinksQuery',
+      },
     },
   },
 }));
@@ -174,7 +176,7 @@ describe('requireParentRequestClaims', () => {
     expect(res).toBeInstanceOf(Response);
     expect((res as Response).status).toBe(403);
     expect(mockFetchInternalQuery).toHaveBeenCalledWith(
-      'parent:listParentLinks',
+      'parent:links:listParentLinksQuery',
       expect.objectContaining({ parentId: 'parent_profile_1' }),
     );
   });
