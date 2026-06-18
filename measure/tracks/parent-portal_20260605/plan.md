@@ -139,7 +139,7 @@ per spec.md FR1 (parent role & auth) and FR2 (parent↔student linking). Ready f
 
 ### Phase 2 — Green-phase evidence (JR, 2026-06-19)
 
-Commit: abd770f0
+Commit: 9a8f4076
 
 Targeted Red command (now green — all four suites pass):
 ```
