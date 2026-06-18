@@ -377,7 +377,25 @@ then re-run the targeted Red command. The expected green result is
 
 - [x] Task: First-run teacher flow: create class → import roster (dry-run → commit) → dashboard (TDD on logic) — `cb5e4de9`
 - [x] Task: Surface import summary (created/updated/skipped/errors) — `cb5e4de9`
-- [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md) — `cb5e4de9`
+
+### Phase 3 Manual Verification (jr role)
+
+**Test coverage:** Every production file has a corresponding test file:
+- `RosterImportWizard.tsx` → `RosterImportWizard.test.tsx` (12 tests)
+- `ImportSummary.tsx` → `ImportSummary.test.tsx` (8 tests)
+
+**Full regression suite (Phase 1+2+3):** 109 tests across 7 files, all passing.
+
+**Lint:** `npx eslint components/teacher/onboarding/{RosterImportWizard,ImportSummary}.tsx --max-warnings 0` — passes.
+
+**Typecheck:** `npx tsc --noEmit --project apps/integrated-math-3/tsconfig.json` — zero errors in onboarding files.
+
+**Manual verification steps (user-performed):**
+1. Run `npx convex dev` in `apps/integrated-math-3/` to register onboarding functions in `convex/_generated/api.d.ts`
+2. Verify `RosterImportWizard` renders and progresses through create-class → upload → preview → commit steps in the browser
+3. Verify `ImportSummary` surfaces {created, updated, skipped, errors} counts with row-indexed errors
+4. Verify PII-safe error rendering (no raw emails visible in error lists)
 
 ### Phase 3 Green Evidence (jr role)
 
