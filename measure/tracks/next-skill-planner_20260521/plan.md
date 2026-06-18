@@ -98,6 +98,7 @@ Depends on: Track 2 (weighted readiness). weaknessFit integrates Track 6.
 - Commits: `c932981d` (priority Red), `6bb677a6` (recommended-next Red), `a1675f34` (projections integration).
 - `graph.db` was not modified during this Red phase — only read-only `build-graph` queries (`stats`, `search`, `inspect`) were issued. The committed state of `graph.db` is preserved.
 - Dirty worktree at MID start: `git status --porcelain` was clean. No unrelated user work to preserve.
+- Re-verified (MID, 2026-06-18, 11:09 CST): targeted `npx vitest run priority recommended-next projections --root packages/knowledge-space-practice` → 3 failed suites, 0 tests (all `Cannot find module '../planner/{priority,recommended-next}'`). Aggregate suite: 3 failed (Phase 3 reds) | 12 passed (261 tests). No new tests authored this turn — the Red phase was already complete from the prior MID session and the re-verification confirms the state is stable. `visualization.ts:162` still holds the `[...ready, ...unknown].slice(0, 5)` placeholder (Green work). `graph.db` mtime unchanged at `2026-06-18 06:29`. Worktree remains clean. Green implementation of `planner/priority.ts` + `planner/recommended-next.ts` + visualization wiring is unblocked and ready for the JR role.
 
 ## Phase 4 — Docs & Doctor
 
