@@ -375,9 +375,149 @@ then re-run the targeted Red command. The expected green result is
 
 ## Phase 3 — Teacher Onboarding UI
 
-- [ ] Task: First-run teacher flow: create class → import roster (dry-run → commit) → dashboard (TDD on logic)
-- [ ] Task: Surface import summary (created/updated/skipped/errors)
+- [~] Task: First-run teacher flow: create class → import roster (dry-run → commit) → dashboard (TDD on logic)
+- [~] Task: Surface import summary (created/updated/skipped/errors)
 - [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
+
+### Phase 3 Red Evidence (mid role)
+
+**Dirty-worktree classification at MID start:**
+
+| Path | Classification | Action |
+|---|---|---|
+| `M graph.db` (binary) | Generated knowledge graph | Excluded from commit — same as Phase 2 Red Evidence convention; not relevant to Phase 3 test creation |
+| `M measure/automation-supervisor.py` (1-line diff: `ACCEPTANCE_MODEL` env-var default) | Unrelated user work | **Preserved untouched** — not folded into any track commit |
+
+**Targeted Red command (single, bounded, non-fake):**
+
+```
+npx vitest run apps/integrated-math-3/__tests__/components/teacher/onboarding/RosterImportWizard.test.tsx \
+              apps/integrated-math-3/__tests__/components/teacher/onboarding/ImportSummary.test.tsx \
+              --root apps/integrated-math-3
+```
+
+(Per test-strategy.md §7 "Phase 3 Red command" — single failing file: `RosterImportWizard.test.tsx`; the second file `ImportSummary.test.tsx` is added for Task 2 — surface import summary — and grouped with the same Red signal so the closeout gate from §7 "Phase 3 Green/closeout gate" (`npx vitest run apps/integrated-math-3/__tests__/components/teacher/onboarding/` directory glob) becomes a one-line diff Red→Green.)
+
+**Production modules under test (do not exist at HEAD):**
+
+- `apps/integrated-math-3/components/teacher/onboarding/RosterImportWizard.tsx` — exports `RosterImportWizard` client component (FR1 + FR2 + AC1: first-run teacher flow with create-class → upload → dry-run preview → commit).
+- `apps/integrated-math-3/components/teacher/onboarding/ImportSummary.tsx` — exports `ImportSummary` (FR6 + AC5: surface import summary with counts {created, updated, skipped, errors}).
+
+**Test approach (per test-strategy.md §6 Phase 3):**
+
+The Red tests follow the existing `__tests__/components/teacher/exports/ExportPanel.test.tsx` convention:
+- `vi.doMock('convex/react')` for `useQuery`/`useMutation`/`useAction` (mocked functions are reset per test via `convex.reset()`).
+- `vi.doMock('@/convex/_generated/api')` to expose the public query/mutation refs (`onboarding.rosterImport`, `onboarding.getImportSummary`, `onboarding.listImportsForClass`) without requiring a live `convex dev` codegen.
+- Dynamic `await import(@/components/teacher/onboarding/RosterImportWizard)` inside each test so the production module is resolved after the mocks are in place.
+
+**Coverage target matrix:**
+
+| Wizard behavior (Task 1) | ImportSummary behavior (Task 2) |
+|---|---|
+| Renders create-class step (step 1) by default | Renders counts {created, updated, skipped, errors} from the query result |
+| Step 1 → step 2 advances on valid class input | Shows zero counts without leaking errors when the query is loading |
+| Step 2 upload parses CSV file via `parseRoster` from `@/lib/roster/parser` | Surfaces row-indexed errors with row numbers (PII-safe per spec NFR) |
+| Step 3 preview shows dry-run counts {created, skipped, errors} | Renders file name + importedAt timestamp |
+| Step 3 preview shows per-row errors with row numbers | Disables/handles the loading state without leaking internals |
+| Commit button is disabled while errors are present | |
+| Commit button is enabled when no errors are present | |
+| Commit invokes `importRoster` mutation with `classId`, `rows`, `importedBy` | |
+| Wizard redirects to dashboard after successful commit | |
+
+**Targeted Red command result (RED):**
+
+```
+npx vitest run apps/integrated-math-3/__tests__/components/teacher/onboarding/RosterImportWizard.test.tsx \
+              apps/integrated-math-3/__tests__/components/teacher/onboarding/ImportSummary.test.tsx \
+              --root apps/integrated-math-3
+```
+
+Result: `Test Files  2 failed (2)` / `Tests  20 failed (20)` — both
+suites fail at import-time with `vite:import-analysis`
+`Cannot find package '@/components/teacher/onboarding/{RosterImportWizard,ImportSummary}'`
+because the production components
+`apps/integrated-math-3/components/teacher/onboarding/{RosterImportWizard.tsx,ImportSummary.tsx}`
+do not exist at HEAD. 12 + 8 = **20 queued test cases** across 9
+`describe` blocks cannot run until the production modules land.
+
+Per-file breakdown (matches the test-strategy §7 Phase 3 "Red" bullets
+exactly so the closeout gate from §7 Phase 3 "Green/closeout gate"
+becomes a one-line diff):
+
+- `RosterImportWizard.test.tsx` — **12 tests** across 6 `describe` blocks:
+  - Step progression (3 tests): create-class step renders by default;
+    upload/preview/commit hidden until step 1 satisfied; advance to
+    upload on valid class input.
+  - Upload → preview (1 test): parses valid CSV and transitions to
+    preview.
+  - Preview step (3 tests): dry-run counts {created, skipped, errors}
+    rendered; per-row errors with row numbers; raw email PII safe.
+  - Commit button gating (2 tests): disabled while errors present;
+    enabled when dry-run has no errors.
+  - Commit mutation (1 test): invokes `importRoster` with
+    `{classId, rows, importedBy, source}`.
+  - Post-commit transition (1 test): `onComplete(classId)` fires after
+    successful commit.
+  - File input plumbing (1 test): `<input type="file" accept=".csv">`
+    rendered on upload step.
+- `ImportSummary.test.tsx` — **8 tests** across 3 `describe` blocks:
+  - Surface counts (5 tests): created / updated / skipped / errors
+    with row numbers; zero counts without leaking internals while
+    loading.
+  - Auditability metadata (2 tests): source file name; importedAt
+    timestamp.
+  - Query wiring (1 test): calls `getImportSummary` (NOT
+    `listImportsForClass`) with the supplied classId + importId.
+
+**Why this is a real Red (not a stale-record artifact):**
+The test files import the production modules at runtime via
+`await import('@/components/teacher/onboarding/...')`. The production
+modules do not exist on disk; vitest's `vite:import-analysis` cannot
+resolve the package path, so every test fails at module-load time.
+This is genuine missing behavior — once the Green author creates the
+production component files, the tests will execute and the assertions
+will start passing in the order that the implementation is built.
+
+**Convex wiring note for Green author:** Both tests use
+`vi.doMock('convex/react')` and `vi.doMock('@/convex/_generated/api')`
+to expose the Phase 2 public query/mutation refs
+(`onboarding/rosterImport:importRoster`,
+`onboarding/rosterImport:getImportSummary`,
+`onboarding/rosterImport:listImportsForClass`). The Green author does
+NOT need to mock these — instead they must wire the production
+components to call the same refs that the tests' mocks respond to.
+This guarantees the tests exercise the real code path once
+`npx convex dev` has registered the Phase 2 functions in
+`@/convex/_generated/api`. If the Green author chooses a different
+Convex function name (e.g., `onboarding.rosterImport.importRoster`),
+they must also update the test mocks — but the test is asserting
+behavior (the mutation runs with the correct payload), not the exact
+function name.
+
+**Handoff to Green author:**
+1. Create `apps/integrated-math-3/components/teacher/onboarding/RosterImportWizard.tsx`
+   — client component with the data-testid affordances
+   (`roster-wizard-step-create-class`,
+   `roster-wizard-step-upload`, `roster-wizard-step-preview`,
+   `roster-wizard-commit-button`,
+   `preview-count-{created,skipped,errors}`,
+   `preview-error-list`) and the `onComplete(classId)` callback.
+2. Create `apps/integrated-math-3/components/teacher/onboarding/ImportSummary.tsx`
+   — client component with the data-testid affordances
+   (`import-summary-created`, `import-summary-updated`,
+   `import-summary-skipped`, `import-summary-errors`,
+   `import-summary-source`, `import-summary-imported-at`).
+3. Use `useMutation(api.onboarding['rosterImport:importRoster'])` for
+   the wizard commit and
+   `useQuery(api.onboarding['rosterImport:getImportSummary'], { classId, importId })`
+   for the summary. If the Green author prefers the dotted-path form
+   (`api.onboarding.rosterImport.importRoster`), update the test mocks
+   accordingly.
+4. Re-run the targeted Red command above. Expected Green result:
+   `Test Files 2 passed (2) / Tests 20 passed (20)`.
+5. Do NOT run `npm run ws:im3:test` while any Phase 3 task is `[~]`
+   (test-strategy §8). The Phase 4 closeout `CI=true npm run ws:im3:test`
+   is the first time the full aggregate suite must be green.
 
 ## Phase 4 — Student Onboarding & Verification
 
