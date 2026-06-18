@@ -132,10 +132,68 @@ per spec.md FR1 (parent role & auth) and FR2 (parent↔student linking). Ready f
 
 ## Phase 2 — Parent Progress View
 
-- [ ] Task: Query + render the parent visualization projection (progress/mastery/engagement), read-only (TDD)
-- [ ] Task: Multi-student switcher (TDD)
-- [ ] Task: Privacy assertions — no teacher-only/other-student/raw-graph data (TDD)
+- [~] Task: Query + render the parent visualization projection (progress/mastery/engagement), read-only (TDD)
+- [~] Task: Multi-student switcher (TDD)
+- [~] Task: Privacy assertions — no teacher-only/other-student/raw-graph data (TDD)
 - [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
+
+### Phase 2 — Red-phase evidence (MID, 2026-06-19)
+
+**Build-graph context probe (pre-test, §3.2 graph baseline):**
+- `graph.db` mtime 2026-06-19 02:44 (~28 minutes old, fresh).
+- 14171 nodes / 20666 edges / 2066 files.
+- `parentVisualizationV1Schema` confirmed 6 fields: `schemaVersion, canDoSummary, nextFocus, blockers, progressTrend, nodes` — fixtures hit all six.
+- `teacherVisualizationV1Schema` confirmed 8 fields; 7 forbidden keys (`heatmap, bottleneckNodes, prerequisiteGaps, misconceptionClusters, interventionGroups, standardsCoverage, activeMisconceptionStudentCount`) used by `parentProjection.ts::TEACHER_ONLY_KEYS`.
+- `function:projectParentVisualization` at `packages/knowledge-space-practice/src/projections/visualization.ts` has **0 callers** — Phase 2 introduces the first consumer; signature is additive-only.
+- `build-graph search ParentDashboard` → 0 matches; `build-graph search StudentSwitcher` → 0 matches. No intentionally-red predecessors. New tests are owned entirely by this phase.
+
+**Targeted Red commands (single explicit file path each, per test-strategy §7):**
+
+```
+npx vitest run __tests__/components/parent/ParentDashboard.test.tsx
+```
+→ **1 failed suite, 0 tests executed.**
+Failure: `Failed to resolve import "@/components/parent/ParentDashboard"` (implementation missing). 11 cases total (existence, canDo ×2, nextFocus, blockers ×2, progressTrend ×2, visual nodes, schema-validated payload, fixture sanity).
+
+```
+npx vitest run __tests__/components/parent/StudentSwitcher.test.tsx
+```
+→ **1 failed suite, 0 tests executed.**
+Failure: `Failed to resolve import "@/components/parent/StudentSwitcher"` (implementation missing). 9 cases total (existence, render ×2, single-student branch, selection ×2, teacher-data privacy boundary, switcher↔dashboard integration, fixture sanity).
+
+```
+npx vitest run __tests__/components/parent/parent-privacy.test.tsx
+```
+→ **1 failed suite, 0 tests executed.**
+Failure: `Failed to resolve import "@/components/parent/ParentDashboard"` (implementation missing — privacy test exercises the dashboard's serialized output). 7 cases total (teacher-only ×3, cross-student ×2, raw-graph, schema-validated payload).
+
+**Combined Red run (single vitest invocation, all three files):**
+```
+npx vitest run __tests__/components/parent/ParentDashboard.test.tsx \
+              __tests__/components/parent/StudentSwitcher.test.tsx \
+              __tests__/components/parent/parent-privacy.test.tsx
+```
+→ **3 failed suites, 0 tests executed.**
+Failure mode: missing-module for `@/components/parent/ParentDashboard` and `@/components/parent/StudentSwitcher` (implementation does not exist). All three suites fail because the implementation is missing, not because of stale durable records.
+
+**Test fix during Red phase:**
+- Top-level `expect(TEACHER_ONLY_KEYS.length).toBeGreaterThan(0)` assertions in `ParentDashboard.test.tsx` and `StudentSwitcher.test.tsx` were wrapped in proper `describe('… fixture sanity', () => { it(...) })` blocks. Vitest 4.x does not reliably report top-level expect calls as test results; the wrapping preserves the sanity check as a recorded test case (one additional case per file).
+
+**Fixtures added (untracked → tracked in this commit):**
+- `apps/integrated-math-3/__tests__/_fixtures/parent-portal/parentClaims.ts` — `makeParentClaims`, `makeNonParentClaims` builders.
+- `apps/integrated-math-3/__tests__/_fixtures/parent-portal/parentLinks.ts` — `singleStudentLinks`, `multiStudentLinks`, `linksWithOneRevoked`.
+- `apps/integrated-math-3/__tests__/_fixtures/parent-portal/parentProjection.ts` — `emptyParentProjection`, `richParentProjection`, `otherStudentParentProjection`, `parentProjectionsByStudentId`, `TEACHER_ONLY_KEYS` (7 forbidden keys, schema-validated at fixture-load).
+- `apps/integrated-math-3/__tests__/_fixtures/parent-portal/convexMocks.ts` — `buildConvexMocks`, `buildParentAuthMocks` typed helpers.
+
+**Dirty worktree classification at MID start (per spec):**
+- `apps/integrated-math-3/__tests__/_fixtures/parent-portal/*` (untracked) — **RELEVANT**, folded into Red-phase commit.
+- `apps/integrated-math-3/__tests__/components/parent/*` (untracked) — **RELEVANT**, folded into Red-phase commit.
+- `measure/tracks/parent-portal_20260605/plan.md` (modified, task markers `[ ]` → `[~]`) — **RELEVANT**, folded into Red-phase commit.
+- `apps/integrated-math-3/__tests__/lib/onboarding/student-flow.test.ts` (modified, `callCount` field added to interface) — unrelated user work; preserved, NOT staged in this commit.
+- `measure/automation-supervisor.py` (modified, ACCEPTANCE_MODEL env default) — unrelated user work; preserved, NOT staged in this commit.
+- `graph.db` — generated build artifact; no mtime change from this attempt's read-only `build-graph stats`/`search` queries.
+
+Phase-end worktree cleanup of unrelated user work remains the supervisor's job, not the Red-phase commit.
 
 ## Phase 3 — States & Verification
 
