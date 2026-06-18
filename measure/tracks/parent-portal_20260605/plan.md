@@ -6,8 +6,8 @@ Verification: boundary lints + `npm run ws:im3:lint`/`:test` + `tsc --noEmit`.
 
 ## Phase 1 — Parent Role, Auth & Linking
 
-- [~] Task: Add parent role + fail-closed guards (linked-students-only) (TDD)
-- [~] Task: Parent↔student linking mechanism (teacher/invite), revocable (TDD)
+- [x] Task: Add parent role + fail-closed guards (linked-students-only) (TDD) — commit 4c13626
+- [x] Task: Parent↔student linking mechanism (teacher/invite), revocable (TDD) — commit 4c13626
 - [ ] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md)
 
 ### Phase 1 — Red-phase evidence (MID, 2026-06-19)
@@ -63,6 +63,33 @@ Lesson learned (for tech-debt.md consideration, not edited in this attempt):
   around the probe, or (b) treat graph.db as a write-once artifact and
   exclude it from the dirty-worktree boundary check via `.gitignore` after
   a one-time intentional commit.
+
+### Phase 1 — Green-phase evidence (JR, 2026-06-19)
+
+Commit: 4c136262e47fdc5fba06edfa0f52af226a26faa9
+
+Targeted Red commands (both now green):
+- `npm run ws:im3:test -- __tests__/lib/auth/parent-role-guard.test.ts` → **13/13 PASS**
+- `npm run ws:im3:test -- __tests__/convex/parent/links.test.ts` → **16/16 PASS**
+
+Closeout gate:
+- `npm run ws:im3:test -- __tests__/lib/auth __tests__/convex/parent` → **56/56 PASS**
+- Boundary lint: `node scripts/check-monorepo-boundaries.mjs` → **PASS**
+- IM3 typecheck (file-scoped): no errors on changed files
+- BM2 typecheck: pre-existing error in cloudflare/worker.ts (unrelated)
+
+Implementation files created:
+- `apps/integrated-math-3/lib/auth/parent-server-guards.ts` — requireParentRequestClaims, requireParentServerSessionClaims
+- `apps/integrated-math-3/convex/parent/links.ts` — createParentLink, revokeParentLink, listParentLinks + Convex registrations
+
+Schema/type changes:
+- `packages/core-auth/src/session.ts` — UserRole widened to include 'parent'
+- `apps/integrated-math-3/convex/schema.ts` — 'parent' added to profiles/auth_credentials roles; parent_links table added
+- `apps/integrated-math-3/convex/auth.ts` — roleValidator widened to include 'parent'
+- `apps/integrated-math-3/convex/_generated/api.d.ts` — parent/links module type entry added
+
+Test fix: parent-role-guard.test.ts converted static imports to dynamic imports
+to avoid vitest hoisting conflict (matching existing server-guards.test.ts pattern).
 
 ## Phase 2 — Parent Progress View
 
