@@ -2,7 +2,7 @@ import { internalMutation, internalQuery, type MutationCtx, type QueryCtx } from
 import { v } from 'convex/values';
 import { type Doc, type Id } from './_generated/dataModel';
 
-const roleValidator = v.union(v.literal('student'), v.literal('teacher'), v.literal('admin'));
+const roleValidator = v.union(v.literal('student'), v.literal('teacher'), v.literal('admin'), v.literal('parent'));
 const PASSWORD_ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789';
 
 export const getCredentialByUsername = internalQuery({

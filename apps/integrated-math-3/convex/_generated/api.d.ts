@@ -13,6 +13,7 @@ import type * as auth from "../auth.js";
 import type * as dashboardHelpers from "../dashboardHelpers.js";
 import type * as dev from "../dev.js";
 import type * as objectiveProficiency from "../objectiveProficiency.js";
+import type * as parent_links from "../parent/links.js";
 import type * as practice_submission from "../practice_submission.js";
 import type * as public_ from "../public.js";
 import type * as queue_queue from "../queue/queue.js";
@@ -117,6 +118,7 @@ declare const fullApi: ApiFromModules<{
   dashboardHelpers: typeof dashboardHelpers;
   dev: typeof dev;
   objectiveProficiency: typeof objectiveProficiency;
+  "parent/links": typeof parent_links;
   practice_submission: typeof practice_submission;
   public: typeof public_;
   "queue/queue": typeof queue_queue;

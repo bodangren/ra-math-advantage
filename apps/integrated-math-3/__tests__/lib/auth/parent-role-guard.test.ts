@@ -36,11 +36,6 @@ import { describe, it, expect, expectTypeOf, vi, beforeEach } from 'vitest';
 
 import type { SessionClaims, UserRole } from '@math-platform/core-auth';
 
-import {
-  requireParentRequestClaims,
-  requireParentServerSessionClaims,
-} from '@/lib/auth/parent-server-guards'; // Intentional: non-existent module → Red.
-
 // ---------------------------------------------------------------------------
 // Mocks (mirrors __tests__/lib/auth/server-guards.test.ts)
 // ---------------------------------------------------------------------------
@@ -129,8 +124,13 @@ function makeNonParentClaim(role: 'student' | 'teacher' | 'admin'): SessionClaim
 // ---------------------------------------------------------------------------
 
 describe('requireParentRequestClaims', () => {
-  beforeEach(() => {
+  type ParentGuardFn = (request: Request, studentId: string) => Promise<SessionClaims | Response>;
+  let requireParentRequestClaims: ParentGuardFn;
+
+  beforeEach(async () => {
     vi.clearAllMocks();
+    const mod = await import('@/lib/auth/parent-server-guards');
+    requireParentRequestClaims = mod.requireParentRequestClaims;
   });
 
   it('returns 401 when no cookie is present', async () => {
@@ -205,8 +205,13 @@ describe('requireParentRequestClaims', () => {
 // ---------------------------------------------------------------------------
 
 describe('requireParentServerSessionClaims', () => {
-  beforeEach(() => {
+  type ParentServerGuardFn = (loginRedirectPath: string) => Promise<SessionClaims>;
+  let requireParentServerSessionClaims: ParentServerGuardFn;
+
+  beforeEach(async () => {
     vi.clearAllMocks();
+    const mod = await import('@/lib/auth/parent-server-guards');
+    requireParentServerSessionClaims = mod.requireParentServerSessionClaims;
   });
 
   it('returns a function (runtime API surface)', () => {

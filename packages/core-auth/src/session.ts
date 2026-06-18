@@ -1,6 +1,6 @@
 import { PASSWORD_ALPHABET } from './constants';
 
-export type UserRole = 'student' | 'teacher' | 'admin';
+export type UserRole = 'student' | 'teacher' | 'admin' | 'parent';
 
 export interface SessionClaims {
   sub: string;

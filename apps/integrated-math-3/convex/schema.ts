@@ -223,7 +223,7 @@ export default defineSchema({
   profiles: defineTable({
     organizationId: v.id("organizations"),
     username: v.string(),
-    role: v.union(v.literal("student"), v.literal("teacher"), v.literal("admin")),
+    role: v.union(v.literal("student"), v.literal("teacher"), v.literal("admin"), v.literal("parent")),
     displayName: v.optional(v.string()),
     avatarUrl: v.optional(v.string()),
     metadata: v.optional(v.record(v.string(), v.any())),
@@ -236,7 +236,7 @@ export default defineSchema({
   auth_credentials: defineTable({
     profileId: v.id("profiles"),
     username: v.string(),
-    role: v.union(v.literal("student"), v.literal("teacher"), v.literal("admin")),
+    role: v.union(v.literal("student"), v.literal("teacher"), v.literal("admin"), v.literal("parent")),
     organizationId: v.id("organizations"),
     passwordHash: v.string(),
     passwordSalt: v.string(),
@@ -270,6 +270,21 @@ export default defineSchema({
     .index("by_class", ["classId"])
     .index("by_student", ["studentId"])
     .index("by_class_and_student", ["classId", "studentId"]),
+
+  parent_links: defineTable({
+    parentId: v.id("profiles"),
+    studentId: v.id("profiles"),
+    organizationId: v.id("organizations"),
+    status: v.union(v.literal("active"), v.literal("revoked"), v.literal("pending")),
+    createdBy: v.id("profiles"),
+    createdAt: v.number(),
+    revokedAt: v.optional(v.number()),
+    revokedBy: v.optional(v.id("profiles")),
+    metadata: v.optional(v.record(v.string(), v.any())),
+  })
+    .index("by_parent", ["parentId"])
+    .index("by_student", ["studentId"])
+    .index("by_parent_and_student", ["parentId", "studentId"]),
 
   roster_imports: defineTable({
     classId: v.id("classes"),
