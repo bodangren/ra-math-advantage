@@ -33,7 +33,6 @@
 import { describe, it, expect } from 'vitest';
 import { dryRunPreview } from '@/lib/roster/dry-run';
 import type {
-  RosterRow,
   RosterImportError,
   RosterParseResult,
   RosterImportResult,

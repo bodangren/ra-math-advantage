@@ -52,12 +52,6 @@ function parseCsvLine(line: string): string[] {
       if (i < line.length && line[i] === ',') i++;
     }
   }
-  if (
-    line.endsWith(',') &&
-    (cells.length === 0 || line[line.length - 1] === ',')
-  ) {
-    // trailing empty cell from trailing comma
-  }
   return cells;
 }
 
@@ -145,7 +139,7 @@ export function parseRoster(csv: string): RosterParseResult {
 
     const rowData: RosterRow = {
       rowIndex,
-      name: nameVal || undefined as unknown as string,
+      name: nameVal,
       email: emailVal || undefined,
       sisId: sisIdVal || undefined,
       section: sectionVal || undefined,
@@ -182,11 +176,6 @@ export function parseRoster(csv: string): RosterParseResult {
 
     if (sectionVal) {
       rowData.section = sectionVal;
-    }
-
-    // Ensure name is set even if validation passes but nameVal was empty
-    if (nameVal) {
-      rowData.name = nameVal;
     }
 
     rows.push(rowData);
