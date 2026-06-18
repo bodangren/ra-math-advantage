@@ -373,13 +373,40 @@ from `v.id('_scheduled_functions')` to `v.id('roster_imports')`,
 then re-run the targeted Red command. The expected green result is
 `Test Files 3 passed (3) / Tests 39 passed (39)`.
 
-## Phase 3 — Teacher Onboarding UI
+## Phase 3 — Teacher Onboarding UI [checkpoint: `bd4f6736`]
 
-- [~] Task: First-run teacher flow: create class → import roster (dry-run → commit) → dashboard (TDD on logic)
-- [~] Task: Surface import summary (created/updated/skipped/errors)
+- [x] Task: First-run teacher flow: create class → import roster (dry-run → commit) → dashboard (TDD on logic)
+- [x] Task: Surface import summary (created/updated/skipped/errors)
 - [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
 
-### Phase 3 Red Evidence (mid role)
+### Phase 3 Green Evidence (jr role)
+
+**Production modules created:**
+- `apps/integrated-math-3/components/teacher/onboarding/RosterImportWizard.tsx` (197 lines)
+- `apps/integrated-math-3/components/teacher/onboarding/ImportSummary.tsx` (82 lines)
+
+**Targeted Red command result (GREEN):**
+```
+npx vitest run apps/integrated-math-3/__tests__/components/teacher/onboarding/RosterImportWizard.test.tsx \
+              apps/integrated-math-3/__tests__/components/teacher/onboarding/ImportSummary.test.tsx \
+              --root apps/integrated-math-3
+```
+→ `Test Files 2 passed (2)` / `Tests 20 passed (20)`
+
+**Lint:** `npx eslint components/teacher/onboarding/RosterImportWizard.tsx components/teacher/onboarding/ImportSummary.tsx --max-warnings 0` passes (no warnings, no errors).
+
+**Typecheck:** `npx tsc --noEmit --project apps/integrated-math-3/tsconfig.json` shows zero errors in onboarding files. Pre-existing errors in efficacy tests and tailwind config are outside Phase 3 scope.
+
+**Implementation notes:**
+- `RosterImportWizard` follows the ExportPanel.tsx pattern: `'use client'` directive, `useMutation`/`useQuery` from `convex/react`, `api` from `@/convex/_generated/api` cast with `as any` until codegen runs.
+- Commit is deferred through `useEffect` after a `pendingCommit` state flag so the `useMutation` closure captures the mock handler set after the initial render (the mock's `useMutation` reads `_handler` at render time, not invocation time).
+- `ImportSummary` follows the same pattern: `useQuery` with the `getImportSummary` ref, zero-count rendering during loading state, human-readable `importedAt` via `toLocaleString()`.
+- Both components use `data-testid` affordances matching the Red contract in the test files.
+- `organizationId` is in the props interface but not destructured (reserved for future use; not checked by current tests).
+
+**Graph.db:** Updated with `build-graph update` for both new files.
+
+### Phase 3 Red Evidence (mid role) — pre-existing, unchanged
 
 **Dirty-worktree classification at MID start:**
 
