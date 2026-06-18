@@ -53,12 +53,12 @@ gate" is `npx vitest run apps/integrated-math-3/__tests__/lib/roster/`
 `npm run ws:im3:test` while any Phase 1 task is `[~]` (test-strategy
 §8).
 
-## Phase 1 — CSV Contract & Import Logic
+## Phase 1 — CSV Contract & Import Logic [checkpoint: `41043d1f`]
 
 - [x] Task: Define CSV column contract + import-result schema (Contract-First) — `0a4f943b`
 - [x] Task: Pure parse + row-level validation with error reporting (TDD) — `0a4f943b`
 - [x] Task: Dry-run preview computation (TDD) — `0a4f943b`
-- [ ] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md) — `41043d1f`
 
 ## Phase 2 — Idempotent Enrollment (Convex)
 
