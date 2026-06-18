@@ -55,9 +55,9 @@ gate" is `npx vitest run apps/integrated-math-3/__tests__/lib/roster/`
 
 ## Phase 1 — CSV Contract & Import Logic
 
-- [~] Task: Define CSV column contract + import-result schema (Contract-First)
-- [~] Task: Pure parse + row-level validation with error reporting (TDD)
-- [~] Task: Dry-run preview computation (TDD)
+- [x] Task: Define CSV column contract + import-result schema (Contract-First) — `0a4f943b`
+- [x] Task: Pure parse + row-level validation with error reporting (TDD) — `0a4f943b`
+- [x] Task: Dry-run preview computation (TDD) — `0a4f943b`
 - [ ] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md)
 
 ## Phase 2 — Idempotent Enrollment (Convex)
