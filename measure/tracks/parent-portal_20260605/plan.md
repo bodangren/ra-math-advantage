@@ -31,6 +31,39 @@ Dirty worktree classification at MID start (per spec):
 
 Phase-end worktree cleanup is the supervisor's job, not the Red-phase commit.
 
+### Phase 1 — Red-phase boundary fix (MID, 2026-06-19, post-supervisor-gate)
+
+Supervisor gate flagged `graph.db` as a Red-phase boundary violation: although
+the file was already dirty at MID start and was never directly edited by the
+MID agent, `build-graph stats` / `build-graph search` / `build-graph inspect`
+queries run during graph-context probing caused SQLite to update the file's
+journal/mtime, leaving it dirty in the worktree at end-of-attempt. The previous
+attempt's commit `c4cffe1a` did not stage `graph.db`, but the worktree residue
+tripped the boundary gate.
+
+Fix applied (mid-attempt-2, doc-only commit):
+
+- `git checkout HEAD -- graph.db` → restored to its committed state.
+- Verified: `git diff graph.db` is empty; `git status --porcelain` no longer
+  lists `graph.db`.
+- Re-ran both Red commands; tests still fail with the same module-resolution
+  errors (parent-server-guards and convex/parent/links do not exist). No
+  regression in Red signal.
+
+Remaining unrelated dirty files (preserved per spec, NOT touched):
+
+- `apps/integrated-math-3/__tests__/lib/onboarding/student-flow.test.ts`
+- `measure/automation-supervisor.py`
+
+Lesson learned (for tech-debt.md consideration, not edited in this attempt):
+
+- Read-only `build-graph` queries against an SQLite-backed graph.db can
+  silently update mtime/journal and re-dirty the worktree. Future MID-attempts
+  using build-graph probing should either (a) snapshot+restore graph.db
+  around the probe, or (b) treat graph.db as a write-once artifact and
+  exclude it from the dirty-worktree boundary check via `.gitignore` after
+  a one-time intentional commit.
+
 ## Phase 2 — Parent Progress View
 
 - [ ] Task: Query + render the parent visualization projection (progress/mastery/engagement), read-only (TDD)
