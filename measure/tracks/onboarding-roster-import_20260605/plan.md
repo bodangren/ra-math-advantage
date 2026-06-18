@@ -62,10 +62,11 @@ gate" is `npx vitest run apps/integrated-math-3/__tests__/lib/roster/`
 
 ## Phase 2 — Idempotent Enrollment (Convex)
 
-- [x] Task: Batched, idempotent enrollment mutation linking/creating students by identifier (TDD, no N+1) — `a1ceb7d4`
-- [x] Task: Provision/invite imported students per the auth model (TDD) — `a1ceb7d4`
-- [x] Task: Import summary persistence + retrieval (TDD) — `a1ceb7d4`
-- [~] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
+- [~] Task: Batched, idempotent enrollment mutation linking/creating students by identifier (TDD, no N+1) — `a1ceb7d4`
+- [~] Task: Provision/invite imported students per the auth model (TDD) — `a1ceb7d4`
+- [~] Task: Import summary persistence + retrieval (TDD) — `a1ceb7d4`
+- [~] Task: Convex wrapper validator correctness (TDD, see Red Re-Verification #3) — pending
+- [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
 
 ### Phase 2 Red Evidence (mid role)
 
@@ -272,6 +273,72 @@ implementers (per the implement.md Per-Task Graph Protocol).
 4. **Phase 3 (Teacher Onboarding UI)** is the next track phase per
    `plan.md`; the wizard, summary surface, and dry-run wiring depend
    on Phase 2 being committed and `convex codegen` having run.
+
+### Phase 2 Red Test Tightening (mid re-run #3 — `e1f7d2c5`-intent)
+
+The previous re-verification (#2) marked Phase 2 Tasks 1+2+3 `[x]`
+under "mark already satisfied with evidence", but the supervisor
+required a committed Red-phase test change with HEAD advancing.
+Reverting that decision and tightening the Red contract with a
+**real failing test** that catches a concrete spec gap: the
+`getImportSummaryQuery` Convex wrapper has its `importId` arg
+typed `v.id('_scheduled_functions')` instead of
+`v.id('roster_imports')` — a runtime bug that would reject every
+legitimate importId at Convex's request validator.
+
+**Targeted Red command (single, bounded, non-fake):**
+
+```
+npx vitest run apps/integrated-math-3/__tests__/convex/roster-import.test.ts \
+              apps/integrated-math-3/__tests__/convex/import-summary.test.ts \
+              apps/integrated-math-3/__tests__/convex/roster-import-wrappers.test.ts \
+              --root apps/integrated-math-3
+```
+
+**Result:** `Test Files  1 failed | 2 passed (3)` / `Tests  1 failed | 38 passed (39)`.
+The new file `apps/integrated-math-3/__tests__/convex/roster-import-wrappers.test.ts`
+contributes **7 tests**; one fails for the expected wrong-validator reason:
+
+```
+× getImportSummaryQuery.args.importId is v.id("roster_imports")
+AssertionError: expected '_scheduled_functions' to be 'roster_imports'
+
+Expected: "roster_imports"
+Received: "_scheduled_functions"
+```
+
+The other 6 wrapper tests pass — the `importRosterMutationConvex`
+and `listImportsForClassQuery` wrappers carry the correct table
+names (`profiles`, `classes`, the four CSV columns, and the optional
+`source` object shape). The test pins the correct contract so
+regressions are caught.
+
+**How the test inspects the validator without a live `convex-test` harness:**
+Convex's `internalMutation` / `internalQuery` builders expose
+`func.exportArgs()` (a runtime hook defined in
+`node_modules/convex/dist/esm/server/impl/registration_impl.js`)
+which returns a JSON-stringified validator. The test parses that
+JSON and asserts on `fieldType.tableName` for each `id` field.
+
+**Why this is a real Red (not a stale-record artifact):**
+The test file does not import any fixture or record. It imports
+the production module's runtime-exported validators. The
+production module exists on disk; the test fails because the
+production module's `getImportSummaryQuery.args.importId` validator
+is `v.id('_scheduled_functions')`, not `v.id('roster_imports')`.
+This is a genuine spec gap (FR6 auditability) caught by the new
+test — not a flaky stale assertion.
+
+**Phase 2 task checkboxes:** Tasks 1+2+3 reverted to `[~]`
+(Red phase still in progress). Task 4 (Convex wrapper validator
+correctness) added as a separate `[~]` task — it is the new
+contract surface this Red test pins.
+
+**Handoff to Green author:** change
+`apps/integrated-math-3/convex/onboarding/roster-import.ts:316`
+from `v.id('_scheduled_functions')` to `v.id('roster_imports')`,
+then re-run the targeted Red command. The expected green result is
+`Test Files 3 passed (3) / Tests 39 passed (39)`.
 
 ## Phase 3 — Teacher Onboarding UI
 
