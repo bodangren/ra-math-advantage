@@ -70,7 +70,7 @@ Depends on: Track 2 (weighted readiness). weaknessFit integrates Track 6.
 - Build-graph: `update ./graph.db` with the 3 new files → 25 nodes / 25 edges added (greenfield, 0 existing callers). `graph.db` reverted post-commit per pre-commit hook policy.
 - Commit: `5ef074c4` — feat(planner): implement Phase 2 scoring terms (unlockValue, goalProximity, weaknessFit).
 
-## Phase 3 — Composite Planner and Integration
+## Phase 3 — Composite Planner and Integration [checkpoint: 8291d94]
 
 - [x] Task: Implement composite priority(B) (TDD) [red: c932981d, green: bee22186]
     - [x] Weighted sum of the four terms; configurable weights
@@ -78,7 +78,10 @@ Depends on: Track 2 (weighted readiness). weaknessFit integrates Track 6.
 - [x] Task: Wire recommendedNext to top-N by priority; update visualization (TDD) [red: 6bb677a6, integration: a1675f34, green: bee22186]
     - [x] Top-N by priority over ready+unknown set; default N=5; nodeId.localeCompare tie-break.
     - [x] Integration: extend `projections.test.ts` with one ranked-output assertion that the visualization's `recommendedNext` matches the planner's top-N.
-- [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
+    - [x] Automated gates: 15/15 test files (307 tests) pass; tsc --noEmit clean; eslint --max-warnings 0 clean.
+    - [x] All 3 new/modified source files have dedicated test coverage (priority: 21, recommended-next: 19, projections integration: 1).
+    - [x] Phase 3 checkpoint [checkpoint: 8291d94]
 
 ### Phase 3 Green-phase evidence (JR, 2026-06-18)
 
