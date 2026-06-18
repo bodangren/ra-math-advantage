@@ -301,7 +301,7 @@ describe('StudentSwitcher (Phase 2.2 — multi-student switching)', () => {
       const { rerender } = render(tree);
 
       // Initial render: alpha payload, alpha can-do summary visible.
-      expect(screen.getByText(/Quadratic basics/i)).toBeInTheDocument();
+      expect(screen.getByTestId('parent-dashboard-can-do')).toHaveTextContent(/Quadratic basics/i);
 
       // Simulate the switcher click.
       const switcher = screen.getByTestId('parent-student-switcher');
@@ -328,7 +328,7 @@ describe('StudentSwitcher (Phase 2.2 — multi-student switching)', () => {
 
       // After the switch: beta payload, beta can-do summary visible,
       // alpha's specific content is no longer present.
-      expect(screen.getByText(/Calculus foundations/i)).toBeInTheDocument();
+      expect(screen.getByTestId('parent-dashboard-can-do')).toHaveTextContent(/Calculus foundations/i);
       expect(screen.queryByText(/Quadratic basics/i)).not.toBeInTheDocument();
     });
   });

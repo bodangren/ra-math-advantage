@@ -82,9 +82,8 @@ describe('ParentDashboard (Phase 2.1 — render parent projection payload)', () 
         />,
       );
 
-      expect(
-        screen.getByText(/Quadratic basics/i),
-      ).toBeInTheDocument();
+      const canDoRegion = screen.getByTestId('parent-dashboard-can-do');
+      expect(canDoRegion).toHaveTextContent(/Quadratic basics/i);
     });
 
     it('renders the "no skills mastered yet" can-do summary for an empty payload', async () => {
@@ -198,9 +197,10 @@ describe('ParentDashboard (Phase 2.1 — render parent projection payload)', () 
         />,
       );
 
+      const visualNodesRegion = screen.getByTestId('parent-dashboard-visual-nodes');
       for (const node of richParentProjection.nodes) {
         expect(
-          screen.getByText(new RegExp(escapeRegExp(node.title), 'i')),
+          within(visualNodesRegion).getByText(new RegExp(escapeRegExp(node.title), 'i')),
         ).toBeInTheDocument();
       }
     });
