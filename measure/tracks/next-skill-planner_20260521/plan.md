@@ -101,6 +101,7 @@ Depends on: Track 2 (weighted readiness). weaknessFit integrates Track 6.
 - `npx tsc --noEmit --project packages/knowledge-space-practice/tsconfig.json` → clean.
 - Build-graph: `update ./graph.db` with 4 changed files → 45 nodes / 53 edges (greenfield, 0 existing callers changed).
 - Commit: `bee22186` — feat(planner): implement Phase 3 composite priority and wire recommendedNext.
+- Reviewer A fix (2026-06-18): `projectStudentVisualization` was feeding every `skill`/`task_blueprint` node to the planner, which could rank mastered/blocked/review-due nodes into `recommendedNext`. Filtered planner input to states `ready` and `unknown` (FR5) and added a focused projection test. Aggregate suite now 15/15 files, 308 tests pass. Commit: `03791925`.
 
 ### Phase 3 Red-phase evidence (MID, 2026-06-18)
 
