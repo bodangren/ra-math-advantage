@@ -631,11 +631,37 @@ The convention to use is `git checkout HEAD -- <path>` (not
 graph but the working tree matches HEAD. This is the same
 convention Phase 2 used at commit `06ed8f9a`.
 
-## Phase 4 — Student Onboarding & Verification
+## Phase 4 — Student Onboarding & Verification [checkpoint: `95a3a8d4`]
 
-- [~] Task: First-run student flow routing into placement diagnostic → assigned work (TDD)
+- [x] Task: First-run student flow routing into placement diagnostic → assigned work (TDD) — `95a3a8d4`
 - [ ] Task: Final verification — boundary lints, lint, tsc --noEmit, CI=true npm run test
 - [ ] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md)
+
+### Phase 4 Green Evidence (jr role)
+
+**Production module created:**
+- `apps/integrated-math-3/lib/onboarding/student-flow.ts` (58 lines)
+
+**Targeted Red command result (GREEN):**
+```
+npx vitest run apps/integrated-math-3/__tests__/lib/onboarding/student-flow.test.ts \
+  --root apps/integrated-math-3
+```
+→ `Test Files 1 passed (1)` / `Tests 24 passed (24)`
+
+**Lint:** `npx eslint apps/integrated-math-3/lib/onboarding/student-flow.ts` — no errors (only pre-existing "Pages directory" warning).
+
+**Typecheck:** `npx tsc --noEmit --project apps/integrated-math-3/tsconfig.json` — no new errors in `student-flow.ts`. Pre-existing errors in `student-flow.test.ts` (RecordingDeps.callCount getter not declared on interface) are test-only and outside Green-phase scope. Other pre-existing errors (efficacy tests, tailwind config) are outside Phase 4 scope.
+
+**Implementation notes:**
+- `routeStudent(context, deps, options?)` returns `Promise<StudentFlowDecision>` with dependency-injected `runPlacement` — pure branching, no side effects.
+- New student (`hasExistingPlacement=false`) → `runPlacement(studentId)` → `{ destination: 'placement', reason: 'new-student', placementOutcome }`
+- Returning student (`hasExistingPlacement=true`) → bypass → `{ destination: 'assigned-work', reason: 'returning-student' }` (no `placementOutcome`)
+- Force override (`options.force=true`) → `runPlacement(studentId, { force: true })` → `{ destination: 'placement', reason: 'forced-rerun', placementOutcome }`
+- Imports `PlacementFlowOutcome` type from `@/lib/placement/placement-flow` (public types only — per test-strategy §4 item 4).
+
+**Commit files:**
+- `apps/integrated-math-3/lib/onboarding/student-flow.ts` (new, 58 lines)
 
 ### Phase 4 Red Evidence (mid role)
 
