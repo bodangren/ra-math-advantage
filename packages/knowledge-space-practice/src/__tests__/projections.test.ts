@@ -297,6 +297,71 @@ describe('Visualization projections', () => {
 
       expect(viz.recommendedNext.map((n) => n.nodeId)).toEqual(expected);
     });
+
+    it('excludes mastered, blocked, and review-due nodes from recommendedNext', () => {
+      const mixedNodes = [
+        {
+          id: 'mixed.mastered',
+          kind: 'skill' as const,
+          title: 'Mastered skill',
+          domain: 'math.test.rank',
+          reviewStatus: 'draft' as const,
+          metadata: {},
+        },
+        {
+          id: 'mixed.blocked',
+          kind: 'skill' as const,
+          title: 'Blocked skill',
+          domain: 'math.test.rank',
+          reviewStatus: 'draft' as const,
+          metadata: {},
+        },
+        {
+          id: 'mixed.ready',
+          kind: 'skill' as const,
+          title: 'Ready skill',
+          domain: 'math.test.rank',
+          reviewStatus: 'draft' as const,
+          metadata: {},
+        },
+        {
+          id: 'mixed.unknown',
+          kind: 'skill' as const,
+          title: 'Unknown skill',
+          domain: 'math.test.rank',
+          reviewStatus: 'draft' as const,
+          metadata: {},
+        },
+        {
+          id: 'mixed.review-due',
+          kind: 'skill' as const,
+          title: 'Review due skill',
+          domain: 'math.test.rank',
+          reviewStatus: 'draft' as const,
+          metadata: {},
+        },
+      ];
+      const mixedEdges: [] = [];
+      const mixedLearnerState: Record<string, 'mastered' | 'ready' | 'blocked' | 'review_due'> = {
+        'mixed.mastered': 'mastered',
+        'mixed.blocked': 'blocked',
+        'mixed.ready': 'ready',
+        'mixed.review-due': 'review_due',
+      };
+
+      const viz = projectStudentVisualization(
+        mixedNodes as never,
+        mixedEdges as never,
+        mixedLearnerState,
+      );
+
+      const ids = viz.recommendedNext.map((n) => n.nodeId);
+      expect(ids).toContain('mixed.ready');
+      expect(ids).toContain('mixed.unknown');
+      expect(ids).not.toContain('mixed.mastered');
+      expect(ids).not.toContain('mixed.blocked');
+      expect(ids).not.toContain('mixed.review-due');
+    });
   });
 });
 

@@ -135,9 +135,17 @@ export function projectStudentVisualization(
   const blocked: VisualNodeV1[] = [];
   const reviewDue: VisualNodeV1[] = [];
   const unknown: VisualNodeV1[] = [];
+  const stateByNodeId = new Map<string, VisualNodeV1['state']>();
 
   for (const node of skillAndTaskNodes) {
-    const state = computeNodeState(node.id, learnerState, nodeMap, edges, masteredIds);
+    const state = computeNodeState(
+      node.id,
+      learnerState,
+      nodeMap,
+      edges,
+      masteredIds,
+    );
+    stateByNodeId.set(node.id, state);
     const vn = toVisualNode(node, state);
 
     switch (state) {
@@ -160,12 +168,17 @@ export function projectStudentVisualization(
   }
 
   // Phase 3 (Track 4 next-skill-planner): recommendedNext is top-5 by
-  // composite priority (FR5). Derive readiness from learnerState for the
-  // planner-ready/unknown partition; default equal weights.
+  // composite priority over the ready+unknown set (FR5). Derive readiness
+  // from learnerState for the planner partition; default equal weights.
   const defaultWeights = { a: 1, b: 1, c: 1, d: 1 } as const;
 
+  const candidateNodes = skillAndTaskNodes.filter((n) => {
+    const state = stateByNodeId.get(n.id);
+    return state === 'ready' || state === 'unknown';
+  });
+
   const plannerReadiness: Record<string, number> = {};
-  for (const node of skillAndTaskNodes) {
+  for (const node of candidateNodes) {
     const ls = learnerState[node.id];
     plannerReadiness[node.id] =
       ls === 'ready' || ls === 'review_due' ? 0.5
@@ -174,7 +187,7 @@ export function projectStudentVisualization(
   }
 
   const plannerInput = {
-    nodes: skillAndTaskNodes.map((n) => ({
+    nodes: candidateNodes.map((n) => ({
       id: n.id,
       kind: n.kind,
       title: n.title,
