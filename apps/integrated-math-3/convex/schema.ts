@@ -271,6 +271,38 @@ export default defineSchema({
     .index("by_student", ["studentId"])
     .index("by_class_and_student", ["classId", "studentId"]),
 
+  roster_imports: defineTable({
+    classId: v.id("classes"),
+    importedBy: v.id("profiles"),
+    importedAt: v.number(),
+    source: v.object({
+      fileName: v.optional(v.string()),
+      rowCount: v.number(),
+    }),
+    created: v.number(),
+    updated: v.number(),
+    skipped: v.number(),
+    errors: v.array(
+      v.object({
+        rowIndex: v.number(),
+        column: v.optional(v.union(
+          v.literal("name"),
+          v.literal("email"),
+          v.literal("sisId"),
+          v.literal("section"),
+        )),
+        code: v.union(
+          v.literal("missing_required"),
+          v.literal("invalid_email"),
+          v.literal("duplicate_identifier"),
+          v.literal("malformed_row"),
+        ),
+        message: v.string(),
+      }),
+    ),
+    createdStudentIds: v.array(v.id("profiles")),
+  }).index("by_class", ["classId"]),
+
   class_lessons: defineTable({
     classId: v.id("classes"),
     lessonId: v.id("lessons"),
