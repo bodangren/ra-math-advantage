@@ -195,6 +195,54 @@ Failure mode: missing-module for `@/components/parent/ParentDashboard` and `@/co
 
 Phase-end worktree cleanup of unrelated user work remains the supervisor's job, not the Red-phase commit.
 
+### Phase 2 — Red-phase HEAD-advance fix (MID attempt-2, 2026-06-19)
+
+Supervisor gate flagged that MID attempt-1 staged the Phase 2 Red-phase
+artifacts (3 component test files + 4 fixture files + plan.md) in the
+git index but did not create a dedicated Red-phase commit. The artifacts
+were then absorbed into the supervisor's daily review commit
+`e1a2efe6 measure(review): daily Step 3 review reports for 2026-06-19`,
+which the gate does not accept as "a committed Red-phase test change"
+because the commit subject does not match the `test(parent-portal):`
+conventional format required by the workflow's atomic-commits-per-task rule.
+
+**Fix applied (MID attempt-2, this commit):**
+
+- Added a new test file `apps/integrated-math-3/__tests__/components/parent/projection-boundary.test.ts`
+  implementing the lint-grep boundary check explicitly called out in
+  `test-strategy.md §4`: scans `components/parent/**` and `app/parent/**`
+  for forbidden imports of `@math-platform/knowledge-space-core` (raw graph
+  package) and asserts at least one file imports from
+  `@math-platform/knowledge-space-practice` (projection package).
+  Pattern reference: `__tests__/lib/placement/phase5-docs-and-doctor.test.ts`
+  (Adaptive Placement Phase 5 boundary lint, same shape).
+- Updated `plan.md` with this HEAD-advance fix note.
+- Committed both with the Conventional Commit subject
+  `test(parent-portal): phase 2 red — projection boundary lint + HEAD-advance fix (attempt-2)`.
+
+**Re-verified Red state at HEAD (MID attempt-2):**
+
+```
+npx vitest run __tests__/components/parent/ParentDashboard.test.tsx
+npx vitest run __tests__/components/parent/StudentSwitcher.test.tsx
+npx vitest run __tests__/components/parent/parent-privacy.test.tsx
+npx vitest run __tests__/components/parent/projection-boundary.test.ts
+```
+
+Combined run: **4 failed suites, 3 tests failed, 0 tests passed.**
+
+- ParentDashboard.test.tsx → 1 failed suite, 0 tests executed (module-not-found `@/components/parent/ParentDashboard`).
+- StudentSwitcher.test.tsx → 1 failed suite, 0 tests executed (module-not-found `@/components/parent/StudentSwitcher`).
+- parent-privacy.test.tsx → 1 failed suite, 0 tests executed (module-not-found `@/components/parent/ParentDashboard`).
+- projection-boundary.test.ts → 1 failed suite, **3 tests failed** (parent UI directories missing → no files to scan → no projection import to verify).
+
+All failures are genuine Red signals: implementation is missing, not stale durable records. At Green phase, the projection-boundary test will turn green once `components/parent/ParentDashboard.tsx`, `components/parent/StudentSwitcher.tsx`, and `app/parent/page.tsx` exist and import from `@math-platform/knowledge-space-practice`.
+
+**Dirty worktree at MID attempt-2 start (preserved, NOT staged):**
+- `apps/integrated-math-3/__tests__/lib/onboarding/student-flow.test.ts` (modified) — unrelated user work.
+- `measure/automation-supervisor.py` (modified) — unrelated user work.
+- `graph.db` — generated artifact; mtime unchanged by this attempt's read-only `build-graph` queries.
+
 ## Phase 3 — States & Verification
 
 - [ ] Task: Empty/pending states (pre-link, no-activity)
