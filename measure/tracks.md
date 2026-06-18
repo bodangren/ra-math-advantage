@@ -67,9 +67,9 @@ Dependencies:
    - [ ] **Track 3: Edge Calibration Loop**
       *Data-driven prerequisite-edge validation: a Beta-Bernoulli posterior per `prerequisite_for` edge from paired proficiency verdicts, with recency decay and a curriculum-order confounding guardrail, producing a human review queue. (Item 3.) Depends on Track 1.*
       *Link: [./tracks/edge-calibration_20260521/](./tracks/edge-calibration_20260521/)*
-   - [ ] **Track 4: Next-Skill Planner**
-      *Rank the outer-fringe ready set by a composite priority score (readiness + downstream unlock value + goal proximity + weakness fit); `recommendedNext` becomes top-N by priority. (Item 4.) Depends on Track 2; weaknessFit integrates Track 6.*
-      *Link: [./tracks/next-skill-planner_20260521/](./tracks/next-skill-planner_20260521/)*
+   - [x] **Track 4: Next-Skill Planner** — **COMPLETED / ARCHIVED**
+       *Rank the outer-fringe ready set by a composite priority score (readiness + downstream unlock value + goal proximity + weakness fit); `recommendedNext` becomes top-N by priority. Implemented 6 source modules (types, unlockValue, goalProximity, weaknessFit stub, priority, recommendedNext). 17 test files / 360 tests pass. All 5 ACs met. (Item 4.) Depends on Track 2; weaknessFit integrates Track 6.*
+       *Link: [./measure/archive/next-skill-planner_20260521/](./measure/archive/next-skill-planner_20260521/)*
    - [ ] **Track 5: Adaptive Placement**
       *Cold-start diagnostic: an adaptive tree-walk that locates a new student's mastery frontier in O(log n) probes, with an abstract probe interface and an IM3 problem-bank reference implementation. (Item 5.) Depends on Track 1.*
       *Link: [./tracks/adaptive-placement_20260521/](./tracks/adaptive-placement_20260521/)*
