@@ -46,7 +46,7 @@ export async function requireParentRequestClaims(
   }
 
   const links = await fetchInternalQuery(internal.parent.links.listParentLinksQuery, {
-    parentId: claims.sub,
+    parentProfileId: claims.sub,
   });
 
   const hasActiveLink =

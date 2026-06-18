@@ -177,7 +177,7 @@ describe('requireParentRequestClaims', () => {
     expect((res as Response).status).toBe(403);
     expect(mockFetchInternalQuery).toHaveBeenCalledWith(
       'parent:links:listParentLinksQuery',
-      expect.objectContaining({ parentId: 'parent_profile_1' }),
+      expect.objectContaining({ parentProfileId: 'parent_profile_1' }),
     );
   });
 
@@ -222,5 +222,62 @@ describe('requireParentServerSessionClaims', () => {
 
   it('is async (awaitable; redirect-based surface)', () => {
     expect(requireParentServerSessionClaims.constructor.name).toBe('AsyncFunction');
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Phase 1 Acceptance Audit (2026-06-19) — Regression test for cross-module
+// argument-name contract.
+//
+// Bug found and fixed: the guard previously called the Convex internal query
+// with `{ parentId }`, but the registered validator in
+// `convex/parent/links.ts::listParentLinksQuery` declares the key as
+// `parentProfileId`. Convex argument validation would have rejected every
+// real call at runtime with ArgumentValidationError (manifesting as a 500,
+// not the intended fail-closed 403). The original test asserted the bug.
+//
+// This regression test reads the implementation source files and asserts
+// that the key the guard sends to Convex matches the key the Convex
+// validator declares. It is intentionally source-text based (not
+// runtime-introspection based) so it survives Convex codegen changes and
+// catches drift on either side of the boundary.
+// ---------------------------------------------------------------------------
+
+describe('parent guard ↔ Convex validator argument contract', () => {
+  it('the guard calls listParentLinksQuery with the same key the Convex validator declares', async () => {
+    const { readFile } = await import('node:fs/promises');
+    const { fileURLToPath } = await import('node:url');
+    const { dirname, resolve } = await import('node:path');
+
+    const here = dirname(fileURLToPath(import.meta.url));
+    const guardPath = resolve(here, '../../../lib/auth/parent-server-guards.ts');
+    const linksPath = resolve(here, '../../../convex/parent/links.ts');
+
+    const guardSrc = await readFile(guardPath, 'utf8');
+    const linksSrc = await readFile(linksPath, 'utf8');
+
+    // Convex validator side: extract the args block of listParentLinksQuery.
+    const queryMatch = linksSrc.match(/listParentLinksQuery\s*=\s*internalQuery\(\{[\s\S]*?args:\s*\{([\s\S]*?)\}/);
+    expect(queryMatch, 'listParentLinksQuery validator block must be present').not.toBeNull();
+    const validatorBlock = queryMatch![1];
+    const validatorKeys = Array.from(validatorBlock.matchAll(/(\w+)\s*:\s*v\./g)).map((m) => m[1]);
+    expect(validatorKeys).toContain('parentProfileId');
+    expect(validatorKeys).not.toContain('parentId');
+
+    // Guard caller side: extract the args object passed to fetchInternalQuery
+    // for listParentLinksQuery.
+    const callMatch = guardSrc.match(/fetchInternalQuery\(\s*internal\.parent\.links\.listParentLinksQuery\s*,\s*\{([\s\S]*?)\}\s*\)/);
+    expect(callMatch, 'guard must invoke fetchInternalQuery against listParentLinksQuery').not.toBeNull();
+    const callBlock = callMatch![1];
+    const callKeys = Array.from(callBlock.matchAll(/(\w+)\s*:/g)).map((m) => m[1]);
+
+    // Every key the guard sends must be a key the validator declared, and
+    // every required validator key must be present in the guard's call.
+    for (const key of callKeys) {
+      expect(validatorKeys, `guard sent key "${key}" that validator does not declare`).toContain(key);
+    }
+    for (const key of validatorKeys) {
+      expect(callKeys, `validator requires key "${key}" but guard does not send it`).toContain(key);
+    }
   });
 });
