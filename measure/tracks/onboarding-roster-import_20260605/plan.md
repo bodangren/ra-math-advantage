@@ -519,6 +519,73 @@ function name.
    (test-strategy §8). The Phase 4 closeout `CI=true npm run ws:im3:test`
    is the first time the full aggregate suite must be green.
 
+### Phase 3 Red Phase Boundary Fix (mid-attempt-2 — supervisor gate)
+
+**Supervisor feedback:** the previous MID attempt's Red-phase
+boundary was violated because `graph.db` was left modified relative
+to HEAD at the end of the session. The supervisor gate required
+the worktree to be clean for any **non-test/non-Measure path**, and
+`graph.db` (a generated knowledge graph) does not qualify as either.
+
+**Fix applied (this attempt):**
+
+```
+git checkout HEAD -- graph.db
+```
+
+This restores `graph.db` to its committed HEAD state (binary,
+identical content, mtime reset to HEAD's mtime). The restore is
+**idempotent** — the file's content now matches `HEAD` exactly, so
+running `git diff HEAD -- graph.db` returns no output.
+
+**Why this preserves the Red signal:** the test files at
+`apps/integrated-math-3/__tests__/components/teacher/onboarding/`
+do not import or depend on `graph.db`; they import the production
+components `@/components/teacher/onboarding/{RosterImportWizard,ImportSummary}`,
+which do not exist at HEAD. Restoring `graph.db` does not affect the
+import-time failure that drives the Red signal.
+
+**Dirty-worktree state at MID attempt-2 start:**
+
+| Path | Classification | Action |
+|---|---|---|
+| `M graph.db` | Generated knowledge graph (non-test/non-Measure) | **Restored to HEAD** via `git checkout HEAD -- graph.db` (this attempt) — same convention as Phase 2 Red Evidence (`06ed8f9a` "record graph.db restore after supervisor Red-phase gate") |
+| `M measure/automation-supervisor.py` (1-line diff: `ACCEPTANCE_MODEL` env-var default) | Unrelated user work | **Preserved untouched** — left dirty per the role directive "Preserve unrelated user work: do not overwrite, revert, or hide it in this track's commit"; not in the supervisor's gate-failure list for attempt-2 |
+
+**Re-verified Red signal after restore:**
+
+```
+npx vitest run apps/integrated-math-3/__tests__/components/teacher/onboarding/RosterImportWizard.test.tsx \
+              apps/integrated-math-3/__tests__/components/teacher/onboarding/ImportSummary.test.tsx \
+              --root apps/integrated-math-3
+```
+
+→ `Test Files  2 failed (2)` / `Tests  20 failed (20)` — identical
+to the pre-restore signal. All 20 tests still fail at import-time
+with `Cannot find package '@/components/teacher/onboarding/{RosterImportWizard,ImportSummary}'`
+because the production components do not exist at HEAD.
+
+**Boundary state at end of this attempt:**
+
+- `graph.db`: clean (matches HEAD)
+- `measure/automation-supervisor.py`: still dirty (1-line unrelated
+  user work, **preserved untouched**, not in this attempt's gate-failure
+  list — the supervisor's gate check is binary per-path: graph.db
+  flagged, automation-supervisor.py not flagged, so the action
+  matches the supervisor's directive)
+
+**Lesson learned for this attempt:** the role directive
+"Preserve unrelated user work: do not overwrite, revert, or hide
+it in this track's commit" applies to **content within a track
+commit**, not to **worktree state at the end of a Red-phase session**.
+A Red-phase session must end with the worktree clean relative to
+HEAD for every non-test/non-Measure path, regardless of whether
+the path's modification was caused by this session or pre-existed.
+The convention to use is `git checkout HEAD -- <path>` (not
+`git stash`) so that the modification history is preserved in the
+graph but the working tree matches HEAD. This is the same
+convention Phase 2 used at commit `06ed8f9a`.
+
 ## Phase 4 — Student Onboarding & Verification
 
 - [ ] Task: First-run student flow routing into placement diagnostic → assigned work (TDD)
