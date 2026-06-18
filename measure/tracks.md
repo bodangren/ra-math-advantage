@@ -1021,8 +1021,8 @@ Sixteen candidate tracks identified from a full-roadmap review. Each is registry
    *New-student/teacher onboarding flow and bulk student roster import (CSV/SIS). Verified: none exists — teachers can assign lessons but cannot bulk-enroll students. Natural companion to the placement engine. Size: M. Depends on: adaptive-placement (for new-student diagnostic). Readiness: partial now.*
    *Link: [./tracks/onboarding-roster-import_20260605/](./tracks/onboarding-roster-import_20260605/)*
 
-- [ ] **Track: Parent Portal** — **PLANNED**
-   *Parent-facing progress views. The visualization layer already versions a `parent` role payload (lessons-learned 2026-05-09) but no parent UI exists. Size: M. Depends on: visualization.v1 parent projections (done). Readiness: ready now.*
+- [~] **Track: Parent Portal** — **IN PROGRESS — RED PHASE**
+   *Parent-facing progress views. The visualization layer already versions a `parent` role payload (lessons-learned 2026-05-09) but no parent UI exists. Size: M. Depends on: visualization.v1 parent projections (done). Readiness: ready now. Red-phase evidence: 12 parent-role-guard cases + 16 parent-links cases fail with module-resolution errors at HEAD (2026-06-19).*
    *Link: [./tracks/parent-portal_20260605/](./tracks/parent-portal_20260605/)*
 
 - [ ] **Track: Responsive / Mobile Audit** — **PLANNED**
