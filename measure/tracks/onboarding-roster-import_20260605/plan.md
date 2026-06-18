@@ -633,6 +633,116 @@ convention Phase 2 used at commit `06ed8f9a`.
 
 ## Phase 4 — Student Onboarding & Verification
 
-- [ ] Task: First-run student flow routing into placement diagnostic → assigned work (TDD)
+- [~] Task: First-run student flow routing into placement diagnostic → assigned work (TDD)
 - [ ] Task: Final verification — boundary lints, lint, tsc --noEmit, CI=true npm run test
 - [ ] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md)
+
+### Phase 4 Red Evidence (mid role)
+
+**Dirty-worktree classification at MID start:**
+
+| Path | Classification | Action |
+|---|---|---|
+| `graph.db` (modified, binary) | Generated knowledge graph (non-test/non-Measure) | Preserved during this Red-phase session; will be restored to HEAD before commit per the Phase 2 (`06ed8f9a`) / Phase 3 (`1fde2d08`) supervisor-gate convention |
+| `measure/automation-supervisor.py` (1-line diff: `ACCEPTANCE_MODEL` env-var default `opencode-go/qwen3.7-max` → `openai/gpt-5.5`) | Unrelated user work | **Preserved untouched** — not folded into any track commit, not reverted (per role directive "Preserve unrelated user work") |
+
+**Targeted Red command (single, bounded, non-fake) — matches test-strategy §7 Phase 4 "Red" exactly:**
+
+```
+npx vitest run apps/integrated-math-3/__tests__/lib/onboarding/student-flow.test.ts \
+  --root apps/integrated-math-3
+```
+
+**Production module under test (does not exist at HEAD):**
+`apps/integrated-math-3/lib/onboarding/student-flow.ts` — exports
+`routeStudent(context, deps, options?)` plus `StudentFlowContext`,
+`StudentFlowDecision`, `StudentFlowRouterDeps`,
+`StudentFlowDestination` (`'placement' | 'assigned-work'`),
+`StudentFlowReason` (`'new-student' | 'returning-student' | 'forced-rerun'`).
+
+**Expected Red signal:** The test file imports
+`@/lib/onboarding/student-flow` at top-level; vitest fails at
+import-time with `Failed to resolve import
+"@/lib/onboarding/student-flow"`. **Confirmed:**
+
+```
+ RUN  v4.1.8 /home/daniel-bo/Desktop/ra-math-advantage/apps/integrated-math-3
+
+ ❯ __tests__/lib/onboarding/student-flow.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  __tests__/lib/onboarding/student-flow.test.ts
+Error: Failed to resolve import "@/lib/onboarding/student-flow" from
+"apps/integrated-math-3/__tests__/lib/onboarding/student-flow.test.ts".
+Does the file exist?
+  Plugin: vite:import-analysis
+  File: ...student-flow.test.ts:50:7
+
+ Test Files  1 failed (1)
+      Tests  no tests
+```
+
+The production module does not exist at HEAD; `lib/onboarding/` is a
+new directory (no tracked files at that path). Build-graph `query` for
+`%onboarding/student-flow%` returns 0 nodes, confirming net-new code.
+
+**24 queued test cases** across 7 `describe` blocks (the import-time
+failure prevents any of them from running until the production module
+lands):
+
+- **New-student routing (Task 4.1.a)** — 5 tests: runPlacement called
+  exactly once, destination='placement' + reason='new-student',
+  placementOutcome round-trip, no force flag on fresh new students,
+  force flag absent when not supplied.
+- **Returning-student bypass (Task 4.1.b)** — 3 tests: runPlacement
+  NOT called when `hasExistingPlacement=true`,
+  destination='assigned-work' + reason='returning-student', no
+  placementOutcome on bypass.
+- **Force re-run (Task 4.1.c)** — 4 tests: runPlacement called once
+  with force=true for returning students, reason='forced-rerun',
+  placementOutcome round-trip on forced re-run, force=true on new
+  students behaves the same as new-student run.
+- **Mixed-batch routing (Task 4.1.d)** — 3 tests: two students with
+  different state route to different destinations, runPlacement called
+  once total across the mixed batch (returning student does not
+  increment), call-order preserved across three mixed invocations.
+- **Decision shape contract (Task 4.1.e)** — 4 tests: documented
+  top-level keys, placementOutcome present on placement branch,
+  placementOutcome absent on bypass branch, three-branch
+  discriminator via `reason`.
+- **Purity & isolation (Task 4.1.f)** — 3 tests: input context not
+  mutated, deps object not mutated, parallel calls with same context
+  return identical decisions.
+- **PlacementFlowOutcome round-trip (Task 4.1.g)** — 2 tests: router
+  passes through outcome without rewriting it (proves it composes with
+  the existing `runNewStudentPlacementFlow` per test-strategy §4 item
+  4: "test must use the existing flow's public types — no parallel
+  implementation"), handles an internal `status='skipped'` outcome
+  correctly.
+
+**Test approach:** dependency injection. The router accepts a
+`runPlacement` function in its `deps` so the test stubs it (count
+invocations, inject outcomes, verify call args). The integration with
+`runNewStudentPlacementFlow` from `@/lib/placement/placement-flow` is
+a wiring concern for the Green author — this Red contract pins the
+**router's pure branching behavior only**, not the placement
+implementation. Per test-strategy §5: "Tests live in
+`apps/integrated-math-3/__tests__/**`; never import from
+`convex/_generated/` outside types" — the test imports the
+`PlacementFlowOutcome` **type** from `@/lib/placement/placement-flow`
+(a lib module, no Convex imports).
+
+**Handoff to Green author:** create
+`apps/integrated-math-3/lib/onboarding/student-flow.ts` exporting
+`routeStudent` and the supporting types. The function signature per
+the Red contract:
+- `routeStudent(context: StudentFlowContext, deps: StudentFlowRouterDeps, options?: { force?: boolean }): Promise<StudentFlowDecision>`
+- New student (`hasExistingPlacement=false`) → call `runPlacement(studentId)` → return `{ destination: 'placement', reason: 'new-student', placementOutcome }`
+- Returning student (`hasExistingPlacement=true`, no force) → bypass → return `{ destination: 'assigned-work', reason: 'returning-student' }` (no `placementOutcome`)
+- Force override → call `runPlacement(studentId, { force: true })` → return `{ destination: 'placement', reason: 'forced-rerun', placementOutcome }`
+
+After the module lands, re-run the targeted Red command above. Expected
+green result: `Test Files 1 passed (1) / Tests 24 passed (24)`. Do NOT
+run `npm run ws:im3:test` while any Phase 4 task is `[~]`
+(test-strategy §8).
