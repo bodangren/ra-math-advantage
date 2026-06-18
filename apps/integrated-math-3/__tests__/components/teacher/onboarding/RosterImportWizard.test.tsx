@@ -46,9 +46,9 @@ interface UseQueryMock {
 }
 
 interface UseMutationMock {
-  fn: () => UseMutationReturn;
-  setHandler: (handler: MutationFn) => void;
-  calls: Array<{ args: unknown }>;
+  fn: (ref: unknown) => UseMutationReturn;
+  setHandler: (ref: unknown, handler: MutationFn) => void;
+  calls: Array<{ ref: unknown; args: unknown }>;
 }
 
 interface ConvexMockState {
@@ -59,6 +59,7 @@ interface ConvexMockState {
 
 function createConvexMock(): ConvexMockState {
   const queryResults: Array<{ ref: unknown; args: unknown; result: UseQueryReturn }> = [];
+  const mutationHandlers = new Map<unknown, MutationFn>();
 
   const state: ConvexMockState = {
     useQuery: {
@@ -80,15 +81,23 @@ function createConvexMock(): ConvexMockState {
       },
     },
     useMutation: {
-      fn: () => state.useMutation['_handler' as keyof UseMutationMock] as UseMutationReturn,
-      setHandler: (handler: MutationFn) => {
-        (state.useMutation as unknown as { _handler: MutationFn })._handler = handler;
+      fn: (ref) => {
+        const handler = mutationHandlers.get(ref);
+        const wrapped: MutationFn = async (args: unknown) => {
+          state.useMutation.calls.push({ ref, args });
+          if (!handler) throw new Error(`no mutation handler registered in test for ref ${String(ref)}`);
+          return handler(args);
+        };
+        return wrapped;
+      },
+      setHandler: (ref: unknown, handler: MutationFn) => {
+        mutationHandlers.set(ref, handler);
       },
       calls: [],
     },
     reset: () => {
       queryResults.length = 0;
-      (state.useMutation as unknown as { _handler?: MutationFn })._handler = undefined;
+      mutationHandlers.clear();
       state.useMutation.calls.length = 0;
     },
   };
@@ -108,9 +117,10 @@ function createConvexMock(): ConvexMockState {
  * the same surface once `npx convex dev` has been executed.
  * ------------------------------------------------------------------ */
 
+const M_CREATE_CLASS = 'onboarding/rosterImport:createClass';
 const M_IMPORT_ROSTER = 'onboarding/rosterImport:importRoster';
-const M_GET_IMPORT_SUMMARY = 'onboarding/rosterImport:getImportSummary';
-const M_LIST_IMPORTS_FOR_CLASS = 'onboarding/rosterImport:listImportsForClass';
+const M_GET_IMPORT_SUMMARY = 'onboarding/rosterImport:getImportSummaryQuery';
+const M_LIST_IMPORTS_FOR_CLASS = 'onboarding/rosterImport:listImportsForClassQuery';
 
 /* ------------------------------------------------------------------ *
  * Component prop / import surface
@@ -139,23 +149,18 @@ beforeEach(() => {
   vi.doMock('convex/react', () => ({
     useQuery: (ref: unknown, args: unknown) => convex.useQuery.fn(ref, args),
     useAction: (_ref: unknown) => undefined,
-    useMutation: () => {
-      const handler = (convex.useMutation as unknown as { _handler?: MutationFn })._handler;
-      const wrapped: MutationFn = async (args: unknown) => {
-        convex.useMutation.calls.push({ args });
-        if (!handler) throw new Error('no mutation handler registered in test');
-        return handler(args);
-      };
-      return wrapped;
-    },
+    useMutation: (ref: unknown) => convex.useMutation.fn(ref),
     useConvex: () => ({ query: vi.fn(), mutation: vi.fn(), action: vi.fn() }),
   }));
   vi.doMock('@/convex/_generated/api', () => ({
     api: {
       onboarding: {
-        'rosterImport:importRoster': M_IMPORT_ROSTER,
-        'rosterImport:getImportSummary': M_GET_IMPORT_SUMMARY,
-        'rosterImport:listImportsForClass': M_LIST_IMPORTS_FOR_CLASS,
+        rosterImport: {
+          createClass: M_CREATE_CLASS,
+          importRoster: M_IMPORT_ROSTER,
+          getImportSummaryQuery: M_GET_IMPORT_SUMMARY,
+          listImportsForClassQuery: M_LIST_IMPORTS_FOR_CLASS,
+        },
       },
     },
   }));
@@ -169,6 +174,27 @@ afterEach(() => {
 async function loadWizard(): Promise<RosterImportWizardComponent> {
   const mod = await import(WIZARD_PATH);
   return (mod.RosterImportWizard ?? mod.default) as RosterImportWizardComponent;
+}
+
+async function advanceToUpload(
+  user: ReturnType<typeof userEvent.setup>,
+  classId: Id<'classes'> = 'classes_test_1' as Id<'classes'>,
+): Promise<void> {
+  convex.useMutation.setHandler(M_CREATE_CLASS, async () => ({ classId }));
+  const classNameInput = await screen.findByLabelText(/class name/i);
+  await user.type(classNameInput, 'Algebra 1');
+  await user.type(screen.getByLabelText(/section|period/i), 'Period 1');
+  await user.click(screen.getByRole('button', { name: /next|continue|upload/i }));
+}
+
+async function uploadCsv(
+  user: ReturnType<typeof userEvent.setup>,
+  csv: string,
+  fileName = 'roster.csv',
+): Promise<void> {
+  const file = new File([csv], fileName, { type: 'text/csv' });
+  const fileInput = await screen.findByLabelText(/roster|csv|file/i);
+  await user.upload(fileInput, file);
 }
 
 /* ------------------------------------------------------------------ *
@@ -225,13 +251,7 @@ describe('RosterImportWizard — Task 1: wizard step progression', () => {
     const user = userEvent.setup();
     render(<Wizard teacherId={TEACHER_ID} organizationId={ORG_ID} />);
 
-    // Step 1 — fill in class name + section
-    const classNameInput = await screen.findByLabelText(/class name/i);
-    await user.type(classNameInput, 'Algebra 1 — Period 1');
-    const sectionInput = screen.getByLabelText(/section|period/i);
-    await user.type(sectionInput, 'Period 1');
-    const nextButton = screen.getByRole('button', { name: /next|continue|upload/i });
-    await user.click(nextButton);
+    await advanceToUpload(user);
 
     await waitFor(() => {
       expect(screen.getByTestId('roster-wizard-step-upload')).toBeInTheDocument();
@@ -250,17 +270,9 @@ describe('RosterImportWizard — Task 1: upload step → preview transition', ()
     const user = userEvent.setup();
     render(<Wizard teacherId={TEACHER_ID} organizationId={ORG_ID} />);
 
-    // Advance past create-class
-    const classNameInput = await screen.findByLabelText(/class name/i);
-    await user.type(classNameInput, 'Algebra 1 — Period 1');
-    const sectionInput = screen.getByLabelText(/section|period/i);
-    await user.type(sectionInput, 'Period 1');
-    await user.click(screen.getByRole('button', { name: /next|continue|upload/i }));
+    await advanceToUpload(user);
 
-    // Upload the file
-    const file = new File([VALID_CSV], 'roster.csv', { type: 'text/csv' });
-    const fileInput = await screen.findByLabelText(/roster|csv|file/i);
-    await user.upload(fileInput, file);
+    await uploadCsv(user, VALID_CSV);
 
     // Wizard advances to preview
     await waitFor(() => {
@@ -287,11 +299,7 @@ describe('RosterImportWizard — Task 1: preview step renders dry-run counts and
     const user = userEvent.setup();
     render(<Wizard teacherId={TEACHER_ID} organizationId={ORG_ID} />);
 
-    // Advance to upload
-    const classNameInput = await screen.findByLabelText(/class name/i);
-    await user.type(classNameInput, 'Algebra 1');
-    await user.type(screen.getByLabelText(/section|period/i), 'Period 1');
-    await user.click(screen.getByRole('button', { name: /next|continue|upload/i }));
+    await advanceToUpload(user);
 
     // Upload valid CSV
     const file = new File([VALID_CSV], 'roster.csv', { type: 'text/csv' });
@@ -315,16 +323,9 @@ describe('RosterImportWizard — Task 1: preview step renders dry-run counts and
     const user = userEvent.setup();
     render(<Wizard teacherId={TEACHER_ID} organizationId={ORG_ID} />);
 
-    // Advance to upload
-    const classNameInput = await screen.findByLabelText(/class name/i);
-    await user.type(classNameInput, 'Algebra 1');
-    await user.type(screen.getByLabelText(/section|period/i), 'Period 1');
-    await user.click(screen.getByRole('button', { name: /next|continue|upload/i }));
+    await advanceToUpload(user);
 
-    // Upload mixed-errors CSV
-    const file = new File([MIXED_ERRORS_CSV], 'roster.csv', { type: 'text/csv' });
-    const fileInput = await screen.findByLabelText(/roster|csv|file/i);
-    await user.upload(fileInput, file);
+    await uploadCsv(user, MIXED_ERRORS_CSV);
 
     // Preview must surface each error's row number. The MIXED_ERRORS_CSV
     // contains: row 2 missing name, row 3 invalid email — so we expect
@@ -342,11 +343,7 @@ describe('RosterImportWizard — Task 1: preview step renders dry-run counts and
     const user = userEvent.setup();
     render(<Wizard teacherId={TEACHER_ID} organizationId={ORG_ID} />);
 
-    // Advance to upload
-    const classNameInput = await screen.findByLabelText(/class name/i);
-    await user.type(classNameInput, 'Algebra 1');
-    await user.type(screen.getByLabelText(/section|period/i), 'Period 1');
-    await user.click(screen.getByRole('button', { name: /next|continue|upload/i }));
+    await advanceToUpload(user);
 
     // Upload mixed-errors CSV — the raw row 2 missing name; row 3's invalid
     // email value 'not-an-email' must NOT appear in the error list.
@@ -384,16 +381,9 @@ describe('RosterImportWizard — Task 1: commit button gating', () => {
     const user = userEvent.setup();
     render(<Wizard teacherId={TEACHER_ID} organizationId={ORG_ID} />);
 
-    // Advance to upload
-    const classNameInput = await screen.findByLabelText(/class name/i);
-    await user.type(classNameInput, 'Algebra 1');
-    await user.type(screen.getByLabelText(/section|period/i), 'Period 1');
-    await user.click(screen.getByRole('button', { name: /next|continue|upload/i }));
+    await advanceToUpload(user);
 
-    // Upload mixed-errors CSV
-    const file = new File([MIXED_ERRORS_CSV], 'roster.csv', { type: 'text/csv' });
-    const fileInput = await screen.findByLabelText(/roster|csv|file/i);
-    await user.upload(fileInput, file);
+    await uploadCsv(user, MIXED_ERRORS_CSV);
 
     // The commit button must be disabled because the dry-run has errors.
     await waitFor(() => {
@@ -408,11 +398,7 @@ describe('RosterImportWizard — Task 1: commit button gating', () => {
     const user = userEvent.setup();
     render(<Wizard teacherId={TEACHER_ID} organizationId={ORG_ID} />);
 
-    // Advance to upload
-    const classNameInput = await screen.findByLabelText(/class name/i);
-    await user.type(classNameInput, 'Algebra 1');
-    await user.type(screen.getByLabelText(/section|period/i), 'Period 1');
-    await user.click(screen.getByRole('button', { name: /next|continue|upload/i }));
+    await advanceToUpload(user);
 
     // Upload the valid CSV — zero errors expected.
     const file = new File([VALID_CSV], 'roster.csv', { type: 'text/csv' });
@@ -443,11 +429,7 @@ describe('RosterImportWizard — Task 1: commit invokes the importRoster mutatio
     const user = userEvent.setup();
     render(<Wizard teacherId={TEACHER_ID} organizationId={ORG_ID} />);
 
-    // Advance to upload
-    const classNameInput = await screen.findByLabelText(/class name/i);
-    await user.type(classNameInput, 'Algebra 1');
-    await user.type(screen.getByLabelText(/section|period/i), 'Period 1');
-    await user.click(screen.getByRole('button', { name: /next|continue|upload/i }));
+    await advanceToUpload(user);
 
     // Upload the valid CSV
     const file = new File([VALID_CSV], 'roster.csv', { type: 'text/csv' });
@@ -456,7 +438,7 @@ describe('RosterImportWizard — Task 1: commit invokes the importRoster mutatio
 
     // Register a stub mutation handler that captures the call and returns
     // a plausible import result.
-    convex.useMutation.setHandler(async (args: unknown) => {
+    convex.useMutation.setHandler(M_IMPORT_ROSTER, async (args: unknown) => {
       const a = args as { classId?: string; importedBy?: string; rows?: unknown[] };
       return {
         importId: 'roster_imports_test_1',
@@ -478,9 +460,11 @@ describe('RosterImportWizard — Task 1: commit invokes the importRoster mutatio
     // The mutation must have been invoked exactly once with parsed rows
     // and the teacher identity.
     await waitFor(() => {
-      expect(convex.useMutation.calls.length).toBeGreaterThanOrEqual(1);
+      const importCalls = convex.useMutation.calls.filter((c) => c.ref === M_IMPORT_ROSTER);
+      expect(importCalls.length).toBeGreaterThanOrEqual(1);
     });
-    const lastCall = convex.useMutation.calls[convex.useMutation.calls.length - 1]!;
+    const importCalls = convex.useMutation.calls.filter((c) => c.ref === M_IMPORT_ROSTER);
+    const lastCall = importCalls[importCalls.length - 1]!;
     const callArgs = lastCall.args as {
       classId?: Id<'classes'>;
       rows?: Array<{ rowIndex: number; name: string; email?: string }>;
@@ -516,11 +500,7 @@ describe('RosterImportWizard — Task 1: post-commit transition', () => {
       />,
     );
 
-    // Advance to upload
-    const classNameInput = await screen.findByLabelText(/class name/i);
-    await user.type(classNameInput, 'Algebra 1');
-    await user.type(screen.getByLabelText(/section|period/i), 'Period 1');
-    await user.click(screen.getByRole('button', { name: /next|continue|upload/i }));
+    await advanceToUpload(user);
 
     // Upload the valid CSV
     const file = new File([VALID_CSV], 'roster.csv', { type: 'text/csv' });
@@ -528,7 +508,7 @@ describe('RosterImportWizard — Task 1: post-commit transition', () => {
     await user.upload(fileInput, file);
 
     // Register a stub mutation handler.
-    convex.useMutation.setHandler(async (args: unknown) => {
+    convex.useMutation.setHandler(M_IMPORT_ROSTER, async (args: unknown) => {
       const a = args as { classId?: string; rows?: unknown[] };
       return {
         importId: 'roster_imports_test_1',
@@ -565,11 +545,7 @@ describe('RosterImportWizard — Task 1: file input plumbing', () => {
     const user = userEvent.setup();
     render(<Wizard teacherId={TEACHER_ID} organizationId={ORG_ID} />);
 
-    // Advance to upload
-    const classNameInput = await screen.findByLabelText(/class name/i);
-    await user.type(classNameInput, 'Algebra 1');
-    await user.type(screen.getByLabelText(/section|period/i), 'Period 1');
-    await user.click(screen.getByRole('button', { name: /next|continue|upload/i }));
+    await advanceToUpload(user);
 
     const fileInput = await screen.findByLabelText(/roster|csv|file/i);
     expect(fileInput.tagName).toBe('INPUT');

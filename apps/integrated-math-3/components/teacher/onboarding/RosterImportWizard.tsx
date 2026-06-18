@@ -16,12 +16,9 @@ interface RosterImportWizardProps {
   onComplete?: (classId: Id<'classes'>) => void;
 }
 
-function generateClassId(): Id<'classes'> {
-  return `classes_${Date.now()}_${Math.random().toString(36).slice(2, 10)}` as Id<'classes'>;
-}
-
 export function RosterImportWizard({
   teacherId,
+  organizationId,
   onComplete,
 }: RosterImportWizardProps) {
   const [step, setStep] = useState<WizardStep>('create-class');
@@ -32,20 +29,33 @@ export function RosterImportWizard({
   const [dryRunResult, setDryRunResult] = useState<RosterImportResult | null>(null);
   const [fileName, setFileName] = useState('');
   const [committing, setCommitting] = useState(false);
+  const [creatingClass, setCreatingClass] = useState(false);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onboardingApi = (api as any).onboarding;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const importRoster = useMutation(onboardingApi['rosterImport:importRoster'] as any);
+  const createClass = useMutation(onboardingApi.rosterImport.createClass as any);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const importRoster = useMutation(onboardingApi.rosterImport.importRoster as any);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleAdvanceToUpload = useCallback(() => {
-    if (!className.trim()) return;
-    const newClassId = generateClassId();
-    setClassId(newClassId);
-    setStep('upload');
-  }, [className]);
+  const handleAdvanceToUpload = useCallback(async () => {
+    if (!className.trim() || creatingClass) return;
+    setCreatingClass(true);
+    try {
+      const { classId: newClassId } = (await createClass({
+        teacherId,
+        name: className.trim(),
+        section: section.trim() || undefined,
+        organizationId,
+      })) as { classId: Id<'classes'> };
+      setClassId(newClassId);
+      setStep('upload');
+    } finally {
+      setCreatingClass(false);
+    }
+  }, [className, section, teacherId, organizationId, createClass, creatingClass]);
 
   const handleFileChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -135,10 +145,10 @@ export function RosterImportWizard({
           </div>
           <button
             type="button"
-            disabled={!isClassNameValid}
+            disabled={!isClassNameValid || creatingClass}
             onClick={handleAdvanceToUpload}
           >
-            Next: Upload Roster
+            {creatingClass ? 'Creating...' : 'Next: Upload Roster'}
           </button>
         </div>
       )}

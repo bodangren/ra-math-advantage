@@ -1,4 +1,4 @@
-import { internalMutation, internalQuery } from '../_generated/server';
+import { mutation, query } from '../_generated/server';
 import { v } from 'convex/values';
 import type { MutationCtx, QueryCtx } from '../_generated/server';
 import type { Doc, Id } from '../_generated/dataModel';
@@ -256,7 +256,28 @@ export async function listImportsForClass(
     }));
 }
 
-export const importRosterMutationConvex = internalMutation({
+export async function createClassHandler(
+  ctx: MutationCtx,
+  args: {
+    teacherId: Id<'profiles'>;
+    name: string;
+    section?: string;
+    organizationId?: Id<'organizations'>;
+  },
+): Promise<{ classId: Id<'classes'> }> {
+  const now = Date.now();
+  const classId = await ctx.db.insert('classes', {
+    teacherId: args.teacherId,
+    name: args.name,
+    description: args.section,
+    archived: false,
+    createdAt: now,
+    updatedAt: now,
+  });
+  return { classId };
+}
+
+export const importRoster = mutation({
   args: {
     classId: v.id('classes'),
     rows: v.array(
@@ -279,7 +300,7 @@ export const importRosterMutationConvex = internalMutation({
   handler: importRosterMutation,
 });
 
-export const getImportSummaryQuery = internalQuery({
+export const getImportSummaryQuery = query({
   args: {
     classId: v.id('classes'),
     importId: v.id('roster_imports'),
@@ -287,9 +308,19 @@ export const getImportSummaryQuery = internalQuery({
   handler: getImportSummary,
 });
 
-export const listImportsForClassQuery = internalQuery({
+export const listImportsForClassQuery = query({
   args: {
     classId: v.id('classes'),
   },
   handler: listImportsForClass,
+});
+
+export const createClass = mutation({
+  args: {
+    teacherId: v.id('profiles'),
+    name: v.string(),
+    section: v.optional(v.string()),
+    organizationId: v.optional(v.id('organizations')),
+  },
+  handler: createClassHandler,
 });

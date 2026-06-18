@@ -6,7 +6,7 @@
 // (apps/integrated-math-3/__tests__/convex/roster-import.test.ts and
 // import-summary.test.ts) exercise the underlying handlers against a
 // mock-ctx; this file covers the Convex wrappers — the registered
-// internalMutation / internalQuery objects whose args validators the
+// public mutation / query objects whose args validators the
 // Convex runtime consults at request time.
 //
 // Per spec.md FR6 + AC5: "Import summary is auditable; boundary lints,
@@ -26,7 +26,7 @@
 // it's `{ "type": "object", "value": { "<field>": { "fieldType": {...},
 // "optional": <bool> }, ... } }`.
 //
-// The current implementation has `v.id('_scheduled_functions')` on
+// The current implementation had `v.id('_scheduled_functions')` on
 // getImportSummaryQuery.args.importId — caught here. The other
 // wrappers carry correct table names; the tests pin those too so
 // regressions are caught.
@@ -103,12 +103,12 @@ describe('roster-import Convex wrappers — args validator correctness', () => {
     expect(classId.tableName).toBe('classes');
   });
 
-  it('importRosterMutationConvex.args.importedBy is v.id("profiles")', async () => {
-    const { importRosterMutationConvex } = await import(
+  it('importRoster.args.importedBy is v.id("profiles")', async () => {
+    const { importRoster } = await import(
       '@/convex/onboarding/roster-import'
     );
 
-    const args = parseArgs(exportArgsOf(importRosterMutationConvex));
+    const args = parseArgs(exportArgsOf(importRoster));
     const importedBy = getField(args, 'importedBy');
     expect(importedBy.type).toBe('id');
     if (importedBy.type !== 'id') {
@@ -117,12 +117,12 @@ describe('roster-import Convex wrappers — args validator correctness', () => {
     expect(importedBy.tableName).toBe('profiles');
   });
 
-  it('importRosterMutationConvex.args.classId is v.id("classes")', async () => {
-    const { importRosterMutationConvex } = await import(
+  it('importRoster.args.classId is v.id("classes")', async () => {
+    const { importRoster } = await import(
       '@/convex/onboarding/roster-import'
     );
 
-    const args = parseArgs(exportArgsOf(importRosterMutationConvex));
+    const args = parseArgs(exportArgsOf(importRoster));
     const classId = getField(args, 'classId');
     expect(classId.type).toBe('id');
     if (classId.type !== 'id') {
@@ -145,12 +145,12 @@ describe('roster-import Convex wrappers — args validator correctness', () => {
     expect(classId.tableName).toBe('classes');
   });
 
-  it('importRosterMutationConvex.args.rows is v.array(v.object({...})) with all four CSV columns', async () => {
-    const { importRosterMutationConvex } = await import(
+  it('importRoster.args.rows is v.array(v.object({...})) with all four CSV columns', async () => {
+    const { importRoster } = await import(
       '@/convex/onboarding/roster-import'
     );
 
-    const args = parseArgs(exportArgsOf(importRosterMutationConvex));
+    const args = parseArgs(exportArgsOf(importRoster));
     const rows = getField(args, 'rows');
     expect(rows.type).toBe('array');
     if (rows.type !== 'array') {
@@ -167,12 +167,12 @@ describe('roster-import Convex wrappers — args validator correctness', () => {
     );
   });
 
-  it('importRosterMutationConvex.args.source is v.optional(v.object({fileName, rowCount}))', async () => {
-    const { importRosterMutationConvex } = await import(
+  it('importRoster.args.source is v.optional(v.object({fileName, rowCount}))', async () => {
+    const { importRoster } = await import(
       '@/convex/onboarding/roster-import'
     );
 
-    const args = parseArgs(exportArgsOf(importRosterMutationConvex));
+    const args = parseArgs(exportArgsOf(importRoster));
     const sourceField = args.value['source'];
     expect(sourceField).toBeDefined();
     expect(sourceField!.optional).toBe(true);

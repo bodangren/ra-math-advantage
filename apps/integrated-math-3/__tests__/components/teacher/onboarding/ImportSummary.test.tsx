@@ -83,8 +83,8 @@ function createConvexMock(): ConvexMockState {
  * Public API surface contract
  * ------------------------------------------------------------------ */
 
-const Q_GET_IMPORT_SUMMARY = 'onboarding/rosterImport:getImportSummary';
-const Q_LIST_IMPORTS_FOR_CLASS = 'onboarding/rosterImport:listImportsForClass';
+const Q_GET_IMPORT_SUMMARY = 'onboarding/rosterImport:getImportSummaryQuery';
+const Q_LIST_IMPORTS_FOR_CLASS = 'onboarding/rosterImport:listImportsForClassQuery';
 
 /* ------------------------------------------------------------------ *
  * Component prop / import surface
@@ -118,9 +118,11 @@ beforeEach(() => {
   vi.doMock('@/convex/_generated/api', () => ({
     api: {
       onboarding: {
-        'rosterImport:importRoster': 'onboarding/rosterImport:importRoster',
-        'rosterImport:getImportSummary': Q_GET_IMPORT_SUMMARY,
-        'rosterImport:listImportsForClass': Q_LIST_IMPORTS_FOR_CLASS,
+        rosterImport: {
+          importRoster: 'onboarding/rosterImport:importRoster',
+          getImportSummaryQuery: Q_GET_IMPORT_SUMMARY,
+          listImportsForClassQuery: Q_LIST_IMPORTS_FOR_CLASS,
+        },
       },
     },
   }));

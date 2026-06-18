@@ -35,7 +35,7 @@ export function ImportSummary({ classId, importId }: ImportSummaryProps) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onboardingApi = (api as any).onboarding;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const result = useQuery(onboardingApi['rosterImport:getImportSummary'] as any, { classId, importId }) as ImportSummaryResult | undefined;
+  const result = useQuery(onboardingApi.rosterImport.getImportSummaryQuery as any, { classId, importId }) as ImportSummaryResult | undefined;
 
   const created = result?.created ?? 0;
   const updated = result?.updated ?? 0;
