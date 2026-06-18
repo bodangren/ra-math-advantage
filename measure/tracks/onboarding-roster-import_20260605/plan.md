@@ -60,13 +60,46 @@ gate" is `npx vitest run apps/integrated-math-3/__tests__/lib/roster/`
 - [x] Task: Dry-run preview computation (TDD) — `0a4f943b`
 - [x] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md) — `41043d1f`
 
-## Phase 2 — Idempotent Enrollment (Convex)
+## Phase 2 — Idempotent Enrollment (Convex) [checkpoint: `bd4f6736`]
 
-- [~] Task: Batched, idempotent enrollment mutation linking/creating students by identifier (TDD, no N+1) — `a1ceb7d4`
-- [~] Task: Provision/invite imported students per the auth model (TDD) — `a1ceb7d4`
-- [~] Task: Import summary persistence + retrieval (TDD) — `a1ceb7d4`
-- [~] Task: Convex wrapper validator correctness (TDD, see Red Re-Verification #3) — pending
-- [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
+- [x] Task: Batched, idempotent enrollment mutation linking/creating students by identifier (TDD, no N+1) — `bd4f6736`
+- [x] Task: Provision/invite imported students per the auth model (TDD) — `bd4f6736`
+- [x] Task: Import summary persistence + retrieval (TDD) — `bd4f6736`
+- [x] Task: Convex wrapper validator correctness (TDD, see Red Re-Verification #3) — `bd4f6736`
+- [x] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md) — `bd4f6736`
+
+### Phase 2 Green Evidence (jr role, `bd4f6736`)
+
+**Fix applied:** Changed `getImportSummaryQuery.args.importId` validator from
+`v.id('_scheduled_functions')` to `v.id('roster_imports')` at
+`apps/integrated-math-3/convex/onboarding/roster-import.ts:316`.
+
+**Schema:** Added `roster_imports` table with `by_class` index to
+`apps/integrated-math-3/convex/schema.ts` matching the mock-ctx contract
+and production module's insert shape.
+
+**Targeted Red command result (GREEN):**
+```
+npx vitest run apps/integrated-math-3/__tests__/convex/roster-import.test.ts \
+              apps/integrated-math-3/__tests__/convex/import-summary.test.ts \
+              apps/integrated-math-3/__tests__/convex/roster-import-wrappers.test.ts \
+              --root apps/integrated-math-3
+```
+→ `Test Files 3 passed (3)` / `Tests 39 passed (39)`
+
+**Lint:** `npm run ws:im3:lint` passes (eslint --max-warnings 0).
+
+**Typecheck:** `npx tsc --noEmit` — 7 known `exportArgs` warnings in
+`roster-import-wrappers.test.ts` (runtime-only Convex API, documented in
+plan §Phase 2 Red Test Tightening). No `roster_imports` table errors
+remain. Other pre-existing errors (efficacy tests, tailwind config) are
+outside Phase 2 scope.
+
+**Commit files:**
+- `apps/integrated-math-3/convex/onboarding/roster-import.ts` (new, 326 lines)
+- `apps/integrated-math-3/convex/schema.ts` (+32 lines, `roster_imports` table)
+
+**Graph.db:** Updated with `build-graph update` for both changed files.
 
 ### Phase 2 Red Evidence (mid role)
 
