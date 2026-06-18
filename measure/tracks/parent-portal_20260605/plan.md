@@ -135,7 +135,7 @@ per spec.md FR1 (parent role & auth) and FR2 (parent↔student linking). Ready f
 - [x] Task: Query + render the parent visualization projection (progress/mastery/engagement), read-only (TDD) — commit 9a8f4076
 - [x] Task: Multi-student switcher (TDD) — commit 9a8f4076
 - [x] Task: Privacy assertions — no teacher-only/other-student/raw-graph data (TDD) — commit 9a8f4076
-- [x] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md) — commit <pending>
+- [x] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md) — commit 5efa31c9
 
 ### Phase 2 — Green-phase evidence (JR, 2026-06-19)
 
