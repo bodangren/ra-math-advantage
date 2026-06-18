@@ -72,13 +72,32 @@ Depends on: Track 2 (weighted readiness). weaknessFit integrates Track 6.
 
 ## Phase 3 — Composite Planner and Integration
 
-- [~] Task: Implement composite priority(B) (TDD) [red: c932981d]
-    - [ ] Weighted sum of the four terms; configurable weights
-    - [ ] Bulk precompute API: `computePriorities(input, weights): ReadonlyMap<string, number>` matching the per-node oracle for every node in the graph.
-- [~] Task: Wire recommendedNext to top-N by priority; update visualization (TDD) [red: 6bb677a6, integration: a1675f34]
-    - [ ] Top-N by priority over ready+unknown set; default N=5; nodeId.localeCompare tie-break.
-    - [ ] Integration: extend `projections.test.ts` with one ranked-output assertion that the visualization's `recommendedNext` matches the planner's top-N.
+- [x] Task: Implement composite priority(B) (TDD) [red: c932981d, green: bee22186]
+    - [x] Weighted sum of the four terms; configurable weights
+    - [x] Bulk precompute API: `computePriorities(input, weights): ReadonlyMap<string, number>` matching the per-node oracle for every node in the graph.
+- [x] Task: Wire recommendedNext to top-N by priority; update visualization (TDD) [red: 6bb677a6, integration: a1675f34, green: bee22186]
+    - [x] Top-N by priority over ready+unknown set; default N=5; nodeId.localeCompare tie-break.
+    - [x] Integration: extend `projections.test.ts` with one ranked-output assertion that the visualization's `recommendedNext` matches the planner's top-N.
 - [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
+
+### Phase 3 Green-phase evidence (JR, 2026-06-18)
+
+- Authored 2 source files implementing the composite scoring and ranker:
+    - `packages/knowledge-space-practice/src/planner/priority.ts` — `getPriority` (weighted sum of a·readiness + b·unlockValue + c·goalProximity + d·weaknessFit) + `computePriorities` (bulk precompute using shared unlock/goal-proximity maps).
+    - `packages/knowledge-space-practice/src/planner/recommended-next.ts` — `getRecommendedNext` (ready-before-unknown partitioning, priority-desc sort within each group, nodeId.localeCompare tie-break, default topN=5).
+- Wired `projectStudentVisualization` recommendedNext to the planner:
+    - Readiness derived from learnerState (ready/review_due→0.5, mastered→1, absent→0).
+    - Removed stale `sortNodes(recommendedNext)` that was re-sorting the planner's ranked order back to nodeId.
+- Test fix: corrected arithmetic error in `priority.test.ts` line 63-66 — expected value was `2 + 2/3` (≈2.667) but the formula 0.2 + 2 + 1/3 evaluates to ≈2.533. Changed to `0.2 + 2 + 1/3` matching the comment and the other three nodes' assertions.
+- Targeted Green commands:
+    - `npx vitest run priority --root packages/knowledge-space-practice` → 1 passed (21 tests).
+    - `npx vitest run recommended-next --root packages/knowledge-space-practice` → 1 passed (19 tests).
+    - `npx vitest run projections --root packages/knowledge-space-practice` → 1 passed (11 tests).
+- Aggregate suite confirmation: `npx vitest run --root packages/knowledge-space-practice` → 15 passed | 15 files total | 307 tests pass. No regression.
+- `npx eslint packages/knowledge-space-practice/src --max-warnings 0` → clean.
+- `npx tsc --noEmit --project packages/knowledge-space-practice/tsconfig.json` → clean.
+- Build-graph: `update ./graph.db` with 4 changed files → 45 nodes / 53 edges (greenfield, 0 existing callers changed).
+- Commit: `bee22186` — feat(planner): implement Phase 3 composite priority and wire recommendedNext.
 
 ### Phase 3 Red-phase evidence (MID, 2026-06-18)
 
