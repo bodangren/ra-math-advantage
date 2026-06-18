@@ -242,6 +242,73 @@ Weights `a, b, c, d` are configurable engine parameters.
 
 `recommendedNext` = top-N by priority, replacing arbitrary `slice(0, 5)`.
 
+The `getRecommendedNext` function returns `topN` candidates (default `topN = 5`) sorted by composite priority descending within two partitions: ready-before-unknown (nodes with `readiness > 0` come first, then nodes with `readiness === 0`). Within each partition, ties are broken by `nodeId.localeCompare` ascending for deterministic, stable ordering. The output is a `PlannerOutput` containing a `recommendedNext` array of candidate node IDs and the full `PriorityScore[]` per node.
+
+### 7.5 Priority Score Type
+
+The planner emits a `PriorityScore` discriminated union per candidate node:
+
+| Kind | Meaning |
+|------|---------|
+| `ranked` | Composite score + per-term breakdown; the ranker sorts on `composite` |
+| `unranked` | Node is in graph but unrankable (e.g., missing readiness data); carries a `reason` string |
+| `mastered` | Node is already at the mastery threshold; caller can suppress from queue |
+
+Each `ranked` score includes a `PriorityScoreTerms` breakdown: `readiness`, `unlockValue`, `goalProximity`, `weaknessFit`.
+
+### 7.6 Zod Contract
+
+Engine weights are validated at parse time by `priorityWeightsSchema` — a Zod `strictObject` (no extra keys allowed) with four non-negative, finite numbers (`z.number().finite().min(0)` for `a`, `b`, `c`, `d`). This is the runtime-type surface that rejects NaN, ±Infinity, negatives, strings, booleans, and unknown keys.
+
+### 7.7 Planner Types
+
+The planner operates on subset views of the knowledge graph, avoiding direct coupling to canonical `KnowledgeSpaceNode`/`KnowledgeSpaceEdge` types.
+
+```typescript
+interface PlannerInput {
+  readonly nodes: readonly PlannerNodeView[];
+  readonly edges: readonly PlannerEdgeView[];
+  readonly readinessByNode: Readonly<Record<string, number>>;
+  readonly goalNodeIds: readonly string[];
+  readonly misconceptionLinks: readonly PlannerMisconceptionLink[];
+}
+
+interface PlannerOutput {
+  readonly scores: readonly PriorityScore[];
+  readonly recommendedNext: readonly string[];
+}
+```
+
+`PlannerNodeView` carries `id`, `kind`, `title`, `domain` only. `PlannerEdgeView` carries `id`, `type`, `sourceId`, `targetId`, `weight`.
+
+### 7.8 Function Signatures
+
+```typescript
+function getPriority(nodeId: string, input: PlannerInput, weights: PriorityWeights): number
+function getRecommendedNext(input: PlannerInput, weights: PriorityWeights, topN?: number): readonly string[]
+```
+
+### 7.9 Bulk Precompute APIs
+
+To avoid redundant graph traversals when scoring all nodes, the planner provides bulk precompute functions that return `ReadonlyMap<string, number>` keyed by every node ID in the graph:
+
+```typescript
+function computeUnlockValues(input: PlannerInput): ReadonlyMap<string, number>
+function computeGoalProximities(input: PlannerInput): ReadonlyMap<string, number>
+function computeWeaknessFitMap(input: PlannerInput): ReadonlyMap<string, number>
+function computePriorities(input: PlannerInput, weights: PriorityWeights): ReadonlyMap<string, number>
+```
+
+`computePriorities` delegates to the per-term bulk functions and applies the weighted sum in a single O(n) pass. The per-node oracles (`getPriority`, `getUnlockValue`, etc.) remain available for single-node queries.
+
+### 7.10 Package Boundary
+
+The planner is domain-neutral and lives in `packages/knowledge-space-practice/src/planner/`. It must not import from `apps/` or `convex/_generated/`. All functions are pure (no I/O, no `Date.now()`, no side effects) and operate exclusively on the `PlannerInput` data structure. The `weaknessFit` term is stubbed to 0 for every node pending Track 6 (misconception loop) integration; it does not import from `./misconception-loop`.
+
+### 7.11 Cycle Safety and Precomputation
+
+`unlockValue` uses iterative DFS with a visited set, making it cycle-safe for graphs with cyclic `prerequisite_for` edges. `goalProximity` uses BFS from goal nodes over reversed `prerequisite_for` edges, also cycle-safe. Both provide precomputation (keyed by every `PlannerInput.nodes` ID) so that the composite `computePriorities` function can apply the weighted sum without re-traversing the graph per node.
+
 ## 8. Adaptive Placement (v2 Item 5)
 
 ### 8.1 Placement Contract
