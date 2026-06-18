@@ -372,6 +372,60 @@ the search path).
 
 ## Phase 3 — States & Verification
 
-- [ ] Task: Empty/pending states (pre-link, no-activity)
-- [ ] Task: Final verification — boundary lints, lint, tsc --noEmit, CI=true npm run test
+- [~] Task: Empty/pending states (pre-link, no-activity)
+- [~] Task: Final verification — boundary lints, lint, tsc --noEmit, CI=true npm run test
 - [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
+
+### Phase 3 — Red-phase evidence (MID, 2026-06-19)
+
+**Build-graph context probe (pre-test, §3.2 graph baseline):**
+- `graph.db` mtime 2026-06-19 06:42 (~38 minutes old at probe start, fresh).
+- 14191 nodes / 20686 edges / 2069 files.
+- `build-graph search ParentDashboard` → 3 hits (file + function + interface). Phase 3 does not modify the dashboard.
+- `build-graph search ParentEmptyStates` → 0 matches. No intentionally-red predecessors. The component is greenfield.
+- `build-graph search StudentSwitcher` → 0 matches (still no graph node — Phase 2 introduced the source files but did not require new graph nodes).
+- `parentVisualizationV1Schema` fields confirmed (6): `schemaVersion, canDoSummary, nextFocus, blockers, progressTrend, nodes` — Phase 3 tests use the same shape via fixtures.
+- `parent_links` schema status validator (line 278 of `apps/integrated-math-3/convex/schema.ts`): `v.union(v.literal("active"), v.literal("revoked"), v.literal("pending"))` — `pending` is already a valid Convex status. Phase 1's `createParentLink` only inserts `'active'` rows, but the Phase 3 dispatcher UI must still handle `'pending'` rows (e.g. from a future invite/approval flow).
+
+**Targeted Red command (single explicit file path, per test-strategy §7):**
+
+```
+npx vitest run __tests__/components/parent/ParentEmptyStates.test.tsx
+```
+→ **1 failed suite, 0 tests executed.**
+Failure: `Failed to resolve import "@/components/parent/ParentEmptyStates" from "__tests__/components/parent/ParentEmptyStates.test.tsx"` (implementation missing). 13 cases total (existence, pre-link ×3, pending-link ×3, no-activity ×3, active ×2, branch dispatch ×1, fixture sanity). The dynamic `await import(...)` form (matching Phase 2's pattern in `ParentDashboard.test.tsx` / `StudentSwitcher.test.tsx`) surfaces the missing module as a clean test-file-level failure.
+
+> **Note on wrapper script:** the documented `npm run ws:im3:test -- <path>` wrapper (root `package.json`) does NOT forward positional args to vitest — it runs the full suite. The actual Phase 1/2/3 Red commands use `npx vitest run <path>` from `apps/integrated-math-3/` directly, which honors the explicit file path. This is consistent with the test-strategy's "single explicit file path" rule and the bounded-smoke policy in §7.
+
+**Fixture change (additive, no regression):**
+- `apps/integrated-math-3/__tests__/_fixtures/parent-portal/parentLinks.ts`
+  - Widened `ParentLinkFixture.status` from `'active' | 'revoked'` to `'active' | 'pending' | 'revoked'` (additive — existing fixtures still satisfy the type).
+  - Added `STUDENT_PENDING_ID = 'student_pending'`.
+  - Added `pendingParentLinks: [{ studentId: STUDENT_PENDING_ID, status: 'pending' }]`.
+  - Updated header comment to document the three statuses (active, pending, revoked).
+- All four existing Phase 2 fixtures (`singleStudentLinks`, `multiStudentLinks`, `linksWithOneRevoked`) are unchanged and still pass `ParentLinkFixture[]` type-check. Phase 2 tests using these fixtures are not affected.
+
+**Test contract (per spec.md FR6 + test-strategy.md §5 Phase 3.1):**
+
+The new `ParentEmptyStates.test.tsx` covers the three branches explicitly called out in the test strategy, plus the active branch as a regression guard:
+
+| Branch | Trigger | Required `data-testid` | Copy requirement |
+|--------|---------|------------------------|------------------|
+| pre-link | `links.length === 0` | `parent-empty-state-no-links` | mentions teacher/invite/school/admin; no projection leak |
+| pending | only `pending` links (no active) | `parent-empty-state-pending-link` | mentions wait/pending/approval/confirm; no projection leak |
+| no-activity | active link + `hasProjectionNodes === false` | `parent-empty-state-no-activity` | mentions no activity / no skills / getting started; no projection leak |
+| active | active link + (omitted or `true`) `hasProjectionNodes` | renders `children` | none |
+
+The dispatcher is intentionally a presentational component: it consumes `links` and `hasProjectionNodes`, never calls Convex directly. Convex boundary is owned by the page-level server component (matching Phase 2's pattern).
+
+**Privacy boundary assertion (per Red-phase failure modes):** every empty-branch test asserts the region does NOT contain the projection field "Quadratic basics" — guards against a Green-phase regression where a future author accidentally leaks the dashboard copy into the empty states.
+
+**Branch dispatch regression guard:** the test "renders only one empty-state region per render" explicitly checks that the dispatcher does not render multiple empty-state regions (e.g. no-links AND no-activity simultaneously), which would confuse screen readers and indicates a logic error.
+
+**Dirty worktree classification at MID start (per spec):**
+- `apps/integrated-math-3/__tests__/lib/onboarding/student-flow.test.ts` (modified, `callCount` field added to interface) — unrelated user work; preserved, NOT staged in this commit.
+- `graph.db` (modified) — generated build artifact; preserved, NOT staged.
+- `measure/automation-supervisor.py` (modified, ACCEPTANCE_MODEL env default) — unrelated user work; preserved, NOT staged.
+- `measure/generated/routes.md` (modified, `/parent` route entry regenerated) — generated artifact (regenerated because Phase 2 added `app/parent/page.tsx`); preserved, NOT staged.
+
+Phase-end worktree cleanup of unrelated user work remains the supervisor's job, not the Red-phase commit.
