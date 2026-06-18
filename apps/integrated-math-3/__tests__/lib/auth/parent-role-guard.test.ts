@@ -32,9 +32,22 @@
 // failure today. The harness mirrors `__tests__/lib/auth/server-guards.test.ts`
 // (verified Green pattern), so the same fixtures and mock pattern are reused.
 
-import { describe, it, expect, expectTypeOf, vi, beforeEach } from 'vitest';
+import { describe, it, expect, expectTypeOf, vi, beforeEach, afterEach } from 'vitest';
 
 import type { SessionClaims, UserRole } from '@math-platform/core-auth';
+
+// ---------------------------------------------------------------------------
+// Adversarial Audit (2026-06-19): real behavior tests for
+// requireParentServerSessionClaims. The original Phase-1 Green suite only
+// asserted "is a function" / "is async" (smoke tests that pass even for a
+// stub that throws). Those are the "documentation assertions standing in
+// for live gate proof" pattern. This block wires next/headers + next/navigation
+// mocks (the actual surfaces the guard calls) and proves:
+//   (a) missing cookie → redirects to /auth/login?redirect=<path>
+//   (b) invalid token → redirects to /auth/login?redirect=<path>
+//   (c) non-parent role → redirects to /auth/login?redirect=<path>
+//   (d) parent role → returns the parent claims verbatim
+// ---------------------------------------------------------------------------
 
 // ---------------------------------------------------------------------------
 // Mocks (mirrors __tests__/lib/auth/server-guards.test.ts)
@@ -200,6 +213,20 @@ describe('requireParentRequestClaims', () => {
     const res = await requireParentRequestClaims(makeRequest('session=valid-token'), 'student_1');
     expect(res).toEqual(claims);
   });
+
+  it('returns 401 (does not throw) when the session cookie value has malformed percent-encoding', async () => {
+    // Adversarial boundary: a malicious or truncated client could send
+    // `session=%ZZ` (invalid percent escape). The internal cookie parser
+    // calls decodeURIComponent on the value, which throws URIError on bad
+    // input. The guard must convert that into a 401, not propagate the
+    // throw (which would surface as a 500 in Next.js).
+    const res = await requireParentRequestClaims(
+      makeRequest('session=%ZZ'),
+      'student_1',
+    );
+    expect(res).toBeInstanceOf(Response);
+    expect((res as Response).status).toBe(401);
+  });
 });
 
 // ---------------------------------------------------------------------------
@@ -210,18 +237,75 @@ describe('requireParentServerSessionClaims', () => {
   type ParentServerGuardFn = (loginRedirectPath: string) => Promise<SessionClaims>;
   let requireParentServerSessionClaims: ParentServerGuardFn;
 
+  // The guard calls next/headers (cookies()), next/navigation (redirect), and
+  // @math-platform/core-auth (verifySessionToken, getAuthJwtSecret). All four
+  // are mocked here so the test exercises the real guard, not a stub.
+  const mockCookieGet = vi.fn();
+  const mockRedirect = vi.fn((href: string) => {
+    // next/navigation's redirect throws a sentinel error; the guard propagates
+    // it. Tests assert via mockRedirect.mock.calls.
+    const err = new Error(`NEXT_REDIRECT:${href}`);
+    (err as Error & { __isRedirect: true }).__isRedirect = true;
+    throw err;
+  });
+
   beforeEach(async () => {
     vi.clearAllMocks();
+    // vi.doMock only takes effect for subsequent dynamic imports; the guard
+    // module was already loaded by an earlier `requireParentRequestClaims`
+    // describe block, so its cached `next/headers` and `next/navigation`
+    // bindings still point at the unmocked real modules. vi.resetModules
+    // forces a fresh import of the guard with the new mocks in place.
+    vi.resetModules();
+    vi.doMock('next/headers', () => ({
+      cookies: () => Promise.resolve({ get: mockCookieGet }),
+    }));
+    vi.doMock('next/navigation', () => ({
+      redirect: mockRedirect,
+    }));
     const mod = await import('@/lib/auth/parent-server-guards');
     requireParentServerSessionClaims = mod.requireParentServerSessionClaims;
   });
 
-  it('returns a function (runtime API surface)', () => {
-    expect(typeof requireParentServerSessionClaims).toBe('function');
+  afterEach(() => {
+    vi.doUnmock('next/headers');
+    vi.doUnmock('next/navigation');
+    vi.resetModules();
   });
 
-  it('is async (awaitable; redirect-based surface)', () => {
-    expect(requireParentServerSessionClaims.constructor.name).toBe('AsyncFunction');
+  it('redirects to /auth/login?redirect=<path> when no session cookie is present', async () => {
+    mockCookieGet.mockReturnValue(undefined);
+    await expect(requireParentServerSessionClaims('/parent/dashboard')).rejects.toMatchObject({
+      message: 'NEXT_REDIRECT:/auth/login?redirect=/parent/dashboard',
+    });
+    expect(mockRedirect).toHaveBeenCalledWith('/auth/login?redirect=/parent/dashboard');
+  });
+
+  it('redirects to /auth/login?redirect=<path> when the token fails to verify', async () => {
+    mockCookieGet.mockReturnValue({ value: 'bad-token' });
+    mockVerifySessionToken.mockResolvedValue(null);
+    await expect(requireParentServerSessionClaims('/parent/dashboard')).rejects.toMatchObject({
+      message: 'NEXT_REDIRECT:/auth/login?redirect=/parent/dashboard',
+    });
+    expect(mockRedirect).toHaveBeenCalledWith('/auth/login?redirect=/parent/dashboard');
+  });
+
+  it('redirects to /auth/login?redirect=<path> when the role is not parent', async () => {
+    mockCookieGet.mockReturnValue({ value: 'valid-token' });
+    mockVerifySessionToken.mockResolvedValue(makeNonParentClaim('student'));
+    await expect(requireParentServerSessionClaims('/parent/dashboard')).rejects.toMatchObject({
+      message: 'NEXT_REDIRECT:/auth/login?redirect=/parent/dashboard',
+    });
+    expect(mockRedirect).toHaveBeenCalledWith('/auth/login?redirect=/parent/dashboard');
+  });
+
+  it('returns the parent claims verbatim when the role is parent', async () => {
+    const claims = makeParentClaim();
+    mockCookieGet.mockReturnValue({ value: 'valid-token' });
+    mockVerifySessionToken.mockResolvedValue(claims);
+    const result = await requireParentServerSessionClaims('/parent/dashboard');
+    expect(result).toEqual(claims);
+    expect(mockRedirect).not.toHaveBeenCalled();
   });
 });
 
@@ -278,6 +362,67 @@ describe('parent guard ↔ Convex validator argument contract', () => {
     }
     for (const key of validatorKeys) {
       expect(callKeys, `validator requires key "${key}" but guard does not send it`).toContain(key);
+    }
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Adversarial Audit (2026-06-19) — Same source-text contract regression
+// applied to every Convex export in convex/parent/links.ts. The original
+// regression test only covered the guard→listParentLinksQuery edge. The
+// same class of bug (`{ parentId }` vs `{ parentProfileId }`) could exist
+// in the mutation wrappers; this test closes that class by checking the
+// validator keys declared on each internalMutation / internalQuery match
+// the typed-args keys of the bound handler.
+// ---------------------------------------------------------------------------
+
+function extractValidatorArgs(src: string, exportName: string): string[] {
+  const re = new RegExp(
+    `${exportName}\\s*=\\s*internal(?:Mutation|Query)\\(\\{[\\s\\S]*?args:\\s*\\{([\\s\\S]*?)\\}\\s*,\\s*handler`,
+  );
+  const m = src.match(re);
+  expect(m, `${exportName} validator block must be present`).not.toBeNull();
+  return Array.from(m![1].matchAll(/(\w+)\s*:\s*v\./g)).map((match) => match[1]);
+}
+
+function extractHandlerArgsKeys(src: string, exportName: string): string[] {
+  // Find `function NAME(`, then collect the `args: { ... }` shape inside
+  // the first argument's type annotation.
+  const re = new RegExp(
+    `function\\s+${exportName}\\s*\\(\\s*[^,]+,\\s*args:\\s*\\{([\\s\\S]*?)\\}`,
+  );
+  const m = src.match(re);
+  expect(m, `${exportName} handler args block must be present`).not.toBeNull();
+  return Array.from(m![1].matchAll(/(\w+)\s*:/g)).map((mm) => mm[1]);
+}
+
+describe('Convex parent/links handler ↔ validator argument contract', () => {
+  it('every key the handler declares in args is also declared by its Convex validator', async () => {
+    const { readFile } = await import('node:fs/promises');
+    const { fileURLToPath } = await import('node:url');
+    const { dirname, resolve } = await import('node:path');
+    const here = dirname(fileURLToPath(import.meta.url));
+    const linksPath = resolve(here, '../../../convex/parent/links.ts');
+    const linksSrc = await readFile(linksPath, 'utf8');
+
+    // Pair every handler with its real Convex registration name.
+    const pairs: Array<{ handler: string; registration: string }> = [
+      { handler: 'createParentLink', registration: 'createParentLinkMutation' },
+      { handler: 'revokeParentLink', registration: 'revokeParentLinkMutation' },
+      { handler: 'listParentLinks', registration: 'listParentLinksQuery' },
+    ];
+
+    for (const { handler, registration } of pairs) {
+      const validatorKeys = extractValidatorArgs(linksSrc, registration);
+      const handlerKeys = extractHandlerArgsKeys(linksSrc, handler);
+
+      // Every handler key must be declared by the validator.
+      for (const key of handlerKeys) {
+        expect(
+          validatorKeys,
+          `handler "${handler}" declares key "${key}" not present in validator "${registration}"`,
+        ).toContain(key);
+      }
     }
   });
 });

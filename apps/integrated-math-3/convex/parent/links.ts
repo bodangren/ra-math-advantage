@@ -47,7 +47,7 @@ export async function createParentLink(
     )
     .first();
 
-  if (existing) {
+  if (existing && existing.status === 'active') {
     return { ok: true, linkId: existing._id };
   }
 

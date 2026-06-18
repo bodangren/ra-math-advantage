@@ -21,7 +21,15 @@ function getCookieValueFromHeader(cookieHeader: string | null, key: string): str
     const name = trimmed.slice(0, separatorIndex).trim();
     if (name !== key) continue;
 
-    return decodeURIComponent(trimmed.slice(separatorIndex + 1));
+    // Adversarial boundary: a malicious or truncated client could send
+    // `session=%ZZ` (invalid percent escape). decodeURIComponent throws
+    // URIError on bad input; treat that as "cookie absent" so the guard
+    // returns 401 instead of letting the throw surface as a 500.
+    try {
+      return decodeURIComponent(trimmed.slice(separatorIndex + 1));
+    } catch {
+      return null;
+    }
   }
 
   return null;

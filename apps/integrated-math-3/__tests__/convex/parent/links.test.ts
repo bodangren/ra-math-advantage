@@ -445,6 +445,51 @@ describe('createParentLink', () => {
       expect(second.linkId).toBe(first.linkId);
     }
   });
+
+  it('re-creates an active link when a previous link for the same (parent, student) was revoked', async () => {
+    // Adversarial: spec FR2 says linking is "revocable". After a revoke the
+    // teacher must be able to re-link the same parent/student pair. The
+    // implementation previously short-circuited on any existing row — even a
+    // revoked one — and returned the revoked link's id, which is then
+    // invisible to listParentLinks (status==='active' filter). Re-link path
+    // is the realistic Phase-2 follow-up; this test makes the contract
+    // explicit and prevents regression.
+    const revoked: ParentLinkRow = {
+      _id: 'parent_links_revoked' as Id<'parent_links'>,
+      _creationTime: 1_780_000_000_000,
+      parentId: 'profiles_parent_1' as Id<'profiles'>,
+      studentId: 'profiles_student_1' as Id<'profiles'>,
+      organizationId: FIXED_TEST_ORG,
+      status: 'revoked',
+      createdBy: 'profiles_teacher_1' as Id<'profiles'>,
+      createdAt: 1_780_000_000_000,
+      revokedAt: 1_780_000_000_500,
+      revokedBy: 'profiles_teacher_1' as Id<'profiles'>,
+      metadata: {},
+    };
+    const ctx = makeParentLinkMockCtx({
+      profiles: [makeTeacher(), makeParent(), makeStudent()],
+      parentLinks: [revoked],
+    });
+    const result = await createParentLink(
+      ctx as unknown as Parameters<typeof createParentLink>[0],
+      {
+        callerProfileId: 'profiles_teacher_1' as Id<'profiles'>,
+        parentProfileId: 'profiles_parent_1' as Id<'profiles'>,
+        studentProfileId: 'profiles_student_1' as Id<'profiles'>,
+      },
+    );
+    expect(result.ok).toBe(true);
+    if (result.ok) {
+      // Must be a new active link, not the revoked one.
+      expect(result.linkId).not.toBe('parent_links_revoked');
+    }
+    // Verify the new link is actually present and active in the table.
+    const activeLinks = ctx.parentLinks.filter(
+      (l) => l.parentId === ('profiles_parent_1' as Id<'profiles'>) && l.status === 'active',
+    );
+    expect(activeLinks).toHaveLength(1);
+  });
 });
 
 // ---------------------------------------------------------------------------
