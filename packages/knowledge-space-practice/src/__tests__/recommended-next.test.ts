@@ -2,7 +2,7 @@
  * Phase 3 (Track 4 next-skill-planner_20260521) — Red direct unit
  * tests for the `getRecommendedNext` top-N ranker.
  *
- * Per spec FR5 + kst-srs.v2 §7.2 / §10: `recommendedNext` becomes
+ * Per spec FR5 + kst-srs.v2 §7.2 / §7.4: `recommendedNext` becomes
  * top-N by `priority`, replacing the `slice(0, 5)` placeholder in
  * `StudentVisualizationV1`. The ranker preserves the current
  * `[...ready, ...unknown].slice(0, 5)` semantics: nodes with

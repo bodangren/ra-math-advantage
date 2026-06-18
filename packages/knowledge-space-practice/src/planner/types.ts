@@ -1,6 +1,6 @@
 // Planner contract types and the priority weight Zod schema.
 //
-// kst-srs.v2 §10 + spec.md FR4: priority(B) = a·readiness(B) +
+// kst-srs.v2 §7 + spec.md FR4: priority(B) = a·readiness(B) +
 // b·unlockValue(B) + c·goalProximity(B) + d·weaknessFit(B), with
 // configurable engine weights a, b, c, d. The weight schema is the
 // runtime-parsable surface; the planner input / output types describe
