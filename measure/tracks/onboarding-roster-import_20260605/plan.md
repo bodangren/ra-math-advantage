@@ -128,6 +128,44 @@ in `roster-import.test.ts` and `import-summary.test.ts`; re-run the
 targeted command above. Do NOT run `npm run ws:im3:test` while any
 Phase 2 task is `[~]` (test-strategy §8).
 
+### Phase 2 Red Re-Verification (mid re-run)
+
+The Red contract from `a1ceb7d4` was re-run at this MID session to
+confirm the signal still holds at HEAD. **Dirty worktree at MID start
+of this re-run:** only `M measure/automation-supervisor.py` (1-line
+edit to the `ACCEPTANCE_MODEL` env-var default — unrelated user work;
+**preserved untouched**, not folded into any track commit, not
+reverted). `graph.db` is clean (per `git checkout HEAD -- graph.db`
+applied at commit `06ed8f9a`).
+
+**Re-verified Red command + result (identical to commit `a1ceb7d4`):**
+
+```
+npx vitest run apps/integrated-math-3/__tests__/convex/roster-import.test.ts \
+              apps/integrated-math-3/__tests__/convex/import-summary.test.ts \
+              --root apps/integrated-math-3
+```
+
+Result: `Test Files  2 failed (2)` / `Tests  no tests` — both suites
+fail at import-time with `vite:import-analysis` `Failed to resolve
+import "@/convex/onboarding/roster-import" from
+"apps/integrated-math-3/__tests__/convex/{roster-import,import-summary}.test.ts"`.
+The production module
+`apps/integrated-math-3/convex/onboarding/roster-import.ts` does not
+exist at HEAD; build-graph `query` confirms no node matches
+`%roster-import%` under `apps/integrated-math-3/convex/`. 21 + 11 =
+**32 queued test cases** (8 + 4 `describe` blocks across the two
+files) remain gated on the Green-phase module landing — no false
+Red, no stale-record artifact.
+
+No new tests were written at this re-run: the existing Red contract
+already covers Phase 2 Tasks 1+2+3 per test-strategy §6 (initial
+insert ×4, idempotency ×3, updates by identifier ×3, batch boundary
+no-N+1 ×2, PII-safe error pass-through ×2, guards ×2, provisioning
+×2, return-value contract ×3, summary round-trip ×6, summary PII ×1,
+audit listing ×3, mutation↔summary round-trip ×1). Tightening would
+duplicate the Red contract without adding coverage.
+
 ## Phase 3 — Teacher Onboarding UI
 
 - [ ] Task: First-run teacher flow: create class → import roster (dry-run → commit) → dashboard (TDD on logic)
