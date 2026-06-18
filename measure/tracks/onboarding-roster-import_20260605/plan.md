@@ -631,11 +631,11 @@ The convention to use is `git checkout HEAD -- <path>` (not
 graph but the working tree matches HEAD. This is the same
 convention Phase 2 used at commit `06ed8f9a`.
 
-## Phase 4 — Student Onboarding & Verification
+## Phase 4 — Student Onboarding & Verification [checkpoint: `8e0605e7`]
 
 - [x] Task: First-run student flow routing into placement diagnostic → assigned work (TDD) — `95a3a8d4`
 - [x] Task: Final verification — boundary lints, lint, tsc --noEmit, CI=true npm run test — `95a3a8d4`
-- [~] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md) — `8e0605e7`
 
 ### Phase 4 Green Evidence (jr role)
 
@@ -689,6 +689,17 @@ npx vitest run \
 - `apps/integrated-math-3/lib/onboarding/student-flow.ts` (new, Green phase `95a3a8d4`)
 
 All 4 production files have corresponding test coverage per workflow §2.
+
+### Phase 4 Manual Verification (jr role)
+
+**Checkpoint:** `8e0605e7` with git notes audit report attached.
+
+**Manual verification steps (user-performed):**
+1. Run `npx convex dev` in `apps/integrated-math-3/` to register onboarding functions in `convex/_generated/api.d.ts`
+2. Verify `routeStudent` and supporting types are importable from `@/lib/onboarding/student-flow`
+3. Verify new-student path: `hasExistingPlacement=false` → `destination='placement'`, `reason='new-student'`
+4. Verify returning-student bypass: `hasExistingPlacement=true` → `destination='assigned-work'`, `reason='returning-student'`
+5. Verify force re-run: `force=true` for returning student → `destination='placement'`, `reason='forced-rerun'`
 
 ### Phase 4 Red Evidence (mid role)
 
