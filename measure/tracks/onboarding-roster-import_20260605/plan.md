@@ -373,10 +373,10 @@ from `v.id('_scheduled_functions')` to `v.id('roster_imports')`,
 then re-run the targeted Red command. The expected green result is
 `Test Files 3 passed (3) / Tests 39 passed (39)`.
 
-## Phase 3 — Teacher Onboarding UI [checkpoint: `bd4f6736`]
+## Phase 3 — Teacher Onboarding UI [checkpoint: `cb5e4de9`]
 
-- [x] Task: First-run teacher flow: create class → import roster (dry-run → commit) → dashboard (TDD on logic)
-- [x] Task: Surface import summary (created/updated/skipped/errors)
+- [x] Task: First-run teacher flow: create class → import roster (dry-run → commit) → dashboard (TDD on logic) — `cb5e4de9`
+- [x] Task: Surface import summary (created/updated/skipped/errors) — `cb5e4de9`
 - [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
 
 ### Phase 3 Green Evidence (jr role)
