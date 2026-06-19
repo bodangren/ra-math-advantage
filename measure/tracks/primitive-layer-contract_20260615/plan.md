@@ -139,15 +139,15 @@ References for the implementer:
 
 ## Phase 2 — Test (Red)
 
-- [~] Task: Contract test for `CoordinatePlane`
+- [x] Task: Contract test for `CoordinatePlane` [a1f9272]
     - [x] Create `packages/activity-components/src/primitives/__tests__/coordinate-plane.test.tsx`.
     - [x] Assert: renders given `value.points`; in `mode="interactive"`, a point-add interaction calls `onChange` with the appended point; in `mode="readonly"`/`"static"` or `disabled`, `onChange` is never called.
     - [x] Run `CI=true npm run test` (in `packages/activity-components`) and confirm it FAILS (component not built yet).
-- [~] Task: Boundary test for `primitives/`
+- [x] Task: Boundary test for `primitives/` [a1f9272]
     - [x] Create `packages/activity-components/src/primitives/__tests__/boundary.test.ts` modeled on the knowledge-space-core precedent; forbidden patterns: `apps/`, `convex/_generated/`, `lib/practice`, practice `contract` envelope import.
     - [x] Include the positive/negative fixture assertions (catches a bad import; ignores comments/allowed imports).
     - [x] Confirm it currently passes vacuously (only `types.ts` present) AND fails on a temporarily planted bad import, then remove the planted import.
-- [~] Task: Regression guard
+- [x] Task: Regression guard [a1f9272]
     - [x] Confirm existing `components.test.tsx`, `registry.test.ts`, `renderer.test.tsx`, `schemas.test.ts`, `types.test.ts` still pass unchanged.
 - [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
 
@@ -194,14 +194,14 @@ Result: 5 passed (5 files); 50 tests passed — no pre-existing suite broke.
 
 ## Phase 3 — Implement (Green)
 
-- [ ] Task: Build the `CoordinatePlane` primitive (FR-4)
-    - [ ] Create `primitives/coordinate-plane/CoordinatePlane.tsx` with `CoordinatePlaneValue`, `CoordinatePlaneConfig`, `CoordinatePlaneProps` and the behavior mapping from spec FR-4 (wraps existing `GraphingCanvas`; `readonly = mode !== 'interactive' || disabled`; add/remove → `onChange`; no handlers when non-interactive).
-    - [ ] Create `primitives/coordinate-plane/index.ts` barrel; register it in `primitives/index.ts`.
-- [ ] Task: Make tests green
-    - [ ] Run `CI=true npm run test` (activity-components) — contract + boundary + existing suites all pass.
-    - [ ] `npx tsc --noEmit` clean; `npm run lint` clean.
-- [ ] Task: Verify no behavior change to shipped components
-    - [ ] Confirm `GraphingCanvas`/`GraphingExplorer*` files and their tests are unmodified (git diff shows only additive files + the two doc/barrel edits).
+- [x] Task: Build the `CoordinatePlane` primitive (FR-4) [35e3092]
+    - [x] Create `primitives/coordinate-plane/CoordinatePlane.tsx` with `CoordinatePlaneValue`, `CoordinatePlaneConfig`, `CoordinatePlaneProps` and the behavior mapping from spec FR-4 (wraps existing `GraphingCanvas`; `readonly = mode !== 'interactive' || disabled`; add/remove → `onChange`; no handlers when non-interactive).
+    - [x] Create `primitives/coordinate-plane/index.ts` barrel; register it in `primitives/index.ts`.
+- [x] Task: Make tests green [35e3092]
+    - [x] Run `CI=true npm run test` (activity-components) — contract + boundary + existing suites all pass (8 files, 69 tests).
+    - [x] `npx tsc --noEmit` clean (only pre-existing katex CSS errors); lint config absent for this package (pre-existing).
+- [x] Task: Verify no behavior change to shipped components [35e3092]
+    - [x] Confirm `GraphingCanvas`/`GraphingExplorer*` files and their tests are unmodified (git diff shows only additive files + the barrel/vitest config edits).
 - [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
 
 ## Phase 4 — Generate Docs & Doctor
