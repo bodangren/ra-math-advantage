@@ -207,3 +207,114 @@ These are the activity types needed for the Integrated Math 3 curriculum. Busine
 4. **Mode-based behavior** -- same component adapts across worked_example → assessment
 5. **Deterministic evaluation first** -- compute correctness before any AI-assisted analysis
 6. **Course-agnostic contract** -- the envelope, modes, and registry pattern are reusable across courses; only componentKeys and props schemas are course-specific
+
+---
+
+## Primitive Layer
+
+> Added in track `primitive-layer-contract_20260615` (T0). Establishes the
+> controlled-component contract every math primitive must satisfy. The
+> canonical primitive catalog (P1–P13) lives in
+> [Practice Primitives Roadmap](./practice-primitives-roadmap.md#primitive-taxonomy-p1p13)
+> — this section summarizes the contract; the roadmap is the single source of
+> truth for which primitives exist and which track owns them.
+
+### Two-layer split
+
+The `practice.v1` system has two distinct presentation layers, and they must
+not be confused:
+
+| Layer | Lives in | Responsibility | What it must NOT do |
+|-------|----------|----------------|---------------------|
+| **Primitive** | `packages/activity-components/src/primitives/<name>/` | Visualization + interaction engine (SVG canvas, slider, drag surface, validated input). Controlled by the consumer. | Import the `practice.v1` envelope, hold submission state, or compute correctness. |
+| **Practice component** | `packages/activity-components/src/components/<name>/` (and registered via `componentKey`) | Composes one or more primitives, adds grading / hints / scaffolding, and emits the `PracticeSubmissionEnvelope`. | Re-implement a primitive's interaction engine. |
+
+A primitive is a reusable engine. A practice component is what a teacher
+or curriculum author configures into an activity. **One visual surface =
+one primitive**; practice components and skill-graph blueprint renderers
+both consume the same primitives — no duplicate visuals.
+
+### Controlled-component rules (FR-2)
+
+Every primitive accepts the FR-2 base props (`MathPrimitiveProps<TValue>`)
+exported from `@math-platform/activity-components`:
+
+```ts
+import type { MathPrimitiveProps, PrimitiveMode } from '@math-platform/activity-components';
+
+export type PrimitiveMode = 'static' | 'interactive' | 'readonly';
+
+export interface MathPrimitiveProps<TValue> {
+  /** Current controlled value. */
+  value: TValue;
+  /** Called when the user edits the value. No-op/absent in non-interactive modes. */
+  onChange?: (next: TValue) => void;
+  /** 'interactive' = editable (default); 'readonly'/'static' = display only. */
+  mode?: PrimitiveMode;
+  /** Hard-disable all interaction regardless of mode. */
+  disabled?: boolean;
+}
+```
+
+Rules a primitive MUST follow:
+
+1. **Controlled only** — no internal copy of `value` as source of truth.
+   Transient UI state (cursor position, hover, focus) is allowed.
+2. **Default `mode` is `'interactive'`** when the prop is omitted.
+3. When `mode !== 'interactive'` **or** `disabled === true`, the primitive
+   must not call `onChange`. Handlers may be omitted or replaced with no-ops
+   in those states.
+4. The primitive emits no `practice.v1` envelope and holds no submission
+   state. Correctness is computed by the practice component that wraps it.
+
+### Value → envelope mapping
+
+The practice component is the **only** place where a primitive's `value` is
+turned into a `PracticeSubmissionEnvelope`. The contract is:
+
+- The primitive's `value` becomes part of `answers[partId]` (and/or
+  `artifact` if the value is too rich to normalize into a string).
+- The practice component assigns `parts[i].rawAnswer` from the primitive
+  value.
+- The practice component computes `isCorrect`, `score`, `maxScore`, and
+  `misconceptionTags` from the primitive value, never the primitive.
+- A practice component may compose multiple primitives and combine their
+  values into a single envelope.
+
+This separation is what keeps primitives reusable across practice
+components and across skill-graph blueprint renderers.
+
+---
+
+## Primitive Catalog (P1–P13)
+
+The canonical, single source of truth for the primitive catalog (status,
+owning track, detailed notes) is
+[Practice Primitives Roadmap §Primitive taxonomy](./practice-primitives-roadmap.md#primitive-taxonomy-p1p13).
+The table below is a summary that mirrors it; if the two ever disagree,
+the roadmap wins.
+
+| # | Primitive | Course / Domain | Status | Owning track |
+|---|-----------|-----------------|--------|--------------|
+| **P1** | `CoordinatePlane` (plot / click / snap) | IM1 linear, IM3 all | ✅ promoted (`GraphingCanvas`) | T0 + Track A |
+| P2 | `FunctionPlot` + parameter sliders | IM1 exp/quad, IM3 poly/rational/log | 🟡 quadratic-only | Track A |
+| P3 | `NumberLine` (points / fractions / inequalities / intervals) | IM1, IM3 | ❌ gap | Track B |
+| P4 | `GeometryCanvas` (drag vertices, measure) | **IM2 (all)** | ❌ gap | Track C |
+| P5 | `TransformationOverlay` (translate / rotate / reflect / dilate) | IM2 | ❌ gap | Track C |
+| P6 | `UnitCircle` (drag / snap angle, radian formatting) | IM3 M9, PreCalc | 🟡 spec'd (T16) | Track E |
+| P7 | `PolarPlane` | PreCalc | 🟡 spec'd (T16) | Track E |
+| P8 | `StatChart` / `Distribution` (histogram, box / dot, normal, z) | IM1 stats, IM3 M8 | 🟡 spec'd (T15) | Track D |
+| P9 | `DataTable` / grid input | IM1 scatter, IM3 stats | 🟡 promote (`InteractiveTableOfValues`) | Track D |
+| P10 | `ProbabilitySimulator` (spinner / dice / coin / sampling, two-way) | IM2, IM1 | ❌ gap | Track D |
+| P11 | `AlgebraManipulatives` (tiles: factoring, complete square) | IM1 / IM3 | ❌ gap | Track B |
+| P12 | `MathInput` (validated equation / notation field) | all | 🟡 promote (`MathInputField`) | Track B |
+| P13 | DnD surface (categorize / match / order / proof builder) | IM1–IM3, **IM2 proofs** | 🟡 generalize (`@hello-pangea/dnd`) | Tracks C + F |
+
+**P1 (`CoordinatePlane`) is the first promoted primitive** — T0 wraps the
+existing `packages/activity-components/src/components/graphing/GraphingCanvas`
+in the FR-2 contract (see
+[`spec.md` §FR-4](./tracks/primitive-layer-contract_20260615/spec.md#fr-4--reference-migration-coordinateplane-p1)).
+Existing `GraphingExplorer` / `GraphingExplorerActivity` and their tests
+are **unmodified** by T0; promotion is additive (the wrapper sits beside
+the existing canvas).
+
