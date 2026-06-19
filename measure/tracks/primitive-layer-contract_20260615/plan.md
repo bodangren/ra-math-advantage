@@ -320,3 +320,9 @@ are sub-task 1 evidence, not Red targets. The 2 failures are the active
 implementation gap; Green owns the registry edit + the Phase 4 Task 2
 live-behavior proof (tsc + lint + activity-components tests).
 
+Commit: [`c7c13da9`](https://github.com/...) — `test(track-0): add Phase 4
+FR-6 registry Red test for T15/T16 reconciliation` (210 insertions, 4
+deletions; new test file + plan.md update only; the 9 unrelated dirty files
++ the `track-7-untouched-pending-remediation` stash entry are preserved in
+the worktree, unstaged and untouched).
+
