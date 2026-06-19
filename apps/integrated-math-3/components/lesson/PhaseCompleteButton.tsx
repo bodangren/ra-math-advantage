@@ -73,7 +73,7 @@ export function PhaseCompleteButton({
     } finally {
       setIsCompleting(false);
     }
-  }, [isDisabled, lessonId, phaseNumber, onStatusChange]);
+  }, [isDisabled, lessonId, phaseNumber, onStatusChange, startTime]);
 
   const handleSkip = useCallback(async () => {
     if (isDisabled || !canSkip) return;

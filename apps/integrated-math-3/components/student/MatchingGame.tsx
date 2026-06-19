@@ -87,7 +87,7 @@ export function MatchingGame({ terms, onComplete }: MatchingGameProps) {
         durationSeconds: Math.floor((now - startTime) / 1000),
       });
     }
-  }, [gameTerms.length, gameTerms, wrongAttempts, isComplete, onComplete]);
+  }, [gameTerms, wrongAttempts, isComplete, onComplete, startTime]);
 
   const handleCardClick = useCallback(
     (card: CardItem) => {
@@ -128,7 +128,7 @@ export function MatchingGame({ terms, onComplete }: MatchingGameProps) {
         }, 800);
       }
     },
-    [cards, selectedId, matchedPairIds, wrongIds, isComplete]
+    [cards, selectedId, matchedPairIds, wrongIds, isComplete, checkCompletion]
   );
 
   if (isComplete) {
