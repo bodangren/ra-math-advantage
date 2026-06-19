@@ -48,26 +48,51 @@
 
 ## Phase 4: Fix IM3 React 19 ESLint Violations
 
-- [ ] Task 4.1: Fix `react-hooks/set-state-in-effect` violations
+- [~] Task 4.1: Fix `react-hooks/set-state-in-effect` violations
   - [ ] Refactor effects that call setState during mount to use lazy initialization or `useSyncExternalStore`
   - [ ] Files: MatchingPageClient, SpeedRoundPageClient, practice-timing, PhaseCompleteButton, MatchingGame, SpeedRoundGame
+  - **Red evidence (Mid, 2026-06-19):** Bounded command `npx eslint <file> --rule '{"react-hooks/set-state-in-effect": "error"}'` per listed file. Confirmed 7 violations across 6 files:
+    - `components/practice-timing.tsx:103` (`setIsTracking(true)`)
+    - `components/student/MatchingGame.tsx:72` (`setCards(shuffleArray(newCards))`), `:79` (`setEndTime(now)` / `setIsComplete(true)`)
+    - `components/student/SpeedRoundGame.tsx:93` (`setQuestions(newQuestions)`)
+    - `components/lesson/PhaseCompleteButton.tsx:55` (`setStatus(initialStatus)`)
+    - `app/student/study/matching/MatchingPageClient.tsx:51`
+    - `app/student/study/speed-round/SpeedRoundPageClient.tsx:51`
+  - **Regression gate baseline at HEAD:** `practice-timing.test.tsx` (11/11), `MatchingGame.test.tsx` (7/7), `SpeedRoundGame.test.tsx` (10/10), `PhaseCompleteButton.test.tsx` (20/20) — all green; the refactor must keep these greens.
 
-- [ ] Task 4.2: Fix `react-hooks/purity` violations
+- [~] Task 4.2: Fix `react-hooks/purity` violations
   - [ ] Remove `Date.now()`, `Math.random()` from render paths
   - [ ] Files: teacher dashboard, PracticeTestPageClient, ExportPanel, VocabularyHighlight
+  - **Red evidence (Mid, 2026-06-19):** Bounded command `npx eslint <file> --rule '{"react-hooks/purity": "error"}'` per listed file. Confirmed 6 violations across 6 files (one per file):
+    - `app/teacher/dashboard/page.tsx:69`
+    - `components/lesson/PhaseCompleteButton.tsx:47` (`useRef<number>(Date.now())` initializer)
+    - `components/student/PracticeTestPageClient.tsx:20`
+    - `components/student/SpeedRoundGame.tsx:177`
+    - `components/teacher/exports/ExportPanel.tsx:49`
+    - `components/textbook/VocabularyHighlight.tsx:21`
+  - **Regression gate baseline at HEAD:** `VocabularyHighlight.test.tsx` (22/22), `ExportPanel.test.tsx` (10/10) — both green.
 
-- [ ] Task 4.3: Fix `react-hooks/refs` violations
+- [~] Task 4.3: Fix `react-hooks/refs` violations
   - [ ] Refactor ref access during render to use `useRef` initializers
   - [ ] Files: PracticeTestEngine, PhaseCompleteButton
+  - **Red evidence (Mid, 2026-06-19):** Bounded command `npx eslint <file> --rule '{"react-hooks/refs": "error"}'` per listed file. Confirmed 3 violations in 1 file:
+    - `components/student/PracticeTestEngine.tsx:303`, `:307`, `:317` (three `Cannot access refs during render` errors)
+    - `components/lesson/PhaseCompleteButton.tsx` — 0 violations (the `Date.now()` initializer at line 47 is captured by Task 4.2 purity, not by Task 4.3 refs; no refs-during-render issue remains here).
+  - **Regression gate baseline at HEAD:** `PracticeTestEngine.test.tsx` (12/12) — green.
 
-- [ ] Task 4.4: Fix `react-hooks/static-components` violations
+- [~] Task 4.4: Fix `react-hooks/static-components` violations
   - [ ] Move sub-component definitions outside render functions
   - [ ] Files: ActivityRenderer, LessonStepper
+  - **Red evidence (Mid, 2026-06-19):** Bounded command `npx eslint <file> --rule '{"react-hooks/static-components": "error"}'` per listed file. Confirmed 2 violations across 2 files:
+    - `components/lesson/ActivityRenderer.tsx:56/71` — `const ActivityComponent = getActivityComponent(componentKey)` then `<ActivityComponent … />` inside render.
+    - `components/lesson/LessonStepper.tsx:105/135` — `const StepIcon = () => { switch … }` defined inside `PhaseStepper` render, then `<StepIcon />` rendered.
+  - **Regression gate baseline at HEAD:** `ActivityRenderer.test.tsx` (9/9), `LessonStepper.test.tsx` (8/8) — both green. **Pre-existing flake (NOT Phase 4):** `ActivityRenderer-graphing-explorer.test.tsx` has 2 cases that hang on "Loading activity…" (dynamic `import()` for `GraphingExplorer` does not resolve under jsdom). These failures are unrelated to React 19 lint refactors and exist at HEAD before any Phase 4 edit; Phase 5 verification will track them but the Phase 4 Green gate does not require their fix. Documented here so the next role does not mis-attribute them.
 
-- [ ] Task 4.5: Re-enable React 19 eslint rules
+- [~] Task 4.5: Re-enable React 19 eslint rules
   - [ ] File: `apps/integrated-math-3/eslint.config.mjs`
   - [ ] Remove the disabled rules
   - [ ] Verify lint passes with zero errors
+  - **Red evidence (Mid, 2026-06-19):** `eslint.config.mjs` lines 37–42 currently set all four `react-hooks/{set-state-in-effect,purity,refs,static-components}` rules to `"off"` (with a comment cross-referencing `tech-debt.md`). The Phase 4.5 config-edit Red proof is mechanical: temporarily reverting the config and running `npm run lint --workspace=apps/integrated-math-3 --max-warnings 0` would surface every Phase 4.1–4.4 unresolved violation as a hard error. Deferred to Phase 4.5 Green — running it now is destructive (would lock the working tree against any partial commit). The 18 individual violations captured in Tasks 4.1–4.4 are the durable Red record.
 
 ## Phase 5: Verification
 
