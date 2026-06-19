@@ -114,7 +114,7 @@ describe('getTimingBaseline', () => {
 
     const baseline = await getTimingBaseline(
       { db: mockDb } as unknown as Parameters<typeof getTimingBaseline>[0],
-      { problemFamilyId: 'family-a' }
+      { variantKey: 'family-a' }
     );
 
     expect(baseline).toBeNull();
@@ -123,7 +123,7 @@ describe('getTimingBaseline', () => {
   it('returns existing baseline for problem family', async () => {
     const existingBaseline = {
       _id: 'baseline1',
-      problemFamilyId: 'family-a',
+      variantKey: 'family-a',
       sampleCount: 10,
       medianActiveMs: 10000,
       lastComputedAt: '2026-01-01T00:00:00.000Z',
@@ -135,7 +135,7 @@ describe('getTimingBaseline', () => {
 
     const baseline = await getTimingBaseline(
       { db: mockDb } as unknown as Parameters<typeof getTimingBaseline>[0],
-      { problemFamilyId: 'family-a' }
+      { variantKey: 'family-a' }
     );
 
     expect(baseline).toEqual(existingBaseline);
@@ -173,17 +173,17 @@ describe('recomputeTimingBaseline', () => {
     const baseline = await recomputeTimingBaseline(
       { db: mockDb } as unknown as Parameters<typeof recomputeTimingBaseline>[0],
       {
-        problemFamilyId: 'family-a',
+        variantKey: 'family-a',
         activityIds: [activityId],
       }
     );
 
-    expect(baseline.problemFamilyId).toBe('family-a');
+    expect(baseline.variantKey).toBe('family-a');
     expect(baseline.sampleCount).toBe(3);
     expect(baseline.medianActiveMs).toBe(10000);
     expect(baseline.minSamplesMet).toBe(false);
     expect(mockDb.insert).toHaveBeenCalledWith('timing_baselines', expect.objectContaining({
-      problemFamilyId: 'family-a',
+      variantKey: 'family-a',
       sampleCount: 3,
     }));
   });
@@ -192,7 +192,7 @@ describe('recomputeTimingBaseline', () => {
     const activityId = 'activity1' as Id<'activities'>;
     const existingBaseline = {
       _id: 'baseline1',
-      problemFamilyId: 'family-a',
+      variantKey: 'family-a',
       sampleCount: 5,
       medianActiveMs: 8000,
       lastComputedAt: '2026-01-01T00:00:00.000Z',
@@ -236,12 +236,12 @@ describe('recomputeTimingBaseline', () => {
     const baseline = await recomputeTimingBaseline(
       { db: mockDb } as unknown as Parameters<typeof recomputeTimingBaseline>[0],
       {
-        problemFamilyId: 'family-a',
+        variantKey: 'family-a',
         activityIds: [activityId],
       }
     );
 
-    expect(baseline.problemFamilyId).toBe('family-a');
+    expect(baseline.variantKey).toBe('family-a');
     expect(baseline.sampleCount).toBe(5);
     expect(baseline.minSamplesMet).toBe(false);
     expect(mockDb.patch).toHaveBeenCalledWith('baseline1', expect.objectContaining({
@@ -279,7 +279,7 @@ describe('recomputeTimingBaseline', () => {
     const baseline = await recomputeTimingBaseline(
       { db: mockDb } as unknown as Parameters<typeof recomputeTimingBaseline>[0],
       {
-        problemFamilyId: 'family-a',
+        variantKey: 'family-a',
         activityIds: [activityId],
       }
     );
@@ -317,7 +317,7 @@ describe('recomputeTimingBaseline', () => {
     const baseline = await recomputeTimingBaseline(
       { db: mockDb } as unknown as Parameters<typeof recomputeTimingBaseline>[0],
       {
-        problemFamilyId: 'family-a',
+        variantKey: 'family-a',
         activityIds: [activityId],
         minSamples: 2,
       }
@@ -331,7 +331,7 @@ describe('getStaleBaselines', () => {
   it('returns baselines older than maxAgeMs', async () => {
     const oldBaseline = {
       _id: 'baseline1',
-      problemFamilyId: 'family-a',
+      variantKey: 'family-a',
       sampleCount: 10,
       medianActiveMs: 10000,
       lastComputedAt: '2026-01-01T00:00:00.000Z',
@@ -339,7 +339,7 @@ describe('getStaleBaselines', () => {
     };
     const recentBaseline = {
       _id: 'baseline2',
-      problemFamilyId: 'family-b',
+      variantKey: 'family-b',
       sampleCount: 10,
       medianActiveMs: 10000,
       lastComputedAt: new Date().toISOString(),
@@ -389,7 +389,7 @@ describe('aggregation idempotency', () => {
     const baseline1 = await recomputeTimingBaseline(
       { db: mockDb } as unknown as Parameters<typeof recomputeTimingBaseline>[0],
       {
-        problemFamilyId: 'family-a',
+        variantKey: 'family-a',
         activityIds: [activityId],
       }
     );
@@ -397,7 +397,7 @@ describe('aggregation idempotency', () => {
     const baseline2 = await recomputeTimingBaseline(
       { db: mockDb } as unknown as Parameters<typeof recomputeTimingBaseline>[0],
       {
-        problemFamilyId: 'family-a',
+        variantKey: 'family-a',
         activityIds: [activityId],
       }
     );

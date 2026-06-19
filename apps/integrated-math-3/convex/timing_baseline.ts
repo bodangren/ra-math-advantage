@@ -12,13 +12,13 @@ type TimingSummary = {
 
 export const getTimingBaseline = internalQuery({
   args: {
-    problemFamilyId: v.string(),
+    variantKey: v.string(),
   },
   handler: async (ctx, args) => {
     const baseline = await ctx.db
       .query("timing_baselines")
-      .withIndex("by_problem_family", (q) =>
-        q.eq("problemFamilyId", args.problemFamilyId)
+      .withIndex("by_variant", (q) =>
+        q.eq("variantKey", args.variantKey)
       )
       .unique();
     return baseline;
@@ -27,7 +27,7 @@ export const getTimingBaseline = internalQuery({
 
 export const recomputeTimingBaseline = internalMutation({
   args: {
-    problemFamilyId: v.string(),
+    variantKey: v.string(),
     activityIds: v.array(v.id("activities")),
     minSamples: v.optional(v.number()),
   },
@@ -35,7 +35,7 @@ export const recomputeTimingBaseline = internalMutation({
     const eligibleTimings = await collectEligibleTimings(ctx, args.activityIds);
 
     const baselineInput = {
-      variantKey: args.problemFamilyId,
+      variantKey: args.variantKey,
       timings: eligibleTimings,
       minSamples: args.minSamples,
       computedAt: new Date().toISOString(),
@@ -45,8 +45,8 @@ export const recomputeTimingBaseline = internalMutation({
 
     const existing = await ctx.db
       .query("timing_baselines")
-      .withIndex("by_problem_family", (q) =>
-        q.eq("problemFamilyId", args.problemFamilyId)
+      .withIndex("by_variant", (q) =>
+        q.eq("variantKey", args.variantKey)
       )
       .unique();
 
@@ -64,7 +64,7 @@ export const batchRecomputeTimingBaselines = internalMutation({
   args: {
     recomputations: v.array(
       v.object({
-        problemFamilyId: v.string(),
+        variantKey: v.string(),
         activityIds: v.array(v.id("activities")),
         minSamples: v.optional(v.number()),
       })
@@ -81,7 +81,7 @@ export const batchRecomputeTimingBaselines = internalMutation({
           const eligibleTimings = await collectEligibleTimings(ctx, recomp.activityIds);
 
           const baseline = computeTimingBaseline({
-            variantKey: recomp.problemFamilyId,
+            variantKey: recomp.variantKey,
             timings: eligibleTimings,
             minSamples: recomp.minSamples,
             computedAt: new Date().toISOString(),
@@ -89,8 +89,8 @@ export const batchRecomputeTimingBaselines = internalMutation({
 
           const existing = await ctx.db
             .query("timing_baselines")
-            .withIndex("by_problem_family", (q) =>
-              q.eq("problemFamilyId", recomp.problemFamilyId)
+            .withIndex("by_variant", (q) =>
+              q.eq("variantKey", recomp.variantKey)
             )
             .unique();
 
