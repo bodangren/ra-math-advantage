@@ -8,10 +8,10 @@ import type { PracticeTimingBaseline } from "@math-platform/practice-core";
 import type { MutationCtx } from "../_generated/server";
 
 /**
- * Looks up the problem family and objective for an activity.
+ * Looks up the variant and objective for an activity.
  * @param ctx - The mutation context
  * @param activityId - The activity ID to look up
- * @returns The problem family ID and objective ID, or null if not found
+ * @returns The variant key and objective ID, or null if not found
  */
 async function lookupVariant(
   ctx: MutationCtx,
@@ -42,9 +42,9 @@ async function lookupVariant(
 }
 
 /**
- * Looks up the timing baseline for a problem family.
+ * Looks up the timing baseline for a variant.
  * @param ctx - The mutation context
- * @param variantKey - The problem family ID to look up
+ * @param variantKey - The variant key to look up
  * @returns The timing baseline, or null if not found
  */
 async function lookupBaseline(

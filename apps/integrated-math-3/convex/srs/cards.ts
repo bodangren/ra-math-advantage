@@ -289,9 +289,9 @@ export const getCardsByStudent = internalQuery({
 });
 
 /**
- * Retrieves an SRS card by student ID and problem family ID.
+ * Retrieves an SRS card by student ID and variant key.
  * @param ctx - The query context
- * @param args - The student ID and problem family ID
+ * @param args - The student ID and variant key
  * @returns The card in contract format, or null if not found
  */
 export async function getCardByStudentAndVariantHandler(

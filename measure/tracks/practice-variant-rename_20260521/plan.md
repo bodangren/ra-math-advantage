@@ -104,7 +104,13 @@ Depends on: Track 1. Sequence after Track 1 to avoid churn collisions.
     - [x] P2 test assertion flip: contract.test.ts, scheduler.test.ts, submission-srs-adapter.test.ts
 - [x] Task: Execute and verify the Convex data migration on existing card data *(JR Green, 2026-06-19, commit f5b91fbb)*
     - [x] Migration test passes (4/4); live dry-run deferred to P4 or production rollout
-- [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md) — commit f5b91fbb (Green), 59f37118 (docs)
+    - [x] Targeted Red: 21/21 passed (convex-cardstore-variant-key, cards-variant-key, submission-srs-variant-key, projections-variant-rename)
+    - [x] Migration test: 4/4 passed
+    - [x] P2 test assertion flip: contract 26/26, scheduler 32/32, submission-srs-adapter 16/16
+    - [x] Full lib/srs suite: 164/164 passed (5 pre-existing @/ alias failures, out of scope)
+    - [x] Root npm test: knowledge-space-core 285/285 passed
+    - [x] AC1 verified: no legacy problemFamily* identifiers remain in convexCardStore, cards, processReview, submissionSrs
 
 > **MID Red handoff (2026-06-19):** See `test-strategy.md` §7 (Live-Proof Plan), rows "P3"
 > and "P3 exec". Red proof lives at:
