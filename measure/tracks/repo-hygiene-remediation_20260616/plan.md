@@ -154,25 +154,243 @@ matching test-strategy.md §6.
 
 ## Phase 5: Verification
 
-- [ ] Task 5.1: Run TypeScript compilation
-  - [ ] `npx tsc --noEmit -p apps/integrated-math-3/tsconfig.json`
-  - [ ] `npx tsc --noEmit -p apps/bus-math-v2/tsconfig.json`
-  - [ ] Record results
+- [~] Task 5.1: Run TypeScript compilation
+  - [~] `npx tsc --noEmit -p apps/integrated-math-3/tsconfig.json` — DEFERRED: requires `node`/`npm`/`npx` on PATH (Mid runtime at attempt-1 lacks all three)
+  - [~] `npx tsc --noEmit -p apps/bus-math-v2/tsconfig.json` — DEFERRED (same reason)
+  - [~] Record results — owner: Junior Green role or `gate_acceptance` per attempt-1 handoff
 
-- [ ] Task 5.2: Run lint
-  - [ ] `npm run lint --workspace=apps/integrated-math-3`
-  - [ ] `npm run lint --workspace=apps/bus-math-v2`
-  - [ ] Record results
+- [~] Task 5.2: Run lint
+  - [~] `npm run lint --workspace=apps/integrated-math-3` — DEFERRED: requires `node`/`npm`/`npx` on PATH
+  - [~] `npm run lint --workspace=apps/bus-math-v2` — DEFERRED (same reason)
+  - [~] Record results — partial evidence already captured in Phase 4 Green completion (`82eb3e76`): 0 errors across the 4 React 19 rules + 5 pre-existing warnings unrelated to this track
 
-- [ ] Task 5.3: Run tests
-  - [ ] `CI=true npm run test --workspace=apps/integrated-math-3`
-  - [ ] `CI=true npm run test --workspace=apps/bus-math-v2`
-  - [ ] Record results
+- [~] Task 5.3: Run tests
+  - [~] `CI=true npm run test --workspace=apps/integrated-math-3` — DEFERRED: requires `node`/`npm`/`npx` on PATH
+  - [~] `CI=true npm run test --workspace=apps/bus-math-v2` — DEFERRED (same reason)
+  - [~] Record results — partial evidence: 111/111 vitest pass across 9 IM3 component test files (Phase 4 regression gates) per `82eb3e76`; full IM3+BM2 suite deferred
 
-- [ ] Task 5.4: Final state check
-  - [ ] `git status --short` returns empty
-  - [ ] `git stash list` returns empty
-  - [ ] All acceptance criteria met
+- [~] Task 5.4: Final state check
+  - [~] `git status --short` returns empty — BLOCKED: 8 unrelated dirty paths owned by `primitive-layer-contract_20260615` (7 test renames) + `measure/automation-supervisor.py` edit (different track) + 1 untracked `__pycache__/` (ignorable). Mid role cannot resolve these without affecting other tracks.
+  - [~] `git stash list` returns empty — BLOCKED: `stash@{0}: track-7-untouched-pending-remediation` is owned by an unrelated track and per the prior plan notes "do NOT pop"
+  - [~] All acceptance criteria met — depends on 5.1–5.3 live results + 5.4 resolution
+
+## Phase 5 Mid Attempt-1 (Red contract + state documentation, 2026-06-20)
+
+**Mid attempt-1 for Phase 5.** Prior Mid attempts 3–7 (`eacc00b5`,
+`3fee1453`, `e71d7eb5`, `3d4400fb`, `f3cb7fd5`) covered Phase 4 Red
+evidence and gate-blocker resolution; this is the first Mid attempt
+scoped to Phase 5.
+
+### Test-Strategy Phase 5 Standing Order
+
+test-strategy.md §5: **"Phase 5: No new tests. Aggregate proof per
+AC-3..AC-8."** Phase 5 has no TDD-driven test creation; its 4 tasks
+ARE the verification gates:
+
+| Task | Gate kind | Bounded command (cwd = repo root) | Source |
+|------|-----------|------------------------------------|--------|
+| 5.1 | Live | `npx tsc --noEmit -p apps/integrated-math-3/tsconfig.json` | AC-5 |
+| 5.1 | Live | `npx tsc --noEmit -p apps/bus-math-v2/tsconfig.json` | AC-6 |
+| 5.2 | Live | `npm run lint --workspace=apps/integrated-math-3` | AC-3 |
+| 5.2 | Live | `npm run lint --workspace=apps/bus-math-v2` | AC-4 |
+| 5.3 | Live (full suite, explicitly required by phase) | `CI=true npm run test --workspace=apps/integrated-math-3` | AC-8 |
+| 5.3 | Live (full suite, explicitly required by phase) | `CI=true npm run test --workspace=apps/bus-math-v2` | AC-8 |
+| 5.4 | Artifact | `git status --short` empty | AC-1 |
+| 5.4 | Artifact | `git stash list` empty | AC-2 |
+
+Per test-strategy.md §7, Phase 5.3 is the only aggregate gate run
+across the entire project and is reserved for verification — never
+used as the Red signal for an individual task. Phase 5 commands are
+the bound; no further bounded split is possible.
+
+### Runtime Constraint
+
+Mid runtime at attempt-1 has no `node`/`npm`/`npx` on PATH:
+
+```
+$ which node npm npx
+/usr/bin/python3
+/home/daniel-bo/.local/bin/build-graph
+$ node --version
+bash: node: command not found
+$ npm --version
+bash: npm: command not found
+```
+
+The 6 Phase 5.1–5.3 live commands require `node`/`npm`/`npx` (or
+`apps/<app>/node_modules/.bin/{tsc,eslint,vitest}` binaries, which
+are also absent — the Mid runtime does not install workspace
+dependencies). Live execution is deferred to a runtime with the full
+toolchain. **No fake-harness or shadow-script substitute is used**
+per test-strategy.md §7 ("Fake harnesses: None. Production lint and
+vitest commands are the gates directly").
+
+### Available Tools at Mid Attempt-1
+
+- `python3` (system): runs `measure/automation-supervisor.py`,
+  `measure/doctor.sh`, and ad-hoc filter simulations
+- `build-graph` (`~/.local/bin/build-graph`): inspects the SQLite
+  knowledge graph at `./graph.db` (14179 nodes, 2067 files, fresh
+  per `build-graph stats`)
+
+Build-graph queries confirm the Phase 5 command targets exist:
+
+```
+$ build-graph search ./graph.db "vitest.config" --type=file
+file | vitest.config.ts | apps/integrated-math-3/vitest.config.ts
+file | vitest.config.ts | apps/bus-math-v2/vitest.config.ts
+...
+$ ls apps/integrated-math-3/{tsconfig.json,eslint.config.mjs,vitest.config.ts}
+-rw-r--r-- 1 ... apps/integrated-math-3/tsconfig.json      (669 bytes, mtime Apr 18)
+-rw-r--r-- 1 ... apps/integrated-math-3/eslint.config.mjs   (790 bytes, mtime Apr 28)
+-rw-r--r-- 1 ... apps/integrated-math-3/vitest.config.ts
+```
+
+Lint config (`apps/integrated-math-3/eslint.config.mjs`) inspected at
+HEAD confirms Phase 4.5 Green state: the disabled-rules block (lines
+28-43 per the pre-Phase-4 baseline) is removed; the four
+`react-hooks/{set-state-in-effect,purity,refs,static-components}`
+rules now resolve to their upstream `eslint-config-next` defaults.
+
+### Phase 5 Red Contract (per user instructions)
+
+The user instructions for the Mid role require "Red tests must fail
+because the current implementation is missing or wrong, not merely
+because a durable record is stale" and "If the new tests pass at
+HEAD, tighten the contract until at least one new test fails or mark
+the task as already satisfied with evidence instead of creating a
+false Red phase."
+
+Phase 5 has **no new tests to write** (test-strategy.md §5). The Red
+contract is therefore the bounded-command table above plus the
+artifact-state inspection (5.4). The 6 live commands cannot run in
+this runtime; the artifact gate (5.4) has a known blocker (see
+below). Both are **already-satisfied with evidence** or
+**explicitly blocked** — neither requires fabricating a Red test.
+
+### Already-Satisfied Evidence (Phase 5.1–5.3)
+
+The Phase 4 Green completion record (`82eb3e76` and the Junior
+verification footer at `f35f0565`) captured:
+
+- **Lint (4 targeted rules at error level): 0 errors across entire IM3 app**
+  ```
+  npx eslint . --rule '{"react-hooks/set-state-in-effect":"error",
+                       "react-hooks/purity":"error",
+                       "react-hooks/refs":"error",
+                       "react-hooks/static-components":"error"}'
+  ```
+- **Regression tests: 111/111 passed across 9 test suites**
+  ```
+  npx vitest run __tests__/components/practice-timing|MatchingGame|
+    SpeedRoundGame|PhaseCompleteButton|VocabularyHighlight|ExportPanel|
+    PracticeTestEngine|ActivityRenderer|LessonStepper.test.tsx
+  ```
+- **Remaining warnings (pre-existing, not Phase 4 scope):**
+  - 2 unused-var warnings in `__tests__/lib/onboarding/student-flow.test.ts`
+  - 2 exhaustive-deps warnings in `MatchingGame.tsx`
+  - 1 exhaustive-deps warning in `PhaseCompleteButton.tsx`
+
+This covers AC-7 (IM3 React 19 eslint rules re-enabled with zero
+violations — directly proven) and AC-8 partial (the 4 IM3 component
+test files plus the 3 Phase 3 BM2 tests covered by `f07e1253`).
+AC-3, AC-4, AC-5, AC-6, and AC-8 full require a runtime with
+`node` on PATH — see **Handoff** below.
+
+### Phase 5.4 BLOCKED — Exact Unrelated Dirty Files
+
+```
+$ git status --porcelain
+ M apps/integrated-math-3/__tests__/convex/seed/practice-blueprint.test.ts
+ M apps/integrated-math-3/__tests__/convex/seed/problem-families-modules-6-9.test.ts
+ M apps/integrated-math-3/__tests__/lib/onboarding/student-flow.test.ts
+ M apps/integrated-math-3/__tests__/lib/practice/problem-family.test.ts
+ M measure/automation-supervisor.py
+ M packages/math-content/src/__tests__/exports.test.ts
+ M packages/math-content/src/__tests__/integration.test.ts
+ M packages/math-content/src/problem-families/im1/__tests__/scaffold.test.ts
+?? measure/tracks/primitive-layer-contract_20260615/__tests__/__pycache__/
+
+$ git stash list
+stash@{0}: On master: track-7-untouched-pending-remediation
+```
+
+| Dirty path | Owner | Resolution available to Mid? |
+|------------|-------|------------------------------|
+| `apps/integrated-math-3/__tests__/convex/seed/practice-blueprint.test.ts` | `primitive-layer-contract_20260615` (rename `problemFamilySchema` → `practiceVariantSchema`) | NO — unrelated track; per user policy, "Preserve unrelated user work: do not overwrite, revert, or hide it in this track's commit" |
+| `apps/integrated-math-3/__tests__/convex/seed/problem-families-modules-6-9.test.ts` | `primitive-layer-contract_20260615` | NO (same) |
+| `apps/integrated-math-3/__tests__/lib/onboarding/student-flow.test.ts` | `primitive-layer-contract_20260615` (additive `callCount` on `RecordingDeps`) | NO (same) |
+| `apps/integrated-math-3/__tests__/lib/practice/problem-family.test.ts` | `primitive-layer-contract_20260615` | NO (same) |
+| `measure/automation-supervisor.py` | automation-supervisor track (in-flight edit) | NO — different Measure doc; per `gate_mid` exclusion (`measure/` prefix), not flagged for THIS Mid attempt, but cannot be committed by this track |
+| `packages/math-content/src/__tests__/exports.test.ts` | `primitive-layer-contract_20260615` | NO (same) |
+| `packages/math-content/src/__tests__/integration.test.ts` | `primitive-layer-contract_20260615` | NO (same) |
+| `packages/math-content/src/problem-families/im1/__tests__/scaffold.test.ts` | `primitive-layer-contract_20260615` | NO (same) |
+| `measure/tracks/primitive-layer-contract_20260615/__tests__/__pycache__/` | Python bytecode cache (ignorable) | NO — untracked, generated by test tooling |
+| `stash@{0}: track-7-untouched-pending-remediation` | unrelated track (per Phase 4 attempt-7 plan notes) | NO — "do NOT pop" per prior plan |
+
+The Mid role cannot make `git status --short` empty while preserving
+unrelated user work per the user policy quoted above. The Mid gate's
+`non_test_source_changes_since` filter (`measure/automation-supervisor.py:428`)
+also excludes paths containing `/__tests__/` or starting with
+`measure/`, so the 9 working-tree dirty paths are gate-excluded for
+the Mid role's docs-only commit — but `git status --short` will still
+return 9 lines until those tracks commit or revert their work, which
+is outside this track's scope.
+
+### Mid Gate Filter Simulation (python3)
+
+Replicating `non_test_source_changes_since` at HEAD with
+`pre_head = HEAD`:
+
+```python
+allowed_suffixes = (".test.ts", ".test.tsx", ".spec.ts", ".spec.tsx",
+                    ".test.js", ".test.jsx", ".spec.js", ".spec.jsx", "_test.go", ".bats")
+def is_excluded(p):
+    if p.startswith("measure/"): return True
+    if p.endswith(allowed_suffixes): return True
+    if "/__tests__/" in p or "/tests/" in p or p.startswith("tests/"): return True
+    return False
+# All 8 modified + 1 untracked dirty paths return True (gate-excluded).
+# Mid role docs-only commit will not be flagged.
+```
+
+The 9 dirty paths are not Mid-role-introduced; they are pre-existing
+drift from other tracks. A Mid commit limited to `measure/tracks/repo-hygiene-remediation_20260616/plan.md`
+and any other `measure/`-prefixed file will pass `non_test_source_changes_since`.
+
+### Handoff to Junior / gate_acceptance
+
+To close Phase 5, the next role (Junior Green or `gate_acceptance`)
+must run the 6 live commands in a runtime with `node`/`npm`/`npx`
+on PATH and record the exit codes in this `plan.md`. The bounded
+command list is authoritative:
+
+```
+npx tsc --noEmit -p apps/integrated-math-3/tsconfig.json
+npx tsc --noEmit -p apps/bus-math-v2/tsconfig.json
+npm run lint --workspace=apps/integrated-math-3
+npm run lint --workspace=apps/bus-math-v2
+CI=true npm run test --workspace=apps/integrated-math-3
+CI=true npm run test --workspace=apps/bus-math-v2
+```
+
+Phase 5.4 cannot close in this track alone — it requires the 8
+unrelated dirty paths and the 1 unrelated stash to be resolved by
+their owning tracks. Per the user policy ("Preserve unrelated user
+work: do not overwrite, revert, or hide it"), the Mid role
+**reports BLOCKED** for Task 5.4 with the file list above as
+rationale. The recommended remediation track
+(`graph-db-as-build-artifact_20260619` per Phase 4 attempt-3/5/7
+notes) is one option; an alternative is the owning tracks landing
+their commits/stash-resolutions before this track's acceptance gate
+fires.
+
+### Mid Attempt-1 Commit
+
+Docs-only `plan.md` update: marks Phase 5 tasks `[~]`, records the
+bounded-command table, the runtime constraint, the available evidence
+from Phase 4 Green (`82eb3e76`), and the Phase 5.4 blocker with
+exact unrelated files. No source code or test files modified.
 
 ## Blocker: `graph.db` Working-Tree Drift Blocks Red-Phase Gate (Mid attempts 3–5, 2026-06-19)
 
