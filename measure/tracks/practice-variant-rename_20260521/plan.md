@@ -46,10 +46,54 @@ Depends on: Track 1. Sequence after Track 1 to avoid churn collisions.
 
 ## Phase 2 — Engine Rename
 
-- [ ] Task: Rename across srs-engine (TDD — keep tests green)
+- [~] Task: Rename across srs-engine (TDD — keep tests green) *(MID Red in progress, 2026-06-19)*
     - [ ] scheduler, contract, objective-proficiency, srs-proficiency; variantKey threading
     - [ ] minProblemFamilies → minVariants; ProblemFamilyEvidence → PracticeVariantEvidence
     - [ ] Single-variant default (variantKey = objectiveId)
+
+> **MID Red handoff (2026-06-19):** See `test-strategy.md` §7 (Live-Proof Plan), row "P2".
+> Red proof lives at `packages/srs-engine/src/__tests__/variant-rename.test.ts` (new).
+> Existing `__tests__/*.test.ts` files are intentionally NOT modified in the Red phase
+> per the directive "use specific test files/cases" — flipping their assertions en bloc
+> belongs to the Green step (where the source rename lands and they would otherwise turn
+> Red without a target).
+>
+> **Dirty worktree (preserved, NOT staged in this track's commit):**
+> - `apps/integrated-math-3/__tests__/lib/onboarding/student-flow.test.ts` (M) —
+>   onboarding test, unrelated to this track.
+> - `measure/automation-supervisor.py` (M) — supervisor hardening, unrelated to this track.
+>
+> **Targeted Red command (run 2026-06-19, vitest 4.1.8):**
+> `./node_modules/.bin/vitest run packages/srs-engine/src/__tests__/variant-rename.test.ts`
+> → **20 failed, 2 passed** of 22.
+> The 2 passes are FR-invariant sanity checks (`aggregateCardsToEvidence([])`
+> returns `[]`; `InMemoryTimingBaselineResolver` is still on the module surface —
+> FR1 does not rename it). The 20 substantive Red failures span all five rename
+> surfaces in scope for Phase 2:
+> - **Contract** (2 fail): `createMockSrsCard` carries `problemFamilyId`, not
+>   `variantKey`; `variantKey` overrides do not round-trip.
+> - **Scheduler** (4 fail): `createCard({ variantKey })` ignores `variantKey`
+>   and writes `problemFamilyId`; FR2 single-variant default is not implemented
+>   (no defaulting of `variantKey` to `objectiveId`).
+> - **SRS Proficiency** (2 fail): `aggregateCardsToEvidence` groups cards by
+>   `problemFamilyId`, so input `{ variantKey }` collapses into one bucket;
+>   the byte-for-byte numeric assertion cannot be reached.
+> - **Objective Proficiency** (6 fail): `PROFICIENCY_THRESHOLD_DEFAULTS.*`
+>   expose `minProblemFamilies`, not `minVariants`; `computeObjectiveProficiency`
+>   reads `problemFamilyEvidences` + `minProblemFamilies` and throws
+>   `Cannot read properties of undefined (reading 'length')` when the test
+>   passes `variantEvidences`; emitted `problemFamilyDetails[i].variantKey`
+>   is undefined.
+> - **Adapters** (3 fail): `InMemoryCardStore.getCardByStudentAndVariant` is
+>   `undefined` (HEAD exposes `getCardByStudentAndFamily`).
+> - **Submission Adapter module** (3 fail): `InMemoryPracticeVariantResolver`
+>   is `undefined` on `submission-srs-adapter` module (HEAD exports
+>   `InMemoryProblemFamilyResolver`).
+>
+> All 20 fail with the expected missing-behavior modes (legacy field writes,
+> missing renamed exports, undefined reads). The strategy's Red-command target
+> is met — the live gate `npm --workspace @math-platform/srs-engine run test`
+> is owned by the Green step.
 - [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
 
 ## Phase 3 — Projection, App Rename, and Migration
