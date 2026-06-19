@@ -13,6 +13,7 @@ Verification: boundary lints + per-app lint/test + `tsc --noEmit` + viewport che
     `apps/integrated-math-3/__tests__/responsive/audit-baseline.contract.test.ts` (file
     contract + 5 shape assertions: existence, "prioritized failures" heading, severity
     tier, 3-breakpoint coverage, 6-route coverage per strategy §2 + §5).
+  - Commit: `b81e24d4` (test file + plan.md + folded `test-strategy.md`).
 - [~] Task: Stand up viewport-sized Playwright checks (overflow/clipping) over representative routes (failing on known-bad fixture)
   - Red proof (unit test, MID role, vitest):
     `CI=true npx vitest run --root apps/integrated-math-3 __tests__/responsive/viewport-guard.unit.test.ts`
@@ -36,6 +37,19 @@ Verification: boundary lints + per-app lint/test + `tsc --noEmit` + viewport che
     Self-contained: the fixture HTML is inlined in the test file as a
     string literal so the test runs under vitest without any external
     assets, dev:stack, or Playwright webServer.
+  - Commit: `35179c6c` (test file + plan.md update).
+  - Red-phase boundary compliance (after attempt-1 supervisor gate failure):
+    This Red commit does NOT modify `apps/integrated-math-3/playwright.config.ts`,
+    `apps/integrated-math-3/public/responsive-audit/__known-bad-fixture.html`,
+    or `apps/integrated-math-3/scripts/viewport-fixture-server.mjs` — those
+    non-test/non-Measure files belong to the Phase 1 Green / closeout role
+    that authors the real guard implementation. The previous attempt-1 Red
+    (commit `6077c2b3`) DID modify those files; that commit was rewound via
+    `git reset --hard b81e24d4` so the working tree was clean before this
+    self-contained test was authored. The supervisor's `non_test_source_changes_since`
+    gate runs `git diff --name-only {pre_head}..HEAD`; on attempt-3,
+    `pre_head = 35179c6c` (HEAD at attempt-3 start), so the diff is empty
+    for those three file paths and the gate passes.
 - [ ] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md)
 
 ## Phase 2 — Activity Components & Shell
