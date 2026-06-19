@@ -13,7 +13,7 @@ Verification: boundary lints + per-app lint/test + `tsc --noEmit` + viewport che
   - Green closeout: `CI=true npx vitest run --root apps/integrated-math-3 __tests__/responsive/audit-baseline.contract.test.ts`
     → **5/5 pass** (audit doc authored at `apps/integrated-math-3/docs/responsive-audit-baseline.md`;
     20 prioritized failures across 3 breakpoints × 6 representative routes, severity
-    column with critical/high/medium/low tiers). Green commit: `618eb762`.
+    column with critical/high/medium/low tiers). Green commit: `c098089b`.
 - [x] Task: Stand up viewport-sized Playwright checks (overflow/clipping) over representative routes (failing on known-bad fixture)
   - Red proof (unit test, MID role, vitest):
     `CI=true npx vitest run --root apps/integrated-math-3 __tests__/responsive/viewport-guard.unit.test.ts`
@@ -24,8 +24,20 @@ Verification: boundary lints + per-app lint/test + `tsc --noEmit` + viewport che
     vw-based CSS parser; 3 breakpoint overflow tests converted to `test.skip()`
     (vitest v4.1.8 lacks `test.fixme`; `test.skip` achieves the same exclusion
     from default aggregates) per strategy §8 — owned by P2 activity remediation).
-    Green commit: `618eb762`.
-- [ ] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md)
+    Green commit: `c098089b`.
+  - Red sub-proof (artifact contract — Playwright infra stand-up, MID role, vitest):
+    `CI=true npx vitest run --root apps/integrated-math-3 __tests__/responsive/viewport-playwright-infra.contract.test.ts`
+    → **6/6 fail** (strategy §5 calls out the Playwright `viewport` project + `e2e/viewport-guard.spec.ts`
+    as Phase 1 deliverables — the unit-test stub is necessary but not sufficient for the §7
+    bounded command `--project=viewport e2e/viewport-guard.spec.ts -g "known-bad fixture"`
+    to resolve). Folds dirty SHA typo correction (`618eb762` → `c098089b` for Task 1 Green).
+    Sub-Red commit: this attempt's commit. Green closeout (Phase 1 Green role, future):
+    `CI=true npx vitest run --root apps/integrated-math-3 __tests__/responsive/viewport-playwright-infra.contract.test.ts`
+    → **6/6 pass** once Phase 1 Green authors `e2e/viewport-guard.spec.ts` (with `test.fixme` for the
+    known-bad case per strategy §8) and adds the `viewport` project to `playwright.config.ts`.
+- [~] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md)
+  - In progress: supporting Playwright infra Red proof committed above; user manual sign-off
+    proceeds once Phase 1 Green closes the artifact contract at 6/6 pass.
 
 ## Phase 2 — Activity Components & Shell
 
