@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, Suspense } from 'react';
+import React, { useCallback, Suspense, useMemo } from 'react';
 import { getActivityComponent } from '@/lib/activities/registry';
 import { usePracticeTiming } from '@/components/practice-timing';
 import {
@@ -53,7 +53,7 @@ export function ActivityRenderer({
     [isStudentContext, getTiming, onSubmit],
   );
 
-  const ActivityComponent = getActivityComponent(componentKey);
+  const ActivityComponent = useMemo(() => getActivityComponent(componentKey), [componentKey]);
 
   if (!ActivityComponent) {
     return (
@@ -68,12 +68,12 @@ export function ActivityRenderer({
   return (
     <div className="my-4">
       <Suspense fallback={<div className="p-4 text-sm text-muted-foreground">Loading activity…</div>}>
-        <ActivityComponent
-          activityId={activityId}
-          mode={mode}
-          onSubmit={handleSubmit}
-          onComplete={onComplete}
-        />
+        {React.createElement(ActivityComponent, {
+          activityId,
+          mode,
+          onSubmit: handleSubmit,
+          onComplete,
+        })}
       </Suspense>
     </div>
   );

@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { CheckCircle2, Loader2, SkipForward } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { completePhaseRequest, skipPhaseRequest } from '@/lib/phase-completion/client';
@@ -44,16 +44,12 @@ export function PhaseCompleteButton({
   const [isCompleting, setIsCompleting] = useState(false);
   const [isSkipping, setIsSkipping] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const startTimeRef = useRef<number>(Date.now());
+  const [startTime] = useState(() => Date.now());
 
   const isCompleted = status === 'completed';
   const isSkipped = status === 'skipped';
   const canSkip = phaseType && isSkippable(phaseType);
   const isDisabled = disabled || isCompleting || isSkipping || isCompleted || isSkipped;
-
-  useEffect(() => {
-    setStatus(initialStatus);
-  }, [initialStatus]);
 
   const handleComplete = useCallback(async () => {
     if (isDisabled) return;
@@ -65,7 +61,7 @@ export function PhaseCompleteButton({
       await completePhaseRequest({
         lessonId,
         phaseNumber,
-        timeSpent: Math.round((Date.now() - startTimeRef.current) / 1000),
+        timeSpent: Math.round((Date.now() - startTime) / 1000),
         idempotencyKey: `${lessonId}-${phaseNumber}-${Date.now()}`,
       });
 

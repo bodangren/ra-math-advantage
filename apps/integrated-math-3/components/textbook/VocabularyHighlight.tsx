@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useId } from 'react';
 import { Info } from 'lucide-react';
 
 export interface VocabularyHighlightProps {
@@ -18,7 +18,8 @@ export interface VocabularyHighlightProps {
 export function VocabularyHighlight({ term, definition, children }: VocabularyHighlightProps) {
   const [isOpen, setIsOpen] = useState(false);
   const termRef = useRef<HTMLSpanElement>(null);
-  const tooltipId = `tooltip-${Math.random().toString(36).substr(2, 9)}`;
+  const id = useId();
+  const tooltipId = `tooltip-${id}`;
 
   const toggleTooltip = () => {
     setIsOpen(prev => !prev);

@@ -46,8 +46,8 @@ export default function PracticeTestEngine({ moduleConfig, onComplete }: Practic
     { question: ReturnType<typeof shuffleAnswers>; original: PracticeTestModuleConfig['questions'][number] }[]
   >([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
-  const [, setScore] = useState<number>(0);
-  const [, setPerLessonBreakdown] = useState<
+  const [score, setScore] = useState<number>(0);
+  const [perLessonBreakdown, setPerLessonBreakdown] = useState<
     Record<string, { lessonTitle: string; correct: number; total: number }>
   >({});
   const [hasSeenFeedback, setHasSeenFeedback] = useState(false);
@@ -300,11 +300,11 @@ export default function PracticeTestEngine({ moduleConfig, onComplete }: Practic
                   {moduleConfig.phaseContent.closing.scoreLabel}
                 </h3>
                 <div className="text-4xl font-bold mb-2">
-                  {scoreRef.current}/{testQuestions.length}
+                  {score}/{testQuestions.length}
                 </div>
                 <div className="text-lg text-gray-600">
                   {testQuestions.length > 0
-                    ? Math.round((scoreRef.current / testQuestions.length) * 100)
+                    ? Math.round((score / testQuestions.length) * 100)
                     : 0}
                   %
                 </div>
@@ -314,7 +314,7 @@ export default function PracticeTestEngine({ moduleConfig, onComplete }: Practic
                   {moduleConfig.phaseContent.closing.perLessonBreakdownLabel}
                 </h3>
                 <div className="space-y-2">
-                  {Object.entries(breakdownRef.current).map(([lessonId, data]) => (
+                  {Object.entries(perLessonBreakdown).map(([lessonId, data]) => (
                     <div key={lessonId} className="flex justify-between">
                       <span>{data.lessonTitle}</span>
                       <span>

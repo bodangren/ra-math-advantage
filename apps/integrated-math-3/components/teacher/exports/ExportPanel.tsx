@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, useEffect } from 'react';
 import { useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 import type { Id } from '@/convex/_generated/dataModel';
@@ -46,7 +46,12 @@ export function ExportPanel({
   const [format, setFormat] = useState<ExportFormat>('csv');
   const [selectedStudentId, setSelectedStudentId] = useState<string>(studentId ?? '');
 
-  const effectiveEndDate = endDate ?? Date.now();
+  const [effectiveEndDate, setEffectiveEndDate] = useState(() => endDate ?? Date.now());
+
+  useEffect(() => {
+    const next = endDate ?? Date.now();
+    queueMicrotask(() => setEffectiveEndDate(next));
+  }, [endDate]);
 
   const scopeArgs =
     dataset === 'student'

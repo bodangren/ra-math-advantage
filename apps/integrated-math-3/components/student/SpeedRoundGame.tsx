@@ -60,7 +60,6 @@ function generateQuestions(terms: GlossaryTerm[], count: number): Question[] {
  * @returns An interactive speed round game.
  */
 export function SpeedRoundGame({ terms, onComplete }: SpeedRoundGameProps) {
-  const [questions, setQuestions] = useState<Question[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [timeLeft, setTimeLeft] = useState(GAME_DURATION);
   const [lives, setLives] = useState(INITIAL_LIVES);
@@ -75,6 +74,7 @@ export function SpeedRoundGame({ terms, onComplete }: SpeedRoundGameProps) {
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
 
   const feedbackTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const [endTime, setEndTime] = useState(0);
 
   useEffect(() => {
     return () => {
@@ -88,9 +88,8 @@ export function SpeedRoundGame({ terms, onComplete }: SpeedRoundGameProps) {
     return shuffleArray(terms).slice(0, Math.min(20, terms.length));
   }, [terms]);
 
-  useEffect(() => {
-    const newQuestions = generateQuestions(gameTerms, gameTerms.length);
-    setQuestions(newQuestions);
+  const questions = useMemo(() => {
+    return generateQuestions(gameTerms, gameTerms.length);
   }, [gameTerms]);
 
   useEffect(() => {
@@ -99,6 +98,7 @@ export function SpeedRoundGame({ terms, onComplete }: SpeedRoundGameProps) {
     const timer = setInterval(() => {
       setTimeLeft((prev) => {
         if (prev <= 1) {
+          setEndTime(Date.now());
           setIsComplete(true);
           return 0;
         }
@@ -110,17 +110,16 @@ export function SpeedRoundGame({ terms, onComplete }: SpeedRoundGameProps) {
   }, [isComplete]);
 
   useEffect(() => {
-    if (isComplete) {
-      const endTime = Date.now();
-      const durationSeconds = Math.floor((endTime - startTime) / 1000);
-      onComplete({
-        itemsSeen,
-        itemsCorrect,
-        itemsIncorrect,
-        durationSeconds,
-      });
-    }
-  }, [isComplete, itemsSeen, itemsCorrect, itemsIncorrect, startTime, onComplete]);
+    if (!isComplete) return;
+
+    const durationSeconds = Math.floor((endTime - startTime) / 1000);
+    onComplete({
+      itemsSeen,
+      itemsCorrect,
+      itemsIncorrect,
+      durationSeconds,
+    });
+  }, [isComplete, itemsSeen, itemsCorrect, itemsIncorrect, startTime, endTime, onComplete]);
 
   const handleAnswer = useCallback(
     (selectedDef: string) => {
@@ -146,6 +145,7 @@ export function SpeedRoundGame({ terms, onComplete }: SpeedRoundGameProps) {
         setLives((prev) => {
           const newLives = prev - 1;
           if (newLives <= 0) {
+            setEndTime(Date.now());
             setIsComplete(true);
           }
           return newLives;
@@ -174,7 +174,6 @@ export function SpeedRoundGame({ terms, onComplete }: SpeedRoundGameProps) {
   }
 
   if (isComplete || currentIndex >= questions.length) {
-    const endTime = Date.now();
     const durationSeconds = Math.floor((endTime - startTime) / 1000);
 
     return (

@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import PracticeTestEngine from '@/components/student/PracticeTestEngine';
@@ -17,7 +17,11 @@ interface PracticeTestPageClientProps {
  * @returns A practice test page client.
  */
 export function PracticeTestPageClient({ moduleConfig }: PracticeTestPageClientProps) {
-  const startedAtRef = useRef<number>(Date.now());
+  const startedAtRef = useRef<number>(0);
+
+  useEffect(() => {
+    startedAtRef.current = Date.now();
+  }, []);
 
   const handleTestComplete = async (result: {
     moduleNumber: number;

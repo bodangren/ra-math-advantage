@@ -73,6 +73,16 @@ export function LessonStepper({ phases, currentPhase, onPhaseClick, className }:
   );
 }
 
+function StepIcon({ status }: { status: PhaseStatus }) {
+  switch (status) {
+    case 'completed': return <Check className="h-4 w-4" aria-hidden />;
+    case 'current':   return <CircleDot className="h-4 w-4" aria-hidden />;
+    case 'locked':    return <Lock className="h-4 w-4" aria-hidden />;
+    case 'skipped':   return <SkipForward className="h-4 w-4" aria-hidden />;
+    default:          return <Circle className="h-4 w-4" aria-hidden />;
+  }
+}
+
 /**
  * Renders a single stepper button with status-based styling and phase icon.
  *
@@ -102,16 +112,6 @@ function StepButton({
     skipped: 'bg-amber-500 text-white border-amber-500',
   }[phase.status];
 
-  const StepIcon = () => {
-    switch (phase.status) {
-      case 'completed': return <Check className="h-4 w-4" aria-hidden />;
-      case 'current':   return <CircleDot className="h-4 w-4" aria-hidden />;
-      case 'locked':    return <Lock className="h-4 w-4" aria-hidden />;
-      case 'skipped':   return <SkipForward className="h-4 w-4" aria-hidden />;
-      default:          return <Circle className="h-4 w-4" aria-hidden />;
-    }
-  };
-
   return (
     <div className="flex flex-col items-center gap-1">
       <button
@@ -132,7 +132,7 @@ function StepButton({
       >
         {compact
           ? <span className="text-sm font-semibold">{phase.phaseNumber}</span>
-          : <StepIcon />
+          : <StepIcon status={phase.status} />
         }
       </button>
       {!compact && (

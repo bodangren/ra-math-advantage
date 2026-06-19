@@ -25,13 +25,6 @@ interface TeacherDashboardData {
   students: StudentRow[];
 }
 
-/**
- * Returns Tailwind CSS classes for a student's at-a-glance status badge,
- * mapping each status to a color scheme.
- *
- * @param status - The student's current at-a-glance status.
- * @returns A string of Tailwind CSS classes for the badge.
- */
 function statusBadgeClass(status: AtGlanceStatus): string {
   switch (status) {
     case 'on-track':
@@ -43,12 +36,15 @@ function statusBadgeClass(status: AtGlanceStatus): string {
   }
 }
 
-/**
- * Teacher dashboard page showing class overview, average progress,
- * active-student count, and individual student rows with at-a-glance status.
- *
- * @returns The rendered teacher dashboard JSX.
- */
+function getActiveTodayCount(students: StudentRow[]): number {
+  const now = Date.now();
+  return students.filter((s) => {
+    if (!s.lastActive) return false;
+    const diff = now - new Date(s.lastActive).getTime();
+    return diff < 86400000;
+  }).length;
+}
+
 export default async function TeacherDashboardPage() {
   const claims = await requireTeacherSessionClaims('/auth/login');
 
@@ -64,11 +60,7 @@ export default async function TeacherDashboardPage() {
     ? Math.round(students.reduce((s, st) => s + st.progressPercentage, 0) / students.length)
     : 0;
 
-  const activeToday = students.filter((s) => {
-    if (!s.lastActive) return false;
-    const diff = Date.now() - new Date(s.lastActive).getTime();
-    return diff < 86400000;
-  }).length;
+  const activeToday = getActiveTodayCount(students);
 
   return (
     <div className="max-w-5xl mx-auto space-y-10 py-8">

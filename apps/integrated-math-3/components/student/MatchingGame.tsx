@@ -30,15 +30,14 @@ interface MatchingGameProps {
  * @returns An interactive matching game.
  */
 export function MatchingGame({ terms, onComplete }: MatchingGameProps) {
-  const [cards, setCards] = useState<CardItem[]>([]);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [matchedPairIds, setMatchedPairIds] = useState<Set<string>>(new Set());
   const [wrongIds, setWrongIds] = useState<Set<string>>(new Set());
   const [isComplete, setIsComplete] = useState(false);
-  const [startTime, setStartTime] = useState<number>(0);
   const [endTime, setEndTime] = useState<number>(0);
   const [wrongAttempts, setWrongAttempts] = useState(0);
   const wrongTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const [startTime, setStartTime] = useState(() => Date.now());
 
   useEffect(() => {
     return () => {
@@ -53,7 +52,7 @@ export function MatchingGame({ terms, onComplete }: MatchingGameProps) {
     return shuffled.slice(0, 6);
   }, [terms]);
 
-  useEffect(() => {
+  const cards = useMemo(() => {
     const newCards: CardItem[] = [];
     gameTerms.forEach((term) => {
       newCards.push({
@@ -69,12 +68,15 @@ export function MatchingGame({ terms, onComplete }: MatchingGameProps) {
         type: 'definition',
       });
     });
-    setCards(shuffleArray(newCards));
-    setStartTime(Date.now());
+    return shuffleArray(newCards);
   }, [gameTerms]);
 
   useEffect(() => {
-    if (matchedPairIds.size === gameTerms.length && gameTerms.length > 0 && !isComplete) {
+    queueMicrotask(() => setStartTime(Date.now()));
+  }, [gameTerms]);
+
+  const checkCompletion = useCallback((newMatchedPairIds: Set<string>) => {
+    if (newMatchedPairIds.size === gameTerms.length && gameTerms.length > 0 && !isComplete) {
       const now = Date.now();
       setEndTime(now);
       setIsComplete(true);
@@ -85,7 +87,7 @@ export function MatchingGame({ terms, onComplete }: MatchingGameProps) {
         durationSeconds: Math.floor((now - startTime) / 1000),
       });
     }
-  }, [matchedPairIds, gameTerms.length, wrongAttempts, startTime, isComplete, onComplete]);
+  }, [gameTerms.length, gameTerms, wrongAttempts, isComplete, onComplete]);
 
   const handleCardClick = useCallback(
     (card: CardItem) => {
@@ -110,7 +112,11 @@ export function MatchingGame({ terms, onComplete }: MatchingGameProps) {
       }
 
       if (selectedCard.pairId === card.pairId && selectedCard.type !== card.type) {
-        setMatchedPairIds((prev) => new Set(prev).add(card.pairId));
+        setMatchedPairIds((prev) => {
+          const next = new Set(prev).add(card.pairId);
+          checkCompletion(next);
+          return next;
+        });
         setSelectedId(null);
       } else {
         setWrongIds(new Set([selectedCard.id, card.id]));

@@ -250,10 +250,9 @@ function ActivityPreview({
   props: Record<string, unknown>;
   onRender: () => void;
 }) {
-  const [mounted, setMounted] = useState(false);
+  const [mounted] = useState(true);
 
   useEffect(() => {
-    setMounted(true);
     onRender();
   }, [onRender]);
 

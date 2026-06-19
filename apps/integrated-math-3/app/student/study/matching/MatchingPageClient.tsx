@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { MatchingGame } from '@/components/student/MatchingGame';
@@ -27,8 +27,26 @@ export function MatchingPageClient({
   studentId,
 }: MatchingPageClientProps) {
   const searchParams = useSearchParams();
-  const [selectedModule, setSelectedModule] = useState<number | null>(null);
-  const [sessionTerms, setSessionTerms] = useState<GlossaryTerm[]>([]);
+  const [selectedModule, setSelectedModule] = useState<number | null>(() => {
+    const moduleParam = searchParams.get('module');
+    if (moduleParam) {
+      const moduleNumber = parseInt(moduleParam, 10);
+      if (!isNaN(moduleNumber) && moduleNumbers.includes(moduleNumber)) {
+        return moduleNumber;
+      }
+    }
+    return null;
+  });
+  const [sessionTerms, setSessionTerms] = useState<GlossaryTerm[]>(() => {
+    const moduleParam = searchParams.get('module');
+    if (moduleParam) {
+      const moduleNumber = parseInt(moduleParam, 10);
+      if (!isNaN(moduleNumber) && moduleNumbers.includes(moduleNumber)) {
+        return getGlossaryTermsByModule(moduleNumber);
+      }
+    }
+    return allTerms;
+  });
   const [showGame, setShowGame] = useState(false);
 
   const handleModuleSelect = useCallback(
@@ -42,18 +60,6 @@ export function MatchingPageClient({
     },
     [allTerms]
   );
-
-  useEffect(() => {
-    const moduleParam = searchParams.get('module');
-    if (moduleParam) {
-      const moduleNumber = parseInt(moduleParam, 10);
-      if (!isNaN(moduleNumber) && moduleNumbers.includes(moduleNumber)) {
-        handleModuleSelect(moduleNumber);
-        return;
-      }
-    }
-    handleModuleSelect(null);
-  }, [searchParams, moduleNumbers, handleModuleSelect]);
 
   const handleStartGame = () => {
     setShowGame(true);

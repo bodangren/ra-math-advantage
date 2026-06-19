@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { ExampleReviewHarness, PracticeReviewHarness, ActivityReviewHarness } from '@/components/dev/review-harness';
 
 interface ReviewQueueItem {
@@ -42,29 +42,33 @@ export function useReviewQueueClient() {
     onlyStale: false,
   });
 
-  const fetchQueue = useCallback(async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const params = new URLSearchParams();
-      if (filters.componentKind) params.set('componentKind', filters.componentKind);
-      if (filters.status) params.set('status', filters.status);
-      if (filters.onlyStale) params.set('onlyStale', 'true');
-
-      const res = await fetch(`/api/dev/review-queue?${params}`);
-      if (!res.ok) throw new Error('Failed to fetch review queue');
-      const data = await res.json();
-      setItems(data);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Unknown error');
-    } finally {
-      setLoading(false);
-    }
-  }, [filters]);
+  const fetchQueueRef = useRef<() => Promise<void>>(() => {});
 
   useEffect(() => {
-    fetchQueue();
-  }, [fetchQueue]);
+    fetchQueueRef.current = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const params = new URLSearchParams();
+        if (filters.componentKind) params.set('componentKind', filters.componentKind);
+        if (filters.status) params.set('status', filters.status);
+        if (filters.onlyStale) params.set('onlyStale', 'true');
+
+        const res = await fetch(`/api/dev/review-queue?${params}`);
+        if (!res.ok) throw new Error('Failed to fetch review queue');
+        const data = await res.json();
+        setItems(data);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Unknown error');
+      } finally {
+        setLoading(false);
+      }
+    };
+  });
+
+  useEffect(() => {
+    fetchQueueRef.current();
+  }, []);
 
   const handleReviewSubmit = useCallback(async (
     componentKind: string,
@@ -92,8 +96,8 @@ export function useReviewQueueClient() {
       throw new Error(data.error || 'Failed to submit review');
     }
 
-    fetchQueue();
-  }, [fetchQueue]);
+    fetchQueueRef.current();
+  }, []);
 
   return { items, loading, error, filters, setFilters, handleReviewSubmit };
 }
