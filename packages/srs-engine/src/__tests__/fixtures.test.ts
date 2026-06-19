@@ -11,7 +11,7 @@ describe('createMockSrsCard', () => {
     expect(card.cardId).toMatch(/^card_/);
     expect(card.studentId).toBe('mock-student');
     expect(card.objectiveId).toBe('mock-objective');
-    expect(card.problemFamilyId).toBe('mock-family');
+    expect(card.variantKey).toBe('mock-family');
     expect(card.state).toBe('new');
     expect(card.reps).toBe(0);
     expect(card.lapses).toBe(0);
@@ -28,7 +28,7 @@ describe('createMockSrsCard', () => {
       cardId: 'card_custom',
       studentId: 'stu_001',
       objectiveId: 'obj_001',
-      problemFamilyId: 'pf_001',
+      variantKey: 'pf_001',
       state: 'review',
       reps: 5,
       lapses: 1,
@@ -39,7 +39,7 @@ describe('createMockSrsCard', () => {
     expect(card.cardId).toBe('card_custom');
     expect(card.studentId).toBe('stu_001');
     expect(card.objectiveId).toBe('obj_001');
-    expect(card.problemFamilyId).toBe('pf_001');
+    expect(card.variantKey).toBe('pf_001');
     expect(card.state).toBe('review');
     expect(card.reps).toBe(5);
     expect(card.lapses).toBe(1);

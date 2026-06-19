@@ -17,13 +17,13 @@ describe('scheduler', () => {
       const card = createCard({
         studentId: 'stu_001',
         objectiveId: 'obj_quadratic_roots',
-        problemFamilyId: 'pf_qr_01',
+        variantKey: 'pf_qr_01',
         now: mockNow,
       });
 
       expect(card.studentId).toBe('stu_001');
       expect(card.objectiveId).toBe('obj_quadratic_roots');
-      expect(card.problemFamilyId).toBe('pf_qr_01');
+      expect(card.variantKey).toBe('pf_qr_01');
       expect(card.state).toBe('new');
       expect(card.reps).toBe(0);
       expect(card.lapses).toBe(0);
@@ -38,7 +38,7 @@ describe('scheduler', () => {
       const card = createCard({
         studentId: 'stu_001',
         objectiveId: 'obj_quadratic_roots',
-        problemFamilyId: 'pf_qr_01',
+        variantKey: 'pf_qr_01',
         now: mockNow,
       });
 
@@ -53,7 +53,7 @@ describe('scheduler', () => {
       const card = createCard({
         studentId: 'stu_001',
         objectiveId: 'obj_quadratic_roots',
-        problemFamilyId: 'pf_qr_01',
+        variantKey: 'pf_qr_01',
         now: mockNow,
       });
 
@@ -72,7 +72,7 @@ describe('scheduler', () => {
           cardId: 'card_1',
           studentId: 'stu_001',
           objectiveId: 'obj_1',
-          problemFamilyId: 'pf_1',
+          variantKey: 'pf_1',
           stability: 1,
           difficulty: 1,
           state: 'review',
@@ -89,7 +89,7 @@ describe('scheduler', () => {
           cardId: 'card_2',
           studentId: 'stu_001',
           objectiveId: 'obj_1',
-          problemFamilyId: 'pf_2',
+          variantKey: 'pf_2',
           stability: 1,
           difficulty: 1,
           state: 'review',

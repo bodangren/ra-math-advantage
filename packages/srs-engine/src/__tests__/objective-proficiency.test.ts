@@ -4,19 +4,19 @@ import {
   buildStudentProficiencyView,
   buildTeacherProficiencyView,
   PROFICIENCY_THRESHOLD_DEFAULTS,
-  type ProblemFamilyEvidence,
+  type PracticeVariantEvidence,
 } from '../srs/objective-proficiency';
 
 /**
- * Create a ProblemFamilyEvidence with optional overrides.
+ * Create a PracticeVariantEvidence with optional overrides.
  * @param overrides - Partial evidence fields to override
- * @returns ProblemFamilyEvidence with sensible defaults
+ * @returns PracticeVariantEvidence with sensible defaults
  */
 function makeEvidence(
-  overrides: Partial<ProblemFamilyEvidence> = {}
-): ProblemFamilyEvidence {
+  overrides: Partial<PracticeVariantEvidence> = {}
+): PracticeVariantEvidence {
   return {
-    problemFamilyId: 'family-a',
+    variantKey: 'family-a',
     retentionStrength: 1,
     practiceCoverage: 1,
     fluencyConfidence: 'high',
@@ -32,9 +32,9 @@ describe('computeObjectiveProficiency', () => {
       const result = computeObjectiveProficiency({
         objectiveId: '1a',
         priority: 'essential',
-        problemFamilyEvidences: [
-          makeEvidence({ problemFamilyId: 'a', retentionStrength: 1, practiceCoverage: 1 }),
-          makeEvidence({ problemFamilyId: 'b', retentionStrength: 1, practiceCoverage: 1 }),
+        variantEvidences: [
+          makeEvidence({ variantKey: 'a', retentionStrength: 1, practiceCoverage: 1 }),
+          makeEvidence({ variantKey: 'b', retentionStrength: 1, practiceCoverage: 1 }),
         ],
       });
       expect(result.evidenceConfidence).toBe('high');
@@ -44,8 +44,8 @@ describe('computeObjectiveProficiency', () => {
       const result = computeObjectiveProficiency({
         objectiveId: '1a',
         priority: 'supporting',
-        problemFamilyEvidences: [
-          makeEvidence({ problemFamilyId: 'a', retentionStrength: 1, practiceCoverage: 1 }),
+        variantEvidences: [
+          makeEvidence({ variantKey: 'a', retentionStrength: 1, practiceCoverage: 1 }),
         ],
       });
       expect(result.evidenceConfidence).toBe('high');
@@ -55,8 +55,8 @@ describe('computeObjectiveProficiency', () => {
       const result = computeObjectiveProficiency({
         objectiveId: '1a',
         priority: 'extension',
-        problemFamilyEvidences: [
-          makeEvidence({ problemFamilyId: 'a', retentionStrength: 1, practiceCoverage: 1 }),
+        variantEvidences: [
+          makeEvidence({ variantKey: 'a', retentionStrength: 1, practiceCoverage: 1 }),
         ],
       });
       expect(result.evidenceConfidence).toBe('high');
@@ -64,14 +64,14 @@ describe('computeObjectiveProficiency', () => {
   });
 
   describe('broad essential objective requires configured evidence policy', () => {
-    it('requires minProblemFamilies override for essential priority', () => {
+    it('requires minVariants override for essential priority', () => {
       const result = computeObjectiveProficiency({
         objectiveId: '1a',
         priority: 'essential',
-        problemFamilyEvidences: [
-          makeEvidence({ problemFamilyId: 'a', retentionStrength: 1, practiceCoverage: 1 }),
+        variantEvidences: [
+          makeEvidence({ variantKey: 'a', retentionStrength: 1, practiceCoverage: 1 }),
         ],
-        minProblemFamilies: 1,
+        minVariants: 1,
       });
       expect(result.evidenceConfidence).toBe('high');
       expect(result.isProficient).toBe(true);
@@ -81,8 +81,8 @@ describe('computeObjectiveProficiency', () => {
       const result = computeObjectiveProficiency({
         objectiveId: '1a',
         priority: 'essential',
-        problemFamilyEvidences: [
-          makeEvidence({ problemFamilyId: 'a', retentionStrength: 1, practiceCoverage: 1 }),
+        variantEvidences: [
+          makeEvidence({ variantKey: 'a', retentionStrength: 1, practiceCoverage: 1 }),
         ],
       });
       expect(result.evidenceConfidence).toBe('medium');
@@ -94,10 +94,10 @@ describe('computeObjectiveProficiency', () => {
       const result = computeObjectiveProficiency({
         objectiveId: '1a',
         priority: 'essential',
-        problemFamilyEvidences: [
-          makeEvidence({ problemFamilyId: 'a', retentionStrength: 1, practiceCoverage: 1 }),
-          makeEvidence({ problemFamilyId: 'b', retentionStrength: 1, practiceCoverage: 1 }),
-          makeEvidence({ problemFamilyId: 'c', retentionStrength: 1, practiceCoverage: 1 }),
+        variantEvidences: [
+          makeEvidence({ variantKey: 'a', retentionStrength: 1, practiceCoverage: 1 }),
+          makeEvidence({ variantKey: 'b', retentionStrength: 1, practiceCoverage: 1 }),
+          makeEvidence({ variantKey: 'c', retentionStrength: 1, practiceCoverage: 1 }),
         ],
       });
       expect(result.evidenceConfidence).toBe('high');
@@ -110,9 +110,9 @@ describe('computeObjectiveProficiency', () => {
       const result = computeObjectiveProficiency({
         objectiveId: '1a',
         priority: 'triaged',
-        problemFamilyEvidences: [
-          makeEvidence({ problemFamilyId: 'a', retentionStrength: 1, practiceCoverage: 1 }),
-          makeEvidence({ problemFamilyId: 'b', retentionStrength: 1, practiceCoverage: 1 }),
+        variantEvidences: [
+          makeEvidence({ variantKey: 'a', retentionStrength: 1, practiceCoverage: 1 }),
+          makeEvidence({ variantKey: 'b', retentionStrength: 1, practiceCoverage: 1 }),
         ],
       });
       expect(result.isProficient).toBe(false);
@@ -123,8 +123,8 @@ describe('computeObjectiveProficiency', () => {
       const result = computeObjectiveProficiency({
         objectiveId: '1a',
         priority: 'triaged',
-        problemFamilyEvidences: [
-          makeEvidence({ problemFamilyId: 'a', retentionStrength: 1, practiceCoverage: 1 }),
+        variantEvidences: [
+          makeEvidence({ variantKey: 'a', retentionStrength: 1, practiceCoverage: 1 }),
         ],
       });
       expect(result.evidenceConfidence).toBe('high');
@@ -136,16 +136,16 @@ describe('computeObjectiveProficiency', () => {
       const result = computeObjectiveProficiency({
         objectiveId: '1a',
         priority: 'essential',
-        problemFamilyEvidences: [
+        variantEvidences: [
           makeEvidence({
-            problemFamilyId: 'a',
+            variantKey: 'a',
             retentionStrength: 1,
             practiceCoverage: 1,
             fluencyConfidence: 'low',
             timingReliable: true,
           }),
         ],
-        minProblemFamilies: 1,
+        minVariants: 1,
       });
       expect(result.retentionStrength).toBe(1);
       expect(result.fluencyConfidence).toBe('low');
@@ -156,9 +156,9 @@ describe('computeObjectiveProficiency', () => {
       const result = computeObjectiveProficiency({
         objectiveId: '1a',
         priority: 'essential',
-        problemFamilyEvidences: [
+        variantEvidences: [
           makeEvidence({
-            problemFamilyId: 'a',
+            variantKey: 'a',
             retentionStrength: 1,
             practiceCoverage: 1,
             fluencyConfidence: 'medium',
@@ -173,9 +173,9 @@ describe('computeObjectiveProficiency', () => {
       const result = computeObjectiveProficiency({
         objectiveId: '1a',
         priority: 'essential',
-        problemFamilyEvidences: [
+        variantEvidences: [
           makeEvidence({
-            problemFamilyId: 'a',
+            variantKey: 'a',
             retentionStrength: 1,
             practiceCoverage: 1,
             fluencyConfidence: 'high',
@@ -192,7 +192,7 @@ describe('computeObjectiveProficiency', () => {
       const result = computeObjectiveProficiency({
         objectiveId: '1a',
         priority: 'essential',
-        problemFamilyEvidences: [
+        variantEvidences: [
           makeEvidence({ retentionStrength: 0.5, practiceCoverage: 1 }),
         ],
       });
@@ -203,7 +203,7 @@ describe('computeObjectiveProficiency', () => {
       const result = computeObjectiveProficiency({
         objectiveId: '1a',
         priority: 'essential',
-        problemFamilyEvidences: [
+        variantEvidences: [
           makeEvidence({ retentionStrength: 1, practiceCoverage: 0.3 }),
         ],
       });
@@ -214,9 +214,9 @@ describe('computeObjectiveProficiency', () => {
       const result = computeObjectiveProficiency({
         objectiveId: '1a',
         priority: 'essential',
-        problemFamilyEvidences: [
-          makeEvidence({ problemFamilyId: 'a', retentionStrength: 1, practiceCoverage: 1 }),
-          makeEvidence({ problemFamilyId: 'b', retentionStrength: 0.5, practiceCoverage: 0.5 }),
+        variantEvidences: [
+          makeEvidence({ variantKey: 'a', retentionStrength: 1, practiceCoverage: 1 }),
+          makeEvidence({ variantKey: 'b', retentionStrength: 0.5, practiceCoverage: 0.5 }),
         ],
       });
       expect(result.retentionStrength).toBe(0.75);
@@ -229,7 +229,7 @@ describe('computeObjectiveProficiency', () => {
       const result = computeObjectiveProficiency({
         objectiveId: '1a',
         priority: 'essential',
-        problemFamilyEvidences: [],
+        variantEvidences: [],
       });
       expect(result.evidenceConfidence).toBe('none');
     });
@@ -238,7 +238,7 @@ describe('computeObjectiveProficiency', () => {
       const result = computeObjectiveProficiency({
         objectiveId: '1a',
         priority: 'essential',
-        problemFamilyEvidences: [
+        variantEvidences: [
           makeEvidence({ retentionStrength: 0.5, practiceCoverage: 0.5 }),
         ],
       });
@@ -249,7 +249,7 @@ describe('computeObjectiveProficiency', () => {
       const result = computeObjectiveProficiency({
         objectiveId: '1a',
         priority: 'essential',
-        problemFamilyEvidences: [
+        variantEvidences: [
           makeEvidence({ retentionStrength: 0.8, practiceCoverage: 0.8 }),
         ],
       });
@@ -262,7 +262,7 @@ describe('computeObjectiveProficiency', () => {
       const result = computeObjectiveProficiency({
         objectiveId: '1a',
         priority: 'essential',
-        problemFamilyEvidences: [
+        variantEvidences: [
           makeEvidence({ retentionStrength: 1, practiceCoverage: 0.5 }),
         ],
       });
@@ -274,7 +274,7 @@ describe('computeObjectiveProficiency', () => {
       const result = computeObjectiveProficiency({
         objectiveId: '1a',
         priority: 'essential',
-        problemFamilyEvidences: [
+        variantEvidences: [
           makeEvidence({ retentionStrength: 0.5, practiceCoverage: 1 }),
         ],
       });
@@ -286,7 +286,7 @@ describe('computeObjectiveProficiency', () => {
       const result = computeObjectiveProficiency({
         objectiveId: '1a',
         priority: 'essential',
-        problemFamilyEvidences: [
+        variantEvidences: [
           makeEvidence({ retentionStrength: 1, practiceCoverage: 1 }),
         ],
       });
@@ -297,25 +297,25 @@ describe('computeObjectiveProficiency', () => {
 
   describe('priority defaults', () => {
     it('essential has highest thresholds', () => {
-      expect(PROFICIENCY_THRESHOLD_DEFAULTS.essential.minProblemFamilies).toBe(3);
+      expect(PROFICIENCY_THRESHOLD_DEFAULTS.essential.minVariants).toBe(3);
       expect(PROFICIENCY_THRESHOLD_DEFAULTS.essential.minCoverageThreshold).toBe(0.7);
       expect(PROFICIENCY_THRESHOLD_DEFAULTS.essential.minRetentionThreshold).toBe(0.8);
     });
 
     it('supporting has moderate thresholds', () => {
-      expect(PROFICIENCY_THRESHOLD_DEFAULTS.supporting.minProblemFamilies).toBe(2);
+      expect(PROFICIENCY_THRESHOLD_DEFAULTS.supporting.minVariants).toBe(2);
       expect(PROFICIENCY_THRESHOLD_DEFAULTS.supporting.minCoverageThreshold).toBe(0.5);
       expect(PROFICIENCY_THRESHOLD_DEFAULTS.supporting.minRetentionThreshold).toBe(0.7);
     });
 
     it('extension has lowest thresholds', () => {
-      expect(PROFICIENCY_THRESHOLD_DEFAULTS.extension.minProblemFamilies).toBe(1);
+      expect(PROFICIENCY_THRESHOLD_DEFAULTS.extension.minVariants).toBe(1);
       expect(PROFICIENCY_THRESHOLD_DEFAULTS.extension.minCoverageThreshold).toBe(0.3);
       expect(PROFICIENCY_THRESHOLD_DEFAULTS.extension.minRetentionThreshold).toBe(0.6);
     });
 
     it('triaged has zero thresholds (never proficient)', () => {
-      expect(PROFICIENCY_THRESHOLD_DEFAULTS.triaged.minProblemFamilies).toBe(0);
+      expect(PROFICIENCY_THRESHOLD_DEFAULTS.triaged.minVariants).toBe(0);
       expect(PROFICIENCY_THRESHOLD_DEFAULTS.triaged.minCoverageThreshold).toBe(0);
       expect(PROFICIENCY_THRESHOLD_DEFAULTS.triaged.minRetentionThreshold).toBe(0);
     });
@@ -327,7 +327,7 @@ describe('buildStudentProficiencyView', () => {
     const result = computeObjectiveProficiency({
       objectiveId: '1a',
       priority: 'essential',
-      problemFamilyEvidences: [],
+      variantEvidences: [],
     });
     const view = buildStudentProficiencyView(result);
     expect(view.proficiencyLabel).toBe('not_started');
@@ -338,7 +338,7 @@ describe('buildStudentProficiencyView', () => {
     const result = computeObjectiveProficiency({
       objectiveId: '1a',
       priority: 'essential',
-      problemFamilyEvidences: [
+      variantEvidences: [
         makeEvidence({ retentionStrength: 0.5, practiceCoverage: 0.5 }),
       ],
     });
@@ -351,12 +351,12 @@ describe('buildStudentProficiencyView', () => {
     const result = computeObjectiveProficiency({
       objectiveId: '1a',
       priority: 'essential',
-      problemFamilyEvidences: [
+      variantEvidences: [
         makeEvidence({ retentionStrength: 1, practiceCoverage: 1 }),
-        makeEvidence({ problemFamilyId: 'b', retentionStrength: 1, practiceCoverage: 1 }),
-        makeEvidence({ problemFamilyId: 'c', retentionStrength: 1, practiceCoverage: 1 }),
+        makeEvidence({ variantKey: 'b', retentionStrength: 1, practiceCoverage: 1 }),
+        makeEvidence({ variantKey: 'c', retentionStrength: 1, practiceCoverage: 1 }),
       ],
-      minProblemFamilies: 3,
+      minVariants: 3,
     });
     const view = buildStudentProficiencyView(result);
     expect(view.proficiencyLabel).toBe('proficient');
@@ -367,7 +367,7 @@ describe('buildStudentProficiencyView', () => {
     const result = computeObjectiveProficiency({
       objectiveId: '1a',
       priority: 'essential',
-      problemFamilyEvidences: [
+      variantEvidences: [
         makeEvidence({ retentionStrength: 0.8, practiceCoverage: 0.9, fluencyConfidence: 'high' }),
       ],
     });
@@ -383,14 +383,14 @@ describe('buildTeacherProficiencyView', () => {
     const result = computeObjectiveProficiency({
       objectiveId: '1a',
       priority: 'essential',
-      problemFamilyEvidences: [
-        makeEvidence({ problemFamilyId: 'family-a', retentionStrength: 0.9, practiceCoverage: 0.8 }),
-        makeEvidence({ problemFamilyId: 'family-b', retentionStrength: 1, practiceCoverage: 1 }),
+      variantEvidences: [
+        makeEvidence({ variantKey: 'family-a', retentionStrength: 0.9, practiceCoverage: 0.8 }),
+        makeEvidence({ variantKey: 'family-b', retentionStrength: 1, practiceCoverage: 1 }),
       ],
     });
     const view = buildTeacherProficiencyView(result, '1a', 'Graph quadratic functions');
     expect(view.problemFamilyDetails).toHaveLength(2);
-    expect(view.problemFamilyDetails[0].problemFamilyId).toBe('family-a');
+    expect(view.problemFamilyDetails[0].variantKey).toBe('family-a');
     expect(view.problemFamilyDetails[0].retentionStrength).toBe(0.9);
   });
 
@@ -398,9 +398,9 @@ describe('buildTeacherProficiencyView', () => {
     const result = computeObjectiveProficiency({
       objectiveId: '1a',
       priority: 'essential',
-      problemFamilyEvidences: [
-        makeEvidence({ problemFamilyId: 'a', baselineSampleCount: 0 }),
-        makeEvidence({ problemFamilyId: 'b', baselineSampleCount: 10 }),
+      variantEvidences: [
+        makeEvidence({ variantKey: 'a', baselineSampleCount: 0 }),
+        makeEvidence({ variantKey: 'b', baselineSampleCount: 10 }),
       ],
     });
     const view = buildTeacherProficiencyView(result, '1a', 'Graph quadratic functions');
@@ -412,7 +412,7 @@ describe('buildTeacherProficiencyView', () => {
     const result = computeObjectiveProficiency({
       objectiveId: '1a',
       priority: 'essential',
-      problemFamilyEvidences: [
+      variantEvidences: [
         makeEvidence({ fluencyConfidence: 'low', timingReliable: true }),
       ],
     });
@@ -424,7 +424,7 @@ describe('buildTeacherProficiencyView', () => {
     const result = computeObjectiveProficiency({
       objectiveId: '1a',
       priority: 'essential',
-      problemFamilyEvidences: [],
+      variantEvidences: [],
     });
     const view = buildTeacherProficiencyView(result, '1a', 'Graph quadratic functions');
     expect(view.standardCode).toBe('1a');

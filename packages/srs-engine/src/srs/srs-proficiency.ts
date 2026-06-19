@@ -5,7 +5,7 @@
  */
 
 import type { PracticeTimingBaseline } from '@math-platform/practice-core';
-import type { EvidenceConfidence, ProblemFamilyEvidence } from './objective-proficiency';
+import type { EvidenceConfidence, PracticeVariantEvidence } from './objective-proficiency';
 
 export const STABILITY_SCALE_FACTOR = 30;
 
@@ -14,7 +14,7 @@ export type ProficiencyCardInput = {
   difficulty: number;
   reps: number;
   lapses: number;
-  problemFamilyId: string;
+  variantKey: string;
   lastReviewMs?: number;
   reviewDurationMs?: number;
 };
@@ -31,17 +31,17 @@ function deriveFluencyConfidence(
   cards: ProficiencyCardInput[],
   baselines: TimingBaselines
 ): { confidence: EvidenceConfidence; timingReliable: boolean; baselineSampleCount: number } {
-  const problemFamilyIds = [...new Set(cards.map((c) => c.problemFamilyId))];
+  const variantKeys = [...new Set(cards.map((c) => c.variantKey))];
   let totalSampleCount = 0;
   let totalReviewedCards = 0;
   let reliableCount = 0;
 
-  for (const pfId of problemFamilyIds) {
-    const baseline = baselines[pfId];
+  for (const vk of variantKeys) {
+    const baseline = baselines[vk];
     if (!baseline || !baseline.minSamplesMet) continue;
 
     totalSampleCount += baseline.sampleCount;
-    const pfCards = cards.filter((c) => c.problemFamilyId === pfId && c.reviewDurationMs !== undefined);
+    const pfCards = cards.filter((c) => c.variantKey === vk && c.reviewDurationMs !== undefined);
     totalReviewedCards += pfCards.length;
 
     for (const card of pfCards) {
@@ -86,10 +86,10 @@ export function stabilityToRetention(stability: number, scaleFactor: number = ST
 }
 
 /**
- * Aggregate SRS card states into problem family evidence for objective proficiency calculation.
+ * Aggregate SRS card states into practice variant evidence for objective proficiency calculation.
  *
- * Groups cards by problemFamilyId and computes:
- * - retentionStrength: average of stabilityToRetention across cards in the family
+ * Groups cards by variantKey and computes:
+ * - retentionStrength: average of stabilityToRetention across cards in the variant
  * - practiceCoverage: proportion of cards with reps > 0
  * - fluencyConfidence: derived from timing relative to baselines
  * - baselineSampleCount: total samples across relevant baselines
@@ -98,19 +98,19 @@ export function stabilityToRetention(stability: number, scaleFactor: number = ST
 export function aggregateCardsToEvidence(
   cards: ProficiencyCardInput[],
   baselines: TimingBaselines
-): ProblemFamilyEvidence[] {
+): PracticeVariantEvidence[] {
   if (cards.length === 0) return [];
 
-  const byFamily = new Map<string, ProficiencyCardInput[]>();
+  const byVariant = new Map<string, ProficiencyCardInput[]>();
   for (const card of cards) {
-    const existing = byFamily.get(card.problemFamilyId) ?? [];
+    const existing = byVariant.get(card.variantKey) ?? [];
     existing.push(card);
-    byFamily.set(card.problemFamilyId, existing);
+    byVariant.set(card.variantKey, existing);
   }
 
-  const evidence: ProblemFamilyEvidence[] = [];
+  const evidence: PracticeVariantEvidence[] = [];
 
-  for (const [problemFamilyId, familyCards] of byFamily) {
+  for (const [variantKey, familyCards] of byVariant) {
     const retentions = familyCards.map((c) => stabilityToRetention(c.stability));
     const retentionStrength = retentions.length > 0
       ? retentions.reduce((a, b) => a + b, 0) / retentions.length
@@ -124,7 +124,7 @@ export function aggregateCardsToEvidence(
     const fluency = deriveFluencyConfidence(familyCards, baselines);
 
     evidence.push({
-      problemFamilyId,
+      variantKey,
       retentionStrength: Math.round(retentionStrength * 100) / 100,
       practiceCoverage: Math.round(practiceCoverage * 100) / 100,
       fluencyConfidence: fluency.confidence,

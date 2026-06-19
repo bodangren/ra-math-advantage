@@ -66,7 +66,7 @@ export {
 
 export {
   SubmissionSrsAdapter,
-  InMemoryProblemFamilyResolver,
+  InMemoryPracticeVariantResolver,
   InMemoryTimingBaselineResolver,
   InMemorySubmissionSrsAdapter,
 } from './srs/submission-srs-adapter';
@@ -77,8 +77,8 @@ export type {
   SubmissionSrsResultSuccess,
   SubmissionSrsResultSkipped,
   SubmissionSrsResultError,
-  ProblemFamilyInfo,
-  ProblemFamilyResolver,
+  PracticeVariantInfo,
+  PracticeVariantResolver,
   TimingBaselineResolver,
 } from './srs/submission-srs-adapter';
 
@@ -97,7 +97,7 @@ export {
 // Objective Proficiency
 export type {
   EvidenceConfidence,
-  ProblemFamilyEvidence,
+  PracticeVariantEvidence,
   ObjectiveProficiencyInput,
   ObjectiveProficiencyResult,
   StudentProficiencyView,

@@ -23,10 +23,10 @@ export type { ObjectivePriority, ObjectivePracticePolicy } from './contract';
 export type EvidenceConfidence = 'none' | 'low' | 'medium' | 'high';
 
 /**
- * Evidence for a single problem family within an objective.
+ * Evidence for a single practice variant within an objective.
  */
-export type ProblemFamilyEvidence = {
-  problemFamilyId: string;
+export type PracticeVariantEvidence = {
+  variantKey: string;
   retentionStrength: number;
   practiceCoverage: number;
   fluencyConfidence: EvidenceConfidence;
@@ -40,8 +40,8 @@ export type ProblemFamilyEvidence = {
 export type ObjectiveProficiencyInput = {
   objectiveId: string;
   priority: ObjectivePriority;
-  problemFamilyEvidences: ProblemFamilyEvidence[];
-  minProblemFamilies?: number;
+  variantEvidences: PracticeVariantEvidence[];
+  minVariants?: number;
   minCoverageThreshold?: number;
   minRetentionThreshold?: number;
 };
@@ -59,7 +59,7 @@ export type ObjectiveProficiencyResult = {
   isProficient: boolean;
   reasons: string[];
   problemFamilyDetails: {
-    problemFamilyId: string;
+    variantKey: string;
     retentionStrength: number;
     practiceCoverage: number;
     fluencyConfidence: EvidenceConfidence;
@@ -96,7 +96,7 @@ export type TeacherProficiencyView = {
   evidenceConfidence: EvidenceConfidence;
   isProficient: boolean;
   problemFamilyDetails: {
-    problemFamilyId: string;
+    variantKey: string;
     retentionStrength: number;
     practiceCoverage: number;
     fluencyConfidence: EvidenceConfidence;
@@ -118,12 +118,12 @@ export type TeacherProficiencyView = {
  */
 export const PROFICIENCY_THRESHOLD_DEFAULTS: Record<
   ObjectivePriority,
-  { minProblemFamilies: number; minCoverageThreshold: number; minRetentionThreshold: number }
+  { minVariants: number; minCoverageThreshold: number; minRetentionThreshold: number }
 > = {
-  essential: { minProblemFamilies: 3, minCoverageThreshold: 0.7, minRetentionThreshold: 0.8 },
-  supporting: { minProblemFamilies: 2, minCoverageThreshold: 0.5, minRetentionThreshold: 0.7 },
-  extension: { minProblemFamilies: 1, minCoverageThreshold: 0.3, minRetentionThreshold: 0.6 },
-  triaged: { minProblemFamilies: 0, minCoverageThreshold: 0, minRetentionThreshold: 0 },
+  essential: { minVariants: 3, minCoverageThreshold: 0.7, minRetentionThreshold: 0.8 },
+  supporting: { minVariants: 2, minCoverageThreshold: 0.5, minRetentionThreshold: 0.7 },
+  extension: { minVariants: 1, minCoverageThreshold: 0.3, minRetentionThreshold: 0.6 },
+  triaged: { minVariants: 0, minCoverageThreshold: 0, minRetentionThreshold: 0 },
 };
 
 /**
@@ -178,14 +178,14 @@ export function computeObjectiveProficiency(input: ObjectiveProficiencyInput): O
   const {
     objectiveId,
     priority,
-    problemFamilyEvidences,
-    minProblemFamilies,
+    variantEvidences,
+    minVariants,
     minCoverageThreshold,
     minRetentionThreshold,
   } = input;
 
   const defaults = PROFICIENCY_THRESHOLD_DEFAULTS[priority];
-  const effectiveMinFamilies = minProblemFamilies ?? defaults.minProblemFamilies;
+  const effectiveMinFamilies = minVariants ?? defaults.minVariants;
   const effectiveMinCoverage = minCoverageThreshold ?? defaults.minCoverageThreshold;
   const effectiveMinRetention = minRetentionThreshold ?? defaults.minRetentionThreshold;
 
@@ -195,7 +195,7 @@ export function computeObjectiveProficiency(input: ObjectiveProficiencyInput): O
     reasons.push('objective_triaged');
   }
 
-  const evidenceCount = problemFamilyEvidences.length;
+  const evidenceCount = variantEvidences.length;
 
   if (evidenceCount === 0) {
     return {
@@ -212,10 +212,10 @@ export function computeObjectiveProficiency(input: ObjectiveProficiencyInput): O
   }
 
   const avgRetention =
-    problemFamilyEvidences.reduce((sum, e) => sum + e.retentionStrength, 0) / evidenceCount;
+    variantEvidences.reduce((sum, e) => sum + e.retentionStrength, 0) / evidenceCount;
   const avgCoverage =
-    problemFamilyEvidences.reduce((sum, e) => sum + e.practiceCoverage, 0) / evidenceCount;
-  const fluencyConfidences = problemFamilyEvidences.map((e) => ({
+    variantEvidences.reduce((sum, e) => sum + e.practiceCoverage, 0) / evidenceCount;
+  const fluencyConfidences = variantEvidences.map((e) => ({
     confidence: e.fluencyConfidence,
     timingReliable: e.timingReliable,
   }));
@@ -248,8 +248,8 @@ export function computeObjectiveProficiency(input: ObjectiveProficiencyInput): O
     evidenceConfidence,
     isProficient,
     reasons,
-    problemFamilyDetails: problemFamilyEvidences.map((e) => ({
-      problemFamilyId: e.problemFamilyId,
+    problemFamilyDetails: variantEvidences.map((e) => ({
+      variantKey: e.variantKey,
       retentionStrength: e.retentionStrength,
       practiceCoverage: e.practiceCoverage,
       fluencyConfidence: e.timingReliable ? e.fluencyConfidence : 'none',
@@ -355,7 +355,7 @@ export function buildTeacherProficiencyView(
 
   const missingBaselines = result.problemFamilyDetails
     .filter((d) => d.missingBaseline)
-    .map((d) => d.problemFamilyId);
+    .map((d) => d.variantKey);
 
   const lowConfidenceReasons: string[] = [];
   if (result.fluencyConfidence === 'low') {

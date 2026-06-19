@@ -57,7 +57,7 @@ describe('aggregateCardsToEvidence', () => {
     difficulty: 3,
     reps: 0,
     lapses: 0,
-    problemFamilyId: 'pf1',
+        variantKey: 'pf1',
     ...overrides,
   });
 
@@ -126,24 +126,24 @@ describe('aggregateCardsToEvidence', () => {
   describe('multiple problem families', () => {
     it('should produce separate evidence entries for each problem family', () => {
       const cards = [
-        makeCard({ problemFamilyId: 'pf1' }),
-        makeCard({ problemFamilyId: 'pf2' }),
-        makeCard({ problemFamilyId: 'pf3' }),
+        makeCard({ variantKey: 'pf1' }),
+        makeCard({ variantKey: 'pf2' }),
+        makeCard({ variantKey: 'pf3' }),
       ];
       const result = aggregateCardsToEvidence(cards, emptyBaselines);
       expect(result).toHaveLength(3);
-      expect(result.map((e) => e.problemFamilyId).sort()).toEqual(['pf1', 'pf2', 'pf3']);
+      expect(result.map((e) => e.variantKey).sort()).toEqual(['pf1', 'pf2', 'pf3']);
     });
 
     it('should group cards by problem family and compute per-family stats', () => {
       const cards = [
-        makeCard({ problemFamilyId: 'pf1', stability: 0, reps: 0 }),
-        makeCard({ problemFamilyId: 'pf1', stability: 300, reps: 5 }),
-        makeCard({ problemFamilyId: 'pf2', stability: 30, reps: 1 }),
+        makeCard({ variantKey: 'pf1', stability: 0, reps: 0 }),
+        makeCard({ variantKey: 'pf1', stability: 300, reps: 5 }),
+        makeCard({ variantKey: 'pf2', stability: 30, reps: 1 }),
       ];
       const result = aggregateCardsToEvidence(cards, emptyBaselines);
-      const pf1 = result.find((e) => e.problemFamilyId === 'pf1')!;
-      const pf2 = result.find((e) => e.problemFamilyId === 'pf2')!;
+      const pf1 = result.find((e) => e.variantKey === 'pf1')!;
+      const pf2 = result.find((e) => e.variantKey === 'pf2')!;
       expect(pf1.retentionStrength).toBeGreaterThan(0.4);
       expect(pf1.practiceCoverage).toBe(0.5);
       expect(pf2.retentionStrength).toBeCloseTo(0.5, 1);
@@ -163,7 +163,7 @@ describe('aggregateCardsToEvidence', () => {
     };
 
     it('should return none confidence when no timing data available', () => {
-      const cards = [makeCard({ problemFamilyId: 'pf1' })];
+      const cards = [makeCard({ variantKey: 'pf1' })];
       const result = aggregateCardsToEvidence(cards, baselinesWithMedian);
       expect(result[0].fluencyConfidence).toBe('none');
       expect(result[0].timingReliable).toBe(false);
@@ -172,7 +172,7 @@ describe('aggregateCardsToEvidence', () => {
     it('should return low confidence when review duration is slower than baseline', () => {
       const cards = [
         makeCard({
-          problemFamilyId: 'pf1',
+          variantKey: 'pf1',
           reviewDurationMs: 90000,
         }),
       ];
@@ -184,7 +184,7 @@ describe('aggregateCardsToEvidence', () => {
     it('should return high confidence when review duration is faster than baseline', () => {
       const cards = [
         makeCard({
-          problemFamilyId: 'pf1',
+          variantKey: 'pf1',
           reviewDurationMs: 10000,
         }),
       ];
@@ -195,15 +195,15 @@ describe('aggregateCardsToEvidence', () => {
 
     it('should return medium confidence when about half of reviews are fast', () => {
       const cards = [
-        makeCard({ problemFamilyId: 'pf1', reviewDurationMs: 10000 }),
-        makeCard({ problemFamilyId: 'pf1', reviewDurationMs: 90000 }),
+        makeCard({ variantKey: 'pf1', reviewDurationMs: 10000 }),
+        makeCard({ variantKey: 'pf1', reviewDurationMs: 90000 }),
       ];
       const result = aggregateCardsToEvidence(cards, baselinesWithMedian);
       expect(result[0].fluencyConfidence).toBe('medium');
     });
 
     it('should use baseline sample count from timing baselines', () => {
-      const cards = [makeCard({ problemFamilyId: 'pf1', reviewDurationMs: 10000 })];
+      const cards = [makeCard({ variantKey: 'pf1', reviewDurationMs: 10000 })];
       const result = aggregateCardsToEvidence(cards, baselinesWithMedian);
       expect(result[0].baselineSampleCount).toBe(20);
     });
@@ -218,7 +218,7 @@ describe('aggregateCardsToEvidence', () => {
           lastComputedAt: new Date().toISOString(),
         },
       };
-      const cards = [makeCard({ problemFamilyId: 'pf1', reviewDurationMs: 10000 })];
+      const cards = [makeCard({ variantKey: 'pf1', reviewDurationMs: 10000 })];
       const result = aggregateCardsToEvidence(cards, baselinesWithoutMinSamples);
       expect(result[0].fluencyConfidence).toBe('none');
       expect(result[0].timingReliable).toBe(false);

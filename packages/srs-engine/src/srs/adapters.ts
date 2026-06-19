@@ -33,7 +33,7 @@ export interface CardStore {
    * Retrieve a single card by student and problem family.
    * Returns null if not found.
    */
-  getCardByStudentAndFamily(studentId: string, problemFamilyId: string): Promise<SrsCardState | null>;
+  getCardByStudentAndVariant(studentId: string, variantKey: string): Promise<SrsCardState | null>;
 
   /**
    * Retrieve cards due for review for a given student at the given time.
@@ -91,9 +91,9 @@ export class InMemoryCardStore implements CardStore {
     );
   }
 
-  async getCardByStudentAndFamily(studentId: string, problemFamilyId: string): Promise<SrsCardState | null> {
+  async getCardByStudentAndVariant(studentId: string, variantKey: string): Promise<SrsCardState | null> {
     return Array.from(this.cards.values()).find(
-      (card) => card.studentId === studentId && card.problemFamilyId === problemFamilyId
+      (card) => card.studentId === studentId && card.variantKey === variantKey
     ) ?? null;
   }
 

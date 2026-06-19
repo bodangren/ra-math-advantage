@@ -10,7 +10,7 @@ describe('InMemoryCardStore', () => {
     cardId: `card_${Math.random().toString(36).slice(2)}`,
     studentId: 'stu_001',
     objectiveId: 'obj_1',
-    problemFamilyId: 'pf_1',
+    variantKey: 'pf_1',
     stability: 1,
     difficulty: 1,
     state: 'new',

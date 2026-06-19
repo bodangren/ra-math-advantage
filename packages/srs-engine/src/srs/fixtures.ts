@@ -49,7 +49,7 @@ export function createMockSrsCard(
     cardId: generateCardId(),
     studentId: 'mock-student',
     objectiveId: 'mock-objective',
-    problemFamilyId: 'mock-family',
+    variantKey: 'mock-family',
     stability: 0,
     difficulty: 0,
     state: 'new',

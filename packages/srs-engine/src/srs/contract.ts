@@ -48,7 +48,7 @@ export type ObjectivePriority = 'essential' | 'supporting' | 'extension' | 'tria
 export type ObjectivePracticePolicy = {
   objectiveId: string;
   priority: ObjectivePriority;
-  minProblemFamilies?: number;
+  minVariants?: number;
   minCoverageThreshold?: number;
   minRetentionThreshold?: number;
 };
@@ -105,7 +105,7 @@ export type SrsCardState = {
   cardId: SrsCardId;
   studentId: string;
   objectiveId: string;
-  problemFamilyId: string;
+  variantKey: string;
   stability: number;
   difficulty: number;
   state: 'new' | 'learning' | 'review' | 'relearning';

@@ -95,7 +95,7 @@ function mapFsrsCardToSrsCardState(
     cardId: SrsCardId;
     studentId: string;
     objectiveId: string;
-    problemFamilyId: string;
+    variantKey: string;
   },
   now: string,
 ): SrsCardState {
@@ -103,7 +103,7 @@ function mapFsrsCardToSrsCardState(
     cardId: metadata.cardId,
     studentId: metadata.studentId,
     objectiveId: metadata.objectiveId,
-    problemFamilyId: metadata.problemFamilyId,
+    variantKey: metadata.variantKey,
     stability: fsrsCard.stability,
     difficulty: fsrsCard.difficulty,
     state: mapCardState(fsrsCard.state),
@@ -142,18 +142,19 @@ function mapCardState(state: number): SrsCardState['state'] {
 export function createCard(params: {
   studentId: string;
   objectiveId: string;
-  problemFamilyId: string;
+  variantKey?: string;
   now?: string;
   config?: Partial<SchedulerConfig>;
 }): SrsCardState {
   const now = params.now ?? new Date().toISOString();
   const cardId = generateCardId();
+  const variantKey = params.variantKey ?? params.objectiveId;
 
   return {
     cardId,
     studentId: params.studentId,
     objectiveId: params.objectiveId,
-    problemFamilyId: params.problemFamilyId,
+    variantKey,
     stability: 0,
     difficulty: 0,
     state: 'new',
@@ -215,7 +216,7 @@ export function reviewCard(
       cardId: card.cardId,
       studentId: card.studentId,
       objectiveId: card.objectiveId,
-      problemFamilyId: card.problemFamilyId,
+      variantKey: card.variantKey,
     },
     currentTime,
   );

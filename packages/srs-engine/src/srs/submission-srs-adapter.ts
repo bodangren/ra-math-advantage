@@ -81,13 +81,13 @@ export type SubmissionSrsResultError = {
 // Resolver Types
 // ============================================
 
-export type ProblemFamilyInfo = {
-  problemFamilyId: string;
+export type PracticeVariantInfo = {
+  variantKey: string;
   objectiveId: string;
 };
 
-export interface ProblemFamilyResolver {
-  resolve(activityId: string): Promise<ProblemFamilyInfo | null>;
+export interface PracticeVariantResolver {
+  resolve(activityId: string): Promise<PracticeVariantInfo | null>;
 }
 
 // ============================================
@@ -95,7 +95,7 @@ export interface ProblemFamilyResolver {
 // ============================================
 
 export interface TimingBaselineResolver {
-  getBaseline(problemFamilyId: string): Promise<PracticeTimingBaseline | null>;
+  getBaseline(variantKey: string): Promise<PracticeTimingBaseline | null>;
 }
 
 // ============================================
@@ -105,13 +105,13 @@ export interface TimingBaselineResolver {
 export class SubmissionSrsAdapter {
   private cardStore: CardStore;
   private reviewLogStore: ReviewLogStore;
-  private resolver: ProblemFamilyResolver;
+  private resolver: PracticeVariantResolver;
   private baselineResolver: TimingBaselineResolver;
 
   constructor(config: {
     cardStore: CardStore;
     reviewLogStore: ReviewLogStore;
-    resolver: ProblemFamilyResolver;
+    resolver: PracticeVariantResolver;
     baselineResolver: TimingBaselineResolver;
   }) {
     this.cardStore = config.cardStore;
@@ -142,9 +142,9 @@ export class SubmissionSrsAdapter {
       return { ok: false, skipped: true, reason: 'no_blueprint' };
     }
 
-    const { problemFamilyId, objectiveId } = familyInfo;
+    const { variantKey, objectiveId } = familyInfo;
 
-    const studentCards = await this.cardStore.getCardByStudentAndFamily(studentId, problemFamilyId);
+    const studentCards = await this.cardStore.getCardByStudentAndVariant(studentId, variantKey);
     let card = studentCards ?? null;
 
     if (!card) {
@@ -152,13 +152,13 @@ export class SubmissionSrsAdapter {
       card = createCard({
         studentId,
         objectiveId,
-        problemFamilyId,
+        variantKey,
         now,
       });
       await this.cardStore.saveCard(card);
     }
 
-    const baseline = await this.baselineResolver.getBaseline(problemFamilyId);
+    const baseline = await this.baselineResolver.getBaseline(variantKey);
     const timingFeatures = submission.timing
       ? deriveTimingFeatures(submission.timing, baseline)
       : {
@@ -258,14 +258,14 @@ function generateReviewId(): string {
 // In-Memory Adapter for Testing
 // ============================================
 
-export class InMemoryProblemFamilyResolver implements ProblemFamilyResolver {
-  private map = new Map<string, ProblemFamilyInfo>();
+export class InMemoryPracticeVariantResolver implements PracticeVariantResolver {
+  private map = new Map<string, PracticeVariantInfo>();
 
-  register(activityId: string, info: ProblemFamilyInfo): void {
+  register(activityId: string, info: PracticeVariantInfo): void {
     this.map.set(activityId, info);
   }
 
-  async resolve(activityId: string): Promise<ProblemFamilyInfo | null> {
+  async resolve(activityId: string): Promise<PracticeVariantInfo | null> {
     return this.map.get(activityId) ?? null;
   }
 }
@@ -273,12 +273,12 @@ export class InMemoryProblemFamilyResolver implements ProblemFamilyResolver {
 export class InMemoryTimingBaselineResolver implements TimingBaselineResolver {
   private baselines = new Map<string, PracticeTimingBaseline>();
 
-  setBaseline(problemFamilyId: string, baseline: PracticeTimingBaseline): void {
-    this.baselines.set(problemFamilyId, baseline);
+  setBaseline(variantKey: string, baseline: PracticeTimingBaseline): void {
+    this.baselines.set(variantKey, baseline);
   }
 
-  async getBaseline(problemFamilyId: string): Promise<PracticeTimingBaseline | null> {
-    return this.baselines.get(problemFamilyId) ?? null;
+  async getBaseline(variantKey: string): Promise<PracticeTimingBaseline | null> {
+    return this.baselines.get(variantKey) ?? null;
   }
 }
 
@@ -286,13 +286,13 @@ export class InMemorySubmissionSrsAdapter extends SubmissionSrsAdapter {
   constructor() {
     const cardStore = new InMemoryTestCardStore();
     const reviewLogStore = new InMemoryTestReviewLogStore();
-    const resolver = new InMemoryProblemFamilyResolver();
+    const resolver = new InMemoryPracticeVariantResolver();
     const baselineResolver = new InMemoryTimingBaselineResolver();
     super({ cardStore, reviewLogStore, resolver, baselineResolver });
   }
 
-  getResolver(): InMemoryProblemFamilyResolver {
-    return (this as unknown as { resolver: InMemoryProblemFamilyResolver }).resolver;
+  getResolver(): InMemoryPracticeVariantResolver {
+    return (this as unknown as { resolver: InMemoryPracticeVariantResolver }).resolver;
   }
 
   getBaselineResolver(): InMemoryTimingBaselineResolver {
@@ -321,9 +321,9 @@ class InMemoryTestCardStore implements CardStore {
     );
   }
 
-  async getCardByStudentAndFamily(studentId: string, problemFamilyId: string): Promise<SrsCardState | null> {
+  async getCardByStudentAndVariant(studentId: string, variantKey: string): Promise<SrsCardState | null> {
     return Array.from(this.cards.values()).find(
-      (card) => card.studentId === studentId && card.problemFamilyId === problemFamilyId
+      (card) => card.studentId === studentId && card.variantKey === variantKey
     ) ?? null;
   }
 
