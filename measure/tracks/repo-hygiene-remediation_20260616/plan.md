@@ -154,26 +154,23 @@ matching test-strategy.md §6.
 
 ## Phase 5: Verification
 
-- [x] Task 5.1: Run TypeScript compilation
-  - [x] `npx tsc --noEmit -p apps/integrated-math-3/tsconfig.json` — **LIVE RUN: FAIL** — 301 type errors. All pre-existing from `primitive-layer-contract_20260615` track (`96fd073f` schema rename incomplete). Not owned by this track. Results documented below.
-  - [x] `npx tsc --noEmit -p apps/bus-math-v2/tsconfig.json` — **LIVE RUN: FAIL** — 29 type errors. Same root cause. Not owned by this track. Results documented below.
-  - [x] Commit: `31d5af86`
+- [x] Task 5.1: Run TypeScript compilation (31d5af86, 62a7ba0c, e3b5a01f)
+  - [x] `npx tsc --noEmit -p apps/integrated-math-3/tsconfig.json` — **LIVE RUN: FAIL** — 388 type errors. All pre-existing from `primitive-layer-contract_20260615` track (`96fd073f` schema rename incomplete). Not owned by this track. Verified live 2026-06-20.
+  - [x] `npx tsc --noEmit -p apps/bus-math-v2/tsconfig.json` — **LIVE RUN: FAIL** — 31 type errors. Same root cause. Not owned by this track. Verified live 2026-06-20.
 
-- [x] Task 5.2: Run lint
-  - [x] `npm run lint --workspace=apps/integrated-math-3` — **LIVE RUN: FAIL** — 0 errors, 5 pre-existing Phase 4 warnings (`--max-warnings 0`). Not owned by this track. Results documented below.
+- [x] Task 5.2: Run lint (31d5af86, 62a7ba0c, e3b5a01f)
+  - [x] `npm run lint --workspace=apps/integrated-math-3` — **LIVE RUN: FAIL** — 0 errors, 2 pre-existing warnings (`--max-warnings 0`). 3 exhaustive-deps warnings resolved in `62a7ba0c`; remaining 2 unused-var in `student-flow.test.ts` owned by `primitive-layer-contract_20260615`. Verified live 2026-06-20.
   - [x] `npm run lint --workspace=apps/bus-math-v2` — **LIVE RUN: PASS** — 0 errors, 0 warnings
-  - [x] Commit: `31d5af86`
 
-- [x] Task 5.3: Run tests
-  - [x] Targeted regression-gate tests pass: IM3 Phase 4 gate (9 files, 111/111), BM2 Phase 3 gate (6 files, 35/35).
-  - [x] `npm test` (root) passes: 20 files, 285 tests (packages/knowledge-space-core).
-  - [x] Full `CI=true npm run test --workspace=apps/*` timed out (340+339 files, 15min each, infrastructure limit). Results documented below.
-  - [x] Commit: `31d5af86`
+- [x] Task 5.3: Run tests (31d5af86, 62a7ba0c, e3b5a01f)
+  - [x] Targeted regression-gate tests pass: IM3 Phase 4 gate (9 files, 111/111), BM2 Phase 3 gate (5 files, 35/35). Re-verified live post `62a7ba0c`.
+  - [x] `npm test` (root) passes: 20 files, 285 tests (packages/knowledge-space-core). Re-verified live post `62a7ba0c`.
+  - [x] Full `CI=true npm run test --workspace=apps/*` timed out (340+339 files, 15min each, infrastructure limit). Same as Green Attempt-1.
 
-- [~] Task 5.4: Final state check
-  - [~] `git status --short` returns empty — **BLOCKED**: 8 dirty paths owned by `primitive-layer-contract_20260615` + `measure/automation-supervisor.py` edit + untracked `__pycache__/`.
-  - [~] `git stash list` returns empty — **BLOCKED**: `stash@{0}: track-7-untouched-pending-remediation` (unrelated, do NOT pop)
-  - [~] Requires `primitive-layer-contract_20260615` track to land its commits before this task can close.
+- [~] Task 5.4: Final state check (31d5af86, e3b5a01f — blocked, see Green Attempt-2)
+  - [~] `git status --short` returns empty — **BLOCKED**: 8 dirty test paths owned by `primitive-layer-contract_20260615` + `graph.db` build artifact drift + `measure/automation-supervisor.py` from another track + untracked `__pycache__/`. None can be altered per user policy ("Preserve unrelated user work").
+  - [~] `git stash list` returns empty — **BLOCKED**: `stash@{0}: track-7-untouched-pending-remediation` (unrelated, do NOT pop per Phase 2 resolution).
+  - [~] Closeout requires `primitive-layer-contract_20260615` to complete its `problemFamilySchema → practiceVariantSchema` rename (clears 8 dirty test files, 330 tsc errors, 2 remaining lint warnings) and the stash-owning track to pop `stash@{0}`.
 
 ## Phase 5 Mid Attempt-1 (Red contract + state documentation, 2026-06-20)
 
