@@ -13,7 +13,7 @@ function mapDbCardToContract(
     _id: Id<"srs_cards">;
     studentId: Id<"profiles">;
     objectiveId: string;
-    problemFamilyId: string;
+    variantKey: string;
     stability: number;
     difficulty: number;
     state: "new" | "learning" | "review" | "relearning";
@@ -31,7 +31,7 @@ function mapDbCardToContract(
     cardId: card._id as string,
     studentId: card.studentId as string,
     objectiveId: card.objectiveId,
-    problemFamilyId: card.problemFamilyId,
+    variantKey: card.variantKey,
     stability: card.stability,
     difficulty: card.difficulty,
     state: card.state,
@@ -50,7 +50,7 @@ export type SaveCardArgs = {
   cardId: string;
   studentId: Id<"profiles">;
   objectiveId: string;
-  problemFamilyId: string;
+  variantKey: string;
   stability: number;
   difficulty: number;
   state: "new" | "learning" | "review" | "relearning";
@@ -76,8 +76,8 @@ export async function saveCardHandler(
 ): Promise<Id<"srs_cards">> {
   const existing = await ctx.db
     .query("srs_cards")
-    .withIndex("by_student_and_problem_family", (q) =>
-      q.eq("studentId", args.studentId).eq("problemFamilyId", args.problemFamilyId)
+    .withIndex("by_student_and_variant", (q) =>
+      q.eq("studentId", args.studentId).eq("variantKey", args.variantKey)
     )
     .first();
 
@@ -85,7 +85,7 @@ export async function saveCardHandler(
     await ctx.db.replace(existing._id, {
       studentId: existing.studentId,
       objectiveId: args.objectiveId,
-      problemFamilyId: args.problemFamilyId,
+      variantKey: args.variantKey,
       stability: args.stability,
       difficulty: args.difficulty,
       state: args.state,
@@ -103,7 +103,7 @@ export async function saveCardHandler(
     const id = await ctx.db.insert("srs_cards", {
       studentId: args.studentId,
       objectiveId: args.objectiveId,
-      problemFamilyId: args.problemFamilyId,
+      variantKey: args.variantKey,
       stability: args.stability,
       difficulty: args.difficulty,
       state: args.state,
@@ -125,7 +125,7 @@ export const saveCard = internalMutation({
     cardId: v.string(),
     studentId: v.id("profiles"),
     objectiveId: v.string(),
-    problemFamilyId: v.string(),
+    variantKey: v.string(),
     stability: v.number(),
     difficulty: v.number(),
     state: srsCardStateLiteralValidator,
@@ -152,7 +152,7 @@ export async function saveCardsHandler(
     cardId: string;
     studentId: Id<"profiles">;
     objectiveId: string;
-    problemFamilyId: string;
+    variantKey: string;
     stability: number;
     difficulty: number;
     state: "new" | "learning" | "review" | "relearning";
@@ -170,8 +170,8 @@ export async function saveCardsHandler(
     args.cards.map((card) =>
       ctx.db
         .query("srs_cards")
-        .withIndex("by_student_and_problem_family", (q) =>
-          q.eq("studentId", card.studentId).eq("problemFamilyId", card.problemFamilyId)
+        .withIndex("by_student_and_variant", (q) =>
+          q.eq("studentId", card.studentId).eq("variantKey", card.variantKey)
         )
         .first()
     )
@@ -184,7 +184,7 @@ export async function saveCardsHandler(
         return ctx.db.replace(existing._id, {
           studentId: existing.studentId,
           objectiveId: card.objectiveId,
-          problemFamilyId: card.problemFamilyId,
+          variantKey: card.variantKey,
           stability: card.stability,
           difficulty: card.difficulty,
           state: card.state,
@@ -201,7 +201,7 @@ export async function saveCardsHandler(
         return ctx.db.insert("srs_cards", {
           studentId: card.studentId,
           objectiveId: card.objectiveId,
-          problemFamilyId: card.problemFamilyId,
+          variantKey: card.variantKey,
           stability: card.stability,
           difficulty: card.difficulty,
           state: card.state,
@@ -226,7 +226,7 @@ export const saveCards = internalMutation({
         cardId: v.string(),
         studentId: v.id("profiles"),
         objectiveId: v.string(),
-        problemFamilyId: v.string(),
+        variantKey: v.string(),
         stability: v.number(),
         difficulty: v.number(),
         state: srsCardStateLiteralValidator,
@@ -294,22 +294,22 @@ export const getCardsByStudent = internalQuery({
  * @param args - The student ID and problem family ID
  * @returns The card in contract format, or null if not found
  */
-export async function getCardByStudentAndFamilyHandler(
+export async function getCardByStudentAndVariantHandler(
   ctx: QueryCtx,
-  args: { studentId: Id<"profiles">; problemFamilyId: string }
+  args: { studentId: Id<"profiles">; variantKey: string }
 ) {
   const card = await ctx.db
     .query("srs_cards")
-    .withIndex("by_student_and_problem_family", (q) =>
-      q.eq("studentId", args.studentId).eq("problemFamilyId", args.problemFamilyId)
+    .withIndex("by_student_and_variant", (q) =>
+      q.eq("studentId", args.studentId).eq("variantKey", args.variantKey)
     )
     .first();
   return card ? mapDbCardToContract(card) : null;
 }
 
-export const getCardByStudentAndFamily = internalQuery({
-  args: { studentId: v.id("profiles"), problemFamilyId: v.string() },
-  handler: getCardByStudentAndFamilyHandler,
+export const getCardByStudentAndVariant = internalQuery({
+  args: { studentId: v.id("profiles"), variantKey: v.string() },
+  handler: getCardByStudentAndVariantHandler,
 });
 
 export const getCardsByObjective = internalQuery({

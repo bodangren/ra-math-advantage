@@ -13,10 +13,10 @@ import type { MutationCtx } from "../_generated/server";
  * @param activityId - The activity ID to look up
  * @returns The problem family ID and objective ID, or null if not found
  */
-async function lookupProblemFamily(
+async function lookupVariant(
   ctx: MutationCtx,
   activityId: string
-): Promise<{ problemFamilyId: string; objectiveId: string } | null> {
+): Promise<{ variantKey: string; objectiveId: string } | null> {
   const item = await ctx.db
     .query("practice_items")
     .withIndex("by_activityId", (q) =>
@@ -27,16 +27,16 @@ async function lookupProblemFamily(
   if (!item) return null;
 
   const family = await ctx.db
-    .query("problem_families")
-    .withIndex("by_problemFamilyId", (q) =>
-      q.eq("problemFamilyId", item.problemFamilyId)
+    .query("practice_variants")
+    .withIndex("by_variantKey", (q) =>
+      q.eq("variantKey", item.variantKey)
     )
     .first();
 
   if (!family) return null;
 
   return {
-    problemFamilyId: item.problemFamilyId,
+    variantKey: item.variantKey,
     objectiveId: family.objectiveIds[0] ?? "",
   };
 }
@@ -44,24 +44,24 @@ async function lookupProblemFamily(
 /**
  * Looks up the timing baseline for a problem family.
  * @param ctx - The mutation context
- * @param problemFamilyId - The problem family ID to look up
+ * @param variantKey - The problem family ID to look up
  * @returns The timing baseline, or null if not found
  */
 async function lookupBaseline(
   ctx: MutationCtx,
-  problemFamilyId: string
+  variantKey: string
 ): Promise<PracticeTimingBaseline | null> {
   const baseline = await ctx.db
     .query("timing_baselines")
-    .withIndex("by_problem_family", (q) =>
-      q.eq("problemFamilyId", problemFamilyId)
+    .withIndex("by_variant", (q) =>
+      q.eq("variantKey", variantKey)
     )
     .first();
 
   if (!baseline) return null;
 
   return {
-    problemFamilyId: baseline.problemFamilyId,
+    variantKey: baseline.variantKey,
     sampleCount: baseline.sampleCount,
     medianActiveMs: baseline.medianActiveMs,
     p25ActiveMs: baseline.p25ActiveMs,
@@ -91,7 +91,7 @@ export async function processSubmissionSrsHandler(
   | { ok: false; skipped: false; error: string }
 > {
   try {
-    const familyInfo = await lookupProblemFamily(ctx, args.activityId);
+    const familyInfo = await lookupVariant(ctx, args.activityId);
     if (!familyInfo) {
       return { ok: false, skipped: true, reason: "no_blueprint" };
     }
@@ -103,8 +103,8 @@ export async function processSubmissionSrsHandler(
         resolve: async () => familyInfo,
       },
       baselineResolver: {
-        getBaseline: async (problemFamilyId: string) =>
-          lookupBaseline(ctx, problemFamilyId),
+        getBaseline: async (variantKey: string) =>
+          lookupBaseline(ctx, variantKey),
       },
     });
 

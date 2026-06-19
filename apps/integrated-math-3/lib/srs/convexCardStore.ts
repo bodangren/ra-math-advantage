@@ -35,10 +35,10 @@ export class ConvexCardStore implements CardStore {
     return result;
   }
 
-  async getCardByStudentAndFamily(studentId: string, problemFamilyId: string): Promise<SrsCardState | null> {
-    const result = await this.ctx.runQuery(internal.srs.cards.getCardByStudentAndFamily, {
+  async getCardByStudentAndVariant(studentId: string, variantKey: string): Promise<SrsCardState | null> {
+    const result = await this.ctx.runQuery(internal.srs.cards.getCardByStudentAndVariant, {
       studentId: toProfileId(studentId),
-      problemFamilyId,
+      variantKey,
     });
     return result;
   }
@@ -63,7 +63,7 @@ export class ConvexCardStore implements CardStore {
       cardId: card.cardId,
       studentId: toProfileId(card.studentId),
       objectiveId: card.objectiveId,
-      problemFamilyId: card.problemFamilyId,
+      variantKey: card.variantKey,
       stability: card.stability,
       difficulty: card.difficulty,
       state: card.state,
@@ -84,7 +84,7 @@ export class ConvexCardStore implements CardStore {
         cardId: card.cardId,
         studentId: toProfileId(card.studentId),
         objectiveId: card.objectiveId,
-        problemFamilyId: card.problemFamilyId,
+        variantKey: card.variantKey,
         stability: card.stability,
         difficulty: card.difficulty,
         state: card.state,

@@ -13,7 +13,7 @@ const cardStateValidator = v.object({
   cardId: v.string(),
   studentId: v.id("profiles"),
   objectiveId: v.string(),
-  problemFamilyId: v.string(),
+  variantKey: v.string(),
   stability: v.number(),
   difficulty: v.number(),
   state: srsCardStateLiteralValidator,
@@ -64,7 +64,7 @@ export type ProcessReviewArgs = {
     cardId: string;
     studentId: Id<"profiles">;
     objectiveId: string;
-    problemFamilyId: string;
+    variantKey: string;
     stability: number;
     difficulty: number;
     state: "new" | "learning" | "review" | "relearning";
@@ -152,10 +152,10 @@ export async function processReviewHandler(
 
   const existing = await ctx.db
     .query("srs_cards")
-    .withIndex("by_student_and_problem_family", (q) =>
+    .withIndex("by_student_and_variant", (q) =>
       q
         .eq("studentId", cardState.studentId)
-        .eq("problemFamilyId", cardState.problemFamilyId)
+        .eq("variantKey", cardState.variantKey)
     )
     .first();
 
@@ -164,7 +164,7 @@ export async function processReviewHandler(
     await ctx.db.replace(existing._id, {
       studentId: existing.studentId,
       objectiveId: cardState.objectiveId,
-      problemFamilyId: cardState.problemFamilyId,
+      variantKey: cardState.variantKey,
       stability: cardState.stability,
       difficulty: cardState.difficulty,
       state: cardState.state,
@@ -182,7 +182,7 @@ export async function processReviewHandler(
     cardDocId = await ctx.db.insert("srs_cards", {
       studentId: cardState.studentId,
       objectiveId: cardState.objectiveId,
-      problemFamilyId: cardState.problemFamilyId,
+      variantKey: cardState.variantKey,
       stability: cardState.stability,
       difficulty: cardState.difficulty,
       state: cardState.state,

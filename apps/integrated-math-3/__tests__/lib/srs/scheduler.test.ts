@@ -111,7 +111,7 @@ describe('createCard', () => {
     const card = createCard({
       studentId: 'student-1',
       objectiveId: 'obj-1',
-      problemFamilyId: 'pf-1',
+      variantKey: 'pf-1',
       now: mockNow,
     });
 
@@ -120,12 +120,12 @@ describe('createCard', () => {
     expect(card.lapses).toBe(0);
     expect(card.studentId).toBe('student-1');
     expect(card.objectiveId).toBe('obj-1');
-    expect(card.problemFamilyId).toBe('pf-1');
+    expect(card.variantKey).toBe('pf-1');
   });
 
   it('should generate a unique cardId', () => {
-    const card1 = createCard({ studentId: 's1', objectiveId: 'o1', problemFamilyId: 'p1', now: mockNow });
-    const card2 = createCard({ studentId: 's1', objectiveId: 'o1', problemFamilyId: 'p1', now: mockNow });
+    const card1 = createCard({ studentId: 's1', objectiveId: 'o1', variantKey: 'p1', now: mockNow });
+    const card2 = createCard({ studentId: 's1', objectiveId: 'o1', variantKey: 'p1', now: mockNow });
     expect(card1.cardId).not.toBe(card2.cardId);
   });
 
@@ -133,7 +133,7 @@ describe('createCard', () => {
     const card = createCard({
       studentId: 'student-1',
       objectiveId: 'obj-1',
-      problemFamilyId: 'pf-1',
+      variantKey: 'pf-1',
       now: mockNow,
     });
     expect(card.dueDate).toBe(mockNow);
@@ -143,7 +143,7 @@ describe('createCard', () => {
     const card = createCard({
       studentId: 'student-1',
       objectiveId: 'obj-1',
-      problemFamilyId: 'pf-1',
+      variantKey: 'pf-1',
       now: mockNow,
     });
     expect(card.createdAt).toBe(mockNow);
@@ -156,7 +156,7 @@ describe('reviewCard', () => {
     cardId: 'card-1',
     studentId: 'student-1',
     objectiveId: 'obj-1',
-    problemFamilyId: 'pf-1',
+    variantKey: 'pf-1',
     stability: 5,
     difficulty: 4,
     state: 'review',
@@ -230,7 +230,7 @@ describe('getDueCards', () => {
     cardId: `card-${dueOffsetMinutes}`,
     studentId: 'student-1',
     objectiveId: 'obj-1',
-    problemFamilyId: 'pf-1',
+    variantKey: 'pf-1',
     stability: 5,
     difficulty: 4,
     state: 'review',
@@ -283,7 +283,7 @@ describe('previewInterval', () => {
     cardId: 'card-1',
     studentId: 'student-1',
     objectiveId: 'obj-1',
-    problemFamilyId: 'pf-1',
+    variantKey: 'pf-1',
     stability: 5,
     difficulty: 4,
     state: 'review',
@@ -326,7 +326,7 @@ describe('maximum interval cap', () => {
       cardId: 'card-long',
       studentId: 'student-1',
       objectiveId: 'obj-1',
-      problemFamilyId: 'pf-1',
+      variantKey: 'pf-1',
       stability: 100,
       difficulty: 3,
       state: 'review',

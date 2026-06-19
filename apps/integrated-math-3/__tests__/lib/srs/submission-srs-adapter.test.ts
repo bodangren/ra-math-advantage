@@ -44,7 +44,7 @@ describe('SubmissionSrsAdapter', () => {
   describe('processSubmission returns SubmissionSrsResult for valid input', () => {
     it('returns success result when blueprint exists and card processing succeeds', async () => {
       adapter.getResolver().register('activity-1', {
-        problemFamilyId: 'pf-1',
+        variantKey: 'pf-1',
         objectiveId: 'obj-1',
       });
 
@@ -58,13 +58,13 @@ describe('SubmissionSrsAdapter', () => {
 
       expect(result.ok).toBe(true);
       if (result.skipped || !('card' in result)) return;
-      expect(result.card.problemFamilyId).toBe('pf-1');
+      expect(result.card.variantKey).toBe('pf-1');
       expect(result.card.studentId).toBe('student-1');
     });
 
     it('creates new card with state "new" for first-seen problem family', async () => {
       adapter.getResolver().register('activity-1', {
-        problemFamilyId: 'pf-new',
+        variantKey: 'pf-new',
         objectiveId: 'obj-1',
       });
 
@@ -85,7 +85,7 @@ describe('SubmissionSrsAdapter', () => {
 
     it('persists card after processing', async () => {
       adapter.getResolver().register('activity-1', {
-        problemFamilyId: 'pf-persist',
+        variantKey: 'pf-persist',
         objectiveId: 'obj-1',
       });
 
@@ -99,13 +99,13 @@ describe('SubmissionSrsAdapter', () => {
 
       const cardStore = adapter.getCardStore();
       const studentCards = await cardStore.getCardsByStudent('student-1');
-      const savedCard = studentCards.find((c) => c.problemFamilyId === 'pf-persist');
+      const savedCard = studentCards.find((c) => c.variantKey === 'pf-persist');
       expect(savedCard).not.toBeNull();
     });
 
     it('persists review log entry after processing', async () => {
       adapter.getResolver().register('activity-1', {
-        problemFamilyId: 'pf-log',
+        variantKey: 'pf-log',
         objectiveId: 'obj-1',
       });
 
@@ -157,7 +157,7 @@ describe('SubmissionSrsAdapter', () => {
   describe('processSubmission returns error result without throwing', () => {
     it('catches errors and returns error result', async () => {
       adapter.getResolver().register('activity-error', {
-        problemFamilyId: 'pf-error',
+        variantKey: 'pf-error',
         objectiveId: 'obj-1',
       });
 
@@ -184,7 +184,7 @@ describe('SubmissionSrsAdapter', () => {
 
     it('submission still succeeds even when SRS processing throws', async () => {
       adapter.getResolver().register('activity-safe', {
-        problemFamilyId: 'pf-safe',
+        variantKey: 'pf-safe',
         objectiveId: 'obj-1',
       });
 
@@ -204,7 +204,7 @@ describe('SubmissionSrsAdapter', () => {
   describe('adapter accepts injected dependencies', () => {
     it('uses injected resolver to look up problem family', async () => {
       adapter.getResolver().register('activity-custom', {
-        problemFamilyId: 'pf-custom',
+        variantKey: 'pf-custom',
         objectiveId: 'obj-custom',
       });
 
@@ -218,18 +218,18 @@ describe('SubmissionSrsAdapter', () => {
 
       expect(result.ok).toBe(true);
       if (result.skipped || !('card' in result)) return;
-      expect(result.card.problemFamilyId).toBe('pf-custom');
+      expect(result.card.variantKey).toBe('pf-custom');
       expect(result.card.objectiveId).toBe('obj-custom');
     });
 
     it('uses injected baseline resolver when available', async () => {
       adapter.getResolver().register('activity-timing', {
-        problemFamilyId: 'pf-timing',
+        variantKey: 'pf-timing',
         objectiveId: 'obj-1',
       });
 
       adapter.getBaselineResolver().setBaseline('pf-timing', {
-        problemFamilyId: 'pf-timing',
+        variantKey: 'pf-timing',
         sampleCount: 20,
         medianActiveMs: 5000,
         lastComputedAt: mockNow,
@@ -264,12 +264,12 @@ describe('SubmissionSrsAdapter', () => {
 
     it('derives timing features from baseline', async () => {
       adapter.getResolver().register('activity-fast', {
-        problemFamilyId: 'pf-fast',
+        variantKey: 'pf-fast',
         objectiveId: 'obj-1',
       });
 
       adapter.getBaselineResolver().setBaseline('pf-fast', {
-        problemFamilyId: 'pf-fast',
+        variantKey: 'pf-fast',
         sampleCount: 20,
         medianActiveMs: 20_000,
         lastComputedAt: mockNow,
@@ -306,7 +306,7 @@ describe('SubmissionSrsAdapter', () => {
 
     it('persists misconceptionTags in review log evidence when present', async () => {
       adapter.getResolver().register('activity-misconception', {
-        problemFamilyId: 'pf-misconception',
+        variantKey: 'pf-misconception',
         objectiveId: 'obj-1',
       });
 
@@ -333,7 +333,7 @@ describe('SubmissionSrsAdapter', () => {
 
     it('omits misconceptionTags from evidence when none are present', async () => {
       adapter.getResolver().register('activity-clean', {
-        problemFamilyId: 'pf-clean',
+        variantKey: 'pf-clean',
         objectiveId: 'obj-1',
       });
 
@@ -364,7 +364,7 @@ describe('SubmissionSrsResult types', () => {
         cardId: 'card-1',
         studentId: 'student-1',
         objectiveId: 'obj-1',
-        problemFamilyId: 'pf-1',
+        variantKey: 'pf-1',
         stability: 5,
         difficulty: 4,
         state: 'review',

@@ -77,10 +77,10 @@ describe('Re-exports from @math-platform/srs-engine', () => {
   });
 
   it('PROFICIENCY_THRESHOLD_DEFAULTS should match source values', () => {
-    expect(PROFICIENCY_THRESHOLD_DEFAULTS.essential.minProblemFamilies).toBe(3);
-    expect(PROFICIENCY_THRESHOLD_DEFAULTS.supporting.minProblemFamilies).toBe(2);
-    expect(PROFICIENCY_THRESHOLD_DEFAULTS.extension.minProblemFamilies).toBe(1);
-    expect(PROFICIENCY_THRESHOLD_DEFAULTS.triaged.minProblemFamilies).toBe(0);
+    expect(PROFICIENCY_THRESHOLD_DEFAULTS.essential.minVariants).toBe(3);
+    expect(PROFICIENCY_THRESHOLD_DEFAULTS.supporting.minVariants).toBe(2);
+    expect(PROFICIENCY_THRESHOLD_DEFAULTS.extension.minVariants).toBe(1);
+    expect(PROFICIENCY_THRESHOLD_DEFAULTS.triaged.minVariants).toBe(0);
   });
 
   it('EvidenceConfidence should include all values', () => {
@@ -154,7 +154,7 @@ describe('Re-exports from lib/practice/timing-baseline.ts', () => {
 
   it('PracticeTimingBaseline should be usable', () => {
     const baseline: PracticeTimingBaseline = {
-      problemFamilyId: 'pf-1',
+      variantKey: 'pf-1',
       sampleCount: 10,
       medianActiveMs: 5000,
       lastComputedAt: new Date().toISOString(),
@@ -220,7 +220,7 @@ describe('SrsCardState', () => {
       cardId: 'card-1',
       studentId: 'student-1',
       objectiveId: 'obj-1',
-      problemFamilyId: 'pf-1',
+      variantKey: 'pf-1',
       stability: 0,
       difficulty: 0,
       state: 'new',
@@ -242,7 +242,7 @@ describe('SrsCardState', () => {
       cardId: 'card-1',
       studentId: 'student-1',
       objectiveId: 'obj-1',
-      problemFamilyId: 'pf-1',
+      variantKey: 'pf-1',
       stability: 1.5,
       difficulty: 5,
       state: 'learning',
@@ -264,7 +264,7 @@ describe('SrsCardState', () => {
       cardId: 'card-1',
       studentId: 'student-1',
       objectiveId: 'obj-1',
-      problemFamilyId: 'pf-1',
+      variantKey: 'pf-1',
       stability: 10,
       difficulty: 4,
       state: 'review',
@@ -286,7 +286,7 @@ describe('SrsCardState', () => {
       cardId: 'card-1',
       studentId: 'student-1',
       objectiveId: 'obj-1',
-      problemFamilyId: 'pf-1',
+      variantKey: 'pf-1',
       stability: 2,
       difficulty: 7,
       state: 'relearning',
