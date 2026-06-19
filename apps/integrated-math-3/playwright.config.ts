@@ -25,6 +25,10 @@ export default defineConfig({
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
     },
+    {
+      name: 'viewport',
+      use: { ...devices['Desktop Chrome'] },
+    },
   ],
 
   webServer: {
