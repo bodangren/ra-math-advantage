@@ -66,6 +66,20 @@ References for the implementer:
 > or a pre-Mid cleanup gate). Task 1 source code remains owned by the
 > Green role (or by the remediation track that follows).
 >
+> **MID-attempt-6 status: Phase 3 (Implement Green) bounded verification.**
+> All Phase 3 implementation tasks are already complete at HEAD (commits
+> `35e3092b` CoordinatePlane wrapper, `718e0254` plan check, `0c0dc030`
+> Phase 2 UMV check, `f1a9d647` adversarial tests). The only `[ ]` task
+> in Phase 3 is "Measure - User Manual Verification 'Phase 3'", which is
+> a manual sign-off and has no Red-phase test. Bounded evidence:
+> `CI=true npx vitest run packages/activity-components/src/primitives/__tests__/`
+> at HEAD: **5 test files, 34 tests, all passing** (Duration 18.86s).
+> Phase 3 Green gate is satisfied; the remaining UMV must be signed off
+> by a human. Two prior attempts (mid-attempt-1, mid-attempt-2) timed out
+> at 3600s — root cause was excessive file reads, not a logic defect.
+> This attempt runs the smallest test command and exits with the
+> result. No new test, code, or non-Measure doc change is required.
+>
 > **MID-attempt-5 status: bounded retry — committed Phase 1 Red test
 > + plan + test-strategy via path-scoped stash of Track 7 sources.**
 > (a) The supervisor feedback for attempt 1 of the new session was
