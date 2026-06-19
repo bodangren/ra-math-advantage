@@ -216,7 +216,7 @@ Result: 5 passed (5 files); 50 tests passed — no pre-existing suite broke.
     - [x] `npx tsc --noEmit` clean (only pre-existing katex CSS errors); lint config absent for this package (pre-existing).
 - [x] Task: Verify no behavior change to shipped components [35e3092]
     - [x] Confirm `GraphingCanvas`/`GraphingExplorer*` files and their tests are unmodified (git diff shows only additive files + the barrel/vitest config edits).
-- [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
+    - [~] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
 
 ## Phase 4 — Generate Docs & Doctor
 
