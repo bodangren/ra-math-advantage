@@ -149,7 +149,7 @@ References for the implementer:
     - [x] Confirm it currently passes vacuously (only `types.ts` present) AND fails on a temporarily planted bad import, then remove the planted import.
 - [x] Task: Regression guard [a1f9272]
     - [x] Confirm existing `components.test.tsx`, `registry.test.ts`, `renderer.test.tsx`, `schemas.test.ts`, `types.test.ts` still pass unchanged.
-- [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md) [a1f9272]
 
 ### Red command (Phase 2)
 
