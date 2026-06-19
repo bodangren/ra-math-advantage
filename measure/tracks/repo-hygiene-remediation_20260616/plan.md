@@ -115,3 +115,60 @@
   - [ ] `git status --short` returns empty
   - [ ] `git stash list` returns empty
   - [ ] All acceptance criteria met
+
+## Blocker: `graph.db` Working-Tree Drift Blocks Red-Phase Gate
+
+**Recorded Mid attempt 3, 2026-06-19.** The `Mid` gate's
+`non_test_source_changes_since` check
+(`measure/automation-supervisor.py:428`) flags any tracked path that does
+not (a) start with `measure/`, (b) end with a test suffix, or (c) live
+under a `__tests__/` / `tests/` segment. `graph.db` (rooted, no suffix,
+not in `measure/`) is unconditionally rejected when the working tree
+differs from HEAD.
+
+This track cannot satisfy that gate from inside the Red role because the
+only available actions conflict with `AGENTS.md` guardrails or with the
+user's explicit "do not … hide" policy:
+
+| Option | Conflict |
+|--------|----------|
+| `git checkout -- graph.db` | Forbidden by `AGENTS.md` ("No destructive git commands … `checkout -- <file>`") |
+| `git update-index --skip-worktree graph.db` | Hides the unrelated dirty work; user policy forbids hiding |
+| Commit `graph.db` in this track | `non_test_source_changes_since` is path-based — committed-or-uncommitted makes no difference; still flagged |
+| `git rm --cached graph.db` + `.gitignore` | The deletion would be flagged on `git diff --cached`; also changes the source-control contract for a build artifact owned by a different track |
+| Stop without committing | Fails the `gate_mid` "Expected a committed Red-phase test change, but HEAD did not advance" check (attempt-2 feedback) |
+
+The `graph.db` working-tree drift is owned by an out-of-band prior
+session (HEAD→working diff is `Bin 20529152 -> 20570112 bytes`; no
+`build-graph scan` was invoked in this Red attempt — only read-only
+`build-graph stats`). The 8 other dirty paths belong to the
+`primitive-layer-contract_20260615` track (test renames
+`problemFamilySchema` → `practiceVariantSchema`) and the
+`automation-supervisor.py` in-flight edit, neither of which is in
+scope for `repo-hygiene-remediation_20260616`.
+
+**Recommended remediation track:** create
+`graph-db-as-build-artifact_20260619` (or similar) that:
+
+1. Decides whether `graph.db` should be a tracked build artifact
+   (regenerated on demand) or a release-only snapshot (regenerated only
+   at release tags).
+2. Whitelists `graph.db` in `non_test_source_changes_since` if the
+   decision is "regenerated build artifact", with a doc note that
+   `build-graph scan` is the canonical regenerator and that its output
+   is byte-deterministic per source-tree state.
+3. Resolves the prior-session dirty state via the appropriate
+   `git checkout --` (one-time exception, explicitly approved) or by
+   committing the regenerated DB as a `chore(graph): regenerate
+   knowledge graph` commit in the owning track.
+4. Closes out the 8 unrelated test/source edits that have piled up in
+   the working tree from the `primitive-layer-contract_20260615` track
+   and the automation supervisor track — these will re-block this gate
+   on the next Mid attempt otherwise.
+
+Until that remediation track lands, the Phase 4 Red evidence in
+commit `456cd292` remains the durable Red record (18 lint violations
+across 12 files; regression-gate baseline 79/79 + 32/32 vitest PASS).
+Green-phase work for Tasks 4.1–4.5 is unblocked by `456cd292` and may
+proceed independently; the gate failure is orthogonal to the lint
+refactor itself.
