@@ -5,7 +5,7 @@ Verification: boundary lints + per-app lint/test + `tsc --noEmit` + viewport che
 
 ## Phase 1 — Audit Baseline & Guard
 
-- [x] Task: Audit key routes at phone/tablet/desktop breakpoints; document prioritized failures
+- [x] Task: Audit key routes at phone/tablet/desktop breakpoints; document prioritized failures (red: b81e24d4; green: c098089b)
   - Red proof (artifact contract, MID role, vitest):
     `CI=true npx vitest run --root apps/integrated-math-3 __tests__/responsive/audit-baseline.contract.test.ts`
     → **5/5 fail** (audit doc absent at `apps/integrated-math-3/docs/responsive-audit-baseline.md`).
@@ -14,7 +14,7 @@ Verification: boundary lints + per-app lint/test + `tsc --noEmit` + viewport che
     → **5/5 pass** (audit doc authored at `apps/integrated-math-3/docs/responsive-audit-baseline.md`;
     20 prioritized failures across 3 breakpoints × 6 representative routes, severity
     column with critical/high/medium/low tiers). Green commit: `c098089b`.
-- [x] Task: Stand up viewport-sized Playwright checks (overflow/clipping) over representative routes (failing on known-bad fixture)
+- [x] Task: Stand up viewport-sized Playwright checks (overflow/clipping) over representative routes (failing on known-bad fixture) (red: 35179c6c, cca1c224; green: 6d842315)
   - Red proof (unit test, MID role, vitest):
     `CI=true npx vitest run --root apps/integrated-math-3 __tests__/responsive/viewport-guard.unit.test.ts`
     → **3 fail, 1 pass** (stub throws "not implemented"; fixture sentinel test passes).
