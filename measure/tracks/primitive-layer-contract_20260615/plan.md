@@ -80,6 +80,60 @@ References for the implementer:
 > This attempt runs the smallest test command and exits with the
 > result. No new test, code, or non-Measure doc change is required.
 >
+> **MID-attempt-7 status: Phase 4 Red-phase test for the FR-6 registry deliverable.**
+> Phase 4 Task 1 has two sub-bullets per `spec.md` FR-6: (a) add the
+> Practice Primitives & Components Program section, and (b) edit the
+> T15 entry (folded into C/D) and the T16 entry (reframed as Track E
+> seed). Sub-bullet (a) is already satisfied at HEAD (lines 5-32 of
+> `measure/tracks.md` contain the program section with T0 + A–F).
+> Sub-bullet (b) is the active Red target: the individual T15 and T16
+> entries (lines 156-161) still carry no fold/reframe annotation even
+> though the program section and the Track C/D/E descriptions (lines
+> 14-16, 26, 28, 30) all reference the reconciliation. This is a real,
+> in-progress gap, not a stale durable record — the T15/T16 entries
+> need explicit annotation per spec FR-6.
+>
+> Red-phase test added at
+> `measure/tracks/primitive-layer-contract_20260615/__tests__/test_phase4_tracks_registry.py`
+> asserts the four FR-6 properties against `tracks.md`:
+> 1. program section header present (passes — sub-task 1 evidence)
+> 2. T0 + Track A-F program entries present (passes — sub-task 1 evidence)
+> 3. T15 entry annotated as folded into Track C/D (FAILS — current entry has no fold marker)
+> 4. T16 entry annotated as Track E seed/reframe (FAILS — current entry has no Track E marker)
+>
+> Test type rationale (test-strategy.md §4/§5/§7): the deliverable is
+> a static markdown registry edit, not runtime behavior. Artifact /
+> contract tests are allowed when the deliverable IS the artifact,
+> paired with a live-behavior proof. The live-behavior proof is
+> Phase 4 Task 2 (tsc + lint + activity-components tests), which the
+> Green role owns per test-strategy.md §7 — see "live gate note" in
+> the test file's docstring.
+>
+> Dirty worktree classification (9 modified, 0 untracked at MID start):
+> - 7 test files in `apps/integrated-math-3/__tests__/` and
+>   `packages/math-content/src/__tests__/` — UNRELATED, owned by
+>   Track 7 `practice-variant-rename_20260521` (same rename
+>   `problemFamilyId→variantKey` as in attempts 3/4/5). PRESERVED.
+> - 1 `measure/automation-supervisor.py` — UNRELATED, owned by the
+>   remediation track. PRESERVED.
+> - 1 `graph.db` — GENERATED/IGNORABLE (build-graph cache, 3.5h old,
+>   not relevant to Phase 4 markdown deliverable).
+> - 1 stash entry `track-7-untouched-pending-remediation` from
+>   MID-attempt-5 — INTENTIONALLY NOT POPPED per attempt-5 plan
+>   note.
+>
+> Build-graph context: `graph.db` is 3.5h old, but the Phase 4
+> deliverable is a markdown file with no TypeScript surface. The
+> graph probe in test-strategy.md §6 already covered the
+> structural parts of this track. No new graph probe is required
+> for the FR-6 artifact edit.
+>
+> Commit boundary: this Red commit will include ONLY the new test
+> file + the updated `plan.md`. The 9 unrelated dirty files and
+> the stash entry remain in the worktree, untouched and unstaged,
+> as required by the gate_mid ownership rule (Mid role does not
+> commit another track's work).
+
 > **MID-attempt-5 status: bounded retry — committed Phase 1 Red test
 > + plan + test-strategy via path-scoped stash of Track 7 sources.**
 > (a) The supervisor feedback for attempt 1 of the new session was
@@ -220,10 +274,49 @@ Result: 5 passed (5 files); 50 tests passed — no pre-existing suite broke.
 
 ## Phase 4 — Generate Docs & Doctor
 
-- [ ] Task: Apply T15/T16 reconciliation + program registration in `tracks.md` (FR-6)
-    - [ ] Add the **Practice Primitives & Components Program** section (T0 + A–F).
-    - [ ] Edit the T15 entry (folded into C/D) and T16 entry (reframed as Track E seed).
-- [ ] Task: Run quality gates and Measure doctor
+- [~] Task: Apply T15/T16 reconciliation + program registration in `tracks.md` (FR-6)
+    - [x] Add the **Practice Primitives & Components Program** section (T0 + A–F). [evidence: lines 5-32 of `tracks.md` already contain T0 + Track A-F entries at HEAD; sub-task 1 is satisfied]
+    - [ ] Edit the T15 entry (folded into C/D) and T16 entry (reframed as Track E seed). [evidence: lines 156-161 of `tracks.md` at HEAD carry no fold/reframe annotation; sub-task 2 is the Red target — see Red command and result below]
+- [~] Task: Run quality gates and Measure doctor
     - [ ] `npx tsc --noEmit` + `npm run lint` + `CI=true npm run test` (activity-components) all green.
     - [ ] Run the Measure doctor workflow (`/measure:doctor`) and resolve any boundary/generated-doc findings. (Note: there is no `measure/generate.sh`/`doctor.sh` script in this repo; use the skill workflow + the gates above.)
 - [ ] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md)
+
+### Red command (Phase 4)
+
+Targeted Red command (per test-strategy.md §5/§7 and the FR-6 deliverable):
+
+```
+cd /home/daniel-bo/Desktop/ra-math-advantage && \
+  python3 -m pytest -v \
+    measure/tracks/primitive-layer-contract_20260615/__tests__/test_phase4_tracks_registry.py
+```
+
+Bounded to the single new Phase-4 test file (no watch mode, no full-suite smoke, no
+`npm run test`).
+
+#### Red result (Phase 4, MID-attempt-7)
+
+Run output:
+
+```
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0
+rootdir: /home/daniel-bo/Desktop/ra-math-advantage
+collected 4 items
+
+.../test_phase4_tracks_registry.py::...::test_program_section_header_present PASSED
+.../test_phase4_tracks_registry.py::...::test_t0_and_tracks_a_through_f_registered PASSED
+.../test_phase4_tracks_registry.py::...::test_t15_entry_annotated_as_folded_into_c_or_d FAILED
+.../test_phase4_tracks_registry.py::...::test_t16_entry_annotated_as_track_e_seed FAILED
+
+================ 2 failed, 2 passed, 6 subtests passed in 0.77s ================
+```
+
+Two tests fail (T15 fold annotation, T16 Track E reframe annotation) for the
+expected reason — the current `tracks.md` T15/T16 entries have no fold/reframe
+marker. Two tests pass (program section header, T0 + A–F registration) — they
+are sub-task 1 evidence, not Red targets. The 2 failures are the active
+implementation gap; Green owns the registry edit + the Phase 4 Task 2
+live-behavior proof (tsc + lint + activity-components tests).
+
