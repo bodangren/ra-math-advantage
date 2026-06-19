@@ -124,18 +124,18 @@ References for the implementer:
 
 ## Phase 1 — Contract & Schema Definition
 
-- [~] Task: Define the primitive contract types
-    - [ ] Create `packages/activity-components/src/primitives/types.ts` with `PrimitiveMode` and `MathPrimitiveProps<TValue>` exactly as in spec FR-2 (include the JSDoc).
-    - [ ] Create `packages/activity-components/src/primitives/index.ts` re-exporting `./types` (primitive subdir barrels are added in Phase 3).
-    - [ ] Add `export * from './primitives/index';` (or named re-exports matching local style) to `packages/activity-components/src/index.ts`.
-    - [ ] Confirm `npx tsc --noEmit` is clean for the new files.
+- [x] Task: Define the primitive contract types [0772197]
+    - [x] Create `packages/activity-components/src/primitives/types.ts` with `PrimitiveMode` and `MathPrimitiveProps<TValue>` exactly as in spec FR-2 (include the JSDoc).
+    - [x] Create `packages/activity-components/src/primitives/index.ts` re-exporting `./types` (primitive subdir barrels are added in Phase 3).
+    - [x] Add `export type { PrimitiveMode, MathPrimitiveProps } from './primitives/index';` to `packages/activity-components/src/index.ts`.
+    - [x] Confirm `npx tsc --noEmit` is clean for the new files (only pre-existing katex CSS errors).
 - [x] Task: Document the consumption contract + catalog (FR-3, FR-5) [b54903f]
     - [x] Add a `## Primitive Layer` section to `practice-component-contract.md`: two-layer split, the FR-2 controlled-component rules, and value→envelope mapping.
     - [x] Add the `### Primitive Catalog (P1–P13)` table (id, name, course/domain, status, owning track); mark P1 `CoordinatePlane` as promoted.
     - [x] Cross-link the catalog to `practice-primitives-roadmap.md` (single source of truth).
 - [x] Task: Stub the reference example for FR-3 [7fe59d4]
     - [x] Write the `CoordinatePlane`-based consumption example (prose + code snippet) in the contract doc; it will compile-check against the Phase 3 component.
-- [ ] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md) [0772197]
 
 ## Phase 2 — Test (Red)
 

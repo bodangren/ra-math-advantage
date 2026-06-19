@@ -1,7 +1,7 @@
 {
   "track_id": "primitive-layer-contract_20260615",
   "type": "chore",
-  "status": "new",
+  "status": "in_progress",
   "created_at": "2026-06-15T00:00:00Z",
   "updated_at": "2026-06-15T00:00:00Z",
   "description": "T0 of the Practice Primitives program: establish the shared math primitive layer contract (MathPrimitiveProps, primitives/ directory, consumption contract, reference migration of CoordinatePlane), the canonical P1-P13 catalog, boundary enforcement, and reconcile the overlapping T15/T16 skill-graph renderer tracks.",
