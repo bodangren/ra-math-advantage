@@ -98,10 +98,123 @@ Depends on: Track 1. Sequence after Track 1 to avoid churn collisions.
 
 ## Phase 3 — Projection, App Rename, and Migration
 
-- [ ] Task: Rename in knowledge-space-practice SRS projection and app call sites (TDD)
+- [~] Task: Rename in knowledge-space-practice SRS projection and app call sites (TDD)
     - [ ] projections/srs.ts; apps/integrated-math-3 lib/srs and convex call sites; fixtures and tests
-- [ ] Task: Execute and verify the Convex data migration on existing card data
+- [~] Task: Execute and verify the Convex data migration on existing card data
 - [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
+
+> **MID Red handoff (2026-06-19):** See `test-strategy.md` §7 (Live-Proof Plan), rows "P3"
+> and "P3 exec". Red proof lives at:
+> - `packages/knowledge-space-practice/src/__tests__/projections-variant-rename.test.ts` (new)
+> - `apps/integrated-math-3/__tests__/lib/srs/convex-cardstore-variant-key.test.ts` (new)
+> - `apps/integrated-math-3/__tests__/convex/srs/cards-variant-key.test.ts` (new)
+> - `apps/integrated-math-3/__tests__/convex/srs/submission-srs-variant-key.test.ts` (new)
+>
+> The four new test files are all **artifact (source-file read) tests** — they assert
+> that the P3 source surface (projection + lib/srs + convex/srs/call sites) carries
+> the renamed `variantKey` identifier and not the legacy `problemFamily*` identifier.
+> The phase deliverable is the renamed source code, so artifact assertions are
+> appropriate per the directive ("Artifact or markdown assertions are allowed only
+> when the phase deliverable is that artifact").
+>
+> **Live-behavior proof (paired with artifact assertions):** The `projectSrsInputs`
+> live smoke runs in the projection test — it executes the function against the
+> synthetic math fixture and asserts the entries still parse without `problemFamily`
+> fields. The Convex call-site live gate is owned by the Green step per
+> `test-strategy.md` §7 row "P3" (full P3 integration: `npx vitest run
+> apps/integrated-math-3/convex/srs apps/integrated-math-3/lib/srs/__tests__`) and
+> the P3 migration dry-run smoke (`npx convex run migrations:renameProblemFamilyToVariantKey --dry-run`).
+>
+> **Pre-existing test infrastructure issues (out of scope):**
+> - `apps/integrated-math-3/__tests__/convex/**` test files that import from
+>   `@/convex/...` fail with "Cannot find package" — this is a pre-existing vitest
+>   alias-resolution issue unrelated to this track.
+> - `apps/integrated-math-3/__tests__/lib/srs/contract.test.ts`,
+>   `scheduler.test.ts`, `submission-srs-adapter.test.ts` have pre-existing failures
+>   caused by the P2 rename not flipping test assertions en bloc. The Green step
+>   will flip these assertions.
+> The new P3 Red tests do NOT depend on the broken import paths — they use
+> `node:fs.readFileSync` to read source files directly, which works in the
+> working vitest test infrastructure.
+>
+> **Dirty worktree (preserved, NOT staged in this track's commit):**
+> - `apps/integrated-math-3/__tests__/lib/onboarding/student-flow.test.ts` (M) —
+>   onboarding test, unrelated to this track.
+> - `measure/automation-supervisor.py` (M) — supervisor hardening, unrelated to this track.
+> - `graph.db-journal` (??) — SQLite journal file, generated/ignorable, not in
+>   this track's commits.
+>
+> **Targeted Red commands (run 2026-06-19, vitest 4.1.8):**
+> 1. **lib/srs Convex adapter rename — Red (legitimate):**
+>    `./node_modules/.bin/vitest run apps/integrated-math-3/__tests__/lib/srs/convex-cardstore-variant-key.test.ts`
+>    → **2 failed, 5 passed** of 7.
+>    - The 2 Red failures are in `convexCardStore.ts`:
+>      1. `does not reference the legacy problemFamilyId identifier` — fails
+>         because `convexCardStore.ts` references `problemFamilyId` on lines 38,
+>         41, 66, 87 (method signature, two runMutation call sites, and the
+>         `saveCards` map).
+>      2. `references the renamed variantKey identifier (positive contract)` —
+>         fails because `convexCardStore.ts` does not contain `variantKey` at all.
+>    - The 5 passes are no-regression guards for `convexReviewLogStore.ts` and
+>      `convexSessionStore.ts`: neither file references the legacy identifier,
+>      so the rename is genuinely not needed there. These guards prove the
+>      rename scope is bounded to `convexCardStore.ts`.
+> 2. **convex/srs/cards + processReview rename — Red (legitimate):**
+>    `./node_modules/.bin/vitest run apps/integrated-math-3/__tests__/convex/srs/cards-variant-key.test.ts`
+>    → **7 failed, 1 passed** of 8.
+>    - `cards.ts` is the heaviest rename target: 6 fails across
+>      `problemFamilyId` (field on `SaveCardArgs`, mapper input, two `saveCard`
+>      writes, two `saveCards` writes, validator `problemFamilyId: v.string()`,
+>      `getCardByStudentAndFamilyHandler` arg), `by_student_and_problem_family`
+>      index name (3 `withIndex` call sites), `getCardByStudentAndFamily` handler
+>      (definition + internalQuery export), and the missing positive contract
+>      for `variantKey` / `by_student_and_variant`.
+>    - `processReview.ts` contributes 2 fails: `problemFamilyId` on the
+>      `cardStateValidator` / `ProcessReviewArgs` type / `by_student_and_problem_family`
+>      `withIndex` call, plus the missing positive contract for `variantKey`.
+>    - The 1 pass is the PascalCase `ProblemFamily` guard for `cards.ts` — the
+>      handler file uses snake_case `problemFamilyId` only, never PascalCase.
+> 3. **convex/srs/submissionSrs rename — Red (legitimate):**
+>    `./node_modules/.bin/vitest run apps/integrated-math-3/__tests__/convex/srs/submission-srs-variant-key.test.ts`
+>    → **6 failed, 0 passed** of 6.
+>    Every assertion is Red because `submissionSrs.ts` is a write-heavy call site
+>    for the `problem_families` table via `by_problemFamilyId` index, plus a
+>    `timing_baselines` query via `by_problem_family` index. All five legacy
+>    identifiers (`problemFamilyId`, `ProblemFamily`, `problem_families`,
+>    `by_problemFamilyId`, `by_problem_family`) are present, and the positive
+>    contract for `variantKey` is missing.
+> 4. **knowledge-space-practice projection rename — already satisfied (no Red possible):**
+>    `./node_modules/.bin/vitest run packages/knowledge-space-practice/src/__tests__/projections-variant-rename.test.ts`
+>    → **0 failed, 6 passed** of 6.
+>    Per the directive "if the new tests pass at HEAD, tighten the contract
+>    until at least one new test fails or mark the task as already satisfied
+>    with evidence" — this file is marked **already satisfied with evidence**:
+>    - The `SrsProjectionEntry` interface (`projections/types.ts`) does not
+>      declare `problemFamily` / `ProblemFamily` types.
+>    - `projectSrsInputs` (`projections/srs.ts`) operates on
+>      `KnowledgeSpaceNode`/`KnowledgeSpaceEdge`/`KnowledgeBlueprint` and emits
+>      entries with no `problemFamily` field. The projection is rename-invariant
+>      by construction — `variantKey` lives downstream in the SRS card, not in
+>      the projection shape.
+>    - `projections/index.ts` re-exports no legacy symbols.
+>    Build-graph confirms: `build-graph search problemFamily` on
+>    `packages/knowledge-space-practice/` returns 0 hits. The projection
+>    surface was never a `problemFamily*` site, so there is nothing to rename.
+>    The test file is retained as a **no-regression guard** — if a future PR
+>    introduces `problemFamily` into the projection, the assertions fire
+>    immediately. It is intentionally committed with the rest of the Red-phase
+>    test files even though it does not provide Red evidence, because removing
+>    it would lose the no-regression guardrail.
+>
+> **Aggregate Red proof (P3, run 2026-06-19):** 15 fail / 26 total across the
+> four targeted test files. Failures concentrate on the Convex handler rename
+> surface (`cards.ts` × 6, `processReview.ts` × 2, `submissionSrs.ts` × 6,
+> `convexCardStore.ts` × 2) — exactly the surface area identified by
+> `test-strategy.md` §6 as the P3 in-scope source files.
+>
+> **Node resolution:** `node` is not on the standard PATH for this shell.
+> Tests were executed with `/opt/codex-desktop/resources/node-runtime/bin/node`
+> on PATH. This is environment-only and does not affect test semantics.
 
 ## Phase 4 — Docs & Doctor
 
