@@ -139,17 +139,58 @@ References for the implementer:
 
 ## Phase 2 — Test (Red)
 
-- [ ] Task: Contract test for `CoordinatePlane`
-    - [ ] Create `packages/activity-components/src/primitives/__tests__/coordinate-plane.test.tsx`.
-    - [ ] Assert: renders given `value.points`; in `mode="interactive"`, a point-add interaction calls `onChange` with the appended point; in `mode="readonly"`/`"static"` or `disabled`, `onChange` is never called.
-    - [ ] Run `CI=true npm run test` (in `packages/activity-components`) and confirm it FAILS (component not built yet).
-- [ ] Task: Boundary test for `primitives/`
-    - [ ] Create `packages/activity-components/src/primitives/__tests__/boundary.test.ts` modeled on the knowledge-space-core precedent; forbidden patterns: `apps/`, `convex/_generated/`, `lib/practice`, practice `contract` envelope import.
-    - [ ] Include the positive/negative fixture assertions (catches a bad import; ignores comments/allowed imports).
-    - [ ] Confirm it currently passes vacuously (only `types.ts` present) AND fails on a temporarily planted bad import, then remove the planted import.
-- [ ] Task: Regression guard
-    - [ ] Confirm existing `components.test.tsx`, `registry.test.ts`, `renderer.test.tsx`, `schemas.test.ts`, `types.test.ts` still pass unchanged.
+- [~] Task: Contract test for `CoordinatePlane`
+    - [x] Create `packages/activity-components/src/primitives/__tests__/coordinate-plane.test.tsx`.
+    - [x] Assert: renders given `value.points`; in `mode="interactive"`, a point-add interaction calls `onChange` with the appended point; in `mode="readonly"`/`"static"` or `disabled`, `onChange` is never called.
+    - [x] Run `CI=true npm run test` (in `packages/activity-components`) and confirm it FAILS (component not built yet).
+- [~] Task: Boundary test for `primitives/`
+    - [x] Create `packages/activity-components/src/primitives/__tests__/boundary.test.ts` modeled on the knowledge-space-core precedent; forbidden patterns: `apps/`, `convex/_generated/`, `lib/practice`, practice `contract` envelope import.
+    - [x] Include the positive/negative fixture assertions (catches a bad import; ignores comments/allowed imports).
+    - [x] Confirm it currently passes vacuously (only `types.ts` present) AND fails on a temporarily planted bad import, then remove the planted import.
+- [~] Task: Regression guard
+    - [x] Confirm existing `components.test.tsx`, `registry.test.ts`, `renderer.test.tsx`, `schemas.test.ts`, `types.test.ts` still pass unchanged.
 - [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
+
+### Red command (Phase 2)
+
+Targeted Red command (per test-strategy.md §5/§7):
+
+```
+CI=true ./node_modules/.bin/vitest \
+  --config packages/activity-components/vitest.config.ts \
+  run \
+  packages/activity-components/src/primitives/__tests__/coordinate-plane.test.tsx
+```
+
+Observed at HEAD (pre-Green): **1 failed test file, 0 tests run** (suite-level
+module-resolution failure for `../../coordinate-plane/CoordinatePlane`). This
+is the expected Red signal per test-strategy.md §3 ("if Phase 1 forgets the
+root re-export the test fails with a module-resolution error rather than an
+assertion — treat that as a contract-test failure, not infra noise").
+
+Combined primitives/ run at HEAD:
+
+```
+CI=true ./node_modules/.bin/vitest \
+  --config packages/activity-components/vitest.config.ts \
+  run \
+  packages/activity-components/src/primitives/__tests__/
+```
+
+Result: 1 failed | 2 passed (3 files); 12 tests passed (boundary 7 +
+contract-exports 5); coordinate-plane suite blocked at import-time as expected.
+
+Regression-guard run at HEAD:
+
+```
+CI=true ./node_modules/.bin/vitest \
+  --config packages/activity-components/vitest.config.ts \
+  run \
+  packages/activity-components/src/__tests__/
+```
+
+Result: 5 passed (5 files); 50 tests passed — no pre-existing suite broke.
+
 
 ## Phase 3 — Implement (Green)
 
