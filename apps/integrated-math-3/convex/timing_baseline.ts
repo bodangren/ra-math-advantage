@@ -35,7 +35,7 @@ export const recomputeTimingBaseline = internalMutation({
     const eligibleTimings = await collectEligibleTimings(ctx, args.activityIds);
 
     const baselineInput = {
-      problemFamilyId: args.problemFamilyId,
+      variantKey: args.problemFamilyId,
       timings: eligibleTimings,
       minSamples: args.minSamples,
       computedAt: new Date().toISOString(),
@@ -81,7 +81,7 @@ export const batchRecomputeTimingBaselines = internalMutation({
           const eligibleTimings = await collectEligibleTimings(ctx, recomp.activityIds);
 
           const baseline = computeTimingBaseline({
-            problemFamilyId: recomp.problemFamilyId,
+            variantKey: recomp.problemFamilyId,
             timings: eligibleTimings,
             minSamples: recomp.minSamples,
             computedAt: new Date().toISOString(),

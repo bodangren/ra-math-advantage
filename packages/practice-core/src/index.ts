@@ -78,11 +78,9 @@ export {
   type PracticeVariantInput,
 } from './practice/problem-family';
 
-/** @deprecated Renamed to PracticeVariant. Will be removed in Phase 2. */
-export { type PracticeVariant as ProblemFamily } from './practice/problem-family';
-/** @deprecated Renamed to practiceVariantSchema. Will be removed in Phase 2. */
+/** @deprecated Renamed to practiceVariantSchema. Will be removed in a future version. */
 export { practiceVariantSchema as problemFamilySchema } from './practice/problem-family';
-/** @deprecated Renamed to PracticeVariantInput. Will be removed in Phase 2. */
+/** @deprecated Renamed to PracticeVariantInput. Will be removed in a future version. */
 export { type PracticeVariantInput as ProblemFamilyInput } from './practice/problem-family';
 
 export {

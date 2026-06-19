@@ -21,8 +21,7 @@ export type PracticeVariant = {
 };
 
 const baseVariantSchema = z.object({
-  variantKey: z.string().trim().min(1).optional(),
-  problemFamilyId: z.string().trim().min(1).optional(),
+  variantKey: z.string().trim().min(1),
   componentKey: z.string().trim().min(1),
   displayName: z.string().trim().min(1),
   description: z.string().trim().min(1),
@@ -31,16 +30,6 @@ const baseVariantSchema = z.object({
   metadata: z.record(z.string(), z.unknown()),
 });
 
-export const practiceVariantSchema = baseVariantSchema
-  .refine((d) => d.variantKey != null || d.problemFamilyId != null, {
-    message: 'Either variantKey or problemFamilyId must be provided',
-  })
-  .transform((d) => {
-    const { variantKey, problemFamilyId, ...rest } = d;
-    return {
-      variantKey: (variantKey ?? problemFamilyId)!,
-      ...rest,
-    };
-  });
+export const practiceVariantSchema = baseVariantSchema;
 
 export type PracticeVariantInput = z.input<typeof practiceVariantSchema>;

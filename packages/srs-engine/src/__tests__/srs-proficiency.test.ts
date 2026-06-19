@@ -154,7 +154,7 @@ describe('aggregateCardsToEvidence', () => {
   describe('fluencyConfidence', () => {
     const baselinesWithMedian: TimingBaselines = {
       pf1: {
-        problemFamilyId: 'pf1',
+        variantKey: 'pf1',
         sampleCount: 20,
         medianActiveMs: 30000,
         minSamplesMet: true,
@@ -211,7 +211,7 @@ describe('aggregateCardsToEvidence', () => {
     it('should not rely on timing when baseline minSamplesMet is false', () => {
       const baselinesWithoutMinSamples: TimingBaselines = {
         pf1: {
-          problemFamilyId: 'pf1',
+          variantKey: 'pf1',
           sampleCount: 5,
           medianActiveMs: 30000,
           minSamplesMet: false,

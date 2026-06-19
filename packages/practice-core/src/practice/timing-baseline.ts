@@ -3,7 +3,7 @@ import type { PracticeTimingSummary, PracticeTimingConfidence } from './contract
 /**
  * Practice Timing Baselines
  *
- * Problem family identifiers are intentionally generic (`problemFamilyId: string`).
+ * Variant identifiers are intentionally generic (`variantKey: string`).
  * Callers may use `activityId`, `componentKey`, or a composite identifier such as
  * `${componentKey}:${problemType}` depending on the granularity needed for the
  * course. This keeps the baseline logic course-agnostic and reusable.
@@ -17,7 +17,7 @@ export const TIMING_BASELINE_MIN_SAMPLES = 10;
 
 /**
  * Speed bands are derived from the ratio of a student's active time to the
- * problem-family median active time. Median is preferred over mean because it
+ * variant median active time. Median is preferred over mean because it
  * is robust to outliers (abandoned tabs, interruptions, or students who walk
  * away). Percentiles give additional context about the spread of the
  * distribution without being skewed by extreme values.
@@ -42,12 +42,12 @@ export const SPEED_BAND_THRESHOLDS = {
 export type TimingSpeedBand = 'fast' | 'expected' | 'slow' | 'very_slow';
 
 /**
- * Baseline timing statistics for a problem family.
+ * Baseline timing statistics for a practice variant.
  *
  * @example
  * ```ts
  * const baseline: PracticeTimingBaseline = {
- *   problemFamilyId: 'pf_qr_01',
+ *   variantKey: 'pf_qr_01',
  *   sampleCount: 15,
  *   medianActiveMs: 45000,
  *   p25ActiveMs: 32000,
@@ -59,7 +59,7 @@ export type TimingSpeedBand = 'fast' | 'expected' | 'slow' | 'very_slow';
  * ```
  */
 export type PracticeTimingBaseline = {
-  problemFamilyId: string;
+  variantKey: string;
   sampleCount: number;
   medianActiveMs: number;
   p25ActiveMs?: number;
@@ -101,7 +101,7 @@ export type PracticeTimingFeatures = {
  * @example
  * ```ts
  * const input: ComputeBaselineInput = {
- *   problemFamilyId: 'pf_qr_01',
+ *   variantKey: 'pf_qr_01',
  *   timings: [
  *     { activeMs: 42000, confidence: 'high' },
  *     { activeMs: 48000, confidence: 'medium' },
@@ -111,7 +111,7 @@ export type PracticeTimingFeatures = {
  * ```
  */
 export type ComputeBaselineInput = {
-  problemFamilyId: string;
+  variantKey: string;
   /** Only high/medium confidence submissions should be included. */
   timings: Pick<PracticeTimingSummary, 'activeMs' | 'confidence'>[];
   /** Defaults to TIMING_BASELINE_MIN_SAMPLES. */
@@ -129,14 +129,13 @@ export type ComputeBaselineInput = {
  * @example
  * ```ts
  * const baseline = computeTimingBaseline({
- *   problemFamilyId: 'pf_01',
+ *   variantKey: 'pf_01',
  *   timings: submissionTimings,
  * });
  * // baseline.minSamplesMet tells you whether the baseline is reliable
- * ```
- */
+ * */
 export function computeTimingBaseline(input: ComputeBaselineInput): PracticeTimingBaseline {
-  const { problemFamilyId, timings, minSamples = TIMING_BASELINE_MIN_SAMPLES, computedAt } =
+  const { variantKey, timings, minSamples = TIMING_BASELINE_MIN_SAMPLES, computedAt } =
     input;
 
   const eligible = timings.filter((t) => t.confidence !== 'low');
@@ -147,7 +146,7 @@ export function computeTimingBaseline(input: ComputeBaselineInput): PracticeTimi
   const medianActiveMs = computePercentile(activeMsValues, 0.5);
 
   return {
-    problemFamilyId,
+    variantKey,
     sampleCount,
     medianActiveMs,
     p25ActiveMs: sampleCount > 0 ? computePercentile(activeMsValues, 0.25) : undefined,

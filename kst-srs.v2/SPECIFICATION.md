@@ -462,6 +462,10 @@ Must not bundle domain graphs or generated app outputs.
 
 Proprietary: math graphs, standards mappings, generator bindings, activity maps, curriculum content.
 
+### 12.1 Practice Variant Boundary
+
+Practice variants (`variantKey` / `PracticeVariant`) live below the graph's resolution. The knowledge graph models objectives and skills; variants subdivide an objective into multiple problem types for breadth-of-evidence purposes. A domain that does not subdivide uses `variantKey = objectiveId`. Variant-level data (cards, timing baselines, proficiency evidence) is owned by the SRS layer and never promoted to graph-level entities.
+
 ### 12.9 FSRS Per-Card Limitation
 
 FSRS schedules each variant card independently even though sibling variants under one objective are correlated. The `siblingReinforcement` config flag (§11.4) is defined to allow future reinforcement of sibling card stability when one variant is reviewed; implementation is deferred.
@@ -490,6 +494,16 @@ The misconception-loop domain logic owns a strict purity contract:
 - **Stale state default**: a student with no `student_misconception_state` rows returns an empty active set (the `getStudentActiveMisconceptions` read default). `cleanStreaks` map entries for slugs no longer in `active` are ignored by the resolve pass; the caller is responsible for evicting resolved slugs.
 
 This contract keeps the misconception-loop seam pure-and-deterministic at the package boundary (per §13.1) while routing all persistence through the dedicated Convex handlers (per §13.2).
+
+### 13.4 Practice Variant Contract
+
+The practice-variant layer adheres to the same purity rules as the rest of the pipeline:
+
+- `packages/practice-core` owns the canonical `PracticeVariant` type and `practiceVariantSchema` Zod validator. The schema accepts `variantKey` as the required primary key; the legacy `problemFamilyId` field has been removed.
+- `packages/srs-engine` groups SRS cards by `variantKey` for proficiency aggregation (`aggregateCardsToEvidence`), operates on `PracticeVariantEvidence` entries, and uses `minVariants` (renamed from `minProblemFamilies`) as the breadth threshold in `PROFICIENCY_THRESHOLD_DEFAULTS` and `computeObjectiveProficiency`.
+- `packages/knowledge-space-practice` projections carry no `problemFamily*` identifiers; `variantKey` flows downstream from the practice-core contract through SRS cards.
+- App-layer Convex handlers (`cards.ts`, `processReview.ts`, `submissionSrs.ts`) use `variantKey` / `by_student_and_variant` index names; the `srs_cards` table stores `variantKey` (migrated from `problemFamilyId` per the rename migration).
+- No new node kind was introduced — variants remain a domain decision below graph resolution.
 
 ## 16. Level Projection
 

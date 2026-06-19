@@ -24,7 +24,7 @@ describe('computeTimingBaseline (package)', () => {
 
   it('computes median correctly for odd number of samples', () => {
     const input: ComputeBaselineInput = {
-      problemFamilyId: 'pf_01',
+      variantKey: 'pf_01',
       timings: [
         createTiming(30000, 'high'),
         createTiming(40000, 'high'),
@@ -40,7 +40,7 @@ describe('computeTimingBaseline (package)', () => {
 
   it('computes median correctly for even number of samples (interpolation)', () => {
     const input: ComputeBaselineInput = {
-      problemFamilyId: 'pf_01',
+      variantKey: 'pf_01',
       timings: [
         createTiming(30000, 'high'),
         createTiming(40000, 'high'),
@@ -56,7 +56,7 @@ describe('computeTimingBaseline (package)', () => {
 
   it('filters out low confidence timings', () => {
     const input: ComputeBaselineInput = {
-      problemFamilyId: 'pf_01',
+      variantKey: 'pf_01',
       timings: [
         createTiming(10000, 'low'),
         createTiming(20000, 'low'),
@@ -73,7 +73,7 @@ describe('computeTimingBaseline (package)', () => {
 
   it('sets minSamplesMet false when below threshold', () => {
     const input: ComputeBaselineInput = {
-      problemFamilyId: 'pf_01',
+      variantKey: 'pf_01',
       timings: [createTiming(40000, 'high')],
       minSamples: TIMING_BASELINE_MIN_SAMPLES,
     };
@@ -90,7 +90,7 @@ describe('computeTimingBaseline (package)', () => {
       .map((_, i) => createTiming(40000 + i * 1000, 'high'));
 
     const input: ComputeBaselineInput = {
-      problemFamilyId: 'pf_01',
+      variantKey: 'pf_01',
       timings,
     };
 
@@ -102,7 +102,7 @@ describe('computeTimingBaseline (package)', () => {
 
   it('computes percentile values when sampleCount > 0', () => {
     const input: ComputeBaselineInput = {
-      problemFamilyId: 'pf_01',
+      variantKey: 'pf_01',
       timings: [
         createTiming(20000, 'high'),
         createTiming(30000, 'high'),
@@ -120,7 +120,7 @@ describe('computeTimingBaseline (package)', () => {
 
   it('uses provided computedAt date', () => {
     const input: ComputeBaselineInput = {
-      problemFamilyId: 'pf_01',
+      variantKey: 'pf_01',
       timings: [createTiming(40000, 'high')],
       computedAt: '2026-04-15T12:00:00Z',
     };
@@ -136,7 +136,7 @@ describe('computeTimingBaseline (package)', () => {
       .map((_, i) => createTiming(40000 + i * 1000, 'high'));
 
     const input: ComputeBaselineInput = {
-      problemFamilyId: 'pf_01',
+      variantKey: 'pf_01',
       timings,
     };
 
@@ -161,7 +161,7 @@ describe('deriveTimingFeatures (package)', () => {
     });
 
   const createBaseline = (medianMs = 45000, sampleCount = 15) => ({
-    problemFamilyId: 'pf_01',
+    variantKey: 'pf_01',
     sampleCount,
     medianActiveMs: medianMs,
     p25ActiveMs: medianMs * 0.8,
@@ -290,7 +290,7 @@ describe('computePercentile edge cases (via computeTimingBaseline)', () => {
 
   it('handles single sample', () => {
     const input: ComputeBaselineInput = {
-      problemFamilyId: 'pf_01',
+      variantKey: 'pf_01',
       timings: [createTiming(40000)],
     };
 
@@ -301,7 +301,7 @@ describe('computePercentile edge cases (via computeTimingBaseline)', () => {
 
   it('handles empty timings array', () => {
     const input: ComputeBaselineInput = {
-      problemFamilyId: 'pf_01',
+      variantKey: 'pf_01',
       timings: [],
     };
 
