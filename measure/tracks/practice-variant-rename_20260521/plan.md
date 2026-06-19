@@ -312,3 +312,89 @@ Depends on: Track 1. Sequence after Track 1 to avoid churn collisions.
 > assertions (spec §12.1 / §13) are co-located in a single test file so
 > the Green step can turn all four Red tests Green with a single targeted
 > commit.
+>
+> ---
+>
+> **MID Red refinement (2026-06-19):** The previous MID commit
+> `7b8e3622` shipped a §13 regex with a subtle bug. The lookahead
+> `/^## 1[4-9] |^## [2-9][0-9] /` requires a literal space after the
+> section number, but the spec uses `## 16. Level Projection` (period
+> then space). The regex never matched, so the §13 test failed with
+> "expected null not to be null" — a *spurious* Red proof driven by a
+> broken regex, not the missing content. The fix tightens the lookahead
+> to `/^## 1[4-9]\. |^## [2-9][0-9]\. /` (require the period).
+>
+> After the fix, the test fails for the **right** TDD reason at HEAD —
+> missing `practice variant` / `PracticeVariant` / `variantKey` content
+> in §13. The bug-fix is a Red refinement: it does not change the
+> Red/Green verdict (still 4 failed at HEAD), it makes the failure
+> mode diagnostic. Per the directive "If the new tests pass at HEAD,
+> tighten the contract until at least one new test fails" — the
+> contract was already Red, so no tightening is needed. The refinement
+> is committed separately so the Green step can be measured against a
+> fully-correct Red proof.
+>
+> **Worktree classification (per directive "Classify every dirty path"):**
+>
+> | Path | Status | Action |
+> |------|--------|--------|
+> | `__tests__/governance/no-stale-problem-family.test.ts` (M) | **Related (Red refinement)** | Commit in this Red-phase commit. |
+> | `kst-srs.v2/SPECIFICATION.md` (M) | **Related (Task 1 deliverable, Green work in progress)** | Preserve uncommitted — owner is the P4 Green step (Task 1). |
+> | `packages/practice-core/src/index.ts` (M) | **Related (Task 2/3 deliverable, Green work in progress)** | Preserve uncommitted — owner is the P4 Green step (Task 2). |
+> | `packages/practice-core/src/practice/problem-family.ts` (M) | **Related (Task 2/3 deliverable, Green work in progress)** | Preserve uncommitted. |
+> | `packages/practice-core/src/practice/timing-baseline.ts` (M) | **Related (Task 2/3 deliverable, Green work in progress)** | Preserve uncommitted. |
+> | `packages/practice-core/src/__tests__/timing-baseline.test.ts` (M) | **Related (test file sync, Green work in progress)** | Preserve uncommitted — owner is the P4 Green step. |
+> | `packages/srs-engine/src/__tests__/srs-proficiency.test.ts` (M) | **Related (test file sync, Green work in progress)** | Preserve uncommitted. |
+> | `apps/integrated-math-2/convex/seed/seed_problem_families.ts` (M) | **Unrelated (IM2 seed, not in P4 scope)** | Preserve uncommitted. |
+> | `apps/integrated-math-3/__tests__/convex/seed/practice-blueprint.test.ts` (M) | **Unrelated (IM3 seed test, not in P4 scope)** | Preserve uncommitted. |
+> | `apps/integrated-math-3/__tests__/convex/seed/problem-families-modules-6-9.test.ts` (M) | **Unrelated (IM3 seed test, not in P4 scope)** | Preserve uncommitted. |
+> | `apps/integrated-math-3/__tests__/lib/onboarding/student-flow.test.ts` (M) | **Unrelated (onboarding test, preserved per prior MID handoff)** | Preserve uncommitted. |
+> | `apps/integrated-math-3/__tests__/lib/practice/problem-family.test.ts` (M) | **Unrelated (IM3 lib/practice test, not in P4 scope)** | Preserve uncommitted. |
+> | `apps/integrated-math-3/convex/seed/seed_problem_families.ts` (M) | **Unrelated (IM3 seed source, not in P4 scope)** | Preserve uncommitted. |
+> | `measure/automation-supervisor.py` (M) | **Unrelated (supervisor hardening, preserved per prior MID handoff)** | Preserve uncommitted. |
+> | `packages/math-content/**` (M, ~30 files) | **Unrelated (math-content is OUT OF SCOPE per spec FR1; no-stale-name grep excludes it)** | Preserve uncommitted. |
+> | `graph.db-journal` (??) | **Generated/ignorable (SQLite journal)** | Ignore. Reverted graph.db to HEAD per lessons-learned 2026-06-06 ("do not commit a mutated graph.db"). |
+>
+> **Why source/spec changes are NOT in this Red commit:** The directive
+> says "Do NOT modify existing source code except test files and Measure
+> docs" and "If dirty changes are relevant, fold them into the Red-phase
+> plan/test commit with explicit plan notes." The source changes
+> (practice-core: timing-baseline.ts, problem-family.ts, index.ts) are
+> the *Task 2 deliverable* — they belong to a P4 Green commit, not a Red
+> commit. The spec changes (§12.1, §13.4) are the *Task 1 deliverable* —
+> also a P4 Green commit. Folding either into this Red commit would
+> (a) make the Red tests pass at HEAD, defeating the Red phase, and
+> (b) violate the "test files and Measure docs" carve-out. The
+> worktree is intentionally dirty at the end of this Red session; the
+> Green step's first action is to commit the preserved Green work
+> (source + spec + test file sync) before running the close-out CI gate.
+>
+> **Targeted Red command (re-run 2026-06-19, vitest 4.1.8) with refined
+> test file at HEAD (Green work stashed):**
+> `./node_modules/.bin/vitest run __tests__/governance/no-stale-problem-family.test.ts`
+> → **4 failed, 0 passed** of 4. All four now fail for the **right**
+> TDD reason (not the regex bug):
+>
+> 1. **no-stale-problem-family (live grep)** — Red (14 matches in
+>    practice-core: 1 in `index.ts`, 9 in `timing-baseline.ts`, 4 in
+>    `problem-family.ts`). Zero in `srs-engine` / `knowledge-space-practice`.
+> 2. **`### 12.1` heading** — Red (no match in spec; jumps from
+>    `### Domain/App` to `### 12.9`).
+> 3. **§12.1 references practice variant** — Red (cascading from #2).
+> 4. **§13 references practice variant** — Red (the regex now finds the
+>    end of §13 at `## 16. `, but the matched content has no
+>    `practice variant` / `PracticeVariant` / `variantKey` reference).
+>    The failure is now on the content assertion, not the regex — the
+>    correct Red reason.
+>
+> **Build-graph cross-check:** `build-graph scan ./ ./graph.db` was re-run
+> before the Red refinement commit (graph.db mtime was stale; per
+> test-strategy.md §6, the graph is the structural source of truth).
+> After the scan, `build-graph search problemFamily` returns 11 hits
+> (down from 12 in the previous MID's run, because the
+> `practiceItemSchema.problemFamilyId` field was renamed in the working
+> tree's source). All 11 are out-of-scope (apps/bus-math-v2: 7,
+> apps/integrated-math-3/convex/objectiveProficiency.ts: 1,
+> packages/math-content: 3). Zero in-scope hits — the rename is complete
+> in the Green work, but the spec/grep tests are Red at HEAD because
+> HEAD has not yet seen the Green work.

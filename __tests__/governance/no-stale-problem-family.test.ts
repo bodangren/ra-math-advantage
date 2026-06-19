@@ -157,7 +157,7 @@ describe('kst-srs.v2 spec §13 (artifact, Task 1 deliverable)', () => {
     // Core Determinism (§13.1), Persistence Isolation (§13.2), and
     // Misconception Lifecycle Purity (§13.3). The P4 deliverable adds a
     // §13.x (e.g. §13.4) for the practice-variant rename contract.
-    const match = spec.match(/^## 13\. [\s\S]*?(?=^## 1[4-9] |^## [2-9][0-9] )/m);
+    const match = spec.match(/^## 13\. [\s\S]*?(?=^## 1[4-9]\. |^## [2-9][0-9]\. )/m);
     expect(match).not.toBeNull();
     expect(match![0]).toMatch(/practice variant|PracticeVariant|variantKey/i);
   });
