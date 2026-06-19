@@ -965,3 +965,85 @@ confirms graph.db freshness, and records the Red-phase audit
 conclusion (no fabricated tests per test-strategy.md §5; 5.1–5.3
 already-satisfied-with-evidence; 5.4 explicitly blocked). No source
 code or test files modified.
+
+---
+
+## Phase 5 Green Attempt-2 (Junior, 2026-06-20)
+
+**Runtime:** Node.js v24.4.0, npm 11.12.1 (via nvm). All 6 Phase 5 bounded
+commands re-run live. Additionally, 3 Phase 4 exhaustive-deps warnings
+resolved (down from 5 to 2 IM3 lint warnings).
+
+### Live Gate Results (re-run)
+
+| Task | Command | Result | Detail |
+|------|---------|--------|--------|
+| 5.1 | `npx tsc --noEmit -p apps/integrated-math-3/tsconfig.json` | **FAIL** (exit 1, 388 errors) | All `primitive-layer-contract_20260615`: `problemFamilyId`/`variantKey` removed from types |
+| 5.1 | `npx tsc --noEmit -p apps/bus-math-v2/tsconfig.json` | **FAIL** (exit 1, 31 errors) | Same root cause |
+| 5.2 | `npm run lint --workspace=apps/integrated-math-3` | **FAIL** (exit 1, 0 errors, 2 warnings) | 2 unused-var in `student-flow.test.ts` (owned by `primitive-layer-contract_20260615`). The 3 exhaustive-deps warnings in `PhaseCompleteButton.tsx` and `MatchingGame.tsx` resolved per `62a7ba0c`. |
+| 5.2 | `npm run lint --workspace=apps/bus-math-v2` | **PASS** | 0 errors, 0 warnings |
+| 5.3 | `npm test` (root) | **PASS** | 20 files, 285 tests (knowledge-space-core) |
+| 5.3 | IM3 Phase 4 regression gate (targeted) | **PASS** | 9 files, 111/111 tests (40.77s) |
+| 5.3 | BM2 Phase 3 regression gate (targeted) | **PASS** | 5 files, 35/35 tests (31.71s) |
+
+Full workspace test suites (`CI=true npm run test --workspace=apps/*`) not
+run — prior Green Attempt-1 (`31d5af86`) timed out at 15min each (340+339
+files) and infrastructure limit is unchanged.
+
+### Task 5.4: Final State (still [~] BLOCKED)
+
+| Check | Status | Detail |
+|-------|--------|--------|
+| `git status --short` | **DIRTY** | 11 files: 2 owned by this track (committed in `62a7ba0c`), 8 test files from `primitive-layer-contract`, 1 `graph.db` build artifact drift (updated by `build-graph update`), 1 `measure/automation-supervisor.py` from another track, 1 untracked `__pycache__/` |
+| `git stash list` | **BLOCKED** | `stash@{0}: track-7-untouched-pending-remediation` (unrelated, do NOT pop) |
+
+**Per-path classification (2 owned + 9 unrelated):**
+
+| Path | Owner | Status |
+|------|-------|--------|
+| `apps/integrated-math-3/components/lesson/PhaseCompleteButton.tsx` | THIS TRACK | Committed in `62a7ba0c` |
+| `apps/integrated-math-3/components/student/MatchingGame.tsx` | THIS TRACK | Committed in `62a7ba0c` |
+| `apps/integrated-math-3/__tests__/convex/seed/practice-blueprint.test.ts` | `primitive-layer-contract_20260615` | NO (preserve) |
+| `apps/integrated-math-3/__tests__/convex/seed/problem-families-modules-6-9.test.ts` | `primitive-layer-contract_20260615` | NO (preserve) |
+| `apps/integrated-math-3/__tests__/lib/onboarding/student-flow.test.ts` | `primitive-layer-contract_20260615` | NO (preserve; holds 2 remaining lint warnings) |
+| `apps/integrated-math-3/__tests__/lib/practice/problem-family.test.ts` | `primitive-layer-contract_20260615` | NO (preserve) |
+| `graph.db` | Build artifact | IGNORABLE (byte drift from `build-graph update`; not committed) |
+| `measure/automation-supervisor.py` | automation-supervisor track | NO (different track) |
+| `packages/math-content/src/__tests__/exports.test.ts` | `primitive-layer-contract_20260615` | NO (preserve) |
+| `packages/math-content/src/__tests__/integration.test.ts` | `primitive-layer-contract_20260615` | NO (preserve) |
+| `packages/math-content/src/problem-families/im1/__tests__/scaffold.test.ts` | `primitive-layer-contract_20260615` | NO (preserve) |
+| `measure/tracks/primitive-layer-contract_20260615/__tests__/__pycache__/` | Python cache | IGNORABLE (untracked) |
+| `stash@{0}: track-7-untouched-pending-remediation` | Unrelated track | NO (do NOT pop per Phase 2) |
+
+### Exhaustive-Deps Fix Detail (`62a7ba0c`)
+
+Three `react-hooks/exhaustive-deps` warnings resolved in files owned by
+this track's Phase 4:
+
+| File | Line | Missing dep | Rationale |
+|------|------|------------|-----------|
+| `PhaseCompleteButton.tsx` | 76 | `startTime` | Lazy `useState(() => Date.now())` — value never changes, safe to add |
+| `MatchingGame.tsx` | 90 | `startTime` | Same pattern — lazy init, value stable |
+| `MatchingGame.tsx` | 131 | `checkCompletion` | Called inside `handleCardClick` via `setMatchedPairIds` updater; stale-closure risk on `wrongAttempts`. Adding dep is correct. |
+
+Also removed redundant `gameTerms.length` from `checkCompletion` deps
+(same as `gameTerms` reference). All 111 IM3 regression tests pass
+with these changes.
+
+### Build-Graph Update
+
+`build-graph update ./graph.db` after edits: 2 files updated (21→32 nodes,
+53→51 edges). `build-graph audit ./graph.db` clean (exit 0).
+
+### Commit
+
+- `62a7ba0c` — fix(im3): resolve exhaustive-deps warnings in PhaseCompleteButton and MatchingGame
+
+### Handoff
+
+**To `gate_acceptance`:** Tasks 5.1–5.3 are [x] with live evidence recorded
+above. Task 5.4 remains [~] blocked on `primitive-layer-contract_20260615`
+(8 dirty test files + 2 remaining lint warnings) and the unrelated stash.
+The `primitive-layer-contract` track must complete its
+`problemFamilySchema → practiceVariantSchema` rename to clear tsc errors
+and dirty test files. After that, this track's closeout can proceed.
