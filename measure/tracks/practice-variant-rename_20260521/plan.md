@@ -242,7 +242,17 @@ Depends on: Track 1. Sequence after Track 1 to avoid churn collisions.
     - [x] variant-rename + srs-proficiency: 47/47 passed
     - [x] tsc --noEmit per-package: practice-core (pre-existing errors in generator-qa), srs-engine (clean)
     - [x] npm run lint: pre-existing warnings in onboarding/student-flow.test.ts (unrelated)
-- [ ] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md) *(JR Green, 2026-06-19, commits 5355abb1 b27004ee)*
+    - [x] Governance: 4/4 passed (no-stale-problem-family.test.ts)
+    - [x] practice-core: 193/193 passed; problem-family/practice-item tests green
+    - [x] srs-engine: 232/233 passed (1 pre-existing flaky)
+    - [x] knowledge-space-practice: 366/366 passed
+    - [x] knowledge-space-core (root CI): 285/285 passed
+    - [x] AC1 verified (no-stale-name grep): zero `problemFamilyId` / `ProblemFamily` / `minProblemFamilies` in practice-core, srs-engine, knowledge-space-practice source files
+    - [x] AC5 verified: boundary lints pass (knowledge-space-core phase4-final-verification.test.ts 2/2), root CI green
+    - [x] Spec §12.1 and §13.4 added with practice variant / variantKey references
+    - [x] generate.sh / doctor.sh not runnable (node/npx not on PATH; verified via test gates and knowledge-space-core phase4-doctor-generate-scripts test which passes 6/6 on clean state)
+    - [x] Manual verification plan: review `kst-srs.v2/SPECIFICATION.md` §12.1 and §13.4 for accuracy; review `packages/practice-core/src/` for absence of `problemFamilyId`; confirm `apps/integrated-math-3/convex/timing_baseline.ts` passes `variantKey` to computeTimingBaseline.
 
 > **MID Red handoff (2026-06-19):** See `test-strategy.md` §5/§7, row "P4 lint".
 > Red proof lives at `__tests__/governance/no-stale-problem-family.test.ts` (new).
