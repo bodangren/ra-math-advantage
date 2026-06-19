@@ -52,26 +52,31 @@
   - [x] Refactor effects that call setState during mount to use lazy initialization or `useSyncExternalStore`
   - [x] Files: MatchingPageClient, SpeedRoundPageClient, practice-timing, PhaseCompleteButton, MatchingGame, SpeedRoundGame
   - [x] Fixed: Converted effect-based question generation to `useMemo`; removed `setMounted` pattern; inlined completion logic with ref-stored callbacks; deferred state updates via `queueMicrotask` where needed
+  - [x] Commit: `b8c35cb0`
 
 - [x] Task 4.2: Fix `react-hooks/purity` violations
   - [x] Remove `Date.now()`, `Math.random()` from render paths
   - [x] Files: teacher dashboard, PracticeTestPageClient, ExportPanel, VocabularyHighlight
   - [x] Fixed: All `Date.now()` calls in render replaced with lazy `useState` initializers or ref-in-effect patterns
+  - [x] Commit: `b8c35cb0`
 
 - [x] Task 4.3: Fix `react-hooks/refs` violations
   - [x] Refactor ref access during render to use `useRef` initializers
   - [x] Files: PracticeTestEngine, PhaseCompleteButton
   - [x] Fixed: Refs-during-render eliminated; ref `.current` writes deferred to effects or event handlers
+  - [x] Commit: `b8c35cb0`
 
 - [x] Task 4.4: Fix `react-hooks/static-components` violations
   - [x] Move sub-component definitions outside render functions
   - [x] Files: ActivityRenderer, LessonStepper
   - [x] Fixed: LessonStepper's `StepIcon` extracted to module scope; ActivityRenderer's dynamic component resolved via `React.createElement` to avoid JSX-tag assignment during render
+  - [x] Commit: `b8c35cb0`
 
 - [x] Task 4.5: Re-enable React 19 eslint rules
   - [x] File: `apps/integrated-math-3/eslint.config.mjs`
   - [x] Removed the disabled rules block (lines 28-43 in old config)
   - [x] Verified: `npx eslint . --rule '{"react-hooks/set-state-in-effect":"error","react-hooks/purity":"error","react-hooks/refs":"error","react-hooks/static-components":"error"}'` → 0 errors, 5 pre-existing warnings (exhaustive-deps, unused-vars — NOT Phase 4 scope)
+  - [x] Commit: `b8c35cb0`
   - **Red evidence live-confirmed (Green, commit `b8c35cb0`):** Bounded commands per the attempt-4 table all pass at HEAD. The 18 original violations across 12 files are resolved. Additional violations introduced by partial fixes (refs-during-render in MatchingGame, SpeedRoundGame, ExportPanel; set-state-in-effect in dev/ActivityReviewHarness, dev/review-queue) were also fixed.
 
 **Extended scope fixes (surfaced by full lint after rule re-enable):**
@@ -81,6 +86,7 @@
 - [x] `ExportPanel.tsx:49,52` — `Date.now()` in render + `setEffectiveEndDate` in effect → lazy init + queueMicrotask
 - [x] `ActivityReviewHarness.tsx:256` — `setMounted(true)` in effect → `useState(true)` init
 - [x] `review-queue/index.tsx:66` — `fetchQueue()` in effect → ref-based callback stored in effect, mount-only fetch
+- [x] Commit: `b8c35cb0`
 
 ## Phase 4 Red-Command Reference (Mid attempt 4, 2026-06-19)
 
@@ -441,7 +447,8 @@ closeout `enforce_clean_worktree` happy.
 
 **Commits:**
 - `b8c35cb0` — Main fix: resolve all 18 original + 5 new violations across 16 files (13 IM3 components, 2 dev components, 1 config)
-- `8755b849` — Plan update: record commit SHAs and stash graph.db
+- `8755b849` — Plan update: record Phase 4 completion SHA and stash graph.db
+- `82eb3e76` — Plan update: add Green completion record with verification results
 
 **Verification results:**
 - Lint (4 targeted rules at error level): 0 errors across entire IM3 app
