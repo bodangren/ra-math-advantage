@@ -227,7 +227,88 @@ Depends on: Track 1. Sequence after Track 1 to avoid churn collisions.
 
 ## Phase 4 — Docs & Doctor
 
-- [ ] Task: Update in-repo kst-srs.v2 spec §12.1 / §13 (practice variant; Card definition)
-- [ ] Task: Run measure/generate.sh and measure/doctor.sh; fix architectural lint
-- [ ] Task: Final verification — boundary lints, npm run lint, tsc --noEmit, CI=true npm run test
+- [~] Task: Update in-repo kst-srs.v2 spec §12.1 / §13 (practice variant; Card definition)
+- [~] Task: Run measure/generate.sh and measure/doctor.sh; fix architectural lint
+- [~] Task: Final verification — boundary lints, npm run lint, tsc --noEmit, CI=true npm run test
 - [ ] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md)
+
+> **MID Red handoff (2026-06-19):** See `test-strategy.md` §5/§7, row "P4 lint".
+> Red proof lives at `__tests__/governance/no-stale-problem-family.test.ts` (new).
+> The test file is the single targeted Red deliverable for Phase 4 — it covers
+> all three currently-incomplete P4 tasks:
+>
+> - **Task 1 (spec §12.1 / §13):** two artifact assertion tests assert the
+>   kst-srs.v2 spec has `### 12.1` (currently missing — spec jumps from
+>   `### Domain/App` to `### 12.9`) and that §13 references practice variant
+>   / `variantKey` (currently absent). These are artifact assertions paired
+>   with the live-behavior proof below, per the directive ("Artifact or
+>   markdown assertions are allowed only when the phase deliverable is that
+>   artifact, and they must be paired with a live-behavior proof").
+> - **Task 2 (generate.sh + doctor.sh; fix architectural lint):** the
+>   no-stale-name grep test is the live-behavior proof. It greps the
+>   in-scope packages (`practice-core`, `srs-engine`,
+>   `knowledge-space-practice`) for legacy identifiers, excluding
+>   out-of-scope paths (bus-math-v2, math-content, efficacy-core) and test
+>   files (per spec FR1 scope and lessons-learned 2026-05-03
+>   governance-tests).
+> - **Task 3 (final verification):** the full-repo live gate
+>   `npm run lint && npx tsc --noEmit && CI=true npm run test &&
+>   bash measure/doctor.sh` is intentionally **not** in the Red-phase test
+>   file — the strategy assigns it to the Green close-out (test-strategy.md
+>   §7 row "P4 lint" Green column). The no-stale-name test is the Red
+>   proof for the architectural-lint fix; the broader CI gate is the
+>   Green/closeout proof.
+>
+> **Dirty worktree (preserved, NOT staged in this track's commit):**
+> - `apps/integrated-math-3/__tests__/lib/onboarding/student-flow.test.ts` (M) —
+>   onboarding test, unrelated to this track.
+> - `measure/automation-supervisor.py` (M) — supervisor hardening, unrelated
+>   to this track.
+>
+> **Repo root resolution:** `path.resolve(__dirname, '../..')` per
+> lessons-learned 2026-05-03 (governance-tests): never `process.cwd()`. Test
+> file uses `fileURLToPath(import.meta.url)` for portability under tsx/CJS.
+>
+> **Targeted Red command (run 2026-06-19, vitest 4.1.8):**
+> `./node_modules/.bin/vitest run __tests__/governance/no-stale-problem-family.test.ts`
+> → **4 failed, 0 passed** of 4. All four are legitimate Red failures
+> matching the expected missing behavior:
+>
+> 1. **no-stale-problem-family (live grep)** — **Red (14 matches).** The
+>    grep finds 14 stale `problemFamily*` / `minProblemFamilies`
+>    identifiers across three source files in practice-core:
+>    - `packages/practice-core/src/index.ts:82` —
+>      `export { type PracticeVariant as ProblemFamily } from './practice/problem-family';`
+>    - `packages/practice-core/src/practice/timing-baseline.ts` (9 hits on
+>      lines 6, 50, 62, 104, 114, 132, 139, 150) — JSDoc + type alias +
+>      destructuring for the legacy `problemFamilyId` field.
+>    - `packages/practice-core/src/practice/problem-family.ts` (4 hits on
+>      lines 25, 35, 36, 39, 41) — Zod schema still allows legacy
+>      `problemFamilyId` as an optional field; the `.refine()` accepts
+>      either `variantKey` or `problemFamilyId`; the defaulting
+>      `(variantKey ?? problemFamilyId)!` keeps the legacy name live.
+>    No matches in `srs-engine` or `knowledge-space-practice` — those
+>    packages are rename-clean per P2/P3 Green (commits `ff285065` and
+>    `f5b91fbb`). Test files are correctly excluded by the grep
+>    (`--exclude=*.test.ts` + `--exclude-dir=__tests__`); the P1-P3 Red
+>    test files do not appear in the match list.
+> 2. **kst-srs.v2 spec `### 12.1` heading** — **Red (no match).** The spec
+>    currently has `### \`knowledge-space-core\``, `### \`knowledge-space-practice\``,
+>    `### Domain/App`, then jumps to `### 12.9 FSRS Per-Card Limitation`.
+>    §12.1 through §12.8 are missing.
+> 3. **§12.1 references practice variant** — **Red (no §12.1 to match
+>    against).** Cascading failure from #2.
+> 4. **§13 references practice variant** — **Red (§13 has no
+>    `variantKey` / `PracticeVariant` reference).** §13 currently covers
+>    §13.1 Core Determinism, §13.2 Persistence Isolation, and §13.3
+>    Misconception Lifecycle Purity. None mention `variantKey` or
+>    `PracticeVariant`.
+>
+> **Aggregate Red proof (P4, run 2026-06-19):** 4 fail / 4 total in the
+> targeted test file. Failures concentrate on the P4 phase deliverables
+> (spec §12.1, spec §13, no-stale-name rename closure) — exactly the
+> surface area identified by `test-strategy.md` §5/§7 as the P4 in-scope
+> scope. The live-behavior proof (the grep test) and the artifact
+> assertions (spec §12.1 / §13) are co-located in a single test file so
+> the Green step can turn all four Red tests Green with a single targeted
+> commit.
