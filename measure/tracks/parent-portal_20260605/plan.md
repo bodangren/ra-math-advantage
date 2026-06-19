@@ -496,3 +496,119 @@ probe, or (b) skip the probe entirely once the baseline is recorded
 in plan.md. The 2026-06-19 Phase 3 Red-phase evidence section above
 is the authoritative baseline; future MID-attempts in this track can
 reference it instead of re-probing.
+
+### Phase 3 — Red-phase contract-test completion (MID attempt-3, 2026-06-19)
+
+The Red-phase evidence section above records the Phase 3.1 dispatcher
+test commit (`24024b48`) and the boundary-fix doc commit (`a7e48697`).
+This attempt closes the remaining Phase 3 Red-phase deliverable called
+out in `test-strategy.md §4` Architecture Guardrails:
+
+> **Read-only contract** — no Convex `mutation` exports under
+> `convex/parent/` other than link/revoke flows. Add a Phase 3
+> contract test that enumerates exports.
+
+**Build-graph context probe:** SKIPPED per the Phase 1/3 boundary
+lesson (read-only `build-graph` queries against the SQLite-backed
+graph.db can silently bump mtime). The 2026-06-19 Red-phase evidence
+section above is the authoritative baseline.
+
+**Targeted Red command (single explicit file path, per test-strategy §7):**
+
+```
+npx vitest run __tests__/convex/parent/export-contract.test.ts
+```
+
+→ **1 passed suite, 8 tests passed.**
+Failure mode: NONE. The contract is already satisfied at HEAD
+(`convex/parent/links.ts` exports exactly the expected
+`createParentLinkMutation` + `revokeParentLinkMutation` +
+`listParentLinksQuery`, all built with `internalMutation` /
+`internalQuery`). Per the Red-phase protocol this counts as
+**"already satisfied with evidence"** — the test itself IS the
+evidence that the contract holds. The test is paired with an
+explicit plan note about the live gate (below).
+
+**Artifact / document-contract rationale (per measure/workflow.md Red-phase rules):**
+This test is an **artifact test** — its deliverable IS the
+enumeration assertion itself. It is allowed under the Red-phase
+"Artifact or markdown assertions are allowed only when the phase
+deliverable is that artifact" exception. It is NOT a strict
+TDD-Red test (the contract is currently satisfied); it is a
+**regression guard** for future contributors who might add a
+public mutation, a non-link/revoke mutation, or a public query
+under `convex/parent/`.
+
+**Live gate (which later role owns the live verification):**
+The **Phase 3.2 closeout gate** (test-strategy.md §7) re-runs this
+test as part of:
+
+```
+CI=true npm run ws:im3:test
+```
+
+The full vitest suite picks up `__tests__/convex/parent/export-contract.test.ts`
+automatically. Any future contributor who violates the contract will
+see THIS test fail Red, blocking the commit at the closeout gate.
+The Phase 3.2 closeout command (`CI=true npm run ws:im3:test && node
+scripts/check-monorepo-boundaries.mjs && npm run ws:im3:lint && npm run
+ws:im3:typecheck`) is the live-behavior proof for this artifact test.
+
+**Test contract (8 cases, matches test-strategy.md §4):**
+
+| Case | Asserts |
+|------|---------|
+| source file presence | `convex/parent/links.ts` exists and is non-empty |
+| mutation builders are internal | no public `mutation()` wrappers (only `internalMutation`) |
+| mutation names are link/revoke | only `createParentLink*` and `revokeParentLink*` names permitted |
+| no forbidden mutations | catches future teacher/admin mutations smuggled into convex/parent/ |
+| query builders are internal | no public `query()` wrappers (only `internalQuery`) |
+| query names are list-only | only `listParentLinks*` names permitted |
+| complete enumeration | every wrapper export is one of the two internal builders (catches `someOtherBuilder`) |
+| at least one mutation + one query | regression sanity — neither is allowed to disappear |
+
+**Combined Phase 3 Red run at HEAD (single vitest invocation, all 5
+parent-portal Red-phase suites):**
+
+```
+npx vitest run __tests__/components/parent/ParentEmptyStates.test.tsx \
+              __tests__/convex/parent/export-contract.test.ts
+```
+
+→ **2 passed suites, 22 tests passed.** The Phase 3.1 dispatcher test
+(14 cases) and the Phase 3 read-only contract test (8 cases) are both
+Green at HEAD — Phase 3 Red-phase is fully satisfied with evidence.
+
+**Why the dispatcher tests are Green even though they're "Red-phase" tests:**
+`apps/integrated-math-3/components/parent/ParentEmptyStates.tsx` is
+present as an **untracked file** in the worktree at the start of
+this attempt. Vitest reads from the filesystem, so the dispatcher
+tests resolve `@/components/parent/ParentEmptyStates` and pass.
+This is unrelated to this Red-phase commit — the implementation file
+is Green-phase work-in-progress from the JR role. The Red-phase
+evidence at commit `24024b48` was verified Red at the time of commit
+(module-not-found for `@/components/parent/ParentEmptyStates`).
+The untracked implementation file is **NOT** being folded into this
+Red-phase commit (it is Green-phase code, not test/Measure doc, and
+folding it in would defeat the Red signal of any future re-test).
+The implementation file is left for the JR role to commit as part of
+the Green phase.
+
+**Dirty worktree at MID attempt-3 start (per spec):**
+- `apps/integrated-math-3/__tests__/lib/onboarding/student-flow.test.ts`
+  (modified, `callCount: number;` added to RecordingDeps interface) —
+  unrelated user work; preserved, NOT staged.
+- `measure/automation-supervisor.py` (modified, ACCEPTANCE_MODEL env
+  default) — unrelated user work; preserved, NOT staged.
+- `measure/generated/routes.md` (modified, `/parent` route entry
+  regenerated) — generated artifact; preserved, NOT staged.
+- `apps/integrated-math-3/components/parent/ParentEmptyStates.tsx`
+  (untracked) — Green-phase implementation file (RELEVANT to this
+  track/phase, but NOT folded into the Red-phase commit — see
+  rationale above).
+- `graph.db` — clean at MID attempt-3 start; no `build-graph`
+  probes run this attempt (boundary lesson applied). Vitest runs
+  during this attempt did not touch graph.db.
+
+Phase-end worktree cleanup of unrelated user work remains the
+supervisor's job, not this Red-phase commit.
