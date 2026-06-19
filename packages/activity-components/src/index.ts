@@ -4,9 +4,6 @@
 export type { ActivityComponentProps, ActivityRegistration } from './types/index';
 export { registerActivity, getActivityComponent, getRegisteredActivityKeys, clearActivityRegistry } from './registry/index';
 export { SCHEMA_REGISTRY, getPropsSchema } from './schemas/index';
-
-// Primitive layer contract (T0)
-export type { PrimitiveMode, MathPrimitiveProps } from './primitives/index';
 export type {
   ActivityComponentKey,
   ComprehensionQuizProps,
