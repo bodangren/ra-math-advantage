@@ -340,7 +340,13 @@ Result: 5 passed (5 files); 50 tests passed — no pre-existing suite broke.
 - [x] Task: Run quality gates and Measure doctor [83edfcd]
     - [x] `npx tsc --noEmit` (activity-components) + `CI=true npm run test` (activity-components) all green. `tsc`: only 2 pre-existing katex CSS errors. Tests: 10 files, 84 tests passed. `npm run lint`: N/A (no eslint config for this package — pre-existing).
     - [x] Doctor workflow: `measure/doctor.sh` and `measure/generate.sh` do not exist (pre-existing). Per plan note, quality gates above serve as doctor proxy. Phase 4 artifact test (test_phase4_tracks_registry.py) also confirms FR-6 compliance.
-- [ ] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md) [5121793]
+
+  #### UMV Plan
+  1. **FR-6 T15/T16 reconciliation**: Run `python3 -m pytest -v measure/tracks/primitive-layer-contract_20260615/__tests__/test_phase4_tracks_registry.py`. Expect 4/4 passed: program header present, T0 + A–F registered, T15 entry annotated "Scope folded into Track C (geometry) and Track D (statistics)", T16 entry annotated "Reframed as the seed of Track E".
+  2. **FR-6 registry inspection**: `grep -n "folded into" measure/tracks.md` returns line 157 (T15). `grep -n "seed of Track E" measure/tracks.md` returns line 161 (T16).
+  3. **Quality gates**: `npx tsc --noEmit -p packages/activity-components/tsconfig.json` — only 2 pre-existing katex CSS errors. `CI=true npm run test` in `packages/activity-components` — 10 files, 84 tests pass.
+  4. **Doctor**: `measure/doctor.sh` and `measure/generate.sh` do not exist (pre-existing). Quality gates above serve as proxy; no architectural linting findings.
 
 ### Red command (Phase 4)
 
