@@ -72,7 +72,7 @@
   - [x] File: `apps/integrated-math-3/eslint.config.mjs`
   - [x] Removed the disabled rules block (lines 28-43 in old config)
   - [x] Verified: `npx eslint . --rule '{"react-hooks/set-state-in-effect":"error","react-hooks/purity":"error","react-hooks/refs":"error","react-hooks/static-components":"error"}'` → 0 errors, 5 pre-existing warnings (exhaustive-deps, unused-vars — NOT Phase 4 scope)
-  - **Red evidence live-confirmed (Green, commit `<pending>`):** Bounded commands per the attempt-4 table all pass at HEAD. The 18 original violations across 12 files are resolved. Additional violations introduced by partial fixes (refs-during-render in MatchingGame, SpeedRoundGame, ExportPanel; set-state-in-effect in dev/ActivityReviewHarness, dev/review-queue) were also fixed.
+  - **Red evidence live-confirmed (Green, commit `b8c35cb0`):** Bounded commands per the attempt-4 table all pass at HEAD. The 18 original violations across 12 files are resolved. Additional violations introduced by partial fixes (refs-during-render in MatchingGame, SpeedRoundGame, ExportPanel; set-state-in-effect in dev/ActivityReviewHarness, dev/review-queue) were also fixed.
 
 **Extended scope fixes (surfaced by full lint after rule re-enable):**
 - [x] `MatchingGame.tsx:75` — `setStartTime(Date.now())` in effect → deferred via `queueMicrotask`
