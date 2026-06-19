@@ -398,3 +398,97 @@ Depends on: Track 1. Sequence after Track 1 to avoid churn collisions.
 > packages/math-content: 3). Zero in-scope hits — the rename is complete
 > in the Green work, but the spec/grep tests are Red at HEAD because
 > HEAD has not yet seen the Green work.
+>
+> ---
+>
+> **MID Red worktree cleanup (2026-06-19, attempt 2):** Supervisor
+> flagged the previous attempt as a Red-phase boundary violation
+> because the worktree carried 48 dirty files, including the P4 Green
+> deliverables (kst-srs.v2/SPECIFICATION.md, packages/practice-core/src/
+> {index,problem-family,timing-baseline}.ts) and ~30 unrelated
+> `packages/math-content/**` files plus IM2/IM3 seed files. The
+> supervisor's rule: only test files and Measure docs may be modified
+> at the end of a Red session. The P4 Green deliverables are Task 1/2/3
+> outputs and must not be carried in the Red worktree — they are
+> owner-shifted to the P4 Green step.
+>
+> **Action taken (2026-06-19, attempt 2):**
+>
+> 1. Reverted the 4 P4 Green-deliverable files to HEAD via
+>    `git checkout HEAD -- kst-srs.v2/SPECIFICATION.md
+>    packages/practice-core/src/index.ts
+>    packages/practice-core/src/practice/problem-family.ts
+>    packages/practice-core/src/practice/timing-baseline.ts`.
+>    These are Task 1 (spec §12.1, §13.4) and Task 2 (no-stale-name
+>    rename closure in practice-core) deliverables — not Red work.
+> 2. Kept `__tests__/governance/no-stale-problem-family.test.ts`
+>    (test file, allowed) and `measure/tracks/practice-variant-rename_20260521/plan.md`
+>    (Measure doc, allowed) — both already committed in `0e1dfb3e`.
+> 3. Preserved all unrelated dirty files per the original directive
+>    "Preserve unrelated user work: do not overwrite, revert, or hide
+>    it in this track's commit":
+>    - `packages/math-content/**` (30 files) — out of scope per spec
+>      FR1; the no-stale-name grep explicitly excludes this package
+>      (test-strategy.md §6). The supervisor's list includes these
+>      but they are unrelated user work and cannot be reverted.
+>    - `apps/integrated-math-2/convex/seed/seed_problem_families.ts`
+>    - `apps/integrated-math-3/convex/seed/seed_problem_families.ts`
+>    - `apps/integrated-math-3/__tests__/lib/onboarding/student-flow.test.ts`
+>    - `apps/integrated-math-3/__tests__/lib/practice/problem-family.test.ts`
+>    - `apps/integrated-math-3/__tests__/convex/seed/practice-blueprint.test.ts`
+>    - `apps/integrated-math-3/__tests__/convex/seed/problem-families-modules-6-9.test.ts`
+>    - `measure/automation-supervisor.py` (Measure doc — also
+>      allowed by the supervisor's carve-out).
+> 4. Left `packages/practice-core/src/__tests__/timing-baseline.test.ts`
+>    and `packages/srs-engine/src/__tests__/srs-proficiency.test.ts`
+>    in the worktree (test files, allowed; they will fail in the
+>    worktree because their source counterparts were reverted, but
+>    that is the correct Red-phase shape — the test asserts the
+>    rename that the Green step will deliver).
+>
+> **Worktree after cleanup:** 44 dirty files (down from 48). Of these:
+> - 0 source code files for P4 (all 4 P4 Green-deliverable files
+>   reverted).
+> - 0 spec file modifications for P4 (reverted).
+> - 2 test files for P4 (timing-baseline.test.ts,
+>   srs-proficiency.test.ts) — allowed in worktree.
+> - 1 Measure doc (measure/automation-supervisor.py) — unrelated but
+>   allowed by supervisor carve-out.
+> - 6 unrelated test files (onboarding, problem-family, 2× IM3 seed,
+>   2× math-content) — preserved per directive.
+> - 2 unrelated source files (IM2/IM3 seed) — preserved per directive.
+> - 30 unrelated source files (packages/math-content/**) — preserved
+>   per directive; out of scope per spec FR1.
+> - 2 unrelated test files (math-content) — preserved per directive.
+> - 1 unrelated spec file (kst-srs.v2/SPECIFICATION.md) — REVERTED in
+>   this attempt; the P4 Green step will re-apply §12.1 and §13.4.
+>
+> **Remaining unrelated files (NOT a Red-phase violation but flagged
+> by the supervisor's regex):** The 30 `packages/math-content/**`
+> files plus the IM2/IM3 seed files and onboarding/practice test
+> files are user work in progress for other tracks. They are NOT
+> modified by this Red session and cannot be reverted without losing
+> the user's in-flight work (the original directive explicitly
+> forbids this). If the supervisor requires a fully clean worktree,
+> the right action is a human-input request to the user — this MID
+> session cannot safely resolve the conflict.
+>
+> **Red proof at HEAD (re-run 2026-06-19, vitest 4.1.8) after cleanup:**
+> `./node_modules/.bin/vitest run __tests__/governance/no-stale-problem-family.test.ts`
+> → **4 failed, 0 passed** of 4. All four fail for the **right** TDD
+> reasons (the P4 source/spec are at HEAD, so the in-scope grep finds
+> 14 stale identifiers; the spec has no §12.1 and §13 has no
+> `practice variant` reference):
+>
+> 1. **no-stale-problem-family (live grep)** — Red (14 matches in
+>    practice-core: 1 in `index.ts`, 9 in `timing-baseline.ts`, 4 in
+>    `problem-family.ts`). Zero in `srs-engine` /
+>    `knowledge-space-practice`.
+> 2. **`### 12.1` heading** — Red (no match in spec; jumps from
+>    `### Domain/App` to `### 12.9`).
+> 3. **§12.1 references practice variant** — Red (cascading from #2).
+> 4. **§13 references practice variant** — Red (regex finds end of §13
+>    at `## 16. `; matched content has no `practice variant` /
+>    `PracticeVariant` / `variantKey` reference). Failure is on the
+>    content assertion, not the regex — the correct Red reason after
+>    the `0e1dfb3e` refinement.
