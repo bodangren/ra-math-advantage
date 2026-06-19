@@ -6,11 +6,11 @@ Depends on: Track 1. Sequence after Track 1 to avoid churn collisions.
 
 ## Phase 1 — Contract & Schema
 
-- [~] Task: Rename types and schemas in practice-core  *(MID Red, 2026-06-19)*
-    - [~] ProblemFamily → PracticeVariant; problemFamilyId → variantKey; Zod schemas; problem-family.ts module
-- [~] Task: Define the Convex schema rename and data migration  *(MID Red, 2026-06-19)*
-    - [~] srs_cards.problemFamilyId → variantKey; migration script; migration tests
-- [ ] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md)
+- [x] Task: Rename types and schemas in practice-core  *(JR Green, 2026-06-19, commit 96fd073f)*
+    - [x] ProblemFamily → PracticeVariant; problemFamilyId → variantKey; Zod schemas; problem-family.ts module
+- [x] Task: Define the Convex schema rename and data migration  *(JR Green, 2026-06-19, commit 96fd073f)*
+    - [x] srs_cards.problemFamilyId → variantKey; migration script; migration tests
+- [x] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md)
 
 > **MID Red handoff (2026-06-19):** See `test-strategy.md` §7 (Live-Proof Plan). Red
 > tests live at `packages/practice-core/src/__tests__/practice-item.test.ts` and
