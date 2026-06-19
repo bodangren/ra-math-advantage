@@ -155,9 +155,11 @@ own #2/#6, #3, and #5.
       *Link: [./measure/archive/blueprint-qa-harness_20260510/](./measure/archive/blueprint-qa-harness_20260510/)*
    - [ ] **Track 15: Skill Graph Program — Geometry & Statistics Renderers**
       *Implement specialized React components `stats-distribution-plotter` and `geometry-diagram-explorer` to address component gaps.*
+      *Scope folded into Track C (geometry) and Track D (statistics) — see Practice Primitives & Components Program above.*
       *Link: [./measure/tracks/geometry-stats-renderers_20260510/](./measure/tracks/geometry-stats-renderers_20260510/)*
    - [ ] **Track 16: Skill Graph Program — Trigonometry & Advanced Function Renderers**
       *Implement `trig-unit-circle-visualizer`, `trig-graph-builder`, and `polar-renderer` to address advanced function component gaps.*
+      *Reframed as the seed of Track E — see Practice Primitives & Components Program above.*
       *Link: [./measure/tracks/trig-advanced-renderers_20260510/](./measure/tracks/trig-advanced-renderers_20260510/)*
    - [ ] **Track 17: Skill Graph Program — Core Algebra Generators**
       *Implement deterministic generators for foundational algebra skills (linear equations, inequalities, systems, quadratics).*
