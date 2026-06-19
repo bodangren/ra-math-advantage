@@ -73,10 +73,17 @@ export {
   DIFFICULTY_VALUES,
   type Difficulty,
   difficultySchema,
-  type ProblemFamily,
-  problemFamilySchema,
-  type ProblemFamilyInput,
+  type PracticeVariant,
+  practiceVariantSchema,
+  type PracticeVariantInput,
 } from './practice/problem-family';
+
+/** @deprecated Renamed to PracticeVariant. Will be removed in Phase 2. */
+export { type PracticeVariant as ProblemFamily } from './practice/problem-family';
+/** @deprecated Renamed to practiceVariantSchema. Will be removed in Phase 2. */
+export { practiceVariantSchema as problemFamilySchema } from './practice/problem-family';
+/** @deprecated Renamed to PracticeVariantInput. Will be removed in Phase 2. */
+export { type PracticeVariantInput as ProblemFamilyInput } from './practice/problem-family';
 
 export {
   type PracticeItem,

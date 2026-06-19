@@ -587,7 +587,7 @@ export default defineSchema({
     .index("by_status", ["status"]),
 
   timing_baselines: defineTable({
-    problemFamilyId: v.string(),
+    variantKey: v.string(),
     sampleCount: v.number(),
     medianActiveMs: v.number(),
     p25ActiveMs: v.optional(v.number()),
@@ -596,11 +596,11 @@ export default defineSchema({
     lastComputedAt: v.string(),
     minSamplesMet: v.boolean(),
   })
-    .index("by_problem_family", ["problemFamilyId"])
+    .index("by_variant", ["variantKey"])
     .index("by_last_computed", ["lastComputedAt"]),
 
-  problem_families: defineTable({
-    problemFamilyId: v.string(),
+  practice_variants: defineTable({
+    variantKey: v.string(),
     componentKey: v.string(),
     displayName: v.string(),
     description: v.string(),
@@ -608,18 +608,18 @@ export default defineSchema({
     difficulty: v.string(),
     metadata: v.optional(v.record(v.string(), v.any())),
   })
-    .index("by_problemFamilyId", ["problemFamilyId"])
+    .index("by_variantKey", ["variantKey"])
     .index("by_componentKey", ["componentKey"])
     .index("by_objectiveId", ["objectiveIds"]),
 
   practice_items: defineTable({
     practiceItemId: v.string(),
     activityId: v.id("activities"),
-    problemFamilyId: v.string(),
+    variantKey: v.string(),
     variantLabel: v.string(),
   })
     .index("by_activityId", ["activityId"])
-    .index("by_problemFamilyId", ["problemFamilyId"]),
+    .index("by_variantKey", ["variantKey"]),
 
   objective_policies: defineTable({
     standardId: v.id("competency_standards"),
@@ -633,7 +633,7 @@ export default defineSchema({
   srs_cards: defineTable({
     studentId: v.id("profiles"),
     objectiveId: v.string(),
-    problemFamilyId: v.string(),
+    variantKey: v.string(),
     stability: v.number(),
     difficulty: v.number(),
     state: srsCardStateLiteralValidator,
@@ -650,8 +650,8 @@ export default defineSchema({
     .index("by_student_and_due", ["studentId", "dueDate"])
     .index("by_objective", ["objectiveId"])
     .index("by_student_and_objective", ["studentId", "objectiveId"])
-    .index("by_problem_family", ["problemFamilyId"])
-    .index("by_student_and_problem_family", ["studentId", "problemFamilyId"]),
+    .index("by_variant", ["variantKey"])
+    .index("by_student_and_variant", ["studentId", "variantKey"]),
 
   srs_review_log: defineTable({
     cardId: v.id("srs_cards"),
