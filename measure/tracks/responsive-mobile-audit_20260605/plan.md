@@ -14,17 +14,28 @@ Verification: boundary lints + per-app lint/test + `tsc --noEmit` + viewport che
     contract + 5 shape assertions: existence, "prioritized failures" heading, severity
     tier, 3-breakpoint coverage, 6-route coverage per strategy §2 + §5).
 - [~] Task: Stand up viewport-sized Playwright checks (overflow/clipping) over representative routes (failing on known-bad fixture)
-  - Red proof (live Playwright, MID role):
-    `CI=true npx playwright test --config apps/integrated-math-3/playwright.config.ts --project=viewport e2e/viewport-guard.spec.ts -g "known-bad fixture"`
+  - Red proof (unit test, MID role, vitest):
+    `CI=true npx vitest run --root apps/integrated-math-3 __tests__/responsive/viewport-guard.unit.test.ts`
     → **3 fail, 1 pass** (phone/tablet/desktop overflow assertions FAIL with the
-    expected Red signal — guard correctly detects the deliberate `200vw` overflow;
-    fixture-file existence assertion PASSES, gating downstream failures correctly).
-    Owner of live gate: same command on the closeout commit (Phase 3 CI wiring per
-    strategy §7). Stand-up includes: `viewport` Playwright project
-    (`apps/integrated-math-3/playwright.config.ts`), per-project webServer pointing
-    at `scripts/viewport-fixture-server.mjs`, `public/responsive-audit/__known-bad-fixture.html`
-    static fixture, `e2e/viewport-guard.spec.ts` guard with inline per-test HTTP
-    server fallback for environments without the dev webServer.
+    expected Red signal — the deliberately-bad fixture carries a `200vw`
+    overflow-host that exceeds every breakpoint, so the guard's "no overflow"
+    contract fails; sanity-check test (fixture contains the 200vw sentinel)
+    PASSES so downstream failures are correctly attributable to the guard's
+    missing implementation, not a fixture regression).
+    Owner of live gate: Phase 1 closeout (Green) authors the real
+    `measureViewportOverflow` implementation; Phase 1 closeout then converts
+    the 3 overflow cases to `test.fixme(..., 'owned by P2 [~] activity
+    remediation')` per strategy §8 so the deliberate one-shot Red stays out
+    of the default `test:e2e` / `test:a11y` aggregates. Phase 3 reuses the
+    same `measureViewportOverflow` helper inside the real Playwright spec
+    (a future spec wires the helper against representative IM3 routes —
+    this commit does not add the Playwright config / webServer / fixture
+    HTML / server script because those would violate the Red-phase
+    boundary by modifying non-test/non-Measure files; they belong to the
+    Green/closeout role that authors the guard implementation).
+    Self-contained: the fixture HTML is inlined in the test file as a
+    string literal so the test runs under vitest without any external
+    assets, dev:stack, or Playwright webServer.
 - [ ] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md)
 
 ## Phase 2 — Activity Components & Shell
