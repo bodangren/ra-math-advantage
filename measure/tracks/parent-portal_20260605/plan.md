@@ -374,7 +374,7 @@ the search path).
 
 - [x] Task: Empty/pending states (pre-link, no-activity) — commit fe44ad6d
 - [x] Task: Final verification — boundary lints, lint, tsc --noEmit, CI=true npm run test — commit fe44ad6d
-- [x] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md) — commit (see below)
+- [x] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md) — commit cd5468e8
 
 ### Phase 3 — Red-phase evidence (MID, 2026-06-19)
 
