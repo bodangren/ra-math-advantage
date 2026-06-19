@@ -372,8 +372,8 @@ the search path).
 
 ## Phase 3 — States & Verification
 
-- [~] Task: Empty/pending states (pre-link, no-activity)
-- [~] Task: Final verification — boundary lints, lint, tsc --noEmit, CI=true npm run test
+- [x] Task: Empty/pending states (pre-link, no-activity) — commit fe44ad6d
+- [x] Task: Final verification — boundary lints, lint, tsc --noEmit, CI=true npm run test — commit fe44ad6d
 - [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
 
 ### Phase 3 — Red-phase evidence (MID, 2026-06-19)
@@ -612,3 +612,54 @@ the Green phase.
 
 Phase-end worktree cleanup of unrelated user work remains the
 supervisor's job, not this Red-phase commit.
+
+### Phase 3 — Green-phase evidence (JR, 2026-06-19)
+
+Commit: fe44ad6d
+
+Targeted Red command (now green):
+```
+npx vitest run __tests__/components/parent/ParentEmptyStates.test.tsx
+```
+→ **14/14 PASS**
+
+Combined Phase 3 run:
+```
+npx vitest run __tests__/components/parent/ParentEmptyStates.test.tsx \
+              __tests__/convex/parent/export-contract.test.ts
+```
+→ **22/22 PASS** (14 dispatcher + 8 export-contract)
+
+Closeout gate:
+- `npx vitest run __tests__/components/parent/ __tests__/convex/parent/` → **69/69 PASS** (7 suites)
+- Boundary lint: `node scripts/check-monorepo-boundaries.mjs` → **PASS**
+- `npx tsc --noEmit` (IM3): pre-existing errors only (none from new file)
+- Full suite (`CI=true npm run ws:im3:test`): pre-existing failures in `__tests__/app/globals-css.test.ts`, `__tests__/lib/placement/phase5-checkpoint-artifacts.test.ts`, `__tests__/curriculum/format.test.ts`, `__tests__/setup/convex-provider.test.ts`, `__tests__/curriculum/lesson-title-consistency.test.ts` — none owned by this phase
+
+Implementation file created:
+- `apps/integrated-math-3/components/parent/ParentEmptyStates.tsx` — presentational dispatcher covering four branches (pre-link, pending, no-activity, active) per spec.md FR6 + test-strategy §5
+
+Branch logic:
+1. `links.length === 0` → `data-testid="parent-empty-state-no-links"` (role="status") — explains teacher/school linking
+2. `!hasActiveLink` (no link with `status === 'active'`) → `data-testid="parent-empty-state-pending-link"` (role="status") — mentions pending/confirmation/wait
+3. `hasProjectionNodes === false` (active link, empty projection) → `data-testid="parent-empty-state-no-activity"` (role="status") — mentions no activity/started/getting started
+4. Active branch (active link + projection has nodes) → renders `children`
+5. Default when `hasProjectionNodes` is omitted: treats as active and renders children (regression guard — never silently drops to no-activity)
+
+Privacy boundary:
+- Each empty branch's copy never leaks projection payload fields (test-verified: no "Quadratic basics" in empty-state text)
+- Only one empty-state region per render (branch dispatch regression guard)
+- Each region uses `role="status"` for screen-reader accessibility following existing Phase 2 patterns
+
+Design system:
+- Uses existing `card-workbook`, `text-foreground`, `text-muted-foreground`, `font-display` Tailwind classes (matching ParentDashboard.tsx and existing design tokens)
+- Title uses `text-xl font-semibold`, body uses `text-sm text-muted-foreground` — matches ParentDashboard's typography scale
+- `'use client'` directive — follow existing Phase 2 component patterns
+
+Export contract (pre-existing, regression guard):
+- `__tests__/convex/parent/export-contract.test.ts` → **8/8 PASS** at HEAD
+- No new Convex functions or schema changes in Phase 3
+
+Build-graph update:
+- `build-graph update ./graph.db apps/integrated-math-3/components/parent/ParentEmptyStates.tsx` → +8 nodes, +8 edges
+- `graph.db` committed with implementation (ALLOW_GRAPH_DB=1, per pre-commit hook)
