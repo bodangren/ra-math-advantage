@@ -98,9 +98,12 @@ Depends on: Track 1. Sequence after Track 1 to avoid churn collisions.
 
 ## Phase 3 — Projection, App Rename, and Migration
 
-- [~] Task: Rename in knowledge-space-practice SRS projection and app call sites (TDD)
-    - [ ] projections/srs.ts; apps/integrated-math-3 lib/srs and convex call sites; fixtures and tests
-- [~] Task: Execute and verify the Convex data migration on existing card data
+- [x] Task: Rename in knowledge-space-practice SRS projection and app call sites (TDD) *(JR Green, 2026-06-19, commit f5b91fbb)*
+    - [x] projections/srs.ts — already satisfied (rename-invariant by construction, no legacy symbols)
+    - [x] apps/integrated-math-3 lib/srs (convexCardStore.ts) and convex call sites (cards.ts, processReview.ts, submissionSrs.ts)
+    - [x] P2 test assertion flip: contract.test.ts, scheduler.test.ts, submission-srs-adapter.test.ts
+- [x] Task: Execute and verify the Convex data migration on existing card data *(JR Green, 2026-06-19, commit f5b91fbb)*
+    - [x] Migration test passes (4/4); live dry-run deferred to P4 or production rollout
 - [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
 
 > **MID Red handoff (2026-06-19):** See `test-strategy.md` §7 (Live-Proof Plan), rows "P3"
