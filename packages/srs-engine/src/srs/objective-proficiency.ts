@@ -10,7 +10,7 @@
  * Objectives are interpreted against their priority policy (essential, supporting,
  * extension, triaged) to determine whether evidence is sufficient.
  *
- * This module is course-agnostic and works with generic problemFamilyId strings.
+ * This module is course-agnostic and works with generic variantKey strings.
  * The mapping from problem families to objectives is provided by the caller.
  */
 

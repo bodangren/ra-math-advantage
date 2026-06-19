@@ -94,7 +94,7 @@ Depends on: Track 1. Sequence after Track 1 to avoid churn collisions.
 > missing renamed exports, undefined reads). The strategy's Red-command target
 > is met — the live gate `npm --workspace @math-platform/srs-engine run test`
 > is owned by the Green step.
-- [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
 
 ## Phase 3 — Projection, App Rename, and Migration
 
