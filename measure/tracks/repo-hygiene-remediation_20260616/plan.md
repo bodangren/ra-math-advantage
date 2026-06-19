@@ -94,6 +94,70 @@
   - [ ] Verify lint passes with zero errors
   - **Red evidence (Mid, 2026-06-19):** `eslint.config.mjs` lines 37–42 currently set all four `react-hooks/{set-state-in-effect,purity,refs,static-components}` rules to `"off"` (with a comment cross-referencing `tech-debt.md`). The Phase 4.5 config-edit Red proof is mechanical: temporarily reverting the config and running `npm run lint --workspace=apps/integrated-math-3 --max-warnings 0` would surface every Phase 4.1–4.4 unresolved violation as a hard error. Deferred to Phase 4.5 Green — running it now is destructive (would lock the working tree against any partial commit). The 18 individual violations captured in Tasks 4.1–4.4 are the durable Red record.
 
+## Phase 4 Red-Command Reference (Mid attempt 4, 2026-06-19)
+
+Per-file bounded Red commands and fail counts, summarized from the per-task
+Red evidence above. Each command invokes `npx eslint <file> --rule` with the
+single target rule set to `error`; the `--rule` flag is a real ESLint invocation
+(test-strategy.md §7) — no fake harness, no fall-through to a full suite. Live
+execution requires `node` on PATH (none in this Mid runtime); the inspection-
+based fail counts below are the durable Red record per `456cd292`.
+
+| Rule | File | Lines | Bounded Red command (cwd = repo root) |
+|------|------|-------|---------------------------------------|
+| set-state-in-effect | `apps/integrated-math-3/components/practice-timing.tsx` | 103 | `npx eslint apps/integrated-math-3/components/practice-timing.tsx --rule '{"react-hooks/set-state-in-effect":"error"}'` |
+| set-state-in-effect | `apps/integrated-math-3/components/student/MatchingGame.tsx` | 72, 79 | `npx eslint apps/integrated-math-3/components/student/MatchingGame.tsx --rule '{"react-hooks/set-state-in-effect":"error"}'` |
+| set-state-in-effect | `apps/integrated-math-3/components/student/SpeedRoundGame.tsx` | 93 | `npx eslint apps/integrated-math-3/components/student/SpeedRoundGame.tsx --rule '{"react-hooks/set-state-in-effect":"error"}'` |
+| set-state-in-effect | `apps/integrated-math-3/components/lesson/PhaseCompleteButton.tsx` | 55 | `npx eslint apps/integrated-math-3/components/lesson/PhaseCompleteButton.tsx --rule '{"react-hooks/set-state-in-effect":"error"}'` |
+| set-state-in-effect | `apps/integrated-math-3/app/student/study/matching/MatchingPageClient.tsx` | 51 | `npx eslint apps/integrated-math-3/app/student/study/matching/MatchingPageClient.tsx --rule '{"react-hooks/set-state-in-effect":"error"}'` |
+| set-state-in-effect | `apps/integrated-math-3/app/student/study/speed-round/SpeedRoundPageClient.tsx` | 51 | `npx eslint apps/integrated-math-3/app/student/study/speed-round/SpeedRoundPageClient.tsx --rule '{"react-hooks/set-state-in-effect":"error"}'` |
+| purity | `apps/integrated-math-3/app/teacher/dashboard/page.tsx` | 69 | `npx eslint apps/integrated-math-3/app/teacher/dashboard/page.tsx --rule '{"react-hooks/purity":"error"}'` |
+| purity | `apps/integrated-math-3/components/lesson/PhaseCompleteButton.tsx` | 47 | `npx eslint apps/integrated-math-3/components/lesson/PhaseCompleteButton.tsx --rule '{"react-hooks/purity":"error"}'` |
+| purity | `apps/integrated-math-3/components/student/PracticeTestPageClient.tsx` | 20 | `npx eslint apps/integrated-math-3/components/student/PracticeTestPageClient.tsx --rule '{"react-hooks/purity":"error"}'` |
+| purity | `apps/integrated-math-3/components/student/SpeedRoundGame.tsx` | 177 | `npx eslint apps/integrated-math-3/components/student/SpeedRoundGame.tsx --rule '{"react-hooks/purity":"error"}'` |
+| purity | `apps/integrated-math-3/components/teacher/exports/ExportPanel.tsx` | 49 | `npx eslint apps/integrated-math-3/components/teacher/exports/ExportPanel.tsx --rule '{"react-hooks/purity":"error"}'` |
+| purity | `apps/integrated-math-3/components/textbook/VocabularyHighlight.tsx` | 21 | `npx eslint apps/integrated-math-3/components/textbook/VocabularyHighlight.tsx --rule '{"react-hooks/purity":"error"}'` |
+| refs | `apps/integrated-math-3/components/student/PracticeTestEngine.tsx` | 303, 307, 317 | `npx eslint apps/integrated-math-3/components/student/PracticeTestEngine.tsx --rule '{"react-hooks/refs":"error"}'` |
+| static-components | `apps/integrated-math-3/components/lesson/ActivityRenderer.tsx` | 56, 71 | `npx eslint apps/integrated-math-3/components/lesson/ActivityRenderer.tsx --rule '{"react-hooks/static-components":"error"}'` |
+| static-components | `apps/integrated-math-3/components/lesson/LessonStepper.tsx` | 105, 135 | `npx eslint apps/integrated-math-3/components/lesson/LessonStepper.tsx --rule '{"react-hooks/static-components":"error"}'` |
+
+**Fail-count totals (verified by inspection at HEAD):**
+- set-state-in-effect: 7 violations across 6 files
+- purity: 6 violations across 6 files
+- refs: 3 violations in 1 file
+- static-components: 2 violations across 2 files
+- **Grand total: 18 violations across 12 files** (PhaseCompleteButton appears under
+  both set-state-in-effect and purity; SpeedRoundGame appears under both
+  set-state-in-effect and purity).
+
+**Live-execution deferral:** The Mid runtime at attempt-4 has no `node` /
+`npm` / `npx` on PATH and no `apps/integrated-math-3/node_modules/.bin/eslint`
+binary. Inspection-based evidence is the durable Red record per `456cd292`;
+the Green-phase Junior role owns the live re-confirmation under the bounded
+commands above (each command is single-file + single-rule, so execution
+completes in <2 s and cannot fall through to a full-suite smoke).
+
+**Regression-gate baseline at HEAD** (test-strategy.md §5; component tests
+are the regression gate for the Phase 4 refactor; lint rule = contract test):
+
+| Affected component | vitest file | Test count |
+|--------------------|-------------|------------|
+| practice-timing | `apps/integrated-math-3/__tests__/components/practice-timing.test.tsx` | 11 |
+| MatchingGame | `apps/integrated-math-3/__tests__/components/student/MatchingGame.test.tsx` | 7 |
+| SpeedRoundGame | `apps/integrated-math-3/__tests__/components/student/SpeedRoundGame.test.tsx` | 10 |
+| PhaseCompleteButton | `apps/integrated-math-3/__tests__/components/lesson/PhaseCompleteButton.test.tsx` | 20 |
+| VocabularyHighlight | `apps/integrated-math-3/__tests__/components/textbook/VocabularyHighlight.test.tsx` | 22 |
+| ExportPanel | `apps/integrated-math-3/__tests__/components/teacher/exports/ExportPanel.test.tsx` | 10 |
+| PracticeTestEngine | `apps/integrated-math-3/__tests__/components/student/PracticeTestEngine.test.tsx` | 12 |
+| ActivityRenderer | `apps/integrated-math-3/__tests__/components/lesson/ActivityRenderer.test.tsx` | 9 |
+| LessonStepper | `apps/integrated-math-3/__tests__/components/lesson/LessonStepper.test.tsx` | 8 |
+| **Total** | | **109** |
+
+Build-graph (`build-graph search` at attempt-4) confirms each IM3 component
+exists at the cited path and that `ActivityRenderer.tsx` has three package
+copies (packages/activity-components, IM3, BM2) — Phase 4.4 scopes IM3 only,
+matching test-strategy.md §6.
+
 ## Phase 5: Verification
 
 - [ ] Task 5.1: Run TypeScript compilation
