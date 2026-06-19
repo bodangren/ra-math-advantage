@@ -281,8 +281,98 @@ turned into a `PracticeSubmissionEnvelope`. The contract is:
 - A practice component may compose multiple primitives and combine their
   values into a single envelope.
 
-This separation is what keeps primitives reusable across practice
-components and across skill-graph blueprint renderers.
+### Reference example: `CoordinatePlane` (P1)
+
+`CoordinatePlane` is the first primitive promoted by T0 (see FR-4). A
+practice component (e.g. a future `plot-the-points` activity) wraps it
+and is responsible for everything envelope-shaped; the primitive itself
+only renders the controlled value and reports edits.
+
+**What the practice component owns**
+
+- The `mode` it passes to the primitive (the activity's
+  `worked_example` / `guided_practice` / `independent_practice` maps to
+  one of `PrimitiveMode`).
+- The activity's expected points and the grading rules.
+- Building the `PracticeSubmissionEnvelope` on submit.
+
+**What `CoordinatePlane` owns**
+
+- Rendering `value.points`.
+- Calling `onChange` with `{ points: [...next] }` when the student adds
+  or removes a point.
+- Honoring `mode !== 'interactive' || disabled` by not calling `onChange`
+  in those states.
+
+**Shape of the wiring** (prose — the `CoordinatePlane` component itself
+ships in Phase 3, not Phase 1):
+
+```tsx
+import { useState } from 'react';
+import {
+  CoordinatePlane,
+  type CoordinatePlaneValue,
+} from '@math-platform/activity-components';
+import type { PracticeSubmissionEnvelope } from 'lib/practice/contract';
+
+interface PlotThePointsProps {
+  activityId: string;
+  expected: CoordinatePlaneValue['points'];
+}
+
+export function PlotThePoints({ activityId, expected }: PlotThePointsProps) {
+  // Primitive is controlled — the practice component is the source of truth.
+  const [value, setValue] = useState<CoordinatePlaneValue>({ points: [] });
+
+  function handleSubmit() {
+    // Practice component maps the primitive value into the envelope.
+    // Correctness is computed here, never by the primitive.
+    const isCorrect =
+      value.points.length === expected.length &&
+      expected.every((exp) =>
+        value.points.some(
+          (got) => Math.abs(got.x - exp.x) < 0.01 && Math.abs(got.y - exp.y) < 0.01,
+        ),
+      );
+
+    const envelope: PracticeSubmissionEnvelope = {
+      contractVersion: 'practice.v1',
+      activityId,
+      mode: 'independent_practice',
+      status: 'submitted',
+      attemptNumber: 1,
+      submittedAt: new Date().toISOString(),
+      answers: { plot: value.points },
+      parts: [
+        {
+          partId: 'plot',
+          rawAnswer: value.points,
+          isCorrect,
+          score: isCorrect ? 1 : 0,
+          maxScore: 1,
+        },
+      ],
+    };
+
+    onSubmit(envelope);
+  }
+
+  return (
+    <CoordinatePlane
+      value={value}
+      onChange={setValue}
+      mode="interactive"
+    />
+  );
+}
+```
+
+This example is **illustrative prose**. It will compile against the
+Phase 3 `CoordinatePlane` (FR-4) and the existing
+`PracticeSubmissionEnvelope` shape; it is not executed in Phase 1 — the
+live-behavior proof lives in the Phase 2 contract test for
+`CoordinatePlane` (see
+[`test-strategy.md` §5](./test-strategy.md#5-per-phase-test-approach)).
 
 ---
 
