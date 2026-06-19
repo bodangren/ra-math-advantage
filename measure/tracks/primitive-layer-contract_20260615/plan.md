@@ -9,6 +9,22 @@ References for the implementer:
 - Existing canvas to wrap (do not modify): `packages/activity-components/src/components/graphing/GraphingCanvas.tsx`.
 - Package root barrel to extend: `packages/activity-components/src/index.ts`.
 
+> **MID-attempt-3 status: BLOCKED on a supervisor gate defect.**
+> After 3 bounded attempts (attempt 1, attempt 2, attempt 3), Mid cannot satisfy
+> `gate_mid` because the gate's `non_test_source_changes_since` unions
+> `git diff --name-only {pre_head}..HEAD` + **uncommitted worktree changes** +
+> staged. The 8 `apps/integrated-math-3/` files dirty at MID start
+> (Track 7 `problemFamilyId→variantKey` rename, owned by
+> `practice-variant-rename_20260521`) are flagged as "Mid role changed
+> non-test/non-Measure files". Mid has no authority to commit or stash
+> another track's work (scope tradeoff). See
+> `measure/tech-debt.md` "gate_mid conflates pre-existing dirty work" entry
+> for full diagnosis. **Resolution requires a remediation track to fix the
+> gate logic** — not a Mid-role fix. Valid Phase 1 Red work is preserved
+> in commits `b54903f5` and `7fe59d4e` (Measure doc commits). Task 1 source
+> code impl was reverted in `29aed40d` and is owned by the Green role
+> (or by the remediation track that follows).
+
 ## Phase 1 — Contract & Schema Definition
 
 - [~] Task: Define the primitive contract types
