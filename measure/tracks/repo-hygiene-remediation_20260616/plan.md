@@ -6,7 +6,7 @@
   - [x] Stage `packages/math-content/src/knowledge-space/extraction/parser.ts` and its test
   - [x] Stage all 93 curriculum files (class-period-packages, activity-map, audit, class-period plans, aleks, lesson submodules)
   - [x] Stage `measure/skill-graph-inventory-audit.md` and `measure/tracks.md`
-  - [x] Commit: `fix(parser): split semicolon-separated titles 1:1 with example numbers + regenerate curriculum`
+  - [x] Commit: `fix(parser): split semicolon-separated titles 1:1 with example numbers + regenerate curriculum` (292deda5)
   - [x] Verify `git status --short` returns empty (or only new track files)
 
 ## Phase 2: Resolve Remaining Stashes
