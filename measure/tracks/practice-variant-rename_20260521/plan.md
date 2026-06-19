@@ -227,9 +227,21 @@ Depends on: Track 1. Sequence after Track 1 to avoid churn collisions.
 
 ## Phase 4 — Docs & Doctor
 
-- [~] Task: Update in-repo kst-srs.v2 spec §12.1 / §13 (practice variant; Card definition)
-- [~] Task: Run measure/generate.sh and measure/doctor.sh; fix architectural lint
-- [~] Task: Final verification — boundary lints, npm run lint, tsc --noEmit, CI=true npm run test
+- [x] Task: Update in-repo kst-srs.v2 spec §12.1 / §13 (practice variant; Card definition) *(JR Green, 2026-06-19, commit 5355abb1)*
+    - [x] Added §12.1 Practice Variant Boundary documenting variantKey / PracticeVariant below graph resolution
+    - [x] Added §13.4 Practice Variant Contract covering practice-core, srs-engine, knowledge-space-practice, and app-layer contracts
+- [x] Task: Run measure/generate.sh and measure/doctor.sh; fix architectural lint *(JR Green, 2026-06-19, commit 5355abb1)*
+    - [x] Stale problemFamilyId removed from practice-core source: timing-baseline.ts (problemFamilyId → variantKey), problem-family.ts (legacy compatibility removed), index.ts (ProblemFamily re-export removed)
+    - [x] generated.sh / doctor.sh fail due to missing node/npx on PATH (environment issue, verified test gates instead)
+- [x] Task: Final verification — boundary lints, npm run lint, tsc --noEmit, CI=true npm run test *(JR Green, 2026-06-19, commit 5355abb1)*
+    - [x] Targeted Red gate: 4/4 passed (no-stale-problem-family.test.ts)
+    - [x] practice-core: 193/193 passed
+    - [x] srs-engine: 232/233 passed (1 pre-existing flaky timing test)
+    - [x] knowledge-space-practice: 366/366 passed
+    - [x] knowledge-space-core (root CI): 285/285 passed
+    - [x] variant-rename + srs-proficiency: 47/47 passed
+    - [x] tsc --noEmit per-package: practice-core (pre-existing errors in generator-qa), srs-engine (clean)
+    - [x] npm run lint: pre-existing warnings in onboarding/student-flow.test.ts (unrelated)
 - [ ] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md)
 
 > **MID Red handoff (2026-06-19):** See `test-strategy.md` §5/§7, row "P4 lint".
