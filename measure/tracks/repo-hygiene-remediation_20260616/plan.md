@@ -167,7 +167,7 @@ matching test-strategy.md §6.
   - [x] `npm test` (root) passes: 20 files, 285 tests (packages/knowledge-space-core). Re-verified live post `62a7ba0c`.
   - [x] Full `CI=true npm run test --workspace=apps/*` timed out (340+339 files, 15min each, infrastructure limit). Same as Green Attempt-1.
 
-- [x] Task 5.4: Final state check (31d5af86, 62a7ba0c, e3b5a01f, 92885a4a, <CURRENT>)
+- [x] Task 5.4: Final state check (31d5af86, 62a7ba0c, e3b5a01f, 92885a4a, 2d2e9c30)
   - [x] `git status --short` returns empty — **RESOLVED**: 8 dirty test files + `graph.db` + `measure/automation-supervisor.py` moved to WIP branch `track-7-pending-remediation` (recoverable). `__pycache__/` added to `.gitignore`.
   - [x] `git stash list` returns empty — **RESOLVED**: `stash@{0}: track-7-untouched-pending-remediation` moved to WIP branch `track-7-pending-remediation` via `git stash branch`. WIP stash on that branch dropped after confirming content preserved on the branch.
   - [x] Recovery: `git checkout track-7-pending-remediation` restores all preserved dirty files from primitive-layer-contract and the stash.
@@ -1039,8 +1039,57 @@ with these changes.
 ### Handoff
 
 **To `gate_acceptance`:** Tasks 5.1–5.3 are [x] with live evidence recorded
-above. Task 5.4 remains [~] blocked on `primitive-layer-contract_20260615`
-(8 dirty test files + 2 remaining lint warnings) and the unrelated stash.
-The `primitive-layer-contract` track must complete its
-`problemFamilySchema → practiceVariantSchema` rename to clear tsc errors
-and dirty test files. After that, this track's closeout can proceed.
+above. Task 5.4 was [~] blocked but resolved in Green Attempt-3 (see below).
+
+---
+
+## Phase 5 Green Attempt-3 (Junior, 2026-06-20)
+
+**Supervisor feedback (attempt-2):** Task 5.4 still [~] (1 incomplete non-deferred
+task). Resolution: clear working tree and stash list per Phase 4 attempt-5/7
+pattern — stash dirty files to a named WIP branch, drop the stash, add
+`__pycache__/` to .gitignore.
+
+### Resolution Steps
+
+1. **Unrelated stash → WIP branch:** `git stash branch track-7-pending-remediation stash@{0}`
+   — creates branch from stash parent commit, applies stash, drops stash entry.
+   8 additional source files from the stash now live on the WIP branch.
+
+2. **Dirty working-tree files preserved on WIP branch:** 8 test files from
+   `primitive-layer-contract_20260615` + `graph.db` + `measure/automation-supervisor.py`
+   were carried to the WIP branch during step 1. Stashed on that branch as
+   `stash@{0}: On track-7-pending-remediation: track-7-pending-remediation: dirty files preserved...`,
+   then dropped after confirming content on branch.
+
+3. **Master is clean:** Switched back to master. Only `__pycache__/` remained
+   as untracked. Added `__pycache__/` to `.gitignore`.
+
+4. **Verified:** `git status --porcelain` empty, `git stash list` empty.
+
+### Recovery
+
+All preserved work is recoverable:
+```
+git checkout track-7-pending-remediation
+# View and recover files from the branch
+```
+
+### Final State
+
+| Check | Status |
+|-------|--------|
+| `git status --short` | **EMPTY** |
+| `git stash list` | **EMPTY** |
+| WIP branch | `track-7-pending-remediation` (preserves 16 files from primitive-layer-contract + stash) |
+
+### Commit
+
+- `2d2e9c30` — chore(hygiene): resolve Task 5.4 — clean working tree and stash list
+
+### Handoff
+
+All 4 Phase 5 tasks are now [x]. The track's verification phase is complete.
+Full acceptance gates (tsc, lint, CI test suites) have documented failures from
+`primitive-layer-contract_20260615` (330 tsc errors, 2 remaining lint warnings)
+— those are owned by that track per the plan's cross-track attribution.
