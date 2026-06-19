@@ -46,10 +46,10 @@ Depends on: Track 1. Sequence after Track 1 to avoid churn collisions.
 
 ## Phase 2 — Engine Rename
 
-- [~] Task: Rename across srs-engine (TDD — keep tests green) *(MID Red in progress, 2026-06-19)*
-    - [ ] scheduler, contract, objective-proficiency, srs-proficiency; variantKey threading
-    - [ ] minProblemFamilies → minVariants; ProblemFamilyEvidence → PracticeVariantEvidence
-    - [ ] Single-variant default (variantKey = objectiveId)
+- [x] Task: Rename across srs-engine (TDD — keep tests green) *(JR Green, 2026-06-19, commit ff285065)*
+    - [x] scheduler, contract, objective-proficiency, srs-proficiency; variantKey threading
+    - [x] minProblemFamilies → minVariants; ProblemFamilyEvidence → PracticeVariantEvidence
+    - [x] Single-variant default (variantKey = objectiveId)
 
 > **MID Red handoff (2026-06-19):** See `test-strategy.md` §7 (Live-Proof Plan), row "P2".
 > Red proof lives at `packages/srs-engine/src/__tests__/variant-rename.test.ts` (new).
