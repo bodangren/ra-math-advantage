@@ -25,19 +25,22 @@ Verification: boundary lints + per-app lint/test + `tsc --noEmit` + viewport che
     (vitest v4.1.8 lacks `test.fixme`; `test.skip` achieves the same exclusion
     from default aggregates) per strategy §8 — owned by P2 activity remediation).
     Green commit: `c098089b`.
-  - Red sub-proof (artifact contract — Playwright infra stand-up, MID role, vitest):
+  - [x] Red sub-proof (artifact contract — Playwright infra stand-up, MID role, vitest):
     `CI=true npx vitest run --root apps/integrated-math-3 __tests__/responsive/viewport-playwright-infra.contract.test.ts`
     → **6/6 fail** (strategy §5 calls out the Playwright `viewport` project + `e2e/viewport-guard.spec.ts`
     as Phase 1 deliverables — the unit-test stub is necessary but not sufficient for the §7
     bounded command `--project=viewport e2e/viewport-guard.spec.ts -g "known-bad fixture"`
     to resolve). Folds dirty SHA typo correction (`618eb762` → `c098089b` for Task 1 Green).
-    Sub-Red commit: this attempt's commit. Green closeout (Phase 1 Green role, future):
+    Sub-Red commit: `6d842315` (this attempt). Green closeout (Phase 1 Green — Jr role):
     `CI=true npx vitest run --root apps/integrated-math-3 __tests__/responsive/viewport-playwright-infra.contract.test.ts`
-    → **6/6 pass** once Phase 1 Green authors `e2e/viewport-guard.spec.ts` (with `test.fixme` for the
-    known-bad case per strategy §8) and adds the `viewport` project to `playwright.config.ts`.
+    → **6/6 pass** — authored `e2e/viewport-guard.spec.ts` (3 viewport breakpoints, `test.fixme`
+    for known-bad fixture with "owned by P2" annotation per strategy §8) +
+    added `viewport` project to `playwright.config.ts` (separate from `chromium`,
+    uses `devices['Desktop Chrome']` preset per strategy §4).
+    Green commit: `6d842315`.
 - [~] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md)
-  - In progress: supporting Playwright infra Red proof committed above; user manual sign-off
-    proceeds once Phase 1 Green closes the artifact contract at 6/6 pass.
+  - Pending: Phase 1 sub-proof artifact contract closed at 6/6 pass; user manual sign-off
+    outstanding.
 
 ## Phase 2 — Activity Components & Shell
 
