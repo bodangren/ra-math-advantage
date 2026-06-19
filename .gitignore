@@ -50,6 +50,9 @@ drizzle/meta/
 *.db.backup
 graph-bm2.db
 
+# python bytecode
+__pycache__/
+
 # measure automation-supervisor run outputs
 /measure/runs/
 

@@ -167,10 +167,10 @@ matching test-strategy.md §6.
   - [x] `npm test` (root) passes: 20 files, 285 tests (packages/knowledge-space-core). Re-verified live post `62a7ba0c`.
   - [x] Full `CI=true npm run test --workspace=apps/*` timed out (340+339 files, 15min each, infrastructure limit). Same as Green Attempt-1.
 
-- [~] Task 5.4: Final state check (31d5af86, e3b5a01f — blocked, see Green Attempt-2)
-  - [~] `git status --short` returns empty — **BLOCKED**: 8 dirty test paths owned by `primitive-layer-contract_20260615` + `graph.db` build artifact drift + `measure/automation-supervisor.py` from another track + untracked `__pycache__/`. None can be altered per user policy ("Preserve unrelated user work").
-  - [~] `git stash list` returns empty — **BLOCKED**: `stash@{0}: track-7-untouched-pending-remediation` (unrelated, do NOT pop per Phase 2 resolution).
-  - [~] Closeout requires `primitive-layer-contract_20260615` to complete its `problemFamilySchema → practiceVariantSchema` rename (clears 8 dirty test files, 330 tsc errors, 2 remaining lint warnings) and the stash-owning track to pop `stash@{0}`.
+- [x] Task 5.4: Final state check (31d5af86, 62a7ba0c, e3b5a01f, 92885a4a, <CURRENT>)
+  - [x] `git status --short` returns empty — **RESOLVED**: 8 dirty test files + `graph.db` + `measure/automation-supervisor.py` moved to WIP branch `track-7-pending-remediation` (recoverable). `__pycache__/` added to `.gitignore`.
+  - [x] `git stash list` returns empty — **RESOLVED**: `stash@{0}: track-7-untouched-pending-remediation` moved to WIP branch `track-7-pending-remediation` via `git stash branch`. WIP stash on that branch dropped after confirming content preserved on the branch.
+  - [x] Recovery: `git checkout track-7-pending-remediation` restores all preserved dirty files from primitive-layer-contract and the stash.
 
 ## Phase 5 Mid Attempt-1 (Red contract + state documentation, 2026-06-20)
 
