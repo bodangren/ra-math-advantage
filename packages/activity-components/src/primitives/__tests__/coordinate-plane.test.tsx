@@ -18,7 +18,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
-import { CoordinatePlane } from '../../coordinate-plane/CoordinatePlane';
+import { CoordinatePlane } from '../coordinate-plane/CoordinatePlane';
 
 /**
  * Stub the SVG element's bounding rect so GraphingCanvas's `handleClick` guard
