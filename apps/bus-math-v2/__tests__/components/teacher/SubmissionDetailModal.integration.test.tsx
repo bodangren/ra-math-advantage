@@ -2,7 +2,11 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, waitFor, within } from '@testing-library/react';
 import { SubmissionDetailModal, type SelectedCell } from '@/components/teacher/SubmissionDetailModal';
 
-const mockFetchInternalQuery = vi.fn();
+const { mockFetchInternalQuery } = vi.hoisted(() => {
+  const fn = vi.fn();
+  return { mockFetchInternalQuery: fn };
+});
+
 vi.mock('@/lib/convex/server', () => ({
   fetchInternalQuery: mockFetchInternalQuery,
   internal: {

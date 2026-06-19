@@ -13,6 +13,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import type { Id } from '@/convex/_generated/dataModel';
+import { fetchInternalQuery, internal } from '@/lib/convex/server';
 import {
   PhaseDetail,
   PhaseStatus,
@@ -698,7 +699,6 @@ export function SubmissionDetailModal({
     setError(null);
 
     try {
-      const { fetchInternalQuery, internal } = await import('@/lib/convex/server');
       const result = await fetchInternalQuery(
         internal.teacher.getTeacherLessonMonitoringData,
         {
@@ -789,7 +789,7 @@ export function SubmissionDetailModal({
 
   if (loading) {
     return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm">
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm" role="dialog" aria-modal="true">
         <Loader2 className="size-8 animate-spin text-muted-foreground" />
       </div>
     );

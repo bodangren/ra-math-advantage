@@ -21,6 +21,7 @@ interface UserMenuProps {
 export function UserMenu({
   logoutRedirectTo = '/',
   settingsHref = '/settings',
+  dashboardHref: dashboardHrefProp,
 }: UserMenuProps) {
   const { user, profile, signOut, loading } = useAuth();
   const router = useRouter();
@@ -46,6 +47,9 @@ export function UserMenu({
       </div>
     );
   }
+
+  const dashboardHref = dashboardHrefProp
+    ?? (profile?.role === 'student' ? '/student/dashboard' : '/teacher/dashboard');
 
   const displayName = profile?.display_name || user.email || 'User';
   const email = user.email;
@@ -73,6 +77,13 @@ export function UserMenu({
             <p className="text-sm font-medium">{displayName}</p>
             <p className="text-xs text-muted-foreground">{email}</p>
           </div>
+          <div className="h-px bg-border my-1" />
+          <Link
+            href={dashboardHref}
+            className="flex items-center rounded-sm px-2 py-1.5 text-sm hover:bg-accent"
+          >
+            Dashboard
+          </Link>
           <div className="h-px bg-border my-1" />
           <Link
             href={settingsHref}

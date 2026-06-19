@@ -1,7 +1,11 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach, beforeAll } from 'vitest';
 import { render, screen, fireEvent, waitFor, within } from '@testing-library/react';
 
-const mockFetchInternalQuery = vi.fn();
+const { mockFetchInternalQuery } = vi.hoisted(() => {
+  const fn = vi.fn();
+  return { mockFetchInternalQuery: fn };
+});
+
 vi.mock('@/lib/convex/server', () => ({
   fetchInternalQuery: mockFetchInternalQuery,
   internal: {
@@ -12,6 +16,10 @@ vi.mock('@/lib/convex/server', () => ({
 }));
 
 describe('Gradebook Drill-Down Integration', () => {
+  beforeAll(async () => {
+    await import('@/components/teacher/GradebookGrid');
+  });
+
   beforeEach(() => {
     vi.clearAllMocks();
   });
