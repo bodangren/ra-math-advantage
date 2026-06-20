@@ -85,7 +85,7 @@ Verification: boundary lints + per-app lint/test + `tsc --noEmit` + viewport che
        background-color: rgb(255, 255, 255);` with empty className; no
        `touch-action` declaration anywhere (touch scrolling interferes with
        point placement, audit #11).
-  - Sub-Red commit: <pending MID sha> (`hit-target.test.tsx` + plan.md update).
+  - Sub-Red commit: `76fc830e` (`hit-target.test.tsx` + plan.md update).
 - [~] Task: Remediate app shell, lesson navigation, dialogs for small viewports
   - Red sub-proof (component contract — shell hit-target + Dialog width, MID role, vitest):
     `CI=true npm run test --workspace=apps/integrated-math-3 -- __tests__/components/lesson/shell-responsive.test.tsx -t "min hit target"`
@@ -107,7 +107,7 @@ Verification: boundary lints + per-app lint/test + `tsc --noEmit` + viewport che
        overflows on 390px phone, audit #14 generalised). Stubbed
        `HTMLDialogElement.showModal`/`close` in jsdom so the useEffect
        mount doesn't crash the test before the className probe runs.
-  - Sub-Red commit: <pending MID sha> (`shell-responsive.test.tsx` + plan.md update).
+  - Sub-Red commit: `fca84fe2` (`shell-responsive.test.tsx` + plan.md update).
 - [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
 
 ## Phase 3 — Teacher Views & Verification
