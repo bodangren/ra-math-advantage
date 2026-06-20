@@ -58,29 +58,90 @@
 
 ## Phase 3: Add FR-5 Type Annotations
 
-- [ ] Task 3.1: Add `{type}` to all `@param` tags in Phase 4 (IM3 `convex/`)
+- [~] Task 3.1: Add `{type}` to all `@param` tags in Phase 4 (IM3 `convex/`) [red: <this-commit>]
   - [ ] 113 `@param` tags in `apps/integrated-math-3/convex/`
   - [ ] Use TypeScript signature types, e.g., `{QueryCtx}`, `{MutationCtx}`, `{string}`, `{number}`
+  - Live count (per `check-jsdoc-typed-params.sh` Red baseline): 228 `@param` in 27 files (live count supersedes the 113 plan estimate; see phase-3-red-baseline.md "Plan-vs-live scope delta").
 
-- [ ] Task 3.2: Add `{type}` to all `@returns` tags in Phase 4
+- [~] Task 3.2: Add `{type}` to all `@returns` tags in Phase 4 [red: <this-commit>]
   - [ ] 62 `@returns` tags in `apps/integrated-math-3/convex/`
+  - Live count: 115 `@returns` in 27 files (live count supersedes the 62 plan estimate).
 
-- [ ] Task 3.3: Add `{type}` to all `@param`/`@returns` tags in Phase 5 (IM3 `components/`)
+- [~] Task 3.3: Add `{type}` to all `@param`/`@returns` tags in Phase 5 (IM3 `components/`) [red: <this-commit>]
   - [ ] 105 `@param`, 116 `@returns` tags
+  - Live count: 221 combined (matches the plan estimate; no drift).
 
-- [ ] Task 3.4: Add `{type}` to all `@param`/`@returns` tags in Phase 6 (IM3 `lib/`)
+- [~] Task 3.4: Add `{type}` to all `@param`/`@returns` tags in Phase 6 (IM3 `lib/`) [red: <this-commit>]
   - [ ] First, convert single-line summaries to full JSDoc blocks with typed `@param`/`@returns`
+  - Live count: 2 combined (substantially under the plan's "not given"; the IM3 `lib/` scope has very little JSDoc surface).
 
-- [ ] Task 3.5: Add `{type}` to all `@param`/`@returns` tags in Phase 7 (IM3 `app/scripts/other/`)
+- [~] Task 3.5: Add `{type}` to all `@param`/`@returns` tags in Phase 7 (IM3 `app/scripts/other/`) [red: <this-commit>]
   - [ ] 64 `@param`, 80 `@returns` tags
+  - Live count: 141 combined (close to the plan's 144 estimate; minor drift).
 
-- [ ] Task 3.6: Add `{type}` to all `@param`/`@returns` tags in Phase 8 (`packages/*/src/`)
+- [~] Task 3.6: Add `{type}` to all `@param`/`@returns` tags in Phase 8 (`packages/*/src/`) [red: <this-commit>]
   - [ ] 537 `@param`, 322 `@returns` tags
+  - Live count: 1079 combined (substantially exceeds the plan's 859 estimate; the packages tree grew post-spec).
 
-- [ ] Task 3.7: Add an FR-5 enforcement guard
-  - [ ] Create `measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh`
-  - [ ] Assert every `@param` and `@returns` line added by Phases 4-8 contains `{...}`
-  - [ ] Add guard to CI / pre-commit
+- [~] Task 3.7: Add an FR-5 enforcement guard [red: <this-commit>]
+  - [x] Create `measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh`
+  - [x] Assert every `@param` and `@returns` line added by Phases 4-8 contains `{...}`
+  - [ ] Add guard to CI / pre-commit (Phase 3 Green or Phase 7 closeout)
+
+### Phase 3 Red proof (recorded 2026-06-20)
+
+**Single most targeted Red command** (production gate; the default `TYPED_PARAMS_SCOPE` is `apps/integrated-math-3/convex/`):
+
+```bash
+bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh
+```
+
+**Red result at HEAD:** `untyped=343, typed=0, scanned_files=101, exit=1` (FAIL).
+Per-file breakdown: 27 files have at least one untyped tag; top 3 are
+`teacher.ts` (39), `objectiveProficiency.ts` (36), `study.ts` (33).
+
+**Runner-plumbing self-test** (closeout gate per test-strategy §7 P3; the
+guard run against a constructed bad-sample fixture must also fail):
+
+```bash
+TYPED_PARAMS_SCOPE=measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/fixtures/typed-params-bad-sample.ts \
+  bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh
+```
+
+**Self-test result:** `untyped=2, typed=2, scanned_files=1, exit=1` (FAIL,
+by design — the fixture has 2 untyped + 2 typed tags).
+
+**Test-strategy contract:** Red tests fail because the current implementation
+is **missing** (no typed annotations exist in the IM3 `convex/` scope; 0/343
+tags carry `{Type}`), not because a durable record is stale. The guard's
+parser is regex-based and reads source directly, not graph.db, so the count
+is always live and the failure is intrinsic to the source state.
+
+See [`phase-3-red-baseline.md`](./phase-3-red-baseline.md) for the full
+documented failing assertion, scope deltas, and Green-phase definition of done.
+
+### Dirty-worktree classification (MID Red phase start, 2026-06-20)
+
+`git status --porcelain` at MID Red start:
+
+```
+?? measure/tracks/spec-compliance-and-process-integrity_20260612/test-strategy.md
+```
+
+Classification:
+- **`test-strategy.md` (untracked, 7430 bytes)**: **relevant** — Tech Lead
+  artifact for this track, authored before MID start. Per the user rule
+  "If dirty changes are relevant, fold them into the Red-phase plan/test
+  commit with explicit plan notes," this file is **folded into the Phase 3
+  Red commit** via `git add` (no content change, just bringing it under
+  version control). It is preserved verbatim — the Tech Lead's strategy
+  binds the Red-proof shape (test-strategy §1: "P3: tip = 1 new shell guard
+  (typed-params). Artifact-only, no unit."), and the Red proof in this
+  commit conforms to that contract.
+
+No other dirty paths. No destructive git operations. No application source
+paths modified. graph.db is unchanged (still at the master-resolved state
+from Phase 1 Task 1.2; Phase 7.1 will refresh + commit it).
 
 ## Phase 4: Missing `@throws`, `@returns`, and Convex Exported Surface
 
