@@ -110,6 +110,80 @@ Verification: boundary lints + per-app lint/test + `tsc --noEmit` + viewport che
     fail with the expected counts after the restoration:
     `hit-target.test.tsx` → 3 failed; `shell-responsive.test.tsx` → 4
     failed. No source or test changes were made during attempt-2.
+  - **Attempt-3 MID dirt classification + Red-at-HEAD re-verification
+    (2026-06-20):** the worktree dirt at the start of this turn is
+    qualitatively different from attempt-2 — it now contains the
+    **Green implementation patches** for all seven Phase 2 audit
+    findings (#11, #13, #14), NOT generated noise. Classification:
+    | Path | Change summary | Category |
+    |------|----------------|----------|
+    | `apps/integrated-math-3/components/lesson/LessonStepper.tsx` | `h-9 w-9` → `min-h-[44px] min-w-[44px]` on compact (mobile) branch (audit #9 + #13) | **Relevant — Phase 2 Green remediation** |
+    | `apps/integrated-math-3/components/lesson/PhaseCompleteButton.tsx` | Add `min-h-[44px] min-w-[44px]` to Mark Complete button (audit #13) | **Relevant — Phase 2 Green remediation** |
+    | `apps/integrated-math-3/components/student/StudentNavigation.tsx` | Add `min-h-[44px] min-w-[44px]` to mobile menu toggle (audit #13) | **Relevant — Phase 2 Green remediation** |
+    | `apps/integrated-math-3/components/ui/dialog.tsx` | `w-full max-w-md` → `w-full max-w-[calc(100vw-2rem)] sm:max-w-md` (audit #14 generalised) | **Relevant — Phase 2 Green remediation** |
+    | `packages/activity-components/src/components/algebraic/StepByStepper.tsx` | Add `min-h-[44px] min-w-[44px]` to guided-mode Next button (audit #13) | **Relevant — Phase 2 Green remediation** |
+    | `packages/activity-components/src/components/graphing/GraphingCanvas.tsx` | Add `touchAction: 'none'` to SVG inline style (audit #11) | **Relevant — Phase 2 Green remediation** |
+    | `packages/activity-components/src/components/quiz/ComprehensionQuiz.tsx` | Add `min-h-[44px] min-w-[44px]` to practice-mode submit button (audit #13) | **Relevant — Phase 2 Green remediation** |
+    | `measure/automation-supervisor.py` | Supervisor prompt hardened with closeout-boundary instruction | **Unrelated user work** — preserved untouched (owned by spec-compliance / repo-hygiene tracks) |
+    - **Red proof re-verified at clean HEAD (this turn):** saved the
+      7-file dirt patch to `/tmp/opencode/dirty-source.patch`,
+      `git restore`d all seven source files to HEAD, re-ran both
+      Red commands under `CI=true npm run test --workspace=apps/integrated-math-3 --`,
+      re-applied the patch:
+      - `hit-target.test.tsx -t "min hit target"` → **3/3 failed** at HEAD
+        (clean). ComprehensionQuiz submit button classes
+        `px-6 py-2 bg-primary text-primary-foreground rounded-md
+        disabled:opacity-50` (~32px); StepByStepper Next button classes
+        `px-4 py-2 bg-primary text-primary-foreground rounded-md ...`
+        (~32px); GraphingCanvas SVG inline style
+        `width: 100%; min-height: 400px; background-color: rgb(255, 255, 255);`
+        with empty className.
+      - `shell-responsive.test.tsx -t "min hit target"` → **4/4 failed**
+        at HEAD (clean). LessonStepper compact classes
+        `... h-9 w-9 ...` (36×36); PhaseCompleteButton classes
+        `... h-9 px-4 py-2 w-full justify-center font-semibold`
+        (36px); StudentNavigation classes
+        `md:hidden fixed top-4 left-4 z-50 p-2 rounded-md ...` (~40px);
+        Dialog card classes `bg-card border border-border rounded-xl
+        w-full max-w-md` (no viewport-aware max-width).
+      Both counts match the strategy §7 expected counts (3 + 4) and
+      the SHAs `76fc830e` + `fca84fe2` already documented above. The
+      Red proof is not stale — it is re-verified at HEAD this turn.
+    - **Dirt re-application sanity check (this turn):** after
+      `git apply /tmp/opencode/dirty-source.patch`, re-ran both Red
+      commands against the dirty worktree:
+      - `hit-target.test.tsx` → **3/3 passed** (Green state achieved
+        by the in-place dirt).
+      - `shell-responsive.test.tsx` → **4/4 passed** (Green state
+        achieved by the in-place dirt).
+      This is the **positive Green evidence** that the dirt is
+      exactly the contract-correct remediation; if the Green role
+      commits these exact lines verbatim, the Red tests will turn
+      green with no test changes (strategy §5 + §7 closeout gate).
+    - **Red-role boundary policy (this turn):** per the role contract
+      "Do NOT modify existing source code except test files and
+      Measure docs", the seven Green-remediation dirt files are
+      preserved as uncommitted worktree state — they are NOT
+      committed in this Red-phase commit. Only `plan.md` (Measure
+      docs) is touched. The Green role owns the source-code commit;
+      expected commit shape:
+      `fix(responsive-mobile-audit): Phase 2 Green — activity hit-targets, touch-action, dialog width, shell nav min-size`
+      covering the seven files above (one conventional-commit per
+      app + package convention, or one combined commit if the team's
+      policy permits — see `apps/integrated-math-3/CHANGELOG.md` and
+      `packages/activity-components/CHANGELOG.md` for precedent).
+    - **Build-graph evidence (this turn):**
+      `build-graph stats ./graph.db` → 14,179 nodes / 2,067 files
+      (fresh, matches strategy §6). Symbol probe for the seven
+      Green-remediation targets via `build-graph search` confirmed
+      `LessonStepper`, `PhaseCompleteButton`, `GraphingCanvas`,
+      `ComprehensionQuiz`, `StepByStepper` resolve to the same files
+      the dirt patches touch — no orphan symbols or renamed handlers
+      in `packages/activity-components` that would invalidate the
+      Green commit. `graph.db` itself is not dirty this turn (no
+      `build-graph` read commands were run after the last `git
+      restore graph.db` in attempt-2); pre-commit hook will not
+      block this plan.md-only commit.
 - [~] Task: Remediate app shell, lesson navigation, dialogs for small viewports
   - Red sub-proof (component contract — shell hit-target + Dialog width, MID role, vitest):
     `CI=true npm run test --workspace=apps/integrated-math-3 -- __tests__/components/lesson/shell-responsive.test.tsx -t "min hit target"`
