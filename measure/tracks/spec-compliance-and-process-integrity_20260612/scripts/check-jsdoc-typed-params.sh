@@ -137,12 +137,17 @@ if [ "${#SCOPE_FILES[@]}" -eq 0 ]; then
 fi
 
 # Tag-line regex (POSIX ERE):
-#   - Optional leading whitespace, then literal `*`, then optional whitespace,
-#     then `@param` or `@returns`, then a word boundary.
+#   - Optional leading whitespace, then either `*` (multi-line JSDoc) or `/**`
+#     (single-line JSDoc), then optional whitespace, then `@param` or `@returns`,
+#     then a word boundary or end-of-tag whitespace.
 # Typed-body regex (POSIX ERE):
 #   - Same tag prefix, then optional whitespace, then a non-empty `{...}` block.
-TAG_RE='^[[:space:]]*\*[[:space:]]*@(param|returns)([[:space:]]|$)'
-TYPED_RE='^[[:space:]]*\*[[:space:]]*@(param|returns)[[:space:]]*\{[^}]+\}'
+#   - Single-line JSDoc tags (`/** @param {Type} name */`) are also detected.
+# The current codebase has 0 single-line `@param`/`@returns` tags (verified via
+# `rg --pcre2 '^\s*/\*\*\s*@(param|returns)\b' apps/ packages/` → 0 matches);
+# the regex is permissive to handle future additions without re-tuning.
+TAG_RE='^[[:space:]]*(\*|/\*\*)[[:space:]]*@(param|returns)([[:space:]]|$)'
+TYPED_RE='^[[:space:]]*(\*|/\*\*)[[:space:]]*@(param|returns)[[:space:]]*\{[^}]+\}'
 
 # Aggregate counts across all files in scope.
 TOTAL_TAGS=0
@@ -166,13 +171,13 @@ for f in "${SCOPE_FILES[@]}"; do
     file_total=${file_total:-0}
     file_typed=$(grep -cE "${TYPED_RE}" "${f}" 2>/dev/null || true)
     file_typed=${file_typed:-0}
-    file_param=$(grep -cE '^[[:space:]]*\*[[:space:]]*@param([[:space:]]|$)' "${f}" 2>/dev/null || true)
+    file_param=$(grep -cE '^[[:space:]]*(\*|/\*\*)[[:space:]]*@param([[:space:]]|$)' "${f}" 2>/dev/null || true)
     file_param=${file_param:-0}
-    file_returns=$(grep -cE '^[[:space:]]*\*[[:space:]]*@returns([[:space:]]|$)' "${f}" 2>/dev/null || true)
+    file_returns=$(grep -cE '^[[:space:]]*(\*|/\*\*)[[:space:]]*@returns([[:space:]]|$)' "${f}" 2>/dev/null || true)
     file_returns=${file_returns:-0}
-    file_param_typed=$(grep -cE '^[[:space:]]*\*[[:space:]]*@param[[:space:]]*\{[^}]+\}' "${f}" 2>/dev/null || true)
+    file_param_typed=$(grep -cE '^[[:space:]]*(\*|/\*\*)[[:space:]]*@param[[:space:]]*\{[^}]+\}' "${f}" 2>/dev/null || true)
     file_param_typed=${file_param_typed:-0}
-    file_returns_typed=$(grep -cE '^[[:space:]]*\*[[:space:]]*@returns[[:space:]]*\{[^}]+\}' "${f}" 2>/dev/null || true)
+    file_returns_typed=$(grep -cE '^[[:space:]]*(\*|/\*\*)[[:space:]]*@returns[[:space:]]*\{[^}]+\}' "${f}" 2>/dev/null || true)
     file_returns_typed=${file_returns_typed:-0}
     file_untyped=$((file_total - file_typed))
 
