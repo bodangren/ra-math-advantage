@@ -282,6 +282,31 @@ Verification: boundary lints + per-app lint/test + `tsc --noEmit` + viewport che
     the Phase 2 `Dialog` fix (`w-full max-w-[calc(100vw-2rem)] sm:max-w-md`) propagates
     to the teacher surface via the shared component (no source change needed). Green
     closeout will turn the 5 reds green with token-level fixes in `GradebookGrid.tsx`,
-    `CompetencyHeatmapGrid.tsx`, and the heatmap cell <td> wrapper. Sub-Red commit: pending.
-- [ ] Task: Wire viewport guard into CI; final verification (lint, tsc --noEmit, tests)
+    `CompetencyHeatmapGrid.tsx`, and the heatmap cell <td> wrapper. Sub-Red commit: `51306f0e`.
+- [~] Task: Wire viewport guard into CI; final verification (lint, tsc --noEmit, tests)
+  - Red sub-proof (artifact contract — CI wiring command-construction, MID role, vitest):
+    `CI=true npx vitest run --root apps/integrated-math-3 __tests__/responsive/viewport-ci-wiring.contract.test.ts`
+    → **3 fail, 2 pass** at HEAD (strategy §7 pins the bounded `--project=viewport -g
+    "@smoke"` form and forbids the unbounded `npx playwright test` form; this contract
+    test is the command-construction proof):
+    1. **FAIL** — CI workflow `.github/workflows/ci.yml` has NO `run:` step that includes
+       `--project=viewport`. Existing `run:` steps are all `npm ci` / `npm run test:*` /
+       `npm run build:*` / `npm run test:e2e --prefix apps/integrated-math-3`; none invoke
+       the viewport-guard project.
+    2. **PASS** — CI workflow file exists at the monorepo root
+       (`.github/workflows/ci.yml`); sanity gate.
+    3. **FAIL** — CI viewport-guard step does NOT exist (cascading from #1), so the
+       `--workers 1` workers pin cannot be verified. Green must add the step with either
+       `--workers 1` inline OR pin `workers: 1` in the `viewport` project block of
+       `playwright.config.ts`.
+    4. **PASS** — CI workflow does NOT contain a bare `npx playwright test` step that
+       lacks `--project=viewport` (current `npm run test:e2e` is the IM3 app's npm
+       script, not a bare `npx playwright test`; sanity gate that the bounded form
+       doesn't yet drift to unbounded).
+    5. **FAIL** — `e2e/viewport-guard.spec.ts` has NO non-fixme `@smoke` test. The
+       existing 3 cases are all `test.fixme(...)` (known-bad fixture, owned by P2
+       per strategy §8). Green must add a new `test("... @smoke ...", ...)` that
+       targets a single representative route (e.g. /teacher/dashboard) at a single
+       viewport (tablet 768×1024) so the bounded `-g "@smoke"` grep resolves.
+    Sub-Red commit: pending.
 - [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
