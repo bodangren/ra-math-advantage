@@ -259,6 +259,29 @@ Verification: boundary lints + per-app lint/test + `tsc --noEmit` + viewport che
 
 ## Phase 3 — Teacher Views & Verification
 
-- [ ] Task: Make gradebook/heatmaps/dashboards degrade gracefully on tablet
+- [~] Task: Make gradebook/heatmaps/dashboards degrade gracefully on tablet
+  - Red sub-proof (component contract — tablet degradation, MID role, vitest, bounded `-t "tablet"` filter):
+    `CI=true npm run test --workspace=apps/integrated-math-3 -- __tests__/components/teacher/gradebook-responsive.test.tsx -t "tablet"`
+    → **5 fail, 1 pass** at HEAD (strategy §5 + §7 pins this exact path/filter pair; covers
+    audit findings #1, #2, #3, #4, #14):
+    1. `GradebookGrid` column header `<span className="block truncate max-w-20 mx-auto">`
+       still combines `truncate` + `max-w-20` — lesson titles aggressively truncated on
+       tablet 768px (audit #2).
+    2. `GradebookGrid` outer container `rounded-xl border border-border overflow-x-auto`
+       has NO horizontal-scroll affordance (no gradient fade, no scroll hint, no
+       `aria-label` mentioning more columns) — teachers on phone/tablet cannot discover
+       additional columns (audit #1, critical).
+    3. `CompetencyHeatmapGrid` outer container has the same `overflow-x-auto` pattern
+       with NO scroll affordance (audit #3, critical).
+    4. `CompetencyHeatmapGrid` sortable header button classes
+       `flex items-center gap-1 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring`
+       — no 44×44 hit target (audit #4).
+    5. `CompetencyHeatmapGrid` cells `<td className="text-center px-2 py-2 font-medium tabular-nums bg-green-100 text-green-800">`
+       — `px-2 py-2` = ~32px height, no 44×44 hit target (audit #4).
+    The **1 pass** is the `SubmissionDetailModal` dialog-max-width test — passes because
+    the Phase 2 `Dialog` fix (`w-full max-w-[calc(100vw-2rem)] sm:max-w-md`) propagates
+    to the teacher surface via the shared component (no source change needed). Green
+    closeout will turn the 5 reds green with token-level fixes in `GradebookGrid.tsx`,
+    `CompetencyHeatmapGrid.tsx`, and the heatmap cell <td> wrapper. Sub-Red commit: pending.
 - [ ] Task: Wire viewport guard into CI; final verification (lint, tsc --noEmit, tests)
 - [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
