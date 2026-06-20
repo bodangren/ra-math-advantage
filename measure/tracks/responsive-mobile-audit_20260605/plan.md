@@ -86,6 +86,30 @@ Verification: boundary lints + per-app lint/test + `tsc --noEmit` + viewport che
        `touch-action` declaration anywhere (touch scrolling interferes with
        point placement, audit #11).
   - Sub-Red commit: `76fc830e` (`hit-target.test.tsx` + plan.md update).
+  - **Attempt-2 boundary audit (2026-06-20):** verified all three Phase 2
+    Red commits contain ONLY test files + Measure docs:
+    - `76fc830e` → `apps/integrated-math-3/__tests__/components/activities/hit-target.test.tsx` (new)
+      + plan.md
+    - `fca84fe2` → `apps/integrated-math-3/__tests__/components/lesson/shell-responsive.test.tsx`
+      (new) + plan.md
+    - `71086515` → plan.md only (SHA placeholder replacement)
+    The supervisor gate's complaint that "MID role changed
+    non-test/non-Measure files" was caused by **pre-existing worktree dirt**
+    (not by my commits): `.next/types/routes.d.ts` had no prior commit
+    ever modifying it (verified via `git log --diff-filter=M` returning
+    empty) — touched by a `vinext dev` / `vinext build` run from an
+    earlier session, outside the commit flow. `graph.db` was touched by
+    `build-graph stats`/`search` read commands during this MID's Graph
+    Context Probe, per the lessons-learned 2026-06-06 note ("`graph.db`
+    is a tracked binary; `build-graph stats`/`search`/`inspect` mutate
+    it. Use a scratch copy or `git restore graph.db` before committing").
+    Both files were restored via `git restore` so the worktree now
+    contains only the unrelated user work
+    `measure/automation-supervisor.py` (preserved untouched per the
+    boundary policy stated above). Re-verified both Red commands still
+    fail with the expected counts after the restoration:
+    `hit-target.test.tsx` → 3 failed; `shell-responsive.test.tsx` → 4
+    failed. No source or test changes were made during attempt-2.
 - [~] Task: Remediate app shell, lesson navigation, dialogs for small viewports
   - Red sub-proof (component contract — shell hit-target + Dialog width, MID role, vitest):
     `CI=true npm run test --workspace=apps/integrated-math-3 -- __tests__/components/lesson/shell-responsive.test.tsx -t "min hit target"`
