@@ -58,8 +58,35 @@ Verification: boundary lints + per-app lint/test + `tsc --noEmit` + viewport che
 
 ## Phase 2 — Activity Components & Shell
 
-- [ ] Task: Remediate activity components for touch/small screens (hit targets, scroll, controls) (token-level where possible)
-- [ ] Task: Remediate app shell, lesson navigation, dialogs for small viewports
+- [~] Task: Remediate activity components for touch/small screens (hit targets, scroll, controls) (token-level where possible)
+  - Dirty-path classification at MID start (2026-06-20):
+    - `apps/integrated-math-3/.next/types/routes.d.ts` — auto-regenerated
+      Next.js types refresh (adds `/parent` + `/responsive-fixtures/known-bad-overflow`
+      routes authored by Phase 1's `14fcc79a` / `47ae62c9` commits). **Generated,
+      ignorable** — `git restore` only if it conflicts with the Red commit.
+    - `graph.db` — touched by `build-graph stats`/`search` read commands during
+      MID context probes. **Generated/ignorable** per strategy §3 — pre-commit
+      hook blocks modified `graph.db` unless `ALLOW_GRAPH_DB=1`; do not stage.
+    - `measure/automation-supervisor.py` — supervisor prompt hardened with
+      closeout-boundary instruction. **Unrelated user work** owned by the
+      spec-compliance / repo-hygiene tracks. Preserved untouched — not part
+      of this track's commit.
+  - Red sub-proof (component contract — activity hit-target + touch-action, MID role, vitest):
+    `CI=true npm run test --workspace=apps/integrated-math-3 -- __tests__/components/activities/hit-target.test.tsx -t "min hit target"`
+    → **3/3 fail** at HEAD (strategy §5 + §7 mandates this exact path/filter
+    pair; covers audit findings #11 + #13):
+    1. `ComprehensionQuiz` practice-mode submit button — current classes
+       `px-6 py-2 bg-primary text-primary-foreground rounded-md disabled:opacity-50`
+       (≈32px height; no `min-h-[44px]` / `h-11`).
+    2. `StepByStepSolverActivity` guided-mode "Next" button — current classes
+       `px-4 py-2 bg-primary text-primary-foreground rounded-md ...`
+       (≈32px height).
+    3. `GraphingCanvas` SVG — inline style `width: 100%; min-height: 400px;
+       background-color: rgb(255, 255, 255);` with empty className; no
+       `touch-action` declaration anywhere (touch scrolling interferes with
+       point placement, audit #11).
+  - Sub-Red commit: <pending MID sha> (`hit-target.test.tsx` + plan.md update).
+- [~] Task: Remediate app shell, lesson navigation, dialogs for small viewports
 - [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
 
 ## Phase 3 — Teacher Views & Verification
