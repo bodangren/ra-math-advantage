@@ -87,6 +87,27 @@ Verification: boundary lints + per-app lint/test + `tsc --noEmit` + viewport che
        point placement, audit #11).
   - Sub-Red commit: <pending MID sha> (`hit-target.test.tsx` + plan.md update).
 - [~] Task: Remediate app shell, lesson navigation, dialogs for small viewports
+  - Red sub-proof (component contract — shell hit-target + Dialog width, MID role, vitest):
+    `CI=true npm run test --workspace=apps/integrated-math-3 -- __tests__/components/lesson/shell-responsive.test.tsx -t "min hit target"`
+    → **4/4 fail** at HEAD (sibling contract test for the shell half of
+    audit #9 + #13 + #14; uses the same bounded `-t` filter shape as the
+    activity test so neither trip the aggregate `vitest run` per §8):
+    1. `LessonStepper` compact (mobile) step button — current classes
+       `flex items-center justify-center rounded-full border-2 transition-all
+       ... h-9 w-9 bg-green-600 text-white border-green-600 hover:scale-105`
+       (36×36; audit #9 + #13).
+    2. `PhaseCompleteButton` "Mark Complete" button — current classes
+       `inline-flex ... h-9 px-4 py-2 w-full justify-center font-semibold`
+       (36px height; audit #13).
+    3. `StudentNavigation` mobile menu toggle — current classes
+       `md:hidden fixed top-4 left-4 z-50 p-2 rounded-md ...`
+       (≈40px with 24px icon; audit #13).
+    4. `Dialog` content — current inner card classes
+       `bg-card border border-border rounded-xl w-full max-w-md` (448px max;
+       overflows on 390px phone, audit #14 generalised). Stubbed
+       `HTMLDialogElement.showModal`/`close` in jsdom so the useEffect
+       mount doesn't crash the test before the className probe runs.
+  - Sub-Red commit: <pending MID sha> (`shell-responsive.test.tsx` + plan.md update).
 - [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
 
 ## Phase 3 — Teacher Views & Verification
