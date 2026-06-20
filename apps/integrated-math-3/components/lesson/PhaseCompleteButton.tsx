@@ -108,7 +108,7 @@ export function PhaseCompleteButton({
         onClick={handleComplete}
         data-testid="phase-complete-button"
         className={cn(
-          'w-full justify-center font-semibold',
+          'w-full justify-center font-semibold min-h-[44px] min-w-[44px]',
           isCompleted ? 'border-green-300 text-green-700 dark:text-green-300' : '',
         )}
       >

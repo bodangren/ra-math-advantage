@@ -61,7 +61,7 @@ export function Dialog({ open, onOpenChange, title, description, children }: Dia
       )}
       onClick={handleBackdropClick}
     >
-      <div className="bg-card border border-border rounded-xl w-full max-w-md">
+      <div className="bg-card border border-border rounded-xl w-full max-w-[calc(100vw-2rem)] sm:max-w-md">
         <div className="flex items-center justify-between p-4 border-b border-border">
           <div>
             <h2 className="text-lg font-semibold text-foreground">{title}</h2>

@@ -302,7 +302,7 @@ export function ComprehensionQuiz({
           type="submit"
           onClick={handlePracticeSubmit}
           disabled={!allAnswered}
-          className="px-6 py-2 bg-primary text-primary-foreground rounded-md disabled:opacity-50"
+          className="px-6 py-2 min-h-[44px] min-w-[44px] bg-primary text-primary-foreground rounded-md disabled:opacity-50"
         >
           Submit All Answers
         </button>

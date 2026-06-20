@@ -395,7 +395,7 @@ export function GraphingCanvas({
         width="100%"
         height="100%"
         viewBox={`0 0 ${canvasSize.width} ${canvasSize.height}`}
-        style={{ width: '100%', minHeight: '400px', backgroundColor: '#ffffff' }}
+        style={{ width: '100%', minHeight: '400px', backgroundColor: '#ffffff', touchAction: 'none' }}
         onClick={handleClick}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}

@@ -30,7 +30,7 @@ export function StudentNavigation({ activeRoute }: StudentNavigationProps) {
         type="button"
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         aria-label="Toggle menu"
-        className="md:hidden fixed top-4 left-4 z-50 p-2 rounded-md bg-background border border-border"
+        className="md:hidden fixed top-4 left-4 z-50 p-2 min-h-[44px] min-w-[44px] rounded-md bg-background border border-border"
       >
         {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
       </button>

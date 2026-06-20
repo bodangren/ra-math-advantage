@@ -125,7 +125,7 @@ function StepButton({
         className={cn(
           'flex items-center justify-center rounded-full border-2 transition-all',
           'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
-          compact ? 'h-9 w-9' : 'h-11 w-11',
+          compact ? 'min-h-[44px] min-w-[44px]' : 'h-11 w-11',
           statusClass,
           isClickable && 'hover:scale-105',
         )}
