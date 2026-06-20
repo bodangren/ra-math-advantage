@@ -198,4 +198,69 @@ describe('IM3 responsive/mobile audit — Phase 1 Playwright viewport infra cont
         '(strategy §4 — 3 device presets, not custom widths).',
     ).toBe(true);
   });
+
+  it('known-bad overflow fixture route exists with a 200vw overflow host (strategy §2)', () => {
+    // Adversarial regression guard: the e2e/viewport-guard.spec.ts test.fixme
+    // cases silently skip if the fixture route is missing or replaced, so a
+    // green Playwright run would not detect the broken infra. This test
+    // pins the contract: the fixture route must exist, must declare an
+    // overflow-producing host class (Tailwind `w-[200vw]` JIT-compiles to
+    // `width: 200vw`), and must carry the data-testid sentinel used by both
+    // the e2e spec AND the vitest unit-test fixture contract.
+    //
+    // The path is pinned to the Next.js app router convention used by IM3
+    // (`app/<route>/page.tsx`) — the `playwright.config.ts` baseURL resolves
+    // the `/responsive-fixtures/known-bad-overflow` URL from this file.
+    const fixturePath = resolve(APP_ROOT, 'app', 'responsive-fixtures', 'known-bad-overflow', 'page.tsx');
+    const fixture = loadFile(fixturePath);
+    expect(
+      fixture.exists,
+      `known-bad overflow fixture missing at ${fixturePath}. The e2e/viewport-guard.spec.ts ` +
+        'test.fixme cases navigate to /responsive-fixtures/known-bad-overflow; without this route ' +
+        'the Playwright spec silently skips the §7 one-shot Red proof.',
+    ).toBe(true);
+    // Isolate the JSX className/style region so that the assertion is not
+    // fooled by prose mentioning "200vw" in a JSDoc comment block. A naive
+    // substring or full-file regex would match "width: 200vw — guard
+    // should fail here." inside the visible-text child of the host div
+    // and pass the test even when the actual host class is weakened to
+    // w-[50vw] (which would NOT overflow the desktop 1280×800 breakpoint).
+    // We extract the contents of every JSX attribute that controls width
+    // (`className` and `style`) — these are the only attributes that can
+    // produce a CSS rule. Anything else is decorative text.
+    const classNameMatches = [
+      ...fixture.content.matchAll(/className\s*=\s*\{?\s*["'`]([^"'`]+)["'`]/g),
+    ].map((m) => m[1]);
+    const styleMatches = [
+      ...fixture.content.matchAll(/style\s*=\s*\{\{([^}]+)\}\}/g),
+    ].flatMap((m) => m[1].split(','));
+    const widthRelevantAttrs = [...classNameMatches, ...styleMatches]
+      .map((s) => s.toLowerCase())
+      .join('\n');
+    // Accept either Tailwind arbitrary-value syntax `w-[200vw]` or an
+    // inline `style={{ width: '200vw' }}`. Anything weaker than 200vw
+    // would not exceed the desktop 1280×800 viewport and would defeat the
+    // §7 one-shot Red proof (200vw of 1280 = 2560px overflow on desktop;
+    // 100vw or smaller would NOT trigger the guard).
+    const hasOverflowClass =
+      /\bw-\[\s*200\s*vw\s*\]/i.test(widthRelevantAttrs) ||
+      /\bwidth\s*:\s*['"]?\s*200\s*vw\b/i.test(widthRelevantAttrs);
+    expect(
+      hasOverflowClass,
+      `fixture at ${fixturePath} must declare a 200vw overflow host on the rendered element ` +
+        '(className or style). Anything weaker would not exceed the desktop 1280×800 ' +
+        'breakpoint and the §7 one-shot Red would never fire.',
+    ).toBe(true);
+    expect(
+      fixture.content.includes('data-testid="known-bad-overflow-host"') ||
+        fixture.content.includes("data-testid='known-bad-overflow-host'"),
+      `fixture at ${fixturePath} must carry data-testid="known-bad-overflow-host" so the e2e spec ` +
+        'and the vitest sentinel can locate the overflow host after render.',
+    ).toBe(true);
+    expect(
+      /aria-label\s*=\s*["'`]/i.test(fixture.content),
+      `fixture at ${fixturePath} must carry an aria-label attribute so screen readers and the ` +
+        'Playwright spec have a stable accessibility handle independent of data-testid.',
+    ).toBe(true);
+  });
 });
