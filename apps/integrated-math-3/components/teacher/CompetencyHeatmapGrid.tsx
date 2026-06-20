@@ -38,7 +38,10 @@ export function CompetencyHeatmapGrid({
 
   if (rows.length === 0 || standards.length === 0) {
     return (
-      <div className="rounded-xl border border-border overflow-x-auto">
+      <div
+        className="rounded-xl border border-border overflow-x-auto"
+        aria-label="Scroll horizontally for more columns"
+      >
         <table className="w-full text-xs">
           <tbody>
             <tr>
@@ -56,7 +59,10 @@ export function CompetencyHeatmapGrid({
   const displayRows = sortDir === 'asc' ? sorted : [...sorted].reverse();
 
   return (
-    <div className="rounded-xl border border-border overflow-x-auto">
+    <div
+      className="rounded-xl border border-border overflow-x-auto"
+      aria-label="Scroll horizontally for more columns"
+    >
       <table
         className="w-full text-xs"
         aria-label="Competency heatmap — student mastery by standard"
@@ -71,7 +77,7 @@ export function CompetencyHeatmapGrid({
                 type="button"
                 onClick={() => setSortDir((d) => (d === 'asc' ? 'desc' : 'asc'))}
                 aria-label="Sort by student name"
-                className="flex items-center gap-1 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="flex items-center gap-1 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring min-h-[44px] min-w-[44px]"
               >
                 Student
                 <span className="text-[10px]">{sortDir === 'asc' ? '▲' : '▼'}</span>
@@ -122,7 +128,7 @@ export function CompetencyHeatmapGrid({
               {row.cells.map((cell) => (
                 <td
                   key={cell.standardId}
-                  className={`text-center px-2 py-2 font-medium tabular-nums ${cellBgClass(cell.color)} ${
+                  className={`text-center px-2 py-2 font-medium tabular-nums min-h-[44px] ${cellBgClass(cell.color)} ${
                     onCellClick ? 'cursor-pointer hover:opacity-80' : ''
                   }`}
                   onClick={() => onCellClick?.(row.studentId, cell.standardId)}

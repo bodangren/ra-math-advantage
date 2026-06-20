@@ -21,6 +21,17 @@ const VIEWPORTS = {
 } as const;
 
 test.describe('Viewport Guard — Regression Net (Phase 1 stand-up)', () => {
+  test('teacher dashboard @smoke — tablet 768×1024 no horizontal overflow', async ({ page }) => {
+    await page.setViewportSize(VIEWPORTS.tablet);
+    await page.goto('/teacher/dashboard');
+    await page.waitForLoadState('networkidle');
+
+    const bodyWidth = await page.evaluate(() => document.body.scrollWidth);
+    const viewportWidth = await page.evaluate(() => window.innerWidth);
+
+    expect(bodyWidth, 'guard pass condition: no horizontal overflow at tablet 768×1024').toBeLessThanOrEqual(viewportWidth);
+  });
+
   test.fixme('known-bad fixture — phone 390×844 overflow detected on deliberately-bad page (owned by P2 [~] activity remediation)', async ({ page }) => {
     await page.setViewportSize(VIEWPORTS.phone);
     await page.goto('/responsive-fixtures/known-bad-overflow');

@@ -81,10 +81,6 @@ const REQUIRED_CI_COMMAND_TOKENS = [
 // `npx playwright test` invocation that lacks `-g "@smoke"` on the
 // viewport-guard spec) would fall through to the full suite and waste
 // CI minutes. We forbid the unbounded form on the viewport-guard path.
-const FORBIDDEN_CI_PATTERNS = [
-  /\bnpx\s+playwright\s+test(?!\s+--project=viewport)/i,
-  /\bnpx\s+playwright\s+test[\s\S]*?(?<!-g\s+)"@smoke"/i, // never matches; placeholder
-] as const;
 
 type LoadedFile = { exists: boolean; content: string };
 
@@ -108,12 +104,10 @@ function extractRunSteps(workflow: string): string[] {
   const runLineRe = /^\s*run:\s*(.*)$/;
   const indentedRe = /^\s{6,}(\S.*)$/; // a continuation line under a `run: |` block
   const linesArr = workflow.split('\n');
-  let inRunBlock = false;
   for (let i = 0; i < linesArr.length; i += 1) {
     const line = linesArr[i];
     const m = runLineRe.exec(line);
     if (m) {
-      inRunBlock = true;
       const inline = m[1].trim();
       if (inline) {
         // Single-line `run: <cmd>`.

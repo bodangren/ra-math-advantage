@@ -30,7 +30,10 @@ function sortRowsByName(rows: GradebookRow[]): GradebookRow[] {
 export function GradebookGrid({ rows, lessons, onCellClick }: GradebookGridProps) {
   if (rows.length === 0 || lessons.length === 0) {
     return (
-      <div className="rounded-xl border border-border overflow-x-auto">
+      <div
+        className="rounded-xl border border-border overflow-x-auto"
+        aria-label="Scroll horizontally for more columns"
+      >
         <table className="w-full text-xs">
           <tbody>
             <tr>
@@ -47,7 +50,11 @@ export function GradebookGrid({ rows, lessons, onCellClick }: GradebookGridProps
   const sortedRows = sortRowsByName(rows);
 
   return (
-    <div className="rounded-xl border border-border overflow-x-auto" data-testid="teacher-gradebook">
+    <div
+      className="rounded-xl border border-border overflow-x-auto"
+      data-testid="teacher-gradebook"
+      aria-label="Scroll horizontally for more columns"
+    >
       <table className="w-full text-xs">
         <thead className="bg-muted/50 border-b border-border">
           <tr>
@@ -60,7 +67,7 @@ export function GradebookGrid({ rows, lessons, onCellClick }: GradebookGridProps
                 className="text-center px-2 py-3 font-medium text-muted-foreground min-w-24"
                 title={lesson.lessonTitle}
               >
-                <span className={`block truncate max-w-20 mx-auto ${lesson.isUnitTest ? 'font-semibold' : ''}`}>
+                <span className={`block max-w-40 mx-auto ${lesson.isUnitTest ? 'font-semibold' : ''}`}>
                   {lesson.lessonTitle}
                 </span>
               </th>
