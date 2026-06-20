@@ -255,7 +255,7 @@ Verification: boundary lints + per-app lint/test + `tsc --noEmit` + viewport che
        mount doesn't crash the test before the className probe runs.
   - Sub-Red commit: `fca84fe2` (`shell-responsive.test.tsx` + plan.md update).
   - Green closeout: `CI=true npm run test --workspace=apps/integrated-math-3 -- __tests__/components/lesson/shell-responsive.test.tsx -t "min hit target"` → **4/4 pass** (turned green with same 7-file remediation patch; zero test changes). Green commit: `e6e1aeca`.
-- [x] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md) — Checkpoint: PENDING
+- [x] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md) — Checkpoint: 78690b37
 
 ## Phase 3 — Teacher Views & Verification
 
