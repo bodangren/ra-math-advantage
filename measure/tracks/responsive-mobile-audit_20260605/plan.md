@@ -58,7 +58,7 @@ Verification: boundary lints + per-app lint/test + `tsc --noEmit` + viewport che
 
 ## Phase 2 — Activity Components & Shell
 
-- [x] Task: Remediate activity components for touch/small screens (hit targets, scroll, controls) (token-level where possible)
+- [x] Task: Remediate activity components for touch/small screens (hit targets, scroll, controls) (token-level where possible) (green: e6e1aeca; sub-red: 76fc830e)
   - Dirty-path classification at MID start (2026-06-20):
     - `apps/integrated-math-3/.next/types/routes.d.ts` — auto-regenerated
       Next.js types refresh (adds `/parent` + `/responsive-fixtures/known-bad-overflow`
@@ -232,7 +232,7 @@ Verification: boundary lints + per-app lint/test + `tsc --noEmit` + viewport che
       committed-by-MID changes. This turn's `git restore` on all
       seven paths removes the MID-attributed worktree deltas;
       `git diff --stat HEAD` is empty for those paths post-restore.
-- [x] Task: Remediate app shell, lesson navigation, dialogs for small viewports
+- [x] Task: Remediate app shell, lesson navigation, dialogs for small viewports (green: e6e1aeca; sub-red: fca84fe2)
   - Red sub-proof (component contract — shell hit-target + Dialog width, MID role, vitest):
     `CI=true npm run test --workspace=apps/integrated-math-3 -- __tests__/components/lesson/shell-responsive.test.tsx -t "min hit target"`
     → **4/4 fail** at HEAD (sibling contract test for the shell half of
@@ -255,7 +255,7 @@ Verification: boundary lints + per-app lint/test + `tsc --noEmit` + viewport che
        mount doesn't crash the test before the className probe runs.
   - Sub-Red commit: `fca84fe2` (`shell-responsive.test.tsx` + plan.md update).
   - Green closeout: `CI=true npm run test --workspace=apps/integrated-math-3 -- __tests__/components/lesson/shell-responsive.test.tsx -t "min hit target"` → **4/4 pass** (turned green with same 7-file remediation patch; zero test changes). Green commit: `e6e1aeca`.
-- [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md) — Checkpoint: PENDING
 
 ## Phase 3 — Teacher Views & Verification
 
