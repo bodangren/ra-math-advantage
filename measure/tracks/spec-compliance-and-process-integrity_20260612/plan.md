@@ -58,32 +58,32 @@
 
 ## Phase 3: Add FR-5 Type Annotations
 
-- [~] Task 3.1: Add `{type}` to all `@param` tags in Phase 4 (IM3 `convex/`) [red: <this-commit>]
+- [~] Task 3.1: Add `{type}` to all `@param` tags in Phase 4 (IM3 `convex/`) [red: bde10833]
   - [ ] 113 `@param` tags in `apps/integrated-math-3/convex/`
   - [ ] Use TypeScript signature types, e.g., `{QueryCtx}`, `{MutationCtx}`, `{string}`, `{number}`
   - Live count (per `check-jsdoc-typed-params.sh` Red baseline): 228 `@param` in 27 files (live count supersedes the 113 plan estimate; see phase-3-red-baseline.md "Plan-vs-live scope delta").
 
-- [~] Task 3.2: Add `{type}` to all `@returns` tags in Phase 4 [red: <this-commit>]
+- [~] Task 3.2: Add `{type}` to all `@returns` tags in Phase 4 [red: bde10833]
   - [ ] 62 `@returns` tags in `apps/integrated-math-3/convex/`
   - Live count: 115 `@returns` in 27 files (live count supersedes the 62 plan estimate).
 
-- [~] Task 3.3: Add `{type}` to all `@param`/`@returns` tags in Phase 5 (IM3 `components/`) [red: <this-commit>]
+- [~] Task 3.3: Add `{type}` to all `@param`/`@returns` tags in Phase 5 (IM3 `components/`) [red: bde10833]
   - [ ] 105 `@param`, 116 `@returns` tags
   - Live count: 221 combined (matches the plan estimate; no drift).
 
-- [~] Task 3.4: Add `{type}` to all `@param`/`@returns` tags in Phase 6 (IM3 `lib/`) [red: <this-commit>]
+- [~] Task 3.4: Add `{type}` to all `@param`/`@returns` tags in Phase 6 (IM3 `lib/`) [red: bde10833]
   - [ ] First, convert single-line summaries to full JSDoc blocks with typed `@param`/`@returns`
   - Live count: 2 combined (substantially under the plan's "not given"; the IM3 `lib/` scope has very little JSDoc surface).
 
-- [~] Task 3.5: Add `{type}` to all `@param`/`@returns` tags in Phase 7 (IM3 `app/scripts/other/`) [red: <this-commit>]
+- [~] Task 3.5: Add `{type}` to all `@param`/`@returns` tags in Phase 7 (IM3 `app/scripts/other/`) [red: bde10833]
   - [ ] 64 `@param`, 80 `@returns` tags
   - Live count: 141 combined (close to the plan's 144 estimate; minor drift).
 
-- [~] Task 3.6: Add `{type}` to all `@param`/`@returns` tags in Phase 8 (`packages/*/src/`) [red: <this-commit>]
+- [~] Task 3.6: Add `{type}` to all `@param`/`@returns` tags in Phase 8 (`packages/*/src/`) [red: bde10833]
   - [ ] 537 `@param`, 322 `@returns` tags
   - Live count: 1079 combined (substantially exceeds the plan's 859 estimate; the packages tree grew post-spec).
 
-- [~] Task 3.7: Add an FR-5 enforcement guard [red: <this-commit>]
+- [~] Task 3.7: Add an FR-5 enforcement guard [red: bde10833]
   - [x] Create `measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh`
   - [x] Assert every `@param` and `@returns` line added by Phases 4-8 contains `{...}`
   - [ ] Add guard to CI / pre-commit (Phase 3 Green or Phase 7 closeout)
