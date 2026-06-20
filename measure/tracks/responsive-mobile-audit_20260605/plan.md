@@ -259,54 +259,54 @@ Verification: boundary lints + per-app lint/test + `tsc --noEmit` + viewport che
 
 ## Phase 3 — Teacher Views & Verification
 
-- [~] Task: Make gradebook/heatmaps/dashboards degrade gracefully on tablet
+- [x] Task: Make gradebook/heatmaps/dashboards degrade gracefully on tablet (green: 28c6dd27)
   - Red sub-proof (component contract — tablet degradation, MID role, vitest, bounded `-t "tablet"` filter):
-    `CI=true npm run test --workspace=apps/integrated-math-3 -- __tests__/components/teacher/gradebook-responsive.test.tsx -t "tablet"`
-    → **5 fail, 1 pass** at HEAD (strategy §5 + §7 pins this exact path/filter pair; covers
-    audit findings #1, #2, #3, #4, #14):
-    1. `GradebookGrid` column header `<span className="block truncate max-w-20 mx-auto">`
-       still combines `truncate` + `max-w-20` — lesson titles aggressively truncated on
-       tablet 768px (audit #2).
-    2. `GradebookGrid` outer container `rounded-xl border border-border overflow-x-auto`
-       has NO horizontal-scroll affordance (no gradient fade, no scroll hint, no
-       `aria-label` mentioning more columns) — teachers on phone/tablet cannot discover
-       additional columns (audit #1, critical).
-    3. `CompetencyHeatmapGrid` outer container has the same `overflow-x-auto` pattern
-       with NO scroll affordance (audit #3, critical).
-    4. `CompetencyHeatmapGrid` sortable header button classes
-       `flex items-center gap-1 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring`
-       — no 44×44 hit target (audit #4).
-    5. `CompetencyHeatmapGrid` cells `<td className="text-center px-2 py-2 font-medium tabular-nums bg-green-100 text-green-800">`
-       — `px-2 py-2` = ~32px height, no 44×44 hit target (audit #4).
-    The **1 pass** is the `SubmissionDetailModal` dialog-max-width test — passes because
-    the Phase 2 `Dialog` fix (`w-full max-w-[calc(100vw-2rem)] sm:max-w-md`) propagates
-    to the teacher surface via the shared component (no source change needed). Green
-    closeout will turn the 5 reds green with token-level fixes in `GradebookGrid.tsx`,
-    `CompetencyHeatmapGrid.tsx`, and the heatmap cell <td> wrapper. Sub-Red commit: `51306f0e`.
-- [~] Task: Wire viewport guard into CI; final verification (lint, tsc --noEmit, tests)
+     `CI=true npm run test --workspace=apps/integrated-math-3 -- __tests__/components/teacher/gradebook-responsive.test.tsx -t "tablet"`
+     → **5 fail, 1 pass** at HEAD (strategy §5 + §7 pins this exact path/filter pair; covers
+     audit findings #1, #2, #3, #4, #14):
+     1. `GradebookGrid` column header `<span className="block truncate max-w-20 mx-auto">`
+        still combines `truncate` + `max-w-20` — lesson titles aggressively truncated on
+        tablet 768px (audit #2).
+     2. `GradebookGrid` outer container `rounded-xl border border-border overflow-x-auto`
+        has NO horizontal-scroll affordance (no gradient fade, no scroll hint, no
+        `aria-label` mentioning more columns) — teachers on phone/tablet cannot discover
+        additional columns (audit #1, critical).
+     3. `CompetencyHeatmapGrid` outer container has the same `overflow-x-auto` pattern
+        with NO scroll affordance (audit #3, critical).
+     4. `CompetencyHeatmapGrid` sortable header button classes
+        `flex items-center gap-1 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring`
+        — no 44×44 hit target (audit #4).
+     5. `CompetencyHeatmapGrid` cells `<td className="text-center px-2 py-2 font-medium tabular-nums bg-green-100 text-green-800">`
+        — `px-2 py-2` = ~32px height, no 44×44 hit target (audit #4).
+     The **1 pass** is the `SubmissionDetailModal` dialog-max-width test — passes because
+     the Phase 2 `Dialog` fix (`w-full max-w-[calc(100vw-2rem)] sm:max-w-md`) propagates
+     to the teacher surface via the shared component (no source change needed). Green
+     closeout turned the 5 reds green with token-level fixes in `GradebookGrid.tsx`,
+     `CompetencyHeatmapGrid.tsx`, and the heatmap cell <td> wrapper. Sub-Red commit: `51306f0e`.
+     Green commit: `28c6dd27`.
+- [x] Task: Wire viewport guard into CI; final verification (lint, tsc --noEmit, tests) (green: 28c6dd27)
   - Red sub-proof (artifact contract — CI wiring command-construction, MID role, vitest):
-    `CI=true npx vitest run --root apps/integrated-math-3 __tests__/responsive/viewport-ci-wiring.contract.test.ts`
-    → **3 fail, 2 pass** at HEAD (strategy §7 pins the bounded `--project=viewport -g
-    "@smoke"` form and forbids the unbounded `npx playwright test` form; this contract
-    test is the command-construction proof):
-    1. **FAIL** — CI workflow `.github/workflows/ci.yml` has NO `run:` step that includes
-       `--project=viewport`. Existing `run:` steps are all `npm ci` / `npm run test:*` /
-       `npm run build:*` / `npm run test:e2e --prefix apps/integrated-math-3`; none invoke
-       the viewport-guard project.
-    2. **PASS** — CI workflow file exists at the monorepo root
-       (`.github/workflows/ci.yml`); sanity gate.
-    3. **FAIL** — CI viewport-guard step does NOT exist (cascading from #1), so the
-       `--workers 1` workers pin cannot be verified. Green must add the step with either
-       `--workers 1` inline OR pin `workers: 1` in the `viewport` project block of
-       `playwright.config.ts`.
-    4. **PASS** — CI workflow does NOT contain a bare `npx playwright test` step that
-       lacks `--project=viewport` (current `npm run test:e2e` is the IM3 app's npm
-       script, not a bare `npx playwright test`; sanity gate that the bounded form
-       doesn't yet drift to unbounded).
-    5. **FAIL** — `e2e/viewport-guard.spec.ts` has NO non-fixme `@smoke` test. The
-       existing 3 cases are all `test.fixme(...)` (known-bad fixture, owned by P2
-       per strategy §8). Green must add a new `test("... @smoke ...", ...)` that
-       targets a single representative route (e.g. /teacher/dashboard) at a single
-       viewport (tablet 768×1024) so the bounded `-g "@smoke"` grep resolves.
-    Sub-Red commit: `e9778978`.
-- [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
+     `CI=true npx vitest run --root apps/integrated-math-3 __tests__/responsive/viewport-ci-wiring.contract.test.ts`
+     → **3 fail, 2 pass** at HEAD (strategy §7 pins the bounded `--project=viewport -g
+     "@smoke"` form and forbids the unbounded `npx playwright test` form; this contract
+     test is the command-construction proof):
+     1. **FAIL** — CI workflow `.github/workflows/ci.yml` has NO `run:` step that includes
+        `--project=viewport`. Existing `run:` steps are all `npm ci` / `npm run test:*` /
+        `npm run build:*` / `npm run test:e2e --prefix apps/integrated-math-3`; none invoke
+        the viewport-guard project.
+     2. **PASS** — CI workflow file exists at the monorepo root
+        (`.github/workflows/ci.yml`); sanity gate.
+     3. **FAIL** — CI viewport-guard step does NOT exist (cascading from #1), so the
+        `--workers 1` workers pin cannot be verified. Green added the step with
+        `--workers 1` inline.
+     4. **PASS** — CI workflow does NOT contain a bare `npx playwright test` step that
+        lacks `--project=viewport` (current `npm run test:e2e` is the IM3 app's npm
+        script, not a bare `npx playwright test`; sanity gate that the bounded form
+        doesn't yet drift to unbounded).
+     5. **FAIL** — `e2e/viewport-guard.spec.ts` has NO non-fixme `@smoke` test. The
+        existing 3 cases are all `test.fixme(...)` (known-bad fixture, owned by P2
+        per strategy §8). Green added a new `test("... @smoke ...", ...)` that
+        targets `/teacher/dashboard` at tablet 768×1024 so the bounded `-g "@smoke"` grep resolves.
+     Sub-Red commit: `e9778978`.
+     Green commit: `28c6dd27`.
+- [x] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md) — Checkpoint: 28c6dd27
