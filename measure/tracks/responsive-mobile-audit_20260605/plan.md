@@ -31,13 +31,29 @@ Verification: boundary lints + per-app lint/test + `tsc --noEmit` + viewport che
     as Phase 1 deliverables — the unit-test stub is necessary but not sufficient for the §7
     bounded command `--project=viewport e2e/viewport-guard.spec.ts -g "known-bad fixture"`
     to resolve). Folds dirty SHA typo correction (`618eb762` → `c098089b` for Task 1 Green).
-    Sub-Red commit: `6d842315` (this attempt). Green closeout (Phase 1 Green — Jr role):
+    Sub-Red commit: `cca1c224` (this attempt). Green closeout (Phase 1 Green — Jr role):
     `CI=true npx vitest run --root apps/integrated-math-3 __tests__/responsive/viewport-playwright-infra.contract.test.ts`
     → **6/6 pass** — authored `e2e/viewport-guard.spec.ts` (3 viewport breakpoints, `test.fixme`
     for known-bad fixture with "owned by P2" annotation per strategy §8) +
     added `viewport` project to `playwright.config.ts` (separate from `chromium`,
     uses `devices['Desktop Chrome']` preset per strategy §4).
     Green commit: `6d842315`.
+  - Phase Acceptance audit corrections (2026-06-20):
+    - Fixed inverted assertion in `e2e/viewport-guard.spec.ts`: the known-bad-fixture
+      `test.fixme` cases asserted `bodyWidth > viewportWidth` (overflow EXISTS → PASSES
+      on the 200vw fixture), the opposite of strategy §7's "MUST FAIL" Red. Corrected
+      to `bodyWidth <= viewportWidth` (guard pass condition → FAILS on the bad fixture
+      = the §7 one-shot Red). Verified via a live Playwright run on a standalone 200vw
+      fixture: bodyWidth=780 at phone 390px (= 2× viewport), so `>` passes and `<=` fails.
+    - Added a permanent PASSING vitest regression test in
+      `__tests__/responsive/viewport-guard.unit.test.ts` ("guard detects horizontal
+      overflow ... non-vacuity proof") that exercises the previously-untested
+      `measureViewportOverflow` helper and asserts `overflowPx > 0` across all 3
+      breakpoints — keeps the non-vacuity proof re-runnable in the default aggregate.
+    - The strategy §7 live Playwright Red was never run as a failing test (the spec was
+      born `test.fixme` in 6d842315); the standalone proof above reproduces the evidence.
+      P3 should run the bounded `--project=viewport -g "@smoke"` against the real Next route.
+    - Corrected Sub-Red SHA typo (`6d842315` → `cca1c224` on line 34 above).
 - [x] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md) — Checkpoint: 01e75579
 
 ## Phase 2 — Activity Components & Shell

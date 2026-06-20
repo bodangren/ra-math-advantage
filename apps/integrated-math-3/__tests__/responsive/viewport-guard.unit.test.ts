@@ -144,6 +144,30 @@ describe('Viewport Guard — Phase 1 Red (known-bad fixture)', () => {
     expect(KNOWN_BAD_FIXTURE_HTML).toContain('known-bad-overflow-host');
   });
 
+  it('guard detects horizontal overflow on the known-bad fixture (non-vacuity proof, strategy §7)', async () => {
+    // Permanent, re-runnable, PASSING proof that the guard is non-vacuous.
+    // measureViewportOverflow returns overflowPx > 0 on the 200vw fixture.
+    // This exercises the helper (otherwise only reached by test.skip cases
+    // that assert the inverse) and keeps the non-vacuity proof in the
+    // default aggregate — complementing the §8 test.skip "Red" cases below
+    // that assert overflowPx === 0 (which fail = the one-shot Red).
+    // Cross-checked against a live Playwright run on a standalone 200vw
+    // fixture (bodyWidth=780 at phone 390px = 2× viewport).
+    for (const viewport of VIEWPORT_CASES) {
+      const result = await measureViewportOverflow(
+        KNOWN_BAD_FIXTURE_HTML,
+        viewport.width,
+        viewport.height,
+      );
+      expect(
+        result.overflowPx,
+        `guard must detect overflow at ${viewport.label} ${viewport.width}x${viewport.height}: ` +
+          `scrollWidth=${result.scrollWidth} should exceed viewport ${result.layoutViewport}`,
+      ).toBeGreaterThan(0);
+      expect(result.scrollWidth).toBeGreaterThan(result.layoutViewport);
+    }
+  });
+
   for (const viewport of VIEWPORT_CASES) {
     // Strategy §8: the known-bad fixture carries a 200vw overflow that
     // the guard correctly detects — the assertion `overflowPx === 0`
