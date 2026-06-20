@@ -308,5 +308,5 @@ Verification: boundary lints + per-app lint/test + `tsc --noEmit` + viewport che
        per strategy §8). Green must add a new `test("... @smoke ...", ...)` that
        targets a single representative route (e.g. /teacher/dashboard) at a single
        viewport (tablet 768×1024) so the bounded `-g "@smoke"` grep resolves.
-    Sub-Red commit: pending.
+    Sub-Red commit: `e9778978`.
 - [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
