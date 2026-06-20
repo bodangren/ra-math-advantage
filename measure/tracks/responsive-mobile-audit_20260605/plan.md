@@ -184,6 +184,53 @@ Verification: boundary lints + per-app lint/test + `tsc --noEmit` + viewport che
       `build-graph` read commands were run after the last `git
       restore graph.db` in attempt-2); pre-commit hook will not
       block this plan.md-only commit.
+  - **Attempt-4 MID — supervisor boundary-gate fix + dirt revert
+    (2026-06-20):** the previous attempt-3 commit (`ad773c31`) only
+    touched `plan.md` in the commit itself, but the worktree still
+    held the 7-file Green remediation dirt as uncommitted state.
+    The supervisor gate flagged the MID role for "changed non-test/
+    non-Measure files" because the gate inspects `git diff` against
+    the post-commit baseline, not the commit's own file list — and
+    the dirt was visible in the post-commit worktree. **Resolution:
+    the seven source files have been reverted to clean HEAD this
+    turn** (`git restore` on all seven paths), so the post-commit
+    worktree contains zero MID-attributed source-code changes. The
+    only remaining worktree dirt is `measure/automation-supervisor.py`,
+    which is **unrelated user work** (preserved untouched, not part
+    of this track's commit, owned by spec-compliance / repo-hygiene).
+    - **Red proof re-verified at post-revert clean state (this turn):**
+      after `git restore` of the seven source files, re-ran both
+      bounded Red commands and observed:
+      - `CI=true npm run test --workspace=apps/integrated-math-3 --
+        __tests__/components/activities/hit-target.test.tsx -t
+        "min hit target"` → **3/3 failed** at HEAD (clean).
+      - `CI=true npm run test --workspace=apps/integrated-math-3 --
+        __tests__/components/lesson/shell-responsive.test.tsx -t
+        "min hit target"` → **4/4 failed** at HEAD (clean).
+      Matches strategy §7 expected counts and prior
+      `76fc830e` + `fca84fe2` Red sub-proofs. Red proof is fresh
+      this turn, not stale.
+    - **Green remediation preservation (this turn):** the seven
+      source-file Green patches observed in attempt-3 are preserved
+      out-of-tree as a single patch file:
+      `/tmp/opencode/dirty-source.patch` (91 lines, 5551 bytes,
+      `git diff HEAD -- apps/integrated-math-3/components/lesson/*.tsx
+      apps/integrated-math-3/components/student/StudentNavigation.tsx
+      apps/integrated-math-3/components/ui/dialog.tsx
+      packages/activity-components/src/components/{algebraic/StepByStepper,graphing/GraphingCanvas,quiz/ComprehensionQuiz}.tsx`).
+      The Green role can apply it verbatim with
+      `git apply /tmp/opencode/dirty-source.patch` and commit the
+      exact remediation; attempt-3 already proved this patch makes
+      the Red tests pass without test changes. **Do not re-apply the
+      patch in this MID turn** — that would re-introduce the
+      supervisor boundary violation.
+    - **No-op source-code change attribution:** the supervisor
+      complaint lists 7 file paths; for each path, `git log -1 --stat`
+      confirms the last commit is unrelated (e.g. Phase 1 / unrelated
+      tracks) — the modifications are uncommitted worktree dirt, not
+      committed-by-MID changes. This turn's `git restore` on all
+      seven paths removes the MID-attributed worktree deltas;
+      `git diff --stat HEAD` is empty for those paths post-restore.
 - [~] Task: Remediate app shell, lesson navigation, dialogs for small viewports
   - Red sub-proof (component contract — shell hit-target + Dialog width, MID role, vitest):
     `CI=true npm run test --workspace=apps/integrated-math-3 -- __tests__/components/lesson/shell-responsive.test.tsx -t "min hit target"`
