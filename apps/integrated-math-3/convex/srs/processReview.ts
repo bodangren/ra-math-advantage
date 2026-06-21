@@ -100,8 +100,8 @@ const VALID_STATE_TRANSITIONS: Record<string, string[]> = {
 
 /**
  * Validates an SRS state transition by enforcing business rules.
- * @param stateBefore - The SRS state before the review
- * @param stateAfter - The SRS state after the review
+ * @param {SrsStatePick} stateBefore - The SRS state before the review
+ * @param {SrsStatePick} stateAfter - The SRS state after the review
  * @throws Error if reps does not increase by 1, lapses decreases,
  *         or state transition is invalid
  */
@@ -129,9 +129,9 @@ function validateSrsTransition(
 
 /**
  * Processes an SRS review by updating card state and creating a log entry.
- * @param ctx - The mutation context
- * @param args - The card state and review entry to process
- * @returns The processed card ID and the review log entry ID
+ * @param {MutationCtx} ctx - The mutation context
+ * @param {ProcessReviewArgs} args - The card state and review entry to process
+ * @returns {Promise<{ cardId: string; logEntryId: Id<"srs_review_log"> }>} The processed card ID and the review log entry ID
  * @throws Error if studentId mismatch between card and review
  */
 export async function processReviewHandler(

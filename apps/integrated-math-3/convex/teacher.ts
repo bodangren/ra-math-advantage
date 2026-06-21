@@ -37,8 +37,8 @@ type AtGlanceStatus = 'on-track' | 'behind' | 'not-started';
 
 /**
  * Determines at-a-glance status from progress percentage.
- * @param progressPercentage - The percentage of progress completed
- * @returns atGlanceStatus string: 'not-started', 'on-track', or 'behind'
+ * @param {number} progressPercentage - The percentage of progress completed
+ * @returns {AtGlanceStatus} atGlanceStatus string: 'not-started', 'on-track', or 'behind'
  */
 function computeAtGlanceStatus(progressPercentage: number): AtGlanceStatus {
   if (progressPercentage === 0) return 'not-started';
@@ -106,8 +106,8 @@ const DEFAULT_PHASE_NAMES: Record<number, string> = {
 
 /**
  * Sorts students alphabetically by display name or username.
- * @param students - Array of student objects with username and displayName
- * @returns Sorted copy of the students array
+ * @param {T[]} students - Array of student objects with username and displayName
+ * @returns {T[]} Sorted copy of the students array
  */
 function sortStudentsByName<
   T extends {
@@ -122,9 +122,9 @@ function sortStudentsByName<
 
 /**
  * Lists all student profiles in an organization, sorted by display name.
- * @param ctx - The query context
- * @param organizationId - The organization to list students for
- * @returns Sorted array of student profiles
+ * @param {QueryCtx} ctx - The query context
+ * @param {Id<"organizations">} organizationId - The organization to list students for
+ * @returns {Promise<Doc<"profiles">[]>} Sorted array of student profiles
  */
 async function listOrganizationStudents(
   ctx: QueryCtx,
@@ -142,9 +142,9 @@ async function listOrganizationStudents(
 
 /**
  * Retrieves the display name of an organization.
- * @param ctx - The query context
- * @param organizationId - The organization to look up
- * @returns The organization name or a default fallback
+ * @param {QueryCtx} ctx - The query context
+ * @param {Id<"organizations">} organizationId - The organization to look up
+ * @returns {Promise<string>} The organization name or a default fallback
  */
 async function getOrganizationName(
   ctx: QueryCtx,
@@ -156,9 +156,9 @@ async function getOrganizationName(
 
 /**
  * Retrieves the latest published version for each lesson.
- * @param ctx - The query context
- * @param lessonIds - Optional filter to specific lesson IDs
- * @returns Array of latest published lesson version documents
+ * @param {QueryCtx} ctx - The query context
+ * @param {string[] | undefined} lessonIds - Optional filter to specific lesson IDs
+ * @returns {Promise<Doc<"lesson_versions">[]>} Array of latest published lesson version documents
  */
 async function listLatestPublishedLessonVersions(
   ctx: QueryCtx,
@@ -172,8 +172,8 @@ async function listLatestPublishedLessonVersions(
 
 /**
  * Retrieves the set of phase version IDs that belong to published lessons.
- * @param ctx - The query context
- * @returns Set of active phase version IDs
+ * @param {QueryCtx} ctx - The query context
+ * @returns {Promise<Set<Id<"phase_versions">>>} Set of active phase version IDs
  */
 async function listActivePhaseIds(
   ctx: QueryCtx,
@@ -193,12 +193,12 @@ async function listActivePhaseIds(
 
 /**
  * Builds a progress snapshot for a student from their progress rows.
- * @param progressRows - The student's progress records
- * @param activePhaseIds - Set of active phase version IDs
- * @param phaseVersionLessonMap - Optional map from phase version to lesson version
- * @param lessonVersionLessonMap - Optional map from lesson version to lesson
- * @param lessonTitleMap - Optional map from lesson ID to title
- * @returns Progress snapshot with completion stats and current lesson
+ * @param {readonly ProgressRowLike[]} progressRows - The student's progress records
+ * @param {ReadonlySet<string>} activePhaseIds - Set of active phase version IDs
+ * @param {Map<string, string> | undefined} phaseVersionLessonMap - Optional map from phase version to lesson version
+ * @param {Map<string, string> | undefined} lessonVersionLessonMap - Optional map from lesson version to lesson
+ * @param {Map<string, string> | undefined} lessonTitleMap - Optional map from lesson ID to title
+ * @returns {Promise<TeacherProgressSnapshot>} Progress snapshot with completion stats and current lesson
  */
 async function buildStudentProgressSnapshot(
   progressRows: readonly ProgressRowLike[],
@@ -243,9 +243,9 @@ async function buildStudentProgressSnapshot(
 
 /**
  * Lists all units with per-lesson progress detail for a student.
- * @param ctx - The query context
- * @param studentId - The student profile ID
- * @returns Array of unit rows with nested lesson progress
+ * @param {QueryCtx} ctx - The query context
+ * @param {Id<"profiles">} studentId - The student profile ID
+ * @returns {Promise<TeacherStudentDetailUnitRow[]>} Array of unit rows with nested lesson progress
  */
 async function listStudentDetailUnits(
   ctx: QueryCtx,
@@ -363,9 +363,9 @@ export const getTeacherDashboardData = internalQuery({
 
 /**
  * Retrieves course overview data for a teacher's students.
- * @param ctx - The query context
- * @param args - The teacher user ID
- * @returns Course overview rows and unit columns, or null if unauthorized
+ * @param {QueryCtx} ctx - The query context
+ * @param {{ userId: Id<"profiles"> }} args - The teacher user ID
+ * @returns {Promise<{ rows: CourseOverviewRow[]; units: UnitColumn[] } | null>} Course overview rows and unit columns, or null if unauthorized
  */
 export async function getTeacherCourseOverviewDataHandler(
   ctx: QueryCtx,
@@ -459,9 +459,9 @@ export const getTeacherCourseOverviewData = internalQuery({
 
 /**
  * Retrieves gradebook data for a teacher's students in a specific unit.
- * @param ctx - The query context
- * @param args - The teacher user ID and unit number
- * @returns Gradebook rows and lesson metadata, or null if unauthorized
+ * @param {QueryCtx} ctx - The query context
+ * @param {{ userId: Id<"profiles">; unitNumber: number }} args - The teacher user ID and unit number
+ * @returns {Promise<{ rows: GradebookRow[]; lessons: GradebookLesson[] } | null>} Gradebook rows and lesson metadata, or null if unauthorized
  */
 export async function getTeacherGradebookDataHandler(
   ctx: QueryCtx,
@@ -591,9 +591,9 @@ export const getTeacherGradebookData = internalQuery({
 
 /**
  * Retrieves competency heatmap data for a teacher's organization.
- * @param ctx - The query context
- * @param args - The teacher user ID
- * @returns Competency heatmap response with standards and student data, or null if unauthorized
+ * @param {QueryCtx} ctx - The query context
+ * @param {{ userId: Id<"profiles"> }} args - The teacher user ID
+ * @returns {Promise<CompetencyHeatmapResponse | null>} Competency heatmap response with standards and student data, or null if unauthorized
  */
 export async function getTeacherCompetencyHeatmapDataHandler(
   ctx: QueryCtx,
@@ -656,9 +656,9 @@ export const getTeacherCompetencyHeatmapData = internalQuery({
 
 /**
  * Retrieves detailed competency data for a specific student.
- * @param ctx - The query context
- * @param args - The teacher user ID and student profile ID
- * @returns Student competency detail with standards and lesson mappings, or null if unauthorized
+ * @param {QueryCtx} ctx - The query context
+ * @param {{ userId: Id<"profiles">; studentId: Id<"profiles"> }} args - The teacher user ID and student profile ID
+ * @returns {Promise<StudentCompetencyDetail | null>} Student competency detail with standards and lesson mappings, or null if unauthorized
  */
 export async function getTeacherStudentCompetencyDetailHandler(
   ctx: QueryCtx,
@@ -891,9 +891,9 @@ export const getTeacherLessonMonitoringData = internalQuery({
 
 /**
  * Retrieves submission evidence detail for a student's lesson work.
- * @param ctx - The query context
- * @param args - The teacher user ID, student ID, lesson ID, and student display name
- * @returns Submission detail with phases, evidence, and error summary, or null if unauthorized
+ * @param {QueryCtx} ctx - The query context
+ * @param {{ userId: Id<"profiles">; studentId: Id<"profiles">; lessonId: Id<"lessons">; studentName: string }} args - The teacher user ID, student ID, lesson ID, and student display name
+ * @returns {Promise<{ studentName: string; lessonTitle: string; phases: Array<{ phaseNumber: number; phaseId: string; title: string; status: string; completedAt: number | null; spreadsheetData: unknown | null; evidence: SubmissionEvidence[] }>; studentErrorSummary: unknown } | null>} Submission detail with phases, evidence, and error summary, or null if unauthorized
  */
 export async function getSubmissionDetailHandler(
   ctx: QueryCtx,

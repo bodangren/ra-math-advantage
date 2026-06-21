@@ -35,9 +35,9 @@ type EdgeInput = {
 
 /**
  * Refreshes the edge calibration state and rebuilds the review queue.
- * @param ctx - The mutation context
- * @param args - The course key and edge observations
- * @returns Object with the count of flagged edges
+ * @param {MutationCtx} ctx - The mutation context
+ * @param {{ courseKey: string; edges: EdgeInput[] }} args - The course key and edge observations
+ * @returns {Promise<{ flagged: number }>} Object with the count of flagged edges
  */
 export async function refreshCalibrationReviewQueueHandler(
   ctx: MutationCtx,
@@ -182,9 +182,9 @@ export const refreshCalibrationReviewQueue = internalMutation({
 
 /**
  * Lists the calibration review queue for a course.
- * @param ctx - The query context
- * @param _args - The course key (unused, reserved for future filtering)
- * @returns Array of calibration review queue entries
+ * @param {QueryCtx} ctx - The query context
+ * @param {{ courseKey: string }} _args - The course key (unused, reserved for future filtering)
+ * @returns {Promise<Doc<"calibration_review_queue">[]>} Array of calibration review queue entries
  */
 export async function listCalibrationReviewQueueHandler(
   ctx: QueryCtx,

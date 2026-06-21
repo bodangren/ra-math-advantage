@@ -4,9 +4,9 @@ import { Id, type Doc } from "../_generated/dataModel";
 
 /**
  * Retrieves an authorized teacher profile for a user.
- * @param ctx - The query or mutation context
- * @param userId - The profile ID to check
- * @returns The teacher/admin profile, or null if not authorized
+ * @param {QueryCtx | MutationCtx} ctx - The query or mutation context
+ * @param {Id<"profiles">} userId - The profile ID to check
+ * @returns {Promise<Doc<"profiles"> | null>} The teacher/admin profile, or null if not authorized
  */
 async function getAuthorizedTeacher(
   ctx: QueryCtx | MutationCtx,
@@ -21,10 +21,10 @@ async function getAuthorizedTeacher(
 
 /**
  * Validates that a teacher owns a specific class.
- * @param ctx - The query or mutation context
- * @param userId - The teacher profile ID
- * @param classId - The class to validate ownership of
- * @returns True if the teacher owns the class, false otherwise
+ * @param {QueryCtx | MutationCtx} ctx - The query or mutation context
+ * @param {Id<"profiles">} userId - The teacher profile ID
+ * @param {Id<"classes">} classId - The class to validate ownership of
+ * @returns {Promise<boolean>} True if the teacher owns the class, false otherwise
  */
 async function validateTeacherOwnsClass(
   ctx: QueryCtx | MutationCtx,
@@ -48,9 +48,9 @@ export interface ClassWithLessons {
 
 /**
  * Retrieves classes owned by a teacher with their assigned lesson IDs.
- * @param ctx - The query context
- * @param args - The teacher user ID
- * @returns Array of classes with their assigned lesson IDs
+ * @param {QueryCtx} ctx - The query context
+ * @param {{ userId: Id<"profiles"> }} args - The teacher user ID
+ * @returns {Promise<ClassWithLessons[]>} Array of classes with their assigned lesson IDs
  */
 export async function getTeacherClassesWithLessonsHandler(
   ctx: QueryCtx,
@@ -101,8 +101,8 @@ export interface LessonInfo {
 
 /**
  * Retrieves all available lessons for assignment.
- * @param ctx - The query context
- * @returns Array of lesson metadata
+ * @param {QueryCtx} ctx - The query context
+ * @returns {Promise<LessonInfo[]>} Array of lesson metadata
  */
 export async function getAvailableLessonsHandler(
   ctx: QueryCtx,
@@ -135,9 +135,9 @@ export interface AssignLessonResult {
 
 /**
  * Assigns a lesson to a class owned by the teacher.
- * @param ctx - The mutation context
- * @param args - The teacher user ID, class ID, and lesson ID
- * @returns Result indicating success and whether the assignment already existed
+ * @param {MutationCtx} ctx - The mutation context
+ * @param {{ userId: Id<"profiles">; classId: Id<"classes">; lessonId: Id<"lessons"> }} args - The teacher user ID, class ID, and lesson ID
+ * @returns {Promise<AssignLessonResult>} Result indicating success and whether the assignment already existed
  * @throws Error if the teacher does not own the class
  */
 export async function assignLessonToClassHandler(
@@ -191,9 +191,9 @@ export interface UnassignLessonResult {
 
 /**
  * Unassigns a lesson from a class owned by the teacher.
- * @param ctx - The mutation context
- * @param args - The teacher user ID, class ID, and lesson ID
- * @returns Result indicating success and whether the assignment was deleted
+ * @param {MutationCtx} ctx - The mutation context
+ * @param {{ userId: Id<"profiles">; classId: Id<"classes">; lessonId: Id<"lessons"> }} args - The teacher user ID, class ID, and lesson ID
+ * @returns {Promise<UnassignLessonResult>} Result indicating success and whether the assignment was deleted
  * @throws Error if the teacher does not own the class
  */
 export async function unassignLessonFromClassHandler(

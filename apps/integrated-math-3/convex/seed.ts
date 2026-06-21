@@ -426,7 +426,7 @@ export const seedAll = internalAction({
 
 /**
  * Returns the full curriculum definition for all 52 lessons across 9 modules.
- * @returns Array of seed lesson definitions with phases and sections
+ * @returns {SeedLesson[]} Array of seed lesson definitions with phases and sections
  */
 function getLessons(): SeedLesson[] {
   return [
@@ -1483,7 +1483,7 @@ function getLessons(): SeedLesson[] {
 
 /**
  * Returns the demo environment configuration with users and class setup.
- * @returns The demo environment definition, or undefined if not configured
+ * @returns {SeedDemoEnvironment | undefined} The demo environment definition, or undefined if not configured
  */
 function getDemoEnvironment(): SeedDemoEnvironment | undefined {
   return {

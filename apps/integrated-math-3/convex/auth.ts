@@ -207,8 +207,8 @@ type TeacherProfile = Doc<'profiles'>;
 
 /**
  * Normalizes a string input by trimming and limiting to 50 characters.
- * @param value - The string to normalize
- * @returns The normalized string, or undefined if empty/invalid
+ * @param {string | undefined} value - The string to normalize
+ * @returns {string | undefined} The normalized string, or undefined if empty/invalid
  */
 function normalizeInput(value?: string): string | undefined {
   if (!value || typeof value !== 'string') {
@@ -221,8 +221,8 @@ function normalizeInput(value?: string): string | undefined {
 
 /**
  * Converts a value to a URL-safe slug.
- * @param value - The string to slugify
- * @returns The slugified string (max 24 chars, lowercase, underscores)
+ * @param {string | undefined} value - The string to slugify
+ * @returns {string} The slugified string (max 24 chars, lowercase, underscores)
  */
 function slugify(value?: string): string {
   if (!value) return '';
@@ -238,10 +238,10 @@ function slugify(value?: string): string {
 
 /**
  * Builds a display name from first name, last name, and fallback.
- * @param firstName - The first name
- * @param lastName - The last name
- * @param fallback - The fallback name if both are empty
- * @returns The display name string
+ * @param {string | undefined} firstName - The first name
+ * @param {string | undefined} lastName - The last name
+ * @param {string} fallback - The fallback name if both are empty
+ * @returns {string} The display name string
  */
 function buildDisplayName(firstName: string | undefined, lastName: string | undefined, fallback: string): string {
   const capitalize = (v: string) => (v ? v.charAt(0).toUpperCase() + v.slice(1) : '');
@@ -251,8 +251,8 @@ function buildDisplayName(firstName: string | undefined, lastName: string | unde
 
 /**
  * Type guard that validates a value is a plain metadata record object.
- * @param value - The value to check
- * @returns The value cast as a metadata record, or empty object if invalid
+ * @param {unknown} value - The value to check
+ * @returns {Record<string, unknown>} The value cast as a metadata record, or empty object if invalid
  */
 function asMetadataRecord(value: unknown): Record<string, unknown> {
   if (typeof value !== 'object' || value === null || Array.isArray(value)) {
@@ -263,9 +263,9 @@ function asMetadataRecord(value: unknown): Record<string, unknown> {
 
 /**
  * Retrieves an authorized teacher profile for a user.
- * @param ctx - The query context
- * @param userId - The profile ID to check
- * @returns The teacher/admin profile, or null if not authorized
+ * @param {QueryCtx} ctx - The query context
+ * @param {Id<'profiles'>} userId - The profile ID to check
+ * @returns {Promise<Doc<"profiles"> | null>} The teacher/admin profile, or null if not authorized
  */
 export async function getAuthorizedTeacher(
   ctx: QueryCtx,
@@ -285,10 +285,10 @@ export async function getAuthorizedTeacher(
 
 /**
  * Retrieves a student profile if found in the teacher's organization.
- * @param ctx - The mutation context
- * @param studentProfileId - The student's profile ID
- * @param teacher - The teacher profile to check org membership
- * @returns The student profile, or null if not found/invalid
+ * @param {MutationCtx} ctx - The mutation context
+ * @param {Id<'profiles'>} studentProfileId - The student's profile ID
+ * @param {TeacherProfile} teacher - The teacher profile to check org membership
+ * @returns {Promise<Doc<"profiles"> | null>} The student profile, or null if not found/invalid
  */
 export async function getStudentInTeacherOrg(
   ctx: MutationCtx,
@@ -305,9 +305,9 @@ export async function getStudentInTeacherOrg(
 
 /**
  * Retrieves a teacher profile if authorized, or an error result.
- * @param ctx - The mutation context
- * @param teacherProfileId - The profile ID to check
- * @returns Object with ok=true and teacher, or ok=false with reason
+ * @param {MutationCtx} ctx - The mutation context
+ * @param {Id<'profiles'>} teacherProfileId - The profile ID to check
+ * @returns {Promise<{ ok: true; teacher: Doc<"profiles"> } | { ok: false; reason: string }>} Object with ok=true and teacher, or ok=false with reason
  */
 async function getTeacherProfile(ctx: MutationCtx, teacherProfileId: Id<'profiles'>) {
   const teacher = await ctx.db.get(teacherProfileId);
@@ -324,10 +324,10 @@ async function getTeacherProfile(ctx: MutationCtx, teacherProfileId: Id<'profile
 
 /**
  * Retrieves a student profile if found in the teacher's organization.
- * @param ctx - The mutation context
- * @param studentProfileId - The student's profile ID
- * @param teacher - The teacher profile to check org membership
- * @returns Object with ok=true and student, or ok=false with reason
+ * @param {MutationCtx} ctx - The mutation context
+ * @param {Id<'profiles'>} studentProfileId - The student's profile ID
+ * @param {TeacherProfile} teacher - The teacher profile to check org membership
+ * @returns {Promise<{ ok: true; student: Doc<"profiles"> } | { ok: false; reason: string }>} Object with ok=true and student, or ok=false with reason
  */
 async function getStudentInTeacherOrgInternal(
   ctx: MutationCtx,
@@ -349,10 +349,10 @@ async function getStudentInTeacherOrgInternal(
 // multi-key index reads so sequential probing is currently unavoidable.
 /**
  * Generates a unique username by sequential probing with slugified base.
- * @param ctx - The mutation context
- * @param opts - Username preferences and name components
- * @param reserved - Set of already-reserved usernames
- * @returns A unique username string
+ * @param {MutationCtx} ctx - The mutation context
+ * @param {{ preferredUsername?: string; firstName?: string; lastName?: string }} opts - Username preferences and name components
+ * @param {Set<string>} reserved - Set of already-reserved usernames
+ * @returns {Promise<string>} A unique username string
  */
 async function generateUniqueUsername(
   ctx: MutationCtx,
@@ -386,8 +386,8 @@ async function generateUniqueUsername(
 
 /**
  * Generates a cryptographically random token string.
- * @param length - The number of characters in the token (default 8)
- * @returns Random string from the password-safe alphabet
+ * @param {number} length - The number of characters in the token (default 8)
+ * @returns {string} Random string from the password-safe alphabet
  */
 function randomToken(length = 8): string {
   const bytes = crypto.getRandomValues(new Uint8Array(length));

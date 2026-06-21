@@ -5,8 +5,8 @@ const PASSWORD_HASH_ITERATIONS = 120000;
 
 /**
  * Converts an ArrayBuffer to a URL-safe base64 string.
- * @param buffer - The ArrayBuffer to encode
- * @returns URL-safe base64 string without padding
+ * @param {ArrayBuffer} buffer - The ArrayBuffer to encode
+ * @returns {string} URL-safe base64 string without padding
  */
 function arrayBufferToBase64Url(buffer: ArrayBuffer): string {
   const bytes = new Uint8Array(buffer);
@@ -19,9 +19,9 @@ function arrayBufferToBase64Url(buffer: ArrayBuffer): string {
 
 /**
  * Hashes a password with a salt using PBKDF2-SHA256.
- * @param password - The plaintext password
- * @param salt - The salt string
- * @returns The derived key as a URL-safe base64 string
+ * @param {string} password - The plaintext password
+ * @param {string} salt - The salt string
+ * @returns {Promise<string>} The derived key as a URL-safe base64 string
  */
 async function hashPassword(password: string, salt: string): Promise<string> {
   const encoder = new TextEncoder();
@@ -49,7 +49,7 @@ async function hashPassword(password: string, salt: string): Promise<string> {
 
 /**
  * Generates a cryptographically random salt.
- * @returns URL-safe base64 string of 16 random bytes
+ * @returns {string} URL-safe base64 string of 16 random bytes
  */
 function generateSalt(): string {
   const bytes = crypto.getRandomValues(new Uint8Array(16));

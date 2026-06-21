@@ -9,9 +9,9 @@ import type { MutationCtx } from "../_generated/server";
 
 /**
  * Looks up the variant and objective for an activity.
- * @param ctx - The mutation context
- * @param activityId - The activity ID to look up
- * @returns The variant key and objective ID, or null if not found
+ * @param {MutationCtx} ctx - The mutation context
+ * @param {string} activityId - The activity ID to look up
+ * @returns {Promise<{ variantKey: string; objectiveId: string } | null>} The variant key and objective ID, or null if not found
  */
 async function lookupVariant(
   ctx: MutationCtx,
@@ -43,9 +43,9 @@ async function lookupVariant(
 
 /**
  * Looks up the timing baseline for a variant.
- * @param ctx - The mutation context
- * @param variantKey - The variant key to look up
- * @returns The timing baseline, or null if not found
+ * @param {MutationCtx} ctx - The mutation context
+ * @param {string} variantKey - The variant key to look up
+ * @returns {Promise<PracticeTimingBaseline | null>} The timing baseline, or null if not found
  */
 async function lookupBaseline(
   ctx: MutationCtx,
@@ -74,9 +74,9 @@ async function lookupBaseline(
 
 /**
  * Processes a student submission through the SRS adapter.
- * @param ctx - The mutation context
- * @param args - The student ID, activity ID, and submission data
- * @returns Result with card/review IDs, skip reason, or error message
+ * @param {MutationCtx} ctx - The mutation context
+ * @param {{ studentId: string; activityId: string; submission: unknown }} args - The student ID, activity ID, and submission data
+ * @returns {Promise<{ ok: true; skipped: false; cardId: string; reviewId: string } | { ok: false; skipped: true; reason: string } | { ok: false; skipped: false; error: string }>} Result with card/review IDs, skip reason, or error message
  */
 export async function processSubmissionSrsHandler(
   ctx: MutationCtx,

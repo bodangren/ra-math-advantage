@@ -134,9 +134,9 @@ export const getStaleBaselines = internalQuery({
 
 /**
  * Collects eligible timing summaries from activity submissions.
- * @param ctx - The query or mutation context
- * @param activityIds - Array of activity IDs to collect timings from
- * @returns Array of timing summaries with active time and confidence
+ * @param {MutationCtx | QueryCtx} ctx - The query or mutation context
+ * @param {Id<"activities">[]} activityIds - Array of activity IDs to collect timings from
+ * @returns {Promise<TimingSummary[]>} Array of timing summaries with active time and confidence
  */
 async function collectEligibleTimings(
   ctx: MutationCtx | QueryCtx,

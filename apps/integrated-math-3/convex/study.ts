@@ -92,9 +92,9 @@ type GetTermMasteryByUnitArgs = {
 
 /**
  * Processes a spaced-repetition review for a glossary term.
- * @param ctx - The mutation context
- * @param args - The review data including term, rating, and FSRS state
- * @returns Object with success status
+ * @param {MutationCtx} ctx - The mutation context
+ * @param {ProcessReviewArgs} args - The review data including term, rating, and FSRS state
+ * @returns {{ success: boolean }} Object with success status
  */
 export async function processReviewHandler(
   ctx: MutationCtx,
@@ -171,9 +171,9 @@ export async function processReviewHandler(
 
 /**
  * Retrieves all due glossary terms for a user's study session.
- * @param ctx - The query context
- * @param args - The user ID and optional current timestamp
- * @returns Array of due term reviews with FSRS state and schedule
+ * @param {QueryCtx} ctx - The query context
+ * @param {GetDueTermsArgs} args - The user ID and optional current timestamp
+ * @returns {Promise<{ termSlug: string; fsrsState: object; scheduledFor: number }[]>} Array of due term reviews with FSRS state and schedule
  */
 export async function getDueTermsHandler(
   ctx: QueryCtx,
@@ -200,9 +200,9 @@ export async function getDueTermsHandler(
 
 /**
  * Retrieves term mastery records for a specific module.
- * @param ctx - The query context
- * @param args - The user ID and module number
- * @returns Array of mastery records for terms in the module
+ * @param {QueryCtx} ctx - The query context
+ * @param {GetTermMasteryByUnitArgs} args - The user ID and module number
+ * @returns {Promise<Doc<"term_mastery">[]>} Array of mastery records for terms in the module
  */
 export async function getTermMasteryByUnitHandler(
   ctx: QueryCtx,
@@ -223,9 +223,9 @@ export async function getTermMasteryByUnitHandler(
 
 /**
  * Retrieves practice test results for a user, optionally filtered by module.
- * @param ctx - The query context
- * @param args - The user ID and optional module number filter
- * @returns Array of practice test result documents
+ * @param {QueryCtx} ctx - The query context
+ * @param {GetPracticeTestResultsArgs} args - The user ID and optional module number filter
+ * @returns {Promise<Doc<"practice_test_results">[]>} Array of practice test result documents
  */
 export async function getPracticeTestResultsHandler(
   ctx: QueryCtx,
@@ -250,9 +250,9 @@ export async function getPracticeTestResultsHandler(
 
 /**
  * Retrieves recent study sessions for a user.
- * @param ctx - The query context
- * @param args - The user ID and optional limit
- * @returns Array of study session documents
+ * @param {QueryCtx} ctx - The query context
+ * @param {GetRecentStudySessionsArgs} args - The user ID and optional limit
+ * @returns {Promise<Doc<"study_sessions">[]>} Array of study session documents
  */
 export async function getRecentStudySessionsHandler(
   ctx: QueryCtx,
@@ -269,10 +269,9 @@ export async function getRecentStudySessionsHandler(
 
 /**
  * Saves a practice test result for a user.
- * @param ctx - The mutation context
- * @param args - The test result data
- * @returns Object with the result ID
- * @throws Error if score is invalid, question count is not positive, or module is invalid
+ * @param {MutationCtx} ctx - The mutation context
+ * @param {SavePracticeTestResultArgs} args - The test result data
+ * @returns {{ resultId: Id<"practice_test_results"> }} Object with the result ID
  */
 export async function savePracticeTestResultHandler(
   ctx: MutationCtx,
@@ -306,9 +305,9 @@ export async function savePracticeTestResultHandler(
 
 /**
  * Records a study session for a user.
- * @param ctx - The mutation context
- * @param args - The session data including activity type and results
- * @returns Object with the session ID
+ * @param {MutationCtx} ctx - The mutation context
+ * @param {RecordStudySessionArgs} args - The session data including activity type and results
+ * @returns {{ sessionId: Id<"study_sessions"> }} Object with the session ID
  */
 export async function recordStudySessionHandler(
   ctx: MutationCtx,
@@ -331,9 +330,9 @@ export async function recordStudySessionHandler(
 
 /**
  * Retrieves a single study session by its ID.
- * @param ctx - The query context
- * @param args - The session ID
- * @returns The study session document, or null if not found
+ * @param {QueryCtx} ctx - The query context
+ * @param {{ sessionId: Id<"study_sessions"> }} args - The session ID
+ * @returns {Promise<Doc<"study_sessions"> | null>} The study session document, or null if not found
  */
 export async function getStudySessionByIdHandler(
   ctx: QueryCtx,
@@ -345,9 +344,9 @@ export async function getStudySessionByIdHandler(
 
 /**
  * Retrieves a single practice test result by its ID.
- * @param ctx - The query context
- * @param args - The result ID
- * @returns The practice test result document, or null if not found
+ * @param {QueryCtx} ctx - The query context
+ * @param {{ resultId: Id<"practice_test_results"> }} args - The result ID
+ * @returns {Promise<Doc<"practice_test_results"> | null>} The practice test result document, or null if not found
  */
 export async function getPracticeTestResultByIdHandler(
   ctx: QueryCtx,
@@ -359,9 +358,9 @@ export async function getPracticeTestResultByIdHandler(
 
 /**
  * Retrieves practice test results for a specific student, for teacher view.
- * @param ctx - The query context
- * @param args - The student ID and optional module number filter
- * @returns Array of practice test result documents
+ * @param {QueryCtx} ctx - The query context
+ * @param {{ studentId: Id<"profiles">; moduleNumber?: number }} args - The student ID and optional module number filter
+ * @returns {Promise<Doc<"practice_test_results">[]>} Array of practice test result documents
  */
 export async function getPracticeTestResultsForTeacherHandler(
   ctx: QueryCtx,
@@ -386,9 +385,9 @@ export async function getPracticeTestResultsForTeacherHandler(
 
 /**
  * Retrieves study sessions for a specific student, for teacher view.
- * @param ctx - The query context
- * @param args - The student ID and optional activity type filter
- * @returns Array of study session documents
+ * @param {QueryCtx} ctx - The query context
+ * @param {{ studentId: Id<"profiles">; activityType?: "flashcards" | "matching" | "speed_round" | "srs_review" | "practice_test" }} args - The student ID and optional activity type filter
+ * @returns {Promise<Doc<"study_sessions">[]>} Array of study session documents
  */
 export async function getStudySessionsForTeacherHandler(
   ctx: QueryCtx,

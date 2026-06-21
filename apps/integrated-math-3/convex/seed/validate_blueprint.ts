@@ -24,8 +24,8 @@ type ValidationInput = {
 
 /**
  * Validates seed blueprint data integrity by checking foreign key references.
- * @param input - The blueprint data to validate
- * @returns Validation report with passed status and any violations
+ * @param {ValidationInput} input - The blueprint data to validate
+ * @returns {ValidationReport} Validation report with passed status and any violations
  */
 export function runBlueprintValidation(input: ValidationInput): ValidationReport {
   const violations: ValidationViolation[] = [];

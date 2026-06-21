@@ -98,8 +98,8 @@ export const cleanupStaleRateLimits = internalMutation({
 
 /**
  * Cleans up stale rate limit entries via a cron-triggered mutation.
- * @param ctx - The mutation context
- * @returns Object with the count of deleted entries
+ * @param {MutationCtx} ctx - The mutation context
+ * @returns {Promise<{ deletedCount: number }>} Object with the count of deleted entries
  */
 export async function cleanupStaleRateLimitsCronHandler(ctx: MutationCtx) {
   const now = Date.now();

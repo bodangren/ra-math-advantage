@@ -13,8 +13,8 @@ export type ResolvedQueueItem = QueueItem & {
 
 /**
  * Maps a database SRS card to the contract format used by the queue builder.
- * @param card - The raw database card object
- * @returns The card in SrsCardState contract format
+ * @param {{ _id: Id<"srs_cards">; studentId: Id<"profiles">; objectiveId: string; problemFamilyId: string; stability: number; difficulty: number; state: "new" | "learning" | "review" | "relearning"; dueDate: string; elapsedDays: number; scheduledDays: number; reps: number; lapses: number; lastReview?: string; createdAt: number; updatedAt: number }} card - The raw database card object
+ * @returns {SrsCardState} The card in SrsCardState contract format
  */
 function mapDbCardToContract(
   card: {
@@ -56,9 +56,9 @@ function mapDbCardToContract(
 
 /**
  * Resolves queue items by enriching them with activity component data.
- * @param ctx - The database query context
- * @param items - The raw queue items from the SRS engine
- * @returns Resolved queue items with componentKey and props
+ * @param {QueueDbContext} ctx - The database query context
+ * @param {QueueItem[]} items - The raw queue items from the SRS engine
+ * @returns {Promise<ResolvedQueueItem[]>} Resolved queue items with componentKey and props
  */
 async function resolveQueueItems(
   ctx: QueueDbContext,
@@ -127,9 +127,9 @@ export interface QueueDbContext {
 
 /**
  * Builds and resolves the daily practice queue for a student.
- * @param ctx - The database query context
- * @param args - The student ID and optional date
- * @returns Array of resolved queue items with component data
+ * @param {QueueDbContext} ctx - The database query context
+ * @param {{ studentId: string; asOfDate?: string }} args - The student ID and optional date
+ * @returns {Promise<ResolvedQueueItem[]>} Array of resolved queue items with component data
  */
 export async function resolveDailyPracticeQueue(
   ctx: QueueDbContext,
@@ -189,9 +189,9 @@ export async function resolveDailyPracticeQueue(
 
 /**
  * Retrieves the daily practice queue for a student.
- * @param ctx - The query context
- * @param args - The student ID and optional date
- * @returns Array of resolved queue items with component data
+ * @param {QueryCtx} ctx - The query context
+ * @param {{ studentId: string; asOfDate?: string }} args - The student ID and optional date
+ * @returns {Promise<ResolvedQueueItem[]>} Array of resolved queue items with component data
  */
 export async function getDailyPracticeQueueHandler(
   ctx: QueryCtx,

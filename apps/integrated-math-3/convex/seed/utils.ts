@@ -2,8 +2,8 @@ import type { PhaseType } from "./types";
 
 /**
  * Converts bracket notation to LaTeX math delimiters.
- * @param input - String with [[...]] or [...] notation
- * @returns String with $$...$ LaTeX delimiters
+ * @param {string} input - String with [[...]] or [...] notation
+ * @returns {string} String with $$...$ LaTeX delimiters
  */
 export function toLatex(input: string): string {
   return input
@@ -20,8 +20,8 @@ export interface IdempotentInsertArgs<T> {
 
 /**
  * Inserts a record only if no existing record matches the key.
- * @param args - The key, existing records, key field, and insert function
- * @returns The ID of the existing or newly inserted record
+ * @param {IdempotentInsertArgs<T>} args - The key, existing records, key field, and insert function
+ * @returns {string} The ID of the existing or newly inserted record
  */
 export function idempotentInsert<T extends Record<string, unknown>>(
   args: IdempotentInsertArgs<T>
@@ -42,8 +42,8 @@ export interface BuildPhaseTitleArgs {
 
 /**
  * Builds a display title for a phase from its type and number.
- * @param args - The phase type and phase number
- * @returns Formatted phase title string
+ * @param {BuildPhaseTitleArgs} args - The phase type and phase number
+ * @returns {string} Formatted phase title string
  */
 export function buildPhaseTitle(args: BuildPhaseTitleArgs): string {
   const { phaseType, phaseNumber } = args;

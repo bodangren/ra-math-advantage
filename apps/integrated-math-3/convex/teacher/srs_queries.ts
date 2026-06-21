@@ -9,9 +9,9 @@ import type {
 
 /**
  * Retrieves an authorized teacher profile for a user.
- * @param ctx - The query context
- * @param userId - The profile ID to check
- * @returns The teacher/admin profile, or null if not authorized
+ * @param {QueryCtx} ctx - The query context
+ * @param {Id<"profiles">} userId - The profile ID to check
+ * @returns {Promise<Doc<"profiles"> | null>} The teacher/admin profile, or null if not authorized
  */
 async function getAuthorizedTeacher(
   ctx: QueryCtx,
@@ -288,9 +288,9 @@ const PRIORITY_ORDER: Record<ObjectivePriority, number> = {
 
 /**
  * Retrieves objectives with proficiency below 50% for a class.
- * @param ctx - The query context
- * @param args - The class ID and optional proficiency provider
- * @returns Array of weak objective views sorted by priority
+ * @param {QueryCtx} ctx - The query context
+ * @param {{ classId: string }} args - The class ID and optional proficiency provider
+ * @returns {Promise<WeakObjectiveView[]>} Array of weak objective views sorted by priority
  */
 export async function getWeakObjectivesHandler(
   ctx: QueryCtx,
@@ -378,9 +378,9 @@ export type StrugglingStudentView = {
 
 /**
  * Retrieves students with high overdue counts and low retention for a class.
- * @param ctx - The query context
- * @param args - The class ID and optional result limit
- * @returns Array of struggling student views sorted by overdue count
+ * @param {QueryCtx} ctx - The query context
+ * @param {{ classId: string; limit?: number }} args - The class ID and optional result limit
+ * @returns {Promise<StrugglingStudentView[]>} Array of struggling student views sorted by overdue count
  */
 export async function getStrugglingStudentsHandler(
   ctx: QueryCtx,
@@ -516,9 +516,9 @@ export type MisconceptionView = {
 
 /**
  * Retrieves misconception tags from recent reviews for a class.
- * @param ctx - The query context
- * @param args - The class ID and optional lookback period in days
- * @returns Array of misconception views sorted by count
+ * @param {QueryCtx} ctx - The query context
+ * @param {{ classId: string; sinceDays?: number }} args - The class ID and optional lookback period in days
+ * @returns {Promise<MisconceptionView[]>} Array of misconception views sorted by count
  */
 export async function getMisconceptionSummaryHandler(
   ctx: QueryCtx,

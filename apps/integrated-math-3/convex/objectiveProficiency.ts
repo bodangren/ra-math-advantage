@@ -39,8 +39,8 @@ const VALID_PRIORITIES = new Set<string>(['essential', 'supporting', 'extension'
 
 /**
  * Validates and normalizes an objective priority string.
- * @param value - The priority string to validate
- * @returns A valid ObjectivePriority value, defaulting to 'essential'
+ * @param {string} value - The priority string to validate
+ * @returns {ObjectivePriority} A valid ObjectivePriority value, defaulting to 'essential'
  */
 function validatePriority(value: string): ObjectivePriority {
   return VALID_PRIORITIES.has(value) ? (value as ObjectivePriority) : 'essential';
@@ -92,9 +92,9 @@ type PreFetchedData = {
 
 /**
  * Fetches timing baselines for problem families from the database.
- * @param ctx - The query context
- * @param familyIds - Set of problem family IDs to fetch baselines for
- * @returns Map of timing baselines keyed by problem family ID
+ * @param {QueryCtx} ctx - The query context
+ * @param {Set<string>} familyIds - Set of problem family IDs to fetch baselines for
+ * @returns {Promise<TimingBaselines>} Map of timing baselines keyed by problem family ID
  */
 async function fetchTimingBaselines(
   ctx: QueryCtx,
@@ -132,10 +132,10 @@ async function fetchTimingBaselines(
 
 /**
  * Fetches submission timings from activity submissions for review logs.
- * @param ctx - The query context
- * @param studentId - The student's profile ID
- * @param relevantReviews - Array of reviews to extract timings from
- * @returns Map of submission ID to active time in milliseconds
+ * @param {QueryCtx} ctx - The query context
+ * @param {Id<"profiles">} studentId - The student's profile ID
+ * @param {Array<{ submissionId?: string; cardId: Id<"srs_cards"> }>} relevantReviews - Array of reviews to extract timings from
+ * @returns {Promise<Map<string, number>>} Map of submission ID to active time in milliseconds
  */
 async function fetchSubmissionTimings(
   ctx: QueryCtx,
@@ -192,10 +192,10 @@ async function fetchSubmissionTimings(
 
 /**
  * Derives submission timings from pre-fetched student submissions.
- * @param studentId - The student's profile ID
- * @param relevantReviews - Array of reviews to extract timings from
- * @param preFetched - Pre-fetched data including submissions
- * @returns Map of submission ID to active time in milliseconds
+ * @param {Id<"profiles">} studentId - The student's profile ID
+ * @param {Array<{ submissionId?: string; cardId: Id<"srs_cards"> }>} relevantReviews - Array of reviews to extract timings from
+ * @param {PreFetchedData} preFetched - Pre-fetched data including submissions
+ * @returns {Map<string, number>} Map of submission ID to active time in milliseconds
  */
 function deriveSubmissionTimingsFromPreFetched(
   studentId: Id<"profiles">,
@@ -238,10 +238,10 @@ function deriveSubmissionTimingsFromPreFetched(
 
 /**
  * Pre-fetches all data needed for teacher class proficiency computation.
- * @param ctx - The query context
- * @param studentIds - Array of student profile IDs
- * @param allStudentCards - Map of student ID to their SRS cards
- * @returns Pre-fetched data bundle for proficiency computation
+ * @param {QueryCtx} ctx - The query context
+ * @param {Id<"profiles">[]} studentIds - Array of student profile IDs
+ * @param {Map<string, Array<{ objectiveId: string; problemFamilyId: string }>>} allStudentCards - Map of student ID to their SRS cards
+ * @returns {Promise<PreFetchedData>} Pre-fetched data bundle for proficiency computation
  */
 async function preFetchTeacherClassData(
   ctx: QueryCtx,
@@ -325,9 +325,9 @@ async function preFetchTeacherClassData(
 
 /**
  * Retrieves a single objective's proficiency for a student.
- * @param ctx - The query context
- * @param args - The student ID and optional objective ID
- * @returns Objective proficiency result with evidence and retention metrics
+ * @param {QueryCtx} ctx - The query context
+ * @param {{ studentId: string; objectiveId?: string }} args - The student ID and optional objective ID
+ * @returns {Promise<object>} Objective proficiency result with evidence and retention metrics
  */
 export async function getObjectiveProficiencyHandler(
   ctx: QueryCtx,
@@ -506,13 +506,13 @@ export const getObjectiveProficiency = internalQuery({
 
 /**
  * Computes proficiency for a single objective from SRS card data.
- * @param ctx - The query context
- * @param studentId - The student's profile ID
- * @param objectiveId - The objective to compute proficiency for
- * @param allCards - Pre-fetched SRS cards for the student
- * @param allReviews - Pre-fetched review logs for the student
- * @param preFetched - Optional pre-fetched data bundle for batch queries
- * @returns Objective proficiency result with evidence and retention metrics
+ * @param {QueryCtx} ctx - The query context
+ * @param {Id<"profiles">} studentId - The student's profile ID
+ * @param {string} objectiveId - The objective to compute proficiency for
+ * @param {Array<{ _id: Id<"srs_cards">; studentId: Id<"profiles">; objectiveId: string; problemFamilyId: string; stability: number; difficulty: number; state: "new" | "learning" | "review" | "relearning"; dueDate: string; elapsedDays: number; scheduledDays: number; reps: number; lapses: number; lastReview?: string; createdAt: number; updatedAt: number }>} allCards - Pre-fetched SRS cards for the student
+ * @param {Array<{ _id: Id<"srs_review_log">; cardId: Id<"srs_cards">; studentId: Id<"profiles">; rating: string; submissionId?: string; reviewId?: string; evidence: unknown; stateBefore: unknown; stateAfter: unknown; reviewedAt: number }>} allReviews - Pre-fetched review logs for the student
+ * @param {PreFetchedData | undefined} preFetched - Optional pre-fetched data bundle for batch queries
+ * @returns {Promise<object>} Objective proficiency result with evidence and retention metrics
  */
 async function computeProficiencyForObjective(
   ctx: QueryCtx,
@@ -681,9 +681,9 @@ async function computeProficiencyForObjective(
 
 /**
  * Retrieves the set of objective IDs a student has SRS cards for.
- * @param ctx - The query context
- * @param studentId - The student's profile ID
- * @returns Array of objective ID strings
+ * @param {QueryCtx} ctx - The query context
+ * @param {Id<"profiles">} studentId - The student's profile ID
+ * @returns {Promise<string[]>} Array of objective ID strings
  */
 async function getStudentObjectiveIds(
   ctx: QueryCtx,
@@ -705,9 +705,9 @@ async function getStudentObjectiveIds(
 
 /**
  * Retrieves proficiency summary across all objectives for a student.
- * @param ctx - The query context
- * @param args - The student ID
- * @returns Array of student proficiency views
+ * @param {QueryCtx} ctx - The query context
+ * @param {{ studentId: string }} args - The student ID
+ * @returns {Promise<StudentProficiencyView[]>} Array of student proficiency views
  */
 export async function getStudentProficiencySummaryHandler(
   ctx: QueryCtx,
@@ -747,9 +747,9 @@ export const getStudentProficiencySummary = internalQuery({
 
 /**
  * Retrieves teacher-facing proficiency data for all students in a class.
- * @param ctx - The query context
- * @param args - The class ID
- * @returns Array of teacher proficiency views with per-objective aggregates
+ * @param {QueryCtx} ctx - The query context
+ * @param {{ classId: string }} args - The class ID
+ * @returns {Promise<TeacherProficiencyView[]>} Array of teacher proficiency views with per-objective aggregates
  */
 export async function getTeacherClassProficiencyHandler(
   ctx: QueryCtx,

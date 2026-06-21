@@ -5,8 +5,8 @@ import { srsCardStateLiteralValidator } from "./validators";
 
 /**
  * Maps a database SRS card to the public contract format.
- * @param card - The raw database card object
- * @returns The card in contract format with ISO date strings
+ * @param {{ _id: Id<"srs_cards">; studentId: Id<"profiles">; objectiveId: string; variantKey: string; stability: number; difficulty: number; state: "new" | "learning" | "review" | "relearning"; dueDate: string; elapsedDays: number; scheduledDays: number; reps: number; lapses: number; lastReview?: string; createdAt: number; updatedAt: number }} card - The raw database card object
+ * @returns {ReturnType<typeof mapDbCardToContract>} The card in contract format with ISO date strings
  */
 function mapDbCardToContract(
   card: {
@@ -66,9 +66,9 @@ export type SaveCardArgs = {
 
 /**
  * Saves or updates an SRS card for a student.
- * @param ctx - The mutation context
- * @param args - The card data to save
- * @returns The ID of the saved or created card
+ * @param {MutationCtx} ctx - The mutation context
+ * @param {SaveCardArgs} args - The card data to save
+ * @returns {Promise<Id<"srs_cards">>} The ID of the saved or created card
  */
 export async function saveCardHandler(
   ctx: MutationCtx,
@@ -143,8 +143,8 @@ export const saveCard = internalMutation({
 
 /**
  * Saves or updates multiple SRS cards in a single batch operation.
- * @param ctx - The mutation context
- * @param args - Object containing an array of card data to save
+ * @param {MutationCtx} ctx - The mutation context
+ * @param {{ cards: Array<{ cardId: string; studentId: Id<"profiles">; objectiveId: string; variantKey: string; stability: number; difficulty: number; state: "new" | "learning" | "review" | "relearning"; dueDate: string; elapsedDays: number; scheduledDays: number; reps: number; lapses: number; lastReview?: string | null; createdAt: string; updatedAt: string }> }} args - Object containing an array of card data to save
  */
 export async function saveCardsHandler(
   ctx: MutationCtx,
@@ -246,9 +246,9 @@ export const saveCards = internalMutation({
 
 /**
  * Retrieves an SRS card by its ID.
- * @param ctx - The query context
- * @param args - The card ID
- * @returns The card in contract format, or null if not found
+ * @param {QueryCtx} ctx - The query context
+ * @param {{ id: string }} args - The card ID
+ * @returns {Promise<ReturnType<typeof mapDbCardToContract> | null>} The card in contract format, or null if not found
  */
 export async function getCardHandler(
   ctx: QueryCtx,
@@ -266,9 +266,9 @@ export const getCard = internalQuery({
 
 /**
  * Retrieves all SRS cards for a specific student.
- * @param ctx - The query context
- * @param args - The student ID
- * @returns Array of cards in contract format
+ * @param {QueryCtx} ctx - The query context
+ * @param {{ studentId: Id<"profiles"> }} args - The student ID
+ * @returns {Promise<ReturnType<typeof mapDbCardToContract>[]>} Array of cards in contract format
  */
 export async function getCardsByStudentHandler(
   ctx: QueryCtx,
@@ -290,9 +290,9 @@ export const getCardsByStudent = internalQuery({
 
 /**
  * Retrieves an SRS card by student ID and variant key.
- * @param ctx - The query context
- * @param args - The student ID and variant key
- * @returns The card in contract format, or null if not found
+ * @param {QueryCtx} ctx - The query context
+ * @param {{ studentId: Id<"profiles">; variantKey: string }} args - The student ID and variant key
+ * @returns {Promise<ReturnType<typeof mapDbCardToContract> | null>} The card in contract format, or null if not found
  */
 export async function getCardByStudentAndVariantHandler(
   ctx: QueryCtx,

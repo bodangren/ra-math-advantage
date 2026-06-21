@@ -26,8 +26,8 @@ const VALID_STATE_TRANSITIONS: Record<string, string[]> = {
 
 /**
  * Validates an SRS state transition by enforcing business rules.
- * @param stateBefore - The SRS state before the review
- * @param stateAfter - The SRS state after the review
+ * @param {SrsStatePick} stateBefore - The SRS state before the review
+ * @param {SrsStatePick} stateAfter - The SRS state after the review
  * @throws Error if reps does not increase by 1, lapses decreases,
  *         or state transition is invalid
  */
@@ -55,9 +55,9 @@ function validateSrsTransition(
 
 /**
  * Saves a review log entry for an SRS card.
- * @param ctx - The mutation context
- * @param args - Review details including card, student, rating, evidence, and state transitions
- * @returns The ID of the inserted review log entry
+ * @param {MutationCtx} ctx - The mutation context
+ * @param {{ reviewId?: string; cardId: Id<"srs_cards">; studentId: Id<"profiles">; rating: "Again" | "Hard" | "Good" | "Easy"; submissionId?: string; evidence: { action: "teacher_reset"; objectiveId: string } | { baseRating: "Again" | "Hard" | "Good" | "Easy"; timingAdjusted: boolean; reasons: string[]; misconceptionTags?: string[] }; stateBefore: { stability: number; difficulty: number; state: "new" | "learning" | "review" | "relearning"; reps: number; lapses: number }; stateAfter: { stability: number; difficulty: number; state: "new" | "learning" | "review" | "relearning"; reps: number; lapses: number }; reviewedAt: string }} args - Review details including card, student, rating, evidence, and state transitions
+ * @returns {Promise<Id<"srs_review_log">>} The ID of the inserted review log entry
  * @throws Error if reviewedAt is an invalid date or if state transition validation fails
  */
 export async function saveReviewHandler(
@@ -100,7 +100,7 @@ export async function saveReviewHandler(
 
 /**
  * Internal mutation for saving SRS review log entries.
- * @param args - Review arguments matching internalMutation schema
+ * @param {{ reviewId?: string; cardId: Id<"srs_cards">; studentId: Id<"profiles">; rating: string; submissionId?: string; evidence: object; stateBefore: object; stateAfter: object; reviewedAt: string }} args - Review arguments matching internalMutation schema
  */
 export const saveReview = internalMutation({
   args: {
@@ -119,9 +119,9 @@ export const saveReview = internalMutation({
 
 /**
  * Retrieves all review log entries for a specific SRS card.
- * @param ctx - The query context
- * @param args - The card ID to query reviews for
- * @returns Array of review entries sorted by reviewedAt timestamp
+ * @param {QueryCtx} ctx - The query context
+ * @param {{ cardId: Id<"srs_cards"> }} args - The card ID to query reviews for
+ * @returns {Promise<Doc<"srs_review_log">[]>} Array of review entries sorted by reviewedAt timestamp
  */
 export async function getReviewsByCardHandler(
   ctx: QueryCtx,
@@ -155,9 +155,9 @@ export const getReviewsByCard = internalQuery({
 
 /**
  * Retrieves all review log entries for a specific student.
- * @param ctx - The query context
- * @param args - The student ID and optional since filter
- * @returns Array of review entries sorted by reviewedAt timestamp
+ * @param {QueryCtx} ctx - The query context
+ * @param {{ studentId: Id<"profiles">; since?: string }} args - The student ID and optional since filter
+ * @returns {Promise<Doc<"srs_review_log">[]>} Array of review entries sorted by reviewedAt timestamp
  * @throws Error if since date is invalid
  */
 export async function getReviewsByStudentHandler(

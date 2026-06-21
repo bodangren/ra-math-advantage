@@ -15,9 +15,9 @@ interface SeedPlacementResultsArgs {
 
 /**
  * Seeds or updates placement results for a student.
- * @param ctx - The mutation context
- * @param args - The student ID and placement results with mastery estimates
- * @returns Object with persisted result IDs
+ * @param {MutationCtx} ctx - The mutation context
+ * @param {SeedPlacementResultsArgs} args - The student ID and placement results with mastery estimates
+ * @returns {Promise<{ persistedIds: Id<"placement_results">[] }>} Object with persisted result IDs
  * @throws Error if confidence or masteryEstimate values are invalid
  */
 export async function seedPlacementResultsHandler(
@@ -77,9 +77,9 @@ export async function seedPlacementResultsHandler(
 
 /**
  * Checks whether a student has any placement results.
- * @param ctx - The query context
- * @param args - The student ID
- * @returns True if at least one placement result exists
+ * @param {QueryCtx} ctx - The query context
+ * @param {{ studentId: Id<"profiles"> }} args - The student ID
+ * @returns {Promise<boolean>} True if at least one placement result exists
  */
 export async function hasPlacementResultsHandler(
   ctx: QueryCtx,
@@ -94,9 +94,9 @@ export async function hasPlacementResultsHandler(
 
 /**
  * Retrieves all placement results for a student.
- * @param ctx - The query context
- * @param args - The student ID
- * @returns Array of placement result documents
+ * @param {QueryCtx} ctx - The query context
+ * @param {{ studentId: Id<"profiles"> }} args - The student ID
+ * @returns {Promise<Doc<"placement_results">[]>} Array of placement result documents
  */
 export async function getStudentPlacementResultsHandler(
   ctx: QueryCtx,

@@ -19,9 +19,9 @@ const PRIORITY_NUMERIC: Record<ObjectivePriority, number> = {
 
 /**
  * Retrieves an authorized teacher profile for a user.
- * @param ctx - The mutation context
- * @param userId - The profile ID to check
- * @returns The teacher/admin profile, or null if not authorized
+ * @param {MutationCtx} ctx - The mutation context
+ * @param {Id<"profiles">} userId - The profile ID to check
+ * @returns {Promise<Doc<"profiles"> | null>} The teacher/admin profile, or null if not authorized
  */
 async function getAuthorizedTeacher(
   ctx: MutationCtx,
@@ -36,10 +36,10 @@ async function getAuthorizedTeacher(
 
 /**
  * Validates that a teacher owns a specific class.
- * @param ctx - The mutation context
- * @param userId - The teacher profile ID
- * @param classId - The class to validate ownership of
- * @returns True if the teacher owns the class, false otherwise
+ * @param {MutationCtx} ctx - The mutation context
+ * @param {Id<"profiles">} userId - The teacher profile ID
+ * @param {Id<"classes">} classId - The class to validate ownership of
+ * @returns {Promise<boolean>} True if the teacher owns the class, false otherwise
  */
 async function validateTeacherOwnsClass(
   ctx: MutationCtx,
@@ -57,10 +57,10 @@ async function validateTeacherOwnsClass(
 
 /**
  * Validates that a student is actively enrolled in a class.
- * @param ctx - The mutation context
- * @param classId - The class to check enrollment in
- * @param studentId - The student profile ID
- * @returns True if the student is actively enrolled, false otherwise
+ * @param {MutationCtx} ctx - The mutation context
+ * @param {Id<"classes">} classId - The class to check enrollment in
+ * @param {Id<"profiles">} studentId - The student profile ID
+ * @returns {Promise<boolean>} True if the student is actively enrolled, false otherwise
  */
 async function validateStudentInClass(
   ctx: MutationCtx,
@@ -86,9 +86,9 @@ export type UpdateObjectivePriorityArgs = {
 
 /**
  * Updates the priority of an objective for a class.
- * @param ctx - The mutation context
- * @param args - The update arguments including user, class, objective, and priority
- * @returns Success flag or error message
+ * @param {MutationCtx} ctx - The mutation context
+ * @param {UpdateObjectivePriorityArgs} args - The update arguments including user, class, objective, and priority
+ * @returns {Promise<{ success: boolean; error?: string }>} Success flag or error message
  * @throws Error if the priority value is invalid
  */
 export async function updateObjectivePriorityHandler(
@@ -159,9 +159,9 @@ export type ResetStudentCardsResult =
 
 /**
  * Resets all SRS cards for a student on a specific objective.
- * @param ctx - The mutation context
- * @param args - The reset arguments including user, class, student, and objective
- * @returns Success with reset count, or error
+ * @param {MutationCtx} ctx - The mutation context
+ * @param {ResetStudentCardsArgs} args - The reset arguments including user, class, student, and objective
+ * @returns {Promise<ResetStudentCardsResult>} Success with reset count, or error
  */
 export async function resetStudentCardsHandler(
   ctx: MutationCtx,
@@ -253,9 +253,9 @@ export type AddExtraCardsArgs = {
 
 /**
  * Adds an extra SRS card for a student on a specific objective.
- * @param ctx - The mutation context
- * @param args - The arguments including user, class, student, and objective
- * @returns Success with card ID, or error
+ * @param {MutationCtx} ctx - The mutation context
+ * @param {AddExtraCardsArgs} args - The arguments including user, class, student, and objective
+ * @returns {Promise<{ success: boolean; cardId?: Id<"srs_cards">; error?: string }>} Success with card ID, or error
  */
 export async function addExtraCardsHandler(
   ctx: MutationCtx,

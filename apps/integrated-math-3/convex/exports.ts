@@ -38,11 +38,11 @@ export interface SubmissionExportRow {
 
 /**
  * Filters an array of objects by a date range on a specified date field.
- * @param rows - The array of objects to filter
- * @param startDate - The start of the date range (inclusive), or undefined
- * @param endDate - The end of the date range (inclusive), or undefined
- * @param dateField - Which date field to filter on
- * @returns The filtered array
+ * @param {T[]} rows - The array of objects to filter
+ * @param {number | undefined} startDate - The start of the date range (inclusive), or undefined
+ * @param {number | undefined} endDate - The end of the date range (inclusive), or undefined
+ * @param {"createdAt" | "updatedAt" | "submittedAt"} dateField - Which date field to filter on
+ * @returns {T[]} The filtered array
  */
 function filterByDateRange<T extends { createdAt?: number; updatedAt?: number; submittedAt?: number }>(
   rows: T[],
@@ -61,9 +61,9 @@ function filterByDateRange<T extends { createdAt?: number; updatedAt?: number; s
 
 /**
  * Retrieves export data for a specific student within a date range.
- * @param ctx - The query context
- * @param args - Student ID with optional start and end dates
- * @returns Student name and export rows, or null if student not found
+ * @param {QueryCtx} ctx - The query context
+ * @param {{ studentId: Id<"profiles">; startDate?: number; endDate?: number }} args - Student ID with optional start and end dates
+ * @returns {Promise<{ studentName: string; rows: StudentExportRow[] } | null>} Student name and export rows, or null if student not found
  */
 export async function getStudentExportHandler(
   ctx: QueryCtx,
@@ -217,9 +217,9 @@ export const getStudentExport = query({
 
 /**
  * Retrieves export data for all active students in a class within a date range.
- * @param ctx - The query context
- * @param args - Class ID with optional start and end dates
- * @returns Array of class export rows, or null if class not found
+ * @param {QueryCtx} ctx - The query context
+ * @param {{ classId: Id<"classes">; startDate?: number; endDate?: number }} args - Class ID with optional start and end dates
+ * @returns {Promise<ClassExportRow[] | null>} Array of class export rows, or null if class not found
  */
 export async function getClassExportHandler(
   ctx: QueryCtx,
@@ -375,9 +375,9 @@ export const getClassExport = query({
 
 /**
  * Retrieves paginated submission export data for a class within a date range.
- * @param ctx - The query context
- * @param args - Class ID, date range, and optional result limit
- * @returns Export rows and hasMore flag for pagination
+ * @param {QueryCtx} ctx - The query context
+ * @param {{ classId: Id<"classes">; startDate?: number; endDate: number; limit?: number }} args - Class ID, date range, and optional result limit
+ * @returns {Promise<{ rows: SubmissionExportRow[]; hasMore: boolean }>} Export rows and hasMore flag for pagination
  */
 export async function getSubmissionExportHandler(
   ctx: QueryCtx,

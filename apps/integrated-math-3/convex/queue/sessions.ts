@@ -6,8 +6,8 @@ import type { SrsSession, SrsSessionConfig } from "@math-platform/srs-engine";
 
 /**
  * Maps a database SRS session to the public contract format.
- * @param session - The raw database session object
- * @returns The session in contract format with ISO date strings
+ * @param {{ _id: Id<"srs_sessions">; studentId: Id<"profiles">; startedAt: number; completedAt?: number; plannedCards: number; completedCards: number; config: SrsSessionConfig }} session - The raw database session object
+ * @returns {SrsSession} The session in contract format with ISO date strings
  */
 function mapDbSessionToContract(session: {
   _id: Id<"srs_sessions">;
@@ -33,9 +33,9 @@ function mapDbSessionToContract(session: {
 
 /**
  * Checks if two timestamps represent the same calendar day in UTC.
- * @param a - First timestamp in milliseconds
- * @param b - Second timestamp in milliseconds
- * @returns True if both timestamps are on the same UTC day
+ * @param {number} a - First timestamp in milliseconds
+ * @param {number} b - Second timestamp in milliseconds
+ * @returns {boolean} True if both timestamps are on the same UTC day
  */
 function isSameDay(a: number, b: number): boolean {
   const d1 = new Date(a);
@@ -49,9 +49,9 @@ function isSameDay(a: number, b: number): boolean {
 
 /**
  * Starts or resumes a daily SRS session for a student.
- * @param ctx - The mutation context
- * @param args - The student ID and optional date
- * @returns The session and resolved practice queue
+ * @param {MutationCtx} ctx - The mutation context
+ * @param {{ studentId: string; asOfDate?: string }} args - The student ID and optional date
+ * @returns {Promise<{ session: SrsSession; queue: ResolvedQueueItem[] }>} The session and resolved practice queue
  */
 export async function startDailySessionHandler(
   ctx: MutationCtx,
@@ -118,9 +118,9 @@ export const startDailySession = internalMutation({
 
 /**
  * Retrieves the active daily session for a student, if one exists.
- * @param ctx - The query context
- * @param args - The student ID and optional date
- * @returns The active session and queue, or null if no active session
+ * @param {QueryCtx} ctx - The query context
+ * @param {{ studentId: string; asOfDate?: string }} args - The student ID and optional date
+ * @returns {Promise<{ session: SrsSession; queue: ResolvedQueueItem[] } | null>} The active session and queue, or null if no active session
  */
 export async function getActiveSessionHandler(
   ctx: QueryCtx,
@@ -162,9 +162,9 @@ export const getActiveSession = internalQuery({
 
 /**
  * Completes a daily SRS session for a student.
- * @param ctx - The mutation context
- * @param args - The student ID and session ID
- * @returns The completed session ID
+ * @param {MutationCtx} ctx - The mutation context
+ * @param {{ studentId: string; sessionId: string }} args - The student ID and session ID
+ * @returns {Promise<string>} The completed session ID
  * @throws Error if no active session is found
  */
 export async function completeDailySessionHandler(

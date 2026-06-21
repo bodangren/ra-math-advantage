@@ -37,8 +37,8 @@ interface CapstoneUnitData {
 
 /**
  * Checks whether a lesson is a capstone lesson based on its metadata tags.
- * @param lesson - The lesson object with optional metadata
- * @returns True if the lesson has a 'capstone' tag
+ * @param {{ metadata?: { tags?: string[] | null } | null }} lesson - The lesson object with optional metadata
+ * @returns {boolean} True if the lesson has a 'capstone' tag
  */
 function isCapstoneLesson(lesson: { metadata?: { tags?: string[] | null } | null }) {
   return Boolean(lesson.metadata?.tags?.includes("capstone"));
