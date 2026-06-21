@@ -12,8 +12,8 @@ export interface ActivityComponentProps {
 /**
  * Renders a graphing explorer activity wrapping the shared GraphingExplorer component.
  *
- * @param props - Activity configuration with mode and callbacks.
- * @returns A graphing explorer activity.
+ * @param {ActivityComponentProps} props - Activity configuration with mode and callbacks.
+ * @returns {JSX.Element} A graphing explorer activity.
  */
 export function GraphingExplorerActivity({
   activityId,

@@ -14,8 +14,8 @@ export interface ProgressCardProps {
 /**
  * Renders a module progress card with percentage bar and next lesson link.
  *
- * @param props - Progress card configuration.
- * @returns A styled progress card.
+ * @param {ProgressCardProps} props - Progress card configuration.
+ * @returns {JSX.Element} A styled progress card.
  */
 export function ProgressCard({
   title,

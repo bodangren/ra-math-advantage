@@ -9,7 +9,7 @@ import { fetchInternalQuery, internal } from '@/lib/convex/server';
  * Reads the JWT session cookie, verifies it, and returns the user's
  * profile data if authenticated, or { authenticated: false } otherwise.
  *
- * @returns A JSON response with session info or an unauthenticated status.
+ * @returns {JSX.Element} A JSON response with session info or an unauthenticated status.
  */
 export async function GET() {
   const cookieStore = await cookies();

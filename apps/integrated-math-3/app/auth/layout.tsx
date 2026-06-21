@@ -1,7 +1,7 @@
 /**
  * Layout wrapper for authentication pages, centering content in a constrained card.
  *
- * @returns The rendered auth layout JSX.
+ * @returns {JSX.Element} The rendered auth layout JSX.
  */
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (

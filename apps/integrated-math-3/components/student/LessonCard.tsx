@@ -14,8 +14,8 @@ export interface LessonCardProps {
 /**
  * Renders a clickable lesson card with number, title, phase count, and completion status.
  *
- * @param props - Lesson card configuration.
- * @returns A styled lesson card.
+ * @param {LessonCardProps} props - Lesson card configuration.
+ * @returns {JSX.Element} A styled lesson card.
  */
 export function LessonCard({
   lessonNumber,

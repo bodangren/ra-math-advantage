@@ -9,8 +9,8 @@ export interface MathInlineProps {
 /**
  * Renders an inline KaTeX math expression.
  *
- * @param props - Math inline configuration.
- * @returns A span containing the rendered math.
+ * @param {MathInlineProps} props - Math inline configuration.
+ * @returns {JSX.Element} A span containing the rendered math.
  */
 export function MathInline({ math, className = '' }: MathInlineProps) {
   return (

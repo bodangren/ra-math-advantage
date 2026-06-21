@@ -14,7 +14,7 @@ interface PageProps {
  * Renders the per-student competency detail page for a teacher, showing
  * mastery breakdowns across standards for a single student.
  *
- * @returns The rendered TeacherStudentCompetencyPage JSX.
+ * @returns {JSX.Element} The rendered TeacherStudentCompetencyPage JSX.
  */
 export default async function TeacherStudentCompetencyPage({ params }: PageProps) {
   const { studentId } = await params;

@@ -14,8 +14,8 @@ export interface UnitProgressCardProps {
 /**
  * Renders a unit progress card with title, progress bar, and completion status.
  *
- * @param props - Unit progress card configuration.
- * @returns A styled unit progress card.
+ * @param {UnitProgressCardProps} props - Unit progress card configuration.
+ * @returns {JSX.Element} A styled unit progress card.
  */
 export function UnitProgressCard({
   unitNumber,

@@ -12,8 +12,8 @@ interface CourseOverviewGridProps {
 /**
  * Sorts course overview rows alphabetically by display name.
  *
- * @param rows - Rows to sort.
- * @returns Sorted rows array.
+ * @param {CourseOverviewRow[]} rows - Rows to sort.
+ * @returns {CourseOverviewRow[] {} Sorted rows array.
  */
 function sortRowsByName(rows: CourseOverviewRow[]): CourseOverviewRow[] {
   return [...rows].sort((a, b) =>
@@ -24,8 +24,8 @@ function sortRowsByName(rows: CourseOverviewRow[]): CourseOverviewRow[] {
 /**
  * Renders a grid of student average mastery per unit with clickable student names.
  *
- * @param props - Course overview grid configuration.
- * @returns A styled course overview grid.
+ * @param {CourseOverviewGridProps} props - Course overview grid configuration.
+ * @returns {JSX.Element} A styled course overview grid.
  */
 export function CourseOverviewGrid({ rows, units, onStudentClick }: CourseOverviewGridProps) {
   if (rows.length === 0 || units.length === 0) {

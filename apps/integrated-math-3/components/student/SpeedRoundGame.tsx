@@ -28,9 +28,9 @@ const OPTIONS_COUNT = 4;
 /**
  * Generates shuffled multiple-choice questions from glossary terms.
  *
- * @param terms - Glossary terms to use.
- * @param count - Number of questions to generate.
- * @returns Array of shuffled questions with options.
+ * @param {GlossaryTerm[]} terms - Glossary terms to use.
+ * @param {number} count - Number of questions to generate.
+ * @returns {Question[]} Array of shuffled questions with options.
  */
 function generateQuestions(terms: GlossaryTerm[], count: number): Question[] {
   const shuffledTerms = shuffleArray(terms);
@@ -56,8 +56,8 @@ function generateQuestions(terms: GlossaryTerm[], count: number): Question[] {
 /**
  * Renders a timed speed-round quiz with lives, streaks, and 4-option multiple choice.
  *
- * @param props - Speed round game configuration.
- * @returns An interactive speed round game.
+ * @param {SpeedRoundGameProps} props - Speed round game configuration.
+ * @returns {JSX.Element} An interactive speed round game.
  */
 export function SpeedRoundGame({ terms, onComplete }: SpeedRoundGameProps) {
   const [currentIndex, setCurrentIndex] = useState(0);

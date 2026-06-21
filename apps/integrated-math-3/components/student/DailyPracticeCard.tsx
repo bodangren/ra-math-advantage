@@ -9,8 +9,8 @@ export interface DailyPracticeCardProps {
 /**
  * Renders a dashboard card showing daily practice status, streak, and due items.
  *
- * @param props - Daily practice card configuration.
- * @returns A styled practice card.
+ * @param {DailyPracticeCardProps} props - Daily practice card configuration.
+ * @returns {JSX.Element} A styled practice card.
  */
 export function DailyPracticeCard({
   dueCount,

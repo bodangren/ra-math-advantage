@@ -14,8 +14,8 @@ export interface StudentRowProps {
 /**
  * Renders a table row with student name, progress bar, and action buttons.
  *
- * @param props - Student row configuration.
- * @returns A styled student table row.
+ * @param {StudentRowProps} props - Student row configuration.
+ * @returns {JSX.Element} A styled student table row.
  */
 export function StudentRow({
   studentId,

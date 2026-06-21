@@ -80,8 +80,8 @@ const IM3_DEFAULT_RESOLUTION_THRESHOLD = 3;
  * mechanism. Dependency injection lets tests supply the fake T6 while
  * production uses the real one.
  *
- * @param t6 - The T6 loop function (real or fake).
- * @returns A `runIm3MisconceptionLoop` function that accepts an input
+ * @param {T6LoopFunction} t6 - The T6 loop function (real or fake).
+ * @returns {(input: Im3MisconceptionLoopInput, priorState: Im3StudentMisconceptionState) => Im3MisconceptionLoopOutput} A `runIm3MisconceptionLoop` function that accepts an input
  *   and prior state, delegates to the T6, and augments the output
  *   with `updatedState`.
  */

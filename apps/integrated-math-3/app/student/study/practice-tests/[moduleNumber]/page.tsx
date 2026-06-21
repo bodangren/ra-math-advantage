@@ -13,7 +13,7 @@ interface PracticeTestModulePageProps {
  * Renders a practice test for a specific module, validating the module
  * number parameter and fetching the corresponding test configuration.
  *
- * @returns The rendered PracticeTestModulePage JSX.
+ * @returns {JSX.Element} The rendered PracticeTestModulePage JSX.
  */
 export default async function PracticeTestModulePage({ params }: PracticeTestModulePageProps) {
   const { moduleNumber } = await params;

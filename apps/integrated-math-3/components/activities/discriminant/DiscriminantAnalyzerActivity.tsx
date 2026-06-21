@@ -14,8 +14,8 @@ export interface DiscriminantAnalyzerActivityProps extends DiscriminantAnalyzerP
 /**
  * Renders a discriminant analyzer activity for quadratic equations.
  *
- * @param props - Activity configuration with equation and coefficient data.
- * @returns A discriminant analyzer activity.
+ * @param {DiscriminantAnalyzerActivityProps} props - Activity configuration with equation and coefficient data.
+ * @returns {JSX.Element} A discriminant analyzer activity.
  */
 export function DiscriminantAnalyzerActivity({
   activityId,

@@ -34,8 +34,8 @@ interface PageProps {
  * Teacher lessons page showing available lessons grouped by unit,
  * with per-class assignment toggles for each lesson.
  *
- * @param searchParams - URL search params with optional classId filter.
- * @returns The rendered lessons page JSX.
+ * @param {Promise<{ classId?: string }>} searchParams - URL search params with optional classId filter.
+ * @returns {JSX.Element} The rendered lessons page JSX.
  */
 export default async function TeacherLessonsPage({ searchParams }: PageProps) {
   const claims = await requireTeacherSessionClaims('/auth/login');
@@ -152,10 +152,10 @@ interface LessonAssignmentToggleProps {
  * Renders a toggle button that assigns or unassigns a lesson from a class.
  * Uses a server action to persist the change and revalidates the page.
  *
- * @param classId - The class ID to assign/unassign the lesson to/from.
- * @param lessonId - The lesson ID to toggle.
- * @param isAssigned - Whether the lesson is currently assigned.
- * @returns The toggle button JSX element.
+ * @param {string} classId - The class ID to assign/unassign the lesson to/from.
+ * @param {string} lessonId - The lesson ID to toggle.
+ * @param {boolean} isAssigned - Whether the lesson is currently assigned.
+ * @returns {JSX.Element} The toggle button JSX element.
  */
 function LessonAssignmentToggle({ classId, lessonId, isAssigned }: LessonAssignmentToggleProps) {
   return (
@@ -183,7 +183,7 @@ function LessonAssignmentToggle({ classId, lessonId, isAssigned }: LessonAssignm
  * Assigns or unassigns the lesson based on the current state and
  * revalidates the teacher lessons page.
  *
- * @param formData - FormData containing classId, lessonId, and isAssigned fields.
+ * @param {FormData} formData - FormData containing classId, lessonId, and isAssigned fields.
  * @throws {Error} If the assignment mutation fails.
  */
 async function assignLessonToClassAction(formData: FormData) {

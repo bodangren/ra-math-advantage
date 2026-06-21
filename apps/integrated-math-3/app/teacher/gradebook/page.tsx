@@ -14,7 +14,7 @@ interface PageProps {
  * Renders the teacher gradebook page, displaying per-lesson completion and
  * performance data for all students in a given unit.
  *
- * @returns The rendered GradebookPage JSX.
+ * @returns {JSX.Element} The rendered GradebookPage JSX.
  */
 export default async function GradebookPage({ searchParams }: PageProps) {
   const claims = await requireTeacherSessionClaims('/auth/login');

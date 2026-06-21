@@ -13,8 +13,8 @@ interface CompetencyHeatmapGridProps {
 /**
  * Sorts heatmap rows alphabetically by display name.
  *
- * @param rows - Rows to sort.
- * @returns Sorted rows array.
+ * @param {CompetencyHeatmapRow[]} rows - Rows to sort.
+ * @returns {CompetencyHeatmapRow[]} Sorted rows array.
  */
 function sortRowsByName(rows: CompetencyHeatmapRow[]): CompetencyHeatmapRow[] {
   return [...rows].sort((a, b) =>
@@ -25,8 +25,8 @@ function sortRowsByName(rows: CompetencyHeatmapRow[]): CompetencyHeatmapRow[] {
 /**
  * Renders a sortable heatmap table of student mastery per competency standard.
  *
- * @param props - Competency heatmap grid configuration.
- * @returns A styled heatmap grid.
+ * @param {CompetencyHeatmapGridProps} props - Competency heatmap grid configuration.
+ * @returns {JSX.Element} A styled heatmap grid.
  */
 export function CompetencyHeatmapGrid({
   rows,

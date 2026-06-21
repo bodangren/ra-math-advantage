@@ -30,8 +30,8 @@ interface ExportPanelProps {
 /**
  * Renders a data export form for selecting dataset, format, and downloading exports.
  *
- * @param props - Export panel configuration.
- * @returns A styled export form.
+ * @param {ExportPanelProps} props - Export panel configuration.
+ * @returns {JSX.Element} A styled export form.
  */
 export function ExportPanel({
   isTeacher,

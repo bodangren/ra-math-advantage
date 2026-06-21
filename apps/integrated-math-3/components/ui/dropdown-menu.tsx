@@ -172,8 +172,8 @@ DropdownMenuSeparator.displayName = DropdownMenuPrimitive.Separator.displayName;
 /**
  * Renders a keyboard shortcut hint text styled for dropdown menus.
  *
- * @param props - HTML span attributes.
- * @returns A styled shortcut span.
+ * @param {React.HTMLAttributes<HTMLSpanElement>} props - HTML span attributes.
+ * @returns {JSX.Element} A styled shortcut span.
  */
 const DropdownMenuShortcut = ({
   className,

@@ -11,8 +11,8 @@ export interface ClassOverviewCardProps {
 /**
  * Renders a card with three stat tiles for class overview metrics.
  *
- * @param props - Class overview card configuration.
- * @returns A styled class overview card.
+ * @param {ClassOverviewCardProps} props - Class overview card configuration.
+ * @returns {JSX.Element} A styled class overview card.
  */
 export function ClassOverviewCard({
   totalStudents,

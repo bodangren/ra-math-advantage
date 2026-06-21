@@ -11,8 +11,8 @@ interface CompletionScreenProps {
 /**
  * Renders a completion message with checkmark and dashboard link after practice.
  *
- * @param props - Completion screen configuration.
- * @returns A completion screen.
+ * @param {CompletionScreenProps} props - Completion screen configuration.
+ * @returns {JSX.Element} A completion screen.
  */
 export function CompletionScreen({ completedCount, totalCount }: CompletionScreenProps) {
   return (

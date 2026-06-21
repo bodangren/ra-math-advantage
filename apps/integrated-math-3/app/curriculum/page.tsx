@@ -20,7 +20,7 @@ interface CurriculumUnit {
 /**
  * Renders the curriculum overview page, listing all units and lessons fetched from Convex.
  *
- * @returns The rendered curriculum page JSX.
+ * @returns {JSX.Element} The rendered curriculum page JSX.
  */
 export default async function CurriculumPage() {
   const units: CurriculumUnit[] = await fetchQuery(api.public.getCurriculum, {});

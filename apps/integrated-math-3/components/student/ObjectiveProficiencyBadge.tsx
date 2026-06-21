@@ -24,8 +24,8 @@ const FLUENCY_CLASSES: Record<string, string> = {
 /**
  * Renders a badge displaying student proficiency level and fluency confidence.
  *
- * @param props - Proficiency badge configuration.
- * @returns A styled proficiency badge.
+ * @param {ObjectiveProficiencyBadgeProps} props - Proficiency badge configuration.
+ * @returns {JSX.Element} A styled proficiency badge.
  */
 export function ObjectiveProficiencyBadge({ view }: ObjectiveProficiencyBadgeProps) {
   const labelText = view.proficiencyLabel

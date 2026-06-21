@@ -32,8 +32,8 @@ type FilterKind = 'all' | 'practice' | 'spreadsheet';
 /**
  * Returns a Tailwind color class string for a given phase status.
  *
- * @param status - Phase status string.
- * @returns CSS class string for the status badge.
+ * @param {string} status - Phase status string.
+ * @returns {string} CSS class string for the status badge.
  */
 function statusBadgeClass(status: string): string {
   switch (status) {
@@ -52,8 +52,8 @@ function statusBadgeClass(status: string): string {
 /**
  * Converts a Unix timestamp to a locale date string.
  *
- * @param timestamp - Unix timestamp in milliseconds, or null.
- * @returns Formatted date string or em dash.
+ * @param {number | null} timestamp - Unix timestamp in milliseconds, or null.
+ * @returns {string} Formatted date string or em dash.
  */
 function formatDate(timestamp: number | null): string {
   if (timestamp === null) return '—';
@@ -63,8 +63,8 @@ function formatDate(timestamp: number | null): string {
 /**
  * Renders a modal showing per-phase submission evidence with filtering.
  *
- * @param props - Submission detail modal configuration.
- * @returns A styled submission detail modal.
+ * @param {SubmissionDetailModalProps} props - Submission detail modal configuration.
+ * @returns {JSX.Element} A styled submission detail modal.
  */
 export function SubmissionDetailModal({ open, onOpenChange, data }: SubmissionDetailModalProps) {
   const [filterKind, setFilterKind] = useState<FilterKind>('all');
@@ -264,8 +264,8 @@ export function SubmissionDetailModal({ open, onOpenChange, data }: SubmissionDe
 /**
  * Renders per-part student answer cards with correctness and misconception tags.
  *
- * @param evidence - Practice submission evidence to render.
- * @returns Rendered practice evidence nodes.
+ * @param {SubmissionEvidence} evidence - Practice submission evidence to render.
+ * @returns {React.ReactNode} Rendered practice evidence nodes.
  */
 function renderPracticeEvidence(evidence: SubmissionEvidence): React.ReactNode {
   if (evidence.kind !== 'practice' || !evidence.submissionData) {

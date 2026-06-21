@@ -27,9 +27,9 @@ const completeSchema = z.object({
  * Validates the student session and test data, then persists the
  * score, per-lesson breakdown, and duration via Convex.
  *
- * @param request - The incoming request with a JSON body containing
+ * @param {Request} request - The incoming request with a JSON body containing
  *   moduleNumber, score, questionCount, and per-lesson breakdown.
- * @returns A JSON response with the saved test result or an error.
+ * @returns {JSX.Element} A JSON response with the saved test result or an error.
  */
 export async function POST(request: Request) {
   const authResult = await requireStudentRequestClaims(request);

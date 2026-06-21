@@ -73,8 +73,8 @@ export interface PhaseRendererProps {
 /**
  * Renders a phase's content sections (text, callout, video, activity, image) inside a PhaseContainer.
  *
- * @param props - Phase renderer configuration.
- * @returns A rendered phase with all its sections.
+ * @param {PhaseRendererProps} props - Phase renderer configuration.
+ * @returns {JSX.Element} A rendered phase with all its sections.
  */
 export function PhaseRenderer({
   phaseType,
@@ -118,8 +118,8 @@ export function PhaseRenderer({
 /**
  * Renders the appropriate content block for a single section type.
  *
- * @param props - Section block configuration.
- * @returns A rendered section block.
+ * @param {{ section: PhaseSection; lessonId?: string; phaseNumber?: number; mode: 'teaching' | 'guided' | 'practice'; onActivitySubmit?: (activityId: string, payload: unknown) => void; onActivityComplete?: (activityId: string) => void; }} props - Section block configuration.
+ * @returns {JSX.Element} A rendered section block.
  */
 function SectionBlock({
   section,

@@ -33,8 +33,8 @@ export interface InterventionActionsProps {
 /**
  * Renders intervention action cards for priority toggle, reset cards, and extra cards.
  *
- * @param props - Intervention actions configuration.
- * @returns A styled intervention actions panel.
+ * @param {InterventionActionsProps} props - Intervention actions configuration.
+ * @returns {JSX.Element} A styled intervention actions panel.
  */
 export function InterventionActions({
   onUpdatePriority,
@@ -227,8 +227,8 @@ export function InterventionActions({
 /**
  * Renders a color-coded badge for an objective priority level.
  *
- * @param props - Priority badge configuration.
- * @returns A styled priority badge.
+ * @param {{ priority: ObjectivePriority }} props - Priority badge configuration.
+ * @returns {JSX.Element} A styled priority badge.
  */
 export function ObjectivePriorityBadge({ priority }: { priority: ObjectivePriority }) {
   const variants: Record<ObjectivePriority, string> = {

@@ -25,8 +25,8 @@ export interface PhaseCompleteButtonProps {
 /**
  * Renders a button to mark a lesson phase as complete or skip it.
  *
- * @param props - Phase complete button configuration.
- * @returns A phase completion button with loading states.
+ * @param {PhaseCompleteButtonProps} props - Phase complete button configuration.
+ * @returns {JSX.Element} A phase completion button with loading states.
  */
 export function PhaseCompleteButton({
   lessonId,

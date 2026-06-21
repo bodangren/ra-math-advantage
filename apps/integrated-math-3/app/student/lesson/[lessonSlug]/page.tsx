@@ -31,7 +31,7 @@ interface PageProps {
  * Renders an individual lesson page with its phase-based progression,
  * fetching lesson data and phase sections from the server.
  *
- * @returns The rendered StudentLessonPage JSX.
+ * @returns {JSX.Element} The rendered StudentLessonPage JSX.
  */
 export default async function StudentLessonPage({ params }: PageProps) {
   const { lessonSlug } = await params;

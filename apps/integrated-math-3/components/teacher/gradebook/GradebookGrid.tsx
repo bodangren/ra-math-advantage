@@ -12,8 +12,8 @@ interface GradebookGridProps {
 /**
  * Sorts gradebook rows alphabetically by display name.
  *
- * @param rows - Rows to sort.
- * @returns Sorted rows array.
+ * @param {GradebookRow[]} rows - Rows to sort.
+ * @returns {GradebookRow[]} Sorted rows array.
  */
 function sortRowsByName(rows: GradebookRow[]): GradebookRow[] {
   return [...rows].sort((a, b) =>
@@ -24,8 +24,8 @@ function sortRowsByName(rows: GradebookRow[]): GradebookRow[] {
 /**
  * Renders a gradebook table with student names as rows and lessons as columns.
  *
- * @param props - Gradebook grid configuration.
- * @returns A styled gradebook grid.
+ * @param {GradebookGridProps} props - Gradebook grid configuration.
+ * @returns {JSX.Element} A styled gradebook grid.
  */
 export function GradebookGrid({ rows, lessons, onCellClick }: GradebookGridProps) {
   if (rows.length === 0 || lessons.length === 0) {

@@ -24,8 +24,8 @@ const FLUENCY_CLASSES: Record<string, string> = {
 /**
  * Renders a diagnostic card for a learning objective with proficiency and retention metrics.
  *
- * @param props - Teacher objective diagnostic card configuration.
- * @returns A styled diagnostic card.
+ * @param {TeacherObjectiveDiagnosticCardProps} props - Teacher objective diagnostic card configuration.
+ * @returns {JSX.Element} A styled diagnostic card.
  */
 export function TeacherObjectiveDiagnosticCard({ view }: TeacherObjectiveDiagnosticCardProps) {
   const labelText = view.proficiencyLabel

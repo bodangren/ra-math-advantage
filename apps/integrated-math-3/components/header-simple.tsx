@@ -12,7 +12,7 @@ const navItems = [
 /**
  * Renders the app header with IM3 branding, navigation, and user menu.
  *
- * @returns A styled header element.
+ * @returns {JSX.Element} A styled header element.
  */
 export function HeaderSimple() {
   return (

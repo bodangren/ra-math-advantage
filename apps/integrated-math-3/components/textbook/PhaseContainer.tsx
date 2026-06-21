@@ -23,8 +23,8 @@ const borderColorMap: Record<string, string> = {
 /**
  * Renders a phase container with phase-type-specific background and border colors.
  *
- * @param props - Phase container configuration.
- * @returns A styled phase section container.
+ * @param {PhaseContainerProps} props - Phase container configuration.
+ * @returns {JSX.Element} A styled phase section container.
  */
 export function PhaseContainer({ phaseType, children }: PhaseContainerProps) {
   const { label, color, bgColor } = getPhaseDisplayInfo(phaseType);

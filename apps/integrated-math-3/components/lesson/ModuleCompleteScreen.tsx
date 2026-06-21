@@ -18,8 +18,8 @@ interface ModuleCompleteScreenProps {
 /**
  * Converts minutes to a human-readable time string.
  *
- * @param minutes - Total minutes to format.
- * @returns Formatted time string (e.g. "2 hours 15 min").
+ * @param {number} minutes - Total minutes to format.
+ * @returns {string} Formatted time string (e.g. "2 hours 15 min").
  */
 function formatTime(minutes: number): string {
   if (minutes < 60) {
@@ -36,8 +36,8 @@ function formatTime(minutes: number): string {
 /**
  * Renders a module completion screen with award icon, progress, and back-to-dashboard button.
  *
- * @param props - Module complete screen configuration.
- * @returns A module completion screen.
+ * @param {ModuleCompleteScreenProps} props - Module complete screen configuration.
+ * @returns {JSX.Element} A module completion screen.
  */
 export function ModuleCompleteScreen({
   moduleLabel,

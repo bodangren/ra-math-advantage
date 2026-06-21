@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 /**
  * Root layout that wraps all pages with theme, auth, and Convex providers.
  *
- * @returns The rendered root layout JSX.
+ * @returns {JSX.Element} The rendered root layout JSX.
  */
 export default function RootLayout({
   children,

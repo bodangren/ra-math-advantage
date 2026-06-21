@@ -18,8 +18,8 @@ const navItems = [
 /**
  * Renders a responsive sidebar navigation for the student section.
  *
- * @param props - Navigation configuration with active route.
- * @returns A responsive navigation sidebar.
+ * @param {StudentNavigationProps} props - Navigation configuration with active route.
+ * @returns {JSX.Element} A responsive navigation sidebar.
  */
 export function StudentNavigation({ activeRoute }: StudentNavigationProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

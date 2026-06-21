@@ -23,8 +23,8 @@ interface ReviewedModes {
 /**
  * Renders a dev harness for reviewing example components with mode switching.
  *
- * @param props - Example review harness configuration.
- * @returns A dev review harness for examples.
+ * @param {ExampleReviewHarnessProps} props - Example review harness configuration.
+ * @returns {JSX.Element} A dev review harness for examples.
  */
 export function ExampleReviewHarness({
   componentKey,
@@ -174,8 +174,8 @@ export function ExampleReviewHarness({
 /**
  * Renders a mode selection button with active/reviewed visual states.
  *
- * @param props - Mode button configuration.
- * @returns A styled mode button.
+ * @param {{ mode: StepMode; active: boolean; reviewed: boolean; onClick: () => void; }} props - Mode button configuration.
+ * @returns {JSX.Element} A styled mode button.
  */
 function ModeButton({
   mode,
@@ -208,8 +208,8 @@ function ModeButton({
 /**
  * Renders a reviewed/pending status badge.
  *
- * @param props - Status badge configuration.
- * @returns A styled status badge.
+ * @param {{ label: string; checked: boolean }} props - Status badge configuration.
+ * @returns {JSX.Element} A styled status badge.
  */
 function StatusBadge({ label, checked }: { label: string; checked: boolean }) {
   return (
@@ -226,8 +226,8 @@ function StatusBadge({ label, checked }: { label: string; checked: boolean }) {
 /**
  * Renders a preview of an example component.
  *
- * @param props - Example preview configuration.
- * @returns A styled example preview.
+ * @param {{ mode: StepMode; steps: AlgebraicStep[]; variant: number; }} props - Example preview configuration.
+ * @returns {JSX.Element} A styled example preview.
  */
 function ExamplePreview({
   mode,
@@ -271,7 +271,7 @@ function ExamplePreview({
 /**
  * Custom hook managing example review state with a canApprove computed value.
  *
- * @returns Example review state and controls.
+ * @returns {JSX.Element} Example review state and controls.
  */
 export function useExampleReviewHarnessState() {
   const [reviewedModes, setReviewedModes] = useState<ReviewedModes>({

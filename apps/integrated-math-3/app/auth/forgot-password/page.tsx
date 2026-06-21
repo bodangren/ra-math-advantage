@@ -3,7 +3,7 @@ import Link from 'next/link';
 /**
  * Renders the forgot-password page that instructs users to contact their teacher or administrator.
  *
- * @returns The rendered forgot password page JSX.
+ * @returns {JSX.Element} The rendered forgot password page JSX.
  */
 export default function ForgotPasswordPage() {
   return (

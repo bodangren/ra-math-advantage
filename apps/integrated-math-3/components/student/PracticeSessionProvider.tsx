@@ -22,8 +22,8 @@ const FEEDBACK_DELAY_MS = 2000;
 /**
  * Checks whether all parts in a submission envelope are correct.
  *
- * @param envelope - Practice submission envelope to validate.
- * @returns True if all parts are correct or no parts exist.
+ * @param {PracticeSubmissionEnvelope} envelope - Practice submission envelope to validate.
+ * @returns {boolean} True if all parts are correct or no parts exist.
  */
 function isEnvelopeCorrect(envelope: PracticeSubmissionEnvelope): boolean {
   if (!envelope.parts || envelope.parts.length === 0) return true;
@@ -33,8 +33,8 @@ function isEnvelopeCorrect(envelope: PracticeSubmissionEnvelope): boolean {
 /**
  * Manages the daily practice session lifecycle with queue advancement and feedback.
  *
- * @param props - Practice session provider configuration.
- * @returns A practice session with card navigation and submission.
+ * @param {PracticeSessionProviderProps} props - Practice session provider configuration.
+ * @returns {JSX.Element} A practice session with card navigation and submission.
  */
 export function PracticeSessionProvider({
   session: initialSession,

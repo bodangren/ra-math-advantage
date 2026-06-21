@@ -7,8 +7,8 @@ export interface TableOfValuesProps {
 /**
  * Renders a table of values with optional cell highlighting.
  *
- * @param props - Table configuration with headers, data, and highlighted cells.
- * @returns A styled data table.
+ * @param {TableOfValuesProps} props - Table configuration with headers, data, and highlighted cells.
+ * @returns {JSX.Element} A styled data table.
  */
 export function TableOfValues({ headers, data, highlightCells = [] }: TableOfValuesProps) {
   const isHighlighted = (rowIndex: number, colIndex: number) => {

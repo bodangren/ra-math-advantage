@@ -4,7 +4,7 @@ import { Button } from "./ui/button";
 /**
  * Renders a warning badge when Supabase environment variables are missing.
  *
- * @returns An environment variable warning banner.
+ * @returns {JSX.Element} An environment variable warning banner.
  */
 export function EnvVarWarning() {
   return (

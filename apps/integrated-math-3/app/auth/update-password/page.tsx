@@ -7,7 +7,7 @@ import { useAuth } from '@/components/auth/AuthProvider';
 /**
  * Renders the update-password page allowing authenticated users to change their password.
  *
- * @returns The rendered update password page JSX.
+ * @returns {JSX.Element} The rendered update password page JSX.
  */
 export default function UpdatePasswordPage() {
   useAuth();

@@ -31,7 +31,7 @@ interface PageProps {
  * Renders a teacher-facing preview of a single lesson, showing its phase
  * progression and section content for review purposes.
  *
- * @returns The rendered TeacherLessonPreviewPage JSX.
+ * @returns {JSX.Element} The rendered TeacherLessonPreviewPage JSX.
  */
 export default async function TeacherLessonPreviewPage({ params }: PageProps) {
   const { lessonSlug } = await params;

@@ -8,8 +8,8 @@ import { practiceSubmissionEnvelopeSchema, PRACTICE_CONTRACT_VERSION } from '@ma
  * Validates the student session, parses the submission envelope
  * against the practice.v1 contract, and persists the result via Convex.
  *
- * @param request - The incoming request with a JSON submission envelope.
- * @returns A JSON response with the submission result or an error.
+ * @param {Request} request - The incoming request with a JSON submission envelope.
+ * @returns {JSX.Element} A JSON response with the submission result or an error.
  */
 export async function POST(request: Request) {
   const authResult = await requireStudentRequestClaims(request);

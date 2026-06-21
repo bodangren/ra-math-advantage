@@ -7,8 +7,8 @@ export interface SubmissionFeedbackProps {
 /**
  * Renders an inline feedback banner showing correct or incorrect status.
  *
- * @param props - Submission feedback configuration.
- * @returns A styled feedback banner.
+ * @param {SubmissionFeedbackProps} props - Submission feedback configuration.
+ * @returns {JSX.Element} A styled feedback banner.
  */
 export function SubmissionFeedback({ isCorrect }: SubmissionFeedbackProps) {
   return (

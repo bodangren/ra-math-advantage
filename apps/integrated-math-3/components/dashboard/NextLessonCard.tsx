@@ -12,8 +12,8 @@ export interface NextLessonCardProps {
 /**
  * Renders a card displaying the next lesson with title, phase count, and start link.
  *
- * @param props - Next lesson card configuration.
- * @returns A styled lesson card.
+ * @param {NextLessonCardProps} props - Next lesson card configuration.
+ * @returns {JSX.Element} A styled lesson card.
  */
 export function NextLessonCard({
   lessonTitle,

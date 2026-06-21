@@ -20,7 +20,7 @@ const sections = [
 /**
  * Renders the app footer with IM3 branding, copyright, and quick links.
  *
- * @returns A styled footer element.
+ * @returns {JSX.Element} A styled footer element.
  */
 export function Footer() {
   return (

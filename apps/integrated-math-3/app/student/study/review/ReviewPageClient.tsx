@@ -22,7 +22,7 @@ interface DueTerm {
  * Client-side spaced-repetition review page that loads due glossary terms
  * and presents an interactive review session.
  *
- * @returns The rendered ReviewPageClient JSX.
+ * @returns {JSX.Element} The rendered ReviewPageClient JSX.
  */
 export function ReviewPageClient({ studentId }: ReviewPageClientProps) {
   const [dueTerms, setDueTerms] = useState<GlossaryTerm[]>([]);

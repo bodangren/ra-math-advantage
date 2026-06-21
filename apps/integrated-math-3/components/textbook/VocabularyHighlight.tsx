@@ -12,8 +12,8 @@ export interface VocabularyHighlightProps {
 /**
  * Renders an inline vocabulary term with a hoverable/clickable tooltip showing its definition.
  *
- * @param props - Vocabulary highlight configuration.
- * @returns An interactive vocabulary highlight span.
+ * @param {VocabularyHighlightProps} props - Vocabulary highlight configuration.
+ * @returns {JSX.Element} An interactive vocabulary highlight span.
  */
 export function VocabularyHighlight({ term, definition, children }: VocabularyHighlightProps) {
   const [isOpen, setIsOpen] = useState(false);

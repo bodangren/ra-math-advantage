@@ -20,8 +20,8 @@ export interface StrugglingStudentsPanelProps {
 /**
  * Renders a single struggling student card with urgency metrics.
  *
- * @param props - Student card configuration.
- * @returns A styled student card.
+ * @param {{ student: StrugglingStudentView; rank: number; onClick?: (studentId: string)} props - Student card configuration.
+ * @returns {JSX.Element} A styled student card.
  */
 function StudentCard({
   student,
@@ -110,8 +110,8 @@ function StudentCard({
 /**
  * Renders a list of struggling students ranked by urgency.
  *
- * @param props - Struggling students panel configuration.
- * @returns A styled struggling students panel.
+ * @param {StrugglingStudentsPanelProps} props - Struggling students panel configuration.
+ * @returns {JSX.Element} A styled struggling students panel.
  */
 export function StrugglingStudentsPanel({
   students,

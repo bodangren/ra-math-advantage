@@ -3,7 +3,7 @@ import Link from 'next/link';
 /**
  * Renders the course preface page with introductory content for Integrated Math 3.
  *
- * @returns The rendered preface page JSX.
+ * @returns {JSX.Element} The rendered preface page JSX.
  */
 export default function PrefacePage() {
   return (

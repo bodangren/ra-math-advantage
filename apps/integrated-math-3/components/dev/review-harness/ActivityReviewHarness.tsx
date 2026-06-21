@@ -20,8 +20,8 @@ interface ActivityReviewHarnessProps {
 /**
  * Renders a dev harness for reviewing activity components with mode switching.
  *
- * @param props - Activity review harness configuration.
- * @returns A dev review harness for activities.
+ * @param {ActivityReviewHarnessProps} props - Activity review harness configuration.
+ * @returns {JSX.Element} A dev review harness for activities.
  */
 export function ActivityReviewHarness({
   componentKey,
@@ -217,8 +217,8 @@ export function ActivityReviewHarness({
 /**
  * Renders a single checkbox-style checklist item.
  *
- * @param props - Check item configuration.
- * @returns A styled checklist item.
+ * @param {{ checked: boolean; label: string }} props - Check item configuration.
+ * @returns {JSX.Element} A styled checklist item.
  */
 function CheckItem({ checked, label }: { checked: boolean; label: string }) {
   return (
@@ -234,8 +234,8 @@ function CheckItem({ checked, label }: { checked: boolean; label: string }) {
 /**
  * Renders a placeholder preview of an activity component.
  *
- * @param props - Activity preview configuration.
- * @returns A styled activity preview.
+ * @param {{ componentKey: string; activityId: string; mode: 'teaching' | 'guided' | 'practice'; props: Record<string, unknown>; onRender: () => void; }} props - Activity preview configuration.
+ * @returns {JSX.Element} A styled activity preview.
  */
 function ActivityPreview({
   componentKey,
@@ -284,7 +284,7 @@ function ActivityPreview({
 /**
  * Custom hook managing activity review state with a canApprove computed value.
  *
- * @returns Activity review state and controls.
+ * @returns {JSX.Element} Activity review state and controls.
  */
 export function useActivityReviewHarnessState() {
   const [callbacks, setCallbacks] = useState<ActivityCallback[]>([]);

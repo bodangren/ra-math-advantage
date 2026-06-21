@@ -17,8 +17,8 @@ export interface StepRevealContainerProps {
 /**
  * Renders a progressive step-reveal container that shows steps one at a time in guided/practice mode.
  *
- * @param props - Step reveal configuration with mode and step content.
- * @returns A step-by-step reveal container.
+ * @param {StepRevealContainerProps} props - Step reveal configuration with mode and step content.
+ * @returns {JSX.Element} A step-by-step reveal container.
  */
 export function StepRevealContainer({ mode, steps }: StepRevealContainerProps) {
   const [visibleSteps, setVisibleSteps] = useState(

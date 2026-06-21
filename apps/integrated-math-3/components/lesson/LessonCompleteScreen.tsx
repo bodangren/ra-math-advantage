@@ -16,8 +16,8 @@ interface LessonCompleteScreenProps {
 /**
  * Renders a lesson completion screen with checkmark, progress summary, and continue button.
  *
- * @param props - Lesson complete screen configuration.
- * @returns A lesson completion screen.
+ * @param {LessonCompleteScreenProps} props - Lesson complete screen configuration.
+ * @returns {JSX.Element} A lesson completion screen.
  */
 export function LessonCompleteScreen({
   lessonTitle,

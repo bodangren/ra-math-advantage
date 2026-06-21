@@ -5,7 +5,7 @@ import Link from 'next/link';
 /**
  * Renders an empty state message when no practice items are due.
  *
- * @returns An empty state with dashboard link.
+ * @returns {JSX.Element} An empty state with dashboard link.
  */
 export function EmptyPracticeState() {
   return (

@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 /**
  * Renders a password change form with validation and success/error feedback.
  *
- * @returns A client-side password change form.
+ * @returns {JSX.Element} A client-side password change form.
  */
 export function ChangePasswordForm() {
   const router = useRouter();

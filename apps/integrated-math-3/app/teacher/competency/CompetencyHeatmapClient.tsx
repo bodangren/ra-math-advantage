@@ -14,8 +14,8 @@ interface CompetencyHeatmapClientProps {
  * Client component that renders the competency heatmap view with a
  * clickable grid for navigating to individual student competency pages.
  *
- * @param heatmapData - The heatmap response containing rows and standards data.
- * @returns The competency heatmap page JSX element.
+ * @param {CompetencyHeatmapResponse} heatmapData - The heatmap response containing rows and standards data.
+ * @returns {JSX.Element} The competency heatmap page JSX element.
  */
 export default function CompetencyHeatmapClient({ heatmapData }: CompetencyHeatmapClientProps) {
   const router = useRouter();

@@ -9,8 +9,8 @@ export interface MathBlockProps {
 /**
  * Renders a block-level KaTeX math expression centered in its container.
  *
- * @param props - Math block configuration.
- * @returns A div containing the rendered math.
+ * @param {MathBlockProps} props - Math block configuration.
+ * @returns {JSX.Element} A div containing the rendered math.
  */
 export function MathBlock({ math, className = '' }: MathBlockProps) {
   return (

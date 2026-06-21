@@ -6,7 +6,7 @@ import { useSearchParams } from 'next/navigation';
 /**
  * Renders the authentication error page, displaying the error message from the query string.
  *
- * @returns The rendered auth error page JSX.
+ * @returns {JSX.Element} The rendered auth error page JSX.
  */
 export default function AuthErrorPage() {
   const searchParams = useSearchParams();

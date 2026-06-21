@@ -16,9 +16,9 @@ const changePasswordBodySchema = z.object({
  * Validates the current password, enforces password policy, hashes
  * the new password, and updates it via Convex.
  *
- * @param request - The incoming request with a JSON body containing
+ * @param {Request} request - The incoming request with a JSON body containing
  *   currentPassword, newPassword, and confirmPassword.
- * @returns A JSON response confirming the password change or an error.
+ * @returns {JSX.Element} A JSON response confirming the password change or an error.
  */
 export async function POST(request: Request) {
   const claimsOrResponse = await requireActiveRequestSessionClaims(request);

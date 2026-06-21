@@ -24,8 +24,8 @@ export interface LessonPageLayoutProps {
 /**
  * Renders the full lesson page layout with sticky progress bar, header, phase sidebar, and content area.
  *
- * @param props - Lesson page layout configuration.
- * @returns A responsive lesson page with sidebar navigation.
+ * @param {LessonPageLayoutProps} props - Lesson page layout configuration.
+ * @returns {JSX.Element} A responsive lesson page with sidebar navigation.
  */
 export function LessonPageLayout({
   lessonTitle,

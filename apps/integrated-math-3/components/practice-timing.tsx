@@ -22,8 +22,8 @@ export interface UsePracticeTimingReturn {
 /**
  * Custom hook that tracks practice session timing using visibility and focus events.
  *
- * @param options - Timing configuration options.
- * @returns Timing utilities: getTiming, recordInteraction, isTracking.
+ * @param {UsePracticeTimingOptions} options - Timing configuration options.
+ * @returns {UsePracticeTimingReturn} Timing utilities: getTiming, recordInteraction, isTracking.
  */
 export function usePracticeTiming(
   options: UsePracticeTimingOptions = {},

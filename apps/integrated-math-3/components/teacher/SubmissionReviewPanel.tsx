@@ -14,8 +14,8 @@ interface SubmissionReviewPanelProps {
 /**
  * Renders an expandable review panel showing submission evidence and error analysis.
  *
- * @param props - Submission review panel configuration.
- * @returns A styled submission review panel.
+ * @param {SubmissionReviewPanelProps} props - Submission review panel configuration.
+ * @returns {JSX.Element} A styled submission review panel.
  */
 export function SubmissionReviewPanel({
   evidence,

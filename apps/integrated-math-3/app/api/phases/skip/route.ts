@@ -14,9 +14,9 @@ const skipPhaseBodySchema = z.object({
  * Handles POST requests to skip a lesson phase. Validates the student
  * session and request body, then records the skip via Convex.
  *
- * @param request - The incoming request with a JSON body containing
+ * @param {Request} request - The incoming request with a JSON body containing
  *   lessonId, phaseNumber, and idempotencyKey.
- * @returns A JSON response confirming the phase skip or an error.
+ * @returns {JSX.Element} A JSON response confirming the phase skip or an error.
  */
 export async function POST(request: Request) {
   const claimsOrResponse = await requireStudentRequestClaims(request);

@@ -9,8 +9,8 @@ interface StudentCompetencyDetailGridProps {
 /**
  * Renders a table of a single student's mastery levels across all standards.
  *
- * @param props - Student competency detail configuration.
- * @returns A styled competency detail grid.
+ * @param {StudentCompetencyDetailGridProps} props - Student competency detail configuration.
+ * @returns {JSX.Element} A styled competency detail grid.
  */
 export function StudentCompetencyDetailGrid({ detail }: StudentCompetencyDetailGridProps) {
   const { displayName, username, competencies } = detail;

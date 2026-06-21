@@ -38,8 +38,8 @@ export interface LessonMetadataPanelProps {
 /**
  * Renders a collapsible panel showing lesson objectives, vocabulary, and standards.
  *
- * @param props - Lesson metadata panel configuration.
- * @returns A collapsible metadata panel.
+ * @param {LessonMetadataPanelProps} props - Lesson metadata panel configuration.
+ * @returns {JSX.Element} A collapsible metadata panel.
  */
 export function LessonMetadataPanel({
   metadata,

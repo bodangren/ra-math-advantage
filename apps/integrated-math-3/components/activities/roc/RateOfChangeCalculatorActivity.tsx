@@ -14,8 +14,8 @@ export interface RateOfChangeCalculatorActivityProps extends RateOfChangeCalcula
 /**
  * Renders a rate-of-change calculator activity for various source types.
  *
- * @param props - Activity configuration with source type, data, and interval.
- * @returns A rate-of-change calculator activity.
+ * @param {RateOfChangeCalculatorActivityProps} props - Activity configuration with source type, data, and interval.
+ * @returns {JSX.Element} A rate-of-change calculator activity.
  */
 export function RateOfChangeCalculatorActivity({
   activityId,

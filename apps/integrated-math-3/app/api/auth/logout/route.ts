@@ -7,7 +7,7 @@ import { SESSION_COOKIE_NAME } from '@math-platform/core-auth';
  * Handles POST requests to log the user out by clearing the session
  * cookie with an expired expiration date.
  *
- * @returns A JSON response confirming successful logout.
+ * @returns {JSX.Element} A JSON response confirming successful logout.
  */
 export async function POST() {
   const cookieStore = await cookies();

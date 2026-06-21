@@ -17,9 +17,9 @@ const phaseCompleteBodySchema = z.object({
  * Validates the student session and request body, then persists
  * the phase completion via Convex with an idempotency key.
  *
- * @param request - The incoming request with a JSON body containing
+ * @param {Request} request - The incoming request with a JSON body containing
  *   lessonId, phaseNumber, timeSpent, and idempotencyKey.
- * @returns A JSON response confirming the phase completion or an error.
+ * @returns {JSX.Element} A JSON response confirming the phase completion or an error.
  */
 export async function POST(request: Request) {
   const claimsOrResponse = await requireStudentRequestClaims(request);

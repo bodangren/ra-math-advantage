@@ -38,8 +38,8 @@ export interface LessonRendererProps {
 /**
  * Orchestrates the full lesson experience with phase stepper, content rendering, and completion flow.
  *
- * @param props - Lesson renderer configuration.
- * @returns A complete lesson page.
+ * @param {LessonRendererProps} props - Lesson renderer configuration.
+ * @returns {JSX.Element} A complete lesson page.
  */
 export function LessonRenderer({
   lessonId,

@@ -6,7 +6,7 @@ import { LogoutButton } from "./logout-button";
 /**
  * Server component that renders an authentication button with session-aware greeting.
  *
- * @returns A greeting with logout button or sign-in link.
+ * @returns {JSX.Element} A greeting with logout button or sign-in link.
  */
 export async function AuthButton() {
   const claims = await getServerSessionClaims();

@@ -11,8 +11,8 @@ interface GradebookExportButtonProps {
 /**
  * Renders a button that exports gradebook data as a CSV file download.
  *
- * @param props - Gradebook export button configuration.
- * @returns An export button.
+ * @param {GradebookExportButtonProps} props - Gradebook export button configuration.
+ * @returns {JSX.Element} An export button.
  */
 export function GradebookExportButton({ rows, lessons }: GradebookExportButtonProps) {
   const handleExport = useCallback(() => {

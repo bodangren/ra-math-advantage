@@ -30,7 +30,7 @@ interface Filters {
 /**
  * Custom hook that fetches and manages the review queue with filtering.
  *
- * @returns Review queue data, filters, and review submission.
+ * @returns {JSX.Element} Review queue data, filters, and review submission.
  */
 export function useReviewQueueClient() {
   const [items, setItems] = useState<ReviewQueueItem[]>([]);
@@ -105,8 +105,8 @@ export function useReviewQueueClient() {
 /**
  * Renders a filterable list of review queue items.
  *
- * @param props - Review queue list configuration.
- * @returns A styled review queue list.
+ * @param {{ items: ReviewQueueItem[]; loading: boolean; error: string | null; filters: Filters; setFilters: (filters: Filters) => void; onSelectItem: (item: ReviewQueueItem) => void; }} props - Review queue list configuration.
+ * @returns {JSX.Element} A styled review queue list.
  */
 export function ReviewQueueList({
   items,
@@ -215,8 +215,8 @@ export function ReviewQueueList({
 /**
  * Renders a review decision form with approve/reject buttons.
  *
- * @param props - Review decision panel configuration.
- * @returns A styled review decision form.
+ * @param {{ item: ReviewQueueItem; onSubmit: (status: string, comment?: string, issueTags?: string[], priority?: string) => Promise<void>; onCancel: () => void; harnessCanApprove?: boolean; }} props - Review decision panel configuration.
+ * @returns {JSX.Element} A styled review decision form.
  */
 export function ReviewDecisionPanel({
   item,
@@ -393,7 +393,7 @@ type ReviewView = 'decision' | 'harness';
 /**
  * Renders the full review queue page with list and decision panels.
  *
- * @returns A two-panel review queue page.
+ * @returns {JSX.Element} A two-panel review queue page.
  */
 export function ReviewQueueView() {
   const [selectedItem, setSelectedItem] = useState<ReviewQueueItem | null>(null);
@@ -490,8 +490,8 @@ export function ReviewQueueView() {
 /**
  * Renders the appropriate review harness for a selected queue item.
  *
- * @param props - Component harness panel configuration.
- * @returns A review harness for the selected item.
+ * @param {{ item: ReviewQueueItem; onCanApproveChange: (canApprove: boolean)} props - Component harness panel configuration.
+ * @returns {JSX.Element} A review harness for the selected item.
  */
 function ComponentHarnessPanel({ item, onCanApproveChange }: { item: ReviewQueueItem; onCanApproveChange: (canApprove: boolean) => void }) {
   const defaultActivityProps = {

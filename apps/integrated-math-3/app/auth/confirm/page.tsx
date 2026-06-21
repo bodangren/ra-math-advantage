@@ -3,7 +3,7 @@ import Link from 'next/link';
 /**
  * Renders the account confirmation success page shown after email verification.
  *
- * @returns The rendered confirmation page JSX.
+ * @returns {JSX.Element} The rendered confirmation page JSX.
  */
 export default function ConfirmPage() {
   return (

@@ -10,8 +10,8 @@ interface LessonSkeletonProps {
 /**
  * Renders a skeleton loading placeholder for a lesson page.
  *
- * @param props - Skeleton configuration with optional phase count.
- * @returns A pulsing lesson skeleton.
+ * @param {LessonSkeletonProps} props - Skeleton configuration with optional phase count.
+ * @returns {JSX.Element} A pulsing lesson skeleton.
  */
 export function LessonSkeleton({ phaseCount = 4, className }: LessonSkeletonProps) {
   return (

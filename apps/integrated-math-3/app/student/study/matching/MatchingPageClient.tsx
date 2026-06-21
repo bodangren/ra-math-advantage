@@ -19,7 +19,7 @@ interface MatchingPageClientProps {
  * Client-side matching game page where students match glossary terms to
  * their definitions within a timed challenge.
  *
- * @returns The rendered MatchingPageClient JSX.
+ * @returns {JSX.Element} The rendered MatchingPageClient JSX.
  */
 export function MatchingPageClient({
   allTerms,

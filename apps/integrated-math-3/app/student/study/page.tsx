@@ -5,7 +5,7 @@ import { requireStudentSessionClaims } from '@/lib/auth/server';
  * Renders the study hub landing page with navigation cards for flashcards,
  * matching, speed round, review, and practice tests.
  *
- * @returns The rendered StudyHubPage JSX.
+ * @returns {JSX.Element} The rendered StudyHubPage JSX.
  */
 export default async function StudyHubPage() {
   const claims = await requireStudentSessionClaims('/auth/login');

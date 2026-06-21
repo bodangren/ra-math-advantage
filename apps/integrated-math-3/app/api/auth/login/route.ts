@@ -21,9 +21,9 @@ interface LoginBody {
  * against the Convex user store, verifies the password hash, and sets
  * a signed JWT session cookie on success.
  *
- * @param request - The incoming request with a JSON body containing
+ * @param {Request} request - The incoming request with a JSON body containing
  *   username and password.
- * @returns A JSON response with user info or an authentication error.
+ * @returns {JSX.Element} A JSON response with user info or an authentication error.
  */
 export async function POST(request: Request) {
   let body: LoginBody;

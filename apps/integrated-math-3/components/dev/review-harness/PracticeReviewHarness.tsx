@@ -28,8 +28,8 @@ interface PracticeReviewHarnessProps {
 /**
  * Renders a dev harness for reviewing practice components with attempt simulation.
  *
- * @param props - Practice review harness configuration.
- * @returns A dev review harness for practice.
+ * @param {PracticeReviewHarnessProps} props - Practice review harness configuration.
+ * @returns {JSX.Element} A dev review harness for practice.
  */
 export function PracticeReviewHarness({
   componentKey,
@@ -218,8 +218,8 @@ export function PracticeReviewHarness({
 /**
  * Renders a single checklist item with check/circle icon.
  *
- * @param props - Check item configuration.
- * @returns A styled checklist item.
+ * @param {{ checked: boolean; label: string }} props - Check item configuration.
+ * @returns {JSX.Element} A styled checklist item.
  */
 function CheckItem({ checked, label }: { checked: boolean; label: string }) {
   return (
@@ -235,8 +235,8 @@ function CheckItem({ checked, label }: { checked: boolean; label: string }) {
 /**
  * Renders a placeholder preview of a practice component.
  *
- * @param props - Practice preview configuration.
- * @returns A styled practice preview.
+ * @param {{ componentKey: string; props: Record<string, unknown>; variant: number; }} props - Practice preview configuration.
+ * @returns {JSX.Element} A styled practice preview.
  */
 function PracticePreview({
   componentKey,
@@ -268,7 +268,7 @@ function PracticePreview({
 /**
  * Custom hook managing practice review state with a canApprove computed value.
  *
- * @returns Practice review state and controls.
+ * @returns {JSX.Element} Practice review state and controls.
  */
 export function usePracticeReviewHarnessState() {
   const [submissions, setSubmissions] = useState<SubmissionEnvelope[]>([]);

@@ -59,7 +59,7 @@ interface PageProps {
  * health metrics, overdue cards, weak objectives, struggling students, and
  * misconception data for the selected class.
  *
- * @returns The rendered SrsDashboardPage JSX.
+ * @returns {JSX.Element} The rendered SrsDashboardPage JSX.
  */
 export default async function SrsDashboardPage({ searchParams }: PageProps) {
   const claims = await requireTeacherSessionClaims('/auth/login');

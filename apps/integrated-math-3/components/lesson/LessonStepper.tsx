@@ -25,8 +25,8 @@ export interface LessonStepperProps {
 /**
  * Renders a responsive horizontal stepper for navigating lesson phases.
  *
- * @param props - Lesson stepper configuration.
- * @returns A phase navigation stepper.
+ * @param {LessonStepperProps} props - Lesson stepper configuration.
+ * @returns {JSX.Element} A phase navigation stepper.
  */
 export function LessonStepper({ phases, currentPhase, onPhaseClick, className }: LessonStepperProps) {
   const handleClick = (phase: StepperPhase) => {
@@ -86,8 +86,8 @@ function StepIcon({ status }: { status: PhaseStatus }) {
 /**
  * Renders a single stepper button with status-based styling and phase icon.
  *
- * @param props - Step button configuration.
- * @returns A styled stepper button.
+ * @param {{ phase: StepperPhase; isCurrent: boolean; onClick: () => void; compact?: boolean; }} props - Step button configuration.
+ * @returns {JSX.Element} A styled stepper button.
  */
 function StepButton({
   phase,

@@ -31,8 +31,8 @@ export interface SrsDashboardPanelProps {
 /**
  * Renders stat cards and practice streaks for the SRS class health overview.
  *
- * @param props - SRS dashboard panel configuration.
- * @returns A styled SRS dashboard panel.
+ * @param {SrsDashboardPanelProps} props - SRS dashboard panel configuration.
+ * @returns {JSX.Element} A styled SRS dashboard panel.
  */
 export function SrsDashboardPanel({
   classHealth,

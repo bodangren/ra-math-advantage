@@ -16,8 +16,8 @@ export interface DialogProps {
 /**
  * Renders a native dialog modal with backdrop click-to-close and animated transitions.
  *
- * @param props - Dialog configuration.
- * @returns A dialog element.
+ * @param {DialogProps} props - Dialog configuration.
+ * @returns {JSX.Element} A dialog element.
  */
 export function Dialog({ open, onOpenChange, title, description, children }: DialogProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -99,8 +99,8 @@ export interface AlertDialogProps {
 /**
  * Renders an alert dialog with confirm/cancel buttons and optional destructive variant.
  *
- * @param props - Alert dialog configuration.
- * @returns A composed alert dialog.
+ * @param {AlertDialogProps} props - Alert dialog configuration.
+ * @returns {JSX.Element} A composed alert dialog.
  */
 export function AlertDialog({
   open,

@@ -9,8 +9,8 @@ export interface DefinitionCardProps {
 /**
  * Renders a vocabulary definition card with optional related terms.
  *
- * @param props - Definition card configuration.
- * @returns A styled definition card.
+ * @param {DefinitionCardProps} props - Definition card configuration.
+ * @returns {JSX.Element} A styled definition card.
  */
 export function DefinitionCard({ term, definition, relatedTerms }: DefinitionCardProps) {
   return (

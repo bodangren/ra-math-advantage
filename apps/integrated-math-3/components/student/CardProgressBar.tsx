@@ -8,8 +8,8 @@ export interface CardProgressBarProps {
 /**
  * Renders an accessible progress bar showing current card position in a practice session.
  *
- * @param props - Progress bar configuration.
- * @returns A styled progress bar.
+ * @param {CardProgressBarProps} props - Progress bar configuration.
+ * @returns {JSX.Element} A styled progress bar.
  */
 export function CardProgressBar({ currentIndex, totalCount }: CardProgressBarProps) {
   const currentCard = currentIndex + 1;

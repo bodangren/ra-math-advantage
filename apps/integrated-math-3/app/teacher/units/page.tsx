@@ -36,7 +36,7 @@ interface StandardsCoverageResult {
  * Renders the teacher units overview page, listing all curriculum units with
  * their standards coverage and linked lessons.
  *
- * @returns The rendered TeacherUnitsPage JSX.
+ * @returns {JSX.Element} The rendered TeacherUnitsPage JSX.
  */
 export default async function TeacherUnitsPage() {
   const claims = await requireTeacherSessionClaims('/auth/login');

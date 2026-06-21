@@ -43,8 +43,8 @@ const stats = [
 /**
  * Renders a grid of stat cards showing lessons completed, time spent, average score, and streak.
  *
- * @param props - Stats summary configuration.
- * @returns A grid of stat cards.
+ * @param {StatsSummaryProps} props - Stats summary configuration.
+ * @returns {JSX.Element} A grid of stat cards.
  */
 export function StatsSummary({
   lessonsCompleted,

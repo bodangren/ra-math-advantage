@@ -16,7 +16,7 @@ interface StudentRow {
  * Admin dashboard page showing an overview of all students in the
  * organization with their progress metrics and last-active timestamps.
  *
- * @returns The rendered admin dashboard JSX.
+ * @returns {JSX.Element} The rendered admin dashboard JSX.
  */
 export default async function AdminDashboardPage() {
   const claims = await requireTeacherSessionClaims('/auth/login');

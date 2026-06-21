@@ -22,8 +22,8 @@ export interface FillInTheBlankActivityProps {
 /**
  * Renders a fill-in-the-blank activity with a template, blanks, and optional word bank.
  *
- * @param props - Activity configuration with template and blank definitions.
- * @returns A fill-in-the-blank activity.
+ * @param {FillInTheBlankActivityProps} props - Activity configuration with template and blank definitions.
+ * @returns {JSX.Element} A fill-in-the-blank activity.
  */
 export function FillInTheBlankActivity({
   activityId,

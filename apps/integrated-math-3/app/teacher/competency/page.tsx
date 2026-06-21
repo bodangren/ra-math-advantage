@@ -8,7 +8,7 @@ import CompetencyHeatmapClient from './CompetencyHeatmapClient';
  * Renders the teacher competency heatmap page, displaying a class-wide view of
  * student mastery across learning standards.
  *
- * @returns The rendered TeacherCompetencyPage JSX.
+ * @returns {JSX.Element} The rendered TeacherCompetencyPage JSX.
  */
 export default async function TeacherCompetencyPage() {
   const claims = await requireTeacherSessionClaims('/auth/login');

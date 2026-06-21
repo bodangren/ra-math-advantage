@@ -30,8 +30,8 @@ export interface BadgeProps
 /**
  * Renders a small inline badge with variant-based styling using class-variance-authority.
  *
- * @param props - Badge properties including variant and className.
- * @returns A styled badge div.
+ * @param {BadgeProps} props - Badge properties including variant and className.
+ * @returns {JSX.Element} A styled badge div.
  */
 function Badge({ className, variant, ...props }: BadgeProps) {
   return (

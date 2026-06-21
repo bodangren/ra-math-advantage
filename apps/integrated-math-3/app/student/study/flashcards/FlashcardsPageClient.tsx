@@ -18,7 +18,7 @@ interface FlashcardsPageClientProps {
  * Client-side flashcard study page that lets students select a module,
  * flip through glossary term cards, and rate their recall.
  *
- * @returns The rendered FlashcardsPageClient JSX.
+ * @returns {JSX.Element} The rendered FlashcardsPageClient JSX.
  */
 export function FlashcardsPageClient({
   allTerms,
