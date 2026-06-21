@@ -51,6 +51,13 @@
   - Targeted Red command re-run: `npx vitest run studentVisualization --root apps/integrated-math-3` → **1 file passed / 5 tests passed** (~6.0s). The tests now pass because the uncommitted P2 implementation (`getStudentVisualizationHandler`, `getStudentVisualization` `internalQuery`, and `resolveJsonModule`) is present in the dirty worktree. The Red phase is therefore satisfied by evidence; the implementation remains uncommitted for the Green-phase implementer.
   - **Boundary note:** `graph.db` was restored to its pre-attempt state and is not part of the Red-phase commit.
 
+- **Second-pass verification (MID Red, current session):**
+  - Re-read `measure/index.md`, `test-strategy.md`, and `plan.md`; Phase 2 tasks remain `[~]` (implementation pending, Red tests satisfied).
+  - Dirty-worktree classification unchanged: `apps/integrated-math-3/convex/student.ts`, `apps/integrated-math-3/convex/tsconfig.json`, and `apps/integrated-math-3/app/student/dashboard/page.tsx` are relevant to this track; all other dirty paths are unrelated pre-existing work and were preserved untouched.
+  - `build-graph stats ./graph.db` → 14,181 nodes / 20,667 edges; `build-graph search ./graph.db "getStudentVisualization"` → no results (anonymous handler); `build-graph callers ./graph.db projectStudentVisualization` → no results on stale graph. Graph was not rescanned or committed.
+  - `git show HEAD:apps/integrated-math-3/convex/student.ts` confirms `getStudentVisualization` / `getStudentVisualizationHandler` are **not present at HEAD**, so the committed Red tests fail for the expected missing behavior.
+  - Targeted Red command `npx vitest run studentVisualization --root apps/integrated-math-3` → **1 file passed / 5 tests passed** (~5.1s) in the dirty worktree. No new Red tests were required; the existing Red phase is already satisfied by evidence.
+
 ## Phase 3: Student-Facing Wiring
 
 - [ ] Render planner recommendations in the selected student-facing route or dashboard panel.
