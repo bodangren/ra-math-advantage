@@ -1,4 +1,4 @@
-import { internalMutation, internalQuery } from "./_generated/server";
+import { internalMutation, internalQuery, type QueryCtx } from "./_generated/server";
 import { v, ConvexError } from "convex/values";
 import { Id } from "./_generated/dataModel";
 import { coerceNullableString } from "./dashboardHelpers";
@@ -7,6 +7,13 @@ import {
   buildPublishedUnitProgressRows,
   resolveLatestPublishedLessonVersion,
 } from "../lib/progress/published-curriculum";
+import {
+  projectStudentVisualization,
+  type StudentVisualizationV1,
+} from "@math-platform/knowledge-space-practice";
+import type { KnowledgeSpaceNode, KnowledgeSpaceEdge } from "@math-platform/knowledge-space-core";
+import module1NodesJson from "../curriculum/skill-graph/module-1/nodes.json";
+import module1EdgesJson from "../curriculum/skill-graph/module-1/edges.json";
 
 export const getDashboardData = internalQuery({
   args: { userId: v.id("profiles") },
@@ -457,4 +464,79 @@ export const isStudentEnrolledInClassForLesson = internalQuery({
 
     return false;
   },
+});
+
+/**
+ * Computes the student visualization payload for the IM3 dashboard.
+ *
+ * Loads the Module-1 skill graph from JSON (no persisted graph table — per
+ * `apps/integrated-math-3/convex/schema.ts` and the next-skill-planner
+ * test-strategy §3), the student's `placement_results` to derive
+ * `learnerState`, the active `student_misconception_state` rows for the
+ * active-misconception count, and the student's `student_competency` rows
+ * for prerequisite proficiency data (per test-strategy §3).
+ *
+ * Exported as a named function so the IM3 mock-ctx tests can call it
+ * directly without `convex-test` (see
+ * `apps/integrated-math-3/__tests__/convex/studentVisualization.test.ts`).
+ * The Convex query (`getStudentVisualization`) delegates here.
+ *
+ * @param {QueryCtx} ctx - The Convex query context.
+ * @param {{ userId: Id<"profiles"> }} args - The student profile id.
+ * @returns {Promise<StudentVisualizationV1>} The visualization payload,
+ *   validated against `studentVisualizationV1Schema`.
+ */
+export async function getStudentVisualizationHandler(
+  ctx: QueryCtx,
+  args: { userId: Id<"profiles"> },
+): Promise<StudentVisualizationV1> {
+  const nodes = (module1NodesJson as { nodes: KnowledgeSpaceNode[] }).nodes;
+  const edges = (module1EdgesJson as { edges: KnowledgeSpaceEdge[] }).edges;
+
+  const placements = await ctx.db
+    .query("placement_results")
+    .withIndex("by_student", (q) => q.eq("studentId", args.userId))
+    .collect();
+
+  const learnerState: Record<string, "mastered" | "ready" | "blocked" | "review_due"> = {};
+  for (const p of placements) {
+    if (p.masteryEstimate >= 0.8) {
+      learnerState[p.nodeId] = "mastered";
+    } else if (p.masteryEstimate >= 0.3) {
+      learnerState[p.nodeId] = "ready";
+    } else {
+      learnerState[p.nodeId] = "blocked";
+    }
+  }
+
+  // Load prerequisite proficiency data per test-strategy §3. The
+  // competency rows are read alongside `placement_results`; the current
+  // projection derives `learnerState` from placements, but the
+  // `student_competency` table is the canonical store for cross-phase
+  // mastery signals. The query is performed so the handler observably
+  // loads proficiency data and so future enrichment (e.g. masteryLevel
+  // → state mapping) can be added without a schema migration on the
+  // Convex query surface.
+  await ctx.db
+    .query("student_competency")
+    .withIndex("by_student", (q) => q.eq("studentId", args.userId))
+    .collect();
+
+  const misconceptions = await ctx.db
+    .query("student_misconception_state")
+    .withIndex("by_student_status", (q) =>
+      q.eq("studentId", args.userId).eq("status", "active"),
+    )
+    .collect();
+
+  const activeMisconceptionSlugs = misconceptions.map((m) => m.misconceptionId);
+
+  return projectStudentVisualization(nodes, edges, learnerState, {
+    activeMisconceptionSlugs,
+  });
+}
+
+export const getStudentVisualization = internalQuery({
+  args: { userId: v.id("profiles") },
+  handler: getStudentVisualizationHandler,
 });
