@@ -56,6 +56,14 @@ Dependencies:
    *Remediate repo hygiene debt: commit 96 dirty files from fix-kst-node-titles, resolve 6 remaining stashes, fix BM2 pre-existing test reds (UserMenu AuthProvider, GradebookDrillDown timeout), fix IM3 React 19 eslint violations (20 errors across 14 files), verify TypeScript/lint/tests pass.*
    *Link: [./tracks/repo-hygiene-remediation_20260616/](./tracks/repo-hygiene-remediation_20260616/)*
 
+- [ ] **Track: Parent Portal Production Wiring Remediation** — **NEW / COMPLETION-AUDIT REMEDIATION**
+   *Remediates the 2026-06-21 completion-audit rejection of `parent-portal_20260605`: `/parent` must become a real production route with parent auth, live parent/student links, parent-safe Convex projection data, route-rendering tests, and non-test caller proof. The archived closeout stays as historical evidence; this track owns the fix.*
+   *Link: [./tracks/parent_portal_prod_wiring_remediation_20260621/](./tracks/parent_portal_prod_wiring_remediation_20260621/)*
+
+- [~] **Track: Next-Skill Planner Production Wiring** — **IN PROGRESS / COMPLETION-AUDIT REMEDIATION**
+   *Remediates the 2026-06-21 completion-audit rejection of `next-skill-planner_20260521`. User decision: wire it up, not descope it. Expose the planner through a real backend/Convex query and a student-facing production consumer with call-path proof. Phase 1 complete; Phase 2 Red tests committed.*
+   *Link: [./tracks/next_skill_planner_prod_wiring_20260621/](./tracks/next_skill_planner_prod_wiring_20260621/)*
+
 - [ ] **Program: Knowledge Space Engine Alignment (kst-srs.v2)**
    *Bring the implementation into alignment with the `kst-srs.v2` specification. The KST packages (`knowledge-space-core`, `knowledge-space-practice`) implement the v1 contract but are wired into no production route; the SRS half is live but nothing converts proficiency output into a knowledge-space learner state. This program wires the KST pipeline end-to-end and adds the v2 improvements: time-aware mastery, weighted readiness, edge calibration, a next-skill planner, adaptive placement, the misconception remediation loop, and the practice-variant rename. Source: gse-knowledge-space `SPECIFICATION.md` (kst-srs.v2) + `IMPROVEMENT-PLAN.md`.*
    - [ ] **Track 1: Wire the KST Pipeline + v2 Mastery Model**
@@ -1024,7 +1032,7 @@ Sixteen candidate tracks identified from a full-roadmap review. Each is registry
    *Link: [./tracks/onboarding-roster-import_20260605/](./tracks/onboarding-roster-import_20260605/)*
 
 - [x] **Track: Parent Portal** — **COMPLETED / ARCHIVED 2026-06-21**
-   *Parent-facing progress views. All 6 FRs delivered: parent role & fail-closed auth, parent↔student linking, progress view, multi-student switcher, privacy boundaries, empty/pending states. 69/69 parent-portal tests pass (7 suites). Track moved to archive.*
+   *Completion-audit note (2026-06-21): closeout rejected as a false positive because `/parent` was still a static stub and delivered components/guards/projections had no live production caller. Historical archive retained; remediation is tracked in `parent_portal_prod_wiring_remediation_20260621`.*
    *Link: [./archive/parent-portal_20260605/](./archive/parent-portal_20260605/)*
 
 - [ ] **Track: Responsive / Mobile Audit** — **PLANNED**
@@ -1057,7 +1065,7 @@ Sixteen candidate tracks identified from a full-roadmap review. Each is registry
   *Link: [./archive/im1-practice-readiness_20260609/](./archive/im1-practice-readiness_20260609/)*
 
 - [x] **Track 4: Next-Skill Planner** — **COMPLETED / ARCHIVED** (2026-06-18)
-   *Rank the outer-fringe ready set by a composite priority score (readiness + downstream unlock value + goal proximity + weakness fit); `recommendedNext` becomes top-N by priority. Implemented 6 source modules (types, unlockValue, goalProximity, weaknessFit stub, priority, recommendedNext). 17 test files / 360 tests pass. All 5 ACs met. (Item 4, kst-srs.v2 program.) Depends on Track 2; weaknessFit stub pending Track 6 integration.*
+   *Completion-audit note (2026-06-21): planner math was real, but the planner had no production backend/route consumer. User decision: wire it up rather than descope. Remediation is tracked in `next_skill_planner_prod_wiring_20260621`.*
    *Link: [./measure/archive/next-skill-planner_20260521/](./measure/archive/next-skill-planner_20260521/)*
 
 - [x] **Track: Misconception Content Authoring** — **COMPLETED** (2026-06-15)
