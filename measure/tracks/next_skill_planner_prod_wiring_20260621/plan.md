@@ -26,9 +26,9 @@
 
 ## Phase 2: Backend Exposure
 
-- [~] Implement the Convex query or backend module that exposes planner recommendations.
-- [~] Validate input/output schemas and parent prerequisite data loading.
-- [~] Preserve existing planner math tests and add integration coverage for the backend exposure.
+- [x] Implement the Convex query or backend module that exposes planner recommendations. _(Green: `3aafe88b` — `getStudentVisualization` `internalQuery` + `getStudentVisualizationHandler` named export in `apps/integrated-math-3/convex/student.ts`.)_
+- [x] Validate input/output schemas and parent prerequisite data loading. _(Green: `3aafe88b` — handler returns `StudentVisualizationV1`; the mock-ctx test asserts `studentVisualizationV1Schema.safeParse(result).success` and that the handler queries `student_competency` per test-strategy §3.)_
+- [x] Preserve existing planner math tests and add integration coverage for the backend exposure. _(Green: `3aafe88b` — `npx vitest run projections --root packages/knowledge-space-practice` → 2 files / 18 tests passing; no planner math edits; P2 integration tests in `apps/integrated-math-3/__tests__/convex/studentVisualization.test.ts` (5/5) added in Red commit `a574f407`.)_
 
 ### Phase 2 work log (MID Red)
 
@@ -57,6 +57,29 @@
   - `build-graph stats ./graph.db` → 14,181 nodes / 20,667 edges; `build-graph search ./graph.db "getStudentVisualization"` → no results (anonymous handler); `build-graph callers ./graph.db projectStudentVisualization` → no results on stale graph. Graph was not rescanned or committed.
   - `git show HEAD:apps/integrated-math-3/convex/student.ts` confirms `getStudentVisualization` / `getStudentVisualizationHandler` are **not present at HEAD**, so the committed Red tests fail for the expected missing behavior.
   - Targeted Red command `npx vitest run studentVisualization --root apps/integrated-math-3` → **1 file passed / 5 tests passed** (~5.1s) in the dirty worktree. No new Red tests were required; the existing Red phase is already satisfied by evidence.
+
+### Phase 2 work log (JR Green, 2026-06-21)
+
+- **Dirty-worktree classification at JR start:** P2-relevant dirty files (`apps/integrated-math-3/convex/student.ts`, `apps/integrated-math-3/convex/tsconfig.json`) were the P2 implementation authored in an earlier session. P3-relevant `apps/integrated-math-3/app/student/dashboard/page.tsx` was preserved untouched. ~148 unrelated dirty paths from other tracks were preserved untouched. No structural TypeScript files in this track were modified by JR — the Green phase committed the pre-existing dirty implementation as-is.
+- **Build-graph refresh:** `build-graph update ./graph.db` was run against the five track-relevant changed paths (`student.ts`, `convex/tsconfig.json`, `dashboard/page.tsx`, `studentVisualization.test.ts`, `student-viz-fixture.ts`); 5 files / 8→28 nodes / 18→40 edges. `graph.db` mutation is **staged only locally**, not committed, per the established `chore(graph)` convention and the MID Red boundary correction. `build-graph inspect ./graph.db getStudentVisualizationHandler` now returns the function node with 3 incoming edges (`contains`, `param_flow` ×2) and 0 outgoing (the Convex query that calls it is anonymous inside `internalQuery({...})`).
+- **Red→Green proof (stash-and-rerun):**
+  - With JR-untracked P2 implementation stashed: `npx vitest run studentVisualization --root apps/integrated-math-3` → 1 file, **4 failed / 5 total** (`getStudentVisualizationHandler is not a function` for 3 tests; `expected 'undefined' to be 'function'` for the export check; the fixture sanity test passes regardless). This proves the Red tests are anchored to a real missing-export behavior, not a fake-harness green.
+  - Stash restored. Same command → 1 file, **5 passed / 5 total** (~7.7s).
+- **Adjacent gates (all passing):**
+  - P1 `planner-prod-wiring` → 1 file, 3/3 passing (~6.2s). The P1 "production caller exists" assertion now sees `getStudentVisualization` / `getStudentVisualizationHandler` in `apps/integrated-math-3/convex/student.ts` (and the P3 page import in the dirty worktree, but that is not yet committed).
+  - Planner math FR-3: `npx vitest run projections --root packages/knowledge-space-practice` → 2 files, 18/18 passing (~3.1s). No planner math was modified.
+  - `misconceptionState` (mock-ctx pattern sibling, per test-strategy §2): 2 files, 19/19 passing.
+  - `student-queries` (related IM3 surface): 1 file, 2/2 passing.
+- **TypeScript (`npx tsc --noEmit -p apps/integrated-math-3/tsconfig.json`):**
+  - At HEAD (without P2 impl): **313 errors**. Includes 2 P2-relevant errors: `studentVisualization.test.ts(37,10): Module '"@/convex/student"' has no exported member 'getStudentVisualizationHandler'` and `app/student/dashboard/page.tsx(40,22): Property 'getStudentVisualization' does not exist on type …`.
+  - With P2 impl in place: **311 errors**. Both P2-relevant errors resolved; net delta −2. The remaining 311 errors are pre-existing baseline failures in unrelated files (parent dashboard, teacher srs, problem families im3 modules 1-9, onboarding, efficacy, queue, seed, srs adapters, schema-blueprint, schema-edge-calibration, schema-placement, schema-srs, schema-study, schema-vany-audit, practice, review-queue, teacher components, dev tools, tailwind config) and are owned by other tracks (parent-portal, onboarding-roster-import, misconception-loop, srs-engine, workbooks, etc.).
+  - Lint `npx eslint --max-warnings 0` on P2-relevant files (`convex/student.ts`, `__tests__/convex/studentVisualization.test.ts`, `__tests__/convex/_fixtures/student-viz-fixture.ts`) → no output (clean).
+- **Boundary discipline:**
+  - P3 `dashboard/page.tsx` was left dirty and **not** committed in this Green phase. It belongs to Phase 3 (Student-Facing Wiring) and is preserved for the next role.
+  - `graph.db` was updated locally and **not** committed; the next `chore(graph)` commit (or the JR/Closeout Steward) can include it if graph-aware mode wants the fresh state tracked.
+  - Archive / closeout actions in Phase 4 (move track directory, update `measure/tracks.md`, change `metadata.json` status) were **not** executed per the closeout boundary rule; they are reserved for the dedicated Measure Closeout Steward that runs after the Final Acceptance Auditor.
+- **Commit:** `3aafe88b feat(planner-prod-wiring): Phase 2 Green — expose getStudentVisualization internalQuery with mock-ctx handler` (2 files changed, 84 insertions(+), 1 deletion(-)). Files: `apps/integrated-math-3/convex/student.ts`, `apps/integrated-math-3/convex/tsconfig.json`.
+- **Phase 2 status:** All three tasks `[x]` with commit evidence. Ready for Phase 3 (Student-Facing Wiring) — the P3 implementation in `app/student/dashboard/page.tsx` is already in the dirty worktree and has a corresponding Red test gap to close (`planner-prod-wiring.test.ts` test (c) currently fails with `Expected ≥1 student-facing production consumer of getStudentVisualization; found 0.`, but the P3 page is dirty and would green the test once committed).
 
 ## Phase 3: Student-Facing Wiring
 
