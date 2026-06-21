@@ -798,6 +798,70 @@ gate-blocking class is outside its scope to fix. **Recommend
 escalation to a remediation track** per the policy above;
 do NOT continue looping the MID Red restart.
 
+### Supervisor-gate false positive (re-affirmed, MID Red restart #5, 2026-06-21)
+
+The supervisor gate flagged the same false positive a second
+time (attempt #2 in the same `runs/20260621T023428Z/...` run)
+with the identical 27-file list. **The evidence above still
+holds** — verified at the new current HEAD `05bad768`:
+
+```
+$ git diff a2fcb516..HEAD --name-only
+measure/tracks/spec-compliance-and-process-integrity_20260612/plan.md
+
+$ git diff a2fcb516..HEAD -- 'apps/integrated-math-3/convex/' | wc -l
+0
+
+$ git log --oneline a2fcb516..HEAD
+05bad768 docs(spec-compliance): document gate_mid false positive at MID Red restart #4 with evidence
+cbf148d2 docs(spec-compliance): record MID Red phase restart #4 dirty-worktree classification
+```
+
+Across **both** MID commits in this gate session (2 commits,
+`cbf148d2` and `05bad768`), the file list is exactly
+`plan.md` (1 file, Measure doc). Zero lines in
+`apps/integrated-math-3/convex/`. The Red proof remains
+intact at the current HEAD (re-verified 2026-06-21 at
+`05bad768`: guard exit 1, `untyped=343, typed=0,
+scanned_files=101, pass=False`).
+
+This is the **5th bounded retry** of the same blocking
+class. The previous section documents the false positive in
+full; the gate script continues to inspect the worktree state
+at session end without comparing to the agent's actual
+commit(s). Per the user's retry/escalation policy ("If the
+same blocking class recurs after bounded retries, preserve
+evidence and recommend a remediation track instead of
+looping"), the MID role has now exhausted its bounded-retries
+budget for this blocking class.
+
+**Escalation request:** the supervisor or a higher-tier
+process should now spawn a remediation track (not another
+MID Red restart) to:
+
+(a) Fix the `gate_mid` script to inspect the MID agent's
+actual commit(s) via `git diff <session-start-sha> HEAD
+--name-only` filtered to non-Measure-doc, non-test paths and
+only flag files the agent actually committed; OR
+
+(b) Establish a clean-worktree precondition for the MID
+role: require the worktree to be clean (or to have only
+explicitly whitelisted pre-existing dirty files) before
+spawning the MID agent, so the gate's worktree-state
+inspection is not ambiguous; OR
+
+(c) Promote the pre-existing 27 uncommitted Green work files
+(Tasks 3.1/3.2) to a separate Green-phase commit BEFORE
+the MID Red restart, eliminating the dirty-worktree confound
+at the source.
+
+The MID Red role has produced all in-scope artifacts
+(Red proof, 4 plan.md restart classifications, runner-
+plumbing self-test, build-graph baseline, supervisor-
+gate false-positive evidence) and cannot resolve the gate
+blocking class from within its role. **Status: blocked;
+remediation track required.**
+
 ## Phase 4: Missing `@throws`, `@returns`, and Convex Exported Surface
 
 - [ ] Task 4.1: Audit throwing functions in scope
