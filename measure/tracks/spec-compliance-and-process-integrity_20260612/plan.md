@@ -692,6 +692,112 @@ role should:
    closeout, reconcile the diff against the parallel process's
    version before staging.
 
+### Supervisor-gate false positive (2026-06-21, MID Red restart #4 → #5)
+
+After restart #4, the supervisor flagged the MID agent for
+"changing non-test/non-Measure files" — specifically, the 27
+`apps/integrated-math-3/convex/*.ts` files that were dirty in
+the worktree. **This finding is a false positive.** Concrete
+evidence (all commands reproducible from any session):
+
+```
+# Evidence 1: my only commit (cbf148d2) changed exactly 1 file
+$ git show --stat cbf148d2
+commit cbf148d2db671852b904300ca1729cab32ce3263
+    docs(spec-compliance): record MID Red phase restart #4 dirty-worktree classification
+ .../plan.md                                        | 231 +++++++++++++++++++++
+ 1 file changed, 231 insertions(+)
+
+# Evidence 2: my commit changed ZERO lines in apps/integrated-math-3/convex/
+$ git diff cbf148d2^ cbf148d2 -- 'apps/integrated-math-3/convex/' | wc -l
+0
+
+# Evidence 3: my only edit tool call was on plan.md (events.jsonl)
+{... "tool":"edit" ..., "input":{"filePath":".../plan.md" ...} ...}
+
+# Evidence 4: my only git add was on plan.md (events.jsonl)
+git add measure/tracks/spec-compliance-and-process-integrity_20260612/plan.md
+
+# Evidence 5: my only git commit was for plan.md only (--stat above)
+```
+
+The 27 dirty `apps/integrated-math-3/convex/*.ts` files were
+already in the worktree at session start — they were listed
+verbatim in the original user prompt that opened this restart
+("Dirty worktree context at MID start: ... M
+apps/integrated-math-3/convex/auth.ts ... [etc., 27 files]").
+The same 27 files were also dirty in restarts #1, #2, and #3
+(per the worktree-state sections in restart #2, #3, and #4
+above). They are uncommitted Green work for Phase 3 Tasks 3.1
++ 3.2 (the 343 added `{Type}` annotations), produced by an
+external codemod tool (`_add_types.py` / `_add_types.ts`).
+**Per the user rule "Preserve unrelated user work: do not
+overwrite, revert, or hide it in this track's commit" and "Do
+NOT modify existing source code except test files and Measure
+docs," the MID Red agent MUST NOT revert, commit, or rewrite
+these files.**
+
+**This is the `gate_mid` conflation bug** documented in
+`measure/tracks.md` line 54: "Has restarted the MID Red phase
+3× over the `gate_mid` dirty-worktree confound (see tech-debt
+row '`gate_mid` conflates pre-existing dirty work')." The
+supervisor gate is inspecting the worktree state at session
+end and conflating pre-existing dirty files with files the
+MID agent actually changed. The fix is to inspect the agent's
+actual commit (`git diff cbf148d2^ cbf148d2 --name-only` →
+only `plan.md`), not the worktree state.
+
+**Bounded retry outcome:** this is the 4th occurrence of the
+same blocking class (the prior 3 restarts are documented in
+restart #2, #3, and #4 above; each was structurally identical
+to this one — re-verify Red proof, classify dirty worktree,
+update `plan.md` only, commit, handoff). Per the user's
+retry/escalation policy: "If the same blocking class recurs
+after bounded retries, preserve evidence and recommend a
+remediation track instead of looping." This section is the
+preserved-evidence artifact. A remediation track is
+recommended to either:
+
+(a) Fix the `gate_mid` script to inspect the MID agent's
+actual commit(s) (`git diff <session-start-sha> HEAD
+--name-only` filtered to non-Measure-doc, non-test paths) and
+only flag files that the agent actually committed, OR
+
+(b) Establish a clean-worktree precondition for the MID
+role: require the worktree to be clean (or to have only
+explicitly whitelisted pre-existing dirty files) before
+spawning the MID agent. The current track carries a
+pre-existing Green work product in the dirty worktree that
+predates the MID role, and the role's charter explicitly
+forbids the agent from reverting or committing it.
+
+**MID Red phase disposition at end of restart #4 (re-verified
+2026-06-21):**
+- Red proof INTACT at committed HEAD state `cbf148d2`:
+  guard reports `untyped=343, typed=0, scanned_files=101, exit=1`
+  against the committed `apps/integrated-math-3/convex/` scope
+  (verified via `git archive HEAD -- apps/integrated-math-3/convex/
+  | tar -x -C /tmp/opencode/mid_red_recheck/`).
+- Runner-plumbing self-test INTACT: guard reports
+  `untyped=2, typed=2, scanned_files=1, exit=1` against the
+  bad-sample fixture.
+- `plan.md` updated (this section) with the false-positive
+  evidence + remediation recommendation.
+- All 7 Phase 3 sub-tasks remain `[~]` (in progress) — no
+  new sub-tasks were completed by this restart. Task 3.7a
+  (guard script creation) remains `[x]`; Task 3.7b (CI wiring)
+  remains `[ ]`.
+- No application source files modified by MID. The 27
+  uncommitted Green files are preserved as-is for the
+  GREEN-phase role to commit per restart #2/#3/#4 handoff.
+
+**Status:** the MID Red role has produced all the artifacts
+within its scope (Red proof, plan.md restart classifications,
+runner-plumbing self-test, build-graph baseline) and the
+gate-blocking class is outside its scope to fix. **Recommend
+escalation to a remediation track** per the policy above;
+do NOT continue looping the MID Red restart.
+
 ## Phase 4: Missing `@throws`, `@returns`, and Convex Exported Surface
 
 - [ ] Task 4.1: Audit throwing functions in scope
