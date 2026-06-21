@@ -862,6 +862,389 @@ gate false-positive evidence) and cannot resolve the gate
 blocking class from within its role. **Status: blocked;
 remediation track required.**
 
+### Supervisor-gate false positive (re-affirmed, MID Red restart #6, 2026-06-21)
+
+The supervisor gate was triggered a third time after restart
+#5 with the identical 27-file `apps/integrated-math-3/convex/*.ts`
+list (no change to that worktree state since restart #4). **The
+false-positive evidence still holds** — re-verified at the
+new current HEAD `3234bd4e`:
+
+```
+$ git diff a2fcb516..HEAD --name-only
+measure/tracks/spec-compliance-and-process-integrity_20260612/plan.md
+
+$ git diff a2fcb516..HEAD -- 'apps/integrated-math-3/convex/' | wc -l
+0
+
+$ git log --oneline a2fcb516..HEAD
+3234bd4e docs(spec-compliance): re-affirm gate_mid false positive at MID Red restart #5 — remediation track required
+05bad768 docs(spec-compliance): document gate_mid false positive at MID Red restart #4 with evidence
+cbf148d2 docs(spec-compliance): record MID Red phase restart #4 dirty-worktree classification
+```
+
+Across **all three** MID commits since `a2fcb516` (restarts
+#4 + #5 + this restart #6), the file list is exactly `plan.md`
+(1 file, Measure doc). Zero lines in
+`apps/integrated-math-3/convex/`. The Red proof remains
+intact at the current HEAD (re-verified 2026-06-21 at
+`3234bd4e`: guard exit 1, `untyped=343, typed=0,
+scanned_files=101, pass=False` against the committed
+`apps/integrated-math-3/convex/` scope).
+
+This is the **6th bounded retry** of the same blocking
+class. The previous section (restart #5) already escalated;
+restart #4 documented the false positive in full; the gate
+script continues to inspect the worktree state at session
+end without comparing to the agent's actual commit(s).
+Per the user's retry/escalation policy ("If the same
+blocking class recurs after bounded retries, preserve
+evidence and recommend a remediation track instead of
+looping"), the MID role has now exhausted its
+bounded-retries budget for this blocking class.
+
+**Disposition taken by MID Red restart #6:**
+
+1. **Red proof re-verified at COMMITTED HEAD state**
+   (`3234bd4e`) via `git archive HEAD -- apps/integrated-math-3/convex/
+   | tar -x -C /tmp/opencode/mid_red_restart_6/`. Guard
+   reports `untyped=343, typed=0, scanned_files=101,
+   exit=1`. Red proof INTACT at committed HEAD state.
+2. **Red proof re-verified at dirty worktree state.** Guard
+   reports `untyped=0, typed=343, scanned_files=101, exit=0`.
+   EXPECTED Green outcome of the uncommitted Green work;
+   not a Red proof failure (the test-strategy §7 P3 Red
+   assertion is about the COMMITTED state, not the worktree).
+3. **Runner-plumbing self-test re-verified.** Guard reports
+   `untyped=2, typed=2, scanned_files=1, exit=1` on the
+   bad-sample fixture. Unchanged from `bde10833` /
+   `f55172d1`.
+4. **Build-graph baseline re-verified** at `3234bd4e`:
+   `graph.db` mtime 2026-06-20 10:27 (within <24h
+   Graph-Aware freshness window per test-strategy §0);
+   14181 nodes / 20667 edges / 2067 files. `build-graph
+   search ./graph.db "check-jsdoc-typed-params"` returns
+   no results, confirming the guard is a shell script under
+   `measure/` and is not queryable from the TS knowledge
+   graph (as expected per the script's header comment and
+   test-strategy §6). No rescan required for Phase 3
+   planning; Phase 7.1 will refresh + commit it.
+5. **Dirty-worktree re-classified** (27 `M convex/*.ts`
+   unchanged Green work for Tasks 3.1/3.2; 2 `?? _add_types.{py,ts}`
+   unchanged transient tooling; 1 `M measure/tracks.md` and
+   7 `D measure/tracks/parent-portal_20260605/*` unchanged
+   parallel-process work). MID Red MUST NOT revert,
+   commit, or rewrite any of these. See
+   "Dirty-worktree classification (MID Red restart #6, 2026-06-21)"
+   below for the full classification.
+6. **`plan.md` updated** to record this sixth restart's
+   classification and document the unchanged disposition
+   (this section).
+7. **No application source files modified by MID.** The 27
+   uncommitted Green files are preserved as-is for the
+   GREEN-phase role to commit per restart #2/#3/#4/#5
+   handoff.
+
+**MID Red restart #6 targeted Red commands + results
+(2026-06-21):**
+
+```bash
+# Production-gate Red proof — committed HEAD state (Red expected):
+mkdir -p /tmp/opencode/mid_red_restart_6 && \
+  git archive HEAD -- apps/integrated-math-3/convex/ | tar -x -C /tmp/opencode/mid_red_restart_6/
+TYPED_PARAMS_SCOPE=/tmp/opencode/mid_red_restart_6/apps/integrated-math-3/convex/ \
+  bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh --json
+# Result: {"scanned_files":101,"total_tags":343,"typed_tags":0,"untyped_tags":343,"pass":false}
+# Exit: 1 (FAIL — Red proof intact at HEAD, unchanged from bde10833/f55172d1)
+
+# Same gate against dirty worktree (Green expected from uncommitted Green work):
+bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh --json
+# Result: {"scanned_files":101,"total_tags":343,"typed_tags":343,"untyped_tags":0,"pass":true}
+# Exit: 0 (PASS — Green work in dirty state satisfies the contract)
+
+# Runner-plumbing self-test (always fails by design):
+TYPED_PARAMS_SCOPE=measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/fixtures/typed-params-bad-sample.ts \
+  bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh --json
+# Result: {"scanned_files":1,"total_tags":4,"typed_tags":2,"untyped_tags":2,"pass":false}
+# Exit: 1 (FAIL — fixture design unchanged)
+```
+
+**Build-graph stats (re-verified 2026-06-21):**
+```
+$ build-graph stats ./graph.db
+Graph Statistics
+================
+Total nodes: 14181
+Total edges: 20667
+Total files: 2067
+[top types: param 4718, function 3098, file 2067, field 1590, interface 1522, type_alias 678, schema 335, route 142, class 31]
+$ build-graph search ./graph.db "check-jsdoc-typed-params"
+(no results)
+```
+
+**Red proof failure cause (intrinsic, not stale):** the
+Red tests fail because the committed source state is
+**missing** typed annotations in 343 tags across 27 files
+in `apps/integrated-math-3/convex/`. The guard's parser is
+regex-based and reads source directly (not graph.db), so
+the count is always live. The dirty worktree's `pass=true`
+is the EXPECTED Green outcome of uncommitted Green work,
+NOT a Red proof failure. Per the user's instruction "Red
+tests must fail because the current implementation is
+missing or wrong, not merely because a durable record is
+stale" — the failure is intrinsic to the source, the count
+is not a stale durable record.
+
+**Task-marker status (unchanged from restart #5):** all
+7 Phase 3 sub-tasks remain `[~]` / `[x]` / `[ ]` as
+before — no new sub-tasks were completed by this Red
+restart. Task 3.7a (guard script creation) remains `[x]`
+(committed in `bde10833`, hardened in `f55172d1`); Task
+3.7b (CI wiring) remains `[ ]`. Tasks 3.1-3.6 remain
+`[~]` — Tasks 3.1 and 3.2 have their Green implementation
+present in the dirty worktree but UNCOMMITTED; closing
+them to `[x]` is the GREEN-phase role's responsibility.
+Tasks 3.3-3.6 (other phase scopes) remain `[~]`. **No new
+tests written this restart** — the Red proof (the guard
+script + fixture) was committed in `bde10833` and hardened
+in `f55172d1`; re-running it against the committed HEAD
+state confirms the same Red assertion holds. Per
+test-strategy §1, P3 is "Artifact-only, no unit" — the
+guard IS the Red proof, and adding redundant unit tests
+would violate the test-strategy contract.
+
+**Phase 3 status as of MID Red restart #6 (2026-06-21):**
+- Red proof INTACT at committed HEAD state `3234bd4e`:
+  guard reports `untyped=343, typed=0, scanned_files=101,
+  exit=1` against the committed
+  `apps/integrated-math-3/convex/` scope.
+- Runner-plumbing self-test INTACT: guard reports
+  `untyped=2, typed=2, scanned_files=1, exit=1` against
+  the bad-sample fixture.
+- `plan.md` updated (this section + new "Dirty-worktree
+  classification (MID Red restart #6, 2026-06-21)" section
+  below) with the 6th restart's classification and
+  document the unchanged Phase 3 Red disposition.
+- All 7 Phase 3 sub-tasks remain `[~]` (in progress) —
+  no new sub-tasks were completed by this restart. Task
+  3.7a (guard script creation) remains `[x]`; Task 3.7b
+  (CI wiring) remains `[ ]`.
+- No application source files modified by MID. The 27
+  uncommitted Green files are preserved as-is for the
+  GREEN-phase role to commit per restart #2/#3/#4/#5
+  handoff.
+
+**Status:** the MID Red role has produced all the
+artifacts within its scope (Red proof, 5 plan.md restart
+classifications, runner-plumbing self-test, build-graph
+baseline) and the gate-blocking class is outside its
+scope to fix. **Recommend escalation to a remediation
+track** per the policy above; do NOT continue looping
+the MID Red restart.
+
+### Dirty-worktree classification (MID Red phase restart #6, 2026-06-21)
+
+`git status --porcelain` at MID Red restart #6
+(unchanged from restart #5 — same 27 modified source
+files, same 2 untracked scripts, same parent-portal
+archival work, same `measure/tracks.md` modification):
+
+```
+ M apps/integrated-math-3/convex/auth.ts
+ M apps/integrated-math-3/convex/dashboardHelpers.ts
+ M apps/integrated-math-3/convex/dev.ts
+ M apps/integrated-math-3/convex/edgeCalibration.ts
+ M apps/integrated-math-3/convex/exports.ts
+ M apps/integrated-math-3/convex/objectiveProficiency.ts
+ M apps/integrated-math-3/convex/placement.ts
+ M apps/integrated-math-3/convex/public.ts
+ M apps/integrated-math-3/convex/queue/queue.ts
+ M apps/integrated-math-3/convex/queue/sessions.ts
+ M apps/integrated-math-3/convex/rateLimits.ts
+ M apps/integrated-math-3/convex/seed.ts
+ M apps/integrated-math-3/convex/seed/seed_demo_env.ts
+ M apps/integrated-math-3/convex/seed/utils.ts
+ M apps/integrated-math-3/convex/seed/validate_blueprint.ts
+ M apps/integrated-math-3/convex/srs/cards.ts
+ M apps/integrated-math-3/convex/srs/dashboard.ts
+ M apps/integrated-math-3/convex/srs/processReview.ts
+ M apps/integrated-math-3/convex/srs/reviews.ts
+ M apps/integrated-math-3/convex/srs/sessions.ts
+ M apps/integrated-math-3/convex/srs/submissionSrs.ts
+ M apps/integrated-math-3/convex/study.ts
+ M apps/integrated-math-3/convex/teacher.ts
+ M apps/integrated-math-3/convex/teacher/lessonAssignment.ts
+ M apps/integrated-math-3/convex/teacher/srs_mutations.ts
+ M apps/integrated-math-3/convex/teacher/srs_queries.ts
+ M apps/integrated-math-3/convex/timing_baseline.ts
+ M measure/tracks.md
+ D measure/tracks/parent-portal_20260605/index.md
+ D measure/tracks/parent-portal_20260605/metadata.json
+ D measure/tracks/parent-portal_20260605/plan.md
+ D measure/tracks/parent-portal_20260605/review-2026-06-19.md
+ D measure/tracks/parent-portal_20260605/review-2026-06-20.md
+ D measure/tracks/parent-portal_20260605/spec.md
+ D measure/tracks/parent-portal_20260605/test-strategy.md
+?? _add_types.py
+?? _add_types.ts
+```
+
+Classification (unchanged from restart #5 — same
+artifacts):
+
+- **27 modified `apps/integrated-math-3/convex/*.ts`
+  files** (HEAD vs worktree diff: 411 insertions, 478
+  deletions per `git diff --stat`): **relevant but
+  out-of-role for MID Red**. These are the Phase 3 Tasks
+  3.1 + 3.2 Green implementation. The 343 insertions
+  correspond exactly to the 343 untyped tags documented
+  in [`phase-3-red-baseline.md`](./phase-3-red-baseline.md)
+  — the count match confirms the diff is the closing of
+  the Red gap, not unrelated work. Sample diff confirms
+  the pattern is exactly `@param name - desc` →
+  `@param {Type} name - desc` (e.g., `auth.ts`:
+  `@param value - The string to normalize` →
+  `@param {string | undefined} value - The string to
+  normalize`).
+  The additional ~70 deletion lines in `git diff --stat`
+  (411 insertions vs the earlier-reported 343) are JSDoc
+  line reflows inside the same tag block (the
+  `_add_types.py` codemod compresses wrapped continuation
+  lines to a single line per tag), not unrelated work.
+
+  **Why out-of-role for MID Red:** per the user rule
+  "Do NOT modify existing source code except test files
+  and Measure docs," the MID Red agent MUST NOT commit,
+  revert, or rewrite these files. The Green-phase role
+  owns the commit per restart #2's handoff. **The MID
+  Red agent's job here is to preserve the Green work
+  (not revert it) and to re-verify the Red proof at
+  committed HEAD state** (the proof is intrinsic to the
+  committed source, not the worktree).
+
+- **`_add_types.py` (untracked, 7203 bytes) at repo
+  root**: **generated / ignorable**. Same disposition as
+  restarts #2/#3/#4/#5. Python automation that walks a
+  directory and adds `{Type}` annotations by matching
+  JSDoc tags to TypeScript function signatures. The
+  apparent producer of the 27 modified convex files
+  above. Transient batch-processing tool; not a tracked
+  codebase artifact; should NOT be committed.
+
+- **`_add_types.ts` (untracked, 7319 bytes) at repo
+  root**: **generated / ignorable**. TypeScript rewrite
+  of `_add_types.py`. Same provenance and disposition:
+  transient tooling, should NOT be committed.
+
+- **` M measure/tracks.md`** (unchanged from restart
+  #4 — the daily-automation archival from `a2fcb516`
+  also touched this file): **partially related,
+  preserved as-is**. The diff (130 insertions, 62
+  deletions per `git diff --stat`) includes (a) Phase 3
+  status updates for the Spec Compliance track entry
+  that mirror the work already recorded in restart #3's
+  plan.md section (the parallel daily-automation has
+  been writing a status note to tracks.md consistent
+  with the Green work in the dirty worktree), and (b)
+  expanded descriptions for T0/Track A-F in the Practice
+  Primitives program (unrelated to this track). The MID
+  Red agent MUST NOT stage this file — it overlaps with
+  the parallel process's intent and any commit here
+  would either (i) lose the parallel process's
+  authorship metadata when the parallel process later
+  commits its own version, or (ii) be re-edited and
+  re-committed by the parallel process. The 27 convex
+  dirty files and the `tracks.md` modification are part
+  of the same external worktree state being managed by
+  the Green-phase / parallel-daily processes; this
+  track's plan update is recorded in `plan.md` only.
+
+- **7 `D` entries for
+  `measure/tracks/parent-portal_20260605/*`**
+  (`index.md` / `metadata.json` / `plan.md` /
+  `review-*.md` / `spec.md` / `test-strategy.md`):
+  **unrelated user work**. These files were moved to
+  `measure/archive/parent-portal_20260605/` in commit
+  `a2fcb516` (the parent-portal track archival), but
+  the source files in `tracks/parent-portal_20260605/`
+  were not staged/committed in that commit (the
+  `git log -1 --stat a2fcb516` confirms the commit only
+  added files to `archive/parent-portal_20260605/`, not
+  deleted from `tracks/parent-portal_20260605/`). The
+  worktree has since been modified to remove those 7
+  files from disk (likely by a subsequent `rm` by the
+  same parallel process that produced `a2fcb516`),
+  leaving them deleted-but-tracked. The MID Red agent
+  MUST NOT `git add`/`git rm` these paths (out of
+  role, and doing so would steal authorship from the
+  parallel process owning the parent-portal archival
+  closeout). They are LEFT IN THE WORKTREE — untracked
+  deletes will either be staged by the parallel process
+  in its own commit, or fail-out at the next
+  `git status --short` check the parallel process owns.
+  This track does not touch them.
+
+**Disposition taken by MID Red restart #6:**
+
+1. Red proof re-verified at COMMITTED HEAD state —
+   guard correctly reports 343 untyped in IM3 `convex/`,
+   exit 1. Red proof INTACT.
+2. Red proof re-verified at dirty worktree state — guard
+   reports 0 untyped in IM3 `convex/`, exit 0. This is
+   the EXPECTED Green outcome of the uncommitted Green
+   work; not a Red proof failure.
+3. Runner-plumbing self-test re-verified — guard reports
+   2 untyped / 2 typed / exit 1 on the bad-sample
+   fixture. Unchanged from `bde10833` / `f55172d1`.
+4. Build-graph baseline re-verified — graph.db (2026-06-20,
+   1 day old, within <24h freshness window) has 14181
+   nodes / 20667 edges / 2067 files. No rescan required
+   for Phase 3 planning.
+5. `plan.md` updated to record this sixth restart's
+   dirty-worktree classification and document the
+   unchanged Phase 3 Red disposition.
+6. The 27 dirty source files, the modified
+   `measure/tracks.md`, the 7 `D` entries for
+   `parent-portal_20260605/*`, and the 2 untracked
+   scripts are LEFT IN THE WORKTREE — not reverted
+   (preserves Green work + unrelated user work), not
+   committed (out of role; not this track's authorship),
+   not `.gitignore`-d (out of role).
+7. `graph.db` is unchanged from the Phase 1 Task 1.2
+   master-resolved state. Phase 7.1 will refresh +
+   commit it.
+
+**Next-role handoff (unchanged from restarts
+#2/#3/#4/#5):** the GREEN-phase role should:
+1. Run `git diff apps/integrated-math-3/convex/` and
+   audit the 343 added `{Type}` annotations against the
+   function signatures to confirm they are correct
+   (sample audit on `auth.ts`, `study.ts`, `teacher.ts`,
+   `objectiveProficiency.ts` recommended).
+2. Run `bash
+   measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh`
+   and confirm exit 0.
+3. Commit the 27 modified source files in a single Green
+   commit (Conventional Commit
+   `feat(spec-compliance): Phase 3 Green — IM3 convex/
+   typed annotations`).
+4. Mark Tasks 3.1 and 3.2 as `[x]` in `plan.md` with
+   the Green commit SHA.
+5. Move on to Tasks 3.3-3.6 (other scopes —
+   `components/`, `lib/`, `app/scripts/`, `packages/`).
+6. Do NOT commit `_add_types.py` or `_add_types.ts` —
+   they are transient tooling and should be deleted from
+   the worktree after the Green commit lands.
+7. Do NOT touch `measure/tracks.md`, the 7 `D` entries
+   for `parent-portal_20260605/*`, or the archive files
+   in `measure/archive/parent-portal_20260605/` — those
+   are the parallel daily-automation / parent-portal
+   archival work, owned by a different process. If a
+   later phase (e.g., Phase 7 closeout) needs
+   `measure/tracks.md` updated for the Green closeout,
+   reconcile the diff against the parallel process's
+   version before staging.
+
 ## Phase 4: Missing `@throws`, `@returns`, and Convex Exported Surface
 
 - [ ] Task 4.1: Audit throwing functions in scope
