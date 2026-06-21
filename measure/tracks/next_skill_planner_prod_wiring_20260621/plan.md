@@ -26,9 +26,25 @@
 
 ## Phase 2: Backend Exposure
 
-- [ ] Implement the Convex query or backend module that exposes planner recommendations.
-- [ ] Validate input/output schemas and parent prerequisite data loading.
-- [ ] Preserve existing planner math tests and add integration coverage for the backend exposure.
+- [~] Implement the Convex query or backend module that exposes planner recommendations.
+- [~] Validate input/output schemas and parent prerequisite data loading.
+- [~] Preserve existing planner math tests and add integration coverage for the backend exposure.
+
+### Phase 2 work log (MID Red)
+
+- **Dirty-worktree classification:** The uncommitted P2 implementation in `apps/integrated-math-3/convex/student.ts` and `apps/integrated-math-3/convex/tsconfig.json` is **relevant to this track** (backend query + JSON module support). The uncommitted P3 wiring in `apps/integrated-math-3/app/student/dashboard/page.tsx` is also relevant but is outside Phase 2 scope and is preserved untouched. All other dirty paths (~148 files) are unrelated pre-existing work from other tracks and are preserved.
+- **Build-graph baseline:** `graph.db` was rescanned from HEAD because the existing DB was stale (student.ts functions were absent). Fresh scan: 14,847 nodes / 21,615 edges. `build-graph inspect projectStudentVisualization` still shows **zero caller edges** — only `param_flow` edges — confirming the planner symbol has no captured production caller yet. `build-graph query` for `getStudentVisualization` returns no matches because the Convex query handler is anonymous inside `internalQuery({...})` and is not indexed as a standalone function.
+- **Red contract tightening:** The uncommitted `getStudentVisualization = internalQuery({...})` exposes the live API shape, but it is not mock-ctx testable because the handler is not exported separately. Per test-strategy.md §2 (mock-ctx harness, no `convex-test` dependency), Phase 2 Red requires `getStudentVisualizationHandler` to be exported from `apps/integrated-math-3/convex/student.ts`.
+- **Prerequisite data-loading gap:** The current implementation derives `learnerState` solely from `placement_results`. test-strategy.md §3 requires Phase 2 to derive `learnerState` from `student_competency` / `srs_cards` / `objective_policies` OR accept an explicit learner-state input. The Red test asserts the handler queries `student_competency`.
+- **Targeted Red command:** `npx vitest run studentVisualization --root apps/integrated-math-3`
+- **Targeted Red command result (2026-06-21 MID Red phase):** 1 file, **4 failed / 5 total**, ~7.4s.
+  - **Test "handler exists as a named export for mock-ctx testing"** — fails: `getStudentVisualizationHandler` is `undefined`.
+  - **Tests "returns a payload that parses as StudentVisualizationV1", "recommendedNext matches direct projection", "loads prerequisite proficiency data from student_competency"** — fail with `TypeError: getStudentVisualizationHandler is not a function`.
+  - **Test "fixture projection parses as StudentVisualizationV1"** — passes (sanity-checks the fixture/planner contract).
+- **Artifacts authored:**
+  - `apps/integrated-math-3/__tests__/convex/studentVisualization.test.ts` — Phase 2 Red tests (handler export, Zod parse, recommendedNext parity, prerequisite data-loading).
+  - `apps/integrated-math-3/__tests__/convex/_fixtures/student-viz-fixture.ts` — frozen 4-node/2-edge fixture per test-strategy.md §2.
+- **Commit:** Conventional Commit `test(planner-prod-wiring): add Phase 2 Red tests for backend exposure` (`4d9b8e07`). Commit includes only the new test files and Measure docs; the relevant dirty `student.ts` / `tsconfig.json` implementation is left for the Green-phase implementer.
 
 ## Phase 3: Student-Facing Wiring
 
