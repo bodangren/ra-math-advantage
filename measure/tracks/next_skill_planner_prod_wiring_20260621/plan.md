@@ -83,9 +83,25 @@
 
 ## Phase 3: Student-Facing Wiring
 
-- [ ] Render planner recommendations in the selected student-facing route or dashboard panel.
-- [ ] Handle empty/insufficient-data states without fabricating recommendations.
-- [ ] Verify the production caller check passes with a non-test call path.
+- [x] Render planner recommendations in the selected student-facing route or dashboard panel.
+- [x] Handle empty/insufficient-data states without fabricating recommendations.
+- [x] Verify the production caller check passes with a non-test call path.
+
+### Phase 3 work log (MID Red with folded pre-existing implementation)
+
+- **Dirty-worktree classification at MID start:** `apps/integrated-math-3/app/student/dashboard/page.tsx` was already modified with the Phase 3 student-facing wiring (calls `internal.student.getStudentVisualization` via `fetchInternalQuery` and renders `recommendedNext`). This change is **relevant to this track/phase**. Per the session instruction to keep the phase-end worktree clean for relevant changes, the pre-existing dashboard wiring was folded into the Phase 3 commit rather than left dirty for a separate Green role. All other dirty paths (~148 files across packages and other apps) are unrelated pre-existing work from other tracks and were preserved untouched.
+- **Build-graph baseline:** `build-graph stats ./graph.db` → 14,198 nodes / 20,689 edges. `build-graph search ./graph.db "getStudentVisualization"` returns the named handler in `apps/integrated-math-3/convex/student.ts` but no standalone route/component node for the dashboard call (the Convex query ref is consumed inside the async page). `build-graph callers ./graph.db projectStudentVisualization` still returns no results — the graph's call-edge capture does not track the runtime call from `internal.student.getStudentVisualization` to the planner package. The production-caller proof is therefore validated by the P1 source-scan test (`planner-prod-wiring.test.ts`), not by graph edges alone.
+- **Red test authoring:** `apps/integrated-math-3/__tests__/student/dashboard-planner.test.tsx` was created per `test-strategy.md` §5 (P3). It tests that the student dashboard route renders ≥1 recommendation from a stubbed `StudentVisualizationV1` and renders an empty-state message when `recommendedNext` is empty. A schema-contract assertion verifies the stub parses as `StudentVisualizationV1`.
+- **Targeted Red command (at HEAD, with dashboard page wiring stashed):** `npx vitest run dashboard-planner --root apps/integrated-math-3` → 1 file, **2 failed / 3 total** (~7.9s). Failures: `Unable to find an element by: [data-testid="recommended-next-panel"]` in both live-behavior tests. The schema-contract test passed. This confirms the Red phase is anchored to real missing behavior, not a stale durable record.
+- **Green verification (with pre-existing dashboard wiring restored):** Same command → 1 file, **3 passed / 3 total** (~4.7s). Adjacent gates also pass: `npx vitest run planner-prod-wiring --root apps/integrated-math-3` → 3/3 (the tightened student-surface assertion now sees `getStudentVisualization` in `app/student/dashboard/page.tsx`); `npx vitest run app/student/dashboard --root apps/integrated-math-3` → 4/4 (no regression in existing dashboard tests).
+- **Artifacts changed:**
+  - `apps/integrated-math-3/__tests__/student/dashboard-planner.test.tsx` — new Phase 3 Red tests.
+  - `apps/integrated-math-3/app/student/dashboard/page.tsx` — pre-existing student-facing wiring folded into the phase-end commit.
+- **Quality gates:**
+  - Lint on changed files (`npx eslint --max-warnings 0 apps/integrated-math-3/__tests__/student/dashboard-planner.test.tsx apps/integrated-math-3/app/student/dashboard/page.tsx`) → clean.
+  - TypeScript (`npx tsc --noEmit -p apps/integrated-math-3/tsconfig.json`) → pre-existing baseline failures only; no errors in the changed Phase 3 files.
+- **Commit:** `6ba41fd1` — `test(planner-prod-wiring): Phase 3 Red tests and fold existing student dashboard planner wiring`. Both the new test file and the pre-existing dashboard wiring are included so the phase-end worktree is clean for this track.
+- **Phase 3 status:** All three tasks `[x]`. The production caller path now exists from `app/student/dashboard/page.tsx` → `internal.student.getStudentVisualization` → `getStudentVisualizationHandler` → `projectStudentVisualization`.
 
 ## Phase 4: Closeout
 
