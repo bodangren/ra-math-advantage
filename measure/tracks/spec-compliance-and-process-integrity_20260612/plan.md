@@ -461,6 +461,237 @@ role should:
    transient tooling and should be deleted from the worktree after
    the Green commit lands.
 
+### Dirty-worktree classification (MID Red phase restart #4, 2026-06-21)
+
+`git status --porcelain` at MID Red restart #4 (worktree has new
+unrelated changes since restart #3 — a parallel daily-automation
+archival process touched `tracks.md` and deleted the `tracks/parent-portal_20260605/`
+directory after commit `a2fcb516`):
+
+```
+ M apps/integrated-math-3/convex/auth.ts
+ M apps/integrated-math-3/convex/dashboardHelpers.ts
+ M apps/integrated-math-3/convex/dev.ts
+ M apps/integrated-math-3/convex/edgeCalibration.ts
+ M apps/integrated-math-3/convex/exports.ts
+ M apps/integrated-math-3/convex/objectiveProficiency.ts
+ M apps/integrated-math-3/convex/placement.ts
+ M apps/integrated-math-3/convex/public.ts
+ M apps/integrated-math-3/convex/queue/queue.ts
+ M apps/integrated-math-3/convex/queue/sessions.ts
+ M apps/integrated-math-3/convex/rateLimits.ts
+ M apps/integrated-math-3/convex/seed.ts
+ M apps/integrated-math-3/convex/seed/seed_demo_env.ts
+ M apps/integrated-math-3/convex/seed/utils.ts
+ M apps/integrated-math-3/convex/seed/validate_blueprint.ts
+ M apps/integrated-math-3/convex/srs/cards.ts
+ M apps/integrated-math-3/convex/srs/dashboard.ts
+ M apps/integrated-math-3/convex/srs/processReview.ts
+ M apps/integrated-math-3/convex/srs/reviews.ts
+ M apps/integrated-math-3/convex/srs/sessions.ts
+ M apps/integrated-math-3/convex/srs/submissionSrs.ts
+ M apps/integrated-math-3/convex/study.ts
+ M apps/integrated-math-3/convex/teacher.ts
+ M apps/integrated-math-3/convex/teacher/lessonAssignment.ts
+ M apps/integrated-math-3/convex/teacher/srs_mutations.ts
+ M apps/integrated-math-3/convex/teacher/srs_queries.ts
+ M apps/integrated-math-3/convex/timing_baseline.ts
+ M measure/tracks.md
+ D measure/tracks/parent-portal_20260605/index.md
+ D measure/tracks/parent-portal_20260605/metadata.json
+ D measure/tracks/parent-portal_20260605/plan.md
+ D measure/tracks/parent-portal_20260605/review-2026-06-19.md
+ D measure/tracks/parent-portal_20260605/review-2026-06-20.md
+ D measure/tracks/parent-portal_20260605/spec.md
+ D measure/tracks/parent-portal_20260605/test-strategy.md
+?? _add_types.py
+?? _add_types.ts
+```
+
+Classification (27 `convex/*.ts` + 2 scripts are unchanged from
+restart #3; new since #3 are the 7 `D` entries for `parent-portal_20260605/*`
+plus a further modification to `measure/tracks.md`):
+
+- **27 modified `apps/integrated-math-3/convex/*.ts` files**
+  (HEAD vs worktree diff: 343 insertions, 344 deletions):
+  **relevant but out-of-role for MID Red**. Same disposition as
+  restarts #2 and #3 — these are the Phase 3 Tasks 3.1 + 3.2 Green
+  implementation. The 343 insertions correspond exactly to the 343
+  untyped tags documented in
+  [`phase-3-red-baseline.md`](./phase-3-red-baseline.md). The MID Red
+  agent MUST NOT revert (preserves Green work) or commit (out of
+  role) these files. The Green-phase role owns the commit per
+  restart #2's handoff.
+- **`_add_types.py` (untracked, 7203 bytes) at repo root**:
+  **generated / ignorable**. Same disposition as restarts #2/#3.
+  Transient batch-processing tool that produced the 27 modified
+  convex files; should NOT be committed.
+- **`_add_types.ts` (untracked, 7319 bytes) at repo root**:
+  **generated / ignorable**. Same disposition as restarts #2/#3.
+  TypeScript rewrite of `_add_types.py`; transient tooling, should
+  NOT be committed.
+- **` M measure/tracks.md`** (further modifications on top of
+  `a2fcb516`): **partially related, preserved as-is**. The diff
+  (68 insertions, 62 deletions) includes (a) Phase 3 status updates
+  for the Spec Compliance track entry that *mirror* the work
+  already recorded in restart #3's plan.md section (the parallel
+  daily-automation has been writing a status note to tracks.md
+  consistent with the Green work in the dirty worktree), and (b)
+  expanded descriptions for T0/Track A-F in the Practice Primitives
+  program (unrelated to this track). The MID Red agent MUST NOT
+  stage this file — it overlaps with the parallel process's
+  intent and any commit here would either (i) lose the parallel
+  process's authorship metadata when the parallel process later
+  commits its own version, or (ii) be re-edited and re-committed
+  by the parallel process. The 27 convex dirty files and the
+  `tracks.md` modification are part of the same external worktree
+  state being managed by the Green-phase / parallel-daily
+  processes; this track's plan update is recorded in `plan.md`
+  only.
+- **7 `D` entries for `measure/tracks/parent-portal_20260605/*`**
+  (the `index.md` / `metadata.json` / `plan.md` / `review-*.md` /
+  `spec.md` / `test-strategy.md` files): **unrelated user work**.
+  These files were moved to `measure/archive/parent-portal_20260605/`
+  in commit `a2fcb516` (the parent-portal track archival), but
+  the source files in `tracks/parent-portal_20260605/` were not
+  staged/committed in that commit (the `git log -1 --stat
+  a2fcb516` confirms the commit only added files to
+  `archive/parent-portal_20260605/`, not deleted from
+  `tracks/parent-portal_20260605/`). The worktree has since been
+  modified to remove those 7 files from disk (likely by a
+  subsequent `rm` by the same parallel process that produced
+  `a2fcb516`), leaving them deleted-but-tracked. The MID Red
+  agent MUST NOT `git add`/`git rm` these paths (out of role, and
+  doing so would steal authorship from the parallel process
+  owning the parent-portal archival closeout). They are LEFT IN
+  THE WORKTREE — untracked deletes will either be staged by the
+  parallel process in its own commit, or fail-out at the next
+  `git status --short` check the parallel process owns. This
+  track does not touch them.
+
+**Disposition taken by MID Red restart #4:**
+1. Red proof re-verified at COMMITTED HEAD state via
+   `git archive HEAD -- apps/integrated-math-3/convex/ | tar -x -C
+   /tmp/opencode/mid_red_restart_4/`. Guard reports
+   `untyped=343, typed=0, scanned_files=101, exit=1`. Red proof
+   INTACT at committed HEAD state. (Command + result recorded
+   below.)
+2. Red proof re-verified at dirty worktree state. Guard reports
+   `untyped=0, typed=343, scanned_files=101, exit=0`. This is
+   the EXPECTED Green outcome of the uncommitted Green work; not
+   a Red proof failure (the test-strategy §7 P3 Red assertion is
+   about the COMMITTED state, not the worktree).
+3. Runner-plumbing self-test re-verified. Guard reports
+   `untyped=2, typed=2, scanned_files=1, exit=1` on the
+   bad-sample fixture. Unchanged from `bde10833` / `f55172d1`.
+4. `plan.md` updated to record this fourth restart's
+   dirty-worktree classification and document the unchanged
+   Phase 3 Red disposition (this section).
+5. The 27 dirty source files, the modified `measure/tracks.md`,
+   the 7 `D` entries for `parent-portal_20260605/*`, and the 2
+   untracked scripts are LEFT IN THE WORKTREE — not reverted
+   (preserves Green work + unrelated user work), not committed
+   (out of role; not this track's authorship), not `.gitignore`-d
+   (out of role).
+6. `graph.db` is unchanged from the Phase 1 Task 1.2
+   master-resolved state. Phase 7.1 will refresh + commit it.
+7. build-graph baseline re-verified: `graph.db` (2026-06-20,
+   1 day old, within the <24h mtime freshness window per
+   Graph-Aware Mode) has 14181 nodes / 20667 edges / 2067 files
+   — consistent with the test-strategy.md §0 baseline.
+   `build-graph search ./graph.db "check-jsdoc-typed-params"`
+   returns no results, confirming the guard is a shell script
+   under `measure/` and is not queryable from the TS knowledge
+   graph (as expected per the script's header comment and
+   test-strategy §6).
+
+**MID Red restart #4 targeted Red commands + results (2026-06-21):**
+
+```bash
+# Production-gate Red proof — committed HEAD state (Red expected):
+mkdir -p /tmp/opencode/mid_red_restart_4 && \
+  git archive HEAD -- apps/integrated-math-3/convex/ | tar -x -C /tmp/opencode/mid_red_restart_4/
+TYPED_PARAMS_SCOPE=/tmp/opencode/mid_red_restart_4/apps/integrated-math-3/convex/ \
+  bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh --json
+# Result: {"scanned_files":101,"total_tags":343,"typed_tags":0,"untyped_tags":343,"pass":false}
+# Exit: 1 (FAIL — Red proof intact at HEAD, unchanged from bde10833/f55172d1)
+
+# Same gate against dirty worktree (Green expected from uncommitted Green work):
+bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh --json
+# Result: {"scanned_files":101,"total_tags":343,"typed_tags":343,"untyped_tags":0,"pass":true}
+# Exit: 0 (PASS — Green work in dirty state satisfies the contract)
+
+# Runner-plumbing self-test (always fails by design):
+TYPED_PARAMS_SCOPE=measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/fixtures/typed-params-bad-sample.ts \
+  bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh --json
+# Result: {"scanned_files":1,"total_tags":4,"typed_tags":2,"untyped_tags":2,"pass":false}
+# Exit: 1 (FAIL — fixture design unchanged)
+```
+
+**Red proof failure cause (intrinsic, not stale):** the Red tests
+fail because the committed source state is **missing** typed
+annotations in 343 tags across 27 files in
+`apps/integrated-math-3/convex/`. The guard's parser is regex-based
+and reads source directly (not graph.db), so the count is always
+live. The dirty worktree's `pass=true` is the EXPECTED Green
+outcome of uncommitted Green work, NOT a Red proof failure. Per
+the user's instruction "Red tests must fail because the current
+implementation is missing or wrong, not merely because a durable
+record is stale" — the failure is intrinsic to the source, the
+count is not a stale durable record.
+
+**Task-marker status (unchanged):** all 7 Phase 3 sub-tasks remain
+`[~]` (in progress) — no new sub-tasks were completed by this Red
+restart. Task 3.7a (guard script creation) remains `[x]` (committed
+in `bde10833`, hardened in `f55172d1`); Task 3.7b (CI wiring)
+remains `[ ]`. Tasks 3.1-3.6 remain `[~]` — Tasks 3.1 and 3.2
+have their Green implementation present in the dirty worktree but
+UNCOMMITTED; closing them to `[x]` is the GREEN-phase role's
+responsibility. Tasks 3.3-3.6 (other phase scopes) remain `[~]`.
+**No new tests written this restart** — the Red proof (the guard
+script + fixture) was committed in `bde10833` and hardened in
+`f55172d1`; re-running it against the committed HEAD state
+confirms the same Red assertion holds. Per test-strategy §1, P3
+is "Artifact-only, no unit" — the guard IS the Red proof, and
+adding redundant unit tests would violate the test-strategy
+contract.
+
+**Build-graph baseline (re-verified 2026-06-21):** `graph.db` mtime
+2026-06-20 10:27 (within <24h Graph-Aware freshness window);
+14181 nodes / 20667 edges / 2067 files (consistent with
+test-strategy §0). `build-graph search` for
+`check-jsdoc-typed-params` returns no TS nodes (the guard is a
+shell script outside the TypeScript knowledge graph, as expected
+per the guard's own header comment and test-strategy §6).
+`build-graph stats ./graph.db` confirms no rescan is needed for
+Phase 3 planning; Phase 7.1 will refresh + commit it.
+
+**Next-role handoff (unchanged from restart #3):** the GREEN-phase
+role should:
+1. Run `git diff apps/integrated-math-3/convex/` and audit the 343
+   added `{Type}` annotations against the function signatures to
+   confirm they are correct (sample audit on `auth.ts`, `study.ts`,
+   `teacher.ts`, `objectiveProficiency.ts` recommended).
+2. Run `bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh`
+   and confirm exit 0.
+3. Commit the 27 modified source files in a single Green commit
+   (Conventional Commit `feat(spec-compliance): Phase 3 Green — IM3 convex/ typed annotations`).
+4. Mark Tasks 3.1 and 3.2 as `[x]` in `plan.md` with the Green
+   commit SHA.
+5. Move on to Tasks 3.3-3.6 (other scopes — `components/`, `lib/`,
+   `app/scripts/`, `packages/`).
+6. Do NOT commit `_add_types.py` or `_add_types.ts` — they are
+   transient tooling and should be deleted from the worktree after
+   the Green commit lands.
+7. Do NOT touch `measure/tracks.md`, the 7 `D` entries for
+   `parent-portal_20260605/*`, or the archive files in
+   `measure/archive/parent-portal_20260605/` — those are the
+   parallel daily-automation / parent-portal archival work, owned
+   by a different process. If a later phase (e.g., Phase 7
+   closeout) needs `measure/tracks.md` updated for the Green
+   closeout, reconcile the diff against the parallel process's
+   version before staging.
+
 ## Phase 4: Missing `@throws`, `@returns`, and Convex Exported Surface
 
 - [ ] Task 4.1: Audit throwing functions in scope
