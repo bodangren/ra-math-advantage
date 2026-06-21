@@ -49,7 +49,7 @@ Dependencies:
    *Link: [./archive/fix-kst-node-titles_20260615/](./archive/fix-kst-node-titles_20260615/)*
 
 - [~] **Track: Spec Compliance and Process Integrity Remediation** — **CRITICAL / IN PROGRESS**
-   *Adversarial review of the past 24 hours found systematic spec violations, automation-self-approved "manual" verification, FR-6 source mutations, missing FR-5 type annotations, and a hazardous repository state (detached HEAD, 28 stashes, dirty graph.db). This track fixes every identified issue before any dependent track proceeds. Current addendum: harden automation-supervisor prompts with goal-loop verification for implementation, acceptance, adversarial, and closeout roles.*
+   *Adversarial review of the past 24 hours found systematic spec violations, automation-self-approved "manual" verification, FR-6 source mutations, missing FR-5 type annotations, and a hazardous repository state (detached HEAD, 28 stashes, dirty graph.db). This track fixes every identified issue before any dependent track proceeds. Current addendum: harden automation-supervisor prompts with goal-loop verification for implementation, acceptance, adversarial, and closeout roles. Phase 3 Green typed JSDoc annotations landed for IM3 convex/, components/, lib/, and app/; packages/ and verification-process work pending.*
    *Link: [./tracks/spec-compliance-and-process-integrity_20260612/](./tracks/spec-compliance-and-process-integrity_20260612/)*
 
 - [~] **Track: Repository Hygiene Remediation** — **IN PROGRESS**
@@ -61,7 +61,7 @@ Dependencies:
    *Link: [./tracks/parent_portal_prod_wiring_remediation_20260621/](./tracks/parent_portal_prod_wiring_remediation_20260621/)*
 
 - [~] **Track: Next-Skill Planner Production Wiring** — **IN PROGRESS / COMPLETION-AUDIT REMEDIATION**
-   *Remediates the 2026-06-21 completion-audit rejection of `next-skill-planner_20260521`. User decision: wire it up, not descope it. Expose the planner through a real backend/Convex query and a student-facing production consumer with call-path proof. Phase 1 complete; Phase 2 Red tests committed.*
+   *Remediates the 2026-06-21 completion-audit rejection of `next-skill-planner_20260521`. User decision: wire it up, not descope it. Expose the planner through a real backend/Convex query and a student-facing production consumer with call-path proof. Phase 1 complete; Phase 2 Green committed (backend query + mock-ctx handler); Phase 3 Red tests committed; dashboard Green wiring pending.*
    *Link: [./tracks/next_skill_planner_prod_wiring_20260621/](./tracks/next_skill_planner_prod_wiring_20260621/)*
 
 - [ ] **Program: Knowledge Space Engine Alignment (kst-srs.v2)**
