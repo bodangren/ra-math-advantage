@@ -13,19 +13,22 @@
  *       ref (non-throw). This is the LIVE API-SHAPE proof — the
  *       `@/convex/_generated/api` registration exposes the symbol.
  *
+ * Tightened contract (MID 2026-06-21):
+ *   The original (a) and (b) assertions were already green at MID start
+ *   because the worktree contained an uncommitted P2 implementation in
+ *   `apps/integrated-math-3/convex/student.ts`. Per Measure workflow, when
+ *   a Red test passes at HEAD the contract is tightened instead of faking
+ *   a Red phase. A third assertion now requires a student-facing surface
+ *   under `app/student/` to reference `getStudentVisualization`. This
+ *   assertion is Red and will be resolved by Phase 3.
+ *
  * Why this file is Red at HEAD (2026-06-21):
- *   - (a) `build-graph callers projectStudentVisualization` returns no
- *     results. Source-scan (grep -rln) confirms
- *     `projectStudentVisualization` is imported only from
- *     `packages/knowledge-space-practice/src/{index.ts,projections/index.ts,
- *     projections/visualization.ts}` and three test files inside
- *     `packages/knowledge-space-practice/src/__tests__/`. There are ZERO
- *     non-test production consumers.
- *   - (b) `apps/integrated-math-3/convex/student.ts` does not export
- *     `getStudentVisualization`. The generated
- *     `apps/integrated-math-3/convex/_generated/api.d.ts:101,206` only
- *     re-exports the existing student module. Accessing
- *     `internal.student.getStudentVisualization` returns `undefined`.
+ *   - (a) + (b) were green at MID start because the worktree already
+ *     contained an uncommitted P2 implementation in
+ *     `apps/integrated-math-3/convex/student.ts`. Rather than fake a Red
+ *     phase, the contract was tightened.
+ *   - Tightened (c) No production file under `app/student/` references
+ *     `getStudentVisualization`; the student-facing surface is unwired.
  *
  * Bounded Red scope (per workflow gate):
  *   - Source-scan walks `apps/`, `packages/`, and `convex/` at the
@@ -257,6 +260,76 @@ describe("Phase 1 — planner production caller exists (spec FR-5, test-strategy
       expect(
         caller.relPath.endsWith(".test.ts") || caller.relPath.endsWith(".test.tsx"),
         `Test files must be excluded from the caller set; found ${caller.relPath}`,
+      ).toBe(false);
+    }
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Tightened contract: student-facing surface consumes planner recommendations.
+//
+// At MID start the original P1(a) and P1(b) assertions were already green
+// because the worktree contained an uncommitted P2 implementation in
+// `apps/integrated-math-3/convex/student.ts`. Per workflow, when a Red test
+// passes at HEAD the contract must be tightened rather than faking a Red
+// phase. This assertion raises the bar to the actual student-facing seam:
+// a production route or component under `app/student/` must reference
+// `getStudentVisualization` (the canonical internal query added in P2).
+//
+// This test will turn green in Phase 3 when the student dashboard page (or
+// a new panel) calls `fetchInternalQuery(internal.student.getStudentVisualization,
+// { userId })` and renders `recommendedNext`.
+// ---------------------------------------------------------------------------
+
+const STUDENT_APP_ROOT = "apps/integrated-math-3/app/student";
+
+/** Matches either the full internal query ref or a local import alias. */
+const STUDENT_SURFACE_PATTERN = /\bgetStudentVisualization\b/;
+
+function findStudentSurfaceReferences(): CallerMatch[] {
+  const matches: CallerMatch[] = [];
+  const absRoot = join(REPO_ROOT, STUDENT_APP_ROOT);
+  const files = collectSourceFiles(absRoot, STUDENT_APP_ROOT);
+  for (const file of files) {
+    if (isExcluded(file.relPath)) continue;
+    let content: string;
+    try {
+      content = readFileSync(file.absPath, "utf-8");
+    } catch {
+      continue;
+    }
+    if (STUDENT_SURFACE_PATTERN.test(content)) {
+      const line = pickEvidenceLine(content, STUDENT_SURFACE_PATTERN);
+      matches.push({
+        relPath: file.relPath,
+        matched: "internal-query",
+        evidence: line,
+      });
+    }
+  }
+  return matches;
+}
+
+describe("Phase 1 — student-facing surface consumes planner recommendations (spec FR-5, test-strategy §4 'Student route only')", () => {
+  it("≥1 production file under app/student/ references `getStudentVisualization`", () => {
+    const refs = findStudentSurfaceReferences();
+    expect(
+      refs.length,
+      `Expected ≥1 student-facing production consumer of getStudentVisualization; found ${refs.length}.\n` +
+        "Phase 3 must call `internal.student.getStudentVisualization` from a student route\n" +
+        "or dashboard panel (e.g. `apps/integrated-math-3/app/student/dashboard/page.tsx`)\n" +
+        "and render the resulting `recommendedNext` recommendations.\n" +
+        "Test files and the Convex backend query are excluded from this scan.",
+    ).toBeGreaterThanOrEqual(1);
+
+    for (const ref of refs) {
+      expect(
+        ref.relPath.includes("/convex/"),
+        `Backend query files must be excluded from the student-surface scan; found ${ref.relPath}`,
+      ).toBe(false);
+      expect(
+        ref.relPath.includes("/__tests__/"),
+        `Test files must be excluded from the student-surface scan; found ${ref.relPath}`,
       ).toBe(false);
     }
   });
