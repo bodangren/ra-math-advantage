@@ -1,0 +1,13 @@
+{
+  "track_id": "next_skill_planner_prod_wiring_20260621",
+  "type": "remediation",
+  "status": "in_progress",
+  "created_at": "2026-06-21T00:00:00Z",
+  "updated_at": "2026-06-21T00:00:00Z",
+  "description": "Completion-audit remediation for next-skill-planner_20260521. Wire the real planner output into a production backend query and a student-facing route instead of descoping the archived planner.",
+  "program": "Knowledge Space Engine Alignment (kst-srs.v2)",
+  "remediates": "next-skill-planner_20260521",
+  "estimated_tasks": 11,
+  "actual_tasks": null,
+  "deviation_notes": "Opened after the user decided to wire the next-skill planner rather than descope it after the 2026-06-21 completion audit."
+}
