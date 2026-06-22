@@ -2,10 +2,10 @@
 
 ## Phase 1: Contract and Caller Discovery
 
-- [x] Record the completion-audit finding and the user decision to wire the planner.
-- [x] Identify the canonical planner export and current student visualization/dashboard surfaces.
-- [x] Add a Red test that fails when planner output has no production backend query or route caller.
-- [x] Add a Red test for the student-facing surface consuming planner recommendations.
+- [x] Record the completion-audit finding and the user decision to wire the planner. _(`73228657` — Phase 1 Red commit.)_
+- [x] Identify the canonical planner export and current student visualization/dashboard surfaces. _(`73228657` — source-scan in Phase 1 Red tests.)_
+- [x] Add a Red test that fails when planner output has no production backend query or route caller. _(`73228657` — planner-prod-wiring.test.ts test (a).)_
+- [x] Add a Red test for the student-facing surface consuming planner recommendations. _(`73228657` — planner-prod-wiring.test.ts test (c).)_
 
 ### Phase 1 work log (MID Red)
 
@@ -154,7 +154,7 @@
 
 ## Phase 4: Closeout
 
-- [ ] Run targeted planner, backend, and route tests.
-- [ ] Run relevant typecheck/lint/build gates or document unrelated baseline failures.
-- [ ] Update the original archived track note to link to this remediation.
-- [ ] Archive only after the production caller path is verified.
+- [x] Run targeted planner, backend, and route tests. _(Closeout `11f2b496`: 22/22 track tests + 18/18 planner math tests passing; lint clean.)_
+- [x] Run relevant typecheck/lint/build gates or document unrelated baseline failures. _(Closeout `11f2b496`: lint exit 0; tsc 311 errors baseline, 0 attributable to track; pre-existing unrelated failures documented in closeout manifest.)_
+- [x] Update the original archived track note to link to this remediation. _(Closeout `11f2b496`: measure/archive/next-skill-planner_20260521/index.md updated with "Re-mediated by" section.)_
+- [x] Archive only after the production caller path is verified. _(Closeout `11f2b496`: production caller path verified: dashboard page → fetchInternalQuery → internal.student.getStudentVisualization → getStudentVisualizationHandler → projectStudentVisualization. Track archived 2026-06-23.)_

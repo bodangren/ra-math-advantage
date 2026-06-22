@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "track_id": "next_skill_planner_prod_wiring_20260621",
+  "closed_at": "2026-06-23",
+  "closed_by": "measure-closeout-subagent",
+  "phases_completed": [
+    "Phase 1: Contract and Caller Discovery",
+    "Phase 2: Backend Exposure",
+    "Phase 3: Student-Facing Wiring",
+    "Phase 4: Closeout"
+  ],
+  "commits": [
+    "73228657",
+    "a574f407",
+    "9459ffc0",
+    "3aafe88b",
+    "3b3e3aea",
+    "44a00860",
+    "9924b4ae",
+    "5522f76f",
+    "6c0c8b8c"
+  ],
+  "frs_satisfied": ["FR-1", "FR-2", "FR-3", "FR-4", "FR-5"],
+  "remediates": "next-skill-planner_20260521",
+  "final_acceptance_status": "pass",
+  "final_acceptance_evidence": "/tmp/measure-audits/final-acceptance-planner.json",
+  "closeout_gates": {
+    "tests_planner_backend_route": {
+      "command": "npx vitest run dashboard-planner planner-prod-wiring studentVisualization --root apps/integrated-math-3",
+      "result": "4 files / 22 tests passed",
+      "status": "pass"
+    },
+    "tests_planner_math_fr3": {
+      "command": "npx vitest run projections --root packages/knowledge-space-practice",
+      "result": "2 files / 18 tests passed",
+      "status": "pass"
+    },
+    "lint_track_files": {
+      "command": "npx eslint --max-warnings 0 apps/integrated-math-3/app/student/dashboard/page.tsx apps/integrated-math-3/components/student/RecommendedNextPanel.tsx apps/integrated-math-3/__tests__/student/dashboard-planner.test.tsx apps/integrated-math-3/__tests__/planner-prod-wiring.test.ts apps/integrated-math-3/__tests__/convex/studentVisualization.test.ts",
+      "result": "exit 0 (clean; only global Pages-directory notice)",
+      "status": "pass"
+    },
+    "commit_sha_verification": {
+      "result": "All 9 SHAs resolve via git rev-parse",
+      "status": "pass"
+    }
+  },
+  "archive_actions": {
+    "track_moved": "measure/tracks/next_skill_planner_prod_wiring_20260621 -> measure/archive/next_skill_planner_prod_wiring_20260621",
+    "tracks_md_updated": "Removed from Active Tracks; added Archived entry next to original planner track",
+    "metadata_status": "in_progress -> done",
+    "back_link_added": "measure/archive/next-skill-planner_20260521/index.md updated with Re-mediated by section"
+  },
+  "artifact_cleanup": {
+    "graph_db": "preserved (dirty, not committed by this track)",
+    "bulky_run_artifacts": "none identified by orchestrator; all retained",
+    "unrelated_dirty_files": "~148 files preserved untouched"
+  },
+  "baseline_failures_documentation": {
+    "tsc_errors": "311 pre-existing (unchanged from Phase 2 baseline; 0 attributable to this track)",
+    "unrelated_test_failures": "layout.test.tsx (2), workflow-validation.test.ts (20) — pre-existing, not modified by this track"
+  },
+  "nonblocking_findings_carried_forward": [
+    "study route does not honor ?focus=<nodeId> query param (pre-existing study-hub concern)",
+    "StudentVisualizationV1 type re-declared locally in dashboard/page.tsx (drift risk only)",
+    "fetchInternalQuery typed as any (pre-existing convention)",
+    "projectStudentVisualization JSDoc claims runtime Zod validation but does not call .parse() in production"
+  ]
+}

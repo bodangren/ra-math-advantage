@@ -60,10 +60,6 @@ Dependencies:
    *Remediates the 2026-06-21 completion-audit rejection of `parent-portal_20260605`: `/parent` must become a real production route with parent auth, live parent/student links, parent-safe Convex projection data, route-rendering tests, and non-test caller proof. The archived closeout stays as historical evidence; this track owns the fix.*
    *Link: [./tracks/parent_portal_prod_wiring_remediation_20260621/](./tracks/parent_portal_prod_wiring_remediation_20260621/)*
 
-- [~] **Track: Next-Skill Planner Production Wiring** — **IN PROGRESS / COMPLETION-AUDIT REMEDIATION**
-   *Remediates the 2026-06-21 completion-audit rejection of `next-skill-planner_20260521`. User decision: wire it up, not descope it. Expose the planner through a real backend/Convex query and a student-facing production consumer with call-path proof. Phase 1 complete; Phase 2 Green committed (backend query + mock-ctx handler); Phase 3 Red tests committed; dashboard Green wiring pending.*
-   *Link: [./tracks/next_skill_planner_prod_wiring_20260621/](./tracks/next_skill_planner_prod_wiring_20260621/)*
-
 - [ ] **Program: Knowledge Space Engine Alignment (kst-srs.v2)**
    *Bring the implementation into alignment with the `kst-srs.v2` specification. The KST packages (`knowledge-space-core`, `knowledge-space-practice`) implement the v1 contract but are wired into no production route; the SRS half is live but nothing converts proficiency output into a knowledge-space learner state. This program wires the KST pipeline end-to-end and adds the v2 improvements: time-aware mastery, weighted readiness, edge calibration, a next-skill planner, adaptive placement, the misconception remediation loop, and the practice-variant rename. Source: gse-knowledge-space `SPECIFICATION.md` (kst-srs.v2) + `IMPROVEMENT-PLAN.md`.*
    - [ ] **Track 1: Wire the KST Pipeline + v2 Mastery Model**
@@ -1067,6 +1063,10 @@ Sixteen candidate tracks identified from a full-roadmap review. Each is registry
 - [x] **Track 4: Next-Skill Planner** — **COMPLETED / ARCHIVED** (2026-06-18)
    *Completion-audit note (2026-06-21): planner math was real, but the planner had no production backend/route consumer. User decision: wire it up rather than descope. Remediation is tracked in `next_skill_planner_prod_wiring_20260621`.*
    *Link: [./measure/archive/next-skill-planner_20260521/](./measure/archive/next-skill-planner_20260521/)*
+
+- [x] **Track: Next-Skill Planner Production Wiring (Remediation)** — **COMPLETED / ARCHIVED** (2026-06-23)
+   *Remediation of the 2026-06-21 completion-audit finding. Wired the planner output through a production Convex query (`internal.student.getStudentVisualization`) and a student-facing dashboard panel (`RecommendedNextPanel`). Production caller path verified: dashboard page → fetchInternalQuery → internal.student.getStudentVisualization → getStudentVisualizationHandler → projectStudentVisualization. 22/22 track tests + 18/18 planner math tests passing. All 5 FRs satisfied. Re-mediates next-skill-planner_20260521.*
+   *Link: [./measure/archive/next_skill_planner_prod_wiring_20260621/](./measure/archive/next_skill_planner_prod_wiring_20260621/)*
 
 - [x] **Track: Misconception Content Authoring** — **COMPLETED** (2026-06-15)
   *Author the misconception taxonomy + remediation content that feeds the KST T6 mechanism (`remediated_by` edges, lifecycle). T6 builds the machinery; without content it is inert. Size: M. Depends on: misconception-loop (KST T6) mechanism.*
