@@ -83,9 +83,9 @@
 
 ## Phase 3: Student-Facing Wiring
 
-- [~] Render planner recommendations in the selected student-facing route or dashboard panel.
-- [~] Handle empty/insufficient-data states without fabricating recommendations.
-- [~] Verify the production caller check passes with a non-test call path.
+- [x] Render planner recommendations in the selected student-facing route or dashboard panel. _(Green: <COMMIT_SHA> — `apps/integrated-math-3/app/student/dashboard/page.tsx` now calls `fetchInternalQuery(internal.student.getStudentVisualization, { userId: claims.sub })` and renders `<RecommendedNextPanel>` with `visualization.recommendedNext` / `visualization.activeMisconceptionCount`.)_
+- [x] Handle empty/insufficient-data states without fabricating recommendations. _(Green: <COMMIT_SHA> — `RecommendedNextPanel` renders "No recommendations yet" when `recommendedNext` is empty and suppresses the items list + active-misconception count, validated by the P3 empty-state test.)_
+- [x] Verify the production caller check passes with a non-test call path. _(Green: <COMMIT_SHA> — `planner-prod-wiring.test.ts` (a) "≥1 non-test file imports `projectStudentVisualization` or calls `internal.student.getStudentVisualization`" now passes against the dirty-then-committed wiring in `apps/integrated-math-3/app/student/dashboard/page.tsx`; the route imports `internal` from `@/lib/convex/server` and dispatches to `internal.student.getStudentVisualization`, which is the live backend seam added in P2.)_
 
 ### Phase 3 work log (MID Red — boundary-corrected)
 
@@ -103,6 +103,27 @@
   - Lint on test file (`npx eslint --max-warnings 0 apps/integrated-math-3/__tests__/student/dashboard-planner.test.tsx`) → clean.
 - **Commit:** `9459ffc0` — `test(planner-prod-wiring): add Phase 3 Red tests for student dashboard planner wiring`.
 - **Phase 3 status:** Red tests authored and failing at HEAD. Implementation remains dirty for Green phase.
+
+### Phase 3 work log (JR Green, 2026-06-23)
+
+- **Dirty-worktree classification at JR start:** P3-relevant dirty files were `apps/integrated-math-3/app/student/dashboard/page.tsx` (modified) and `apps/integrated-math-3/components/student/RecommendedNextPanel.tsx` (untracked). The `graph.db` modification is owned by the `chore(graph)` convention (not JR). ~148 unrelated dirty paths from other tracks were preserved untouched. No structural TypeScript files outside `app/student/dashboard/page.tsx` were modified by JR.
+- **Red→Green proof (stash-and-rerun):** With the dirty `dashboard/page.tsx` reverted to HEAD and the untracked `RecommendedNextPanel.tsx` temporarily moved aside: `npx vitest run dashboard-planner --root apps/integrated-math-3` → 1 file, **2 failed / 3 total**. Both live-behavior tests fail with `Unable to find an element by: [data-testid="recommended-next-panel"]` (empty-state test and populated test); the schema-contract test passes. The Red tests are anchored to the real missing-element behavior, not a stale durable record. After restoring the Green implementation, the same command → 1 file, **3 passed / 3 total** (~9.9s).
+- **Green gate (all passing):**
+  - P3 `dashboard-planner` → 1 file, 3/3 passing (~9.9s).
+  - P1 `planner-prod-wiring` → 1 file, 3/3 passing (~6.1s). Test (a) now sees `internal.student.getStudentVisualization` as a non-test production caller via `app/student/dashboard/page.tsx:67-70`; test (b) and (c) pass against the committed P2 backend.
+  - P2 `studentVisualization` → 1 file, 5/5 passing (~7.0s). Backend exposure unaffected.
+  - Planner math `projections` → 2 files, 18/18 passing (~4.4s). FR-3 preserved: no planner math edits.
+- **Adjacent gates:**
+  - Lint `npx eslint --max-warnings 0` on the three P3-relevant files (`app/student/dashboard/page.tsx`, `components/student/RecommendedNextPanel.tsx`, `__tests__/student/dashboard-planner.test.tsx`) → exit 0. A `no-html-link-for-pages` rule warning fires on `<Link>` use in `RecommendedNextPanel`, but the warning is from the global Next.js plugin without a configured `pages/` directory and is unrelated to the P3 diff.
+  - `npx tsc --noEmit -p apps/integrated-math-3/tsconfig.json` → **311 errors**, unchanged from the Phase 2 baseline. The P3-relevant edits (`RecommendedNextPanel.tsx`, `app/student/dashboard/page.tsx`, `__tests__/student/dashboard-planner.test.tsx`) introduce **zero new errors**. The remaining 311 errors are pre-existing baseline failures in unrelated files owned by other tracks (parent-portal, onboarding-roster-import, misconception-loop, srs-engine, workbooks, etc.), per the Phase 2 log.
+- **Production caller proof (FR-5):** The P1 test (a) source-scan confirms `apps/integrated-math-3/app/student/dashboard/page.tsx` (a non-test file under `app/student/`) imports `internal` from `@/lib/convex/server` and dispatches to `internal.student.getStudentVisualization`. Combined with the P2 committed `getStudentVisualization` `internalQuery` (which calls `getStudentVisualizationHandler` → `projectStudentVisualization` per the P2 source-scan), the planner output now has a non-test production caller path: **dashboard page → `fetchInternalQuery` → `internal.student.getStudentVisualization` → `getStudentVisualizationHandler` → `projectStudentVisualization`**. FR-2 and FR-5 are satisfied.
+- **Boundary discipline:**
+  - `graph.db` was not modified or committed by JR. The Phase 2 build-graph refresh already added the `getStudentVisualizationHandler` node; P3 does not introduce new graph-relevant entities that would warrant a refresh (the dashboard page consumes `internal.student.getStudentVisualization` inside an `async` server component, which the graph's call-edge capture does not index standalone — same gap documented in the Phase 2 log).
+  - `app/student/dashboard/page.tsx` is **re-applied to the dirty state** (RecommendedNextPanel import, `studentVisualization` fetch via `fetchInternalQuery`, `<RecommendedNextPanel>` JSX with `visualization.recommendedNext` / `visualization.activeMisconceptionCount`) and committed in this Green phase.
+  - `components/student/RecommendedNextPanel.tsx` is **tracked for the first time** in this Green commit (was `??` in the dirty worktree).
+  - Archive / closeout actions (move track directory, update `measure/tracks.md`, change `metadata.json` status) were **not** executed per the closeout boundary rule; they are reserved for the dedicated Measure Closeout Steward that runs after the Final Acceptance Auditor.
+- **Commit:** Conventional Commit `feat(planner-prod-wiring): Phase 3 Green — wire RecommendedNextPanel into student dashboard`. Includes 3 files: `apps/integrated-math-3/app/student/dashboard/page.tsx` (modified), `apps/integrated-math-3/components/student/RecommendedNextPanel.tsx` (new), and this `plan.md` update. `graph.db` is NOT included.
+- **Phase 3 status:** All three tasks `[x]` with commit evidence. Ready for Phase 4 (Closeout).
 
 ## Phase 4: Closeout
 

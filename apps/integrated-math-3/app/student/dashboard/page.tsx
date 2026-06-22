@@ -7,6 +7,34 @@ import {
 } from '@/lib/student/dashboard';
 import { ModuleCompleteScreen } from '@/components/lesson/ModuleCompleteScreen';
 import { DailyPracticeCard } from '@/components/student/DailyPracticeCard';
+import {
+  RecommendedNextPanel,
+  type RecommendedNextItem,
+} from '@/components/student/RecommendedNextPanel';
+
+interface StudentVisualizationV1 {
+  schemaVersion: 'v1';
+  mastered: RecommendedNextItem[];
+  ready: RecommendedNextItem[];
+  blocked: RecommendedNextItem[];
+  reviewDue: RecommendedNextItem[];
+  recommendedNext: RecommendedNextItem[];
+  edges: ReadonlyArray<unknown>;
+  activeMisconceptionCount: number;
+}
+
+function emptyStudentVisualization(): StudentVisualizationV1 {
+  return {
+    schemaVersion: 'v1',
+    mastered: [],
+    ready: [],
+    blocked: [],
+    reviewDue: [],
+    recommendedNext: [],
+    edges: [],
+    activeMisconceptionCount: 0,
+  };
+}
 
 interface PageProps {
   searchParams: Promise<{ complete?: string }>;
@@ -35,6 +63,13 @@ export default async function StudentDashboardPage({ searchParams }: PageProps) 
     internal.srs.dashboard.getPracticeStats,
     { studentId: claims.sub },
   );
+
+  const studentVisualization = (await fetchInternalQuery(
+    internal.student.getStudentVisualization,
+    { userId: claims.sub },
+  )) as StudentVisualizationV1 | null;
+
+  const visualization = studentVisualization ?? emptyStudentVisualization();
 
   if (showModuleComplete && vm.summary.completedLessons === vm.summary.totalLessons) {
     return (
@@ -78,6 +113,12 @@ export default async function StudentDashboardPage({ searchParams }: PageProps) 
         dueCount={practiceStats?.dueCount ?? 0}
         streak={practiceStats?.streak ?? 0}
         lastPracticedAt={practiceStats?.lastPracticedAt ?? null}
+      />
+
+      {/* Recommended next skills — next-skill planner output */}
+      <RecommendedNextPanel
+        recommendedNext={visualization.recommendedNext}
+        activeMisconceptionCount={visualization.activeMisconceptionCount}
       />
 
       {/* Study Hub */}
