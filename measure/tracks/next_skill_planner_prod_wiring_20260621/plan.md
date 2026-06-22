@@ -83,9 +83,9 @@
 
 ## Phase 3: Student-Facing Wiring
 
-- [x] Render planner recommendations in the selected student-facing route or dashboard panel. _(Green: <COMMIT_SHA> — `apps/integrated-math-3/app/student/dashboard/page.tsx` now calls `fetchInternalQuery(internal.student.getStudentVisualization, { userId: claims.sub })` and renders `<RecommendedNextPanel>` with `visualization.recommendedNext` / `visualization.activeMisconceptionCount`.)_
-- [x] Handle empty/insufficient-data states without fabricating recommendations. _(Green: <COMMIT_SHA> — `RecommendedNextPanel` renders "No recommendations yet" when `recommendedNext` is empty and suppresses the items list + active-misconception count, validated by the P3 empty-state test.)_
-- [x] Verify the production caller check passes with a non-test call path. _(Green: <COMMIT_SHA> — `planner-prod-wiring.test.ts` (a) "≥1 non-test file imports `projectStudentVisualization` or calls `internal.student.getStudentVisualization`" now passes against the dirty-then-committed wiring in `apps/integrated-math-3/app/student/dashboard/page.tsx`; the route imports `internal` from `@/lib/convex/server` and dispatches to `internal.student.getStudentVisualization`, which is the live backend seam added in P2.)_
+- [x] Render planner recommendations in the selected student-facing route or dashboard panel. _(Green: `3b3e3aea` — `apps/integrated-math-3/app/student/dashboard/page.tsx` now calls `fetchInternalQuery(internal.student.getStudentVisualization, { userId: claims.sub })` and renders `<RecommendedNextPanel>` with `visualization.recommendedNext` / `visualization.activeMisconceptionCount`.)_
+- [x] Handle empty/insufficient-data states without fabricating recommendations. _(Green: `3b3e3aea` — `RecommendedNextPanel` renders "No recommendations yet" when `recommendedNext` is empty and suppresses the items list + active-misconception count, validated by the P3 empty-state test.)_
+- [x] Verify the production caller check passes with a non-test call path. _(Green: `3b3e3aea` — `planner-prod-wiring.test.ts` (a) "≥1 non-test file imports `projectStudentVisualization` or calls `internal.student.getStudentVisualization`" now passes against the committed wiring in `apps/integrated-math-3/app/student/dashboard/page.tsx`; the route imports `internal` from `@/lib/convex/server` and dispatches to `internal.student.getStudentVisualization`, which is the live backend seam added in P2.)_
 
 ### Phase 3 work log (MID Red — boundary-corrected)
 
@@ -122,7 +122,7 @@
   - `app/student/dashboard/page.tsx` is **re-applied to the dirty state** (RecommendedNextPanel import, `studentVisualization` fetch via `fetchInternalQuery`, `<RecommendedNextPanel>` JSX with `visualization.recommendedNext` / `visualization.activeMisconceptionCount`) and committed in this Green phase.
   - `components/student/RecommendedNextPanel.tsx` is **tracked for the first time** in this Green commit (was `??` in the dirty worktree).
   - Archive / closeout actions (move track directory, update `measure/tracks.md`, change `metadata.json` status) were **not** executed per the closeout boundary rule; they are reserved for the dedicated Measure Closeout Steward that runs after the Final Acceptance Auditor.
-- **Commit:** Conventional Commit `feat(planner-prod-wiring): Phase 3 Green — wire RecommendedNextPanel into student dashboard`. Includes 3 files: `apps/integrated-math-3/app/student/dashboard/page.tsx` (modified), `apps/integrated-math-3/components/student/RecommendedNextPanel.tsx` (new), and this `plan.md` update. `graph.db` is NOT included.
+- **Commit:** `3b3e3aea` — `feat(planner-prod-wiring): Phase 3 Green — wire RecommendedNextPanel into student dashboard`. Includes 3 files: `apps/integrated-math-3/app/student/dashboard/page.tsx` (modified), `apps/integrated-math-3/components/student/RecommendedNextPanel.tsx` (new), and this `plan.md` update. `graph.db` is NOT included.
 - **Phase 3 status:** All three tasks `[x]` with commit evidence. Ready for Phase 4 (Closeout).
 
 ## Phase 4: Closeout
