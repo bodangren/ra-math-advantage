@@ -125,6 +125,33 @@
 - **Commit:** `3b3e3aea` — `feat(planner-prod-wiring): Phase 3 Green — wire RecommendedNextPanel into student dashboard`. Includes 3 files: `apps/integrated-math-3/app/student/dashboard/page.tsx` (modified), `apps/integrated-math-3/components/student/RecommendedNextPanel.tsx` (new), and this `plan.md` update. `graph.db` is NOT included.
 - **Phase 3 status:** All three tasks `[x]` with commit evidence. Ready for Phase 4 (Closeout).
 
+### Phase 3 work log (Adversarial Auditor, 2026-06-23)
+
+- **Boundary and integration pressure test:** added `apps/integrated-math-3/__tests__/student/dashboard-planner.adversarial.test.tsx` with 10 tests across 7 boundary/integration surfaces that the original P3 Red/Green suite did not cover. The original suite asserts the panel renders the title/description/difficulty/misconception count, but does NOT assert (a) the `href` shape on the recommended item link, (b) URL-encoding for special characters, (c) XSS-safety of `title`/`description`, (d) the empty-list / non-zero-active-misconception-count corner, (e) `formatDifficulty` at 0/1/NaN, (f) the `null` visualization ref fallback, or (g) the empty-title / description-only minimal-payload case.
+- **Adversarial findings — false alarms (preserved as documented gaps, not P3 bugs):**
+  - **Study route does not honor `?focus=<nodeId>`.** `apps/integrated-math-3/app/student/study/page.tsx` is a static landing page; the `focus` param produced by `RecommendedNextPanel` is consumed by no consumer on the target route. The P3 spec (FR-2: "Consume that query from a student-facing production route or dashboard panel") is satisfied by the dashboard's call to `internal.student.getStudentVisualization` and the rendered `RecommendedNextPanel`; the link target is a separate, pre-existing study-hub concern that is out of Phase 3 scope. The wire-level link contract test pins the URL shape so a future consumer of the focus param (or a future spec change) can rely on the link format. No P3 fix required; nonblocking finding for the closeout steward.
+  - **Dashboard `StudentVisualizationV1` type re-declared locally.** Pre-existing observation from review-a/review-c and the phase-acceptance audit; out of P3 scope (a code-quality drift risk, not a correctness bug).
+- **Adversarial findings — fixed by adversarial test exposure:** none. The existing P3 implementation (commit `3b3e3aea` + try/catch guard from `9924b4ae`) handles all 7 boundary surfaces correctly. The adversarial tests pin the contract so future refactors cannot regress:
+  - Wire-level: `RecommendedNextPanel.tsx:71` produces `/student/study?focus=<encodeURIComponent(nodeId)>`. Verified by `encodes the recommended item nodeId into the focus link href` and `URL-encodes nodeId values that contain special characters` (with `math.im3.module 1/skill & functions` and `中文-技能` round-trip).
+  - XSS-safety: title/description rendered as React text nodes (no `dangerouslySetInnerHTML`); verified by the `__pwned` global not being set after rendering a `<script>`-shaped title and `<img onerror>`-shaped description.
+  - Empty-list / non-zero-count: `RecommendedNextPanel.tsx:56` short-circuits on `hasRecommendations && activeMisconceptionCount > 0` so the badge is correctly suppressed.
+  - Difficulty boundary: `formatDifficulty(0) → "0% difficulty"`, `formatDifficulty(1) → "100% difficulty"`, `formatDifficulty(NaN) → ""` — all verified.
+  - Null visualization ref: `apps/integrated-math-3/app/student/dashboard/page.tsx:79` falls back to `emptyStudentVisualization()` so the empty-state renders.
+  - Minimal payload: empty `title` with non-empty `description` renders safely.
+- **Regression-prevention evidence (intentional break → test fails):**
+  - Changed `RecommendedNextPanel.tsx:71` from `?focus=${encodeURIComponent(item.nodeId)}` to `?focusId=${item.nodeId}` → 2 wire-level link tests fail. Restored.
+  - Replaced `{item.title}` JSX with `dangerouslySetInnerHTML={{ __html: item.title }}` in `RecommendedNextPanel.tsx` → XSS-safety test fails (`textContent` no longer contains the literal `<script>...` string). Restored.
+- **Targeted suite run:** `npx vitest run dashboard-planner dashboard-planner.adversarial planner-prod-wiring studentVisualization --root apps/integrated-math-3` → 4 files, 22/22 tests passing (~9.7s). `npx vitest run projections --root packages/knowledge-space-practice` → 2 files, 18/18 tests passing (~3.2s). FR-3 planner math preserved.
+- **Lint:** `npx eslint --max-warnings 0 apps/integrated-math-3/__tests__/student/dashboard-planner.adversarial.test.tsx` → exit 0 (the "Pages directory cannot be found" warning is from the global Next.js plugin, not the P3 diff).
+- **TypeScript:** `npx tsc --noEmit -p apps/integrated-math-3/tsconfig.json` → 311 errors, unchanged from the P2/P3 baseline; the adversarial test file introduces **zero new errors**.
+- **Boundary discipline:**
+  - `graph.db` was not modified or committed.
+  - No structural TypeScript files (`RecommendedNextPanel.tsx`, `dashboard/page.tsx`, `convex/student.ts`, `lib/convex/server.ts`) were modified — only test files and Measure docs.
+  - ~148 unrelated dirty files from other tracks were preserved untouched.
+  - The pre-existing `console.error("Failed to load student visualization:", error)` log in the dashboard try/catch path continues to fire during the throw-path test; this is the expected behavior and the test asserts the empty state, not the log.
+- **Commit:** `5522f76f` — `test(planner-prod-wiring): add Phase 3 adversarial tests for dashboard planner wiring`. 1 file changed, 481 insertions(+). Includes only the new test file; this `plan.md` update is committed in a follow-up docs commit.
+- **Phase 3 adversarial status:** All 10 adversarial tests pass. No P3 code fixes required. One nonblocking finding recorded (study route does not honor `?focus=`) for the closeout steward.
+
 ## Phase 4: Closeout
 
 - [ ] Run targeted planner, backend, and route tests.
