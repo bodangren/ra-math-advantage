@@ -1,0 +1,13 @@
+{
+  "track_id": "parent_portal_prod_wiring_remediation_20260621",
+  "type": "remediation",
+  "status": "in_progress",
+  "created_at": "2026-06-21T00:00:00Z",
+  "updated_at": "2026-06-23T00:00:00Z",
+  "description": "Completion-audit remediation for parent-portal_20260605. Wire the real /parent route, auth/session claims, Convex parent projection query, and route render tests so the parent portal is live in production instead of only covered by source-shape tests.",
+  "program": "Completion Audit Remediation",
+  "remediates": "parent-portal_20260605",
+  "estimated_tasks": 12,
+  "actual_tasks": null,
+  "deviation_notes": "Opened after the 2026-06-21 fleet completion audit rejected the archived parent-portal closeout as a false positive."
+}

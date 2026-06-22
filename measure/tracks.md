@@ -56,8 +56,8 @@ Dependencies:
    *Remediate repo hygiene debt: commit 96 dirty files from fix-kst-node-titles, resolve 6 remaining stashes, fix BM2 pre-existing test reds (UserMenu AuthProvider, GradebookDrillDown timeout), fix IM3 React 19 eslint violations (20 errors across 14 files), verify TypeScript/lint/tests pass.*
    *Link: [./tracks/repo-hygiene-remediation_20260616/](./tracks/repo-hygiene-remediation_20260616/)*
 
-- [ ] **Track: Parent Portal Production Wiring Remediation** — **NEW / COMPLETION-AUDIT REMEDIATION**
-   *Remediates the 2026-06-21 completion-audit rejection of `parent-portal_20260605`: `/parent` must become a real production route with parent auth, live parent/student links, parent-safe Convex projection data, route-rendering tests, and non-test caller proof. The archived closeout stays as historical evidence; this track owns the fix.*
+- [~] **Track: Parent Portal Production Wiring Remediation** — **IN PROGRESS / COMPLETION-AUDIT REMEDIATION**
+    *Remediates the 2026-06-21 completion-audit rejection of `parent-portal_20260605`: `/parent` must become a real production route with parent auth, live parent/student links, parent-safe Convex projection data, route-rendering tests, and non-test caller proof. The archived closeout stays as historical evidence; this track owns the fix. Phase 1 Red tests committed.*
    *Link: [./tracks/parent_portal_prod_wiring_remediation_20260621/](./tracks/parent_portal_prod_wiring_remediation_20260621/)*
 
 - [ ] **Program: Knowledge Space Engine Alignment (kst-srs.v2)**
