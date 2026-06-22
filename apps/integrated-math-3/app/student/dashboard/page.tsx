@@ -64,10 +64,17 @@ export default async function StudentDashboardPage({ searchParams }: PageProps) 
     { studentId: claims.sub },
   );
 
-  const studentVisualization = (await fetchInternalQuery(
-    internal.student.getStudentVisualization,
-    { userId: claims.sub },
-  )) as StudentVisualizationV1 | null;
+  let studentVisualization: StudentVisualizationV1 | null = null;
+  try {
+    studentVisualization = (await fetchInternalQuery(
+      internal.student.getStudentVisualization,
+      { userId: claims.sub },
+    )) as StudentVisualizationV1 | null;
+  } catch (error) {
+    // Don't let a planner-query failure crash the whole dashboard. The panel
+    // will render the empty state and the rest of the dashboard remains usable.
+    console.error("Failed to load student visualization:", error);
+  }
 
   const visualization = studentVisualization ?? emptyStudentVisualization();
 

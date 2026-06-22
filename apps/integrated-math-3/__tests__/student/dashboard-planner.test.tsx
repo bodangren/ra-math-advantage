@@ -130,6 +130,46 @@ describe('StudentDashboardPage — planner recommendations (P3)', () => {
     expect(result.success).toBe(true);
   });
 
+  it('renders an empty-state when the visualization query throws', async () => {
+    const { fetchInternalQuery } = await import('@/lib/convex/server');
+    const mockedFetchInternalQuery = fetchInternalQuery as unknown as ReturnType<typeof vi.fn>;
+    mockedFetchInternalQuery.mockImplementation((ref: unknown) => {
+      if (ref === 'mock-practice-stats') {
+        return Promise.resolve({ dueCount: 0, streak: 0, lastPracticedAt: null });
+      }
+      if (ref === mockStudentVizRef) {
+        return Promise.reject(new Error('visualization query failed'));
+      }
+      return Promise.resolve([
+        {
+          unitNumber: 1,
+          unitTitle: 'Quadratic Functions',
+          lessons: [
+            {
+              id: 'l1',
+              unitNumber: 1,
+              title: 'Intro',
+              slug: 'intro',
+              description: null,
+              completedPhases: 0,
+              totalPhases: 6,
+              progressPercentage: 0,
+            },
+          ],
+        },
+      ]);
+    });
+
+    const { default: DashboardPage } = await import('@/app/student/dashboard/page');
+    const jsx = await DashboardPage({ searchParams: Promise.resolve({}) });
+    render(jsx);
+
+    expect(screen.getByTestId('recommended-next-panel')).toBeInTheDocument();
+    expect(screen.getByText('No recommendations yet')).toBeInTheDocument();
+    expect(screen.queryByTestId('recommended-next-item')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('active-misconception-count')).not.toBeInTheDocument();
+  });
+
   it('renders an empty-state when recommendedNext is empty', async () => {
     const { fetchInternalQuery } = await import('@/lib/convex/server');
     const mockedFetchInternalQuery = fetchInternalQuery as unknown as ReturnType<typeof vi.fn>;
