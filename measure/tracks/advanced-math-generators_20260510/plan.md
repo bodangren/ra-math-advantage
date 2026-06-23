@@ -162,7 +162,7 @@
   14 tests defined across 3 describe blocks (registry contract 5, re-exports 5, QA harness 4)
   fail with module-not-found.
 
-  **Green evidence (baseline SHA `bf613799`, commit SHA pending):**
+  **Green evidence (baseline SHA `bf613799`, commit SHA `3a920272`):**
   ```
   $ npx vitest run generator-registry polynomial rational-analyzer exp-log-solver --root packages/math-content
    Test Files  4 passed (4)
@@ -196,3 +196,16 @@
     with missing x and x² terms) via subtractPoly([3,−1,4,1], [−5,−1,4,−3]).
     Additional edge-case tests verify multiplyPoly([−1,1], [1,1,1]) = [−1,0,0,1]
     (x³ − 1 with all middle terms zero).
+
+  **Phase 4 Review A fix (commit `62954289`):**
+  - Audit found the new keys were registered only in `generator-registry.ts` and
+    were not resolvable through the downstream `getGenerator()` path used by
+    blueprint-qa and pilot-submission-evidence, making the IM3 blueprint
+    `generatorKey` wiring cosmetic.
+  - Added `packages/math-content/src/knowledge-space/generators/advanced-math-adapters.ts`
+    to adapt the four generators to the knowledge-space-practice
+    `GeneratorInput → GeneratorOutput` contract, and registered the adapters in
+    `packages/math-content/src/knowledge-space/generators/registry.ts`.
+  - Added tests in `packages/math-content/src/knowledge-space/__tests__/adapter.test.ts`
+    asserting the four keys are present in `GENERATOR_KEYS` and produce valid
+    `GeneratorOutput`.
