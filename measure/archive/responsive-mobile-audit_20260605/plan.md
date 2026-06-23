@@ -25,7 +25,7 @@ Verification: boundary lints + per-app lint/test + `tsc --noEmit` + viewport che
     (vitest v4.1.8 lacks `test.fixme`; `test.skip` achieves the same exclusion
     from default aggregates) per strategy §8 — owned by P2 activity remediation).
     Green commit: `c098089b`.
-  - [x] Red sub-proof (artifact contract — Playwright infra stand-up, MID role, vitest):
+  - [x] Red sub-proof (artifact contract — Playwright infra stand-up, MID role, vitest) (red: cca1c224; green: 6d842315):
     `CI=true npx vitest run --root apps/integrated-math-3 __tests__/responsive/viewport-playwright-infra.contract.test.ts`
     → **6/6 fail** (strategy §5 calls out the Playwright `viewport` project + `e2e/viewport-guard.spec.ts`
     as Phase 1 deliverables — the unit-test stub is necessary but not sufficient for the §7
@@ -285,7 +285,7 @@ Verification: boundary lints + per-app lint/test + `tsc --noEmit` + viewport che
      `CompetencyHeatmapGrid.tsx`, and the heatmap cell <td> wrapper. Sub-Red commit: `51306f0e`.
      Green commit: `28c6dd27`.
 - [x] Task: Wire viewport guard into CI; final verification (lint, tsc --noEmit, tests) (green: 28c6dd27)
-  - Red sub-proof (artifact contract — CI wiring command-construction, MID role, vitest):
+  - Red sub-proof (artifact contract — CI wiring command-construction, MID role, vitest) (red: e9778978; green: 28c6dd27):
      `CI=true npx vitest run --root apps/integrated-math-3 __tests__/responsive/viewport-ci-wiring.contract.test.ts`
      → **3 fail, 2 pass** at HEAD (strategy §7 pins the bounded `--project=viewport -g
      "@smoke"` form and forbids the unbounded `npx playwright test` form; this contract

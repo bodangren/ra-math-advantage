@@ -1,0 +1,115 @@
+{
+  "manifest_type": "automation-supervisor-closeout-manifest",
+  "track_id": "responsive-mobile-audit_20260605",
+  "closed_at": "2026-06-23",
+  "closeout_agent": "measure-closeout-subagent",
+  "summary": "Responsive / Mobile Audit track completed across 3 phases. All 12 tasks [x] with verified commit SHAs. Phase 1: audit baseline doc with 20 prioritized failures across 3 breakpoints × 6 routes, viewport guard unit test + Playwright infra. Phase 2: 7-file remediation patch for activity hit-targets (min 44x44), touch-action on GraphingCanvas, dialog viewport-aware max-width, shell nav min-size. Phase 3: teacher gradebook/heatmap tablet degradation, viewport CI wiring with --project=viewport --workers 1. 3 UMV checkpoints completed.",
+  "phase_checkpoints": {
+    "phase_1_audit_baseline_and_guard": {
+      "checkpoint_sha": "01e75579",
+      "tasks": [
+        {"id": 1, "description": "Audit key routes at phone/tablet/desktop breakpoints; document prioritized failures", "sha": "c098089b", "status": "done"},
+        {"id": 2, "description": "Stand up viewport-sized Playwright checks (overflow/clipping) over representative routes", "sha": "6d842315", "status": "done"},
+        {"id": 3, "description": "Measure - User Manual Verification Phase 1", "sha": "01e75579", "status": "done"}
+      ],
+      "sub_tasks": [
+        {"id": "1-red", "description": "Red proof — audit doc artifact contract (5/5 fail)", "sha": "b81e24d4", "status": "done"},
+        {"id": "1-green", "description": "Green closeout — audit doc authored (5/5 pass)", "sha": "c098089b", "status": "done"},
+        {"id": "2-red-unit", "description": "Red proof — viewport guard unit test (3 fail, 1 pass)", "sha": "35179c6c", "status": "done"},
+        {"id": "2-red-infra", "description": "Red sub-proof — Playwright infra contract (6/6 fail)", "sha": "cca1c224", "status": "done"},
+        {"id": "2-green", "description": "Green closeout — Playwright viewport guard infra (6/6 pass)", "sha": "6d842315", "status": "done"}
+      ],
+      "test_count": 11,
+      "production_files": [
+        "apps/integrated-math-3/docs/responsive-audit-baseline.md",
+        "apps/integrated-math-3/e2e/viewport-guard.spec.ts",
+        "apps/integrated-math-3/playwright.config.ts"
+      ]
+    },
+    "phase_2_activity_components_and_shell": {
+      "checkpoint_sha": "78690b37",
+      "tasks": [
+        {"id": 1, "description": "Remediate activity components for touch/small screens (hit targets, scroll, controls)", "sha": "e6e1aeca", "status": "done"},
+        {"id": 2, "description": "Remediate app shell, lesson navigation, dialogs for small viewports", "sha": "e6e1aeca", "status": "done"},
+        {"id": 3, "description": "Measure - User Manual Verification Phase 2", "sha": "78690b37", "status": "done"}
+      ],
+      "sub_tasks": [
+        {"id": "1-red", "description": "Red sub-proof — activity hit-target contract (3/3 fail)", "sha": "76fc830e", "status": "done"},
+        {"id": "1-green", "description": "Green closeout — activity hit-targets pass (3/3 pass)", "sha": "e6e1aeca", "status": "done"},
+        {"id": "2-red", "description": "Red sub-proof — shell responsive contract (4/4 fail)", "sha": "fca84fe2", "status": "done"},
+        {"id": "2-green", "description": "Green closeout — shell responsive pass (4/4 pass)", "sha": "e6e1aeca", "status": "done"}
+      ],
+      "test_count": 7,
+      "production_files": [
+        "apps/integrated-math-3/components/lesson/LessonStepper.tsx",
+        "apps/integrated-math-3/components/lesson/PhaseCompleteButton.tsx",
+        "apps/integrated-math-3/components/student/StudentNavigation.tsx",
+        "apps/integrated-math-3/components/ui/dialog.tsx",
+        "packages/activity-components/src/components/algebraic/StepByStepper.tsx",
+        "packages/activity-components/src/components/graphing/GraphingCanvas.tsx",
+        "packages/activity-components/src/components/quiz/ComprehensionQuiz.tsx"
+      ]
+    },
+    "phase_3_teacher_views_and_verification": {
+      "checkpoint_sha": "28c6dd27",
+      "tasks": [
+        {"id": 1, "description": "Make gradebook/heatmaps/dashboards degrade gracefully on tablet", "sha": "28c6dd27", "status": "done"},
+        {"id": 2, "description": "Wire viewport guard into CI; final verification (lint, tsc --noEmit, tests)", "sha": "28c6dd27", "status": "done"},
+        {"id": 3, "description": "Measure - User Manual Verification Phase 3", "sha": "28c6dd27", "status": "done"}
+      ],
+      "sub_tasks": [
+        {"id": "1-red", "description": "Red sub-proof — teacher-views tablet contract (5 fail, 1 pass)", "sha": "51306f0e", "status": "done"},
+        {"id": "1-green", "description": "Green closeout — teacher views degrade gracefully (5→0 fail)", "sha": "28c6dd27", "status": "done"},
+        {"id": "2-red", "description": "Red sub-proof — CI wiring command-construction contract (3 fail, 2 pass)", "sha": "e9778978", "status": "done"},
+        {"id": "2-green", "description": "Green closeout — CI viewport guard wired (3→0 fail)", "sha": "28c6dd27", "status": "done"}
+      ],
+      "test_count": 10,
+      "production_files": [
+        ".github/workflows/ci.yml",
+        "apps/integrated-math-3/components/teacher/GradebookGrid.tsx",
+        "apps/integrated-math-3/components/teacher/CompetencyHeatmapGrid.tsx"
+      ]
+    }
+  },
+  "aggregate_evidence": {
+    "total_tasks": 12,
+    "key_commits": [
+      "b81e24d4 — Phase 1 Task 1 Red: audit doc artifact contract",
+      "c098089b — Phase 1 Green: audit baseline doc + viewport guard helper",
+      "35179c6c — Phase 1 Task 2 Red: viewport guard unit test",
+      "cca1c224 — Phase 1 Red sub-proof: Playwright viewport infra contract",
+      "6d842315 — Phase 1 Green: Playwright viewport guard infra",
+      "01e75579 — Phase 1 checkpoint (UMV)",
+      "76fc830e — Phase 2 Task 1 Red: activity hit-target contract",
+      "fca84fe2 — Phase 2 Task 2 Red: shell responsive contract",
+      "e6e1aeca — Phase 2 Green: hit-targets, touch-action, dialog width, shell nav",
+      "78690b37 — Phase 2 checkpoint (UMV)",
+      "51306f0e — Phase 3 Task 1 Red: teacher-views tablet contract",
+      "e9778978 — Phase 3 Task 2 Red: CI wiring command-construction contract",
+      "28c6dd27 — Phase 3 Green: teacher views + CI wiring + UMV"
+    ],
+    "boundary_lint": "passed (no violations — MID boundary discipline maintained across 4 attempts)",
+    "final_regression": "All 3 phases verified via bounded vitest commands. Phase 2 Green remediation applied as 7-file patch at e6e1aeca."
+  },
+  "retained_evidence": [
+    "measure/archive/responsive-mobile-audit_20260605/spec.md",
+    "measure/archive/responsive-mobile-audit_20260605/plan.md",
+    "measure/archive/responsive-mobile-audit_20260605/metadata.json",
+    "measure/archive/responsive-mobile-audit_20260605/index.md",
+    "measure/archive/responsive-mobile-audit_20260605/test-strategy.md",
+    "measure/archive/responsive-mobile-audit_20260605/review-2026-06-21.md",
+    "measure/archive/responsive-mobile-audit_20260605/automation-supervisor-closeout-manifest.json"
+  ],
+  "artifact_cleanup": {
+    "moved_to_archive": true,
+    "bulky_artifacts_removed": [],
+    "notes": "No bulky run artifacts identified by orchestrator. All track artifacts preserved."
+  },
+  "lessons_learned_updates": [],
+  "tech_debt_updates": [],
+  "known_gaps": [
+    "Phase 1 viewport guard known-bad fixture tests are test.fixme (skipped in default aggregate) — owned by P2 activity remediation per strategy §8",
+    "Phase 2 Green remediation was applied as a single combined commit (e6e1aeca) covering 7 files across apps/integrated-math-3 and packages/activity-components",
+    "Phase 3 CI wiring adds --project=viewport step but CI workflow may need adjustment if viewport Playwright browsers are not pre-installed in the CI runner"
+  ]
+}

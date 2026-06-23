@@ -996,10 +996,6 @@ Sixteen candidate tracks identified from a full-roadmap review. Each is registry
    *Completion-audit note (2026-06-21): closeout rejected as a false positive because `/parent` was still a static stub and delivered components/guards/projections had no live production caller. Historical archive retained; remediation is tracked in `parent_portal_prod_wiring_remediation_20260621`.*
    *Link: [./archive/parent-portal_20260605/](./archive/parent-portal_20260605/)*
 
-- [ ] **Track: Responsive / Mobile Audit** — **PLANNED**
-   *Audit and remediate student/teacher routes and activity components for tablet/phone use. Size: M. Depends on: none. Readiness: ready now.*
-   *Link: [./tracks/responsive-mobile-audit_20260605/](./tracks/responsive-mobile-audit_20260605/)*
-
 - [ ] **Track: Teacher Content Authoring** — **PLANNED**
    *Tools for teachers to create/edit lesson content and activities, not just assign existing ones. Size: L. Depends on: component-approval workflow, activity schemas (done). Readiness: ready now.*
    *Link: [./tracks/teacher-content-authoring_20260605/](./tracks/teacher-content-authoring_20260605/)*
@@ -1009,6 +1005,10 @@ Sixteen candidate tracks identified from a full-roadmap review. Each is registry
 - [x] **Track: Repository Hygiene Remediation** — **COMPLETED / ARCHIVED** (2026-06-23)
    *Remediate repo hygiene debt: commit dirty files (Phase 1), resolve stashes (Phase 2), fix BM2 test reds — UserMenu AuthProvider mock and GradebookDrillDown timeout (Phase 3), fix IM3 React 19 eslint violations across 16 files (Phase 4), and run verification gates (Phase 5). 17 tasks complete. Cross-track blockers: 388 IM3 + 31 BM2 tsc errors from primitive-layer-contract_20260615 schema rename. Checkpoints: 292deda5, 540473fa, f07e1253, b8c35cb0, 62a7ba0c, 2d2e9c30.*
    *Link: [./measure/archive/repo-hygiene-remediation_20260616/](./measure/archive/repo-hygiene-remediation_20260616/)*
+
+- [x] **Track: Responsive / Mobile Audit** — **COMPLETED / ARCHIVED** (2026-06-23)
+   *Audit and remediate student/teacher routes and activity components for tablet/phone use. 3 phases complete: audit baseline & viewport guard (Phase 1), activity components & shell hit-targets/touch-action/dialog-width (Phase 2), teacher views tablet degradation & CI wiring (Phase 3). All 12 tasks complete with verified commit SHAs. Checkpoints: b81e24d4, c098089b, 35179c6c, cca1c224, 6d842315, 01e75579, e6e1aeca, 76fc830e, fca84fe2, 78690b37, 28c6dd27, 51306f0e, e9778978.*
+   *Link: [./measure/archive/responsive-mobile-audit_20260605/](./measure/archive/responsive-mobile-audit_20260605/)*
 
 - [x] **Track: Onboarding + Roster Import** — **COMPLETED / ARCHIVED** (2026-06-23)
    *New-student/teacher onboarding flow and bulk student roster import (CSV/SIS). 4 phases complete: CSV contract/parser/dry-run (Phase 1), idempotent enrollment mutation + summary queries (Phase 2), teacher onboarding UI wizard + import summary (Phase 3), student flow routing into placement (Phase 4). 83/83 onboarding tests pass. Checkpoints: 41043d1f, bd4f6736, cb5e4de9, 8e0605e7.*
