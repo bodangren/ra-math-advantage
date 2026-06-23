@@ -1,9 +1,11 @@
 import { SESSION_COOKIE_NAME } from './constants';
-import { SessionClaims, verifySessionToken } from './session';
+import { SessionClaims } from './session';
 
 export type RequestGuardResult = SessionClaims | Response;
 
 export type ActiveCredentialVerifier = (claims: SessionClaims) => Promise<boolean>;
+
+export type SessionTokenVerifier = (token: string) => Promise<SessionClaims | null>;
 
 /**
  * Parses a cookie header string and extracts the value for the given key.
@@ -33,21 +35,6 @@ export function getCookieValueFromHeader(cookieHeader: string | null, key: strin
   return null;
 }
 
-/**
- * Reads session claims from a request cookie header.
- * Returns null when the cookie is missing or the token is invalid/expired.
- */
-export async function getRequestSessionClaims(
-  request: Request,
-  secret: string,
-  cookieName: string = SESSION_COOKIE_NAME,
-): Promise<SessionClaims | null> {
-  const token = getCookieValueFromHeader(request.headers.get('cookie'), cookieName);
-  if (!token) return null;
-
-  return verifySessionToken(token, secret);
-}
-
 /** Creates a 401 Unauthorized JSON response with the given message. */
 export function buildRequestUnauthorizedResponse(message = 'Unauthorized'): Response {
   return new Response(JSON.stringify({ error: message }), {
@@ -75,18 +62,35 @@ export function buildRequestServiceUnavailableResponse(
 }
 
 /**
+ * Reads session claims from a request cookie header using the supplied verifier.
+ * The verifier is app-supplied so the test suite can mock it via local re-exports.
+ */
+export async function getRequestSessionClaims(
+  request: Request,
+  verifyToken: SessionTokenVerifier,
+  cookieName: string = SESSION_COOKIE_NAME,
+): Promise<SessionClaims | null> {
+  const token = getCookieValueFromHeader(request.headers.get('cookie'), cookieName);
+  if (!token) return null;
+
+  return verifyToken(token);
+}
+
+/**
  * Requires an authenticated request session.
  * Returns claims on success, or a 401 Response when absent.
  */
 export async function requireRequestSessionClaims(
   request: Request,
-  secret: string,
-  cookieName: string = SESSION_COOKIE_NAME,
-  unauthorizedMessage = 'Unauthorized',
+  verifyToken: SessionTokenVerifier,
+  options: {
+    cookieName?: string;
+    unauthorizedMessage?: string;
+  } = {},
 ): Promise<RequestGuardResult> {
-  const claims = await getRequestSessionClaims(request, secret, cookieName);
+  const claims = await getRequestSessionClaims(request, verifyToken, options.cookieName);
   if (!claims) {
-    return buildRequestUnauthorizedResponse(unauthorizedMessage);
+    return buildRequestUnauthorizedResponse(options.unauthorizedMessage);
   }
 
   return claims;
@@ -98,7 +102,7 @@ export async function requireRequestSessionClaims(
  */
 export async function requireRoleRequestClaims(
   request: Request,
-  secret: string,
+  verifyToken: SessionTokenVerifier,
   allowedRoles: ReadonlyArray<SessionClaims['role']>,
   options: {
     cookieName?: string;
@@ -106,12 +110,7 @@ export async function requireRoleRequestClaims(
     forbiddenMessage?: string;
   } = {},
 ): Promise<RequestGuardResult> {
-  const claimsOrResponse = await requireRequestSessionClaims(
-    request,
-    secret,
-    options.cookieName,
-    options.unauthorizedMessage,
-  );
+  const claimsOrResponse = await requireRequestSessionClaims(request, verifyToken, options);
   if (claimsOrResponse instanceof Response) {
     return claimsOrResponse;
   }
@@ -130,7 +129,7 @@ export async function requireRoleRequestClaims(
  */
 export async function requireActiveRequestSessionClaims(
   request: Request,
-  secret: string,
+  verifyToken: SessionTokenVerifier,
   verifyActive: ActiveCredentialVerifier,
   options: {
     cookieName?: string;
@@ -138,12 +137,7 @@ export async function requireActiveRequestSessionClaims(
     serviceUnavailableMessage?: string;
   } = {},
 ): Promise<RequestGuardResult> {
-  const claimsOrResponse = await requireRequestSessionClaims(
-    request,
-    secret,
-    options.cookieName,
-    options.unauthorizedMessage,
-  );
+  const claimsOrResponse = await requireRequestSessionClaims(request, verifyToken, options);
   if (claimsOrResponse instanceof Response) {
     return claimsOrResponse;
   }
@@ -164,7 +158,7 @@ export async function requireActiveRequestSessionClaims(
  */
 export async function requireActiveRoleRequestClaims(
   request: Request,
-  secret: string,
+  verifyToken: SessionTokenVerifier,
   allowedRoles: ReadonlyArray<SessionClaims['role']>,
   verifyActive: ActiveCredentialVerifier,
   options: {
@@ -176,7 +170,7 @@ export async function requireActiveRoleRequestClaims(
 ): Promise<RequestGuardResult> {
   const claimsOrResponse = await requireActiveRequestSessionClaims(
     request,
-    secret,
+    verifyToken,
     verifyActive,
     options,
   );

@@ -1,10 +1,26 @@
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
-import { NextResponse } from 'next/server';
 
 import { SESSION_COOKIE_NAME, getAuthJwtSecret } from '@/lib/auth/constants';
-import { SessionClaims, verifySessionToken } from '@/lib/auth/session';
+import { verifySessionToken, type SessionClaims } from '@/lib/auth/session';
+
+import {
+  type ActiveCredentialVerifier,
+  getRequestSessionClaims as _getRequestSessionClaims,
+  requireRequestSessionClaims as _requireRequestSessionClaims,
+  requireRoleRequestClaims as _requireRoleRequestClaims,
+  requireActiveRequestSessionClaims as _requireActiveRequestSessionClaims,
+  buildRequestUnauthorizedResponse,
+  buildRequestForbiddenResponse,
+  buildRequestServiceUnavailableResponse,
+} from '@math-platform/core-auth';
+
 import { fetchInternalQuery, internal } from '@/lib/convex/server';
+
+const APP_LOGIN_PATH_PREFIX = '/auth/login';
+const APP_DEFAULT_TEACHER_UNAUTHORIZED_REDIRECT = '/student/dashboard';
+
+const verifyToken = (token: string) => verifySessionToken(token, getAuthJwtSecret());
 
 /**
  * Reads and verifies the authenticated session claims from the server cookie jar.
@@ -17,136 +33,11 @@ export async function getServerSessionClaims(): Promise<SessionClaims | null> {
   return verifySessionToken(token, getAuthJwtSecret());
 }
 
-/**
- * Gets cookie value from header
- * @param cookieHeader - cookie header
- * @param key - Key identifier
- * @returns The requested value
- */
-function getCookieValueFromHeader(cookieHeader: string | null, key: string): string | null {
-  if (!cookieHeader) return null;
-
-  const entries = cookieHeader.split(';');
-  for (const entry of entries) {
-    const trimmed = entry.trim();
-    if (!trimmed) continue;
-
-    const separatorIndex = trimmed.indexOf('=');
-    if (separatorIndex <= 0) continue;
-
-    const name = trimmed.slice(0, separatorIndex).trim();
-    if (name !== key) continue;
-
-    return decodeURIComponent(trimmed.slice(separatorIndex + 1));
-  }
-
-  return null;
-}
-
-/**
- * Reads session claims from a request cookie header instead of Next's server cookie store.
- */
-export async function getRequestSessionClaims(request: Request): Promise<SessionClaims | null> {
-  const token = getCookieValueFromHeader(request.headers.get('cookie'), SESSION_COOKIE_NAME);
-  if (!token) return null;
-
-  return verifySessionToken(token, getAuthJwtSecret());
-}
-
-/**
- * Builds request unauthorized response
- * @param message - Message string
- */
-function buildRequestUnauthorizedResponse(message = 'Unauthorized') {
-  return NextResponse.json({ error: message }, { status: 401 });
-}
-
-/**
- * Builds request forbidden response
- * @param message - Message string
- */
-function buildRequestForbiddenResponse(message = 'Forbidden') {
-  return NextResponse.json({ error: message }, { status: 403 });
-}
-
-/**
- * Builds request service unavailable response
- * @param message - Message string
- */
-function buildRequestServiceUnavailableResponse(message = 'Service temporarily unavailable') {
-  return NextResponse.json({ error: message }, { status: 503 });
-}
-
-/**
- * Requires an authenticated request session and returns a JSON 401 response when absent.
- */
-export async function requireRequestSessionClaims(
-  request: Request,
-  unauthorizedMessage = 'Unauthorized',
-): Promise<SessionClaims | Response> {
-  const claims = await getRequestSessionClaims(request);
-  if (!claims) {
-    return buildRequestUnauthorizedResponse(unauthorizedMessage);
-  }
-
-  return claims;
-}
-
-/**
- * Requires a student request session for APIs that mutate learner-owned data.
- */
-export async function requireStudentRequestClaims(
-  request: Request,
-  unauthorizedMessage = 'Unauthorized',
-  forbiddenMessage = 'Forbidden',
-): Promise<SessionClaims | Response> {
-  const claimsOrResponse = await requireRequestSessionClaims(request, unauthorizedMessage);
-  if (claimsOrResponse instanceof Response) {
-    return claimsOrResponse;
-  }
-
-  if (claimsOrResponse.role !== 'student') {
-    return buildRequestForbiddenResponse(forbiddenMessage);
-  }
-
-  return claimsOrResponse;
-}
-
-/**
- * Requires an admin request session for APIs that perform privileged operations.
- */
-export async function requireAdminRequestClaims(
-  request: Request,
-  unauthorizedMessage = 'Unauthorized',
-  forbiddenMessage = 'Forbidden',
-): Promise<SessionClaims | Response> {
-  const claimsOrResponse = await requireRequestSessionClaims(request, unauthorizedMessage);
-  if (claimsOrResponse instanceof Response) {
-    return claimsOrResponse;
-  }
-
-  if (claimsOrResponse.role !== 'admin') {
-    return buildRequestForbiddenResponse(forbiddenMessage);
-  }
-
-  return claimsOrResponse;
-}
-
-/**
- * Builds login redirect
- * @param loginRedirectPath - login redirect path
- * @returns The constructed result
- */
 function buildLoginRedirect(loginRedirectPath: string): string {
-  return `/auth/login?redirect=${loginRedirectPath}`;
+  return `${APP_LOGIN_PATH_PREFIX}?redirect=${loginRedirectPath}`;
 }
 
-/**
- * Requires an authenticated server session and redirects to login when none exists.
- */
-export async function requireServerSessionClaims(
-  loginRedirectPath: string,
-): Promise<SessionClaims> {
+export async function requireServerSessionClaims(loginRedirectPath: string): Promise<SessionClaims> {
   const claims = await getServerSessionClaims();
   if (!claims) {
     redirect(buildLoginRedirect(loginRedirectPath));
@@ -155,9 +46,6 @@ export async function requireServerSessionClaims(
   return claims;
 }
 
-/**
- * Requires the given session claims to match one of the allowed roles.
- */
 export function requireServerRoles<T extends SessionClaims>(
   claims: T,
   allowedRoles: ReadonlyArray<SessionClaims['role']>,
@@ -170,121 +58,106 @@ export function requireServerRoles<T extends SessionClaims>(
   return claims;
 }
 
-/**
- * Requires a teacher-facing server session for teacher pages.
- * Legacy admin credentials are treated as teacher-compatible until they are fully removed.
- */
 export async function requireTeacherSessionClaims(
   loginRedirectPath: string,
-  unauthorizedRedirectPath = '/student/dashboard',
+  unauthorizedRedirectPath: string = APP_DEFAULT_TEACHER_UNAUTHORIZED_REDIRECT,
 ): Promise<SessionClaims> {
   const claims = await requireServerSessionClaims(loginRedirectPath);
   return requireServerRoles(claims, ['teacher', 'admin'], unauthorizedRedirectPath);
 }
 
-/**
- * Requires a student server session for student-facing dashboard routes.
- * Non-student sessions are redirected to the teacher surface.
- */
-export async function requireStudentSessionClaims(
-  loginRedirectPath: string,
-): Promise<SessionClaims> {
+export async function requireStudentSessionClaims(loginRedirectPath: string): Promise<SessionClaims> {
   const claims = await requireServerSessionClaims(loginRedirectPath);
 
   if (claims.role === 'student') {
     return claims;
   }
 
-  if (claims.role === 'teacher') {
-    redirect('/teacher');
-  }
-
-  if (claims.role === 'admin') {
+  if (claims.role === 'teacher' || claims.role === 'admin') {
     redirect('/teacher');
   }
 
   redirect(buildLoginRedirect(loginRedirectPath));
 }
 
-/**
- * Requires an authenticated request session with an active (non-deactivated) credential.
- *
- * Checks the JWT signature/expiry first, then verifies the credential is still
- * active via Convex. This prevents deactivated users from continuing to use
- * sessions issued before deactivation.
- *
- * Use this for API routes that mutate data, instead of `requireRequestSessionClaims`.
- */
+const verifyActiveCredential: ActiveCredentialVerifier = async (claims) => {
+  const credential = await fetchInternalQuery(internal.auth.getCredentialByUsername, {
+    username: claims.username,
+  });
+  return credential !== null;
+};
+
 export async function requireActiveRequestSessionClaims(
   request: Request,
   unauthorizedMessage = 'Unauthorized',
 ): Promise<SessionClaims | Response> {
-  const claims = await getRequestSessionClaims(request);
-  if (!claims) {
-    return buildRequestUnauthorizedResponse(unauthorizedMessage);
-  }
-
-  try {
-    const credential = await fetchInternalQuery(
-      internal.auth.getCredentialByUsername,
-      { username: claims.username },
-    );
-
-    if (!credential) {
-      return buildRequestUnauthorizedResponse('Session revoked');
-    }
-  } catch {
-    return buildRequestServiceUnavailableResponse(
-      'Credential verification temporarily unavailable',
-    );
-  }
-
-  return claims;
+  return _requireActiveRequestSessionClaims(request, verifyToken, verifyActiveCredential, {
+    cookieName: SESSION_COOKIE_NAME,
+    unauthorizedMessage,
+    serviceUnavailableMessage: 'Credential verification temporarily unavailable',
+  });
 }
 
-/**
- * Requires an active student request session for mutating APIs.
- *
- * Verifies the credential is still active in Convex, then checks the role
- * is `student`. Returns 401 if unauthenticated or deactivated, 403 if wrong role.
- */
 export async function requireActiveStudentRequestClaims(
   request: Request,
   unauthorizedMessage = 'Unauthorized',
   forbiddenMessage = 'Forbidden',
 ): Promise<SessionClaims | Response> {
-  const claimsOrResponse = await requireActiveRequestSessionClaims(request, unauthorizedMessage);
-  if (claimsOrResponse instanceof Response) {
-    return claimsOrResponse;
-  }
-
-  if (claimsOrResponse.role !== 'student') {
+  const result = await requireActiveRequestSessionClaims(request, unauthorizedMessage);
+  if (result instanceof Response) return result;
+  if (result.role !== 'student') {
     return buildRequestForbiddenResponse(forbiddenMessage);
   }
-
-  return claimsOrResponse;
+  return result;
 }
 
-/**
- * Requires an active teacher or admin request session for mutating APIs.
- *
- * Verifies the credential is still active in Convex, then checks the role
- * is `teacher` or `admin`. Returns 401 if unauthenticated or deactivated,
- * 403 if wrong role.
- */
 export async function requireActiveTeacherRequestClaims(
   request: Request,
   unauthorizedMessage = 'Unauthorized',
   forbiddenMessage = 'Forbidden',
 ): Promise<SessionClaims | Response> {
-  const claimsOrResponse = await requireActiveRequestSessionClaims(request, unauthorizedMessage);
-  if (claimsOrResponse instanceof Response) {
-    return claimsOrResponse;
-  }
-
-  if (claimsOrResponse.role !== 'teacher' && claimsOrResponse.role !== 'admin') {
+  const result = await requireActiveRequestSessionClaims(request, unauthorizedMessage);
+  if (result instanceof Response) return result;
+  if (result.role !== 'teacher' && result.role !== 'admin') {
     return buildRequestForbiddenResponse(forbiddenMessage);
   }
+  return result;
+}
 
-  return claimsOrResponse;
+export async function getRequestSessionClaims(request: Request): Promise<SessionClaims | null> {
+  return _getRequestSessionClaims(request, verifyToken, SESSION_COOKIE_NAME);
+}
+
+export async function requireRequestSessionClaims(
+  request: Request,
+  unauthorizedMessage = 'Unauthorized',
+): Promise<SessionClaims | Response> {
+  return _requireRequestSessionClaims(request, verifyToken, {
+    cookieName: SESSION_COOKIE_NAME,
+    unauthorizedMessage,
+  });
+}
+
+export async function requireStudentRequestClaims(
+  request: Request,
+  unauthorizedMessage = 'Unauthorized',
+  forbiddenMessage = 'Forbidden',
+): Promise<SessionClaims | Response> {
+  return _requireRoleRequestClaims(request, verifyToken, ['student'], {
+    cookieName: SESSION_COOKIE_NAME,
+    unauthorizedMessage,
+    forbiddenMessage,
+  });
+}
+
+export async function requireAdminRequestClaims(
+  request: Request,
+  unauthorizedMessage = 'Unauthorized',
+  forbiddenMessage = 'Forbidden',
+): Promise<SessionClaims | Response> {
+  return _requireRoleRequestClaims(request, verifyToken, ['admin'], {
+    cookieName: SESSION_COOKIE_NAME,
+    unauthorizedMessage,
+    forbiddenMessage,
+  });
 }

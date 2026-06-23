@@ -30,4 +30,4 @@ export {
   requireActiveRequestSessionClaims,
   requireActiveRoleRequestClaims,
 } from './request-guards';
-export type { RequestGuardResult, ActiveCredentialVerifier } from './request-guards';
+export type { RequestGuardResult, ActiveCredentialVerifier, SessionTokenVerifier } from './request-guards';

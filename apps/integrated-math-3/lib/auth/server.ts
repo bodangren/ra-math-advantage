@@ -3,20 +3,12 @@ import { redirect } from 'next/navigation';
 import { NextResponse } from 'next/server';
 
 import { SESSION_COOKIE_NAME, getAuthJwtSecret } from '@math-platform/core-auth';
-import type { SessionClaims } from '@math-platform/core-auth';
-import { verifySessionToken } from '@math-platform/core-auth';
+import { verifySessionToken, type SessionClaims } from '@math-platform/core-auth';
+
 import { fetchInternalQuery, internal } from '@/lib/convex/server';
 
-/**
- * Reads and verifies the authenticated session claims from the server cookie jar.
- */
-export async function getServerSessionClaims(): Promise<SessionClaims | null> {
-  const cookieStore = await cookies();
-  const token = cookieStore.get(SESSION_COOKIE_NAME)?.value;
-  if (!token) return null;
-
-  return verifySessionToken(token, getAuthJwtSecret());
-}
+const APP_LOGIN_PATH_PREFIX = '/auth/login';
+const APP_DEFAULT_TEACHER_UNAUTHORIZED_REDIRECT = '/student/dashboard';
 
 /** Parses a cookie header string and extracts the value for the given key. */
 function getCookieValueFromHeader(cookieHeader: string | null, key: string): string | null {
@@ -33,20 +25,14 @@ function getCookieValueFromHeader(cookieHeader: string | null, key: string): str
     const name = trimmed.slice(0, separatorIndex).trim();
     if (name !== key) continue;
 
-    return decodeURIComponent(trimmed.slice(separatorIndex + 1));
+    try {
+      return decodeURIComponent(trimmed.slice(separatorIndex + 1));
+    } catch {
+      return null;
+    }
   }
 
   return null;
-}
-
-/**
- * Reads session claims from a request cookie header instead of Next's server cookie store.
- */
-export async function getRequestSessionClaims(request: Request): Promise<SessionClaims | null> {
-  const token = getCookieValueFromHeader(request.headers.get('cookie'), SESSION_COOKIE_NAME);
-  if (!token) return null;
-
-  return verifySessionToken(token, getAuthJwtSecret());
 }
 
 /** Creates a 401 Unauthorized JSON response with the given message. */
@@ -57,6 +43,32 @@ function buildRequestUnauthorizedResponse(message = 'Unauthorized') {
 /** Creates a 403 Forbidden JSON response with the given message. */
 function buildRequestForbiddenResponse(message = 'Forbidden') {
   return NextResponse.json({ error: message }, { status: 403 });
+}
+
+/** Creates a 503 Service Unavailable JSON response with the given message. */
+function buildRequestServiceUnavailableResponse(message = 'Service unavailable') {
+  return NextResponse.json({ error: message }, { status: 503 });
+}
+
+/**
+ * Reads and verifies the authenticated session claims from the server cookie jar.
+ */
+export async function getServerSessionClaims(): Promise<SessionClaims | null> {
+  const cookieStore = await cookies();
+  const token = cookieStore.get(SESSION_COOKIE_NAME)?.value;
+  if (!token) return null;
+
+  return verifySessionToken(token, getAuthJwtSecret());
+}
+
+/**
+ * Reads session claims from a request cookie header instead of Next's server cookie store.
+ */
+export async function getRequestSessionClaims(request: Request): Promise<SessionClaims | null> {
+  const token = getCookieValueFromHeader(request.headers.get('cookie'), SESSION_COOKIE_NAME);
+  if (!token) return null;
+
+  return verifySessionToken(token, getAuthJwtSecret());
 }
 
 /**
@@ -117,15 +129,13 @@ export async function requireTeacherRequestClaims(
 
 /** Builds a login redirect URL with the given path as the post-login redirect target. */
 function buildLoginRedirect(loginRedirectPath: string): string {
-  return `/auth/login?redirect=${loginRedirectPath}`;
+  return `${APP_LOGIN_PATH_PREFIX}?redirect=${loginRedirectPath}`;
 }
 
 /**
  * Requires an authenticated server session and redirects to login when none exists.
  */
-export async function requireServerSessionClaims(
-  loginRedirectPath: string,
-): Promise<SessionClaims> {
+export async function requireServerSessionClaims(loginRedirectPath: string): Promise<SessionClaims> {
   const claims = await getServerSessionClaims();
   if (!claims) {
     redirect(buildLoginRedirect(loginRedirectPath));
@@ -155,7 +165,7 @@ export function requireServerRoles<T extends SessionClaims>(
  */
 export async function requireTeacherSessionClaims(
   loginRedirectPath: string,
-  unauthorizedRedirectPath = '/student/dashboard',
+  unauthorizedRedirectPath: string = APP_DEFAULT_TEACHER_UNAUTHORIZED_REDIRECT,
 ): Promise<SessionClaims> {
   const claims = await requireServerSessionClaims(loginRedirectPath);
   return requireServerRoles(claims, ['teacher', 'admin'], unauthorizedRedirectPath);
@@ -179,11 +189,6 @@ export async function requireDeveloperRequestClaims(
   }
 
   return claimsOrResponse;
-}
-
-/** Creates a 503 Service Unavailable JSON response with the given message. */
-function buildRequestServiceUnavailableResponse(message = 'Service unavailable') {
-  return NextResponse.json({ error: message }, { status: 503 });
 }
 
 /**
@@ -218,9 +223,7 @@ export async function requireActiveRequestSessionClaims(
  * Requires a student server session for student-facing dashboard routes.
  * Non-student sessions are redirected to the teacher surface.
  */
-export async function requireStudentSessionClaims(
-  loginRedirectPath: string,
-): Promise<SessionClaims> {
+export async function requireStudentSessionClaims(loginRedirectPath: string): Promise<SessionClaims> {
   const claims = await requireServerSessionClaims(loginRedirectPath);
 
   if (claims.role === 'student') {

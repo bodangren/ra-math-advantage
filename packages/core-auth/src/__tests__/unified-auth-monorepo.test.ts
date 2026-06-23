@@ -11,6 +11,7 @@ import {
   buildRequestServiceUnavailableResponse,
   SESSION_COOKIE_NAME,
   signSessionToken,
+  verifySessionToken,
 } from '../index.js';
 
 const TEST_SECRET = 'unified-auth-monorepo-test-secret';
@@ -18,6 +19,8 @@ const TEST_SECRET = 'unified-auth-monorepo-test-secret';
 async function signedCookie(value: { sub: string; username: string; role: 'student' | 'teacher' | 'admin' }) {
   return signSessionToken(value, TEST_SECRET);
 }
+
+const verifyToken = (token: string) => verifySessionToken(token, TEST_SECRET);
 
 describe('unified-auth-monorepo: getCookieValueFromHeader', () => {
   it('returns null on null header', () => {
@@ -49,13 +52,13 @@ describe('unified-auth-monorepo: getCookieValueFromHeader', () => {
 describe('unified-auth-monorepo: getRequestSessionClaims', () => {
   it('returns null when cookie absent', async () => {
     const req = new Request('https://example.com', { headers: { cookie: '' } });
-    expect(await getRequestSessionClaims(req, TEST_SECRET)).toBeNull();
+    expect(await getRequestSessionClaims(req, verifyToken)).toBeNull();
   });
 
   it('returns claims when token is valid', async () => {
     const token = await signedCookie({ sub: 'u-1', username: 'alice', role: 'student' });
     const req = new Request('https://example.com', { headers: { cookie: `${SESSION_COOKIE_NAME}=${token}` } });
-    const claims = await getRequestSessionClaims(req, TEST_SECRET);
+    const claims = await getRequestSessionClaims(req, verifyToken);
     expect(claims?.sub).toBe('u-1');
     expect(claims?.role).toBe('student');
   });
@@ -64,14 +67,14 @@ describe('unified-auth-monorepo: getRequestSessionClaims', () => {
     const req = new Request('https://example.com', {
       headers: { cookie: `${SESSION_COOKIE_NAME}=not-a-token` },
     });
-    expect(await getRequestSessionClaims(req, TEST_SECRET)).toBeNull();
+    expect(await getRequestSessionClaims(req, verifyToken)).toBeNull();
   });
 });
 
 describe('unified-auth-monorepo: requireRequestSessionClaims', () => {
   it('returns 401 Response when no claims', async () => {
     const req = new Request('https://example.com', { headers: { cookie: '' } });
-    const result = await requireRequestSessionClaims(req, TEST_SECRET);
+    const result = await requireRequestSessionClaims(req, verifyToken);
     expect(result).toBeInstanceOf(Response);
     expect((result as Response).status).toBe(401);
   });
@@ -79,7 +82,7 @@ describe('unified-auth-monorepo: requireRequestSessionClaims', () => {
   it('returns claims when valid', async () => {
     const token = await signedCookie({ sub: 'u-1', username: 'alice', role: 'student' });
     const req = new Request('https://example.com', { headers: { cookie: `${SESSION_COOKIE_NAME}=${token}` } });
-    const result = await requireRequestSessionClaims(req, TEST_SECRET);
+    const result = await requireRequestSessionClaims(req, verifyToken);
     expect(result).not.toBeInstanceOf(Response);
     expect((result as { sub: string }).sub).toBe('u-1');
   });
@@ -89,7 +92,7 @@ describe('unified-auth-monorepo: requireRoleRequestClaims', () => {
   it('returns 403 when role not in allowed list', async () => {
     const token = await signedCookie({ sub: 'u-1', username: 'alice', role: 'student' });
     const req = new Request('https://example.com', { headers: { cookie: `${SESSION_COOKIE_NAME}=${token}` } });
-    const result = await requireRoleRequestClaims(req, TEST_SECRET, ['admin']);
+    const result = await requireRoleRequestClaims(req, verifyToken, ['admin']);
     expect(result).toBeInstanceOf(Response);
     expect((result as Response).status).toBe(403);
   });
@@ -97,14 +100,14 @@ describe('unified-auth-monorepo: requireRoleRequestClaims', () => {
   it('returns claims when role is in allowed list', async () => {
     const token = await signedCookie({ sub: 'u-1', username: 'alice', role: 'teacher' });
     const req = new Request('https://example.com', { headers: { cookie: `${SESSION_COOKIE_NAME}=${token}` } });
-    const result = await requireRoleRequestClaims(req, TEST_SECRET, ['teacher', 'admin']);
+    const result = await requireRoleRequestClaims(req, verifyToken, ['teacher', 'admin']);
     expect(result).not.toBeInstanceOf(Response);
     expect((result as { role: string }).role).toBe('teacher');
   });
 
   it('passes through 401 from underlying requireRequestSessionClaims', async () => {
     const req = new Request('https://example.com', { headers: { cookie: '' } });
-    const result = await requireRoleRequestClaims(req, TEST_SECRET, ['student']);
+    const result = await requireRoleRequestClaims(req, verifyToken, ['student']);
     expect(result).toBeInstanceOf(Response);
     expect((result as Response).status).toBe(401);
   });
@@ -114,7 +117,7 @@ describe('unified-auth-monorepo: requireActiveRequestSessionClaims', () => {
   it('returns 401 when no claims', async () => {
     const req = new Request('https://example.com', { headers: { cookie: '' } });
     const verifier = vi.fn();
-    const result = await requireActiveRequestSessionClaims(req, TEST_SECRET, verifier);
+    const result = await requireActiveRequestSessionClaims(req, verifyToken, verifier);
     expect(result).toBeInstanceOf(Response);
     expect((result as Response).status).toBe(401);
     expect(verifier).not.toHaveBeenCalled();
@@ -124,7 +127,7 @@ describe('unified-auth-monorepo: requireActiveRequestSessionClaims', () => {
     const token = await signedCookie({ sub: 'u-1', username: 'alice', role: 'student' });
     const req = new Request('https://example.com', { headers: { cookie: `${SESSION_COOKIE_NAME}=${token}` } });
     const verifier = vi.fn().mockResolvedValue(true);
-    const result = await requireActiveRequestSessionClaims(req, TEST_SECRET, verifier);
+    const result = await requireActiveRequestSessionClaims(req, verifyToken, verifier);
     expect(result).not.toBeInstanceOf(Response);
     expect(verifier).toHaveBeenCalledTimes(1);
     const callArg = verifier.mock.calls[0]?.[0] as { username: string };
@@ -135,7 +138,7 @@ describe('unified-auth-monorepo: requireActiveRequestSessionClaims', () => {
     const token = await signedCookie({ sub: 'u-1', username: 'alice', role: 'student' });
     const req = new Request('https://example.com', { headers: { cookie: `${SESSION_COOKIE_NAME}=${token}` } });
     const verifier = vi.fn().mockResolvedValue(false);
-    const result = await requireActiveRequestSessionClaims(req, TEST_SECRET, verifier);
+    const result = await requireActiveRequestSessionClaims(req, verifyToken, verifier);
     expect(result).toBeInstanceOf(Response);
     expect((result as Response).status).toBe(401);
   });
@@ -144,7 +147,7 @@ describe('unified-auth-monorepo: requireActiveRequestSessionClaims', () => {
     const token = await signedCookie({ sub: 'u-1', username: 'alice', role: 'student' });
     const req = new Request('https://example.com', { headers: { cookie: `${SESSION_COOKIE_NAME}=${token}` } });
     const verifier = vi.fn().mockRejectedValue(new Error('Convex down'));
-    const result = await requireActiveRequestSessionClaims(req, TEST_SECRET, verifier);
+    const result = await requireActiveRequestSessionClaims(req, verifyToken, verifier);
     expect(result).toBeInstanceOf(Response);
     expect((result as Response).status).toBe(503);
   });
@@ -154,7 +157,7 @@ describe('unified-auth-monorepo: requireActiveRoleRequestClaims', () => {
   it('returns 401 when no claims', async () => {
     const req = new Request('https://example.com', { headers: { cookie: '' } });
     const verifier = vi.fn();
-    const result = await requireActiveRoleRequestClaims(req, TEST_SECRET, ['student'], verifier);
+    const result = await requireActiveRoleRequestClaims(req, verifyToken, ['student'], verifier);
     expect(result).toBeInstanceOf(Response);
     expect((result as Response).status).toBe(401);
   });
@@ -163,7 +166,7 @@ describe('unified-auth-monorepo: requireActiveRoleRequestClaims', () => {
     const token = await signedCookie({ sub: 'u-1', username: 'alice', role: 'student' });
     const req = new Request('https://example.com', { headers: { cookie: `${SESSION_COOKIE_NAME}=${token}` } });
     const verifier = vi.fn().mockResolvedValue(true);
-    const result = await requireActiveRoleRequestClaims(req, TEST_SECRET, ['teacher', 'admin'], verifier);
+    const result = await requireActiveRoleRequestClaims(req, verifyToken, ['teacher', 'admin'], verifier);
     expect(result).toBeInstanceOf(Response);
     expect((result as Response).status).toBe(403);
   });
@@ -172,7 +175,7 @@ describe('unified-auth-monorepo: requireActiveRoleRequestClaims', () => {
     const token = await signedCookie({ sub: 'u-1', username: 'alice', role: 'teacher' });
     const req = new Request('https://example.com', { headers: { cookie: `${SESSION_COOKIE_NAME}=${token}` } });
     const verifier = vi.fn().mockResolvedValue(true);
-    const result = await requireActiveRoleRequestClaims(req, TEST_SECRET, ['teacher', 'admin'], verifier);
+    const result = await requireActiveRoleRequestClaims(req, verifyToken, ['teacher', 'admin'], verifier);
     expect(result).not.toBeInstanceOf(Response);
     expect((result as { role: string }).role).toBe('teacher');
   });

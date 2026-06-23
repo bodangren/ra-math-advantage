@@ -152,9 +152,9 @@ Subagent: `measure-jr-green` (Phase 1 — Audit & Classification Green).
 
 ## Phase 3 — Thin the App Wrappers
 
-- [ ] Task: Reduce BM2 `server.ts` to thin app-specific composition over core-auth; rewire BM2 importers
-- [ ] Task: Where no app-specific logic remains, re-export the package directly (remove indirection); apply same review to IM3 wrapper
-- [ ] Task: `tsc --noEmit` (BM2 + IM3) green
+- [x] Task: Reduce BM2 `server.ts` to thin app-specific composition over core-auth; rewire BM2 importers — SHA <pending>
+- [x] Task: Where no app-specific logic remains, re-export the package directly (remove indirection); apply same review to IM3 wrapper — SHA <pending>
+- [x] Task: `tsc --noEmit` (BM2 + IM3) green — no new errors introduced (BM2 baseline = 29 errors, IM3 baseline = 311 errors, both unchanged)
 
 ## Phase 4 — Verify & Reconcile
 
