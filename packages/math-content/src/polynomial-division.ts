@@ -83,12 +83,12 @@ export function generatePolynomialDivision(options: {
   // P = Q·D + R
   const product = multiplyPoly(quotient, divisor);
 
-  // Pad R with leading zeros on the LOW-degree side until its length
+  // Pad R with leading zeros on the HIGH-degree side until its length
   // matches the product. With ascending-order coefficients, this is
-  // "unshift(0)" — adding x⁰, x¹, … terms equal to zero until alignment.
+  // "push(0)" — adding zero for x^k where k ≥ remainder.length.
   const paddedRemainder = [...remainder];
   while (paddedRemainder.length < product.length) {
-    paddedRemainder.unshift(0);
+    paddedRemainder.push(0);
   }
 
   const dividend = addPoly(product, paddedRemainder);

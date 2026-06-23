@@ -106,9 +106,10 @@ describe('polynomial-division.ts', () => {
     const product = multiplyPoly(quotient, divisor);
 
     // Pad remainder to match product length for addition
+    // (pad HIGH-degree side — ascending order, so push(0))
     const paddedRemainder = [...remainder];
     while (paddedRemainder.length < product.length) {
-      paddedRemainder.unshift(0);
+      paddedRemainder.push(0);
     }
 
     const reconstructed = addPoly(product, paddedRemainder);
