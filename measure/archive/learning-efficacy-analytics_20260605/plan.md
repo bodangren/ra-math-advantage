@@ -752,8 +752,8 @@ commit `24871c80`.
 
 ## Phase 3 — Experiment Harness
 
-- [x] Task: Deterministic sticky A/B assignment primitive + experiment registry (TDD) — `<this commit>`
-- [x] Task: Experiment analysis report (variant comparison, sample size, significance indicator) (TDD) — `<this commit>`
+- [x] Task: Deterministic sticky A/B assignment primitive + experiment registry (TDD) — `5a4fdfd2` (Red only; Green implementation stashed but never landed)
+- [x] Task: Experiment analysis report (variant comparison, sample size, significance indicator) (TDD) — `5a4fdfd2` (Red only; Green implementation stashed but never landed)
 - [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md) — deferred (manual, not Red-phase)
 
 ### Phase 3 — Red Notes (MID role, 2026-06-13)
@@ -1095,7 +1095,7 @@ and ready to be flipped Green by the next role.
 ## Phase 4 — Efficacy View & Verification
 
 - [x] Task: Admin/teacher efficacy view rendering metrics + active experiments, role-gated (TDD on render/guard) — Red: `b8b31fe3`, Green: `ec667b9c`
-- [x] Task: Final verification — boundary lints, lint, tsc --noEmit, CI=true npm run test — `<this commit>`
+- [x] Task: Final verification — boundary lints, lint, tsc --noEmit, CI=true npm run test — `546f0ae5`
 - [ ] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md) — deferred (manual, not Red-phase)
 
 ### Phase 4 — Red Notes (MID role, 2026-06-13)
