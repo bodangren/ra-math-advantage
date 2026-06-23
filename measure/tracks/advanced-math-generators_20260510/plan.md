@@ -209,3 +209,51 @@
   - Added tests in `packages/math-content/src/knowledge-space/__tests__/adapter.test.ts`
     asserting the four keys are present in `GENERATOR_KEYS` and produce valid
     `GeneratorOutput`.
+
+  **Phase 4 Review B fix (commit `a0f0e1c9`):**
+  - Audit R2B-001 caught a polynomial-division identity bug: the remainder
+    was padded via `paddedRemainder.unshift(0)`, which (under our ascending-
+    degree convention) shifts coefficients to higher-degree terms and breaks
+    `P = Q·D + R`. Changed to `paddedRemainder.push(0)` in
+    `polynomial-division.ts` and the corresponding reconstruction in
+    `__tests__/polynomial.test.ts`. Reviewer verified `P = Q·D + R` holds
+    across 500 seeds after the fix.
+
+  **Phase 4 Review C fix (commit `53a4252d`):**
+  - Audit C-1 noted the exp problem equation was
+    `\exp(D \cdot \ln 2) = N \quad \text{or} \quad 2^{x} = N` (verbose and
+    deviating from the spec's `2^x = N` form), and the steps mixed LaTeX
+    `\log_{2}` with Unicode `log₂` in the same string. Normalized the
+    equation to `2^{x} = N` and rewrote the relevant step to plain text
+    (`Take log base 2 of both sides: x = log₂(N)`). Updated the two
+    `__tests__/exp-log-solver.test.ts` assertions that referenced `\exp`
+    to match the new contract.
+
+  **Phase Acceptance (audit SHA `53a4252d`):**
+  ```
+  $ npx vitest run rational-analyzer exp-log-solver polynomial generator-registry knowledge-space/generators --root packages/math-content
+   Test Files  5 passed (5)
+        Tests  93 passed (93)
+     Duration  5.78s
+  ```
+  - All three SPEC FRs verified end-to-end:
+    1. Polynomial division backward generation — `P = Q·D + R` identity holds
+       across 500 seeds (Review B verification).
+    2. Rational asymptote generator — holes, vertical asymptotes, and
+       horizontal asymptotes all emitted correctly; `v = 0` edge case
+       handled naturally by the `[-v, 1]` factor convention.
+    3. Exp/log domain safety — `Ax + C > 0` guaranteed by construction
+       for log/ln problems; `isDomainValid` re-roll safety net verified
+       across 200 seeds (Review B verification).
+  - IM3 blueprint wiring is functional: `module_2/5/6/7` `generatorKey`
+    metadata resolves through `getGenerator()` in
+    `knowledge-space/generators/registry.ts`.
+  - Out-of-scope (pre-existing) full-suite failures: 16 missing-metadata
+    cases in `im1-practice-readiness_20260609` and 1 `problemFamilyId`
+    vs `variantKey` schema mismatch in `integration.test.ts`. Both
+    recommended for separate follow-up tracks.
+  - Open follow-ups (non-blocking): consolidate the two `GENERATOR_REGISTRY`
+    constants (Review C C-2); restore `eslint.config.*` for
+    `packages/math-content` (Review A).
+  - Acceptance artifact: `/tmp/measure-audits/phase-acceptance-advanced-math.json`.
+  - **Verdict: ACCEPT. Track ready for closeout.**
