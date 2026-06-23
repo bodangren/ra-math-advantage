@@ -147,7 +147,17 @@
   - Seed 1 produces: log₁₀(−3x + 8) = 2, answer = −34 (A=−3, C=8, D=2,
     10²=100, x=(100−8)/(−3)=−34, domain x < 8/3, −34 < 2.67 ✓).
 
-- [ ] **Phase 4: Registration & Validation**
-  - [ ] Export generators to `registry.ts`.
-  - [ ] Map keys in IM3 Module 2-7 blueprints.
-  - [ ] Test edge cases (like polynomial missing middle terms, e.g., $x^3 - 1$) in the QA harness.
+- [~] **Phase 4: Registration & Validation**
+  - [~] Export generators to `registry.ts`.
+  - [~] Map keys in IM3 Module 2-7 blueprints.
+  - [~] Test edge cases (like polynomial missing middle terms, e.g., $x^3 - 1$) in the QA harness.
+
+  **Red evidence (baseline SHA `7b609a09`, pending commit):**
+  ```
+  $ npx vitest run generator-registry --root packages/math-content
+  FAIL  src/__tests__/generator-registry.test.ts
+  Error: Cannot find module '../generator-registry'
+  Test Files  1 failed (1) | Tests  no tests | Duration  892ms
+  ```
+  12 tests defined across 3 describe blocks (registry contract 5, re-exports 5, QA harness 4)
+  fail with module-not-found.
