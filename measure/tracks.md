@@ -44,6 +44,10 @@ Dependencies:
 
 ## Active Tracks
 
+- [ ] **[HIGH PRIORITY] Track: Code Review Remediation (2026-06-24)** — **NEW**
+   *Remediates every defect found in the line-by-line review of the last 72h of commits: 4 committed + ~345 uncommitted malformed JSDoc annotations (discard & cleanly regenerate + add a balanced-brace guard), module-1-only student/parent projections (generalize to all modules), the planner's throwaway `student_competency` read, rational-analyzer HA triviality + object grading, exp-log dead re-roll, 5× duplicated generator PRNG, two competing `GENERATOR_REGISTRY` + empty adapter `nodeIds`, the precalc remediation script scanning the wrong filename (false "clean"), the deferred IM3 auth-wrapper unification, and stray `--db`/`--symbol` junk files. TDD per phase; these all passed green tests + `tsc` because they are JSDoc-invisible or test-asserted no-ops.*
+   *Link: [./tracks/code-review-remediation_20260624/](./tracks/code-review-remediation_20260624/)*
+
 - [x] **Track: Fix KST Worked-Example Node Titles** — **COMPLETED / ARCHIVED**
    *Parser was joining semicolon-separated example titles into one group string; all worked_example nodes got the same fabricated group title. Fixed parser to split titles 1:1 with example numbers. Audited and fixed 55 class period plan cells that had descriptive group titles instead of source example headings. Regenerated nodes.json (250+ titles patched), draft-nodes.json, 9 per-module nodes.json, and activity-map.json (655 activities). 237/237 source-matched nodes verified; 0 mismatches.*
    *Link: [./archive/fix-kst-node-titles_20260615/](./archive/fix-kst-node-titles_20260615/)*
