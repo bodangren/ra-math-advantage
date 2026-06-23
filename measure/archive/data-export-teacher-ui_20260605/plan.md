@@ -19,5 +19,5 @@ Verification: `npm run ws:im3:lint`/`:test` + `tsc --noEmit`.
 ## Phase 3 — Authorization & Verification [checkpoint: 7db21282]
 
 - [x] Task: Test cross-class denial reuses teacher-of-class guard (Red→Green) — Green committed [red: 06ce3d5f, e60e147d; green: 3cae734e]
-- [x] Task: Final verification — 46/46 export tests pass (CI=true); 0 tsc/lint errors in exports.ts; 13 pre-existing tsc + 2 lint errors in unrelated files (GraphingCanvas.test, ExportPanel.test, browserDownloadMock, ExportPanel.tsx)
-- [x] Task: Measure - User Manual Verification 'Phase 3' — AC3 verified: cross-class denial throws before handler runs; teacher-of-class guard reused; 12 auth tests cover all scopes (class/submission/student)
+- [x] Task: Final verification — 46/46 export tests pass (CI=true); 0 tsc/lint errors in exports.ts; 13 pre-existing tsc + 2 lint errors in unrelated files (GraphingCanvas.test, ExportPanel.test, browserDownloadMock, ExportPanel.tsx) [commit: 071a00fb]
+- [x] Task: Measure - User Manual Verification 'Phase 3' — AC3 verified: cross-class denial throws before handler runs; teacher-of-class guard reused; 12 auth tests cover all scopes (class/submission/student) [commit: 071a00fb]

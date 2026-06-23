@@ -1,0 +1,97 @@
+{
+  "manifest_version": "1.0",
+  "track_id": "data-export-teacher-ui_20260605",
+  "closeout_date": "2026-06-23",
+  "closeout_agent": "measure-closeout-subagent",
+  "status": "done",
+
+  "audit_summary": {
+    "total_tasks": 10,
+    "completed_tasks": 10,
+    "deferred_tasks": 0,
+    "all_tasks_verified": true,
+    "final_acceptance_passed": true
+  },
+
+  "phase_checkpoints": {
+    "phase_1_helpers_scope_mapping": {
+      "checkpoint_sha": "87415abf",
+      "green_sha": "9b0543c2",
+      "red_shas": ["218e943c", "524911bb", "95dd66bf"],
+      "csv_snapshot_red_sha": "ff1952e0",
+      "tasks": [
+        "Define scope→query mapping + filename builder pure helpers (TDD Red→Green)",
+        "Confirm CSV util contract via snapshot test (column order, escaping)",
+        "Measure - User Manual Verification 'Phase 1'"
+      ]
+    },
+    "phase_2_export_panel_ui": {
+      "checkpoint_sha": "e495494b",
+      "green_sha": "c5739ac5",
+      "red_shas": ["ee9c046e", "571017ff"],
+      "tasks": [
+        "Build teacher-only export panel (dataset/scope/format controls), role-gated (TDD on render + guard)",
+        "Wire client download with descriptive filename",
+        "Empty/large/error states (TDD)",
+        "Measure - User Manual Verification 'Phase 2'"
+      ]
+    },
+    "phase_3_authorization_verification": {
+      "checkpoint_sha": "7db21282",
+      "green_sha": "3cae734e",
+      "red_shas": ["06ce3d5f", "e60e147d"],
+      "tasks": [
+        "Test cross-class denial reuses teacher-of-class guard (Red→Green)",
+        "Final verification — 46/46 export tests pass (CI=true); 0 tsc/lint errors in exports.ts",
+        "Measure - User Manual Verification 'Phase 3' — AC3 verified"
+      ]
+    }
+  },
+
+  "all_implementation_commits": [
+    "218e943c test(data-export-ui): red-phase helpers + fixtures (P1 task 1)",
+    "524911bb test(data-export-ui): strengthen red-phase P1 contract (combined sanitization + return shape)",
+    "ff1952e0 test(data-export-ui): red-phase CSV contract snapshot (P1 task 2)",
+    "95dd66bf test(data-export-ui): extend Red-phase P1 contract — format-distinct filename, control-char sanitization, limit-arg exclusion (P1 task 1)",
+    "9b0543c2 feat(data-export-ui): green-phase helpers + CSV snapshot lock (P1 task 1+2)",
+    "87415abf measure(checkpoint): Checkpoint end of Phase 1 — Helpers & Scope Mapping",
+    "ee9c046e test(data-export-ui): red-phase ExportPanel — role-gate, download wiring, state copies (P2 tasks 1-3)",
+    "571017ff test(data-export-ui): install browser-download mock at call site for stable Red state (P2)",
+    "c5739ac5 feat(data-export-ui): green-phase ExportPanel — role-gate, download, states (P2 tasks 1-3)",
+    "e495494b measure(checkpoint): Checkpoint end of Phase 2 — Export Panel UI",
+    "06ce3d5f test(data-export-ui): red-phase exports-authorization — cross-class denial + scope guards (P3 task 1)",
+    "e60e147d test(data-export-ui): red-phase tsc fixes — Id type + callable cast (P3 task 1)",
+    "3cae734e feat(data-export-ui): add authorization guards to public export queries (P3 task 1 Green)",
+    "7db21282 measure(checkpoint): Checkpoint end of Phase 3 — Authorization & Verification"
+  ],
+
+  "retained_evidence": [
+    "measure/archive/data-export-teacher-ui_20260605/spec.md",
+    "measure/archive/data-export-teacher-ui_20260605/plan.md",
+    "measure/archive/data-export-teacher-ui_20260605/metadata.json",
+    "measure/archive/data-export-teacher-ui_20260605/test-strategy.md",
+    "measure/archive/data-export-teacher-ui_20260605/index.md",
+    "measure/archive/data-export-teacher-ui_20260605/automation-supervisor-closeout-manifest.json"
+  ],
+
+  "artifact_cleanup": {
+    "bulky_artifacts_removed": [],
+    "note": "No bulky run artifacts identified by orchestrator. All track files retained."
+  },
+
+  "tracks_md_update": {
+    "action": "Removed from Backlog — Tier 1 active section; added to Archived Tracks section",
+    "status": "done"
+  },
+
+  "metadata_update": {
+    "status": "done",
+    "completed_at": "2026-06-23",
+    "closed_at": "2026-06-23"
+  },
+
+  "lessons_learned_update": false,
+  "tech_debt_update": false,
+  "lessons_learned_note": "No new lessons learned from closeout. Existing entries cover relevant patterns.",
+  "tech_debt_note": "No new tech debt identified from this track."
+}

@@ -975,10 +975,6 @@ Sixteen candidate tracks identified from a full-roadmap review. Each is registry
    *Expand Playwright E2E beyond the 9 infrastructure tests to fully cover login, lesson nav, activity interaction, daily practice, and teacher dashboard. All 4 phases complete: deterministic seed & selectors, auth & lesson flow, activities & daily practice, teacher flow & CI. Review commit: `41a35a7c`.*
    *Link: [./archive/e2e-coverage-expansion_20260605/](./archive/e2e-coverage-expansion_20260605/)*
 
-- [ ] **Track: Data Export Teacher UI** — **PLANNED**
-   *Build the teacher-facing UI for student-progress/gradebook/submission CSV+JSON export. Backend is "COMPLETE, UI pending" (queries + CSV util + 12 tests exist). Size: S. Depends on: data-export-api (backend done). Readiness: ready now.*
-   *Link: [./tracks/data-export-teacher-ui_20260605/](./tracks/data-export-teacher-ui_20260605/)*
-
 - [ ] **Track: Study Hub Games Adoption** — **PLANNED**
    *Wire the matching and speed-round games into IM3 via real routes/pages. Games track Phase 3 is "pending — requires game routes/pages in IM3." Size: S. Depends on: student-study-hub-games (logic done). Readiness: ready now.*
    *Link: [./tracks/study-hub-games-adoption_20260605/](./tracks/study-hub-games-adoption_20260605/)*
@@ -1070,6 +1066,10 @@ Sixteen candidate tracks identified from a full-roadmap review. Each is registry
   *Shipped: 9 source-grounded IM3 misconception tags + 19 remediation activities; integrity check covers detection-mapping coverage, no orphan remediations, curriculum-node resolution, no circular edges. T6 loop wired via DI factory `createIm3MisconceptionLoop(t6)` with fake-harness plumbing + bounded smoke gate; authoring guide at `apps/integrated-math-3/docs/misconception-authoring-guide.md` covers taxonomy/detection/remediation/expansion.*
   *Closeout gates: 77/77 green tests pass; root `npm run lint` clean; root `CI=true npm test` 262/262 pass; `tsc --noEmit` clean for new files (5 pre-existing errors in convex/edgeCalibration, convex/efficacy/cohort, tailwind.config.ts — out of scope). 3/3 failures in `misconception-loop.smoke.test.ts` are documented intentionally-red per test-strategy.md §"Intentionally-Red Test Files"; they flip green when the active `misconception-loop_20260521` track ships its `runRealT6Loop` export.*
   *Link: [./archive/misconception-content-authoring_20260605/](./archive/misconception-content-authoring_20260605/)*
+
+- [x] **Track: Data Export Teacher UI** — **COMPLETED** (2026-06-23)
+  *Build the teacher-facing UI for student-progress/gradebook/submission CSV+JSON export. Backend (Convex queries + CSV util + 12 tests) was complete; UI delivered: teacher-only export panel with dataset/scope/format controls, role-gated download with descriptive filename, empty/large/error states, and authorization guards reusing teacher-of-class checks. 46/46 export tests pass. Phases 1-3 complete with checkpoint commits 87415abf, e495494b, 7db21282.*
+  *Link: [./measure/archive/data-export-teacher-ui_20260605/](./measure/archive/data-export-teacher-ui_20260605/)*
 
 ## Tech Debt Resolution (2026-04-29)
 
