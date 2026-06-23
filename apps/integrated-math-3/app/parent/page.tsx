@@ -138,7 +138,7 @@ export default async function ParentPage({
 
   return (
     <ParentPortalClient
-      activeLinks={normalizedLinks}
+      activeLinks={activeLinks}
       projectionsByStudentId={projectionsByStudentId}
       studentOptions={studentOptions}
       initialSelectedStudentId={initialSelectedStudentId}

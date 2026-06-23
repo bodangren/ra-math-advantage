@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react';
 import {
   singleStudentLinks,
   multiStudentLinks,
+  pendingParentLinks,
   STUDENT_ALPHA_ID,
   STUDENT_BETA_ID,
 } from '@/__tests__/_fixtures/parent-portal/parentLinks';
@@ -185,6 +186,46 @@ describe('ParentPage — no linked students', () => {
 
     expect(
       screen.getByTestId('parent-empty-state-no-links'),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByTestId('parent-dashboard-can-do'),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByTestId('parent-student-switcher'),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByTestId('parent-student-switcher-single'),
+    ).not.toBeInTheDocument();
+  });
+});
+
+describe('ParentPage — only pending links', () => {
+  it('renders the pending empty state when the parent has links but none are active', async () => {
+    const { requireParentServerSessionClaims } = await import(
+      '@/lib/auth/parent-server-guards'
+    );
+    requireParentServerSessionClaims.mockResolvedValue(parentClaims);
+
+    const { fetchInternalQuery } = await import('@/lib/convex/server');
+    const mockedFetchInternalQuery = fetchInternalQuery as unknown as ReturnType<
+      typeof vi.fn
+    >;
+    mockedFetchInternalQuery.mockImplementation(
+      (ref: unknown, _args: Record<string, unknown>) => {
+        const refName = String(ref);
+        if (refName.includes('listParentLinksQuery')) {
+          return Promise.resolve(pendingParentLinks);
+        }
+        return Promise.resolve(null);
+      },
+    );
+
+    const ParentPage = await loadParentPage();
+    const jsx = await ParentPage();
+    render(jsx);
+
+    expect(
+      screen.getByTestId('parent-empty-state-pending-link'),
     ).toBeInTheDocument();
     expect(
       screen.queryByTestId('parent-dashboard-can-do'),

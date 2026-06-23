@@ -96,12 +96,10 @@ export async function listParentLinks(
   ctx: QueryCtx,
   args: { parentProfileId: Id<'profiles'> },
 ) {
-  const links = await ctx.db
+  return ctx.db
     .query('parent_links')
     .withIndex('by_parent', (q) => q.eq('parentId', args.parentProfileId))
     .collect();
-
-  return links.filter((l) => l.status === 'active');
 }
 
 export const createParentLinkMutation = internalMutation({

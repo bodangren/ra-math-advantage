@@ -25,9 +25,9 @@
 //      under `convex/teacher/*`.
 //   3. Every Convex `query` wrapper exported from `convex/parent/*` must
 //      be built with `internalQuery`, never with the public `query` builder.
-//   4. The only query flow permitted under `convex/parent/` is
-//      `listParentLinks*` (the parent's own link list, filtered to
-//      status === 'active' for cross-parent isolation).
+//   4. The query flows permitted under `convex/parent/` are:
+//      - `listParentLinks*` (the parent's own link list).
+//      - `projectParentVisualization*` (parent-safe progress projection).
 //
 // Status at HEAD: the contract is currently satisfied. `convex/parent/links.ts`
 // exports exactly the expected set:
@@ -79,14 +79,19 @@ import { fileURLToPath } from 'node:url';
 
 const __dirname = resolve(fileURLToPath(import.meta.url), '..');
 const REPO_ROOT = resolve(__dirname, '../../../../..');
-const LINKS_TS = join(
+const PARENT_DIR = join(
   REPO_ROOT,
   'apps',
   'integrated-math-3',
   'convex',
   'parent',
-  'links.ts',
 );
+const LINKS_TS = join(PARENT_DIR, 'links.ts');
+const VISUALIZATION_TS = join(PARENT_DIR, 'visualization.ts');
+
+function readParentSources(): string {
+  return [LINKS_TS, VISUALIZATION_TS].map((p) => readFileSync(p, 'utf-8')).join('\n');
+}
 
 // ---------------------------------------------------------------------------
 // Regex helpers
@@ -112,9 +117,9 @@ function listExportedBuilders(source: string): Array<{ name: string; builder: st
 // ---------------------------------------------------------------------------
 
 let cachedSource: string | null = null;
-function readLinksSource(): string {
+function readParentSource(): string {
   if (cachedSource !== null) return cachedSource;
-  cachedSource = readFileSync(LINKS_TS, 'utf-8');
+  cachedSource = readParentSources();
   return cachedSource;
 }
 
@@ -124,15 +129,15 @@ function readLinksSource(): string {
 
 describe('Phase 3 — parent-portal Convex export contract', () => {
   describe('source file presence', () => {
-    it('convex/parent/links.ts exists at the contract path', () => {
-      const source = readLinksSource();
+    it('convex/parent/links.ts and convex/parent/visualization.ts exist at the contract paths', () => {
+      const source = readParentSource();
       expect(source.length).toBeGreaterThan(0);
     });
   });
 
   describe('mutation exports — read-only contract guardrail', () => {
     it('every mutation export is built with internalMutation (no public mutations)', () => {
-      const exports = listExportedBuilders(readLinksSource());
+      const exports = listExportedBuilders(readParentSource());
       const mutations = exports.filter((e) => e.builder === 'mutation' || e.builder === 'internalMutation');
 
       // At least one mutation must exist (the link/revoke flows).
@@ -149,7 +154,7 @@ describe('Phase 3 — parent-portal Convex export contract', () => {
     });
 
     it('mutation exports are limited to createParentLink* and revokeParentLink* (link/revoke flows)', () => {
-      const exports = listExportedBuilders(readLinksSource());
+      const exports = listExportedBuilders(readParentSource());
       const mutations = exports.filter((e) => e.builder === 'internalMutation');
 
       for (const m of mutations) {
@@ -167,7 +172,7 @@ describe('Phase 3 — parent-portal Convex export contract', () => {
       // Regression guard: someone could add a teacher-side mutation
       // (e.g., for invite approval) under convex/parent/ by mistake.
       // Per test-strategy.md §4, only link/revoke flows belong here.
-      const exports = listExportedBuilders(readLinksSource());
+      const exports = listExportedBuilders(readParentSource());
       const mutations = exports.filter((e) => e.builder === 'internalMutation');
       const forbidden = mutations.filter((m) => {
         const name = m.name;
@@ -181,7 +186,7 @@ describe('Phase 3 — parent-portal Convex export contract', () => {
 
   describe('query exports — read-only contract guardrail', () => {
     it('every query export is built with internalQuery (no public queries)', () => {
-      const exports = listExportedBuilders(readLinksSource());
+      const exports = listExportedBuilders(readParentSource());
       const queries = exports.filter((e) => e.builder === 'query' || e.builder === 'internalQuery');
 
       // At least one query must exist (listParentLinks).
@@ -197,16 +202,18 @@ describe('Phase 3 — parent-portal Convex export contract', () => {
       }
     });
 
-    it('query exports are limited to listParentLinks* (parent self-list only)', () => {
-      const exports = listExportedBuilders(readLinksSource());
+    it('query exports are limited to listParentLinks* and projectParentVisualization*', () => {
+      const exports = listExportedBuilders(readParentSource());
       const queries = exports.filter((e) => e.builder === 'internalQuery');
 
       for (const q of queries) {
-        const isListFlow = /^listParentLinks/i.test(q.name);
+        const isAllowed =
+          /^listParentLinks/i.test(q.name) ||
+          /^projectParentVisualization/i.test(q.name);
         expect(
-          isListFlow,
+          isAllowed,
           `unexpected query export name: ${q.name} ` +
-            `(only listParentLinks* is permitted under convex/parent/)`,
+            `(only listParentLinks* and projectParentVisualization* are permitted under convex/parent/)`,
         ).toBe(true);
       }
     });
@@ -219,7 +226,7 @@ describe('Phase 3 — parent-portal Convex export contract', () => {
       // wrapper under convex/parent/ MUST be one of the two internal
       // builders. This is the strongest assertion in the contract test:
       // it fails on ANY unexpected wrapper shape.
-      const exports = listExportedBuilders(readLinksSource());
+      const exports = listExportedBuilders(readParentSource());
       const allowed = new Set(['internalMutation', 'internalQuery']);
       const violations = exports.filter((e) => !allowed.has(e.builder));
       expect(
@@ -229,7 +236,7 @@ describe('Phase 3 — parent-portal Convex export contract', () => {
     });
 
     it('exports at least one mutation (link/revoke flow) and one query (read-only)', () => {
-      const exports = listExportedBuilders(readLinksSource());
+      const exports = listExportedBuilders(readParentSource());
       const mutations = exports.filter((e) => e.builder === 'internalMutation');
       const queries = exports.filter((e) => e.builder === 'internalQuery');
       expect(mutations.length).toBeGreaterThan(0);

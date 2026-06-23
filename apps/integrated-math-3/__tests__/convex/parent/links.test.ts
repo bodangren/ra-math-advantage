@@ -19,7 +19,8 @@
 //       from 'active' to 'revoked'. Returns ok=true with link id on success.
 //
 //   - `listParentLinks(ctx, { parentProfileId })`
-//       Returns only rows with status === 'active' for the given parent.
+//       Returns all parent_links rows for the given parent (active, pending,
+//       and revoked). Callers that need only active links filter themselves.
 //       Empty array when none exist.
 //
 // `parent_links` table shape (expected):
@@ -624,7 +625,7 @@ describe('listParentLinks', () => {
     expect(links).toHaveLength(0);
   });
 
-  it('returns only active links for the requested parent', async () => {
+  it('returns all links for the requested parent', async () => {
     const active: ParentLinkRow = {
       _id: 'parent_links_active' as Id<'parent_links'>,
       _creationTime: 1_780_000_000_000,
@@ -659,8 +660,7 @@ describe('listParentLinks', () => {
       ctx as unknown as Parameters<typeof listParentLinks>[0],
       { parentProfileId: 'profiles_parent_1' as Id<'profiles'> },
     );
-    expect(links).toHaveLength(1);
-    expect((links[0] as { status: string }).status).toBe('active');
+    expect(links).toHaveLength(2);
   });
 
   it('does not return links belonging to other parents', async () => {
