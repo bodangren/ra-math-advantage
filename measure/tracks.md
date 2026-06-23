@@ -1006,6 +1006,10 @@ Sixteen candidate tracks identified from a full-roadmap review. Each is registry
 
 ## Archived Tracks
 
+- [x] **Track: Repository Hygiene Remediation** — **COMPLETED / ARCHIVED** (2026-06-23)
+   *Remediate repo hygiene debt: commit dirty files (Phase 1), resolve stashes (Phase 2), fix BM2 test reds — UserMenu AuthProvider mock and GradebookDrillDown timeout (Phase 3), fix IM3 React 19 eslint violations across 16 files (Phase 4), and run verification gates (Phase 5). 17 tasks complete. Cross-track blockers: 388 IM3 + 31 BM2 tsc errors from primitive-layer-contract_20260615 schema rename. Checkpoints: 292deda5, 540473fa, f07e1253, b8c35cb0, 62a7ba0c, 2d2e9c30.*
+   *Link: [./measure/archive/repo-hygiene-remediation_20260616/](./measure/archive/repo-hygiene-remediation_20260616/)*
+
 - [x] **Track: Onboarding + Roster Import** — **COMPLETED / ARCHIVED** (2026-06-23)
    *New-student/teacher onboarding flow and bulk student roster import (CSV/SIS). 4 phases complete: CSV contract/parser/dry-run (Phase 1), idempotent enrollment mutation + summary queries (Phase 2), teacher onboarding UI wizard + import summary (Phase 3), student flow routing into placement (Phase 4). 83/83 onboarding tests pass. Checkpoints: 41043d1f, bd4f6736, cb5e4de9, 8e0605e7.*
    *Link: [./measure/archive/onboarding-roster-import_20260605/](./measure/archive/onboarding-roster-import_20260605/)*

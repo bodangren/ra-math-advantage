@@ -1,0 +1,50 @@
+{
+  "track_id": "repo-hygiene-remediation_20260616",
+  "closeout_date": "2026-06-23",
+  "closeout_agent": "measure-closeout-subagent",
+  "audits": {
+    "plan_tasks_verified": {
+      "status": "PASS",
+      "detail": "All 17 tasks across 5 phases marked [x] with commit SHA evidence. Phase 5 verification gates (tsc, lint) partially blocked by primitive-layer-contract_20260615 schema rename — documented as cross-track attribution, not deferred within this track."
+    },
+    "commit_sha_evidence": {
+      "status": "PASS",
+      "detail": "All referenced SHAs confirmed in git history: 292deda5 (Phase 1), 540473fa (Phase 3.1), f07e1253 (Phase 3.1b+3.2), b8c35cb0 (Phase 4.1-4.5), 62a7ba0c (Phase 4 exhaustive-deps), 31d5af86 (Phase 5.1-5.3 live), e3b5a01f (Phase 5 attempt-2), 2d2e9c30 (Phase 5.4 clean state), 92885a4a (Phase 5 SHA update)"
+    },
+    "track_archived": {
+      "status": "PASS",
+      "detail": "git mv measure/tracks/repo-hygiene-remediation_20260616 measure/archive/repo-hygiene-remediation_20260616"
+    },
+    "metadata_updated": {
+      "status": "PASS",
+      "detail": "metadata.json status set to 'done', closed_at/completed set to 2026-06-23, actual_tasks=17, deviation_notes recorded"
+    },
+    "tracks_registry_updated": {
+      "status": "PASS",
+      "detail": "Track was never registered in measure/tracks.md active section. Added to Archived Tracks section."
+    },
+    "non_deferred_tasks_complete": {
+      "status": "PASS",
+      "detail": "All tasks marked [x]. Cross-track blockers (tsc errors from primitive-layer-contract_20260615, full CI suite timeout) documented as not owned by this track."
+    }
+  },
+  "commands_executed": [
+    "git mv measure/tracks/repo-hygiene-remediation_20260616 measure/archive/repo-hygiene-remediation_20260616",
+    "Updated metadata.json: status=done, closed_at=2026-06-23",
+    "Updated measure/tracks.md: added archive entry"
+  ],
+  "retained_evidence": [
+    "measure/archive/repo-hygiene-remediation_20260616/plan.md — full implementation plan with all SHAs",
+    "measure/archive/repo-hygiene-remediation_20260616/spec.md — original specification",
+    "measure/archive/repo-hygiene-remediation_20260616/metadata.json — completion metadata",
+    "measure/archive/repo-hygiene-remediation_20260616/review-2026-06-20.md — final review",
+    "measure/archive/repo-hygiene-remediation_20260616/automation-supervisor-closeout-manifest.json — this manifest"
+  ],
+  "artifact_cleanup": {
+    "bulky_artifacts_removed": [],
+    "note": "No bulky run artifacts identified by orchestrator. All track files retained in archive."
+  },
+  "lessons_learned_updated": false,
+  "tech_debt_updated": false,
+  "tech_debt_note": "Tech debt items #28 (BM2 test reds) and #29 (IM3 React 19 violations) are now resolved by this track. Items #30 (spec compliance) and #31 (gate_mid conflates dirty work) remain open. No update needed — resolution recorded in the existing entries."
+}

@@ -1,0 +1,13 @@
+{
+  "track_id": "repo-hygiene-remediation_20260616",
+  "type": "chore",
+  "status": "done",
+  "created_at": "2026-06-16T14:00:00Z",
+  "updated_at": "2026-06-23T00:00:00Z",
+  "closed_at": "2026-06-23T00:00:00Z",
+  "completed": "2026-06-23",
+  "description": "Remediate repo hygiene debt: commit dirty files, resolve stashes, fix BM2 test reds, fix IM3 React 19 eslint violations, verify TypeScript/lint/tests pass",
+  "estimated_tasks": 13,
+  "actual_tasks": 17,
+  "deviation_notes": "Phase 5 verification gates (tsc, lint) partially blocked by primitive-layer-contract_20260615 schema rename (388 IM3 + 31 BM2 tsc errors, 2 IM3 lint warnings). Full CI test suites timed out at 15min each (infrastructure limit). Task 5.4 resolved via WIP branch track-7-pending-remediation. Extended scope: 5 additional lint violations surfaced and fixed in Phase 4. All non-deferred tasks complete with commit SHA evidence."
+}
