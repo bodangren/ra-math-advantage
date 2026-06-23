@@ -152,9 +152,9 @@ own #2/#6, #3, and #5.
    - [ ] **Track 19: Skill Graph Program — Geometry, Stats & Trig Generators**
       *Implement generators that output complex visual/data parameters explicitly built for the new visualization components in T15 and T16.*
       *Link: [./measure/tracks/geometry-stats-trig-generators_20260510/](./measure/tracks/geometry-stats-trig-generators_20260510/)*
-   - [ ] **Track 20: Skill Graph Program — PreCalc Standards & Concept Taxonomy**
+   - [x] **Track 20: Skill Graph Program — PreCalc Standards & Concept Taxonomy** — **COMPLETED / ARCHIVED** (2026-06-23)
       *Perform manual AP CED standards alignment for the 73 PreCalc skills and define/remediate the architecture for concept-level blueprints.*
-      *Link: [./measure/tracks/precalc-alignment-concept-taxonomy_20260510/](./measure/tracks/precalc-alignment-concept-taxonomy_20260510/)*
+      *Link: [./measure/archive/precalc-alignment-concept-taxonomy_20260510/](./measure/archive/precalc-alignment-concept-taxonomy_20260510/)*
 
 - [x] **Track: Practice Worksheet Example Import** — **COMPLETED**
    *Import IM1, IM2, and IM3 Practice Worksheet Student Bundles as reviewed Markdown problem set catalogs. 244 DOCX → 241 reviewed lesson files (IM1: 93, IM2: 96, IM3: 52). Full regeneration of IM2 and IM3 from canonical DOCX sources.*
