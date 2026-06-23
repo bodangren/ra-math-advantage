@@ -28,7 +28,7 @@ export const MODULE5_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     description: "Solve exponential equations using properties of exponents and logarithms",
     objectiveIds: ["HSF-LE.A.4"],
     difficulty: "standard",
-    metadata: { module: 5, topic: "exponential-equations" },
+    metadata: { module: 5, topic: "exponential-equations", generatorKey: "exp-log-solver" },
   },
   {
     problemFamilyId: "step-by-step-solver:exponential-models",

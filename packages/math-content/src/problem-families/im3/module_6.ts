@@ -38,7 +38,7 @@ export const MODULE6_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     description: "Solve logarithmic equations using properties of equality and definitions",
     objectiveIds: ["HSF-LE.A.4"],
     difficulty: "standard",
-    metadata: { module: 6, topic: "solving-log-equations" },
+    metadata: { module: 6, topic: "solving-log-equations", generatorKey: "exp-log-solver" },
   },
   // Properties of Logarithms (HSF-LE.B.5)
   {

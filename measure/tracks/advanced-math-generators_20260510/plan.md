@@ -147,17 +147,52 @@
   - Seed 1 produces: log₁₀(−3x + 8) = 2, answer = −34 (A=−3, C=8, D=2,
     10²=100, x=(100−8)/(−3)=−34, domain x < 8/3, −34 < 2.67 ✓).
 
-- [~] **Phase 4: Registration & Validation**
-  - [~] Export generators to `registry.ts`.
-  - [~] Map keys in IM3 Module 2-7 blueprints.
-  - [~] Test edge cases (like polynomial missing middle terms, e.g., $x^3 - 1$) in the QA harness.
+- [x] **Phase 4: Registration & Validation**
+  - [x] Export generators to `registry.ts`.
+  - [x] Map keys in IM3 Module 2-7 blueprints.
+  - [x] Test edge cases (like polynomial missing middle terms, e.g., $x^3 - 1$) in the QA harness.
 
-  **Red evidence (baseline SHA `7b609a09`, pending commit):**
+  **Red evidence (baseline SHA `7b609a09`, commit SHA `bf613799`):**
   ```
   $ npx vitest run generator-registry --root packages/math-content
   FAIL  src/__tests__/generator-registry.test.ts
   Error: Cannot find module '../generator-registry'
   Test Files  1 failed (1) | Tests  no tests | Duration  892ms
   ```
-  12 tests defined across 3 describe blocks (registry contract 5, re-exports 5, QA harness 4)
+  14 tests defined across 3 describe blocks (registry contract 5, re-exports 5, QA harness 4)
   fail with module-not-found.
+
+  **Green evidence (baseline SHA `bf613799`, commit SHA pending):**
+  ```
+  $ npx vitest run generator-registry polynomial rational-analyzer exp-log-solver --root packages/math-content
+   Test Files  4 passed (4)
+        Tests  69 passed (69)
+     Duration  3.47s
+  ```
+  All 14 generator-registry tests pass. All 55 Phase 1–3 tests still pass (69 total).
+  `npx vitest run setup` confirms problem family counts unchanged (87 + 71 + 41).
+
+  **JR Green work log:**
+  - Created `packages/math-content/src/generator-registry.ts`:
+    exports `GENERATOR_REGISTRY` mapping four keys to generator entries:
+    `'polynomial-operations'` → `generatePolynomialOperation`,
+    `'polynomial-division'` → `generatePolynomialDivision`,
+    `'rational-analyzer'` → `generateRationalProblem`,
+    `'exp-log-solver'` → `generateExpLogProblem`.
+    Each entry conforms to the `GeneratorEntry` interface
+    (`{ generate: (options: { seed: number }) => unknown }`).
+  - Updated `packages/math-content/src/index.ts`:
+    added re-exports for `GENERATOR_REGISTRY`, `GeneratorEntry`,
+    `generatePolynomialOperation`, `generatePolynomialDivision`,
+    `generateRationalProblem`, `generateExpLogProblem`,
+    and `addPoly`, `subtractPoly`, `multiplyPoly` from `./utils/polynomial`.
+  - Updated IM3 blueprint metadata:
+    `module_2.ts`: polynomial-arithmetic → generatorKey: "polynomial-operations",
+    polynomial-division → generatorKey: "polynomial-division".
+    `module_5.ts`: solve-exponential-equations → generatorKey: "exp-log-solver".
+    `module_6.ts`: solve-logarithmic-equations → generatorKey: "exp-log-solver".
+    `module_7.ts`: rational-functions → generatorKey: "rational-analyzer".
+  - QA harness test: seed 523 produces sparse polynomial [8, 0, 0, 4] (8 + 4x³
+    with missing x and x² terms) via subtractPoly([3,−1,4,1], [−5,−1,4,−3]).
+    Additional edge-case tests verify multiplyPoly([−1,1], [1,1,1]) = [−1,0,0,1]
+    (x³ − 1 with all middle terms zero).

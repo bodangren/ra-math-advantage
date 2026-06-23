@@ -59,7 +59,7 @@ export const MODULE7_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     description: "Graph rational functions and identify vertical, horizontal, and oblique asymptotes",
     objectiveIds: ["HSF-IF.C.7d"],
     difficulty: "challenging",
-    metadata: { module: 7, topic: "rational-functions" },
+    metadata: { module: 7, topic: "rational-functions", generatorKey: "rational-analyzer" },
   },
   // Variation (HSA-CED.A.2)
   {

@@ -9,7 +9,7 @@ export const MODULE2_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     description: "Add, subtract, and multiply polynomial expressions",
     objectiveIds: ["HSA-APR.A.1"],
     difficulty: "standard",
-    metadata: { module: 2, topic: "polynomial-operations" },
+    metadata: { module: 2, topic: "polynomial-operations", generatorKey: "polynomial-operations" },
   },
   {
     problemFamilyId: "step-by-step-solver:binomial-expansion",
@@ -75,7 +75,7 @@ export const MODULE2_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     description: "Divide polynomials using long division or synthetic division",
     objectiveIds: ["HSA-APR.A.1"],
     difficulty: "standard",
-    metadata: { module: 2, topic: "polynomial-division" },
+    metadata: { module: 2, topic: "polynomial-division", generatorKey: "polynomial-division" },
   },
   // Comprehension
   {

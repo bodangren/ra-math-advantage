@@ -62,3 +62,12 @@ export type { ActivitySeed, PhaseSeed, SectionSeed, LessonSeed, SeedData } from 
 // Knowledge-space adapter
 export { mathDomainAdapter } from './knowledge-space';
 export type { MathDomainAdapter } from './knowledge-space';
+
+// Advanced math generators (Phase 1–4)
+export { GENERATOR_REGISTRY } from './generator-registry';
+export type { GeneratorEntry } from './generator-registry';
+export { generatePolynomialOperation } from './polynomial-operations';
+export { generatePolynomialDivision } from './polynomial-division';
+export { generateRationalProblem } from './rational-analyzer';
+export { generateExpLogProblem } from './exp-log-solver';
+export { addPoly, subtractPoly, multiplyPoly } from './utils/polynomial';
