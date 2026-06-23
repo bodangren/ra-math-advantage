@@ -490,7 +490,7 @@ export function ReviewQueueView() {
 /**
  * Renders the appropriate review harness for a selected queue item.
  *
- * @param {{ item: ReviewQueueItem; onCanApproveChange: (canApprove: boolean)} props - Component harness panel configuration.
+ * @param {{ item: ReviewQueueItem; onCanApproveChange: (canApprove: boolean) }} props - Component harness panel configuration.
  * @returns {JSX.Element} A review harness for the selected item.
  */
 function ComponentHarnessPanel({ item, onCanApproveChange }: { item: ReviewQueueItem; onCanApproveChange: (canApprove: boolean) => void }) {
