@@ -60,9 +60,6 @@ Dependencies:
     - [ ] **Track 2: Weighted Readiness**
       *Make `edge.weight` a live field: a weighted readiness score (`Σ(wᵢ·mᵢ)/Σ(wᵢ)`) replaces binary prerequisite gating, modeling compensatory learning paths. (Improvement Plan Item 2.) Depends on Track 1.*
       *Link: [./tracks/weighted-readiness_20260521/](./tracks/weighted-readiness_20260521/)*
-     - [ ] **Track 7: Practice-Variant Rename**
-       *Rename the math-specific "problem family" to domain-neutral "practice variant" across practice-core/srs-engine/knowledge-space-practice; `Card` keyed by `variantKey`; subdivision optional. (Item 7.) Depends on Track 1.*
-       *Link: [./tracks/practice-variant-rename_20260521/](./tracks/practice-variant-rename_20260521/)*
 
 ## Audit Remediation (2026-06-09)
 
@@ -1073,6 +1070,10 @@ Sixteen candidate tracks identified from a full-roadmap review. Each is registry
 - [x] **Track: Learning Efficacy & Analytics** — **COMPLETED / ARCHIVED** (2026-06-23)
    *Instrument learning outcomes (retention curves, time-to-mastery, cohort comparison) and an A/B harness to measure whether the SRS/KST engine actually improves learning. Phases 1, 2, and 4 fully implemented and verified (Phase 1: 46/46 metric tests, Phase 2: 18/18 cohort tests, Phase 4: 30/30 efficacy view tests). Phase 3 (experiment harness) has Red tests committed at `5a4fdfd2` but Green implementation was stashed and never landed — tracked as a known follow-up. Boundary lints, lint, tsc (0 impl errors) all pass.*
    *Link: [./archive/learning-efficacy-analytics_20260605/](./archive/learning-efficacy-analytics_20260605/)*
+
+- [x] **Track 7: Practice-Variant Rename** — **COMPLETED / ARCHIVED** (2026-06-23)
+   *Rename the math-specific "problem family" to domain-neutral "practice variant" across practice-core/srs-engine/knowledge-space-practice; `Card` keyed by `variantKey`; subdivision optional. (Item 7.) Depends on Track 1. 4 phases complete: P1 (contract/schema rename, commit 96fd073f), P2 (engine rename, commit ff285065), P3 (app call sites + migration, commit f5b91fbb), P4 (docs/doctor/final verification, commit 5355abb1). All ACs satisfied: AC1 (no stale problemFamily* identifiers), AC2 (variantKey card key), AC3 (no new node kind), AC4 (Convex migration defined/verified), AC5 (boundary lints, tsc, full suite green).*
+   *Link: [./measure/archive/practice-variant-rename_20260521/](./measure/archive/practice-variant-rename_20260521/)*
 
 ## Tech Debt Resolution (2026-04-29)
 

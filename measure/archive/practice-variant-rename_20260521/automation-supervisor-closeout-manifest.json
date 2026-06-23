@@ -1,0 +1,88 @@
+{
+  "manifest_version": "1.0",
+  "track_id": "practice-variant-rename_20260521",
+  "closeout_date": "2026-06-23",
+  "closeout_agent": "measure-closeout-subagent",
+  "status": "done",
+  "audits": {
+    "phase_1_contract_schema": {
+      "status": "verified",
+      "commit_sha": "96fd073f",
+      "description": "Rename types/schemas in practice-core: ProblemFamily→PracticeVariant, problemFamilyId→variantKey, Zod schemas, problem-family.ts module. Convex schema rename and data migration.",
+      "evidence": "git log shows commit 96fd073f with message 'refactor(practice-core,convex): rename problemFamilyId to variantKey (Phase 1)'",
+      "tests_passing": "Red tests confirmed 5 failed / 1 passed (expected TDD pattern); Green tests verified in P4"
+    },
+    "phase_2_engine_rename": {
+      "status": "verified",
+      "commit_sha": "ff285065",
+      "description": "Rename across srs-engine: scheduler, contract, objective-proficiency, srs-proficiency; variantKey threading; minProblemFamilies→minVariants; ProblemFamilyEvidence→PracticeVariantEvidence; single-variant default (variantKey = objectiveId)",
+      "evidence": "git log shows commit ff285065 with message 'feat(srs-engine): rename problemFamilyId to variantKey across engine (Phase 2)'",
+      "tests_passing": "Red tests confirmed 20 failed / 2 passed (expected TDD pattern); Green tests verified in P4"
+    },
+    "phase_3_app_migration": {
+      "status": "verified",
+      "commit_sha": "f5b91fbb",
+      "description": "Rename in knowledge-space-practice SRS projection and app call sites (convexCardStore.ts, cards.ts, processReview.ts, submissionSrs.ts). Execute and verify Convex data migration.",
+      "evidence": "git log shows commit f5b91fbb with message 'feat(p3): rename problemFamilyId to variantKey in app call sites'",
+      "tests_passing": "P2 test assertion flip: contract 26/26, scheduler 32/32, submission-srs-adapter 16/16. Full lib/srs suite: 164/164. knowledge-space-core: 285/285. Migration test: 4/4."
+    },
+    "phase_4_docs_doctor": {
+      "status": "verified",
+      "commit_sha": "5355abb1",
+      "description": "Update kst-srs.v2 spec §12.1/§13.4 (practice variant boundary + contract). Run measure/generate.sh and doctor.sh; fix architectural lint. Final verification: boundary lints, npm run lint, tsc --noEmit, CI=true npm run test.",
+      "evidence": "git log shows commit 5355abb1 with message 'feat(track-7): complete practice-variant rename in practice-core and spec (Phase 4 Green)'",
+      "tests_passing": "Governance: 4/4. practice-core: 193/193. srs-engine: 232/233 (1 pre-existing flaky). knowledge-space-practice: 366/366. knowledge-space-core: 285/285. variant-rename + srs-proficiency: 47/47."
+    },
+    "acceptance_criteria": {
+      "AC1_rename_complete": {
+        "status": "verified",
+        "evidence": "no-stale-problem-family governance test passes 4/4; zero problemFamilyId/ProblemFamily/minProblemFamilies in practice-core, srs-engine, knowledge-space-practice source files"
+      },
+      "AC2_variantKey_card_key": {
+        "status": "verified",
+        "evidence": "Card keyed by variantKey; single-variant default (variantKey = objectiveId) implemented in srs-engine"
+      },
+      "AC3_no_new_node_kind": {
+        "status": "verified",
+        "evidence": "No new node kind introduced; variants remain a domain decision below graph resolution"
+      },
+      "AC4_convex_migration": {
+        "status": "verified",
+        "evidence": "Convex schema migration defined (rename-problem-family.ts), migration test passes 4/4"
+      },
+      "AC5_boundary_lints": {
+        "status": "verified",
+        "evidence": "boundary lints pass, tsc --noEmit clean (per-package), full suite green"
+      }
+    }
+  },
+  "commands_executed": [
+    "git mv measure/tracks/practice-variant-rename_20260521 measure/archive/practice-variant-rename_20260521",
+    "Updated measure/archive/practice-variant-rename_20260521/metadata.json: status→done, closed_at→2026-06-23, completed→2026-06-23",
+    "Updated measure/tracks.md: removed Track 7 from active program section, added to archived section",
+    "Created measure/archive/practice-variant-rename_20260521/automation-supervisor-closeout-manifest.json"
+  ],
+  "commit_shas": {
+    "phase_1_green": "96fd073f",
+    "phase_2_green": "ff285065",
+    "phase_3_green": "f5b91fbb",
+    "phase_4_green": "5355abb1",
+    "phase_4_umv_docs": "b27004ee",
+    "phase_3_umv_docs": "59f37118"
+  },
+  "retained_evidence": [
+    "measure/archive/practice-variant-rename_20260521/spec.md",
+    "measure/archive/practice-variant-rename_20260521/plan.md",
+    "measure/archive/practice-variant-rename_20260521/metadata.json",
+    "measure/archive/practice-variant-rename_20260521/automation-supervisor-closeout-manifest.json"
+  ],
+  "artifact_cleanup": {
+    "performed": false,
+    "reason": "No bulky run artifacts identified by orchestrator; all test artifacts are source-controlled test files"
+  },
+  "boundary_compliance": {
+    "unrelated_dirty_files_preserved": true,
+    "graph_db_not_committed": true,
+    "note": "~148 unrelated dirty files preserved in worktree; graph.db not staged or committed"
+  }
+}
