@@ -7,10 +7,10 @@ Depends on: Track 1. Sequence after Track 1 to avoid churn collisions.
 ## Phase 1 — Contract & Schema
 
 - [x] Task: Rename types and schemas in practice-core  *(JR Green, 2026-06-19, commit 96fd073f)*
-    - [x] ProblemFamily → PracticeVariant; problemFamilyId → variantKey; Zod schemas; problem-family.ts module
+    - [x] ProblemFamily → PracticeVariant; problemFamilyId → variantKey; Zod schemas; problem-family.ts module *(commit 96fd073f)*
 - [x] Task: Define the Convex schema rename and data migration  *(JR Green, 2026-06-19, commit 96fd073f)*
-    - [x] srs_cards.problemFamilyId → variantKey; migration script; migration tests
-- [x] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md)
+    - [x] srs_cards.problemFamilyId → variantKey; migration script; migration tests *(commit 96fd073f)*
+- [x] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md) *(commit 96fd073f)*
 
 > **MID Red handoff (2026-06-19):** See `test-strategy.md` §7 (Live-Proof Plan). Red
 > tests live at `packages/practice-core/src/__tests__/practice-item.test.ts` and
@@ -47,70 +47,26 @@ Depends on: Track 1. Sequence after Track 1 to avoid churn collisions.
 ## Phase 2 — Engine Rename
 
 - [x] Task: Rename across srs-engine (TDD — keep tests green) *(JR Green, 2026-06-19, commit ff285065)*
-    - [x] scheduler, contract, objective-proficiency, srs-proficiency; variantKey threading
-    - [x] minProblemFamilies → minVariants; ProblemFamilyEvidence → PracticeVariantEvidence
-    - [x] Single-variant default (variantKey = objectiveId)
-
-> **MID Red handoff (2026-06-19):** See `test-strategy.md` §7 (Live-Proof Plan), row "P2".
-> Red proof lives at `packages/srs-engine/src/__tests__/variant-rename.test.ts` (new).
-> Existing `__tests__/*.test.ts` files are intentionally NOT modified in the Red phase
-> per the directive "use specific test files/cases" — flipping their assertions en bloc
-> belongs to the Green step (where the source rename lands and they would otherwise turn
-> Red without a target).
->
-> **Dirty worktree (preserved, NOT staged in this track's commit):**
-> - `apps/integrated-math-3/__tests__/lib/onboarding/student-flow.test.ts` (M) —
->   onboarding test, unrelated to this track.
-> - `measure/automation-supervisor.py` (M) — supervisor hardening, unrelated to this track.
->
-> **Targeted Red command (run 2026-06-19, vitest 4.1.8):**
-> `./node_modules/.bin/vitest run packages/srs-engine/src/__tests__/variant-rename.test.ts`
-> → **20 failed, 2 passed** of 22.
-> The 2 passes are FR-invariant sanity checks (`aggregateCardsToEvidence([])`
-> returns `[]`; `InMemoryTimingBaselineResolver` is still on the module surface —
-> FR1 does not rename it). The 20 substantive Red failures span all five rename
-> surfaces in scope for Phase 2:
-> - **Contract** (2 fail): `createMockSrsCard` carries `problemFamilyId`, not
->   `variantKey`; `variantKey` overrides do not round-trip.
-> - **Scheduler** (4 fail): `createCard({ variantKey })` ignores `variantKey`
->   and writes `problemFamilyId`; FR2 single-variant default is not implemented
->   (no defaulting of `variantKey` to `objectiveId`).
-> - **SRS Proficiency** (2 fail): `aggregateCardsToEvidence` groups cards by
->   `problemFamilyId`, so input `{ variantKey }` collapses into one bucket;
->   the byte-for-byte numeric assertion cannot be reached.
-> - **Objective Proficiency** (6 fail): `PROFICIENCY_THRESHOLD_DEFAULTS.*`
->   expose `minProblemFamilies`, not `minVariants`; `computeObjectiveProficiency`
->   reads `problemFamilyEvidences` + `minProblemFamilies` and throws
->   `Cannot read properties of undefined (reading 'length')` when the test
->   passes `variantEvidences`; emitted `problemFamilyDetails[i].variantKey`
->   is undefined.
-> - **Adapters** (3 fail): `InMemoryCardStore.getCardByStudentAndVariant` is
->   `undefined` (HEAD exposes `getCardByStudentAndFamily`).
-> - **Submission Adapter module** (3 fail): `InMemoryPracticeVariantResolver`
->   is `undefined` on `submission-srs-adapter` module (HEAD exports
->   `InMemoryProblemFamilyResolver`).
->
-> All 20 fail with the expected missing-behavior modes (legacy field writes,
-> missing renamed exports, undefined reads). The strategy's Red-command target
-> is met — the live gate `npm --workspace @math-platform/srs-engine run test`
-> is owned by the Green step.
-- [x] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
+    - [x] scheduler, contract, objective-proficiency, srs-proficiency; variantKey threading *(commit ff285065)*
+    - [x] minProblemFamilies → minVariants; ProblemFamilyEvidence → PracticeVariantEvidence *(commit ff285065)*
+    - [x] Single-variant default (variantKey = objectiveId) *(commit ff285065)*
+- [x] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md) *(commit ff285065)*
 
 ## Phase 3 — Projection, App Rename, and Migration
 
 - [x] Task: Rename in knowledge-space-practice SRS projection and app call sites (TDD) *(JR Green, 2026-06-19, commit f5b91fbb)*
-    - [x] projections/srs.ts — already satisfied (rename-invariant by construction, no legacy symbols)
-    - [x] apps/integrated-math-3 lib/srs (convexCardStore.ts) and convex call sites (cards.ts, processReview.ts, submissionSrs.ts)
-    - [x] P2 test assertion flip: contract.test.ts, scheduler.test.ts, submission-srs-adapter.test.ts
+    - [x] projections/srs.ts — already satisfied (rename-invariant by construction, no legacy symbols) *(commit f5b91fbb)*
+    - [x] apps/integrated-math-3 lib/srs (convexCardStore.ts) and convex call sites (cards.ts, processReview.ts, submissionSrs.ts) *(commit f5b91fbb)*
+    - [x] P2 test assertion flip: contract.test.ts, scheduler.test.ts, submission-srs-adapter.test.ts *(commit f5b91fbb)*
 - [x] Task: Execute and verify the Convex data migration on existing card data *(JR Green, 2026-06-19, commit f5b91fbb)*
-    - [x] Migration test passes (4/4); live dry-run deferred to P4 or production rollout
+    - [x] Migration test passes (4/4); live dry-run deferred to P4 or production rollout *(commit f5b91fbb)*
 - [x] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md) — commit f5b91fbb (Green), 59f37118 (docs)
-    - [x] Targeted Red: 21/21 passed (convex-cardstore-variant-key, cards-variant-key, submission-srs-variant-key, projections-variant-rename)
-    - [x] Migration test: 4/4 passed
-    - [x] P2 test assertion flip: contract 26/26, scheduler 32/32, submission-srs-adapter 16/16
-    - [x] Full lib/srs suite: 164/164 passed (5 pre-existing @/ alias failures, out of scope)
-    - [x] Root npm test: knowledge-space-core 285/285 passed
-    - [x] AC1 verified: no legacy problemFamily* identifiers remain in convexCardStore, cards, processReview, submissionSrs
+    - [x] Targeted Red: 21/21 passed (convex-cardstore-variant-key, cards-variant-key, submission-srs-variant-key, projections-variant-rename) *(commit f5b91fbb)*
+    - [x] Migration test: 4/4 passed *(commit f5b91fbb)*
+    - [x] P2 test assertion flip: contract 26/26, scheduler 32/32, submission-srs-adapter 16/16 *(commit f5b91fbb)*
+    - [x] Full lib/srs suite: 164/164 passed (5 pre-existing @/ alias failures, out of scope) *(commit f5b91fbb)*
+    - [x] Root npm test: knowledge-space-core 285/285 passed *(commit f5b91fbb)*
+    - [x] AC1 verified: no legacy problemFamily* identifiers remain in convexCardStore, cards, processReview, submissionSrs *(commit f5b91fbb)*
 
 > **MID Red handoff (2026-06-19):** See `test-strategy.md` §7 (Live-Proof Plan), rows "P3"
 > and "P3 exec". Red proof lives at:
@@ -228,31 +184,31 @@ Depends on: Track 1. Sequence after Track 1 to avoid churn collisions.
 ## Phase 4 — Docs & Doctor
 
 - [x] Task: Update in-repo kst-srs.v2 spec §12.1 / §13 (practice variant; Card definition) *(JR Green, 2026-06-19, commit 5355abb1)*
-    - [x] Added §12.1 Practice Variant Boundary documenting variantKey / PracticeVariant below graph resolution
-    - [x] Added §13.4 Practice Variant Contract covering practice-core, srs-engine, knowledge-space-practice, and app-layer contracts
+    - [x] Added §12.1 Practice Variant Boundary documenting variantKey / PracticeVariant below graph resolution *(commit 5355abb1)*
+    - [x] Added §13.4 Practice Variant Contract covering practice-core, srs-engine, knowledge-space-practice, and app-layer contracts *(commit 5355abb1)*
 - [x] Task: Run measure/generate.sh and measure/doctor.sh; fix architectural lint *(JR Green, 2026-06-19, commit 5355abb1)*
-    - [x] Stale problemFamilyId removed from practice-core source: timing-baseline.ts (problemFamilyId → variantKey), problem-family.ts (legacy compatibility removed), index.ts (ProblemFamily re-export removed)
-    - [x] generated.sh / doctor.sh fail due to missing node/npx on PATH (environment issue, verified test gates instead)
+    - [x] Stale problemFamilyId removed from practice-core source: timing-baseline.ts (problemFamilyId → variantKey), problem-family.ts (legacy compatibility removed), index.ts (ProblemFamily re-export removed) *(commit 5355abb1)*
+    - [x] generated.sh / doctor.sh fail due to missing node/npx on PATH (environment issue, verified test gates instead) *(commit 5355abb1)*
 - [x] Task: Final verification — boundary lints, npm run lint, tsc --noEmit, CI=true npm run test *(JR Green, 2026-06-19, commit 5355abb1)*
-    - [x] Targeted Red gate: 4/4 passed (no-stale-problem-family.test.ts)
-    - [x] practice-core: 193/193 passed
-    - [x] srs-engine: 232/233 passed (1 pre-existing flaky timing test)
-    - [x] knowledge-space-practice: 366/366 passed
-    - [x] knowledge-space-core (root CI): 285/285 passed
-    - [x] variant-rename + srs-proficiency: 47/47 passed
-    - [x] tsc --noEmit per-package: practice-core (pre-existing errors in generator-qa), srs-engine (clean)
-    - [x] npm run lint: pre-existing warnings in onboarding/student-flow.test.ts (unrelated)
+    - [x] Targeted Red gate: 4/4 passed (no-stale-problem-family.test.ts) *(commit 5355abb1)*
+    - [x] practice-core: 193/193 passed *(commit 5355abb1)*
+    - [x] srs-engine: 232/233 passed (1 pre-existing flaky timing test) *(commit 5355abb1)*
+    - [x] knowledge-space-practice: 366/366 passed *(commit 5355abb1)*
+    - [x] knowledge-space-core (root CI): 285/285 passed *(commit 5355abb1)*
+    - [x] variant-rename + srs-proficiency: 47/47 passed *(commit 5355abb1)*
+    - [x] tsc --noEmit per-package: practice-core (pre-existing errors in generator-qa), srs-engine (clean) *(commit 5355abb1)*
+    - [x] npm run lint: pre-existing warnings in onboarding/student-flow.test.ts (unrelated) *(commit 5355abb1)*
 - [x] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md) *(JR Green, 2026-06-19, commits 5355abb1 b27004ee)*
-    - [x] Governance: 4/4 passed (no-stale-problem-family.test.ts)
-    - [x] practice-core: 193/193 passed; problem-family/practice-item tests green
-    - [x] srs-engine: 232/233 passed (1 pre-existing flaky)
-    - [x] knowledge-space-practice: 366/366 passed
-    - [x] knowledge-space-core (root CI): 285/285 passed
-    - [x] AC1 verified (no-stale-name grep): zero `problemFamilyId` / `ProblemFamily` / `minProblemFamilies` in practice-core, srs-engine, knowledge-space-practice source files
-    - [x] AC5 verified: boundary lints pass (knowledge-space-core phase4-final-verification.test.ts 2/2), root CI green
-    - [x] Spec §12.1 and §13.4 added with practice variant / variantKey references
-    - [x] generate.sh / doctor.sh not runnable (node/npx not on PATH; verified via test gates and knowledge-space-core phase4-doctor-generate-scripts test which passes 6/6 on clean state)
-    - [x] Manual verification plan: review `kst-srs.v2/SPECIFICATION.md` §12.1 and §13.4 for accuracy; review `packages/practice-core/src/` for absence of `problemFamilyId`; confirm `apps/integrated-math-3/convex/timing_baseline.ts` passes `variantKey` to computeTimingBaseline.
+    - [x] Governance: 4/4 passed (no-stale-problem-family.test.ts) *(commit 5355abb1)*
+    - [x] practice-core: 193/193 passed; problem-family/practice-item tests green *(commit 5355abb1)*
+    - [x] srs-engine: 232/233 passed (1 pre-existing flaky) *(commit 5355abb1)*
+    - [x] knowledge-space-practice: 366/366 passed *(commit 5355abb1)*
+    - [x] knowledge-space-core (root CI): 285/285 passed *(commit 5355abb1)*
+    - [x] AC1 verified (no-stale-name grep): zero `problemFamilyId` / `ProblemFamily` / `minProblemFamilies` in practice-core, srs-engine, knowledge-space-practice source files *(commit 5355abb1)*
+    - [x] AC5 verified: boundary lints pass (knowledge-space-core phase4-final-verification.test.ts 2/2), root CI green *(commit 5355abb1)*
+    - [x] Spec §12.1 and §13.4 added with practice variant / variantKey references *(commit 5355abb1)*
+    - [x] generate.sh / doctor.sh not runnable (node/npx not on PATH; verified via test gates and knowledge-space-core phase4-doctor-generate-scripts test which passes 6/6 on clean state) *(commit 5355abb1)*
+    - [x] Manual verification plan: review `kst-srs.v2/SPECIFICATION.md` §12.1 and §13.4 for accuracy; review `packages/practice-core/src/` for absence of `problemFamilyId`; confirm `apps/integrated-math-3/convex/timing_baseline.ts` passes `variantKey` to computeTimingBaseline. *(commit b27004ee)*
 
 > **MID Red handoff (2026-06-19):** See `test-strategy.md` §5/§7, row "P4 lint".
 > Red proof lives at `__tests__/governance/no-stale-problem-family.test.ts` (new).
