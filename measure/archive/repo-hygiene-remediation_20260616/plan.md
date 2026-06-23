@@ -2,90 +2,90 @@
 
 ## Phase 1: Commit Outstanding Track Work
 
-- [x] Task 1.1: Commit the fix-kst-node-titles parser fix and regenerated curriculum
-  - [x] Stage `packages/math-content/src/knowledge-space/extraction/parser.ts` and its test
-  - [x] Stage all 93 curriculum files (class-period-packages, activity-map, audit, class-period plans, aleks, lesson submodules)
-  - [x] Stage `measure/skill-graph-inventory-audit.md` and `measure/tracks.md`
+- [x] Task 1.1: Commit the fix-kst-node-titles parser fix and regenerated curriculum (292deda5)
+  - [x] Stage `packages/math-content/src/knowledge-space/extraction/parser.ts` and its test (292deda5)
+  - [x] Stage all 93 curriculum files (class-period-packages, activity-map, audit, class-period plans, aleks, lesson submodules) (292deda5)
+  - [x] Stage `measure/skill-graph-inventory-audit.md` and `measure/tracks.md` (292deda5)
   - [x] Commit: `fix(parser): split semicolon-separated titles 1:1 with example numbers + regenerate curriculum` (292deda5)
-  - [x] Verify `git status --short` returns empty (or only new track files)
+  - [x] Verify `git status --short` returns empty (or only new track files) (292deda5)
 
 ## Phase 2: Resolve Remaining Stashes
 
-- [x] Task 2.1: Evaluate each stash
-  - [x] stash@{0}: "unrelated: efficacy-core A/B testing" — create WIP branch or drop
-  - [x] stash@{1-4}: "learning-efficacy-analytics_20260605" — create WIP branch
-  - [x] stash@{5}: "kst-lesser-holes: park spec-compliance Phase 3 dirty paths" — drop (superseded by spec-compliance track)
-  - [x] Verify `git stash list` returns empty
+- [x] Task 2.1: Evaluate each stash (2d2e9c30 — resolved via WIP branch) (2d2e9c30)
+  - [x] stash@{0}: "unrelated: efficacy-core A/B testing" — create WIP branch or drop (2d2e9c30)
+  - [x] stash@{1-4}: "learning-efficacy-analytics_20260605" — create WIP branch (2d2e9c30)
+  - [x] stash@{5}: "kst-lesser-holes: park spec-compliance Phase 3 dirty paths" — drop (superseded by spec-compliance track) (2d2e9c30)
+  - [x] Verify `git stash list` returns empty (2d2e9c30)
 
 ## Phase 3: Fix BM2 Pre-existing Test Reds
 
-- [x] Task 3.1: Fix UserMenu test — point mock at the resolved AuthProvider module
-  - [x] File: `apps/bus-math-v2/__tests__/components/user-menu.test.tsx`
-  - [x] Root cause: `packages/app-shell/src/components/UserMenu.tsx:3` imports `useAuth` via the package-relative path `../auth/AuthProvider`. Mocking `@/components/auth/AuthProvider` (app-level re-export) or `@math-platform/app-shell/auth` (package barrel subpath) does not intercept that module record — the real `useAuth` runs and throws "useAuth must be used within an AuthProvider" in all 9 tests.
-  - [x] Fix: compute the absolute path to `packages/app-shell/src/auth/AuthProvider.tsx` inside `vi.hoisted` and pass that to `vi.mock`. Also mock `@math-platform/app-shell/auth` as defense-in-depth for any consumer that imports through the barrel.
-  - [x] Verified: `npx vitest run __tests__/components/user-menu.test.tsx` → was 9 failed (all `useAuth must be used within an AuthProvider`); now 5 passed / 4 failed. The 4 remaining failures are unrelated to mock resolution — they assert a Dashboard link not implemented in `UserMenu` (see Task 3.1b).
+- [x] Task 3.1: Fix UserMenu test — point mock at the resolved AuthProvider module (540473fa)
+  - [x] File: `apps/bus-math-v2/__tests__/components/user-menu.test.tsx` (540473fa)
+  - [x] Root cause: `packages/app-shell/src/components/UserMenu.tsx:3` imports `useAuth` via the package-relative path `../auth/AuthProvider`. Mocking `@/components/auth/AuthProvider` (app-level re-export) or `@math-platform/app-shell/auth` (package barrel subpath) does not intercept that module record — the real `useAuth` runs and throws "useAuth must be used within an AuthProvider" in all 9 tests. (540473fa)
+  - [x] Fix: compute the absolute path to `packages/app-shell/src/auth/AuthProvider.tsx` inside `vi.hoisted` and pass that to `vi.mock`. Also mock `@math-platform/app-shell/auth` as defense-in-depth for any consumer that imports through the barrel. (540473fa)
+  - [x] Verified: `npx vitest run __tests__/components/user-menu.test.tsx` → was 9 failed (all `useAuth must be used within an AuthProvider`); now 5 passed / 4 failed. The 4 remaining failures are unrelated to mock resolution — they assert a Dashboard link not implemented in `UserMenu` (see Task 3.1b). (540473fa)
   - [x] Commit: 540473fa
 
-- [x] Task 3.1b: Implement role-aware Dashboard link in `<UserMenu>` (deferred from Task 3.1)
-  - [x] File: `packages/app-shell/src/components/UserMenu.tsx`
-  - [x] `UserMenu` already accepts a `dashboardHref` prop (declared on line 13) but never renders a Dashboard link or branches on `profile.role`.
-  - [x] Test expectations (see `apps/bus-math-v2/__tests__/components/user-menu.test.tsx` lines 134–177, plus the new Red contract file `apps/bus-math-v2/__tests__/components/user-menu-dashboard-link.test.tsx`):
+- [x] Task 3.1b: Implement role-aware Dashboard link in `<UserMenu>` (deferred from Task 3.1) (f07e1253)
+  - [x] File: `packages/app-shell/src/components/UserMenu.tsx` (f07e1253)
+  - [x] `UserMenu` already accepts a `dashboardHref` prop (declared on line 13) but never renders a Dashboard link or branches on `profile.role`. (f07e1253)
+  - [x] Test expectations (see `apps/bus-math-v2/__tests__/components/user-menu.test.tsx` lines 134–177, plus the new Red contract file `apps/bus-math-v2/__tests__/components/user-menu-dashboard-link.test.tsx`): (f07e1253)
     - Render a "Dashboard" link inside the dropdown menu when authenticated.
     - `profile.role === 'student'` → href `/student/dashboard`.
     - `profile.role === 'teacher'` or `'admin'` → href `/teacher/dashboard`.
-  - [x] Decide: hard-code the role→href mapping, or accept a `dashboardHref` map / `getDashboardHref(profile)` callback. Existing `dashboardHref?: string` prop suggests the latter is more composable; review `apps/bus-math-v2` and other consumers for current call sites before changing the API.
-  - [x] Verify: 9/9 tests in `user-menu.test.tsx` pass, plus 4/4 new cases in `user-menu-dashboard-link.test.tsx` turn green.
+  - [x] Decide: hard-code the role→href mapping, or accept a `dashboardHref` map / `getDashboardHref(profile)` callback. Existing `dashboardHref?: string` prop suggests the latter is more composable; review `apps/bus-math-v2` and other consumers for current call sites before changing the API. (f07e1253)
+  - [x] Verify: 9/9 tests in `user-menu.test.tsx` pass, plus 4/4 new cases in `user-menu-dashboard-link.test.tsx` turn green. (f07e1253)
   - [x] Commit: f07e1253
   - **Red evidence (Mid attempt 2, 2026-06-19):** New test file `user-menu-dashboard-link.test.tsx` was added (3 positive role cases + 1 negative unauthenticated case). By code inspection of `packages/app-shell/src/components/UserMenu.tsx` (rendered body: `Sign in` link in unauthenticated branch, then `displayName`, `email`, `Settings` link, and `Log out` button — no element with text "Dashboard" anywhere in the JSX), the 3 positive cases will throw "Unable to find an element with the text: Dashboard" before reaching the `closest('a')` assertion. The negative case is the only one expected to pass at HEAD. Bounded Red command: `npx vitest run __tests__/components/user-menu-dashboard-link.test.tsx` — expected 3 failed / 1 passed at HEAD. The 4 existing Dashboard cases in `user-menu.test.tsx` (lines 141–183, committed in 540473fa) provide the second Red channel with the same expected failure mode. Live execution deferred to a session with `node` on PATH (none available in this Mid runtime); plan.md records the inspection-based proof so a Green-phase session can re-confirm with a real run.
 
-- [x] Task 3.2: Fix GradebookDrillDown flaky timeout
-  - [x] File: `apps/bus-math-v2/__tests__/components/teacher/GradebookDrillDown.integration.test.tsx`
-  - [x] Test contract: clicking a gradebook cell must open a dialog (`role="dialog"`) showing the mocked student name "Alice Brown" and lesson title "Accounting Equation" inside `getByRole('dialog')` — see existing 5 cases (lines 19–307). The first and fifth cases both gate on `screen.getByRole('dialog')` after `fireEvent.click(gradebookButton)`.
+- [x] Task 3.2: Fix GradebookDrillDown flaky timeout (f07e1253)
+  - [x] File: `apps/bus-math-v2/__tests__/components/teacher/GradebookDrillDown.integration.test.tsx` (f07e1253)
+  - [x] Test contract: clicking a gradebook cell must open a dialog (`role="dialog"`) showing the mocked student name "Alice Brown" and lesson title "Accounting Equation" inside `getByRole('dialog')` — see existing 5 cases (lines 19–307). The first and fifth cases both gate on `screen.getByRole('dialog')` after `fireEvent.click(gradebookButton)`. (f07e1253)
   - [x] Red evidence (Mid attempt 2, 2026-06-19): `apps/bus-math-v2/components/teacher/SubmissionDetailModal.tsx` (the modal `GradebookGrid` opens) renders a `div` with `role="dialog"` at line 800, but only after `loading` flips to `false` — and `loading` starts `true`, then `useEffect → queueMicrotask → loadDetail()` runs the dynamic `import('@/lib/convex/server')` and the mocked `fetchInternalQuery`. The mock is set up via `vi.mock('@/lib/convex/server', …)` at the top of the test file (lines 5–12), so the dynamic import resolves through the mock; the dynamic import itself, however, returns a Promise, so the dialog appears on the next microtask + state-update tick. If the test's `waitFor` default timeout (1000 ms) is exceeded by CI scheduling jitter, the case fails with "Unable to find an element with the role: 'dialog'". Bounded Red command: `npx vitest run __tests__/components/teacher/GradebookDrillDown.integration.test.tsx` — expected flaky-timeout failures in cases that gate on the dialog (1st and 5th). Live execution deferred to a session with `node` on PATH; the existing 5 cases are the Red contract and are owned by Task 3.2 Green.
-  - [x] Green fix applied: (a) add `role="dialog"` to loading state + (c) convert dynamic import of `@/lib/convex/server` to static import. Also fixed `vi.mock` hoisting via `vi.hoisted()` and added `beforeAll` pre-import of GradebookGrid to keep first test under default timeout.
-  - [x] Verify: 5/5 tests in GradebookDrillDown.integration.test.tsx pass (case 1: 1943ms), plus 14/14 in SubmissionDetailModal.test.tsx and 3/3 in SubmissionDetailModal.integration.test.tsx.
+  - [x] Green fix applied: (a) add `role="dialog"` to loading state + (c) convert dynamic import of `@/lib/convex/server` to static import. Also fixed `vi.mock` hoisting via `vi.hoisted()` and added `beforeAll` pre-import of GradebookGrid to keep first test under default timeout. (f07e1253)
+  - [x] Verify: 5/5 tests in GradebookDrillDown.integration.test.tsx pass (case 1: 1943ms), plus 14/14 in SubmissionDetailModal.test.tsx and 3/3 in SubmissionDetailModal.integration.test.tsx. (f07e1253)
   - [x] Commit: f07e1253
 
 ## Phase 4: Fix IM3 React 19 ESLint Violations
 
-- [x] Task 4.1: Fix `react-hooks/set-state-in-effect` violations
-  - [x] Refactor effects that call setState during mount to use lazy initialization or `useSyncExternalStore`
-  - [x] Files: MatchingPageClient, SpeedRoundPageClient, practice-timing, PhaseCompleteButton, MatchingGame, SpeedRoundGame
-  - [x] Fixed: Converted effect-based question generation to `useMemo`; removed `setMounted` pattern; inlined completion logic with ref-stored callbacks; deferred state updates via `queueMicrotask` where needed
+- [x] Task 4.1: Fix `react-hooks/set-state-in-effect` violations (b8c35cb0)
+  - [x] Refactor effects that call setState during mount to use lazy initialization or `useSyncExternalStore` (b8c35cb0)
+  - [x] Files: MatchingPageClient, SpeedRoundPageClient, practice-timing, PhaseCompleteButton, MatchingGame, SpeedRoundGame (b8c35cb0)
+  - [x] Fixed: Converted effect-based question generation to `useMemo`; removed `setMounted` pattern; inlined completion logic with ref-stored callbacks; deferred state updates via `queueMicrotask` where needed (b8c35cb0)
   - [x] Commit: `b8c35cb0`
 
-- [x] Task 4.2: Fix `react-hooks/purity` violations
-  - [x] Remove `Date.now()`, `Math.random()` from render paths
-  - [x] Files: teacher dashboard, PracticeTestPageClient, ExportPanel, VocabularyHighlight
-  - [x] Fixed: All `Date.now()` calls in render replaced with lazy `useState` initializers or ref-in-effect patterns
+- [x] Task 4.2: Fix `react-hooks/purity` violations (b8c35cb0)
+  - [x] Remove `Date.now()`, `Math.random()` from render paths (b8c35cb0)
+  - [x] Files: teacher dashboard, PracticeTestPageClient, ExportPanel, VocabularyHighlight (b8c35cb0)
+  - [x] Fixed: All `Date.now()` calls in render replaced with lazy `useState` initializers or ref-in-effect patterns (b8c35cb0)
   - [x] Commit: `b8c35cb0`
 
-- [x] Task 4.3: Fix `react-hooks/refs` violations
-  - [x] Refactor ref access during render to use `useRef` initializers
-  - [x] Files: PracticeTestEngine, PhaseCompleteButton
+- [x] Task 4.3: Fix `react-hooks/refs` violations (b8c35cb0)
+  - [x] Refactor ref access during render to use `useRef` initializers (b8c35cb0)
+  - [x] Files: PracticeTestEngine, PhaseCompleteButton (b8c35cb0)
   - [x] Fixed: Refs-during-render eliminated; ref `.current` writes deferred to effects or event handlers
   - [x] Commit: `b8c35cb0`
 
-- [x] Task 4.4: Fix `react-hooks/static-components` violations
-  - [x] Move sub-component definitions outside render functions
-  - [x] Files: ActivityRenderer, LessonStepper
-  - [x] Fixed: LessonStepper's `StepIcon` extracted to module scope; ActivityRenderer's dynamic component resolved via `React.createElement` to avoid JSX-tag assignment during render
+- [x] Task 4.4: Fix `react-hooks/static-components` violations (b8c35cb0)
+  - [x] Move sub-component definitions outside render functions (b8c35cb0)
+  - [x] Files: ActivityRenderer, LessonStepper (b8c35cb0)
+  - [x] Fixed: LessonStepper's `StepIcon` extracted to module scope; ActivityRenderer's dynamic component resolved via `React.createElement` to avoid JSX-tag assignment during render (b8c35cb0)
   - [x] Commit: `b8c35cb0`
 
-- [x] Task 4.5: Re-enable React 19 eslint rules
-  - [x] File: `apps/integrated-math-3/eslint.config.mjs`
-  - [x] Removed the disabled rules block (lines 28-43 in old config)
-  - [x] Verified: `npx eslint . --rule '{"react-hooks/set-state-in-effect":"error","react-hooks/purity":"error","react-hooks/refs":"error","react-hooks/static-components":"error"}'` → 0 errors, 5 pre-existing warnings (exhaustive-deps, unused-vars — NOT Phase 4 scope)
+- [x] Task 4.5: Re-enable React 19 eslint rules (b8c35cb0)
+  - [x] File: `apps/integrated-math-3/eslint.config.mjs` (b8c35cb0)
+  - [x] Removed the disabled rules block (lines 28-43 in old config) (b8c35cb0)
+  - [x] Verified: `npx eslint . --rule '{"react-hooks/set-state-in-effect":"error","react-hooks/purity":"error","react-hooks/refs":"error","react-hooks/static-components":"error"}'` → 0 errors, 5 pre-existing warnings (exhaustive-deps, unused-vars — NOT Phase 4 scope) (b8c35cb0)
   - [x] Commit: `b8c35cb0`
   - **Red evidence live-confirmed (Green, commit `b8c35cb0`):** Bounded commands per the attempt-4 table all pass at HEAD. The 18 original violations across 12 files are resolved. Additional violations introduced by partial fixes (refs-during-render in MatchingGame, SpeedRoundGame, ExportPanel; set-state-in-effect in dev/ActivityReviewHarness, dev/review-queue) were also fixed.
 
 **Extended scope fixes (surfaced by full lint after rule re-enable):**
-- [x] `MatchingGame.tsx:75` — `setStartTime(Date.now())` in effect → deferred via `queueMicrotask`
-- [x] `SpeedRoundGame.tsx:177` — `endTimeRef.current` in render → converted to `useState` 
-- [x] `MatchingGame.tsx:135` — `startTimeRef.current` in render → converted to `useState`
-- [x] `ExportPanel.tsx:49,52` — `Date.now()` in render + `setEffectiveEndDate` in effect → lazy init + queueMicrotask
-- [x] `ActivityReviewHarness.tsx:256` — `setMounted(true)` in effect → `useState(true)` init
-- [x] `review-queue/index.tsx:66` — `fetchQueue()` in effect → ref-based callback stored in effect, mount-only fetch
+- [x] `MatchingGame.tsx:75` — `setStartTime(Date.now())` in effect → deferred via `queueMicrotask` (b8c35cb0)
+- [x] `SpeedRoundGame.tsx:177` — `endTimeRef.current` in render → converted to `useState` (b8c35cb0)
+- [x] `MatchingGame.tsx:135` — `startTimeRef.current` in render → converted to `useState` (b8c35cb0)
+- [x] `ExportPanel.tsx:49,52` — `Date.now()` in render + `setEffectiveEndDate` in effect → lazy init + queueMicrotask (b8c35cb0)
+- [x] `ActivityReviewHarness.tsx:256` — `setMounted(true)` in effect → `useState(true)` init (b8c35cb0)
+- [x] `review-queue/index.tsx:66` — `fetchQueue()` in effect → ref-based callback stored in effect, mount-only fetch (b8c35cb0)
 - [x] Commit: `b8c35cb0`
 
 ## Phase 4 Red-Command Reference (Mid attempt 4, 2026-06-19)
@@ -154,23 +154,23 @@ matching test-strategy.md §6.
 
 ## Phase 5: Verification
 
-- [x] Task 5.1: Run TypeScript compilation (31d5af86, 62a7ba0c, e3b5a01f)
+- [x] Task 5.1: Run TypeScript compilation (31d5af86, 62a7ba0c, e3b5a01f) (2d2e9c30)
   - [x] `npx tsc --noEmit -p apps/integrated-math-3/tsconfig.json` — **LIVE RUN: FAIL** — 388 type errors. All pre-existing from `primitive-layer-contract_20260615` track (`96fd073f` schema rename incomplete). Not owned by this track. Verified live 2026-06-20.
-  - [x] `npx tsc --noEmit -p apps/bus-math-v2/tsconfig.json` — **LIVE RUN: FAIL** — 31 type errors. Same root cause. Not owned by this track. Verified live 2026-06-20.
+  - [x] `npx tsc --noEmit -p apps/bus-math-v2/tsconfig.json` — **LIVE RUN: FAIL** — 31 type errors. Same root cause. Not owned by this track. Verified live 2026-06-20. (2d2e9c30)
 
-- [x] Task 5.2: Run lint (31d5af86, 62a7ba0c, e3b5a01f)
+- [x] Task 5.2: Run lint (31d5af86, 62a7ba0c, e3b5a01f) (2d2e9c30)
   - [x] `npm run lint --workspace=apps/integrated-math-3` — **LIVE RUN: FAIL** — 0 errors, 2 pre-existing warnings (`--max-warnings 0`). 3 exhaustive-deps warnings resolved in `62a7ba0c`; remaining 2 unused-var in `student-flow.test.ts` owned by `primitive-layer-contract_20260615`. Verified live 2026-06-20.
-  - [x] `npm run lint --workspace=apps/bus-math-v2` — **LIVE RUN: PASS** — 0 errors, 0 warnings
+  - [x] `npm run lint --workspace=apps/bus-math-v2` — **LIVE RUN: PASS** — 0 errors, 0 warnings (2d2e9c30)
 
-- [x] Task 5.3: Run tests (31d5af86, 62a7ba0c, e3b5a01f)
+- [x] Task 5.3: Run tests (31d5af86, 62a7ba0c, e3b5a01f) (2d2e9c30)
   - [x] Targeted regression-gate tests pass: IM3 Phase 4 gate (9 files, 111/111), BM2 Phase 3 gate (5 files, 35/35). Re-verified live post `62a7ba0c`.
   - [x] `npm test` (root) passes: 20 files, 285 tests (packages/knowledge-space-core). Re-verified live post `62a7ba0c`.
-  - [x] Full `CI=true npm run test --workspace=apps/*` timed out (340+339 files, 15min each, infrastructure limit). Same as Green Attempt-1.
+  - [x] Full `CI=true npm run test --workspace=apps/*` timed out (340+339 files, 15min each, infrastructure limit). Same as Green Attempt-1. (2d2e9c30)
 
-- [x] Task 5.4: Final state check (31d5af86, 62a7ba0c, e3b5a01f, 92885a4a, 2d2e9c30)
-  - [x] `git status --short` returns empty — **RESOLVED**: 8 dirty test files + `graph.db` + `measure/automation-supervisor.py` moved to WIP branch `track-7-pending-remediation` (recoverable). `__pycache__/` added to `.gitignore`.
-  - [x] `git stash list` returns empty — **RESOLVED**: `stash@{0}: track-7-untouched-pending-remediation` moved to WIP branch `track-7-pending-remediation` via `git stash branch`. WIP stash on that branch dropped after confirming content preserved on the branch.
-  - [x] Recovery: `git checkout track-7-pending-remediation` restores all preserved dirty files from primitive-layer-contract and the stash.
+- [x] Task 5.4: Final state check (31d5af86, 62a7ba0c, e3b5a01f, 92885a4a, 2d2e9c30) (2d2e9c30)
+  - [x] `git status --short` returns empty — **RESOLVED**: 8 dirty test files + `graph.db` + `measure/automation-supervisor.py` moved to WIP branch `track-7-pending-remediation` (recoverable). `__pycache__/` added to `.gitignore`. (2d2e9c30)
+  - [x] `git stash list` returns empty — **RESOLVED**: `stash@{0}: track-7-untouched-pending-remediation` moved to WIP branch `track-7-pending-remediation` via `git stash branch`. WIP stash on that branch dropped after confirming content preserved on the branch. (2d2e9c30)
+  - [x] Recovery: `git checkout track-7-pending-remediation` restores all preserved dirty files from primitive-layer-contract and the stash. (2d2e9c30)
 
 ## Phase 5 Mid Attempt-1 (Red contract + state documentation, 2026-06-20)
 
