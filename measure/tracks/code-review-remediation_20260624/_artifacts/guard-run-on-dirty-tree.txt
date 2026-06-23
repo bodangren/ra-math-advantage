@@ -1,0 +1,67 @@
+FR-3 Balanced-Brace JSDoc Guard — Phase 1 (FR-3 balanced-brace)
+==========================================
+Scope:                  apps/ packages/ convex/
+Scanned files:          2237
+Total typed tags:       1648
+Violations:             358
+
+FAIL: 358 malformed @param/@returns tag(s) in apps/ packages/ convex/.
+
+Top 25 files (violation_count file_path):
+  14 packages/srs-engine/src/srs/edge-calibration.ts
+  14 packages/math-content/src/knowledge-space/extraction/parser.ts
+  14 packages/core-auth/src/session.ts
+  10 packages/practice-core/src/practice/error-analysis/index.ts
+  10 packages/knowledge-space-core/src/validation.ts
+  10 packages/knowledge-space-core/src/edge-suggestions.ts
+  9 packages/math-content/src/algebraic/distractors.ts
+  9 packages/knowledge-space-core/src/cross-course-equivalence.ts
+  8 packages/teacher-reporting-core/src/teacher-reporting/gradebook.ts
+  8 packages/math-content/src/problem-families/im1/__tests__/blueprints.test.ts
+  8 packages/math-content/src/knowledge-space/alignment/align.ts
+  8 packages/math-content/src/algebraic/equivalence.ts
+  8 packages/knowledge-space-core/src/placement-fixtures.ts
+  7 packages/math-content/src/knowledge-space/ids.ts
+  7 packages/math-content/src/knowledge-space/extraction/assembler.ts
+  7 packages/math-content/src/glossary/helpers.ts
+  7 packages/graphing-core/src/canvas-utils.ts
+  6 packages/workbook-pipeline/src/workbook-pipeline/path.ts
+  6 packages/workbook-pipeline/src/workbook-pipeline/lookup.ts
+  6 packages/practice-test-engine/src/index.ts
+  6 packages/math-content/src/problem-families/im1/__tests__/audit-diff.test.ts
+  6 packages/knowledge-space-core/src/__tests__/placement-engine-extra.test.ts
+  6 packages/ai-tutoring/src/providers.ts
+  5 packages/workbook-pipeline/src/workbook-pipeline/manifest.ts
+  5 packages/srs-engine/src/__tests__/edge-calibration-guardrail.test.ts
+
+First 25 violations:
+  apps/integrated-math-3/app/api/student/lesson-chatbot/route.ts: UNBALANCED —  * @returns {string {} The sanitized input safe for inclusion in an AI prompt.
+  apps/integrated-math-3/app/api/dev/review-queue/route.ts: STRAY_BLOCK —  * @returns {JSX.Element} {Promise<string | null> {} The Convex profile ID, or null if no profile exists.
+  apps/integrated-math-3/components/teacher/srs/StrugglingStudentsPanel.tsx: UNBALANCED —  * @param {{ student: StrugglingStudentView; rank: number; onClick?: (studentId: string)} props - Student card configuration.
+  apps/integrated-math-3/components/teacher/gradebook/CourseOverviewGrid.tsx: UNBALANCED —  * @returns {CourseOverviewRow[] {} Sorted rows array.
+  apps/integrated-math-3/components/dev/review-queue/index.tsx: UNBALANCED —  * @param {{ item: ReviewQueueItem; onCanApproveChange: (canApprove: boolean)} props - Component harness panel configuration.
+  packages/knowledge-space-practice/src/planner/injection.ts: UNBALANCED —  * @returns {readonly PlannedActivity[] {} A new array; does not mutate inputs.
+  packages/knowledge-space-practice/src/blueprints/evidence.ts: UNBALANCED —  * @returns {PracticeSubmissionPart {} Mapped practice submission part
+  packages/knowledge-space-practice/src/blueprints/evidence.ts: UNBALANCED —  * @returns {PracticeSubmissionPart[] {} Array of practice submission parts
+  packages/knowledge-space-practice/src/blueprints/schemas.ts: UNBALANCED —  * @returns {ValidationResult {} ValidationResult with valid flag and any errors
+  packages/knowledge-space-practice/src/blueprints/schemas.ts: UNBALANCED —  * @returns {ValidationResult {} ValidationResult with valid flag and any errors
+  packages/knowledge-space-practice/src/blueprints/schemas.ts: UNBALANCED —  * @returns {ValidationResult {} ValidationResult with valid flag and any errors
+  packages/knowledge-space-practice/src/blueprints/schemas.ts: UNBALANCED —  * @returns {ValidationResult {} ValidationResult with valid flag and any errors
+  packages/knowledge-space-practice/src/blueprints/schemas.ts: UNBALANCED —  * @returns {ValidationResult {} ValidationResult with valid flag and any errors
+  packages/knowledge-space-practice/src/projections/activity-map.ts: UNBALANCED —  * @returns {ProjectedActivity[] {} Sorted array of projected activities
+  packages/knowledge-space-practice/src/projections/srs.ts: UNBALANCED —  * @returns {SrsProjectionEntry[] {} Sorted array of SRS projection entries
+  packages/ai-tutoring/src/retry.ts: UNBALANCED —  * @returns {boolean {} True if the error should trigger a retry
+  packages/ai-tutoring/src/retry.ts: UNBALANCED —  * @returns {Promise<void> {} Promise that resolves after ms or rejects on abort
+  packages/ai-tutoring/src/providers.ts: UNBALANCED —  * @returns {Promise<string> { return withRetry(async () => { const controller = new AbortController(); const timeout = setTimeout(() =>} Async provider function (prompt, abortSignal?) => response text
+  packages/ai-tutoring/src/providers.ts: UNBALANCED —  * @returns {Promise<string> { return withRetry(async () => { const controller = new AbortController(); const timeout = setTimeout(() =>} Async provider function (messages, abortSignal?) => response text
+  packages/ai-tutoring/src/providers.ts: UNBALANCED —  * @returns {error is Error & { status?: number } {} True if error has OpenRouter API error format
+  packages/ai-tutoring/src/providers.ts: UNBALANCED —  * @returns {number | null {} Status code number or null if not found
+  packages/ai-tutoring/src/providers.ts: UNBALANCED_PARENS —  * @returns {((prompt: string, abortSignal?: AbortSignal) => Promise<string>} Provider function or null if OPENROUTER_API_KEY not set
+  packages/ai-tutoring/src/providers.ts: UNBALANCED_PARENS —  * @returns {((messages: ChatMessage[], abortSignal?: AbortSignal) => Promise<string>} Messages provider function or null if OPENROUTER_API_KEY not set
+  packages/ai-tutoring/src/lesson-context.ts: UNBALANCED —  * @returns {string {} Sanitized text safe for prompt injection
+  packages/ai-tutoring/src/lesson-context.ts: UNBALANCED —  * @returns {string {} Plain text with tags removed
+
+Runner-plumbing self-test (fixture):
+  bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh \
+    measure/tracks/code-review-remediation_20260624/scripts/fixtures/malformed-1.ts
+  Expected: violations=1, exit 1.

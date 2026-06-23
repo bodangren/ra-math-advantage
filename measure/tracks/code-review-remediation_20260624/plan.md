@@ -12,13 +12,15 @@ JSDoc) first. Each behavioral fix follows Red → Green TDD per `workflow.md`.
 > generator-fix (drops the remaining)**. Do NOT author JSDoc-text vitest
 > assertions — that is the FR-20 anti-pattern.
 
-- [ ] Task: Add the JSDoc balanced-brace guard (FR-3)
-    - [ ] Red: add a test/lint fixture with a malformed `@returns {x {} …` and an unbalanced `@param {…}`; assert the guard fails on it
+- [~] Task: Add the JSDoc balanced-brace guard (FR-3)
+    - [x] Red: add a test/lint fixture with a malformed `@returns {x {} …` and an unbalanced `@param {…}`; assert the guard fails on it
         - [STRATEGY] Fixture path: `measure/tracks/code-review-remediation_20260624/scripts/fixtures/jsdoc-bad-braces-sample.ts`. Include 3 malformed tags + 1 clean control. Fixture is runner-plumbing self-test only — NOT the production gate.
+        - [RED EVIDENCE 2026-06-24] Guard + 4 fixtures authored. malformed-1 (UNBALANCED) exit 1, malformed-2 (UNBALANCED_PARENS) exit 1, malformed-3 (STRAY_BLOCK) exit 1, clean-1 exit 0. Production-scope run: 358 violations on dirty 144-file tree, exit 1.
     - [ ] Green: implement the guard (lint rule or test) scanning changed `*.ts`/`*.tsx` for unbalanced `{`/`}` and stray ` {} ` in `@param`/`@returns`
         - [STRATEGY] Implement as `scripts/check-jsdoc-balanced-braces.sh` (shell, not vitest), modeled on `measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh`. Exit codes: 0 clean / 1 violations / 3 misuse. Production scope: `apps/ packages/ convex/` with standard exclusions (`node_modules`, `_generated`, `.next`, `.wrangler`, `dist`, `*.d.ts`). Guard must distinguish nested generics (`Promise<Map<string, T>>`, `error is Error & { status?: number }`) from genuine imbalance — cross-check against `packages/core-auth/src/session.ts` clean tags.
-- [ ] Task: Fix the 4 committed malformed `@returns` at HEAD (FR-1)
+- [~] Task: Fix the 4 committed malformed `@returns` at HEAD (FR-1)
     - [STRATEGY] No vitest authored for this task. The FR-3 guard is the Red oracle (baseline reports violations=4 across these 4 files; Green reports 0). Lint + tsc + workspace tests are sanity-check only. All 4 fixes can land in one commit.
+    - [RED EVIDENCE 2026-06-24] Each FR-1 file individually confirmed: violations=1, exit 1. See `_artifacts/fr1-rewrites.md` for proposed rewrites.
     - [ ] `apps/integrated-math-3/app/api/dev/review-queue/route.ts:141`
         - [STRATEGY] Target: `@returns {Promise<string | null>} The Convex profile ID, or null if no profile exists.`
     - [ ] `apps/integrated-math-3/app/api/student/lesson-chatbot/route.ts:24`
@@ -27,9 +29,10 @@ JSDoc) first. Each behavioral fix follows Red → Green TDD per `workflow.md`.
         - [STRATEGY] Target: `@returns {CourseOverviewRow[]} Sorted rows array.`
     - [ ] `packages/knowledge-space-practice/src/projections/activity-map.ts:65`
         - [STRATEGY] Target: `@returns {ProjectedActivity[]} Sorted array of projected activities.`
-- [ ] Task: Discard & cleanly regenerate the uncommitted JSDoc batch (FR-2)
-    - [ ] `git restore` the 144 working-tree files to HEAD (capture the list first for the record)
+- [~] Task: Discard & cleanly regenerate the uncommitted JSDoc batch (FR-2)
+    - [x] `git restore` the 144 working-tree files to HEAD (capture the list first for the record)
         - [STRATEGY] Capture file list into `_artifacts/restored-files.txt` BEFORE restore. `git status --short` confirmed exactly 144 `M packages/|apps/|convex/` entries. Sample 3–5 files with `git diff --stat` first; if any contain non-JSDoc edits, preserve them per-hunk before the bulk restore. Commit the restore as a separate `chore(...)` commit (FR-2 step A) so it is auditable in isolation.
+        - [RED EVIDENCE 2026-06-24] `_artifacts/restored-files.txt` captured (144 files). NO `git restore` performed yet — that is Green's job.
     - [ ] Fix the JSDoc generator's `@returns` template (`{<type>}`, no trailing ` {}`) and `@param` inline object/function-type handling (fully balanced or prose-only)
         - [STRATEGY] **No JSDoc generator script is currently checked in** (strategy searched `scripts/`, `measure/scripts/`, `packages/*/scripts`). The malformed batch is almost certainly the output of an AI agent run. Mid-red MUST trace the producer (via `git reflog`, recent commit-message patterns, or by asking the user) before regenerating. If the producer is a prompt template, commit the corrected template to `measure/tracks/code-review-remediation_20260624/templates/jsdoc-template.md` and add a lessons-learned entry.
     - [ ] Re-run the generator; verify zero unbalanced-brace annotations via the FR-3 guard before committing

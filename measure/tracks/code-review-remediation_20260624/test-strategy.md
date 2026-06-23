@@ -425,3 +425,47 @@ summary, files changed, why).
    checkpoint git note.
 7. Do not touch `--db`, `--symbol`, or any Phase 2–8 scope from this
    phase. They are explicitly out of Phase 1.
+
+---
+
+## 10. Red Evidence (mid-red, 2026-06-24)
+
+### Guard script + fixture
+
+- **Script:** `measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh`
+  - awk-based scanner, models on `check-jsdoc-typed-params.sh`
+  - Detects 3 violation classes: UNBALANCED (missing `}`), UNBALANCED_PARENS (truncated function types), STRAY_BLOCK (orphaned `{…}` after balanced type)
+  - Exit codes: 0 clean / 1 violations / 3 misuse
+
+- **Fixtures:** `measure/tracks/code-review-remediation_20260624/scripts/fixtures/`
+  - `malformed-1.ts` — `@returns {string {} desc` → violations=1, UNBALANCED, exit 1 ✅
+  - `malformed-2.ts` — `@param {(expression: string, problemType: string} props` → violations=1, UNBALANCED_PARENS, exit 1 ✅
+  - `malformed-3.ts` — `@returns {string} {Promise<string | null> {} extra` → violations=1, STRAY_BLOCK, exit 1 ✅
+  - `clean-1.ts` — balanced types + nested generics → violations=0, exit 0 ✅
+
+### Production-scope Red baseline
+
+- **Dirty working tree (144 files):**
+  ```
+  bash .../check-jsdoc-balanced-braces.sh "apps/ packages/ convex/"
+  → Scanned files: 2237, Total typed tags: 1648, Violations: 358, exit 1
+  ```
+  Captured to `_artifacts/guard-run-on-dirty-tree.txt`.
+
+- **FR-1 files at HEAD (each individually):**
+  - `route.ts` (review-queue): violations=1, STRAY_BLOCK, exit 1 ✅
+  - `route.ts` (lesson-chatbot): violations=1, UNBALANCED, exit 1 ✅
+  - `CourseOverviewGrid.tsx`: violations=1, UNBALANCED, exit 1 ✅
+  - `activity-map.ts`: violations=1, UNBALANCED, exit 1 ✅
+
+### Artifacts captured
+
+- `_artifacts/restored-files.txt` — 144-file dirty list (captured BEFORE any restore)
+- `_artifacts/guard-run-on-dirty-tree.txt` — full guard output on dirty tree
+- `_artifacts/fr1-rewrites.md` — proposed rewrites for the 4 FR-1 files
+
+### Red tasks completed
+
+- [x] Task 1.1 Red: guard script + fixture authored and verified
+- [x] Task 1.2 Red: FR-1 files confirmed as violations by guard (no vitest needed)
+- [x] Task 1.3 Red: `restored-files.txt` captured (NO `git restore` performed — Green's job)
