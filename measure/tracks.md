@@ -995,10 +995,6 @@ Sixteen candidate tracks identified from a full-roadmap review. Each is registry
 
 ### Tier 3 — Strategic / longer-horizon (i18n intentionally excluded)
 
-- [ ] **Track: Onboarding + Roster Import** — **PLANNED**
-   *New-student/teacher onboarding flow and bulk student roster import (CSV/SIS). Verified: none exists — teachers can assign lessons but cannot bulk-enroll students. Natural companion to the placement engine. Size: M. Depends on: adaptive-placement (for new-student diagnostic). Readiness: partial now.*
-   *Link: [./tracks/onboarding-roster-import_20260605/](./tracks/onboarding-roster-import_20260605/)*
-
 - [x] **Track: Parent Portal** — **COMPLETED / ARCHIVED 2026-06-21**
    *Completion-audit note (2026-06-21): closeout rejected as a false positive because `/parent` was still a static stub and delivered components/guards/projections had no live production caller. Historical archive retained; remediation is tracked in `parent_portal_prod_wiring_remediation_20260621`.*
    *Link: [./archive/parent-portal_20260605/](./archive/parent-portal_20260605/)*
@@ -1012,6 +1008,10 @@ Sixteen candidate tracks identified from a full-roadmap review. Each is registry
    *Link: [./tracks/teacher-content-authoring_20260605/](./tracks/teacher-content-authoring_20260605/)*
 
 ## Archived Tracks
+
+- [x] **Track: Onboarding + Roster Import** — **COMPLETED / ARCHIVED** (2026-06-23)
+   *New-student/teacher onboarding flow and bulk student roster import (CSV/SIS). 4 phases complete: CSV contract/parser/dry-run (Phase 1), idempotent enrollment mutation + summary queries (Phase 2), teacher onboarding UI wizard + import summary (Phase 3), student flow routing into placement (Phase 4). 83/83 onboarding tests pass. Checkpoints: 41043d1f, bd4f6736, cb5e4de9, 8e0605e7.*
+   *Link: [./measure/archive/onboarding-roster-import_20260605/](./measure/archive/onboarding-roster-import_20260605/)*
 
 - [x] **Track: Scaffold App Pages & Layouts**
   *Link: [./measure/archive/scaffold-pages_20260405/](./measure/archive/scaffold-pages_20260405/)*

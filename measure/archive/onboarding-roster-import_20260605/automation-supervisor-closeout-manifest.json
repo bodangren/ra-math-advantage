@@ -1,0 +1,111 @@
+{
+  "manifest_type": "automation-supervisor-closeout-manifest",
+  "track_id": "onboarding-roster-import_20260605",
+  "closed_at": "2026-06-23",
+  "closeout_agent": "measure-closeout-subagent",
+  "summary": "Onboarding + Roster Import track completed across 4 phases. All tasks [x] with verified commit SHAs. 83/83 onboarding tests pass. 6 production files created across lib/roster/, convex/onboarding/, components/teacher/onboarding/, and lib/onboarding/.",
+  "phase_checkpoints": {
+    "phase_1_csv_contract": {
+      "checkpoint_sha": "41043d1f",
+      "tasks": [
+        {"id": 1, "description": "Define CSV column contract + import-result schema (Contract-First)", "sha": "0a4f943b", "status": "done"},
+        {"id": 2, "description": "Pure parse + row-level validation with error reporting (TDD)", "sha": "0a4f943b", "status": "done"},
+        {"id": 3, "description": "Dry-run preview computation (TDD)", "sha": "0a4f943b", "status": "done"},
+        {"id": 4, "description": "User Manual Verification Phase 1", "sha": "41043d1f", "status": "done"}
+      ],
+      "test_count": 68,
+      "production_files": [
+        "apps/integrated-math-3/lib/roster/csv-contract.ts",
+        "apps/integrated-math-3/lib/roster/parser.ts",
+        "apps/integrated-math-3/lib/roster/dry-run.ts"
+      ]
+    },
+    "phase_2_idempotent_enrollment": {
+      "checkpoint_sha": "bd4f6736",
+      "tasks": [
+        {"id": 1, "description": "Batched, idempotent enrollment mutation linking/creating students by identifier", "sha": "bd4f6736", "status": "done"},
+        {"id": 2, "description": "Provision/invite imported students per the auth model", "sha": "bd4f6736", "status": "done"},
+        {"id": 3, "description": "Import summary persistence + retrieval", "sha": "bd4f6736", "status": "done"},
+        {"id": 4, "description": "Convex wrapper validator correctness", "sha": "bd4f6736", "status": "done"},
+        {"id": 5, "description": "User Manual Verification Phase 2", "sha": "bd4f6736", "status": "done"}
+      ],
+      "test_count": 39,
+      "production_files": [
+        "apps/integrated-math-3/convex/onboarding/roster-import.ts",
+        "apps/integrated-math-3/convex/schema.ts"
+      ]
+    },
+    "phase_3_teacher_onboarding_ui": {
+      "checkpoint_sha": "cb5e4de9",
+      "tasks": [
+        {"id": 1, "description": "First-run teacher flow: create class → import roster (dry-run → commit) → dashboard", "sha": "cb5e4de9", "status": "done"},
+        {"id": 2, "description": "Surface import summary (created/updated/skipped/errors)", "sha": "cb5e4de9", "status": "done"},
+        {"id": 3, "description": "User Manual Verification Phase 3", "sha": "cb5e4de9", "status": "done"}
+      ],
+      "test_count": 20,
+      "production_files": [
+        "apps/integrated-math-3/components/teacher/onboarding/RosterImportWizard.tsx",
+        "apps/integrated-math-3/components/teacher/onboarding/ImportSummary.tsx"
+      ]
+    },
+    "phase_4_student_onboarding": {
+      "checkpoint_sha": "8e0605e7",
+      "tasks": [
+        {"id": 1, "description": "First-run student flow routing into placement diagnostic → assigned work", "sha": "95a3a8d4", "status": "done"},
+        {"id": 2, "description": "Final verification — boundary lints, lint, tsc --noEmit, CI=true npm run test", "sha": "95a3a8d4", "status": "done"},
+        {"id": 3, "description": "User Manual Verification Phase 4", "sha": "8e0605e7", "status": "done"}
+      ],
+      "test_count": 24,
+      "production_files": [
+        "apps/integrated-math-3/lib/onboarding/student-flow.ts"
+      ]
+    }
+  },
+  "aggregate_evidence": {
+    "total_tests": 83,
+    "test_files": [
+      "apps/integrated-math-3/__tests__/lib/roster/contract.test.ts",
+      "apps/integrated-math-3/__tests__/lib/roster/parser.test.ts",
+      "apps/integrated-math-3/__tests__/lib/roster/dry-run-preview.test.ts",
+      "apps/integrated-math-3/__tests__/convex/roster-import.test.ts",
+      "apps/integrated-math-3/__tests__/convex/import-summary.test.ts",
+      "apps/integrated-math-3/__tests__/convex/roster-import-wrappers.test.ts",
+      "apps/integrated-math-3/__tests__/components/teacher/onboarding/RosterImportWizard.test.tsx",
+      "apps/integrated-math-3/__tests__/components/teacher/onboarding/ImportSummary.test.tsx",
+      "apps/integrated-math-3/__tests__/lib/onboarding/student-flow.test.ts"
+    ],
+    "key_commits": [
+      "0a4f943b — Phase 1 Green: CSV contract, parser, dry-run",
+      "41043d1f — Phase 1 checkpoint",
+      "a1ceb7d4 — Phase 2 Red: enrollment mutation + summary contracts",
+      "bd4f6736 — Phase 2 Green: fix wrapper validator + roster_imports schema",
+      "c79aacff — Phase 3 Red: wizard + import summary contracts",
+      "cb5e4de9 — Phase 3 Green: Teacher Onboarding UI",
+      "83f52501 — Phase 4 Red: student flow router contract",
+      "95a3a8d4 — Phase 4 Green: student flow router",
+      "8e0605e7 — Phase 4 checkpoint"
+    ],
+    "boundary_lint": "passed (no violations)",
+    "final_regression": "6 test files passed, 83 tests passed (Phase 4 evidence)"
+  },
+  "retained_evidence": [
+    "measure/archive/onboarding-roster-import_20260605/spec.md",
+    "measure/archive/onboarding-roster-import_20260605/plan.md",
+    "measure/archive/onboarding-roster-import_20260605/metadata.json",
+    "measure/archive/onboarding-roster-import_20260605/test-strategy.md",
+    "measure/archive/onboarding-roster-import_20260605/review-2026-06-19.md",
+    "measure/archive/onboarding-roster-import_20260605/review-2026-06-20.md",
+    "measure/archive/onboarding-roster-import_20260605/automation-supervisor-closeout-manifest.json"
+  ],
+  "artifact_cleanup": {
+    "moved_to_archive": true,
+    "bulky_artifacts_removed": [],
+    "notes": "No bulky run artifacts identified by orchestrator. All track artifacts preserved."
+  },
+  "lessons_learned_updates": [],
+  "tech_debt_updates": [],
+  "known_gaps": [
+    "Phase 3 UI components use `as any` casts on Convex API refs until `npx convex dev` codegen runs",
+    "Phase 2 `getImportSummaryQuery` validator fix (v.id('_scheduled_functions') → v.id('roster_imports')) was caught by Red test tightening and fixed in bd4f6736"
+  ]
+}
