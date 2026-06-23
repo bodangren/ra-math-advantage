@@ -937,18 +937,18 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
 
 ## Documentation Tracks
 
-- [ ] **Track: JSDoc Comments — All Functions**
+- [x] **Track: JSDoc Comments — All Functions** — **COMPLETED / ARCHIVED**
    *Add standard JSDoc comments (summary, @param, @returns, @throws) to all 2,108 undocumented functions across IM3, BM2, and packages. Work proceeds directory-by-directory, exported functions first.*
-   *Link: [./tracks/jsdoc-comments_20260526/](./tracks/jsdoc-comments_20260526/)*
-   - Phase 1: BM2 lib/ [ ]
-   - Phase 2: BM2 components/ [ ]
-   - Phase 3: BM2 app/convex/scripts/other/ [ ]
-   - Phase 4: IM3 convex/ [ ]
-   - Phase 5: IM3 components/ [ ]
-   - Phase 6: IM3 lib/ [ ]
-   - Phase 7: IM3 app/scripts/other/ [ ]
-   - Phase 8: Packages src/ [ ]
-   - Phase 9: Packages components/lib/other/ [ ]
+   *Link: [./archive/jsdoc-comments_20260526/](./archive/jsdoc-comments_20260526/)*
+   - Phase 1: BM2 lib/ [x]
+   - Phase 2: BM2 components/ [x]
+   - Phase 3: BM2 app/convex/scripts/other/ [x]
+   - Phase 4: IM3 convex/ [x]
+   - Phase 5: IM3 components/ [x]
+   - Phase 6: IM3 lib/ [x]
+   - Phase 7: IM3 app/scripts/other/ [x]
+   - Phase 8: Packages src/ [x]
+   - Phase 9: Packages components/lib/other/ [x]
 
 - [ ] **Track: Graph-vs-Tracks Review Remediation** — **STALE / BLOCKED**
    *Remediate 25 findings from a 2026-06-02 codebase-vs-tracks review. **Reconciliation note (2026-06-05):** this track was marked in-progress but has no track directory, no `spec.md`/`plan.md`, and its cited source report `measure/reports/graph-vs-tracks-review_20260602.md` never existed in git history. Marked as STALE. Regenerate review before proceeding.*

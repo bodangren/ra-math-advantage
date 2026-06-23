@@ -1,0 +1,148 @@
+{
+  "track_id": "jsdoc-comments_20260526",
+  "closeout_date": "2026-06-23",
+  "closeout_agent": "measure-closeout-subagent",
+  "status": "done",
+  "final_acceptance_sha": "58af8416",
+  "final_acceptance_message": "docs(measure): Final acceptance audit closes 4 source-code JSDoc gaps",
+  "phases": {
+    "phase_1_bm2_lib": {
+      "status": "complete",
+      "red_sha": "4f873ab4",
+      "green_sha": "b18b3ce6",
+      "verification_sha": "f56680c5",
+      "checkpoint_sha": "f56680c5"
+    },
+    "phase_2_bm2_components": {
+      "status": "complete",
+      "red_sha": "23ab09e2",
+      "green_sha": "ea1d1cd8",
+      "fix_sha": "49a9cf4d",
+      "checkpoint_sha": "8ca35059",
+      "verification_sha": "26732a21"
+    },
+    "phase_3_bm2_remaining": {
+      "status": "complete",
+      "red_sha": "a615f113",
+      "green_sha": "3854b648",
+      "checkpoint_sha": "4094ec5a",
+      "verification_sha": "7536795d"
+    },
+    "phase_4_im3_convex": {
+      "status": "complete",
+      "red_sha": "9b45ba53",
+      "green_sha": "ecb5a8f7",
+      "verification_sha": "67ec0c37"
+    },
+    "phase_5_im3_components": {
+      "status": "complete",
+      "red_sha": "4ba1488a",
+      "green_sha": "9002c1f2",
+      "checkpoint_sha": "43cb0259",
+      "verification_sha": "99eaac73"
+    },
+    "phase_6_im3_lib": {
+      "status": "complete",
+      "red_sha": "5456acd7",
+      "green_sha": "329070b6",
+      "checkpoint_sha": "b30a640e",
+      "verification_sha": "e2f55669"
+    },
+    "phase_7_im3_app": {
+      "status": "complete",
+      "red_sha": "5cf742f5",
+      "green_sha": "f6419b12",
+      "checkpoint_sha": "006668d0",
+      "verification_sha": "006668d0"
+    },
+    "phase_8_packages_src": {
+      "status": "complete",
+      "red_sha": "2a132247",
+      "green_sha": "dc6ba80a",
+      "checkpoint_sha": "893e1e25",
+      "verification_sha": "4014fac5"
+    },
+    "phase_9_packages_remaining": {
+      "status": "complete",
+      "red_sha": "2a132247",
+      "green_sha": "dc6ba80a",
+      "checkpoint_sha": "eaa3bd45",
+      "verification_sha": "eaa3bd45"
+    }
+  },
+  "guard_scripts": {
+    "phase_1": [
+      "check-jsdoc-coverage.sh",
+      "check-jsdoc-line-length.sh",
+      "check-phase-verification.sh"
+    ],
+    "phase_2": [
+      "check-jsdoc-coverage-components.sh",
+      "check-jsdoc-line-length-components.sh",
+      "check-phase-verification-2.sh",
+      "check-jsdoc-fr6-noncomment-diff.sh"
+    ],
+    "phase_3": [
+      "check-jsdoc-coverage-remaining.sh",
+      "check-jsdoc-line-length-remaining.sh",
+      "check-phase-verification-3.sh"
+    ],
+    "phase_4": [
+      "check-jsdoc-coverage-convex-im3.sh",
+      "check-jsdoc-line-length-convex-im3.sh",
+      "check-phase-verification-4.sh"
+    ],
+    "phase_5": [
+      "check-jsdoc-coverage-components-im3.sh",
+      "check-jsdoc-line-length-components-im3.sh",
+      "check-phase-verification-5.sh"
+    ],
+    "phase_6": [
+      "check-jsdoc-coverage-im3-lib.sh",
+      "check-jsdoc-line-length-im3-lib.sh",
+      "check-phase-verification-6.sh"
+    ],
+    "phase_7": [
+      "check-jsdoc-coverage-im3-app.sh",
+      "check-jsdoc-line-length-im3-app.sh",
+      "check-phase-verification-7.sh",
+      "check-jsdoc-exported-im3-app.sh",
+      "check-jsdoc-fr6-noncomment-diff.sh"
+    ],
+    "phase_8": [
+      "check-jsdoc-coverage-packages-src.sh",
+      "check-jsdoc-line-length-packages-src.sh",
+      "check-phase-verification-8.sh"
+    ],
+    "phase_9": [
+      "check-jsdoc-coverage-packages-remaining.sh",
+      "check-jsdoc-line-length-packages-remaining.sh",
+      "check-phase-verification-9.sh"
+    ]
+  },
+  "audit_results": {
+    "final_acceptance": {
+      "all_coverage_guards_pass": true,
+      "all_line_length_guards_pass": true,
+      "all_verification_guards_pass": true,
+      "global_null_summaries_in_scope": 0,
+      "out_of_scope_null_summaries": 302,
+      "out_of_scope_breakdown": "276 in __tests__/ test files, 26 in out-of-scope apps (IM1/IM2/pre-calc)"
+    }
+  },
+  "retained_evidence": [
+    "measure/archive/jsdoc-comments_20260526/plan.md",
+    "measure/archive/jsdoc-comments_20260526/spec.md",
+    "measure/archive/jsdoc-comments_20260526/metadata.json",
+    "measure/archive/jsdoc-comments_20260526/test-strategy.md",
+    "measure/archive/jsdoc-comments_20260526/phase-*-red-baseline.md (9 files)",
+    "measure/archive/jsdoc-comments_20260526/phase-*-verification-report.md (9 files)",
+    "measure/archive/jsdoc-comments_20260526/scripts/*.sh (guard scripts)",
+    "measure/archive/jsdoc-comments_20260526/automation-supervisor-closeout-manifest.json"
+  ],
+  "artifact_cleanup": {
+    "graph_db": "preserved in working tree (build artifact, not committed)",
+    "stash_entries": "preserved for operator restoration",
+    "scripts": "retained in archive for audit trail"
+  }
+}
