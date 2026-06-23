@@ -5,19 +5,37 @@ JSDoc) first. Each behavioral fix follows Red → Green TDD per `workflow.md`.
 
 ## Phase 1: Malformed JSDoc remediation + recurrence guard (Cluster A)
 
+> **[STRATEGY READY 2026-06-24]** See `test-strategy.md` §1–§9. Phase 1 is
+> artifact-only (no behavioral tests). The FR-3 guard is the primary Red
+> oracle for FR-1 and FR-2. Order is strict: **FR-3 guard first (Red baseline
+> >=348 violations), then FR-1 (drops 4), then FR-2 step A restore + step B
+> generator-fix (drops the remaining)**. Do NOT author JSDoc-text vitest
+> assertions — that is the FR-20 anti-pattern.
+
 - [ ] Task: Add the JSDoc balanced-brace guard (FR-3)
     - [ ] Red: add a test/lint fixture with a malformed `@returns {x {} …` and an unbalanced `@param {…}`; assert the guard fails on it
+        - [STRATEGY] Fixture path: `measure/tracks/code-review-remediation_20260624/scripts/fixtures/jsdoc-bad-braces-sample.ts`. Include 3 malformed tags + 1 clean control. Fixture is runner-plumbing self-test only — NOT the production gate.
     - [ ] Green: implement the guard (lint rule or test) scanning changed `*.ts`/`*.tsx` for unbalanced `{`/`}` and stray ` {} ` in `@param`/`@returns`
+        - [STRATEGY] Implement as `scripts/check-jsdoc-balanced-braces.sh` (shell, not vitest), modeled on `measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh`. Exit codes: 0 clean / 1 violations / 3 misuse. Production scope: `apps/ packages/ convex/` with standard exclusions (`node_modules`, `_generated`, `.next`, `.wrangler`, `dist`, `*.d.ts`). Guard must distinguish nested generics (`Promise<Map<string, T>>`, `error is Error & { status?: number }`) from genuine imbalance — cross-check against `packages/core-auth/src/session.ts` clean tags.
 - [ ] Task: Fix the 4 committed malformed `@returns` at HEAD (FR-1)
+    - [STRATEGY] No vitest authored for this task. The FR-3 guard is the Red oracle (baseline reports violations=4 across these 4 files; Green reports 0). Lint + tsc + workspace tests are sanity-check only. All 4 fixes can land in one commit.
     - [ ] `apps/integrated-math-3/app/api/dev/review-queue/route.ts:141`
+        - [STRATEGY] Target: `@returns {Promise<string | null>} The Convex profile ID, or null if no profile exists.`
     - [ ] `apps/integrated-math-3/app/api/student/lesson-chatbot/route.ts:24`
+        - [STRATEGY] Target: `@returns {string} The sanitized input safe for inclusion in an AI prompt.`
     - [ ] `apps/integrated-math-3/components/teacher/gradebook/CourseOverviewGrid.tsx:16`
+        - [STRATEGY] Target: `@returns {CourseOverviewRow[]} Sorted rows array.`
     - [ ] `packages/knowledge-space-practice/src/projections/activity-map.ts:65`
+        - [STRATEGY] Target: `@returns {ProjectedActivity[]} Sorted array of projected activities.`
 - [ ] Task: Discard & cleanly regenerate the uncommitted JSDoc batch (FR-2)
     - [ ] `git restore` the 144 working-tree files to HEAD (capture the list first for the record)
+        - [STRATEGY] Capture file list into `_artifacts/restored-files.txt` BEFORE restore. `git status --short` confirmed exactly 144 `M packages/|apps/|convex/` entries. Sample 3–5 files with `git diff --stat` first; if any contain non-JSDoc edits, preserve them per-hunk before the bulk restore. Commit the restore as a separate `chore(...)` commit (FR-2 step A) so it is auditable in isolation.
     - [ ] Fix the JSDoc generator's `@returns` template (`{<type>}`, no trailing ` {}`) and `@param` inline object/function-type handling (fully balanced or prose-only)
+        - [STRATEGY] **No JSDoc generator script is currently checked in** (strategy searched `scripts/`, `measure/scripts/`, `packages/*/scripts`). The malformed batch is almost certainly the output of an AI agent run. Mid-red MUST trace the producer (via `git reflog`, recent commit-message patterns, or by asking the user) before regenerating. If the producer is a prompt template, commit the corrected template to `measure/tracks/code-review-remediation_20260624/templates/jsdoc-template.md` and add a lessons-learned entry.
     - [ ] Re-run the generator; verify zero unbalanced-brace annotations via the FR-3 guard before committing
+        - [STRATEGY] Pass criterion: FR-3 guard against `apps/ packages/ convex/` returns exit 0, violations 0. Step-B commit ships the template fix + regenerated 144 files together.
 - [ ] Task: Measure - User Manual Verification 'Phase 1: Malformed JSDoc remediation' (Protocol in workflow.md)
+    - [STRATEGY] UMV closeout artifacts (attach to checkpoint git note): (1) FR-3 guard clean run, (2) FR-3 guard fixture run (exit 1, violations=3), (3) `git grep -nP '@returns \{.+ \{\}'` → 0, (4) `git grep -nP '@param \{[^{}]*$'` → 0, (5) lint/tsc/test exit codes, (6) `_artifacts/restored-files.txt`.
 
 ## Phase 2: Production-wiring scope & dead work (Cluster B)
 
