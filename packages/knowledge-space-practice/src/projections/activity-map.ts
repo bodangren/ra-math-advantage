@@ -19,6 +19,39 @@ const SPEC_TO_MODE: Array<{
 ];
 
 /**
+ * Concept Aggregator resolution: when a blueprint's nodeId targets a `concept`
+ * node, the projection must resolve it to a child `skill` node before emitting
+ * a practice row. This rule keeps downstream consumers (SRS, planner,
+ * visualization) free of concept-vs-skill branching.
+ *
+ * `findChildSkills` returns the direct child skills of a concept node via
+ * `contains` edges where the concept is the source.
+ */
+export function findChildSkills(
+  conceptNode: KnowledgeSpaceNode,
+  nodes: KnowledgeSpaceNode[],
+  edges: KnowledgeSpaceEdge[],
+): KnowledgeSpaceNode[] {
+  if (conceptNode.kind !== 'concept') return [];
+
+  return edges
+    .filter((e) => e.type === 'contains' && e.sourceId === conceptNode.id)
+    .map((e) => nodes.find((n) => n.id === e.targetId))
+    .filter((n): n is KnowledgeSpaceNode => n != null && n.kind === 'skill');
+}
+
+/**
+ * Concept Aggregator resolution: pick a single child skill for the projection.
+ * Deterministic — alphabetically first by id — so projections are stable across
+ * regenerations and reviewer diffs.
+ */
+export function selectSkill(childSkills: KnowledgeSpaceNode[]): KnowledgeSpaceNode | null {
+  if (childSkills.length === 0) return null;
+  const sorted = [...childSkills].sort((a, b) => a.id.localeCompare(b.id));
+  return sorted[0]!;
+}
+
+/**
  * Map knowledge-space nodes, edges, and blueprints into `practice.v1` activity
  * map rows. Each blueprint becomes one or more `ProjectedActivity` rows that
  * reference the underlying graph for provenance.
@@ -27,18 +60,26 @@ const SPEC_TO_MODE: Array<{
  * against previously generated activity maps before replacing app artifacts.
  *
  * @param nodes - Knowledge space nodes
- * @param edges - Knowledge space edges
- * @param blueprints - Knowledge blueprints (worked example, guided, independent, assessment)
- * @returns Sorted array of projected activities
+ * @param {KnowledgeSpaceEdge[]} edges - Knowledge space edges
+ * @param {KnowledgeBlueprint[]} blueprints - Knowledge blueprints (worked example, guided, independent, assessment)
+ * @returns {ProjectedActivity[] {} Sorted array of projected activities
  */
 export function projectActivityMap(
-  _nodes: KnowledgeSpaceNode[],
+  nodes: KnowledgeSpaceNode[],
   edges: KnowledgeSpaceEdge[],
   blueprints: KnowledgeBlueprint[],
 ): ProjectedActivity[] {
   const rows: ProjectedActivity[] = [];
 
   for (const bp of blueprints) {
+    // Concept Aggregator resolution: if the blueprint targets a concept node,
+    // resolve it to a single child skill before emitting rows.
+    const blueprintNode = nodes.find((n) => n.id === bp.nodeId);
+    const resolvedNode =
+      blueprintNode && blueprintNode.kind === 'concept'
+        ? (selectSkill(findChildSkills(blueprintNode, nodes, edges)) ?? blueprintNode)
+        : blueprintNode;
+    if (!resolvedNode) continue;
     // Enrich sourceNodeIds from prerequisite/supports edges targeting this node
     const edgeSourceIds = edges
       .filter(
@@ -85,7 +126,7 @@ export function projectActivityMap(
       const spec = bp[specKey];
       if (!spec) continue;
 
-      const stableActivityId = `${bp.nodeId}.${mode}`;
+      const stableActivityId = `${resolvedNode.id}.${mode}`;
 
       let props: Record<string, unknown> = {};
       if (specKey === 'workedExampleSpec') {
@@ -117,7 +158,7 @@ export function projectActivityMap(
 
       rows.push({
         stableActivityId,
-        nodeId: bp.nodeId,
+        nodeId: resolvedNode.id,
         sourceNodeIds: allSourceIds,
         rendererKey,
         mode,

@@ -3,9 +3,10 @@ import {
   syntheticMathFixture,
   syntheticEnglishGseFixture,
 } from '@math-platform/knowledge-space-core';
+import type { KnowledgeSpaceNode, KnowledgeSpaceEdge } from '@math-platform/knowledge-space-core';
 import type { KnowledgeBlueprint } from '../blueprints';
 
-import { projectActivityMap } from '../projections/activity-map';
+import { projectActivityMap, findChildSkills, selectSkill } from '../projections/activity-map';
 import { projectSrsInputs } from '../projections/srs';
 import { projectTeacherEvidence } from '../projections/teacher-evidence';
 import {
@@ -436,5 +437,102 @@ describe('Cross-domain smoke test (English/GSE)', () => {
     const teacherViz = projectTeacherVisualization(nodes, edges, classStats);
     const teacherResult = teacherVisualizationV1Schema.safeParse(teacherViz);
     expect(teacherResult.success).toBe(true);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Concept Aggregator resolution (precalc-alignment-concept-taxonomy_20260510)
+// ---------------------------------------------------------------------------
+describe('Concept Aggregator resolution', () => {
+  const conceptNode: KnowledgeSpaceNode = {
+    id: 'math.precalc.concept.unit-circle-trig',
+    kind: 'concept',
+    title: 'Unit Circle Trigonometry',
+    description: 'Aggregator node bundling unit-circle trig skills.',
+    reviewStatus: 'approved',
+    metadata: {},
+  };
+  const skillA: KnowledgeSpaceNode = {
+    id: 'math.precalc.skill.unit-circle.sin-definition',
+    kind: 'skill',
+    title: 'Sin from unit circle',
+    reviewStatus: 'approved',
+    metadata: {},
+  };
+  const skillB: KnowledgeSpaceNode = {
+    id: 'math.precalc.skill.unit-circle.cos-definition',
+    kind: 'skill',
+    title: 'Cos from unit circle',
+    reviewStatus: 'approved',
+    metadata: {},
+  };
+  const otherConcept: KnowledgeSpaceNode = {
+    id: 'math.precalc.concept.other',
+    kind: 'concept',
+    title: 'Other concept',
+    reviewStatus: 'approved',
+    metadata: {},
+  };
+  const conceptEdges: KnowledgeSpaceEdge[] = [
+    {
+      id: 'e1',
+      type: 'contains',
+      sourceId: conceptNode.id,
+      targetId: skillA.id,
+      confidence: 'high',
+      weight: 1,
+      reviewStatus: 'approved',
+    },
+    {
+      id: 'e2',
+      type: 'contains',
+      sourceId: conceptNode.id,
+      targetId: skillB.id,
+      confidence: 'high',
+      weight: 1,
+      reviewStatus: 'approved',
+    },
+  ];
+
+  it('findChildSkills returns child skills of a concept via contains edges', () => {
+    const childSkills = findChildSkills(conceptNode, [conceptNode, skillA, skillB, otherConcept], conceptEdges);
+    const ids = childSkills.map((s) => s.id).sort();
+    // 'cos' < 'sin' alphabetically.
+    expect(ids).toEqual([skillB.id, skillA.id]);
+  });
+
+  it('findChildSkills returns empty for a non-concept node', () => {
+    expect(findChildSkills(skillA, [skillA, skillB], conceptEdges)).toEqual([]);
+  });
+
+  it('selectSkill picks alphabetically first child skill deterministically', () => {
+    const picked = selectSkill([skillB, skillA]);
+    expect(picked?.id).toBe(skillB.id);
+  });
+
+  it('selectSkill returns null on empty child list', () => {
+    expect(selectSkill([])).toBeNull();
+  });
+
+  it('projectActivityMap resolves a concept nodeId to a child skill row', () => {
+    const blueprint: KnowledgeBlueprint = {
+      nodeId: conceptNode.id,
+      sourceNodeIds: [],
+      alignmentNodeIds: [],
+      rendererKey: 'concept-explorer',
+      independentPracticeSpec: {
+        variantParameters: {},
+        answerSchema: { answer: {} },
+        gradingRules: [],
+        replayPolicy: 'any_seed',
+      },
+      reviewStatus: 'draft',
+      metadata: {},
+    };
+    const nodes = [conceptNode, skillA, skillB];
+    const rows = projectActivityMap(nodes, conceptEdges, [blueprint]);
+    expect(rows).toHaveLength(1);
+    expect(rows[0]?.nodeId).toBe(skillB.id);
+    expect(rows[0]?.stableActivityId).toBe(`${skillB.id}.independent_practice`);
   });
 });

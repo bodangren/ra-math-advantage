@@ -97,6 +97,19 @@ Visualization projection rules:
 7. Do not make shared packages import from `apps/` or `convex/_generated/`.
 8. Render student, parent, and teacher graph visualizations from role-specific projections; do not have UI components infer canonical graph truth.
 
+## Concept Aggregator Resolution Rule
+
+A `concept` node bundles multiple `skill` children via `contains` edges. Blueprints may target either a skill or a concept. When a blueprint targets a `concept`, the activity-map projection MUST resolve the concept to a single child skill before emitting practice rows so downstream consumers (SRS, planner, visualization, component props) only deal with `skill`-shaped rows.
+
+Resolution algorithm (implemented in `packages/knowledge-space-practice/src/projections/activity-map.ts`):
+
+1. `findChildSkills(conceptNode, nodes, edges)` returns direct `skill` children via `contains` edges where the concept is the source.
+2. `selectSkill(childSkills)` picks the alphabetically first child skill (deterministic, reviewer-diff stable).
+3. `projectActivityMap` rewrites the row's `nodeId` and `stableActivityId` to use the resolved skill id.
+4. If a concept has zero child skills, the projection skips the blueprint (caller is expected to log a review-queue item).
+
+Concept nodes MUST NOT appear in `blueprints.json` files emitted by domain content — only `skill` and `task_blueprint` nodes are valid blueprint targets. Cleanup is automated by `scripts/remediate-concept-blueprints.ts` which removes any blueprint referencing a concept node id.
+
 ## Current Measure Tracks
 
 - Track 2 defines `knowledge-space-core`.
