@@ -53,10 +53,53 @@
   encodes ascending-degree order — see module-level JSDoc in
   `utils/polynomial.ts`.
 
-- [ ] **Phase 2: Rational Functions**
-  - [ ] Implement `rational-analyzer.ts`.
-  - [ ] Write logic to generate holes, vertical, and horizontal asymptotes cleanly.
-  - [ ] Format output for the `step-by-step-solver` fallback if no specialized UI exists.
+- [x] **Phase 2: Rational Functions**
+  - [x] Implement `rational-analyzer.ts`.
+  - [x] Write logic to generate holes, vertical, and horizontal asymptotes cleanly.
+  - [x] Format output for the `step-by-step-solver` fallback if no specialized UI exists.
+
+  **Red evidence (baseline SHA `f510de90`, commit SHA `102f47f7`):**
+  ```
+  $ npx vitest run rational-analyzer --root packages/math-content
+  FAIL  src/__tests__/rational-analyzer.test.ts
+  Error: Cannot find module '../rational-analyzer'
+  Test Files  1 failed (1) | Tests  no tests | Duration  1.00s
+  ```
+  19 tests defined across 9 describe blocks fail with module-not-found:
+  shape (3), seed-1 structural (4), determinism (2), horizontal-asymptote (3),
+  invariants (2), mathematical correctness (3), step-by-step-solver fallback (2).
+
+  **Green evidence (baseline SHA `102f47f7`, commit SHA `8b8a574b`):**
+  ```
+  $ npx vitest run rational-analyzer --root packages/math-content
+   Test Files  1 passed (1)
+        Tests  19 passed (19)
+     Duration  1.37s
+  ```
+  All 19 tests pass. Existing polynomial suite (14 tests) still passes.
+
+  **JR Green work log:**
+  - Implemented `packages/math-content/src/rational-analyzer.ts`:
+    backward generation mirrors polynomial-division.ts — picks hole h,
+    vertical-asymptote v, and x-intercept z as distinct integers in
+    [−9, 9] (v ≠ h, z ≠ h, z ≠ v guaranteed by do-while loops), then
+    expands P(x) = (x−h)(x−z) and Q(x) = (x−h)(x−v) via `multiplyPoly`
+    with ascending-order factors `[-h, 1]`. The shared (x−h) factor
+    produces exactly one removable discontinuity (hole) at x = h; the
+    remaining (x−v) in the denominator is the vertical asymptote. The
+    horizontal-asymptote object records the ratio of leading coefficients
+    (always 1 for our monic-linear construction). The `equation` field
+    renders the rational function as a human-readable string for the
+    step-by-step-solver fallback UI (`familyId: 'step-by-step-solver:rational'`).
+  - Seed 1 produces h=0, v=−6, z=−7 → P(x) = x(x+7), Q(x) = x(x+6);
+    hole at x=0, VA at x=−6, x-intercept at x=−7, horizontal asymptote y=1.
+  - Fixed initial Red test bug: used `[1, -h]` factors (ascending: 1−hx,
+    root at 1/h) instead of `[-h, 1]` (ascending: x−h, root at h).
+    Amended Red commit to use correct `[-h, 1]` convention consistent
+    with Phase 1's ascending-degree-order contract.
+  - Discovered and fixed z = v collision (seed 18): added `z !== v`
+    constraint to prevent the x-intercept factor from cancelling the
+    vertical-asymptote factor.
 
 - [ ] **Phase 3: Logarithms & Exponentials**
   - [ ] Implement `exp-log-solver.ts`.
