@@ -1,0 +1,173 @@
+{
+  "schema_version": 1,
+  "status": "pass",
+  "summary": "Adversarial testing of the FR-3 balanced-brace JSDoc guard against 10 boundary, failure-path, and regression scenarios. Initial run revealed one bypass: the guard's STRAY_BLOCK detection only inspected the first non-space character after the balanced type region, missing orphaned {} blocks embedded in descriptive prose (scenario 3: `@returns {string} the result is {}`). The guard was fixed in the same commit to scan the entire rest of the line for any `{` character after the type region. Post-fix run: 10/10 scenarios pass, all 4 existing fixtures (malformed-1/2/3 + clean-1) still produce expected results, and production scope (apps/ packages/ convex/, 663 typed tags) still returns 0 violations / exit 0. The fix is a minimal 7-line change to the awk scanner (lines 172-185 of check-jsdoc-balanced-braces.sh) that replaces the single-position check with a full-line scan from type_end+1 to len.",
+  "bypass_found": {
+    "scenario": "adv-03-embedded-braces-prose.ts",
+    "pattern": "@returns {string} the result is {}",
+    "root_cause": "The guard's STRAY_BLOCK detection (Rule 3) used `next_pos = type_end + 1` and only checked the first non-space character after the balanced type. When descriptive prose intervenes between the type and the orphaned {}, the guard never reaches the stray block.",
+    "fix": "Replaced the single-position check with a full-line scan from type_end+1 to len. If any `{` is found at any position after the balanced type, flag as STRAY_BLOCK. This matches the spec's intent: 'depth goes back up from 0' at any point on the same line means a stray block.",
+    "fix_location": "measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh lines 172-185"
+  },
+  "evidence": [
+    {
+      "scenario": "adv-01-multiline-param.ts",
+      "description": "Multi-line @param — type split across two lines: `@param {Map<string,` on line 4, `number>}` on line 5.",
+      "expected_verdict": "UNBALANCED (exit 1)",
+      "observed_verdict": "UNBALANCED (exit 1)",
+      "initial_run": "PASS — guard correctly detects depth never returns to 0 on the first line",
+      "post_fix_run": "PASS — same behaviour after fix"
+    },
+    {
+      "scenario": "adv-02-multiline-returns.ts",
+      "description": "Multi-line @returns — type split across two lines: `@returns {Promise<` on line 4, `string | null>}` on line 5.",
+      "expected_verdict": "UNBALANCED (exit 1)",
+      "observed_verdict": "UNBALANCED (exit 1)",
+      "initial_run": "PASS — guard correctly detects depth never returns to 0 on the first line",
+      "post_fix_run": "PASS — same behaviour after fix"
+    },
+    {
+      "scenario": "adv-03-embedded-braces-prose.ts",
+      "description": "Orphaned {} block after prose: `@returns {string} the result is {}` — type is balanced, but `{}` appears at the end of the line after descriptive text.",
+      "expected_verdict": "STRAY_BLOCK (exit 1)",
+      "observed_verdict_initial": "PASS (exit 0) — BYPASS FOUND",
+      "observed_verdict_post_fix": "STRAY_BLOCK (exit 1) — fixed",
+      "guard_output_initial": "PASS: All 1 typed @param/@returns tags ... have balanced braces.",
+      "guard_output_post_fix": "FAIL: 1 malformed @param/@returns tag(s) ... STRAY_BLOCK — * @returns {string} the result is {}"
+    },
+    {
+      "scenario": "adv-04-nested-template-literal.ts",
+      "description": "Backtick template literal inside @param type: `@param {(x: string) => `hello ${x}`}`. The guard treats `${x}` as a balanced inner block.",
+      "expected_verdict": "PASS (exit 0)",
+      "observed_verdict": "PASS (exit 0)",
+      "initial_run": "PASS — guard sees depth=0 after outer closing brace, reports balanced",
+      "post_fix_run": "PASS — same behaviour after fix",
+      "documentation_note": "Backticks are not JSDoc-spec-valid in type expressions, but the guard checks syntactic brace balance, not JSDoc-spec validity. This is a documented limitation of the syntactic invariant approach."
+    },
+    {
+      "scenario": "adv-05-comment-in-braces.ts",
+      "description": "JSDoc-style comment inside a brace region: `@param {{ /** a:b */ a: string; b: number }} row` — all braces balance.",
+      "expected_verdict": "PASS (exit 0)",
+      "observed_verdict": "PASS (exit 0)",
+      "initial_run": "PASS",
+      "post_fix_run": "PASS"
+    },
+    {
+      "scenario": "adv-06-trailing-comma-object.ts",
+      "description": "Trailing semicolon in object type: `@param {{ a: string; b: number; }} opts` — legal in JSDoc/TS.",
+      "expected_verdict": "PASS (exit 0)",
+      "observed_verdict": "PASS (exit 0)",
+      "initial_run": "PASS",
+      "post_fix_run": "PASS"
+    },
+    {
+      "scenario": "adv-07-generic-default.ts",
+      "description": "TypeScript generic with default: `@param {Map<string, T = string>}` — `=` inside angle brackets is a TS default.",
+      "expected_verdict": "PASS (exit 0)",
+      "observed_verdict": "PASS (exit 0)",
+      "initial_run": "PASS",
+      "post_fix_run": "PASS"
+    },
+    {
+      "scenario": "adv-08-tagged-template-type.ts",
+      "description": "Nested generics: `@returns {Promise<ReturnType<typeof fetch>>}` — deeply nested angle brackets, no stray braces.",
+      "expected_verdict": "PASS (exit 0)",
+      "observed_verdict": "PASS (exit 0)",
+      "initial_run": "PASS",
+      "post_fix_run": "PASS"
+    },
+    {
+      "scenario": "adv-09-tuple-type.ts",
+      "description": "Tuple type: `@param {[string, number]}` — balanced.",
+      "expected_verdict": "PASS (exit 0)",
+      "observed_verdict": "PASS (exit 0)",
+      "initial_run": "PASS",
+      "post_fix_run": "PASS"
+    },
+    {
+      "scenario": "adv-10-function-overload-union.ts",
+      "description": "Union of two function types: `@param {((x: number) => string) | ((x: string) => string)}` — all braces and parens balance.",
+      "expected_verdict": "PASS (exit 0)",
+      "observed_verdict": "PASS (exit 0)",
+      "initial_run": "PASS",
+      "post_fix_run": "PASS"
+    }
+  ],
+  "regression_checks": [
+    {
+      "check": "malformed-1.ts (UNBALANCED) still detected",
+      "command": "bash scripts/check-jsdoc-balanced-braces.sh scripts/fixtures/malformed-1.ts",
+      "expected": "exit 1, 1 violation, UNBALANCED",
+      "actual": "exit 1, 1 violation, UNBALANCED"
+    },
+    {
+      "check": "malformed-2.ts (UNBALANCED_PARENS) still detected",
+      "command": "bash scripts/check-jsdoc-balanced-braces.sh scripts/fixtures/malformed-2.ts",
+      "expected": "exit 1, 1 violation, UNBALANCED_PARENS",
+      "actual": "exit 1, 1 violation, UNBALANCED_PARENS"
+    },
+    {
+      "check": "malformed-3.ts (STRAY_BLOCK) still detected",
+      "command": "bash scripts/check-jsdoc-balanced-braces.sh scripts/fixtures/malformed-3.ts",
+      "expected": "exit 1, 1 violation, STRAY_BLOCK",
+      "actual": "exit 1, 1 violation, STRAY_BLOCK"
+    },
+    {
+      "check": "clean-1.ts still passes",
+      "command": "bash scripts/check-jsdoc-balanced-braces.sh scripts/fixtures/clean-1.ts",
+      "expected": "exit 0, 0 violations, 5 typed tags",
+      "actual": "exit 0, 0 violations, 5 typed tags"
+    },
+    {
+      "check": "Production scope (apps/ packages/ convex/) still clean",
+      "command": "bash scripts/check-jsdoc-balanced-braces.sh",
+      "expected": "exit 0, 0 violations, 663 typed tags, 2237 files",
+      "actual": "exit 0, 0 violations, 663 typed tags, 2237 files"
+    }
+  ],
+  "commands": [
+    "bash measure/tracks/code-review-remediation_20260624/scripts/adversarial-tests.sh",
+    "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh measure/tracks/code-review-remediation_20260624/scripts/fixtures/adversarial/adv-01-multiline-param.ts",
+    "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh measure/tracks/code-review-remediation_20260624/scripts/fixtures/adversarial/adv-02-multiline-returns.ts",
+    "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh measure/tracks/code-review-remediation_20260624/scripts/fixtures/adversarial/adv-03-embedded-braces-prose.ts",
+    "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh measure/tracks/code-review-remediation_20260624/scripts/fixtures/adversarial/adv-04-nested-template-literal.ts",
+    "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh measure/tracks/code-review-remediation_20260624/scripts/fixtures/adversarial/adv-05-comment-in-braces.ts",
+    "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh measure/tracks/code-review-remediation_20260624/scripts/fixtures/adversarial/adv-06-trailing-comma-object.ts",
+    "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh measure/tracks/code-review-remediation_20260624/scripts/fixtures/adversarial/adv-07-generic-default.ts",
+    "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh measure/tracks/code-review-remediation_20260624/scripts/fixtures/adversarial/adv-08-tagged-template-type.ts",
+    "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh measure/tracks/code-review-remediation_20260624/scripts/fixtures/adversarial/adv-09-tuple-type.ts",
+    "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh measure/tracks/code-review-remediation_20260624/scripts/fixtures/adversarial/adv-10-function-overload-union.ts",
+    "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh measure/tracks/code-review-remediation_20260624/scripts/fixtures/malformed-1.ts",
+    "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh measure/tracks/code-review-remediation_20260624/scripts/fixtures/malformed-2.ts",
+    "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh measure/tracks/code-review-remediation_20260624/scripts/fixtures/malformed-3.ts",
+    "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh measure/tracks/code-review-remediation_20260624/scripts/fixtures/clean-1.ts",
+    "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh"
+  ],
+  "files_changed": [
+    "measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh",
+    "measure/tracks/code-review-remediation_20260624/scripts/adversarial-tests.sh",
+    "measure/tracks/code-review-remediation_20260624/scripts/fixtures/adversarial/adv-01-multiline-param.ts",
+    "measure/tracks/code-review-remediation_20260624/scripts/fixtures/adversarial/adv-02-multiline-returns.ts",
+    "measure/tracks/code-review-remediation_20260624/scripts/fixtures/adversarial/adv-03-embedded-braces-prose.ts",
+    "measure/tracks/code-review-remediation_20260624/scripts/fixtures/adversarial/adv-04-nested-template-literal.ts",
+    "measure/tracks/code-review-remediation_20260624/scripts/fixtures/adversarial/adv-05-comment-in-braces.ts",
+    "measure/tracks/code-review-remediation_20260624/scripts/fixtures/adversarial/adv-06-trailing-comma-object.ts",
+    "measure/tracks/code-review-remediation_20260624/scripts/fixtures/adversarial/adv-07-generic-default.ts",
+    "measure/tracks/code-review-remediation_20260624/scripts/fixtures/adversarial/adv-08-tagged-template-type.ts",
+    "measure/tracks/code-review-remediation_20260624/scripts/fixtures/adversarial/adv-09-tuple-type.ts",
+    "measure/tracks/code-review-remediation_20260624/scripts/fixtures/adversarial/adv-10-function-overload-union.ts",
+    "measure/tracks/code-review-remediation_20260624/_artifacts/adversarial-run.txt",
+    "measure/tracks/code-review-remediation_20260624/_artifacts/adversarial-run-initial.txt",
+    "measure/tracks/code-review-remediation_20260624/_artifacts/adversarial.json"
+  ],
+  "commits": [
+    "5d43b4ee test(code-review-remediation): Phase 1 adversarial — harden FR-3 guard against embedded {} in prose"
+  ],
+  "test_strategy_violations": [],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "none",
+  "confidence": "high",
+  "handoff": "Adversarial testing complete. The FR-3 guard has been hardened against the embedded-{} in prose bypass (scenario 3). The fix is a minimal 7-line change that scans the full remainder of each @param/@returns line for any `{` character after the balanced type region. All 10 adversarial scenarios pass. All 4 existing fixtures still produce expected results. Production scope (663 typed tags, 2237 files) still returns 0 violations / exit 0. The fix preserves the syntactic invariant approach (no regex matching, no symbol-name grep) consistent with FR-20. Final acceptance should verify: (1) the adversarial runner exits 0, (2) the guard's production scope still exits 0, (3) the 4 existing fixtures still produce their expected exit codes, and (4) the guard's Rule 3 comment now documents the full-line scan behaviour."
+}

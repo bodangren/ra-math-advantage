@@ -171,10 +171,18 @@ FNR == 1 {
     
     # Rule 3: check for any stray { after the first balanced type block.
     # After the type region ends, any subsequent { on the same line is a violation.
-    next_pos = type_end + 1
-    while (next_pos <= len && substr(line, next_pos, 1) == " ") next_pos++
+    # This scans the ENTIRE rest of the line, not just the first non-space
+    # character — catches embedded ` {} ` inside descriptive prose
+    # (e.g. `@returns {string} the result is {}`).
+    stray_found = 0
+    for (k = type_end + 1; k <= len; k++) {
+        if (substr(line, k, 1) == "{") {
+            stray_found = 1
+            break
+        }
+    }
     
-    if (next_pos <= len && substr(line, next_pos, 1) == "{") {
+    if (stray_found) {
         violations++
         print FILENAME "\tSTRAY_BLOCK\t" $0
     }

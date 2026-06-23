@@ -1,0 +1,59 @@
+===============================================
+FR-3 Adversarial Test Runner
+Guard: /home/daniel-bo/Desktop/ra-math-advantage/measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh
+Fixtures: /home/daniel-bo/Desktop/ra-math-advantage/measure/tracks/code-review-remediation_20260624/scripts/fixtures/adversarial
+===============================================
+
+  [PASS] adv-01-multiline-param.ts
+         expected: UNBALANCED (exit 1)
+         observed: UNBALANCED (exit 1)
+         note:     Multi-line @param — first line's brace region never closes on the same line.
+
+  [PASS] adv-02-multiline-returns.ts
+         expected: UNBALANCED (exit 1)
+         observed: UNBALANCED (exit 1)
+         note:     Multi-line @returns — first line's brace region never closes on the same line.
+
+  [PASS] adv-03-embedded-braces-prose.ts
+         expected: STRAY_BLOCK (exit 1)
+         observed: STRAY_BLOCK (exit 1)
+         note:     Orphaned {} block after prose — guard's STRAY_BLOCK check only inspects the first non-space char after the type region, so this is a documented bypass.
+
+  [PASS] adv-04-nested-template-literal.ts
+         expected: PASS (exit 0)
+         observed: PASS (exit 0)
+         note:     Backtick template literal inside @param type — guard sees depth=0, reports balanced. JSDoc-spec-invalid but syntactically balanced; documented limitation.
+
+  [PASS] adv-05-comment-in-braces.ts
+         expected: PASS (exit 0)
+         observed: PASS (exit 0)
+         note:     JSDoc-style comment inside brace region — all braces balance, guard passes.
+
+  [PASS] adv-06-trailing-comma-object.ts
+         expected: PASS (exit 0)
+         observed: PASS (exit 0)
+         note:     Trailing semicolon in object type — guard passes.
+
+  [PASS] adv-07-generic-default.ts
+         expected: PASS (exit 0)
+         observed: PASS (exit 0)
+         note:     TypeScript generic with default — guard passes.
+
+  [PASS] adv-08-tagged-template-type.ts
+         expected: PASS (exit 0)
+         observed: PASS (exit 0)
+         note:     Nested ReturnType<typeof fetch> — guard passes.
+
+  [PASS] adv-09-tuple-type.ts
+         expected: PASS (exit 0)
+         observed: PASS (exit 0)
+         note:     Tuple type [string, number] — guard passes.
+
+  [PASS] adv-10-function-overload-union.ts
+         expected: PASS (exit 0)
+         observed: PASS (exit 0)
+         note:     Union of two function types — guard passes.
+
+===============================================
+Adversarial summary: 10 pass, 0 fail (of 10 scenarios)
+===============================================
