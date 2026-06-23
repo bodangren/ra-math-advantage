@@ -1,0 +1,14 @@
+{
+  "gate": "closeout",
+  "track_id": "edge-calibration_20260521",
+  "result": "PASS",
+  "timestamp": "2026-06-23T09:18:00Z",
+  "checks": [
+    "track removed from active section of measure/tracks.md",
+    "track added to archived section of measure/tracks.md",
+    "metadata.json status=done, closed_at and completed set",
+    "all plan tasks annotated with commit SHAs",
+    "closeout manifest created",
+    "commit SHA: 20fc117d"
+  ]
+}

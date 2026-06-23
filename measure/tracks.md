@@ -57,12 +57,9 @@ Dependencies:
    - [ ] **Track 1: Wire the KST Pipeline + v2 Mastery Model**
       *Wire knowledge-space packages into an IM3 production route: SRS→KST bridge, time-aware `getKnowledgeState` with hysteresis, standalone `getOuterFringe`, learner-state producer. Brings kst-srs.v2 `SPECIFICATION.md` into the repo as canonical contract. (Improvement Plan Item 1 + v1 wiring.)*
       *Link: [./tracks/wire-kst-pipeline_20260521/](./tracks/wire-kst-pipeline_20260521/)*
-   - [ ] **Track 2: Weighted Readiness**
+    - [ ] **Track 2: Weighted Readiness**
       *Make `edge.weight` a live field: a weighted readiness score (`Σ(wᵢ·mᵢ)/Σ(wᵢ)`) replaces binary prerequisite gating, modeling compensatory learning paths. (Improvement Plan Item 2.) Depends on Track 1.*
       *Link: [./tracks/weighted-readiness_20260521/](./tracks/weighted-readiness_20260521/)*
-   - [ ] **Track 3: Edge Calibration Loop**
-      *Data-driven prerequisite-edge validation: a Beta-Bernoulli posterior per `prerequisite_for` edge from paired proficiency verdicts, with recency decay and a curriculum-order confounding guardrail, producing a human review queue. (Item 3.) Depends on Track 1.*
-      *Link: [./tracks/edge-calibration_20260521/](./tracks/edge-calibration_20260521/)*
     - [ ] **Track 6: Misconception Remediation Loop**
       *Close the misconception loop: `remediated_by` edge type, SRS rating-cap reconciliation (cap at Hard, Again only if severe), per-student active/resolved lifecycle, and planner injection of remediation activities. (Item 6.) Depends on Track 1.*
       *Link: [./tracks/misconception-loop_20260521/](./tracks/misconception-loop_20260521/)*
@@ -1070,6 +1067,10 @@ Sixteen candidate tracks identified from a full-roadmap review. Each is registry
 - [x] **Track: Data Export Teacher UI** — **COMPLETED** (2026-06-23)
   *Build the teacher-facing UI for student-progress/gradebook/submission CSV+JSON export. Backend (Convex queries + CSV util + 12 tests) was complete; UI delivered: teacher-only export panel with dataset/scope/format controls, role-gated download with descriptive filename, empty/large/error states, and authorization guards reusing teacher-of-class checks. 46/46 export tests pass. Phases 1-3 complete with checkpoint commits 87415abf, e495494b, 7db21282.*
   *Link: [./measure/archive/data-export-teacher-ui_20260605/](./measure/archive/data-export-teacher-ui_20260605/)*
+
+- [x] **Track 3: Edge Calibration Loop** — **COMPLETED / ARCHIVED** (2026-06-23)
+  *Data-driven prerequisite-edge validation: a Beta-Bernoulli posterior per `prerequisite_for` edge from paired proficiency verdicts, with recency decay and a curriculum-order confounding guardrail, producing a human review queue. 14 tasks complete across 4 phases. All tests pass: 216/216 (P1), 191/191 (P2), 1206+211 (P3), 233/233 (P4). Known gap: no production route consumes calibration output yet (depends on Track 1 wire-kst-pipeline).*
+  *Link: [./measure/archive/edge-calibration_20260521/](./measure/archive/edge-calibration_20260521/)*
 
 ## Tech Debt Resolution (2026-04-29)
 

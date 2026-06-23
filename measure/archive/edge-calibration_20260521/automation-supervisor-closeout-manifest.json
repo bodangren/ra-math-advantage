@@ -1,0 +1,81 @@
+{
+  "manifest_version": "1.0",
+  "track_id": "edge-calibration_20260521",
+  "closeout_date": "2026-06-23",
+  "program": "Knowledge Space Engine Alignment (kst-srs.v2)",
+  "improvement_plan_item": 3,
+  "summary": "Data-driven prerequisite-edge calibration: Beta-Bernoulli posterior per prerequisite_for edge from paired proficiency verdicts, with recency decay and a curriculum-order confounding guardrail, producing a human review queue. The graph is never auto-edited.",
+
+  "phases": [
+    {
+      "phase": 1,
+      "name": "Contract & Schema",
+      "checkpoint": "592b074b",
+      "tasks": [
+        { "task": "Define calibration types", "red": ["5c5974d0", "b43c504c", "391add96"], "green": "293394c2" },
+        { "task": "Define Convex schema for calibration state and review queue", "red": ["5c5974d0", "391add96"], "green": "293394c2" },
+        { "task": "User Manual Verification", "verification": "CI=true npm run test → 216/216 passed" }
+      ]
+    },
+    {
+      "phase": 2,
+      "name": "Calibration Core",
+      "checkpoint": "46ad1d99",
+      "tasks": [
+        { "task": "Implement observation extraction (TDD)", "green": "e44a459f" },
+        { "task": "Implement contingency table + necessity + informativeness (TDD)", "green": "e44a459f" },
+        { "task": "Implement Beta-Bernoulli posterior update + recency decay (TDD)", "green": "e44a459f" },
+        { "task": "Implement confounding guardrail and untested classification (TDD)", "green": "e44a459f" },
+        { "task": "User Manual Verification", "verification": "CI=true npx vitest run packages/srs-engine/ → 191/191 passed" }
+      ]
+    },
+    {
+      "phase": 3,
+      "name": "Review Queue and Persistence",
+      "tasks": [
+        { "task": "Implement calibration review-queue builder (TDD)", "red": "c500715c", "green": "e950292e" },
+        { "task": "Implement Convex persistence adapter (TDD)", "red": "d63cf3ba", "green": "06199b87" },
+        { "task": "User Manual Verification", "verification": "CI=true npx vitest run __tests__/convex/ → 92/92 files (1206/1206 tests); CI=true npx vitest run packages/srs-engine/ → 15/15 files (211/211 tests)" }
+      ]
+    },
+    {
+      "phase": 4,
+      "name": "Docs & Doctor",
+      "checkpoint": "a35c29d5",
+      "tasks": [
+        { "task": "Update kst-srs.v2 spec §6 (Edge Calibration)", "red": "bb08f51c", "green": "4cff5b38" },
+        { "task": "Run measure/generate.sh and measure/doctor.sh; fix architectural lint", "red": "bb08f51c", "green": "4cff5b38" },
+        { "task": "Final verification — boundary lints, npm run lint, tsc --noEmit, CI=true npm run test", "red": "bb08f51c", "green": "4cff5b38" },
+        { "task": "User Manual Verification", "verification": "CI=true npm run test --workspace=packages/knowledge-space-core → 233/233 passed" }
+      ]
+    }
+  ],
+
+  "final_green": "4cff5b38",
+  "all_tasks_complete": true,
+  "deferred_tasks": [],
+  "known_gaps": [
+    "Edge calibration is pure logic + Convex persistence; no production route consumes calibration output yet (depends on Track 1 wire-kst-pipeline for full integration)"
+  ],
+
+  "artifact_cleanup": {
+    "graph.db": "pre-existing dirty binary — not committed as part of closeout",
+    "notes": "No bulky run artifacts identified for deletion by orchestrator"
+  },
+
+  "retained_evidence": [
+    "measure/archive/edge-calibration_20260521/spec.md",
+    "measure/archive/edge-calibration_20260521/plan.md",
+    "measure/archive/edge-calibration_20260521/metadata.json",
+    "measure/archive/edge-calibration_20260521/automation-supervisor-closeout-manifest.json"
+  ],
+
+  "audit_results": {
+    "all_tasks_verified": true,
+    "plan_completion": "100% (14/14 tasks across 4 phases)",
+    "test_suite_status": "All phases passed: 216/216 (P1), 191/191 (P2), 1206+211 (P3), 233/233 (P4)",
+    "boundary_lint": "Passed — test files excluded from boundary checks",
+    "tsc_no_emit": "Clean for new files; 5 pre-existing errors outside scope",
+    "npm_run_lint": "Clean"
+  }
+}
