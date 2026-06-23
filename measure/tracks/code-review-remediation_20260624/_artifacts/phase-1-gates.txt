@@ -1,0 +1,82 @@
+Phase 1 Closeout Gates — code-review-remediation_20260624
+==========================================================
+Date: 2026-06-24
+Role: jr-green
+
+## Gate 1 — FR-3 balanced-brace guard (production scope)
+
+Command:
+  bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh
+
+Output:
+  Scope:                  apps/ packages/ convex/
+  Scanned files:          2237
+  Total typed tags:       663
+  Violations:             0
+  Exit code:              0
+  PASS: All 663 typed @param/@returns tags in apps/ packages/ convex/ have balanced braces.
+
+## Gate 2 — FR-3 balanced-brace guard (fixtures, runner-plumbing self-test)
+
+Per-fixture output:
+
+  malformed-1.ts (UNBALANCED, 1 typed tag, 1 violation, exit 1) — PASS
+  malformed-2.ts (UNBALANCED_PARENS, 1 typed tag, 1 violation, exit 1) — PASS
+  malformed-3.ts (STRAY_BLOCK, 1 typed tag, 1 violation, exit 1) — PASS
+  clean-1.ts     (clean, 5 typed tags, 0 violations, exit 0) — PASS
+
+Total: 3 violations detected on malformed fixtures, 0 on clean — matches strategy §4
+expectation.
+
+## Gate 3 — git grep final scans (production scope)
+
+Production scope: apps/**, packages/**, convex/** (excludes fixtures/).
+
+  git grep -nP '@returns \{.+ \{\}' → 0 matches
+  git grep -nP '@param \{[^{}]*$'  → 0 matches
+
+(All other matches are inside the intentional fixtures under
+measure/tracks/code-review-remediation_20260624/scripts/fixtures/.)
+
+## Gate 4 — Lint / tsc / test (targeted, per test-strategy §2)
+
+Lint on the 4 FR-1 + 2 @param fixed files: 0 errors, 0 new warnings.
+(2 pre-existing warnings in
+apps/integrated-math-3/__tests__/lib/onboarding/student-flow.test.ts
+are unrelated to this track; file last touched by 83f52501.)
+
+Tsc on the 4 FR-1 + 2 @param fixed files: 0 new errors.
+(318 pre-existing errors in IM3 + 10 in ksp are out of scope per
+test-strategy §2; documented in measure/tech-debt.md.)
+
+Targeted vitest on apps/integrated-math-3/__tests__/components/teacher/gradebook
+(includes CourseOverviewGrid): 45/45 pass.
+
+Targeted vitest on apps/integrated-math-3/__tests__/lib/auth: 45/45 pass.
+
+Targeted vitest on packages/knowledge-space-practice/src/__tests__/projections.test.ts
+(includes activity-map): 17/17 pass.
+
+## Commit SHAs (Phase 1)
+
+  e195fded (Red,   mid-red)  test(...)  Phase 1 Red — FR-3 balanced-brace JSDoc guard + fixtures + evidence
+  d26ecd52 (Green A)         fix(...)   rewrite 4 malformed FR-1 @returns annotations
+  5ebf5195 (Green A.5)       fix(...)   close 2 additional @param unbalanced braces at HEAD
+  0006074f (Green B)         chore(...) restore 144 working-tree files to HEAD
+  b3cf07e6 (Green C)         docs(...)  add jsdoc generator template + investigation
+  0aa18a77 (this gate)       measure(...) mark Phase 1 tasks complete with Green commit evidence
+
+## Discovery beyond spec
+
+- Strategy's Red baseline (4 FR-1 violations) was an undercount. Actual
+  HEAD baseline is 6 (4 @returns + 2 @param). The 2 additional @param
+  cases were committed by spec-compliance Phase 3 (a5c2d410) and not
+  caught by typed-params guard. Fixed in 5ebf5195.
+- 144-file batch is agent-driven (no checked-in script). Same bug class
+  was introduced in spec-compliance Phase 3 on apps/integrated-math-3/.
+  Generator investigation: _artifacts/generator-investigation.md.
+  Corrected template: templates/jsdoc-template.md.
+
+## Verdict
+
+All closeout gates pass. Phase 1 is GREEN. Ready for review-a / review-b / review-c.
