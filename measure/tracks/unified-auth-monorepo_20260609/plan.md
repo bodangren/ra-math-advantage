@@ -109,6 +109,42 @@ Subagent: `measure-jr-green` (Phase 1 — Audit & Classification Green).
   `test-strategy.md` §1–§3, including the BM2 "credential existence
   only" deactivation check.
 
+### Phase 1 Acceptance (2026-06-23)
+
+**Acceptor:** Measure Phase Acceptance subagent.
+**Verdict:** **ACCEPTED — proceed to Phase 2.**
+**Audit result:** `/tmp/measure-audits/phase-acceptance-unified-auth.json`.
+
+**Verification performed**
+
+- Targeted Phase 1 test: `npx vitest run unified-auth-monorepo --root apps/bus-math-v2` → **2 passed (2)**.
+- BM2 auth regression: `npx vitest run __tests__/auth __tests__/lib/auth --root apps/bus-math-v2` → **5 files, 35 tests, all passed**.
+- Plan SHA evidence (`aaa04b08`, `e88d19e6`, `7fc8fba0`, `d7615896`, `efde783e`, `27b9a331`) all resolve on ancestry path from HEAD; baseline SHA `5882f496` matches the parent of `aaa04b08`.
+- Phase 1 commit scope: `git diff 5882f496..HEAD` touches **exactly four files** — the contract test, the decision doc, this `plan.md`, and `test-strategy.md`. No app code, no `graph.db`, no unrelated files.
+- BM2 + IM3 `tsc --noEmit` run as Phase 4 informational check: pre-existing errors exist in unrelated SRS (`problemFamilyId` refactor) and IM3 parent-portal mock files; **zero errors attributable to Phase 1** (test file, decision doc, plan.md, test-strategy.md introduce no tsc regressions).
+
+**FR / AC reconciliation**
+
+- **FR1**: delivered (classification of all 12 BM2 exports).
+- **FR2–FR5**, **AC1**, **AC3**, **AC4**: deferred to Phases 2–4 per spec and test-strategy.md.
+- **AC2**: Phase 1 portion green (targeted test + auth regression); full BM2/IM3 `tsc + auth + middleware` gate belongs to Phase 4 per test-strategy.md §1, §6.
+- **AC5**: preserved — no app code modified; 35-test regression suite green.
+
+**Reviewer audits consumed**
+
+- Review A (correctness/architecture): pass; regex tightened in `efde783e`.
+- Review B (security/data-handling): pass_with_issues; deactivation-behavior misanalysis corrected in `27b9a331`. Two remaining non-blockers (cookie-name parameterization, URIError cookie parsing) explicitly scoped to Phase 2/3.
+- Review C (UX/API end-to-end contract): pass; no fixes needed.
+
+**Anti-pattern scan**
+
+- Fake-gate masking: none.
+- Artifact-only claiming live proof: none (Phase 1 declared as artifact/doc-contract).
+- Stale intentional-red tests: none.
+- Plan/commit-SHA mismatch: none.
+- Missing caller updates: n/a (doc-only phase).
+- Incomplete behavior: none — all 12 BM2 exports classified with target-home rationale.
+
 ## Phase 2 — Promote Shared Logic into core-auth
 
 - [ ] Task: Move generalizable logic into `packages/core-auth`, parameterizing app differences (cookie names, redirects, role maps) via options
