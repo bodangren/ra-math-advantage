@@ -5,8 +5,16 @@ Verification gate each phase: `tsc --noEmit` (BM2 + IM3) + auth/middleware tests
 
 ## Phase 1 — Audit & Classification
 
-- [ ] Task: Inventory exports of `apps/bus-math-v2/lib/auth/server.ts`, `apps/integrated-math-3/lib/auth/server.ts`, and `packages/core-auth` public API
-- [ ] Task: Classify each BM2 export: identical-to-package / generalizable / BM2-specific; record the target home (Contract-First decision doc)
+- [~] Task: Inventory exports of `apps/bus-math-v2/lib/auth/server.ts`, `apps/integrated-math-3/lib/auth/server.ts`, and `packages/core-auth` public API
+- [~] Task: Classify each BM2 export: identical-to-package / generalizable / BM2-specific; record the target home (Contract-First decision doc)
+
+### Phase 1 Red Evidence
+
+- Baseline SHA: `5882f49671d6b65ad274fda68ceca3a56a25660c`
+- RED_TEST_COMMAND: `npx vitest run unified-auth-monorepo --root apps/bus-math-v2`
+- Expected failure: Contract-First decision doc `measure/tracks/unified-auth-monorepo_20260609/decisions/auth-export-classification.md` does not exist.
+- Actual output: `1 failed | 1 passed` — `exports exactly the expected public identifiers` passes; `exists and contains a classified section for every BM2 export` fails with `ENOENT: no such file or directory, open .../auth-export-classification.md`.
+- Commit SHA (Phase 1 Red): `d92b0d7f`
 
 ## Phase 2 — Promote Shared Logic into core-auth
 
