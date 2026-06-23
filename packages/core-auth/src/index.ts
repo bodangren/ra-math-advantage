@@ -18,3 +18,16 @@ export {
 
 export { getPasswordRequirementText, validatePasswordForRole } from './password-policy';
 export { isDemoProvisioningEnabled } from './demo-provisioning';
+
+export {
+  getCookieValueFromHeader,
+  getRequestSessionClaims,
+  buildRequestUnauthorizedResponse,
+  buildRequestForbiddenResponse,
+  buildRequestServiceUnavailableResponse,
+  requireRequestSessionClaims,
+  requireRoleRequestClaims,
+  requireActiveRequestSessionClaims,
+  requireActiveRoleRequestClaims,
+} from './request-guards';
+export type { RequestGuardResult, ActiveCredentialVerifier } from './request-guards';

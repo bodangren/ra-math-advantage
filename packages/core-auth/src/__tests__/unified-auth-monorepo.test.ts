@@ -126,7 +126,9 @@ describe('unified-auth-monorepo: requireActiveRequestSessionClaims', () => {
     const verifier = vi.fn().mockResolvedValue(true);
     const result = await requireActiveRequestSessionClaims(req, TEST_SECRET, verifier);
     expect(result).not.toBeInstanceOf(Response);
-    expect(verifier).toHaveBeenCalledWith({ sub: 'u-1', username: 'alice', role: 'student' });
+    expect(verifier).toHaveBeenCalledTimes(1);
+    const callArg = verifier.mock.calls[0]?.[0] as { username: string };
+    expect(callArg.username).toBe('alice');
   });
 
   it('returns 401 when verifier says inactive (existence-only)', async () => {

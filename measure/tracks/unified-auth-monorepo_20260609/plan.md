@@ -147,8 +147,8 @@ Subagent: `measure-jr-green` (Phase 1 — Audit & Classification Green).
 
 ## Phase 2 — Promote Shared Logic into core-auth
 
-- [ ] Task: Move generalizable logic into `packages/core-auth`, parameterizing app differences (cookie names, redirects, role maps) via options
-- [ ] Task: TDD — unit tests in core-auth for the promoted logic (parity with prior BM2 behavior)
+- [x] Task: Move generalizable logic into `packages/core-auth`, parameterizing app differences (cookie names, redirects, role maps) via options — SHA 5e3b6cd7 (Red) + <pending> (Green)
+- [x] Task: TDD — unit tests in core-auth for the promoted logic (parity with prior BM2 behavior) — SHA 5e3b6cd7
 
 ## Phase 3 — Thin the App Wrappers
 
