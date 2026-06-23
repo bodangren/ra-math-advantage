@@ -174,7 +174,7 @@ async function resolveStudentOptions(studentIds: string[]): Promise<StudentOptio
     try {
       const profile = (await fetchInternalQuery(
         internal.activities.getProfileById,
-        { profileId: id as unknown as Parameters<typeof fetchInternalQuery>[1] extends infer A ? A extends { profileId: infer X } ? X : never : never },
+        { profileId: id },
       )) as ProfileNameRow | null;
       displayName = profile?.displayName ?? profile?.username ?? undefined;
     } catch {
