@@ -1,0 +1,50 @@
+{
+  "audit": "closeout",
+  "track_id": "kst-lesser-holes_20260521",
+  "result": "PASS",
+  "timestamp": "2026-06-23T00:00:00Z",
+  "checks": [
+    {
+      "name": "track_archived",
+      "status": "PASS",
+      "detail": "Track directory moved from measure/tracks/ to measure/archive/"
+    },
+    {
+      "name": "tracks_md_updated",
+      "status": "PASS",
+      "detail": "Track 8 removed from active section, added to Archived Tracks section"
+    },
+    {
+      "name": "metadata_status",
+      "status": "PASS",
+      "detail": "metadata.json status set to 'done', closed_at and completed set to 2026-06-23"
+    },
+    {
+      "name": "closeout_manifest",
+      "status": "PASS",
+      "detail": "automation-supervisor-closeout-manifest.json created with full audit evidence"
+    },
+    {
+      "name": "task_completion",
+      "status": "PASS",
+      "detail": "All 11 tasks completed with checkpoint SHA evidence (6208449c, 32ce33e6, 79a73434, 3eed6125, aaaf3059, ea369553)"
+    },
+    {
+      "name": "acceptance_criteria",
+      "status": "PASS",
+      "detail": "All 5 ACs verified: transfers_to edge type, Level Projection, progressTrend fix, FSRS docs, boundary lints/tsc/tests"
+    },
+    {
+      "name": "interphase_checks",
+      "status": "PASS",
+      "detail": "measure_interphase_checks.py closeout returned PASS"
+    },
+    {
+      "name": "boundary_discipline",
+      "status": "PASS",
+      "detail": "147 pre-existing dirty paths preserved untouched; graph.db not committed"
+    }
+  ],
+  "commit_sha": "fb0f2dff",
+  "closeout_agent": "measure-closeout-subagent"
+}
