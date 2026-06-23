@@ -63,12 +63,9 @@ Dependencies:
     - [ ] **Track 6: Misconception Remediation Loop**
       *Close the misconception loop: `remediated_by` edge type, SRS rating-cap reconciliation (cap at Hard, Again only if severe), per-student active/resolved lifecycle, and planner injection of remediation activities. (Item 6.) Depends on Track 1.*
       *Link: [./tracks/misconception-loop_20260521/](./tracks/misconception-loop_20260521/)*
-   - [ ] **Track 7: Practice-Variant Rename**
-      *Rename the math-specific "problem family" to domain-neutral "practice variant" across practice-core/srs-engine/knowledge-space-practice; `Card` keyed by `variantKey`; subdivision optional. (Item 7.) Depends on Track 1.*
-      *Link: [./tracks/practice-variant-rename_20260521/](./tracks/practice-variant-rename_20260521/)*
-    - [x] **Track 8: Lesser Holes** — **COMPLETED / ARCHIVED** (2026-06-23)
-       *Three smaller v2 items: a `transfers_to` cross-domain edge type, a presentation-only Level Projection, and the `progressTrend` static-ratio → time-delta fix; plus documenting the FSRS per-card limitation. (Item 8.) Independent; runs last.*
-       *Link: [./archive/kst-lesser-holes_20260521/](./archive/kst-lesser-holes_20260521/)*
+    - [ ] **Track 7: Practice-Variant Rename**
+       *Rename the math-specific "problem family" to domain-neutral "practice variant" across practice-core/srs-engine/knowledge-space-practice; `Card` keyed by `variantKey`; subdivision optional. (Item 7.) Depends on Track 1.*
+       *Link: [./tracks/practice-variant-rename_20260521/](./tracks/practice-variant-rename_20260521/)*
 
 ## Audit Remediation (2026-06-09)
 
@@ -1045,6 +1042,10 @@ Sixteen candidate tracks identified from a full-roadmap review. Each is registry
 - [x] **Track 5: Adaptive Placement** — **COMPLETED / ARCHIVED** (2026-06-23)
    *Cold-start diagnostic: an adaptive tree-walk that locates a new student's mastery frontier in O(log n) probes, with an abstract probe interface and an IM3 problem-bank reference implementation. 17 tasks complete across 5 phases. 120/120 placement tests pass. Known gap: PlacementResult→getKnowledgeState integration test blocked on Track 1 (wire-kst-pipeline).*
    *Link: [./measure/archive/adaptive-placement_20260521/](./measure/archive/adaptive-placement_20260521/)*
+
+- [x] **Track 8: Lesser Holes** — **COMPLETED / ARCHIVED** (2026-06-23)
+   *Three smaller v2 items: a `transfers_to` cross-domain edge type, a presentation-only Level Projection, and the `progressTrend` static-ratio → time-delta fix; plus documenting the FSRS per-card limitation. (Item 8.) Independent; runs last.*
+   *Link: [./archive/kst-lesser-holes_20260521/](./archive/kst-lesser-holes_20260521/)*
 
 - [x] **Track 4: Next-Skill Planner** — **COMPLETED / ARCHIVED** (2026-06-18)
    *Completion-audit note (2026-06-21): planner math was real, but the planner had no production backend/route consumer. User decision: wire it up rather than descope. Remediation is tracked in `next_skill_planner_prod_wiring_20260621`.*

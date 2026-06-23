@@ -6,9 +6,9 @@ Depends on: Track 1. Independent of Tracks 2–7; run last in the program.
 ## Phase 1 — Contract & Schema
 
 - [x] Task: Add the transfers_to edge type [checkpoint: 6208449c]
-    - [x] Extend EdgeType union + Zod schemas; add §2.7 endpoint-pairing rule; extend validation
+    - [x] Extend EdgeType union + Zod schemas; add §2.7 endpoint-pairing rule; extend validation [checkpoint: 6208449c]
 - [x] Task: Define Level Projection and progressTrend history types [checkpoint: 6208449c]
-    - [x] Level Projection function signature (knowledge state → display level); progressTrend window/history input types
+    - [x] Level Projection function signature (knowledge state → display level); progressTrend window/history input types [checkpoint: 6208449c]
 - [x] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md) [checkpoint: 32ce33e6]
 
 ### Phase 1 — Red-phase evidence (MID handoff, 2026-06-12)
@@ -65,9 +65,9 @@ root exports, and package subpath exports.
 ## Phase 2 — Level Projection
 
 - [x] Task: Implement the Level Projection (TDD)  *(MID Red — 2026-06-13; JR Green — 2026-06-13)* [checkpoint: 79a73434]
-    - [x] Domain-supplied monotonic knowledge-state → display-level function; presentation-only
-    - [x] IM3 instance derived from the existing CSV level mapping
-- [x] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
+    - [x] Domain-supplied monotonic knowledge-state → display-level function; presentation-only [checkpoint: 79a73434]
+    - [x] IM3 instance derived from the existing CSV level mapping [checkpoint: 79a73434]
+- [x] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md) [checkpoint: 79a73434]
 
 ### Phase 2 — Red-phase evidence (MID handoff, 2026-06-13)
 
@@ -690,7 +690,7 @@ Implementation changes:
 ## Phase 3 — progressTrend Fix
 
 - [x] Task: Replace progressTrend static ratio with a time-delta (TDD)  *(MID Red — 2026-06-13; JR Green — 2026-06-13)* [checkpoint: 3eed6125]
-    - [x] Mastered-count delta over a window; unknown on insufficient history; update parent visualization
+    - [x] Mastered-count delta over a window; unknown on insufficient history; update parent visualization [checkpoint: 3eed6125]
 - [x] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md) [checkpoint: 3eed6125]
 
 ### Phase 3 — Graph-Aware pre-flight (MID, 2026-06-13)
@@ -861,11 +861,11 @@ Full `npm run ws:im3:test` was not repeated because attempt 1 timed out after 12
 ## Phase 4 — Docs & Doctor
 
 - [x] Task: Update in-repo kst-srs.v2 spec (§3.2 transfers_to, §16 Level Projection, §9.4 progressTrend, §12.9 FSRS per-card limitation + siblingReinforcement flag) *(MID Red — 2026-06-13; JR Green — 2026-06-13)* [checkpoint: aaaf3059]
-    - [x] Red test: `spec-markers.test.ts` asserts the §3.2/§9.4/§12.9/§16 markers exist at the indicated sections
+    - [x] Red test: `spec-markers.test.ts` asserts the §3.2/§9.4/§12.9/§16 markers exist at the indicated sections [checkpoint: aaaf3059]
 - [x] Task: Run measure/generate.sh and measure/doctor.sh; fix architectural lint *(MID Red — 2026-06-13; JR Green — 2026-06-13)* [checkpoint: aaaf3059]
-    - [x] Live gate: `bash measure/scripts/doctor.sh` exits 0; `bash measure/scripts/generate.sh` exits 0; `node scripts/check-monorepo-boundaries.mjs` exits 0 (recorded in Red-phase evidence subsection)
+    - [x] Live gate: `bash measure/scripts/doctor.sh` exits 0; `bash measure/scripts/generate.sh` exits 0; `node scripts/check-monorepo-boundaries.mjs` exits 0 (recorded in Red-phase evidence subsection) [checkpoint: aaaf3059]
 - [x] Task: Final verification — boundary lints, npm run lint, tsc --noEmit, CI=true npm run test *(MID Red — 2026-06-13; JR Green — 2026-06-13)* [checkpoint: aaaf3059]
-    - [x] Live gate: `CI=true npm test` + `npm run lint` + `npx tsc --noEmit` (recorded in Red-phase evidence subsection)
+    - [x] Live gate: `CI=true npm test` + `npm run lint` + `npx tsc --noEmit` (recorded in Red-phase evidence subsection) [checkpoint: aaaf3059]
 - [x] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md) [checkpoint: ea369553]
 
 ### Phase 4 — Red-phase evidence (MID handoff, 2026-06-13)
