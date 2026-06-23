@@ -1,0 +1,134 @@
+{
+  "schema": "measure.closeout.manifest.v1",
+  "track_id": "unified-auth-monorepo_20260609",
+  "closeout_date": "2026-06-23T18:30:00Z",
+  "head_at_closeout": "a42438deb27c5371ec6d6e525f1afc6d05131a6a",
+  "final_acceptance_sha": "2c224a47754dd9f9b803269ba8192d8c628c4307",
+  "final_acceptance_verdict": "ACCEPTED",
+  "final_acceptance_audit": "/tmp/measure-audits/final-acceptance-unified-auth.json",
+
+  "phases": [
+    {
+      "phase": 1,
+      "name": "Audit & Classification",
+      "status": "complete",
+      "accepted": true,
+      "red_sha": "aaa04b08",
+      "green_sha": "7fc8fba0",
+      "acceptance_audit": "/tmp/measure-audits/phase-acceptance-unified-auth.json"
+    },
+    {
+      "phase": 2,
+      "name": "Promote Shared Logic into core-auth",
+      "status": "complete",
+      "red_sha": "5e3b6cd7",
+      "green_sha": "b852e24b"
+    },
+    {
+      "phase": 3,
+      "name": "Thin the App Wrappers",
+      "status": "complete",
+      "green_sha": "fe3e53a1"
+    },
+    {
+      "phase": 4,
+      "name": "Verify & Reconcile",
+      "status": "complete",
+      "accepted": true,
+      "green_sha": "2c224a47",
+      "acceptance_audit": "/tmp/measure-audits/phase-acceptance-unified-auth-final.json"
+    }
+  ],
+
+  "audits_consumed": [
+    "/tmp/measure-audits/review-a-unified-auth.json",
+    "/tmp/measure-audits/review-b-unified-auth.json",
+    "/tmp/measure-audits/review-c-unified-auth.json",
+    "/tmp/measure-audits/phase-acceptance-unified-auth.json",
+    "/tmp/measure-audits/phase-acceptance-unified-auth-final.json",
+    "/tmp/measure-audits/final-acceptance-unified-auth.json"
+  ],
+
+  "reviewer_audits": {
+    "review_a": {"file": "/tmp/measure-audits/review-a-unified-auth.json", "status": "pass"},
+    "review_b": {"file": "/tmp/measure-audits/review-b-unified-auth.json", "status": "pass_with_issues", "issues_fixed": 1},
+    "review_c": {"file": "/tmp/measure-audits/review-c-unified-auth.json", "status": "pass"}
+  },
+
+  "tasks_total": 11,
+  "tasks_complete": 11,
+  "tasks_deferred": 1,
+  "deferred_items": [
+    "IM3 auth wrapper inline duplication: apps/integrated-math-3/lib/auth/server.ts retains inline helpers due to test-mock constraint. Tracked in measure/tech-debt.md as 'IM3 auth wrapper inline duplication' — Medium/Open. Recommended follow-up track: im3-auth-wrapper-thinning."
+  ],
+
+  "functional_requirements": {
+    "FR1_classification_doc": "delivered — 12 BM2 exports classified in decisions/auth-export-classification.md (309 lines)",
+    "FR2_package_promotion": "delivered — packages/core-auth/src/request-guards.ts (186 lines) with 54 tests",
+    "FR3_wrapper_thinning": "delivered_for_bm2 — BM2 reduced 290→163 lines; IM3 deferred as tech debt",
+    "FR4_reexport_evaluation": "evaluated — direct re-export not feasible due to per-app options; BM2 thin composition pattern adopted",
+    "FR5_no_duplicate_logic_doctor_green": "green — bash measure/scripts/doctor.sh passes"
+  },
+
+  "acceptance_criteria": {
+    "AC1": "green — core-auth single source of shared auth logic with 54 tests",
+    "AC2": "green — BM2 (36) + IM3 (52) auth+middleware tests pass; tsc baselines unchanged",
+    "AC3": "green_for_bm2_partial_for_im3_documented — IM3 residual tech debt tracked",
+    "AC4": "green — doctor.sh boundary lint passes",
+    "AC5": "green — 88 behavior tests + 54 core-auth tests cover all auth paths"
+  },
+
+  "live_proof_commands": [
+    {"cmd": "npx vitest run --root packages/core-auth", "result": "2 files, 54 tests, all passed"},
+    {"cmd": "npx vitest run --root apps/bus-math-v2 __tests__/lib/auth __tests__/auth __tests__/setup/middleware.test.ts", "result": "6 files, 36 tests, all passed"},
+    {"cmd": "npx vitest run --root apps/integrated-math-3 __tests__/lib/auth __tests__/middleware.test.ts", "result": "4 files, 52 tests, all passed"},
+    {"cmd": "bash measure/scripts/doctor.sh", "result": "green — no boundary violations"}
+  ],
+
+  "committed_shas_on_path": [
+    "aaa04b08 (Phase 1 Red)",
+    "e88d19e6 (Phase 1 Red evidence)",
+    "7fc8fba0 (Phase 1 Green)",
+    "d7615896 (Phase 1 Green evidence)",
+    "efde783e (Phase 1 regex fix)",
+    "27b9a331 (Phase 1 review-B fix)",
+    "06935c0f (Phase 1 acceptance)",
+    "5e3b6cd7 (Phase 2 Red)",
+    "b852e24b (Phase 2 Green)",
+    "fe3e53a1 (Phase 3 Green)",
+    "2c224a47 (Phase 4 acceptance)"
+  ],
+
+  "baseline_sha": "5882f49671d6b65ad274fda68ceca3a56a25660c",
+
+  "retained_evidence": [
+    "measure/archive/unified-auth-monorepo_20260609/plan.md — full execution log with SHAs and acceptance verdicts",
+    "measure/archive/unified-auth-monorepo_20260609/spec.md — original FR/AC spec",
+    "measure/archive/unified-auth-monorepo_20260609/metadata.json — closed metadata",
+    "measure/archive/unified-auth-monorepo_20260609/decisions/auth-export-classification.md — Phase 1 classification contract (309 lines)",
+    "measure/archive/unified-auth-monorepo_20260609/test-strategy.md — per-phase test approach",
+    "measure/archive/unified-auth-monorepo_20260609/index.md — archive index",
+    "/tmp/measure-audits/review-a-unified-auth.json — Review A audit (correctness/architecture)",
+    "/tmp/measure-audits/review-b-unified-auth.json — Review B audit (security/data-handling)",
+    "/tmp/measure-audits/review-c-unified-auth.json — Review C audit (UX/API contract)",
+    "/tmp/measure-audits/phase-acceptance-unified-auth.json — Phase 1 acceptance audit",
+    "/tmp/measure-audits/phase-acceptance-unified-auth-final.json — Phase 4 acceptance audit",
+    "/tmp/measure-audits/final-acceptance-unified-auth.json — Final acceptance audit"
+  ],
+
+  "artifact_cleanup": {
+    "tracks_dir_moved_to_archive": true,
+    "measure_tracks_md_updated": true,
+    "metadata_json_updated": true,
+    "bulky_run_artifacts_deleted": [],
+    "notes": "No bulky run artifacts identified for deletion. All acceptance and closeout evidence preserved."
+  },
+
+  "boundary_discipline": {
+    "unrelated_files_touched": "none — closeout only modified tracks.md, metadata.json, and created closeout manifest",
+    "graph_db_committed": false,
+    "graph_db_modified": "no — graph.db was already dirty from unrelated work; not staged"
+  },
+
+  "verdict": "TRACK CLOSED — complete and accepted"
+}

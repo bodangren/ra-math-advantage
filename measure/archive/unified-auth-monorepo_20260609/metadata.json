@@ -1,12 +1,14 @@
 {
   "track_id": "unified-auth-monorepo_20260609",
   "type": "chore",
-  "status": "new",
+  "status": "done",
   "created_at": "2026-06-09T00:00:00Z",
-  "updated_at": "2026-06-09T00:00:00Z",
+  "updated_at": "2026-06-23T18:30:00Z",
+  "closed_at": "2026-06-23T18:30:00Z",
+  "completed": "2026-06-23",
   "description": "Finish unifying auth across the monorepo onto packages/core-auth. core-auth was extracted and IM3's lib/auth/server.ts is a thin wrapper, but BM2's lib/auth/server.ts (~290 lines) still holds local logic, and the wrapper pattern adds indirection. Consolidate shared logic into the package; keep only genuinely app-specific composition local.",
   "program": "Monorepo Migration Program (cleanup)",
   "estimated_tasks": 12,
-  "actual_tasks": null,
-  "deviation_notes": ""
+  "actual_tasks": 11,
+  "deviation_notes": "IM3 inline retention deferred to follow-up track 'im3-auth-wrapper-thinning' due to test-mock constraint (recorded in tech-debt.md)"
 }

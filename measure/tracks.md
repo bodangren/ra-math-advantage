@@ -74,9 +74,10 @@ own #2/#6, #3, and #5.
    *Finish the half-applied, build-breaking BM2 Drizzle prune: re-home the live zod schemas/types tangled into the deleted `lib/db/schema/*`, rewire ~15 importers, then drop the tables + `drizzle-*`/`postgres` deps cleanly. Audit #3.*
    *Link: [./measure/archive/bm2-drizzle-removal_20260609/](./measure/archive/bm2-drizzle-removal_20260609/)*
 
-- [ ] **Track: Unified Auth Across the Monorepo** — **PLANNED**
+- [x] **Track: Unified Auth Across the Monorepo** — **COMPLETED**
    *Consolidate shared auth onto `packages/core-auth`: promote BM2 `server.ts` local logic into the package (parameterized), thin the app wrappers, remove duplication/indirection. Audit #5.*
-   *Link: [./tracks/unified-auth-monorepo_20260609/](./tracks/unified-auth-monorepo_20260609/)*
+   *Link: [./measure/archive/unified-auth-monorepo_20260609/](./measure/archive/unified-auth-monorepo_20260609/)*
+   *Closeout audit: [./measure/archive/unified-auth-monorepo_20260609/automation-supervisor-closeout-manifest.json](./measure/archive/unified-auth-monorepo_20260609/automation-supervisor-closeout-manifest.json)*
 
 - [ ] **Program: Skill Graph and Algorithmic Practice Rollout**
    *Before implementing any track in this program, read [Knowledge Space Architecture](./knowledge-space.md). Reusable packages own domain-neutral mechanisms only; proprietary math maps, English/GSE maps, standards catalogs, descriptors, and generated app outputs remain in app/domain content packages.*
