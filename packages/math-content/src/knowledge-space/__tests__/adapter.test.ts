@@ -222,6 +222,45 @@ describe('generator registry', () => {
   it('throws typed error for unknown generator key', () => {
     expect(() => getGenerator('unknown-generator')).toThrow('Unknown generator key');
   });
+
+  it('registers Phase 4 advanced math generator keys', () => {
+    const advancedKeys = [
+      'polynomial-operations',
+      'polynomial-division',
+      'rational-analyzer',
+      'exp-log-solver',
+    ];
+    for (const key of advancedKeys) {
+      expect(GENERATOR_KEYS).toContain(key);
+      const gen = getGenerator(key);
+      expect(gen.key).toBe(key);
+      expect(typeof gen.generate).toBe('function');
+    }
+  });
+
+  it('advanced math generators produce valid GeneratorOutput', () => {
+    const advancedKeys = [
+      'polynomial-operations',
+      'polynomial-division',
+      'rational-analyzer',
+      'exp-log-solver',
+    ];
+    for (const key of advancedKeys) {
+      const gen = getGenerator(key);
+      const output = gen.generate({
+        nodeId: 'math.im3.skill.test',
+        seed: 42,
+        difficulty: 0.5,
+      });
+      expect(output).toHaveProperty('prompt');
+      expect(output).toHaveProperty('data');
+      expect(output).toHaveProperty('expectedAnswer');
+      expect(output).toHaveProperty('solutionSteps');
+      expect(output).toHaveProperty('gradingMetadata');
+      expect(typeof output.prompt).toBe('string');
+      expect(output.prompt.length).toBeGreaterThan(0);
+    }
+  });
 });
 
 describe('renderer registry', () => {

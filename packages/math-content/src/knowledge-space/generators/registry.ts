@@ -5,6 +5,12 @@
 // Pilot generators produce deterministic output for Module 1 skills.
 
 import type { GeneratorInput, GeneratorOutput, GradingMetadata } from '@math-platform/knowledge-space-practice';
+import {
+  polynomialOperationsAdapter,
+  polynomialDivisionAdapter,
+  rationalAnalyzerAdapter,
+  expLogSolverAdapter,
+} from './advanced-math-adapters';
 
 export interface QaSkipSpec {
   readonly uniqueAnswer?: boolean;
@@ -241,6 +247,10 @@ const GENERATOR_REGISTRY: Record<string, MathGenerator> = {
   [algebraicStepSolverGenerator.key]: algebraicStepSolverGenerator,
   [graphingExplorerStubGenerator.key]: graphingExplorerStubGenerator,
   [statisticsStubGenerator.key]: statisticsStubGenerator,
+  [polynomialOperationsAdapter.key]: polynomialOperationsAdapter,
+  [polynomialDivisionAdapter.key]: polynomialDivisionAdapter,
+  [rationalAnalyzerAdapter.key]: rationalAnalyzerAdapter,
+  [expLogSolverAdapter.key]: expLogSolverAdapter,
 };
 
 export const GENERATOR_KEYS = Object.keys(GENERATOR_REGISTRY) as string[];
