@@ -1,0 +1,146 @@
+{
+  "manifest_version": "1.0",
+  "track_id": "kst-lesser-holes_20260521",
+  "closeout_date": "2026-06-23",
+  "closeout_agent": "measure-closeout-subagent",
+  "program": "Knowledge Space Engine Alignment (kst-srs.v2)",
+  "improvement_plan_item": 8,
+  "acceptance_criteria": {
+    "AC1_transfers_to_edge_type": {
+      "status": "verified",
+      "evidence": "Phase 1 Green — EdgeType union + Zod schemas + validation for transfers_to; 50/50 contract tests pass",
+      "checkpoint_sha": "6208449c"
+    },
+    "AC2_level_projection": {
+      "status": "verified",
+      "evidence": "Phase 2 Green — projectDisplayLevel function, IM3 instance (projectIm3Level), CSV mapping; 16/16 level-projection tests pass",
+      "checkpoint_sha": "79a73434"
+    },
+    "AC3_progressTrend_time_delta": {
+      "status": "verified",
+      "evidence": "Phase 3 Green — static ratio replaced with 7-day window time-delta; 10/10 progress-trend tests pass; 51/51 practice suite tests pass",
+      "checkpoint_sha": "3eed6125"
+    },
+    "AC4_FSRS_per_card_documented": {
+      "status": "verified",
+      "evidence": "Phase 4 Green — §12.9 FSRS per-card limitation + siblingReinforcement flag added to SPECIFICATION.md; 6/6 spec-marker tests pass",
+      "checkpoint_sha": "aaaf3059"
+    },
+    "AC5_boundary_lints_tsc_tests": {
+      "status": "verified",
+      "evidence": "Phase 4 Green — doctor.sh exit 0, generate.sh exit 0, boundary lint exit 0, npm run lint clean, npx tsc --noEmit clean, CI=true npm test pass (262/262)",
+      "checkpoint_sha": "ea369553"
+    }
+  },
+  "phase_completion": {
+    "phase_1_contract_schema": {
+      "status": "completed",
+      "checkpoint_sha": "6208449c",
+      "umv_checkpoint_sha": "32ce33e6",
+      "green_evidence": "7/7 transfers_to tests pass, 5/5 level-projection-contract tests pass, 50/50 contract tests pass, lint clean, tsc clean"
+    },
+    "phase_2_level_projection": {
+      "status": "completed",
+      "checkpoint_sha": "79a73434",
+      "green_evidence": "16/16 level-projection tests pass (7 core + 2 public-api + 5 IM3 + 2 CSV), 256/256 core tests pass, lint clean, tsc clean"
+    },
+    "phase_3_progressTrend_fix": {
+      "status": "completed",
+      "checkpoint_sha": "3eed6125",
+      "green_evidence": "10/10 progress-trend tests pass, 51/51 practice suite tests pass, lint clean, tsc clean"
+    },
+    "phase_4_docs_doctor": {
+      "status": "completed",
+      "checkpoint_sha": "aaaf3059",
+      "umv_checkpoint_sha": "ea369553",
+      "green_evidence": "6/6 spec-marker tests pass, 262/262 core tests pass, doctor/generate/boundary all green, CI=true npm test pass"
+    }
+  },
+  "task_summary": {
+    "total_tasks": 11,
+    "completed": 11,
+    "deferred": 0,
+    "task_details": [
+      {
+        "id": "P1-T1",
+        "description": "Add transfers_to edge type",
+        "status": "completed",
+        "checkpoint": "6208449c"
+      },
+      {
+        "id": "P1-T2",
+        "description": "Define Level Projection and progressTrend history types",
+        "status": "completed",
+        "checkpoint": "6208449c"
+      },
+      {
+        "id": "P1-T3",
+        "description": "Measure - User Manual Verification Phase 1",
+        "status": "completed",
+        "checkpoint": "32ce33e6"
+      },
+      {
+        "id": "P2-T1",
+        "description": "Implement Level Projection (TDD)",
+        "status": "completed",
+        "checkpoint": "79a73434"
+      },
+      {
+        "id": "P2-T2",
+        "description": "Measure - User Manual Verification Phase 2",
+        "status": "completed",
+        "checkpoint": "79a73434"
+      },
+      {
+        "id": "P3-T1",
+        "description": "Replace progressTrend static ratio with time-delta (TDD)",
+        "status": "completed",
+        "checkpoint": "3eed6125"
+      },
+      {
+        "id": "P3-T2",
+        "description": "Measure - User Manual Verification Phase 3",
+        "status": "completed",
+        "checkpoint": "3eed6125"
+      },
+      {
+        "id": "P4-T1",
+        "description": "Update in-repo kst-srs.v2 spec (§3.2, §9.4, §12.9, §16)",
+        "status": "completed",
+        "checkpoint": "aaaf3059"
+      },
+      {
+        "id": "P4-T2",
+        "description": "Run measure/generate.sh and measure/doctor.sh; fix architectural lint",
+        "status": "completed",
+        "checkpoint": "aaaf3059"
+      },
+      {
+        "id": "P4-T3",
+        "description": "Final verification — boundary lints, lint, tsc, CI=true npm test",
+        "status": "completed",
+        "checkpoint": "aaaf3059"
+      },
+      {
+        "id": "P4-T4",
+        "description": "Measure - User Manual Verification Phase 4",
+        "status": "completed",
+        "checkpoint": "ea369553"
+      }
+    ]
+  },
+  "retained_evidence": [
+    "measure/archive/kst-lesser-holes_20260521/plan.md",
+    "measure/archive/kst-lesser-holes_20260521/spec.md",
+    "measure/archive/kst-lesser-holes_20260521/test-strategy.md",
+    "measure/archive/kst-lesser-holes_20260521/metadata.json",
+    "measure/archive/kst-lesser-holes_20260521/automation-supervisor-closeout-manifest.json"
+  ],
+  "artifact_cleanup": {
+    "deleted": [],
+    "preserved": "All track artifacts preserved in archive; no bulky run artifacts to delete"
+  },
+  "lessons_learned_update": false,
+  "tech_debt_update": false,
+  "notes": "All 11 tasks completed with checkpoint SHA evidence. All 5 acceptance criteria verified. No deferred tasks. All phases passed Red/Green/Adversarial audit gates. The spec-compliance-and-process-integrity_20260612 track's 376 dirty paths were stashed during MID phases and remain in stash@{0} for manual recovery."
+}

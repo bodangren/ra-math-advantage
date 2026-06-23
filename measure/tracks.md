@@ -66,9 +66,9 @@ Dependencies:
    - [ ] **Track 7: Practice-Variant Rename**
       *Rename the math-specific "problem family" to domain-neutral "practice variant" across practice-core/srs-engine/knowledge-space-practice; `Card` keyed by `variantKey`; subdivision optional. (Item 7.) Depends on Track 1.*
       *Link: [./tracks/practice-variant-rename_20260521/](./tracks/practice-variant-rename_20260521/)*
-   - [ ] **Track 8: Lesser Holes**
-      *Three smaller v2 items: a `transfers_to` cross-domain edge type, a presentation-only Level Projection, and the `progressTrend` static-ratio → time-delta fix; plus documenting the FSRS per-card limitation. (Item 8.) Independent; runs last.*
-      *Link: [./tracks/kst-lesser-holes_20260521/](./tracks/kst-lesser-holes_20260521/)*
+    - [x] **Track 8: Lesser Holes** — **COMPLETED / ARCHIVED** (2026-06-23)
+       *Three smaller v2 items: a `transfers_to` cross-domain edge type, a presentation-only Level Projection, and the `progressTrend` static-ratio → time-delta fix; plus documenting the FSRS per-card limitation. (Item 8.) Independent; runs last.*
+       *Link: [./archive/kst-lesser-holes_20260521/](./archive/kst-lesser-holes_20260521/)*
 
 ## Audit Remediation (2026-06-09)
 
