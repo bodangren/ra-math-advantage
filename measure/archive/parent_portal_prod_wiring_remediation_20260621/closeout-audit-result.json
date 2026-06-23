@@ -1,0 +1,32 @@
+{
+  "audit": "closeout",
+  "track_id": "parent_portal_prod_wiring_remediation_20260621",
+  "status": "done",
+  "archive_path": "measure/archive/parent_portal_prod_wiring_remediation_20260621/",
+  "closeout_manifest_path": "measure/archive/parent_portal_prod_wiring_remediation_20260621/automation-supervisor-closeout-manifest.json",
+  "commit_sha": "f1630c02",
+  "closeout_date": "2026-06-23",
+  "gates": {
+    "vitest_parent_portal_prod_wiring": {
+      "passed": true,
+      "tests": 7,
+      "failed": 0,
+      "command": "npx vitest run parent-portal-prod-wiring --root apps/integrated-math-3"
+    },
+    "eslint_parent_portal_files": {
+      "passed": true,
+      "exit_code": 0,
+      "max_warnings": 0,
+      "command": "npx eslint --max-warnings 0 apps/integrated-math-3/app/parent apps/integrated-math-3/components/parent apps/integrated-math-3/convex/parent apps/integrated-math-3/__tests__/app/parent"
+    }
+  },
+  "interphase_checks_note": "Script heuristic requires inline SHA markers per task; this plan documents SHAs in work log sections (e.g. 'Green: 7e276db1'). All 6 commits verified via git log.",
+  "commits_verified": ["18088790", "7e276db1", "1a070bfe", "aa09ba2b", "e41e7b69", "f1630c02"],
+  "artifacts_retained": [
+    "spec.md", "plan.md", "metadata.json", "test-strategy.md",
+    "automation-supervisor-closeout-manifest.json"
+  ],
+  "artifact_cleanup": "None required",
+  "remediates": "parent-portal_20260605",
+  "back_link_updated": true
+}
