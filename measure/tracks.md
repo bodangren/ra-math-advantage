@@ -987,9 +987,9 @@ Sixteen candidate tracks identified from a full-roadmap review. Each is registry
    *Take one module (IM3 M1) end-to-end to a student route: minimal KST Track 1 wiring + real generators for M1 skills + live KST-derived state. Directly attacks the "built-but-not-wired" gap (graph asset has zero production routes). Size: L. Depends on: wire-kst-pipeline (KST T1), core-algebra-generators (T17). Readiness: blocked on KST T1 start.*
    *Link: [./tracks/vertical-slice-value-proof_20260605/](./tracks/vertical-slice-value-proof_20260605/)*
 
-- [ ] **Track: Learning Efficacy & Analytics** — **PLANNED**
-   *Instrument learning outcomes (retention curves, time-to-mastery, cohort comparison) and an A/B harness to measure whether the SRS/KST engine actually improves learning. Verified: no efficacy/experiment/cohort instrumentation exists. Closes the loop on which KST v2 improvements matter. Size: M–L. Depends on: KST pipeline wired (for KST-state signals). Readiness: partial now (SRS signals exist), full after KST T1.*
-   *Link: [./tracks/learning-efficacy-analytics_20260605/](./tracks/learning-efficacy-analytics_20260605/)*
+- [x] **Track: Learning Efficacy & Analytics** — **COMPLETED / ARCHIVED** (2026-06-23)
+   *Instrument learning outcomes (retention curves, time-to-mastery, cohort comparison) and an A/B harness to measure whether the SRS/KST engine actually improves learning. Phases 1, 2, and 4 fully implemented and verified (Phase 1: 46/46 metric tests, Phase 2: 18/18 cohort tests, Phase 4: 30/30 efficacy view tests). Phase 3 (experiment harness) has Red tests committed at `5a4fdfd2` but Green implementation was stashed and never landed — tracked as a known follow-up. Boundary lints, lint, tsc (0 impl errors) all pass.*
+   *Link: [./archive/learning-efficacy-analytics_20260605/](./archive/learning-efficacy-analytics_20260605/)*
 
 - [x] **Track: Load / Scale Testing** — **COMPLETED**
    *Proactive load harness simulating a 30-student class and a 1,000-student school against Convex, using `npx convex insights` to catch read/write-cost and N+1 regressions before production. 10+ prior tracks fixed N+1 reactively. Size: M. Depends on: none. Readiness: ready now.*
