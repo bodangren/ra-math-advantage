@@ -1,0 +1,8 @@
+FR-3 Balanced-Brace JSDoc Guard — Phase 1 (FR-3 balanced-brace)
+==========================================
+Scope:                  apps/ packages/ convex/
+Scanned files:          2237
+Total typed tags:       663
+Violations:             0
+
+PASS: All 663 typed @param/@returns tags in apps/ packages/ convex/ have balanced braces.

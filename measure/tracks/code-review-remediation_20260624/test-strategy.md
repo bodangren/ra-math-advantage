@@ -469,3 +469,82 @@ summary, files changed, why).
 - [x] Task 1.1 Red: guard script + fixture authored and verified
 - [x] Task 1.2 Red: FR-1 files confirmed as violations by guard (no vitest needed)
 - [x] Task 1.3 Red: `restored-files.txt` captured (NO `git restore` performed — Green's job)
+
+## 11. Green Evidence (jr-green, 2026-06-24)
+
+### FR-3 guard (production scope) — Clean
+
+```
+bash .../check-jsdoc-balanced-braces.sh "apps/ packages/ convex/"
+→ Scanned files: 2237, Total typed tags: 663, Violations: 0, exit 0
+```
+
+Captured to `_artifacts/guard-run-on-clean-tree.txt`.
+
+### FR-3 guard (fixtures) — 3 violations detected, 0 on clean
+
+| Fixture | Class | Violations | Exit |
+|---|---|---|---|
+| `malformed-1.ts` | UNBALANCED | 1 | 1 |
+| `malformed-2.ts` | UNBALANCED_PARENS | 1 | 1 |
+| `malformed-3.ts` | STRAY_BLOCK | 1 | 1 |
+| `clean-1.ts` | (none) | 0 | 0 |
+
+### `git grep` final scans (production scope, `apps/**/*.ts(x)`, `packages/**/*.ts(x)`, `convex/**/*.ts(x)`)
+
+- `@returns \{.+ \{\}` → **0 matches**
+- `@param \{[^{}]*$` → **0 matches**
+
+### Commit SHAs (Phase 1 Green)
+
+| # | Commit | Subject |
+|---|---|---|
+| 1 | e195fded (Red, mid-red) | `test(code-review-remediation): Phase 1 Red — FR-3 balanced-brace JSDoc guard + fixtures + evidence` |
+| 2 | d26ecd52 (Green A) | `fix(code-review-remediation): rewrite 4 malformed FR-1 @returns annotations` |
+| 3 | 5ebf5195 (Green A.5) | `fix(code-review-remediation): close 2 additional @param unbalanced braces at HEAD` |
+| 4 | 0006074f (Green B) | `chore(code-review-remediation): restore 144 working-tree files to HEAD` |
+| 5 | b3cf07e6 (Green C) | `docs(code-review-remediation): add jsdoc generator template + investigation` |
+| 6 | (this plan update) | Mark Phase 1 tasks complete with commit evidence |
+
+### Lint / tsc / test (targeted — per test-strategy §2)
+
+- Lint on the 4 FR-1 + 2 @param fixed files: 0 errors, 0 new warnings
+  - 2 pre-existing warnings in `apps/integrated-math-3/__tests__/lib/onboarding/student-flow.test.ts`
+    are unrelated to this track (file last touched by `83f52501` onboarding-roster-import Phase 4 Red).
+- Tsc on the 4 FR-1 + 2 @param fixed files: 0 new errors
+  - 318 pre-existing errors in IM3 + 10 in ksp are out of scope per test-strategy §2
+    (documented in `measure/tech-debt.md`).
+- Targeted vitest on `apps/integrated-math-3/__tests__/components/teacher/gradebook`
+  (incl. CourseOverviewGrid): **45/45 pass**.
+- Targeted vitest on `apps/integrated-math-3/__tests__/lib/auth`: **45/45 pass**.
+- Targeted vitest on `packages/knowledge-space-practice/src/__tests__/projections.test.ts`
+  (incl. activity-map): **17/17 pass**.
+
+### Discovery beyond spec
+
+- The strategy's Red baseline (4 FR-1 violations at HEAD) was an
+  undercount. The actual baseline at HEAD is **6 violations** — the 4
+  FR-1 `@returns` cases + 2 additional `@param` cases:
+  - `apps/integrated-math-3/components/teacher/srs/StrugglingStudentsPanel.tsx:23`
+  - `apps/integrated-math-3/components/dev/review-queue/index.tsx:493`
+  These were committed by spec-compliance Phase 3 (`a5c2d410`) and not
+  caught by the spec-compliance typed-params guard. They are the same
+  bug class (truncated object/function type literal in `@param`).
+  Fixed in commit `5ebf5195`. The Phase 1 closeout gate
+  (exit 0 / violations 0) required fixing them; the spec enumerated
+  only 4 cases but the gate is general.
+- The 144-file working-tree batch is **agent-driven**, not from a
+  checked-in script. The bug class was previously committed by
+  spec-compliance Phase 3 (a5c2d410, 76765734) on apps/integrated-math-3/.
+  The 144-file batch is a parallel agent run for packages/ with the
+  same defect. Generator investigation: `_artifacts/generator-investigation.md`.
+  Corrected template: `templates/jsdoc-template.md`.
+
+### Green tasks completed
+
+- [x] Task 1.1 Green: guard script implemented and verified
+- [x] Task 1.2 Green: 4 FR-1 files rewritten, per-file guard violations=0
+- [x] Task 1.2.5 Green: 2 additional HEAD @param fixes (extension beyond FR-1 spec)
+- [x] Task 1.3 Green-A: 144-file restore committed
+- [x] Task 1.3 Green-B: generator template + investigation committed
+- [x] Phase 1 closeout: FR-3 guard exit 0 / violations 0; fixtures pass; grep clean
