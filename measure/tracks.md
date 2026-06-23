@@ -15,9 +15,9 @@ Reconciliation: this program absorbs the overlapping skill-graph renderer tracks
 (geometry-stats-renderers)** folds into Tracks C/D, **T16 (trig-advanced-renderers)**
 becomes the seed of Track E (see those entries below).
 
-- [ ] **T0: Primitive Layer Contract** — **NEW**
+- [x] **T0: Primitive Layer Contract** — **COMPLETED / ARCHIVED** (2026-06-23)
    *Establish the `primitives/` contract (`MathPrimitiveProps`), consumption rules, the canonical P1–P13 catalog, a reference migration (`CoordinatePlane`/P1), boundary enforcement, and T15/T16 reconciliation. Foundation for A–F. No end-user behavior change.*
-   *Link: [./tracks/primitive-layer-contract_20260615/](./tracks/primitive-layer-contract_20260615/)*
+   *Link: [./archive/primitive-layer-contract_20260615/](./archive/primitive-layer-contract_20260615/)*
 - [ ] **Track A: Coordinate & Functions** — **PLANNED**
    *Primitives P1 (CoordinatePlane) + P2 (FunctionPlot w/ sliders) → `equation-solver`, `function-analyzer` practice components. Depends on T0.*
 - [ ] **Track B: Number line & Algebra Manipulatives** — **PLANNED**

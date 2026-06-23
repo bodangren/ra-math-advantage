@@ -1,0 +1,89 @@
+{
+  "manifest_version": "1.0",
+  "track_id": "primitive-layer-contract_20260615",
+  "closed_at": "2026-06-23",
+  "closeout_agent": "measure-closeout-subagent",
+  "summary": "T0 of the Practice Primitives program. Established MathPrimitiveProps contract, primitives/ directory, CoordinatePlane reference migration (P1), P1-P13 catalog, boundary enforcement, and T15/T16 reconciliation in tracks.md.",
+
+  "audits": [
+    {
+      "phase": "Phase 1 — Contract & Schema Definition",
+      "tasks": 4,
+      "completed": 4,
+      "commits": ["0772197", "b54903f", "7fe59d4"],
+      "evidence": "types.ts, index.ts barrel, root re-export, practice-component-contract.md Primitive Layer section + P1-P13 catalog, CoordinatePlane consumption example"
+    },
+    {
+      "phase": "Phase 2 — Test (Red)",
+      "tasks": 5,
+      "completed": 5,
+      "commits": ["a1f9272"],
+      "evidence": "coordinate-plane.test.tsx (contract test), boundary.test.ts, regression guard (5 existing suites pass)"
+    },
+    {
+      "phase": "Phase 3 — Implement (Green)",
+      "tasks": 3,
+      "completed": 3,
+      "commits": ["35e3092"],
+      "evidence": "CoordinatePlane.tsx wrapper, primitives/coordinate-plane/ barrel, all 69 tests pass, tsc clean, GraphingCanvas unmodified",
+      "deferred": {
+        "task": "Phase 3 UMV (manual human sign-off)",
+        "status": "[~]",
+        "note": "Manual sign-off deferred per workflow.md protocol"
+      }
+    },
+    {
+      "phase": "Phase 4 — Generate Docs & Doctor",
+      "tasks": 3,
+      "completed": 3,
+      "commits": ["83edfcd", "5121793"],
+      "evidence": "T15/T16 reconciliation in tracks.md (FR-6), Phase 4 registry test 4/4 passed, tsc + 84 tests green"
+    }
+  ],
+
+  "all_tasks_complete": true,
+  "deferred_tasks": [
+    {
+      "id": "Phase-3-UMV",
+      "description": "Phase 3 User Manual Verification — human sign-off",
+      "reason": "Manual verification step; no code or test changes required"
+    }
+  ],
+
+  "commands_executed": [
+    "CI=true npx vitest run packages/activity-components/src/primitives/__tests__/ (34 tests, all passing)",
+    "CI=true npx vitest run packages/activity-components/src/__tests__/ (50 tests, regression guard)",
+    "npx tsc --noEmit -p packages/activity-components/tsconfig.json (only 2 pre-existing katex CSS errors)",
+    "python3 -m pytest -v measure/archive/primitive-layer-contract_20260615/__tests__/test_phase4_tracks_registry.py (4/4 passed)"
+  ],
+
+  "commit_sha_evidence": {
+    "b54903f5": "docs(track-0): add Primitive Layer section + P1-P13 catalog to contract (FR-3, FR-5)",
+    "7fe59d4e": "docs(track-0): add CoordinatePlane consumption example to contract (FR-3)",
+    "07721971": "feat(track-0): add MathPrimitiveProps contract types and barrel (Phase 1 Green)",
+    "a1f92726": "test(track-0): add Phase 2 CoordinatePlane contract + boundary Red tests",
+    "35e3092b": "feat(track-0): implement CoordinatePlane primitive wrapper (Phase 3 Green)",
+    "c7c13da9": "test(track-0): add Phase 4 FR-6 registry Red test for T15/T16 reconciliation",
+    "83edfcdf": "docs(measure): reconcile T15/T16 entries in tracks.md per FR-6",
+    "51217930": "measure(plan): record Phase 4 Green result and task completion"
+  },
+
+  "retained_evidence": [
+    "measure/archive/primitive-layer-contract_20260615/spec.md",
+    "measure/archive/primitive-layer-contract_20260615/plan.md",
+    "measure/archive/primitive-layer-contract_20260615/metadata.json",
+    "measure/archive/primitive-layer-contract_20260615/test-strategy.md",
+    "measure/archive/primitive-layer-contract_20260615/__tests__/test_phase4_tracks_registry.py",
+    "measure/archive/primitive-layer-contract_20260615/index.md",
+    "measure/archive/primitive-layer-contract_20260615/automation-supervisor-closeout-manifest.json"
+  ],
+
+  "artifact_cleanup": {
+    "removed": [
+      "measure/tracks/primitive-layer-contract_20260615/__tests__/__pycache__/ (pre-move cleanup)"
+    ],
+    "retained": [
+      "All review files preserved for audit trail"
+    ]
+  }
+}
