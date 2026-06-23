@@ -95,7 +95,7 @@ describe('Phase 1 — Contract-First classification decision doc', () => {
       const section = doc.slice(sectionStart, sectionEnd);
 
       const hasClassification =
-        /\b(identical-to-package|generalizable|bm2-specific)\b/.test(section);
+        /\b(identical-to-package|generalizable-into-package|bm2-specific)\b/.test(section);
       expect(
         hasClassification,
         `Section for ${exportName} must declare one of the allowed classifications`,
