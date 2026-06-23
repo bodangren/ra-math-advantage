@@ -1,0 +1,21 @@
+{
+  "track_id": "parent_portal_prod_wiring_remediation_20260621",
+  "closed_at": "2026-06-23",
+  "completed": "2026-06-23",
+  "phases_completed": ["Phase 1: Contract and Red Tests", "Phase 2: Production Wiring", "Phase 3: Verification and Closeout"],
+  "commits": ["18088790", "7e276db1", "1a070bfe", "aa09ba2b", "e41e7b69"],
+  "frs_satisfied": ["FR-1", "FR-2", "FR-3", "FR-4", "FR-5", "FR-6"],
+  "remediates": "parent-portal_20260605",
+  "closeout_gates": {
+    "vitest_parent_portal_prod_wiring": {"passed": true, "tests": 7, "failed": 0, "file": "__tests__/app/parent/parent-portal-prod-wiring.test.tsx"},
+    "eslint_parent_portal_files": {"passed": true, "exit_code": 0, "max_warnings": 0}
+  },
+  "retained_evidence": [
+    "measure/archive/parent_portal_prod_wiring_remediation_20260621/spec.md",
+    "measure/archive/parent_portal_prod_wiring_remediation_20260621/plan.md",
+    "measure/archive/parent_portal_prod_wiring_remediation_20260621/metadata.json",
+    "measure/archive/parent_portal_prod_wiring_remediation_20260621/test-strategy.md",
+    "measure/archive/parent_portal_prod_wiring_remediation_20260621/automation-supervisor-closeout-manifest.json"
+  ],
+  "artifact_cleanup": "None required — no bulky run artifacts were generated during this track."
+}
