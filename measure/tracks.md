@@ -60,9 +60,9 @@ Dependencies:
     - [ ] **Track 2: Weighted Readiness**
       *Make `edge.weight` a live field: a weighted readiness score (`Σ(wᵢ·mᵢ)/Σ(wᵢ)`) replaces binary prerequisite gating, modeling compensatory learning paths. (Improvement Plan Item 2.) Depends on Track 1.*
       *Link: [./tracks/weighted-readiness_20260521/](./tracks/weighted-readiness_20260521/)*
-    - [ ] **Track 6: Misconception Remediation Loop**
-      *Close the misconception loop: `remediated_by` edge type, SRS rating-cap reconciliation (cap at Hard, Again only if severe), per-student active/resolved lifecycle, and planner injection of remediation activities. (Item 6.) Depends on Track 1.*
-      *Link: [./tracks/misconception-loop_20260521/](./tracks/misconception-loop_20260521/)*
+     - [x] **Track 6: Misconception Remediation Loop** — **COMPLETED / ARCHIVED** (2026-06-23)
+       *Close the misconception loop: `remediated_by` edge type, SRS rating-cap reconciliation (cap at Hard, Again only if severe), per-student active/resolved lifecycle, and planner injection of remediation activities. (Item 6.) Depends on Track 1.*
+       *Link: [./archive/misconception-loop_20260521/](./archive/misconception-loop_20260521/)*
     - [ ] **Track 7: Practice-Variant Rename**
        *Rename the math-specific "problem family" to domain-neutral "practice variant" across practice-core/srs-engine/knowledge-space-practice; `Card` keyed by `variantKey`; subdivision optional. (Item 7.) Depends on Track 1.*
        *Link: [./tracks/practice-variant-rename_20260521/](./tracks/practice-variant-rename_20260521/)*

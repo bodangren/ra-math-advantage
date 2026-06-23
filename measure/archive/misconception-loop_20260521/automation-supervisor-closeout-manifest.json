@@ -1,0 +1,174 @@
+{
+  "manifest_version": "1.0",
+  "track_id": "misconception-loop_20260521",
+  "closeout_date": "2026-06-23",
+  "closeout_agent": "measure-closeout-subagent",
+  "program": "Knowledge Space Engine Alignment (kst-srs.v2)",
+  "status": "done",
+  "spec": "measure/archive/misconception-loop_20260521/spec.md",
+  "plan": "measure/archive/misconception-loop_20260521/plan.md",
+  "metadata": "measure/archive/misconception-loop_20260521/metadata.json",
+
+  "phases": {
+    "phase1_contract_schema": {
+      "status": "complete",
+      "green_commit": "cdb64f0b",
+      "green_subject": "feat(knowledge-space): add remediated_by edge type and misconception lifecycle types",
+      "red_commits": [],
+      "tasks": [
+        "Add remediated_by edge type [cdb64f0b]",
+        "Define misconception lifecycle types and Convex schema [cdb64f0b]"
+      ],
+      "deferred_tasks": [
+        "Measure - User Manual Verification 'Phase 1'"
+      ],
+      "verification_commands": [
+        "npx vitest run edge-type-remediated-by --root packages/knowledge-space-core → 14 passed",
+        "npx vitest run misconception-lifecycle-types --root packages/knowledge-space-practice → 16 passed",
+        "npx vitest run misconceptionStateSchema --root apps/integrated-math-3 → 5 passed",
+        "npm test --workspace=packages/knowledge-space-core → 276 passed",
+        "npm test --workspace=packages/knowledge-space-practice → 67 passed",
+        "npm run lint → 0 errors",
+        "npx tsc --noEmit --project packages/knowledge-space-core/tsconfig.json → clean"
+      ]
+    },
+    "phase2_rating_reconciliation": {
+      "status": "complete",
+      "green_commit": "717760f4",
+      "green_subject": "feat(practice-core): add severity-aware rating cap to computeBaseRating",
+      "red_commits": ["17a4e37e", "e931dee2"],
+      "tasks": [
+        "Reconcile computeBaseRating with v2 rating-cap rule [717760f4]"
+      ],
+      "deferred_tasks": [
+        "Measure - User Manual Verification 'Phase 2'"
+      ],
+      "verification_commands": [
+        "npx vitest run -t \"rating cap\" --root packages/practice-core → 24 passed",
+        "npx vitest run srs-rating --root apps/integrated-math-3 → 23 passed",
+        "npx vitest run srs-rating --root apps/bus-math-v2 → 23 passed",
+        "npm test --workspace=packages/practice-core → 187 passed",
+        "npm run lint → 0 errors",
+        "npx tsc --noEmit --project packages/practice-core/tsconfig.json → clean"
+      ]
+    },
+    "phase3_lifecycle_engine": {
+      "status": "complete",
+      "green_commit": "d96e0099",
+      "green_subject": "feat(misconception-loop): implement Phase 3 lifecycle engine + Convex persistence",
+      "red_commits": ["186dfd8b"],
+      "tasks": [
+        "Implement active/resolved lifecycle transitions [d96e0099]",
+        "Implement Convex persistence for per-student misconception state [d96e0099]"
+      ],
+      "deferred_tasks": [
+        "Measure - User Manual Verification 'Phase 3'"
+      ],
+      "verification_commands": [
+        "npx vitest run misconception-lifecycle --root packages/knowledge-space-practice → 34 passed",
+        "npx vitest run misconceptionState --root apps/integrated-math-3 → 18 passed",
+        "npm test --workspace=packages/knowledge-space-practice → 88 passed",
+        "npx tsc --noEmit --project packages/knowledge-space-practice/tsconfig.json → clean",
+        "npx tsc --noEmit --project apps/integrated-math-3/convex/tsconfig.json → clean (1 pre-existing error)"
+      ]
+    },
+    "phase4_integration": {
+      "status": "complete",
+      "green_commit": "213f7eba",
+      "green_subject": "feat(knowledge-space): implement Phase 4 planner injection and active-misconception projections",
+      "red_commits": [],
+      "tasks": [
+        "Implement planner injection of remediated_by activities [213f7eba]",
+        "Add active-misconception counts to student and teacher projections [213f7eba]"
+      ],
+      "deferred_tasks": [
+        "Measure - User Manual Verification 'Phase 4'"
+      ],
+      "verification_commands": [
+        "npx vitest run planner-remediation-injection projection-active-misconception-count --root packages/knowledge-space-practice → 20 passed",
+        "npm test --workspace=packages/knowledge-space-practice → 108 passed",
+        "npm run lint --workspace=packages/knowledge-space-practice → 0 errors",
+        "npx tsc --noEmit --project packages/knowledge-space-practice/tsconfig.json → clean",
+        "npx vitest run srs-rating --root apps/integrated-math-3 → 23 passed (regression)",
+        "npx vitest run srs-rating --root apps/bus-math-v2 → 23 passed (regression)"
+      ]
+    },
+    "phase5_docs_doctor": {
+      "status": "complete",
+      "green_commits": ["9d0e1b07", "9c61214a", "7b9e873f", "e676a7ef", "678aceb9"],
+      "green_subjects": [
+        "docs(spec): add Phase 5 misconception-loop cross-references to kst-srs.v2",
+        "docs(track-6): record Phase 5 Green evidence in plan.md",
+        "chore(deps): add @math-platform/knowledge-space-practice to IM3 dependencies",
+        "chore(graph): index Phase 1-5 misconception-loop test files into tracked graph.db",
+        "chore(graph): index Phase 1-5 misconception-loop source files into tracked graph.db"
+      ],
+      "red_commits": ["ab766c1c", "15b12c7f"],
+      "tasks": [
+        "Update in-repo kst-srs.v2 spec (§3.2 remediated_by, §3.7, §8.4 rating cap, §13.3) [9d0e1b07]",
+        "Run measure/generate.sh and measure/doctor.sh; fix architectural lint [verified clean]",
+        "Final verification — boundary lints, npm run lint, tsc --noEmit, CI=true npm test [285 passed]"
+      ],
+      "deferred_tasks": [
+        "Measure - User Manual Verification 'Phase 5'"
+      ],
+      "verification_commands": [
+        "npx vitest run phase5-spec-section-3-2-3-7-8-4-13-3-implementation.test.ts --root packages/knowledge-space-core → 9 passed",
+        "bash measure/scripts/doctor.sh → exit 0",
+        "bash measure/scripts/generate.sh → exit 0",
+        "node scripts/check-monorepo-boundaries.mjs → exit 0",
+        "npm run lint → 0 errors",
+        "npx tsc --noEmit --project packages/knowledge-space-core/tsconfig.json → clean",
+        "npx tsc --noEmit --project packages/knowledge-space-practice/tsconfig.json → clean",
+        "CI=true npm test → 285 passed"
+      ]
+    }
+  },
+
+  "summary": {
+    "total_tasks": 17,
+    "completed_tasks": 12,
+    "deferred_tasks": 5,
+    "deferred_reason": "Measure - User Manual Verification (UMV) tasks deferred as manual per workflow.md protocol",
+    "green_commits": [
+      "cdb64f0b — feat(knowledge-space): add remediated_by edge type and misconception lifecycle types",
+      "717760f4 — feat(practice-core): add severity-aware rating cap to computeBaseRating",
+      "d96e0099 — feat(misconception-loop): implement Phase 3 lifecycle engine + Convex persistence",
+      "213f7eba — feat(knowledge-space): implement Phase 4 planner injection and active-misconception projections",
+      "9d0e1b07 — docs(spec): add Phase 5 misconception-loop cross-references to kst-srs.v2",
+      "9c61214a — docs(track-6): record Phase 5 Green evidence in plan.md",
+      "7b9e873f — chore(deps): add @math-platform/knowledge-space-practice to IM3 dependencies",
+      "e676a7ef — chore(graph): index Phase 1-5 misconception-loop test files into tracked graph.db",
+      "678aceb9 — chore(graph): index Phase 1-5 misconception-loop source files into tracked graph.db"
+    ],
+    "red_commits": [
+      "17a4e37e — test(misconception-loop): add Phase 2 Red tests for rating-cap rule",
+      "e931dee2 — test(misconception-loop): extend Phase 2 Red proof to BM2 consumer",
+      "186dfd8b — test(misconception-loop): add Phase 3 Red tests for lifecycle engine + Convex persistence",
+      "ab766c1c — test(misconception-loop): add Phase 5 Red spec-parity tests (Docs & Doctor)",
+      "15b12c7f — docs(track-6): restore package.json + package-lock.json to HEAD; clean MID-end worktree"
+    ],
+    "pre_existing_issues": [
+      "IM3 convex tsc error in lib/activities/review-queue.ts:1 (unchanged, not introduced by this track)",
+      "Phase 1 lint error: unused type import in misconception-lifecycle-types.test.ts (noted in plan.md)"
+    ]
+  },
+
+  "retained_evidence": [
+    "measure/archive/misconception-loop_20260521/spec.md — original spec",
+    "measure/archive/misconception-loop_20260521/plan.md — full implementation plan with all phase evidence",
+    "measure/archive/misconception-loop_20260521/metadata.json — updated with done status and completion date",
+    "measure/archive/misconception-loop_20260521/test-strategy.md — test strategy document",
+    "measure/archive/misconception-loop_20260521/review-2026-06-16.md — review evidence",
+    "measure/archive/misconception-loop_20260521/review-2026-06-16-subagent.md — subagent review evidence",
+    "measure/archive/misconception-loop_20260521/review-2026-06-18.md — review evidence",
+    "measure/archive/misconception-loop_20260521/index.md — track index",
+    "measure/archive/misconception-loop_20260521/automation-supervisor-closeout-manifest.json — this manifest"
+  ],
+
+  "artifact_cleanup": {
+    "deleted": [],
+    "retained": "All track artifacts retained in archive for audit trail",
+    "note": "No bulky run artifacts identified for deletion by orchestrator"
+  }
+}
