@@ -14,7 +14,7 @@ Verification gate each phase: `tsc --noEmit` (BM2 + IM3) + auth/middleware tests
 - RED_TEST_COMMAND: `npx vitest run unified-auth-monorepo --root apps/bus-math-v2`
 - Expected failure: Contract-First decision doc `measure/tracks/unified-auth-monorepo_20260609/decisions/auth-export-classification.md` does not exist.
 - Actual output: `1 failed | 1 passed` — `exports exactly the expected public identifiers` passes; `exists and contains a classified section for every BM2 export` fails with `ENOENT: no such file or directory, open .../auth-export-classification.md`.
-- Commit SHA (Phase 1 Red): `d92b0d7f`
+- Commit SHA (Phase 1 Red): `aaa04b08`
 
 ## Phase 2 — Promote Shared Logic into core-auth
 
