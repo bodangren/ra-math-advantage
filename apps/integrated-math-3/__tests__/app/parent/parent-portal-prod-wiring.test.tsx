@@ -227,7 +227,7 @@ describe('ParentPage — fail-closed behavior', () => {
       typeof vi.fn
     >;
     mockedFetchInternalQuery.mockImplementation(
-      (ref: unknown, args: Record<string, unknown>) => {
+      (ref: unknown, _args: Record<string, unknown>) => {
         const refName = String(ref);
         if (refName.includes('listParentLinksQuery')) {
           return Promise.resolve(singleStudentLinks);
