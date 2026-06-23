@@ -1,0 +1,23 @@
+{
+  "track_id": "onboarding-roster-import_20260605",
+  "closeout_status": "passed",
+  "closeout_commit": "d9ca3440",
+  "closeout_date": "2026-06-23",
+  "checks": {
+    "all_tasks_verified": true,
+    "track_moved_to_archive": true,
+    "tracks_md_updated": true,
+    "metadata_updated": true,
+    "closeout_manifest_created": true,
+    "commit_made": true,
+    "interphase_checks": "PASS"
+  },
+  "phase_summary": {
+    "phase_1": {"checkpoint": "41043d1f", "tasks": 4, "tests": 68},
+    "phase_2": {"checkpoint": "bd4f6736", "tasks": 5, "tests": 39},
+    "phase_3": {"checkpoint": "cb5e4de9", "tasks": 3, "tests": 20},
+    "phase_4": {"checkpoint": "8e0605e7", "tasks": 3, "tests": 24}
+  },
+  "total_tests": 83,
+  "boundary_discipline": "committed only track-related files; 148 unrelated dirty files untouched; graph.db not committed"
+}
