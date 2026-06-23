@@ -964,9 +964,9 @@ Sixteen candidate tracks identified from a full-roadmap review. Each is registry
    *Expand Playwright E2E beyond the 9 infrastructure tests to fully cover login, lesson nav, activity interaction, daily practice, and teacher dashboard. All 4 phases complete: deterministic seed & selectors, auth & lesson flow, activities & daily practice, teacher flow & CI. Review commit: `41a35a7c`.*
    *Link: [./archive/e2e-coverage-expansion_20260605/](./archive/e2e-coverage-expansion_20260605/)*
 
-- [ ] **Track: Study Hub Games Adoption** — **PLANNED**
-   *Wire the matching and speed-round games into IM3 via real routes/pages. Games track Phase 3 is "pending — requires game routes/pages in IM3." Size: S. Depends on: student-study-hub-games (logic done). Readiness: ready now.*
-   *Link: [./tracks/study-hub-games-adoption_20260605/](./tracks/study-hub-games-adoption_20260605/)*
+- [x] **Track: Study Hub Games Adoption** — **COMPLETED / ARCHIVED** (2026-06-23)
+   *Wire the matching and speed-round games into IM3 via real routes/pages. All 10 tasks complete across 3 phases: routes & glossary wiring, result persistence & mastery, verification. Lint/tsc/test green. Auth gated. Completion: orchestrator-attested.*
+   *Link: [./measure/archive/study-hub-games-adoption_20260605/](./measure/archive/study-hub-games-adoption_20260605/)*
 
 - [x] **Track: Measure Architecture Tooling** — **COMPLETED**
    *Build the real `generate` + `doctor` scripts and the `measure/generated/` facts (architecture.json, routes.md) so `/measure:doctor` stops HALTing. All 3 phases complete: generate script (architecture.json + routes.md), doctor script (boundary lint + freshness check + pass/fail exit), reconciliation (tech-debt resolved, phantom references updated). Verification: doctor green, BM2 tsc green, generate deterministic.*

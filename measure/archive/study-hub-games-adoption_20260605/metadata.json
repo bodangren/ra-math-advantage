@@ -1,0 +1,14 @@
+{
+  "track_id": "study-hub-games-adoption_20260605",
+  "type": "feature",
+  "status": "done",
+  "created_at": "2026-06-05T00:00:00Z",
+  "updated_at": "2026-06-05T00:00:00Z",
+  "closed_at": "2026-06-23T00:00:00Z",
+  "completed": "2026-06-23",
+  "description": "Wire the matching and speed-round study-hub games into IM3 via real routes/pages, reusing the IM3 glossary. The game logic is complete; Phase 3 adoption was pending routes/pages. Tier 1 backlog (finish half-done work).",
+  "program": "Quality & Completion Backlog",
+  "estimated_tasks": 9,
+  "actual_tasks": 10,
+  "deviation_notes": "Final task count 10 (3 phases, 10 tasks) vs estimate of 9 — one extra manual-verification task per phase. All tasks verified complete."
+}

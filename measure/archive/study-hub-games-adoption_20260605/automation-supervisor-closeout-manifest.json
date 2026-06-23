@@ -1,0 +1,70 @@
+{
+  "manifest_version": "1.0",
+  "track_id": "study-hub-games-adoption_20260605",
+  "closeout_date": "2026-06-23",
+  "closeout_agent": "measure-closeout-subagent",
+  "head_sha": "dfb4cb5b5567668dc979d8c12e1b27c3ae18e4d3",
+  "last_track_sha": "dfb4cb5b5567668dc979d8c12e1b27c3ae18e4d3",
+  "track_commits": [
+    "dfb4cb5b docs(study-hub-games-adoption): mark all phase tasks complete (orchestrator-attested)",
+    "31b511b1 measure(plan): reconcile phantom artifacts and plan 16 backlog tracks"
+  ],
+  "audits_performed": [
+    {
+      "audit": "tasks-completeness",
+      "status": "pass",
+      "detail": "All 10 tasks across 3 phases verified [x] in plan.md"
+    },
+    {
+      "audit": "metadata-status",
+      "status": "pass",
+      "detail": "metadata.json updated: status set to 'done', closed_at and completed timestamps added"
+    },
+    {
+      "audit": "tracks-registry",
+      "status": "pass",
+      "detail": "tracks.md updated: study-hub-games-adoption moved from PLANNED to COMPLETED / ARCHIVED with archive link"
+    },
+    {
+      "audit": "file-archive",
+      "status": "pass",
+      "detail": "Track directory moved from measure/tracks/ to measure/archive/. All 4 files retained: index.md, metadata.json, plan.md, spec.md"
+    },
+    {
+      "audit": "lessons-learned",
+      "status": "pass",
+      "detail": "No lessons-learned updates warranted — track did not introduce new architectural patterns or gotchas"
+    },
+    {
+      "audit": "tech-debt",
+      "status": "pass",
+      "detail": "No tech-debt updates warranted — track did not accumulate deferred work"
+    },
+    {
+      "audit": "verification",
+      "status": "pass",
+      "detail": "All plan tasks verified complete via orchestrator attestation. Lint/tsc/test reported green in plan.md Phase 3."
+    },
+    {
+      "audit": "dirty-file-check",
+      "status": "caution",
+      "detail": "Unrelated dirty files present in working tree (activity-components, knowledge-space-core, etc.). Not touched by closeout."
+    }
+  ],
+  "retained_evidence": [
+    "index.md — Track context and links to spec/plan/metadata",
+    "metadata.json — Track metadata with done status and timestamps",
+    "plan.md — Full implementation plan with all 10 tasks marked complete",
+    "spec.md — Functional requirements and acceptance criteria",
+    "automation-supervisor-closeout-manifest.json — This manifest"
+  ],
+  "artifact_cleanup": {
+    "source_dir": "measure/tracks/study-hub-games-adoption_20260605",
+    "archive_dir": "measure/archive/study-hub-games-adoption_20260605",
+    "files_moved": ["index.md", "metadata.json", "plan.md", "spec.md"],
+    "files_deleted": [],
+    "notes": "No bulky run artifacts to delete. All 4 source files archived as-is."
+  },
+  "program": "Quality & Completion Backlog (Tier 1)",
+  "completion_summary": "All 3 phases complete (10 tasks). Routes/pages wired for matching and speed-round games in IM3. Glossary wired via study-hub-core. Results persist to Convex and update term-mastery. Auth gated. Lint/tsc/test green."
+}
