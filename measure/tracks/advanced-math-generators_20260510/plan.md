@@ -1,9 +1,19 @@
 # Implementation Plan: Advanced Math Generators
 
-- [ ] **Phase 1: Polynomial Engine**
-  - [ ] Implement `utils/polynomial.ts` with `addPoly`, `subtractPoly`, and `multiplyPoly` (array convolution).
-  - [ ] Build `polynomial-operations.ts` utilizing the convolution engine.
-  - [ ] Build `polynomial-division.ts` using the Dividend backwards generation strategy.
+- [~] **Phase 1: Polynomial Engine**
+  - [~] Implement `utils/polynomial.ts` with `addPoly`, `subtractPoly`, and `multiplyPoly` (array convolution).
+  - [~] Build `polynomial-operations.ts` utilizing the convolution engine.
+  - [~] Build `polynomial-division.ts` using the Dividend backwards generation strategy.
+
+  **Red evidence (baseline SHA `61f5020`, commit SHA `87d2309`):**
+  ```
+  $ npx vitest run polynomial --root packages/math-content
+  FAIL  src/__tests__/polynomial.test.ts
+  Error: Cannot find module '../utils/polynomial'
+  Test Files  1 failed (1) | Tests  no tests | Duration  996ms
+  ```
+  All 14 tests (6 polynomial utils, 4 operations, 4 division) fail with module-not-found.
+  Test strategy: `packages/math-content/src/__tests__/polynomial-strategy.md`.
 
 - [ ] **Phase 2: Rational Functions**
   - [ ] Implement `rational-analyzer.ts`.
