@@ -146,11 +146,11 @@ function generateExpProblem(rand: () => number): ExpLogProblem {
   // Domain: exponential is defined for all real x, so domain is (−∞, ∞)
   const domain = { min: -Infinity, max: Infinity };
 
-  const equation = `\\exp(${exponent} \\cdot \\ln 2) = ${N} \\quad \\text{or} \\quad 2^{x} = ${N}`;
+  const equation = `2^{x} = ${N}`;
 
   const steps = [
     `Recognize: 2^x = ${N}`,
-    `Take log₂ of both sides: x = \\log_{2}(${N})`,
+    `Take log base 2 of both sides: x = log₂(${N})`,
     `Since 2^${exponent} = ${N}, we have x = ${exponent}`,
   ];
 

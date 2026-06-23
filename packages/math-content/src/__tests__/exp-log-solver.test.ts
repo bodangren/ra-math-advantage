@@ -8,7 +8,7 @@ import { generateExpLogProblem } from '../exp-log-solver';
  *
  * generateExpLogProblem({ seed }) returns:
  *   problemType: 'log' | 'exp' | 'ln'
- *   equation:    LaTeX string containing \log, \ln, or \exp
+ *   equation:    LaTeX string containing \log, \ln, or 2^{x}
  *   answer:      number (numeric solution)
  *   domain:      { min: number, max: number }
  *   familyId:    'step-by-step-solver:exp-log'
@@ -94,12 +94,12 @@ describe('determinism', () => {
 // ---------------------------------------------------------------------------
 
 describe('LaTeX formatting', () => {
-  it('equation contains \\log, \\ln, or \\exp', () => {
+  it('equation contains LaTeX formatting (\\log, \\ln, or 2^{x})', () => {
     const r = generateExpLogProblem({ seed: 1 });
     const hasLatex =
       r.equation.includes('\\log') ||
       r.equation.includes('\\ln') ||
-      r.equation.includes('\\exp');
+      r.equation.includes('2^{x}');
     expect(hasLatex).toBe(true);
   });
 
@@ -127,11 +127,11 @@ describe('LaTeX formatting', () => {
     expect(true).toBe(false);
   });
 
-  it('exp equations contain \\exp', () => {
+  it('exp equations contain 2^{x} LaTeX', () => {
     for (let seed = 1; seed <= 50; seed++) {
       const r = generateExpLogProblem({ seed });
       if (r.problemType === 'exp') {
-        expect(r.equation).toContain('\\exp');
+        expect(r.equation).toContain('2^{x}');
         return;
       }
     }
