@@ -13,3 +13,9 @@ export {
 export {
   BaseReviewSession,
 } from './study/base-session';
+
+export {
+  MatchingGame,
+  SpeedRoundGame,
+} from './games';
+export type { MatchingGameProps, SpeedRoundGameProps } from './games';
