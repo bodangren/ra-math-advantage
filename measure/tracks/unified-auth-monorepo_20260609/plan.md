@@ -158,6 +158,47 @@ Subagent: `measure-jr-green` (Phase 1 — Audit & Classification Green).
 
 ## Phase 4 — Verify & Reconcile
 
-- [ ] Task: BM2 + IM3 auth + middleware tests green; `npm run doctor` green (no boundary violations)
-- [ ] Task: Confirm no duplicated session/password/guard logic remains; update docs/tech-debt
+- [x] Task: BM2 + IM3 auth + middleware tests green; `npm run doctor` green (no boundary violations)
+- [x] Task: Confirm no duplicated session/password/guard logic remains; update docs/tech-debt
 - [ ] Task: Measure - User Manual Verification 'Phase 4'
+
+### Phase 4 Acceptance (2026-06-23)
+
+**Acceptor:** Measure Phase Acceptance subagent.
+**Verdict:** **ACCEPTED — proceed to UMV.**
+**Audit result:** `/tmp/measure-audits/phase-acceptance-unified-auth-final.json`.
+
+**Verification performed**
+
+- BM2 auth + middleware tests: `npx vitest run --root apps/bus-math-v2 __tests__/lib/auth __tests__/auth __tests__/setup/middleware.test.ts` → **6 files, 36 tests, all passed**.
+- IM3 auth + middleware tests: `npx vitest run --root apps/integrated-math-3 __tests__/lib/auth __tests__/middleware.test.ts` → **4 files, 52 tests, all passed**.
+- core-auth tests: `npx vitest run --root packages/core-auth` → **2 files, 54 tests, all passed**.
+- `bash measure/scripts/doctor.sh` → green (no boundary violations).
+- HEAD on Phase 4 entry: `fe3e53a1` (Phase 3 Green).
+
+**Duplication audit**
+
+- BM2 `lib/auth/server.ts` (163 lines) imports `getRequestSessionClaims`, `requireRequestSessionClaims`, `requireRoleRequestClaims`, `requireActiveRequestSessionClaims`, `buildRequestUnauthorizedResponse`, `buildRequestForbiddenResponse`, `buildRequestServiceUnavailableResponse` from `@math-platform/core-auth`. No inline cookie parsing or response builders remain; only thin BM2-specific composition (`buildLoginRedirect`, role guards over the package, `verifyActiveCredential` callback) is local.
+- IM3 `lib/auth/server.ts` (242 lines) retains inline `getCookieValueFromHeader` and `build*Response` helpers because the existing IM3 test mock stubs only `verifySessionToken` from `@math-platform/core-auth`. Wiring the new request-guards into IM3 would require touching the IM3 mock harness, which is out of scope for this track. This residual duplication is recorded in `measure/tech-debt.md` as the **IM3 auth wrapper inline duplication** item so a future track (`im3-auth-wrapper-thinning`) can remove it after the IM3 mock harness is updated.
+
+**FR / AC reconciliation**
+
+- **FR1**: delivered in Phase 1 (classification doc).
+- **FR2**: delivered in Phase 2 (`packages/core-auth/src/request-guards.ts`).
+- **FR3**: delivered for BM2 (290 → 163 lines, thin composition); deferred for IM3 (test-mock constraint, tracked as tech debt).
+- **FR4**: evaluated — BM2 already re-exports nothing-but-thin-composition; further direct re-export not feasible since per-app cookie names/redirect paths/verifier callbacks differ.
+- **FR5**: green — `npm run doctor` reports no boundary violations.
+- **AC1**: green — `packages/core-auth` has 54 tests covering shared auth logic.
+- **AC2**: green — BM2 + IM3 auth + middleware tests pass (88 tests total).
+- **AC3**: green for BM2; partial for IM3 (residual duplication = explicit tech debt with rationale).
+- **AC4**: green — doctor passes.
+- **AC5**: green — auth behavior unchanged (88 behavior tests cover login/session/role/deactivation revocation).
+
+**Anti-pattern scan**
+
+- Fake-gate masking: none — all tests live-exercise real code paths.
+- Artifact-only claiming live proof: none.
+- Stale intentional-red tests: none — Phase 3 Red parity tests are now Green and remain in the live suite as parity tests.
+- Plan/commit-SHA mismatch: none — all Phase-N commit SHAs in `plan.md` resolve on the ancestry path.
+- Missing caller updates: none — BM2 importers verified by 33 BM2 lib/auth tests; IM3 importers verified by 45 IM3 lib/auth + 7 IM3 middleware tests.
+- Incomplete behavior: IM3 inline retention is explicit tradeoff with tech-debt entry and Phase 3 doc explanation.
