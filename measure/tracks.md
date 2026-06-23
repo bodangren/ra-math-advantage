@@ -60,10 +60,7 @@ Dependencies:
     - [ ] **Track 2: Weighted Readiness**
       *Make `edge.weight` a live field: a weighted readiness score (`Σ(wᵢ·mᵢ)/Σ(wᵢ)`) replaces binary prerequisite gating, modeling compensatory learning paths. (Improvement Plan Item 2.) Depends on Track 1.*
       *Link: [./tracks/weighted-readiness_20260521/](./tracks/weighted-readiness_20260521/)*
-     - [x] **Track 6: Misconception Remediation Loop** — **COMPLETED / ARCHIVED** (2026-06-23)
-       *Close the misconception loop: `remediated_by` edge type, SRS rating-cap reconciliation (cap at Hard, Again only if severe), per-student active/resolved lifecycle, and planner injection of remediation activities. (Item 6.) Depends on Track 1.*
-       *Link: [./archive/misconception-loop_20260521/](./archive/misconception-loop_20260521/)*
-    - [ ] **Track 7: Practice-Variant Rename**
+     - [ ] **Track 7: Practice-Variant Rename**
        *Rename the math-specific "problem family" to domain-neutral "practice variant" across practice-core/srs-engine/knowledge-space-practice; `Card` keyed by `variantKey`; subdivision optional. (Item 7.) Depends on Track 1.*
        *Link: [./tracks/practice-variant-rename_20260521/](./tracks/practice-variant-rename_20260521/)*
 
@@ -1068,6 +1065,10 @@ Sixteen candidate tracks identified from a full-roadmap review. Each is registry
 - [x] **Track 3: Edge Calibration Loop** — **COMPLETED / ARCHIVED** (2026-06-23)
    *Data-driven prerequisite-edge validation: a Beta-Bernoulli posterior per `prerequisite_for` edge from paired proficiency verdicts, with recency decay and a curriculum-order confounding guardrail, producing a human review queue. 14 tasks complete across 4 phases. All tests pass: 216/216 (P1), 191/191 (P2), 1206+211 (P3), 233/233 (P4). Known gap: no production route consumes calibration output yet (depends on Track 1 wire-kst-pipeline).*
    *Link: [./measure/archive/edge-calibration_20260521/](./measure/archive/edge-calibration_20260521/)*
+
+- [x] **Track 6: Misconception Remediation Loop** — **COMPLETED / ARCHIVED** (2026-06-23)
+   *Close the misconception loop: `remediated_by` edge type, SRS rating-cap reconciliation (cap at Hard, Again only if severe), per-student active/resolved lifecycle, and planner injection of remediation activities. (Item 6.) Depends on Track 1.*
+   *Link: [./measure/archive/misconception-loop_20260521/](./measure/archive/misconception-loop_20260521/)*
 
 - [x] **Track: Learning Efficacy & Analytics** — **COMPLETED / ARCHIVED** (2026-06-23)
    *Instrument learning outcomes (retention curves, time-to-mastery, cohort comparison) and an A/B harness to measure whether the SRS/KST engine actually improves learning. Phases 1, 2, and 4 fully implemented and verified (Phase 1: 46/46 metric tests, Phase 2: 18/18 cohort tests, Phase 4: 30/30 efficacy view tests). Phase 3 (experiment harness) has Red tests committed at `5a4fdfd2` but Green implementation was stashed and never landed — tracked as a known follow-up. Boundary lints, lint, tsc (0 impl errors) all pass.*

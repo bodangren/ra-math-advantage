@@ -211,7 +211,7 @@ Commit: `717760f4` — `feat(practice-core): add severity-aware rating cap to co
 ## Phase 3 — Lifecycle Engine
 
 - [x] Task: Implement active/resolved lifecycle transitions (TDD) [green: d96e0099]
-    - [x] Active on detection; resolved after N consecutive clean attempts on affected skills
+    - [x] Active on detection; resolved after N consecutive clean attempts on affected skills [green: d96e0099]
 - [x] Task: Implement Convex persistence for per-student misconception state (TDD) [green: d96e0099]
 - [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md) — deferred (manual, not Red-phase)
 
