@@ -138,7 +138,7 @@ export async function POST(request: Request) {
  * the activities profile table.
  *
  * @param {string} userId - The Supabase auth user ID.
- * @returns {JSX.Element} {Promise<string | null> {} The Convex profile ID, or null if no profile exists.
+ * @returns {Promise<string | null>} The Convex profile ID, or null if no profile exists.
  */
 async function resolveProfileId(userId: string): Promise<string | null> {
   const profile = await fetchInternalQuery(internal.activities.getProfileByUserId, { userId });

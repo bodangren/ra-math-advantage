@@ -21,7 +21,7 @@ interface ChatbotRequest {
  * from user-supplied chatbot input before forwarding to the AI provider.
  *
  * @param {string} input - The raw user question string.
- * @returns {string {} The sanitized input safe for inclusion in an AI prompt.
+ * @returns {string} The sanitized input safe for inclusion in an AI prompt.
  */
 function sanitizeInput(input: string): string {
   return input

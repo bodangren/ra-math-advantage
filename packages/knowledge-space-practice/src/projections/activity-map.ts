@@ -62,7 +62,7 @@ export function selectSkill(childSkills: KnowledgeSpaceNode[]): KnowledgeSpaceNo
  * @param nodes - Knowledge space nodes
  * @param {KnowledgeSpaceEdge[]} edges - Knowledge space edges
  * @param {KnowledgeBlueprint[]} blueprints - Knowledge blueprints (worked example, guided, independent, assessment)
- * @returns {ProjectedActivity[] {} Sorted array of projected activities
+ * @returns {ProjectedActivity[]} Sorted array of projected activities.
  */
 export function projectActivityMap(
   nodes: KnowledgeSpaceNode[],

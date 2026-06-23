@@ -13,7 +13,7 @@ interface CourseOverviewGridProps {
  * Sorts course overview rows alphabetically by display name.
  *
  * @param {CourseOverviewRow[]} rows - Rows to sort.
- * @returns {CourseOverviewRow[] {} Sorted rows array.
+ * @returns {CourseOverviewRow[]} Sorted rows array.
  */
 function sortRowsByName(rows: CourseOverviewRow[]): CourseOverviewRow[] {
   return [...rows].sort((a, b) =>
