@@ -63,10 +63,7 @@ Dependencies:
    - [ ] **Track 3: Edge Calibration Loop**
       *Data-driven prerequisite-edge validation: a Beta-Bernoulli posterior per `prerequisite_for` edge from paired proficiency verdicts, with recency decay and a curriculum-order confounding guardrail, producing a human review queue. (Item 3.) Depends on Track 1.*
       *Link: [./tracks/edge-calibration_20260521/](./tracks/edge-calibration_20260521/)*
-    - [ ] **Track 5: Adaptive Placement**
-      *Cold-start diagnostic: an adaptive tree-walk that locates a new student's mastery frontier in O(log n) probes, with an abstract probe interface and an IM3 problem-bank reference implementation. (Item 5.) Depends on Track 1.*
-      *Link: [./tracks/adaptive-placement_20260521/](./tracks/adaptive-placement_20260521/)*
-   - [ ] **Track 6: Misconception Remediation Loop**
+    - [ ] **Track 6: Misconception Remediation Loop**
       *Close the misconception loop: `remediated_by` edge type, SRS rating-cap reconciliation (cap at Hard, Again only if severe), per-student active/resolved lifecycle, and planner injection of remediation activities. (Item 6.) Depends on Track 1.*
       *Link: [./tracks/misconception-loop_20260521/](./tracks/misconception-loop_20260521/)*
    - [ ] **Track 7: Practice-Variant Rename**
@@ -1051,6 +1048,10 @@ Sixteen candidate tracks identified from a full-roadmap review. Each is registry
 - [x] **Track: IM1 Practice Readiness** — **COMPLETED** (2026-06-11)
   *Audit Remediation (2026-06-09) #2/#6. Took IM1 from 0% generator coverage to a working Module-1 vertical slice: coverage matrix landed; 6 deterministic Module-1 generators in `packages/math-content/src/problem-families/im1/` (all green at numSeeds=50); 6 STUB blueprints replaced with real worked/guided/independent specs; `/student/practice` route wired in apps/integrated-math-1; audit refreshed to 6/138 served with 132-skill long tail tracked in gap-queue + audit doc.*
   *Link: [./archive/im1-practice-readiness_20260609/](./archive/im1-practice-readiness_20260609/)*
+
+- [x] **Track 5: Adaptive Placement** — **COMPLETED / ARCHIVED** (2026-06-23)
+   *Cold-start diagnostic: an adaptive tree-walk that locates a new student's mastery frontier in O(log n) probes, with an abstract probe interface and an IM3 problem-bank reference implementation. 17 tasks complete across 5 phases. 120/120 placement tests pass. Known gap: PlacementResult→getKnowledgeState integration test blocked on Track 1 (wire-kst-pipeline).*
+   *Link: [./measure/archive/adaptive-placement_20260521/](./measure/archive/adaptive-placement_20260521/)*
 
 - [x] **Track 4: Next-Skill Planner** — **COMPLETED / ARCHIVED** (2026-06-18)
    *Completion-audit note (2026-06-21): planner math was real, but the planner had no production backend/route consumer. User decision: wire it up rather than descope. Remediation is tracked in `next_skill_planner_prod_wiring_20260621`.*

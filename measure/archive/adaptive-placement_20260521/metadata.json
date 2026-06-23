@@ -1,12 +1,14 @@
 {
   "track_id": "adaptive-placement_20260521",
   "type": "feature",
-  "status": "new",
+  "status": "done",
   "created_at": "2026-05-20T22:26:58Z",
-  "updated_at": "2026-05-20T22:26:58Z",
+  "updated_at": "2026-06-23T09:10:00Z",
+  "closed_at": "2026-06-23T09:10:00Z",
+  "completed": "2026-06-23",
   "description": "Adaptive placement / cold-start: a tree-walk that locates a new student's mastery frontier in O(log n) probes, with an abstract probe interface and an IM3 problem-bank reference implementation. Track 5 of the Knowledge Space Engine Alignment program (kst-srs.v2 Improvement Plan Item 5). Depends on Track 1.",
   "program": "Knowledge Space Engine Alignment (kst-srs.v2)",
   "estimated_tasks": 14,
-  "actual_tasks": null,
-  "deviation_notes": ""
+  "actual_tasks": 17,
+  "deviation_notes": "3 extra tasks from regression hardening (invalid probe result handling, non-finite masteryEstimate rejection, Phase 5 final verification). Known gap: PlacementResult -> getKnowledgeState integration test blocked on Track 1 (wire-kst-pipeline)."
 }
