@@ -1,0 +1,24 @@
+{
+  "audit": "closeout",
+  "track": "learning-efficacy-analytics_20260605",
+  "result": "PASS",
+  "timestamp": "2026-06-23T09:35:00Z",
+  "checks": {
+    "track_moved_to_archive": true,
+    "tracks_md_updated": true,
+    "metadata_json_updated": true,
+    "closeout_manifest_exists": true,
+    "plan_tasks_have_shas": true,
+    "archived_section_placement": true
+  },
+  "known_gaps": [
+    "Phase 3 (Experiment Harness): Red tests at 5a4fdfd2, Green implementation stashed but never landed",
+    "3 manual verification tasks deferred per Measure workflow convention",
+    "6 pre-existing tsc errors in test files (not track regressions)"
+  ],
+  "closeout_commits": [
+    "99d9c21b — archive track directory and update metadata",
+    "02e4c0aa — fill commit SHAs in archived plan.md",
+    "42265683 — move to Archived Tracks section in tracks.md"
+  ]
+}
