@@ -146,9 +146,9 @@ own #2/#6, #3, and #5.
    - [ ] **Track 17: Skill Graph Program — Core Algebra Generators**
       *Implement deterministic generators for foundational algebra skills (linear equations, inequalities, systems, quadratics).*
       *Link: [./measure/tracks/core-algebra-generators_20260510/](./measure/tracks/core-algebra-generators_20260510/)*
-   - [ ] **Track 18: Skill Graph Program — Advanced Math Generators**
-      *Implement deterministic generators for polynomials, exponentials, logarithms, and rational functions.*
-      *Link: [./measure/tracks/advanced-math-generators_20260510/](./measure/tracks/advanced-math-generators_20260510/)*
+   - [x] **Track 18: Skill Graph Program — Advanced Math Generators** — **COMPLETED / ARCHIVED** (2026-06-23)
+       *Implement deterministic generators for polynomials, exponentials, logarithms, and rational functions.*
+       *Link: [./measure/archive/advanced-math-generators_20260510/](./measure/archive/advanced-math-generators_20260510/)*
    - [ ] **Track 19: Skill Graph Program — Geometry, Stats & Trig Generators**
       *Implement generators that output complex visual/data parameters explicitly built for the new visualization components in T15 and T16.*
       *Link: [./measure/tracks/geometry-stats-trig-generators_20260510/](./measure/tracks/geometry-stats-trig-generators_20260510/)*
