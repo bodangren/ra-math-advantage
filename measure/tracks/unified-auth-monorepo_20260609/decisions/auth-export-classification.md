@@ -64,12 +64,18 @@ differences are:
   `requireActiveTeacherRequestClaims`; IM3 has neither — its
   `requireActiveRequestSessionClaims` is a leaf helper. The BM2 "active-role"
   helpers are *new* composition over the leaf helper.
-- `requireActiveRequestSessionClaims` semantics differ between the two apps:
-  - BM2 (lines 233–235) treats `credential === null` as `"Session revoked"`.
-    It does **not** check `credential.isActive`.
-  - IM3 (lines 207–209) returns unauthorized when `!credential || !credential.isActive`.
-  This is the only behavioral divergence in the union; Phase 2 must preserve
-  BM2 behavior (per `test-strategy.md` §3).
+- `requireActiveRequestSessionClaims` error messages differ between the two apps
+  (`'Session revoked'` vs generic `unauthorizedMessage`; `'Credential verification
+  temporarily unavailable'` vs `'Service unavailable. Please try again later.'`),
+  but their **deactivation behavior is identical**: both apps call the Convex
+  `internal.auth.getCredentialByUsername` internalQuery, which for both BM2 and
+  IM3 returns `null` when `!credential || !credential.isActive` (BM2 convex/auth.ts
+  line 19; IM3 convex/auth.ts line 18). The Convex data-layer already filters out
+  inactive credentials, so both server-side checks (`!credential` in BM2 and
+  `!credential || !credential.isActive` in IM3) achieve the same 401 result. The
+  IM3 server-level `isActive` re-check is redundant (dead code) but harmless.
+  Phase 2 parameterization should be driven by error-message customisability,
+  not by any deactivation-logic divergence.
 
 ## Classification table
 
@@ -93,10 +99,10 @@ Tally: **(a) 1, (b) 11, (c) 0.**
 The "no (c) entries" outcome is intentional. The original audit noted that
 IM3's `server.ts` is "largely a wrapper re-exporting the package"; that
 implies the BM2-vs-IM3 differences are parameterization, not app-specific
-domain. The only behavior that survives after parameterization is the
-"credential existence only" deactivation check (BM2) vs "existence + `isActive`"
-(IM3). This is captured as an **option** to the generalized active-credential
-guard rather than a per-app fork.
+domain. The only surviving differences after parameterization are error-message
+customisability and the IM3 redundant `isActive` re-check at server level;
+neither requires a per-app behavioral fork. Both apps' Convex queries already
+filter out inactive credentials identically.
 
 ## Per-export classification
 
@@ -227,19 +233,22 @@ verify the credential is still present; on `credential === null` returns
 `fetchInternalQuery` error returns
 `buildRequestServiceUnavailableResponse('Credential verification temporarily unavailable')`. The Convex call and the `internal.auth.getCredentialByUsername`
 reference are app-specific (and `convex/_generated/` is on the package
-boundary's "must not import" list). IM3 has the same shape but also checks
-`credential.isActive` (lines 207–209) and uses the
-`unauthorizedMessage`/`'Service unavailable. Please try again later.'` strings
-instead of BM2's `'Session revoked'` / `'Credential verification temporarily unavailable'`.
+boundary's "must not import" list). IM3 has the same shape but also has a
+redundant `credential.isActive` re-check (lines 207–209) that is dead code
+because both apps' `getCredentialByUsername` Convex queries already return
+`null` for inactive credentials. The actual differences are custom error
+strings: BM2 uses `'Session revoked'` / `'Credential verification temporarily unavailable'`; IM3 uses the parameterised `unauthorizedMessage` /
+`'Service unavailable. Please try again later.'`.
 
 Phase 2 promotes the function to the package with a
 `verifyActiveCredential: (claims) => Promise<{ ok: true } | { ok: false; reason: 'revoked' | 'unavailable' }>` callback (or an equivalent options object).
-BM2 supplies a callback that does the BM2 "credential existence only" check
-(no `isActive`) and produces BM2's exact error strings; IM3 supplies a
-callback that does the "existence + isActive" check and produces IM3's error
-strings. The package's logic — "verify JWT → if claims ok, run active-check →
-map revoked to 401, unavailable to 503, ok to claims" — is shared; the
-credential lookup is supplied per app.
+BM2 supplies a callback that calls its Convex `getCredentialByUsername` and
+produces BM2's exact error strings; IM3 supplies a callback that calls its own
+Convex `getCredentialByUsername` and produces IM3's error strings. Deactivation
+behaviour is identical across apps because both Convex queries already filter
+by `isActive`. The package's logic — "verify JWT → if claims ok, run
+active-check → map revoked to 401, unavailable to 503, ok to claims" — is
+shared; the credential lookup is supplied per app.
 
 ## requireActiveStudentRequestClaims
 
