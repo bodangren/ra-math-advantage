@@ -100,9 +100,18 @@ describe('FR-6 — handler learner-state union does not include review_due', () 
       { userId: 'profiles_test' as Parameters<typeof getStudentVisualizationHandler>[1]['userId'] },
     );
 
-    // Collect all states from the output nodes.
+    // StudentVisualizationV1 partitions nodes into separate buckets
+    // (mastered/ready/blocked/reviewDue/recommendedNext); gather states
+    // from all of them to check the handler never emits 'review_due'.
+    const allNodes = [
+      ...result.mastered,
+      ...result.ready,
+      ...result.blocked,
+      ...result.reviewDue,
+      ...result.recommendedNext,
+    ];
     const states = new Set(
-      result.nodes.map((n: { state?: string }) => n.state).filter(Boolean),
+      allNodes.map((n: { state?: string }) => n.state).filter(Boolean),
     );
 
     // The handler must never emit 'review_due'.

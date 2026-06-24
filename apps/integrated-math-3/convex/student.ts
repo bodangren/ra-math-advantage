@@ -494,7 +494,7 @@ export async function getStudentVisualizationHandler(
     .withIndex("by_student", (q) => q.eq("studentId", args.userId))
     .collect();
 
-  const learnerState: Record<string, "mastered" | "ready" | "blocked" | "review_due"> = {};
+  const learnerState: Record<string, "mastered" | "ready" | "blocked"> = {};
   for (const p of placements) {
     if (p.masteryEstimate >= 0.8) {
       learnerState[p.nodeId] = "mastered";

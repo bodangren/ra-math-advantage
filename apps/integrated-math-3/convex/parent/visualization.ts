@@ -51,7 +51,7 @@ import { loadFullCurriculumGraph } from '../../lib/curriculum/skill-graph-loader
  */
 const EMPTY_LEARNER_STATE: Record<
   string,
-  'mastered' | 'ready' | 'blocked' | 'review_due'
+  'mastered' | 'ready' | 'blocked'
 > = {};
 
 /**
@@ -63,7 +63,7 @@ const EMPTY_LEARNER_STATE: Record<
  * without setting up a Convex context.
  */
 export function buildParentProjectionPayload(
-  learnerState: Record<string, 'mastered' | 'ready' | 'blocked' | 'review_due'>,
+  learnerState: Record<string, 'mastered' | 'ready' | 'blocked'>,
   nodes: KnowledgeSpaceNode[],
   edges: KnowledgeSpaceEdge[],
 ): ParentVisualizationV1 {
@@ -122,7 +122,7 @@ export async function projectParentVisualizationHandler(
 
   const learnerState: Record<
     string,
-    'mastered' | 'ready' | 'blocked' | 'review_due'
+    'mastered' | 'ready' | 'blocked'
   > = { ...EMPTY_LEARNER_STATE };
 
   for (const p of placements) {
