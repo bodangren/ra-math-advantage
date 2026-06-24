@@ -1,0 +1,43 @@
+Phase 3 Closeout Gates — code-review-remediation_20260624
+=========================================================
+Captured: 2026-06-24
+
+FR-9 single-source gates:
+  seededRandom definitions: 1 (packages/math-content/src/utils/prng.ts)
+  generateCoefficients definitions: 1 (packages/math-content/src/utils/coefficients.ts)
+  formatPolynomial definitions: 1 (packages/math-content/src/utils/polynomial-format.ts)
+
+FR-10 gates:
+  Flat registry (generator-registry.ts): REMOVED
+  GENERATOR_REGISTRY in index.ts: 0 matches
+  nodeIds: [] count in advanced-math-adapters.ts: 0 (all 4 populated)
+
+FR-8 gates:
+  while(true) in exp-log-solver.ts: 0
+  seed += 1 in exp-log-solver.ts: 0
+  no-constant-condition in exp-log-solver.ts: 0
+
+FR-7 gates:
+  isZero: false (hardcoded) in rational-analyzer.ts: 0
+  HA ratio varies: confirmed (seed 1→ratio 1, seed 2→ratio 1.5, seed 5→ratio 0.333)
+  Adapter HA grading: scalar (number | 'none')
+
+FR-11 gates:
+  PRNG docstring in utils/prng.ts: corrected (JS double overflow caveat documented)
+
+Phase 1 invariant:
+  FR-3 JSDoc guard: exit 0, violations 0, 664 typed tags
+
+Test results:
+  packages/math-content Phase 3 tests: 92/92 pass
+    - rational-analyzer.test.ts: 19 tests
+    - exp-log-solver.test.ts: 17 tests
+    - adapter.test.ts: 47 tests
+    - generator-registry.test.ts: 9 tests
+  apps/integrated-math-3 Phase 2 tests: 22/22 pass
+    - studentVisualization: 4 tests
+    - studentVisualizationAdversarial: 9 tests
+    - studentVisualizationMultiModule: 6 tests
+    - visualizationLearnerStateUnion: 3 tests
+
+tsc baseline: 247 lines (pre-existing errors in precalc + schemas/types.ts)

@@ -64,23 +64,26 @@ JSDoc) first. Each behavioral fix follows Red → Green TDD per `workflow.md`.
         - [RED EVIDENCE 2026-06-24] Test file: `visualizationLearnerStateUnion.test.ts` — 3 tests. Behavioral invariant (1): handler never produces `review_due` across full mastery range [0.0, 0.95] → PASSES (documents the fact). Source-level complement (2): `student.ts` contains `'review_due'` in union → FAILS; `parent/visualization.ts` contains `'review_due'` in union → FAILS. The source-level assertions are the meaningful Red (they will pass after Green narrows the union).
     - [x] Green: derive `review_due` from review/SRS data, or narrow the union type
         - [GREEN EVIDENCE 2026-06-24, commit d8765ad1] Per test-strategy §13 Task 2.3 (strategy decision: NARROW, not produce), dropped `review_due` from the handler-local union at the handler boundary. Narrowed declarations: `convex/student.ts:497` (getStudentVisualizationHandler learnerState); `convex/parent/visualization.ts:54,65,125` (EMPTY_LEARNER_STATE, buildParentProjectionPayload param, projectParentVisualizationHandler local). No producer changes needed — every branch in both handlers already writes only 'mastered' / 'ready' / 'blocked'. Behavior test access-pattern fix in `visualizationLearnerStateUnion.test.ts` (gather states from all buckets since StudentVisualizationV1 has no `nodes` field — necessary adjustment per Red-test-contradicts-spec clause). Suite: `visualizationLearnerStateUnion` 3/3 PASS (was 2/3 FAIL — behavioral invariant crashed with `result.nodes.map` TypeError at HEAD). Architecture lint: zero `'review_due'` in either handler (single OR double quoted). FR-3 guard invariant preserved (0 violations, 664 typed tags). tsc: 0 new errors. Lint: 0 new warnings.
-- [ ] Task: Measure - User Manual Verification 'Phase 2: Production-wiring scope & dead work' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 2: Production-wiring scope & dead work' (Protocol in workflow.md)
+    - [GREEN EVIDENCE 2026-06-24] Phase 2 tests: 22/22 pass (studentVisualization 4, studentVisualizationAdversarial 9, studentVisualizationMultiModule 6, visualizationLearnerStateUnion 3). FR-3 guard: 0 violations. Phase 1+2 invariants preserved through Phase 3.
 
 ## Phase 3: advanced-math-generators correctness & quality (Cluster C)
 
-- [ ] Task: Fix rational-analyzer HA triviality & grading + replace certifying test (FR-7, FR-16)
-    - [ ] Red: REPLACE the `rational-analyzer.test.ts` HA block — drop the circular `ratio === leadingNum/leadingDen` assertion and the `isZero is false … our construction always does` assertion. New tests assert the HA **varies across seeds** and that the graded HA target is student-enterable. Replacement must fail against the pre-fix (always-`y=1`) code
-    - [ ] Green: introduce non-monic / unequal-degree variation in `rational-analyzer.ts`; change `advanced-math-adapters.ts` HA grading to a scalar/`"none"` answer
-- [ ] Task: Remove the exp-log dead domain re-roll + replace certifying tests (FR-8, FR-16)
-    - [ ] Red: REPLACE the `exp-log-solver.test.ts` `domain re-roll` / `domain safety` blocks (they assert construction-guaranteed truths and never exercise an invalid domain). New test asserts single-pass generation (no re-roll); remove the `expect(true).toBe(false)` hand-rolled fail. Keep the legitimate log/ln/exp correctness tests green
-    - [ ] Green: delete the `while (true)` loop, `seed += 1`, eslint-disable, and the domain-safety doc
-- [ ] Task: De-duplicate generator utilities (FR-9)
-    - [ ] Green: extract `seededRandom`, `generateCoefficients`, `formatPolynomial` into `packages/math-content/src/utils/`; update all 5/2/2 call sites; tests unchanged (determinism preserved)
-- [ ] Task: Consolidate registries & wire adapter nodeIds (FR-10, FR-18)
-    - [ ] Red: add a test asserting each advanced adapter has **non-empty `nodeIds`** mapping to real `math.im3.skill.*` node id(s) — the current `adapter.test.ts` never checks this, so the empty-`nodeIds` bug was invisible (or document key-only reachability with a test pinning that rationale)
-    - [ ] Green: remove the redundant flat `generator-registry.ts` (or justify); populate adapter `nodeIds`
-- [ ] Task: Correct PRNG labelling (FR-11)
-    - [ ] Green: fix the docstring (subsumed by FR-9 shared util) or switch to a 32-bit-safe formulation
+- [x] Task: De-duplicate generator utilities (FR-9)
+    - [x] Green: extract `seededRandom`, `generateCoefficients`, `formatPolynomial` into `packages/math-content/src/utils/`; update all 6/2/2 call sites; tests unchanged (determinism preserved)
+        - [GREEN EVIDENCE 2026-06-24, commit 6c60fc92] Created utils/prng.ts (seededRandom), utils/coefficients.ts (generateCoefficients, parameter required), utils/polynomial-format.ts (formatPolynomial). Updated 7 callers: polynomial-operations.ts, polynomial-division.ts, rational-analyzer.ts, exp-log-solver.ts, generators/registry.ts, generators/advanced-math-adapters.ts, im1/generators.ts. FR-11 docstring corrected in prng.ts (JS double overflow caveat). All 92 Phase 3 tests pass unchanged. FR-3 guard: 0 violations.
+- [x] Task: Fix rational-analyzer HA triviality & grading + replace certifying test (FR-7, FR-16)
+    - [x] Red+Green (atomic): REPLACE the `rational-analyzer.test.ts` HA block + introduce non-monic variation in `rational-analyzer.ts` + change `advanced-math-adapters.ts` HA grading to scalar
+        - [RED+GREEN EVIDENCE 2026-06-24, commit 4cbf9236] Source: added aNum, aDen ∈ {1,2,3} via two extra PRNG draws. HA ratio varies (seed 1→1, seed 2→1.5, seed 5→0.333). isZero now computed (numDeg < denDeg). Adapter: HA graded as scalar number | 'none' with numeric_tolerance 0.001. Tests replaced: 3 trivial HA tests → 2 behavioral (ratio variation + non-unit ratio) + 1 source-lint. Adapter tests: 2 scalar-grading assertions added. Seed-1 goldens UNCHANGED (h=0, v=-6, z=-7). 94 tests pass (92 baseline + 2 new).
+- [x] Task: Remove the exp-log dead domain re-roll + replace certifying tests (FR-8, FR-16)
+    - [x] Red+Green (atomic): REPLACE the `exp-log-solver.test.ts` domain blocks + delete `while(true)` loop + single-pass test
+        - [RED+GREEN EVIDENCE 2026-06-24, commit 1ff4f012] Source: removed while(true), isDomainValid, seed += 1, eslint-disable. Generator now single-pass. Tests replaced: deleted 6 certifying domain tests + 2 re-roll tests, added 2 behavioral (vi.spyOn call-counter + source-lint). Rewrote 3 expect(true).toBe(false) to Array.some pattern. 89 tests pass (94 - 7 + 2).
+- [x] Task: Consolidate registries & wire adapter nodeIds (FR-10, FR-18)
+    - [x] Red+Green (atomic): add nodeIds assertion test + populate adapter nodeIds + remove flat registry
+        - [RED+GREEN EVIDENCE 2026-06-24, commit cb6e7f8c] Populated all 4 adapter nodeIds (12 IDs total, all verified in nodes.json). Deleted generator-registry.ts + removed re-exports from index.ts + deleted GENERATOR_REGISTRY test block. Added 8 nodeIds tests (non-empty + pattern match). 92 tests pass (89 - 5 + 8).
+- [x] Task: Correct PRNG labelling (FR-11)
+    - [x] Green: fix the docstring (subsumed by FR-9 shared util)
+        - [GREEN EVIDENCE 2026-06-24] Docstring corrected in utils/prng.ts (commit 6c60fc92). Describes actual JS double arithmetic behavior with overflow caveat. No PRNG bit pattern change.
 - [ ] Task: Measure - User Manual Verification 'Phase 3: advanced-math-generators correctness & quality' (Protocol in workflow.md)
 
 ## Phase 4: precalc concept taxonomy (Cluster D)
