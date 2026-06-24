@@ -1,6 +1,8 @@
 import { describe, it, expect, vi } from 'vitest';
 import { generateExpLogProblem } from '../exp-log-solver';
 import * as prng from '../utils/prng';
+// @ts-ignore — node:fs is used only in vitest tests; @types/node is not installed in this package
+import { readFileSync } from 'node:fs';
 
 /**
  * exp-log-solver.ts — Exponential & Logarithmic problem generator
@@ -166,10 +168,9 @@ describe('single-pass generation', () => {
   });
 
   it('source contains no while(true) re-roll', () => {
-    const { readFileSync } = require('fs');
-    const { resolve } = require('path');
     const src = readFileSync(
-      resolve(__dirname, '../exp-log-solver.ts'), 'utf8'
+      new URL('../exp-log-solver.ts', import.meta.url).pathname,
+      'utf8'
     );
     expect(src).not.toMatch(/while\s*\(\s*true\s*\)/);
     expect(src).not.toMatch(/no-constant-condition/);

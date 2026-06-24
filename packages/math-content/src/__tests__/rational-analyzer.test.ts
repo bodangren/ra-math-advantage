@@ -1,6 +1,8 @@
 import { describe, it, expect } from 'vitest';
 import { multiplyPoly } from '../utils/polynomial';
 import { generateRationalProblem } from '../rational-analyzer';
+// @ts-ignore — node:fs is used only in vitest tests; @types/node is not installed in this package
+import { readFileSync } from 'node:fs';
 
 /**
  * Evaluate a polynomial at x given ascending-order coefficients.
@@ -126,10 +128,9 @@ describe('rational-analyzer.ts', () => {
     });
 
     it('source does not hardcode isZero: false', () => {
-      const { readFileSync } = require('fs');
-      const { resolve } = require('path');
       const src = readFileSync(
-        resolve(__dirname, '../rational-analyzer.ts'), 'utf8'
+        new URL('../rational-analyzer.ts', import.meta.url).pathname,
+        'utf8'
       );
       // Before FR-7: `isZero: false, // degrees always equal`
       // After FR-7: computed expression `isZero: numDeg < denDeg`
