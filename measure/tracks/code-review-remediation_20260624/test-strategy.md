@@ -1225,3 +1225,1106 @@ Each of commits 1–5 gets a git note per workflow.md step 10.
    that the per-module shard has,** escalate as a curriculum-data
    tech-debt entry — do NOT try to fix it in Phase 2 by switching the
    helper to per-module-shard concatenation.
+
+---
+
+# Phase 3 — advanced-math-generators correctness & quality (Cluster C)
+
+Baseline SHA for Phase 3: `776a8c63` (Phase 2 fully closed, including the
+adversarial probes commit).
+Role: Measure Strategy. No source edits; no test code authored by strategy.
+
+> Phase 3 is the second behavioural phase but, unlike Phase 2, the bugs sit
+> at the **generator level** in `packages/math-content/src/`. The existing
+> test files are themselves part of the defect set — three of them assert
+> construction-guaranteed truths or re-derive the source formula. Per
+> FR-16 + FR-20, those certifying blocks must be **replaced**, not merely
+> kept green. Phase 3 ships both code fixes and corrected test contracts in
+> the same commit pairs.
+
+---
+
+## 20. Goal & scope (Phase 3)
+
+Five generator-correctness defects in `packages/math-content`, all
+shipped behind green-but-trivial tests:
+
+1. **FR-7 — Rational-analyzer HA triviality.** `rational-analyzer.ts`
+   builds `P(x) = (x − h)(x − z)` and `Q(x) = (x − h)(x − v)` via two
+   linear factors each. Both numerator and denominator are **monic
+   degree-2**, so for every seed `leadingNum = leadingDen = 1`, `ratio = 1`,
+   `isZero = false`, `leadingDegreeNum = leadingDegreeDen = 1`. The
+   horizontal-asymptote feature is pedagogically dead. The current test
+   block (`rational-analyzer.test.ts:109-135`) cements this by asserting
+   `ratio === leadingNum/leadingDen` (a tautology re-deriving the source)
+   and `isZero === false` because "our construction always does." Both
+   must go. The adapter
+   (`knowledge-space/generators/advanced-math-adapters.ts:147-200`) then
+   grades the entire `horizontalAsymptote` object via `exact_match` — a
+   `{leadingDegreeNum, leadingDegreeDen, ratio, isZero}` object the
+   student cannot enter.
+2. **FR-8 — Exp-log dead domain re-roll.** `exp-log-solver.ts:194-219`
+   wraps generation in `while (true) { ... if (isDomainValid) return; seed += 1 }`.
+   For every problem type the construction guarantees domain validity:
+     - `exp`: domain = `(−∞, ∞)` (line 147) → `isDomainValid` returns
+       `true` unconditionally (line 171).
+     - `log` / `ln`: `answer = (10^D - C) / A` (line 83) / `(e^D - C) / A`
+       (line 115). The check is `answer > min && answer < max` where
+       `min = -C/A` if `A > 0`, `max = +∞`. Substituting:
+       `(10^D - C)/A − (−C/A) = 10^D / A > 0` for `A > 0`; similar sign
+       analysis on `A < 0`. The argument `Ax + C` at the solution is
+       `10^D` or `e^D`, **always strictly positive**, so
+       `isDomainValid` is always true. The `seed += 1` branch is
+       unreachable. The `// eslint-disable-next-line no-constant-condition`
+       and the JSDoc claim of "domain safety" both lie.
+   The test blocks `domain re-roll` (lines 217-239) and
+   `domain safety for log/ln/exp` (lines 146-211) assert only that
+   `Number.isFinite(answer)` and `answer > domain.min` — both
+   construction-guaranteed. The `expect(true).toBe(false)` lines
+   (116, 127, 138) are hand-rolled "if we didn't find one, fail" fail
+   patterns inside `for` loops; they are not Red, they are dead.
+3. **FR-9 — Duplicate generator utilities.** Verified call sites:
+     - `seededRandom`: **6 definitions**, not 5 as spec said —
+       `polynomial-operations.ts:24`, `polynomial-division.ts:16`,
+       `rational-analyzer.ts:60`, `exp-log-solver.ts:40`,
+       `knowledge-space/generators/registry.ts:37`,
+       `problem-families/im1/generators.ts:18`. The IM1 copy is in scope
+       (same file, same algorithm, would cause future drift).
+     - `generateCoefficients`: 2 definitions —
+       `polynomial-operations.ts:37` and `polynomial-division.ts:29`,
+       with subtly different `otherRange` defaults (`[-5,5]` vs `[-3,3]`).
+       The default differs; the signature is identical. The extracted
+       helper MUST preserve both behaviours (callers pass `otherRange`
+       explicitly when they need the non-default).
+     - `formatPolynomial`: 2 definitions —
+       `rational-analyzer.ts:82` and
+       `knowledge-space/generators/advanced-math-adapters.ts:26`. Both
+       use the same superscript map; the two functions are byte-equal.
+   Existing helpers in `utils/polynomial.ts` (`addPoly`, `subtractPoly`,
+   `multiplyPoly`) are the precedent: extract beside them.
+4. **FR-10 — Dual registry + empty adapter `nodeIds`.** Two
+   `GENERATOR_REGISTRY` definitions:
+     - `packages/math-content/src/generator-registry.ts` (34 lines, flat,
+       `generate: (options) => unknown`, **re-exported via `src/index.ts:67`**).
+     - `packages/math-content/src/knowledge-space/generators/registry.ts`
+       (private `GENERATOR_REGISTRY` const, typed `MathGenerator`,
+       exported via `GENERATOR_KEYS` / `getGenerator`).
+   The flat registry is consumed only by its own test
+   (`__tests__/generator-registry.test.ts`) and the `index.ts` re-export.
+   No `apps/` or other `packages/` source imports `GENERATOR_REGISTRY`
+   (verified: only `boundary.test.ts` references the path-string in a
+   boundary-lint pattern, not the runtime symbol). The flat registry is
+   redundant and must be removed.
+   The four advanced adapters
+   (`advanced-math-adapters.ts:66/103/147/206`) all ship with
+   `nodeIds: []`. They are reachable only by key (`getGenerator('...')`);
+   any node→generator path returns nothing for them. The current
+   `__tests__/adapter.test.ts` (411 lines) never asserts non-empty
+   `nodeIds` — the bug is invisible to the test suite. FR-10 + FR-18
+   require populating each adapter's `nodeIds` with real
+   `math.im3.skill.*` IDs and adding the missing assertion.
+5. **FR-11 — Mislabelled PRNG.** Every `seededRandom` claims (in comments
+   or JSDoc) to be the glibc LCG. The constants are glibc's
+   (`1103515245`, `12345`), but JS doubles overflow `2^53` long before
+   `s * 1103515245` finishes for any `s > 2^21`, so the post-multiplication
+   value is not the same as the canonical 32-bit LCG. The output is
+   deterministic and uniform-ish; it is just not glibc's LCG. FR-9
+   subsumes this: the **single** shared helper inherits the corrected
+   docstring. FR-11 is otherwise a doc-only fix.
+
+UMV closeout follows the same protocol as Phases 1–2 (workflow.md).
+
+What Phase 3 does **not** cover:
+- The seed-523 self-contradicting comment in
+  `__tests__/generator-registry.test.ts:82-100` and the vacuous
+  `games-exports.test.ts` type assertion — both are FR-19, owned by
+  **Phase 7** (Test integrity), not Phase 3. Phase 3 deliberately does
+  not touch those tests.
+- The IM1 `problem-families/im1/generators.ts:18` `seededRandom`. Spec
+  enumerates 5 call sites; the IM1 copy is the 6th. **Strategy
+  decision (binding):** include the IM1 copy in the FR-9 extraction.
+  Reason: it is byte-equal, in the same package, and leaving it behind
+  guarantees future drift. The Green commit's diff will show 6 files
+  edited, not 5; that is intentional and noted here so reviewers do
+  not flag it as scope creep.
+- The `precalc-alignment-concept-taxonomy` script work (FR-12, FR-13)
+  is **Phase 4**, not Phase 3.
+- Convex-side or app-side handler/adapter wiring. All FR-7..11 work is
+  contained to `packages/math-content/src/`.
+
+---
+
+## 21. Pre-conditions / environment (Phase 3)
+
+- **Working-tree state at start:** clean except for tracked Phase-1/2
+  artifacts; `--db` / `--symbol` junk files still untracked (Phase 8
+  cleanup). FR-3 guard exit 0 invariant preserved.
+- **Existing utils:** `packages/math-content/src/utils/polynomial.ts`
+  (63 lines) already exports `addPoly`, `subtractPoly`, `multiplyPoly`.
+  This is the structural precedent for FR-9; the new helpers MUST land
+  in the same directory (`utils/`), either appended to `polynomial.ts`
+  (for `formatPolynomial`, which is polynomial-specific) or as new
+  sibling files (`utils/prng.ts` for `seededRandom`,
+  `utils/coefficients.ts` for `generateCoefficients`). Strategy
+  recommendation (non-binding): three sibling files, one symbol each,
+  so the change is auditable per FR.
+- **Determinism contract (non-negotiable):** every existing test that
+  asserts seed-determinism MUST keep passing after FR-9. Specifically:
+    - `rational-analyzer.test.ts:91-104` (same-seed equality;
+      different-seed difference).
+    - `exp-log-solver.test.ts:76-90` (same-seed equality).
+    - `__tests__/generator-registry.test.ts:81-100` (seed-523 golden,
+      `polynomial-operations` result `[8, 0, 0, 4]`).
+    - All four pilot generators in `registry.ts:45-160` use
+      `seededRandom(input.seed)`. The extracted helper MUST produce
+      byte-identical PRNG sequences (same `(s * 1103515245 + 12345) & 0x7fffffff`
+      formulation), or those tests' golden values change and the Phase
+      breaks.
+  This means FR-11's "32-bit-safe formulation" option (e.g. `Math.imul`)
+  is **rejected** unless paired with a re-derivation of every existing
+  golden assertion. **Strategy decision (binding):** FR-11 is a
+  **docstring-only fix**. The shared util keeps the current arithmetic
+  (which is deterministic, just not actually glibc LCG semantics) and
+  the corrected JSDoc describes it as "deterministic seeded PRNG using
+  glibc's LCG constants under JS double arithmetic; output is uniform
+  and reproducible but not bit-identical to a true 32-bit LCG due to
+  intermediate `2^53` overflow."
+- **Schema/contract entry points** that consume the rational HA target:
+  no production caller in `apps/` consumes the `horizontalAsymptote`
+  object from `RationalProblem` — confirmed via grep — so the FR-7
+  adapter change (dropping the object, adding scalar `y`/`"none"`) is
+  contained. The adapter is the only public surface; the
+  `RationalProblem` interface itself may remain unchanged or be
+  augmented with a `horizontalAsymptoteY: number | 'none'` scalar.
+  Strategy recommendation: augment with the scalar (don't break the
+  interface), and change ONLY the adapter's `partAnswers` /
+  `expectedAnswer` to use the scalar.
+- **Node-ID verification (FR-10).** Verified to exist in
+  `apps/integrated-math-3/curriculum/skill-graph/nodes.json` (root,
+  574-node aggregate from Phase 2):
+    - `polynomial-operations` → `math.im3.skill.2.3.add-and-subtract-polynomials`
+      (line 3252), `math.im3.skill.2.3.multiply-polynomials` (line 3268),
+      `math.im3.skill.2.aleks.polynomial-add-subtract` (line 3378),
+      `math.im3.skill.2.aleks.polynomial-multiplication` (line 3472).
+    - `polynomial-division` → `math.im3.skill.2.4.divide-polynomials-by-using-long-division`
+      (line 3284), `math.im3.skill.2.aleks.polynomial-long-division` (line 3449).
+    - `rational-analyzer` → `math.im3.skill.7.4.graph-and-analyze-rational-functions-with-vertical-and-horiz`
+      (line 8056), `math.im3.skill.7.aleks.rational-function-asymptote-analysis`
+      (line 8323). (Also `7.1.simplify-rational-expressions` for upstream
+      coverage — green role may broaden.)
+    - `exp-log-solver` → `math.im3.skill.5.2.solve-exponential-equations-in-one-variable`
+      (line 6111), `math.im3.skill.6.2.solve-logarithmic-equations-using-properties-of-equality`
+      (line 6954), `math.im3.skill.6.3.solve-exponential-equations-by-using-common-logarithms`
+      (line 6970), `math.im3.skill.6.4.solve-exponential-equations-by-using-natural-logarithms`
+      (line 7002), `math.im3.skill.6.aleks.logarithmic-equation-solving`
+      (line 7192). (Multi-skill is correct: the generator emits all three
+      problem types.)
+  Mid-red MUST re-verify each ID with `grep` before committing — root
+  graph aggregation may have changed since Phase 2.
+- **Commands:**
+  - RED_TEST_COMMAND (per task):
+    `npm run --workspace=packages/math-content test -- --run`
+    scoped via vitest's filename filter (e.g.
+    `rational-analyzer.test.ts`, `exp-log-solver.test.ts`,
+    `adapter.test.ts`).
+  - PROJECT_LINT: `npm run lint` — math-content lint gate is in
+    `tech-debt.md` (item #19). Mid-red MUST scope lint to the changed
+    files; whole-package lint is not the gate. Targeted ESLint via
+    `npx eslint packages/math-content/src/<file>.ts`.
+  - PROJECT_CHECKS: `npx tsc --noEmit` — math-content has a known-red
+    standalone tsc baseline (tech-debt #25). Mid-red runs tsc from the
+    repo root; the gate is **no NEW errors versus the Phase 2 closeout
+    baseline**, not a clean run.
+  - **No aggregate `npm test`** — see Phase-2 §12 "intentionally-red
+    suite" note. Per Phase 2 §15 anti-pattern #1 (`generator-qa` package
+    `placement-engine-extra*.test.ts` files), the closeout uses scoped
+    test filters only.
+  - Phase-1 invariant: `bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh "apps/ packages/ convex/"`
+    → exit 0 must still hold after every Phase-3 commit.
+
+---
+
+## 22. Red phase contract (per task in Phase 3)
+
+Every Red below executes the production generator (or the adapter) and
+asserts on its **observable output**. No spy oracles, no parity oracles,
+no source-grep oracles standing alone. Source-grep is permitted only as a
+**complement** to a runtime assertion, per the Phase-1 §5 / Phase-2 §15
+rule.
+
+### Task 3.1 — FR-7 rational-analyzer HA triviality + adapter grading (Red)
+
+**Test file (modified):**
+`packages/math-content/src/__tests__/rational-analyzer.test.ts`
+
+**Block REPLACED:** `describe('horizontal asymptote', () => { ... })`
+(currently lines 109-135 — three `it` blocks). The third `it` block
+("leadingDegreeNum and leadingDegreeDen are the actual leading
+coefficients") is a TAUTOLOGY (asserts a struct field equals the value
+just plucked from the source array) and must also go.
+
+**Replacement block (new tests in the same `describe`):**
+
+1. **HA varies across seeds** (the variation assertion):
+   ```ts
+   it('horizontal asymptote ratio varies across seeds', () => {
+     const ratios = new Set<number>();
+     for (let seed = 1; seed <= 50; seed++) {
+       const r = generateRationalProblem({ seed });
+       ratios.add(r.horizontalAsymptote!.ratio);
+     }
+     // At HEAD: ratios = { 1 } (size 1). After FR-7: size > 1.
+     expect(ratios.size).toBeGreaterThan(1);
+   });
+   ```
+   This **fails at HEAD** (`776a8c63`): every seed produces `ratio: 1`,
+   so the set has size 1. After Green introduces non-monic leading
+   coefficients, multiple ratios appear.
+
+2. **At least one seed produces a non-unit HA** (sanity for the
+   variation):
+   ```ts
+   it('at least one of seeds 1..50 has horizontalAsymptote.ratio !== 1', () => {
+     const found = Array.from({ length: 50 }, (_, i) => i + 1)
+       .map(seed => generateRationalProblem({ seed }))
+       .some(r => r.horizontalAsymptote!.ratio !== 1);
+     expect(found).toBe(true);
+   });
+   ```
+   Fails at HEAD; passes after Green.
+
+3. **Adapter HA target is student-enterable** (the grading correctness):
+   This is a new test in a new file (or in
+   `__tests__/generator-registry.test.ts` — green role's choice; strategy
+   recommends a new file `__tests__/advanced-math-adapters.test.ts` to
+   keep the inventory clean):
+   ```ts
+   it('rational-analyzer adapter: horizontalAsymptote target is scalar (number | "none"), not the source object', () => {
+     const gen = getGenerator('rational-analyzer');
+     const output = gen.generate({ nodeId: 'x', seed: 1, difficulty: 0.5 });
+     const ha = output.gradingMetadata.partAnswers.horizontalAsymptote;
+     // FAIL at HEAD: ha is { leadingDegreeNum, leadingDegreeDen, ratio, isZero }
+     // PASS after Green: ha is a number or the literal "none".
+     const isStudentEnterable =
+       typeof ha === 'number' || ha === 'none';
+     expect(isStudentEnterable).toBe(true);
+   });
+   ```
+   Plus a matching `output.expectedAnswer.horizontalAsymptote` shape
+   assertion.
+
+**Architectural complement (not the sole oracle):**
+```ts
+it('rational-analyzer source does not hardcode isZero: false', () => {
+  const src = readFileSync(
+    'packages/math-content/src/rational-analyzer.ts', 'utf8'
+  );
+  // FAIL at HEAD (line 179): `isZero: false, // degrees always equal`
+  // After Green: either the field is computed (`isZero: numDeg < denDeg`)
+  // or the construction varies degrees and the hardcoded `false` is gone.
+  expect(src).not.toMatch(/isZero:\s*false,?\s*\/\/\s*degrees always/);
+});
+```
+This pins the source-level invariant that the always-`y=1` bug shape
+is gone. It is permitted ONLY because it complements the runtime
+variation oracle above.
+
+**Existing tests that must stay green (do not delete):**
+- "return shape" (lines 26-53) — invariant.
+- "seed 1 — structural verification" (lines 58-87) — the seed-1
+  golden h/v/z values may shift after FR-7 introduces variation;
+  green role MUST re-derive the seed-1 golden expectations (h, v, z,
+  expected numerator/denominator) from the new generator and update
+  the goldens. **This is the one place where a golden value updates
+  are licit** — they encode a deliberate generator output change, not a
+  test-relaxation. Mid-red note: do NOT update them defensively before
+  Green; let the test fail, then derive correctly.
+- "determinism" (lines 91-104) — invariant (still same-seed → same
+  output).
+- "invariants (seeds 1–50)" + "mathematical correctness" (lines 138-194)
+  — invariants (still hold under the new construction).
+- "step-by-step-solver fallback" (lines 198-210) — invariant.
+
+**Why this Red is meaningful (not a parity / grep oracle):** the runtime
+oracle is the **set-cardinality** of HA ratios across 50 seeds — a
+falsifiable observable. At HEAD it has size 1 (the bug); after Green
+it has size > 1 (the fix). No re-derivation of the source formula.
+
+### Task 3.2 — FR-8 exp-log dead domain re-roll (Red)
+
+**Test file (modified):**
+`packages/math-content/src/__tests__/exp-log-solver.test.ts`
+
+**Blocks REPLACED:**
+- `describe('domain safety for log problems'…)` (lines 146-169) —
+  delete the inner `expect(Number.isFinite(r.answer)).toBe(true)` and
+  `expect(r.answer).toBeGreaterThan(r.domain.min)` assertions:
+  both are construction-guaranteed and prove only that the function
+  returned. Keep the outer `describe` only if it is repurposed.
+- `describe('domain safety for ln problems'…)` (lines 175-193) —
+  delete (same reasoning).
+- `describe('domain safety for exp problems'…)` (lines 199-211) —
+  delete (`Number.isFinite` on an integer in `[1,8]`).
+- `describe('domain re-roll'…)` (lines 217-239) — DELETE both
+  `it` blocks. The first claims to test re-roll behaviour but never
+  exercises an invalid domain; the second is a generic 200-seed stress
+  test that belongs (if anywhere) in a separate "stress" describe.
+- The `expect(true).toBe(false)` lines at 116, 127, 138 in the LaTeX
+  block — these are hand-rolled fail-this-test sentinels. **Strategy
+  decision:** rewrite the loop bodies to assert "we saw at least one
+  occurrence per problem type across N seeds" using `Array.some` +
+  `expect(found).toBe(true)`, which is the same semantic without the
+  fail-sentinel anti-pattern.
+
+**Replacement block (new tests):**
+
+1. **Single-pass generation (no re-roll)** — the canonical FR-8 Red:
+   ```ts
+   it('generateExpLogProblem makes exactly one call to its internal PRNG (no re-roll)', () => {
+     // After FR-8, the public function constructs once and returns.
+     // Black-box proof: re-run with N seeds, assert the output for
+     // seed S is reachable WITHOUT incrementing seed.
+     // Concretely: for every seed, the generator returns an answer
+     // satisfying the domain constraint, AND the result for seed S
+     // is the result that *would* be produced by the body of the
+     // (currently-looping) construction at iteration 0.
+     //
+     // The cleanest expression: deterministic single-call PRNG ⇒
+     // generateExpLogProblem({ seed: S }) returns a problem whose
+     // first PRNG draw (typeDraw) is the same as a fresh
+     // seededRandom(S)(). Until FR-9 lands the shared helper, we
+     // assert the looser invariant: for every S in [1, 200], the
+     // returned problem's domain is valid (no infinite loop, no
+     // NaN), AND the function returns within 1 ms (a re-roll-free
+     // path is fast; a buggy re-roll that loops forever would time
+     // out, but a 1ms guard is a flaky oracle — use a counter
+     // probe instead, see below).
+     // …
+   });
+   ```
+   **Strategy decision (binding):** the canonical re-roll-free proof
+   is a **call-counter probe**. Spy the PRNG by injecting a counting
+   wrapper. The honest way to do this *after* FR-9 lands the shared
+   util is:
+   ```ts
+   import * as prng from '../utils/prng';
+   const spy = vi.spyOn(prng, 'seededRandom');
+   generateExpLogProblem({ seed: 7 });
+   // Re-roll = re-construct seededRandom with a new seed.
+   // Single-pass = exactly one call.
+   expect(spy).toHaveBeenCalledTimes(1);
+   ```
+   This is BEHAVIOURAL (it observes a function's runtime call shape)
+   and not a spy-on-spy anti-pattern (it does not stand in for a
+   data-flow proof; the data-flow proof is the existing same-seed
+   determinism test). **The FR-8 Red therefore depends on FR-9 having
+   landed the shared util** so it can be spied. Strategy declares
+   binding execution order: **FR-9 lands first, then FR-8 Red+Green**.
+   See §24 commit sequence.
+
+2. **Source-level architectural lint (complement only):**
+   ```ts
+   it('exp-log-solver.ts source contains no while(true) re-roll', () => {
+     const src = readFileSync(
+       'packages/math-content/src/exp-log-solver.ts', 'utf8'
+     );
+     // FAIL at HEAD (line 200): `while (true) {`
+     // FAIL at HEAD (line 199): the eslint-disable comment.
+     // FAIL at HEAD (line 218): `seed += 1;`
+     expect(src).not.toMatch(/while\s*\(\s*true\s*\)/);
+     expect(src).not.toMatch(/no-constant-condition/);
+     expect(src).not.toMatch(/seed\s*\+=\s*1/);
+   });
+   ```
+   Permitted as complement to the call-counter probe.
+
+**Existing tests that must stay green:**
+- All "return shape" tests (lines 22-70).
+- "determinism" (lines 76-90).
+- LaTeX correctness (lines 96-140 after the `expect(true).toBe(false)`
+  rewrite). Mid-red note: the existence-of-problem-type-per-50-seeds
+  loop is fine after rewrite — see strategy decision above.
+- "steps" (lines 245-256).
+
+**Why this Red is meaningful:** the call-counter probe is a behaviour
+observation (function call shape), not a doc-presence or symbol-grep
+oracle. The source-lint is gated as a complement. The Red→Green delta
+is a real behaviour delta (one call vs. potentially multiple).
+
+### Task 3.3 — FR-9 de-duplicate generator utilities (Red = none required)
+
+**Per the spec: Green only. No new tests.**
+
+Strategy adds a closeout invariant rather than a Red:
+
+- **The Phase-3 closeout gate** (§24) requires that
+  `grep -rn 'function seededRandom' packages/math-content/src/` returns
+  exactly **1** match (the new util file). Similarly for
+  `function generateCoefficients` (1 match) and `function formatPolynomial`
+  (1 match). This is an architecture-lint gate, not a vitest test.
+- **Determinism preservation:** all existing seed-dependent tests
+  (`rational-analyzer.test.ts` "seed 1 — structural verification",
+  `__tests__/generator-registry.test.ts` "seed-523 golden",
+  `exp-log-solver.test.ts` "determinism", `adapter.test.ts` "advanced
+  math generators produce valid GeneratorOutput") MUST stay green
+  byte-for-byte after the extraction. This is the closeout gate.
+
+Strategy decision (binding): Task 3.3 is **executed first** in Phase 3
+because Task 3.2's call-counter probe imports the shared util module.
+See §24.
+
+### Task 3.4 — FR-10 dual registry + adapter `nodeIds` (Red)
+
+**Test file (modified):**
+`packages/math-content/src/knowledge-space/__tests__/adapter.test.ts`
+
+**Additions (no replacements — the existing tests are valid; they
+just don't cover `nodeIds`):**
+
+1. **Non-empty `nodeIds` per advanced adapter** — the FR-18 missing
+   assertion:
+   ```ts
+   describe('advanced math adapter nodeIds', () => {
+     const advancedKeys = [
+       'polynomial-operations',
+       'polynomial-division',
+       'rational-analyzer',
+       'exp-log-solver',
+     ];
+
+     it.each(advancedKeys)('%s has non-empty nodeIds', (key) => {
+       const gen = getGenerator(key);
+       expect(Array.isArray(gen.nodeIds)).toBe(true);
+       expect(gen.nodeIds.length).toBeGreaterThan(0);
+     });
+
+     it.each(advancedKeys)('%s nodeIds all match math.im3.skill.* pattern', (key) => {
+       const gen = getGenerator(key);
+       for (const id of gen.nodeIds) {
+         expect(id).toMatch(/^math\.im3\.skill\./);
+       }
+     });
+   });
+   ```
+   Both **FAIL at HEAD**: each adapter has `nodeIds: []` (length 0).
+
+2. **Adapter `nodeIds` reference IDs that exist in the knowledge
+   graph** — a stronger correctness probe:
+   ```ts
+   import nodes from '../../../../../apps/integrated-math-3/curriculum/skill-graph/nodes.json';
+   const allNodeIds = new Set((nodes as Array<{ id: string }>).map(n => n.id));
+
+   it.each(advancedKeys)('%s nodeIds are all present in the IM3 skill graph', (key) => {
+     const gen = getGenerator(key);
+     for (const id of gen.nodeIds) {
+       expect(allNodeIds.has(id)).toBe(true);
+     }
+   });
+   ```
+   **Strategy caveat:** `packages/math-content` importing from
+   `apps/integrated-math-3/curriculum/` is a directionality violation
+   per the boundary contract (`apps/` depends on `packages/`, never
+   the reverse). **Strategy decision (binding):** this test is
+   **OPTIONAL — green role MAY add it as a stand-alone test file
+   under `apps/integrated-math-3/__tests__/curriculum/`** rather than
+   under `packages/math-content/`, so the directionality is preserved.
+   The non-empty + pattern-match assertions (1 above) are sufficient
+   for the FR-18 requirement; the graph-presence assertion is a
+   defence-in-depth check that lives on the app side.
+
+3. **Flat registry removal — architectural lint:**
+   ```ts
+   it('packages/math-content/src/generator-registry.ts is removed', () => {
+     const exists = existsSync('packages/math-content/src/generator-registry.ts');
+     expect(exists).toBe(false);
+   });
+
+   it('@math-platform/math-content does not re-export the flat GENERATOR_REGISTRY', () => {
+     const indexSrc = readFileSync(
+       'packages/math-content/src/index.ts', 'utf8'
+     );
+     expect(indexSrc).not.toMatch(/from\s+['"]\.\/generator-registry['"]/);
+   });
+   ```
+   **Strategy caveat on file-existence assertions:** these are
+   architecture lints, permitted as complements to the runtime
+   `getGenerator` tests already in `adapter.test.ts:212-264`. They are
+   NOT the sole oracle — the runtime tests prove the typed
+   `MathGenerator` registry still works.
+
+   **The existing flat-registry test file**
+   `packages/math-content/src/__tests__/generator-registry.test.ts`
+   (120 lines) must be **modified, not deleted**. Reasons:
+   - Lines 17-47 (`describe('GENERATOR_REGISTRY')`) test the flat
+     registry — must be deleted with the flat registry.
+   - Lines 53-75 (`describe('index.ts re-exports')`) test the
+     `generatePolynomialOperation` / `generatePolynomialDivision` / etc.
+     re-exports — these MUST stay (those re-exports are not the flat
+     registry).
+   - Lines 81-119 (seed-523 golden + sparse-polynomial tests) — these
+     test the underlying generator functions and the `multiplyPoly`
+     / `addPoly` / `subtractPoly` utils. They MUST stay.
+   Mid-red: delete only the `describe('GENERATOR_REGISTRY')` block
+   (top of file + the import-line `GENERATOR_REGISTRY` symbol).
+   Rename the file if appropriate (e.g.
+   `generator-exports.test.ts`); strategy recommends keeping the
+   filename for git-blame continuity.
+
+**Why this Red is meaningful:** Non-empty `nodeIds` is a directly
+observable property of the registered `MathGenerator`. The "matches
+`math.im3.skill.*`" assertion is a falsifiable pattern check. The
+runtime probes (1) above stand alone; (2) is optional defence-in-depth;
+(3) complements the runtime.
+
+### Task 3.5 — FR-11 PRNG labelling (Red = none required)
+
+**Per the spec: docstring-only fix, subsumed by FR-9 shared util.**
+
+The FR-9 extraction lands a single `seededRandom` with a corrected
+JSDoc string. No Red is authored. The closeout invariant:
+`grep -n 'glibc' packages/math-content/src/utils/prng.ts` (or
+wherever the helper lands) returns a docstring that explicitly
+acknowledges the JS-double-overflow caveat. **Strategy decision
+(binding):** docstring-only.
+
+### Task 3.6 — UMV closeout (Red contract = none)
+
+UMV is performed by the user per workflow.md. Strategy artifact = the
+set of Green outputs attached to the Phase-3 checkpoint git note
+(see §25).
+
+---
+
+## 23. Green phase contract (Phase 3)
+
+### Task 3.3 Green — FR-9 (lands first)
+
+1. Create `packages/math-content/src/utils/prng.ts`:
+   ```ts
+   /**
+    * Deterministic seeded PRNG using the glibc LCG constants
+    * (1103515245, 12345) under JavaScript double-precision arithmetic.
+    *
+    * Important: JS doubles can only represent integers up to 2^53.
+    * Multiplying a 31-bit state by 1103515245 produces intermediate
+    * values that overflow 2^53 long before the `& 0x7fffffff` mask
+    * is applied, so the bit pattern is NOT identical to a true 32-bit
+    * glibc LCG. The output is still uniform-ish in [0, 1), strictly
+    * deterministic (same seed → same sequence), and adequate for
+    * problem-generation reproducibility. Do not use for cryptographic
+    * or statistical work that requires the canonical 32-bit LCG.
+    */
+   export function seededRandom(seed: number): () => number {
+     let s = seed | 0;
+     return () => {
+       s = (s * 1103515245 + 12345) & 0x7fffffff;
+       return s / 0x7fffffff;
+     };
+   }
+   ```
+2. Create `packages/math-content/src/utils/coefficients.ts` with
+   `generateCoefficients(rand, degree, leadingRange, otherRange?)`. The
+   signature MUST accept the optional `otherRange` parameter; the two
+   call sites pass `[-5,5]` (polynomial-operations) and `[-3,3]`
+   (polynomial-division) explicitly via the call site — the **default**
+   must not change behaviour for either, so keep the
+   `polynomial-operations`-original default of `[-5, 5]` and update
+   `polynomial-division` to pass `[-3, 3]` explicitly. Strategy
+   recommendation: make the parameter required to remove ambiguity.
+3. Move `formatPolynomial` into
+   `packages/math-content/src/utils/polynomial-format.ts` (sibling to
+   `polynomial.ts`; or append to `polynomial.ts` — green role's
+   choice. Strategy recommends a new file to keep the precedent of
+   one-symbol-per-utility-file).
+4. Update all callers (6 files for `seededRandom`, 2 for
+   `generateCoefficients`, 2 for `formatPolynomial`):
+   - `polynomial-operations.ts` (remove local definitions, import).
+   - `polynomial-division.ts` (same).
+   - `rational-analyzer.ts` (same; also drops the local
+     `formatPolynomial`).
+   - `exp-log-solver.ts` (only `seededRandom`).
+   - `knowledge-space/generators/registry.ts` (only `seededRandom`).
+   - `knowledge-space/generators/advanced-math-adapters.ts` (only
+     `formatPolynomial`).
+   - `problem-families/im1/generators.ts` (only `seededRandom`). See
+     scope-decision note in §20.
+5. Existing tests MUST stay green byte-for-byte:
+   - Same-seed determinism (rational, exp-log, registry seed-523).
+   - All structural goldens (seed-1 in rational-analyzer remains
+     unchanged AT THIS POINT — FR-7 will change them in Task 3.1).
+6. Commit shape: single atomic commit per FR-9 (one diff, multiple
+   files). Splitting into per-file commits risks half-extracted state
+   where the helper exists but only some callers import it.
+   Subject: `refactor(code-review-remediation): Phase 3 Green — FR-9
+   extract seededRandom / generateCoefficients / formatPolynomial to
+   utils/ (single-source-of-truth; FR-11 docstring corrected)`.
+
+### Task 3.1 Green — FR-7
+
+1. **Source change (`rational-analyzer.ts`):** introduce non-monic
+   leading coefficients OR unequal degrees. Strategy recommendation
+   (binding): introduce a **non-monic numerator leading coefficient**
+   `aNum ∈ {1, 2, 3}` and **non-monic denominator leading coefficient**
+   `aDen ∈ {1, 2, 3}` chosen via two extra PRNG draws after picking
+   h/v/z. Apply by scaling the numerator factor:
+   `factorH_scaled = [-aNum * h, aNum]`. This preserves the roots
+   (and hence holes / VAs / x-intercepts) while varying the leading
+   coefficient. Document the construction in the file's JSDoc header.
+   - The `horizontalAsymptote.ratio` becomes `aNum / aDen`, which
+     takes values in `{1/3, 1/2, 2/3, 1, 3/2, 2, 3}` (etc.) across
+     seeds → satisfies the Set-cardinality Red.
+   - `isZero` remains `false` (degrees still equal), but the
+     hardcoded `false` is replaced with a computed expression
+     `numerator.length < denominator.length` so the source-lint Red
+     no longer fails. Optional extension: introduce ~33% of seeds
+     producing unequal degrees (a 3-factor numerator vs. 2-factor
+     denominator) — this makes `isZero` actually variable. Strategy
+     allows this as a stretch goal; the minimum FR-7 Green is the
+     non-monic-leading-coeff variation.
+2. **Source change (`advanced-math-adapters.ts`):** in
+   `rationalAnalyzerAdapter` (lines 147-200), replace the
+   `horizontalAsymptote` partAnswer with:
+   ```ts
+   horizontalAsymptote: problem.horizontalAsymptote.isZero
+     ? 'none'  // not "0" — student-enterable label for y=0 OR no HA
+     : problem.horizontalAsymptote.ratio,  // scalar number
+   ```
+   and update `expectedAnswer` similarly. `partGradingRules.horizontalAsymptote`
+   stays `'exact_match'` (a numeric match on the scalar) or change to
+   `'numeric_tolerance'` with a 0.001 tolerance — green role's choice.
+   Strategy recommendation: `numeric_tolerance` with 0.001 so `1/3`
+   doesn't fail to display-string mismatch.
+3. **Test goldens:** update `rational-analyzer.test.ts` seed-1
+   structural goldens (h, v, z, expected numerator, expected
+   denominator) to reflect the new construction. **Mid-red MUST run
+   the test ONCE with `console.log(JSON.stringify(generateRationalProblem({seed:1})))`
+   to derive the new goldens; do NOT hand-derive them.** This is a
+   licit golden update per §22 Task 3.1.
+4. Commit shape: single atomic commit (source + adapter + test
+   updates + new HA-variation tests).
+   Subject: `fix(code-review-remediation): Phase 3 Green — FR-7
+   rational-analyzer non-monic HA variation + scalar adapter grading
+   (FR-16 test replacement)`.
+
+### Task 3.2 Green — FR-8 (depends on FR-9 having landed)
+
+1. **Source change (`exp-log-solver.ts`):**
+   - Delete lines 199-219 (the `// eslint-disable`, `while (true) {`,
+     the `if (isDomainValid)` branch, and the `seed += 1`).
+   - Inline the loop body so the function constructs one problem and
+     returns it.
+   - Delete the `isDomainValid` function (lines 164-176) — unused
+     after the loop deletion.
+   - Update the JSDoc on `generateExpLogProblem` (lines 182-193) to
+     remove the misleading "Domain safety" paragraph. Replace with:
+     "By construction, the argument `Ax + C` at the solution equals
+     `10^D` (log) or `e^D` (ln), both strictly positive, so the
+     domain constraint is always satisfied." This is the corrected
+     docstring; do NOT silently delete the paragraph.
+2. **Test changes (`exp-log-solver.test.ts`):**
+   - Delete the four `describe('domain …')` blocks (lines 146-239)
+     EXCEPT keep the new single-pass assertion (the call-counter
+     probe from §22 Task 3.2).
+   - Rewrite the three `expect(true).toBe(false)` patterns in the
+     LaTeX block (lines 116, 127, 138) using the `Array.some` pattern
+     described in §22.
+3. Commit shape: single atomic commit (source + test edits + new
+   single-pass test).
+   Subject: `fix(code-review-remediation): Phase 3 Green — FR-8
+   remove dead exp-log domain re-roll + single-pass test (FR-16
+   replacement)`.
+
+### Task 3.4 Green — FR-10
+
+1. **Adapter `nodeIds` population** in
+   `knowledge-space/generators/advanced-math-adapters.ts`:
+   - `polynomialOperationsAdapter.nodeIds`:
+     `['math.im3.skill.2.3.add-and-subtract-polynomials',
+       'math.im3.skill.2.3.multiply-polynomials',
+       'math.im3.skill.2.aleks.polynomial-add-subtract',
+       'math.im3.skill.2.aleks.polynomial-multiplication']`.
+   - `polynomialDivisionAdapter.nodeIds`:
+     `['math.im3.skill.2.4.divide-polynomials-by-using-long-division',
+       'math.im3.skill.2.aleks.polynomial-long-division']`.
+   - `rationalAnalyzerAdapter.nodeIds`:
+     `['math.im3.skill.7.4.graph-and-analyze-rational-functions-with-vertical-and-horiz',
+       'math.im3.skill.7.aleks.rational-function-asymptote-analysis']`.
+   - `expLogSolverAdapter.nodeIds`:
+     `['math.im3.skill.5.2.solve-exponential-equations-in-one-variable',
+       'math.im3.skill.6.2.solve-logarithmic-equations-using-properties-of-equality',
+       'math.im3.skill.6.3.solve-exponential-equations-by-using-common-logarithms',
+       'math.im3.skill.6.4.solve-exponential-equations-by-using-natural-logarithms']`.
+   Mid-red MUST re-verify each ID via `grep` against
+   `apps/integrated-math-3/curriculum/skill-graph/nodes.json` before
+   committing. If any ID has shifted, pick the closest match in the
+   same module/topic.
+2. **Flat registry removal:**
+   - Delete `packages/math-content/src/generator-registry.ts`.
+   - Delete the two lines `export { GENERATOR_REGISTRY } from './generator-registry';`
+     and `export type { GeneratorEntry } from './generator-registry';`
+     in `packages/math-content/src/index.ts` (lines 67-68).
+   - Delete the `describe('GENERATOR_REGISTRY', …)` block in
+     `__tests__/generator-registry.test.ts:17-47` and the
+     `import { GENERATOR_REGISTRY } from '../generator-registry';`
+     line. Keep the rest of the file.
+3. **Test changes (`adapter.test.ts`):** add the new
+   `describe('advanced math adapter nodeIds')` block from §22 Task 3.4.
+4. Commit shape: single atomic commit (adapter `nodeIds` population
+   + flat-registry removal + test additions + flat-registry test
+   surgery).
+   Subject: `fix(code-review-remediation): Phase 3 Green — FR-10
+   populate advanced-adapter nodeIds + remove redundant flat
+   generator-registry (FR-18)`.
+
+### Task 3.5 Green — FR-11
+
+Subsumed by FR-9. No separate commit.
+
+### Phase 3 closeout gate
+
+All of:
+- `npm run --workspace=packages/math-content test -- --run rational-analyzer`
+  → pass (including 2 new HA-variation tests + new seed-1 goldens).
+- `npm run --workspace=packages/math-content test -- --run exp-log-solver`
+  → pass (with new single-pass test, all `expect(true).toBe(false)`
+  patterns gone).
+- `npm run --workspace=packages/math-content test -- --run adapter`
+  → pass (new `nodeIds` tests).
+- `npm run --workspace=packages/math-content test -- --run generator-registry`
+  → pass (flat-registry block deleted; remaining tests still cover
+  index re-exports and seed-523 golden).
+- `npm run --workspace=packages/math-content test -- --run`
+  (whole package) → pass count after Phase 3 = (pass count at
+  baseline `776a8c63`) + new tests − deleted tests. Strategy
+  estimate: +4 HA-variation tests, +5 nodeIds tests, +1 single-pass
+  test, +1 flat-registry-removal lint, −3 trivial HA tests, −2
+  domain-safety blocks (~6 tests), −2 domain re-roll tests, −5 flat
+  registry tests = net **−1 to +1** (within noise). Mid-red MUST
+  capture exact deltas.
+- `grep -c '^function seededRandom' packages/math-content/src/**/*.ts`
+  → **1** (the new util). The current count is **6**.
+- `grep -c '^function generateCoefficients' packages/math-content/src/**/*.ts`
+  → **1**. Current: 2.
+- `grep -c '^function formatPolynomial' packages/math-content/src/**/*.ts`
+  → **1**. Current: 2.
+- `ls packages/math-content/src/generator-registry.ts` → not found.
+- `grep -n "from './generator-registry'" packages/math-content/src/index.ts`
+  → 0 matches.
+- `grep -c 'nodeIds: \[\]' packages/math-content/src/knowledge-space/generators/advanced-math-adapters.ts`
+  → **0** (all four populated). Current: 4.
+- `grep -n 'while.*true' packages/math-content/src/exp-log-solver.ts`
+  → 0 matches. Same for `no-constant-condition` and `seed += 1`.
+- `grep -n 'isZero: false' packages/math-content/src/rational-analyzer.ts`
+  → 0 matches.
+- `bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh "apps/ packages/ convex/"`
+  → exit 0 (Phase-1 invariant).
+- `npx tsc --noEmit` (from repo root) → **no NEW errors versus
+  Phase-2 closeout baseline** (the package-standalone math-content
+  red is pre-existing, tech-debt #25). Specifically, the changed files
+  must compile clean in the monorepo context.
+- `npx eslint packages/math-content/src/utils/prng.ts packages/math-content/src/utils/coefficients.ts packages/math-content/src/utils/polynomial-format.ts packages/math-content/src/rational-analyzer.ts packages/math-content/src/exp-log-solver.ts packages/math-content/src/polynomial-operations.ts packages/math-content/src/polynomial-division.ts packages/math-content/src/knowledge-space/generators/advanced-math-adapters.ts packages/math-content/src/knowledge-space/generators/registry.ts packages/math-content/src/problem-families/im1/generators.ts`
+  → 0 errors (math-content package-level lint is in tech-debt; targeted
+  file lint is the gate per Phase-2 §12).
+
+---
+
+## 24. Anti-pattern guards (Phase 3 specifically)
+
+Per FR-16, FR-20, and Phase-1 §5 / Phase-2 §15, these patterns are
+**prohibited** in Phase 3 work:
+
+1. **Construction-guaranteed assertions.** `expect(Number.isFinite(r.answer))`
+   and `expect(r.answer > r.domain.min)` are the canonical FR-20
+   anti-pattern: the production code's construction makes them true
+   by structure. They cannot fail. Any Phase-3 test that adds a new
+   `Number.isFinite` / `> domain.min` assertion on the exp-log output
+   is reverting FR-8.
+2. **Hand-rolled fail sentinels.** `expect(true).toBe(false)` inside an
+   `if`/`for` to mean "this code path was reached" is forbidden. Use
+   `Array.some` + `expect(found).toBe(true)`, or restructure the loop
+   so the assertion is the loop body.
+3. **Tautological field-equality assertions.** `expect(ha.ratio).toBeCloseTo(
+   leadingNum/leadingDen)` where the same arrays' indices were used to
+   produce `ratio` is re-derivation, not verification. Forbidden as
+   the FR-7 oracle.
+4. **Encoding the bug as the requirement.** `isZero is false … our
+   construction always does` is the canonical "test certifies the
+   defect" pattern. The Red MUST replace such assertions, not invert
+   them (`isZero is true` would be the same anti-pattern with sign
+   flipped).
+5. **Snapshot tests on the rational-analyzer output.** A new
+   `toMatchSnapshot` would freeze the bug shape into the test ledger.
+   Forbidden.
+6. **PRNG swap as a "fix" for FR-11.** Strategy decision in §21:
+   FR-11 is docstring-only. Switching to `Math.imul` changes the bit
+   pattern, breaks every seed-determinism golden in the package
+   (~10+ tests), and is out of scope. If a future track wants 32-bit
+   semantics, that is a separate task with a golden-rewrite plan.
+7. **Surgical preservation of the flat `generator-registry.ts`.**
+   Keeping the flat registry "just in case" violates FR-10. The
+   removal must be atomic with the adapter `nodeIds` population —
+   anything less leaves a defected artefact in HEAD.
+8. **Importing curriculum graph data into `packages/math-content`.**
+   The `apps/integrated-math-3/curriculum/skill-graph/nodes.json`
+   reachability test (§22 Task 3.4 #2) is **OPTIONAL** and must live
+   on the `apps/` side if used. Pulling curriculum JSON into the
+   `packages/` package inverts the boundary.
+9. **Aggregate `npm test` or full-package vitest at closeout.** Phase
+   2 §15 anti-pattern #1 still applies: targeted vitest scopes only.
+10. **Re-derivation of seed-523 / seed-1 goldens from the production
+    code in the test itself.** When the FR-7 Green changes the seed-1
+    rational-analyzer output, the new golden is updated to the new
+    observed output by ONE-TIME inspection (capture via console.log,
+    inspect, paste). Writing the test as `expect(r.numerator).toEqual(generateRationalProblem({seed:1}).numerator)`
+    is a parity oracle. Forbidden.
+11. **Spy-on-spy as the FR-8 single-pass oracle.** A test that mocks
+    `seededRandom` to return a fake counter and asserts the counter
+    incremented exactly once is FR-20 anti-pattern (it tests the
+    test, not the code). The licit pattern is `vi.spyOn(prng, 'seededRandom')`
+    which leaves the real implementation in place and counts call
+    invocations on the real export.
+
+---
+
+## 25. Test file inventory (Phase 3)
+
+| Path | Status | Purpose |
+|---|---|---|
+| `packages/math-content/src/utils/prng.ts` | NEW (source) | Single-source `seededRandom`. FR-9 + FR-11. Listed for cross-reference. |
+| `packages/math-content/src/utils/coefficients.ts` | NEW (source) | Single-source `generateCoefficients`. FR-9. |
+| `packages/math-content/src/utils/polynomial-format.ts` | NEW (source) | Single-source `formatPolynomial`. FR-9. (Green role may instead append to `polynomial.ts`.) |
+| `packages/math-content/src/__tests__/rational-analyzer.test.ts` | MODIFIED | DELETE `describe('horizontal asymptote')` block (lines 109-135). ADD HA-variation tests + adapter scalar-grading test + source-lint complement. UPDATE seed-1 structural goldens (h/v/z + expected polynomials). |
+| `packages/math-content/src/__tests__/exp-log-solver.test.ts` | MODIFIED | DELETE 4 domain blocks (lines 146-239). ADD call-counter single-pass test + source-lint complement. REWRITE 3 `expect(true).toBe(false)` patterns to `Array.some` + boolean. |
+| `packages/math-content/src/knowledge-space/__tests__/adapter.test.ts` | MODIFIED | ADD `describe('advanced math adapter nodeIds')` (3 nested tests). No deletions. |
+| `packages/math-content/src/__tests__/generator-registry.test.ts` | MODIFIED | DELETE `describe('GENERATOR_REGISTRY')` block (lines 17-47) + the `import { GENERATOR_REGISTRY } from '../generator-registry'`. KEEP the index-reexport + seed-523 + multiplyPoly/addPoly/subtractPoly blocks. |
+| `packages/math-content/src/generator-registry.ts` | DELETED | FR-10 redundant flat registry. |
+| `packages/math-content/src/__tests__/advanced-math-adapters.test.ts` | NEW (optional) | Adapter-level scalar-grading assertion (the FR-7 adapter Red). Green role MAY instead place this assertion inside `adapter.test.ts`. Strategy recommends a separate file to keep `adapter.test.ts` focused on its existing 6 describe blocks. |
+| `apps/integrated-math-3/__tests__/curriculum/advanced-adapter-graph-coverage.test.ts` | NEW (optional) | The `nodeIds ⊆ graph` defence-in-depth check. **Only if green role chooses to add it.** Lives on the app side to preserve the boundary. |
+
+No changes to `__tests__/exports.test.ts`, `__tests__/integration.test.ts`,
+`__tests__/schemas.test.ts`, `__tests__/polynomial.test.ts`, or the
+`knowledge-space/generators/__tests__/registry-sweep.test.ts` (which
+is its own Red owned by `generated-math-correctness-qa` archive track).
+
+---
+
+## 26. Acceptance evidence (Phase 3)
+
+Attached to the Phase-3 checkpoint git note:
+
+1. **FR-7 evidence (red → green diff):**
+   - `rational-analyzer.test.ts` HA-block Red run at `776a8c63`:
+     pass (the trivial assertions hold at HEAD); the **new**
+     variation test fails when run against HEAD (set size = 1).
+   - Same test on Green: variation test passes (set size > 1);
+     scalar-adapter test passes.
+   - Adapter scalar test stdout: `gradingMetadata.partAnswers.horizontalAsymptote`
+     is `number` or `'none'`.
+2. **FR-8 evidence:**
+   - `exp-log-solver.test.ts` deletion proof:
+     `git diff baseline..HEAD -- packages/math-content/src/__tests__/exp-log-solver.test.ts`
+     showing the 4 domain blocks removed and the new call-counter test added.
+   - Source diff:
+     `git diff baseline..HEAD -- packages/math-content/src/exp-log-solver.ts`
+     showing the `while (true)` loop, `isDomainValid`, and `seed += 1`
+     deleted.
+   - Call-counter probe stdout: `seededRandom` called exactly once
+     per `generateExpLogProblem` invocation.
+3. **FR-9 evidence:**
+   - `grep` counts as in §23 closeout (3 unique-source-symbol gates).
+   - All seed-determinism tests still green (rational seed-1
+     structural — with NEW goldens; exp-log determinism; registry
+     seed-523 unchanged; quadratic-graph-analysis adapter sweep
+     unchanged).
+4. **FR-10 evidence:**
+   - `git diff baseline..HEAD -- packages/math-content/src/knowledge-space/generators/advanced-math-adapters.ts`
+     showing 4 `nodeIds: [...]` populations.
+   - `ls packages/math-content/src/generator-registry.ts` → not found.
+   - `nodeIds` test stdout: each advanced adapter has ≥ 1 entry, all
+     matching `math.im3.skill.*`.
+5. **FR-11 evidence:**
+   - `git diff baseline..HEAD -- packages/math-content/src/utils/prng.ts`
+     showing the corrected docstring with the JS-double-overflow
+     caveat.
+6. **Phase-1+2 invariants preserved:**
+   - FR-3 guard exit 0 on the post-Phase-3 tree.
+   - Phase-2 `studentVisualization` / `studentVisualizationMultiModule`
+     / `visualizationLearnerStateUnion` suites still green (run
+     scoped — no full repo aggregate).
+7. **Commit SHAs (in order, per §27):**
+   1. FR-9 Green (refactor extraction).
+   2. FR-7 Green (rational + adapter + test goldens).
+   3. FR-8 Green (exp-log + test replacement).
+   4. FR-10 Green (adapter nodeIds + flat-registry removal + test
+      additions).
+   5. Plan-update commit marking Phase 3 tasks complete.
+   6. Checkpoint commit (workflow.md §70).
+8. **Closeout artifact:** `_artifacts/phase-3-gates.txt` with the
+   grep counts, vitest pass-counts, lint+tsc outputs.
+
+---
+
+## 27. Risks & open questions (Phase 3)
+
+1. **`problem-families/im1/generators.ts:18` `seededRandom` scope
+   creep.** Spec enumerates 5 sites; strategy adds the 6th. If green
+   role disagrees, the IM1 copy stays — but FR-9's "single source of
+   truth" goal is then only partially achieved. Strategy
+   recommendation: include it. Document the decision in the FR-9
+   commit body.
+2. **FR-7 non-monic introduction changes seed-1 golden.** The
+   existing `rational-analyzer.test.ts` "seed 1 — structural
+   verification" tests assert exact `numerator` / `denominator`
+   arrays. After FR-7 introduces `aNum`/`aDen` PRNG draws, the seed-1
+   draw sequence shifts: `h, v, z` are no longer the first three
+   integers from `seededRandom(1)`. Mid-red MUST capture the new seed-1
+   values by console.log and paste-update the golden. This is the ONLY
+   licit golden update in Phase 3. **Strategy expectation:** the test
+   comment "PRNG seed 1 yields: h=0, v=-6, z=-7" (line 56) is
+   stale-after-Green; update it.
+3. **Call-counter probe boundary (`vi.spyOn(prng, 'seededRandom')`).**
+   This requires `prng.ts` to export `seededRandom` as a *named*
+   import that vitest can intercept (not as `default`). Strategy
+   default in §23: named export. Mid-red: verify ES module spy works
+   under vitest's default config; if not, fall back to a counting
+   wrapper exported from a `utils/prng-instrumented.ts` test helper.
+4. **`@math-platform/math-content` re-export breakage.** Removing the
+   flat `GENERATOR_REGISTRY` re-export from `index.ts` is a public-API
+   break of the package. Verified: no consumer outside the package
+   uses it (the only `import` of the symbol is the test file). Still,
+   green role MUST grep for any external consumer one more time before
+   committing:
+   `grep -rn "GENERATOR_REGISTRY" --include='*.ts' --include='*.tsx' apps/ packages/`
+   — if any non-test source uses it, escalate.
+5. **`tsc --noEmit` math-content standalone baseline.** Tech-debt
+   item #25 documents that `packages/math-content` has a red standalone
+   tsc. The Phase-3 gate is "no NEW errors in the changed files versus
+   Phase 2 closeout baseline" — not a clean run. Mid-red MUST run
+   `npx tsc --noEmit -p packages/math-content` BEFORE editing to
+   capture the baseline error count, then re-run AFTER each commit and
+   diff. Strategy recommendation: capture the baseline once at start of
+   Phase 3 into `_artifacts/phase-3-tsc-baseline.txt`.
+6. **`seededRandom` byte-equality across the extraction.** The FR-9
+   helper MUST produce identical output to every current call site for
+   every seed. Strategy decision: keep the **exact** arithmetic
+   (`(s * 1103515245 + 12345) & 0x7fffffff` and `s / 0x7fffffff`).
+   Any cosmetic rewrite (e.g. `Math.fround`, `Math.imul`,
+   `Number.MAX_SAFE_INTEGER`) changes the bit pattern and breaks
+   determinism. The FR-11 fix is the **comment**, not the math.
+7. **Adapter `nodeIds` may overlap with the typed pilot generators**
+   (`quadraticGraphAnalysisGenerator.nodeIds`, etc., at
+   `registry.ts:47-204`). Two generators registering the same nodeId
+   is a different kind of bug (which one resolves for a given node?).
+   Strategy verified: no pilot generator currently lists any of the
+   advanced-adapter target nodeIds. If FR-10's chosen IDs collide,
+   escalate to a curriculum-data tech-debt entry (do NOT silently
+   pick a different ID — that hides the collision).
+8. **Adapter test boundary** for the `nodeIds ⊆ graph` check.
+   Strategy default: OPTIONAL, on the app side. Mid-red may decide
+   against authoring it. The non-empty + pattern-match assertions are
+   the binding FR-18 minimum.
+9. **PRNG advance count after FR-7.** Adding two `aNum`/`aDen` draws
+   to `generateRationalProblem` will affect the relative
+   sequence-position of subsequent draws (h/v/z). The existing test
+   `rational-analyzer.test.ts:96-104` "different seeds produce
+   different structures" is structural and stays green; the seed-1
+   golden update (§27 risk #2) is the only fallout.
+10. **Schema parser test on the rational HA shape.** The
+    `__tests__/schemas.test.ts` file (not opened by strategy) MAY
+    contain a schema for the `RationalProblem` interface or the
+    adapter's `gradingMetadata`. If FR-7 introduces a
+    `horizontalAsymptoteY: number | 'none'` scalar to
+    `RationalProblem`, mid-red MUST verify
+    `schemas.test.ts` still passes (or update the schema). Strategy
+    recommendation: keep `RationalProblem.horizontalAsymptote` as the
+    rich object (so the structural-feature tests stay green); the
+    adapter alone projects it to the scalar at the boundary. No
+    interface change.
+11. **`exp-log-solver` JSDoc post-Green.** The Phase-1 FR-3 guard
+    counts JSDoc balanced braces. The corrected JSDoc on
+    `generateExpLogProblem` MUST keep `@param {…}` and `@returns {…}`
+    balanced. Mid-red: re-run the FR-3 guard scoped to the changed
+    file after each Phase-3 commit to catch any accidental brace
+    introduction.
+
+---
+
+## 28. Commit & handoff plan (Phase 3)
+
+**Strict execution order (binding):**
+
+1. **FR-9 first.** The shared util MUST exist before FR-8's
+   call-counter probe can spy on it. Any other order forces FR-8's
+   Red to be authored against the per-file `seededRandom` and then
+   re-targeted after the extraction — pure waste.
+2. **FR-7 next.** Changes seed-1 goldens; isolated to
+   `rational-analyzer.ts` + the adapter + that single test file.
+3. **FR-8.** Now that the spied util exists, the single-pass test
+   can be authored cleanly.
+4. **FR-10.** Adapter `nodeIds` + flat-registry removal — fully
+   independent of FR-7/8/9 changes; could land in parallel but is
+   placed last so its post-Phase-2 commit history is contiguous.
+5. **FR-11.** Subsumed by FR-9 (no separate commit).
+
+**Expected Phase-3 commit sequence (≤6 commits + checkpoint):**
+
+| # | Type | Scope | Subject |
+|---|---|---|---|
+| 1 | `refactor` | code-review-remediation | Phase 3 Green — FR-9 extract seededRandom / generateCoefficients / formatPolynomial to utils/ (FR-11 docstring corrected) |
+| 2 | `fix` | code-review-remediation | Phase 3 Green — FR-7 rational-analyzer non-monic HA variation + scalar adapter grading (FR-16 test replacement) |
+| 3 | `fix` | code-review-remediation | Phase 3 Green — FR-8 remove dead exp-log domain re-roll + single-pass test (FR-16 replacement) |
+| 4 | `fix` | code-review-remediation | Phase 3 Green — FR-10 populate advanced-adapter nodeIds + remove redundant flat generator-registry (FR-18) |
+| 5 | `docs` | code-review-remediation | Phase 3 _artifacts (phase-3-gates, phase-3-tsc-baseline) |
+| 6 | `measure(plan)` | — | Mark Phase 3 tasks complete with commit SHAs |
+| 7 | `measure(checkpoint)` | — | Checkpoint end of Phase 3 |
+
+Each of commits 1–4 gets a git note per workflow.md step 10 (task
+summary, files changed, why, evidence excerpts).
+
+**Strategy note on Red/Green commit pairing:** Phases 1 and 2 ran with
+explicit `test:` (Red) commits followed by `fix:` (Green) commits. In
+Phase 3, the Red and Green for each FR are tightly coupled (the test
+deletions/additions and the source change must land together or the
+suite goes red mid-sequence). Strategy permits **atomic Red+Green
+commits** here, NOT separate. Reason: every FR-7/8/10 Red is a test
+**replacement** (delete certifying block, add behavioural block) —
+the suite cannot stay green across a separated Red→Green split.
+Reviewers see the test/source delta in one diff, which is also
+clearer for FR-16's "test replacement" audit trail.
+
+**What mid-red needs to know (handoff):**
+
+1. **Order is FR-9 → FR-7 → FR-8 → FR-10.** Do not start FR-8 before
+   FR-9 lands (the call-counter probe imports the shared util).
+2. **Capture `_artifacts/phase-3-tsc-baseline.txt` at the very start**
+   (run `npx tsc --noEmit -p packages/math-content` against
+   `776a8c63`). This is the diff baseline for every subsequent commit.
+3. **Re-verify node IDs (§21) immediately before committing FR-10.**
+   The root graph may have shifted since Phase 2; do not blindly trust
+   the strategy's IDs.
+4. **For FR-7, capture seed-1 goldens by console.log AFTER the source
+   change.** Do not predict them. Update the test once with the
+   captured values.
+5. **For FR-8, the call-counter probe is the canonical Red.** If
+   `vi.spyOn` on a named ES export fails under vitest config, fall
+   back to a counting wrapper (see §27 risk #3). Do NOT fall back to
+   `Number.isFinite` — that is the anti-pattern the test is replacing.
+6. **For FR-9, include the IM1 `problem-families/im1/generators.ts`**
+   `seededRandom` in the extraction. Strategy decision; document in
+   commit body.
+7. **For FR-10, the `nodeIds ⊆ graph` test is OPTIONAL** and lives
+   on the app side. The non-empty + pattern tests are mandatory.
+8. **Atomic Red+Green per FR is permitted.** Separate `test:` /
+   `fix:` commits would briefly red the suite (because the test
+   replacement and the source change are coupled). Land them
+   together; reviewers audit the Red→Green pivot via diff.
+9. **Phase-1 + Phase-2 invariants are gates.** FR-3 JSDoc guard exit
+   0; Phase-2 multi-module + learner-state-union suites green. Do
+   not regress.
+10. **Do not touch `__tests__/generator-registry.test.ts` seed-523
+    golden.** It is FR-19 (Phase 7), not Phase 3. The
+    self-contradicting comment stays as-is for now.
+11. **Do not touch `games-exports.test.ts`.** Also FR-19, Phase 7.
+12. **Targeted vitest scopes only.** No aggregate `npm test`. The
+    `placement-engine-extra*.test.ts` files are intentionally red and
+    will swallow any Phase-3 signal if invoked.
