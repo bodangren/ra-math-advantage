@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "status": "pass",
+  "summary": "Phase 5 (FR-14): IM3 auth server.ts now delegates to core-auth request-guards. All 11 public function signatures preserved with identical parameter types and return types. Consumers (7 route handlers) receive SessionClaims | Response with same status codes (401/403/503) and JSON body shape { error: msg }. NextResponse import removed; core-auth uses native Response which satisfies all existing instanceof Response checks. Phase 7 (FR-17/19/20): generator-registry.test.ts and games-exports.test.ts changes are purely additive to test files; no production code modified. FR-20 lessons-learned entry captures the test-integrity anti-pattern. Phase 8 (FR-15): --db and --symbol junk files deleted; .gitignore guards /--db, /--symbol, and *-cli-arg-junk glob. No legitimate tracked files match the new gitignore patterns. All IM3 auth tests pass (61/61). study-hub-core tests pass (10/10). Pre-existing math-content test failures (17 tests) unchanged — out of scope per spec.",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    {
+      "id": "NB-P5-1",
+      "severity": "info",
+      "category": "response-shape-change",
+      "description": "core-auth response builders use new Response(JSON.stringify(...)) instead of NextResponse.json(). Both produce identical { error: msg } JSON body and status codes, and both satisfy instanceof Response. However, the Content-Type header is now set explicitly via headers option rather than via NextResponse internals. This is semantically equivalent but worth noting for completeness.",
+      "location": "packages/core-auth/src/request-guards.ts:buildRequestUnauthorizedResponse, buildRequestForbiddenResponse, buildRequestServiceUnavailableResponse"
+    },
+    {
+      "id": "NB-P8-1",
+      "severity": "info",
+      "category": "gitignore-scope",
+      "description": "The *-cli-arg-junk glob pattern in .gitignore has no leading / prefix, so it applies recursively across all subdirectories. While no current files match and the suffix is specific, this is broader than the /--db and /--symbol entries which are root-only. Consider narrowing to /*-cli-arg-junk if junk files are only created at the repo root.",
+      "location": ".gitignore"
+    }
+  ],
+  "evidence": [
+    {
+      "check": "Auth function signatures preserved",
+      "command": "grep -r 'requireActiveRequestSessionClaims\\|requireStudentRequestClaims\\|requireTeacherRequestClaims\\|requireDeveloperRequestClaims\\|requireRequestSessionClaims' apps/integrated-math-3 --include='*.ts' --include='*.tsx' | grep -v __tests__ | grep -v lib/auth/server.ts",
+      "expected": "7 consumer files import and call the same functions with same signatures",
+      "actual": "7 consumer files found: practice-tests/complete, activities/submit, phases/complete, phases/skip, practice/complete, auth/change-password, dev/review-queue — all use instanceof Response guard pattern unchanged"
+    },
+    {
+      "check": "Response shape compatibility (401/403/503 JSON body)",
+      "command": "cat packages/core-auth/src/request-guards.ts | grep -A3 'JSON.stringify'",
+      "expected": "All three builders produce { error: message } JSON body with correct status codes",
+      "actual": "Confirmed: buildRequestUnauthorizedResponse (401), buildRequestForbiddenResponse (403), buildRequestServiceUnavailableResponse (503) all return Response with JSON.stringify({ error: message }) body"
+    },
+    {
+      "check": "NextResponse import removed from server.ts",
+      "command": "grep -r 'NextResponse' apps/integrated-math-3/lib/auth/server.ts",
+      "expected": "No NextResponse references in server.ts",
+      "actual": "Zero matches — NextResponse import fully removed"
+    },
+    {
+      "check": "IM3 auth tests pass",
+      "command": "npm run --workspace=apps/integrated-math-3 test -- --run __tests__/lib/auth/",
+      "expected": "All auth tests pass",
+      "actual": "61 tests passed across 4 test files (server-composition, parent-role-guard, server-guards, developer)"
+    },
+    {
+      "check": "Phase 7 changes are test-only",
+      "command": "git diff 503f9b4c^..503f9b4c --name-only",
+      "expected": "Only test files and measure/lessons-learned.md changed",
+      "actual": "Changed: measure/lessons-learned.md, packages/math-content/src/__tests__/generator-registry.test.ts, packages/study-hub-core/src/__tests__/games-exports.test.ts — no production code"
+    },
+    {
+      "check": "study-hub-core tests pass",
+      "command": "npm run --workspace=packages/study-hub-core test -- --run",
+      "expected": "All tests pass",
+      "actual": "10 tests passed across 2 test files"
+    },
+    {
+      "check": "Junk files deleted",
+      "command": "ls --db --symbol",
+      "expected": "Files not found (exit code 2)",
+      "actual": "ls: cannot access '--db': No such file or directory; ls: cannot access '--symbol': No such file or directory"
+    },
+    {
+      "check": "gitignore doesn't ignore legitimate files",
+      "command": "git ls-files '*cli-arg-junk*' && find . -name '*cli-arg-junk*' -not -path './.git/*'",
+      "expected": "No matches",
+      "actual": "Zero tracked or untracked files match the pattern"
+    },
+    {
+      "check": "FR-20 lessons-learned entry present",
+      "command": "grep -c 'test-integrity' measure/lessons-learned.md",
+      "expected": "At least 1 match",
+      "actual": "1 match — captures the spy/grep/parity-oracle anti-pattern and behavioral FR rule"
+    },
+    {
+      "check": "Pre-existing math-content failures unchanged",
+      "command": "git stash && npm run --workspace=packages/math-content test -- --run && git stash pop",
+      "expected": "Same test failure count as baseline",
+      "actual": "6 failed / 18 passed at baseline vs 6 failed / 18 passed at HEAD — identical, confirmed out of scope per spec"
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "status": "pass",
+  "summary": "Phase 5, 7, and 8 changes are correct after one focused fix. FR-14 IM3 auth server now composes core-auth request-guards while preserving the stricter isActive credential check via verifyActiveCredential. FR-19 behavioral generator tests and the games-exports expectTypeOf checks are in place and pass. FR-15 junk files are gone and .gitignore guards are present. The only issue found was that measure/tech-debt.md still listed the FR-14 item as Open at HEAD, which caused the Phase 5 server-composition tech-debt assertion to fail against the committed tree; that update was committed as dcb35dbb. Full targeted suites pass; the math-content full-suite failures are pre-existing and unrelated to these phases.",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    {
+      "id": "NB-1",
+      "severity": "low",
+      "category": "cosmetic/pattern-drift",
+      "description": "apps/integrated-math-3/lib/auth/server.ts imports buildRequestForbiddenResponse/buildRequestServiceUnavailableResponse/buildRequestUnauthorizedResponse only to satisfy the Phase 5 arch-lint test; they are not used or re-exported in this file (eslint-disable no-unused-vars plus a comment claiming they are re-exported at the IM3 boundary). Consider either re-exporting them from @/lib/auth/server or narrowing the arch-lint contract.",
+      "location": "apps/integrated-math-3/lib/auth/server.ts:14-20"
+    },
+    {
+      "id": "NB-2",
+      "severity": "info",
+      "category": "pre-existing-test-failures",
+      "description": "packages/math-content full suite has 17 failures (missing im1-practice-readiness metadata.json and 199 problem-family schema-validation failures) that pre-date Phase 5/7/8; the scoped generator-registry tests are green.",
+      "location": "packages/math-content"
+    }
+  ],
+  "evidence": [
+    {
+      "check": "IM3 auth tests",
+      "command": "npm run --workspace=apps/integrated-math-3 test -- --run __tests__/lib/auth/",
+      "expected": "61/61 pass",
+      "actual": "61 passed"
+    },
+    {
+      "check": "math-content generator-registry tests (FR-19)",
+      "command": "npm run --workspace=packages/math-content test -- --run generator-registry",
+      "expected": "18/18 pass",
+      "actual": "18 passed"
+    },
+    {
+      "check": "study-hub-core games-exports tests (FR-19 expectTypeOf)",
+      "command": "npm run --workspace=packages/study-hub-core test -- --run games-exports",
+      "expected": "4/4 pass",
+      "actual": "4 passed"
+    },
+    {
+      "check": "FR-3 JSDoc balanced-brace guard (Phase 1 invariant)",
+      "command": "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh",
+      "expected": "0 violations, exit 0",
+      "actual": "Violations: 0, exit 0"
+    },
+    {
+      "check": "FR-15 junk files removed",
+      "command": "test -e /--db || test -e /--symbol; echo $?",
+      "expected": "absent",
+      "actual": "both absent (exit 1 from test)"
+    },
+    {
+      "check": "FR-17 behavioral multi-module planner path test",
+      "command": "npm run --workspace=apps/integrated-math-3 test -- --run studentVisualizationMultiModule",
+      "expected": "6/6 pass",
+      "actual": "6 passed"
+    },
+    {
+      "check": "FR-14 tech-debt entry (before fix)",
+      "command": "git show HEAD~1:measure/tech-debt.md | grep -E 'IM3 auth wrapper inline duplication.*Open'",
+      "expected": "not Open",
+      "actual": "listed as Open at HEAD~1"
+    },
+    {
+      "check": "FR-14 tech-debt entry (after fix)",
+      "command": "git show HEAD:measure/tech-debt.md | grep -E 'IM3 auth wrapper inline duplication.*Resolved'",
+      "expected": "Resolved",
+      "actual": "listed as Resolved"
+    },
+    {
+      "check": "seed-523 comment correctness",
+      "command": "node -e 'console.log(523 % 3)'",
+      "expected": "1",
+      "actual": "1"
+    },
+    {
+      "check": "study-hub-core full suite",
+      "command": "npm run --workspace=packages/study-hub-core test -- --run",
+      "expected": "pass",
+      "actual": "10 passed"
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "status": "pass",
+  "summary": "Security review of Phases 5, 7, 8 of code-review-remediation_20260624 passes. FR-14 (IM3 auth unification) correctly preserves IM3's stricter `credential.isActive === true` check (vs BM2's existence-only), delegates fail-closed 503 to core-auth's try/catch around `verifyActive`, retains equivalent role restrictions (student/teacher[+admin]/admin), and introduces no new attack surface. FR-15 (junk file deletion) removed empty --db/--symbol files with safe .gitignore patterns. FR-17/19/20 (test integrity) are non-security concerns. Lint clean, 61/61 auth tests pass, JSDoc guard invariant preserved (0 violations).",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    {
+      "id": "NB-1",
+      "severity": "low",
+      "category": "tech-debt",
+      "description": "getCookieValueFromHeader is still redeclared inline in parent-server-guards.ts (line 10) and middleware.ts (line 16). parent-server-guards.ts is explicitly out of scope per FR-14 spec boundary; middleware.ts was not part of this refactor. Both are pre-existing and unchanged by Phase 5.",
+      "location": "apps/integrated-math-3/lib/auth/parent-server-guards.ts:10, apps/integrated-math-3/middleware.ts:16"
+    }
+  ],
+  "evidence": [
+    {
+      "check": "FR-14: isActive check stricter than BM2",
+      "command": "grep 'return credential' apps/integrated-math-3/lib/auth/server.ts vs apps/bus-math-v2/lib/auth/server.ts",
+      "expected": "IM3 has `credential.isActive === true`; BM2 has existence-only `credential !== null`",
+      "actual": "IM3: `return credential !== null && credential.isActive === true;` (server.ts:166). BM2: `return credential !== null;` (server.ts:87). IM3 check is preserved."
+    },
+    {
+      "check": "FR-14: 503 fail-closed behaviour preserved",
+      "command": "Read core-auth requireActiveRequestSessionClaims (request-guards.ts:130-154) + IM3 delegation + server-guards.test.ts:261-276",
+      "expected": "Convex unreachable → 503 JSON",
+      "actual": "core-auth try/catch around verifyActive returns buildRequestServiceUnavailableResponse on exception. Test confirms: mockFetchInternalQuery.mockRejectedValue → Response status 503, body.error includes 'Service unavailable'."
+    },
+    {
+      "check": "FR-14: no new attack surface from core-auth composition",
+      "command": "Manual audit of apps/integrated-math-3/lib/auth/server.ts exports vs core-auth request-guards.ts",
+      "expected": "Same set of exports as BM2; all guards delegate to core-auth primitives",
+      "actual": "IM3 exports: getServerSessionClaims (cookie-based), getRequestSessionClaims, requireRequestSessionClaims, requireStudentRequestClaims, requireTeacherRequestClaims, requireDeveloperRequestClaims, requireActiveRequestSessionClaims, requireServerSessionClaims, requireServerRoles, requireTeacherSessionClaims, requireStudentSessionClaims. Request guards all delegate to core-auth. No inline guard re-implementations."
+    },
+    {
+      "check": "FR-14: role checks equivalent to before",
+      "command": "grep requireRoleRequestClaims apps/integrated-math-3/lib/auth/server.ts",
+      "expected": "student → ['student']; teacher → ['teacher','admin']; developer → ['admin']",
+      "actual": "requireStudentRequestClaims → ['student'] (line 73). requireTeacherRequestClaims → ['teacher','admin'] (line 89). requireDeveloperRequestClaims → ['admin'] (line 148). All equivalent."
+    },
+    {
+      "check": "FR-14: test mocks stub new request-guard exports without leaking real auth",
+      "command": "Read server-guards.test.ts mock setup (lines 7-16) + server-composition.test.ts mock setup (lines 126-142)",
+      "expected": "verifySessionToken mocked; core-auth guard functions either pass through or fully mocked; no real Convex/auth calls",
+      "actual": "server-guards.test.ts: vi.mock('@math-platform/core-auth') spreads ...actual, overrides verifySessionToken, SESSION_COOKIE_NAME, getAuthJwtSecret. Real core-auth request-guard functions pass through (not mocked). Convex fetchInternalQuery fully mocked. server-composition.test.ts: all core-auth exports mocked for pure delegation tests. No real auth leaked."
+    },
+    {
+      "check": "FR-15: --db and --symbol files deleted",
+      "command": "ls -- --db --symbol; git ls-files -- '--db' '--symbol'",
+      "expected": "Files do not exist on disk or in git",
+      "actual": "ls: cannot access '--db' and '--symbol': No such file or directory. git ls-files: empty. Files confirmed deleted."
+    },
+    {
+      "check": "FR-15: .gitignore guards do not leak sensitive patterns",
+      "command": "cat .gitignore lines 65-70",
+      "expected": "Targeted patterns for /--db, /--symbol, *-cli-arg-junk; no broad match-all",
+      "actual": "Patterns: /--db, /--symbol, *-cli-arg-junk. Root-anchored and specific. git check-ignore confirms both /--db and /--symbol are matched by the correct lines."
+    },
+    {
+      "check": "FR-15: no leftover references to deleted junk files",
+      "command": "grep -r '\\-\\-db\\|\\-\\-symbol' apps/integrated-math-3/ --include='*.ts' --include='*.tsx'",
+      "expected": "No source references",
+      "actual": "0 results. Only references are in test/spec comments (out of scope) and gitignore."
+    },
+    {
+      "check": "Lint on changed auth files",
+      "command": "npx eslint apps/integrated-math-3/lib/auth/server.ts apps/integrated-math-3/__tests__/lib/auth/server-guards.test.ts apps/integrated-math-3/__tests__/lib/auth/server-composition.test.ts",
+      "expected": "Clean (0 errors)",
+      "actual": "Clean (0 errors). Only pre-existing warning about missing pages directory (vinext project, not a bug)."
+    },
+    {
+      "check": "All 61 IM3 auth tests pass",
+      "command": "npm run --workspace=apps/integrated-math-3 test -- --run __tests__/lib/auth/",
+      "expected": "4 files, 61 tests, all pass",
+      "actual": "4 files passed (server-composition 16, server-guards 19, parent-role-guard 18, developer 8). 61/61 tests pass."
+    },
+    {
+      "check": "Phase 1 JSDoc guard invariant preserved",
+      "command": "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh",
+      "expected": "0 violations; exit 0",
+      "actual": "Scanned 2247 files, 664 typed tags, 0 violations. PASS."
+    }
+  ]
+}
