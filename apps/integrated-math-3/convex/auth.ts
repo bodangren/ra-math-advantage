@@ -5,6 +5,11 @@ import { type Doc, type Id } from './_generated/dataModel';
 const roleValidator = v.union(v.literal('student'), v.literal('teacher'), v.literal('admin'), v.literal('parent'));
 const PASSWORD_ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789';
 
+/**
+ * Internal query that looks up an active auth credential by username.
+ * Returns `null` when the credential is missing or inactive.
+ * @returns {Promise<{ id: Id<"auth_credentials">; profileId: Id<"profiles">; username: string; role: 'student'|'teacher'|'admin'|'parent'; organizationId: Id<"organizations">; passwordHash: string; passwordSalt: string; passwordHashIterations: number } | null>} The credential payload, or null
+ */
 export const getCredentialByUsername = internalQuery({
   args: {
     username: v.string(),
@@ -32,6 +37,12 @@ export const getCredentialByUsername = internalQuery({
   },
 });
 
+/**
+ * Internal query that looks up an auth credential by username regardless
+ * of active state. Used by admin tooling and account-recovery flows that
+ * need to inspect disabled accounts.
+ * @returns {Promise<{ id: Id<"auth_credentials">; profileId: Id<"profiles">; username: string; role: 'student'|'teacher'|'admin'|'parent'; organizationId: Id<"organizations">; passwordHash: string; passwordSalt: string; passwordHashIterations: number; isActive: boolean } | null>} The credential payload (including `isActive`), or null when missing
+ */
 export const getCredentialByUsernameIncludingInactive = internalQuery({
   args: {
     username: v.string(),
@@ -60,6 +71,12 @@ export const getCredentialByUsernameIncludingInactive = internalQuery({
   },
 });
 
+/**
+ * Internal query that returns the profile + organization context needed to
+ * render the account-settings page. Returns `null` when the profile is
+ * missing.
+ * @returns {Promise<{ id: Id<"profiles">; username: string; role: 'student'|'teacher'|'admin'|'parent'; displayName: string; organizationId: Id<"organizations">; organizationName: string } | null>} Account-settings context payload, or null
+ */
 export const getAccountSettingsContext = internalQuery({
   args: {
     profileId: v.id("profiles"),
@@ -83,6 +100,13 @@ export const getAccountSettingsContext = internalQuery({
   },
 });
 
+/**
+ * Internal mutation that upserts an auth credential row keyed by username.
+ * Patches existing rows in place; inserts a new row when none exists.
+ * The username must already have a matching `profiles` row — otherwise the
+ * mutation returns `{ ok: false, reason: 'profile_not_found' }`.
+ * @returns {Promise<{ ok: true; updated: boolean } | { ok: false; reason: 'profile_not_found' }>} Result discriminator — `updated: true` means an existing row was patched, `updated: false` means a new row was inserted
+ */
 export const upsertCredentialByUsername = internalMutation({
   args: {
     username: v.string(),
@@ -139,6 +163,13 @@ export const upsertCredentialByUsername = internalMutation({
   },
 });
 
+/**
+ * Internal mutation that ensures a `profiles` row exists for a username.
+ * Returns the existing row's IDs when one already exists; otherwise
+ * creates the row and bootstraps a "Demo Organization" if no organization
+ * is found in the database.
+ * @returns {Promise<{ ok: true; created: boolean; profileId: Id<"profiles">; organizationId: Id<"organizations"> } | { ok: false; reason: 'organization_not_found' }>} Result discriminator — `created: true` means a new profile + organization was bootstrapped
+ */
 export const ensureProfileByUsername = internalMutation({
   args: {
     username: v.string(),
@@ -404,6 +435,13 @@ const createStudentArgsValidator = v.object({
   passwordHashIterations: v.number(),
 });
 
+/**
+ * Internal mutation that creates a single student account under a teacher's
+ * organization. Generates a unique username, creates the `profiles` and
+ * `auth_credentials` rows, and stamps the creator teacher into the
+ * metadata. Returns the new student identity.
+ * @returns {Promise<{ ok: true; studentId: Id<"profiles">; username: string; displayName: string; organizationId: Id<"organizations"> } | { ok: false; reason: 'teacher_not_found' | 'forbidden' }>} Result discriminator with the created student identity
+ */
 export const createStudentAccount = internalMutation({
   args: {
     teacherProfileId: v.id('profiles'),
@@ -467,6 +505,14 @@ export const createStudentAccount = internalMutation({
   },
 });
 
+/**
+ * Internal mutation that creates up to 100 student accounts in one batch.
+ * Each student is given a unique username (collision-checked against the
+ * batch's reserved set), and the mutation returns per-student identity on
+ * success. Batches outside the 1..100 range are rejected with
+ * `invalid_batch`.
+ * @returns {Promise<{ ok: true; totalCreated: number; organizationId: Id<"organizations">; students: Array<{ studentId: Id<"profiles">; username: string; displayName: string; email: string }> } | { ok: false; reason: 'teacher_not_found' | 'forbidden' | 'invalid_batch' }>} Result discriminator with the created-student array on success
+ */
 export const bulkCreateStudentAccounts = internalMutation({
   args: {
     teacherProfileId: v.id('profiles'),
@@ -551,6 +597,14 @@ export const bulkCreateStudentAccounts = internalMutation({
   },
 });
 
+/**
+ * Internal mutation that updates an existing student account (display name
+ * and/or active status). The caller must be a teacher in the same org as
+ * the student. Empty updates (no displayName, no deactivate flag) are
+ * rejected with `invalid_input`. Returns the updated student identity
+ * along with the new `deactivated` flag.
+ * @returns {Promise<{ ok: true; studentId: Id<"profiles">; username: string; displayName: string; deactivated: boolean } | { ok: false; reason: 'invalid_input' | 'teacher_not_found' | 'forbidden' | 'student_not_found' | 'credential_not_found' }>} Result discriminator with updated student identity
+ */
 export const updateStudentAccount = internalMutation({
   args: {
     teacherProfileId: v.id('profiles'),
@@ -632,6 +686,13 @@ export const updateStudentAccount = internalMutation({
   },
 });
 
+/**
+ * Internal mutation that resets a student's password on behalf of a
+ * teacher. The caller must be a teacher in the same org as the student.
+ * Inserts a new `auth_credentials` row when none exists; otherwise patches
+ * the existing row. Stamps the reset in the student profile metadata.
+ * @returns {Promise<{ ok: true; studentId: Id<"profiles">; username: string; displayName: string } | { ok: false; reason: 'teacher_not_found' | 'forbidden' | 'student_not_found' }>} Result discriminator with the updated student identity
+ */
 export const resetStudentPassword = internalMutation({
   args: {
     teacherProfileId: v.id('profiles'),
@@ -702,6 +763,13 @@ export const resetStudentPassword = internalMutation({
   },
 });
 
+/**
+ * Internal mutation that lets a user change their own password. The user
+ * must have an active `auth_credentials` row; otherwise the mutation
+ * returns `profile_not_found` / `credential_not_found`. Stamps the change
+ * in the profile metadata as `lastPasswordChangedAt`.
+ * @returns {Promise<{ ok: true; profileId: Id<"profiles">; username: string; role: 'student'|'teacher'|'admin'|'parent' } | { ok: false; reason: 'profile_not_found' | 'credential_not_found' }>} Result discriminator with the updated profile identity
+ */
 export const changeOwnPassword = internalMutation({
   args: {
     profileId: v.id("profiles"),

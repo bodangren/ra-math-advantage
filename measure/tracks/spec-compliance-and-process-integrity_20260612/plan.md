@@ -84,9 +84,10 @@
   - Live count: 141 combined (close to the plan's 144 estimate; minor drift).
   - [GREEN EVIDENCE 2026-06-21, commit a5c2d410] Folded into a5c2d410; app/ sub-scope 87/87 typed (51 files). Minor plan-vs-live drift resolved.
 
-- [~] Task 3.6: Add `{type}` to all `@param`/`@returns` tags in Phase 8 (`packages/*/src/`) [red: bde10833]
-  - [ ] 537 `@param`, 322 `@returns` tags
+- [x] Task 3.6: Add `{type}` to all `@param`/`@returns` tags in Phase 8 (`packages/*/src/`) [red: bde10833, green: 82435fac]
+  - [x] 537 `@param`, 322 `@returns` tags
   - Live count: 1083 untyped (676 @param + 407 @returns) across 130+ files in `packages/`. Plan-vs-live delta: scope grew ~26% post-spec.
+  - [GREEN EVIDENCE 2026-06-24, commit 82435fac] 1083 typed / 0 untyped / 433 scanned / PASS — full coverage across all `packages/*/src/` (676/676 @param + 407/407 @returns). Verified via `TYPED_PARAMS_SCOPE=packages/ bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh --json` → `{"scanned_files":433,"total_tags":1083,"typed_tags":1083,"untyped_tags":0,"pass":true}`.
 
 - [~] Task 3.7: Add an FR-5 enforcement guard [red: bde10833]
   - [x] Create `measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh`
@@ -1547,21 +1548,116 @@ active):** the GREEN-phase role should:
 
 ## Phase 4: Missing `@throws`, `@returns`, and Convex Exported Surface
 
-- [ ] Task 4.1: Audit throwing functions in scope
-  - [ ] Search for `throw` in `apps/integrated-math-3/convex/`, `apps/integrated-math-3/lib/`
+- [~] Task 4.1: Audit throwing functions in scope
+  - [~] Search for `throw` in `apps/integrated-math-3/convex/`, `apps/integrated-math-3/lib/`
   - [ ] Add `@throws` to every throwing function documented by Phases 4-6
 
-- [ ] Task 4.2: Audit functions missing `@returns`
+- [~] Task 4.2: Audit functions missing `@returns`
   - [ ] Add `@returns` to `saveCardsHandler` and any other returning function that lacks it
 
-- [ ] Task 4.3: Document exported Convex wrappers
-  - [ ] Find every `export const X = internalQuery(...)` / `internalMutation(...)` / `action(...)` / `cron(...)` in `apps/integrated-math-3/convex/`
+- [~] Task 4.3: Document exported Convex wrappers
+  - [~] Find every `export const X = internalQuery(...)` / `internalMutation(...)` / `action(...)` / `cron(...)` in `apps/integrated-math-3/convex/`
   - [ ] Move or duplicate the existing JSDoc block onto the exported wrapper line
   - [ ] Ensure internal `*Handler` functions still have JSDoc if they remain exported or reused
 
-- [ ] Task 4.4: Add exported-surface coverage guard
-  - [ ] Extend `check-jsdoc-exported-im3-app.sh` pattern to `convex/` scope
-  - [ ] Assert every exported wrapper has a preceding JSDoc block
+- [~] Task 4.4: Add exported-surface coverage guard
+  - [~] Extend `check-jsdoc-exported-im3-app.sh` pattern to `convex/` scope
+  - [~] Assert every exported wrapper has a preceding JSDoc block
+
+### Phase 4 Red proof (recorded 2026-06-24)
+
+**Single most targeted Red command** (production gate; default `SCOPE_DIRS` is
+`apps/integrated-math-3/convex`):
+
+```bash
+bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-exported-convex-im3.sh
+```
+
+**Red result at HEAD (82435fac):**
+`missing_jsdoc=193, declarations=197, scanned_files=101, exit=1` (FAIL).
+Per-file breakdown: 89 files have at least one missing-JSDoc wrapper; top 3 are
+`teacher.ts` (13 missing), `activities.ts` (12 missing), `study.ts` (11 missing).
+Only 4 wrappers out of 197 have a JSDoc block (`*/`) on the line immediately
+above (in `srs/processReview.ts`, `srs/reviews.ts`, `public.ts`,
+`parent/visualization.ts`).
+
+**Red proof failure cause (intrinsic, not stale):** the Red test fails because
+the committed source state is **missing** JSDoc on 193 out of 197 exported
+Convex wrapper declarations. Per spec §E, Phase 4 JSDoc was historically placed
+on internal `*Handler` functions, not on the actual exported wrappers. The
+guard's parser is regex-based and reads source directly (not graph.db), so the
+count is always live. The failure is intrinsic to the committed source state.
+
+**Runner-plumbing self-test** (closeout gate per test-strategy §9 P4; the
+guard run against a constructed bad-sample fixture must also fail):
+
+```bash
+SCOPE_DIRS="measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/fixtures/exported-convex-bad-sample.ts" \
+  bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-exported-convex-im3.sh
+```
+
+**Self-test result:** `missing_jsdoc=2, declarations=4, scanned_files=1, exit=1`
+(FAIL, by design — the fixture has 2 documented + 2 undocumented wrappers).
+
+**Sibling guard cross-check** (Phase 3 typed-params must remain green):
+
+```bash
+bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh --json
+```
+
+**Sibling result:** `{"pass":true,"typed_tags":346,"untyped_tags":0,"scanned_files":102}`
+Exit: 0 (PASS — Phase 3 typed-params guard unaffected by Phase 4 artifacts).
+
+**Test-strategy contract:** Red tests fail because the current implementation
+is **missing** (193/197 exported wrappers lack a JSDoc block on the line
+immediately above the `export const X = ...` declaration), not because a
+durable record is stale. The guard's parser is regex-based and reads source
+directly, not graph.db, so the count is always live and the failure is
+intrinsic to the source state.
+
+**P4.1 audit baseline** (throw sites, for jr-green's audit table):
+
+```bash
+grep -rEn '^\s*throw\b' apps/integrated-math-3/convex/ apps/integrated-math-3/lib/ \
+  | wc -l \
+  | xargs -I{} echo "throw_sites:{}"
+```
+
+Expected at HEAD: `throw_sites:` value > 0. jr-green enumerates the full table
+in `phase-4-throws-audit.md`.
+
+**P4.2 named gap** (saveCardsHandler missing @returns):
+
+```bash
+grep -n '@returns' apps/integrated-math-3/convex/srs/cards.ts \
+  | grep -c saveCardsHandler || true
+```
+
+Expected at HEAD: 0 hits (the function lacks `@returns` per spec §D).
+Green: ≥ 1 hit.
+
+### Dirty-worktree classification (MID Red Phase 4, 2026-06-24)
+
+`git status --porcelain` at MID Red Phase 4 start:
+
+```
+ M graph.db
+ M measure/tracks/spec-compliance-and-process-integrity_20260612/plan.md
+ M measure/tracks/spec-compliance-and-process-integrity_20260612/test-strategy.md
+```
+
+Classification:
+
+- **`graph.db` (modified)**: **unrelated**. Phase 7.1 concern (refresh + commit).
+  MID Red does not touch graph.db.
+- **`plan.md` (modified)**: **relevant**. Track plan, already being updated by
+  this MID Red phase. Folded into the Phase 4 Red commit.
+- **`test-strategy.md` (modified)**: **relevant**. Track test strategy, already
+  committed in Phase 3 Red. The worktree modification is from the Phase 3
+  Red commit's last-minute strategy refresh. MID Red preserves as-is (not
+  re-committed — already at HEAD via prior phase).
+
+No application source files dirty. No untracked scripts. No stashes.
 
 ## Phase 5: Verification Process Integrity
 
@@ -1576,7 +1672,7 @@ active):** the GREEN-phase role should:
   - [ ] Optional: require a signed git note or human-attested artifact
   - [ ] Guard must FAIL if report was self-approved
 
-- [ ] Task 5.3: Drive real manual verification
+- [b] deferred:user Task 5.3: Drive real manual verification
   - [ ] For each phase, execute `measure/workflow.md` Steps 1-10 for real
   - [ ] Human verifier reviews changed files, runs lint/test/typecheck, inspects guards
   - [ ] Only after explicit human confirmation, update report with real name and ISO timestamp
@@ -1645,7 +1741,7 @@ active):** the GREEN-phase role should:
   - [ ] `CI=true npm run test` for affected workspaces
   - [ ] Record actual command output in verification reports
 
-- [ ] Task 7.4: User Manual Verification
+- [b] deferred:user Task 7.4: User Manual Verification
   - [ ] Drive `measure/workflow.md` Steps 1-10 for this track
   - [ ] Human verifier signs off
 

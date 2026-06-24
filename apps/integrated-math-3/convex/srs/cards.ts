@@ -120,6 +120,12 @@ export async function saveCardHandler(
   }
 }
 
+/**
+ * Internal mutation that saves or updates a single SRS card keyed by
+ * (studentId, variantKey). Patches an existing card in place; inserts a
+ * new card when none exists for the pair.
+ * @returns {Promise<Id<"srs_cards">>} The ID of the saved or created card
+ */
 export const saveCard = internalMutation({
   args: {
     cardId: v.string(),
@@ -145,6 +151,7 @@ export const saveCard = internalMutation({
  * Saves or updates multiple SRS cards in a single batch operation.
  * @param {MutationCtx} ctx - The mutation context
  * @param {{ cards: Array<{ cardId: string; studentId: Id<"profiles">; objectiveId: string; variantKey: string; stability: number; difficulty: number; state: "new" | "learning" | "review" | "relearning"; dueDate: string; elapsedDays: number; scheduledDays: number; reps: number; lapses: number; lastReview?: string | null; createdAt: string; updatedAt: string }> }} args - Object containing an array of card data to save
+ * @returns {Promise<void>} Resolves when every card has been upserted; failures in the `Promise.all` are surfaced to the caller
  */
 export async function saveCardsHandler(
   ctx: MutationCtx,
@@ -219,6 +226,12 @@ export async function saveCardsHandler(
   );
 }
 
+/**
+ * Internal mutation that batch-saves (or batch-updates) SRS cards in a
+ * single operation. Each card is upserted independently keyed by
+ * (studentId, variantKey); see `saveCardHandler` for per-card semantics.
+ * @returns {Promise<void>} Resolves when every card has been upserted
+ */
 export const saveCards = internalMutation({
   args: {
     cards: v.array(
@@ -259,6 +272,11 @@ export async function getCardHandler(
   return mapDbCardToContract(card);
 }
 
+/**
+ * Internal query that returns a single SRS card (in contract format) by
+ * its row ID.
+ * @returns {Promise<ReturnType<typeof mapDbCardToContract> | null>} The card in contract format, or null when not found
+ */
 export const getCard = internalQuery({
   args: { id: v.string() },
   handler: getCardHandler,
@@ -283,6 +301,11 @@ export async function getCardsByStudentHandler(
   return cards.map(mapDbCardToContract);
 }
 
+/**
+ * Internal query that returns every SRS card for a student (in contract
+ * format).
+ * @returns {Promise<Array<ReturnType<typeof mapDbCardToContract>>>} Array of cards in contract format
+ */
 export const getCardsByStudent = internalQuery({
   args: { studentId: v.id("profiles") },
   handler: getCardsByStudentHandler,
@@ -307,11 +330,22 @@ export async function getCardByStudentAndVariantHandler(
   return card ? mapDbCardToContract(card) : null;
 }
 
+/**
+ * Internal query that returns a single SRS card (in contract format) keyed
+ * by (studentId, variantKey).
+ * @returns {Promise<ReturnType<typeof mapDbCardToContract> | null>} The card in contract format, or null when not found
+ */
 export const getCardByStudentAndVariant = internalQuery({
   args: { studentId: v.id("profiles"), variantKey: v.string() },
   handler: getCardByStudentAndVariantHandler,
 });
 
+/**
+ * Internal query that returns every SRS card tied to a specific objective.
+ * Used by teacher-facing dashboards that surface per-objective review
+ * queues.
+ * @returns {Promise<Array<ReturnType<typeof mapDbCardToContract>>>} Array of cards in contract format
+ */
 export const getCardsByObjective = internalQuery({
   args: { objectiveId: v.string() },
   handler: async (ctx, args) => {
@@ -323,6 +357,12 @@ export const getCardsByObjective = internalQuery({
   },
 });
 
+/**
+ * Internal query that returns every SRS card for a student whose `dueDate`
+ * is on or before `asOfDate`. Used by the review-session scheduler to
+ * build the daily review queue.
+ * @returns {Promise<Array<ReturnType<typeof mapDbCardToContract>>>} Array of due cards in contract format
+ */
 export const getDueCards = internalQuery({
   args: {
     studentId: v.id("profiles"),

@@ -108,6 +108,12 @@ export async function getStudentPlacementResultsHandler(
     .collect();
 }
 
+/**
+ * Internal mutation that seeds or updates placement results for a student.
+ * Upserts `placement_results` rows keyed by (studentId, nodeId); existing
+ * rows are patched in place, new rows are inserted with `source: "placement"`.
+ * @returns {Promise<{ persistedIds: Id<"placement_results">[] }>} Array of persisted placement result IDs
+ */
 export const seedPlacementResults = internalMutation({
   args: {
     studentId: v.id("profiles"),
@@ -123,6 +129,10 @@ export const seedPlacementResults = internalMutation({
   handler: seedPlacementResultsHandler,
 });
 
+/**
+ * Internal query that checks whether a student has any placement results.
+ * @returns {Promise<boolean>} True if at least one placement result exists for the student
+ */
 export const hasPlacementResults = internalQuery({
   args: {
     studentId: v.id("profiles"),
@@ -130,6 +140,10 @@ export const hasPlacementResults = internalQuery({
   handler: hasPlacementResultsHandler,
 });
 
+/**
+ * Internal query that retrieves all placement results for a student.
+ * @returns {Promise<Array<Doc<"placement_results">>>} Array of placement result documents
+ */
 export const getStudentPlacementResults = internalQuery({
   args: {
     studentId: v.id("profiles"),

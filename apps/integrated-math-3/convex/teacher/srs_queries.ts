@@ -24,6 +24,12 @@ async function getAuthorizedTeacher(
   return teacher;
 }
 
+/**
+ * Internal query that returns aggregated class-level SRS health (total
+ * active students, students who practiced today, average retention, total
+ * cards) for a teacher-owned class.
+ * @returns {Promise<{ totalActiveStudents: number; practicedToday: number; avgRetention: number; totalCards: number } | null>} Class SRS health summary, or null when the caller is not authorized
+ */
 export const getClassSrsHealth = internalQuery({
   args: {
     userId: v.id("profiles"),
@@ -110,6 +116,11 @@ export const getClassSrsHealth = internalQuery({
   },
 });
 
+/**
+ * Internal query that returns aggregate and per-student overdue card counts
+ * for a teacher-owned class. "Overdue" means `dueDate < now` in ISO format.
+ * @returns {Promise<{ totalOverdue: number; perStudent: Array<{ studentId: Id<"profiles">; overdueCount: number }> } | null>} Overdue-load summary, or null when the caller is not authorized
+ */
 export const getOverdueLoad = internalQuery({
   args: {
     userId: v.id("profiles"),
@@ -165,6 +176,11 @@ export const getOverdueLoad = internalQuery({
   },
 });
 
+/**
+ * Internal query that returns the top practice streaks (consecutive days
+ * of completed sessions) for active students in a teacher-owned class.
+ * @returns {Promise<Array<{ studentId: Id<"profiles">; displayName: string; streak: number }>>} Top-N streak entries (default 5), or [] when the caller is not authorized
+ */
 export const getPracticeStreaks = internalQuery({
   args: {
     userId: v.id("profiles"),
@@ -344,6 +360,12 @@ export async function getWeakObjectivesHandler(
   return weakObjectives;
 }
 
+/**
+ * Internal query that returns objectives with class-wide proficiency
+ * below 50% for a teacher-owned class. Sorted by objective priority and
+ * proficiency.
+ * @returns {Promise<WeakObjectiveView[] | null>} Array of weak-objective views, or null when the caller is not authorized
+ */
 export const getWeakObjectives = internalQuery({
   args: {
     userId: v.id("profiles"),
@@ -480,6 +502,11 @@ export async function getStrugglingStudentsHandler(
   return results.slice(0, limit);
 }
 
+/**
+ * Internal query that returns the top-N students with the highest overdue
+ * card counts and lowest average retention in a teacher-owned class.
+ * @returns {Promise<StrugglingStudentView[] | null>} Array of struggling-student views (default limit 10), or null when the caller is not authorized
+ */
 export const getStrugglingStudents = internalQuery({
   args: {
     userId: v.id("profiles"),
@@ -595,6 +622,12 @@ export async function getMisconceptionSummaryHandler(
   return results;
 }
 
+/**
+ * Internal query that aggregates misconception tags from recent SRS reviews
+ * (default lookback: 7 days) across active students in a teacher-owned
+ * class. Sorted by occurrence count descending.
+ * @returns {Promise<MisconceptionView[] | null>} Array of misconception views, or null when the caller is not authorized
+ */
 export const getMisconceptionSummary = internalQuery({
   args: {
     userId: v.id("profiles"),

@@ -44,6 +44,11 @@ function isCapstoneLesson(lesson: { metadata?: { tags?: string[] | null } | null
   return Boolean(lesson.metadata?.tags?.includes("capstone"));
 }
 
+/**
+ * Public query that returns aggregate curriculum counts (unit, lesson,
+ * activity) for the marketing landing page.
+ * @returns {Promise<{ unitCount: number; lessonCount: number; activityCount: number }>} Aggregate counts
+ */
 export const getCurriculumStats = query({
   args: {},
   handler: async (ctx) => {
@@ -61,6 +66,12 @@ export const getCurriculumStats = query({
   },
 });
 
+/**
+ * Public query that returns the first lesson (orderIndex = 1) of every
+ * instructional unit, sorted by unit number ascending. Maps `_id` to `id`
+ * so the frontend can use it directly as React keys.
+ * @returns {Promise<Array<PublicCurriculumLesson & { id: string; unit_number: number; order_index: number }>>} Unit-opener lessons with flattened numeric fields
+ */
 export const getUnits = query({
   args: {},
   handler: async (ctx) => {
@@ -85,6 +96,12 @@ export const getUnits = query({
   },
 });
 
+/**
+ * Public query that returns the first 8 instructional units with a
+ * human-readable title and summary (driving question, scenario, or
+ * published description) for the curriculum overview cards.
+ * @returns {Promise<PublicUnitSummary[]>} Up to 8 unit summaries, sorted by unit number
+ */
 export const getUnitSummaries = query({
   args: {},
   handler: async (ctx) => {
@@ -130,6 +147,11 @@ export const getUnitSummaries = query({
   },
 });
 
+/**
+ * Public query that returns the full curriculum (units, lessons, objectives)
+ * for the public curriculum browser page.
+ * @returns {Promise<PublicCurriculumUnit[]>} Array of units with nested lesson metadata and objectives
+ */
 export const getCurriculum = query({
   args: {},
   handler: async (ctx) => {

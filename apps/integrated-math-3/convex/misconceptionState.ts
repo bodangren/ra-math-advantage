@@ -156,6 +156,13 @@ export async function getStudentActiveMisconceptionsHandler(
 // Convex function bindings (internal mutation/query).
 // ---------------------------------------------------------------------------
 
+/**
+ * Internal mutation for recording a misconception detection for a student.
+ * Upserts the (studentId, misconceptionId) row: first detection inserts a
+ * new `active` row; re-detection patches in place (preserves firstDetectedAt,
+ * resets cleanStreak to 0, refreshes severity + lastUpdatedAt).
+ * @returns {Promise<{ id: Id<"student_misconception_state">; created: boolean }>} The row ID and whether it was newly created (true) or patched (false)
+ */
 export const recordMisconceptionDetection = internalMutation({
   args: {
     studentId: v.string(),
@@ -167,6 +174,15 @@ export const recordMisconceptionDetection = internalMutation({
   handler: recordMisconceptionDetectionHandler,
 });
 
+/**
+ * Internal mutation for recording a clean attempt against an existing
+ * misconception state row. Increments cleanStreak; when the streak reaches
+ * `resolutionThreshold` the row transitions to `resolved`. A clean attempt
+ * on a row that is already `resolved` is a no-op (idempotent). Returns
+ * `null` when no row exists for the pair — callers are responsible for
+ * detection-first ordering.
+ * @returns {Promise<{ id: Id<"student_misconception_state">; resolved: boolean; idempotent?: boolean } | null>} Resolution state for the row, or null if no row exists
+ */
 export const recordCleanAttempt = internalMutation({
   args: {
     studentId: v.string(),
@@ -177,6 +193,12 @@ export const recordCleanAttempt = internalMutation({
   handler: recordCleanAttemptHandler,
 });
 
+/**
+ * Internal query that lists every `active` misconception row for a given
+ * student via the `by_student_status` index. Returns `[]` for a student
+ * with no rows (stale-state default).
+ * @returns {Promise<Array<Doc<"student_misconception_state">>>} Array of active misconception state documents
+ */
 export const getStudentActiveMisconceptions = internalQuery({
   args: {
     studentId: v.string(),

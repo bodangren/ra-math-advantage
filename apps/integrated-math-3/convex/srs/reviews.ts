@@ -99,8 +99,12 @@ export async function saveReviewHandler(
 }
 
 /**
- * Internal mutation for saving SRS review log entries.
- * @param {{ reviewId?: string; cardId: Id<"srs_cards">; studentId: Id<"profiles">; rating: string; submissionId?: string; evidence: object; stateBefore: object; stateAfter: object; reviewedAt: string }} args - Review arguments matching internalMutation schema
+ * Internal mutation for saving SRS review log entries. Delegates to
+ * `saveReviewHandler`, which validates the SRS state transition (reps
+ * delta, lapses monotonicity, state transition) and rejects invalid
+ * `reviewedAt` timestamps.
+ * @returns {Promise<Id<"srs_review_log">>} The ID of the inserted review log entry
+ * @throws Error if `reviewedAt` is an invalid date or if the SRS state transition validation fails
  */
 export const saveReview = internalMutation({
   args: {
@@ -148,6 +152,11 @@ export async function getReviewsByCardHandler(
     }));
 }
 
+/**
+ * Internal query that returns every review log entry for a specific SRS
+ * card, sorted by `reviewedAt` ascending.
+ * @returns {Promise<Array<{ reviewId: string; cardId: Id<"srs_cards">; studentId: Id<"profiles">; rating: string; submissionId: string; evidence: object; stateBefore: object; stateAfter: object; reviewedAt: string }>>} Array of review entries
+ */
 export const getReviewsByCard = internalQuery({
   args: { cardId: v.id("srs_cards") },
   handler: getReviewsByCardHandler,
@@ -195,6 +204,13 @@ export async function getReviewsByStudentHandler(
     }));
 }
 
+/**
+ * Internal query that returns every review log entry for a specific
+ * student, optionally filtered to reviews on/after the supplied
+ * `since` timestamp. Sorted by `reviewedAt` ascending.
+ * @returns {Promise<Array<{ reviewId: string; cardId: Id<"srs_cards">; studentId: Id<"profiles">; rating: string; submissionId: string; evidence: object; stateBefore: object; stateAfter: object; reviewedAt: string }>>} Array of review entries
+ * @throws Error if `since` is supplied and is an invalid date
+ */
 export const getReviewsByStudent = internalQuery({
   args: { studentId: v.id("profiles"), since: v.optional(v.string()) },
   handler: getReviewsByStudentHandler,

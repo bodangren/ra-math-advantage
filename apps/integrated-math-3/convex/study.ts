@@ -272,6 +272,7 @@ export async function getRecentStudySessionsHandler(
  * @param {MutationCtx} ctx - The mutation context
  * @param {SavePracticeTestResultArgs} args - The test result data
  * @returns {{ resultId: Id<"practice_test_results"> }} Object with the result ID
+ * @throws Error if `score` is negative or exceeds `questionCount`, if `questionCount` is non-positive, or if `moduleNumber` is outside 1..9
  */
 export async function savePracticeTestResultHandler(
   ctx: MutationCtx,
@@ -416,6 +417,11 @@ export async function getStudySessionsForTeacherHandler(
   return sessions;
 }
 
+/**
+ * Internal query that returns practice test results for a user, optionally
+ * filtered by module number.
+ * @returns {Promise<Array<Doc<"practice_test_results">>>} Array of practice test result documents
+ */
 export const getPracticeTestResults = internalQuery({
   args: {
     userId: v.id("profiles"),
@@ -424,6 +430,11 @@ export const getPracticeTestResults = internalQuery({
   handler: getPracticeTestResultsHandler,
 });
 
+/**
+ * Internal query that returns the user's most-recent study sessions
+ * (newest first), capped at `limit` (default 10).
+ * @returns {Promise<Array<Doc<"study_sessions">>>} Array of study session documents
+ */
 export const getRecentStudySessions = internalQuery({
   args: {
     userId: v.id("profiles"),
@@ -432,6 +443,13 @@ export const getRecentStudySessions = internalQuery({
   handler: getRecentStudySessionsHandler,
 });
 
+/**
+ * Internal mutation that records a practice test result for a user. The
+ * `score`, `questionCount`, and `moduleNumber` arguments are validated and
+ * the result is persisted to `practice_test_results`.
+ * @returns {Promise<{ resultId: Id<"practice_test_results"> }>} The new practice-test-result row ID
+ * @throws Error if `score` is negative or exceeds `questionCount`, if `questionCount` is non-positive, or if `moduleNumber` is outside 1..9
+ */
 export const savePracticeTestResult = internalMutation({
   args: {
     userId: v.id("profiles"),
@@ -451,6 +469,12 @@ export const savePracticeTestResult = internalMutation({
   handler: savePracticeTestResultHandler,
 });
 
+/**
+ * Internal mutation that records a study session (flashcards, matching,
+ * speed round, SRS review, or practice test) for a user. Stores the
+ * activity type, scope, and aggregate results.
+ * @returns {Promise<{ sessionId: Id<"study_sessions"> }>} The new study-session row ID
+ */
 export const recordStudySession = internalMutation({
   args: {
     userId: v.id("profiles"),
@@ -477,6 +501,10 @@ export const recordStudySession = internalMutation({
   handler: recordStudySessionHandler,
 });
 
+/**
+ * Internal query that returns a single study session by its row ID.
+ * @returns {Promise<Doc<"study_sessions"> | null>} The session document, or null if not found
+ */
 export const getStudySessionById = internalQuery({
   args: {
     sessionId: v.id("study_sessions"),
@@ -484,6 +512,10 @@ export const getStudySessionById = internalQuery({
   handler: getStudySessionByIdHandler,
 });
 
+/**
+ * Internal query that returns a single practice test result by its row ID.
+ * @returns {Promise<Doc<"practice_test_results"> | null>} The result document, or null if not found
+ */
 export const getPracticeTestResultById = internalQuery({
   args: {
     resultId: v.id("practice_test_results"),
@@ -491,6 +523,11 @@ export const getPracticeTestResultById = internalQuery({
   handler: getPracticeTestResultByIdHandler,
 });
 
+/**
+ * Internal query that returns practice test results for a specific student
+ * (teacher view), optionally filtered by module number.
+ * @returns {Promise<Array<Doc<"practice_test_results">>>} Array of practice test result documents
+ */
 export const getPracticeTestResultsForTeacher = internalQuery({
   args: {
     studentId: v.id("profiles"),
@@ -499,6 +536,11 @@ export const getPracticeTestResultsForTeacher = internalQuery({
   handler: getPracticeTestResultsForTeacherHandler,
 });
 
+/**
+ * Internal query that returns study sessions for a specific student
+ * (teacher view), optionally filtered by activity type. Sorted newest first.
+ * @returns {Promise<Array<Doc<"study_sessions">>>} Array of study session documents
+ */
 export const getStudySessionsForTeacher = internalQuery({
   args: {
     studentId: v.id("profiles"),
@@ -513,6 +555,12 @@ export const getStudySessionsForTeacher = internalQuery({
   handler: getStudySessionsForTeacherHandler,
 });
 
+/**
+ * Internal mutation that processes a spaced-repetition review for a
+ * glossary term. Updates `term_mastery` (mastery delta + proficiency band)
+ * and upserts the `due_reviews` row with the new FSRS state.
+ * @returns {Promise<{ success: boolean }>} Confirmation
+ */
 export const processReview = internalMutation({
   args: {
     userId: v.id("profiles"),
@@ -531,6 +579,11 @@ export const processReview = internalMutation({
   handler: processReviewHandler,
 });
 
+/**
+ * Internal query that returns every due glossary term (FSRS-state, term
+ * slug, and scheduledFor timestamp) for a user's study session.
+ * @returns {Promise<Array<{ termSlug: string; fsrsState: object; scheduledFor: number }>>} Array of due term reviews
+ */
 export const getDueTerms = internalQuery({
   args: {
     userId: v.id("profiles"),
@@ -539,6 +592,11 @@ export const getDueTerms = internalQuery({
   handler: getDueTermsHandler,
 });
 
+/**
+ * Internal query that returns term-mastery rows for a user's terms in a
+ * specific module.
+ * @returns {Promise<Array<Doc<"term_mastery">>>} Array of mastery records for terms in the module
+ */
 export const getTermMasteryByUnit = internalQuery({
   args: {
     userId: v.id("profiles"),

@@ -3,6 +3,12 @@ import { v } from "convex/values";
 import { internal } from "./_generated/api";
 import { practiceSubmissionEnvelopeValidator } from "./practice_submission";
 
+/**
+ * Internal query that returns the in-progress spreadsheet draft for a
+ * (student, activity) pair. Returns `{ draftData: null, updatedAt: null }`
+ * when no response row exists or the draft field is empty.
+ * @returns {Promise<{ draftData: unknown; updatedAt: number | null } | { draftData: null; updatedAt: null }>} Draft payload, or the null sentinel
+ */
 export const getSpreadsheetDraft = internalQuery({
   args: {
     userId: v.id("profiles"),
@@ -27,6 +33,12 @@ export const getSpreadsheetDraft = internalQuery({
   },
 });
 
+/**
+ * Internal mutation that upserts an in-progress spreadsheet draft for a
+ * (student, activity) pair. Patches an existing response row in place,
+ * otherwise inserts a new row with `isCompleted: false` and `attempts: 0`.
+ * @returns {Promise<{ success: true; updatedAt: number }>} Confirmation + the timestamp of the save
+ */
 export const saveSpreadsheetDraft = internalMutation({
   args: {
     userId: v.id("profiles"),
@@ -65,6 +77,11 @@ export const saveSpreadsheetDraft = internalMutation({
   },
 });
 
+/**
+ * Internal query that returns the full spreadsheet response (data, draft,
+ * completion, attempts, validation) for a (student, activity) pair.
+ * @returns {Promise<{ studentId: Id<"profiles">; spreadsheetData: unknown; draftData: unknown; isCompleted: boolean; attempts: number; lastValidationResult: unknown; submittedAt: number | null; updatedAt: number } | null>} Full response payload, or null when missing
+ */
 export const getSpreadsheetResponse = internalQuery({
   args: {
     studentId: v.id("profiles"),
@@ -95,6 +112,12 @@ export const getSpreadsheetResponse = internalQuery({
   },
 });
 
+/**
+ * Internal query that returns the validation-relevant subset of an
+ * activity (`componentKey`, `props`, `standardId`) for the practice
+ * runtime to render the spreadsheet/practice UI.
+ * @returns {Promise<{ componentKey: string; props: unknown; standardId: Id<"competency_standards"> | undefined } | null>} Activity fragment for the practice runtime, or null
+ */
 export const getActivityForValidation = internalQuery({
   args: {
     activityId: v.id("activities"),
@@ -114,6 +137,13 @@ export const getActivityForValidation = internalQuery({
   },
 });
 
+/**
+ * Internal mutation that records a spreadsheet submission. Patches the
+ * existing response (incrementing `attempts` and updating `submittedAt`
+ * only when `isCompleted: true`) or inserts a new row. Does NOT update
+ * competency — that's `submitActivity`'s job.
+ * @returns {Promise<{ success: true }>} Confirmation
+ */
 export const submitSpreadsheet = internalMutation({
   args: {
     userId: v.id("profiles"),
@@ -159,6 +189,13 @@ export const submitSpreadsheet = internalMutation({
   },
 });
 
+/**
+ * Internal mutation that bumps a student's mastery for a competency
+ * standard by `masteryIncrement` (clamped to 100). Patches the existing
+ * `student_competency` row, or inserts a new one starting at the supplied
+ * increment.
+ * @returns {Promise<{ newLevel: number }>} The new mastery level (0..100)
+ */
 export const updateCompetency = internalMutation({
   args: {
     studentId: v.id("profiles"),
@@ -200,6 +237,11 @@ export const updateCompetency = internalMutation({
   },
 });
 
+/**
+ * Internal query that returns the minimal profile projection used by
+ * teacher-facing session keys (`id`, `role`, `organizationId`).
+ * @returns {Promise<{ id: Id<"profiles">; role: 'student'|'teacher'|'admin'|'parent'; organizationId: Id<"organizations"> } | null>} Minimal profile payload, or null
+ */
 export const getProfileByUserId = internalQuery({
   args: {
     userId: v.id("profiles"),
@@ -216,6 +258,11 @@ export const getProfileByUserId = internalQuery({
   },
 });
 
+/**
+ * Internal query that returns the full profile projection (`id`, `role`,
+ * `organizationId`, `username`, `displayName`) keyed by username.
+ * @returns {Promise<{ id: Id<"profiles">; role: 'student'|'teacher'|'admin'|'parent'; organizationId: Id<"organizations">; username: string; displayName: string | undefined } | null>} Full profile payload, or null
+ */
 export const getProfileByUsername = internalQuery({
   args: {
     username: v.string(),
@@ -238,6 +285,11 @@ export const getProfileByUsername = internalQuery({
   },
 });
 
+/**
+ * Internal query that returns the full profile projection (`id`, `role`,
+ * `organizationId`, `username`, `displayName`) keyed by profile ID.
+ * @returns {Promise<{ id: Id<"profiles">; role: 'student'|'teacher'|'admin'|'parent'; organizationId: Id<"organizations">; username: string; displayName: string | undefined } | null>} Full profile payload, or null
+ */
 export const getProfileById = internalQuery({
   args: {
     profileId: v.id("profiles"),
@@ -256,6 +308,11 @@ export const getProfileById = internalQuery({
   },
 });
 
+/**
+ * Internal query that returns the full activity document for the practice
+ * runtime to render (`componentKey`, `props`, `gradingConfig`, etc.).
+ * @returns {Promise<{ id: Id<"activities">; componentKey: string; displayName: string; description: string | undefined; props: unknown; gradingConfig: unknown; standardId: Id<"competency_standards"> | undefined; createdAt: number; updatedAt: number } | null>} Activity payload, or null
+ */
 export const getActivityById = internalQuery({
   args: {
     activityId: v.id("activities"),
@@ -278,6 +335,11 @@ export const getActivityById = internalQuery({
   },
 });
 
+/**
+ * Internal mutation that records a graded assessment submission (no
+ * competency or SRS side effects — see `submitActivity` for that path).
+ * @returns {Promise<{ id: Id<"activity_submissions"> }>} The new submission row ID
+ */
 export const submitAssessment = internalMutation({
   args: {
     userId: v.id("profiles"),
@@ -307,6 +369,14 @@ export const submitAssessment = internalMutation({
   },
 });
 
+/**
+ * Internal mutation that records a practice submission, writes the
+ * derived competency delta (when the activity has a `standardId`),
+ * and schedules SRS processing. SRS scheduling failures are logged
+ * but do not abort the submission.
+ * @returns {Promise<{ id: Id<"activity_submissions">; score: number; maxScore: number }>} Submission row ID + aggregate score/maxScore from the part breakdown
+ * @throws Error if the target activity ID does not resolve to an `activities` row
+ */
 export const submitActivity = internalMutation({
   args: {
     userId: v.id("profiles"),

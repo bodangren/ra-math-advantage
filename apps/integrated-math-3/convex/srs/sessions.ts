@@ -81,6 +81,12 @@ export async function createSessionHandler(
   return id;
 }
 
+/**
+ * Internal mutation that creates a new SRS study session for a student.
+ * The session row is initialized with `completedAt: undefined` and
+ * `completedCards: 0`; the session is marked complete via `completeSession`.
+ * @returns {Promise<Id<"srs_sessions">>} The new session row ID
+ */
 export const createSession = internalMutation({
   args: createSessionArgsValidator,
   handler: createSessionHandler,
@@ -108,6 +114,12 @@ export async function completeSessionHandler(
   return session._id;
 }
 
+/**
+ * Internal mutation that marks an SRS study session as complete and
+ * records the final `completedCards` count.
+ * @returns {Promise<Id<"srs_sessions">>} The ID of the session that was completed
+ * @throws Error if the session is not found
+ */
 export const completeSession = internalMutation({
   args: {
     sessionId: v.string(),
@@ -140,6 +152,11 @@ export async function getActiveSessionHandler(
   return mapDbSessionToContract(active);
 }
 
+/**
+ * Internal query that returns the active (incomplete) SRS session for a
+ * student. There is at most one such session per student at a time.
+ * @returns {Promise<object | null>} The active session in contract format, or null if none exists
+ */
 export const getActiveSession = internalQuery({
   args: { studentId: v.string() },
   handler: getActiveSessionHandler,
@@ -178,6 +195,11 @@ export async function getSessionHistoryHandler(
   };
 }
 
+/**
+ * Internal query that returns paginated session history for a student,
+ * newest first.
+ * @returns {Promise<{ sessions: Array<object>; nextCursor: string | null }>} Paginated sessions in contract format, plus the next-page cursor (or null when done)
+ */
 export const getSessionHistory = internalQuery({
   args: {
     studentId: v.string(),
