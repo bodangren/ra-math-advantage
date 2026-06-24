@@ -21,7 +21,12 @@ import type { MathGenerator } from './registry';
 
 export const polynomialOperationsAdapter: MathGenerator = {
   key: 'polynomial-operations',
-  nodeIds: [],
+  nodeIds: [
+    'math.im3.skill.2.3.add-and-subtract-polynomials',
+    'math.im3.skill.2.3.multiply-polynomials',
+    'math.im3.skill.2.aleks.polynomial-add-subtract',
+    'math.im3.skill.2.aleks.polynomial-multiplication',
+  ],
   description: 'Generates polynomial arithmetic problems (add, subtract, multiply).',
   generate: (input: GeneratorInput): GeneratorOutput => {
     const problem = generatePolynomialOperation({ seed: input.seed });
@@ -58,7 +63,10 @@ export const polynomialOperationsAdapter: MathGenerator = {
 
 export const polynomialDivisionAdapter: MathGenerator = {
   key: 'polynomial-division',
-  nodeIds: [],
+  nodeIds: [
+    'math.im3.skill.2.4.divide-polynomials-by-using-long-division',
+    'math.im3.skill.2.aleks.polynomial-long-division',
+  ],
   description: 'Generates polynomial long-division problems using backward construction.',
   generate: (input: GeneratorInput): GeneratorOutput => {
     const problem = generatePolynomialDivision({ seed: input.seed });
@@ -102,7 +110,10 @@ export const polynomialDivisionAdapter: MathGenerator = {
 
 export const rationalAnalyzerAdapter: MathGenerator = {
   key: 'rational-analyzer',
-  nodeIds: [],
+  nodeIds: [
+    'math.im3.skill.7.4.graph-and-analyze-rational-functions-with-vertical-and-horiz',
+    'math.im3.skill.7.aleks.rational-function-asymptote-analysis',
+  ],
   description: 'Generates rational-function analysis problems (holes, asymptotes, intercepts).',
   generate: (input: GeneratorInput): GeneratorOutput => {
     const problem = generateRationalProblem({ seed: input.seed });
@@ -169,7 +180,12 @@ export const rationalAnalyzerAdapter: MathGenerator = {
 
 export const expLogSolverAdapter: MathGenerator = {
   key: 'exp-log-solver',
-  nodeIds: [],
+  nodeIds: [
+    'math.im3.skill.5.2.solve-exponential-equations-in-one-variable',
+    'math.im3.skill.6.2.solve-logarithmic-equations-using-properties-of-equality',
+    'math.im3.skill.6.3.solve-exponential-equations-by-using-common-logarithms',
+    'math.im3.skill.6.4.solve-exponential-equations-by-using-natural-logarithms',
+  ],
   description: 'Generates exponential and logarithmic equation problems.',
   generate: (input: GeneratorInput): GeneratorOutput => {
     const problem = generateExpLogProblem({ seed: input.seed });

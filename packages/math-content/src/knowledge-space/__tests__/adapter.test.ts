@@ -290,6 +290,32 @@ describe('advanced math adapter — horizontal asymptote grading', () => {
 });
 
 // ---------------------------------------------------------------------------
+// Advanced math adapter nodeIds (FR-10, FR-18)
+// ---------------------------------------------------------------------------
+
+describe('advanced math adapter nodeIds', () => {
+  const advancedKeys = [
+    'polynomial-operations',
+    'polynomial-division',
+    'rational-analyzer',
+    'exp-log-solver',
+  ];
+
+  it.each(advancedKeys)('%s has non-empty nodeIds', (key) => {
+    const gen = getGenerator(key);
+    expect(Array.isArray(gen.nodeIds)).toBe(true);
+    expect(gen.nodeIds.length).toBeGreaterThan(0);
+  });
+
+  it.each(advancedKeys)('%s nodeIds all match math.im3.skill.* pattern', (key) => {
+    const gen = getGenerator(key);
+    for (const id of gen.nodeIds) {
+      expect(id).toMatch(/^math\.im3\.skill\./);
+    }
+  });
+});
+
+// ---------------------------------------------------------------------------
 // Renderer registry
 // ---------------------------------------------------------------------------
 describe('renderer registry', () => {

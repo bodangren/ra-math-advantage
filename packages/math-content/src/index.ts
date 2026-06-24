@@ -64,8 +64,6 @@ export { mathDomainAdapter } from './knowledge-space';
 export type { MathDomainAdapter } from './knowledge-space';
 
 // Advanced math generators (Phase 1–4)
-export { GENERATOR_REGISTRY } from './generator-registry';
-export type { GeneratorEntry } from './generator-registry';
 export { generatePolynomialOperation } from './polynomial-operations';
 export { generatePolynomialDivision } from './polynomial-division';
 export { generateRationalProblem } from './rational-analyzer';

@@ -1,5 +1,4 @@
 import { describe, it, expect } from 'vitest';
-import { GENERATOR_REGISTRY } from '../generator-registry';
 import {
   generatePolynomialOperation,
   generatePolynomialDivision,
@@ -9,42 +8,6 @@ import {
   subtractPoly,
   multiplyPoly,
 } from '../index';
-
-// ---------------------------------------------------------------------------
-// Generator registry contract tests
-// ---------------------------------------------------------------------------
-
-describe('GENERATOR_REGISTRY', () => {
-  it('exports polynomial-operations generator', () => {
-    expect(GENERATOR_REGISTRY['polynomial-operations']).toBeDefined();
-  });
-
-  it('exports polynomial-division generator', () => {
-    expect(GENERATOR_REGISTRY['polynomial-division']).toBeDefined();
-  });
-
-  it('exports rational-analyzer generator', () => {
-    expect(GENERATOR_REGISTRY['rational-analyzer']).toBeDefined();
-  });
-
-  it('exports exp-log-solver generator', () => {
-    expect(GENERATOR_REGISTRY['exp-log-solver']).toBeDefined();
-  });
-
-  it('each generator has a generate(options) method', () => {
-    const keys = [
-      'polynomial-operations',
-      'polynomial-division',
-      'rational-analyzer',
-      'exp-log-solver',
-    ];
-    for (const key of keys) {
-      const generator = GENERATOR_REGISTRY[key];
-      expect(generator).toBeDefined();
-      expect(typeof generator.generate).toBe('function');
-    }
-  });
-});
 
 // ---------------------------------------------------------------------------
 // Index re-export contract tests
