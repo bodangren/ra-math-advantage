@@ -4,11 +4,16 @@ const mockVerifySessionToken = vi.fn();
 const mockGetAuthJwtSecret = vi.fn(() => 'test-secret');
 const mockFetchInternalQuery = vi.fn();
 
-vi.mock('@math-platform/core-auth', () => ({
-  verifySessionToken: mockVerifySessionToken,
-  SESSION_COOKIE_NAME: 'session',
-  getAuthJwtSecret: mockGetAuthJwtSecret,
-}));
+vi.mock('@math-platform/core-auth', async () => {
+  const actual =
+    await vi.importActual<typeof import('@math-platform/core-auth')>('@math-platform/core-auth');
+  return {
+    ...actual,
+    verifySessionToken: mockVerifySessionToken,
+    SESSION_COOKIE_NAME: 'session',
+    getAuthJwtSecret: mockGetAuthJwtSecret,
+  };
+});
 vi.mock('@/lib/convex/server', () => ({
   fetchInternalQuery: mockFetchInternalQuery,
   internal: {

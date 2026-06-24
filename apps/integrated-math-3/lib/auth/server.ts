@@ -1,54 +1,35 @@
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
-import { NextResponse } from 'next/server';
 
-import { SESSION_COOKIE_NAME, getAuthJwtSecret } from '@math-platform/core-auth';
-import { verifySessionToken, type SessionClaims } from '@math-platform/core-auth';
+import {
+  SESSION_COOKIE_NAME,
+  getAuthJwtSecret,
+  verifySessionToken,
+  type ActiveCredentialVerifier,
+  type SessionClaims,
+  // The buildRequest* helpers below are intentionally re-exported at the
+  // IM3 boundary so that route handlers can compose custom responses
+  // without re-importing core-auth directly. They mirror the BM2 pattern
+  // (apps/bus-math-v2/lib/auth/server.ts) and are required by the
+  // Phase 5 FR-14 arch-lint contract.
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  buildRequestForbiddenResponse,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  buildRequestServiceUnavailableResponse,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  buildRequestUnauthorizedResponse,
+  getRequestSessionClaims as _getRequestSessionClaims,
+  requireActiveRequestSessionClaims as _requireActiveRequestSessionClaims,
+  requireRequestSessionClaims as _requireRequestSessionClaims,
+  requireRoleRequestClaims as _requireRoleRequestClaims,
+} from '@math-platform/core-auth';
 
 import { fetchInternalQuery, internal } from '@/lib/convex/server';
 
 const APP_LOGIN_PATH_PREFIX = '/auth/login';
 const APP_DEFAULT_TEACHER_UNAUTHORIZED_REDIRECT = '/student/dashboard';
 
-/** Parses a cookie header string and extracts the value for the given key. */
-function getCookieValueFromHeader(cookieHeader: string | null, key: string): string | null {
-  if (!cookieHeader) return null;
-
-  const entries = cookieHeader.split(';');
-  for (const entry of entries) {
-    const trimmed = entry.trim();
-    if (!trimmed) continue;
-
-    const separatorIndex = trimmed.indexOf('=');
-    if (separatorIndex <= 0) continue;
-
-    const name = trimmed.slice(0, separatorIndex).trim();
-    if (name !== key) continue;
-
-    try {
-      return decodeURIComponent(trimmed.slice(separatorIndex + 1));
-    } catch {
-      return null;
-    }
-  }
-
-  return null;
-}
-
-/** Creates a 401 Unauthorized JSON response with the given message. */
-function buildRequestUnauthorizedResponse(message = 'Unauthorized') {
-  return NextResponse.json({ error: message }, { status: 401 });
-}
-
-/** Creates a 403 Forbidden JSON response with the given message. */
-function buildRequestForbiddenResponse(message = 'Forbidden') {
-  return NextResponse.json({ error: message }, { status: 403 });
-}
-
-/** Creates a 503 Service Unavailable JSON response with the given message. */
-function buildRequestServiceUnavailableResponse(message = 'Service unavailable') {
-  return NextResponse.json({ error: message }, { status: 503 });
-}
+const verifyToken = (token: string) => verifySessionToken(token, getAuthJwtSecret());
 
 /**
  * Reads and verifies the authenticated session claims from the server cookie jar.
@@ -62,13 +43,10 @@ export async function getServerSessionClaims(): Promise<SessionClaims | null> {
 }
 
 /**
- * Reads session claims from a request cookie header instead of Next's server cookie store.
+ * Reads session claims from a request cookie header.
  */
 export async function getRequestSessionClaims(request: Request): Promise<SessionClaims | null> {
-  const token = getCookieValueFromHeader(request.headers.get('cookie'), SESSION_COOKIE_NAME);
-  if (!token) return null;
-
-  return verifySessionToken(token, getAuthJwtSecret());
+  return _getRequestSessionClaims(request, verifyToken, SESSION_COOKIE_NAME);
 }
 
 /**
@@ -78,12 +56,10 @@ export async function requireRequestSessionClaims(
   request: Request,
   unauthorizedMessage = 'Unauthorized',
 ): Promise<SessionClaims | Response> {
-  const claims = await getRequestSessionClaims(request);
-  if (!claims) {
-    return buildRequestUnauthorizedResponse(unauthorizedMessage);
-  }
-
-  return claims;
+  return _requireRequestSessionClaims(request, verifyToken, {
+    cookieName: SESSION_COOKIE_NAME,
+    unauthorizedMessage,
+  });
 }
 
 /**
@@ -94,16 +70,11 @@ export async function requireStudentRequestClaims(
   unauthorizedMessage = 'Unauthorized',
   forbiddenMessage = 'Forbidden',
 ): Promise<SessionClaims | Response> {
-  const claimsOrResponse = await requireRequestSessionClaims(request, unauthorizedMessage);
-  if (claimsOrResponse instanceof Response) {
-    return claimsOrResponse;
-  }
-
-  if (claimsOrResponse.role !== 'student') {
-    return buildRequestForbiddenResponse(forbiddenMessage);
-  }
-
-  return claimsOrResponse;
+  return _requireRoleRequestClaims(request, verifyToken, ['student'], {
+    cookieName: SESSION_COOKIE_NAME,
+    unauthorizedMessage,
+    forbiddenMessage,
+  });
 }
 
 /**
@@ -115,16 +86,11 @@ export async function requireTeacherRequestClaims(
   unauthorizedMessage = 'Unauthorized',
   forbiddenMessage = 'Forbidden',
 ): Promise<SessionClaims | Response> {
-  const claimsOrResponse = await requireRequestSessionClaims(request, unauthorizedMessage);
-  if (claimsOrResponse instanceof Response) {
-    return claimsOrResponse;
-  }
-
-  if (claimsOrResponse.role !== 'teacher' && claimsOrResponse.role !== 'admin') {
-    return buildRequestForbiddenResponse(forbiddenMessage);
-  }
-
-  return claimsOrResponse;
+  return _requireRoleRequestClaims(request, verifyToken, ['teacher', 'admin'], {
+    cookieName: SESSION_COOKIE_NAME,
+    unauthorizedMessage,
+    forbiddenMessage,
+  });
 }
 
 /** Builds a login redirect URL with the given path as the post-login redirect target. */
@@ -179,17 +145,26 @@ export async function requireDeveloperRequestClaims(
   unauthorizedMessage = 'Unauthorized',
   forbiddenMessage = 'Forbidden',
 ): Promise<SessionClaims | Response> {
-  const claimsOrResponse = await requireRequestSessionClaims(request, unauthorizedMessage);
-  if (claimsOrResponse instanceof Response) {
-    return claimsOrResponse;
-  }
-
-  if (claimsOrResponse.role !== 'admin') {
-    return buildRequestForbiddenResponse(forbiddenMessage);
-  }
-
-  return claimsOrResponse;
+  return _requireRoleRequestClaims(request, verifyToken, ['admin'], {
+    cookieName: SESSION_COOKIE_NAME,
+    unauthorizedMessage,
+    forbiddenMessage,
+  });
 }
+
+/**
+ * IM3's stricter active-credential check: the credential must exist AND
+ * be marked isActive. This is the only behavioural divergence from
+ * BM2 (which checks existence only). The lambda body is bound at module
+ * load so the core-auth `requireActiveRequestSessionClaims` export
+ * receives a stable verifier reference for the lifetime of the process.
+ */
+const verifyActiveCredential: ActiveCredentialVerifier = async (claims) => {
+  const credential = await fetchInternalQuery(internal.auth.getCredentialByUsername, {
+    username: claims.username,
+  });
+  return credential !== null && credential.isActive === true;
+};
 
 /**
  * Requires an authenticated request with an active credential in Convex.
@@ -199,24 +174,11 @@ export async function requireActiveRequestSessionClaims(
   request: Request,
   unauthorizedMessage = 'Unauthorized',
 ): Promise<SessionClaims | Response> {
-  const claimsOrResponse = await requireRequestSessionClaims(request, unauthorizedMessage);
-  if (claimsOrResponse instanceof Response) {
-    return claimsOrResponse;
-  }
-
-  try {
-    const credential = await fetchInternalQuery(internal.auth.getCredentialByUsername, {
-      username: claimsOrResponse.username,
-    });
-
-    if (!credential || !credential.isActive) {
-      return buildRequestUnauthorizedResponse(unauthorizedMessage);
-    }
-
-    return claimsOrResponse;
-  } catch {
-    return buildRequestServiceUnavailableResponse('Service unavailable. Please try again later.');
-  }
+  return _requireActiveRequestSessionClaims(request, verifyToken, verifyActiveCredential, {
+    cookieName: SESSION_COOKIE_NAME,
+    unauthorizedMessage,
+    serviceUnavailableMessage: 'Service unavailable. Please try again later.',
+  });
 }
 
 /**
