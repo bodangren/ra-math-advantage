@@ -2941,3 +2941,803 @@ Each of commits 2–4 gets a git note per workflow.md step 10.
    math-content tests 92/92.
 7. **Targeted vitest scopes only.** No aggregate `npm test`.
 
+---
+
+# Phase 5 — unified-auth IM3 follow-through (Cluster E)
+
+Baseline SHA for Phase 5: `d023ce7b` (Phase 4 fully closed).
+Role: Measure Strategy. No source edits; no test code authored by strategy.
+
+> Phase 5 closes FR-14, the final follow-through from the
+> `unified-auth-monorepo_20260609` track. BM2 already finished this
+> refactor in that track; IM3 deferred because the IM3 auth test harness
+> mocks only `verifySessionToken` from `@math-platform/core-auth`. Phase
+> 5 must update the harness to stub the new request-guard exports, then
+> replace the inline `getCookieValueFromHeader` + 401/403/503 response
+> builders + request guards in `apps/integrated-math-3/lib/auth/server.ts`
+> with core-auth composition (mirroring BM2), and resolve the matching
+> tech-debt entry.
+
+---
+
+## 38. Goal & scope (Phase 5)
+
+Single FR — FR-14. Three concrete sub-objectives:
+
+1. **Replace the inline `getCookieValueFromHeader` + 401/403/503 response
+   builders + request guards** in
+   `apps/integrated-math-3/lib/auth/server.ts` (lines 14-219) with
+   composition over `packages/core-auth/request-guards` exports
+   (`getRequestSessionClaims`, `requireRequestSessionClaims`,
+   `requireRoleRequestClaims`, `requireActiveRequestSessionClaims`,
+   `buildRequestUnauthorizedResponse`,
+   `buildRequestForbiddenResponse`,
+   `buildRequestServiceUnavailableResponse`). Pattern mirrors BM2's
+   `apps/bus-math-v2/lib/auth/server.ts`.
+2. **Update the IM3 auth test harness** so the new core-auth
+   request-guard exports are stubbed. Current harness
+   (`__tests__/lib/auth/server-guards.test.ts`) only mocks
+   `verifySessionToken`, `SESSION_COOKIE_NAME`, `getAuthJwtSecret` from
+   `@math-platform/core-auth`. After the refactor, the IM3 server
+   composes over `_requireRequestSessionClaims`/`_requireActiveRequestSessionClaims`
+   etc. The harness must stub these so the test surface proves the
+   composition is wired correctly.
+3. **Mark the matching tech-debt entry Resolved.**
+   `measure/tech-debt.md` row "IM3 auth wrapper inline duplication" (line
+   32) is the open ticket. Update `Status` to `Resolved` and add a
+   "Notes" suffix pointing to the closing commit.
+
+UMV closeout follows the same protocol as Phases 1-4 (workflow.md).
+
+What Phase 5 does **not** cover:
+- The parent-server-guards file
+  (`apps/integrated-math-3/lib/auth/parent-server-guards.ts`) has the
+  same inline-`getCookieValueFromHeader` pattern (lines 10-36). It was
+  intentionally out of scope of `unified-auth-monorepo_20260609` Phase 4
+  acceptance (the spec FR-14 names only the `lib/auth/server.ts` file).
+  Phase 5 inherits the same scope boundary; the parent-guard refactor
+  is a separate future work. Strategy decision (binding): Phase 5 MUST
+  NOT touch `parent-server-guards.ts` even though the inline
+  `getCookieValueFromHeader` would also benefit from core-auth
+  composition.
+- Any change to `developer.ts` (uses `getServerSessionClaims`, not
+  request guards).
+- Any new auth features (no role widening, no link check changes).
+- Behavior change in the active-credential check. BM2's `verifyActive`
+  returns `credential !== null`; IM3's returns
+  `credential !== null && credential.isActive`. Phase 5 preserves the
+  IM3-isActive-stricter behavior — the ActiveCredentialVerifier lambda
+  body is the only divergence from BM2's pattern. This is a
+  **binding** behavioral preservation, not a refactor-only change.
+
+---
+
+## 39. Pre-conditions / environment (Phase 5)
+
+- **Working-tree state at start:** clean across `apps/ packages/
+  convex/` (Phase 4 closed at d023ce7b). The `--db`/`--symbol` junk
+  files remain untracked (Phase 8 cleanup, out of scope here).
+- **FR-3 guard invariant (Phase 1):** the JSDoc balanced-brace guard
+  must still return exit 0 / 0 violations on the post-Phase-5 tree.
+  The refactor must not introduce malformed JSDoc in
+  `apps/integrated-math-3/lib/auth/server.ts` or the new test file.
+- **Phase 2 invariant:** IM3 visualization tests (22/22) must still
+  pass. The auth refactor does not touch Convex handlers, but Phase 5
+  must re-run the suite to confirm no regression via module-graph
+  re-evaluation.
+- **Phase 3 invariant:** math-content tests (92/92) unchanged. The
+  refactor is contained to `apps/integrated-math-3/lib/auth/`.
+- **Phase 4 invariant:** precalc/concept-taxonomy tests unchanged.
+- **Existing test harness:**
+  `apps/integrated-math-3/__tests__/lib/auth/server-guards.test.ts`
+  uses module-level `vi.mock('@math-platform/core-auth', …)` with
+  `verifySessionToken`, `SESSION_COOKIE_NAME`, `getAuthJwtSecret`
+  stubs. After Phase 5, the IM3 server imports additional symbols
+  from `@math-platform/core-auth`. The mock MUST be extended to stub
+  them; if the test imports a real `getRequestSessionClaims` (for
+  example) without a mock, vitest will fail to resolve the new
+  module's call sites.
+- **Mock-vi-partial pattern (the right way):** the existing test
+  uses `vi.mock('@math-platform/core-auth', () => ({ … }))` to
+  replace the entire module surface. To stub only specific exports
+  while keeping real implementations of others, use
+  `vi.mock('@math-platform/core-auth', async () => {
+  const actual = await vi.importActual<typeof import('@math-platform/core-auth')>('@math-platform/core-auth');
+  return { ...actual, verifySessionToken: mockVerifySessionToken, requireRequestSessionClaims: mockRequireRequestSessionClaims, … };
+  })`. The parent-role-guard test
+  (`parent-role-guard.test.ts:60-69`) already uses this `importActual +
+  spread` pattern — Phase 5 MUST adopt the same pattern in
+  `server-guards.test.ts` so the real response builders and the
+  real `getRequestSessionClaims` keep working (the harness only
+  overrides what it needs to override).
+- **Commands:**
+  - RED_TEST_COMMAND: `npm run --workspace=apps/integrated-math-3 test
+    -- --run` scoped via vitest's filename filter
+    (`__tests__/lib/auth/server-composition.test.ts`).
+  - PROJECT_LINT: `npm run lint`. The lint change is contained to
+    `apps/integrated-math-3/` and
+    `apps/integrated-math-3/__tests__/lib/auth/`.
+  - PROJECT_CHECKS: `npx tsc --noEmit` — no NEW errors versus the
+    Phase 4 closeout baseline (318 pre-existing IM3 errors, 10 ksp
+    errors per Phase 1 §11). The refactor is local to
+    `lib/auth/server.ts`; its tsc impact is the new import's typing.
+- **No aggregate `npm test`.** Stay scoped to auth tests for the
+  closeout; the invariant checks re-run the Phase 2/3/4 suites for
+  regression coverage.
+
+---
+
+## 40. Red phase contract (Phase 5)
+
+Three failing tests, all in a new test file
+`apps/integrated-math-3/__tests__/lib/auth/server-composition.test.ts`.
+Per FR-20, the new tests must be **behavioral** or **architectural
+lints** that fail at HEAD, not parity/grep-only oracles standing in
+for behavioral coverage. The tests below satisfy that bar.
+
+### Task 5.1 — FR-14 arch-lint: IM3 server.ts composes core-auth (Red)
+
+**Behavioral contract:**
+The IM3 auth server file imports the new core-auth request-guard
+exports. A source-text scan for those imports is sufficient as an
+architecture lint (Phase 1 §5 anti-pattern #1 says source-grep is
+allowed only as a complement to behavioral coverage). For FR-14, the
+"behavioral" surface IS the import surface — the refactor is
+file-internal code, and the architectural contract is exactly
+"this file uses the new core-auth composition instead of inline
+helpers." The Red is therefore the source-lint; Green replaces
+the inline helpers with imports; the lint goes from failing to
+passing.
+
+**Test (added to `server-composition.test.ts`):**
+
+```ts
+import { describe, it, expect } from 'vitest';
+import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { dirname, resolve } from 'node:path';
+
+const here = dirname(fileURLToPath(import.meta.url));
+const serverSrc = readFileSync(
+  resolve(here, '../../../lib/auth/server.ts'),
+  'utf8',
+);
+
+describe('IM3 auth server composition (FR-14)', () => {
+  it('imports core-auth request-guard exports', () => {
+    // FAIL at HEAD: IM3 server.ts imports only verifySessionToken,
+    // SESSION_COOKIE_NAME, getAuthJwtSecret. No request-guard imports.
+    // PASS after Green: IM3 server.ts imports the named request-guard
+    // exports from @math-platform/core-auth.
+    expect(serverSrc).toMatch(
+      /import\s*\{[^}]*\brequireRequestSessionClaims\b[^}]*\}\s*from\s*['"]@math-platform\/core-auth['"]/,
+    );
+    expect(serverSrc).toMatch(
+      /import\s*\{[^}]*\brequireRoleRequestClaims\b[^}]*\}\s*from\s*['"]@math-platform\/core-auth['"]/,
+    );
+    expect(serverSrc).toMatch(
+      /import\s*\{[^}]*\brequireActiveRequestSessionClaims\b[^}]*\}\s*from\s*['"]@math-platform\/core-auth['"]/,
+    );
+    expect(serverSrc).toMatch(
+      /import\s*\{[^}]*\bgetRequestSessionClaims\b[^}]*\}\s*from\s*['"]@math-platform\/core-auth['"]/,
+    );
+    expect(serverSrc).toMatch(
+      /import\s*\{[^}]*\bbuildRequestUnauthorizedResponse\b[^}]*\}\s*from\s*['"]@math-platform\/core-auth['"]/,
+    );
+    expect(serverSrc).toMatch(
+      /import\s*\{[^}]*\bbuildRequestForbiddenResponse\b[^}]*\}\s*from\s*['"]@math-platform\/core-auth['"]/,
+    );
+    expect(serverSrc).toMatch(
+      /import\s*\{[^}]*\bbuildRequestServiceUnavailableResponse\b[^}]*\}\s*from\s*['"]@math-platform\/core-auth['"]/,
+    );
+  });
+
+  it('does not redeclare the inline getCookieValueFromHeader helper', () => {
+    // FAIL at HEAD: lines 14-36 declare
+    // `function getCookieValueFromHeader(...)`. PASS after Green: that
+    // function is removed and replaced with core-auth composition.
+    expect(serverSrc).not.toMatch(/function\s+getCookieValueFromHeader\s*\(/);
+  });
+
+  it('does not redeclare the inline request-response builders', () => {
+    // FAIL at HEAD: lines 39-51 declare buildRequestUnauthorizedResponse,
+    // buildRequestForbiddenResponse, buildRequestServiceUnavailableResponse
+    // locally. PASS after Green: they are imported from core-auth.
+    expect(serverSrc).not.toMatch(/function\s+buildRequestUnauthorizedResponse\s*\(/);
+    expect(serverSrc).not.toMatch(/function\s+buildRequestForbiddenResponse\s*\(/);
+    expect(serverSrc).not.toMatch(/function\s+buildRequestServiceUnavailableResponse\s*\(/);
+  });
+});
+```
+
+**Why this is not a "parity / grep oracle" anti-pattern:** the
+architectural contract for FR-14 is the import surface — the spec
+literally says "replace inline helpers with core-auth composition."
+A source-grep that asserts the import surface IS the contract. The
+analogous complement is the behavioral test below (Task 5.2), which
+executes the refactored code with mocked request-guard exports and
+asserts on the response shape.
+
+### Task 5.2 — FR-14 test harness stubs the new core-auth exports (Red)
+
+**Behavioral contract:**
+The IM3 auth test harness must mock the new core-auth request-guard
+exports. The behavioral proof is end-to-end: a test that stubs
+`requireActiveRequestSessionClaims` to return a 503 Response, then
+calls the IM3 `requireActiveRequestSessionClaims`, and asserts the
+503 is returned unchanged. That can only pass if the IM3 server
+delegates to the mocked `requireActiveRequestSessionClaims` — i.e.
+the new composition is wired. At HEAD, the IM3 server has no
+`requireActiveRequestSessionClaims` import, so the mock would never
+be reached; the test would fail because the IM3 server's local
+logic doesn't go through the mocked function.
+
+**Test (added to `server-composition.test.ts`):**
+
+```ts
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+
+const mockRequireRequestSessionClaims = vi.fn();
+const mockRequireRoleRequestClaims = vi.fn();
+const mockRequireActiveRequestSessionClaims = vi.fn();
+const mockGetRequestSessionClaims = vi.fn();
+const mockBuildRequestUnauthorizedResponse = vi.fn(
+  (msg = 'Unauthorized') => new Response(JSON.stringify({ error: msg }), { status: 401 }),
+);
+const mockBuildRequestForbiddenResponse = vi.fn(
+  (msg = 'Forbidden') => new Response(JSON.stringify({ error: msg }), { status: 403 }),
+);
+const mockBuildRequestServiceUnavailableResponse = vi.fn(
+  (msg = 'Service unavailable') =>
+    new Response(JSON.stringify({ error: msg }), { status: 503 }),
+);
+
+vi.mock('@math-platform/core-auth', async () => {
+  const actual = await vi.importActual<typeof import('@math-platform/core-auth')>(
+    '@math-platform/core-auth',
+  );
+  return {
+    ...actual,
+    SESSION_COOKIE_NAME: 'session',
+    getAuthJwtSecret: () => 'test-secret',
+    getRequestSessionClaims: mockGetRequestSessionClaims,
+    requireRequestSessionClaims: mockRequireRequestSessionClaims,
+    requireRoleRequestClaims: mockRequireRoleRequestClaims,
+    requireActiveRequestSessionClaims: mockRequireActiveRequestSessionClaims,
+    buildRequestUnauthorizedResponse: mockBuildRequestUnauthorizedResponse,
+    buildRequestForbiddenResponse: mockBuildRequestForbiddenResponse,
+    buildRequestServiceUnavailableResponse: mockBuildRequestServiceUnavailableResponse,
+  };
+});
+
+vi.mock('@/lib/convex/server', () => ({
+  fetchInternalQuery: vi.fn(),
+  internal: {
+    auth: {
+      getCredentialByUsername: 'auth:getCredentialByUsername',
+    },
+  },
+}));
+
+const makeRequest = (cookie?: string) =>
+  new Request('http://localhost/api/test', {
+    headers: cookie ? { cookie } : {},
+  });
+
+describe('IM3 server composes new core-auth request-guard exports', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it('delegates requireActiveRequestSessionClaims to the core-auth export and propagates a 503 unchanged', async () => {
+    const serviceUnavailable = new Response(
+      JSON.stringify({ error: 'Service unavailable' }),
+      { status: 503 },
+    );
+    mockRequireActiveRequestSessionClaims.mockResolvedValue(serviceUnavailable);
+
+    const { requireActiveRequestSessionClaims } = await import('@/lib/auth/server');
+    const result = await requireActiveRequestSessionClaims(makeRequest('session=tok'));
+
+    // FAIL at HEAD: IM3 server has no import of
+    // requireActiveRequestSessionClaims from core-auth. The mock is
+    // never called. The IM3 server's own local logic returns a 503
+    // (when Convex throws) that does NOT go through the mocked
+    // function — the assertion below would still pass coincidentally.
+    // To make the failure observable: the mock MUST have been called
+    // with the request — proves the composition is wired.
+    expect(mockRequireActiveRequestSessionClaims).toHaveBeenCalledTimes(1);
+    expect(result).toBe(serviceUnavailable);
+  });
+
+  it('delegates requireStudentRequestClaims to requireRoleRequestClaims for the student role', async () => {
+    const claims = {
+      sub: 'p1', username: 'alice', role: 'student' as const,
+      iat: 1, exp: 9999999999,
+    };
+    mockRequireRoleRequestClaims.mockResolvedValue(claims);
+
+    const { requireStudentRequestClaims } = await import('@/lib/auth/server');
+    const result = await requireStudentRequestClaims(makeRequest('session=tok'));
+
+    // FAIL at HEAD: IM3 server does not import requireRoleRequestClaims.
+    expect(mockRequireRoleRequestClaims).toHaveBeenCalledTimes(1);
+    expect(result).toEqual(claims);
+  });
+
+  it('delegates requireTeacherRequestClaims to requireRoleRequestClaims for [teacher, admin]', async () => {
+    const claims = {
+      sub: 'p1', username: 'alice', role: 'teacher' as const,
+      iat: 1, exp: 9999999999,
+    };
+    mockRequireRoleRequestClaims.mockResolvedValue(claims);
+
+    const { requireTeacherRequestClaims } = await import('@/lib/auth/server');
+    const result = await requireTeacherRequestClaims(makeRequest('session=tok'));
+
+    // FAIL at HEAD: no requireRoleRequestClaims import.
+    expect(mockRequireRoleRequestClaims).toHaveBeenCalledTimes(1);
+    expect(result).toEqual(claims);
+  });
+
+  it('delegates requireRequestSessionClaims to the core-auth export', async () => {
+    const claims = {
+      sub: 'p1', username: 'alice', role: 'student' as const,
+      iat: 1, exp: 9999999999,
+    };
+    mockRequireRequestSessionClaims.mockResolvedValue(claims);
+
+    const { requireRequestSessionClaims } = await import('@/lib/auth/server');
+    const result = await requireRequestSessionClaims(makeRequest('session=tok'));
+
+    // FAIL at HEAD: no requireRequestSessionClaims import.
+    expect(mockRequireRequestSessionClaims).toHaveBeenCalledTimes(1);
+    expect(result).toEqual(claims);
+  });
+});
+```
+
+**Why this is not a spy-on-spy oracle:** the test asserts on the
+*interaction* between the IM3 server and the new core-auth exports
+(the mock was called) AND on the *propagation* (the Response
+returned by the IM3 server equals the one returned by the mock).
+That is two independent observable facts. A spy-assertion anti-pattern
+would be asserting only "the mock was called" with no propagation
+check; this test asserts both. The mock-call assertion proves the
+composition is wired (Task 5.1's arch-lint is the structural
+counterpart); the propagation assertion proves the IM3 server
+is not reimplementing the response in a way that bypasses the
+core-auth response shape.
+
+### Task 5.3 — FR-14 tech-debt entry is Resolved (Red)
+
+**Behavioral contract:** `measure/tech-debt.md` row "IM3 auth wrapper
+inline duplication" must have `Status: Resolved` after Phase 5 lands.
+A source-grep on the tech-debt file is the architecture lint (same
+as Task 5.1 — the contract for this task IS the registry text).
+Failing at HEAD because the row is `Open`.
+
+**Test (added to `server-composition.test.ts`):**
+
+```ts
+import { describe, it, expect } from 'vitest';
+import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { dirname, resolve } from 'node:path';
+
+const here = dirname(fileURLToPath(import.meta.url));
+const techDebtPath = resolve(here, '../../../../../measure/tech-debt.md');
+
+describe('FR-14 tech-debt entry status (Cluster E closeout)', () => {
+  it('IM3 auth wrapper inline duplication entry is Resolved', () => {
+    const src = readFileSync(techDebtPath, 'utf8');
+    // Find the row with the FR-14 description and assert the Status
+    // column is Resolved.
+    const rowMatch = src.match(
+      /IM3 auth wrapper inline duplication\s*\|\s*Medium\s*\|\s*(Open|Resolved)\s*\|/,
+    );
+    expect(rowMatch, 'FR-14 tech-debt row must be present').not.toBeNull();
+    // FAIL at HEAD (Status: Open). PASS after Green (Status: Resolved).
+    expect(rowMatch![1]).toBe('Resolved');
+  });
+});
+```
+
+**Why this is not a grep-on-meta oracle:** the spec FR-14 acceptance
+criterion 13 is "Every FR above is either implemented or explicitly
+converted to a documented tech-debt entry with rationale (no silent
+drops)." The tech-debt registry is the source of truth for
+"implemented" vs. "deferred" — the contract is the registry text.
+Asserting the registry text is the contract is not a "parity" oracle
+in the FR-20 sense; it is a registry invariant. The test is
+purpose-built for the Cluster E closeout.
+
+### Task 5.4 — Phase 5 closeout
+
+UMV is performed by the user per workflow.md. The strategy artifact
+for UMV is the set of Green artifacts attached to the Phase-5
+checkpoint git note (see §43 below).
+
+---
+
+## 41. Green phase contract (Phase 5)
+
+### Task 5.1 Green — refactor `apps/integrated-math-3/lib/auth/server.ts`
+
+1. **Replace the inline `getCookieValueFromHeader`** (lines 14-36)
+   with the imported `getRequestSessionClaims` from
+   `@math-platform/core-auth`. The verifier is app-supplied:
+   ```ts
+   const verifyToken = (token: string) =>
+     verifySessionToken(token, getAuthJwtSecret());
+   ```
+   Pattern mirrors `apps/bus-math-v2/lib/auth/server.ts:23`.
+
+2. **Remove the inline 401/403/503 response builders** (lines 39-51).
+   Import the named exports from `@math-platform/core-auth`. The
+   core-auth builders return a global `Response` (not `NextResponse`),
+   which is the right type for `Promise<SessionClaims | Response>`
+   signatures.
+
+3. **Replace `requireRequestSessionClaims`** (lines 77-87) with a
+   thin wrapper that delegates to the core-auth export:
+   ```ts
+   export async function requireRequestSessionClaims(
+     request: Request,
+     unauthorizedMessage = 'Unauthorized',
+   ): Promise<SessionClaims | Response> {
+     return _requireRequestSessionClaims(request, verifyToken, {
+       cookieName: SESSION_COOKIE_NAME,
+       unauthorizedMessage,
+     });
+   }
+   ```
+   (Rename the core-auth import to `_requireRequestSessionClaims`
+   to avoid the local-vs-imported symbol name collision, matching
+   BM2's pattern at `bus-math-v2/lib/auth/server.ts:7-16`.)
+
+4. **Replace `requireStudentRequestClaims`** (lines 92-107) with
+   `_requireRoleRequestClaims(request, verifyToken, ['student'], {…})`.
+
+5. **Replace `requireTeacherRequestClaims`** (lines 113-128) with
+   `_requireRoleRequestClaims(request, verifyToken, ['teacher', 'admin'], {…})`.
+   IM3's admin-as-teacher is preserved by the role list.
+
+6. **Replace `requireDeveloperRequestClaims`** (lines 177-192) with
+   `_requireRoleRequestClaims(request, verifyToken, ['admin'], {…})`.
+
+7. **Replace `requireActiveRequestSessionClaims`** (lines 198-220) with
+   `_requireActiveRequestSessionClaims(request, verifyToken, verifyActiveCredential, {…})`
+   where `verifyActiveCredential` is:
+   ```ts
+   const verifyActiveCredential: ActiveCredentialVerifier = async (claims) => {
+     const credential = await fetchInternalQuery(
+       internal.auth.getCredentialByUsername,
+       { username: claims.username },
+     );
+     return credential !== null && credential.isActive === true;
+   };
+   ```
+   **This preserves the IM3-isActive-stricter behavior** (per §38
+   binding decision). The lambda body is the only divergence from
+   BM2; the return-type (`Promise<boolean>`) is core-auth's
+   `ActiveCredentialVerifier` contract.
+
+8. **Add `getRequestSessionClaims`** as a thin wrapper for the
+   public API (BM2 has it at `bus-math-v2/lib/auth/server.ts:127-129`).
+   IM3 currently has it inline; the refactor moves it to delegate to
+   the core-auth export.
+
+9. **Preserve** `getServerSessionClaims`, `requireServerSessionClaims`,
+   `requireServerRoles`, `requireTeacherSessionClaims`,
+   `requireStudentSessionClaims`, `buildLoginRedirect` (internal
+   helper), and the `APP_*` constants — these are page-level
+   server-guard helpers that the refactor does not touch.
+
+10. **Drop the `NextResponse` import** (line 3) if it becomes unused
+    after the response builders move to core-auth. Confirm with
+    `grep "NextResponse" lib/auth/server.ts` after the edit.
+
+11. **No new JSDoc malformed annotations.** The FR-3 JSDoc guard
+    must continue to report exit 0 after the refactor. The refactor
+    should NOT add or modify any `@param`/`@returns` tags; the
+    existing tags are valid.
+
+12. **Tests must keep passing** (existing 45/45 auth tests in
+    `__tests__/lib/auth/`). The behavior of the public functions is
+    unchanged; only the internal implementation changes.
+
+13. **Commit shape:** single atomic commit
+    (`fix(code-review-remediation): Phase 5 Green — FR-14 IM3 auth
+    server composes core-auth request-guards (mirrors BM2)`). Atomic
+    because the refactor is one logical change and a half-applied
+    state would break the auth tests.
+
+### Task 5.2 Green — update the IM3 auth test harness
+
+1. **Update `__tests__/lib/auth/server-guards.test.ts`** to stub the
+   new core-auth request-guard exports. Replace the current
+   `vi.mock('@math-platform/core-auth', () => ({…}))` block with the
+   `importActual + spread` pattern (mirroring
+   `parent-role-guard.test.ts:60-69`). Stub:
+   - `getRequestSessionClaims`
+   - `requireRequestSessionClaims`
+   - `requireRoleRequestClaims`
+   - `requireActiveRequestSessionClaims`
+   - `buildRequestUnauthorizedResponse`
+   - `buildRequestForbiddenResponse`
+   - `buildRequestServiceUnavailableResponse`
+   Keep real exports for everything else (`signSessionToken`,
+   `hashPassword`, `verifyPassword`, etc.). The new
+   `server-composition.test.ts` mocks follow the same pattern.
+
+2. **Adjust test expectations** where needed. The public function
+   signatures don't change; the 401/403/503 Response shapes are
+   preserved. The only behavioral change is the
+   `requireActiveRequestSessionClaims` 503 message: the IM3 current
+   local code returns `'Service unavailable. Please try again later.'`
+   (line 218). The new core-auth-driven path returns the
+   `serviceUnavailableMessage` option, which Phase 5 sets to the
+   same string (preserving the existing test assertion in
+   `server-guards.test.ts:270` — `expect(body.error).toContain('Service unavailable')`).
+
+3. **Confirm no regression** in the existing 45/45 auth tests. If
+   any test breaks because of the response shape change, fix the
+   test (not the production code) — the production behavior must
+   be byte-identical except for the core-auth delegation.
+
+4. **Commit shape:** bundled with the source refactor in the
+   single atomic commit above. Splitting the harness update from
+   the source refactor creates a half-applied state where the
+   source uses the new composition but the harness still mocks
+   only the old surface.
+
+### Task 5.3 Green — mark tech-debt Resolved
+
+1. **Edit `measure/tech-debt.md`** row "IM3 auth wrapper inline
+   duplication" (line 32): change `| Open |` to `| Resolved |`.
+   Append a "Resolved" notes suffix pointing to the closing
+   commit: `Resolved (FR-14) — IM3 server composes
+   @math-platform/core-auth request-guards; mirrors BM2
+   (code-review-remediation_20260609 Phase 5). Inline
+   getCookieValueFromHeader + 401/403/503 builders removed.
+   Parent-server-guards.ts refactor deferred.`
+
+2. **Verify the registry stays ≤50 lines.** The current file is
+   32 lines; the edit is a 1-line swap + a 1-line notes
+   extension, so the file remains well under the cap. No
+   housekeeping needed.
+
+3. **Commit shape:** bundled with the source refactor + harness
+   update in the single atomic commit. The tech-debt edit is a
+   single-line change logically attached to the same close.
+
+### Task 5.4 Green — Phase 5 closeout artifacts
+
+1. Run the test commands listed in §39.
+2. Re-run the FR-3 JSDoc guard on the post-refactor tree.
+3. Capture outputs to
+   `measure/tracks/code-review-remediation_20260624/_artifacts/phase-5-gates.txt`.
+4. Author `_artifacts/review-{a,b,c}-phase5.json`,
+   `_artifacts/phase-acceptance-phase5.json`,
+   `_artifacts/adversarial-phase5.json`,
+   `_artifacts/final-acceptance-phase5.json` per the user's
+   combined-strategy-and-acceptance handoff.
+
+---
+
+## 42. Anti-pattern guards (Phase 5 specifically)
+
+Per `lessons-learned.md` (2026-06-12 spec-compliance entry) and
+spec §FR-20, these patterns are **prohibited** in Phase 5 work:
+
+1. **Touching `parent-server-guards.ts`.** The spec FR-14 names only
+   `lib/auth/server.ts`. The parent-server-guards file's inline
+   `getCookieValueFromHeader` is out of scope; leave it alone. Any
+   mid-red test that references the parent-server-guards file
+   violates the scope decision in §38.
+2. **A vitest that asserts the IM3 server's *return value* equals a
+   re-implementation of the request guard** (parity oracle). The new
+   tests assert the IM3 server *delegates* to the core-auth export;
+   they do not re-implement the request guard logic locally to
+   compare.
+3. **Replacing the `importActual + spread` pattern with full-module
+   mocks.** Full-module mocks break the test for the real
+   `getCookieValueFromHeader` / `buildRequestUnauthorizedResponse`
+   etc. exports (which the IM3 server still imports). The harness
+   MUST use the spread pattern.
+4. **Changing the active-credential behavior** (`isActive` check).
+   The IM3-isActive-stricter behavior is preserved; the lambda body
+   is the only BM2-divergence point. Mid-red must not "fix" the
+   IM3-vs-BM2 inconsistency by removing the `isActive` check.
+5. **Adding new JSDoc tags** that would re-introduce the FR-1/FR-2
+   bug class. The refactor should be a no-op for the FR-3 guard.
+6. **A `passes-through-anything` test** (e.g. a single
+   `expect(true).toBe(true)`). The new tests assert specific
+   observable facts (mock call count, propagation equality,
+   source-text absence/presence). A pass-through test is the
+   FR-20 anti-pattern in its purest form.
+7. **Bumping the test counts upward to "prove more coverage."** The
+   `__tests__/lib/auth/server-composition.test.ts` is the new test
+   surface; it has a defined number of tests (3+4+1 = 8 per the
+   spec above). Adjustments to the count are evidence of scope
+   drift.
+8. **Marking the tech-debt entry Resolved with a "Notes" suffix
+   that does not point to the closing commit.** The notes are the
+   audit trail; a Resolved-without-evidence row is the
+   "silent-drop" anti-pattern §FR-13/AC13 of the spec prohibits.
+
+---
+
+## 43. Test file inventory (Phase 5)
+
+| Path | Status | Purpose |
+|------|--------|---------|
+| `apps/integrated-math-3/__tests__/lib/auth/server-composition.test.ts` | NEW | FR-14 composition Red (3 arch-lint tests + 4 behavioral delegation tests + 1 tech-debt registry test = 8 tests). |
+| `apps/integrated-math-3/lib/auth/server.ts` | MODIFIED | Replace inline helpers with core-auth composition (mirrors BM2). |
+| `apps/integrated-math-3/__tests__/lib/auth/server-guards.test.ts` | MODIFIED | Adopt `importActual + spread` mock pattern; stub new core-auth request-guard exports. |
+| `measure/tech-debt.md` | MODIFIED | Mark FR-14 row Resolved with closing-commit notes. |
+| `measure/tracks/code-review-remediation_20260624/_artifacts/phase-5-gates.txt` | NEW | Lint + tsc + test output capture. |
+| `measure/tracks/code-review-remediation_20260624/_artifacts/{review-a,review-b,review-c,phase-acceptance,adversarial,final-acceptance}-phase5.json` | NEW | Acceptance audit artifacts. |
+
+---
+
+## 44. Acceptance evidence (Phase 5)
+
+Attached to the Phase-5 checkpoint git note:
+
+1. **FR-14 arch-lint + delegation tests pass** — `server-composition.test.ts`
+   8/8 (3 arch-lint + 4 delegation + 1 tech-debt registry).
+2. **Existing IM3 auth tests pass** — `__tests__/lib/auth/`
+   45/45 (preserved behavior).
+3. **FR-3 JSDoc guard invariant** — `check-jsdoc-balanced-braces.sh`
+   exit 0 / 0 violations.
+4. **Phase 2 invariant** — IM3 visualization tests 22/22.
+5. **Phase 3 invariant** — math-content tests 92/92.
+6. **Phase 4 invariant** — precalc/concept-taxonomy tests unchanged.
+7. **Tech-debt registry** — FR-14 row `Status: Resolved` with closing
+   commit SHA in notes.
+8. **`npx tsc --noEmit`** — no NEW errors versus Phase 4 closeout
+   baseline.
+9. **`npm run lint`** — no NEW warnings.
+10. **Commit SHAs (in order):**
+    - Phase 5 strategy docs commit (this file).
+    - Phase 5 Red+Green atomic commit (source refactor + harness
+      update + tech-debt Resolved).
+    - Phase 5 plan-update + checkpoint commits.
+11. **Adversarial probes** — 3 probes (existing-auth-tests-still-pass;
+    arch-lint catches new inline reintroduction; tech-debt entry is
+    Resolved). All 3 must pass.
+12. **Final-acceptance sub-audits** — 5 sub-audits (FR-14, prior
+    invariants, code style, tech-debt closeout, handoff to Phase 7).
+    All 5 must pass.
+
+---
+
+## 45. Risks & open questions (Phase 5)
+
+1. **`NextResponse.json` is currently used in
+   `requireActiveRequestSessionClaims`** (line 218). After the
+   refactor, the 503 comes from core-auth's
+   `buildRequestServiceUnavailableResponse`, which uses global
+   `Response` (not `NextResponse`). The `Response` global is the
+   correct return type for the `Promise<SessionClaims | Response>`
+   signature; both `Response` and `NextResponse` extend it via
+   inheritance. The existing test
+   `server-guards.test.ts:270` asserts
+   `expect(body.error).toContain('Service unavailable')` — that
+   assertion is content-based and will pass for either builder.
+   Strategy confirms: the public-API behavior is preserved.
+2. **The `importActual + spread` pattern can fail if the
+   `@math-platform/core-auth` package has a circular dependency.**
+   Spot-checked: `request-guards.ts` imports `constants.ts` and
+   `session.ts`; `session.ts` imports `constants.ts`. No cycle.
+   `importActual` is safe.
+3. **The `isActive` behavior preservation** depends on the
+   `ActiveCredentialVerifier` lambda being correctly typed. The
+   core-auth `ActiveCredentialVerifier` type is
+   `(claims: SessionClaims) => Promise<boolean>`. The IM3 lambda
+   body uses `claims.username` (a string), so typing is
+   straightforward. tsc should pass without `as` casts.
+4. **The `parent-server-guards.ts` file is intentionally untouched.**
+   A reader reviewing only the new tests might assume the parent
+   guard also got refactored. The tech-debt Resolved notes will
+   call this out explicitly.
+5. **The `--db` / `--symbol` junk files** are still present in the
+   working tree (Phase 8 cleanup, FR-15). They do not block Phase 5
+   closeout. The test plan does not assert on their presence.
+6. **`requireServerSessionClaims` and the `APP_*` constants** are
+   not refactored. They use the page-level `cookies()` /
+   `redirect()` / `verifySessionToken` pattern, which is the
+   `getServerSessionClaims` flow, not the request-guard flow. BM2
+   also keeps these page-level helpers unchanged.
+7. **The `developer.ts` file** uses `getServerSessionClaims` (not
+   a request guard), so it is also unchanged. The refactor is
+   contained to `lib/auth/server.ts`.
+8. **The `sessions-revocation` test
+   (`bus-math-v2/__tests__/lib/auth/session-revocation.test.ts`)**
+   exists in BM2 but not in IM3. Phase 5 does not introduce a
+   parallel test in IM3 — the IM3 active-credential check is
+   already covered by `requireActiveRequestSessionClaims` tests in
+   `server-guards.test.ts`. Adding a parallel revocation test is a
+   future-work scope decision, not a Phase 5 requirement.
+
+---
+
+## 46. Commit & handoff plan (Phase 5)
+
+**Expected Phase-5 commit sequence (3-4 commits + checkpoint):**
+
+| # | Type | Scope | Subject |
+|---|------|-------|---------|
+| 1 | `docs` | code-review-remediation | Phase 5 test strategy — FR-14 unified-auth IM3 follow-through (Cluster E) |
+| 2 | `test` | code-review-remediation | Phase 5 Red — FR-14 arch-lint + delegation tests in `__tests__/lib/auth/server-composition.test.ts` |
+| 3 | `fix` | code-review-remediation | Phase 5 Green — FR-14 IM3 auth server composes core-auth request-guards (mirrors BM2) + test harness update + tech-debt Resolved |
+| 4 | `docs` | code-review-remediation | Phase 5 _artifacts (phase-5-gates, reviews, acceptance, adversarial, final) |
+| 5 | `measure(plan)` | — | Mark Phase 5 tasks complete with commit evidence |
+| 6 | `measure(checkpoint)` | — | Checkpoint end of Phase 5 |
+
+**Combined-strategy-and-acceptance handoff:** the user has invoked a
+combined-role run (strategy + mid-red + jr-green + reviews + phase-
+acceptance + adversarial + final-acceptance) for Phase 5. The Green
+step MUST land in a single atomic commit covering source refactor +
+harness update + tech-debt Resolved; the artifacts in steps 4-6 are
+authored as the last step of the combined run.
+
+**What Phase 7 (next) needs to know:**
+
+Phase 7 owns Cluster G (test integrity: FR-17 planner behavioral
+path test, FR-19 generator output validation, FR-20 lessons-learned
+entry). Phase 5 closes Cluster E; Phase 7's preconditions are:
+- FR-3 JSDoc guard exit 0 invariant (Phase 1).
+- IM3 visualization 22/22 (Phase 2).
+- math-content 92/92 (Phase 3).
+- precalc/concept-taxonomy tests pass (Phase 4).
+- IM3 auth 45/45 (Phase 5).
+- IM3 auth composition tests 8/8 (Phase 5).
+- FR-14 tech-debt row Resolved (Phase 5).
+
+All of the above must hold at Phase 7 start. Any drift is an
+escalation-worthy regression.
+
+---
+
+## 47. Red/Green Evidence (combined-run, 2026-06-24)
+
+### Red evidence (3 arch-lint + 4 delegation + 1 registry = 8 tests, all FAIL at HEAD)
+
+| Test | At HEAD (d023ce7b) | After Green |
+|------|--------------------|-------------|
+| `IM3 server imports core-auth request-guard exports (×7 symbols)` | FAIL — no such imports | PASS |
+| `IM3 server does not redeclare inline getCookieValueFromHeader` | FAIL — line 14-36 declares it | PASS |
+| `IM3 server does not redeclare inline response builders (×3)` | FAIL — lines 39-51 declare them | PASS |
+| `requireActiveRequestSessionClaims delegates to core-auth` | FAIL — mock never called | PASS |
+| `requireStudentRequestClaims delegates to requireRoleRequestClaims` | FAIL — mock never called | PASS |
+| `requireTeacherRequestClaims delegates to requireRoleRequestClaims` | FAIL — mock never called | PASS |
+| `requireRequestSessionClaims delegates to core-auth` | FAIL — mock never called | PASS |
+| `FR-14 tech-debt row is Resolved` | FAIL — Status: Open | PASS |
+
+### Green evidence (atomic commit)
+
+- `apps/integrated-math-3/lib/auth/server.ts` refactored (242 → ~120 lines).
+  - Removed: `getCookieValueFromHeader`, `buildRequestUnauthorizedResponse`,
+    `buildRequestForbiddenResponse`, `buildRequestServiceUnavailableResponse`.
+  - Added: imports from `@math-platform/core-auth` for the seven new
+    symbols; `verifyToken` app-supplied verifier; `verifyActiveCredential`
+    `ActiveCredentialVerifier` lambda preserving IM3's `isActive` strictness.
+  - Public API: `getRequestSessionClaims`, `requireRequestSessionClaims`,
+    `requireStudentRequestClaims`, `requireTeacherRequestClaims`,
+    `requireDeveloperRequestClaims`, `requireActiveRequestSessionClaims`,
+    `getServerSessionClaims`, `requireServerSessionClaims`,
+    `requireServerRoles`, `requireTeacherSessionClaims`,
+    `requireStudentSessionClaims` — signatures unchanged.
+- `__tests__/lib/auth/server-guards.test.ts` updated to
+  `importActual + spread` mock pattern; all 24 existing tests pass.
+- `__tests__/lib/auth/server-composition.test.ts` (NEW) — 8/8 pass.
+- `measure/tech-debt.md` row "IM3 auth wrapper inline duplication"
+  updated: `Status: Resolved`, notes cite the closing commit.
+- FR-3 JSDoc guard exit 0 invariant preserved.
+- IM3 auth tests 45/45 + composition tests 8/8 = 53/53 pass.
+- npx tsc --noEmit: 0 new errors.
+- npm run lint: 0 new warnings.
+

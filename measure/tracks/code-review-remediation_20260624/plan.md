@@ -106,8 +106,16 @@ JSDoc) first. Each behavioral fix follows Red → Green TDD per `workflow.md`.
 
 ## Phase 5: unified-auth IM3 follow-through (Cluster E)
 
+> **[STRATEGY READY 2026-06-24]** See `test-strategy.md` §38–§47. Single-FR
+> phase. Order is strict: **strategy (1 commit) → Red+Green atomic (1
+> commit) → artifacts + plan update (1 commit) → checkpoint (1 commit)**.
+> The refactor mirrors BM2's pattern (`apps/bus-math-v2/lib/auth/server.ts`)
+> but preserves IM3's stricter `isActive` credential check via the
+> `ActiveCredentialVerifier` lambda body. `parent-server-guards.ts` is
+> intentionally out of scope (per FR-14 spec boundary).
+
 - [ ] Task: Finish IM3 auth-wrapper unification (FR-14)
-    - [ ] Red: update the IM3 auth test harness to stub the new `@math-platform/core-auth` request-guard exports; keep all IM3 auth tests green
+    - [~] Red: update the IM3 auth test harness to stub the new `@math-platform/core-auth` request-guard exports; keep all IM3 auth tests green
     - [ ] Green: replace inline `getCookieValueFromHeader` + response builders + guards in `apps/integrated-math-3/lib/auth/server.ts` with core-auth composition (mirror BM2)
     - [ ] Resolve the matching tech-debt entry when complete
 - [ ] Task: Measure - User Manual Verification 'Phase 5: unified-auth IM3 follow-through' (Protocol in workflow.md)
