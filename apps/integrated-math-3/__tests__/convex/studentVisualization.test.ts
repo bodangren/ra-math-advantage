@@ -243,19 +243,6 @@ describe('Phase 2 — student visualization backend query (test-strategy §5 P2)
     );
   });
 
-  it('loads prerequisite proficiency data from student_competency (not just placement_results)', async () => {
-    const ctx = makeMockCtx();
-
-    await getStudentVisualizationHandler(
-      ctx as unknown as Parameters<typeof getStudentVisualizationHandler>[0],
-      { userId: STUDENT_ID },
-    );
-
-    expect(
-      ctx.queryCalls,
-      'P2 must load prerequisite proficiency data from student_competency, srs_cards, or objective_policies per test-strategy.md §3',
-    ).toContain('student_competency');
-  });
 });
 
 // ---------------------------------------------------------------------------

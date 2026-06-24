@@ -469,12 +469,11 @@ export const isStudentEnrolledInClassForLesson = internalQuery({
 /**
  * Computes the student visualization payload for the IM3 dashboard.
  *
- * Loads the Module-1 skill graph from JSON (no persisted graph table — per
+ * Loads the full curriculum skill graph from JSON (no persisted graph table — per
  * `apps/integrated-math-3/convex/schema.ts` and the next-skill-planner
  * test-strategy §3), the student's `placement_results` to derive
- * `learnerState`, the active `student_misconception_state` rows for the
- * active-misconception count, and the student's `student_competency` rows
- * for prerequisite proficiency data (per test-strategy §3).
+ * `learnerState`, and the active `student_misconception_state` rows for the
+ * active-misconception count.
  *
  * Exported as a named function so the IM3 mock-ctx tests can call it
  * directly without `convex-test` (see
@@ -508,19 +507,6 @@ export async function getStudentVisualizationHandler(
       learnerState[p.nodeId] = "blocked";
     }
   }
-
-  // Load prerequisite proficiency data per test-strategy §3. The
-  // competency rows are read alongside `placement_results`; the current
-  // projection derives `learnerState` from placements, but the
-  // `student_competency` table is the canonical store for cross-phase
-  // mastery signals. The query is performed so the handler observably
-  // loads proficiency data and so future enrichment (e.g. masteryLevel
-  // → state mapping) can be added without a schema migration on the
-  // Convex query surface.
-  await ctx.db
-    .query("student_competency")
-    .withIndex("by_student", (q) => q.eq("studentId", args.userId))
-    .collect();
 
   const misconceptions = await ctx.db
     .query("student_misconception_state")
