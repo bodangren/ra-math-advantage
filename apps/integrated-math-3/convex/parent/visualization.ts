@@ -44,9 +44,7 @@ import {
   type ParentVisualizationV1,
 } from '@math-platform/knowledge-space-practice';
 import type { KnowledgeSpaceNode, KnowledgeSpaceEdge } from '@math-platform/knowledge-space-core';
-
-import module1NodesJson from '../../curriculum/skill-graph/module-1/nodes.json';
-import module1EdgesJson from '../../curriculum/skill-graph/module-1/edges.json';
+import { loadFullCurriculumGraph } from '../../lib/curriculum/skill-graph-loader';
 
 /**
  * Default no-op learner state. Used when the student has no placement rows.
@@ -57,8 +55,9 @@ const EMPTY_LEARNER_STATE: Record<
 > = {};
 
 /**
- * Pure projection step — given a learner state and the canonical module-1
- * knowledge graph, return a validated `ParentVisualizationV1` payload.
+ * Pure projection step — given a learner state and the canonical full
+ * curriculum knowledge graph, return a validated `ParentVisualizationV1`
+ * payload.
  *
  * Split out from the handler so unit tests can verify the projection
  * without setting up a Convex context.
@@ -136,8 +135,7 @@ export async function projectParentVisualizationHandler(
     }
   }
 
-  const nodes = (module1NodesJson as { nodes: KnowledgeSpaceNode[] }).nodes;
-  const edges = (module1EdgesJson as { edges: KnowledgeSpaceEdge[] }).edges;
+  const { nodes, edges } = loadFullCurriculumGraph();
 
   return buildParentProjectionPayload(learnerState, nodes, edges);
 }

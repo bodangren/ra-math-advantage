@@ -7,13 +7,11 @@ import {
   buildPublishedUnitProgressRows,
   resolveLatestPublishedLessonVersion,
 } from "../lib/progress/published-curriculum";
+import { loadFullCurriculumGraph } from "../lib/curriculum/skill-graph-loader";
 import {
   projectStudentVisualization,
   type StudentVisualizationV1,
 } from "@math-platform/knowledge-space-practice";
-import type { KnowledgeSpaceNode, KnowledgeSpaceEdge } from "@math-platform/knowledge-space-core";
-import module1NodesJson from "../curriculum/skill-graph/module-1/nodes.json";
-import module1EdgesJson from "../curriculum/skill-graph/module-1/edges.json";
 
 export const getDashboardData = internalQuery({
   args: { userId: v.id("profiles") },
@@ -489,8 +487,7 @@ export async function getStudentVisualizationHandler(
   ctx: QueryCtx,
   args: { userId: Id<"profiles"> },
 ): Promise<StudentVisualizationV1> {
-  const nodes = (module1NodesJson as { nodes: KnowledgeSpaceNode[] }).nodes;
-  const edges = (module1EdgesJson as { edges: KnowledgeSpaceEdge[] }).edges;
+  const { nodes, edges } = loadFullCurriculumGraph();
 
   const placements = await ctx.db
     .query("placement_results")

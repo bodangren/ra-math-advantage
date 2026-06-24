@@ -41,10 +41,7 @@ import {
   studentVisualizationV1Schema,
 } from '@math-platform/knowledge-space-practice';
 
-import type { KnowledgeSpaceNode, KnowledgeSpaceEdge } from '@math-platform/knowledge-space-core';
-
-import module1NodesJson from '@/curriculum/skill-graph/module-1/nodes.json';
-import module1EdgesJson from '@/curriculum/skill-graph/module-1/edges.json';
+import { loadFullCurriculumGraph } from '@/lib/curriculum/skill-graph-loader';
 
 // ---------------------------------------------------------------------------
 // Fixture (sanity-checks the projection contract independently of the
@@ -57,8 +54,10 @@ import {
   fixtureLearnerState,
 } from './_fixtures/student-viz-fixture';
 
-const module1Nodes = module1NodesJson.nodes as KnowledgeSpaceNode[];
-const module1Edges = module1EdgesJson.edges as KnowledgeSpaceEdge[];
+// FR-4: handler now loads the full multi-module curriculum graph. The
+// parity test below must compare against the same graph (not the old
+// module-1 shard) so it stays a valid handler-vs-projection check.
+const { nodes: fullGraphNodes, edges: fullGraphEdges } = loadFullCurriculumGraph();
 
 // ---------------------------------------------------------------------------
 // Type mirrors for the tables the handler touches.
@@ -232,8 +231,8 @@ describe('Phase 2 — student visualization backend query (test-strategy §5 P2)
 
     const learnerState = deriveLearnerStateFromPlacements(placements);
     const expected = projectStudentVisualization(
-      module1Nodes,
-      module1Edges,
+      fullGraphNodes,
+      fullGraphEdges,
       learnerState,
       { activeMisconceptionSlugs: [] },
     );

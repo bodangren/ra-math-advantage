@@ -190,7 +190,16 @@ describe('FR-4 — student projection loads all modules', () => {
       { userId: STUDENT_ID },
     );
 
-    const nodeIds = result.nodes.map((n: { nodeId: string }) => n.nodeId);
+    // StudentVisualizationV1 partitions nodes into separate buckets
+    // (mastered/ready/blocked/reviewDue/recommendedNext); gather all of
+    // them for the modulesSeen count.
+    const nodeIds: string[] = [
+      ...result.mastered.map((n: { nodeId: string }) => n.nodeId),
+      ...result.ready.map((n: { nodeId: string }) => n.nodeId),
+      ...result.blocked.map((n: { nodeId: string }) => n.nodeId),
+      ...result.reviewDue.map((n: { nodeId: string }) => n.nodeId),
+      ...result.recommendedNext.map((n: { nodeId: string }) => n.nodeId),
+    ];
     const modulesSeen = new Set(
       nodeIds
         .filter((id: string) => id.startsWith('math.im3.skill.'))
@@ -211,7 +220,13 @@ describe('FR-4 — student projection loads all modules', () => {
       { userId: STUDENT_ID },
     );
 
-    const nodeIds = result.nodes.map((n: { nodeId: string }) => n.nodeId);
+    const nodeIds: string[] = [
+      ...result.mastered.map((n: { nodeId: string }) => n.nodeId),
+      ...result.ready.map((n: { nodeId: string }) => n.nodeId),
+      ...result.blocked.map((n: { nodeId: string }) => n.nodeId),
+      ...result.reviewDue.map((n: { nodeId: string }) => n.nodeId),
+      ...result.recommendedNext.map((n: { nodeId: string }) => n.nodeId),
+    ];
     // At HEAD, this node is not in the graph → absent from output → FAIL.
     expect(nodeIds).toContain(
       'math.im3.skill.2.1.graph-and-analyze-polynomial-functions',
