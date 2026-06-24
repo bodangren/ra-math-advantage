@@ -61,3 +61,10 @@ __pycache__/
 /scale-evaluation.json
 apps/*/scale-report.json
 apps/*/scale-evaluation.json
+
+# Junk files created by misfired CLI flag invocations (e.g. `build-graph --db`
+# treated as a literal filename rather than a flag). See
+# code-review-remediation_20260624 FR-15.
+/--db
+/--symbol
+*-cli-arg-junk
