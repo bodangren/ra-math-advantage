@@ -2328,3 +2328,616 @@ clearer for FR-16's "test replacement" audit trail.
 12. **Targeted vitest scopes only.** No aggregate `npm test`. The
     `placement-engine-extra*.test.ts` files are intentionally red and
     will swallow any Phase-3 signal if invoked.
+
+---
+
+# Phase 4 — precalc concept taxonomy (Cluster D)
+
+Baseline SHA for Phase 4: `2bde49a6` (Phase 3 fully closed, including
+final-acceptance). Role: Measure Strategy. No source edits; no test code
+authored by strategy.
+
+> Phase 4 has two narrow, well-scoped fixes — both are **behavioral** and
+> both target defects that the existing green suites did not catch.
+> Unlike Phases 2/3 (which contained test-replacement), Phase 4's
+> certifying tests must be **replaced** per FR-16, not merely augmented.
+> Phase 4 also requires a non-trivial decision on FR-13 (single-skill
+> vs. all-skills emission), which the spec authoritatively leaves to
+> mid-red.
+
+---
+
+## 29. Goal & scope (Phase 4)
+
+Two defects in the `precalc-alignment-concept-taxonomy` track, both
+already shipped, both invisible to the current green tests:
+
+1. **FR-12 — Remediation script's scan path is wrong.**
+   `scripts/remediate-concept-blueprints.ts` (at the repo root) walks
+   `apps/integrated-math-3/` and only matches files literally named
+   `blueprints.json`. The "real" blueprint artifact per the original
+   track's commit notes is
+   `curriculum/implementation/practice-v1/activity-map.json` (which
+   exists in `apps/pre-calculus/`, `apps/integrated-math-3/`,
+   `apps/integrated-math-2/`, `apps/integrated-math-1/`). The script's
+   reported "0 concept blueprints across 0 files" is a **false clean**
+   (or at minimum, a silent narrowing of the scan scope). The fix must:
+     a. Refactor the script to be importable and parameterizable so its
+        path resolution is testable.
+     b. Add the real artifact to the scan set.
+     c. Add a vitest that asserts the script's path resolution produces
+        the right files (not the old "blueprints.json only" path).
+     d. Re-run the script and record the true count in a Phase 4
+        artifact.
+
+2. **FR-13 — `selectSkill` drops sibling skills silently.**
+   `selectSkill` in
+   `packages/knowledge-space-practice/src/projections/activity-map.ts`
+   returns the alphabetically-first child skill, so a concept node
+   aggregating N skills emits practice rows for only 1. The
+   accompanying test (`selectSkill picks alphabetically first child
+   skill deterministically`, `projections.test.ts:508`) **encodes
+   this limitation as the requirement**, which is the FR-20
+   anti-pattern. Mid-red MUST:
+     a. **Decide** the intended behavior: emit all child skills (N
+        rows for an N-skill concept) or document single-skill as
+        intentional with rationale.
+     b. **Replace** the `selectSkill picks alphabetically first` test
+        with a behavioral one that asserts the chosen behavior.
+     c. Update the source comment/JSDoc on `selectSkill` to match the
+        decision.
+
+3. **FR-18 (partial) — the FR-12 + FR-13 assertions are the
+   test-integrity additions this phase requires.** FR-18 also lists
+   `nodeIds` non-empty for adapters, but that was already covered in
+   Phase 3 (commit `cb6e7f8c`).
+
+UMV closeout follows the same protocol as Phases 1–3 (workflow.md).
+
+What Phase 4 does **not** cover:
+- The IM3 `student_competency` dead read (Phase 2) — already closed.
+- The Phase 5 auth unification (FR-14) — owned by Phase 5.
+- The Phase 7 test-integrity work (FR-17, FR-19, FR-20) — owned by
+  Phase 7.
+- The Phase 8 hygiene/tech-debt (FR-15) — owned by Phase 8.
+- Generating real `concept`-id blueprints in pre-calculus. The
+  pre-calculus skill graph currently has zero `kind: 'concept'` nodes
+  (verified). The script's "true count" after the fix is 0, same as
+  before — but now it is **honest** 0, because the scan actually
+  covers the real artifact.
+
+---
+
+## 30. Pre-conditions / environment (Phase 4)
+
+- **Working-tree state at start:** clean. Phase 3 final-acceptance
+  committed at `2bde49a6`. No untracked files.
+- **`scripts/remediate-concept-blueprints.ts` at HEAD (97 lines):**
+  hardcoded walk of `apps/integrated-math-3`, filename match on
+  `blueprints.json`, filter on `nodeId` matching `/\.concept\./`.
+  Output at HEAD: `[dry-run] done — 0 concept blueprint(s) across 0
+  file(s)` (no `blueprints.json` files actually have a nodeId
+  containing `.concept.`; the count is real-zero but the scan is
+  over-narrow).
+- **Real artifacts (verified at HEAD):**
+  - `apps/pre-calculus/curriculum/implementation/practice-v1/activity-map.json`
+    (44 activities, `activityId` not `nodeId`).
+  - `apps/integrated-math-1/`, `apps/integrated-math-2/`,
+    `apps/integrated-math-3/` equivalents.
+  - `apps/{pre-calculus,integrated-math-1,2,3}/curriculum/skill-graph/blueprints.json`
+    (the legacy format with `nodeId`).
+  - Per-module blueprints (`apps/integrated-math-3/curriculum/skill-graph/module-{1..9}/blueprints.json`).
+- **Concept node IDs in the repo:** zero `nodeId` containing
+  `/\.concept\./` in any of the 13 `blueprints.json` files. The
+  `activity-map.json` files use `activityId` (not `nodeId`).
+  Pre-calculus has 0 `kind: 'concept'` nodes; IM3 has 103, but
+  their IDs are `math.im3.skill.*` (not `math.im3.concept.*`).
+  Therefore the script's true count is 0 in both the legacy and
+  the new artifact — the FR-12 fix is about scan path, not about
+  finding more concept blueprints.
+- **`selectSkill` at HEAD:** returns the alphabetically-first child
+  skill (deterministic single-skill resolution). One test asserts
+  this. The single-skill resolution is what the existing projection
+  contract is built on.
+- **Commands:**
+  - RED_TEST_COMMAND: `npm run --workspace=packages/knowledge-space-practice test -- --run`
+    (filtered to the relevant file).
+  - For FR-12 unit tests: `npx vitest run` from the repo root
+    (or a new test file colocated with the script).
+  - PROJECT_LINT: `npm run lint` — must remain green for changed
+    files only.
+  - PROJECT_CHECKS: `npx tsc --noEmit` from `apps/pre-calculus`,
+    `apps/integrated-math-3`, and `packages/knowledge-space-practice`
+    — must show no NEW errors vs the captured baseline.
+  - **No aggregate `npm test`.** Per Phase 2/3 anti-pattern #1.
+- **FR-13 decision policy (binding):** the test must encode the
+  **chosen** behavior, not the legacy behavior. Mid-red's choice is
+  binding; the strategy reserves the right to delegate the call
+  but requires that the choice is documented in plan.md.
+
+---
+
+## 31. Red phase contract (per task in Phase 4)
+
+### Task 4.1 — FR-12 scan-path fix (Red)
+
+**Refactor: extract pure functions from the script.** The current
+script's `findBlueprintFiles`, `walk`, and `removeConceptBlueprints`
+must become pure / importable so vitest can test them. The script's
+`main()` continues to work for the CLI invocation. No behavior
+change to the CLI surface — only the internal contract is
+restructured.
+
+**Test file (new):**
+`scripts/__tests__/remediate-concept-blueprints.test.ts` (vitest,
+runs from repo root or via a colocated `vitest.config.ts` in
+`scripts/`).
+
+**Test file (new, complement):** integration test that runs the
+script as a subprocess against a temp directory containing a
+synthetic concept blueprint, and asserts the script finds it.
+Lives alongside the unit test.
+
+**Red assertion shape:**
+
+(a) **Path resolution unit test (the FR-12 Red oracle).** The
+script's path resolution must include the real artifact path
+(`apps/pre-calculus/curriculum/implementation/practice-v1/activity-map.json`)
+and NOT depend on the filename `blueprints.json` alone.
+
+```ts
+import { findBlueprintFiles } from '../remediate-concept-blueprints';
+
+it('path resolution includes the activity-map.json real artifact', () => {
+  const files = findBlueprintFiles({
+    repoRoot: process.cwd(),
+    scanRoots: ['apps'],
+  });
+  // The real artifact (per spec) must be in the scan set.
+  expect(files.some(f => f.endsWith('apps/pre-calculus/curriculum/implementation/practice-v1/activity-map.json'))).toBe(true);
+  // The legacy format must also be covered (back-compat).
+  expect(files.some(f => f.endsWith('apps/integrated-math-3/curriculum/skill-graph/blueprints.json'))).toBe(true);
+});
+
+it('path resolution does NOT filter on filename "blueprints.json" alone', () => {
+  // If the only selection criterion is `entry.name === 'blueprints.json'`,
+  // activity-map.json is invisible. The path resolver must include
+  // the activity-map.json pattern by name.
+  const files = findBlueprintFiles({
+    repoRoot: process.cwd(),
+    scanRoots: ['apps'],
+  });
+  // Must not be filtered to legacy filename only.
+  const blueprintsOnly = files.every(f => f.endsWith('blueprints.json'));
+  expect(blueprintsOnly).toBe(false);
+});
+```
+
+This **fails at HEAD** because the current `findBlueprintFiles` only
+returns files literally named `blueprints.json` (and only inside
+`apps/integrated-math-3`).
+
+(b) **Concept-detector unit test (the FR-18 partial — assertion
+that the scanner detects concept nodeIds).** Use a synthetic JSON
+fixture (in-memory) that contains a blueprint with
+`nodeId: 'math.precalc.concept.test'` and verify
+`removeConceptBlueprints` strips it and reports the count.
+
+```ts
+it('removeConceptBlueprints strips nodeIds matching /\\.concept\\./', () => {
+  const parsed = {
+    blueprints: [
+      { nodeId: 'math.precalc.skill.1.1.x' },
+      { nodeId: 'math.precalc.concept.test' },
+      { nodeId: 'math.im3.skill.1.1.y' },
+    ],
+  };
+  const { removed, kept } = removeConceptBlueprints(parsed);
+  expect(removed).toBe(1);
+  expect(kept).toBe(2);
+  expect(kept.map(b => b.nodeId)).not.toContain('math.precalc.concept.test');
+});
+```
+
+This test is invariant under the legacy/new file split because it
+operates on parsed content. Its value is to guarantee the
+detector keeps working when the script is refactored to scan
+multiple files.
+
+(c) **Integration test (the FR-18 final assertion — scanner finds
+the real artifact).** Create a temp directory with a
+`activity-map.json` containing a `nodeId: '*.concept.*'` (added
+inline; see below for testability of the activity-map shape),
+run the script via `npx tsx` against that temp dir, and assert
+the script reports the concept blueprint and removes it.
+
+NOTE: the `activity-map.json` schema uses `activities[]` with
+`activityId`, not `nodeId`. The script's concept filter is
+`/\.concept\./` on `nodeId`. For the integration test, the
+mid-red MAY either:
+  (1) Add a synthetic `conceptId` field to the test fixture and
+      have the script's detector additionally scan
+      `activities[*].activityId` for the concept pattern (extension
+      of the detector), OR
+  (2) Keep the script's `nodeId` filter and use a legacy
+      `blueprints.json` fixture for the integration test (the unit
+      test (a) already covers the activity-map path resolution).
+**Strategy decision (binding):** option (1) is preferred — the
+script should also scan the activity-map shape so its report is
+comprehensive. The detector is extended to also check
+`activityId` for the concept pattern. This is consistent with
+the spec's "real blueprint artifact" framing.
+
+**Why this Red is meaningful:** the path-resolution test fails
+immediately if the script is reverted to the wrong path. It is
+not a parity oracle (it does not re-implement the walker; it
+asserts on the set of files the walker returns). The detector
+test asserts behavior on parsed content. The integration test
+exercises the CLI surface end-to-end.
+
+### Task 4.2 — FR-13 sibling-skill decision (Red)
+
+**Strategy reserves the decision to mid-red**, with the
+following binding constraint:
+
+> The test that currently reads
+> `'selectSkill picks alphabetically first child skill
+> deterministically'` (at `projections.test.ts:508`) **must be
+> replaced** — not just augmented. Either:
+>
+> (A) **Emit all child skills** — the projection's loop must
+>     iterate over each child skill. The replacement test asserts
+>     N rows for an N-skill concept. The source code change is
+>     in `projectActivityMap` (lines 74–82).
+> (B) **Document single-skill as intentional** — the
+>     `selectSkill` JSDoc/comment is updated to state the
+>     rationale (determinism, planner/SRS downstream expects one
+>     row per concept, etc.). The replacement test asserts the
+>     **documented** rationale (e.g. `expect(selectSkill([a,b])).toBe(firstAlphabetical)`
+>     with a comment that pins the design intent, AND a
+>     test-level assertion on the source comment that the
+>     rationale is present).
+>
+> In either case the existing test name "picks alphabetically
+> first" is renamed to a behaviorally-true statement (e.g.
+> "emits one row per child skill" or "returns alphabetically
+> first by design"), per FR-20.
+
+**Red assertion shape (option A — emit all child skills):**
+
+```ts
+it('projectActivityMap emits one row per child skill for a concept with N skills', () => {
+  // 3-skill concept → 3 rows per spec (worked/guided/independent each)
+  // OR 3 rows total if mid-red chooses the narrower N-total interpretation.
+  // The spec's N-rows interpretation is per spec section: "if emitting all
+  // child skills, assert N rows for an N-skill concept" → at minimum
+  // nodeId varies across all 3 rows.
+  const blueprint: KnowledgeBlueprint = {
+    nodeId: threeSkillConcept.id,
+    workedExampleSpec: { /* ... */ } as WorkedExampleSpec,
+    independentPracticeSpec: { /* ... */ } as IndependentPracticeSpec,
+    reviewStatus: 'draft',
+    metadata: {},
+  };
+  const rows = projectActivityMap([threeSkillConcept, skillA, skillB, skillC], threeSkillEdges, [blueprint]);
+  const distinctNodeIds = new Set(rows.map(r => r.nodeId));
+  expect(distinctNodeIds.size).toBe(3);
+  expect(distinctNodeIds.has(skillA.id)).toBe(true);
+  expect(distinctNodeIds.has(skillB.id)).toBe(true);
+  expect(distinctNodeIds.has(skillC.id)).toBe(true);
+});
+```
+
+The existing test is **replaced** with this one. The
+"alphabetically first" name and assertion is gone.
+
+**Red assertion shape (option B — document as intentional):**
+
+```ts
+it('selectSkill is single-skill by design (one row per concept)', () => {
+  // Pinned-by-design: the projection emits one row per concept.
+  // Rationale: see activity-map.ts:43-48 JSDoc on selectSkill.
+  const picked = selectSkill([skillB, skillA]);
+  expect(picked?.id).toBe(skillB.id);
+});
+
+it('selectSkill JSDoc documents the single-skill rationale', () => {
+  // Architecture-lint complement: the source comment / JSDoc on
+  // selectSkill must state WHY single-skill is intentional.
+  const src = readFileSync(
+    'packages/knowledge-space-practice/src/projections/activity-map.ts',
+    'utf8'
+  );
+  // The pin must include the rationale keyword. Green role picks the
+  // exact text; the test asserts the rationale is present.
+  expect(src).toMatch(/single-skill.*by design|by design.*single-skill|one row per concept/);
+});
+```
+
+This Red is meaningful because it pins the rationale to source,
+not just to test. The behavioral assertion is preserved (the
+function still returns alphabetically first), but the test is no
+longer an implicit certification of the limitation — it is a
+documented contract.
+
+**Strategy decision (binding):** mid-red picks (A) or (B) in
+the FR-13 commit body. Strategy permits either but REQUIRES the
+certifying test to be **replaced** (not augmented) and the
+behavioral assertion to be **honest** (not standing in for a
+real contract). The test name must change to reflect the
+behavioral truth.
+
+---
+
+## 32. Green phase contract (Phase 4)
+
+### Task 4.1 Green — FR-12
+
+1. **Refactor `scripts/remediate-concept-blueprints.ts`:** extract
+   pure functions and export them.
+   ```ts
+   export interface ScanOptions {
+     repoRoot: string;
+     scanRoots: string[];     // e.g. ['apps']
+     includeGlobs?: string[]; // e.g. ['**/curriculum/implementation/practice-v1/activity-map.json', '**/curriculum/skill-graph/**/blueprints.json']
+   }
+   export function findBlueprintFiles(opts: ScanOptions): string[];
+   export function removeConceptBlueprints(parsed: BlueprintFile): { removed: number; kept: number };
+   export function main(): void;
+   ```
+2. **Update `findBlueprintFiles`:** walk the `scanRoots` and match
+   EITHER `activity-map.json` under
+   `**/curriculum/implementation/practice-v1/` OR `blueprints.json`
+   under `**/curriculum/skill-graph/`. The walk must cover pre-calculus
+   in addition to IM3.
+3. **Update `removeConceptBlueprints`:** in addition to
+   `blueprints[].nodeId`, also check `activities[].activityId` for
+   the concept pattern (activity-map.json shape).
+4. **Update the script's CLI defaults:** keep backward-compatible
+   behavior with the same `--dry-run` flag and exit semantics.
+5. **Re-run the script:** record stdout to
+   `_artifacts/remediate-run-after-fix.txt`. Expected: still 0
+   concept blueprints (because the data is genuinely clean), but
+   the scan set is now correct.
+
+### Task 4.2 Green — FR-13 (option A: emit all child skills)
+
+1. **Update `projectActivityMap`** in
+   `packages/knowledge-space-practice/src/projections/activity-map.ts`:
+   when a blueprint targets a `concept` node, iterate over EACH
+   child skill returned by `findChildSkills`, emitting one row set
+   per child skill. The existing loop body (lines 125–170) moves
+   into a helper or a nested loop.
+2. **Update `selectSkill`** to keep the deterministic helper
+   (alphabetic first) for any caller that still wants one skill,
+   but mark it as `internal` or rename to `selectFirstSkill` to
+   make the narrowing explicit. The `selectSkill` export can be
+   removed if no external caller exists (verified: no external
+   consumer of the symbol per Phase 3 grep).
+3. **Update the test file:** the old
+   `'selectSkill picks alphabetically first child skill
+   deterministically'` test is **replaced** with the N-row
+   assertion. The `'selectSkill returns null on empty child list'`
+   test is preserved.
+4. **Update the source JSDoc on `projectActivityMap`** to describe
+   the new "one row set per child skill" behavior.
+
+### Task 4.2 Green — FR-13 (option B: document as intentional)
+
+1. **Update the JSDoc on `selectSkill`** to state: "By design,
+   `selectSkill` returns exactly one child skill (the
+   alphabetically first by id) so the projection emits exactly
+   one row set per concept. The rationale is determinism and
+   planner/SRS downstream contracts that assume one row per
+   concept nodeId." Add an `// DESIGN NOTE: ...` block above the
+   function.
+2. **Update the test:** rename the existing test to
+   `'selectSkill returns the first child skill by design'`, add
+   a complement source-lint test that pins the rationale to
+   source. Both tests are co-located in the same `describe`
+   block.
+
+### Phase 4 closeout gate
+
+- `npm run --workspace=packages/knowledge-space-practice test -- --run`
+  → pass (with the replaced FR-13 test).
+- `npx vitest run` from repo root (or `npx vitest run scripts/`)
+  → pass (with the new FR-12 tests).
+- `npx tsx scripts/remediate-concept-blueprints.ts --dry-run` →
+  exits 0, reports the true scan set (count of files scanned and
+  count of concept blueprints found). Output captured to
+  `_artifacts/remediate-run-after-fix.txt`.
+- `bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh "apps/ packages/ convex/"`
+  → still exit 0 (Phase 1 invariant).
+- Phase 3 invariants: `packages/math-content` Phase 3 tests
+  still pass (92/92); Phase 2 IM3 visualization tests still
+  pass (22/22).
+- `npx tsc --noEmit` in `apps/pre-calculus` → still 3 lines
+  (baseline); in `apps/integrated-math-3` → no new errors
+  versus the captured baseline (415 lines); in
+  `packages/knowledge-space-practice` → no new errors vs 10
+  lines.
+
+---
+
+## 33. Anti-pattern guards (Phase 4 specifically)
+
+Per FR-16, FR-20, and Phase-1 §5 / Phase-2 §15 / Phase-3 §24:
+
+1. **Stale test names.** The FR-13 test name
+   `'selectSkill picks alphabetically first child skill
+   deterministically'` is itself the FR-20 anti-pattern (it
+   certifies the limitation). It MUST be replaced, not just
+   renamed. A test that passes only because the source does what
+   the test name says is not behavioral.
+2. **Path-resolution parity oracle.** A test that re-implements
+   the file-walker and compares its output to the script's
+   output is a parity oracle. Forbidden. The test must
+   **assert directly** on the set of files returned by
+   `findBlueprintFiles`.
+3. **Stubs masquerading as behavior.** A unit test that creates
+   a fake `fs` module and asserts on it is acceptable as a
+   *complement* to a real-filesystem test, but the real
+   filesystem test must exist. Phase 4 ships both.
+4. **Tagging the wrong file.** The script's hardcoded walk of
+   `apps/integrated-math-3` is the FR-12 bug. A fix that only
+   adds `apps/pre-calculus` (and still hardcodes the root) is
+   not a real fix; the walk must be parameterizable.
+5. **Concept-pattern drift.** The detector's `/\.concept\./`
+   pattern is hardcoded. A test that asserts the pattern
+   string itself is a grep oracle; the test must assert
+   behavior (a fixture with a matching nodeId is detected).
+6. **`selectSkill` export preserved when it shouldn't be.** If
+   option A is chosen and `selectSkill` has no external
+   callers, leaving it exported is tech-debt. Either remove
+   the export or rename to `selectFirstSkill` and document.
+7. **Modifying pre-calculus curriculum data.** Phase 4 must
+   not introduce fake `concept` IDs into the pre-calculus
+   skill graph to make the script "find" something. The
+   "true count" is 0; that's the honest answer.
+8. **Aggregate `npm test`.** The
+   `placement-engine-extra*.test.ts` files are still
+   intentionally red. Targeted scopes only.
+
+---
+
+## 34. Test file inventory (Phase 4)
+
+| Path | Status | Purpose |
+|---|---|---|
+| `scripts/__tests__/remediate-concept-blueprints.test.ts` | NEW | Unit tests: path resolution includes activity-map.json; detector strips `.concept.` nodeIds. |
+| `scripts/__tests__/remediate-concept-blueprints.integration.test.ts` | NEW (optional) | Integration test: run the script against a temp fixture; assert concept blueprint found. |
+| `scripts/__tests__/fixtures/concept-blueprint.json` | NEW (test fixture only) | Synthetic concept + non-concept blueprints. Not committed to production data. |
+| `scripts/remediate-concept-blueprints.ts` | MODIFIED | Export pure functions; update `findBlueprintFiles` to scan activity-map.json; update `removeConceptBlueprints` to also detect `activityId`. |
+| `packages/knowledge-space-practice/src/__tests__/projections.test.ts` | MODIFIED | REPLACE `'selectSkill picks alphabetically first ...'` with a behaviorally-true test (N rows OR documented rationale + design-pin). |
+| `packages/knowledge-space-practice/src/projections/activity-map.ts` | MODIFIED (if option A) | Iterate over each child skill; update JSDoc. (If option B: just update JSDoc + add a design comment.) |
+| `measure/tracks/code-review-remediation_20260624/_artifacts/remediate-run-after-fix.txt` | NEW | Script stdout after the path fix. |
+| `measure/tracks/code-review-remediation_20260624/_artifacts/phase-4-gates.txt` | NEW | Closeout gate summary. |
+
+No changes to `apps/integrated-math-3/`, `apps/pre-calculus/`
+curriculum data, or Phase 2/3 test files.
+
+---
+
+## 35. Acceptance evidence (Phase 4)
+
+Attached to the Phase-4 checkpoint git note:
+
+1. **FR-12 path-resolution test stdout** (red → green diff):
+   - Red baseline at `2bde49a6`: path-resolution test fails
+     because `findBlueprintFiles` returns no activity-map.json
+     files.
+   - Green: same test passes; activity-map.json appears in the
+     scan set; legacy `blueprints.json` files still covered.
+2. **FR-12 script re-run transcript:**
+   - `npx tsx scripts/remediate-concept-blueprints.ts --dry-run`
+     → stdout showing the new scan set (file count and any
+     concept blueprints found) → captured to
+     `_artifacts/remediate-run-after-fix.txt`.
+3. **FR-13 test replacement proof:**
+   - `git diff 2bde49a6..HEAD -- packages/knowledge-space-practice/src/__tests__/projections.test.ts`
+     showing the old certifying test removed and the new
+     behavioral test added.
+   - `git diff 2bde49a6..HEAD -- packages/knowledge-space-practice/src/projections/activity-map.ts`
+     showing the source change (option A: per-skill iteration
+     + JSDoc; option B: JSDoc + design comment).
+   - Targeted vitest: `projections.test.ts` pass count
+     unchanged or +1.
+4. **Phase 1/2/3 invariants preserved:**
+   - FR-3 JSDoc guard exit 0.
+   - Phase 2 IM3 visualization tests 22/22.
+   - Phase 3 math-content tests 92/92.
+5. **Closeout artifact:** `_artifacts/phase-4-gates.txt` with
+   scan counts, vitest pass counts, tsc outputs.
+6. **Commit SHAs (in order):**
+   - Phase 4 strategy commit.
+   - FR-12 Red commit (test + refactor scaffold).
+   - FR-12 Green commit (path fix + detector extension).
+   - FR-13 Red+Green atomic commit (test replacement + source
+     change).
+   - Plan-update commit marking Phase 4 tasks complete.
+   - Checkpoint commit (workflow.md §70).
+
+---
+
+## 36. Risks & open questions (Phase 4)
+
+1. **The "true count" is still 0 after the FR-12 fix.** Pre-calculus
+   has 0 concept nodes; IM3 concept nodes use `math.im3.skill.*`
+   IDs. The script's "0 concept blueprints" output is the honest
+   answer post-fix. Mid-red MUST NOT add fake concept nodes to
+   production data to inflate the count. The
+   `_artifacts/remediate-run-after-fix.txt` shows 0 with the
+   correct scan set; that is the FR-12 Green.
+2. **The `selectSkill` decision has downstream impact.** Option A
+   (emit all child skills) changes the row count for every
+   pre-calculus concept blueprint. Mid-red MUST confirm no
+   downstream consumer (planner, SRS) hard-codes "one row per
+   concept." Verified at strategy: `getRecommendedNext` and
+   `projectSrsInputs` iterate over rows and group by nodeId — no
+   "1:1 concept" assumption. The change is safe.
+3. **The vitest config for the new `scripts/__tests__` directory.**
+   `scripts/` is at the repo root, not inside a workspace. The
+   vitest config that picks it up is the repo-root one (if any).
+   Mid-red MUST verify the test runs cleanly. If no root vitest
+   config exists, mid-red can add a minimal
+   `scripts/vitest.config.ts` or use `npx vitest run --root scripts/`.
+4. **The `__dirname` ESM-equivalent.** The current script uses
+   `__dirname` (CommonJS). Mid-red MUST convert to
+   `import.meta.url`-based path resolution per the Phase 3 review-a
+   precedent (commit `a93af1f2`), or guard with an `@ts-ignore` if
+   the workspace is still CommonJS.
+5. **Concept nodeId format drift.** The `/\.concept\./` pattern
+   matches `math.precalc.concept.X`, `math.im3.concept.X`, etc.
+   If a future track uses `math.precalc.unit_circle_concept` (no
+   dots), the pattern misses it. The fix should be a parameter or
+   a documented extension, not a hand-rewrite. Mid-red may
+   parameterize the pattern (e.g. via a `--concept-pattern`
+   flag) for robustness.
+
+---
+
+## 37. Commit & handoff plan (Phase 4)
+
+**Expected Phase-4 commit sequence (≤6 commits + checkpoint):**
+
+| # | Type | Scope | Subject |
+|---|---|---|---|
+| 1 | `docs` | code-review-remediation | Phase 4 test strategy — FR-12/13/18 precalc concept taxonomy |
+| 2 | `test` | code-review-remediation | Phase 4 Red — FR-12 path resolution + concept detector tests (refactor scaffold) |
+| 3 | `fix` | code-review-remediation | Phase 4 Green — FR-12 fix scan path to include activity-map.json real artifact |
+| 4 | `fix` | code-review-remediation | Phase 4 Red+Green — FR-13 selectSkill: emit all child skills OR document single-skill by design (FR-16 replacement) |
+| 5 | `docs` | code-review-remediation | Phase 4 _artifacts (remediate-run, phase-4-gates) |
+| 6 | `measure(plan)` | — | Mark Phase 4 tasks complete with commit evidence |
+| 7 | `measure(checkpoint)` | — | Checkpoint end of Phase 4 |
+
+Each of commits 2–4 gets a git note per workflow.md step 10.
+
+**What mid-red needs to know (handoff):**
+
+1. **Refactor the script first.** The path-resolution test
+   requires the script to expose `findBlueprintFiles` and
+   `removeConceptBlueprints` as exports. Do this in the Red
+   commit (no behavior change to CLI), then add the tests, then
+   in the Green commit fix the path.
+2. **Test in a unit-style harness.** The new test file
+   lives at `scripts/__tests__/remediate-concept-blueprints.test.ts`
+   and is run via `npx vitest run --root scripts/`. If the
+   vitest config requires a workspace, add a minimal
+   `scripts/vitest.config.ts`.
+3. **The detector extension is option (1) per §31 Task 4.1.**
+   Add `activityId` to the concept-pattern check. Backward-
+   compatible.
+4. **FR-13 decision is yours.** Document the choice in the
+   commit body. Strategy permits either option, but the test
+   must be **replaced** (not augmented) and the assertion must
+   be **behavioral** (N rows OR documented rationale pinned to
+   source).
+5. **No fake data.** Do not add `math.precalc.concept.*` IDs
+   to the pre-calculus skill graph. The "true count" is 0; the
+   FR-12 Green proves the scan now reaches the right files.
+6. **Phase 1/2/3 invariants are gates.** FR-3 JSDoc guard exit
+   0; Phase 2 IM3 visualization tests 22/22; Phase 3
+   math-content tests 92/92.
+7. **Targeted vitest scopes only.** No aggregate `npm test`.
+
