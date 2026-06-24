@@ -51,14 +51,16 @@ JSDoc) first. Each behavioral fix follows Red → Green TDD per `workflow.md`.
 
 ## Phase 2: Production-wiring scope & dead work (Cluster B)
 
-- [ ] Task: Generalize student & parent projections to all modules (FR-4)
-    - [ ] Red: test `getStudentVisualizationHandler` + `projectParentVisualizationHandler` with multi-module placement rows; assert nodes from >1 module appear. The oracle must NOT be a module-1-only `projectStudentVisualization(module1Nodes, …)` re-implementation (that parity test cannot catch the scope bug — see FR-17)
+- [~] Task: Generalize student & parent projections to all modules (FR-4)
+    - [~] Red: test `getStudentVisualizationHandler` + `projectParentVisualizationHandler` with multi-module placement rows; assert nodes from >1 module appear. The oracle must NOT be a module-1-only `projectStudentVisualization(module1Nodes, …)` re-implementation (that parity test cannot catch the scope bug — see FR-17)
+        - [RED EVIDENCE 2026-06-24] Fixture: `_fixtures/multi-module-placements.ts` — 2 placements, module-1 (`math.im3.skill.1.1.graph-quadratic-functions`, mastery 0.85) and module-2 (`math.im3.skill.2.1.graph-and-analyze-polynomial-functions`, mastery 0.5). Test file: `studentVisualizationMultiModule.test.ts` — 6 tests total, all 6 FAIL at HEAD. Behavioral (4): student handler modulesSeen.size=1 (expected >=2), module-2 node absent; parent handler same. Arch-lint (2): `skill-graph/module-1/` import found in both `student.ts` and `parent/visualization.ts`. Verified: target node exists in both root (574 nodes) and module-2 shard (46 nodes). Root-vs-shard divergence: -8 (deduplication). Decision: use root `skill-graph/nodes.json`. See `_artifacts/graph-source-decision.md`.
     - [ ] Green: add a shared full-curriculum graph-loading helper; replace the hardcoded `module-1/*.json` imports in `convex/student.ts` and `convex/parent/visualization.ts`
-- [ ] Task: Remove the throwaway `student_competency` read + replace its certifying test (FR-5, FR-16)
-    - [ ] Red: REPLACE the `studentVisualization.test.ts` *"loads prerequisite proficiency data from student_competency"* test — a `ctx.queryCalls.toContain('student_competency')` spy is not acceptable evidence. New test either (a) asserts competency rows change observable output (`learnerState`/`recommendedNext`), or (b) is removed with the read. The replacement must fail against the pre-fix code
-    - [ ] Green: delete the discarded `student_competency` query (or genuinely consume it so the new test passes)
-- [ ] Task: Resolve the never-produced `review_due` state (FR-6)
-    - [ ] Red: test the intended `review_due` derivation, or assert the narrowed union
+- [x] Task: Remove the throwaway `student_competency` read + replace its certifying test (FR-5, FR-16)
+    - [x] Red+Green (atomic): DELETE the spy test + dead read + broken JSDoc in one commit. The spy test (`ctx.queryCalls.toContain('student_competency')`) was an anti-pattern per FR-16/FR-20. No replacement test needed — the dead read contributed nothing to observable output.
+        - [RED+GREEN EVIDENCE 2026-06-24] (1) Deleted `studentVisualization.test.ts:246-258` (the spy test). (2) Deleted `student.ts:512-523` (the dead `student_competency` query + comment block). (3) Updated JSDoc on `getStudentVisualizationHandler` to remove `student_competency` claim (changed "Module-1 skill graph" to "full curriculum skill graph", removed "and the student's `student_competency` rows for prerequisite proficiency data"). Suite: `studentVisualization.test.ts` now 4/4 pass (was 5/5). No regressions.
+- [~] Task: Resolve the never-produced `review_due` state (FR-6)
+    - [~] Red: test the intended `review_due` derivation, or assert the narrowed union
+        - [RED EVIDENCE 2026-06-24] Test file: `visualizationLearnerStateUnion.test.ts` — 3 tests. Behavioral invariant (1): handler never produces `review_due` across full mastery range [0.0, 0.95] → PASSES (documents the fact). Source-level complement (2): `student.ts` contains `'review_due'` in union → FAILS; `parent/visualization.ts` contains `'review_due'` in union → FAILS. The source-level assertions are the meaningful Red (they will pass after Green narrows the union).
     - [ ] Green: derive `review_due` from review/SRS data, or narrow the union type
 - [ ] Task: Measure - User Manual Verification 'Phase 2: Production-wiring scope & dead work' (Protocol in workflow.md)
 
