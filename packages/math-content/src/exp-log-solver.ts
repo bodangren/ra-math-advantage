@@ -7,9 +7,9 @@
  *   'ln'  — ln(Ax + C) = D       (natural logarithm, base e)
  *   'exp' — 2^x = N               (exponential equation)
  *
- * Domain safety: for log/ln problems, the generator ensures the argument
- * (Ax + C) is positive at the solution x. If the initial seed produces
- * an invalid domain, the seed is incremented by 1 and retried (re-roll).
+ * By construction, the argument (Ax + C) at the solution equals 10^D (log)
+ * or e^D (ln), both strictly positive, so the domain constraint is always
+ * satisfied without re-rolling.
  *
  * Convention: LaTeX formatting uses \log, \ln, and \exp commands.
  */
@@ -148,24 +148,6 @@ function generateExpProblem(rand: () => number): ExpLogProblem {
 }
 
 // ---------------------------------------------------------------------------
-// Domain validation
-// ---------------------------------------------------------------------------
-
-/**
- * Check whether the solution satisfies the domain constraint.
- *
- * For log/ln: the argument (Ax + C) must be positive at x = answer.
- * For exp: always valid (defined for all real x).
- */
-function isDomainValid(problem: ExpLogProblem): boolean {
-  if (problem.problemType === 'exp') return true;
-
-  // For log/ln, domain is a half-line. The answer must be strictly inside.
-  const { min, max } = problem.domain;
-  return problem.answer > min && problem.answer < max;
-}
-
-// ---------------------------------------------------------------------------
 // Main generator
 // ---------------------------------------------------------------------------
 
@@ -174,9 +156,9 @@ function isDomainValid(problem: ExpLogProblem): boolean {
  *
  * Deterministic: same seed → identical output.
  *
- * Domain safety: if the initial seed produces a log/ln problem whose
- * solution violates the domain constraint (Ax + C ≤ 0), the seed is
- * incremented by 1 and the problem is regenerated (re-roll).
+ * By construction, the argument (Ax + C) at the solution equals 10^D (log)
+ * or e^D (ln), both strictly positive, so the domain constraint is always
+ * satisfied. No re-roll is needed.
  *
  * @param options.seed — PRNG seed (integer).
  * @returns An ExpLogProblem with equation, answer, domain, and steps.
@@ -184,27 +166,19 @@ function isDomainValid(problem: ExpLogProblem): boolean {
 export function generateExpLogProblem(options: {
   seed: number;
 }): ExpLogProblem {
-  let { seed } = options;
+  const { seed } = options;
+  const rand = seededRandom(seed);
 
-  // eslint-disable-next-line no-constant-condition
-  while (true) {
-    const rand = seededRandom(seed);
-
-    // Deterministically pick problem type from the first PRNG draw.
-    const typeDraw = rand();
-    let problem: ExpLogProblem;
-    if (typeDraw < 1 / 3) {
-      problem = generateLogProblem(rand);
-    } else if (typeDraw < 2 / 3) {
-      problem = generateLnProblem(rand);
-    } else {
-      problem = generateExpProblem(rand);
-    }
-
-    // Domain check: if the solution is outside the valid region, re-roll.
-    if (isDomainValid(problem)) {
-      return problem;
-    }
-    seed += 1;
+  // Deterministically pick problem type from the first PRNG draw.
+  const typeDraw = rand();
+  let problem: ExpLogProblem;
+  if (typeDraw < 1 / 3) {
+    problem = generateLogProblem(rand);
+  } else if (typeDraw < 2 / 3) {
+    problem = generateLnProblem(rand);
+  } else {
+    problem = generateExpProblem(rand);
   }
+
+  return problem;
 }

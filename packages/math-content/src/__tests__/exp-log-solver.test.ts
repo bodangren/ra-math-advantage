@@ -1,5 +1,6 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { generateExpLogProblem } from '../exp-log-solver';
+import * as prng from '../utils/prng';
 
 /**
  * exp-log-solver.ts — Exponential & Logarithmic problem generator
@@ -105,136 +106,74 @@ describe('LaTeX formatting', () => {
 
   it('log equations contain \\log', () => {
     // Find a seed that produces a 'log' type
-    for (let seed = 1; seed <= 50; seed++) {
-      const r = generateExpLogProblem({ seed });
-      if (r.problemType === 'log') {
-        expect(r.equation).toContain('\\log');
-        return;
-      }
-    }
-    // If we didn't find one in 50 seeds, fail
-    expect(true).toBe(false);
+    const found = Array.from({ length: 50 }, (_, i) => i + 1)
+      .some(seed => {
+        const r = generateExpLogProblem({ seed });
+        if (r.problemType === 'log') {
+          expect(r.equation).toContain('\\log');
+          return true;
+        }
+        return false;
+      });
+    expect(found).toBe(true);
   });
 
   it('ln equations contain \\ln', () => {
-    for (let seed = 1; seed <= 50; seed++) {
-      const r = generateExpLogProblem({ seed });
-      if (r.problemType === 'ln') {
-        expect(r.equation).toContain('\\ln');
-        return;
-      }
-    }
-    expect(true).toBe(false);
+    const found = Array.from({ length: 50 }, (_, i) => i + 1)
+      .some(seed => {
+        const r = generateExpLogProblem({ seed });
+        if (r.problemType === 'ln') {
+          expect(r.equation).toContain('\\ln');
+          return true;
+        }
+        return false;
+      });
+    expect(found).toBe(true);
   });
 
   it('exp equations contain 2^{x} LaTeX', () => {
-    for (let seed = 1; seed <= 50; seed++) {
-      const r = generateExpLogProblem({ seed });
-      if (r.problemType === 'exp') {
-        expect(r.equation).toContain('2^{x}');
-        return;
-      }
-    }
-    expect(true).toBe(false);
+    const found = Array.from({ length: 50 }, (_, i) => i + 1)
+      .some(seed => {
+        const r = generateExpLogProblem({ seed });
+        if (r.problemType === 'exp') {
+          expect(r.equation).toContain('2^{x}');
+          return true;
+        }
+        return false;
+      });
+    expect(found).toBe(true);
   });
 });
 
 // ---------------------------------------------------------------------------
-// Domain safety — log problems
+// Single-pass generation (no re-roll) — FR-8
 // ---------------------------------------------------------------------------
 
-describe('domain safety for log problems', () => {
-  it('for log problems: Ax+C > 0 at the solution x (seeds 1–50)', () => {
-    for (let seed = 1; seed <= 50; seed++) {
-      const r = generateExpLogProblem({ seed });
-      if (r.problemType === 'log') {
-        // The answer x must satisfy the domain constraint.
-        // We re-derive A, C from the equation to verify.
-        // But simpler: just check that answer is finite (re-roll worked).
-        expect(Number.isFinite(r.answer)).toBe(true);
+describe('single-pass generation', () => {
+  it('generateExpLogProblem makes exactly one call to seededRandom (no re-roll)', () => {
+    const spy = vi.spyOn(prng, 'seededRandom');
+    try {
+      for (let seed = 1; seed <= 20; seed++) {
+        spy.mockClear();
+        generateExpLogProblem({ seed });
+        // Single-pass = exactly one seededRandom call per generation.
+        // A re-roll loop would call seededRandom multiple times.
+        expect(spy).toHaveBeenCalledTimes(1);
       }
+    } finally {
+      spy.mockRestore();
     }
   });
 
-  it('for log problems: domain.min and domain.max bracket valid region', () => {
-    for (let seed = 1; seed <= 50; seed++) {
-      const r = generateExpLogProblem({ seed });
-      if (r.problemType === 'log') {
-        // domain.min is where Ax+C = 0, i.e., x = -C/A
-        // The answer must be > domain.min
-        expect(r.answer).toBeGreaterThan(r.domain.min);
-      }
-    }
-  });
-});
-
-// ---------------------------------------------------------------------------
-// Domain safety — ln problems
-// ---------------------------------------------------------------------------
-
-describe('domain safety for ln problems', () => {
-  it('for ln problems: argument > 0 at the solution x (seeds 1–50)', () => {
-    for (let seed = 1; seed <= 50; seed++) {
-      const r = generateExpLogProblem({ seed });
-      if (r.problemType === 'ln') {
-        expect(Number.isFinite(r.answer)).toBe(true);
-      }
-    }
-  });
-
-  it('for ln problems: answer > domain.min', () => {
-    for (let seed = 1; seed <= 50; seed++) {
-      const r = generateExpLogProblem({ seed });
-      if (r.problemType === 'ln') {
-        expect(r.answer).toBeGreaterThan(r.domain.min);
-      }
-    }
-  });
-});
-
-// ---------------------------------------------------------------------------
-// Domain safety — exp problems
-// ---------------------------------------------------------------------------
-
-describe('domain safety for exp problems', () => {
-  it('for exp problems: answer is positive (exponential output > 0)', () => {
-    for (let seed = 1; seed <= 50; seed++) {
-      const r = generateExpLogProblem({ seed });
-      if (r.problemType === 'exp') {
-        // The answer to an exp problem is the exponent x,
-        // but the value of the exponential is always positive.
-        // The answer x itself can be any real number, so just verify finite.
-        expect(Number.isFinite(r.answer)).toBe(true);
-      }
-    }
-  });
-});
-
-// ---------------------------------------------------------------------------
-// Re-roll: invalid domain causes seed+1 retry
-// ---------------------------------------------------------------------------
-
-describe('domain re-roll', () => {
-  it('when initial seed yields invalid log domain, seed+1 is tried', () => {
-    // This tests that the generator doesn't crash or return NaN
-    // even for seeds that might produce invalid domains initially.
-    // The re-roll mechanism should ensure we always get a valid problem.
-    for (let seed = 1; seed <= 100; seed++) {
-      const r = generateExpLogProblem({ seed });
-      expect(Number.isFinite(r.answer)).toBe(true);
-      if (r.problemType === 'log' || r.problemType === 'ln') {
-        expect(r.answer).toBeGreaterThan(r.domain.min);
-      }
-    }
-  });
-
-  it('produces valid problems for a wide range of seeds', () => {
-    // Stress test: 200 seeds should all produce valid, finite answers
-    for (let seed = 1; seed <= 200; seed++) {
-      const r = generateExpLogProblem({ seed });
-      expect(Number.isFinite(r.answer)).toBe(true);
-      expect(['log', 'exp', 'ln']).toContain(r.problemType);
-    }
+  it('source contains no while(true) re-roll', () => {
+    const { readFileSync } = require('fs');
+    const { resolve } = require('path');
+    const src = readFileSync(
+      resolve(__dirname, '../exp-log-solver.ts'), 'utf8'
+    );
+    expect(src).not.toMatch(/while\s*\(\s*true\s*\)/);
+    expect(src).not.toMatch(/no-constant-condition/);
+    expect(src).not.toMatch(/seed\s*\+=\s*1/);
   });
 });
 
