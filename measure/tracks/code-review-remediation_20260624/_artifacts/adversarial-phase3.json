@@ -1,0 +1,56 @@
+{
+  "role": "adversarial",
+  "track": "code-review-remediation_20260624",
+  "phase": "Phase 3: advanced-math-generators correctness & quality (Cluster C)",
+  "baseline_sha": "2baa1e8b",
+  "runner": "measure/tracks/code-review-remediation_20260624/scripts/adversarial-tests-phase3.sh",
+  "log": "measure/tracks/code-review-remediation_20260624/_artifacts/adversarial-run-phase3.txt",
+  "verdict": "pass",
+  "probes": {
+    "a_ha_variation_50_seeds": {
+      "verdict": "pass",
+      "description": "rational-analyzer HA varies across ≥5 distinct seeds out of 50, with ≥1 non-unit ratio.",
+      "result": "Generated temporary vitest file inside packages/math-content asserting ratios.size >= 5 AND nonUnit >= 1. 1/1 tests pass.",
+      "fix_applied": "none"
+    },
+    "b_seededRandom_spy_once_per_generation": {
+      "verdict": "pass",
+      "description": "vi.spyOn(prng, 'seededRandom') is called exactly once per generateExpLogProblem invocation.",
+      "result": "Test runs 5 distinct seeds and asserts each adds exactly 1 spy call (delta==1, total==5). 1/1 tests pass — confirms single-pass FR-8 implementation at runtime.",
+      "fix_applied": "none"
+    },
+    "c_call_site_discipline": {
+      "verdict": "pass",
+      "description": "Zero local copies of seededRandom / generateCoefficients / formatPolynomial remain outside utils/.",
+      "result": "rg counts: seededRandom=1 (utils/prng.ts), generateCoefficients=1 (utils/coefficients.ts), formatPolynomial=1 (utils/polynomial-format.ts). All 7 importers confirmed using '../utils/...' or './utils/...' imports.",
+      "fix_applied": "none"
+    },
+    "d_formatPolynomial_edge_cases": {
+      "verdict": "pass",
+      "description": "formatPolynomial handles all-zero, empty, single-constant, mid-zero, leading-negative, fractional, all-negative, coefficient±1, and ±x edge cases without throwing.",
+      "result": "9/9 edge-case tests pass. Notable canonical forms verified: formatPolynomial([]) → '0', formatPolynomial([0,0,0]) → '0', formatPolynomial([0,1]) → 'x', formatPolynomial([0,-1]) → '−x', leading negative renders with U+2212 sign.",
+      "fix_applied": "none"
+    },
+    "e_flat_registry_deleted_and_resolution_works": {
+      "verdict": "pass",
+      "description": "packages/math-content/src/generator-registry.ts is deleted AND getGenerator(key) still resolves all 4 advanced adapters with non-empty math.im3.skill.* nodeIds and produces non-empty output for seed 1.",
+      "result": "File absent (ls -ENOENT). getGenerator() for polynomial-operations, polynomial-division, rational-analyzer, exp-log-solver all return a generator with non-empty nodeIds matching math.im3.skill.* and produce a non-empty prompt. Unknown key throws 'Unknown generator key' (no silent fallback).",
+      "fix_applied": "initial probe asserted toBeUndefined for unknown key — corrected to toThrow because the implementation correctly throws on unknown keys (this is the intended public contract, not a bypass)."
+    }
+  },
+  "bypasses_found": [],
+  "fixes_applied": [
+    {
+      "type": "probe_correction",
+      "description": "Probe E's 'unknown key returns undefined' assertion was wrong — getGenerator (registry.ts:255) intentionally throws on unknown keys. Corrected probe to assert toThrow(/Unknown generator key/). No production code changed."
+    }
+  ],
+  "tests_run": [
+    "bash measure/tracks/code-review-remediation_20260624/scripts/adversarial-tests-phase3.sh — 5/5 probes pass"
+  ],
+  "files_changed": [
+    "measure/tracks/code-review-remediation_20260624/scripts/adversarial-tests-phase3.sh (new)",
+    "measure/tracks/code-review-remediation_20260624/_artifacts/adversarial-run-phase3.txt (transcript)"
+  ],
+  "handoff": "All 5 adversarial probes pass. No bypasses, fake gates, or hidden regressions found. Phase 3 implementation is structurally and behaviorally sound under stress."
+}

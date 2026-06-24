@@ -84,7 +84,8 @@ JSDoc) first. Each behavioral fix follows Red → Green TDD per `workflow.md`.
 - [x] Task: Correct PRNG labelling (FR-11)
     - [x] Green: fix the docstring (subsumed by FR-9 shared util)
         - [GREEN EVIDENCE 2026-06-24] Docstring corrected in utils/prng.ts (commit 6c60fc92). Describes actual JS double arithmetic behavior with overflow caveat. No PRNG bit pattern change.
-- [ ] Task: Measure - User Manual Verification 'Phase 3: advanced-math-generators correctness & quality' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 3: advanced-math-generators correctness & quality' (Protocol in workflow.md)
+    - [ACCEPTANCE EVIDENCE 2026-06-24] Phase-acceptance: `_artifacts/phase-acceptance-phase3.json` status=pass (all FR-7/8/9/10/11 checklists pass, 0 spec-drift, 0 fake-gate violations, tsc 247/247 matches baseline). Adversarial: `_artifacts/adversarial-phase3.json` verdict=pass (5/5 probes: HA varies across 50 seeds with ≥5 distinct ratios; seededRandom spy called exactly 1× per generation; 1 definition each for seededRandom/generateCoefficients/formatPolynomial; formatPolynomial edge cases 9/9; flat registry deleted + registry resolves all 4 adapters). Final-acceptance: `_artifacts/final-acceptance-phase3.json` verdict=pass. All 5 sub-audits pass. Phase 1 invariant (FR-3 guard exit 0, 664 typed tags, 0 violations) and Phase 2 invariants (22/22 IM3 visualization tests) intact.
 
 ## Phase 4: precalc concept taxonomy (Cluster D)
 

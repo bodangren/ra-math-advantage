@@ -1,0 +1,78 @@
+Phase 3 Adversarial Test Runner — code-review-remediation_20260624
+Started: 2026-06-24T11:03:01+08:00
+Repo: /home/daniel-bo/Desktop/ra-math-advantage
+====================================================================
+
+[PROBE A] rational-analyzer HA varies across 50 seeds (≥5 distinct ratios)
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.8 [39m[90m/home/daniel-bo/Desktop/ra-math-advantage/packages/math-content[39m
+
+ [32m✓[39m src/__tests__/__adversarial-phase3-ha.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 20[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m   Start at [22m 11:03:03
+[2m   Duration [22m 805ms[2m (transform 186ms, setup 0ms, import 247ms, tests 20ms, environment 0ms)[22m
+
+[PROBE A] PASS
+
+[PROBE B] exp-log-solver: seededRandom spy called exactly once per generation
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.8 [39m[90m/home/daniel-bo/Desktop/ra-math-advantage/packages/math-content[39m
+
+ [32m✓[39m src/__tests__/__adversarial-phase3-spy.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 18[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m   Start at [22m 11:03:06
+[2m   Duration [22m 740ms[2m (transform 180ms, setup 0ms, import 243ms, tests 18ms, environment 0ms)[22m
+
+[PROBE B] PASS
+
+[PROBE C] Call-site discipline: single source of truth for shared utils
+  seededRandom definitions: 1 (expected 1)
+  generateCoefficients definitions: 1 (expected 1)
+  formatPolynomial definitions: 1 (expected 1)
+/home/daniel-bo/Desktop/ra-math-advantage/packages/math-content/src/utils/prng.ts:14:export function seededRandom(seed: number): () => number {
+/home/daniel-bo/Desktop/ra-math-advantage/packages/math-content/src/utils/coefficients.ts:12:export function generateCoefficients(
+/home/daniel-bo/Desktop/ra-math-advantage/packages/math-content/src/utils/polynomial-format.ts:12:export function formatPolynomial(coeffs: number[]): string {
+  Importers of utils/prng:
+/home/daniel-bo/Desktop/ra-math-advantage/packages/math-content/src/rational-analyzer.ts
+/home/daniel-bo/Desktop/ra-math-advantage/packages/math-content/src/polynomial-division.ts
+/home/daniel-bo/Desktop/ra-math-advantage/packages/math-content/src/__tests__/exp-log-solver.test.ts
+/home/daniel-bo/Desktop/ra-math-advantage/packages/math-content/src/problem-families/im1/generators.ts
+/home/daniel-bo/Desktop/ra-math-advantage/packages/math-content/src/knowledge-space/generators/registry.ts
+/home/daniel-bo/Desktop/ra-math-advantage/packages/math-content/src/polynomial-operations.ts
+/home/daniel-bo/Desktop/ra-math-advantage/packages/math-content/src/exp-log-solver.ts
+[PROBE C] PASS
+
+[PROBE D] formatPolynomial edge cases (zeros, leading negative, fractions)
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.8 [39m[90m/home/daniel-bo/Desktop/ra-math-advantage/packages/math-content[39m
+
+ [32m✓[39m src/__tests__/__adversarial-phase3-format.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 26[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m9 passed[39m[22m[90m (9)[39m
+[2m   Start at [22m 11:03:10
+[2m   Duration [22m 749ms[2m (transform 110ms, setup 0ms, import 159ms, tests 26ms, environment 0ms)[22m
+
+[PROBE D] PASS
+
+[PROBE E] Flat generator-registry.ts deleted + name resolution works
+  generator-registry.ts deleted: confirmed
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.8 [39m[90m/home/daniel-bo/Desktop/ra-math-advantage/packages/math-content[39m
+
+ [32m✓[39m src/knowledge-space/__tests__/__adversarial-phase3-registry.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 25[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m5 passed[39m[22m[90m (5)[39m
+[2m   Start at [22m 11:03:13
+[2m   Duration [22m 1.06s[2m (transform 411ms, setup 0ms, import 519ms, tests 25ms, environment 0ms)[22m
+
+[PROBE E] registry-resolution PASS
+
+====================================================================
+Adversarial Phase 3: 0 probe(s) failed.
+VERDICT: PASS
