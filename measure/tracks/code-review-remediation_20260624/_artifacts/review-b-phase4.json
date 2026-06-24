@@ -1,0 +1,66 @@
+{
+  "role": "review-b-security",
+  "track": "code-review-remediation_20260624",
+  "phase": "Phase 4: precalc concept taxonomy (Cluster D)",
+  "status": "pass",
+  "summary": "Phase 4 changes introduce no security regressions. The refactored script retains the same CLI surface (--dry-run, default rewrite) and the same filesystem access pattern (recursive walk under the configured scanRoots). The new pure-function exports (findBlueprintFiles, removeConceptBlueprints, countConceptBlueprints, remediate) operate on caller-supplied paths and parsed JSON only — no eval, no shell-out, no dynamic require. The projection source change adds no I/O, no string interpolation, no surface area. The new test files use vitest's standard describe/it/expect and the node:fs / node:os / node:path modules for fixture management only — no network, no shell, no exec.",
+  "checklist": {
+    "Path traversal": {
+      "status": "pass",
+      "notes": "The script's walk is bounded by the caller-supplied scanRoots (default ['apps']). It does not follow symlinks (fs.readdirSync with withFileTypes only). The script writes back to the same files it reads; no path is constructed from blueprint content."
+    },
+    "Injection / XSS / SQL": {
+      "status": "pass",
+      "notes": "No string interpolation of user input into paths, commands, or queries. The script reads JSON, mutates the in-memory object, and writes JSON.stringify back. No regex execution against blueprint content (the .concept. pattern is a fixed string, not a user-supplied regex)."
+    },
+    "Filesystem safety": {
+      "status": "pass",
+      "notes": "findBlueprintFiles checks fs.existsSync before each walk. Test fixtures use fs.mkdtempSync under os.tmpdir() and clean up via fs.rmSync with recursive + force. No writes outside the temp dir. The production dry-run mode does not write any files."
+    },
+    "Process spawn / shell": {
+      "status": "pass",
+      "notes": "No child_process, no exec, no spawn. The script runs entirely in-process."
+    },
+    "Determinism": {
+      "status": "pass",
+      "notes": "The walker output is deterministic (alphabetical entry order from readdirSync). The detector is a fixed regex. The projection sorts output by nodeId then mode — already in place pre-Phase-4, preserved by the change."
+    },
+    "Unsafe patterns": {
+      "status": "pass",
+      "notes": "No eval, no new Function, no Object.assign on untrusted input, no prototype pollution surface. The BlueprintFile parsed object is filtered with .filter() (no mutation of untrusted object structure beyond array element removal)."
+    },
+    "Auth / authorization": {
+      "status": "pass",
+      "notes": "N/A — Phase 4 does not touch any auth, session, or authorization code. The pre-calculus skill graph and activity-map.json are static curriculum artifacts; the script does not consume any user-supplied data."
+    },
+    "Dependency changes": {
+      "status": "pass",
+      "notes": "No new dependencies. The script uses only node:fs, node:path, node:url (Node built-ins). The vitest config uses vitest, @vitest/config (already in the repo for other packages). No npm install required."
+    }
+  },
+  "security_violations": [],
+  "injection_violations": [],
+  "path_traversal_violations": [],
+  "determinism_violations": [],
+  "unsafe_pattern_violations": [],
+  "commits": [
+    "e9eded33",
+    "c91e50de",
+    "56183bd1"
+  ],
+  "tests_run": [
+    "rg -n 'eval\\(|new Function\\(|child_process|exec\\(|spawn\\(' scripts/remediate-concept-blueprints.ts scripts/__tests__/remediate-concept-blueprints.test.ts packages/knowledge-space-practice/src/projections/activity-map.ts → 0 matches",
+    "rg -n 'Object\\.assign\\(' scripts/remediate-concept-blueprints.ts packages/knowledge-space-practice/src/projections/activity-map.ts → 0 matches",
+    "rg -n '__proto__|prototype\\[' scripts/remediate-concept-blueprints.ts packages/knowledge-space-practice/src/projections/activity-map.ts → 0 matches",
+    "npx tsx scripts/remediate-concept-blueprints.ts --dry-run (no writes; output is deterministic; no path appears outside the apps/ subtree)"
+  ],
+  "files_changed": [
+    "scripts/remediate-concept-blueprints.ts",
+    "scripts/__tests__/remediate-concept-blueprints.test.ts (new)",
+    "scripts/vitest.config.ts (new)",
+    "packages/knowledge-space-practice/src/projections/activity-map.ts",
+    "packages/knowledge-space-practice/src/__tests__/projections.test.ts"
+  ],
+  "known_failures": "none",
+  "handoff": "Phase 4 is security-clean. No new attack surface, no new dependencies, no shell-out, no eval, no path traversal. The script remains a single-purpose read-mutate-write tool bounded by the configured scanRoots. The projection change is a pure data-flow refactor (sibling iteration instead of single-skill collapse). Phase 5 (IM3 auth unification) can proceed."
+}

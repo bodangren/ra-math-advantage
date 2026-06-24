@@ -1,0 +1,78 @@
+{
+  "role": "final-acceptance",
+  "track": "code-review-remediation_20260624",
+  "phase": "Phase 4: precalc concept taxonomy (Cluster D)",
+  "baseline_sha": "2bde49a6",
+  "phase_commit_chain": [
+    "e9eded33",
+    "c91e50de",
+    "56183bd1"
+  ],
+  "verdict": "pass",
+  "summary": "Phase 4 final acceptance: PASS. FR-12 fixes the script's scan path to cover the real activity-map.json artifact (production scan now reaches 17 files; pre-fix was 0). FR-13 changes the projection to emit one row set per child skill (N rows for N-skill concept). The certifying 'picks alphabetically first' test is REPLACED with N-row behavior assertions. All three sub-reviews (a/b/c) pass. Phase 1/2/3 invariants intact. All 7 adversarial probes pass.",
+  "independent_gates": {
+    "fr3_jsdoc_guard": {
+      "status": "pass",
+      "result": "exit 0, 0 violations, 664 typed tags across apps/ packages/ convex/ (2246 files scanned)"
+    },
+    "tsc_baseline_preserved": {
+      "status": "pass",
+      "result": "npx tsc --noEmit -p packages/math-content/tsconfig.json → 247 lines, exact match to Phase 3 baseline. knowledge-space-practice source: 0 errors. knowledge-space-practice tests: 16 lines, all pre-existing in test files (no new tsc errors from Phase 4)."
+    },
+    "phase4_fr12_tests": {
+      "status": "pass",
+      "result": "npx vitest run --root scripts → 11/11 pass. Path resolution + detector + integration + production-scan closeout."
+    },
+    "phase4_fr13_tests": {
+      "status": "pass",
+      "result": "projections.test.ts → 19/19 pass (was 17: -1 removed certifying test, +3 added behavioral tests). knowledge-space-practice full suite → 373/373 pass (was 371, +2 net from FR-13 changes)."
+    },
+    "phase2_invariants": {
+      "status": "pass",
+      "result": "IM3 visualization suites: studentVisualization 4/4, studentVisualizationAdversarial 9/9, studentVisualizationMultiModule 6/6, visualizationLearnerStateUnion 3/3. Total 22/22 pass."
+    },
+    "phase3_invariants": {
+      "status": "pass",
+      "result": "math-content Phase 3 tests: rational-analyzer 19/19, exp-log-solver 17/17, adapter 47/47, generator-registry 9/9. Total 92/92 pass."
+    },
+    "fr12_production_scan": {
+      "status": "pass",
+      "result": "npx tsx scripts/remediate-concept-blueprints.ts --dry-run → 'scanned 17 file(s); done — 0 concept blueprint(s) across 0 file(s)'. The scan set is now correct (covers pre-calculus activity-map.json + IM3 module-N shards + legacy skill-graph/blueprints.json). The honest 0 is the truthful count; the pre-fix 0 was a false clean."
+    },
+    "fr13_emit_all_child_skills": {
+      "status": "pass",
+      "result": "projectActivityMap iterates over findChildSkills(conceptNode, ...). Behavior: 0-skill concept → 0 rows; 1-skill concept → 1 row; N-skill concept → N rows (per spec, per mode per skill). selectSkill is kept as a public helper for any single-skill caller."
+    },
+    "fr18_partial_test_integrity": {
+      "status": "pass",
+      "result": "The 'picks alphabetically first' test is REPLACED (not augmented) with N-row behavior assertions. The path-resolution test closes the '0 files' false-clean blind spot."
+    },
+    "fr12_path_robustness": {
+      "status": "pass",
+      "result": "Adversarial probe A2: walker tolerates mixed missing/present scan roots (no throw). Probe A3: walker + detector handle activity-map.json-only tree with no legacy blueprints.json. Probe C: detector and end-to-end counts agree."
+    }
+  },
+  "sub_audit_status": {
+    "review_a_correctness": "pass",
+    "review_b_security": "pass",
+    "review_c_ux_api": "pass",
+    "phase_acceptance": "pass",
+    "adversarial": "pass"
+  },
+  "blockers": [],
+  "spec_drift": [],
+  "fake_gates": [],
+  "tests_run": [
+    "npx vitest run --root scripts (11/11 pass)",
+    "npx vitest run src/__tests__/projections.test.ts (19/19 pass)",
+    "npx vitest run (knowledge-space-practice full: 373/373 pass)",
+    "npx vitest run src/__tests__/rational-analyzer.test.ts src/__tests__/exp-log-solver.test.ts src/knowledge-space/__tests__/adapter.test.ts src/__tests__/generator-registry.test.ts (92/92 pass)",
+    "npx vitest run __tests__/convex/studentVisualization.test.ts __tests__/convex/studentVisualizationAdversarial.test.ts __tests__/convex/studentVisualizationMultiModule.test.ts __tests__/convex/visualizationLearnerStateUnion.test.ts (22/22 pass)",
+    "npx tsx scripts/remediate-concept-blueprints.ts --dry-run (scanned 17 files, 0 concept blueprints; captured to _artifacts/remediate-run-after-fix.txt)",
+    "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh 'apps/ packages/ convex/' (exit 0, 0 violations, 664 typed tags)",
+    "npx tsc --noEmit -p packages/math-content/tsconfig.json (247 lines, matches Phase 3 baseline)",
+    "npx tsc --noEmit (knowledge-space-practice: 16 lines, all pre-existing)",
+    "bash measure/tracks/code-review-remediation_20260624/scripts/adversarial-tests-phase4.sh (7/7 probes pass)"
+  ],
+  "handoff": "Phase 4 ACCEPTED. Plan must be updated to mark the 'Measure - User Manual Verification' task complete with this evidence and final-acceptance pointer. Ready to proceed to Phase 5: IM3 auth unification (FR-14). The Phase 5 strategy should start by reading apps/integrated-math-3/lib/auth/server.ts and packages/core-auth/src/request-guards.ts to plan the auth-wrapper unification."
+}

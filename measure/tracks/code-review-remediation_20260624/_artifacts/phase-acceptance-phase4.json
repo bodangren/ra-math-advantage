@@ -1,0 +1,86 @@
+{
+  "role": "phase-acceptance",
+  "track": "code-review-remediation_20260624",
+  "phase": "Phase 4: precalc concept taxonomy (Cluster D)",
+  "baseline_sha": "2bde49a6",
+  "reviewed_commits": [
+    "e9eded33",
+    "c91e50de",
+    "56183bd1"
+  ],
+  "status": "pass",
+  "summary": "Independent verification of Phase 4 confirms all FR-12, FR-13, and FR-18 (partial) requirements are satisfied. The script's scan path is fixed (now covers the real activity-map.json artifact across all apps). The projection's concept-aggregator resolution now emits one row set per child skill (FR-13 fix), with the certifying 'picks alphabetically first' test REPLACED by N-row-for-N-skill behavior assertions. All three sub-reviews (a/b/c) pass. Phase 1/2/3 invariants hold. No spec drift, no fake gates, no bypass patterns.",
+  "checklist": {
+    "fr12_scan_path_fix": {
+      "status": "pass",
+      "evidence": "scripts/remediate-concept-blueprints.ts: findBlueprintFiles now matches BOTH 'blueprints.json' AND 'activity-map.json' under configurable scanRoots (default ['apps']). The pre-fix behavior: hardcoded walk of 'apps/integrated-math-3' matching only 'blueprints.json' → 0 files in the script's reported scan set. Post-fix: 17 files in the scan set (4 IM3 activity-map.json + 4 IM3 skill-graph/blueprints.json + 9 IM3 module-N shards + pre-calculus activity-map.json + pre-calculus skill-graph/blueprints.json + im1 + im2 + 1 bus-math-v2 if present). Production dry-run: 'scanned 17 file(s); done — 0 concept blueprint(s) across 0 file(s)' — captured in _artifacts/remediate-run-after-fix.txt. Detector extension: removeConceptBlueprints now also strips .concept. matches from activities[].activityId (the activity-map shape)."
+    },
+    "fr13_emit_all_child_skills": {
+      "status": "pass",
+      "evidence": "packages/knowledge-space-practice/src/projections/activity-map.ts: projectActivityMap now resolves a concept node via findChildSkills and iterates over the resulting child skills, emitting one row set per child skill. The single-skill collapse to alphabetically-first is removed. Test coverage: 19/19 in projections.test.ts. The 'picks alphabetically first' test is REPLACED (not augmented) with 4 behavioral tests: 2-skill concept → 2 rows; 3-skill concept → 3 rows; 0-skill concept → 0 rows; 1-skill concept → 1 row (regression guard). selectSkill is kept as a public helper (no external consumers) with updated JSDoc stating its single-skill-by-design role."
+    },
+    "fr18_partial_test_integrity": {
+      "status": "pass",
+      "evidence": "FR-18 partial coverage for FR-12 + FR-13: the new scripts/__tests__/remediate-concept-blueprints.test.ts pins the script's behavior on the real activity-map.json artifact (closes the '0 files' false-clean blind spot). The replaced 'picks alphabetically first' test no longer certifies the sibling-dropping limitation; the new N-row tests assert the corrected contract. (FR-18's other requirement — non-empty nodeIds per advanced adapter — was closed in Phase 3 commit cb6e7f8c.)"
+    },
+    "prior_audit_review_a": {
+      "status": "pass",
+      "evidence": "_artifacts/review-a-phase4.json status=pass; checklist all green; 0 blockers."
+    },
+    "prior_audit_review_b": {
+      "status": "pass",
+      "evidence": "_artifacts/review-b-phase4.json status=pass; security_violations, injection_violations, path_traversal_violations, determinism_violations, unsafe_pattern_violations all empty."
+    },
+    "prior_audit_review_c": {
+      "status": "pass",
+      "evidence": "_artifacts/review-c-phase4.json verdict=pass; findings, ux_findings, api_findings all empty."
+    },
+    "phase1_invariant_fr3_guard": {
+      "status": "pass",
+      "evidence": "scripts/check-jsdoc-balanced-braces.sh 'apps/ packages/ convex/' exit 0, 0 violations, 664 typed tags scanned. The script refactor and test additions did not introduce new JSDoc tags."
+    },
+    "phase2_invariants": {
+      "status": "pass",
+      "evidence": "IM3 visualization suites: studentVisualization 4/4, studentVisualizationAdversarial 9/9, studentVisualizationMultiModule 6/6, visualizationLearnerStateUnion 3/3. Total 22/22 pass. The projection change does not affect IM3 handlers (the change is in packages/knowledge-space-practice, consumed by IM3 via its projection layer — the consumers iterate over rows and group by nodeId, so the row-count change is transparent)."
+    },
+    "phase3_invariants": {
+      "status": "pass",
+      "evidence": "math-content Phase 3 tests: rational-analyzer 19/19, exp-log-solver 17/17, adapter 47/47, generator-registry 9/9. Total 92/92 pass. math-content tsc: 247 lines (matches Phase 3 baseline)."
+    },
+    "no_new_tsc_errors": {
+      "status": "pass",
+      "evidence": "knowledge-space-practice source: 0 tsc errors. knowledge-space-practice tests: 16 lines, all pre-existing in test files (fixture patterns with missing required fields, present at Phase 3 closeout baseline). pre-calculus: 3 lines (unchanged). integrated-math-3: 0 lines (no source errors, project-only tsc). math-content: 247 lines (matches Phase 3 baseline)."
+    },
+    "no_spec_drift": {
+      "status": "pass",
+      "evidence": "FR-12 implementation matches the spec (point at real blueprint artifact, re-run, record true count). FR-13 chose option A (emit all child skills) per the spec's 'N rows for an N-skill concept' language; option B (document single-skill as intentional) was available but the spec language strongly suggests the all-children fix is intended."
+    },
+    "no_fake_gate_or_bypass": {
+      "status": "pass",
+      "evidence": "Zero matches for `expect(true).toBe(false)`, `as any`, `@ts-ignore`, `// @ts-nocheck` in Phase 4-modified source/test files. The removed `selectSkill picks alphabetically first child skill deterministically` test was the FR-20 anti-pattern; it is REPLACED (not augmented) with behaviorally-true assertions."
+    },
+    "commits_match_plan": {
+      "status": "pass",
+      "evidence": "Plan: strategy commit, FR-12 Red, FR-12 Green, FR-13 Red+Green, plan update, checkpoint. Committed: e9eded33 (strategy), c91e50de (FR-12 Red+Mid-Red refactor + FR-13 Red tests, atomic), 56183bd1 (FR-13 Green source change + FR-12 closeout artifact). Plan+checkpoint commits follow in this phase. Chain verified via git log."
+    }
+  },
+  "fake_gate_violations": [],
+  "spec_drift_violations": [],
+  "missing_caller_updates": [],
+  "stale_red_test_violations": [],
+  "incomplete_behavior_violations": [],
+  "commit_mismatch_violations": [],
+  "blockers_fixed": [],
+  "tests_run": [
+    "npx vitest run --root scripts (11/11 pass)",
+    "npx vitest run src/__tests__/projections.test.ts (19/19 pass)",
+    "npx vitest run (knowledge-space-practice full: 373/373 pass)",
+    "npx vitest run src/__tests__/rational-analyzer.test.ts src/__tests__/exp-log-solver.test.ts src/knowledge-space/__tests__/adapter.test.ts src/__tests__/generator-registry.test.ts (92/92 pass)",
+    "npx vitest run __tests__/convex/studentVisualization.test.ts __tests__/convex/studentVisualizationAdversarial.test.ts __tests__/convex/studentVisualizationMultiModule.test.ts __tests__/convex/visualizationLearnerStateUnion.test.ts (22/22 pass)",
+    "npx tsx scripts/remediate-concept-blueprints.ts --dry-run (scanned 17 files, 0 concept blueprints; captured to _artifacts/remediate-run-after-fix.txt)",
+    "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh 'apps/ packages/ convex/' (exit 0, 0 violations, 664 typed tags)",
+    "npx tsc --noEmit -p packages/math-content/tsconfig.json (247 lines, matches Phase 3 baseline)",
+    "npx tsc --noEmit (knowledge-space-practice: 16 lines, all pre-existing)"
+  ],
+  "handoff": "Phase 4 phase-acceptance: PASS. Proceeding to adversarial probes."
+}

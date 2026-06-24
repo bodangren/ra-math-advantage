@@ -1,0 +1,49 @@
+Phase 4 Closeout Gates — code-review-remediation_20260624
+=========================================================
+Captured: 2026-06-24
+
+FR-12 gates:
+  Path resolution: scans apps/*/curriculum/implementation/practice-v1/activity-map.json (the real artifact)
+  Path resolution: scans apps/*/curriculum/skill-graph/blueprints.json (legacy back-compat)
+  Path resolution: scans apps/*/curriculum/skill-graph/module-N/blueprints.json (IM3 shards)
+  Production scan (post-fix): 17 files scanned, 0 concept blueprints (honest 0)
+  Pre-fix: 0 files scanned, 0 concept blueprints (false clean — wrong path)
+  Test count: 11/11 scripts/__tests__/remediate-concept-blueprints.test.ts pass
+
+FR-13 gates:
+  Old "selectSkill picks alphabetically first" test: REMOVED (was the FR-20 anti-pattern)
+  New tests:
+    - projectActivityMap emits one row per child skill for a 2-skill concept (was 1, now 2)
+    - projectActivityMap emits one row per child skill for a 3-skill concept (was 1, now 3)
+    - projectActivityMap emits zero rows for a concept with no child skills (was 1, now 0)
+    - projectActivityMap emits exactly one row for a 1-skill concept (regression: still 1)
+  Test count: 19/19 projections.test.ts pass (was 17: -1 removed, +3 added)
+  Full ksp suite: 373/373 pass (was 371, +2 net)
+
+selectSkill export: kept (deterministic helper for any single-skill caller)
+  JSDoc updated to state "Kept as a public helper; the projectActivityMap
+  projection itself iterates over every child skill (FR-13 fix)."
+
+Phase 1 invariant:
+  FR-3 JSDoc guard: exit 0, violations 0, 664 typed tags
+
+Phase 2 invariant:
+  IM3 visualization tests: 22/22 pass
+    - studentVisualization: 4
+    - studentVisualizationAdversarial: 9
+    - studentVisualizationMultiModule: 6
+    - visualizationLearnerStateUnion: 3
+
+Phase 3 invariant:
+  math-content Phase 3 tests: 92/92 pass
+    - rational-analyzer: 19
+    - exp-log-solver: 17
+    - adapter: 47
+    - generator-registry: 9
+
+tsc baselines:
+  pre-calculus: 3 lines (unchanged)
+  integrated-math-3: 0 lines (project-only tsc, no source errors)
+  knowledge-space-practice: 16 lines (all pre-existing in test files,
+    0 in source, 0 NEW from Phase 4)
+  math-content: 247 lines (matches Phase 3 baseline)

@@ -1,0 +1,64 @@
+== Probe A1: path resolution coverage ==
+Scanned files reported: 17
+PASS: walker reached 17 files (was 0 pre-fix)
+  REACH: apps/pre-calculus/curriculum/implementation/practice-v1/activity-map.json
+  REACH: apps/integrated-math-3/curriculum/implementation/practice-v1/activity-map.json
+  REACH: apps/integrated-math-3/curriculum/skill-graph/blueprints.json
+PASS: walker reaches all required artifacts (pre-calculus activity-map.json + IM3 module-N shards + legacy skill-graph/blueprints.json)
+
+== Probe A2: walker robustness against missing scan roots ==
+  mixed-roots result: 17 files (no throw)
+PASS: walker does not throw on missing scan roots
+
+== Probe A3: walker catches the activity-map.json shape even if legacy name is removed ==
+  activity-map-only tree: 1 file, 1 concept
+PASS: walker + detector handle activity-map.json shape with no legacy blueprints.json present
+
+== Probe B1: 5-skill concept emits 5 rows ==
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.8 [39m[90m/home/daniel-bo/Desktop/ra-math-advantage/packages/knowledge-space-practice[39m
+
+ [32m✓[39m src/__tests__/__adversarial-phase4-b1.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 114[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m   Start at [22m 13:57:57
+[2m   Duration [22m 3.19s[2m (transform 505ms, setup 0ms, import 696ms, tests 114ms, environment 1ms)[22m
+
+  -- probe B1 transcript above --
+PASS: 5-skill concept → 5 distinct nodeId rows (FR-13 N rows for N skills)
+
+== Probe B2: 0-skill concept emits 0 rows ==
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.8 [39m[90m/home/daniel-bo/Desktop/ra-math-advantage/packages/knowledge-space-practice[39m
+
+ [32m✓[39m src/__tests__/__adversarial-phase4-b2.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 40[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m   Start at [22m 13:58:10
+[2m   Duration [22m 3.00s[2m (transform 880ms, setup 0ms, import 1.04s, tests 40ms, environment 4ms)[22m
+
+  -- probe B2 transcript above --
+PASS: 0-skill concept → 0 rows (FR-13 edge case)
+
+== Probe B3: 1-skill concept emits 1 row (regression) ==
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.8 [39m[90m/home/daniel-bo/Desktop/ra-math-advantage/packages/knowledge-space-practice[39m
+
+ [32m✓[39m src/__tests__/__adversarial-phase4-b3.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 23[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m   Start at [22m 13:58:22
+[2m   Duration [22m 2.49s[2m (transform 570ms, setup 0ms, import 713ms, tests 23ms, environment 0ms)[22m
+
+  -- probe B3 transcript above --
+PASS: 1-skill concept → 1 row (regression guard holds)
+
+== Probe C: end-to-end detector round-trip ==
+  detector (parsed) count: 3
+  remediate (end-to-end) totalRemoved: 3
+PASS: detector and end-to-end counts agree (3/3)
+
+== All Phase 4 adversarial probes PASS ==

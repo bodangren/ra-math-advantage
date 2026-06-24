@@ -1,0 +1,51 @@
+{
+  "role": "review-c-ux-api",
+  "track": "code-review-remediation_20260624",
+  "phase": "Phase 4: precalc concept taxonomy (Cluster D)",
+  "status": "pass",
+  "verdict": "pass",
+  "summary": "Phase 4 changes preserve the CLI surface, the projection's external contract, and the test file's describe/it structure. The script's CLI args (--dry-run, default rewrite) and stdout format are preserved. The projection's signature is unchanged; only the internal resolution logic changes (sibling iteration). The new vitest files use the standard describe/it/expect pattern and the standard vitest config shape. No API documentation drift.",
+  "checklist": {
+    "CLI surface preserved": {
+      "status": "pass",
+      "notes": "scripts/remediate-concept-blueprints.ts accepts the same args (--dry-run, default rewrite). Stdout now includes the scanned-file count: 'scanned N file(s); done — K concept blueprint(s) across M file(s)'. The 'scanned N file(s)' prefix is an addition (improves transparency about the scan set) but does not break downstream tooling because the trailing 'K concept blueprint(s) across M file(s)' phrase is preserved verbatim from the pre-Phase-4 format."
+    },
+    "Projection public signature": {
+      "status": "pass",
+      "notes": "projectActivityMap signature: (nodes, edges, blueprints) => ProjectedActivity[] — unchanged. ProjectedActivity type shape: unchanged. The output now contains N rows for an N-skill concept (where it previously contained 1 row); this is the FR-13 fix the spec asked for. Downstream consumers (planner, SRS, visualization) iterate over rows and group by nodeId, so the row-count change is invisible to them."
+    },
+    "selectSkill export preserved": {
+      "status": "pass",
+      "notes": "selectSkill is still exported from packages/knowledge-space-practice/src/projections/activity-map.ts. JSDoc updated to state the helper's role (kept for callers that want a single-skill selection; the projection itself iterates). The return semantics (alphabetically first child skill, or null on empty) are unchanged. The existing test 'selectSkill returns null on empty child list' still passes."
+    },
+    "Test file structure": {
+      "status": "pass",
+      "notes": "scripts/__tests__/remediate-concept-blueprints.test.ts uses standard vitest describe/it/expect. Five describe blocks group: path resolution (FR-12), concept detector (FR-18 partial), integration on a temp fixture (FR-12 + FR-18), production-scan true count (FR-12 closeout). 11 tests total. projections.test.ts adds 3 new tests in the 'Concept Aggregator resolution' describe block; 1 test removed."
+    },
+    "Documentation drift": {
+      "status": "pass",
+      "notes": "measure/practice-component-contract.md references the activity-map.json shape (activities[] with activityId). The new detector extension (also strip activityId) is consistent with the contract. No documentation claims changed."
+    },
+    "Naming consistency": {
+      "status": "pass",
+      "notes": "Removed test name 'picks alphabetically first child skill deterministically' replaced with behaviorally-true names: 'emits one row per child skill for a 2-skill concept (FR-13)', 'emits one row per child skill for a 3-skill concept (FR-13)', 'emits zero rows for a concept with no child skills (FR-13 edge case)', 'emits exactly one row for a 1-skill concept (regression guard)'. Names match behavior per FR-20."
+    }
+  },
+  "findings": [],
+  "ux_findings": [],
+  "api_findings": [],
+  "commits": [
+    "e9eded33",
+    "c91e50de",
+    "56183bd1"
+  ],
+  "files_changed": [
+    "scripts/remediate-concept-blueprints.ts",
+    "scripts/__tests__/remediate-concept-blueprints.test.ts (new)",
+    "scripts/vitest.config.ts (new)",
+    "packages/knowledge-space-practice/src/projections/activity-map.ts",
+    "packages/knowledge-space-practice/src/__tests__/projections.test.ts"
+  ],
+  "known_failures": "none",
+  "handoff": "Phase 4 UX/API is consistent. CLI args preserved, projection signature preserved, selectSkill export preserved with updated JSDoc, test names are behaviorally honest. The output row-count change is the FR-13 fix the spec requested; downstream consumers iterate over rows and group by nodeId, so the change is transparent. Phase 5 (IM3 auth unification) can proceed."
+}

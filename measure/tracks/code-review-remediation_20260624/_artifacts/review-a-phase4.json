@@ -1,0 +1,75 @@
+{
+  "role": "review-a-correctness",
+  "track": "code-review-remediation_20260624",
+  "phase": "Phase 4: precalc concept taxonomy (Cluster D)",
+  "status": "pass",
+  "summary": "Phase 4 implementation is correct and complete. FR-12 fixes the script's scan path to cover the real activity-map.json artifact across all apps; the production-scope scan now reaches 17 files (previously 0). FR-13 changes the projection's concept-aggregator resolution to emit one row set per child skill instead of collapsing to the alphabetically-first child. The certifying 'selectSkill picks alphabetically first' test is REPLACED (not augmented) with N-row-for-N-skill behavior assertions. All Phase 1/2/3 invariants hold.",
+  "checklist": {
+    "FR-12 correctness": {
+      "status": "pass",
+      "notes": "scripts/remediate-concept-blueprints.ts refactored to expose pure functions (findBlueprintFiles, removeConceptBlueprints, countConceptBlueprints, remediate). The walker now matches BOTH 'blueprints.json' (legacy IM3) AND 'activity-map.json' (the spec-named real artifact), and walks ALL apps (not just apps/integrated-math-3). The CLI invocation path is preserved. Production-scope dry-run: scanned 17 files, 0 concept blueprints — the honest 0, with the correct scan set. Detector now strips .concept. matches from BOTH blueprints[].nodeId AND activities[].activityId."
+    },
+    "FR-13 correctness": {
+      "status": "pass",
+      "notes": "packages/knowledge-space-practice/src/projections/activity-map.ts: projectActivityMap now iterates over every child skill (via findChildSkills) and emits one row set per child skill. Behavior matrix: 0-skill concept → 0 rows; 1-skill concept → 1 row; N-skill concept → N rows (per spec, per mode per skill). Non-concept target → 1 row (unchanged). Unknown nodeId → 0 rows (unchanged). selectSkill is kept as a public helper (no external consumers, but it's the deterministic single-skill primitive and remains exported for any future caller that wants single-skill semantics)."
+    },
+    "FR-18 partial correctness (test-integrity additions)": {
+      "status": "pass",
+      "notes": "The FR-12 path-resolution test pins the script's behavior on the activity-map.json artifact (replaces the prior '0 files' false-clean). The FR-13 test replacement eliminates the 'picks alphabetically first' test that encoded the sibling-dropping limitation as the requirement. Both are real behavioral assertions, not artifacts of the previous broken state."
+    },
+    "No spec drift": {
+      "status": "pass",
+      "notes": "FR-12 implementation matches the spec (point at real blueprint artifact, re-run, record true count). FR-13 chose option A (emit all child skills) per the spec's 'N rows for an N-skill concept' guidance; option B (document single-skill as intentional) was available but not selected because the spec language implies the all-children fix is the intended resolution."
+    },
+    "Test integrity": {
+      "status": "pass",
+      "notes": "11/11 new FR-12 vitest tests pass. 19/19 projections.test.ts tests pass (the old 17 + 3 new behavioral tests - 1 removed certifying test). No expect(true).toBe(false) patterns. No spy-assertion-on-table-name. The new tests assert observable output (row count, nodeId set, file path set), not artifacts of the implementation."
+    },
+    "Phase 1 invariant (FR-3 JSDoc guard)": {
+      "status": "pass",
+      "notes": "FR-3 balanced-brace JSDoc guard reports 0 violations across 664 typed tags in apps/ packages/ convex/. The script refactor and test additions did not introduce new JSDoc tags."
+    },
+    "Phase 2 invariant (IM3 visualization tests)": {
+      "status": "pass",
+      "notes": "22/22 IM3 visualization tests pass (studentVisualization 4, studentVisualizationAdversarial 9, studentVisualizationMultiModule 6, visualizationLearnerStateUnion 3). The projection change does not affect IM3 handlers."
+    },
+    "Phase 3 invariant (math-content tests)": {
+      "status": "pass",
+      "notes": "92/92 math-content Phase 3 tests pass. The tsc baseline for math-content is 247 lines (unchanged). The knowledge-space-practice source has 0 tsc errors; the 16 tsc errors in test files are pre-existing (fixture patterns with missing required fields, present at Phase 3 closeout baseline) and not introduced by Phase 4."
+    },
+    "No new tsc errors": {
+      "status": "pass",
+      "notes": "knowledge-space-practice: 16 tsc lines, all pre-existing in test files. The 5 source-level tsc errors that initially appeared after the Mid-Red were resolved by the source change. New test file scripts/__tests__/remediate-concept-blueprints.test.ts is a root-level vitest suite; it has node:fs/node:path type errors (consistent with the pre-existing root-level script pattern) but runs cleanly via npx vitest."
+    }
+  },
+  "blockers_found": [],
+  "commits": [
+    "e9eded33 docs(code-review-remediation): Phase 4 test strategy — FR-12/13/18 precalc concept taxonomy",
+    "c91e50de test(code-review-remediation): Phase 4 Red — FR-12 scan-path tests + FR-13 selectSkill test replacement",
+    "56183bd1 fix(code-review-remediation): Phase 4 Green — FR-13 projectActivityMap emits one row set per child skill"
+  ],
+  "tests_run": [
+    "npx vitest run --root scripts (11/11 pass)",
+    "npx vitest run src/__tests__/projections.test.ts (19/19 pass)",
+    "npx vitest run (knowledge-space-practice full: 373/373 pass)",
+    "npx vitest run src/__tests__/rational-analyzer.test.ts src/__tests__/exp-log-solver.test.ts src/knowledge-space/__tests__/adapter.test.ts src/__tests__/generator-registry.test.ts (92/92 pass)",
+    "npx vitest run __tests__/convex/studentVisualization.test.ts __tests__/convex/studentVisualizationAdversarial.test.ts __tests__/convex/studentVisualizationMultiModule.test.ts __tests__/convex/visualizationLearnerStateUnion.test.ts (22/22 pass)",
+    "npx tsx scripts/remediate-concept-blueprints.ts --dry-run (scanned 17 files, 0 concept blueprints)",
+    "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh 'apps/ packages/ convex/' (exit 0, 0 violations, 664 typed tags)",
+    "npx tsc --noEmit -p packages/math-content/tsconfig.json (247 lines, matches Phase 3 baseline)",
+    "npx tsc --noEmit (knowledge-space-practice: 16 lines, all pre-existing in test files)"
+  ],
+  "files_changed": [
+    "scripts/remediate-concept-blueprints.ts",
+    "scripts/__tests__/remediate-concept-blueprints.test.ts (new)",
+    "scripts/vitest.config.ts (new)",
+    "packages/knowledge-space-practice/src/__tests__/projections.test.ts",
+    "packages/knowledge-space-practice/src/projections/activity-map.ts",
+    "measure/tracks/code-review-remediation_20260624/test-strategy.md (Phase 4 strategy appended)",
+    "measure/tracks/code-review-remediation_20260624/_artifacts/remediate-run-after-fix.txt (new)",
+    "measure/tracks/code-review-remediation_20260624/_artifacts/phase-4-gates.txt (new)"
+  ],
+  "plan_updates": "none",
+  "known_failures": "none",
+  "handoff": "Phase 4 is ready for review-b (security), review-c (UX/API), and phase-acceptance. All correctness gates pass. Phase 1/2/3 invariants remain green. The script refactor exposes pure functions (findBlueprintFiles, removeConceptBlueprints, countConceptBlueprints, remediate) for testability; the CLI surface is preserved. The projection now emits N rows for an N-skill concept (FR-13 option A). The pre-calculus and IM3 concept-aggregator integration is exercised by the test fixtures. The next phase (Phase 5: IM3 auth unification, FR-14) can proceed."
+}
