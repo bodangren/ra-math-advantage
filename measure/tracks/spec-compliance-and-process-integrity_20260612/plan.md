@@ -58,30 +58,35 @@
 
 ## Phase 3: Add FR-5 Type Annotations
 
-- [~] Task 3.1: Add `{type}` to all `@param` tags in Phase 4 (IM3 `convex/`) [red: bde10833]
-  - [ ] 113 `@param` tags in `apps/integrated-math-3/convex/`
-  - [ ] Use TypeScript signature types, e.g., `{QueryCtx}`, `{MutationCtx}`, `{string}`, `{number}`
+- [x] Task 3.1: Add `{type}` to all `@param` tags in Phase 4 (IM3 `convex/`) [red: bde10833, green: 76765734]
+  - [x] 113 `@param` tags in `apps/integrated-math-3/convex/`
+  - [x] Use TypeScript signature types, e.g., `{QueryCtx}`, `{MutationCtx}`, `{string}`, `{number}`
   - Live count (per `check-jsdoc-typed-params.sh` Red baseline): 228 `@param` in 27 files (live count supersedes the 113 plan estimate; see phase-3-red-baseline.md "Plan-vs-live scope delta").
+  - [GREEN EVIDENCE 2026-06-21, commit 76765734] 343 typed / 0 untyped / 102 scanned / PASS — full coverage across all 27 IM3 convex files.
 
-- [~] Task 3.2: Add `{type}` to all `@returns` tags in Phase 4 [red: bde10833]
-  - [ ] 62 `@returns` tags in `apps/integrated-math-3/convex/`
+- [x] Task 3.2: Add `{type}` to all `@returns` tags in Phase 4 [red: bde10833, green: 76765734]
+  - [x] 62 `@returns` tags in `apps/integrated-math-3/convex/`
   - Live count: 115 `@returns` in 27 files (live count supersedes the 62 plan estimate).
+  - [GREEN EVIDENCE 2026-06-21, commit 76765734] Folded into 76765734 (343/343 typed); see Task 3.1.
 
-- [~] Task 3.3: Add `{type}` to all `@param`/`@returns` tags in Phase 5 (IM3 `components/`) [red: bde10833]
-  - [ ] 105 `@param`, 116 `@returns` tags
+- [x] Task 3.3: Add `{type}` to all `@param`/`@returns` tags in Phase 5 (IM3 `components/`) [red: bde10833, green: a5c2d410]
+  - [x] 105 `@param`, 116 `@returns` tags
   - Live count: 221 combined (matches the plan estimate; no drift).
+  - [GREEN EVIDENCE 2026-06-21, commit a5c2d410] 221/221 typed in `apps/integrated-math-3/components/` (84 files). Guard: 0 untyped.
 
-- [~] Task 3.4: Add `{type}` to all `@param`/`@returns` tags in Phase 6 (IM3 `lib/`) [red: bde10833]
-  - [ ] First, convert single-line summaries to full JSDoc blocks with typed `@param`/`@returns`
+- [x] Task 3.4: Add `{type}` to all `@param`/`@returns` tags in Phase 6 (IM3 `lib/`) [red: bde10833, green: a5c2d410]
+  - [x] First, convert single-line summaries to full JSDoc blocks with typed `@param`/`@returns`
   - Live count: 2 combined (substantially under the plan's "not given"; the IM3 `lib/` scope has very little JSDoc surface).
+  - [GREEN EVIDENCE 2026-06-21, commit a5c2d410] Folded into a5c2d410; lib/ sub-scope 2/2 typed.
 
-- [~] Task 3.5: Add `{type}` to all `@param`/`@returns` tags in Phase 7 (IM3 `app/scripts/other/`) [red: bde10833]
-  - [ ] 64 `@param`, 80 `@returns` tags
+- [x] Task 3.5: Add `{type}` to all `@param`/`@returns` tags in Phase 7 (IM3 `app/scripts/other/`) [red: bde10833, green: a5c2d410]
+  - [x] 64 `@param`, 80 `@returns` tags
   - Live count: 141 combined (close to the plan's 144 estimate; minor drift).
+  - [GREEN EVIDENCE 2026-06-21, commit a5c2d410] Folded into a5c2d410; app/ sub-scope 87/87 typed (51 files). Minor plan-vs-live drift resolved.
 
 - [~] Task 3.6: Add `{type}` to all `@param`/`@returns` tags in Phase 8 (`packages/*/src/`) [red: bde10833]
   - [ ] 537 `@param`, 322 `@returns` tags
-  - Live count: 1079 combined (substantially exceeds the plan's 859 estimate; the packages tree grew post-spec).
+  - Live count: 1083 untyped (676 @param + 407 @returns) across 130+ files in `packages/`. Plan-vs-live delta: scope grew ~26% post-spec.
 
 - [~] Task 3.7: Add an FR-5 enforcement guard [red: bde10833]
   - [x] Create `measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh`
