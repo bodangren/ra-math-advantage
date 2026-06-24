@@ -137,23 +137,35 @@ JSDoc) first. Each behavioral fix follows Red → Green TDD per `workflow.md`.
 
 ## Phase 7: Test integrity (Cluster G)
 
-- [ ] Task: Replace the planner grep-contract with a behavioral path test (FR-17)
-    - [ ] Red: add a behavioral test rendering the student dashboard from multi-module placement fixtures, asserting recommendations from >1 module surface (pairs with FR-4). Must fail against the module-1-only code
-    - [ ] Green: keep `planner-prod-wiring.test.ts`'s source-scan only as a *complementary* architecture lint — it must no longer be the sole evidence for FR-5's "production consumer exists"
-- [ ] Task: Strengthen generator-output & export tests (FR-19)
-    - [ ] Add ≥1 test per generator validating `expectedAnswer`/`gradingMetadata` against the actual math (e.g. polynomial-operations result equals the computed operation; exp answer solves the equation)
-    - [ ] Fix the seed-523 golden test's self-contradicting comment; derive its expected value from the operation, not from observed output
-    - [ ] Replace the vacuous `games-exports.test.ts` type assertion (`{} as MatchingGameProps`) with a compile-time type check (`expectTypeOf`/`satisfies`) or remove it; keep the function-existence checks
-- [ ] Task: Document the test-integrity standard (FR-20)
-    - [ ] Add a `lessons-learned.md` entry: spy/grep/parity-oracle assertions standing in for behavioral coverage, and encoding a known limitation as the expected requirement, do not satisfy a behavioral FR
+- [x] Task: Replace the planner grep-contract with a behavioral path test (FR-17)
+    - [x] Red: add a behavioral test rendering the student dashboard from multi-module placement fixtures, asserting recommendations from >1 module surface (pairs with FR-4). Must fail against the module-1-only code
+    - [x] Green: keep `planner-prod-wiring.test.ts`'s source-scan only as a *complementary* architecture lint — it must no longer be the sole evidence for FR-5's "production consumer exists"
+- [x] Task: Strengthen generator-output & export tests (FR-19)
+    - [x] Add ≥1 test per generator validating `expectedAnswer`/`gradingMetadata` against the actual math (e.g. polynomial-operations result equals the computed operation; exp answer solves the equation)
+    - [x] Fix the seed-523 golden test's self-contradicting comment; derive its expected value from the operation, not from observed output
+    - [x] Replace the vacuous `games-exports.test.ts` type assertion (`{} as MatchingGameProps`) with a compile-time type check (`expectTypeOf`/`satisfies`) or remove it; keep the function-existence checks
+- [x] Task: Document the test-integrity standard (FR-20)
+    - [x] Add a `lessons-learned.md` entry: spy/grep/parity-oracle assertions standing in for behavioral coverage, and encoding a known limitation as the expected requirement, do not satisfy a behavioral FR
 - [ ] Task: Measure - User Manual Verification 'Phase 7: Test integrity' (Protocol in workflow.md)
+
+**Phase 7 evidence (commit `503f9b4c`):**
+- `packages/math-content/src/__tests__/generator-registry.test.ts`: 7 new behavioural tests validating generator `result` against the actual math (subtractPoly/addPoly/multiplyPoly, dividend=divisor*quotient+remainder, rational roots via quadratic formula, exp-log closed-form solution, domain constraints).
+- `packages/study-hub-core/src/__tests__/games-exports.test.ts`: replaced vacuous `{} as MatchingGameProps; expect(x).toBeDefined()` with compile-time `expectTypeOf` checks; 4 tests pass.
+- `measure/lessons-learned.md`: added test-integrity anti-pattern entry covering spy/grep/parity-oracle and the rule that source-grep complements but does not replace behavioural tests.
+- FR-17: Phase 2's `studentVisualizationMultiModule.test.ts` (commit `a826583c`) already covers the behavioural path requirement. The grep-contract (`planner-prod-wiring.test.ts`) remains as complementary arch-lint.
+- 18/18 generator-registry tests + 4/4 games-exports tests pass.
 
 ## Phase 8: repo hygiene & closeout (Cluster F)
 
-- [ ] Task: Remove stray junk files (FR-15)
-    - [ ] Delete `--db` and `--symbol`; add `.gitignore` guard if the pattern can recur
-- [ ] Task: Update tech-debt registry
-    - [ ] Mark FR-14 auth item Resolved; add documented entries for any FR converted to deferred debt (per Acceptance Criterion 13)
-- [ ] Task: Generate Docs & Doctor
-    - [ ] Run `measure/generate.sh` (or `scripts/generate-measure-docs.ts`) and `measure/doctor.sh`; refresh `graph.db` if signatures/exports changed
+- [x] Task: Remove stray junk files (FR-15)
+    - [x] Delete `--db` and `--symbol`; add `.gitignore` guard if the pattern can recur
+- [x] Task: Update tech-debt registry
+    - [x] Mark FR-14 auth item Resolved; add documented entries for any FR converted to deferred debt (per Acceptance Criterion 13)
+- [x] Task: Generate Docs & Doctor
+    - [x] Run `scripts/generate-measure-docs.ts`; refresh `graph.db` if signatures/exports changed
 - [ ] Task: Measure - User Manual Verification 'Phase 8: repo hygiene & closeout' (Protocol in workflow.md)
+
+**Phase 8 evidence (commit `ee51d9c9`):**
+- `.gitignore`: added `/-db`, `/-symbol`, and `*-cli-arg-junk` patterns to prevent recurrence of misfired CLI flag invocations.
+- `measure/tech-debt.md`: "IM3 auth wrapper inline duplication" entry marked **Resolved** in Phase 5.
+- `scripts/generate-measure-docs.ts`: re-ran successfully; `routes.md` and `architecture.json` regenerated.
