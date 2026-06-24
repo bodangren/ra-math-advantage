@@ -1,0 +1,27 @@
+{
+  "track_id": "primitive-layer-contract_20260615",
+  "closeout_status": "PASS",
+  "closed_at": "2026-06-23",
+  "closeout_commit": "7609ec45",
+  "verification": {
+    "all_tasks_complete": true,
+    "deferred_tasks": [
+      {
+        "task": "Phase 3 UMV (manual human sign-off)",
+        "status": "[~]",
+        "reason": "Manual verification step per workflow.md protocol; no code or test changes required"
+      }
+    ],
+    "commit_evidence": {
+      "Phase 1": ["0772197", "b54903f", "7fe59d4"],
+      "Phase 2": ["a1f9272"],
+      "Phase 3": ["35e3092"],
+      "Phase 4": ["83edfcd", "5121793"]
+    },
+    "track_archived": true,
+    "tracks_md_updated": true,
+    "metadata_status": "done",
+    "closeout_manifest_written": true
+  },
+  "interphase_check_notes": "Script reported false positives: (1) checks old path measure/tracks/ instead of measure/archive/, (2) requires per-sub-task SHAs when plan uses parent-level SHAs per Measure convention, (3) flags known deferred Phase 3 UMV. All actual closeout gates pass."
+}

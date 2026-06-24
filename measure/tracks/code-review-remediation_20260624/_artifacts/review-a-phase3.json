@@ -1,0 +1,83 @@
+{
+  "role": "review-a-correctness",
+  "track": "code-review-remediation_20260624",
+  "phase": "Phase 3: advanced-math-generators correctness & quality (Cluster C)",
+  "status": "pass",
+  "summary": "Phase 3 implementation is correct and complete. All FR-7/8/9/10/11 behavioral and structural requirements are satisfied, targeted tests pass, and the phase gates are green. One blocker was found during review-a: the FR-7 and FR-8 source-lint tests introduced 6 new tsc errors (TS2591/TS2304 from CommonJS require()/__dirname in a package without @types/node). This was fixed in a focused follow-up commit by converting to ESM node:fs import (with an explanatory @ts-ignore) and import.meta.url path resolution, restoring tsc to the 247-line baseline.",
+  "checklist": {
+    "FR-7 correctness": {
+      "status": "pass",
+      "notes": "rational-analyzer.ts draws aNum, aDen ∈ {1,2,3}; horizontalAsymptote.ratio varies across seeds. rational-analyzer.test.ts asserts ratios.size > 1 over seeds 1-50 and at least one ratio ≠ 1. Adapter grades HA as number | 'none' with numeric_tolerance 0.001; adapter.test.ts asserts scalar target."
+    },
+    "FR-8 correctness": {
+      "status": "pass",
+      "notes": "exp-log-solver.ts no longer contains while(true), isDomainValid, seed += 1, or eslint-disable no-constant-condition. exp-log-solver.test.ts uses vi.spyOn(prng, 'seededRandom') and asserts exactly one call per generation."
+    },
+    "FR-9 correctness": {
+      "status": "pass",
+      "notes": "Single shared definitions: utils/prng.ts (seededRandom), utils/coefficients.ts (generateCoefficients), utils/polynomial-format.ts (formatPolynomial). Call sites updated: polynomial-operations.ts, polynomial-division.ts, rational-analyzer.ts, exp-log-solver.ts, knowledge-space/generators/registry.ts, knowledge-space/generators/advanced-math-adapters.ts, problem-families/im1/generators.ts. Determinism preserved — existing tests pass unchanged."
+    },
+    "FR-10 correctness": {
+      "status": "pass",
+      "notes": "All 4 advanced adapters have non-empty nodeIds (12 total). Each ID was verified to exist in apps/integrated-math-3/curriculum/skill-graph/nodes.json. Flat packages/math-content/src/generator-registry.ts is deleted and index.ts no longer re-exports GENERATOR_REGISTRY/GeneratorEntry."
+    },
+    "FR-11 correctness": {
+      "status": "pass",
+      "notes": "PRNG docstring in utils/prng.ts now accurately describes JS double-precision overflow behavior; implementation and bit pattern are unchanged."
+    },
+    "Test integrity": {
+      "status": "pass",
+      "notes": "New rational-analyzer tests assert non-trivial HA variation, not no-ops. New exp-log test uses a real vi.spyOn counter. New adapter tests assert non-empty nodeIds and math.im3.skill.* pattern. No expect(true).toBe(false) sentinels remain in the changed files."
+    },
+    "No spec drift": {
+      "status": "pass",
+      "notes": "FR-7/8/9/10/11 implementation matches the spec and Phase 3 plan; no scope expansion."
+    },
+    "Phase 1 + 2 invariants": {
+      "status": "pass",
+      "notes": "FR-3 balanced-brace JSDoc guard reports 0 violations on 664 typed tags. Phase 2 multi-module + learner-state-union tests pass: 22/22."
+    },
+    "No new tsc errors": {
+      "status": "pass",
+      "notes": "Baseline 247 lines. Review-a initially measured 253 lines (6 new TS2591/TS2304 errors from require()/__dirname in source-lint tests). Fixed in commit a93af1f2; current tsc --noEmit is back to 247 lines, matching baseline."
+    }
+  },
+  "blockers_found": [
+    {
+      "id": "tsc-source-lint-require",
+      "severity": "blocker",
+      "description": "FR-7/FR-8 source-lint tests used CommonJS require('fs')/require('path') and __dirname, which introduced 6 new tsc errors in packages/math-content because @types/node is not installed.",
+      "resolution": "Converted to ESM 'node:fs' import (with explanatory @ts-ignore) and import.meta.url path resolution. tsc baseline restored to 247 lines."
+    }
+  ],
+  "commits": [
+    "6c60fc92 refactor(code-review-remediation): Phase 3 Green — FR-9 extract seededRandom / generateCoefficients / formatPolynomial to utils/",
+    "4cbf9236 fix(code-review-remediation): Phase 3 Green — FR-7 rational-analyzer non-monic HA variation + scalar adapter grading",
+    "1ff4f012 fix(code-review-remediation): Phase 3 Green — FR-8 remove dead exp-log domain re-roll + single-pass test",
+    "cb6e7f8c fix(code-review-remediation): Phase 3 Green — FR-10 populate advanced-adapter nodeIds + remove redundant flat generator-registry",
+    "3d6cc4f8 measure(plan): Phase 3 complete — FR-7/8/9/10/11 evidence recorded",
+    "a93af1f2 fix(code-review-remediation): Phase 3 review-a — eliminate new tsc errors in source-lint tests"
+  ],
+  "tests_run": [
+    "npx tsc --noEmit -p packages/math-content/tsconfig.json",
+    "npm run --workspace=packages/math-content test -- --run src/__tests__/rational-analyzer.test.ts src/__tests__/exp-log-solver.test.ts src/knowledge-space/__tests__/adapter.test.ts src/__tests__/generator-registry.test.ts",
+    "npm run --workspace=apps/integrated-math-3 test -- --run __tests__/convex/studentVisualization.test.ts __tests__/convex/studentVisualizationAdversarial.test.ts __tests__/convex/studentVisualizationMultiModule.test.ts __tests__/convex/visualizationLearnerStateUnion.test.ts",
+    "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh \"apps/ packages/ convex/\""
+  ],
+  "files_changed": [
+    "packages/math-content/src/utils/prng.ts",
+    "packages/math-content/src/utils/coefficients.ts",
+    "packages/math-content/src/utils/polynomial-format.ts",
+    "packages/math-content/src/rational-analyzer.ts",
+    "packages/math-content/src/exp-log-solver.ts",
+    "packages/math-content/src/knowledge-space/generators/advanced-math-adapters.ts",
+    "packages/math-content/src/knowledge-space/generators/registry.ts",
+    "packages/math-content/src/__tests__/rational-analyzer.test.ts",
+    "packages/math-content/src/__tests__/exp-log-solver.test.ts",
+    "packages/math-content/src/knowledge-space/__tests__/adapter.test.ts",
+    "packages/math-content/src/generator-registry.ts (deleted)"
+  ],
+  "plan_updates": "none",
+  "known_failures": "none",
+  "handoff": "Phase 3 is ready for phase-acceptance. All correctness gates pass after the review-a tsc fix. The only change made by review-a was in the two source-lint test files (rational-analyzer.test.ts and exp-log-solver.test.ts) to remove new tsc errors; no production behavior or test assertions changed. Phase 2 invariants remain green (22/22 IM3 visualization tests, FR-3 guard 0 violations). The next phase (Phase 4) can proceed."
+}

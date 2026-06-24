@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "status": "pass",
+  "summary": "Phase 1 security audit: all checks pass. No blocking findings. Guard script uses safe bash patterns (no eval/exec/source), auth guards preserved in both route handlers, restore fidelity confirmed (10/10 sampled files byte-identical to HEAD), no secrets in restored-files.txt, no @ts-ignore/as any regressions, tsc clean on modified files, fixtures are synthetic and safe. FR-3 guard exits 0 on production scope (2237 files, 663 tags, 0 violations) and correctly detects 1 violation per malformed fixture.",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    {
+      "severity": "info",
+      "category": "guard_output",
+      "description": "Guard prints matched JSDoc comment lines (e.g., `@returns {string {} The result string`) in violation output. This is limited to JSDoc tag lines containing @param/@returns — documentation text, not secrets. Acceptable for a CI/lint tool."
+    },
+    {
+      "severity": "info",
+      "category": "bash_word_splitting",
+      "description": "Guard script line 60 uses unquoted `for raw in ${BALANCED_BRACES_SCOPE}`. The variable is sourced from script defaults or CI env, not end-user input. Acceptable for this CI context but would benefit from arrays for robustness."
+    },
+    {
+      "severity": "info",
+      "category": "restored_files_list",
+      "description": "Line 35 of restored-files.txt references `packages/core-auth/src/password-policy.ts`. This is a source file implementing password policy logic (not a secret file). Confirmed safe — the file contains exportable policy logic, not credentials."
+    }
+  ],
+  "evidence": [
+    {
+      "check": "guard_script_security",
+      "result": "pass",
+      "detail": "No eval/exec/source. Uses set -uo pipefail. find with -print0 + read -r -d '' for safe filename handling. Scope paths anchored to REPO_ROOT. awk program hardcoded with no variable interpolation."
+    },
+    {
+      "check": "source_file_auth_review_queue_route",
+      "result": "pass",
+      "detail": "GET and POST both gate on requireDeveloperRequestClaims(). Zod validation on inputs. Auth check survived JSDoc edit — @returns was the only change."
+    },
+    {
+      "check": "source_file_auth_lesson_chatbot_route",
+      "result": "pass",
+      "detail": "POST gates on getRequestSessionClaims() → 401. Role check student → 403. Enrollment check. Rate limiting. Prompt injection detection. All guards intact."
+    },
+    {
+      "check": "source_files_client_components",
+      "result": "pass",
+      "detail": "CourseOverviewGrid.tsx, StrugglingStudentsPanel.tsx, review-queue/index.tsx are client components — no server auth boundary. activity-map.ts is pure computation."
+    },
+    {
+      "check": "restore_fidelity_10_samples",
+      "result": "pass",
+      "detail": "10 files sampled from restored-files.txt: all git diff HEAD -- <path> = empty. Files: session.ts, password-policy.ts, StepByStepper.tsx, MathBlock.tsx, generators.ts, edge-calibration.ts, injection.ts, admin.ts, gradebook.ts, placement-engine.ts."
+    },
+    {
+      "check": "secrets_in_guard_output",
+      "result": "pass",
+      "detail": "Guard prints filename + violation type + matched JSDoc comment line. Output limited to @param/@returns documentation text — no source code body, no secrets."
+    },
+    {
+      "check": "fixture_injection",
+      "result": "pass",
+      "detail": "All 4 fixtures are synthetic .ts files with intentionally malformed JSDoc tags. No real-world data, URLs, credentials, or injection vectors."
+    },
+    {
+      "check": "restored_files_no_secrets",
+      "result": "pass",
+      "detail": "Only match is password-policy.ts (a source file, not a secret file). No .env files. No files with secret/key/token/credential in path."
+    },
+    {
+      "check": "typescript_security",
+      "result": "pass",
+      "detail": "npx tsc --noEmit on the 6 modified files: 0 new errors vs baseline. No @ts-ignore or as any added in JSDoc fixes."
+    },
+    {
+      "check": "fr3_guard_production_scope",
+      "result": "pass",
+      "detail": "exit 0, 2237 files scanned, 663 typed tags, 0 violations."
+    },
+    {
+      "check": "fr3_guard_fixtures",
+      "result": "pass",
+      "detail": "malformed-1.ts: 1 UNBALANCED, exit 1. malformed-2.ts: 1 UNBALANCED_PARENS, exit 1. malformed-3.ts: 1 STRAY_BLOCK, exit 1. clean-1.ts: 0 violations, exit 0."
+    },
+    {
+      "check": "git_grep_scans",
+      "result": "pass",
+      "detail": "@returns \\{.+ \\{\\} → 4 matches, all in fixtures/ (malformed-1.ts, malformed-3.ts). @param \\{[^{}]*$ → 0 matches. Production code clean."
+    }
+  ],
+  "commands": [
+    "bash check-jsdoc-balanced-braces.sh apps/ packages/ convex/ → exit 0, 0 violations",
+    "bash check-jsdoc-balanced-braces.sh fixtures/malformed-1.ts → exit 1, 1 violation",
+    "bash check-jsdoc-balanced-braces.sh fixtures/malformed-2.ts → exit 1, 1 violation",
+    "bash check-jsdoc-balanced-braces.sh fixtures/malformed-3.ts → exit 1, 1 violation",
+    "bash check-jsdoc-balanced-braces.sh fixtures/clean-1.ts → exit 0, 0 violations",
+    "git diff HEAD -- <path> on 10 sampled restored files → all empty",
+    "grep for eval/exec/source in guard script → no dangerous ops",
+    "grep for @ts-ignore/as any in 6 modified files → no matches",
+    "grep for .env/secret/password/key/token in restored-files.txt → only password-policy.ts (safe source file)",
+    "npx tsc --noEmit → 0 new errors on 6 modified files",
+    "git grep @returns \\{.+ \\{\\} → fixtures only",
+    "git grep @param \\{[^{}]*$ → 0 matches"
+  ],
+  "changed_files": [
+    "apps/integrated-math-3/app/api/dev/review-queue/route.ts",
+    "apps/integrated-math-3/app/api/student/lesson-chatbot/route.ts",
+    "apps/integrated-math-3/components/teacher/gradebook/CourseOverviewGrid.tsx",
+    "packages/knowledge-space-practice/src/projections/activity-map.ts",
+    "apps/integrated-math-3/components/teacher/srs/StrugglingStudentsPanel.tsx",
+    "apps/integrated-math-3/components/dev/review-queue/index.tsx"
+  ],
+  "test_strategy_violations": [],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "none",
+  "confidence": "high"
+}

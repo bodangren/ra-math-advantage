@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "role": "phase-acceptance",
+  "track": "code-review-remediation_20260624",
+  "phase": "Phase 2: Production-wiring scope & dead work (Cluster B)",
+  "baseline_sha": "56868819",
+  "head_sha": "aee13927",
+  "commits_reviewed": [
+    "56868819",
+    "a826583c",
+    "d8765ad1",
+    "30ca70fa",
+    "aee13927"
+  ],
+  "timestamp": "2026-06-24T09:30:00Z",
+  "status": "pass",
+  "summary": "Phase 2 acceptance complete. All three FRs (FR-4 multi-module projections, FR-5 dead student_competency read removal, FR-6 review_due union narrowing) are correctly implemented, evidenced by passing behavioral + architecture-lint tests and clean source-level greps. The prior nonblocking finding (visualizationLearnerStateUnion behavioral test timeout) was already remediated by commit aee13927 (Review A): the test was converted from dynamic to static imports and now runs in ~109ms (well under the default 5s timeout) with all 3/3 assertions passing. Phase 1 FR-3 guard invariant preserved (0 violations, 664 typed tags, exit 0). All three prior audits (review-a, review-b, review-c) returned status=pass. No remediation required.",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    {
+      "id": "NB-1",
+      "severity": "info",
+      "description": "Review-A's documented timeout in visualizationLearnerStateUnion.test.ts has already been fixed in commit aee13927 ('Phase 2 review-a — convert FR-6 behavioral test to static imports to avoid vitest timeout'). The remediation hoisted the `getStudentVisualizationHandler` import to module scope. Current run: 3/3 PASS in 109ms.",
+      "file": "apps/integrated-math-3/__tests__/convex/visualizationLearnerStateUnion.test.ts",
+      "status": "resolved"
+    },
+    {
+      "id": "NB-2",
+      "severity": "info",
+      "description": "Review-C surfaced minor documentation drift in components/parent/ParentDashboard.tsx referencing 'module-1' and stale 'review_due' UI switch cases. These are intentional (UI consumes the broader VisualNodeV1 schema union which still includes review_due) and not in Phase 2 scope. Recorded for tracking only.",
+      "status": "deferred"
+    },
+    {
+      "id": "NB-3",
+      "severity": "info",
+      "description": "studentVisualization.test.ts retains a harmless `student_competency: []` mock-ctx entry (no test references it after spy-test deletion). Strategy §14 explicitly permits 'leave intact OR remove' at green role discretion. Not a blocker.",
+      "status": "accepted"
+    }
+  ],
+  "checklist": [
+    {
+      "id": "fr-4-multi-module",
+      "description": "6/6 studentVisualizationMultiModule PASS, 4/4 skill-graph-loader PASS, 0 module-1/ imports in handlers",
+      "status": "pass",
+      "evidence": "vitest: 6/6 + 4/4 = 10/10 PASS in single run. git grep 'curriculum/skill-graph/module-1/(nodes|edges)\\.json' on apps/integrated-math-3/convex/ → 0 matches."
+    },
+    {
+      "id": "fr-5-dead-read",
+      "description": "student_competency removed from getStudentVisualizationHandler body, spy test deleted, JSDoc fixed",
+      "status": "pass",
+      "evidence": "git grep 'student_competency' apps/integrated-math-3/convex/student.ts → only lines 212/224 (completePhase mutation — out of scope). studentVisualization.test.ts no longer contains queryCalls.toContain('student_competency'). JSDoc (lines 467-485) now reads 'full curriculum skill graph' (no student_competency claim)."
+    },
+    {
+      "id": "fr-6-union-narrow",
+      "description": "0 'review_due' in handler source; source-level FR-6 assertions PASS; behavioral FR-6 test PASS",
+      "status": "pass",
+      "evidence": "git grep '[\"']review_due[\"']' student.ts + parent/visualization.ts → 0 matches. visualizationLearnerStateUnion: 3/3 PASS in 109ms (no timeout)."
+    },
+    {
+      "id": "phase-1-invariant",
+      "description": "FR-3 guard exits 0 / 0 violations on apps/ packages/ convex/",
+      "status": "pass",
+      "evidence": "bash scripts/check-jsdoc-balanced-braces.sh 'apps/ packages/ convex/' → Scanned 2242 files, 664 typed tags, 0 violations, exit 0."
+    },
+    {
+      "id": "prior-audits-pass",
+      "description": "review-a, review-b, review-c all status=pass",
+      "status": "pass",
+      "evidence": "review-a-phase2.json: status=pass (NB only). review-b-phase2.json: status=pass (auth/security/secret/type-safety all clean). review-c-phase2.json: status=pass (API contracts preserved, UI safe)."
+    },
+    {
+      "id": "no-spec-drift",
+      "description": "FR-4/FR-5/FR-6 implemented exactly as test-strategy specifies",
+      "status": "pass",
+      "evidence": "FR-4: shared helper loadFullCurriculumGraph in apps/integrated-math-3/lib/curriculum/skill-graph-loader.ts using root nodes.json/edges.json per §12 decision. FR-5: deletion (option b) per §13 binding decision. FR-6: narrow at handler boundary per §13 binding decision; downstream projection union preserved per §15 anti-pattern guard."
+    },
+    {
+      "id": "plan-tasks-complete",
+      "description": "All 3 substantive Phase 2 tasks marked [x] with commit SHAs; UMV is user-driven [ ]",
+      "status": "pass",
+      "evidence": "plan.md lines 54-66: FR-4 (a826583c), FR-5 (c9ff0f36 — note: landed in Phase 2 Red+Green window with atomic deletion), FR-6 (d8765ad1) all [x]. Line 67 UMV [ ] is correct (user-driven, runs after acceptance per workflow.md)."
+    },
+    {
+      "id": "working-tree-clean",
+      "description": "git status --short -- apps/ packages/ convex/ reflects clean state",
+      "status": "pass",
+      "evidence": "git status --short -- apps/ packages/ convex/ → empty (no unstaged changes in production scope)."
+    }
+  ],
+  "evidence_runs": [
+    {
+      "command": "npm run --workspace=apps/integrated-math-3 test -- --run studentVisualizationMultiModule skill-graph-loader",
+      "result": "2 files, 10/10 PASS (6 multi-module + 4 loader)",
+      "duration_ms": 9860
+    },
+    {
+      "command": "npm run --workspace=apps/integrated-math-3 test -- --run visualizationLearnerStateUnion",
+      "result": "1 file, 3/3 PASS in 109ms (timeout fixed in aee13927)",
+      "duration_ms": 8230
+    },
+    {
+      "command": "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh 'apps/ packages/ convex/'",
+      "result": "0 violations, 664 typed tags, exit 0"
+    },
+    {
+      "command": "git grep -nP 'curriculum/skill-graph/module-1/(nodes|edges)\\.json' -- 'apps/integrated-math-3/convex/'",
+      "result": "0 matches"
+    },
+    {
+      "command": "git grep -nE \"['\\\"]review_due['\\\"]\" -- 'apps/integrated-math-3/convex/student.ts' 'apps/integrated-math-3/convex/parent/visualization.ts'",
+      "result": "0 matches"
+    },
+    {
+      "command": "git grep -n 'student_competency' -- 'apps/integrated-math-3/convex/student.ts'",
+      "result": "Only lines 212 and 224 (completePhase mutation — out of scope per strategy §14)"
+    },
+    {
+      "command": "git status --short -- apps/ packages/ convex/",
+      "result": "Clean (no entries)"
+    }
+  ],
+  "files_changed_since_baseline": [
+    "apps/integrated-math-3/__tests__/convex/studentVisualization.test.ts",
+    "apps/integrated-math-3/__tests__/convex/studentVisualizationMultiModule.test.ts",
+    "apps/integrated-math-3/__tests__/convex/visualizationLearnerStateUnion.test.ts",
+    "apps/integrated-math-3/__tests__/lib/curriculum/skill-graph-loader.test.ts",
+    "apps/integrated-math-3/convex/parent/visualization.ts",
+    "apps/integrated-math-3/convex/student.ts",
+    "apps/integrated-math-3/lib/curriculum/skill-graph-loader.ts",
+    "measure/tracks/code-review-remediation_20260624/plan.md"
+  ],
+  "test_strategy_violations": [],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "fake_gate_violations": [],
+  "artifact_only_test_violations": [],
+  "stale_red_test_violations": [],
+  "plan_commit_sha_mismatch_violations": [],
+  "missing_caller_update_violations": [],
+  "incomplete_behavior_violations": [],
+  "retry_recommendation": "none",
+  "confidence": "high",
+  "handoff": "Phase 2 is acceptance-clean. Adversarial role should probe: (1) whether a placement_results row with an unknown nodeId (not present in the root skill-graph) is silently dropped or surfaced — confirm projection's filtering behaviour matches schema expectations; (2) whether buildParentProjectionPayload still produces a valid ParentVisualizationV1 payload when zero placements span >1 module (degenerate single-module case); (3) whether the architecture-lint regex in studentVisualizationMultiModule.test.ts is robust against alternative import shapes (e.g. a future `import('@curriculum/skill-graph/module-1/...')` dynamic import would evade the static-string check); (4) whether the FR-6 narrowing introduced any TypeScript widening loss at the projectStudentVisualization call site (the test-strategy notes this should not occur but it warrants a tsc-only spot check on the two handlers)."
+}

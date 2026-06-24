@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "status": "pass",
+  "summary": "Phase 1 (Cluster A — malformed JSDoc remediation + recurrence guard) is correct. The FR-3 balanced-brace guard detects all three fixture failure modes (3 violations / exit 1) and reports zero violations across apps/, packages/, convex/ (exit 0). All 6 source-file fixes are JSDoc-only edits with no logic or signature changes. The 144-file restore returned the working tree to HEAD (10 sampled paths show zero diff). The corrected generator template covers the FR-1/FR-2 failure modes with three clear rules. Targeted tests pass; no new TypeScript or lint errors were introduced by the modified files.",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    {
+      "id": "NB-1",
+      "severity": "low",
+      "category": "process-deviation",
+      "description": "FR-2 step C (re-run the JSDoc generator across the 144 files and verify zero violations before committing) was not executed. The 144-file working-tree batch was instead restored to HEAD, and the corrected template was committed for future regeneration. The deviation is documented and justified in plan.md by the agent-driven, non-checked-in nature of the generator. The safety goal is still met because the FR-3 guard reports 0 violations across the production scope.",
+      "location": "measure/tracks/code-review-remediation_20260624/plan.md §FR-2 step C"
+    },
+    {
+      "id": "NB-2",
+      "severity": "low",
+      "category": "deferred-documentation",
+      "description": "No lessons-learned.md entry was added for the JSDoc generator anti-pattern in Phase 1. This is acceptable because FR-20 (document the test-integrity / anti-pattern standard in lessons-learned) is explicitly scheduled for Phase 7. Recommend folding the generator prompt invariant into that Phase 7 entry.",
+      "location": "measure/lessons-learned.md"
+    },
+    {
+      "id": "NB-3",
+      "severity": "info",
+      "category": "pre-existing-noise",
+      "description": "Targeted lint and tsc runs surface only pre-existing issues unrelated to the 6 modified files: 2 lint warnings in apps/integrated-math-3/__tests__/lib/onboarding/student-flow.test.ts and a pre-existing TS2769 error at apps/integrated-math-3/components/dev/review-queue/index.tsx:45 that existed at baseline e195fded. The JSDoc edits in that file are at line 493.",
+      "location": "apps/integrated-math-3/__tests__/lib/onboarding/student-flow.test.ts, apps/integrated-math-3/components/dev/review-queue/index.tsx:45"
+    }
+  ],
+  "evidence": [
+    {
+      "check": "Guard fixture run (runner-plumbing self-test)",
+      "command": "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh measure/tracks/code-review-remediation_20260624/scripts/fixtures/",
+      "expected": "3 violations, exit 1; clean-1 fixture has 0 violations, exit 0",
+      "actual": "Violations: 3 (malformed-1 UNBALANCED, malformed-2 UNBALANCED_PARENS, malformed-3 STRAY_BLOCK); clean-1.ts 0 violations; exit 1"
+    },
+    {
+      "check": "Guard production scope end-to-end",
+      "command": "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh",
+      "expected": "0 violations, exit 0",
+      "actual": "Scanned files: 2237, Total typed tags: 663, Violations: 0, exit 0"
+    },
+    {
+      "check": "Per-file guard on 6 modified source files",
+      "command": "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh <each-file>",
+      "expected": "0 violations each",
+      "actual": "All 6 files report 0 violations"
+    },
+    {
+      "check": "FR-1 + 2 @param fixes are JSDoc-only",
+      "command": "git diff e195fded..HEAD -- <6-files>",
+      "expected": "Only JSDoc comment lines change",
+      "actual": "Each diff is a single-line JSDoc change; no logic, signature, import, or runtime changes"
+    },
+    {
+      "check": "144-file restore correctness (10 sampled paths)",
+      "command": "git diff HEAD -- <sampled-paths>",
+      "expected": "Zero diff for each sampled restored file",
+      "actual": "Zero diff for all 10 sampled paths from _artifacts/restored-files.txt"
+    },
+    {
+      "check": "Restore commit shape",
+      "command": "git show 0006074f --stat --oneline",
+      "expected": "Single restore commit with empty source diff (only audit artifact)",
+      "actual": "0006074f is a single commit adding only _artifacts/fr2-restore-confirmation.md; source tree diff is empty"
+    },
+    {
+      "check": "Template correctness",
+      "command": "read measure/tracks/code-review-remediation_20260624/templates/jsdoc-template.md",
+      "expected": "3 rules covering no trailing {} after @returns, balanced @param, prose-only fallback; covers FR-1/FR-2 failure modes",
+      "actual": "Rule 1 (@returns single balanced block), Rule 2 (@param balanced or omitted), Rule 3 (nested generics allowed); worked examples cover UNBALANCED, STRAY_BLOCK, UNBALANCED_PARENS modes"
+    },
+    {
+      "check": "Final git grep scans",
+      "command": "git grep -nP '@returns \\{.+ \\{\\}' -- 'apps/**/*.ts' 'apps/**/*.tsx' 'packages/**/*.ts' 'packages/**/*.tsx' 'convex/**/*.ts' 'convex/**/*.tsx'; git grep -nP '@param \\{[^{}]*$' -- 'apps/**/*.ts' 'apps/**/*.tsx' 'packages/**/*.ts' 'packages/**/*.tsx' 'convex/**/*.ts' 'convex/**/*.tsx'",
+      "expected": "0 matches each (grep exits 1)",
+      "actual": "Both grep commands returned 0 matches (exit 1)"
+    },
+    {
+      "check": "TypeScript no new errors on modified files",
+      "command": "npx tsc --noEmit --project apps/integrated-math-3/tsconfig.json",
+      "expected": "No new errors attributable to the 6 modified files",
+      "actual": "Errors are in packages/math-content/src/problem-families/im3/module_*.ts (pre-existing) and one pre-existing TS2769 at apps/integrated-math-3/components/dev/review-queue/index.tsx:45 that existed at baseline e195fded; JSDoc edit is at line 493"
+    },
+    {
+      "check": "Targeted vitest — gradebook (CourseOverviewGrid)",
+      "command": "npm run --workspace=apps/integrated-math-3 test -- --run __tests__/components/teacher/gradebook",
+      "expected": "45/45 pass",
+      "actual": "45 passed, 0 failed"
+    },
+    {
+      "check": "Targeted vitest — auth",
+      "command": "npm run --workspace=apps/integrated-math-3 test -- --run __tests__/lib/auth",
+      "expected": "45/45 pass",
+      "actual": "45 passed, 0 failed"
+    },
+    {
+      "check": "Targeted vitest — projections (activity-map)",
+      "command": "npm run --workspace=packages/knowledge-space-practice test -- --run src/__tests__/projections.test.ts",
+      "expected": "17/17 pass",
+      "actual": "17 passed, 0 failed"
+    }
+  ],
+  "commands": [
+    "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh measure/tracks/code-review-remediation_20260624/scripts/fixtures/",
+    "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh",
+    "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh <each-modified-file>",
+    "git diff e195fded..HEAD -- apps/integrated-math-3/app/api/dev/review-queue/route.ts apps/integrated-math-3/app/api/student/lesson-chatbot/route.ts apps/integrated-math-3/components/teacher/gradebook/CourseOverviewGrid.tsx packages/knowledge-space-practice/src/projections/activity-map.ts apps/integrated-math-3/components/dev/review-queue/index.tsx apps/integrated-math-3/components/teacher/srs/StrugglingStudentsPanel.tsx",
+    "git diff HEAD -- <10-sampled-restored-paths>",
+    "git show 0006074f --stat --oneline",
+    "git grep -nP '@returns \\{.+ \\{\\}' -- 'apps/**/*.ts' 'apps/**/*.tsx' 'packages/**/*.ts' 'packages/**/*.tsx' 'convex/**/*.ts' 'convex/**/*.tsx'",
+    "git grep -nP '@param \\{[^{}]*$' -- 'apps/**/*.ts' 'apps/**/*.tsx' 'packages/**/*.ts' 'packages/**/*.tsx' 'convex/**/*.ts' 'convex/**/*.tsx'",
+    "npx tsc --noEmit --project apps/integrated-math-3/tsconfig.json",
+    "npm run --workspace=apps/integrated-math-3 test -- --run __tests__/components/teacher/gradebook",
+    "npm run --workspace=apps/integrated-math-3 test -- --run __tests__/lib/auth",
+    "npm run --workspace=packages/knowledge-space-practice test -- --run src/__tests__/projections.test.ts"
+  ],
+  "changed_files": [
+    "apps/integrated-math-3/app/api/dev/review-queue/route.ts",
+    "apps/integrated-math-3/app/api/student/lesson-chatbot/route.ts",
+    "apps/integrated-math-3/components/teacher/gradebook/CourseOverviewGrid.tsx",
+    "packages/knowledge-space-practice/src/projections/activity-map.ts",
+    "apps/integrated-math-3/components/dev/review-queue/index.tsx",
+    "apps/integrated-math-3/components/teacher/srs/StrugglingStudentsPanel.tsx",
+    "measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh",
+    "measure/tracks/code-review-remediation_20260624/scripts/fixtures/malformed-1.ts",
+    "measure/tracks/code-review-remediation_20260624/scripts/fixtures/malformed-2.ts",
+    "measure/tracks/code-review-remediation_20260624/scripts/fixtures/malformed-3.ts",
+    "measure/tracks/code-review-remediation_20260624/scripts/fixtures/clean-1.ts",
+    "measure/tracks/code-review-remediation_20260624/_artifacts/restored-files.txt",
+    "measure/tracks/code-review-remediation_20260624/_artifacts/fr1-rewrites.md",
+    "measure/tracks/code-review-remediation_20260624/_artifacts/fr2-restore-confirmation.md",
+    "measure/tracks/code-review-remediation_20260624/_artifacts/generator-investigation.md",
+    "measure/tracks/code-review-remediation_20260624/_artifacts/guard-run-on-clean-tree.txt",
+    "measure/tracks/code-review-remediation_20260624/_artifacts/phase-1-gates.txt",
+    "measure/tracks/code-review-remediation_20260624/templates/jsdoc-template.md",
+    "measure/tracks/code-review-remediation_20260624/plan.md",
+    "measure/tracks/code-review-remediation_20260624/test-strategy.md"
+  ],
+  "test_strategy_violations": [],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "none",
+  "confidence": "high"
+}

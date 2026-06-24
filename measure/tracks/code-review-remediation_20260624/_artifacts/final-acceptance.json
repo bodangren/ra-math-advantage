@@ -1,0 +1,174 @@
+{
+  "schema_version": 1,
+  "status": "pass",
+  "summary": "Final acceptance gate for Phase 1 (Cluster A — malformed JSDoc remediation + recurrence guard). All FRs in scope are satisfied: FR-1 (4 enumerated malformed @returns rewritten in d26ecd52); FR-2 (144 working-tree files discarded via git restore in 0006074f, corrected generator template committed in b3cf07e6, restored-files.txt manifest preserved); FR-3 (balanced-brace guard committed in e195fded, hardened in e992abbf to scan the full remainder of each line for stray { after the balanced type region). All 4 prior audits (review-a, review-b, review-c, phase-acceptance) returned status=pass with empty *_violations arrays. Adversarial testing exposed one bypass (embedded {} in prose, scenario adv-03) which was closed in the same commit (e992abbf); all 10 adversarial scenarios now pass, and all 4 original fixtures (3 malformed + 1 clean) still produce expected exit codes. Live verification this audit: (a) production-scope FR-3 guard on apps/ packages/ convex/ → 2237 files / 663 typed tags / 0 violations / exit 0; (b) adversarial runner → 10/10 pass / exit 0; (c) adv-03 fixture re-run → STRAY_BLOCK, exit 1 (bypass closed); (d) per-file guard on each of the 6 modified source files → 0 violations; (e) git grep -nP '@returns \\{.+ \\{\\}' and '@param \\{[^{}]*$' over apps/ packages/ convex/ → 0 matches each; (f) git diff e195fded..HEAD --stat over apps/ packages/ convex/ → 6 files, 6 insertions(+), 6 deletions(-), all JSDoc-only single-line edits; (g) working tree on apps/ packages/ convex/ is empty; (h) the only TS error in scope (review-queue/index.tsx:45 TS2769) confirmed pre-existing at baseline e195fded (out of Phase 1 scope per test-strategy §2 and tech-debt). Commit chain matches plan + adversarial fix exactly: e195fded → d26ecd52 → 5ebf5195 → 0006074f → b3cf07e6 → 0aa18a77 → bd3ac8f5 → e992abbf. The 2 @param fixes (StrugglingStudentsPanel.tsx, review-queue/index.tsx) beyond FR-1's enumerated 4 are a justified, documented scope extension caught by the FR-3 guard — exactly the recurrence-guard behaviour the spec mandates. No spec drift, no FR silently widened/narrowed/skipped, no parity/grep/spy oracles introduced. Ready for closeout.",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    {
+      "id": "NB-1",
+      "severity": "low",
+      "category": "process-deviation",
+      "description": "FR-2 step C (re-run the JSDoc generator across the 144 files and verify zero violations before committing) was substituted with a discard-and-template approach because no JSDoc generator script is checked in (the batch was agent-driven). Justified and documented in _artifacts/generator-investigation.md and plan.md §FR-2 step C. Recurrence-prevention goal is satisfied by the corrected template (templates/jsdoc-template.md) plus the FR-3 guard (0 violations across production scope). Carried from phase-acceptance.json NB-1 and review-a.json NB-1.",
+      "location": "measure/tracks/code-review-remediation_20260624/plan.md §FR-2 step C"
+    },
+    {
+      "id": "NB-2",
+      "severity": "info",
+      "category": "deferred",
+      "description": "FR-3 guard is not yet wired into CI (lefthook / pre-commit / GH Actions). Out of Phase 1 scope per test-strategy §1; captured as a follow-on in generator-investigation.md and review-b.json. Acceptable for closeout — the guard is executable and is invoked by the closeout artifact regeneration path.",
+      "location": "measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh"
+    },
+    {
+      "id": "NB-3",
+      "severity": "info",
+      "category": "scope-discovery",
+      "description": "Strategy's Red baseline anticipated 4 FR-1 violations; the FR-3 guard caught 2 additional @param cases at HEAD (StrugglingStudentsPanel.tsx, review-queue/index.tsx) introduced by spec-compliance Phase 3 (a5c2d410) and missed by the typed-params guard. Fixed in 5ebf5195. This is a discovery beyond spec — the spirit of FR-1 + FR-3 (no malformed annotations at HEAD) is satisfied by fixing all 6. Not drift. Carried from phase-acceptance.json NB-3.",
+      "location": "apps/integrated-math-3/components/teacher/srs/StrugglingStudentsPanel.tsx, apps/integrated-math-3/components/dev/review-queue/index.tsx"
+    },
+    {
+      "id": "NB-4",
+      "severity": "info",
+      "category": "deferred-documentation",
+      "description": "No lessons-learned.md entry was added in Phase 1 for the JSDoc generator anti-pattern (the bug class itself). FR-20 (document the test-integrity / anti-pattern standard in lessons-learned) is explicitly scheduled for Phase 7. Recommend folding the generator prompt invariant — the FR-3 syntactic-invariant approach and the prose-stray-brace bypass adversarial finding — into that Phase 7 entry. Carried from review-a.json NB-2.",
+      "location": "measure/lessons-learned.md"
+    }
+  ],
+  "evidence": [
+    {
+      "check": "FR-1: 4 enumerated malformed @returns rewritten at HEAD",
+      "command": "git diff e195fded..HEAD --stat -- apps/integrated-math-3/app/api/dev/review-queue/route.ts apps/integrated-math-3/app/api/student/lesson-chatbot/route.ts apps/integrated-math-3/components/teacher/gradebook/CourseOverviewGrid.tsx packages/knowledge-space-practice/src/projections/activity-map.ts",
+      "expected": "Single-line JSDoc-only change per file",
+      "actual": "All 4 files show 1 insertion / 1 deletion, JSDoc comment line only (d26ecd52)."
+    },
+    {
+      "check": "FR-2: 144-file uncommitted batch discarded and template committed",
+      "command": "wc -l _artifacts/restored-files.txt && ls templates/",
+      "expected": "144 entries in manifest; jsdoc-template.md present",
+      "actual": "144 lines in restored-files.txt; templates/jsdoc-template.md committed in b3cf07e6 with 3 rules + worked examples covering UNBALANCED, STRAY_BLOCK, UNBALANCED_PARENS modes."
+    },
+    {
+      "check": "FR-3: balanced-brace guard committed, executable, prod-scope clean",
+      "command": "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh",
+      "expected": "Exit 0, 0 violations across apps/ packages/ convex/",
+      "actual": "Scanned 2237 files, 663 typed tags, 0 violations, exit 0 (live this audit)."
+    },
+    {
+      "check": "FR-3: original 4 fixtures still produce expected exit codes (regression)",
+      "command": "bash check-jsdoc-balanced-braces.sh scripts/fixtures/{malformed-1,malformed-2,malformed-3,clean-1}.ts",
+      "expected": "malformed-1/2/3 exit 1 with UNBALANCED / UNBALANCED_PARENS / STRAY_BLOCK; clean-1 exit 0",
+      "actual": "Per adversarial.json regression_checks: malformed-1 UNBALANCED exit 1, malformed-2 UNBALANCED_PARENS exit 1, malformed-3 STRAY_BLOCK exit 1, clean-1 5 tags / 0 violations / exit 0. Confirmed."
+    },
+    {
+      "check": "Adversarial bypass (adv-03 embedded {} in prose) closed",
+      "command": "bash check-jsdoc-balanced-braces.sh scripts/fixtures/adversarial/adv-03-embedded-braces-prose.ts",
+      "expected": "STRAY_BLOCK, exit 1",
+      "actual": "Live re-run this audit: Violations=1, STRAY_BLOCK, exit 1. Pattern `@returns {string} the result is {}` correctly detected. Fix at scripts/check-jsdoc-balanced-braces.sh lines 172-188 (full-line scan from type_end+1 to len) with explanatory comments documenting the bypass scenario."
+    },
+    {
+      "check": "Adversarial: all 10 scenarios pass post-fix",
+      "command": "bash measure/tracks/code-review-remediation_20260624/scripts/adversarial-tests.sh",
+      "expected": "10 pass, 0 fail",
+      "actual": "Live this audit: 'Adversarial summary: 10 pass, 0 fail (of 10 scenarios)' / exit 0."
+    },
+    {
+      "check": "Acceptance Criterion 1: production-scope grep clean",
+      "command": "git grep -nP '@returns \\{.+ \\{\\}' / git grep -nP '@param \\{[^{}]*$' over apps/ packages/ convex/",
+      "expected": "0 matches each (grep exits 1)",
+      "actual": "Both grep commands returned 0 matches (exit 1) live this audit."
+    },
+    {
+      "check": "Per-file guard on all 6 modified source files",
+      "command": "bash check-jsdoc-balanced-braces.sh <each-file>",
+      "expected": "0 violations each",
+      "actual": "review-queue/route.ts 6 tags 0 violations; lesson-chatbot/route.ts 7 tags 0 violations; CourseOverviewGrid.tsx 4 tags 0 violations; activity-map.ts 3 tags 0 violations; review-queue/index.tsx 8 tags 0 violations; StrugglingStudentsPanel.tsx 4 tags 0 violations. Live this audit."
+    },
+    {
+      "check": "Working tree state on production scope",
+      "command": "git status --short -- packages/ apps/ convex/",
+      "expected": "Empty",
+      "actual": "Empty (no output). Untracked items elsewhere (--db, --symbol, automation-supervisor.py mod, _artifacts JSONs) are out of Phase 1 scope; --db/--symbol are explicitly FR-15 (Phase 8) work."
+    },
+    {
+      "check": "Plan completeness for Phase 1",
+      "command": "grep '^- \\[x\\]' plan.md (Phase 1 region)",
+      "expected": "All 4 Phase 1 top-level tasks (FR-3 guard, FR-1, FR-2, UMV) checked with Green evidence + commit SHAs",
+      "actual": "All 4 top-level tasks and all 4 sub-tasks of FR-1 are [x] with [GREEN EVIDENCE ...] sub-bullets and commit SHAs cited (e195fded, d26ecd52, 5ebf5195, 0006074f, b3cf07e6)."
+    },
+    {
+      "check": "Commit chain matches plan + adversarial fix",
+      "command": "git log --oneline e195fded^..HEAD",
+      "expected": "e195fded → d26ecd52 → 5ebf5195 → 0006074f → b3cf07e6 → 0aa18a77 → bd3ac8f5 → e992abbf",
+      "actual": "Exact match: e195fded (Red guard+fixtures) → d26ecd52 (FR-1 fix) → 5ebf5195 (2 @param fixes) → 0006074f (144-file restore) → b3cf07e6 (template+investigation) → 0aa18a77 (plan close) → bd3ac8f5 (gates artifact) → e992abbf (adversarial harden)."
+    },
+    {
+      "check": "TypeScript on 6 modified files: 0 new errors",
+      "command": "npx tsc --noEmit -p apps/integrated-math-3/tsconfig.json (filter to 6 files)",
+      "expected": "No new errors attributable to JSDoc edits",
+      "actual": "Only one error in scope (apps/integrated-math-3/components/dev/review-queue/index.tsx:45 TS2769). Confirmed pre-existing at baseline e195fded by checking out the baseline version of that file and re-running tsc — same error. The JSDoc edit is at line 493. Pre-existing baseline noted in tech-debt and test-strategy §2."
+    },
+    {
+      "check": "All 4 prior audits status=pass with empty *_violations",
+      "command": "jq .status,.test_strategy_violations,.live_contract_violations,.prod_wiring_violations,.route_parity_violations review-a.json review-b.json review-c.json phase-acceptance.json",
+      "expected": "All pass; all *_violations arrays empty",
+      "actual": "review-a: pass, all violations arrays []. review-b: pass, all []. review-c: pass, all []. phase-acceptance: pass, all []. adversarial.json: pass, all [], bypass closed in same commit."
+    },
+    {
+      "check": "No JSDoc-text vitest assertions or grep/spy oracles introduced",
+      "command": "Inspect Phase 1 test additions",
+      "expected": "Per strategy §4 + FR-20: FR-3 guard (shell + fixtures) is the only oracle; no vitest text assertions on JSDoc; no symbol-grep oracles",
+      "actual": "Only fixture-based shell guard + adversarial fixture set authored. No JSDoc-text vitest assertions. Matches strategy §4 and FR-20 anti-pattern guard."
+    },
+    {
+      "check": "Diff scope across baseline (no logic/signature changes)",
+      "command": "git diff e195fded..HEAD --stat -- apps/ packages/ convex/",
+      "expected": "Only JSDoc-line edits across 6 files",
+      "actual": "6 files / 6 insertions(+) / 6 deletions(-). Every diff is a single JSDoc comment line. No logic, signature, import, or runtime changes."
+    },
+    {
+      "check": "Targeted vitest suites (from phase-1-gates.txt)",
+      "command": "vitest run on gradebook, auth, projections",
+      "expected": "All pass",
+      "actual": "Gradebook 45/45 pass; auth 45/45 pass; projections 17/17 pass (per phase-1-gates.txt and review-a evidence)."
+    }
+  ],
+  "commands": [
+    "git log --oneline e195fded^..HEAD",
+    "git status --short -- packages/ apps/ convex/",
+    "git status --short",
+    "git diff e195fded..HEAD --stat -- apps/ packages/ convex/",
+    "git grep -nP '@returns \\{.+ \\{\\}' -- 'apps/**/*.ts' 'apps/**/*.tsx' 'packages/**/*.ts' 'packages/**/*.tsx' 'convex/**/*.ts' 'convex/**/*.tsx'",
+    "git grep -nP '@param \\{[^{}]*$' -- 'apps/**/*.ts' 'apps/**/*.tsx' 'packages/**/*.ts' 'packages/**/*.tsx' 'convex/**/*.ts' 'convex/**/*.tsx'",
+    "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh",
+    "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh measure/tracks/code-review-remediation_20260624/scripts/fixtures/adversarial/adv-03-embedded-braces-prose.ts",
+    "bash measure/tracks/code-review-remediation_20260624/scripts/adversarial-tests.sh",
+    "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh apps/integrated-math-3/app/api/dev/review-queue/route.ts apps/integrated-math-3/app/api/student/lesson-chatbot/route.ts apps/integrated-math-3/components/teacher/gradebook/CourseOverviewGrid.tsx packages/knowledge-space-practice/src/projections/activity-map.ts apps/integrated-math-3/components/dev/review-queue/index.tsx apps/integrated-math-3/components/teacher/srs/StrugglingStudentsPanel.tsx",
+    "npx tsc --noEmit -p apps/integrated-math-3/tsconfig.json",
+    "git checkout e195fded -- apps/integrated-math-3/components/dev/review-queue/index.tsx && npx tsc --noEmit -p apps/integrated-math-3/tsconfig.json (verify TS2769 pre-existing) && git checkout HEAD -- apps/integrated-math-3/components/dev/review-queue/index.tsx",
+    "jq -r '.status' measure/tracks/code-review-remediation_20260624/_artifacts/review-a.json measure/tracks/code-review-remediation_20260624/_artifacts/review-b.json measure/tracks/code-review-remediation_20260624/_artifacts/review-c.json measure/tracks/code-review-remediation_20260624/_artifacts/phase-acceptance.json measure/tracks/code-review-remediation_20260624/_artifacts/adversarial.json"
+  ],
+  "changed_files": [
+    "apps/integrated-math-3/app/api/dev/review-queue/route.ts",
+    "apps/integrated-math-3/app/api/student/lesson-chatbot/route.ts",
+    "apps/integrated-math-3/components/teacher/gradebook/CourseOverviewGrid.tsx",
+    "packages/knowledge-space-practice/src/projections/activity-map.ts",
+    "apps/integrated-math-3/components/dev/review-queue/index.tsx",
+    "apps/integrated-math-3/components/teacher/srs/StrugglingStudentsPanel.tsx"
+  ],
+  "commits": [
+    "e195fded test(code-review-remediation): Phase 1 Red — FR-3 balanced-brace JSDoc guard + fixtures + evidence",
+    "d26ecd52 fix(code-review-remediation): rewrite 4 malformed FR-1 @returns annotations",
+    "5ebf5195 fix(code-review-remediation): close 2 additional @param unbalanced braces at HEAD",
+    "0006074f chore(code-review-remediation): restore 144 working-tree files to HEAD",
+    "b3cf07e6 docs(code-review-remediation): add jsdoc generator template + investigation",
+    "0aa18a77 measure(code-review-remediation): mark Phase 1 tasks complete with Green commit evidence",
+    "bd3ac8f5 docs(code-review-remediation): add phase-1-gates.txt closeout artifact",
+    "e992abbf test(code-review-remediation): Phase 1 adversarial — harden FR-3 guard against embedded {} in prose"
+  ],
+  "test_strategy_violations": [],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "none",
+  "confidence": "high",
+  "handoff": "Phase 1 final acceptance complete. All FRs in scope (FR-1, FR-2, FR-3) satisfied; all prior audits and adversarial pass; production-scope guard clean; adversarial bypass closed and verified. Closeout should: (1) update measure/tracks.md to reflect Phase 1 closure (Phases 2–8 remain open); (2) NOT archive the track — Phases 2–8 cover FRs 4–20 and are not yet executed; (3) record the FR-3 guard's hardened behaviour and the embedded-{}-in-prose adversarial finding for the Phase 7 lessons-learned entry (FR-20); (4) consider wiring the FR-3 guard into CI as a follow-on (NB-2); (5) the 6 modified files are the complete Phase 1 source-scope diff from e195fded — no additional cleanup required."
+}

@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "status": "pass",
+  "summary": "All 6 source-file fixes (4 FR-1 @returns + 2 @param) are JSDoc-only comment edits. No function signatures, return types, prop contracts, or export signatures were changed. Restore coverage: 144 files in restored-files.txt, 0 dirty entries in packages/apps/convex. Production-scope git grep clean for malformed patterns. Guard script exists and passes on clean tree (0 violations). Phase 1 has no user-visible feature surface; UX is not applicable.",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    {
+      "id": "NB-1",
+      "severity": "info",
+      "description": "CI does not wire the FR-3 guard script. No .github/workflows/ci.yml exists in the repo. The guard script is at measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh. Per test-strategy §1, CI wiring is out of Phase 1 scope but should be added in a future phase (generator-investigation.md §Recommendation 2)."
+    },
+    {
+      "id": "NB-2",
+      "severity": "info",
+      "description": "The 144-file batch was agent-driven (no checked-in generator script). The corrected template is committed at measure/tracks/code-review-remediation_20260624/templates/jsdoc-template.md. Future regeneration must follow the template's invariants (balanced braces, no trailing {} blocks)."
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "API contract preserved — review-queue/route.ts",
+      "proof": "git show d26ecd52 -- apps/integrated-math-3/app/api/dev/review-queue/route.ts shows only line 141 JSDoc change: @returns {Promise<string | null>} (was {JSX.Element} {Promise<string | null> {}). Function signature 'async function resolveProfileId(userId: string): Promise<string | null>' unchanged. Return type unchanged."
+    },
+    {
+      "claim": "API contract preserved — lesson-chatbot/route.ts",
+      "proof": "git show d26ecd52 -- apps/integrated-math-3/app/api/student/lesson-chatbot/route.ts shows only line 24 JSDoc change: @returns {string} (was {string {}). Function signature 'function sanitizeInput(input: string): string' unchanged."
+    },
+    {
+      "claim": "Component prop contract preserved — CourseOverviewGrid.tsx",
+      "proof": "git show d26ecd52 -- apps/integrated-math-3/components/teacher/gradebook/CourseOverviewGrid.tsx shows only line 16 JSDoc change: @returns {CourseOverviewRow[]} (was {CourseOverviewRow[] {}). No prop interface or export signature change."
+    },
+    {
+      "claim": "Component prop contract preserved — activity-map.ts",
+      "proof": "git show d26ecd52 -- packages/knowledge-space-practice/src/projections/activity-map.ts shows only line 65 JSDoc change: @returns {ProjectedActivity[]} (was {ProjectedActivity[] {}). No export signature change."
+    },
+    {
+      "claim": "Additional @param fixes are JSDoc-only",
+      "proof": "git show 5ebf5195 shows single-line JSDoc comment fixes on StrugglingStudentsPanel.tsx:23 and review-queue/index.tsx:493. Added missing })} to close balanced braces. No function parameter or destructuring pattern changed."
+    },
+    {
+      "claim": "Restore coverage — 144 files",
+      "proof": "wc -l _artifacts/restored-files.txt returns 144. git status --short -- packages/ apps/ convex/ returns 0 entries (clean tree)."
+    },
+    {
+      "claim": "Production-scope guard clean",
+      "proof": "guard-run-on-clean-tree.txt: 663 typed tags scanned, 0 violations, exit 0."
+    },
+    {
+      "claim": "git grep clean for malformed patterns",
+      "proof": "git grep -nP '@returns \\{.+ \\{\\}' -- '*.ts' '*.tsx' returns only fixture matches (malformed-1.ts, malformed-3.ts). git grep -nP '@param \\{[^{}]*$' -- '*.ts' '*.tsx' returns 0 matches."
+    }
+  ],
+  "commands": [
+    "git show d26ecd52 -- apps/integrated-math-3/app/api/dev/review-queue/route.ts apps/integrated-math-3/app/api/student/lesson-chatbot/route.ts apps/integrated-math-3/components/teacher/gradebook/CourseOverviewGrid.tsx packages/knowledge-space-practice/src/projections/activity-map.ts",
+    "git show 5ebf5195 -- apps/integrated-math-3/components/dev/review-queue/index.tsx apps/integrated-math-3/components/teacher/srs/StrugglingStudentsPanel.tsx",
+    "wc -l measure/tracks/code-review-remediation_20260624/_artifacts/restored-files.txt",
+    "git status --short -- packages/ apps/ convex/",
+    "git grep -nP '@returns \\{.+ \\{\\}' -- '*.ts' '*.tsx'",
+    "git grep -nP '@param \\{[^{}]*$' -- '*.ts' '*.tsx'"
+  ],
+  "changed_files": [
+    "apps/integrated-math-3/app/api/dev/review-queue/route.ts (JSDoc @returns fix)",
+    "apps/integrated-math-3/app/api/student/lesson-chatbot/route.ts (JSDoc @returns fix)",
+    "apps/integrated-math-3/components/teacher/gradebook/CourseOverviewGrid.tsx (JSDoc @returns fix)",
+    "packages/knowledge-space-practice/src/projections/activity-map.ts (JSDoc @returns fix)",
+    "apps/integrated-math-3/components/dev/review-queue/index.tsx (JSDoc @param brace fix)",
+    "apps/integrated-math-3/components/teacher/srs/StrugglingStudentsPanel.tsx (JSDoc @param brace fix)",
+    "measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh (FR-3 guard)",
+    "measure/tracks/code-review-remediation_20260624/scripts/fixtures/ (4 test fixtures)",
+    "measure/tracks/code-review-remediation_20260624/_artifacts/restored-files.txt (144-file restore list)",
+    "measure/tracks/code-review-remediation_20260624/_artifacts/generator-investigation.md",
+    "measure/tracks/code-review-remediation_20260624/templates/jsdoc-template.md",
+    "measure/tracks/code-review-remediation_20260624/_artifacts/phase-1-gates.txt"
+  ],
+  "test_strategy_violations": [],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "none",
+  "confidence": "high",
+  "ux_applicability": "not_applicable",
+  "webbridge_status": "not_run",
+  "webbridge_evidence": {
+    "screenshots": [],
+    "accessibility_snapshots": [],
+    "interactions": []
+  }
+}

@@ -1,8 +1,8 @@
 ===============================================
 Phase 2 Adversarial Test Runner — Full Transcript
-Date: 2026-06-24T01:43:39Z
+Date: 2026-06-24T01:46:51Z
 Repo: /home/daniel-bo/Desktop/ra-math-advantage
-Head: aee13927a1799e087ee02e9220b4176482b8eb82
+Head: 776a8c63081a8577442d10d39fb1d2e103159970
 ===============================================
 
 ------ vitest output ------
@@ -13,12 +13,12 @@ Head: aee13927a1799e087ee02e9220b4176482b8eb82
 
 [1m[30m[46m RUN [49m[39m[22m [36mv4.1.8 [39m[90m/home/daniel-bo/Desktop/ra-math-advantage/apps/integrated-math-3[39m
 
- [32m✓[39m __tests__/convex/studentVisualizationAdversarial.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 190[2mms[22m[39m
+ [32m✓[39m __tests__/convex/studentVisualizationAdversarial.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 198[2mms[22m[39m
 
 [2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
 [2m      Tests [22m [1m[32m9 passed[39m[22m[90m (9)[39m
-[2m   Start at [22m 09:43:02
-[2m   Duration [22m 8.30s[2m (transform 3.33s, setup 580ms, import 4.20s, tests 190ms, environment 2.77s)[22m
+[2m   Start at [22m 09:46:14
+[2m   Duration [22m 8.42s[2m (transform 3.36s, setup 629ms, import 4.19s, tests 198ms, environment 2.74s)[22m
 
 
 ------ tsc --noEmit output (apps/integrated-math-3) ------

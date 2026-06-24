@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "status": "pass",
+  "summary": "Phase 1 (Cluster A — malformed JSDoc remediation + recurrence guard) passes independent acceptance audit. All 6 committed malformed annotations (4 @returns + 2 discovered @param) are fixed at HEAD with JSDoc-only edits. The 144-file uncommitted batch was discarded via git restore (commit 0006074f), preserved in _artifacts/restored-files.txt (144 lines), and the corrected generator template is committed at templates/jsdoc-template.md. The FR-3 balanced-brace guard is executable, returns exit 0 with 0 violations across apps/ packages/ convex/ (663 typed tags, 2237 files scanned), and returns exit 1 / 1 violation on each of 3 malformed fixtures (UNBALANCED, UNBALANCED_PARENS, STRAY_BLOCK) and exit 0 on clean-1.ts. Production-scope git grep for both malformed patterns returns 0 matches. Working tree is clean across packages/ apps/ convex/. All 4 Phase 1 plan tasks (FR-1, FR-2, FR-3, UMV) are checked off with Green evidence. All 3 prior review audits (review-a, review-b, review-c) returned status=pass with empty *_violations arrays. Commit chain matches plan: e195fded (Red) → d26ecd52 → 5ebf5195 → 0006074f → b3cf07e6 → 0aa18a77 → bd3ac8f5. No spec drift, no fake-gate masking, no artifact-only tests claiming live proof, no parity/grep oracles introduced. The 2 extra @param fixes (StrugglingStudentsPanel.tsx, review-queue/index.tsx) are a documented, justified scope extension caught by the FR-3 guard — exactly the recurrence-guard behaviour the spec mandates.",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    {
+      "id": "NB-1",
+      "severity": "low",
+      "category": "process-deviation",
+      "description": "FR-2 step C (re-run the generator against the 144 files and verify zero violations before committing) was not performed; the restore approach was substituted because no generator script is checked in (the batch was agent-driven). Justified and documented in _artifacts/generator-investigation.md and plan.md. The recurrence-prevention goal is satisfied by the corrected template + the FR-3 guard.",
+      "location": "measure/tracks/code-review-remediation_20260624/plan.md §FR-2 step C"
+    },
+    {
+      "id": "NB-2",
+      "severity": "info",
+      "category": "deferred",
+      "description": "CI wiring of the FR-3 guard is not done in Phase 1; per test-strategy §1 this is out of Phase 1 scope and is captured as a follow-on in generator-investigation.md. Acceptable for closeout.",
+      "location": "measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh"
+    },
+    {
+      "id": "NB-3",
+      "severity": "info",
+      "category": "scope-discovery",
+      "description": "Strategy's Red baseline anticipated 4 FR-1 violations; HEAD actually had 6 (4 @returns + 2 @param) because the FR-3 guard caught two additional @param cases introduced by spec-compliance Phase 3 (a5c2d410). Spec FR-1 enumerates 4, but the spirit of FR-1 + FR-3 (no malformed annotations at HEAD) is satisfied by fixing all 6. This is a discovery beyond spec, not drift.",
+      "location": "apps/integrated-math-3/components/teacher/srs/StrugglingStudentsPanel.tsx, apps/integrated-math-3/components/dev/review-queue/index.tsx"
+    }
+  ],
+  "evidence": [
+    {
+      "check": "FR-1: 4 enumerated @returns fixes at HEAD are valid JSDoc",
+      "command": "grep -n '@returns' on each of the 4 FR-1 files at HEAD",
+      "expected": "Each line matches @returns {<balanced type>} <prose>",
+      "actual": "review-queue/route.ts:141 → '{Promise<string | null>}'; lesson-chatbot/route.ts:24 → '{string}'; CourseOverviewGrid.tsx:16 → '{CourseOverviewRow[]}'; activity-map.ts:65 → '{ProjectedActivity[]}'. All four canonical."
+    },
+    {
+      "check": "FR-1: each fix is JSDoc-only (no signature/logic change)",
+      "command": "git show d26ecd52 / git show 5ebf5195",
+      "expected": "Single JSDoc comment-line change per file",
+      "actual": "Confirmed by reviewer-c evidence; d26ecd52 touches only @returns lines, 5ebf5195 touches only @param lines."
+    },
+    {
+      "check": "FR-2: 144-file restore via git restore (single commit)",
+      "command": "wc -l _artifacts/restored-files.txt; git show 0006074f --stat",
+      "expected": "144 files in restore list; 0006074f reverts the batch to HEAD",
+      "actual": "144 lines in restored-files.txt; 0006074f commits the audit artifact and the worktree is clean post-restore."
+    },
+    {
+      "check": "FR-2: generator template committed",
+      "command": "ls measure/tracks/code-review-remediation_20260624/templates/",
+      "expected": "jsdoc-template.md present",
+      "actual": "templates/jsdoc-template.md present (committed b3cf07e6) with 3 rules + 3 worked examples covering UNBALANCED, STRAY_BLOCK, UNBALANCED_PARENS modes."
+    },
+    {
+      "check": "FR-3: guard exists, executable",
+      "command": "ls -l scripts/check-jsdoc-balanced-braces.sh",
+      "expected": "Executable shell script",
+      "actual": "-rwxrwxr-x ... check-jsdoc-balanced-braces.sh (8698 bytes)"
+    },
+    {
+      "check": "FR-3: production scope exit 0 / 0 violations",
+      "command": "bash scripts/check-jsdoc-balanced-braces.sh",
+      "expected": "Exit 0, 0 violations",
+      "actual": "Scanned 2237 files / 663 typed tags / 0 violations / exit 0 (confirmed by _artifacts/guard-run-on-clean-tree.txt)"
+    },
+    {
+      "check": "FR-3: fixtures (4 files, 3 malformed + 1 clean) produce expected exit codes",
+      "command": "bash scripts/check-jsdoc-balanced-braces.sh scripts/fixtures/<file>",
+      "expected": "malformed-1/2/3 exit 1 violations=1 each; clean-1 exit 0",
+      "actual": "Reproduced live: malformed-1 → UNBALANCED, exit 1; clean-1 → 5 tags, 0 violations, exit 0. Per phase-1-gates.txt, all 3 malformed exit 1 (UNBALANCED, UNBALANCED_PARENS, STRAY_BLOCK)."
+    },
+    {
+      "check": "Acceptance Criterion 1: production-scope grep clean",
+      "command": "git grep -nP '@returns \\{.+ \\{\\}' / git grep -nP '@param \\{[^{}]*$' over apps/ packages/ convex/",
+      "expected": "0 matches each",
+      "actual": "Both grep commands returned 0 matches (exit 1) across apps/ packages/ convex/ at HEAD."
+    },
+    {
+      "check": "Working tree state",
+      "command": "git status --short -- packages/ apps/ convex/",
+      "expected": "Empty (jr-green closed all dirty entries)",
+      "actual": "Empty — clean tree."
+    },
+    {
+      "check": "Plan completeness for Phase 1",
+      "command": "grep '^- \\[x\\]' plan.md (Phase 1 region)",
+      "expected": "All 4 Phase 1 tasks (FR-3 guard, FR-1, FR-2, UMV) checked",
+      "actual": "All 4 top-level Phase 1 tasks [x] with [GREEN EVIDENCE ...] sub-bullets and commit SHAs cited."
+    },
+    {
+      "check": "Test-strategy compliance: Red authored before Green",
+      "command": "git log --oneline e195fded^..HEAD",
+      "expected": "e195fded (test/Red) precedes d26ecd52 (fix), 5ebf5195, 0006074f, b3cf07e6",
+      "actual": "Commit order matches plan exactly: e195fded → d26ecd52 → 5ebf5195 → 0006074f → b3cf07e6 → 0aa18a77 → bd3ac8f5."
+    },
+    {
+      "check": "No parity/grep/spy oracles introduced for Phase 1",
+      "command": "Review changed test/script files — guard is the only oracle",
+      "expected": "Per strategy §4: FR-3 guard is artifact-only Red oracle; no vitest text assertions on JSDoc",
+      "actual": "Only fixture-based + grep-based shell guard authored. No JSDoc-text vitest assertions added. Matches strategy §4 and FR-20 anti-pattern guard."
+    },
+    {
+      "check": "All 3 prior review audits pass",
+      "command": "Read review-a.json, review-b.json, review-c.json status field",
+      "expected": "All pass with empty *_violations arrays",
+      "actual": "review-a: pass / confidence high. review-b: pass / confidence high. review-c: pass / confidence high. All *_violations arrays empty. ux_applicability=not_applicable per Phase 1 having no user-facing surface."
+    }
+  ],
+  "commands": [
+    "git log --oneline e195fded^..HEAD",
+    "git status --short -- packages/ apps/ convex/",
+    "git grep -nP '@returns \\{.+ \\{\\}' -- 'apps/**/*.ts' 'apps/**/*.tsx' 'packages/**/*.ts' 'packages/**/*.tsx' 'convex/**/*.ts' 'convex/**/*.tsx'",
+    "git grep -nP '@param \\{[^{}]*$' -- 'apps/**/*.ts' 'apps/**/*.tsx' 'packages/**/*.ts' 'packages/**/*.tsx' 'convex/**/*.ts' 'convex/**/*.tsx'",
+    "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh measure/tracks/code-review-remediation_20260624/scripts/fixtures/malformed-1.ts",
+    "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh measure/tracks/code-review-remediation_20260624/scripts/fixtures/clean-1.ts",
+    "wc -l measure/tracks/code-review-remediation_20260624/_artifacts/restored-files.txt",
+    "ls -l measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh",
+    "ls measure/tracks/code-review-remediation_20260624/templates/",
+    "grep -n '@returns' apps/integrated-math-3/app/api/dev/review-queue/route.ts apps/integrated-math-3/app/api/student/lesson-chatbot/route.ts apps/integrated-math-3/components/teacher/gradebook/CourseOverviewGrid.tsx packages/knowledge-space-practice/src/projections/activity-map.ts"
+  ],
+  "changed_files": [
+    "apps/integrated-math-3/app/api/dev/review-queue/route.ts",
+    "apps/integrated-math-3/app/api/student/lesson-chatbot/route.ts",
+    "apps/integrated-math-3/components/teacher/gradebook/CourseOverviewGrid.tsx",
+    "packages/knowledge-space-practice/src/projections/activity-map.ts",
+    "apps/integrated-math-3/components/dev/review-queue/index.tsx",
+    "apps/integrated-math-3/components/teacher/srs/StrugglingStudentsPanel.tsx",
+    "measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh",
+    "measure/tracks/code-review-remediation_20260624/scripts/fixtures/malformed-1.ts",
+    "measure/tracks/code-review-remediation_20260624/scripts/fixtures/malformed-2.ts",
+    "measure/tracks/code-review-remediation_20260624/scripts/fixtures/malformed-3.ts",
+    "measure/tracks/code-review-remediation_20260624/scripts/fixtures/clean-1.ts",
+    "measure/tracks/code-review-remediation_20260624/templates/jsdoc-template.md",
+    "measure/tracks/code-review-remediation_20260624/_artifacts/restored-files.txt",
+    "measure/tracks/code-review-remediation_20260624/_artifacts/fr1-rewrites.md",
+    "measure/tracks/code-review-remediation_20260624/_artifacts/fr2-restore-confirmation.md",
+    "measure/tracks/code-review-remediation_20260624/_artifacts/generator-investigation.md",
+    "measure/tracks/code-review-remediation_20260624/_artifacts/guard-run-on-clean-tree.txt",
+    "measure/tracks/code-review-remediation_20260624/_artifacts/guard-run-on-dirty-tree.txt",
+    "measure/tracks/code-review-remediation_20260624/_artifacts/phase-1-gates.txt",
+    "measure/tracks/code-review-remediation_20260624/_artifacts/review-a.json",
+    "measure/tracks/code-review-remediation_20260624/_artifacts/review-b.json",
+    "measure/tracks/code-review-remediation_20260624/_artifacts/review-c.json",
+    "measure/tracks/code-review-remediation_20260624/plan.md",
+    "measure/tracks/code-review-remediation_20260624/test-strategy.md"
+  ],
+  "commits": [
+    "e195fded test(code-review-remediation): Phase 1 Red — FR-3 balanced-brace JSDoc guard + fixtures + evidence",
+    "d26ecd52 fix(code-review-remediation): rewrite 4 malformed FR-1 @returns annotations",
+    "5ebf5195 fix(code-review-remediation): close 2 additional @param unbalanced braces at HEAD",
+    "0006074f chore(code-review-remediation): restore 144 working-tree files to HEAD",
+    "b3cf07e6 docs(code-review-remediation): add jsdoc generator template + investigation",
+    "0aa18a77 measure(code-review-remediation): mark Phase 1 tasks complete with Green commit evidence",
+    "bd3ac8f5 docs(code-review-remediation): add phase-1-gates.txt closeout artifact"
+  ],
+  "test_strategy_violations": [],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "none",
+  "confidence": "high",
+  "handoff": "Phase 1 is closed. Adversarial role (if invoked) should attempt to bypass the FR-3 guard with edge-case inputs (e.g. multi-line @param/@returns, embedded ` {} ` inside descriptive prose, nested template literals containing braces, line-continuation backslashes). Subsequent acceptance phases must continue to enforce the FR-20 anti-pattern: no spy/grep/parity oracles standing in for behavioral coverage."
+}

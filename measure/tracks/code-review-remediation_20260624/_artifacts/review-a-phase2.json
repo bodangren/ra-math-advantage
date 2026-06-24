@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "status": "pass",
+  "summary": "Phase 2 Green implementation reviewed for correctness. FR-4 multi-module projection, FR-5 dead-read removal, and FR-6 union narrowing are all correctly implemented and verified. One blocker was found during review: the FR-6 behavioral invariant test used dynamic imports inside the test body, causing it to time out under vitest's default 5s timeout. Converted to static imports; all 17 Phase-2-related tests now pass under default config.",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    {
+      "id": "NB-1",
+      "file": "apps/integrated-math-3/__tests__/lib/curriculum/skill-graph-loader.test.ts",
+      "detail": "Helper test uses `expect(nodes.length).toBeGreaterThanOrEqual(500)` rather than pinning the exact 574-node count. This satisfies the test-strategy contract but is slightly weaker than the checklist's 'node count is 574' wording. The real on-disk count is confirmed 574/2708."
+    },
+    {
+      "id": "NB-2",
+      "file": "apps/integrated-math-3/__tests__/convex/studentVisualization.test.ts",
+      "detail": "Mock ctx still includes a `student_competency: []` entry and stale file-header comments referencing `student_competency`. The spy assertion test (lines 246-258) was deleted; the mock entry is harmless and matches the strategy's 'leave intact OR remove' guidance."
+    },
+    {
+      "id": "NB-3",
+      "detail": "build-graph update captured the changed files but did not record cross-file import edges for the new helper (likely path-alias resolution limitation). Callers were verified by direct source read and grep."
+    }
+  ],
+  "evidence": [
+    {
+      "check": "FR-4 behavioral tests",
+      "command": "npm run --workspace=apps/integrated-math-3 test -- --run studentVisualizationMultiModule",
+      "result": "6/6 PASS"
+    },
+    {
+      "check": "FR-4 helper tests",
+      "command": "npm run --workspace=apps/integrated-math-3 test -- --run skill-graph-loader",
+      "result": "4/4 PASS"
+    },
+    {
+      "check": "FR-4 arch-lint",
+      "command": "git grep -nP 'curriculum/skill-graph/module-1/' -- 'apps/integrated-math-3/convex/'",
+      "result": "0 matches"
+    },
+    {
+      "check": "FR-4 graph counts",
+      "command": "node -e 'const n=require(\"./apps/integrated-math-3/curriculum/skill-graph/nodes.json\"); const e=require(\"./apps/integrated-math-3/curriculum/skill-graph/edges.json\"); console.log(n.nodes.length, e.edges.length);'",
+      "result": "574 nodes, 2708 edges"
+    },
+    {
+      "check": "FR-5 dead read removed",
+      "command": "git grep -n 'student_competency' -- apps/integrated-math-3/convex/student.ts",
+      "result": "Only appears in completePhase mutation (lines 212, 224); absent from getStudentVisualizationHandler"
+    },
+    {
+      "check": "FR-5 spy test removed",
+      "command": "git grep -n 'queryCalls' -- apps/integrated-math-3/__tests__/convex/studentVisualization.test.ts",
+      "result": "No spy assertion on student_competency remains"
+    },
+    {
+      "check": "FR-6 source invariant",
+      "command": "git grep -nE \"['\\\"]review_due['\\\"]\" -- 'apps/integrated-math-3/convex/student.ts' 'apps/integrated-math-3/convex/parent/visualization.ts'",
+      "result": "0 matches"
+    },
+    {
+      "check": "FR-6 behavioral tests",
+      "command": "npm run --workspace=apps/integrated-math-3 test -- --run visualizationLearnerStateUnion",
+      "result": "3/3 PASS under default vitest timeout after fix"
+    },
+    {
+      "check": "Phase 1 invariant",
+      "command": "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh \"apps/ packages/ convex/\"",
+      "result": "0 violations, exit 0"
+    },
+    {
+      "check": "Combined Phase 2 test suite",
+      "command": "npm run --workspace=apps/integrated-math-3 test -- --run studentVisualization visualizationLearnerStateUnion skill-graph-loader",
+      "result": "17/17 PASS"
+    }
+  ],
+  "commands": [
+    "npm run --workspace=apps/integrated-math-3 test -- --run studentVisualizationMultiModule",
+    "npm run --workspace=apps/integrated-math-3 test -- --run skill-graph-loader",
+    "npm run --workspace=apps/integrated-math-3 test -- --run visualizationLearnerStateUnion",
+    "npm run --workspace=apps/integrated-math-3 test -- --run studentVisualization visualizationLearnerStateUnion skill-graph-loader",
+    "git grep -nP 'curriculum/skill-graph/module-1/' -- 'apps/integrated-math-3/convex/'",
+    "git grep -nE \"['\\\"]review_due['\\\"]\" -- 'apps/integrated-math-3/convex/student.ts' 'apps/integrated-math-3/convex/parent/visualization.ts'",
+    "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh \"apps/ packages/ convex/\""
+  ],
+  "changed_files": [
+    "apps/integrated-math-3/lib/curriculum/skill-graph-loader.ts",
+    "apps/integrated-math-3/__tests__/lib/curriculum/skill-graph-loader.test.ts",
+    "apps/integrated-math-3/convex/student.ts",
+    "apps/integrated-math-3/convex/parent/visualization.ts",
+    "apps/integrated-math-3/__tests__/convex/studentVisualizationMultiModule.test.ts",
+    "apps/integrated-math-3/__tests__/convex/visualizationLearnerStateUnion.test.ts",
+    "apps/integrated-math-3/__tests__/convex/studentVisualization.test.ts"
+  ],
+  "test_strategy_violations": [],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "none",
+  "confidence": "high"
+}

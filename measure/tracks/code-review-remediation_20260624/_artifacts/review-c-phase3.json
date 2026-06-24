@@ -1,0 +1,88 @@
+{
+  "role": "review-c-ux-api",
+  "track": "code-review-remediation_20260624",
+  "phase": "Phase 3: advanced-math-generators correctness & quality (Cluster C)",
+  "baseline_sha": "2baa1e8b",
+  "reviewed_commits": [
+    "6c60fc92",
+    "4cbf9236",
+    "1ff4f012",
+    "cb6e7f8c",
+    "3d6cc4f8"
+  ],
+  "verdict": "pass",
+  "findings": [],
+  "ux_applicability": "not_applicable",
+  "webbridge_status": "not_run",
+  "webbridge_evidence": {
+    "screenshots": [],
+    "accessibility_snapshots": [],
+    "interactions": []
+  },
+  "checklist": {
+    "api_contract_preserved": {
+      "status": "pass",
+      "details": "RationalProblem interface unchanged. The HorizontalAsymptote type is preserved at the source level; only the adapter's partAnswers/expectedAnswer mapping changed from the raw object to a scalar (number | 'none'). No activity components in apps/ or packages/activity-components/ consume the horizontalAsymptote object directly — grep confirmed zero hits for horizontalAsymptote in both apps/integrated-math-3 and packages/activity-components. The adapter is the sole public grading surface."
+    },
+    "adapter_contract_preserved": {
+      "status": "pass",
+      "details": "Each adapter's nodeIds is now a non-empty array of math.im3.skill.* strings. Adapter.test.ts assertions (it.each) confirm non-empty + pattern match for all four advanced generators. The MathGenerator interface (registry.ts) is unchanged."
+    },
+    "activity_grading_consistency": {
+      "status": "pass",
+      "details": "The rational-analyzer adapter now grades horizontalAsymptote as a student-enterable scalar (number | 'none') with numeric_tolerance (0.001) for numeric values and exact_match for 'none'. This matches the practice-component-contract's grading contract (partGradingRules + partTolerances). No activity component consumes the HA object directly — confirmed via grep across apps/ and packages/activity-components/."
+    },
+    "no_handrolled_fail": {
+      "status": "pass",
+      "details": "grep for expect(true).toBe(false) across all *.test.ts in packages/math-content returned zero hits. The exp-log-solver.test.ts LaTeX blocks were rewritten to use Array.some + expect(found).toBe(true) pattern."
+    },
+    "end_to_end_compilable": {
+      "status": "pass",
+      "details": "All four Phase 3 test files (rational-analyzer.test.ts, exp-log-solver.test.ts, adapter.test.ts, generator-registry.test.ts) pass: 92/92 tests green. Imports are consistent: all generators import from utils/prng.ts, utils/polynomial.ts, utils/polynomial-format.ts, and utils/coefficients.ts. No circular dependencies."
+    },
+    "fr3_guard_exits_0": {
+      "status": "pass",
+      "details": "FR-3 balanced-brace guard runs against apps/ packages/ convex/: Scanned 2246 files, 664 typed tags, 0 violations, exit 0. Phase 1 invariant preserved."
+    },
+    "fr9_single_source": {
+      "status": "pass",
+      "details": "seededRandom: exactly 1 definition in utils/prng.ts. generateCoefficients: exactly 1 definition in utils/coefficients.ts. formatPolynomial: exactly 1 definition in utils/polynomial-format.ts. Flat generator-registry.ts deleted. index.ts re-exports removed."
+    },
+    "fr10_node_ids_populated": {
+      "status": "pass",
+      "details": "All four advanced adapters have non-empty nodeIds arrays. Zero occurrences of 'nodeIds: []' in advanced-math-adapters.ts. nodeIds match math.im3.skill.* pattern. Polynomial-operations: 4 IDs, polynomial-division: 2 IDs, rational-analyzer: 2 IDs, exp-log-solver: 4 IDs."
+    },
+    "fr11_prng_docstring": {
+      "status": "pass",
+      "details": "Shared seededRandom in utils/prng.ts has corrected JSDoc explicitly acknowledging JS-double-overflow caveat: 'the bit pattern is NOT identical to a true 32-bit glibc LCG'. Docstring-only fix per spec."
+    }
+  },
+  "tests_run": [
+    "npx vitest run src/__tests__/rational-analyzer.test.ts (19 tests, pass)",
+    "npx vitest run src/__tests__/exp-log-solver.test.ts (17 tests, pass)",
+    "npx vitest run src/knowledge-space/__tests__/adapter.test.ts (47 tests, pass)",
+    "npx vitest run src/__tests__/generator-registry.test.ts (9 tests, pass)",
+    "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh (exit 0, 0 violations)"
+  ],
+  "files_changed": [
+    "packages/math-content/src/rational-analyzer.ts",
+    "packages/math-content/src/exp-log-solver.ts",
+    "packages/math-content/src/knowledge-space/generators/advanced-math-adapters.ts",
+    "packages/math-content/src/knowledge-space/generators/registry.ts",
+    "packages/math-content/src/generator-registry.ts (deleted)",
+    "packages/math-content/src/index.ts",
+    "packages/math-content/src/polynomial-operations.ts",
+    "packages/math-content/src/polynomial-division.ts",
+    "packages/math-content/src/utils/prng.ts (new)",
+    "packages/math-content/src/utils/coefficients.ts (new)",
+    "packages/math-content/src/utils/polynomial-format.ts (new)",
+    "packages/math-content/src/problem-families/im1/generators.ts",
+    "packages/math-content/src/__tests__/rational-analyzer.test.ts",
+    "packages/math-content/src/__tests__/exp-log-solver.test.ts",
+    "packages/math-content/src/__tests__/generator-registry.test.ts",
+    "packages/math-content/src/knowledge-space/__tests__/adapter.test.ts"
+  ],
+  "known_failures": "none",
+  "pre_existing_failures": "6 test files in packages/math-content fail with ENOENT on measure/tracks/im1-practice-readiness_20260609/metadata.json — pre-existing, unrelated to Phase 3 work (17 failing tests across 6 files).",
+  "handoff": "Phase 3 is complete from UX/API contract perspective. All API surfaces are preserved or correctly evolved: (1) RationalProblem interface unchanged, HA scalar grading is student-enterable, (2) adapter nodeIds are populated and verifiable, (3) no activity components are affected — this is a pure backend generator change, (4) FR-3 guard invariant holds, (5) single-source utils are verified. Phase-acceptance should note: rational-analyzer seed-1 golden values changed (expected — non-monic variation alters PRNG consumption order); the rational-analyzer.test.ts golden assertions at seed-1 have been updated to match. No blockers for phase-acceptance."
+}
