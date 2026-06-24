@@ -114,11 +114,21 @@ JSDoc) first. Each behavioral fix follows Red → Green TDD per `workflow.md`.
 > `ActiveCredentialVerifier` lambda body. `parent-server-guards.ts` is
 > intentionally out of scope (per FR-14 spec boundary).
 
-- [ ] Task: Finish IM3 auth-wrapper unification (FR-14)
-    - [~] Red: update the IM3 auth test harness to stub the new `@math-platform/core-auth` request-guard exports; keep all IM3 auth tests green
-    - [ ] Green: replace inline `getCookieValueFromHeader` + response builders + guards in `apps/integrated-math-3/lib/auth/server.ts` with core-auth composition (mirror BM2)
-    - [ ] Resolve the matching tech-debt entry when complete
+- [x] Task: Finish IM3 auth-wrapper unification (FR-14)
+    - [x] Red: update the IM3 auth test harness to stub the new `@math-platform/core-auth` request-guard exports; keep all IM3 auth tests green
+    - [x] Green: replace inline `getCookieValueFromHeader` + response builders + guards in `apps/integrated-math-3/lib/auth/server.ts` with core-auth composition (mirror BM2)
+    - [x] Resolve the matching tech-debt entry when complete
 - [ ] Task: Measure - User Manual Verification 'Phase 5: unified-auth IM3 follow-through' (Protocol in workflow.md)
+
+**Phase 5 evidence (commit `b3128ce1`):**
+- `apps/integrated-math-3/lib/auth/server.ts`: inline helpers removed; composes `_getRequestSessionClaims`, `_requireRequestSessionClaims`, `_requireRoleRequestClaims`, `_requireActiveRequestSessionClaims` from `@math-platform/core-auth`. `buildRequestForbiddenResponse` / `buildRequestServiceUnavailableResponse` / `buildRequestUnauthorizedResponse` re-imported for route-handler composition (Phase 5 arch-lint contract; eslint-disable comments document intent).
+- `apps/integrated-math-3/__tests__/lib/auth/server-guards.test.ts`: harness now uses `vi.importActual` + spread so the new core-auth exports are stubbed.
+- `apps/integrated-math-3/__tests__/lib/auth/server-composition.test.ts` (new in commit `69e3325a`): 16 arch-lint + delegation + tech-debt registry tests all pass.
+- `measure/tech-debt.md`: "IM3 auth wrapper inline duplication" entry marked **Resolved** (FR-14).
+- 61/61 IM3 auth tests pass (16 composition + 19 server-guards + 18 parent-role-guard + 8 developer).
+- FR-3 JSDoc balanced-brace guard: 0 violations (Phase 1 invariant preserved).
+- tsc on the changed files: 0 new errors.
+- Lint on the changed files: clean (2 pre-existing warnings in `student-flow.test.ts` unrelated to Phase 5).
 
 > **Note on test-replacement (Cluster G, FR-16):** the per-test replacements for
 > FR-5, FR-7, FR-8, FR-10, FR-12, FR-13 are folded into their respective code-fix
