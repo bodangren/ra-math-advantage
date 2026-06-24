@@ -109,11 +109,18 @@ export const rationalAnalyzerAdapter: MathGenerator = {
 
     const prompt = `Analyze the rational function ${problem.equation}. Identify the hole(s), vertical asymptote(s), horizontal asymptote, and x-intercept(s).`;
 
+    // Grade the horizontal asymptote as a student-enterable scalar value:
+    //   - If numerator degree < denominator degree → HA is y = 0, student enters "0"
+    //   - Otherwise → HA is the numeric ratio y = aNum/aDen
+    const haValue: number | 'none' = problem.horizontalAsymptote?.isZero
+      ? 'none'
+      : (problem.horizontalAsymptote?.ratio ?? 'none');
+
     const gradingMetadata: GradingMetadata = {
       partAnswers: {
         holes: problem.holes,
         verticalAsymptotes: problem.verticalAsymptotes,
-        horizontalAsymptote: problem.horizontalAsymptote,
+        horizontalAsymptote: haValue,
         xIntercepts: problem.xIntercepts,
       },
       partMaxScores: {
@@ -125,9 +132,10 @@ export const rationalAnalyzerAdapter: MathGenerator = {
       partGradingRules: {
         holes: 'exact_match',
         verticalAsymptotes: 'exact_match',
-        horizontalAsymptote: 'exact_match',
+        horizontalAsymptote: haValue === 'none' ? 'exact_match' : 'numeric_tolerance',
         xIntercepts: 'exact_match',
       },
+      partTolerances: haValue === 'none' ? undefined : { horizontalAsymptote: 0.001 },
     };
 
     return {
@@ -140,14 +148,14 @@ export const rationalAnalyzerAdapter: MathGenerator = {
       expectedAnswer: {
         holes: problem.holes,
         verticalAsymptotes: problem.verticalAsymptotes,
-        horizontalAsymptote: problem.horizontalAsymptote,
+        horizontalAsymptote: haValue,
         xIntercepts: problem.xIntercepts,
       },
       solutionSteps: [
         { description: 'Factor the numerator and denominator.' },
         { description: 'Identify common factors to find holes.', expression: `holes: ${JSON.stringify(problem.holes)}`, value: problem.holes },
         { description: 'Find zeros of the remaining denominator for vertical asymptotes.', expression: `vertical asymptotes: ${JSON.stringify(problem.verticalAsymptotes)}`, value: problem.verticalAsymptotes },
-        { description: 'Compare leading terms for the horizontal asymptote.', expression: `horizontal asymptote: ${JSON.stringify(problem.horizontalAsymptote)}`, value: problem.horizontalAsymptote },
+        { description: 'Compare leading terms for the horizontal asymptote.', expression: `horizontal asymptote: y = ${typeof haValue === 'number' ? haValue : 'none'}`, value: haValue },
         { description: 'Find zeros of the numerator that are not holes for x-intercepts.', expression: `x-intercepts: ${JSON.stringify(problem.xIntercepts)}`, value: problem.xIntercepts },
       ],
       gradingMetadata,

@@ -263,6 +263,35 @@ describe('generator registry', () => {
   });
 });
 
+// ---------------------------------------------------------------------------
+// Advanced math adapter — HA scalar grading (FR-7)
+// ---------------------------------------------------------------------------
+
+describe('advanced math adapter — horizontal asymptote grading', () => {
+  it('rational-analyzer adapter: horizontalAsymptote target is scalar (number | "none"), not the source object', () => {
+    const gen = getGenerator('rational-analyzer');
+    const output = gen.generate({ nodeId: 'x', seed: 1, difficulty: 0.5 });
+    const ha = output.gradingMetadata.partAnswers.horizontalAsymptote;
+    // Before FR-7: ha was { leadingDegreeNum, leadingDegreeDen, ratio, isZero }
+    // After FR-7: ha is a number or the literal "none".
+    const isStudentEnterable =
+      typeof ha === 'number' || ha === 'none';
+    expect(isStudentEnterable).toBe(true);
+  });
+
+  it('rational-analyzer adapter: expectedAnswer.horizontalAsymptote matches gradingMetadata', () => {
+    const gen = getGenerator('rational-analyzer');
+    const output = gen.generate({ nodeId: 'x', seed: 1, difficulty: 0.5 });
+    const ha = output.expectedAnswer.horizontalAsymptote;
+    const isStudentEnterable =
+      typeof ha === 'number' || ha === 'none';
+    expect(isStudentEnterable).toBe(true);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Renderer registry
+// ---------------------------------------------------------------------------
 describe('renderer registry', () => {
   it('returns a renderer descriptor for known keys', () => {
     for (const key of RENDERER_KEYS) {

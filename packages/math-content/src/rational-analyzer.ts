@@ -9,8 +9,13 @@
  *   1. Pick hole root h (integer).
  *   2. Pick vertical-asymptote root v (integer, v ≠ h).
  *   3. Pick x-intercept root z (integer, z ≠ h).
- *   4. P(x) = (x − h)(x − z),  Q(x) = (x − h)(x − v).
- *   5. Expand via multiplyPoly.
+ *   4. Pick non-monic leading coefficients aNum, aDen ∈ {1, 2, 3}.
+ *   5. P(x) = aNum·(x − h)(x − z),  Q(x) = aDen·(x − h)(x − v).
+ *   6. Expand via multiplyPoly.
+ *
+ * The non-monic coefficients ensure the horizontal-asymptote ratio
+ * (aNum/aDen) varies across seeds, making the HA feature pedagogically
+ * meaningful rather than trivially y = 1.
  *
  * Convention: ascending degree order — index k = coefficient of x^k.
  *   (x − r) in ascending order is [−r, 1].
@@ -105,25 +110,38 @@ export function generateRationalProblem(options: {
   const factorV = [-v, 1];
   const factorZ = [-z, 1];
 
-  // Step 3: Expand.
-  const numerator = multiplyPoly(factorH, factorZ);   // (x−h)(x−z)
-  const denominator = multiplyPoly(factorH, factorV); // (x−h)(x−v)
+  // Step 3: Pick non-monic leading coefficients via two extra PRNG draws.
+  //   aNum, aDen ∈ {1, 2, 3} — this ensures the horizontal-asymptote
+  //   ratio (aNum / aDen) varies across seeds, making HA pedagogically
+  //   meaningful rather than trivially y = 1.
+  const aNum = Math.floor(rand() * 3) + 1; // 1, 2, or 3
+  const aDen = Math.floor(rand() * 3) + 1; // 1, 2, or 3
 
-  // Step 4: Horizontal asymptote.
+  // Step 4: Expand with non-monic leading coefficients.
+  //   P(x) = aNum · (x−h)(x−z)
+  //   Q(x) = aDen · (x−h)(x−v)
+  const baseNum = multiplyPoly(factorH, factorZ);   // (x−h)(x−z)
+  const baseDen = multiplyPoly(factorH, factorV);   // (x−h)(x−v)
+  const numerator = baseNum.map(c => c * aNum);
+  const denominator = baseDen.map(c => c * aDen);
+
+  // Step 5: Horizontal asymptote.
   // Both numerator and denominator are degree 2 (product of two linear
-  // factors), so degrees always match. The horizontal asymptote is
-  // y = (leading coeff of P) / (leading coeff of Q).
+  // factors, scaled by a constant), so degrees always match. The horizontal
+  // asymptote is y = (leading coeff of P) / (leading coeff of Q).
   const leadingNum = numerator[numerator.length - 1];
   const leadingDen = denominator[denominator.length - 1];
 
+  const numDeg = numerator.length - 1;
+  const denDeg = denominator.length - 1;
   const horizontalAsymptote: HorizontalAsymptote = {
     leadingDegreeNum: leadingNum,
     leadingDegreeDen: leadingDen,
     ratio: leadingNum / leadingDen,
-    isZero: false, // degrees always equal in this construction
+    isZero: numDeg < denDeg,
   };
 
-  // Step 5: Build the display equation for the step-by-step-solver fallback.
+  // Step 6: Build the display equation for the step-by-step-solver fallback.
   const numeratorStr = formatPolynomial(numerator);
   const denominatorStr = formatPolynomial(denominator);
   const equation = `(${numeratorStr}) / (${denominatorStr})`;

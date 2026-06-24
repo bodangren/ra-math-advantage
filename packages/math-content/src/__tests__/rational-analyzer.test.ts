@@ -107,30 +107,33 @@ describe('rational-analyzer.ts', () => {
   // ---- Horizontal asymptote ----
 
   describe('horizontal asymptote', () => {
-    it('ratio = leadingNum / leadingDen for all seeds', () => {
-      for (let seed = 1; seed <= 10; seed++) {
+    it('horizontal asymptote ratio varies across seeds', () => {
+      const ratios = new Set<number>();
+      for (let seed = 1; seed <= 50; seed++) {
         const r = generateRationalProblem({ seed });
-        expect(r.horizontalAsymptote).not.toBeNull();
-        const leadingNum = r.numerator[r.numerator.length - 1];
-        const leadingDen = r.denominator[r.denominator.length - 1];
-        expect(r.horizontalAsymptote!.ratio).toBeCloseTo(leadingNum / leadingDen, 10);
+        ratios.add(r.horizontalAsymptote!.ratio);
       }
+      // At HEAD (before FR-7): ratios = { 1 } (size 1).
+      // After FR-7: multiple ratios from aNum/aDen ∈ {1,2,3}.
+      expect(ratios.size).toBeGreaterThan(1);
     });
 
-    it('isZero is false when degrees match (our construction always does)', () => {
-      const r = generateRationalProblem({ seed: 1 });
-      expect(r.numerator.length).toBe(r.denominator.length);
-      expect(r.horizontalAsymptote!.isZero).toBe(false);
+    it('at least one of seeds 1..50 has horizontalAsymptote.ratio !== 1', () => {
+      const found = Array.from({ length: 50 }, (_, i) => i + 1)
+        .map(seed => generateRationalProblem({ seed }))
+        .some(r => r.horizontalAsymptote!.ratio !== 1);
+      expect(found).toBe(true);
     });
 
-    it('leadingDegreeNum and leadingDegreeDen are the actual leading coefficients', () => {
-      const r = generateRationalProblem({ seed: 1 });
-      expect(r.horizontalAsymptote!.leadingDegreeNum).toBe(
-        r.numerator[r.numerator.length - 1],
+    it('source does not hardcode isZero: false', () => {
+      const { readFileSync } = require('fs');
+      const { resolve } = require('path');
+      const src = readFileSync(
+        resolve(__dirname, '../rational-analyzer.ts'), 'utf8'
       );
-      expect(r.horizontalAsymptote!.leadingDegreeDen).toBe(
-        r.denominator[r.denominator.length - 1],
-      );
+      // Before FR-7: `isZero: false, // degrees always equal`
+      // After FR-7: computed expression `isZero: numDeg < denDeg`
+      expect(src).not.toMatch(/isZero:\s*false,?\s*\/\/\s*degrees always/);
     });
   });
 
