@@ -22,9 +22,11 @@
  * fact that the handler never produces `review_due` (documented below).
  */
 
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { readFileSync } from 'node:fs';
 import path from 'path';
+
+import { getStudentVisualizationHandler } from '@/convex/student';
 
 function readSource(relativePath: string): string {
   return readFileSync(path.resolve(__dirname, relativePath), 'utf-8');
@@ -35,8 +37,6 @@ describe('FR-6 — handler learner-state union does not include review_due', () 
   // masteryEstimate input. This test is invariant (always passes) and
   // documents the behavioral contract.
   it('handler classifies placements only as mastered/ready/blocked (behavioral invariant)', async () => {
-    const { getStudentVisualizationHandler } = await import('@/convex/student');
-
     // Seed placements across the full [0, 1] mastery range.
     const placements = [
       { masteryEstimate: 0.0, nodeId: 'n0' },
@@ -62,7 +62,6 @@ describe('FR-6 — handler learner-state union does not include review_due', () 
       student_competency: [],
     };
 
-    const { vi } = await import('vitest');
     const queryMock = vi.fn().mockImplementation((tableName: string) => {
       const rows = rowsByTable[tableName] ?? [];
       return {
