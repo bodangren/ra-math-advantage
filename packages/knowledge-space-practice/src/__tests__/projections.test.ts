@@ -442,6 +442,9 @@ describe('Cross-domain smoke test (English/GSE)', () => {
 
 // ---------------------------------------------------------------------------
 // Concept Aggregator resolution (precalc-alignment-concept-taxonomy_20260510)
+// FR-13: emitting all child skills — the projection must emit one row set
+// per child skill of a concept node (N rows for an N-skill concept),
+// not silently collapse to a single alphabetically-first skill.
 // ---------------------------------------------------------------------------
 describe('Concept Aggregator resolution', () => {
   const conceptNode: KnowledgeSpaceNode = {
@@ -463,6 +466,13 @@ describe('Concept Aggregator resolution', () => {
     id: 'math.precalc.skill.unit-circle.cos-definition',
     kind: 'skill',
     title: 'Cos from unit circle',
+    reviewStatus: 'approved',
+    metadata: {},
+  };
+  const skillC: KnowledgeSpaceNode = {
+    id: 'math.precalc.skill.unit-circle.tan-definition',
+    kind: 'skill',
+    title: 'Tan from unit circle',
     reviewStatus: 'approved',
     metadata: {},
   };
@@ -492,29 +502,35 @@ describe('Concept Aggregator resolution', () => {
       weight: 1,
       reviewStatus: 'approved',
     },
+    {
+      id: 'e3',
+      type: 'contains',
+      sourceId: conceptNode.id,
+      targetId: skillC.id,
+      confidence: 'high',
+      weight: 1,
+      reviewStatus: 'approved',
+    },
   ];
 
   it('findChildSkills returns child skills of a concept via contains edges', () => {
-    const childSkills = findChildSkills(conceptNode, [conceptNode, skillA, skillB, otherConcept], conceptEdges);
+    const childSkills = findChildSkills(conceptNode, [conceptNode, skillA, skillB, skillC, otherConcept], conceptEdges);
     const ids = childSkills.map((s) => s.id).sort();
-    // 'cos' < 'sin' alphabetically.
-    expect(ids).toEqual([skillB.id, skillA.id]);
+    expect(ids).toEqual([skillB.id, skillA.id, skillC.id].sort());
   });
 
   it('findChildSkills returns empty for a non-concept node', () => {
     expect(findChildSkills(skillA, [skillA, skillB], conceptEdges)).toEqual([]);
   });
 
-  it('selectSkill picks alphabetically first child skill deterministically', () => {
-    const picked = selectSkill([skillB, skillA]);
-    expect(picked?.id).toBe(skillB.id);
-  });
-
   it('selectSkill returns null on empty child list', () => {
     expect(selectSkill([])).toBeNull();
   });
 
-  it('projectActivityMap resolves a concept nodeId to a child skill row', () => {
+  it('projectActivityMap emits one row per child skill for a 2-skill concept (FR-13)', () => {
+    // 2-skill concept, 1 spec → 2 rows (one per child skill). Replaces
+    // the prior test that asserted 1 row (the FR-20 anti-pattern that
+    // certified the sibling-dropping limitation).
     const blueprint: KnowledgeBlueprint = {
       nodeId: conceptNode.id,
       sourceNodeIds: [],
@@ -529,10 +545,120 @@ describe('Concept Aggregator resolution', () => {
       reviewStatus: 'draft',
       metadata: {},
     };
+    // Use only 2 of the 3 skills to mirror the 2-skill original fixture
+    // shape (so the assertion is "2 rows for 2 child skills" — direct
+    // count, not a derived cardinality).
+    const twoSkillEdges = conceptEdges.filter((e) => e.targetId !== skillC.id);
     const nodes = [conceptNode, skillA, skillB];
+    const rows = projectActivityMap(nodes, twoSkillEdges, [blueprint]);
+    expect(rows).toHaveLength(2);
+    const rowNodeIds = rows.map((r) => r.nodeId).sort();
+    expect(rowNodeIds).toEqual([skillA.id, skillB.id].sort());
+    for (const r of rows) {
+      expect(r.stableActivityId).toBe(`${r.nodeId}.independent_practice`);
+    }
+  });
+
+  it('projectActivityMap emits one row per child skill for a 3-skill concept (FR-13)', () => {
+    // 3-skill concept, 1 spec → 3 rows (one per child skill). The full
+    // unit-circle-trig fixture (sin, cos, tan) covers all 3.
+    const blueprint: KnowledgeBlueprint = {
+      nodeId: conceptNode.id,
+      sourceNodeIds: [],
+      alignmentNodeIds: [],
+      rendererKey: 'concept-explorer',
+      workedExampleSpec: {
+        prompt: 'Worked example for unit circle trig',
+        givens: [],
+        steps: [],
+        explanation: '',
+      },
+      reviewStatus: 'draft',
+      metadata: {},
+    };
+    const nodes = [conceptNode, skillA, skillB, skillC];
     const rows = projectActivityMap(nodes, conceptEdges, [blueprint]);
+    expect(rows).toHaveLength(3);
+    const rowNodeIds = rows.map((r) => r.nodeId).sort();
+    expect(rowNodeIds).toEqual([skillA.id, skillB.id, skillC.id].sort());
+    for (const r of rows) {
+      expect(r.mode).toBe('worked_example');
+    }
+  });
+
+  it('projectActivityMap emits zero rows for a concept with no child skills (FR-13 edge case)', () => {
+    // Concept with no `contains` edges → no rows. The single-skill
+    // emission that used to apply here would have produced 0 rows
+    // (because selectSkill returns null and the projection fell through
+    // to `blueprintNode`, which had a stableActivityId — but the
+    // spec/nodeId doesn't point to a skill, so it was effectively
+    // orphaned). With the all-children fix, 0 rows is the explicit
+    // contract.
+    const emptyConceptEdges: KnowledgeSpaceEdge[] = [];
+    const blueprint: KnowledgeBlueprint = {
+      nodeId: conceptNode.id,
+      sourceNodeIds: [],
+      alignmentNodeIds: [],
+      rendererKey: 'concept-explorer',
+      independentPracticeSpec: {
+        variantParameters: {},
+        answerSchema: { answer: {} },
+        gradingRules: [],
+        replayPolicy: 'any_seed',
+      },
+      reviewStatus: 'draft',
+      metadata: {},
+    };
+    const nodes = [conceptNode, skillA, skillB, skillC];
+    const rows = projectActivityMap(nodes, emptyConceptEdges, [blueprint]);
+    expect(rows).toHaveLength(0);
+  });
+
+  it('projectActivityMap emits exactly one row for a 1-skill concept (regression guard)', () => {
+    // 1-skill concept → 1 row. This is the limit case for the FR-13
+    // fix; the N-row behavior must collapse to 1 row when N=1.
+    const skillOnly: KnowledgeSpaceNode = {
+      id: 'math.precalc.skill.unit-circle.tan-definition',
+      kind: 'skill',
+      title: 'Tan from unit circle',
+      reviewStatus: 'approved',
+      metadata: {},
+    };
+    const singleConcept: KnowledgeSpaceNode = {
+      id: 'math.precalc.concept.tan-only',
+      kind: 'concept',
+      title: 'Tan-only concept',
+      reviewStatus: 'approved',
+      metadata: {},
+    };
+    const singleEdge: KnowledgeSpaceEdge[] = [
+      {
+        id: 'e-solo',
+        type: 'contains',
+        sourceId: singleConcept.id,
+        targetId: skillOnly.id,
+        confidence: 'high',
+        weight: 1,
+        reviewStatus: 'approved',
+      },
+    ];
+    const blueprint: KnowledgeBlueprint = {
+      nodeId: singleConcept.id,
+      sourceNodeIds: [],
+      alignmentNodeIds: [],
+      rendererKey: 'concept-explorer',
+      independentPracticeSpec: {
+        variantParameters: {},
+        answerSchema: { answer: {} },
+        gradingRules: [],
+        replayPolicy: 'any_seed',
+      },
+      reviewStatus: 'draft',
+      metadata: {},
+    };
+    const nodes = [singleConcept, skillOnly];
+    const rows = projectActivityMap(nodes, singleEdge, [blueprint]);
     expect(rows).toHaveLength(1);
-    expect(rows[0]?.nodeId).toBe(skillB.id);
-    expect(rows[0]?.stableActivityId).toBe(`${skillB.id}.independent_practice`);
+    expect(rows[0]?.nodeId).toBe(skillOnly.id);
   });
 });
