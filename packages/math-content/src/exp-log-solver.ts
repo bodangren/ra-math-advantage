@@ -14,6 +14,8 @@
  * Convention: LaTeX formatting uses \log, \ln, and \exp commands.
  */
 
+import { seededRandom } from './utils/prng';
+
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -31,18 +33,6 @@ export interface ExpLogProblem {
   familyId: 'step-by-step-solver:exp-log';
   /** Step-by-step solution breakdown. */
   steps: string[];
-}
-
-// ---------------------------------------------------------------------------
-// PRNG — same linear-congruential algorithm as polynomial-division.ts
-// ---------------------------------------------------------------------------
-
-function seededRandom(seed: number): () => number {
-  let s = seed | 0;
-  return () => {
-    s = (s * 1103515245 + 12345) & 0x7fffffff;
-    return s / 0x7fffffff;
-  };
 }
 
 // ---------------------------------------------------------------------------

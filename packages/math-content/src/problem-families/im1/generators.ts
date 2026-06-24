@@ -3,24 +3,12 @@ import type {
   GeneratorOutput,
   GradingMetadata,
 } from '@math-platform/knowledge-space-practice';
+import { seededRandom } from '../../utils/prng';
 
 export interface IM1GeneratorEntry {
   skillIdKey: string;
   nodeIds: string[];
   generate: (input: GeneratorInput) => GeneratorOutput;
-}
-
-/**
- * Create a seeded pseudo-random number generator.
- * @param seed - Integer seed value
- * @returns Function that returns the next random number in [0, 1)
- */
-function seededRandom(seed: number): () => number {
-  let s = seed | 0;
-  return () => {
-    s = (s * 1103515245 + 12345) & 0x7fffffff;
-    return s / 0x7fffffff;
-  };
 }
 
 const verbalToNumerical: IM1GeneratorEntry = {

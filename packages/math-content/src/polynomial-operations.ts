@@ -1,4 +1,6 @@
 import { addPoly, multiplyPoly, subtractPoly } from './utils/polynomial';
+import { seededRandom } from './utils/prng';
+import { generateCoefficients } from './utils/coefficients';
 
 /**
  * Operator symbol rendered in the prompt and used as the discriminator
@@ -14,43 +16,6 @@ export interface PolynomialOperation {
   divisor: number[];
   operator: PolynomialOperator;
   result: number[];
-}
-
-/**
- * Linear congruential PRNG matching the pattern already used elsewhere in
- * math-content (see problem-families/im1/generators.ts). Producing a fresh
- * PRNG per call keeps generators deterministic for a given seed.
- */
-function seededRandom(seed: number): () => number {
-  let s = seed | 0;
-  return () => {
-    s = (s * 1103515245 + 12345) & 0x7fffffff;
-    return s / 0x7fffffff;
-  };
-}
-
-/**
- * Build a coefficient array of the requested degree in ascending order
- * (index k = coefficient of x^k). The leading coefficient (last index)
- * is always non-zero; intermediate coefficients are uniform integers.
- */
-function generateCoefficients(
-  rand: () => number,
-  degree: number,
-  leadingRange: [number, number],
-  otherRange: [number, number] = [-5, 5],
-): number[] {
-  const poly: number[] = [];
-  for (let i = 0; i < degree; i++) {
-    const c =
-      Math.floor(rand() * (otherRange[1] - otherRange[0] + 1)) + otherRange[0];
-    poly.push(c);
-  }
-  const leadingMag =
-    Math.floor(rand() * (leadingRange[1] - leadingRange[0] + 1)) +
-    leadingRange[0];
-  poly.push(rand() < 0.5 ? -leadingMag : leadingMag);
-  return poly;
 }
 
 /**
@@ -76,8 +41,8 @@ export function generatePolynomialOperation(options: {
   const dividendDeg = Math.floor(rand() * 3) + 1; // 1..3
   const divisorDeg = Math.floor(rand() * 3) + 1; // 1..3
 
-  const dividend = generateCoefficients(rand, dividendDeg, [1, 5]);
-  const divisor = generateCoefficients(rand, divisorDeg, [1, 5]);
+  const dividend = generateCoefficients(rand, dividendDeg, [1, 5], [-5, 5]);
+  const divisor = generateCoefficients(rand, divisorDeg, [1, 5], [-5, 5]);
 
   let result: number[];
   if (operator === '+') {

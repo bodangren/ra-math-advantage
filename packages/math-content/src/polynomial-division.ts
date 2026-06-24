@@ -1,4 +1,6 @@
 import { addPoly, multiplyPoly } from './utils/polynomial';
+import { seededRandom } from './utils/prng';
+import { generateCoefficients } from './utils/coefficients';
 
 /**
  * Polynomial long-division problem expressed as Q(x)·D(x) + R(x) = P(x).
@@ -8,41 +10,6 @@ export interface PolynomialDivision {
   divisor: number[];
   quotient: number[];
   remainder: number[];
-}
-
-/**
- * Linear congruential PRNG (same form as polynomial-operations.ts).
- */
-function seededRandom(seed: number): () => number {
-  let s = seed | 0;
-  return () => {
-    s = (s * 1103515245 + 12345) & 0x7fffffff;
-    return s / 0x7fffffff;
-  };
-}
-
-/**
- * Ascending-order coefficient array builder. Same shape as the operations
- * generator, but with a smaller coefficient range because long-division
- * problems become unreadable with large numbers.
- */
-function generateCoefficients(
-  rand: () => number,
-  degree: number,
-  leadingRange: [number, number],
-  otherRange: [number, number] = [-3, 3],
-): number[] {
-  const poly: number[] = [];
-  for (let i = 0; i < degree; i++) {
-    const c =
-      Math.floor(rand() * (otherRange[1] - otherRange[0] + 1)) + otherRange[0];
-    poly.push(c);
-  }
-  const leadingMag =
-    Math.floor(rand() * (leadingRange[1] - leadingRange[0] + 1)) +
-    leadingRange[0];
-  poly.push(rand() < 0.5 ? -leadingMag : leadingMag);
-  return poly;
 }
 
 /**
@@ -67,8 +34,8 @@ export function generatePolynomialDivision(options: {
   const quotientDeg = Math.floor(rand() * 2) + 1; // 1..2
   const divisorDeg = Math.floor(rand() * 2) + 1; // 1..2
 
-  const quotient = generateCoefficients(rand, quotientDeg, [1, 3]);
-  const divisor = generateCoefficients(rand, divisorDeg, [1, 3]);
+  const quotient = generateCoefficients(rand, quotientDeg, [1, 3], [-3, 3]);
+  const divisor = generateCoefficients(rand, divisorDeg, [1, 3], [-3, 3]);
 
   // Remainder degree MUST be strictly less than divisor degree, so the
   // division is proper and the resulting P = Q·D + R identity holds.
@@ -78,7 +45,7 @@ export function generatePolynomialDivision(options: {
 
   // Leading coefficient of R may legitimately be 0 (remainder can vanish),
   // so leadingRange starts at 0.
-  const remainder = generateCoefficients(rand, remainderDeg, [0, 3]);
+  const remainder = generateCoefficients(rand, remainderDeg, [0, 3], [-3, 3]);
 
   // P = Q·D + R
   const product = multiplyPoly(quotient, divisor);

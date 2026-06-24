@@ -17,6 +17,8 @@
  */
 
 import { multiplyPoly } from './utils/polynomial';
+import { seededRandom } from './utils/prng';
+import { formatPolynomial } from './utils/polynomial-format';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -54,70 +56,12 @@ export interface RationalProblem {
 }
 
 // ---------------------------------------------------------------------------
-// PRNG — same linear-congruential algorithm as polynomial-division.ts
-// ---------------------------------------------------------------------------
-
-function seededRandom(seed: number): () => number {
-  let s = seed | 0;
-  return () => {
-    s = (s * 1103515245 + 12345) & 0x7fffffff;
-    return s / 0x7fffffff;
-  };
-}
-
-// ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
 
 /** Pick an integer in [lo, hi] (inclusive) via the PRNG. */
 function randInt(rand: () => number, lo: number, hi: number): number {
   return Math.floor(rand() * (hi - lo + 1)) + lo;
-}
-
-/**
- * Format an ascending-order coefficient array as a human-readable polynomial.
- *   [0, 7, 1]  → "x² + 7x"
- *   [6, 5, 1]  → "x² + 5x + 6"
- */
-function formatPolynomial(coeffs: number[]): string {
-  if (coeffs.length === 0) return '0';
-
-  const superscripts: Record<string, string> = {
-    '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴',
-    '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹',
-  };
-
-  const parts: string[] = [];
-  for (let deg = coeffs.length - 1; deg >= 0; deg--) {
-    const c = coeffs[deg];
-    if (c === 0) continue;
-
-    const absC = Math.abs(c);
-    const sign = c < 0 ? '−' : '+';
-    const coeffStr = absC === 1 && deg > 0 ? '' : String(absC);
-
-    let varStr: string;
-    if (deg === 0) {
-      varStr = '';
-    } else if (deg === 1) {
-      varStr = 'x';
-    } else {
-      const sup = String(deg)
-        .split('')
-        .map((d) => superscripts[d] ?? `^${d}`)
-        .join('');
-      varStr = `x${sup}`;
-    }
-
-    const term = `${coeffStr}${varStr}`;
-    if (parts.length === 0) {
-      parts.push(c < 0 ? `−${term}` : term);
-    } else {
-      parts.push(`${sign} ${term}`);
-    }
-  }
-
-  return parts.length > 0 ? parts.join(' ') : '0';
 }
 
 // ---------------------------------------------------------------------------
