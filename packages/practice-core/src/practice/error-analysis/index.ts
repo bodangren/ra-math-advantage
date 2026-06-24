@@ -123,11 +123,11 @@ export interface TeacherErrorView {
 
 /**
  * Check whether a teacher can access a submission based on org and teacher ID.
- * @param teacherOrgId - Organization ID of the teacher
- * @param submissionOrgId - Organization ID of the submission
- * @param teacherId - ID of the requesting teacher
- * @param submissionTeacherId - Optional teacher ID assigned to the submission
- * @returns True if access is allowed
+ * @param {string} teacherOrgId - Organization ID of the teacher
+ * @param {string} submissionOrgId - Organization ID of the submission
+ * @param {string} teacherId - ID of the requesting teacher
+ * @param {string} submissionTeacherId - Optional teacher ID assigned to the submission
+ * @returns {boolean} - True if access is allowed
  */
 export function canTeacherAccessSubmission(
   teacherOrgId: string,
@@ -142,11 +142,11 @@ export function canTeacherAccessSubmission(
 
 /**
  * Check whether a teacher can access a lesson summary based on org and teacher ID.
- * @param teacherOrgId - Organization ID of the teacher
- * @param lessonOrgId - Organization ID of the lesson
- * @param teacherId - ID of the requesting teacher
- * @param lessonTeacherId - Optional teacher ID assigned to the lesson
- * @returns True if access is allowed
+ * @param {string} teacherOrgId - Organization ID of the teacher
+ * @param {string} lessonOrgId - Organization ID of the lesson
+ * @param {string} teacherId - ID of the requesting teacher
+ * @param {string} lessonTeacherId - Optional teacher ID assigned to the lesson
+ * @returns {boolean} - True if access is allowed
  */
 export function canTeacherAccessLessonSummary(
   teacherOrgId: string,
@@ -163,9 +163,9 @@ export function canTeacherAccessLessonSummary(
 
 /**
  * Aggregate misconception tags across submissions into sorted summaries.
- * @param submissions - Array of practice submission envelopes
- * @param studentIdMap - Optional map from activityId to studentId
- * @returns Misconception summaries sorted by frequency descending
+ * @param {PracticeSubmissionEnvelope[]} submissions - Array of practice submission envelopes
+ * @param {Map<string, string>} studentIdMap - Optional map from activityId to studentId
+ * @returns {MisconceptionSummary[]} - Misconception summaries sorted by frequency descending
  */
 export function aggregateMisconceptionTags(
   submissions: PracticeSubmissionEnvelope[],
@@ -203,9 +203,9 @@ export function aggregateMisconceptionTags(
 
 /**
  * Summarize per-part outcomes across submissions.
- * @param submissions - Array of practice submission envelopes
- * @param studentIdMap - Optional map from activityId to studentId
- * @returns Part outcome summaries with accuracy and misconception data
+ * @param {PracticeSubmissionEnvelope[]} submissions - Array of practice submission envelopes
+ * @param {Map<string, string>} studentIdMap - Optional map from activityId to studentId
+ * @returns {PartOutcomeSummary[]} - Part outcome summaries with accuracy and misconception data
  */
 export function summarizePartOutcomes(
   submissions: PracticeSubmissionEnvelope[],
@@ -268,9 +268,9 @@ export function summarizePartOutcomes(
 
 /**
  * Build per-student error profiles from submissions.
- * @param submissions - Array of practice submission envelopes
- * @param studentIdMap - Optional map from activityId to studentId
- * @returns Array of student error profiles
+ * @param {PracticeSubmissionEnvelope[]} submissions - Array of practice submission envelopes
+ * @param {Map<string, string>} studentIdMap - Optional map from activityId to studentId
+ * @returns {StudentErrorProfile[]} - Array of student error profiles
  */
 export function buildStudentProfiles(
   submissions: PracticeSubmissionEnvelope[],
@@ -296,10 +296,10 @@ export function buildStudentProfiles(
 
 /**
  * Build a deterministic error summary for a lesson from submissions.
- * @param lessonId - Identifier for the lesson
- * @param submissions - Array of practice submission envelopes
- * @param studentIdMap - Optional map from activityId to studentId
- * @returns Deterministic error summary with parts, misconceptions, and accuracy
+ * @param {string} lessonId - Identifier for the lesson
+ * @param {PracticeSubmissionEnvelope[]} submissions - Array of practice submission envelopes
+ * @param {Map<string, string>} studentIdMap - Optional map from activityId to studentId
+ * @returns {DeterministicErrorSummary} - Deterministic error summary with parts, misconceptions, and accuracy
  */
 export function buildDeterministicSummary(
   lessonId: string,
@@ -328,9 +328,9 @@ export function buildDeterministicSummary(
 
 /**
  * Generate an AI-assisted error summary from a submission and deterministic data.
- * @param input - Summary input with submission, deterministic summary, and evidence
- * @param aiProvider - Optional async function that processes a prompt string
- * @returns AI summary output, or null if no provider or on failure
+ * @param {AISummaryInput} input - Summary input with submission, deterministic summary, and evidence
+ * @param {(prompt: string) => Promise<string>} aiProvider - Optional async function that processes a prompt string
+ * @returns {Promise<AISummaryOutput | null>} - AI summary output, or null if no provider or on failure
  */
 export async function generateAISummary(
   input: AISummaryInput,
@@ -352,8 +352,8 @@ export async function generateAISummary(
 
 /**
  * Build a prompt string for the AI summary provider.
- * @param input - Summary input with submission and evidence
- * @returns Formatted prompt string
+ * @param {AISummaryInput} input - Summary input with submission and evidence
+ * @returns {string} - Formatted prompt string
  */
 function buildAIPrompt(input: AISummaryInput): string {
   const { submission, deterministicSummary, rawEvidence } = input;
@@ -385,9 +385,9 @@ Provide:
 
 /**
  * Parse a raw AI response into a structured summary output.
- * @param response - Raw text response from the AI provider
- * @param input - Original summary input for context
- * @returns Structured AI summary output
+ * @param {string} response - Raw text response from the AI provider
+ * @param {AISummaryInput} input - Original summary input for context
+ * @returns {AISummaryOutput} - Structured AI summary output
  */
 function parseAIResponse(
   response: string,
@@ -414,10 +414,10 @@ function parseAIResponse(
 
 /**
  * Build a teacher error view from a submission and its summaries.
- * @param submission - Practice submission envelope
- * @param deterministicSummary - Precomputed deterministic summary
- * @param aiSummary - Optional AI-assisted summary
- * @returns Teacher error view combining all data sources
+ * @param {PracticeSubmissionEnvelope} submission - Practice submission envelope
+ * @param {DeterministicErrorSummary} deterministicSummary - Precomputed deterministic summary
+ * @param {AISummaryOutput | null} aiSummary - Optional AI-assisted summary
+ * @returns {TeacherErrorView} - Teacher error view combining all data sources
  */
 export function buildTeacherErrorView(
   submission: PracticeSubmissionEnvelope,

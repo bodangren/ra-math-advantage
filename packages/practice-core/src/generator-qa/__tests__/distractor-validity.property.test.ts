@@ -25,9 +25,9 @@ import { DEFAULT_NUM_SEEDS, forEachSeed } from './fixtures/seedCorpus';
 
 /**
  * Filter checks in a report by name.
- * @param report - Verification report to search
- * @param name - Check name to filter by
- * @returns Array of matching checks
+ * @param {ReturnType<typeof verifyGenerator>} report - Verification report to search
+ * @param {string} name - Check name to filter by
+ * @returns {import("../verify-generator").VerifyGeneratorCheck[]} Array of matching checks
  */
 function checksNamed(
   report: ReturnType<typeof verifyGenerator>,

@@ -39,8 +39,8 @@ const defaultSteps: AlgebraicStep[] = [
 
 /**
  * Build a practice submission envelope for an algebraic step-by-step activity.
- * @param params - The submission data including activity ID, mode, steps, and analytics
- * @returns The formatted submission envelope object
+ * @param {Record<string, unknown>} props - The submission data including activity ID, mode, steps, and analytics
+ * @returns {unknown} - The formatted submission envelope object
  */
 function buildAlgebraicSubmission({
   activityId,
@@ -88,8 +88,8 @@ function buildAlgebraicSubmission({
 
 /**
  * Render a step-by-step solver activity wrapper with submission handling.
- * @param props - The activity configuration including steps, problem type, and callbacks
- * @returns The activity component JSX
+ * @param {StepByStepSolverActivityProps} props - The activity configuration including steps, problem type, and callbacks
+ * @returns {import("react").JSX.Element} The activity component JSX
  */
 export function StepByStepSolverActivity({
   activityId,

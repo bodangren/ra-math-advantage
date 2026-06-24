@@ -21,8 +21,8 @@ export interface ResolveModeParams {
  *   assessment → 'practice', others → 'guided'
  * - Activity-level override takes precedence over default phase-type resolution for students
  *
- * @param params - Object containing role, phaseType, and optional activityModeOverride
- * @returns The resolved activity mode ('teaching', 'guided', or 'practice')
+ * @param {ResolveModeParams} params - Object containing role, phaseType, and optional activityModeOverride
+ * @returns {ActivityMode} - The resolved activity mode ('teaching', 'guided', or 'practice')
  */
 export function resolveActivityMode(params: ResolveModeParams): ActivityMode {
   const { role, phaseType, activityModeOverride } = params;
@@ -42,8 +42,8 @@ export function resolveActivityMode(params: ResolveModeParams): ActivityMode {
 
 /**
  * Resolves the default activity mode for a student based on phase type.
- * @param phaseType - The phase type to resolve
- * @returns 'practice' for independent_practice/assessment, 'guided' for all others
+ * @param {PhaseType} phaseType - The phase type to resolve
+ * @returns {ActivityMode} - 'practice' for independent_practice/assessment, 'guided' for all others
  */
 function resolveStudentMode(phaseType: PhaseType): ActivityMode {
   switch (phaseType) {
@@ -65,8 +65,8 @@ function resolveStudentMode(phaseType: PhaseType): ActivityMode {
 
 /**
  * Type guard to validate an activity mode string.
- * @param value - Value to check
- * @returns True if value is a valid ActivityMode
+ * @param {unknown} value - Value to check
+ * @returns {value is ActivityMode} - True if value is a valid ActivityMode
  */
 function isValidActivityMode(value: unknown): value is ActivityMode {
   return typeof value === 'string' && ['teaching', 'guided', 'practice'].includes(value);

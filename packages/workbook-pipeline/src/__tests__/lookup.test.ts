@@ -11,9 +11,9 @@ import {
 
 /**
  * Create a WorkbookManifest fixture for testing.
- * @param units - Array of unit/lesson entries with student/teacher flags
- * @param capstone - Capstone availability flags
- * @returns A WorkbookManifest suitable for tests
+ * @param {Array<{ unit: number; lesson: number; student: boolean; teacher: boolean }>} units - Array of unit/lesson entries with student/teacher flags
+ * @param {{ student: boolean; teacher: boolean }} capstone - Capstone availability flags
+ * @returns {WorkbookManifest} - A WorkbookManifest suitable for tests
  */
 function createTestManifest(
   units: Array<{ unit: number; lesson: number; student: boolean; teacher: boolean }>,

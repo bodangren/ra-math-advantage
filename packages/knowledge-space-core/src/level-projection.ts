@@ -38,9 +38,9 @@ function averageMastery(state: KnowledgeState): number {
  * Finds the highest level whose `minMastery` threshold is ≤ the average
  * mastery across all skills. Levels must be sorted by `minMastery` ascending.
  *
- * @param state  The learner's knowledge state (list of skill masteries)
- * @param levels  The domain's display-level band definitions, sorted ascending
- * @returns The `id` of the matching display level
+ * @param {KnowledgeState} state - The learner's knowledge state (list of skill masteries)
+ * @param {DisplayLevel[]} levels - The domain's display-level band definitions, sorted ascending
+ * @returns {string} - The `id` of the matching display level
  */
 export function projectDisplayLevel(
   state: KnowledgeState,

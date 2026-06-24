@@ -25,8 +25,8 @@ export interface GradebookRow {
 
 /**
  * Compute overall lesson completion status from phase progress statuses.
- * @param phaseStatuses - Array of individual phase statuses
- * @returns Lesson completion status
+ * @param {PhaseProgressStatus[]} phaseStatuses - Array of individual phase statuses
+ * @returns {LessonCompletionStatus} - Lesson completion status
  */
 export function computeLessonStatus(phaseStatuses: PhaseProgressStatus[]): LessonCompletionStatus {
   if (phaseStatuses.length === 0) return 'not_started';
@@ -37,9 +37,9 @@ export function computeLessonStatus(phaseStatuses: PhaseProgressStatus[]): Lesso
 
 /**
  * Determine cell color based on lesson completion status and mastery level.
- * @param completionStatus - The lesson completion status
- * @param masteryLevel - Optional mastery percentage (0-100)
- * @returns Cell color indicator
+ * @param {LessonCompletionStatus} completionStatus - The lesson completion status
+ * @param {number | null} masteryLevel - Optional mastery percentage (0-100)
+ * @returns {CellColor} - Cell color indicator
  */
 export function computeCellColor(
   completionStatus: LessonCompletionStatus,
@@ -57,8 +57,8 @@ export function computeCellColor(
 
 /**
  * Map a mastery level to a cell color.
- * @param masteryLevel - Mastery percentage (0-100) or null
- * @returns Cell color indicator
+ * @param {number | null} masteryLevel - Mastery percentage (0-100) or null
+ * @returns {CellColor} - Cell color indicator
  */
 export function computeMasteryColor(masteryLevel: number | null): CellColor {
   if (masteryLevel === null) return 'gray';
@@ -69,10 +69,10 @@ export function computeMasteryColor(masteryLevel: number | null): CellColor {
 
 /**
  * Build a gradebook cell by computing status and color from phase data.
- * @param lesson - The gradebook lesson metadata
- * @param phases - Array of phase progress statuses
- * @param masteryLevel - Optional mastery percentage
- * @returns Fully computed gradebook cell
+ * @param {GradebookLesson} lesson - The gradebook lesson metadata
+ * @param {PhaseProgressStatus[]} phases - Array of phase progress statuses
+ * @param {number | null} masteryLevel - Optional mastery percentage
+ * @returns {GradebookCell} - Fully computed gradebook cell
  */
 export function buildGradebookCell(
   lesson: GradebookLesson,
@@ -86,8 +86,8 @@ export function buildGradebookCell(
 
 /**
  * Sort gradebook rows alphabetically by display name.
- * @param rows - Gradebook rows to sort
- * @returns New array sorted by display name
+ * @param {GradebookRow[]} rows - Gradebook rows to sort
+ * @returns {GradebookRow[]} - New array sorted by display name
  */
 export function sortRowsByName(rows: GradebookRow[]): GradebookRow[] {
   return [...rows].sort((a, b) => {
@@ -101,8 +101,8 @@ export function sortRowsByName(rows: GradebookRow[]): GradebookRow[] {
 
 /**
  * Map a cell color to a Tailwind background and text class string.
- * @param color - Cell color indicator
- * @returns Tailwind CSS class string
+ * @param {CellColor} color - Cell color indicator
+ * @returns {string} - Tailwind CSS class string
  */
 export function cellBgClass(color: CellColor): string {
   switch (color) {
@@ -116,8 +116,8 @@ export function cellBgClass(color: CellColor): string {
 
 /**
  * Map a cell color to a human-readable status label.
- * @param color - Cell color indicator
- * @returns Status label string
+ * @param {CellColor} color - Cell color indicator
+ * @returns {string} - Status label string
  */
 export function cellColorLabel(color: CellColor): string {
   switch (color) {
@@ -131,9 +131,9 @@ export function cellColorLabel(color: CellColor): string {
 
 /**
  * Apply a student row update by removing deactivated students or updating names.
- * @param rows - Current gradebook rows
- * @param update - Student update with id, displayName, and deactivated flag
- * @returns Updated rows array
+ * @param {T[]} rows - Current gradebook rows
+ * @param {{ studentId: string; displayName: string; deactivated: boolean }} update - Student update with id, displayName, and deactivated flag
+ * @returns {T[]} - Updated rows array
  */
 export function applyStudentRowUpdate<T extends { studentId: string; displayName: string }>(
   rows: T[],
@@ -194,14 +194,14 @@ export interface RawCompetencyRow {
 
 /**
  * Assemble complete gradebook rows from raw student, lesson, and progress data.
- * @param students - Raw student records
- * @param rawLessons - Raw lesson records
- * @param rawLessonVersions - Raw lesson version records
- * @param rawPhaseVersions - Raw phase version records
- * @param rawPrimaryStandards - Raw lesson-standard associations
- * @param progressRows - Raw phase progress rows
- * @param competencyRows - Raw competency rows
- * @returns Assembled gradebook rows and lesson metadata
+ * @param {RawStudent[]} students - Raw student records
+ * @param {RawLesson[]} rawLessons - Raw lesson records
+ * @param {RawLessonVersion[]} rawLessonVersions - Raw lesson version records
+ * @param {RawPhaseVersion[]} rawPhaseVersions - Raw phase version records
+ * @param {RawLessonStandard[]} rawPrimaryStandards - Raw lesson-standard associations
+ * @param {RawProgressRow[]} progressRows - Raw phase progress rows
+ * @param {RawCompetencyRow[]} competencyRows - Raw competency rows
+ * @returns {{ rows: GradebookRow[]; lessons: GradebookLesson[] }} - Assembled gradebook rows and lesson metadata
  */
 export function assembleGradebookRows(
   students: RawStudent[],

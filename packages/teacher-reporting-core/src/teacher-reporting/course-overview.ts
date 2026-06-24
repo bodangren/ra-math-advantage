@@ -27,12 +27,12 @@ export interface RawCOCompetency     { studentId: string; standardId: string; ma
 
 /**
  * Assemble course overview rows with per-unit average mastery for each student.
- * @param students - Raw student records
- * @param rawLessons - Raw lesson records
- * @param rawLessonVersions - Raw lesson version records
- * @param rawPrimaryStandards - Lesson-standard associations
- * @param competencyRows - Raw competency rows
- * @returns Course overview rows and unit columns
+ * @param {RawCOStudent[]} students - Raw student records
+ * @param {RawCOLesson[]} rawLessons - Raw lesson records
+ * @param {RawCOLessonVersion[]} rawLessonVersions - Raw lesson version records
+ * @param {RawCOLessonStandard[]} rawPrimaryStandards - Lesson-standard associations
+ * @param {RawCOCompetency[]} competencyRows - Raw competency rows
+ * @returns {{ rows: CourseOverviewRow[]; units: UnitColumn[] }} - Course overview rows and unit columns
  */
 export function assembleCourseOverviewRows(
   students: RawCOStudent[],

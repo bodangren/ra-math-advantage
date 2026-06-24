@@ -42,8 +42,8 @@ export interface ActivityPlacement {
 
 /**
  * Derives the component kind from a phase type string.
- * @param phaseType - Phase type (e.g., "worked_example", "guided_practice")
- * @returns Component kind: "example", "activity", or "practice"
+ * @param {string} phaseType - Phase type (e.g., "worked_example", "guided_practice")
+ * @returns {ComponentKind} - Component kind: "example", "activity", or "practice"
  */
 export function resolveComponentKind(phaseType: string): ComponentKind {
   if (phaseType === "worked_example") return "example";
@@ -59,9 +59,9 @@ export function resolveComponentKind(phaseType: string): ComponentKind {
 
 /**
  * Builds a map from activity ID to placement info for review queue assembly.
- * @param sections - Array of phase sections with content activityId
- * @param phases - Array of phases with type information
- * @returns Map of activityId to ActivityPlacement
+ * @param {Array<Pick<PhaseSection, "_id" | "phaseVersionId" | "content">>} sections - Array of phase sections with content activityId
+ * @param {Array<Pick<PhaseVersion, "_id" | "phaseType">>} phases - Array of phases with type information
+ * @returns {Map<string, ActivityPlacement>} - Map of activityId to ActivityPlacement
  */
 export function buildActivityPlacementMap(
   sections: Array<Pick<PhaseSection, "_id" | "phaseVersionId" | "content">>,
@@ -117,8 +117,8 @@ interface AssembleArgs {
 
 /**
  * Assembles a review queue item from activity and approval data.
- * @param args - Assembly arguments including activity, placement, approval record, filters
- * @returns ReviewQueueItem or null if filtered out
+ * @param {AssembleArgs} args - Assembly arguments including activity, placement, approval record, filters
+ * @returns {Promise<ReviewQueueItem | null>} - ReviewQueueItem or null if filtered out
  * @throws Rejects if hash computation fails
  */
 export async function assembleReviewQueueItem({

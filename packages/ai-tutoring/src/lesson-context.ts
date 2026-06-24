@@ -23,8 +23,8 @@ interface MinimalPhase {
 
 /**
  * Sanitizes markdown text for use in AI prompt contexts.
- * @param text - Markdown text to sanitize
- * @returns Sanitized text safe for prompt injection
+ * @param {string} text - Markdown text to sanitize
+ * @returns {string} - Sanitized text safe for prompt injection
  */
 export function sanitizeMarkdownForPrompt(text: string): string {
   return text
@@ -41,8 +41,8 @@ export function sanitizeMarkdownForPrompt(text: string): string {
 
 /**
  * Strips HTML tags from a string for safe text processing.
- * @param html - HTML string to strip
- * @returns Plain text with tags removed
+ * @param {string} html - HTML string to strip
+ * @returns {string} - Plain text with tags removed
  */
 function stripHtml(html: string): string {
   return html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
@@ -50,9 +50,9 @@ function stripHtml(html: string): string {
 
 /**
  * Truncates text to maxLength, ending at last space before cutoff.
- * @param text - Text to truncate
- * @param maxLength - Maximum length of result
- * @returns Truncated text with ellipsis if truncated, otherwise original
+ * @param {string} text - Text to truncate
+ * @param {number} maxLength - Maximum length of result
+ * @returns {string} - Truncated text with ellipsis if truncated, otherwise original
  */
 function truncate(text: string, maxLength: number): string {
   if (text.length <= maxLength) return text;
@@ -63,9 +63,9 @@ function truncate(text: string, maxLength: number): string {
 
 /**
  * Assembles lesson chatbot context from lesson and phase data.
- * @param lesson - Minimal lesson object with title and unit
- * @param phase - Minimal phase with title, objectives, and content
- * @returns LessonChatbotContext for AI prompt injection
+ * @param {MinimalLesson} lesson - Minimal lesson object with title and unit
+ * @param {MinimalPhase} phase - Minimal phase with title, objectives, and content
+ * @returns {LessonChatbotContext} - LessonChatbotContext for AI prompt injection
  */
 export function assembleLessonChatbotContext(
   lesson: MinimalLesson,

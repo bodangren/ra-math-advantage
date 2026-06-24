@@ -15,8 +15,8 @@ interface UserMenuProps {
 
 /**
  * User menu dropdown with display name, initials, settings, and logout.
- * @param props - logoutRedirectTo, settingsHref, dashboardHref
- * @returns User menu element
+ * @param {UserMenuProps} props - logoutRedirectTo, settingsHref, dashboardHref
+ * @returns {import("react").JSX.Element} User menu element
  */
 export function UserMenu({
   logoutRedirectTo = '/',

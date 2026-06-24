@@ -38,8 +38,8 @@ export interface GraphingSubmissionInput {
 
 /**
  * Build a practice.v1 submission from graphing explorer input.
- * @param input - Submission input with points, intercepts, and assessment callbacks
- * @returns Practice.v1 formatted submission object
+ * @param {GraphingSubmissionInput} input - Submission input with points, intercepts, and assessment callbacks
+ * @returns {{ contractVersion: "practice.v1"; activityId: string; mode: string; status: "submitted"; attemptNumber: number; submittedAt: string; answers: Record<string, unknown>; parts: { partId: string; rawAnswer: unknown; normalizedAnswer?: string | undefined; isCorrect?: boolean | undefined; score?: number | undefined; maxScore?: number | undefined; misconceptionTags?: string[] | undefined; hintsUsed?: number | undefined; revealStepsSeen?: number | undefined; changedCount?: number | undefined; firstInteractionAt?: string | undefined; answeredAt?: string | undefined; wallClockMs?: number | undefined; activeMs?: number | undefined; }[]; artifact: { graphState: { equation: string; comparisonEquation: string | undefined; linearEquation: string | undefined; domain: [number, number] | undefined; range: [number, number] | undefined; placedPoints: { x: number; y: number; }[]; intercepts: { type: string; data: { x: number; y: number; } | null; timestamp: number; }[]; intersectionPoints: { x: number; y: number; }[] | undefined; }; }; interactionHistory: { type: string; timestamp: number; data?: unknown; }[]; }} Practice.v1 formatted submission object
  */
 export function buildGraphingSubmission(input: GraphingSubmissionInput) {
   const {

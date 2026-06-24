@@ -68,9 +68,9 @@ export interface GeneratorLike<TOutput = unknown> {
 
 /**
  * Run the determinism check across all seeds.
- * @param gen - Generator to test
- * @param numSeeds - Number of seeds to test
- * @returns Check result indicating pass or fail with message
+ * @param {GeneratorLike<unknown>} gen - Generator to test
+ * @param {number} numSeeds - Number of seeds to test
+ * @returns {VerifyGeneratorCheck} - Check result indicating pass or fail with message
  */
 function runDeterminismCheck(gen: GeneratorLike<unknown>, numSeeds: number): VerifyGeneratorCheck {
   for (let i = 0; i < numSeeds; i++) {
@@ -90,10 +90,10 @@ function runDeterminismCheck(gen: GeneratorLike<unknown>, numSeeds: number): Ver
 
 /**
  * Run the unique-answer check across all seeds.
- * @param gen - Generator to test
- * @param numSeeds - Number of seeds to test
- * @param oracle - Optional domain oracle to validate correct answers
- * @returns Check result indicating pass or fail with message
+ * @param {GeneratorLike<unknown>} gen - Generator to test
+ * @param {number} numSeeds - Number of seeds to test
+ * @param {(output: GeneratorCorrectnessContract) => boolean} oracle - Optional domain oracle to validate correct answers
+ * @returns {VerifyGeneratorCheck} - Check result indicating pass or fail with message
  */
 function runUniqueAnswerCheck(
   gen: GeneratorLike<unknown>,
@@ -133,9 +133,9 @@ function runUniqueAnswerCheck(
 
 /**
  * Run the distractor validity check across all seeds.
- * @param gen - Generator to test
- * @param numSeeds - Number of seeds to test
- * @returns Check result indicating pass or fail with message
+ * @param {GeneratorLike<unknown>} gen - Generator to test
+ * @param {number} numSeeds - Number of seeds to test
+ * @returns {VerifyGeneratorCheck} - Check result indicating pass or fail with message
  */
 function runDistractorValidityCheck(gen: GeneratorLike<unknown>, numSeeds: number): VerifyGeneratorCheck {
   for (let i = 0; i < numSeeds; i++) {
@@ -190,9 +190,9 @@ function runDistractorValidityCheck(gen: GeneratorLike<unknown>, numSeeds: numbe
 
 /**
  * Run the invariants check across all seeds.
- * @param gen - Generator to test
- * @param numSeeds - Number of seeds to test
- * @returns Check result indicating pass or fail with message
+ * @param {GeneratorLike<unknown>} gen - Generator to test
+ * @param {number} numSeeds - Number of seeds to test
+ * @returns {VerifyGeneratorCheck} - Check result indicating pass or fail with message
  */
 function runInvariantsCheck(gen: GeneratorLike<unknown>, numSeeds: number): VerifyGeneratorCheck {
   for (let i = 0; i < numSeeds; i++) {
@@ -227,9 +227,9 @@ function runInvariantsCheck(gen: GeneratorLike<unknown>, numSeeds: number): Veri
 
 /**
  * Run all correctness checks against a generator and produce a report.
- * @param gen - Generator to verify
- * @param opts - Optional configuration for seeds and domain oracle
- * @returns Verification report with verdict, checks, errors, and summary
+ * @param {GeneratorLike<unknown>} gen - Generator to verify
+ * @param {VerifyGeneratorOptions} opts - Optional configuration for seeds and domain oracle
+ * @returns {VerifyGeneratorReport} - Verification report with verdict, checks, errors, and summary
  */
 export function verifyGenerator(
   gen: GeneratorLike<unknown>,

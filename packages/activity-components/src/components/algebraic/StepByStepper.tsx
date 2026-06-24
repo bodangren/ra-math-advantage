@@ -32,8 +32,8 @@ export interface StepByStepperProps {
 
 /**
  * Render a sequential step reveal display for teaching mode.
- * @param props - The steps array with content to reveal
- * @returns The step reveal component JSX
+ * @param {{ steps: Array<{ content: React.ReactNode }> }} props - The steps array with content to reveal
+ * @returns {React.JSX.Element} The step reveal component JSX
  */
 function SimpleStepReveal({ steps }: { steps: Array<{ content: React.ReactNode }> }) {
   const [visibleCount, setVisibleCount] = useState(steps.length);
@@ -67,8 +67,8 @@ function SimpleStepReveal({ steps }: { steps: Array<{ content: React.ReactNode }
 
 /**
  * Render a step-by-step algebraic problem solver.
- * @param props - The stepper configuration including mode, steps, and scaffold level
- * @returns The stepper component JSX
+ * @param {StepByStepperProps} props - The stepper configuration including mode, steps, and scaffold level
+ * @returns {React.JSX.Element | undefined} The stepper component JSX
  */
 export function StepByStepper({ mode, steps, scaffoldLevel = 0, problemType, generateDistractors, onPracticeComplete }: StepByStepperProps) {
   if (steps.length === 0) {
@@ -105,8 +105,8 @@ export function StepByStepper({ mode, steps, scaffoldLevel = 0, problemType, gen
 
 /**
  * Render guided mode with multiple-choice step selection and hints.
- * @param props - The steps, problem type, and optional distractor generator
- * @returns The guided mode component JSX
+ * @param {{ steps: AlgebraicStep[]; problemType?: string; generateDistractors?: (expression: string, problemType: string) => string[] }} props - The steps, problem type, and optional distractor generator
+ * @returns {React.JSX.Element} The guided mode component JSX
  */
 function GuidedMode({ steps, problemType, generateDistractors }: { steps: AlgebraicStep[]; problemType?: string; generateDistractors?: (expression: string, problemType: string) => string[] }) {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
@@ -241,8 +241,8 @@ function GuidedMode({ steps, problemType, generateDistractors }: { steps: Algebr
 
 /**
  * Render practice mode with free-form text input for each step.
- * @param props - The steps, scaffold level, and completion callback
- * @returns The practice mode component JSX
+ * @param {{ steps: AlgebraicStep[]; scaffoldLevel: number; onComplete?: (attempts: StepAttempt[]) => void }} props - The steps, scaffold level, and completion callback
+ * @returns {React.JSX.Element} The practice mode component JSX
  */
 function PracticeMode({ steps, scaffoldLevel, onComplete }: { steps: AlgebraicStep[]; scaffoldLevel: number; onComplete?: (attempts: StepAttempt[]) => void }) {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);

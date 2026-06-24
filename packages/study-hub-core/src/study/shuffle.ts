@@ -1,7 +1,7 @@
 /**
  * Shuffle an array using the Fisher-Yates algorithm.
- * @param array - The array to shuffle
- * @returns A new shuffled array
+ * @param {T[]} array - The array to shuffle
+ * @returns {T[]} - A new shuffled array
  */
 export function shuffleArray<T>(array: T[]): T[] {
   const shuffled = [...array];

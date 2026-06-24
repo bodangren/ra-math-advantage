@@ -54,7 +54,7 @@ const SPEC_PATH = resolve(__dirname, '../../../../kst-srs.v2/SPECIFICATION.md');
 
 /**
  * Read the full SPECIFICATION.md file contents.
- * @returns The spec file as a UTF-8 string
+ * @returns {string} - The spec file as a UTF-8 string
  */
 function readSpec(): string {
   return readFileSync(SPEC_PATH, 'utf-8');
@@ -67,11 +67,11 @@ function readSpec(): string {
  * or higher level. Returns an empty string if the heading is not
  * present.
  *
- * @param spec - The full spec markdown string
- * @param headingPattern - Regex matching the heading line text, e.g.
+ * @param {string} spec - The full spec markdown string
+ * @param {RegExp} headingPattern - Regex matching the heading line text, e.g.
  *   `/^### 3\.2 Four-Way State/`. The line number is captured via
  *   `match.index`; the capture group is not used.
- * @param headingLevel - The Markdown heading level ('## ' or '### ').
+ * @param {'## ' | '### '} headingLevel - The Markdown heading level ('## ' or '### ').
  *   Stops at the next heading of equal or higher level.
  */
 function extractSection(

@@ -7,11 +7,11 @@ import type { AlignmentResult } from '../align';
 
 /**
  * Create a test skill knowledge-space node.
- * @param course - Course identifier
- * @param module - Module number
- * @param lesson - Lesson number
- * @param slug - Skill slug
- * @returns Knowledge-space node for testing
+ * @param {string} course - Course identifier
+ * @param {string} module - Module number
+ * @param {string} lesson - Lesson number
+ * @param {string} slug - Skill slug
+ * @returns {KnowledgeSpaceNode} - Knowledge-space node for testing
  */
 function makeSkill(course: string, module: string, lesson: string, slug: string): KnowledgeSpaceNode {
   return {
@@ -26,11 +26,11 @@ function makeSkill(course: string, module: string, lesson: string, slug: string)
 
 /**
  * Create a test worked-example knowledge-space node.
- * @param course - Course identifier
- * @param module - Module number
- * @param lesson - Lesson number
- * @param index - Example index
- * @returns Knowledge-space node for testing
+ * @param {string} course - Course identifier
+ * @param {string} module - Module number
+ * @param {string} lesson - Lesson number
+ * @param {string} index - Example index
+ * @returns {KnowledgeSpaceNode} - Knowledge-space node for testing
  */
 function makeExample(course: string, module: string, lesson: string, index: string): KnowledgeSpaceNode {
   return {
@@ -45,10 +45,10 @@ function makeExample(course: string, module: string, lesson: string, index: stri
 
 /**
  * Create a test standard knowledge-space node.
- * @param authority - Standards authority
- * @param code - Standard code
- * @param description - Standard description
- * @returns Knowledge-space node for testing
+ * @param {string} authority - Standards authority
+ * @param {string} code - Standard code
+ * @param {string} description - Standard description
+ * @returns {KnowledgeSpaceNode} - Knowledge-space node for testing
  */
 function makeStandard(authority: string, code: string, description: string): KnowledgeSpaceNode {
   return {
@@ -63,8 +63,8 @@ function makeStandard(authority: string, code: string, description: string): Kno
 
 /**
  * Normalize a standard code to lowercase with hyphens instead of dots.
- * @param code - Standard code to normalize
- * @returns Normalized code string
+ * @param {string} code - Standard code to normalize
+ * @returns {string} - Normalized code string
  */
 function normalizeCode(code: string): string {
   return code.toLowerCase().replace(/\./g, '-');
@@ -72,8 +72,8 @@ function normalizeCode(code: string): string {
 
 /**
  * Build a standard node ID for testing.
- * @param code - Standard code
- * @returns Normalized standard node ID
+ * @param {string} code - Standard code
+ * @returns {string} - Normalized standard node ID
  */
 function stdId(code: string): string {
   return buildStandardId('ccss', normalizeCode(code));

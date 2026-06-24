@@ -6,8 +6,8 @@ export class PhaseActivityTracker {
 
   /**
    * Marks an activity as complete for a student.
-   * @param studentId - The student's unique identifier
-   * @param activityId - The activity's unique identifier
+   * @param {string} studentId - The student's unique identifier
+   * @param {string} activityId - The activity's unique identifier
    */
   markActivityComplete(studentId: string, activityId: string): void {
     if (!this.completions.has(studentId)) {
@@ -18,9 +18,9 @@ export class PhaseActivityTracker {
 
   /**
    * Checks if an activity is complete for a student.
-   * @param studentId - The student's unique identifier
-   * @param activityId - The activity's unique identifier
-   * @returns True if the activity is complete
+   * @param {string} studentId - The student's unique identifier
+   * @param {string} activityId - The activity's unique identifier
+   * @returns {boolean} - True if the activity is complete
    */
   isActivityComplete(studentId: string, activityId: string): boolean {
     const studentCompletions = this.completions.get(studentId);
@@ -29,9 +29,9 @@ export class PhaseActivityTracker {
 
   /**
    * Checks if all activities are complete for a student.
-   * @param studentId - The student's unique identifier
-   * @param requiredActivityIds - Array of activity IDs that must be complete
-   * @returns True if all activities are complete
+   * @param {string} studentId - The student's unique identifier
+   * @param {string[]} requiredActivityIds - Array of activity IDs that must be complete
+   * @returns {boolean} - True if all activities are complete
    */
   areAllActivitiesComplete(studentId: string, requiredActivityIds: string[]): boolean {
     if (requiredActivityIds.length === 0) {
@@ -48,8 +48,8 @@ export class PhaseActivityTracker {
 
   /**
    * Gets all completed activity IDs for a student.
-   * @param studentId - The student's unique identifier
-   * @returns Array of completed activity IDs
+   * @param {string} studentId - The student's unique identifier
+   * @returns {string[]} - Array of completed activity IDs
    */
   getCompletedActivities(studentId: string): string[] {
     const studentCompletions = this.completions.get(studentId);
@@ -58,7 +58,7 @@ export class PhaseActivityTracker {
 
   /**
    * Clears all completion data for a student.
-   * @param studentId - The student's unique identifier
+   * @param {string} studentId - The student's unique identifier
    */
   clearStudent(studentId: string): void {
     this.completions.delete(studentId);

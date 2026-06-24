@@ -31,8 +31,8 @@ const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 
 /**
  * Converts a username to an internal email address format.
- * @param username - Username to convert
- * @returns Email address in internal domain format
+ * @param {string} username - Username to convert
+ * @returns {string} - Email address in internal domain format
  */
 export function usernameToEmail(username: string): string {
   return `${username}@internal.domain`;
@@ -44,7 +44,7 @@ interface AuthProviderProps {
 
 /**
  * Provide authentication context (user, profile, signIn, signOut) to children.
- * @param props - Children to render within the auth context
+ * @param {AuthProviderProps} props - Children to render within the auth context
  */
 export function AuthProvider({ children }: AuthProviderProps) {
   const [loading, setLoading] = useState(true);
@@ -137,7 +137,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
 /**
  * React hook to access auth context (user, profile, signIn, signOut).
- * @returns AuthContextValue with user/profile/loading and auth methods
+ * @returns {AuthContextValue} AuthContextValue with user/profile/loading and auth methods
  * @throws {Error} If used outside of an AuthProvider
  */
 export function useAuth() {

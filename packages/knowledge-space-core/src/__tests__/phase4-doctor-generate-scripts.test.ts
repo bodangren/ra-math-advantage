@@ -49,8 +49,8 @@ const GENERATE_CANDIDATES = [
 
 /**
  * Find the first existing file from a list of candidate filenames in the scripts directory.
- * @param candidates - Ordered list of filenames to check
- * @returns The full path of the first existing file, or null if none found
+ * @param {readonly string[]} candidates - Ordered list of filenames to check
+ * @returns {string | null} - The full path of the first existing file, or null if none found
  */
 function findExisting(candidates: readonly string[]): string | null {
   for (const name of candidates) {

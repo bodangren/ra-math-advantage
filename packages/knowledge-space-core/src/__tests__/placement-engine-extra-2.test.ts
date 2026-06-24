@@ -44,8 +44,8 @@ import type { ProbeAdapter, ProbeResult } from '../placement';
 
 /**
  * Create a skill node for testing placement engine.
- * @param id - The skill node ID
- * @returns A KnowledgeSpaceNode with kind 'skill'
+ * @param {string} id - The skill node ID
+ * @returns {KnowledgeSpaceNode} - A KnowledgeSpaceNode with kind 'skill'
  */
 function makeSkill(id: string): KnowledgeSpaceNode {
   return {
@@ -61,9 +61,9 @@ function makeSkill(id: string): KnowledgeSpaceNode {
 
 /**
  * Create a prerequisite edge for testing.
- * @param sourceId - Source node ID
- * @param targetId - Target node ID
- * @returns A prerequisite_for KnowledgeSpaceEdge
+ * @param {string} sourceId - Source node ID
+ * @param {string} targetId - Target node ID
+ * @returns {KnowledgeSpaceEdge} - A prerequisite_for KnowledgeSpaceEdge
  */
 function prereqEdge(sourceId: string, targetId: string): KnowledgeSpaceEdge {
   return {
@@ -80,7 +80,7 @@ function prereqEdge(sourceId: string, targetId: string): KnowledgeSpaceEdge {
 
 /**
  * Build a two-node knowledge space chain for testing.
- * @returns A KnowledgeSpace with two skill nodes and one prerequisite edge
+ * @returns {KnowledgeSpace} - A KnowledgeSpace with two skill nodes and one prerequisite edge
  */
 function buildTwoNodeChain(): KnowledgeSpace {
   return {

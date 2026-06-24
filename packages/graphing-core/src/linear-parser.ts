@@ -5,8 +5,8 @@ export interface LinearCoefficients {
 
 /**
  * Parses a linear expression string into slope and intercept.
- * @param expression - Linear string (e.g., "2x+3" or "y=5")
- * @returns LinearCoefficients or null if not parseable
+ * @param {string} expression - Linear string (e.g., "2x+3" or "y=5")
+ * @returns {LinearCoefficients | null} - LinearCoefficients or null if not parseable
  */
 export function parseLinear(expression: string): LinearCoefficients | null {
   if (expression.includes('x^2')) {

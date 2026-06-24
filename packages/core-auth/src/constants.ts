@@ -5,7 +5,7 @@ export const PASSWORD_ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvw
 
 /**
  * Gets the JWT secret from AUTH_JWT_SECRET env var or dev fallback.
- * @returns JWT secret string
+ * @returns {string} - JWT secret string
  * @throws {Error} If AUTH_JWT_SECRET is missing in production
  */
 export function getAuthJwtSecret(): string {

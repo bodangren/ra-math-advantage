@@ -9,7 +9,7 @@ interface LessonSkeletonProps {
 
 /**
  * Render a loading skeleton placeholder for a lesson page.
- * @param props - phaseCount and optional className
+ * @param {LessonSkeletonProps} props - phaseCount and optional className
  */
 export function LessonSkeleton({ phaseCount = 4, className }: LessonSkeletonProps) {
   return (
@@ -48,7 +48,7 @@ interface ActivitySkeletonProps {
 
 /**
  * Render a loading skeleton placeholder for an activity card.
- * @param props - Optional className
+ * @param {ActivitySkeletonProps} props - Optional className
  */
 export function ActivitySkeleton({ className }: ActivitySkeletonProps) {
   return (

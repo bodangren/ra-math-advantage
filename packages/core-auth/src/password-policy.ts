@@ -2,8 +2,8 @@ import type { UserRole } from './session';
 
 /**
  * Returns the password requirement text for a given user role.
- * @param role - User role (student, teacher, admin)
- * @returns Human-readable requirement string
+ * @param {UserRole} role - User role (student, teacher, admin)
+ * @returns {string} - Human-readable requirement string
  */
 export function getPasswordRequirementText(role: UserRole): string {
   if (role === 'student') {
@@ -15,9 +15,9 @@ export function getPasswordRequirementText(role: UserRole): string {
 
 /**
  * Validates a password against role-specific requirements.
- * @param role - User role (student, teacher, admin)
- * @param password - Password to validate
- * @returns Error message string or null if valid
+ * @param {UserRole} role - User role (student, teacher, admin)
+ * @param {string} password - Password to validate
+ * @returns {string | null} - Error message string or null if valid
  */
 export function validatePasswordForRole(role: UserRole, password: string): string | null {
   if (password !== password.trim()) {

@@ -6,7 +6,7 @@ export interface TableOfValuesProps {
 
 /**
  * Render a data table with optional cell highlighting.
- * @param props - Column headers, row data, and optional highlight coordinates
+ * @param {TableOfValuesProps} props - Column headers, row data, and optional highlight coordinates
  */
 export function TableOfValues({ headers, data, highlightCells = [] }: TableOfValuesProps) {
   const isHighlighted = (rowIndex: number, colIndex: number) => {

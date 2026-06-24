@@ -96,8 +96,8 @@ export const RENDERER_KEYS = Object.keys(RENDERER_REGISTRY) as string[];
 
 /**
  * Look up a math renderer descriptor by its key.
- * @param key - Renderer key string
- * @returns The matching MathRendererDescriptor
+ * @param {string} key - Renderer key string
+ * @returns {MathRendererDescriptor} - The matching MathRendererDescriptor
  * @throws Error if the key is not registered
  */
 export function getRenderer(key: string): MathRendererDescriptor {

@@ -14,8 +14,8 @@ export type { Point, FunctionPlot } from '@math-platform/graphing-core/canvas-ut
 
 /**
  * Render an interactive SVG graphing canvas with point placement and function plotting.
- * @param props - The canvas configuration including domain, range, functions, and points
- * @returns The graphing canvas component JSX
+ * @param {GraphingCanvasProps} props - The canvas configuration including domain, range, functions, and points
+ * @returns {React.JSX.Element} The graphing canvas component JSX
  */
 export function GraphingCanvas({
   domain = [-10, 10],

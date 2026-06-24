@@ -28,10 +28,10 @@ const distractorGenerators: Record<DistractorType, DistractorGenerator> = {
 
 /**
  * Generate distractors for a given correct answer.
- * @param correctAnswer - The correct answer
- * @param type - The type of problem
- * @param providedDistractors - Optional pre-provided distractors to use instead
- * @returns Array of 2 distractor strings
+ * @param {string} correctAnswer - The correct answer
+ * @param {DistractorType} type - The type of problem
+ * @param {string[]} providedDistractors - Optional pre-provided distractors to use instead
+ * @returns {string[]} - Array of 2 distractor strings
  */
 export function generateDistractors(
   correctAnswer: string,
@@ -57,8 +57,8 @@ export function generateDistractors(
 
 /**
  * Generate distractors for factoring problems by flipping signs or swapping roots.
- * @param correctAnswer - The correct factored form
- * @returns Array of plausible incorrect factored forms
+ * @param {string} correctAnswer - The correct factored form
+ * @returns {string[]} - Array of plausible incorrect factored forms
  */
 function generateFactoringDistractors(correctAnswer: string): string[] {
   const distractors: string[] = [];
@@ -88,8 +88,8 @@ function generateFactoringDistractors(correctAnswer: string): string[] {
 
 /**
  * Generate distractors for linear equation problems by offsetting the solution.
- * @param correctAnswer - The correct solution (e.g., "x = 3")
- * @returns Array of plausible incorrect solutions
+ * @param {string} correctAnswer - The correct solution (e.g., "x = 3")
+ * @returns {string[]} - Array of plausible incorrect solutions
  */
 function generateLinearDistractors(correctAnswer: string): string[] {
   const distractors: string[] = [];
@@ -115,8 +115,8 @@ function generateLinearDistractors(correctAnswer: string): string[] {
 
 /**
  * Generate distractors for quadratic formula problems by negating or swapping roots.
- * @param correctAnswer - The correct solutions string
- * @returns Array of plausible incorrect solutions
+ * @param {string} correctAnswer - The correct solutions string
+ * @returns {string[]} - Array of plausible incorrect solutions
  */
 function generateQuadraticFormulaDistractors(correctAnswer: string): string[] {
   const distractors: string[] = [];
@@ -144,8 +144,8 @@ function generateQuadraticFormulaDistractors(correctAnswer: string): string[] {
 
 /**
  * Generate distractors for complex number problems by flipping signs.
- * @param correctAnswer - The correct complex solution string
- * @returns Array of plausible incorrect complex solutions
+ * @param {string} correctAnswer - The correct complex solution string
+ * @returns {string[]} - Array of plausible incorrect complex solutions
  */
 function generateComplexDistractors(correctAnswer: string): string[] {
   const distractors: string[] = [];
@@ -171,8 +171,8 @@ function generateComplexDistractors(correctAnswer: string): string[] {
 
 /**
  * Generate distractors for completing-the-square problems by flipping signs or offsets.
- * @param correctAnswer - The correct vertex form
- * @returns Array of plausible incorrect vertex forms
+ * @param {string} correctAnswer - The correct vertex form
+ * @returns {string[]} - Array of plausible incorrect vertex forms
  */
 function generateCompletingSquareDistractors(correctAnswer: string): string[] {
   const distractors: string[] = [];
@@ -197,8 +197,8 @@ function generateCompletingSquareDistractors(correctAnswer: string): string[] {
 
 /**
  * Generate distractors for discriminant analysis problems.
- * @param correctAnswer - The correct discriminant result
- * @returns Array of plausible incorrect results
+ * @param {string} correctAnswer - The correct discriminant result
+ * @returns {string[]} - Array of plausible incorrect results
  */
 function generateDiscriminantDistractors(correctAnswer: string): string[] {
   const distractors: string[] = [];
@@ -224,8 +224,8 @@ function generateDiscriminantDistractors(correctAnswer: string): string[] {
 
 /**
  * Generate distractors for system-of-equations problems by swapping or negating coordinates.
- * @param correctAnswer - The correct solution (e.g., "(x, y) = (3, -2)")
- * @returns Array of plausible incorrect solutions
+ * @param {string} correctAnswer - The correct solution (e.g., "(x, y) = (3, -2)")
+ * @returns {string[]} - Array of plausible incorrect solutions
  */
 function generateSystemDistractors(correctAnswer: string): string[] {
   const distractors: string[] = [];
@@ -251,8 +251,8 @@ function generateSystemDistractors(correctAnswer: string): string[] {
 
 /**
  * Generate generic distractors by incrementing values or flipping signs.
- * @param correctAnswer - The correct answer string
- * @returns Array of plausible incorrect answers
+ * @param {string} correctAnswer - The correct answer string
+ * @returns {string[]} - Array of plausible incorrect answers
  */
 function generateGenericDistractors(correctAnswer: string): string[] {
   const distractors: string[] = [];

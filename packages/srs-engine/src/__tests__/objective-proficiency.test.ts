@@ -9,8 +9,8 @@ import {
 
 /**
  * Create a PracticeVariantEvidence with optional overrides.
- * @param overrides - Partial evidence fields to override
- * @returns PracticeVariantEvidence with sensible defaults
+ * @param {Partial<PracticeVariantEvidence>} overrides - Partial evidence fields to override
+ * @returns {PracticeVariantEvidence} - PracticeVariantEvidence with sensible defaults
  */
 function makeEvidence(
   overrides: Partial<PracticeVariantEvidence> = {}

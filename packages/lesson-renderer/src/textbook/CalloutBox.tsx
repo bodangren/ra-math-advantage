@@ -38,7 +38,7 @@ const variantConfig = {
 
 /**
  * Render a styled callout box for important notes, tips, or cautions.
- * @param props - Variant type, optional title, and children content
+ * @param {CalloutBoxProps} props - Variant type, optional title, and children content
  */
 export function CalloutBox({ variant, title, children }: CalloutBoxProps) {
   const config = variantConfig[variant];

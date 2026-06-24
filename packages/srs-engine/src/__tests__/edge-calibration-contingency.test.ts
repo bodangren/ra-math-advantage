@@ -33,10 +33,10 @@ import {
 
 /**
  * Create a CalibrationObservation with the given student ID and verdicts.
- * @param studentId - Student identifier
- * @param a - Proficiency verdict for A
- * @param b - Proficiency verdict for B
- * @returns CalibrationObservation
+ * @param {string} studentId - Student identifier
+ * @param {boolean} a - Proficiency verdict for A
+ * @param {boolean} b - Proficiency verdict for B
+ * @returns {CalibrationObservation} - CalibrationObservation
  */
 function makeObservation(
   studentId: string,
@@ -48,11 +48,11 @@ function makeObservation(
 
 /**
  * Create a CalibrationContingencyTable with the given quadrant counts.
- * @param pp - Proficient A, proficient B count
- * @param pn - Proficient A, not proficient B count
- * @param np - Not proficient A, proficient B count
- * @param nn - Not proficient A, not proficient B count
- * @returns CalibrationContingencyTable
+ * @param {number} pp - Proficient A, proficient B count
+ * @param {number} pn - Proficient A, not proficient B count
+ * @param {number} np - Not proficient A, proficient B count
+ * @param {number} nn - Not proficient A, not proficient B count
+ * @returns {CalibrationContingencyTable} - CalibrationContingencyTable
  */
 function makeContingency(
   pp: number,

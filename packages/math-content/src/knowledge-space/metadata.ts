@@ -71,8 +71,8 @@ export const mathEdgeMetadataSchema = z.object({
 
 /**
  * Validate a knowledge-space node's metadata against its kind-specific schema.
- * @param node - Knowledge-space node to validate
- * @returns Validation result with optional error messages
+ * @param {KnowledgeSpaceNode} node - Knowledge-space node to validate
+ * @returns {{ valid: boolean; errors?: string[] }} - Validation result with optional error messages
  */
 export function validateMathNodeMetadata(
   node: KnowledgeSpaceNode,
@@ -133,8 +133,8 @@ export function validateMathNodeMetadata(
 
 /**
  * Validate a knowledge-space edge's metadata against the edge schema.
- * @param edge - Knowledge-space edge to validate
- * @returns Validation result with optional error messages
+ * @param {KnowledgeSpaceEdge} edge - Knowledge-space edge to validate
+ * @returns {{ valid: boolean; errors?: string[] }} - Validation result with optional error messages
  */
 export function validateMathEdgeMetadata(
   edge: KnowledgeSpaceEdge,

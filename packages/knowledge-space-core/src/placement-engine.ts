@@ -28,8 +28,8 @@ interface TraversalOptions {
 
 /**
  * Build downstream and upstream adjacency lists from prerequisite_for edges.
- * @param graph - The knowledge space graph
- * @returns Object containing downstream and upstream adjacency maps
+ * @param {KnowledgeSpace} graph - The knowledge space graph
+ * @returns {{ downstream: Map<string, string[]>; upstream: Map<string, string[]>; }} Object containing downstream and upstream adjacency maps
  */
 function buildAdjacency(graph: KnowledgeSpace) {
   const downstream = new Map<string, string[]>();
@@ -53,7 +53,7 @@ const VALID_PROBE_RESULTS: ReadonlySet<string> = new Set(['pass', 'fail', 'parti
 
 /**
  * Assert that a value is a valid ProbeResult, throwing if not.
- * @param value - The value to validate
+ * @param {unknown} value - The value to validate
  * @throws If the value is not a valid ProbeResult string
  */
 function validateProbeResult(value: unknown): asserts value is ProbeResult {
@@ -66,8 +66,8 @@ function validateProbeResult(value: unknown): asserts value is ProbeResult {
 
 /**
  * Compute mastery estimate and confidence from a probe result.
- * @param result - The probe outcome (pass, fail, or partial)
- * @returns Object with mastery estimate and confidence level
+ * @param {ProbeResult} result - The probe outcome (pass, fail, or partial)
+ * @returns {{ estimate: number; confidence: PlacementResult['confidence'] }} - Object with mastery estimate and confidence level
  */
 function computeMastery(result: ProbeResult): { estimate: number; confidence: PlacementResult['confidence'] } {
   switch (result) {
@@ -82,12 +82,12 @@ function computeMastery(result: ProbeResult): { estimate: number; confidence: Pl
 
 /**
  * Build the final PlacementEngineResult after the traversal loop completes.
- * @param results - Accumulated placement results
- * @param probesPerformed - Total number of probes executed
- * @param queue - Remaining node IDs in the traversal queue
- * @param visited - Set of already-visited node IDs
- * @param maxProbes - The configured maximum probe count
- * @returns Final engine result with convergence status
+ * @param {PlacementResult[]} results - Accumulated placement results
+ * @param {number} probesPerformed - Total number of probes executed
+ * @param {string[]} queue - Remaining node IDs in the traversal queue
+ * @param {Set<string>} visited - Set of already-visited node IDs
+ * @param {number} maxProbes - The configured maximum probe count
+ * @returns {PlacementEngineResult} - Final engine result with convergence status
  */
 function finalizeResult(
   results: PlacementResult[],
@@ -120,10 +120,10 @@ function finalizeResult(
 
 /**
  * Run an adaptive tree-walk placement traversal on a knowledge space graph.
- * @param graph - The knowledge space to traverse
- * @param adapter - Domain-specific probe adapter for evaluating nodes
- * @param options - Optional start node and max probe count
- * @returns Placement results with convergence status (may be a Promise if probes are async)
+ * @param {KnowledgeSpace} graph - The knowledge space to traverse
+ * @param {ProbeAdapter} adapter - Domain-specific probe adapter for evaluating nodes
+ * @param {TraversalOptions} options - Optional start node and max probe count
+ * @returns {PlacementEngineResult} - Placement results with convergence status (may be a Promise if probes are async)
  */
 export function runPlacementTraversal(
   graph: KnowledgeSpace,

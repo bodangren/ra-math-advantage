@@ -16,9 +16,9 @@ import type {
  * Projections are regenerated outputs — they are not source truth. Review diffs
  * before feeding teachers/UI with evidence summaries.
  *
- * @param nodes - Knowledge space nodes
- * @param edges - Knowledge space edges
- * @returns TeacherEvidence with standard coverage, skill coverage, prerequisite gaps, and attempt artifacts
+ * @param {KnowledgeSpaceNode[]} nodes - Knowledge space nodes
+ * @param {KnowledgeSpaceEdge[]} edges - Knowledge space edges
+ * @returns {TeacherEvidence} - TeacherEvidence with standard coverage, skill coverage, prerequisite gaps, and attempt artifacts
  */
 export function projectTeacherEvidence(
   nodes: KnowledgeSpaceNode[],

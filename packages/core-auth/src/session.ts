@@ -28,8 +28,8 @@ const encoder = new TextEncoder();
 
 /**
  * Converts Uint8Array bytes to a Base64 string.
- * @param bytes - Byte array to encode
- * @returns Base64 encoded string
+ * @param {Uint8Array} bytes - Byte array to encode
+ * @returns {string} - Base64 encoded string
  */
 function toBase64(bytes: Uint8Array): string {
   let binary = '';
@@ -46,8 +46,8 @@ function toBase64(bytes: Uint8Array): string {
 
 /**
  * Decodes a Base64 string back to Uint8Array bytes.
- * @param value - Base64 string to decode
- * @returns Decoded byte array
+ * @param {string} value - Base64 string to decode
+ * @returns {Uint8Array} - Decoded byte array
  */
 function fromBase64(value: string): Uint8Array {
   const binary =
@@ -63,8 +63,8 @@ function fromBase64(value: string): Uint8Array {
 
 /**
  * URL-safe Base64 encoding of bytes (no padding, -/_ replacement).
- * @param bytes - Byte array to encode
- * @returns URL-safe Base64 string
+ * @param {Uint8Array} bytes - Byte array to encode
+ * @returns {string} - URL-safe Base64 string
  */
 function base64UrlEncodeBytes(bytes: Uint8Array): string {
   return toBase64(bytes).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '');
@@ -72,8 +72,8 @@ function base64UrlEncodeBytes(bytes: Uint8Array): string {
 
 /**
  * Decodes a URL-safe Base64 string back to bytes (adds padding).
- * @param value - URL-safe Base64 string to decode
- * @returns Decoded byte array
+ * @param {string} value - URL-safe Base64 string to decode
+ * @returns {Uint8Array} - Decoded byte array
  */
 function base64UrlDecodeToBytes(value: string): Uint8Array {
   const normalized = value.replace(/-/g, '+').replace(/_/g, '/');
@@ -83,8 +83,8 @@ function base64UrlDecodeToBytes(value: string): Uint8Array {
 
 /**
  * Encodes a string to URL-safe Base64.
- * @param value - String to encode
- * @returns URL-safe Base64 string
+ * @param {string} value - String to encode
+ * @returns {string} - URL-safe Base64 string
  */
 function base64UrlEncodeString(value: string): string {
   return base64UrlEncodeBytes(encoder.encode(value));
@@ -92,8 +92,8 @@ function base64UrlEncodeString(value: string): string {
 
 /**
  * Decodes a URL-safe Base64 string to a string.
- * @param value - URL-safe Base64 string to decode
- * @returns Decoded string
+ * @param {string} value - URL-safe Base64 string to decode
+ * @returns {string} - Decoded string
  */
 function base64UrlDecodeToString(value: string): string {
   const bytes = base64UrlDecodeToBytes(value);
@@ -102,9 +102,9 @@ function base64UrlDecodeToString(value: string): string {
 
 /**
  * Computes HMAC-SHA256 signature of a value using a secret.
- * @param value - String to sign
- * @param secret - HMAC secret key
- * @returns Signature as Uint8Array
+ * @param {string} value - String to sign
+ * @param {string} secret - HMAC secret key
+ * @returns {Promise<Uint8Array>} - Signature as Uint8Array
  */
 async function hmacSign(value: string, secret: string): Promise<Uint8Array> {
   const key = await crypto.subtle.importKey(
@@ -121,9 +121,9 @@ async function hmacSign(value: string, secret: string): Promise<Uint8Array> {
 
 /**
  * Constant-time comparison to prevent timing attacks.
- * @param a - First byte array
- * @param b - Second byte array
- * @returns True if arrays are equal in constant time
+ * @param {Uint8Array} a - First byte array
+ * @param {Uint8Array} b - Second byte array
+ * @returns {boolean} - True if arrays are equal in constant time
  */
 function timingSafeEquals(a: Uint8Array, b: Uint8Array): boolean {
   const maxLen = Math.max(a.length, b.length);
@@ -136,10 +136,10 @@ function timingSafeEquals(a: Uint8Array, b: Uint8Array): boolean {
 
 /**
  * Creates a signed JWT session token with claims and TTL.
- * @param input - Session claims (sub, username, role, organizationId)
- * @param secret - JWT signing secret
- * @param ttlSeconds - Token time-to-live in seconds (default 12 hours)
- * @returns Signed JWT token string
+ * @param {SessionTokenInput} input - Session claims (sub, username, role, organizationId)
+ * @param {string} secret - JWT signing secret
+ * @param {number} ttlSeconds - Token time-to-live in seconds (default 12 hours)
+ * @returns {Promise<string>} - Signed JWT token string
  */
 export async function signSessionToken(
   input: SessionTokenInput,
@@ -162,9 +162,9 @@ export async function signSessionToken(
 
 /**
  * Verifies and decodes a JWT session token.
- * @param token - JWT token to verify
- * @param secret - JWT signing secret
- * @returns SessionClaims or null if invalid/expired
+ * @param {string} token - JWT token to verify
+ * @param {string} secret - JWT signing secret
+ * @returns {Promise<SessionClaims | null>} - SessionClaims or null if invalid/expired
  */
 export async function verifySessionToken(token: string, secret: string): Promise<SessionClaims | null> {
   const segments = token.split('.');
@@ -200,10 +200,10 @@ export async function verifySessionToken(token: string, secret: string): Promise
 
 /**
  * Hashes a password using PBKDF2 with the given salt and iterations.
- * @param password - Plain text password
- * @param salt - Password salt string
- * @param iterations - PBKDF2 iteration count
- * @returns Base64-encoded password hash
+ * @param {string} password - Plain text password
+ * @param {string} salt - Password salt string
+ * @param {number} iterations - PBKDF2 iteration count
+ * @returns {Promise<string>} - Base64-encoded password hash
  */
 export async function hashPassword(password: string, salt: string, iterations: number): Promise<string> {
   const keyMaterial = await crypto.subtle.importKey(
@@ -230,9 +230,9 @@ export async function hashPassword(password: string, salt: string, iterations: n
 
 /**
  * Verifies a password against a stored password credential.
- * @param password - Plain text password to verify
- * @param credential - Stored salt, iterations, and hash
- * @returns True if password matches using constant-time comparison
+ * @param {string} password - Plain text password to verify
+ * @param {PasswordCredential} credential - Stored salt, iterations, and hash
+ * @returns {Promise<boolean>} - True if password matches using constant-time comparison
  */
 export async function verifyPassword(
   password: string,
@@ -246,8 +246,8 @@ export async function verifyPassword(
 
 /**
  * Generates a cryptographically random password from a secure alphabet.
- * @param length - Password length (default 12)
- * @returns Random password string
+ * @param {number} length - Password length (default 12)
+ * @returns {string} - Random password string
  */
 export function generateRandomPassword(length = 12): string {
   const maxByte = 256 - (256 % PASSWORD_ALPHABET.length);
@@ -265,8 +265,8 @@ export function generateRandomPassword(length = 12): string {
 
 /**
  * Generates a cryptographically random salt for password hashing.
- * @param bytes - Salt byte length (default 16)
- * @returns Base64-encoded random salt
+ * @param {number} bytes - Salt byte length (default 16)
+ * @returns {string} - Base64-encoded random salt
  */
 export function generatePasswordSalt(bytes = 16): string {
   const values = crypto.getRandomValues(new Uint8Array(bytes));

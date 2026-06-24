@@ -13,8 +13,8 @@ export interface ConvexAdminAuth {
 
 /**
  * Checks if the current runtime environment is production.
- * @param env - Environment object
- * @returns True if NODE_ENV or VERCEL_ENV is 'production'
+ * @param {EnvLike} env - Environment object
+ * @returns {boolean} - True if NODE_ENV or VERCEL_ENV is 'production'
  */
 function isProductionRuntime(env: EnvLike): boolean {
   return env.NODE_ENV === 'production' || env.VERCEL_ENV === 'production';
@@ -22,8 +22,8 @@ function isProductionRuntime(env: EnvLike): boolean {
 
 /**
  * Searches config directories for a Convex admin key file.
- * @param configRoot - Root directory to search for config.json files
- * @returns Admin key string or null if not found
+ * @param {string} configRoot - Root directory to search for config.json files
+ * @returns {Promise<string | null>} - Admin key string or null if not found
  */
 async function findAdminKeyInConfigRoot(configRoot: string): Promise<string | null> {
   const fs = await import('node:fs/promises');
@@ -58,9 +58,9 @@ async function findAdminKeyInConfigRoot(configRoot: string): Promise<string | nu
 
 /**
  * Searches local .convex directories for a Convex admin key.
- * @param cwd - Current working directory to search from
- * @param homeDir - Optional home directory path
- * @returns Admin key string or null if not found
+ * @param {string} cwd - Current working directory to search from
+ * @param {string} homeDir - Optional home directory path
+ * @returns {Promise<string | null>} - Admin key string or null if not found
  */
 async function readLocalConvexAdminKey(
   cwd: string,
@@ -86,8 +86,8 @@ async function readLocalConvexAdminKey(
 
 /**
  * Resolves Convex admin auth from deploy key or local config.
- * @param options - Options including cwd, env, and homeDir
- * @returns ConvexAdminAuth with source and token
+ * @param {ResolveConvexAdminAuthOptions} options - Options including cwd, env, and homeDir
+ * @returns {Promise<ConvexAdminAuth>} - ConvexAdminAuth with source and token
  * @throws {Error} If no auth found in production
  */
 export async function resolveConvexAdminAuth(

@@ -17,8 +17,8 @@ const FORBIDDEN_IMPORT_PATTERNS: Array<{ pattern: RegExp; label: string }> = [
 
 /**
  * Check source code for forbidden import patterns.
- * @param source - The source code string to scan
- * @returns Array of violations with the offending line and rule label
+ * @param {string} source - The source code string to scan
+ * @returns {Array<{ line: string; label: string }>} - Array of violations with the offending line and rule label
  */
 function checkImports(source: string): Array<{ line: string; label: string }> {
   const violations: Array<{ line: string; label: string }> = [];
@@ -37,8 +37,8 @@ const PACKAGE_SRC = resolve(__dirname, '..');
 
 /**
  * Recursively collect all non-test TypeScript files from a directory.
- * @param dir - The directory to scan
- * @returns Array of absolute file paths to .ts files (excluding test files)
+ * @param {string} dir - The directory to scan
+ * @returns {string[]} - Array of absolute file paths to .ts files (excluding test files)
  */
 function collectTsFiles(dir: string): string[] {
   const files: string[] = [];

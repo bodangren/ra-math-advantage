@@ -8,7 +8,7 @@ export interface MathInlineProps {
 
 /**
  * Render inline LaTeX math using KaTeX.
- * @param props - LaTeX string and optional className
+ * @param {MathInlineProps} props - LaTeX string and optional className
  */
 export function MathInline({ math, className = '' }: MathInlineProps) {
   return (

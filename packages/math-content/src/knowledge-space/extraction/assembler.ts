@@ -37,8 +37,8 @@ export interface InventoryAssemblerInput {
 
 /**
  * Convert text to a URL-friendly slug.
- * @param text - Input text to slugify
- * @returns Lowercase slug with hyphens
+ * @param {string} text - Input text to slugify
+ * @returns {string} - Lowercase slug with hyphens
  */
 function toSlug(text: string): string {
   return text
@@ -51,8 +51,8 @@ function toSlug(text: string): string {
 
 /**
  * Sanitize a string for use as a knowledge-space ID segment.
- * @param s - Raw string to sanitize
- * @returns Lowercase alphanumeric-hyphen string, max 64 chars
+ * @param {string} s - Raw string to sanitize
+ * @returns {string} - Lowercase alphanumeric-hyphen string, max 64 chars
  */
 function sanitizeIdSegment(s: string): string {
   // Converts a string to a valid knowledge-space ID segment
@@ -67,8 +67,8 @@ function sanitizeIdSegment(s: string): string {
 
 /**
  * Derive a skill slug from an objective description.
- * @param objective - Objective text to convert
- * @returns Slug string, max 60 characters
+ * @param {string} objective - Objective text to convert
+ * @returns {string} - Slug string, max 60 characters
  */
 function deriveSkillSlug(objective: string): string {
   // "Graph quadratic functions" → "graph-quadratic-functions"
@@ -77,8 +77,8 @@ function deriveSkillSlug(objective: string): string {
 
 /**
  * Pad a number to two digits with leading zeros.
- * @param n - Number to pad
- * @returns Zero-padded string
+ * @param {number} n - Number to pad
+ * @returns {string} - Zero-padded string
  */
 function padNum(n: number): string {
   return String(n).padStart(2, '0');
@@ -90,8 +90,8 @@ function padNum(n: number): string {
 
 /**
  * Assemble a draft inventory of knowledge-space nodes from parsed curriculum data.
- * @param input - Assembler input with course, module overview, and optional sources
- * @returns Array of knowledge-space nodes sorted by ID
+ * @param {InventoryAssemblerInput} input - Assembler input with course, module overview, and optional sources
+ * @returns {KnowledgeSpaceNode[]} - Array of knowledge-space nodes sorted by ID
  */
 export function assembleDraftInventory(
   input: InventoryAssemblerInput,
@@ -266,8 +266,8 @@ export function assembleDraftInventory(
 
 /**
  * Get the display name for a math course.
- * @param course - Math course identifier
- * @returns Human-readable course name
+ * @param {MathCourse} course - Math course identifier
+ * @returns {string} - Human-readable course name
  */
 function courseName(course: MathCourse): string {
   const names: Record<MathCourse, string> = {
@@ -281,9 +281,9 @@ function courseName(course: MathCourse): string {
 
 /**
  * Append a numeric suffix to a base string if it already exists in the used set.
- * @param base - The desired string
- * @param used - Set of already-used strings
- * @returns A unique string, possibly with a numeric suffix
+ * @param {string} base - The desired string
+ * @param {Set<string>} used - Set of already-used strings
+ * @returns {string} - A unique string, possibly with a numeric suffix
  */
 function disambiguate(base: string, used: Set<string>): string {
   if (!used.has(base)) return base;

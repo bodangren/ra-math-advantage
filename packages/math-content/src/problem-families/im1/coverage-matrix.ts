@@ -98,7 +98,7 @@ const MATRIX_JSON = resolve(IM1_ROLLOUT_DIR, 'im1-coverage-matrix.json');
 
 /**
  * Build the IM1 coverage matrix from rollout artifacts and the generator registry.
- * @returns Coverage matrix with per-skill status, counts, and module breakdowns
+ * @returns {CoverageMatrix} - Coverage matrix with per-skill status, counts, and module breakdowns
  */
 export function buildCoverageMatrix(): CoverageMatrix {
   const nodes = JSON.parse(

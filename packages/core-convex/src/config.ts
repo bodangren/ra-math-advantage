@@ -6,8 +6,8 @@ type EnvLike = Record<string, string | undefined>;
 
 /**
  * Normalizes a URL by trimming whitespace and removing trailing slashes.
- * @param url - URL string to normalize
- * @returns Normalized URL string
+ * @param {string} url - URL string to normalize
+ * @returns {string} - Normalized URL string
  */
 function normalizeUrl(url: string): string {
   return url.trim().replace(/\/+$/, '');
@@ -15,8 +15,8 @@ function normalizeUrl(url: string): string {
 
 /**
  * Gets the configured Convex URL from env vars or returns null.
- * @param env - Environment object
- * @returns Configured URL or null if not set
+ * @param {EnvLike} env - Environment object
+ * @returns {string | null} - Configured URL or null if not set
  */
 function getConfiguredConvexUrl(env: EnvLike): string | null {
   const configuredUrl = env.CONVEX_URL?.trim() || env.NEXT_PUBLIC_CONVEX_URL?.trim();
@@ -25,8 +25,8 @@ function getConfiguredConvexUrl(env: EnvLike): string | null {
 
 /**
  * Gets the Convex deployment URL from env or local default.
- * @param env - Environment object (defaults to process.env)
- * @returns Convex URL string
+ * @param {EnvLike} env - Environment object (defaults to process.env)
+ * @returns {string} - Convex URL string
  */
 export function getConvexUrl(env: EnvLike = process.env): string {
   return getConfiguredConvexUrl(env) ?? DEFAULT_LOCAL_CONVEX_URL;

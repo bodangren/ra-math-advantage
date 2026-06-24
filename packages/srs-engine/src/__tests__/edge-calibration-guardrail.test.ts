@@ -35,8 +35,8 @@ type VerdictMap = ReadonlyMap<string, EdgeVerdicts>;
 
 /**
  * Create a VerdictMap from an array of entries.
- * @param entries - Array of [studentId, verdicts] tuples
- * @returns Readonly verdict map
+ * @param {ReadonlyArray<readonly [string, EdgeVerdicts]>} entries - Array of [studentId, verdicts] tuples
+ * @returns {VerdictMap} - Readonly verdict map
  */
 function makeVerdicts(
   entries: ReadonlyArray<readonly [string, EdgeVerdicts]>
@@ -46,8 +46,8 @@ function makeVerdicts(
 
 /**
  * Create a default EdgeCalibration with optional overrides.
- * @param overrides - Partial calibration fields to override
- * @returns EdgeCalibration with sensible defaults
+ * @param {Partial<EdgeCalibration>} overrides - Partial calibration fields to override
+ * @returns {EdgeCalibration} - EdgeCalibration with sensible defaults
  */
 function makeCalibration(overrides: Partial<EdgeCalibration> = {}): EdgeCalibration {
   return {
@@ -62,8 +62,8 @@ function makeCalibration(overrides: Partial<EdgeCalibration> = {}): EdgeCalibrat
 
 /**
  * Create a strong posterior calibration (α=50, β=5, mean≈0.91).
- * @param overrides - Partial calibration fields to override
- * @returns EdgeCalibration with a strong posterior
+ * @param {Partial<EdgeCalibration>} overrides - Partial calibration fields to override
+ * @returns {EdgeCalibration} - EdgeCalibration with a strong posterior
  */
 function makeStrongPosterior(overrides: Partial<EdgeCalibration> = {}): EdgeCalibration {
   // α = 50, β = 5  → mean ≈ 0.91 — would be "confirmed" if the guardrail passes
@@ -72,8 +72,8 @@ function makeStrongPosterior(overrides: Partial<EdgeCalibration> = {}): EdgeCali
 
 /**
  * Create a weak posterior calibration (α=5, β=50, mean≈0.09).
- * @param overrides - Partial calibration fields to override
- * @returns EdgeCalibration with a weak posterior
+ * @param {Partial<EdgeCalibration>} overrides - Partial calibration fields to override
+ * @returns {EdgeCalibration} - EdgeCalibration with a weak posterior
  */
 function makeWeakPosterior(overrides: Partial<EdgeCalibration> = {}): EdgeCalibration {
   // α = 5, β = 50 → mean ≈ 0.09 — would be "refuted" if the guardrail passes
@@ -82,8 +82,8 @@ function makeWeakPosterior(overrides: Partial<EdgeCalibration> = {}): EdgeCalibr
 
 /**
  * Create a uniform posterior calibration (α=β=5, mean≈0.5).
- * @param overrides - Partial calibration fields to override
- * @returns EdgeCalibration with a uniform posterior
+ * @param {Partial<EdgeCalibration>} overrides - Partial calibration fields to override
+ * @returns {EdgeCalibration} - EdgeCalibration with a uniform posterior
  */
 function makeUniformPosterior(overrides: Partial<EdgeCalibration> = {}): EdgeCalibration {
   // α = β = 5 → mean ≈ 0.5 — ambiguous, requires guardrail to be informative

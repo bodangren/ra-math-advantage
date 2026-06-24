@@ -27,9 +27,9 @@ const OPTIONS_COUNT = 4;
 
 /**
  * Generate multiple-choice questions from study terms.
- * @param terms - Source study terms
- * @param count - Number of questions to generate
- * @returns Array of questions with shuffled options
+ * @param {StudyTerm[]} terms - Source study terms
+ * @param {number} count - Number of questions to generate
+ * @returns {Question[]} - Array of questions with shuffled options
  */
 function generateQuestions(terms: StudyTerm[], count: number): Question[] {
   const shuffledTerms = shuffleArray(terms);
@@ -54,7 +54,7 @@ function generateQuestions(terms: StudyTerm[], count: number): Question[] {
 
 /**
  * Render a timed speed-round vocabulary game with multiple-choice answers.
- * @param props - Study terms and onComplete callback
+ * @param {SpeedRoundGameProps} props - Study terms and onComplete callback
  */
 export function SpeedRoundGame({ terms, onComplete }: SpeedRoundGameProps) {
   const [questions, setQuestions] = useState<Question[]>([]);

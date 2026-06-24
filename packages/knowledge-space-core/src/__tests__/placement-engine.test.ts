@@ -64,9 +64,9 @@ function buildBranch(): KnowledgeSpace {
 
 /**
  * Create a knowledge space node with a given kind for testing.
- * @param id - The node ID
- * @param kind - The node kind
- * @returns A KnowledgeSpaceNode for test use
+ * @param {string} id - The node ID
+ * @param {KnowledgeSpaceNode['kind']} kind - The node kind
+ * @returns {KnowledgeSpaceNode} - A KnowledgeSpaceNode for test use
  */
 function nodeOfKind(id: string, kind: KnowledgeSpaceNode['kind']): KnowledgeSpaceNode {
   return {
@@ -82,9 +82,9 @@ function nodeOfKind(id: string, kind: KnowledgeSpaceNode['kind']): KnowledgeSpac
 
 /**
  * Create a prerequisite_for edge for testing.
- * @param sourceId - Source node ID
- * @param targetId - Target node ID
- * @returns A prerequisite_for KnowledgeSpaceEdge
+ * @param {string} sourceId - Source node ID
+ * @param {string} targetId - Target node ID
+ * @returns {KnowledgeSpaceEdge} - A prerequisite_for KnowledgeSpaceEdge
  */
 function prereqEdge(sourceId: string, targetId: string): KnowledgeSpaceEdge {
   return {
@@ -101,8 +101,8 @@ function prereqEdge(sourceId: string, targetId: string): KnowledgeSpaceEdge {
 
 /**
  * Extract node IDs from a placement engine result for assertion.
- * @param result - The engine result containing placement results
- * @returns Array of node ID strings
+ * @param {PlacementEngineResult} result - The engine result containing placement results
+ * @returns {string[]} - Array of node ID strings
  */
 function resultNodeIds(result: PlacementEngineResult): string[] {
   return result.results.map((r) => r.nodeId);
@@ -110,7 +110,7 @@ function resultNodeIds(result: PlacementEngineResult): string[] {
 
 /**
  * Assert that a PlacementResult conforms to the expected schema and value ranges.
- * @param r - The placement result to validate
+ * @param {PlacementResult} r - The placement result to validate
  */
 function expectValidResultShape(r: PlacementResult): void {
   const parsed = placementResultSchema.safeParse(r);

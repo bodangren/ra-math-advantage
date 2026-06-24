@@ -4,10 +4,10 @@
  * is always non-zero; intermediate coefficients are uniform integers
  * drawn from `otherRange`.
  *
- * @param rand - PRNG function returning [0, 1)
- * @param degree - polynomial degree (number of terms - 1)
- * @param leadingRange - [lo, hi] range for the leading coefficient magnitude
- * @param otherRange - [lo, hi] range for intermediate coefficients
+ * @param {() => number} rand - PRNG function returning [0, 1)
+ * @param {number} degree - polynomial degree (number of terms - 1)
+ * @param {[number, number]} leadingRange - [lo, hi] range for the leading coefficient magnitude
+ * @param {[number, number]} otherRange - [lo, hi] range for intermediate coefficients
  */
 export function generateCoefficients(
   rand: () => number,

@@ -12,7 +12,7 @@ export interface ReflectionCardProps {
 
 /**
  * Render a CAP reflection card with courage, adaptability, and persistence prompts.
- * @param props - Reflection dimensions for each CAP attribute
+ * @param {ReflectionCardProps} props - Reflection dimensions for each CAP attribute
  */
 export function ReflectionCard({ courage, adaptability, persistence }: ReflectionCardProps) {
   const dimensions = [

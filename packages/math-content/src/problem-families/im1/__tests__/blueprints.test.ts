@@ -141,7 +141,7 @@ type EdgesFile = { edges: Edge[] };
 
 /**
  * Load the vertical-slice module ID from track metadata.
- * @returns Module ID string
+ * @returns {string} - Module ID string
  */
 function loadVerticalSliceModule(): string {
   const meta = JSON.parse(readFileSync(METADATA_JSON, 'utf-8')) as {
@@ -158,7 +158,7 @@ function loadVerticalSliceModule(): string {
 
 /**
  * Load all blueprints from the IM1 rollout blueprints.json.
- * @returns Array of rollout blueprints
+ * @returns {RolloutBlueprint[]} - Array of rollout blueprints
  */
 function loadBlueprints(): RolloutBlueprint[] {
   const file = JSON.parse(readFileSync(BLUEPRINTS_JSON, 'utf-8')) as BlueprintsFile;
@@ -167,7 +167,7 @@ function loadBlueprints(): RolloutBlueprint[] {
 
 /**
  * Load the IM1 skill graph nodes and edges from rollout JSON files.
- * @returns Object with nodes and edges arrays
+ * @returns {{ nodes: Node[]; edges: Edge[] }} - Object with nodes and edges arrays
  */
 function loadGraph(): { nodes: Node[]; edges: Edge[] } {
   return {
@@ -178,7 +178,7 @@ function loadGraph(): { nodes: Node[]; edges: Edge[] } {
 
 /**
  * Load blueprints filtered to the locked vertical-slice module.
- * @returns Array of blueprints for the vertical-slice module
+ * @returns {RolloutBlueprint[]} - Array of blueprints for the vertical-slice module
  */
 function loadVerticalSliceBlueprints(): RolloutBlueprint[] {
   const vsm = loadVerticalSliceModule();
@@ -189,8 +189,8 @@ function loadVerticalSliceBlueprints(): RolloutBlueprint[] {
 
 /**
  * Check if a blueprint's exceptions array contains a STUB generator marker.
- * @param exceptions - Blueprint exceptions array
- * @returns True if a STUB exception is present
+ * @param {RolloutBlueprint['exceptions']} exceptions - Blueprint exceptions array
+ * @returns {boolean} - True if a STUB exception is present
  */
 function isStubException(exceptions: RolloutBlueprint['exceptions']): boolean {
   if (!Array.isArray(exceptions) || exceptions.length === 0) return false;
@@ -204,8 +204,8 @@ function isStubException(exceptions: RolloutBlueprint['exceptions']): boolean {
 
 /**
  * Convert a rollout blueprint to the KnowledgeBlueprint schema shape.
- * @param b - Rollout blueprint to convert
- * @returns KnowledgeBlueprint-compatible object
+ * @param {RolloutBlueprint} b - Rollout blueprint to convert
+ * @returns {KnowledgeBlueprint} - KnowledgeBlueprint-compatible object
  */
 function asBlueprint(b: RolloutBlueprint): KnowledgeBlueprint {
   return {
@@ -225,7 +225,7 @@ function asBlueprint(b: RolloutBlueprint): KnowledgeBlueprint {
 
 /**
  * Build a set of all registered IM1 generator skill ID keys and node IDs.
- * @returns Set of registered identifier strings
+ * @returns {Set<string>} - Set of registered identifier strings
  */
 function registeredSkillIdKeys(): Set<string> {
   const set = new Set<string>();
@@ -238,8 +238,8 @@ function registeredSkillIdKeys(): Set<string> {
 
 /**
  * Project activity map from blueprints using the production projector.
- * @param blueprints - Array of rollout blueprints
- * @returns Array of projected activities
+ * @param {RolloutBlueprint[]} blueprints - Array of rollout blueprints
+ * @returns {ProjectedActivity[]} - Array of projected activities
  */
 function projectionFor(blueprints: RolloutBlueprint[]): ProjectedActivity[] {
   const { nodes, edges } = loadGraph();

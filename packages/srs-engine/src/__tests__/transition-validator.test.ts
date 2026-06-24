@@ -6,8 +6,8 @@ type PickState = Pick<SrsCardState, 'stability' | 'difficulty' | 'state' | 'reps
 
 /**
  * Create a partial SRS card state with optional overrides.
- * @param overrides - Partial state fields to override
- * @returns Partial card state with sensible defaults
+ * @param {Partial<PickState>} overrides - Partial state fields to override
+ * @returns {PickState} - Partial card state with sensible defaults
  */
 function makeState(overrides: Partial<PickState> = {}): PickState {
   return {

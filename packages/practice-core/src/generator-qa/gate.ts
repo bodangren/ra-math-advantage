@@ -59,9 +59,9 @@ export interface GateReport {
 
 /**
  * Run the generator verification gate across a batch of generators.
- * @param entries - Array of generator entries to verify
- * @param opts - Optional gate configuration
- * @returns Gate report with per-generator results and exit code
+ * @param {readonly GateGeneratorEntry[]} entries - Array of generator entries to verify
+ * @param {GateOptions} opts - Optional gate configuration
+ * @returns {GateReport} - Gate report with per-generator results and exit code
  */
 export function runGeneratorGate(
   entries: readonly GateGeneratorEntry[],

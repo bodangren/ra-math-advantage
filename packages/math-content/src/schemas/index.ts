@@ -25,8 +25,8 @@ export const SCHEMA_REGISTRY: Record<ActivityComponentKey, z.ZodSchema> = {
 
 /**
  * Look up a Zod props schema by activity component key.
- * @param key - Activity component key string
- * @returns Matching Zod schema or undefined if not found
+ * @param {string} key - Activity component key string
+ * @returns {z.ZodSchema | undefined} - Matching Zod schema or undefined if not found
  */
 export function getPropsSchema(key: string): z.ZodSchema | undefined {
   return SCHEMA_REGISTRY[key as ActivityComponentKey];

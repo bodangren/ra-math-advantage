@@ -12,7 +12,7 @@ let publicClient: ConvexHttpClient | null = null;
 
 /**
  * Gets or creates a singleton public Convex HTTP client.
- * @returns ConvexHttpClient for public queries/mutations
+ * @returns {ConvexHttpClient} - ConvexHttpClient for public queries/mutations
  */
 export function getPublicConvexClient(): ConvexHttpClient {
   if (!publicClient) {
@@ -30,8 +30,8 @@ let internalClientAuth: ConvexAdminAuth | null = null;
 
 /**
  * Gets or creates a singleton internal Convex HTTP client with admin auth.
- * @param options - Options for URL and auth resolution
- * @returns ConvexHttpClient with admin auth set
+ * @param {CreateInternalClientOptions} options - Options for URL and auth resolution
+ * @returns {Promise<ConvexHttpClient>} - ConvexHttpClient with admin auth set
  */
 export async function getInternalConvexClient(
   options: CreateInternalClientOptions = {},
@@ -64,9 +64,9 @@ export function resetInternalClient(): void {
 
 /**
  * Fetches a public Convex query with typed arguments and return value.
- * @param ref - Query function reference
- * @param args - Query arguments
- * @returns Query result
+ * @param {Query} ref - Query function reference
+ * @param {FunctionArgs<Query>} args - Query arguments
+ * @returns {Promise<FunctionReturnType<Query>>} - Query result
  */
 export async function fetchPublicQuery<Query extends FunctionReference<'query', 'public'>>(
   ref: Query,
@@ -78,9 +78,9 @@ export async function fetchPublicQuery<Query extends FunctionReference<'query', 
 
 /**
  * Calls a public Convex mutation with typed arguments and return value.
- * @param ref - Mutation function reference
- * @param args - Mutation arguments
- * @returns Mutation result
+ * @param {Mutation} ref - Mutation function reference
+ * @param {FunctionArgs<Mutation>} args - Mutation arguments
+ * @returns {Promise<FunctionReturnType<Mutation>>} - Mutation result
  */
 export async function fetchPublicMutation<Mutation extends FunctionReference<'mutation', 'public'>>(
   ref: Mutation,
@@ -92,10 +92,10 @@ export async function fetchPublicMutation<Mutation extends FunctionReference<'mu
 
 /**
  * Fetches an internal Convex query (public or internal) with admin auth.
- * @param ref - Query function reference
- * @param args - Query arguments
- * @param options - Options including convexUrl override
- * @returns Query result
+ * @param {Query} ref - Query function reference
+ * @param {FunctionArgs<Query>} args - Query arguments
+ * @param {CreateInternalClientOptions} options - Options including convexUrl override
+ * @returns {Promise<FunctionReturnType<Query>>} - Query result
  */
 export async function fetchInternalQuery<Query extends FunctionReference<'query', 'public' | 'internal'>>(
   ref: Query,
@@ -108,10 +108,10 @@ export async function fetchInternalQuery<Query extends FunctionReference<'query'
 
 /**
  * Call an internal Convex mutation with admin auth.
- * @param ref - Mutation function reference
- * @param args - Mutation arguments
- * @param options - Options including convexUrl override
- * @returns Mutation result
+ * @param {Mutation} ref - Mutation function reference
+ * @param {FunctionArgs<Mutation>} args - Mutation arguments
+ * @param {CreateInternalClientOptions} options - Options including convexUrl override
+ * @returns {Promise<FunctionReturnType<Mutation>>} - Mutation result
  */
 export async function fetchInternalMutation<Mutation extends FunctionReference<'mutation', 'public' | 'internal'>>(
   ref: Mutation,

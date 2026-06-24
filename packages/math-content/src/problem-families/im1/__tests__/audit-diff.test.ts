@@ -177,8 +177,8 @@ type ScriptNames = ReadonlyArray<string>;
 
 /**
  * Read script names from a package.json file.
- * @param pkgJsonPath - Absolute path to package.json
- * @returns Array of script names
+ * @param {string} pkgJsonPath - Absolute path to package.json
+ * @returns {ScriptNames} - Array of script names
  */
 function readPkgScripts(pkgJsonPath: string): ScriptNames {
   const pkg = JSON.parse(readFileSync(pkgJsonPath, 'utf-8')) as {
@@ -189,7 +189,7 @@ function readPkgScripts(pkgJsonPath: string): ScriptNames {
 
 /**
  * Load the IM1 rollout audit markdown document.
- * @returns Audit document text
+ * @returns {string} - Audit document text
  */
 function loadAuditText(): string {
   return readFileSync(AUDIT_MD, 'utf-8');
@@ -197,7 +197,7 @@ function loadAuditText(): string {
 
 /**
  * Load the vertical-slice module ID from track metadata.
- * @returns Module ID string
+ * @returns {string} - Module ID string
  */
 function loadVerticalSliceModule(): string {
   const meta = JSON.parse(readFileSync(METADATA_JSON, 'utf-8')) as {
@@ -208,7 +208,7 @@ function loadVerticalSliceModule(): string {
 
 /**
  * Count the total number of registered node IDs across all IM1 generators.
- * @returns Total registered node ID count
+ * @returns {number} - Total registered node ID count
  */
 function collectRegisteredGeneratorCount(): number {
   let count = 0;
@@ -220,7 +220,7 @@ function collectRegisteredGeneratorCount(): number {
 
 /**
  * Count vertical-slice blueprints that are real (not STUBs).
- * @returns Number of non-STUB blueprints in the vertical slice
+ * @returns {number} - Number of non-STUB blueprints in the vertical slice
  */
 function countVerticalSliceRealBlueprints(): number {
   const vsm = loadVerticalSliceModule();
@@ -244,8 +244,8 @@ function countVerticalSliceRealBlueprints(): number {
 
 /**
  * Adapt an IM1 generator entry to the GeneratorLike interface for the QA harness.
- * @param entry - IM1 generator entry to adapt
- * @returns GeneratorLike-compatible object
+ * @param {IM1GeneratorEntry} entry - IM1 generator entry to adapt
+ * @returns {GeneratorLike} - GeneratorLike-compatible object
  */
 function adapt(entry: IM1GeneratorEntry): GeneratorLike {
   return {

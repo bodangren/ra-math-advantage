@@ -245,8 +245,8 @@ export const GENERATOR_KEYS = Object.keys(GENERATOR_REGISTRY) as string[];
 
 /**
  * Look up a math generator by its key.
- * @param key - Generator key string
- * @returns The matching MathGenerator
+ * @param {string} key - Generator key string
+ * @returns {MathGenerator} - The matching MathGenerator
  * @throws Error if the key is not registered
  */
 export function getGenerator(key: string): MathGenerator {

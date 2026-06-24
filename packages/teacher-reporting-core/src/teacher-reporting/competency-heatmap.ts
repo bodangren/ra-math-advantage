@@ -92,8 +92,8 @@ export type CompetencyCellColor = "green" | "yellow" | "red" | "gray";
 
 /**
  * Map a mastery level to a competency cell color.
- * @param masteryLevel - Mastery percentage (0-100) or null
- * @returns Cell color indicator
+ * @param {number | null} masteryLevel - Mastery percentage (0-100) or null
+ * @returns {CompetencyCellColor} - Cell color indicator
  */
 export function computeCompetencyColor(masteryLevel: number | null): CompetencyCellColor {
   if (masteryLevel == null) {
@@ -110,10 +110,10 @@ export function computeCompetencyColor(masteryLevel: number | null): CompetencyC
 
 /**
  * Assemble competency heatmap rows from raw student, standard, and competency data.
- * @param students - Raw student records
- * @param standards - Raw standard records
- * @param competencyRows - Raw competency rows
- * @returns Heatmap rows and active standards
+ * @param {RawCHStudent[]} students - Raw student records
+ * @param {RawCHStandard[]} standards - Raw standard records
+ * @param {RawCHCompetency[]} competencyRows - Raw competency rows
+ * @returns {CompetencyHeatmapResponse} - Heatmap rows and active standards
  */
 export function assembleCompetencyHeatmapRows(
   students: RawCHStudent[],
@@ -166,13 +166,13 @@ export function assembleCompetencyHeatmapRows(
 
 /**
  * Assemble detailed competency data for a single student across all standards.
- * @param student - Raw student record
- * @param standards - Raw standard records
- * @param competencyRows - Raw competency rows
- * @param lessonStandards - Lesson-standard associations
- * @param lessonVersions - Lesson version records
- * @param lessons - Lesson records for context
- * @returns Student competency detail with per-standard breakdown
+ * @param {RawCHStudent} student - Raw student record
+ * @param {RawCHStandard[]} standards - Raw standard records
+ * @param {RawCHCompetency[]} competencyRows - Raw competency rows
+ * @param {RawCHLessonStandard[]} lessonStandards - Lesson-standard associations
+ * @param {RawCHLessonVersion[]} lessonVersions - Lesson version records
+ * @param {RawCHLesson[]} lessons - Lesson records for context
+ * @returns {StudentCompetencyDetail} - Student competency detail with per-standard breakdown
  */
 export function assembleStudentCompetencyDetail(
   student: RawCHStudent,

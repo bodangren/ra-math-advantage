@@ -2,8 +2,8 @@ type EnvLike = Record<string, string | undefined>;
 
 /**
  * Checks if demo provisioning is enabled (non-production environments).
- * @param env - Environment object (defaults to process.env)
- * @returns True if demo provisioning is enabled
+ * @param {EnvLike} env - Environment object (defaults to process.env)
+ * @returns {boolean} - True if demo provisioning is enabled
  */
 export function isDemoProvisioningEnabled(env: EnvLike = process.env): boolean {
   const vercelEnv = env.VERCEL_ENV?.trim();

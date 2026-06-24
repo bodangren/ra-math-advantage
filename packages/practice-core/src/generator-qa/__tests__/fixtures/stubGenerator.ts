@@ -42,7 +42,7 @@ export interface StubGenerator {
 
 /**
  * Create a minimal well-formed deterministic stub generator for testing.
- * @returns Stub generator that produces fixed-output contract-shaped objects
+ * @returns {StubGenerator} - Stub generator that produces fixed-output contract-shaped objects
  */
 export function createStubGenerator(): StubGenerator {
   return {

@@ -42,8 +42,8 @@ import {
 
 /**
  * Create a default EdgeCalibration with optional overrides.
- * @param overrides - Partial calibration fields to override
- * @returns EdgeCalibration with sensible defaults
+ * @param {Partial<EdgeCalibration>} overrides - Partial calibration fields to override
+ * @returns {EdgeCalibration} - EdgeCalibration with sensible defaults
  */
 function makeCalibration(overrides: Partial<EdgeCalibration> = {}): EdgeCalibration {
   return {
@@ -58,9 +58,9 @@ function makeCalibration(overrides: Partial<EdgeCalibration> = {}): EdgeCalibrat
 
 /**
  * Create a CalibrationObservation with the given verdicts.
- * @param a - Proficiency verdict for A
- * @param b - Proficiency verdict for B
- * @returns CalibrationObservation with a fixed student ID
+ * @param {boolean} a - Proficiency verdict for A
+ * @param {boolean} b - Proficiency verdict for B
+ * @returns {CalibrationObservation} - CalibrationObservation with a fixed student ID
  */
 function makeObs(a: boolean, b: boolean): CalibrationObservation {
   return { studentId: 's', a, b };
@@ -68,8 +68,8 @@ function makeObs(a: boolean, b: boolean): CalibrationObservation {
 
 /**
  * Create a default ReviewQueueBuildInput with optional overrides.
- * @param overrides - Partial input fields to override
- * @returns ReviewQueueBuildInput with sensible defaults
+ * @param {Partial<ReviewQueueBuildInput>} overrides - Partial input fields to override
+ * @returns {ReviewQueueBuildInput} - ReviewQueueBuildInput with sensible defaults
  */
 function makeInput(overrides: Partial<ReviewQueueBuildInput> = {}): ReviewQueueBuildInput {
   return {

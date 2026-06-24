@@ -128,11 +128,11 @@ export const PROFICIENCY_THRESHOLD_DEFAULTS: Record<
 
 /**
  * Resolve evidence confidence from count, retention, and coverage averages.
- * @param evidenceCount - Number of problem families with evidence
- * @param avgRetention - Average retention strength across families
- * @param avgCoverage - Average practice coverage across families
- * @param effectiveMinFamilies - Minimum families required by policy
- * @returns Evidence confidence level
+ * @param {number} evidenceCount - Number of problem families with evidence
+ * @param {number} avgRetention - Average retention strength across families
+ * @param {number} avgCoverage - Average practice coverage across families
+ * @param {number} effectiveMinFamilies - Minimum families required by policy
+ * @returns {EvidenceConfidence} - Evidence confidence level
  */
 function resolveEvidenceConfidence(
   evidenceCount: number,
@@ -155,8 +155,8 @@ function resolveEvidenceConfidence(
 
 /**
  * Combine per-family fluency confidences into a single confidence level.
- * @param fluencies - Array of confidence and timing-reliability pairs
- * @returns Aggregated fluency confidence
+ * @param {{ confidence: EvidenceConfidence; timingReliable: boolean }[]} fluencies - Array of confidence and timing-reliability pairs
+ * @returns {EvidenceConfidence} - Aggregated fluency confidence
  */
 function combineFluencyConfidences(
   fluencies: { confidence: EvidenceConfidence; timingReliable: boolean }[]
@@ -261,8 +261,8 @@ export function computeObjectiveProficiency(input: ObjectiveProficiencyInput): O
 
 /**
  * Derive student-facing guidance text from a proficiency result.
- * @param result - Computed objective proficiency result
- * @returns Human-readable guidance string for the student
+ * @param {ObjectiveProficiencyResult} result - Computed objective proficiency result
+ * @returns {string} - Human-readable guidance string for the student
  */
 function deriveStudentGuidance(result: ObjectiveProficiencyResult): string {
   if (result.evidenceConfidence === 'none') {
@@ -285,8 +285,8 @@ function deriveStudentGuidance(result: ObjectiveProficiencyResult): string {
 
 /**
  * Derive teacher-facing guidance text from a proficiency result.
- * @param result - Computed objective proficiency result
- * @returns Human-readable guidance string for the teacher
+ * @param {ObjectiveProficiencyResult} result - Computed objective proficiency result
+ * @returns {string} - Human-readable guidance string for the teacher
  */
 function deriveTeacherGuidance(result: ObjectiveProficiencyResult): string {
   if (result.evidenceConfidence === 'none') {

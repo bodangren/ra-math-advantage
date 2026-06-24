@@ -14,8 +14,8 @@ export interface ParsedWorkbookEntry {
 
 /**
  * Parse a workbook filename into its unit, lesson, and type components.
- * @param filename - The workbook filename to parse
- * @returns Parsed entry or null if filename doesn't match expected pattern
+ * @param {string} filename - The workbook filename to parse
+ * @returns {ParsedWorkbookEntry | null} - Parsed entry or null if filename doesn't match expected pattern
  */
 export function parseUnitLessonFilename(
   filename: string
@@ -34,8 +34,8 @@ export function parseUnitLessonFilename(
 
 /**
  * Check whether a filename matches the capstone workbook pattern.
- * @param filename - The filename to test
- * @returns True if filename starts with "capstone_" and ends with ".xlsx"
+ * @param {string} filename - The filename to test
+ * @returns {boolean} - True if filename starts with "capstone_" and ends with ".xlsx"
  */
 export function isCapstoneFilename(filename: string): boolean {
   return /^capstone_.+\.xlsx$/.test(filename);
@@ -43,8 +43,8 @@ export function isCapstoneFilename(filename: string): boolean {
 
 /**
  * Determine whether a capstone filename is a student or teacher workbook.
- * @param filename - The capstone filename to parse
- * @returns 'student', 'teacher', or null if not a capstone file
+ * @param {string} filename - The capstone filename to parse
+ * @returns {'student' | 'teacher' | null} - 'student', 'teacher', or null if not a capstone file
  */
 export function parseCapstoneType(
   filename: string
@@ -60,9 +60,9 @@ export function parseCapstoneType(
 
 /**
  * Build a lookup key string from unit and lesson numbers.
- * @param unitNumber - The unit number
- * @param lessonNumber - The lesson number
- * @returns Key string in the format "unitNumber-lessonNumber"
+ * @param {number} unitNumber - The unit number
+ * @param {number} lessonNumber - The lesson number
+ * @returns {string} - Key string in the format "unitNumber-lessonNumber"
  */
 export function buildUnitLessonKey(
   unitNumber: number,
@@ -73,8 +73,8 @@ export function buildUnitLessonKey(
 
 /**
  * Validate and parse an unknown value into a WorkbookManifest.
- * @param value - The value to validate
- * @returns Validated WorkbookManifest object
+ * @param {unknown} value - The value to validate
+ * @returns {WorkbookManifest} - Validated WorkbookManifest object
  * @throws {TypeError} If the value doesn't conform to WorkbookManifest shape
  */
 export function validateWorkbookManifest(value: unknown): WorkbookManifest {

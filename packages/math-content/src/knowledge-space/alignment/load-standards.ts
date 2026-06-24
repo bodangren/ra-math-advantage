@@ -31,9 +31,9 @@ export interface CEDTopicMapping {
 
 /**
  * Convert a standard code to its knowledge-space node ID.
- * @param code - Standard code (e.g., "HSA-SSE.B.3")
- * @param authority - Standards authority, defaults to "ccss"
- * @returns Node ID string
+ * @param {string} code - Standard code (e.g., "HSA-SSE.B.3")
+ * @param {string} authority - Standards authority, defaults to "ccss"
+ * @returns {string} - Node ID string
  */
 export function standardCodeToNodeId(code: string, authority: string = 'ccss'): string {
   const normalizedCode = code.toLowerCase().replace(/\./g, '-').replace(/[^a-z0-9-]/g, '');
@@ -42,8 +42,8 @@ export function standardCodeToNodeId(code: string, authority: string = 'ccss'): 
 
 /**
  * Parse a standard code into its node ID components.
- * @param code - Standard code to parse
- * @returns Object with id, authority, and normalizedCode
+ * @param {string} code - Standard code to parse
+ * @returns {{ id: string; authority: string; normalizedCode: string }} - Object with id, authority, and normalizedCode
  */
 export function parseStandardCodeToNodeId(code: string): { id: string; authority: string; normalizedCode: string } {
   const authority = 'ccss';
@@ -57,10 +57,10 @@ export function parseStandardCodeToNodeId(code: string): { id: string; authority
 
 /**
  * Build a lesson slug from course, module, and lesson identifiers.
- * @param course - Course identifier
- * @param module - Module number
- * @param lesson - Lesson number
- * @returns Lesson slug string
+ * @param {string} course - Course identifier
+ * @param {string} module - Module number
+ * @param {string} lesson - Lesson number
+ * @returns {string} - Lesson slug string
  */
 export function buildLessonSlug(course: string, module: string, lesson: string): string {
   if (course === 'precalc') {
@@ -71,9 +71,9 @@ export function buildLessonSlug(course: string, module: string, lesson: string):
 
 /**
  * Derive a lesson slug from node metadata.
- * @param course - Course identifier
- * @param metadata - Node metadata containing module and lesson fields
- * @returns Lesson slug string
+ * @param {string} course - Course identifier
+ * @param {Record<string, unknown>} metadata - Node metadata containing module and lesson fields
+ * @returns {string} - Lesson slug string
  */
 export function parseLessonSlugFromMetadata(course: string, metadata: Record<string, unknown>): string {
   const module = String(metadata.module ?? '');

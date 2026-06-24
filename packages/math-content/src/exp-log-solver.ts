@@ -160,8 +160,8 @@ function generateExpProblem(rand: () => number): ExpLogProblem {
  * or e^D (ln), both strictly positive, so the domain constraint is always
  * satisfied. No re-roll is needed.
  *
- * @param options.seed — PRNG seed (integer).
- * @returns An ExpLogProblem with equation, answer, domain, and steps.
+ * @param {number;} options.seed - — PRNG seed (integer).
+ * @returns {ExpLogProblem} - An ExpLogProblem with equation, answer, domain, and steps.
  */
 export function generateExpLogProblem(options: {
   seed: number;

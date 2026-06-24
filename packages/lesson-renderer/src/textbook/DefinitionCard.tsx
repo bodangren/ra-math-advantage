@@ -6,7 +6,7 @@ export interface DefinitionCardProps {
 
 /**
  * Render a definition card with term, definition, and optional related terms.
- * @param props - Term name, definition text, and optional related terms list
+ * @param {DefinitionCardProps} props - Term name, definition text, and optional related terms list
  */
 export function DefinitionCard({ term, definition, relatedTerms }: DefinitionCardProps) {
   return (

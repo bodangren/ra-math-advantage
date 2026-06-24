@@ -71,7 +71,7 @@ export function selectSkill(childSkills: KnowledgeSpaceNode[]): KnowledgeSpaceNo
  * Projections are regenerated outputs — they are not source truth. Review diffs
  * against previously generated activity maps before replacing app artifacts.
  *
- * @param nodes - Knowledge space nodes
+ * @param {KnowledgeSpaceNode[]} nodes - Knowledge space nodes
  * @param {KnowledgeSpaceEdge[]} edges - Knowledge space edges
  * @param {KnowledgeBlueprint[]} blueprints - Knowledge blueprints (worked example, guided, independent, assessment)
  * @returns {ProjectedActivity[]} Sorted array of projected activities.

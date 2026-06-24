@@ -13,8 +13,8 @@ export interface DiscriminantAnalyzerActivityProps extends DiscriminantAnalyzerP
 
 /**
  * Render a discriminant analyzer activity with submission handling.
- * @param props - The activity configuration including equation, coefficients, and callbacks
- * @returns The activity component JSX
+ * @param {DiscriminantAnalyzerActivityProps} props - The activity configuration including equation, coefficients, and callbacks
+ * @returns {React.JSX.Element} The activity component JSX
  */
 export function DiscriminantAnalyzerActivity({
   activityId,

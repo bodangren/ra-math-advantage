@@ -29,7 +29,7 @@ export interface HeaderSimpleProps {
 
 /**
  * Render a responsive header with brand, navigation, and optional user menu.
- * @param props - Navigation items, brand config, accent color, and user menu slot
+ * @param {HeaderSimpleProps} props - Navigation items, brand config, accent color, and user menu slot
  */
 export function HeaderSimple({
   navItems,

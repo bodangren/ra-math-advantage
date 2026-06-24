@@ -16,7 +16,7 @@ export interface StepRevealContainerProps {
 
 /**
  * Render a sequence of steps that reveal progressively based on mode.
- * @param props - Step mode ('teaching', 'guided', 'practice') and step content
+ * @param {StepRevealContainerProps} props - Step mode ('teaching', 'guided', 'practice') and step content
  */
 export function StepRevealContainer({ mode, steps }: StepRevealContainerProps) {
   const [visibleSteps, setVisibleSteps] = useState(

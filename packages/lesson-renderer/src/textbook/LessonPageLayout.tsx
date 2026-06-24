@@ -23,7 +23,7 @@ export interface LessonPageLayoutProps {
 
 /**
  * Render the full lesson page layout with header, sidebar, and content area.
- * @param props - Lesson metadata, phase navigation, children, and options
+ * @param {LessonPageLayoutProps} props - Lesson metadata, phase navigation, children, and options
  */
 export function LessonPageLayout({
   lessonTitle,

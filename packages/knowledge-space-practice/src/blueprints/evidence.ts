@@ -20,8 +20,8 @@ export interface PracticeSubmissionPart {
 
 /**
  * Default mapping function from generic evidence part to practice submission part.
- * @param part - Generic evidence part to map
- * @returns Mapped practice submission part
+ * @param {GenericEvidencePart} part - Generic evidence part to map
+ * @returns {PracticeSubmissionPart} - Mapped practice submission part
  */
 function defaultMapPart(part: GenericEvidencePart): PracticeSubmissionPart {
   return {
@@ -36,9 +36,9 @@ function defaultMapPart(part: GenericEvidencePart): PracticeSubmissionPart {
 
 /**
  * Converts generic evidence result to practice submission parts.
- * @param result - Generic evidence result with parts array
- * @param adapter - Optional custom evidence adapter for mapping
- * @returns Array of practice submission parts
+ * @param {GenericEvidenceResult} result - Generic evidence result with parts array
+ * @param {EvidenceAdapter} adapter - Optional custom evidence adapter for mapping
+ * @returns {PracticeSubmissionPart[]} - Array of practice submission parts
  */
 export function genericEvidenceToSubmissionParts(
   result: GenericEvidenceResult,

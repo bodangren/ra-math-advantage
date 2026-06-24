@@ -10,10 +10,10 @@ import type { KnowledgeBlueprint } from '../blueprints';
  * Projections are regenerated outputs — they are not source truth. Review diffs
  * before feeding into the SRS engine.
  *
- * @param nodes - Knowledge space nodes
- * @param edges - Knowledge space edges
- * @param blueprints - Knowledge blueprints
- * @returns Sorted array of SRS projection entries
+ * @param {KnowledgeSpaceNode[]} nodes - Knowledge space nodes
+ * @param {KnowledgeSpaceEdge[]} edges - Knowledge space edges
+ * @param {KnowledgeBlueprint[]} blueprints - Knowledge blueprints
+ * @returns {SrsProjectionEntry[]} - Sorted array of SRS projection entries
  */
 export function projectSrsInputs(
   nodes: KnowledgeSpaceNode[],

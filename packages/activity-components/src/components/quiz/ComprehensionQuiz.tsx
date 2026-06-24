@@ -33,8 +33,8 @@ interface QuizState {
 
 /**
  * Render a comprehension quiz with multiple question types.
- * @param props - The quiz configuration including activity ID, mode, and questions
- * @returns The quiz component JSX
+ * @param {ComprehensionQuizProps} props - The quiz configuration including activity ID, mode, and questions
+ * @returns {React.JSX.Element | null} The quiz component JSX
  */
 export function ComprehensionQuiz({
   activityId,
@@ -324,8 +324,8 @@ interface QuestionProps {
 
 /**
  * Render a multiple choice question with selectable options.
- * @param props - The question data and interaction handlers
- * @returns The multiple choice question component JSX
+ * @param {QuestionProps} props - The question data and interaction handlers
+ * @returns {React.JSX.Element} The multiple choice question component JSX
  */
 function MultipleChoiceQuestion({
   question,
@@ -368,8 +368,8 @@ function MultipleChoiceQuestion({
 
 /**
  * Render a true/false question with two options.
- * @param props - The question data and interaction handlers
- * @returns The true/false question component JSX
+ * @param {QuestionProps} props - The question data and interaction handlers
+ * @returns {React.JSX.Element} The true/false question component JSX
  */
 function TrueFalseQuestion({
   question,
@@ -412,8 +412,8 @@ function TrueFalseQuestion({
 
 /**
  * Render a short answer question with a text input field.
- * @param props - The question data, current value, and change handler
- * @returns The short answer question component JSX
+ * @param {Omit<QuestionProps, 'onAnswer'> & { value: string; onChange: (value: string) => void }} props - The question data, current value, and change handler
+ * @returns {React.JSX.Element} The short answer question component JSX
  */
 function ShortAnswerQuestion({
   question,
@@ -444,8 +444,8 @@ function ShortAnswerQuestion({
 
 /**
  * Render a select-all-that-apply question with checkboxes.
- * @param props - The question data, selected answers, and interaction handlers
- * @returns The select-all question component JSX
+ * @param {QuestionProps & { selectedAnswers: string[] }} props - The question data, selected answers, and interaction handlers
+ * @returns {React.JSX.Element} The select-all question component JSX
  */
 function SelectAllQuestion({
   question,

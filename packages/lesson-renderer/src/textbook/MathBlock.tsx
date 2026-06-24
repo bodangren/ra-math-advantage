@@ -8,7 +8,7 @@ export interface MathBlockProps {
 
 /**
  * Render a block-level LaTeX math expression centered on the page.
- * @param props - LaTeX string and optional className
+ * @param {MathBlockProps} props - LaTeX string and optional className
  */
 export function MathBlock({ math, className = '' }: MathBlockProps) {
   return (

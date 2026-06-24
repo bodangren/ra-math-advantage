@@ -19,10 +19,10 @@ interface ROCState {
 
 /**
  * Compute the average rate of change over a given interval.
- * @param sourceType - The type of data source (function, table, or graph)
- * @param data - The data containing function expression, table values, or graph points
- * @param interval - The interval with start and end x-values
- * @returns The computed average rate of change
+ * @param {'function' | 'table' | 'graph'} sourceType - The type of data source (function, table, or graph)
+ * @param {RateOfChangeCalculatorProps['data']} data - The data containing function expression, table values, or graph points
+ * @param {{ start: number; end: number }} interval - The interval with start and end x-values
+ * @returns {number} - The computed average rate of change
  */
 function computeRateOfChange(
   sourceType: 'function' | 'table' | 'graph',
@@ -64,9 +64,9 @@ function computeRateOfChange(
 
 /**
  * Evaluate a mathematical expression at a given x value.
- * @param formula - The mathematical expression string to evaluate
- * @param x - The x-value to substitute into the expression
- * @returns The evaluated result, or 0 on failure
+ * @param {string} formula - The mathematical expression string to evaluate
+ * @param {number} x - The x-value to substitute into the expression
+ * @returns {number} - The evaluated result, or 0 on failure
  */
 function evaluateExpression(formula: string, x: number): number {
   const expr = formula
@@ -84,8 +84,8 @@ function evaluateExpression(formula: string, x: number): number {
 
 /**
  * Safely evaluate a polynomial expression without using eval.
- * @param expr - The sanitized polynomial expression string
- * @returns The computed numeric result
+ * @param {string} expr - The sanitized polynomial expression string
+ * @returns {number} - The computed numeric result
  * @throws {Error} If the expression contains invalid characters or syntax
  */
 function safeEvalPolynomial(expr: string): number {
@@ -172,10 +172,10 @@ function safeEvalPolynomial(expr: string): number {
 
 /**
  * Retrieve the y-value at a given x-index from the data source.
- * @param sourceType - The type of data source (function, table, or graph)
- * @param data - The data containing function expression, table values, or graph points
- * @param index - The x-value at which to retrieve the y-value
- * @returns The y-value as a string, or empty string if not found
+ * @param {'function' | 'table' | 'graph'} sourceType - The type of data source (function, table, or graph)
+ * @param {RateOfChangeCalculatorProps['data']} data - The data containing function expression, table values, or graph points
+ * @param {number} index - The x-value at which to retrieve the y-value
+ * @returns {string} - The y-value as a string, or empty string if not found
  */
 function getValueAtIndex(
   sourceType: 'function' | 'table' | 'graph',
@@ -208,8 +208,8 @@ function getValueAtIndex(
 
 /**
  * Render a rate of change calculator in teaching, guided, or practice mode.
- * @param props - The calculator configuration including mode, data source, and interval
- * @returns The calculator component JSX
+ * @param {RateOfChangeCalculatorProps & { mode: ROCMode; onSubmit?: (payload: unknown) => void; onComplete?: () => void }} props - The calculator configuration including mode, data source, and interval
+ * @returns {React.JSX.Element | null} The calculator component JSX
  */
 export function RateOfChangeCalculator({
   mode,

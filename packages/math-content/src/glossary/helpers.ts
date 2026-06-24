@@ -2,9 +2,9 @@ import type { GlossaryTerm } from './types';
 
 /**
  * Find a glossary term by its slug.
- * @param terms - Array of glossary terms
- * @param slug - Slug to search for
- * @returns Matching term or undefined
+ * @param {GlossaryTerm[]} terms - Array of glossary terms
+ * @param {string} slug - Slug to search for
+ * @returns {GlossaryTerm | undefined} - Matching term or undefined
  */
 export function getGlossaryTermBySlug(terms: GlossaryTerm[], slug: string): GlossaryTerm | undefined {
   return terms.find((term) => term.slug === slug);
@@ -12,9 +12,9 @@ export function getGlossaryTermBySlug(terms: GlossaryTerm[], slug: string): Glos
 
 /**
  * Filter glossary terms by course.
- * @param terms - Array of glossary terms
- * @param course - Course identifier to filter by
- * @returns Array of matching terms
+ * @param {GlossaryTerm[]} terms - Array of glossary terms
+ * @param {string} course - Course identifier to filter by
+ * @returns {GlossaryTerm[]} - Array of matching terms
  */
 export function getGlossaryTermsByCourse(terms: GlossaryTerm[], course: string): GlossaryTerm[] {
   return terms.filter((term) => term.courses.includes(course));
@@ -22,9 +22,9 @@ export function getGlossaryTermsByCourse(terms: GlossaryTerm[], course: string):
 
 /**
  * Filter glossary terms by topic.
- * @param terms - Array of glossary terms
- * @param topic - Topic identifier to filter by
- * @returns Array of matching terms
+ * @param {GlossaryTerm[]} terms - Array of glossary terms
+ * @param {string} topic - Topic identifier to filter by
+ * @returns {GlossaryTerm[]} - Array of matching terms
  */
 export function getGlossaryTermsByTopic(terms: GlossaryTerm[], topic: string): GlossaryTerm[] {
   return terms.filter((term) => term.topics.includes(topic));
@@ -32,9 +32,9 @@ export function getGlossaryTermsByTopic(terms: GlossaryTerm[], topic: string): G
 
 /**
  * Filter glossary terms by module number.
- * @param terms - Array of glossary terms
- * @param moduleNumber - Module number to filter by
- * @returns Array of matching terms
+ * @param {GlossaryTerm[]} terms - Array of glossary terms
+ * @param {number} moduleNumber - Module number to filter by
+ * @returns {GlossaryTerm[]} - Array of matching terms
  */
 export function getGlossaryTermsByModule(terms: GlossaryTerm[], moduleNumber: number): GlossaryTerm[] {
   return terms.filter((term) => term.modules?.includes(moduleNumber));
@@ -42,8 +42,8 @@ export function getGlossaryTermsByModule(terms: GlossaryTerm[], moduleNumber: nu
 
 /**
  * Get all unique course identifiers from glossary terms.
- * @param terms - Array of glossary terms
- * @returns Sorted array of unique course identifiers
+ * @param {GlossaryTerm[]} terms - Array of glossary terms
+ * @returns {string[]} - Sorted array of unique course identifiers
  */
 export function getAllGlossaryCourses(terms: GlossaryTerm[]): string[] {
   const courses = new Set<string>();
@@ -53,8 +53,8 @@ export function getAllGlossaryCourses(terms: GlossaryTerm[]): string[] {
 
 /**
  * Get all unique module numbers from glossary terms.
- * @param terms - Array of glossary terms
- * @returns Sorted array of unique module numbers
+ * @param {GlossaryTerm[]} terms - Array of glossary terms
+ * @returns {number[]} - Sorted array of unique module numbers
  */
 export function getAllGlossaryModules(terms: GlossaryTerm[]): number[] {
   const modules = new Set<number>();
@@ -64,8 +64,8 @@ export function getAllGlossaryModules(terms: GlossaryTerm[]): number[] {
 
 /**
  * Get all unique topic identifiers from glossary terms.
- * @param terms - Array of glossary terms
- * @returns Sorted array of unique topic identifiers
+ * @param {GlossaryTerm[]} terms - Array of glossary terms
+ * @returns {string[]} - Sorted array of unique topic identifiers
  */
 export function getAllGlossaryTopics(terms: GlossaryTerm[]): string[] {
   const topics = new Set<string>();

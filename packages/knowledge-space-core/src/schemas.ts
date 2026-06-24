@@ -131,8 +131,8 @@ export const knowledgeSpaceEdgeSchema = z.object({
 
 /**
  * Check for duplicate node IDs and add a Zod issue if found.
- * @param nodes - Array of knowledge space nodes
- * @param ctx - Zod refinement context for reporting issues
+ * @param {KnowledgeSpaceNode[]} nodes - Array of knowledge space nodes
+ * @param {z.RefinementCtx} ctx - Zod refinement context for reporting issues
  */
 function checkDuplicateNodeIds(
   nodes: KnowledgeSpaceNode[],
@@ -159,9 +159,9 @@ function checkDuplicateNodeIds(
 
 /**
  * Check for edges referencing non-existent nodes and add a Zod issue if found.
- * @param nodes - Array of knowledge space nodes
- * @param edges - Array of knowledge space edges
- * @param ctx - Zod refinement context for reporting issues
+ * @param {KnowledgeSpaceNode[]} nodes - Array of knowledge space nodes
+ * @param {KnowledgeSpaceEdge[]} edges - Array of knowledge space edges
+ * @param {z.RefinementCtx} ctx - Zod refinement context for reporting issues
  */
 function checkDanglingEdges(
   nodes: KnowledgeSpaceNode[],
@@ -195,8 +195,8 @@ function checkDanglingEdges(
 
 /**
  * Check for duplicate edges (same sourceId, targetId, and type) and add a Zod issue if found.
- * @param edges - Array of knowledge space edges
- * @param ctx - Zod refinement context for reporting issues
+ * @param {KnowledgeSpaceEdge[]} edges - Array of knowledge space edges
+ * @param {z.RefinementCtx} ctx - Zod refinement context for reporting issues
  */
 function checkDuplicateEdges(
   edges: KnowledgeSpaceEdge[],
@@ -241,9 +241,9 @@ const EDGE_ENDPOINT_RULES: EdgeSourceTargetConstraint[] = [
 
 /**
  * Check edges against endpoint pairing rules and add a Zod issue for violations.
- * @param nodes - Array of knowledge space nodes
- * @param edges - Array of knowledge space edges
- * @param ctx - Zod refinement context for reporting issues
+ * @param {KnowledgeSpaceNode[]} nodes - Array of knowledge space nodes
+ * @param {KnowledgeSpaceEdge[]} edges - Array of knowledge space edges
+ * @param {z.RefinementCtx} ctx - Zod refinement context for reporting issues
  */
 function checkEndpointPairings(
   nodes: KnowledgeSpaceNode[],

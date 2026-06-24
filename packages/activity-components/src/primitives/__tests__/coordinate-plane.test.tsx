@@ -23,9 +23,9 @@ import { CoordinatePlane } from '../coordinate-plane/CoordinatePlane';
 /**
  * Stub the SVG element's bounding rect so GraphingCanvas's `handleClick` guard
  * (`canvasSize.width === 0 || canvasSize.height === 0`) does not short-circuit.
- * @param svg - The `<svg>` element rendered by GraphingCanvas.
- * @param width - The stubbed width in CSS pixels.
- * @param height - The stubbed height in CSS pixels.
+ * @param {SVGSVGElement} svg - The `<svg>` element rendered by GraphingCanvas.
+ * @param {number} width - The stubbed width in CSS pixels.
+ * @param {number} height - The stubbed height in CSS pixels.
  */
 function stubSvgRect(svg: SVGSVGElement, width = 600, height = 600): void {
   Object.defineProperty(svg, 'getBoundingClientRect', {
@@ -46,8 +46,8 @@ function stubSvgRect(svg: SVGSVGElement, width = 600, height = 600): void {
 
 /**
  * Find the inner `<svg>` rendered by GraphingCanvas inside the CoordinatePlane tree.
- * @param container - The render container returned by `@testing-library/react`.
- * @returns The first `<svg>` element in the tree.
+ * @param {HTMLElement} container - The render container returned by `@testing-library/react`.
+ * @returns {SVGSVGElement} - The first `<svg>` element in the tree.
  */
 function findSvg(container: HTMLElement): SVGSVGElement {
   const svg = container.querySelector('svg');

@@ -216,8 +216,8 @@ export function deriveTimingFeatures(
 
 /**
  * Resolve a time ratio to a speed band classification.
- * @param timeRatio - Ratio of active time to baseline median
- * @returns Speed band label
+ * @param {number} timeRatio - Ratio of active time to baseline median
+ * @returns {TimingSpeedBand} - Speed band label
  */
 function resolveSpeedBand(timeRatio: number): TimingSpeedBand {
   if (timeRatio < SPEED_BAND_THRESHOLDS.fast) return 'fast';
@@ -228,9 +228,9 @@ function resolveSpeedBand(timeRatio: number): TimingSpeedBand {
 
 /**
  * Compute a percentile value from a sorted array using linear interpolation.
- * @param sortedValues - Array of values sorted ascending
- * @param percentile - Percentile to compute in [0, 1]
- * @returns Interpolated percentile value
+ * @param {number[]} sortedValues - Array of values sorted ascending
+ * @param {number} percentile - Percentile to compute in [0, 1]
+ * @returns {number} - Interpolated percentile value
  */
 function computePercentile(sortedValues: number[], percentile: number): number {
   if (sortedValues.length === 0) return 0;

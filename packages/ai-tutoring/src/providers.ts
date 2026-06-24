@@ -15,8 +15,8 @@ export interface OpenRouterProviderOptions {
 
 /**
  * Creates an OpenRouter provider function for single-prompt chat completion.
- * @param options - Provider configuration (apiKey, model, baseUrl, timeoutMs)
- * @returns Async provider function (prompt, abortSignal?) => response text
+ * @param {OpenRouterProviderOptions} options - Provider configuration (apiKey, model, baseUrl, timeoutMs)
+ * @returns {(prompt: string, abortSignal?: AbortSignal) => Promise<string>} Async provider function (prompt, abortSignal?) => response text
  */
 export function createOpenRouterProvider(options: OpenRouterProviderOptions) {
   const {
@@ -91,8 +91,8 @@ export interface ChatMessage {
 
 /**
  * Creates an OpenRouter provider function for multi-message chat completion.
- * @param options - Provider configuration (apiKey, model, baseUrl, timeoutMs)
- * @returns Async provider function (messages, abortSignal?) => response text
+ * @param {OpenRouterProviderOptions} options - Provider configuration (apiKey, model, baseUrl, timeoutMs)
+ * @returns {(messages: ChatMessage[], abortSignal?: AbortSignal) => Promise<string>} Async provider function (messages, abortSignal?) => response text
  */
 export function createOpenRouterProviderWithMessages(options: OpenRouterProviderOptions) {
   const {
@@ -164,8 +164,8 @@ export { EmptyResponseError } from './retry';
 
 /**
  * Type guard to check if an error is an OpenRouter API error.
- * @param error - Error to check
- * @returns True if error has OpenRouter API error format
+ * @param {unknown} error - Error to check
+ * @returns {error is Error &} - True if error has OpenRouter API error format
  */
 export function isOpenRouterError(error: unknown): error is Error & { status?: number } {
   return error instanceof Error && error.message.startsWith('OpenRouter API error:');
@@ -173,8 +173,8 @@ export function isOpenRouterError(error: unknown): error is Error & { status?: n
 
 /**
  * Extracts HTTP status code from an OpenRouter error message.
- * @param error - Error with message containing status code
- * @returns Status code number or null if not found
+ * @param {Error} error - Error with message containing status code
+ * @returns {number | null} - Status code number or null if not found
  */
 export function getErrorStatus(error: Error): number | null {
   const match = error.message.match(/error:\s*(\d{3})/);
@@ -195,7 +195,7 @@ export function clearProviderCache(): void {
 
 /**
  * Resolves OpenRouter provider from environment variables (single-prompt variant).
- * @returns Provider function or null if OPENROUTER_API_KEY not set
+ * @returns {((prompt: string, abortSignal?: AbortSignal) => Promise<string>) | null} - Provider function or null if OPENROUTER_API_KEY not set
  */
 export function resolveOpenRouterProviderFromEnv(): ((prompt: string, abortSignal?: AbortSignal) => Promise<string>) | null {
   const apiKey = process.env.OPENROUTER_API_KEY;
@@ -218,7 +218,7 @@ export function resolveOpenRouterProviderFromEnv(): ((prompt: string, abortSigna
 
 /**
  * Resolve OpenRouter multi-message provider from environment variables.
- * @returns Messages provider function or null if OPENROUTER_API_KEY not set
+ * @returns {((messages: ChatMessage[], abortSignal?: AbortSignal) => Promise<string>) | null} - Messages provider function or null if OPENROUTER_API_KEY not set
  */
 export function resolveOpenRouterProviderWithMessagesFromEnv(): ((messages: ChatMessage[], abortSignal?: AbortSignal) => Promise<string>) | null {
   const apiKey = process.env.OPENROUTER_API_KEY;

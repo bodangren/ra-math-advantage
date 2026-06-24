@@ -17,8 +17,8 @@ export interface HintPanelProps {
 
 /**
  * Render a hint panel with buttons to reveal quadratic function properties.
- * @param props - The configuration including function expression and hint callback
- * @returns The hint panel component JSX
+ * @param {HintPanelProps} props - The configuration including function expression and hint callback
+ * @returns {React.JSX.Element} The hint panel component JSX
  */
 export function HintPanel({
   functionExpression,

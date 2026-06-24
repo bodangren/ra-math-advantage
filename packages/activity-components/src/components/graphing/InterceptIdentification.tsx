@@ -29,8 +29,8 @@ const CANVAS_HEIGHT = 400;
 
 /**
  * Render an interactive x-intercept identification activity on a coordinate plane.
- * @param props - The configuration including function expression and callbacks
- * @returns The intercept identification component JSX
+ * @param {InterceptIdentificationProps} props - The configuration including function expression and callbacks
+ * @returns {React.JSX.Element} The intercept identification component JSX
  */
 export function InterceptIdentification({
   functionExpression,

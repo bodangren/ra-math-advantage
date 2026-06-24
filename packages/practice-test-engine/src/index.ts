@@ -49,9 +49,9 @@ export interface PracticeTestResult {
 
 /**
  * Filter questions to only those matching the given lesson IDs.
- * @param questions - Full question bank
- * @param lessonIds - Lesson IDs to include
- * @returns Filtered question array
+ * @param {PracticeTestQuestion[]} questions - Full question bank
+ * @param {string[]} lessonIds - Lesson IDs to include
+ * @returns {PracticeTestQuestion[]} - Filtered question array
  */
 export function filterQuestionsByLessonIds(
   questions: PracticeTestQuestion[],
@@ -63,9 +63,9 @@ export function filterQuestionsByLessonIds(
 
 /**
  * Draw a random subset of questions using Fisher-Yates shuffle.
- * @param questions - Source question array
- * @param count - Number of questions to draw
- * @returns Randomly selected questions (up to count or array length)
+ * @param {PracticeTestQuestion[]} questions - Source question array
+ * @param {number} count - Number of questions to draw
+ * @returns {PracticeTestQuestion[]} - Randomly selected questions (up to count or array length)
  */
 export function drawRandomQuestions(
   questions: PracticeTestQuestion[],
@@ -85,8 +85,8 @@ export function drawRandomQuestions(
 
 /**
  * Shuffle a question's answer choices and locate the correct answer index.
- * @param question - The question to shuffle
- * @returns Shuffled choices array with correct answer index
+ * @param {PracticeTestQuestion} question - The question to shuffle
+ * @returns {ShuffledQuestion} - Shuffled choices array with correct answer index
  */
 export function shuffleAnswers(question: PracticeTestQuestion): ShuffledQuestion {
   const choices = [question.correctAnswer, ...question.distractors];
@@ -100,9 +100,9 @@ export function shuffleAnswers(question: PracticeTestQuestion): ShuffledQuestion
 
 /**
  * Check whether a selected answer matches the correct answer.
- * @param shuffled - Shuffled question with correct index
- * @param selectedAnswer - The answer string to check
- * @returns True if the selected answer is correct
+ * @param {ShuffledQuestion} shuffled - Shuffled question with correct index
+ * @param {string} selectedAnswer - The answer string to check
+ * @returns {boolean} - True if the selected answer is correct
  */
 export function isAnswerCorrect(shuffled: ShuffledQuestion, selectedAnswer: string): boolean {
   return selectedAnswer === shuffled.choices[shuffled.correctIndex];
@@ -110,8 +110,8 @@ export function isAnswerCorrect(shuffled: ShuffledQuestion, selectedAnswer: stri
 
 /**
  * Calculate the total score (correct count) from an array of answers.
- * @param answers - Array of answer objects with isCorrect flag
- * @returns Number of correct answers
+ * @param {Array<{ questionId: string; selectedAnswer: string; isCorrect: boolean }>} answers - Array of answer objects with isCorrect flag
+ * @returns {number} - Number of correct answers
  */
 export function calculateScore(
   answers: Array<{ questionId: string; selectedAnswer: string; isCorrect: boolean }>
@@ -121,9 +121,9 @@ export function calculateScore(
 
 /**
  * Calculate a percentage score rounded to the nearest integer.
- * @param score - Number of correct answers
- * @param total - Total number of questions
- * @returns Percentage (0-100), or 0 if total is 0
+ * @param {number} score - Number of correct answers
+ * @param {number} total - Total number of questions
+ * @returns {number} - Percentage (0-100), or 0 if total is 0
  */
 export function calculatePercentage(score: number, total: number): number {
   if (total === 0) return 0;

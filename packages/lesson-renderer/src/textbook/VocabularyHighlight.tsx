@@ -11,7 +11,7 @@ export interface VocabularyHighlightProps {
 
 /**
  * Render an interactive vocabulary term with a tooltip definition.
- * @param props - Term, definition, and optional children override
+ * @param {VocabularyHighlightProps} props - Term, definition, and optional children override
  */
 export function VocabularyHighlight({ term, definition, children }: VocabularyHighlightProps) {
   const [isOpen, setIsOpen] = useState(false);

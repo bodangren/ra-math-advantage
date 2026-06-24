@@ -28,13 +28,13 @@ export interface GraphingCanvasProps {
 
 /**
  * Transforms data coordinates to canvas pixel coordinates.
- * @param x - Data x coordinate
- * @param y - Data y coordinate
- * @param domain - X axis [min, max] range
- * @param range - Y axis [min, max] range
- * @param width - Canvas pixel width
- * @param height - Canvas pixel height
- * @returns Canvas coordinates (canvasX, canvasY)
+ * @param {number} x - Data x coordinate
+ * @param {number} y - Data y coordinate
+ * @param {[number, number]} domain - X axis [min, max] range
+ * @param {[number, number]} range - Y axis [min, max] range
+ * @param {number} width - Canvas pixel width
+ * @param {number} height - Canvas pixel height
+ * @returns {{ canvasX: number; canvasY: number }} - Canvas coordinates (canvasX, canvasY)
  */
 export function transformDataToCanvas(
   x: number,
@@ -58,13 +58,13 @@ export function transformDataToCanvas(
 
 /**
  * Transforms canvas pixel coordinates back to data coordinates.
- * @param canvasX - Canvas pixel x coordinate
- * @param canvasY - Canvas pixel y coordinate
- * @param domain - X axis [min, max] range
- * @param range - Y axis [min, max] range
- * @param width - Canvas pixel width
- * @param height - Canvas pixel height
- * @returns Data coordinates (x, y)
+ * @param {number} canvasX - Canvas pixel x coordinate
+ * @param {number} canvasY - Canvas pixel y coordinate
+ * @param {[number, number]} domain - X axis [min, max] range
+ * @param {[number, number]} range - Y axis [min, max] range
+ * @param {number} width - Canvas pixel width
+ * @param {number} height - Canvas pixel height
+ * @returns {{ x: number; y: number }} - Data coordinates (x, y)
  */
 export function transformCanvasToData(
   canvasX: number,
@@ -88,9 +88,9 @@ export function transformCanvasToData(
 
 /**
  * Snaps a value to the nearest grid step.
- * @param value - Numeric value to snap
- * @param step - Grid step size (default 1)
- * @returns Value snapped to nearest step
+ * @param {number} value - Numeric value to snap
+ * @param {number} step - Grid step size (default 1)
+ * @returns {number} - Value snapped to nearest step
  */
 export function snapToGridValue(
   value: number,
@@ -101,11 +101,11 @@ export function snapToGridValue(
 
 /**
  * Evaluates a quadratic function at a given x value.
- * @param x - Input value
- * @param a - Coefficient of x^2
- * @param b - Coefficient of x
- * @param c - Constant term
- * @returns The quadratic result a*x^2 + b*x + c
+ * @param {number} x - Input value
+ * @param {number} a - Coefficient of x^2
+ * @param {number} b - Coefficient of x
+ * @param {number} c - Constant term
+ * @returns {number} - The quadratic result a*x^2 + b*x + c
  */
 export function evaluateQuadratic(
   x: number,
@@ -118,10 +118,10 @@ export function evaluateQuadratic(
 
 /**
  * Evaluates a linear function at a given x value.
- * @param x - Input value
- * @param m - Slope
- * @param b - Y intercept
- * @returns The linear result m*x + b
+ * @param {number} x - Input value
+ * @param {number} m - Slope
+ * @param {number} b - Y intercept
+ * @returns {number} - The linear result m*x + b
  */
 export function evaluateLinear(
   x: number,
@@ -133,9 +133,9 @@ export function evaluateLinear(
 
 /**
  * Evaluates a mathematical expression (linear or quadratic) at x.
- * @param expression - Math expression string (e.g., "2x^2+3x-1" or "mx+b")
- * @param x - Input value
- * @returns Evaluated result, or 0 if unparseable
+ * @param {string} expression - Math expression string (e.g., "2x^2+3x-1" or "mx+b")
+ * @param {number} x - Input value
+ * @returns {number} - Evaluated result, or 0 if unparseable
  */
 export function evaluateFunction(
   expression: string,
@@ -158,10 +158,10 @@ export function evaluateFunction(
 
 /**
  * Generates an SVG path string for a function over a domain.
- * @param expression - Math expression string
- * @param domain - X axis [min, max] range
- * @param width - Canvas pixel width (determines point density)
- * @returns Space-separated "x,y" point pairs for SVG path
+ * @param {string} expression - Math expression string
+ * @param {[number, number]} domain - X axis [min, max] range
+ * @param {number} width - Canvas pixel width (determines point density)
+ * @returns {string} - Space-separated "x,y" point pairs for SVG path
  */
 export function generateFunctionPath(
   expression: string,

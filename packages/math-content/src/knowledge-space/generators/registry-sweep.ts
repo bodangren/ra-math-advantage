@@ -83,9 +83,9 @@ function adaptToGeneratorLike(gen: MathGenerator): GeneratorLike {
 
 /**
  * Run the correctness QA harness against every generator in the registry.
- * @param registry - Map of generator key to MathGenerator
- * @param options - Optional configuration including debt log sink
- * @returns Structured sweep report with per-key results and verdict
+ * @param {Record<string, MathGenerator>} registry - Map of generator key to MathGenerator
+ * @param {RegistrySweepOptions} options - Optional configuration including debt log sink
+ * @returns {RegistrySweepReport} - Structured sweep report with per-key results and verdict
  */
 export function runRegistrySweep(
   registry: Record<string, MathGenerator>,

@@ -10,8 +10,8 @@ interface LogoutButtonProps {
 
 /**
  * Button component that logs out the current user and redirects.
- * @param props - className and redirectTo path after logout
- * @returns Logout button element
+ * @param {LogoutButtonProps} props - className and redirectTo path after logout
+ * @returns {import("react").JSX.Element} Logout button element
  */
 export function LogoutButton({ className, redirectTo = '/auth/login' }: LogoutButtonProps) {
   const router = useRouter();

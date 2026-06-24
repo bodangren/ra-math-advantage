@@ -35,8 +35,8 @@ const EDGE_ENDPOINT_RULES: EdgeEndpointRule[] = [
 
 /**
  * Find edges whose source or target node kinds violate endpoint pairing rules.
- * @param graph - The knowledge space to validate
- * @returns Array of objects describing each invalid edge pairing
+ * @param {KnowledgeSpace} graph - The knowledge space to validate
+ * @returns {Array<{ edgeId: string; message: string }>} - Array of objects describing each invalid edge pairing
  */
 export function getInvalidEdgePairings(
   graph: KnowledgeSpace,
@@ -84,8 +84,8 @@ const NODES_REQUIRING_ALIGNMENT: Set<string> = new Set([
 
 /**
  * Run all validation checks on a knowledge space and return combined results.
- * @param space - The knowledge space graph to validate
- * @returns Validation result with all errors found
+ * @param {KnowledgeSpace} space - The knowledge space graph to validate
+ * @returns {ValidationResult} - Validation result with all errors found
  */
 export function validateKnowledgeSpace(space: KnowledgeSpace): ValidationResult {
   const errors: ValidationError[] = [];
@@ -173,9 +173,9 @@ export interface CycleDetectionOptions {
 
 /**
  * Detect cycles in prerequisite_for edges using DFS with path tracking.
- * @param graph - The knowledge space graph to scan
- * @param options - Optional settings for confidence threshold filtering
- * @returns Array of detected prerequisite cycles with node and edge IDs
+ * @param {KnowledgeSpace} graph - The knowledge space graph to scan
+ * @param {CycleDetectionOptions} options - Optional settings for confidence threshold filtering
+ * @returns {PrerequisiteCycle[]} - Array of detected prerequisite cycles with node and edge IDs
  */
 export function getPrerequisiteCycles(
   graph: KnowledgeSpace,
@@ -239,8 +239,8 @@ export function getPrerequisiteCycles(
 
 /**
  * Return edges whose source or target node ID does not exist in the graph.
- * @param graph - The knowledge space to check
- * @returns Array of dangling edges
+ * @param {KnowledgeSpace} graph - The knowledge space to check
+ * @returns {KnowledgeSpaceEdge[]} - Array of dangling edges
  */
 export function getDanglingEdges(graph: KnowledgeSpace): KnowledgeSpaceEdge[] {
   const nodeIds = new Set(graph.nodes.map((n) => n.id));
@@ -251,8 +251,8 @@ export function getDanglingEdges(graph: KnowledgeSpace): KnowledgeSpaceEdge[] {
 
 /**
  * Return node IDs that appear more than once in the graph.
- * @param graph - The knowledge space to check
- * @returns Array of duplicate node ID strings
+ * @param {KnowledgeSpace} graph - The knowledge space to check
+ * @returns {string[]} - Array of duplicate node ID strings
  */
 export function getDuplicateNodeIds(graph: KnowledgeSpace): string[] {
   const seen = new Set<string>();
@@ -266,8 +266,8 @@ export function getDuplicateNodeIds(graph: KnowledgeSpace): string[] {
 
 /**
  * Return edges that share the same sourceId, targetId, and type.
- * @param graph - The knowledge space to check
- * @returns Array of duplicate edge descriptors
+ * @param {KnowledgeSpace} graph - The knowledge space to check
+ * @returns {Array<{ sourceId: string; targetId: string; type: string; }> }
  */
 export function getDuplicateEdges(graph: KnowledgeSpace): Array<{
   sourceId: string;
@@ -289,9 +289,9 @@ export function getDuplicateEdges(graph: KnowledgeSpace): Array<{
 
 /**
  * Check whether a node has an exception of the given type.
- * @param node - The node to inspect
- * @param exceptionType - The exception type string to match
- * @returns True if the node has a matching exception
+ * @param {KnowledgeSpaceNode} node - The node to inspect
+ * @param {string} exceptionType - The exception type string to match
+ * @returns {boolean} - True if the node has a matching exception
  */
 function hasExceptionOfType(
   node: KnowledgeSpaceNode,
@@ -302,8 +302,8 @@ function hasExceptionOfType(
 
 /**
  * Return nodes that require standard alignment but lack an aligned_to_standard edge or exception.
- * @param graph - The knowledge space to check
- * @returns Array of objects containing node IDs missing required alignments
+ * @param {KnowledgeSpace} graph - The knowledge space to check
+ * @returns {Array<{ nodeId: string }>} - Array of objects containing node IDs missing required alignments
  */
 export function getNodesMissingRequiredAlignments(
   graph: KnowledgeSpace,
@@ -327,8 +327,8 @@ export function getNodesMissingRequiredAlignments(
 
 /**
  * Return independent-practice-ready nodes that lack a generated_by edge or exception.
- * @param graph - The knowledge space to check
- * @returns Array of objects containing node IDs missing generators
+ * @param {KnowledgeSpace} graph - The knowledge space to check
+ * @returns {Array<{ nodeId: string }>} - Array of objects containing node IDs missing generators
  */
 export function getIndependentPracticeNodesMissingGenerators(
   graph: KnowledgeSpace,
@@ -352,9 +352,9 @@ export function getIndependentPracticeNodesMissingGenerators(
 
 /**
  * Validate node metadata using a domain-specific adapter.
- * @param node - The node whose metadata to validate
- * @param adapter - The domain adapter providing validation logic
- * @returns Validation result with optional error messages
+ * @param {KnowledgeSpaceNode} node - The node whose metadata to validate
+ * @param {DomainAdapter} adapter - The domain adapter providing validation logic
+ * @returns {{ valid: boolean; errors?: string[] }} - Validation result with optional error messages
  */
 export function validateNodeMetadataWithAdapter(
   node: KnowledgeSpaceNode,

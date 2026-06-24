@@ -32,8 +32,8 @@ const DEFAULT_RANGE: [number, number] = [-10, 10];
 
 /**
  * Render an interactive graphing explorer with multiple activity variants.
- * @param props - The explorer configuration including equation, variant, and callbacks
- * @returns The graphing explorer component JSX
+ * @param {GraphingExplorerProps} props - The explorer configuration including equation, variant, and callbacks
+ * @returns {React.JSX.Element} The graphing explorer component JSX
  */
 export function GraphingExplorer({
   activityId,

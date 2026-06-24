@@ -43,8 +43,8 @@ export const placementResultsSchema = z.array(placementResultSchema);
 
 /**
  * Check whether a value conforms to the PlacementResult shape at runtime.
- * @param value - The value to check
- * @returns True if the value is a valid PlacementResult
+ * @param {unknown} value - The value to check
+ * @returns {value is PlacementResult} - True if the value is a valid PlacementResult
  */
 export function isPlacementResult(value: unknown): value is PlacementResult {
   if (value === null || typeof value !== 'object' || Array.isArray(value)) {
@@ -83,9 +83,9 @@ export interface BuildSeedOptions {
 
 /**
  * Enrich placement results with provenance metadata to create knowledge state seeds.
- * @param results - Array of placement results to enrich
- * @param options - Optional timestamp override
- * @returns Array of KnowledgeStateSeed objects with source and timestamp
+ * @param {ReadonlyArray<PlacementResult>} results - Array of placement results to enrich
+ * @param {BuildSeedOptions} options - Optional timestamp override
+ * @returns {KnowledgeStateSeed[]} - Array of KnowledgeStateSeed objects with source and timestamp
  * @throws If any result has invalid confidence or masteryEstimate values
  */
 export function buildKnowledgeStateSeed(

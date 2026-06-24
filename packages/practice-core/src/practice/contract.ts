@@ -64,8 +64,8 @@ export function toConvexActivityId(id: string): ConvexActivityId {
 
 /**
  * Normalize a submittedAt value to an ISO string.
- * @param value - String or Date to normalize
- * @returns ISO 8601 date string
+ * @param {string | Date} value - String or Date to normalize
+ * @returns {string} - ISO 8601 date string
  */
 function normalizeSubmittedAt(value: string | Date): string {
   return value instanceof Date ? value.toISOString() : value;

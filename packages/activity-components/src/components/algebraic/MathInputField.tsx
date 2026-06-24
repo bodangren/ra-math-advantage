@@ -17,8 +17,8 @@ interface MathInputFieldProps {
 
 /**
  * Render a math input field with live KaTeX preview and validation.
- * @param props - The input configuration including value, label, and validation options
- * @returns The math input field component JSX
+ * @param {MathInputFieldProps} props - The input configuration including value, label, and validation options
+ * @returns {React.JSX.Element} The math input field component JSX
  */
 export function MathInputField({
   value,

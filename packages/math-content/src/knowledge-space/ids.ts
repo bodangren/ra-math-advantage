@@ -32,11 +32,11 @@ export const ID_PATTERNS: Record<string, RegExp> = {
 
 /**
  * Build a skill ID from course, module, lesson, and slug.
- * @param course - Math course identifier
- * @param module - Module number
- * @param lesson - Lesson number
- * @param slug - Skill slug
- * @returns Formatted skill ID string
+ * @param {MathCourse} course - Math course identifier
+ * @param {string} module - Module number
+ * @param {string} lesson - Lesson number
+ * @param {string} slug - Skill slug
+ * @returns {string} - Formatted skill ID string
  */
 export function buildSkillId(
   course: MathCourse,
@@ -49,11 +49,11 @@ export function buildSkillId(
 
 /**
  * Build a worked example ID from course, module, lesson, and index.
- * @param course - Math course identifier
- * @param module - Module number
- * @param lesson - Lesson number
- * @param index - Example index
- * @returns Formatted worked example ID string
+ * @param {MathCourse} course - Math course identifier
+ * @param {string} module - Module number
+ * @param {string} lesson - Lesson number
+ * @param {string} index - Example index
+ * @returns {string} - Formatted worked example ID string
  */
 export function buildWorkedExampleId(
   course: MathCourse,
@@ -66,10 +66,10 @@ export function buildWorkedExampleId(
 
 /**
  * Build a lesson ID from course, module, and lesson.
- * @param course - Math course identifier
- * @param module - Module number
- * @param lesson - Lesson number
- * @returns Formatted lesson ID string
+ * @param {MathCourse} course - Math course identifier
+ * @param {string} module - Module number
+ * @param {string} lesson - Lesson number
+ * @returns {string} - Formatted lesson ID string
  */
 export function buildLessonId(
   course: MathCourse,
@@ -81,9 +81,9 @@ export function buildLessonId(
 
 /**
  * Build a module ID from course and module number.
- * @param course - Math course identifier
- * @param module - Module number
- * @returns Formatted module ID string
+ * @param {MathCourse} course - Math course identifier
+ * @param {string} module - Module number
+ * @returns {string} - Formatted module ID string
  */
 export function buildModuleId(course: MathCourse, module: string): string {
   return `${MATH_DOMAIN_PREFIX}.${course}.module.${module}`;
@@ -91,8 +91,8 @@ export function buildModuleId(course: MathCourse, module: string): string {
 
 /**
  * Build a course ID from a math course identifier.
- * @param course - Math course identifier
- * @returns Formatted course ID string
+ * @param {MathCourse} course - Math course identifier
+ * @returns {string} - Formatted course ID string
  */
 export function buildCourseId(course: MathCourse): string {
   return `${MATH_DOMAIN_PREFIX}.${course}`;
@@ -100,9 +100,9 @@ export function buildCourseId(course: MathCourse): string {
 
 /**
  * Build a standard ID from authority and code.
- * @param authority - Standards authority (e.g., "ccss")
- * @param code - Standard code
- * @returns Formatted standard ID string
+ * @param {string} authority - Standards authority (e.g., "ccss")
+ * @param {string} code - Standard code
+ * @returns {string} - Formatted standard ID string
  */
 export function buildStandardId(authority: string, code: string): string {
   return `${MATH_DOMAIN_PREFIX}.standard.${authority}.${code}`;
@@ -119,9 +119,9 @@ export interface IdValidationResult {
 
 /**
  * Validate a math domain ID against its expected kind format.
- * @param id - The ID string to validate
- * @param kind - Expected kind (skill, worked_example, etc.)
- * @returns Validation result with optional error messages
+ * @param {string} id - The ID string to validate
+ * @param {string} kind - Expected kind (skill, worked_example, etc.)
+ * @returns {IdValidationResult} - Validation result with optional error messages
  */
 export function validateMathId(id: string, kind: string): IdValidationResult {
   const errors: string[] = [];

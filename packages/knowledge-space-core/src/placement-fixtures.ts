@@ -16,9 +16,9 @@ import type { ProbeResult, ProbeAdapter, PlacementResult } from './placement';
 
 /**
  * Create a skill node with default test metadata.
- * @param id - The node ID
- * @param metadata - Optional metadata overrides
- * @returns A skill KnowledgeSpaceNode
+ * @param {string} id - The node ID
+ * @param {Record<string, unknown>} metadata - Optional metadata overrides
+ * @returns {KnowledgeSpaceNode} - A skill KnowledgeSpaceNode
  */
 function makeSkill(id: string, metadata: Record<string, unknown> = {}): KnowledgeSpaceNode {
   return {
@@ -34,9 +34,9 @@ function makeSkill(id: string, metadata: Record<string, unknown> = {}): Knowledg
 
 /**
  * Create a content_group node with default test metadata.
- * @param id - The node ID
- * @param metadata - Optional metadata overrides
- * @returns A content_group KnowledgeSpaceNode
+ * @param {string} id - The node ID
+ * @param {Record<string, unknown>} metadata - Optional metadata overrides
+ * @returns {KnowledgeSpaceNode} - A content_group KnowledgeSpaceNode
  */
 function makeContentGroup(id: string, metadata: Record<string, unknown> = {}): KnowledgeSpaceNode {
   return {
@@ -52,9 +52,9 @@ function makeContentGroup(id: string, metadata: Record<string, unknown> = {}): K
 
 /**
  * Create an instructional_unit node with default test metadata.
- * @param id - The node ID
- * @param metadata - Optional metadata overrides
- * @returns An instructional_unit KnowledgeSpaceNode
+ * @param {string} id - The node ID
+ * @param {Record<string, unknown>} metadata - Optional metadata overrides
+ * @returns {KnowledgeSpaceNode} - An instructional_unit KnowledgeSpaceNode
  */
 function makeLesson(id: string, metadata: Record<string, unknown> = {}): KnowledgeSpaceNode {
   return {
@@ -70,8 +70,8 @@ function makeLesson(id: string, metadata: Record<string, unknown> = {}): Knowled
 
 /**
  * Create a domain node with default test metadata.
- * @param id - The node ID
- * @returns A domain KnowledgeSpaceNode
+ * @param {string} id - The node ID
+ * @returns {KnowledgeSpaceNode} - A domain KnowledgeSpaceNode
  */
 function makeDomain(id: string): KnowledgeSpaceNode {
   return {
@@ -87,10 +87,10 @@ function makeDomain(id: string): KnowledgeSpaceNode {
 
 /**
  * Create a prerequisite_for edge with default high confidence.
- * @param sourceId - Source node ID
- * @param targetId - Target node ID
- * @param weight - Edge weight, defaults to 0.8
- * @returns A prerequisite_for KnowledgeSpaceEdge
+ * @param {string} sourceId - Source node ID
+ * @param {string} targetId - Target node ID
+ * @param {number} weight - Edge weight, defaults to 0.8
+ * @returns {KnowledgeSpaceEdge} - A prerequisite_for KnowledgeSpaceEdge
  */
 function prereqEdge(
   sourceId: string,
@@ -238,8 +238,8 @@ export const syntheticCyclicPlacementGraph: KnowledgeSpace = Object.freeze({
 
 /**
  * Build a linear prerequisite chain of N skill nodes for testing.
- * @param length - Number of nodes in the chain (must be >= 1)
- * @returns A knowledge space with a linear prerequisite chain
+ * @param {number} length - Number of nodes in the chain (must be >= 1)
+ * @returns {KnowledgeSpace} - A knowledge space with a linear prerequisite chain
  * @throws If length is less than 1
  */
 export function buildLinearPlacementChain(length: number): KnowledgeSpace {
@@ -283,9 +283,9 @@ export interface DeterministicProbeAdapterOptions {
 
 /**
  * Create a probe adapter with preset results and call tracking for testing.
- * @param preset - Map of node IDs to expected probe results
- * @param options - Optional default result and domain configuration
- * @returns A deterministic probe adapter with call tracking
+ * @param {Record<string, ProbeResult>} preset - Map of node IDs to expected probe results
+ * @param {DeterministicProbeAdapterOptions} options - Optional default result and domain configuration
+ * @returns {DeterministicProbeAdapter} - A deterministic probe adapter with call tracking
  */
 export function createDeterministicProbeAdapter(
   preset: Record<string, ProbeResult>,
@@ -329,8 +329,8 @@ export interface MockPlacementResultOverrides {
 
 /**
  * Create a mock placement result with optional field overrides.
- * @param overrides - Optional overrides for nodeId, masteryEstimate, confidence, and metadata
- * @returns A PlacementResult with defaults or overridden values
+ * @param {MockPlacementResultOverrides} overrides - Optional overrides for nodeId, masteryEstimate, confidence, and metadata
+ * @returns {PlacementResult} - A PlacementResult with defaults or overridden values
  */
 export function createMockPlacementResult(
   overrides: MockPlacementResultOverrides = {},

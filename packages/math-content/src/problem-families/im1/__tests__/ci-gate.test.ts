@@ -90,8 +90,8 @@ const REQUIRED_SEEDS = 50;
 
 /**
  * Adapt an IM1 generator entry to the GeneratorLike interface for the QA harness.
- * @param entry - IM1 generator entry to adapt
- * @returns GeneratorLike-compatible object
+ * @param {IM1GeneratorEntry} entry - IM1 generator entry to adapt
+ * @returns {GeneratorLike} - GeneratorLike-compatible object
  */
 function adapt(entry: IM1GeneratorEntry): GeneratorLike {
   return {
@@ -116,7 +116,7 @@ function adapt(entry: IM1GeneratorEntry): GeneratorLike {
 
 /**
  * Collect all registered IM1 generator entries into an array.
- * @returns Array of IM1 generator entries
+ * @returns {IM1GeneratorEntry[]} - Array of IM1 generator entries
  */
 function collectRegisteredEntries(): IM1GeneratorEntry[] {
   const entries: IM1GeneratorEntry[] = [];
@@ -128,7 +128,7 @@ function collectRegisteredEntries(): IM1GeneratorEntry[] {
 
 /**
  * Load skill IDs for the locked vertical-slice module from rollout nodes.
- * @returns Array of skill node IDs in the vertical slice
+ * @returns {string[]} - Array of skill node IDs in the vertical slice
  */
 function loadVerticalSliceSkillIds(): string[] {
   const meta = JSON.parse(readFileSync(METADATA_JSON, 'utf-8')) as {

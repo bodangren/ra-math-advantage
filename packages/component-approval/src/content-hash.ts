@@ -1,7 +1,7 @@
 /**
  * Computes SHA-256 hash of a component's content for change detection.
- * @param message - String message to hash
- * @returns Hex-encoded SHA-256 hash string
+ * @param {string} message - String message to hash
+ * @returns {Promise<string>} - Hex-encoded SHA-256 hash string
  */
 async function sha256(message: string): Promise<string> {
   const msgBuffer = new TextEncoder().encode(message);
@@ -21,8 +21,8 @@ export interface HashableComponent {
 
 /**
  * Computes a SHA-256 content hash for a component to detect changes.
- * @param component - Component with kind, key, props, and grading config
- * @returns Hex-encoded SHA-256 hash string
+ * @param {HashableComponent} component - Component with kind, key, props, and grading config
+ * @returns {Promise<string>} - Hex-encoded SHA-256 hash string
  */
 export async function computeComponentContentHash(component: HashableComponent): Promise<string> {
   const hashable = {
@@ -39,8 +39,8 @@ export async function computeComponentContentHash(component: HashableComponent):
 
 /**
  * Recursively sorts object keys for stable JSON serialization.
- * @param obj - Value to recursively sort
- * @returns Object with all keys sorted alphabetically
+ * @param {unknown} obj - Value to recursively sort
+ * @returns {unknown} - Object with all keys sorted alphabetically
  */
 function deepSortKeys(obj: unknown): unknown {
   if (obj === null || typeof obj !== "object") {

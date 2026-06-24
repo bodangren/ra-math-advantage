@@ -30,7 +30,7 @@ export interface FooterProps {
 
 /**
  * Render a site footer with brand info, link sections, and copyright.
- * @param props - Brand name, description, link sections, and styling options
+ * @param {FooterProps} props - Brand name, description, link sections, and styling options
  */
 export function Footer({
   brandName,

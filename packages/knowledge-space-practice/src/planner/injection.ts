@@ -23,7 +23,7 @@ export interface PlanRemediationInjectionInput {
  * Dedup policy: if the same activityId appears in both lists, the injected
  * copy wins (stays at the front) and the matching next-list entry is removed.
  *
- * @returns A new array; does not mutate inputs.
+ * @returns {readonly PlannedActivity[]} - A new array; does not mutate inputs.
  */
 export function planRemediationInjection(
   input: PlanRemediationInjectionInput,

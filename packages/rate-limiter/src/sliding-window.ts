@@ -22,10 +22,10 @@ export interface RateLimitResult {
 
 /**
  * Get the current rate limit status from a record and config.
- * @param record - Existing rate limit record or null
- * @param config - Rate limit configuration
- * @param now - Current timestamp in milliseconds
- * @returns Rate limit status with remaining count and expiry
+ * @param {RateLimitRecord | null | undefined} record - Existing rate limit record or null
+ * @param {RateLimitConfig} config - Rate limit configuration
+ * @param {number} now - Current timestamp in milliseconds
+ * @returns {RateLimitStatus} - Rate limit status with remaining count and expiry
  */
 export function getStatus(
   record: RateLimitRecord | null | undefined,
@@ -62,10 +62,10 @@ export interface CheckResult {
 
 /**
  * Check rate limit and determine the required database action.
- * @param record - Existing rate limit record or null
- * @param config - Rate limit configuration
- * @param now - Current timestamp in milliseconds
- * @returns Check result with action type and rate limit outcome
+ * @param {RateLimitRecord | null | undefined} record - Existing rate limit record or null
+ * @param {RateLimitConfig} config - Rate limit configuration
+ * @param {number} now - Current timestamp in milliseconds
+ * @returns {CheckResult} - Check result with action type and rate limit outcome
  */
 export function checkAndIncrement(
   record: RateLimitRecord | null | undefined,
@@ -117,8 +117,8 @@ export function checkAndIncrement(
 
 /**
  * Check if an error is a duplicate insert error from a unique constraint.
- * @param e - The error to check
- * @returns True if the error indicates a duplicate key violation
+ * @param {unknown} e - The error to check
+ * @returns {boolean} - True if the error indicates a duplicate key violation
  */
 export function isDuplicateInsertError(e: unknown): boolean {
   const message = e instanceof Error ? e.message : String(e);
@@ -127,8 +127,8 @@ export function isDuplicateInsertError(e: unknown): boolean {
 
 /**
  * Format a Retry-After header value in seconds from a window expiry timestamp.
- * @param windowExpiresAt - Timestamp when the rate limit window expires
- * @returns Seconds until the window expires (minimum 1)
+ * @param {number} windowExpiresAt - Timestamp when the rate limit window expires
+ * @returns {number} - Seconds until the window expires (minimum 1)
  */
 export function formatRetryAfter(windowExpiresAt: number): number {
   return Math.max(1, Math.ceil((windowExpiresAt - Date.now()) / 1000));

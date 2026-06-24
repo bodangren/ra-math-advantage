@@ -78,8 +78,8 @@ function randInt(rand: () => number, lo: number, hi: number): number {
  *
  * Deterministic: same seed → identical output.
  *
- * @param options.seed — PRNG seed (integer).
- * @returns A RationalProblem with structural features pre-computed.
+ * @param {number;} options.seed - — PRNG seed (integer).
+ * @returns {RationalProblem} - A RationalProblem with structural features pre-computed.
  */
 export function generateRationalProblem(options: {
   seed: number;

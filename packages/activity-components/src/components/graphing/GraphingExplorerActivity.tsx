@@ -11,8 +11,8 @@ export interface GraphingExplorerActivityProps {
 
 /**
  * Render a graphing explorer activity with default equation and submission handling.
- * @param props - The activity configuration including ID, mode, and callbacks
- * @returns The activity component JSX
+ * @param {GraphingExplorerActivityProps} props - The activity configuration including ID, mode, and callbacks
+ * @returns {import("react").JSX.Element} The activity component JSX
  */
 export function GraphingExplorerActivity({
   activityId,

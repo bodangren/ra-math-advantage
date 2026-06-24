@@ -17,12 +17,12 @@ import { getRecommendedNext } from '../planner/recommended-next';
 
 /**
  * Compute the mastery state of a node based on learner state and prerequisites.
- * @param nodeId - The node ID to evaluate
- * @param learnerState - Mapping of node IDs to mastery states
- * @param nodeMap - Map of node IDs to node objects
- * @param edges - Knowledge space edges
- * @param masteredIds - Set of already mastered node IDs
- * @returns Computed node state
+ * @param {string} nodeId - The node ID to evaluate
+ * @param {Record<string, 'mastered' | 'ready' | 'blocked' | 'review_due'>} learnerState - Mapping of node IDs to mastery states
+ * @param {Map<string, KnowledgeSpaceNode>} nodeMap - Map of node IDs to node objects
+ * @param {KnowledgeSpaceEdge[]} edges - Knowledge space edges
+ * @param {Set<string>} masteredIds - Set of already mastered node IDs
+ * @returns {'mastered' | 'ready' | 'blocked' | 'review_due' | 'unknown'} - Computed node state
  */
 function computeNodeState(
   nodeId: string,
@@ -51,9 +51,9 @@ function computeNodeState(
 
 /**
  * Convert a knowledge space node into a visual node representation.
- * @param node - The knowledge space node
- * @param state - Computed mastery state
- * @returns Visual node for rendering
+ * @param {KnowledgeSpaceNode} node - The knowledge space node
+ * @param {VisualNodeV1['state']} state - Computed mastery state
+ * @returns {VisualNodeV1} - Visual node for rendering
  */
 function toVisualNode(
   node: KnowledgeSpaceNode,
@@ -71,9 +71,9 @@ function toVisualNode(
 
 /**
  * Convert knowledge space edges into visual edges filtered by type.
- * @param edges - Knowledge space edges
- * @param edgeTypes - Edge types to include in the output
- * @returns Filtered visual edges
+ * @param {KnowledgeSpaceEdge[]} edges - Knowledge space edges
+ * @param {Array<'prerequisite' | 'supports' | 'extends'>} edgeTypes - Edge types to include in the output
+ * @returns {VisualEdgeV1[]} - Filtered visual edges
  */
 function toVisualEdges(
   edges: KnowledgeSpaceEdge[],
@@ -108,10 +108,10 @@ function toVisualEdges(
  * payloads — they do not expose raw graph files. UI components must consume
  * these payloads rather than inferring canonical graph state.
  *
- * @param nodes - Knowledge space nodes
- * @param edges - Knowledge space edges
- * @param learnerState - Optional mapping from node IDs to mastery states
- * @returns StudentVisualizationV1 validated against studentVisualizationV1Schema
+ * @param {KnowledgeSpaceNode[]} nodes - Knowledge space nodes
+ * @param {KnowledgeSpaceEdge[]} edges - Knowledge space edges
+ * @param {Record<string, 'mastered' | 'ready' | 'blocked' | 'review_due'>} learnerState - Optional mapping from node IDs to mastery states
+ * @returns {StudentVisualizationV1} - StudentVisualizationV1 validated against studentVisualizationV1Schema
  */
 export function projectStudentVisualization(
   nodes: KnowledgeSpaceNode[],
@@ -262,11 +262,11 @@ export function projectStudentVisualization(
  * graph state into what the learner can do, what to focus on next, what's blocking
  * progress, and how progress is trending.
  *
- * @param nodes - Knowledge space nodes
- * @param edges - Knowledge space edges
- * @param learnerState - Optional mapping from node IDs to mastery states
- * @param history - Optional mastery snapshots for time-delta trend computation
- * @returns ParentVisualizationV1 validated against parentVisualizationV1Schema
+ * @param {KnowledgeSpaceNode[]} nodes - Knowledge space nodes
+ * @param {KnowledgeSpaceEdge[]} edges - Knowledge space edges
+ * @param {Record<string, string>} learnerState - Optional mapping from node IDs to mastery states
+ * @param {ProgressTrendHistory} history - Optional mastery snapshots for time-delta trend computation
+ * @returns {ParentVisualizationV1} - ParentVisualizationV1 validated against parentVisualizationV1Schema
  */
 export function projectParentVisualization(
   nodes: KnowledgeSpaceNode[],
@@ -351,10 +351,10 @@ export function projectParentVisualization(
  * nodes, prerequisite gaps, misconception clusters, intervention groups, and
  * standards coverage.
  *
- * @param nodes - Knowledge space nodes
- * @param edges - Knowledge space edges
- * @param classStats - Optional mapping from node IDs to { mastered, total } counts
- * @returns TeacherVisualizationV1 validated against teacherVisualizationV1Schema
+ * @param {KnowledgeSpaceNode[]} nodes - Knowledge space nodes
+ * @param {KnowledgeSpaceEdge[]} edges - Knowledge space edges
+ * @param {Record<string, { mastered: number; total: number }>} classStats - Optional mapping from node IDs to { mastered, total } counts
+ * @returns {TeacherVisualizationV1} - TeacherVisualizationV1 validated against teacherVisualizationV1Schema
  */
 export function projectTeacherVisualization(
   nodes: KnowledgeSpaceNode[],

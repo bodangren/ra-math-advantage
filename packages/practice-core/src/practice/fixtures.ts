@@ -29,8 +29,8 @@ export type MockPracticeEnvelopeOverrides = {
 
 /**
  * Create a mock practice.v1 submission envelope for testing.
- * @param overrides - Partial overrides for any envelope field
- * @returns Validated practice submission envelope
+ * @param {MockPracticeEnvelopeOverrides} overrides - Partial overrides for any envelope field
+ * @returns {PracticeSubmissionEnvelope} - Validated practice submission envelope
  */
 export function createMockPracticeEnvelope(
   overrides: MockPracticeEnvelopeOverrides = {},

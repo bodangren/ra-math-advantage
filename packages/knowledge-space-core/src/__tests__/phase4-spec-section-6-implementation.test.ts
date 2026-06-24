@@ -42,7 +42,7 @@ const SPEC_PATH = resolve(__dirname, '../../../../kst-srs.v2/SPECIFICATION.md');
 
 /**
  * Read the full SPECIFICATION.md file contents.
- * @returns The spec file as a UTF-8 string
+ * @returns {string} - The spec file as a UTF-8 string
  */
 function readSpec(): string {
   return readFileSync(SPEC_PATH, 'utf-8');
@@ -50,8 +50,8 @@ function readSpec(): string {
 
 /**
  * Extract section 6 (Edge Calibration Loop) content from the spec markdown.
- * @param spec - The full spec markdown string
- * @returns The extracted section 6 content, or empty string if not found
+ * @param {string} spec - The full spec markdown string
+ * @returns {string} - The extracted section 6 content, or empty string if not found
  */
 function extractSection6(spec: string): string {
   // The spec is markdown; §6 is the `Edge Calibration Loop` section.

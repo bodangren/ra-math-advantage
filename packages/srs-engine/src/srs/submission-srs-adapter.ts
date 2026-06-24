@@ -243,7 +243,7 @@ export class SubmissionSrsAdapter {
 
 /**
  * Generate a unique review ID using random hex bytes.
- * @returns Review ID string prefixed with 'rev_'
+ * @returns {string} - Review ID string prefixed with 'rev_'
  */
 function generateReviewId(): string {
   const bytes = new Uint8Array(16);

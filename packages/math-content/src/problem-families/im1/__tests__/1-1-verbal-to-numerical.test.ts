@@ -78,8 +78,8 @@ const RENDERER_KEY = 'step-by-step-solver' as const;
 // real generator output.
 /**
  * Adapt an IM1 generator entry to the GeneratorLike interface for the QA harness.
- * @param entry - IM1 generator entry to adapt
- * @returns GeneratorLike-compatible object
+ * @param {IM1GeneratorEntry} entry - IM1 generator entry to adapt
+ * @returns {GeneratorLike} - GeneratorLike-compatible object
  */
 function adapt(entry: IM1GeneratorEntry): GeneratorLike {
   return {
@@ -104,7 +104,7 @@ function adapt(entry: IM1GeneratorEntry): GeneratorLike {
 
 /**
  * Find the IM1 generator entry registered for the target skill ID.
- * @returns Matching IM1 generator entry
+ * @returns {IM1GeneratorEntry} - Matching IM1 generator entry
  * @throws Error if no generator is registered for the skill
  */
 function findEntryForSkill(): IM1GeneratorEntry {

@@ -7,8 +7,8 @@ export interface GradebookCsvOptions {
 
 /**
  * Escape a value for safe inclusion in a CSV cell.
- * @param value - The value to escape
- * @returns CSV-safe string
+ * @param {string | number | null} value - The value to escape
+ * @returns {string} - CSV-safe string
  */
 function escapeCsvValue(value: string | number | null): string {
   if (value === null) return '';
@@ -24,10 +24,10 @@ function escapeCsvValue(value: string | number | null): string {
 
 /**
  * Build a CSV string from gradebook rows and lessons.
- * @param rows - Gradebook rows to export
- * @param lessons - Gradebook lesson metadata
- * @param options - Export options for mastery level and color coding
- * @returns CSV-formatted string
+ * @param {GradebookRow[]} rows - Gradebook rows to export
+ * @param {GradebookLesson[]} lessons - Gradebook lesson metadata
+ * @param {GradebookCsvOptions} options - Export options for mastery level and color coding
+ * @returns {string} - CSV-formatted string
  */
 export function buildGradebookCsv(
   rows: GradebookRow[],

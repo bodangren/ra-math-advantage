@@ -44,8 +44,8 @@ export interface AlgebraicSubmissionInput {
 
 /**
  * Build a practice.v1 submission from algebraic step-by-step solver input.
- * @param input - Submission input with steps, hints, and problem metadata
- * @returns Practice.v1 formatted submission object
+ * @param {AlgebraicSubmissionInput} input - Submission input with steps, hints, and problem metadata
+ * @returns {{ contractVersion: "practice.v1"; activityId: string; mode: string; status: "submitted"; attemptNumber: number; submittedAt: string; answers: Record<string, unknown>; parts: { partId: string; rawAnswer: unknown; normalizedAnswer?: string | undefined; isCorrect?: boolean | undefined; score?: number | undefined; maxScore?: number | undefined; misconceptionTags?: string[] | undefined; hintsUsed?: number | undefined; revealStepsSeen?: number | undefined; changedCount?: number | undefined; firstInteractionAt?: string | undefined; answeredAt?: string | undefined; wallClockMs?: number | undefined; activeMs?: number | undefined; }[]; artifact: { problemType: "quadratic_formula" | "factoring" | "completing_the_square" | "square_root_property" | "graphing"; equation: string; steps: { stepIndex: number; userAnswer: string | null; isCorrect: boolean; }[]; hintsUsed: number; }; interactionHistory: { type: string; timestamp: number; data?: unknown; }[]; isCorrect: boolean; }} Practice.v1 formatted submission object
  */
 export function buildAlgebraicSubmission(input: AlgebraicSubmissionInput) {
   const {
