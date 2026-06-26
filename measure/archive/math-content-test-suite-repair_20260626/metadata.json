@@ -1,0 +1,14 @@
+{
+  "track_id": "math-content-test-suite-repair_20260626",
+  "title": "Repair the red math-content test suite",
+  "type": "bug",
+  "status": "archived",
+  "priority": "high",
+  "created": "2026-06-26",
+  "spec_mode": "classic",
+  "origin": "Surfaced during the 2026-06-26 review of the code-review-remediation + spec-compliance 24h commit window. The package suite `packages/math-content` is red (17 failed / 373 passed) independent of the remediation FRs; recent per-package green claims were file-scoped and masked it.",
+  "related_tracks": [
+    "code-review-remediation_20260624",
+    "im1-practice-readiness_20260609 (archived)"
+  ]
+}
