@@ -59,6 +59,7 @@ import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { VERTICAL_SLICE_MODULE } from '../vertical-slice';
 
 import {
   verifyGenerator,
@@ -81,11 +82,6 @@ const NODES_JSON = resolve(
   PKG_ROOT,
   'apps/integrated-math-1/curriculum/skill-graph/nodes.json',
 );
-const METADATA_JSON = resolve(
-  PKG_ROOT,
-  'measure/tracks/im1-practice-readiness_20260609/metadata.json',
-);
-
 const REQUIRED_SEEDS = 50;
 
 /**
@@ -131,10 +127,7 @@ function collectRegisteredEntries(): IM1GeneratorEntry[] {
  * @returns {string[]} - Array of skill node IDs in the vertical slice
  */
 function loadVerticalSliceSkillIds(): string[] {
-  const meta = JSON.parse(readFileSync(METADATA_JSON, 'utf-8')) as {
-    verticalSliceModule?: string;
-  };
-  const vsm = String(meta.verticalSliceModule);
+  const vsm = VERTICAL_SLICE_MODULE;
   const nodes = JSON.parse(readFileSync(NODES_JSON, 'utf-8')) as {
     nodes: Array<{ id: string; kind: string; metadata?: { module?: string } }>;
   };

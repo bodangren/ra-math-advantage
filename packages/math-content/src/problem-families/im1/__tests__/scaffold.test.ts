@@ -52,6 +52,7 @@ import { describe, it, expect } from 'vitest';
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { resolve, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { VERTICAL_SLICE_MODULE } from '../vertical-slice';
 
 // Intentional: these modules do not exist at HEAD → Red.
 import { IM1_PROBLEM_FAMILIES as IM1_FROM_SUBDIR } from '../index';
@@ -136,14 +137,7 @@ describe('IM1 scaffold — IM1_PROBLEM_FAMILIES export (Phase 2 Task 1)', () => 
 
 describe('IM1 scaffold — vertical-slice module coverage (Phase 2 Task 1)', () => {
   it('IM1_PROBLEM_FAMILIES contains at least one entry for the locked vertical-slice module', () => {
-    const metaPath = resolve(
-      PKG_ROOT,
-      'measure/tracks/im1-practice-readiness_20260609/metadata.json',
-    );
-    const meta = JSON.parse(readFileSync(metaPath, 'utf-8')) as {
-      verticalSliceModule?: string;
-    };
-    const vsm = Number(meta.verticalSliceModule);
+    const vsm = Number(VERTICAL_SLICE_MODULE);
     const entries = (IM1_FROM_SUBDIR as ProblemFamilyInput[]).filter(
       (e) => {
         const m = (e.metadata ?? {}) as { module?: number | string };
@@ -157,14 +151,7 @@ describe('IM1 scaffold — vertical-slice module coverage (Phase 2 Task 1)', () 
   it('vertical-slice module entries cover every module-1 skill from the rollout gap queue', () => {
     // Reads the live rollout artifact to enforce that Phase 2 Task 1 wires
     // every Module 1 skill (not a partial subset that hides the long tail).
-    const metaPath = resolve(
-      PKG_ROOT,
-      'measure/tracks/im1-practice-readiness_20260609/metadata.json',
-    );
-    const meta = JSON.parse(readFileSync(metaPath, 'utf-8')) as {
-      verticalSliceModule?: string;
-    };
-    const vsm = String(meta.verticalSliceModule);
+    const vsm = String(VERTICAL_SLICE_MODULE);
     const queuePath = resolve(
       PKG_ROOT,
       'apps/integrated-math-1/curriculum/skill-graph/generator-gap-queue.json',

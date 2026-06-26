@@ -107,6 +107,7 @@ import { describe, it, expect } from 'vitest';
 import { readFileSync, existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { VERTICAL_SLICE_MODULE } from '../vertical-slice';
 
 import {
   IM1_GENERATORS,
@@ -161,10 +162,6 @@ const GENERATOR_GAP_QUEUE_JSON = resolve(
   IM1_ROLLOUT_DIR,
   'generator-gap-queue.json',
 );
-const METADATA_JSON = resolve(
-  PKG_ROOT,
-  'measure/tracks/im1-practice-readiness_20260609/metadata.json',
-);
 
 // ---------------------------------------------------------------------------
 // Live state — what the audit doc SHOULD claim after Green.
@@ -196,14 +193,11 @@ function loadAuditText(): string {
 }
 
 /**
- * Load the vertical-slice module ID from track metadata.
+ * Load the locked vertical-slice module ID (package-owned constant).
  * @returns {string} - Module ID string
  */
 function loadVerticalSliceModule(): string {
-  const meta = JSON.parse(readFileSync(METADATA_JSON, 'utf-8')) as {
-    verticalSliceModule?: string;
-  };
-  return String(meta.verticalSliceModule);
+  return VERTICAL_SLICE_MODULE;
 }
 
 /**

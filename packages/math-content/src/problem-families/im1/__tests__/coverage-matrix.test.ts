@@ -45,6 +45,7 @@ import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { VERTICAL_SLICE_MODULE } from '../vertical-slice';
 
 import {
   buildCoverageMatrix,
@@ -294,30 +295,14 @@ describe('Coverage matrix — integration with rollout-audit (Phase 1, Task 1↔
 // ---------------------------------------------------------------------------
 
 describe('Coverage matrix — vertical-slice module lock (Phase 1, Task 3)', () => {
-  it('metadata.json declares verticalSliceModule as a single module id', () => {
-    const metaPath = resolve(
-      PKG_ROOT,
-      'measure/tracks/im1-practice-readiness_20260609/metadata.json',
-    );
-    const meta = JSON.parse(readFileSync(metaPath, 'utf-8')) as Record<
-      string,
-      unknown
-    >;
-    const vsm = meta.verticalSliceModule;
+  it('VERTICAL_SLICE_MODULE is a single module id', () => {
+    const vsm = VERTICAL_SLICE_MODULE;
     expect(typeof vsm).toBe('string');
     expect(vsm).toMatch(/^[1-9]|1[0-4]$/);
   });
 
   it('vertical-slice module is one of the 14 IM1 modules in the matrix', () => {
-    const metaPath = resolve(
-      PKG_ROOT,
-      'measure/tracks/im1-practice-readiness_20260609/metadata.json',
-    );
-    const meta = JSON.parse(readFileSync(metaPath, 'utf-8')) as Record<
-      string,
-      unknown
-    >;
-    const vsm = meta.verticalSliceModule as string;
+    const vsm = VERTICAL_SLICE_MODULE;
     const matrix = buildCoverageMatrix();
     const moduleIds = new Set(
       (matrix.byModule as CoverageMatrixByModule[]).map((m) => m.module),

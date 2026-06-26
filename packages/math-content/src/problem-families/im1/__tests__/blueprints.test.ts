@@ -61,11 +61,10 @@
 // This is the Kind B live-behavior proof required by test-strategy §7.
 //
 // Bounded scope (test-strategy §3 / §7): every filter reads the
-// vertical-slice module id from
-// `measure/tracks/im1-practice-readiness_20260609/metadata.json
-// .verticalSliceModule`. At HEAD that is locked to "1" (six skills).
-// A Green commit that "fixes" a non-vertical-slice blueprint will not
-// flip these tests, so the contract is tight to the locked scope.
+// vertical-slice module id from the package-owned `VERTICAL_SLICE_MODULE`
+// constant (`../vertical-slice`), locked to "1" (six skills). A Green
+// commit that "fixes" a non-vertical-slice blueprint will not flip these
+// tests, so the contract is tight to the locked scope.
 //
 // Boundary lint (test-strategy §4): this file lives under
 // `packages/math-content/src/problem-families/im1/` and only imports
@@ -82,6 +81,7 @@ import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { VERTICAL_SLICE_MODULE } from '../vertical-slice';
 
 import { IM1_GENERATORS, type IM1GeneratorEntry } from '../generators';
 import {
@@ -104,10 +104,6 @@ const IM1_ROLLOUT_DIR = resolve(
 const BLUEPRINTS_JSON = resolve(IM1_ROLLOUT_DIR, 'blueprints.json');
 const NODES_JSON = resolve(IM1_ROLLOUT_DIR, 'nodes.json');
 const EDGES_JSON = resolve(IM1_ROLLOUT_DIR, 'edges.json');
-const METADATA_JSON = resolve(
-  PKG_ROOT,
-  'measure/tracks/im1-practice-readiness_20260609/metadata.json',
-);
 
 const STUB_GENERATOR_REASON = 'Generator not yet implemented for IM1 rollout';
 const STUB_GENERATOR_TYPE = 'generator';
@@ -140,17 +136,14 @@ type Edge = {
 type EdgesFile = { edges: Edge[] };
 
 /**
- * Load the vertical-slice module ID from track metadata.
+ * Load the locked vertical-slice module ID (package-owned constant).
  * @returns {string} - Module ID string
  */
 function loadVerticalSliceModule(): string {
-  const meta = JSON.parse(readFileSync(METADATA_JSON, 'utf-8')) as {
-    verticalSliceModule?: string;
-  };
-  const vsm = String(meta.verticalSliceModule);
+  const vsm = VERTICAL_SLICE_MODULE;
   if (!/^[0-9]+$/.test(vsm)) {
     throw new Error(
-      `metadata.json.verticalSliceModule is not a numeric module id: ${vsm}`,
+      `VERTICAL_SLICE_MODULE is not a numeric module id: ${vsm}`,
     );
   }
   return vsm;
