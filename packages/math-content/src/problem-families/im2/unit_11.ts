@@ -3,7 +3,7 @@ import type { ProblemFamilyInput } from '@math-platform/practice-core';
 export const UNIT11_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   // Polynomial Vocabulary
   {
-    problemFamilyId: "fill-in-the-blank:polynomial-vocabulary",
+    variantKey: "fill-in-the-blank:polynomial-vocabulary",
     componentKey: "fill-in-the-blank",
     displayName: "Polynomial Vocabulary",
     description: "Identify polynomial terms, degree, leading coefficient, and classify by number of terms",
@@ -13,7 +13,7 @@ export const UNIT11_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Add and Subtract Polynomials
   {
-    problemFamilyId: "step-by-step-solver:add-subtract-polynomials",
+    variantKey: "step-by-step-solver:add-subtract-polynomials",
     componentKey: "step-by-step-solver",
     displayName: "Add and Subtract Polynomials",
     description: "Add and subtract polynomial expressions by combining like terms",
@@ -23,7 +23,7 @@ export const UNIT11_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Multiply Polynomials
   {
-    problemFamilyId: "step-by-step-solver:multiply-polynomials",
+    variantKey: "step-by-step-solver:multiply-polynomials",
     componentKey: "step-by-step-solver",
     displayName: "Multiply Polynomials",
     description: "Multiply polynomials using the distributive property and FOIL method",
@@ -33,7 +33,7 @@ export const UNIT11_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Special Products
   {
-    problemFamilyId: "step-by-step-solver:special-products",
+    variantKey: "step-by-step-solver:special-products",
     componentKey: "step-by-step-solver",
     displayName: "Special Products",
     description: "Recognize and apply patterns for perfect square trinomials and difference of squares",
@@ -43,7 +43,7 @@ export const UNIT11_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Factoring Polynomials
   {
-    problemFamilyId: "step-by-step-solver:factoring-polynomials",
+    variantKey: "step-by-step-solver:factoring-polynomials",
     componentKey: "step-by-step-solver",
     displayName: "Factoring Polynomials",
     description: "Factor polynomials using GCF, grouping, and trinomial factoring methods",
@@ -53,7 +53,7 @@ export const UNIT11_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Solving Polynomial Equations
   {
-    problemFamilyId: "step-by-step-solver:solving-polynomial-equations",
+    variantKey: "step-by-step-solver:solving-polynomial-equations",
     componentKey: "step-by-step-solver",
     displayName: "Solving Polynomial Equations",
     description: "Solve polynomial equations by factoring and using the zero product property",

@@ -3,7 +3,7 @@ import type { ProblemFamilyInput } from '@math-platform/practice-core';
 export const UNIT9_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   // Solving Linear Equations
   {
-    problemFamilyId: "step-by-step-solver:solving-linear-equations",
+    variantKey: "step-by-step-solver:solving-linear-equations",
     componentKey: "step-by-step-solver",
     displayName: "Solving Linear Equations",
     description: "Solve one-variable linear equations including multi-step and variables on both sides",
@@ -13,7 +13,7 @@ export const UNIT9_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Graphing Linear Equations
   {
-    problemFamilyId: "graphing-explorer:graphing-linear-equations",
+    variantKey: "graphing-explorer:graphing-linear-equations",
     componentKey: "graphing-explorer",
     displayName: "Graphing Linear Equations",
     description: "Graph linear equations in slope-intercept and standard form",
@@ -23,7 +23,7 @@ export const UNIT9_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Linear Inequalities
   {
-    problemFamilyId: "graphing-explorer:linear-inequalities",
+    variantKey: "graphing-explorer:linear-inequalities",
     componentKey: "graphing-explorer",
     displayName: "Linear Inequalities",
     description: "Graph linear inequalities on the coordinate plane and identify solution regions",
@@ -33,7 +33,7 @@ export const UNIT9_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Systems of Equations
   {
-    problemFamilyId: "step-by-step-solver:systems-of-equations",
+    variantKey: "step-by-step-solver:systems-of-equations",
     componentKey: "step-by-step-solver",
     displayName: "Systems of Equations",
     description: "Solve systems of linear equations using substitution and elimination methods",
@@ -43,7 +43,7 @@ export const UNIT9_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Systems of Inequalities
   {
-    problemFamilyId: "graphing-explorer:systems-of-inequalities",
+    variantKey: "graphing-explorer:systems-of-inequalities",
     componentKey: "graphing-explorer",
     displayName: "Systems of Inequalities",
     description: "Graph systems of linear inequalities and identify the feasible region",

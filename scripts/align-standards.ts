@@ -126,7 +126,7 @@ function loadProblemFamilies(course: string): FamilyObjectiveMapping[] {
   if (course === 'im1') return [];
 
   try {
-    let families: Array<{ problemFamilyId: string; componentKey: string; displayName: string; description: string; objectiveIds: string[]; difficulty: string; metadata: Record<string, unknown> }>;
+    let families: Array<{ variantKey: string; componentKey: string; displayName: string; description: string; objectiveIds: string[]; difficulty: string; metadata: Record<string, unknown> }>;
     switch (course) {
       case 'im2':
         // Dynamic import would be complex in a script; instead parse directly
@@ -154,7 +154,7 @@ function loadProblemFamiliesFromFiles(course: string): FamilyObjectiveMapping[] 
     const content = fs.readFileSync(path.join(basePath, file), 'utf-8');
     // Extract objectiveIds arrays from family objects
     // Problem family objects can be multi-line; extract each family's key fields
-    const familyPattern = /problemFamilyId:\s*"([^"]+)"[^}]*?objectiveIds:\s*\[([^\]]*)\][^}]*?metadata:\s*\{[^}]*?module:\s*(\d+)[^}]*?\}/gs;
+    const familyPattern = /variantKey:\s*"([^"]+)"[^}]*?objectiveIds:\s*\[([^\]]*)\][^}]*?metadata:\s*\{[^}]*?module:\s*(\d+)[^}]*?\}/gs;
     let match: RegExpExecArray | null;
     while ((match = familyPattern.exec(content)) !== null) {
       const familyId = match[1];

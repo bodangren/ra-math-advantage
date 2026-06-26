@@ -98,7 +98,7 @@ describe('IM1 scaffold — IM1_PROBLEM_FAMILIES export (Phase 2 Task 1)', () => 
   it('every entry conforms to ProblemFamilyInput (problemFamilyId + componentKey + objectiveIds)', () => {
     for (const entry of IM1_FROM_SUBDIR as ProblemFamilyInput[]) {
       expect(entry).toMatchObject({
-        problemFamilyId: expect.any(String),
+        variantKey: expect.any(String),
         componentKey: expect.any(String),
         displayName: expect.any(String),
         objectiveIds: expect.any(Array),
@@ -109,7 +109,7 @@ describe('IM1 scaffold — IM1_PROBLEM_FAMILIES export (Phase 2 Task 1)', () => 
 
   it('problemFamilyId values are unique within IM1', () => {
     const ids = (IM1_FROM_SUBDIR as ProblemFamilyInput[]).map(
-      (f) => f.problemFamilyId,
+      (f) => f.variantKey,
     );
     expect(new Set(ids).size).toBe(ids.length);
   });

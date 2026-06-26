@@ -3,7 +3,7 @@ import type { ProblemFamilyInput } from '@math-platform/practice-core';
 export const UNIT4_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   // Pythagorean Theorem
   {
-    problemFamilyId: "step-by-step-solver:pythagorean-theorem",
+    variantKey: "step-by-step-solver:pythagorean-theorem",
     componentKey: "step-by-step-solver",
     displayName: "Pythagorean Theorem",
     description: "Use the Pythagorean theorem to find missing side lengths in right triangles",
@@ -13,7 +13,7 @@ export const UNIT4_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Special Right Triangles
   {
-    problemFamilyId: "step-by-step-solver:special-right-triangles",
+    variantKey: "step-by-step-solver:special-right-triangles",
     componentKey: "step-by-step-solver",
     displayName: "Special Right Triangles",
     description: "Solve problems involving 45-45-90 and 30-60-90 triangles",
@@ -23,7 +23,7 @@ export const UNIT4_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Sine, Cosine, Tangent
   {
-    problemFamilyId: "step-by-step-solver:trig-ratios-sin-cos-tan",
+    variantKey: "step-by-step-solver:trig-ratios-sin-cos-tan",
     componentKey: "step-by-step-solver",
     displayName: "Trigonometric Ratios",
     description: "Find sine, cosine, and tangent ratios and use them to solve for missing sides",
@@ -33,7 +33,7 @@ export const UNIT4_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Solving Right Triangles
   {
-    problemFamilyId: "step-by-step-solver:solving-right-triangles",
+    variantKey: "step-by-step-solver:solving-right-triangles",
     componentKey: "step-by-step-solver",
     displayName: "Solving Right Triangles",
     description: "Find all missing sides and angles of right triangles using trigonometry",
@@ -43,7 +43,7 @@ export const UNIT4_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Law of Sines
   {
-    problemFamilyId: "step-by-step-solver:law-of-sines",
+    variantKey: "step-by-step-solver:law-of-sines",
     componentKey: "step-by-step-solver",
     displayName: "Law of Sines",
     description: "Use the law of sines to solve non-right triangles",
@@ -53,7 +53,7 @@ export const UNIT4_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Law of Cosines
   {
-    problemFamilyId: "step-by-step-solver:law-of-cosines",
+    variantKey: "step-by-step-solver:law-of-cosines",
     componentKey: "step-by-step-solver",
     displayName: "Law of Cosines",
     description: "Use the law of cosines to solve non-right triangles",

@@ -3,7 +3,7 @@ import type { ProblemFamilyInput } from '@math-platform/practice-core';
 export const MODULE7_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   // Simplify Rational Expressions (HSA-APR.D.6)
   {
-    problemFamilyId: "step-by-step-solver:simplify-rational-expressions",
+    variantKey: "step-by-step-solver:simplify-rational-expressions",
     componentKey: "step-by-step-solver",
     displayName: "Simplify Rational Expressions",
     description: "Simplify rational expressions by factoring and canceling common factors",
@@ -13,7 +13,7 @@ export const MODULE7_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Multiply and Divide Rational Expressions (HSA-APR.D.6)
   {
-    problemFamilyId: "step-by-step-solver:multiply-divide-rational",
+    variantKey: "step-by-step-solver:multiply-divide-rational",
     componentKey: "step-by-step-solver",
     displayName: "Multiply and Divide Rational Expressions",
     description: "Multiply and divide rational expressions",
@@ -23,7 +23,7 @@ export const MODULE7_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Add and Subtract Rational Expressions (HSA-APR.D.6)
   {
-    problemFamilyId: "step-by-step-solver:add-subtract-rational",
+    variantKey: "step-by-step-solver:add-subtract-rational",
     componentKey: "step-by-step-solver",
     displayName: "Add and Subtract Rational Expressions",
     description: "Add and subtract rational expressions with monomial and polynomial denominators",
@@ -33,7 +33,7 @@ export const MODULE7_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Complex Fractions (HSA-APR.D.6)
   {
-    problemFamilyId: "step-by-step-solver:complex-fractions",
+    variantKey: "step-by-step-solver:complex-fractions",
     componentKey: "step-by-step-solver",
     displayName: "Simplify Complex Fractions",
     description: "Simplify complex fractions using LCD strategies",
@@ -43,7 +43,7 @@ export const MODULE7_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Graph Reciprocal Functions (HSF-IF.C.7d)
   {
-    problemFamilyId: "graphing-explorer:reciprocal-functions",
+    variantKey: "graphing-explorer:reciprocal-functions",
     componentKey: "graphing-explorer",
     displayName: "Graph Reciprocal Functions",
     description: "Graph reciprocal functions by making tables and analyzing asymptotes",
@@ -53,7 +53,7 @@ export const MODULE7_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Graph Rational Functions (HSF-IF.C.7d)
   {
-    problemFamilyId: "graphing-explorer:rational-functions",
+    variantKey: "graphing-explorer:rational-functions",
     componentKey: "graphing-explorer",
     displayName: "Graph Rational Functions",
     description: "Graph rational functions and identify vertical, horizontal, and oblique asymptotes",
@@ -63,7 +63,7 @@ export const MODULE7_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Variation (HSA-CED.A.2)
   {
-    problemFamilyId: "step-by-step-solver:direct-joint-variation",
+    variantKey: "step-by-step-solver:direct-joint-variation",
     componentKey: "step-by-step-solver",
     displayName: "Direct and Joint Variation",
     description: "Recognize and solve direct and joint variation equations",
@@ -72,7 +72,7 @@ export const MODULE7_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     metadata: { module: 7, topic: "variation" },
   },
   {
-    problemFamilyId: "step-by-step-solver:inverse-combined-variation",
+    variantKey: "step-by-step-solver:inverse-combined-variation",
     componentKey: "step-by-step-solver",
     displayName: "Inverse and Combined Variation",
     description: "Recognize and solve inverse and combined variation equations",
@@ -82,7 +82,7 @@ export const MODULE7_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Solve Rational Equations (HSA-REI.A.2)
   {
-    problemFamilyId: "step-by-step-solver:solve-rational-equations",
+    variantKey: "step-by-step-solver:solve-rational-equations",
     componentKey: "step-by-step-solver",
     displayName: "Solve Rational Equations",
     description: "Solve rational equations in one variable and check for extraneous solutions",
@@ -92,7 +92,7 @@ export const MODULE7_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Comprehension
   {
-    problemFamilyId: "comprehension-quiz:rational-functions-vocabulary",
+    variantKey: "comprehension-quiz:rational-functions-vocabulary",
     componentKey: "comprehension-quiz",
     displayName: "Rational Functions Vocabulary",
     description: "Assess understanding of rational function terminology",

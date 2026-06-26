@@ -3,7 +3,7 @@ import type { ProblemFamilyInput } from '@math-platform/practice-core';
 export const UNIT13_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   // Fundamental Trig Identities
   {
-    problemFamilyId: "step-by-step-solver:fundamental-trig-identities",
+    variantKey: "step-by-step-solver:fundamental-trig-identities",
     componentKey: "step-by-step-solver",
     displayName: "Fundamental Trig Identities",
     description: "Simplify expressions using reciprocal, quotient, and Pythagorean identities",
@@ -13,7 +13,7 @@ export const UNIT13_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Pythagorean Identities
   {
-    problemFamilyId: "step-by-step-solver:pythagorean-identities",
+    variantKey: "step-by-step-solver:pythagorean-identities",
     componentKey: "step-by-step-solver",
     displayName: "Pythagorean Identities",
     description: "Apply and prove Pythagorean identities to simplify and verify trig expressions",
@@ -23,7 +23,7 @@ export const UNIT13_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Sum and Difference Identities
   {
-    problemFamilyId: "step-by-step-solver:sum-difference-identities",
+    variantKey: "step-by-step-solver:sum-difference-identities",
     componentKey: "step-by-step-solver",
     displayName: "Sum and Difference Identities",
     description: "Use sum and difference formulas to find exact values of trigonometric functions",
@@ -33,7 +33,7 @@ export const UNIT13_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Double and Half-Angle Identities
   {
-    problemFamilyId: "step-by-step-solver:double-half-angle-identities",
+    variantKey: "step-by-step-solver:double-half-angle-identities",
     componentKey: "step-by-step-solver",
     displayName: "Double and Half-Angle Identities",
     description: "Apply double-angle and half-angle identities to evaluate and simplify expressions",
@@ -43,7 +43,7 @@ export const UNIT13_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Solving Trig Equations
   {
-    problemFamilyId: "step-by-step-solver:solving-trig-equations",
+    variantKey: "step-by-step-solver:solving-trig-equations",
     componentKey: "step-by-step-solver",
     displayName: "Solving Trigonometric Equations",
     description: "Solve trigonometric equations using identities and inverse trig functions",

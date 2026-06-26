@@ -3,7 +3,7 @@ import type { ProblemFamilyInput } from '@math-platform/practice-core';
 export const MODULE4_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   // Operations on Functions (HSF-BF.A.1)
   {
-    problemFamilyId: "step-by-step-solver:function-operations",
+    variantKey: "step-by-step-solver:function-operations",
     componentKey: "step-by-step-solver",
     displayName: "Operations on Functions",
     description: "Find sums, differences, products, quotients of functions",
@@ -12,7 +12,7 @@ export const MODULE4_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     metadata: { module: 4, topic: "function-operations" },
   },
   {
-    problemFamilyId: "step-by-step-solver:function-compositions",
+    variantKey: "step-by-step-solver:function-compositions",
     componentKey: "step-by-step-solver",
     displayName: "Composition of Functions",
     description: "Find compositions of functions and evaluate them",
@@ -22,7 +22,7 @@ export const MODULE4_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Inverse Functions (HSF-BF.B.4)
   {
-    problemFamilyId: "step-by-step-solver:find-inverse-functions",
+    variantKey: "step-by-step-solver:find-inverse-functions",
     componentKey: "step-by-step-solver",
     displayName: "Find Inverse Functions",
     description: "Find inverses of functions and verify using composition",
@@ -31,7 +31,7 @@ export const MODULE4_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     metadata: { module: 4, topic: "inverse-functions" },
   },
   {
-    problemFamilyId: "graphing-explorer:inverse-functions",
+    variantKey: "graphing-explorer:inverse-functions",
     componentKey: "graphing-explorer",
     displayName: "Explore Inverse Functions",
     description: "Explore inverse functions graphically using the horizontal line test",
@@ -41,7 +41,7 @@ export const MODULE4_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Radical Functions (N-RN.A.1, N-RN.A.2, HSF-IF.C.7a)
   {
-    problemFamilyId: "step-by-step-solver:nth-roots-rational-exponents",
+    variantKey: "step-by-step-solver:nth-roots-rational-exponents",
     componentKey: "step-by-step-solver",
     displayName: "Nth Roots and Rational Exponents",
     description: "Simplify expressions involving radicals and rational exponents",
@@ -50,7 +50,7 @@ export const MODULE4_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     metadata: { module: 4, topic: "radicals" },
   },
   {
-    problemFamilyId: "step-by-step-solver:radical-expressions",
+    variantKey: "step-by-step-solver:radical-expressions",
     componentKey: "step-by-step-solver",
     displayName: "Simplify Radical Expressions",
     description: "Simplify radical expressions using properties of radicals",
@@ -59,7 +59,7 @@ export const MODULE4_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     metadata: { module: 4, topic: "radicals" },
   },
   {
-    problemFamilyId: "graphing-explorer:square-root-functions",
+    variantKey: "graphing-explorer:square-root-functions",
     componentKey: "graphing-explorer",
     displayName: "Graph Square Root Functions",
     description: "Graph square root functions and identify key features",
@@ -68,7 +68,7 @@ export const MODULE4_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     metadata: { module: 4, topic: "radical-functions" },
   },
   {
-    problemFamilyId: "graphing-explorer:cube-root-functions",
+    variantKey: "graphing-explorer:cube-root-functions",
     componentKey: "graphing-explorer",
     displayName: "Graph Cube Root Functions",
     description: "Graph cube root functions and compare to square root functions",
@@ -78,7 +78,7 @@ export const MODULE4_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Solving Radical Equations
   {
-    problemFamilyId: "step-by-step-solver:solve-radical-equations",
+    variantKey: "step-by-step-solver:solve-radical-equations",
     componentKey: "step-by-step-solver",
     displayName: "Solve Radical Equations",
     description: "Solve radical equations and identify extraneous solutions",
@@ -87,7 +87,7 @@ export const MODULE4_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     metadata: { module: 4, topic: "radical-equations" },
   },
   {
-    problemFamilyId: "graphing-explorer:solve-radical-equations",
+    variantKey: "graphing-explorer:solve-radical-equations",
     componentKey: "graphing-explorer",
     displayName: "Solve Radical Equations by Graphing",
     description: "Solve radical equations by graphing and finding intersections",
@@ -97,7 +97,7 @@ export const MODULE4_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Transformations (HSF-BF.B.3)
   {
-    problemFamilyId: "graphing-explorer:function-transformations",
+    variantKey: "graphing-explorer:function-transformations",
     componentKey: "graphing-explorer",
     displayName: "Function Transformations",
     description: "Explore effects of transformations on function graphs",
@@ -107,7 +107,7 @@ export const MODULE4_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Comprehension
   {
-    problemFamilyId: "comprehension-quiz:inverse-radical-vocabulary",
+    variantKey: "comprehension-quiz:inverse-radical-vocabulary",
     componentKey: "comprehension-quiz",
     displayName: "Inverse and Radical Vocabulary",
     description: "Assess understanding of inverse function and radical terminology",

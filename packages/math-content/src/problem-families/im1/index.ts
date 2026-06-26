@@ -4,7 +4,7 @@ export { IM1_GENERATORS, type IM1GeneratorEntry } from './generators';
 
 export const IM1_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   {
-    problemFamilyId:
+    variantKey:
       'step-by-step-solver:translate-verbal-to-numerical',
     componentKey: 'step-by-step-solver',
     displayName: 'Translate Verbal Descriptions to Numerical Expressions',
@@ -17,7 +17,7 @@ export const IM1_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     metadata: { module: 1, topic: 'verbal-numerical-translation' },
   },
   {
-    problemFamilyId:
+    variantKey:
       'step-by-step-solver:algebraic-verbal-translation',
     componentKey: 'step-by-step-solver',
     displayName: 'Translate Between Algebraic and Verbal Expressions',
@@ -30,7 +30,7 @@ export const IM1_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     metadata: { module: 1, topic: 'algebraic-verbal-translation' },
   },
   {
-    problemFamilyId:
+    variantKey:
       'fill-in-the-blank:properties-of-equality',
     componentKey: 'fill-in-the-blank',
     displayName: 'Properties of Equality',
@@ -43,7 +43,7 @@ export const IM1_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     metadata: { module: 1, topic: 'properties-of-equality' },
   },
   {
-    problemFamilyId:
+    variantKey:
       'step-by-step-solver:distributive-property',
     componentKey: 'step-by-step-solver',
     displayName: 'Apply the Distributive Property',
@@ -56,7 +56,7 @@ export const IM1_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     metadata: { module: 1, topic: 'distributive-property' },
   },
   {
-    problemFamilyId:
+    variantKey:
       'comprehension-quiz:absolute-value-distance',
     componentKey: 'comprehension-quiz',
     displayName: 'Absolute Value and Distance',
@@ -69,7 +69,7 @@ export const IM1_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     metadata: { module: 1, topic: 'absolute-value-distance' },
   },
   {
-    problemFamilyId:
+    variantKey:
       'comprehension-quiz:ratios-and-percentages',
     componentKey: 'comprehension-quiz',
     displayName: 'Ratios and Percentages as Metrics',

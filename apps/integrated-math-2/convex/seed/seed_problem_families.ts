@@ -11,7 +11,7 @@ export const seedProblemFamilies = internalMutation({
       const parseResult = problemFamilySchema.safeParse(family);
       if (!parseResult.success) {
         results.push({
-          problemFamilyId: family.problemFamilyId,
+          problemFamilyId: family.variantKey,
           success: false,
           error: `Validation failed: ${parseResult.error.message}`,
         });
@@ -20,19 +20,19 @@ export const seedProblemFamilies = internalMutation({
 
       const existing = await ctx.db
         .query("problem_families")
-        .withIndex("by_problemFamilyId", (q) => q.eq("problemFamilyId", family.problemFamilyId))
+        .withIndex("by_problemFamilyId", (q) => q.eq("problemFamilyId", family.variantKey))
         .unique();
 
       if (existing) {
         results.push({
-          problemFamilyId: family.problemFamilyId,
+          problemFamilyId: family.variantKey,
           success: true,
         });
         continue;
       }
 
       await ctx.db.insert("problem_families", {
-        problemFamilyId: family.problemFamilyId,
+        problemFamilyId: family.variantKey,
         componentKey: family.componentKey,
         displayName: family.displayName,
         description: family.description,
@@ -42,7 +42,7 @@ export const seedProblemFamilies = internalMutation({
       });
 
       results.push({
-        problemFamilyId: family.problemFamilyId,
+        problemFamilyId: family.variantKey,
         success: true,
       });
     }

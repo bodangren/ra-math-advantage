@@ -3,7 +3,7 @@ import type { ProblemFamilyInput } from '@math-platform/practice-core';
 export const UNIT7_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   // Basic Probability
   {
-    problemFamilyId: "step-by-step-solver:basic-probability",
+    variantKey: "step-by-step-solver:basic-probability",
     componentKey: "step-by-step-solver",
     displayName: "Basic Probability",
     description: "Calculate probabilities of events using sample spaces and favorable outcomes",
@@ -13,7 +13,7 @@ export const UNIT7_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Counting Principle
   {
-    problemFamilyId: "step-by-step-solver:fundamental-counting-principle",
+    variantKey: "step-by-step-solver:fundamental-counting-principle",
     componentKey: "step-by-step-solver",
     displayName: "Fundamental Counting Principle",
     description: "Use the fundamental counting principle to determine the number of possible outcomes",
@@ -23,7 +23,7 @@ export const UNIT7_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Permutations
   {
-    problemFamilyId: "step-by-step-solver:permutations",
+    variantKey: "step-by-step-solver:permutations",
     componentKey: "step-by-step-solver",
     displayName: "Permutations",
     description: "Calculate permutations to find the number of arrangements when order matters",
@@ -33,7 +33,7 @@ export const UNIT7_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Combinations
   {
-    problemFamilyId: "step-by-step-solver:combinations",
+    variantKey: "step-by-step-solver:combinations",
     componentKey: "step-by-step-solver",
     displayName: "Combinations",
     description: "Calculate combinations to find the number of selections when order does not matter",
@@ -43,7 +43,7 @@ export const UNIT7_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Compound Probability
   {
-    problemFamilyId: "step-by-step-solver:compound-probability",
+    variantKey: "step-by-step-solver:compound-probability",
     componentKey: "step-by-step-solver",
     displayName: "Compound Probability",
     description: "Find probabilities of compound events using addition and multiplication rules",
@@ -53,7 +53,7 @@ export const UNIT7_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Expected Value
   {
-    problemFamilyId: "step-by-step-solver:expected-value",
+    variantKey: "step-by-step-solver:expected-value",
     componentKey: "step-by-step-solver",
     displayName: "Expected Value",
     description: "Calculate and interpret the expected value of a probability distribution",

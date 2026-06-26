@@ -3,7 +3,7 @@ import type { ProblemFamilyInput } from '@math-platform/practice-core';
 export const UNIT6_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   // Area of Polygons
   {
-    problemFamilyId: "step-by-step-solver:area-of-polygons",
+    variantKey: "step-by-step-solver:area-of-polygons",
     componentKey: "step-by-step-solver",
     displayName: "Area of Polygons",
     description: "Calculate the area of triangles, parallelograms, trapezoids, and regular polygons",
@@ -13,7 +13,7 @@ export const UNIT6_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Surface Area
   {
-    problemFamilyId: "step-by-step-solver:surface-area-3d",
+    variantKey: "step-by-step-solver:surface-area-3d",
     componentKey: "step-by-step-solver",
     displayName: "Surface Area",
     description: "Find the surface area of prisms, pyramids, cylinders, and cones",
@@ -23,7 +23,7 @@ export const UNIT6_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Volume of Prisms and Cylinders
   {
-    problemFamilyId: "step-by-step-solver:volume-prisms-cylinders",
+    variantKey: "step-by-step-solver:volume-prisms-cylinders",
     componentKey: "step-by-step-solver",
     displayName: "Volume of Prisms and Cylinders",
     description: "Calculate the volume of prisms and cylinders using volume formulas",
@@ -33,7 +33,7 @@ export const UNIT6_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Volume of Cones and Spheres
   {
-    problemFamilyId: "step-by-step-solver:volume-cones-spheres",
+    variantKey: "step-by-step-solver:volume-cones-spheres",
     componentKey: "step-by-step-solver",
     displayName: "Volume of Cones and Spheres",
     description: "Calculate the volume of cones and spheres and solve applied problems",
@@ -43,7 +43,7 @@ export const UNIT6_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Cross-Sections
   {
-    problemFamilyId: "comprehension-quiz:cross-sections-3d",
+    variantKey: "comprehension-quiz:cross-sections-3d",
     componentKey: "comprehension-quiz",
     displayName: "Cross-Sections of 3D Figures",
     description: "Identify 2D cross-sections formed by slicing three-dimensional objects",

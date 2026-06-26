@@ -3,7 +3,7 @@ import type { ProblemFamilyInput } from '@math-platform/practice-core';
 export const UNIT3_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   // Periodic Phenomena (HSF-TF.A.4, HSF-TF.B.5)
   {
-    problemFamilyId: "comprehension-quiz:periodic-phenomena",
+    variantKey: "comprehension-quiz:periodic-phenomena",
     componentKey: "comprehension-quiz",
     displayName: "Periodic Phenomena",
     description: "Identify and describe periodic behavior in real-world contexts",
@@ -13,7 +13,7 @@ export const UNIT3_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Basic Trig Functions (HSF-TF.A.1, HSF-TF.A.2)
   {
-    problemFamilyId: "step-by-step-solver:basic-trig-functions",
+    variantKey: "step-by-step-solver:basic-trig-functions",
     componentKey: "step-by-step-solver",
     displayName: "Basic Trigonometric Functions",
     description: "Evaluate sine, cosine, and tangent for standard angles using definitions",
@@ -23,7 +23,7 @@ export const UNIT3_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Unit Circle (HSF-TF.A.1, HSF-TF.A.2, HSF-TF.A.4)
   {
-    problemFamilyId: "graphing-explorer:unit-circle",
+    variantKey: "graphing-explorer:unit-circle",
     componentKey: "graphing-explorer",
     displayName: "Explore the Unit Circle",
     description: "Explore the unit circle to understand trigonometric values for all angles",
@@ -32,7 +32,7 @@ export const UNIT3_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     metadata: { unit: 3, topic: "unit-circle" },
   },
   {
-    problemFamilyId: "step-by-step-solver:unit-circle-values",
+    variantKey: "step-by-step-solver:unit-circle-values",
     componentKey: "step-by-step-solver",
     displayName: "Unit Circle Values",
     description: "Find exact trigonometric values for angles on the unit circle",
@@ -42,7 +42,7 @@ export const UNIT3_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Sinusoidal Transformations and Applications (HSF-TF.B.5)
   {
-    problemFamilyId: "graphing-explorer:sinusoidal-transformations",
+    variantKey: "graphing-explorer:sinusoidal-transformations",
     componentKey: "graphing-explorer",
     displayName: "Sinusoidal Transformations",
     description: "Explore amplitude, period, phase shift, and vertical shift on sinusoidal graphs",
@@ -51,7 +51,7 @@ export const UNIT3_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     metadata: { unit: 3, topic: "sinusoidal" },
   },
   {
-    problemFamilyId: "step-by-step-solver:sinusoidal-modeling",
+    variantKey: "step-by-step-solver:sinusoidal-modeling",
     componentKey: "step-by-step-solver",
     displayName: "Sinusoidal Modeling",
     description: "Write sinusoidal functions to model real-world periodic phenomena with specified parameters",
@@ -61,7 +61,7 @@ export const UNIT3_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Tangent Function (HSF-TF.A.2, HSF-TF.B.5)
   {
-    problemFamilyId: "graphing-explorer:tangent-function",
+    variantKey: "graphing-explorer:tangent-function",
     componentKey: "graphing-explorer",
     displayName: "Graph the Tangent Function",
     description: "Graph and analyze the tangent function, including period and asymptotes",
@@ -71,7 +71,7 @@ export const UNIT3_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Inverse Trig (HSF-TF.A.1, HSF-TF.A.2)
   {
-    problemFamilyId: "step-by-step-solver:inverse-trig-functions",
+    variantKey: "step-by-step-solver:inverse-trig-functions",
     componentKey: "step-by-step-solver",
     displayName: "Inverse Trigonometric Functions",
     description: "Evaluate arcsin, arccos, and arctan and understand their restricted domains",
@@ -81,7 +81,7 @@ export const UNIT3_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Trig Equations (HSF-TF.A.2, HSF-TF.B.5)
   {
-    problemFamilyId: "step-by-step-solver:trig-equations",
+    variantKey: "step-by-step-solver:trig-equations",
     componentKey: "step-by-step-solver",
     displayName: "Solve Trigonometric Equations",
     description: "Solve trigonometric equations over restricted and unrestricted domains",
@@ -91,7 +91,7 @@ export const UNIT3_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Polar Coordinates and Functions (HSF-TF.A.1, HSF-TF.A.4)
   {
-    problemFamilyId: "graphing-explorer:polar-coordinates",
+    variantKey: "graphing-explorer:polar-coordinates",
     componentKey: "graphing-explorer",
     displayName: "Polar Coordinates and Functions",
     description: "Plot points and graph functions in polar coordinates",

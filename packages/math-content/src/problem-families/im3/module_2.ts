@@ -3,7 +3,7 @@ import type { ProblemFamilyInput } from '@math-platform/practice-core';
 export const MODULE2_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   // Polynomial Operations (HSA-APR.A.1)
   {
-    problemFamilyId: "step-by-step-solver:polynomial-arithmetic",
+    variantKey: "step-by-step-solver:polynomial-arithmetic",
     componentKey: "step-by-step-solver",
     displayName: "Polynomial Arithmetic",
     description: "Add, subtract, and multiply polynomial expressions",
@@ -12,7 +12,7 @@ export const MODULE2_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     metadata: { module: 2, topic: "polynomial-operations", generatorKey: "polynomial-operations" },
   },
   {
-    problemFamilyId: "step-by-step-solver:binomial-expansion",
+    variantKey: "step-by-step-solver:binomial-expansion",
     componentKey: "step-by-step-solver",
     displayName: "Binomial Expansion",
     description: "Expand powers of binomials using various methods",
@@ -22,7 +22,7 @@ export const MODULE2_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Graphing Polynomials (HSF-IF.C.7c)
   {
-    problemFamilyId: "graphing-explorer:graph-polynomial",
+    variantKey: "graphing-explorer:graph-polynomial",
     componentKey: "graphing-explorer",
     displayName: "Graph Polynomial Functions",
     description: "Graph polynomial functions and identify key features",
@@ -31,7 +31,7 @@ export const MODULE2_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     metadata: { module: 2, topic: "polynomial-graphs" },
   },
   {
-    problemFamilyId: "graphing-explorer:polynomial-end-behavior",
+    variantKey: "graphing-explorer:polynomial-end-behavior",
     componentKey: "graphing-explorer",
     displayName: "Polynomial End Behavior",
     description: "Explore end behavior of polynomial functions",
@@ -40,7 +40,7 @@ export const MODULE2_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     metadata: { module: 2, topic: "polynomial-graphs" },
   },
   {
-    problemFamilyId: "graphing-explorer:polynomial-turning-points",
+    variantKey: "graphing-explorer:polynomial-turning-points",
     componentKey: "graphing-explorer",
     displayName: "Polynomial Turning Points",
     description: "Identify turning points and zeros of polynomial functions",
@@ -50,7 +50,7 @@ export const MODULE2_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Remainder and Factor Theorem (HSA-APR.B.2)
   {
-    problemFamilyId: "step-by-step-solver:remainder-theorem",
+    variantKey: "step-by-step-solver:remainder-theorem",
     componentKey: "step-by-step-solver",
     displayName: "Remainder Theorem",
     description: "Use synthetic substitution to evaluate polynomials",
@@ -59,7 +59,7 @@ export const MODULE2_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
     metadata: { module: 2, topic: "remainder-factor-theorem" },
   },
   {
-    problemFamilyId: "step-by-step-solver:factor-theorem",
+    variantKey: "step-by-step-solver:factor-theorem",
     componentKey: "step-by-step-solver",
     displayName: "Factor Theorem",
     description: "Use the Factor Theorem to determine factors of polynomials",
@@ -69,7 +69,7 @@ export const MODULE2_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Dividing Polynomials
   {
-    problemFamilyId: "step-by-step-solver:polynomial-division",
+    variantKey: "step-by-step-solver:polynomial-division",
     componentKey: "step-by-step-solver",
     displayName: "Polynomial Division",
     description: "Divide polynomials using long division or synthetic division",
@@ -79,7 +79,7 @@ export const MODULE2_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Comprehension
   {
-    problemFamilyId: "comprehension-quiz:polynomial-vocabulary",
+    variantKey: "comprehension-quiz:polynomial-vocabulary",
     componentKey: "comprehension-quiz",
     displayName: "Polynomial Vocabulary",
     description: "Assess understanding of polynomial terminology",

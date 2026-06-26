@@ -3,7 +3,7 @@ import type { ProblemFamilyInput } from '@math-platform/practice-core';
 export const UNIT8_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   // Relations vs Functions
   {
-    problemFamilyId: "comprehension-quiz:relations-vs-functions",
+    variantKey: "comprehension-quiz:relations-vs-functions",
     componentKey: "comprehension-quiz",
     displayName: "Relations vs Functions",
     description: "Determine whether a relation is a function using tables, mappings, and graphs",
@@ -13,7 +13,7 @@ export const UNIT8_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Domain and Range
   {
-    problemFamilyId: "step-by-step-solver:domain-and-range",
+    variantKey: "step-by-step-solver:domain-and-range",
     componentKey: "step-by-step-solver",
     displayName: "Domain and Range",
     description: "Identify the domain and range of functions from graphs, tables, and equations",
@@ -23,7 +23,7 @@ export const UNIT8_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Function Notation
   {
-    problemFamilyId: "step-by-step-solver:function-notation",
+    variantKey: "step-by-step-solver:function-notation",
     componentKey: "step-by-step-solver",
     displayName: "Function Notation",
     description: "Evaluate functions using f(x) notation and interpret function values in context",
@@ -33,7 +33,7 @@ export const UNIT8_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Linear vs Nonlinear
   {
-    problemFamilyId: "graphing-explorer:linear-vs-nonlinear",
+    variantKey: "graphing-explorer:linear-vs-nonlinear",
     componentKey: "graphing-explorer",
     displayName: "Linear vs Nonlinear Functions",
     description: "Compare linear and nonlinear functions by examining their graphs and tables",
@@ -43,7 +43,7 @@ export const UNIT8_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Transformations of Functions
   {
-    problemFamilyId: "graphing-explorer:function-transformations",
+    variantKey: "graphing-explorer:function-transformations",
     componentKey: "graphing-explorer",
     displayName: "Transformations of Functions",
     description: "Explore vertical and horizontal shifts, stretches, and reflections of function graphs",
@@ -53,7 +53,7 @@ export const UNIT8_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Comparing Functions
   {
-    problemFamilyId: "comprehension-quiz:comparing-functions",
+    variantKey: "comprehension-quiz:comparing-functions",
     componentKey: "comprehension-quiz",
     displayName: "Comparing Functions",
     description: "Compare properties of functions represented in different ways: algebraically, graphically, and in tables",

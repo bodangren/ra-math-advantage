@@ -3,7 +3,7 @@ import type { ProblemFamilyInput } from '@math-platform/practice-core';
 export const UNIT3_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   // Similar Figures and Scale Factors
   {
-    problemFamilyId: "step-by-step-solver:similar-figures-scale-factors",
+    variantKey: "step-by-step-solver:similar-figures-scale-factors",
     componentKey: "step-by-step-solver",
     displayName: "Similar Figures and Scale Factors",
     description: "Identify similar figures and use scale factors to find missing side lengths",
@@ -13,7 +13,7 @@ export const UNIT3_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // AA Similarity
   {
-    problemFamilyId: "comprehension-quiz:aa-similarity",
+    variantKey: "comprehension-quiz:aa-similarity",
     componentKey: "comprehension-quiz",
     displayName: "AA Similarity",
     description: "Determine triangle similarity using the AA criterion",
@@ -23,7 +23,7 @@ export const UNIT3_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // SAS and SSS Similarity
   {
-    problemFamilyId: "step-by-step-solver:sas-sss-similarity",
+    variantKey: "step-by-step-solver:sas-sss-similarity",
     componentKey: "step-by-step-solver",
     displayName: "SAS and SSS Similarity",
     description: "Use SAS and SSS similarity criteria to prove triangles are similar",
@@ -33,7 +33,7 @@ export const UNIT3_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Proportions in Triangles
   {
-    problemFamilyId: "step-by-step-solver:proportions-similar-triangles",
+    variantKey: "step-by-step-solver:proportions-similar-triangles",
     componentKey: "step-by-step-solver",
     displayName: "Proportions in Similar Triangles",
     description: "Set up and solve proportions using similar triangle relationships",
@@ -43,7 +43,7 @@ export const UNIT3_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Similarity Proofs
   {
-    problemFamilyId: "step-by-step-solver:similarity-proofs",
+    variantKey: "step-by-step-solver:similarity-proofs",
     componentKey: "step-by-step-solver",
     displayName: "Similarity Proofs",
     description: "Write proofs involving triangle similarity and proportional relationships",
@@ -53,7 +53,7 @@ export const UNIT3_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Graphing Similar Figures
   {
-    problemFamilyId: "graphing-explorer:similarity-transformations",
+    variantKey: "graphing-explorer:similarity-transformations",
     componentKey: "graphing-explorer",
     displayName: "Similarity Transformations",
     description: "Explore dilations and similarity transformations on the coordinate plane",

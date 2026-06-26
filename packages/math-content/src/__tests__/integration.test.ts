@@ -41,7 +41,7 @@ describe('Problem Families Integration', () => {
 
   it('every problem family validates against ProblemFamilyInput schema', () => {
     const results = allFamilies.map((family) => ({
-      id: family.problemFamilyId,
+      id: family.variantKey,
       valid: problemFamilySchema.safeParse(family).success,
     }));
     const failures = results.filter((r) => !r.valid);
@@ -50,7 +50,7 @@ describe('Problem Families Integration', () => {
 
   it('every problem family has a non-empty problemFamilyId', () => {
     for (const family of allFamilies) {
-      expect(family.problemFamilyId.length).toBeGreaterThan(0);
+      expect(family.variantKey.length).toBeGreaterThan(0);
     }
   });
 
@@ -68,7 +68,7 @@ describe('Problem Families Integration', () => {
   });
 
   it('problemFamilyIds have minimal duplication across apps', () => {
-    const ids = allFamilies.map((f) => f.problemFamilyId);
+    const ids = allFamilies.map((f) => f.variantKey);
     const uniqueIds = new Set(ids);
     const duplicateCount = ids.length - uniqueIds.size;
     // Allow some cross-module duplication within apps but flag if excessive

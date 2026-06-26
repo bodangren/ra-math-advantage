@@ -3,7 +3,7 @@ import type { ProblemFamilyInput } from '@math-platform/practice-core';
 export const UNIT1_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   // Classify Triangles
   {
-    problemFamilyId: "comprehension-quiz:classify-triangles",
+    variantKey: "comprehension-quiz:classify-triangles",
     componentKey: "comprehension-quiz",
     displayName: "Classify Triangles",
     description: "Classify triangles by sides and angles using geometric vocabulary",
@@ -13,7 +13,7 @@ export const UNIT1_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Angle Sum Theorem
   {
-    problemFamilyId: "step-by-step-solver:triangle-angle-sum",
+    variantKey: "step-by-step-solver:triangle-angle-sum",
     componentKey: "step-by-step-solver",
     displayName: "Triangle Angle Sum Theorem",
     description: "Use the triangle angle sum theorem to find missing angles",
@@ -23,7 +23,7 @@ export const UNIT1_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Triangle Inequality
   {
-    problemFamilyId: "step-by-step-solver:triangle-inequality",
+    variantKey: "step-by-step-solver:triangle-inequality",
     componentKey: "step-by-step-solver",
     displayName: "Triangle Inequality Theorem",
     description: "Determine if three side lengths can form a triangle using the triangle inequality theorem",
@@ -33,7 +33,7 @@ export const UNIT1_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // SSS/SAS Congruence
   {
-    problemFamilyId: "comprehension-quiz:sss-sas-congruence",
+    variantKey: "comprehension-quiz:sss-sas-congruence",
     componentKey: "comprehension-quiz",
     displayName: "SSS and SAS Congruence",
     description: "Identify when triangles are congruent using SSS and SAS criteria",
@@ -43,7 +43,7 @@ export const UNIT1_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // ASA/AAS/HL Congruence
   {
-    problemFamilyId: "comprehension-quiz:asa-aas-hl-congruence",
+    variantKey: "comprehension-quiz:asa-aas-hl-congruence",
     componentKey: "comprehension-quiz",
     displayName: "ASA, AAS, and HL Congruence",
     description: "Identify congruent triangles using ASA, AAS, and hypotenuse-leg criteria",
@@ -53,7 +53,7 @@ export const UNIT1_PROBLEM_FAMILIES: ProblemFamilyInput[] = [
   },
   // Proving Congruence
   {
-    problemFamilyId: "step-by-step-solver:prove-triangle-congruence",
+    variantKey: "step-by-step-solver:prove-triangle-congruence",
     componentKey: "step-by-step-solver",
     displayName: "Prove Triangle Congruence",
     description: "Write two-column proofs showing triangles are congruent using rigid motions",

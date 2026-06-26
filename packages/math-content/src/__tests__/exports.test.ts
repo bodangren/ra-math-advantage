@@ -43,14 +43,14 @@ describe('Export map entry points resolve', () => {
 describe('Problem family ID uniqueness', () => {
   it('IM3 family IDs are unique', async () => {
     const { IM3_PROBLEM_FAMILIES } = await import('../index');
-    const ids = IM3_PROBLEM_FAMILIES.map((f: { problemFamilyId: string }) => f.problemFamilyId);
+    const ids = IM3_PROBLEM_FAMILIES.map((f: { variantKey: string }) => f.variantKey);
     const uniqueIds = new Set(ids);
     expect(uniqueIds.size).toBe(ids.length);
   });
 
   it('IM2 family IDs are unique', async () => {
     const { IM2_PROBLEM_FAMILIES } = await import('../index');
-    const ids = IM2_PROBLEM_FAMILIES.map((f: { problemFamilyId: string }) => f.problemFamilyId);
+    const ids = IM2_PROBLEM_FAMILIES.map((f: { variantKey: string }) => f.variantKey);
     const uniqueIds = new Set(ids);
     expect(uniqueIds.size).toBe(ids.length);
   });
@@ -68,12 +68,12 @@ describe('Problem family ID uniqueness', () => {
   it('IM1 family IDs are unique', async () => {
     const mod = await import('../index') as Record<string, unknown>;
     const IM1_PROBLEM_FAMILIES = mod.IM1_PROBLEM_FAMILIES as
-      | Array<{ problemFamilyId: string }>
+      | Array<{ variantKey: string }>
       | undefined;
     expect(IM1_PROBLEM_FAMILIES).toBeDefined();
     expect(Array.isArray(IM1_PROBLEM_FAMILIES)).toBe(true);
     const ids = (IM1_PROBLEM_FAMILIES ?? []).map(
-      (f: { problemFamilyId: string }) => f.problemFamilyId,
+      (f: { variantKey: string }) => f.variantKey,
     );
     const uniqueIds = new Set(ids);
     expect(uniqueIds.size).toBe(ids.length);
@@ -81,7 +81,7 @@ describe('Problem family ID uniqueness', () => {
 
   it('PreCalc family IDs are unique', async () => {
     const { PRECALC_PROBLEM_FAMILIES } = await import('../index');
-    const ids = PRECALC_PROBLEM_FAMILIES.map((f: { problemFamilyId: string }) => f.problemFamilyId);
+    const ids = PRECALC_PROBLEM_FAMILIES.map((f: { variantKey: string }) => f.variantKey);
     const uniqueIds = new Set(ids);
     if (uniqueIds.size !== ids.length) {
       const seen = new Map<string, number>();
@@ -103,7 +103,7 @@ describe('Problem family ID uniqueness', () => {
       ...IM2_PROBLEM_FAMILIES,
       ...PRECALC_PROBLEM_FAMILIES,
     ];
-    const ids = all.map((f: { problemFamilyId: string }) => f.problemFamilyId);
+    const ids = all.map((f: { variantKey: string }) => f.variantKey);
     const uniqueIds = new Set(ids);
     const dupCount = ids.length - uniqueIds.size;
 
@@ -136,7 +136,7 @@ describe('Problem family ID uniqueness', () => {
   it('No duplicate family IDs across IM3/IM2/IM1/PreCalc', async () => {
     const mod = await import('../index') as Record<string, unknown>;
     const IM1_PROBLEM_FAMILIES = mod.IM1_PROBLEM_FAMILIES as
-      | Array<{ problemFamilyId: string }>
+      | Array<{ variantKey: string }>
       | undefined;
     expect(IM1_PROBLEM_FAMILIES).toBeDefined();
 
@@ -144,10 +144,10 @@ describe('Problem family ID uniqueness', () => {
     const all = [
       ...IM3_PROBLEM_FAMILIES,
       ...IM2_PROBLEM_FAMILIES,
-      ...(IM1_PROBLEM_FAMILIES as Array<{ problemFamilyId: string }>),
+      ...(IM1_PROBLEM_FAMILIES as Array<{ variantKey: string }>),
       ...PRECALC_PROBLEM_FAMILIES,
     ];
-    const ids = all.map((f: { problemFamilyId: string }) => f.problemFamilyId);
+    const ids = all.map((f: { variantKey: string }) => f.variantKey);
     const uniqueIds = new Set(ids);
     const dupCount = ids.length - uniqueIds.size;
 
