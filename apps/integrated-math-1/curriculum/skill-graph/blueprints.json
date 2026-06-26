@@ -18,6 +18,10 @@
         "givens": [
           "the sum of 5 and 8"
         ],
+        "target": {
+          "expression": "5 + 8",
+          "value": "13"
+        },
         "steps": [
           {
             "description": "Identify the operation",
@@ -118,6 +122,9 @@
         "givens": [
           "3x + 5"
         ],
+        "target": {
+          "verbalExpression": "the sum of 3 times x and 5"
+        },
         "steps": [
           {
             "description": "Identify terms",
@@ -231,6 +238,9 @@
           "a = b",
           "b = c"
         ],
+        "target": {
+          "property": "Transitive Property of Equality"
+        },
         "steps": [
           {
             "description": "Recognize the pattern",
@@ -325,6 +335,10 @@
         "givens": [
           "4 × (6 + 3)"
         ],
+        "target": {
+          "expression": "4×6 + 4×3",
+          "value": "36"
+        },
         "steps": [
           {
             "description": "Identify the pattern",
@@ -448,6 +462,10 @@
           "Target: 50 units",
           "Actual: 47 units"
         ],
+        "target": {
+          "expression": "|47 - 50|",
+          "value": "3"
+        },
         "steps": [
           {
             "description": "Identify the two values",
@@ -555,6 +573,10 @@
           "Total: 30 students",
           "Passed: 18 students"
         ],
+        "target": {
+          "ratio": "3:2",
+          "percentage": "60%"
+        },
         "steps": [
           {
             "description": "Find those who did not pass",

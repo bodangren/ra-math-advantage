@@ -292,7 +292,10 @@ describe('IM1 vertical-slice blueprints — STUB removal (Phase 3 Task 1)', () =
 //    real workedExampleSpec / guidedPracticeSpec / independentPracticeSpec
 //    (or be explicitly opted out of a mode by the rendererModeMap).
 //
-//    Red signal at HEAD: every spec is the empty object `{}`.
+//    History: the original Red was empty `{}` specs; later the specs were
+//    authored but each `workedExampleSpec` was missing the schema-required
+//    `target` answer-record (see track math-content-test-suite-repair_20260626
+//    Phase 2b), which this block now enforces.
 // ---------------------------------------------------------------------------
 
 describe('IM1 vertical-slice blueprints — spec content (Phase 3 Task 1)', () => {
