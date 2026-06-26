@@ -44,8 +44,8 @@ Dependencies:
 
 ## Active Tracks
 
-- [ ] **[HIGH PRIORITY] Track: Repair the red math-content test suite (2026-06-26)** — **PLANNED**
-   *The `packages/math-content` vitest suite is red on master (17 failed / 373 passed), pre-existing and unrelated to the code-review-remediation FRs (which are file-scoped green). Surfaced by the 2026-06-26 review. Two root causes: (1) 16 `ENOENT` failures from five IM1 problem-family tests that `readFileSync` the archived `im1-practice-readiness_20260609/metadata.json` — a `packages/ → measure/` boundary violation; decouple to a package-owned `verticalSliceModule` source. (2) 1 genuine schema regression — 199 problem families fail `ProblemFamilyInput` in `integration.test.ts`. Adds a guard against packages-reading-measure test coupling so the package suite can be a real gate.*
+- [x] **[HIGH PRIORITY] Track: Repair the red math-content test suite (2026-06-26)** — **COMPLETED**
+   *The `packages/math-content` vitest suite was red on master (17 failed). Fixed to full green (392/392); tsc baseline 239→25. (FR-1) Decoupled five IM1 tests from the archived `im1-practice-readiness_20260609/metadata.json` (a `packages/→measure/` boundary violation) via a package-owned `VERTICAL_SLICE_MODULE` constant. (FR-2a) Completed Track 7's practice-variant rename in math-content — `problemFamilyId→variantKey` across 27 family-literal files + readers (tests, IM2 seed source, align-standards.ts). (FR-2b) Added schema-required `workedExampleSpec.target` to the 6 IM1 Module-1 blueprints. (FR-4) Added a guard test that fails if any `packages/**/__tests__/` reads a `measure/` path. Remaining narrow (Convex DB column rename, IM2's 149 latent blueprints, flaky srs-engine Date.now() test) logged to tech-debt. Commits 311ba44d, a5b748ff, 1589878d, 9707b841.*
    *Link: [./tracks/math-content-test-suite-repair_20260626/](./tracks/math-content-test-suite-repair_20260626/)*
 
 - [~] **[HIGH PRIORITY] Track: Code Review Remediation (2026-06-24)** — **IN PROGRESS**
