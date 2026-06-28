@@ -118,7 +118,7 @@ JSDoc) first. Each behavioral fix follows Red → Green TDD per `workflow.md`.
     - [x] Red: update the IM3 auth test harness to stub the new `@math-platform/core-auth` request-guard exports; keep all IM3 auth tests green
     - [x] Green: replace inline `getCookieValueFromHeader` + response builders + guards in `apps/integrated-math-3/lib/auth/server.ts` with core-auth composition (mirror BM2)
     - [x] Resolve the matching tech-debt entry when complete
-- [ ] Task: Measure - User Manual Verification 'Phase 5: unified-auth IM3 follow-through' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 5: unified-auth IM3 follow-through' (Protocol in workflow.md) [acceptance: 3bbced05]
 
 **Phase 5 evidence (commit `b3128ce1`):**
 - `apps/integrated-math-3/lib/auth/server.ts`: inline helpers removed; composes `_getRequestSessionClaims`, `_requireRequestSessionClaims`, `_requireRoleRequestClaims`, `_requireActiveRequestSessionClaims` from `@math-platform/core-auth`. `buildRequestForbiddenResponse` / `buildRequestServiceUnavailableResponse` / `buildRequestUnauthorizedResponse` re-imported for route-handler composition (Phase 5 arch-lint contract; eslint-disable comments document intent).

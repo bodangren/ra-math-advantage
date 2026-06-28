@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "status": "pass",
+  "summary": "Phase 5 FR-14 acceptance passes after live verification. IM3 lib/auth/server.ts composes @math-platform/core-auth request guards, preserves the stricter credential.isActive === true check, the IM3 auth suite is green (61/61), the FR-14 tech-debt row is Resolved, and the Phase 5 UMV task was marked complete in plan.md. During acceptance the FR-3 JSDoc guard invariant initially failed on two legitimate prose-brace false positives; the guard was fixed in commit 3bbced05 and now passes while still failing the malformed stray-block fixture.",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    "PROJECT_LINT (`npm run lint`) currently fails on two pre-existing warnings in apps/integrated-math-3/__tests__/lib/onboarding/student-flow.test.ts; these are unrelated to Phase 5 auth files and were already called out in Phase 5 evidence.",
+    "PROJECT_CHECKS (`npx tsc --noEmit`) fails at the repo root with TS18003 because the root tsconfig has an empty include list; `npm run ws:im3:typecheck` also reports many pre-existing/problemFamilyId-to-variantKey drift errors unrelated to Phase 5 auth composition.",
+    "PROJECT_TESTS (`npm run test`) passes for the configured root project test gate (packages/knowledge-space-core: 285/285)."
+  ],
+  "evidence": [
+    "Read measure/index.md, measure/tracks.md, track spec.md, plan.md Phase 5, test-strategy.md Phase 5, tech-debt.md, lessons-learned.md, Phase 5/7/8 review artifacts, IM3 auth server/tests, BM2 auth server, and core-auth request-guards.",
+    "apps/integrated-math-3/lib/auth/server.ts imports and delegates to core-auth getRequestSessionClaims, requireRequestSessionClaims, requireRoleRequestClaims, and requireActiveRequestSessionClaims; it no longer redeclares getCookieValueFromHeader or inline 401/403/503 builders.",
+    "IM3 verifyActiveCredential returns credential !== null && credential.isActive === true, preserving the stricter IM3 behavior required by test-strategy.md §38.",
+    "measure/tech-debt.md row 'IM3 auth wrapper inline duplication' is Status: Resolved.",
+    "measure/automation-supervisor.py satisfies A1: task regexes use [~xb], and is_task_structurally_blocked recognizes [b] and deferred:<owner>.",
+    "No A3/A4/A5/A6/A7 blockers found in the current Phase 5 evidence; prior review artifacts' PASS claims matched rerun auth tests. The only live invariant failure was the FR-3 guard false positive, now fixed."
+  ],
+  "commands": [
+    "git status --short -> clean before acceptance edits; later showed only intended Measure/guard edits",
+    "git diff --name-status 77eefc792fac89e6bcca5184240a952d365560f3..HEAD -> initially no output because supplied baseline was current HEAD",
+    "npm run --workspace=apps/integrated-math-3 test -- --run __tests__/lib/auth/ -> PASS, 4 files, 61/61 tests",
+    "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh -> initially FAIL, 2 false-positive STRAY_BLOCK findings in legitimate prose braces",
+    "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh -> PASS after 3bbced05, 2249 files, 1811 typed tags, 0 violations",
+    "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh measure/tracks/code-review-remediation_20260624/scripts/fixtures/malformed-3.ts -> expected FAIL, 1 STRAY_BLOCK violation",
+    "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh measure/tracks/code-review-remediation_20260624/scripts/fixtures/clean-1.ts -> PASS, 0 violations",
+    "npm run --workspace=apps/integrated-math-3 test -- --run studentVisualizationMultiModule visualizationLearnerStateUnion studentVisualizationAdversarial studentVisualization -> PASS, 22/22 tests",
+    "npm run --workspace=packages/math-content test -- --run generator-registry rational-analyzer exp-log-solver -> PASS, 54/54 tests",
+    "npm run --workspace=packages/knowledge-space-practice test -- --run projections -> PASS, 25/25 tests",
+    "npm run lint -> FAIL, two pre-existing warnings in apps/integrated-math-3/__tests__/lib/onboarding/student-flow.test.ts (unrelated to Phase 5)",
+    "npx tsc --noEmit -> FAIL, TS18003 root tsconfig has no inputs (pre-existing root config issue)",
+    "npm run ws:im3:typecheck -> FAIL, pre-existing unrelated problemFamilyId/variantKey and other drift errors; no Phase 5 auth composition errors surfaced",
+    "npm run test -> PASS, packages/knowledge-space-core 285/285 tests"
+  ],
+  "changed_files": [
+    "measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh",
+    "measure/tracks/code-review-remediation_20260624/plan.md",
+    "measure/tracks/code-review-remediation_20260624/_artifacts/phase-acceptance-phase5.json"
+  ],
+  "retry_recommendation": "none",
+  "confidence": "high"
+}
