@@ -18,7 +18,7 @@
     "A7 check verified: fixture includes skipThisUndocumentedWrapper and guard reports missing_jsdoc=3 over declarations=5, proving skip-like names are not filtered out."
   ],
   "commands": [
-    "git status --short --branch -> ## master...origin/master [ahead 13]\n M measure/tracks/spec-compliance-and-process-integrity_20260612/plan.md",
+    "git status --short --branch -> ## master...origin/master [ahead 14]",
     "git diff --stat 3c0d797100f086bc7d1bda102c83a61ec5942b9c..HEAD -> 3 Measure files changed by acceptance fixture hardening",
     "bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-exported-convex-im3.sh --json -> pass true, declarations 197, missing_jsdoc 0",
     "SCOPE_DIRS=measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/fixtures/exported-convex-bad-sample.ts bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-exported-convex-im3.sh --json -> expected failure, declarations 5, missing_jsdoc 3",
@@ -41,8 +41,8 @@
   "phase": "Phase 4: Missing `@throws`, `@returns`, and Convex Exported Surface",
   "track_id": "spec-compliance-and-process-integrity_20260612",
   "baseline_sha": "3c0d797100f086bc7d1bda102c83a61ec5942b9c",
-  "head_sha": "656d4ea4",
-  "worktree_status": "## master...origin/master [ahead 13]\n M measure/tracks/spec-compliance-and-process-integrity_20260612/plan.md",
+  "head_sha": "427942cb",
+  "worktree_status": "## master...origin/master [ahead 14]",
   "accepted": true,
   "next_role": "adversarial"
 }
