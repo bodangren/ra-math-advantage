@@ -163,13 +163,13 @@ JSDoc) first. Each behavioral fix follows Red → Green TDD per `workflow.md`.
     - [x] Delete `--db` and `--symbol`; add `.gitignore` guard if the pattern can recur
 - [x] Task: Update tech-debt registry [green: dcb35dbb]
     - [x] Mark FR-14 auth item Resolved; add documented entries for any FR converted to deferred debt (per Acceptance Criterion 13)
-- [x] Task: Generate Docs & Doctor [acceptance: ACCEPTANCE_SHA_PENDING]
+- [x] Task: Generate Docs & Doctor [acceptance: 19a8a24a]
     - [x] Run `scripts/generate-measure-docs.ts`; refresh `graph.db` if signatures/exports changed
-- [x] Task: Measure - User Manual Verification 'Phase 8: repo hygiene & closeout' (Protocol in workflow.md) [acceptance: ACCEPTANCE_SHA_PENDING]
+- [x] Task: Measure - User Manual Verification 'Phase 8: repo hygiene & closeout' (Protocol in workflow.md) [acceptance: 19a8a24a]
 
 **Phase 8 evidence (commit `ee51d9c9`):**
 - `.gitignore`: added `/--db`, `/--symbol`, and `*-cli-arg-junk` patterns to prevent recurrence of misfired CLI flag invocations.
 - `measure/tech-debt.md`: "IM3 auth wrapper inline duplication" entry marked **Resolved** in Phase 5 / Phase 8 closeout commit `dcb35dbb`.
 - `scripts/generate-measure-docs.ts`: re-ran successfully; `routes.md` and `architecture.json` regenerated without a working-tree diff.
 
-**Phase 8 acceptance evidence (2026-06-28, pending commit):** phase-acceptance re-ran the FR-15 junk-file absence checks, `.gitignore` guard checks, generated-doc command, `build-graph stats`, FR-3 JSDoc guard, Phase 5/7/8 targeted suites, root `npm run test`, `npm run lint`, and `npx tsc --noEmit`. Phase-specific checks pass; root lint and root typecheck remain red only on documented pre-existing/unrelated issues. Supervisor integrity checks for A1/A3/A4 pass; no A5/A6/A7 blocker found for Phase 8 evidence.
+**Phase 8 acceptance evidence (2026-06-28, commit `19a8a24a`):** phase-acceptance re-ran the FR-15 junk-file absence checks, `.gitignore` guard checks, generated-doc command, `build-graph stats`, FR-3 JSDoc guard, Phase 5/7/8 targeted suites, root `npm run test`, `npm run lint`, and `npx tsc --noEmit`. Phase-specific checks pass; root lint and root typecheck remain red only on documented pre-existing/unrelated issues. Supervisor integrity checks for A1/A3/A4 pass; no A5/A6/A7 blocker found for Phase 8 evidence.
