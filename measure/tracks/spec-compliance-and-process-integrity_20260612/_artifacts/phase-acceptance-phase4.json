@@ -41,9 +41,8 @@
   "phase": "Phase 4: Missing `@throws`, `@returns`, and Convex Exported Surface",
   "track_id": "spec-compliance-and-process-integrity_20260612",
   "baseline_sha": "3c0d797100f086bc7d1bda102c83a61ec5942b9c",
-  "worktree_status": "## master...origin/master [ahead 14]",
   "accepted": true,
   "next_role": "adversarial",
   "head_sha_note": "Omitted to avoid self-referential commit-SHA drift in the committed result artifact; use git log for the commit containing this file.",
-  "worktree_status_at_write": "## master...origin/master [ahead 16]"
+  "worktree_status_note": "Clean on master during acceptance checks and after final artifact commit; ahead count is intentionally omitted because each result commit advances it."
 }
