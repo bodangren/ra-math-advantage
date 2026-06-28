@@ -1,0 +1,14 @@
+Phase 4 adversarial testing complete.
+
+MEASURE_AGENT_RESULT
+status: pass_with_fixes
+phase: Phase 4: Missing `@throws`, `@returns`, and Convex Exported Surface
+track: spec-compliance-and-process-integrity_20260612
+baseline_sha: 2cef7781e95965870ef9bc8ba830c19e83e4dce9
+agent_head_sha: 20521fb0f8a3ff58fcf4ca7eb4b51e07c11a49c4
+files_changed: measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-exported-convex-im3.sh; measure/tracks/spec-compliance-and-process-integrity_20260612/_artifacts/adversarial-phase4.json
+fixes_applied: ADV-P4-F1 single-line JSDoc detection; ADV-P4-F2 A4 zero-declaration directory-scope defense; ADV-P4-F3 stale expected-count help text
+tests_run: production gate PASS 197/197; self-test FAIL by design declarations=5 missing=3; A4 vacuous pass defense exit 3 on lib/components; saveCardsHandler returns PASS; lint PASS; tsc PASS; tests PASS 285/285; doctor PASS; sibling typed-params guard PASS 593/593
+result_json: measure/tracks/spec-compliance-and-process-integrity_20260612/_artifacts/adversarial-phase4.json
+handoff: proceed to Phase 5
+END_MEASURE_AGENT_RESULT
