@@ -28,7 +28,7 @@
 // wiring concern for the Green author; this test pins the router's
 // pure branching behavior only.
 
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect } from 'vitest';
 
 // Public types from the existing placement-flow module — these are
 // the types the Phase 4 router composes against (per test-strategy
@@ -113,7 +113,7 @@ function newContext(studentId: string, hasExistingPlacement: boolean): StudentFl
 describe('routeStudent — new student (no prior placement)', () => {
   it('calls runPlacement exactly once for a student with hasExistingPlacement=false', async () => {
     const deps = makeRecordingDeps(buildPlacedOutcome());
-    const decision = await routeStudent(newContext(NEW_STUDENT, false), deps);
+    await routeStudent(newContext(NEW_STUDENT, false), deps);
 
     expect(deps.callCount).toBe(1);
     expect(deps.__callArgs[0]?.studentId).toBe(NEW_STUDENT);
