@@ -172,8 +172,7 @@ planning; Phase 7.1 re-scans + commits. build-graph on PATH at ~/.local/bin.
   SCOPE_DIRS="measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/fixtures/exported-convex-bad-sample.ts" \
     bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-exported-convex-im3.sh
   ```
-  Fixture (jr-green authors): 4 wrapper lines; 2 with `*/` immediately above
-  and 2 without. Expected: `missing_jsdoc=2, declarations=4, exit 1`.
+  Fixture: 5 wrapper lines; 2 with `*/` immediately above and 3 without. One undocumented wrapper is named `skipThisUndocumentedWrapper` to prove A7 (over-broad name filters) is not masking hits. Expected: `missing_jsdoc=3, declarations=5, exit 1`.
 - P4.1 (`@throws` audit) — labeled-integer grep, NOT plain digit match:
   ```bash
   grep -rEn '^\s*throw\b' apps/integrated-math-3/convex/ apps/integrated-math-3/lib/ \
@@ -213,8 +212,8 @@ planning; Phase 7.1 re-scans + commits. build-graph on PATH at ~/.local/bin.
 
 ### 9.5 Phase 4 Closeout gate
 - All P4 Green commands pass.
-- Runner-plumbing self-test on the fixture still fails (`missing_jsdoc=2`,
-  exit 1) — proves the guard is not always-pass.
+- Runner-plumbing self-test on the fixture still fails (`missing_jsdoc=3`, `declarations=5`,
+  exit 1) — proves the guard is not always-pass and does not filter out skip-like symbol names.
 - New guard committed under `measure/tracks/<track>/scripts/`; no application
   source under `apps/integrated-math-3/convex/_generated/` modified by the
   guard's authoring commit.
@@ -228,8 +227,8 @@ planning; Phase 7.1 re-scans + commits. build-graph on PATH at ~/.local/bin.
     = `*/` on the line immediately above the export line).
 
 ### 9.6 Phase 4 fixtures & mocks
-- New fixture: `measure/tracks/<track>/scripts/fixtures/exported-convex-bad-sample.ts`
-  (jr-green authors; ~30 lines; 4 exported wrappers, 2 documented, 2 not).
+- Fixture: `measure/tracks/<track>/scripts/fixtures/exported-convex-bad-sample.ts`
+  (5 exported wrappers, 2 documented, 3 not). The undocumented `skipThisUndocumentedWrapper` symbol proves filter-like names are not dropped.
 - No mocks of grep, no mocks of git, no mocks of Convex runtime. The guard
   reads source files directly — same regex-only approach as
   `check-jsdoc-typed-params.sh`.
@@ -300,9 +299,7 @@ A-class anti-patterns in the canonical catalog:
   guard's exclusion list is path-based and pattern-based only
   (`_generated/`, `*.d.ts`, `node_modules/`, `dist/`, `.next/`,
   `.wrangler/`, `crons.ts`). NO bare English words ("never", "skip") in
-  filters. Falsification: adding `export const skipThis = internalQuery(...)`
-  with no JSDoc to a fixture MUST be reported as missing — not silently
-  skipped because the symbol name contains "skip".
+  filters. Falsification is live in `exported-convex-bad-sample.ts`: `export const skipThisUndocumentedWrapper = internalQuery(...)` has no JSDoc and the fixture self-test reports `missing_jsdoc=3` over `declarations=5`, so the skip-like symbol is counted, not silently filtered.
 - **A8 (`[ ]` marker ambiguity)** — Bookkeeping section verified plan.md
   uses `[x]`/`[~]`/`[b]`/`[ ]` only; no exotic markers.
 - **A10 (generated-facts drift)** — Phase 4 explicitly does NOT touch

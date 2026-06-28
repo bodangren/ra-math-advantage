@@ -6,13 +6,14 @@
  * command — runner plumbing") and §9 P4 closeout ("a constructed bad-sample fixture must
  * also fail the guard"), this file is the self-test target. It contains exactly:
  *
- *   - 4 exported Convex wrapper lines (matching the guard's WRAPPER_RE regex)
+ *   - 5 exported Convex wrapper lines (matching the guard's WRAPPER_RE regex)
  *   - 2 with a JSDoc block (`*/`) on the line immediately above
- *   - 2 without a JSDoc block on the line immediately above
+ *   - 3 without a JSDoc block on the line immediately above
+ *     (one is named `skipThisUndocumentedWrapper` to prove A7 filter safety)
  *
  * Expected guard output:
- *   declarations = 4
- *   missing_jsdoc = 2
+ *   declarations = 5
+ *   missing_jsdoc = 3
  *   exit 1
  *
  * This file is the closeout runner-plumbing proof — it proves the guard's parser
@@ -57,3 +58,11 @@ export const resetCount = internalMutation({
     return 0;
   },
 });
+// Symbol name contains a historically banned/filter-like term. The guard must
+// still report it because exclusions are path-based, not name-text based.
+export const skipThisUndocumentedWrapper = internalQuery({
+  handler: async (ctx) => {
+    return "must be counted";
+  },
+});
+

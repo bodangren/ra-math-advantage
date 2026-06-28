@@ -1667,8 +1667,8 @@ SCOPE_DIRS="measure/tracks/spec-compliance-and-process-integrity_20260612/script
   bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-exported-convex-im3.sh
 ```
 
-**Result:** `missing_jsdoc=2, declarations=4, scanned_files=1, exit 1` (FAIL by design — guard
-correctly reports violations on the constructed bad fixture, proving runner plumbing is wired).
+**Result:** `missing_jsdoc=3, declarations=5, scanned_files=1, exit 1` (FAIL by design — guard
+correctly reports violations on the constructed bad fixture, including the skip-like wrapper name, proving runner plumbing and A7 filter safety are wired).
 
 **Sibling guard cross-check** (Phase 3 typed-params must remain green):
 
@@ -1682,8 +1682,8 @@ Exit: 0 (PASS — Phase 3 typed-params guard unaffected by Phase 4 Green).
 
 **P4.1 throws audit evidence (Task 4.1):**
 
-`grep -rEn '^\s*throw\b' apps/integrated-math-3/convex/ apps/integrated-math-3/lib/ | wc -l`
-→ `74` throw sites total; 2 in `__tests__/` (excluded); 72 in production code.
+`grep -rEn '\bthrow\b' apps/integrated-math-3/convex/ apps/integrated-math-3/lib/` plus inline-throw review-A correction
+→ `throw_sites:83` total; 2 in `__tests__/` (excluded); 81 in production code.
 
 After Green commit `15cd81f1`:
 - 22 throw sites already had `@throws` at baseline (no-op)
@@ -1691,7 +1691,8 @@ After Green commit `15cd81f1`:
 - 7 throw sites had single-line JSDoc expanded to multi-line + `@throws` added
 - 13 throw sites covered by an already-queued `@throws` insertion (sibling throws)
 - 18 throw sites covered by an already-synthesized JSDoc on the wrapper
-- 0 throw sites in production code lack `@throws` after Green
+- 9 inline throw sites were caught and fixed by review-A (`38b196d1`)
+- 0 throw sites in production code lack `@throws` after review-A correction
 
 See `phase-4-throws-audit.md` for the full enumeration and per-file table.
 
@@ -1765,8 +1766,8 @@ SCOPE_DIRS="measure/tracks/spec-compliance-and-process-integrity_20260612/script
   bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-exported-convex-im3.sh
 ```
 
-**Self-test result:** `missing_jsdoc=2, declarations=4, scanned_files=1, exit=1`
-(FAIL, by design — the fixture has 2 documented + 2 undocumented wrappers).
+**Self-test result:** `missing_jsdoc=3, declarations=5, scanned_files=1, exit=1`
+(FAIL, by design — the fixture has 2 documented + 3 undocumented wrappers, including one skip-like symbol name).
 
 **Sibling guard cross-check** (Phase 3 typed-params must remain green):
 
@@ -1846,8 +1847,8 @@ SCOPE_DIRS="measure/tracks/spec-compliance-and-process-integrity_20260612/script
   bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-exported-convex-im3.sh --json
 ```
 
-**Self-test result:** `missing_jsdoc=2, declarations=4, scanned_files=1, exit=1`
-(FAIL, by design — the fixture has 2 documented + 2 undocumented wrappers).
+**Self-test result:** `missing_jsdoc=3, declarations=5, scanned_files=1, exit=1`
+(FAIL, by design — the fixture has 2 documented + 3 undocumented wrappers, including one skip-like symbol name).
 
 **Sibling guard cross-check** (Phase 3 typed-params must remain green):
 
