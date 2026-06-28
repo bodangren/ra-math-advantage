@@ -44,5 +44,6 @@
   "head_sha": "427942cb",
   "worktree_status": "## master...origin/master [ahead 14]",
   "accepted": true,
-  "next_role": "adversarial"
+  "next_role": "adversarial",
+  "head_sha_at_write": "d1ea65c4"
 }
