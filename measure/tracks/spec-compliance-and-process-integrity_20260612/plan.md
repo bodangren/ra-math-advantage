@@ -1619,21 +1619,119 @@ active):** the GREEN-phase role should:
 
 ## Phase 4: Missing `@throws`, `@returns`, and Convex Exported Surface
 
-- [~] Task 4.1: Audit throwing functions in scope
-  - [~] Search for `throw` in `apps/integrated-math-3/convex/`, `apps/integrated-math-3/lib/`
-  - [ ] Add `@throws` to every throwing function documented by Phases 4-6
+- [x] Task 4.1: Audit throwing functions in scope [green: 15cd81f1]
+  - [x] Search for `throw` in `apps/integrated-math-3/convex/`, `apps/integrated-math-3/lib/`
+  - [x] Add `@throws` to every throwing function documented by Phases 4-6
 
-- [~] Task 4.2: Audit functions missing `@returns`
-  - [ ] Add `@returns` to `saveCardsHandler` and any other returning function that lacks it
+- [x] Task 4.2: Audit functions missing `@returns` [green: 15cd81f1]
+  - [x] Add `@returns` to `saveCardsHandler` and any other returning function that lacks it
 
-- [~] Task 4.3: Document exported Convex wrappers
-  - [~] Find every `export const X = internalQuery(...)` / `internalMutation(...)` / `action(...)` / `cron(...)` in `apps/integrated-math-3/convex/`
-  - [ ] Move or duplicate the existing JSDoc block onto the exported wrapper line
-  - [ ] Ensure internal `*Handler` functions still have JSDoc if they remain exported or reused
+- [x] Task 4.3: Document exported Convex wrappers [green: 15cd81f1]
+  - [x] Find every `export const X = internalQuery(...)` / `internalMutation(...)` / `action(...)` / `cron(...)` in `apps/integrated-math-3/convex/`
+  - [x] Move or duplicate the existing JSDoc block onto the exported wrapper line
+  - [x] Ensure internal `*Handler` functions still have JSDoc if they remain exported or reused
 
-- [~] Task 4.4: Add exported-surface coverage guard
-  - [~] Extend `check-jsdoc-exported-im3-app.sh` pattern to `convex/` scope
-  - [~] Assert every exported wrapper has a preceding JSDoc block
+- [x] Task 4.4: Add exported-surface coverage guard [red: d947d462, green: 15cd81f1]
+  - [x] Extend `check-jsdoc-exported-im3-app.sh` pattern to `convex/` scope
+  - [x] Assert every exported wrapper has a preceding JSDoc block
+
+### Phase 4 Green evidence (recorded 2026-06-28, commit `15cd81f1`)
+
+**Targeted Green command** (production gate):
+
+```bash
+bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-exported-convex-im3.sh
+```
+
+**Result at `15cd81f1`:**
+
+```
+Exported-Convex-Surface Guard — Phase 4 (Convex exported-surface)
+=================================================
+Scope:                          apps/integrated-math-3/convex
+Scanned files:                  101
+Exported wrapper declarations:  197
+Missing JSDoc (count):          0
+
+PASS: All 197 exported Convex wrapper declarations in apps/integrated-math-3/convex have a preceding JSDoc block.
+```
+
+JSON output: `{"phase":"Phase 4 (Convex exported-surface)","scope":"apps/integrated-math-3/convex","scanned_files":101,"declarations":197,"missing_jsdoc":0,"pass":true,"files_missing":[]}`
+
+Exit: 0 (PASS — 197/197 wrappers documented, was 66/197 at baseline `c5ac819d`).
+
+**Runner-plumbing self-test** (closeout gate per test-strategy §9 P4):
+
+```bash
+SCOPE_DIRS="measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/fixtures/exported-convex-bad-sample.ts" \
+  bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-exported-convex-im3.sh
+```
+
+**Result:** `missing_jsdoc=2, declarations=4, scanned_files=1, exit 1` (FAIL by design — guard
+correctly reports violations on the constructed bad fixture, proving runner plumbing is wired).
+
+**Sibling guard cross-check** (Phase 3 typed-params must remain green):
+
+```bash
+bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh --json
+```
+
+**Result:** `{"pass":true,"typed_tags":593,"untyped_tags":0,"scanned_files":102,"param_total":282,"param_typed":282,"returns_total":311,"returns_typed":311,"files_untyped":[]}`
+
+Exit: 0 (PASS — Phase 3 typed-params guard unaffected by Phase 4 Green).
+
+**P4.1 throws audit evidence (Task 4.1):**
+
+`grep -rEn '^\s*throw\b' apps/integrated-math-3/convex/ apps/integrated-math-3/lib/ | wc -l`
+→ `74` throw sites total; 2 in `__tests__/` (excluded); 72 in production code.
+
+After Green commit `15cd81f1`:
+- 22 throw sites already had `@throws` at baseline (no-op)
+- 12 throw sites had `@throws` added to existing multi-line JSDoc
+- 7 throw sites had single-line JSDoc expanded to multi-line + `@throws` added
+- 13 throw sites covered by an already-queued `@throws` insertion (sibling throws)
+- 18 throw sites covered by an already-synthesized JSDoc on the wrapper
+- 0 throw sites in production code lack `@throws` after Green
+
+See `phase-4-throws-audit.md` for the full enumeration and per-file table.
+
+**P4.2 returns audit evidence (Task 4.2):**
+
+`saveCardsHandler` (`apps/integrated-math-3/convex/srs/cards.ts:156`) is already
+satisfied at baseline `c5ac819d`. The corrected JSDoc-block-scoped check from
+test-strategy §9.3:
+
+```bash
+awk 'BEGIN{found=0} /^[[:space:]]*\/\*\*/{block=1; found=0} block && /@returns/{found=1} /^[[:space:]]*\*\//{block=0} /export async function saveCardsHandler/{print found; exit}' \
+  apps/integrated-math-3/convex/srs/cards.ts
+```
+
+Returns `1` (PASS) at both `c5ac819d` (Red baseline) and `15cd81f1` (Green commit).
+
+Phase 3 typed-params guard reports `returns_typed=311/311` confirming every
+`@returns` tag is typed. See `phase-4-returns-audit.md`.
+
+**Lint/typecheck/test verification (live gate):**
+
+- `npm run lint`: PASS (no warnings)
+- `npx tsc --noEmit`: PASS (no errors; exit 0)
+- `npm run test`: PASS (20 test files, 285 tests passed)
+- `bash measure/doctor.sh`: PASS
+
+**Files added/modified by jr-green Phase 4 (this commit `15cd81f1`):**
+
+- **Modified** `apps/integrated-math-3/convex/**` — 81 files: JSDoc added above
+  every exported Convex wrapper that lacked one (131 wrappers newly documented),
+  and `@throws` tags added to throwing functions whose JSDoc was missing them.
+- **Modified** `apps/integrated-math-3/lib/**` — 8 files: `@throws` tags added
+  to throwing functions in `lib/phase-completion/`, `lib/placement/`,
+  `lib/scale/`, `lib/srs/`, and `lib/teacher/`.
+- **Modified** `measure/tracks/spec-compliance-and-process-integrity_20260612/phase-4-throws-audit.md`
+  — updated with Green evidence and per-file throws summary.
+- **Modified** `measure/tracks/spec-compliance-and-process-integrity_20260612/phase-4-returns-audit.md`
+  — updated with Green evidence and named-gap check confirmation.
+- **Modified** `measure/tracks/spec-compliance-and-process-integrity_20260612/plan.md`
+  — this file: Phase 4 tasks flipped from `[~]`/`[ ]` to `[x]` with Green commit SHA evidence.
 
 ### Phase 4 Red proof (recorded 2026-06-24)
 
