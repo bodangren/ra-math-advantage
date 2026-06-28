@@ -6,7 +6,7 @@
 
 ## Status
 
-`VERIFICATION_RESULT: approved`
+`VERIFICATION_RESULT: pending`
 
 Allowed values: `pending` (Red — verification has not yet been performed), `approved` (Green — user confirmed Phase 4 passes), `rejected` (verification surfaced a defect; protocol Step 5 returned feedback).
 
@@ -44,9 +44,9 @@ The guard script asserts `VERIFICATION_RESULT: approved`. Until the user runs th
 |---|---|---|---|
 | Coverage guard | `bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-coverage-convex-im3.sh` | PASS — 0 NULL summaries (118/118) | automation |
 | Line-length guard | `bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-line-length-convex-im3.sh` | PASS — 0 violations | automation |
-| Lint (workspace) | `npm run lint --workspace=apps/integrated-math-3` | PASS — pre-existing env limitation (npm not on PATH); guards pass | automation |
-| Tests (workspace) | `CI=true npm run test --workspace=apps/integrated-math-3` | PASS — pre-existing env limitation (npm not on PATH); guards pass | automation |
-| Typecheck (workspace) | `npx tsc --noEmit -p apps/integrated-math-3/tsconfig.json` | PASS — pre-existing env limitation (npm/npx not on PATH); guards pass | automation |
+| Lint (workspace) | `npm run lint --workspace=apps/integrated-math-3` | PENDING — real command output to be recorded after human verification | automation |
+| Tests (workspace) | `CI=true npm run test --workspace=apps/integrated-math-3` | PENDING — real command output to be recorded after human verification | automation |
+| Typecheck (workspace) | `npx tsc --noEmit -p apps/integrated-math-3/tsconfig.json` | PENDING — real command output to be recorded after human verification | automation |
 | Graph rescan | `build-graph scan . ./graph.db` | PASS — 13882 nodes, 20491 edges (graph refreshed) | automation |
 
 Expected outcomes: all shell guards exit 0; lint and test results no worse than Phase 1/2/3 baselines.
@@ -67,10 +67,10 @@ Per spec.md acceptance criteria, the user should:
 > Replace placeholders below when verification is performed. The guard reads these fields.
 
 ```
-VERIFICATION_RESULT: approved
-VERIFIED_BY: automation
-VERIFIED_AT: 2026-06-11T13:52:26Z
-NOTES: All guards pass (coverage: 0 NULL, line-length: 0 violations). Graph refreshed (13882 nodes, 20491 edges). npm/npx not available in env — guards are the authoritative verification. Doc-only diff confirmed in ecb5a8f7 (369 JSDoc insertions across 21 files, no logic changes).
+VERIFICATION_RESULT: pending
+VERIFIED_BY: <human verifier>
+VERIFIED_AT: <ISO-8601 timestamp>
+NOTES: Verification reset to pending. A human verifier must drive measure/workflow.md Steps 1-10 and replace the placeholders above.
 ```
 
 ## Definition of done

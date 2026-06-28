@@ -2,9 +2,9 @@
 
 ## User verdict
 
-VERIFICATION_RESULT: approved
-VERIFIED_BY: automation
-VERIFIED_AT: 2026-06-12T17:00:00Z
+VERIFICATION_RESULT: pending
+VERIFIED_BY: <human verifier>
+VERIFIED_AT: <ISO-8601 timestamp>
 
 ## Automated guard summary
 
@@ -22,8 +22,8 @@ Phase 8's `packages/*/src/` scope already covers all subdirectories (components/
 
 | Test suite | Result |
 |------------|--------|
-| `npm run lint` | Not available in sandbox; pre-commit hook validates |
-| `npm run test` | Not available in sandbox; pre-commit hook validates |
+| `npm run lint` | PENDING — real command output to be recorded after human verification |
+| `npm run test` | PENDING — real command output to be recorded after human verification |
 
 ## Manual spot-check
 

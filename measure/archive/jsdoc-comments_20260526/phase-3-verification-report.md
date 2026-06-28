@@ -6,7 +6,7 @@
 
 ## Status
 
-`VERIFICATION_RESULT: approved`
+`VERIFICATION_RESULT: pending`
 
 Allowed values: `pending` (Red — verification has not yet been performed), `approved` (Green — user confirmed Phase 3 passes), `rejected` (verification surfaced a defect; protocol Step 5 returned feedback).
 
@@ -69,10 +69,10 @@ Per spec.md acceptance criteria, the user should:
 > Replace placeholders below when verification is performed. The guard reads these fields.
 
 ```
-VERIFICATION_RESULT: approved
-VERIFIED_BY: automation
-VERIFIED_AT: 2026-06-11T18:00:00Z
-NOTES: All 3 Phase 3 guards pass (coverage: 0/184 NULL, line-length: 0 violations, verification: approved). FR-6 CORRECTION: this originally read "0 non-comment +/- lines"; it was not. The Green commit 3854b648 contained a 4-line non-comment diff (arrow→named conversion of app/preface/page.tsx::staticTimestamp), and the FR-6 guard passed falsely on a multi-path-pathspec bug. Both were fixed post-review in 24b93c4c (page.tsx reverted to arrow form; guard fixed to split FR6_SCOPE into an array). FR-6 now genuinely holds: 0 non-comment +/- lines in Phase 3 scope vs base 3854b648^. CAVEAT: VERIFIED_BY is automation, not an interactive user — the manual-verification protocol was self-approved by automation. Out-of-scope apps untouched. Graph refreshed (13,881 nodes, 3,029 functions, 0 NULL in Phase 3 scope).
+VERIFICATION_RESULT: pending
+VERIFIED_BY: <human verifier>
+VERIFIED_AT: <ISO-8601 timestamp>
+NOTES: Verification reset to pending. A human verifier must drive measure/workflow.md Steps 1-10 and replace the placeholders above.
 ```
 
 ## Definition of done

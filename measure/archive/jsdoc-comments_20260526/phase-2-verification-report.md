@@ -6,7 +6,7 @@
 
 ## Status
 
-`VERIFICATION_RESULT: approved`
+`VERIFICATION_RESULT: pending`
 
 Allowed values: `pending` (Red — verification has not yet been performed), `approved` (Green — user confirmed Phase 2 passes), `rejected` (verification surfaced a defect; protocol Step 5 returned feedback).
 
@@ -68,10 +68,10 @@ Per spec.md acceptance criteria, the user should:
 > Replace placeholders below when verification is performed. The guard reads these fields.
 
 ```
-VERIFICATION_RESULT: approved
-VERIFIED_BY: automation
-VERIFIED_AT: 2026-06-08T22:00:00Z
-NOTES: All guards pass (coverage: 0 NULL of 359, line-length: 0 violations, FR-6: 0 non-comment +/- lines). Lint shows pre-existing errors only (95 problems; harness.test.tsx, RendererPreview.tsx, hooks/usePhaseProgress.ts). Typecheck timed out in CI but confirmed pre-existing errors only per Phase 1 baseline. Out-of-scope apps (IM1, IM2, PreCalc) untouched. Graph confirms 0 NULL summaries in BM2 components/ (359 total). Phase 2 Green work committed in ea1d1cd8 + 49a9cf4d, checkpointed in 8ca35059.
+VERIFICATION_RESULT: pending
+VERIFIED_BY: <human verifier>
+VERIFIED_AT: <ISO-8601 timestamp>
+NOTES: Verification reset to pending. A human verifier must drive measure/workflow.md Steps 1-10 and replace the placeholders above.
 ```
 
 ## Definition of done

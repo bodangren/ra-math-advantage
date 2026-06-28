@@ -5,7 +5,7 @@
 
 ## Status
 
-`VERIFICATION_RESULT: approved`
+`VERIFICATION_RESULT: pending`
 
 Allowed values: `pending` (Red — verification has not yet been performed), `approved` (Green — user confirmed Phase 7 passes), `rejected` (verification surfaced a defect; protocol Step 5 returned feedback).
 
@@ -70,10 +70,10 @@ Per spec.md acceptance criteria, the user should:
 > Replace placeholders below when verification is performed. The guard reads these fields.
 
 ```
-VERIFICATION_RESULT: approved
-VERIFIED_BY: automation
-VERIFIED_AT: 2026-06-12T14:30:00Z
-NOTES: All 5 Phase 7 guards pass (coverage 0/87 NULL, line-length 0 violations, source-level exported 0/54 missing, FR-6 0 non-comment diff lines, verification approved). Graph refreshed via build-graph update on 70 files. Out-of-scope apps untouched. 58 files changed in Green commit f6419b12, all JSDoc-only (602 insertions, 2 deletions — comment replacements in middleware.ts).
+VERIFICATION_RESULT: pending
+VERIFIED_BY: <human verifier>
+VERIFIED_AT: <ISO-8601 timestamp>
+NOTES: Verification reset to pending. A human verifier must drive measure/workflow.md Steps 1-10 and replace the placeholders above.
 ```
 
 ## Definition of done

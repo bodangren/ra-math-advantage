@@ -5,7 +5,7 @@
 
 ## Status
 
-`VERIFICATION_RESULT: approved`
+`VERIFICATION_RESULT: pending`
 
 Allowed values: `pending` (Red — verification has not yet been performed), `approved` (Green — user confirmed Phase 8 passes), `rejected` (verification surfaced a defect; protocol Step 5 returned feedback).
 
@@ -72,10 +72,10 @@ Per spec.md acceptance criteria, the user should:
 > Replace placeholders below when verification is performed. The guard reads these fields.
 
 ```
-VERIFICATION_RESULT: approved
-VERIFIED_BY: automation
-VERIFIED_AT: 2026-06-12T15:15:00Z
-NOTES: All 514 functions in packages/*/src/ have JSDoc (0 NULL). Coverage guard PASS, line-length guard PASS (0 violations), lint PASS, tests PASS (233/233). FR-6 guard shows 123 non-comment diff lines from arrow-to-function conversions required for build-graph scanner compatibility (same as original Green commit dc6ba80a) — these are const→function declaration rewrites in 3 test files + 1 fixture, not logic changes. NFR-1 false positive in fixtures.ts:130 fixed (markdown **bold** → HTML <b>). graph.db refreshed (13,880 nodes, 20,488 edges).
+VERIFICATION_RESULT: pending
+VERIFIED_BY: <human verifier>
+VERIFIED_AT: <ISO-8601 timestamp>
+NOTES: Verification reset to pending. A human verifier must drive measure/workflow.md Steps 1-10 and replace the placeholders above.
 ```
 
 ## Definition of done

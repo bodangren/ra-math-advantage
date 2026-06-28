@@ -6,7 +6,7 @@
 
 ## Status
 
-`VERIFICATION_RESULT: approved`
+`VERIFICATION_RESULT: pending`
 
 Allowed values: `pending` (Red — verification has not yet been performed), `approved` (Green — user confirmed Phase 5 passes), `rejected` (verification surfaced a defect; protocol Step 5 returned feedback).
 
@@ -68,10 +68,10 @@ Per spec.md acceptance criteria, the user should:
 > Replace placeholders below when verification is performed. The guard reads these fields.
 
 ```
-VERIFICATION_RESULT: approved
-VERIFIED_BY: automation
-VERIFIED_AT: 2026-06-12T06:45:00Z
-NOTES: All 116 functions documented. Coverage guard PASS (0 NULL). Line-length guard PASS (0 violations). Lint PASS. Tests timeout (Convex dev server required). Typecheck PASS. Graph rescan PASS. One structural fix: DropdownMenuShortcut converted from const arrow to function declaration for build-graph compatibility.
+VERIFICATION_RESULT: pending
+VERIFIED_BY: <human verifier>
+VERIFIED_AT: <ISO-8601 timestamp>
+NOTES: Verification reset to pending. A human verifier must drive measure/workflow.md Steps 1-10 and replace the placeholders above.
 ```
 
 ## Definition of done

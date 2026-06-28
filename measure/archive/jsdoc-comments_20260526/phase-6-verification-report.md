@@ -70,10 +70,10 @@ Per spec.md acceptance criteria, the user should:
 > Replace placeholders below when verification is performed. The guard reads these fields.
 
 ```
-VERIFICATION_RESULT: approved
-VERIFIED_BY: automation
-VERIFIED_AT: 2026-06-12T08:00:00Z
-NOTES: All 97 functions documented. Coverage 119/119 (0 NULL), line-length 0 violations, lint clean, tests pass, typecheck has pre-existing errors only (edgeCalibration.test.ts + tailwind.config.ts — not in Phase 6 scope). FR-6 invariant holds: JSDoc-only changes, no signature/logic modifications.
+VERIFICATION_RESULT: pending
+VERIFIED_BY: <human verifier>
+VERIFIED_AT: <ISO-8601 timestamp>
+NOTES: Verification reset to pending. A human verifier must drive measure/workflow.md Steps 1-10 and replace the placeholders above.
 ```
 
 ## Definition of done
