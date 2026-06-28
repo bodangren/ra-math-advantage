@@ -94,6 +94,7 @@ done
 # Collect the set of .ts / .tsx files in scope. Exclude Convex _generated/,
 # declaration files, crons.ts (uses cronJobs() aggregator, not per-symbol wrappers),
 # and standard build/dependency noise.
+HAS_DIR_SCOPE=0
 declare -a SCOPE_FILES=()
 for path in "${RESOLVED_PATHS[@]}"; do
     if [ -f "${path}" ]; then
@@ -103,6 +104,7 @@ for path in "${RESOLVED_PATHS[@]}"; do
             *) ;; # ignore non-ts files passed in single-file mode
         esac
     elif [ -d "${path}" ]; then
+        HAS_DIR_SCOPE=1
         while IFS= read -r -d '' f; do
             SCOPE_FILES+=("${f}")
         done < <(find "${path}" -type f \( -name '*.ts' -o -name '*.tsx' \) \
@@ -146,6 +148,18 @@ scan_file() {
     while IFS= read -r line; do
         line_no=$((line_no + 1))
         # Track JSDoc block state.
+        # Single-line JSDoc special-case: `/** foo */` on one line. We must
+        # detect this BEFORE the block-start test (which would match `/**`)
+        # because the block-start test would `continue` without setting
+        # prev_close, dropping the JSDoc from the wrapper-anchored check.
+        # A single-line JSDoc is both the start AND the end of the block
+        # AND counts as a JSDoc close `*/` on the line above the wrapper.
+        stripped="${line#"${line%%[![:space:]]*}"}"
+        if [[ "${stripped}" =~ ^/\*\*.*\*/[[:space:]]*$ ]] && [ "${#stripped}" -gt 4 ]; then
+            in_block=0
+            prev_close=1
+            continue
+        fi
         if [[ "${line}" =~ ^[[:space:]]*/\*\* ]]; then
             in_block=1
             prev_close=0
@@ -208,6 +222,24 @@ for raw in ${SCOPE_DIRS}; do
     fi
 done
 
+# A4 (vacuous-pass) defense: if we scanned files but found ZERO exported
+# Convex wrappers, this is a misuse — the scope probably points at the
+# wrong directory (e.g., apps/integrated-math-3/lib instead of
+# apps/integrated-math-3/convex). Per test-strategy.md §9.8 A4, the guard
+# MUST exit 3 ("misuse") on this case so the caller cannot silently accept
+# an empty pass. Single-file scope (SCOPE_DIRS points at a single .ts file
+# used by the runner-plumbing self-test fixture) is exempt; only directory
+# scopes trigger the check. Sibling guard check-jsdoc-typed-params.sh:135
+# has the same defense (exits on zero files; here we extend to zero decls
+# because a directory full of TS files with zero wrappers is the typical
+# misconfiguration we want to catch).
+if [ "${DECL_TOTAL}" = "0" ] && [ "${HAS_DIR_SCOPE}" = "1" ]; then
+    echo "ERROR: scanned ${SCANNED_FILES} files in '${SCOPE_LABEL}' but found zero exported Convex wrappers." >&2
+    echo "ERROR: this likely indicates the SCOPE_DIRS points at the wrong directory (e.g., a lib/ or components/ dir without convex/ wrappers)." >&2
+    echo "ERROR: Per A4 vacuous-pass defense (test-strategy.md §9.8), this guard refuses to silently pass on a zero-declaration scope." >&2
+    exit 3
+fi
+
 # JSON output: stable shape, single line, machine-parseable.
 if [ "${JSON_MODE}" = "1" ]; then
     files_json="["
@@ -252,6 +284,6 @@ if [ "${JSON_MODE}" = "0" ]; then
     echo "Runner-plumbing self-test (closeout gate per test-strategy §9 P4):"
     echo "  SCOPE_DIRS=${DEFAULT_FIXTURE#${REPO_ROOT}/} bash \\"
     echo "    measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-exported-convex-im3.sh"
-    echo "  Expected: missing_jsdoc=2, declarations=4, exit 1."
+    echo "  Expected: missing_jsdoc=3, declarations=5, exit 1 (includes skip-like 'skipThisUndocumentedWrapper' symbol)."
 fi
 exit 1
