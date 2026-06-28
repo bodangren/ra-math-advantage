@@ -1,0 +1,23 @@
+Phase 4 Red complete.
+
+MEASURE_AGENT_RESULT
+role: mid-red
+track: spec-compliance-and-process-integrity_20260612
+phase: Phase 4: Missing `@throws`, `@returns`, and Convex Exported Surface
+status: red_confirmed
+baseline_sha: c5ac819d34b3add50ba220dbd6442a1089e75c7f
+red_commit: d947d462
+plan_commit: 08710f62
+red_command_exit: 1
+red_command_reason: missing_jsdoc=131 out of 197 exported Convex wrappers
+self_test_exit: 1
+self_test_reason: missing_jsdoc=2 out of 4 bad-sample wrappers
+throws_baseline: 74 sites, 0 with @throws
+saveCardsHandler_returns: already_satisfied
+lint: pass
+tsc: pass
+tests: pass
+doctor: pass
+worktree: clean
+files_changed: measure/tracks/spec-compliance-and-process-integrity_20260612/plan.md; measure/tracks/spec-compliance-and-process-integrity_20260612/test-strategy.md; measure/tracks/spec-compliance-and-process-integrity_20260612/phase-4-throws-audit.md; measure/tracks/spec-compliance-and-process-integrity_20260612/phase-4-returns-audit.md
+END_MEASURE_AGENT_RESULT
