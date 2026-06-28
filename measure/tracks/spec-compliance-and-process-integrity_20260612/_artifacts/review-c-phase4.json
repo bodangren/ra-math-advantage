@@ -1,0 +1,195 @@
+{
+  "reviewer": "Review C: UX and API end-to-end contract",
+  "phase": "Phase 4: Missing @throws, @returns, and Convex Exported Surface",
+  "track_id": "spec-compliance-and-process-integrity_20260612",
+  "baseline_sha": "ed345e2bfe25d972b76ed0d52d2e9dc1a8a76ba7",
+  "green_commit": "15cd81f1",
+  "timestamp": "2026-06-28T00:00:00Z",
+  "verdict": "PASS_WITH_NOTES",
+  "summary": "Phase 4 Green satisfies the formal spec requirements (FR-4: @throws on every throwing function; FR-5: JSDoc on every exported Convex wrapper) but introduces a systematic contract-quality gap: 99 of 131 wrapper JSDoc blocks use @returns {Promise<unknown}> despite the handler return types being statically known. This is not a spec violation (typed @returns is present), but it defeats the purpose of documenting the exported Convex surface for API consumers.",
+
+  "findings": [
+    {
+      "id": "RC-P4-01",
+      "severity": "medium",
+      "category": "api-contract",
+      "title": "99 Convex wrapper JSDoc blocks use @returns {Promise<unknown>} hiding actual return types",
+      "spec_reference": "Spec §E (Convex Exported Surface Undocumented), FR-5",
+      "description": "The Phase 4 Green commit added JSDoc blocks to 131 Convex exported wrappers. Of these, 99 use @returns {Promise<unknown>} despite the handler functions having known return types (e.g., Promise<boolean>, Promise<{ studentName: string; rows: StudentExportRow[] } | null>, Promise<SeedDemoResult>, Promise<ObjectiveProficiencyResult>, etc.). The remaining 32 use specific return types. The @returns {Promise<unknown>} pattern satisfies the literal FR-5 requirement (typed @returns is present) but provides no contract value to API consumers who need to know the actual return shape.",
+      "files_affected": [
+        "apps/integrated-math-3/convex/student.ts (8 wrappers: getDashboardData, getLessonProgress, completePhase, skipPhase, getLessonForChatbot, isStudentActivelyEnrolled, isStudentEnrolledInClassForLesson)",
+        "apps/integrated-math-3/convex/teacher.ts (5 wrappers: getTeacherDashboardData, getTeacherStudentDetail, getTeacherLessonMonitoringData, getProfileWithOrg, getLessonErrorSummary, getTeacherLessonPreview, getStandardsCoverage, getTeacherSrsDashboardData)",
+        "apps/integrated-math-3/convex/rateLimits.ts (3 wrappers: getRateLimitStatus, checkAndIncrementRateLimit, cleanupStaleRateLimits)",
+        "apps/integrated-math-3/convex/timing_baseline.ts (4 wrappers: getTimingBaseline, recomputeTimingBaseline, batchRecomputeTimingBaselines, getStaleBaselines)",
+        "apps/integrated-math-3/convex/exports.ts (3 wrappers: getStudentExport, getClassExport, getSubmissionExport)",
+        "apps/integrated-math-3/convex/onboarding/roster-import.ts (4 wrappers: importRoster, getImportSummaryQuery, listImportsForClassQuery, createClass)",
+        "apps/integrated-math-3/convex/parent/links.ts (3 wrappers: createParentLinkMutation, revokeParentLinkMutation, listParentLinksQuery)",
+        "apps/integrated-math-3/convex/efficacy/cohort.ts (1 wrapper: cohort)",
+        "apps/integrated-math-3/convex/seed.ts + seed/*.ts (68 wrappers: seedAll, seedDemoE2E, seedDemoEnv, seedDemoProgress, seedStandards, seedPracticeItems, seedProblemFamilies, seedObjectivePolicies, validateBlueprint, and 59 seedLesson*/seedModule*LessonStandards wrappers)"
+      ],
+      "impact": "API consumers cannot determine the return type of 75% of Convex wrapper functions from JSDoc alone. Frontend code must inspect handler implementations or TypeScript inference to understand the contract. This undermines the stated goal of Phase 4 (documenting the exported Convex surface).",
+      "recommendation": "For the ~31 non-seed wrapper functions, replace @returns {Promise<unknown>} with the actual return type inferred from the handler. For seed functions (68 wrappers), @returns {Promise<void>} or the specific seed result type would be more accurate than Promise<unknown>. This is a documentation quality issue, not a blocker."
+    },
+    {
+      "id": "RC-P4-02",
+      "severity": "low",
+      "category": "api-contract",
+      "title": "Wrapper JSDoc descriptions are boilerplate, not semantic",
+      "spec_reference": "Spec §E (Convex Exported Surface Undocumented)",
+      "description": "Approximately 85 of the 131 wrapper JSDoc blocks use the pattern 'Convex <type> wrapper: <name>.' (e.g., 'Convex internalQuery wrapper: get teacher dashboard data.'). This describes what the declaration IS (a wrapper), not what it DOES (the business purpose). The spec requires JSDoc blocks on wrappers but does not mandate semantic descriptions; however, the boilerplate provides minimal value to API consumers.",
+      "files_affected": "All files with Convex wrappers listed in RC-P4-01",
+      "impact": "Low — developers reading the JSDoc learn the function is a wrapper but not its business purpose without reading the handler.",
+      "recommendation": "Replace boilerplate with semantic descriptions derived from the handler's purpose (e.g., 'Retrieves the teacher dashboard data including student progress and assignment status' instead of 'Convex internalQuery wrapper: get teacher dashboard data.'). Not a blocker."
+    },
+    {
+      "id": "RC-P4-03",
+      "severity": "low",
+      "category": "api-contract",
+      "title": "Handler JSDoc descriptions are minimal in some @throws blocks",
+      "spec_reference": "Spec §D (Missing @throws and @returns)",
+      "description": "Several handler functions received new JSDoc blocks with minimal descriptions: importRosterMutation ('import roster.'), recordCleanAttemptHandler ('record clean attempt.'), evaluate ('evaluate.'), evaluateReport ('evaluate report.'), mergeCostRecords ('merge cost records.'), parseInsightsJson ('parse insights json.'), continueInsightsCursor ('continue insights cursor.'). These are function-name-derived descriptions that add little beyond the function signature.",
+      "files_affected": [
+        "apps/integrated-math-3/convex/onboarding/roster-import.ts",
+        "apps/integrated-math-3/convex/misconceptionState.ts",
+        "apps/integrated-math-3/lib/scale/budget-evaluator.ts",
+        "apps/integrated-math-3/lib/scale/cost-record.ts",
+        "apps/integrated-math-3/lib/scale/insights-parser.ts"
+      ],
+      "impact": "Low — the @throws tags are accurate and the JSDoc blocks exist, but the descriptions provide minimal context.",
+      "recommendation": "Expand descriptions to explain the function's business purpose and when the error is thrown. Not a blocker."
+    },
+    {
+      "id": "RC-P4-04",
+      "severity": "low",
+      "category": "api-contract",
+      "title": "importRosterMutation JSDoc has @throws but no @param tags",
+      "spec_reference": "FR-5 (typed @param/@returns)",
+      "description": "The importRosterMutation handler function in onboarding/roster-import.ts received a JSDoc block with @throws {Error} but no @param tags for ctx or args. The function signature shows it takes (ctx: MutationCtx, args: ImportRosterArgs). Other handler functions in the same file (e.g., createClassHandler) also lack @param tags.",
+      "files_affected": ["apps/integrated-math-3/convex/onboarding/roster-import.ts"],
+      "impact": "Low — the function's parameters are clear from the TypeScript signature, but the JSDoc is incomplete relative to other handler functions that do have @param tags.",
+      "recommendation": "Add @param tags for consistency with other handler JSDoc blocks. Not a blocker."
+    },
+    {
+      "id": "RC-P4-05",
+      "severity": "low",
+      "category": "api-contract",
+      "title": "getObjectiveProficiency wrapper uses @returns {Promise<object>} instead of ObjectiveProficiencyResult",
+      "spec_reference": "FR-5 (typed @returns)",
+      "description": "The getObjectiveProficiency wrapper in objectiveProficiency.ts uses @returns {Promise<object>} despite the handler returning Promise<ObjectiveProficiencyResult> (from @math-platform/srs-engine). The 'object' type is less informative than 'unknown' — it suggests a specific object shape but provides none.",
+      "files_affected": ["apps/integrated-math-3/convex/objectiveProficiency.ts"],
+      "impact": "Low — the return type is technically typed but not useful for API consumers.",
+      "recommendation": "Replace {Promise<object>} with {Promise<ObjectiveProficiencyResult>} or {Promise<import('@math-platform/srs-engine').ObjectiveProficiencyResult>}. Not a blocker."
+    }
+  ],
+
+  "positive_findings": [
+    {
+      "id": "RC-P4-P01",
+      "description": "All 72 production throw sites in scope have @throws tags (22 pre-existing + 50 newly added). The 2 test-file exclusions are explicitly documented in phase-4-throws-audit.md."
+    },
+    {
+      "id": "RC-P4-P02",
+      "description": "All @param tags in the Phase 4 Green diff are typed with {Type} syntax. Zero untyped @param tags detected."
+    },
+    {
+      "id": "RC-P4-P03",
+      "description": "The named gap (saveCardsHandler @returns) was already satisfied at baseline. Verified via awk command — returns 1 (PASS)."
+    },
+    {
+      "id": "RC-P4-P04",
+      "description": "32 of 131 wrapper JSDoc blocks use specific return types (e.g., Promise<StudentVisualizationV1>, Promise<AssignLessonResult>, Promise<ResolvedQueueItem[]>). These are high-quality API documentation."
+    },
+    {
+      "id": "RC-P4-P05",
+      "description": "No frontend, routing, or user-facing flow changes in this Phase. All changes are in Convex backend wrappers and lib/ handler functions. No UX regression risk."
+    },
+    {
+      "id": "RC-P4-P06",
+      "description": "The @throws tags are accurate across all files. Error types are correctly identified: {Error} for throw new Error, {ConvexError} for throw new ConvexError, and custom types for custom error classes."
+    },
+    {
+      "id": "RC-P4-P07",
+      "description": "The phase-4-throws-audit.md and phase-4-returns-audit.md audit documents are well-structured with per-file tables, audit commands, and clear Green/Red evidence."
+    }
+  ],
+
+  "spec_compliance": {
+    "FR-4": {
+      "status": "PASS",
+      "detail": "Every throwing function in scope has @throws. 72 production throw sites covered (22 pre-existing + 50 new). 2 test-file exclusions documented."
+    },
+    "FR-5": {
+      "status": "PASS_WITH_NOTES",
+      "detail": "Every exported Convex wrapper has a JSDoc block. 131 wrappers documented. However, 99/131 use @returns {Promise<unknown>} which technically satisfies typed @returns but provides no contract value."
+    },
+    "acceptance_criteria_exported_convex": {
+      "status": "PASS",
+      "detail": "Every exported Convex wrapper has a JSDoc block immediately above it (spec acceptance criterion). Quality varies per RC-P4-01 and RC-P4-02."
+    }
+  },
+
+  "files_changed": {
+    "convex_wrappers": [
+      "apps/integrated-math-3/convex/dev.ts",
+      "apps/integrated-math-3/convex/edgeCalibration.ts",
+      "apps/integrated-math-3/convex/efficacy/cohort.ts",
+      "apps/integrated-math-3/convex/exports.ts",
+      "apps/integrated-math-3/convex/misconceptionState.ts",
+      "apps/integrated-math-3/convex/objectiveProficiency.ts",
+      "apps/integrated-math-3/convex/onboarding/roster-import.ts",
+      "apps/integrated-math-3/convex/parent/links.ts",
+      "apps/integrated-math-3/convex/parent/visualization.ts",
+      "apps/integrated-math-3/convex/queue/queue.ts",
+      "apps/integrated-math-3/convex/queue/sessions.ts",
+      "apps/integrated-math-3/convex/rateLimits.ts",
+      "apps/integrated-math-3/convex/seed.ts",
+      "apps/integrated-math-3/convex/seed/seed_demo_e2e.ts",
+      "apps/integrated-math-3/convex/seed/seed_demo_env.ts",
+      "apps/integrated-math-3/convex/seed/seed_demo_progress.ts",
+      "apps/integrated-math-3/convex/seed/seed_lesson_*.ts (59 files)",
+      "apps/integrated-math-3/convex/seed/seed_module*_lesson_standards.ts (9 files)",
+      "apps/integrated-math-3/convex/seed/seed_objective_policies.ts",
+      "apps/integrated-math-3/convex/seed/seed_practice_items.ts",
+      "apps/integrated-math-3/convex/seed/seed_problem_families.ts",
+      "apps/integrated-math-3/convex/seed/seed_standards.ts",
+      "apps/integrated-math-3/convex/seed/validate_blueprint.ts",
+      "apps/integrated-math-3/convex/srs/dashboard.ts",
+      "apps/integrated-math-3/convex/srs/submissionSrs.ts",
+      "apps/integrated-math-3/convex/student.ts",
+      "apps/integrated-math-3/convex/teacher.ts",
+      "apps/integrated-math-3/convex/teacher/lessonAssignment.ts",
+      "apps/integrated-math-3/convex/teacher/srs_mutations.ts",
+      "apps/integrated-math-3/convex/timing_baseline.ts"
+    ],
+    "lib_handler_jdoc": [
+      "apps/integrated-math-3/lib/phase-completion/client.ts",
+      "apps/integrated-math-3/lib/placement/im3-probe-adapter.ts",
+      "apps/integrated-math-3/lib/placement/seed-knowledge-state.ts",
+      "apps/integrated-math-3/lib/scale/budget-evaluator.ts",
+      "apps/integrated-math-3/lib/scale/cost-record.ts",
+      "apps/integrated-math-3/lib/scale/insights-parser.ts",
+      "apps/integrated-math-3/lib/srs/convexCardStore.ts",
+      "apps/integrated-math-3/lib/teacher/data-export.ts"
+    ],
+    "measure_docs": [
+      "measure/tracks/spec-compliance-and-process-integrity_20260612/phase-4-throws-audit.md",
+      "measure/tracks/spec-compliance-and-process-integrity_20260612/phase-4-returns-audit.md",
+      "measure/tracks/spec-compliance-and-process-integrity_20260612/plan.md"
+    ]
+  },
+
+  "commands_run": [
+    "git diff ed345e2b..HEAD --name-only -- '*.ts' '*.tsx' (93 files changed)",
+    "git diff ed345e2b..HEAD -- apps/integrated-math-3/convex/exports.ts (3 wrappers with @returns {Promise<unknown>})",
+    "git diff ed345e2b..HEAD -- apps/integrated-math-3/convex/teacher.ts (13 wrappers, 5 with Promise<unknown>, 8 with specific types)",
+    "git diff ed345e2b..HEAD -- apps/integrated-math-3/convex/student.ts (8 wrappers with Promise<unknown>)",
+    "git diff ed345e2b..HEAD -- apps/integrated-math-3/convex/rateLimits.ts (3 wrappers with Promise<unknown>)",
+    "git diff ed345e2b..HEAD -- apps/integrated-math-3/convex/timing_baseline.ts (4 wrappers with Promise<unknown>)",
+    "grep -c '@returns {Promise<unknown>}' in convex/ diff → 99",
+    "grep -c '@returns {' in convex/ diff → 132 (99 unknown + 33 specific)",
+    "grep -c '@param' in convex/ diff → 55 (all typed)",
+    "grep '@returns {Promise<object>}' in convex/ diff → 1 (getObjectiveProficiency)"
+  ],
+
+  "fixes_applied": "None — all findings are documentation quality issues, not spec violations or blockers. The Phase 4 Green commit satisfies the formal acceptance criteria."
+}

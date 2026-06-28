@@ -1,0 +1,184 @@
+{
+  "reviewer": "Review B: security and data handling",
+  "phase": "Phase 4: Missing @throws, @returns, and Convex Exported Surface",
+  "track_id": "spec-compliance-and-process-integrity_20260612",
+  "baseline_sha": "ed345e2bfe25d972b76ed0d52d2e9dc1a8a76ba7",
+  "green_commit": "15cd81f1",
+  "timestamp": "2026-06-28T17:25:00Z",
+  "verdict": "PASS",
+  "summary": "Phase 4 Green changes are purely additive JSDoc comments on existing Convex exported wrappers and handler functions. Zero non-comment source lines were modified in apps/integrated-math-3/. No auth/z boundary, input validation, tenant/org scoping, secret handling, persistence, or migration semantics were changed. All adversarial guards (Phase 3 typed-params, Phase 4 exported-surface), lint, tsc --noEmit, and the test suite pass. A2 (consent-blind publish gate) and A6 (registry overstatement) anti-patterns are not applicable to this phase.",
+
+  "findings": [
+    {
+      "id": "RB-P4-01",
+      "severity": "info",
+      "category": "change-surface",
+      "title": "Phase 4 diff contains zero non-comment code changes",
+      "description": "A line-level audit of the full apps/integrated-math-3/ diff against the baseline SHA found 0 changed lines that were not JSDoc comments or whitespace. Every modification is an added /** ... */ block, an inserted @throws/@returns/@param line inside an existing block, or a single-line JSDoc converted to multi-line form. No runtime behavior, auth checks, validation logic, or data flows were altered.",
+      "files_affected": ["All 93 changed .ts files under apps/integrated-math-3/convex/ and apps/integrated-math-3/lib/"],
+      "impact": "None — no executable code was changed, so there is no attack-surface expansion or regression risk.",
+      "recommendation": "No action required."
+    },
+    {
+      "id": "RB-P4-02",
+      "severity": "info",
+      "category": "sensitive-data-exposure",
+      "title": "Added JSDoc does not expose secrets, credentials, or PII",
+      "description": "Searched all added JSDoc lines for passwords, secrets, tokens, keys, credentials, SSNs, phone numbers, email addresses, or raw student/parent identifiers. No secrets or literal PII were found. References to 'studentId', 'userId', 'profileId', 'classId', and 'organization' are typed parameter names and business-context descriptions, not disclosed values. JSDoc descriptions remain at the abstraction level of the public API contract.",
+      "files_affected": ["All changed files under apps/integrated-math-3/"],
+      "impact": "None — no sensitive data was written into source comments.",
+      "recommendation": "No action required."
+    },
+    {
+      "id": "RB-P4-03",
+      "severity": "info",
+      "category": "authz-boundary",
+      "title": "Existing authorization checks in sensitive handlers remain intact",
+      "description": "Manually inspected diff for security-sensitive files: convex/exports.ts (student/class/submission exports), convex/teacher.ts (teacher dashboard, gradebook, competency heatmap, submission detail), convex/parent/links.ts and convex/parent/visualization.ts (parent portal), convex/onboarding/roster-import.ts (roster/class creation), and convex/dev.ts (component review queue). In every case the existing throw statements for unauthorized/forbidden access, organization checks, and ownership checks were unchanged. Only JSDoc @throws tags were added to document the already-present errors.",
+      "files_affected": [
+        "apps/integrated-math-3/convex/exports.ts",
+        "apps/integrated-math-3/convex/teacher.ts",
+        "apps/integrated-math-3/convex/parent/links.ts",
+        "apps/integrated-math-3/convex/parent/visualization.ts",
+        "apps/integrated-math-3/convex/onboarding/roster-import.ts",
+        "apps/integrated-math-3/convex/dev.ts"
+      ],
+      "impact": "None — auth/z logic was not modified.",
+      "recommendation": "No action required."
+    },
+    {
+      "id": "RB-P4-04",
+      "severity": "info",
+      "category": "injection-risk",
+      "title": "No injection or unsafe-dynamic-evaluation patterns introduced",
+      "description": "Reviewed added JSDoc for any eval, new Function, template-literal SQL, raw HTML, or unvalidated path strings. None were introduced. The Phase 4 changes are comments only and cannot affect injection surfaces.",
+      "files_affected": ["All changed files under apps/integrated-math-3/"],
+      "impact": "None — comments cannot introduce injection vectors.",
+      "recommendation": "No action required."
+    },
+    {
+      "id": "RB-P4-05",
+      "severity": "info",
+      "category": "anti-pattern-a2",
+      "title": "A2 consent-blind publish gate anti-pattern not triggered",
+      "description": "Phase 4 does not touch any draft/published status transition, component approval publish action, or named-subject (school/person) publication flow. The component review wrappers in convex/dev.ts received JSDoc but no logic changes. No consent or anonymization gate was added or removed.",
+      "files_affected": ["None — not applicable"],
+      "impact": "None — no publish-gate code was changed.",
+      "recommendation": "No action required."
+    },
+    {
+      "id": "RB-P4-06",
+      "severity": "info",
+      "category": "anti-pattern-a6",
+      "title": "A6 registry-overstatement anti-pattern not triggered",
+      "description": "measure/tracks.md and the Phase 4 plan.md describe Phase 4 as documenting the exported Convex surface and adding @throws tags. They do not claim that any security state (auth, authorization, secret handling, data privacy) is 'resolved'. The adversarial guard for exported-surface JSDoc is green (197/197 wrappers documented), matching the registry claim.",
+      "files_affected": ["measure/tracks.md", "measure/tracks/spec-compliance-and-process-integrity_20260612/plan.md"],
+      "impact": "None — registry claims are limited to documentation completeness and are verified by the green guard.",
+      "recommendation": "No action required."
+    }
+  ],
+
+  "positive_findings": [
+    {
+      "id": "RB-P4-P01",
+      "description": "Phase 4 exported-surface guard passes: 197/197 exported Convex wrapper declarations in apps/integrated-math-3/convex have a preceding JSDoc block."
+    },
+    {
+      "id": "RB-P4-P02",
+      "description": "Phase 3 typed-params guard remains green after Phase 4: 593/593 @param/@returns tags typed, 0 untyped, across 102 scanned files."
+    },
+    {
+      "id": "RB-P4-P03",
+      "description": "All 72 production throw sites in scope are documented with @throws tags; error types are accurate ({Error}, {ConvexError}, or custom error classes)."
+    },
+    {
+      "id": "RB-P4-P04",
+      "description": "npm run lint, npx tsc --noEmit, and npm run test all pass with no warnings or errors."
+    },
+    {
+      "id": "RB-P4-P05",
+      "description": "No functional code changes means no new auth/z bypass, validation gap, tenant leak, or persistence risk was introduced."
+    }
+  ],
+
+  "spec_compliance": {
+    "FR-4": {
+      "status": "PASS",
+      "detail": "Every throwing function in scope has @throws. 72 production throw sites covered; 2 test-file exclusions documented."
+    },
+    "FR-5": {
+      "status": "PASS",
+      "detail": "Every exported Convex wrapper has a JSDoc block immediately above it. 197/197 wrappers documented."
+    },
+    "A2_consent_blind_publish_gate": {
+      "status": "NOT_APPLICABLE",
+      "detail": "Phase 4 does not involve draft-to-published transitions or named-subject publication."
+    },
+    "A6_registry_overstatement": {
+      "status": "NOT_APPLICABLE",
+      "detail": "No security state is claimed as resolved in tracks.md or plan.md."
+    }
+  },
+
+  "files_changed": {
+    "convex_wrappers_and_handlers": [
+      "apps/integrated-math-3/convex/dev.ts",
+      "apps/integrated-math-3/convex/edgeCalibration.ts",
+      "apps/integrated-math-3/convex/efficacy/cohort.ts",
+      "apps/integrated-math-3/convex/exports.ts",
+      "apps/integrated-math-3/convex/misconceptionState.ts",
+      "apps/integrated-math-3/convex/objectiveProficiency.ts",
+      "apps/integrated-math-3/convex/onboarding/roster-import.ts",
+      "apps/integrated-math-3/convex/parent/links.ts",
+      "apps/integrated-math-3/convex/parent/visualization.ts",
+      "apps/integrated-math-3/convex/queue/queue.ts",
+      "apps/integrated-math-3/convex/queue/sessions.ts",
+      "apps/integrated-math-3/convex/rateLimits.ts",
+      "apps/integrated-math-3/convex/seed.ts",
+      "apps/integrated-math-3/convex/seed/seed_demo_e2e.ts",
+      "apps/integrated-math-3/convex/seed/seed_demo_env.ts",
+      "apps/integrated-math-3/convex/seed/seed_demo_progress.ts",
+      "apps/integrated-math-3/convex/seed/seed_lesson_*.ts",
+      "apps/integrated-math-3/convex/seed/seed_module*_lesson_standards.ts",
+      "apps/integrated-math-3/convex/seed/seed_objective_policies.ts",
+      "apps/integrated-math-3/convex/seed/seed_practice_items.ts",
+      "apps/integrated-math-3/convex/seed/seed_problem_families.ts",
+      "apps/integrated-math-3/convex/seed/seed_standards.ts",
+      "apps/integrated-math-3/convex/seed/validate_blueprint.ts",
+      "apps/integrated-math-3/convex/srs/dashboard.ts",
+      "apps/integrated-math-3/convex/srs/submissionSrs.ts",
+      "apps/integrated-math-3/convex/student.ts",
+      "apps/integrated-math-3/convex/teacher.ts",
+      "apps/integrated-math-3/convex/teacher/lessonAssignment.ts",
+      "apps/integrated-math-3/convex/teacher/srs_mutations.ts",
+      "apps/integrated-math-3/convex/timing_baseline.ts"
+    ],
+    "lib_handlers": [
+      "apps/integrated-math-3/lib/phase-completion/client.ts",
+      "apps/integrated-math-3/lib/placement/im3-probe-adapter.ts",
+      "apps/integrated-math-3/lib/placement/seed-knowledge-state.ts",
+      "apps/integrated-math-3/lib/scale/budget-evaluator.ts",
+      "apps/integrated-math-3/lib/scale/cost-record.ts",
+      "apps/integrated-math-3/lib/scale/insights-parser.ts",
+      "apps/integrated-math-3/lib/srs/convexCardStore.ts",
+      "apps/integrated-math-3/lib/teacher/data-export.ts"
+    ],
+    "measure_docs": [
+      "measure/tracks/spec-compliance-and-process-integrity_20260612/phase-4-throws-audit.md",
+      "measure/tracks/spec-compliance-and-process-integrity_20260612/phase-4-returns-audit.md",
+      "measure/tracks/spec-compliance-and-process-integrity_20260612/plan.md"
+    ]
+  },
+
+  "commands_run": [
+    "git diff ed345e2b..HEAD --name-status (lists 93 changed source files + 3 Measure docs)",
+    "git diff ed345e2b..HEAD -- apps/integrated-math-3/ | awk '/^[-+]/ && !/^[-+]{3}/ && !/^[[:space:]]*$/ {print}' | grep -vE '^[-+][[:space:]]*(/\\*\\*|\\*|//|\\*/)' | wc -l → 0 non-comment changed lines",
+    "bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-exported-convex-im3.sh --json → {\"pass\":true,\"declarations\":197,\"missing_jsdoc\":0}",
+    "bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh --json → {\"pass\":true,\"typed_tags\":593,\"untyped_tags\":0,\"scanned_files\":102}",
+    "npm run lint → PASS (no warnings)",
+    "npx tsc --noEmit → PASS (exit 0, no output)",
+    "npm run test → PASS (20 test files, 285 tests passed)"
+  ],
+
+  "fixes_applied": "None — no security, auth, validation, or data-handling blockers were found. The Phase 4 Green commit satisfies the formal acceptance criteria without introducing runtime changes."
+}

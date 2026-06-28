@@ -1,0 +1,82 @@
+{
+  "agent": "review-A",
+  "role": "correctness-and-architecture",
+  "phase": "Phase 4",
+  "track": "spec-compliance-and-process-integrity_20260612",
+  "baselineSHA": "ed345e2bfe25d972b76ed0d52d2e9dc1a8a76ba7",
+  "headSHA": "38b196d1",
+  "status": "PASS_WITH_FIXES",
+  "summary": "Phase 4 Green changes are structurally correct. Found and fixed 1 defect: the throws audit's detection regex (^\\s*throw\\b) missed 9 inline throw sites in 3 exported Convex wrappers that lacked @throws. Fixed by adding @throws tags to completePhase, skipPhase, and checkAndIncrementRateLimit. All guards pass, tsc clean.",
+  "findings": [
+    {
+      "id": "F1",
+      "severity": "blocker",
+      "category": "correctness",
+      "title": "Throws audit regex misses inline throws — 3 functions lack @throws",
+      "description": "The Phase 4 throws audit's detection pattern (^\\s*throw\\b) only matches throw statements at line start, missing inline throws like 'if (!x) throw ...'. This left 3 exported Convex wrappers without @throws: student.ts completePhase (3 inline ConvexError throws), student.ts skipPhase (3 inline ConvexError throws), and rateLimits.ts checkAndIncrementRateLimit (2 inline throws). The audit claimed '0 throw sites without @throws after Green' based on incomplete enumeration.",
+      "files": [
+        "apps/integrated-math-3/convex/student.ts",
+        "apps/integrated-math-3/convex/rateLimits.ts",
+        "measure/tracks/spec-compliance-and-process-integrity_20260612/phase-4-throws-audit.md"
+      ],
+      "fix": "Added @throws tags to all 3 functions' JSDoc blocks. Updated phase-4-throws-audit.md to reflect corrected throw site count (81 total, up from 72) and document the inline-throw detection gap.",
+      "fixSHA": "38b196d1"
+    },
+    {
+      "id": "F2",
+      "severity": "info",
+      "category": "test-quality",
+      "title": "Vitest suite times out in sandbox (>120s)",
+      "description": "The full vitest suite exceeds the 120s timeout in this environment. tsc --noEmit passes clean. The exported-surface guard and typed-params guard both pass. This is an environment limitation, not a code defect.",
+      "files": [],
+      "fix": "N/A — environment constraint, not a code issue."
+    }
+  ],
+  "guardsVerified": {
+    "exported-convex-surface": {
+      "command": "bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-exported-convex-im3.sh --json",
+      "result": "{\"pass\":true,\"declarations\":197,\"missing_jsdoc\":0,\"scanned_files\":101}",
+      "exit": 0
+    },
+    "typed-params": {
+      "command": "bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh --json",
+      "result": "{\"pass\":true,\"typed_tags\":593,\"untyped_tags\":0,\"scanned_files\":102}",
+      "exit": 0
+    },
+    "runner-plumbing-self-test": {
+      "command": "SCOPE_DIRS=measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/fixtures/exported-convex-bad-sample.ts bash .../check-jsdoc-exported-convex-im3.sh --json",
+      "result": "{\"pass\":false,\"declarations\":4,\"missing_jsdoc\":2}",
+      "exit": 1,
+      "expected": "FAIL by design"
+    },
+    "saveCardsHandler-returns": {
+      "command": "awk '...' apps/integrated-math-3/convex/srs/cards.ts",
+      "result": "1 (PASS — @returns present)",
+      "exit": 0
+    },
+    "tsc-noEmit": {
+      "command": "npx tsc --noEmit",
+      "exit": 0
+    }
+  },
+  "filesChanged": [
+    "apps/integrated-math-3/convex/rateLimits.ts",
+    "apps/integrated-math-3/convex/student.ts",
+    "measure/tracks/spec-compliance-and-process-integrity_20260612/phase-4-throws-audit.md"
+  ],
+  "commandsRun": [
+    "bash .../check-jsdoc-exported-convex-im3.sh --json",
+    "bash .../check-jsdoc-typed-params.sh --json",
+    "SCOPE_DIRS=.../fixtures/exported-convex-bad-sample.ts bash .../check-jsdoc-exported-convex-im3.sh --json",
+    "npx tsc --noEmit",
+    "grep -rEn 'throw\\b' apps/integrated-math-3/convex/ apps/integrated-math-3/lib/",
+    "grep -rEn '@throws' apps/integrated-math-3/convex/ apps/integrated-math-3/lib/",
+    "awk '...' apps/integrated-math-3/convex/srs/cards.ts",
+    "git diff --stat ed345e2bfe25d972b76ed0d52d2e9dc1a8a76ba7..HEAD"
+  ],
+  "antiPatternChecks": {
+    "A3-digit-only-count": "PASS — guard JSON uses labeled integers (declarations:197, missing_jsdoc:0); audit table uses labeled counts (Throw sites: 81, With @throws: 81).",
+    "A4-vacuous-pass": "PASS — runner-plumbing self-test correctly FAILS (missing_jsdoc=2, declarations=4, exit=1) on the bad-sample fixture, proving the guard is not always-pass. Production gate requires declarations>=197 AND missing_jsdoc=0.",
+    "A5-false-claim-text": "PASS — plan.md claims 'Phase 4 Green' and the guard at HEAD exits 0 with missing_jsdoc=0 over 197 declarations. No stale prose claim."
+  }
+}
