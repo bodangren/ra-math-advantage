@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "status": "pass",
+  "summary": "Phase 4 accepted after verifying tasks 4.1-4.4, live guards, lint/typecheck/test/doctor gates, review-A fix 38b196d1, and acceptance-record A7 hardening commit 024da35f. Exported Convex guard passes on production scope (197 declarations, 0 missing), bad fixture fails by design (5 declarations, 3 missing including skip-like symbol), typed-params guard remains green, saveCardsHandler @returns is present, and all 83 throw sites in scope (81 production, 2 test exclusions) are accounted for.",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    "Review C documented non-blocking API-doc quality debt: many wrapper @returns tags use Promise<unknown> despite known handler return types.",
+    "Phase 4 acceptance updated the runner-plumbing fixture and plan/test-strategy records so A7 over-broad-filter protection is live rather than prose-only."
+  ],
+  "evidence": [
+    "Phase 4 plan tasks 4.1, 4.2, 4.3, 4.4 are [x] with green commit 15cd81f1 and guard red/green evidence.",
+    "Review-A PASS_WITH_FIXES fixed inline throw misses in apps/integrated-math-3/convex/student.ts and rateLimits.ts at 38b196d1; phase-4-throws-audit.md now records 83 throw sites, 81 production, 0 missing @throws.",
+    "A1 supervisor check verified: measure/automation-supervisor.py uses task regex [~xb] and is_task_structurally_blocked recognizes marker [b] plus deferred:<owner>.",
+    "A3 check verified: Phase 4 guard emits labeled JSON integers declarations and missing_jsdoc; plan/test-strategy use labeled counts, not bare digit-only success assertions.",
+    "A4 check verified: phase_counts returns total=0 when a phase is absent and gates treat total==0 as failure; Phase 4 has 4 completed tasks, not a zero-[x] vacuous pass.",
+    "A5 check verified: current plan PASS claims match live commands rerun by phase acceptance.",
+    "A6 check verified: tracks.md does not overstate Phase 4 as globally resolved beyond active in-progress track status.",
+    "A7 check verified: fixture includes skipThisUndocumentedWrapper and guard reports missing_jsdoc=3 over declarations=5, proving skip-like names are not filtered out."
+  ],
+  "commands": [
+    "git status --short --branch -> ## master...origin/master [ahead 12] (clean)",
+    "git diff --stat 3c0d797100f086bc7d1bda102c83a61ec5942b9c..HEAD -> 3 Measure files changed by acceptance fixture hardening",
+    "bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-exported-convex-im3.sh --json -> pass true, declarations 197, missing_jsdoc 0",
+    "SCOPE_DIRS=measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/fixtures/exported-convex-bad-sample.ts bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-exported-convex-im3.sh --json -> expected failure, declarations 5, missing_jsdoc 3",
+    "bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh --json -> pass true, total_tags 593, untyped_tags 0",
+    "awk JSDoc-block scoped saveCardsHandler @returns check -> 1",
+    "python throw-site audit -> throw_sites:83, production_throw_sites:81, test_throw_sites:2; nearby @throws checker printed no missing production sites",
+    "npm run lint -> PASS",
+    "npx tsc --noEmit -> PASS",
+    "npm run test -> PASS (20 files, 285 tests)",
+    "bash measure/doctor.sh -> PASS"
+  ],
+  "changed_files": [
+    "measure/tracks/spec-compliance-and-process-integrity_20260612/plan.md",
+    "measure/tracks/spec-compliance-and-process-integrity_20260612/test-strategy.md",
+    "measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/fixtures/exported-convex-bad-sample.ts",
+    "measure/tracks/spec-compliance-and-process-integrity_20260612/_artifacts/phase-acceptance-phase4.json"
+  ],
+  "retry_recommendation": "none",
+  "confidence": "high",
+  "phase": "Phase 4: Missing `@throws`, `@returns`, and Convex Exported Surface",
+  "track_id": "spec-compliance-and-process-integrity_20260612",
+  "baseline_sha": "3c0d797100f086bc7d1bda102c83a61ec5942b9c",
+  "head_sha": "024da35f",
+  "worktree_status": "## master...origin/master [ahead 12]",
+  "accepted": true,
+  "next_role": "adversarial"
+}
