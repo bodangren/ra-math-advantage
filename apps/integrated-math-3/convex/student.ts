@@ -133,6 +133,7 @@ export const getLessonProgress = internalQuery({
 /**
  * Convex internalMutation wrapper: complete phase.
  * @returns {Promise<unknown>} The wrapper result.
+ * @throws {ConvexError} Thrown if the lesson, published version, or phase is not found.
  */
 export const completePhase = internalMutation({
   args: {
@@ -254,6 +255,7 @@ export const completePhase = internalMutation({
 /**
  * Convex internalMutation wrapper: skip phase.
  * @returns {Promise<unknown>} The wrapper result.
+ * @throws {ConvexError} Thrown if the lesson, published version, or phase is not found.
  */
 export const skipPhase = internalMutation({
   args: {

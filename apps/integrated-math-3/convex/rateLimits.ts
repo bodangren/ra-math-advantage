@@ -27,6 +27,7 @@ export const getRateLimitStatus = internalQuery({
 /**
  * Convex internalMutation wrapper: check and increment rate limit.
  * @returns {Promise<unknown>} The wrapper result.
+ * @throws {Error} Thrown if the rate limit record disappears after concurrent insert or if the initial insert fails on a non-duplicate error.
  */
 export const checkAndIncrementRateLimit = internalMutation({
   args: { userId: v.id("profiles") },
