@@ -1,0 +1,98 @@
+#!/usr/bin/env bash
+# pre-commit-fr5-typed-params — block commits that introduce untyped JSDoc
+# @param / @returns tags in the spec-compliance Phase 3-8 scope.
+#
+# Why: spec.md §B (Universal FR-5 Violation) / FR-3 in the spec-compliance spec
+# requires every @param and @returns tag in the JSDoc Phases 4-8 scope to carry
+# a TypeScript-flavored `{Type}` annotation. Without a pre-commit gate, the
+# violation can be reintroduced silently. (Re-introduction was the original
+# finding of this track — see plan.md Phase 1.)
+#
+# Scope (per plan.md Phase 3 Tasks 3.1-3.6):
+#   apps/integrated-math-3/convex
+#   apps/integrated-math-3/components
+#   apps/integrated-math-3/lib
+#   apps/integrated-math-3/app
+#   packages
+#
+# Install (per clone, after the existing scripts/git-hooks/pre-commit graph.db
+# guard). The repo currently uses scripts/git-hooks/ as the hooks directory
+# template; to enable this hook, set:
+#   git config core.hooksPath scripts/git-hooks
+# and either (a) symlink this file into a chain that also invokes pre-commit, or
+# (b) configure your local pre-commit to invoke both this script and the
+# existing graph.db block.
+#
+# Skip (intentional test of the guard itself, or to commit a temporary
+# experimental change that will be re-typed in a follow-up commit):
+#   SKIP_FR5_TYPED_PARAMS=1 git commit ...
+set -euo pipefail
+
+if [ "${SKIP_FR5_TYPED_PARAMS:-0}" = "1" ]; then
+  exit 0
+fi
+
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+
+# In-scope paths per plan.md Phase 3 Tasks 3.1-3.6.
+SCOPES=(
+  "apps/integrated-math-3/convex"
+  "apps/integrated-math-3/components"
+  "apps/integrated-math-3/lib"
+  "apps/integrated-math-3/app"
+  "packages"
+)
+
+# Detect staged changes in any in-scope path. If no in-scope changes are
+# staged, this hook is a no-op (lets the rest of the commit pipeline run).
+STAGED=0
+for scope in "${SCOPES[@]}"; do
+  if git diff --cached --name-only -- "${scope}/" 2>/dev/null | grep -q .; then
+    STAGED=1
+    break
+  fi
+done
+
+if [ "${STAGED}" = "0" ]; then
+  exit 0
+fi
+
+GUARD="${REPO_ROOT}/measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh"
+
+if [ ! -f "${GUARD}" ]; then
+  echo "pre-commit-fr5-typed-params: guard script not found at ${GUARD}" >&2
+  echo "  This hook is part of the spec-compliance track; if the track was" >&2
+  echo "  archived, you can delete this hook or set SKIP_FR5_TYPED_PARAMS=1." >&2
+  exit 1
+fi
+
+if [ ! -x "${GUARD}" ]; then
+  echo "pre-commit-fr5-typed-params: guard script is not executable: ${GUARD}" >&2
+  echo "  Fix with: chmod +x ${GUARD}" >&2
+  exit 1
+fi
+
+# The guard accepts a space-separated TYPED_PARAMS_SCOPE; pass all in-scope
+# paths in one invocation. The guard is regex-based and reads source files
+# directly (not graph.db) so it is independent of build-graph freshness.
+SCOPE_ARGS="${SCOPES[*]}"
+echo "pre-commit-fr5-typed-params: running FR-5 typed-params guard against in-scope paths..." >&2
+echo "  scope: ${SCOPE_ARGS}" >&2
+
+# Tee to a tmp file so the JSON result is preserved for any post-mortem.
+RESULT_FILE="$(mktemp -t fr5-guard.XXXXXX.json)"
+trap 'rm -f "${RESULT_FILE}"' EXIT
+
+if TYPED_PARAMS_SCOPE="${SCOPE_ARGS}" bash "${GUARD}" --json | tee "${RESULT_FILE}"; then
+  echo "pre-commit-fr5-typed-params: PASS" >&2
+  exit 0
+fi
+
+echo "" >&2
+echo "pre-commit-fr5-typed-params: FAIL — the staged changes introduce untyped @param/@returns tags." >&2
+echo "  Per plan.md Phase 3 (FR-5 type annotations), every @param and @returns must carry a {Type}." >&2
+echo "  See guard output above for the offending files." >&2
+echo "  Full JSON result preserved at: ${RESULT_FILE}" >&2
+echo "  To skip this guard for this commit (e.g., to test the guard itself):" >&2
+echo "    SKIP_FR5_TYPED_PARAMS=1 git commit ..." >&2
+exit 1

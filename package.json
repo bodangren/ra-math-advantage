@@ -29,7 +29,10 @@
     "ws:im1:typecheck": "npm run --workspace=apps/integrated-math-1 typecheck 2>/dev/null || npx tsc --noEmit --project apps/integrated-math-1/tsconfig.json",
     "ws:im1:build": "npm run --workspace=apps/integrated-math-1 build 2>/dev/null || npm run build --prefix apps/integrated-math-1",
     "generate": "bash measure/scripts/generate.sh",
-    "doctor": "bash measure/scripts/doctor.sh"
+    "doctor": "bash measure/scripts/doctor.sh",
+    "guard:fr5-typed-params": "bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh",
+    "guard:fr5-typed-params:scope": "TYPED_PARAMS_SCOPE=\"apps/integrated-math-3/convex apps/integrated-math-3/components apps/integrated-math-3/lib apps/integrated-math-3/app packages\" bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh --json",
+    "guard:fr5-typed-params:self-test": "TYPED_PARAMS_SCOPE=measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/fixtures/typed-params-bad-sample.ts bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh --json"
   },
   "devDependencies": {
     "@eslint/js": "^10",

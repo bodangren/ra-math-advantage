@@ -1,0 +1,103 @@
+# JSDoc Typed-Params Guard (FR-5) — CI gate for spec-compliance-and-process-integrity_20260612
+#
+# Per the track's spec.md §B (Universal FR-5 Violation) / FR-3 and plan.md Phase 3,
+# every @param and @returns JSDoc tag in the JSDoc Phases 4-8 scope must carry a
+# TypeScript-flavored `{Type}` annotation. The guard at
+# `measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh`
+# enforces this contract; this workflow wires it into CI so the violation cannot
+# be reintroduced silently.
+#
+# Why a dedicated workflow (not embedded in ci.yml): ci.yml has
+#   paths-ignore: [ 'measure/**', ... ]
+# which would prevent changes to the guard script itself from triggering a re-run.
+# A dedicated workflow with explicit path filters is the smallest correct wiring
+# that catches both code changes and guard-script changes.
+#
+# Scope mirrors plan.md Phase 3 Tasks 3.1-3.6 (in-scope paths only — e2e, scripts/,
+# vite.config, etc. are out of Phase 3 scope and intentionally excluded to avoid
+# false positives on adjacent un-typed JSDoc that belongs to a later remediation).
+name: JSDoc Typed-Params Guard (FR-5)
+
+on:
+  push:
+    branches:
+      - master
+      - main
+    paths:
+      - 'apps/integrated-math-3/convex/**'
+      - 'apps/integrated-math-3/components/**'
+      - 'apps/integrated-math-3/lib/**'
+      - 'apps/integrated-math-3/app/**'
+      - 'packages/**'
+      - 'measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh'
+      - '.github/workflows/jsdoc-typed-params.yml'
+  pull_request:
+    paths:
+      - 'apps/integrated-math-3/convex/**'
+      - 'apps/integrated-math-3/components/**'
+      - 'apps/integrated-math-3/lib/**'
+      - 'apps/integrated-math-3/app/**'
+      - 'packages/**'
+      - 'measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh'
+      - '.github/workflows/jsdoc-typed-params.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: jsdoc-typed-params-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  fr5-typed-params:
+    name: FR-5 Typed-Params Guard
+    runs-on: ubuntu-latest
+    env:
+      # In-scope paths per plan.md Phase 3 Tasks 3.1-3.6. The guard accepts a
+      # space-separated TYPED_PARAMS_SCOPE and runs the same regex-based
+      # check across all paths in one invocation.
+      TYPED_PARAMS_SCOPE: >-
+        apps/integrated-math-3/convex
+        apps/integrated-math-3/components
+        apps/integrated-math-3/lib
+        apps/integrated-math-3/app
+        packages
+      GUARD: >-
+        measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh
+      FIXTURE: >-
+        measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/fixtures/typed-params-bad-sample.ts
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run FR-5 typed-params guard (production gate)
+        id: prod-gate
+        run: |
+          set -euo pipefail
+          chmod +x "${GUARD}"
+          bash "${GUARD}" --json | tee guard-result.json
+          pass=$(jq -r '.pass' guard-result.json)
+          if [ "${pass}" != "true" ]; then
+            echo "::error title=FR-5 typed-params guard failed::See guard-result.json for per-file untyped tag breakdown."
+            exit 1
+          fi
+          typed=$(jq -r '.typed_tags' guard-result.json)
+          untyped=$(jq -r '.untyped_tags' guard-result.json)
+          scanned=$(jq -r '.scanned_files' guard-result.json)
+          echo "FR-5 typed-params guard PASS: ${typed} typed / ${untyped} untyped across ${scanned} files."
+
+      - name: Run FR-5 typed-params guard runner-plumbing self-test (must FAIL)
+        id: self-test
+        # Per test-strategy §7 P3 closeout: the guard run against a constructed
+        # bad-sample fixture must also fail. This proves the runner plumbing
+        # invokes the right command path; a passing self-test would be a
+        # vacuous-pass anti-pattern (A4 in references/anti-pattern-catalog.md).
+        run: |
+          set -euo pipefail
+          TYPED_PARAMS_SCOPE="${FIXTURE}" bash "${GUARD}" --json | tee guard-self-test.json
+          pass=$(jq -r '.pass' guard-self-test.json)
+          untyped=$(jq -r '.untyped_tags' guard-self-test.json)
+          typed=$(jq -r '.typed_tags' guard-self-test.json)
+          if [ "${pass}" = "true" ]; then
+            echo "::error title=FR-5 runner-plumbing self-test unexpectedly PASSED::The guard must FAIL on a constructed bad-sample fixture with untyped tags."
+            exit 1
+          fi
+          echo "FR-5 runner-plumbing self-test confirmed: guard reports ${untyped} untyped / ${typed} typed on the bad-sample fixture (FAIL by design)."

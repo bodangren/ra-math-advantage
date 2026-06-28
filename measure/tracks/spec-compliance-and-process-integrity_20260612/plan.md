@@ -89,10 +89,81 @@
   - Live count: 1083 untyped (676 @param + 407 @returns) across 130+ files in `packages/`. Plan-vs-live delta: scope grew ~26% post-spec.
   - [GREEN EVIDENCE 2026-06-24, commit 82435fac] 1083 typed / 0 untyped / 433 scanned / PASS — full coverage across all `packages/*/src/` (676/676 @param + 407/407 @returns). Verified via `TYPED_PARAMS_SCOPE=packages/ bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh --json` → `{"scanned_files":433,"total_tags":1083,"typed_tags":1083,"untyped_tags":0,"pass":true}`.
 
-- [~] Task 3.7: Add an FR-5 enforcement guard [red: bde10833]
+- [x] Task 3.7: Add an FR-5 enforcement guard [red: bde10833, green: <pending>]
   - [x] Create `measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh`
   - [x] Assert every `@param` and `@returns` line added by Phases 4-8 contains `{...}`
-  - [ ] Add guard to CI / pre-commit (Phase 3 Green or Phase 7 closeout)
+  - [x] Add guard to CI / pre-commit (Phase 3 Green or Phase 7 closeout)
+    - [x] Sub-task 3.7a: Guard script creation [commits bde10833, f55172d1]
+    - [x] Sub-task 3.7b: Wire guard to CI + pre-commit + npm
+      - [x] Created `.github/workflows/jsdoc-typed-params.yml` — dedicated CI workflow (not embedded in ci.yml because ci.yml has `paths-ignore: [ 'measure/**', ... ]` which would prevent changes to the guard from re-triggering). Triggers on pushes/PRs that touch any in-scope path, the guard script, or the workflow file itself. Runs two steps: (a) production gate (full Phase 3 scope) — must PASS; (b) runner-plumbing self-test on the bad-sample fixture — must FAIL by design (anti-vacuous-pass).
+      - [x] Created `scripts/git-hooks/pre-commit-fr5-typed-params` — opt-in pre-commit hook (same `core.hooksPath scripts/git-hooks` pattern as the existing `pre-commit` graph.db block). Detects staged changes in any in-scope path, runs the guard, blocks the commit on violation. Skippable via `SKIP_FR5_TYPED_PARAMS=1` for testing the guard itself. No-op when no in-scope paths are staged.
+      - [x] Added 3 npm scripts to `package.json`:
+        - `guard:fr5-typed-params` — runs guard with default scope (`apps/integrated-math-3/convex/`)
+        - `guard:fr5-typed-params:scope` — runs guard with full Phase 3 scope (`apps/integrated-math-3/{convex,components,lib,app} + packages`)
+        - `guard:fr5-typed-params:self-test` — runs guard against bad-sample fixture (must FAIL by design)
+    - [GREEN EVIDENCE 2026-06-28] See "Phase 3 Green wiring — CI/pre-commit gate evidence" below.
+
+### Phase 3 Green wiring — CI/pre-commit gate evidence (recorded 2026-06-28)
+
+**Targeted production-gate command** (full Phase 3 scope; the same command the new CI workflow runs):
+
+```bash
+TYPED_PARAMS_SCOPE="apps/integrated-math-3/convex apps/integrated-math-3/components apps/integrated-math-3/lib apps/integrated-math-3/app packages" \
+  bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh --json
+```
+
+**Result:** `{"phase":"Phase 3 (FR-5 typed-params)","scope":"apps/integrated-math-3/convex apps/integrated-math-3/components apps/integrated-math-3/lib apps/integrated-math-3/app packages","scanned_files":780,"total_tags":1811,"typed_tags":1811,"untyped_tags":0,"param_total":1044,"param_typed":1044,"returns_total":767,"returns_typed":767,"pass":true,"files_untyped":[]}`
+Exit: 0 (PASS — 1811 typed / 0 untyped across 780 files in the Phase 3-8 scope).
+
+**Runner-plumbing self-test** (closeout gate per test-strategy §7 P3):
+
+```bash
+TYPED_PARAMS_SCOPE=measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/fixtures/typed-params-bad-sample.ts \
+  bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh --json
+```
+
+**Result:** `{"phase":"Phase 3 (FR-5 typed-params)","scope":"...bad-sample.ts","scanned_files":1,"total_tags":4,"typed_tags":2,"untyped_tags":2,"param_total":2,"param_typed":1,"returns_total":2,"returns_typed":1,"pass":false,"files_untyped":[{"file":"...bad-sample.ts","untyped":2,"untyped_param":1,"untyped_returns":1}]}`
+Exit: 1 (FAIL by design — guard correctly reports 2 untyped / 2 typed on the bad fixture, proving runner plumbing is wired; if the guard silently passed, the wiring would be vacuous).
+
+**Pre-commit hook verification** (live test in /tmp/opencode/fr5-test):
+
+| Scenario | Result | Exit |
+|----------|--------|------|
+| No in-scope files staged | no-op (silent pass) | 0 |
+| Staged file with untyped `@param ctx - ctx` and `@returns the result` in `apps/integrated-math-3/convex/auth.ts` | FAIL with offending file listed, `untyped=2, typed=1811, scanned=780` | 1 |
+| Same staged change with `SKIP_FR5_TYPED_PARAMS=1` | bypassed (silent pass) | 0 |
+
+**NPM script verification** (live test in /tmp/opencode/fr5-test):
+
+| Script | Command | Result |
+|--------|---------|--------|
+| `npm run guard:fr5-typed-params` | default scope (convex/) | 409/409 typed, 102 scanned, pass |
+| `npm run guard:fr5-typed-params:scope` | full Phase 3 scope | 1811/1811 typed, 780 scanned, pass |
+| `npm run guard:fr5-typed-params:self-test` | bad fixture | 2/2 typed + 2/2 untyped, fail by design |
+
+**Files added/modified by jr-green Phase 3 wiring (this commit):**
+
+- **New** `.github/workflows/jsdoc-typed-params.yml` — dedicated CI workflow with two steps (production gate + runner-plumbing self-test). Path triggers cover all in-scope paths + the guard script + the workflow file. Exits non-zero if either step fails.
+- **New** `scripts/git-hooks/pre-commit-fr5-typed-params` — opt-in pre-commit hook, follows the same `core.hooksPath scripts/git-hooks` install pattern as the existing `pre-commit` graph.db block.
+- **Modified** `package.json` — added 3 npm scripts (`guard:fr5-typed-params`, `guard:fr5-typed-params:scope`, `guard:fr5-typed-params:self-test`) for developer/CI convenience.
+- **Modified** `measure/tracks/spec-compliance-and-process-integrity_20260612/plan.md` — this file.
+
+**Why a dedicated workflow, not a job in `.github/workflows/ci.yml`:** ci.yml has
+`paths-ignore: [ 'measure/**', '**.md', '.gitignore' ]` to skip Measure docs and
+markdown from triggering CI (those changes are doc-only). The guard script
+lives under `measure/`, so a guard-script edit would never re-trigger ci.yml
+to re-validate the FR-5 contract. A dedicated workflow with explicit path
+filters (the in-scope paths + the guard script + the workflow file itself)
+is the smallest correct wiring that catches both code changes and guard-
+script changes without polluting the main CI matrix.
+
+**Why an opt-in pre-commit hook, not a husky-managed mandatory hook:** the
+repo has no existing husky infrastructure and uses an opt-in
+`scripts/git-hooks/` template pattern (one pre-existing file: `pre-commit`
+for graph.db). Adding a second sibling script follows the same opt-in
+pattern. Developers who want local enforcement can run
+`git config core.hooksPath scripts/git-hooks` and chain both scripts in
+their personal pre-commit. CI is the always-on backstop.
 
 ### Phase 3 Red proof (recorded 2026-06-20)
 
