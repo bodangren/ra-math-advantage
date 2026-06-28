@@ -1714,7 +1714,7 @@ typed `@returns {Promise<void>}` tag (line 154). The exported wrapper
 command is broken because the `@returns` line does not contain the function
 name; test-strategy.md has been corrected to use a JSDoc-block-scoped check.)
 
-### Phase 4 Red proof refresh (recorded 2026-06-28, baseline `c5ac819d`)
+### Phase 4 Red proof refresh (recorded 2026-06-28, baseline `c5ac819d`, Red commit `d947d462`)
 
 **Baseline SHA:** `c5ac819d34b3add50ba220dbd6442a1089e75c7f` (current HEAD at
 MID Red Phase 4 restart).
