@@ -1896,12 +1896,12 @@ No stashes.
 
 ## Phase 5: Verification Process Integrity
 
-- [x] Task 5.1: Reset all verification reports to `pending` [red: PENDING_COMMIT]
+- [x] Task 5.1: Reset all verification reports to `pending` [red: 9c0563c]
   - [x] Files: `measure/archive/jsdoc-comments_20260526/phase-{1..9}-verification-report.md`
   - [x] Changed `VERIFICATION_RESULT: approved` → `pending`
   - [x] Cleared `VERIFIED_BY` and `VERIFIED_AT` to placeholders rejected by the hardened guard
 
-- [x] Task 5.2: Harden verification guard [red: PENDING_COMMIT]
+- [x] Task 5.2: Harden verification guard [red: 9c0563c]
   - [x] File: `measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-phase-verification-guards.sh`
   - [x] Rejects `VERIFIED_BY` values matching automation / measure-mid / bot / ai-agent / llm / machine
   - [x] Rejects `VERIFICATION_RESULT: pending` and `rejected`
@@ -1913,7 +1913,7 @@ No stashes.
   - [ ] Human verifier reviews changed files, runs lint/test/typecheck, inspects guards
   - [ ] Only after explicit human confirmation, update report with real name and ISO timestamp
 
-- [x] Task 5.4: Remove false excuses from verification reports [red: PENDING_COMMIT]
+- [x] Task 5.4: Remove false excuses from verification reports [red: 9c0563c]
   - [x] Replaced "npm not on PATH" and "Not available in sandbox" with honest `PENDING` placeholders
   - [x] Replaced automation self-approval caveats in NOTES with pending-verification language
 
