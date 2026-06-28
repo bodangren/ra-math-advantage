@@ -89,7 +89,7 @@
   - Live count: 1083 untyped (676 @param + 407 @returns) across 130+ files in `packages/`. Plan-vs-live delta: scope grew ~26% post-spec.
   - [GREEN EVIDENCE 2026-06-24, commit 82435fac] 1083 typed / 0 untyped / 433 scanned / PASS — full coverage across all `packages/*/src/` (676/676 @param + 407/407 @returns). Verified via `TYPED_PARAMS_SCOPE=packages/ bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh --json` → `{"scanned_files":433,"total_tags":1083,"typed_tags":1083,"untyped_tags":0,"pass":true}`.
 
-- [x] Task 3.7: Add an FR-5 enforcement guard [red: bde10833, green: <pending>]
+- [x] Task 3.7: Add an FR-5 enforcement guard [red: bde10833, green: 21c1a9aa]
   - [x] Create `measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh`
   - [x] Assert every `@param` and `@returns` line added by Phases 4-8 contains `{...}`
   - [x] Add guard to CI / pre-commit (Phase 3 Green or Phase 7 closeout)
@@ -101,7 +101,7 @@
         - `guard:fr5-typed-params` — runs guard with default scope (`apps/integrated-math-3/convex/`)
         - `guard:fr5-typed-params:scope` — runs guard with full Phase 3 scope (`apps/integrated-math-3/{convex,components,lib,app} + packages`)
         - `guard:fr5-typed-params:self-test` — runs guard against bad-sample fixture (must FAIL by design)
-    - [GREEN EVIDENCE 2026-06-28] See "Phase 3 Green wiring — CI/pre-commit gate evidence" below.
+    - [GREEN EVIDENCE 2026-06-28, commit 21c1a9aa] See "Phase 3 Green wiring — CI/pre-commit gate evidence" below.
 
 ### Phase 3 Green wiring — CI/pre-commit gate evidence (recorded 2026-06-28)
 
