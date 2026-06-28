@@ -1697,38 +1697,103 @@ grep -rEn '^\s*throw\b' apps/integrated-math-3/convex/ apps/integrated-math-3/li
 Expected at HEAD: `throw_sites:` value > 0. jr-green enumerates the full table
 in `phase-4-throws-audit.md`.
 
-**P4.2 named gap** (saveCardsHandler missing @returns):
+**P4.2 named gap** (`saveCardsHandler` `@returns`):
 
 ```bash
-grep -n '@returns' apps/integrated-math-3/convex/srs/cards.ts \
-  | grep -c saveCardsHandler || true
+awk 'BEGIN{found=0} /^[[:space:]]*\/\*\*/{block=1; found=0} block && /@returns/{found=1} /^[[:space:]]*\*\//{block=0} /export async function saveCardsHandler/{print found; exit}' \
+  apps/integrated-math-3/convex/srs/cards.ts
 ```
 
-Expected at HEAD: 0 hits (the function lacks `@returns` per spec §D).
-Green: ≥ 1 hit.
+**Result at `c5ac819d` baseline:** `1` — the named gap is **already satisfied**
+at this SHA. The JSDoc block immediately above `saveCardsHandler` contains a
+typed `@returns {Promise<void>}` tag (line 154). The exported wrapper
+`saveCards` (`internalMutation` at line 235) also has a JSDoc block with
+`@returns` (lines 229–234). No false Red phase is created for this named gap.
 
-### Dirty-worktree classification (MID Red Phase 4, 2026-06-24)
+(The original `grep -n '@returns' ... | grep -c saveCardsHandler` test strategy
+command is broken because the `@returns` line does not contain the function
+name; test-strategy.md has been corrected to use a JSDoc-block-scoped check.)
+
+### Phase 4 Red proof refresh (recorded 2026-06-28, baseline `c5ac819d`)
+
+**Baseline SHA:** `c5ac819d34b3add50ba220dbd6442a1089e75c7f` (current HEAD at
+MID Red Phase 4 restart).
+
+**Single most targeted Red command** (production gate):
+
+```bash
+bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-exported-convex-im3.sh
+```
+
+**Red result at `c5ac819d`:**
+`missing_jsdoc=131, declarations=197, scanned_files=101, exit=1` (FAIL).
+
+Per-file breakdown: 68 files have at least one missing-JSDoc wrapper. Top 3 are
+`teacher.ts` (13 missing), `seed/seed_lesson_standards.ts` (9 missing),
+`student.ts` (8 missing). Only 66 wrappers out of 197 have a JSDoc block
+closing `*/` on the line immediately above the export line.
+
+**Red proof failure cause (intrinsic, not stale):** the Red test fails because
+the committed source state is **missing** JSDoc on 131 out of 197 exported
+Convex wrapper declarations. Per spec §E, Phase 4 JSDoc was historically placed
+on internal `*Handler` functions, not on the actual exported wrappers. The
+guard's parser is regex-based and reads source directly (not graph.db), so the
+count is always live. The failure is intrinsic to the committed source state at
+the baseline SHA.
+
+**Runner-plumbing self-test** (closeout gate per test-strategy §9 P4):
+
+```bash
+SCOPE_DIRS="measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/fixtures/exported-convex-bad-sample.ts" \
+  bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-exported-convex-im3.sh --json
+```
+
+**Self-test result:** `missing_jsdoc=2, declarations=4, scanned_files=1, exit=1`
+(FAIL, by design — the fixture has 2 documented + 2 undocumented wrappers).
+
+**Sibling guard cross-check** (Phase 3 typed-params must remain green):
+
+```bash
+bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh --json
+```
+
+**Sibling result:** `{"pass":true,"typed_tags":346,"untyped_tags":0,"scanned_files":102}`
+Exit: 0 (PASS — Phase 3 typed-params guard unaffected by Phase 4 Red work).
+
+**P4.1 throws audit baseline:** 74 throw sites in scope; 0 have `@throws` in
+the enclosing JSDoc. See `phase-4-throws-audit.md` for the full enumeration.
+
+**P4.2 returns named-gap status:** `saveCardsHandler` already has a typed
+`@returns` tag at the baseline SHA. Gap is closed; no false Red assertion is
+made. See `phase-4-returns-audit.md` for evidence.
+
+### Dirty-worktree classification (MID Red Phase 4, 2026-06-28)
 
 `git status --porcelain` at MID Red Phase 4 start:
 
 ```
- M graph.db
+ M measure/tracks/spec-compliance-and-process-integrity_20260612/phase-4-returns-audit.md
+ M measure/tracks/spec-compliance-and-process-integrity_20260612/phase-4-throws-audit.md
  M measure/tracks/spec-compliance-and-process-integrity_20260612/plan.md
  M measure/tracks/spec-compliance-and-process-integrity_20260612/test-strategy.md
 ```
 
 Classification:
 
-- **`graph.db` (modified)**: **unrelated**. Phase 7.1 concern (refresh + commit).
-  MID Red does not touch graph.db.
-- **`plan.md` (modified)**: **relevant**. Track plan, already being updated by
-  this MID Red phase. Folded into the Phase 4 Red commit.
-- **`test-strategy.md` (modified)**: **relevant**. Track test strategy, already
-  committed in Phase 3 Red. The worktree modification is from the Phase 3
-  Red commit's last-minute strategy refresh. MID Red preserves as-is (not
-  re-committed — already at HEAD via prior phase).
+- **`phase-4-throws-audit.md` (modified)**: **relevant**. Red baseline audit
+  table populated with the 74 throw sites and 0 `@throws` coverage. Folded into
+  the Phase 4 Red commit.
+- **`phase-4-returns-audit.md` (modified)**: **relevant**. Red baseline audit
+  noting that the `saveCardsHandler` named gap is already satisfied at the
+  baseline SHA. Folded into the Phase 4 Red commit.
+- **`plan.md` (modified)**: **relevant**. Track plan, updated with the Phase 4
+  Red proof refresh at baseline `c5ac819d`. Folded into the Phase 4 Red commit.
+- **`test-strategy.md` (modified)**: **relevant**. Test strategy corrected for
+  the broken P4.2 `@returns` verification command. Folded into the Phase 4 Red
+  commit.
 
-No application source files dirty. No untracked scripts. No stashes.
+No application source files dirty. No `graph.db` changes. No untracked scripts.
+No stashes.
 
 ## Phase 5: Verification Process Integrity
 

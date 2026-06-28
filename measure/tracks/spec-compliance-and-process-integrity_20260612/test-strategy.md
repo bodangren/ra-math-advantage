@@ -186,20 +186,26 @@ planning; Phase 7.1 re-scans + commits. build-graph on PATH at ~/.local/bin.
   guard script — the deliverable is the audit table committed in the Green
   commit, not a passing shell test. The grep just enumerates the candidate
   set.)
-- P4.2 (`@returns` audit) — targeted at the spec's named gap:
+- P4.2 (`@returns` audit) — targeted at the spec's named gap. The original
+  command (`grep -n '@returns' ... | grep -c saveCardsHandler`) is broken
+  because the `@returns` line does not contain the function name. Use a
+  JSDoc-block-scoped check instead:
   ```bash
-  grep -n '@returns' apps/integrated-math-3/convex/srs/cards.ts \
-    | grep -c saveCardsHandler || true
+  awk 'BEGIN{found=0} /^[[:space:]]*\/\*\*/{block=1; found=0} block && /@returns/{found=1} /^[[:space:]]*\*\//{block=0} /export async function saveCardsHandler/{print found; exit}' \
+    apps/integrated-math-3/convex/srs/cards.ts
   ```
-  Expected at HEAD: 0 hits (the function lacks `@returns` per spec §D).
-  Green: ≥1 hit.
+  Expected at `c5ac819d` baseline: `1` (the named gap is already closed at
+  this SHA — the JSDoc block above `saveCardsHandler` contains a typed
+  `@returns {Promise<void>}` tag). If the gap reopens, this command returns `0`.
 
 ### 9.4 Phase 4 Green gate (must PASS at Green)
 - `bash …/check-jsdoc-exported-convex-im3.sh` → `missing_jsdoc=0, exit 0`
   over the full `apps/integrated-math-3/convex/` scope, with `declarations`
   field reporting ≥ 197.
-- `grep -n '@returns' apps/integrated-math-3/convex/srs/cards.ts | grep -c
-  saveCardsHandler` → ≥ 1.
+- `awk 'BEGIN{found=0} /^[[:space:]]*\/\*\*/{block=1; found=0} block &&
+  /@returns/{found=1} /^[[:space:]]*\*\//{block=0} /export async function
+  saveCardsHandler/{print found; exit}'
+  apps/integrated-math-3/convex/srs/cards.ts` → `1`.
 - An audit table at `measure/tracks/<track>/phase-4-throws-audit.md` (jr-green
   artifact) enumerates every `throw` site in scope and records, for each,
   the JSDoc `@throws` tag added (or a documented "no @throws needed —
