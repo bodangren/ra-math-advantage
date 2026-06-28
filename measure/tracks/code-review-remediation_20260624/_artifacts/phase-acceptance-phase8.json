@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "status": "pass",
+  "summary": "Phase 8 acceptance passes after live verification and a Measure artifact fix. FR-15 junk files are absent from both the working tree and git index, targeted .gitignore guards are present, the FR-14 tech-debt entry remains Resolved, generated Measure docs regenerate without a working-tree diff, graph.db is readable by build-graph, and the Phase 8 UMV task is marked complete with acceptance evidence. Root project tests pass; root lint and root typecheck remain red only on documented pre-existing/unrelated issues.",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    "PROJECT_LINT (`npm run lint`) fails because apps/integrated-math-3/__tests__/lib/onboarding/student-flow.test.ts has two pre-existing warnings under --max-warnings 0; unrelated to Phase 8 files and already documented in prior Phase 5/7 acceptance evidence.",
+    "PROJECT_CHECKS (`npx tsc --noEmit`) fails at repo root with TS18003 because root tsconfig.json has include: []; this is pre-existing and unrelated to Phase 8.",
+    "Two prior acceptance log files remain untracked: phase-acceptance-phase5.log and phase-acceptance-phase7.log. They pre-existed this Phase 8 acceptance run and were not modified or committed by this role.",
+    "review-c noted that the `*-cli-arg-junk` .gitignore pattern is recursive rather than root-anchored. It does not currently ignore any legitimate tracked or untracked file, so it is non-blocking for FR-15."
+  ],
+  "evidence": [
+    "Read measure/index.md, measure/tracks.md, track spec.md, plan.md Phase 8, test-strategy.md, measure/workflow.md, measure/tech-debt.md, .gitignore, measure/automation-supervisor.py, generated docs, and Phase 5/7/8 review/acceptance artifacts.",
+    "Phase 8 current-phase task markers were verified before the acceptance fix: three completed tasks and one incomplete UMV task. The UMV task is now marked [x] with acceptance evidence, and the other completed task lines include commit evidence (ee51d9c9, dcb35dbb, 9701fb88).",
+    "FR-15: `git ls-files -- '--db' '--symbol'` returned empty and `test ! -e './--db' && test ! -e './--symbol'` exited 0; junk files are absent.",
+    "FR-15 recurrence guard: `git check-ignore -v -- './--db' './--symbol' './foo-cli-arg-junk'` matched .gitignore lines 68, 69, and 70 respectively.",
+    "Tech debt closeout: measure/tech-debt.md lists `IM3 auth wrapper inline duplication` as Status: Resolved with notes citing FR-14/core-auth composition.",
+    "Generated docs/graph: `npx tsx scripts/generate-measure-docs.ts` succeeded and left no tracked diff; `build-graph stats graph.db` succeeded (14253 nodes, 20749 edges, 2078 files).",
+    "Regression coverage: Phase 5/7/8 targeted IM3 suite passed 84/84; package regression suites passed math-content 65/65, study-hub-core 4/4, knowledge-space-practice projections 25/25; root `npm run test` passed 285/285.",
+    "FR-3 invariant: JSDoc balanced-brace guard passed with 2249 scanned files, 1811 typed tags, 0 violations.",
+    "A1: measure/automation-supervisor.py task regexes use [~xb], and is_task_structurally_blocked recognizes status [b] plus deferred:<owner>.",
+    "A3: no digit-only `rg -q '[0-9]+'` count/baseline assertion anti-pattern found in automation-supervisor.py or Phase 8 evidence used for acceptance.",
+    "A4: supervisor gate logic treats total == 0 as a missing phase/incomplete state; Phase 8 has four current-phase tasks, not a vacuous zero-task phase.",
+    "A5/A6/A7: no Phase 8 false PASS/FAIL=0 claim, registry overstatement requiring an adversarial proof, or over-broad banned-term filter blocker found."
+  ],
+  "commands": [
+    "git status --short && git log --oneline -10 && git diff --name-status 979dc9451923fe7cf79a46177ba6f0e58ed6bd68..HEAD -> baseline diff empty; only pre-existing untracked phase-acceptance-phase5.log and phase-acceptance-phase7.log present",
+    "git ls-files -- '--db' '--symbol' && test ! -e './--db' && test ! -e './--symbol' -> PASS, no output, exit 0",
+    "git check-ignore -v -- './--db' './--symbol' './foo-cli-arg-junk' -> PASS, matched .gitignore lines 68/69/70",
+    "npm run test -> PASS, packages/knowledge-space-core 20 files, 285/285 tests",
+    "npm run lint -> TIMEOUT at 120s on first attempt; rerun with 300s -> FAIL, 0 errors and 2 pre-existing warnings in apps/integrated-math-3/__tests__/lib/onboarding/student-flow.test.ts under --max-warnings 0",
+    "npx tsc --noEmit -> FAIL, TS18003 root tsconfig has no inputs",
+    "npx tsx scripts/generate-measure-docs.ts -> PASS, generated routes.md and architecture.json successfully with no tracked diff",
+    "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh -> PASS, 2249 files, 1811 typed tags, 0 violations",
+    "npm run --workspace=apps/integrated-math-3 test -- --run __tests__/lib/auth/ studentVisualizationMultiModule __tests__/student/dashboard-planner.test.tsx __tests__/student/dashboard-planner.adversarial.test.tsx planner-prod-wiring -> PASS, 8 files, 84/84 tests",
+    "npm run --workspace=packages/math-content test -- --run generator-registry src/knowledge-space/__tests__/adapter.test.ts && npm run --workspace=packages/study-hub-core test -- --run games-exports && npm run --workspace=packages/knowledge-space-practice test -- --run projections -> PASS, 2+1+2 files, 65/65 + 4/4 + 25/25 tests",
+    "python3 inline supervisor-integrity audit -> PASS for A1/A3/A4 checks",
+    "build-graph stats graph.db -> PASS, 14253 nodes, 20749 edges, 2078 files",
+    "python3 inline Phase 8 task count before plan fix -> total=4, complete=3, incomplete=1; identified UMV as the remaining obligation"
+  ],
+  "changed_files": [
+    "measure/tracks/code-review-remediation_20260624/plan.md",
+    "measure/tracks/code-review-remediation_20260624/_artifacts/phase-acceptance-phase8.json"
+  ],
+  "retry_recommendation": "none",
+  "confidence": "high"
+}
