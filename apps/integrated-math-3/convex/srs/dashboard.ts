@@ -98,6 +98,12 @@ export async function getPracticeStatsHandler(
   };
 }
 
+/**
+ * Retrieves practice statistics for a student including due count and streak.
+ * @param {QueryCtx} ctx - The query context
+ * @param {{ studentId: string; asOfDate?: string }} args - The student ID and optional date
+ * @returns {Promise<{ dueCount: number; streak: number; lastPracticedAt: string | null }>} Object with dueCount, streak, and lastPracticedAt
+ */
 export const getPracticeStats = internalQuery({
   args: {
     studentId: v.string(),

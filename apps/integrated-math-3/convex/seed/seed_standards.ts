@@ -1,6 +1,10 @@
 import { internalMutation } from "../_generated/server";
 import type { SeedCompetencyStandard } from "./types";
 
+/**
+ * Convex internalMutation wrapper: seed standards.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const seedStandards = internalMutation({
   args: {},
   handler: async (ctx) => {

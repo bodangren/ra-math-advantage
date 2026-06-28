@@ -23,7 +23,10 @@ export interface SeedOptions {
   force?: boolean;
 }
 
-/** Converts placement results into knowledge-state seeds with validated confidence and mastery values. */
+/**
+ * Converts placement results into knowledge-state seeds with validated confidence and mastery values.
+ * @throws {Error} Thrown when the operation fails.
+ */
 export function buildPlacementKnowledgeStateSeed(
   results: ReadonlyArray<PlacementResult>,
   options: { now?: number } = {},

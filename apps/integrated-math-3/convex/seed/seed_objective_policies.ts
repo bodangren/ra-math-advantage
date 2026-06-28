@@ -2,6 +2,10 @@ import { internalMutation } from "../_generated/server";
 import { OBJECTIVE_POLICIES } from "./objective_policies";
 import { objectivePolicySchema } from "@math-platform/srs-engine";
 
+/**
+ * Convex internalMutation wrapper: seed objective policies.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const seedObjectivePolicies = internalMutation({
   args: {},
   handler: async (ctx) => {

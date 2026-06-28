@@ -40,6 +40,10 @@ function isValidEmail(email: string): boolean {
   return email.includes('@') && email.indexOf('@') < email.lastIndexOf('.');
 }
 
+/**
+ * import roster.
+ * @throws {Error} Thrown when the operation fails.
+ */
 export async function importRosterMutation(
   ctx: MutationCtx,
   args: ImportRosterArgs,
@@ -277,6 +281,10 @@ export async function createClassHandler(
   return { classId };
 }
 
+/**
+ * Convex mutation wrapper: import roster.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const importRoster = mutation({
   args: {
     classId: v.id('classes'),
@@ -300,6 +308,10 @@ export const importRoster = mutation({
   handler: importRosterMutation,
 });
 
+/**
+ * Convex query wrapper: get import summary query.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const getImportSummaryQuery = query({
   args: {
     classId: v.id('classes'),
@@ -308,6 +320,10 @@ export const getImportSummaryQuery = query({
   handler: getImportSummary,
 });
 
+/**
+ * Convex query wrapper: list imports for class query.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const listImportsForClassQuery = query({
   args: {
     classId: v.id('classes'),
@@ -315,6 +331,10 @@ export const listImportsForClassQuery = query({
   handler: listImportsForClass,
 });
 
+/**
+ * Convex mutation wrapper: create class.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const createClass = mutation({
   args: {
     teacherId: v.id('profiles'),

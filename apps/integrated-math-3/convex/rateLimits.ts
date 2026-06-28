@@ -8,6 +8,10 @@ import {
   STALE_ENTRY_THRESHOLD_MS,
 } from "@math-platform/rate-limiter";
 
+/**
+ * Convex internalQuery wrapper: get rate limit status.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const getRateLimitStatus = internalQuery({
   args: { userId: v.id("profiles") },
   handler: async (ctx, args) => {
@@ -20,6 +24,10 @@ export const getRateLimitStatus = internalQuery({
   },
 });
 
+/**
+ * Convex internalMutation wrapper: check and increment rate limit.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const checkAndIncrementRateLimit = internalMutation({
   args: { userId: v.id("profiles") },
   handler: async (ctx, args) => {
@@ -70,6 +78,11 @@ export const checkAndIncrementRateLimit = internalMutation({
   },
 });
 
+/**
+ * Convex internalMutation wrapper: cleanup stale rate limits.
+ * @returns {Promise<unknown>} The wrapper result.
+ * @throws {ConvexError} Thrown when the operation fails.
+ */
 export const cleanupStaleRateLimits = internalMutation({
   args: { adminProfileId: v.id("profiles") },
   handler: async (ctx, args) => {
@@ -117,6 +130,11 @@ export async function cleanupStaleRateLimitsCronHandler(ctx: MutationCtx) {
   return { deletedCount: staleEntries.length };
 }
 
+/**
+ * Cleans up stale rate limit entries via a cron-triggered mutation.
+ * @param {MutationCtx} ctx - The mutation context
+ * @returns {Promise<{ deletedCount: number }>} Object with the count of deleted entries
+ */
 export const cleanupStaleRateLimitsCron = internalMutation({
   args: {},
   handler: cleanupStaleRateLimitsCronHandler,

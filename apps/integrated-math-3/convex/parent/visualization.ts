@@ -85,6 +85,7 @@ export function buildParentProjectionPayload(
  *     schema enforces does not include `heatmap`, `bottleneckNodes`,
  *     `prerequisiteGaps`, `misconceptionClusters`, `interventionGroups`,
  *     `standardsCoverage`, or `activeMisconceptionStudentCount`.
+ * @throws {Error} Thrown when the operation fails.
  */
 export async function projectParentVisualizationHandler(
   ctx: QueryCtx,

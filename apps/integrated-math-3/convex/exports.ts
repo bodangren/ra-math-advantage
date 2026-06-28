@@ -189,6 +189,11 @@ export async function getStudentExportHandler(
   return { studentName, rows };
 }
 
+/**
+ * Convex query wrapper: get student export.
+ * @returns {Promise<unknown>} The wrapper result.
+ * @throws {Error} Thrown when the operation fails.
+ */
 export const getStudentExport = query({
   args: {
     userId: v.id("profiles"),
@@ -347,6 +352,11 @@ export async function getClassExportHandler(
   return rows;
 }
 
+/**
+ * Convex query wrapper: get class export.
+ * @returns {Promise<unknown>} The wrapper result.
+ * @throws {Error} Thrown when the operation fails.
+ */
 export const getClassExport = query({
   args: {
     userId: v.id("profiles"),
@@ -473,6 +483,11 @@ export async function getSubmissionExportHandler(
   return { rows: allRows.slice(0, limit), hasMore };
 }
 
+/**
+ * Convex query wrapper: get submission export.
+ * @returns {Promise<unknown>} The wrapper result.
+ * @throws {Error} Thrown when the operation fails.
+ */
 export const getSubmissionExport = query({
   args: {
     userId: v.id("profiles"),

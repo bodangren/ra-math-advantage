@@ -7,6 +7,7 @@ import type { Id } from "../../convex/_generated/dataModel";
 /**
  * Explicitly narrows a string to Id<"profiles"> at the package boundary.
  * Centralizes the string → Id bridging so callers don't scatter `as` casts.
+ * @throws {Error} Thrown when the operation fails.
  */
 export function toProfileId(studentId: string): Id<"profiles"> {
   const trimmed = studentId.trim();

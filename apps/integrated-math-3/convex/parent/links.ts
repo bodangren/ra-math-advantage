@@ -102,6 +102,10 @@ export async function listParentLinks(
     .collect();
 }
 
+/**
+ * Convex internalMutation wrapper: create parent link mutation.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const createParentLinkMutation = internalMutation({
   args: {
     callerProfileId: v.id('profiles'),
@@ -111,6 +115,10 @@ export const createParentLinkMutation = internalMutation({
   handler: createParentLink,
 });
 
+/**
+ * Convex internalMutation wrapper: revoke parent link mutation.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const revokeParentLinkMutation = internalMutation({
   args: {
     callerProfileId: v.id('profiles'),
@@ -119,6 +127,10 @@ export const revokeParentLinkMutation = internalMutation({
   handler: revokeParentLink,
 });
 
+/**
+ * Convex internalQuery wrapper: list parent links query.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const listParentLinksQuery = internalQuery({
   args: {
     parentProfileId: v.id('profiles'),

@@ -322,6 +322,10 @@ const module7LessonStandards: LessonStandardLink[] = [
   },
 ];
 
+/**
+ * Convex internalMutation wrapper: seed module1 lesson standards.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const seedModule1LessonStandards = internalMutation({
   args: {},
   handler: async (ctx) => {
@@ -414,6 +418,10 @@ export const seedModule1LessonStandards = internalMutation({
   },
 });
 
+/**
+ * Convex internalMutation wrapper: seed module2 lesson standards.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const seedModule2LessonStandards = internalMutation({
   args: {},
   handler: async (ctx) => {
@@ -506,6 +514,10 @@ export const seedModule2LessonStandards = internalMutation({
   },
 });
 
+/**
+ * Convex internalMutation wrapper: seed module3 lesson standards.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const seedModule3LessonStandards = internalMutation({
   args: {},
   handler: async (ctx) => {
@@ -598,6 +610,10 @@ export const seedModule3LessonStandards = internalMutation({
   },
 });
 
+/**
+ * Convex internalMutation wrapper: seed module4 lesson standards.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const seedModule4LessonStandards = internalMutation({
   args: {},
   handler: async (ctx) => {
@@ -690,6 +706,10 @@ export const seedModule4LessonStandards = internalMutation({
   },
 });
 
+/**
+ * Convex internalMutation wrapper: seed module5 lesson standards.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const seedModule5LessonStandards = internalMutation({
   args: {},
   handler: async (ctx) => {
@@ -782,6 +802,10 @@ export const seedModule5LessonStandards = internalMutation({
   },
 });
 
+/**
+ * Convex internalMutation wrapper: seed module6 lesson standards.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const seedModule6LessonStandards = internalMutation({
   args: {},
   handler: async (ctx) => {
@@ -874,6 +898,10 @@ export const seedModule6LessonStandards = internalMutation({
   },
 });
 
+/**
+ * Convex internalMutation wrapper: seed module7 lesson standards.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const seedModule7LessonStandards = internalMutation({
   args: {},
   handler: async (ctx) => {
@@ -1019,6 +1047,10 @@ const module8LessonStandards: LessonStandardLink[] = [
   },
 ];
 
+/**
+ * Convex internalMutation wrapper: seed module8 lesson standards.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const seedModule8LessonStandards = internalMutation({
   args: {},
   handler: async (ctx) => {
@@ -1164,6 +1196,10 @@ const module9LessonStandards: LessonStandardLink[] = [
   },
 ];
 
+/**
+ * Convex internalMutation wrapper: seed module9 lesson standards.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const seedModule9LessonStandards = internalMutation({
   args: {},
   handler: async (ctx) => {

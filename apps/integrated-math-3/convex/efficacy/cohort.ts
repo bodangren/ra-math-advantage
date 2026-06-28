@@ -118,6 +118,10 @@ export async function aggregateCohortMetricsHandler(
   };
 }
 
+/**
+ * Convex internalQuery wrapper: cohort.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const cohort = internalQuery({
   args: {
     classId: v.id("classes"),

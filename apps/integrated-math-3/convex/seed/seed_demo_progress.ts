@@ -8,6 +8,10 @@ interface SeedDemoProgressResult {
   completionsCreated: number;
 }
 
+/**
+ * Convex internalMutation wrapper: seed demo progress.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const seedDemoProgress = internalMutation({
   args: {},
   handler: async (ctx): Promise<SeedDemoProgressResult[]> => {

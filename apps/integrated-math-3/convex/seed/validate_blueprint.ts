@@ -97,6 +97,10 @@ export function runBlueprintValidation(input: ValidationInput): ValidationReport
   };
 }
 
+/**
+ * Convex internalMutation wrapper: validate blueprint.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const validateBlueprint = internalMutation({
   args: {},
   handler: async (ctx) => {

@@ -5,6 +5,10 @@ import { IM3_PROBLEM_FAMILIES } from "@math-platform/math-content/problem-famili
 
 const ALL_PROBLEM_FAMILY_IDS = [...IM3_PROBLEM_FAMILIES].map((f) => f.problemFamilyId);
 
+/**
+ * Convex internalMutation wrapper: seed practice items.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const seedPracticeItems = internalMutation({
   args: {},
   handler: async (ctx) => {

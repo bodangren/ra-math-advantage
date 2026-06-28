@@ -496,6 +496,12 @@ export async function getObjectiveProficiencyHandler(
   });
 }
 
+/**
+ * Retrieves a single objective's proficiency for a student.
+ * @param {QueryCtx} ctx - The query context
+ * @param {{ studentId: string; objectiveId?: string }} args - The student ID and optional objective ID
+ * @returns {Promise<object>} Objective proficiency result with evidence and retention metrics
+ */
 export const getObjectiveProficiency = internalQuery({
   args: {
     studentId: v.string(),
@@ -740,6 +746,12 @@ export async function getStudentProficiencySummaryHandler(
   return views;
 }
 
+/**
+ * Retrieves proficiency summary across all objectives for a student.
+ * @param {QueryCtx} ctx - The query context
+ * @param {{ studentId: string }} args - The student ID
+ * @returns {Promise<StudentProficiencyView[]>} Array of student proficiency views
+ */
 export const getStudentProficiencySummary = internalQuery({
   args: { studentId: v.string() },
   handler: getStudentProficiencySummaryHandler,
@@ -903,6 +915,12 @@ export async function getTeacherClassProficiencyHandler(
   return teacherViews;
 }
 
+/**
+ * Retrieves teacher-facing proficiency data for all students in a class.
+ * @param {QueryCtx} ctx - The query context
+ * @param {{ classId: string }} args - The class ID
+ * @returns {Promise<TeacherProficiencyView[]>} Array of teacher proficiency views with per-objective aggregates
+ */
 export const getTeacherClassProficiency = internalQuery({
   args: { classId: v.string() },
   handler: getTeacherClassProficiencyHandler,

@@ -13,6 +13,10 @@ import {
   type StudentVisualizationV1,
 } from "@math-platform/knowledge-space-practice";
 
+/**
+ * Convex internalQuery wrapper: get dashboard data.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const getDashboardData = internalQuery({
   args: { userId: v.id("profiles") },
   handler: async (ctx, args) => {
@@ -45,6 +49,10 @@ export const getDashboardData = internalQuery({
   },
 });
 
+/**
+ * Convex internalQuery wrapper: get lesson progress.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const getLessonProgress = internalQuery({
   args: { 
     userId: v.id("profiles"),
@@ -122,6 +130,10 @@ export const getLessonProgress = internalQuery({
   }
 });
 
+/**
+ * Convex internalMutation wrapper: complete phase.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const completePhase = internalMutation({
   args: {
     userId: v.id("profiles"),
@@ -239,6 +251,10 @@ export const completePhase = internalMutation({
   }
 });
 
+/**
+ * Convex internalMutation wrapper: skip phase.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const skipPhase = internalMutation({
   args: {
     userId: v.id("profiles"),
@@ -336,6 +352,10 @@ interface ChatbotLessonData {
   phases: ChatbotPhase[];
 }
 
+/**
+ * Convex internalQuery wrapper: get lesson for chatbot.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const getLessonForChatbot = internalQuery({
   args: { lessonIdentifier: v.string() },
   handler: async (ctx, args): Promise<ChatbotLessonData | null> => {
@@ -403,6 +423,10 @@ export const getLessonForChatbot = internalQuery({
   },
 });
 
+/**
+ * Convex internalQuery wrapper: is student actively enrolled.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const isStudentActivelyEnrolled = internalQuery({
   args: { studentId: v.id("profiles") },
   handler: async (ctx, args): Promise<boolean> => {
@@ -416,6 +440,10 @@ export const isStudentActivelyEnrolled = internalQuery({
   },
 });
 
+/**
+ * Convex internalQuery wrapper: is student enrolled in class for lesson.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const isStudentEnrolledInClassForLesson = internalQuery({
   args: {
     studentId: v.id("profiles"),
@@ -519,6 +547,25 @@ export async function getStudentVisualizationHandler(
   });
 }
 
+/**
+ * Computes the student visualization payload for the IM3 dashboard.
+ *
+ * Loads the full curriculum skill graph from JSON (no persisted graph table — per
+ * `apps/integrated-math-3/convex/schema.ts` and the next-skill-planner
+ * test-strategy §3), the student's `placement_results` to derive
+ * `learnerState`, and the active `student_misconception_state` rows for the
+ * active-misconception count.
+ *
+ * Exported as a named function so the IM3 mock-ctx tests can call it
+ * directly without `convex-test` (see
+ * `apps/integrated-math-3/__tests__/convex/studentVisualization.test.ts`).
+ * The Convex query (`getStudentVisualization`) delegates here.
+ *
+ * @param {QueryCtx} ctx - The Convex query context.
+ * @param {{ userId: Id<"profiles"> }} args - The student profile id.
+ * @returns {Promise<StudentVisualizationV1>} The visualization payload,
+ *   validated against `studentVisualizationV1Schema`.
+ */
 export const getStudentVisualization = internalQuery({
   args: { userId: v.id("profiles") },
   handler: getStudentVisualizationHandler,

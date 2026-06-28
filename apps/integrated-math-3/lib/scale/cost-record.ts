@@ -37,6 +37,10 @@ export function emptyCostRecord(path: HotPath): CostRecord {
   };
 }
 
+/**
+ * merge cost records.
+ * @throws {Error} Thrown when the operation fails.
+ */
 export function mergeCostRecords(a: CostRecord, b: CostRecord): CostRecord {
   if (a.path !== b.path) {
     throw new Error(

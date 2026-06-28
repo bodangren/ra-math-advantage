@@ -52,6 +52,7 @@ function isSameDay(a: number, b: number): boolean {
  * @param {MutationCtx} ctx - The mutation context
  * @param {{ studentId: string; asOfDate?: string }} args - The student ID and optional date
  * @returns {Promise<{ session: SrsSession; queue: ResolvedQueueItem[] }>} The session and resolved practice queue
+ * @throws {Error} Thrown when the operation fails.
  */
 export async function startDailySessionHandler(
   ctx: MutationCtx,
@@ -108,6 +109,12 @@ export async function startDailySessionHandler(
   return { session: mapDbSessionToContract(session), queue };
 }
 
+/**
+ * Starts or resumes a daily SRS session for a student.
+ * @param {MutationCtx} ctx - The mutation context
+ * @param {{ studentId: string; asOfDate?: string }} args - The student ID and optional date
+ * @returns {Promise<{ session: SrsSession; queue: ResolvedQueueItem[] }>} The session and resolved practice queue
+ */
 export const startDailySession = internalMutation({
   args: {
     studentId: v.string(),
@@ -152,6 +159,12 @@ export async function getActiveSessionHandler(
   return { session: mapDbSessionToContract(active), queue };
 }
 
+/**
+ * Retrieves the active daily session for a student, if one exists.
+ * @param {QueryCtx} ctx - The query context
+ * @param {{ studentId: string; asOfDate?: string }} args - The student ID and optional date
+ * @returns {Promise<{ session: SrsSession; queue: ResolvedQueueItem[] } | null>} The active session and queue, or null if no active session
+ */
 export const getActiveSession = internalQuery({
   args: {
     studentId: v.string(),
@@ -194,6 +207,13 @@ export async function completeDailySessionHandler(
   return active._id;
 }
 
+/**
+ * Completes a daily SRS session for a student.
+ * @param {MutationCtx} ctx - The mutation context
+ * @param {{ studentId: string; sessionId: string }} args - The student ID and session ID
+ * @returns {Promise<string>} The completed session ID
+ * @throws Error if no active session is found
+ */
 export const completeDailySession = internalMutation({
   args: {
     studentId: v.string(),

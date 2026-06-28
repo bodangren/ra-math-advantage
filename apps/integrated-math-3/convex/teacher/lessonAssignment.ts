@@ -86,6 +86,12 @@ export async function getTeacherClassesWithLessonsHandler(
   return result;
 }
 
+/**
+ * Retrieves classes owned by a teacher with their assigned lesson IDs.
+ * @param {QueryCtx} ctx - The query context
+ * @param {{ userId: Id<"profiles"> }} args - The teacher user ID
+ * @returns {Promise<ClassWithLessons[]>} Array of classes with their assigned lesson IDs
+ */
 export const getTeacherClassesWithLessons = internalQuery({
   args: { userId: v.id("profiles") },
   handler: getTeacherClassesWithLessonsHandler,
@@ -123,6 +129,11 @@ export async function getAvailableLessonsHandler(
   return result;
 }
 
+/**
+ * Retrieves all available lessons for assignment.
+ * @param {QueryCtx} ctx - The query context
+ * @returns {Promise<LessonInfo[]>} Array of lesson metadata
+ */
 export const getAvailableLessons = internalQuery({
   args: {},
   handler: getAvailableLessonsHandler,
@@ -175,6 +186,13 @@ export async function assignLessonToClassHandler(
   return { success: true, alreadyExists: false };
 }
 
+/**
+ * Assigns a lesson to a class owned by the teacher.
+ * @param {MutationCtx} ctx - The mutation context
+ * @param {{ userId: Id<"profiles">; classId: Id<"classes">; lessonId: Id<"lessons"> }} args - The teacher user ID, class ID, and lesson ID
+ * @returns {Promise<AssignLessonResult>} Result indicating success and whether the assignment already existed
+ * @throws Error if the teacher does not own the class
+ */
 export const assignLessonToClass = internalMutation({
   args: {
     userId: v.id("profiles"),
@@ -224,6 +242,13 @@ export async function unassignLessonFromClassHandler(
   return { success: true, wasDeleted: true };
 }
 
+/**
+ * Unassigns a lesson from a class owned by the teacher.
+ * @param {MutationCtx} ctx - The mutation context
+ * @param {{ userId: Id<"profiles">; classId: Id<"classes">; lessonId: Id<"lessons"> }} args - The teacher user ID, class ID, and lesson ID
+ * @returns {Promise<UnassignLessonResult>} Result indicating success and whether the assignment was deleted
+ * @throws Error if the teacher does not own the class
+ */
 export const unassignLessonFromClass = internalMutation({
   args: {
     userId: v.id("profiles"),

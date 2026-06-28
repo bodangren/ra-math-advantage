@@ -145,6 +145,12 @@ export async function processSubmissionSrsHandler(
   }
 }
 
+/**
+ * Processes a student submission through the SRS adapter.
+ * @param {MutationCtx} ctx - The mutation context
+ * @param {{ studentId: string; activityId: string; submission: unknown }} args - The student ID, activity ID, and submission data
+ * @returns {Promise<{ ok: true; skipped: false; cardId: string; reviewId: string } | { ok: false; skipped: true; reason: string } | { ok: false; skipped: false; error: string }>} Result with card/review IDs, skip reason, or error message
+ */
 export const processSubmissionSrs = internalMutation({
   args: {
     studentId: v.string(),

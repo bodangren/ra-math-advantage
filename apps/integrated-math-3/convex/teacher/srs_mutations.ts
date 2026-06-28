@@ -130,6 +130,13 @@ export async function updateObjectivePriorityHandler(
   return { success: true };
 }
 
+/**
+ * Updates the priority of an objective for a class.
+ * @param {MutationCtx} ctx - The mutation context
+ * @param {UpdateObjectivePriorityArgs} args - The update arguments including user, class, objective, and priority
+ * @returns {Promise<{ success: boolean; error?: string }>} Success flag or error message
+ * @throws Error if the priority value is invalid
+ */
 export const updateObjectivePriority = internalMutation({
   args: {
     userId: v.id("profiles"),
@@ -234,6 +241,12 @@ export async function resetStudentCardsHandler(
   return { success: true, resetCount: cards.length };
 }
 
+/**
+ * Resets all SRS cards for a student on a specific objective.
+ * @param {MutationCtx} ctx - The mutation context
+ * @param {ResetStudentCardsArgs} args - The reset arguments including user, class, student, and objective
+ * @returns {Promise<ResetStudentCardsResult>} Success with reset count, or error
+ */
 export const resetStudentCards = internalMutation({
   args: {
     userId: v.id("profiles"),
@@ -316,6 +329,12 @@ export async function addExtraCardsHandler(
   return { success: true, cardId };
 }
 
+/**
+ * Adds an extra SRS card for a student on a specific objective.
+ * @param {MutationCtx} ctx - The mutation context
+ * @param {AddExtraCardsArgs} args - The arguments including user, class, student, and objective
+ * @returns {Promise<{ success: boolean; cardId?: Id<"srs_cards">; error?: string }>} Success with card ID, or error
+ */
 export const addExtraCards = internalMutation({
   args: {
     userId: v.id("profiles"),

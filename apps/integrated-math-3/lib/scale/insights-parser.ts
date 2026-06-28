@@ -25,6 +25,10 @@ function isIntegerNonNegative(value: unknown): value is number {
   return typeof value === 'number' && Number.isInteger(value) && value >= 0;
 }
 
+/**
+ * parse insights json.
+ * @throws {Error} Thrown when the operation fails.
+ */
 export function parseInsightsJson(json: unknown, path: string): CostRecord {
   if (typeof path !== 'string' || path.length === 0) {
     throw new Error('insights-parser: path must be a non-empty string');
@@ -125,6 +129,10 @@ export function parseInsightsJson(json: unknown, path: string): CostRecord {
   };
 }
 
+/**
+ * continue insights cursor.
+ * @throws {Error} Thrown when the operation fails.
+ */
 export function continueInsightsCursor(json: unknown): {
   isDone: boolean;
   continueCursor: string | null;

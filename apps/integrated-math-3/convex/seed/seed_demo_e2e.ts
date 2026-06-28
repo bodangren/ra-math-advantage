@@ -11,6 +11,10 @@ interface SeedDemoE2EResult {
   progress: { success: boolean; error?: string };
 }
 
+/**
+ * Convex internalAction wrapper: seed demo e2 e.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const seedDemoE2E = internalAction({
   args: {},
   handler: async (ctx): Promise<SeedDemoE2EResult> => {

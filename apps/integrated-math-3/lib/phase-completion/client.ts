@@ -34,7 +34,10 @@ function extractMessage(payload: unknown, fallback: string): string {
   return fallback;
 }
 
-/** Sends a phase-completion request to the API and returns the response. */
+/**
+ * Sends a phase-completion request to the API and returns the response.
+ * @throws {PhaseCompletionError} Thrown when the operation fails.
+ */
 export async function completePhaseRequest(
   payload: CompletePhaseRequest,
 ): Promise<CompletePhaseResponse> {
@@ -78,7 +81,10 @@ export class PhaseSkipError extends Error {
   }
 }
 
-/** Sends a phase-skip request to the API and returns the response. */
+/**
+ * Sends a phase-skip request to the API and returns the response.
+ * @throws {PhaseSkipError} Thrown when the operation fails.
+ */
 export async function skipPhaseRequest(
   payload: SkipPhaseRequest,
 ): Promise<SkipPhaseResponse> {

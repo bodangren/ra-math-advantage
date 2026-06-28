@@ -97,6 +97,10 @@ interface RecordCleanAttemptArgs {
   now: number;
 }
 
+/**
+ * record clean attempt.
+ * @throws {Error} Thrown when the operation fails.
+ */
 export async function recordCleanAttemptHandler(
   ctx: MutationCtx,
   args: RecordCleanAttemptArgs,

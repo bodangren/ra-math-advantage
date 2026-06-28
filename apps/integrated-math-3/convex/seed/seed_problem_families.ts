@@ -2,6 +2,10 @@ import { internalMutation } from "../_generated/server";
 import { problemFamilySchema } from "@math-platform/practice-core";
 import { IM3_PROBLEM_FAMILIES } from "@math-platform/math-content/problem-families/im3";
 
+/**
+ * Convex internalMutation wrapper: seed problem families.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const seedProblemFamilies = internalMutation({
   args: {},
   handler: async (ctx) => {

@@ -98,6 +98,10 @@ export function defaultBudgetMap(): BudgetMap {
   return map;
 }
 
+/**
+ * evaluate.
+ * @throws {Error} Thrown when the operation fails.
+ */
 export function evaluate(record: CostRecord, budget: Budget): EvaluationResult {
   if (record.path !== budget.path) {
     throw new Error(
@@ -125,6 +129,10 @@ export function isPathWithinBudget(record: CostRecord, budget: Budget): boolean 
   return evaluate(record, budget).pass;
 }
 
+/**
+ * evaluate report.
+ * @throws {Error} Thrown when the operation fails.
+ */
 export function evaluateReport(
   report: ReportShape,
   budgets: BudgetMap,

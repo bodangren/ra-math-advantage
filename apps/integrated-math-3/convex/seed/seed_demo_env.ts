@@ -73,6 +73,10 @@ interface SeedDemoResult {
   enrollmentIds: Id<'class_enrollments'>[];
 }
 
+/**
+ * Convex internalMutation wrapper: seed demo env.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const seedDemoEnv = internalMutation({
   args: {},
   handler: async (ctx): Promise<SeedDemoResult> => {

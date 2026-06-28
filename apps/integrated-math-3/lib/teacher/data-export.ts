@@ -132,7 +132,10 @@ export function buildExportFilename(input: ExportFilenameInput): string {
   return `${sanitized}-${dataset}-${dateStr}.${ext}`;
 }
 
-/** Resolves an export scope descriptor into a Convex query name and arguments. */
+/**
+ * Resolves an export scope descriptor into a Convex query name and arguments.
+ * @throws {Error} Thrown when the operation fails.
+ */
 export function resolveExportScope(scope: ExportScope): ResolvedExportScope {
   const { dataset } = scope;
   switch (dataset) {

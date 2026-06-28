@@ -274,6 +274,10 @@ async function listStudentDetailUnits(
   }) as TeacherStudentDetailUnitRow[];
 }
 
+/**
+ * Convex internalQuery wrapper: get teacher dashboard data.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const getTeacherDashboardData = internalQuery({
   args: { userId: v.id("profiles") },
   handler: async (ctx, args) => {
@@ -452,6 +456,12 @@ export async function getTeacherCourseOverviewDataHandler(
   );
 }
 
+/**
+ * Retrieves course overview data for a teacher's students.
+ * @param {QueryCtx} ctx - The query context
+ * @param {{ userId: Id<"profiles"> }} args - The teacher user ID
+ * @returns {Promise<{ rows: CourseOverviewRow[]; units: UnitColumn[] } | null>} Course overview rows and unit columns, or null if unauthorized
+ */
 export const getTeacherCourseOverviewData = internalQuery({
   args: { userId: v.id("profiles") },
   handler: async (ctx, args) => getTeacherCourseOverviewDataHandler(ctx, args),
@@ -581,6 +591,12 @@ export async function getTeacherGradebookDataHandler(
   );
 }
 
+/**
+ * Retrieves gradebook data for a teacher's students in a specific unit.
+ * @param {QueryCtx} ctx - The query context
+ * @param {{ userId: Id<"profiles">; unitNumber: number }} args - The teacher user ID and unit number
+ * @returns {Promise<{ rows: GradebookRow[]; lessons: GradebookLesson[] } | null>} Gradebook rows and lesson metadata, or null if unauthorized
+ */
 export const getTeacherGradebookData = internalQuery({
   args: {
     userId: v.id("profiles"),
@@ -649,6 +665,12 @@ export async function getTeacherCompetencyHeatmapDataHandler(
   return assembleCompetencyHeatmapRows(rawStudents, standards, competencyRows);
 }
 
+/**
+ * Retrieves competency heatmap data for a teacher's organization.
+ * @param {QueryCtx} ctx - The query context
+ * @param {{ userId: Id<"profiles"> }} args - The teacher user ID
+ * @returns {Promise<CompetencyHeatmapResponse | null>} Competency heatmap response with standards and student data, or null if unauthorized
+ */
 export const getTeacherCompetencyHeatmapData = internalQuery({
   args: { userId: v.id("profiles") },
   handler: async (ctx, args) => getTeacherCompetencyHeatmapDataHandler(ctx, args),
@@ -747,6 +769,12 @@ export async function getTeacherStudentCompetencyDetailHandler(
   );
 }
 
+/**
+ * Retrieves detailed competency data for a specific student.
+ * @param {QueryCtx} ctx - The query context
+ * @param {{ userId: Id<"profiles">; studentId: Id<"profiles"> }} args - The teacher user ID and student profile ID
+ * @returns {Promise<StudentCompetencyDetail | null>} Student competency detail with standards and lesson mappings, or null if unauthorized
+ */
 export const getTeacherStudentCompetencyDetail = internalQuery({
   args: {
     userId: v.id("profiles"),
@@ -755,6 +783,10 @@ export const getTeacherStudentCompetencyDetail = internalQuery({
   handler: async (ctx, args) => getTeacherStudentCompetencyDetailHandler(ctx, args),
 });
 
+/**
+ * Convex internalQuery wrapper: get teacher student detail.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const getTeacherStudentDetail = internalQuery({
   args: {
     userId: v.id("profiles"),
@@ -798,6 +830,10 @@ export const getTeacherStudentDetail = internalQuery({
   },
 });
 
+/**
+ * Convex internalQuery wrapper: get teacher lesson monitoring data.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const getTeacherLessonMonitoringData = internalQuery({
   args: {
     userId: v.id("profiles"),
@@ -1137,6 +1173,12 @@ export async function getSubmissionDetailHandler(
   };
 }
 
+/**
+ * Retrieves submission evidence detail for a student's lesson work.
+ * @param {QueryCtx} ctx - The query context
+ * @param {{ userId: Id<"profiles">; studentId: Id<"profiles">; lessonId: Id<"lessons">; studentName: string }} args - The teacher user ID, student ID, lesson ID, and student display name
+ * @returns {Promise<{ studentName: string; lessonTitle: string; phases: Array<{ phaseNumber: number; phaseId: string; title: string; status: string; completedAt: number | null; spreadsheetData: unknown | null; evidence: SubmissionEvidence[] }>; studentErrorSummary: unknown } | null>} Submission detail with phases, evidence, and error summary, or null if unauthorized
+ */
 export const getSubmissionDetail = internalQuery({
   args: {
     userId: v.id("profiles"),
@@ -1147,6 +1189,10 @@ export const getSubmissionDetail = internalQuery({
   handler: async (ctx, args) => getSubmissionDetailHandler(ctx, args),
 });
 
+/**
+ * Convex internalQuery wrapper: get profile with org.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const getProfileWithOrg = internalQuery({
   args: {
     userId: v.id("profiles"),
@@ -1165,6 +1211,10 @@ export const getProfileWithOrg = internalQuery({
   },
 });
 
+/**
+ * Convex internalQuery wrapper: get lesson error summary.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const getLessonErrorSummary = internalQuery({
   args: {
     userId: v.id("profiles"),
@@ -1263,6 +1313,10 @@ export const getLessonErrorSummary = internalQuery({
   },
 });
 
+/**
+ * Convex internalQuery wrapper: get teacher lesson preview.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const getTeacherLessonPreview = internalQuery({
   args: { lessonIdentifier: v.string(), userId: v.id("profiles") },
   handler: async (ctx, args) => {
@@ -1354,6 +1408,10 @@ const DEFAULT_PHASE_LABELS: Record<string, string> = {
   reflection: 'Reflection',
 };
 
+/**
+ * Convex internalQuery wrapper: get standards coverage.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const getStandardsCoverage = internalQuery({
   args: { unitNumber: v.optional(v.number()), userId: v.id("profiles") },
   handler: async (ctx, args) => {
@@ -1431,6 +1489,10 @@ export const getStandardsCoverage = internalQuery({
   },
 });
 
+/**
+ * Convex internalQuery wrapper: get teacher srs dashboard data.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const getTeacherSrsDashboardData = internalQuery({
   args: {
     userId: v.id("profiles"),

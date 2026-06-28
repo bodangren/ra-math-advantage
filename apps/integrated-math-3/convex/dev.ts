@@ -125,6 +125,12 @@ export async function listReviewQueueHandler(
   return items;
 }
 
+/**
+ * Lists the component review queue with optional filtering.
+ * @param {QueryCtx} ctx - The query context
+ * @param {ListReviewQueueArgs} args - Optional filters for component kind, status, and staleness
+ * @returns {Promise<ReviewQueueItem[]>} Array of review queue items
+ */
 export const listReviewQueue = internalQuery({
   args: {
     componentKind: v.optional(v.union(v.literal("example"), v.literal("activity"), v.literal("practice"))),
@@ -238,6 +244,13 @@ export async function submitReviewHandler(ctx: MutationCtx, args: SubmitReviewAr
   return { reviewId };
 }
 
+/**
+ * Submits a review decision for a component.
+ * @param {MutationCtx} ctx - The mutation context
+ * @param {SubmitReviewArgs} args - The review data including component, status, and comment
+ * @returns {Promise<{ reviewId: Id<"component_reviews"> }>} Object with the review ID
+ * @throws Error if comment is missing for needs_changes/rejected, or activity not found
+ */
 export const submitReview = internalMutation({
   args: {
     componentKind: v.union(v.literal("example"), v.literal("activity"), v.literal("practice")),
@@ -280,6 +293,11 @@ export async function getAuditContextHandler(ctx: QueryCtx): Promise<Doc<"compon
   return [...needsChanges, ...rejected];
 }
 
+/**
+ * Retrieves unresolved review feedback for LLM audit context.
+ * @param {QueryCtx} ctx - The query context
+ * @returns {Promise<Doc<"component_reviews">[]>} Array of component reviews with needs_changes or rejected status
+ */
 export const getAuditContext = internalQuery({
   args: {},
   handler: getAuditContextHandler,

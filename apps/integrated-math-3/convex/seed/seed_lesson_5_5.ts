@@ -9,6 +9,10 @@ interface SeedLesson5_5Result {
   activitiesCreated: number;
 }
 
+/**
+ * Convex internalMutation wrapper: seed lesson5_5.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const seedLesson5_5 = internalMutation({
   args: {},
   handler: async (ctx): Promise<SeedLesson5_5Result> => {

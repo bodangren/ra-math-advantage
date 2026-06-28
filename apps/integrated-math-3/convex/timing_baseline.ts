@@ -10,6 +10,10 @@ type TimingSummary = {
   confidence: "high" | "medium" | "low";
 };
 
+/**
+ * Convex internalQuery wrapper: get timing baseline.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const getTimingBaseline = internalQuery({
   args: {
     variantKey: v.string(),
@@ -25,6 +29,10 @@ export const getTimingBaseline = internalQuery({
   },
 });
 
+/**
+ * Convex internalMutation wrapper: recompute timing baseline.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const recomputeTimingBaseline = internalMutation({
   args: {
     variantKey: v.string(),
@@ -60,6 +68,10 @@ export const recomputeTimingBaseline = internalMutation({
   },
 });
 
+/**
+ * Convex internalMutation wrapper: batch recompute timing baselines.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const batchRecomputeTimingBaselines = internalMutation({
   args: {
     recomputations: v.array(
@@ -110,6 +122,10 @@ export const batchRecomputeTimingBaselines = internalMutation({
   },
 });
 
+/**
+ * Convex internalQuery wrapper: get stale baselines.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const getStaleBaselines = internalQuery({
   args: {
     maxAgeMs: v.number(),

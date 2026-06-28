@@ -200,6 +200,12 @@ export async function getDailyPracticeQueueHandler(
   return resolveDailyPracticeQueue(ctx, args);
 }
 
+/**
+ * Retrieves the daily practice queue for a student.
+ * @param {QueryCtx} ctx - The query context
+ * @param {{ studentId: string; asOfDate?: string }} args - The student ID and optional date
+ * @returns {Promise<ResolvedQueueItem[]>} Array of resolved queue items with component data
+ */
 export const getDailyPracticeQueue = internalQuery({
   args: {
     studentId: v.string(),

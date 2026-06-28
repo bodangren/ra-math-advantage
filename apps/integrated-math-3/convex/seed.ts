@@ -5,6 +5,10 @@ import type { SeedLesson, SeedDemoEnvironment } from "./seed/types";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const seedInternal = (internal as any).seed;
 
+/**
+ * Convex internalAction wrapper: seed all.
+ * @returns {Promise<unknown>} The wrapper result.
+ */
 export const seedAll = internalAction({
   args: {},
   handler: async (ctx) => {

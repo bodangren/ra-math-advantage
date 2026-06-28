@@ -158,6 +158,12 @@ export async function refreshCalibrationReviewQueueHandler(
   return { flagged: queueInserts.length };
 }
 
+/**
+ * Refreshes the edge calibration state and rebuilds the review queue.
+ * @param {MutationCtx} ctx - The mutation context
+ * @param {{ courseKey: string; edges: EdgeInput[] }} args - The course key and edge observations
+ * @returns {Promise<{ flagged: number }>} Object with the count of flagged edges
+ */
 export const refreshCalibrationReviewQueue = internalMutation({
   args: {
     courseKey: v.string(),
@@ -199,6 +205,12 @@ export async function listCalibrationReviewQueueHandler(
   return rows;
 }
 
+/**
+ * Lists the calibration review queue for a course.
+ * @param {QueryCtx} ctx - The query context
+ * @param {{ courseKey: string }} _args - The course key (unused, reserved for future filtering)
+ * @returns {Promise<Doc<"calibration_review_queue">[]>} Array of calibration review queue entries
+ */
 export const listCalibrationReviewQueue = internalQuery({
   args: {
     courseKey: v.string(),
