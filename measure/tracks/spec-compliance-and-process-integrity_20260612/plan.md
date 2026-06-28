@@ -1660,7 +1660,7 @@ JSON output: `{"phase":"Phase 4 (Convex exported-surface)","scope":"apps/integra
 
 Exit: 0 (PASS — 197/197 wrappers documented, was 66/197 at baseline `c5ac819d`).
 
-**Runner-plumbing self-test** (closeout gate per test-strategy §9 P4):
+**Runner-plumbing self-test** (closeout gate per test-strategy §9 P4; acceptance-refresh fixture at `024da35f`):
 
 ```bash
 SCOPE_DIRS="measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/fixtures/exported-convex-bad-sample.ts" \
