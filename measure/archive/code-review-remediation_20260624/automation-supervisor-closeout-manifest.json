@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "track_id": "code-review-remediation_20260624",
+  "closeout_date": "2026-06-28T15:27:00Z",
+  "baseline_sha": "b348090820d4868c6dbcffad1bc8fadffe1647d2",
+  "closeout_sha": "4600b8e0acba361c4e51924a01de094998dba79f",
+  "final_acceptance_status": "pass",
+  "summary": "Code Review Remediation track closed out. All 27 tasks completed across 8 phases (Phases 1-8). Track-level final acceptance rerun after blocker remediation commit 0b2e5e18 confirmed all repo-level gates pass (lint, tsc, test, doctor). JSDoc balanced-brace guard (FR-3) shipped as check-jsdoc-balanced-braces.sh; student/parent projections generalized to full curriculum via skill-graph-loader.ts (FR-4); dead student_competency read removed (FR-5); review_due union narrowed (FR-6); rational-analyzer HA variation + scalar grading fixed (FR-7); exp-log dead re-roll removed (FR-8); generator utilities deduplicated into packages/math-content/src/utils/ (FR-9); competing GENERATOR_REGISTRY consolidated (FR-10); PRNG docstring corrected (FR-11); precalc remediation script fixed to scan real blueprints (FR-12); concept resolution emits all child skills (FR-13); IM3 auth wrapper unified with core-auth (FR-14); stray --db/--symbol junk files removed (FR-15); certifying spy/grep/parity tests replaced with behavioral tests (FR-16/FR-17/FR-18/FR-19); test-integrity standard documented in lessons-learned (FR-20). Tech-debt entry for IM3 auth inline duplication marked Resolved at phase closeout commit dcb35dbb.",
+  "audits": {
+    "review-a": {
+      "status": "pass",
+      "artifact": "_artifacts/review-a.json"
+    },
+    "review-b": {
+      "status": "pass",
+      "artifact": "_artifacts/review-b.json"
+    },
+    "review-c": {
+      "status": "pass",
+      "artifact": "_artifacts/review-c.json"
+    },
+    "phase-acceptance": {
+      "status": "pass",
+      "phases": {
+        "phase1": "_artifacts/phase-acceptance.json",
+        "phase2": "_artifacts/phase-acceptance-phase2.json",
+        "phase3": "_artifacts/phase-acceptance-phase3.json",
+        "phase4": "_artifacts/phase-acceptance-phase4.json",
+        "phase5": "_artifacts/phase-acceptance-phase5.json",
+        "phase7": "_artifacts/phase-acceptance-phase7.json",
+        "phase8": "_artifacts/phase-acceptance-phase8.json"
+      }
+    },
+    "adversarial": {
+      "status": "pass",
+      "phases": {
+        "phase2": "_artifacts/adversarial-phase2.json",
+        "phase3": "_artifacts/adversarial-phase3.json",
+        "phase4": "_artifacts/adversarial-phase4.json"
+      }
+    },
+    "final-acceptance": {
+      "status": "pass",
+      "phase1": "_artifacts/final-acceptance.json",
+      "phase2": "_artifacts/final-acceptance-phase2.json",
+      "phase3": "_artifacts/final-acceptance-phase3.json",
+      "phase4": "_artifacts/final-acceptance-phase4.json",
+      "track-rerun": "_artifacts/final-acceptance-track-rerun.json"
+    }
+  },
+  "gates": {
+    "project_lint": {
+      "command": "npm run lint",
+      "status": "pass",
+      "evidence": "0 warnings, exit 0"
+    },
+    "project_checks": {
+      "command": "npx tsc --noEmit",
+      "status": "pass",
+      "evidence": "exit 0"
+    },
+    "project_tests": {
+      "command": "npm run test",
+      "status": "pass",
+      "evidence": "20 files, 285 tests, all pass"
+    },
+    "doctor": {
+      "command": "bash measure/doctor.sh",
+      "status": "pass",
+      "evidence": "all checks passed"
+    }
+  },
+  "commits": [
+    "e195fded test(code-review-remediation): Phase 1 Red — FR-3 balanced-brace JSDoc guard + fixtures + evidence",
+    "d26ecd52 fix(code-review-remediation): rewrite 4 malformed FR-1 @returns annotations",
+    "5ebf5195 fix(code-review-remediation): close 2 additional @param unbalanced braces at HEAD",
+    "0006074f chore(code-review-remediation): restore 144 working-tree files to HEAD",
+    "b3cf07e6 docs(code-review-remediation): add jsdoc generator template + investigation",
+    "0aa18a77 measure(code-review-remediation): mark Phase 1 tasks complete with Green commit evidence",
+    "bd3ac8f5 docs(code-review-remediation): add phase-1-gates.txt closeout artifact",
+    "e992abbf test(code-review-remediation): Phase 1 adversarial — harden FR-3 guard against embedded {} in prose",
+    "a826583c feat(code-review-remediation): Phase 2 Green — generalize projections to all modules (FR-4)",
+    "d8765ad1 fix(code-review-remediation): Phase 2 Green — narrow review_due union (FR-6)",
+    "6c60fc92 refactor(code-review-remediation): Phase 3 Green — deduplicate generator utilities (FR-9/FR-11)",
+    "4cbf9236 fix(code-review-remediation): Phase 3 Green — fix rational-analyzer HA and grading (FR-7)",
+    "1ff4f012 fix(code-review-remediation): Phase 3 Green — remove exp-log dead re-roll (FR-8)",
+    "cb6e7f8c refactor(code-review-remediation): Phase 3 Green — consolidate registries and wire nodeIds (FR-10)",
+    "56183bd1 fix(code-review-remediation): Phase 4 Green — fix precalc script path and concept resolution (FR-12/FR-13)",
+    "b3128ce1 fix(code-review-remediation): Phase 5 Green — unify IM3 auth wrapper (FR-14)",
+    "503f9b4c test(code-review-remediation): Phase 7 Green — test integrity improvements (FR-17/FR-19/FR-20)",
+    "ee51d9c9 chore(code-review-remediation): Phase 8 Green — remove junk files (FR-15)",
+    "dcb35dbb docs(code-review-remediation): Phase 8 — update tech-debt registry",
+    "19a8a24a measure(code-review-remediation): accept Phase 8 repo hygiene closeout",
+    "0b2e5e18 fix(measure): unblock final-acceptance closeout gates",
+    "b3480908 measure(code-review-remediation): record final acceptance pass",
+    "4600b8e0 measure(code-review-remediation): closeout and archive track"
+  ],
+  "anti_pattern_checks": {
+    "a1_structured_blocked": "pass",
+    "a5_false_claim_text": "pass",
+    "a6_registry_overstatement": "pass",
+    "a9_archived_track_path": "pass (no tests/*.sh exist in this repo)"
+  },
+  "retained_evidence": [
+    "_artifacts/final-acceptance-track-rerun.json",
+    "_artifacts/final-acceptance.json",
+    "_artifacts/final-acceptance-phase2.json",
+    "_artifacts/final-acceptance-phase3.json",
+    "_artifacts/final-acceptance-phase4.json",
+    "_artifacts/phase-acceptance.json",
+    "_artifacts/phase-acceptance-phase2.json",
+    "_artifacts/phase-acceptance-phase3.json",
+    "_artifacts/phase-acceptance-phase4.json",
+    "_artifacts/phase-acceptance-phase5.json",
+    "_artifacts/phase-acceptance-phase7.json",
+    "_artifacts/phase-acceptance-phase8.json",
+    "_artifacts/adversarial.json",
+    "_artifacts/adversarial-phase2.json",
+    "_artifacts/adversarial-phase3.json",
+    "_artifacts/adversarial-phase4.json",
+    "_artifacts/review-a.json",
+    "_artifacts/review-a-phase2.json",
+    "_artifacts/review-a-phase3.json",
+    "_artifacts/review-a-phase4.json",
+    "_artifacts/review-a-phase5-7-8.json",
+    "_artifacts/review-b.json",
+    "_artifacts/review-b-phase2.json",
+    "_artifacts/review-b-phase3.json",
+    "_artifacts/review-b-phase4.json",
+    "_artifacts/review-b-phase5-7-8.json",
+    "_artifacts/review-c.json",
+    "_artifacts/review-c-phase2.json",
+    "_artifacts/review-c-phase3.json",
+    "_artifacts/review-c-phase4.json",
+    "_artifacts/review-c-phase5-7-8.json",
+    "_artifacts/guard-run-on-clean-tree.txt",
+    "_artifacts/restored-files.txt",
+    "_artifacts/remediate-run-after-fix.txt",
+    "_artifacts/generator-investigation.md",
+    "_artifacts/graph-source-decision.md",
+    "_artifacts/fr1-rewrites.md",
+    "_artifacts/fr2-restore-confirmation.md",
+    "scripts/check-jsdoc-balanced-braces.sh",
+    "templates/jsdoc-template.md",
+    "spec.md",
+    "plan.md",
+    "test-strategy.md"
+  ],
+  "artifact_cleanup": {
+    "bulk_run_artifacts_removed": [],
+    "note": "No bulk run artifacts identified for removal beyond standard closeout retention."
+  },
+  "lessons_learned_updates": [
+    "FR-20 entry added in Phase 7 commit 503f9b4c: spy/grep/parity-oracle tests standing in for behavioral coverage, and encoding a known limitation as the expected requirement, do not satisfy a behavioral FR."
+  ],
+  "tech_debt_updates": [
+    "IM3 auth wrapper inline duplication entry marked Resolved (FR-14) at commit dcb35dbb"
+  ]
+}
