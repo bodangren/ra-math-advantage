@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "status": "pass",
+  "summary": "Phase 7 acceptance passes after live verification and a Measure artifact fix. FR-17 has behavioral multi-module/student-dashboard evidence, with planner-prod-wiring retained only as complementary source/architecture lint. FR-19 generator-output and type-export tests are strengthened and green. FR-20 lessons-learned entry is present. The Phase 7 UMV task was the only remaining acceptance obligation; plan.md is now marked complete with acceptance evidence. Supervisor integrity checks for A1/A3/A4 passed, and no A5/A6/A7 blocker was found in Phase 7 evidence.",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    "PROJECT_LINT (`npm run lint`) fails because apps/integrated-math-3/__tests__/lib/onboarding/student-flow.test.ts has two pre-existing warnings under --max-warnings 0; unrelated to Phase 7 files.",
+    "PROJECT_CHECKS (`npx tsc --noEmit`) fails at repo root with TS18003 because root tsconfig.json has no inputs; this is pre-existing and unrelated to Phase 7.",
+    "A broad grep for `nodeIds: []` still finds the pilot `statistics` stub generator and a test fixture; FR-18/Phase 7 requires non-empty nodeIds for the four advanced adapters, which is covered by adapter.test.ts and passes 47/47."
+  ],
+  "evidence": [
+    "Read measure/index.md, measure/tracks.md, track spec.md, plan.md Phase 7, test-strategy.md, lessons-learned.md, Phase 5/7/8 review artifacts, supervisor code, and relevant test/source files.",
+    "FR-17: studentVisualizationMultiModule exercises production getStudentVisualizationHandler and projectParentVisualizationHandler with module-1 and module-2 placement rows and asserts module-2 output; live command passed 6/6. Student dashboard planner render tests also exercise internal.student.getStudentVisualization -> RecommendedNextPanel rendering and passed 14/14. planner-prod-wiring passed 3/3 and remains complementary lint only.",
+    "FR-19: generator-registry.test.ts validates polynomial operations, division, rational roots/hole consistency, and exp-log answer/domain behavior against the actual math; live command passed 18/18. adapter.test.ts asserts the four advanced adapter nodeIds are non-empty and math.im3.skill.*; live command passed 47/47. games-exports.test.ts uses expectTypeOf compile-time checks instead of runtime `{} as MatchingGameProps`; live command passed 4/4.",
+    "FR-20: measure/lessons-learned.md contains the code-review-remediation test-integrity entry documenting spy/grep/parity-oracle anti-patterns and the behavioral FR rule.",
+    "A1: measure/automation-supervisor.py task regexes use [~xb], and is_task_structurally_blocked recognizes status [b] plus deferred:<owner>.",
+    "A3: no digit-only count/baseline assertion anti-pattern (`rg -q '[0-9]+'` / grep equivalent) found in automation-supervisor.py or Phase 7 scripts/evidence.",
+    "A4: supervisor gate logic treats total == 0 as a missing phase / incomplete state; Phase 7 now has four [x] current-phase tasks, so no vacuous zero-task pass is possible.",
+    "A5/A6/A7: no Phase 7 PASS/FAIL=0 false-claim, registry overstatement, or over-broad banned-term filter blocker found."
+  ],
+  "commands": [
+    "git status --short -> only pre-existing untracked phase-acceptance-phase5.log before acceptance edits",
+    "git diff --name-status 384c8827104a5e627d328aa2776b258d7b7406f0..HEAD -> no committed changes since supplied baseline at session start",
+    "npm run --workspace=apps/integrated-math-3 test -- --run studentVisualizationMultiModule -> PASS, 1 file, 6/6 tests",
+    "npm run --workspace=apps/integrated-math-3 test -- --run __tests__/student/dashboard-planner.test.tsx __tests__/student/dashboard-planner.adversarial.test.tsx -> PASS, 2 files, 14/14 tests",
+    "npm run --workspace=apps/integrated-math-3 test -- --run planner-prod-wiring -> PASS, 1 file, 3/3 tests",
+    "npm run --workspace=packages/math-content test -- --run generator-registry -> PASS, 1 file, 18/18 tests",
+    "npm run --workspace=packages/math-content test -- --run src/knowledge-space/__tests__/adapter.test.ts -> PASS, 1 file, 47/47 tests",
+    "npm run --workspace=packages/study-hub-core test -- --run games-exports -> PASS, 1 file, 4/4 tests",
+    "bash measure/tracks/code-review-remediation_20260624/scripts/check-jsdoc-balanced-braces.sh -> PASS, 2249 files, 1811 typed tags, 0 violations",
+    "python3 inline supervisor-integrity audit -> PASS for A1/A3/A4 checks and Phase 7 completed-task presence",
+    "npm run test -> PASS, packages/knowledge-space-core 20 files, 285/285 tests",
+    "npm run lint -> FAIL, 0 errors and 2 pre-existing warnings in apps/integrated-math-3/__tests__/lib/onboarding/student-flow.test.ts under --max-warnings 0",
+    "npx tsc --noEmit -> FAIL, TS18003 root tsconfig has no inputs"
+  ],
+  "changed_files": [
+    "measure/tracks/code-review-remediation_20260624/plan.md",
+    "measure/tracks/code-review-remediation_20260624/_artifacts/phase-acceptance-phase7.json"
+  ],
+  "retry_recommendation": "none",
+  "confidence": "high"
+}

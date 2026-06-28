@@ -137,16 +137,18 @@ JSDoc) first. Each behavioral fix follows Red → Green TDD per `workflow.md`.
 
 ## Phase 7: Test integrity (Cluster G)
 
-- [x] Task: Replace the planner grep-contract with a behavioral path test (FR-17)
+- [x] Task: Replace the planner grep-contract with a behavioral path test (FR-17) [evidence: a826583c, 503f9b4c]
     - [x] Red: add a behavioral test rendering the student dashboard from multi-module placement fixtures, asserting recommendations from >1 module surface (pairs with FR-4). Must fail against the module-1-only code
     - [x] Green: keep `planner-prod-wiring.test.ts`'s source-scan only as a *complementary* architecture lint — it must no longer be the sole evidence for FR-5's "production consumer exists"
-- [x] Task: Strengthen generator-output & export tests (FR-19)
+- [x] Task: Strengthen generator-output & export tests (FR-19) [evidence: 503f9b4c]
     - [x] Add ≥1 test per generator validating `expectedAnswer`/`gradingMetadata` against the actual math (e.g. polynomial-operations result equals the computed operation; exp answer solves the equation)
     - [x] Fix the seed-523 golden test's self-contradicting comment; derive its expected value from the operation, not from observed output
     - [x] Replace the vacuous `games-exports.test.ts` type assertion (`{} as MatchingGameProps`) with a compile-time type check (`expectTypeOf`/`satisfies`) or remove it; keep the function-existence checks
-- [x] Task: Document the test-integrity standard (FR-20)
+- [x] Task: Document the test-integrity standard (FR-20) [evidence: 503f9b4c]
     - [x] Add a `lessons-learned.md` entry: spy/grep/parity-oracle assertions standing in for behavioral coverage, and encoding a known limitation as the expected requirement, do not satisfy a behavioral FR
-- [ ] Task: Measure - User Manual Verification 'Phase 7: Test integrity' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 7: Test integrity' (Protocol in workflow.md) [acceptance: phase-acceptance-phase7, commit pending]
+
+**Phase 7 acceptance evidence (2026-06-28):** phase-acceptance verified FR-17/FR-19/FR-20 against implementation and live commands. `studentVisualizationMultiModule` passes 6/6; dashboard planner render tests pass 14/14; `planner-prod-wiring` remains only complementary architecture lint and passes 3/3; `generator-registry` passes 18/18; adapter `nodeIds` regression tests pass 47/47; `games-exports` compile-time type export tests pass 4/4; FR-20 lessons-learned entry present. Supervisor integrity checks: task regexes use `[~xb]`, `is_task_structurally_blocked` recognizes `[b]` and `deferred:<owner>`, and phase gate logic reports INCOMPLETE for zero-task phases. Root `npm run lint` and `npx tsc --noEmit` remain red on documented pre-existing issues unrelated to Phase 7; root `npm run test` passes 285/285.
 
 **Phase 7 evidence (commit `503f9b4c`):**
 - `packages/math-content/src/__tests__/generator-registry.test.ts`: 7 new behavioural tests validating generator `result` against the actual math (subtractPoly/addPoly/multiplyPoly, dividend=divisor*quotient+remainder, rational roots via quadratic formula, exp-log closed-form solution, domain constraints).
