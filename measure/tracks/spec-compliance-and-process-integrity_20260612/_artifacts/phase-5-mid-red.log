@@ -1,0 +1,15 @@
+Phase 5 Red complete.
+
+MEASURE_AGENT_RESULT
+track: spec-compliance-and-process-integrity_20260612
+phase: Phase 5: Verification Process Integrity
+role: mid-red
+status: red-complete
+red_commit: 9c0563cc
+plan_commit: b5180020
+red_test_status: fail-as-expected
+red_test_exit: 1
+tests_run: verification guard FAIL expected reports_pending=9; fixture self-test FAIL by design; missing/empty dir exits 3; human-approved fixture passes; npm run lint PASS; npx tsc --noEmit PASS; npm run test PASS 285/285; bash measure/doctor.sh PASS
+unrelated_work_preserved: true
+handoff: proceed to Phase 5 Green
+END_MEASURE_AGENT_RESULT
