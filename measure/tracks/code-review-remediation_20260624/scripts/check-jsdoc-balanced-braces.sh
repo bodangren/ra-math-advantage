@@ -10,9 +10,10 @@
 #      first { until the brace depth returns to 0. This is the "type region".
 #   2. If the brace depth never returns to 0 on the same line, the tag is malformed
 #      (unbalanced — e.g. `@returns {string {} desc`).
-#   3. If the type region is balanced but is immediately followed by another `{` that
-#      starts a new brace block (depth goes back up from 0), the tag is malformed
-#      (stray block — e.g. `@returns {JSX.Element} {Promise<...> {}`).
+#   3. If the type region is balanced but the first non-space token after the type
+#      starts another brace block, the tag is malformed (stray block — e.g.
+#      `@returns {JSX.Element} {Promise<...> {}`). Literal braces later in prose
+#      are allowed (e.g. `{{blank:id}}` placeholders or `{ mastered, total }`).
 #   4. Tags with no {type} annotation (prose-only) are NOT flagged.
 #   5. Nested generics like `Promise<Map<string, T>>` are correctly handled because
 #      the depth counter tracks every `{` and `}`.
@@ -169,20 +170,14 @@ FNR == 1 {
         next
     }
     
-    # Rule 3: check for any stray { after the first balanced type block.
-    # After the type region ends, any subsequent { on the same line is a violation.
-    # This scans the ENTIRE rest of the line, not just the first non-space
-    # character — catches embedded ` {} ` inside descriptive prose
-    # (e.g. `@returns {string} the result is {}`).
-    stray_found = 0
-    for (k = type_end + 1; k <= len; k++) {
-        if (substr(line, k, 1) == "{") {
-            stray_found = 1
-            break
-        }
-    }
-    
-    if (stray_found) {
+    # Rule 3: check for a stray block immediately after the first balanced type.
+    # Prose can legitimately contain braces later in the line (for example
+    # `{{blank:id}}` template placeholders or `{ mastered, total }` count labels).
+    # The malformed FR-1 shape is a second brace block used where prose should
+    # start, so flag only when the first non-space token after the type is `{`.
+    rest = substr(line, type_end + 1)
+    gsub(/^[[:space:]]+/, "", rest)
+    if (substr(rest, 1, 1) == "{") {
         violations++
         print FILENAME "\tSTRAY_BLOCK\t" $0
     }
