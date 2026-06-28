@@ -1,0 +1,14 @@
+Status: pass — Phase 8 acceptance is complete.
+
+MEASURE_AGENT_RESULT
+role: phase_acceptance
+status: complete
+track: code-review-remediation_20260624
+phase: Phase 8: repo hygiene & closeout (Cluster F)
+commits: 19a8a24a, 667e93fe
+tests_run: junk-file absence pass; gitignore guard pass; generated docs pass; build-graph stats pass; JSDoc guard pass; npm run test pass 285/285; IM3 targeted tests pass 84/84; package regressions pass 65/65 + 4/4 + 25/25; npm run lint fails on unrelated pre-existing warnings; npx tsc --noEmit fails on unrelated root TS18003
+files_changed: measure/tracks/code-review-remediation_20260624/plan.md; measure/tracks/code-review-remediation_20260624/_artifacts/phase-acceptance-phase8.json
+plan_updates: Marked Phase 8 UMV complete and added acceptance evidence/commit references
+known_failures: root lint and root typecheck remain red on documented pre-existing unrelated issues; pre-existing untracked phase-acceptance-phase5.log and phase-acceptance-phase7.log preserved
+handoff: Phase 8 acceptance passes; proceed to track-level final acceptance/closeout archival
+END_MEASURE_AGENT_RESULT
