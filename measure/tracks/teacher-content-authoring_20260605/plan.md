@@ -107,6 +107,40 @@ modified.
 - [~] Task: Teacher-scoped authorization + assignment/enrollment respect (TDD)
 - [b] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md) deferred:user
 
+### Phase 2 Red Evidence
+
+Red tests committed for the three Phase 2 behaviors. They import from the intended
+Convex authoring module `apps/integrated-math-3/convex/teacher/content-authoring`,
+which does not yet exist, so every new Phase 2 test fails for the expected reason.
+The tests use relative imports so the failure is the missing implementation module,
+not a path-alias or measure-import issue.
+
+New test file:
+- `apps/integrated-math-3/__tests__/convex/teacher/content-authoring-drafts.test.ts`
+
+Targeted Phase 2 delta command (Phase 1 content-authoring tests still green):
+```bash
+CI=true npx vitest run apps/integrated-math-3/__tests__/lib/teacher/content-authoring apps/integrated-math-3/__tests__/convex/teacher/content-authoring-drafts.test.ts
+```
+Result: `Test Files 1 failed (1) | 3 passed (4) | Tests 13 failed (13) | 23 passed (36)`.
+The single failed file is the new Phase 2 test file; every failure is
+`Error: Cannot find module '.../convex/teacher/content-authoring'`.
+The 3 passing files are the Phase 1 content-authoring tests.
+
+Required aggregate Phase 2 Red command:
+```bash
+CI=true npx vitest run apps/integrated-math-3/__tests__/lib/teacher/content-authoring apps/integrated-math-3/__tests__/convex
+```
+Result: `Test Files 47 failed | 64 passed (111) | Tests 25 failed | 887 passed | 4 skipped (916)`.
+The new Phase 2 file contributes 1 failed file / 13 failed tests. The remaining
+failures are pre-existing at baseline (e.g. `@/` alias resolution when the command
+is run from the repo root without the app-specific vitest config, plus a small
+set of known data/schema assertions) and are outside Phase 2 scope.
+
+Red quality gates:
+- `npm run ws:im3:lint` → exit 0.
+- `npx tsc --noEmit` → exit 0.
+
 ## Phase 3 — Composer UI & Preview
 
 - [ ] Task: Lesson composer UI (phases/sections/activities) with schema-driven forms (TDD on logic)
