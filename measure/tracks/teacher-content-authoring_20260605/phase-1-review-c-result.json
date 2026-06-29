@@ -1,0 +1,155 @@
+{
+  "role": "review-c",
+  "status": "complete",
+  "track": "teacher-content-authoring_20260605",
+  "phase": "Phase 1 — Authoring Model & Schema-Driven Validation",
+  "verdict": "pass",
+  "commits": ["fb1634f0"],
+  "commands": [
+    {
+      "command": "CI=true npx vitest run apps/integrated-math-3/__tests__/lib/teacher/content-authoring",
+      "result": "Test Files  3 passed (3) | Tests 22 passed (22). Exit code 0.",
+      "notes": "Targeted Phase 1 gate. All 22 tests pass."
+    },
+    {
+      "command": "npm run ws:im3:lint",
+      "result": "Exit code 0. No warnings or errors.",
+      "notes": "Closeout lint gate."
+    },
+    {
+      "command": "npx tsc --noEmit",
+      "result": "Exit code 0. No type errors.",
+      "notes": "Closeout type-check gate."
+    }
+  ],
+  "findings": [
+    {
+      "id": "C1",
+      "severity": "non-blocking",
+      "category": "phase2-3-contract",
+      "title": "Authoring model lacks phaseType field",
+      "detail": "AuthoringPhase has id and title but no phaseType. The Convex phase_versions table and the renderer's PhaseRendererProps both require phaseType: PhaseType ('explore' | 'vocabulary' | 'learn' | 'key_concept' | 'worked_example' | 'guided_practice' | 'independent_practice' | 'assessment' | 'discourse' | 'reflection'). Phase 2 persistence must either extend the authoring model or require phaseType as input during the flatten-and-persist step.",
+      "impact": "Phase 2 'Convex draft lifecycle' task must define the phaseType mapping. No fix needed in Phase 1 — phaseType selection belongs in the Phase 2/3 composer UI.",
+      "file_refs": [
+        "apps/integrated-math-3/lib/teacher/content-authoring/authoring-model.ts:45-49",
+        "apps/integrated-math-3/convex/schema.ts:361-372",
+        "apps/integrated-math-3/components/lesson/PhaseRenderer.tsx:62"
+      ]
+    },
+    {
+      "id": "C2",
+      "severity": "non-blocking",
+      "category": "phase2-3-contract",
+      "title": "displayName not in authoring model",
+      "detail": "The Convex activities table requires displayName: v.string(), but AuthoringActivity does not include displayName. Phase 2 persistence must generate a display name (e.g. from componentKey + section context) or require it as input.",
+      "impact": "Phase 2 task must define how displayName is derived. No fix needed in Phase 1 — displayName is a persistence-layer concern.",
+      "file_refs": [
+        "apps/integrated-math-3/lib/teacher/content-authoring/authoring-model.ts:31-35",
+        "apps/integrated-math-3/convex/schema.ts:414-435"
+      ]
+    },
+    {
+      "id": "C3",
+      "severity": "non-blocking",
+      "category": "phase2-3-contract",
+      "title": "Section structure divergence between authoring model and renderer",
+      "detail": "AuthoringSection uses markdown?: string, callout?: string, activities: AuthoringActivity[]. The renderer's PhaseSection uses a discriminated union: { sectionType: 'text', content: { markdown } } | { sectionType: 'callout', content: { variant, text } } | { sectionType: 'activity', content: { componentKey, activityId } }. Phase 2 persistence must flatten the authoring model's section structure into the renderer's discriminated union format.",
+      "impact": "Phase 2 'flatten and persist' task must define this mapping. No fix needed in Phase 1 — the authoring model is the teacher-facing abstraction.",
+      "file_refs": [
+        "apps/integrated-math-3/lib/teacher/content-authoring/authoring-model.ts:37-43",
+        "apps/integrated-math-3/components/lesson/PhaseRenderer.tsx:17-57"
+      ]
+    },
+    {
+      "id": "C4",
+      "severity": "non-blocking",
+      "category": "integration-wiring",
+      "title": "No explicit validation-then-normalization ordering contract",
+      "detail": "normalizeLessonDraft validates structure but not props schemas. validateActivityConfig validates props schemas. These must be called in order: normalize → validate each activity → sanitize → persist. The Phase 2 implementation must enforce this ordering; currently there is no explicit contract or integration test composing the full pipeline.",
+      "impact": "Phase 2 'Convex draft lifecycle' task must define the orchestration order. No fix needed in Phase 1 — the separation is by design for testability.",
+      "file_refs": [
+        "apps/integrated-math-3/lib/teacher/content-authoring/authoring-model.ts:96",
+        "apps/integrated-math-3/lib/teacher/content-authoring/activity-config-validation.ts:69",
+        "apps/integrated-math-3/lib/teacher/content-authoring/sanitize-authored-text.ts:95"
+      ]
+    },
+    {
+      "id": "C5",
+      "severity": "informational",
+      "category": "test-coverage",
+      "title": "No integration test for full normalize→validate→sanitize pipeline",
+      "detail": "Phase 1 tests cover each module independently. There is no integration test that composes normalizeLessonDraft → validateActivityConfig → sanitizeLessonDraft on a single draft. This is acceptable for Phase 1 scope but should be added in Phase 2 or 3 when the pipeline is wired together.",
+      "impact": "Non-blocking. Recommendation for Phase 2/3.",
+      "file_refs": [
+        "apps/integrated-math-3/__tests__/lib/teacher/content-authoring/"
+      ]
+    },
+    {
+      "id": "C6",
+      "severity": "informational",
+      "category": "ux-consistency",
+      "title": "SanitizedText renders as plain text only",
+      "detail": "SanitizedText uses React.createElement(Tag, {}, safe) which renders sanitized text as a plain text node. Authored markdown formatting (bold, italic, headings) is preserved in the string but not rendered as HTML. For Phase 3 preview, the composer UI will likely need a markdown-aware renderer (e.g. the existing LessonMarkdownRenderer) instead of SanitizedText for section content.",
+      "impact": "Phase 3 composer UI must use a markdown renderer for preview, not SanitizedText. SanitizedText is correct for inline error messages and status text. No fix needed in Phase 1.",
+      "file_refs": [
+        "apps/integrated-math-3/lib/teacher/content-authoring/sanitize-authored-text.ts:107-116",
+        "apps/integrated-math-3/components/lesson/PhaseRenderer.tsx:10-13"
+      ]
+    },
+    {
+      "id": "C7",
+      "severity": "informational",
+      "category": "contract-parity",
+      "title": "gradingConfig and standardId not in authoring model",
+      "detail": "The Convex activities table includes gradingConfig (optional) and standardId (optional), but AuthoringActivity does not include these fields. Phase 2/3 must decide whether grading config and standard alignment are authorable or system-generated.",
+      "impact": "Phase 2 design decision. No fix needed in Phase 1.",
+      "file_refs": [
+        "apps/integrated-math-3/lib/teacher/content-authoring/authoring-model.ts:31-35",
+        "apps/integrated-math-3/convex/schema.ts:414-435"
+      ]
+    }
+  ],
+  "anti_pattern_check": {
+    "A1": "pass — plan uses structured [b] deferred:user for UMV; no substring-as-signal risk",
+    "A2": "pass — Phase 1 does not implement or assert publish/approval; no consent gate needed",
+    "A3": "pass — test-strategy requires labeled integers; no digit-only assertions found",
+    "A4": "pass — 22 tests across 3 files, each with valid and invalid fixture cases",
+    "A5": "pass — plan.md commands match actual command outputs; no false claims",
+    "A6": "pass — tracks.md entry does not claim authoring is shipped/resolved",
+    "A7": "pass — no over-broad English-word filters in source guards",
+    "A8": "pass — Phase 1 markers are [x] (complete); UMV is [b] deferred:user",
+    "A9": "pass — no Measure file path references in product test code",
+    "A10": "pass — graph.db updated by Green commit; no structural drift"
+  },
+  "contract_summary": {
+    "normalizeLessonDraft": {
+      "input": "unknown (arbitrary teacher draft object)",
+      "output": "discriminated union: { success: true, data: AuthoringLesson } | { success: false, errors: AuthoringError[] }",
+      "phase2_integration": "Sanitized, normalized draft is the pre-hash source of truth. Position-based IDs are placeholders for Phase 2 database IDs.",
+      "phase3_integration": "AuthoringLesson feeds the composer UI; structured errors map to form field validation messages."
+    },
+    "validateActivityConfig": {
+      "input": "componentKey: string, props: Record<string, unknown>",
+      "output": "discriminated union: { success: true, data: Record<string, unknown> } | { success: false, errors: ActivityConfigError[] }",
+      "phase2_integration": "Called after normalizeLessonDraft; validates each activity's props before persistence.",
+      "phase3_integration": "Called on form field changes; errors map to inline validation messages with componentKey + field path."
+    },
+    "sanitizeLessonDraft": {
+      "input": "unknown (any draft object)",
+      "output": "unknown (same shape, all string leaves sanitized)",
+      "phase2_integration": "Sanitized output is the canonical pre-hash source. Hash must be computed on sanitized content.",
+      "phase3_integration": "SanitizedText component renders inline status/error text. Section content uses LessonMarkdownRenderer."
+    }
+  },
+  "files_changed": [],
+  "fixes_applied": [],
+  "known_failures": "None introduced. Pre-existing aggregate test failures (274 files, 603 tests) are outside Phase 1 scope.",
+  "deferred": [
+    {
+      "task": "Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md)",
+      "owner": "user",
+      "reason": "Phase 1 is pure logic + a small React text-render component. No visible UI changes. UMV deferred per plan."
+    }
+  ],
+  "handoff": "Phase 1 Review C passes. No blockers. The three Phase 1 modules (authoring-model, activity-config-validation, sanitize-authored-text) are clean, well-tested, and correctly scoped. Seven non-blocking findings are documented for Phase 2/3 integration: phaseType mapping (C1), displayName derivation (C2), section structure flattening (C3), validation ordering (C4), integration test gap (C5), markdown rendering for preview (C6), and gradingConfig/standardId authoring (C7). Phase 2 can begin immediately."
+}

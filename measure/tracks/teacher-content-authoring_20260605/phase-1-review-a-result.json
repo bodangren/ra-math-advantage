@@ -1,0 +1,163 @@
+{
+  "role": "review-a",
+  "status": "pass",
+  "track": "teacher-content-authoring_20260605",
+  "phase": "Phase 1 — Authoring Model & Schema-Driven Validation",
+  "baseline_sha": "fb1634f0",
+  "head_sha": "e51561e4",
+  "commits_reviewed": [
+    "37cbe453",
+    "b9e370f5",
+    "7516f07c",
+    "106cd5cd",
+    "fb1634f0",
+    "e51561e4"
+  ],
+  "commands_verified": [
+    {
+      "command": "CI=true npx vitest run apps/integrated-math-3/__tests__/lib/teacher/content-authoring",
+      "result": "Test Files 3 passed (3) | Tests 23 passed (23). Exit code 0.",
+      "notes": "Targeted Phase 1 gate. All 23 behavioral tests pass. 23 > 22 claimed in plan green evidence (1 test added post-baseline in e51561e4)."
+    },
+    {
+      "command": "npm run ws:im3:lint",
+      "result": "Exit code 0. No lint errors.",
+      "notes": "Closeout gate."
+    },
+    {
+      "command": "npx tsc --noEmit",
+      "result": "Exit code 0. No type errors.",
+      "notes": "Closeout gate."
+    },
+    {
+      "command": "CI=true npm run test",
+      "result": "Exit code 0. 22 files / 302 tests passed in packages/knowledge-space-core.",
+      "notes": "Closeout gate."
+    },
+    {
+      "command": "CI=true npx vitest run apps/integrated-math-3 packages/activity-components",
+      "result": "Test Files 274 failed | 115 passed (389) | Tests 603 failed | 1563 passed | 7 skipped (2173). Exit code 0.",
+      "notes": "Aggregate gate matches green evidence. 274 failures are pre-existing at baseline. Delta vs red: +3 passing files, +22 passing tests, 0 regressions."
+    }
+  ],
+  "files_reviewed": [
+    "apps/integrated-math-3/lib/teacher/content-authoring/authoring-model.ts",
+    "apps/integrated-math-3/lib/teacher/content-authoring/activity-config-validation.ts",
+    "apps/integrated-math-3/lib/teacher/content-authoring/sanitize-authored-text.ts",
+    "apps/integrated-math-3/__tests__/lib/teacher/content-authoring/authoring-model.test.ts",
+    "apps/integrated-math-3/__tests__/lib/teacher/content-authoring/activity-config-validation.test.ts",
+    "apps/integrated-math-3/__tests__/lib/teacher/content-authoring/sanitize-authored-text.test.ts"
+  ],
+  "correctness_findings": [
+    {
+      "severity": "none",
+      "area": "authoring-model",
+      "finding": "normalizeLessonDraft correctly validates lesson hierarchy (phases→sections→activities), rejects placeholder/unknown keys via SCHEMA_REGISTRY membership, generates stable position-derived IDs, preserves input order, and returns a discriminated union with structured errors. Props are shallow-copied (no input mutation). Empty phase/section/activity arrays properly rejected at each level."
+    },
+    {
+      "severity": "none",
+      "area": "activity-config-validation",
+      "finding": "validateActivityConfig correctly binds validation to the componentKey via getPropsSchema(componentKey). Uses safeParse (non-throwing). Cross-key props rejected by Zod strict schemas. Errors include componentKey, path (string[]), and message. Null check after getPropsSchema is defense-in-depth. No input mutation."
+    },
+    {
+      "severity": "none",
+      "area": "sanitize-authored-text",
+      "finding": "sanitizeAuthoringText strips <script>/<style> blocks, event-handler attributes (double/single-quoted and unquoted, case-insensitive), and javascript: URLs. Math notation ($, **, ^) preserved. sanitizeLessonDraft recursively sanitizes all string leaves. SanitizedText renders as plain text node (no dangerouslySetInnerHTML). Runtime guard in e51561e4 prevents script/style wrapper tags even through type assertions."
+    }
+  ],
+  "architecture_findings": [
+    {
+      "severity": "none",
+      "area": "boundary-compliance",
+      "finding": "All three modules are pure and app-local under apps/integrated-math-3/lib/teacher/content-authoring/. No imports from other apps or convex/_generated/. Uses canonical SCHEMA_REGISTRY and getPropsSchema from @math-platform/math-content/schemas via the IM3 re-export. No parallel/duplicate authoring schema registry created. No changes to approval/hash primitives."
+    },
+    {
+      "severity": "none",
+      "area": "dangerouslySetInnerHTML",
+      "finding": "No dangerouslySetInnerHTML in authoring code. Only appears in JSDoc comments explaining the design intent."
+    },
+    {
+      "severity": "info",
+      "area": "build-graph",
+      "finding": "3 new exported functions indexed in graph.db (normalizeLessonDraft, validateActivityConfig, sanitizeAuthoringText + sanitizeLessonDraft + SanitizedText). No callers yet — expected since Phase 2/3 are the consumers. No blast radius."
+    }
+  ],
+  "test_quality_findings": [
+    {
+      "severity": "none",
+      "area": "test-meaningfulness",
+      "finding": "All 23 tests are behavioral — they execute real Zod schemas via safeParse, run the real sanitizer, and assert returned data. No .skip, .todo, broad mocks, or fixture-only assertions. Tests use real SCHEMA_REGISTRY and getPropsSchema (not mocked)."
+    },
+    {
+      "severity": "none",
+      "area": "coverage-breadth",
+      "finding": "All 6 canonical activity keys exercised in both model (accept) and validation (accept + reject) tests. 2 placeholder keys and 1 unknown key tested for rejection. Missing-required-field, empty-array, cross-key-prop, and no-mutation cases covered. Sanitizer tests: script tags, event handlers, javascript URLs, math notation preservation, draft-level sanitization, render-level dangerouslySetInnerHTML avoidance, script/style tag fallback guard."
+    },
+    {
+      "severity": "none",
+      "area": "render-proof",
+      "finding": "SanitizedText render test proves sanitized text appears as text content and no dangerouslySetInnerHTML or script elements are created. The e51561e4 fix adds a render-level test proving script/style wrapper tags are neutralized to span even through type-cast misuse."
+    }
+  ],
+  "anti_pattern_audit": {
+    "A1_substring_as_structured_signal": {
+      "status": "pass",
+      "detail": "Plan uses [b] deferred:user for UMV; automatable tasks are [x] (completed). No substring-based task filtering."
+    },
+    "A2_consent_blind_publish_gate": {
+      "status": "pass",
+      "detail": "Phase 1 does not implement or assert publish/approval. No consent-blind gates."
+    },
+    "A3_digit_only_count": {
+      "status": "pass",
+      "detail": "Tests use array iteration over CANONICAL_ACTIVITY_KEYS (6 items) and PLACEHOLDER_ACTIVITY_KEYS (2 items), not digit-only regex matching. Assertions use toHaveLength, toBeGreaterThan, etc."
+    },
+    "A4_vacuous_pass": {
+      "status": "pass",
+      "detail": "All 23 tests contain real behavioral assertions. No empty fixture arrays. No zero-case passes. The 'supports all six canonical keys' test iterates 6 keys with individual success assertions. The 'rejects placeholder keys' test iterates 2 keys with individual failure assertions."
+    },
+    "A5_false_claim_text": {
+      "status": "pass",
+      "detail": "Plan green evidence says '22 passed' which was accurate at 7516f07c. Current targeted command shows 23 passed (1 extra test from e51561e4). Exit code 0 is correctly claimed. Aggregate counts (274 failed / 115 passed / 389 total) match current run. Closeout gate claims (lint exit 0, tsc exit 0, test exit 0) all verified. No 'all checks pass' claim for the aggregate — the plan correctly documents pre-existing failures."
+    },
+    "A6_registry_note_overstatement": {
+      "status": "pass",
+      "detail": "tracks.md says 'PLANNED' for Teacher Content Authoring. No 'complete/resolved/publishable' wording. The entry is honest about the track state."
+    },
+    "A7_over_broad_filter": {
+      "status": "pass",
+      "detail": "No exclusion filters in tests. Source guards check specific file paths and patterns, not English words."
+    },
+    "A8_marker_ambiguity": {
+      "status": "pass",
+      "detail": "Phase 1 tasks: [x] (completed with SHA 7516f07c). UMV: [b] deferred:user. No [ ] (space) markers remain in Phase 1 block. Phase 2/3/4 tasks use [ ] which is correct for unstarted phases."
+    },
+    "A9_archived_track_references": {
+      "status": "pass",
+      "detail": "No tests reference measure/ track files. Implementation files do not import from measure/."
+    },
+    "A10_generated_facts_drift": {
+      "status": "pass",
+      "detail": "graph.db was updated in 7516f07c to index the 3 new modules. The post-baseline commit e51561e4 changes SanitizedText but the graph update may be stale. However, the change is a type narrowing + runtime guard (no new exported symbols), so the drift is minimal."
+    }
+  },
+  "observations": [
+    {
+      "severity": "info",
+      "category": "test-count-drift",
+      "detail": "Plan green evidence records 'Tests 22 passed (22)' (accurate at 7516f07c). Current targeted command shows 23 passed because commit e51561e4 added the 'falls back to a span when asked to render as script or style' test. The count increased (not decreased) and exit code remains 0. Not a blocker."
+    },
+    {
+      "severity": "info",
+      "category": "style-block-test-gap",
+      "detail": "The implementation strips <style> blocks (STYLE_BLOCK_REGEX exists and is applied in sanitizeAuthoringText), but no dedicated test injects <style>evil</style> to verify the stripping. The script-block stripping IS tested. The <style> code path is exercised only if a sanitized field in the draft test happened to contain a <style> block (it doesn't). This is a minor test coverage gap — the regex is structurally identical to the script regex and the code path is adjacent."
+    },
+    {
+      "severity": "info",
+      "category": "defense-in-depth",
+      "detail": "Commit e51561e4 adds a valuable defense-in-depth layer to SanitizedText: type-level restriction (SafeTextTag excludes 'script'|'style') plus runtime fallback to 'span'. This prevents misuse through TypeScript type assertions, which the test exercises with 'as unknown as' casts."
+    }
+  ],
+  "verdict": "PASS — Phase 1 implementation is correct, architecture is sound, tests are meaningful and behavioral, all closeout gates pass, and no anti-patterns detected. The 3 modules under apps/integrated-math-3/lib/teacher/content-authoring/ correctly implement FR1 (authoring model shape), FR2 (schema-driven validation via canonical Zod schemas), and NFR sanitization (no raw HTML injection). No blockers found.",
+  "handoff": "Phase 1 is verified. Phase 2 (draft lifecycle, approval queue, authorization) can proceed."
+}
