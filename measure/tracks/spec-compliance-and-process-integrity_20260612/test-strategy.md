@@ -101,16 +101,10 @@ planning; Phase 7.1 re-scans + commits. build-graph on PATH at ~/.local/bin.
   production gate (FR-6 diff, typed-params, exported-surface, verification) MUST also have a
   bounded non-fake run against the real scope or a constructed command-arg assertion. No fake may
   stand alone for a production gate; none may fall through into a full `vitest run` suite.
-- INTENTIONALLY-RED files discoverable by aggregate suites:
-  - `packages/knowledge-space-core/src/__tests__/placement-engine-extra-2.test.ts` — header line 32:
-    "Status: RED … expected to FAIL"; NO `.skip()` present. Owned by kst-lesser-holes P6.7/P6.8
-    (still `[ ]`). Implementer MUST confirm `packages/knowledge-space-core/vitest.config.ts`
-    excludes it, else `vitest run` in that package is knowingly red and blocks P6/P7 closeout.
-  - `placement-engine-extra.test.ts` (intentionally pre-modification, line 14) — same ownership;
-    verify exclude or runtime skip.
-  - These are inherited debt, NOT created by this track. P6.7/P6.8 either converts them to green
-    or formalizes their exclusion. Until then they must not be silently swallowed by an aggregate
-    suite that reports "pass".
+- INTENTIONALLY-RED / stale-comment handling for aggregate suites:
+  - Baseline recheck on 2026-06-29: `CI=true npx vitest run packages/knowledge-space-core/src/__tests__` passes `20 files / 285 tests`. Therefore the earlier `placement-engine-extra*.test.ts` Red-status headers are stale documentation, not live intentionally-red tests.
+  - P6.7 owns this cleanup. Mid Red may add failing Phase 6 tests, but each must either fail under the targeted aggregate Red command or carry a temporary `// owner: Phase 6 Task ...` note. Green closeout must leave zero `Status: RED`, `expected to FAIL`, or `At HEAD ... missing` headers in passing test files.
+  - No `.skip()` / `.todo()` may be used to hide Phase 6 failures. If an external aggregate suite is intentionally red, the owning track and exclusion must be named in `plan.md`; at this baseline there is no such exclusion.
 
 ## 9. Phase 4 — Missing @throws/@returns + Convex Exported Surface (refreshed 2026-06-24)
 
@@ -308,7 +302,75 @@ A-class anti-patterns in the canonical catalog:
   silently re-green the gate. Phase 7.1 still owns the closeout graph
   refresh.
 
-(A2 publish-gate consent and A9 archived-track-path are not relevant to
-Phase 4; A2 is a publish-gate concern with no Phase 4 publish event, and
-A9 is a test-vs-archive-path concern that doesn't apply since this guard
-lives in the active track dir, not in `tests/`.)
+(A2 publish-gate consent is not relevant to Phase 4; A9 archived-track-path is not
+relevant to the P4 guard because it lives in the active track dir and does not
+reference moved track paths.)
+
+## 10. Phase 6 — kst-lesser-holes_20260521 Phase 1 Quality (refreshed 2026-06-29)
+
+### 10.1 Baseline and graph context
+- Live baseline command: `CI=true npx vitest run packages/knowledge-space-core/src/__tests__` passes `20 files / 285 tests` before Phase 6 Red tests are added. Mid Red must make this exact command fail for real behavior gaps, not by stale comments or durable records.
+- `graph.db` stats: 14253 nodes / 20749 edges / 2078 files. `LevelProjectionFn` and `getInvalidEdgePairings` are indexed; `displayLevelSchema`, `progressTrendHistorySchema`, and `EDGE_ENDPOINT_RULES` are not discoverable as graph nodes, so grep/source inspection is required.
+- Callers: `build-graph callers LevelProjectionFn`, `getInvalidEdgePairings`, and `projectDisplayLevel` report no runtime callers beyond containment/param-flow. Contract risk is package public API and tests, not a broad app call graph.
+
+### 10.2 Targeted Red command and expected failures
+Primary Red command for this phase (from the orchestrator env):
+```bash
+CI=true npx vitest run packages/knowledge-space-core/src/__tests__
+```
+It must fail after Mid Red adds tests for these missing/wrong contracts:
+1. `displayLevelSchema` rejects empty arrays, duplicate ids, and non-monotonic `minMastery` (currently accepts them).
+2. `progressTrendHistorySchema` rejects empty history, out-of-order / duplicate timestamps, and duplicate ids inside each `masteredNodeIds` snapshot (currently accepts them).
+3. Endpoint pairing rules have one canonical source (currently duplicated in `schemas.ts` and `validation.ts`); a source-contract test must fail while two `const EDGE_ENDPOINT_RULES` definitions remain.
+4. `transfers_to` has expanded negative coverage: wrong source kind, wrong target kind, same-domain concept pairs, plus zero-weight positive acceptance.
+5. Public API contract imports root and subpaths, exercises one real level-projection instance, and includes the negative schema cases above.
+6. Stale Red-phase comments are detected by a package-local test that scans `packages/knowledge-space-core/src/__tests__` for phrases such as `Status: RED`, `expected to FAIL`, and `At HEAD ... missing`. This is an artifact/documentation test; it must not stand in for the live schema tests.
+
+Use narrower developer-loop commands while authoring, but do not replace the primary gate:
+```bash
+CI=true npx vitest run packages/knowledge-space-core/src/__tests__/level-projection-and-progress-trend-contract.test.ts
+CI=true npx vitest run packages/knowledge-space-core/src/__tests__/edge-type-transfers-to.test.ts
+CI=true npx vitest run packages/knowledge-space-core/src/__tests__/public-api-contract.test.ts
+```
+
+### 10.3 Green and closeout gates
+- Green gate: the primary command above passes with the live test count recorded in `plan.md` (expected >285 after added Phase 6 tests). No `.skip()` / `.todo()` may hide Phase 6 failures.
+- Project gates before closeout: `npm run lint`, `npx tsc --noEmit`, and `npm run test`. If pre-existing failures appear outside the Phase 6 scope, record the exact failing file/command and prove the targeted `knowledge-space-core` suite is green.
+- Artifact closeout for Task 6.1: create/update the kst Phase 1 adversarial result JSON with a non-empty `findings` array naming the public-API gap and the schema/test gaps. This is a Measure artifact proof, not a package test (package tests must not read `measure/`).
+- Test-count closeout for Task 6.8: record a labeled count, e.g. `knowledge_space_core_tests: 20 files / 285+ tests`, from the current command output. Do not cite the stale 245/247 claim.
+
+### 10.4 Fixtures, mocks, and live-behavior proof
+- Reuse inline fixtures from `edge-type-transfers-to.test.ts` (`mathSkillA`, `mathSkillB`, `englishSkill`, standards, `makeEdge`) and the level/progress fixtures already in the package tests. Do not add a shared mock layer.
+- No mocks of Zod, `validateKnowledgeSpace`, `knowledgeSpaceSchema`, or package exports. The tests must parse real schemas and run real validation functions.
+- Artifact tests may use `fs` to scan files under `packages/knowledge-space-core/src/**` only. They must not inspect `measure/` from package tests, preserving the packages→measure boundary guard.
+
+### 10.5 Architecture guardrails and changed-contract risks
+- Keep `packages/knowledge-space-core` domain-neutral; no imports from `apps/`, Convex, or Measure docs.
+- Prefer one package-local canonical endpoint-rule module (for example `edge-endpoint-rules.ts`) imported by both `schemas.ts` and `validation.ts`. If the constant is exported, treat it as package API and document whether it is public or internal.
+- Tightening `displayLevelSchema` and `progressTrendHistorySchema` is a changed contract: existing fixtures with single/empty arrays may break. Update tests and examples to use non-empty, sorted, unique data.
+- Constraining `LevelProjectionFn` must remain source-compatible for existing root/subpath imports. Because the graph shows no runtime callers, type-level breakage is the primary risk; run `npx tsc --noEmit` after Green.
+- `projectDisplayLevel` should fail safely on invalid `levels` instead of relying on `levels[0]!`; schema tests and runtime tests should agree on the invalid shape.
+
+### 10.6 Artifact/documentation tests vs live behavior
+- Live behavior tests: schema rejection/acceptance, `validateKnowledgeSpace`, `getInvalidEdgePairings`, `projectDisplayLevel`, and root/subpath imports.
+- Artifact/documentation tests: stale Red-comment scan, endpoint-rule single-definition scan, adversarial JSON non-empty findings, and labeled test-count reconciliation.
+- Falsification condition for every artifact test: a hand edit that changes only prose must not pass unless the labeled field/source pattern actually changes (for example, the comment scan still fails while `Status: RED` remains).
+
+### 10.7 Anti-pattern coverage for Phase 6
+- **A1 substring-as-structured-signal:** Phase 6 automatable tasks are `[~]`, not `[b]`, and no Phase 6 task relies on free-text `deferred`. Defense: plan-marker check during Mid handoff; only Phase 5.3 and 7.4 remain `[b] deferred:user`.
+- **A2 consent-blind publish gate:** Not applicable; Phase 6 has no publish/consent action.
+- **A3 digit-only labeled count:** Test-count and source-scan checks must emit labeled integers (`knowledge_space_core_tests: N`, `endpoint_rule_definitions: N`, `stale_red_comment_hits: N`) and parse those labels, never bare `[0-9]+`.
+- **A4 vacuous-pass on nothing-done:** The primary Red/Green gate must report at least 20 test files and >285 tests after Mid Red additions. A zero-file or unchanged-count run is a failure even if exit 0.
+- **A5 false-claim text vs test reality:** `plan.md` may claim Phase 6 Green only after re-running the exact primary command at that SHA. The stale 245/247 claim is itself a failing artifact until replaced by live output.
+- **A6 registry-note overstatement:** `measure/tracks.md` must not say kst Phase 1 quality is resolved until schema tests, artifact tests, lint, tsc, and `npm run test` evidence are recorded.
+- **A7 over-broad filter swallowing real hits:** Comment/source scans may exclude only path contexts (e.g. generated dirs) and must not filter by English words such as `skip`, `never`, or `expected`.
+- **A8 `[ ]` marker ambiguity:** Phase 6 top-level tasks are reclassified to `[~]` for active work. Do not use `[b]` for incomplete automatable Phase 6 tasks.
+- **A9 archived-track-path:** Any Measure artifact helper for Task 6.1 must resolve `measure/archive/kst-lesser-holes_20260521` explicitly (or with a track-dir resolver) and must not hard-code `measure/tracks/kst-lesser-holes_20260521`.
+- **A10 generated-facts drift:** If Phase 6 adds/renames exported TS symbols (e.g. canonical endpoint-rule module), run `build-graph update ./graph.db <changed TS files>` or record that Phase 7.1 owns the full refresh. Do not use graph results as the sole proof for schema behavior.
+
+### 10.8 Mid Red handoff
+- Add Red tests first under `packages/knowledge-space-core/src/__tests__/`; do not edit production code.
+- Mark the Phase 6 tasks under active Red coverage `[~]` before committing tests. Keep Phase 5.3 and 7.4 `[b] deferred:user`.
+- Commit only test/Measure-doc changes for Mid Red. The Red proof is valid when `CI=true npx vitest run packages/knowledge-space-core/src/__tests__` exits non-zero for the new tests above, while baseline evidence shows it was green before Red.
+- Do not create a package test that reads `measure/`; use a Measure artifact/check for adversarial JSON instead.
+- Closeout handoff to Green: implement minimal schema refinements, endpoint-rule dedupe, comment cleanup, adversarial JSON findings, and plan count reconciliation until the same command passes.

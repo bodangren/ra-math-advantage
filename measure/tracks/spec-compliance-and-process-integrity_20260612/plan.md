@@ -1982,38 +1982,38 @@ Result: `no false excuses` — all "npm not on PATH" / "Not available in sandbox
 
 ## Phase 6: kst-lesser-holes_20260521 Phase 1 Quality
 
-- [ ] Task 6.1: Record real adversarial findings
-  - [ ] File: adversarial result JSON for kst Phase 1
+- [~] Task 6.1: Record real adversarial findings
+  - [~] File: adversarial result JSON for kst Phase 1
   - [ ] Populate `"findings"` with the public-API gap and other issues
   - [ ] Do not mark audit `"pass"` with empty findings
 
-- [ ] Task 6.2: Tighten Level Projection schema
-  - [ ] `packages/knowledge-space-core/src/level-projection.ts`
+- [~] Task 6.2: Tighten Level Projection schema
+  - [~] `packages/knowledge-space-core/src/level-projection.ts`
   - [ ] Add `.refine`/`.superRefine` to enforce non-empty `displayLevels`, non-decreasing `minMastery`, unique ids
   - [ ] Constrain `LevelProjectionFn` return type to a level id, not bare `string`
 
-- [ ] Task 6.3: Tighten progressTrend schema
-  - [ ] `packages/knowledge-space-core/src/progress-trend.ts`
+- [~] Task 6.3: Tighten progressTrend schema
+  - [~] `packages/knowledge-space-core/src/progress-trend.ts`
   - [ ] Enforce chronological order, non-empty window, unique `masteredNodeIds` per snapshot
 
-- [ ] Task 6.4: Deduplicate edge endpoint rules
-  - [ ] Move canonical `EDGE_ENDPOINT_RULES` to one module
+- [~] Task 6.4: Deduplicate edge endpoint rules
+  - [~] Move canonical `EDGE_ENDPOINT_RULES` to one module
   - [ ] Import it in both `schemas.ts` and `validation.ts`
   - [ ] Add a test that fails if the two lists diverge
 
-- [ ] Task 6.5: Expand transfers_to tests
-  - [ ] Add parametrized cases for all allowed/disallowed endpoint kinds
+- [~] Task 6.5: Expand transfers_to tests
+  - [~] Add parametrized cases for all allowed/disallowed endpoint kinds
   - [ ] Add wrong source/target kind rejections and zero-weight acceptance
 
-- [ ] Task 6.6: Strengthen public-api-contract test
-  - [ ] Import all named exports from root and subpaths
+- [~] Task 6.6: Strengthen public-api-contract test
+  - [~] Import all named exports from root and subpaths
   - [ ] Add negative schema cases and a real level-projection instance test
 
-- [ ] Task 6.7: Remove stale Red-phase comments
-  - [ ] Rewrite test file headers to describe current contract/regression purpose
+- [~] Task 6.7: Remove stale Red-phase comments
+  - [~] Rewrite test file headers to describe current contract/regression purpose
 
-- [ ] Task 6.8: Reconcile test count
-  - [ ] Confirm actual suite size and update plan claims to match
+- [~] Task 6.8: Reconcile test count
+  - [~] Confirm actual suite size and update plan claims to match
 
 ## Phase 7: Final Verification and Checkpoint
 

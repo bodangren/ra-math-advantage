@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "role": "strategy",
+  "status": "complete",
+  "track": "spec-compliance-and-process-integrity_20260612",
+  "phase": "Phase 6: kst-lesser-holes_20260521 Phase 1 Quality",
+  "summary": "Refined Phase 6 strategy with targeted Red/Green gates, live-behavior vs artifact distinctions, graph context, anti-pattern coverage A1-A10, and Mid Red handoff. Reclassified active Phase 6 tasks from legacy [ ] markers to [~] while leaving human-deferred Phase 5.3 and 7.4 as [b] deferred:user.",
+  "commands": [
+    "build-graph stats ./graph.db (pass: 14253 nodes / 20749 edges / 2078 files)",
+    "build-graph search ./graph.db LevelProjectionFn (pass: found type_alias in packages/knowledge-space-core/src/level-projection.ts)",
+    "build-graph callers ./graph.db LevelProjectionFn (pass: no runtime callers beyond containment)",
+    "build-graph inspect ./graph.db getInvalidEdgePairings (pass: exported validation function inspected)",
+    "build-graph callers ./graph.db getInvalidEdgePairings (pass: no runtime callers beyond containment/param-flow)",
+    "CI=true npx vitest run packages/knowledge-space-core/src/__tests__ (pass: 20 files / 285 tests baseline before Phase 6 Red)"
+  ],
+  "changed_files": [
+    "measure/tracks/spec-compliance-and-process-integrity_20260612/test-strategy.md",
+    "measure/tracks/spec-compliance-and-process-integrity_20260612/plan.md",
+    "measure/tracks/spec-compliance-and-process-integrity_20260612/phase-6-strategy-result.json"
+  ],
+  "plan_updates": "Phase 6 top-level tasks 6.1-6.8 and first subtask lines marked [~] for active automatable work; Phase 5.3 and 7.4 unchanged as [b] deferred:user.",
+  "known_failures": "None in the current baseline; Phase 6 Mid Red is expected to add failing tests that turn the targeted aggregate command red.",
+  "handoff": "Mid Red should add tests under packages/knowledge-space-core/src/__tests__ only, plus Measure artifact checks for adversarial JSON if needed. The targeted Red command is CI=true npx vitest run packages/knowledge-space-core/src/__tests__; it must fail for live schema/validation/API gaps, not stale records. Do not implement package source in Mid Red, do not read measure/ from package tests, and do not alter Phase 5.3 or 7.4 deferred markers.",
+  "confidence": "high"
+}
