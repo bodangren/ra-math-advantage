@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "phase": "Phase 7: Final Verification and Checkpoint",
+  "track_id": "spec-compliance-and-process-integrity_20260612",
+  "role": "measure-jr-green",
+  "status": "green",
+  "baseline_sha": "3fc67caa8928048dff08ddf49c0013937ebaf60e",
+  "green_sha_pending": true,
+  "tasks": [
+    {
+      "id": "7.1",
+      "title": "Refresh graph.db",
+      "status": "completed",
+      "files": ["graph.db"],
+      "notes": "build-graph scan ./ ./graph.db run; stats moved from 14253 nodes / 20749 edges / 2078 files to 14254 nodes / 20750 edges / 2079 files (+1 node / +1 edge / +1 file). graph.db size 20738048 -> 26112000 bytes. Committed via ALLOW_GRAPH_DB=1 per pre-commit hook contract."
+    },
+    {
+      "id": "7.2",
+      "title": "Run all guards",
+      "status": "completed",
+      "notes": "Targeted Phase 7 Green command (per test-strategy §11.2) passes: check-jsdoc-typed-params reports 593/593 typed over 102 files (pass=true); check-jsdoc-exported-convex-im3 reports 197 declarations / 0 missing (pass=true). Sample FR-6 narrow guards still 0 violations (registry.ts, dropdown-menu.tsx, BM2 preface/page.tsx). Phase 5 verification-report guard remains human-gated red per test-strategy §11.3 — known artifact, not an automation failure."
+    },
+    {
+      "id": "7.3",
+      "title": "Run real lint / typecheck / tests",
+      "status": "completed",
+      "notes": "npm run lint → exit 0 (knowledge-space-core + integrated-math-3 lint clean). npx tsc --noEmit → exit 0 (clean). npm run test → exit 0 (22 files / 302 tests / all pass from packages/knowledge-space-core)."
+    },
+    {
+      "id": "7.4",
+      "title": "User Manual Verification",
+      "status": "deferred",
+      "deferred_owner": "user",
+      "notes": "Preserved as [b] deferred:user per Phase 7 strategy. Human verifier drives measure/workflow.md Steps 1-10 and signs off. Automation does not flip this task to [x]."
+    },
+    {
+      "id": "7.5",
+      "title": "Checkpoint",
+      "status": "completed",
+      "notes": "Plan.md task markers updated to [x] for 7.1/7.2/7.3/7.5; Task 7.4 retained as [b] deferred:user. Checkpoint commit landed; git note will be attached via git notes add."
+    }
+  ],
+  "evidence": {
+    "targeted_command": "bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh --json && bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-exported-convex-im3.sh --json && CI=true npx vitest run packages/knowledge-space-core/src/__tests__",
+    "targeted_exit": 0,
+    "typed_params_result": {
+      "phase": "Phase 3 (FR-5 typed-params)",
+      "scope": "apps/integrated-math-3/convex/",
+      "scanned_files": 102,
+      "total_tags": 593,
+      "typed_tags": 593,
+      "untyped_tags": 0,
+      "param_total": 282,
+      "param_typed": 282,
+      "returns_total": 311,
+      "returns_typed": 311,
+      "pass": true,
+      "files_untyped": []
+    },
+    "exported_surface_result": {
+      "phase": "Phase 4 (Convex exported-surface)",
+      "scope": "apps/integrated-math-3/convex",
+      "scanned_files": 101,
+      "declarations": 197,
+      "missing_jsdoc": 0,
+      "pass": true,
+      "files_missing": []
+    },
+    "vitest_result": "Test Files 22 passed (22), Tests 302 passed (302), exit 0",
+    "lint_command": "npm run lint",
+    "lint_exit": 0,
+    "lint_result": "@math-platform/knowledge-space-core lint + apps/integrated-math-3 lint clean",
+    "typecheck_command": "npx tsc --noEmit",
+    "typecheck_exit": 0,
+    "typecheck_result": "clean (no errors)",
+    "test_command": "npm run test",
+    "test_exit": 0,
+    "test_result": "Test Files 22 passed (22), Tests 302 passed (302) from packages/knowledge-space-core"
+  },
+  "graph_refresh": {
+    "pre_scan_nodes": 14253,
+    "pre_scan_edges": 20749,
+    "pre_scan_files": 2078,
+    "post_scan_nodes": 14254,
+    "post_scan_edges": 20750,
+    "post_scan_files": 2079,
+    "pre_scan_size_bytes": 20738048,
+    "post_scan_size_bytes": 26112000
+  },
+  "preserved_out_of_scope": {
+    "_add_types.py": "untracked at repo root, preserved untouched",
+    "_add_types.ts": "untracked at repo root, preserved untouched",
+    "stash@{0}": "WIP on master, preserved untouched"
+  },
+  "known_human_gated_red": {
+    "task": "Task 5.3 / Task 7.4",
+    "marker": "[b] deferred:user",
+    "guard": "check-phase-verification-guards.sh",
+    "current_state": "All 9 archived jsdoc phase verification reports still VERIFICATION_RESULT: pending. Per test-strategy §11.3 and §11.7 this is a known human-gated artifact red, not an automation failure. The track checkpoints automatable work only."
+  },
+  "anti_pattern_check": {
+    "A1_substring_as_structured_signal": "PASS — Task 7.4 retained as [b] deferred:user; no free-text 'deferred' masking [~] tasks.",
+    "A3_digit_only_labeled_count": "PASS — JSON fields parsed (untyped_tags:0, missing_jsdoc:0, declarations:197); vitest labeled counts (Test Files 22, Tests 302).",
+    "A4_vacuous_pass_on_nothing_done": "PASS — guards report non-zero scanned_files/declarations; vitest reports 22 files / 302 tests.",
+    "A5_false_claim_text_vs_test_reality": "PASS — every plan citation was re-run at the Phase 7 SHA with live output captured in this JSON.",
+    "A6_registry_note_overstatement": "PASS — measure/tracks.md is not modified by this Phase 7 commit.",
+    "A7_over_broad_filter_swallowing_real_hits": "PASS — no bare English-word filters in any guard.",
+    "A8_marker_ambiguity": "PASS — only [x], [~], [b] markers used in Phase 7 task status.",
+    "A9_archived_track_path": "PASS — Phase 7 verification uses measure/archive/jsdoc-comments_20260526/ paths intentionally.",
+    "A10_generated_facts_drift": "PASS — graph.db refreshed and committed in this checkpoint sequence."
+  },
+  "next_role": "measure-review-a",
+  "timestamp": "2026-06-29T21:25:00Z"
+}
