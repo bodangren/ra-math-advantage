@@ -41,7 +41,7 @@ const VALID_PROPS_BY_KEY: Record<string, Record<string, unknown>> = {
 describe('validateActivityConfig', () => {
   it('accepts valid configs for each canonical activity key', async () => {
     const { validateActivityConfig } = await import(
-      '../../../lib/teacher/content-authoring/activity-config-validation'
+      '../../../../lib/teacher/content-authoring/activity-config-validation'
     );
 
     for (const [key, props] of Object.entries(VALID_PROPS_BY_KEY)) {
@@ -55,7 +55,7 @@ describe('validateActivityConfig', () => {
 
   it('rejects a config missing a required field with structured error', async () => {
     const { validateActivityConfig } = await import(
-      '../../../lib/teacher/content-authoring/activity-config-validation'
+      '../../../../lib/teacher/content-authoring/activity-config-validation'
     );
 
     const result = validateActivityConfig('graphing-explorer', {});
@@ -70,7 +70,7 @@ describe('validateActivityConfig', () => {
 
   it('rejects empty arrays where the schema disallows them', async () => {
     const { validateActivityConfig } = await import(
-      '../../../lib/teacher/content-authoring/activity-config-validation'
+      '../../../../lib/teacher/content-authoring/activity-config-validation'
     );
 
     const result = validateActivityConfig('comprehension-quiz', { questions: [] });
@@ -82,7 +82,7 @@ describe('validateActivityConfig', () => {
 
   it('rejects a valid props object paired with the wrong component key', async () => {
     const { validateActivityConfig } = await import(
-      '../../../lib/teacher/content-authoring/activity-config-validation'
+      '../../../../lib/teacher/content-authoring/activity-config-validation'
     );
 
     const quizProps = VALID_PROPS_BY_KEY['comprehension-quiz'];
@@ -95,7 +95,7 @@ describe('validateActivityConfig', () => {
 
   it('rejects placeholder keys with no schema', async () => {
     const { validateActivityConfig } = await import(
-      '../../../lib/teacher/content-authoring/activity-config-validation'
+      '../../../../lib/teacher/content-authoring/activity-config-validation'
     );
 
     for (const key of ['equation-solver', 'drag-drop-categorization']) {
@@ -109,7 +109,7 @@ describe('validateActivityConfig', () => {
 
   it('rejects an unknown component key', async () => {
     const { validateActivityConfig } = await import(
-      '../../../lib/teacher/content-authoring/activity-config-validation'
+      '../../../../lib/teacher/content-authoring/activity-config-validation'
     );
 
     const result = validateActivityConfig('not-a-real-key', { equation: 'x' });
@@ -121,7 +121,7 @@ describe('validateActivityConfig', () => {
 
   it('does not mutate the input props object', async () => {
     const { validateActivityConfig } = await import(
-      '../../../lib/teacher/content-authoring/activity-config-validation'
+      '../../../../lib/teacher/content-authoring/activity-config-validation'
     );
 
     const props = { equation: 'x^2' };

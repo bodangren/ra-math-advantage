@@ -1,3 +1,4 @@
+// @vitest-environment jsdom
 import { describe, it, expect } from 'vitest';
 import { render } from '@testing-library/react';
 import React from 'react';
@@ -5,7 +6,7 @@ import React from 'react';
 describe('sanitizeAuthoringText', () => {
   it('strips script tags and their content', async () => {
     const { sanitizeAuthoringText } = await import(
-      '../../../lib/teacher/content-authoring/sanitize-authored-text'
+      '../../../../lib/teacher/content-authoring/sanitize-authored-text'
     );
 
     const out = sanitizeAuthoringText('Hello <script>alert("x")</script>world');
@@ -18,7 +19,7 @@ describe('sanitizeAuthoringText', () => {
 
   it('neutralizes event-handler attributes', async () => {
     const { sanitizeAuthoringText } = await import(
-      '../../../lib/teacher/content-authoring/sanitize-authored-text'
+      '../../../../lib/teacher/content-authoring/sanitize-authored-text'
     );
 
     const out = sanitizeAuthoringText('<img src="x" onerror="alert(1)">');
@@ -29,7 +30,7 @@ describe('sanitizeAuthoringText', () => {
 
   it('neutralizes javascript: URLs', async () => {
     const { sanitizeAuthoringText } = await import(
-      '../../../lib/teacher/content-authoring/sanitize-authored-text'
+      '../../../../lib/teacher/content-authoring/sanitize-authored-text'
     );
 
     const out = sanitizeAuthoringText(
@@ -42,7 +43,7 @@ describe('sanitizeAuthoringText', () => {
 
   it('preserves math notation and markdown', async () => {
     const { sanitizeAuthoringText } = await import(
-      '../../../lib/teacher/content-authoring/sanitize-authored-text'
+      '../../../../lib/teacher/content-authoring/sanitize-authored-text'
     );
 
     const markdown = 'The vertex is **(h, k)** and the equation is $y = ax^2 + bx + c$.';
@@ -55,7 +56,7 @@ describe('sanitizeAuthoringText', () => {
 
   it('sanitizes free-text fields throughout a lesson draft', async () => {
     const { sanitizeLessonDraft } = await import(
-      '../../../lib/teacher/content-authoring/sanitize-authored-text'
+      '../../../../lib/teacher/content-authoring/sanitize-authored-text'
     );
 
     const draft = {
@@ -150,7 +151,7 @@ describe('sanitizeAuthoringText', () => {
 
   it('renders sanitized text without dangerouslySetInnerHTML', async () => {
     const { SanitizedText } = await import(
-      '../../../lib/teacher/content-authoring/sanitize-authored-text'
+      '../../../../lib/teacher/content-authoring/sanitize-authored-text'
     );
 
     const { container } = render(

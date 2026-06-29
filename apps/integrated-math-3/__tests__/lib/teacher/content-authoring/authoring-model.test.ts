@@ -39,7 +39,7 @@ function buildMinimalDraft(overrides?: Record<string, unknown>) {
 describe('normalizeLessonDraft', () => {
   it('accepts an ordered lesson with phases, sections, and activities', async () => {
     const { normalizeLessonDraft } = await import(
-      '../../../lib/teacher/content-authoring/authoring-model'
+      '../../../../lib/teacher/content-authoring/authoring-model'
     );
 
     const result = normalizeLessonDraft(buildMinimalDraft());
@@ -59,7 +59,7 @@ describe('normalizeLessonDraft', () => {
 
   it('preserves order of phases, sections, and activities in normalized output', async () => {
     const { normalizeLessonDraft } = await import(
-      '../../../lib/teacher/content-authoring/authoring-model'
+      '../../../../lib/teacher/content-authoring/authoring-model'
     );
 
     const result = normalizeLessonDraft({
@@ -112,7 +112,7 @@ describe('normalizeLessonDraft', () => {
 
   it('assigns stable IDs to normalized phases, sections, and activities', async () => {
     const { normalizeLessonDraft } = await import(
-      '../../../lib/teacher/content-authoring/authoring-model'
+      '../../../../lib/teacher/content-authoring/authoring-model'
     );
 
     const input = buildMinimalDraft();
@@ -135,7 +135,7 @@ describe('normalizeLessonDraft', () => {
 
   it('rejects a lesson with no phases', async () => {
     const { normalizeLessonDraft } = await import(
-      '../../../lib/teacher/content-authoring/authoring-model'
+      '../../../../lib/teacher/content-authoring/authoring-model'
     );
 
     const result = normalizeLessonDraft({ title: 'Empty', phases: [] });
@@ -145,7 +145,7 @@ describe('normalizeLessonDraft', () => {
 
   it('rejects a phase with no sections', async () => {
     const { normalizeLessonDraft } = await import(
-      '../../../lib/teacher/content-authoring/authoring-model'
+      '../../../../lib/teacher/content-authoring/authoring-model'
     );
 
     const result = normalizeLessonDraft({
@@ -158,7 +158,7 @@ describe('normalizeLessonDraft', () => {
 
   it('rejects a section with no activities', async () => {
     const { normalizeLessonDraft } = await import(
-      '../../../lib/teacher/content-authoring/authoring-model'
+      '../../../../lib/teacher/content-authoring/authoring-model'
     );
 
     const result = normalizeLessonDraft({
@@ -171,7 +171,7 @@ describe('normalizeLessonDraft', () => {
 
   it('rejects placeholder activity keys that have no schema', async () => {
     const { normalizeLessonDraft } = await import(
-      '../../../lib/teacher/content-authoring/authoring-model'
+      '../../../../lib/teacher/content-authoring/authoring-model'
     );
 
     for (const key of PLACEHOLDER_ACTIVITY_KEYS) {
@@ -198,7 +198,7 @@ describe('normalizeLessonDraft', () => {
 
   it('rejects unknown activity keys', async () => {
     const { normalizeLessonDraft } = await import(
-      '../../../lib/teacher/content-authoring/authoring-model'
+      '../../../../lib/teacher/content-authoring/authoring-model'
     );
 
     const result = normalizeLessonDraft({
@@ -221,7 +221,7 @@ describe('normalizeLessonDraft', () => {
 
   it('supports all six canonical activity keys', async () => {
     const { normalizeLessonDraft } = await import(
-      '../../../lib/teacher/content-authoring/authoring-model'
+      '../../../../lib/teacher/content-authoring/authoring-model'
     );
 
     for (const key of CANONICAL_ACTIVITY_KEYS) {
