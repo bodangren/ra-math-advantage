@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "phase": "Phase 6: kst-lesser-holes_20260521 Phase 1 Quality",
+  "track_id": "spec-compliance-and-process-integrity_20260612",
+  "agent": "measure-review-a",
+  "role": "Review A — correctness and architecture",
+  "timestamp": "2026-06-29T20:20:00Z",
+  "baseline_sha": "9546877f9c987992020c1efe5d0f0adb37ddb310",
+  "green_commit": "d9b65977",
+  "verdict": "PASS",
+  "summary": "Phase 6 Green implementation is correct, architecturally sound, and defended by meaningful live-behavior tests. All 22 test files / 301 tests pass, tsc --noEmit clean, lint clean. No anti-pattern violations detected. One non-blocking finding (documented in the plan) regarding projectDisplayLevel runtime safety on empty levels arrays.",
+
+  "gate_results": {
+    "primary_command": "CI=true npx vitest run packages/knowledge-space-core/src/__tests__",
+    "primary_exit": 0,
+    "test_files": 22,
+    "tests_passed": 301,
+    "tests_failed": 0,
+    "tsc_exit": 0,
+    "lint_exit": 0,
+    "lint_warnings": 0
+  },
+
+  "count_verification": {
+    "plan_claim": "22 files / 301 tests / 0 failed",
+    "actual_result": "22 passed (22), 301 passed (301)",
+    "consistency": "PASS — plan claim matches live output exactly"
+  },
+
+  "task_audit": [
+    {
+      "task": "6.1 — Record real adversarial findings",
+      "status": "PASS",
+      "evidence": "phase-6-red-result.json has 6 blocking_findings (ADV-P6-B1 through B6) with non-empty descriptions. status is 'red', not vacuously 'pass'. All 6 findings addressed by Green commit d9b65977."
+    },
+    {
+      "task": "6.2 — Tighten Level Projection schema",
+      "status": "PASS",
+      "evidence": "displayLevelSchema in level-projection.ts now uses .min(1) + .superRefine to reject empty arrays, duplicate ids, and non-monotonic minMastery. Contract test file has 6 specific rejection tests (3 for displayLevelSchema, 3 for progressTrendHistorySchema) all passing."
+    },
+    {
+      "task": "6.3 — Tighten progressTrend schema",
+      "status": "PASS",
+      "evidence": "progressTrendHistorySchema in progress-trend.ts now uses .min(1) + .superRefine to reject empty history, out-of-order timestamps, and duplicate masteredNodeIds per snapshot. Verified by contract tests and public-api-contract negative cases."
+    },
+    {
+      "task": "6.4 — Deduplicate EDGE_ENDPOINT_RULES",
+      "status": "PASS",
+      "evidence": "New canonical edge-endpoint-rules.ts defines EDGE_ENDPOINT_RULES once. Old definitions removed from schemas.ts and validation.ts (verified by git diff). Both consumers import from the canonical module. edge-endpoint-rules.test.ts confirms exactly 1 definition file."
+    },
+    {
+      "task": "6.5 — Expand transfers_to tests",
+      "status": "PASS",
+      "evidence": "edge-type-transfers-to.test.ts has expanded negatives: wrong source kind (standard→skill), wrong target kind (skill→standard), same-domain concept pairs, and zero-weight positive acceptance. All 4 new tests pass."
+    },
+    {
+      "task": "6.6 — Strengthen public-api-contract test",
+      "status": "PASS",
+      "evidence": "public-api-contract.test.ts imports all key exports from root and subpaths, exercises projectDisplayLevel with real instance, and adds negative schema cases for both displayLevelSchema and progressTrendHistorySchema. 5 tests, all passing."
+    },
+    {
+      "task": "6.7 — Remove stale Red-phase comments",
+      "status": "PASS",
+      "evidence": "stale-red-comments.test.ts scans all package test files for 7 stale phrase patterns. Self-excludes from scan. Current result: hits=0. Verified no .skip()/.todo() in any test file."
+    },
+    {
+      "task": "6.8 — Reconcile test count",
+      "status": "PASS",
+      "evidence": "Baseline: 20 files / 285 tests. Red: 22 files / 301 tests (16 new). Green: 22 files / 301 tests / 0 failed. Labeled count recorded in plan.md matches live output."
+    }
+  ],
+
+  "anti_pattern_audit": {
+    "A1_substring_as_structured_signal": {
+      "status": "PASS",
+      "detail": "Phase 6 tasks use [x] for completed and [b] deferred:user for human-gated. No free-text deferred markers."
+    },
+    "A3_digit_only_count": {
+      "status": "PASS",
+      "detail": "Test assertions use precise matches (.toBe(0), .toBeLessThanOrEqual(1)), not bare-digit regex. Plan uses labeled integers (e.g., '22 files / 301 tests')."
+    },
+    "A4_vacuous_pass": {
+      "status": "PASS",
+      "detail": "Primary command reports 22 files / 301 tests (non-zero). EDGE_ENDPOINT_RULES dedup test has companion test ensuring both consumers reference the canonical module. No .skip()/.todo() found."
+    },
+    "A5_false_claim_text": {
+      "status": "PASS",
+      "detail": "Plan records live command output ('Test Files 22 passed (22), Tests 301 passed (301)'). Verified against actual test run."
+    },
+    "A6_registry_note_overstatement": {
+      "status": "PASS",
+      "detail": "tracks.md is not updated to claim kst Phase 1 quality resolved until Phase 7 closeout."
+    },
+    "A7_over_broad_filter": {
+      "status": "PASS",
+      "detail": "stale-red-comments.test.ts excludes only the detector file by name. No English-word filter tokens."
+    },
+    "A8_marker_ambiguity": {
+      "status": "PASS",
+      "detail": "Phase 6 tasks use [x] and [b] deferred:user only. No exotic markers."
+    },
+    "A9_archived_track_path": {
+      "status": "N/A",
+      "detail": "Package tests do not reference measure/ paths."
+    },
+    "A10_generated_facts_drift": {
+      "status": "PASS",
+      "detail": "Tests read source/schemas directly via fs and Zod parsing. No graph.db dependency."
+    }
+  },
+
+  "findings": [],
+
+  "nonblocking_findings": [
+    {
+      "id": "REVIEW-A-P6-N1",
+      "category": "runtime-safety",
+      "title": "projectDisplayLevel uses levels[0]! without runtime guard for empty arrays",
+      "description": "projectDisplayLevel in level-projection.ts uses levels[0]! (non-null assertion) which would throw on an empty levels array. The displayLevelSchema .min(1) refinement protects the public API path through Zod validation, but direct function calls with empty arrays bypass validation and crash. Test-strategy §10.5 explicitly says 'projectDisplayLevel should fail safely on invalid levels.' This was already documented as ADV-P6-N1 and marked 'Green-deferred (non-blocking)' in the plan.",
+      "files": ["packages/knowledge-space-core/src/level-projection.ts"],
+      "severity": "low"
+    }
+  ],
+
+  "files_reviewed": [
+    "packages/knowledge-space-core/src/level-projection.ts",
+    "packages/knowledge-space-core/src/progress-trend.ts",
+    "packages/knowledge-space-core/src/edge-endpoint-rules.ts",
+    "packages/knowledge-space-core/src/schemas.ts",
+    "packages/knowledge-space-core/src/validation.ts",
+    "packages/knowledge-space-core/src/index.ts",
+    "packages/knowledge-space-core/src/__tests__/level-projection-and-progress-trend-contract.test.ts",
+    "packages/knowledge-space-core/src/__tests__/edge-endpoint-rules.test.ts",
+    "packages/knowledge-space-core/src/__tests__/stale-red-comments.test.ts",
+    "packages/knowledge-space-core/src/__tests__/public-api-contract.test.ts",
+    "packages/knowledge-space-core/src/__tests__/edge-type-transfers-to.test.ts",
+    "packages/knowledge-space-core/src/__tests__/spec-markers.test.ts",
+    "packages/knowledge-space-core/src/__tests__/placement-engine-extra.test.ts",
+    "packages/knowledge-space-core/src/__tests__/placement-engine-extra-2.test.ts",
+    "packages/knowledge-space-core/src/__tests__/level-projection-public-api.test.ts",
+    "packages/knowledge-space-core/src/__tests__/placement-knowledge-state-seed.test.ts",
+    "packages/knowledge-space-core/src/__tests__/edge-type-remediated-by.test.ts",
+    "packages/knowledge-space-core/package.json",
+    "measure/tracks/spec-compliance-and-process-integrity_20260612/plan.md",
+    "measure/tracks/spec-compliance-and-process-integrity_20260612/spec.md",
+    "measure/tracks/spec-compliance-and-process-integrity_20260612/test-strategy.md",
+    "measure/tracks/spec-compliance-and-process-integrity_20260612/phase-6-red-result.json",
+    "measure/anti-patterns.md"
+  ],
+
+  "commands_run": [
+    "CI=true npx vitest run packages/knowledge-space-core/src/__tests__  → 22 files / 301 passed / exit 0",
+    "npx tsc --noEmit  → exit 0",
+    "npm run lint  → exit 0 (0 warnings)",
+    "rg 'Status:\\s*RED|expected\\s+to\\s+FAIL|At\\s+HEAD\\s+.*missing' packages/knowledge-space-core/src/__tests__/  → only detector file self-reference",
+    "rg '\\.skip\\(|\\.todo\\(' packages/knowledge-space-core/src/__tests__/  → 0 matches",
+    "rg -c 'const EDGE_ENDPOINT_RULES' packages/knowledge-space-core/src/  → 1 definition (edge-endpoint-rules.ts)"
+  ]
+}

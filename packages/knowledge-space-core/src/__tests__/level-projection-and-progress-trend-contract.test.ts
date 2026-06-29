@@ -1,4 +1,4 @@
-// Phase 1 (Track 8 kst-lesser-holes_20260521) — Task 1.2 contract Red tests.
+// Phase 1 (Track 8 kst-lesser-holes_20260521) — Task 1.2 contract tests.
 //
 // kst-srs.v2 §11.2 (Level Projection): "Domain-supplied monotonic function from
 // knowledge state → display level. Presentation-only; never feeds KST/SRS
@@ -18,8 +18,7 @@
 // exercise the behavior. Phase 1 only locks the contract surface so later phases
 // can build on stable types.
 //
-// Red signal: each test below fails because the contract modules do not yet
-// exist (import-time failure surfaces as a vitest file-load error in the runner).
+// These tests lock the contract modules that downstream phases depend on.
 
 import { describe, it, expect } from 'vitest';
 

@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "reviewer": "measure-review-c-ux-api",
+  "phase": "Phase 6: kst-lesser-holes_20260521 Phase 1 Quality",
+  "track_id": "spec-compliance-and-process-integrity_20260612",
+  "baseline_sha": "9546877f9c987992020c1efe5d0f0adb37ddb310",
+  "status": "pass",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    {
+      "id": "UXC-P6-N1",
+      "category": "stale-documentation",
+      "title": "level-projection-and-progress-trend-contract.test.ts header still references 'Red tests' and 'Red signal'",
+      "description": "Line 1 says 'Task 1.2 contract Red tests' and line 21 says 'Red signal: each test below fails because the contract modules do not yet exist'. These are stale descriptions — the tests now pass (22 files / 301 tests / 0 failures). The stale-red-comments detector does not catch this because the em dash appears after '(Track 8 ...)' rather than immediately after the phase number, evading the /Phase\\s+\\d+\\s+—\\s+.*Red\\s+tests?/i regex. Not a blocker — tests pass and contract is correct — but the header misleads readers.",
+      "file": "packages/knowledge-space-core/src/__tests__/level-projection-and-progress-trend-contract.test.ts",
+      "lines": [1, 21]
+    }
+  ],
+  "contract_review": {
+    "public_api_surface_unchanged": true,
+    "exported_symbols_from_index": [
+      "knowledgeSpaceSchema", "CORE_ID_PATTERN",
+      "knowledgeStateSchema", "displayLevelItemSchema", "displayLevelSchema", "projectDisplayLevel",
+      "masterySnapshotSchema", "progressTrendHistorySchema",
+      "validateKnowledgeSpace", "getInvalidEdgePairings", "getDanglingEdges",
+      "getDuplicateNodeIds", "getDuplicateEdges",
+      "getNodesMissingRequiredAlignments", "getIndependentPracticeNodesMissingGenerators",
+      "getPrerequisiteCycles", "validateNodeMetadataWithAdapter",
+      "syntheticMathFixture", "syntheticEnglishGseFixture",
+      "suggestEdges", "placementResultSchema", "placementResultsSchema", "isPlacementResult",
+      "PROBE_RESULTS", "probeResultSchema", "runPlacementTraversal",
+      "findCrossCourseEquivalences", "validateCrossCourseEdges", "computeEquivalenceComponents"
+    ],
+    "subpath_exports_verified": [
+      { "subpath": "./level-projection", "types": ["KnowledgeState", "DisplayLevel", "DisplayLevelBand", "LevelProjectionFn"], "values": ["knowledgeStateSchema", "displayLevelItemSchema", "displayLevelSchema", "projectDisplayLevel"] },
+      { "subpath": "./progress-trend", "types": ["MasterySnapshot", "ProgressTrendHistory"], "values": ["masterySnapshotSchema", "progressTrendHistorySchema"] }
+    ],
+    "edge_endpoint_rules_not_in_exports": "Correct — edge-endpoint-rules.ts is an internal module consumed only by schemas.ts and validation.ts. EDGE_ENDPOINT_RULES and EdgeSourceTargetConstraint are not part of the public API.",
+    "schema_tightening_analysis": {
+      "displayLevelSchema": {
+        "change": "Added .min(1) + .superRefine enforcing non-empty, unique ids, non-decreasing minMastery",
+        "breaking_by_design": true,
+        "rationale": "FR-8 spec compliance — previously accepted empty arrays, duplicate ids, and non-monotonic minMastery",
+        "error_messages": "Clear Zod issues with specific field paths and human-readable messages"
+      },
+      "progressTrendHistorySchema": {
+        "change": "Added .min(1) + .superRefine enforcing non-empty window, unique masteredNodeIds, chronological order",
+        "breaking_by_design": true,
+        "rationale": "FR-8 spec compliance — previously accepted empty history, out-of-order timestamps, duplicate ids",
+        "error_messages": "Clear Zod issues with specific field paths and human-readable messages"
+      }
+    },
+    "edge_endpoint_rules_dedup": {
+      "canonical_module": "packages/knowledge-space-core/src/edge-endpoint-rules.ts",
+      "consumers": ["schemas.ts", "validation.ts"],
+      "single_source_verified": "edge-endpoint-rules.test.ts confirms exactly 1 definer, both consumers reference it",
+      "no_drift_possible": "Both schemas.ts checkEndpointPairings and validation.ts getInvalidEdgePairings import from the same canonical module"
+    }
+  },
+  "ux_applicability": {
+    "browser_review_required": false,
+    "reason": "packages/knowledge-space-core is an internal library package with no user-facing UI. All changes are schema validation, deduplication, and test coverage. UX_REQUIRED=never per gate instructions."
+  },
+  "gate_commands": {
+    "tests": { "command": "CI=true npx vitest run packages/knowledge-space-core/src/__tests__", "exit": 0, "result": "22 files / 301 tests / 0 failures" },
+    "typecheck": { "command": "cd packages/knowledge-space-core && npx tsc --noEmit", "exit": 0, "result": "clean" },
+    "lint": { "command": "cd packages/knowledge-space-core && npm run lint", "exit": 0, "result": "clean (eslint src --max-warnings 0)" }
+  },
+  "anti_pattern_audit": {
+    "A1-substring-as-structured-signal": "PASS — no supervisor task markers affected",
+    "A3-digit-only-labeled-count": "PASS — test assertions use labeled counts (definers.length, violations.length)",
+    "A4-vacuous-pass": "PASS — 301 tests / 0 failures is a substantive pass, not a zero-change vacuous pass",
+    "A5-false-claim-text": "PASS — plan.md records live command output matching actual test run",
+    "A6-registry-note-overstatement": "PASS — tracks.md not updated to claim resolution until Phase 7 closeout",
+    "A7-over-broad-filter": "PASS — stale-comment scan uses targeted regex, no bare English word filters",
+    "A9-archived-track-path": "N/A — package tests do not reference measure/ paths",
+    "A10-generated-facts-drift": "PASS — tests read source files directly, not graph.db"
+  },
+  "timestamp": "2026-06-29T20:18:00Z"
+}

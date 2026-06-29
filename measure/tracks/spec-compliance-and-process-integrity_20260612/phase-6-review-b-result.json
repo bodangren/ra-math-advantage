@@ -1,0 +1,194 @@
+{
+  "schema_version": 1,
+  "phase": "Phase 6: kst-lesser-holes_20260521 Phase 1 Quality",
+  "track_id": "spec-compliance-and-process-integrity_20260612",
+  "agent": "measure-review-b",
+  "role": "Review B — security and data handling",
+  "timestamp": "2026-06-29T20:35:00Z",
+  "baseline_sha": "9546877f9c987992020c1efe5d0f0adb37ddb310",
+  "green_commit": "d9b65977",
+  "fix_commit": "7143a6f4",
+  "verdict": "PASS",
+  "summary": "Phase 6 Green implementation is secure at the package boundary and handles data defensively after one focused remediation. The original Green commit (d9b65977) tightened schemas, deduplicated endpoint rules, and expanded tests. Review B identified that projectDisplayLevel still relied on levels[0]! and that the IM3 CSV consumer parsed unchecked values into the band; commit 7143a6f4 validates both paths with displayLevelSchema.parse. All required gates pass: 22 test files / 302 tests, tsc --noEmit clean, lint clean. No auth/z, tenant, secret, or injection blockers remain.",
+
+  "gate_results": {
+    "primary_command": "CI=true npx vitest run packages/knowledge-space-core/src/__tests__",
+    "primary_exit": 0,
+    "test_files": 22,
+    "tests_passed": 302,
+    "tests_failed": 0,
+    "tsc_command": "cd packages/knowledge-space-core && npx tsc --noEmit",
+    "tsc_exit": 0,
+    "lint_command": "cd packages/knowledge-space-core && npm run lint",
+    "lint_exit": 0,
+    "lint_warnings": 0
+  },
+
+  "security_audit": {
+    "input_validation": {
+      "status": "PASS",
+      "detail": "displayLevelSchema and progressTrendHistorySchema now reject empty arrays, duplicate ids, non-monotonic minMastery, out-of-order timestamps, and duplicate masteredNodeIds per snapshot via .min(1) + .superRefine. knowledgeSpaceSchema validates node/edge shape, sourceRef or derived derivation, duplicate IDs, dangling edges, duplicate edges, and endpoint pairings. projectDisplayLevel now validates its levels argument with displayLevelSchema.parse before indexing."
+    },
+    "injection_risks": {
+      "status": "PASS",
+      "detail": "No dynamic code execution, SQL, shell, or HTML interpolation. Error messages include node/edge IDs from input but are emitted as structured Zod issues or plain Error messages, not rendered to a browser from this package. CORE_ID_PATTERN is anchored and has no catastrophic backtracking risk."
+    },
+    "authz_boundaries": {
+      "status": "N/A",
+      "detail": "packages/knowledge-space-core is a stateless domain-neutral library with no auth/z surface. No Convex queries/mutations, sessions, or role checks are present."
+    },
+    "tenant_or_organization_scoping": {
+      "status": "N/A",
+      "detail": "No persistence layer; graphs are validated in-memory. Domain is a string field on nodes but not used for access control."
+    },
+    "secret_handling": {
+      "status": "PASS",
+      "detail": "No secrets, API keys, tokens, or credentials in package source or tests."
+    },
+    "sensitive_data_exposure": {
+      "status": "PASS",
+      "detail": "Test fixtures use synthetic IDs (math.im3.skill.alpha, etc.) and fake domains. No PII, student identifiers, or real standards data in test files."
+    },
+    "persistence_semantics": {
+      "status": "PASS",
+      "detail": "Package is pure validation logic. No writes to disk, database, or cache. The only file-system access is in test scanners (stale-red-comments.test.ts, edge-endpoint-rules.test.ts) which are bounded to packages/knowledge-space-core/src/ and its __tests__ directory."
+    },
+    "migration_safety": {
+      "status": "PASS_WITH_NOTE",
+      "detail": "Schema tightening is a deliberate breaking change: invalid bands/histories that previously parsed now fail. The package is not wired to production student routes (tracks.md lists Knowledge Space Engine as not yet wired), so no runtime migration is required. Downstream tests and the IM3 CSV consumer were verified to use valid data."
+    },
+    "error_handling": {
+      "status": "PASS",
+      "detail": "Zod schemas produce structured issues with field paths. projectDisplayLevel now throws a clear ZodError on invalid bands instead of crashing with a TypeError from levels[0]!. The IM3 CSV loader throws descriptive errors for malformed rows or NaN minMastery before the band reaches projectDisplayLevel."
+    },
+    "package_boundary_behavior": {
+      "status": "PASS",
+      "detail": "knowledge-space-core imports only from its own src/ tree; no imports from apps/, convex/_generated/, or measure/. New edge-endpoint-rules.ts is internal and not re-exported from index.ts. The IM3 app consumer now validates CSV-derived levels against the package schema, closing the app→package boundary gap."
+    }
+  },
+
+  "anti_pattern_audit": {
+    "A1_substring_as_structured_signal": {
+      "status": "PASS",
+      "detail": "No supervisor/task-marker parsing in scope."
+    },
+    "A2_consent_blind_publish_gate": {
+      "status": "N/A",
+      "detail": "Phase 6 has no draft→published status transition or named-subject publishing; no consent gate exists or is required."
+    },
+    "A3_digit_only_count": {
+      "status": "PASS",
+      "detail": "Tests and guards use labeled counts and structured assertions."
+    },
+    "A4_vacuous_pass_on_nothing_done": {
+      "status": "PASS",
+      "detail": "Primary gate reports 22 files / 302 tests / 0 failures. Not a zero-change pass."
+    },
+    "A5_false_claim_text_vs_test_reality": {
+      "status": "PASS",
+      "detail": "Plan and green-result JSON record live command output that matches actual runs."
+    },
+    "A6_registry_note_overstatement": {
+      "status": "PASS",
+      "detail": "measure/tracks.md entry for spec-compliance-and-process-integrity remains [~] in-progress and does not claim Phase 6 / kst-lesser-holes quality is fully resolved. The adversarial test (phase-6-red-result.json findings) is green after 7143a6f4."
+    },
+    "A7_over_broad_filter": {
+      "status": "PASS",
+      "detail": "stale-red-comments detector uses targeted regexes and excludes only its own file by name."
+    },
+    "A8_marker_ambiguity": {
+      "status": "PASS",
+      "detail": "Phase 6 tasks in plan.md use [x] for completed work; no ambiguous markers."
+    },
+    "A9_archived_track_path": {
+      "status": "N/A",
+      "detail": "Package tests do not reference measure/ paths."
+    },
+    "A10_generated_facts_drift": {
+      "status": "PASS",
+      "detail": "Tests read source/schemas directly; no graph.db dependency for proof."
+    }
+  },
+
+  "findings": [],
+
+  "nonblocking_findings": [
+    {
+      "id": "REVIEW-B-P6-N1",
+      "category": "data-handling-hygiene",
+      "title": "IM3 CSV loader performs module-level file read",
+      "description": "apps/integrated-math-3/lib/level-projection/im3-level-projection.ts calls readFileSync at module load time, which can make import-time errors hard to diagnose and complicates testing in environments where the CSV is absent. After the fix the parsed levels are validated, so malformed data no longer silently propagates. Consider lazy-loading the CSV on first call or wrapping the module in a factory for testability in a future refactor.",
+      "files": ["apps/integrated-math-3/lib/level-projection/im3-level-projection.ts"],
+      "severity": "low"
+    },
+    {
+      "id": "REVIEW-B-P6-N2",
+      "category": "validation-consistency",
+      "title": "Endpoint-pairing validation returns on first violation in schemas.ts but collects all violations in validation.ts",
+      "description": "checkEndpointPairings in schemas.ts returns after the first Zod issue, while getInvalidEdgePairings in validation.ts accumulates every violation. The two consumers use the same canonical EDGE_ENDPOINT_RULES, so the semantic checks are identical, but callers may see different numbers of errors depending on which entry point they use. Consider aligning behavior if a unified diagnostics experience becomes important.",
+      "files": ["packages/knowledge-space-core/src/schemas.ts", "packages/knowledge-space-core/src/validation.ts"],
+      "severity": "low"
+    }
+  ],
+
+  "remediations_applied": [
+    {
+      "id": "REVIEW-B-P6-F1",
+      "category": "runtime-safety",
+      "title": "Validate display-level band before indexing in projectDisplayLevel",
+      "description": "Changed projectDisplayLevel to call displayLevelSchema.parse(levels) before indexing, replacing the levels[0]! non-null assertion. Empty, duplicate-id, and non-monotonic bands now produce a clear ZodError instead of a runtime TypeError.",
+      "files": ["packages/knowledge-space-core/src/level-projection.ts"],
+      "commit": "7143a6f4"
+    },
+    {
+      "id": "REVIEW-B-P6-F2",
+      "category": "boundary-validation",
+      "title": "Validate CSV-derived IM3 display levels against package schema",
+      "description": "Updated apps/integrated-math-3/lib/level-projection/im3-level-projection.ts to reject malformed rows, non-finite minMastery values, and invalid bands before passing the levels to projectDisplayLevel. The loader now imports displayLevelSchema from the knowledge-space-core package boundary.",
+      "files": ["apps/integrated-math-3/lib/level-projection/im3-level-projection.ts"],
+      "commit": "7143a6f4"
+    },
+    {
+      "id": "REVIEW-B-P6-F3",
+      "category": "test-coverage",
+      "title": "Add runtime guard test for projectDisplayLevel",
+      "description": "Added a contract test proving projectDisplayLevel throws on empty and non-monotonic display-level bands, matching the schema-level rejections.",
+      "files": ["packages/knowledge-space-core/src/__tests__/level-projection-and-progress-trend-contract.test.ts"],
+      "commit": "7143a6f4"
+    }
+  ],
+
+  "files_reviewed": [
+    "packages/knowledge-space-core/src/level-projection.ts",
+    "packages/knowledge-space-core/src/progress-trend.ts",
+    "packages/knowledge-space-core/src/edge-endpoint-rules.ts",
+    "packages/knowledge-space-core/src/schemas.ts",
+    "packages/knowledge-space-core/src/validation.ts",
+    "packages/knowledge-space-core/src/index.ts",
+    "packages/knowledge-space-core/src/__tests__/level-projection-and-progress-trend-contract.test.ts",
+    "packages/knowledge-space-core/src/__tests__/edge-endpoint-rules.test.ts",
+    "packages/knowledge-space-core/src/__tests__/stale-red-comments.test.ts",
+    "packages/knowledge-space-core/src/__tests__/public-api-contract.test.ts",
+    "packages/knowledge-space-core/src/__tests__/edge-type-transfers-to.test.ts",
+    "apps/integrated-math-3/lib/level-projection/im3-level-projection.ts",
+    "apps/integrated-math-3/lib/level-projection/gse-to-im3-advantage.csv",
+    "apps/integrated-math-3/__tests__/level-projection.test.ts",
+    "apps/integrated-math-3/__tests__/level-projection-csv-contract.test.ts",
+    "measure/tracks/spec-compliance-and-process-integrity_20260612/plan.md",
+    "measure/tracks/spec-compliance-and-process-integrity_20260612/spec.md",
+    "measure/tracks/spec-compliance-and-process-integrity_20260612/test-strategy.md",
+    "measure/tracks/spec-compliance-and-process-integrity_20260612/phase-6-red-result.json",
+    "measure/tracks/spec-compliance-and-process-integrity_20260612/phase-6-green-result.json",
+    "measure/tracks.md",
+    "measure/anti-patterns.md"
+  ],
+
+  "commands_run": [
+    "CI=true npx vitest run packages/knowledge-space-core/src/__tests__  → 22 files / 302 passed / exit 0",
+    "cd packages/knowledge-space-core && npx tsc --noEmit  → exit 0",
+    "cd packages/knowledge-space-core && npm run lint  → exit 0 (0 warnings)",
+    "CI=true npx vitest run apps/integrated-math-3/__tests__/level-projection.test.ts apps/integrated-math-3/__tests__/level-projection-csv-contract.test.ts --root apps/integrated-math-3  → 2 files / 7 passed / exit 0",
+    "cd apps/integrated-math-3 && npx eslint lib/level-projection/im3-level-projection.ts --max-warnings 0  → exit 0",
+    "cd apps/integrated-math-3 && npx tsc --noEmit 2>&1 | grep -E 'level-projection|gse-to-im3'  → no level-projection errors (pre-existing errors elsewhere)"
+  ]
+}
