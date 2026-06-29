@@ -1,5 +1,5 @@
 /**
- * Phase 4 Red Test — kst-srs.v2 SPECIFICATION.md §6 documents the implemented model
+ * Phase 4 regression — kst-srs.v2 SPECIFICATION.md §6 documents the implemented model
  *
  * Track 3: Edge Calibration Loop. Phase 4, Task 1.
  *
@@ -24,15 +24,9 @@
  *   - The NFR "the graph is never auto-edited" — the adapter touches only
  *     the two calibration tables, never `knowledge_space_edges`.
  *
- * Currently failing: §6 (lines 150–188 of `kst-srs.v2/SPECIFICATION.md`)
- * carries the FR1–FR6 narrative but does not name the literal status
- * values, the camelCase contingency fields, the divergence thresholds, or
- * the persistence table names. Phase 4 Green must update §6 to include
- * these implementation details.
- *
- * Per AGENTS.md and the user's directive, this test is Red-only: it does
- * NOT modify the spec or any source code. The next role (Green) is
- * responsible for updating §6.
+ * This section now documents the implementation details added by the Green phase;
+ * this test is a passing regression guard that keeps §6 aligned with the shipped
+ * calibration model.
  */
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';

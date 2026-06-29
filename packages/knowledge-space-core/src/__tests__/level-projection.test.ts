@@ -1,4 +1,4 @@
-// Phase 2 (Track 8 kst-lesser-holes_20260521) — Level Projection core contract Red tests.
+// Phase 2 (Track 8 kst-lesser-holes_20260521) — Level Projection core contract regression tests.
 //
 // kst-srs.v2 §11.2 (Level Projection):
 //   "Domain-supplied monotonic function from knowledge state → display level.
@@ -10,18 +10,14 @@
 //   takes only knowledge-state, not edges."
 //
 // Phase 1 added the TYPE contract (`knowledgeStateSchema`, `displayLevelSchema`,
-// `LevelProjectionFn`) in `../level-projection.ts`. Phase 2 must add the
-// concrete `projectDisplayLevel(state, levels) → string` function that the
-// domain-supplied level projection uses.
+// `LevelProjectionFn`) in `../level-projection.ts`. Phase 2 added the concrete
+// `projectDisplayLevel(state, levels) → string` function that the domain-supplied
+// level projection uses.
 //
-// These Red tests are designed to fail at HEAD because `projectDisplayLevel`
-// is not yet exported from `../level-projection`:
-//   - `import { projectDisplayLevel }` will resolve to `undefined` at runtime
-//   - `expect(typeof undefined).toBe('function')` fails (Test 1)
-//   - `projectDisplayLevel(state, levels)` throws "is not a function"
-//     (Tests 2-7) — the contract-gap signal the Green phase resolves.
+// These tests now lock the delivered export, boundary behavior, purity, and
+// monotonicity contract so future changes cannot regress the Level Projection API.
 //
-// Test count: 7 tests. Targeted Red command:
+// Test count: 7 tests. Targeted command:
 //   npx vitest run packages/knowledge-space-core/src/__tests__/level-projection.test.ts
 
 import { describe, it, expect } from 'vitest';
@@ -29,8 +25,7 @@ import {
   type KnowledgeState,
   type DisplayLevel,
 } from '../level-projection';
-// The Green phase must export `projectDisplayLevel` from ../level-projection.
-// At HEAD, this import resolves to `undefined` → every test below fails.
+// The Level Projection API must export `projectDisplayLevel` from ../level-projection.
 import { projectDisplayLevel } from '../level-projection';
 
 // ---------------------------------------------------------------------------

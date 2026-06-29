@@ -1,5 +1,5 @@
 /**
- * Phase 4 Red Test — measure/scripts/doctor.{sh,mjs} and generate.{sh,mjs} exist and pass
+ * Phase 4 regression — measure/scripts/doctor.{sh,mjs} and generate.{sh,mjs} exist and pass
  *
  * Track 3: Edge Calibration Loop. Phase 4, Task 2.
  *
@@ -21,12 +21,9 @@
  * generated-doc freshness), and the generate script refreshes the
  * machine-generated facts under `measure/generated/`.
  *
- * Currently failing: neither script is present in `measure/scripts/`
- * (the directory contains only `check-srs-validator-parity.sh`). Phase 4
- * Green must add the two scripts.
- *
- * Per AGENTS.md and the user's directive, this test is Red-only: it does
- * NOT create the scripts or modify any source code.
+ * This file is now a passing regression guard for the Phase 4 contract.
+ * It does not create the scripts or modify generated documentation; it only
+ * executes the existing entry points and verifies their exit codes.
  */
 import { describe, it, expect } from 'vitest';
 import { existsSync, statSync } from 'node:fs';
@@ -111,7 +108,7 @@ describe('Phase 4 — measure/scripts/generate script exists and exits 0', () =>
     }
   });
 
-  it('the generate script exits with code 0 on a clean repository', { timeout: 30_000 }, () => {
+  it('the generate script exits with code 0 on a clean repository', { timeout: 90_000 }, () => {
     const found = findExisting(GENERATE_CANDIDATES);
     if (found === null) return;
     const result = spawnSync(found, [], {

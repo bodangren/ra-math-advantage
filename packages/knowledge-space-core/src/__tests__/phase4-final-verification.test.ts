@@ -1,5 +1,5 @@
 /**
- * Phase 4 Red Test — final verification: boundary linter must be green
+ * Phase 4 regression — final verification: boundary linter must be green
  *
  * Track 3: Edge Calibration Loop. Phase 4, Task 3.
  *
@@ -14,15 +14,7 @@
  * `scripts/monorepo-boundary-rules.json` and exits non-zero on any hit.
  *
  * The test invokes the linter as a subprocess and asserts exit code 0.
- * This is the "Red" of Phase 4 Task 3: the linter is currently broken
- * (it flags its own fixture strings inside test files), so the test
- * fails today. Phase 4 Green must fix the linter to scope to source
- * files (e.g. exclude `__tests__/` and `.test.ts`) or add a
- * `--exclude-tests` flag.
- *
- * Per AGENTS.md and the user's directive, this test is Red-only: it
- * does NOT modify the linter or the boundary rules. It is the
- * regression guard for the boundary lint gate.
+ * This is a passing regression guard for the Phase 4 Task 3 quality gate.
  */
 import { describe, it, expect } from 'vitest';
 import { spawnSync } from 'node:child_process';

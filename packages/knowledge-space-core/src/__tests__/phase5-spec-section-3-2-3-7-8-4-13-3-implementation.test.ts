@@ -1,5 +1,5 @@
 /**
- * Phase 5 Red Test — kst-srs.v2 SPECIFICATION.md §3.2, §3.7, §8.4, §13.3
+ * Phase 5 regression — kst-srs.v2 SPECIFICATION.md §3.2, §3.7, §8.4, §13.3
  *   document the misconception-loop model.
  *
  * Track 6: Misconception Remediation Loop. Phase 5, Task 1.
@@ -50,15 +50,9 @@
  *   - Rating-cap rule — `packages/practice-core/src/practice/srs-rating.ts:88-123`
  *     (Phase 2 deliverable, see `srs-rating-cap.test.ts`).
  *
- * Currently failing: the spec at HEAD carries the §9 (Item 6)
- * narrative but does not surface the `remediated_by` reference in §3.2,
- * does not have a §3.7 subsection, does not surface the rating-cap
- * reference in §8.4, and does not have a §13.3 NFR. Phase 5 Green must
- * update the spec to add these cross-references and new subsections.
- *
- * Per AGENTS.md and the user's directive, this test is Red-only: it
- * does NOT modify the spec or any source code. The next role (Green)
- * is responsible for updating kst-srs.v2/SPECIFICATION.md.
+ * The spec now surfaces these cross-references and subsections; this file is a
+ * passing regression guard that keeps the misconception-loop model documented in
+ * the sections readers naturally consult.
  *
  * Live-behavior pairing (per the prompt's "artifact assertions must be
  * paired with a live-behavior proof or a later-phase plan note"):
