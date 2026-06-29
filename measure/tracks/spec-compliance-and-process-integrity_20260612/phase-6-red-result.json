@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "status": "red",
+  "summary": "Phase 6 (kst-lesser-holes_20260521 Phase 1 Quality) Red adversarial audit. The targeted vitest suite currently passes 20 files / 285 tests, but the contracts under test are under-specified: displayLevelSchema accepts empty/non-monotonic/duplicate-id bands, progressTrendHistorySchema accepts empty/out-of-order/duplicate-snapshot history, EDGE_ENDPOINT_RULES is duplicated across schemas.ts and validation.ts, transfers_to coverage lacks key negative cases and the zero-weight boundary, the public API contract test is shallow, and several test files carry stale Red-phase headers that misrepresent the live suite state. New Red tests have been authored to make these gaps fail the targeted command.",
+  "blocking_findings": [
+    {
+      "id": "ADV-P6-B1",
+      "category": "schema-contract",
+      "title": "displayLevelSchema accepts invalid display-level bands",
+      "description": "displayLevelSchema in packages/knowledge-space-core/src/level-projection.ts is currently z.array(displayLevelItemSchema) with no refinement. It accepts an empty band, duplicate level ids, and non-monotonic minMastery values. A valid display-level band must have at least one level, unique ids, and minMastery values that are non-decreasing so projectDisplayLevel can map monotonically.",
+      "files": ["packages/knowledge-space-core/src/level-projection.ts"]
+    },
+    {
+      "id": "ADV-P6-B2",
+      "category": "schema-contract",
+      "title": "progressTrendHistorySchema accepts invalid history windows",
+      "description": "progressTrendHistorySchema in packages/knowledge-space-core/src/progress-trend.ts is currently z.array(masterySnapshotSchema) with no refinement. It accepts an empty history, out-of-order timestamps, and duplicate masteredNodeIds within a single snapshot. A valid history must be non-empty, chronologically ordered, and each snapshot must contain unique node ids.",
+      "files": ["packages/knowledge-space-core/src/progress-trend.ts"]
+    },
+    {
+      "id": "ADV-P6-B3",
+      "category": "single-source-of-truth",
+      "title": "EDGE_ENDPOINT_RULES duplicated between schemas.ts and validation.ts",
+      "description": "The endpoint-pairing rules are defined independently in packages/knowledge-space-core/src/schemas.ts and packages/knowledge-space-core/src/validation.ts. Any future rule change must be applied in two places, guaranteeing drift. The rules should live in one canonical module imported by both consumers.",
+      "files": [
+        "packages/knowledge-space-core/src/schemas.ts",
+        "packages/knowledge-space-core/src/validation.ts"
+      ]
+    },
+    {
+      "id": "ADV-P6-B4",
+      "category": "test-coverage",
+      "title": "transfers_to tests miss negative cases and weight boundary",
+      "description": "edge-type-transfers-to.test.ts covers same-domain rejection and basic cross-domain acceptance, but lacks explicit rejections for wrong source kind, wrong target kind, same-domain concept pairs, and lacks a positive acceptance test for zero-weight edges.",
+      "files": ["packages/knowledge-space-core/src/__tests__/edge-type-transfers-to.test.ts"]
+    },
+    {
+      "id": "ADV-P6-B5",
+      "category": "public-api-contract",
+      "title": "public-api-contract.test.ts is shallow",
+      "description": "public-api-contract.test.ts only exercises type-level imports and basic parse acceptance. It does not import all named exports from root and subpaths, does not exercise projectDisplayLevel with a real instance, and does not assert the negative schema cases that prove the public API rejects invalid data.",
+      "files": ["packages/knowledge-space-core/src/__tests__/public-api-contract.test.ts"]
+    },
+    {
+      "id": "ADV-P6-B6",
+      "category": "documentation-hygiene",
+      "title": "Stale Red-phase headers in passing test files",
+      "description": "Multiple kst-lesser-holes test files still carry headers claiming the tests are 'Red', 'expected to FAIL', or that the implementation 'does not yet include' features that are now live. These stale headers mislead readers and violate the test-strategy directive that passing files must not contain 'Status: RED' / 'expected to FAIL' / 'At HEAD ... missing' prose.",
+      "files": [
+        "packages/knowledge-space-core/src/__tests__/edge-type-transfers-to.test.ts",
+        "packages/knowledge-space-core/src/__tests__/edge-type-remediated-by.test.ts",
+        "packages/knowledge-space-core/src/__tests__/level-projection.test.ts",
+        "packages/knowledge-space-core/src/__tests__/level-projection-public-api.test.ts",
+        "packages/knowledge-space-core/src/__tests__/placement-engine-extra.test.ts",
+        "packages/knowledge-space-core/src/__tests__/placement-engine-extra-2.test.ts",
+        "packages/knowledge-space-core/src/__tests__/level-projection-and-progress-trend-contract.test.ts"
+      ]
+    }
+  ],
+  "nonblocking_findings": [
+    {
+      "id": "ADV-P6-N1",
+      "category": "type-contract",
+      "title": "LevelProjectionFn return type is under-specified",
+      "description": "LevelProjectionFn is currently typed as (state: KnowledgeState) => string. The return type should be constrained to a known level id so domain-supplied projections cannot return arbitrary strings. This is a type-level change; the runtime test exercises a real projection instance and verifies the returned id is a member of the supplied band."
+    }
+  ],
+  "evidence": {
+    "baseline_command": {
+      "command": "CI=true npx vitest run packages/knowledge-space-core/src/__tests__",
+      "result": "20 test files passed, 285 tests passed",
+      "exit": 0
+    },
+    "red_command": {
+      "command": "CI=true npx vitest run packages/knowledge-space-core/src/__tests__",
+      "result": "22 test files / 301 tests; 10 failures; 4 failed suites",
+      "exit": 1,
+      "failed_tests": [
+        "level-projection-and-progress-trend-contract.test.ts: rejects an empty display-level band",
+        "level-projection-and-progress-trend-contract.test.ts: rejects duplicate level ids",
+        "level-projection-and-progress-trend-contract.test.ts: rejects non-monotonic minMastery values",
+        "level-projection-and-progress-trend-contract.test.ts: rejects an empty history",
+        "level-projection-and-progress-trend-contract.test.ts: rejects out-of-order timestamps",
+        "level-projection-and-progress-trend-contract.test.ts: rejects duplicate masteredNodeIds within a snapshot",
+        "public-api-contract.test.ts: rejects invalid display-level bands through the public API schemas",
+        "public-api-contract.test.ts: rejects invalid progressTrend history through the public API schemas",
+        "edge-endpoint-rules.test.ts: defines EDGE_ENDPOINT_RULES in at most one source file (schemas.ts, validation.ts)",
+        "stale-red-comments.test.ts: has no stale Red-phase phrases in passing test files (8 hits)"
+      ]
+    },
+    "schema_gap_tests": {
+      "displayLevelSchema_empty": "expected FAIL — currently accepts []",
+      "displayLevelSchema_duplicate_ids": "expected FAIL — currently accepts duplicate ids",
+      "displayLevelSchema_non_monotonic": "expected FAIL — currently accepts descending minMastery",
+      "progressTrendHistorySchema_empty": "expected FAIL — currently accepts []",
+      "progressTrendHistorySchema_out_of_order": "expected FAIL — currently accepts descending timestamps",
+      "progressTrendHistorySchema_duplicate_mastered_node_ids": "expected FAIL — currently accepts duplicate ids in a snapshot"
+    },
+    "endpoint_rule_scan": {
+      "files_defining_EDGE_ENDPOINT_RULES": 2,
+      "files_referencing_EDGE_ENDPOINT_RULES": 2,
+      "expected_after_green": "1 canonical definition, 2 consumers"
+    },
+    "stale_comment_scan": {
+      "phrases_checked": [
+        "Status: RED",
+        "expected to FAIL",
+        "At HEAD ... missing",
+        "currently fails because the implementation does not yet",
+        "currently fails with the expected contract-gap",
+        "These tests are Red: each currently fails"
+      ],
+      "hits": 8,
+      "hit_files": [
+        "edge-type-remediated-by.test.ts",
+        "edge-type-transfers-to.test.ts",
+        "level-projection-public-api.test.ts",
+        "placement-engine-extra-2.test.ts",
+        "placement-engine-extra.test.ts",
+        "placement-knowledge-state-seed.test.ts",
+        "spec-markers.test.ts"
+      ]
+    }
+  },
+  "commands_run": [
+    "git status --short",
+    "git rev-parse HEAD",
+    "CI=true npx vitest run packages/knowledge-space-core/src/__tests__",
+    "rg -n 'Status:\\s*RED|expected\\s+to\\s+FAIL|At\\s+HEAD\\s+.*\\bmissing\\b|currently\\s+fails?\\s+because\\s+the\\s+implementation\\s+does\\s+not\\s+yet|currently\\s+fails?\\s+with\\s+the\\s+expected\\s+contract-gap|These\\s+tests\\s+are\\s+Red:\\s+each\\s+currently\\s+fails' packages/knowledge-space-core/src/__tests__/"
+  ],
+  "files_changed": [
+    "packages/knowledge-space-core/src/__tests__/level-projection-and-progress-trend-contract.test.ts",
+    "packages/knowledge-space-core/src/__tests__/edge-type-transfers-to.test.ts",
+    "packages/knowledge-space-core/src/__tests__/public-api-contract.test.ts"
+  ],
+  "files_created": [
+    "packages/knowledge-space-core/src/__tests__/edge-endpoint-rules.test.ts",
+    "packages/knowledge-space-core/src/__tests__/stale-red-comments.test.ts",
+    "measure/tracks/spec-compliance-and-process-integrity_20260612/phase-6-red-result.json"
+  ],
+  "antiPatternChecks": {
+    "A1-substring-as-structured-signal": "PASS — Phase 6 automatable tasks use [~], not free-text deferred",
+    "A3-digit-only-labeled-count": "PASS — tests use labeled integers (e.g., files_defining_EDGE_ENDPOINT_RULES) and parse labels",
+    "A4-vacuous-pass": "PASS — baseline evidence records 20 files / 285 tests; Red command must fail for real gaps, not a zero-change pass",
+    "A5-false-claim-text": "PASS — plan.md will record live command output, not prose-only claims",
+    "A6-registry-note-overstatement": "PASS — tracks.md must not claim kst Phase 1 quality resolved until lint/tsc/test evidence is recorded",
+    "A7-over-broad-filter": "PASS — stale-comment scan excludes only path contexts; no bare English words in filters",
+    "A8-marker-ambiguity": "PASS — Phase 6 tasks marked [~] for active work; [b] reserved for deferred:user tasks",
+    "A9-archived-track-path": "N/A — package tests do not reference measure/ paths",
+    "A10-generated-facts-drift": "PASS — Red tests read source/schemas directly, not graph.db"
+  },
+  "phase": "Phase 6: kst-lesser-holes_20260521 Phase 1 Quality",
+  "track_id": "spec-compliance-and-process-integrity_20260612",
+  "baseline_sha": "68eabfc93b9228df1290a076e2da521559652356",
+  "agent": "measure-mid-red",
+  "next_role": "measure-jr-green",
+  "timestamp": "2026-06-29T19:34:00Z"
+}

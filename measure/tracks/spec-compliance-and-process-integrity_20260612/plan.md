@@ -1982,38 +1982,97 @@ Result: `no false excuses` — all "npm not on PATH" / "Not available in sandbox
 
 ## Phase 6: kst-lesser-holes_20260521 Phase 1 Quality
 
+### Phase 6 Red proof (recorded 2026-06-29)
+
+**Baseline command** (before Red tests):
+
+```bash
+CI=true npx vitest run packages/knowledge-space-core/src/__tests__
+```
+
+**Baseline result:** `20 test files passed, 285 tests passed` (exit 0).
+
+**Red command** (after adding Phase 6 tests):
+
+```bash
+CI=true npx vitest run packages/knowledge-space-core/src/__tests__
+```
+
+**Red result:** `22 test files / 301 tests` with **10 failures** (exit 1).
+
+Failing tests by file:
+
+1. `level-projection-and-progress-trend-contract.test.ts` — 6 failures:
+   - `rejects an empty display-level band`
+   - `rejects duplicate level ids`
+   - `rejects non-monotonic minMastery values`
+   - `rejects an empty history`
+   - `rejects out-of-order timestamps`
+   - `rejects duplicate masteredNodeIds within a snapshot`
+
+2. `public-api-contract.test.ts` — 2 failures:
+   - `rejects invalid display-level bands through the public API schemas`
+   - `rejects invalid progressTrend history through the public API schemas`
+
+3. `edge-endpoint-rules.test.ts` — 1 failure:
+   - `defines EDGE_ENDPOINT_RULES in at most one source file` (found definitions in both `schemas.ts` and `validation.ts`)
+
+4. `stale-red-comments.test.ts` — 1 failure:
+   - `has no stale Red-phase phrases in passing test files` (8 hits across 7 files)
+
+**Red proof failure cause (intrinsic, live behavior):** the tests fail because the current implementation is missing schema refinements (`displayLevelSchema`, `progressTrendHistorySchema`), has duplicated endpoint rules, lacks expanded `transfers_to` coverage, and test files carry stale Red headers. The failures are live Zod parse/validation failures and source scans, not stale durable records.
+
+**Files added/modified by Mid Red Phase 6:**
+
+- **Modified** `packages/knowledge-space-core/src/__tests__/level-projection-and-progress-trend-contract.test.ts` — added negative schema tests for `displayLevelSchema` and `progressTrendHistorySchema`.
+- **Modified** `packages/knowledge-space-core/src/__tests__/edge-type-transfers-to.test.ts` — added wrong source kind, wrong target kind, same-domain concept, and zero-weight acceptance tests.
+- **Modified** `packages/knowledge-space-core/src/__tests__/public-api-contract.test.ts` — strengthened to import all key exports from root and subpaths, added a real `projectDisplayLevel` instance test, and added negative schema cases.
+- **New** `packages/knowledge-space-core/src/__tests__/edge-endpoint-rules.test.ts` — fails while `EDGE_ENDPOINT_RULES` is defined in more than one source file.
+- **New** `packages/knowledge-space-core/src/__tests__/stale-red-comments.test.ts` — scans package test files for stale Red-phase phrases and fails while any remain.
+- **New** `measure/tracks/spec-compliance-and-process-integrity_20260612/phase-6-red-result.json` — adversarial audit artifact with non-empty `blocking_findings`.
+
+### Phase 6 task status
+
 - [~] Task 6.1: Record real adversarial findings
-  - [~] File: adversarial result JSON for kst Phase 1
-  - [ ] Populate `"findings"` with the public-API gap and other issues
-  - [ ] Do not mark audit `"pass"` with empty findings
+  - [~] File: `measure/tracks/spec-compliance-and-process-integrity_20260612/phase-6-red-result.json`
+  - [~] Populated `blocking_findings` with 6 findings (schema gaps, duplicated rules, coverage gaps, stale comments)
+  - [~] `status: "red"`; not marked pass with empty findings
 
 - [~] Task 6.2: Tighten Level Projection schema
   - [~] `packages/knowledge-space-core/src/level-projection.ts`
-  - [ ] Add `.refine`/`.superRefine` to enforce non-empty `displayLevels`, non-decreasing `minMastery`, unique ids
-  - [ ] Constrain `LevelProjectionFn` return type to a level id, not bare `string`
+  - [~] Red tests prove `displayLevelSchema` accepts empty, duplicate ids, and non-monotonic `minMastery`
+  - [ ] Green: add `.refine`/`.superRefine` to enforce non-empty, unique ids, non-decreasing `minMastery`
+  - [ ] Green: constrain `LevelProjectionFn` return type to a level id
 
 - [~] Task 6.3: Tighten progressTrend schema
   - [~] `packages/knowledge-space-core/src/progress-trend.ts`
-  - [ ] Enforce chronological order, non-empty window, unique `masteredNodeIds` per snapshot
+  - [~] Red tests prove `progressTrendHistorySchema` accepts empty, out-of-order, and duplicate-snapshot history
+  - [ ] Green: enforce chronological order, non-empty window, unique `masteredNodeIds` per snapshot
 
 - [~] Task 6.4: Deduplicate edge endpoint rules
-  - [~] Move canonical `EDGE_ENDPOINT_RULES` to one module
-  - [ ] Import it in both `schemas.ts` and `validation.ts`
-  - [ ] Add a test that fails if the two lists diverge
+  - [~] Red test proves `EDGE_ENDPOINT_RULES` is defined in both `schemas.ts` and `validation.ts`
+  - [ ] Green: move canonical `EDGE_ENDPOINT_RULES` to one module (e.g. `edge-endpoint-rules.ts`)
+  - [ ] Green: import it in both `schemas.ts` and `validation.ts`
 
 - [~] Task 6.5: Expand transfers_to tests
-  - [~] Add parametrized cases for all allowed/disallowed endpoint kinds
-  - [ ] Add wrong source/target kind rejections and zero-weight acceptance
+  - [~] Added parametrized/wrong source kind, wrong target kind, same-domain concept, zero-weight acceptance
+  - [ ] Green: ensure `getInvalidEdgePairings` / `knowledgeSpaceSchema` satisfy the new tests
 
 - [~] Task 6.6: Strengthen public-api-contract test
-  - [~] Import all named exports from root and subpaths
-  - [ ] Add negative schema cases and a real level-projection instance test
+  - [~] Imports all key exports from root and subpaths; added real `projectDisplayLevel` instance test
+  - [~] Added negative schema cases (currently failing)
+  - [ ] Green: pass after schema refinements land
 
 - [~] Task 6.7: Remove stale Red-phase comments
-  - [~] Rewrite test file headers to describe current contract/regression purpose
+  - [~] Red detector test identifies 8 stale hits across 7 files
+  - [ ] Green: rewrite test file headers to describe current contract/regression purpose
 
 - [~] Task 6.8: Reconcile test count
-  - [~] Confirm actual suite size and update plan claims to match
+  - [~] Baseline: 20 files / 285 tests
+  - [~] Red: 22 files / 301 tests (16 new tests added)
+  - [ ] Green: record final live count after schema fixes
+
+
 
 ## Phase 7: Final Verification and Checkpoint
 

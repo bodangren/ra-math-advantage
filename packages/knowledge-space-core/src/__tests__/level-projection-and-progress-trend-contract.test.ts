@@ -99,3 +99,56 @@ describe('progressTrend — history type contract (kst-srs.v2 §11.3)', () => {
     expect(result.success, result.success ? '' : JSON.stringify(result.error.issues)).toBe(true);
   });
 });
+
+// ---------------------------------------------------------------------------
+// Task 6.2 — Level Projection schema must reject invalid display-level bands
+// ---------------------------------------------------------------------------
+
+describe('Level Projection — displayLevelSchema rejects invalid bands', () => {
+  it('rejects an empty display-level band', () => {
+    const result = displayLevelSchema.safeParse([]);
+    expect(result.success).toBe(false);
+  });
+
+  it('rejects duplicate level ids', () => {
+    const result = displayLevelSchema.safeParse([
+      { id: 'L1', title: 'Level 1', minMastery: 0 },
+      { id: 'L1', title: 'Duplicate', minMastery: 0.5 },
+    ]);
+    expect(result.success).toBe(false);
+  });
+
+  it('rejects non-monotonic minMastery values', () => {
+    const result = displayLevelSchema.safeParse([
+      { id: 'L1', title: 'Level 1', minMastery: 0.5 },
+      { id: 'L2', title: 'Level 2', minMastery: 0.25 },
+    ]);
+    expect(result.success).toBe(false);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Task 6.3 — progressTrend history schema must reject invalid windows
+// ---------------------------------------------------------------------------
+
+describe('progressTrend — progressTrendHistorySchema rejects invalid history', () => {
+  it('rejects an empty history', () => {
+    const result = progressTrendHistorySchema.safeParse([]);
+    expect(result.success).toBe(false);
+  });
+
+  it('rejects out-of-order timestamps', () => {
+    const result = progressTrendHistorySchema.safeParse([
+      { timestamp: 1_700_000_500_000, masteredNodeIds: ['math.im3.skill.alpha'] },
+      { timestamp: 1_700_000_000_000, masteredNodeIds: ['math.im3.skill.alpha', 'math.im3.skill.beta'] },
+    ]);
+    expect(result.success).toBe(false);
+  });
+
+  it('rejects duplicate masteredNodeIds within a snapshot', () => {
+    const result = progressTrendHistorySchema.safeParse([
+      { timestamp: 1_700_000_000_000, masteredNodeIds: ['math.im3.skill.alpha', 'math.im3.skill.alpha'] },
+    ]);
+    expect(result.success).toBe(false);
+  });
+});

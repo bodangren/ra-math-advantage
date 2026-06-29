@@ -199,6 +199,78 @@ describe('endpoint pairing — transfers_to (kst-srs.v2 §11.1, §2.7)', () => {
 });
 
 // ---------------------------------------------------------------------------
+// 5. Expanded transfers_to negative coverage (Task 6.5)
+// ---------------------------------------------------------------------------
+
+const mathConcept: KnowledgeSpaceNode = {
+  ...baseNode,
+  id: 'math.im3.concept.alpha',
+  kind: 'concept',
+  domain: 'math.im3',
+  title: 'math.im3.concept.alpha',
+};
+const englishConcept: KnowledgeSpaceNode = {
+  ...baseNode,
+  id: 'english.gse.concept.beta',
+  kind: 'concept',
+  domain: 'english.gse',
+  title: 'english.gse.concept.beta',
+};
+
+describe('endpoint pairing — transfers_to expanded negatives (kst-srs.v2 §11.1)', () => {
+  it('rejects transfers_to where the source is a standard (wrong source kind)', () => {
+    const graph: KnowledgeSpace = {
+      nodes: [mathStandard, englishSkill],
+      edges: [
+        makeEdge('edge.transfers-wrong-source', 'transfers_to', mathStandard.id, englishSkill.id),
+      ],
+    };
+    const violations = getInvalidEdgePairings(graph);
+    expect(violations.length).toBeGreaterThan(0);
+    expect(violations[0].edgeId).toBe('edge.transfers-wrong-source');
+  });
+
+  it('rejects transfers_to where the target is a standard (wrong target kind)', () => {
+    const graph: KnowledgeSpace = {
+      nodes: [mathSkillA, englishStandard],
+      edges: [
+        makeEdge('edge.transfers-wrong-target', 'transfers_to', mathSkillA.id, englishStandard.id),
+      ],
+    };
+    const violations = getInvalidEdgePairings(graph);
+    expect(violations.length).toBeGreaterThan(0);
+    expect(violations[0].edgeId).toBe('edge.transfers-wrong-target');
+  });
+
+  it('rejects transfers_to between concepts in the same domain', () => {
+    const graph: KnowledgeSpace = {
+      nodes: [mathConcept, { ...englishConcept, domain: 'math.im3', id: 'math.im3.concept.beta' }],
+      edges: [
+        makeEdge('edge.transfers-same-domain-concept', 'transfers_to', mathConcept.id, 'math.im3.concept.beta'),
+      ],
+    };
+    const violations = getInvalidEdgePairings(graph);
+    expect(violations.length).toBeGreaterThan(0);
+    expect(violations[0].edgeId).toBe('edge.transfers-same-domain-concept');
+  });
+
+  it('accepts a zero-weight transfers_to edge (weight boundary)', () => {
+    const graph: KnowledgeSpace = {
+      nodes: [mathSkillA, englishSkill, mathStandard, englishStandard],
+      edges: [
+        ...skillAlignments,
+        {
+          ...makeEdge('edge.transfers-zero-weight', 'transfers_to', mathSkillA.id, englishSkill.id),
+          weight: 0,
+        },
+      ],
+    };
+    const violations = getInvalidEdgePairings(graph);
+    expect(violations).toHaveLength(0);
+  });
+});
+
+// ---------------------------------------------------------------------------
 // 4. validateKnowledgeSpace end-to-end with a mixed graph
 // ---------------------------------------------------------------------------
 
