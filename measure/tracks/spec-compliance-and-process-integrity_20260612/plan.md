@@ -2169,7 +2169,7 @@ Anti-pattern acceptance check:
 - [x] Task 7.1: Refresh `graph.db`
   - [x] Run `build-graph scan ./ ./graph.db`
   - [x] Commit the refreshed graph with a clear message
-  - [GREEN EVIDENCE 2026-06-29, commit <sha1>] Pre-refresh: 14253 nodes / 20749 edges / 2078 files. Post-refresh: 14254 nodes / 20750 edges / 2079 files. `build-graph stats ./graph.db` confirms the refresh. graph.db size 20738048 → 26112000 bytes.
+  - [GREEN EVIDENCE 2026-06-29, commit 3d4243e8] Pre-refresh: 14253 nodes / 20749 edges / 2078 files. Post-refresh: 14254 nodes / 20750 edges / 2079 files. `build-graph stats ./graph.db` confirms the refresh. graph.db size 20738048 → 26112000 bytes.
 
 - [x] Task 7.2: Run all guards
   - [x] Targeted Phase 7 Green command (per test-strategy §11.2): PASS
@@ -2195,7 +2195,7 @@ Anti-pattern acceptance check:
 - [x] Task 7.5: Checkpoint
   - [x] Commit: `measure(checkpoint): Checkpoint end of Phase 7 — spec compliance and process integrity remediation` (this commit)
   - [x] Attach git note with full summary (will attach after commit)
-  - [GREEN EVIDENCE 2026-06-29, commit <sha2>] Checkpoint commit + plan.md marker update landed. graph.db refresh, guard sweep, project gates all green. Task 7.4 explicitly preserved as `[b] deferred:user` — human verifier will complete Steps 1-10 of workflow.md and update archived jsdoc phase verification reports.
+  - [GREEN EVIDENCE 2026-06-29, commit 3d4243e8] Checkpoint commit + plan.md marker update landed. graph.db refresh, guard sweep, project gates all green. Task 7.4 explicitly preserved as `[b] deferred:user` — human verifier will complete Steps 1-10 of workflow.md and update archived jsdoc phase verification reports.
 
 ### Phase 7 Green evidence (recorded 2026-06-29)
 
