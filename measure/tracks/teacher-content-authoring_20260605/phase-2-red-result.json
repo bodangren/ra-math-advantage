@@ -1,0 +1,41 @@
+{
+  "role": "mid-red",
+  "status": "complete",
+  "track": "teacher-content-authoring_20260605",
+  "phase": "Phase 2 — Draft Lifecycle \u0026 Persistence",
+  "baseline_sha": "c9dfb5f0a576f54ad8d0e4888450b34b3007bfe0",
+  "commits": [
+    "1b63e00c"
+  ],
+  "commands": [
+    {
+      "command": "CI=true npx vitest run apps/integrated-math-3/__tests__/lib/teacher/content-authoring apps/integrated-math-3/__tests__/convex/teacher/content-authoring-drafts.test.ts",
+      "result": "Test Files 1 failed (1) | 3 passed (4) | Tests 13 failed (13) | 23 passed (36)",
+      "notes": "Narrow Phase 2 delta. The single failed file is the new content-authoring-drafts.test.ts; every failure is Error: Cannot find module .../convex/teacher/content-authoring. The 3 passing files are the Phase 1 content-authoring tests (23 tests)."
+    },
+    {
+      "command": "CI=true npx vitest run apps/integrated-math-3/__tests__/lib/teacher/content-authoring apps/integrated-math-3/__tests__/convex",
+      "result": "Test Files 47 failed | 64 passed (111) | Tests 25 failed | 887 passed | 4 skipped (916)",
+      "notes": "Required aggregate Phase 2 Red command. The new Phase 2 file contributes 1 failed file / 13 failed tests. Remaining failures are pre-existing at baseline (primarily @/ alias resolution when run from repo root without the app-specific vitest config, plus known data/schema assertion failures) and are outside Phase 2 scope."
+    },
+    {
+      "command": "npm run ws:im3:lint",
+      "result": "exit 0",
+      "notes": "No lint errors or warnings from the new test file or plan update."
+    },
+    {
+      "command": "npx tsc --noEmit",
+      "result": "exit 0",
+      "notes": "No TypeScript errors introduced by the new test file."
+    }
+  ],
+  "files_changed": [
+    "apps/integrated-math-3/__tests__/convex/teacher/content-authoring-drafts.test.ts",
+    "measure/tracks/teacher-content-authoring_20260605/plan.md"
+  ],
+  "plan_updates": "Added Phase 2 Red Evidence section under Phase 2. Automatable Phase 2 tasks remain [~]; Phase 2 UMV remains [b] deferred:user. No changes to Phase 1 evidence or Phases 3-4.",
+  "anti_pattern_coverage": "A1-A10 observed in test-strategy.md and defended in the Red test set: tasks use structured [~]/[b] markers; counts use labeled array-length assertions (toHaveLength) rather than digit-only regex; positive and negative fixtures prevent vacuous pass; no measure imports or fake-only assertions; no over-broad exclusion filters; no archived-track path references.",
+  "known_failures": "The required aggregate RED_TEST_COMMAND exits non-zero because of pre-existing baseline failures in apps/integrated-math-3/__tests__/convex unrelated to Phase 2 (e.g. @/ alias resolution when the command is run from the repo root, plus a small set of known data/schema assertion failures). Phase 2 Red is evidenced by the narrower delta command where only the new Phase 2 test file fails and Phase 1 content-authoring tests remain green.",
+  "handoff": "Implement the Convex authoring module at apps/integrated-math-3/convex/teacher/content-authoring.ts exposing handler-level functions (saveTeacherDraftHandler, submitDraftForReviewHandler, reviewAuthoredLessonHandler, editRejectedDraftHandler, publishAuthoredLessonHandler, assignAuthoredLessonHandler, getAuthoredLessonForStudentHandler). Reuse Phase 1 normalize/validate/sanitize functions, computeComponentContentHash, resolveComponentKind, and the existing component_reviews / component_approvals / class_lessons / class_enrollments contracts. Preserve Phase 1 test greenness and keep composer UI / preview UX for Phase 3.",
+  "confidence": "high"
+}
