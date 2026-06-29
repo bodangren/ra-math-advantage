@@ -102,10 +102,10 @@ modified.
 
 ## Phase 2 — Draft Lifecycle & Persistence
 
-- [ ] Task: Convex draft lifecycle (draft→submitted→approved/rejected→published), idempotent (TDD)
-- [ ] Task: Integrate the approval queue + content hashing for authored content (TDD)
-- [ ] Task: Teacher-scoped authorization + assignment/enrollment respect (TDD)
-- [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
+- [~] Task: Convex draft lifecycle (draft→submitted→approved/rejected→published), idempotent (TDD)
+- [~] Task: Integrate the approval queue + content hashing for authored content (TDD)
+- [~] Task: Teacher-scoped authorization + assignment/enrollment respect (TDD)
+- [b] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md) deferred:user
 
 ## Phase 3 — Composer UI & Preview
 
