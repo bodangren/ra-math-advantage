@@ -8,7 +8,7 @@ Verification: boundary lints + `npm run ws:im3:lint`/`:test` + `tsc --noEmit`.
 
 - [x] Task: Define the lesson/phase/section authoring model bound to existing activity prop schemas (Contract-First) — committed 7516f07c
 - [x] Task: Schema-driven activity config validation — invalid configs rejected (TDD) — committed 7516f07c
-- [x] Task: Sanitization of authored free-text (TDD) — committed 7516f07c
+- [x] Task: Sanitization of authored free-text (TDD) — committed 7516f07c; Review B security fix e51561e4
 - [b] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md) deferred:user
 
 ### Phase 1 Red Evidence
@@ -67,16 +67,23 @@ Targeted Phase 1 Green command:
 ```bash
 CI=true npx vitest run apps/integrated-math-3/__tests__/lib/teacher/content-authoring
 ```
-Result: `Test Files  3 passed (3) | Tests 22 passed (22)`. Exit code 0.
+Result: `Test Files  3 passed (3) | Tests 23 passed (23)`. Exit code 0.
+Note: Review B found and fixed an additional sanitizer wrapper risk in commit
+`e51561e4`; the targeted gate now includes 23 tests (the original 22 plus the
+script/style wrapper fallback regression).
 
 Required aggregate Green command:
 ```bash
 CI=true npx vitest run apps/integrated-math-3 packages/activity-components
 ```
-Result: `Test Files 274 failed | 115 passed (389) | Tests 603 failed | 1563 passed | 7 skipped (2173)`.
-Delta vs Red: +3 passing test files, +22 passing tests, 0 regressions. The
-remaining 274 file failures are pre-existing at baseline (e.g. lesson-chatbot
-route import resolution) and are outside Phase 1 scope.
+Result: `Test Files 274 failed | 115 passed (389) | Tests 603 failed | 1564 passed | 7 skipped (2174)`. Exit code 1.
+Delta vs Red: +3 passing test files, +23 passing tests (including the
+Review B sanitizer-wrapper regression added after the original Green pass),
+and 0 Phase 1 regressions. The remaining 274 file failures are pre-existing
+at baseline (e.g. lesson-chatbot route import resolution) and are outside
+Phase 1 scope; per `test-strategy.md` §3, closeout relies on the narrower
+Phase 1 targeted gate plus explicit pre-existing aggregate failure evidence,
+not an aggregate exit-0 claim.
 
 Closeout gates:
 - `npm run ws:im3:lint` → exit 0.
