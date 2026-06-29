@@ -1,0 +1,101 @@
+{
+  "role": "green",
+  "status": "complete",
+  "track": "teacher-content-authoring_20260605",
+  "phase": "Phase 1 — Authoring Model & Schema-Driven Validation",
+  "commits": [
+    "7516f07c",
+    "106cd5cd"
+  ],
+  "commands": [
+    {
+      "command": "CI=true npx vitest run apps/integrated-math-3/__tests__/lib/teacher/content-authoring",
+      "result": "Test Files  3 passed (3) | Tests 22 passed (22). Exit code 0.",
+      "notes": "Targeted Phase 1 Green gate. All 22 tests across authoring-model, activity-config-validation, and sanitize-authored-text pass."
+    },
+    {
+      "command": "CI=true npx vitest run apps/integrated-math-3 packages/activity-components",
+      "result": "Test Files 274 failed | 115 passed (389) | Tests 603 failed | 1563 passed | 7 skipped (2173). Exit code 0.",
+      "notes": "Aggregate Green gate. Delta vs Red (277 failed / 112 passed): +3 passing test files, +22 passing tests, 0 regressions. Remaining 274 file failures are pre-existing at baseline (e.g. __tests__/app/api/student/lesson-chatbot/route.test.ts cannot resolve @/app/api/student/lesson-chatbot/route) and are outside Phase 1 scope."
+    },
+    {
+      "command": "npm run ws:im3:lint",
+      "result": "Exit code 0. eslint . --max-warnings 0 produced no warnings or errors.",
+      "notes": "Closeout gate per test-strategy section 3."
+    },
+    {
+      "command": "npx tsc --noEmit",
+      "result": "Exit code 0. No type errors.",
+      "notes": "Closeout gate per test-strategy section 3."
+    },
+    {
+      "command": "CI=true npm run test",
+      "result": "Exit code 0. 22 files / 302 tests passed in packages/knowledge-space-core.",
+      "notes": "Closeout gate per test-strategy section 3. Root npm test runs the knowledge-space-core workspace."
+    }
+  ],
+  "files_changed": [
+    "apps/integrated-math-3/lib/teacher/content-authoring/authoring-model.ts",
+    "apps/integrated-math-3/lib/teacher/content-authoring/activity-config-validation.ts",
+    "apps/integrated-math-3/lib/teacher/content-authoring/sanitize-authored-text.ts",
+    "apps/integrated-math-3/__tests__/lib/teacher/content-authoring/authoring-model.test.ts",
+    "apps/integrated-math-3/__tests__/lib/teacher/content-authoring/activity-config-validation.test.ts",
+    "apps/integrated-math-3/__tests__/lib/teacher/content-authoring/sanitize-authored-text.test.ts",
+    "measure/tracks/teacher-content-authoring_20260605/plan.md",
+    "graph.db"
+  ],
+  "files_added": [
+    "apps/integrated-math-3/lib/teacher/content-authoring/authoring-model.ts",
+    "apps/integrated-math-3/lib/teacher/content-authoring/activity-config-validation.ts",
+    "apps/integrated-math-3/lib/teacher/content-authoring/sanitize-authored-text.ts"
+  ],
+  "plan_updates": "Phase 1 automatable tasks flipped from [~] to [x] with SHA 7516f07c. Phase 1 manual verification task remains [b] deferred:user. Phase 1 Green Evidence subsection added to plan.md describing the three implementation modules, the targeted/aggregate command outputs, and the closeout gate results.",
+  "implementation_summary": {
+    "authoring_model": "normalizeLessonDraft(input) returns a discriminated union. Success path yields AuthoringLesson { id, title, phases[] } with stable, position-derived IDs at lesson/phase/section/activity level. Failure path yields structured errors with { path, message }. Enforces: at least one phase, at least one section per phase, at least one activity per section, and componentKey membership in canonical SCHEMA_REGISTRY (so placeholder keys equation-solver and drag-drop-categorization are rejected, as is any unknown key).",
+    "activity_config_validation": "validateActivityConfig(componentKey, props) binds validation to the key via getPropsSchema(componentKey) from @math-platform/math-content/schemas. Rejects missing-required-field, empty-arrays-where-disallowed, cross-key props, placeholder keys, and unknown keys. Errors are { componentKey, path: string[], message } so downstream surfaces (composer UI, approval queue) can render the failing field. safeParse is used so the caller's props object is never mutated.",
+    "sanitize_authored_text": "sanitizeAuthoringText strips <script>/<style> blocks (and their content), event-handler attributes (on*=), and javascript: URL prefixes. Math notation ($, **, ^, _), markdown emphasis, and literal text inside benign tags are preserved. sanitizeLessonDraft walks the full draft and rewrites every string leaf so the Phase 2 hash sees sanitized content. SanitizedText renders sanitized text as a plain text node (no dangerouslySetInnerHTML) so authored content cannot execute when surfaced in the Phase 3 composer UI."
+  },
+  "test_adjustments": [
+    {
+      "file": "apps/integrated-math-3/__tests__/lib/teacher/content-authoring/authoring-model.test.ts",
+      "change": "Relative import path corrected from '../../../lib/...' to '../../../../lib/...' because the test file lives one directory deeper (under content-authoring/) than the existing __tests__/lib/teacher/ tests.",
+      "rationale": "Test path could not resolve the implementation module. No assertions changed."
+    },
+    {
+      "file": "apps/integrated-math-3/__tests__/lib/teacher/content-authoring/activity-config-validation.test.ts",
+      "change": "Relative import path corrected from '../../../lib/...' to '../../../../lib/...'.",
+      "rationale": "Test path could not resolve the implementation module. No assertions changed."
+    },
+    {
+      "file": "apps/integrated-math-3/__tests__/lib/teacher/content-authoring/sanitize-authored-text.test.ts",
+      "change": "Relative import path corrected from '../../../lib/...' to '../../../../lib/...'. Added '// @vitest-environment jsdom' directive at the top so the React render test runs under jsdom when invoked from the root (the GREEN_TEST_COMMAND does not pass --environment or --config).",
+      "rationale": "Test path could not resolve the implementation module. jsdom directive is required because the root-level test invocation uses the default node environment unless the config is explicitly selected. No assertions changed."
+    }
+  ],
+  "known_failures": "Aggregate RED_TEST_COMMAND continues to show 274 test-file failures and 603 test failures in apps/integrated-math-3 and packages/activity-components. All of these are pre-existing at the b9e370f558801451b14698a735c4834dc46c2419 baseline (e.g. __tests__/app/api/student/lesson-chatbot/route.test.ts cannot resolve @/app/api/student/lesson-chatbot/route). They are outside Phase 1 scope. The narrower Phase 1 targeted gate is green and is the authoritative closeout signal for this phase per test-strategy section 3.",
+  "deferred": [
+    {
+      "task": "Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md)",
+      "owner": "user",
+      "reason": "Manual UX verification of the Phase 1 user-visible surface requires a human. The Phase 1 Green implementation is pure logic + a small React text-render component with no persistent UI changes, but per the test-strategy the UMV step is still a human gate."
+    }
+  ],
+  "preserved_unchanged": [
+    "_add_types.py",
+    "_add_types.ts"
+  ],
+  "build_graph": {
+    "updated": true,
+    "db": "graph.db",
+    "files_indexed": [
+      "apps/integrated-math-3/lib/teacher/content-authoring/authoring-model.ts",
+      "apps/integrated-math-3/lib/teacher/content-authoring/activity-config-validation.ts",
+      "apps/integrated-math-3/lib/teacher/content-authoring/sanitize-authored-text.ts"
+    ],
+    "nodes_added": 38,
+    "edges_added": 38,
+    "total_nodes_after": 14292,
+    "total_edges_after": 20788
+  },
+  "handoff": "Phase 1 Green is complete. The three app-local modules under apps/integrated-math-3/lib/teacher/content-authoring/ implement the Phase 1 functional requirements: authoring model (FR1 shape), schema-driven validation (FR2), and free-text sanitization (NFR: no raw HTML injection). FR3 (preview), FR4 (approval gate), FR5 (draft lifecycle), and FR6 (authorization) are explicitly out of Phase 1 scope and remain for Phase 2/3. Reviewers should focus on: (1) the authoring-model error surface, (2) the activity-config-validation key-binding discipline (no broad-union trust), and (3) the sanitizer's preservation of math notation alongside neutralization of executable markup. The phase-1-green-result.json is authoritative for command outputs; phase-1-red-result.json remains the Red baseline."
+}
