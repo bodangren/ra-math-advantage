@@ -1,0 +1,30 @@
+{
+  "role": "mid-red",
+  "status": "complete",
+  "track": "teacher-content-authoring_20260605",
+  "phase": "Phase 1 — Authoring Model \u0026 Schema-Driven Validation",
+  "commits": [
+    "37cbe453"
+  ],
+  "commands": [
+    {
+      "command": "CI=true npx vitest run apps/integrated-math-3/__tests__/lib/teacher/content-authoring",
+      "result": "Test Files 3 failed (3); Tests 22 failed (22)",
+      "notes": "All failures are module-resolution errors for the three intended Phase 1 implementation modules, confirming missing implementation."
+    },
+    {
+      "command": "CI=true npx vitest run apps/integrated-math-3 packages/activity-components",
+      "result": "Test Files 277 failed | 112 passed (389); Tests 625 failed | 1541 passed | 7 skipped (2173)",
+      "notes": "Includes the 3 new Phase 1 test files / 22 new tests. Remaining failures are pre-existing in apps/integrated-math-3 at baseline (e.g. lesson-chatbot route import resolution) and are outside Phase 1 scope."
+    }
+  ],
+  "files_changed": [
+    "apps/integrated-math-3/__tests__/lib/teacher/content-authoring/authoring-model.test.ts",
+    "apps/integrated-math-3/__tests__/lib/teacher/content-authoring/activity-config-validation.test.ts",
+    "apps/integrated-math-3/__tests__/lib/teacher/content-authoring/sanitize-authored-text.test.ts",
+    "measure/tracks/teacher-content-authoring_20260605/plan.md"
+  ],
+  "plan_updates": "Added Phase 1 Red Evidence section under Phase 1. Automatable tasks remain [~]; UMV remains [b] deferred:user.",
+  "known_failures": "Aggregate RED_TEST_COMMAND has pre-existing failures in apps/integrated-math-3 unrelated to Phase 1 (e.g. __tests__/app/api/student/lesson-chatbot/route.test.ts cannot resolve @/app/api/student/lesson-chatbot/route). Phase 1 Red is evidenced by the narrower targeted command.",
+  "handoff": "Implement the three pure app-local modules under apps/integrated-math-3/lib/teacher/content-authoring/ (authoring-model, activity-config-validation, sanitize-authored-text) to make the new tests pass. Reuse canonical SCHEMA_REGISTRY / getPropsSchema from @math-platform/math-content/schemas. Do not implement persistence, approval queue, publishing, or full composer UI in Phase 1."
+}
