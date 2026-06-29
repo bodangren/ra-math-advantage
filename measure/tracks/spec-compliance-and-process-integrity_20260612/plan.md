@@ -1982,7 +1982,7 @@ Result: `no false excuses` — all "npm not on PATH" / "Not available in sandbox
 
 ## Phase 6: kst-lesser-holes_20260521 Phase 1 Quality
 
-### Phase 6 Red proof (recorded 2026-06-29)
+### Phase 6 Red proof (recorded 2026-06-29, Red commit `affed2e3`)
 
 **Baseline command** (before Red tests):
 
