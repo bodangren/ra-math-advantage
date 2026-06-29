@@ -374,3 +374,73 @@ CI=true npx vitest run packages/knowledge-space-core/src/__tests__/public-api-co
 - Commit only test/Measure-doc changes for Mid Red. The Red proof is valid when `CI=true npx vitest run packages/knowledge-space-core/src/__tests__` exits non-zero for the new tests above, while baseline evidence shows it was green before Red.
 - Do not create a package test that reads `measure/`; use a Measure artifact/check for adversarial JSON instead.
 - Closeout handoff to Green: implement minimal schema refinements, endpoint-rule dedupe, comment cleanup, adversarial JSON findings, and plan count reconciliation until the same command passes.
+
+## 11. Phase 7 — Final Verification and Checkpoint (refreshed 2026-06-29)
+
+### 11.1 Scope and current baseline
+- Phase 7 is a verification/checkpoint phase, not a feature phase. Do not manufacture a failing Red by weakening code or tests. Its falsification is regression detection: any required command exits non-zero, any JSON guard reports `pass:false`, any generated artifact is dirty but uncommitted, or Task 7.4 is treated as automatable.
+- Phase 6 acceptance passed at baseline `e153b868` with `22 files / 302 tests` for `packages/knowledge-space-core/src/__tests__`, package lint/typecheck green, and Phase 6 review findings resolved. Re-run the same suite in Phase 7; do not rely on the Phase 6 JSON alone.
+- `graph.db` exists and `build-graph stats ./graph.db` reports `14253 nodes / 20749 edges / 2078 files`. Phase 6 added `projectDisplayLevel` runtime validation and `edge-endpoint-rules.ts`; graph search does not index `displayLevelSchema`, `progressTrendHistorySchema`, or `EDGE_ENDPOINT_RULES`, so Phase 7 must use source/live tests for those contracts and graph only for generated-facts freshness.
+- Pre-existing unrelated root scratch files `_add_types.py`, `_add_types.ts`, and `stash@{0}` are explicitly out of scope. Preserve them; do not revert, pop, drop, or commit them during Phase 7.
+- Plan markers: Tasks 7.1, 7.2, 7.3, and 7.5 are automatable and should be `[~]` while Phase 7 runs. Task 7.4 remains `[b] deferred:user` and is not a closeout blocker for automation except that it must stay structurally labeled as human-gated.
+
+### 11.2 Targeted Red / regression command
+Use the orchestrator-supplied targeted command as the Phase 7 Red/regression probe:
+
+```bash
+bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-typed-params.sh --json && \
+  bash measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/check-jsdoc-exported-convex-im3.sh --json && \
+  CI=true npx vitest run packages/knowledge-space-core/src/__tests__
+```
+
+Expected Phase 7 interpretation:
+- **Pass at baseline:** acceptable; record as a Green baseline because final verification has no new behavior to make red.
+- **Fail:** true Red/regression. Do not proceed to checkpoint until the failing guard/test is fixed by the responsible role and the same command passes.
+- Falsification conditions: typed-param JSON has `untyped_tags > 0`; exported-surface JSON has `missing_jsdoc > 0` or `declarations < 197`; knowledge-space-core reports fewer than `22` files or fewer than `302` tests, any failed test, any `.skip()` / `.todo()` introduced to hide failures, or command exit non-zero.
+
+### 11.3 Green gates by Phase 7 task
+- **Task 7.1 graph refresh:** run `build-graph scan ./ ./graph.db`, then `build-graph stats ./graph.db` and `build-graph audit ./graph.db` if available. Green when `graph.db` is the only generated graph change, stats are recorded with labeled integers, and any dirty `graph.db` is intentionally staged/committed in the Phase 7 checkpoint sequence. If scan changes `measure/generated/**`, run `bash measure/scripts/generate.sh` and record the diff; do not leave generated facts dirty.
+- **Task 7.2 guard sweep:** targeted Red command above passes, plus the relevant archived jsdoc guard family is sampled/rerun where still meaningful: coverage guards, line-length guards, and FR-6 non-comment diff guards for the Phase 2 scopes recorded in `plan.md`. The new typed-param and exported-surface guards are mandatory. The Phase 5 verification guard is expected to remain red while Task 5.3 is `[b] deferred:user`; record it as a known human-gated artifact, not an automation failure.
+- **Task 7.3 project checks:** run exactly the orchestrator gates: `npm run lint`, `npx tsc --noEmit`, and `npm run test`. Green requires exit 0. If unrelated pre-existing failures appear, record file/command/output and prove the targeted Phase 7 command remains green; do not claim project Green from prose alone.
+- **Task 7.5 checkpoint:** after Tasks 7.1–7.3 are green and Task 7.4 is still structurally `[b] deferred:user`, commit the checkpoint and attach a git note summarizing commands, graph stats, known human-gated status, and preserved out-of-scope artifacts.
+
+### 11.4 Closeout / final acceptance gates
+- `git status --short --branch` shows `master` and no dirty paths except explicitly preserved untracked `_add_types.py` / `_add_types.ts` if they still exist and are documented as out of scope; `stash@{0}` remains preserved unless a separate owner resolves it.
+- The targeted Red/Green command and full project gates (`npm run lint`, `npx tsc --noEmit`, `npm run test`) pass with live output captured in `plan.md` or the Phase 7 result JSON.
+- `build-graph stats ./graph.db` after refresh is recorded; if `graph.db` changed, it is included in the checkpoint commit. No stale generated-facts drift remains uncommitted.
+- Task 7.4 is not silently converted to `[x]`; it remains `[b] deferred:user` until a human verifier completes `measure/workflow.md` Steps 1–10. Automation may checkpoint the automatable work only by explicitly naming this human gate.
+- Final acceptance must re-read `phase-6-acceptance-result.json` and this section, then verify that no Phase 6 stale Red comments, endpoint-rule duplication, or schema regressions reappeared.
+
+### 11.5 Fixtures, mocks, and live-behavior proof expectations
+- No mocks of git, npm, vitest, build-graph, Zod, Convex wrappers, or the shell guards. Phase 7 proves live repository state.
+- Guard fixtures (`typed-params-bad-sample.ts`, `exported-convex-bad-sample.ts`, verification-report fixtures) remain runner-plumbing proofs only. They may be rerun as supplemental closeout checks, but they cannot replace production-scope guard runs.
+- Live behavior proof is the knowledge-space-core Vitest suite and full `npm run test`. Artifact/documentation proof is the shell-guard JSON, graph stats/audit, plan marker scan, git status, and checkpoint git note.
+
+### 11.6 Architecture guardrails and changed-contract risks
+- Strategy/acceptance agents edit Measure artifacts only. Product source changes during Phase 7 are suspect unless they are narrowly owned by a remediation role responding to a failing gate.
+- `graph.db` is generated and may change; do not hand-edit it. If the scan introduces broad unexpected churn, stop and inspect with `build-graph audit` rather than committing blindly.
+- Keep package tests free of `measure/` imports; any Measure artifact checks must live in Measure scripts or acceptance JSON, not `packages/knowledge-space-core` tests.
+- Do not update `measure/tracks.md` with “resolved” language until Phase 7 commands are green and the checkpoint evidence exists.
+- Do not treat archived jsdoc Phase 1–9 reports as approved by automation. The hardened Phase 5 guard should continue to reject automation or pending reports until a human signs them.
+
+### 11.7 Intentionally-red aggregate-suite handling
+- There is no intentionally-red aggregate suite at Phase 7 start: Phase 6 acceptance reports `CI=true npx vitest run packages/knowledge-space-core/src/__tests__` green at `22 files / 302 tests`.
+- If `npm run test` or a broader archived guard suite is red for a known external reason, Phase 7 must record the owning track, exact command, failure excerpt, and why the targeted command still proves this track. Do not use `.skip()`, `.todo()`, English-word filters, or “expected red” prose without an owning track.
+- The Phase 5 verification guard is a known **human-gated artifact red**, not a live behavior failure, while Task 5.3/7.4 are `[b] deferred:user`. It must be called out separately from automatable Green gates.
+
+### 11.8 Anti-pattern coverage for Phase 7
+- **A1 substring-as-structured-signal:** Task 7.4 must remain `[b] deferred:user`; no free-text “deferred” may be used to hide `[~]` tasks. Falsification: marker scan finds an automatable Task 7.x left `[ ]`/`[~]` with free-text deferred but no `[b] deferred:user` structural marker.
+- **A2 consent-blind publish gate:** Not applicable; Phase 7 publishes no case studies or student artifacts. Falsification would be any added publish/deploy step without consent/anonymization evidence.
+- **A3 digit-only labeled count:** Parse JSON/labeled integers (`untyped_tags`, `missing_jsdoc`, `declarations`, `Test Files 22`, `Tests 302`, graph node/edge/file counts). Never accept a bare `[0-9]+` match. Falsification: a check passes by matching a date/SHA instead of a labeled field.
+- **A4 vacuous-pass on nothing-done:** Guards must report non-zero scanned files/declarations and Vitest must report at least `22` files / `302` tests. Falsification: zero files scanned, zero declarations, unchanged task count, or empty test run exits 0.
+- **A5 false-claim text vs test reality:** Plan/result JSON claims must cite commands run at the current Phase 7 SHA. Falsification: prose says “all checks pass” while rerunning the named command exits non-zero.
+- **A6 registry-note overstatement:** `measure/tracks.md` may not claim the track is complete/resolved until checkpoint evidence exists and human-gated tasks are truthfully labeled. Falsification: registry says complete while Task 7.4 is still `[b]` or any mandatory automatable gate is red.
+- **A7 over-broad filter swallowing real hits:** Source/artifact scans may exclude paths/fixtures only, not bare English words such as `skip`, `never`, or `expected`. Falsification: a skip-like wrapper/name or stale Red phrase is filtered out by word rather than path.
+- **A8 `[ ]` marker ambiguity:** Automatable Phase 7 tasks use `[~]` while active and `[x]` when complete; human-gated task uses `[b] deferred:user`. Falsification: supervisor regex accepts legacy `[ ]` as in-progress or Task 7.4 is represented by prose only.
+- **A9 archived-track-path:** Any archived jsdoc or kst artifact checks must resolve `measure/archive/...` paths intentionally. Falsification: a guard hard-codes `measure/tracks/jsdoc-comments_20260526` or `measure/tracks/kst-lesser-holes_20260521` after archival.
+- **A10 generated-facts drift:** `graph.db`/`measure/generated` must be refreshed or explicitly unchanged after structural edits. Falsification: `build-graph audit` reports stale/missing symbols or generated docs are dirty after closeout.
+
+### 11.9 Handoff to Red/Green/final acceptance
+- **Red/regression role:** run the targeted command; if it passes, record a non-red verification baseline rather than adding fake failing tests. If it fails, capture JSON/output and stop at the first failing contract.
+- **Green role:** fix only the failing contract(s), rerun the same command, then run `npm run lint`, `npx tsc --noEmit`, and `npm run test`.
+- **Final acceptance:** verify plan markers, Phase 6 acceptance JSON, graph refresh evidence, mandatory command output, preserved `_add_types.py` / `_add_types.ts` / `stash@{0}`, and the checkpoint git note. Reject if any artifact/documentation proof is substituted for a live behavior test where this strategy requires live behavior.

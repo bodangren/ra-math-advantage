@@ -2166,18 +2166,18 @@ Anti-pattern acceptance check:
 
 ## Phase 7: Final Verification and Checkpoint
 
-- [ ] Task 7.1: Refresh `graph.db`
+- [~] Task 7.1: Refresh `graph.db`
   - [ ] Run `build-graph scan ./ ./graph.db`
   - [ ] Commit the refreshed graph with a clear message
 
-- [ ] Task 7.2: Run all guards
+- [~] Task 7.2: Run all guards
   - [ ] All jsdoc phase coverage guards → PASS
   - [ ] All line-length guards → PASS
   - [ ] All FR-6 guards → PASS
   - [ ] New FR-5 typed-param guard → PASS
   - [ ] New exported-surface guard → PASS
 
-- [ ] Task 7.3: Run real lint / typecheck / tests
+- [~] Task 7.3: Run real lint / typecheck / tests
   - [ ] `npm run lint` in affected workspaces
   - [ ] `npx tsc --noEmit` for affected tsconfig projects
   - [ ] `CI=true npm run test` for affected workspaces
@@ -2187,6 +2187,6 @@ Anti-pattern acceptance check:
   - [ ] Drive `measure/workflow.md` Steps 1-10 for this track
   - [ ] Human verifier signs off
 
-- [ ] Task 7.5: Checkpoint
+- [~] Task 7.5: Checkpoint
   - [ ] Commit: `measure(checkpoint): Checkpoint end of Phase 7 — spec compliance and process integrity remediation`
   - [ ] Attach git note with full summary
