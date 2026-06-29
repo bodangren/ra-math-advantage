@@ -6,9 +6,9 @@ Verification: boundary lints + `npm run ws:im3:lint`/`:test` + `tsc --noEmit`.
 
 ## Phase 1 — Authoring Model & Schema-Driven Validation
 
-- [x] Task: Define the lesson/phase/section authoring model bound to existing activity prop schemas (Contract-First) — Green commit (see Phase 1 Green Evidence)
-- [x] Task: Schema-driven activity config validation — invalid configs rejected (TDD) — Green commit (see Phase 1 Green Evidence)
-- [x] Task: Sanitization of authored free-text (TDD) — Green commit (see Phase 1 Green Evidence)
+- [x] Task: Define the lesson/phase/section authoring model bound to existing activity prop schemas (Contract-First) — committed 7516f07c
+- [x] Task: Schema-driven activity config validation — invalid configs rejected (TDD) — committed 7516f07c
+- [x] Task: Sanitization of authored free-text (TDD) — committed 7516f07c
 - [b] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md) deferred:user
 
 ### Phase 1 Red Evidence
