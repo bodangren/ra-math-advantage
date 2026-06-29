@@ -2031,46 +2031,107 @@ Failing tests by file:
 - **New** `packages/knowledge-space-core/src/__tests__/stale-red-comments.test.ts` — scans package test files for stale Red-phase phrases and fails while any remain.
 - **New** `measure/tracks/spec-compliance-and-process-integrity_20260612/phase-6-red-result.json` — adversarial audit artifact with non-empty `blocking_findings`.
 
+### Phase 6 Green proof (recorded 2026-06-29, Green commit `d9b65977`)
+
+**Targeted Green command** (the same primary command from §10.2):
+
+```bash
+CI=true npx vitest run packages/knowledge-space-core/src/__tests__
+```
+
+**Green result at `d9b65977`:** `Test Files 22 passed (22), Tests 301 passed (301)`, exit 0. Every test that was red before now passes; no skip or todo was used to hide failures (per §8 of test-strategy.md and A4 of anti-patterns.md).
+
+**Recorded live counts:**
+
+| Stage | Files | Tests | Failed | Exit |
+|-------|-------|-------|--------|------|
+| Baseline (pre-Red) | 20 | 285 | 0 | 0 |
+| Red (mid-Red Phase 6) | 22 | 301 | 10 | 1 |
+| **Green (`d9b65977`)** | **22** | **301** | **0** | **0** |
+
+The Phase 6 Red baseline 245/247 cited in earlier `measure/tracks.md` prose
+(track: Spec Compliance and Process Integrity Remediation) is superseded
+by this live count, per the test-strategy §10.3 reconciliation directive.
+
+**Package lint + typecheck (no new errors introduced by `d9b65977`):**
+
+```bash
+cd packages/knowledge-space-core && npx tsc --noEmit  # exit 0
+cd packages/knowledge-space-core && npm run lint       # exit 0 (eslint src --max-warnings 0)
+cd packages/knowledge-space-core && CI=true npm test   # exit 0 (22 files / 301 tests)
+```
+
+**Per-gate evidence for review-A / phase-acceptance:**
+
+| Red finding (from `phase-6-red-result.json`) | Green evidence |
+|----------------------------------------------|----------------|
+| `ADV-P6-B1` — `displayLevelSchema` accepts empty, duplicate ids, non-monotonic | `packages/knowledge-space-core/src/level-projection.ts` now applies `.min(1)` + `.superRefine` for non-empty, unique ids, non-decreasing `minMastery` (commit `d9b65977`). Verified: `level-projection-and-progress-trend-contract.test.ts` 6 contract tests pass; `public-api-contract.test.ts` negative band tests pass. |
+| `ADV-P6-B2` — `progressTrendHistorySchema` accepts empty, out-of-order, duplicate ids | `packages/knowledge-space-core/src/progress-trend.ts` now applies `.min(1)` + `.superRefine` for non-empty window, unique `masteredNodeIds`, chronologically non-decreasing timestamps (commit `d9b65977`). Verified: 3 contract tests + `public-api-contract.test.ts` history tests pass. |
+| `ADV-P6-B3` — `EDGE_ENDPOINT_RULES` duplicated | New canonical `packages/knowledge-space-core/src/edge-endpoint-rules.ts` owns the rules + `EdgeSourceTargetConstraint` type; `schemas.ts` and `validation.ts` both import it. Verified: `edge-endpoint-rules.test.ts` reports `definers.length = 1`. |
+| `ADV-P6-B4` — transfers_to negative cases | `edge-type-transfers-to.test.ts` was extended with wrong-source-kind, wrong-target-kind, same-domain concept, and zero-weight acceptance tests. All four pass at `d9b65977`. |
+| `ADV-P6-B5` — public-api-contract is shallow | `public-api-contract.test.ts` imports `LevelProjectionFn` from root and subpath, exercises a real `projectDisplayLevel` instance against a 3-level band, and asserts the negative schema cases for both the band and the history. All 5 tests pass at `d9b65977`. |
+| `ADV-P6-B6` — stale Red-phase comments | 7 test-file headers rewritten in commit `d9b65977`. `stale-red-comments.test.ts` returns `hits=0`. |
+
+**Anti-pattern audit (per `measure/anti-patterns.md`):**
+
+- **A1 substring-as-structured-signal:** Phase 6 tasks marked `[x]` (Green) or left as `[b] deferred:user` (no Phase 6 task is a deferred:user). PASS.
+- **A4 vacuous-pass on nothing-done:** Green evidence records 22 files / 301 tests / 0 failed. The targeted run is not a zero-change pass. PASS.
+- **A5 false-claim text vs test reality:** the `Test Files 22 passed (22), Tests 301 passed (301)` line above is the live command output from the d9b65977 commit, recorded against the same code. PASS.
+- **A6 registry-note overstatement:** `measure/tracks.md` is not updated to claim kst Phase 1 quality resolved until Phase 7 closeout records the broader aggregate guards. PASS for Phase 6 scope.
+- **A7 over-broad filter swallowing real hits:** stale comment scan excludes only the detector file by name; no English-word filter; the bad-sample truth remains. PASS.
+
 ### Phase 6 task status
 
-- [~] Task 6.1: Record real adversarial findings
-  - [~] File: `measure/tracks/spec-compliance-and-process-integrity_20260612/phase-6-red-result.json`
-  - [~] Populated `blocking_findings` with 6 findings (schema gaps, duplicated rules, coverage gaps, stale comments)
-  - [~] `status: "red"`; not marked pass with empty findings
+- [x] Task 6.1: Record real adversarial findings [green: d9b65977]
+  - [x] File: `measure/tracks/spec-compliance-and-process-integrity_20260612/phase-6-red-result.json`
+  - [x] Populated `blocking_findings` with 6 findings (schema gaps, duplicated rules, coverage gaps, stale comments)
+  - [x] `status: "red"`; not marked pass with empty findings
+  - [x] Green confirms the artifact's findings were genuine — every blocking
+    finding listed in `phase-6-red-result.json` is resolved by the
+    Phase 6 Green commit `d9b65977`. The artifact is preserved for
+    review-A to cross-check.
 
-- [~] Task 6.2: Tighten Level Projection schema
-  - [~] `packages/knowledge-space-core/src/level-projection.ts`
-  - [~] Red tests prove `displayLevelSchema` accepts empty, duplicate ids, and non-monotonic `minMastery`
-  - [ ] Green: add `.refine`/`.superRefine` to enforce non-empty, unique ids, non-decreasing `minMastery`
-  - [ ] Green: constrain `LevelProjectionFn` return type to a level id
+- [x] Task 6.2: Tighten Level Projection schema [green: d9b65977]
+  - [x] `packages/knowledge-space-core/src/level-projection.ts`
+  - [x] Red tests proved `displayLevelSchema` accepted empty, duplicate ids, and non-monotonic `minMastery`
+  - [x] Green: added `.min(1)` + `.superRefine` to enforce non-empty, unique ids, non-decreasing `minMastery` (commit `d9b65977`).
+  - [ ] Green-deferred (non-blocking): `LevelProjectionFn` return-type narrowing to a known level id is documented in phase-6-red-result.json finding `ADV-P6-N1`; not required by tests, deferred to a future tightening.
 
-- [~] Task 6.3: Tighten progressTrend schema
-  - [~] `packages/knowledge-space-core/src/progress-trend.ts`
-  - [~] Red tests prove `progressTrendHistorySchema` accepts empty, out-of-order, and duplicate-snapshot history
-  - [ ] Green: enforce chronological order, non-empty window, unique `masteredNodeIds` per snapshot
+- [x] Task 6.3: Tighten progressTrend schema [green: d9b65977]
+  - [x] `packages/knowledge-space-core/src/progress-trend.ts`
+  - [x] Red tests proved `progressTrendHistorySchema` accepted empty, out-of-order, and duplicate-snapshot history
+  - [x] Green: `.min(1)` + `.superRefine` enforces chronological non-decreasing timestamps, non-empty window, and unique `masteredNodeIds` per snapshot (commit `d9b65977`).
 
-- [~] Task 6.4: Deduplicate edge endpoint rules
-  - [~] Red test proves `EDGE_ENDPOINT_RULES` is defined in both `schemas.ts` and `validation.ts`
-  - [ ] Green: move canonical `EDGE_ENDPOINT_RULES` to one module (e.g. `edge-endpoint-rules.ts`)
-  - [ ] Green: import it in both `schemas.ts` and `validation.ts`
+- [x] Task 6.4: Deduplicate edge endpoint rules [green: d9b65977]
+  - [x] Red test proved `EDGE_ENDPOINT_RULES` was defined in both `schemas.ts` and `validation.ts`
+  - [x] Green: moved canonical `EDGE_ENDPOINT_RULES` + `EdgeSourceTargetConstraint` type to new `packages/knowledge-space-core/src/edge-endpoint-rules.ts` (commit `d9b65977`).
+  - [x] Green: `schemas.ts` and `validation.ts` both import the canonical `EDGE_ENDPOINT_RULES` from the new module.
 
-- [~] Task 6.5: Expand transfers_to tests
-  - [~] Added parametrized/wrong source kind, wrong target kind, same-domain concept, zero-weight acceptance
-  - [ ] Green: ensure `getInvalidEdgePairings` / `knowledgeSpaceSchema` satisfy the new tests
+- [x] Task 6.5: Expand transfers_to tests [green: d9b65977]
+  - [x] Added wrong source kind, wrong target kind, same-domain concept, zero-weight acceptance tests
+  - [x] Green: `getInvalidEdgePairings` (crossDomainOnly + sourceKinds/targetKinds) and `knowledgeSpaceSchema` (`weight: 0..1`) satisfy all four new tests at commit `d9b65977`.
 
-- [~] Task 6.6: Strengthen public-api-contract test
-  - [~] Imports all key exports from root and subpaths; added real `projectDisplayLevel` instance test
-  - [~] Added negative schema cases (currently failing)
-  - [ ] Green: pass after schema refinements land
+- [x] Task 6.6: Strengthen public-api-contract test [green: d9b65977]
+  - [x] Imports all key exports from root and subpaths; added real `projectDisplayLevel` instance test
+  - [x] Added negative schema cases
+  - [x] Green: both negative-schema tests (`rejects invalid display-level bands`, `rejects invalid progressTrend history`) pass after schema refinements at commit `d9b65977`.
 
-- [~] Task 6.7: Remove stale Red-phase comments
-  - [~] Red detector test identifies 8 stale hits across 7 files
-  - [ ] Green: rewrite test file headers to describe current contract/regression purpose
+- [x] Task 6.7: Remove stale Red-phase comments [green: d9b65977]
+  - [x] Red detector test identified 8 stale hits across 7 files
+  - [x] Green: rewrote 7 test-file headers to describe current contract/regression purpose at commit `d9b65977`:
+    - `edge-type-remediated-by.test.ts` line 14
+    - `edge-type-transfers-to.test.ts` line 12
+    - `level-projection-public-api.test.ts` lines 1-19 + line 38
+    - `placement-engine-extra-2.test.ts` lines 1-34
+    - `placement-engine-extra.test.ts` lines 10-25
+    - `placement-knowledge-state-seed.test.ts` lines 1-22 + 27-29
+    - `spec-markers.test.ts` lines 1-50 (JSDoc + assertion messages)
+  - [x] `stale-red-comments.test.ts` self-excludes; the detector scan returns `hits=0` after the rewrite.
 
-- [~] Task 6.8: Reconcile test count
-  - [~] Baseline: 20 files / 285 tests
-  - [~] Red: 22 files / 301 tests (16 new tests added)
-  - [ ] Green: record final live count after schema fixes
+- [x] Task 6.8: Reconcile test count [green: d9b65977]
+  - [x] Baseline: 20 files / 285 tests
+  - [x] Red: 22 files / 301 tests (16 new Phase 6 tests added)
+  - [x] Green: **22 files / 301 tests / 0 failed** — `CI=true npx vitest run packages/knowledge-space-core/src/__tests__` → exit 0 (commit `d9b65977`).
 
 
 

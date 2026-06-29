@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "phase": "Phase 6: kst-lesser-holes_20260521 Phase 1 Quality",
+  "track_id": "spec-compliance-and-process-integrity_20260612",
+  "role": "measure-jr-green",
+  "status": "green",
+  "baseline_sha": "4e97f5d71785c9da0954f59f6eaa678d59fd87f1",
+  "red_sha": "affed2e32a0ca1ac70eb5b5975f4d8226bd67148",
+  "green_sha": "d9b65977",
+  "tasks": [
+    {
+      "id": "6.1",
+      "title": "Record real adversarial findings",
+      "status": "completed",
+      "commit_sha": "d9b65977",
+      "notes": "phase-6-red-result.json (pre-existing from Mid Red) carries 6 non-empty blocking_findings; every one is resolved by d9b65977. Artifact preserved."
+    },
+    {
+      "id": "6.2",
+      "title": "Tighten Level Projection schema",
+      "status": "completed",
+      "commit_sha": "d9b65977",
+      "files": ["packages/knowledge-space-core/src/level-projection.ts"],
+      "notes": "displayLevelSchema enforces .min(1) and .superRefine for unique ids + non-decreasing minMastery. LevelProjectionFn return-type narrowing deferred (ADV-P6-N1, non-blocking)."
+    },
+    {
+      "id": "6.3",
+      "title": "Tighten progressTrend schema",
+      "status": "completed",
+      "commit_sha": "d9b65977",
+      "files": ["packages/knowledge-space-core/src/progress-trend.ts"],
+      "notes": "progressTrendHistorySchema enforces .min(1) and .superRefine for unique masteredNodeIds and chronologically non-decreasing timestamps."
+    },
+    {
+      "id": "6.4",
+      "title": "Deduplicate edge endpoint rules",
+      "status": "completed",
+      "commit_sha": "d9b65977",
+      "files": [
+        "packages/knowledge-space-core/src/edge-endpoint-rules.ts",
+        "packages/knowledge-space-core/src/schemas.ts",
+        "packages/knowledge-space-core/src/validation.ts"
+      ],
+      "notes": "New canonical edge-endpoint-rules.ts owns EDGE_ENDPOINT_RULES + EdgeSourceTargetConstraint type; schemas.ts and validation.ts both import it. edge-endpoint-rules.test.ts confirms exactly one canonical source."
+    },
+    {
+      "id": "6.5",
+      "title": "Expand transfers_to tests",
+      "status": "completed",
+      "commit_sha": "d9b65977",
+      "files": ["packages/knowledge-space-core/src/__tests__/edge-type-transfers-to.test.ts"],
+      "notes": "Wrong source kind, wrong target kind, same-domain concept, and zero-weight acceptance tests are all green under the canonical EDGE_ENDPOINT_RULES."
+    },
+    {
+      "id": "6.6",
+      "title": "Strengthen public-api-contract test",
+      "status": "completed",
+      "commit_sha": "d9b65977",
+      "files": ["packages/knowledge-space-core/src/__tests__/public-api-contract.test.ts"],
+      "notes": "Root + subpath imports, real projectDisplayLevel instance test, and negative schema cases all pass after 6.2 + 6.3 schema refinements."
+    },
+    {
+      "id": "6.7",
+      "title": "Remove stale Red-phase comments",
+      "status": "completed",
+      "commit_sha": "d9b65977",
+      "files": [
+        "packages/knowledge-space-core/src/__tests__/edge-type-remediated-by.test.ts",
+        "packages/knowledge-space-core/src/__tests__/edge-type-transfers-to.test.ts",
+        "packages/knowledge-space-core/src/__tests__/level-projection-public-api.test.ts",
+        "packages/knowledge-space-core/src/__tests__/placement-engine-extra.test.ts",
+        "packages/knowledge-space-core/src/__tests__/placement-engine-extra-2.test.ts",
+        "packages/knowledge-space-core/src/__tests__/placement-knowledge-state-seed.test.ts",
+        "packages/knowledge-space-core/src/__tests__/spec-markers.test.ts"
+      ],
+      "notes": "Rewrote 7 stale Red-phase comments across passing test files; stale-red-comments.test.ts now returns hits=0."
+    },
+    {
+      "id": "6.8",
+      "title": "Reconcile test count",
+      "status": "completed",
+      "commit_sha": "d9b65977",
+      "notes": "Live labeled counts: baseline 20 files / 285 tests, Red 22 files / 301 tests / 10 failed, Green 22 files / 301 tests / 0 failed (test-strategy §10.3 reconciliation)."
+    }
+  ],
+  "test_count_reconciliation": {
+    "baseline_files": 20,
+    "baseline_tests": 285,
+    "red_files": 22,
+    "red_tests": 301,
+    "red_failed": 10,
+    "green_files": 22,
+    "green_tests": 301,
+    "green_failed": 0
+  },
+  "anti_pattern_check": {
+    "A1_substring_as_structured_signal": "PASS — Phase 6 tasks are [x] or untouched, no free-text deferred.",
+    "A4_vacuous_pass_on_nothing_done": "PASS — Green evidence records 22 files / 301 tests / 0 failed.",
+    "A5_false_claim_text_vs_test_reality": "PASS — live counts come from the actual command output at d9b65977.",
+    "A6_registry_note_overstatement": "PASS — measure/tracks.md is not updated by Phase 6; closeout lives in Phase 7.",
+    "A7_over_broad_filter_swallowing_real_hits": "PASS — stale comment scan excludes only the detector file by name.",
+    "A8_marker_ambiguity": "PASS — only [x], [ ], [b] markers used in Phase 6 task status.",
+    "A10_generated_facts_drift": "N/A — Phase 6 doesn't touch graph.db or measure/generated/."
+  },
+  "evidence": {
+    "targeted_command": "CI=true npx vitest run packages/knowledge-space-core/src/__tests__",
+    "targeted_result": "Test Files 22 passed (22), Tests 301 passed (301), exit 0",
+    "tsc_command": "cd packages/knowledge-space-core && npx tsc --noEmit",
+    "tsc_result": "exit 0",
+    "lint_command": "cd packages/knowledge-space-core && npm run lint",
+    "lint_result": "exit 0"
+  },
+  "next_role": "measure-review-a",
+  "timestamp": "2026-06-29T20:00:00Z"
+}
