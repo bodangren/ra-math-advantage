@@ -1,0 +1,120 @@
+{
+  "role": "review-b",
+  "status": "complete",
+  "track": "teacher-content-authoring_20260605",
+  "phase": "Phase 1 — Authoring Model & Schema-Driven Validation",
+  "verdict": "pass",
+  "commits": ["fb1634f0", "e51561e4"],
+  "commands": [
+    {
+      "command": "CI=true npx vitest run apps/integrated-math-3/__tests__/lib/teacher/content-authoring",
+      "result": "Test Files 3 passed (3) | Tests 23 passed (23). Exit code 0.",
+      "notes": "Targeted Phase 1 gate. One additional test added for the security fix."
+    },
+    {
+      "command": "npm run ws:im3:lint",
+      "result": "Exit code 0. No warnings or errors.",
+      "notes": "Closeout lint gate."
+    },
+    {
+      "command": "npx tsc --noEmit",
+      "result": "Exit code 0. No type errors.",
+      "notes": "Closeout type-check gate."
+    }
+  ],
+  "findings": [
+    {
+      "id": "B1",
+      "severity": "blocking",
+      "status": "fixed",
+      "category": "xss / injection",
+      "title": "SanitizedText wrapper could re-interpret sanitized text as executable code",
+      "detail": "SanitizedText accepted `as?: keyof React.JSX.IntrinsicElements`, allowing a caller to render sanitized text inside a `<script>` element. Because the sanitizer only strips common executable markup and renders the remaining string as a text child, `as='script'` would cause the browser to execute the sanitized string as JavaScript (e.g., `<script>alert(1)</script>`). The same wrapper risk applies to `<style>` for page-wide CSS injection. This undermined the component's safety guarantee even though it never used dangerouslySetInnerHTML.",
+      "fix": "Restricted the `as` prop type to `SafeTextTag = Exclude<keyof React.JSX.IntrinsicElements, 'script' | 'style'>` and added a runtime fallback to `'span'` if a dangerous tag is supplied. Added a test proving `as='script'` and `as='style'` fall back to a `<span>` while preserving text content.",
+      "file_refs": [
+        "apps/integrated-math-3/lib/teacher/content-authoring/sanitize-authored-text.ts:30-35",
+        "apps/integrated-math-3/lib/teacher/content-authoring/sanitize-authored-text.ts:107-133",
+        "apps/integrated-math-3/__tests__/lib/teacher/content-authoring/sanitize-authored-text.test.ts:170-198"
+      ]
+    },
+    {
+      "id": "B2",
+      "severity": "non-blocking",
+      "category": "xss / injection",
+      "title": "Sanitizer uses regex blacklist rather than whitelist parsing",
+      "detail": "sanitizeAuthoringText removes `<script>`/`<style>` blocks, event-handler attributes, and `javascript:` URLs via regular expressions. Regex-based HTML filtering is inherently fragile and can be bypassed with HTML entities, comments, or unusual attribute quoting. However, the Phase 1 render surface (SanitizedText) emits sanitized output as a plain text node, so any surviving angle brackets are not parsed as live markup. The risk is acceptable for Phase 1's narrow scope.",
+      "impact": "If a future phase renders sanitized text as HTML (dangerouslySetInnerHTML or equivalent), the blacklist must be replaced with a proper HTML sanitizer such as DOMPurify or an escape-then-render pipeline. Current SanitizedText usage is safe.",
+      "file_refs": [
+        "apps/integrated-math-3/lib/teacher/content-authoring/sanitize-authored-text.ts:37-65"
+      ]
+    },
+    {
+      "id": "B3",
+      "severity": "non-blocking",
+      "category": "auth / authorization",
+      "title": "No teacher-scoped authorization or persistence in Phase 1",
+      "detail": "Phase 1 is intentionally pure, app-local logic. normalizeLessonDraft, validateActivityConfig, and sanitizeLessonDraft accept arbitrary untrusted input and return normalized/validated/sanitized data. There is no user identity, tenant, or ownership enforcement.",
+      "impact": "Expected for Phase 1. Phase 2 'Teacher-scoped authorization + assignment/enrollment respect' must wire Convex authz around these pure functions.",
+      "file_refs": [
+        "apps/integrated-math-3/lib/teacher/content-authoring/authoring-model.ts:96",
+        "apps/integrated-math-3/lib/teacher/content-authoring/activity-config-validation.ts:69",
+        "apps/integrated-math-3/lib/teacher/content-authoring/sanitize-authored-text.ts:95"
+      ]
+    },
+    {
+      "id": "B4",
+      "severity": "non-blocking",
+      "category": "validation / data boundary",
+      "title": "normalizeLessonDraft does not validate activity props against Zod schemas",
+      "detail": "The authoring model validates structure and component-key membership but delegates prop schema validation to validateActivityConfig. The two functions are not composed into a single call.",
+      "impact": "By design. Phase 2 must define the orchestration order (normalize -> validate each activity -> sanitize -> hash/persist) and ensure no activity reaches persistence without both structural and schema validation.",
+      "file_refs": [
+        "apps/integrated-math-3/lib/teacher/content-authoring/authoring-model.ts:96-265",
+        "apps/integrated-math-3/lib/teacher/content-authoring/activity-config-validation.ts:69-134"
+      ]
+    },
+    {
+      "id": "B5",
+      "severity": "informational",
+      "category": "test-coverage",
+      "title": "No adversarial test for sanitizer bypasses beyond the fixed wrapper case",
+      "detail": "Sanitizer tests cover script blocks, event handlers, javascript: URLs, and math/markdown preservation. They do not exhaustively probe HTML-entity bypasses, comment-based bypasses, or unusual tag syntax. SanitizedText's text-node rendering makes these bypasses non-exploitable today.",
+      "impact": "Informational. If the render strategy changes to HTML parsing, expand adversarial sanitizer tests before relying on the blacklist.",
+      "file_refs": [
+        "apps/integrated-math-3/__tests__/lib/teacher/content-authoring/sanitize-authored-text.test.ts"
+      ]
+    }
+  ],
+  "anti_pattern_check": {
+    "A1": "pass — plan uses structured [b] deferred:user for UMV; no substring-as-signal risk",
+    "A2": "pass — Phase 1 does not implement or assert publish/approval; no consent gate needed",
+    "A3": "pass — no digit-only baseline assertions in source or test code",
+    "A4": "pass — tests assert concrete behavior, not vacuous marker consistency",
+    "A5": "pass — plan.md commands match actual command outputs; no false claims",
+    "A6": "pass — tracks.md lists the track as PLANNED and makes no 'resolved' security claim",
+    "A7": "pass — no over-broad English-word filters in source guards",
+    "A8": "pass — Phase 1 tasks use [x] complete markers; UMV is [b] deferred:user",
+    "A9": "pass — no Measure file path references in product test code",
+    "A10": "pass — graph.db was updated by the Green commit; no structural drift"
+  },
+  "files_changed": [
+    "apps/integrated-math-3/lib/teacher/content-authoring/sanitize-authored-text.ts",
+    "apps/integrated-math-3/__tests__/lib/teacher/content-authoring/sanitize-authored-text.test.ts"
+  ],
+  "fixes_applied": [
+    {
+      "commit": "e51561e4",
+      "message": "fix(im3): restrict SanitizedText wrapper to safe text tags",
+      "description": "Excluded 'script' and 'style' from the SanitizedText `as` prop at the type level and added a runtime fallback to 'span' so sanitized text cannot be re-interpreted as executable JavaScript or page-wide CSS by the wrapper element. Added a test covering both dangerous tags."
+    }
+  ],
+  "known_failures": "None introduced. Pre-existing aggregate test failures (274 files, ~603 tests) are outside Phase 1 scope.",
+  "deferred": [
+    {
+      "task": "Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md)",
+      "owner": "user",
+      "reason": "Phase 1 is pure logic plus a small React text-render component. No visible UI changes. UMV deferred per plan."
+    }
+  ],
+  "handoff": "Phase 1 Review B passes after fixing one proven security blocker (B1). The SanitizedText component now guarantees that sanitized authored text is rendered only inside safe text-container elements. Remaining findings are non-blocking and documented for Phase 2/3: replace regex sanitizer if HTML rendering is ever introduced (B2), wire teacher authz (B3), compose normalize/validate/sanitize before persistence (B4), and expand adversarial sanitizer tests if the render strategy changes (B5). Phase 2 can begin."
+}
