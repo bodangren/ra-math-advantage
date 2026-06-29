@@ -1,29 +1,29 @@
-// Red-phase tests for the domain-neutral PlacementResult → knowledge-state
-// seed mapping. The deferred Phase 1 integration test
-// (test-strategy.md §5 Phase 1, item 3) — "Verify `PlacementResult` can
-// feed into `getKnowledgeState` shape" — depends on a domain-neutral
+// Tests for the domain-neutral PlacementResult → knowledge-state seed
+// mapping. The deferred Phase 1 integration test (test-strategy.md §5
+// Phase 1, item 3) — "Verify `PlacementResult` can feed into
+// `getKnowledgeState` shape" — depends on a domain-neutral
 // `buildKnowledgeStateSeed` (or equivalent) helper that the placement
-// contract module exposes. That helper is the next concrete sub-piece of
-// the deferred integration test: a pure, contract-layer function that
-// converts a `PlacementResult[]` into a `KnowledgeStateSeed[]` whose
+// contract module exposes. That helper is the contract-layer function
+// that converts a `PlacementResult[]` into a `KnowledgeStateSeed[]` whose
 // shape is compatible with Track 1's eventual `getKnowledgeState`
 // contract.
 //
-// These tests assert that contract. They are expected to fail today with
-// a missing-export error from `../placement` because the helper has not
-// been implemented yet. Once the helper is added in the Green phase,
-// they should pass.
-//
+// These tests assert that contract (preserve nodeId / masteryEstimate /
+// confidence, tag with source === "placement", attach a numeric
+// seededAt, validate against the placement result schema, do not
+// mutate the input, reject invalid confidence / out-of-range mastery).
 // The IM3-specific `buildPlacementKnowledgeStateSeed` lives in
 // `apps/integrated-math-3/lib/placement/seed-knowledge-state.ts` and is
-// a thin wrapper over this domain-neutral helper. Its existence
-// confirms the shape this contract test pins down.
+// a thin wrapper over this domain-neutral helper.
 
 import { describe, it, expect } from 'vitest';
 import type { PlacementResult } from '../placement';
 import { placementResultSchema } from '../placement';
-// The following import is intentionally from the contract module. The
-// symbol does not exist there yet — the import is the Red signal.
+// Importing the contract-layer helper that the test exercises. The
+// domain-neutral `buildKnowledgeStateSeed` is exported from
+// `../placement.ts` (the contract module). The IM3-specific
+// `apps/integrated-math-3/lib/placement/seed-knowledge-state.ts`
+// delegates to it.
 import { buildKnowledgeStateSeed } from '../placement';
 import type { KnowledgeStateSeed } from '../placement';
 

@@ -7,31 +7,14 @@ import type {
   DomainAdapter,
   ValidationResult,
   ValidationError,
-  NodeKind,
-  EdgeType,
   ConfidenceLevel,
 } from './types';
 
-// ---------------------------------------------------------------------------
-// Edge endpoint pairing rules (mirrors the rules in schemas.ts)
-// ---------------------------------------------------------------------------
+import { EDGE_ENDPOINT_RULES } from './edge-endpoint-rules';
 
-type EdgeEndpointRule = {
-  edgeType: EdgeType;
-  sourceKinds?: NodeKind[];
-  targetKinds: NodeKind[];
-  crossDomainOnly?: boolean;
-};
-
-const EDGE_ENDPOINT_RULES: EdgeEndpointRule[] = [
-  { edgeType: 'rendered_by', sourceKinds: ['skill', 'worked_example', 'task_blueprint', 'concept'], targetKinds: ['renderer'] },
-  { edgeType: 'generated_by', sourceKinds: ['skill', 'task_blueprint', 'concept'], targetKinds: ['generator'] },
-  { edgeType: 'aligned_to_standard', sourceKinds: ['skill', 'worked_example', 'task_blueprint', 'concept'], targetKinds: ['standard'] },
-  { edgeType: 'transfers_to', sourceKinds: ['skill', 'concept'], targetKinds: ['skill', 'concept'], crossDomainOnly: true },
-  { edgeType: 'common_misconception_with', targetKinds: ['misconception'] },
-  { edgeType: 'contains', sourceKinds: ['domain', 'content_group', 'instructional_unit'], targetKinds: ['content_group', 'instructional_unit', 'worked_example', 'skill', 'concept', 'task_blueprint'] },
-  { edgeType: 'remediated_by', sourceKinds: ['misconception'], targetKinds: ['worked_example', 'task_blueprint', 'skill'] },
-];
+// ---------------------------------------------------------------------------
+// Edge endpoint pairing rules (single source: edge-endpoint-rules.ts)
+// ---------------------------------------------------------------------------
 
 /**
  * Find edges whose source or target node kinds violate endpoint pairing rules.
@@ -42,7 +25,9 @@ export function getInvalidEdgePairings(
   graph: KnowledgeSpace,
 ): Array<{ edgeId: string; message: string }> {
   const nodeMap = new Map(graph.nodes.map((n) => [n.id, n]));
-  const rulesByType = new Map(EDGE_ENDPOINT_RULES.map((r) => [r.edgeType, r]));
+  const rulesByType = new Map(
+    EDGE_ENDPOINT_RULES.map((r) => [r.edgeType, r] as const),
+  );
   const violations: Array<{ edgeId: string; message: string }> = [];
 
   for (const edge of graph.edges) {

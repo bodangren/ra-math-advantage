@@ -8,14 +8,13 @@ import {
 } from '../placement-fixtures';
 
 // ---------------------------------------------------------------------------
-// Phase 2 — Tree-walk test extension (Red phase)
+// Tree-walk test extension (adaptive-placement_20260521 Phase 2)
 //
-// These tests strengthen coverage of structural patterns and async-probe
-// support. They are intentionally written before the engine is modified so
-// the TDD "Red" phase is auditable. The async-probe and probe-error tests
-// are expected to fail with the current implementation; the structural
-// tests assert correctness on patterns not yet exercised in
-// `placement-engine.test.ts`.
+// This file strengthens coverage of structural patterns and async-probe
+// support. The structural tests pin down correctness on patterns not yet
+// exercised in `placement-engine.test.ts`; the async-probe and
+// probe-error tests lock in the engine's contract that async probes
+// resolve before further processing and thrown errors propagate.
 //
 // Per measure/tracks/adaptive-placement_20260521/test-strategy.md §5:
 //   - Diamond/convergent DAGs (frontier merges correctly)
@@ -24,12 +23,11 @@ import {
 //   - Self-loops (termination on a→a)
 //   - Property-based termination on small generated DAGs
 //
-// Plus two engine-contract tests that reveal a real gap in the current
-// implementation:
+// Plus the engine-contract tests that lock in the live behavior:
 //   - `ProbeAdapter.probe` may return a `Promise<ProbeResult>` (per the
-//     interface), but the engine does not `await` the result, so async
-//     probes crash the walk.
-//   - If a probe throws, the engine does not surface the error.
+//     interface); the engine awaits the result before computing mastery.
+//   - If a probe throws, the engine surfaces the error to the caller
+//     rather than swallowing it.
 // ---------------------------------------------------------------------------
 
 // --- Helpers ---------------------------------------------------------------

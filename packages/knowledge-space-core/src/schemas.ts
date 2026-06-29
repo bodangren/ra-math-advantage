@@ -2,11 +2,11 @@
 
 import { z } from 'zod';
 import type {
-  NodeKind,
-  EdgeType,
   KnowledgeSpaceNode,
   KnowledgeSpaceEdge,
 } from './types';
+
+import { EDGE_ENDPOINT_RULES } from './edge-endpoint-rules';
 
 // Stable ID pattern: lower-kebab-case segments separated by dots, minimum two segments.
 // First segment must start with a letter; subsequent segments may start with a letter or digit.
@@ -222,23 +222,6 @@ function checkDuplicateEdges(
 // Edge endpoint pairing validation
 // ---------------------------------------------------------------------------
 
-type EdgeSourceTargetConstraint = {
-  edgeType: EdgeType;
-  sourceKinds?: NodeKind[];
-  targetKinds: NodeKind[];
-  crossDomainOnly?: boolean;
-};
-
-const EDGE_ENDPOINT_RULES: EdgeSourceTargetConstraint[] = [
-  { edgeType: 'rendered_by', sourceKinds: ['skill', 'worked_example', 'task_blueprint', 'concept'], targetKinds: ['renderer'] },
-  { edgeType: 'generated_by', sourceKinds: ['skill', 'task_blueprint', 'concept'], targetKinds: ['generator'] },
-  { edgeType: 'aligned_to_standard', sourceKinds: ['skill', 'worked_example', 'task_blueprint', 'concept'], targetKinds: ['standard'] },
-  { edgeType: 'transfers_to', sourceKinds: ['skill', 'concept'], targetKinds: ['skill', 'concept'], crossDomainOnly: true },
-  { edgeType: 'common_misconception_with', targetKinds: ['misconception'] },
-  { edgeType: 'contains', sourceKinds: ['domain', 'content_group', 'instructional_unit'], targetKinds: ['content_group', 'instructional_unit', 'worked_example', 'skill', 'concept', 'task_blueprint'] },
-  { edgeType: 'remediated_by', sourceKinds: ['misconception'], targetKinds: ['worked_example', 'task_blueprint', 'skill'] },
-];
-
 /**
  * Check edges against endpoint pairing rules and add a Zod issue for violations.
  * @param {KnowledgeSpaceNode[]} nodes - Array of knowledge space nodes
@@ -251,7 +234,9 @@ function checkEndpointPairings(
   ctx: z.RefinementCtx,
 ): void {
   const nodeMap = new Map(nodes.map((n) => [n.id, n]));
-  const rulesByType = new Map(EDGE_ENDPOINT_RULES.map((r) => [r.edgeType, r]));
+  const rulesByType = new Map(
+    EDGE_ENDPOINT_RULES.map((r) => [r.edgeType, r] as const),
+  );
 
   for (let i = 0; i < edges.length; i++) {
     const edge = edges[i];

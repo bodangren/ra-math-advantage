@@ -13,7 +13,44 @@ export const displayLevelItemSchema = z.object({
   minMastery: z.number().min(0).max(1),
 });
 
-export const displayLevelSchema = z.array(displayLevelItemSchema);
+/**
+ * Display-level band: ordered, id-unique, non-decreasing minMastery.
+ *
+ * Contract: a valid band must contain at least one level (level scheme exists),
+ * every `id` must be unique, and `minMastery` values must be non-decreasing so
+ * `projectDisplayLevel` can map monotonically. Empty arrays, duplicate ids,
+ * and descending minMastery are all rejected at validation time so the
+ * invariant cannot slip downstream.
+ */
+export const displayLevelSchema = z.array(displayLevelItemSchema)
+  .min(1, 'A display-level band must contain at least one level')
+  .superRefine((band, ctx) => {
+    const seenIds = new Set<string>();
+    for (let i = 0; i < band.length; i++) {
+      const level = band[i]!;
+      if (seenIds.has(level.id)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: `Duplicate display-level id "${level.id}" — ids must be unique within a band`,
+          path: [i, 'id'],
+        });
+        return;
+      }
+      seenIds.add(level.id);
+
+      if (i > 0) {
+        const prev = band[i - 1]!;
+        if (level.minMastery < prev.minMastery) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            message: `Display-level "${level.id}" has minMastery ${level.minMastery} which is below the previous level "${prev.id}" minMastery ${prev.minMastery} — values must be non-decreasing`,
+            path: [i, 'minMastery'],
+          });
+          return;
+        }
+      }
+    }
+  });
 
 export type KnowledgeState = z.infer<typeof knowledgeStateSchema>;
 export type DisplayLevel = z.infer<typeof displayLevelItemSchema>;

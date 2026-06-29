@@ -1,22 +1,21 @@
-// Phase 1 (Track 6 misconception-loop_20260521) — remediated_by contract Red tests.
+// Phase 1 (Track 6 misconception-loop_20260521) — `remediated_by` contract tests.
 //
 // kst-srs.v2 §9.1 + spec.md FR1: `remediated_by` is a new edge type that points
 // a `misconception` at the activity that remediates it. The endpoint pair is
-// `misconception → worked_example | task_blueprint | skill`. The Green-phase
-// deliverable extends:
+// `misconception → worked_example | task_blueprint | skill`. The contract
+// surfaces exercised in this file:
 //   1. The EdgeType union in packages/knowledge-space-core/src/types.ts
 //   2. The edgeTypeSchema enum in packages/knowledge-space-core/src/schemas.ts
-//   3. The EDGE_ENDPOINT_RULES pairing list in both schemas.ts and validation.ts
-//      (sourceKinds: ['misconception']; targetKinds:
-//      ['worked_example', 'task_blueprint', 'skill'])
+//   3. The EDGE_ENDPOINT_RULES pairing list (now sourced from
+//      edge-endpoint-rules.ts) with sourceKinds: ['misconception'] and
+//      targetKinds: ['worked_example', 'task_blueprint', 'skill']
 //   4. The validation pipeline (validateKnowledgeSpace + getInvalidEdgePairings)
 //
-// These tests are Red: each currently fails because the implementation does
-// not yet include `remediated_by` (zod enum rejects, pairing rule absent, TS
-// union missing). The escape hatches (e.g., `as EdgeType` casts) are
-// deliberate: we want the vitest runner to surface the runtime failures
-// (zod parse / pairing rule / validateKnowledgeSpace) rather than TS compile
-// errors masking the real signal.
+// These tests intentionally exercise the happy path AND the negative cases
+// (wrong source kind, wrong target kind, typo in edge type). The escape
+// hatches (e.g., `as EdgeType` casts) are deliberate: we want the vitest
+// runner to surface the runtime response of the live schema/validation
+// pipeline rather than TS compile errors masking the real signal.
 
 import { describe, it, expect } from 'vitest';
 import { knowledgeSpaceSchema } from '../schemas';

@@ -1,20 +1,21 @@
-// Phase 1 (Track 8 kst-lesser-holes_20260521) — transfers_to contract Red tests.
+// Phase 1 (Track 8 kst-lesser-holes_20260521) — `transfers_to` contract tests.
 //
 // kst-srs.v2 §11.1: `transfers_to` is a weighted, cross-domain edge type distinct
-// from `equivalent_to` (which is identity). The Green-phase deliverable extends:
+// from `equivalent_to` (which is identity). The contract surfaces exercised in
+// this file:
 //   1. The EdgeType union in packages/knowledge-space-core/src/types.ts
 //   2. The edgeTypeSchema enum in packages/knowledge-space-core/src/schemas.ts
-//   3. The EDGE_ENDPOINT_RULES pairing list in both schemas.ts and validation.ts
-//      with cross-domain pairing (sourceKinds/targetKinds from spec; same-domain
-//      rejected)
+//   3. The EDGE_ENDPOINT_RULES pairing list (now sourced from
+//      edge-endpoint-rules.ts) with cross-domain pairing (sourceKinds/
+//      targetKinds from spec; same-domain rejected)
 //   4. The validation pipeline (validateKnowledgeSpace + getInvalidEdgePairings)
 //
-// These tests are Red: each currently fails because the implementation does not
-// yet include `transfers_to` (zod enum rejects, pairing rule absent, TS union
-// missing). The escape hatches (e.g., `as EdgeType` casts, `as unknown` for
-// building out-of-union payloads) are deliberate: we want the vitest runner to
-// surface the runtime failures (zod parse / pairing rule / validateKnowledgeSpace)
-// rather than TS compile errors masking the real signal.
+// These tests cover the happy path plus the negative cases (wrong source kind,
+// wrong target kind, same-domain concept pairs, typo in edge type) and the
+// zero-weight boundary. The escape hatches (e.g., `as EdgeType` casts,
+// `as unknown` for building out-of-union payloads) are deliberate: we want the
+// vitest runner to surface the runtime response of the live schema/validation
+// pipeline rather than TS compile errors masking the real signal.
 
 import { describe, it, expect } from 'vitest';
 import { knowledgeSpaceSchema } from '../schemas';

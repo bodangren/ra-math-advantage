@@ -1,37 +1,29 @@
-// Red-phase tests — Round 2: invalid probe result handling
+// Tests — Round 2: invalid probe result handling
 //
 // Per measure/tracks/adaptive-placement_20260521/test-strategy.md §3:
 //   "Async probe support must preserve deterministic result order and
 //    propagate errors."
 //
-// The current engine in placement-engine.ts does not validate the value
-// returned by `adapter.probe`. When the probe returns a non-canonical
-// value (a string other than 'pass' / 'fail' / 'partial', or a non-string
-// such as null / undefined / a number), the engine crashes with a cryptic
-// `TypeError` from one of two places:
+// The engine in placement-engine.ts validates the value returned by
+// `adapter.probe`. When the probe returns a non-canonical value (a
+// string other than 'pass' / 'fail' / 'partial', or a non-string such
+// as null / undefined / a number), the engine rejects with an `Error`
+// containing the phrase "Invalid probe result" so callers can identify
+// the offending value at a glance.
 //
-//   1. The `typeof (probeResult).then === 'function'` check on line 134
-//      throws "Cannot read properties of null/undefined (reading 'then')"
-//      when the probe returns null or undefined.
-//   2. The `computeMastery` switch on lines 47-56 returns `undefined` for
-//      any non-canonical value, and the destructuring on line 111 then
-//      throws "Cannot destructure property 'estimate' of 'undefined'".
+//   - The `validateProbeResult` helper asserts the value is one of the
+//     canonical ProbeResult strings; the `computeMastery` switch maps
+//     the canonical value to the mastery estimate / confidence pair.
+//   - Async probes must `await` before reaching `validateProbeResult`,
+//     so a non-canonical value resolves to a rejection (not a TypeError).
 //
-// Neither error message names the contract violation, identifies the
-// probe result that caused it, or suggests a remediation. Callers
-// (placement-flow.ts, IM3 wiring) cannot distinguish a probe-side bug
-// from an engine bug.
-//
-// These tests pin down the desired behavior: the engine must surface a
-// clear, named error (or at minimum, an error message containing
-// "invalid probe result" and the offending value) for any probe result
-// that is not one of the canonical `ProbeResult` strings. The async
-// rejection propagation test locks in the current correct behavior so a
-// future refactor cannot silently break it.
-//
-// Status: RED. Each "it" below is expected to FAIL on the current engine
-// and to pass once the engine validates probe results and surfaces a
-// clear error.
+// These tests pin down the surface behavior: any non-canonical probe
+// result must surface a clear, named error (or at minimum, an error
+// message containing "Invalid probe result" plus the offending value)
+// so callers (placement-flow.ts, IM3 wiring) can distinguish a
+// probe-side bug from an engine bug. The async rejection propagation
+// test locks in the correct behavior so a future refactor cannot
+// silently swallow rejections.
 
 import { describe, it, expect } from 'vitest';
 import { runPlacementTraversal } from '../placement-engine';

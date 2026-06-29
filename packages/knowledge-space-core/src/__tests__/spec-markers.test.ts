@@ -1,15 +1,15 @@
 /**
- * Phase 4 Red Test — kst-srs.v2/SPECIFICATION.md cross-reference markers
+ * Tests — kst-srs.v2/SPECIFICATION.md cross-reference markers
  *
  * Track 8: Lesser Holes. Phase 4, Task 1.
  *
  * Per plan.md Phase 4 Task 1: "Update in-repo kst-srs.v2 spec
  * (§3.2 transfers_to, §16 Level Projection, §9.4 progressTrend, §12.9
  * FSRS per-card limitation + siblingReinforcement flag)." The spec
- * already documents the items themselves in §11.1–§11.4, but the
- * Phase 4 deliverable is the *cross-references* in the host sections
- * so that readers traversing the spec land on the §11 definitions
- * from the natural home of each topic:
+ * documents the items in §11 only; the cross-references in
+ * §3.2 / §9.4 / §12.9 / §16 — plus the §12.9 / §16 headings — must
+ * be added so readers traversing the spec land on the §11
+ * definitions from the natural home of each topic:
  *
  *   - §3.2 (Four-Way State, in Knowledge State & Mastery) — should
  *     cross-reference `transfers_to` as the cross-domain edge that
@@ -23,16 +23,9 @@
  *   - §16 (a new top-level section after §13 NFRs) — should
  *     document Level Projection as a presentation-only projection.
  *
- * The current spec at HEAD carries the topics in §11 only, with no
- * cross-references in §3.2 / §9.4 / §12.9 / §16, and §12.9 and §16
- * do not exist as headings. This test is Red: every section-scoped
- * assertion fails at HEAD for the expected missing-content reason.
- *
- * `siblingReinforcement` already appears in the spec at §11.4, so
- * the bare token check passes; the §12.9 cross-reference check is
- * what makes the FSRS doc-contract test fail. The bare-token check
- * is included as a regression guard so a future refactor that
- * renames or removes the flag from §11 is caught.
+ * The bare `siblingReinforcement` token check at the end is a
+ * regression guard so a future refactor that renames or removes the
+ * flag from §11 is caught.
  *
  * Artifact contract — not a behavioral test. This file grep's a
  * checked-in markdown document. The live-behavior gate is the
@@ -144,7 +137,7 @@ describe('Phase 4 — kst-srs.v2/SPECIFICATION.md cross-reference markers', () =
     );
     expect(
       section129.length,
-      '§12.9 must be added under §12 (Package Boundaries) to document the FSRS per-card limitation. Heading not found at HEAD.',
+      '§12.9 must be added under §12 (Package Boundaries) to document the FSRS per-card limitation. Heading not found in the live spec.',
     ).toBeGreaterThan(0);
     expect(
       section129,
@@ -161,7 +154,7 @@ describe('Phase 4 — kst-srs.v2/SPECIFICATION.md cross-reference markers', () =
     );
     expect(
       section16.length,
-      '§16 must be added as a top-level section to document Level Projection. Heading not found at HEAD.',
+      '§16 must be added as a top-level section to document Level Projection. Heading not found in the live spec.',
     ).toBeGreaterThan(0);
     expect(
       section16,
