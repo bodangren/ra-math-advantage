@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "role": "strategy",
+  "status": "complete",
+  "track": "teacher-content-authoring_20260605",
+  "phase": "Phase 2 — Draft Lifecycle & Persistence",
+  "baseline_sha": "afee773fe49a7c2d429d12c6e106f282e0411fd1",
+  "summary": "Phase 2 strategy refined for draft lifecycle persistence, approval queue/content hashing integration, and teacher-scoped authorization with assignment/enrollment visibility gates. Phase 2 plan markers were updated to orchestrator vocabulary: automatable tasks [~], manual verification [b] deferred:user.",
+  "commits": [
+    "7919019a"
+  ],
+  "commands": [
+    "Read measure/index.md, measure/workflow.md, measure/tracks.md, measure/anti-patterns.md, teacher-content-authoring_20260605/spec.md, plan.md, test-strategy.md, and phase-1-acceptance-result.json.",
+    "Attempted to read apps/integrated-math-3/convex/_generated/ai/guidelines.md; file is absent, so strategy follows existing Convex source patterns and forbids generated-file edits.",
+    "build-graph stats ./graph.db: pass, 14,292 nodes / 20,788 edges / 2,082 files.",
+    "build-graph search ./graph.db content authoring: no direct results; source-read Phase 1 content-authoring modules and tests.",
+    "build-graph search ./graph.db computeComponentContentHash / assembleReviewQueueItem / normalizeLessonDraft / getAuthorizedTeacher / lessonAssignment / class_enrollments: relevant symbols and surfaces identified; ambiguous auth/review queue nodes resolved by source reads.",
+    "Source-read Convex schema, activities, teacher, student, teacher/lessonAssignment, auth, dev approval handlers, IM3 review-queue adapter, and component-approval hash/review tests to shape Phase 2 risks.",
+    "git status --short --branch / git diff / git log --oneline -10 inspected before commit; only _add_types.py and _add_types.ts remained untracked out of scope. stash@{0} was not touched."
+  ],
+  "changed_files": [
+    "measure/tracks/teacher-content-authoring_20260605/plan.md",
+    "measure/tracks/teacher-content-authoring_20260605/test-strategy.md",
+    "measure/tracks/teacher-content-authoring_20260605/phase-2-strategy-result.json"
+  ],
+  "plan_updates": "Phase 2 tasks 1-3 marked [~] as active automatable work; Phase 2 manual verification marked [b] deferred:user. Phase 1 evidence and Phases 3-4 were left otherwise unchanged.",
+  "test_strategy_focus": [
+    "Targeted Red/Green command: CI=true npx vitest run apps/integrated-math-3/__tests__/lib/teacher/content-authoring apps/integrated-math-3/__tests__/convex.",
+    "Lifecycle tests must prove idempotent draft persistence and legal-only status transitions: draft -> submitted -> approved/rejected -> published with edit-after-reject.",
+    "Approval/hash tests must use real computeComponentContentHash and placement-derived example/activity/practice review contracts, including stale-hash publish rejection.",
+    "Authorization tests must prove teacher ownership, class ownership, organization boundaries, assignment, and active enrollment before student visibility/progress."
+  ],
+  "anti_pattern_coverage": "A1-A10 covered in test-strategy.md §8 with per-anti-pattern defenses and falsification conditions.",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    "The product lifecycle includes submitted/approved/rejected, while existing lesson_versions status is draft/review/published/archived. Phase 2 tests must pin any mapping rather than silently collapse statuses.",
+    "Existing ComponentKind excludes lesson; whole-lesson publish safety should be decomposed into placed example/activity/practice approvals or be handled by an explicit contract change.",
+    "computeComponentContentHash hashes component props/grading only. If lesson/section text is publish-sensitive, Phase 2 must either include it in a documented hash contract or guard it separately.",
+    "Existing student lesson queries resolve latest published versions and are not sufficient proof of authored-content assignment/enrollment gating."
+  ],
+  "known_failures": "No product tests were run or introduced in this docs-only strategy pass. Pre-existing untracked _add_types.py and _add_types.ts preserved; stash@{0} untouched.",
+  "handoff": "Mid Red should add Phase 2 Convex/content-authoring persistence tests first, run the targeted Red command, and prove new failures cover lifecycle, hash/approval, and auth+assignment/enrollment gates. Green should implement the smallest app-local persistence/lifecycle layer preserving Phase 1 validation/sanitization and existing approval/hash primitives; keep composer UI/preview UX for Phase 3.",
+  "confidence": "high"
+}
