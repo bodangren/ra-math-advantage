@@ -798,39 +798,27 @@ describe('Phase 2 — Teacher authorization and assignment/enrollment visibility
       classId: cls._id as Id<'classes'>,
     });
 
-    const { ctx: qCtx } = makeQueryMockCtx({
-      profiles: [teacher, activeStudent, withdrawnStudent, otherClassStudent, otherOrgStudent],
-      classes: [cls],
-      class_lessons: [
-        {
-          _id: 'class_lesson_1',
-          classId: cls._id,
-          lessonId: saved.lessonId,
-          assignedAt: 1000,
-          createdAt: 1000,
-        },
-      ],
-      class_enrollments: [
-        {
-          _id: 'enrollment_active',
-          classId: cls._id,
-          studentId: activeStudent._id,
-          status: 'active',
-          enrolledAt: 1000,
-          createdAt: 1000,
-          updatedAt: 1000,
-        },
-        {
-          _id: 'enrollment_withdrawn',
-          classId: cls._id,
-          studentId: withdrawnStudent._id,
-          status: 'withdrawn',
-          enrolledAt: 1000,
-          createdAt: 1000,
-          updatedAt: 1000,
-        },
-      ],
-    });
+    const { ctx: qCtx } = makeQueryMockCtx(stores);
+    qCtx.stores.class_enrollments.push(
+      {
+        _id: 'enrollment_active',
+        classId: cls._id,
+        studentId: activeStudent._id,
+        status: 'active',
+        enrolledAt: 1000,
+        createdAt: 1000,
+        updatedAt: 1000,
+      },
+      {
+        _id: 'enrollment_withdrawn',
+        classId: cls._id,
+        studentId: withdrawnStudent._id,
+        status: 'withdrawn',
+        enrolledAt: 1000,
+        createdAt: 1000,
+        updatedAt: 1000,
+      },
+    );
 
     const activeResult = await getAuthoredLessonForStudentHandler(qCtx, {
       userId: activeStudent._id as Id<'profiles'>,
