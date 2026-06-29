@@ -2,25 +2,30 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import {
   projectDisplayLevel,
+  displayLevelSchema,
 } from '@math-platform/knowledge-space-core/level-projection';
 import type {
   KnowledgeState,
-  DisplayLevel,
+  DisplayLevelBand,
 } from '@math-platform/knowledge-space-core/level-projection';
 
 const CSV_PATH = resolve(__dirname, 'gse-to-im3-advantage.csv');
 
-function loadLevels(): DisplayLevel[] {
+function loadLevels(): DisplayLevelBand {
   const raw = readFileSync(CSV_PATH, 'utf8');
   const rows = raw.split(/\r?\n/).filter((line) => line.length > 0).slice(1);
-  return rows.map((row) => {
+  const levels = rows.map((row) => {
     const [id, title, minMasteryStr] = row.split(',');
-    return {
-      id: id!,
-      title: title!,
-      minMastery: Number(minMasteryStr),
-    };
+    if (!id || !title || minMasteryStr === undefined) {
+      throw new Error(`Malformed CSV row in ${CSV_PATH}: "${row}"`);
+    }
+    const minMastery = Number(minMasteryStr);
+    if (!Number.isFinite(minMastery)) {
+      throw new Error(`Invalid minMastery "${minMasteryStr}" in ${CSV_PATH} row: "${row}"`);
+    }
+    return { id, title, minMastery };
   });
+  return displayLevelSchema.parse(levels);
 }
 
 const levels = loadLevels();

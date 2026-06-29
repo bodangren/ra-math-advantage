@@ -75,17 +75,23 @@ function averageMastery(state: KnowledgeState): number {
  * Finds the highest level whose `minMastery` threshold is ≤ the average
  * mastery across all skills. Levels must be sorted by `minMastery` ascending.
  *
+ * Validates `levels` against `displayLevelSchema` before indexing so the
+ * function fails safely on empty arrays, duplicate ids, or non-monotonic
+ * thresholds instead of relying on non-null assertions.
+ *
  * @param {KnowledgeState} state - The learner's knowledge state (list of skill masteries)
  * @param {DisplayLevel[]} levels - The domain's display-level band definitions, sorted ascending
  * @returns {string} - The `id` of the matching display level
+ * @throws {z.ZodError} - If `levels` is not a valid display-level band
  */
 export function projectDisplayLevel(
   state: KnowledgeState,
   levels: DisplayLevel[],
 ): string {
+  const band = displayLevelSchema.parse(levels);
   const avg = averageMastery(state);
-  let result = levels[0]!;
-  for (const level of levels) {
+  let result = band[0];
+  for (const level of band) {
     if (avg >= level.minMastery) {
       result = level;
     }

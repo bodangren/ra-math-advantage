@@ -26,6 +26,7 @@ import { describe, it, expect } from 'vitest';
 import {
   knowledgeStateSchema,
   displayLevelSchema,
+  projectDisplayLevel,
   type LevelProjectionFn,
 } from '../level-projection';
 
@@ -75,6 +76,20 @@ describe('Level Projection — type contract (kst-srs.v2 §11.2)', () => {
       ],
     });
     expect(out).toBe('L3');
+  });
+
+  it('projectDisplayLevel fails safely on an invalid display-level band', () => {
+    // Runtime guard: even though the function accepts DisplayLevel[], it
+    // validates the band before indexing. An empty band must throw rather
+    // than dereference an undefined first element.
+    expect(() => projectDisplayLevel({ skills: [] }, [])).toThrow();
+    expect(() => projectDisplayLevel(
+      { skills: [] },
+      [
+        { id: 'L1', title: 'Level 1', minMastery: 0.5 },
+        { id: 'L2', title: 'Level 2', minMastery: 0.25 },
+      ],
+    )).toThrow();
   });
 });
 
