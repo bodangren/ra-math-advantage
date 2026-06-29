@@ -6,6 +6,9 @@
   "phase": "Phase 1 — Authoring Model & Schema-Driven Validation",
   "baseline_sha": "f12dee46c8ff2bda1389f57f2f82656a3fee8092",
   "summary": "Phase 1 strategy created for teacher content authoring. It defines the required Red command, Green and closeout gates, fixture/mock/live-proof expectations, artifact-vs-live test distinctions, architecture guardrails, changed-contract risks, intentionally-red aggregate-suite handling, and A1-A10 anti-pattern defenses. Phase 1 plan markers were updated to orchestrator vocabulary: automatable tasks [~], manual verification [b] deferred:user.",
+  "commits": [
+    "c390aafa"
+  ],
   "commands": [
     "build-graph stats ./graph.db (pass: 14254 nodes / 20750 edges / 2079 files)",
     "build-graph search ./graph.db activityPropsValidator (no graph result; source-read apps/integrated-math-3/convex/schema.ts instead)",

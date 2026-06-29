@@ -149,7 +149,7 @@ role: strategy
 status: complete
 track: teacher-content-authoring_20260605
 phase: Phase 1 — Authoring Model & Schema-Driven Validation
-commits: pending
+commits: c390aafa
 commands: build-graph stats/search/inspect for activity schemas, registry, approval hash, review queue, lesson preview, and renderer surfaces
 files_changed: measure/tracks/teacher-content-authoring_20260605/test-strategy.md; measure/tracks/teacher-content-authoring_20260605/plan.md
 plan_updates: Phase 1 automatable tasks marked [~]; Phase 1 manual verification marked [b] deferred:user
