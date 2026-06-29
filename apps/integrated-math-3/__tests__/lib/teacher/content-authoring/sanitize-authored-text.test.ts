@@ -165,4 +165,34 @@ describe('sanitizeAuthoringText', () => {
     expect(container.innerHTML).not.toContain('dangerouslySetInnerHTML');
     expect(container.textContent).toContain('Safe math');
   });
+
+  it('falls back to a span when asked to render as script or style', async () => {
+    const { SanitizedText } = await import(
+      '../../../../lib/teacher/content-authoring/sanitize-authored-text'
+    );
+
+    const { container: scriptContainer } = render(
+      React.createElement(SanitizedText, {
+        html: 'alert(1)',
+        // Cast simulates a JS caller or type-asserted misuse bypassing the
+        // SafeTextTag type; the runtime guard must still neutralize it.
+        as: 'script' as unknown as React.JSX.IntrinsicElements,
+      }),
+    );
+
+    expect(scriptContainer.querySelector('script')).toBeNull();
+    expect(scriptContainer.querySelector('span')).not.toBeNull();
+    expect(scriptContainer.textContent).toContain('alert(1)');
+
+    const { container: styleContainer } = render(
+      React.createElement(SanitizedText, {
+        html: 'body { color: red }',
+        as: 'style' as unknown as React.JSX.IntrinsicElements,
+      }),
+    );
+
+    expect(styleContainer.querySelector('style')).toBeNull();
+    expect(styleContainer.querySelector('span')).not.toBeNull();
+    expect(styleContainer.textContent).toContain('body { color: red }');
+  });
 });

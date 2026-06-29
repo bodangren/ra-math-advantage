@@ -27,6 +27,14 @@
 
 import React from 'react';
 
+/** Text-container tags that would reinterpret sanitized children as executable
+ *  code (script) or page-wide styles (style). SanitizedText must never use them
+ *  as its wrapper, even if a caller requests it. */
+type DangerousTextTag = 'script' | 'style';
+
+/** Any intrinsic element except the dangerous ones above. */
+type SafeTextTag = Exclude<keyof React.JSX.IntrinsicElements, DangerousTextTag>;
+
 const SCRIPT_BLOCK_REGEX = /<script\b[\s\S]*?>[\s\S]*?<\/script\s*>/gi;
 const STYLE_BLOCK_REGEX = /<style\b[\s\S]*?>[\s\S]*?<\/style\s*>/gi;
 const EVENT_HANDLER_DOUBLE_QUOTED_REGEX = /\s+on[a-z]+\s*=\s*"[^"]*"/gi;
@@ -103,14 +111,22 @@ export function sanitizeLessonDraft(draft: unknown): unknown {
  * brackets or entity-like sequences remain inert and visible only as
  * characters. The Phase 3 composer UI is expected to use this component
  * (or an equivalent) for every authored free-text field.
+ *
+ * The wrapper tag is restricted to safe text containers: `script` and
+ * `style` are excluded at the type level and also guarded at runtime so
+ * that sanitized JavaScript/CSS cannot be re-interpreted as executable
+ * content by the wrapper itself.
  */
 export function SanitizedText({
   html,
   as: Tag = 'span',
 }: {
   html: string;
-  as?: keyof React.JSX.IntrinsicElements;
+  as?: SafeTextTag;
 }): React.ReactElement {
   const safe = sanitizeAuthoringText(typeof html === 'string' ? html : '');
-  return React.createElement(Tag, {}, safe);
+  // Runtime defense in depth for JS callers or type assertions.
+  const tag: SafeTextTag =
+    Tag === 'script' || Tag === 'style' ? 'span' : Tag;
+  return React.createElement(tag, {}, safe);
 }
