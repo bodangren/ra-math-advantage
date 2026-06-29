@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "status": "pass",
+  "summary": "Phase 6 acceptance passed after fixing residual stale Red-phase wording and a too-low generate-script test timeout. Tasks 6.1-6.8 are complete with live evidence: knowledge-space-core tests pass at 22 files / 302 tests, package typecheck is clean, package lint is clean, review findings are resolved or non-blocking, and A1/A3/A4/A5/A6/A7 checks did not reveal blockers.",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    {
+      "id": "P6-ACCEPT-N1",
+      "category": "worktree-hygiene",
+      "title": "Pre-existing unrelated untracked scratch scripts and stash preserved",
+      "description": "_add_types.py, _add_types.ts, and stash@{0} are outside Phase 6 acceptance scope and were explicitly preserved per the orchestrator instructions. They were not staged, edited, reverted, or committed.",
+      "severity": "informational"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "tasks-6-1-through-6-8",
+      "detail": "plan.md Phase 6 lists Tasks 6.1-6.8 as [x]. A marker scan reported phase6_completed_count: 8 and phase6_incomplete_unblocked_count: 0."
+    },
+    {
+      "id": "adversarial-findings",
+      "detail": "phase-6-red-result.json has status red with 6 non-empty blocking_findings (ADV-P6-B1 through ADV-P6-B6) and 1 nonblocking finding (ADV-P6-N1). Green/remediation commits resolved B1-B6; ADV-P6-N1 was resolved by Review B commit 7143a6f4."
+    },
+    {
+      "id": "schema-tightening",
+      "detail": "displayLevelSchema uses .min(1) and .superRefine for unique ids and non-decreasing minMastery; progressTrendHistorySchema uses .min(1) and .superRefine for chronological timestamps and unique masteredNodeIds per snapshot. projectDisplayLevel validates levels with displayLevelSchema.parse before indexing."
+    },
+    {
+      "id": "endpoint-rules",
+      "detail": "EDGE_ENDPOINT_RULES has one source definition in packages/knowledge-space-core/src/edge-endpoint-rules.ts; schemas.ts and validation.ts import the canonical constant."
+    },
+    {
+      "id": "review-findings",
+      "detail": "Review A nonblocking runtime-safety finding was fixed by 7143a6f4. Review B remediations are present and passing. Review C stale-header finding was fixed by 07124eb3; acceptance fixed additional stale Red wording in c71f720b."
+    },
+    {
+      "id": "anti-patterns",
+      "detail": "A1/A8 supervisor regex/helper present; A3 checks use labeled/structured counts; A4 no zero-task/zero-test pass; A5 current plan evidence matches live command output; A6 tracks.md does not overstate Phase 6 resolution; A7 stale-comment scan excludes only the detector file by name."
+    }
+  ],
+  "commands": [
+    {
+      "command": "CI=true npx vitest run packages/knowledge-space-core/src/__tests__",
+      "result": "initial acceptance run failed: phase4-doctor-generate-scripts.test.ts generate-script test timed out at 30s; 21 passed, 1 failed, 301 passed, 1 failed",
+      "exit": 1
+    },
+    {
+      "command": "bash measure/scripts/generate.sh",
+      "result": "generate script completed successfully when run directly within 120s; did not dirty tracked generated docs",
+      "exit": 0
+    },
+    {
+      "command": "CI=true npx vitest run packages/knowledge-space-core/src/__tests__/level-projection-and-progress-trend-contract.test.ts packages/knowledge-space-core/src/__tests__/edge-type-transfers-to.test.ts packages/knowledge-space-core/src/__tests__/public-api-contract.test.ts packages/knowledge-space-core/src/__tests__/edge-endpoint-rules.test.ts packages/knowledge-space-core/src/__tests__/stale-red-comments.test.ts",
+      "result": "5 test files passed, 31 tests passed",
+      "exit": 0
+    },
+    {
+      "command": "CI=true npx vitest run packages/knowledge-space-core/src/__tests__",
+      "result": "final acceptance run: 22 test files passed, 302 tests passed",
+      "exit": 0
+    },
+    {
+      "command": "cd packages/knowledge-space-core && npx tsc --noEmit",
+      "result": "clean",
+      "exit": 0
+    },
+    {
+      "command": "cd packages/knowledge-space-core && npm run lint",
+      "result": "eslint src --max-warnings 0 passed",
+      "exit": 0
+    },
+    {
+      "command": "stale Red phrase scan over packages/knowledge-space-core/src/__tests__ excluding stale-red-comments.test.ts",
+      "result": "stale_red_comment_hits: 0",
+      "exit": 0
+    },
+    {
+      "command": "Phase 6 marker scan in plan.md",
+      "result": "phase6_completed_count: 8; phase6_incomplete_unblocked_count: 0",
+      "exit": 0
+    }
+  ],
+  "changed_files": [
+    "packages/knowledge-space-core/src/__tests__/level-projection.test.ts",
+    "packages/knowledge-space-core/src/__tests__/phase4-doctor-generate-scripts.test.ts",
+    "packages/knowledge-space-core/src/__tests__/phase4-final-verification.test.ts",
+    "packages/knowledge-space-core/src/__tests__/phase4-spec-section-6-implementation.test.ts",
+    "packages/knowledge-space-core/src/__tests__/phase5-spec-section-3-2-3-7-8-4-13-3-implementation.test.ts",
+    "measure/tracks/spec-compliance-and-process-integrity_20260612/plan.md",
+    "measure/tracks/spec-compliance-and-process-integrity_20260612/phase-6-acceptance-result.json"
+  ],
+  "test_strategy_violations": [],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "none",
+  "confidence": "high"
+}
