@@ -5,7 +5,9 @@
   "phase": "Phase 2 — Draft Lifecycle \u0026 Persistence",
   "baseline_sha": "c9dfb5f0a576f54ad8d0e4888450b34b3007bfe0",
   "commits": [
-    "1b63e00c"
+    "1b63e00c",
+    "b342275c",
+    "30426f5a"
   ],
   "commands": [
     {
