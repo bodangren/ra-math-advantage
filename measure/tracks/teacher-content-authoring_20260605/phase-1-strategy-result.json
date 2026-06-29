@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "role": "strategy",
+  "status": "complete",
+  "track": "teacher-content-authoring_20260605",
+  "phase": "Phase 1 — Authoring Model & Schema-Driven Validation",
+  "baseline_sha": "f12dee46c8ff2bda1389f57f2f82656a3fee8092",
+  "summary": "Phase 1 strategy created for teacher content authoring. It defines the required Red command, Green and closeout gates, fixture/mock/live-proof expectations, artifact-vs-live test distinctions, architecture guardrails, changed-contract risks, intentionally-red aggregate-suite handling, and A1-A10 anti-pattern defenses. Phase 1 plan markers were updated to orchestrator vocabulary: automatable tasks [~], manual verification [b] deferred:user.",
+  "commands": [
+    "build-graph stats ./graph.db (pass: 14254 nodes / 20750 edges / 2079 files)",
+    "build-graph search ./graph.db activityPropsValidator (no graph result; source-read apps/integrated-math-3/convex/schema.ts instead)",
+    "build-graph search/inspect ./graph.db getPropsSchema (pass: exported canonical schema lookup in packages/math-content/src/schemas/index.ts)",
+    "build-graph search/inspect ./graph.db computeComponentContentHash (pass: exported approval hash primitive in packages/component-approval/src/content-hash.ts)",
+    "build-graph search ./graph.db assembleReviewQueueItem (pass: package primitive plus IM3 adapter identified)",
+    "build-graph search/inspect ./graph.db registerActivity (pass: shared activity registry identified)",
+    "build-graph search/inspect ./graph.db LessonRenderer (pass: IM3 lesson renderer identified; preview surfaces read separately)",
+    "git status --short --branch (pre-commit: master ahead, pre-existing untracked _add_types.py and _add_types.ts only outside intended docs)"
+  ],
+  "changed_files": [
+    "measure/tracks/teacher-content-authoring_20260605/plan.md",
+    "measure/tracks/teacher-content-authoring_20260605/test-strategy.md",
+    "measure/tracks/teacher-content-authoring_20260605/phase-1-strategy-result.json"
+  ],
+  "plan_updates": "Phase 1 tasks 1-3 marked [~] as active automatable work; Phase 1 manual verification marked [b] deferred:user. Phases 2-4 left unchanged.",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    "Runtime activity registry includes placeholder keys without canonical schemas; Phase 1 tests must reject or mark these unsupported rather than allowing arbitrary props.",
+    "Convex activityPropsValidator is a broad union not keyed by componentKey; Phase 1 validation must bind getPropsSchema(componentKey) to props.",
+    "Existing ActivityReviewHarness is placeholder-like; Phase 1 must not claim student-accurate preview until Phase 3."
+  ],
+  "known_failures": "None introduced. Required RED_TEST_COMMAND/GREEN_TEST_COMMAND were documented, not executed as product tests because this strategy pass did not add implementation tests. Pre-existing untracked _add_types.py and _add_types.ts preserved out of scope.",
+  "handoff": "Mid Red should add failing Phase 1 tests under apps/integrated-math-3/__tests__/lib/teacher/content-authoring/ plus any schema parity guard, run CI=true npx vitest run apps/integrated-math-3 packages/activity-components, and verify failures are attributable to the new Phase 1 tests. Green should implement pure app-local model/validation/sanitization using canonical SCHEMA_REGISTRY/getPropsSchema and keep persistence, approval, publishing, and full composer UI out of Phase 1.",
+  "confidence": "high"
+}
