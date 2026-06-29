@@ -2133,6 +2133,35 @@ cd packages/knowledge-space-core && CI=true npm test   # exit 0 (22 files / 301 
   - [x] Red: 22 files / 301 tests (16 new Phase 6 tests added)
   - [x] Green: **22 files / 301 tests / 0 failed** — `CI=true npx vitest run packages/knowledge-space-core/src/__tests__` → exit 0 (commit `d9b65977`).
 
+### Phase 6 acceptance proof (recorded 2026-06-29, acceptance fix commit `c71f720b`)
+
+Phase acceptance re-ran the orchestrator-supplied gates after the Review B remediation (`7143a6f4`) and Review C stale-header finding resolution (`07124eb3`) plus one additional stale-header/timeout cleanup (`c71f720b`). Current live evidence supersedes the historical d9b65977-only count where Review B had not yet added the runtime guard test.
+
+```bash
+CI=true npx vitest run packages/knowledge-space-core/src/__tests__
+# Test Files 22 passed (22), Tests 302 passed (302), exit 0
+
+cd packages/knowledge-space-core && npx tsc --noEmit
+# exit 0
+
+cd packages/knowledge-space-core && npm run lint
+# exit 0 (eslint src --max-warnings 0)
+```
+
+Review finding resolution status:
+
+- **Review A nonblocking REVIEW-A-P6-N1 / ADV-P6-N1:** resolved by Review B fix commit `7143a6f4`. `projectDisplayLevel` now validates the `levels` argument with `displayLevelSchema.parse(levels)` before indexing and has a runtime guard test for empty/non-monotonic bands.
+- **Review B blocking remediations:** committed in `7143a6f4`; IM3 CSV-derived display levels are validated with `displayLevelSchema.parse`, and package tests now include 302 passing tests.
+- **Review C stale-header finding UXC-P6-N1:** resolved by commit `07124eb3`; acceptance found additional stale Red-phase wording in older passing tests and fixed it in `c71f720b`. The stale-comment scan (excluding only `stale-red-comments.test.ts` by filename) reports `stale_red_comment_hits: 0`.
+
+Anti-pattern acceptance check:
+
+- **A1 / A8:** `measure/automation-supervisor.py` has `is_task_structurally_blocked(...)`; task regexes use `[~xb]`, not legacy `[ ~x]`; `[b]` and `deferred:<owner>` are structural signals.
+- **A3:** Phase 6 source scans use labeled/structured counts (`definers.length`, `hits.length`, JSON/count fields), not `rg -q '[0-9]+'`.
+- **A4:** Phase 6 task markers have 8 `[x]` tasks and 0 incomplete unblocked tasks; the Green/acceptance gate reports 22 files and 302 tests, not a zero-task or zero-test vacuous pass.
+- **A5:** Current plan text now records the live acceptance count (22 files / 302 tests / exit 0) after review remediations; historical d9b65977 evidence remains labeled as historical.
+- **A6:** `measure/tracks.md` does not claim the active spec-compliance track is fully resolved; the kst-lesser-holes archived entry remains a historical archive link, and Phase 6 quality evidence is recorded here.
+- **A7:** Stale-comment/source scans exclude only path/file contexts (the detector file itself), not bare English words such as `never`, `skip`, or `expected`.
 
 
 ## Phase 7: Final Verification and Checkpoint
