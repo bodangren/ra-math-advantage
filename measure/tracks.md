@@ -44,6 +44,10 @@ Dependencies:
 
 ## Active Tracks
 
+- [~] **[HIGH PRIORITY] Track: Unblock CI package typecheck (2026-07-01)** — **IN PROGRESS**
+   *Every `ci.yml` run has been red since the 2026-04-18 monorepo move in Phase 1 `Validate Packages → Run package typecheck`: `practice-core`, `core-convex`, `core-auth`, `ai-tutoring` use node globals (`node:fs/path/url/os`, `process`, `Buffer`) but their tsconfig didn't declare the `node` ambient types (TS2591 + cascaded TS7006 implicit-any). Because `deploy needs:[im3,bm2] needs:[packages,boundary-check]`, this halts CI before the Phase 6 Cloudflare deploy — IM3's CI deploy has never landed. Fix: config-only `compilerOptions.types = ["node","vitest/globals"]` in the four package tsconfigs (42 errors → 0, verified locally). Resolves tech-debt line 35's Phase-1 root cause. From 2026-07-01 tech-debt triage.*
+   *Link: [./tracks/package-typecheck-ci-unblock_20260701/](./tracks/package-typecheck-ci-unblock_20260701/)*
+
 - [x] **[HIGH PRIORITY] Track: Repair the red math-content test suite (2026-06-26)** — **COMPLETED**
    *The `packages/math-content` vitest suite was red on master (17 failed). Fixed to full green (392/392); tsc baseline 239→25. (FR-1) Decoupled five IM1 tests from the archived `im1-practice-readiness_20260609/metadata.json` (a `packages/→measure/` boundary violation) via a package-owned `VERTICAL_SLICE_MODULE` constant. (FR-2a) Completed Track 7's practice-variant rename in math-content — `problemFamilyId→variantKey` across 27 family-literal files + readers (tests, IM2 seed source, align-standards.ts). (FR-2b) Added schema-required `workedExampleSpec.target` to the 6 IM1 Module-1 blueprints. (FR-4) Added a guard test that fails if any `packages/**/__tests__/` reads a `measure/` path. Remaining narrow (Convex DB column rename, IM2's 149 latent blueprints, flaky srs-engine Date.now() test) logged to tech-debt. Commits 311ba44d, a5b748ff, 1589878d, 9707b841.*
    *Link: [./archive/math-content-test-suite-repair_20260626/](./archive/math-content-test-suite-repair_20260626/)*

@@ -1,0 +1,13 @@
+{
+  "track_id": "package-typecheck-ci-unblock_20260701",
+  "title": "Unblock CI package typecheck (add @types/node to shared packages)",
+  "type": "bug",
+  "status": "in_progress",
+  "priority": "high",
+  "created": "2026-07-01",
+  "spec_mode": "classic",
+  "origin": "tech-debt.md line 35 (High, verified 2026-07-01): every ci.yml run since the 2026-04-18 monorepo move fails in Phase 1 'Validate Packages' -> 'Run package typecheck' (tsc --noEmit) for practice-core, core-convex, core-auth, ai-tutoring. Test/source files use node globals (node:fs/path/url/os, process, Buffer) but the package tsconfig lacks @types/node in its `types` field (TS2591), which also cascades implicit-any (TS7006). Because deploy needs:[im3,bm2] needs:[packages,boundary-check], a package typecheck red stops CI long before the Phase 6 Cloudflare deploy job runs, so IM3's CI deploy has never landed.",
+  "related_tracks": [
+    "math-content-test-suite-repair_20260626"
+  ]
+}
