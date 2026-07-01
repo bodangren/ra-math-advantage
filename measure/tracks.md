@@ -44,7 +44,7 @@ Dependencies:
 
 ## Active Tracks
 
-- [~] **[HIGH PRIORITY] Track: Unblock CI package typecheck (2026-07-01)** — **IN PROGRESS**
+- [x] **[HIGH PRIORITY] Track: Unblock CI package typecheck (2026-07-01)** — **COMPLETED** (fix `ee10aa4`, docs `42fcc63`). Next: watch the CI run on push — this clears the Phase-1 package gate, but the downstream im3/bm2/deploy jobs have not been observed green remotely.
    *Every `ci.yml` run has been red since the 2026-04-18 monorepo move in Phase 1 `Validate Packages → Run package typecheck`: `practice-core`, `core-convex`, `core-auth`, `ai-tutoring` use node globals (`node:fs/path/url/os`, `process`, `Buffer`) but their tsconfig didn't declare the `node` ambient types (TS2591 + cascaded TS7006 implicit-any). Because `deploy needs:[im3,bm2] needs:[packages,boundary-check]`, this halts CI before the Phase 6 Cloudflare deploy — IM3's CI deploy has never landed. Fix: config-only `compilerOptions.types = ["node","vitest/globals"]` in the four package tsconfigs (42 errors → 0, verified locally). Resolves tech-debt line 35's Phase-1 root cause. From 2026-07-01 tech-debt triage.*
    *Link: [./tracks/package-typecheck-ci-unblock_20260701/](./tracks/package-typecheck-ci-unblock_20260701/)*
 

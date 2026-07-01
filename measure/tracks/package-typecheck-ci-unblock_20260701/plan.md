@@ -25,7 +25,7 @@ exit 0.
 
 ## Phase 2: Registry hygiene
 
-- [~] **T4:** Update `measure/tech-debt.md`:
+- [x] **T4:** Update `measure/tech-debt.md`: `42fcc63`
   - Line 35 (deploy): Phase-1 package-typecheck **root cause FIXED** by this
     track; deploy landing now unblocked pending a CI run on push. (done)
   - Line 30 (spec-compliance, Critical): flipped to **Resolved** — the
