@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "role": "phase-acceptance",
+  "track": "teacher-content-authoring_20260605",
+  "phase": "Phase 3 — Composer UI & Preview",
+  "status": "pass",
+  "summary": "Phase 3 is accepted after independent verification and one acceptance-role fix to the composer save payload. Tasks 3.1-3.3 are complete with commit evidence, 3.4 is structurally blocked as deferred:user, FR1/FR2/FR3/FR5 and AC2 are covered by live render/interaction tests, the teacher route is server-gated, and all requested acceptance gates exit 0.",
+  "confidence": "high",
+  "retry_recommendation": "none",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    "Acceptance found and fixed a Phase 3 composer gap before verdict: LessonComposer.saveTeacherDraft previously sent only lesson title plus phase title/type, dropping authored sections, activities, activity props, markdown, and callouts at the Phase 2 client boundary. LessonComposer now sends the full sanitized lesson tree, and LessonComposer.test.tsx asserts the full sanitized payload.",
+    "measure/tracks.md still labels Teacher Content Authoring as PLANNED. This is conservative and not an A6 overstatement, but it understates that Phase 3 has now passed acceptance while later phases remain open.",
+    "PhaseRenderer/SectionBlock student lesson path still does not forward extra authored content props to ActivityRenderer outside the new authored-preview path; Review C also recorded this as pre-existing architecture limitation, not a Phase 3 blocker.",
+    "Generated route facts now include GET /teacher/content-authoring in measure/generated/routes.md, removing stale-route drift for the Phase 3 route."
+  ],
+  "evidence": [
+    "Plan markers verified in measure/tracks/teacher-content-authoring_20260605/plan.md: Phase 3 tasks 3.1, 3.2, and 3.3 are [x] with commit 4e43965b evidence; task 3.4 is [b] with deferred:user; the Phase 3 block has no bare [ ] tasks.",
+    "FR1 verified from composer-state.ts and LessonComposer.tsx plus tests: state supports phases, sections, activities, add/remove/reorder operations, accessible React controls, and save now forwards the full sanitized lesson tree to the Phase 2 client adapter.",
+    "FR2 verified from composer-state.ts and activity-config-validation.ts: deriveActivityFormFields uses live SCHEMA_REGISTRY/getPropsSchema, validation uses validateActivityConfig, unknown placeholder keys fail closed, invalid configs block save/preview, and tests assert field/path errors with real schemas.",
+    "FR3/AC2 verified after Review C fix and acceptance rerun: ActivityRenderer accepts activityProps and spreads them into registered activity components; AuthoredLessonPreview passes authored activity.props into ActivityRenderer; AuthoredLessonPreview.test.tsx asserts the authored equation x^2 + 3x - 4 reaches the registered activity component, not just a shell.",
+    "FR5 status surfacing verified from get-teacher-authoring-status-view.ts and LessonComposer.tsx: teacherFacingStatus, rejectionComment, submitted/approved/published disabled/edit states, and edit-after-reject action are rendered and covered by status-view and LessonComposer tests.",
+    "Route gate verified from app/teacher/content-authoring/page.tsx and page.test.tsx: the async server component calls requireTeacherSessionClaims('/auth/login') before rendering, and the test proves auth redirect propagation for unauthenticated/non-teacher callers.",
+    "A1 verified in measure/automation-supervisor.py: task parsing uses r'^- \\[([~xb])\\] (.+)' and is_task_structurally_blocked recognizes status 'b' and trailing deferred:<owner> without substring-matching free-text deferred.",
+    "A3/A4/A7 checked: Phase 3 tests use direct lengths and DOM assertions, not digit-only rg count assertions; render/interaction tests exercise non-empty fixtures and activity prop forwarding; no over-broad banned-term filter is part of the Phase 3 proof.",
+    "A5 checked: plan.md Phase 3 closeout cites npx tsc --noEmit from repo root as exit 0; the app-level tsc exit 2 appears only in Red evidence and is not claimed as a Green closeout pass. No PASS=N FAIL=0 or all checks pass overclaim was found in the Phase 3 plan evidence.",
+    "A6 checked: measure/tracks.md marks Teacher Content Authoring as [ ] PLANNED, so it does not overstate the track as shipped/resolved while later phases remain open.",
+    "No _add_types.* files were found; git status before result writing contained only the acceptance-role product/test fix plus the new result JSON."
+  ],
+  "commands": [
+    "cd apps/integrated-math-3 && CI=true npx vitest run __tests__/lib/teacher/content-authoring __tests__/convex/teacher/content-authoring-drafts.test.ts __tests__/components/teacher/content-authoring __tests__/app/teacher/content-authoring => exit 0, Test Files 9 passed (9), Tests 123 passed (123)",
+    "npm run ws:im3:lint => exit 0, eslint completed with --max-warnings 0 and no reported errors",
+    "npx tsc --noEmit => exit 0, root TypeScript check produced no diagnostics",
+    "CI=true npm run test => exit 0, packages/knowledge-space-core Test Files 22 passed (22), Tests 302 passed (302)",
+    "cd apps/integrated-math-3 && CI=true npx vitest run __tests__/components/teacher/content-authoring/LessonComposer.test.tsx => exit 0, Test Files 1 passed (1), Tests 14 passed (14)",
+    "cd apps/integrated-math-3 && CI=true npx vitest run __tests__/lib/teacher/content-authoring/composer-state.test.ts => exit 0, Test Files 1 passed (1), Tests 22 passed (22)"
+  ],
+  "changed_files": [
+    "apps/integrated-math-3/__tests__/components/teacher/content-authoring/LessonComposer.test.tsx",
+    "apps/integrated-math-3/components/teacher/content-authoring/LessonComposer.tsx",
+    "apps/integrated-math-3/lib/teacher/content-authoring/composer-state.ts",
+    "measure/generated/routes.md",
+    "measure/tracks/teacher-content-authoring_20260605/phase-3-acceptance-result.json"
+  ]
+}

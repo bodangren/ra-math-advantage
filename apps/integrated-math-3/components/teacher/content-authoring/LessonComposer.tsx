@@ -34,6 +34,7 @@ import {
   composerReducer,
   createComposerState,
   deriveActivityFormFields,
+  sanitizeComposerState,
 } from '@/lib/teacher/content-authoring/composer-state';
 import {
   getTeacherAuthoringStatusView,
@@ -229,15 +230,28 @@ export function LessonComposer({
 
   const onSave = useCallback(async () => {
     if (!saveable) return;
+    const sanitizedState = sanitizeComposerState(state);
     await client.saveTeacherDraft({
       teacherId,
       draft: {
-        title: state.lesson.title,
-        phases: state.lesson.phases.map((p) => ({ title: p.title, phaseType: p.phaseType })),
+        title: sanitizedState.lesson.title,
+        phases: sanitizedState.lesson.phases.map((phase) => ({
+          title: phase.title,
+          phaseType: phase.phaseType,
+          sections: phase.sections.map((section) => ({
+            title: section.title,
+            markdown: section.markdown,
+            callout: section.callout,
+            activities: section.activities.map((activity) => ({
+              componentKey: activity.componentKey,
+              props: activity.props,
+            })),
+          })),
+        })),
       },
       idempotencyKey: `composer-${Date.now()}`,
     });
-  }, [client, saveable, state.lesson, teacherId]);
+  }, [client, saveable, state, teacherId]);
 
   const onSubmit = useCallback(async () => {
     if (!status?.canSubmit) return;

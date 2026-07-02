@@ -126,6 +126,7 @@
 | GET /student/study/review | `apps/integrated-math-3/app/student/study/review/page.tsx` | - |
 | GET /student/study/speed-round | `apps/integrated-math-3/app/student/study/speed-round/page.tsx` | - |
 | GET /teacher/competency | `apps/integrated-math-3/app/teacher/competency/page.tsx` | - |
+| GET /teacher/content-authoring | `apps/integrated-math-3/app/teacher/content-authoring/page.tsx` | - |
 | GET /teacher/dashboard | `apps/integrated-math-3/app/teacher/dashboard/page.tsx` | - |
 | GET /teacher/dashboard/srs | `apps/integrated-math-3/app/teacher/dashboard/srs/page.tsx` | - |
 | GET /teacher/gradebook | `apps/integrated-math-3/app/teacher/gradebook/page.tsx` | - |

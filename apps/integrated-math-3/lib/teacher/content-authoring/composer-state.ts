@@ -722,9 +722,9 @@ export function sanitizeComposerState(state: ComposerState): ComposerState {
           phaseType: phase.phaseType,
           sections: phase.sections.map((section, sectionIdx) => {
             const sanitizedSection = phaseFromSanitized?.sections?.[sectionIdx];
-            return {
+            const nextSection: ComposerSection = {
               id: section.id,
-              title: section.title,
+              title: sanitizedSection?.title ?? section.title,
               activities: section.activities.map((activity, activityIdx) => {
                 const sanitizedActivity = sanitizedSection?.activities?.[activityIdx];
                 return {
@@ -737,6 +737,17 @@ export function sanitizeComposerState(state: ComposerState): ComposerState {
                 };
               }),
             };
+            if (typeof sanitizedSection?.markdown === "string") {
+              nextSection.markdown = sanitizedSection.markdown;
+            } else if (typeof section.markdown === "string") {
+              nextSection.markdown = section.markdown;
+            }
+            if (typeof sanitizedSection?.callout === "string") {
+              nextSection.callout = sanitizedSection.callout;
+            } else if (typeof section.callout === "string") {
+              nextSection.callout = section.callout;
+            }
+            return nextSection;
           }),
         };
       }),

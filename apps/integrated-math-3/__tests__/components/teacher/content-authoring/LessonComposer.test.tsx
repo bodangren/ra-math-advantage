@@ -194,7 +194,7 @@ describe('LessonComposer', () => {
     expect(screen.getByRole('button', { name: /save/i })).toBeEnabled();
   });
 
-  it('calls the client save adapter when save is clicked', async () => {
+  it('calls the client save adapter with the full sanitized lesson tree', async () => {
     const { LessonComposer } = await import(
       '@/components/teacher/content-authoring/LessonComposer'
     );
@@ -209,7 +209,28 @@ describe('LessonComposer', () => {
 
     render(
       <LessonComposer
-        initialDraft={buildInitialDraft()}
+        initialDraft={{
+          title: 'Sanitize save payload',
+          phases: [
+            {
+              title: 'Explore Phase',
+              phaseType: 'explore',
+              sections: [
+                {
+                  title: 'Graphing Section',
+                  markdown: '<script>alert(1)</script>Graph y = x^2.',
+                  callout: '<img src=x onerror=alert(1)>Remember the vertex.',
+                  activities: [
+                    {
+                      componentKey: 'graphing-explorer',
+                      props: { equation: 'x^2 + 3x - 4' },
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        }}
         client={mockClient}
         teacherId="teacher_1"
       />
@@ -218,6 +239,15 @@ describe('LessonComposer', () => {
     fireEvent.click(screen.getByRole('button', { name: /save/i }));
 
     expect(mockClient.saveTeacherDraft).toHaveBeenCalled();
+    const payload = mockClient.saveTeacherDraft.mock.calls.at(-1)?.[0] as {
+      draft: { phases: Array<{ sections: Array<{ markdown?: string; callout?: string; activities: Array<{ componentKey: string; props: Record<string, unknown> }> }> }> };
+    };
+    expect(payload.draft.phases[0].sections[0].markdown).toBe('Graph y = x^2.');
+    expect(payload.draft.phases[0].sections[0].callout).not.toContain('onerror=');
+    expect(payload.draft.phases[0].sections[0].activities[0]).toEqual({
+      componentKey: 'graphing-explorer',
+      props: { equation: 'x^2 + 3x - 4' },
+    });
   });
 
   it('renders field-level validation errors for invalid props', async () => {
