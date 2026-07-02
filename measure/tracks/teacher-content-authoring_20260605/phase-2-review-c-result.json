@@ -1,0 +1,45 @@
+{
+  "role": "review-c-ux-api",
+  "track": "teacher-content-authoring_20260605",
+  "phase": "Phase 2 — Draft Lifecycle & Persistence",
+  "status": "pass",
+  "ux_applicable": false,
+  "ux_rationale": "Phase 2 is a backend/persistence phase (Convex handlers). Composer UI and preview are Phase 3; end-to-end + manual acceptance are Phase 4 / UMV. No browser UX review is applicable.",
+  "findings": [
+    {
+      "severity": "High",
+      "summary": "LifecycleResult.status returned persisted DB status (review, archived) instead of teacher-facing status (submitted, rejected) required by FR5. Phase 3 UI needs teacher-facing status for badges and edit-after-reject surfacing.",
+      "file": "apps/integrated-math-3/convex/teacher/content-authoring.ts",
+      "resolved": true,
+      "resolution": "Added TeacherFacingStatus union type, toTeacherFacingStatus() mapping function, and teacherFacingStatus + rejectionComment fields to LifecycleResult. All lifecycle handlers return the new fields. 38 tests pass."
+    },
+    {
+      "severity": "Medium",
+      "summary": "LifecycleResult DTO did not surface rejection/needs_changes comment from the reviewer. Phase 3 UI needs this to display feedback to the teacher.",
+      "file": "apps/integrated-math-3/convex/teacher/content-authoring.ts",
+      "resolved": true,
+      "resolution": "Added optional rejectionComment field to LifecycleResult. reviewAuthoredLessonHandler populates it for rejected/needs_changes decisions."
+    }
+  ],
+  "status_mapping_pinned": true,
+  "status_mapping_detail": {
+    "persisted_draft": "draft",
+    "persisted_review": "submitted",
+    "persisted_approved": "approved",
+    "persisted_archived": "rejected",
+    "persisted_published": "published"
+  },
+  "gate_command": "CI=true npx vitest run apps/integrated-math-3/__tests__/lib/teacher/content-authoring apps/integrated-math-3/__tests__/convex/teacher/content-authoring-drafts.test.ts",
+  "gate_exit_code": 0,
+  "gate_result": "Test Files 4 passed (4) | Tests 38 passed (38)",
+  "commits": [
+    "828a751f fix(teacher-authoring): add teacherFacingStatus + rejectionComment to LifecycleResult DTO"
+  ],
+  "preexisting_commits": [
+    "01752a0c feat(teacher-authoring): Phase 2 draft lifecycle, approval+hash integration, authz (Green)",
+    "868b08b8 measure(teacher-authoring): record Phase 2 Green evidence in plan"
+  ],
+  "a6_registry_check": "PASS — tracks.md line 1008 correctly says [ ] PLANNED for teacher-content-authoring. No overstatement.",
+  "unstaged_files_not_committed": ["_add_types.py", "_add_types.ts", "measure/monorepo-ops.md"],
+  "notes": "The status mapping is the critical Phase 2→Phase 3 contract gap. Without teacherFacingStatus, Phase 3 UI would display raw DB statuses (\"review\" instead of \"submitted\", \"archived\" instead of \"rejected\") which violates FR5 (\"teachers see status\"). The fix adds a pinned mapping function as the single source of truth, new DTO fields, and dedicated tests. The rejection comment was also missing from the DTO (stored only on component_reviews rows), which would force Phase 3 to make extra queries to surface feedback. Both are now resolved. The internal/public Convex wrapper surface is consistent (all mutations use internalMutation, all args validators are stable). No package boundary violations."
+}
