@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "role": "ux-browser-review",
+  "track": "teacher-content-authoring_20260605",
+  "phase": "Phase 3 — Composer UI & Preview",
+  "status": "fail",
+  "summary": "Code-level UX review completed. The composer UI follows DESIGN.md patterns (card-workbook, section-label, accessible labels, semantic buttons). However, the Preview button in LessonComposer.tsx has no onClick handler — it renders as a disabled/enabled button but never navigates to preview mode or toggles a preview state, making FR3 preview inaccessible from the composer. Additionally, the Convex local backend cannot start due to a pre-existing hyphenated filename (content-authoring.ts) that Convex rejects, and the remote deployment lacks CONVEX_DEPLOY_KEY for server-side auth, preventing live browser verification of the authenticated composer flow. Four partial screenshots were captured (unauthenticated redirect, login page, post-login redirect, composer edit skeleton). Code review confirms accessibility semantics (aria-label, role=alert, role=status, htmlFor labels) are present but some form fields lack visible labels (phase type select, boolean checkboxes). Array/object/tuple/union field types show only hints with no actual form controls.",
+  "confidence": "medium",
+  "retry_recommendation": "retry_implementation",
+  "blocking_findings": [
+    "Preview button in LessonComposer.tsx (line ~334) has no onClick handler — renders as a dead button. User clicks 'Preview' expecting to see preview mode, but nothing happens. FR3 (Preview) is inaccessible from the composer UI.",
+    "Convex local backend cannot start: convex/teacher/content-authoring.ts has a hyphen in filename which Convex rejects as a module path ('Path component content-authoring.js can only contain alphanumeric characters, underscores, or periods'). This blocks both local dev and deployment push.",
+    "Remote Convex deployment (focused-malamute-141) requires CONVEX_DEPLOY_KEY for server-side internal function calls. Without it, the login route (/api/auth/login) returns 500, making authenticated browser testing impossible."
+  ],
+  "nonblocking_findings": [
+    "Phase type select element (line ~503) has aria-label but no visible <label> element — screen-only users see a bare dropdown without visible context.",
+    "Boolean checkbox field (line ~832) has no visible label text next to it — only the field name appears above as a label, but the checkbox itself has no associated label text.",
+    "Array field type (line ~853) shows a hint listing item fields but provides no actual input controls for editing array items — teachers cannot populate array props through the form.",
+    "Object/tuple/union field types (line ~867) render only italic text with no form controls — teachers cannot configure these activity props.",
+    "The StatusStrip 'No status' state (line ~889) renders as a bare section-label with no visual distinction from an active status — could confuse teachers about whether status is loading vs absent.",
+    "The composer edit page has no loading skeleton or spinner — the page goes from blank to fully rendered with no progressive disclosure."
+  ],
+  "evidence": [
+    "Screenshot 01-unauthenticated-redirect.png: Confirms /teacher/content-authoring redirects to /auth/login when no session cookie exists. Redirect URL includes redirect parameter.",
+    "Screenshot 02-login-page.png: Login form renders with Username/Password labels, Sign In button, and Forgot password link. Form follows DESIGN.md patterns.",
+    "Screenshot 03-after-login.png: After login attempt, page remains on /auth/login — confirms Convex backend is unreachable (500 on POST /api/auth/login).",
+    "Screenshot 04-composer-edit.png: Composer page renders but with no authenticated content — shows login redirect page (auth barrier).",
+    "Code review of LessonComposer.tsx (913 lines): Keyboard-operable add/remove/reorder controls, card-workbook shell, section-label per DESIGN.md, accessible labels on inputs, SanitizedText for free-text, status strip with role=status.",
+    "Code review of AuthoredLessonPreview.tsx (293 lines): Uses ActivityRenderer for real rendering, role=alert for invalid configs, SanitizedText for free-text, aria-label on phases.",
+    "Code review of composer-state.ts: Pure state machine, never mutates arrays, reuses Phase 1 validators, schema-driven form field derivation.",
+    "Code review of page.tsx + ClientComposer.tsx: Server-gated route with requireTeacherSessionClaims, preview mode via ?preview=1 URL param, no-op client adapter at this stage."
+  ],
+  "commands": [
+    "cd apps/integrated-math-3 && npx convex dev --once 2>&1 => exit 1 (hyphenated filename rejected)",
+    "POST /api/auth/login => 500 (Missing Convex admin auth — CONVEX_DEPLOY_KEY not set)",
+    "GET /teacher/content-authoring => 307 redirect to /auth/login (no session cookie)"
+  ],
+  "changed_files": [
+    "apps/integrated-math-3/app/teacher/content-authoring/page.tsx",
+    "apps/integrated-math-3/app/teacher/content-authoring/ClientComposer.tsx",
+    "apps/integrated-math-3/components/teacher/content-authoring/LessonComposer.tsx",
+    "apps/integrated-math-3/components/teacher/content-authoring/AuthoredLessonPreview.tsx",
+    "apps/integrated-math-3/lib/teacher/content-authoring/composer-state.ts",
+    "apps/integrated-math-3/lib/teacher/content-authoring/get-teacher-authoring-status-view.ts"
+  ],
+  "ux_applicability": "applicable",
+  "webbridge_status": "unhealthy",
+  "webbridge_evidence": {
+    "screenshots": [
+      "measure/tracks/teacher-content-authoring_20260605/ux-evidence/01-unauthenticated-redirect.png",
+      "measure/tracks/teacher-content-authoring_20260605/ux-evidence/02-login-page.png",
+      "measure/tracks/teacher-content-authoring_20260605/ux-evidence/03-after-login.png",
+      "measure/tracks/teacher-content-authoring_20260605/ux-evidence/04-composer-edit.png"
+    ],
+    "accessibility_snapshots": [],
+    "interactions": [
+      "GET /teacher/content-authoring without auth cookie → 307 redirect to /auth/login?redirect=/auth/login",
+      "Navigated to /auth/login → login form rendered with Username/Password labels and Sign In button",
+      "Filled teacher@demo credentials and clicked Sign In → POST /api/auth/login returned 500 (Missing Convex admin auth)",
+      "Navigated to /teacher/content-authoring after failed login → redirected back to /auth/login (no session established)"
+    ]
+  }
+}
