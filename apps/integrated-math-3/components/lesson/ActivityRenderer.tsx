@@ -16,6 +16,10 @@ export interface ActivityRendererProps {
   mode?: 'teaching' | 'guided' | 'practice';
   onSubmit?: (payload: unknown) => void;
   onComplete?: () => void;
+  /** Optional activity-specific configuration props (e.g. equation, questions,
+   *  template). Forwarded to the registered activity component via spread, so
+   *  authored/previewed content reaches the same rendering path a student sees. */
+  activityProps?: Record<string, unknown>;
 }
 
 /**
@@ -30,6 +34,7 @@ export function ActivityRenderer({
   mode = 'practice',
   onSubmit,
   onComplete,
+  activityProps,
 }: ActivityRendererProps) {
   const isStudentContext = mode !== 'teaching';
   const { getTiming } = usePracticeTiming();
@@ -73,6 +78,7 @@ export function ActivityRenderer({
           mode,
           onSubmit: handleSubmit,
           onComplete,
+          ...(activityProps ?? {}),
         })}
       </Suspense>
     </div>

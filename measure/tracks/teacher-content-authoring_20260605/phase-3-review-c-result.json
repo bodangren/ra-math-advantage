@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "role": "review-c-ux-api",
+  "track": "teacher-content-authoring_20260605",
+  "phase": "Phase 3 — Composer UI & Preview",
+  "status": "pass",
+  "summary": "FR3 preview contract gap found and fixed. ActivityRenderer previously did not accept or forward activity configuration props, so authored content (equation, questions, template, etc.) never reached rendered activity components — the preview showed hardcoded shell content. Fixed by: (1) adding activityProps to ActivityRenderer interface and forwarding via spread, (2) updating AuthoredLessonPreview to pass authored props through, (3) updating GraphingExplorerActivity and ComprehensionQuizActivity to accept optional config props with backward-compatible defaults, (4) strengthening the vacuous A4 test assertion to actually verify authored props reach the rendered component. FR3/AC2 is now satisfied: authored content renders through the same ActivityRenderer path a student uses, with configuration props forwarded. Composer/status DTO is coherent with Phase 2 teacherFacingStatus/rejectionComment. tracks.md marks track as PLANNED (conservative, no A6 overstatement).",
+  "confidence": "high",
+  "retry_recommendation": "none",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    "Medium: tracks.md marks teacher-content-authoring as [ ] PLANNED, which understates progress (Phase 3 in review). Conservative but could confuse readers.",
+    "Low: ActivityRenderer-graphing-explorer.test.tsx has a pre-existing failure (unrelated to this track) — text 'graph the function' not found in DOM.",
+    "Low: PhaseRenderer/SectionBlock does not forward extra content props to ActivityRenderer for student lesson path either — this is a pre-existing architecture limitation, not introduced by Phase 3."
+  ],
+  "evidence": [
+    "FR3/AC2 priority finding: Before fix, ActivityRendererProps had no activityProps field; React.createElement passed only {activityId, mode, onSubmit, onComplete} — authored config was dropped. AuthoredLessonPreview rendered ActivityRenderer without activityProps. Test at line 150 only asserted activityId was defined (A4 vacuous).",
+    "Fix: Added activityProps?: Record<string, unknown> to ActivityRendererProps; spread into createElement call. AuthoredLessonPreview passes activity.props as activityProps. Test strengthened to assert lastCall.equation === 'x^2 + 3x - 4'.",
+    "GraphingExplorerActivity: Added optional equation/variant props with backward-compatible defaults ('y = x^2', 'plot_from_equation'). Previously hardcoded.",
+    "ComprehensionQuizActivity: Added optional questions prop; uses resolvedQuestions = questions ?? sampleQuestions. Previously hardcoded sampleQuestions.",
+    "FillInTheBlankActivity, RateOfChangeCalculatorActivity, DiscriminantAnalyzerActivity, StepByStepSolverActivity: Already accept config props — no changes needed.",
+    "Targeted gate: 8 files / 121 tests pass. TypeScript: exit 0. Lint: exit 0.",
+    "Pre-existing ActivityRenderer-graphing-explorer.test.tsx failure confirmed not caused by this change (fails at baseline too).",
+    "Composer/status DTO: getTeacherAuthoringStatusView correctly maps teacherFacingStatus (draft/submitted/approved/rejected/published) + rejectionComment, throws on unknown statuses. Consistent with Phase 2 DTOs.",
+    "Composer UI (LessonComposer): schema-driven forms, SanitizedText, keyboard-operable controls, accessible labels — all per DESIGN.md and spec NFR."
+  ],
+  "commands": [
+    "cd apps/integrated-math-3 && CI=true npx vitest run __tests__/lib/teacher/content-authoring __tests__/convex/teacher/content-authoring-drafts.test.ts __tests__/components/teacher/content-authoring => exit 0, 8 files / 121 tests passed",
+    "npx tsc --noEmit => exit 0",
+    "npm run ws:im3:lint => exit 0"
+  ],
+  "changed_files": [
+    "apps/integrated-math-3/components/lesson/ActivityRenderer.tsx",
+    "apps/integrated-math-3/components/teacher/content-authoring/AuthoredLessonPreview.tsx",
+    "apps/integrated-math-3/components/activities/graphing/GraphingExplorerActivity.tsx",
+    "apps/integrated-math-3/components/activities/quiz/ComprehensionQuizActivity.tsx",
+    "apps/integrated-math-3/__tests__/components/teacher/content-authoring/AuthoredLessonPreview.test.tsx"
+  ]
+}

@@ -7,6 +7,15 @@ export interface ActivityComponentProps {
   mode: 'teaching' | 'guided' | 'practice';
   onSubmit?: (payload: unknown) => void;
   onComplete?: () => void;
+  /** Optional questions override from authored/previewed configuration. */
+  questions?: Array<{
+    id: string;
+    type: 'multiple_choice' | 'true_false' | 'short_answer' | 'select_all';
+    prompt: string;
+    options?: string[];
+    correctAnswer: string | string[];
+    explanation?: string;
+  }>;
 }
 
 /**
@@ -20,12 +29,13 @@ export function ComprehensionQuizActivity({
   mode,
   onSubmit,
   onComplete,
+  questions,
 }: ActivityComponentProps) {
   const handleSubmit = (payload: unknown) => {
     onSubmit?.(payload);
   };
 
-  const sampleQuestions = [
+  const resolvedQuestions = questions ?? [
     {
       id: 'q1',
       type: 'multiple_choice' as const,
@@ -64,7 +74,7 @@ export function ComprehensionQuizActivity({
       <ComprehensionQuiz
         activityId={activityId}
         mode={mode}
-        questions={sampleQuestions}
+        questions={resolvedQuestions}
         onSubmit={handleSubmit}
         onComplete={onComplete}
       />

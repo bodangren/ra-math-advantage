@@ -161,6 +161,10 @@ describe('AuthoredLessonPreview', () => {
     expect(TestActivity).toHaveBeenCalled();
     const lastCall = TestActivity.mock.calls[TestActivity.mock.calls.length - 1][0];
     expect(lastCall.activityId).toBeDefined();
+    // FR3/AC2: authored configuration props must reach the rendered activity
+    // component so the preview shows the same content a student would see.
+    // The graphing-explorer activity in the draft has equation: 'x^2 + 3x - 4'.
+    expect(lastCall.equation).toBe('x^2 + 3x - 4');
   });
 
   it('uses teaching mode for worked_example phases', async () => {

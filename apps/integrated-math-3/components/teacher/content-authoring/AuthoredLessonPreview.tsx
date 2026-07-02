@@ -278,6 +278,7 @@ export function AuthoredLessonPreview({ draft, lessonId }: AuthoredLessonPreview
                         mode={mode}
                         onSubmit={handleActivitySubmit}
                         onComplete={handleActivityComplete}
+                        activityProps={activity.props}
                       />
                     ))}
                   </li>

@@ -7,6 +7,10 @@ export interface ActivityComponentProps {
   mode: 'teaching' | 'guided' | 'practice';
   onSubmit?: (payload: unknown) => void;
   onComplete?: () => void;
+  /** Optional equation override from authored/previewed configuration. */
+  equation?: string;
+  /** Optional variant override from authored/previewed configuration. */
+  variant?: string;
 }
 
 /**
@@ -20,6 +24,8 @@ export function GraphingExplorerActivity({
   mode,
   onSubmit,
   onComplete,
+  equation = 'y = x^2',
+  variant = 'plot_from_equation',
 }: ActivityComponentProps) {
   const handleSubmit = (payload: unknown) => {
     onSubmit?.(payload);
@@ -31,8 +37,8 @@ export function GraphingExplorerActivity({
       <GraphingExplorer
         activityId={activityId}
         mode={mode}
-        variant="plot_from_equation"
-        equation="y = x^2"
+        variant={variant}
+        equation={equation}
         onSubmit={handleSubmit}
       />
     </div>
