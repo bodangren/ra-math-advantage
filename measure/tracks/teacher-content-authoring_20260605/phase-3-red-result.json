@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "role": "mid-red",
+  "track": "teacher-content-authoring_20260605",
+  "phase": "Phase 3 — Composer UI & Preview",
+  "status": "pass",
+  "summary": "Phase 3 Red tests are committed and fail for the expected reason: the intended composer state, status-view, LessonComposer, and AuthoredLessonPreview implementation modules/components do not exist yet. Phase 1/2 content-authoring tests remain green in the targeted command.",
+  "confidence": "high",
+  "retry_recommendation": "none",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    "Targeted Red command exits non-zero because the four new Phase 3 test files import missing implementation modules/components.",
+    "npx tsc --noEmit is red at baseline from pre-existing errors unrelated to Phase 3; the new Phase 3 tests add only expected TS2307 missing-module errors.",
+    "Task 3.4 is human-gated and correctly remains [b] deferred:user; no Red automation covers it."
+  ],
+  "evidence": [
+    "phase3_new_test_files:4",
+    "phase3_new_failed_tests:53",
+    "phase3_composer_state_tests:22",
+    "phase3_status_view_tests:7",
+    "phase3_lesson_composer_tests:14",
+    "phase3_preview_tests:10",
+    "phase1_phase2_passing_tests:68",
+    "Targeted command result: Test Files 4 failed | 4 passed (8); Tests 53 failed | 68 passed (121); exit code 1.",
+    "composer-state.test.ts failures are all 'Cannot find module .../lib/teacher/content-authoring/composer-state'.",
+    "status-view.test.ts failures are all 'Cannot find module .../lib/teacher/content-authoring/get-teacher-authoring-status-view'.",
+    "LessonComposer.test.tsx failures are all 'Cannot find package @/components/teacher/content-authoring/LessonComposer'.",
+    "AuthoredLessonPreview.test.tsx failures are all 'Cannot find package @/components/teacher/content-authoring/AuthoredLessonPreview'.",
+    "Phase 1/2 passing files: authoring-model.test.ts, activity-config-validation.test.ts, sanitize-authored-text.test.ts, content-authoring-drafts.test.ts."
+  ],
+  "commands": [
+    "CI=true npx vitest run apps/integrated-math-3/__tests__/lib/teacher/content-authoring apps/integrated-math-3/__tests__/convex/teacher/content-authoring-drafts.test.ts apps/integrated-math-3/__tests__/lib/teacher/content-authoring/composer-state.test.ts apps/integrated-math-3/__tests__/components/teacher/content-authoring",
+    "npm run ws:im3:lint",
+    "npx tsc --noEmit"
+  ],
+  "changed_files": [
+    "apps/integrated-math-3/__tests__/lib/teacher/content-authoring/composer-state.test.ts",
+    "apps/integrated-math-3/__tests__/lib/teacher/content-authoring/status-view.test.ts",
+    "apps/integrated-math-3/__tests__/components/teacher/content-authoring/LessonComposer.test.tsx",
+    "apps/integrated-math-3/__tests__/components/teacher/content-authoring/AuthoredLessonPreview.test.tsx",
+    "measure/tracks/teacher-content-authoring_20260605/phase-3-red-result.json",
+    "measure/tracks/teacher-content-authoring_20260605/plan.md"
+  ]
+}

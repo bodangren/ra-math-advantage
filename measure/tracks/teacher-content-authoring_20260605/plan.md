@@ -277,6 +277,58 @@ modified.
 - [~] Task: Status surfacing incl. edit-after-reject
 - [b] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md) deferred:user
 
+### Phase 3 Red Evidence
+
+Red tests committed for the three automatable Phase 3 behaviors. They import from
+intended implementation modules/components under
+`apps/integrated-math-3/lib/teacher/content-authoring/` and
+`apps/integrated-math-3/components/teacher/content-authoring/`, which do not yet
+exist, so every new Phase 3 test fails for the expected reason.
+
+New test files:
+- `apps/integrated-math-3/__tests__/lib/teacher/content-authoring/composer-state.test.ts`
+- `apps/integrated-math-3/__tests__/lib/teacher/content-authoring/status-view.test.ts`
+- `apps/integrated-math-3/__tests__/components/teacher/content-authoring/LessonComposer.test.tsx`
+- `apps/integrated-math-3/__tests__/components/teacher/content-authoring/AuthoredLessonPreview.test.tsx`
+
+Targeted Phase 3 Red command:
+```bash
+CI=true npx vitest run apps/integrated-math-3/__tests__/lib/teacher/content-authoring apps/integrated-math-3/__tests__/convex/teacher/content-authoring-drafts.test.ts apps/integrated-math-3/__tests__/lib/teacher/content-authoring/composer-state.test.ts apps/integrated-math-3/__tests__/components/teacher/content-authoring
+```
+Result: `Test Files 4 failed | 4 passed (8) | Tests 53 failed | 68 passed (121)`.
+Exit code 1.
+
+Attribution:
+- The 4 passing files are the Phase 1 content-authoring tests and the Phase 2
+  `content-authoring-drafts.test.ts`; 68 passing tests remain green.
+- The 4 failing files are the new Phase 3 test files.
+- `composer-state.test.ts` (22 failures): every failure is
+  `Error: Cannot find module '.../lib/teacher/content-authoring/composer-state'`.
+- `status-view.test.ts` (7 failures): every failure is
+  `Error: Cannot find module '.../lib/teacher/content-authoring/get-teacher-authoring-status-view'`.
+- `LessonComposer.test.tsx` (14 failures): every failure is
+  `Error: Cannot find package '@/components/teacher/content-authoring/LessonComposer'`.
+- `AuthoredLessonPreview.test.tsx` (10 failures): every failure is
+  `Error: Cannot find package '@/components/teacher/content-authoring/AuthoredLessonPreview'`.
+
+Labeled counts:
+- `phase3_new_test_files:4`
+- `phase3_new_failed_tests:53`
+- `phase3_composer_state_tests:22`
+- `phase3_status_view_tests:7`
+- `phase3_lesson_composer_tests:14`
+- `phase3_preview_tests:10`
+- `phase1_phase2_passing_tests:68`
+
+Lint and type-check notes:
+- `npm run ws:im3:lint` → exit 0.
+- `npx tsc --noEmit` (from `apps/integrated-math-3`) → exit 2. The new Phase 3
+  test files contribute 53 `TS2307` "Cannot find module" errors for the same
+  missing implementation modules/components. The remaining tsc errors are
+  pre-existing at baseline (e.g. `problemFamilyId` field drift in SRS/proficiency
+  modules, `tailwinconfig.ts` dark-mode strategy typing, etc.) and are outside
+  Phase 3 scope.
+
 ## Phase 4 — Verification
 
 - [ ] Task: End-to-end: author → preview → submit → approve → publish → assignable (tested)
