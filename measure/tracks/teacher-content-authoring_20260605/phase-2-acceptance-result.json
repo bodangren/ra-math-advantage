@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "role": "phase-acceptance",
+  "track": "teacher-content-authoring_20260605",
+  "phase": "Phase 2 — Draft Lifecycle & Persistence",
+  "status": "pass",
+  "summary": "Accepted Phase 2. The three automatable Phase 2 plan tasks are complete with commit evidence, UMV remains structurally blocked as deferred:user, FR4/FR5/FR6 are implemented with real Phase 1 validation/sanitization and real content hashing, the Review B cross-teacher review-ownership fix and Review C teacherFacingStatus/rejectionComment fix are present and tested, and all required acceptance gates exited 0 in this audit.",
+  "confidence": "high",
+  "retry_recommendation": "none",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    "Review A nonblocking item remains: editRejectedDraftHandler does not refresh lessons.metadata.authoringActivityIds after an edit-after-decision save, so repeated edits with multi-activity sections can leave orphan non-primary activity rows; current lifecycle, publish gate, and student-visibility tests remain green.",
+    "Review A nonblocking item remains: toTeacherFacingStatus falls back to a type cast for unexpected persisted status instead of throwing; current valid status mapping is pinned and tested.",
+    "The workspace contains unrelated dirty files before/after this audit (_add_types.py, _add_types.ts untracked; measure/monorepo-ops.md modified), but git history for the Phase 2 commits does not include _add_types.* and only a historical migration commit tracks measure/monorepo-ops.md; this audit did not stage them."
+  ],
+  "evidence": [
+    "Plan Phase 2 block has exactly 3 completed automatable tasks, all marked [x] with commit 01752a0c evidence; the UMV task is [b] with trailing deferred:user; no bare [ ] marker appears in the Phase 2 block.",
+    "FR4 implementation verified in apps/integrated-math-3/convex/teacher/content-authoring.ts: submit/review/publish handlers call real computeComponentContentHash imported from apps/integrated-math-3/lib/activities/content-hash.ts and resolveComponentKind from review-queue.ts, create component_reviews/component_approvals rows, and reject publish unless current hashes match approved records.",
+    "FR5 implementation verified: lifecycle handlers persist draft/review/approved/archived/published status transitions, reject illegal direct publish paths, support edit-after-reject/edit-after-decision, expose teacherFacingStatus via toTeacherFacingStatus, and return rejectionComment on rejected/needs_changes decisions.",
+    "FR6 implementation verified: getAuthoringTeacher role gate and lesson metadata authoringTeacherId ownership checks guard mutations; assignment requires teacher-owned non-archived class and published lesson; student visibility requires latest published version, class_lessons assignment, active class_enrollments row, and same organization.",
+    "Tests execute real handler logic with a mock Convex ctx.db storage boundary and import the real Phase 1 normalizeLessonDraft, validateActivityConfig, sanitizeLessonDraft, and real computeComponentContentHash rather than broad mocks.",
+    "Review B security fix is present: reviewAuthoredLessonHandler rejects loaded.lesson.metadata.authoringTeacherId !== args.userId; adversarial test 'prevents a teacher from reviewing or approving another teachers submitted draft' passes in the targeted gate.",
+    "Review C UX/API fix is present and tested: LifecycleResult includes teacherFacingStatus and optional rejectionComment; tests map persisted statuses and assert rejected DTO returns teacherFacingStatus='rejected' and rejectionComment='Needs work.'.",
+    "A1 verified: measure/automation-supervisor.py uses task regex [~xb], has is_task_structurally_blocked, recognizes status b and deferred:<owner>, and contains no legacy [ ~x] task regex.",
+    "A3 verified for current Phase 2 surfaces: count assertions use Vitest array lengths/toHaveLength or labeled integer prose in plan/test-strategy, not rg -q '[0-9]+'.",
+    "A4 verified: Phase 2 marker audit has x_count=3, b_count=1, bare_count=0, so marker consistency is not a vacuous zero-completed pass.",
+    "A5 verified: plan/tracks contain no PASS=N, FAIL=0 or all-checks-pass claim for Phase 2; the targeted command cited by Phase 2 exits 0 in this audit, and aggregate red evidence is explicitly documented as exit 1/pre-existing.",
+    "A6 verified: measure/tracks.md still lists Teacher Content Authoring as [ ] PLANNED and does not claim the track is completed/resolved/shipped.",
+    "A7 verified: no over-broad banned-term filter pattern was found in the current Phase 2 tests/guards."
+  ],
+  "commands": [
+    "CI=true npx vitest run apps/integrated-math-3/__tests__/lib/teacher/content-authoring apps/integrated-math-3/__tests__/convex/teacher/content-authoring-drafts.test.ts => exit 0, Test Files 4 passed (4), Tests 39 passed (39)",
+    "npm run ws:im3:lint => exit 0, eslint completed with 0 reported errors/warnings",
+    "npx tsc --noEmit => exit 0, no TypeScript diagnostics emitted",
+    "Phase 2 plan marker audit => exit 0, x_count=3, b_count=1, bare_count=0",
+    "Measure supervisor A1 audit => exit 0, regex_[~xb]_matches=4, legacy_[ ~x]_matches=0, helper_present=true, recognizes_b=true, recognizes_deferred_owner=true",
+    "git ls-files --error-unmatch _add_types.py _add_types.ts measure/monorepo-ops.md => exit 1, _add_types.py/_add_types.ts are not tracked; measure/monorepo-ops.md is tracked historically but not committed in Phase 2 commits",
+    "git show --name-only --format='%h %s' 01752a0c 828a751f f9038201 868b08b8 a60eb852 8ac5f024 991021a7 482c0fed => exit 0, Phase 2 commits list no _add_types.* and no measure/monorepo-ops.md"
+  ],
+  "changed_files": [
+    "apps/integrated-math-3/__tests__/convex/teacher/content-authoring-drafts.test.ts",
+    "apps/integrated-math-3/convex/schema.ts",
+    "apps/integrated-math-3/convex/teacher/content-authoring.ts",
+    "apps/integrated-math-3/lib/teacher/content-authoring/authoring-model.ts",
+    "graph.db",
+    "measure/tracks/teacher-content-authoring_20260605/plan.md",
+    "measure/tracks/teacher-content-authoring_20260605/phase-2-review-a-result.json",
+    "measure/tracks/teacher-content-authoring_20260605/phase-2-review-b-result.json",
+    "measure/tracks/teacher-content-authoring_20260605/phase-2-review-c-result.json",
+    "measure/tracks/teacher-content-authoring_20260605/phase-2-acceptance-result.json"
+  ]
+}
