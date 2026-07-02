@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "role": "strategy",
+  "track": "teacher-content-authoring_20260605",
+  "phase": "Phase 3 — Composer UI & Preview",
+  "status": "pass",
+  "summary": "Phase 3 test strategy is complete for the teacher content-authoring composer UI and preview phase. It defines targeted Red/Green commands, required failing tests for composer logic, schema-driven forms, live preview through the existing lesson/activity renderer path, status surfacing from Phase 2 DTOs, human-gated UMV handling, accessibility/responsive expectations, UX browser-review route guidance, artifact-vs-live behavior boundaries, and A1-A12 anti-pattern coverage.",
+  "confidence": "high",
+  "retry_recommendation": "none",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    "Existing dev review harness previews are largely placeholder summaries, so Phase 3 tests must prove authored content reaches LessonRenderer/PhaseRenderer/ActivityRenderer or a harness wrapper delegating to those components rather than relying on harness placeholder DOM.",
+    "ActivityRenderer currently exposes componentKey/activityId/mode/callbacks but not authored props in its public props type; Phase 3 implementation must safely extend or adapt the preview data path and cover it with live render tests.",
+    "UX-browser-review applies because this is a user-facing UI phase; the recommended dev URL is /teacher/content-authoring?preview=1 once the IM3 dev server is running."
+  ],
+  "evidence": [
+    "Read measure/index.md, workflow.md, tracks.md, anti-patterns.md, track spec.md, track plan.md, prior Phase 2 test-strategy.md, and phase-2-acceptance-result.json.",
+    "Inspected Phase 2 handler apps/integrated-math-3/convex/teacher/content-authoring.ts and confirmed UI-facing DTOs include TeacherFacingStatus, teacherFacingStatus, and rejectionComment.",
+    "Inspected Phase 1 content-authoring utilities normalizeLessonDraft, validateActivityConfig, sanitizeLessonDraft, and SanitizedText under apps/integrated-math-3/lib/teacher/content-authoring/.",
+    "Inspected existing preview/QA surfaces: components/dev/review-harness/*, components/dev/review-queue/index.tsx, components/lesson/LessonRenderer.tsx, PhaseRenderer.tsx, ActivityRenderer.tsx, and teacher lesson preview route app/teacher/lesson/[lessonSlug]/page.tsx.",
+    "Inspected apps/integrated-math-3/DESIGN.md for IM3 design tokens, card-workbook, section-label, typography, spacing, and responsive/accessibility expectations.",
+    "Ran graph inspection: build-graph stats reported 14368 nodes, 20875 edges, 2084 files; graph query located relevant symbols normalizeLessonDraft, validateActivityConfig, sanitizeLessonDraft, SCHEMA_REGISTRY, getPropsSchema, LessonRenderer, PhaseRenderer, and ActivityRenderer.",
+    "Wrote measure/tracks/teacher-content-authoring_20260605/test-strategy.md with Phase 3-specific Red/Green/closeout gates, fixture/mock/live-proof rules, marker guard rules, UX-browser-review guidance, and A1-A12 anti-pattern coverage."
+  ],
+  "commands": [
+    "build-graph stats ./graph.db && build-graph search ./graph.db content-authoring && build-graph search ./graph.db ReviewHarness && build-graph inspect ./graph.db LessonRenderer && build-graph inspect ./graph.db ActivityRenderer && build-graph inspect ./graph.db toTeacherFacingStatus",
+    "build-graph query ./graph.db \"SELECT type,name,file_path,line_start,line_end,summary FROM nodes WHERE name IN ('LessonRenderer','ActivityRenderer','PhaseRenderer','toTeacherFacingStatus','normalizeLessonDraft','validateActivityConfig','sanitizeLessonDraft','getPropsSchema','SCHEMA_REGISTRY') AND (file_path LIKE '%integrated-math-3%' OR file_path LIKE '%packages/math-content%') ORDER BY name,file_path;\" && build-graph callers ./graph.db toTeacherFacingStatus",
+    "Phase 3 targeted Red/Green command defined: CI=true npx vitest run apps/integrated-math-3/__tests__/lib/teacher/content-authoring apps/integrated-math-3/__tests__/convex/teacher/content-authoring-drafts.test.ts apps/integrated-math-3/__tests__/lib/teacher/content-authoring/composer-state.test.ts apps/integrated-math-3/__tests__/components/teacher/content-authoring",
+    "Phase 3 closeout commands defined: npm run ws:im3:lint; npx tsc --noEmit; CI=true npm run test"
+  ],
+  "changed_files": [
+    "measure/tracks/teacher-content-authoring_20260605/test-strategy.md",
+    "measure/tracks/teacher-content-authoring_20260605/phase-3-strategy-result.json"
+  ]
+}
