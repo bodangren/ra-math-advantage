@@ -1,0 +1,26 @@
+{
+  "role": "review-a-correctness",
+  "track": "teacher-content-authoring_20260605",
+  "phase": "Phase 2 — Draft Lifecycle & Persistence",
+  "status": "pass",
+  "findings": [
+    {
+      "severity": "Medium",
+      "summary": "editRejectedDraftHandler does not patch metadata.authoringActivityIds with the new activity IDs after creating the edited draft. saveTeacherDraftHandler does this patch (line 476-483) but editRejectedDraftHandler omits it. After an edit, deleteLessonTree's orphan-cleanup path uses the stale (pre-edit) activity ID list, so non-primary activities from multi-activity sections become orphans on subsequent edits. The section-based cleanup path still handles primary activities, so lifecycle, publish gating, and student visibility are unaffected.",
+      "file": "apps/integrated-math-3/convex/teacher/content-authoring.ts",
+      "resolved": false
+    },
+    {
+      "severity": "Low",
+      "summary": "toTeacherFacingStatus default case uses 'return persistedStatus as TeacherFacingStatus' which would pass through an unrecognized status as-is rather than throwing. Safe in practice because the function is only called with known DB statuses (draft/review/approved/archived/published), but a defensive throw would be more robust.",
+      "file": "apps/integrated-math-3/convex/teacher/content-authoring.ts",
+      "resolved": false
+    }
+  ],
+  "gate_command": "CI=true npx vitest run apps/integrated-math-3/__tests__/lib/teacher/content-authoring apps/integrated-math-3/__tests__/convex/teacher/content-authoring-drafts.test.ts",
+  "gate_exit_code": 0,
+  "gate_output": "Test Files  4 passed (4) | Tests  39 passed (39)",
+  "commits_reviewed": ["01752a0c", "868b08b8", "828a751f"],
+  "commits_made": [],
+  "notes": "State machine verified: all allowed transitions (draft→review, review→approved, review→archived, approved→draft, archived→draft, approved→published) succeed; all illegal transitions (draft→published, review→published, archived→published, published→edit, non-draft→submit) are rejected. Idempotency verified: same key re-saves without duplicating rows. Sanitization verified: unsafe markup stripped before persistence. Hash integration verified: real computeComponentContentHash used, placement-derived componentKind (explore→activity, worked_example→example, guided_practice→practice) correct. Publish gating verified: stale approvals detected, missing approvals block publish. Authorization verified: teacher-scoped, ownership enforced, cross-teacher rejected. Student visibility verified: requires published + assigned class + active enrollment + same organization. Architecture verified: no parallel schema registry, no parallel hash/approval primitive, Convex wrappers thin, reuses existing tables. No A3 (digit-only count), A4 (vacuous pass), or A5 (false-claim text) violations. Plan.md claims match reality: targeted gate exits 0, aggregate failures documented as pre-existing."
+}
