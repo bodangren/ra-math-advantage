@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "role": "review-b-security",
+  "track": "teacher-content-authoring_20260605",
+  "phase": "Phase 3 — Composer UI & Preview",
+  "status": "pass",
+  "summary": "Phase 3 UI surface is correctly teacher-gated at the server component, uses sanitized text rendering with no dangerous HTML, routes persistence through the Phase 2 client adapter, and contains no secrets or cross-teacher draft loading. Added a route-level authorization test to provide executable evidence of the gate. Targeted tests, lint, and root tsc pass. App-level tsc shows pre-existing/Phase-3 type errors that are not security-relevant.",
+  "confidence": "high",
+  "retry_recommendation": "none",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    "Low: apps/integrated-math-3 npx tsc --noEmit reports many pre-existing type errors (problemFamilyId->variantKey schema drift, tailwind.config.ts darkMode typing, etc.) plus a small number of Phase 3-only type errors (relative convex import resolution, ActivityRenderer callback signatures, Composer prop typing). None affect runtime security or route authorization; root npx tsc --noEmit exits 0.",
+    "Low: AuthoredLessonPreview renders activities through ActivityRenderer but the current ActivityRenderer public contract does not accept authored props, so preview shows component shells rather than configured content. This is a functional/rendering gap, not a security or authorization issue, and is consistent with the Phase 3 no-op adapter scope."
+  ],
+  "evidence": [
+    "Route /teacher/content-authoring/page.tsx is an async server component that calls requireTeacherSessionClaims('/auth/login') before rendering ClientComposer or AuthoredLessonPreview; non-teachers are redirected by the same helper used in /teacher/dashboard, /teacher/lessons, and /teacher/lesson/[lessonSlug].",
+    "Added __tests__/app/teacher/content-authoring/page.test.tsx proves the server component invokes requireTeacherSessionClaims('/auth/login') and propagates the auth redirect for unauthenticated/non-teacher callers.",
+    "No dangerouslySetInnerHTML, __html, eval(), or raw HTML injection paths found in the new composer/preview/status modules; authored free text flows through SanitizedText -> sanitizeAuthoringText and is emitted as plain text nodes.",
+    "ClientComposer and LessonComposer never import Convex handlers directly; persistence actions (save/submit/edit) are injected via the client prop and currently wired to no-op stubs, so Phase 2 handlers remain the only persistence boundary.",
+    "composer-state.ts reuses Phase 1 normalizeLessonDraft, validateActivityConfig, and sanitizeLessonDraft; no parallel validator or custom sanitizer is introduced.",
+    "get-teacher-authoring-status-view.ts accepts only canonical TeacherFacingStatus values and throws for persisted review/archived strings, preventing client-side status inference.",
+    "No API keys, secrets, passwords, tokens, or private keys detected in the Phase 3 changed files.",
+    "The route does not load drafts from the server; it uses a hard-coded seed fixture, so there is no cross-teacher draft leakage surface in Phase 3.",
+    "measure/tracks.md lists the track as PLANNED and does not claim composer/preview is shipped, so anti-pattern A6 (registry overstatement) is not triggered.",
+    "Anti-pattern A2 (consent-blind publish gate) is not applicable: Phase 3 does not implement a publish action; it only surfaces status, and any publish logic remains in Phase 2 handlers."
+  ],
+  "commands": [
+    "cd apps/integrated-math-3 && CI=true npx vitest run __tests__/lib/teacher/content-authoring __tests__/convex/teacher/content-authoring-drafts.test.ts __tests__/components/teacher/content-authoring __tests__/app/teacher/content-authoring/page.test.tsx => exit 0, Test Files 9 passed (9) | Tests 123 passed (123)",
+    "npm run ws:im3:lint => exit 0",
+    "npx tsc --noEmit (repo root) => exit 0",
+    "cd apps/integrated-math-3 && npx tsc --noEmit => exit 2 (pre-existing + Phase 3 type errors, not security-relevant)"
+  ],
+  "changed_files": [
+    "apps/integrated-math-3/__tests__/app/teacher/content-authoring/page.test.tsx",
+    "measure/tracks/teacher-content-authoring_20260605/phase-3-review-b-result.json"
+  ]
+}
