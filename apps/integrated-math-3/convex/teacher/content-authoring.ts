@@ -995,6 +995,21 @@ export async function editRejectedDraftHandler(
     }
   }
 
+  // Refresh the lesson's authoringActivityIds orphan list so the next
+  // idempotent save can correctly clean up non-primary activities from a
+  // subsequent edit-after-decision. Without this patch, deleteLessonTree
+  // (called by saveTeacherDraftHandler on the next save) only cleans
+  // activities it finds via phase_sections' primary activityId, leaving
+  // non-primary activities orphan on multi-activity sections.
+  await ctx.db.patch(loaded.lesson._id, {
+    metadata: {
+      ...(loaded.lesson.metadata ?? {}),
+      authoringTeacherId: args.userId,
+      authoringKey: args.idempotencyKey,
+      authoringActivityIds: activityIds,
+    },
+  });
+
   return {
     success: true,
     lessonId: loaded.lesson._id,
