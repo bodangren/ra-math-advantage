@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "role": "orchestrator-audit",
+  "track": "teacher-content-authoring_20260605",
+  "phase": "framework audit",
+  "status": "fail",
+  "summary": "Framework audit found no A1/A3/A4/A5/A6/A7/A8/A9 regression in the supervisor, active plan, Phase 2 evidence, or current root test script. Phase 2 truthfulness is preserved: targeted gate exits 0 and the aggregate gate is explicitly exit 1 with pre-existing failures. Blocking issue: AGENTS.md lacks the required peer-reviewed automation-supervisor.py modification rule (new A12, guard added and currently red). Nonblocking risks: A10 pre-commit generated-facts hook is missing and graph.db is older than recent structural edits; A11 missing-live-contract-suite class was found and mitigated by adding tests/measure_orchestrator_audit.sh as a promotion candidate guard.",
+  "confidence": "high",
+  "retry_recommendation": "create_remediation_track",
+  "blocking_findings": [
+    "A12: AGENTS.md:49-56 contains generic guardrails but no automation-supervisor.py peer-reviewed component rule; tests/measure_orchestrator_audit.sh now detects this and exits 1 until AGENTS.md is updated."
+  ],
+  "nonblocking_findings": [
+    "A10: .git/hooks/pre-commit is missing, so no hook runs measure/generate.sh; measure/generated files are fresh relative to the audited plan, but graph.db mtime is older than recent Phase 2 structural/test edits.",
+    "A11: new anti-pattern promotion candidate added for absent live Measure contract-test suite; guard file tests/measure_orchestrator_audit.sh was created and linked from measure/anti-patterns.md.",
+    "A2: no tests/*p4.sh, tests/*_closeout.sh, or tests/cs_p*.sh publish-gate contract script exists in the current root tests suite, so no consent/anonymization gate could be evaluated.",
+    "A5: archived plans contain historical 'all tests pass' prose, but active measure/tracks/*/plan.md has no PASS=N FAIL=0/all-checks-pass overclaim; teacher-content-authoring Phase 2 explicitly documents aggregate exit 1 with pre-existing failures.",
+    "Result JSON schema compliance: phase-2-review-a/b/c, phase-2-acceptance, and phase-2-adversarial result JSONs conform to audit schema v1 list-field/retry/confidence/status requirements."
+  ],
+  "evidence": [
+    "measure/automation-supervisor.py:634-650 defines is_task_structurally_blocked(status b or deferred:<owner>), with no non-docstring free-text \"deferred\" in task.lower() occurrence.",
+    "measure/automation-supervisor.py:659,851,1238 use r\"^- \\[([~xb])\\] (.+)\"; legacy r\"^- \\[([ ~x])\\] (.+)\" count is 0.",
+    "measure/tracks/teacher-content-authoring_20260605/plan.md:9-12 and 105-108: accepted Phases 1-2 have x_count=3 and b_count=1 each; all [x] tasks carry SHA evidence and all [b] tasks carry deferred:user; no bare [ ] in accepted phases.",
+    "measure/tracks/teacher-content-authoring_20260605/plan.md:233-254 documents aggregate Phase 2 Green command as exit 1 with pre-existing failures only, not an all-pass claim.",
+    "Current aggregate rerun: CI=true npx vitest run apps/integrated-math-3/__tests__/lib/teacher/content-authoring apps/integrated-math-3/__tests__/convex => exit 1 with 46 failed files / 12 failed tests; content-authoring-drafts.test.ts is not in the failure set.",
+    "measure/tracks.md:1008-1010 lists Teacher Content Authoring as [ ] PLANNED with link to ./tracks/teacher-content-authoring_20260605/; no shipped/complete/publishable claim found for this track.",
+    "tests/measure_orchestrator_audit.sh:12-20 checks for a live tests/*.sh suite and the AGENTS.md automation-supervisor peer-reviewed rule; current run fails on the AGENTS.md rule.",
+    "AGENTS.md:49-56 lists guardrails but omits automation-supervisor.py and peer-reviewed supervisor modification language.",
+    ".git/hooks/pre-commit is missing; graph.db mtime 1782993688 is older than apps/integrated-math-3/convex/teacher/content-authoring.ts mtime 1782996347 and content-authoring-drafts.test.ts mtime 1782996591.",
+    "measure/generated/architecture.json mtime 1782997337 and routes.md mtime 1782997335 are newer than the audited teacher-content-authoring plan/tracks changes.",
+    "Junk-file discipline: _add_types.py, _add_types.ts, and measure/monorepo-ops.md were not read-modified or staged by this audit; they remain pre-existing/unrelated working-tree entries."
+  ],
+  "commands": [
+    "python3 A1/A8 supervisor detector => exit 0, 0 substring-match occurrences; helper_present=True; structured_regex_literal_count=3; legacy_regex_literal_count=0",
+    "python3 A4 vacuous marker detector over tests/*.sh => exit 0, no vacuous marker-consistency pattern output",
+    "python3 A2 publish-gate consent detector over tests/*p4.sh tests/*_closeout.sh tests/cs_p*.sh => exit 0, no matching files/output",
+    "python3 Phase 2 result JSON schema validator => exit 0, phase-2-review-a/b/c, phase-2-acceptance, and phase-2-adversarial OK",
+    "python3 accepted phase marker vocabulary audit => exit 0, Phase 1 counts x=3 b=1 bare=0; Phase 2 counts x=3 b=1 bare=0",
+    "CI=true npx vitest run apps/integrated-math-3/__tests__/lib/teacher/content-authoring apps/integrated-math-3/__tests__/convex/teacher/content-authoring-drafts.test.ts => exit 0, Test Files 4 passed, Tests 68 passed",
+    "CI=true npx vitest run apps/integrated-math-3/__tests__/lib/teacher/content-authoring apps/integrated-math-3/__tests__/convex => exit 1, Test Files 46 failed | 65 passed, Tests 12 failed | 932 passed | 4 skipped; failures pre-existing/outside content-authoring-drafts.test.ts",
+    "bash tests/measure_orchestrator_audit.sh => exit 1, FAIL: A12 regression: AGENTS.md must document automation-supervisor.py as a peer-reviewed component",
+    "python3 consolidated A3/A7/A9/A5 registry checks => exit 0, A3=0 hits, A7=0 hits, A9=0 hits, active A5 claims=0, teacher registry PLANNED",
+    "git status --porcelain && git log --oneline -10 => exit 0, pre-existing measure/monorepo-ops.md/_add_types.* visible before audit edits"
+  ],
+  "changed_files": [
+    "measure/anti-patterns.md",
+    "tests/measure_orchestrator_audit.sh",
+    "measure/tracks/teacher-content-authoring_20260605/phase-2-orchestrator-audit-result.json"
+  ]
+}

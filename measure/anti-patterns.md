@@ -244,6 +244,57 @@ result.
 
 ---
 
+## A11 — Missing live Measure contract-test suite
+
+**Class:** guard-suite absent / audit-only enforcement
+**Caught:** 2026-07-02 orchestrator-audit on `teacher-content-authoring_20260605`
+**Detection:**
+```bash
+shopt -s nullglob
+test_scripts=(tests/*.sh)
+if (( ${#test_scripts[@]} == 0 )); then
+  echo "FAIL: Measure contract-test suite is absent; expected at least one tests/*.sh guard"
+fi
+```
+
+**Symptoms:** The anti-pattern catalog names `tests/*.sh` guards for A1–A7, but the
+repository has no root `tests/` directory and no live `tests/*.sh` contract scripts. That
+means regressions are only found when an audit role manually runs detector recipes; the
+framework has no executable guard suite to run in CI or before supervisor changes.
+
+**Fix:** Keep at least one live Measure contract-test script under `tests/` and grow it
+into a shared guard suite (eventually factoring common helpers into `tests/_lib/`). The
+guard must fail if the suite disappears, if catalog entries referenced by the framework are
+missing, or if A1/A8 supervisor checks regress.
+
+**Guard:** `tests/measure_orchestrator_audit.sh`.
+
+---
+
+## A12 — Missing supervisor peer-review rule in AGENTS.md
+
+**Class:** framework governance drift
+**Caught:** 2026-07-02 orchestrator-audit on `teacher-content-authoring_20260605`
+**Detection:**
+```bash
+if ! grep -qi "automation-supervisor" AGENTS.md || ! grep -qi "peer-reviewed" AGENTS.md; then
+  echo "FAIL: AGENTS.md must document automation-supervisor.py as a peer-reviewed component"
+fi
+```
+
+**Symptoms:** `AGENTS.md` omits the required peer-reviewed modification rule for
+`measure/automation-supervisor.py`. Agents only see generic Measure and TDD guardrails, so
+a future automation change can bypass the separate-review flow that protects the
+orchestrator itself.
+
+**Fix:** Add the current peer-reviewed component rule to `AGENTS.md`: supervisor changes
+must not be made opportunistically inside product-track work; they require a separate
+reviewed commit/flow. Do not restore the retired blanket "do not modify" rule.
+
+**Guard:** `tests/measure_orchestrator_audit.sh`.
+
+---
+
 ## How projects extend this catalog
 
 When a new class of failure is caught (in this project, in another project, or by the
