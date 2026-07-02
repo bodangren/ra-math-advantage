@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "role": "review-a-correctness",
+  "track": "teacher-content-authoring_20260605",
+  "phase": "Phase 3 — Composer UI & Preview",
+  "status": "pass",
+  "summary": "Phase 3 correctness audit found and fixed 5 real TypeScript errors in implementation files (callback signature mismatches in AuthoredLessonPreview, null-vs-undefined in LessonComposer, shadowed variable causing unknown type, missing return type in status view, untyped seedDraft return). All 121 targeted tests pass. Remaining TS2307 errors are pre-existing Convex module resolution issues from Phase 2, not Phase 3 regressions. Architecture is sound: components are app-local, no dangerouslySetInnerHTML, status view rejects raw persisted strings, schema-driven forms use real SCHEMA_REGISTRY/getPropsSchema.",
+  "confidence": "high",
+  "retry_recommendation": "none",
+  "blocking_findings": [
+    "High: AuthoredLessonPreview.tsx:280-281 — handleActivitySubmit signature (activityId, payload) and handleActivityComplete signature (activityId) did not match ActivityRendererProps contract where onSubmit takes (payload) and onComplete takes (). FIXED.",
+    "High: LessonComposer.tsx:277 — statusViewOrDefault returns null but disabled prop expects boolean | undefined. `status && !status.canEdit` evaluates to null | boolean. FIXED to `status ? !status.canEdit : undefined`.",
+    "High: LessonComposer.tsx:639 — parameter name 'props' in onPropsChange callback shadows SectionBlockProps scope, causing props.onPropsChange to be typed as unknown. FIXED to rename parameter to 'newProps'.",
+    "Medium: ClientComposer.tsx:43 — seedDraft() returns untyped object; TypeScript infers {} which does not satisfy AuthoredDraft (missing title, phases). FIXED with return type annotation and `as AuthoredDraft` cast.",
+    "Medium: get-teacher-authoring-status-view.ts:69 — TS2366 Function lacks ending return statement; exhaustive switch over TeacherFacingStatus union does not satisfy TS when module import resolution is broken (TS2307). FIXED with unreachable throw after switch.",
+    "Medium: composer-state.test.ts:346-347 — questionsField.itemFields.map accessed without optional chaining; TS18048 possibly undefined. FIXED with ?. operator.",
+    "Medium: AuthoredLessonPreview.test.tsx — buildAuthoredDraft() return type widens phaseType strings to 'string' instead of AuthoredPhaseType union, causing TS2322 on every render() call. FIXED with explicit AuthoredDraft return type."
+  ],
+  "nonblocking_findings": [
+    "Medium: Plan claims 'npx tsc --noEmit (from repo root) → exit 0' but tsc exits 265 errors. Most are pre-existing (problemFamilyId schema drift, SRS/proficiency, tailwind). The 4 remaining Phase 3 TS2307 errors are cascade from Phase 2 Convex module errors — the convex/teacher/content-authoring.ts has TS2345/TS2322/TS2367 errors that prevent module resolution. This is an A5 finding against the plan text.",
+    "Low: AuthoredLessonPreview renders ActivityRenderer without passing activity props — ActivityRendererProps does not accept a props parameter; activity components load configuration by activityId. This is architecturally consistent with student rendering but means the preview shows the activity shell, not the authored content. A real preview requires saving the draft first (Phase 2) then loading by ID.",
+    "Low: LessonComposer phase type <select> uses defaultValue (uncontrolled) and has no dispatch to reducer — the dropdown is cosmetic and changes are not persisted to state. No UPDATE_PHASE_TYPE action exists in the reducer.",
+    "Low: published status maps isPublishReady: true — semantically questionable (already published, not 'ready') but functionally harmless since no publish CTA is shown for published status."
+  ],
+  "evidence": [
+    "Targeted gate (2nd run, cold-start flaky timeout on 1st): 8 files, 121 tests, 0 failures, exit 0.",
+    "Phase 3 test breakdown: composer-state.test.ts (22), status-view.test.ts (7), LessonComposer.test.tsx (14), AuthoredLessonPreview.test.tsx (10), content-authoring-drafts.test.ts (45 Phase 2, still green), plus 23 Phase 1 tests.",
+    "5 real TS errors fixed in implementation files; 2 in test files. All are signature/type correctness issues, not logic bugs.",
+    "No dangerouslySetInnerHTML in any Phase 3 file.",
+    "No mock of getPropsSchema, SCHEMA_REGISTRY, normalizeLessonDraft, validateActivityConfig, or sanitizeLessonDraft in core test paths.",
+    "Status view rejects raw persisted 'review'/'archived' strings (throws on unknown status).",
+    "Preview uses real ActivityRenderer + CalloutBox + SanitizedText, not bespoke renderer.",
+    "Components app-local in apps/integrated-math-3/; no package boundary violations."
+  ],
+  "commands": [
+    "cd apps/integrated-math-3 && CI=true npx vitest run __tests__/lib/teacher/content-authoring __tests__/convex/teacher/content-authoring-drafts.test.ts __tests__/components/teacher/content-authoring => exit 0, Test Files 8 passed (8), Tests 121 passed (121)",
+    "npx eslint lib/teacher/content-authoring/ components/teacher/content-authoring/ app/teacher/content-authoring/ --quiet => exit 0, 0 errors"
+  ],
+  "changed_files": [
+    "components/teacher/content-authoring/AuthoredLessonPreview.tsx",
+    "components/teacher/content-authoring/LessonComposer.tsx",
+    "app/teacher/content-authoring/ClientComposer.tsx",
+    "lib/teacher/content-authoring/get-teacher-authoring-status-view.ts",
+    "__tests__/lib/teacher/content-authoring/composer-state.test.ts",
+    "__tests__/components/teacher/content-authoring/AuthoredLessonPreview.test.tsx",
+    "measure/tracks/teacher-content-authoring_20260605/phase-3-review-a-result.json"
+  ]
+}

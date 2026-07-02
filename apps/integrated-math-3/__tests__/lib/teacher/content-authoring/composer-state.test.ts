@@ -343,8 +343,8 @@ describe('schema-driven field derivation', () => {
 
     expect(questionsField).toBeDefined();
     expect(questionsField?.kind).toBe('array');
-    expect(questionsField?.itemFields.map((f: { name: string }) => f.name)).toContain('prompt');
-    expect(questionsField?.itemFields.map((f: { name: string }) => f.name)).toContain('correctAnswer');
+    expect(questionsField?.itemFields?.map((f: { name: string }) => f.name)).toContain('prompt');
+    expect(questionsField?.itemFields?.map((f: { name: string }) => f.name)).toContain('correctAnswer');
   });
 
   it('derives object fields for rate-of-change-calculator', async () => {

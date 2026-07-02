@@ -274,7 +274,7 @@ export function LessonComposer({
           type="text"
           value={state.lesson.title}
           onChange={(e) => onTitleChange(e.target.value)}
-          disabled={status && !status.canEdit}
+          disabled={status ? !status.canEdit : undefined}
           className="block w-full rounded-md border border-border bg-card px-3 py-2 text-base"
           aria-describedby="lesson-title-help"
         />
@@ -636,7 +636,7 @@ function SectionBlock(props: SectionBlockProps) {
               activityIndex={activityIndex}
               totalActivities={section.activities.length}
               errors={errors}
-              onPropsChange={(props) => props.onPropsChange(activity.id, props)}
+              onPropsChange={(newProps) => props.onPropsChange(activity.id, newProps)}
               onRemove={() => props.onRemoveActivity(activity.id)}
               onReorder={(from, to) => props.onReorderActivities(from, to)}
             />

@@ -11,7 +11,7 @@
  */
 
 import { LessonComposer } from '@/components/teacher/content-authoring/LessonComposer';
-import { AuthoredLessonPreview } from '@/components/teacher/content-authoring/AuthoredLessonPreview';
+import { AuthoredLessonPreview, type AuthoredDraft } from '@/components/teacher/content-authoring/AuthoredLessonPreview';
 import type { TeacherFacingStatus } from '../../../../convex/teacher/content-authoring';
 
 export interface ComposerSeed {
@@ -64,9 +64,9 @@ export function ClientComposer({ seed, preview }: ClientComposerProps) {
   );
 }
 
-function seedDraft(seed: ComposerSeed) {
+function seedDraft(seed: ComposerSeed): AuthoredDraft {
   if (seed.draft && typeof seed.draft === 'object') {
-    return seed.draft;
+    return seed.draft as AuthoredDraft;
   }
   return {
     title: 'Empty lesson',

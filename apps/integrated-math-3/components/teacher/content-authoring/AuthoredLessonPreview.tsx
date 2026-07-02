@@ -199,16 +199,15 @@ export function AuthoredLessonPreview({ draft, lessonId }: AuthoredLessonPreview
     }
   }
 
-  const handleActivitySubmit = useCallback((activityId: string, payload: unknown) => {
+  const handleActivitySubmit = useCallback((payload: unknown) => {
     // Routes through the same path a student preview uses. The preview
     // surface does not persist; callbacks are intentionally no-ops so
     // teacher-authored drafts stay unstained by practice submissions.
-    void activityId;
     void payload;
   }, []);
 
-  const handleActivityComplete = useCallback((activityId: string) => {
-    void activityId;
+  const handleActivityComplete = useCallback(() => {
+    // No-op: preview does not persist activity completion.
   }, []);
 
   return (

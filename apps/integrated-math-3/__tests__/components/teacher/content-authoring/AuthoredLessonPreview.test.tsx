@@ -11,6 +11,7 @@ import { render, screen, waitFor, fireEvent } from '@testing-library/react';
  */
 
 import { registerActivity } from '../../../../lib/activities/registry';
+import type { AuthoredDraft } from '@/components/teacher/content-authoring/AuthoredLessonPreview';
 
 const TestActivity = vi.fn(({ activityId, mode, onSubmit, onComplete }) => (
   <div
@@ -41,7 +42,7 @@ const VALID_ACTIVITY_PROPS: Record<string, Record<string, unknown>> = {
   },
 };
 
-function buildAuthoredDraft() {
+function buildAuthoredDraft(): AuthoredDraft {
   return {
     title: 'Preview Quadratic Lesson',
     phases: [

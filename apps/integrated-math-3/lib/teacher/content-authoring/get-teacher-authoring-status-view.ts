@@ -130,4 +130,8 @@ export function getTeacherAuthoringStatusView(
         isPublishReady: true,
       };
   }
+  /* istanbul ignore next — unreachable: switch is exhaustive over the union */
+  throw new Error(
+    `Unhandled teacherFacingStatus '${String(dto.teacherFacingStatus)}'.`,
+  );
 }
