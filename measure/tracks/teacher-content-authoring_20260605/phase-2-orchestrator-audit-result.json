@@ -3,14 +3,13 @@
   "role": "orchestrator-audit",
   "track": "teacher-content-authoring_20260605",
   "phase": "framework audit",
-  "status": "fail",
-  "summary": "Framework audit found no A1/A3/A4/A5/A6/A7/A8/A9 regression in the supervisor, active plan, Phase 2 evidence, or current root test script. Phase 2 truthfulness is preserved: targeted gate exits 0 and the aggregate gate is explicitly exit 1 with pre-existing failures. Blocking issue: AGENTS.md lacks the required peer-reviewed automation-supervisor.py modification rule (new A12, guard added and currently red). Nonblocking risks: A10 pre-commit generated-facts hook is missing and graph.db is older than recent structural edits; A11 missing-live-contract-suite class was found and mitigated by adding tests/measure_orchestrator_audit.sh as a promotion candidate guard.",
+  "status": "pass",
+  "summary": "Framework audit found no A1/A3/A4/A5/A6/A7/A8/A9 regression in the supervisor, active plan, Phase 2 evidence, or current root test script. Phase 2 truthfulness is preserved: targeted gate exits 0 and the aggregate gate is explicitly exit 1 with pre-existing failures. The A12 blocker (AGENTS.md lacked the peer-reviewed automation-supervisor.py modification rule) was REMEDIATED in commit a3c5dff3: AGENTS.md now documents the rule and tests/measure_orchestrator_audit.sh exits 0. Nonblocking risks remain: A10 pre-commit generated-facts hook is missing and graph.db is older than recent structural edits; A11 missing-live-contract-suite class was found and mitigated by adding tests/measure_orchestrator_audit.sh as a promotion candidate guard.",
   "confidence": "high",
-  "retry_recommendation": "create_remediation_track",
-  "blocking_findings": [
-    "A12: AGENTS.md:49-56 contains generic guardrails but no automation-supervisor.py peer-reviewed component rule; tests/measure_orchestrator_audit.sh now detects this and exits 1 until AGENTS.md is updated."
-  ],
+  "retry_recommendation": "none",
+  "blocking_findings": [],
   "nonblocking_findings": [
+    "A12 (RESOLVED in commit a3c5dff3): AGENTS.md now documents automation-supervisor.py as a peer-reviewed component; guard tests/measure_orchestrator_audit.sh exits 0. Original finding: AGENTS.md guardrails omitted the peer-reviewed supervisor-modification rule.",
     "A10: .git/hooks/pre-commit is missing, so no hook runs measure/generate.sh; measure/generated files are fresh relative to the audited plan, but graph.db mtime is older than recent Phase 2 structural/test edits.",
     "A11: new anti-pattern promotion candidate added for absent live Measure contract-test suite; guard file tests/measure_orchestrator_audit.sh was created and linked from measure/anti-patterns.md.",
     "A2: no tests/*p4.sh, tests/*_closeout.sh, or tests/cs_p*.sh publish-gate contract script exists in the current root tests suite, so no consent/anonymization gate could be evaluated.",
