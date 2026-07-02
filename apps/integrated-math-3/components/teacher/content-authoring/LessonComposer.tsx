@@ -58,6 +58,14 @@ export interface LessonComposerProps {
     lessonId: string;
     lessonVersionId: string;
   };
+  /**
+   * Optional handler invoked when the teacher clicks the enabled
+   * "Preview draft" button. The page host (e.g. ClientComposer) is
+   * responsible for navigating the teacher into preview mode — the
+   * composer itself only signals the intent. Kept optional so
+   * existing callers that did not pass it continue to compile.
+   */
+  onPreview?: () => void;
 }
 
 const COMPONENT_KEYS: ReadonlyArray<string> = [
@@ -98,6 +106,7 @@ export function LessonComposer({
   client,
   teacherId,
   initialStatus,
+  onPreview,
 }: LessonComposerProps) {
   const [state, setState] = useState<ComposerState>(() =>
     createComposerState(initialDraft),
@@ -334,6 +343,7 @@ export function LessonComposer({
         <button
           type="button"
           disabled={!previewable}
+          onClick={() => onPreview?.()}
           className="px-4 py-2 rounded-md border border-border hover:bg-muted/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           aria-label="Preview draft"
         >

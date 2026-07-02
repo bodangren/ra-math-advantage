@@ -430,6 +430,53 @@ Convex AI guidelines path
 follow existing Convex patterns in source. `_generated/` was not
 modified.
 
+#### Phase 3 Green Evidence — UX finding remediation (dead Preview button)
+
+UX browser review found that the composer's "Preview draft" button
+(`apps/integrated-math-3/components/teacher/content-authoring/LessonComposer.tsx`,
+lines 334-341) had `disabled={!previewable}` and `aria-label="Preview draft"`
+but **no `onClick` handler** — making FR3 unreachable from the composer UI
+even though the preview surface itself worked at
+`/teacher/content-authoring?preview=1`.
+
+Remediation (TDD Red → Green):
+
+- **Red (committed first):** new file
+  `apps/integrated-math-3/__tests__/components/teacher/content-authoring/LessonComposer-preview-button.test.tsx`
+  with three tests covering: (a) the enabled Preview button invokes
+  `onPreview` when clicked, (b) the disabled Preview button does NOT
+  invoke `onPreview`, (c) the button is back-compat safe when no
+  `onPreview` is passed (no throw). Test (a) failed for the right reason:
+  `AssertionError: expected "vi.fn()" to be called 1 times, but got 0 times`.
+- **Green:**
+  - `LessonComposer.tsx` — added optional `onPreview?: () => void` to
+    `LessonComposerProps` (back-compat for callers that don't pass it);
+    wired the Preview button: `onClick={() => onPreview?.()}` while
+    keeping the existing `disabled={!previewable}` gate.
+  - `ClientComposer.tsx` — passes an `onPreview` that calls
+    `useRouter().push('/teacher/content-authoring?preview=1')` so the
+    composer's Preview button routes into the existing preview surface.
+    The preview branch now also renders a visible "Back to editing"
+    affordance (a real `<Link>` to `/teacher/content-authoring`) so the
+    teacher can return to edit mode.
+- No Phase 2 handlers changed. No new activity types. No
+  `dangerouslySetInnerHTML`. The teacher route guard is unchanged.
+
+Targeted gate after the remediation (exit 0):
+```bash
+cd apps/integrated-math-3 && CI=true npx vitest run __tests__/lib/teacher/content-authoring __tests__/convex/teacher/content-authoring-drafts.test.ts __tests__/components/teacher/content-authoring __tests__/app/teacher/content-authoring
+```
+Result: `Test Files  15 passed (15) | Tests  178 passed (178)` (exit code 0).
+The new preview-button file contributes `preview_button_test_count:3` —
+all green; zero Phase 1 / Phase 2 / Phase 3 regressions.
+
+Closeout gates (exit codes recorded):
+- `npm run ws:im3:lint` → exit 0.
+- `npx tsc --noEmit` (from repo root) → exit 0.
+
+Fix commit SHA: see the commit referenced by the `MEASURE_AGENT_RESULT`
+handoff for this remediation.
+
 ## Phase 4 — Verification
 
 - [ ] Task: End-to-end: author → preview → submit → approve → publish → assignable (tested)
