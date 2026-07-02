@@ -42,9 +42,29 @@ export interface AuthoringSection {
   activities: AuthoringActivity[];
 }
 
+export type AuthoringPhaseType =
+  | 'explore'
+  | 'vocabulary'
+  | 'learn'
+  | 'key_concept'
+  | 'worked_example'
+  | 'guided_practice'
+  | 'independent_practice'
+  | 'assessment'
+  | 'discourse'
+  | 'reflection';
+
 export interface AuthoringPhase {
   id: string;
   title: string;
+  /**
+   * Phase placement that drives the `ComponentKind` (`example|activity|practice`)
+   * resolution during Phase 2's review-queue assembly. The schema is optional
+   * here because Phase 1's pure normalization runs before Phase 2's
+   * placement-aware persistence; the Phase 2 Convex handler rejects drafts
+   * whose phases omit `phaseType`.
+   */
+  phaseType?: AuthoringPhaseType;
   sections: AuthoringSection[];
 }
 
@@ -239,6 +259,7 @@ export function normalizeLessonDraft(input: unknown): NormalizeLessonDraftResult
     normalizedPhases.push({
       id: makeStableId('phase', [phaseIdx]),
       title: phaseTitle,
+      phaseType: typeof rawPhase.phaseType === 'string' ? rawPhase.phaseType : undefined,
       sections: normalizedSections,
     });
   });

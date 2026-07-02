@@ -343,6 +343,7 @@ export default defineSchema({
 
   lesson_versions: defineTable({
     lessonId: v.id("lessons"),
+    teacherId: v.optional(v.id("profiles")),
     version: v.number(),
     title: v.optional(v.string()),
     description: v.optional(v.string()),
@@ -351,7 +352,8 @@ export default defineSchema({
   })
     .index("by_lesson", ["lessonId"])
     .index("by_status", ["status"])
-    .index("by_lesson_and_version", ["lessonId", "version"]),
+    .index("by_lesson_and_version", ["lessonId", "version"])
+    .index("by_teacher", ["teacherId"]),
 
   phase_versions: defineTable({
     lessonVersionId: v.id("lesson_versions"),

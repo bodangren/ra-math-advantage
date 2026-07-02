@@ -766,7 +766,7 @@ describe('Phase 2 — Teacher authorization and assignment/enrollment visibility
       updatedAt: 1000,
     };
 
-    const { ctx: mutCtx } = makeMutationMockCtx({
+    const { ctx: mutCtx, stores } = makeMutationMockCtx({
       profiles: [teacher, activeStudent, withdrawnStudent, otherClassStudent, otherOrgStudent],
       classes: [cls],
     });
@@ -798,8 +798,8 @@ describe('Phase 2 — Teacher authorization and assignment/enrollment visibility
       classId: cls._id as Id<'classes'>,
     });
 
-    const { ctx: qCtx } = makeQueryMockCtx(stores);
-    qCtx.stores.class_enrollments.push(
+    const { ctx: qCtx, stores: qStores } = makeQueryMockCtx(stores);
+    qStores.class_enrollments.push(
       {
         _id: 'enrollment_active',
         classId: cls._id,
