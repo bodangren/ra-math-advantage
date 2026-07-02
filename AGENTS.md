@@ -54,6 +54,7 @@ See `measure/practice-component-contract.md` for the full spec.
 - Always run `npx tsc --noEmit` in addition to `npm run build` — vinext build does not enforce TypeScript types.
 - Report discovered bugs/tech debt in Measure planning artifacts.
 - **Commit policy:** When a skill-specific workflow (e.g., Measure's atomic-commits-per-task rule) is active, follow that workflow's commit requirements. Generic "do not commit unless asked" only applies to ad-hoc work outside tracked workflows.
+- **Peer-reviewed components:** `measure/automation-supervisor.py` is a peer-reviewed component. Any modification to it (especially task-marker parsing, the `r"^- \[([~xb])\] (.+)"` regex, or `is_task_structurally_blocked`) must be peer-reviewed and re-audited by `measure-orchestrator-audit` before merge, because a regression silently corrupts phase completion accounting (anti-patterns A1/A8/A12).
 
 <!-- convex-ai-start -->
 This project uses [Convex](https://convex.dev) as its backend.
