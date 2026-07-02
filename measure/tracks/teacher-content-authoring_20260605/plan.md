@@ -272,9 +272,9 @@ modified.
 
 ## Phase 3 — Composer UI & Preview
 
-- [x] Task: Lesson composer UI (phases/sections/activities) with schema-driven forms (TDD on logic) — committed (SHA: see commit history)
-- [x] Task: Preview authored content in the existing QA harness — committed (SHA: see commit history)
-- [x] Task: Status surfacing incl. edit-after-reject — committed (SHA: see commit history)
+- [x] Task: Lesson composer UI (phases/sections/activities) with schema-driven forms (TDD on logic) — committed 4e43965b
+- [x] Task: Preview authored content in the existing QA harness — committed 4e43965b
+- [x] Task: Status surfacing incl. edit-after-reject — committed 4e43965b
 - [b] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md) deferred:user
 
 ### Phase 3 Red Evidence
