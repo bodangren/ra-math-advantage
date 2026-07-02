@@ -68,3 +68,7 @@ apps/*/scale-evaluation.json
 /--db
 /--symbol
 *-cli-arg-junk
+
+# Throwaway JSDoc automation scratch files (do not commit)
+_add_types.py
+_add_types.ts
