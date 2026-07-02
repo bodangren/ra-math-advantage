@@ -672,6 +672,46 @@ describe('Phase 2 — Teacher authorization and assignment/enrollment visibility
     ).rejects.toThrow();
   });
 
+  it('prevents a teacher from reviewing or approving another teachers submitted draft', async () => {
+    const {
+      saveTeacherDraftHandler,
+      submitDraftForReviewHandler,
+      reviewAuthoredLessonHandler,
+    } = await import('../../../convex/teacher/content-authoring');
+
+    const owner = makeTeacher('teacher_owner', 'org_1');
+    const other = makeTeacher('teacher_other', 'org_1');
+    const { ctx } = makeMutationMockCtx({ profiles: [owner, other] });
+
+    const saved = await saveTeacherDraftHandler(ctx, {
+      userId: owner._id as Id<'profiles'>,
+      draft: buildAuthoredDraft(),
+      idempotencyKey: 'review-ownership-key',
+    });
+    expect(saved.success).toBe(true);
+    if (!saved.success) return;
+
+    await submitDraftForReviewHandler(ctx, {
+      userId: owner._id as Id<'profiles'>,
+      lessonId: saved.lessonId,
+    });
+
+    await expect(
+      reviewAuthoredLessonHandler(ctx, {
+        userId: other._id as Id<'profiles'>,
+        lessonId: saved.lessonId,
+        decision: 'approved',
+      }),
+    ).rejects.toThrow();
+
+    const ownerReview = await reviewAuthoredLessonHandler(ctx, {
+      userId: owner._id as Id<'profiles'>,
+      lessonId: saved.lessonId,
+      decision: 'approved',
+    });
+    expect(ownerReview.success).toBe(true);
+  });
+
   it('only allows assigning a published authored lesson to a class the teacher owns', async () => {
     const {
       saveTeacherDraftHandler,
