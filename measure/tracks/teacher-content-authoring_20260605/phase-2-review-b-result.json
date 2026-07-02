@@ -1,0 +1,26 @@
+{
+  "role": "review-b-security",
+  "track": "teacher-content-authoring_20260605",
+  "phase": "Phase 2 — Draft Lifecycle & Persistence",
+  "status": "pass",
+  "findings": [
+    {
+      "severity": "High",
+      "summary": "reviewAuthoredLessonHandler at Phase 2 Green baseline (868b08b8) lacked a lesson-ownership check, allowing any teacher to approve/reject another teacher's submitted draft. The ownership gate was added in a subsequent tree commit (828a751f) and is now proven by a new adversarial test.",
+      "file": "apps/integrated-math-3/convex/teacher/content-authoring.ts",
+      "resolved": true
+    },
+    {
+      "severity": "Low",
+      "summary": "loadAuthoredLesson selects the 'latest' version with versions[versions.length - 1] rather than an explicit sort by version/createdAt. This relies on Convex insertion ordering and is a persistence-semantics fragility, but it is not a proven security blocker and was not introduced in Phase 2.",
+      "file": "apps/integrated-math-3/convex/teacher/content-authoring.ts",
+      "resolved": false
+    }
+  ],
+  "gate_command": "CI=true npx vitest run apps/integrated-math-3/__tests__/lib/teacher/content-authoring apps/integrated-math-3/__tests__/convex/teacher/content-authoring-drafts.test.ts",
+  "gate_exit_code": 0,
+  "commits": [
+    "f9038201 test(teacher-authoring): add adversarial test for cross-teacher review rejection"
+  ],
+  "notes": "Review B inspected the Phase 2 spec, plan, test-strategy, anti-patterns, and the changed source/test files. Teacher-scoped authz is enforced on every mutating handler except the review handler at baseline; that gap is closed in the current tree. Sanitization uses the real sanitizeLessonDraft before persistence; hashing and publish gating use computeComponentContentHash and reject stale approvals; student visibility requires published + class_lessons + active enrollment + same org. A2 (approval-aware publish gate) and A6 (tracks.md does not overstate completion) are satisfied. Lint (npm run ws:im3:lint) and tsc --noEmit both pass. Did NOT stage or commit _add_types.py, _add_types.ts, or measure/monorepo-ops.md."
+}
