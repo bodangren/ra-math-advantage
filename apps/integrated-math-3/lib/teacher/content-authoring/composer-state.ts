@@ -337,6 +337,21 @@ export type ComposerAction =
     };
 
 function reorder<T>(arr: T[], from: number, to: number): T[] {
+  // Bounds-check: a stale UI can pass out-of-range indices (negative or
+  // larger than the array). `Array.prototype.splice` silently accepts
+  // those — `splice(-1, 1)` removes the *last* element, which would
+  // scramble the tree. A defensive no-op is the safe behavior here so
+  // the rest of the reducer never sees a half-shifted array.
+  if (
+    !Number.isInteger(from) ||
+    !Number.isInteger(to) ||
+    from < 0 ||
+    to < 0 ||
+    from >= arr.length ||
+    to >= arr.length
+  ) {
+    return arr.slice();
+  }
   const next = arr.slice();
   const [moved] = next.splice(from, 1);
   next.splice(to, 0, moved);

@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "role": "adversarial-testing",
+  "track": "teacher-content-authoring_20260605",
+  "phase": "Phase 3 — Composer UI & Preview",
+  "status": "pass",
+  "summary": "Added 52 adversarial tests across 5 new test files (composer-state, status-view, LessonComposer, AuthoredLessonPreview, route page). One real bug surfaced and fixed: the composer reducer's `reorder` helper did not bounds-check indices, so REORDER_PHASES with `fromIndex=-1` and `toIndex=0` would silently splice-move the last element to the front. All targeted, project, lint, and type-check gates pass with 175 tests green (123 pre-existing + 52 new).",
+  "confidence": "high",
+  "retry_recommendation": "none",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    "Bug: `reorder<T>(arr, from, to)` in apps/integrated-math-3/lib/teacher/content-authoring/composer-state.ts did not bounds-check indices; `Array.prototype.splice` accepts negative or out-of-range values and silently mutates the array (e.g. `splice(-1, 1)` removes the last element). A stale UI passing out-of-range indices could scramble the phase/section/activity tree. Fixed in this pass by adding a defensive no-op for non-integer / negative / out-of-bounds from/to indices, so the rest of the reducer never sees a half-shifted array. The fix is covered by `composer-state-adversarial.test.ts: REORDER_PHASES with an out-of-bounds fromIndex is a safe no-op` and `REORDER_PHASES with an out-of-bounds toIndex is a safe no-op`.",
+    "Documentation: the JSDoc banner in `LessonComposer.tsx` and `AuthoredLessonPreview.tsx` references `dangerouslySetInnerHTML` to declare the safety property. A naive substring guard `expect(source).not.toContain('dangerouslySetInnerHTML')` would false-positive on these banners. The adversarial test `LessonComposer source does NOT use dangerouslySetInnerHTML for any authored text` strips block + line comments before matching `dangerouslySetInnerHTML\\s*=` so it only catches actual JSX prop usage.",
+    "Pre-existing aggregate failures: the app-wide aggregate `npx vitest run apps/integrated-math-3` shows the same 9 pre-existing test-file failures documented in plan.md (objectiveProficiency, schema-blueprint, schema-vany-audit, ActivityRenderer-graphing-explorer, practice-blueprint, problem-families-modules-6-9, etc.). The new adversarial tests do not contribute to that count and run entirely green in the targeted Phase 3 gate."
+  ],
+  "evidence": [
+    "Adversarial test files (all green, total 52 tests):",
+    "  - apps/integrated-math-3/__tests__/lib/teacher/content-authoring/composer-state-adversarial.test.ts (15 tests): empty-state gates (last phase/section/activity removed blocks save+preview), REORDER bounds-check, REORDER_ACTIVITIES id uniqueness after cycling, ADD_ACTIVITY id uniqueness, placeholder keys (equation-solver, drag-drop-categorization) rejected with structured error bound to key, UPDATE_ACTIVITY_PROPS schema-invalid blocks save AND preserves prior valid props, cross-key props rejected, sanitizeComposerState preserves structural ids for Phase 2 hashing.",
+    "  - apps/integrated-math-3/__tests__/lib/teacher/content-authoring/status-view-adversarial.test.ts (13 tests): every teacherFacingStatus maps to a distinct label, rejectionComment surfaced verbatim, empty rejectionComment treated as absent, canEditAfterReject is true ONLY for rejected, persisted 'review'/'archived' throw, non-string teacherFacingStatus throws, submitted/approved/published are read-only, only approved/published are publish-ready, only draft allows save+submit together.",
+    "  - apps/integrated-math-3/__tests__/components/teacher/content-authoring/AuthoredLessonPreview-adversarial.test.tsx (10 tests): preview forwards authored props for graphing-explorer AND comprehension-quiz AND fill-in-the-blank simultaneously, each activity receives ONLY its own props (no cross-key leakage), authored <script>/onerror=/javascript: never reaches DOM as live HTML, independent_practice+assessment map to practice mode, vocabulary/learn/key_concept map to teaching mode, invalid activity in one phase does not crash sibling phases' preview.",
+    "  - apps/integrated-math-3/__tests__/components/teacher/content-authoring/LessonComposer-adversarial.test.tsx (7 tests): paste <script> into title input produces sanitized save payload AND no <script> element in DOM, unsafe authored callout sanitized in BOTH save payload AND rendered DOM, LessonComposer source has no `dangerouslySetInnerHTML=` JSX prop usage (comment-stripped guard), AuthoredLessonPreview source has no `dangerouslySetInnerHTML=` JSX prop usage, form-level field update (empty equation) BLOCKS save button, full single-phase/section/activity draft forwarded to client adapter with stable structure.",
+    "  - apps/integrated-math-3/__tests__/app/teacher/content-authoring/page-adversarial.test.tsx (7 tests): admin role renders composer (admin is teacher-compatible per spec), student caller propagates NEXT_REDIRECT, parent caller propagates NEXT_REDIRECT, unauthenticated propagates NEXT_REDIRECT, documented /auth/login path is passed to guard, preview route (?preview=1) is also gated, preview route rejects student caller with NEXT_REDIRECT.",
+    "Bug-fix artifact (composer-state.ts): defensive bounds-check in reorder() helper; pre-existing Phase 1/2/3 tests still green after fix.",
+    "Targeted Phase 3 gate: `cd apps/integrated-math-3 && CI=true npx vitest run __tests__/lib/teacher/content-authoring __tests__/convex/teacher/content-authoring-drafts.test.ts __tests__/components/teacher/content-authoring __tests__/app/teacher/content-authoring` → Test Files 14 passed (14) | Tests 175 passed (175) | exit 0.",
+    "PROJECT_TESTS: `CI=true npm run test` → Test Files 22 passed (22) | Tests 302 passed (302) | exit 0 (workspace packages/knowledge-space-core).",
+    "Type-check: `npx tsc --noEmit` (root) → exit 0.",
+    "Lint: `npm run ws:im3:lint` → `eslint . --max-warnings 0` exit 0; raw eslint invocation also exits 0.",
+    "Anti-pattern hygiene: no A3 (digit-only counts), no A4 (vacuous pass — every adversarial test runs a real reducer / DOM assertion against non-empty fixtures), no A5 (no 'all checks pass' false-claim in plan; this result JSON records real exit codes), no A7 (no over-broad filter — substring guards for `dangerouslySetInnerHTML` strip comments first, not bare English words)."
+  ],
+  "commands": [
+    "cd apps/integrated-math-3 && CI=true npx vitest run __tests__/lib/teacher/content-authoring __tests__/convex/teacher/content-authoring-drafts.test.ts __tests__/components/teacher/content-authoring __tests__/app/teacher/content-authoring => exit 0, Test Files 14 passed (14) | Tests 175 passed (175)",
+    "CI=true npm run test => exit 0, Test Files 22 passed (22) | Tests 302 passed (302)",
+    "npx tsc --noEmit => exit 0",
+    "npm run ws:im3:lint => exit 0 (eslint --max-warnings 0, 0 errors / 0 warnings)"
+  ],
+  "changed_files": [
+    "apps/integrated-math-3/lib/teacher/content-authoring/composer-state.ts",
+    "apps/integrated-math-3/__tests__/lib/teacher/content-authoring/composer-state-adversarial.test.ts",
+    "apps/integrated-math-3/__tests__/lib/teacher/content-authoring/status-view-adversarial.test.ts",
+    "apps/integrated-math-3/__tests__/components/teacher/content-authoring/AuthoredLessonPreview-adversarial.test.tsx",
+    "apps/integrated-math-3/__tests__/components/teacher/content-authoring/LessonComposer-adversarial.test.tsx",
+    "apps/integrated-math-3/__tests__/app/teacher/content-authoring/page-adversarial.test.tsx"
+  ]
+}
