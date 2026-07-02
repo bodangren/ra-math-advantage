@@ -114,6 +114,34 @@ Both apps auto-generate types during `npx convex dev`. The generated files are:
 
 **Important**: Do not edit files in `convex/_generated/`. They are regenerated on each `convex dev` or `convex deploy`.
 
+## Deployment Status
+
+> **Verified 2026-07-01** against Cloudflare (account `bodangren@gmail.com` / `0f8cef50…42da20`) and Convex bindings in each `wrangler.jsonc` / `.env.local`. Timestamps go stale — **re-verify with the command below, don't trust the dates blind.**
+
+| App | CF Worker live? | Last CF deploy | Convex (prod URL in wrangler) | In CI deploy? |
+|-----|-----------------|----------------|-------------------------------|---------------|
+| integrated-math-3 | ✅ yes | 2026-04-11 | `chatty-weasel-888.convex.cloud` | ✅ (`ci.yml` Phase 6) |
+| bus-math-v2 | ✅ yes | 2026-03-23 | `quiet-swan-141.convex.cloud` | ❌ manual only |
+| integrated-math-1 | ❌ no worker (`code 10007`) | never | `127.0.0.1:3210` (localhost) | ❌ |
+| integrated-math-2 | ❌ no worker (`code 10007`) | never | `127.0.0.1:3210` (localhost) | ❌ |
+| pre-calculus | ❌ no worker (`code 10007`) | never | `127.0.0.1:3210` (localhost) | ❌ |
+
+**Key facts (durable, not just snapshot):**
+- **Nothing is deployed *from this monorepo*.** Both live workers were last deployed *before* the apps moved into `apps/` on 2026-04-18 (BM2 2026-03-23, IM3 2026-04-11). The live versions are the pre-monorepo standalone deploys and have drifted.
+- **IM3 CI deploy has never landed.** Root cause (confirmed 2026-07-01): every `ci.yml` run fails in **Phase 1 `Validate Packages` → `Run package typecheck`** (`practice-core`, `core-convex`, `core-auth`, `ai-tutoring` — test files use `node:fs`/`node:path`/`node:url` with no `@types/node` in package tsconfig; TS2591/TS7006). The single shared matrix gates `deploy` behind `needs:[im3,bm2]` → `needs:[packages,boundary-check]`, so a package typecheck red stops CI long before the Phase 6 deploy job runs. The manual `cloudflare-deploy.yml` (`workflow_dispatch`) has **never been triggered**. Fix the package tsconfigs (see tech-debt) to unblock the deploy.
+- **IM1 / IM2 / pre-calculus are scaffolds** — no Cloudflare worker exists and their `wrangler.jsonc` points at `localhost`, so deploying as-is would yield a backend-less worker.
+- pre-calculus `.env.local` borrows IM3's dev Convex deployment (`focused-malamute-141`); it has no Convex backend of its own.
+
+**Re-verify (read-only):**
+
+```bash
+npx wrangler login            # if "Not logged in" / token expired
+for app in bus-math-v2 integrated-math-1 integrated-math-2 integrated-math-3 pre-calculus; do
+  echo "== $app =="
+  npx wrangler deployments list --config "apps/$app/wrangler.jsonc" 2>&1 | grep -E 'Created:|code: 10007' | tail -2
+done
+```
+
 ## Cloudflare Deployment
 
 ### IM3 Deploy
