@@ -4,6 +4,7 @@ import type { MutationCtx, QueryCtx } from '../../../convex/_generated/server';
 import { computeComponentContentHash } from '../../../lib/activities/content-hash';
 import { resolveComponentKind } from '../../../lib/activities/review-queue';
 import { sanitizeAuthoringText } from '../../../lib/teacher/content-authoring/sanitize-authored-text';
+import { toTeacherFacingStatus } from '../../../convex/teacher/content-authoring';
 
 type StoreName =
   | 'profiles'
@@ -392,6 +393,7 @@ describe('Phase 2 — Draft lifecycle and persistence', () => {
       lessonId: saved.lessonId,
     });
     expect(submitted.success).toBe(true);
+    expect(submitted.teacherFacingStatus).toBe('submitted');
 
     await expect(
       publishAuthoredLessonHandler(ctx, {
@@ -432,6 +434,8 @@ describe('Phase 2 — Draft lifecycle and persistence', () => {
       comment: 'Fix the equation.',
     });
     expect(rejected.success).toBe(true);
+    expect(rejected.teacherFacingStatus).toBe('rejected');
+    expect(rejected.rejectionComment).toBe('Fix the equation.');
     expect(stores.component_reviews[0].comment).toBe('Fix the equation.');
 
     const edited = await editRejectedDraftHandler(ctx, {
@@ -528,6 +532,7 @@ describe('Phase 2 — Approval queue and content hashing', () => {
       lessonId: saved.lessonId,
     });
     expect(published.success).toBe(true);
+    expect(published.teacherFacingStatus).toBe('published');
   });
 
   it('rejects publish when an approved activity becomes stale after an edit', async () => {
@@ -843,5 +848,69 @@ describe('Phase 2 — Teacher authorization and assignment/enrollment visibility
       lessonId: saved.lessonId,
     });
     expect(otherOrgResult).toBeNull();
+  });
+});
+
+describe('Phase 2 — Teacher-facing status mapping', () => {
+  it('maps persisted DB statuses to teacher-facing lifecycle statuses', () => {
+    expect(toTeacherFacingStatus('draft')).toBe('draft');
+    expect(toTeacherFacingStatus('review')).toBe('submitted');
+    expect(toTeacherFacingStatus('approved')).toBe('approved');
+    expect(toTeacherFacingStatus('archived')).toBe('rejected');
+    expect(toTeacherFacingStatus('published')).toBe('published');
+  });
+
+  it('rejects are distinguishable from published in the teacher-facing DTO', async () => {
+    const {
+      saveTeacherDraftHandler,
+      submitDraftForReviewHandler,
+      reviewAuthoredLessonHandler,
+      editRejectedDraftHandler,
+    } = await import('../../../convex/teacher/content-authoring');
+
+    const teacher = makeTeacher('teacher_1', 'org_1');
+    const { ctx } = makeMutationMockCtx({ profiles: [teacher] });
+
+    const saved = await saveTeacherDraftHandler(ctx, {
+      userId: teacher._id as Id<'profiles'>,
+      draft: buildAuthoredDraft(),
+      idempotencyKey: 'status-map-key',
+    });
+    expect(saved.success).toBe(true);
+    if (!saved.success) return;
+
+    await submitDraftForReviewHandler(ctx, {
+      userId: teacher._id as Id<'profiles'>,
+      lessonId: saved.lessonId,
+    });
+
+    const approved = await reviewAuthoredLessonHandler(ctx, {
+      userId: teacher._id as Id<'profiles'>,
+      lessonId: saved.lessonId,
+      decision: 'approved',
+    });
+    expect(approved.teacherFacingStatus).toBe('approved');
+
+    // Edit the approved lesson back to draft, then resubmit for rejection test
+    await editRejectedDraftHandler(ctx, {
+      userId: teacher._id as Id<'profiles'>,
+      lessonId: saved.lessonId,
+      draft: buildAuthoredDraft(),
+      idempotencyKey: 'status-map-key-edited',
+    });
+
+    await submitDraftForReviewHandler(ctx, {
+      userId: teacher._id as Id<'profiles'>,
+      lessonId: saved.lessonId,
+    });
+
+    const rejected = await reviewAuthoredLessonHandler(ctx, {
+      userId: teacher._id as Id<'profiles'>,
+      lessonId: saved.lessonId,
+      decision: 'rejected',
+      comment: 'Needs work.',
+    });
+    expect(rejected.teacherFacingStatus).toBe('rejected');
+    expect(rejected.rejectionComment).toBe('Needs work.');
   });
 });

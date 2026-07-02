@@ -93,11 +93,53 @@ export interface SaveTeacherDraftResult {
   idempotencyKey: string;
 }
 
+/**
+ * Teacher-facing lifecycle status. The persisted `lesson_versions.status`
+ * uses DB-level values (`draft | review | approved | archived | published`)
+ * while teachers see the product-level names (`draft | submitted | approved |
+ * rejected | published`). This DTO carries the teacher-facing status so the
+ * Phase 3 UI never has to guess the mapping.
+ */
+export type TeacherFacingStatus =
+  | "draft"
+  | "submitted"
+  | "approved"
+  | "rejected"
+  | "published";
+
+/**
+ * Map a persisted `lesson_versions.status` to the teacher-facing lifecycle
+ * status. The mapping is pinned here as the single source of truth.
+ */
+export function toTeacherFacingStatus(
+  persistedStatus: string,
+): TeacherFacingStatus {
+  switch (persistedStatus) {
+    case "draft":
+      return "draft";
+    case "review":
+      return "submitted";
+    case "approved":
+      return "approved";
+    case "archived":
+      return "rejected";
+    case "published":
+      return "published";
+    default:
+      return persistedStatus as TeacherFacingStatus;
+  }
+}
+
 export interface LifecycleResult {
   success: true;
   lessonId: Id<"lessons">;
   lessonVersionId: Id<"lesson_versions">;
+  /** Persisted DB status. Prefer `teacherFacingStatus` for UI display. */
   status: string;
+  /** Teacher-facing lifecycle status (draft/submitted/approved/rejected/published). */
+  teacherFacingStatus: TeacherFacingStatus;
+  /** Rejection/needs_changes comment from the reviewer, if any. */
+  rejectionComment?: string;
 }
 
 export interface AssignAuthoredLessonResult {
@@ -634,6 +676,7 @@ export async function submitDraftForReviewHandler(
     lessonId: loaded.lesson._id,
     lessonVersionId: loaded.latest._id,
     status: "review",
+    teacherFacingStatus: "submitted",
   };
 }
 
@@ -684,6 +727,9 @@ export async function reviewAuthoredLessonHandler(
   const loaded = await loadAuthoredLesson(ctx, args.lessonId);
   if (!loaded) {
     throw new Error("Authored lesson not found");
+  }
+  if (loaded.lesson.metadata?.authoringTeacherId !== args.userId) {
+    throw new Error("Unauthorized: only the owning teacher can review this draft");
   }
   if (loaded.latest.status !== "review") {
     throw new Error(
@@ -809,6 +855,8 @@ export async function reviewAuthoredLessonHandler(
     lessonId: loaded.lesson._id,
     lessonVersionId: loaded.latest._id,
     status: nextStatus,
+    teacherFacingStatus: toTeacherFacingStatus(nextStatus),
+    rejectionComment: decision !== "approved" ? comment : undefined,
   };
 }
 
@@ -1052,6 +1100,7 @@ export async function publishAuthoredLessonHandler(
     lessonId: loaded.lesson._id,
     lessonVersionId: loaded.latest._id,
     status: "published",
+    teacherFacingStatus: "published",
   };
 }
 
