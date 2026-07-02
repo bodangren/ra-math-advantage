@@ -272,9 +272,9 @@ modified.
 
 ## Phase 3 — Composer UI & Preview
 
-- [~] Task: Lesson composer UI (phases/sections/activities) with schema-driven forms (TDD on logic)
-- [~] Task: Preview authored content in the existing QA harness
-- [~] Task: Status surfacing incl. edit-after-reject
+- [x] Task: Lesson composer UI (phases/sections/activities) with schema-driven forms (TDD on logic) — committed (SHA: see commit history)
+- [x] Task: Preview authored content in the existing QA harness — committed (SHA: see commit history)
+- [x] Task: Status surfacing incl. edit-after-reject — committed (SHA: see commit history)
 - [b] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md) deferred:user
 
 ### Phase 3 Red Evidence
@@ -328,6 +328,107 @@ Lint and type-check notes:
   pre-existing at baseline (e.g. `problemFamilyId` field drift in SRS/proficiency
   modules, `tailwinconfig.ts` dark-mode strategy typing, etc.) and are outside
   Phase 3 scope.
+
+### Phase 3 Green Evidence
+
+Green implements four pure / app-local modules + one route:
+
+- `apps/integrated-math-3/lib/teacher/content-authoring/composer-state.ts` —
+  the composer state machine (`createComposerState`, `composerReducer`,
+  `canSaveComposerState`, `canPreviewComposerState`, `sanitizeComposerState`)
+  plus the schema-driven `deriveActivityFormFields(componentKey)` helper.
+  The reducer never mutates input arrays in place. The schema-field
+  derivation walks the live Zod `SCHEMA_REGISTRY` / `getPropsSchema` and
+  refuses to enumerate `equation-solver`, `drag-drop-categorization`, or
+  any other unknown / placeholder key. Reuses Phase 1
+  `normalizeLessonDraft`, `validateActivityConfig`, and
+  `sanitizeLessonDraft` instead of inventing a parallel validator.
+- `apps/integrated-math-3/lib/teacher/content-authoring/get-teacher-authoring-status-view.ts` —
+  maps Phase 2 `teacherFacingStatus` (`draft | submitted | approved |
+  rejected | published`) + optional `rejectionComment` into a status view
+  with `label`, `canSave`, `canSubmit`, `canEdit`, `canEditAfterReject`,
+  `isPublishReady`. Persisted `review`/`archived` strings are NOT
+  accepted: unknown `teacherFacingStatus` throws.
+- `apps/integrated-math-3/components/teacher/content-authoring/LessonComposer.tsx` —
+  the composer UI. Keyboard-operable add/remove/reorder controls,
+  `card-workbook` shell + `section-label` per DESIGN.md, accessible
+  labels on every input, schema-driven form fields per
+  `deriveActivityFormFields`, `SanitizedText` for authored free-text
+  (no `dangerouslySetInnerHTML`), a thin `client` prop adapter for
+  Phase 2 handlers (never imports Convex handlers directly), and a
+  status strip driven by the Phase 2 `teacherFacingStatus` DTO.
+- `apps/integrated-math-3/components/teacher/content-authoring/AuthoredLessonPreview.tsx` —
+  renders authored content through the SAME `ActivityRenderer` +
+  `CalloutBox` + `SanitizedText` path a student preview uses. No
+  bespoke preview renderer. Unknown keys throw before render.
+  Schema-invalid props render an accessible `role="alert"` error
+  without crashing the rest of the preview.
+- `apps/integrated-math-3/app/teacher/content-authoring/page.tsx` +
+  `apps/integrated-math-3/app/teacher/content-authoring/ClientComposer.tsx` —
+  teacher-gated route scaffold for UX browser review at
+  `/teacher/content-authoring` (edit) and
+  `/teacher/content-authoring?preview=1` (preview). Wires a no-op
+  client adapter at this stage; the real Convex client wires up in a
+  follow-up.
+
+Targeted Phase 3 Green command (exit 0):
+```bash
+cd apps/integrated-math-3 && CI=true npx vitest run __tests__/lib/teacher/content-authoring __tests__/convex/teacher/content-authoring-drafts.test.ts __tests__/components/teacher/content-authoring
+```
+Result: `Test Files 8 passed (8) | Tests 121 passed (121)`.
+Phase 3 file/test counts:
+- `phase3_composer_state_file:1` — `composer-state.test.ts` — 22 tests, all green.
+- `phase3_status_view_file:1` — `status-view.test.ts` — 7 tests, all green.
+- `phase3_lesson_composer_file:1` — `LessonComposer.test.tsx` — 14 tests, all green.
+- `phase3_preview_file:1` — `AuthoredLessonPreview.test.tsx` — 10 tests, all green.
+- `phase3_total_files:4` — `phase3_total_tests:53` — 53 tests, 0 failures.
+- `phase1_phase2_still_green:4` files / 68 tests passing alongside Phase 3.
+
+Closeout gates:
+- `npm run ws:im3:lint` → exit 0.
+- `npx tsc --noEmit` (from repo root) → exit 0. All Phase 3 TS2307
+  "Cannot find module" errors from Red are resolved; no remaining
+  Phase 3-related tsc errors.
+- `CI=true npm run test` (workspace `packages/knowledge-space-core`) →
+  exit 0, `Test Files 22 passed (22) | Tests 302 passed (302)`.
+
+Aggregate gate (document, pre-existing failures only — no Phase 3 regressions):
+```bash
+cd apps/integrated-math-3 && CI=true npx vitest run __tests__/lib/teacher/content-authoring __tests__/components __tests__/convex
+```
+Result: `Test Files 9 failed | 217 passed (226) | Tests 27 failed | 2767 passed (2794)`.
+All 9 file failures and 27 test failures are pre-existing at baseline in
+unrelated areas:
+- `objectiveProficiency.test.ts` (proficiency handler — pre-existing).
+- `schema-blueprint.test.ts` (problem_families schema — pre-existing).
+- `schema-vany-audit.test.ts` (v.any audit — pre-existing).
+- `ActivityRenderer-graphing-explorer.test.tsx` (existing renderer —
+  pre-existing).
+- `practice-blueprint.test.ts` (problem families seed — pre-existing).
+- `problem-families-modules-6-9.test.ts` (problem families — pre-existing).
+None of the Phase 3 changed files (`composer-state.ts`,
+`get-teacher-authoring-status-view.ts`, `LessonComposer.tsx`,
+`AuthoredLessonPreview.tsx`, route page + ClientComposer) introduce new
+failures; all Phase 3 tests are green.
+
+Live URL for UX browser review:
+- Edit: `http://localhost:3000/teacher/content-authoring`
+- Preview: `http://localhost:3000/teacher/content-authoring?preview=1`
+
+Graph artifacts: `graph.db` refreshed via `build-graph update ./graph.db
+apps/integrated-math-3/lib/teacher/content-authoring/composer-state.ts
+apps/integrated-math-3/lib/teacher/content-authoring/get-teacher-authoring-status-view.ts
+apps/integrated-math-3/components/teacher/content-authoring/LessonComposer.tsx
+apps/integrated-math-3/components/teacher/content-authoring/AuthoredLessonPreview.tsx
+apps/integrated-math-3/app/teacher/content-authoring/page.tsx
+apps/integrated-math-3/app/teacher/content-authoring/ClientComposer.tsx`
+(`0 → 147 nodes`, `0 → 174 edges` for the 6 changed files; repo size
+`26435584 → 26796032` bytes).
+
+Convex AI guidelines path
+`apps/integrated-math-3/convex/_generated/ai/guidelines.md` is absent;
+follow existing Convex patterns in source. `_generated/` was not
+modified.
 
 ## Phase 4 — Verification
 

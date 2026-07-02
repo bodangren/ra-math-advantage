@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "role": "jr-green",
+  "track": "teacher-content-authoring_20260605",
+  "phase": "Phase 3 — Composer UI & Preview",
+  "status": "pass",
+  "summary": "Implemented four pure/app-local Phase 3 modules (composer-state, get-teacher-authoring-status-view, LessonComposer, AuthoredLessonPreview) plus a teacher-gated route at /teacher/content-authoring with a ?preview=1 mode for UX browser review. Targeted gate exits 0 with 121/121 tests passing (53 new Phase 3 tests + 68 Phase 1/Phase 2 tests still green). Reuses Phase 1 normalize/validate/sanitize and Phase 2 teacherFacingStatus / rejectionComment DTOs; no parallel validation, no new activity types, no raw HTML injection. Lint, tsc, and the knowledge-space-core workspace test all exit 0.",
+  "confidence": "high",
+  "retry_recommendation": "none",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    "Aggregate command (apps/integrated-math-3/__tests__/lib + components + convex) shows 9 pre-existing file failures / 27 pre-existing test failures in unrelated modules (objectiveProficiency, schema-blueprint, schema-vany-audit, ActivityRenderer-graphing-explorer, practice-blueprint, problem-families-modules-6-9). Documented per test-strategy.md §3; no Phase 3 regressions.",
+    "The Phase 2 client adapter is wired to no-op stubs in the route scaffold so the page is reachable for UX browser review; the real Convex client (saveTeacherDraft/submitDraftForReview/editRejectedDraft) wiring lands when Phase 4 E2E hydration is in scope. This is a documented follow-up, not a blocker for Phase 3 acceptance."
+  ],
+  "evidence": [
+    "Targeted Phase 3 Green command: cd apps/integrated-math-3 && CI=true npx vitest run __tests__/lib/teacher/content-authoring __tests__/convex/teacher/content-authoring-drafts.test.ts __tests__/components/teacher/content-authoring → Test Files 8 passed (8) | Tests 121 passed (121) | exit 0",
+    "Per-file Phase 3 counts (all green): composer-state.test.ts=22, status-view.test.ts=7, LessonComposer.test.tsx=14, AuthoredLessonPreview.test.tsx=10; phase3_total_tests=53",
+    "Phase 1/2 regression check: authoring-model.test.ts=9, activity-config-validation.test.ts=7, sanitize-authored-text.test.ts=7, content-authoring-drafts.test.ts=45 (combined with Phase 3 files: 121/121 green)",
+    "Closeout gate: npm run ws:im3:lint → exit 0",
+    "Closeout gate: npx tsc --noEmit (from repo root) → exit 0 (Phase 3 TS2307 'Cannot find module' errors from Red all resolved; no new tsc errors introduced)",
+    "Closeout gate: CI=true npm run test (knowledge-space-core) → Test Files 22 passed (22) | Tests 302 passed (302) | exit 0",
+    "Aggregate (documented pre-existing failures only): cd apps/integrated-math-3 && CI=true npx vitest run __tests__/lib/teacher/content-authoring __tests__/components __tests__/convex → Test Files 9 failed | 217 passed (226) | Tests 27 failed | 2767 passed (2794) — all 9/27 failures are pre-existing in unrelated modules, none in Phase 3 changed files",
+    "graph.db refreshed via build-graph update ./graph.db <6 changed files>; delta: 0 → 147 nodes, 0 → 174 edges for the changed files; size 26435584 → 26796032 bytes",
+    "Live composer URL for UX browser review: http://localhost:3000/teacher/content-authoring (edit) and http://localhost:3000/teacher/content-authoring?preview=1 (preview)",
+    "Phase 3 plan tasks flipped [~] → [x] with this commit's SHA: Task 3.1 (Lesson composer UI + schema-driven forms), Task 3.2 (Preview authored content), Task 3.3 (Status surfacing incl. edit-after-reject); Task 3.4 remains [b] deferred:user"
+  ],
+  "commands": [
+    "cd apps/integrated-math-3 && CI=true npx vitest run __tests__/lib/teacher/content-authoring __tests__/convex/teacher/content-authoring-drafts.test.ts __tests__/components/teacher/content-authoring => exit 0, Test Files 8 passed (8) | Tests 121 passed (121)",
+    "npm run ws:im3:lint => exit 0",
+    "npx tsc --noEmit => exit 0",
+    "CI=true npm run test => exit 0, Test Files 22 passed (22) | Tests 302 passed (302)",
+    "cd apps/integrated-math-3 && CI=true npx vitest run __tests__/lib/teacher/content-authoring __tests__/components __tests__/convex => exit 1 (pre-existing), Test Files 9 failed | 217 passed (226) | Tests 27 failed | 2767 passed (2794)"
+  ],
+  "changed_files": [
+    "apps/integrated-math-3/lib/teacher/content-authoring/composer-state.ts",
+    "apps/integrated-math-3/lib/teacher/content-authoring/get-teacher-authoring-status-view.ts",
+    "apps/integrated-math-3/components/teacher/content-authoring/LessonComposer.tsx",
+    "apps/integrated-math-3/components/teacher/content-authoring/AuthoredLessonPreview.tsx",
+    "apps/integrated-math-3/app/teacher/content-authoring/page.tsx",
+    "apps/integrated-math-3/app/teacher/content-authoring/ClientComposer.tsx",
+    "measure/tracks/teacher-content-authoring_20260605/plan.md",
+    "measure/tracks/teacher-content-authoring_20260605/phase-3-green-result.json",
+    "graph.db"
+  ]
+}
