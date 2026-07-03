@@ -197,3 +197,19 @@ export type {
   ConfirmationCheckResult,
   ConfirmationCheck,
 } from './transfer-skip';
+
+// ---------------------------------------------------------------------------
+// Phase 4 — Teacher Audit View (FR6, AC5)
+// See measure/tracks/transfer-credit-runtime_20260605/{plan,test-strategy}.md
+// ---------------------------------------------------------------------------
+
+export { buildTransferCreditAuditView } from './transfer-teacher-audit';
+export type {
+  TransferCreditAuditRow,
+  TransferCreditStudentGroup,
+  TransferCreditAuditView,
+  TransferSkipKind,
+  TransferCreditAuditInputRecord,
+  TransferCreditStudentMap,
+  TransferCreditCourseMap,
+} from './transfer-teacher-audit';

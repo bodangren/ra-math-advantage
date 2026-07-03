@@ -23,6 +23,7 @@ function makeRecord(overrides?: Partial<RecordFixture>): TransferSkipRecord {
     skippedAt: 1_000_000,
     reversible: true,
     state: 'skipped',
+    studentId: 'student-a',
     confirmed: false,
     ...overrides,
   } as TransferSkipRecord;
