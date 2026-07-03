@@ -1,0 +1,29 @@
+{
+  "track": "wire-kst-pipeline_20260521",
+  "phase": "Phase 2 — Knowledge State & Mastery Engine",
+  "stage": "adversarial",
+  "status": "pass",
+  "commit": "19b3000c",
+  "timestamp": "2026-07-03T16:03:00Z",
+  "total_tests": 442,
+  "adversarial_tests": 35,
+  "test_files": 33,
+  "gate": {
+    "command": "CI=true npx vitest run packages/knowledge-space-core",
+    "exit_code": 0,
+    "all_passed": true
+  },
+  "coverage": {
+    "time_travel": true,
+    "rapid_state_cycling": true,
+    "missing_data": true,
+    "corrupted_input": true,
+    "threshold_boundaries": true,
+    "empty_graph": true,
+    "single_node_graph": true,
+    "multi_node_dag": true,
+    "determinism_100_iterations": true,
+    "exhaustive_determineState_160_combinations": true,
+    "immutability_checks": true
+  }
+}
