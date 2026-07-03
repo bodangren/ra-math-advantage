@@ -117,10 +117,15 @@ export type {
   ReadinessFn,
 } from './outer-fringe';
 
+export {
+  DefaultSrsToKstBridge,
+  buildKstState,
+} from './srs-bridge';
 export type {
   SrsCardState,
   ObjectiveProficiencyResult,
   SrsBridgeInput,
   LearnerStateOutput,
   SrsToKstBridge,
+  ConvertArgs,
 } from './srs-bridge';

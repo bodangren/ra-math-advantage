@@ -9,7 +9,6 @@ import { describe, it, expect } from 'vitest';
 import type {
   SrsCardState,
   ObjectiveProficiencyResult,
-  KnowledgeStateEntry,
 } from '../index';
 import type { KnowledgeSpace } from '../types';
 
@@ -108,7 +107,7 @@ describe('DefaultSrsToKstBridge.convert — state transitions', () => {
   });
 
   it('decaying: previously mastered card ages out → decaying', async () => {
-    const { DefaultSrsToKstBridge, stabilityToRetention } = await getBridgeModule();
+    const { DefaultSrsToKstBridge } = await getBridgeModule();
     const bridge = new DefaultSrsToKstBridge();
     const graph = makeGraph(['skill.a']);
     const cards = [

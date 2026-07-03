@@ -16,7 +16,6 @@ import type {
 // ---------------------------------------------------------------------------
 
 const NOW = 1_700_000_000_000;
-const DAY_MS = 86_400_000;
 
 function makeSkillNode(id: string): KnowledgeSpace['nodes'][number] {
   return {
@@ -140,7 +139,7 @@ describe('buildKstState — full pipeline', () => {
     expect(cFringe!.readinessState).toBe('ready');
   });
 
-  it('empty cards and proficiencies → all nodes untouched, no fringe', async () => {
+  it('empty cards and proficiencies → all nodes untouched, only root in fringe', async () => {
     const { buildKstState } = await getPipelineModule();
     const graph = makeDAG();
 
@@ -149,32 +148,29 @@ describe('buildKstState — full pipeline', () => {
     expect(result.state.get('A')!.state).toBe('untouched');
     expect(result.state.get('B')!.state).toBe('untouched');
     expect(result.state.get('C')!.state).toBe('untouched');
-    // Fringe should be empty — no mastered prerequisites to unlock anything
-    expect(result.fringe).toHaveLength(0);
+    // A has no prerequisites → in fringe even when untouched.
+    // B and C have prerequisites (not mastered) → blocked.
+    const aFringe = result.fringe.find((f) => f.nodeId === 'A');
+    expect(aFringe).toBeDefined();
+    expect(aFringe!.readinessState).toBe('ready');
+    expect(result.fringe.find((f) => f.nodeId === 'B')).toBeUndefined();
+    expect(result.fringe.find((f) => f.nodeId === 'C')).toBeUndefined();
   });
 
   it('custom thresholds passed through to engine', async () => {
     const { buildKstState } = await getPipelineModule();
     const graph = makeDAG();
-    const cards: SrsCardState[] = [
-      {
-        cardId: 'card.a',
-        objectiveId: 'A',
-        stability: 30,
-        lastReviewedAt: NOW,
-        state: 'review',
-      },
-    ];
+    // Use proficiency-only (no card) so retention comes from retentionStrength.
     const proficiencies: ObjectiveProficiencyResult[] = [
       { objectiveId: 'A', retentionStrength: 0.92, practiceCoverage: 0.9, isProficient: true },
     ];
 
     // With default thresholds (masteryEnter=0.9), retention 0.92 ≥ 0.9 → mastered
-    const defaultResult = buildKstState(cards, proficiencies, graph, NOW);
+    const defaultResult = buildKstState([], proficiencies, graph, NOW);
     expect(defaultResult.state.get('A')!.state).toBe('mastered');
 
     // With strict thresholds (masteryEnter=0.95), retention 0.92 < 0.95 → not mastered
-    const strictResult = buildKstState(cards, proficiencies, graph, NOW, { masteryEnter: 0.95 });
+    const strictResult = buildKstState([], proficiencies, graph, NOW, { masteryEnter: 0.95 });
     expect(strictResult.state.get('A')!.state).toBe('inProgress');
   });
 });
