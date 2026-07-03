@@ -1,0 +1,96 @@
+{
+  "track": "wire-kst-pipeline_20260521",
+  "phase": "Phase 1 — Canonical Contract & Schema",
+  "reviewer": "measure-review-c-ux-api",
+  "status": "pass",
+  "ux_applicability": "not_applicable",
+  "ux_rationale": "Phase 1 is contract-first (types + schemas + signatures only). No UI or user-facing flow exists. UX audit deferred to Phase 4 when production routes render KST-derived state.",
+  "api_contract_audit": {
+    "exported_symbols_index_ts": {
+      "status": "pass",
+      "verdict": "All 18 Phase 1 exports present in packages/knowledge-space-core/src/index.ts (lines 95–125).",
+      "symbols_verified": [
+        "MASTERY_THRESHOLDS_DEFAULT (value, frozen constant)",
+        "masteryThresholdsSchema (value, zod strictObject)",
+        "knowledgeStateEntrySchema (value, zod object)",
+        "MasteryThresholds (type, interface)",
+        "MasteryState (type, union: mastered|decaying|inProgress|untouched)",
+        "KnowledgeStateEntry (type, interface)",
+        "KnowledgeStateEvidence (type, interface)",
+        "getKnowledgeState (value, function — signature stub)",
+        "KnowledgeStateStudentRef (type, interface)",
+        "KnowledgeStateEvidenceArg (type, re-aliased to avoid name collision with mastery-state)",
+        "getOuterFringe (value, function — signature stub)",
+        "FringeEntry (type, interface)",
+        "ReadinessFn (type, function type)",
+        "SrsCardState (type, interface)",
+        "ObjectiveProficiencyResult (type, interface — local re-declaration)",
+        "SrsBridgeInput (type, interface)",
+        "LearnerStateOutput (type, interface)",
+        "SrsToKstBridge (type, interface)"
+      ]
+    },
+    "readiness_fn_seam": {
+      "status": "pass",
+      "verdict": "getOuterFringe(state, graph, readinessFn?: ReadinessFn) accepts an optional ReadinessFn parameter. Track 2 (weighted-readiness) can swap the implementation without breaking the call-site API. The ReadinessFn type signature is (nodeId: string, state: Map<string, KnowledgeStateEntry>) => number — clean, injectable, no side effects."
+    },
+    "naming_discipline": {
+      "status": "pass",
+      "verdict": "KnowledgeStateEntry (v2 per-node map entry) is distinct from KnowledgeState (level-projection flat-list). Coexistence documented in mastery-state.ts line 91 ('Distinct from KnowledgeState (the flat-list projection type)...see test-strategy §0.2'). No shadowing risk.",
+      "existing_knowledge_state": {
+        "file": "packages/knowledge-space-core/src/level-projection.ts",
+        "type": "KnowledgeState = z.infer<typeof knowledgeStateSchema> (flat-list { skills: [{nodeId, mastery}] })",
+        "re_exported_from_index": true
+      },
+      "new_knowledge_state_entry": {
+        "file": "packages/knowledge-space-core/src/mastery-state.ts",
+        "type": "KnowledgeStateEntry (per-node map value with mastery, retention, isProficient, state, evidence, lastUpdated)",
+        "re_exported_from_index": true
+      }
+    },
+    "objective_proficiency_drift": {
+      "status": "pass",
+      "verdict": "ObjectiveProficiencyResult is re-declared locally in srs-bridge.ts (lines 23–31) to keep knowledge-space-core dependency-free. Drift risk is documented in srs-bridge.ts lines 5–7 and 13–16 ('Structural mirror of ObjectiveProficiencyResult from packages/srs-engine...A drift-detection test is owned by Phase 3'). The srs-bridge-contract.test.ts verifies structural compatibility between LearnerStateOutput.evidence and getKnowledgeState's evidence parameter. Phase 3 will add a round-trip drift test.",
+      "test_coverage": "srs-bridge-contract.test.ts — 4 tests passing (interface exists, input shape, structural compat, no concrete export)"
+    },
+    "error_responses": {
+      "status": "not_applicable",
+      "verdict": "Phase 1 is signature-only stubs. getKnowledgeState returns Map<string, KnowledgeStateEntry> (empty in Phase 1); getOuterFringe returns FringeEntry[] (empty in Phase 1). No error paths defined yet. Phase 2 will implement hysteresis/fringe membership."
+    }
+  },
+  "test_evidence": {
+    "vite_run": {
+      "command": "CI=true npx vitest run packages/knowledge-space-core",
+      "exit_code": 0,
+      "test_files": 28,
+      "tests_total": 332,
+      "tests_passed": 332,
+      "tests_failed": 0
+    },
+    "typecheck_root": {
+      "command": "npx tsc --noEmit",
+      "exit_code": 0
+    },
+    "typecheck_package": {
+      "command": "npm run --workspace=packages/knowledge-space-core typecheck",
+      "exit_code": 0
+    },
+    "phase_1_contract_tests": {
+      "mastery_state_contract": "13 tests passing",
+      "knowledge_state_engine_signature": "5 tests passing",
+      "outer_fringe_signature": "4 tests passing",
+      "srs_bridge_contract": "4 tests passing",
+      "boundary_phase1": "1 test passing",
+      "docs_reconciliation": "3 tests passing",
+      "phase_1_total": 30
+    }
+  },
+  "findings": [],
+  "anti_patterns_checked": [
+    "A4 — all contract tests have positive + negative assertions (schema valid + invalid, export exists + is function, exhaustiveness checked)",
+    "A5 — all pass claims backed by verified test output (332/332, exit 0)",
+    "A6 — docs reconciliation does not claim pipeline is 'wired'; asserts contract is canonical",
+    "A7 — boundary test asserts zero forbidden imports across all Phase 1 modules",
+    "A12 — automation-supervisor.py not edited in this phase"
+  ]
+}

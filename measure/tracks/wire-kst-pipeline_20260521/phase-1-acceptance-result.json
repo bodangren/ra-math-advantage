@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "role": "measure-phase-acceptance",
+  "track": "wire-kst-pipeline_20260521",
+  "phase": "Phase 1 — Canonical Contract & Schema",
+  "head": "9519eec7",
+  "baseline_sha": "bf36f407a1f6776b4e14f8d085e8e5838e162e75",
+  "status": "pass",
+  "summary": "Phase 1 (Canonical Contract & Schema) acceptance PASSES. Independently re-ran all five gate commands (vitest, root tsc, package typecheck, boundary linter, IM3 lint) — all exit 0 with 332/332 tests green (302 existing + 30 new contract tests across 6 files). Verified spec AC1 (kst-srs.v2 SPECIFICATION.md in-repo + docs reconciliation), the Phase-1-owned contract portions of AC2 (getKnowledgeState/getOuterFringe exported) and AC3 (SrsToKstBridge interface exists), and plan.md Phase 1 markers (Tasks 1-4 [x] with commit SHA e5f8681d, UMV [b] deferred:user, no [~] or bare [ ] in the Phase 1 block). Anti-pattern sweep A1/A3/A4/A5/A6 clean. No blockers; the only non-[x] Phase 1 task is the human-gated UMV, correctly marked [b] deferred:user and recognized by the supervisor's is_task_structurally_blocked helper.",
+  "gate_exit_codes": {
+    "CI=true npx vitest run packages/knowledge-space-core": 0,
+    "npx tsc --noEmit": 0,
+    "npm run --workspace=packages/knowledge-space-core typecheck": 0,
+    "node scripts/check-monorepo-boundaries.mjs": 0,
+    "npm run ws:im3:lint": 0,
+    "tests/measure_orchestrator_audit.sh": 0
+  },
+  "gate_observed_counts": {
+    "vitest_test_files": 28,
+    "vitest_tests_passed": 332,
+    "vitest_tests_failed": 0,
+    "new_phase1_test_files": 6,
+    "new_phase1_tests": 30,
+    "new_phase1_breakdown": {
+      "mastery-state-contract": 13,
+      "knowledge-state-engine-signature": 5,
+      "outer-fringe-signature": 4,
+      "srs-bridge-contract": 4,
+      "boundary-phase1": 1,
+      "docs-reconciliation": 3
+    },
+    "existing_tests": 302
+  },
+  "acceptance_criteria": {
+    "AC1_contract_in_repo_and_reconciliation": {
+      "status": "pass",
+      "evidence": "kst-srs.v2/SPECIFICATION.md exists in-repo (510 lines). measure/knowledge-space.md reconciled to an architecture summary with a canonical pointer (line 5) and no 'source of truth' language (grep confirmed). measure/index.md has a 'Knowledge Space Contract' row (line 16) pointing at ../kst-srs.v2/SPECIFICATION.md. docs-reconciliation.test.ts (3 tests) asserts all three."
+    },
+    "AC2_contract_portion_getKnowledgeState_getOuterFringe_exported": {
+      "status": "pass",
+      "evidence": "getKnowledgeState exported from index.ts (line 107) as a function (signature stub returning Map<string,KnowledgeStateEntry>). getOuterFringe exported from index.ts (line 113) as a standalone top-level function (not nested in a projection). Hysteresis/fringe-membership behavior is correctly deferred to Phase 2; Phase 1 owns signatures + types + schemas only."
+    },
+    "AC3_contract_portion_srs_to_kst_bridge_interface": {
+      "status": "pass",
+      "evidence": "SrsToKstBridge interface exported from index.ts (line 124) with buildLearnerState(input, now): LearnerStateOutput. SrsBridgeInput (cards + proficiencyResults) and LearnerStateOutput (evidence-shaped, cross-module seam) types present. No concrete buildLearnerState value exported (srs-bridge-contract.test.ts guards this). ObjectiveProficiencyResult is structurally re-declared locally — no srs-engine import (core stays dependency-free)."
+    },
+    "AC4_production_route": {
+      "status": "not_applicable",
+      "evidence": "AC4 (one IM3 production route renders KST state) is owned by Phase 4, not Phase 1. Out of scope for this acceptance."
+    },
+    "AC5_projection_audit_doc": {
+      "status": "not_applicable",
+      "evidence": "AC5 (knowledge-space-practice-projection-audit.md update) is owned by Phase 5. Out of scope."
+    },
+    "AC6_boundary_lints_tsc_tests_pass": {
+      "status": "pass",
+      "evidence": "node scripts/check-monorepo-boundaries.mjs exit 0; npx tsc --noEmit exit 0; package typecheck exit 0; CI=true npx vitest run packages/knowledge-space-core exit 0 (332/332). boundary-phase1.test.ts greps all new .ts source for forbidden apps/convex/knowledge-space-practice imports — zero violations."
+    }
+  },
+  "plan_markers": {
+    "status": "pass",
+    "evidence": "Phase 1 block (plan.md lines 8-21): Task 1 [x] (commit e5f8681d), Task 2 [x] (commit e5f8681d), Task 3 [x] (commit e5f8681d), Task 4 [x] (commit e5f8681d), UMV Task [b] deferred:user. No [~] or bare [ ] markers within Phase 1. Phase 2-5 tasks remain [ ] (out of scope). Commit SHA e5f8681d verified to contain the Green contract types + docs reconciliation. Red tests committed at 3b81e60f (before Green) — correct Red→Green order."
+  },
+  "anti_pattern_sweep": {
+    "A1_structured_deferred_marker": {
+      "status": "pass",
+      "evidence": "Supervisor task regex is r'^- \\[([~xb])\\] (.+)' (lines 659, 851, 1221, 1238) — matches [~xb], NOT the legacy [ ~x] (with space). is_task_structurally_blocked helper (line 634) recognizes status=='b' and trailing deferred:<owner> via re.search(r'\\bdeferred:[\\w.-]+'); explicitly does NOT use substring 'deferred' in task.lower(). UMV task [b] deferred:user is correctly excluded from the incomplete count. tests/measure_orchestrator_audit.sh exits 0 (A1/A8 guard green)."
+    },
+    "A3_labeled_thresholds": {
+      "status": "pass",
+      "evidence": "mastery-state-contract.test.ts asserts MASTERY_THRESHOLDS_DEFAULT via labeled toEqual({masteryEnter: 0.9, masteryExit: 0.7, readyThreshold: 0.8, nearThreshold: 0.5}) — not a digit regex. No 'rg -q [0-9]+' count assertions in Phase 1 tests."
+    },
+    "A4_positive_and_negative_tests": {
+      "status": "pass",
+      "evidence": "Every Phase 1 contract test has positive AND negative assertions: masteryThresholdsSchema parses valid AND rejects out-of-range/partial/extra-key; knowledgeStateEntrySchema parses valid AND rejects invalid mastery/retention/unknown-state/missing-nodeId; exports exist AND are functions; MasteryState union exhaustiveness checked; boundary test asserts modules wired AND zero forbidden imports; docs test asserts pointer present AND 'source of truth' absent. No vacuous 'module loaded' or 'markers consistent' checks. Phase 1 has >=1 [x] so closeout is not a vacuous all-[~] pass."
+    },
+    "A5_truthful_claims": {
+      "status": "pass",
+      "evidence": "Plan Green Evidence claims '332 / 332 tests pass' and 'exit 0' for each gate — all independently re-verified and matching. No 'PASS=N, FAIL=0' or bare 'all checks pass' overclaim in plan.md (the line-61 mention is a meta-statement describing the A5 defense, backed by the real exit-0 gates). UMV is [b] deferred:user, so no false 'Phase 1 verified' claim is made."
+    },
+    "A6_no_registry_overstatement": {
+      "status": "pass",
+      "evidence": "measure/tracks.md wire-kst-pipeline entry (lines 65-67) is marked [ ] and describes planned scope; no 'resolved'/'shipped'/'wired pipeline' completion claim. measure/knowledge-space.md says the canonical CONTRACT is kst-srs.v2/SPECIFICATION.md and defers theoretical authority to it — does not claim the v2 pipeline is 'wired' or 'resolved'. The 'Current Measure Tracks' footer (line 117) factually states Track 1 is active. The 'resolved' hits elsewhere in tracks.md belong to other completed tracks (phantom tooling, etc.), not this track."
+    }
+  },
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    "Phase 1 is contract-first only: getKnowledgeState returns an empty Map and getOuterFringe returns [] (signature stubs). Algorithmic behavior (hysteresis enter/exit/re-enter, decay, fringe membership) is correctly owned by Phase 2; the SRS→KST bridge concrete implementation is owned by Phase 3. This is by design (test-strategy §0.4), not a gap.",
+    "ObjectiveProficiencyResult is structurally re-declared in srs-bridge.ts (not imported from srs-engine) to keep core dependency-free. Drift risk is documented; a Phase 3 round-trip test is the planned mitigation (test-strategy §1.4 risk #3).",
+    "SPECIFICATION.md co-location at packages/knowledge-space-core/SPECIFICATION.md is deferred to Phase 5 per test-strategy §0.1; the canonical file remains at kst-srs.v2/SPECIFICATION.md with cross-references added in Phase 1."
+  ],
+  "evidence": [
+    "Read measure/index.md, measure/tracks.md, measure/anti-patterns.md, spec.md, plan.md, test-strategy.md, and the three review result JSONs (A/B/C, all pass).",
+    "Read implementation: packages/knowledge-space-core/src/{mastery-state.ts, knowledge-state-engine.ts, outer-fringe.ts, srs-bridge.ts, index.ts}.",
+    "Read tests: packages/knowledge-space-core/src/__tests__/{mastery-state-contract, knowledge-state-engine-signature, outer-fringe-signature, srs-bridge-contract, boundary-phase1, docs-reconciliation}.test.ts.",
+    "Read reconciled docs: measure/knowledge-space.md (canonical pointer line 5, no 'source of truth'), measure/index.md (Knowledge Space Contract row line 16).",
+    "Inspected measure/automation-supervisor.py: task regex [~xb] (lines 659/851/1221/1238), is_task_structurally_blocked (line 634) recognizes [b] + deferred:<owner>.",
+    "Verified commit lineage: 66e3148f (strategy) -> 3b81e60f (Red tests) -> e5f8681d (Green impl + docs) -> 859c5458 (SHA evidence) -> 9519eec7 (graph.db refresh). Red committed before Green."
+  ],
+  "commands": [
+    "CI=true npx vitest run packages/knowledge-space-core: PASS, 28 files / 332 tests passed, exit 0.",
+    "npx tsc --noEmit: PASS, exit 0 (no output).",
+    "npm run --workspace=packages/knowledge-space-core typecheck: PASS, exit 0.",
+    "node scripts/check-monorepo-boundaries.mjs: PASS, '[OK] No monorepo boundary violations found.', exit 0.",
+    "npm run ws:im3:lint: PASS, eslint . --max-warnings 0, exit 0.",
+    "bash tests/measure_orchestrator_audit.sh: PASS, 'supervisor A1/A8 checks are clean', exit 0."
+  ],
+  "changed_files": [
+    "measure/tracks/wire-kst-pipeline_20260521/phase-1-acceptance-result.json",
+    "measure/tracks/wire-kst-pipeline_20260521/phase-1-review-a-result.json",
+    "measure/tracks/wire-kst-pipeline_20260521/phase-1-review-b-result.json",
+    "measure/tracks/wire-kst-pipeline_20260521/phase-1-review-c-result.json"
+  ],
+  "test_strategy_violations": [],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "none",
+  "confidence": "high"
+}
