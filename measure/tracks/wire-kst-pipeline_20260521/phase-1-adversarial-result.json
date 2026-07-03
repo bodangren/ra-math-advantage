@@ -1,0 +1,265 @@
+{
+  "schema_version": 1,
+  "role": "measure-adversarial-testing",
+  "track": "wire-kst-pipeline_20260521",
+  "phase": "Phase 1 — Canonical Contract & Schema",
+  "head": "20955d9e",
+  "baseline_sha": "4e74c992",
+  "status": "pass",
+  "summary": "Phase 1 adversarial probe suite authored (32 tests across 7 probes) and verified by injecting each listed regression locally, observing the expected test failure, then restoring the source. All probes pass on the unchanged baseline; each probe has at least one positive AND one negative assertion (A4); all probes use labeled property checks and runtime shape introspection rather than digit-regex or substring heuristics (A3); no plan overstatement (A5); no over-broad string filters (A7). The full Phase 1 gate suite (vitest 364/364, root tsc, package tsc, IM3 lint, boundary linter, orchestrator audit) exits 0.",
+  "gate_exit_codes": {
+    "CI=true npx vitest run packages/knowledge-space-core": 0,
+    "CI=true npx vitest run packages/knowledge-space-core/src/__tests__/phase-1-adversarial.test.ts": 0,
+    "npx tsc --noEmit (root)": 0,
+    "npm run --workspace=packages/knowledge-space-core typecheck": 0,
+    "npm run lint --prefix apps/integrated-math-3 (ws:im3:lint)": 0,
+    "node scripts/check-monorepo-boundaries.mjs": 0,
+    "bash tests/measure_orchestrator_audit.sh": 0
+  },
+  "gate_observed_counts": {
+    "vitest_test_files": 29,
+    "vitest_tests_passed": 364,
+    "vitest_tests_failed": 0,
+    "new_phase1_adversarial_test_files": 1,
+    "new_phase1_adversarial_tests": 32,
+    "existing_tests": 332,
+    "phase1_contract_tests_existing": 30,
+    "phase1_adversarial_tests_new": 32
+  },
+  "adversarial_probes": [
+    {
+      "id": "probe-1-threshold-order-invariant",
+      "regression": "masteryEnter <= masteryExit OR readyThreshold <= nearThreshold (hysteresis/readiness ladder collapse)",
+      "tests": [
+        "MASTERY_THRESHOLDS_DEFAULT satisfies masteryEnter > masteryExit (hysteresis)",
+        "MASTERY_THRESHOLDS_DEFAULT satisfies readyThreshold > nearThreshold (readiness ladder)",
+        "schema parses an inverted-threshold object but a downstream caller would observe the wrong hysteresis range"
+      ],
+      "verification": "Inverted masteryEnter↔masteryExit and readyThreshold↔nearThreshold → 2 tests fail (vitest): both 'toBeGreaterThan' assertions break with 'expected 0.7 to be greater than 0.9' and 'expected 0.5 to be greater than 0.8'. The third test (documenting the parse-time gap) correctly notes the schema accepts inverted orders."
+    },
+    {
+      "id": "probe-2-frozen-thresholds-no-mutation",
+      "regression": "Object.freeze removed from MASTERY_THRESHOLDS_DEFAULT",
+      "tests": [
+        "property descriptors are non-writable and non-configurable",
+        "mutation in strict mode throws TypeError",
+        "strict-mode TypeError carries the 'read only' semantic marker",
+        "deletion attempts throw TypeError in strict mode",
+        "frozen value remains unchanged after a failed mutation"
+      ],
+      "verification": "Removed Object.freeze → 5 tests fail (vitest): descriptor check sees writable=true; mutation TypeError not thrown; 'read only' substring missing from caught error; deletion does not throw; post-mutation value is 0.5 (mutation succeeded). 5/5 caught."
+    },
+    {
+      "id": "probe-3-zod-strictObject-rejects-extra-keys",
+      "regression": "z.strictObject replaced with z.object (silent extra-key acceptance — A7-adjacent)",
+      "tests": [
+        "rejects string extra keys",
+        "rejects numeric extra keys",
+        "rejects boolean extra keys",
+        "rejects null extra keys",
+        "knowledgeStateEntrySchema rejects unknown state values"
+      ],
+      "verification": "Replaced z.strictObject with z.object → 4 tests fail (vitest): extraKey/masteryEnter2/debug/obsolete all silently accepted. The unknown-state-value test (probe 3 #5) remains green because that uses z.enum, not strictObject — confirms the probe targets strictObject specifically. 4/4 caught."
+    },
+    {
+      "id": "probe-4-KnowledgeStateEntry-vs-KnowledgeState-distinctness",
+      "regression": "v2 entry shape accidentally unified with projection flat-list shape (naming collision from test-strategy §0.2)",
+      "tests": [
+        "v2 entry schema carries state/mastery/retention/isProficient keys",
+        "projection schema does NOT carry state/mastery/retention/isProficient",
+        "projection schema carries the flat skills array",
+        "v2 entry schema does NOT carry a flat skills array",
+        "projection schema rejects a v2 entry payload (skills vs flat-list shape)",
+        "v2 entry schema rejects the projection flat-list payload"
+      ],
+      "verification": "Added `skills` field to knowledgeStateEntrySchema (simulating unification drift) → 1 test fails: 'v2 entry schema does NOT carry a flat skills array' detects the added field. Note: the v2 entry already has state/retention/isProficient so the projection-not-having-them test stays green on this regression — the 'skills' drift is the canonical projection-marker test."
+    },
+    {
+      "id": "probe-5-readinessFn-seam-injectable",
+      "regression": "readinessFn parameter removed or made required (Track 2 seam broken)",
+      "tests": [
+        "accepts a readinessFn that returns a number",
+        "accepts a readinessFn that records calls",
+        "omitting readinessFn is the Phase 1 default (binary gating)",
+        "getKnowledgeState is composable with the same readinessFn seam (signature independence)"
+      ],
+      "verification": "Removed `?` from readinessFn parameter → runtime vitest does not detect (esbuild strips types). The tsc gate (npm run --workspace=packages/knowledge-space-core typecheck) catches it: 2 TS2554 errors at outer-fringe-signature.test.ts:23 and phase-1-adversarial.test.ts:312 (the 2-arg call sites). tsc exit 1. The probe is therefore dual-gated: vitest for runtime seam-compatibility, tsc for signature invariance."
+    },
+    {
+      "id": "probe-6-ObjectiveProficiencyResult-local-snapshot",
+      "regression": "Track 3 modifies srs-engine shape, the local re-declaration is updated but drifts from the four-field contract (Phase 1 / Phase 3 round-trip drift)",
+      "tests": [
+        "the locally-declared ObjectiveProficiencyResult has the expected narrow shape (4 fields)",
+        "the locally-declared ObjectiveProficiencyResult has the expected field types",
+        "the local re-declaration is intentionally narrower than the srs-engine one",
+        "snapshot rejects the srs-engine-only fields by name (defends drift in declaration)"
+      ],
+      "verification": "Added `priority: 'essential' | 'supporting' | 'extension' | 'triaged'` to local ObjectiveProficiencyResult → vitest runtime does not catch it (esbuild strips types — the typed literal still has 4 keys). The tsc gate (npm run --workspace=packages/knowledge-space-core typecheck) catches it: 3 TS2741 errors at phase-1-adversarial.test.ts:358/375/391. tsc exit 1. Probe is tsc-gated for declaration drift and runtime-gated for removed/renamed fields (key-count check)."
+    },
+    {
+      "id": "probe-7-docs-reconciliation-reversal",
+      "regression": "Phase 1 docs reconciliation reversed (source-of-truth language reintroduced, Knowledge Space Contract row removed from index.md)",
+      "tests": [
+        "measure/knowledge-space.md does not claim to be the source of truth",
+        "measure/knowledge-space.md points at the canonical SPECIFICATION.md",
+        "measure/index.md contains a Knowledge Space Contract row",
+        "measure/index.md Knowledge Space Contract row points at the spec path",
+        "measure/knowledge-space.md defers mastery-model theory to the spec, not the doc"
+      ],
+      "verification": "Replaced the canonical-pointer paragraph in knowledge-space.md with 'source of truth' language and removed the 'Knowledge Space Contract' row from index.md → 3 tests fail (vitest): 'does not claim to be the source of truth' (regex hit), 'contains a Knowledge Space Contract row' (no row match), 'Knowledge Space Contract row points at the spec path' (rowMatch is null). 3/3 caught. The other 2 tests stay green because the spec-pointer line was preserved by coincidence."
+    }
+  ],
+  "anti_pattern_sweep": {
+    "A1_structured_deferred_marker": {
+      "status": "pass",
+      "evidence": "Probe 1 has a third test that documents the parse-time-vs-runtime gap explicitly (schema accepts inverted orders; runtime invariant is upstream) — no substring heuristic."
+    },
+    "A3_labeled_thresholds": {
+      "status": "pass",
+      "evidence": "All threshold-value assertions in probes 1 and 2 use labeled comparisons (.toBeGreaterThan, .toBe, Object.keys sort-and-equal). No rg '[0-9]+' regex in this file."
+    },
+    "A4_positive_and_negative_tests": {
+      "status": "pass",
+      "evidence": "Every probe has at least one positive AND one negative assertion: probe 1 (positive: order holds; negative: inversion fails); probe 2 (positive: frozen verified; negative: mutation/deletion throws); probe 3 (positive: schema parses valid; negative: schema rejects extra keys of 4 different types); probe 4 (positive: v2 entry has v2 keys; negative: projection does not have v2 keys, and vice versa); probe 5 (positive: readinessFn accepted; negative: omitting it is the default); probe 6 (positive: 4-field snapshot; negative: forbidden field names listed); probe 7 (positive: pointer present; negative: 'source of truth' absent, row removed)."
+    },
+    "A5_truthful_claims": {
+      "status": "pass",
+      "evidence": "Each probe's verification line in this JSON cites the exact tests that failed and the exact assertion text — not a heuristic count. No 'all tests pass' overstatement; this report states which gates fail for which regressions explicitly."
+    },
+    "A6_no_registry_overstatement": {
+      "status": "pass",
+      "evidence": "No claim that the v2 pipeline is 'wired' or 'resolved'. The adversarial suite is about contract drift — it does not overstate Phase 1 status."
+    },
+    "A7_over_broad_filter": {
+      "status": "pass",
+      "evidence": "Probe 7 uses two anchored regexes (case-insensitive /source\\s+of\\s+truth/ and /\\|\\s*\\*\\*Knowledge Space Contract\\*\\*\\s*\\|/) — not bare English words. No 'rg -v \"never\"' filter."
+    },
+    "A11_live_contract_suite": {
+      "status": "pass",
+      "evidence": "tests/measure_orchestrator_audit.sh exits 0 (A1/A8 guard green). This adversarial suite is additive: it strengthens the Phase 1 contract tests' coverage of the same invariants without introducing a new tests/*.sh guard."
+    },
+    "A12_supervisor_peer_review": {
+      "status": "pass",
+      "evidence": "AGENTS.md documents measure/automation-supervisor.py as peer-reviewed. No supervisor edits in this commit."
+    }
+  },
+  "changed_files": [
+    "packages/knowledge-space-core/src/__tests__/phase-1-adversarial.test.ts (new, 32 tests across 7 probes)",
+    "measure/tracks/wire-kst-pipeline_20260521/phase-1-adversarial-result.json (new, this file)"
+  ],
+  "commit": "20955d9e",
+  "evidence": [
+    "Read Phase 1 implementation: packages/knowledge-space-core/src/{mastery-state,knowledge-state-engine,outer-fringe,srs-bridge,index,level-projection}.ts.",
+    "Read Phase 1 Red tests: packages/knowledge-space-core/src/__tests__/{mastery-state-contract,knowledge-state-engine-signature,outer-fringe-signature,srs-bridge-contract,boundary-phase1,docs-reconciliation}.test.ts.",
+    "Read Phase 1 plan + test-strategy + acceptance-result for context.",
+    "Read srs-engine ObjectiveProficiencyResult for shape-comparison (srs-engine has 9 fields; local re-declaration has 4).",
+    "Authored 32 regression-probe tests across 7 probes in phase-1-adversarial.test.ts.",
+    "Injected 7 regressions locally, observed failures, restored source. Each regression's exact failing test names are documented in `adversarial_probes[].verification` above.",
+    "Verified vitest 364/364 pass on the restored baseline (332 existing + 30 Phase 1 contract + 32 new adversarial).",
+    "Verified root tsc and package tsc both exit 0 on the restored baseline.",
+    "Verified IM3 lint (npm run lint --prefix apps/integrated-math-3, i.e. ws:im3:lint) exits 0.",
+    "Verified monorepo boundary linter (node scripts/check-monorepo-boundaries.mjs) exits 0.",
+    "Verified tests/measure_orchestrator_audit.sh exits 0 (A1/A8/A11/A12 still green)."
+  ],
+  "commands": [
+    "CI=true npx vitest run packages/knowledge-space-core: PASS, 29 files / 364 tests passed, exit 0.",
+    "CI=true npx vitest run packages/knowledge-space-core/src/__tests__/phase-1-adversarial.test.ts: PASS, 1 file / 32 tests passed, exit 0.",
+    "npx tsc --noEmit (root): PASS, exit 0.",
+    "cd packages/knowledge-space-core && npx tsc --noEmit: PASS, exit 0.",
+    "npm run lint --prefix apps/integrated-math-3 (ws:im3:lint): PASS, exit 0 (3 min runtime on full IM3 codebase).",
+    "node scripts/check-monorepo-boundaries.mjs: PASS, '[OK] No monorepo boundary violations found.', exit 0.",
+    "bash tests/measure_orchestrator_audit.sh: PASS, 'supervisor A1/A8 checks are clean', exit 0."
+  ],
+  "regression_simulation_log": [
+    {
+      "regression": "threshold-order-inversion",
+      "mutation": "masteryEnter: 0.9 → 0.7; masteryExit: 0.7 → 0.9; readyThreshold: 0.8 → 0.5; nearThreshold: 0.5 → 0.8",
+      "gate_caught": "vitest",
+      "tests_failed": [
+        "MASTERY_THRESHOLDS_DEFAULT satisfies masteryEnter > masteryExit (hysteresis)",
+        "MASTERY_THRESHOLDS_DEFAULT satisfies readyThreshold > nearThreshold (readiness ladder)"
+      ],
+      "restored": true
+    },
+    {
+      "regression": "frozen-thresholds-removed",
+      "mutation": "Object.freeze({...}) → {...}",
+      "gate_caught": "vitest",
+      "tests_failed": [
+        "property descriptors are non-writable and non-configurable",
+        "mutation in strict mode throws TypeError",
+        "strict-mode TypeError carries the 'read only' semantic marker",
+        "deletion attempts throw TypeError in strict mode",
+        "frozen value remains unchanged after a failed mutation"
+      ],
+      "restored": true
+    },
+    {
+      "regression": "strictObject-replaced-with-object",
+      "mutation": "z.strictObject({...}) → z.object({...})",
+      "gate_caught": "vitest",
+      "tests_failed": [
+        "rejects string extra keys",
+        "rejects numeric extra keys",
+        "rejects boolean extra keys",
+        "rejects null extra keys"
+      ],
+      "restored": true
+    },
+    {
+      "regression": "v2-entry-skills-drift",
+      "mutation": "Added skills: z.array(z.object({nodeId, mastery})).optional() to knowledgeStateEntrySchema",
+      "gate_caught": "vitest",
+      "tests_failed": [
+        "v2 entry schema does NOT carry a flat skills array"
+      ],
+      "restored": true
+    },
+    {
+      "regression": "readinessFn-required",
+      "mutation": "_readinessFn?: ReadinessFn → _readinessFn: ReadinessFn",
+      "gate_caught": "tsc (package)",
+      "tests_failed": [
+        "tsc error TS2554 at outer-fringe-signature.test.ts:23",
+        "tsc error TS2554 at phase-1-adversarial.test.ts:312"
+      ],
+      "restored": true
+    },
+    {
+      "regression": "objective-proficiency-result-drift",
+      "mutation": "Added priority: 'essential'|'supporting'|'extension'|'triaged' to local ObjectiveProficiencyResult",
+      "gate_caught": "tsc (package)",
+      "tests_failed": [
+        "tsc error TS2741 at phase-1-adversarial.test.ts:358",
+        "tsc error TS2741 at phase-1-adversarial.test.ts:375",
+        "tsc error TS2741 at phase-1-adversarial.test.ts:391"
+      ],
+      "restored": true
+    },
+    {
+      "regression": "docs-reconciliation-reversed",
+      "mutation": "knowledge-space.md: replaced canonical-pointer paragraph with 'source of truth' language; index.md: removed 'Knowledge Space Contract' row",
+      "gate_caught": "vitest",
+      "tests_failed": [
+        "measure/knowledge-space.md does not claim to be the source of truth",
+        "measure/index.md contains a Knowledge Space Contract row",
+        "measure/index.md Knowledge Space Contract row points at the spec path"
+      ],
+      "restored": true
+    }
+  ],
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    "Probe 5 (readinessFn seam) is dual-gated: vitest does not catch a 'required' signature change because esbuild strips types; tsc catches it at 2-arg call sites. Both gates run in the orchestrator, so detection is robust.",
+    "Probe 6 (ObjectiveProficiencyResult snapshot) is similarly tsc-gated for declaration drift (typed literal forces tsc error); runtime key-count assertion catches removed/renamed fields. The real drift source-of-truth is the Phase 3 round-trip test (test-strategy §1.4 risk #3).",
+    "Probe 1's third test (inverted-threshold-parses-but-runtime-invariant-broken) is a documentation-of-gap test — the schema cannot reject inverted orders by design (parse-time only checks ranges). Phase 2 should add a runtime-order check before using the schema, but that is Phase 2's responsibility.",
+    "The pre-existing unused 'expectType' declaration in mastery-state-contract.test.ts (line 21) is a pre-Phase-1-adversarial lint warning unrelated to this work; not blocking the gates (IM3 lint does not include knowledge-space-core).",
+    "IM3 lint (ws:im3:lint) takes ~3 minutes because it runs eslint across the full IM3 app; this is the baseline runtime and not affected by the new test file."
+  ],
+  "test_strategy_violations": [],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "route_parity_violations": [],
+  "retry_recommendation": "none",
+  "confidence": "high"
+}
