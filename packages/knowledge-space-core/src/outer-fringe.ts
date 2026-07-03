@@ -1,21 +1,21 @@
 // Outer fringe — Phase 2 implementation (kst-srs.v2 §4).
 //
-// Implements binary prerequisite gating and the readinessFn seam for
-// weighted readiness. Standalone exported function (FR3 — not buried
-// in the visualization projection).
+// Implements weighted readiness as the default prerequisite gating strategy
+// with the readinessFn seam for custom overrides. Standalone exported
+// function (FR3 — not buried in the visualization projection).
 
 import type { KnowledgeSpace } from './types';
 import type { KnowledgeStateEntry, ReadinessState } from './mastery-state';
 import { MASTERY_THRESHOLDS_DEFAULT } from './mastery-state';
+import { computeWeightedReadiness } from './weighted-readiness';
 
 /**
  * A single outer-fringe entry (kst-srs.v2 §4).
  *
  * - `nodeId` — the fringe candidate.
- * - `readiness` — optional composite readiness score in [0, 1] (computed by
- *   the supplied `readinessFn`; binary gating uses `0` / `1`).
- * - `readinessState` — coarse label (`ready` | `nearly_ready` | `blocked`)
- *   derived from `readiness` against `MasteryThresholds`.
+ * - `readiness` — composite readiness score in [0, 1].
+ * - `readinessState` — three-way label derived from `readiness`
+ *   against `MasteryThresholds`.
  */
 export interface FringeEntry {
   nodeId: string;
@@ -35,13 +35,22 @@ export type ReadinessFn = (
 
 /**
  * Get the outer fringe: nodes that are not yet mastered whose prerequisites
- * are satisfied (binary gating by default, weighted via optional `readinessFn`).
+ * are sufficiently satisfied (weighted readiness by default, custom via
+ * optional `readinessFn`).
+ *
+ * **Default behavior (no readinessFn):** Uses `computeWeightedReadiness`.
+ * Fringe = ready ∪ nearly_ready (blocked nodes are excluded). Each entry
+ * carries its readiness score and state label.
+ *
+ * **Custom readinessFn:** All non-mastered nodes are included regardless
+ * of readiness score. Readiness state is derived from the score against
+ * `MasteryThresholds`.
  *
  * Standalone exported function (FR3).
  *
  * @param state - Current knowledge state (per-node entries)
  * @param graph - Knowledge space graph
- * @param readinessFn - Optional custom readiness function (default: binary prerequisite check)
+ * @param readinessFn - Optional custom readiness function (default: weighted readiness)
  * @returns FringeEntry[] — candidate nodes for the planner
  */
 export function getOuterFringe(
@@ -50,16 +59,6 @@ export function getOuterFringe(
   readinessFn?: ReadinessFn,
 ): FringeEntry[] {
   const thresholds = MASTERY_THRESHOLDS_DEFAULT;
-
-  // Index prerequisite edges by target node
-  const prereqsByTarget = new Map<string, string[]>();
-  for (const edge of graph.edges) {
-    if (edge.type === 'prerequisite_for') {
-      const list = prereqsByTarget.get(edge.targetId) ?? [];
-      list.push(edge.sourceId);
-      prereqsByTarget.set(edge.targetId, list);
-    }
-  }
 
   const result: FringeEntry[] = [];
 
@@ -70,7 +69,7 @@ export function getOuterFringe(
     if (entry && entry.state === 'mastered') continue;
 
     if (readinessFn) {
-      // Delegate to the custom readiness function
+      // Custom readiness function: include ALL non-mastered nodes
       const readinessScore = readinessFn(node.id, state);
 
       // Coarse label from threshold band
@@ -87,22 +86,17 @@ export function getOuterFringe(
         readinessState,
       });
     } else {
-      // Binary prerequisite gating: all prereqs must be mastered
-      const prereqIds = prereqsByTarget.get(node.id) ?? [];
+      // Default: weighted readiness. Only include ready ∪ nearly_ready.
+      const { score, state: readinessState } =
+        computeWeightedReadiness(node.id, state, graph);
 
-      const allPrereqsMastered = prereqIds.length === 0 ||
-        prereqIds.every((pid) => {
-          const p = state.get(pid);
-          return p != null && p.state === 'mastered';
-        });
+      if (readinessState === 'blocked') continue;
 
-      if (allPrereqsMastered) {
-        result.push({
-          nodeId: node.id,
-          readiness: prereqIds.length === 0 ? 1 : undefined,
-          readinessState: 'ready',
-        });
-      }
+      result.push({
+        nodeId: node.id,
+        readiness: score,
+        readinessState,
+      });
     }
   }
 

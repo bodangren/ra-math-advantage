@@ -104,13 +104,15 @@ describe('getOuterFringe — prerequisite gating', () => {
     expect(ids).not.toContain('skill.b');
   });
 
-  it('excludes a node whose prerequisites are decaying', () => {
+  it('includes a node whose prerequisites are decaying (weighted readiness default)', () => {
     const state = new Map<string, KnowledgeStateEntry>();
-    state.set('skill.a', entry('skill.a', 'decaying'));  // prereq decaying (not mastered)
+    state.set('skill.a', entry('skill.a', 'decaying'));  // prereq decaying, mastery=0.6
     state.set('skill.b', entry('skill.b', 'untouched'));
+    // With weighted readiness, decaying prereq (mastery=0.6) gives
+    // readiness=0.6 ≥ 0.50 → nearly_ready → included
     const fringe = getOuterFringe(state, simpleGraph);
     const ids = fringe.map((f) => f.nodeId);
-    expect(ids).not.toContain('skill.b');
+    expect(ids).toContain('skill.b');
   });
 
   it('includes a node whose prerequisites are nearly_ready when readinessFn is provided', () => {
@@ -239,5 +241,100 @@ describe('getOuterFringe — standalone export (FR3)', () => {
     expect(typeof getOuterFringe).toBe('function');
     // Must not be a property on a projection namespace
     expect(getOuterFringe.name).toBe('getOuterFringe');
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Phase 2 Track 2 — Weighted Readiness fringe integration (Red)
+// ---------------------------------------------------------------------------
+
+describe('getOuterFringe — weighted readiness default (FR3)', () => {
+  it('defaults to weighted readiness when no readinessFn is provided', () => {
+    const state = new Map<string, KnowledgeStateEntry>();
+    // Prereq has partial mastery (0.6 decays to nearly_ready)
+    state.set('skill.a', entry('skill.a', 'decaying'));
+    state.set('skill.b', entry('skill.b', 'untouched'));
+
+    // Without a readinessFn, the default should be weighted readiness
+    const fringe = getOuterFringe(state, simpleGraph);
+    const ids = fringe.map((f) => f.nodeId);
+
+    // skill.a is not mastered, no prereqs → readiness=1 → ready → included
+    expect(ids).toContain('skill.a');
+    // skill.b has prereq skill.a at 0.6 mastery → readiness=0.6 → nearly_ready → included
+    expect(ids).toContain('skill.b');
+  });
+
+  it('includes nearly_ready nodes in the fringe', () => {
+    const state = new Map<string, KnowledgeStateEntry>();
+    // Prereq has enough mastery for nearly_ready (0.6 ≥ 0.50)
+    state.set('skill.a', entry('skill.a', 'decaying'));
+    state.set('skill.b', entry('skill.b', 'untouched'));
+
+    const fringe = getOuterFringe(state, simpleGraph);
+    const bEntry = fringe.find((f) => f.nodeId === 'skill.b');
+    expect(bEntry).toBeDefined();
+    if (bEntry) {
+      expect(bEntry.readinessState).toBe('nearly_ready');
+      expect(bEntry.readiness).toBeCloseTo(0.6, 1);
+    }
+  });
+
+  it('excludes blocked nodes from the fringe', () => {
+    // Need a node with a prereq that has very low mastery → blocked
+    const state = new Map<string, KnowledgeStateEntry>();
+    state.set('skill.a', entry('skill.a', 'inProgress')); // mastery=0.4
+    state.set('skill.b', entry('skill.b', 'untouched'));
+
+    // skill.a mastery=0.4: readiness=0.4 < 0.50 → blocked
+    const fringe = getOuterFringe(state, simpleGraph);
+    const bEntry = fringe.find((f) => f.nodeId === 'skill.b');
+    expect(bEntry).toBeUndefined();
+  });
+
+  it('each fringe entry carries readiness score and readinessState', () => {
+    const state = new Map<string, KnowledgeStateEntry>();
+    state.set('skill.a', entry('skill.a', 'mastered'));
+    state.set('skill.b', entry('skill.b', 'untouched'));
+
+    const fringe = getOuterFringe(state, simpleGraph);
+    for (const f of fringe) {
+      expect(typeof f.readiness).toBe('number');
+      expect(f.readiness).toBeGreaterThanOrEqual(0);
+      expect(f.readiness).toBeLessThanOrEqual(1);
+      expect(['ready', 'nearly_ready', 'blocked']).toContain(f.readinessState);
+      // Since blocked is excluded, all entries should be ready or nearly_ready
+      expect(['ready', 'nearly_ready']).toContain(f.readinessState);
+    }
+  });
+
+  it('custom readinessFn still works and includes all non-mastered nodes', () => {
+    const state = new Map<string, KnowledgeStateEntry>();
+    state.set('skill.a', entry('skill.a', 'inProgress'));
+    state.set('skill.b', entry('skill.b', 'untouched'));
+
+    const readinessFn = () => 0.3; // below nearThreshold → blocked
+    const fringe = getOuterFringe(state, simpleGraph, readinessFn);
+    // With custom readinessFn, ALL non-mastered nodes appear (including blocked)
+    const ids = fringe.map((f) => f.nodeId);
+    expect(ids).toContain('skill.a');
+    expect(ids).toContain('skill.b');
+    for (const f of fringe) {
+      expect(f.readinessState).toBe('blocked');
+    }
+  });
+
+  it('root nodes (no prereqs) are always ready in the default fringe', () => {
+    const state = new Map<string, KnowledgeStateEntry>();
+    state.set('skill.a', entry('skill.a', 'inProgress'));
+    state.set('skill.b', entry('skill.b', 'untouched'));
+
+    const fringe = getOuterFringe(state, simpleGraph);
+    const aEntry = fringe.find((f) => f.nodeId === 'skill.a');
+    expect(aEntry).toBeDefined();
+    if (aEntry) {
+      expect(aEntry.readiness).toBe(1);
+      expect(aEntry.readinessState).toBe('ready');
+    }
   });
 });

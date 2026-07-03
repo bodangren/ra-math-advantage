@@ -118,6 +118,9 @@ export type {
   ReadinessFn,
 } from './outer-fringe';
 
+export { computeWeightedReadiness, createDefaultWeightedReadinessFn } from './weighted-readiness';
+export type { ReadinessResult } from './weighted-readiness';
+
 export {
   DefaultSrsToKstBridge,
   buildKstState,

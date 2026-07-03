@@ -13,7 +13,7 @@ Depends on: Track 1 (getKnowledgeState, getOuterFringe, threshold config).
 
 ## Phase 2 — Readiness Engine
 
-- [ ] Task: Implement readiness(B) (TDD)
+- [~] Task: Implement readiness(B) (TDD)
     - [ ] Tests: no prerequisites (=1), partial, full, decaying-prerequisite cases
     - [ ] Pure function consuming Track 1 mastery levels and edge weights
 - [ ] Task: Integrate weighted readiness into getOuterFringe (TDD)
