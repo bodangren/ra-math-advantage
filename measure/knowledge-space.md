@@ -1,6 +1,8 @@
 # Knowledge Space Architecture
 
-This document is the project-wide source of truth for the Knowledge Space plan. Read it before implementing any Skill Graph, Knowledge Space, blueprint, generator, SRS, practice projection, or cross-domain learning graph work.
+This document is the **repo-architecture summary** for the Knowledge Space plan. It captures the package boundaries, vocabulary, and visualization projection rules used across the monorepo. Read it before implementing any Skill Graph, Knowledge Space, blueprint, generator, SRS, practice projection, or cross-domain learning graph work.
+
+> **Canonical KST+SRS contract:** [`../kst-srs.v2/SPECIFICATION.md`](../kst-srs.v2/SPECIFICATION.md) (§3 mastery, §4 outer fringe, §5 weighted readiness, §7 planner, §9 misconception loop, §16 projection). Mastery-model, hysteresis, fringe-membership, and readiness-formula prose lives there — this document defers to that file for theoretical authority and reproduces only the repo-architecture invariants below.
 
 ## Purpose
 
@@ -112,6 +114,7 @@ Concept nodes MUST NOT appear in `blueprints.json` files emitted by domain conte
 
 ## Current Measure Tracks
 
+- Track 1 (`wire-kst-pipeline_20260521`) is active: it wires the v2 contract into `packages/knowledge-space-core`. The canonical contract is [`../kst-srs.v2/SPECIFICATION.md`](../kst-srs.v2/SPECIFICATION.md); Phases 1–5 land mastery/fringe/bridge/production/docs work behind that spec.
 - Track 2 defines `knowledge-space-core`.
 - Track 6 defines reusable blueprint and generator contracts in `knowledge-space-practice`.
 - Track 7 defines reusable practice and visualization projection adapters in `knowledge-space-practice`.
