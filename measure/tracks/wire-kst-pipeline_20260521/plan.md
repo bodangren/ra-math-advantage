@@ -68,14 +68,55 @@ Boundary rule: `knowledge-space-core` / `-practice` stay domain-neutral.
 
 ## Phase 2 — Knowledge State & Mastery Engine
 
-- [ ] Task: Implement getKnowledgeState with hysteresis (TDD)
-    - [ ] Tests: enter (isProficient && retention≥enter), exit to decaying (<exit), re-enter on recovery, decay over time
-    - [ ] Implement pure, deterministic function
-- [ ] Task: Implement getOuterFringe (TDD)
-    - [ ] Tests: fringe membership, time-awareness, binary prerequisite gating
-    - [ ] Standalone exported function (not inside the visualization projection)
-- [ ] Task: Wire thresholds config + refactor visualization computeNodeState to consume the new engine (TDD)
-- [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
+- [x] Task: Implement getKnowledgeState with hysteresis (TDD)
+    - [x] Tests: enter (isProficient && retention≥enter), exit to decaying (<exit), re-enter on recovery, decay over time
+    - [x] Implemented pure, deterministic function (commit 6d4b1f3f)
+- [x] Task: Implement getOuterFringe (TDD)
+    - [x] Tests: fringe membership, time-awareness, binary prerequisite gating
+    - [x] Standalone exported function (commit 6d4b1f3f)
+- [x] Task: Wire thresholds config + refactor visualization computeNodeState to consume the new engine (TDD)
+    - [x] computeNodeState() added to level-projection.ts, delegates to getKnowledgeState (commit 6d4b1f3f)
+- [b] Task: Measure - User Manual Verification 'Phase 2' deferred:user
+
+### Phase 2 Red Evidence
+
+- **Targeted command:** `CI=true npx vitest run packages/knowledge-space-core`
+- **Result:** 3 new test files added; 15 passed / 28 failed (expected Red against Phase 1 stubs).
+  - New test files: `knowledge-state-engine-hysteresis.test.ts`, `outer-fringe-behavior.test.ts`, `compute-node-state.test.ts`.
+  - Existing test files (29): all 364 tests passed (unchanged).
+- **Failure reasons:** Phase 1 stubs returned empty Map/[]; `stabilityToRetention` missing; `computeNodeState` not exported.
+- **Commit:** 09adba23
+
+### Phase 2 Green Evidence
+
+- **Implementation summary:**
+  - `stabilityToRetention()` — exponential decay model `retention = exp(-deltaDays / (stability * scale))`, exported for bridge reuse.
+  - `determineState()` — pure hysteresis state machine with deep-decay fallback (`masteryExit * 0.5` → inProgress).
+  - `getKnowledgeState()` — full engine: evidence matching, retention computation from stability+time, mastery mapping (`retention * (isProficient ? 1.0 : 0.6)`), hysteresis with `previousState` parameter.
+  - `getOuterFringe()` — binary prerequisite gating (default) + `readinessFn` seam for weighted readiness.
+  - `computeNodeState()` — thin visualization wrapper in `level-projection.ts` delegating to `getKnowledgeState` (defends A4 — no parallel threshold literals).
+  - Evidence type extended with `stability`/`lastReviewedAt` (backward-compatible optional fields).
+- **Gate results (all exit 0):**
+  - `CI=true npx vitest run packages/knowledge-space-core` → 407/407 pass (32 files)
+  - `npm run --workspace=packages/knowledge-space-core typecheck` → exit 0
+  - `node scripts/check-monorepo-boundaries.mjs` → exit 0
+  - `npm run lint --prefix packages/knowledge-space-core` → exit 0
+  - `npx tsc --noEmit` → exit 0
+- **Lint fixes:** Removed unused imports/variables from test files.
+- **Commit:** 6d4b1f3f
+
+### Phase 2 Acceptance Evidence
+
+- **Status:** pass (5ea9334e)
+- **Reviews:** A (correctness/purity) ✓, B (no boundary leaks/unsafe mutation) ✓, C (backward-compatible signatures, readinessFn seam intact) ✓
+
+### Phase 2 Adversarial Evidence
+
+- **Status:** pass (19b3000c)
+- **Tests:** 35 adversarial tests covering time-travel, rapid cycles, missing data, corrupted input, threshold boundaries, empty/single/multi-node DAGs, 100-iteration determinism, exhaustive determineState(160 combinations), immutability.
+- **Full suite:** 442/442 pass (33 test files).
+
+
 
 ## Phase 3 — SRS→KST Bridge
 
