@@ -6,7 +6,7 @@
   "updated_at": "2026-07-03T00:00:00Z",
   "description": "Surface equivalent_to mastery to students at runtime ('already mastered in IM2 -> skip'). Verified: equivalence edges authored in Skill Graph T13 but unused at runtime. Tier 2 backlog. Depends on wire-kst-pipeline (KST learner state).",
   "program": "High-Leverage Backlog",
-  "estimated_tasks": 13,
+  "estimated_tasks": 12,
   "actual_tasks": 12,
-  "deviation_notes": "actual_tasks=12 set by measure-strategy via structural count `rg -c '^- \\[ \\] Task:' plan.md` (3 tasks/phase x 4 phases = 12). estimated_tasks=13 in prior metadata appears to be a miscount; orchestrator handoff also asserted 13. Refusing to write 13 to avoid A5 (false-claim) / A6 (overstatement) violations that measure-orchestrator-audit would flag against the supervisor marker-count predicate. Reconcile by adding a 13th task to plan.md OR correcting estimated_tasks to 12. See test-strategy.md Appendix B."
+  "deviation_notes": "estimated_tasks corrected from 13→12 by orchestrator (plan has 3 tasks × 4 phases = 12). measure-strategy set actual_tasks=12 via structural count to avoid A5/A6 false-claim; reconciliation option (b) chosen."
 }
