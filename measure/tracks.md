@@ -48,6 +48,10 @@ Dependencies:
        *Wire knowledge-space packages into an IM3 production route: SRS→KST bridge, time-aware `getKnowledgeState` with hysteresis, standalone `getOuterFringe`, learner-state producer. Brings kst-srs.v2 `SPECIFICATION.md` into the repo as canonical contract. 901 tests across 60 test files. Production route at /student/knowledge-state.*
        *Link: [./archive/wire-kst-pipeline_20260521/](./archive/wire-kst-pipeline_20260521/)*
 
+ - [x] **Track: Transfer-Credit Runtime** — **COMPLETED / ARCHIVED** (2026-07-03)
+       *Surface equivalent_to mastery to students at runtime: equivalence resolution, confidence-discounted transfer policy, skip eligibility in practice path, student UX with confirmation check, and teacher audit panel. 49 files / 673 tests in knowledge-space-core, 6 files / 64 tests in IM3 transfer-credit. All gates pass at archive.
+       *Link: [./archive/transfer-credit-runtime_20260703/](./archive/transfer-credit-runtime_20260703/)*
+
 ## Active Tracks
 
 - [ ] **Track: Live Classroom Presentation**
@@ -1002,9 +1006,9 @@ Sixteen candidate tracks identified from a full-roadmap review. Each is registry
    *Completed — artifact/contract phases green (197/197 tests pass); UMV live-deployment gate blocked pending isolated `$IM3_SCALE_URL`.*
    *Link: [./measure/archive/load-scale-testing_20260605/](./measure/archive/load-scale-testing_20260605/)*
 
-- [ ] **Track: Transfer-Credit Runtime** — **PLANNED**
-   *Surface `equivalent_to` mastery to students ("already mastered in IM2 → skip") at runtime. Verified: equivalence edges authored in Skill Graph T13 but unused at runtime. High payoff from an existing asset. Size: M. Depends on: wire-kst-pipeline (KST learner state). Readiness: blocked on KST T1.*
-   *Link: [./tracks/transfer-credit-runtime_20260605/](./tracks/transfer-credit-runtime_20260605/)*
+- [x] **Track: Transfer-Credit Runtime** — **COMPLETED / ARCHIVED** (2026-07-03)
+   *Surface `equivalent_to` mastery to students at runtime via confidence-discounted transfer policy, skip eligibility, student UX with confirmation check, and teacher audit panel. 49/673 KSC tests, 6/64 IM3 transfer-credit tests, all gates green at archive. Builds on equivalence edges from Skill Graph T13. All 6 FRs and 5 ACs met.*
+   *Link: [./archive/transfer-credit-runtime_20260703/](./archive/transfer-credit-runtime_20260703/)*
 
 ### Tier 3 — Strategic / longer-horizon (i18n intentionally excluded)
 
