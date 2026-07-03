@@ -1,25 +1,21 @@
 /**
- * Phase 4 — End-to-end KST pipeline integration test (RED).
+ * Phase 4 — End-to-end KST pipeline integration test.
  *
- * Import fails because the handler module does not exist yet.
- * After GREEN: exercises bridge → getKnowledgeState → getOuterFringe
+ * Exercises bridge → getKnowledgeState → getOuterFringe
  * on a seeded fixture and verifies the response shape.
  */
 
 import { describe, it, expect, vi } from 'vitest';
 import type { Id } from '@/convex/_generated/dataModel';
 
-// RED — import fails because the module does not exist yet.
 import { getStudentKnowledgeStateHandler } from '@/convex/student/knowledge-state';
 
 import {
   DefaultSrsToKstBridge,
   buildKstState,
-  getKnowledgeState,
   getOuterFringe,
   type SrsCardState,
   type ObjectiveProficiencyResult,
-  type KnowledgeStateEntry,
 } from '@math-platform/knowledge-space-core';
 
 import { loadFullCurriculumGraph } from '@/lib/curriculum/skill-graph-loader';
@@ -130,16 +126,6 @@ describe('Phase 4 — KST pipeline end-to-end (bridge → getKnowledgeState → 
   it('handler returns serializable JSON for the full pipeline', async () => {
     // Use a minimal mock ctx to test the handler
     const STUDENT_ID = 'profiles_test_pipeline' as Id<'profiles'>;
-    const skillNodeIds = [
-      'math.im3.skill.1.1.graph-quadratic-functions',
-      'math.im3.skill.1.2.solve-quadratic-equations-by-graphing',
-    ];
-
-    // We need cards whose objectiveIds match real skill nodes in the graph
-    const cards = makeSeededCards().map((c) => ({
-      ...c,
-      objectiveId: skillNodeIds.find((id) => id.includes('1.1')) ?? c.objectiveId,
-    }));
 
     // Simulate an empty student (no cards) to verify the response shape
     const mockCtx = {

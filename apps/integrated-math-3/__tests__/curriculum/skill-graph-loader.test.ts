@@ -12,7 +12,6 @@
 
 import { describe, it, expect } from 'vitest';
 import { loadFullCurriculumGraph } from '@/lib/curriculum/skill-graph-loader';
-import type { KnowledgeSpaceNode, KnowledgeSpaceEdge } from '@math-platform/knowledge-space-core';
 
 describe('Phase 4 — loadFullCurriculumGraph (graph artifact loading)', () => {
   it('loads non-zero nodes from real rollout artifacts', () => {
