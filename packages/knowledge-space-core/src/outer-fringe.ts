@@ -5,7 +5,7 @@
 // in the visualization projection).
 
 import type { KnowledgeSpace } from './types';
-import type { KnowledgeStateEntry } from './mastery-state';
+import type { KnowledgeStateEntry, ReadinessState } from './mastery-state';
 import { MASTERY_THRESHOLDS_DEFAULT } from './mastery-state';
 
 /**
@@ -20,7 +20,7 @@ import { MASTERY_THRESHOLDS_DEFAULT } from './mastery-state';
 export interface FringeEntry {
   nodeId: string;
   readiness?: number;
-  readinessState?: 'ready' | 'nearly_ready' | 'blocked';
+  readinessState?: ReadinessState;
 }
 
 /**

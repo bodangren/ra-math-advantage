@@ -5,7 +5,7 @@ Depends on: Track 1 (getKnowledgeState, getOuterFringe, threshold config).
 
 ## Phase 1 — Contract & Schema
 
-- [ ] Task: Define readiness types and threshold config
+- [~] Task: Define readiness types and threshold config
     - [ ] Readiness score type; readiness state enum (ready / nearly_ready / blocked)
     - [ ] Add readyThreshold (0.80) and nearThreshold (0.50) to Track 1's threshold block
     - [ ] Extend node-state types to include nearly_ready

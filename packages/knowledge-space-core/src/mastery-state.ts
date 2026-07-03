@@ -68,6 +68,22 @@ export type MasteryState = 'mastered' | 'decaying' | 'inProgress' | 'untouched';
 const masteryStateValues = ['mastered', 'decaying', 'inProgress', 'untouched'] as const;
 
 // ---------------------------------------------------------------------------
+// Three-way readiness state (kst-srs.v2 §5.2)
+// ---------------------------------------------------------------------------
+
+/**
+ * Three-way readiness state per skill node, derived from weighted
+ * prerequisite readiness against `MasteryThresholds` (kst-srs.v2 §5.2).
+ *
+ * - `ready`      — `readiness ≥ readyThreshold` (default 0.80)
+ * - `nearly_ready` — `readiness ≥ nearThreshold` (default 0.50)
+ * - `blocked`    — otherwise
+ */
+export type ReadinessState = 'ready' | 'nearly_ready' | 'blocked';
+
+const readinessStateValues = ['ready', 'nearly_ready', 'blocked'] as const;
+
+// ---------------------------------------------------------------------------
 // KnowledgeStateEntry (per-node entry in the v2 state map, kst-srs.v2 §3.5)
 // ---------------------------------------------------------------------------
 
@@ -103,6 +119,10 @@ export interface KnowledgeStateEntry {
   evidence?: KnowledgeStateEvidence[];
   /** Optional last-update timestamp (epoch ms). */
   lastUpdated?: number;
+  /** Optional weighted readiness score in [0, 1] (kst-srs.v2 §5.1). */
+  readinessScore?: number;
+  /** Optional three-way readiness state (kst-srs.v2 §5.2). */
+  readinessState?: ReadinessState;
 }
 
 /**
@@ -121,4 +141,6 @@ export const knowledgeStateEntrySchema = z.object({
     observedAt: z.number().optional(),
   })).optional(),
   lastUpdated: z.number().optional(),
+  readinessScore: z.number().min(0).max(1).optional(),
+  readinessState: z.enum(readinessStateValues).optional(),
 });

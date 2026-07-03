@@ -8,6 +8,7 @@ import type {
   MasteryThresholds,
   MasteryState,
   KnowledgeStateEntry,
+  ReadinessState,
 } from '../index';
 
 // ---------------------------------------------------------------------------
@@ -161,5 +162,85 @@ describe('mastery-state contract', () => {
     expect(MASTERY_THRESHOLDS_DEFAULT).toBeDefined();
     const partial: Partial<MasteryThresholds> = { masteryEnter: 0.95 };
     expect(partial.masteryEnter).toBe(0.95);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Phase 1 Track 2 — Weighted Readiness contract (Red)
+// ---------------------------------------------------------------------------
+
+describe('Weighted Readiness — Phase 1 contract', () => {
+  it('ReadinessState is exported as a type union', () => {
+    // Compile-time: ReadinessState should be assignable from 'ready'
+    const r: ReadinessState = 'ready';
+    expect(r).toBe('ready');
+    const nr: ReadinessState = 'nearly_ready';
+    expect(nr).toBe('nearly_ready');
+    const b: ReadinessState = 'blocked';
+    expect(b).toBe('blocked');
+  });
+
+  it('ReadinessState is distinct from MasteryState (no conflated unions)', () => {
+    // ReadinessState is 'ready'|'nearly_ready'|'blocked'
+    // MasteryState is 'mastered'|'decaying'|'inProgress'|'untouched'
+    // These are purpose-distinct per anti-pattern A6
+    const r: ReadinessState = 'ready';
+    // Cannot assign MasteryState value to ReadinessState at type level:
+    // const m: ReadinessState = 'mastered'; // would be type error
+    expect(typeof r).toBe('string');
+  });
+
+  it('KnowledgeStateEntry has optional readinessScore and readinessState fields', () => {
+    // Create an entry WITH the new fields
+    const entryWithReadiness: KnowledgeStateEntry = {
+      nodeId: 'skill.a',
+      mastery: 0.6,
+      retention: 0.7,
+      isProficient: false,
+      state: 'inProgress',
+      readinessScore: 0.55,
+      readinessState: 'nearly_ready',
+    };
+    expect(entryWithReadiness.readinessScore).toBe(0.55);
+    expect(entryWithReadiness.readinessState).toBe('nearly_ready');
+
+    // Create an entry WITHOUT the new fields (they are optional)
+    const entryWithout: KnowledgeStateEntry = {
+      nodeId: 'skill.b',
+      mastery: 0.95,
+      retention: 0.96,
+      isProficient: true,
+      state: 'mastered',
+    };
+    expect(entryWithout.readinessScore).toBeUndefined();
+    expect(entryWithout.readinessState).toBeUndefined();
+  });
+
+  it('knowledgeStateEntrySchema accepts optional readiness fields', () => {
+    const entry = {
+      nodeId: 'skill.a',
+      mastery: 0.6,
+      retention: 0.7,
+      isProficient: false,
+      state: 'inProgress' as const,
+      readinessScore: 0.55,
+      readinessState: 'nearly_ready' as const,
+    };
+    const parsed = knowledgeStateEntrySchema.parse(entry);
+    expect(parsed.readinessScore).toBe(0.55);
+    expect(parsed.readinessState).toBe('nearly_ready');
+  });
+
+  it('knowledgeStateEntrySchema accepts entries without readiness fields (backward compat)', () => {
+    const entry = {
+      nodeId: 'skill.b',
+      mastery: 0.95,
+      retention: 0.96,
+      isProficient: true,
+      state: 'mastered' as const,
+    };
+    const parsed = knowledgeStateEntrySchema.parse(entry);
+    expect(parsed.readinessScore).toBeUndefined();
+    expect(parsed.readinessState).toBeUndefined();
   });
 });

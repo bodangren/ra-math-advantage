@@ -103,6 +103,7 @@ export type {
   MasteryState,
   KnowledgeStateEntry,
   KnowledgeStateEvidence,
+  ReadinessState,
 } from './mastery-state';
 
 export { getKnowledgeState, stabilityToRetention, determineState } from './knowledge-state-engine';
