@@ -5,20 +5,39 @@ Boundary rule: `knowledge-space-core` / `-practice` stay domain-neutral.
 
 ## Phase 1 — Canonical Contract & Schema
 
-- [ ] Task: Bring kst-srs.v2 contract into the repo
-    - [ ] Copy SPECIFICATION.md (kst-srs.v2) into the repo (packages/knowledge-space-core/ or measure/)
-    - [ ] Reconcile measure/knowledge-space.md into an architecture summary pointing at it
-    - [ ] Update measure/index.md with the new reference
-- [ ] Task: Define Knowledge State & Mastery types/schemas
-    - [ ] masteryLevel (0–1), four-way state (mastered/decaying/inProgress/untouched)
-    - [ ] KnowledgeState shape; configurable thresholds module (masteryEnter 0.90, masteryExit 0.70, etc.)
-    - [ ] Zod schemas + exported TypeScript types in knowledge-space-core
-- [ ] Task: Define SRS→KST bridge interface/types
-    - [ ] Input: SRS card states + ObjectiveProficiencyResult[]; Output: learner state
-    - [ ] Place interface in a domain-neutral surface (no app/convex imports)
-- [ ] Task: Define getKnowledgeState / getOuterFringe exported signatures
-    - [ ] Time-aware signatures; structured so Track 2 can swap weighted readiness into the fringe
-- [ ] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md)
+- [~] Task: Bring kst-srs.v2 contract into the repo
+    - [~] Copy SPECIFICATION.md (kst-srs.v2) into the repo (packages/knowledge-space-core/ or measure/)
+    - [~] Reconcile measure/knowledge-space.md into an architecture summary pointing at it
+    - [~] Update measure/index.md with the new reference
+- [~] Task: Define Knowledge State & Mastery types/schemas
+    - [~] masteryLevel (0–1), four-way state (mastered/decaying/inProgress/untouched)
+    - [~] KnowledgeState shape; configurable thresholds module (masteryEnter 0.90, masteryExit 0.70, etc.)
+    - [~] Zod schemas + exported TypeScript types in knowledge-space-core
+- [~] Task: Define SRS→KST bridge interface/types
+    - [~] Input: SRS card states + ObjectiveProficiencyResult[]; Output: learner state
+    - [~] Place interface in a domain-neutral surface (no app/convex imports)
+- [~] Task: Define getKnowledgeState / getOuterFringe exported signatures
+    - [~] Time-aware signatures; structured so Track 2 can swap weighted readiness into the fringe
+- [b] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md) deferred:user
+
+### Phase 1 Red Evidence
+
+- **Targeted command:** `CI=true npx vitest run packages/knowledge-space-core`
+- **Result:** 6 new test files failed; 22 existing test files passed.
+  - New tests: 30 failed / 30 total (mastery-state-contract: 13, knowledge-state-engine-signature: 5, outer-fringe-signature: 4, srs-bridge-contract: 4, boundary-phase1: 1, docs-reconciliation: 3).
+  - Existing tests: 302 passed / 302 total.
+- **Failure reasons (by file):**
+  - `mastery-state-contract.test.ts` — `MASTERY_THRESHOLDS_DEFAULT`, `masteryThresholdsSchema`, and `knowledgeStateEntrySchema` are not exported from `../index`.
+  - `knowledge-state-engine-signature.test.ts` — `getKnowledgeState` is not exported as a function.
+  - `outer-fringe-signature.test.ts` — `getOuterFringe` is not exported as a function.
+  - `srs-bridge-contract.test.ts` — `getKnowledgeState` is missing; `../srs-bridge` module does not exist.
+  - `boundary-phase1.test.ts` — Phase 1 module pins (`MASTERY_THRESHOLDS_DEFAULT`, `getKnowledgeState`, `getOuterFringe`) are undefined.
+  - `docs-reconciliation.test.ts` — `measure/knowledge-space.md` lacks a canonical pointer to `SPECIFICATION.md`; `measure/index.md` lacks a "Knowledge Space Contract" row; `measure/knowledge-space.md` still contains "source of truth".
+- **Lint / type-check:**
+  - `npm run ws:im3:lint` → exit 0.
+  - `npx tsc --noEmit` (root tsconfig) → exit 0.
+  - `npm run --workspace=packages/knowledge-space-core typecheck` (`tsc --noEmit` in package) → exit 1 (expected Red: missing exports for `MASTERY_THRESHOLDS_DEFAULT`, `getKnowledgeState`, `getOuterFringe`, `SrsToKstBridge`, etc.).
+- **Attribution:** Red tests authored by `measure-mid-red` at baseline `66e3148f`. Green role target modules are listed in `test-strategy.md` §1.1.
 
 ## Phase 2 — Knowledge State & Mastery Engine
 
