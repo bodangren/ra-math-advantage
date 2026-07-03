@@ -12,10 +12,10 @@ Verification substitute for Doctor: `node scripts/check-monorepo-boundaries.mjs`
 
 ## Phase 2 — Shared Activity Components (packages)
 
-- [ ] Task: Remediate keyboard/focus + role/name/state on graphing + step-by-step-solver (TDD)
-- [ ] Task: Remediate quizzes, fill-in-the-blank, study-hub games (TDD)
-- [ ] Task: Announce dynamic answer feedback via live regions (TDD)
-- [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
+- [~] Task: Remediate keyboard/focus + role/name/state on graphing + step-by-step-solver (TDD)
+- [~] Task: Remediate quizzes, fill-in-the-blank, study-hub games (TDD)
+- [~] Task: Announce dynamic answer feedback via live regions (TDD)
+- [b] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md) (deferred:human)
 
 ## Phase 3 — Student Routes
 
@@ -59,7 +59,25 @@ CI=true npx vitest run --root apps/integrated-math-3 \
   __tests__/a11y/findings-doc.test.ts
 ```
 
-**Result:** exit 1 (expected Red).  
+**Result:** exit 1 (expected Red).
+
+- `graphing-solver-a11y.test.tsx`: 3/7 passed, 4 failed.
+  - PASS: tab reaches canvas/submit; no focus trap; StepByStepper axe clean.
+  - FAIL: StepByStepper steps are not `role="region" aria-label="Step N"`.
+  - FAIL: Next button on last step is removed instead of `aria-disabled="true"`.
+  - FAIL: incorrect-step hint has no `role="alert"`/`aria-live="assertive"`.
+  - FAIL: GraphingExplorer practice mode has 1 serious axe violation (`nested-interactive`: the SVG canvas is focusable and contains focusable point buttons).
+- `quiz-blanks-games-a11y.test.tsx`: 4/9 passed, 5 failed.
+  - PASS: word-bank drag sources are keyboard focusable; game scope-adjustment check; axe clean on ComprehensionQuiz and FillInTheBlank.
+  - FAIL: ComprehensionQuiz options are `<button>` rather than `role="radio"` with `aria-checked`.
+  - FAIL: FillInTheBlank blank input uses generic `aria-label="Your answer"` instead of a task-specific name.
+  - FAIL: blank inputs lack `aria-required="true"`.
+  - FAIL: no polite live region for word-bank match/mismatch feedback.
+- `live-regions.test.tsx`: 1/6 passed, 5 failed.
+  - PASS: GraphingExplorer point-add already announces via `aria-live="polite"` (GraphingCanvas).
+  - FAIL: ComprehensionQuiz has no `role="status"`/`aria-live="polite"` region before or after submit.
+  - FAIL: StepByStepper has no `role="alert"`/`aria-live="assertive"` region before or after wrong step.
+  - FAIL: GraphingExplorer comparison-answer feedback is not in a `role="status"` region.
 - `findings-doc.test.ts`: 4/4 passed.
 - `route-set.test.ts`: 3/3 passed.
 - `axe-harness.test.tsx`: failed to resolve `@/lib/a11y/harness` — the harness helper does not exist yet, which is the intended TDD seam.
@@ -91,6 +109,54 @@ npm run lint
 
 - `npx tsc --noEmit` shows pre-existing errors in `convex/seed/validate_blueprint.ts`, `convex/teacher/content-authoring.ts`, `convex/teacher/srs_mutations.ts`, `lib/srs/__tests__/rest-adapter-stub.ts`, `lib/teacher/content-authoring/*`, and `tailwind.config.ts`. No new errors were introduced by the Phase 1 test files.
 - Task 4 (User Manual Verification 'Phase 1') is structurally blocked and deferred to human review per the autonomous-mode UX plan in `test-strategy.md` §5.
+
+---
+
+## Phase 2 Red Evidence
+
+**Date:** 2026-07-04  
+**Baseline SHA:** `66d20f58`
+
+### Scope adjustment
+
+The test-strategy.md §1 Task 6 names `MatchingGame` / `SpeedRoundGame` as part of the
+shared-package Phase 2 test file. Code inspection shows these components live at
+`apps/integrated-math-3/components/student/MatchingGame.tsx` and
+`apps/integrated-math-3/components/student/SpeedRoundGame.tsx`; there are no matching
+or speed-round components under `packages/activity-components/src/components`. Per the
+Red-phase rule "adjust tests to target the ACTUAL components in their actual location",
+the package test file only asserts `ComprehensionQuiz` and `FillInTheBlank`. The game
+components are verified by a structural scope-adjustment test and are scheduled for
+Phase 3 (student-route) remediation.
+
+### New test files
+
+- `packages/activity-components/src/__tests__/a11y/graphing-solver-a11y.test.tsx`
+- `packages/activity-components/src/__tests__/a11y/quiz-blanks-games-a11y.test.tsx`
+- `packages/activity-components/src/__tests__/a11y/live-regions.test.tsx`
+
+### RED_TEST_COMMAND
+
+```bash
+CI=true npx vitest run packages/activity-components src/__tests__/a11y/graphing-solver-a11y.test.tsx src/__tests__/a11y/quiz-blanks-games-a11y.test.tsx src/__tests__/a11y/live-regions.test.tsx
+```
+
+**Result:** exit 1 (expected Red).
+
+### Aggregate regression gates
+
+```bash
+CI=true npx vitest run packages/knowledge-space-core
+```
+
+**Result:** exit 0 — 673/673 tests passed.
+
+### Plan marker updates
+
+- Task 5 (graphing + step-by-step-solver): `[ ]` → `[~]`.
+- Task 6 (quizzes, fill-in-the-blank, games): `[ ]` → `[~]`.
+- Task 7 (live regions): `[ ]` → `[~]`.
+- Task 8 (UMV 'Phase 2'): `[ ]` → `[b] deferred:human`.
 
 ---
 
