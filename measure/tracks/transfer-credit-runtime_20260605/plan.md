@@ -24,9 +24,13 @@ Verification: boundary lints + per-app lint/test + `tsc --noEmit`.
 
 ## Phase 3 — Student UX & Confirmation Check
 
-- [ ] Task: "Already mastered in <course>" UI with skip / confirmation-check / reversible skip (TDD on logic)
-- [ ] Task: Optional brief verification before granting skip (TDD)
-- [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
+> Red-phase evidence (2026-07-03): `CI=true npx vitest run packages/knowledge-space-core/src/__tests__/transfer-skip.test.ts apps/integrated-math-3/__tests__/student/transfer-credit` → RED. Package test fails with `Cannot find module '../transfer-skip'`; app tests fail with missing modules `@/lib/transfer-credit/student-skip` and `@/components/student/transfer-credit/TransferCreditPrompt`, plus missing exports `shouldRequireConfirmationCheck` / `grantSkipAfterCheck` from `@math-platform/knowledge-space-core`. Aggregate `CI=true npx vitest run packages/knowledge-space-core` → 593 passed, 1 failed suite (new Red file), 0 regressions.
+>
+> RED_TEST_COMMAND for Green handoff: `CI=true npx vitest run packages/knowledge-space-core/src/__tests__/transfer-skip.test.ts apps/integrated-math-3/__tests__/student/transfer-credit`
+
+- [~] Task: "Already mastered in <course>" UI with skip / confirmation-check / reversible skip (TDD on logic)
+- [~] Task: Optional brief verification before granting skip (TDD)
+- [b] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md) (deferred:human)
 
 ## Phase 4 — Teacher Visibility & Verification
 
