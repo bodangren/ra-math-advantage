@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "role": "measure-final-acceptance",
+  "track": "wire-kst-pipeline_20260521",
+  "status": "pass",
+  "head": "cf693d40",
+  "summary": "FINAL ACCEPTANCE — Track wire-kst-pipeline_20260521 PASSES. All five phases accepted with all functional requirements met. The KST pipeline is wired end-to-end: v2 mastery model (getKnowledgeState with hysteresis), standalone getOuterFringe with readinessFn seam for Track 2, SRS→KST bridge (DefaultSrsToKstBridge + buildKstState), IM3 production route at /student/knowledge-state consuming real 574-node/2708-edge graph. Full test suite: 901 tests across 60 test files (490 core + 373 practice + 38 IM3 KST pipeline). Boundary linter clean. Root tsc clean. Audit doc updated from placeholder to wired status.",
+  "phase_acceptances": {
+    "phase_1_canonical_contract_and_schema": {
+      "status": "pass",
+      "sha": "e5f8681d",
+      "evidence": "phase-1-acceptance-result.json — 332 tests pass, AC1/AC2(partial)/AC3(partial)/AC6 met"
+    },
+    "phase_2_knowledge_state_and_mastery_engine": {
+      "status": "pass",
+      "sha": "6d4b1f3f",
+      "evidence": "phase-2-acceptance-result.json — 407 tests pass, hysteresis enter/exit/re-enter, outer-fringe membership, computeNodeState refactor"
+    },
+    "phase_3_srs_to_kst_bridge": {
+      "status": "pass",
+      "sha": "07b4a033",
+      "evidence": "phase-3-acceptance-result.json — 458 tests pass, DefaultSrsToKstBridge + buildKstState, full pipeline integration"
+    },
+    "phase_4_production_wiring": {
+      "status": "pass",
+      "sha": "c4082982",
+      "evidence": "Inline plan evidence. IM3 convex query at convex/student/knowledge-state.ts, server component at app/student/knowledge-state/page.tsx, batched reads, 41 tests pass"
+    },
+    "phase_5_docs_audit_doctor": {
+      "status": "pass",
+      "sha": "9a67f58b",
+      "evidence": "phase-5-acceptance-result.json — audit doc wired, boundary linter clean, 901 tests pass, 15 adversarial probes"
+    }
+  },
+  "functional_requirements": {
+    "FR1_canonical_contract": {
+      "status": "met",
+      "evidence": "kst-srs.v2/SPECIFICATION.md in-repo (510 lines). measure/knowledge-space.md reconciled as architecture summary with canonical pointer. measure/index.md has Knowledge Space Contract row."
+    },
+    "FR2_knowledge_state_and_mastery": {
+      "status": "met",
+      "evidence": "getKnowledgeState() implements time-aware hysteresis: enter mastered at retention >= 0.90 (masteryEnter), exit to decaying at < 0.70 (masteryExit), re-enter on recovery. Four-way state (mastered/decaying/inProgress/untouched). Configurable thresholds via MASTERY_THRESHOLDS_DEFAULT. Pure, deterministic function with now injected."
+    },
+    "FR3_getOuterFringe": {
+      "status": "met",
+      "evidence": "getOuterFringe() standalone top-level export (not buried in visualization projection). Binary prerequisite gating default. readinessFn seam for Track 2 weighted readiness."
+    },
+    "FR4_srs_to_kst_bridge": {
+      "status": "met",
+      "evidence": "DefaultSrsToKstBridge.convert() converts SRS card states + ObjectiveProficiencyResult[] to Map<NodeId, KnowledgeStateEntry>. buildKstState() convenience function. proficiency-to-card merging logic. Round-trip test covers bridge → getKnowledgeState → getOuterFringe."
+    },
+    "FR5_production_wiring": {
+      "status": "met",
+      "evidence": "One IM3 production route at /student/knowledge-state renders KST-derived student state. Convex internalQuery composes bridge + engine + fringe + projection. Batched Promise.all reads (2 calls regardless of card count). Authorization at server-component level via requireStudentSessionClaims."
+    },
+    "FR6_graph_availability": {
+      "status": "met",
+      "evidence": "loadFullCurriculumGraph() loads from curriculum/skill-graph/nodes.json + edges.json. 574 nodes / 2708 edges across all 9 IM3 modules. Used by production query. Graph-loader determinism verified (load twice, deep-equal)."
+    }
+  },
+  "acceptance_criteria": {
+    "AC1_contract_in_repo": "met",
+    "AC2_getKnowledgeState_getOuterFringe_tested": "met",
+    "AC3_bridge_tested_against_fixtures": "met",
+    "AC4_production_route_renders_kst_state": "met",
+    "AC5_projection_audit_doc_updated": "met",
+    "AC6_boundary_lints_tsc_tests_pass": "met"
+  },
+  "final_gates": {
+    "core_vitest_490_pass": "exit 0",
+    "practice_vitest_373_pass": "exit 0",
+    "im3_kst_vitest_38_pass": "exit 0",
+    "boundary_linter": "exit 0",
+    "root_tsc_noEmit": "exit 0",
+    "core_package_typecheck": "exit 0",
+    "total_tests": 901
+  },
+  "out_of_scope": [
+    "Weighted readiness via edge weight (Track 2)",
+    "Edge calibration (Track 3)",
+    "Next-skill planner (Track 4)",
+    "Placement (Track 5)",
+    "Misconception remediated_by + lifecycle (Track 6)",
+    "Practice variant rename (Track 7)",
+    "transfers_to, Level Projection, progressTrend fix (Track 8)",
+    "English/GSE domain wiring",
+    "SPECIFICATION.md co-location (deferred per test-strategy §0.1)"
+  ],
+  "deferred_umv": [
+    "Phase 1 UMV [b] deferred:user",
+    "Phase 2 UMV [b] deferred:user",
+    "Phase 3 UMV [b] deferred:user",
+    "Phase 4 UMV [b] deferred:user",
+    "Phase 5 UMV [b] deferred:user"
+  ],
+  "nonblocking_findings": [
+    "knowledge-space-practice typecheck: 16 pre-existing test-file type errors (not from this track)",
+    "Full IM3 project eslint hangs (pre-existing; per-file eslint on new code passes)",
+    "Phase 4 standalone JSON acceptance/adversarial files not created (inline plan evidence sufficient)",
+    "SPECIFICATION.md remains at kst-srs.v2/SPECIFICATION.md (co-location deferred)"
+  ],
+  "closeout_ready": true,
+  "confidence": "high"
+}

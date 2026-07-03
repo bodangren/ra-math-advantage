@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "role": "automation-supervisor-closeout",
+  "track": "wire-kst-pipeline_20260521",
+  "archive_path": "measure/archive/wire-kst-pipeline_20260521",
+  "closeout_date": "2026-07-03T17:45:00Z",
+  "final_commit": "cf693d40",
+  "status": "archived",
+  "phase_checkpoints": {
+    "phase_1": "e5f8681d",
+    "phase_2": "6d4b1f3f",
+    "phase_3": "07b4a033",
+    "phase_4": "c4082982",
+    "phase_5": "9a67f58b"
+  },
+  "all_phases_accepted": true,
+  "all_gates_exit_zero": true,
+  "tasks": {
+    "estimated": 20,
+    "completed": 15,
+    "deferred_umv": 5
+  },
+  "test_counts": {
+    "core": 490,
+    "practice": 373,
+    "im3_kst": 38,
+    "total": 901
+  },
+  "functional_requirements_met": [
+    "FR1 — Canonical contract",
+    "FR2 — Knowledge State & Mastery (hysteresis engine)",
+    "FR3 — getOuterFringe (standalone with readinessFn seam)",
+    "FR4 — SRS→KST bridge",
+    "FR5 — Production wiring (IM3 /student/knowledge-state)",
+    "FR6 — Graph availability (574 nodes / 2708 edges)"
+  ],
+  "out_of_scope_future_tracks": [
+    "Track 2 — Weighted readiness",
+    "Track 3 — Edge calibration",
+    "Track 4 — Planner",
+    "Track 5 — Placement",
+    "Track 6 — Misconception loop",
+    "Track 7 — Practice variant rename",
+    "Track 8 — transfers_to, Level Projection, progressTrend fix"
+  ],
+  "nonblocking_findings": [
+    "knowledge-space-practice typecheck: 16 pre-existing test-file type errors",
+    "Full IM3 eslint hangs (pre-existing; per-file passes)",
+    "Phase 4 standalone JSON acceptance/adversarial not created",
+    "SPECIFICATION.md co-location deferred"
+  ]
+}

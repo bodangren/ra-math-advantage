@@ -42,6 +42,12 @@ Dependencies:
 - T8 acceptance + T5 unlock T9 + T10 + T11 + T12 (course rollouts run in parallel).
 - T9 + T10 + T11 + T12 unlock T13 (cross-course equivalence is the final stitch).
 
+## Recently Completed
+
+ - [x] **Track 1: Wire the KST Pipeline + v2 Mastery Model** — **COMPLETED / ARCHIVED** (2026-07-03)
+       *Wire knowledge-space packages into an IM3 production route: SRS→KST bridge, time-aware `getKnowledgeState` with hysteresis, standalone `getOuterFringe`, learner-state producer. Brings kst-srs.v2 `SPECIFICATION.md` into the repo as canonical contract. 901 tests across 60 test files. Production route at /student/knowledge-state.*
+       *Link: [./archive/wire-kst-pipeline_20260521/](./archive/wire-kst-pipeline_20260521/)*
+
 ## Active Tracks
 
 - [x] **[HIGH PRIORITY] Track: Unblock CI package typecheck (2026-07-01)** — **COMPLETED** (fix `ee10aa4`, docs `42fcc63`). Next: watch the CI run on push — this clears the Phase-1 package gate, but the downstream im3/bm2/deploy jobs have not been observed green remotely.
@@ -62,10 +68,7 @@ Dependencies:
 
 - [ ] **Program: Knowledge Space Engine Alignment (kst-srs.v2)**
    *Bring the implementation into alignment with the `kst-srs.v2` specification. The KST packages (`knowledge-space-core`, `knowledge-space-practice`) implement the v1 contract but are wired into no production route; the SRS half is live but nothing converts proficiency output into a knowledge-space learner state. This program wires the KST pipeline end-to-end and adds the v2 improvements: time-aware mastery, weighted readiness, edge calibration, a next-skill planner, adaptive placement, the misconception remediation loop, and the practice-variant rename. Source: gse-knowledge-space `SPECIFICATION.md` (kst-srs.v2) + `IMPROVEMENT-PLAN.md`.*
-    - [~] **Track 1: Wire the KST Pipeline + v2 Mastery Model** — **Phase 4 COMPLETE, Phase 5 REMAINING**
-      *Wire knowledge-space packages into an IM3 production route: SRS→KST bridge, time-aware `getKnowledgeState` with hysteresis, standalone `getOuterFringe`, learner-state producer. Brings kst-srs.v2 `SPECIFICATION.md` into the repo as canonical contract. (Improvement Plan Item 1 + v1 wiring.)*
-      *Link: [./tracks/wire-kst-pipeline_20260521/](./tracks/wire-kst-pipeline_20260521/)*
-    - [ ] **Track 2: Weighted Readiness**
+     - [ ] **Track 2: Weighted Readiness**
       *Make `edge.weight` a live field: a weighted readiness score (`Σ(wᵢ·mᵢ)/Σ(wᵢ)`) replaces binary prerequisite gating, modeling compensatory learning paths. (Improvement Plan Item 2.) Depends on Track 1.*
       *Link: [./tracks/weighted-readiness_20260521/](./tracks/weighted-readiness_20260521/)*
 

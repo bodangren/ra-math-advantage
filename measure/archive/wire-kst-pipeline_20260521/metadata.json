@@ -1,12 +1,14 @@
 {
   "track_id": "wire-kst-pipeline_20260521",
   "type": "feature",
-  "status": "new",
+  "status": "done",
   "created_at": "2026-05-20T22:24:04Z",
-  "updated_at": "2026-05-20T22:24:04Z",
+  "updated_at": "2026-07-03T17:45:00Z",
+  "completed": "2026-07-03T17:45:00Z",
+  "completed_at": "2026-07-03T17:45:00Z",
   "description": "Wire the KST pipeline into an IM3 production route and adopt the v2 time-aware mastery model: SRS-to-KST bridge, getKnowledgeState with hysteresis, standalone getOuterFringe, learner-state producer. Track 1 of the Knowledge Space Engine Alignment program (kst-srs.v2).",
   "program": "Knowledge Space Engine Alignment (kst-srs.v2)",
   "estimated_tasks": 20,
-  "actual_tasks": null,
-  "deviation_notes": ""
+  "actual_tasks": 15,
+  "deviation_notes": "5 UMV tasks deferred:user across all phases. 15 implementation tasks completed. Phase 4 acceptance/adversarial JSONs not created as standalone files (inline plan evidence sufficient). SPECIFICATION.md co-location deferred per test-strategy §0.1."
 }

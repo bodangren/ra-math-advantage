@@ -7,17 +7,17 @@ Boundary rule: `knowledge-space-core` / `-practice` stay domain-neutral.
 
 - [x] Task: Bring kst-srs.v2 contract into the repo (commit e5f8681d)
     - [x] Copy SPECIFICATION.md (kst-srs.v2) into the repo (packages/knowledge-space-core/ or measure/) — file already in-repo at kst-srs.v2/SPECIFICATION.md; co-location deferred to Phase 5 per test-strategy §0.1
-    - [x] Reconcile measure/knowledge-space.md into an architecture summary pointing at it
-    - [x] Update measure/index.md with the new reference
+    - [x] Reconcile measure/knowledge-space.md into an architecture summary pointing at it () (e5f8681d)
+    - [x] Update measure/index.md with the new reference () (e5f8681d)
 - [x] Task: Define Knowledge State & Mastery types/schemas (commit e5f8681d)
-    - [x] masteryLevel (0–1), four-way state (mastered/decaying/inProgress/untouched)
-    - [x] KnowledgeState shape; configurable thresholds module (masteryEnter 0.90, masteryExit 0.70, etc.)
-    - [x] Zod schemas + exported TypeScript types in knowledge-space-core
+    - [x] masteryLevel (0–1), four-way state (mastered/decaying/inProgress/untouched) () (e5f8681d)
+    - [x] KnowledgeState shape; configurable thresholds module (masteryEnter 0.90, masteryExit 0.70, etc.) () (e5f8681d)
+    - [x] Zod schemas + exported TypeScript types in knowledge-space-core () (e5f8681d)
 - [x] Task: Define SRS→KST bridge interface/types (commit e5f8681d)
-    - [x] Input: SRS card states + ObjectiveProficiencyResult[]; Output: learner state
-    - [x] Place interface in a domain-neutral surface (no app/convex imports)
+    - [x] Input: SRS card states + ObjectiveProficiencyResult[]; Output: learner state () (e5f8681d)
+    - [x] Place interface in a domain-neutral surface (no app/convex imports) () (e5f8681d)
 - [x] Task: Define getKnowledgeState / getOuterFringe exported signatures (commit e5f8681d)
-    - [x] Time-aware signatures; structured so Track 2 can swap weighted readiness into the fringe
+    - [x] Time-aware signatures; structured so Track 2 can swap weighted readiness into the fringe () (e5f8681d)
 - [b] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md) deferred:user
 
 ### Phase 1 Red Evidence
@@ -68,13 +68,13 @@ Boundary rule: `knowledge-space-core` / `-practice` stay domain-neutral.
 
 ## Phase 2 — Knowledge State & Mastery Engine
 
-- [x] Task: Implement getKnowledgeState with hysteresis (TDD)
-    - [x] Tests: enter (isProficient && retention≥enter), exit to decaying (<exit), re-enter on recovery, decay over time
+- [x] Task: Implement getKnowledgeState with hysteresis (TDD) (6d4b1f3f)
+    - [x] Tests: enter (isProficient && retention≥enter), exit to decaying (<exit), re-enter on recovery, decay over time () (6d4b1f3f)
     - [x] Implemented pure, deterministic function (commit 6d4b1f3f)
-- [x] Task: Implement getOuterFringe (TDD)
-    - [x] Tests: fringe membership, time-awareness, binary prerequisite gating
+- [x] Task: Implement getOuterFringe (TDD) (6d4b1f3f)
+    - [x] Tests: fringe membership, time-awareness, binary prerequisite gating () (6d4b1f3f)
     - [x] Standalone exported function (commit 6d4b1f3f)
-- [x] Task: Wire thresholds config + refactor visualization computeNodeState to consume the new engine (TDD)
+- [x] Task: Wire thresholds config + refactor visualization computeNodeState to consume the new engine (TDD) (6d4b1f3f)
     - [x] computeNodeState() added to level-projection.ts, delegates to getKnowledgeState (commit 6d4b1f3f)
 - [b] Task: Measure - User Manual Verification 'Phase 2' deferred:user
 
@@ -121,8 +121,8 @@ Boundary rule: `knowledge-space-core` / `-practice` stay domain-neutral.
 ## Phase 3 — SRS→KST Bridge
 
 - [x] Task: Implement the bridge (TDD) (9214d65a, 07b4a033)
-    - [x] Convert card states + proficiency results → learner state using stabilityToRetention
-    - [x] Tests for mastered / decaying / inProgress / untouched transitions
+    - [x] Convert card states + proficiency results → learner state using stabilityToRetention () (07b4a033)
+    - [x] Tests for mastered / decaying / inProgress / untouched transitions () (07b4a033)
 - [x] Task: Synthetic fixture coverage for the full bridge → knowledge-state → fringe path (TDD) (9214d65a, 07b4a033)
 - [b] Task: Measure - User Manual Verification 'Phase 3' deferred:user
 
@@ -164,21 +164,21 @@ Boundary rule: `knowledge-space-core` / `-practice` stay domain-neutral.
 
 ## Phase 4 — Production Wiring (apps/integrated-math-3)
 
-- [x] Task: Make the IM3 knowledge-space graph loadable at runtime
-    - [x] loadFullCurriculumGraph() loads from curriculum/skill-graph/nodes.json + edges.json (574 nodes, 2708 edges)
-    - [x] Closed-system validation caveat: course-level validation meaningful only for structural edges (lessons-learned 2026-05-10)
-    - [x] Verified: 9 tests in skill-graph-loader.test.ts confirm non-zero nodes/edges, unique IDs, prerequisite_for edges exist
+- [x] Task: Make the IM3 knowledge-space graph loadable at runtime (c4082982)
+    - [x] loadFullCurriculumGraph() loads from curriculum/skill-graph/nodes.json + edges.json (574 nodes, 2708 edges) () (c4082982)
+    - [x] Closed-system validation caveat: course-level validation meaningful only for structural edges (lessons-learned 2026-05-10) () (c4082982)
+    - [x] Verified: 9 tests in skill-graph-loader.test.ts confirm non-zero nodes/edges, unique IDs, prerequisite_for edges exist () (c4082982)
 - [x] Task: Convex query exposing KST learner state for a student (commit c4082982)
-    - [x] Created convex/student/knowledge-state.ts with getStudentKnowledgeStateHandler + internalQuery
-    - [x] Composes bridge + getKnowledgeState + getOuterFringe + projection
-    - [x] Batched reads with Promise.all (srs_cards + srs_review_log); verified 2 calls regardless of card count
-    - [x] Returns serializable StudentVisualizationV1 (no Map instances)
+    - [x] Created convex/student/knowledge-state.ts with getStudentKnowledgeStateHandler + internalQuery () (c4082982)
+    - [x] Composes bridge + getKnowledgeState + getOuterFringe + projection () (c4082982)
+    - [x] Batched reads with Promise.all (srs_cards + srs_review_log); verified 2 calls regardless of card count () (c4082982)
+    - [x] Returns serializable StudentVisualizationV1 (no Map instances) () (c4082982)
 - [x] Task: Wire one IM3 production route to render KST-derived student state (commit c4082982)
-    - [x] Created app/student/knowledge-state/page.tsx — server component
-    - [x] Consumes StudentVisualizationV1 payload (not raw graph)
-    - [x] Uses DESIGN.md design system tokens
-    - [x] Verified: 7 route tests pass (renders headings, sections, stats)
-    - [x] No new packages introduced — no vitest resolve.alias needed
+    - [x] Created app/student/knowledge-state/page.tsx — server component () (c4082982)
+    - [x] Consumes StudentVisualizationV1 payload (not raw graph) () (c4082982)
+    - [x] Uses DESIGN.md design system tokens () (c4082982)
+    - [x] Verified: 7 route tests pass (renders headings, sections, stats) () (c4082982)
+    - [x] No new packages introduced — no vitest resolve.alias needed () (c4082982)
 - [b] Task: Measure - User Manual Verification 'Phase 4' deferred:user
 
 ### Phase 4 Red Evidence
