@@ -32,7 +32,7 @@ Verification: boundary lints + per-app lint/test + `tsc --noEmit`.
 
 - [x] Task: "Already mastered in <course>" UI with skip / confirmation-check / reversible skip (TDD on logic) — Green d6801b70
 - [x] Task: Optional brief verification before granting skip (TDD) — Green d6801b70
-- [x] Task: Measure - User Manual Verification 'Phase 3' (automated via §4 gates in autonomous mode) — d6801b70
+- [x] Task: Measure - User Manual Verification 'Phase 3' (automated via §4 gates in autonomous mode) — checkpoint c9f740d1
 
 ## Phase 4 — Teacher Visibility & Verification
 
