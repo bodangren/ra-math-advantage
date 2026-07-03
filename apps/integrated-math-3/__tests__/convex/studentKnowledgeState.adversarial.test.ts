@@ -26,7 +26,6 @@ import {
   DefaultSrsToKstBridge,
   buildKstState,
   type SrsCardState,
-  type ObjectiveProficiencyResult,
 } from '@math-platform/knowledge-space-core';
 
 // ---------------------------------------------------------------------------
