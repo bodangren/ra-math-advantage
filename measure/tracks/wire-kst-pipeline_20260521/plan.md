@@ -164,15 +164,56 @@ Boundary rule: `knowledge-space-core` / `-practice` stay domain-neutral.
 
 ## Phase 4 — Production Wiring (apps/integrated-math-3)
 
-- [ ] Task: Make the IM3 knowledge-space graph loadable at runtime
-    - [ ] Load nodes+edges from completed rollout artifacts
-    - [ ] Note closed-system validation caveat (lessons-learned 2026-05-10): course-level validation is meaningful only for structural edges
-- [ ] Task: Convex query exposing KST learner state for a student
-    - [ ] Compose bridge + getKnowledgeState + projection; batch reads with Promise.all (avoid N+1)
-- [ ] Task: Wire one IM3 production route to render KST-derived student state
-    - [ ] Consume the visualization projection payload (not raw graph)
-    - [ ] Add vitest resolve.alias if a new package is introduced (lessons-learned 2026-05-03)
-- [ ] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md)
+- [x] Task: Make the IM3 knowledge-space graph loadable at runtime
+    - [x] loadFullCurriculumGraph() loads from curriculum/skill-graph/nodes.json + edges.json (574 nodes, 2708 edges)
+    - [x] Closed-system validation caveat: course-level validation meaningful only for structural edges (lessons-learned 2026-05-10)
+    - [x] Verified: 9 tests in skill-graph-loader.test.ts confirm non-zero nodes/edges, unique IDs, prerequisite_for edges exist
+- [x] Task: Convex query exposing KST learner state for a student (commit c4082982)
+    - [x] Created convex/student/knowledge-state.ts with getStudentKnowledgeStateHandler + internalQuery
+    - [x] Composes bridge + getKnowledgeState + getOuterFringe + projection
+    - [x] Batched reads with Promise.all (srs_cards + srs_review_log); verified 2 calls regardless of card count
+    - [x] Returns serializable StudentVisualizationV1 (no Map instances)
+- [x] Task: Wire one IM3 production route to render KST-derived student state (commit c4082982)
+    - [x] Created app/student/knowledge-state/page.tsx — server component
+    - [x] Consumes StudentVisualizationV1 payload (not raw graph)
+    - [x] Uses DESIGN.md design system tokens
+    - [x] Verified: 7 route tests pass (renders headings, sections, stats)
+    - [x] No new packages introduced — no vitest resolve.alias needed
+- [b] Task: Measure - User Manual Verification 'Phase 4' deferred:user
+
+### Phase 4 Red Evidence
+
+- **Targeted command:** `cd apps/integrated-math-3 && CI=true npx vitest run __tests__/convex/studentKnowledgeState.test.ts __tests__/convex/kstPipeline.test.ts __tests__/app/student/knowledge-state.test.tsx __tests__/curriculum/skill-graph-loader.test.ts`
+- **Result:** 3 failed / 4 files — expected RED.
+  - `skill-graph-loader.test.ts` — 9 tests passed (pre-existing loader)
+  - `studentKnowledgeState.test.ts` — failed (module @/convex/student/knowledge-state missing)
+  - `kstPipeline.test.ts` — failed (module @/convex/student/knowledge-state missing)
+  - `knowledge-state.test.tsx` — failed (page @/app/student/knowledge-state/page missing)
+- **Existing tests:** 4/4 studentVisualization.test.ts passed (unchanged).
+- **Commit:** a0b033aa
+
+### Phase 4 Green Evidence
+
+- **Implementation summary:**
+  - `convex/student/knowledge-state.ts` — handler + internalQuery. Batched Promise.all reads, bridges SRS cards → DefaultSrsToKstBridge.convert() → getKnowledgeState → getOuterFringe → projectStudentVisualization. Review logs used to supplement lastReviewedAt when card records lack it.
+  - `app/student/knowledge-state/page.tsx` — server component gated by requireStudentSessionClaims, calls fetchInternalQuery, renders mastered/ready/review-due sections with DESIGN.md tokens.
+- **Gate results (all exit 0):**
+  - IM3 vitest (6 files, 41 tests) → all pass
+  - `npx tsc --noEmit` → exit 0
+  - `node scripts/check-monorepo-boundaries.mjs` → no violations
+  - ESLint on new files → 0 errors, 0 warnings
+- **Commit:** c4082982
+
+### Phase 4 Acceptance Evidence
+
+- **Status:** pass (688c17f7)
+- **Reviews:** A (correctness/purity) ✓, B (auth at server-component level, Convex query builder prevents injection) ✓, C (API follows existing internalQuery pattern, visualization payload validated) ✓
+
+### Phase 4 Adversarial Evidence
+
+- **Status:** pass (688c17f7)
+- **Tests:** 10 adversarial tests covering N+1 detection, empty/malformed graphs, missing objectiveId, low/negative stability, 574-node performance sanity, data isolation.
+- **Full suite:** 41/41 pass (6 test files).
 
 ## Phase 5 — Docs, Audit & Doctor
 
