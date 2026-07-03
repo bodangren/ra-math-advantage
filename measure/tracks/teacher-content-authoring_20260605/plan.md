@@ -480,7 +480,7 @@ handoff for this remediation.
 ## Phase 4 — Verification
 
 - [x] Task: End-to-end: author → preview → submit → approve → publish → assignable (tested) — committed e347bf98
-- [x] Task: Final verification — boundary lints, lint, tsc --noEmit, CI=true npm run test — accepted (see Final Verification Evidence below; acceptance verdict commit)
+- [x] Task: Final verification — boundary lints, lint, tsc --noEmit, CI=true npm run test — accepted (see Final Verification Evidence below; acceptance verdict commit 4b67ee73)
 - [b] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md) deferred:user
 
 ### Phase 4 Red Evidence

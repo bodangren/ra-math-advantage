@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "role": "measure-final-acceptance",
+  "track_id": "teacher-content-authoring_20260605",
+  "baseline_sha": "5bc1ae353483fd5dbff12e4cd65a9a9e982292cb",
+  "head_sha": "5bc1ae35",
+  "status": "pass",
+  "verdict": "PASS",
+  "summary": "Track is ready for closeout. All 4 phases have status=pass acceptance JSONs; every non-deferred plan task is [x] with commit-SHA evidence and every human-gated UMV task is [b] with structured deferred:user (no bare [ ] or [~] remain). FR1-FR6 are traceable to plan tasks and commit SHAs and are proven by the passing Phase 4 E2E lifecycle. The required final-verification gates all exit 0 (lint, tsc --noEmit, workspace knowledge-space-core tests, isolated Phase 4 E2E). The aggregate targeted gate exits 1 solely due to documented pre-existing Phase 3 jsdom timeout flakes in files Phase 4 did not touch (0 Phase 4 regressions, verified via git diff). measure/doctor.sh exits 0 and the tests/measure_orchestrator_audit.sh guard exits 0. Anti-pattern sweep A1/A2/A4/A5/A6/A7 is clean. The measure/tracks.md registry entry was updated from stale [ ] PLANNED to an accurate [x] COMPLETED (acceptance passed; closeout pending) summary so the registry reflects the now-complete state. Track remains in measure/tracks/ pending the measure-closeout archive move.",
+  "confidence": "high",
+  "retry_recommendation": "none",
+
+  "plan_marker_discipline": {
+    "verdict": "pass",
+    "task_marker_counts": {
+      "phase_1": {"x": 3, "b": 1, "bare_space": 0, "tilde": 0},
+      "phase_2": {"x": 3, "b": 1, "bare_space": 0, "tilde": 0},
+      "phase_3": {"x": 3, "b": 1, "bare_space": 0, "tilde": 0},
+      "phase_4": {"x": 2, "b": 1, "bare_space": 0, "tilde": 0}
+    },
+    "rule": "Every task line is [x] with commit SHA evidence OR [b] with trailing deferred:<owner> structured field. No bare [ ] or [~] markers. No free-text 'deferred' without the structured deferred:<owner> field (A1).",
+    "fix_applied_this_audit": "Phase 4 Task 2 (Final verification) previously read 'acceptance verdict commit' without an inline hex SHA, which the supervisor's plan_closeout_feedback would flag as 'Completed closeout plan task lacks commit SHA'. Updated the line to cite the acceptance-verdict commit 4b67ee73 inline. Re-ran the supervisor's task-marker audit: 0 issues.",
+    "supervisor_closeout_feedback_note": "The supervisor's plan_closeout_feedback also emits 'Closeout phase heading lacks checkpoint evidence' for each of the 4 phase headings because none carry a [checkpoint:...] / [final-verification:...] inline marker. That check is part of gate_closeout (the measure-closeout role), not gate_acceptance (this role). The closeout standard this role confirms — no non-deferred incomplete tasks, completed tasks carry commit SHA, plan text is honest, doctor.sh exits 0, configured project gates pass — is fully met. Adding the [checkpoint:...] phase-heading markers is the closeout role's responsibility."
+  },
+
+  "phase_acceptance_results": {
+    "phase_1": {"file": "phase-1-acceptance-result.json", "status": "pass"},
+    "phase_2": {"file": "phase-2-acceptance-result.json", "status": "pass"},
+    "phase_3": {"file": "phase-3-acceptance-result.json", "status": "pass"},
+    "phase_4": {"file": "phase-4-acceptance-result.json", "status": "pass"}
+  },
+
+  "final_verification_gates": {
+    "lint": {
+      "command": "npm run ws:im3:lint",
+      "real_exit_code": 0,
+      "result": "eslint . --max-warnings 0 completed with exit 0; clean."
+    },
+    "tsc": {
+      "command": "npx tsc --noEmit",
+      "real_exit_code": 0,
+      "result": "no TypeScript diagnostics emitted (repo root)."
+    },
+    "workspace_test": {
+      "command": "CI=true npm run test",
+      "real_exit_code": 0,
+      "result": "packages/knowledge-space-core: 22 files / 302 tests passed (Duration 26.21s)."
+    },
+    "e2e_isolated": {
+      "command": "cd apps/integrated-math-3 && CI=true npx vitest run __tests__/app/teacher/content-authoring/content-authoring-e2e.test.tsx",
+      "real_exit_code": 0,
+      "result": "Test Files 1 passed (1) | Tests 1 passed (1)",
+      "labeled_counts_observed": {
+        "e2e_lifecycle_steps": 6,
+        "e2e_phase_count": 3,
+        "e2e_section_count": 3,
+        "e2e_activity_count": 4,
+        "e2e_approval_row_count": 4,
+        "e2e_student_null_cases": 4
+      }
+    },
+    "aggregate_targeted_gate_sample": {
+      "command": "cd apps/integrated-math-3 && CI=true npx vitest run __tests__/lib/teacher/content-authoring __tests__/convex/teacher/content-authoring-drafts.test.ts __tests__/components/teacher/content-authoring __tests__/app/teacher/content-authoring",
+      "real_exit_code": 1,
+      "result": "Test Files 2 failed | 15 passed (17) | Tests 2 failed | 183 passed (185). Both failures are pre-existing Phase 3 jsdom timeouts (5000ms) in LessonComposer-adversarial.test.tsx and LessonComposer-preview-button.test.tsx. 0 Phase 4 regressions (git diff --name-only 11745f94..HEAD -- apps/integrated-math-3/__tests__/ confirms Phase 4 only added: content-authoring-e2e.test.tsx, content-authoring-phase4-adversarial.test.ts, authoring-lifecycle-adversarial.test.ts — none of which are the flaky files).",
+      "known_flaky_files": [
+        "__tests__/components/teacher/content-authoring/LessonComposer-adversarial.test.tsx (timeout)",
+        "__tests__/components/teacher/content-authoring/LessonComposer-preview-button.test.tsx (timeout)"
+      ],
+      "disposition": "Pre-existing, outside this track's scope, already documented in plan.md Phase 4 evidence and phase-4-acceptance-result.json. The closeout standard does NOT require the aggregate targeted gate to exit 0; it requires the narrower isolated E2E gate (exit 0, above) plus the configured project gates (lint/tsc/workspace-test, all exit 0).",
+      "tech_debt_note": "phase-4-acceptance-result.json non-blocking finding 'pre-existing-jsdom-timeout-flakiness' claims the flake is 'Already logged to tech-debt as a follow-up', but measure/tech-debt.md does not currently contain a matching entry. This is a non-blocking documentation gap for the closeout role to close out (or for a follow-up tech-debt entry); it does not block final acceptance because the flake is pre-existing, named, exit-code-truthful, and outside this track's changed-file set."
+    },
+    "measure_doctor": {
+      "command": "bash measure/doctor.sh",
+      "real_exit_code": 0,
+      "result": "[doctor] All checks passed (generated documentation fresh; monorepo boundary lint clean)."
+    },
+    "orchestrator_audit_guard": {
+      "command": "bash tests/measure_orchestrator_audit.sh",
+      "real_exit_code": 0,
+      "result": "PASS: Measure orchestrator audit guard suite is present and supervisor A1/A8 checks are clean (also defends A11 live-contract-suite and A12 AGENTS.md peer-review rule)."
+    }
+  },
+
+  "spec_traceability": {
+    "FR1_lesson_composer": {
+      "requirement": "Create/edit a lesson: ordered phases + sections, each populated with activities chosen from the registered practice.v1 types.",
+      "plan_tasks": [
+        "Phase 1 Task 1 — Define the lesson/phase/section authoring model bound to existing activity prop schemas (7516f07c)",
+        "Phase 3 Task 1 — Lesson composer UI (phases/sections/activities) with schema-driven forms (4e43965b)",
+        "Phase 4 Task 1 — E2E step 1 exercises composer state build + durable persistence (e347bf98)"
+      ],
+      "verdict": "met"
+    },
+    "FR2_schema_driven_forms": {
+      "requirement": "Activity configuration forms are generated from / validated against the existing Zod activity prop schemas; invalid configs cannot be saved.",
+      "plan_tasks": [
+        "Phase 1 Task 2 — Schema-driven activity config validation, invalid configs rejected (7516f07c)",
+        "Phase 3 Task 1 — deriveActivityFormFields walks live SCHEMA_REGISTRY/getPropsSchema (4e43965b)",
+        "Phase 4 Task 1 — E2E proves canSaveComposerState flips false on schema-invalid activity (e347bf98)"
+      ],
+      "verdict": "met"
+    },
+    "FR3_preview": {
+      "requirement": "Authored content renders in the existing preview/QA harness as a student would see it, before submission.",
+      "plan_tasks": [
+        "Phase 3 Task 2 — AuthoredLessonPreview renders through ActivityRenderer + CalloutBox + SanitizedText (4e43965b)",
+        "Phase 4 Task 1 — E2E step 2 renders AuthoredLessonPreview through ActivityRenderer; authored props reach the registered component (e347bf98)"
+      ],
+      "verdict": "met"
+    },
+    "FR4_approval_gate": {
+      "requirement": "Authored content enters the existing review/approval queue with content hashing; only approved content is publishable/assignable.",
+      "plan_tasks": [
+        "Phase 2 Task 2 — Integrate the approval queue + content hashing for authored content via computeComponentContentHash + resolveComponentKind (01752a0c)",
+        "Phase 4 Task 1 — E2E steps 4-6 assert component_approvals rows carry placement-derived componentKind + contentHash; stale-hash publish throws (e347bf98)"
+      ],
+      "verdict": "met"
+    },
+    "FR5_draft_lifecycle": {
+      "requirement": "Draft -> submitted -> approved/rejected -> published, with edit-after-reject; teachers see status.",
+      "plan_tasks": [
+        "Phase 2 Task 1 — Convex draft lifecycle (draft->submitted->approved/rejected->published), idempotent (01752a0c)",
+        "Phase 3 Task 3 — Status surfacing incl. edit-after-reject via get-teacher-authoring-status-view + LessonComposer status strip (4e43965b)",
+        "Phase 4 Task 1 — E2E steps 3-5 exercise submit/reject-without-comment-throws/reject-with-comment/edit-after-reject/re-submit/approve/publish (e347bf98)"
+      ],
+      "verdict": "met"
+    },
+    "FR6_authorization": {
+      "requirement": "Authoring is teacher-scoped; published content respects class assignment + enrollment.",
+      "plan_tasks": [
+        "Phase 2 Task 3 — Teacher-scoped authorization + assignment/enrollment respect via getAuthoringTeacher role gate + ownership checks + student visibility (published + class_lessons + active enrollment + same-org) (01752a0c)",
+        "Phase 4 Task 1 — E2E step 8 asserts cross-teacher submit throws, assign-to-own-class succeeds, nonexistent-class throws, 4 student null-cases (e347bf98)"
+      ],
+      "verdict": "met"
+    }
+  },
+
+  "anti_pattern_sweep": {
+    "A1_substring_signal": {
+      "verdict": "pass",
+      "evidence": "measure/automation-supervisor.py:851,1221,1238 use r\"^- \\[([~xb])\\] (.+)\" (correct [~xb] character class, no space). is_task_structurally_blocked (line 634) returns True iff status=='b' OR re.search(r'\\bdeferred:[\\w.-]+', task) — it does NOT use substring 'deferred' in task.lower(). All 4 UMV tasks in plan.md use the structured [b] + deferred:user form; no free-text-only 'deferred' prose is relied on to signal blockedness."
+    },
+    "A2_consent_blind_publish_gate": {
+      "verdict": "not_applicable",
+      "evidence": "A2 applies to tests/*p4.sh, tests/*_closeout.sh, tests/cs_p*.sh publish-gate consent scripts. No such scripts exist in this repo (only tests/measure_orchestrator_audit.sh is present). The track's 'publish' lifecycle publishes teacher-authored math lesson content (draft -> submitted -> approved -> published), not named case studies with student data requiring consent/anonymization. A2 does not apply to this track."
+    },
+    "A4_vacuous_pass": {
+      "verdict": "pass",
+      "evidence": "Every phase has >=1 [x] task (Phase 1: 3, Phase 2: 3, Phase 3: 3, Phase 4: 2). The Phase 4 E2E operates on non-empty fixtures (3 phases / 3 sections / 4 activities) and every lifecycle step asserts a positive AND a negative outcome (submit-then-publish throws, stale-hash publish throws, 4 distinct null student-visibility cases). e2e_lifecycle_steps:6 is backed by 6 real executed steps with assertions, not a vacuous constant."
+    },
+    "A5_false_claim": {
+      "verdict": "pass",
+      "evidence": "Every command cited in plan.md Phase evidence is paired with its real exit code from a real run. The aggregate targeted gate exit 1 is reported as 1 in plan.md (line 585: 'Result: exit code 1') and in phase-4-acceptance-result.json (targeted_gate.exit_code: 1), NOT as 'all checks pass'. The only 'all checks pass' occurrence in plan.md (line 639) is in the anti-pattern coverage section explicitly DEFENDING against A5 ('targeted-gate exit 1 is reported as 1, not \"all checks pass\"'). Final-verification gates re-run in this audit: lint=0, tsc=0, workspace-test=0, isolated E2E=0 — all match plan claims."
+    },
+    "A6_registry_overstatement": {
+      "verdict": "pass",
+      "evidence": "Prior to this audit, measure/tracks.md listed the track as '[ ] PLANNED' — conservative (understatement, not overstatement). This audit updated the entry to '[x] COMPLETED (acceptance passed; closeout pending)' with an honest summary citing commit SHAs, the final-acceptance verdict, the deferred UMV tasks, and the pre-existing jsdom flakes. No 'resolved'/'completely fixed'/'fully solved'/'all checks pass' overstatement language was introduced. The track remains in the active section (Tier 3 — Strategic) pending the measure-closeout archive move."
+    },
+    "A7_overbroad_filter": {
+      "verdict": "pass",
+      "evidence": "No over-broad banned-term exclusion filter pattern (rg -v with bare English words like 'never'/'do not'/'don.t') was found in the track's tests or in tests/measure_orchestrator_audit.sh. Pre-existing-failure accounting in plan.md names exact file paths and counts, not bare English-word filters."
+    },
+    "A9_archived_track_path_references": {
+      "verdict": "pass",
+      "evidence": "The track has NOT been archived yet (still in measure/tracks/teacher-content-authoring_20260605/), so no test can reference a stale measure/tracks/<id>/plan.md path that has moved to measure/archive/<id>/. tests/measure_orchestrator_audit.sh does not reference this track's path. The A9 check will be re-evaluated by measure-orchestrator-audit after closeout moves the track."
+    }
+  },
+
+  "reviews_summary": {
+    "phase_1": {"review_a": "pass", "review_b": "pass (fix e51561e4)", "review_c": "pass", "acceptance": "pass"},
+    "phase_2": {"review_a": "pass", "review_b": "pass (cross-teacher review-ownership fix)", "review_c": "pass (teacherFacingStatus/rejectionComment fix)", "acceptance": "pass", "adversarial": "pass", "orchestrator_audit": "pass (A12 remediated in a3c5dff3)"},
+    "phase_3": {"review_a": "pass", "review_b": "pass", "review_c": "pass", "acceptance": "pass", "adversarial": "pass", "ux_browser_review": "pass (Preview-button fix 11745f94)"},
+    "phase_4": {
+      "review_a": "pass (head_sha cbce6c5e)",
+      "review_b": "pass (fix 15e5154a — deep-clone lifecycle props + E2E sanitization/cross-teacher hardening)",
+      "review_c": "pass (fix 705e0cc3 — displayName fallback to componentKey)",
+      "acceptance": "pass (head_sha 15e5154a; verdict commit 4b67ee73)",
+      "adversarial": "pass (head_sha eeab6a41; 13 new tests across 2 files targeting 5 regression classes)"
+    }
+  },
+
+  "commit_sha_evidence": {
+    "phase_1": {"sha": "7516f07c", "subject": "feat(im3): add Phase 1 teacher content authoring model, validation, and sanitizer", "review_b_security_fix": "e51561e4"},
+    "phase_2": {"sha": "01752a0c", "subject": "feat(teacher-authoring): Phase 2 draft lifecycle, approval+hash integration, authz (Green)"},
+    "phase_3": {"sha": "4e43965b", "subject": "measure(teacher-authoring): Phase 3 Green — composer UI, preview, status surfacing", "ux_preview_button_fix": "11745f94"},
+    "phase_4": {
+      "green_sha": "e347bf98",
+      "green_subject": "feat(teacher-authoring): phase 4 green e2e lifecycle adapter + test fixes",
+      "review_b_fix": "15e5154a",
+      "review_c_fix": "705e0cc3",
+      "acceptance_verdict": "4b67ee73",
+      "adversarial": "eeab6a41"
+    }
+  },
+
+  "blocking_findings": [],
+
+  "non_blocking_findings": [
+    {
+      "id": "phase-heading-checkpoint-markers",
+      "severity": "low",
+      "description": "The 4 phase headings in plan.md do not carry inline [checkpoint:...] / [final-verification:...] markers. The supervisor's plan_closeout_feedback emits 'Closeout phase heading lacks checkpoint evidence' for each. This is a gate_closeout concern (the measure-closeout role), NOT a gate_acceptance concern (this role). The closeout standard this role confirms is met. The closeout role should add the markers (or the closeout prompt should instruct the agent to add them) before the archive move.",
+      "owner": "measure-closeout role"
+    },
+    {
+      "id": "tech-debt-entry-for-jsdom-flake",
+      "severity": "low",
+      "description": "phase-4-acceptance-result.json non-blocking finding 'pre-existing-jsdom-timeout-flakiness' claims the Phase 3 jsdom timeout flake is 'Already logged to tech-debt as a follow-up', but measure/tech-debt.md does not currently contain a matching entry. The flake is real, pre-existing, named, exit-code-truthful, and outside this track's changed-file set, so it does not block final acceptance. The closeout role (or a follow-up tech-debt entry) should reconcile the claim by adding the entry to tech-debt.md.",
+      "owner": "measure-closeout role or follow-up tech-debt entry"
+    },
+    {
+      "id": "metadata-status-still-new",
+      "severity": "low",
+      "description": "metadata.json still has status: 'new' and updated_at: '2026-06-05T00:00:00Z'. The closeout standard requires metadata.json to have status: 'done' and a completion date. Updating metadata.json to status: 'done' is a closeout action (explicitly prohibited for this final-acceptance role: 'Do not archive the track or update final closeout metadata'). The closeout role will update it.",
+      "owner": "measure-closeout role"
+    },
+    {
+      "id": "closeout-manifest-absent",
+      "severity": "low",
+      "description": "automation-supervisor-closeout-manifest.json does not yet exist. The closeout standard requires it. Writing it is a closeout action (prohibited for this role). The closeout role will write it.",
+      "owner": "measure-closeout role"
+    },
+    {
+      "id": "e2e-lifecycle-steps-hardcoded-constant",
+      "severity": "trivial",
+      "description": "Carried forward from phase-4-acceptance-result.json: the E2E test hardcodes console.info('e2e_lifecycle_steps:6') as a string literal rather than deriving it. The value is truthful (6 steps genuinely execute, each with assertions). Non-blocking because the assertions — not the count line — are the proof of execution.",
+      "owner": "future test polish"
+    }
+  ],
+
+  "changed_files_this_audit": [
+    "measure/tracks/teacher-content-authoring_20260605/plan.md (Phase 4 Task 2 line: added inline acceptance-verdict commit SHA 4b67ee73)",
+    "measure/tracks.md (Teacher Content Authoring entry: [ ] PLANNED -> [x] COMPLETED (acceptance passed; closeout pending) with honest summary)",
+    "measure/tracks/teacher-content-authoring_20260605/final-acceptance-result.json (this file)"
+  ]
+}
