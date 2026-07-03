@@ -68,9 +68,9 @@ Dependencies:
 
 - [ ] **Program: Knowledge Space Engine Alignment (kst-srs.v2)**
    *Bring the implementation into alignment with the `kst-srs.v2` specification. The KST packages (`knowledge-space-core`, `knowledge-space-practice`) implement the v1 contract but are wired into no production route; the SRS half is live but nothing converts proficiency output into a knowledge-space learner state. This program wires the KST pipeline end-to-end and adds the v2 improvements: time-aware mastery, weighted readiness, edge calibration, a next-skill planner, adaptive placement, the misconception remediation loop, and the practice-variant rename. Source: gse-knowledge-space `SPECIFICATION.md` (kst-srs.v2) + `IMPROVEMENT-PLAN.md`.*
-     - [ ] **Track 2: Weighted Readiness**
-      *Make `edge.weight` a live field: a weighted readiness score (`Σ(wᵢ·mᵢ)/Σ(wᵢ)`) replaces binary prerequisite gating, modeling compensatory learning paths. (Improvement Plan Item 2.) Depends on Track 1.*
-      *Link: [./tracks/weighted-readiness_20260521/](./tracks/weighted-readiness_20260521/)*
+      - [x] **Track 2: Weighted Readiness** — **COMPLETED / ARCHIVED** (2026-07-03)
+       *Make `edge.weight` a live field: a weighted readiness score (`Σ(wᵢ·mᵢ)/Σ(wᵢ)`) replaces binary prerequisite gating, modeling compensatory learning paths. (Improvement Plan Item 2.) Depends on Track 1.*
+       *Link: [./archive/weighted-readiness_20260521/](./archive/weighted-readiness_20260521/)*
 
 ## Audit Remediation (2026-06-09)
 

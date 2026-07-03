@@ -1,0 +1,27 @@
+{
+  "track_id": "weighted-readiness_20260521",
+  "status": "accepted",
+  "completed_at": "2026-07-03T18:35:00Z",
+  "gates": {
+    "vitest_core": { "passed": 895, "failed": 0, "files": 56 },
+    "tsc_noEmit": { "exit_code": 0 },
+    "monorepo_boundaries": { "exit_code": 0 },
+    "im3_pipeline_tests": { "exit_code": 0 }
+  },
+  "frs": {
+    "FR1": "verified — computeWeightedReadiness: weighted average formula, no-prereqs=1",
+    "FR2": "verified — readyThreshold 0.80, nearThreshold 0.50, three states",
+    "FR3": "verified — getOuterFringe default = weighted, fringe = ready ∪ nearly_ready",
+    "FR4": "verified — computeNodeState enrichment, nearlyReady bucket, IM3 handler",
+    "FR5": "verified — SPECIFICATION.md §5.3 updated"
+  },
+  "new_test_count": 27,
+  "commits": {
+    "phase1": "6a7845a",
+    "phase2": "a5f12b3",
+    "phase3": "8681c05",
+    "phase4": "cc1206b"
+  },
+  "anti_patterns_checked": ["A1", "A3", "A4", "A5", "A6"],
+  "anti_patterns_status": "clean"
+}

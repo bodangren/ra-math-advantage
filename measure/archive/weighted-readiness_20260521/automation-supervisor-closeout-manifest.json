@@ -1,0 +1,40 @@
+{
+  "track_id": "weighted-readiness_20260521",
+  "closeout_date": "2026-07-03T18:35:00Z",
+  "status": "archived",
+  "phase_checkpoints": {
+    "phase_1": "cd0666a",
+    "phase_2": "11a782d",
+    "phase_3": "3910d2f",
+    "phase_4": "cc1206b"
+  },
+  "final_head_sha": "cc1206b1",
+  "archive_path": "measure/archive/weighted-readiness_20260521",
+  "gates_summary": {
+    "vitest": "895 passed, 0 failed (56 files)",
+    "tsc_noEmit": "0 errors",
+    "monorepo_boundaries": "OK"
+  },
+  "new_files": [
+    "packages/knowledge-space-core/src/weighted-readiness.ts",
+    "packages/knowledge-space-core/src/__tests__/weighted-readiness.test.ts",
+    "measure/tracks/weighted-readiness_20260521/test-strategy.md",
+    "measure/tracks/weighted-readiness_20260521/final-acceptance-result.json"
+  ],
+  "modified_files": [
+    "packages/knowledge-space-core/src/mastery-state.ts",
+    "packages/knowledge-space-core/src/outer-fringe.ts",
+    "packages/knowledge-space-core/src/level-projection.ts",
+    "packages/knowledge-space-core/src/index.ts",
+    "packages/knowledge-space-core/src/__tests__/mastery-state-contract.test.ts",
+    "packages/knowledge-space-core/src/__tests__/outer-fringe-behavior.test.ts",
+    "packages/knowledge-space-core/src/__tests__/compute-node-state.test.ts",
+    "packages/knowledge-space-practice/src/projections/types.ts",
+    "packages/knowledge-space-practice/src/projections/schemas.ts",
+    "packages/knowledge-space-practice/src/projections/visualization.ts",
+    "packages/knowledge-space-practice/src/__tests__/projections.test.ts",
+    "apps/integrated-math-3/convex/student/knowledge-state.ts",
+    "kst-srs.v2/SPECIFICATION.md",
+    "measure/knowledge-space-practice-projection-audit.md"
+  ]
+}
