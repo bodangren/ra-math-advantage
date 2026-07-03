@@ -14,9 +14,11 @@ Verification: boundary lints + per-app lint/test + `tsc --noEmit`.
 ## Phase 2 — Skip Eligibility in the Practice Path
 
 > Red-phase evidence (2026-07-03): `CI=true npx vitest run packages/knowledge-space-core/src/__tests__/transfer-eligibility.test.ts packages/knowledge-space-core/src/__tests__/transfer-eligibility-path.test.ts` → 2 failed suites, module-not-found for `../transfer-eligibility`. Aggregate `CI=true npx vitest run packages/knowledge-space-core` → 41 passed, 2 failed, 560 tests passed.
+>
+> Green-phase evidence (2026-07-03, SHA `e0d82ab6`): targeted command → 33 tests pass (2 files), aggregate `CI=true npx vitest run packages/knowledge-space-core` → 43 files, 593 tests pass (0 regressions vs Phase 1). `npx tsc --noEmit` clean, `npm run lint --workspace=packages/knowledge-space-core` clean, `node scripts/check-monorepo-boundaries.mjs` clean, `bash measure/doctor.sh` exits 0.
 
-- [~] Task: Compute transfer-eligibility threshold; flag eligible skills/lessons (TDD)
-- [~] Task: Integrate eligibility into next-skill/practice resolution (TDD)
+- [x] Task: Compute transfer-eligibility threshold; flag eligible skills/lessons (TDD) — Green e0d82ab
+- [x] Task: Integrate eligibility into next-skill/practice resolution (TDD) — Green e0d82ab
 - [b] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md) deferred:human
 
 ## Phase 3 — Student UX & Confirmation Check
