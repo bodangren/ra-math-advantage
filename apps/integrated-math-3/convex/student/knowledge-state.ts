@@ -156,7 +156,7 @@ export async function getStudentKnowledgeStateHandler(
   // 5. Convert KnowledgeStateEntry map → visualization learnerState record
   const learnerState: Record<
     string,
-    'mastered' | 'ready' | 'blocked' | 'review_due'
+    'mastered' | 'ready' | 'nearly_ready' | 'blocked' | 'review_due'
   > = {};
 
   for (const [nodeId, entry] of state) {
@@ -170,7 +170,11 @@ export async function getStudentKnowledgeStateHandler(
   // Mark fringe-ready nodes that are not already covered
   for (const f of fringe) {
     if (!learnerState[f.nodeId]) {
-      learnerState[f.nodeId] = 'ready';
+      if (f.readinessState === 'ready') {
+        learnerState[f.nodeId] = 'ready';
+      } else if (f.readinessState === 'nearly_ready') {
+        learnerState[f.nodeId] = 'nearly_ready';
+      }
     }
   }
 

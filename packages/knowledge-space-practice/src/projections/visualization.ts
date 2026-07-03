@@ -26,11 +26,11 @@ import { getRecommendedNext } from '../planner/recommended-next';
  */
 function computeNodeState(
   nodeId: string,
-  learnerState: Record<string, 'mastered' | 'ready' | 'blocked' | 'review_due'>,
+  learnerState: Record<string, 'mastered' | 'ready' | 'nearly_ready' | 'blocked' | 'review_due'>,
   nodeMap: Map<string, KnowledgeSpaceNode>,
   edges: KnowledgeSpaceEdge[],
   masteredIds: Set<string>,
-): 'mastered' | 'ready' | 'blocked' | 'review_due' | 'unknown' {
+): 'mastered' | 'ready' | 'nearly_ready' | 'blocked' | 'review_due' | 'unknown' {
   if (learnerState[nodeId]) return learnerState[nodeId];
   if (masteredIds.has(nodeId)) return 'mastered';
 
@@ -116,7 +116,7 @@ function toVisualEdges(
 export function projectStudentVisualization(
   nodes: KnowledgeSpaceNode[],
   edges: KnowledgeSpaceEdge[],
-  learnerState: Record<string, 'mastered' | 'ready' | 'blocked' | 'review_due'> = {},
+  learnerState: Record<string, 'mastered' | 'ready' | 'nearly_ready' | 'blocked' | 'review_due'> = {},
   options?: { readonly activeMisconceptionSlugs?: readonly string[] },
 ): StudentVisualizationV1 {
   const nodeMap = new Map(nodes.map((n) => [n.id, n]));
@@ -132,6 +132,7 @@ export function projectStudentVisualization(
 
   const mastered: VisualNodeV1[] = [];
   const ready: VisualNodeV1[] = [];
+  const nearlyReady: VisualNodeV1[] = [];
   const blocked: VisualNodeV1[] = [];
   const reviewDue: VisualNodeV1[] = [];
   const unknown: VisualNodeV1[] = [];
@@ -154,6 +155,9 @@ export function projectStudentVisualization(
         break;
       case 'ready':
         ready.push(vn);
+        break;
+      case 'nearly_ready':
+        nearlyReady.push(vn);
         break;
       case 'blocked':
         blocked.push(vn);
@@ -181,7 +185,7 @@ export function projectStudentVisualization(
   for (const node of candidateNodes) {
     const ls = learnerState[node.id];
     plannerReadiness[node.id] =
-      ls === 'ready' || ls === 'review_due' ? 0.5
+      ls === 'ready' || ls === 'review_due' || ls === 'nearly_ready' ? 0.5
       : ls === 'mastered' ? 1
       : 0;
   }
@@ -232,6 +236,7 @@ export function projectStudentVisualization(
 
   sortNodes(mastered);
   sortNodes(ready);
+  sortNodes(nearlyReady);
   sortNodes(blocked);
   sortNodes(reviewDue);
   // recommendedNext is already sorted by the planner (priority desc, nodeId tie-break)
@@ -245,6 +250,7 @@ export function projectStudentVisualization(
     schemaVersion: 'v1',
     mastered,
     ready,
+    nearlyReady,
     blocked,
     reviewDue,
     recommendedNext,

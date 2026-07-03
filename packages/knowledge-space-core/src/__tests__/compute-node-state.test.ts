@@ -152,3 +152,80 @@ describe('computeNodeState — visualization-friendly output', () => {
     }
   });
 });
+
+// ---------------------------------------------------------------------------
+// Phase 3 Track 2 — Weighted Readiness enrichment (Red)
+// ---------------------------------------------------------------------------
+
+describe('computeNodeState — weighted readiness enrichment (FR4)', () => {
+  it('enriches non-mastered entries with readinessScore and readinessState', async () => {
+    const { computeNodeState } = await import('../level-projection');
+
+    const evidence = [
+      {
+        sourceId: 'skill.a',
+        isProficient: false,
+        stability: 5,
+        lastReviewedAt: NOW - 30 * 24 * 60 * 60 * 1000, // 30 days ago
+      },
+    ];
+
+    // skill.a has evidence but not proficient → inProgress, low retention
+    // skill.b has skill.a as prerequisite → weighted readiness should be computed
+    const result = computeNodeState(student, evidence, simpleGraph, NOW);
+
+    // skill.a (prereq) should have readiness info (no prereqs → score=1, ready)
+    const a = result.get('skill.a');
+    expect(a).toBeDefined();
+    if (a) {
+      expect(a.readinessScore).toBeDefined();
+      expect(a.readinessScore).toBeGreaterThanOrEqual(0);
+      expect(a.readinessScore).toBeLessThanOrEqual(1);
+      expect(a.readinessState).toBeDefined();
+      expect(['ready', 'nearly_ready', 'blocked']).toContain(a.readinessState);
+    }
+
+    // skill.b should also have readiness info
+    const b = result.get('skill.b');
+    expect(b).toBeDefined();
+    if (b) {
+      expect(b.readinessScore).toBeDefined();
+      expect(b.readinessState).toBeDefined();
+    }
+  });
+
+  it('mastered nodes may or may not carry readiness (fringe-exclusion safe)', async () => {
+    const { computeNodeState } = await import('../level-projection');
+
+    const evidence = [
+      {
+        sourceId: 'skill.a',
+        isProficient: true,
+        stability: 365,
+        lastReviewedAt: NOW,
+      },
+    ];
+
+    const result = computeNodeState(student, evidence, simpleGraph, NOW);
+    const a = result.get('skill.a');
+    expect(a).toBeDefined();
+    // Mastered nodes are excluded from fringe; readiness is optional
+    if (a && a.readinessState) {
+      // But if present, must be a valid state
+      expect(['ready', 'nearly_ready', 'blocked']).toContain(a.readinessState);
+    }
+    // No assertion on presence — just don't crash
+  });
+
+  it('root nodes (no prereqs) get readinessScore=1, readinessState=ready', async () => {
+    const { computeNodeState } = await import('../level-projection');
+
+    const result = computeNodeState(student, [], simpleGraph, NOW);
+    const a = result.get('skill.a');
+    expect(a).toBeDefined();
+    if (a) {
+      expect(a.readinessScore).toBe(1);
+      expect(a.readinessState).toBe('ready');
+    }
+  });
+});

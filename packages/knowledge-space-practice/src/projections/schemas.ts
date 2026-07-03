@@ -8,7 +8,7 @@ export const visualNodeV1Schema = z.object({
   nodeId: z.string().min(1),
   title: z.string().min(1),
   description: z.string().optional(),
-  state: z.enum(['mastered', 'ready', 'blocked', 'review_due', 'unknown']),
+  state: z.enum(['mastered', 'ready', 'nearly_ready', 'blocked', 'review_due', 'unknown']),
   difficulty: z.number().min(0).max(1).optional(),
   domain: z.string().optional(),
 });
@@ -24,6 +24,7 @@ export const studentVisualizationV1Schema = z.object({
   schemaVersion: z.literal('v1'),
   mastered: z.array(visualNodeV1Schema),
   ready: z.array(visualNodeV1Schema),
+  nearlyReady: z.array(visualNodeV1Schema),
   blocked: z.array(visualNodeV1Schema),
   reviewDue: z.array(visualNodeV1Schema),
   recommendedNext: z.array(visualNodeV1Schema),

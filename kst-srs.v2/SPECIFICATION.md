@@ -166,6 +166,24 @@ Where `wᵢ` is edge weight and `mᵢ` is mastery level of prerequisite `i`.
 - `weight = 0.5`: helpful but compensable
 - `weight = 0.0`: no meaningful prerequisite relationship
 
+The weight is consumed by the weighted readiness formula (§5.1):
+```
+readiness(B) = Σ(wᵢ · mᵢ) / Σ(wᵢ)
+```
+where `wᵢ` is the weight of each `prerequisite_for` edge `i → B` and `mᵢ` is the
+student mastery level (0–1) of prerequisite `i` from `getKnowledgeState`.
+`readiness = 1` if `B` has no prerequisites or if all edge weights sum to zero
+(no meaningful prerequisite relationship).
+
+The weighted readiness is the **default** behavior in `getOuterFringe` when no
+`readinessFn` is provided. The outer fringe consists of nodes whose readiness
+state is `ready` or `nearly_ready` (blocked nodes are excluded). Each fringe
+entry carries both the numeric readiness score and its state label.
+
+When a custom `readinessFn` is passed to `getOuterFringe`, all non-mastered
+nodes are included in the fringe regardless of their readiness score (the
+threshold bands still label each entry).
+
 ## 6. Edge Calibration Loop (v2 Item 3)
 
 ### 6.1 Observation

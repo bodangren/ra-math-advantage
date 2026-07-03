@@ -3,6 +3,7 @@ import { getKnowledgeState } from './knowledge-state-engine';
 import type { KnowledgeStateStudentRef, KnowledgeStateEvidence } from './knowledge-state-engine';
 import type { KnowledgeStateEntry, MasteryThresholds } from './mastery-state';
 import type { KnowledgeSpace } from './types';
+import { computeWeightedReadiness } from './weighted-readiness';
 
 export const knowledgeStateSchema = z.object({
   skills: z.array(z.object({
@@ -107,8 +108,9 @@ export function projectDisplayLevel(
  * Visualization helper: delegates to `getKnowledgeState` without duplicating
  * threshold constants (defends A4 — no parallel threshold literals).
  *
- * This is a thin wrapper that keeps the visualization layer aligned with the
- * canonical engine. It accepts the same evidence and graph contract.
+ * Enriches each non-mastered entry with weighted readiness score and state
+ * (kst-srs.v2 §5) so downstream consumers can distinguish ready, nearly_ready,
+ * and blocked nodes.
  *
  * Pure, deterministic — `now` is injected by the caller.
  *
@@ -126,5 +128,20 @@ export function computeNodeState(
   now: number,
   thresholds?: Partial<MasteryThresholds>,
 ): Map<string, KnowledgeStateEntry> {
-  return getKnowledgeState(student, evidence, graph, now, thresholds);
+  const state = getKnowledgeState(student, evidence, graph, now, thresholds);
+
+  // Enrich each entry with weighted readiness
+  for (const node of graph.nodes) {
+    const entry = state.get(node.id);
+    if (!entry) continue;
+
+    // Mastered nodes are excluded from fringe; readiness is optional
+    if (entry.state === 'mastered') continue;
+
+    const readiness = computeWeightedReadiness(node.id, state, graph, thresholds);
+    entry.readinessScore = readiness.score;
+    entry.readinessState = readiness.state;
+  }
+
+  return state;
 }

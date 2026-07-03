@@ -662,3 +662,104 @@ describe('Concept Aggregator resolution', () => {
     expect(rows[0]?.nodeId).toBe(skillOnly.id);
   });
 });
+
+// ---------------------------------------------------------------------------
+// Phase 3 Track 2 — Weighted Readiness visualization (Red)
+// ---------------------------------------------------------------------------
+
+describe('Student visualization — nearly_ready support (FR4)', () => {
+  it('StudentVisualizationV1 includes a nearlyReady bucket', () => {
+    const nodes = syntheticMathFixture.nodes;
+    const edges = syntheticMathFixture.edges;
+
+    const learnerState: Record<string, string> = {};
+    // Mark one skill node as nearly_ready
+    const skillNodes = nodes.filter(
+      (n) => n.kind === 'skill' || n.kind === 'task_blueprint',
+    );
+    if (skillNodes.length > 0) {
+      learnerState[skillNodes[0].id] = 'nearly_ready';
+    }
+
+    const result = projectStudentVisualization(
+      nodes,
+      edges,
+      learnerState as Record<string, 'mastered' | 'ready' | 'blocked' | 'review_due'>,
+    );
+
+    // The result should have a nearlyReady property
+    expect(result).toHaveProperty('nearlyReady');
+    expect(Array.isArray((result as Record<string, unknown>)['nearlyReady'])).toBe(true);
+  });
+
+  it('nearly_ready nodes are NOT in the ready or blocked buckets', () => {
+    const nodes = syntheticMathFixture.nodes;
+    const edges = syntheticMathFixture.edges;
+
+    const skillNodes = nodes.filter(
+      (n) => n.kind === 'skill' || n.kind === 'task_blueprint',
+    );
+    if (skillNodes.length < 2) return;
+
+    const almostReadyId = skillNodes[0].id;
+    const readyId = skillNodes[1].id;
+
+    const learnerState: Record<string, string> = {
+      [almostReadyId]: 'nearly_ready',
+      [readyId]: 'ready',
+    };
+
+    const result = projectStudentVisualization(
+      nodes,
+      edges,
+      learnerState as Record<string, 'mastered' | 'ready' | 'blocked' | 'review_due'>,
+    );
+
+    const nearlyReadyBucket = (result as Record<string, unknown>)['nearlyReady'] as Array<{ nodeId: string }> | undefined;
+    if (nearlyReadyBucket) {
+      const nearlyIds = nearlyReadyBucket.map((n) => n.nodeId);
+      expect(nearlyIds).toContain(almostReadyId);
+    }
+
+    const readyIds = result.ready.map((n) => n.nodeId);
+    const blockedIds = result.blocked.map((n) => n.nodeId);
+
+    // nearly_ready node should not leak into ready or blocked
+    if (nearlyReadyBucket) {
+      expect(readyIds).not.toContain(almostReadyId);
+      expect(blockedIds).not.toContain(almostReadyId);
+    }
+  });
+
+  it('VisualNodeV1 state accepts nearly_ready', () => {
+    // The 'state' field of VisualNodeV1 should accept 'nearly_ready'
+    const node: import('../projections/types').VisualNodeV1 = {
+      nodeId: 'test.node',
+      title: 'Test Node',
+      state: 'nearly_ready',
+    };
+    expect(node.state).toBe('nearly_ready');
+  });
+});
+
+describe('studentVisualizationV1Schema — nearly_ready support (FR4)', () => {
+  it('studentVisualizationV1Schema validates a payload with nearlyReady bucket', () => {
+    const payload = {
+      schemaVersion: 'v1' as const,
+      mastered: [],
+      ready: [],
+      blocked: [],
+      reviewDue: [],
+      nearlyReady: [
+        { nodeId: 'skill.a', title: 'Skill A', state: 'nearly_ready' as const },
+      ],
+      recommendedNext: [],
+      edges: [],
+      activeMisconceptionCount: 0,
+    };
+
+    // The schema should accept this payload
+    const result = studentVisualizationV1Schema.safeParse(payload);
+    expect(result.success).toBe(true);
+  });
+});

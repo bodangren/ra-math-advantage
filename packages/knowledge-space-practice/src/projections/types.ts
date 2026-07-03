@@ -87,7 +87,7 @@ export interface VisualNodeV1 {
   nodeId: string;
   title: string;
   description?: string;
-  state: 'mastered' | 'ready' | 'blocked' | 'review_due' | 'unknown';
+  state: 'mastered' | 'ready' | 'nearly_ready' | 'blocked' | 'review_due' | 'unknown';
   difficulty?: number;
   domain?: string;
 }
@@ -103,6 +103,7 @@ export interface StudentVisualizationV1 {
   schemaVersion: 'v1';
   mastered: VisualNodeV1[];
   ready: VisualNodeV1[];
+  nearlyReady: VisualNodeV1[];
   blocked: VisualNodeV1[];
   reviewDue: VisualNodeV1[];
   recommendedNext: VisualNodeV1[];

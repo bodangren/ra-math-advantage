@@ -22,9 +22,9 @@ Depends on: Track 1 (getKnowledgeState, getOuterFringe, threshold config).
 
 ## Phase 3 — Projection Integration
 
-- [ ] Task: Update visualization computeNodeState and student payload (TDD)
+- [~] Task: Update visualization computeNodeState and student payload (TDD)
     - [ ] computeNodeState consumes weighted readiness; expose nearly_ready bucket
-- [ ] Task: Update in-repo kst-srs.v2 spec §9.4 (weight semantics + readiness formula)
+- [ ] Task: Update in-repo kst-srs.v2 spec §5.3 (weight semantics + readiness formula)
 - [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
 
 ## Phase 4 — Docs & Doctor
