@@ -294,7 +294,9 @@ describe('grantSkipAfterCheck', () => {
     };
     const outcome = grantSkipAfterCheck(result);
     expect(outcome.granted).toBe(false);
-    expect(outcome.reason).toBeDefined();
+    if (!outcome.granted) {
+      expect(outcome.reason).toBeDefined();
+    }
   });
 
   it('grants skip on a low-confidence pass (the check itself is the gate)', () => {

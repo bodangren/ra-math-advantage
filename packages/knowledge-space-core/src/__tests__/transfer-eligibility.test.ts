@@ -49,14 +49,13 @@ function makeEntry(
 }
 
 function makeState(
-  entries: Array<[string, number, number]> | KnowledgeStateEntry[],
+  entries: Array<[string, number, number, KnowledgeStateEntry['state']?]> | KnowledgeStateEntry[],
 ): Map<string, KnowledgeStateEntry> {
   if (entries.length > 0 && Array.isArray(entries[0])) {
     return new Map(
-      (entries as Array<[string, number, number]>).map(([id, mastery, retention]) => [
-        id,
-        makeEntry(id, mastery, retention),
-      ]),
+      (entries as Array<[string, number, number, KnowledgeStateEntry['state']?]>).map(
+        ([id, mastery, retention, state]) => [id, makeEntry(id, mastery, retention, state)],
+      ),
     );
   }
   return new Map(

@@ -6,16 +6,14 @@ import type {
   TransferCreditAuditRow,
   TransferCreditStudentGroup,
   TransferCreditAuditView,
+  TransferCreditAuditInputRecord,
 } from '../transfer-teacher-audit';
-import type { TransferSkipRecord } from '../transfer-skip';
 
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
 
-type RecordFixture = TransferSkipRecord & { confirmed?: boolean };
-
-function makeRecord(overrides?: Partial<RecordFixture>): TransferSkipRecord {
+function makeRecord(overrides?: Partial<TransferCreditAuditInputRecord>): TransferCreditAuditInputRecord {
   return {
     skillId: 'math.im3.skill.solve-quadratic',
     sourceCourse: 'math.im2',
@@ -26,7 +24,7 @@ function makeRecord(overrides?: Partial<RecordFixture>): TransferSkipRecord {
     studentId: 'student-a',
     confirmed: false,
     ...overrides,
-  } as TransferSkipRecord;
+  };
 }
 
 // ---------------------------------------------------------------------------
@@ -35,7 +33,7 @@ function makeRecord(overrides?: Partial<RecordFixture>): TransferSkipRecord {
 
 describe('buildTransferCreditAuditView', () => {
   it('groups records by studentId', () => {
-    const records: TransferSkipRecord[] = [
+    const records: TransferCreditAuditInputRecord[] = [
       makeRecord({ skillId: 'math.im3.skill.a', skippedAt: 1_000_000 }),
       makeRecord({ skillId: 'math.im3.skill.b', skippedAt: 2_000_000 }),
     ];
@@ -48,7 +46,7 @@ describe('buildTransferCreditAuditView', () => {
   });
 
   it('creates one group per student', () => {
-    const records: TransferSkipRecord[] = [
+    const records: TransferCreditAuditInputRecord[] = [
       makeRecord({ skillId: 'math.im3.skill.a', skippedAt: 1_000_000 }),
       makeRecord({ skillId: 'math.im3.skill.b', skippedAt: 2_000_000, studentId: 'student-b' }),
     ];
@@ -61,7 +59,7 @@ describe('buildTransferCreditAuditView', () => {
   });
 
   it('sorts each group rows by skippedAt descending (most recent first)', () => {
-    const records: TransferSkipRecord[] = [
+    const records: TransferCreditAuditInputRecord[] = [
       makeRecord({ skillId: 'math.im3.skill.a', skippedAt: 1_000_000 }),
       makeRecord({ skillId: 'math.im3.skill.b', skippedAt: 3_000_000 }),
       makeRecord({ skillId: 'math.im3.skill.c', skippedAt: 2_000_000 }),
@@ -78,7 +76,7 @@ describe('buildTransferCreditAuditView', () => {
   // ---------------------------------------------------------------------------
 
   it('preserves all auditable fields on each row', () => {
-    const records: TransferSkipRecord[] = [
+    const records: TransferCreditAuditInputRecord[] = [
       makeRecord({
         skillId: 'math.im3.skill.linear-functions',
         sourceCourse: 'math.im2',
@@ -102,7 +100,7 @@ describe('buildTransferCreditAuditView', () => {
   });
 
   it('distinguishes direct skips from confirmation-check skips', () => {
-    const records: TransferSkipRecord[] = [
+    const records: TransferCreditAuditInputRecord[] = [
       makeRecord({ skillId: 'math.im3.skill.a', confirmed: false }),
       makeRecord({ skillId: 'math.im3.skill.b', confirmed: true }),
     ];
@@ -114,7 +112,7 @@ describe('buildTransferCreditAuditView', () => {
   });
 
   it('surfaces reverted state for reversed skips', () => {
-    const records: TransferSkipRecord[] = [
+    const records: TransferCreditAuditInputRecord[] = [
       makeRecord({ skillId: 'math.im3.skill.a', state: 'reverted', revertedAt: 9_000_000 }),
     ];
 
@@ -129,7 +127,7 @@ describe('buildTransferCreditAuditView', () => {
   // ---------------------------------------------------------------------------
 
   it('counts total, skipped, and reverted credits per group and globally', () => {
-    const records: TransferSkipRecord[] = [
+    const records: TransferCreditAuditInputRecord[] = [
       makeRecord({ skillId: 'math.im3.skill.a', state: 'skipped', studentId: 's1' }),
       makeRecord({ skillId: 'math.im3.skill.b', state: 'reverted', studentId: 's1' }),
       makeRecord({ skillId: 'math.im3.skill.c', state: 'skipped', studentId: 's2' }),
@@ -166,7 +164,7 @@ describe('buildTransferCreditAuditView', () => {
   });
 
   it('does not mutate the input records array or objects', () => {
-    const records: TransferSkipRecord[] = [
+    const records: TransferCreditAuditInputRecord[] = [
       makeRecord({ skillId: 'math.im3.skill.a' }),
     ];
     const snapshot = JSON.stringify(records);

@@ -253,7 +253,7 @@ function flagOne(
     if (courseFromId(nodeId) === targetCourse) continue;
     const entry = state.get(nodeId);
     if (!hasEvidence(entry)) continue;
-    sourceSum += entry.mastery;
+    sourceSum += entry!.mastery;
     sourceCount += 1;
   }
 

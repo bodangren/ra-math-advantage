@@ -180,7 +180,7 @@ describe('Phase 5 — adversarial: export-completeness', () => {
   it('getKnowledgeState is callable and returns a Map', async () => {
     const mod = await import('../index');
     const result = mod.getKnowledgeState(
-      { studentId: 'test' },
+      { id: 'test' },
       [],
       { nodes: [], edges: [] },
       Date.now(),
