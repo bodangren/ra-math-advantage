@@ -25,8 +25,6 @@ export interface TransferCreditAuditRecord {
   studentId: string;
   /** Friendly student name shown in the table. */
   studentName: string;
-  /** Student email shown in the table. */
-  email: string;
   /** Cross-course source label (e.g. `math.im2`). */
   sourceCourse: string;
   /** Target skill id the skip applies to. */
@@ -150,7 +148,6 @@ function AuditRow({ record, onRevert }: AuditRowProps) {
     <tr className="border-b border-border last:border-b-0 align-top">
       <td className="py-3 pr-4">
         <div className="font-medium text-foreground">{record.studentName}</div>
-        <div className="text-xs text-muted-foreground">{record.email}</div>
       </td>
       <td className="py-3 pr-4 font-mono-num text-xs text-muted-foreground">
         {record.sourceCourse}

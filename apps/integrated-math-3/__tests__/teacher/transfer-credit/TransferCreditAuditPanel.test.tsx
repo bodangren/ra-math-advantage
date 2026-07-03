@@ -6,7 +6,6 @@ import { TransferCreditAuditPanel } from '@/components/teacher/transfer-credit/T
 interface TransferCreditAuditRecord {
   studentId: string;
   studentName: string;
-  email: string;
   sourceCourse: string;
   targetSkill: string;
   seededMastery: number;
@@ -22,7 +21,6 @@ interface TransferCreditAuditRecord {
 const aliceRecord: TransferCreditAuditRecord = {
   studentId: 'student-a',
   studentName: 'Alice Student',
-  email: 'alice@example.com',
   sourceCourse: 'math.im2',
   targetSkill: 'math.im3.skill.solve-quadratic',
   seededMastery: 0.72,
@@ -34,7 +32,6 @@ const aliceRecord: TransferCreditAuditRecord = {
 const bobRecord: TransferCreditAuditRecord = {
   studentId: 'student-b',
   studentName: 'Bob Student',
-  email: 'bob@example.com',
   sourceCourse: 'math.precalc',
   targetSkill: 'math.im3.skill.linear-functions',
   seededMastery: 0.81,
@@ -46,7 +43,6 @@ const bobRecord: TransferCreditAuditRecord = {
 const revertedRecord: TransferCreditAuditRecord = {
   studentId: 'student-c',
   studentName: 'Carol Student',
-  email: 'carol@example.com',
   sourceCourse: 'math.im1',
   targetSkill: 'math.im3.skill.factoring',
   seededMastery: 0.65,
@@ -72,7 +68,6 @@ describe('TransferCreditAuditPanel', () => {
     render(<TransferCreditAuditPanel records={[aliceRecord]} />);
 
     expect(screen.getByText(aliceRecord.studentName)).toBeInTheDocument();
-    expect(screen.getByText(aliceRecord.email)).toBeInTheDocument();
     expect(screen.getByText(aliceRecord.sourceCourse)).toBeInTheDocument();
     expect(screen.getByText(aliceRecord.targetSkill)).toBeInTheDocument();
     expect(
