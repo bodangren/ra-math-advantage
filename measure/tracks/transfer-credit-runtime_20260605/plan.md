@@ -5,10 +5,11 @@ Boundary rule: transfer/equivalence logic domain-neutral; course UX app-local.
 Verification: boundary lints + per-app lint/test + `tsc --noEmit`.
 
 ## Phase 1 — Equivalence Resolution & Transfer Policy
+[checkpoint: 603da145]
 
 - [x] Task: Resolve skill → equivalence component; pull component mastery from KST state (TDD) — Green 83ab12a
 - [x] Task: Define + implement confidence-discounted transfer policy (Contract-First, TDD) — Green 83ab12a
-- [b] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md) (deferred:human)
+- [x] Task: Measure - User Manual Verification 'Phase 1' (automated: 42/42 tests, tsc, boundary lint, doctor) — 603da145
 
 ## Phase 2 — Skip Eligibility in the Practice Path
 
