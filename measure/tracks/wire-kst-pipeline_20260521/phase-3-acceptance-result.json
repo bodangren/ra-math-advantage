@@ -1,0 +1,48 @@
+{
+  "track": "wire-kst-pipeline_20260521",
+  "phase": 3,
+  "title": "SRS→KST Bridge",
+  "status": "pass",
+  "commit": "07b4a033",
+  "timestamp": "2026-07-03",
+  "gates": {
+    "vitest_package": {
+      "command": "CI=true npx vitest run packages/knowledge-space-core",
+      "exit_code": 0,
+      "tests_passed": 458,
+      "test_files": 35
+    },
+    "package_tsc": {
+      "command": "npm run --workspace=packages/knowledge-space-core typecheck",
+      "exit_code": 0
+    },
+    "boundary": {
+      "command": "node scripts/check-monorepo-boundaries.mjs",
+      "exit_code": 0,
+      "result": "[OK] No monorepo boundary violations found."
+    },
+    "package_lint": {
+      "command": "npm run lint --prefix packages/knowledge-space-core",
+      "exit_code": 0
+    },
+    "root_tsc": {
+      "command": "npx tsc --noEmit",
+      "exit_code": 0
+    }
+  },
+  "reviews": {
+    "A_correctness_purity": {
+      "result": "pass",
+      "notes": "No I/O, no Date.now(), no Convex or app imports. Pure/deterministic. stabilityToRetention used correctly. Card-based retention takes priority over proficiency retentionStrength."
+    },
+    "B_security": {
+      "result": "pass",
+      "notes": "No prototype pollution, no eval, no Function(). Safe optional-chaining reads. Evidence objects constructed from scratch."
+    },
+    "C_api_coherence": {
+      "result": "pass",
+      "notes": "DefaultSrsToKstBridge, buildKstState, ConvertArgs exported from index.ts. Interface SrsToKstBridge preserved. No Convex/app types leak to callers. SrsCardState extended with optional lastReviewedAt (backward-compatible)."
+    }
+  },
+  "implementation_summary": "Implemented DefaultSrsToKstBridge class (implements SrsToKstBridge) with convert() method producing Map<NodeId, KnowledgeStateEntry> via getKnowledgeState. Evidence-building logic: per-objective card (most recent by lastReviewedAt, then stability) + per-objective proficiency (positional last-wins). Card stability takes priority for retention computation; proficiency provides isProficient and fallback retention. Added buildKstState convenience function: bridge → getKnowledgeState → getOuterFringe. Re-exported stabilityToRetention from srs-bridge module for consumer reuse."
+}
