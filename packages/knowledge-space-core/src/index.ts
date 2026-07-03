@@ -133,3 +133,26 @@ export type {
   SrsToKstBridge,
   ConvertArgs,
 } from './srs-bridge';
+
+// ---------------------------------------------------------------------------
+// Phase 1 — Transfer-Credit Equivalence Resolution & Policy
+// See measure/tracks/transfer-credit-runtime_20260605/{plan,test-strategy}.md
+// ---------------------------------------------------------------------------
+
+export {
+  resolveEquivalenceComponent,
+  aggregateComponentMastery,
+  seedTransferMastery,
+  revertTransferMastery,
+  computeTransferCredit,
+  batchComputeTransferCredit,
+  TRANSFER_POLICY_DEFAULT,
+  transferPolicySchema,
+} from './transfer-credit';
+export type {
+  TransferPolicyConfig,
+  TransferPolicy,
+  ComponentMasteryResult,
+  TransferCreditResult,
+  BatchTransferCreditResult,
+} from './transfer-credit';
