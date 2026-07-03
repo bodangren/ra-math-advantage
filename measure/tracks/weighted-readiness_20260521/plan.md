@@ -13,11 +13,11 @@ Depends on: Track 1 (getKnowledgeState, getOuterFringe, threshold config).
 
 ## Phase 2 — Readiness Engine
 
-- [~] Task: Implement readiness(B) (TDD)
-    - [ ] Tests: no prerequisites (=1), partial, full, decaying-prerequisite cases
-    - [ ] Pure function consuming Track 1 mastery levels and edge weights
-- [ ] Task: Integrate weighted readiness into getOuterFringe (TDD)
-    - [ ] Replace binary gating; fringe = ready ∪ nearly_ready with scores
+- [x] Task: Implement readiness(B) (TDD) [a5f12b3]
+    - [x] Tests: no prerequisites (=1), partial, full, decaying-prerequisite cases
+    - [x] Pure function consuming Track 1 mastery levels and edge weights
+- [x] Task: Integrate weighted readiness into getOuterFringe (TDD) [a5f12b3]
+    - [x] Replace binary gating; fringe = ready ∪ nearly_ready with scores
 - [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
 
 ## Phase 3 — Projection Integration
