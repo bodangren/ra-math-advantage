@@ -1,0 +1,66 @@
+{
+  "track": "wire-kst-pipeline_20260521",
+  "phase": 3,
+  "title": "SRS→KST Bridge — Adversarial",
+  "status": "pass",
+  "commit": "TBD-will-be-replaced-after-commit",
+  "timestamp": "2026-07-03",
+  "test_count": 18,
+  "test_file": "packages/knowledge-space-core/src/__tests__/phase-3-adversarial.test.ts",
+  "adversarial_categories": [
+    {
+      "category": "cycle_in_graph",
+      "tests": 2,
+      "result": "pass",
+      "notes": "Cyclic prerequisite graphs do not infinite-loop. getOuterFringe terminates because prereq lookup is per-node on incoming edges; cycles are not traversed. The system handles them gracefully."
+    },
+    {
+      "category": "empty_inputs",
+      "tests": 4,
+      "result": "pass",
+      "notes": "Empty cards + empty proficiencies → all untouched. Empty graph → empty Map. Cards-only and proficiency-only paths work correctly."
+    },
+    {
+      "category": "clock_skew",
+      "tests": 2,
+      "result": "pass",
+      "notes": "Future lastReviewedAt (> now) is clamped to deltaDays=0, producing retention=1.0 (treated as just-reviewed)."
+    },
+    {
+      "category": "negative_stability",
+      "tests": 2,
+      "result": "pass",
+      "notes": "Negative and zero stability → retention=0 via stabilityToRetention clamp. No NaN produced in retention or mastery."
+    },
+    {
+      "category": "duplicate_proficiencies",
+      "tests": 2,
+      "result": "pass",
+      "notes": "Positional last-wins behavior confirmed. Last entry in the array determines retention and isProficient."
+    },
+    {
+      "category": "no_proficiencies",
+      "tests": 4,
+      "result": "pass",
+      "notes": "Cards alone with review state → mastered. Learning state → inProgress. New state → inProgress. Stability without lastReviewedAt → retention=0, inProgress."
+    },
+    {
+      "category": "determinism",
+      "tests": 2,
+      "result": "pass",
+      "notes": "Identical input → identical output across multiple calls. No mutable state leaking."
+    }
+  ],
+  "full_suite": {
+    "test_files": 36,
+    "tests_passed": 476,
+    "tests_failed": 0
+  },
+  "gates": {
+    "vitest": { "exit_code": 0, "tests": 476 },
+    "package_tsc": { "exit_code": 0 },
+    "package_lint": { "exit_code": 0 },
+    "boundary": { "exit_code": 0 },
+    "root_tsc": { "exit_code": 0 }
+  }
+}
