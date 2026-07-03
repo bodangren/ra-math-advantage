@@ -6,9 +6,9 @@ Verification: boundary lints + per-app lint/test + `tsc --noEmit`.
 
 ## Phase 1 — Equivalence Resolution & Transfer Policy
 
-- [ ] Task: Resolve skill → equivalence component; pull component mastery from KST state (TDD)
-- [ ] Task: Define + implement confidence-discounted transfer policy (Contract-First, TDD)
-- [ ] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md)
+- [~] Task: Resolve skill → equivalence component; pull component mastery from KST state (TDD)
+- [~] Task: Define + implement confidence-discounted transfer policy (Contract-First, TDD)
+- [b] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md) (deferred:human)
 
 ## Phase 2 — Skip Eligibility in the Practice Path
 
