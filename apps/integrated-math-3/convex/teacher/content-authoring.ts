@@ -484,7 +484,7 @@ export async function saveTeacherDraftHandler(
         const activity = section.activities[activityIndex];
         const activityId: Id<"activities"> = await ctx.db.insert("activities", {
           componentKey: activity.componentKey,
-          displayName: activity.displayName,
+          displayName: activity.displayName || activity.componentKey,
           description: undefined,
           props: activity.props as never,
           gradingConfig: {
@@ -966,7 +966,7 @@ export async function editRejectedDraftHandler(
         const activity = section.activities[activityIndex];
         const activityId: Id<"activities"> = await ctx.db.insert("activities", {
           componentKey: activity.componentKey,
-          displayName: activity.displayName,
+          displayName: activity.displayName || activity.componentKey,
           description: undefined,
           props: activity.props as never,
           gradingConfig: {
