@@ -49,7 +49,7 @@ Dependencies:
        *Link: [./archive/wire-kst-pipeline_20260521/](./archive/wire-kst-pipeline_20260521/)*
 
  - [x] **Track: Transfer-Credit Runtime** — **COMPLETED / ARCHIVED** (2026-07-03)
-       *Surface equivalent_to mastery to students at runtime: equivalence resolution, confidence-discounted transfer policy, skip eligibility in practice path, student UX with confirmation check, and teacher audit panel. 49 files / 673 tests in knowledge-space-core, 6 files / 64 tests in IM3 transfer-credit. All gates pass at archive.
+       *Surface equivalent_to mastery to students at runtime: equivalence resolution, confidence-discounted transfer policy, skip eligibility in practice path, student UX with confirmation check, and teacher audit panel. 49 files / 673 tests in knowledge-space-core, 6 files / 64 tests in IM3 transfer-credit. All gates pass at archive.*
        *Link: [./archive/transfer-credit-runtime_20260703/](./archive/transfer-credit-runtime_20260703/)*
 
 ## Active Tracks
