@@ -16,7 +16,9 @@ This document tracks the comparison between projection-generated activity maps a
 |--------|--------|--------|
 | `getKnowledgeState()` | `knowledge-state-engine.ts` | **Wired.** Time-aware hysteresis engine: enter mastered at `retention ≥ 0.90`, exit to decaying at `< 0.70`, deep-decay fallback at `< 0.35`. Pure, deterministic; `now` injected. |
 | `stabilityToRetention()` | `knowledge-state-engine.ts` | **Wired.** Exponential decay `retention = exp(-deltaDays / (stability * scale))`. |
-| `getOuterFringe()` | `outer-fringe.ts` | **Wired.** Standalone top-level export. Binary prerequisite gating with `readinessFn` seam for Track 2 weighted readiness. |
+| `getOuterFringe()` | `outer-fringe.ts` | **Wired.** Standalone top-level export. **Weighted readiness by default.** `readinessFn` seam for custom overrides. Fringe = ready ∪ nearly_ready (blocked excluded). Each entry carries readiness score and state. |
+| `computeWeightedReadiness()` | `weighted-readiness.ts` | **Wired (Track 2).** Pure function: `readiness(B) = Σ(wᵢ·mᵢ)/Σ(wᵢ)` over prerequisite edges. Returns `{ score, state }`. |
+| `createDefaultWeightedReadinessFn()` | `weighted-readiness.ts` | **Wired (Track 2).** Factory returning a `ReadinessFn`-compatible closure over a graph. |
 | `DefaultSrsToKstBridge` | `srs-bridge.ts` | **Wired.** `convert(cards, proficiencies, graph, now) → Map<NodeId, KnowledgeStateEntry>`. |
 | `buildKstState()` | `srs-bridge.ts` | **Wired.** Convenience: cards+proficiencies → bridge → `getKnowledgeState` → `getOuterFringe` → `{ state, fringe }`. |
 | `MASTERY_THRESHOLDS_DEFAULT` | `mastery-state.ts` | **Wired.** Frozen: `{ masteryEnter: 0.90, masteryExit: 0.70, readyThreshold: 0.80, nearThreshold: 0.50 }`. |
@@ -51,13 +53,15 @@ This document tracks the comparison between projection-generated activity maps a
 
 ### ReadinessFn seam (Track 2)
 
-The `getOuterFringe(state, graph, readinessFn?)` signature accepts an optional `ReadinessFn` parameter. When absent, binary prerequisite gating is the default. Track 2 (`weighted-readiness`) will inject a weighted-readiness function through this seam without changing the core engine's API.
+The `getOuterFringe(state, graph, readinessFn?)` signature accepts an optional `ReadinessFn` parameter. When absent, **weighted readiness is the default** — `computeWeightedReadiness` computes a composite readiness score from prerequisite edge weights and student mastery levels. Each fringe entry carries its numeric `readiness` score and `readinessState` label (`ready` | `nearly_ready` | `blocked`). Blocked nodes are excluded from the default fringe.
+
+**Track 2 complete (2026-07-03):** Weighted readiness is live. `computeWeightedReadiness`, `createDefaultWeightedReadinessFn`, and `getOuterFringe` weighted default are exported from `@math-platform/knowledge-space-core`. Student visualization payload includes a `nearlyReady` bucket. IM3 handler maps nearly_ready from fringe into learnerState.
 
 ## Outstanding Items (future tracks)
 
 | Item | Track | Status |
 |------|-------|--------|
-| Weighted readiness via edge weight | Track 2 | Pending |
+| Weighted readiness via edge weight | Track 2 | **Complete (2026-07-03)** |
 | Edge calibration | Track 3 | Pending |
 | Next-skill planner (beyond "first N") | Track 4 | Pending |
 | Placement | Track 5 | Pending |

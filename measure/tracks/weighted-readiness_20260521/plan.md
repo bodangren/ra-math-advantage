@@ -29,6 +29,6 @@ Depends on: Track 1 (getKnowledgeState, getOuterFringe, threshold config).
 
 ## Phase 4 — Docs & Doctor
 
-- [ ] Task: Run measure/generate.sh and measure/doctor.sh; fix architectural lint
+- [~] Task: Run measure/generate.sh and measure/doctor.sh; fix architectural lint
 - [ ] Task: Final verification — boundary lints, npm run lint, tsc --noEmit, CI=true npm run test
 - [ ] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md)
