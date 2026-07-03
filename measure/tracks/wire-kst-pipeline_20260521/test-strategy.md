@@ -196,10 +196,35 @@ Phase 1's Task 5 ("Measure - User Manual Verification 'Phase 1'") is classified 
 
 ## 4. Phase 4 — Production Wiring (apps/integrated-math-3) (roadmap)
 
-**Red command**: route/component test under `apps/integrated-math-3/` (vitest) + a Convex query test; if a new package is introduced, add `vitest.config.ts` `resolve.alias` (lessons-learned 2026-05-03).
+**Red command**: `cd apps/integrated-math-3 && CI=true npx vitest run` (filtered to 4 new test files + existing subset must stay green).
 **Green gate**: one IM3 production route renders KST-derived student state (mastered/ready/review-due) from live data via the Convex query composing bridge + `getKnowledgeState` + projection; batched `Promise.all` reads (no N+1); IM3 graph loadable at runtime from rollout artifacts; closed-system validation caveat documented (lessons-learned 2026-05-10).
 **Closeout gate**: route renders real state; UMV `[b] deferred:user`; `PROJECT_TESTS` green.
 **Anti-patterns**: A5 ("route renders KST state" backed by a live test, not just a claim); A2 (N/A — no publish/consent gate here, noted as not-applicable); A6 (registry note must not claim "pipeline live" until the route test is green).
+
+### 4.1 New test files (Red phase — fail on missing exports/modules)
+
+| File | Location | Failure reason |
+|------|----------|---------------|
+| `skill-graph-loader.test.ts` | `__tests__/curriculum/` | `loadFullCurriculumGraph` returns non-zero nodes/edges; nodes have `id` fields; edges have `prerequisite_for` edges. Should pass already (graph is pre-existing). |
+| `studentKnowledgeState.test.ts` | `__tests__/convex/` | `getStudentKnowledgeStateHandler` does not exist yet in `@/convex/student/knowledge-state` — import fails. |
+| `knowledge-state-page.test.tsx` | `__tests__/app/student/` | `@/app/student/knowledge-state/page` does not exist yet — import fails. |
+| `kstPipeline.test.ts` | `__tests__/convex/` | End-to-end pipeline test: bridge→getKnowledgeState→getOuterFringe on seeded fixture. Calls the new handler function — import fails. |
+
+### 4.2 Green implementation targets
+
+| File | Contents |
+|------|----------|
+| `convex/student/knowledge-state.ts` | `getStudentKnowledgeStateHandler` + `getStudentKnowledgeState` internalQuery. Loads IM3 graph, queries SRS cards + review logs via batched Promise.all, calls `DefaultSrsToKstBridge.convert()` → `getKnowledgeState` → `getOuterFringe`, projects to visualization payload, returns serializable JSON (converts Map→Record). Authorization: ctx.auth userId scoped to same student. |
+| `app/student/knowledge-state/page.tsx` | Server component: `requireStudentSessionClaims`, `fetchInternalQuery(internal.student.getStudentKnowledgeState, ...)`, renders KST-derived state (mastered count, ready-to-learn fringe, decaying skills) using the design system classes from `DESIGN.md`. |
+
+### 4.3 Gate commands (Phase 4)
+
+| Gate | Command |
+|------|---------|
+| IM3 vitest | `cd apps/integrated-math-3 && CI=true npx vitest run` |
+| Root tsc | `npx tsc --noEmit` |
+| Boundary | `node scripts/check-monorepo-boundaries.mjs` |
+| Lint | `npm run ws:im3:lint` |
 
 ---
 
