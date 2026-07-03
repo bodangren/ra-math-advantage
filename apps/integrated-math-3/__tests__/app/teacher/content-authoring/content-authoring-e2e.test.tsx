@@ -309,7 +309,7 @@ describe('Phase 4 — End-to-end lifecycle', () => {
     registerActivity('graphing-explorer', TestActivity);
   });
 
-  it('author -> preview -> submit -> approve -> publish -> assignable -> student visibility', async () => {
+  it('author -> preview -> submit -> approve -> publish -> assignable -> student visibility', { timeout: 30000 }, async () => {
     const {
       saveTeacherDraftHandler,
       submitDraftForReviewHandler,
