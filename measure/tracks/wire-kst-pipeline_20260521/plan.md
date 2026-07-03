@@ -120,11 +120,47 @@ Boundary rule: `knowledge-space-core` / `-practice` stay domain-neutral.
 
 ## Phase 3 — SRS→KST Bridge
 
-- [ ] Task: Implement the bridge (TDD)
-    - [ ] Convert card states + proficiency results → learner state using stabilityToRetention
-    - [ ] Tests for mastered / decaying / inProgress / untouched transitions
-- [ ] Task: Synthetic fixture coverage for the full bridge → knowledge-state → fringe path (TDD)
-- [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
+- [x] Task: Implement the bridge (TDD) (9214d65a, 07b4a033)
+    - [x] Convert card states + proficiency results → learner state using stabilityToRetention
+    - [x] Tests for mastered / decaying / inProgress / untouched transitions
+- [x] Task: Synthetic fixture coverage for the full bridge → knowledge-state → fringe path (TDD) (9214d65a, 07b4a033)
+- [b] Task: Measure - User Manual Verification 'Phase 3' deferred:user
+
+### Phase 3 Red Evidence
+
+- **Targeted command:** `CI=true npx vitest run packages/knowledge-space-core`
+- **Result:** 2 new test files added; 16 failed / 458 total (expected Red — missing exports).
+  - `srs-bridge-implementation.test.ts` — 10 tests, all failed (`DefaultSrsToKstBridge is not a constructor`).
+  - `srs-bridge-pipeline.test.ts` — 6 tests, all failed (`buildKstState is not a function`).
+- **Existing tests:** 442 passed (unchanged).
+- **Commit:** 9214d65a
+
+### Phase 3 Green Evidence
+
+- **Implementation summary:**
+  - `DefaultSrsToKstBridge` class implementing `SrsToKstBridge` with `convert()` method producing `Map<NodeId, KnowledgeStateEntry>` via `getKnowledgeState`.
+  - Evidence-building logic: per-objective card (most recent by `lastReviewedAt`, then `stability`, then positional) + per-objective proficiency (positional last-wins). Card stability takes priority for retention computation; proficiency provides `isProficient` and fallback retention.
+  - `buildKstState()` convenience function: cards+proficiencies → bridge → `getKnowledgeState` → `getOuterFringe` → `{ state, fringe }`.
+  - `SrsCardState` extended with optional `lastReviewedAt` field (backward-compatible).
+  - `stabilityToRetention` re-exported from `srs-bridge.ts` for consumer reuse.
+- **Gate results (all exit 0):**
+  - `CI=true npx vitest run packages/knowledge-space-core` → 458/458 pass (35 files)
+  - `npm run --workspace=packages/knowledge-space-core typecheck` → exit 0
+  - `node scripts/check-monorepo-boundaries.mjs` → exit 0
+  - `npm run lint --prefix packages/knowledge-space-core` → exit 0
+  - `npx tsc --noEmit` → exit 0
+- **Commit:** 07b4a033
+
+### Phase 3 Acceptance Evidence
+
+- **Status:** pass (16d67ae0)
+- **Reviews:** A (correctness/purity) ✓, B (no security issues/prototype pollution) ✓, C (API coherent, exports clean) ✓
+
+### Phase 3 Adversarial Evidence
+
+- **Status:** pass (e4204fa1)
+- **Tests:** 18 adversarial tests covering cycles, empty inputs, clock skew, negative stability, duplicate proficiencies, no-proficiency path, determinism.
+- **Full suite:** 476/476 pass (36 test files).
 
 ## Phase 4 — Production Wiring (apps/integrated-math-3)
 

@@ -3,7 +3,7 @@
   "phase": 3,
   "title": "SRS→KST Bridge — Adversarial",
   "status": "pass",
-  "commit": "TBD-will-be-replaced-after-commit",
+  "commit": "e4204fa1",
   "timestamp": "2026-07-03",
   "test_count": 18,
   "test_file": "packages/knowledge-space-core/src/__tests__/phase-3-adversarial.test.ts",
