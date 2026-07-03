@@ -479,6 +479,48 @@ handoff for this remediation.
 
 ## Phase 4 — Verification
 
-- [ ] Task: End-to-end: author → preview → submit → approve → publish → assignable (tested)
+- [~] Task: End-to-end: author → preview → submit → approve → publish → assignable (tested)
 - [ ] Task: Final verification — boundary lints, lint, tsc --noEmit, CI=true npm run test
-- [ ] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md)
+- [b] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md) deferred:user
+
+### Phase 4 Red Evidence
+
+New E2E test file:
+- `apps/integrated-math-3/__tests__/app/teacher/content-authoring/content-authoring-e2e.test.tsx`
+
+Targeted Phase 4 Red command:
+```bash
+cd apps/integrated-math-3 && CI=true npx vitest run __tests__/lib/teacher/content-authoring __tests__/convex/teacher/content-authoring-drafts.test.ts __tests__/components/teacher/content-authoring __tests__/app/teacher/content-authoring
+```
+Result: `Test Files 5 failed | 11 passed (16) | Tests 4 failed | 174 passed (178)`; exit code 1.
+
+Attribution:
+- The new Phase 4 E2E file fails for the expected missing-composition reason:
+  `Error: Failed to resolve import "../../../../lib/teacher/content-authoring/authoring-lifecycle"`
+  because the test imports `toTeacherDraftPayload` from a thin adapter that has
+  not yet been implemented. This is the only failure caused by Phase 4 Red work.
+- Isolated run of the new file confirms the same single failure:
+  ```bash
+  cd apps/integrated-math-3 && CI=true npx vitest run __tests__/app/teacher/content-authoring/content-authoring-e2e.test.tsx
+  ```
+  Result: `Test Files 1 failed (1) | Tests no tests`; exit code 1.
+- The remaining 4 failed files / 4 failed tests are pre-existing at baseline and
+  are independent of the new Phase 4 file (they also fail when the E2E file is
+  excluded from the targeted gate):
+  - `__tests__/app/teacher/content-authoring/page-adversarial.test.tsx` (1 timeout)
+  - `__tests__/app/teacher/content-authoring/page.test.tsx` (1 timeout)
+  - `__tests__/components/teacher/content-authoring/LessonComposer-adversarial.test.tsx` (1 timeout)
+  - `__tests__/components/teacher/content-authoring/LessonComposer-preview-button.test.tsx` (1 timeout)
+  These timeout failures are unchanged from a run that omits the Phase 4 E2E file.
+
+Labeled counts (carried in the new test source and asserted once Green wires the adapter):
+- `e2e_lifecycle_steps:6`
+- `e2e_phase_count:3`
+- `e2e_section_count:3`
+- `e2e_activity_count:4`
+- `e2e_approval_row_count:3`
+- `e2e_student_null_cases:4`
+
+Quality gates:
+- `npm run ws:im3:lint` → exit 0.
+- `npx tsc --noEmit` (repo root) → exit 0.
