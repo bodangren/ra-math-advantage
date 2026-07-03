@@ -199,7 +199,7 @@ function buildAuthoredDraft(overrides: Record<string, unknown> = {}) {
         sections: [
           {
             title: 'Graphing a parabola',
-            markdown: 'Use the graphing tool.',
+            markdown: 'Use the graphing tool. <script>alert("xss")</script><img onerror="alert(2)" src="x"> <a href="javascript:alert(3)">bad</a>',
             activities: [
               {
                 componentKey: 'graphing-explorer',
@@ -322,6 +322,7 @@ describe('Phase 4 — End-to-end lifecycle', () => {
 
     // --- fixtures ---------------------------------------------------------
     const teacher = makeTeacher('teacher_1', 'org_1');
+    const otherTeacher = makeTeacher('teacher_other', 'org_1');
     const activeStudent = makeStudent('student_active', 'org_1');
     const withdrawnStudent = makeStudent('student_withdrawn', 'org_1');
     const unassignedClassStudent = makeStudent('student_unassigned_class', 'org_1');
@@ -339,6 +340,7 @@ describe('Phase 4 — End-to-end lifecycle', () => {
     const { ctx: mutCtx, stores } = makeMutationMockCtx({
       profiles: [
         teacher,
+        otherTeacher,
         activeStudent,
         withdrawnStudent,
         unassignedClassStudent,
@@ -392,6 +394,20 @@ describe('Phase 4 — End-to-end lifecycle', () => {
     expect(stores.phase_versions).toHaveLength(3);
     expect(stores.phase_sections).toHaveLength(3);
     expect(stores.activities).toHaveLength(4);
+
+    // Persisted free-text must be sanitized (no executable markup).
+    const persistedText = JSON.stringify(stores);
+    expect(persistedText).not.toContain('<script>');
+    expect(persistedText).not.toContain('onerror=');
+    expect(persistedText).not.toContain('javascript:');
+
+    // Cross-teacher mutation is rejected even within the same org.
+    await expect(
+      submitDraftForReviewHandler(mutCtx, {
+        userId: otherTeacher._id as Id<'profiles'>,
+        lessonId: saved.lessonId,
+      }),
+    ).rejects.toThrow();
 
     // --- 3. Preview -------------------------------------------------------
     render(<AuthoredLessonPreview draft={draftPayload} lessonId={saved.lessonId} />);

@@ -79,8 +79,10 @@ export interface TeacherDraftPayload {
  *     per-activity `componentKey` + `props`;
  *   - strips composer-specific `id` fields that the handler and preview
  *     do not need;
- *   - shallow-copies `props` so downstream mutations (e.g. sanitization
- *     in the handler) cannot leak back into the composer's state;
+ *   - deep-clones `props` via `structuredClone` so no downstream mutation
+ *     (sanitization, preview rendering, or future handler changes) can
+ *     leak back into the composer's state or alias nested references
+ *     between the handler and preview consumers;
  *   - supplies a stable `displayName: componentKey` per activity so the
  *     `activities.displayName` schema column is populated.
  *
@@ -103,7 +105,7 @@ export function toTeacherDraftPayload(state: ComposerState): TeacherDraftPayload
           title: section.title,
           activities: section.activities.map((activity) => ({
             componentKey: activity.componentKey,
-            props: { ...activity.props },
+            props: structuredClone(activity.props),
             displayName: activity.componentKey,
           })),
         };
