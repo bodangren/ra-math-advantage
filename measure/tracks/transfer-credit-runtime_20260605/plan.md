@@ -37,6 +37,10 @@ Verification: boundary lints + per-app lint/test + `tsc --noEmit`.
 
 ## Phase 4 — Teacher Visibility & Verification
 
-- [ ] Task: Surface transfer credits in teacher views (auditable)
-- [ ] Task: Final verification — boundary lints, lint, tsc --noEmit, CI=true npm run test
-- [ ] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md)
+> Red-phase evidence (2026-07-03): `CI=true npx vitest run packages/knowledge-space-core/src/__tests__/transfer-teacher-audit.test.ts` → RED, module-not-found for `../transfer-teacher-audit`. `CI=true npx vitest run --root apps/integrated-math-3 __tests__/teacher/transfer-credit/TransferCreditAuditPanel.test.tsx` → RED, missing `@/components/teacher/transfer-credit/TransferCreditAuditPanel`. Aggregate `CI=true npx vitest run packages/knowledge-space-core` → 44 passed files / 618 prior tests green, 1 failed Red file; existing IM3 transfer-credit tests remain green.
+>
+> RED_TEST_COMMAND for Green handoff: `CI=true npx vitest run packages/knowledge-space-core/src/__tests__/transfer-teacher-audit.test.ts` && `CI=true npx vitest run --root apps/integrated-math-3 __tests__/teacher/transfer-credit/TransferCreditAuditPanel.test.tsx`
+
+- [~] Task: Surface transfer credits in teacher views (auditable)
+- [b] Task: Final verification — boundary lints, lint, tsc --noEmit, CI=true npm run test (deferred:jr-green-final-gates)
+- [b] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md) (deferred:human)
