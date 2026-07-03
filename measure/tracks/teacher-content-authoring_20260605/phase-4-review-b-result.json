@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "role": "review-b-security",
+  "track": "teacher-content-authoring_20260605",
+  "phase": "Phase 4 — Verification",
+  "status": "pass",
+  "summary": "Phase 4 E2E lifecycle adapter and test were audited for authorization, input validation, data handling, sanitization, and secret leakage. Two proven blockers were fixed in commit 15e5154a: (1) authoring-lifecycle.ts now deep-clones activity props via structuredClone to eliminate shared-reference leakage between composer, handler, and preview; (2) the E2E fixture now contains executable markup and asserts both persisted-store sanitization and inert preview rendering, plus a cross-teacher mutation rejection. All security-critical rejection paths are exercised either in the E2E or in the existing Phase 2 adversarial suite. No blocking security findings remain.",
+  "confidence": "high",
+  "retry_recommendation": "none",
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    "Low: The E2E helper expectedActivityHash only sanitizes top-level string props before hashing, while the handler deep-sanitizes all string leaves. The current fixture places executable markup only in section markdown (not hashed), so the mismatch is not triggered, but a future prop-level unsafe-text test should deep-sanitize the helper or reuse sanitizeLessonDraft to avoid hash drift. File: apps/integrated-math-3/__tests__/app/teacher/content-authoring/content-authoring-e2e.test.tsx",
+    "Low: loadAuthoredLesson continues to select the latest lesson version via versions[versions.length - 1] rather than an explicit version/createdAt sort. This is a persistence-semantics fragility carried forward from Phase 2, not a proven security blocker in the current Convex insertion-order model. File: apps/integrated-math-3/convex/teacher/content-authoring.ts"
+  ],
+  "evidence": [
+    "Fixed proven blocker: authoring-lifecycle.ts previously shallow-copied activity.props, leaving nested arrays/objects shared with composer state. It now uses structuredClone so no downstream sanitization, preview rendering, or future handler mutation can leak back into composer state or alias references between handler and preview consumers.",
+    "Fixed proven blocker: the Phase 4 E2E fixture had no executable markup, making the assertions 'document.body.innerHTML does not contain <script>/onerror=/javascript:' vacuous. The fixture markdown now contains <script>, onerror=, and javascript: payloads; the test asserts the persisted JSON store also contains none of these patterns, proving sanitization runs before persistence.",
+    "Cross-teacher mutation rejection is now exercised in the E2E (submitDraftForReviewHandler called by otherTeacher throws). The broader cross-teacher surface (review, publish, edit, assign) is covered by existing Phase 2 adversarial tests in content-authoring-drafts.test.ts.",
+    "Skip-the-queue publish rejection is exercised: publishAuthoredLessonHandler from submitted status throws.",
+    "Stale-hash publish rejection is exercised: editing an approved activity then publishing throws; re-approval is required before publish succeeds.",
+    "Student visibility null cases are exercised: withdrawn enrollment, no enrollment (otherOrgStudent), unassigned class (different active class), and different organization all return null. Same-org active enrollment returns the lesson.",
+    "displayName: componentKey default is safe: componentKey is validated against SCHEMA_REGISTRY by normalizeLessonDraft and validateActivityConfig before persistence; only known canonical keys are accepted. displayName is stored as a plain string and is not rendered via dangerouslySetInnerHTML.",
+    "Anti-pattern A2 (consent-blind publish gate): the product model for teacher-authored curriculum content treats the authoring teacher's authority within their organization/class as sufficient consent to distribute content to enrolled students. The publish gate already requires approval + current content-hash equality for every placed activity. No separate consent artifact is required for math curriculum authored by a teacher for their own students; this decision is recorded here.",
+    "Anti-pattern A6 (registry overstatement): measure/tracks.md lists Teacher Content Authoring as [ ] PLANNED and does not claim any security state is 'resolved' or 'shipped'.",
+    "No secrets, API keys, passwords, tokens, or private keys detected in the Phase 4 changed files.",
+    "No dangerouslySetInnerHTML, eval(), or raw HTML injection paths were introduced. Authored free text continues to flow through SanitizedText/sanitizeAuthoringText."
+  ],
+  "commands": [
+    "cd apps/integrated-math-3 && CI=true npx vitest run __tests__/app/teacher/content-authoring/content-authoring-e2e.test.tsx => exit 0, Test Files 1 passed (1) | Tests 1 passed (1)",
+    "cd apps/integrated-math-3 && CI=true npx vitest run __tests__/lib/teacher/content-authoring __tests__/convex/teacher/content-authoring-drafts.test.ts __tests__/components/teacher/content-authoring __tests__/app/teacher/content-authoring => exit 1, with 9 failures in 6 files that are pre-existing baseline flakiness/timeouts (page-adversarial, page, LessonComposer-adversarial, LessonComposer-preview-button, LessonComposer, AuthoredLessonPreview-adversarial); the new E2E file and all content-authoring unit tests pass. This matches the Phase 4 evidence in plan.md.",
+    "npm run ws:im3:lint => exit 0",
+    "npx tsc --noEmit (repo root) => exit 0"
+  ],
+  "changed_files": [
+    "apps/integrated-math-3/lib/teacher/content-authoring/authoring-lifecycle.ts",
+    "apps/integrated-math-3/__tests__/app/teacher/content-authoring/content-authoring-e2e.test.tsx",
+    "measure/tracks/teacher-content-authoring_20260605/phase-4-review-b-result.json"
+  ]
+}

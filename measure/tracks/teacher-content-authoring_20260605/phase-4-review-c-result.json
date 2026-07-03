@@ -1,0 +1,63 @@
+{
+  "track": "teacher-content-authoring_20260605",
+  "phase": "Phase 4 — Verification",
+  "role": "measure-review-c-ux-api",
+  "sha": "cbce6c5e",
+  "baseline_sha": "11745f948c4b32ee9fe5d0ae63c62920cbf4eb90",
+  "status": "pass",
+  "summary": "Phase 4 UX/API contract review found and fixed one production-blocking displayName gap; all other contract seams verified coherent.",
+  "blocking_findings": [],
+  "non_blocking_observations": [
+    {
+      "id": "OBS-1",
+      "category": "displayName-contract-gap",
+      "severity": "blocking-at-production",
+      "description": "The adapter (toTeacherDraftPayload) adds displayName: componentKey to activities, but normalizeLessonDraft creates fresh { id, componentKey, props } objects, stripping displayName. The handler at line 487 used activity.displayName which would be undefined at runtime. The E2E test passed because the mock DB does not enforce Convex schemas. Fixed by adding fallback: activity.displayName || activity.componentKey in the handler (commit 705e0cc3).",
+      "fix_commit": "705e0cc3"
+    },
+    {
+      "id": "OBS-2",
+      "category": "student-route-unwrap",
+      "severity": "info",
+      "description": "getAuthoredLessonForStudentHandler is tested and verified but not consumed by any student .tsx route. The student lesson page (app/student/lesson/[lessonSlug]/page.tsx) uses getLessonProgress instead. This is expected scope — the student-facing authored-lesson route is a follow-up beyond Phase 4."
+    },
+    {
+      "id": "OBS-3",
+      "category": "ux-applicability",
+      "severity": "info",
+      "description": "Phase 3 already ran ux-browser-review (phase-3-ux-result.json exists). Phase 4 is verification of existing surfaces (E2E lifecycle test), not new UI. UX review is not_applicable for this phase."
+    }
+  ],
+  "violations": [],
+  "contract_analysis": {
+    "adapter_to_handler": {
+      "description": "toTeacherDraftPayload projects ComposerState to TeacherDraftPayload. The saveTeacherDraftHandler accepts draft: unknown and runs normalizeLessonDraft + sanitizeLessonDraft + buildSanitizedLesson. The displayName field is now robustly handled via fallback.",
+      "shape_coherent": true,
+      "fix_applied": "705e0cc3"
+    },
+    "adapter_to_preview": {
+      "description": "TeacherDraftPayload is structurally compatible with AuthoredDraft (extra displayName field is ignored by TypeScript structural typing). AuthoredLessonPreview renders through ActivityRenderer with componentKey, activityId, mode, onSubmit, onComplete, and activityProps.",
+      "shape_coherent": true
+    },
+    "e2e_seam_exercised": {
+      "description": "Test uses real createComposerState + composerReducer (Phase 3 state) → toTeacherDraftPayload (adapter) → saveTeacherDraftHandler (Phase 2). This is the real UI-to-API seam a teacher traverses.",
+      "is_real_seam": true
+    },
+    "preview_props_match_student": {
+      "description": "AuthoredLessonPreview passes componentKey, activityId, mode, onSubmit, onComplete, and activityProps to ActivityRenderer, which spreads them to the registered component. These are the same props students see in the student lesson renderer.",
+      "props_match": true
+    },
+    "student_visibility_dto": {
+      "description": "getAuthoredLessonForStudentHandler returns AuthoredLessonForStudent with phases/sections/content. No student route currently consumes this handler — it is tested but unwired.",
+      "handler_wired_to_route": false,
+      "expected_for_phase_4": true
+    },
+    "route_parity": {
+      "description": "Composer route at /teacher/content-authoring and preview at ?preview=1 exist. Phase 3 UX browser review confirmed both routes work. Phase 4 verification does not introduce new UI surfaces.",
+      "routes_exist": true,
+      "ux_applicable": false
+    }
+  },
+  "fix_commit": "705e0cc3",
+  "fix_description": "Added displayName fallback (activity.displayName || activity.componentKey) at both activity persistence points in content-authoring.ts lines 487 and 969, ensuring the Convex activities table v.string() schema column is always populated regardless of whether normalizeLessonDraft propagates the displayName field."
+}

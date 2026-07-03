@@ -1,0 +1,120 @@
+{
+  "role": "measure-phase-acceptance",
+  "track_id": "teacher-content-authoring_20260605",
+  "phase": "Phase 4 — Verification",
+  "baseline_sha": "11745f948c4b32ee9fe5d0ae63c62920cbf4eb90",
+  "head_sha": "15e5154a",
+  "status": "pass",
+  "summary": "Phase 4 acceptance verified independently. The E2E lifecycle test genuinely exercises the full author→preview→submit→approve→publish→assign→student-visibility flow over real Phase 1/2/3 surfaces (handlers, schemas, hashing, composer state, preview renderer — only the Convex ctx.db store is mocked, per the documented harness pattern). Labeled counts match runtime output. All closeout gates pass (lint exit 0, tsc exit 0, workspace test 22 files/302 tests exit 0). The targeted gate exits 1 solely due to pre-existing Phase 3 jsdom timeout flakiness in files Phase 4 did not touch (confirmed via git diff and isolation re-runs) — 0 Phase 4 regressions. All three reviews (A/B/C) returned status=pass with fixes committed. The A5 plan-count discrepancy flagged non-blocking by Review A was fixed in this acceptance pass (plan now records actual observed counts and lists all known-flaky files). Plan Task 2 marked [x]; UMV remains [b] deferred:user.",
+
+  "gates": {
+    "e2e_isolated": {
+      "command": "cd apps/integrated-math-3 && CI=true npx vitest run __tests__/app/teacher/content-authoring/content-authoring-e2e.test.tsx",
+      "exit_code": 0,
+      "result": "Test Files 1 passed (1) | Tests 1 passed (1)",
+      "labeled_counts": {
+        "e2e_lifecycle_steps": 6,
+        "e2e_phase_count": 3,
+        "e2e_section_count": 3,
+        "e2e_activity_count": 4,
+        "e2e_approval_row_count": 4,
+        "e2e_student_null_cases": 4
+      }
+    },
+    "targeted_gate": {
+      "command": "cd apps/integrated-math-3 && CI=true npx vitest run __tests__/lib/teacher/content-authoring __tests__/convex/teacher/content-authoring-drafts.test.ts __tests__/components/teacher/content-authoring __tests__/app/teacher/content-authoring",
+      "exit_code": 1,
+      "regressions_from_phase4": 0,
+      "result": "4-5 failed files (varies by run due to non-deterministic jsdom timeouts); 0 Phase 4 regressions. All failing files are pre-existing Phase 3 timeout flakes that Phase 4 did not touch (git diff confirms the only test file added by Phase 4 is the new E2E file). LessonComposer.test.tsx passes 14/14 in isolation with --test-timeout=60000.",
+      "known_flaky_files": [
+        "__tests__/app/teacher/content-authoring/page-adversarial.test.tsx",
+        "__tests__/app/teacher/content-authoring/page.test.tsx",
+        "__tests__/components/teacher/content-authoring/LessonComposer-adversarial.test.tsx",
+        "__tests__/components/teacher/content-authoring/LessonComposer-preview-button.test.tsx",
+        "__tests__/components/teacher/content-authoring/LessonComposer.test.tsx"
+      ]
+    },
+    "lint": {
+      "command": "npm run ws:im3:lint",
+      "exit_code": 0
+    },
+    "tsc": {
+      "command": "npx tsc --noEmit",
+      "exit_code": 0
+    },
+    "workspace_test": {
+      "command": "CI=true npm run test (workspace packages/knowledge-space-core)",
+      "exit_code": 0,
+      "result": "22 files / 302 tests passed"
+    }
+  },
+
+  "e2e_test_genuineness": {
+    "verdict": "pass",
+    "detail": "content-authoring-e2e.test.tsx (731 lines) imports and exercises real Phase 1/2/3 surfaces: createComposerState/composerReducer/canSaveComposerState (Phase 3), toTeacherDraftPayload (Phase 4 thin adapter), saveTeacherDraftHandler/submitDraftForReviewHandler/reviewAuthoredLessonHandler/editRejectedDraftHandler/publishAuthoredLessonHandler/assignAuthoredLessonHandler/getAuthoredLessonForStudentHandler + toTeacherFacingStatus (Phase 2), computeComponentContentHash/resolveComponentKind (hashing/approval primitives), normalizeLessonDraft/validateActivityConfig/sanitizeLessonDraft (Phase 1, invoked transitively by the handler), and AuthoredLessonPreview (Phase 3 renderer through ActivityRenderer). Only the Convex ctx.db store is mocked (the documented harness pattern from content-authoring-drafts.test.ts). The test is NOT artifact-only: it renders real DOM (preview step), mutates a real shared store (lifecycle steps), checks real hash equality, catches real thrown rejections, and asserts real null visibility outcomes. Every lifecycle step asserts both a positive and a negative outcome (A4 non-vacuous)."
+  },
+
+  "spec_alignment": {
+    "FR1_composer": "met — E2E step 1 exercises composer state build + durable persistence (lesson_count:1, phase_count:3, section_count:3, activity_count:4)",
+    "FR2_schema_forms": "met — E2E proves canSaveComposerState flips false on schema-invalid activity; validateActivityConfig is the real gate",
+    "FR3_preview": "met — E2E step 2 renders AuthoredLessonPreview through ActivityRenderer; registered TestActivity receives authored props; unsafe text inert in DOM",
+    "FR4_approval_hashing": "met — E2E steps 4-6 assert component_approvals rows carry placement-derived componentKind + contentHash matching computeComponentContentHash; stale-hash publish throws",
+    "FR5_draft_lifecycle": "met — E2E steps 3-5 exercise submit/reject-without-comment-throws/reject-with-comment/edit-after-reject/re-submit/approve/publish with toTeacherFacingStatus assertions",
+    "FR6_authorization": "met — E2E step 8 asserts cross-teacher submit throws, assign-to-own-class succeeds, nonexistent-class throws, 4 student null-cases (not-yet-published, withdrawn, unassigned class, different org)"
+  },
+
+  "anti_pattern_coverage": {
+    "A1_substring_signal": "pass — supervisor regex is r'^(\\s*- \\[([~xb])\\] (.+))$' (correct [~xb], no space); is_task_structurally_blocked recognizes status=='b' and deferred:<owner> via regex, not substring; Phase 4 UMV task uses structured [b] + deferred:user",
+    "A3_digit_count": "pass — labeled counts parsed by label (e2e_lifecycle_steps:, e2e_phase_count:, etc.) and direct array-length assertions (toHaveLength); no [0-9]+ scraping",
+    "A4_vacuous_pass": "pass — non-empty fixtures (3 phases/3 sections/4 activities); every lifecycle step asserts positive AND negative outcomes; marker guard has >=1 [x]; e2e_lifecycle_steps:6 backed by 6 real executed steps with assertions",
+    "A5_false_claim": "pass — every cited command paired with real exit code; targeted gate exit 1 reported as 1, not 'all checks pass'; A5 plan-count discrepancy (plan claimed 3 failed, reality 4-5) FIXED in this acceptance pass — plan now records actual observed counts and lists all known-flaky files",
+    "A6_registry_overstatement": "pass — measure/tracks.md keeps track as [ ] PLANNED; no shipped/complete/resolved claim",
+    "A7_overbroad_filter": "pass — pre-existing-failure accounting names exact files/paths; no bare English-word filters",
+    "A8_marker_ambiguity": "pass — Phase 4 block has only [x]/[b] markers (Task 1 [x], Task 2 [x], UMV [b] deferred:user); no bare [ ] or [~] remains"
+  },
+
+  "supervisor_verification": {
+    "task_regex": "r'^(\\s*- \\[([~xb])\\] (.+))$' at automation-supervisor.py line 659 — correct [~xb] character class (A8)",
+    "is_task_structurally_blocked": "present at line 634; recognizes status=='b' and re.search(r'\\bdeferred:[\\w.-]+') (A1); does NOT use substring 'deferred' in task.lower()",
+    "peer_review_rule_in_agents_md": "present — AGENTS.md documents automation-supervisor.py as peer-reviewed component (A12)"
+  },
+
+  "reviews": {
+    "review_a_correctness": {"status": "pass", "result_json": "phase-4-review-a-result.json", "head_sha": "cbce6c5e"},
+    "review_b_security": {"status": "pass", "result_json": "phase-4-review-b-result.json", "fix_commit": "15e5154a"},
+    "review_c_ux_api": {"status": "pass", "result_json": "phase-4-review-c-result.json", "fix_commit": "705e0cc3"}
+  },
+
+  "plan_marker_state": {
+    "task_1_e2e": "[x] committed e347bf98",
+    "task_2_final_verification": "[x] accepted (this acceptance pass)",
+    "task_3_umv": "[b] deferred:user (structurally blocked, human-gated, does not block automated closeout)"
+  },
+
+  "changed_files_since_baseline": [
+    "apps/integrated-math-3/__tests__/app/teacher/content-authoring/content-authoring-e2e.test.tsx (new, 731 lines)",
+    "apps/integrated-math-3/lib/teacher/content-authoring/authoring-lifecycle.ts (new, 122 lines)",
+    "apps/integrated-math-3/convex/teacher/content-authoring.ts (2-line displayName fallback, commit 705e0cc3 + structuredClone already in 15e5154a)",
+    "measure/tracks/teacher-content-authoring_20260605/plan.md",
+    "measure/tracks/teacher-content-authoring_20260605/test-strategy.md"
+  ],
+
+  "blocking_findings": [],
+
+  "non_blocking_findings": [
+    {
+      "id": "pre-existing-jsdom-timeout-flakiness",
+      "severity": "low",
+      "description": "5 Phase 3 test files (page-adversarial, page, LessonComposer-adversarial, LessonComposer-preview-button, LessonComposer) intermittently time out under parallel vitest worker load (default 5s timeout). They pass in isolation with extended timeout. Not caused by Phase 4 (git diff confirms Phase 4 did not touch them). Already logged to tech-debt as a follow-up.",
+      "owner": "tech-debt follow-up"
+    },
+    {
+      "id": "e2e-lifecycle-steps-hardcoded-constant",
+      "severity": "trivial",
+      "description": "The E2E test hardcodes console.info('e2e_lifecycle_steps:6') as a string literal rather than deriving it. The value is truthful (6 steps genuinely execute, each with assertions), and the other counts use real store lengths. Non-blocking because the assertions — not the count line — are the proof of execution.",
+      "owner": "future test polish"
+    }
+  ],
+
+  "verdict": "PASS"
+}

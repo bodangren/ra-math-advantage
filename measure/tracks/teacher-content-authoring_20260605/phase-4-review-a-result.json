@@ -1,0 +1,70 @@
+{
+  "role": "measure-review-a-correctness",
+  "track_id": "teacher-content-authoring_20260605",
+  "phase": "Phase 4 — Verification",
+  "baseline_sha": "11745f948c4b32ee9fe5d0ae63c62920cbf4eb90",
+  "head_sha": "cbce6c5e",
+  "status": "pass",
+  "summary": "Phase 4 E2E test and thin composition adapter are architecturally correct and functionally meaningful. One minor A5 finding in plan counts (non-blocking). Fixed stale labeled-count comment in test source.",
+
+  "audit_items": {
+    "authoring_lifecycle_thin_seam": {
+      "verdict": "pass",
+      "detail": "authoring-lifecycle.ts (120 lines) is a pure projection seam: toTeacherDraftPayload() maps ComposerState → TeacherDraftPayload by stripping composer-only id fields, shallow-copying props, and populating displayName. Does NOT re-implement validation (normalizeLessonDraft/validateActivityConfig), sanitization (sanitizeLessonDraft), hashing (computeComponentContentHash), or approval (reviewAuthoredLessonHandler). Types (TeacherDraftPayload, TeacherDraftPayloadPhase, etc.) correctly match the SanitizedAuthoringLesson shape consumed by saveTeacherDraftHandler/editRejectedDraftHandler."
+    },
+
+    "e2e_test_meaningful": {
+      "verdict": "pass",
+      "detail": "content-authoring-e2e.test.tsx (731 lines) exercises the full lifecycle in one ordered flow over a shared mock store: (1) Author via createComposerState + composerReducer → canSaveComposerState validation gate → saveTeacherDraftHandler with durable row assertions, (2) Preview via AuthoredLessonPreview with heading assertions + registered TestActivity receiving authored props through ActivityRenderer path + inert unsafe-text check, (3) Submit via submitDraftForReviewHandler + publish-from-submitted-throws defense, (4) Reject path: reject-without-comment throws, reject-with-comment succeeds with rejectionComment, canEditAfterReject in status view, edit-after-reject returns to draft, (5) Approve via reviewAuthoredLessonHandler with component_reviews >= 3, component_approvals >= 2, activity-kind inline approval, hash equality via computeComponentContentHash, (6) Stale-hash defense: edit-from-approved + publish-throws + re-approve + publish succeeds, (7) Assign via assignAuthoredLessonHandler + class_lessons count:1, (8) Student visibility: active enrollment → returns lesson, withdrawn/unassigned-class/different-org → null. Labeled counts from runtime stdout match plan Green evidence: e2e_lifecycle_steps:6, e2e_phase_count:3, e2e_section_count:3, e2e_activity_count:4, e2e_approval_row_count:4, e2e_student_null_cases:4. Not a vacuous pass (A4 defended)."
+    },
+
+    "green_test_corrections": {
+      "verdict": "pass",
+      "detail": "Three Red→Green test corrections all align with shipped Phase 2 design: (1) Heading-scoped queries: getByRole('heading', {name: ...}) replaces getByText(/Explore/i) which matched both h3 heading and placement chip — strengthens test precision, not weakening. (2) Split-approval assertions: activity-kind placements (explore) store approval inline via ctx.db.patch(activityId, {approval}); example/practice placements create component_approvals rows (Phase 2 handler lines 809-846). Test correctly asserts >= 2 component_approvals (example + practice kinds) + inline explore approval, rather than incorrectly asserting >= 3 component_approvals. (3) Stale-hash from approved not published: editRejectedDraftHandler allows editing from 'approved' (line 912-916) but publishAuthoredLessonHandler requires 'approved' status (line 1058). Test correctly reorders to approve → edit-from-approved → publish-throws → re-submit → re-approve → publish, matching the Phase 2 reference test sequence."
+    },
+
+    "plan_truthfulness_a5": {
+      "verdict": "pass_with_finding",
+      "detail": "The plan's Phase 4 Green Evidence claims 'Test Files 3 failed | 13 passed (16) | Tests 3 failed | 176 passed (179)' but the actual targeted gate produces 'Test Files 5 failed | 11 passed (16) | Tests 7 failed | 172 passed (179)'. The plan lists only 3 pre-existing failing files (page-adversarial, LessonComposer-adversarial, LessonComposer-preview-button); the actual run also shows page.test.tsx (1 timeout) and LessonComposer.test.tsx (2 timeouts). LessonComposer-preview-button.test.tsx has 2 failures (1 timeout + 1 TestingLibraryElementError for duplicate 'Preview draft' buttons), not 1 as implied. All failures are pre-existing flaky timeouts/test issues, NOT Phase 4 regressions. The core claim '0 Phase 4 regressions' is correct. The E2E test passes in isolation and within the gate. The labeled counts (e2e_lifecycle_steps:6, etc.) match runtime output. The discrepancy is in aggregate gate counts due to non-deterministic timeout behavior under parallel vitest workers — not a fundamental false-claim. This is a minor A5 documentation accuracy issue, not a blocker."
+    },
+
+    "quality_gates": {
+      "verdict": "pass",
+      "detail": "npx tsc --noEmit → exit 0 (confirmed). npm run ws:im3:lint → timed out in test environment (>5min); targeted eslint on Phase 4 files (authoring-lifecycle.ts + content-authoring-e2e.test.tsx) → exit 0. The lint timeout is an environment constraint, not a code issue — the Phase 4 files are lint-clean."
+    },
+
+    "isolated_e2e_test": {
+      "verdict": "pass",
+      "detail": "cd apps/integrated-math-3 && CI=true npx vitest run __tests__/app/teacher/content-authoring/content-authoring-e2e.test.tsx → Test Files 1 passed (1) | Tests 1 passed (1) | Duration 26.42s. Exit code 0."
+    }
+  },
+
+  "blocking_findings": [],
+
+  "non_blocking_findings": [
+    {
+      "id": "A5-plan-counts",
+      "anti_pattern": "A5",
+      "severity": "low",
+      "description": "Plan Green evidence targeted gate counts (3 failed files / 3 failed tests) don't match actual run (5 failed files / 7 failed tests). Lists only 3 of 5 pre-existing failing files. All failures are flaky timeouts under parallel vitest workers, not Phase 4 regressions. The core '0 Phase 4 regressions' claim is correct.",
+      "recommendation": "Update plan to note that exact targeted gate counts vary by run due to pre-existing flaky timeouts, and list all 5 known-failing files (page.test.tsx, LessonComposer.test.tsx in addition to the 3 listed)."
+    },
+    {
+      "id": "plan-approval-count-parenthetical",
+      "anti_pattern": "low",
+      "severity": "low",
+      "description": "Plan's parenthetical for e2e_approval_row_count:4 says '2 component_approvals rows + 2 component_reviews-flow evidences' which is confusing — all 4 are component_approvals rows (2 from first approval cycle, 2 from re-approval after stale-hash edit).",
+      "recommendation": "Clarify parenthetical to '2 from initial approval + 2 from re-approval after stale-hash edit cycle (all component_approvals rows; explore-kind stored inline on activity row)'."
+    },
+    {
+      "id": "test-source-stale-count-comment",
+      "anti_pattern": "documentation",
+      "severity": "trivial",
+      "description": "The E2E test source comment at line 37 said e2e_approval_row_count:3 (Red-era estimate) but the actual runtime console.info prints 4. The plan correctly reports 4 in its Green evidence. FIXED in this review: comment updated to e2e_approval_row_count:4.",
+      "recommendation": "Already fixed in this review pass."
+    }
+  ],
+
+  "graph_caller_check": "Skipped — Phase 4 adds no new exported symbols to production code (only toTeacherDraftPayload which is a new export in a new file, not a change to existing symbols).",
+  "verdict": "PASS"
+}

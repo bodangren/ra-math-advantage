@@ -34,7 +34,7 @@ import { AuthoredLessonPreview } from '../../../../components/teacher/content-au
  *   e2e_activity_count:4
  *   e2e_phase_count:3
  *   e2e_section_count:3
- *   e2e_approval_row_count:3
+ *   e2e_approval_row_count:4
  *   e2e_student_null_cases:4
  */
 import { toTeacherDraftPayload } from '../../../../lib/teacher/content-authoring/authoring-lifecycle';
