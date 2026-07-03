@@ -5,18 +5,18 @@ Boundary rule: `knowledge-space-core` / `-practice` stay domain-neutral.
 
 ## Phase 1 — Canonical Contract & Schema
 
-- [x] Task: Bring kst-srs.v2 contract into the repo
+- [x] Task: Bring kst-srs.v2 contract into the repo (commit e5f8681d)
     - [x] Copy SPECIFICATION.md (kst-srs.v2) into the repo (packages/knowledge-space-core/ or measure/) — file already in-repo at kst-srs.v2/SPECIFICATION.md; co-location deferred to Phase 5 per test-strategy §0.1
     - [x] Reconcile measure/knowledge-space.md into an architecture summary pointing at it
     - [x] Update measure/index.md with the new reference
-- [x] Task: Define Knowledge State & Mastery types/schemas
+- [x] Task: Define Knowledge State & Mastery types/schemas (commit e5f8681d)
     - [x] masteryLevel (0–1), four-way state (mastered/decaying/inProgress/untouched)
     - [x] KnowledgeState shape; configurable thresholds module (masteryEnter 0.90, masteryExit 0.70, etc.)
     - [x] Zod schemas + exported TypeScript types in knowledge-space-core
-- [x] Task: Define SRS→KST bridge interface/types
+- [x] Task: Define SRS→KST bridge interface/types (commit e5f8681d)
     - [x] Input: SRS card states + ObjectiveProficiencyResult[]; Output: learner state
     - [x] Place interface in a domain-neutral surface (no app/convex imports)
-- [x] Task: Define getKnowledgeState / getOuterFringe exported signatures
+- [x] Task: Define getKnowledgeState / getOuterFringe exported signatures (commit e5f8681d)
     - [x] Time-aware signatures; structured so Track 2 can swap weighted readiness into the fringe
 - [b] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md) deferred:user
 
