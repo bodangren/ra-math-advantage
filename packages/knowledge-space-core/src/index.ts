@@ -175,3 +175,25 @@ export type {
   NextSkillPathItem,
   AnnotatedPathEntry,
 } from './transfer-eligibility';
+
+// ---------------------------------------------------------------------------
+// Phase 3 — Transfer Skip & Confirmation Check
+// See measure/tracks/transfer-credit-runtime_20260605/{plan,test-strategy}.md
+// ---------------------------------------------------------------------------
+
+export {
+  applyTransferSkip,
+  revertTransferSkip,
+  buildConfirmationCheck,
+  shouldRequireConfirmationCheck,
+  grantSkipAfterCheck,
+  TRANSFER_SKIP_POLICY_DEFAULT,
+  transferSkipPolicySchema,
+} from './transfer-skip';
+export type {
+  TransferSkipPolicy,
+  TransferSkipRecord,
+  TransferSkipState,
+  ConfirmationCheckResult,
+  ConfirmationCheck,
+} from './transfer-skip';
