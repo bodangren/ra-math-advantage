@@ -3,10 +3,10 @@
   "type": "feature",
   "status": "new",
   "created_at": "2026-06-05T00:00:00Z",
-  "updated_at": "2026-06-05T00:00:00Z",
+  "updated_at": "2026-07-04T00:00:00Z",
   "description": "Remediate WCAG 2.1 AA findings from the accessibility-audit baseline across student/teacher routes and activity components in all apps. Tier 1 backlog (finish half-done work); the audit track established the baseline but fixed nothing.",
   "program": "Quality & Completion Backlog",
   "estimated_tasks": 18,
-  "actual_tasks": null,
-  "deviation_notes": ""
+  "actual_tasks": 18,
+  "deviation_notes": "test-strategy.md committed 2026-07-04 by measure-strategy (track setup). Task-count reconciliation: plan.md has 17 visible [ ] checkboxes (4+4+3+3+3); actual_tasks set to 18 per estimated_tasks alignment and orchestrator instruction. The 17-vs-18 drift is logged as a Phase 1 Task 1 reconciliation item (findings-doc guard will reconcile the count). Strategy is falsifiable: every test has a stated falsification condition; A1-A12 defenses mapped per phase in §3. Scope boundaries: axe-core via jsdom for Red/Green (no dev server); 6 representative routes not all ~20; Playwright e2e/accessibility.spec.ts is human-run audit tool, NOT autonomous gate (gate is vitest axe-injection proof test in Phase 5). No new npm deps; axe-core imported from hoisted root node_modules."
 }
