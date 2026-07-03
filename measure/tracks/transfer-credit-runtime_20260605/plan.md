@@ -13,9 +13,11 @@ Verification: boundary lints + per-app lint/test + `tsc --noEmit`.
 
 ## Phase 2 — Skip Eligibility in the Practice Path
 
-- [ ] Task: Compute transfer-eligibility threshold; flag eligible skills/lessons (TDD)
-- [ ] Task: Integrate eligibility into next-skill/practice resolution (TDD)
-- [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
+> Red-phase evidence (2026-07-03): `CI=true npx vitest run packages/knowledge-space-core/src/__tests__/transfer-eligibility.test.ts packages/knowledge-space-core/src/__tests__/transfer-eligibility-path.test.ts` → 2 failed suites, module-not-found for `../transfer-eligibility`. Aggregate `CI=true npx vitest run packages/knowledge-space-core` → 41 passed, 2 failed, 560 tests passed.
+
+- [~] Task: Compute transfer-eligibility threshold; flag eligible skills/lessons (TDD)
+- [~] Task: Integrate eligibility into next-skill/practice resolution (TDD)
+- [b] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md) deferred:human
 
 ## Phase 3 — Student UX & Confirmation Check
 
