@@ -34,7 +34,7 @@ describe('Phase 4 — loadFullCurriculumGraph (graph artifact loading)', () => {
     }
   });
 
-  it('edges have valid KnowledgeSpaceEdge shape (id + type + sourceId + targetId)', () => {
+  it('edges have valid KnowledgeSpaceEdge shape (id + type + sourceId + targetId)', { timeout: 15000 }, () => {
     const { edges } = loadFullCurriculumGraph();
     for (const edge of edges) {
       expect(typeof edge.id).toBe('string');

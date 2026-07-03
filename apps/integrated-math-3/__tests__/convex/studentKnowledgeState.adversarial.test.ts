@@ -310,6 +310,31 @@ describe('Phase 4 — adversarial: performance sanity', () => {
   });
 });
 
+describe('Phase 5 — adversarial: graph-loader determinism', () => {
+  it('loading the graph twice produces identical output', () => {
+    const graph1 = loadFullCurriculumGraph();
+    const graph2 = loadFullCurriculumGraph();
+
+    expect(graph1.nodes.length).toBe(graph2.nodes.length);
+    expect(graph1.edges.length).toBe(graph2.edges.length);
+
+    // Same nodes (same IDs, same order)
+    for (let i = 0; i < graph1.nodes.length; i++) {
+      expect(graph1.nodes[i].id).toBe(graph2.nodes[i].id);
+      expect(graph1.nodes[i].kind).toBe(graph2.nodes[i].kind);
+      expect(graph1.nodes[i].title).toBe(graph2.nodes[i].title);
+    }
+
+    // Same edges (same IDs, same order)
+    for (let i = 0; i < graph1.edges.length; i++) {
+      expect(graph1.edges[i].id).toBe(graph2.edges[i].id);
+      expect(graph1.edges[i].type).toBe(graph2.edges[i].type);
+      expect(graph1.edges[i].sourceId).toBe(graph2.edges[i].sourceId);
+      expect(graph1.edges[i].targetId).toBe(graph2.edges[i].targetId);
+    }
+  });
+});
+
 describe('Phase 4 — adversarial: data isolation', () => {
   it('cards from different students in same org do not affect state', async () => {
     const otherStudentCards: SrsCardRow[] = [

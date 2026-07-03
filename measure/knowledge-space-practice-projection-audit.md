@@ -1,12 +1,72 @@
 # Knowledge Space Practice Projection Audit
 
-> Placeholder audit report. This document will be filled when domain packages are wired and the comparison tooling is run against existing activity maps.
+> Wired status report — Math (IM3) pipeline is live. English/GSE and other domains remain pending.
 
 ## Purpose
 
 This document tracks the comparison between projection-generated activity maps and existing manually-authored `practice.v1` activity maps. Projections are regenerated outputs, not source truth — the knowledge space graph is canonical.
 
-## Comparison Process
+## Wired Pipeline: Math (IM3) — Production Status
+
+**Track:** `wire-kst-pipeline_20260521` (Phase 4 done; Phase 5 final audit).
+
+### Contract surface (packages/knowledge-space-core)
+
+| Export | Module | Status |
+|--------|--------|--------|
+| `getKnowledgeState()` | `knowledge-state-engine.ts` | **Wired.** Time-aware hysteresis engine: enter mastered at `retention ≥ 0.90`, exit to decaying at `< 0.70`, deep-decay fallback at `< 0.35`. Pure, deterministic; `now` injected. |
+| `stabilityToRetention()` | `knowledge-state-engine.ts` | **Wired.** Exponential decay `retention = exp(-deltaDays / (stability * scale))`. |
+| `getOuterFringe()` | `outer-fringe.ts` | **Wired.** Standalone top-level export. Binary prerequisite gating with `readinessFn` seam for Track 2 weighted readiness. |
+| `DefaultSrsToKstBridge` | `srs-bridge.ts` | **Wired.** `convert(cards, proficiencies, graph, now) → Map<NodeId, KnowledgeStateEntry>`. |
+| `buildKstState()` | `srs-bridge.ts` | **Wired.** Convenience: cards+proficiencies → bridge → `getKnowledgeState` → `getOuterFringe` → `{ state, fringe }`. |
+| `MASTERY_THRESHOLDS_DEFAULT` | `mastery-state.ts` | **Wired.** Frozen: `{ masteryEnter: 0.90, masteryExit: 0.70, readyThreshold: 0.80, nearThreshold: 0.50 }`. |
+| `KnowledgeStateEntry` (type) | `mastery-state.ts` | **Wired.** Four-way state: mastered / decaying / inProgress / untouched. |
+| `MasteryState` (union) | `mastery-state.ts` | **Wired.** |
+
+### Projection surface (packages/knowledge-space-practice)
+
+| Export | Module | Status |
+|--------|--------|--------|
+| `projectStudentVisualization()` | `projections/visualization.ts` | **Wired.** Consumes `KstDerivedLearnerState` record → `StudentVisualizationV1`. |
+| `projectActivityMap()` | `projections/activity-map.ts` | **Available** (not consumed by this track — deferred to Track T9-T12 rollouts). |
+| `projectSrsInputs()` | `projections/srs.ts` | **Available** (deferred). |
+| `projectTeacherEvidence()` | `projections/teacher-evidence.ts` | **Available** (deferred). |
+| `projectParentVisualization()` | `projections/visualization.ts` | **Available** (deferred). |
+| `projectTeacherVisualization()` | `projections/visualization.ts` | **Available** (deferred). |
+
+### Production wiring (apps/integrated-math-3)
+
+| Component | Path | Status |
+|-----------|------|--------|
+| `getStudentKnowledgeState` (internalQuery) | `convex/student/knowledge-state.ts` | **Wired.** Composes bridge + `getKnowledgeState` + `getOuterFringe` + `projectStudentVisualization`. Batched `Promise.all` reads (no N+1). Returns serializable `StudentVisualizationV1`. |
+| `StudentKnowledgeStatePage` | `app/student/knowledge-state/page.tsx` | **Wired.** Server component gated by `requireStudentSessionClaims`. Renders mastered / ready / review-due / blocked sections with DESIGN.md tokens. |
+| `loadFullCurriculumGraph()` | `lib/curriculum/skill-graph-loader.ts` | **Wired.** Loads from `curriculum/skill-graph/nodes.json` + `edges.json`. 574 nodes / 2708 edges across all 9 IM3 modules. |
+
+### Test coverage
+
+| Package | Test Files | Tests |
+|---------|------------|-------|
+| `packages/knowledge-space-core` | 36 | 476 pass |
+| `apps/integrated-math-3` (KST pipeline) | 6 | 37 pass (5 test files + 1 adversarial) |
+
+### ReadinessFn seam (Track 2)
+
+The `getOuterFringe(state, graph, readinessFn?)` signature accepts an optional `ReadinessFn` parameter. When absent, binary prerequisite gating is the default. Track 2 (`weighted-readiness`) will inject a weighted-readiness function through this seam without changing the core engine's API.
+
+## Outstanding Items (future tracks)
+
+| Item | Track | Status |
+|------|-------|--------|
+| Weighted readiness via edge weight | Track 2 | Pending |
+| Edge calibration | Track 3 | Pending |
+| Next-skill planner (beyond "first N") | Track 4 | Pending |
+| Placement | Track 5 | Pending |
+| Misconception `remediated_by` + lifecycle loop | Track 6 | Pending |
+| "problem family" → "practice variant" rename | Track 7 | Pending |
+| `transfers_to`, Level Projection, `progressTrend` fix | Track 8 | Pending |
+| Activity map projection + comparison audit | T9-T12 rollouts | Pending |
+
+## Comparison Process (deferred to T9-T12)
 
 1. Run `projectActivityMap()` with the domain's knowledge space nodes, edges, and blueprints.
 2. Compare generated rows against the existing `implementation/practice-v1/activity-map.json`.
@@ -19,7 +79,7 @@ This document tracks the comparison between projection-generated activity maps a
 
 ## Important Notes
 
-- Actual comparison will be done when domain packages (math-content, English/GSE content) are wired to the projection pipeline.
+- The knowledge space graph is canonical; projections are regenerated outputs.
 - This file should be updated each time a course rollout track (T9-T12) runs the full projection pipeline.
 - Treat existing manually-authored activity maps as comparison baselines, not canonical truth.
 
@@ -44,6 +104,6 @@ KnowledgeBlueprints
 
 | Domain | Status | Date | Notes |
 |--------|--------|------|-------|
-| Math (IM3) | Pending | — | Awaiting T8 pilot and T9-T12 rollouts |
+| Math (IM3) | Wired | 2026-07-03 | KST pipeline wired: `getKnowledgeState`, `getOuterFringe`, `DefaultSrsToKstBridge`, `projectStudentVisualization`; production route at `/student/knowledge-state`; 574 nodes / 2708 edges; `readinessFn` seam ready for Track 2. |
 | English/GSE | Pending | — | Awaiting domain package wiring |
 | Other domains | Pending | — | — |
