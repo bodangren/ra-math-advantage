@@ -400,9 +400,9 @@ describe('Phase 4 — End-to-end lifecycle', () => {
       expect(screen.getByTestId('authored-lesson-preview')).toBeInTheDocument();
     });
     expect(screen.getByText(/teacher preview/i)).toBeInTheDocument();
-    expect(screen.getByText(/Explore/i)).toBeInTheDocument();
-    expect(screen.getByText(/Worked Example/i)).toBeInTheDocument();
-    expect(screen.getByText(/Guided Practice/i)).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Explore' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Worked Example' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Guided Practice' })).toBeInTheDocument();
     expect(screen.getByText(/Use the graphing tool/i)).toBeInTheDocument();
 
     // Authored props reach the registered activity through ActivityRenderer.
@@ -496,13 +496,29 @@ describe('Phase 4 — End-to-end lifecycle', () => {
     expect(approved.success).toBe(true);
     expect(approved.teacherFacingStatus).toBe('approved');
 
-    // Every placed example/practice activity has a component_approvals row
-    // with the placement-derived kind and a fresh content hash.
+    // All four authored activities are inserted into the activities table.
     const placedActivities = stores.activities;
     expect(placedActivities).toHaveLength(4);
 
+    // The shipped Phase 2 design records one `component_reviews` row per
+    // placed section (explore + worked_example + guided_practice = 3).
+    expect(stores.component_reviews.length).toBeGreaterThanOrEqual(3);
+
+    // Approval storage is split by kind: `activity`-kind placements (explore)
+    // store approval inline on `activities.approval`; `example`/`practice`
+    // placements (worked_example, guided_practice) create `component_approvals`
+    // rows. So exactly the two non-activity placements are in the table.
     const approvalRows = stores.component_approvals;
-    expect(approvalRows.length).toBeGreaterThanOrEqual(3);
+    expect(approvalRows.length).toBeGreaterThanOrEqual(2);
+    expect(
+      approvalRows.every((a) => a.componentKind === 'example' || a.componentKind === 'practice'),
+    ).toBe(true);
+
+    // The explore (activity-kind) placement carries an inline approval.
+    const exploreActivity = stores.activities.find(
+      (a) => a.componentKey === 'graphing-explorer',
+    );
+    expect(exploreActivity?.approval?.status).toBe('approved');
 
     for (const approval of approvalRows) {
       const activity = stores.activities.find((a) => a._id === approval.componentId);
@@ -524,14 +540,7 @@ describe('Phase 4 — End-to-end lifecycle', () => {
       expect(approval.contentHash).toBe(expectedHash);
     }
 
-    // --- 7. Publish -------------------------------------------------------
-    const published = await publishAuthoredLessonHandler(mutCtx, {
-      userId: teacher._id as Id<'profiles'>,
-      lessonId: saved.lessonId,
-    });
-    expect(published.success).toBe(true);
-    expect(published.teacherFacingStatus).toBe('published');
-
+    // --- 7. Stale-hash defense + Publish ----------------------------------
     // Stale-hash defense: edit an approved activity then publish throws.
     await editRejectedDraftHandler(mutCtx, {
       userId: teacher._id as Id<'profiles'>,
