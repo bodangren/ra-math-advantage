@@ -36,11 +36,14 @@ Verification: boundary lints + per-app lint/test + `tsc --noEmit`.
 - [x] Task: Measure - User Manual Verification 'Phase 3' (automated via §4 gates in autonomous mode) — checkpoint c9f740d1
 
 ## Phase 4 — Teacher Visibility & Verification
+[checkpoint: 84a6611e]
 
 > Red-phase evidence (2026-07-03): `CI=true npx vitest run packages/knowledge-space-core/src/__tests__/transfer-teacher-audit.test.ts` → RED, module-not-found for `../transfer-teacher-audit`. `CI=true npx vitest run --root apps/integrated-math-3 __tests__/teacher/transfer-credit/TransferCreditAuditPanel.test.tsx` → RED, missing `@/components/teacher/transfer-credit/TransferCreditAuditPanel`. Aggregate `CI=true npx vitest run packages/knowledge-space-core` → 44 passed files / 618 prior tests green, 1 failed Red file; existing IM3 transfer-credit tests remain green.
 >
 > RED_TEST_COMMAND for Green handoff: `CI=true npx vitest run packages/knowledge-space-core/src/__tests__/transfer-teacher-audit.test.ts` && `CI=true npx vitest run --root apps/integrated-math-3 __tests__/teacher/transfer-credit/TransferCreditAuditPanel.test.tsx`
+>
+> Green-phase evidence (2026-07-03, SHA `84a6611e`): targeted Red command parts exit 0 — `CI=true npx vitest run packages/knowledge-space-core/src/__tests__/transfer-teacher-audit.test.ts` → 9 tests pass; `CI=true npx vitest run --root apps/integrated-math-3 __tests__/teacher/transfer-credit/TransferCreditAuditPanel.test.tsx` → 7 tests pass. Final-gate matrix: `CI=true npx vitest run packages/knowledge-space-core` → 45 files / 627 tests pass (9 new + 618 prior, 0 regressions); `CI=true npx vitest run --root apps/integrated-math-3 __tests__/student/transfer-credit __tests__/teacher/transfer-credit` → 4 files / 24 tests pass (3 student + 1 teacher, jsdom); `CI=true npm run test` → 45 files / 627 tests pass; `npx tsc --noEmit` (root) → exit 0; `npm run lint` (root: knowledge-space-core + IM3) → exit 0; `node scripts/check-monorepo-boundaries.mjs` → exit 0; `bash measure/doctor.sh` → exit 0. One pre-existing unused-import warning in `apps/integrated-math-3/__tests__/convex/studentKnowledgeState.adversarial.test.ts:29:8` (`ObjectiveProficiencyResult`, archived wire-kst-pipeline track at 688c17f7d) was removed in a follow-up commit `80b33db6` (`chore(lint): remove pre-existing unused import blocking final lint gate`) so the full root lint gate could pass — the file itself is out of scope for the transfer-credit-runtime track, but the gate required it. Full IM3 suite `CI=true npm run ws:im3:test` times out at 180s (pre-existing); targeted IM3 transfer-credit suites only.
 
-- [~] Task: Surface transfer credits in teacher views (auditable)
-- [b] Task: Final verification — boundary lints, lint, tsc --noEmit, CI=true npm run test (deferred:jr-green-final-gates)
-- [b] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md) (deferred:human)
+- [x] Task: Surface transfer credits in teacher views (auditable) — Green 84a6611e
+- [x] Task: Final verification — boundary lints, lint, tsc --noEmit, CI=true npm run test — 84a6611e + 80b33db6 (lint unblocker)
+- [x] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md) — autonomous mode: final gates substitute for UMV (no human walkthrough)
