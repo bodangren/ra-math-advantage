@@ -4,7 +4,7 @@ Workflow: Contract-First (authoring model from existing activity schemas), then 
 Boundary rule: reuse activity schemas + approval/hash primitives; teacher UI app-local.
 Verification: boundary lints + `npm run ws:im3:lint`/`:test` + `tsc --noEmit`.
 
-## Phase 1 — Authoring Model & Schema-Driven Validation
+## Phase 1 — Authoring Model & Schema-Driven Validation [checkpoint:e51561e4]
 
 - [x] Task: Define the lesson/phase/section authoring model bound to existing activity prop schemas (Contract-First) — committed 7516f07c
 - [x] Task: Schema-driven activity config validation — invalid configs rejected (TDD) — committed 7516f07c
@@ -100,7 +100,7 @@ tests) and to pin the jsdom environment on
 finds the React render test's environment. No test assertions were
 modified.
 
-## Phase 2 — Draft Lifecycle & Persistence
+## Phase 2 — Draft Lifecycle & Persistence [checkpoint:01752a0c]
 
 - [x] Task: Convex draft lifecycle (draft→submitted→approved/rejected→published), idempotent (TDD) — committed 01752a0c
 - [x] Task: Integrate the approval queue + content hashing for authored content (TDD) — committed 01752a0c
@@ -270,7 +270,7 @@ Convex AI guidelines path
 follow existing Convex patterns in source. `_generated/` was not
 modified.
 
-## Phase 3 — Composer UI & Preview
+## Phase 3 — Composer UI & Preview [checkpoint:11745f94]
 
 - [x] Task: Lesson composer UI (phases/sections/activities) with schema-driven forms (TDD on logic) — committed 4e43965b
 - [x] Task: Preview authored content in the existing QA harness — committed 4e43965b
@@ -477,7 +477,7 @@ Closeout gates (exit codes recorded):
 Fix commit SHA: see the commit referenced by the `MEASURE_AGENT_RESULT`
 handoff for this remediation.
 
-## Phase 4 — Verification
+## Phase 4 — Verification [checkpoint:96000632]
 
 - [x] Task: End-to-end: author → preview → submit → approve → publish → assignable (tested) — committed e347bf98
 - [x] Task: Final verification — boundary lints, lint, tsc --noEmit, CI=true npm run test — accepted (see Final Verification Evidence below; acceptance verdict commit 4b67ee73)

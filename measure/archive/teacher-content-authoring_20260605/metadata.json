@@ -1,12 +1,14 @@
 {
   "track_id": "teacher-content-authoring_20260605",
   "type": "feature",
-  "status": "new",
+  "status": "done",
   "created_at": "2026-06-05T00:00:00Z",
-  "updated_at": "2026-06-05T00:00:00Z",
+  "updated_at": "2026-07-03T00:00:00Z",
+  "completed_at": "2026-07-03T00:00:00Z",
+  "completed": "2026-07-03",
   "description": "Tools for teachers to create/edit lesson content and activities, not just assign existing ones, gated by the component-approval workflow and activity schemas. Tier 3 backlog.",
   "program": "Strategic Backlog",
   "estimated_tasks": 18,
-  "actual_tasks": null,
-  "deviation_notes": ""
+  "actual_tasks": 14,
+  "deviation_notes": "4 deferred UMV tasks (human-gated per workflow.md) excluded from actual_tasks; 14 is the count of automatable [x] tasks across 4 phases."
 }

@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "track_id": "teacher-content-authoring_20260605",
+  "closeout_date": "2026-07-03",
+  "final_head_sha": "96000632",
+  "final_head_subject": "measure(teacher-authoring): final acceptance verdict",
+
+  "phase_acceptance_results": [
+    {
+      "phase": "Phase 1 — Authoring Model & Schema-Driven Validation",
+      "file": "phase-1-acceptance-result.json",
+      "status": "pass",
+      "checkpoint_sha": "e51561e4"
+    },
+    {
+      "phase": "Phase 2 — Draft Lifecycle & Persistence",
+      "file": "phase-2-acceptance-result.json",
+      "status": "pass",
+      "checkpoint_sha": "01752a0c"
+    },
+    {
+      "phase": "Phase 3 — Composer UI & Preview",
+      "file": "phase-3-acceptance-result.json",
+      "status": "pass",
+      "checkpoint_sha": "11745f94"
+    },
+    {
+      "phase": "Phase 4 — Verification",
+      "file": "phase-4-acceptance-result.json",
+      "status": "pass",
+      "checkpoint_sha": "96000632"
+    }
+  ],
+
+  "final_acceptance_result": {
+    "file": "final-acceptance-result.json",
+    "status": "pass",
+    "head_sha": "5bc1ae35",
+    "verdict_sha": "96000632"
+  },
+
+  "phase_4_review_and_adversarial_results": [
+    {
+      "role": "review-a-correctness",
+      "file": "phase-4-review-a-result.json",
+      "status": "pass",
+      "head_sha": "cbce6c5e"
+    },
+    {
+      "role": "review-b-security",
+      "file": "phase-4-review-b-result.json",
+      "status": "pass",
+      "fix_commit": "15e5154a"
+    },
+    {
+      "role": "review-c-ux-api",
+      "file": "phase-4-review-c-result.json",
+      "status": "pass",
+      "fix_commit": "705e0cc3"
+    },
+    {
+      "role": "adversarial-testing",
+      "file": "phase-4-adversarial-result.json",
+      "status": "pass",
+      "head_sha": "eeab6a41"
+    }
+  ],
+
+  "evidence_artifacts": {
+    "e2e_test_file": "apps/integrated-math-3/__tests__/app/teacher/content-authoring/content-authoring-e2e.test.tsx",
+    "adversarial_test_files": [
+      "apps/integrated-math-3/__tests__/lib/teacher/content-authoring/authoring-lifecycle-adversarial.test.ts",
+      "apps/integrated-math-3/__tests__/convex/teacher/content-authoring-phase4-adversarial.test.ts"
+    ]
+  },
+
+  "deferred_umv_tasks": [
+    {
+      "phase": "Phase 1",
+      "task": "Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md)",
+      "marker": "[b]",
+      "owner": "user"
+    },
+    {
+      "phase": "Phase 2",
+      "task": "Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)",
+      "marker": "[b]",
+      "owner": "user"
+    },
+    {
+      "phase": "Phase 3",
+      "task": "Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)",
+      "marker": "[b]",
+      "owner": "user"
+    },
+    {
+      "phase": "Phase 4",
+      "task": "Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md)",
+      "marker": "[b]",
+      "owner": "user"
+    }
+  ],
+
+  "closeout_actions_performed": [
+    "Added [checkpoint:<sha>] markers to all 4 phase headings in plan.md",
+    "Updated metadata.json status → done with completion date 2026-07-03",
+    "Wrote this automation-supervisor-closeout-manifest.json",
+    "Added tech-debt entry for pre-existing Phase 3 jsdom timeout flakiness to measure/tech-debt.md",
+    "Moved track from measure/tracks/ to measure/archive/ via git mv",
+    "Updated measure/tracks.md — moved entry from Tier 3 section to Archived Tracks section"
+  ],
+
+  "a9_archived_track_path_notes": {
+    "status": "no_action_required",
+    "detail": "No test files in tests/*.sh hardcode measure/tracks/teacher-content-authoring_20260605/plan.md. The A9 anti-pattern (archived-track path) does not apply to this archive because no contract test references this track by path."
+  }
+}
