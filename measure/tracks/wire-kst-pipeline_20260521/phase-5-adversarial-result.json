@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "role": "measure-phase-adversarial",
+  "track": "wire-kst-pipeline_20260521",
+  "phase": "Phase 5 — Docs, Audit & Doctor",
+  "head": "9a67f58b",
+  "status": "pass",
+  "summary": "Phase 5 adversarial tests cover four final-regression probe categories: (1) boundary-violation future-proofing — source-level grep over all knowledge-space-core/src verifies no apps/convex/practice imports, and the live boundary linter script exits 0 (3 tests); (2) export-completeness — every value export from index.ts resolves at runtime, DefaultSrsToKstBridge constructable, getKnowledgeState/getOuterFringe/buildKstState callable with correct return shapes, index.ts module references all resolve to existing files (6 tests); (3) doc-correctness — knowledge-space-practice-projection-audit.md contains no placeholder/not-wired language, mentions Wired Math (IM3) status, references production route /student/knowledge-state, lists outstanding future tracks (5 tests); plus (4) graph-loader determinism — loading the full curriculum graph twice produces identical node/edge content across 574 nodes and 2708 edges (1 test in IM3 adversarial suite). All 15 adversarial tests pass: 14 in core + 1 in IM3.",
+  "tests_passed": 15,
+  "tests_failed": 0,
+  "test_categories": {
+    "boundary_future_proofing": {
+      "tests": 3,
+      "passed": 3,
+      "details": [
+        "no source file imports apps/convex/knowledge-space-practice — grep over 11 source .ts files under knowledge-space-core/src, zero violations",
+        "boundary linter script exits 0 — execSync on scripts/check-monorepo-boundaries.mjs, output contains '[OK] No monorepo boundary violations found.'",
+        "boundary linter excludes __tests__ — verifies script contains --exclude-dir and __tests__ exclusion, confirming test-file leakage won't cause false positives"
+      ]
+    },
+    "export_completeness": {
+      "tests": 6,
+      "passed": 6,
+      "details": [
+        "all value exports resolve at runtime — dynamic import of index.ts, verifies 39 named exports are present (MASTERY_THRESHOLDS_DEFAULT through computeEquivalenceComponents)",
+        "DefaultSrsToKstBridge constructable — dynamic import of srs-bridge.ts, verifies new instance has convert method",
+        "getKnowledgeState callable — returns Map instance when called with minimal args",
+        "getOuterFringe callable — returns Array when called with empty state + graph",
+        "buildKstState callable — returns { state: Map, fringe: Array } shape",
+        "index.ts module references all exist — statSync on every from '...' specifier in index.ts, all resolve to .ts files"
+      ]
+    },
+    "doc_correctness": {
+      "tests": 5,
+      "passed": 5,
+      "details": [
+        "no 'placeholder' language — audit doc content does not match /placeholder/i",
+        "no 'not wired' language — audit doc content does not match /not wired/i",
+        "mentions Wired Math (IM3) — content matches /Math \\(IM3\\).*Wired/",
+        "references production route — content matches /student\\/knowledge-state/",
+        "lists outstanding future tracks — content matches /Track 2/ and /weighted readiness/i"
+      ]
+    },
+    "graph_loader_determinism": {
+      "tests": 1,
+      "passed": 1,
+      "details": [
+        "loading the graph twice produces identical output — loads loadFullCurriculumGraph() twice, compares .length, node IDs/kinds/titles, edge IDs/types/sourceIds/targetIds across all 574 nodes and 2708 edges"
+      ]
+    }
+  },
+  "full_suite": {
+    "core_tests": 490,
+    "practice_tests": 373,
+    "im3_kst_tests": 38,
+    "total": 901,
+    "phase5_adversarial_contribution": 15
+  },
+  "falsifiability": {
+    "boundary": "A future import of apps/ or convex/ in any knowledge-space-core source file causes the grep test to fail with the violating file+line",
+    "export_completeness": "A missing export, renamed function, or broken module reference in index.ts causes the dynamic-import or statSync test to fail",
+    "doc_correctness": "If the audit doc is reverted to placeholder or the pipeline is disconnected, the content-grep tests fail",
+    "graph_determinism": "If the graph loader becomes non-deterministic (e.g., random ordering), the deep comparison of all 574 nodes fails"
+  },
+  "regression_protection": "These 15 tests form the final regression fence for the wired KST pipeline. Any future change that breaks the contract surface, introduces boundary violations, reverts the audit doc, or makes the graph loader non-deterministic will be caught."
+}

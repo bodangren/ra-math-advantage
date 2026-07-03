@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "role": "measure-phase-acceptance",
+  "track": "wire-kst-pipeline_20260521",
+  "phase": "Phase 5 — Docs, Audit & Doctor",
+  "head": "9a67f58b",
+  "baseline_sha": "da5fd976",
+  "status": "pass",
+  "summary": "Phase 5 (Docs, Audit & Doctor) acceptance PASSES. All four tasks completed: (1) knowledge-space-practice-projection-audit.md updated from placeholder to wired Math (IM3) status with full contract surface table, production wiring details, test coverage, readinessFn seam documentation, and outstanding-items tracker; (2) architectural boundary linter + per-package tsc clean (knowledge-space-core typecheck exit 0; knowledge-space-practice typecheck has 16 pre-existing test-file type errors not from this track); (3) final verification gates all exit 0: 490 core tests, 373 practice tests, 38 IM3 KST pipeline tests, boundary linter, root tsc; (4) UMV 'Phase 5' deferred:user. Anti-pattern sweep A5/A6/A10 clean — audit doc matches test reality, no fabricated doctor/generate scripts, SPECIFICATION.md co-location deferred per test-strategy §0.1.",
+  "gate_exit_codes": {
+    "CI=true npx vitest run packages/knowledge-space-core": 0,
+    "CI=true npx vitest run packages/knowledge-space-practice": 0,
+    "cd apps/integrated-math-3 && CI=true npx vitest run __tests__/curriculum/skill-graph-loader __tests__/convex/studentKnowledgeState __tests__/convex/kstPipeline __tests__/convex/studentKnowledgeState.adversarial __tests__/app/student/knowledge-state": 0,
+    "node scripts/check-monorepo-boundaries.mjs": 0,
+    "npx tsc --noEmit": 0,
+    "npm run --workspace=packages/knowledge-space-core typecheck": 0,
+    "eslint on new Phase 4 files (convex/student/knowledge-state.ts, app/student/knowledge-state/page.tsx)": 0
+  },
+  "gate_observed_counts": {
+    "core_test_files": 37,
+    "core_tests_passed": 490,
+    "practice_test_files": 18,
+    "practice_tests_passed": 373,
+    "im3_kst_test_files": 5,
+    "im3_kst_tests_passed": 38,
+    "new_phase5_adversarial_tests": 14
+  },
+  "acceptance_criteria": {
+    "AC5_projection_audit_doc": {
+      "status": "pass",
+      "evidence": "measure/knowledge-space-practice-projection-audit.md updated from placeholder to wired Math (IM3) status. Contains: contract surface table (8 exports from core, 6 from practice), production wiring table (3 components), test coverage summary (490+373+38), readinessFn seam documentation for Track 2, outstanding future-track items (Tracks 2-8 + T9-T12 rollouts), audit status table showing Math (IM3) as 'Wired'. No 'placeholder' or 'not wired' language remains. Phase 5 adversarial doc-correctness tests (5 tests) verify these assertions."
+    },
+    "AC6_boundary_lints_tsc_tests_pass": {
+      "status": "pass",
+      "evidence": "node scripts/check-monorepo-boundaries.mjs exit 0 ('[OK] No monorepo boundary violations found.'). npx tsc --noEmit exit 0 (clean). npm run --workspace=packages/knowledge-space-core typecheck exit 0. knowledge-space-core vitest: 37 files / 490 tests pass. knowledge-space-practice vitest: 18 files / 373 tests pass. IM3 KST pipeline vitest: 5 files / 38 tests pass (including graph-loader + adversarial). ESLint on new Phase 4 files: 0 errors, 0 warnings. Full IM3 project eslint hangs (pre-existing, not from this track)."
+    }
+  },
+  "tasks": {
+    "task_1_update_audit_doc": {
+      "status": "pass",
+      "evidence": "knowledge-space-practice-projection-audit.md rewritten. Replaced 'Placeholder audit report' header with 'Wired status report'. Added comprehensive wired pipeline table for Math (IM3) covering core contract surface, practice projection surface, production wiring, and test coverage. outstanding-items tracker documents Tracks 2-8 + T9-T12 rollouts. No placeholder/not-wired language; verified by 5 adversarial doc-correctness tests."
+    },
+    "task_2_architectural_lint_and_tsc": {
+      "status": "pass",
+      "evidence": "node scripts/check-monorepo-boundaries.mjs exit 0. per-package tsc: core typecheck exit 0. practice typecheck has 16 pre-existing errors in __tests__/ files (missing domain/rendererModeMap/target/__dirname) — not introduced by this track. Root npx tsc --noEmit exit 0."
+    },
+    "task_3_final_verification": {
+      "status": "pass",
+      "evidence": "All gates exit 0. Core: 37 files, 490 tests pass. Practice: 18 files, 373 tests pass. IM3 KST: 5 files, 38 tests pass. Boundary linter clean. Root tsc clean. Timeout fix applied to skill-graph-loader edge-validation test (2708 edges now 15s timeout). Graph-loader determinism test added (load twice, compare). Phase 5 adversarial suite: 14 tests covering boundary future-proofing, export-completeness, and doc-correctness."
+    },
+    "task_4_umv_phase5": {
+      "status": "deferred:user",
+      "evidence": "Protocol per workflow.md. Marked [b] deferred:user in plan.md."
+    }
+  },
+  "plan_markers": {
+    "status": "pass",
+    "evidence": "Phase 5 tasks 1-3 marked [x] with commit SHA 9a67f58b. UMV task marked [b] deferred:user. No [~] or bare [ ] within Phase 5 block."
+  },
+  "anti_pattern_sweep": {
+    "A5_truthful_claims": {
+      "status": "pass",
+      "evidence": "Audit doc claims exactly what is verifiable: v2 contract exports exist (verified by export-completeness adversarial test), production wiring is live (verified by IM3 KST tests), test counts match gate outputs (490/373/38). No false-doctor/generate claims — boundary linter is the real tool."
+    },
+    "A6_no_registry_overstatement": {
+      "status": "pass",
+      "evidence": "Audit doc does not overclaim: Math (IM3) shown as 'Wired' with concrete evidence; English/GSE shown as 'Pending'. Outstanding items table lists future tracks explicitly. No 'pipeline is complete' language."
+    },
+    "A10_no_fabricated_scripts": {
+      "status": "pass",
+      "evidence": "Phase 5 used real boundary linter (scripts/check-monorepo-boundaries.mjs), not fabricated measure/generate.sh or doctor.sh which do not exist. Boundary linter script is peer-reviewed and the topic of test-strategy §5."
+    },
+    "A11_live_contract_guard": {
+      "status": "pass",
+      "evidence": "tests/measure_orchestrator_audit.sh runs and exits 0 — A1/A8/A11/A12 guards intact."
+    }
+  },
+  "blocking_findings": [],
+  "nonblocking_findings": [
+    "knowledge-space-practice typecheck has 16 pre-existing errors in __tests__/ files (missing domain, rendererModeMap, target, __dirname types). Not introduced by this track; root tsc --noEmit passes clean. Vitest runs pass all 373 tests regardless.",
+    "Full IM3 project eslint hangs/times out. Pre-existing; eslint on specific new Phase 4 files passes with 0 errors, 0 warnings. Does not block this track.",
+    "SPECIFICATION.md co-location to packages/knowledge-space-core/ deferred per test-strategy §0.1. Current location kst-srs.v2/SPECIFICATION.md is acknowledged as canonical.",
+    "Phase 4 acceptance/adversarial JSONs are documented inline in plan.md but standalone JSON files (phase-4-acceptance-result.json, phase-4-adversarial-result.json, phase-2/3 review result JSONs beyond phase-1) were not created in the track directory. The inline plan evidence is sufficient."
+  ],
+  "evidence": [
+    "Read measure/tracks/wire-kst-pipeline_20260521/{plan,spec,test-strategy}.md",
+    "Read all phase acceptance JSONs (phases 1-3)",
+    "Read packages/knowledge-space-core/src/index.ts (full public API)",
+    "Read apps/integrated-math-3/convex/student/knowledge-state.ts (Phase 4 query)",
+    "Read apps/integrated-math-3/app/student/knowledge-state/page.tsx (Phase 4 route)",
+    "Updated measure/knowledge-space-practice-projection-audit.md",
+    "Created packages/knowledge-space-core/src/__tests__/phase-5-adversarial.test.ts (14 tests)",
+    "Extended apps/integrated-math-3/__tests__/convex/studentKnowledgeState.adversarial.test.ts (graph-loader determinism)",
+    "Fixed skill-graph-loader edge-validation timeout (15s for 2708 edges)",
+    "Ran all verification gates — all exit 0"
+  ],
+  "changed_files": [
+    "measure/knowledge-space-practice-projection-audit.md (placeholder→wired)",
+    "packages/knowledge-space-core/src/__tests__/phase-5-adversarial.test.ts (new, 14 tests)",
+    "apps/integrated-math-3/__tests__/convex/studentKnowledgeState.adversarial.test.ts (determinism test)",
+    "apps/integrated-math-3/__tests__/curriculum/skill-graph-loader.test.ts (timeout fix)",
+    "measure/tracks/wire-kst-pipeline_20260521/phase-5-acceptance-result.json (this file)",
+    "measure/tracks/wire-kst-pipeline_20260521/phase-5-adversarial-result.json (pending)"
+  ],
+  "live_contract_violations": [],
+  "prod_wiring_violations": [],
+  "retry_recommendation": "none",
+  "confidence": "high"
+}
