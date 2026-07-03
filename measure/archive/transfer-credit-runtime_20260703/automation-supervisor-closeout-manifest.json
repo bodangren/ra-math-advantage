@@ -1,0 +1,102 @@
+{
+  "track_id": "transfer-credit-runtime_20260605",
+  "closeout_date": "2026-07-03",
+  "closeout_by": "measure-final-acceptance + measure-closeout",
+  "head_sha": "d8b9fd15",
+  "baseline_sha": "94119284",
+  "total_commits": 27,
+  "commit_list": [
+    "94119284",
+    "603da145",
+    "83ab12a",
+    "9174c810",
+    "e0d82ab",
+    "d0c25224",
+    "d6801b70",
+    "c9f740d1",
+    "e2ec72d3",
+    "f9ebf986",
+    "84a6611e",
+    "80b33db6",
+    "9c4c94c8",
+    "57fa4647",
+    "1920a3c0",
+    "7cb3b704",
+    "f170f4f3",
+    "d8b9fd15"
+  ],
+  "tests_added": 107,
+  "test_files_added": 8,
+  "test_files": [
+    "packages/knowledge-space-core/src/__tests__/transfer-credit-resolution.test.ts",
+    "packages/knowledge-space-core/src/__tests__/transfer-policy.test.ts",
+    "packages/knowledge-space-core/src/__tests__/transfer-credit-signature.test.ts",
+    "packages/knowledge-space-core/src/__tests__/transfer-eligibility.test.ts",
+    "packages/knowledge-space-core/src/__tests__/transfer-eligibility-path.test.ts",
+    "packages/knowledge-space-core/src/__tests__/transfer-skip.test.ts",
+    "packages/knowledge-space-core/src/__tests__/transfer-teacher-audit.test.ts",
+    "apps/integrated-math-3/__tests__/student/transfer-credit/transfer-skip-logic.test.ts",
+    "apps/integrated-math-3/__tests__/student/transfer-credit/transfer-credit-card.test.tsx",
+    "apps/integrated-math-3/__tests__/student/transfer-credit/confirmation-check.test.ts",
+    "apps/integrated-math-3/__tests__/student/transfer-credit/student-skip-adversarial.test.ts",
+    "apps/integrated-math-3/__tests__/teacher/transfer-credit/TransferCreditAuditPanel.test.tsx",
+    "apps/integrated-math-3/__tests__/teacher/transfer-credit/transfer-credit-audit-panel-adversarial.test.tsx"
+  ],
+  "gates_passed": [
+    {
+      "command": "CI=true npx vitest run packages/knowledge-space-core",
+      "result": "49 files, 673 tests, exit 0"
+    },
+    {
+      "command": "CI=true npx vitest run --root apps/integrated-math-3 __tests__/student/transfer-credit __tests__/teacher/transfer-credit",
+      "result": "6 files, 64 tests, exit 0"
+    },
+    {
+      "command": "CI=true npm run test",
+      "result": "49 files, 673 tests, exit 0"
+    },
+    {
+      "command": "npx tsc --noEmit (root)",
+      "result": "exit 0"
+    },
+    {
+      "command": "npx tsc --noEmit -p packages/knowledge-space-core/tsconfig.json",
+      "result": "exit 0"
+    },
+    {
+      "command": "npm run lint",
+      "result": "exit 0"
+    },
+    {
+      "command": "node scripts/check-monorepo-boundaries.mjs",
+      "result": "exit 0"
+    },
+    {
+      "command": "bash measure/doctor.sh",
+      "result": "exit 0"
+    },
+    {
+      "command": "bash tests/measure_orchestrator_audit.sh",
+      "result": "exit 0"
+    }
+  ],
+  "anti_patterns_checked": {
+    "A1_structured_signal": "clean",
+    "A3_labeled_integer": "clean",
+    "A4_vacuous_pass": "clean",
+    "A5_false_claim": "clean",
+    "A6_overstatement": "clean",
+    "A7_bare_english_filter": "clean",
+    "A8_space_marker": "clean",
+    "A9_archived_track_path": "clean",
+    "A11_live_contract_suite": "clean",
+    "A12_supervisor_peer_review": "clean"
+  },
+  "a9_remediation_required": false,
+  "retained_evidence": [
+    "/tmp/measure-final-acceptance-result.json",
+    "/tmp/measure-final-acceptance.log",
+    "/tmp/measure-closeout.log",
+    "measure/tracks/transfer-credit-runtime_20260605/automation-supervisor-closeout-manifest.json"
+  ]
+}
