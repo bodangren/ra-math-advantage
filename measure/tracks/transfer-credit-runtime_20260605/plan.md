@@ -46,4 +46,4 @@ Verification: boundary lints + per-app lint/test + `tsc --noEmit`.
 
 - [x] Task: Surface transfer credits in teacher views (auditable) — Green 84a6611e
 - [x] Task: Final verification — boundary lints, lint, tsc --noEmit, CI=true npm run test — 84a6611e + 80b33db6 (lint unblocker)
-- [x] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md) — autonomous mode: final gates substitute for UMV (no human walkthrough)
+- [x] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md) — autonomous mode: final gates substitute for UMV (no human walkthrough) — 9c4c94c8
