@@ -5,8 +5,8 @@
 // until Phase 2 Green implements the full fringe logic.
 
 import { describe, it, expect } from 'vitest';
-import { getOuterFringe, MASTERY_THRESHOLDS_DEFAULT } from '../index';
-import type { FringeEntry, KnowledgeStateEntry } from '../index';
+import { getOuterFringe } from '../index';
+import type { KnowledgeStateEntry } from '../index';
 import type { KnowledgeSpace } from '../types';
 
 // ---------------------------------------------------------------------------
@@ -50,22 +50,6 @@ const simpleGraph: KnowledgeSpace = {
 
 // Empty graph
 const emptyGraph: KnowledgeSpace = { nodes: [], edges: [] };
-
-// Single-node graph
-const singleNodeGraph: KnowledgeSpace = {
-  nodes: [
-    {
-      id: 'skill.solo',
-      kind: 'skill',
-      title: 'Solo Skill',
-      domain: 'test.domain',
-      sourceRefs: ['test'],
-      reviewStatus: 'draft' as const,
-      metadata: {},
-    },
-  ],
-  edges: [],
-};
 
 // Helper: create an entry with specific state
 function entry(nodeId: string, state: KnowledgeStateEntry['state']): KnowledgeStateEntry {

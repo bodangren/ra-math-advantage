@@ -1,12 +1,12 @@
-// Outer fringe — Phase 1 signature stub (kst-srs.v2 §4).
+// Outer fringe — Phase 2 implementation (kst-srs.v2 §4).
 //
-// Standalone exported function (FR3 — not buried in the visualization
-// projection). Phase 2 implements weighted readiness and binary prerequisite
-// gating; Phase 1 owns the signature and the `readinessFn` seam so Track 2
-// can swap in weighted readiness without a contract change.
+// Implements binary prerequisite gating and the readinessFn seam for
+// weighted readiness. Standalone exported function (FR3 — not buried
+// in the visualization projection).
 
 import type { KnowledgeSpace } from './types';
 import type { KnowledgeStateEntry } from './mastery-state';
+import { MASTERY_THRESHOLDS_DEFAULT } from './mastery-state';
 
 /**
  * A single outer-fringe entry (kst-srs.v2 §4).
@@ -34,20 +34,77 @@ export type ReadinessFn = (
 ) => number;
 
 /**
- * Outer-fringe signature (kst-srs.v2 §4.2).
+ * Get the outer fringe: nodes that are not yet mastered whose prerequisites
+ * are satisfied (binary gating by default, weighted via optional `readinessFn`).
  *
- * Returns `[]` in Phase 1; the binary prerequisite gating and weighted
- * readiness logic are filled in by Phase 2 (see plan §2 — Task
- * "Implement getOuterFringe"). The standalone top-level export is a
- * deliberate FR3 requirement — visualization projections consume this
- * function but never re-implement it.
+ * Standalone exported function (FR3).
+ *
+ * @param state - Current knowledge state (per-node entries)
+ * @param graph - Knowledge space graph
+ * @param readinessFn - Optional custom readiness function (default: binary prerequisite check)
+ * @returns FringeEntry[] — candidate nodes for the planner
  */
 export function getOuterFringe(
-  _state: Map<string, KnowledgeStateEntry>,
-  _graph: KnowledgeSpace,
-  _readinessFn?: ReadinessFn,
+  state: Map<string, KnowledgeStateEntry>,
+  graph: KnowledgeSpace,
+  readinessFn?: ReadinessFn,
 ): FringeEntry[] {
-  // Phase 2 implements fringe membership: nodes where every prerequisite
-  // is satisfied (binary v1, weighted v2) and `state !== 'mastered'`.
-  return [];
+  const thresholds = MASTERY_THRESHOLDS_DEFAULT;
+
+  // Index prerequisite edges by target node
+  const prereqsByTarget = new Map<string, string[]>();
+  for (const edge of graph.edges) {
+    if (edge.type === 'prerequisite_for') {
+      const list = prereqsByTarget.get(edge.targetId) ?? [];
+      list.push(edge.sourceId);
+      prereqsByTarget.set(edge.targetId, list);
+    }
+  }
+
+  const result: FringeEntry[] = [];
+
+  for (const node of graph.nodes) {
+    const entry = state.get(node.id);
+
+    // Already mastered → exclude from fringe
+    if (entry && entry.state === 'mastered') continue;
+
+    if (readinessFn) {
+      // Delegate to the custom readiness function
+      const readinessScore = readinessFn(node.id, state);
+
+      // Coarse label from threshold band
+      const readinessState: FringeEntry['readinessState'] =
+        readinessScore >= thresholds.readyThreshold
+          ? 'ready'
+          : readinessScore >= thresholds.nearThreshold
+            ? 'nearly_ready'
+            : 'blocked';
+
+      result.push({
+        nodeId: node.id,
+        readiness: readinessScore,
+        readinessState,
+      });
+    } else {
+      // Binary prerequisite gating: all prereqs must be mastered
+      const prereqIds = prereqsByTarget.get(node.id) ?? [];
+
+      const allPrereqsMastered = prereqIds.length === 0 ||
+        prereqIds.every((pid) => {
+          const p = state.get(pid);
+          return p != null && p.state === 'mastered';
+        });
+
+      if (allPrereqsMastered) {
+        result.push({
+          nodeId: node.id,
+          readiness: prereqIds.length === 0 ? 1 : undefined,
+          readinessState: 'ready',
+        });
+      }
+    }
+  }
+
+  return result;
 }

@@ -18,10 +18,6 @@ function assertNever(value: never): never {
   throw new Error(`Unexpected mastery state: ${String(value)}`);
 }
 
-function expectType<T>(_value: T) {
-  // compile-time type assertion only
-}
-
 describe('mastery-state contract', () => {
   it('exports the default thresholds with labeled values', () => {
     expect(MASTERY_THRESHOLDS_DEFAULT).toEqual({

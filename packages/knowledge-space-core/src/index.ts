@@ -25,6 +25,7 @@ export {
   displayLevelItemSchema,
   displayLevelSchema,
   projectDisplayLevel,
+  computeNodeState,
 } from './level-projection';
 export type {
   KnowledgeState,
@@ -104,7 +105,7 @@ export type {
   KnowledgeStateEvidence,
 } from './mastery-state';
 
-export { getKnowledgeState } from './knowledge-state-engine';
+export { getKnowledgeState, stabilityToRetention, determineState } from './knowledge-state-engine';
 export type {
   KnowledgeStateStudentRef,
   KnowledgeStateEvidence as KnowledgeStateEvidenceArg,

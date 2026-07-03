@@ -5,8 +5,8 @@
 // the full hysteresis logic (Phase 1 stub returns empty Map).
 
 import { describe, it, expect } from 'vitest';
-import { getKnowledgeState, MASTERY_THRESHOLDS_DEFAULT } from '../index';
-import type { KnowledgeStateEntry, MasteryState } from '../index';
+import { getKnowledgeState } from '../index';
+import type { KnowledgeStateEntry } from '../index';
 import type { KnowledgeSpace } from '../types';
 
 // ---------------------------------------------------------------------------
@@ -152,7 +152,7 @@ describe('getKnowledgeState — hysteresis enter (kst-srs.v2 §3.3)', () => {
   it('enters mastered when isProficient AND retention >= masteryEnter', () => {
     const evidence = [
       {
-        sourceId: 'skill.a',
+        sourceId: 'skill.solo',
         isProficient: true,
         stability: 365,
         lastReviewedAt: NOW,
@@ -171,7 +171,7 @@ describe('getKnowledgeState — hysteresis enter (kst-srs.v2 §3.3)', () => {
   it('enters mastered from inProgress with proficiency + high retention', () => {
     const evidence = [
       {
-        sourceId: 'skill.a',
+        sourceId: 'skill.solo',
         isProficient: true,
         stability: 365,
         lastReviewedAt: NOW - 86_400_000, // 1 day ago → high retention
@@ -191,7 +191,7 @@ describe('getKnowledgeState — hysteresis enter (kst-srs.v2 §3.3)', () => {
   it('stays inProgress when evidence exists but not proficient', () => {
     const evidence = [
       {
-        sourceId: 'skill.a',
+        sourceId: 'skill.solo',
         isProficient: false,
         stability: 30,
         lastReviewedAt: NOW,
@@ -215,7 +215,7 @@ describe('getKnowledgeState — hysteresis exit (kst-srs.v2 §3.3)', () => {
     // Evidence shows proficiency but long time since review → low retention
     const evidence = [
       {
-        sourceId: 'skill.a',
+        sourceId: 'skill.solo',
         isProficient: true,
         stability: 1, // very low stability → fast decay
         lastReviewedAt: NOW - 30 * 86_400_000, // 30 days ago
@@ -239,7 +239,7 @@ describe('getKnowledgeState — hysteresis exit (kst-srs.v2 §3.3)', () => {
 
     const evidence = [
       {
-        sourceId: 'skill.a',
+        sourceId: 'skill.solo',
         isProficient: true,
         stability: 365, // high stability → very slow decay
         lastReviewedAt: NOW - 86_400_000, // 1 day ago
@@ -266,7 +266,7 @@ describe('getKnowledgeState — hysteresis re-enter on recovery (kst-srs.v2 §3.
     // Fresh review → high retention, proficient
     const evidence = [
       {
-        sourceId: 'skill.a',
+        sourceId: 'skill.solo',
         isProficient: true,
         stability: 365,
         lastReviewedAt: NOW, // just reviewed
@@ -299,7 +299,7 @@ describe('getKnowledgeState — deep decay fall to inProgress', () => {
 
     const evidence = [
       {
-        sourceId: 'skill.a',
+        sourceId: 'skill.solo',
         isProficient: true,
         stability: 1,
         lastReviewedAt: NOW - 180 * 86_400_000, // very old review
@@ -348,7 +348,7 @@ describe('getKnowledgeState — mastery computation', () => {
   it('computes mastery as retention * proficiency factor', () => {
     const evidence = [
       {
-        sourceId: 'skill.a',
+        sourceId: 'skill.solo',
         isProficient: true,
         stability: 365,
         lastReviewedAt: NOW,
@@ -369,7 +369,7 @@ describe('getKnowledgeState — mastery computation', () => {
   it('reduces mastery for not-proficient nodes', () => {
     const evidence = [
       {
-        sourceId: 'skill.a',
+        sourceId: 'skill.solo',
         isProficient: false,
         stability: 365,
         lastReviewedAt: NOW,
@@ -412,7 +412,7 @@ describe('getKnowledgeState — pure function properties', () => {
   it('accepts MasteryThresholds overrides', () => {
     const evidence = [
       {
-        sourceId: 'skill.a',
+        sourceId: 'skill.solo',
         isProficient: true,
         stability: 30,
         lastReviewedAt: NOW - 86_400_000,
@@ -463,7 +463,7 @@ describe('getKnowledgeState — pure function properties', () => {
 
   it('each entry has the required KnowledgeStateEntry fields', () => {
     const state = getKnowledgeState(student, [], simpleGraph, NOW);
-    for (const [nodeId, entry] of state) {
+    for (const [, entry] of state) {
       expect(typeof entry.nodeId).toBe('string');
       expect(typeof entry.mastery).toBe('number');
       expect(typeof entry.retention).toBe('number');

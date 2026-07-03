@@ -1,4 +1,8 @@
 import { z } from 'zod';
+import { getKnowledgeState } from './knowledge-state-engine';
+import type { KnowledgeStateStudentRef, KnowledgeStateEvidence } from './knowledge-state-engine';
+import type { KnowledgeStateEntry, MasteryThresholds } from './mastery-state';
+import type { KnowledgeSpace } from './types';
 
 export const knowledgeStateSchema = z.object({
   skills: z.array(z.object({
@@ -97,4 +101,30 @@ export function projectDisplayLevel(
     }
   }
   return result.id;
+}
+
+/**
+ * Visualization helper: delegates to `getKnowledgeState` without duplicating
+ * threshold constants (defends A4 — no parallel threshold literals).
+ *
+ * This is a thin wrapper that keeps the visualization layer aligned with the
+ * canonical engine. It accepts the same evidence and graph contract.
+ *
+ * Pure, deterministic — `now` is injected by the caller.
+ *
+ * @param student - Student reference
+ * @param evidence - Per-skill SRS evidence
+ * @param graph - Knowledge space graph
+ * @param now - Reference timestamp (epoch ms)
+ * @param thresholds - Optional threshold overrides (defaults to MASTERY_THRESHOLDS_DEFAULT)
+ * @returns Map<NodeId, KnowledgeStateEntry>
+ */
+export function computeNodeState(
+  student: KnowledgeStateStudentRef,
+  evidence: readonly KnowledgeStateEvidence[],
+  graph: KnowledgeSpace,
+  now: number,
+  thresholds?: Partial<MasteryThresholds>,
+): Map<string, KnowledgeStateEntry> {
+  return getKnowledgeState(student, evidence, graph, now, thresholds);
 }
