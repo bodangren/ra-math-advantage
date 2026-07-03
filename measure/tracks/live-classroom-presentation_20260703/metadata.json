@@ -1,0 +1,24 @@
+{
+  "track_id": "live-classroom-presentation_20260703",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-07-03T11:51:15Z",
+  "updated_at": "2026-07-03T11:51:15Z",
+  "description": "Server/client architecture for a teacher to present lesson steps synchronized across the classroom",
+  "estimated_tasks": 30,
+  "actual_tasks": null,
+  "deviation_notes": "",
+  "sprint": {
+    "goal": "A teacher can present lesson phases/steps to the whole class and every student's screen stays synchronized to the teacher's current step in real time.",
+    "stories": [
+      { "id": "S1", "title": "Teacher starts a live session", "size": "M", "priority": "Must", "status": "pending" },
+      { "id": "S2", "title": "Students auto-join and follow the teacher", "size": "L", "priority": "Must", "status": "pending" },
+      { "id": "S3", "title": "Teacher navigates and controls activity reveal", "size": "L", "priority": "Must", "status": "pending" },
+      { "id": "S4", "title": "Students locally interact while synced", "size": "M", "priority": "Should", "status": "pending" },
+      { "id": "S5", "title": "Teacher broadcasts inline annotations", "size": "M", "priority": "Should", "status": "pending" },
+      { "id": "S6", "title": "Session end (explicit and idle)", "size": "M", "priority": "Must", "status": "pending" }
+    ],
+    "demo_notes": null,
+    "retro_ref": null
+  }
+}

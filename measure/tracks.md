@@ -50,6 +50,10 @@ Dependencies:
 
 ## Active Tracks
 
+- [ ] **Track: Live Classroom Presentation**
+   *Server/client architecture for a teacher to present lesson phases/steps with every student's screen synchronized in real time. Convex reactive queries/mutations drive sync over a new `live_sessions` table; teacher controls navigation, activity reveal, and inline annotations; students follow with local interaction. Sessions end explicitly or via idle timeout. Story-shaped spec (6 stories: S1 start, S2 follow, S3 navigate/reveal, S4 local interact, S5 annotations, S6 end).*
+   *Link: [./tracks/live-classroom-presentation_20260703/](./tracks/live-classroom-presentation_20260703/)*
+
 - [x] **[HIGH PRIORITY] Track: Unblock CI package typecheck (2026-07-01)** — **COMPLETED** (fix `ee10aa4`, docs `42fcc63`). Next: watch the CI run on push — this clears the Phase-1 package gate, but the downstream im3/bm2/deploy jobs have not been observed green remotely.
    *Every `ci.yml` run has been red since the 2026-04-18 monorepo move in Phase 1 `Validate Packages → Run package typecheck`: `practice-core`, `core-convex`, `core-auth`, `ai-tutoring` use node globals (`node:fs/path/url/os`, `process`, `Buffer`) but their tsconfig didn't declare the `node` ambient types (TS2591 + cascaded TS7006 implicit-any). Because `deploy needs:[im3,bm2] needs:[packages,boundary-check]`, this halts CI before the Phase 6 Cloudflare deploy — IM3's CI deploy has never landed. Fix: config-only `compilerOptions.types = ["node","vitest/globals"]` in the four package tsconfigs (42 errors → 0, verified locally). Resolves tech-debt line 35's Phase-1 root cause. From 2026-07-01 tech-debt triage.*
    *Link: [./archive/package-typecheck-ci-unblock_20260701/](./archive/package-typecheck-ci-unblock_20260701/)*
