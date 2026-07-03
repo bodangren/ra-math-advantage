@@ -156,3 +156,22 @@ export type {
   TransferCreditResult,
   BatchTransferCreditResult,
 } from './transfer-credit';
+
+// ---------------------------------------------------------------------------
+// Phase 2 — Transfer Eligibility & Next-Skill Path Annotation
+// See measure/tracks/transfer-credit-runtime_20260605/{plan,test-strategy}.md
+// ---------------------------------------------------------------------------
+
+export {
+  isTransferEligible,
+  flagTransferEligible,
+  annotateNextSkillPath,
+  TRANSFER_ELIGIBILITY_DEFAULT,
+  transferEligibilitySchema,
+} from './transfer-eligibility';
+export type {
+  TransferEligibilityConfig,
+  TransferEligibleSkill,
+  NextSkillPathItem,
+  AnnotatedPathEntry,
+} from './transfer-eligibility';
