@@ -158,23 +158,21 @@ own #2/#6, #3, and #5.
    - [x] **Track 14: Skill Graph Program — Blueprint QA & Authoring Harness** — **COMPLETED**
       *Build a developer and curriculum-author UI to manually preview, interact with, and QA the graph-derived blueprints.*
       *Link: [./measure/archive/blueprint-qa-harness_20260510/](./measure/archive/blueprint-qa-harness_20260510/)*
-   - [ ] **Track 15: Skill Graph Program — Geometry & Statistics Renderers**
-      *Implement specialized React components `stats-distribution-plotter` and `geometry-diagram-explorer` to address component gaps.*
-      *Scope folded into Track C (geometry) and Track D (statistics) — see Practice Primitives & Components Program above.*
-      *Link: [./measure/tracks/geometry-stats-renderers_20260510/](./measure/tracks/geometry-stats-renderers_20260510/)*
-   - [ ] **Track 16: Skill Graph Program — Trigonometry & Advanced Function Renderers**
-      *Implement `trig-unit-circle-visualizer`, `trig-graph-builder`, and `polar-renderer` to address advanced function component gaps.*
-      *Reframed as the seed of Track E — see Practice Primitives & Components Program above.*
-      *Link: [./measure/tracks/trig-advanced-renderers_20260510/](./measure/tracks/trig-advanced-renderers_20260510/)*
-   - [ ] **Track 17: Skill Graph Program — Core Algebra Generators**
-      *Implement deterministic generators for foundational algebra skills (linear equations, inequalities, systems, quadratics).*
-      *Link: [./measure/tracks/core-algebra-generators_20260510/](./measure/tracks/core-algebra-generators_20260510/)*
+   - [x] **Track 15: Skill Graph Program — Geometry & Statistics Renderers** — **SUPERSEDED / ARCHIVED** (2026-07-04)
+      *Scope folded into Practice Primitives Track C (geometry) and Track D (statistics). Spec/plan retained in archive as seed material; no standalone implementation.*
+      *Link: [./measure/archive/geometry-stats-renderers_20260510/](./measure/archive/geometry-stats-renderers_20260510/)*
+   - [x] **Track 16: Skill Graph Program — Trigonometry & Advanced Function Renderers** — **SUPERSEDED / ARCHIVED** (2026-07-04)
+      *Reframed as the seed of Practice Primitives Track E (Trigonometry & Advanced). Spec/plan retained in archive as seed material; no standalone implementation.*
+      *Link: [./measure/archive/trig-advanced-renderers_20260510/](./measure/archive/trig-advanced-renderers_20260510/)*
+   - [x] **Track 17: Skill Graph Program — Core Algebra Generators** — **COMPLETED / ARCHIVED** (2026-07-04)
+      *Implemented deterministic generators for foundational algebra skills (linear equations, systems, quadratic factoring, quadratic formula) in `packages/math-content`. All 18 non-UMV tasks complete; 4 per-phase UMV tasks deferred:user. Final acceptance: PASS (e7b1b54e).*
+      *Link: [./measure/archive/core-algebra-generators_20260510/](./measure/archive/core-algebra-generators_20260510/)*
    - [x] **Track 18: Skill Graph Program — Advanced Math Generators** — **COMPLETED / ARCHIVED** (2026-06-23)
        *Implement deterministic generators for polynomials, exponentials, logarithms, and rational functions.*
        *Link: [./measure/archive/advanced-math-generators_20260510/](./measure/archive/advanced-math-generators_20260510/)*
-   - [ ] **Track 19: Skill Graph Program — Geometry, Stats & Trig Generators**
-      *Implement generators that output complex visual/data parameters explicitly built for the new visualization components in T15 and T16.*
-      *Link: [./measure/tracks/geometry-stats-trig-generators_20260510/](./measure/tracks/geometry-stats-trig-generators_20260510/)*
+   - [x] **Track 19: Skill Graph Program — Geometry, Stats & Trig Generators** — **SUPERSEDED / ARCHIVED** (2026-07-04)
+      *Generator scope absorbed into Practice Primitives Tracks C/D/E (authored alongside their consuming primitive components). Spec/plan retained in archive as reference.*
+      *Link: [./measure/archive/geometry-stats-trig-generators_20260510/](./measure/archive/geometry-stats-trig-generators_20260510/)*
    - [x] **Track 20: Skill Graph Program — PreCalc Standards & Concept Taxonomy** — **COMPLETED / ARCHIVED** (2026-06-23)
       *Perform manual AP CED standards alignment for the 73 PreCalc skills and define/remediate the architecture for concept-level blueprints.*
       *Link: [./measure/archive/precalc-alignment-concept-taxonomy_20260510/](./measure/archive/precalc-alignment-concept-taxonomy_20260510/)*

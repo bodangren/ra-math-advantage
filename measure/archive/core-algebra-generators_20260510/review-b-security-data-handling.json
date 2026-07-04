@@ -1,0 +1,140 @@
+{
+  "trackId": "core-algebra-generators_20260510",
+  "reviewRole": "B",
+  "reviewFocus": "security and data handling",
+  "baselineSha": "6ff260b7380d9d8cd40de21c506a043372f0133d",
+  "auditDate": "2026-07-04",
+  "scope": [
+    "packages/math-content/src/utils/prng.ts",
+    "packages/math-content/src/utils/fraction.ts",
+    "packages/math-content/src/utils/expression-builder.ts",
+    "packages/math-content/src/linear-equation-solver.ts",
+    "packages/math-content/src/system-of-equations-solver.ts",
+    "packages/math-content/src/quadratic-factoring.ts",
+    "packages/math-content/src/quadratic-formula.ts",
+    "packages/math-content/src/knowledge-space/generators/algebra-generators-adapters.ts",
+    "packages/math-content/src/knowledge-space/generators/registry.ts",
+    "packages/math-content/src/index.ts",
+    "and their associated __tests__ files"
+  ],
+  "findings": {
+    "blockersFixed": [
+      {
+        "id": "SEC-1",
+        "category": "input validation",
+        "severity": "medium",
+        "description": "Public generator API ({ seed }) and mulberry32 silently coerced NaN, Infinity, non-numeric, and undefined seeds into a deterministic 0 seed via bitwise truncation.",
+        "location": "packages/math-content/src/utils/prng.ts",
+        "fix": "Added finite-number validation to mulberry32 that throws TypeError for non-number or non-finite seeds. All T17 generators inherit this validation because they call mulberry32(seed).",
+        "verification": "New unit tests in prng.test.ts assert rejection of NaN, Infinity, -Infinity, string, object, and undefined seeds."
+      },
+      {
+        "id": "SEC-2",
+        "category": "unbounded iteration",
+        "severity": "medium",
+        "description": "randNonZero helpers and quadratic-factoring case-selection loops (caseMonicPositive, caseMonicBothNegative) used unbounded do-while/while loops that could theoretically iterate forever on a broken PRNG.",
+        "location": [
+          "packages/math-content/src/linear-equation-solver.ts",
+          "packages/math-content/src/system-of-equations-solver.ts",
+          "packages/math-content/src/quadratic-factoring.ts",
+          "packages/math-content/src/quadratic-formula.ts"
+        ],
+        "fix": "Added bounded safety counters (100 for randNonZero, 20 for case selection) with explicit errors or deterministic cyclic fallbacks so every loop has a hard upper bound.",
+        "verification": "Full math-content vitest suite still passes (522/522); no new infinite-iteration paths introduced."
+      }
+    ],
+    "observations": [
+      {
+        "id": "OBS-1",
+        "category": "numeric overflow",
+        "severity": "low",
+        "description": "Fraction arithmetic could overflow JS safe integers if used with very large numerators/denominators. This is not reachable through the bounded generator inputs (small integer coefficients), but consumers using Fraction directly with huge values should be aware.",
+        "recommendation": "Document the intended range or add an overflow guard if Fraction is promoted to a general-purpose public utility beyond generator use."
+      },
+      {
+        "id": "OBS-2",
+        "category": "package typecheck",
+        "severity": "info",
+        "description": "Root-level `npx tsc --noEmit` passes. Package-level `npx tsc --noEmit -p packages/math-content/tsconfig.json` still reports pre-existing TS2591/TS2503 errors for missing node/React ambient types in non-T17 files (exports.test.ts, no-measure-coupling.guard.test.ts, im1 test scaffolding, coverage-matrix.ts, schemas/types.ts). These pre-date T17 and are not introduced by the security fixes."
+      }
+    ],
+    "noFindings": [
+      {
+        "category": "dynamic code execution",
+        "result": "No eval, new Function, or other dynamic code execution found in T17 source or tests."
+      },
+      {
+        "category": "prototype pollution / object injection",
+        "result": "No __proto__/constructor/prototype assignment, no dynamic property access from untrusted input, no object spread of unvalidated objects."
+      },
+      {
+        "category": "secrets / credentials",
+        "result": "No hardcoded secrets, API keys, passwords, or tokens introduced in T17 files."
+      },
+      {
+        "category": "unsafe dependencies",
+        "result": "No new runtime dependencies introduced by T17."
+      },
+      {
+        "category": "trusted-built-in confusion",
+        "result": "No exported methods named after trusted built-ins in a way that could confuse consumers. Fraction.valueOf is the standard coercion hook."
+      },
+      {
+        "category": "ReDoS",
+        "result": "Production T17 code does not use regex on untrusted input. Test-only regex parsers are bounded by small generated strings."
+      },
+      {
+        "category": "mulberry32 cross-engine determinism",
+        "result": "Implementation matches the spec verbatim, uses Math.imul for 32-bit signed multiplication and >>> 0 for unsigned coercion, so it is deterministic across JS engines."
+      }
+    ]
+  },
+  "antiPatternChecks": {
+    "A2_consentBlindPublishGate": {
+      "applicable": false,
+      "reason": "T17 is a pure math-content generator package. There are no draft/published status transitions, consent artifacts, or named subject publishing tests."
+    },
+    "A6_registryOverstatement": {
+      "applicable": false,
+      "reason": "measure/tracks.md entry for T17 states 'Next actionable T## track' and links to the track directory; it does not claim any security state is 'resolved'."
+    }
+  },
+  "fixesCommitted": [
+    {
+      "sha": "8d641002",
+      "message": "security(math-content): validate mulberry32 seed is a finite number",
+      "filesChanged": [
+        "packages/math-content/src/utils/prng.ts",
+        "packages/math-content/src/__tests__/prng.test.ts"
+      ]
+    },
+    {
+      "sha": "0271a702",
+      "message": "security(math-content): bound randNonZero and case-selection loops",
+      "filesChanged": [
+        "packages/math-content/src/linear-equation-solver.ts",
+        "packages/math-content/src/system-of-equations-solver.ts",
+        "packages/math-content/src/quadratic-factoring.ts",
+        "packages/math-content/src/quadratic-formula.ts"
+      ]
+    }
+  ],
+  "verification": {
+    "vitest": {
+      "command": "npx vitest run packages/math-content --reporter=verbose",
+      "result": "passed",
+      "testFiles": 33,
+      "tests": 522
+    },
+    "typecheck": {
+      "command": "npx tsc --noEmit",
+      "result": "passed",
+      "note": "Root-level check passes. Package-level math-content check has pre-existing ambient-type errors unrelated to T17."
+    },
+    "lint": {
+      "command": "npm run lint",
+      "result": "passed"
+    }
+  },
+  "recommendation": "ACCEPT with the committed security fixes. The T17 algebra generators now enforce finite numeric seeds and guarantee bounded iteration. No further security blockers remain in scope. The pre-existing package-level TypeScript ambient-type errors should be handled under the existing CI-typecheck remediation track or a follow-up chore; they are outside T17's security surface."
+}

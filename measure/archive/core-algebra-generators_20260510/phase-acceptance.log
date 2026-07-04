@@ -1,0 +1,148 @@
+# Phase Acceptance Log — core-algebra-generators_20260510 (T17)
+
+**Reviewer:** measure-phase-acceptance
+**Date:** 2026-07-04
+**Baseline SHA:** 6ff260b7380d9d8cd40de21c506a043372f0133d
+**Head SHA (after fix):** 6567f7ff
+**Verdict:** PASS
+
+## 1. Phases verified
+
+All 4 phases' non-UMV tasks are `[x]` with valid commit-SHA evidence. All 4
+UMV tasks are `[b] deferred:user` (structurally blocked, human-gated).
+
+| Phase | Title | Red SHA | Green SHA | Non-UMV [x] | UMV [b] |
+|-------|-------|---------|-----------|-------------|---------|
+| 1 | PRNG & Fraction Utilities | 71120c0e | b054d723 | 4 | 1 |
+| 2 | Linear & Systems Generators | c4d43764 | c95a0013 | 5 | 1 |
+| 3 | Quadratics | 8ea3faa9 | cdb5555e | 5 | 1 |
+| 4 | Blueprint Wiring & VSVP Unblock | — | 0b3d36e6 | 4 | 1 |
+
+Each SHA was verified via `git diff-tree --name-only -r <sha>` to touch the
+expected files (production code in Green, tests + plan.md in Red).
+
+## 2. Generators and exports verified
+
+All 8 required symbols are exported from `packages/math-content/src/index.ts`:
+
+- `mulberry32` (utils/prng.ts) — additive alongside unchanged `seededRandom`
+- `Fraction` (utils/fraction.ts) — immutable, GCD-reduced, sign-normalized
+- `formatLinearTerm`, `formatQuadratic` (utils/expression-builder.ts)
+- `generateLinearEquation` (linear-equation-solver.ts)
+- `generateSystemOfEquations` (system-of-equations-solver.ts)
+- `generateQuadraticFactoring` (quadratic-factoring.ts)
+- `generateQuadraticFormula` (quadratic-formula.ts)
+
+## 3. Registry and stub narrowing
+
+`algebra-generators-adapters.ts` registers 4 new adapters:
+- `linear-equation-solver` → IM1 skill 2.4
+- `system-of-equations-solver` → IM1 skills 7.2, 7.3
+- `quadratic-factoring` → IM3 M1 skill 1.4 (expression_equivalence grading)
+- `quadratic-formula` → IM3 M1 skill 1.6 (numeric_tolerance + exact_match)
+
+`algebraicStepSolverGenerator` stub narrowed: removed 1.4 (factoring) and
+1.6 (formula); retained 1.3 (imaginary/complex) and 1.5 (completing-the-square).
+Total registry: 14 generators. No nodeId collisions (enforced by
+generator-registry.test.ts collision test + new blueprint-coverage test).
+
+## 4. Gate results
+
+| Gate | Command | Exit | Result |
+|------|---------|------|--------|
+| PROJECT_LINT | `npm run lint` | 0 | PASS |
+| PROJECT_CHECKS | `npx tsc --noEmit` | 0 | PASS |
+| math-content tests | `npx vitest run packages/math-content` | 0 | 33 files / 521 tests |
+| doctor | `bash measure/doctor.sh` | 0 | PASS |
+| registry-sweep | `npx vitest run registry-sweep.test.ts` | 0 | 28/28 tests |
+| full-repo PROJECT_TESTS | `npx vitest run` | 1 | 904 pre-existing failures (626 files), all outside math-content |
+
+### Full-repo pre-existing reds
+
+All 626 failing test files are OUTSIDE `packages/math-content`:
+- 301 in apps/bus-math-v2
+- 295 in apps/integrated-math-3
+- 8 in apps/pre-calculus
+- 7 in packages/activity-components
+- 4 in apps/integrated-math-2
+- 3 in packages/efficacy-core
+- 3 in apps/integrated-math-1
+- 2 in scripts/audit
+- 1 in __tests__/governance
+- 1 in scripts/__tests__
+- 1 in packages/srs-engine
+
+Spot-checked at baseline SHA `6ff260b7`:
+- `apps/integrated-math-3/__tests__/app/api/student/lesson-chatbot/route.test.ts` — same `ERR_MODULE_NOT_FOUND` failure
+- `apps/bus-math-v2/__tests__/components/user-menu.test.tsx` — same `useAuth must be used within an AuthProvider` failure
+
+T17 added **zero new failures** outside packages/math-content (git diff
+confirms T17 touched only `packages/math-content/src/` and
+`measure/tracks/core-algebra-generators_20260510/`; index.ts changes are
+purely additive — no existing exports changed).
+
+## 5. Anti-patterns (A1-A12)
+
+| AP | Verdict | Evidence |
+|----|---------|----------|
+| A1 | pass | supervisor regex `r"^- \[([~xb])\] (.+)"`; `is_task_structurally_blocked` checks `status=="b"` + `deferred:<owner>` regex |
+| A2 | n/a | no publish/consent surface in T17 |
+| A3 | pass | labeled counts in Red notes (`prng_failed_tests: 6`, etc.) |
+| A4 | pass | all 4 phases have ≥1 `[x]` task |
+| A5 | pass | "28/28 sweep tests pass" and "521/521 math-content" verified exit 0; no false "all checks pass" for red gates |
+| A6 | pass (after fix) | plan.md "closes 13/16 gap" overstatement fixed in 6567f7ff; tracks.md doesn't claim T17 complete |
+| A7 | pass | specific regex guards, no broad English-word filters |
+| A8 | pass | no bare `[ ]` markers in plan.md |
+| A9 | pass | T17 tests don't read measure/tracks/ paths |
+| A10 | pass | doctor.sh Check 5 passes |
+| A11 | pass | tests/measure_orchestrator_audit.sh exists |
+| A12 | pass | AGENTS.md documents peer-reviewed rule for automation-supervisor.py |
+
+## 6. Boundary rule
+
+`packages/math-content/src/` has no imports from `apps/` or
+`convex/_generated/` (grep-verified). `bash measure/doctor.sh` boundary lint
+passes. T17 git diff touches only `packages/math-content/src/` and
+`measure/tracks/core-algebra-generators_20260510/`.
+
+## 7. Fixes committed
+
+### 6567f7ff — A6 overstatement fix + blueprint-coverage test
+
+**Problem:** Plan.md Phase 4 Task 1 claimed "closes 13/16 gap per tech-debt",
+implying all 13 uncovered IM3 M1 skills were closed. T17 actually closed 2
+of 13 (1.4 factoring, 1.6 formula), bringing real-generator coverage from
+3/16 to 5/16. This is an A6 overstatement (test-strategy §11 specifically
+flags the "13/16 gap" as something that must not be reported as closed
+prematurely).
+
+**Fix:**
+1. Updated plan.md to accurately state "narrows IM3 M1 real-generator gap
+   per tech-debt line 17: was 3/16 real → now 5/16 real" with the remaining
+   stubs (1.3, 1.5) and uncovered skills enumerated.
+2. Added a dedicated blueprint-coverage assertion to
+   `generator-registry.test.ts` (test-strategy §6.2 requirement) that
+   verifies IM3 M1 skills 1.4 and 1.6 resolve to non-stub generators:
+   - Exactly one generator claims each nodeId (no collision, no orphan)
+   - Owner is not the `algebraic-step-solver` stub
+   - Owner's description does not contain "stub"
+   - Owner's `generate()` does not return `variant-${seed}` placeholder data
+
+**Gates after fix:** math-content 521/521 (was 520, +1 new test); tsc/lint/
+doctor all exit 0.
+
+## 8. Non-blocking findings
+
+1. **Three-artifact agreement test (test-strategy §6.2):** not implemented
+   as a dedicated test. The invariant (registry ↔ problem-family
+   variantKeys ↔ coverage-matrix JSON agreement) is partially covered by
+   existing registry tests but not explicitly cross-referenced with
+   problem-family data. Recommend adding in a future track that wires
+   blueprints to problem families.
+
+2. **Full-repo PROJECT_TESTS evidence gap:** the plan's Phase 4 evidence
+   recorded only the math-content subset (521/521). The test-strategy §6.3
+   closeout gate asked for exact pre-existing-red file names/counts. The
+   904 pre-existing failures (626 files) are recorded in this audit JSON
+   and log for posterity. T17 added zero new failures outside
+   packages/math-content.

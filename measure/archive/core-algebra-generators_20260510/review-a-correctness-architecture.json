@@ -1,0 +1,124 @@
+{
+  "track_id": "core-algebra-generators_20260510",
+  "role": "measure-review-a-correctness-architecture",
+  "baseline_sha": "6ff260b7380d9d8cd40de21c506a043372f0133d",
+  "head_sha": "6567f7ff",
+  "verdict": "pass",
+  "scope": "Correctness and architecture review of all four phases (track review)",
+
+  "audit_findings": {
+    "blocking": [],
+
+    "non_blocking": [
+      {
+        "id": "NB-1",
+        "category": "dead_code",
+        "file": "packages/math-content/src/quadratic-factoring.ts",
+        "line_range": "158-161",
+        "description": "The kind 'zero-root' branch in caseAGt1 is unreachable dead code. randNonZero guarantees both r1 and r2 are non-zero, so the conditional `if (r1 === 0 || r2 === 0)` can never be true. The zero-root formatting in buildSteps (lines 89-93) is also unreachable. Not a correctness issue — the code is defensively correct and harmless."
+      },
+      {
+        "id": "NB-2",
+        "category": "weak_test_assertions",
+        "file": "packages/math-content/src/__tests__/quadratic-formula.test.ts",
+        "line_range": "268-277",
+        "description": "Three of the step-content assertions (`toContain('a')`, `toContain('b')`, `toContain('c')`) are essentially vacuous — any English text containing these ubiquitous letters would pass. The remaining assertions (discriminant, root type/nature, quadratic formula, simplify) are meaningful. The overall test does its job because the 50-seed QA harness (t17-algebra-generators-qa.test.ts) provides the real behavioral coverage."
+      },
+      {
+        "id": "NB-3",
+        "category": "missing_assertion",
+        "file": "packages/math-content/src/__tests__/quadratic-factoring.test.ts",
+        "line_range": "277-305",
+        "description": "The case-coverage test initializes `bothNegative = false` and sets it to true when detected (line 295), but never asserts `expect(bothNegative).toBe(true)`. The generator does produce both-negative roots (via caseMonicBothNegative, mode 2), so this is a test coverage gap, not a production bug."
+      },
+      {
+        "id": "NB-4",
+        "category": "test_quality",
+        "file": "packages/math-content/src/__tests__/expression-builder.test.ts",
+        "line_range": "82-98",
+        "description": "The forbidden-substring regex /(^|[^0-9])1x/ could technically match '21x' at position 1 (the '1' is captured by [^0-9]). However, this is a false-positive scenario that never occurs in practice because formatX never produces bare-digit-coefficient + 'x' when the digit is >1 — it's always '${coeff}x' where coeff is the full number. The test's intent is correct and the generator never triggers the false positive."
+      }
+    ]
+  },
+
+  "correctness_verification": {
+    "1_mulberry32_algorithm": {
+      "verdict": "pass",
+      "notes": "Spec algorithm and implementation compared byte-for-byte via automated test across 8 seeds × 10 draws. All outputs identical. The implementation adds `>>> 0` coercion on state for defensive cleanliness; this is mathematically equivalent to the spec's approach because all downstream operations (Math.imul, bitwise XOR/OR/shift) coerce to 32-bit integers anyway."
+    },
+    "2_fraction_exact_arithmetic": {
+      "verdict": "pass",
+      "notes": "Immutable class with GCD-based reduction, sign normalization to numerator, denominator>0 invariant. All operations (add, subtract, multiply, divide) produce new Fraction instances via integer arithmetic. No floating-point leakage in intermediate steps. toString/toNumber conversions are the only precision boundary, documented."
+    },
+    "3_expression_builder_formatting": {
+      "verdict": "pass",
+      "notes": "formatLinearTerm and formatQuadratic never emit: 1x (collapsed to bare variable), -1x (collapsed to -variable), + -N (uses ' - N' separator), 0x (term omitted), leading + (first term is verbatim). Verified across all test inputs and100 random coefficient pairs."
+    },
+    "4_linear_equation_backward_gen": {
+      "verdict": "pass",
+      "notes": "Construction: pick x (Fraction), pick a (non-zero), pick b, compute c = a*x + b. The identity a*answer + b === c holds by construction. 50-seed substitution falsifier passes. Single mulberry32 call per generation (spy verified)."
+    },
+    "5_system_of_equations_backward_gen": {
+      "verdict": "pass",
+      "notes": "Construction: pick integer (x,y), pick non-zero (a1,b1,a2,b2), guard det ≠ 0 via deterministic b2 walk. Compute c1 = a1*x + b1*y, c2 = a2*x + b2*y. Cramer's rule recovery: xSolved = (c1*b2 - c2*b1)/det, ySolved = (a1*c2 - a2*c1)/det — exact because numerator is always a multiple of det (integer division yields integer result). 50-seed substitution falsifier passes."
+    },
+    "6_quadratic_factoring_backward_gen": {
+      "verdict": "pass",
+      "notes": "Construction: pick roots r1, r2, pick leading coefficient a. Expand a(x-r1)(x-r2) → ax^2 - a(r1+r2)x + a*r1*r2. Factored form uses formatBinomial for each root. Test verifies: (1) expandFactoredForm(factoredForm) === [c, b, a] via multiplyPoly, (2) a*r^2 + b*r + c === 0 for each root. Both pass across 50 seeds."
+    },
+    "7_quadratic_formula_forward_gen": {
+      "verdict": "pass",
+      "notes": "Four regimes: integer roots (backward), repeated root (backward), irrational (forward: pick a,b, iterate c for positive non-square discriminant), complex (forward: pick a,b, iterate c for negative discriminant). Discriminant b^2-4ac computed exactly (integer arithmetic). Root strings use ± notation. Test's evaluateRoot parser correctly handles (N ± √M)/D and (N ± i√M)/D formats. 50-seed sweep verifies: discriminant matches, real roots satisfy equation, irrational roots parsed and verified."
+    },
+    "8_adapter_contracts": {
+      "verdict": "pass",
+      "notes": "All four adapters conform to GeneratorInput → GeneratorOutput. Grading metadata: linear/systems use numeric_tolerance (1e-9), quadratic-factoring uses expression_equivalence, quadratic-formula uses numeric_tolerance for real values and exact_match for radical strings. All adapter-returned GeneratorOutput objects pass the structural shape checks."
+    },
+    "9_registry_no_collisions": {
+      "verdict": "pass",
+      "notes": "14 generators registered. 4 new T17 adapters have unique keys. algebraicStepSolverGenerator narrowed: removed 1.4 (factoring) and 1.6 (formula), kept 1.3 (imaginary/complex) and 1.5 (completing-the-square). No nodeId overlaps. Blueprint-coverage test verifies 1.4 and 1.6 resolve to non-stub generators."
+    },
+    "10_boundary_rule": {
+      "verdict": "pass",
+      "notes": "No imports from apps/ or convex/_generated/ in any T17 file. All changes scoped to packages/math-content/src/ and measure/tracks/core-algebra-generators_20260510/."
+    }
+  },
+
+  "gate_results": {
+    "vitest_math_content": {
+      "command": "npx vitest run packages/math-content --reporter=verbose",
+      "exit_code": 0,
+      "test_files": 33,
+      "tests_passed": 521,
+      "tests_failed": 0,
+      "verdict": "pass"
+    },
+    "tsc_noEmit": {
+      "command": "npx tsc --noEmit",
+      "exit_code": 0,
+      "verdict": "pass"
+    },
+    "doctor": {
+      "command": "bash measure/doctor.sh",
+      "exit_code": 0,
+      "verdict": "pass"
+    }
+  },
+
+  "anti_pattern_audit": {
+    "A4_vacuous_pass": {
+      "verdict": "pass_with_note",
+      "notes": "No vacuous-pass detected. All generator tests require non-empty output, finite numbers, ≥1 step. 50-seed sweeps run 50 distinct iterations. The NB-2 finding (weak 'a'/'b'/'c' assertions in quadratic-formula step test) is non-blocking because the behavioral 50-seed QA harness provides the real coverage."
+    },
+    "A3_digit_only_count": {
+      "verdict": "pass",
+      "notes": "All Red evidence in plan.md uses labeled failure counts (prng_failed_tests: 6, fraction_suite_failure: 1, etc.). No bare-digit scraping."
+    },
+    "A5_false_claim_text": {
+      "verdict": "pass",
+      "notes": "Plan text accurately cites test results. The full-repo PROJECT_TESTS exit=1 (904 failures in 626 files) is documented as pre-existing_red with exact scope. No 'all checks pass' claim for the red gate."
+    }
+  },
+
+  "recommendation": "PASS — all four generators are mathematically correct, deterministic, single-pass, and conform to the GeneratorOutput contract. No blocking issues found. Four non-blocking observations recorded (dead code, weak test assertions, missing assertion)."
+}

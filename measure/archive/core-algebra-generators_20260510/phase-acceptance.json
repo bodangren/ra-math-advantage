@@ -1,0 +1,169 @@
+{
+  "track_id": "core-algebra-generators_20260510",
+  "role": "measure-phase-acceptance",
+  "baseline_sha": "6ff260b7380d9d8cd40de21c506a043372f0133d",
+  "head_sha": "6567f7ff",
+  "verdict": "pass",
+  "phases": [
+    {
+      "phase": 1,
+      "title": "PRNG & Fraction Utilities",
+      "non_umv_tasks_complete": true,
+      "umv_deferred": true,
+      "sha_evidence": {
+        "red": "71120c0e",
+        "green": "b054d723"
+      },
+      "artifacts_verified": [
+        "packages/math-content/src/utils/prng.ts (mulberry32 additive; seededRandom unchanged)",
+        "packages/math-content/src/utils/fraction.ts (Fraction class: GCD, simplify, add, multiply, divide, equals, toString, toNumber, fromDecimal)",
+        "packages/math-content/src/utils/expression-builder.ts (formatLinearTerm, formatQuadratic — no 1x/-1x/+ -/0x/leading +)"
+      ],
+      "tests_pass": true,
+      "notes": "8 prng tests + 14 fraction tests + 13 expression-builder tests all green."
+    },
+    {
+      "phase": 2,
+      "title": "Linear & Systems Generators",
+      "non_umv_tasks_complete": true,
+      "umv_deferred": true,
+      "sha_evidence": {
+        "red": "c4d43764",
+        "green": "c95a0013"
+      },
+      "artifacts_verified": [
+        "packages/math-content/src/linear-equation-solver.ts (generateLinearEquation — backward-gen, single-pass mulberry32)",
+        "packages/math-content/src/system-of-equations-solver.ts (generateSystemOfEquations — backward-gen, determinant guard, single-pass)",
+        "packages/math-content/src/knowledge-space/generators/algebra-generators-adapters.ts (linearEquationAdapter, systemOfEquationsAdapter)",
+        "packages/math-content/src/knowledge-space/generators/registry.ts (2 new keys registered; no collisions)",
+        "packages/math-content/src/index.ts (re-exports generateLinearEquation, generateSystemOfEquations + types)"
+      ],
+      "tests_pass": true,
+      "notes": "18 linear + 17 systems + registry assertions all green. 50-seed backward-gen falsifier (a*answer+b===c) passes."
+    },
+    {
+      "phase": 3,
+      "title": "Quadratics",
+      "non_umv_tasks_complete": true,
+      "umv_deferred": true,
+      "sha_evidence": {
+        "red": "8ea3faa9",
+        "green": "cdb5555e"
+      },
+      "artifacts_verified": [
+        "packages/math-content/src/quadratic-factoring.ts (generateQuadraticFactoring — 6 PRNG modes: monic/mixed/both-neg/perfect-square/diff-squares/a>1)",
+        "packages/math-content/src/quadratic-formula.ts (generateQuadraticFormula — 4 regimes: integer/repeated/irrational/complex; radical strings)",
+        "algebra-generators-adapters.ts: quadraticFactoringAdapter (expression_equivalence grading), quadraticFormulaAdapter (numeric_tolerance + exact_match)",
+        "registry.ts: algebraicStepSolverGenerator stub narrowed — removed 1.4 (factoring) and 1.6 (formula); kept 1.3 (imaginary/complex) and 1.5 (completing-the-square)",
+        "index.ts: re-exports generateQuadraticFactoring, generateQuadraticFormula + types"
+      ],
+      "tests_pass": true,
+      "notes": "19 factoring + 18 formula + 6 registry assertions all green. 50-seed backward-gen falsifier (expand factoredForm === declared polynomial) passes. checkEquivalence accepts both factor orderings."
+    },
+    {
+      "phase": 4,
+      "title": "Blueprint Wiring & Vertical-Slice Unblock",
+      "non_umv_tasks_complete": true,
+      "umv_deferred": true,
+      "sha_evidence": {
+        "green": "0b3d36e6"
+      },
+      "artifacts_verified": [
+        "t17-algebra-generators-qa.test.ts: 4 QA tests (50-seed sweeps for all 4 generators) pass",
+        "registry-sweep.test.ts: 28/28 tests pass (14 per-key + 14 static); all 14 registered generators pass verifyGenerator harness",
+        "Vertical Slice Value Proof track (vertical-slice-value-proof_20260605) Phase 1 dependency on core algebra generators is unblocked"
+      ],
+      "tests_pass": true,
+      "notes": "Plan text fixed: 'closes 13/16 gap' was an A6 overstatement (T17 closed 2/13 IM3 M1 skills, 3/16→5/16 real coverage). Added dedicated blueprint-coverage assertion (test-strategy §6.2 requirement) verifying 1.4/1.6 resolve to non-stub generators. Fix committed as 6567f7ff."
+    }
+  ],
+  "gate_results": {
+    "PROJECT_LINT": {
+      "command": "npm run lint",
+      "exit_code": 0,
+      "verdict": "pass"
+    },
+    "PROJECT_CHECKS": {
+      "command": "npx tsc --noEmit",
+      "exit_code": 0,
+      "verdict": "pass"
+    },
+    "PROJECT_TESTS_math_content": {
+      "command": "npx vitest run packages/math-content --reporter=verbose",
+      "exit_code": 0,
+      "test_files_passed": 33,
+      "tests_passed": 521,
+      "tests_failed": 0,
+      "verdict": "pass"
+    },
+    "PROJECT_TESTS_full_repo": {
+      "command": "npx vitest run --reporter=verbose",
+      "exit_code": 1,
+      "test_files_passed": 355,
+      "test_files_failed": 626,
+      "tests_passed": 4833,
+      "tests_failed": 904,
+      "tests_skipped": 12,
+      "verdict": "pre_existing_red",
+      "notes": "All 626 failing test files are OUTSIDE packages/math-content (301 bus-math-v2, 295 integrated-math-3, 8 pre-calculus, 7 activity-components, 4 integrated-math-2, 3 efficacy-core, 3 integrated-math-1, 2 scripts/audit, 1 __tests__/governance, 1 scripts/__tests__, 1 srs-engine). Zero failures in packages/math-content. Spot-checked at baseline SHA 6ff260b7 — same failures (lesson-chatbot route.test.ts, user-menu.test.tsx confirmed pre-existing). T17 is purely additive at the package boundary (index.ts diff: only new exports, no existing exports changed)."
+    },
+    "doctor": {
+      "command": "bash measure/doctor.sh",
+      "exit_code": 0,
+      "verdict": "pass"
+    }
+  },
+  "exports_verified": {
+    "mulberry32": "packages/math-content/src/utils/prng.ts → index.ts",
+    "Fraction": "packages/math-content/src/utils/fraction.ts → index.ts",
+    "formatLinearTerm": "packages/math-content/src/utils/expression-builder.ts → index.ts",
+    "formatQuadratic": "packages/math-content/src/utils/expression-builder.ts → index.ts",
+    "generateLinearEquation": "packages/math-content/src/linear-equation-solver.ts → index.ts",
+    "generateSystemOfEquations": "packages/math-content/src/system-of-equations-solver.ts → index.ts",
+    "generateQuadraticFactoring": "packages/math-content/src/quadratic-factoring.ts → index.ts",
+    "generateQuadraticFormula": "packages/math-content/src/quadratic-formula.ts → index.ts"
+  },
+  "registry_verified": {
+    "adapters_registered": [
+      "linear-equation-solver",
+      "system-of-equations-solver",
+      "quadratic-factoring",
+      "quadratic-formula"
+    ],
+    "total_generators": 14,
+    "stub_narrowed": "algebraicStepSolverGenerator no longer claims 1.4 (factoring) or 1.6 (formula); retains 1.3 (imaginary/complex) and 1.5 (completing-the-square)",
+    "no_nodeId_collisions": true
+  },
+  "anti_patterns": {
+    "A1_substring_as_signal": "pass — supervisor uses r\"^- \\[([~xb])\\] (.+)\"; is_task_structurally_blocked recognizes [b] status and deferred:<owner> regex",
+    "A2_consent_blind_publish": "n/a — T17 has no publish/consent surface",
+    "A3_digit_only_count": "pass — Red notes use labeled counts (prng_failed_tests: 6, fraction_suite_failure: 1, etc.); no rg -q '[0-9]+' scraping",
+    "A4_vacuous_pass": "pass — all 4 phases have >=1 [x] task with SHA; UMV tasks are [b] deferred:user",
+    "A5_false_claim_text": "pass — '28/28 sweep tests pass' and '521/521 math-content tests' verified to exit 0; no 'all checks pass' claim for the red full-repo PROJECT_TESTS gate",
+    "A6_registry_overstatement": "pass (after fix) — tracks.md does not claim T17 complete; plan.md 'closes 13/16 gap' overstatement fixed to 'narrows IM3 M1 real-generator gap: 3/16→5/16' in commit 6567f7ff",
+    "A7_over_broad_filter": "pass — source guards use specific regexes (Math\\.random\\s*\\(), forbidden-substring patterns); no bare English-word filters",
+    "A8_space_marker": "pass — no bare [ ] markers in plan.md; supervisor regex excludes space",
+    "A9_archived_track_refs": "pass — T17 tests do not read measure/tracks/ paths; no-measure-coupling.guard.test.ts unchanged",
+    "A10_generated_facts_drift": "pass — doctor.sh Check 5 passes (generated docs fresh)",
+    "A11_missing_contract_suite": "pass — tests/measure_orchestrator_audit.sh exists",
+    "A12_missing_peer_review_rule": "pass — AGENTS.md documents automation-supervisor.py as peer-reviewed"
+  },
+  "boundary_rule": {
+    "verdict": "pass",
+    "evidence": "packages/math-content/src/ has no imports from apps/ or convex/_generated/ (grep verified); doctor.sh boundary lint passes; T17 git diff touches only packages/math-content/src/ and measure/tracks/core-algebra-generators_20260510/"
+  },
+  "fixes_committed": [
+    {
+      "sha": "6567f7ff",
+      "description": "Fixed A6 overstatement in plan.md Phase 4 Task 1 ('closes 13/16 gap' → 'narrows IM3 M1 real-generator gap: 3/16→5/16'); added dedicated blueprint-coverage assertion (test-strategy §6.2) to generator-registry.test.ts verifying IM3 M1 skills 1.4/1.6 resolve to non-stub generators",
+      "files": [
+        "measure/tracks/core-algebra-generators_20260510/plan.md",
+        "packages/math-content/src/__tests__/generator-registry.test.ts"
+      ]
+    }
+  ],
+  "findings_non_blocking": [
+    "test-strategy §6.2 also required a 'three-artifact agreement' test (registry ↔ problem-family variantKeys ↔ coverage-matrix JSON). Not implemented as a dedicated test; the three-artifact invariant is partially covered by the registry-sweep + generator-registry tests but not explicitly cross-referenced with problem-family data. Recommend adding in a future track that wires blueprints to problem families.",
+    "Full-repo PROJECT_TESTS has 904 pre-existing failures (626 files) all outside packages/math-content, documented in tech-debt lines 28/35/37. T17 added zero new failures. The plan's Phase 4 evidence recorded only the math-content subset (521/521); the test-strategy §6.3 closeout gate asked for exact pre-existing-red file names/counts — recorded here in this audit JSON for posterity."
+  ]
+}

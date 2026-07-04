@@ -1,0 +1,278 @@
+{
+  "track_id": "core-algebra-generators_20260510",
+  "role": "measure-final-acceptance",
+  "audit_date": "2026-07-04",
+  "baseline_sha": "6ff260b7380d9d8cd40de21c506a043372f0133d",
+  "head_sha": "e7b1b54ee865ff6c9c170cbfac7be553acdc022f",
+  "verdict": "PASS",
+
+  "summary": "All four phases of T17 (Core Algebra Generators) meet the final-acceptance standard. Every non-deferred task is [x] with commit-SHA evidence; the 4 per-phase UMV tasks are [b] deferred:user. All configured gates pass (lint 0, tsc 0, math-content 595/595, doctor 0). No anti-patterns A1-A12 are present. The track is ready for measure-closeout to perform the archive move and mark tracks.md [x].",
+
+  "commit_history": {
+    "baseline": "6ff260b7380d9d8cd40de21c506a043372f0133d",
+    "head": "e7b1b54ee865ff6c9c170cbfac7be553acdc022f",
+    "commits_in_range": [
+      { "sha": "71120c0e", "role": "Phase 1 Red", "subject": "T17 P1 Red: failing tests for mulberry32, Fraction, MathExpressionBuilder" },
+      { "sha": "b054d723", "role": "Phase 1 Green", "subject": "T17 P1 Green: implement mulberry32, Fraction, MathExpressionBuilder; all P1 tests pass" },
+      { "sha": "7b292cbc", "role": "Phase 1 plan update", "subject": "measure(T17): Phase 1 plan update — P1 tasks [x] with Green SHA b054d723 (UMV remains deferred:user)" },
+      { "sha": "c4d43764", "role": "Phase 2 Red", "subject": "T17 P2 Red: failing tests for linear-equation-solver, system-of-equations-solver, and registry wiring" },
+      { "sha": "c95a0013", "role": "Phase 2 Green", "subject": "T17 P2 Green: implement linear-equation-solver, system-of-equations-solver, algebra-generators-adapters, registry wiring" },
+      { "sha": "f8a7076f", "role": "Phase 2 plan update", "subject": "measure(T17): Phase 2 plan update — P2 tasks [x] with Green SHA c95a0013 (UMV remains deferred:user)" },
+      { "sha": "8ea3faa9", "role": "Phase 3 Red", "subject": "T17 P3 Red: failing tests for quadratic-factoring, quadratic-formula, and registry collision check" },
+      { "sha": "cdb5555e", "role": "Phase 3 Green", "subject": "T17 P3 Green: implement quadratic-factoring, quadratic-formula; replace stub factoring/formula coverage; registry adapters wired" },
+      { "sha": "0b3d36e6", "role": "Phase 4 Green", "subject": "T17 P4 Green: QA harness (50-seed sweep), blueprint wiring, vertical-slice unblock" },
+      { "sha": "1b2224da", "role": "Phase 4 plan update", "subject": "measure(T17): Phase 4 plan update — P4 tasks [x] with Green SHA 0b3d36e6 (UMV deferred:user)" },
+      { "sha": "6567f7ff", "role": "Phase-acceptance A6 fix", "subject": "measure(T17): phase-acceptance fix — accurate IM3 M1 gap claim + blueprint-coverage test" },
+      { "sha": "b69d9bda", "role": "Review-C fix", "subject": "fix(T17): type-safe partGradingRules in quadratic-formula adapter" },
+      { "sha": "8d641002", "role": "Review-B fix (seed validation)", "subject": "security(math-content): validate mulberry32 seed is a finite number" },
+      { "sha": "0271a702", "role": "Review-B fix (bounded loops)", "subject": "security(math-content): bound randNonZero and case-selection loops" },
+      { "sha": "e7b1b54e", "role": "Adversarial testing", "subject": "test(T17): adversarial edge-case coverage (AD1-AD16)" }
+    ],
+    "sha_files_verified": "Each Green/fix SHA was verified via git diff-tree --no-commit-id --name-only -r <sha> to touch exactly the expected production/test/plan files. See audit log below."
+  },
+
+  "task_completion": {
+    "phase_1": {
+      "title": "PRNG & Fraction Utilities",
+      "non_umv_tasks_complete": 4,
+      "umv_deferred": 1,
+      "sha_evidence": { "red": "71120c0e", "green": "b054d723", "plan_update": "7b292cbc" },
+      "all_tasks_x": true
+    },
+    "phase_2": {
+      "title": "Linear & Systems Generators",
+      "non_umv_tasks_complete": 5,
+      "umv_deferred": 1,
+      "sha_evidence": { "red": "c4d43764", "green": "c95a0013", "plan_update": "f8a7076f" },
+      "all_tasks_x": true
+    },
+    "phase_3": {
+      "title": "Quadratics",
+      "non_umv_tasks_complete": 5,
+      "umv_deferred": 1,
+      "sha_evidence": { "red": "8ea3faa9", "green": "cdb5555e" },
+      "all_tasks_x": true
+    },
+    "phase_4": {
+      "title": "Blueprint Wiring & Vertical-Slice Unblock",
+      "non_umv_tasks_complete": 4,
+      "umv_deferred": 1,
+      "sha_evidence": { "green": "0b3d36e6", "plan_update": "1b2224da" },
+      "all_tasks_x": true
+    },
+    "totals": {
+      "non_umv_completed_x": 18,
+      "umv_deferred_b": 4,
+      "in_progress_tilde": 0,
+      "pending_space": 0,
+      "total_tasks": 22,
+      "note": "All 18 non-UMV tasks are [x] with commit SHA evidence. All 4 UMV tasks are [b] deferred:user. No [~] or bare [ ] markers remain in plan.md. (Task brief estimated 16 non-UMV tasks assuming 5 tasks/phase; Phases 2 and 3 actually have 6 tasks each, giving 18 completed — the truthful count recorded in metadata.json actual_tasks.)"
+    }
+  },
+
+  "gate_results": {
+    "PROJECT_LINT": {
+      "command": "npm run lint",
+      "exit_code": 0,
+      "verdict": "pass",
+      "verified_by_final_acceptance": true
+    },
+    "PROJECT_CHECKS": {
+      "command": "npx tsc --noEmit",
+      "exit_code": 0,
+      "verdict": "pass",
+      "verified_by_final_acceptance": true
+    },
+    "PROJECT_TESTS_math_content": {
+      "command": "npx vitest run packages/math-content --reporter=verbose",
+      "exit_code": 0,
+      "test_files_passed": 34,
+      "tests_passed": 595,
+      "tests_failed": 0,
+      "verdict": "pass",
+      "verified_by_final_acceptance": true,
+      "note": "Scope per track: packages/math-content only. The 595 count reflects the adversarial commit e7b1b54e (t17-adversarial.test.ts, 73 tests) on top of the 522-test post-review-B baseline and the 521-test phase-acceptance baseline."
+    },
+    "PROJECT_TESTS_full_repo": {
+      "command": "npx vitest run --reporter=verbose",
+      "verdict": "not_run_by_final_acceptance",
+      "rationale": "Per final-acceptance task scope, only the math-content package subset is run. The phase-acceptance.json documented 904 pre-existing failures (626 files) all OUTSIDE packages/math-content (301 bus-math-v2, 295 integrated-math-3, 8 pre-calculus, 7 activity-components, 4 integrated-math-2, 3 efficacy-core, 3 integrated-math-1, 2 scripts/audit, 1 governance, 1 scripts/__tests__, 1 srs-engine). Spot-checked at baseline 6ff260b7 — same failures. T17 git diff is purely additive at the package boundary (index.ts: only new exports, no existing exports changed), so zero new failures are introduced outside math-content."
+    },
+    "doctor": {
+      "command": "bash measure/doctor.sh",
+      "exit_code": 0,
+      "verdict": "pass",
+      "verified_by_final_acceptance": true
+    }
+  },
+
+  "anti_pattern_audit": {
+    "A1_substring_as_signal": {
+      "verdict": "pass",
+      "evidence": "measure/automation-supervisor.py was NOT touched by T17 (git diff --name-only baseline..HEAD -- measure/automation-supervisor.py is empty). Supervisor regex is r\"^- \\[([~xb])\\] (.+)\" (no space char). is_task_structurally_blocked() recognizes [b] status + deferred:<owner> regex. A1 detector (Python, docstrings stripped) returns 0 substring-match occurrences of '\"deferred\" in task.lower()'."
+    },
+    "A2_consent_blind_publish": {
+      "verdict": "n/a",
+      "evidence": "T17 is a pure math-content generator package with no publish/consent surface, no student data, no UX."
+    },
+    "A3_digit_only_count": {
+      "verdict": "pass",
+      "evidence": "All Red evidence in plan.md uses labeled failure counts (prng_failed_tests: 6, fraction_suite_failure: 1, expression_builder_suite_failure: 1, linear_equation_solver_suite_failure: 1, etc.). No bare-digit rg scraping."
+    },
+    "A4_vacuous_pass": {
+      "verdict": "pass",
+      "evidence": "All 4 phases have >=1 [x] task with SHA. Every generator test requires non-empty output (equation string, finite answer, >=1 step). 50-seed and 200-seed sweeps run real distinct iterations. UMV tasks are [b] deferred:user."
+    },
+    "A5_false_claim_text": {
+      "verdict": "pass",
+      "evidence": "grep for 'PASS=[0-9]+.*FAIL=0|all checks pass|all tests pass' in plan.md returns only three lines quoting doctor.sh output ('bash measure/doctor.sh: exit 0 (\"All checks passed\")') — these are accurate citations (doctor exits 0, verified). No standalone 'all tests pass' claim for the red full-repo PROJECT_TESTS gate. The 595/595 math-content claim was verified to exit 0 by this audit."
+    },
+    "A6_registry_overstatement": {
+      "verdict": "pass",
+      "evidence": "measure/tracks.md T17 entry (line 169) is still [ ] — does NOT claim T17 is complete. The plan.md Phase 4 'closes 13/16 gap' overstatement was fixed in commit 6567f7ff to 'narrows IM3 M1 real-generator gap: was 3/16 real -> now 5/16 real' with remaining stubs (1.3, 1.5) and uncovered skills enumerated. A dedicated blueprint-coverage assertion was added verifying IM3 M1 skills 1.4/1.6 resolve to non-stub generators."
+    },
+    "A7_over_broad_filter": {
+      "verdict": "pass",
+      "evidence": "Source guards use specific regexes (Math\\.random\\s*\\(), forbidden-substring patterns for 1x/-1x/+ -/0x/leading +). No bare English-word filters. no-measure-coupling.guard.test.ts uses quoted-string-literal regex."
+    },
+    "A8_space_marker": {
+      "verdict": "pass",
+      "evidence": "grep -nE '^\\- \\[ \\]' plan.md returns 0 matches. Marker counts: 18 [x], 4 [b], 0 [~], 0 [ ]. Supervisor regex excludes space."
+    },
+    "A9_archived_track_refs": {
+      "verdict": "pass",
+      "evidence": "tests/*.sh contains only tests/measure_orchestrator_audit.sh. rg for 'measure/tracks/([a-z_0-9-]+)/plan\\.md' in tests/ returns no matches. T17 tests do not read measure/tracks/ paths; no-measure-coupling.guard.test.ts unchanged."
+    },
+    "A10_generated_facts_drift": {
+      "verdict": "pass",
+      "evidence": "bash measure/doctor.sh Check 5 (generated docs freshness) passes — exit 0, 'All checks passed'."
+    },
+    "A11_missing_contract_suite": {
+      "verdict": "pass",
+      "evidence": "tests/measure_orchestrator_audit.sh exists (executable, 1390 bytes)."
+    },
+    "A12_missing_peer_review_rule": {
+      "verdict": "pass",
+      "evidence": "AGENTS.md documents: 'measure/automation-supervisor.py is a peer-reviewed component. Any modification to it (especially task-marker parsing, the r\"^- \\[([~xb])\\] (.+)\" regex, or is_task_structurally_blocked) must be peer-reviewed and re-audited by measure-orchestrator-audit before merge.' T17 made no supervisor changes."
+    }
+  },
+
+  "pre_closeout_audit": {
+    "A1_supervisor_no_substring_heuristic": "pass — supervisor unchanged by T17; regex has no space char; 0 substring-match occurrences",
+    "A5_pass_claim_matches_reality": "pass — all 'All checks passed' citations are accurate doctor.sh quotes (doctor exits 0); 595/595 math-content claim verified exit 0; no false 'all checks pass' for red gates",
+    "A6_tracks_md_registry_note_accurate": "pass — tracks.md T17 entry is [ ] (not claimed complete); no overstatement; plan.md gap claim corrected in 6567f7ff",
+    "A9_no_test_refs_archived_track": "pass — tests/*.sh has no measure/tracks/<id>/plan.md references"
+  },
+
+  "review_reports": {
+    "review_a_correctness_architecture": {
+      "file": "review-a-correctness-architecture.json",
+      "head_sha": "6567f7ff",
+      "verdict": "pass",
+      "blocking_findings": 0,
+      "non_blocking_findings": 4,
+      "non_blocking_summary": "NB-1 dead zero-root branch in quadratic-factoring (defensively correct, harmless); NB-2 weak 'a'/'b'/'c' step assertions in quadratic-formula test (covered by 50-seed QA harness); NB-3 missing bothNegative assertion in factoring case-coverage test; NB-4 forbidden-substring regex false-positive scenario that never occurs in practice."
+    },
+    "review_b_security_data_handling": {
+      "file": "review-b-security-data-handling.json",
+      "verdict": "accept_with_fixes",
+      "blockers_fixed": 2,
+      "fixes_committed": [
+        { "sha": "8d641002", "description": "validate mulberry32 seed is a finite number (rejects NaN, Infinity, non-numeric, undefined)" },
+        { "sha": "0271a702", "description": "bound randNonZero and case-selection loops with safety counters (100/20)" }
+      ],
+      "observations": 2,
+      "observation_summary": "OBS-1 Fraction overflow with huge values (not reachable via bounded generator inputs); OBS-2 pre-existing package-level tsc ambient-type errors (pre-date T17)."
+    },
+    "review_c_ux_api_audit": {
+      "file": "review-c-ux-api-audit.json",
+      "head_sha": "b69d9bda",
+      "verdict": "pass_with_fix",
+      "bug_fixed": { "sha": "b69d9bda", "description": "narrowed Record<string, string> to GradingMetadata union type in quadratic-formula adapter partGradingRules" },
+      "checklist_items_passed": "8/8",
+      "ux_required": "never (pure package code, no browser surface)"
+    },
+    "adversarial_testing": {
+      "commit": "e7b1b54e",
+      "file": "packages/math-content/src/__tests__/t17-adversarial.test.ts",
+      "tests_added": 73,
+      "describe_blocks": 15,
+      "coverage": "AD1-AD16 — pins specific seed outputs (not just 'is finite'), verifies forbidden-substring guards with precision, exercises 200-seed sweeps across all four generators. Targets anti-patterns A1, A4, A5, A7."
+    },
+    "phase_acceptance": {
+      "file": "phase-acceptance.json",
+      "head_sha": "6567f7ff",
+      "verdict": "pass",
+      "note": "Phase-acceptance was performed at 6567f7ff (before review-B/C fixes and adversarial commit). Subsequent review-B (8d641002, 0271a702), review-C (b69d9bda), and adversarial (e7b1b54e) commits are all additive fixes/tests on top of the accepted phase work. This final-acceptance audit re-ran all gates at HEAD (e7b1b54e) and confirms 595/595 math-content tests pass."
+    }
+  },
+
+  "exports_and_registry_verified": {
+    "exports_from_index_ts": [
+      "mulberry32 (utils/prng.ts)",
+      "Fraction, gcd (utils/fraction.ts)",
+      "formatLinearTerm, formatQuadratic (utils/expression-builder.ts)",
+      "generateLinearEquation (linear-equation-solver.ts)",
+      "generateSystemOfEquations (system-of-equations-solver.ts)",
+      "generateQuadraticFactoring (quadratic-factoring.ts)",
+      "generateQuadraticFormula (quadratic-formula.ts)"
+    ],
+    "adapters_registered": [
+      "linear-equation-solver -> IM1 skill 2.4 (numeric_tolerance)",
+      "system-of-equations-solver -> IM1 skills 7.2, 7.3 (numeric_tolerance)",
+      "quadratic-factoring -> IM3 M1 skill 1.4 (expression_equivalence)",
+      "quadratic-formula -> IM3 M1 skill 1.6 (numeric_tolerance + exact_match)"
+    ],
+    "stub_narrowed": "algebraicStepSolverGenerator narrowed — removed 1.4 (factoring) and 1.6 (formula); retained 1.3 (imaginary/complex) and 1.5 (completing-the-square)",
+    "no_nodeId_collisions": true,
+    "boundary_rule": "pass — packages/math-content/src/ has no imports from apps/ or convex/_generated/ (rg verified); doctor.sh boundary lint passes; T17 git diff touches only packages/math-content/src/ and measure/tracks/core-algebra-generators_20260510/"
+  },
+
+  "metadata_json_state": {
+    "status": "done",
+    "completed_at": "2026-07-04T00:00:00Z",
+    "actual_tasks": 18,
+    "updated_at": "2026-07-04T00:00:00Z",
+    "updated_by_final_acceptance": true,
+    "note": "metadata.json flipped from in-progress to done by this final-acceptance audit. actual_tasks=18 is the truthful count of non-UMV [x] completed tasks (Phase 1: 4, Phase 2: 5, Phase 3: 5, Phase 4: 4). The task brief estimated 16 assuming 5 tasks/phase; Phases 2 and 3 have 6 tasks each, so 18 is correct. estimated_tasks=9 is the original pre-plan estimate and is left unchanged (it predates the full plan)."
+  },
+
+  "closeout_readiness": {
+    "no_non_deferred_tasks_remain": true,
+    "completed_tasks_have_sha_evidence": true,
+    "plan_text_honest_no_false_claims": true,
+    "doctor_exits_0": true,
+    "configured_project_gates_pass": true,
+    "standard_met": true
+  },
+
+  "pending_closeout_actions": [
+    {
+      "action": "Mark measure/tracks.md T17 entry (line 169) from [ ] to [x] with completion note and archive link target",
+      "owner": "measure-closeout",
+      "rationale": "Per final-acceptance role definition ('Do not archive the track or update final closeout metadata'), the tracks.md [x] marking + archive link is the closeout agent's archive-move action (the link target ./archive/core-algebra-generators_20260510/ does not exist until the directory is moved). Pattern confirmed against recently-archived tracks (WCAG, transfer-credit-runtime, teacher-content-authoring) whose tracks.md entries were marked [x] with archive links at closeout."
+    },
+    {
+      "action": "Move measure/tracks/core-algebra-generators_20260510/ to measure/archive/core-algebra-generators_20260510/",
+      "owner": "measure-closeout"
+    },
+    {
+      "action": "Commit the untracked audit artifacts (phase-acceptance.json, phase-acceptance.log, review-a/b/c JSONs, final-acceptance.json) and the metadata.json status flip",
+      "owner": "measure-closeout",
+      "note": "These files are currently untracked in git (?? in git status). The closeout commit should stage and commit them together with the tracks.md update and archive move."
+    }
+  ],
+
+  "non_blocking_findings": [
+    "Review-A NB-1: dead zero-root branch in quadratic-factoring caseAGt1 (unreachable; defensively correct, harmless).",
+    "Review-A NB-2: three weak step-content assertions (toContain('a'/'b'/'c')) in quadratic-formula test; real coverage provided by 50-seed QA harness.",
+    "Review-A NB-3: case-coverage test in quadratic-factoring.test.ts does not assert bothNegative===true (generator does produce both-negative roots via mode 2).",
+    "Review-A NB-4: forbidden-substring regex /(^|[^0-9])1x/ could theoretically match '21x' at position 1, but the generator never triggers this false positive.",
+    "Review-B OBS-1: Fraction arithmetic could overflow JS safe integers with huge values; not reachable through bounded generator inputs.",
+    "Review-B OBS-2: pre-existing package-level tsc ambient-type errors (TS2591/TS2503) in non-T17 test files; pre-date T17 (tech-debt line 25).",
+    "Phase-acceptance non-blocking: test-strategy section 6.2 'three-artifact agreement' test (registry <-> problem-family variantKeys <-> coverage-matrix JSON) not implemented as a dedicated test; invariant partially covered by registry-sweep + generator-registry tests. Recommend adding in a future track that wires blueprints to problem families.",
+    "metadata.json estimated_tasks=9 does not match actual_tasks=18; the estimate predates the full 4-phase plan and is left as the original planning artifact."
+  ],
+
+  "residual_issues": "None blocking. All non-blocking findings are documented above. The track meets the full closeout standard and is ready for archive."
+}

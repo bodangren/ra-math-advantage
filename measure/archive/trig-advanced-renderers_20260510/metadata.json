@@ -1,0 +1,12 @@
+{
+  "track_id": "trig-advanced-renderers_20260510",
+  "type": "feature",
+  "status": "superseded",
+  "created_at": "2026-05-10T00:00:00Z",
+  "updated_at": "2026-07-04T00:00:00Z",
+  "superseded_by": "practice-primitives-track-e_trigonometry-advanced",
+  "supersession_reason": "Reframed as the seed of Practice Primitives Track E (Trigonometry & Advanced). Its UnitCircleVisualizer / TrigGraphBuilder / PolarRenderer plan is the starting spec for primitives P6 (UnitCircle), P7 (PolarPlane), and P2-trig, which wrap into unit-circle-trainer and trig graphing practice components. See measure/practice-primitives-roadmap.md.",
+  "estimated_tasks": null,
+  "actual_tasks": 0,
+  "deviation_notes": "Spec/plan retained in archive as seed material for Track E; no tasks were implemented before supersession."
+}

@@ -1,0 +1,72 @@
+{
+  "track_id": "core-algebra-generators_20260510",
+  "role": "measure-review-c-ux-api",
+  "baseline_sha": "6ff260b7380d9d8cd40de21c506a043372f0133d",
+  "head_sha": "b69d9bda",
+  "verdict": "pass_with_fix",
+  "scope": "DEVELOPER/CONSUMER API surface — no browser UX (UX_REQUIRED=never)",
+  "checklist": {
+    "1_public_exports_from_index_ts": {
+      "verdict": "pass",
+      "notes": "index.ts exports only: 4 generator functions, 5 problem/root types, 2 PRNG/Fraction utilities, 2 expression-builder formatters. No accidental internal helpers leaked (no randInt, randNonZero, formatBinomial, Case, etc.). Clean section grouping: 'Core algebra generators (T17)' and 'Core algebra utilities (T17)'."
+    },
+    "2_generator_api_consistency": {
+      "verdict": "pass_with_note",
+      "notes": "All four generators accept {seed: number} and return domain-specific problem objects. Minor shape divergence: LinearEquationProblem and SystemOfEquationsProblem include familyId ('step-by-step-solver:linear-equation' / 'step-by-step-solver:system-of-equations'); QuadraticFactoringProblem and QuadraticFormulaProblem omit familyId. This matches the existing codebase precedent (ExpLogProblem has familyId, PolynomialOperation does not). The step-by-step-solver component only needs familyId for the linear/systems fallback; quadratics have dedicated rendering paths. Not a bug."
+    },
+    "3_adapter_key_naming": {
+      "verdict": "pass",
+      "notes": "New keys: 'linear-equation-solver', 'system-of-equations-solver', 'quadratic-factoring', 'quadratic-formula'. Existing keys: 'polynomial-operations', 'polynomial-division', 'rational-analyzer', 'exp-log-solver'. All follow kebab-case domain-descriptive convention. Consistent."
+    },
+    "4_solution_steps_readability": {
+      "verdict": "pass",
+      "notes": "All generators produce 3-6 human-readable steps. Linear: original → isolated → solution. Systems: system statement → method → determinant → x → substitution → y. Factoring: standard form → factor pair → rewrite → group → factored form. Formula: coefficients → discriminant → root type → quadratic formula → simplify. No raw code, no unhelpful jargon. Steps include intermediate values (e.g., 'a*c = 12', 'Determinant is 7') for step-by-step UI display."
+    },
+    "5_type_exports": {
+      "verdict": "pass",
+      "notes": "All problem types exported from index.ts: LinearEquationProblem, SystemOfEquationsProblem, QuadraticFactoringProblem, QuadraticFormulaProblem, QuadraticFormulaRoot. Consumers can import types for type-safe integration."
+    },
+    "6_jsdoc_documentation": {
+      "verdict": "pass",
+      "notes": "All four generators have module-level JSDoc describing strategy (backward-construction, determinism, single-pass), and function-level JSDoc with @param and @returns. Linear/systems module docs are most detailed (FR-8 reference, exact backward-gen walkthrough). Factoring/formula docs are adequate (describe regimes/modes). Adapters have file-level JSDoc explaining the wrapping pattern."
+    },
+    "7_grading_rules_spec_compliance": {
+      "verdict": "pass",
+      "notes": "quadratic-factoring: partGradingRules.factoredForm = 'expression_equivalence' (spec §3 compliant — (x+3)(x-2) and (x-2)(x+3) both accepted). quadratic-formula: discriminant gets 'numeric_tolerance' (1e-9), numeric roots get 'numeric_tolerance', radical/complex strings get 'exact_match'. Linear: 'numeric_tolerance' with 1e-9. Systems: both x and y 'numeric_tolerance' with 1e-9. All appropriate."
+    },
+    "8_style_consistency": {
+      "verdict": "pass",
+      "notes": "New generators follow exp-log-solver.ts structure: section separators (//---), Types/Helpers/Main generator sections, same randInt/randNonZero helper pattern. Uses mulberry32 (not seededRandom) as planned. algebra-generators-adapters.ts mirrors advanced-math-adapters.ts pattern: key/nodeIds/description/generate contract, GeneratorOutput construction with prompt/data/expectedAnswer/solutionSteps/gradingMetadata. DRY violation (randInt/randNonZero duplicated in 4 files) is pre-existing pattern from exp-log-solver; not introduced by T17."
+    }
+  },
+  "bug_found_and_fixed": {
+    "description": "TS2322 in algebra-generators-adapters.ts line 196: partGradingRules typed as Record<string, string> instead of Record<string, 'exact_match' | 'numeric_tolerance' | 'expression_equivalence'>. Caused npx tsc --noEmit to exit non-zero for T17's production code.",
+    "fix_commit": "b69d9bda",
+    "fix_file": "packages/math-content/src/knowledge-space/generators/algebra-generators-adapters.ts",
+    "fix_description": "Narrowed Record<string, string> to the GradingMetadata union type.",
+    "verification": "npx tsc --noEmit: 0 new T17 errors (25 remaining are pre-existing node:fs/path/url + React namespace). npx vitest run packages/math-content: 33/33 files, 521/521 tests pass."
+  },
+  "pre_existing_tsc_errors": {
+    "count": 25,
+    "description": "All pre-existing: node:fs/path/url type errors in test files (TS2591) and a React namespace error in schemas/types.ts (TS2503). None are T17-related. Existed at baseline SHA.",
+    "files_affected": [
+      "src/__tests__/exports.test.ts",
+      "src/__tests__/no-measure-coupling.guard.test.ts",
+      "src/schemas/types.ts",
+      "src/problem-families/im1/__tests__/audit-diff.test.ts",
+      "src/problem-families/im1/__tests__/blueprints.test.ts",
+      "src/problem-families/im1/__tests__/ci-gate.test.ts",
+      "src/problem-families/im1/__tests__/coverage-matrix.test.ts",
+      "src/problem-families/im1/__tests__/scaffold.test.ts",
+      "src/problem-families/im1/coverage-matrix.ts"
+    ]
+  },
+  "fixes_committed": [
+    {
+      "sha": "b69d9bda",
+      "description": "fix(T17): type-safe partGradingRules in quadratic-formula adapter — narrowed Record<string, string> to GradingMetadata union type",
+      "files": ["packages/math-content/src/knowledge-space/generators/algebra-generators-adapters.ts"]
+    }
+  ],
+  "recommendation": "PASS_WITH_FIX — All 8 review checklist items pass. One type-safety bug found and fixed (b69d9bda). 521/521 math-content tests green. No browser UX required (UX_REQUIRED=never). Track is ready for phase-acceptance completion."
+}

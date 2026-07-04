@@ -1,0 +1,12 @@
+{
+  "track_id": "geometry-stats-trig-generators_20260510",
+  "type": "feature",
+  "status": "superseded",
+  "created_at": "2026-05-10T00:00:00Z",
+  "updated_at": "2026-07-04T00:00:00Z",
+  "superseded_by": "practice-primitives-track-c_geometry-transformations, practice-primitives-track-d_statistics-probability, practice-primitives-track-e_trigonometry-advanced",
+  "supersession_reason": "Generator scope absorbed into the Practice Primitives program: stats generators ship with Track D (P8/P9/P10 primitives), geometry generators with Track C (P4/P5/P13), trig generators with Track E (P6/P7/P2-trig). Generators are authored alongside their primitive/consuming component rather than in a standalone track. See measure/practice-primitives-roadmap.md.",
+  "estimated_tasks": null,
+  "actual_tasks": 0,
+  "deviation_notes": "Spec/plan retained in archive as reference for per-track generator deliverables; no tasks were implemented before supersession."
+}
