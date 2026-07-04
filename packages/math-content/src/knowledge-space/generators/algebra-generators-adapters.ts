@@ -174,7 +174,7 @@ export const quadraticFormulaAdapter: MathGenerator = {
 
     const partAnswers: Record<string, unknown> = { discriminant: problem.discriminant };
     const partMaxScores: Record<string, number> = { discriminant: 1 };
-    const partGradingRules: Record<string, string> = { discriminant: 'numeric_tolerance' };
+    const partGradingRules: Record<string, 'exact_match' | 'numeric_tolerance' | 'expression_equivalence'> = { discriminant: 'numeric_tolerance' };
     const partTolerances: Record<string, number> = { discriminant: 1e-9 };
 
     for (let i = 0; i < problem.roots.length; i++) {
