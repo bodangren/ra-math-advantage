@@ -285,7 +285,7 @@ Full math-content suite:
 
 ## Phase 4: Blueprint Wiring & Vertical-Slice Unblock
 
-- [x] Task: Map generator keys to IM1 M1 and IM3 M1 remaining blueprints (closes 13/16 gap per tech-debt) — `0b3d36e6` (linear/systems adapters claim IM1 skill IDs 2.4/7.2/7.3; quadratic adapters claim IM3 M1 skill IDs 1.4/1.6; imaginary/complex 1.3 and completing-the-square 1.5 remain with algebraicStepSolverGenerator stub)
+- [x] Task: Map generator keys to IM1 M1 and IM3 M1 remaining blueprints (narrows IM3 M1 real-generator gap per tech-debt line 17: was 3/16 real → now 5/16 real via +1.4 factoring +1.6 formula; 1.3 imaginary/complex and 1.5 completing-the-square remain as algebraicStepSolverGenerator stubs; 6 IM3 M1 skills still have no generator) — `0b3d36e6` (linear/systems adapters claim IM1 skill IDs 2.4/7.2/7.3; quadratic adapters claim IM3 M1 skill IDs 1.4/1.6; blueprint-coverage assertion in generator-registry.test.ts verifies 1.4/1.6 resolve to non-stub generators)
 - [x] Task: Run QA harness (`numSeeds=50`) against every new generator — `0b3d36e6` (t17-algebra-generators-qa.test.ts: 4/4 QA tests pass across 50 seeds each)
 - [x] Task: Verify Vertical Slice Value Proof Phase 1 dependency (generators exist) is unblocked — `0b3d36e6` (all 4 generators registered, adapters pass registry-sweep QA)
 - [x] Task: Generate Docs & Doctor (lint, tsc --noEmit, boundary check, CI=true npm test) — `0b3d36e6` (520/520 tests; tsc/lint/doctor green)

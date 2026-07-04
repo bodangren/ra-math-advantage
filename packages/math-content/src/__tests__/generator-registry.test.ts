@@ -13,7 +13,7 @@ import {
   multiplyPoly,
   checkEquivalence,
 } from '../index';
-import { getGenerator } from '../knowledge-space/generators/registry';
+import { getGenerator, GENERATOR_KEYS } from '../knowledge-space/generators/registry';
 
 // ---------------------------------------------------------------------------
 // Index re-export contract tests
@@ -372,5 +372,52 @@ describe('T17 Phase 3 quadratic generators', () => {
     const stub = getGenerator('algebraic-step-solver');
     expect(stub.nodeIds).not.toContain('math.im3.skill.1.4.solve-quadratic-equations-by-factoring');
     expect(stub.nodeIds).not.toContain('math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations');
+  });
+
+  // Phase 4 blueprint-coverage test (test-strategy §6.2):
+  // IM3 M1 skills 1.4 (factoring) and 1.6 (formula) must resolve to REAL
+  // (non-stub) generators — not the algebraic-step-solver stub, and not any
+  // generator whose `description` contains "stub" or whose `generate` returns
+  // `variant-${seed}` placeholder data. This is the dedicated falsifier for
+  // the stub-replacement claim; the registry-sweep per-key tests cover
+  // behavioral correctness, and this test covers the ownership/routing
+  // invariant (the right generator owns the right nodeId).
+  it('IM3 M1 skills 1.4 and 1.6 resolve to non-stub generators (blueprint coverage)', () => {
+    const targetNodeIds = [
+      'math.im3.skill.1.4.solve-quadratic-equations-by-factoring',
+      'math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations',
+    ];
+
+    for (const targetNodeId of targetNodeIds) {
+      // Find the generator that claims this nodeId.
+      const owners = GENERATOR_KEYS
+        .map((k) => getGenerator(k))
+        .filter((g) => g.nodeIds.includes(targetNodeId));
+
+      // Exactly one generator must claim it (no collision, no orphan).
+      expect(owners).toHaveLength(1);
+      const owner = owners[0];
+
+      // The owner must NOT be the algebraic-step-solver stub.
+      expect(owner.key).not.toBe('algebraic-step-solver');
+
+      // The owner's description must not contain "stub".
+      const desc = (owner.description ?? '').toLowerCase();
+      expect(desc).not.toContain('stub');
+
+      // The owner's generate() must return real data, not a variant-${seed}
+      // placeholder. Invoke with a real seed and assert the expectedAnswer is
+      // not the placeholder pattern.
+      const output = owner.generate({
+        seed: 42,
+        nodeId: targetNodeId,
+        difficulty: 0.5,
+      });
+      const expected = output.expectedAnswer as Record<string, unknown>;
+      const placeholderValues = Object.values(expected).filter(
+        (v) => typeof v === 'string' && /^variant-\d+$/.test(v as string),
+      );
+      expect(placeholderValues).toHaveLength(0);
+    }
   });
 });
