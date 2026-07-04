@@ -70,6 +70,12 @@ export { generateRationalProblem } from './rational-analyzer';
 export { generateExpLogProblem } from './exp-log-solver';
 export { addPoly, subtractPoly, multiplyPoly } from './utils/polynomial';
 
+// Core algebra generators (T17 Phase 2: Linear & Systems)
+export { generateLinearEquation } from './linear-equation-solver';
+export type { LinearEquationProblem } from './linear-equation-solver';
+export { generateSystemOfEquations } from './system-of-equations-solver';
+export type { SystemOfEquationsProblem } from './system-of-equations-solver';
+
 // Core algebra utilities (T17 Phase 1: PRNG, Fraction, expression-builder)
 export { mulberry32 } from './utils/prng';
 export { Fraction, gcd } from './utils/fraction';

@@ -11,6 +11,10 @@ import {
   rationalAnalyzerAdapter,
   expLogSolverAdapter,
 } from './advanced-math-adapters';
+import {
+  linearEquationAdapter,
+  systemOfEquationsAdapter,
+} from './algebra-generators-adapters';
 import { seededRandom } from '../../utils/prng';
 
 export interface QaSkipSpec {
@@ -239,6 +243,8 @@ const GENERATOR_REGISTRY: Record<string, MathGenerator> = {
   [polynomialDivisionAdapter.key]: polynomialDivisionAdapter,
   [rationalAnalyzerAdapter.key]: rationalAnalyzerAdapter,
   [expLogSolverAdapter.key]: expLogSolverAdapter,
+  [linearEquationAdapter.key]: linearEquationAdapter,
+  [systemOfEquationsAdapter.key]: systemOfEquationsAdapter,
 };
 
 export const GENERATOR_KEYS = Object.keys(GENERATOR_REGISTRY) as string[];
