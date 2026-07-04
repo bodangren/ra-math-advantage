@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useEffect, useRef } from 'react';
 import { STUDENT_DAILY_PRACTICE_COPY } from '@math-platform/srs-engine/contract';
 
 interface CompletionScreenProps {
@@ -15,8 +16,22 @@ interface CompletionScreenProps {
  * @returns {JSX.Element} A completion screen.
  */
 export function CompletionScreen({ completedCount, totalCount }: CompletionScreenProps) {
+  const headingRef = useRef<HTMLHeadingElement>(null);
+
+  useEffect(() => {
+    headingRef.current?.focus();
+  }, []);
+
   return (
     <div className="max-w-2xl mx-auto py-12 px-4 text-center">
+      <div
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+        className="sr-only"
+      >
+        Session complete. Completed {completedCount} of {totalCount} cards.
+      </div>
       <div className="rounded-xl border border-border bg-card p-8">
         <div className="mb-6">
           <svg
@@ -24,6 +39,7 @@ export function CompletionScreen({ completedCount, totalCount }: CompletionScree
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
+            aria-hidden="true"
             data-testid="completion-check"
           >
             <path
@@ -35,8 +51,13 @@ export function CompletionScreen({ completedCount, totalCount }: CompletionScree
           </svg>
         </div>
 
-        <h1 className="text-2xl font-display font-bold text-foreground mb-4">
-          Daily Practice
+        <h1
+          ref={headingRef}
+          tabIndex={-1}
+          id="session-complete-heading"
+          className="text-2xl font-display font-bold text-foreground mb-4 focus:outline-none"
+        >
+          Session complete
         </h1>
 
         <p className="text-lg text-foreground mb-2">

@@ -47,10 +47,10 @@ export function LessonPageLayout({
     <div className="min-h-screen bg-background flex flex-col" data-testid="lesson-renderer">
       {/* Skip link for lesson content */}
       <a
-        href="#lesson-content"
+        href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
       >
-        Skip to lesson content
+        Skip to main content
       </a>
 
       {/* Sticky progress bar */}
@@ -118,12 +118,15 @@ export function LessonPageLayout({
           ].join(' ')}
         >
           {phases.map((phase, idx) => (
-            <div
+            <button
               key={`${phase.phaseType}-${idx}`}
+              type="button"
               data-current={phase.isCurrent ? 'true' : undefined}
               data-completed={phase.completed ? 'true' : undefined}
+              aria-current={phase.isCurrent ? 'step' : undefined}
+              aria-label={`Phase ${idx + 1}: ${phase.label}${phase.isCurrent ? ' (current)' : ''}${phase.completed ? ' (completed)' : ''}`}
               className={[
-                'flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors',
+                'flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors w-full text-left',
                 phase.isCurrent
                   ? 'bg-primary/10 text-primary font-medium'
                   : phase.completed
@@ -132,11 +135,11 @@ export function LessonPageLayout({
               ].join(' ')}
             >
               {phase.completed
-                ? <CheckCircle2 className="w-4 h-4 flex-shrink-0 text-primary" />
-                : <Circle className="w-4 h-4 flex-shrink-0" />
+                ? <CheckCircle2 className="w-4 h-4 flex-shrink-0 text-primary" aria-hidden />
+                : <Circle className="w-4 h-4 flex-shrink-0" aria-hidden />
               }
               <span>{phase.label}</span>
-            </div>
+            </button>
           ))}
         </nav>
 
@@ -150,7 +153,7 @@ export function LessonPageLayout({
         )}
 
         {/* Main content */}
-        <main id="lesson-content" className="flex-1 min-w-0 max-w-3xl" tabIndex={-1}>
+        <main id="main" className="flex-1 min-w-0 max-w-3xl" tabIndex={-1}>
           {children}
         </main>
       </div>

@@ -26,6 +26,13 @@ export function StudentNavigation({ activeRoute }: StudentNavigationProps) {
 
   return (
     <>
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+      >
+        Skip to main content
+      </a>
+
       <button
         type="button"
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -49,6 +56,7 @@ export function StudentNavigation({ activeRoute }: StudentNavigationProps) {
               <Link
                 href={item.href}
                 onClick={() => setIsMobileMenuOpen(false)}
+                aria-current={activeRoute === item.href ? 'page' : undefined}
                 className={cn(
                   'block py-2 px-4 rounded-md transition-colors',
                   'hover:bg-muted',

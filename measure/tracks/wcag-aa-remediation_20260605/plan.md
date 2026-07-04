@@ -17,10 +17,10 @@ Verification substitute for Doctor: `node scripts/check-monorepo-boundaries.mjs`
 - [x] Task: Announce dynamic answer feedback via live regions (TDD) — Green SHA `0707b76d`
 - [x] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md) — autonomous-mode evidence: Green SHA `0707b76d` (per test-strategy §5, Phase 2 UX is verified by the Testing Library `userEvent.tab()` / `.keyboard()` sequences embedded in the Phase 2 a11y test files; no separate UX artifact in autonomous mode)
 
-## Phase 3 — Student Routes
+## Phase 3 — Student Routes [checkpoint: TBD]
 
-- [ ] Task: Remediate lesson/phase navigation + dashboard (keyboard, landmarks, headings) (TDD where logic exists)
-- [ ] Task: Remediate daily-practice + completion states
+- [~] Task: Remediate lesson/phase navigation + dashboard (keyboard, landmarks, headings) (TDD where logic exists)
+- [~] Task: Remediate daily-practice + completion states
 - [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
 
 ## Phase 4 — Teacher Routes & Color/Contrast
