@@ -62,3 +62,22 @@ class ResizeObserver {
 }
 
 (globalThis as unknown as { ResizeObserver: typeof ResizeObserver }).ResizeObserver = ResizeObserver;
+
+// Minimal jsdom polyfill for HTMLDialogElement so Dialog component works in tests.
+// jsdom does not implement showModal()/close()/open natively.
+if (typeof HTMLDialogElement !== 'undefined') {
+  const dialogProto = HTMLDialogElement.prototype as unknown as Record<string, unknown>;
+  if (typeof dialogProto.showModal !== 'function') {
+    dialogProto.showModal = function (this: HTMLDialogElement) {
+      this.setAttribute('open', '');
+      (this as unknown as { open: boolean }).open = true;
+    };
+  }
+  if (typeof dialogProto.close !== 'function') {
+    dialogProto.close = function (this: HTMLDialogElement) {
+      this.removeAttribute('open');
+      (this as unknown as { open: boolean }).open = false;
+      this.dispatchEvent(new Event('close'));
+    };
+  }
+}

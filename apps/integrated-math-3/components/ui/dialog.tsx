@@ -54,6 +54,9 @@ export function Dialog({ open, onOpenChange, title, description, children }: Dia
   return (
     <dialog
       ref={dialogRef}
+      role="dialog"
+      aria-modal="true"
+      aria-label={title}
       className={cn(
         'p-0 rounded-xl shadow-2xl backdrop:bg-black/50 backdrop:backdrop-blur-sm',
         'open:animate-in open:fade-in-0 open:zoom-in-95',
