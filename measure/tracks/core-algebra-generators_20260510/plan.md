@@ -75,10 +75,10 @@ paths below are source of truth for *where* new code lands. See
 
 ## Phase 1: PRNG & Fraction Utilities
 
-- [~] Task: Implement `mulberry32` PRNG in `utils/prng.ts` (additive export; keep `seededRandom`)
-- [~] Task: Create `utils/fraction.ts` (GCD, simplify, add, multiply, divide, equals, toString, from)
-- [~] Task: Build `utils/expression-builder.ts` (MathExpressionBuilder) to format `ax + b` without `1x` or `+ -3`
-- [~] Task: Write unit tests for PRNG, Fraction, and ExpressionBuilder
+- [x] Task: Implement `mulberry32` PRNG in `utils/prng.ts` (additive export; keep `seededRandom`) — `b054d723`
+- [x] Task: Create `utils/fraction.ts` (GCD, simplify, add, multiply, divide, equals, toString, from) — `b054d723`
+- [x] Task: Build `utils/expression-builder.ts` (MathExpressionBuilder) to format `ax + b` without `1x` or `+ -3` — `b054d723`
+- [x] Task: Write unit tests for PRNG, Fraction, and ExpressionBuilder — `b054d723` (Red authored in `71120c0e`, Green impl closes Phase 1)
 - [b] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md) deferred:user
 
 ### Phase 1 Red notes
