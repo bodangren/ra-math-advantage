@@ -4,10 +4,13 @@ import {
   generatePolynomialDivision,
   generateRationalProblem,
   generateExpLogProblem,
+  generateLinearEquation,
+  generateSystemOfEquations,
   addPoly,
   subtractPoly,
   multiplyPoly,
 } from '../index';
+import { getGenerator } from '../knowledge-space/generators/registry';
 
 // ---------------------------------------------------------------------------
 // Index re-export contract tests
@@ -202,5 +205,71 @@ describe('QA harness: sparse polynomial edge cases', () => {
     // [3, -1, 4, 1] - [-5, -1, 4, -3] = [8, 0, 0, 4]
     const result = subtractPoly([3, -1, 4, 1], [-5, -1, 4, -3]);
     expect(result).toEqual([8, 0, 0, 4]);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// T17 Phase 2 — Linear & Systems generator registry wiring
+// ---------------------------------------------------------------------------
+
+describe('T17 Phase 2 algebra generators', () => {
+  it('re-exports generateLinearEquation from index', () => {
+    expect(typeof generateLinearEquation).toBe('function');
+  });
+
+  it('re-exports generateSystemOfEquations from index', () => {
+    expect(typeof generateSystemOfEquations).toBe('function');
+  });
+
+  it('registers the linear-equation-solver adapter and returns a GeneratorOutput-shaped object', () => {
+    const generator = getGenerator('linear-equation-solver');
+    expect(generator).toBeDefined();
+    expect(generator.key).toBe('linear-equation-solver');
+
+    const output = generator.generate({
+      seed: 1,
+      nodeId: 'math.im3.skill.test.linear-equation',
+      difficulty: 0.5,
+    });
+
+    expect(output).toHaveProperty('prompt');
+    expect(typeof output.prompt).toBe('string');
+    expect(output).toHaveProperty('expectedAnswer');
+    expect(output).toHaveProperty('solutionSteps');
+    expect(Array.isArray(output.solutionSteps)).toBe(true);
+    expect(output).toHaveProperty('gradingMetadata');
+    expect(output.gradingMetadata).toHaveProperty('partAnswers');
+    expect(output.gradingMetadata).toHaveProperty('partMaxScores');
+    expect(output.gradingMetadata).toHaveProperty('partGradingRules');
+  });
+
+  it('registers the system-of-equations-solver adapter and returns a GeneratorOutput-shaped object', () => {
+    const generator = getGenerator('system-of-equations-solver');
+    expect(generator).toBeDefined();
+    expect(generator.key).toBe('system-of-equations-solver');
+
+    const output = generator.generate({
+      seed: 1,
+      nodeId: 'math.im3.skill.test.system-of-equations',
+      difficulty: 0.5,
+    });
+
+    expect(output).toHaveProperty('prompt');
+    expect(typeof output.prompt).toBe('string');
+    expect(output).toHaveProperty('expectedAnswer');
+    expect(output).toHaveProperty('solutionSteps');
+    expect(Array.isArray(output.solutionSteps)).toBe(true);
+    expect(output).toHaveProperty('gradingMetadata');
+    expect(output.gradingMetadata).toHaveProperty('partAnswers');
+    expect(output.gradingMetadata).toHaveProperty('partMaxScores');
+    expect(output.gradingMetadata).toHaveProperty('partGradingRules');
+  });
+
+  it('adapter keys are unique and do not collide with existing registry keys', () => {
+    const linear = getGenerator('linear-equation-solver');
+    const system = getGenerator('system-of-equations-solver');
+    expect(linear.key).not.toBe(system.key);
+    expect(linear.key).not.toBe('polynomial-operations');
+    expect(system.key).not.toBe('exp-log-solver');
   });
 });

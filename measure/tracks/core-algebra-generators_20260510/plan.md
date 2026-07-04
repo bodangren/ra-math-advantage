@@ -99,12 +99,28 @@ No production code was implemented; Phase 1 tasks remain `[~]`.
 
 ## Phase 2: Linear & Systems Generators
 
-- [b] Task: Implement `linear-equation-solver.ts` using the Backward Generation strategy — deferred:human-gate
-- [b] Task: Implement `system-of-equations-solver.ts` (choose x,y,derive coefficients,guard determinant ≠ 0) — deferred:human-gate
-- [b] Task: Write TDD tests covering integer/rational solutions and edge cases (zero coeff, negative) — deferred:human-gate
-- [b] Task: Register generators and wire to IM1/IM3 linear-equation blueprints — deferred:human-gate
-- [b] Task: Generate Docs & Doctor (lint, tsc --noEmit, boundary check) — deferred:human-gate
-- [b] Task: Measure - User Manual Verification 'Phase 2' — deferred:human-gate
+- [~] Task: Implement `linear-equation-solver.ts` using the Backward Generation strategy
+- [~] Task: Implement `system-of-equations-solver.ts` (choose x,y,derive coefficients,guard determinant ≠ 0)
+- [~] Task: Write TDD tests covering integer/rational solutions and edge cases (zero coeff, negative)
+- [~] Task: Register generators and wire to IM1/IM3 linear-equation blueprints
+- [~] Task: Generate Docs & Doctor (lint, tsc --noEmit, boundary check)
+- [b] Task: Measure - User Manual Verification 'Phase 2' — deferred:user
+
+### Phase 2 Red notes
+
+Red command (2026-07-04):
+```bash
+npx vitest run packages/math-content/src/__tests__/linear-equation-solver.test.ts \
+             packages/math-content/src/__tests__/system-of-equations-solver.test.ts \
+             packages/math-content/src/__tests__/generator-registry.test.ts \
+             --reporter=verbose
+```
+Result: expected Red failures because the Phase 2 production modules (`linear-equation-solver.ts`, `system-of-equations-solver.ts`) and registry adapters do not exist yet. The 18 pre-existing generator-registry tests for polynomial/rational/exp-log remain green.
+Labeled failure counts (A3):
+- `linear_equation_solver_suite_failure: 1` (`Cannot find module '../linear-equation-solver'`).
+- `system_of_equations_solver_suite_failure: 1` (`Cannot find module '../system-of-equations-solver'`).
+- `generator_registry_t17_assertions_failure: 5` (2 missing `index.ts` re-exports for `generateLinearEquation`/`generateSystemOfEquations`; 3 missing registry keys for `linear-equation-solver`/`system-of-equations-solver` adapter lookups and collision check).
+No production code was implemented; Phase 2 tasks remain `[~]`.
 
 ## Phase 3: Quadratics
 
