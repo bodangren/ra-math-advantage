@@ -81,6 +81,22 @@ paths below are source of truth for *where* new code lands. See
 - [~] Task: Write unit tests for PRNG, Fraction, and ExpressionBuilder
 - [b] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md) deferred:user
 
+### Phase 1 Red notes
+
+Red command (2026-07-04):
+```bash
+npx vitest run packages/math-content/src/__tests__/prng.test.ts \
+             packages/math-content/src/__tests__/fraction.test.ts \
+             packages/math-content/src/__tests__/expression-builder.test.ts \
+             --reporter=verbose
+```
+Result: expected Red failures because the Phase 1 production modules do not exist yet.
+Labeled failure counts (A3):
+- `prng_failed_tests: 6` (`mulberry32 is not a function`); 2 regression/source-grep checks passed; `seededRandom` first draw unchanged.
+- `fraction_suite_failure: 1` (`Cannot find module '../utils/fraction'`).
+- `expression_builder_suite_failure: 1` (`Cannot find module '../utils/expression-builder'`).
+No production code was implemented; Phase 1 tasks remain `[~]`.
+
 ## Phase 2: Linear & Systems Generators
 
 - [b] Task: Implement `linear-equation-solver.ts` using the Backward Generation strategy — deferred:human-gate
