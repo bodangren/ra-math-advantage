@@ -285,10 +285,10 @@ Full math-content suite:
 
 ## Phase 4: Blueprint Wiring & Vertical-Slice Unblock
 
-- [x] Task: Map generator keys to IM1 M1 and IM3 M1 remaining blueprints (closes 13/16 gap per tech-debt) — `TBD-SHA` (linear/systems adapters claim IM1 skill IDs 2.4/7.2/7.3; quadratic adapters claim IM3 M1 skill IDs 1.4/1.6; imaginary/complex 1.3 and completing-the-square 1.5 remain with algebraicStepSolverGenerator stub)
-- [x] Task: Run QA harness (`numSeeds=50`) against every new generator — `TBD-SHA` (t17-algebra-generators-qa.test.ts: 4/4 QA tests pass across 50 seeds each)
-- [x] Task: Verify Vertical Slice Value Proof Phase 1 dependency (generators exist) is unblocked — `TBD-SHA` (all 4 generators registered, adapters pass registry-sweep QA)
-- [x] Task: Generate Docs & Doctor (lint, tsc --noEmit, boundary check, CI=true npm test) — `TBD-SHA` (520/520 tests; tsc/lint/doctor green)
+- [x] Task: Map generator keys to IM1 M1 and IM3 M1 remaining blueprints (closes 13/16 gap per tech-debt) — `0b3d36e6` (linear/systems adapters claim IM1 skill IDs 2.4/7.2/7.3; quadratic adapters claim IM3 M1 skill IDs 1.4/1.6; imaginary/complex 1.3 and completing-the-square 1.5 remain with algebraicStepSolverGenerator stub)
+- [x] Task: Run QA harness (`numSeeds=50`) against every new generator — `0b3d36e6` (t17-algebra-generators-qa.test.ts: 4/4 QA tests pass across 50 seeds each)
+- [x] Task: Verify Vertical Slice Value Proof Phase 1 dependency (generators exist) is unblocked — `0b3d36e6` (all 4 generators registered, adapters pass registry-sweep QA)
+- [x] Task: Generate Docs & Doctor (lint, tsc --noEmit, boundary check, CI=true npm test) — `0b3d36e6` (520/520 tests; tsc/lint/doctor green)
 - [b] Task: Measure - User Manual Verification 'Phase 4' — deferred:user
 
 ### Phase 4 Green notes
