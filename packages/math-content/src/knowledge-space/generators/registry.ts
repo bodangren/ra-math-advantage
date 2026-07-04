@@ -14,6 +14,8 @@ import {
 import {
   linearEquationAdapter,
   systemOfEquationsAdapter,
+  quadraticFactoringAdapter,
+  quadraticFormulaAdapter,
 } from './algebra-generators-adapters';
 import { seededRandom } from '../../utils/prng';
 
@@ -158,11 +160,12 @@ const solveQuadraticByGraphingGenerator: MathGenerator = {
 const algebraicStepSolverGenerator: MathGenerator = {
   key: 'algebraic-step-solver',
   nodeIds: [
+    // Factoring (1.4) and quadratic formula (1.6) are now provided by the
+    // real quadratic-factoring / quadratic-formula generators. Keep the
+    // imaginary-unit / complex-ops / completing-the-square slots here.
     'math.im3.skill.1.3.understand-and-use-the-imaginary-unit-i',
     'math.im3.skill.1.3.perform-operations-with-complex-numbers',
-    'math.im3.skill.1.4.solve-quadratic-equations-by-factoring',
     'math.im3.skill.1.5.solve-quadratic-equations-by-completing-the-square',
-    'math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations',
   ],
   description: 'Algebraic step-by-step solver (pilot stub — returns deterministic scaffolding)',
   generate: (input: GeneratorInput): GeneratorOutput => {
@@ -245,6 +248,8 @@ const GENERATOR_REGISTRY: Record<string, MathGenerator> = {
   [expLogSolverAdapter.key]: expLogSolverAdapter,
   [linearEquationAdapter.key]: linearEquationAdapter,
   [systemOfEquationsAdapter.key]: systemOfEquationsAdapter,
+  [quadraticFactoringAdapter.key]: quadraticFactoringAdapter,
+  [quadraticFormulaAdapter.key]: quadraticFormulaAdapter,
 };
 
 export const GENERATOR_KEYS = Object.keys(GENERATOR_REGISTRY) as string[];

@@ -63,20 +63,24 @@ export type { ActivitySeed, PhaseSeed, SectionSeed, LessonSeed, SeedData } from 
 export { mathDomainAdapter } from './knowledge-space';
 export type { MathDomainAdapter } from './knowledge-space';
 
-// Advanced math generators (Phase 1–4)
+// Advanced math generators
 export { generatePolynomialOperation } from './polynomial-operations';
 export { generatePolynomialDivision } from './polynomial-division';
 export { generateRationalProblem } from './rational-analyzer';
 export { generateExpLogProblem } from './exp-log-solver';
 export { addPoly, subtractPoly, multiplyPoly } from './utils/polynomial';
 
-// Core algebra generators (T17 Phase 2: Linear & Systems)
+// Core algebra generators (T17)
 export { generateLinearEquation } from './linear-equation-solver';
 export type { LinearEquationProblem } from './linear-equation-solver';
 export { generateSystemOfEquations } from './system-of-equations-solver';
 export type { SystemOfEquationsProblem } from './system-of-equations-solver';
+export { generateQuadraticFactoring } from './quadratic-factoring';
+export type { QuadraticFactoringProblem } from './quadratic-factoring';
+export { generateQuadraticFormula } from './quadratic-formula';
+export type { QuadraticFormulaProblem, QuadraticFormulaRoot } from './quadratic-formula';
 
-// Core algebra utilities (T17 Phase 1: PRNG, Fraction, expression-builder)
+// Core algebra utilities (T17)
 export { mulberry32 } from './utils/prng';
 export { Fraction, gcd } from './utils/fraction';
 export { formatLinearTerm, formatQuadratic } from './utils/expression-builder';

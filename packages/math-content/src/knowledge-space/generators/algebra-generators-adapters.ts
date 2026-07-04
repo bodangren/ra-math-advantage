@@ -23,6 +23,8 @@ import type {
 } from '@math-platform/knowledge-space-practice';
 import { generateLinearEquation } from '../../linear-equation-solver';
 import { generateSystemOfEquations } from '../../system-of-equations-solver';
+import { generateQuadraticFactoring } from '../../quadratic-factoring';
+import { generateQuadraticFormula } from '../../quadratic-formula';
 import type { MathGenerator } from './registry';
 
 // ---------------------------------------------------------------------------
@@ -110,6 +112,106 @@ export const systemOfEquationsAdapter: MathGenerator = {
         familyId: problem.familyId,
       },
       expectedAnswer: { x: problem.answer.x, y: problem.answer.y },
+      solutionSteps: problem.steps.map((description) => ({ description })),
+      gradingMetadata,
+    };
+  },
+};
+
+// ---------------------------------------------------------------------------
+// quadratic-factoring adapter
+// ---------------------------------------------------------------------------
+
+export const quadraticFactoringAdapter: MathGenerator = {
+  key: 'quadratic-factoring',
+  nodeIds: [
+    'math.im3.skill.1.4.solve-quadratic-equations-by-factoring',
+  ],
+  description:
+    'Generates quadratic factoring problems (monic, a>1, perfect square, difference of squares) via backward construction. The expected answer is the factored form; grading uses expression_equivalence so (x+3)(x-2) and (x-2)(x+3) both score.',
+  generate: (input: GeneratorInput): GeneratorOutput => {
+    const problem = generateQuadraticFactoring({ seed: input.seed });
+
+    const prompt = `Factor the quadratic expression: ${problem.quadratic}.`;
+
+    const gradingMetadata: GradingMetadata = {
+      partAnswers: { factoredForm: problem.factoredForm },
+      partMaxScores: { factoredForm: 1 },
+      partGradingRules: { factoredForm: 'expression_equivalence' },
+    };
+
+    return {
+      prompt,
+      data: {
+        quadratic: problem.quadratic,
+        a: problem.a,
+        b: problem.b,
+        c: problem.c,
+        roots: problem.roots,
+      },
+      expectedAnswer: { factoredForm: problem.factoredForm },
+      solutionSteps: problem.steps.map((description) => ({ description })),
+      gradingMetadata,
+    };
+  },
+};
+
+// ---------------------------------------------------------------------------
+// quadratic-formula adapter
+// ---------------------------------------------------------------------------
+
+export const quadraticFormulaAdapter: MathGenerator = {
+  key: 'quadratic-formula',
+  nodeIds: [
+    'math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations',
+  ],
+  description:
+    'Generates quadratic equations covering integer, repeated, irrational, and complex-conjugate root regimes. Applies the quadratic formula and presents simplified roots.',
+  generate: (input: GeneratorInput): GeneratorOutput => {
+    const problem = generateQuadraticFormula({ seed: input.seed });
+
+    const prompt = `Solve using the quadratic formula: ${problem.quadratic} = 0.`;
+
+    const partAnswers: Record<string, unknown> = { discriminant: problem.discriminant };
+    const partMaxScores: Record<string, number> = { discriminant: 1 };
+    const partGradingRules: Record<string, string> = { discriminant: 'numeric_tolerance' };
+    const partTolerances: Record<string, number> = { discriminant: 1e-9 };
+
+    for (let i = 0; i < problem.roots.length; i++) {
+      const key = `x${i + 1}`;
+      const root = problem.roots[i];
+      partAnswers[key] = root.value;
+      partMaxScores[key] = 1;
+      if (typeof root.value === 'number') {
+        partGradingRules[key] = 'numeric_tolerance';
+        partTolerances[key] = 1e-9;
+      } else {
+        partGradingRules[key] = 'exact_match';
+      }
+    }
+
+    const gradingMetadata: GradingMetadata = {
+      partAnswers,
+      partMaxScores,
+      partGradingRules,
+      partTolerances,
+    };
+
+    const expectedAnswer: Record<string, unknown> = { discriminant: problem.discriminant };
+    for (let i = 0; i < problem.roots.length; i++) {
+      expectedAnswer[`x${i + 1}`] = problem.roots[i].value;
+    }
+
+    return {
+      prompt,
+      data: {
+        quadratic: problem.quadratic,
+        a: problem.a,
+        b: problem.b,
+        c: problem.c,
+        discriminant: problem.discriminant,
+      },
+      expectedAnswer,
       solutionSteps: problem.steps.map((description) => ({ description })),
       gradingMetadata,
     };
