@@ -38,6 +38,11 @@ export function seededRandom(seed: number): () => number {
  * remain untouched.
  */
 export function mulberry32(seed: number): () => number {
+  // Validate input so callers cannot silently coerce NaN, Infinity, or
+  // non-numeric values into a deterministic 0 seed.
+  if (typeof seed !== 'number' || !Number.isFinite(seed)) {
+    throw new TypeError('mulberry32: seed must be a finite number');
+  }
   // Coerce to a 32-bit unsigned integer state. `| 0` truncates to a JS
   // 32-bit signed int; `>>> 0` then reinterprets as unsigned.
   let state = (seed | 0) >>> 0;

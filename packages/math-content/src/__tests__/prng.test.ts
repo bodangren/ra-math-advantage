@@ -42,6 +42,15 @@ describe('mulberry32', () => {
     expect(Number.isFinite(mulberry32(-1)())).toBe(true);
   });
 
+  it('rejects non-finite and non-numeric seeds', () => {
+    expect(() => mulberry32(NaN)).toThrow('finite number');
+    expect(() => mulberry32(Infinity)).toThrow('finite number');
+    expect(() => mulberry32(-Infinity)).toThrow('finite number');
+    expect(() => (mulberry32 as (s: unknown) => void)('1')).toThrow('finite number');
+    expect(() => (mulberry32 as (s: unknown) => void)({})).toThrow('finite number');
+    expect(() => (mulberry32 as (s: unknown) => void)(undefined)).toThrow('finite number');
+  });
+
   it('does not invoke Math.random()', () => {
     const spy = vi.spyOn(Math, 'random');
     try {
