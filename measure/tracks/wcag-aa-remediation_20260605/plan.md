@@ -17,23 +17,23 @@ Verification substitute for Doctor: `node scripts/check-monorepo-boundaries.mjs`
 - [x] Task: Announce dynamic answer feedback via live regions (TDD) — Green SHA `0707b76d`
 - [x] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md) — autonomous-mode evidence: Green SHA `0707b76d` (per test-strategy §5, Phase 2 UX is verified by the Testing Library `userEvent.tab()` / `.keyboard()` sequences embedded in the Phase 2 a11y test files; no separate UX artifact in autonomous mode)
 
-## Phase 3 — Student Routes [checkpoint: TBD]
+## Phase 3 — Student Routes [checkpoint: 0f412957]
 
-- [~] Task: Remediate lesson/phase navigation + dashboard (keyboard, landmarks, headings) (TDD where logic exists)
-- [~] Task: Remediate daily-practice + completion states
-- [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
+- [x] Task: Remediate lesson/phase navigation + dashboard (keyboard, landmarks, headings) (TDD where logic exists) — Green SHA `0f412957`
+- [x] Task: Remediate daily-practice + completion states — Green SHA `0f412957`
+- [x] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md) — autonomous-mode evidence: Green SHA `0f412957` (adversarial keyboard + landmark tests embedded in Phase 3 a11y files green; 85 IM3 a11y+transfer-credit tests green; 673 ksc tests green; tsc/lint/boundaries clean)
 
-## Phase 4 — Teacher Routes & Color/Contrast
+## Phase 4 — Teacher Routes & Color/Contrast [checkpoint: ecc8dce6]
 
-- [ ] Task: Remediate gradebook, heatmaps, dashboards — no color-only meaning; AA contrast tokens (TDD on tokens)
-- [ ] Task: Remediate forms/dialogs (assignment UI, interventions)
-- [ ] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md)
+- [x] Task: Remediate gradebook, heatmaps, dashboards — no color-only meaning; AA contrast tokens (TDD on tokens) — Green SHA `ecc8dce6`
+- [x] Task: Remediate forms/dialogs (assignment UI, interventions) — Green SHA `ecc8dce6`
+- [x] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md) — autonomous-mode evidence: Green SHA `ecc8dce6` (gradebook text content not color-only; 4 contrast pairs pass WCAG AA math; dialog has role/aria-modal/label; all gates green)
 
-## Phase 5 — CI Gate & Verification
+## Phase 5 — CI Gate & Verification [checkpoint: ecc8dce6]
 
-- [ ] Task: Wire the a11y gate into CI; prove it fails on an injected serious violation
-- [ ] Task: Final verification — boundary lints, per-app lint, tsc --noEmit, CI=true npm run test
-- [ ] Task: Measure - User Manual Verification 'Phase 5' (Protocol in workflow.md)
+- [x] Task: Wire the a11y gate into CI; prove it fails on an injected serious violation — Green SHA `ecc8dce6`
+- [x] Task: Final verification — boundary lints, per-app lint, tsc --noEmit, CI=true npm run test — Green SHA `ecc8dce6` (673 ksc green; 106 activity-components green; 99 IM3 a11y+transfer-credit green; 56 graphing-core green; tsc 0 errors; lint 0 warnings; boundaries OK; doctor OK; CI npm test green)
+- [x] Task: Measure - User Manual Verification 'Phase 5' (Protocol in workflow.md) — autonomous-mode evidence: Green SHA `ecc8dce6` (closeout matrix per test-strategy §4 Phase 5 all green)
 
 ---
 
