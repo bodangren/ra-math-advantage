@@ -65,9 +65,13 @@ function randInt(rand: () => number, lo: number, hi: number): number {
 /** Pick a non-zero integer in [−hi, −1] ∪ [1, hi]. */
 function randNonZero(rand: () => number, hi: number): number {
   let n: number;
+  let safety = 0;
   do {
     n = randInt(rand, -hi, hi);
-  } while (n === 0);
+  } while (n === 0 && safety++ < 100);
+  if (n === 0) {
+    throw new Error('randNonZero: unable to select a non-zero value after 100 attempts');
+  }
   return n;
 }
 

@@ -41,9 +41,13 @@ function randInt(rand: () => number, lo: number, hi: number): number {
 
 function randNonZero(rand: () => number, hi: number): number {
   let n: number;
+  let safety = 0;
   do {
     n = randInt(rand, -hi, hi);
-  } while (n === 0);
+  } while (n === 0 && safety++ < 100);
+  if (n === 0) {
+    throw new Error('randNonZero: unable to select a non-zero value after 100 attempts');
+  }
   return n;
 }
 
@@ -114,7 +118,12 @@ interface Case {
 function caseMonicPositive(rand: () => number): Case {
   const r1 = randInt(rand, 1, 6);
   let r2 = randInt(rand, 1, 6);
-  while (r2 === r1) r2 = randInt(rand, 1, 6);
+  let safety = 0;
+  while (r2 === r1 && safety++ < 20) r2 = randInt(rand, 1, 6);
+  if (r2 === r1) {
+    // Deterministic fallback: advance cyclically within [1, 6].
+    r2 = r1 === 6 ? 1 : r1 + 1;
+  }
   return { a: 1, r1, r2, kind: 'standard' };
 }
 
@@ -127,7 +136,12 @@ function caseMonicMixed(rand: () => number): Case {
 function caseMonicBothNegative(rand: () => number): Case {
   const r1 = -randInt(rand, 1, 6);
   let r2 = -randInt(rand, 1, 6);
-  while (r2 === r1) r2 = -randInt(rand, 1, 6);
+  let safety = 0;
+  while (r2 === r1 && safety++ < 20) r2 = -randInt(rand, 1, 6);
+  if (r2 === r1) {
+    // Deterministic fallback: advance cyclically within [-6, -1].
+    r2 = r1 === -6 ? -1 : r1 - 1;
+  }
   return { a: 1, r1, r2, kind: 'standard' };
 }
 
