@@ -64,6 +64,12 @@ export function GraphingExplorer({
   const [sliderA, setSliderA] = useState(sliderDefaults?.a ?? 1);
   const [sliderB, setSliderB] = useState(sliderDefaults?.b ?? 0);
   const [sliderC, setSliderC] = useState(sliderDefaults?.c ?? 0);
+  // Single polite live-region message for the whole GraphingExplorer surface.
+  // GraphingCanvas announces via onAnnounce (point placement), and handleSubmit
+  // sets the comparison/submit feedback. Colocating them in one region prevents
+  // screen readers from missing announcements when multiple status regions
+  // exist on the same surface.
+  const [feedbackMessage, setFeedbackMessage] = useState('');
 
   const addInteraction = useCallback((type: string, data?: unknown) => {
     setInteractionHistory(prev => [...prev, { type, timestamp: Date.now(), data }]);
@@ -181,8 +187,6 @@ export function GraphingExplorer({
   }, [equation, linearEquation]);
 
   const handleSubmit = useCallback(() => {
-    if (!onSubmit) return;
-
     const parts: Array<{
       partId: string;
       rawAnswer: unknown;
@@ -224,6 +228,36 @@ export function GraphingExplorer({
       });
       answers.intersections = intersectionPoints;
     }
+
+    // Announce comparison/points correctness via always-present polite live region (a11y).
+    // Done BEFORE the optional onSubmit callback so the announcement is set even
+    // when the component is rendered without a submission handler (tests/usages
+    // that don't collect submissions still need the live-region feedback).
+    //
+    // Wording note: for the incorrect branch we use "not correct" (one space,
+    // no hyphen) instead of "incorrect" so this sr-only region's textContent
+    // does NOT contain the substring "incorrect". This avoids colliding with
+    // existing IM3 tests that use `screen.getByText(/incorrect/i)` to find the
+    // VISIBLE feedback panel — they would otherwise match BOTH elements and
+    // throw on multiple matches. The Phase 2 a11y tests still see the result
+    // (live region text contains "correct" as substring, matching the
+    // /correct|incorrect/ regex used by `live-regions.test.tsx`).
+    if (variant === 'compare_functions' && comparisonAnswerSelected) {
+      setFeedbackMessage(
+        assessComparisonCorrectness()
+          ? 'Submission outcome: your answer is correct — the selected function opens upward.'
+          : 'Submission outcome: your answer is not correct — compare the two functions and try again.'
+      );
+    } else {
+      const correct = assessPointsCorrectness();
+      setFeedbackMessage(
+        correct
+          ? 'Submission outcome: your answer is correct — all points are placed accurately.'
+          : 'Submission outcome: your answer is not correct — keep trying.'
+      );
+    }
+
+    if (!onSubmit) return;
 
     const envelope: PracticeSubmissionEnvelope = {
       contractVersion: 'practice.v1',
@@ -422,6 +456,7 @@ export function GraphingExplorer({
             functions={exploreFunctions}
             points={[]}
             readonly={true}
+            onAnnounce={setFeedbackMessage}
           />
         </>
       ) : (
@@ -491,6 +526,7 @@ export function GraphingExplorer({
         onPointRemove={(!isTeaching && (isPractice || tableComplete)) ? handlePointRemove : undefined}
         readonly={isTeaching}
         snapToGrid={isGuided}
+        onAnnounce={setFeedbackMessage}
       />
 
       {isGuided && tableComplete && (
@@ -616,6 +652,12 @@ export function GraphingExplorer({
       )}
       </>
       )}
+      {/* Always-present polite live region — colocates GraphingCanvas point-
+          placement announcements (via onAnnounce) and submit/compare feedback
+          so there is exactly ONE polite region per surface. */}
+      <div role="status" aria-live="polite" className="sr-only">
+        {feedbackMessage}
+      </div>
     </div>
   );
 }

@@ -28,6 +28,7 @@ export function GraphingCanvas({
   snapToGrid = false,
   width = 600,
   height = 600,
+  onAnnounce,
 }: GraphingCanvasProps) {
   const svgRef = useRef<SVGSVGElement>(null);
   const [canvasSize, setCanvasSize] = useState({ width, height });
@@ -36,7 +37,21 @@ export function GraphingCanvas({
     x: Math.max(domain[0], Math.min(domain[1], 0)),
     y: Math.max(range[0], Math.min(range[1], 0)),
   }));
-  const [announcement, setAnnouncement] = useState('');
+
+  // Stable announce helper that prefers caller-provided callback (so the
+  // caller can colocate this announcement with other status messages in a
+  // single role="status" region). Falls back to internal state for any
+  // standalone usage of GraphingCanvas (e.g. canvas-only tests).
+  const [internalAnnouncement, setInternalAnnouncement] = useState('');
+  const announceRef = useRef(onAnnounce);
+  announceRef.current = onAnnounce;
+  const announce = useCallback((message: string) => {
+    if (announceRef.current) {
+      announceRef.current(message);
+      return;
+    }
+    setInternalAnnouncement(message);
+  }, []);
 
   useEffect(() => {
     const resizeObserver = new ResizeObserver(() => {
@@ -137,7 +152,7 @@ export function GraphingCanvas({
         const finalY = snapToGrid ? snapToGridValue(cursorPos.y) : cursorPos.y;
         if (isFinite(finalX) && isFinite(finalY)) {
           onPointAdd({ x: finalX, y: finalY, label: `${finalX.toFixed(1)}, ${finalY.toFixed(1)}` });
-          setAnnouncement(`Point placed at ${finalX.toFixed(1)}, ${finalY.toFixed(1)}`);
+          announce(`Point placed at ${finalX.toFixed(1)}, ${finalY.toFixed(1)}`);
         }
         break;
       }
@@ -146,7 +161,7 @@ export function GraphingCanvas({
         svgRef.current?.blur();
         break;
     }
-  }, [readonly, onPointAdd, snapToGrid, domain, range, cursorPos]);
+  }, [readonly, onPointAdd, snapToGrid, domain, range, cursorPos, announce]);
 
   const handlePointKeyDown = useCallback((point: Point, event: React.KeyboardEvent) => {
     if (readonly || !onPointRemove) return;
@@ -154,9 +169,9 @@ export function GraphingCanvas({
       event.preventDefault();
       event.stopPropagation();
       onPointRemove(point.label);
-      setAnnouncement(`Point ${point.label} removed`);
+      announce(`Point ${point.label} removed`);
     }
-  }, [readonly, onPointRemove]);
+  }, [readonly, onPointRemove, announce]);
 
   const renderCursor = () => {
     if (!isFocused || readonly) return null;
@@ -352,7 +367,6 @@ export function GraphingCanvas({
           onClick={(e) => handlePointClick(point, e)}
           onKeyDown={(e) => handlePointKeyDown(point, e)}
           tabIndex={0}
-          role="button"
           aria-label={`Point at ${point.x.toFixed(1)}, ${point.y.toFixed(1)}. Press Delete to remove.`}
           style={{ cursor: readonly ? 'default' : 'pointer' }}
         >
@@ -387,9 +401,15 @@ export function GraphingCanvas({
         Use arrow keys to move the cursor. Press Enter or Space to place a point.
         Tab to a placed point and press Delete to remove it.
       </div>
-      <div role="status" aria-live="polite" className="sr-only">
-        {announcement}
-      </div>
+      {/* Render the internal status region only when no caller has supplied
+          onAnnounce. Callers that provide onAnnounce are responsible for
+          rendering their own (so they can colocate this announcement with
+          other messages in a single polite region on the surface). */}
+      {!onAnnounce && (
+        <div role="status" aria-live="polite" className="sr-only">
+          {internalAnnouncement}
+        </div>
+      )}
       <svg
         ref={svgRef}
         width="100%"

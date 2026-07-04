@@ -73,6 +73,20 @@ function isAnswerCorrect(blank: Blank, answer: string): boolean {
 }
 
 /**
+ * Produce a short, accessibility-friendly snippet of the fill-in template (a11y).
+ * Strips `{{blank:...}}` placeholders and trims to a sensible readable length so
+ * the per-blank input label can reference the surrounding task context.
+ * @param {string} template - The fill-in template with placeholders
+ * @param {number} [maxChars=60] - Maximum length of the snippet
+ * @returns {string} A truncated text snippet for use in aria-label
+ */
+function truncateForLabel(template: string, maxChars = 60): string {
+  const stripped = template.replace(/\{\{blank:[^}]+\}\}/g, '____').replace(/\s+/g, ' ').trim();
+  if (stripped.length <= maxChars) return stripped;
+  return `${stripped.slice(0, maxChars - 1).trimEnd()}…`;
+}
+
+/**
  * Render a fill-in-the-blank activity with optional word bank support.
  * @param {FillInTheBlankProps} props - The activity configuration including template, blanks, and mode
  * @returns {React.JSX.Element | null} The fill-in-the-blank component JSX
@@ -284,9 +298,10 @@ export function FillInTheBlank({
             <MathInputField
               value={currentAnswer || ''}
               onChange={(value) => handleAnswer(currentBlankId, value)}
-              label="Your answer"
+              label={`Blank ${state.currentBlankIndex + 1} of ${blankIds.length} — fill in the blank in: ${truncateForLabel(template)}`}
               correctAnswer={currentBlank.correctAnswer}
               showValidation={feedbackShown}
+              required
             />
           )}
         </div>
@@ -350,6 +365,11 @@ export function FillInTheBlank({
         <DragDropContext onDragEnd={handleDragEnd}>
           <div className="space-y-8 p-4">
             <h2 className="text-xl font-bold">Fill in the Blank</h2>
+
+            {/* Always-present polite live region for drag/word-bank feedback (a11y) */}
+            <div role="status" aria-live="polite" className="sr-only">
+              {state.feedbackShown[blankIds[0]] ? 'Word bank assignment updated.' : ''}
+            </div>
 
             {unusedWordBankItems.length > 0 && (
               <div className="bg-gray-50 rounded-lg p-4">
@@ -431,6 +451,7 @@ export function FillInTheBlank({
               <div className="space-y-4 mt-4">
                 {blankIds.map((id, index) => {
                   const blank = blanks.find(b => b.id === id)!;
+                  const blankLabel = `Blank ${index + 1} of ${blankIds.length} — fill in the blank in: ${truncateForLabel(template)}`;
                   return (
                     <div key={id} className="border rounded-lg p-4">
                       <p className="text-sm text-muted-foreground mb-2">
@@ -442,8 +463,9 @@ export function FillInTheBlank({
                       <MathInputField
                         value={state.answers[id] || ''}
                         onChange={(value) => handleAnswer(id, value)}
-                        label="Your answer"
+                        label={blankLabel}
                         correctAnswer={blank.correctAnswer}
+                        required
                       />
                     </div>
                   );
@@ -466,6 +488,10 @@ export function FillInTheBlank({
     return (
       <div className="space-y-8 p-4">
         <h2 className="text-xl font-bold">Fill in the Blank</h2>
+        {/* Always-present polite live region for match/mismatch feedback (a11y) */}
+        <div role="status" aria-live="polite" className="sr-only">
+          {Object.values(state.feedbackShown).some(Boolean) ? 'Answer recorded.' : ''}
+        </div>
         <div className="space-y-4">
           <p className="text-lg leading-relaxed">
             {templateParts.map((part, index) => {
@@ -491,6 +517,7 @@ export function FillInTheBlank({
           <div className="space-y-4 mt-4">
             {blankIds.map((id, index) => {
               const blank = blanks.find(b => b.id === id)!;
+              const blankLabel = `Blank ${index + 1} of ${blankIds.length} — fill in the blank in: ${truncateForLabel(template)}`;
               return (
                 <div key={id} className="border rounded-lg p-4">
                   <p className="text-sm text-muted-foreground mb-2">
@@ -499,8 +526,9 @@ export function FillInTheBlank({
                   <MathInputField
                     value={state.answers[id] || ''}
                     onChange={(value) => handleAnswer(id, value)}
-                    label="Your answer"
+                    label={blankLabel}
                     correctAnswer={blank.correctAnswer}
+                    required
                   />
                 </div>
               );

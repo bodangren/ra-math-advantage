@@ -50,6 +50,7 @@ export function ComprehensionQuiz({
     feedbackShown: {},
     submitted: false,
   });
+  const [submitFeedback, setSubmitFeedback] = useState('');
 
   const MAX_RETRIES = 1;
 
@@ -108,6 +109,11 @@ export function ComprehensionQuiz({
 
     const correctCount = parts.filter(p => p.isCorrect).length;
     const score = questions.length > 0 ? Math.round((correctCount / questions.length) * 100) : 0;
+    setSubmitFeedback(
+      correctCount === questions.length
+        ? `Correct! All ${questions.length} answers are right (${score}%).`
+        : `Incorrect — ${correctCount} of ${questions.length} correct (${score}%).`
+    );
 
     const envelope = buildPracticeSubmissionEnvelope({
       activityId,
@@ -288,6 +294,10 @@ export function ComprehensionQuiz({
     return (
       <div className="space-y-8 p-4">
         <h2 className="text-xl font-bold">Comprehension Quiz</h2>
+        {/* Always-present polite live region for submit feedback (a11y) */}
+        <div role="status" aria-live="polite" className="sr-only">
+          {submitFeedback}
+        </div>
         <div className="space-y-6">
           {questions.map((q, i) => (
             <div key={q.id} className="border rounded-lg p-4">
@@ -334,31 +344,45 @@ function MultipleChoiceQuestion({
   disabled,
   showCorrect,
 }: QuestionProps) {
+  const promptId = `mcq-prompt-${question.id}`;
   return (
-    <div className="space-y-3">
-      <p className="font-medium">{question.prompt}</p>
+    <div className="space-y-3" role="radiogroup" aria-labelledby={promptId}>
+      <p id={promptId} className="font-medium">{question.prompt}</p>
       <div className="space-y-2">
         {question.options?.map((option, i) => {
           const isCorrect = option === question.correctAnswer;
           const isSelected = selectedAnswer === option;
           let className = 'w-full p-3 text-left rounded-md border transition-colors ';
-          
+
           if (disabled) {
             className += isCorrect ? 'bg-green-100 border-green-500 ' : 'bg-gray-50 border-gray-200 ';
           } else {
             className += isSelected ? 'bg-blue-100 border-blue-500 ' : 'bg-white border-border hover:bg-gray-50 ';
           }
 
+          const labelText = showCorrect && isCorrect ? `${option} (Correct)` : option;
+
           return (
-            <button
+            <div
               key={i}
-              onClick={() => onAnswer(option)}
-              disabled={disabled}
+              role="radio"
+              tabIndex={disabled ? -1 : 0}
+              aria-checked={isSelected}
+              aria-disabled={disabled || undefined}
+              aria-label={labelText}
+              onClick={() => !disabled && onAnswer(option)}
+              onKeyDown={(e) => {
+                if (disabled) return;
+                if (e.key === ' ' || e.key === 'Enter') {
+                  e.preventDefault();
+                  onAnswer(option);
+                }
+              }}
               className={className}
             >
               <span className="mr-2">{option}</span>
               {showCorrect && isCorrect && <span className="text-green-600 text-sm">(Correct)</span>}
-            </button>
+            </div>
           );
         })}
       </div>
@@ -378,31 +402,45 @@ function TrueFalseQuestion({
   disabled,
   showCorrect,
 }: QuestionProps) {
+  const promptId = `tf-prompt-${question.id}`;
   return (
-    <div className="space-y-3">
-      <p className="font-medium">{question.prompt}</p>
+    <div className="space-y-3" role="radiogroup" aria-labelledby={promptId}>
+      <p id={promptId} className="font-medium">{question.prompt}</p>
       <div className="flex gap-4">
         {question.options?.map((option, i) => {
           const isCorrect = option === question.correctAnswer;
           const isSelected = selectedAnswer === option;
           let className = 'px-6 py-3 rounded-md border transition-colors ';
-          
+
           if (disabled) {
             className += isCorrect ? 'bg-green-100 border-green-500 ' : 'bg-gray-50 border-gray-200 ';
           } else {
             className += isSelected ? 'bg-blue-100 border-blue-500 ' : 'bg-white border-border hover:bg-gray-50 ';
           }
 
+          const labelText = showCorrect && isCorrect ? `${option} (Correct)` : option;
+
           return (
-            <button
+            <div
               key={i}
-              onClick={() => onAnswer(option)}
-              disabled={disabled}
+              role="radio"
+              tabIndex={disabled ? -1 : 0}
+              aria-checked={isSelected}
+              aria-disabled={disabled || undefined}
+              aria-label={labelText}
+              onClick={() => !disabled && onAnswer(option)}
+              onKeyDown={(e) => {
+                if (disabled) return;
+                if (e.key === ' ' || e.key === 'Enter') {
+                  e.preventDefault();
+                  onAnswer(option);
+                }
+              }}
               className={className}
             >
               {option}
               {showCorrect && isCorrect && <span className="text-green-600 text-sm ml-2">(Correct)</span>}
-            </button>
+            </div>
           );
         })}
       </div>

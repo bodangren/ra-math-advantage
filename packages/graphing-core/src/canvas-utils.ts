@@ -24,6 +24,16 @@ export interface GraphingCanvasProps {
   snapToGrid?: boolean;
   width?: number;
   height?: number;
+  /**
+   * Optional callback used by GraphingCanvas to announce point placement and
+   * removal events to assistive tech. Callers (e.g. GraphingExplorer) are
+   * expected to render a `role="status" aria-live="polite"` region that
+   * displays the message. GraphingCanvas intentionally does NOT render its own
+   * live region so callers can colocate announcements with other status
+   * messages (e.g. submit feedback) — only ONE polite region should exist per
+   * surface so screen readers don't skip announcements.
+   */
+  onAnnounce?: (message: string) => void;
 }
 
 /**

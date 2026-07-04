@@ -13,6 +13,7 @@ interface MathInputFieldProps {
   error?: string;
   placeholder?: string;
   showValidation?: boolean;
+  required?: boolean;
 }
 
 /**
@@ -29,6 +30,7 @@ export function MathInputField({
   error,
   placeholder,
   showValidation = false,
+  required = false,
 }: MathInputFieldProps) {
   const checkEquivalence = (input: string, answer: string): boolean => {
     const normalizedInput = normalizeExpression(input);
@@ -65,6 +67,8 @@ export function MathInputField({
           onChange={(e) => onChange(e.target.value)}
           disabled={disabled}
           placeholder={placeholder}
+          required={required}
+          aria-required={required || undefined}
           className={`
             w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary
             ${error ? 'border-destructive' : 'border-border'}

@@ -114,9 +114,10 @@ function GuidedMode({ steps, problemType, generateDistractors }: { steps: Algebr
   const [showHint, setShowHint] = useState(false);
   const [hintCount, setHintCount] = useState(0);
   const [showExplanation, setShowExplanation] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const currentStep = steps[currentStepIndex];
-  const isComplete = currentStepIndex >= steps.length || (showExplanation && currentStepIndex === steps.length - 1);
+  const isLastStep = currentStepIndex === steps.length - 1;
 
   const options = useMemo(() => {
     if (!currentStep) return [];
@@ -135,15 +136,17 @@ function GuidedMode({ steps, problemType, generateDistractors }: { steps: Algebr
       setShowHint(false);
       setHintUsed(false);
       setShowExplanation(true);
+      setErrorMessage('Correct! See explanation below.');
     } else {
       setShowHint(true);
       setHintUsed(true);
       setHintCount(prev => prev + 1);
+      setErrorMessage('Incorrect. Try again or view the hint.');
     }
   };
 
   const handleNext = () => {
-    if (currentStepIndex < steps.length - 1) {
+    if (!isLastStep) {
       setCurrentStepIndex(prev => prev + 1);
       setShowHint(false);
       setHintUsed(false);
@@ -151,84 +154,99 @@ function GuidedMode({ steps, problemType, generateDistractors }: { steps: Algebr
     }
   };
 
-  if (isComplete) {
-    return (
-      <div className="space-y-4">
-        <div className="text-lg font-semibold text-green-600">
-          ✓ Complete!
-        </div>
-        <div className="text-sm text-muted-foreground">
-          {hintCount > 0 && `Hints used: ${hintCount}`}
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="space-y-4">
-      {currentStepIndex === 0 && !showExplanation && (
-        <div className="p-4 bg-muted/30 rounded-lg">
-          <div className="text-sm font-medium text-muted-foreground mb-2">
-            Problem:
-          </div>
-          <div className="text-lg">
-            <InlineMath math={steps[0].expression} />
-          </div>
-        </div>
-      )}
+      {/* Always-present assertive live region for incorrect-step feedback (a11y) */}
+      <div role="alert" aria-live="assertive" className="sr-only">
+        {errorMessage}
+      </div>
 
-      {showExplanation && (
-        <div className="p-4 bg-green-50 border border-green-200 rounded-md">
-          <div className="text-lg font-medium mb-2">
-            <InlineMath math={currentStep.expression} />
-          </div>
-          <div className="text-sm text-green-700">
-            {currentStep.explanation}
-          </div>
-        </div>
-      )}
+      {steps.map((step, idx) => {
+        const isActive = idx === currentStepIndex;
+        const isPrior = idx < currentStepIndex;
+        return (
+          <div
+            key={idx}
+            role="region"
+            aria-label={`Step ${idx + 1}`}
+            aria-current={isActive ? 'step' : undefined}
+            className="space-y-3"
+          >
+            {isActive && currentStepIndex === 0 && !showExplanation && (
+              <div className="p-4 bg-muted/30 rounded-lg">
+                <div className="text-sm font-medium text-muted-foreground mb-2">
+                  Problem:
+                </div>
+                <div className="text-lg">
+                  <InlineMath math={steps[0].expression} />
+                </div>
+              </div>
+            )}
 
-      {!showExplanation && (
-        <div className="text-lg font-medium">
-          What&apos;s the next step?
-        </div>
-      )}
+            {isActive && showExplanation && (
+              <div className="p-4 bg-green-50 border border-green-200 rounded-md">
+                <div className="text-lg font-medium mb-2">
+                  <InlineMath math={currentStep.expression} />
+                </div>
+                <div className="text-sm text-green-700">
+                  {currentStep.explanation}
+                </div>
+              </div>
+            )}
 
-      {!showExplanation && (
-        <div className="space-y-2">
-          {options.map((option, index) => (
-            <button
-              key={index}
-              type="button"
-              onClick={() => handleOptionClick(option)}
-              className="w-full p-3 text-left border rounded-md hover:bg-secondary transition-colors"
-            >
-              <InlineMath math={option} />
-            </button>
-          ))}
-        </div>
-      )}
+            {isActive && !showExplanation && (
+              <div className="text-lg font-medium">
+                What&apos;s the next step?
+              </div>
+            )}
 
-      {showHint && currentStep.hint && (
-        <div className="p-3 bg-yellow-50 border border-yellow-200 rounded-md">
-          <div className="text-sm font-medium text-yellow-800 mb-1">
-            Hint:
+            {isActive && !showExplanation && (
+              <div className="space-y-2">
+                {options.map((option, index) => (
+                  <button
+                    key={index}
+                    type="button"
+                    onClick={() => handleOptionClick(option)}
+                    className="w-full p-3 text-left border rounded-md hover:bg-secondary transition-colors"
+                  >
+                    <InlineMath math={option} />
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {isActive && showHint && (
+              <div className="p-3 bg-yellow-50 border border-yellow-200 rounded-md">
+                <div className="text-sm font-medium text-yellow-800 mb-1">
+                  Hint:
+                </div>
+                <div className="text-sm text-yellow-700">
+                  {currentStep.hint ||
+                    `Not quite. Look for a step that transforms "${currentStep.expression}" in a meaningful algebraic way (try a different transformation).`}
+                </div>
+              </div>
+            )}
+
+            {isActive && showExplanation && (
+              <button
+                type="button"
+                onClick={handleNext}
+                disabled={isLastStep}
+                aria-disabled={isLastStep}
+                className="px-4 py-2 min-h-[44px] min-w-[44px] bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Next Step
+              </button>
+            )}
+
+            {isPrior && (
+              <div className="text-sm text-muted-foreground">
+                Step {idx + 1} completed.
+              </div>
+            )}
           </div>
-          <div className="text-sm text-yellow-700">
-            {currentStep.hint}
-          </div>
-        </div>
-      )}
-
-      {showExplanation && currentStepIndex < steps.length - 1 && (
-        <button
-          type="button"
-          onClick={handleNext}
-          className="px-4 py-2 min-h-[44px] min-w-[44px] bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
-        >
-          Next
-        </button>
-      )}
+        );
+      })}
 
       {hintCount > 0 && (
         <div className="text-xs text-muted-foreground">

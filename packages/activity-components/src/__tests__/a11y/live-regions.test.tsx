@@ -40,8 +40,9 @@ describe('ComprehensionQuiz submits feedback via role="status"', () => {
       />
     );
 
-    // Select an answer.
-    const option = screen.getByRole('button', { name: '4' });
+    // Select an answer. Options render as radio roles (a11y: proper radio
+    // semantics rather than buttons); role="radio" with aria-checked.
+    const option = screen.getByRole('radio', { name: '4' });
     await user.click(option);
 
     // Submit.
