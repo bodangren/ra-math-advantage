@@ -29,11 +29,11 @@ Verification substitute for Doctor: `node scripts/check-monorepo-boundaries.mjs`
 - [x] Task: Remediate forms/dialogs (assignment UI, interventions) — Green SHA `ecc8dce6`
 - [x] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md) — autonomous-mode evidence: Green SHA `ecc8dce6` (gradebook text content not color-only; 4 contrast pairs pass WCAG AA math; dialog has role/aria-modal/label; all gates green)
 
-## Phase 5 — CI Gate & Verification [checkpoint: ecc8dce6]
+## Phase 5 — CI Gate & Verification [checkpoint: 1c0ce804]
 
 - [x] Task: Wire the a11y gate into CI; prove it fails on an injected serious violation — Green SHA `ecc8dce6`
-- [x] Task: Final verification — boundary lints, per-app lint, tsc --noEmit, CI=true npm run test — Green SHA `ecc8dce6` (673 ksc green; 106 activity-components green; 99 IM3 a11y+transfer-credit green; 56 graphing-core green; tsc 0 errors; lint 0 warnings; boundaries OK; doctor OK; CI npm test green)
-- [x] Task: Measure - User Manual Verification 'Phase 5' (Protocol in workflow.md) — autonomous-mode evidence: Green SHA `ecc8dce6` (closeout matrix per test-strategy §4 Phase 5 all green)
+- [x] Task: Final verification — boundary lints, per-app lint, tsc --noEmit, CI=true npm run test — Green SHA `1c0ce804` (673 ksc green; 110 activity-components green; 122 IM3 a11y+transfer-credit+SubmissionDetailModal green; 56 graphing-core green; tsc 0 errors; lint 0 warnings; boundaries OK; doctor OK; CI npm test green; orchestrator audit script PASS)
+- [x] Task: Measure - User Manual Verification 'Phase 5' (Protocol in workflow.md) — autonomous-mode evidence: Green SHA `1c0ce804` (closeout matrix per test-strategy §4 Phase 5 all green; 10 adversarial edge cases AD1-AD10 added and green; SubmissionDetailModal phase accordion semantics fixed (button+aria-expanded); dialog follow-up note added)
 
 ---
 
@@ -473,3 +473,124 @@ CI=true npm run test
   feedback panel — this prevents a multiple-match collision. The Phase 2
   `live-regions.test.tsx` regex `/correct|incorrect/` still matches the
   sr-only region because "correct" is present in both branches.
+
+---
+
+## Phase 3 Green Evidence
+
+**Date:** 2026-07-04
+**Green SHA:** `0f412957`
+
+### Modified files (Green implementation)
+
+- `apps/integrated-math-3/components/student/StudentNavigation.tsx` — adds
+  skip-to-content link targeting `#main-content` (sr-only by default,
+  visible on focus) pointing at the root layout's `<main id="main-content">`.
+- `apps/integrated-math-3/components/student/CompletionScreen.tsx` — wraps
+  completion announcement in a `role="status"` polite live region and
+  ensures the "Session complete" heading is an `h1` that receives focus
+  on mount.
+- `apps/integrated-math-3/components/textbook/LessonPageLayout.tsx` — wraps
+  primary content in `<main id="main">`, applies `aria-current="step"` to
+  the current phase nav button, ensures exactly one `h1` per lesson page.
+- Test files: `__tests__/a11y/student-nav-layout.test.tsx`,
+  `__tests__/a11y/daily-practice-completion.test.tsx` (7 tests initially).
+
+### Closeout gates
+
+All Phase 3 closeout gates green per `0f412957`:
+- 673 ksc, 106 activity-components, 74 IM3 a11y+transfer-credit green;
+  tsc/lint/boundaries/doctor clean.
+
+---
+
+## Phase 4 Green Evidence
+
+**Date:** 2026-07-04
+**Green SHA:** `ecc8dce6`
+
+### Modified files (Green implementation)
+
+- `apps/integrated-math-3/components/ui/dialog.tsx` — adds `role="dialog"`,
+  `aria-modal="true"`, and `aria-label={title}` to the native `<dialog>`
+  element; close button has `sr-only` "Close" label.
+- `apps/integrated-math-3/vitest.setup.ts` — wires `@testing-library/jest-dom`
+  matchers (needed for the a11y axe tests' DOM assertions).
+- Test files: `gradebook-color-state.test.tsx` (cells carry visible text
+  or aria-label; accessible table with th scope), `contrast-tokens.test.ts`
+  (4 token pairs ≥4.5:1), `teacher-forms-dialogs.test.tsx` (modal
+  role/aria-modal/axe clean), `ci-gate-proof.test.tsx` (injected bad
+  fixture returns ≥1 serious/critical violation → gate provably catches
+  regressions).
+
+### Post-review fixes
+
+- `d1cc6d18` — corrects a double-linearization bug in
+  `contrast-tokens.test.ts` `oklchToLinearSrgb`: was applying the sRGB
+  EOTF a second time on already-linear values, inflating ratios (e.g.
+  primaryFg/primary showed 8.20:1; correct is 4.99:1). Pure math fix;
+  ratios still pass ≥4.5:1. Anti-pattern A3.
+- `0e233c03` — fixes skip-to-content target mismatch:
+  `StudentNavigation` pointed at `#main`, which did not exist; the root
+  layout uses `id="main-content"`. Skip link, tests, and
+  `LessonPageLayout.test.tsx` all align.
+- `56720a7b` (post-review-fixes / phase-acceptance) — converts
+  `SubmissionDetailModal` phase evidence accordion header from an
+  onClick-bearing `<div>` to a proper `<button type="button">` with
+  `aria-expanded`, `disabled` when no evidence, and `aria-hidden` on the
+  chevron; anchors the existing filter-tab assertions to avoid name
+  collisions with phase buttons.
+
+### Closeout gates
+
+All Phase 4 closeout gates green per `ecc8dce6`: 673 ksc, 106
+activity-components, 99 IM3 a11y+transfer-credit, 56 graphing-core;
+tsc/lint/boundaries/doctor green.
+
+---
+
+## Phase 5 Green Evidence
+
+**Date:** 2026-07-04 (post-review fix + adversarial pass)
+**Green SHA:** `1c0ce804`
+
+### Gate matrix at closeout (post-adversarial)
+
+| Gate | Result |
+|------|--------|
+| `CI=true npx vitest run packages/knowledge-space-core` | 673/673 PASS |
+| `cd packages/activity-components && CI=true npx vitest run` | 110/110 PASS (106 baseline + 4 adversarial) |
+| `cd packages/graphing-core && CI=true npx vitest run` | 56/56 PASS |
+| `CI=true npx vitest run --root apps/integrated-math-3 __tests__/a11y __tests__/student/transfer-credit __tests__/teacher/transfer-credit` | 109/109 IM3 a11y+transfer-credit PASS; +13 SubmissionDetailModal = 122 total IM3 PASS |
+| `npx tsc --noEmit` | exit 0 |
+| `npm run lint` (root: ksc + IM3) | exit 0 |
+| `node scripts/check-monorepo-boundaries.mjs` | OK |
+| `bash measure/doctor.sh` | All checks passed |
+| `CI=true npm run test` (ksc aggregate) | 673/673 PASS |
+| `bash tests/measure_orchestrator_audit.sh` | PASS |
+
+### Adversarial tests (AD1–AD10) added in `1c0ce804`
+
+See commit message for per-AD mapping. Adversarial files touched:
+- `apps/integrated-math-3/__tests__/a11y/axe-harness.test.tsx`
+- `apps/integrated-math-3/__tests__/a11y/teacher-forms-dialogs.test.tsx`
+- `apps/integrated-math-3/__tests__/a11y/student-nav-layout.test.tsx`
+- `apps/integrated-math-3/__tests__/a11y/contrast-tokens.test.ts`
+- `packages/activity-components/src/__tests__/a11y/live-regions.test.tsx`
+- `packages/activity-components/src/__tests__/a11y/graphing-solver-a11y.test.tsx`
+
+### Notes
+
+- The `packages/activity-components` lint script (`eslint src`) fails
+  because the package has no `eslint.config.js`. This is pre-existing
+  (broken at baseline SHA `790c3028`) and unrelated to this track; it
+  is logged as tech-debt and not introduced by the WCAG remediation.
+  Root `npm run lint` lints ksc + IM3, which are the two workspaces
+  with eslint configs, and exits 0.
+- `packages/graphing-core` has an eslint.config.mjs and its lint exits 0;
+  it is not part of the root `npm run lint` chain (same as activity-components).
+- No new npm dependencies added. `axe-core` is hoisted from the existing
+  `@axe-core/playwright` transitive dependency.
+- `components/ui/dialog.tsx` carries a comment noting full tab-cycling
+  focus trap is deferred (native `<dialog>` scopes Tab in Chromium/Firefox;
+  Safari/older AT benefit from an explicit JS trap — tracked as follow-up).
