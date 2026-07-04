@@ -16,6 +16,15 @@ export interface DialogProps {
 /**
  * Renders a native dialog modal with backdrop click-to-close and animated transitions.
  *
+ * a11y note (wcag-aa-remediation_20260605 follow-up): This dialog uses the
+ * native `<dialog>` element which provides implicit role="dialog" + focus
+ * scoping in most browsers; we also add explicit role="dialog" + aria-modal
+ * for screen readers that don't yet expose the native semantics. Full
+ * JavaScript tab-cycling (trapping Tab on the last focusable and wrapping to
+ * the first) is deferred to a follow-up — native `<dialog>.showModal()`
+ * already limits Tab cycling in Chromium/Firefox, but Safari and some older
+ * AT combos benefit from an explicit trap. Track as tech-debt.
+ *
  * @param {DialogProps} props - Dialog configuration.
  * @returns {JSX.Element} A dialog element.
  */

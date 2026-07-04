@@ -323,9 +323,11 @@ describe('SubmissionDetailModal', () => {
         />
       );
 
-      expect(screen.getByRole('button', { name: /all/i })).toBeInTheDocument();
-      expect(screen.getByRole('button', { name: /practice/i })).toBeInTheDocument();
-      expect(screen.getByRole('button', { name: /spreadsheet/i })).toBeInTheDocument();
+      // Use anchored regex to avoid colliding with phase accordion buttons
+      // whose accessible names may contain "practice" (e.g. "Guided Practice").
+      expect(screen.getByRole('button', { name: /^All$/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /^Practice$/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /^Spreadsheet$/i })).toBeInTheDocument();
     });
   });
 

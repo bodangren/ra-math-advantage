@@ -138,9 +138,12 @@ export function SubmissionDetailModal({ open, onOpenChange, data }: SubmissionDe
                     key={phase.phaseId}
                     className="border border-border rounded-lg overflow-hidden"
                   >
-                    <div
-                      className="flex items-center justify-between px-4 py-3 bg-muted/30 cursor-pointer"
+                    <button
+                      type="button"
+                      className="flex items-center justify-between px-4 py-3 bg-muted/30 cursor-pointer w-full text-left"
                       onClick={() => hasEvidence && togglePhase(phase.phaseId)}
+                      aria-expanded={isExpanded}
+                      disabled={!hasEvidence}
                     >
                       <div className="flex items-center gap-3">
                         <span className="font-mono-num text-sm font-medium text-muted-foreground">
@@ -170,12 +173,13 @@ export function SubmissionDetailModal({ open, onOpenChange, data }: SubmissionDe
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
+                            aria-hidden="true"
                           >
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                           </svg>
                         )}
                       </div>
-                    </div>
+                    </button>
 
                     {isExpanded && hasEvidence && (
                       <div className="p-4 space-y-4 border-t border-border">
