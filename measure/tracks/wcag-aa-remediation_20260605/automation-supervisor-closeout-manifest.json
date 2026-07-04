@@ -1,0 +1,90 @@
+{
+  "track": "wcag-aa-remediation_20260605",
+  "procedure": "measure-closeout",
+  "date": "2026-07-04",
+  "accepted_head": "1d78ce5a",
+  "phase_checkpoints": {
+    "phase1": "e44192cd",
+    "phase2": "0707b76d",
+    "phase3": "0f412957",
+    "phase4": "ecc8dce6",
+    "phase5": "1c0ce804"
+  },
+  "post_review_fixes": [
+    "d1cc6d18 — contrast-tokens double-linearization bug fix",
+    "0e233c03 — skip-to-content target mismatch fix",
+    "56720a7b — SubmissionDetailModal phase accordion semantics fix"
+  ],
+  "commits": [
+    "e44192cd — Phase 1 Green: axe harness, routes, findings",
+    "0707b76d — Phase 2 Green: activity component a11y remediation",
+    "0f412957 — Phase 3 Green: student route a11y remediation",
+    "ecc8dce6 — Phase 4 Green: teacher routes, color/contrast, dialog",
+    "1c0ce804 — Phase 5 Green: CI gate proof, adversarial tests AD1-AD10, final verification"
+  ],
+  "test_counts": {
+    "knowledge-space-core": 673,
+    "activity-components": 110,
+    "graphing-core": 56,
+    "im3_a11y_and_transfer_credit": 109,
+    "ci_npm_test_aggregate": 673
+  },
+  "file_additions": {
+    "lib/a11y/harness.tsx": "axe-core testing harness for vitest/jsdom",
+    "lib/a11y/routes.ts": "A11Y_ROUTES source-of-truth constant",
+    "__tests__/a11y/axe-harness.test.tsx": "axe harness proof test",
+    "__tests__/a11y/route-set.test.ts": "route set structural guard",
+    "__tests__/a11y/findings-doc.test.ts": "findings document structural guard",
+    "__tests__/a11y/a11y-routes.ts": "re-export shim for test imports",
+    "__tests__/a11y/student-nav-layout.test.tsx": "Phase 3 student route keyboard tests",
+    "__tests__/a11y/daily-practice-completion.test.tsx": "Phase 3 daily practice a11y tests",
+    "__tests__/a11y/gradebook-color-state.test.tsx": "Phase 4 color-only meaning tests",
+    "__tests__/a11y/contrast-tokens.test.ts": "Phase 4 contrast ratio math tests",
+    "__tests__/a11y/teacher-forms-dialogs.test.tsx": "Phase 4 modal/form keyboard tests",
+    "__tests__/a11y/ci-gate-proof.test.tsx": "Phase 5 CI gate injection proof test",
+    "findings.md": "prioritized WCAG findings document",
+    "test-strategy.md": "falsifiable test strategy contract"
+  },
+  "file_modifications": [
+    "packages/activity-components/src/components/algebraic/MathInputField.tsx",
+    "packages/activity-components/src/components/algebraic/StepByStepper.tsx",
+    "packages/activity-components/src/components/blanks/FillInTheBlank.tsx",
+    "packages/activity-components/src/components/graphing/GraphingCanvas.tsx",
+    "packages/activity-components/src/components/graphing/GraphingExplorer.tsx",
+    "packages/activity-components/src/components/quiz/ComprehensionQuiz.tsx",
+    "packages/graphing-core/src/canvas-utils.ts",
+    "apps/integrated-math-3/components/student/StudentNavigation.tsx",
+    "apps/integrated-math-3/components/student/CompletionScreen.tsx",
+    "apps/integrated-math-3/components/textbook/LessonPageLayout.tsx",
+    "apps/integrated-math-3/components/ui/dialog.tsx",
+    "apps/integrated-math-3/components/teacher/gradebook/SubmissionDetailModal.tsx",
+    "apps/integrated-math-3/vitest.setup.ts"
+  ],
+  "gates_passed": {
+    "CI=true npx vitest run packages/knowledge-space-core": "673/673 PASS",
+    "cd packages/activity-components && CI=true npx vitest run": "110/110 PASS",
+    "cd packages/graphing-core && CI=true npx vitest run": "56/56 PASS",
+    "CI=true npx vitest run --root apps/integrated-math-3 __tests__/a11y __tests__/student/transfer-credit __tests__/teacher/transfer-credit": "109/109 PASS",
+    "npx tsc --noEmit": "PASS",
+    "npm run --workspace=packages/knowledge-space-core lint": "PASS",
+    "npm run --workspace=apps/integrated-math-3 lint": "PASS",
+    "node scripts/check-monorepo-boundaries.mjs": "OK",
+    "bash measure/doctor.sh": "PASS",
+    "CI=true npm run test": "673/673 PASS",
+    "bash tests/measure_orchestrator_audit.sh": "PASS"
+  },
+  "a9_remediation": {
+    "description": "findings-doc.test.ts had hardcoded path to measure/tracks/wcag-aa-remediation_20260605/findings.md. Updated to check both the active track path and the archive path for A9 compliance.",
+    "file": "apps/integrated-math-3/__tests__/a11y/findings-doc.test.ts",
+    "fix": "Changed FINDINGS_PATH from a single path to FINDINGS_PATHS array with fallback logic",
+    "audit_subagent_note": "Re-run findings-doc.test.ts after archive to confirm A9 is clean"
+  },
+  "artifact_cleanup": "No bulky run artifacts to delete (all test output is ephemeral vitest stdout)",
+  "retained_evidence": [
+    "/tmp/wcag-final-acceptance.json",
+    "/tmp/wcag-closeout.json",
+    "findings.md",
+    "test-strategy.md",
+    "automation-supervisor-closeout-manifest.json"
+  ]
+}

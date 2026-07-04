@@ -1,9 +1,10 @@
 {
   "track_id": "wcag-aa-remediation_20260605",
   "type": "feature",
-  "status": "new",
+  "status": "done",
   "created_at": "2026-06-05T00:00:00Z",
   "updated_at": "2026-07-04T00:00:00Z",
+  "completed_at": "2026-07-04",
   "description": "Remediate WCAG 2.1 AA findings from the accessibility-audit baseline across student/teacher routes and activity components in all apps. Tier 1 backlog (finish half-done work); the audit track established the baseline but fixed nothing.",
   "program": "Quality & Completion Backlog",
   "estimated_tasks": 18,

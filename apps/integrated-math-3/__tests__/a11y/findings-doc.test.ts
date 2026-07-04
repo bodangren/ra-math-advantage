@@ -2,10 +2,20 @@ import { describe, it, expect } from 'vitest';
 import { readFileSync, existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 
-const FINDINGS_PATH = resolve(
-  process.cwd(),
-  'measure/tracks/wcag-aa-remediation_20260605/findings.md',
-);
+const FINDINGS_PATHS = [
+  resolve(process.cwd(), 'measure/tracks/wcag-aa-remediation_20260605/findings.md'),
+  resolve(process.cwd(), 'measure/archive/wcag-aa-remediation_20260704/findings.md'),
+];
+
+function findFindingsPath(): string {
+  for (const p of FINDINGS_PATHS) {
+    if (existsSync(p)) return p;
+  }
+  // Fall back to first path for a clear error message
+  return FINDINGS_PATHS[0];
+}
+
+const FINDINGS_PATH = findFindingsPath();
 
 const REPO_ROOT = resolve(process.cwd());
 
