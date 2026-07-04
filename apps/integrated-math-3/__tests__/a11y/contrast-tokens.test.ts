@@ -56,22 +56,13 @@ function oklchToLinearSrgb(L: number, C: number, H: number): [number, number, nu
   return [rLin, gLin, bLin];
 }
 
-function srgbChannelToLinear(c: number): number {
-  const abs = Math.abs(c);
-  if (abs <= 0.04045) return c / 12.92;
-  return Math.sign(c) * Math.pow((abs + 0.055) / 1.055, 2.4);
-}
-
-function relativeLuminance(linear: [number, number, number]): number {
-  const [r, g, b] = linear.map(srgbChannelToLinear) as [number, number, number];
-  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
-}
-
-// Fallback: if oklch already outputs linear-light sRGB in [0,1], use it directly.
-// Our oklchToLinearSrgb returns linear-light sRGB already (pre-gamma), so we
-// skip the second linearization step.
+// oklchToLinearSrgb already returns linear-light sRGB (pre-gamma).
+// WCAG relative luminance is computed directly from linear-light values:
+// L = 0.2126*R + 0.7152*G + 0.0722*B
+// No sRGB EOTF (gamma decode) is needed — the values are already linear.
 function luminanceOf({ L, C, H }: Oklch): number {
-  return relativeLuminance(oklchToLinearSrgb(L, C, H));
+  const [r, g, b] = oklchToLinearSrgb(L, C, H);
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
 }
 
 function contrastRatio(a: number, b: number): number {
