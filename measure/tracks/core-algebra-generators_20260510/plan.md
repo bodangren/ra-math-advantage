@@ -99,11 +99,11 @@ No production code was implemented; Phase 1 tasks remain `[~]`.
 
 ## Phase 2: Linear & Systems Generators
 
-- [~] Task: Implement `linear-equation-solver.ts` using the Backward Generation strategy
-- [~] Task: Implement `system-of-equations-solver.ts` (choose x,y,derive coefficients,guard determinant ≠ 0)
-- [~] Task: Write TDD tests covering integer/rational solutions and edge cases (zero coeff, negative)
-- [~] Task: Register generators and wire to IM1/IM3 linear-equation blueprints
-- [~] Task: Generate Docs & Doctor (lint, tsc --noEmit, boundary check)
+- [x] Task: Implement `linear-equation-solver.ts` using the Backward Generation strategy — `c95a0013`
+- [x] Task: Implement `system-of-equations-solver.ts` (choose x,y,derive coefficients,guard determinant ≠ 0) — `c95a0013`
+- [x] Task: Write TDD tests covering integer/rational solutions and edge cases (zero coeff, negative) — `c95a0013`
+- [x] Task: Register generators and wire to IM1/IM3 linear-equation blueprints — `c95a0013`
+- [x] Task: Generate Docs & Doctor (lint, tsc --noEmit, boundary check) — `c95a0013`
 - [b] Task: Measure - User Manual Verification 'Phase 2' — deferred:user
 
 ### Phase 2 Red notes
@@ -121,6 +121,113 @@ Labeled failure counts (A3):
 - `system_of_equations_solver_suite_failure: 1` (`Cannot find module '../system-of-equations-solver'`).
 - `generator_registry_t17_assertions_failure: 5` (2 missing `index.ts` re-exports for `generateLinearEquation`/`generateSystemOfEquations`; 3 missing registry keys for `linear-equation-solver`/`system-of-equations-solver` adapter lookups and collision check).
 No production code was implemented; Phase 2 tasks remain `[~]`.
+
+### Phase 2 Green notes
+
+Green commit: `c95a0013`. Implementation strategy:
+
+**`linear-equation-solver.ts`** — backward-generation, single call to `mulberry32`:
+1. First PRNG draw picks the integer/rational mode (50/50 split).
+2. Integer mode: `x ∈ [-10, 10]` (integer). Rational mode: `x = num/den`
+   with `den ∈ [2, 6]` and `num ∈ [-10, 10]`, kept as `Fraction` to preserve
+   exact arithmetic. This satisfies the "negative, positive, integer, AND
+   rational answers across 200 seeds" edge-case test without violating the
+   "parsed equation round-trips through `Number(rhs)`" backward-correctness
+   test (the equation string uses `String(c.toNumber())`, not
+   `Fraction.toString()`, so `Number("3.5") = 3.5` round-trips cleanly).
+3. `a ∈ [-5, 5] \ {0}` (rejects zero via a do-while retry, no PRNG re-roll
+   for the linear case), `b ∈ [-10, 10]`.
+4. `c = a*x + b` computed in `Fraction` space, then converted to Number
+   for the equation string and `r.c`.
+5. Equation string: `formatLinearTerm(a, b) = c` (uses the
+   `utils/expression-builder.ts` `formatLinearTerm` so the `1x`/`-1x`/`+ -`
+   forbidden-substring guards pass).
+6. Steps (3 entries, per spec §2): original equation, isolated `ax = c - b`,
+   solution `x = <answer>`.
+
+**`system-of-equations-solver.ts`** — backward-generation, single call to
+`mulberry32`:
+1. `x, y ∈ [-6, 6]` (integer solution).
+2. `a1, b1, a2 ∈ [-5, 5] \ {0}` (deterministic non-zero retry, no PRNG
+   re-roll).
+3. Initial `b2 ∈ [-5, 5] \ {0}`. If `det = a1*b2 - a2*b1 === 0`, advance
+   `b2` through the cycle `[-5..5]\{0}` until `det ≠ 0` (deterministic
+   walk, no additional PRNG draws; max 11 iterations, in practice 1-2).
+4. `c1 = a1*x + b1*y`, `c2 = a2*x + b2*y` (integer arithmetic, no
+   rounding).
+5. Equation strings formatted by a local `formatLinearXY` helper that
+   mirrors `formatLinearTerm`'s `1x`/`-1x`/`1y`/`-1y`/`+ -` collapse rules
+   for the bivariate case. Exported via `formatLinearTerm` re-export.
+6. Steps (6 entries): system statement, elimination method note,
+   determinant value, `x = N`, substitute-back note, `y = N`. The `x = N`
+   and `y = N` strings are recovered symbolically via Cramer's rule (the
+   `det` divisor) so the steps show a valid derivation, not a magic
+   value.
+
+**`algebra-generators-adapters.ts`** — mirrors `advanced-math-adapters.ts`:
+- `linearEquationAdapter` → key `'linear-equation-solver'`, declares the real
+  IM1 skill ID `math.im1.skill.2.4.solve-linear-equations-that-have-the-variable-on-both-sides`.
+- `systemOfEquationsAdapter` → key `'system-of-equations-solver'`, declares
+  the real IM1 skill IDs `math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met` and
+  `math.im1.skill.7.3.solve-systems-of-linear-equations-using-elimination-by-addit`.
+- Both wrap the raw generator, build a `GeneratorOutput` with
+  `numeric_tolerance` grading and 1e-9 tolerance (matches the parser test's
+  `toBeCloseTo(..., 9)` precision).
+
+**Registry wiring:** added the two adapter keys to `GENERATOR_REGISTRY` in
+`knowledge-space/generators/registry.ts`. `GENERATOR_KEYS` now contains 12
+entries (was 10). No collisions with the existing pilot generators or with
+the `algebraicStepSolverGenerator` stub (which claims IM3 M1 1.3-1.6
+quadratic IDs).
+
+**`index.ts` re-exports:** added
+`generateLinearEquation` / `LinearEquationProblem` and
+`generateSystemOfEquations` / `SystemOfEquationsProblem` to the
+`@math-content` public surface.
+
+**`measure/generated/` artifacts:** regenerated via
+`npx tsx scripts/generate-measure-docs.ts`. No new routes/architecture
+entries appear (the script operates at the package level; library exports
+are not enumerated).
+
+### Phase 2 Phase 4 stub-collision note
+
+The existing `algebraicStepSolverGenerator` pilot stub in
+`registry.ts` claims IM3 M1 skill IDs 1.3-1.6 (imaginary/complex +
+quadratic factoring/completing-the-square/quadratic formula). The two
+new adapters claim IM1 skill IDs for linear equations and systems —
+**no nodeId overlap** with the stub. Phase 4 will need to either:
+(a) replace the stub entirely once the quadratic generators from Phase 3
+land, or (b) shrink the stub's `nodeIds` list to leave only the
+imaginary/complex (1.3) entries that Phase 3 doesn't replace. The
+collision-detection test in `generator-registry.test.ts` (which asserts
+`linear.key !== 'polynomial-operations'` etc.) is the enforcement
+mechanism for this invariant.
+
+### Phase 2 Green gate evidence
+
+Targeted command (T17 Phase 2 §4.3):
+```bash
+npx vitest run packages/math-content/src/__tests__/linear-equation-solver.test.ts \
+             packages/math-content/src/__tests__/system-of-equations-solver.test.ts \
+             packages/math-content/src/__tests__/generator-registry.test.ts \
+             --reporter=verbose
+```
+- Test files: 3 / 3 passed.
+- Tests: 58 / 58 passed (18 linear + 17 systems + 23 generator-registry).
+- No regressions: the 18 pre-existing generator-registry tests (polynomial /
+  rational / exp-log FR-19, sparse-polynomial QA harness, `index.ts`
+  re-exports) all remain green.
+
+Full math-content suite:
+- Test files: 30 / 30 passed.
+- Tests: 471 / 471 passed. (Pre-Red baseline = 429; + 18 linear + 17
+  systems + 5 new T17 Phase 2 assertions + 2 dynamic keys from
+  `describe.each(GENERATOR_KEYS)` in `registry-sweep.test.ts`.)
+
+`npx tsc --noEmit`: exit 0.
+`npm run lint`: exit 0.
+`bash measure/doctor.sh`: exit 0 ("All checks passed").
 
 ## Phase 3: Quadratics
 
