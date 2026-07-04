@@ -4,6 +4,7 @@
   "status": "done",
   "created_at": "2026-05-10T00:00:00Z",
   "updated_at": "2026-07-04T00:00:00Z",
+  "completed": "2026-07-04",
   "completed_at": "2026-07-04T00:00:00Z",
   "strategy_baseline_sha": "6ff260b7380d9d8cd40de21c506a043372f0133d",
   "description": "Deterministic generators for foundational algebra skills (linear equations, inequalities, systems, quadratics) in packages/math-content. Feeds Practice Primitives Track B (Number line & Algebra manipulatives) and unblocks the Vertical Slice Value Proof.",

@@ -1,0 +1,120 @@
+{
+  "track_id": "core-algebra-generators_20260510",
+  "track_title": "Skill Graph Program — Core Algebra Generators",
+  "closeout_date": "2026-07-05",
+  "closeout_procedure": "measure-closeout",
+  "baseline_sha": "6ff260b7380d9d8cd40de21c506a043372f0133d",
+  "head_sha": "e7b1b54ee865ff6c9c170cbfac7be553acdc022f",
+
+  "completed_task_count": 18,
+  "umv_deferred_count": 4,
+
+  "phase_breakdown": {
+    "Phase 1: PRNG & Fraction Utilities": {
+      "tasks": 5,
+      "completed": 4,
+      "deferred_umv": 1,
+      "red_sha": "71120c0e",
+      "green_sha": "b054d723",
+      "plan_update_sha": "7b292cbc"
+    },
+    "Phase 2: Linear & Systems Generators": {
+      "tasks": 6,
+      "completed": 5,
+      "deferred_umv": 1,
+      "red_sha": "c4d43764",
+      "green_sha": "c95a0013",
+      "plan_update_sha": "f8a7076f"
+    },
+    "Phase 3: Quadratics": {
+      "tasks": 6,
+      "completed": 5,
+      "deferred_umv": 1,
+      "red_sha": "8ea3faa9",
+      "green_sha": "cdb5555e"
+    },
+    "Phase 4: Blueprint Wiring & Vertical-Slice Unblock": {
+      "tasks": 5,
+      "completed": 4,
+      "deferred_umv": 1,
+      "green_sha": "0b3d36e6",
+      "plan_update_sha": "1b2224da"
+    }
+  },
+
+  "review_fix_commits": [
+    "6567f7ff — phase-acceptance A6 fix: accurate IM3 M1 gap claim + blueprint-coverage test",
+    "b69d9bda — review-C fix: type-safe partGradingRules in quadratic-formula adapter",
+    "8d641002 — review-B fix: validate mulberry32 seed is finite number",
+    "0271a702 — review-B fix: bound randNonZero and case-selection loops",
+    "e7b1b54e — adversarial testing: AD1-AD16 edge-case coverage"
+  ],
+
+  "final_gate_results": {
+    "PROJECT_LINT": {
+      "command": "npm run lint",
+      "exit_code": 0,
+      "result": "PASS"
+    },
+    "PROJECT_CHECKS": {
+      "command": "npx tsc --noEmit",
+      "exit_code": 0,
+      "result": "PASS"
+    },
+    "PROJECT_TESTS_math_content": {
+      "command": "npx vitest run packages/math-content",
+      "test_files": 34,
+      "tests_passed": 595,
+      "tests_failed": 0,
+      "result": "PASS"
+    },
+    "doctor": {
+      "command": "bash measure/doctor.sh",
+      "exit_code": 0,
+      "result": "PASS"
+    }
+  },
+
+  "anti_pattern_audit_summary": {
+    "A1_substring_as_signal": "pass — supervisor unchanged; no substring heuristic",
+    "A2_consent_blind_publish": "n/a — no publish surface",
+    "A3_digit_only_count": "pass — all Red counts labeled",
+    "A4_vacuous_pass": "pass — every phase has >=1 [x] with SHA",
+    "A5_false_claim_text": "pass — all pass citations are accurate doctor.sh quotes",
+    "A6_registry_overstatement": "pass — tracks.md entry accurately reflects state; gap claim fixed in 6567f7ff",
+    "A7_over_broad_filter": "pass — specific regex guards, no bare English words",
+    "A8_space_marker": "pass — 0 bare [ ] markers in plan.md",
+    "A9_archived_track_refs": "pass — no tests reference tracks/ path",
+    "A10_generated_facts_drift": "pass — doctor.sh Check 5 passes",
+    "A11_missing_contract_suite": "pass — tests/measure_orchestrator_audit.sh exists",
+    "A12_missing_peer_review_rule": "pass — AGENTS.md documents peer-review; T17 made no supervisor changes"
+  },
+
+  "archived_artifacts": [
+    "final-acceptance.json",
+    "metadata.json",
+    "phase-acceptance.json",
+    "phase-acceptance.log",
+    "plan.md",
+    "review-2026-07-05.md",
+    "review-a-correctness-architecture.json",
+    "review-b-security-data-handling.json",
+    "review-c-ux-api-audit.json",
+    "spec.md",
+    "test-strategy.md",
+    "automation-supervisor-closeout-manifest.json"
+  ],
+
+  "retained_evidence": [
+    "final-acceptance.json",
+    "automation-supervisor-closeout-manifest.json"
+  ],
+
+  "artifact_cleanup": "No bulky run artifacts to delete (all test output is ephemeral vitest stdout; no intermediate build artifacts in track directory)",
+
+  "a9_remediation_required": false,
+
+  "lessons_learned_note": "T17 implemented deterministic core-algebra generators with backward-generation strategy (choose answer first, then derive coefficients). Key architectural decisions: mulberry32 PRNG additive to existing seededRandom, immutable Fraction class for exact rational arithmetic, MathExpressionBuilder for formatted output with 1x/-1x/+ - guards. Four adapters registered in the generator registry claiming real IM1/IM3 skill IDs; narrowed the algebraicStepSolverGenerator stub to remove 1.4/1.6 coverage. Track demonstrates the complete TDD cycle (Red→Green→plan update→review→adversarial→acceptance→closeout).",
+
+  "tech_debt_note": "Pre-existing issues outside T17 scope: (1) math-content package-level tsc --noEmit still fails with @types/node/React errors (tech-debt line 25); (2) full-repo vitest suite has 904 pre-existing failures outside packages/math-content; (3) prng.test.ts relative-path assumption prevents `npm test --workspace=packages/math-content` from repo-root cwd."
+}
