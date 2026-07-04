@@ -1,6 +1,13 @@
 {
-  "id": "core-algebra-generators_20260510",
-  "title": "Track 17: Skill Graph Program \u2014 Core Algebra Generators",
-  "status": "pending",
-  "createdAt": "2026-05-10"
+  "track_id": "core-algebra-generators_20260510",
+  "type": "feature",
+  "status": "in-progress",
+  "created_at": "2026-05-10T00:00:00Z",
+  "updated_at": "2026-07-04T00:00:00Z",
+  "strategy_baseline_sha": "6ff260b7380d9d8cd40de21c506a043372f0133d",
+  "description": "Deterministic generators for foundational algebra skills (linear equations, inequalities, systems, quadratics) in packages/math-content. Feeds Practice Primitives Track B (Number line & Algebra manipulatives) and unblocks the Vertical Slice Value Proof.",
+  "program": "Skill Graph Runtime Enablement",
+  "estimated_tasks": 9,
+  "actual_tasks": null,
+  "deviation_notes": "T17 remains open after T15/T16/T19 supersession because the core algebra generators are a prerequisite for Vertical Slice Value Proof (vertical-slice-value-proof_20260605) and underpin both Track B primitives and IM1 long-tail coverage. Scope narrowed to algebra generators only; geometry/stats/trig generators moved to Primitives C/D/E."
 }
