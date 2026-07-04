@@ -143,3 +143,42 @@ describe('GraphingExplorer point-add announcement', () => {
     });
   });
 });
+
+describe('Adversarial: live-region late-injection defense', () => {
+  it('ComprehensionQuiz polite live region exists in initial DOM before any interaction', () => {
+    const questions = [
+      { id: 'q1', type: 'multiple_choice' as const, prompt: 'Q?', options: ['1', '2'], correctAnswer: '2' },
+    ];
+    const { container } = render(
+      <ComprehensionQuiz activityId="adv-live" mode="practice" questions={questions} />,
+    );
+    const initialRegion = container.querySelector('[role="status"], [aria-live="polite"]');
+    expect(
+      initialRegion,
+      'live region must be present at initial render — not injected after async update',
+    ).toBeTruthy();
+  });
+
+  it('StepByStepper assertive live region exists in initial DOM before any interaction', () => {
+    const steps = [
+      { expression: 'A', explanation: 's', distractors: ['B'] as string[] },
+    ];
+    const { container } = render(<StepByStepper mode="guided" steps={steps} problemType="factoring" />);
+    const initialRegion = container.querySelector('[role="alert"], [aria-live="assertive"]');
+    expect(
+      initialRegion,
+      'assertive live region must be present at initial render',
+    ).toBeTruthy();
+  });
+
+  it('GraphingExplorer polite live region exists before any canvas click', () => {
+    const { container } = render(
+      <GraphingExplorer activityId="adv-graph" mode="practice" equation="y=x" />,
+    );
+    const initialRegion = container.querySelector('[role="status"], [aria-live="polite"]');
+    expect(
+      initialRegion,
+      'GraphingExplorer polite region must be in DOM before first interaction',
+    ).toBeTruthy();
+  });
+});

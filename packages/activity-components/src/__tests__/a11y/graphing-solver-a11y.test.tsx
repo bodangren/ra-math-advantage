@@ -3,6 +3,8 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import axe from 'axe-core';
+import fs from 'node:fs';
+import path from 'node:path';
 import { GraphingExplorer } from '../../components/graphing/GraphingExplorer';
 import { StepByStepper } from '../../components/algebraic/StepByStepper';
 
@@ -178,5 +180,35 @@ describe('axe critical/serious violations', () => {
     );
     const summary = await runAxeSummary(container);
     expect(summary.critical + summary.serious).toBe(0);
+  });
+});
+
+describe('Adversarial: axe false-positive documentation discipline', () => {
+  // Any `rules: { 'x': { enabled: false } }` in a test file MUST carry a
+  // `// axe-false-positive: <reason>` comment on the preceding line.
+  // This defends against silent rule silencing (A7).
+  it('no axe rule disable in a11y test files is missing a // axe-false-positive: reason comment', () => {
+    const dir = __dirname;
+    const files = fs.readdirSync(dir).filter((f: string) => f.endsWith('.test.tsx') || f.endsWith('.test.ts'));
+    const undoc: string[] = [];
+    for (const f of files) {
+      const src = fs.readFileSync(path.join(dir, f), 'utf-8') as string;
+      const lines = src.split('\n');
+      for (let i = 0; i < lines.length; i++) {
+        const ln = lines[i];
+        // Skip comment-only lines describing the pattern.
+        if (/^\s*\/\//.test(ln) || /^\s*\*/.test(ln)) continue;
+        if (/enabled\s*:\s*false/.test(ln) && !/color-contrast/.test(ln)) {
+          const prev = (lines[i - 1] || '').trim();
+          if (!/axe-false-positive/.test(prev)) {
+            undoc.push(`${f}:${i + 1}: ${ln.trim()}`);
+          }
+        }
+      }
+    }
+    expect(
+      undoc,
+      `undocumented axe rule disables in package a11y tests — add a // axe-false-positive: <reason> comment:\n${undoc.join('\n')}`,
+    ).toHaveLength(0);
   });
 });

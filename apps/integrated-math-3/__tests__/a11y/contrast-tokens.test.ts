@@ -94,3 +94,25 @@ describe('Design token contrast (Task 12 Group A/B)', () => {
     });
   }
 });
+
+describe('Adversarial: contrast-ratio math edge cases', () => {
+  it('pure black (#000, luminance 0) on pure white (#fff, luminance 1) is exactly 21:1', () => {
+    // #000 sRGB (0,0,0) → linear (0,0,0) → luminance = 0
+    // #fff sRGB (1,1,1) → linear (1,1,1) → luminance = 0.2126+0.7152+0.0722 = 1.0
+    const black = 0;
+    const white = 1.0;
+    const ratio = contrastRatio(black, white);
+    expect(Math.abs(ratio - 21), `pure B/W ratio must be 21:1, got ${ratio.toFixed(4)}:1`).toBeLessThan(1e-9);
+  });
+
+  it('contrast ratio is symmetric (a on b == b on a)', () => {
+    const a = luminanceOf(TOKENS.foreground);
+    const b = luminanceOf(TOKENS.background);
+    expect(Math.abs(contrastRatio(a, b) - contrastRatio(b, a))).toBeLessThan(1e-12);
+  });
+
+  it('identical colors yield a ratio of 1:1', () => {
+    const lum = luminanceOf(TOKENS.background);
+    expect(contrastRatio(lum, lum)).toBeCloseTo(1, 9);
+  });
+});

@@ -65,3 +65,49 @@ describe('SubmissionDetailModal (Task 13 Group A/D)', () => {
     expect(results.critical + results.serious, `unexpected serious/critical: ${results.violations.map(v => v.id).join(',')}`).toBe(0);
   });
 });
+
+describe('Adversarial: icon-only button and form-label edge cases (wcag adversarial)', () => {
+  it('axe flags a button with empty aria-label="" as a button-name violation', async () => {
+    const results = await runAxeOnRendered(
+      <button type="button" aria-label="">
+        <svg viewBox="0 0 24 24" width="24" height="24"><circle cx="12" cy="12" r="10" /></svg>
+      </button>,
+    );
+    const buttonNameViolations = results.violations.filter(v => v.id === 'button-name');
+    expect(
+      buttonNameViolations.length,
+      'empty-string aria-label must NOT satisfy button-name — axe flags it',
+    ).toBeGreaterThanOrEqual(1);
+  });
+
+  it('detects an orphan <label htmlFor> (no matching control) via structural guard', async () => {
+    await runAxeOnRendered(
+      <form>
+        <label htmlFor="does-not-exist">Missing field</label>
+      </form>,
+    );
+    // axe in jsdom does not always flag orphan label[for] as a violation. Defend
+    // with a direct DOM structural assertion: every label[for] must resolve to
+    // an element with that id.
+    const labels = Array.from(document.querySelectorAll('label[for]'));
+    const orphaned = labels.filter(l => !document.getElementById(l.getAttribute('for') ?? ''));
+    expect(orphaned.length, 'structural guard: orphan label[for] must be detected').toBeGreaterThanOrEqual(1);
+  });
+
+  it('axe flags an icon-only <button> with no accessible name in modified components', async () => {
+    const results = await runAxeOnRendered(
+      <button type="button">
+        <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+          <circle cx="12" cy="12" r="10" />
+        </svg>
+      </button>,
+    );
+    const violations = results.violations.filter(
+      v => v.id === 'button-name' && ['critical', 'serious'].includes(v.impact ?? ''),
+    );
+    expect(
+      violations.length,
+      'bare icon-only button must be caught — regression guard for a11y work',
+    ).toBeGreaterThanOrEqual(1);
+  });
+});

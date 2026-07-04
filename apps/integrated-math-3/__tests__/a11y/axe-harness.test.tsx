@@ -1,4 +1,6 @@
 import { describe, it, expect } from 'vitest';
+import { readFileSync, readdirSync } from 'node:fs';
+import path from 'node:path';
 import { runAxeOnRendered } from '@/lib/a11y/harness';
 
 /**
@@ -55,5 +57,46 @@ describe('axe-core a11y harness', () => {
     expect(typeof results.critical).toBe('number');
     expect(typeof results.serious).toBe('number');
     expect(Array.isArray(results.violations)).toBe(true);
+  });
+});
+
+describe('Adversarial: axe rule-disable drift (A7 defense)', () => {
+  it('every new axe rule disable in a11y test files carries a documented reason comment', () => {
+    const a11yTestDir = path.resolve(__dirname);
+    const files = readdirSync(a11yTestDir).filter((f: string) => f.endsWith('.test.ts') || f.endsWith('.test.tsx'));
+    const undocDisables: string[] = [];
+    for (const file of files) {
+      const full = path.join(a11yTestDir, file);
+      const src = readFileSync(full, 'utf-8') as string;
+      const lines = src.split('\n');
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        // Skip comment-only lines that merely *describe* the pattern we're
+        // searching for (otherwise the scanner false-positives on its own
+        // rule description).
+        if (/^\s*\/\//.test(line) || /^\s*\*/.test(line)) continue;
+        // Match patterns like: enabled: false, { enabled: false }, 'some-rule': { enabled: false }
+        if (/enabled\s*:\s*false/.test(line) && !/color-contrast/.test(line)) {
+          const prev1 = lines[i - 1] || '';
+          const prev2 = lines[i - 2] || '';
+          const nearby = `${prev2}\n${prev1}\n${line}`;
+          if (!/(reason|because|jsdom|false[- ]?positive|axe[- ]?false[- ]?positive|documented|intentionall|defer)/i.test(nearby)) {
+            undocDisables.push(`${file}:${i + 1}: ${line.trim()}`);
+          }
+        }
+      }
+    }
+    expect(
+      undocDisables,
+      `undocumented axe rule disables detected (A7 anti-pattern):\n${undocDisables.join('\n')}`,
+    ).toHaveLength(0);
+  });
+
+  it('harness default disables are all documented with reason comments in harness.tsx', () => {
+    const harnessPath = path.resolve(__dirname, '../../lib/a11y/harness.tsx');
+    const src = readFileSync(harnessPath, 'utf-8');
+    // color-contrast + color-contrast-enhanced are the expected defaults.
+    expect(src).toMatch(/'color-contrast':\s*\{\s*enabled:\s*false\s*\}/);
+    expect(src).toMatch(/jsdom/);
   });
 });

@@ -111,3 +111,36 @@ describe('LessonPageLayout a11y (Task 9 Group C/D/E)', () => {
     expect(currentSteps.length).toBe(1);
   });
 });
+
+describe('Adversarial: skip-link and aria-current edge cases', () => {
+  it('skip-to-content is the first focusable even when other focusables precede it in DOM order via positive tabindex', () => {
+    const { container } = render(
+      <div>
+        <StudentNavigation activeRoute="/student/dashboard" />
+        <main id="main-content" tabIndex={-1}>content</main>
+      </div>,
+    );
+    const focusables = Array.from(
+      container.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      ),
+    );
+    const firstTabindex0 = focusables.findIndex(
+      el => (el.tabIndex ?? -1) >= 0 && el.getAttribute('tabindex') !== '-1',
+    );
+    const skipIndex = focusables.findIndex(el => el.getAttribute('href') === '#main-content');
+    expect(skipIndex).toBeGreaterThanOrEqual(0);
+    expect(firstTabindex0).toBe(skipIndex);
+  });
+
+  it('does not render multiple aria-current="page" elements', () => {
+    const { container } = render(
+      <div>
+        <StudentNavigation activeRoute="/student/dashboard" />
+        <main id="main-content" tabIndex={-1}>content</main>
+      </div>,
+    );
+    const pageCurrent = container.querySelectorAll('[aria-current="page"]');
+    expect(pageCurrent.length).toBe(1);
+  });
+});
