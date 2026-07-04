@@ -9,17 +9,17 @@ describe('StudentNavigation a11y (Task 9 Group A/B)', () => {
     const { container } = render(
       <div>
         <StudentNavigation activeRoute="/student/dashboard" />
-        <main id="main" tabIndex={-1}>content</main>
+        <main id="main-content" tabIndex={-1}>content</main>
       </div>,
     );
 
-    const skipLink = container.querySelector('a[href="#main"]');
-    expect(skipLink, 'skip-to-content link exists pointing to #main').not.toBeNull();
+    const skipLink = container.querySelector('a[href="#main-content"]');
+    expect(skipLink, 'skip-to-content link exists pointing to #main-content').not.toBeNull();
     const focusables = container.querySelectorAll(
       'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
     );
     const firstFocusable = focusables[0];
-    expect(firstFocusable?.getAttribute('href')).toBe('#main');
+    expect(firstFocusable?.getAttribute('href')).toBe('#main-content');
     expect(firstFocusable?.classList.contains('sr-only'), 'skip link is visually hidden by default (sr-only)').toBe(true);
   });
 
@@ -27,7 +27,7 @@ describe('StudentNavigation a11y (Task 9 Group A/B)', () => {
     render(
       <div>
         <StudentNavigation activeRoute="/student/dashboard" />
-        <main id="main">content</main>
+        <main id="main-content">content</main>
       </div>,
     );
 
@@ -42,7 +42,7 @@ describe('StudentNavigation a11y (Task 9 Group A/B)', () => {
     render(
       <div>
         <StudentNavigation activeRoute="/student/dashboard" />
-        <main id="main" tabIndex={-1}>content</main>
+        <main id="main-content" tabIndex={-1}>content</main>
       </div>,
     );
 

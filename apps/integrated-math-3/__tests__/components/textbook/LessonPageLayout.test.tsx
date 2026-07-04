@@ -279,7 +279,7 @@ describe('LessonPageLayout', () => {
       expect(screen.getByRole('navigation')).toBeInTheDocument();
     });
 
-    it('has a skip-to-content link targeting lesson content', () => {
+    it('has a skip-to-content link targeting main content', () => {
       render(
         <LessonPageLayout
           lessonTitle="Linear Functions"
@@ -290,8 +290,8 @@ describe('LessonPageLayout', () => {
           <div>content</div>
         </LessonPageLayout>
       );
-      const skipLink = screen.getByRole('link', { name: /skip to lesson content/i });
-      expect(skipLink).toHaveAttribute('href', '#lesson-content');
+      const skipLink = screen.getByRole('link', { name: /skip to main content/i });
+      expect(skipLink).toHaveAttribute('href', '#main');
     });
 
     it('lesson main content has id matching skip link target', () => {
@@ -305,7 +305,7 @@ describe('LessonPageLayout', () => {
           <div>content</div>
         </LessonPageLayout>
       );
-      const main = container.querySelector('main#lesson-content');
+      const main = container.querySelector('main#main');
       expect(main).toBeInTheDocument();
       expect(main).toHaveAttribute('tabIndex', '-1');
     });
