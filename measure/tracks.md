@@ -52,6 +52,10 @@ Dependencies:
        *Surface equivalent_to mastery to students at runtime: equivalence resolution, confidence-discounted transfer policy, skip eligibility in practice path, student UX with confirmation check, and teacher audit panel. 49 files / 673 tests in knowledge-space-core, 6 files / 64 tests in IM3 transfer-credit. All gates pass at archive.*
        *Link: [./archive/transfer-credit-runtime_20260703/](./archive/transfer-credit-runtime_20260703/)*
 
+ - [x] **Track: WCAG 2.1 AA Remediation** — **COMPLETED / ARCHIVED** (2026-07-04)
+       *Remediate WCAG 2.1 AA findings from the accessibility-audit baseline: keyboard/focus remediation across student/teacher routes, screen-reader semantics on activity components (graphing, solver, quiz, blanks), AA contrast tokens & gradebook color-only meaning fixes, and automated a11y CI gate with injection proof test. All 11 gates pass at archive (673/673 ksc, 110/110 activity-components, 56/56 graphing-core, 109/109 IM3 a11y+transfer-credit; tsc/lint/boundaries/doctor/audit all green). 5-phase implementation with adversarial tests AD1-AD10. Non-blocking: dialog full tab-cycling focus trap deferred (native `<dialog>` limited to Chromium/Firefox).*
+       *Link: [./archive/wcag-aa-remediation_20260704/](./archive/wcag-aa-remediation_20260704/)*
+
 ## Active Tracks
 
 - [ ] **Track: Live Classroom Presentation**
@@ -975,9 +979,9 @@ Sixteen candidate tracks identified from a full-roadmap review. Each is registry
    *Remediate 1 critical, 3 high, and 14 moderate dependency advisories; refresh compatible packages; align workspace declarations; then execute vinext/Vite, Next.js, TypeScript/ESLint, Tailwind, KaTeX, Lucide, and jsdom major migrations as isolated verified waves. Size: L. Depends on: none. Phases 1–5 implementation complete; 192/192 audit tests pass, boundary clean, npm ls clean, build clean. User manual verification deferred per workflow.md.*
    *Link: [./archive/dependency-security-upgrades_20260607/](./archive/dependency-security-upgrades_20260607/)*
 
-- [ ] **Track: WCAG 2.1 AA Remediation** — **PLANNED**
-   *Remediate the issues found by the accessibility audit (keyboard nav, screen-reader, contrast, activity-component a11y). Audit track is "PHASE 1 COMPLETE (baseline only)" — findings exist, none fixed. Size: M. Depends on: accessibility-audit baseline (done). Readiness: ready now.*
-   *Link: [./tracks/wcag-aa-remediation_20260605/](./tracks/wcag-aa-remediation_20260605/)*
+- [x] **Track: WCAG 2.1 AA Remediation** — **COMPLETED / ARCHIVED** (2026-07-04)
+   *WCAG 2.1 AA fixes across student/teacher routes and activity components: keyboard/focus, screen-reader semantics, AA contrast, color-only meaning, and automated CI a11y gate. 11 gates green at archive. Moved to Recently Completed section above.*
+   *Link: [./archive/wcag-aa-remediation_20260704/](./archive/wcag-aa-remediation_20260704/)*
 
 - [x] **Track: E2E Coverage Expansion** — **COMPLETED**
    *Expand Playwright E2E beyond the 9 infrastructure tests to fully cover login, lesson nav, activity interaction, daily practice, and teacher dashboard. All 4 phases complete: deterministic seed & selectors, auth & lesson flow, activities & daily practice, teacher flow & CI. Review commit: `41a35a7c`.*
