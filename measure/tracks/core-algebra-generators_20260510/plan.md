@@ -231,12 +231,28 @@ Full math-content suite:
 
 ## Phase 3: Quadratics
 
-- [b] Task: Implement `quadratic-factoring.ts` with grouping-step `solutionSteps` output — deferred:human-gate
-- [b] Task: Implement `quadratic-formula.ts` returning radical string representations for irrational roots — deferred:human-gate
-- [b] Task: Write TDD tests covering integer-factorable, perfect-square, difference-of-squares, irrational roots — deferred:human-gate
-- [b] Task: Register generators and wire to IM1/IM3 quadratic blueprints — deferred:human-gate
-- [b] Task: Generate Docs & Doctor (lint, tsc --noEmit, boundary check) — deferred:human-gate
-- [b] Task: Measure - User Manual Verification 'Phase 3' — deferred:human-gate
+- [~] Task: Implement `quadratic-factoring.ts` with grouping-step `solutionSteps` output
+- [~] Task: Implement `quadratic-formula.ts` returning radical string representations for irrational roots
+- [~] Task: Write TDD tests covering integer-factorable, perfect-square, difference-of-squares, irrational roots
+- [~] Task: Register generators and wire to IM1/IM3 quadratic blueprints
+- [~] Task: Generate Docs & Doctor (lint, tsc --noEmit, boundary check)
+- [b] Task: Measure - User Manual Verification 'Phase 3' — deferred:user
+
+### Phase 3 Red notes
+
+Red command (2026-07-04):
+```bash
+npx vitest run packages/math-content/src/__tests__/quadratic-factoring.test.ts \
+             packages/math-content/src/__tests__/quadratic-formula.test.ts \
+             packages/math-content/src/__tests__/generator-registry.test.ts \
+             --reporter=verbose
+```
+Result: expected Red failures because the Phase 3 production modules (`quadratic-factoring.ts`, `quadratic-formula.ts`) and their registry adapters do not exist yet. The 24 pre-existing generator-registry and T17 Phase 2 tests remain green.
+Labeled failure counts (A3):
+- `quadratic_factoring_suite_failure: 1` (`Cannot find module '../quadratic-factoring'`).
+- `quadratic_formula_suite_failure: 1` (`Cannot find module '../quadratic-formula'`).
+- `generator_registry_t17_phase3_assertions_failure: 6` (2 missing `index.ts` re-exports for `generateQuadraticFactoring`/`generateQuadraticFormula`; 2 missing registry keys for `quadratic-factoring`/`quadratic-formula` adapter lookups; 1 missing-key uniqueness/collision check; 1 stub nodeId overlap assertion documenting the expected Jr-Green resolution).
+No production code was implemented; Phase 3 tasks remain `[~]`.
 
 ## Phase 4: Blueprint Wiring & Vertical-Slice Unblock
 

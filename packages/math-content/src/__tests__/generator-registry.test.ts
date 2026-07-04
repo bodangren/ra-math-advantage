@@ -6,9 +6,12 @@ import {
   generateExpLogProblem,
   generateLinearEquation,
   generateSystemOfEquations,
+  generateQuadraticFactoring,
+  generateQuadraticFormula,
   addPoly,
   subtractPoly,
   multiplyPoly,
+  checkEquivalence,
 } from '../index';
 import { getGenerator } from '../knowledge-space/generators/registry';
 
@@ -271,5 +274,103 @@ describe('T17 Phase 2 algebra generators', () => {
     expect(linear.key).not.toBe(system.key);
     expect(linear.key).not.toBe('polynomial-operations');
     expect(system.key).not.toBe('exp-log-solver');
+  });
+});
+
+// ---------------------------------------------------------------------------
+// T17 Phase 3 — Quadratic generators
+// ---------------------------------------------------------------------------
+
+describe('T17 Phase 3 quadratic generators', () => {
+  it('re-exports generateQuadraticFactoring from index', () => {
+    expect(typeof generateQuadraticFactoring).toBe('function');
+  });
+
+  it('re-exports generateQuadraticFormula from index', () => {
+    expect(typeof generateQuadraticFormula).toBe('function');
+  });
+
+  it('re-exports checkEquivalence from index', () => {
+    expect(typeof checkEquivalence).toBe('function');
+  });
+
+  it('registers the quadratic-factoring adapter and returns a GeneratorOutput-shaped object', () => {
+    const generator = getGenerator('quadratic-factoring');
+    expect(generator).toBeDefined();
+    expect(generator.key).toBe('quadratic-factoring');
+
+    const output = generator.generate({
+      seed: 1,
+      nodeId: 'math.im3.skill.1.4.solve-quadratic-equations-by-factoring',
+      difficulty: 0.5,
+    });
+
+    expect(output).toHaveProperty('prompt');
+    expect(typeof output.prompt).toBe('string');
+    expect(output).toHaveProperty('expectedAnswer');
+    expect(output).toHaveProperty('solutionSteps');
+    expect(Array.isArray(output.solutionSteps)).toBe(true);
+    expect(output).toHaveProperty('gradingMetadata');
+    expect(output.gradingMetadata).toHaveProperty('partAnswers');
+    expect(output.gradingMetadata).toHaveProperty('partMaxScores');
+    expect(output.gradingMetadata).toHaveProperty('partGradingRules');
+
+    const rules = Object.values(output.gradingMetadata.partGradingRules);
+    expect(rules).toContain('expression_equivalence');
+  });
+
+  it('registers the quadratic-formula adapter and returns a GeneratorOutput-shaped object', () => {
+    const generator = getGenerator('quadratic-formula');
+    expect(generator).toBeDefined();
+    expect(generator.key).toBe('quadratic-formula');
+
+    const output = generator.generate({
+      seed: 1,
+      nodeId: 'math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations',
+      difficulty: 0.5,
+    });
+
+    expect(output).toHaveProperty('prompt');
+    expect(typeof output.prompt).toBe('string');
+    expect(output).toHaveProperty('expectedAnswer');
+    expect(output).toHaveProperty('solutionSteps');
+    expect(Array.isArray(output.solutionSteps)).toBe(true);
+    expect(output).toHaveProperty('gradingMetadata');
+    expect(output.gradingMetadata).toHaveProperty('partAnswers');
+    expect(output.gradingMetadata).toHaveProperty('partMaxScores');
+    expect(output.gradingMetadata).toHaveProperty('partGradingRules');
+
+    const rules = Object.values(output.gradingMetadata.partGradingRules);
+    expect(rules.some((rule) => rule === 'numeric_tolerance' || rule === 'expression_equivalence')).toBe(true);
+  });
+
+  it('adapter keys are unique and include the two new quadratic keys', () => {
+    const expectedKeys = [
+      'quadratic-graph-analysis',
+      'average-rate-of-change',
+      'solve-quadratic-by-graphing',
+      'algebraic-step-solver',
+      'graphing-explorer',
+      'statistics',
+      'polynomial-operations',
+      'polynomial-division',
+      'rational-analyzer',
+      'exp-log-solver',
+      'linear-equation-solver',
+      'system-of-equations-solver',
+      'quadratic-factoring',
+      'quadratic-formula',
+    ];
+    expect(new Set(expectedKeys).size).toBe(expectedKeys.length);
+
+    for (const key of expectedKeys) {
+      expect(getGenerator(key)).toBeDefined();
+    }
+  });
+
+  it('does not allow the algebraic-step-solver stub to claim the new quadratic nodeIds (Jr-Green will resolve overlap)', () => {
+    const stub = getGenerator('algebraic-step-solver');
+    expect(stub.nodeIds).not.toContain('math.im3.skill.1.4.solve-quadratic-equations-by-factoring');
+    expect(stub.nodeIds).not.toContain('math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations');
   });
 });
