@@ -57,9 +57,15 @@ See `measure/practice-component-contract.md` for the full spec.
 - **Peer-reviewed components:** `measure/automation-supervisor.py` is a peer-reviewed component. Any modification to it (especially task-marker parsing, the `r"^- \[([~xb])\] (.+)"` regex, or `is_task_structurally_blocked`) must be peer-reviewed and re-audited by `measure-orchestrator-audit` before merge, because a regression silently corrupts phase completion accounting (anti-patterns A1/A8/A12).
 
 <!-- convex-ai-start -->
+
 This project uses [Convex](https://convex.dev) as its backend.
 
-When working on Convex code, **always read `convex/_generated/ai/guidelines.md` first** for important guidelines on how to correctly use Convex APIs and patterns. The file contains rules that override what you may have learned about Convex from training data.
+When working on Convex code, **always read
+`convex/_generated/ai/guidelines.md` first** for important guidelines on
+how to correctly use Convex APIs and patterns. The file contains rules that
+override what you may have learned about Convex from training data.
 
-Convex agent skills for common tasks can be installed by running `npx convex ai-files install`.
+Convex agent skills for common tasks can be installed by running
+`npx convex ai-files install`.
+
 <!-- convex-ai-end -->
