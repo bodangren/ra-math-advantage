@@ -50,16 +50,22 @@ describe('lib/srs/queue', () => {
       expect(queue.cards).toHaveLength(5);
     });
 
-    it('sorts by due date ascending (most overdue first)', () => {
+    it('sorts due reviews by current retention ascending', () => {
       const cards = [
         makeCard('accounting-equation', 'student-1', -5000),
         makeCard('adjustment-effects', 'student-2', -10000),
         makeCard('classification', 'student-3', -2000),
       ];
+      cards[0].stability = 10;
+      cards[0].elapsedDays = 10;
+      cards[1].stability = 30;
+      cards[1].elapsedDays = 10;
+      cards[2].stability = 5;
+      cards[2].elapsedDays = 10;
       const queue = buildDailyQueue(cards);
-      expect(queue.cards[0].problemFamilyId).toBe('adjustment-effects');
+      expect(queue.cards[0].problemFamilyId).toBe('classification');
       expect(queue.cards[1].problemFamilyId).toBe('accounting-equation');
-      expect(queue.cards[2].problemFamilyId).toBe('classification');
+      expect(queue.cards[2].problemFamilyId).toBe('adjustment-effects');
     });
 
     it('includes sessionSize in result', () => {

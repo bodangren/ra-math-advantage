@@ -1,4 +1,8 @@
-import type { SrsCardState } from '@math-platform/srs-engine';
+import {
+  buildDailyQueueResult as buildCanonicalDailyQueue,
+  type ObjectivePracticePolicy,
+  type SrsCardState,
+} from '@math-platform/srs-engine';
 import type { DailyQueue } from './contract';
 
 export interface QueueOptions {
@@ -14,17 +18,30 @@ export interface QueueOptions {
  */
 export function buildDailyQueue(cards: SrsCardState[], options: QueueOptions = {}): DailyQueue {
   const { sessionSize = 10, now = new Date().toISOString() } = options;
-  const nowMs = new Date(now).getTime();
-
-  const dueCards = cards
-    .filter((c) => new Date(c.dueDate).getTime() <= nowMs)
-    .sort((a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime())
-    .slice(0, sessionSize);
+  const cap = Number.isFinite(sessionSize) && sessionSize > 0
+    ? Math.floor(sessionSize)
+    : 0;
+  const policies = new Map<string, ObjectivePracticePolicy>();
+  for (const card of cards) {
+    policies.set(card.objectiveId, {
+      objectiveId: card.objectiveId,
+      priority: 'essential',
+    });
+  }
+  const result = buildCanonicalDailyQueue(cards, policies, {
+    maxReviewsPerDay: cap,
+    newCardsPerDay: cap,
+    prioritizeOverdue: true,
+  }, now);
 
   return {
-    cards: dueCards,
-    sessionSize,
-    generatedAt: Date.now(),
+    cards: result.items.map(({ card }) => ({
+      ...card,
+      problemFamilyId: (card as SrsCardState & { problemFamilyId?: string }).problemFamilyId
+        ?? card.variantKey,
+    })),
+    sessionSize: cap,
+    generatedAt: Date.parse(now),
   };
 }
 
