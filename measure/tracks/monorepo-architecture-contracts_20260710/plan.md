@@ -9,10 +9,10 @@
 - [x] Task: Define the versioned workspace and ownership manifest schema [ba6498b]
     - [x] Model apps, packages, layers, owners, domain classification, exports, and quality commands
     - [x] Model allowed edges and explicit expiring debt records
-- [~] Task: Define dependency-DAG and boundary policies
-    - [ ] Specify app/package direction, domain-content isolation, Convex generated boundaries, and public exports
-    - [ ] Specify cycle, undeclared dependency, and deep-import rules
-- [ ] Task: Define workspace quality-gate parity contracts
+- [x] Task: Define dependency-DAG and boundary policies [dd2498c]
+    - [x] Specify app/package direction, domain-content isolation, Convex generated boundaries, and public exports
+    - [x] Specify cycle, undeclared dependency, and deep-import rules
+- [~] Task: Define workspace quality-gate parity contracts
     - [ ] Derive expected workspaces from root workspaces and package manifests
     - [ ] Specify root/CI parity and required lint/test/typecheck/build capabilities
 - [ ] Task: Capture reproducible architecture baselines
