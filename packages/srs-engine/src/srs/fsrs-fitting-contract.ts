@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { BUILTIN_FSRS_PARAMS_VERSION } from './scheduler-policy-contract';
 
 /** Contract-only boundary for the kst-srs.v3.2 §12.10 fitting lifecycle. */
 export const FSRS_FITTING_CONTRACT_VERSION = 'fsrs-fitting.v3.1' as const;
@@ -37,7 +38,11 @@ const sha256Schema = z.string().regex(
   /^[a-f0-9]{64}$/,
   'must be a lowercase SHA-256 digest',
 );
-const paramsVersionSchema = z.string().min(1);
+const paramsVersionSchema = z.string()
+  .min(1)
+  .refine((version) => version.trim() === version && version.length > 0, {
+    message: 'paramsVersion must be non-blank and have no surrounding whitespace',
+  });
 
 /** The normative fitting population is the domain × adapter-declared age band. */
 export const fsrsPopulationKeySchema = z.strictObject({
@@ -223,6 +228,37 @@ export const fsrsFitArtifactSchema = z.strictObject({
     });
   }
 
+  if (artifact.incumbent.paramsVersion.startsWith(populationVersionPrefix)) {
+    const incumbentRevision = artifact.incumbent.paramsVersion.slice(populationVersionPrefix.length);
+    if (!/^[1-9]\d*$/.test(incumbentRevision)) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['incumbent', 'paramsVersion'],
+        message: 'population incumbent paramsVersion must end in a positive integer revision',
+      });
+    } else if (
+      /^[1-9]\d*$/.test(candidateRevision)
+      && BigInt(candidateRevision) <= BigInt(incumbentRevision)
+    ) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['candidate', 'paramsVersion'],
+        message: 'candidate population revision must advance the incumbent revision',
+      });
+    }
+  }
+
+  if (
+    artifact.humanRelease !== null
+    && Date.parse(artifact.humanRelease.decidedAt) < Date.parse(artifact.dataset.window.endsAt)
+  ) {
+    ctx.addIssue({
+      code: 'custom',
+      path: ['humanRelease', 'decidedAt'],
+      message: 'human release decision cannot predate the fitting dataset window',
+    });
+  }
+
   if (!artifact.holdoutComparison.improvesIncumbent) {
     if (artifact.approvalState !== 'blocked_holdout_regression') {
       ctx.addIssue({
@@ -387,6 +423,13 @@ export const fsrsParameterResolutionSchema = z.strictObject({
       code: 'custom',
       path: ['attempts', 2, 'scope'],
       message: 'third attempt must be built-in FSRS defaults',
+    });
+  }
+  if (defaultsAttempt.paramsVersion !== BUILTIN_FSRS_PARAMS_VERSION) {
+    ctx.addIssue({
+      code: 'custom',
+      path: ['attempts', 2, 'paramsVersion'],
+      message: `built-in defaults must name ${BUILTIN_FSRS_PARAMS_VERSION}`,
     });
   }
 

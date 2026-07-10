@@ -16,6 +16,7 @@ import {
   evaluateFsrsFitLifecycle,
   resolveReleasedFsrsParameters,
 } from '../srs/fsrs-fitting';
+import { BUILTIN_FSRS_PARAMS_VERSION } from '../srs/scheduler';
 
 const population = {
   domain: 'english.gse',
@@ -87,9 +88,9 @@ describe('v3.1 FSRS fit lifecycle (intentional Red)', () => {
     expect(artifact.holdoutComparison).toMatchObject({
       candidateLogLoss: 0.412,
       incumbentLogLoss: 0.446,
-      absoluteImprovement: 0.034,
       improvesIncumbent: true,
     });
+    expect(artifact.holdoutComparison?.absoluteImprovement).toBeCloseTo(0.034, 12);
   });
 
   it.each([
@@ -130,9 +131,9 @@ describe('v3.1 FSRS fit lifecycle (intentional Red)', () => {
     const blocked: FsrsFitArtifactV31 = evaluateFsrsFitLifecycle(regressing);
 
     expect(blocked.holdoutComparison).toMatchObject({
-      absoluteImprovement: -0.014,
       improvesIncumbent: false,
     });
+    expect(blocked.holdoutComparison?.absoluteImprovement).toBeCloseTo(-0.014, 12);
     expect(blocked.approvalState).toBe('blocked_holdout_regression');
     expect(blocked.humanRelease).toBeNull();
     expect(() => evaluateFsrsFitLifecycle({
@@ -144,7 +145,7 @@ describe('v3.1 FSRS fit lifecycle (intentional Red)', () => {
 
 describe('v3.1 released-parameter resolution (intentional Red)', () => {
   const defaults = {
-    paramsVersion: 'fsrs-defaults.ts-fsrs.v5',
+    paramsVersion: BUILTIN_FSRS_PARAMS_VERSION,
     availability: 'built_in',
   } as const;
 
@@ -180,7 +181,7 @@ describe('v3.1 released-parameter resolution (intentional Red)', () => {
       reason: 'domain_fallback',
     });
     expect(resolve('missing', 'ineligible').selected).toMatchObject({
-      paramsVersion: 'fsrs-defaults.ts-fsrs.v5',
+      paramsVersion: BUILTIN_FSRS_PARAMS_VERSION,
       reason: 'fsrs_defaults',
     });
   });

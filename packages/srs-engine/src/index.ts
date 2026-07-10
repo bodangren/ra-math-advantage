@@ -135,6 +135,15 @@ export type {
 
 export * from './srs/fsrs-fitting-contract';
 export * from './srs/evaluation-contract';
+export {
+  evaluateFsrsFitLifecycle,
+  resolveReleasedFsrsParameters,
+} from './srs/fsrs-fitting';
+export type {
+  FsrsFitResultV31,
+  EvaluateFsrsFitLifecycleInputV31,
+  ResolveReleasedFsrsParametersInputV31,
+} from './srs/fsrs-fitting';
 
 export {
   BUILTIN_FSRS_PARAMS_VERSION,
@@ -285,10 +294,17 @@ export type {
   CalibrationReviewQueueItem,
   ReviewQueueBuildInput,
   ReviewQueueBuildOptions,
+  AbilityTercile,
+  AbilityCalibrationObservation,
+  AbilityBandCalibrationSummary,
+  AbilityStratificationReason,
+  AbilityStratifiedCalibrationResult,
 } from './srs/edge-calibration';
 
 export {
   CALIBRATION_STATUS_VALUES,
+  assignAbilityTercile,
+  stratifyCalibrationByAbility,
   extractObservations,
   buildContingencyTable,
   computeNecessity,

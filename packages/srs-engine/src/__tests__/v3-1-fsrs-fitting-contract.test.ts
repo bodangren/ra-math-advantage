@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { BUILTIN_FSRS_PARAMS_VERSION } from '../srs/scheduler-policy-contract';
 
 import {
   FSRS_FITTING_CONTRACT_VERSION,
@@ -129,6 +130,11 @@ describe('v3.1 FSRS fitting artifact contract', () => {
         improvesIncumbent: true,
       },
     }).success).toBe(false);
+
+    expect(fsrsFitArtifactSchema.safeParse({
+      ...improvingArtifact,
+      candidate: { ...candidate, paramsVersion: ` ${candidate.paramsVersion}` },
+    }).success).toBe(false);
   });
 
   it('requires a named human release before an improving candidate is approved', () => {
@@ -149,6 +155,29 @@ describe('v3.1 FSRS fitting artifact contract', () => {
         rationale: 'Holdout log-loss improved and replay review passed.',
       },
     }).success).toBe(true);
+
+    expect(fsrsFitArtifactSchema.safeParse({
+      ...improvingArtifact,
+      approvalState: 'approved',
+      humanRelease: {
+        decision: 'approved',
+        reviewId: 'release-before-window-close',
+        humanReviewerId: 'curriculum-lead-17',
+        paramsVersion: candidate.paramsVersion,
+        decidedAt: '2026-03-31T23:59:59.999Z',
+        rationale: 'Attempted approval before the dataset window closed.',
+      },
+    }).success).toBe(false);
+  });
+
+  it('requires a population candidate revision to advance its incumbent', () => {
+    expect(fsrsFitArtifactSchema.safeParse({
+      ...improvingArtifact,
+      incumbent: {
+        ...incumbent,
+        paramsVersion: 'fsrs-params.english.gse.primary.v3',
+      },
+    }).success).toBe(false);
   });
 
   it('blocks a non-improving holdout and forbids human override', () => {
@@ -193,7 +222,7 @@ describe('v3.1 fail-closed parameter resolution contract', () => {
     },
     {
       scope: { kind: 'defaults' },
-      paramsVersion: 'fsrs-defaults.ts-fsrs.v5',
+      paramsVersion: BUILTIN_FSRS_PARAMS_VERSION,
       availability: 'built_in',
     },
   ] as const;
@@ -243,7 +272,7 @@ describe('v3.1 fail-closed parameter resolution contract', () => {
       ],
       selected: {
         scope: { kind: 'defaults' },
-        paramsVersion: 'fsrs-defaults.ts-fsrs.v5',
+        paramsVersion: BUILTIN_FSRS_PARAMS_VERSION,
         reason: 'fsrs_defaults',
       },
     } as const;
@@ -275,6 +304,27 @@ describe('v3.1 fail-closed parameter resolution contract', () => {
     expect(fsrsParameterResolutionSchema.safeParse({
       ...exact,
       attempts: [exact.attempts[1], exact.attempts[0], exact.attempts[2]],
+    }).success).toBe(false);
+  });
+
+  it('rejects a stale built-in defaults version even when its availability is built_in', () => {
+    expect(fsrsParameterResolutionSchema.safeParse({
+      contractVersion: FSRS_FITTING_CONTRACT_VERSION,
+      requestedPopulation: { domain: 'math.im3', ageBand: 'secondary' },
+      attempts: [
+        attempts[0],
+        { ...attempts[1], paramsVersion: null, availability: 'missing' },
+        {
+          scope: { kind: 'defaults' },
+          paramsVersion: 'fsrs-defaults.ts-fsrs.v5',
+          availability: 'built_in',
+        },
+      ],
+      selected: {
+        scope: { kind: 'defaults' },
+        paramsVersion: 'fsrs-defaults.ts-fsrs.v5',
+        reason: 'fsrs_defaults',
+      },
     }).success).toBe(false);
   });
 });

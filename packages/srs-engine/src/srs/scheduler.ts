@@ -25,14 +25,14 @@ import type {
   SrsRating,
 } from './contract';
 import {
+  BUILTIN_FSRS_PARAMS_VERSION,
   normalizeSchedulerConfig,
   objectivePrioritySchema,
   paramsVersionSchema,
   resolveRequestedRetention,
 } from './scheduler-policy-contract';
 
-/** Canonical provenance for the exact built-in ts-fsrs v5 parameter set. */
-export const BUILTIN_FSRS_PARAMS_VERSION = 'fsrs-defaults.ts-fsrs.v5.4.1' as const;
+export { BUILTIN_FSRS_PARAMS_VERSION } from './scheduler-policy-contract';
 
 /**
  * Scheduler configuration parameters.

@@ -97,6 +97,20 @@ describe('v3.1 ability-stratified edge calibration', () => {
     });
   });
 
+  it('uses max-minus-min across three eligible bands rather than adjacent comparisons', () => {
+    const observations = [
+      ...notAObservations('low', 0.2, 1, 7),
+      ...notAObservations('mid', 0.5, 2, 6),
+      ...notAObservations('high', 0.8, 4, 4),
+    ];
+
+    expect(stratifyCalibrationByAbility(observations, 'refuted')).toMatchObject({
+      status: 'untested',
+      reason: 'confounded_by_ability',
+      eligibleBandCount: 3,
+    });
+  });
+
   it('fails closed when fewer than two bands have five not-A observations', () => {
     const observations = [
       ...notAObservations('low', 0.2, 0, 5),
@@ -127,5 +141,62 @@ describe('v3.1 ability-stratified edge calibration', () => {
     const reversed = stratifyCalibrationByAbility([...observations].reverse(), 'confirmed');
 
     expect(reversed).toEqual(forward);
+  });
+
+  it.each([Number.NaN, Number.POSITIVE_INFINITY, -0.01, 1.01])(
+    'rejects an invalid proficiency rate (%s) instead of assigning a misleading band',
+    (overallProficiencyRate) => {
+      expect(() => assignAbilityTercile(overallProficiencyRate)).toThrow(RangeError);
+    },
+  );
+
+  it('fails closed when an observation is malformed at runtime', () => {
+    const observations = [
+      ...notAObservations('low', 0.2, 1, 7),
+      ...notAObservations('mid', 0.5, 3, 5),
+      {
+        studentId: 'invalid',
+        a: false,
+        b: false,
+        overallProficiencyRate: Number.NaN,
+      },
+    ];
+
+    expect(() => stratifyCalibrationByAbility(observations, 'confirmed')).toThrow(
+      RangeError,
+    );
+  });
+
+  it('rejects duplicate student observations instead of double-counting one learner', () => {
+    const observations = [
+      ...notAObservations('low', 0.2, 1, 7),
+      ...notAObservations('mid', 0.5, 3, 5),
+    ];
+    observations.push({ ...observations[0], b: !observations[0].b });
+
+    expect(() => stratifyCalibrationByAbility(observations, 'confirmed')).toThrow(
+      /duplicate studentId/,
+    );
+  });
+
+  it.each([
+    null,
+    { studentId: ' ', a: false, b: false, overallProficiencyRate: 0.2 },
+    { studentId: 'invalid-verdict', a: 'no', b: false, overallProficiencyRate: 0.2 },
+  ])('rejects malformed observation shape %#', (observation) => {
+    expect(() => stratifyCalibrationByAbility(
+      [observation] as unknown as AbilityObservation[],
+      'confirmed',
+    )).toThrow(TypeError);
+  });
+
+  it('rejects malformed collection and pooled-status inputs', () => {
+    expect(() => stratifyCalibrationByAbility(null as never, 'confirmed')).toThrow(
+      /observations must be an array/,
+    );
+    expect(() => stratifyCalibrationByAbility(
+      [],
+      'invalid' as CalibrationStatus,
+    )).toThrow(/pooledStatus/);
   });
 });

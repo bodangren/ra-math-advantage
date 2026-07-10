@@ -3,6 +3,9 @@ import { z } from 'zod';
 /** Contract version for the v3.1 scheduler-policy additions. */
 export const SCHEDULER_POLICY_VERSION = 'scheduler-policy.v3.1' as const;
 
+/** Canonical provenance for the exact built-in ts-fsrs v5 parameter set. */
+export const BUILTIN_FSRS_PARAMS_VERSION = 'fsrs-defaults.ts-fsrs.v5.4.1' as const;
+
 export const OBJECTIVE_PRIORITIES = [
   'essential',
   'supporting',
