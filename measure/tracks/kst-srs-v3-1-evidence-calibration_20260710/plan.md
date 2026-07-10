@@ -19,10 +19,10 @@
 
 ## Phase 2: Behavioral and Contract Tests
 
-- [~] Task: Test proficiency evidence mathematics
-    - [ ] Cover guess-floor rescaling, half-life weighting, Wilson bounds, and zero/one extremes
-    - [ ] Cover small-sample confidence caps and missing-baseline diagnostics
-- [ ] Task: Test the normative rating mapper
+- [x] Task: Test proficiency evidence mathematics [02c2562]
+    - [x] Cover guess-floor rescaling, half-life weighting, Wilson bounds, and zero/one extremes
+    - [x] Cover small-sample confidence caps and missing-baseline diagnostics
+- [~] Task: Test the normative rating mapper
     - [ ] Cover correctness, hint, reveal, timing, and misconception precedence
     - [ ] Verify unreliable timing cannot change a rating
 - [ ] Task: Test adaptive placement and priority retention
