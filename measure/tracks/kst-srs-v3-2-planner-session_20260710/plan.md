@@ -36,8 +36,8 @@
 - [x] Task: Implement normalized planner terms, weights, and graph precomputation [14de4e9]
 - [x] Task: Implement domain utility registration and the synthetic reference provider [6990313]
 - [x] Task: Implement sparse-mode ranking and recommendation diversity [cfaaa32]
-- [~] Task: Implement review-load budgeting and role-specific projection fields
-- [ ] Task: Implement deterministic interleaving, interval fuzz, and load balancing
+- [x] Task: Implement review-load budgeting and role-specific projection fields [6faa294]
+- [~] Task: Implement deterministic interleaving, interval fuzz, and load balancing
 - [ ] Task: Measure - User Manual Verification 'Phase 3: Implementation' (Protocol in workflow.md)
 
 ## Phase 4: Generate Docs, Doctor, and Release Gate
