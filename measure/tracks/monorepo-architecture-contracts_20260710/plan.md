@@ -15,9 +15,9 @@
 - [x] Task: Define workspace quality-gate parity contracts [a0e9df5]
     - [x] Derive expected workspaces from root workspaces and package manifests
     - [x] Specify root/CI parity and required lint/test/typecheck/build capabilities
-- [~] Task: Capture reproducible architecture baselines
-    - [ ] Record current package graph, CI omissions, duplicate-source metrics, and known violations
-- [ ] Task: Measure - User Manual Verification 'Phase 1: Architecture Contract Definition' (Protocol in workflow.md)
+- [x] Task: Capture reproducible architecture baselines [207be27]
+    - [x] Record current package graph, CI omissions, duplicate-source metrics, and known violations
+- [~] Task: Measure - User Manual Verification 'Phase 1: Architecture Contract Definition' (Protocol in workflow.md)
 
 ## Phase 2: Behavioral and Architecture Tests
 
