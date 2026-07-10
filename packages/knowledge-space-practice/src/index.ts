@@ -105,6 +105,12 @@ export {
   plannerGraphReleaseOutputV3_2Schema,
 } from './planner/v3-2-contract';
 export {
+  scorePlannerCandidateV3_2,
+  rankPlannerPriorityScoresV3_2,
+  precomputePlannerGraphV3_2,
+} from './planner/v3-2-planner';
+export type { ScorePlannerCandidateInputV3_2 } from './planner/v3-2-planner';
+export {
   learnerUtilityContextV3_2Schema,
   utilitySignalV3_2Schema,
   utilityProviderResultV3_2Schema,
