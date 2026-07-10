@@ -24,9 +24,9 @@
 - [x] Task: Test utility providers and sparse-domain behavior [21a0310]
     - [x] Verify provenance, versioning, no-provider behavior, and adapter isolation
     - [x] Verify sparse detection and utility-led ranking without synthetic edges
-- [~] Task: Test diversity and review-load budgeting
-    - [ ] Cover ancestor caps, overflow filling, elevated/saturated thresholds, and zero-new recommendations
-- [ ] Task: Test deterministic session composition
+- [x] Task: Test diversity and review-load budgeting [1aaa656]
+    - [x] Cover ancestor caps, overflow filling, elevated/saturated thresholds, and zero-new recommendations
+- [~] Task: Test deterministic session composition
     - [ ] Cover objective round-robin ordering, new-card placement, fuzz stability, and lightest-day selection
     - [ ] Prove composition preserves the selected-card set
 - [ ] Task: Measure - User Manual Verification 'Phase 2: Behavioral and Contract Tests' (Protocol in workflow.md)
