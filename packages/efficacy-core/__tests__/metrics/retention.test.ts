@@ -17,6 +17,7 @@
 import { describe, it, expect } from 'vitest';
 
 import { computeRetentionCurve } from '../../src/metrics/retention';
+import { stabilityToRetention } from '@math-platform/srs-engine';
 import {
   COHORT_WINDOW_START_MS,
   COHORT_WINDOW_END_MS,
@@ -91,13 +92,17 @@ describe('computeRetentionCurve', () => {
     expect(day1).toBeDefined();
     expect(day2).toBeDefined();
 
-    // Day 1: stability 30 -> 0.5, stability 90 -> 0.75; avg 0.625
+    const day1Elapsed = (COHORT_WINDOW_END_MS - reviewedDay1) / MS_PER_DAY;
+    const day1BElapsed = (COHORT_WINDOW_END_MS - (reviewedDay1 + 60_000)) / MS_PER_DAY;
     expect(day1!.cardCount).toBe(2);
-    expect(day1!.averageRetention).toBeCloseTo(0.625, 4);
+    expect(day1!.averageRetention).toBeCloseTo(
+      (stabilityToRetention(30, day1Elapsed) + stabilityToRetention(90, day1BElapsed)) / 2,
+      4,
+    );
 
-    // Day 2: stability 30 -> 0.5
+    const day2Elapsed = (COHORT_WINDOW_END_MS - reviewedDay2) / MS_PER_DAY;
     expect(day2!.cardCount).toBe(1);
-    expect(day2!.averageRetention).toBeCloseTo(0.5, 4);
+    expect(day2!.averageRetention).toBeCloseTo(stabilityToRetention(30, day2Elapsed), 4);
 
     // Bucket end is exclusive (start + bucketMs)
     expect(day1!.bucketEndMs).toBe(reviewedDay1 + MS_PER_DAY);

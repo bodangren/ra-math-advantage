@@ -25,6 +25,7 @@ export function computeRetentionCurve(
 
   for (const card of eligible) {
     const reviewMs = new Date(card.lastReview!).getTime();
+    const elapsedDays = Math.max(0, (windowEndMs - reviewMs) / (24 * 60 * 60 * 1000));
     const bucketIndex = Math.floor((reviewMs - windowStartMs) / bucketMs);
     const bucketStartMs = windowStartMs + bucketIndex * bucketMs;
     const bucketEndMs = bucketStartMs + bucketMs;
@@ -33,14 +34,14 @@ export function computeRetentionCurve(
     if (existing) {
       const totalRetention =
         existing.averageRetention * existing.cardCount +
-        stabilityToRetention(card.stability);
+        stabilityToRetention(card.stability, elapsedDays);
       existing.cardCount += 1;
       existing.averageRetention = totalRetention / existing.cardCount;
     } else {
       buckets.set(bucketStartMs, {
         bucketStartMs,
         bucketEndMs,
-        averageRetention: stabilityToRetention(card.stability),
+        averageRetention: stabilityToRetention(card.stability, elapsedDays),
         cardCount: 1,
       });
     }
