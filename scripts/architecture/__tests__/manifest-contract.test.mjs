@@ -9,6 +9,10 @@ import {
 function validManifest() {
   return {
     schemaVersion: ARCHITECTURE_MANIFEST_VERSION,
+    workspaceRoots: ['apps/*', 'packages/*'],
+    excludedWorkspaces: [],
+    owners: ['im3-team', 'learning-platform'],
+    approvedFollowUpTracks: ['app-platform-consolidation_20260710'],
     workspaces: [
       {
         id: 'app.im3',
@@ -45,13 +49,15 @@ function validManifest() {
         owner: 'learning-platform',
         rationale: 'Existing dependency inversion pending extraction.',
         followUpTrack: 'app-platform-consolidation_20260710',
+        introducedOn: '2026-07-10',
         expiresOn: '2026-12-31',
         violations: [
           {
             ruleId: 'prohibited-layer-edge',
             sourceWorkspace: 'pkg.srs',
             targetWorkspace: 'app.im3',
-            importPattern: '@math-platform/example',
+            sourceFile: 'packages/srs-engine/src/example.ts',
+            exactSpecifier: '@math-platform/example',
           },
         ],
       },
@@ -106,6 +112,8 @@ test('rejects unowned, unlinked, malformed, or ambiguous debt', () => {
   for (const mutation of [
     (debt) => { debt.owner = ''; },
     (debt) => { debt.followUpTrack = ''; },
+    (debt) => { debt.followUpTrack = 'unapproved-track'; },
+    (debt) => { debt.introducedOn = '2027-01-01'; },
     (debt) => { debt.expiresOn = 'later'; },
     (debt) => { debt.violations = []; },
     (debt) => { debt.violations[0].sourceWorkspace = 'pkg.missing'; },
@@ -114,6 +122,21 @@ test('rejects unowned, unlinked, malformed, or ambiguous debt', () => {
     mutation(manifest.temporaryDebt[0]);
     assert.throws(() => parseArchitectureManifest(manifest));
   }
+});
+
+test('rejects wildcard debt matches, unknown keys, and expired records at an explicit clock', () => {
+  const wildcard = validManifest();
+  wildcard.temporaryDebt[0].violations[0].exactSpecifier = '@math-platform/*';
+  assert.throws(() => parseArchitectureManifest(wildcard), /exact specifier/i);
+
+  const unknown = validManifest();
+  unknown.workspaces[0].surprise = true;
+  assert.throws(() => parseArchitectureManifest(unknown), /unknown key/i);
+
+  assert.throws(
+    () => parseArchitectureManifest(validManifest(), { asOf: '2027-01-01' }),
+    /expired/i,
+  );
 });
 
 test('requires every quality capability to be declared explicitly', () => {
