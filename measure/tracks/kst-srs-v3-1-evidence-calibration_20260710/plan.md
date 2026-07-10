@@ -8,10 +8,10 @@
 - [x] Task: Define v3.1 proficiency evidence and rating contracts [5cb6894]
     - [x] Version evidence inputs, confidence diagnostics, and rating outputs
     - [x] Define guess-floor and timing-baseline schemas
-- [~] Task: Extend domain-adapter and placement contracts
-    - [ ] Add versioned guess floors, age bands, and probe instruments
-    - [ ] Define two-probe decisions, frontier state, stopping reasons, and confidence caps
-- [ ] Task: Define scheduler calibration and evaluation artifacts
+- [x] Task: Extend domain-adapter and placement contracts [4fd6184]
+    - [x] Add versioned guess floors, age bands, and probe instruments
+    - [x] Define two-probe decisions, frontier state, stopping reasons, and confidence caps
+- [~] Task: Define scheduler calibration and evaluation artifacts
     - [ ] Add per-priority requested retention and `paramsVersion` to affected contracts
     - [ ] Define parameter-fit provenance, holdout metrics, approval state, and fallback resolution
     - [ ] Define synthetic-cohort and replay-result schemas
