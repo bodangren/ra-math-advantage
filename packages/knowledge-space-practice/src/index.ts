@@ -120,6 +120,16 @@ export {
   bindDomainUtilityProviderV3_2,
 } from './planner/v3-2-domain-utility-contract';
 export {
+  createDomainUtilityRegistryV3_2,
+  resolveDomainUtilityV3_2,
+  createSyntheticUtilityProviderV3_2,
+} from './planner/v3-2-domain-utility';
+export type {
+  DomainUtilityRegistryV3_2Runtime,
+  ResolveDomainUtilityInputV3_2,
+  SyntheticUtilityProviderConfigV3_2,
+} from './planner/v3-2-domain-utility';
+export {
   reviewLoadStateV3_2Schema,
   reviewLoadConfigV3_2Schema,
   reviewLoadAssessmentV3_2Schema,
