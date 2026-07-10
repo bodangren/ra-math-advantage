@@ -47,13 +47,17 @@
 
 ## Phase 3: Implementation
 
-- [ ] Task: Implement gated readiness across state, fringe, and projections
-- [ ] Task: Consolidate FSRS retention and objective aggregation in `srs-engine`
-- [ ] Task: Correct edge-calibration posterior updates and invalidate stale v2 derived values
-- [ ] Task: Implement placement card synthesis and hard-edge evidence closure
-- [ ] Task: Rewrite daily queue selection and backlog behavior
-- [ ] Task: Apply progress-trend correction and versioned exports
-- [ ] Task: Measure - User Manual Verification 'Phase 3: Implementation' (Protocol in workflow.md)
+- [x] Task: Implement gated readiness across state, fringe, and projections [5ae4f7e]
+- [x] Task: Consolidate FSRS retention and objective aggregation in `srs-engine` [644314e, 810510d]
+- [x] Task: Correct edge-calibration posterior updates and invalidate stale v2 derived values [b4a9368]
+- [x] Task: Implement placement card synthesis and hard-edge evidence closure [24dcb0c]
+- [x] Task: Rewrite daily queue selection and backlog behavior [6fdfe9b, 6726ef6]
+- [x] Task: Apply progress-trend correction and versioned exports [53ffdc9, 810510d]
+- [x] Task: Measure - User Manual Verification 'Phase 3: Implementation' (Protocol in workflow.md)
+    - [x] Canonical retention call sites use explicit elapsed time; no competing formulas remain
+    - [x] Business Math delegates queue selection to `srs-engine`
+    - [x] IM3 consumes reviewed-card minimum retention without a local formula
+    - [x] Package typecheck/lint passed; touched app tests and changed-file lint passed
 
 ## Phase 4: Generate Docs, Doctor, and Release Gate
 
