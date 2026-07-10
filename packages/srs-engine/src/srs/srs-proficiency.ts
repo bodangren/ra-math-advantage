@@ -7,10 +7,21 @@
 import type { PracticeTimingBaseline } from '@math-platform/practice-core';
 import type { EvidenceConfidence, PracticeVariantEvidence } from './objective-proficiency';
 
+/** FSRS retention-curve factor. */
+export const FSRS_RETENTION_FACTOR = 19 / 81;
+
+/** FSRS retention-curve exponent. */
+export const FSRS_RETENTION_DECAY = -0.5;
+
+/**
+ * @deprecated Retained as an export-only compatibility alias. The v3
+ * retention formula does not use a configurable stability scale factor.
+ */
 export const STABILITY_SCALE_FACTOR = 30;
 
 export type ProficiencyCardInput = {
   stability: number;
+  elapsedDays: number;
   difficulty: number;
   reps: number;
   lapses: number;
@@ -68,28 +79,54 @@ function deriveFluencyConfidence(
 }
 
 /**
- * Normalize FSRS stability (unbounded float, in days) to a 0-1 retention strength.
+ * Convert FSRS stability and elapsed time to current retention probability.
  *
- * Formula: 1 - (1 / (1 + stability / scaleFactor))
+ * Formula: `(1 + (19 / 81) * elapsedDays / stability) ** -0.5`.
+ * This yields exactly `R(S) = 0.9`.
  *
- * Examples with default scaleFactor of 30:
- * - stability 0   -> 0.0
- * - stability 30  -> 0.5
- * - stability 90  -> 0.75
- * - stability 300 -> ~0.909
+ * Invalid domain inputs fail closed to 0. Positive infinite stability is
+ * treated as perfect retention, and positive infinite elapsed time as fully
+ * decayed retention.
+ *
+ * @param {number} stability - FSRS stability in days
+ * @param {number} elapsedDays - Non-negative elapsed time in days
+ * @returns {number} Current retention probability in the inclusive range 0-1
  */
-export function stabilityToRetention(stability: number, scaleFactor: number = STABILITY_SCALE_FACTOR): number {
-  if (Number.isNaN(stability)) return 0;
+export function stabilityToRetention(stability: number, elapsedDays: number): number {
+  if (Number.isNaN(stability) || stability <= 0) return 0;
+  if (Number.isNaN(elapsedDays) || elapsedDays < 0) return 0;
   if (stability === Infinity) return 1;
-  if (stability <= 0) return 0;
-  return 1 - 1 / (1 + stability / scaleFactor);
+  if (!Number.isFinite(stability)) return 0;
+  if (elapsedDays === Infinity) return 0;
+  if (!Number.isFinite(elapsedDays)) return 0;
+
+  return (1 + FSRS_RETENTION_FACTOR * elapsedDays / stability) ** FSRS_RETENTION_DECAY;
+}
+
+/**
+ * Compute objective live retention from reviewed practice-variant cards.
+ *
+ * Cards without review history (`reps = 0`) are excluded. `null` distinguishes
+ * an objective with no review evidence from one whose reviewed evidence has
+ * fully decayed.
+ *
+ * @param {ProficiencyCardInput[]} cards - Cards belonging to one objective
+ * @returns {number | null} Minimum live retention, or null without reviewed cards
+ */
+export function objectiveLiveRetention(cards: ProficiencyCardInput[]): number | null {
+  const reviewedRetentions = cards
+    .filter((card) => card.reps >= 1)
+    .map((card) => stabilityToRetention(card.stability, card.elapsedDays));
+
+  if (reviewedRetentions.length === 0) return null;
+  return Math.min(...reviewedRetentions);
 }
 
 /**
  * Aggregate SRS card states into practice variant evidence for objective proficiency calculation.
  *
  * Groups cards by variantKey and computes:
- * - retentionStrength: average of stabilityToRetention across cards in the variant
+ * - retentionStrength: minimum live retention across reviewed cards in the variant
  * - practiceCoverage: proportion of cards with reps > 0
  * - fluencyConfidence: derived from timing relative to baselines
  * - baselineSampleCount: total samples across relevant baselines
@@ -111,12 +148,8 @@ export function aggregateCardsToEvidence(
   const evidence: PracticeVariantEvidence[] = [];
 
   for (const [variantKey, familyCards] of byVariant) {
-    const retentions = familyCards.map((c) => stabilityToRetention(c.stability));
-    const retentionStrength = retentions.length > 0
-      ? retentions.reduce((a, b) => a + b, 0) / retentions.length
-      : 0;
-
     const reviewedCards = familyCards.filter((c) => c.reps > 0);
+    const retentionStrength = objectiveLiveRetention(reviewedCards) ?? 0;
     const practiceCoverage = familyCards.length > 0
       ? reviewedCards.length / familyCards.length
       : 0;

@@ -1,51 +1,29 @@
 import { describe, it, expect } from 'vitest';
-import { aggregateCardsToEvidence, stabilityToRetention, STABILITY_SCALE_FACTOR } from '../srs/srs-proficiency';
+import { aggregateCardsToEvidence, stabilityToRetention } from '../srs/srs-proficiency';
 import type { ProficiencyCardInput, TimingBaselines } from '../srs/srs-proficiency';
 
-describe('STABILITY_SCALE_FACTOR', () => {
-  it('should default to 30', () => {
-    expect(STABILITY_SCALE_FACTOR).toBe(30);
-  });
-});
-
 describe('stabilityToRetention', () => {
-  it('should return 0 for stability 0', () => {
-    expect(stabilityToRetention(0)).toBe(0);
+  it('returns 1 at review time and 0.9 after one stability interval', () => {
+    expect(stabilityToRetention(10, 0)).toBe(1);
+    expect(stabilityToRetention(10, 10)).toBeCloseTo(0.9, 10);
   });
 
-  it('should return 0.5 for stability 30 (default scale factor)', () => {
-    expect(stabilityToRetention(30)).toBeCloseTo(0.5, 6);
-  });
-
-  it('should return ~0.75 for stability 90', () => {
-    expect(stabilityToRetention(90)).toBeCloseTo(0.75, 6);
-  });
-
-  it('should return ~0.909 for stability 300', () => {
-    expect(stabilityToRetention(300)).toBeCloseTo(0.909090, 4);
+  it('matches the canonical v3 elapsed-time example', () => {
+    expect(stabilityToRetention(10, 30)).toBeCloseTo(0.766, 3);
   });
 
   it('should return 0 for negative stability', () => {
-    expect(stabilityToRetention(-10)).toBe(0);
+    expect(stabilityToRetention(-10, 1)).toBe(0);
   });
 
-  it('should approach 1 for very high stability (1000+)', () => {
-    const result = stabilityToRetention(1000);
-    expect(result).toBeGreaterThan(0.96);
-    expect(result).toBeLessThanOrEqual(1);
+  it('returns 0 for invalid elapsed time', () => {
+    expect(stabilityToRetention(10, -1)).toBe(0);
+    expect(stabilityToRetention(10, Number.NaN)).toBe(0);
   });
 
-  it('should allow custom scaleFactor override', () => {
-    expect(stabilityToRetention(15, 15)).toBeCloseTo(0.5, 6);
-    expect(stabilityToRetention(60, 60)).toBeCloseTo(0.5, 6);
-  });
-
-  it('should return 0 for NaN input', () => {
-    expect(stabilityToRetention(NaN)).toBe(0);
-  });
-
-  it('should return 1 for Infinity input', () => {
-    expect(stabilityToRetention(Infinity)).toBe(1);
+  it('handles infinite bounds deterministically', () => {
+    expect(stabilityToRetention(Infinity, 30)).toBe(1);
+    expect(stabilityToRetention(30, Infinity)).toBe(0);
   });
 });
 
@@ -54,6 +32,7 @@ describe('aggregateCardsToEvidence', () => {
 
   const makeCard = (overrides: Partial<ProficiencyCardInput> = {}): ProficiencyCardInput => ({
     stability: 30,
+    elapsedDays: 0,
     difficulty: 3,
     reps: 0,
     lapses: 0,
@@ -70,25 +49,25 @@ describe('aggregateCardsToEvidence', () => {
 
   describe('retentionStrength', () => {
     it('should return high retentionStrength for single card with high stability', () => {
-      const cards = [makeCard({ stability: 300 })];
+      const cards = [makeCard({ stability: 300, elapsedDays: 30, reps: 1 })];
       const result = aggregateCardsToEvidence(cards, emptyBaselines);
       expect(result[0].retentionStrength).toBeGreaterThan(0.9);
     });
 
     it('should return low retentionStrength for single card with zero stability', () => {
-      const cards = [makeCard({ stability: 0 })];
+      const cards = [makeCard({ stability: 0, elapsedDays: 30, reps: 1 })];
       const result = aggregateCardsToEvidence(cards, emptyBaselines);
       expect(result[0].retentionStrength).toBe(0);
     });
 
-    it('should average retentionStrength across multiple cards', () => {
+    it('uses the minimum current retention across reviewed cards', () => {
       const cards = [
-        makeCard({ stability: 0 }),
-        makeCard({ stability: 300 }),
+        makeCard({ stability: 20, elapsedDays: 5, reps: 1 }),
+        makeCard({ stability: 8, elapsedDays: 12, reps: 1 }),
+        makeCard({ stability: 1, elapsedDays: 100, reps: 0 }),
       ];
       const result = aggregateCardsToEvidence(cards, emptyBaselines);
-      const avg = (0 + 0.909) / 2;
-      expect(result[0].retentionStrength).toBeCloseTo(avg, 2);
+      expect(result[0].retentionStrength).toBe(0.86);
     });
   });
 
@@ -137,16 +116,16 @@ describe('aggregateCardsToEvidence', () => {
 
     it('should group cards by problem family and compute per-family stats', () => {
       const cards = [
-        makeCard({ variantKey: 'pf1', stability: 0, reps: 0 }),
-        makeCard({ variantKey: 'pf1', stability: 300, reps: 5 }),
-        makeCard({ variantKey: 'pf2', stability: 30, reps: 1 }),
+        makeCard({ variantKey: 'pf1', stability: 0, elapsedDays: 0, reps: 0 }),
+        makeCard({ variantKey: 'pf1', stability: 300, elapsedDays: 30, reps: 5 }),
+        makeCard({ variantKey: 'pf2', stability: 30, elapsedDays: 30, reps: 1 }),
       ];
       const result = aggregateCardsToEvidence(cards, emptyBaselines);
       const pf1 = result.find((e) => e.variantKey === 'pf1')!;
       const pf2 = result.find((e) => e.variantKey === 'pf2')!;
-      expect(pf1.retentionStrength).toBeGreaterThan(0.4);
+      expect(pf1.retentionStrength).toBe(0.99);
       expect(pf1.practiceCoverage).toBe(0.5);
-      expect(pf2.retentionStrength).toBeCloseTo(0.5, 1);
+      expect(pf2.retentionStrength).toBe(0.9);
       expect(pf2.practiceCoverage).toBe(1);
     });
   });
