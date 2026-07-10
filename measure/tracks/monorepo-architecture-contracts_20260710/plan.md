@@ -21,10 +21,10 @@
 
 ## Phase 2: Behavioral and Architecture Tests
 
-- [~] Task: Build negative fixtures for every prohibited dependency class
-    - [ ] Cover app-to-app, package-to-app, generated Convex, domain leakage, deep imports, and undeclared dependencies
-    - [ ] Cover direct and transitive cycles
-- [ ] Task: Test workspace and CI inventory parity
+- [x] Task: Build negative fixtures for every prohibited dependency class [a9ef764]
+    - [x] Cover app-to-app, package-to-app, generated Convex, domain leakage, deep imports, and undeclared dependencies
+    - [x] Cover direct and transitive cycles
+- [~] Task: Test workspace and CI inventory parity
     - [ ] Fail when a workspace is absent, duplicated, or lacks required commands
     - [ ] Fail when root and CI inventories diverge
 - [ ] Task: Test debt-record behavior
