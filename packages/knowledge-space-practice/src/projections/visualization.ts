@@ -1,8 +1,19 @@
-import type { KnowledgeSpaceNode, KnowledgeSpaceEdge, ProgressTrendHistory } from '@math-platform/knowledge-space-core';
+import {
+  computeWeightedReadiness,
+} from '@math-platform/knowledge-space-core';
+import type {
+  KnowledgeSpaceNode,
+  KnowledgeSpaceEdge,
+  KnowledgeSpace,
+  KnowledgeStateEntry,
+  MasteryConfig,
+  ProgressTrendHistory,
+} from '@math-platform/knowledge-space-core';
 import type {
   VisualNodeV1,
   VisualEdgeV1,
   StudentVisualizationV1,
+  StudentVisualizationOptions,
   ParentVisualizationV1,
   TeacherVisualizationV1,
   TeacherHeatmapCell,
@@ -19,23 +30,35 @@ import { getRecommendedNext } from '../planner/recommended-next';
  * Compute the mastery state of a node based on learner state and prerequisites.
  * @param {string} nodeId - The node ID to evaluate
  * @param {Record<string, 'mastered' | 'ready' | 'blocked' | 'review_due'>} learnerState - Mapping of node IDs to mastery states
- * @param {Map<string, KnowledgeSpaceNode>} nodeMap - Map of node IDs to node objects
- * @param {KnowledgeSpaceEdge[]} edges - Knowledge space edges
+ * @param {KnowledgeSpace} graph - Canonical graph used by gated readiness
  * @param {Set<string>} masteredIds - Set of already mastered node IDs
  * @returns {'mastered' | 'ready' | 'blocked' | 'review_due' | 'unknown'} - Computed node state
  */
 function computeNodeState(
   nodeId: string,
   learnerState: Record<string, 'mastered' | 'ready' | 'nearly_ready' | 'blocked' | 'review_due'>,
-  nodeMap: Map<string, KnowledgeSpaceNode>,
-  edges: KnowledgeSpaceEdge[],
+  graph: KnowledgeSpace,
   masteredIds: Set<string>,
+  knowledgeState?: ReadonlyMap<string, KnowledgeStateEntry>,
+  masteryConfig?: Partial<MasteryConfig>,
 ): 'mastered' | 'ready' | 'nearly_ready' | 'blocked' | 'review_due' | 'unknown' {
+  if (learnerState[nodeId] === 'review_due') return 'review_due';
+
+  if (knowledgeState) {
+    if (knowledgeState.get(nodeId)?.state === 'mastered') return 'mastered';
+    return computeWeightedReadiness(
+      nodeId,
+      knowledgeState,
+      graph,
+      masteryConfig,
+    ).state;
+  }
+
   if (learnerState[nodeId]) return learnerState[nodeId];
   if (masteredIds.has(nodeId)) return 'mastered';
 
   // Check if prerequisites are met
-  const prereqEdges = edges.filter(
+  const prereqEdges = graph.edges.filter(
     (e) => e.type === 'prerequisite_for' && e.targetId === nodeId,
   );
   if (prereqEdges.length > 0) {
@@ -117,13 +140,19 @@ export function projectStudentVisualization(
   nodes: KnowledgeSpaceNode[],
   edges: KnowledgeSpaceEdge[],
   learnerState: Record<string, 'mastered' | 'ready' | 'nearly_ready' | 'blocked' | 'review_due'> = {},
-  options?: { readonly activeMisconceptionSlugs?: readonly string[] },
+  options?: StudentVisualizationOptions,
 ): StudentVisualizationV1 {
   const nodeMap = new Map(nodes.map((n) => [n.id, n]));
+  const graph: KnowledgeSpace = { nodes, edges };
   const masteredIds = new Set(
-    Object.entries(learnerState)
-      .filter(([, s]) => s === 'mastered')
-      .map(([id]) => id),
+    [
+      ...Object.entries(learnerState)
+        .filter(([, s]) => s === 'mastered')
+        .map(([id]) => id),
+      ...[...(options?.knowledgeState?.entries() ?? [])]
+        .filter(([, entry]) => entry.state === 'mastered')
+        .map(([id]) => id),
+    ],
   );
 
   const skillAndTaskNodes = nodes.filter(
@@ -142,9 +171,10 @@ export function projectStudentVisualization(
     const state = computeNodeState(
       node.id,
       learnerState,
-      nodeMap,
-      edges,
+      graph,
       masteredIds,
+      options?.knowledgeState,
+      options?.masteryConfig,
     );
     stateByNodeId.set(node.id, state);
     const vn = toVisualNode(node, state);
@@ -178,16 +208,25 @@ export function projectStudentVisualization(
 
   const candidateNodes = skillAndTaskNodes.filter((n) => {
     const state = stateByNodeId.get(n.id);
-    return state === 'ready' || state === 'unknown';
+    return state === 'ready' || (!options?.knowledgeState && state === 'unknown');
   });
 
   const plannerReadiness: Record<string, number> = {};
   for (const node of candidateNodes) {
-    const ls = learnerState[node.id];
-    plannerReadiness[node.id] =
-      ls === 'ready' || ls === 'review_due' || ls === 'nearly_ready' ? 0.5
-      : ls === 'mastered' ? 1
-      : 0;
+    if (options?.knowledgeState) {
+      plannerReadiness[node.id] = computeWeightedReadiness(
+        node.id,
+        options.knowledgeState,
+        graph,
+        options.masteryConfig,
+      ).score;
+    } else {
+      const ls = learnerState[node.id];
+      plannerReadiness[node.id] =
+        ls === 'ready' || ls === 'review_due' || ls === 'nearly_ready' ? 0.5
+        : ls === 'mastered' ? 1
+        : 0;
+    }
   }
 
   const plannerInput = {
@@ -220,9 +259,10 @@ export function projectStudentVisualization(
       const state = computeNodeState(
         node.id,
         learnerState,
-        nodeMap,
-        edges,
+        graph,
         masteredIds,
+        options?.knowledgeState,
+        options?.masteryConfig,
       );
       return toVisualNode(node, state);
     })

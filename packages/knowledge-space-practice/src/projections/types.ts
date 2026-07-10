@@ -1,3 +1,8 @@
+import type {
+  KnowledgeStateEntry,
+  MasteryConfig,
+} from '@math-platform/knowledge-space-core';
+
 export interface ProjectedActivity {
   stableActivityId: string;
   nodeId: string;
@@ -109,6 +114,15 @@ export interface StudentVisualizationV1 {
   recommendedNext: VisualNodeV1[];
   edges: VisualEdgeV1[];
   activeMisconceptionCount: number;
+}
+
+/** Canonical learner-state inputs for the student visualization projection. */
+export interface StudentVisualizationOptions {
+  readonly activeMisconceptionSlugs?: readonly string[];
+  /** Numeric state computed by knowledge-space-core; preferred over category inference. */
+  readonly knowledgeState?: ReadonlyMap<string, KnowledgeStateEntry>;
+  /** Shared kst-srs.v3 engine configuration used by gated readiness. */
+  readonly masteryConfig?: Partial<MasteryConfig>;
 }
 
 export interface ParentVisualizationV1 {

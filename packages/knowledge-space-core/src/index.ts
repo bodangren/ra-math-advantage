@@ -120,9 +120,11 @@ export type {
   KnowledgeStateEvidence as KnowledgeStateEvidenceArg,
 } from './knowledge-state-engine';
 
-export { getOuterFringe } from './outer-fringe';
+export { getOuterFringe, getOuterFringeV3 } from './outer-fringe';
 export type {
   FringeEntry,
+  FringeEntryV3,
+  OuterFringeV3,
   ReadinessFn,
 } from './outer-fringe';
 

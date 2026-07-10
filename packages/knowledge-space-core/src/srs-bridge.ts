@@ -9,13 +9,13 @@
 import type { KnowledgeSpace } from './types';
 import type {
   KnowledgeStateEntry,
-  MasteryThresholds,
+  MasteryConfig,
 } from './mastery-state';
-import { MASTERY_THRESHOLDS_DEFAULT } from './mastery-state';
+import { normalizeMasteryConfig } from './mastery-state';
 import { getKnowledgeState, stabilityToRetention } from './knowledge-state-engine';
 import type { KnowledgeStateEvidence } from './knowledge-state-engine';
-import { getOuterFringe } from './outer-fringe';
-import type { FringeEntry } from './outer-fringe';
+import { getOuterFringe, getOuterFringeV3 } from './outer-fringe';
+import type { FringeEntry, OuterFringeV3 } from './outer-fringe';
 
 // Re-export stabilityToRetention for bridge consumers
 export { stabilityToRetention };
@@ -138,10 +138,10 @@ export interface ConvertArgs {
  * Pure, deterministic; no I/O, no Convex, no app imports.
  */
 export class DefaultSrsToKstBridge implements SrsToKstBridge {
-  private readonly thresholds: MasteryThresholds;
+  private readonly config: MasteryConfig;
 
-  constructor(thresholds?: Partial<MasteryThresholds>) {
-    this.thresholds = { ...MASTERY_THRESHOLDS_DEFAULT, ...thresholds };
+  constructor(config?: Partial<MasteryConfig>) {
+    this.config = normalizeMasteryConfig(config);
   }
 
   /**
@@ -170,7 +170,7 @@ export class DefaultSrsToKstBridge implements SrsToKstBridge {
       evidence,
       args.graph,
       args.now,
-      this.thresholds,
+      this.config,
       args.previousState,
     );
   }
@@ -302,11 +302,17 @@ export function buildKstState(
   proficiencies: readonly ObjectiveProficiencyResult[],
   graph: KnowledgeSpace,
   now: number,
-  thresholds?: Partial<MasteryThresholds>,
+  config?: Partial<MasteryConfig>,
   previousState?: Map<string, KnowledgeStateEntry> | null,
-): { state: Map<string, KnowledgeStateEntry>; fringe: FringeEntry[] } {
-  const bridge = new DefaultSrsToKstBridge(thresholds);
+): {
+  state: Map<string, KnowledgeStateEntry>;
+  fringe: FringeEntry[];
+  fringeV3: OuterFringeV3;
+} {
+  const normalizedConfig = normalizeMasteryConfig(config);
+  const bridge = new DefaultSrsToKstBridge(normalizedConfig);
   const state = bridge.convert({ cards, proficiencies, graph, now, previousState });
-  const fringe = getOuterFringe(state, graph);
-  return { state, fringe };
+  const fringe = getOuterFringe(state, graph, undefined, normalizedConfig);
+  const fringeV3 = getOuterFringeV3(state, graph, normalizedConfig);
+  return { state, fringe, fringeV3 };
 }

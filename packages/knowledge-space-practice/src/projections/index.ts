@@ -13,6 +13,7 @@ export type {
   VisualNodeV1,
   VisualEdgeV1,
   StudentVisualizationV1,
+  StudentVisualizationOptions,
   ParentVisualizationV1,
   TeacherHeatmapCell,
   InterventionGroup,
