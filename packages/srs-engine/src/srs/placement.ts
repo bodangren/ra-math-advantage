@@ -10,6 +10,44 @@ import type {
 import { createCard, reviewCard } from './scheduler';
 
 export {
+  PLACEMENT_POLICY_VERSION,
+  PLACEMENT_DECISION_PROBE_COUNT,
+  PLACEMENT_TIE_BREAK_PROBE_COUNT,
+  DEFAULT_PLACEMENT_PROBE_BUDGET,
+  DEFAULT_PLACEMENT_STAGNATION_LIMIT,
+  PLACEMENT_PROBE_OUTCOMES,
+  PLACEMENT_DECISIONS,
+  PLACEMENT_FRONTIER_STATUSES,
+  PLACEMENT_STOPPING_REASONS,
+  placementProbeOutcomeSchema,
+  placementDecisionDirectionSchema,
+  placementFrontierStatusSchema,
+  placementStoppingReasonSchema,
+  placementConfidenceCapSchema,
+  placementProbeInstrumentSnapshotSchema,
+  placementProbeEvidenceSchema,
+  placementProbeDecisionSchema,
+  placementFrontierNodeStateSchema,
+  placementFrontierStateSchema,
+  resolvePlacementStoppingReason,
+  isPlacementProbeEvidenceV31,
+  isPlacementProbeDecisionV31,
+  isPlacementFrontierStateV31,
+} from './placement-contract';
+export type {
+  PlacementProbeOutcome,
+  PlacementDecisionDirection,
+  PlacementFrontierStatus,
+  PlacementStoppingReason,
+  PlacementConfidenceCap,
+  PlacementProbeInstrumentSnapshot,
+  PlacementProbeEvidenceV31,
+  PlacementProbeDecisionV31,
+  PlacementFrontierNodeState,
+  PlacementFrontierStateV31,
+} from './placement-contract';
+
+export {
   isPlacementEstimate,
   isPlacementSeededCard,
 };

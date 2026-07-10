@@ -43,7 +43,7 @@ describe('kst-srs.v3 package ownership', () => {
     const coreReadme = readFileSync(resolve(ROOT, 'packages/knowledge-space-core/README.md'), 'utf8');
     const srsReadme = readFileSync(resolve(ROOT, 'packages/srs-engine/README.md'), 'utf8');
     const compatibility = readFileSync(
-      resolve(ROOT, 'measure/tracks/kst-srs-v3-core-correctness_20260710/compatibility.md'),
+      resolve(ROOT, 'measure/archive/kst-srs-v3-core-correctness_20260710/compatibility.md'),
       'utf8',
     );
 
@@ -57,4 +57,3 @@ describe('kst-srs.v3 package ownership', () => {
     expect(compatibility).toMatch(/stabilityToRetention/i);
   });
 });
-

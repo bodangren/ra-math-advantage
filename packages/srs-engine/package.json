@@ -13,6 +13,7 @@
     "./queue": "./src/srs/queue.ts",
     "./evidence": "./src/srs/proficiency-evidence-contract.ts",
     "./placement": "./src/srs/placement.ts",
+    "./placement-contract": "./src/srs/placement-contract.ts",
     "./adapters": "./src/srs/adapters.ts",
     "./submission-adapter": "./src/srs/submission-srs-adapter.ts"
   },

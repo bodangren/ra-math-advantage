@@ -11,11 +11,31 @@ export type {
   KnowledgeSpaceNode,
   KnowledgeSpaceEdge,
   KnowledgeSpace,
+  GuessFloorPolicy,
+  AgeBandDefinition,
+  AgeBandPolicy,
+  HighFidelityPlacementProbeInstrument,
+  PlacementProbeInstrumentPolicy,
+  DomainAdapterV31Declarations,
   DomainAdapter,
   ValidationError,
   ValidationResult,
 } from './types';
 export { KNOWLEDGE_SPACE_SCHEMA_VERSION } from './types';
+
+export {
+  DOMAIN_ADAPTER_V31_CONTRACT_VERSION,
+  guessFloorPolicySchema,
+  ageBandDefinitionSchema,
+  ageBandPolicySchema,
+  highFidelityPlacementProbeInstrumentSchema,
+  placementProbeInstrumentPolicySchema,
+  domainAdapterV31DeclarationsSchema,
+  isGuessFloorPolicy,
+  isAgeBandPolicy,
+  isPlacementProbeInstrumentPolicy,
+  isDomainAdapterV31Declarations,
+} from './adapters';
 
 export type { PrerequisiteCycle, CycleDetectionOptions } from './validation';
 
