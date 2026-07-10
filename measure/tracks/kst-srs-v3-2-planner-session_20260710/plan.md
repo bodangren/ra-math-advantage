@@ -18,10 +18,10 @@
 
 ## Phase 2: Behavioral and Contract Tests
 
-- [~] Task: Test normalized planner mathematics and deterministic ranking
-    - [ ] Reproduce the raw-count dominance correction example
-    - [ ] Cover degenerate graphs, unreachable goals, cycles, and invalid weights
-- [ ] Task: Test utility providers and sparse-domain behavior
+- [x] Task: Test normalized planner mathematics and deterministic ranking [41bed80]
+    - [x] Reproduce the raw-count dominance correction example
+    - [x] Cover degenerate graphs, unreachable goals, cycles, and invalid weights
+- [~] Task: Test utility providers and sparse-domain behavior
     - [ ] Verify provenance, versioning, no-provider behavior, and adapter isolation
     - [ ] Verify sparse detection and utility-led ranking without synthetic edges
 - [ ] Task: Test diversity and review-load budgeting
