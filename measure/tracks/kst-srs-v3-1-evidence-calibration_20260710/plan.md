@@ -34,7 +34,7 @@
     - [x] Exercise synthetic learner invariants and parameter-version attribution
 - [x] Task: Measure - User Manual Verification 'Phase 2: Behavioral and Contract Tests' (Protocol in workflow.md) [3a6fb86]
 
-## Phase 3: Implementation
+## Phase 3: Implementation [checkpoint: e71d1e8]
 
 - [x] Task: Implement v3.1 evidence aggregation and confidence diagnostics [4cd6001]
 - [x] Task: Implement the staged practice-to-SRS rating mapper [9d0062f]
@@ -42,11 +42,11 @@
 - [x] Task: Implement per-priority retention and review-log parameter stamping [b6d5425]
 - [x] Task: Implement ability-stratified edge calibration and versioned FSRS fitting [070eb1d]
 - [x] Task: Implement the offline synthetic and replay evaluation harness [1918590]
-- [~] Task: Measure - User Manual Verification 'Phase 3: Implementation' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 3: Implementation' (Protocol in workflow.md) [e71d1e8]
 
 ## Phase 4: Generate Docs, Doctor, and Release Gate
 
-- [ ] Task: Regenerate contract, package, and evaluation documentation
+- [~] Task: Regenerate contract, package, and evaluation documentation
     - [ ] Run `measure/generate.sh`
     - [ ] Document population fallback and human-release operations
 - [ ] Task: Run the complete v3.1 quality gate
