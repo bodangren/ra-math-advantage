@@ -21,10 +21,10 @@
 - [x] Task: Test normalized planner mathematics and deterministic ranking [41bed80]
     - [x] Reproduce the raw-count dominance correction example
     - [x] Cover degenerate graphs, unreachable goals, cycles, and invalid weights
-- [~] Task: Test utility providers and sparse-domain behavior
-    - [ ] Verify provenance, versioning, no-provider behavior, and adapter isolation
-    - [ ] Verify sparse detection and utility-led ranking without synthetic edges
-- [ ] Task: Test diversity and review-load budgeting
+- [x] Task: Test utility providers and sparse-domain behavior [21a0310]
+    - [x] Verify provenance, versioning, no-provider behavior, and adapter isolation
+    - [x] Verify sparse detection and utility-led ranking without synthetic edges
+- [~] Task: Test diversity and review-load budgeting
     - [ ] Cover ancestor caps, overflow filling, elevated/saturated thresholds, and zero-new recommendations
 - [ ] Task: Test deterministic session composition
     - [ ] Cover objective round-robin ordering, new-card placement, fuzz stability, and lightest-day selection
