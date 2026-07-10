@@ -1,24 +1,27 @@
 /**
  * SRS Queue Primitives
  *
- * Provides `buildDailyQueue` for ordering SRS cards into a daily practice session.
+ * Provides the v3 result API and a deprecated array-returning compatibility
+ * wrapper for ordering SRS cards into a daily practice session.
  *
  * Queue ordering rules (per spec.md):
  * 1. Exclude cards for triaged objectives and cards with no policy.
- * 2. New cards prioritized by objective priority (up to `newCardsPerDay` total).
- * 3. Overdue cards sorted by days overdue descending (or due date ascending).
- * 4. Due cards sorted by due date ascending.
- * 5. Cap total at `maxReviewsPerDay`.
+ * 2. Select due reviews before new cards.
+ * 3. Sort due reviews by current predicted retention ascending.
+ * 4. Fill remaining capacity with priority-ordered new cards.
+ * 5. Suppress new cards when due reviews exceed the daily cap.
  *
  * All functions are pure — no side effects, no browser/convex imports.
  */
 
 import type {
+  DailyQueueResult,
   ObjectivePracticePolicy,
   ObjectivePriority,
   SrsCardState,
   SrsSessionConfig,
 } from './contract';
+import { stabilityToRetention } from './srs-proficiency';
 
 /**
  * A single item in the daily practice queue.
@@ -40,6 +43,37 @@ const PRIORITY_ORDER: Record<ObjectivePriority, number> = {
   extension: 2,
   triaged: 3,
 };
+
+const DAY_MS = 24 * 60 * 60 * 1000;
+
+const EMPTY_QUEUE_RESULT: DailyQueueResult<QueueItem> = {
+  items: [],
+  backlog: false,
+  dueReviewCount: 0,
+  deferredReviewCount: 0,
+  newCardsSuppressed: false,
+};
+
+function normalizeCap(value: number): number {
+  if (!Number.isFinite(value) || value <= 0) return 0;
+  return Math.floor(value);
+}
+
+function compareStrings(a: string, b: string): number {
+  return a < b ? -1 : a > b ? 1 : 0;
+}
+
+function currentElapsedDays(card: SrsCardState, nowMs: number): number {
+  if (card.lastReview !== null) {
+    const lastReviewMs = Date.parse(card.lastReview);
+    if (Number.isFinite(lastReviewMs)) {
+      return Math.max(0, (nowMs - lastReviewMs) / DAY_MS);
+    }
+  }
+  return Number.isFinite(card.elapsedDays) && card.elapsedDays >= 0
+    ? card.elapsedDays
+    : 0;
+}
 
 /**
  * Determine if a card is overdue (past its due date and in review/relearning state).
@@ -68,7 +102,92 @@ export function daysOverdue(card: SrsCardState, now: string): number {
 }
 
 /**
- * Build a daily practice queue from a list of cards.
+ * Build a v3 daily practice queue with explicit backlog metadata.
+ *
+ * @param {SrsCardState[]} cards - Candidate cards
+ * @param {Map<string, ObjectivePracticePolicy>} policies - Policies by objective
+ * @param {SrsSessionConfig} config - Daily caps and legacy options
+ * @param {string} now - ISO timestamp used for due and retention calculations
+ * @returns {DailyQueueResult<QueueItem>} Ordered items and backlog metadata
+ */
+export function buildDailyQueueResult(
+  cards: SrsCardState[],
+  policies: Map<string, ObjectivePracticePolicy>,
+  config: SrsSessionConfig,
+  now: string
+): DailyQueueResult<QueueItem> {
+  const nowMs = Date.parse(now);
+  if (cards.length === 0 || !Number.isFinite(nowMs)) {
+    return { ...EMPTY_QUEUE_RESULT, items: [] };
+  }
+
+  const newCardsPerDay = normalizeCap(config.newCardsPerDay);
+  const maxReviewsPerDay = normalizeCap(config.maxReviewsPerDay);
+  const eligibleCards = cards.filter((card) => {
+    const policy = policies.get(card.objectiveId);
+    return policy !== undefined && policy.priority !== 'triaged';
+  });
+
+  const dueReviewCards = eligibleCards.filter((card) => {
+    if (card.state === 'new') return false;
+    const dueMs = Date.parse(card.dueDate);
+    return Number.isFinite(dueMs) && dueMs <= nowMs;
+  });
+  const dueReviewCount = dueReviewCards.length;
+  const backlog = dueReviewCount > maxReviewsPerDay;
+
+  const sortedReviews = dueReviewCards
+    .map((card) => ({
+      card,
+      retention: stabilityToRetention(card.stability, currentElapsedDays(card, nowMs)),
+    }))
+    .sort((a, b) => {
+      if (a.retention !== b.retention) return a.retention - b.retention;
+      const objectiveOrder = compareStrings(a.card.objectiveId, b.card.objectiveId);
+      if (objectiveOrder !== 0) return objectiveOrder;
+      return compareStrings(a.card.cardId, b.card.cardId);
+    })
+    .slice(0, maxReviewsPerDay)
+    .map(({ card }): QueueItem => ({
+      card,
+      objectivePriority: policies.get(card.objectiveId)!.priority,
+      isOverdue: isOverdue(card, now),
+      daysOverdue: daysOverdue(card, now),
+    }));
+
+  const remainingCapacity = Math.max(0, maxReviewsPerDay - sortedReviews.length);
+  const newAllowance = backlog ? 0 : Math.min(newCardsPerDay, remainingCapacity);
+  const sortedNew = eligibleCards
+    .filter((card) => card.state === 'new')
+    .sort((a, b) => {
+      const priorityOrder = PRIORITY_ORDER[policies.get(a.objectiveId)!.priority]
+        - PRIORITY_ORDER[policies.get(b.objectiveId)!.priority];
+      if (priorityOrder !== 0) return priorityOrder;
+      const objectiveOrder = compareStrings(a.objectiveId, b.objectiveId);
+      if (objectiveOrder !== 0) return objectiveOrder;
+      return compareStrings(a.cardId, b.cardId);
+    })
+    .slice(0, newAllowance)
+    .map((card): QueueItem => ({
+      card,
+      objectivePriority: policies.get(card.objectiveId)!.priority,
+      isOverdue: false,
+      daysOverdue: 0,
+    }));
+
+  return {
+    items: [...sortedReviews, ...sortedNew],
+    backlog,
+    dueReviewCount,
+    deferredReviewCount: Math.max(0, dueReviewCount - sortedReviews.length),
+    newCardsSuppressed: backlog,
+  };
+}
+
+/**
+ * Build an array-only daily queue for legacy callers.
+ *
+ * @deprecated Use `buildDailyQueueResult` to observe backlog metadata.
  */
 export function buildDailyQueue(
   cards: SrsCardState[],
@@ -76,106 +195,5 @@ export function buildDailyQueue(
   config: SrsSessionConfig,
   now: string
 ): QueueItem[] {
-  if (cards.length === 0) {
-    return [];
-  }
-
-  const { newCardsPerDay, maxReviewsPerDay } = config;
-
-  const nonTriaged = cards.filter((card) => {
-    const policy = policies.get(card.objectiveId);
-    return policy?.priority !== 'triaged';
-  });
-
-  const newCards = nonTriaged.filter((card) => card.state === 'new');
-  const reviewCards = nonTriaged.filter((card) => card.state !== 'new');
-
-  const essentialNew: QueueItem[] = [];
-  const supportingNew: QueueItem[] = [];
-  const extensionNew: QueueItem[] = [];
-  let totalNewCount = 0;
-
-  const sortedNew = newCards.sort((a, b) => {
-    const policyA = policies.get(a.objectiveId);
-    const policyB = policies.get(b.objectiveId);
-    const priorityA = policyA ? PRIORITY_ORDER[policyA.priority] : 3;
-    const priorityB = policyB ? PRIORITY_ORDER[policyB.priority] : 3;
-    if (priorityA !== priorityB) return priorityA - priorityB;
-    return 0;
-  });
-
-  for (const card of sortedNew) {
-    if (totalNewCount >= newCardsPerDay) break;
-
-    const policy = policies.get(card.objectiveId);
-    if (!policy) continue;
-
-    const queueItem: QueueItem = {
-      card,
-      objectivePriority: policy.priority,
-      isOverdue: false,
-      daysOverdue: 0,
-    };
-
-    if (policy.priority === 'essential') {
-      essentialNew.push(queueItem);
-      totalNewCount++;
-    } else if (policy.priority === 'supporting') {
-      supportingNew.push(queueItem);
-      totalNewCount++;
-    } else if (policy.priority === 'extension') {
-      extensionNew.push(queueItem);
-      totalNewCount++;
-    }
-  }
-
-  const overdueCards = reviewCards.filter((card) => isOverdue(card, now));
-  const dueCards = reviewCards.filter((card) => !isOverdue(card, now));
-
-  const sortedOverdue = overdueCards
-    .map((card) => {
-      const policy = policies.get(card.objectiveId);
-      return {
-        card,
-        objectivePriority: policy?.priority ?? null,
-        isOverdue: true as const,
-        daysOverdue: daysOverdue(card, now),
-      };
-    })
-    .filter((item) => item.objectivePriority !== null)
-    .map((item) => ({ ...item, objectivePriority: item.objectivePriority as ObjectivePriority }))
-    .sort((a, b) => {
-      if (config.prioritizeOverdue) {
-        return b.daysOverdue - a.daysOverdue;
-      }
-      return new Date(a.card.dueDate).getTime() - new Date(b.card.dueDate).getTime();
-    });
-
-  const sortedDue = dueCards
-    .map((card) => {
-      const policy = policies.get(card.objectiveId);
-      return {
-        card,
-        objectivePriority: policy?.priority ?? null,
-        isOverdue: false as const,
-        daysOverdue: 0,
-      };
-    })
-    .filter((item) => item.objectivePriority !== null)
-    .map((item) => ({ ...item, objectivePriority: item.objectivePriority as ObjectivePriority }))
-    .sort((a, b) => {
-      const aMs = new Date(a.card.dueDate).getTime();
-      const bMs = new Date(b.card.dueDate).getTime();
-      return aMs - bMs;
-    });
-
-  const combined: QueueItem[] = [
-    ...essentialNew,
-    ...supportingNew,
-    ...extensionNew,
-    ...sortedOverdue,
-    ...sortedDue,
-  ];
-
-  return combined.slice(0, maxReviewsPerDay);
+  return buildDailyQueueResult(cards, policies, config, now).items;
 }
