@@ -22,10 +22,10 @@
 - [x] Task: Test proficiency evidence mathematics [02c2562]
     - [x] Cover guess-floor rescaling, half-life weighting, Wilson bounds, and zero/one extremes
     - [x] Cover small-sample confidence caps and missing-baseline diagnostics
-- [~] Task: Test the normative rating mapper
-    - [ ] Cover correctness, hint, reveal, timing, and misconception precedence
-    - [ ] Verify unreliable timing cannot change a rating
-- [ ] Task: Test adaptive placement and priority retention
+- [x] Task: Test the normative rating mapper [32c8ceb]
+    - [x] Cover correctness, hint, reveal, timing, and misconception precedence
+    - [x] Verify unreliable timing cannot change a rating
+- [~] Task: Test adaptive placement and priority retention
     - [ ] Exercise two-probe traversal, budget exhaustion, disconnected DAGs, and deterministic stopping
     - [ ] Verify scalar configuration remains backward compatible
 - [ ] Task: Test calibration, fitting, and replay release gates
