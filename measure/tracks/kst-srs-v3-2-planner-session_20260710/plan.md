@@ -45,8 +45,8 @@
 - [x] Task: Regenerate planner, adapter, projection, and session documentation [d964206]
     - [x] Run `npm run generate` (`measure/scripts/generate.sh`; optional `build-graph` unavailable, no generated diff)
     - [x] Document utility-provider authoring and review-load UX requirements
-- [~] Task: Run the complete v3.2 engine quality gate
-    - [ ] Run focused and full package tests, coverage, lint, and typecheck
-    - [ ] Run determinism, boundary, and generated-artifact freshness checks
-    - [ ] Run `measure/doctor.sh`
-- [ ] Task: Measure - User Manual Verification 'Phase 4: Generate Docs, Doctor, and Release Gate' (Protocol in workflow.md)
+- [x] Task: Run the complete v3.2 engine quality gate [64df96e]
+    - [x] Run focused and full package tests, coverage, lint, and typecheck
+    - [x] Run determinism, boundary, and generated-artifact freshness checks
+    - [x] Run `measure/doctor.sh`
+- [~] Task: Measure - User Manual Verification 'Phase 4: Generate Docs, Doctor, and Release Gate' (Protocol in workflow.md)
