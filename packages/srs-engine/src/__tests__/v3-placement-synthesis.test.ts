@@ -66,6 +66,41 @@ describe('v3 placement evidence closure', () => {
 
     expect(expanded.find((estimate) => estimate.nodeId === 'math.im3.a')).toEqual(directA);
   });
+
+  it('prefers stronger equal-depth inference independent of edge and input order', () => {
+    const weaker: PlacementEstimate = {
+      nodeId: 'a-weak-child',
+      masteryEstimate: 0.6,
+      confidence: 'high',
+      evidenceType: 'direct',
+      inferenceDepth: 0,
+    };
+    const stronger: PlacementEstimate = {
+      nodeId: 'z-strong-child',
+      masteryEstimate: 0.9,
+      confidence: 'high',
+      evidenceType: 'direct',
+      inferenceDepth: 0,
+    };
+    const edges = [
+      { sourceId: 'shared-parent', targetId: weaker.nodeId, weight: 1 },
+      { sourceId: 'shared-parent', targetId: stronger.nodeId, weight: 1 },
+    ];
+
+    const canonical = expandPlacementEvidence([weaker, stronger], { prerequisiteEdges: edges }, 1);
+    const reordered = expandPlacementEvidence(
+      [stronger, weaker],
+      { prerequisiteEdges: [...edges].reverse() },
+      1,
+    );
+
+    expect(reordered).toEqual(canonical);
+    expect(canonical.find((estimate) => estimate.nodeId === 'shared-parent')).toMatchObject({
+      masteryEstimate: 0.9,
+      evidenceType: 'inferred',
+      inferenceDepth: 1,
+    });
+  });
 });
 
 describe('v3 placement card synthesis', () => {

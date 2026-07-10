@@ -175,6 +175,19 @@ export type {
   PlacementSeedConfig,
 } from './srs/placement';
 
+export {
+  nextPlacementStagnationCount,
+  runAdaptivePlacement,
+} from './srs/adaptive-placement';
+export type {
+  AdaptivePlacementNode,
+  AdaptivePlacementEdge,
+  AdaptivePlacementProbeRequest,
+  AdaptivePlacementProbeResult,
+  AdaptivePlacementConfig,
+  AdaptivePlacementResult,
+} from './srs/adaptive-placement';
+
 export type { CardStore, ReviewLogStore } from './srs/adapters';
 export { InMemoryCardStore, InMemoryReviewLogStore } from './srs/adapters';
 

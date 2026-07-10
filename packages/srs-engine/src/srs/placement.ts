@@ -118,7 +118,6 @@ export function expandPlacementEvidence(
   validateGraph(graph, hardGateThreshold);
 
   const directByNode = new Map<string, PlacementEstimate>();
-  const nodeOrder: string[] = [];
   for (const estimate of estimates) {
     if (!isPlacementEstimate(estimate)) {
       throw new Error('Invalid placement estimate');
@@ -126,18 +125,30 @@ export function expandPlacementEvidence(
     if (estimate.evidenceType !== 'direct') {
       throw new Error('Placement closure input must contain direct evidence only');
     }
-    if (!directByNode.has(estimate.nodeId)) nodeOrder.push(estimate.nodeId);
     directByNode.set(estimate.nodeId, estimate);
   }
 
+  const directNodeIds = [...directByNode.keys()].sort((left, right) => left.localeCompare(right));
+  const nodeOrder: string[] = [...directNodeIds];
   const resolved = new Map(directByNode);
-  const queue = [...directByNode.values()].filter((estimate) => estimate.masteryEstimate > 0);
+  const queue = directNodeIds
+    .flatMap((nodeId) => {
+      const estimate = directByNode.get(nodeId);
+      return estimate && estimate.masteryEstimate > 0 ? [estimate] : [];
+    });
   const hardParents = new Map<string, PlacementGraphEdge[]>();
   for (const edge of graph.prerequisiteEdges) {
     if (edge.weight < hardGateThreshold) continue;
     const parents = hardParents.get(edge.targetId) ?? [];
     parents.push(edge);
     hardParents.set(edge.targetId, parents);
+  }
+  for (const parents of hardParents.values()) {
+    parents.sort((left, right) => (
+      left.sourceId.localeCompare(right.sourceId)
+      || left.targetId.localeCompare(right.targetId)
+      || left.weight - right.weight
+    ));
   }
 
   for (let cursor = 0; cursor < queue.length; cursor += 1) {
@@ -153,7 +164,16 @@ export function expandPlacementEvidence(
         inferenceDepth: child.inferenceDepth + 1,
       };
       const existing = resolved.get(candidate.nodeId);
-      if (existing && existing.inferenceDepth <= candidate.inferenceDepth) continue;
+      if (
+        existing
+        && (
+          existing.inferenceDepth < candidate.inferenceDepth
+          || (
+            existing.inferenceDepth === candidate.inferenceDepth
+            && existing.masteryEstimate >= candidate.masteryEstimate
+          )
+        )
+      ) continue;
       if (!existing) nodeOrder.push(candidate.nodeId);
       resolved.set(candidate.nodeId, candidate);
       queue.push(candidate);
