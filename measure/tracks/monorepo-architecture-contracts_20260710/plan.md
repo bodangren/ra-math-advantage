@@ -12,10 +12,10 @@
 - [x] Task: Define dependency-DAG and boundary policies [dd2498c]
     - [x] Specify app/package direction, domain-content isolation, Convex generated boundaries, and public exports
     - [x] Specify cycle, undeclared dependency, and deep-import rules
-- [~] Task: Define workspace quality-gate parity contracts
-    - [ ] Derive expected workspaces from root workspaces and package manifests
-    - [ ] Specify root/CI parity and required lint/test/typecheck/build capabilities
-- [ ] Task: Capture reproducible architecture baselines
+- [x] Task: Define workspace quality-gate parity contracts [a0e9df5]
+    - [x] Derive expected workspaces from root workspaces and package manifests
+    - [x] Specify root/CI parity and required lint/test/typecheck/build capabilities
+- [~] Task: Capture reproducible architecture baselines
     - [ ] Record current package graph, CI omissions, duplicate-source metrics, and known violations
 - [ ] Task: Measure - User Manual Verification 'Phase 1: Architecture Contract Definition' (Protocol in workflow.md)
 
