@@ -14,10 +14,10 @@
     - [x] Add validated `hardGateThreshold` and `trendThreshold` configuration
     - [x] Version the affected knowledge-space and SRS contracts
     - [x] Define placement evidence, synthesized-card, and backlog-result schemas
-- [ ] Task: Establish canonical package ownership and compatibility surfaces
-    - [ ] Assign FSRS retention, proficiency, placement, and queue behavior to `srs-engine`
-    - [ ] Define adapter inputs consumed by `knowledge-space-core` without duplicating FSRS formulas
-    - [ ] Document v2-compatible and intentionally breaking surfaces
+- [x] Task: Establish canonical package ownership and compatibility surfaces [2cf5031]
+    - [x] Assign FSRS retention, proficiency, placement, and queue behavior to `srs-engine`
+    - [x] Define adapter inputs consumed by `knowledge-space-core` without duplicating FSRS formulas
+    - [x] Document v2-compatible and intentionally breaking surfaces
 - [ ] Task: Measure - User Manual Verification 'Phase 1: Contract & Schema Definition' (Protocol in workflow.md)
 
 ## Phase 2: Behavioral and Contract Tests
