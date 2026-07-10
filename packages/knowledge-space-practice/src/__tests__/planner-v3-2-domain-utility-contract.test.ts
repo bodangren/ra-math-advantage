@@ -43,6 +43,7 @@ describe('planner.v3.2 domain utility contract', () => {
   it('makes no-provider resolution explicitly inert without hidden renormalization', () => {
     expect(utilityResolutionV3_2Schema.parse({
       schemaVersion: 'planner.utility-resolution.v3.2', kind: 'inert', utility: 0,
+      releaseIdentity: { domain: 'math', graphReleaseId: 'math.1', graphContentHash: 'sha256:math', precomputeInputHash: 'sha256:math-input' },
       signals: [], reason: 'no-provider', weightsRenormalized: false,
     }).kind).toBe('inert');
   });

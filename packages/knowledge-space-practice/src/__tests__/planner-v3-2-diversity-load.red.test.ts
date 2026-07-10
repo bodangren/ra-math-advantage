@@ -17,28 +17,40 @@ const ancestorGroup = (groupId: string) => ({
   distance: 1,
 });
 
-function candidate(nodeId: string, readiness: number, groupId?: string) {
+function candidate(nodeId: string, readiness: number) {
   return {
     nodeId,
     readiness,
-    unlockValue: 0,
-    goalProximity: 0,
     weaknessFit: 0,
-    utility: 0,
-    diversityGroup: groupId ? ancestorGroup(groupId) : fallbackGroup(nodeId),
+    utilityResolution: { schemaVersion: 'planner.utility-resolution.v3.2' as const, kind: 'inert' as const, releaseIdentity: { domain: 'math', graphReleaseId: 'math.release', graphContentHash: 'sha256:math', precomputeInputHash: 'sha256:math-input' }, utility: 0 as const, signals: [] as [], reason: 'no-provider' as const, weightsRenormalized: false as const },
+  };
+}
+
+function denseRelease(nodeIds: string[]) {
+  return {
+    schemaVersion: 'planner.graph-release-output.v3.2' as const,
+    graphReleaseId: 'math.release', graphContentHash: 'sha256:math', precomputeInputHash: 'sha256:math-input',
+    domain: 'math', goalNodeIds: [], skillCount: nodeIds.length,
+    skillsWithPrerequisiteInEdge: 1, prerequisiteInEdgeRatio: 1 / nodeIds.length,
+    sparseThreshold: 0.05 as const, rankingMode: 'normalized-prerequisite' as const, maxReach: 1,
+    reachByNode: nodeIds.map((nodeId, index) => ({
+      nodeId, downstreamReach: index === 0 ? 1 : 0, normalizedUnlockValue: index === 0 ? 1 : 0,
+      goalDistance: null, goalProximity: 0,
+      diversityGroup: nodeId.startsWith('u1') ? ancestorGroup('unit.1') : nodeId.startsWith('u2') ? ancestorGroup('unit.2') : nodeId.startsWith('u3') ? ancestorGroup('unit.3') : fallbackGroup(nodeId),
+    })),
   };
 }
 
 describe('planner.v3.2 recommendation diversity', () => {
   it('caps each nearest instructional ancestor at two and fills from other groups', () => {
     const result = planRecommendationsV3_2({
-      rankingMode: 'normalized-prerequisite', readyThreshold: 0.8, requestedCount: 4,
+      graphRelease: denseRelease(['u1-a', 'u1-b', 'u1-c', 'u2-a', 'u3-a']), readyThreshold: 0.8, requestedCount: 4,
       candidates: [
-        candidate('u1-a', 1, 'unit.1'),
-        candidate('u1-b', 0.99, 'unit.1'),
-        candidate('u1-c', 0.98, 'unit.1'),
-        candidate('u2-a', 0.9, 'unit.2'),
-        candidate('u3-a', 0.85, 'unit.3'),
+        candidate('u1-a', 1),
+        candidate('u1-b', 0.99),
+        candidate('u1-c', 0.98),
+        candidate('u2-a', 0.9),
+        candidate('u3-a', 0.85),
       ],
     });
     expect(result.recommendations.map((entry) => entry.score.nodeId)).toEqual([
@@ -49,10 +61,31 @@ describe('planner.v3.2 recommendation diversity', () => {
 
   it('does not collapse unrelated fallback nodes into one diversity group', () => {
     const result = planRecommendationsV3_2({
-      rankingMode: 'normalized-prerequisite', readyThreshold: 0.8, requestedCount: 3,
+      graphRelease: denseRelease(['a', 'b', 'c']), readyThreshold: 0.8, requestedCount: 3,
       candidates: [candidate('a', 1), candidate('b', 1), candidate('c', 1)],
     });
     expect(result.recommendations.map((entry) => entry.score.nodeId)).toEqual(['a', 'b', 'c']);
+  });
+
+  it('honors configured dense-mode a-e weights', () => {
+    const result = planRecommendationsV3_2({
+      graphRelease: denseRelease(['a', 'b']), readyThreshold: 0.8, requestedCount: 1,
+      weights: { a: 0, b: 1, c: 0, d: 0, e: 0 },
+      candidates: [candidate('a', 0.8)],
+    });
+    expect(result.recommendations[0]?.score.composite).toBe(1);
+  });
+
+  it('rejects utility provenance from a different domain or graph release', () => {
+    const mismatched = candidate('a', 1);
+    mismatched.utilityResolution.releaseIdentity = {
+      domain: 'english.cefr', graphReleaseId: 'cefr.old',
+      graphContentHash: 'sha256:old', precomputeInputHash: 'sha256:old-input',
+    };
+    expect(() => planRecommendationsV3_2({
+      graphRelease: denseRelease(['a', 'b']), readyThreshold: 0.8, requestedCount: 1,
+      candidates: [mismatched],
+    })).toThrow(/does not match graph release/);
   });
 });
 
@@ -91,7 +124,7 @@ describe('planner.v3.2 seven-day review-load budgeting', () => {
   it('suppresses every new-skill recommendation when the projected budget is saturated', () => {
     const reviewLoad = assessReviewLoadV3_2({ asOf, maxReviewsPerDay: 20, cards: cards(180) });
     const result = planRecommendationsV3_2({
-      rankingMode: 'normalized-prerequisite', readyThreshold: 0.8, requestedCount: 2,
+      graphRelease: denseRelease(['a', 'b']), readyThreshold: 0.8, requestedCount: 2,
       candidates: [candidate('a', 1), candidate('b', 0.9)],
       reviewLoad,
     });

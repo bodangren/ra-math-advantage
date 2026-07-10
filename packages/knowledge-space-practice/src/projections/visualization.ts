@@ -251,7 +251,9 @@ export function projectStudentVisualization(
     misconceptionLinks: [],
   };
 
-  const rankedIds = getRecommendedNext(plannerInput, defaultWeights, 5);
+  const rankedIds = options?.reviewLoadState === 'saturated'
+    ? []
+    : getRecommendedNext(plannerInput, defaultWeights, 5);
 
   const recommendedNext: VisualNodeV1[] = rankedIds
     .map((id) => {

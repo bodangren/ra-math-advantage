@@ -31,6 +31,10 @@ import {
   paramsVersionSchema,
   resolveRequestedRetention,
 } from './scheduler-policy-contract';
+import {
+  scheduleIntervalWithLoadBalancingV3_2,
+} from './session-composition';
+import type { IntervalLoadBalancingDecisionV3_2 } from './session-composition-contract';
 
 export { BUILTIN_FSRS_PARAMS_VERSION } from './scheduler-policy-contract';
 
@@ -86,12 +90,19 @@ export type ScheduledReview = {
   card: SrsCardState;
   requestedRetention: number;
   paramsVersion: string;
+  loadBalancingDecision?: IntervalLoadBalancingDecisionV3_2;
 };
 
 export type ScheduleReviewInput = ReviewSchedulerContext & {
   card: SrsCardState;
   rating: SrsRating;
   now?: string;
+  loadBalancing?: {
+    readonly projectedDayLoads: readonly {
+      readonly dayOffset: number;
+      readonly load: number;
+    }[];
+  };
 };
 
 /**
@@ -261,6 +272,7 @@ export function scheduleReview(input: ScheduleReviewInput): ScheduledReview {
     now,
     config,
     objectivePriority,
+    loadBalancing,
   } = input;
   const currentTime = now ?? new Date().toISOString();
   const fullConfig = normalizeSchedulerConfig({
@@ -310,10 +322,38 @@ export function scheduleReview(input: ScheduleReviewInput): ScheduledReview {
         ).toISOString(),
       };
 
+  let finalCard = updatedCard;
+  let loadBalancingDecision: IntervalLoadBalancingDecisionV3_2 | undefined;
+  if (loadBalancing && updatedCard.scheduledDays > 0) {
+    const minimumDayOffset = Math.ceil(updatedCard.scheduledDays * 0.95);
+    const maximumDayOffset = Math.max(
+      minimumDayOffset,
+      Math.min(fullConfig.maximumInterval, Math.floor(updatedCard.scheduledDays * 1.05)),
+    );
+    const projectedDayLoads = loadBalancing.projectedDayLoads.filter(
+      (entry) =>
+        entry.dayOffset >= minimumDayOffset && entry.dayOffset <= maximumDayOffset,
+    );
+    loadBalancingDecision = scheduleIntervalWithLoadBalancingV3_2({
+      cardId: updatedCard.cardId,
+      reps: updatedCard.reps,
+      anchorDate: currentTime,
+      baseIntervalDays: updatedCard.scheduledDays,
+      maximumIntervalDays: fullConfig.maximumInterval,
+      projectedDayLoads,
+    });
+    finalCard = {
+      ...updatedCard,
+      scheduledDays: loadBalancingDecision.selectedDayOffset,
+      dueDate: loadBalancingDecision.selectedDueDate,
+    };
+  }
+
   return {
-    card: updatedCard,
+    card: finalCard,
     requestedRetention,
     paramsVersion: parsedParamsVersion,
+    ...(loadBalancingDecision ? { loadBalancingDecision } : {}),
   };
 }
 

@@ -47,6 +47,15 @@ export type LearnerUtilityContextV3_2 = z.infer<typeof learnerUtilityContextV3_2
 export type UtilitySignalV3_2 = z.infer<typeof utilitySignalV3_2Schema>;
 export type UtilityProviderResultV3_2 = z.infer<typeof utilityProviderResultV3_2Schema>;
 
+export const utilityReleaseIdentityV3_2Schema = z
+  .object({
+    domain: idSchema,
+    graphReleaseId: idSchema,
+    graphContentHash: idSchema,
+    precomputeInputHash: idSchema,
+  })
+  .strict();
+
 export interface DomainUtilityProviderV3_2 {
   readonly providerKey: string;
   readonly version: string;
@@ -60,6 +69,7 @@ const providerResolutionSchema = z
   .object({
     schemaVersion: z.literal('planner.utility-resolution.v3.2'),
     kind: z.literal('provider'),
+    releaseIdentity: utilityReleaseIdentityV3_2Schema,
     providerKey: idSchema,
     providerVersion: idSchema,
     utility: z.number().finite().min(0).max(1),
@@ -77,6 +87,7 @@ const inertResolutionSchema = z
   .object({
     schemaVersion: z.literal('planner.utility-resolution.v3.2'),
     kind: z.literal('inert'),
+    releaseIdentity: utilityReleaseIdentityV3_2Schema,
     utility: z.literal(0),
     signals: z.tuple([]),
     reason: z.literal('no-provider'),
@@ -189,5 +200,6 @@ export const prerequisiteSparseReleaseV3_2Schema = z
   });
 
 export type UtilityResolutionV3_2 = z.infer<typeof utilityResolutionV3_2Schema>;
+export type UtilityReleaseIdentityV3_2 = z.infer<typeof utilityReleaseIdentityV3_2Schema>;
 export type DomainUtilityRegistryV3_2 = z.infer<typeof domainUtilityRegistryV3_2Schema>;
 export type PrerequisiteSparseReleaseV3_2 = z.infer<typeof prerequisiteSparseReleaseV3_2Schema>;

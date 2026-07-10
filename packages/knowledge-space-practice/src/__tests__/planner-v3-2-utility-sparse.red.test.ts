@@ -15,6 +15,12 @@ const context = {
   asOf: '2026-07-10T00:00:00.000Z',
   attributes: {},
 };
+const releaseIdentity = (domain: string) => ({
+  domain,
+  graphReleaseId: `${domain}.release`,
+  graphContentHash: `sha256:${domain}`,
+  precomputeInputHash: `sha256:${domain}:input`,
+});
 
 function boundProvider(domain = 'english.cefr') {
   const getUtility = vi.fn((nodeId: string) => ({
@@ -45,6 +51,7 @@ describe('planner.v3.2 utility provider behavior', () => {
     const result = resolveDomainUtilityV3_2({
       registry: createDomainUtilityRegistryV3_2([bound]),
       domain: 'english.cefr',
+      graphReleaseIdentity: releaseIdentity('english.cefr'),
       nodeId: 'make',
       context,
     });
@@ -60,10 +67,11 @@ describe('planner.v3.2 utility provider behavior', () => {
 
   it('is explicitly inert when no provider is registered', () => {
     expect(resolveDomainUtilityV3_2({
-      registry: createDomainUtilityRegistryV3_2([]), domain: 'math', nodeId: 'skill.a',
+      registry: createDomainUtilityRegistryV3_2([]), domain: 'math', graphReleaseIdentity: releaseIdentity('math'), nodeId: 'skill.a',
       context: { ...context, domain: 'math' },
     })).toEqual({
       schemaVersion: 'planner.utility-resolution.v3.2', kind: 'inert', utility: 0,
+      releaseIdentity: releaseIdentity('math'),
       signals: [], reason: 'no-provider', weightsRenormalized: false,
     });
   });
@@ -72,7 +80,7 @@ describe('planner.v3.2 utility provider behavior', () => {
     const english = boundProvider('english.cefr');
     const math = boundProvider('math');
     const registry = createDomainUtilityRegistryV3_2([english.bound, math.bound]);
-    resolveDomainUtilityV3_2({ registry, domain: 'math', nodeId: 'make', context: { ...context, domain: 'math' } });
+    resolveDomainUtilityV3_2({ registry, domain: 'math', graphReleaseIdentity: releaseIdentity('math'), nodeId: 'make', context: { ...context, domain: 'math' } });
     expect(math.getUtility).toHaveBeenCalledOnce();
     expect(english.getUtility).not.toHaveBeenCalled();
   });
@@ -87,7 +95,7 @@ describe('planner.v3.2 utility provider behavior', () => {
       providerKey: provider.providerKey, providerVersion: provider.version,
     }, provider);
     expect(() => resolveDomainUtilityV3_2({
-      registry: createDomainUtilityRegistryV3_2([bound]), domain: 'bad', nodeId: 'x', context: { ...context, domain: 'bad' },
+      registry: createDomainUtilityRegistryV3_2([bound]), domain: 'bad', graphReleaseIdentity: releaseIdentity('bad'), nodeId: 'x', context: { ...context, domain: 'bad' },
     })).toThrow();
   });
 
@@ -105,15 +113,28 @@ describe('planner.v3.2 sparse-domain ranking behavior', () => {
   const fallbackGroup = (nodeId: string) => ({
     groupId: nodeId, ancestorNodeId: null, ancestorKind: 'self_fallback' as const, distance: 0,
   });
+  const resolution = (utility: number) => utility === 0
+    ? { schemaVersion: 'planner.utility-resolution.v3.2' as const, kind: 'inert' as const, releaseIdentity: releaseIdentity('english.cefr'), utility: 0 as const, signals: [] as [], reason: 'no-provider' as const, weightsRenormalized: false as const }
+    : { schemaVersion: 'planner.utility-resolution.v3.2' as const, kind: 'provider' as const, releaseIdentity: releaseIdentity('english.cefr'), providerKey: 'english.cefr.frequency', providerVersion: '1', utility, signals: [{ source: 'wordfreq-en', sourceVersion: '3.1', value: utility, weight: 1 }], weightsRenormalized: false as const };
+  const sparseRelease = (nodeIds: string[]) => ({
+    schemaVersion: 'planner.graph-release-output.v3.2' as const,
+    ...releaseIdentity('english.cefr'), goalNodeIds: [], skillCount: nodeIds.length,
+    skillsWithPrerequisiteInEdge: 0, prerequisiteInEdgeRatio: 0, sparseThreshold: 0.05 as const,
+    rankingMode: 'utility-led' as const, maxReach: 0,
+    reachByNode: nodeIds.map((nodeId) => ({
+      nodeId, downstreamReach: 0, normalizedUnlockValue: 0, goalDistance: null, goalProximity: 0,
+      diversityGroup: fallbackGroup(nodeId),
+    })),
+  });
 
   it('uses readiness only as a gate and ranks 0.7 utility plus 0.3 weakness fit', () => {
     const result = planRecommendationsV3_2({
-      rankingMode: 'utility-led', readyThreshold: 0.8, requestedCount: 5,
+      graphRelease: sparseRelease(['make', 'environment', 'hitherto', 'blocked']), readyThreshold: 0.8, requestedCount: 5,
       candidates: [
-        { nodeId: 'make', readiness: 0.8, unlockValue: 0, goalProximity: 0, weaknessFit: 0, utility: 0.98, diversityGroup: fallbackGroup('make') },
-        { nodeId: 'environment', readiness: 1, unlockValue: 0, goalProximity: 0, weaknessFit: 0.5, utility: 0.71, diversityGroup: fallbackGroup('environment') },
-        { nodeId: 'hitherto', readiness: 1, unlockValue: 0, goalProximity: 0, weaknessFit: 0, utility: 0.08, diversityGroup: fallbackGroup('hitherto') },
-        { nodeId: 'blocked', readiness: 0.79, unlockValue: 1, goalProximity: 1, weaknessFit: 1, utility: 1, diversityGroup: fallbackGroup('blocked') },
+        { nodeId: 'make', readiness: 0.8, weaknessFit: 0, utilityResolution: resolution(0.98) },
+        { nodeId: 'environment', readiness: 1, weaknessFit: 0.5, utilityResolution: resolution(0.71) },
+        { nodeId: 'hitherto', readiness: 1, weaknessFit: 0, utilityResolution: resolution(0.08) },
+        { nodeId: 'blocked', readiness: 0.79, weaknessFit: 1, utilityResolution: resolution(1) },
       ],
     });
     expect(result.recommendations.map((entry) => [entry.score.nodeId, entry.score.composite])).toEqual([
@@ -121,12 +142,16 @@ describe('planner.v3.2 sparse-domain ranking behavior', () => {
       ['environment', 0.647],
       ['hitherto', 0.056],
     ]);
+    expect(result.utilityResolutions.make).toMatchObject({
+      kind: 'provider', providerKey: 'english.cefr.frequency', providerVersion: '1',
+      signals: [{ source: 'wordfreq-en', sourceVersion: '3.1' }],
+    });
   });
 
   it('keeps missing utility at zero without hidden sparse-weight renormalization', () => {
     const result = planRecommendationsV3_2({
-      rankingMode: 'utility-led', readyThreshold: 0.8, requestedCount: 1,
-      candidates: [{ nodeId: 'weak', readiness: 1, unlockValue: 0, goalProximity: 0, weaknessFit: 0.5, utility: 0, diversityGroup: fallbackGroup('weak') }],
+      graphRelease: sparseRelease(['weak']), readyThreshold: 0.8, requestedCount: 1,
+      candidates: [{ nodeId: 'weak', readiness: 1, weaknessFit: 0.5, utilityResolution: resolution(0) }],
     });
     expect(result.recommendations[0]?.score).toMatchObject({
       composite: 0.15,

@@ -22,6 +22,7 @@ import type {
   SrsSessionConfig,
 } from './contract';
 import { stabilityToRetention } from './srs-proficiency';
+import { composeSessionV3_2 } from './session-composition';
 
 /**
  * A single item in the daily practice queue.
@@ -175,8 +176,30 @@ export function buildDailyQueueResult(
       daysOverdue: 0,
     }));
 
+  const selectedItems = [...sortedReviews, ...sortedNew];
+  const itemByCardId = new Map(selectedItems.map((item) => [item.card.cardId, item]));
+  const composition = composeSessionV3_2(
+    selectedItems.map((item, index) => {
+      if (item.objectivePriority === 'triaged') {
+        throw new Error('Triaged objectives cannot enter session composition');
+      }
+      return {
+        cardId: item.card.cardId,
+        objectiveId: item.card.objectiveId,
+        objectivePriority: item.objectivePriority,
+        queueKind: item.card.state === 'new' ? 'new' : 'review',
+        selectionRank: index + 1,
+      };
+    }),
+  );
+  const composedItems = composition.presented.map((presented) => {
+    const item = itemByCardId.get(presented.cardId);
+    if (!item) throw new Error(`Composed card missing from selected queue: ${presented.cardId}`);
+    return item;
+  });
+
   return {
-    items: [...sortedReviews, ...sortedNew],
+    items: composedItems,
     backlog,
     dueReviewCount,
     deferredReviewCount: Math.max(0, dueReviewCount - sortedReviews.length),

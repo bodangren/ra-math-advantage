@@ -18,6 +18,7 @@ import {
   projectStudentVisualization,
   projectTeacherVisualization,
 } from '../projections/visualization';
+import { syntheticMathKnowledgeSpace } from '../projections/fixtures';
 
 describe('planner.v3.2 review-load contract', () => {
   it('publishes identical root and dedicated-subpath schemas', () => {
@@ -77,5 +78,10 @@ describe('v3.2 additive role projection fields', () => {
   it('projects computed load state into student and teacher payloads', () => {
     expect(projectStudentVisualization([], [], {}, { reviewLoadState: 'elevated' }).reviewLoadState).toBe('elevated');
     expect(projectTeacherVisualization([], [], {}, { reviewLoadStates: { s1: 'saturated' } }).reviewLoadStates).toEqual({ s1: 'saturated' });
+  });
+
+  it('suppresses legacy new-skill projection when student load is saturated', () => {
+    const { nodes, edges } = syntheticMathKnowledgeSpace;
+    expect(projectStudentVisualization(nodes, edges, {}, { reviewLoadState: 'saturated' }).recommendedNext).toEqual([]);
   });
 });

@@ -80,12 +80,12 @@ const scheduleInputSchema = z
     cardId: idSchema,
     reps: z.number().int().min(0),
     anchorDate: z.string().datetime({ offset: true }),
-    baseIntervalDays: z.number().finite().min(0),
+    baseIntervalDays: z.number().int().min(0),
     maximumIntervalDays: z.number().int().positive(),
     projectedDayLoads: z.array(
       z
         .object({
-          dayOffset: z.number().int().positive(),
+          dayOffset: z.number().int().min(0),
           load: z.number().finite().min(0),
         })
         .strict(),
@@ -102,7 +102,7 @@ export function scheduleIntervalWithLoadBalancingV3_2(
 ): IntervalLoadBalancingDecisionV3_2 {
   const input = scheduleInputSchema.parse(rawInput);
   const baseIntervalDays = Math.min(input.baseIntervalDays, input.maximumIntervalDays);
-  const minimumDayOffset = Math.max(1, Math.ceil(baseIntervalDays * 0.95));
+  const minimumDayOffset = Math.ceil(baseIntervalDays * 0.95);
   const maximumDayOffset = Math.max(
     minimumDayOffset,
     Math.min(input.maximumIntervalDays, Math.floor(baseIntervalDays * 1.05)),

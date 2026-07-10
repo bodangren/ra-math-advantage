@@ -159,7 +159,7 @@ describe('v3.2 daily queue', () => {
     ]);
   });
 
-  it('breaks equal-retention review ties by objectiveId then cardId', () => {
+  it('breaks selection ties by objective/card and then round-robins objectives', () => {
     const cards = [
       makeCard({ cardId: 'card-z', objectiveId: 'objective-b' }),
       makeCard({ cardId: 'card-b', objectiveId: 'objective-a' }),
@@ -169,7 +169,7 @@ describe('v3.2 daily queue', () => {
       buildDailyQueueResult(cards, policiesFor(cards), config, NOW).items.map(
         (item) => item.card.cardId
       )
-    ).toEqual(['card-a', 'card-b', 'card-z']);
+    ).toEqual(['card-a', 'card-z', 'card-b']);
   });
 
   it('fails closed for an invalid clock and normalizes invalid caps to zero', () => {

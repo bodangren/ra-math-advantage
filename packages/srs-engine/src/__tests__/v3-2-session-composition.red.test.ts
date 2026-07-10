@@ -4,6 +4,10 @@ import {
   composeSessionV3_2,
   scheduleIntervalWithLoadBalancingV3_2,
 } from '../srs/session-composition';
+import { buildDailyQueueResult } from '../srs/queue';
+import { createMockSrsCard } from '../srs/fixtures';
+import type { ObjectivePracticePolicy } from '../srs/contract';
+import { scheduleReview } from '../srs/scheduler';
 
 const review = (
   cardId: string,
@@ -62,6 +66,20 @@ describe('srs.session-composition.v3.2 behavior', () => {
       review('same', 'B', 'supporting', 2),
     ])).toThrow();
   });
+
+  it('is applied by the real daily queue after card selection', () => {
+    const now = '2026-07-10T12:00:00.000Z';
+    const cards = [
+      createMockSrsCard({ cardId: 'a1', objectiveId: 'A', state: 'review', stability: 10, reps: 2, dueDate: now, lastReview: '2026-07-01T12:00:00.000Z' }),
+      createMockSrsCard({ cardId: 'a2', objectiveId: 'A', state: 'review', stability: 10, reps: 2, dueDate: now, lastReview: '2026-07-01T12:00:00.000Z' }),
+      createMockSrsCard({ cardId: 'b1', objectiveId: 'B', state: 'review', stability: 10, reps: 2, dueDate: now, lastReview: '2026-07-01T12:00:00.000Z' }),
+    ];
+    const policies = new Map<string, ObjectivePracticePolicy>([
+      ['A', { objectiveId: 'A', priority: 'essential' }],
+      ['B', { objectiveId: 'B', priority: 'supporting' }],
+    ]);
+    expect(buildDailyQueueResult(cards, policies, { newCardsPerDay: 0, maxReviewsPerDay: 10, prioritizeOverdue: true }, now).items.map((item) => item.card.cardId)).toEqual(['a1', 'b1', 'a2']);
+  });
 });
 
 describe('srs.interval-load-balancing.v3.2 behavior', () => {
@@ -104,5 +122,60 @@ describe('srs.interval-load-balancing.v3.2 behavior', () => {
     expect(result.baseIntervalDays).toBe(365);
     expect(result.maximumDayOffset).toBe(365);
     expect(result.selectedDayOffset).toBeLessThanOrEqual(365);
+  });
+
+  it('preserves a zero-day short-term interval and rejects fractional day inputs', () => {
+    expect(scheduleIntervalWithLoadBalancingV3_2({
+      cardId: 'card.short', reps: 1, anchorDate: '2026-07-10T00:00:00.000Z',
+      baseIntervalDays: 0, maximumIntervalDays: 365,
+      projectedDayLoads: [{ dayOffset: 0, load: 0 }],
+    })).toMatchObject({
+      minimumDayOffset: 0,
+      maximumDayOffset: 0,
+      selectedDayOffset: 0,
+      selectedDueDate: '2026-07-10T00:00:00.000Z',
+    });
+    expect(() => scheduleIntervalWithLoadBalancingV3_2({
+      cardId: 'card.fractional', reps: 1, anchorDate: '2026-07-10T00:00:00.000Z',
+      baseIntervalDays: 0.5, maximumIntervalDays: 365,
+      projectedDayLoads: [{ dayOffset: 0, load: 0 }],
+    })).toThrow();
+  });
+
+  it('is available on the real scheduler path when projected loads are supplied', () => {
+    const projectedDayLoads = Array.from({ length: 366 }, (_, dayOffset) => ({
+      dayOffset,
+      load: dayOffset % 7,
+    }));
+    const result = scheduleReview({
+      card: createMockSrsCard({
+        cardId: 'scheduled.card', state: 'review', stability: 10, difficulty: 5,
+        reps: 3, lastReview: '2026-07-01T00:00:00.000Z', dueDate: '2026-07-10T00:00:00.000Z',
+      }),
+      rating: 'Good',
+      now: '2026-07-10T00:00:00.000Z',
+      loadBalancing: { projectedDayLoads },
+    });
+    expect(result.loadBalancingDecision).toBeDefined();
+    expect(result.card.dueDate).toBe(result.loadBalancingDecision?.selectedDueDate);
+    expect(result.card.scheduledDays).toBe(result.loadBalancingDecision?.selectedDayOffset);
+  });
+
+  it('bypasses daily balancing for zero-day short-term reviews', () => {
+    const card = createMockSrsCard({
+      cardId: 'short.card', state: 'new', reps: 0, dueDate: '2026-07-10T00:00:00.000Z',
+    });
+    const base = scheduleReview({
+      card, rating: 'Again', now: '2026-07-10T00:00:00.000Z',
+      config: { enableShortTermPreview: true },
+    });
+    const balanced = scheduleReview({
+      card, rating: 'Again', now: '2026-07-10T00:00:00.000Z',
+      config: { enableShortTermPreview: true },
+      loadBalancing: { projectedDayLoads: [{ dayOffset: 0, load: 0 }] },
+    });
+    expect(base.card.scheduledDays).toBe(0);
+    expect(balanced.card.dueDate).toBe(base.card.dueDate);
+    expect(balanced.loadBalancingDecision).toBeUndefined();
   });
 });

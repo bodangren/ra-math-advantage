@@ -126,7 +126,7 @@ export const sessionCompositionArtifactV3_2Schema = z
   });
 
 const projectedDayLoadSchema = z
-  .object({ dayOffset: z.number().int().positive(), load: z.number().finite().min(0) })
+  .object({ dayOffset: z.number().int().min(0), load: z.number().finite().min(0) })
   .strict();
 
 export function deterministicIntervalFuzzV3_2(
@@ -156,15 +156,15 @@ export const intervalLoadBalancingDecisionV3_2Schema = z
     fuzzAlgorithm: z.literal('fnv1a32-code-unit-uniform.v1'),
     fuzzHash: z.number().int().min(0).max(0xffff_ffff),
     anchorDate: z.string().datetime({ offset: true }),
-    baseIntervalDays: z.number().finite().min(0),
+    baseIntervalDays: z.number().int().min(0),
     fuzzFraction: z.number().finite().min(-0.05).max(0.05),
     rawFuzzedIntervalDays: z.number().finite().min(0),
-    minimumDayOffset: z.number().int().positive(),
-    maximumDayOffset: z.number().int().positive(),
-    preferredDayOffset: z.number().int().positive(),
+    minimumDayOffset: z.number().int().min(0),
+    maximumDayOffset: z.number().int().min(0),
+    preferredDayOffset: z.number().int().min(0),
     maximumIntervalDays: z.number().int().positive(),
     projectedDayLoads: z.array(projectedDayLoadSchema).min(1),
-    selectedDayOffset: z.number().int().positive(),
+    selectedDayOffset: z.number().int().min(0),
     selectedProjectedLoad: z.number().finite().min(0),
     selectedDueDate: z.string().datetime({ offset: true }),
     tieBreak: z.literal('load_asc_fuzz_distance_asc_day_asc.v1'),
@@ -185,7 +185,7 @@ export const intervalLoadBalancingDecisionV3_2Schema = z
     if (Math.abs(decision.rawFuzzedIntervalDays - raw) > EPSILON) {
       ctx.addIssue({ code: 'custom', path: ['rawFuzzedIntervalDays'], message: 'Raw interval must apply deterministic fuzz' });
     }
-    const minimum = Math.max(1, Math.ceil(decision.baseIntervalDays * 0.95));
+    const minimum = Math.ceil(decision.baseIntervalDays * 0.95);
     const maximum = Math.max(
       minimum,
       Math.min(decision.maximumIntervalDays, Math.floor(decision.baseIntervalDays * 1.05)),

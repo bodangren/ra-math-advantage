@@ -1,12 +1,17 @@
 import { z } from 'zod';
 
 import {
-  plannerDiversityGroupV3_2Schema,
+  plannerGraphReleaseOutputV3_2Schema,
   plannerRecommendationSetV3_2Schema,
   plannerTermsV3_2Schema,
-  type PlannerDiversityGroupV3_2,
+  type PlannerGraphReleaseOutputV3_2,
   type PlannerRecommendationSetV3_2,
+  type PlannerWeightsV3_2,
 } from './v3-2-contract';
+import {
+  utilityResolutionV3_2Schema,
+  type UtilityResolutionV3_2,
+} from './v3-2-domain-utility-contract';
 import {
   reviewLoadAssessmentV3_2Schema,
   type ReviewLoadAssessmentV3_2,
@@ -18,22 +23,27 @@ const idSchema = z.string().min(1).refine((value) => value.trim() === value);
 export interface PlannerCandidateV3_2 {
   readonly nodeId: string;
   readonly readiness: number;
-  readonly unlockValue: number;
-  readonly goalProximity: number;
   readonly weaknessFit: number;
-  readonly utility: number;
-  readonly diversityGroup: PlannerDiversityGroupV3_2;
+  readonly utilityResolution: UtilityResolutionV3_2;
 }
 
 export interface PlanRecommendationsInputV3_2 {
-  readonly rankingMode: 'normalized-prerequisite' | 'utility-led';
+  readonly graphRelease: PlannerGraphReleaseOutputV3_2;
   readonly readyThreshold: number;
   readonly requestedCount: number;
   readonly candidates: readonly PlannerCandidateV3_2[];
+  readonly weights?: PlannerWeightsV3_2;
   readonly reviewLoad?: ReviewLoadAssessmentV3_2;
 }
 
 export type PlanRecommendationsResultV3_2 = PlannerRecommendationSetV3_2 & {
+  readonly graphReleaseIdentity: {
+    readonly graphReleaseId: string;
+    readonly graphContentHash: string;
+    readonly precomputeInputHash: string;
+    readonly rankingMode: 'normalized-prerequisite' | 'utility-led';
+  };
+  readonly utilityResolutions: Readonly<Record<string, UtilityResolutionV3_2>>;
   readonly reviewLoad?: ReviewLoadAssessmentV3_2;
 };
 
@@ -42,6 +52,13 @@ export function planRecommendationsV3_2(
 ): PlanRecommendationsResultV3_2 {
   const readyThreshold = z.number().finite().min(0).max(1).parse(input.readyThreshold);
   const requestedCount = z.number().int().min(0).parse(input.requestedCount);
+  const graphRelease = plannerGraphReleaseOutputV3_2Schema.parse(input.graphRelease);
+  if (graphRelease.rankingMode === 'utility-led' && input.weights !== undefined) {
+    throw new Error('Utility-led releases use fixed 0.7/0.3 weights');
+  }
+  const releaseEntryByNode = new Map(
+    graphRelease.reachByNode.map((entry) => [entry.nodeId, entry]),
+  );
   const reviewLoad = input.reviewLoad
     ? reviewLoadAssessmentV3_2Schema.parse(input.reviewLoad)
     : undefined;
@@ -50,18 +67,40 @@ export function planRecommendationsV3_2(
     const nodeId = idSchema.parse(candidate.nodeId);
     if (ids.has(nodeId)) throw new Error(`Duplicate planner candidate nodeId: ${nodeId}`);
     ids.add(nodeId);
+    const releaseEntry = releaseEntryByNode.get(nodeId);
+    if (!releaseEntry) {
+      throw new Error(`Planner candidate ${nodeId} is not in graph release ${graphRelease.graphReleaseId}`);
+    }
+    const utilityResolution = utilityResolutionV3_2Schema.parse(candidate.utilityResolution);
+    const expectedUtilityIdentity = {
+      domain: graphRelease.domain,
+      graphReleaseId: graphRelease.graphReleaseId,
+      graphContentHash: graphRelease.graphContentHash,
+      precomputeInputHash: graphRelease.precomputeInputHash,
+    };
+    if (JSON.stringify(utilityResolution.releaseIdentity) !== JSON.stringify(expectedUtilityIdentity)) {
+      throw new Error(`Utility resolution does not match graph release for ${nodeId}`);
+    }
     const terms = plannerTermsV3_2Schema.parse({
       readiness: candidate.readiness,
-      unlockValue: candidate.unlockValue,
-      goalProximity: candidate.goalProximity,
+      unlockValue: releaseEntry.normalizedUnlockValue,
+      goalProximity: releaseEntry.goalProximity,
       weaknessFit: candidate.weaknessFit,
-      utility: candidate.utility,
+      utility: utilityResolution.utility,
     });
     return {
       nodeId,
       terms,
-      diversityGroup: plannerDiversityGroupV3_2Schema.parse(candidate.diversityGroup),
+      diversityGroup: releaseEntry.diversityGroup,
+      utilityResolution,
     };
+  });
+
+  const graphReleaseIdentity = Object.freeze({
+    graphReleaseId: graphRelease.graphReleaseId,
+    graphContentHash: graphRelease.graphContentHash,
+    precomputeInputHash: graphRelease.precomputeInputHash,
+    rankingMode: graphRelease.rankingMode,
   });
 
   if (reviewLoad?.newSkillAllowance === 'zero' || requestedCount === 0) {
@@ -70,6 +109,8 @@ export function planRecommendationsV3_2(
       requestedCount,
       diversityCap: 2,
       recommendations: [],
+      graphReleaseIdentity,
+      utilityResolutions: Object.freeze({}),
       ...(reviewLoad ? { reviewLoad } : {}),
     };
   }
@@ -81,8 +122,9 @@ export function planRecommendationsV3_2(
       .map((candidate) =>
         scorePlannerCandidateV3_2({
           nodeId: candidate.nodeId,
-          rankingMode: input.rankingMode,
+          rankingMode: graphRelease.rankingMode,
           terms: candidate.terms,
+          ...(input.weights ? { weights: input.weights } : {}),
         }),
       ),
   );
@@ -109,5 +151,18 @@ export function planRecommendationsV3_2(
     diversityCap: 2,
     recommendations: selected,
   });
-  return { ...result, ...(reviewLoad ? { reviewLoad } : {}) };
+  const selectedIds = new Set(result.recommendations.map((entry) => entry.score.nodeId));
+  const utilityResolutions = Object.freeze(
+    Object.fromEntries(
+      candidates
+        .filter((candidate) => selectedIds.has(candidate.nodeId))
+        .map((candidate) => [candidate.nodeId, candidate.utilityResolution]),
+    ),
+  );
+  return {
+    ...result,
+    graphReleaseIdentity,
+    utilityResolutions,
+    ...(reviewLoad ? { reviewLoad } : {}),
+  };
 }
