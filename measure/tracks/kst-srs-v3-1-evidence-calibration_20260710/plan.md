@@ -40,8 +40,8 @@
 - [x] Task: Implement the staged practice-to-SRS rating mapper [9d0062f]
 - [x] Task: Implement two-probe adaptive frontier placement [3186111]
 - [x] Task: Implement per-priority retention and review-log parameter stamping [b6d5425]
-- [~] Task: Implement ability-stratified edge calibration and versioned FSRS fitting
-- [ ] Task: Implement the offline synthetic and replay evaluation harness
+- [x] Task: Implement ability-stratified edge calibration and versioned FSRS fitting [070eb1d]
+- [~] Task: Implement the offline synthetic and replay evaluation harness
 - [ ] Task: Measure - User Manual Verification 'Phase 3: Implementation' (Protocol in workflow.md)
 
 ## Phase 4: Generate Docs, Doctor, and Release Gate
