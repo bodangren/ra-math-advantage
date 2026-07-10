@@ -90,6 +90,31 @@ export {
 export { planRemediationInjection } from './planner/injection';
 export type { PlannedActivity, PlanRemediationInjectionInput } from './planner/injection';
 
+// Planner v3.2 — additive contract; legacy planner/types remains unchanged.
+export {
+  DEFAULT_PLANNER_V3_2_WEIGHTS,
+  plannerTermsV3_2Schema,
+  plannerWeightsV3_2Schema,
+  plannerContributionsV3_2Schema,
+  plannerRankingModeV3_2Schema,
+  plannerPriorityScoreV3_2Schema,
+  plannerDiversityGroupV3_2Schema,
+  plannerRecommendationV3_2Schema,
+  plannerRecommendationSetV3_2Schema,
+  plannerGraphReleaseInputV3_2Schema,
+  plannerGraphReleaseOutputV3_2Schema,
+} from './planner/v3-2-contract';
+export type {
+  PlannerTermsV3_2,
+  PlannerWeightsV3_2,
+  PlannerPriorityScoreV3_2,
+  PlannerDiversityGroupV3_2,
+  PlannerRecommendationV3_2,
+  PlannerRecommendationSetV3_2,
+  PlannerGraphReleaseInputV3_2,
+  PlannerGraphReleaseOutputV3_2,
+} from './planner/v3-2-contract';
+
 export type {
   ProjectedActivity,
   SrsProjectionEntry,

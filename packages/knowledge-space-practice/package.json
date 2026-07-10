@@ -12,6 +12,7 @@
     "./misconception-loop": "./src/misconception-loop.ts",
     "./blueprints": "./src/blueprints/index.ts",
     "./planner/types": "./src/planner/types.ts",
+    "./planner/v3-2-contract": "./src/planner/v3-2-contract.ts",
     "./projections": "./src/projections/index.ts"
   },
   "scripts": {
