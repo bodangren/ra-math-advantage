@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 
 import {
   domainUtilityRegistryV3_2Schema,
+  bindDomainUtilityProviderV3_2,
   learnerUtilityContextV3_2Schema,
   prerequisiteSparseReleaseV3_2Schema,
   utilityProviderResultV3_2Schema,
@@ -48,7 +49,7 @@ describe('planner.v3.2 domain utility contract', () => {
 
   it('registers at most one versioned provider per domain adapter', () => {
     const registration = {
-      domain: 'english.cefr', graphReleaseId: 'cefr.2026-07-10',
+      domain: 'english.cefr', graphReleaseId: 'cefr.2026-07-10', graphContentHash: 'sha256:graph', precomputeInputHash: 'sha256:input',
       providerKey: 'english.cefr.frequency-utility', providerVersion: '1.0.0',
     };
     expect(domainUtilityRegistryV3_2Schema.safeParse({
@@ -58,6 +59,19 @@ describe('planner.v3.2 domain utility contract', () => {
       schemaVersion: 'planner.utility-registry.v3.2', registrations: [registration, { ...registration, providerVersion: '2.0.0' }],
     }).success).toBe(false);
   });
+
+  it('binds the manifest identity to the executable provider', () => {
+    const provider: DomainUtilityProviderV3_2 = {
+      providerKey: 'english.cefr.frequency-utility', version: '1.0.0',
+      getUtility: () => ({ utility: 0.8, signals: [{ source: 'fixture', sourceVersion: '1', value: 0.8, weight: 1 }] }),
+    };
+    const manifest = {
+      domain: 'english.cefr', graphReleaseId: 'graph.1', graphContentHash: 'sha256:graph', precomputeInputHash: 'sha256:input',
+      providerKey: provider.providerKey, providerVersion: provider.version,
+    };
+    expect(bindDomainUtilityProviderV3_2(manifest, provider).provider).toBe(provider);
+    expect(() => bindDomainUtilityProviderV3_2({ ...manifest, providerVersion: '2.0.0' }, provider)).toThrow();
+  });
 });
 
 describe('planner.v3.2 prerequisite-sparse release contract', () => {
@@ -66,7 +80,7 @@ describe('planner.v3.2 prerequisite-sparse release contract', () => {
     [5, 100, 0.05, false, 'normalized-prerequisite'],
   ] as const)('classifies %i/%i prerequisite-bearing skills', (withEdges, skills, ratio, sparse, mode) => {
     const parsed = prerequisiteSparseReleaseV3_2Schema.parse({
-      schemaVersion: 'planner.sparse-release.v3.2', graphReleaseId: 'graph.1', domain: 'english.cefr',
+      schemaVersion: 'planner.sparse-release.v3.2', graphReleaseId: 'graph.1', graphContentHash: 'sha256:graph', precomputeInputHash: 'sha256:input', domain: 'english.cefr',
       skillCount: skills, skillsWithPrerequisiteInEdge: withEdges, prerequisiteInEdgeRatio: ratio,
       sparseThreshold: 0.05, prerequisiteSparse: sparse, rankingMode: mode,
       readyThreshold: 0.8, sparseWeights: { utility: 0.7, weaknessFit: 0.3 },
@@ -77,14 +91,14 @@ describe('planner.v3.2 prerequisite-sparse release contract', () => {
 
   it('rejects synthetic-prerequisite and inconsistent sparse metadata', () => {
     expect(prerequisiteSparseReleaseV3_2Schema.safeParse({
-      schemaVersion: 'planner.sparse-release.v3.2', graphReleaseId: 'graph.1', domain: 'english.cefr',
+      schemaVersion: 'planner.sparse-release.v3.2', graphReleaseId: 'graph.1', graphContentHash: 'sha256:graph', precomputeInputHash: 'sha256:input', domain: 'english.cefr',
       skillCount: 100, skillsWithPrerequisiteInEdge: 0, prerequisiteInEdgeRatio: 0,
       sparseThreshold: 0.05, prerequisiteSparse: false, rankingMode: 'normalized-prerequisite',
       readyThreshold: 0.8, sparseWeights: { utility: 0.7, weaknessFit: 0.3 },
       readinessIsGateOnly: false, syntheticPrerequisitesProhibited: false,
     }).success).toBe(false);
     expect(prerequisiteSparseReleaseV3_2Schema.safeParse({
-      schemaVersion: 'planner.sparse-release.v3.2', graphReleaseId: 'graph.1', domain: 'english.cefr',
+      schemaVersion: 'planner.sparse-release.v3.2', graphReleaseId: 'graph.1', graphContentHash: 'sha256:graph', precomputeInputHash: 'sha256:input', domain: 'english.cefr',
       skillCount: 100, skillsWithPrerequisiteInEdge: 0, prerequisiteInEdgeRatio: 0,
       sparseThreshold: 0.9, prerequisiteSparse: true, rankingMode: 'utility-led',
       readyThreshold: 0.8, sparseWeights: { utility: 0.7, weaknessFit: 0.3 },

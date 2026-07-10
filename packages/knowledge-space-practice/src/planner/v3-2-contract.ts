@@ -256,6 +256,7 @@ export const plannerGraphReleaseInputV3_2Schema = z
     schemaVersion: z.literal('planner.graph-release-input.v3.2'),
     graphReleaseId: idSchema,
     graphContentHash: idSchema,
+    precomputeInputHash: idSchema,
     domain: idSchema,
     sparseThreshold: z.literal(0.05).default(0.05),
     nodes: z.array(graphNodeSchema),
@@ -314,7 +315,9 @@ export const plannerGraphReleaseOutputV3_2Schema = z
     schemaVersion: z.literal('planner.graph-release-output.v3.2'),
     graphReleaseId: idSchema,
     graphContentHash: idSchema,
+    precomputeInputHash: idSchema,
     domain: idSchema,
+    goalNodeIds: z.array(idSchema),
     skillCount: z.number().int().min(0),
     skillsWithPrerequisiteInEdge: z.number().int().min(0),
     prerequisiteInEdgeRatio: normalizedSchema,
@@ -325,6 +328,17 @@ export const plannerGraphReleaseOutputV3_2Schema = z
   })
   .strict()
   .superRefine((release, ctx) => {
+    const canonicalGoals = [...release.goalNodeIds].sort(compareCodePoints);
+    if (
+      new Set(release.goalNodeIds).size !== release.goalNodeIds.length ||
+      canonicalGoals.some((nodeId, index) => nodeId !== release.goalNodeIds[index])
+    ) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['goalNodeIds'],
+        message: 'Goal IDs must be unique and code-point sorted',
+      });
+    }
     const expectedRatio = release.skillCount === 0 ? 0 : release.skillsWithPrerequisiteInEdge / release.skillCount;
     if (release.skillsWithPrerequisiteInEdge > release.skillCount) {
       ctx.addIssue({ code: 'custom', path: ['skillsWithPrerequisiteInEdge'], message: 'Count exceeds skills' });

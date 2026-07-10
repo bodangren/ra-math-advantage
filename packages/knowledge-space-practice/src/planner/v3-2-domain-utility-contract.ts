@@ -93,6 +93,8 @@ const utilityRegistrationSchema = z
   .object({
     domain: idSchema,
     graphReleaseId: idSchema,
+    graphContentHash: idSchema,
+    precomputeInputHash: idSchema,
     providerKey: idSchema,
     providerVersion: idSchema,
     executionPolicy: z.literal('deterministic-offline').default('deterministic-offline'),
@@ -119,12 +121,39 @@ export const domainUtilityRegistryV3_2Schema = z
     });
   });
 
+export type DomainUtilityRegistrationManifestV3_2 = z.input<
+  typeof utilityRegistrationSchema
+>;
+
+export interface BoundDomainUtilityProviderV3_2 {
+  readonly manifest: z.output<typeof utilityRegistrationSchema>;
+  readonly provider: DomainUtilityProviderV3_2;
+}
+
+export function bindDomainUtilityProviderV3_2(
+  manifest: DomainUtilityRegistrationManifestV3_2,
+  provider: DomainUtilityProviderV3_2,
+): BoundDomainUtilityProviderV3_2 {
+  const parsedManifest = utilityRegistrationSchema.parse(manifest);
+  idSchema.parse(provider.providerKey);
+  idSchema.parse(provider.version);
+  if (
+    parsedManifest.providerKey !== provider.providerKey ||
+    parsedManifest.providerVersion !== provider.version
+  ) {
+    throw new Error('Utility provider identity does not match its adapter manifest');
+  }
+  return Object.freeze({ manifest: parsedManifest, provider });
+}
+
 export const prerequisiteSparseReleaseV3_2Schema = z
   .object({
     schemaVersion: z.literal('planner.sparse-release.v3.2'),
     graphReleaseId: idSchema,
+    graphContentHash: idSchema,
+    precomputeInputHash: idSchema,
     domain: idSchema,
-    skillCount: z.number().int().positive(),
+    skillCount: z.number().int().min(0),
     skillsWithPrerequisiteInEdge: z.number().int().min(0),
     prerequisiteInEdgeRatio: z.number().finite().min(0).max(1),
     sparseThreshold: z.literal(0.05).default(0.05),
@@ -142,7 +171,7 @@ export const prerequisiteSparseReleaseV3_2Schema = z
     if (release.skillsWithPrerequisiteInEdge > release.skillCount) {
       ctx.addIssue({ code: 'custom', path: ['skillsWithPrerequisiteInEdge'], message: 'Count exceeds skill count' });
     }
-    const ratio = release.skillsWithPrerequisiteInEdge / release.skillCount;
+    const ratio = release.skillCount === 0 ? 0 : release.skillsWithPrerequisiteInEdge / release.skillCount;
     const sparse = ratio < release.sparseThreshold;
     if (Math.abs(release.prerequisiteInEdgeRatio - ratio) > EPSILON) {
       ctx.addIssue({ code: 'custom', path: ['prerequisiteInEdgeRatio'], message: 'Ratio must match counts' });

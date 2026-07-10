@@ -104,7 +104,7 @@ describe('planner.v3.2 recommendation and graph-release contracts', () => {
 
   it('validates versioned graph-release input identity and references', () => {
     const input = plannerGraphReleaseInputV3_2Schema.parse({
-      schemaVersion: 'planner.graph-release-input.v3.2', graphReleaseId: 'im3.2026-07-10', graphContentHash: 'sha256:abc', domain: 'integrated-math-3',
+      schemaVersion: 'planner.graph-release-input.v3.2', graphReleaseId: 'im3.2026-07-10', graphContentHash: 'sha256:abc', precomputeInputHash: 'sha256:input', domain: 'integrated-math-3',
       nodes: [{ nodeId: 'a', kind: 'skill', domain: 'integrated-math-3' }, { nodeId: 'b', kind: 'skill', domain: 'integrated-math-3' }],
       edges: [{ edgeId: 'a-b', type: 'prerequisite_for', sourceId: 'a', targetId: 'b' }], goalNodeIds: ['b'],
     });
@@ -113,7 +113,7 @@ describe('planner.v3.2 recommendation and graph-release contracts', () => {
 
   it('validates reach, goal, and sparse-mode precomputation diagnostics', () => {
     const output = plannerGraphReleaseOutputV3_2Schema.parse({
-      schemaVersion: 'planner.graph-release-output.v3.2', graphReleaseId: 'im3.2026-07-10', graphContentHash: 'sha256:abc', domain: 'integrated-math-3',
+      schemaVersion: 'planner.graph-release-output.v3.2', graphReleaseId: 'im3.2026-07-10', graphContentHash: 'sha256:abc', precomputeInputHash: 'sha256:input', domain: 'integrated-math-3', goalNodeIds: ['b'],
       skillCount: 2, skillsWithPrerequisiteInEdge: 1, prerequisiteInEdgeRatio: 0.5, sparseThreshold: 0.05,
       rankingMode: 'normalized-prerequisite', maxReach: 1,
       reachByNode: [
@@ -126,7 +126,7 @@ describe('planner.v3.2 recommendation and graph-release contracts', () => {
 
   it('rejects inconsistent graph-release aggregate diagnostics', () => {
     expect(plannerGraphReleaseOutputV3_2Schema.safeParse({
-      schemaVersion: 'planner.graph-release-output.v3.2', graphReleaseId: 'bad', graphContentHash: 'sha256:bad', domain: 'math', skillCount: 2,
+      schemaVersion: 'planner.graph-release-output.v3.2', graphReleaseId: 'bad', graphContentHash: 'sha256:bad', precomputeInputHash: 'sha256:input', domain: 'math', goalNodeIds: [], skillCount: 2,
       skillsWithPrerequisiteInEdge: 3, prerequisiteInEdgeRatio: 1, sparseThreshold: 0.05,
       rankingMode: 'utility-led', maxReach: 0, reachByNode: [],
     }).success).toBe(false);
@@ -134,11 +134,19 @@ describe('planner.v3.2 recommendation and graph-release contracts', () => {
 
   it('rejects reach greater than the available downstream skill population', () => {
     expect(plannerGraphReleaseOutputV3_2Schema.safeParse({
-      schemaVersion: 'planner.graph-release-output.v3.2', graphReleaseId: 'bad', graphContentHash: 'sha256:bad', domain: 'math',
+      schemaVersion: 'planner.graph-release-output.v3.2', graphReleaseId: 'bad', graphContentHash: 'sha256:bad', precomputeInputHash: 'sha256:input', domain: 'math', goalNodeIds: [],
       skillCount: 1, skillsWithPrerequisiteInEdge: 0, prerequisiteInEdgeRatio: 0, sparseThreshold: 0.05,
       rankingMode: 'utility-led', maxReach: 999,
       reachByNode: [{ nodeId: 'ghost', downstreamReach: 999, normalizedUnlockValue: 1, goalDistance: null, goalProximity: 0,
         diversityGroup: { groupId: 'ghost', ancestorNodeId: null, ancestorKind: 'self_fallback', distance: 0 } }],
+    }).success).toBe(false);
+  });
+
+  it('requires canonical goal identity in graph-release outputs', () => {
+    expect(plannerGraphReleaseOutputV3_2Schema.safeParse({
+      schemaVersion: 'planner.graph-release-output.v3.2', graphReleaseId: 'bad', graphContentHash: 'sha256:bad', precomputeInputHash: 'sha256:input',
+      domain: 'math', goalNodeIds: ['z', 'a'], skillCount: 0, skillsWithPrerequisiteInEdge: 0,
+      prerequisiteInEdgeRatio: 0, sparseThreshold: 0.05, rankingMode: 'utility-led', maxReach: 0, reachByNode: [],
     }).success).toBe(false);
   });
 });

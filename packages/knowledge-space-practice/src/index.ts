@@ -111,6 +111,7 @@ export {
   utilityResolutionV3_2Schema,
   domainUtilityRegistryV3_2Schema,
   prerequisiteSparseReleaseV3_2Schema,
+  bindDomainUtilityProviderV3_2,
 } from './planner/v3-2-domain-utility-contract';
 export type {
   LearnerUtilityContextV3_2,
@@ -120,6 +121,8 @@ export type {
   UtilityResolutionV3_2,
   DomainUtilityRegistryV3_2,
   PrerequisiteSparseReleaseV3_2,
+  DomainUtilityRegistrationManifestV3_2,
+  BoundDomainUtilityProviderV3_2,
 } from './planner/v3-2-domain-utility-contract';
 export type {
   PlannerTermsV3_2,
