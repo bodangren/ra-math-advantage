@@ -3,7 +3,7 @@
 **Dependency:** `kst-srs-v3-1-evidence-calibration_20260710`  
 **Workflow:** strict contract-first TDD; deterministic, domain-neutral engines
 
-## Phase 1: Contract & Schema Definition
+## Phase 1: Contract & Schema Definition [checkpoint: e790f8e]
 
 - [x] Task: Version planner priority and recommendation contracts [0225dd7]
     - [x] Define normalized term schemas, five weights, score diagnostics, and diversity grouping
@@ -14,11 +14,11 @@
 - [x] Task: Define review-load and session-composition contracts [5808f7f]
     - [x] Add load budget configuration and role-projection fields
     - [x] Define interleaving, deterministic fuzz, projected-day load, and maximum-interval invariants
-- [~] Task: Measure - User Manual Verification 'Phase 1: Contract & Schema Definition' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 1: Contract & Schema Definition' (Protocol in workflow.md) [e790f8e]
 
 ## Phase 2: Behavioral and Contract Tests
 
-- [ ] Task: Test normalized planner mathematics and deterministic ranking
+- [~] Task: Test normalized planner mathematics and deterministic ranking
     - [ ] Reproduce the raw-count dominance correction example
     - [ ] Cover degenerate graphs, unreachable goals, cycles, and invalid weights
 - [ ] Task: Test utility providers and sparse-domain behavior
