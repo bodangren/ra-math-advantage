@@ -45,7 +45,7 @@
     - [x] Changed-module coverage exceeded 80% branches and 94% statements
     - [x] Worked examples and invalid-input cases manually inspected against v3.2
 
-## Phase 3: Implementation
+## Phase 3: Implementation [checkpoint: ddc7baa]
 
 - [x] Task: Implement gated readiness across state, fringe, and projections [5ae4f7e]
 - [x] Task: Consolidate FSRS retention and objective aggregation in `srs-engine` [644314e, 810510d]
