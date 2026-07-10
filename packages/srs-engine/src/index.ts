@@ -181,6 +181,7 @@ export {
 export type { QueueItem } from './srs/queue';
 
 export {
+  deterministicIntervalFuzzV3_2,
   sessionCompositionArtifactV3_2Schema,
   intervalLoadBalancingDecisionV3_2Schema,
 } from './srs/session-composition-contract';

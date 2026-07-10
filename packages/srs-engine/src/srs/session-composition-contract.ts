@@ -129,27 +129,55 @@ const projectedDayLoadSchema = z
   .object({ dayOffset: z.number().int().positive(), load: z.number().finite().min(0) })
   .strict();
 
+export function deterministicIntervalFuzzV3_2(
+  cardId: string,
+  reps: number,
+): { readonly fuzzHash: number; readonly fuzzFraction: number } {
+  idSchema.parse(cardId);
+  z.number().int().min(0).parse(reps);
+  const key = `${cardId}:${reps}`;
+  let hash = 2_166_136_261;
+  for (let index = 0; index < key.length; index += 1) {
+    hash ^= key.charCodeAt(index);
+    hash = Math.imul(hash, 16_777_619) >>> 0;
+  }
+  return Object.freeze({
+    fuzzHash: hash,
+    fuzzFraction: (hash / 0xffff_ffff) * 0.1 - 0.05,
+  });
+}
+
 export const intervalLoadBalancingDecisionV3_2Schema = z
   .object({
     schemaVersion: z.literal('srs.interval-load-balancing.v3.2'),
     cardId: idSchema,
     reps: z.number().int().min(0),
     deterministicKey: idSchema,
+    fuzzAlgorithm: z.literal('fnv1a32-code-unit-uniform.v1'),
+    fuzzHash: z.number().int().min(0).max(0xffff_ffff),
     baseIntervalDays: z.number().finite().min(0),
     fuzzFraction: z.number().finite().min(-0.05).max(0.05),
     rawFuzzedIntervalDays: z.number().finite().min(0),
     minimumDayOffset: z.number().int().positive(),
     maximumDayOffset: z.number().int().positive(),
+    preferredDayOffset: z.number().int().positive(),
     maximumIntervalDays: z.number().int().positive(),
     projectedDayLoads: z.array(projectedDayLoadSchema).min(1),
     selectedDayOffset: z.number().int().positive(),
     selectedProjectedLoad: z.number().finite().min(0),
-    tieBreak: z.literal('load_asc_day_asc.v1'),
+    tieBreak: z.literal('load_asc_fuzz_distance_asc_day_asc.v1'),
   })
   .strict()
   .superRefine((decision, ctx) => {
     if (decision.deterministicKey !== `${decision.cardId}:${decision.reps}`) {
       ctx.addIssue({ code: 'custom', path: ['deterministicKey'], message: 'Key must bind card ID and repetitions' });
+    }
+    const deterministicFuzz = deterministicIntervalFuzzV3_2(decision.cardId, decision.reps);
+    if (
+      decision.fuzzHash !== deterministicFuzz.fuzzHash ||
+      Math.abs(decision.fuzzFraction - deterministicFuzz.fuzzFraction) > EPSILON
+    ) {
+      ctx.addIssue({ code: 'custom', path: ['fuzzFraction'], message: 'Fuzz must derive from the versioned card/repetitions hash' });
     }
     const raw = decision.baseIntervalDays * (1 + decision.fuzzFraction);
     if (Math.abs(decision.rawFuzzedIntervalDays - raw) > EPSILON) {
@@ -163,12 +191,24 @@ export const intervalLoadBalancingDecisionV3_2Schema = z
     if (decision.minimumDayOffset !== minimum || decision.maximumDayOffset !== maximum) {
       ctx.addIssue({ code: 'custom', message: 'Day window must be the bounded plus/minus-five-percent interval' });
     }
+    if (decision.baseIntervalDays > decision.maximumIntervalDays) {
+      ctx.addIssue({ code: 'custom', path: ['baseIntervalDays'], message: 'Base interval must already respect maximumInterval' });
+    }
+    const preferred = Math.min(maximum, Math.max(minimum, Math.round(raw)));
+    if (decision.preferredDayOffset !== preferred) {
+      ctx.addIssue({ code: 'custom', path: ['preferredDayOffset'], message: 'Preferred day must consume deterministic fuzz' });
+    }
     const expectedDays = Array.from({ length: maximum - minimum + 1 }, (_, index) => minimum + index);
     const actualDays = decision.projectedDayLoads.map((entry) => entry.dayOffset);
     if (actualDays.length !== expectedDays.length || actualDays.some((day, index) => day !== expectedDays[index])) {
       ctx.addIssue({ code: 'custom', path: ['projectedDayLoads'], message: 'Projected loads must cover every eligible day in order' });
     }
-    const best = [...decision.projectedDayLoads].sort((left, right) => left.load - right.load || left.dayOffset - right.dayOffset)[0];
+    const best = [...decision.projectedDayLoads].sort(
+      (left, right) =>
+        left.load - right.load ||
+        Math.abs(left.dayOffset - preferred) - Math.abs(right.dayOffset - preferred) ||
+        left.dayOffset - right.dayOffset,
+    )[0];
     if (!best || decision.selectedDayOffset !== best.dayOffset || Math.abs(decision.selectedProjectedLoad - best.load) > EPSILON) {
       ctx.addIssue({ code: 'custom', path: ['selectedDayOffset'], message: 'Selection must use the lightest day, then earliest day' });
     }
