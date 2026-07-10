@@ -449,6 +449,7 @@ describe('Cross-domain smoke test (English/GSE)', () => {
 describe('Concept Aggregator resolution', () => {
   const conceptNode: KnowledgeSpaceNode = {
     id: 'math.precalc.concept.unit-circle-trig',
+    domain: 'math',
     kind: 'concept',
     title: 'Unit Circle Trigonometry',
     description: 'Aggregator node bundling unit-circle trig skills.',
@@ -457,6 +458,7 @@ describe('Concept Aggregator resolution', () => {
   };
   const skillA: KnowledgeSpaceNode = {
     id: 'math.precalc.skill.unit-circle.sin-definition',
+    domain: 'math',
     kind: 'skill',
     title: 'Sin from unit circle',
     reviewStatus: 'approved',
@@ -464,6 +466,7 @@ describe('Concept Aggregator resolution', () => {
   };
   const skillB: KnowledgeSpaceNode = {
     id: 'math.precalc.skill.unit-circle.cos-definition',
+    domain: 'math',
     kind: 'skill',
     title: 'Cos from unit circle',
     reviewStatus: 'approved',
@@ -471,6 +474,7 @@ describe('Concept Aggregator resolution', () => {
   };
   const skillC: KnowledgeSpaceNode = {
     id: 'math.precalc.skill.unit-circle.tan-definition',
+    domain: 'math',
     kind: 'skill',
     title: 'Tan from unit circle',
     reviewStatus: 'approved',
@@ -478,6 +482,7 @@ describe('Concept Aggregator resolution', () => {
   };
   const otherConcept: KnowledgeSpaceNode = {
     id: 'math.precalc.concept.other',
+    domain: 'math',
     kind: 'concept',
     title: 'Other concept',
     reviewStatus: 'approved',
@@ -536,6 +541,7 @@ describe('Concept Aggregator resolution', () => {
       sourceNodeIds: [],
       alignmentNodeIds: [],
       rendererKey: 'concept-explorer',
+      rendererModeMap: {},
       independentPracticeSpec: {
         variantParameters: {},
         answerSchema: { answer: {} },
@@ -567,9 +573,11 @@ describe('Concept Aggregator resolution', () => {
       sourceNodeIds: [],
       alignmentNodeIds: [],
       rendererKey: 'concept-explorer',
+      rendererModeMap: {},
       workedExampleSpec: {
         prompt: 'Worked example for unit circle trig',
         givens: [],
+        target: {},
         steps: [],
         explanation: '',
       },
@@ -600,6 +608,7 @@ describe('Concept Aggregator resolution', () => {
       sourceNodeIds: [],
       alignmentNodeIds: [],
       rendererKey: 'concept-explorer',
+      rendererModeMap: {},
       independentPracticeSpec: {
         variantParameters: {},
         answerSchema: { answer: {} },
@@ -619,6 +628,7 @@ describe('Concept Aggregator resolution', () => {
     // fix; the N-row behavior must collapse to 1 row when N=1.
     const skillOnly: KnowledgeSpaceNode = {
       id: 'math.precalc.skill.unit-circle.tan-definition',
+      domain: 'math',
       kind: 'skill',
       title: 'Tan from unit circle',
       reviewStatus: 'approved',
@@ -626,6 +636,7 @@ describe('Concept Aggregator resolution', () => {
     };
     const singleConcept: KnowledgeSpaceNode = {
       id: 'math.precalc.concept.tan-only',
+      domain: 'math',
       kind: 'concept',
       title: 'Tan-only concept',
       reviewStatus: 'approved',
@@ -647,6 +658,7 @@ describe('Concept Aggregator resolution', () => {
       sourceNodeIds: [],
       alignmentNodeIds: [],
       rendererKey: 'concept-explorer',
+      rendererModeMap: {},
       independentPracticeSpec: {
         variantParameters: {},
         answerSchema: { answer: {} },
@@ -689,7 +701,7 @@ describe('Student visualization — nearly_ready support (FR4)', () => {
 
     // The result should have a nearlyReady property
     expect(result).toHaveProperty('nearlyReady');
-    expect(Array.isArray((result as Record<string, unknown>)['nearlyReady'])).toBe(true);
+    expect(Array.isArray((result as unknown as Record<string, unknown>)['nearlyReady'])).toBe(true);
   });
 
   it('nearly_ready nodes are NOT in the ready or blocked buckets', () => {
@@ -715,7 +727,7 @@ describe('Student visualization — nearly_ready support (FR4)', () => {
       learnerState as Record<string, 'mastered' | 'ready' | 'blocked' | 'review_due'>,
     );
 
-    const nearlyReadyBucket = (result as Record<string, unknown>)['nearlyReady'] as Array<{ nodeId: string }> | undefined;
+    const nearlyReadyBucket = (result as unknown as Record<string, unknown>)['nearlyReady'] as Array<{ nodeId: string }> | undefined;
     if (nearlyReadyBucket) {
       const nearlyIds = nearlyReadyBucket.map((n) => n.nodeId);
       expect(nearlyIds).toContain(almostReadyId);
