@@ -17,7 +17,7 @@
     - [x] Define synthetic-cohort and replay-result schemas
 - [x] Task: Measure - User Manual Verification 'Phase 1: Contract & Schema Definition' (Protocol in workflow.md) [43d4205]
 
-## Phase 2: Behavioral and Contract Tests
+## Phase 2: Behavioral and Contract Tests [checkpoint: 3a6fb86]
 
 - [x] Task: Test proficiency evidence mathematics [02c2562]
     - [x] Cover guess-floor rescaling, half-life weighting, Wilson bounds, and zero/one extremes
@@ -32,11 +32,11 @@
     - [x] Cover ability-band agreement and `confounded_by_ability`
     - [x] Cover population fallback, volume rejection, holdout comparison, and human approval
     - [x] Exercise synthetic learner invariants and parameter-version attribution
-- [~] Task: Measure - User Manual Verification 'Phase 2: Behavioral and Contract Tests' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 2: Behavioral and Contract Tests' (Protocol in workflow.md) [3a6fb86]
 
 ## Phase 3: Implementation
 
-- [ ] Task: Implement v3.1 evidence aggregation and confidence diagnostics
+- [~] Task: Implement v3.1 evidence aggregation and confidence diagnostics
 - [ ] Task: Implement the staged practice-to-SRS rating mapper
 - [ ] Task: Implement two-probe adaptive frontier placement
 - [ ] Task: Implement per-priority retention and review-log parameter stamping
