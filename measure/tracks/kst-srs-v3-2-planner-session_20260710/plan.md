@@ -31,18 +31,18 @@
     - [x] Prove composition preserves the selected-card set
 - [x] Task: Measure - User Manual Verification 'Phase 2: Behavioral and Contract Tests' (Protocol in workflow.md) [963edca]
 
-## Phase 3: Implementation
+## Phase 3: Implementation [checkpoint: 05926f6]
 
 - [x] Task: Implement normalized planner terms, weights, and graph precomputation [14de4e9]
 - [x] Task: Implement domain utility registration and the synthetic reference provider [6990313]
 - [x] Task: Implement sparse-mode ranking and recommendation diversity [cfaaa32]
 - [x] Task: Implement review-load budgeting and role-specific projection fields [6faa294]
 - [x] Task: Implement deterministic interleaving, interval fuzz, and load balancing [f909029]
-- [~] Task: Measure - User Manual Verification 'Phase 3: Implementation' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 3: Implementation' (Protocol in workflow.md) [05926f6]
 
 ## Phase 4: Generate Docs, Doctor, and Release Gate
 
-- [ ] Task: Regenerate planner, adapter, projection, and session documentation
+- [~] Task: Regenerate planner, adapter, projection, and session documentation
     - [ ] Run `measure/generate.sh`
     - [ ] Document utility-provider authoring and review-load UX requirements
 - [ ] Task: Run the complete v3.2 engine quality gate
