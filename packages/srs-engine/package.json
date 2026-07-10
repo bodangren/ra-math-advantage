@@ -20,7 +20,8 @@
     "./adaptive-placement": "./src/srs/adaptive-placement.ts",
     "./adapters": "./src/srs/adapters.ts",
     "./submission-adapter": "./src/srs/submission-srs-adapter.ts",
-    "./session-composition-contract": "./src/srs/session-composition-contract.ts"
+    "./session-composition-contract": "./src/srs/session-composition-contract.ts",
+    "./session-composition": "./src/srs/session-composition.ts"
   },
   "scripts": {
     "test": "vitest run",

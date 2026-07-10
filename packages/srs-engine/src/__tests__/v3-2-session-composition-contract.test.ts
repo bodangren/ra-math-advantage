@@ -57,11 +57,13 @@ describe('srs.interval-load-balancing.v3.2 contract', () => {
     const parsed = intervalLoadBalancingDecisionV3_2Schema.parse({
       schemaVersion: 'srs.interval-load-balancing.v3.2', cardId: 'card.1', reps: 4,
       deterministicKey: 'card.1:4', fuzzAlgorithm: 'fnv1a32-code-unit-uniform.v1', fuzzHash: fuzz.fuzzHash,
+      anchorDate: '2026-07-10T00:00:00.000Z',
       baseIntervalDays: 30, fuzzFraction: fuzz.fuzzFraction, rawFuzzedIntervalDays: raw,
       minimumDayOffset: 29, maximumDayOffset: 31, preferredDayOffset: Math.round(raw),
       maximumIntervalDays: 365,
       projectedDayLoads: [{ dayOffset: 29, load: 4 }, { dayOffset: 30, load: 5 }, { dayOffset: 31, load: 2 }],
       selectedDayOffset: 31, selectedProjectedLoad: 2, tieBreak: 'load_asc_fuzz_distance_asc_day_asc.v1',
+      selectedDueDate: '2026-08-10T00:00:00.000Z',
     });
     expect(parsed.selectedDayOffset).toBe(31);
   });
@@ -70,10 +72,12 @@ describe('srs.interval-load-balancing.v3.2 contract', () => {
     const base = {
       schemaVersion: 'srs.interval-load-balancing.v3.2' as const, cardId: 'card.1', reps: 4,
       deterministicKey: 'wrong', fuzzAlgorithm: 'fnv1a32-code-unit-uniform.v1' as const, fuzzHash: 0,
+      anchorDate: '2026-07-10T00:00:00.000Z',
       baseIntervalDays: 30, fuzzFraction: 0.06, rawFuzzedIntervalDays: 31.8,
       minimumDayOffset: 29, maximumDayOffset: 31, preferredDayOffset: 31, maximumIntervalDays: 29,
       projectedDayLoads: [{ dayOffset: 29, load: 1 }, { dayOffset: 30, load: 2 }, { dayOffset: 31, load: 0 }],
       selectedDayOffset: 31, selectedProjectedLoad: 0, tieBreak: 'load_asc_fuzz_distance_asc_day_asc.v1' as const,
+      selectedDueDate: '2026-08-10T00:00:00.000Z',
     };
     expect(intervalLoadBalancingDecisionV3_2Schema.safeParse(base).success).toBe(false);
   });
@@ -83,10 +87,12 @@ describe('srs.interval-load-balancing.v3.2 contract', () => {
     expect(intervalLoadBalancingDecisionV3_2Schema.safeParse({
       schemaVersion: 'srs.interval-load-balancing.v3.2', cardId: 'card.1', reps: 4,
       deterministicKey: 'card.1:4', fuzzAlgorithm: 'fnv1a32-code-unit-uniform.v1', fuzzHash: fuzz.fuzzHash,
+      anchorDate: '2026-07-10T00:00:00.000Z',
       baseIntervalDays: 30, fuzzFraction: fuzz.fuzzFraction + 0.001, rawFuzzedIntervalDays: 30 * (1 + fuzz.fuzzFraction + 0.001),
       minimumDayOffset: 29, maximumDayOffset: 31, preferredDayOffset: 30, maximumIntervalDays: 365,
       projectedDayLoads: [{ dayOffset: 29, load: 1 }, { dayOffset: 30, load: 1 }, { dayOffset: 31, load: 1 }],
       selectedDayOffset: 30, selectedProjectedLoad: 1, tieBreak: 'load_asc_fuzz_distance_asc_day_asc.v1',
+      selectedDueDate: '2026-08-09T00:00:00.000Z',
     }).success).toBe(false);
   });
 });

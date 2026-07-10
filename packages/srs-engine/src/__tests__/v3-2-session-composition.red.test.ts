@@ -72,22 +72,23 @@ describe('srs.interval-load-balancing.v3.2 behavior', () => {
   ];
 
   it('returns identical fuzz and due-day decisions for repeated card/reps inputs', () => {
-    const input = { cardId: 'card.1', reps: 4, baseIntervalDays: 30, maximumIntervalDays: 365, projectedDayLoads: loads };
+    const input = { cardId: 'card.1', reps: 4, anchorDate: '2026-07-10T00:00:00.000Z', baseIntervalDays: 30, maximumIntervalDays: 365, projectedDayLoads: loads };
     expect(scheduleIntervalWithLoadBalancingV3_2(input)).toEqual(scheduleIntervalWithLoadBalancingV3_2(input));
   });
 
   it('chooses the lightest projected day inside the plus/minus-five-percent window', () => {
     const result = scheduleIntervalWithLoadBalancingV3_2({
-      cardId: 'card.1', reps: 4, baseIntervalDays: 30, maximumIntervalDays: 365, projectedDayLoads: loads,
+      cardId: 'card.1', reps: 4, anchorDate: '2026-07-10T00:00:00.000Z', baseIntervalDays: 30, maximumIntervalDays: 365, projectedDayLoads: loads,
     });
     expect(result).toMatchObject({ minimumDayOffset: 29, maximumDayOffset: 31, selectedDayOffset: 31, selectedProjectedLoad: 2 });
+    expect(result.selectedDueDate).toBe('2026-08-10T00:00:00.000Z');
     expect(result.fuzzFraction).toBeGreaterThanOrEqual(-0.05);
     expect(result.fuzzFraction).toBeLessThanOrEqual(0.05);
   });
 
   it('uses deterministic fuzz distance then earliest day to break equal-load ties', () => {
     const probe = scheduleIntervalWithLoadBalancingV3_2({
-      cardId: 'card.tie', reps: 2, baseIntervalDays: 30, maximumIntervalDays: 365,
+      cardId: 'card.tie', reps: 2, anchorDate: '2026-07-10T00:00:00.000Z', baseIntervalDays: 30, maximumIntervalDays: 365,
       projectedDayLoads: [{ dayOffset: 29, load: 1 }, { dayOffset: 30, load: 1 }, { dayOffset: 31, load: 1 }],
     });
     const distances = [29, 30, 31].map((day) => ({ day, distance: Math.abs(day - probe.preferredDayOffset) }));
@@ -98,7 +99,7 @@ describe('srs.interval-load-balancing.v3.2 behavior', () => {
   it('caps a target interval before fuzz and never exceeds maximumInterval', () => {
     const projectedDayLoads = Array.from({ length: 19 }, (_, index) => ({ dayOffset: 347 + index, load: index }));
     const result = scheduleIntervalWithLoadBalancingV3_2({
-      cardId: 'card.max', reps: 9, baseIntervalDays: 400, maximumIntervalDays: 365, projectedDayLoads,
+      cardId: 'card.max', reps: 9, anchorDate: '2026-07-10T00:00:00.000Z', baseIntervalDays: 400, maximumIntervalDays: 365, projectedDayLoads,
     });
     expect(result.baseIntervalDays).toBe(365);
     expect(result.maximumDayOffset).toBe(365);

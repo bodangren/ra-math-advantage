@@ -185,6 +185,14 @@ export {
   sessionCompositionArtifactV3_2Schema,
   intervalLoadBalancingDecisionV3_2Schema,
 } from './srs/session-composition-contract';
+export {
+  composeSessionV3_2,
+  scheduleIntervalWithLoadBalancingV3_2,
+} from './srs/session-composition';
+export type {
+  SelectedSessionCardV3_2,
+  ScheduleIntervalWithLoadBalancingInputV3_2,
+} from './srs/session-composition';
 export type {
   SessionCompositionArtifactV3_2,
   IntervalLoadBalancingDecisionV3_2,

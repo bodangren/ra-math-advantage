@@ -155,6 +155,7 @@ export const intervalLoadBalancingDecisionV3_2Schema = z
     deterministicKey: idSchema,
     fuzzAlgorithm: z.literal('fnv1a32-code-unit-uniform.v1'),
     fuzzHash: z.number().int().min(0).max(0xffff_ffff),
+    anchorDate: z.string().datetime({ offset: true }),
     baseIntervalDays: z.number().finite().min(0),
     fuzzFraction: z.number().finite().min(-0.05).max(0.05),
     rawFuzzedIntervalDays: z.number().finite().min(0),
@@ -165,6 +166,7 @@ export const intervalLoadBalancingDecisionV3_2Schema = z
     projectedDayLoads: z.array(projectedDayLoadSchema).min(1),
     selectedDayOffset: z.number().int().positive(),
     selectedProjectedLoad: z.number().finite().min(0),
+    selectedDueDate: z.string().datetime({ offset: true }),
     tieBreak: z.literal('load_asc_fuzz_distance_asc_day_asc.v1'),
   })
   .strict()
@@ -214,6 +216,12 @@ export const intervalLoadBalancingDecisionV3_2Schema = z
     }
     if (decision.selectedDayOffset > decision.maximumIntervalDays) {
       ctx.addIssue({ code: 'custom', path: ['selectedDayOffset'], message: 'Selected interval exceeds maximumInterval' });
+    }
+    const dueDate = new Date(
+      Date.parse(decision.anchorDate) + decision.selectedDayOffset * 86_400_000,
+    ).toISOString();
+    if (decision.selectedDueDate !== dueDate) {
+      ctx.addIssue({ code: 'custom', path: ['selectedDueDate'], message: 'Due date must bind the scheduling anchor and selected day' });
     }
   });
 
