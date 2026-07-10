@@ -25,7 +25,7 @@
     - [x] Coverage baseline recorded: core 95.76% statements / 87.27% branches; SRS 63.32% statements / 69.71% branches
     - [x] Vendored v3.2 specification and migration hashes reverified
 
-## Phase 2: Behavioral and Contract Tests
+## Phase 2: Behavioral and Contract Tests [checkpoint: 92b6214]
 
 - [x] Task: Encode the upstream v3 worked examples as executable fixtures [5ae4f7e, 644314e, b4a9368, 53ffdc9]
     - [x] Test hard-gate readiness with mastered soft prerequisites
