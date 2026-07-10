@@ -34,8 +34,8 @@
 ## Phase 3: Implementation
 
 - [x] Task: Implement normalized planner terms, weights, and graph precomputation [14de4e9]
-- [~] Task: Implement domain utility registration and the synthetic reference provider
-- [ ] Task: Implement sparse-mode ranking and recommendation diversity
+- [x] Task: Implement domain utility registration and the synthetic reference provider [6990313]
+- [~] Task: Implement sparse-mode ranking and recommendation diversity
 - [ ] Task: Implement review-load budgeting and role-specific projection fields
 - [ ] Task: Implement deterministic interleaving, interval fuzz, and load balancing
 - [ ] Task: Measure - User Manual Verification 'Phase 3: Implementation' (Protocol in workflow.md)
