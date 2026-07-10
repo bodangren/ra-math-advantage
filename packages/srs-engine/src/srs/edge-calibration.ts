@@ -87,6 +87,24 @@ export type EdgeCalibration = {
   lastUpdated: number;
 };
 
+/**
+ * Persistence version for necessity posteriors conditioned on the ¬A row.
+ *
+ * Unversioned and v2-derived posteriors must be rebuilt from stored
+ * contingency tables before they are used: v2 counted the curriculum-heavy
+ * proficient-A row and therefore produced systematically inflated values.
+ */
+export const EDGE_CALIBRATION_POSTERIOR_VERSION = 'edge-calibration.v3' as const;
+
+/**
+ * Identify stored calibration values that cannot be trusted under v3.
+ * @param {string | undefined} posteriorVersion - Persisted derivation version
+ * @returns {boolean} - True when the posterior must be recomputed from source evidence
+ */
+export function requiresPosteriorRecompute(posteriorVersion?: string): boolean {
+  return posteriorVersion !== EDGE_CALIBRATION_POSTERIOR_VERSION;
+}
+
 // ============================================
 // Necessity / Informativeness Result (FR2)
 // ============================================
@@ -192,7 +210,7 @@ export function buildContingencyTable(
 export function computeNecessity(table: CalibrationContingencyTable): number {
   const notProfA = table.notProficientAProficientB + table.notProficientANotProficientB;
   if (notProfA === 0) return 0;
-  return table.notProficientAProficientB / notProfA;
+  return table.notProficientANotProficientB / notProfA;
 }
 
 /**
@@ -250,9 +268,9 @@ export function updatePosterior(
 ): EdgeCalibration {
   let alpha = state.alpha;
   let beta = state.beta;
-  if (observation.a && observation.b) {
+  if (!observation.a && !observation.b) {
     alpha++;
-  } else if (observation.a && !observation.b) {
+  } else if (!observation.a && observation.b) {
     beta++;
   }
   return {

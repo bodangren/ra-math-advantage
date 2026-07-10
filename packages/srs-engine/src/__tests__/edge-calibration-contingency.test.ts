@@ -138,21 +138,21 @@ describe('buildContingencyTable (FR2, AC2)', () => {
 // ---------------------------------------------------------------------------
 
 describe('computeNecessity (FR2, AC2)', () => {
-  it('returns 1 when every not-proficient-A student is proficient in B', () => {
-    // need a not-proficient-A row to compute; with only !A=5, profB=5 → P=1
+  it('returns 0 when every not-proficient-A student is proficient in B', () => {
+    // Every !A student reaching B is a violation, so the edge has no necessity.
     const table = makeContingency(0, 0, 5, 0);
-    expect(computeNecessity(table)).toBe(1);
-  });
-
-  it('returns 0 when no not-proficient-A student is proficient in B', () => {
-    const table = makeContingency(0, 0, 0, 5);
     expect(computeNecessity(table)).toBe(0);
   });
 
+  it('returns 1 when no not-proficient-A student is proficient in B', () => {
+    const table = makeContingency(0, 0, 0, 5);
+    expect(computeNecessity(table)).toBe(1);
+  });
+
   it('returns the correct ratio for a mixed table', () => {
-    // notProficientA = np + nn = 3 + 7 = 10; P(profB | !A) = 3/10 = 0.3
+    // necessity = 1 - P(profB | !A) = 1 - 3/10 = 0.7
     const table = makeContingency(5, 2, 3, 7);
-    expect(computeNecessity(table)).toBeCloseTo(0.3, 10);
+    expect(computeNecessity(table)).toBeCloseTo(0.7, 10);
   });
 
   it('returns the safe sentinel 0 when the not-proficient-A row is empty', () => {

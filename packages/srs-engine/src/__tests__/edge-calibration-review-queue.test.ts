@@ -206,8 +206,8 @@ describe('buildReviewQueueItem (FR6, AC6)', () => {
 
     const item = buildReviewQueueItem(input);
     expect(item).not.toBeNull();
-    // necessity = P(profB | !A) — here !A count = 6, profB & !A = 1 → 1/6
-    expect(item!.necessity).toBeCloseTo(1 / 6, 5);
+    // necessity = 1 - P(profB | !A) — !A count = 6, profB & !A = 1 → 5/6
+    expect(item!.necessity).toBeCloseTo(5 / 6, 5);
     // informativeness = P(profB | A) − P(profB | !A) = 2/3 − 1/6 = 1/2
     expect(item!.informativeness).toBeCloseTo(1 / 2, 5);
   });
