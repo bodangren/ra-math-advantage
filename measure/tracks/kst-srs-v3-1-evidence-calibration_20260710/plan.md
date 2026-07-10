@@ -49,8 +49,8 @@
 - [x] Task: Regenerate contract, package, and evaluation documentation [99fb972]
     - [x] Run `npm run generate` (`measure/scripts/generate.sh`; optional `build-graph` unavailable, no generated diff)
     - [x] Document population fallback and human-release operations
-- [~] Task: Run the complete v3.1 quality gate
-    - [ ] Run package tests with coverage, lint, and typecheck
-    - [ ] Run replay determinism and fixture-integrity checks
-    - [ ] Run `measure/doctor.sh` and monorepo boundary checks
-- [ ] Task: Measure - User Manual Verification 'Phase 4: Generate Docs, Doctor, and Release Gate' (Protocol in workflow.md)
+- [x] Task: Run the complete v3.1 quality gate [b2469db]
+    - [x] Run package tests with coverage, lint, and typecheck
+    - [x] Run replay determinism and fixture-integrity checks
+    - [x] Run `measure/doctor.sh` and monorepo boundary checks
+- [~] Task: Measure - User Manual Verification 'Phase 4: Generate Docs, Doctor, and Release Gate' (Protocol in workflow.md)
