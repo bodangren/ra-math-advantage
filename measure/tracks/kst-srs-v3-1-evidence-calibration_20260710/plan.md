@@ -5,7 +5,7 @@
 
 ## Phase 1: Contract & Schema Definition
 
-- [ ] Task: Define v3.1 proficiency evidence and rating contracts
+- [~] Task: Define v3.1 proficiency evidence and rating contracts
     - [ ] Version evidence inputs, confidence diagnostics, and rating outputs
     - [ ] Define guess-floor and timing-baseline schemas
 - [ ] Task: Extend domain-adapter and placement contracts
@@ -54,4 +54,3 @@
     - [ ] Run replay determinism and fixture-integrity checks
     - [ ] Run `measure/doctor.sh` and monorepo boundary checks
 - [ ] Task: Measure - User Manual Verification 'Phase 4: Generate Docs, Doctor, and Release Gate' (Protocol in workflow.md)
-

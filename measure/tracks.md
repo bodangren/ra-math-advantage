@@ -65,7 +65,7 @@ then migrate through ordered correctness, evidence/calibration, planner/session,
 and IM3 runtime/data gates. Shared packages are canonical; IM3 is the first
 production adopter because it owns the repository's complete KST runtime chain.
 
-- [ ] **Track: KST+SRS v3.1 Evidence and Calibration**
+- [~] **Track: KST+SRS v3.1 Evidence and Calibration**
    *Depends on v3 core correctness. Implement guess-corrected Wilson evidence, normative rating caps, two-probe placement, priority retention, ability-stratified calibration, versioned FSRS fitting, and offline evaluation.*
    *Link: [./tracks/kst-srs-v3-1-evidence-calibration_20260710/](./tracks/kst-srs-v3-1-evidence-calibration_20260710/)*
 
