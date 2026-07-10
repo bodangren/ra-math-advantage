@@ -18,7 +18,12 @@
     - [x] Assign FSRS retention, proficiency, placement, and queue behavior to `srs-engine`
     - [x] Define adapter inputs consumed by `knowledge-space-core` without duplicating FSRS formulas
     - [x] Document v2-compatible and intentionally breaking surfaces
-- [ ] Task: Measure - User Manual Verification 'Phase 1: Contract & Schema Definition' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 1: Contract & Schema Definition' (Protocol in workflow.md) [3f54c45]
+    - [x] User approved the Phase 1 contract, ownership, and compatibility surfaces
+    - [x] `knowledge-space-core`: 681 tests passed; typecheck and lint passed
+    - [x] `srs-engine`: 239 tests passed; typecheck and lint passed
+    - [x] Coverage baseline recorded: core 95.76% statements / 87.27% branches; SRS 63.32% statements / 69.71% branches
+    - [x] Vendored v3.2 specification and migration hashes reverified
 
 ## Phase 2: Behavioral and Contract Tests
 
