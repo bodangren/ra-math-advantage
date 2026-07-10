@@ -4,7 +4,7 @@
 **Baseline:** 5 apps, 20 non-template packages, 8 packages missing from CI matrix  
 **Workflow:** strict contract-first TDD; generated facts must be reproducible
 
-## Phase 1: Architecture Contract Definition
+## Phase 1: Architecture Contract Definition [checkpoint: e202fb5]
 
 - [x] Task: Define the versioned workspace and ownership manifest schema [ba6498b]
     - [x] Model apps, packages, layers, owners, domain classification, exports, and quality commands
@@ -17,11 +17,11 @@
     - [x] Specify root/CI parity and required lint/test/typecheck/build capabilities
 - [x] Task: Capture reproducible architecture baselines [207be27]
     - [x] Record current package graph, CI omissions, duplicate-source metrics, and known violations
-- [~] Task: Measure - User Manual Verification 'Phase 1: Architecture Contract Definition' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 1: Architecture Contract Definition' (Protocol in workflow.md) [e202fb5]
 
 ## Phase 2: Behavioral and Architecture Tests
 
-- [ ] Task: Build negative fixtures for every prohibited dependency class
+- [~] Task: Build negative fixtures for every prohibited dependency class
     - [ ] Cover app-to-app, package-to-app, generated Convex, domain leakage, deep imports, and undeclared dependencies
     - [ ] Cover direct and transitive cycles
 - [ ] Task: Test workspace and CI inventory parity
