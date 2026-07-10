@@ -40,7 +40,7 @@
 - [x] Task: Implement deterministic interleaving, interval fuzz, and load balancing [f909029]
 - [x] Task: Measure - User Manual Verification 'Phase 3: Implementation' (Protocol in workflow.md) [05926f6]
 
-## Phase 4: Generate Docs, Doctor, and Release Gate
+## Phase 4: Generate Docs, Doctor, and Release Gate [checkpoint: 3db5975]
 
 - [x] Task: Regenerate planner, adapter, projection, and session documentation [d964206]
     - [x] Run `npm run generate` (`measure/scripts/generate.sh`; optional `build-graph` unavailable, no generated diff)
@@ -49,4 +49,4 @@
     - [x] Run focused and full package tests, coverage, lint, and typecheck
     - [x] Run determinism, boundary, and generated-artifact freshness checks
     - [x] Run `measure/doctor.sh`
-- [~] Task: Measure - User Manual Verification 'Phase 4: Generate Docs, Doctor, and Release Gate' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 4: Generate Docs, Doctor, and Release Gate' (Protocol in workflow.md) [3db5975]
