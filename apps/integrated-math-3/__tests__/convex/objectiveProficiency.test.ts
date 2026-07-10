@@ -411,7 +411,7 @@ describe('getObjectiveProficiencyHandler', () => {
     expect(result.objectiveId).toBe('obj-a');
     expect(result.retentionStrength).toBeGreaterThan(0.7);
     expect(result.problemFamilyDetails).toHaveLength(1);
-    expect(result.problemFamilyDetails[0].problemFamilyId).toBe('pf-a');
+    expect(result.problemFamilyDetails[0].variantKey).toBe('pf-a');
   });
 
   it('uses objective priority from policy when objectiveId is provided', async () => {

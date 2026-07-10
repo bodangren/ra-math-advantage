@@ -26,6 +26,7 @@ import {
   projectStudentVisualization,
   type StudentVisualizationV1,
 } from '@math-platform/knowledge-space-practice';
+import { stabilityToRetention } from '@math-platform/srs-engine';
 
 /**
  * Converts a Convex SRS card document into the bridge's SrsCardState shape.
@@ -52,8 +53,8 @@ function toSrsCardState(
 
 /**
  * Builds simplified ObjectiveProficiencyResult entries from SRS card states.
- * A card in 'review' state is treated as proficient; retention is estimated
- * from stability (capped at stability / 20, max 1.0).
+ * A reviewed card in 'review' state is treated as proficient. Objective live
+ * retention is the minimum current retention across reviewed variant cards.
  */
 function buildProficiencyResults(
   cards: Array<{
@@ -62,27 +63,38 @@ function buildProficiencyResults(
     stability: number;
     state: 'new' | 'learning' | 'review' | 'relearning';
     reps: number;
+    elapsedDays: number;
+    lastReview?: string;
   }>,
+  nowMs: number,
 ): ObjectiveProficiencyResult[] {
-  const byObjective = new Map<string, ObjectiveProficiencyResult>();
+  const byObjective = new Map<string, {
+    retentions: number[];
+    hasReviewState: boolean;
+  }>();
   for (const card of cards) {
-    const existing = byObjective.get(card.objectiveId);
-    const isReviewState = card.state === 'review';
-    const retentionStrength = card.stability > 0
-      ? Math.min(1, card.stability / 20)
-      : 0;
-    const practiceCoverage = card.reps > 0 ? 1 : 0;
-
-    if (!existing || isReviewState) {
-      byObjective.set(card.objectiveId, {
-        objectiveId: card.objectiveId,
-        retentionStrength,
-        practiceCoverage,
-        isProficient: isReviewState,
-      });
+    const aggregate = byObjective.get(card.objectiveId) ?? {
+      retentions: [],
+      hasReviewState: false,
+    };
+    if (card.reps >= 1) {
+      const lastReviewMs = card.lastReview ? Date.parse(card.lastReview) : Number.NaN;
+      const elapsedDays = Number.isFinite(lastReviewMs)
+        ? Math.max(0, (nowMs - lastReviewMs) / (24 * 60 * 60 * 1000))
+        : card.elapsedDays;
+      aggregate.retentions.push(stabilityToRetention(card.stability, elapsedDays));
+      aggregate.hasReviewState ||= card.state === 'review';
     }
+    byObjective.set(card.objectiveId, aggregate);
   }
-  return Array.from(byObjective.values());
+  return Array.from(byObjective, ([objectiveId, aggregate]) => ({
+    objectiveId,
+    retentionStrength: aggregate.retentions.length > 0
+      ? Math.min(...aggregate.retentions)
+      : 0,
+    practiceCoverage: aggregate.retentions.length > 0 ? 1 : 0,
+    isProficient: aggregate.hasReviewState,
+  }));
 }
 
 /**
@@ -138,11 +150,11 @@ export async function getStudentKnowledgeStateHandler(
     }
     return state;
   });
+  const now = Date.now();
   const proficiencyResults: ObjectiveProficiencyResult[] =
-    buildProficiencyResults(srsCards);
+    buildProficiencyResults(srsCards, now);
 
   // 5. Run the SRS→KST bridge → engine → fringe pipeline
-  const now = Date.now();
   const bridge = new DefaultSrsToKstBridge();
   const state = bridge.convert({
     cards: cardStates,

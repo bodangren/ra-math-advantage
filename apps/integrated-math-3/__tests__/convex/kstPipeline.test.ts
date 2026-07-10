@@ -50,7 +50,7 @@ function makeSeededProficiencies(): ObjectiveProficiencyResult[] {
   return [
     {
       objectiveId: 'math.im3.skill.1.1.graph-quadratic-functions',
-      retentionStrength: 0.85,
+      retentionStrength: 0.95,
       practiceCoverage: 0.9,
       isProficient: true,
     },
@@ -92,12 +92,12 @@ describe('Phase 4 — KST pipeline end-to-end (bridge → getKnowledgeState → 
     // State should have one entry per node in the graph
     expect(state.size).toBe(graph.nodes.length);
 
-    // Verify the seeded card's node is mastered (high stability, recent review, proficient)
+    // Verify SRS-owned aggregate evidence enters mastery.
     const masteredEntry = state.get('math.im3.skill.1.1.graph-quadratic-functions');
     expect(masteredEntry).toBeDefined();
     if (masteredEntry) {
       expect(masteredEntry.isProficient).toBe(true);
-      // High stability + recent review → high retention → mastered
+      // Aggregated high retention plus proficiency → mastered.
       expect(masteredEntry.state).toBe('mastered');
     }
   });

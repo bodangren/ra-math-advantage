@@ -8,7 +8,7 @@
  * 3. Fetch timing baselines for each problem family
  * 4. Build SrsCardState objects with stability, reps, lapses, and optional reviewDurationMs
  * 5. Call aggregateCardsToEvidence to compute per-family:
- *    - retentionStrength: average stabilityToRetention (sigmoid normalized)
+ *    - retentionStrength: minimum live FSRS retention across reviewed cards
  *    - practiceCoverage: proportion of cards with reps > 0
  *    - fluencyConfidence: high/medium/low based on timing vs baseline median
  * 6. Call computeObjectiveProficiency with policy-derived priority to produce the final result
@@ -446,10 +446,11 @@ export async function getObjectiveProficiencyHandler(
     if (cardReviews.length === 0) {
       cardStates.push({
         stability: card.stability,
+        elapsedDays: card.elapsedDays,
         difficulty: card.difficulty,
         reps: card.reps,
         lapses: card.lapses,
-        problemFamilyId: card.problemFamilyId,
+        variantKey: card.problemFamilyId,
       });
     } else {
       for (const review of cardReviews) {
@@ -458,10 +459,11 @@ export async function getObjectiveProficiencyHandler(
           : undefined;
         cardStates.push({
           stability: card.stability,
+          elapsedDays: card.elapsedDays,
           difficulty: card.difficulty,
           reps: card.reps,
           lapses: card.lapses,
-          problemFamilyId: card.problemFamilyId,
+          variantKey: card.problemFamilyId,
           lastReviewMs: review.reviewedAt,
           reviewDurationMs,
         });
@@ -492,7 +494,7 @@ export async function getObjectiveProficiencyHandler(
   return computeObjectiveProficiency({
     objectiveId: args.objectiveId ?? "",
     priority,
-    problemFamilyEvidences: evidence,
+    variantEvidences: evidence,
   });
 }
 
@@ -586,10 +588,11 @@ async function computeProficiencyForObjective(
       if (cardReviews.length === 0) {
         cardStates.push({
           stability: card.stability,
+          elapsedDays: card.elapsedDays,
           difficulty: card.difficulty,
           reps: card.reps,
           lapses: card.lapses,
-          problemFamilyId: card.problemFamilyId,
+          variantKey: card.problemFamilyId,
         });
       } else {
         for (const review of cardReviews) {
@@ -598,10 +601,11 @@ async function computeProficiencyForObjective(
             : undefined;
           cardStates.push({
             stability: card.stability,
+            elapsedDays: card.elapsedDays,
             difficulty: card.difficulty,
             reps: card.reps,
             lapses: card.lapses,
-            problemFamilyId: card.problemFamilyId,
+            variantKey: card.problemFamilyId,
             lastReviewMs: review.reviewedAt,
             reviewDurationMs,
           });
@@ -613,7 +617,7 @@ async function computeProficiencyForObjective(
     return computeObjectiveProficiency({
       objectiveId,
       priority,
-      problemFamilyEvidences: evidence,
+      variantEvidences: evidence,
     });
   }
 
@@ -639,10 +643,11 @@ async function computeProficiencyForObjective(
     if (cardReviews.length === 0) {
       cardStates.push({
         stability: card.stability,
+        elapsedDays: card.elapsedDays,
         difficulty: card.difficulty,
         reps: card.reps,
         lapses: card.lapses,
-        problemFamilyId: card.problemFamilyId,
+        variantKey: card.problemFamilyId,
       });
     } else {
       for (const review of cardReviews) {
@@ -651,10 +656,11 @@ async function computeProficiencyForObjective(
           : undefined;
         cardStates.push({
           stability: card.stability,
+          elapsedDays: card.elapsedDays,
           difficulty: card.difficulty,
           reps: card.reps,
           lapses: card.lapses,
-          problemFamilyId: card.problemFamilyId,
+          variantKey: card.problemFamilyId,
           lastReviewMs: review.reviewedAt,
           reviewDurationMs,
         });
@@ -681,7 +687,7 @@ async function computeProficiencyForObjective(
   return computeObjectiveProficiency({
     objectiveId,
     priority,
-    problemFamilyEvidences: evidence,
+    variantEvidences: evidence,
   });
 }
 
