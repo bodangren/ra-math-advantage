@@ -37,6 +37,7 @@
   "devDependencies": {
     "@eslint/js": "^10",
     "@vitejs/plugin-react": "^6.0.0",
+    "@vitest/coverage-v8": "^4.1.8",
     "next": "^16.0.0",
     "react-server-dom-webpack": "^19.2.7",
     "typescript": "^6",
