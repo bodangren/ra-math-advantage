@@ -18,7 +18,12 @@ import {
   type Card,
   type Grade,
 } from 'ts-fsrs';
-import type { SrsCardId, SrsCardState, SrsRating } from './contract';
+import type {
+  ObjectivePriority,
+  SrsCardId,
+  SrsCardState,
+  SrsRating,
+} from './contract';
 
 /**
  * Scheduler configuration parameters.
@@ -31,6 +36,12 @@ export type SchedulerConfig = {
   requestRetention: number;
 
   /**
+   * Optional v3.1 per-priority retention targets. An absent map preserves the
+   * scalar requestRetention behavior.
+   */
+  requestRetentionByPriority?: Partial<Record<ObjectivePriority, number>>;
+
+  /**
    * Maximum interval in days.
    * Default: 365 (one school year)
    */
@@ -41,6 +52,9 @@ export type SchedulerConfig = {
    * Default: false
    */
   enableShortTermPreview: boolean;
+
+  /** Optional future sibling-card reinforcement policy. */
+  siblingReinforcement?: boolean;
 };
 
 /**

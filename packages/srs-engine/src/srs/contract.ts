@@ -72,6 +72,31 @@ export type {
   PlacementFrontierStateV31,
 } from './placement-contract';
 
+export {
+  SCHEDULER_POLICY_VERSION,
+  OBJECTIVE_PRIORITIES,
+  DEFAULT_REQUEST_RETENTION_BY_PRIORITY,
+  objectivePrioritySchema as schedulerObjectivePrioritySchema,
+  requestRetentionByPrioritySchema,
+  schedulerConfigSchema,
+  normalizeSchedulerConfig,
+  resolveRequestedRetention,
+  isSchedulerConfigV31,
+  paramsVersionSchema,
+  paramsVersionStampSchema,
+  createParamsVersionStamp,
+  isParamsVersionStampV31,
+  hasStampedParamsVersion,
+} from './scheduler-policy-contract';
+export type {
+  ObjectivePriorityV31,
+  RequestRetentionByPriority,
+  SchedulerConfigV31,
+  ParamsVersionStampV31,
+} from './scheduler-policy-contract';
+
+import type { ParamsVersionStampV31 } from './scheduler-policy-contract';
+
 // ============================================
 // Objective Policy Types (SRS-specific)
 // ============================================
@@ -297,8 +322,13 @@ export type SrsReviewLogEntry = {
     SrsCardState,
     'stability' | 'difficulty' | 'state' | 'reps' | 'lapses'
   >;
+  /** Present on v3.1+ logs; legacy persisted entries may omit this field. */
+  paramsVersion?: string;
   reviewedAt: string; // ISO timestamp
 };
+
+/** v3.1 review-log contract with mandatory scheduler-parameter attribution. */
+export type SrsReviewLogEntryV31 = SrsReviewLogEntry & ParamsVersionStampV31;
 
 // ============================================
 // New Types: Session

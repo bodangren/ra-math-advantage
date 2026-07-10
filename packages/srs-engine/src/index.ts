@@ -44,6 +44,7 @@ export type {
   SrsCardId,
   SrsCardState,
   SrsReviewLogEntry,
+  SrsReviewLogEntryV31,
   SrsSessionConfig,
   SrsSession,
   PlacementConfidence,
@@ -92,6 +93,32 @@ export type {
   PracticeVariantEvidenceInputV31,
   PracticeVariantEvidenceResultV31,
 } from './srs/proficiency-evidence-contract';
+
+export {
+  SCHEDULER_POLICY_VERSION,
+  OBJECTIVE_PRIORITIES,
+  DEFAULT_REQUEST_RETENTION_BY_PRIORITY,
+  objectivePrioritySchema as schedulerObjectivePrioritySchema,
+  requestRetentionByPrioritySchema,
+  schedulerConfigSchema,
+  normalizeSchedulerConfig,
+  resolveRequestedRetention,
+  isSchedulerConfigV31,
+  paramsVersionSchema,
+  paramsVersionStampSchema,
+  createParamsVersionStamp,
+  isParamsVersionStampV31,
+  hasStampedParamsVersion,
+} from './srs/scheduler-policy-contract';
+export type {
+  ObjectivePriorityV31,
+  RequestRetentionByPriority,
+  SchedulerConfigV31,
+  ParamsVersionStampV31,
+} from './srs/scheduler-policy-contract';
+
+export * from './srs/fsrs-fitting-contract';
+export * from './srs/evaluation-contract';
 
 export {
   DEFAULT_SCHEDULER_CONFIG,
