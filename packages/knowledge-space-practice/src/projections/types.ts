@@ -114,6 +114,7 @@ export interface StudentVisualizationV1 {
   recommendedNext: VisualNodeV1[];
   edges: VisualEdgeV1[];
   activeMisconceptionCount: number;
+  reviewLoadState?: 'normal' | 'elevated' | 'saturated';
 }
 
 /** Canonical learner-state inputs for the student visualization projection. */
@@ -158,6 +159,7 @@ export interface TeacherVisualizationV1 {
   interventionGroups: InterventionGroup[];
   standardsCoverage: Array<{ standardId: string; title: string; proficiencyRate: number }>;
   activeMisconceptionStudentCount: number;
+  reviewLoadStates?: Record<string, 'normal' | 'elevated' | 'saturated'>;
 }
 
 // Re-export blueprint types used by projection callers

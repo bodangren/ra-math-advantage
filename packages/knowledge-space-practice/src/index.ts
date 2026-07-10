@@ -113,6 +113,16 @@ export {
   prerequisiteSparseReleaseV3_2Schema,
   bindDomainUtilityProviderV3_2,
 } from './planner/v3-2-domain-utility-contract';
+export {
+  reviewLoadStateV3_2Schema,
+  reviewLoadConfigV3_2Schema,
+  reviewLoadAssessmentV3_2Schema,
+} from './planner/v3-2-review-load-contract';
+export type {
+  ReviewLoadStateV3_2,
+  ReviewLoadConfigV3_2,
+  ReviewLoadAssessmentV3_2,
+} from './planner/v3-2-review-load-contract';
 export type {
   LearnerUtilityContextV3_2,
   UtilitySignalV3_2,

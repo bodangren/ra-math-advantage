@@ -30,6 +30,7 @@ export const studentVisualizationV1Schema = z.object({
   recommendedNext: z.array(visualNodeV1Schema),
   edges: z.array(visualEdgeV1Schema),
   activeMisconceptionCount: z.number().int().min(0),
+  reviewLoadState: z.enum(['normal', 'elevated', 'saturated']).optional(),
 });
 
 export const parentVisualizationV1Schema = z.object({
@@ -83,4 +84,8 @@ export const teacherVisualizationV1Schema = z.object({
   interventionGroups: z.array(interventionGroupSchema),
   standardsCoverage: z.array(standardsCoverageSchema),
   activeMisconceptionStudentCount: z.number().int().min(0),
+  reviewLoadStates: z.record(
+    z.string().min(1),
+    z.enum(['normal', 'elevated', 'saturated']),
+  ).optional(),
 });

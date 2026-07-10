@@ -181,6 +181,15 @@ export {
 export type { QueueItem } from './srs/queue';
 
 export {
+  sessionCompositionArtifactV3_2Schema,
+  intervalLoadBalancingDecisionV3_2Schema,
+} from './srs/session-composition-contract';
+export type {
+  SessionCompositionArtifactV3_2,
+  IntervalLoadBalancingDecisionV3_2,
+} from './srs/session-composition-contract';
+
+export {
   PLACEMENT_STABILITY_HORIZONS,
   expandPlacementEvidence,
   synthesizePlacementCards,

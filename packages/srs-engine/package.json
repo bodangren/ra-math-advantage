@@ -19,7 +19,8 @@
     "./placement-contract": "./src/srs/placement-contract.ts",
     "./adaptive-placement": "./src/srs/adaptive-placement.ts",
     "./adapters": "./src/srs/adapters.ts",
-    "./submission-adapter": "./src/srs/submission-srs-adapter.ts"
+    "./submission-adapter": "./src/srs/submission-srs-adapter.ts",
+    "./session-composition-contract": "./src/srs/session-composition-contract.ts"
   },
   "scripts": {
     "test": "vitest run",
