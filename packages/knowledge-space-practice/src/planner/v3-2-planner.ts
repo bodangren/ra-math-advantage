@@ -41,7 +41,9 @@ export function scorePlannerCandidateV3_2(
     weaknessFit: weights.d * terms.weaknessFit,
     utility: weights.e * terms.utility,
   };
-  const composite = Object.values(contributions).reduce((sum, value) => sum + value, 0);
+  const composite = Number(
+    Object.values(contributions).reduce((sum, value) => sum + value, 0).toFixed(12),
+  );
   return plannerPriorityScoreV3_2Schema.parse({
     schemaVersion: 'planner.priority.v3.2',
     nodeId: input.nodeId,

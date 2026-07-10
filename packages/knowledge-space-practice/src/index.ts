@@ -110,6 +110,12 @@ export {
   precomputePlannerGraphV3_2,
 } from './planner/v3-2-planner';
 export type { ScorePlannerCandidateInputV3_2 } from './planner/v3-2-planner';
+export { planRecommendationsV3_2 } from './planner/v3-2-recommendations';
+export type {
+  PlannerCandidateV3_2,
+  PlanRecommendationsInputV3_2,
+  PlanRecommendationsResultV3_2,
+} from './planner/v3-2-recommendations';
 export {
   learnerUtilityContextV3_2Schema,
   utilitySignalV3_2Schema,

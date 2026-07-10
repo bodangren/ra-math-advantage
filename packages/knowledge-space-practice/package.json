@@ -14,6 +14,7 @@
     "./planner/types": "./src/planner/types.ts",
     "./planner/v3-2-contract": "./src/planner/v3-2-contract.ts",
     "./planner/v3-2-planner": "./src/planner/v3-2-planner.ts",
+    "./planner/v3-2-recommendations": "./src/planner/v3-2-recommendations.ts",
     "./planner/v3-2-domain-utility-contract": "./src/planner/v3-2-domain-utility-contract.ts",
     "./planner/v3-2-domain-utility": "./src/planner/v3-2-domain-utility.ts",
     "./planner/v3-2-review-load-contract": "./src/planner/v3-2-review-load-contract.ts",
