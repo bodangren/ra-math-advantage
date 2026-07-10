@@ -1,5 +1,8 @@
 import { describe, expect, it } from 'vitest';
-import { buildPracticeSubmissionEnvelope } from '@math-platform/practice-core';
+import {
+  buildPracticeSubmissionEnvelope,
+  type SrsRatingInputV31,
+} from '@math-platform/practice-core';
 import { createMockSrsCard } from '../srs/fixtures';
 import { processReview } from '../srs/review-processor';
 
@@ -95,5 +98,59 @@ describe('processReview', () => {
       reasons: expect.arrayContaining(['timing_upgraded_easy']),
     });
     expect(result.reviewLog.stateAfter.reps).toBe(1);
+  });
+
+  it('uses the explicit v3.1 rating seam when enriched evidence is supplied', () => {
+    const card = createMockSrsCard({
+      cardId: 'card-review-v31',
+      dueDate: now,
+      createdAt: now,
+      updatedAt: now,
+    });
+    const enrichedSubmission = submission();
+    enrichedSubmission.parts[0].hintsUsed = 1;
+    const ratingInputV31: SrsRatingInputV31 = {
+      parts: [{
+        partId: 'q1',
+        isCorrect: true,
+        hintsUsed: 1,
+        revealStepsSeen: 0,
+        totalRevealSteps: 3,
+        misconceptionTags: [],
+      }],
+      severityByTag: {},
+    };
+
+    const result = processReview({
+      card,
+      submission: enrichedSubmission,
+      ratingInputV31,
+      now,
+    });
+
+    expect(result.rating).toBe('Good');
+    expect(result.reviewLog.evidence).toMatchObject({
+      baseRating: 'Good',
+      timingAdjusted: false,
+      reasons: expect.arrayContaining(['hints_1_2', 'timing_absent']),
+    });
+  });
+
+  it('keeps legacy review callers on the legacy mapper by default', () => {
+    const card = createMockSrsCard({
+      cardId: 'card-review-legacy',
+      dueDate: now,
+      createdAt: now,
+      updatedAt: now,
+    });
+    const legacySubmission = submission();
+    legacySubmission.parts[0].hintsUsed = 1;
+
+    const result = processReview({ card, submission: legacySubmission, now });
+
+    expect(result.rating).toBe('Hard');
+    expect('reasons' in result.reviewLog.evidence
+      ? result.reviewLog.evidence.reasons
+      : []).toContain('timing_missing');
   });
 });

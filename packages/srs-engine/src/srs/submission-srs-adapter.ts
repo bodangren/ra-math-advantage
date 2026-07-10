@@ -4,7 +4,13 @@
  * Bridges practice submission events to SRS card state transitions.
  */
 
-import { mapPracticeToSrsRating } from '@math-platform/practice-core/srs-rating';
+import {
+  mapPracticeToSrsRating,
+  mapPracticeToSrsRatingV31,
+  type SrsRatingInputV31,
+  type SrsRatingResult,
+} from '@math-platform/practice-core/srs-rating';
+import type { SrsRatingResultV31 } from '@math-platform/practice-core/v3-1-contracts';
 import { deriveTimingFeatures } from '@math-platform/practice-core/timing-baseline';
 import { createCard, reviewCard } from './scheduler';
 import type {
@@ -27,6 +33,8 @@ export type SubmissionSrsInput = {
   submission: PracticeSubmissionEnvelope;
   studentId: string;
   activityId: string;
+  /** Explicit opt-in enriched evidence for the normative v3.1 rating path. */
+  ratingInputV31?: SrsRatingInputV31;
 };
 
 export type SubmissionSrsResult =
@@ -158,31 +166,38 @@ export class SubmissionSrsAdapter {
       await this.cardStore.saveCard(card);
     }
 
-    const baseline = await this.baselineResolver.getBaseline(variantKey);
-    const timingFeatures = submission.timing
-      ? deriveTimingFeatures(submission.timing, baseline)
-      : {
-          hasReliableTiming: false as const,
-          confidence: 'low' as const,
-          reasons: ['timing_missing'],
-        };
+    let ratingResult: SrsRatingResult | SrsRatingResultV31;
+    let evidenceReasons: string[];
+    if (input.ratingInputV31 !== undefined) {
+      ratingResult = mapPracticeToSrsRatingV31(input.ratingInputV31);
+      evidenceReasons = ratingResult.reasons;
+    } else {
+      const baseline = await this.baselineResolver.getBaseline(variantKey);
+      const timingFeatures = submission.timing
+        ? deriveTimingFeatures(submission.timing, baseline)
+        : {
+            hasReliableTiming: false as const,
+            confidence: 'low' as const,
+            reasons: ['timing_missing'],
+          };
 
-    const parts = submission.parts.map((part) => ({
-      isCorrect: part.isCorrect,
-      hintsUsed: part.hintsUsed,
-      revealStepsSeen: part.revealStepsSeen,
-      misconceptionTags: part.misconceptionTags,
-    }));
+      const parts = submission.parts.map((part) => ({
+        isCorrect: part.isCorrect,
+        hintsUsed: part.hintsUsed,
+        revealStepsSeen: part.revealStepsSeen,
+        misconceptionTags: part.misconceptionTags,
+      }));
 
-    const ratingResult = mapPracticeToSrsRating({
-      parts,
-      timingFeatures,
-      baselineSampleCount: baseline?.sampleCount,
-    });
+      ratingResult = mapPracticeToSrsRating({
+        parts,
+        timingFeatures,
+        baselineSampleCount: baseline?.sampleCount,
+      });
 
-    const evidenceReasons = submission.timing
-      ? ratingResult.reasons
-      : ['timing_missing', ...ratingResult.reasons];
+      evidenceReasons = submission.timing
+        ? ratingResult.reasons
+        : ['timing_missing', ...ratingResult.reasons];
+    }
 
     const misconceptionTags = Array.from(
       new Set(submission.parts.flatMap((p) => p.misconceptionTags ?? []))

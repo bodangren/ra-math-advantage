@@ -132,7 +132,12 @@ export const PRIORITY_DEFAULTS: Record<ObjectivePriority, ObjectivePracticePolic
 // ============================================
 
 import type { SrsRating } from '@math-platform/practice-core/srs-rating';
-export type { SrsRating, SrsRatingInput, SrsRatingResult } from '@math-platform/practice-core/srs-rating';
+export type {
+  SrsRating,
+  SrsRatingInput,
+  SrsRatingInputV31,
+  SrsRatingResult,
+} from '@math-platform/practice-core/srs-rating';
 export {
   SRS_RATING_POLICY_VERSION,
   TIMING_BASELINE_POLICY_VERSION,

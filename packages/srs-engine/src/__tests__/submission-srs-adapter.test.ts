@@ -1,5 +1,8 @@
 import { describe, expect, it } from 'vitest';
-import { buildPracticeSubmissionEnvelope } from '@math-platform/practice-core';
+import {
+  buildPracticeSubmissionEnvelope,
+  type SrsRatingInputV31,
+} from '@math-platform/practice-core';
 import { InMemorySubmissionSrsAdapter } from '../srs/submission-srs-adapter';
 
 function makeSubmission(options: { timing?: boolean; misconception?: boolean } = {}) {
@@ -121,5 +124,59 @@ describe('InMemorySubmissionSrsAdapter', () => {
       skipped: false,
       error: 'resolver unavailable',
     });
+  });
+
+  it('routes explicit enriched evidence through the v3.1 rating mapper', async () => {
+    const adapter = new InMemorySubmissionSrsAdapter();
+    adapter.getResolver().register('activity-1', {
+      variantKey: 'variant-1',
+      objectiveId: 'objective-1',
+    });
+    const ratingInputV31: SrsRatingInputV31 = {
+      parts: [{
+        partId: 'q1',
+        isCorrect: true,
+        hintsUsed: 0,
+        revealStepsSeen: 0,
+        totalRevealSteps: 3,
+        misconceptionTags: ['sign-error'],
+      }],
+      severityByTag: { 'sign-error': 'minor' },
+    };
+
+    const result = await adapter.processSubmission({
+      submission: makeSubmission({ misconception: true }),
+      studentId: 'student-1',
+      activityId: 'activity-1',
+      ratingInputV31,
+    });
+
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.reviewLog.rating).toBe('Hard');
+    expect(result.reviewLog.evidence).toMatchObject({
+      baseRating: 'Good',
+      timingAdjusted: false,
+      reasons: expect.arrayContaining(['minor', 'timing_absent']),
+    });
+  });
+
+  it('keeps adapter callers on the legacy rating mapper without opt-in evidence', async () => {
+    const adapter = new InMemorySubmissionSrsAdapter();
+    adapter.getResolver().register('activity-1', {
+      variantKey: 'variant-1',
+      objectiveId: 'objective-1',
+    });
+
+    const result = await adapter.processSubmission({
+      submission: makeSubmission({ misconception: true }),
+      studentId: 'student-1',
+      activityId: 'activity-1',
+    });
+
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.reviewLog.rating).toBe('Again');
+    expect(result.reviewLog.evidence.reasons).toContain('timing_missing');
   });
 });

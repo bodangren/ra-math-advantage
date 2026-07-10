@@ -4,6 +4,7 @@ import {
   TIMING_BASELINE_POLICY_VERSION,
   srsRatingResultV31Schema,
   timingZBaselineSchema,
+  type SrsRatingResultV31,
 } from '../practice/v3-1-contracts';
 
 describe('v3.1 rating and timing contracts', () => {
@@ -52,5 +53,94 @@ describe('v3.1 rating and timing contracts', () => {
       misconceptionCapped: true,
       reasons: ['hints_1_2', 'minor'],
     }).success).toBe(true);
+  });
+
+  const validResult = (): SrsRatingResultV31 => ({
+    policyVersion: SRS_RATING_POLICY_VERSION,
+    rating: 'Hard' as const,
+    baseRating: 'Good' as const,
+    caps: {
+      hint: { stage: 'hint' as const, maxRating: 'Good' as const, applied: true, reason: 'hints_1_2' },
+      reveal: null,
+      misconception: { stage: 'misconception' as const, maxRating: 'Hard' as const, applied: true, reason: 'minor' },
+      effective: 'Hard' as const,
+    },
+    timingDecision: {
+      eligible: false,
+      confidence: 'low' as const,
+      baselineSampleCount: 0,
+      partDecisions: [],
+      adjustment: 'none' as const,
+      changedRating: false,
+      reasons: ['timing_ineligible'],
+    },
+    timingAdjusted: false,
+    misconceptionCapped: true,
+    reasons: ['hints_1_2', 'minor'],
+  });
+
+  it.each([
+    {
+      name: 'cap in the wrong slot',
+      mutate: (value: ReturnType<typeof validResult>) => {
+        value.caps.hint!.stage = 'misconception' as 'hint';
+      },
+    },
+    {
+      name: 'effective cap not equal to the lowest declared cap',
+      mutate: (value: ReturnType<typeof validResult>) => {
+        value.caps.effective = 'Good' as 'Hard';
+      },
+    },
+    {
+      name: 'final rating above the effective cap',
+      mutate: (value: ReturnType<typeof validResult>) => {
+        value.rating = 'Good' as 'Hard';
+      },
+    },
+    {
+      name: 'timingAdjusted inconsistent with changedRating',
+      mutate: (value: ReturnType<typeof validResult>) => {
+        value.timingAdjusted = true;
+      },
+    },
+    {
+      name: 'misconceptionCapped inconsistent with cap presence',
+      mutate: (value: ReturnType<typeof validResult>) => {
+        value.misconceptionCapped = false;
+      },
+    },
+    {
+      name: 'ineligible timing with an adjustment',
+      mutate: (value: ReturnType<typeof validResult>) => {
+        value.timingDecision.adjustment = 'upgrade_to_easy' as 'none';
+        value.timingDecision.changedRating = true;
+        value.timingAdjusted = true;
+      },
+    },
+    {
+      name: 'an unavailable part with a numeric z-score',
+      mutate: (value: ReturnType<typeof validResult>) => {
+        value.timingDecision.partDecisions = [{
+          partId: 'p1',
+          zScore: 0,
+          band: 'unavailable',
+        }];
+      },
+    },
+    {
+      name: 'a fast band above the inclusive threshold',
+      mutate: (value: ReturnType<typeof validResult>) => {
+        value.timingDecision.partDecisions = [{
+          partId: 'p1',
+          zScore: 0,
+          band: 'fast',
+        }];
+      },
+    },
+  ])('rejects $name', ({ mutate }) => {
+    const value = validResult();
+    mutate(value);
+    expect(srsRatingResultV31Schema.safeParse(value).success).toBe(false);
   });
 });

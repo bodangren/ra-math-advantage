@@ -61,18 +61,22 @@ export {
 export {
   type SrsRating,
   type SrsRatingInput,
+  type SrsRatingInputV31,
   type SrsRatingResult,
   type SeverityByTag,
   type ComputeBaseRatingOptions,
   computeBaseRating,
   applyTimingToRating,
   mapPracticeToSrsRating,
+  mapPracticeToSrsRatingV31,
 } from './practice/srs-rating';
 
 export {
   SRS_RATING_POLICY_VERSION,
   TIMING_BASELINE_POLICY_VERSION,
   timingZBaselineSchema,
+  srsRatingPartV31Schema,
+  srsRatingInputV31Schema,
   ratingCapDecisionSchema,
   timingPartDecisionSchema,
   timingRatingDecisionSchema,
@@ -80,6 +84,7 @@ export {
 } from './practice/v3-1-contracts';
 export type {
   TimingZBaseline,
+  SrsRatingPartV31,
   RatingCapDecision,
   TimingRatingDecision,
   SrsRatingResultV31,

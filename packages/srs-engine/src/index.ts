@@ -60,6 +60,7 @@ export type {
   PracticeTimingFeatures,
   TimingSpeedBand,
   SrsRatingInput,
+  SrsRatingInputV31,
   SrsRatingResult,
   TimingZBaseline,
   RatingCapDecision,

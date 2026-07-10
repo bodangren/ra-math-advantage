@@ -123,6 +123,34 @@ describe('mapPracticeToSrsRatingV31 — normative staged mapper', () => {
     expect(result.caps.reveal?.maxRating).toBe('Again');
   });
 
+  it('uses activity-wide reveal totals so a fully revealed part plus a partial part is Hard', () => {
+    const result = mapPracticeToSrsRatingV31(input([
+      part({ partId: 'p1', revealStepsSeen: 2, totalRevealSteps: 2 }),
+      part({ partId: 'p2', revealStepsSeen: 1, totalRevealSteps: 3 }),
+    ]));
+
+    expect(result.rating).toBe('Hard');
+    expect(result.caps.reveal?.maxRating).toBe('Hard');
+  });
+
+  it('does not treat an activity with zero reveal steps as all-revealed', () => {
+    const result = mapPracticeToSrsRatingV31(input([
+      part({ revealStepsSeen: 0, totalRevealSteps: 0 }),
+    ]));
+
+    expect(result.rating).toBe('Good');
+    expect(result.caps.reveal).toBeNull();
+  });
+
+  it('rejects evidence where revealStepsSeen exceeds totalRevealSteps', () => {
+    const invalid = input([part()]) as unknown as Record<string, unknown>;
+    invalid.parts = [part({ revealStepsSeen: 4, totalRevealSteps: 3 })];
+
+    expect(() => mapPracticeToSrsRatingV31(invalid as SrsRatingInputV31)).toThrow(
+      /revealStepsSeen cannot exceed totalRevealSteps/,
+    );
+  });
+
   it.each([
     { name: 'fast', activeMs: 75, expected: 'Easy', adjustment: 'upgrade_to_easy' },
     { name: 'slow', activeMs: 145, expected: 'Hard', adjustment: 'downgrade_one_step' },
@@ -156,6 +184,96 @@ describe('mapPracticeToSrsRatingV31 — normative staged mapper', () => {
     expect(result.timingDecision.eligible).toBe(false);
     expect(result.timingDecision.adjustment).toBe('none');
     expect(result.timingDecision.changedRating).toBe(false);
+  });
+
+  it('treats omitted timing evidence as ineligible and preserves correctness', () => {
+    const withoutTiming: SrsRatingInputV31 = {
+      parts: [part()],
+      severityByTag: {},
+    };
+
+    const result = mapPracticeToSrsRatingV31(withoutTiming);
+
+    expect(result.rating).toBe('Good');
+    expect(result.timingAdjusted).toBe(false);
+    expect(result.timingDecision).toMatchObject({
+      eligible: false,
+      adjustment: 'none',
+      changedRating: false,
+      reasons: expect.arrayContaining(['timing_ineligible', 'timing_absent']),
+    });
+  });
+
+  it.each([
+    {
+      name: 'missing per-part measurement',
+      mutate: (value: SrsRatingInputV31) => {
+        delete value.timing?.perPartMs.p2;
+      },
+    },
+    {
+      name: 'missing per-part baseline',
+      mutate: (value: SrsRatingInputV31) => {
+        delete value.timing?.baselinesByPart.p2;
+      },
+    },
+    {
+      name: 'zero baseline standard deviation',
+      mutate: (value: SrsRatingInputV31) => {
+        if (value.timing?.baselinesByPart.p2) {
+          value.timing.baselinesByPart.p2.stdDevMs = 0;
+        }
+      },
+    },
+  ])('fails closed for $name', ({ mutate }) => {
+    const value = input([part(), part({ partId: 'p2' })], {
+      perPartMs: { p1: 75, p2: 75 },
+    });
+    mutate(value);
+
+    const result = mapPracticeToSrsRatingV31(value);
+
+    expect(result.rating).toBe('Good');
+    expect(result.timingDecision.eligible).toBe(false);
+    expect(result.timingDecision.adjustment).toBe('none');
+  });
+
+  it('uses inclusive z-score boundaries for fast and slow decisions', () => {
+    const fast = mapPracticeToSrsRatingV31(input([part()], {
+      perPartMs: { p1: 80 },
+    }));
+    const slow = mapPracticeToSrsRatingV31(input([part()], {
+      perPartMs: { p1: 140 },
+    }));
+
+    expect(fast.timingDecision.partDecisions[0]).toMatchObject({ zScore: -1, band: 'fast' });
+    expect(fast.rating).toBe('Easy');
+    expect(slow.timingDecision.partDecisions[0]).toMatchObject({ zScore: 2, band: 'slow' });
+    expect(slow.rating).toBe('Hard');
+  });
+
+  it('lets any slow part win over a fast part', () => {
+    const result = mapPracticeToSrsRatingV31(input([
+      part({ partId: 'p1' }),
+      part({ partId: 'p2' }),
+    ], {
+      perPartMs: { p1: 75, p2: 145 },
+    }));
+
+    expect(result.rating).toBe('Hard');
+    expect(result.timingDecision.adjustment).toBe('downgrade_one_step');
+  });
+
+  it('does not upgrade when only some participating parts are fast', () => {
+    const result = mapPracticeToSrsRatingV31(input([
+      part({ partId: 'p1' }),
+      part({ partId: 'p2' }),
+    ], {
+      perPartMs: { p1: 75, p2: 100 },
+    }));
+
+    expect(result.rating).toBe('Good');
+    expect(result.timingDecision.adjustment).toBe('none');
   });
 
   it('applies a minor misconception after fast timing and hint caps', () => {

@@ -13,8 +13,11 @@
 
 import {
   mapPracticeToSrsRating,
+  mapPracticeToSrsRatingV31,
+  type SrsRatingInputV31,
   type SrsRatingResult,
 } from '@math-platform/practice-core/srs-rating';
+import type { SrsRatingResultV31 } from '@math-platform/practice-core/v3-1-contracts';
 import { deriveTimingFeatures } from '@math-platform/practice-core/timing-baseline';
 import { reviewCard } from './scheduler';
 import type {
@@ -34,6 +37,12 @@ export type ReviewProcessorInput = {
   submission: PracticeSubmissionEnvelope;
   /** Optional timing baseline for the problem family; omit if unavailable. */
   baseline?: PracticeTimingBaseline;
+  /**
+   * Explicit opt-in to the normative v3.1 mapper. Callers provide the enriched
+   * reveal totals, per-part timing baselines, and misconception policy needed
+   * by that version. When omitted, legacy rating behavior is unchanged.
+   */
+  ratingInputV31?: SrsRatingInputV31;
   /** Review timestamp as an ISO string. */
   now: string;
 };
@@ -55,32 +64,39 @@ export type ReviewProcessorResult = {
  * and producing an immutable review log entry.
  */
 export function processReview(input: ReviewProcessorInput): ReviewProcessorResult {
-  const { card, submission, baseline, now } = input;
+  const { card, submission, baseline, ratingInputV31, now } = input;
 
   const parts = submission.parts;
+  let ratingResult: SrsRatingResult | SrsRatingResultV31;
+  let evidenceReasons: string[];
 
-  const timingFeatures = submission.timing
-    ? deriveTimingFeatures(submission.timing, baseline)
-    : {
-        hasReliableTiming: false as const,
-        confidence: 'low' as const,
-        reasons: ['timing_missing'],
-      };
+  if (ratingInputV31 !== undefined) {
+    ratingResult = mapPracticeToSrsRatingV31(ratingInputV31);
+    evidenceReasons = ratingResult.reasons;
+  } else {
+    const timingFeatures = submission.timing
+      ? deriveTimingFeatures(submission.timing, baseline)
+      : {
+          hasReliableTiming: false as const,
+          confidence: 'low' as const,
+          reasons: ['timing_missing'],
+        };
 
-  const ratingResult = mapPracticeToSrsRating({
-    parts: parts.map((part) => ({
-      isCorrect: part.isCorrect,
-      hintsUsed: part.hintsUsed,
-      revealStepsSeen: part.revealStepsSeen,
-      misconceptionTags: part.misconceptionTags,
-    })),
-    timingFeatures,
-    baselineSampleCount: baseline?.sampleCount,
-  });
+    ratingResult = mapPracticeToSrsRating({
+      parts: parts.map((part) => ({
+        isCorrect: part.isCorrect,
+        hintsUsed: part.hintsUsed,
+        revealStepsSeen: part.revealStepsSeen,
+        misconceptionTags: part.misconceptionTags,
+      })),
+      timingFeatures,
+      baselineSampleCount: baseline?.sampleCount,
+    });
 
-  const evidenceReasons = submission.timing
-    ? ratingResult.reasons
-    : ['timing_missing', ...ratingResult.reasons];
+    evidenceReasons = submission.timing
+      ? ratingResult.reasons
+      : ['timing_missing', ...ratingResult.reasons];
+  }
 
   const updatedCard = reviewCard(card, ratingResult.rating, now);
 
