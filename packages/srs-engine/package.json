@@ -11,7 +11,7 @@
     "./scheduler": "./src/srs/scheduler.ts",
     "./review-processor": "./src/srs/review-processor.ts",
     "./queue": "./src/srs/queue.ts",
-    "./evidence": "./src/srs/proficiency-evidence-contract.ts",
+    "./evidence": "./src/srs/proficiency-evidence.ts",
     "./scheduler-policy": "./src/srs/scheduler-policy-contract.ts",
     "./fsrs-fitting": "./src/srs/fsrs-fitting-contract.ts",
     "./evaluation": "./src/srs/evaluation-contract.ts",

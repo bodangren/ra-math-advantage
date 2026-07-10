@@ -87,11 +87,26 @@ export {
   practiceVariantEvidenceInputSchema,
   practiceVariantEvidenceResultSchema,
 } from './srs/proficiency-evidence-contract';
+
+export {
+  PROFICIENCY_EVIDENCE_HALF_LIFE,
+  ONE_SIDED_WILSON_Z,
+  computeRecencyWeightedCorrectness,
+  oneSidedWilsonLowerBound,
+  rescaleAgainstGuessFloor,
+  computePracticeVariantEvidence,
+} from './srs/proficiency-evidence';
+export type {
+  EvidenceTimingContext,
+  RecencyWeightedCorrectness,
+  PracticeVariantEvidenceInput,
+} from './srs/proficiency-evidence';
 export type {
   GuessFloorRef,
   PracticeAttemptEvidence,
   PracticeVariantEvidenceInputV31,
   PracticeVariantEvidenceResultV31,
+  EvidenceDiagnosticReason,
 } from './srs/proficiency-evidence-contract';
 
 export {
