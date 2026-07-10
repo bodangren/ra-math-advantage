@@ -36,8 +36,8 @@
 
 ## Phase 3: Implementation
 
-- [~] Task: Implement v3.1 evidence aggregation and confidence diagnostics
-- [ ] Task: Implement the staged practice-to-SRS rating mapper
+- [x] Task: Implement v3.1 evidence aggregation and confidence diagnostics [4cd6001]
+- [~] Task: Implement the staged practice-to-SRS rating mapper
 - [ ] Task: Implement two-probe adaptive frontier placement
 - [ ] Task: Implement per-priority retention and review-log parameter stamping
 - [ ] Task: Implement ability-stratified edge calibration and versioned FSRS fitting
