@@ -1,0 +1,136 @@
+{
+  "schemaVersion": "lms-architecture-fixtures.v1",
+  "fixtures": [
+    {
+      "id": "app-to-app-import",
+      "sourceFile": "apps/im3/lib/example.ts",
+      "expectedRuleId": "app-to-app",
+      "expectedMessageIncludes": "apps may not import another app",
+      "input": {
+        "sourceKind": "app",
+        "targetKind": "app",
+        "specifier": "../../integrated-math-2/lib/example"
+      },
+      "graph": null
+    },
+    {
+      "id": "package-to-app-import",
+      "sourceFile": "packages/practice-core/src/example.ts",
+      "expectedRuleId": "package-to-app",
+      "expectedMessageIncludes": "packages may not import app code",
+      "input": {
+        "sourceKind": "package",
+        "targetKind": "app",
+        "specifier": "../../../apps/integrated-math-3/lib/example"
+      },
+      "graph": null
+    },
+    {
+      "id": "generated-convex-import",
+      "sourceFile": "packages/practice-core/src/example.ts",
+      "expectedRuleId": "convex-generated-boundary",
+      "expectedMessageIncludes": "app-local Convex generated API",
+      "input": {
+        "sourceKind": "package",
+        "targetKind": "package",
+        "specifier": "../../../apps/integrated-math-3/convex/_generated/api"
+      },
+      "graph": null
+    },
+    {
+      "id": "undeclared-package-dependency",
+      "sourceFile": "packages/practice-core/src/example.ts",
+      "expectedRuleId": "undeclared-dependency",
+      "expectedMessageIncludes": "dependency is not declared",
+      "input": {
+        "sourceKind": "package",
+        "targetKind": "package",
+        "sourceLayer": "platform",
+        "targetLayer": "platform",
+        "sourceDomainClassification": "domain-neutral",
+        "targetDomainClassification": "domain-neutral",
+        "declared": false,
+        "publicEntryPoint": true,
+        "specifier": "@math-platform/srs-engine"
+      },
+      "graph": null
+    },
+    {
+      "id": "reverse-feature-content-edge",
+      "sourceFile": "packages/activity-components/src/example.ts",
+      "expectedRuleId": "prohibited-layer-edge",
+      "expectedMessageIncludes": "feature may not depend on domain-content",
+      "input": {
+        "sourceKind": "package",
+        "targetKind": "package",
+        "sourceLayer": "feature",
+        "targetLayer": "domain-content",
+        "sourceDomainClassification": "domain-neutral",
+        "targetDomainClassification": "domain-specific",
+        "declared": true,
+        "publicEntryPoint": true,
+        "specifier": "@math-platform/math-content"
+      },
+      "graph": null
+    },
+    {
+      "id": "domain-content-leak",
+      "sourceFile": "packages/srs-engine/src/example.ts",
+      "expectedRuleId": "domain-content-leakage",
+      "expectedMessageIncludes": "domain-neutral package may not import domain content",
+      "input": {
+        "sourceKind": "package",
+        "targetKind": "package",
+        "sourceLayer": "platform",
+        "targetLayer": "platform",
+        "sourceDomainClassification": "domain-neutral",
+        "targetDomainClassification": "domain-specific",
+        "declared": true,
+        "publicEntryPoint": true,
+        "specifier": "@math-platform/course-content"
+      },
+      "graph": null
+    },
+    {
+      "id": "private-deep-import",
+      "sourceFile": "packages/efficacy-core/src/example.ts",
+      "expectedRuleId": "private-deep-import",
+      "expectedMessageIncludes": "import a public entry point",
+      "input": {
+        "sourceKind": "package",
+        "targetKind": "package",
+        "sourceLayer": "platform",
+        "targetLayer": "platform",
+        "sourceDomainClassification": "domain-neutral",
+        "targetDomainClassification": "domain-neutral",
+        "declared": true,
+        "publicEntryPoint": false,
+        "specifier": "@math-platform/srs-engine/src/private"
+      },
+      "graph": null
+    },
+    {
+      "id": "package-cycle-direct",
+      "sourceFile": "packages/a/package.json",
+      "expectedRuleId": "package-cycle",
+      "expectedMessageIncludes": "pkg.a -> pkg.b -> pkg.a",
+      "input": null,
+      "graph": {
+        "pkg.a": ["pkg.b"],
+        "pkg.b": ["pkg.a"]
+      }
+    },
+    {
+      "id": "package-cycle-transitive",
+      "sourceFile": "packages/a/package.json",
+      "expectedRuleId": "package-cycle",
+      "expectedMessageIncludes": "pkg.a -> pkg.b -> pkg.c -> pkg.a",
+      "input": null,
+      "graph": {
+        "pkg.a": ["pkg.b"],
+        "pkg.b": ["pkg.c"],
+        "pkg.c": ["pkg.a"]
+      }
+    }
+  ]
+}
