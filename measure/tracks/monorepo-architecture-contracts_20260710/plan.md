@@ -27,10 +27,10 @@
 - [x] Task: Test workspace and CI inventory parity [fb16971]
     - [x] Fail when a workspace is absent, duplicated, or lacks required commands
     - [x] Fail when root and CI inventories diverge
-- [~] Task: Test debt-record behavior
-    - [ ] Reject unowned, unlinked, malformed, or expired exceptions
-    - [ ] Prove an exception cannot match unrelated future violations
-- [ ] Task: Add behavioral complements for affected package boundaries
+- [x] Task: Test debt-record behavior [68df0f3]
+    - [x] Reject unowned, unlinked, malformed, or expired exceptions
+    - [x] Prove an exception cannot match unrelated future violations
+- [~] Task: Add behavioral complements for affected package boundaries
     - [ ] Exercise public exports and at least one real consumer per shared surface
 - [ ] Task: Measure - User Manual Verification 'Phase 2: Behavioral and Architecture Tests' (Protocol in workflow.md)
 
