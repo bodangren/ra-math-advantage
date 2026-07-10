@@ -292,8 +292,6 @@ describe('computeObjectiveProficiency (rename)', () => {
 // ============================================
 
 describe('InMemoryCardStore (rename)', () => {
-  const mockNow = '2026-04-18T00:00:00.000Z';
-
   it('exposes getCardByStudentAndVariant (not getCardByStudentAndFamily)', () => {
     const store = new InMemoryCardStore();
     expect(typeof (store as unknown as Record<string, unknown>).getCardByStudentAndVariant).toBe(

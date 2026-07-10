@@ -1,4 +1,7 @@
-// Domain-neutral knowledge-space.v1 TypeScript types
+// Domain-neutral knowledge-space.v2 TypeScript types
+
+/** Canonical schema version from kst-srs.v3.2 Appendix C. */
+export const KNOWLEDGE_SPACE_SCHEMA_VERSION = 'knowledge-space.v2' as const;
 
 export type NodeKind =
   | 'domain'

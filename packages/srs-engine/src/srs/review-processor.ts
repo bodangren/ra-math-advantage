@@ -19,7 +19,6 @@ import { deriveTimingFeatures } from '@math-platform/practice-core/timing-baseli
 import { reviewCard } from './scheduler';
 import type {
   PracticeSubmissionEnvelope,
-  PracticeSubmissionPart,
   PracticeTimingBaseline,
   SrsCardState,
   SrsReviewLogEntry,

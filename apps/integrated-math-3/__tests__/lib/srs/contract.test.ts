@@ -31,7 +31,7 @@ import type {
 
 describe('SRS_CONTRACT_VERSION', () => {
   it('should be srs.contract.v1', () => {
-    expect(SRS_CONTRACT_VERSION).toBe('srs.contract.v1');
+    expect(SRS_CONTRACT_VERSION).toBe('srs.contract.v3');
   });
 });
 

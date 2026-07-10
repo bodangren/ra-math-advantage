@@ -15,6 +15,7 @@ export type {
   ValidationError,
   ValidationResult,
 } from './types';
+export { KNOWLEDGE_SPACE_SCHEMA_VERSION } from './types';
 
 export type { PrerequisiteCycle, CycleDetectionOptions } from './validation';
 
@@ -95,11 +96,15 @@ export type {
 
 export {
   MASTERY_THRESHOLDS_DEFAULT,
+  MASTERY_CONFIG_DEFAULT,
   masteryThresholdsSchema,
+  masteryConfigSchema,
+  normalizeMasteryConfig,
   knowledgeStateEntrySchema,
 } from './mastery-state';
 export type {
   MasteryThresholds,
+  MasteryConfig,
   MasteryState,
   KnowledgeStateEntry,
   KnowledgeStateEvidence,

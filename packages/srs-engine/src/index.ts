@@ -1,8 +1,12 @@
 export {
   SRS_CONTRACT_VERSION,
+  SRS_CONTRACT_VERSION_LEGACY,
   PRIORITY_DEFAULTS,
   STUDENT_DAILY_PRACTICE_COPY,
   TEACHER_DAILY_PRACTICE_COPY,
+  isPlacementEstimate,
+  isPlacementSeededCard,
+  isDailyQueueResult,
 } from './srs/contract';
 
 export type {
@@ -13,6 +17,12 @@ export type {
   SrsReviewLogEntry,
   SrsSessionConfig,
   SrsSession,
+  PlacementConfidence,
+  PlacementEvidenceType,
+  PlacementEstimate,
+  PlacementCardProvenance,
+  PlacementSeededCard,
+  DailyQueueResult,
   PracticeSubmissionEnvelope,
   PracticeSubmissionPart,
   PracticeTimingSummary,

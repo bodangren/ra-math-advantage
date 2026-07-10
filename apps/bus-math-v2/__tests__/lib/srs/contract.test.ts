@@ -13,7 +13,7 @@ import {
 describe('SRS Contract', () => {
   describe('version', () => {
     it('exports srs.contract.v1', () => {
-      expect(SRS_CONTRACT_VERSION).toBe('srs.contract.v1');
+      expect(SRS_CONTRACT_VERSION).toBe('srs.contract.v3');
     });
   });
 

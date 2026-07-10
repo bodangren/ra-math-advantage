@@ -30,6 +30,20 @@ export interface MasteryThresholds {
 }
 
 /**
+ * Canonical kst-srs.v3 engine configuration.
+ *
+ * `MasteryThresholds` remains the source-compatible four-field v2 surface;
+ * callers can migrate through `normalizeMasteryConfig`, which injects the v3
+ * defaults for the two additive fields.
+ */
+export interface MasteryConfig extends MasteryThresholds {
+  /** Prerequisite weights at or above this value are non-compensatory gates. */
+  hardGateThreshold: number;
+  /** Symmetric mastered-count delta for improving/declining progress. */
+  trendThreshold: number;
+}
+
+/**
  * Default mastery thresholds — frozen to defend against runtime drift
  * (anti-pattern A4: no parallel threshold literals).
  */
@@ -38,6 +52,13 @@ export const MASTERY_THRESHOLDS_DEFAULT: MasteryThresholds = Object.freeze({
   masteryExit: 0.7,
   readyThreshold: 0.8,
   nearThreshold: 0.5,
+});
+
+/** Normative defaults from kst-srs.v3.2 §2.4. */
+export const MASTERY_CONFIG_DEFAULT: MasteryConfig = Object.freeze({
+  ...MASTERY_THRESHOLDS_DEFAULT,
+  hardGateThreshold: 1,
+  trendThreshold: 3,
 });
 
 /**
@@ -50,6 +71,40 @@ export const masteryThresholdsSchema = z.strictObject({
   readyThreshold: z.number().min(0).max(1),
   nearThreshold: z.number().min(0).max(1),
 });
+
+/** Strict runtime schema for the canonical v3 configuration. */
+export const masteryConfigSchema = z.strictObject({
+  masteryEnter: z.number().min(0).max(1),
+  masteryExit: z.number().min(0).max(1),
+  readyThreshold: z.number().min(0).max(1),
+  nearThreshold: z.number().min(0).max(1),
+  hardGateThreshold: z.number().min(0).max(1),
+  trendThreshold: z.number().int().nonnegative(),
+}).superRefine((config, ctx) => {
+  if (config.masteryExit >= config.masteryEnter) {
+    ctx.addIssue({
+      code: 'custom',
+      path: ['masteryExit'],
+      message: 'masteryExit must be less than masteryEnter',
+    });
+  }
+  if (config.nearThreshold >= config.readyThreshold) {
+    ctx.addIssue({
+      code: 'custom',
+      path: ['nearThreshold'],
+      message: 'nearThreshold must be less than readyThreshold',
+    });
+  }
+});
+
+/**
+ * Normalize legacy or partial configuration into a validated v3 config.
+ */
+export function normalizeMasteryConfig(
+  config: Partial<MasteryConfig> = {},
+): MasteryConfig {
+  return masteryConfigSchema.parse({ ...MASTERY_CONFIG_DEFAULT, ...config });
+}
 
 // ---------------------------------------------------------------------------
 // Four-way state union (kst-srs.v2 §3.2)

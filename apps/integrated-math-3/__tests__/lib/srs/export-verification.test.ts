@@ -52,7 +52,7 @@ import type {
 
 describe('SRS type export verification', () => {
   it('should export the expected value constants', () => {
-    expect(SRS_CONTRACT_VERSION).toBe('srs.contract.v1');
+    expect(SRS_CONTRACT_VERSION).toBe('srs.contract.v3');
     expect(typeof PRIORITY_DEFAULTS).toBe('object');
     expect(typeof STUDENT_DAILY_PRACTICE_COPY).toBe('object');
     expect(typeof TEACHER_DAILY_PRACTICE_COPY).toBe('object');
