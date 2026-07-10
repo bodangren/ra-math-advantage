@@ -16,7 +16,7 @@
     - [x] Define interleaving, deterministic fuzz, projected-day load, and maximum-interval invariants
 - [x] Task: Measure - User Manual Verification 'Phase 1: Contract & Schema Definition' (Protocol in workflow.md) [e790f8e]
 
-## Phase 2: Behavioral and Contract Tests
+## Phase 2: Behavioral and Contract Tests [checkpoint: 963edca]
 
 - [x] Task: Test normalized planner mathematics and deterministic ranking [41bed80]
     - [x] Reproduce the raw-count dominance correction example
@@ -29,11 +29,11 @@
 - [x] Task: Test deterministic session composition [e84fb18]
     - [x] Cover objective round-robin ordering, new-card placement, fuzz stability, and lightest-day selection
     - [x] Prove composition preserves the selected-card set
-- [~] Task: Measure - User Manual Verification 'Phase 2: Behavioral and Contract Tests' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 2: Behavioral and Contract Tests' (Protocol in workflow.md) [963edca]
 
 ## Phase 3: Implementation
 
-- [ ] Task: Implement normalized planner terms, weights, and graph precomputation
+- [~] Task: Implement normalized planner terms, weights, and graph precomputation
 - [ ] Task: Implement domain utility registration and the synthetic reference provider
 - [ ] Task: Implement sparse-mode ranking and recommendation diversity
 - [ ] Task: Implement review-load budgeting and role-specific projection fields
