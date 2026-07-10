@@ -18,6 +18,7 @@ export type {
   TeacherHeatmapCell,
   InterventionGroup,
   TeacherVisualizationV1,
+  TeacherVisualizationOptions,
 } from './types';
 
 export {

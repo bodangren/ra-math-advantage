@@ -14,6 +14,10 @@ import {
   studentVisualizationV1Schema,
   teacherVisualizationV1Schema,
 } from '../projections/schemas';
+import {
+  projectStudentVisualization,
+  projectTeacherVisualization,
+} from '../projections/visualization';
 
 describe('planner.v3.2 review-load contract', () => {
   it('publishes identical root and dedicated-subpath schemas', () => {
@@ -68,5 +72,10 @@ describe('v3.2 additive role projection fields', () => {
       misconceptionClusters: [], interventionGroups: [], standardsCoverage: [],
       activeMisconceptionStudentCount: 0, reviewLoadStates: { s1: 'elevated', s2: 'normal' },
     }).reviewLoadStates).toEqual({ s1: 'elevated', s2: 'normal' });
+  });
+
+  it('projects computed load state into student and teacher payloads', () => {
+    expect(projectStudentVisualization([], [], {}, { reviewLoadState: 'elevated' }).reviewLoadState).toBe('elevated');
+    expect(projectTeacherVisualization([], [], {}, { reviewLoadStates: { s1: 'saturated' } }).reviewLoadStates).toEqual({ s1: 'saturated' });
   });
 });

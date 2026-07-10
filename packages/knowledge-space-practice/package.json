@@ -18,6 +18,7 @@
     "./planner/v3-2-domain-utility-contract": "./src/planner/v3-2-domain-utility-contract.ts",
     "./planner/v3-2-domain-utility": "./src/planner/v3-2-domain-utility.ts",
     "./planner/v3-2-review-load-contract": "./src/planner/v3-2-review-load-contract.ts",
+    "./planner/v3-2-review-load": "./src/planner/v3-2-review-load.ts",
     "./projections": "./src/projections/index.ts"
   },
   "scripts": {

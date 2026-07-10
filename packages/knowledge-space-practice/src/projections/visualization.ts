@@ -16,6 +16,7 @@ import type {
   StudentVisualizationOptions,
   ParentVisualizationV1,
   TeacherVisualizationV1,
+  TeacherVisualizationOptions,
   TeacherHeatmapCell,
   PrerequisiteGap,
   InterventionGroup,
@@ -296,6 +297,7 @@ export function projectStudentVisualization(
     recommendedNext,
     edges: visualEdges,
     activeMisconceptionCount: options?.activeMisconceptionSlugs?.length ?? 0,
+    ...(options?.reviewLoadState ? { reviewLoadState: options.reviewLoadState } : {}),
   };
 }
 
@@ -406,7 +408,7 @@ export function projectTeacherVisualization(
   nodes: KnowledgeSpaceNode[],
   edges: KnowledgeSpaceEdge[],
   classStats: Record<string, { mastered: number; total: number }> = {},
-  options?: { readonly perStudentActiveMisconceptions?: Record<string, readonly string[]> },
+  options?: TeacherVisualizationOptions,
 ): TeacherVisualizationV1 {
   const nodeMap = new Map(nodes.map((n) => [n.id, n]));
 
@@ -534,5 +536,6 @@ export function projectTeacherVisualization(
     interventionGroups,
     standardsCoverage,
     activeMisconceptionStudentCount,
+    ...(options?.reviewLoadStates ? { reviewLoadStates: options.reviewLoadStates } : {}),
   };
 }

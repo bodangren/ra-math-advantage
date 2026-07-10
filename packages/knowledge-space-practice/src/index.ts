@@ -140,6 +140,8 @@ export {
   reviewLoadConfigV3_2Schema,
   reviewLoadAssessmentV3_2Schema,
 } from './planner/v3-2-review-load-contract';
+export { assessReviewLoadV3_2 } from './planner/v3-2-review-load';
+export type { AssessReviewLoadInputV3_2 } from './planner/v3-2-review-load';
 export type {
   ReviewLoadStateV3_2,
   ReviewLoadConfigV3_2,
@@ -184,4 +186,5 @@ export type {
   TeacherHeatmapCell,
   InterventionGroup,
   TeacherVisualizationV1,
+  TeacherVisualizationOptions,
 } from './projections';

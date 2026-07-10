@@ -124,6 +124,8 @@ export interface StudentVisualizationOptions {
   readonly knowledgeState?: ReadonlyMap<string, KnowledgeStateEntry>;
   /** Shared kst-srs.v3 engine configuration used by gated readiness. */
   readonly masteryConfig?: Partial<MasteryConfig>;
+  /** Planner-computed review-load state; React consumers must not infer it. */
+  readonly reviewLoadState?: 'normal' | 'elevated' | 'saturated';
 }
 
 export interface ParentVisualizationV1 {
@@ -160,6 +162,12 @@ export interface TeacherVisualizationV1 {
   standardsCoverage: Array<{ standardId: string; title: string; proficiencyRate: number }>;
   activeMisconceptionStudentCount: number;
   reviewLoadStates?: Record<string, 'normal' | 'elevated' | 'saturated'>;
+}
+
+export interface TeacherVisualizationOptions {
+  readonly perStudentActiveMisconceptions?: Record<string, readonly string[]>;
+  /** Planner-computed states keyed by student ID. */
+  readonly reviewLoadStates?: Record<string, 'normal' | 'elevated' | 'saturated'>;
 }
 
 // Re-export blueprint types used by projection callers
