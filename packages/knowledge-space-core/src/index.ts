@@ -38,10 +38,15 @@ export type {
 export {
   masterySnapshotSchema,
   progressTrendHistorySchema,
+  DEFAULT_PROGRESS_TREND_WINDOW_DAYS,
+  DEFAULT_PROGRESS_TREND_THRESHOLD,
+  computeProgressTrend,
 } from './progress-trend';
 export type {
   MasterySnapshot,
   ProgressTrendHistory,
+  ProgressTrend,
+  ProgressTrendOptions,
 } from './progress-trend';
 
 export {

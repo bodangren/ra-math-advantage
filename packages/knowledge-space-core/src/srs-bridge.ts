@@ -42,8 +42,8 @@ export interface ObjectiveProficiencyResult {
 }
 
 /**
- * Structural mirror of an SRS card state. The shape matches the minimum
- * the v2 bridge needs; richer card fields are forwarded as opaque metadata.
+ * Structural mirror retained for the v2 bridge compatibility surface.
+ * v3 retention must arrive through an aggregated proficiency result.
  */
 export interface SrsCardState {
   cardId: string;
@@ -188,9 +188,8 @@ export class DefaultSrsToKstBridge implements SrsToKstBridge {
  *   - Picks the most recent card (by lastReviewedAt; falls back to highest
  *     stability; positional last-wins as final tiebreaker).
  *   - Picks the last proficiency result (positional last-wins).
- *   - Merges: stability/lastReviewedAt from card; isProficient from
- *     proficiency (if available) else from card state; retention from
- *     proficiency if available (else engine computes from stability).
+ *   - Uses aggregated objective retention from proficiency evidence.
+ *   - Uses card state only as a compatibility fallback for proficiency.
  *
  * Returns one evidence record per unique objective ID, keyed by objectiveId
  * so the engine maps it to graph nodes.
@@ -198,7 +197,7 @@ export class DefaultSrsToKstBridge implements SrsToKstBridge {
 function buildEvidence(
   cards: readonly SrsCardState[],
   proficiencies: readonly ObjectiveProficiencyResult[],
-  now: number,
+  _now: number,
 ): KnowledgeStateEvidence[] {
   // Group cards by objectiveId, keeping the best (most recent)
   const bestCardByObjective = new Map<string, SrsCardState>();
@@ -243,25 +242,8 @@ function buildEvidence(
       sourceId: objId,
     };
 
-    if (card) {
-      if (card.stability != null) entry.stability = card.stability;
-      if (card.lastReviewedAt != null) entry.lastReviewedAt = card.lastReviewedAt;
-    }
-
-    // Card stability takes priority for retention computation.
-    // Pre-compute retention from card stability when available.
-    let cardRetention: number | undefined;
-    if (card?.stability != null && card?.lastReviewedAt != null) {
-      const deltaMs = now - card.lastReviewedAt;
-      const deltaDays = Math.max(0, deltaMs / (1000 * 60 * 60 * 24));
-      cardRetention = stabilityToRetention(card.stability, deltaDays);
-    }
-
-    if (cardRetention != null) {
-      // Card-based retention is the primary signal
-      entry.retention = cardRetention;
-    } else if (prof) {
-      // Fall back to proficiency retentionStrength
+    if (prof) {
+      // SRS owns card aggregation; core consumes only objective evidence.
       entry.retention = prof.retentionStrength;
     }
 

@@ -23,6 +23,7 @@
     "build": "tsc --noEmit"
   },
   "dependencies": {
+    "@math-platform/srs-engine": "*",
     "zod": "^4.1.12"
   },
   "devDependencies": {

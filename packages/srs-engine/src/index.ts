@@ -58,11 +58,16 @@ export {
   isOverdue,
   daysOverdue,
   buildDailyQueue,
+  buildDailyQueueResult,
 } from './srs/queue';
 
 export type { QueueItem } from './srs/queue';
 
-export { PLACEMENT_STABILITY_HORIZONS } from './srs/placement';
+export {
+  PLACEMENT_STABILITY_HORIZONS,
+  expandPlacementEvidence,
+  synthesizePlacementCards,
+} from './srs/placement';
 export type {
   PlacementGraphEdge,
   PlacementGraphAdapter,
@@ -136,7 +141,10 @@ export type {
 
 export {
   STABILITY_SCALE_FACTOR,
+  FSRS_RETENTION_FACTOR,
+  FSRS_RETENTION_DECAY,
   stabilityToRetention,
+  objectiveLiveRetention,
   aggregateCardsToEvidence,
 } from './srs/srs-proficiency';
 

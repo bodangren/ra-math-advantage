@@ -95,7 +95,7 @@ describe('DefaultSrsToKstBridge.convert — state transitions', () => {
       }),
     ];
     const proficiencies = [
-      makeProficiency('skill.a', { isProficient: true }),
+      makeProficiency('skill.a', { isProficient: true, retentionStrength: 0.95 }),
     ];
 
     const state = bridge.convert({ cards, proficiencies, graph, now: NOW });
@@ -118,13 +118,13 @@ describe('DefaultSrsToKstBridge.convert — state transitions', () => {
       }),
     ];
     const proficiencies = [
-      makeProficiency('skill.a', { isProficient: true }),
+      makeProficiency('skill.a', { isProficient: true, retentionStrength: 0.6 }),
     ];
 
     const state = bridge.convert({ cards, proficiencies, graph, now: NOW });
     const entry = state.get('skill.a');
     expect(entry).toBeDefined();
-    // With stability=10 and 50 days elapsed, retention = exp(-50/10) ≈ 0.0067 < 0.7
+    // Core consumes the objective retention already aggregated by srs-engine.
     expect(entry!.retention).toBeLessThan(0.7);
     expect(entry!.state).toBe('inProgress');
   });
@@ -177,7 +177,7 @@ describe('DefaultSrsToKstBridge.convert — state transitions', () => {
       }),
     ];
     const proficiencies = [
-      makeProficiency('skill.c', { isProficient: true }),
+      makeProficiency('skill.c', { isProficient: true, retentionStrength: 0.95 }),
     ];
 
     const state = bridge.convert({ cards, proficiencies, graph, now: NOW });
@@ -204,14 +204,14 @@ describe('DefaultSrsToKstBridge.convert — state transitions', () => {
       }),
     ];
     const proficiencies = [
-      makeProficiency('skill.x', { isProficient: true }),
+      makeProficiency('skill.x', { isProficient: true, retentionStrength: 0.95 }),
     ];
 
     const state = bridge.convert({ cards, proficiencies, graph, now: NOW });
     const entry = state.get('skill.x');
     expect(entry).toBeDefined();
-    // Recent card should win → high retention → mastered
-    expect(entry!.retention).toBeCloseTo(1.0, 1);
+    // Aggregated objective evidence wins over raw card scheduling fields.
+    expect(entry!.retention).toBeCloseTo(0.95, 2);
     expect(entry!.state).toBe('mastered');
   });
 

@@ -117,7 +117,7 @@ describe('stabilityToRetention — exported decay function', () => {
     expect(stabilityToRetention).toBeDefined();
     if (typeof stabilityToRetention === 'function') {
       // retention = exp(-0 / (stability * scale)) = exp(0) = 1
-      expect(stabilityToRetention(7, 0, 1)).toBeCloseTo(1.0, 5);
+      expect(stabilityToRetention(7, 0)).toBeCloseTo(1.0, 5);
     }
   });
 
@@ -126,23 +126,23 @@ describe('stabilityToRetention — exported decay function', () => {
     expect(stabilityToRetention).toBeDefined();
     if (typeof stabilityToRetention === 'function') {
       // With stability=7, after 30 days, retention should be < 1 but > 0
-      const r30 = stabilityToRetention(7, 30, 1);
+      const r30 = stabilityToRetention(7, 30);
       expect(r30).toBeGreaterThan(0);
       expect(r30).toBeLessThan(1);
       // After 365 days, should be very low
-      const r365 = stabilityToRetention(7, 365, 1);
+      const r365 = stabilityToRetention(7, 365);
       expect(r365).toBeLessThan(r30);
       expect(r365).toBeGreaterThan(0);
     }
   });
 
-  it('uses the scale parameter to control decay speed', async () => {
+  it('uses stability to control decay speed', async () => {
     const { stabilityToRetention } = await import('../knowledge-state-engine');
     expect(stabilityToRetention).toBeDefined();
     if (typeof stabilityToRetention === 'function') {
       // At default scale, smaller stability → faster decay
-      const rHigh = stabilityToRetention(30, 30, 1);
-      const rLow = stabilityToRetention(3, 30, 1);
+      const rHigh = stabilityToRetention(30, 30);
+      const rLow = stabilityToRetention(3, 30);
       expect(rHigh).toBeGreaterThan(rLow);
     }
   });
