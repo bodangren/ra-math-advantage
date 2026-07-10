@@ -11,10 +11,10 @@
 - [x] Task: Define domain utility and sparse-mode contracts [628b469]
     - [x] Add provider identity, version, learner context, utility, and signal provenance schemas
     - [x] Add adapter registration and sparse-domain release metadata
-- [~] Task: Define review-load and session-composition contracts
-    - [ ] Add load budget configuration and role-projection fields
-    - [ ] Define interleaving, deterministic fuzz, projected-day load, and maximum-interval invariants
-- [ ] Task: Measure - User Manual Verification 'Phase 1: Contract & Schema Definition' (Protocol in workflow.md)
+- [x] Task: Define review-load and session-composition contracts [5808f7f]
+    - [x] Add load budget configuration and role-projection fields
+    - [x] Define interleaving, deterministic fuzz, projected-day load, and maximum-interval invariants
+- [~] Task: Measure - User Manual Verification 'Phase 1: Contract & Schema Definition' (Protocol in workflow.md)
 
 ## Phase 2: Behavioral and Contract Tests
 
