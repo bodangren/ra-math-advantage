@@ -6,7 +6,7 @@
 
 ## Phase 1: Architecture Contract Definition
 
-- [ ] Task: Define the versioned workspace and ownership manifest schema
+- [~] Task: Define the versioned workspace and ownership manifest schema
     - [ ] Model apps, packages, layers, owners, domain classification, exports, and quality commands
     - [ ] Model allowed edges and explicit expiring debt records
 - [ ] Task: Define dependency-DAG and boundary policies
@@ -52,4 +52,3 @@
     - [ ] Run every package/app quality command represented in the manifest
     - [ ] Run architecture fixtures, boundary checks, and `measure/doctor.sh`
 - [ ] Task: Measure - User Manual Verification 'Phase 4: Generate Docs, Doctor, and Architecture Gate' (Protocol in workflow.md)
-

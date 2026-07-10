@@ -84,7 +84,7 @@ groups (about 123 KB), three identical 16.5 KB Convex schemas, eight of twenty
 packages omitted from CI, shallow regex-only boundary guards, and an inverted
 `activity-components -> math-content` dependency.
 
-- [ ] **Track: Monorepo Architecture Contracts and Enforcement**
+- [~] **Track: Monorepo Architecture Contracts and Enforcement**
    *Define a machine-readable package DAG and ownership model, expand boundary enforcement, place every workspace under quality gates, repair math-content lint/typecheck, and generate architecture evidence.*
    *Link: [./tracks/monorepo-architecture-contracts_20260710/](./tracks/monorepo-architecture-contracts_20260710/)*
 
