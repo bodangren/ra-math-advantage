@@ -69,9 +69,9 @@ production adopter because it owns the repository's complete KST runtime chain.
    *Implemented guess-corrected Wilson evidence, normative rating caps, two-probe placement, priority retention with exact provenance, ability-stratified calibration, versioned FSRS fitting, and offline synthetic/replay evaluation. The release gate passed 458 SRS-engine tests at 90.34% statement coverage, 228 practice-core tests, 89 focused IM3 tests, package lint/typecheck/build, IM3 production build, boundaries, and Measure doctor.*
    *Link: [./archive/kst-srs-v3-1-evidence-calibration_20260710/](./archive/kst-srs-v3-1-evidence-calibration_20260710/)*
 
-- [~] **Track: KST+SRS v3.2 Planner and Session Quality**
-   *Depends on v3.1. Implement normalized planning, domain utility providers, prerequisite-sparse ranking, diversity, review-load budgeting, deterministic interleaving, interval fuzz, and load balancing.*
-   *Link: [./tracks/kst-srs-v3-2-planner-session_20260710/](./tracks/kst-srs-v3-2-planner-session_20260710/)*
+- [x] **Track: KST+SRS v3.2 Planner and Session Quality** — **COMPLETED / ARCHIVED** (2026-07-10)
+   *Implemented release-bound normalized planning, offline utility providers with mandatory provenance, prerequisite-sparse ranking, cap-two diversity, seven-day review-load budgeting, role projections, real queue interleaving, deterministic interval fuzz, and scheduler load balancing. Final gates passed 445 knowledge-space-practice tests at 88.70% statement coverage and 477 SRS-engine tests at 90.88%, plus typecheck/lint/build, determinism, generated freshness, boundaries, and Measure doctor.*
+   *Link: [./archive/kst-srs-v3-2-planner-session_20260710/](./archive/kst-srs-v3-2-planner-session_20260710/)*
 
 - [ ] **Track: KST+SRS v3.2 IM3 Runtime and Data Migration**
    *Depends on the v3.2 engine and monorepo architecture-contract tracks. Adopt v3.2 in IM3 through widen-migrate-narrow Convex changes, resumable dry-run backfills, comparison/cutover controls, BM2 queue reconciliation, and all-app compatibility gates.*
