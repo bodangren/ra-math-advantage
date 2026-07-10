@@ -2,5 +2,5 @@
 
 - [Specification](./spec.md)
 - [Implementation Plan](./plan.md)
+- [Calibration and Evaluation Release Operations](./release-operations.md)
 - [Metadata](./metadata.json)
-
