@@ -27,19 +27,23 @@
 
 ## Phase 2: Behavioral and Contract Tests
 
-- [ ] Task: Encode the upstream v3 worked examples as executable fixtures
-    - [ ] Test hard-gate readiness with mastered soft prerequisites
-    - [ ] Test elapsed-time retention and minimum aggregation excluding `reps = 0`
-    - [ ] Test not-A-conditioned calibration and symmetric trend thresholds
-- [ ] Task: Test placement and daily-queue correctness
-    - [ ] Test confidence-to-stability synthesis, direct/inferred provenance, and hard-edge closure
-    - [ ] Test reviews-first lowest-retention ordering, caps, and backlog suppression
-    - [ ] Test deterministic tie-breaking and invalid input handling
-- [ ] Task: Test ownership and compatibility behavior
-    - [ ] Prove all package/app consumers resolve the canonical SRS implementation
-    - [ ] Add behavioral complements for boundary and export checks
-    - [ ] Pin the v3 migration property for graphs without hard-gate edges
-- [ ] Task: Measure - User Manual Verification 'Phase 2: Behavioral and Contract Tests' (Protocol in workflow.md)
+- [x] Task: Encode the upstream v3 worked examples as executable fixtures [5ae4f7e, 644314e, b4a9368, 53ffdc9]
+    - [x] Test hard-gate readiness with mastered soft prerequisites
+    - [x] Test elapsed-time retention and minimum aggregation excluding `reps = 0`
+    - [x] Test not-A-conditioned calibration and symmetric trend thresholds
+- [x] Task: Test placement and daily-queue correctness [24dcb0c, 6fdfe9b]
+    - [x] Test confidence-to-stability synthesis, direct/inferred provenance, and hard-edge closure
+    - [x] Test reviews-first lowest-retention ordering, caps, and backlog suppression
+    - [x] Test deterministic tie-breaking and invalid input handling
+- [x] Task: Test ownership and compatibility behavior [810510d, 9eadc7d, e321701, 6726ef6]
+    - [x] Prove all package/app consumers resolve the canonical SRS implementation
+    - [x] Add behavioral complements for boundary and export checks
+    - [x] Pin the v3 migration property for graphs without hard-gate edges
+- [x] Task: Measure - User Manual Verification 'Phase 2: Behavioral and Contract Tests' (Protocol in workflow.md)
+    - [x] User directed autonomous correct closeout and continuation to the next track
+    - [x] Core 695/695, SRS 253/253, and projection 379/379 tests passed
+    - [x] Changed-module coverage exceeded 80% branches and 94% statements
+    - [x] Worked examples and invalid-input cases manually inspected against v3.2
 
 ## Phase 3: Implementation
 
