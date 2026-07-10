@@ -41,8 +41,8 @@
 - [x] Task: Implement two-probe adaptive frontier placement [3186111]
 - [x] Task: Implement per-priority retention and review-log parameter stamping [b6d5425]
 - [x] Task: Implement ability-stratified edge calibration and versioned FSRS fitting [070eb1d]
-- [~] Task: Implement the offline synthetic and replay evaluation harness
-- [ ] Task: Measure - User Manual Verification 'Phase 3: Implementation' (Protocol in workflow.md)
+- [x] Task: Implement the offline synthetic and replay evaluation harness [1918590]
+- [~] Task: Measure - User Manual Verification 'Phase 3: Implementation' (Protocol in workflow.md)
 
 ## Phase 4: Generate Docs, Doctor, and Release Gate
 
