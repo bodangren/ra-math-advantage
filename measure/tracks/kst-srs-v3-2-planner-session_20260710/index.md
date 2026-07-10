@@ -3,4 +3,4 @@
 - [Specification](./spec.md)
 - [Implementation Plan](./plan.md)
 - [Metadata](./metadata.json)
-
+- [Release operations and app handoff](./release-operations.md)

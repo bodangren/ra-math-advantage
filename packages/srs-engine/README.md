@@ -35,6 +35,8 @@ and never reimplements FSRS retention.
 - `@math-platform/srs-engine/fsrs-fitting`
 - `@math-platform/srs-engine/evaluation`
 - `@math-platform/srs-engine/adapters`
+- `@math-platform/srs-engine/session-composition-contract`
+- `@math-platform/srs-engine/session-composition`
 
 The `fsrs-fitting` and `evaluation` subpaths preserve their v3.1 contract
 exports while also exposing the lifecycle and harness behavior.
@@ -57,6 +59,32 @@ fitted version.
 Historical unstamped review rows remain readable. Administrative teacher
 resets deliberately remain unstamped because no FSRS parameter set scheduled
 their state.
+
+## v3.2 session composition and scheduling
+
+`buildDailyQueueResult` still selects reviews by predicted retention and new
+cards by the v3 caps. After selection, it now applies presentation-only
+round-robin composition across objectives (objective priority, then objective
+ID); every selected review remains present, within-objective order is stable,
+and new cards remain after all reviews.
+
+Interval fuzz uses the versioned `fnv1a32-code-unit-uniform.v1` mapping from
+`(cardId, reps)` to `[-0.05, +0.05]`. Load balancing examines every integer day
+inside the bounded plus/minus-five-percent window, selects the lightest day,
+then breaks ties by distance from the deterministic fuzz target and day
+ascending. The returned artifact binds the anchor timestamp, chosen offset,
+and due date and never exceeds `maximumInterval`.
+
+`scheduleReview` supports this through the optional `loadBalancing` input. The
+caller supplies projected loads for the relevant scheduling horizon; the
+returned `loadBalancingDecision` is the audit record that must travel with any
+persisted due-date decision. Zero-day short-term FSRS schedules deliberately
+bypass daily load balancing so their minute-level due timestamp is preserved.
+Callers that do not supply projected loads retain the existing scheduler path.
+
+The later IM3 runtime-migration track owns production load-map assembly,
+persistence, comparison mode, and cutover. This engine release performs no
+deployment or data backfill by itself.
 
 ## Calibration and Human Release
 
