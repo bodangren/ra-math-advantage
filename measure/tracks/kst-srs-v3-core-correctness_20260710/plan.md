@@ -10,10 +10,10 @@
     - [x] Copy the upstream specification and migration notes without modification
     - [x] Add a machine-readable provenance manifest with version, source, hashes, and capture time
     - [x] Update `measure/index.md` and `measure/knowledge-space.md` canonical references
-- [ ] Task: Define v3 engine and SRS contracts
-    - [ ] Add validated `hardGateThreshold` and `trendThreshold` configuration
-    - [ ] Version the affected knowledge-space and SRS contracts
-    - [ ] Define placement evidence, synthesized-card, and backlog-result schemas
+- [x] Task: Define v3 engine and SRS contracts [e4a4e7b]
+    - [x] Add validated `hardGateThreshold` and `trendThreshold` configuration
+    - [x] Version the affected knowledge-space and SRS contracts
+    - [x] Define placement evidence, synthesized-card, and backlog-result schemas
 - [ ] Task: Establish canonical package ownership and compatibility surfaces
     - [ ] Assign FSRS retention, proficiency, placement, and queue behavior to `srs-engine`
     - [ ] Define adapter inputs consumed by `knowledge-space-core` without duplicating FSRS formulas
