@@ -5,10 +5,10 @@
 
 ## Phase 1: Contract & Schema Definition
 
-- [~] Task: Define v3.1 proficiency evidence and rating contracts
-    - [ ] Version evidence inputs, confidence diagnostics, and rating outputs
-    - [ ] Define guess-floor and timing-baseline schemas
-- [ ] Task: Extend domain-adapter and placement contracts
+- [x] Task: Define v3.1 proficiency evidence and rating contracts [5cb6894]
+    - [x] Version evidence inputs, confidence diagnostics, and rating outputs
+    - [x] Define guess-floor and timing-baseline schemas
+- [~] Task: Extend domain-adapter and placement contracts
     - [ ] Add versioned guess floors, age bands, and probe instruments
     - [ ] Define two-probe decisions, frontier state, stopping reasons, and confidence caps
 - [ ] Task: Define scheduler calibration and evaluation artifacts
