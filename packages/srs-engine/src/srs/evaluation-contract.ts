@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { paramsVersionSchema } from './scheduler-policy-contract';
 
 export const EVALUATION_CONTRACT_VERSION = 'evaluation.v3.1' as const;
 export const MAX_SYNTHETIC_COHORT_SIZE = 10_000 as const;
@@ -18,6 +19,11 @@ const sha256Schema = z.string().regex(
   /^[a-f0-9]{64}$/,
   'must be a lowercase SHA-256 hex digest',
 );
+const unpaddedIdSchema = z.string()
+  .min(1)
+  .refine((value) => value.trim() === value && value.length > 0, {
+    message: 'must be non-blank and have no surrounding whitespace',
+  });
 
 export const syntheticLearnerSchema = z.strictObject({
   learnerId: z.string().min(1),
@@ -134,6 +140,7 @@ export const recommendationEvaluationMetricsSchema = z.strictObject({
   placementAccuracy: z.number().finite().min(0).max(1).nullable(),
   placementSampleCount: z.number().int().nonnegative(),
   fringeStabilityFlapsPerStudentWeek: z.number().finite().nonnegative(),
+  fringeStudentWeekCount: z.number().int().nonnegative(),
   edgeCalibrationBrierScore: z.number().finite().min(0).max(1).nullable(),
   edgeCalibrationSampleCount: z.number().int().nonnegative(),
 }).superRefine((metrics, ctx) => {
@@ -152,6 +159,16 @@ export const recommendationEvaluationMetricsSchema = z.strictObject({
       code: 'custom',
       path: ['edgeCalibrationBrierScore'],
       message: 'edgeCalibrationBrierScore requires edge samples and vice versa',
+    });
+  }
+  if (
+    metrics.fringeStudentWeekCount === 0
+    && metrics.fringeStabilityFlapsPerStudentWeek !== 0
+  ) {
+    ctx.addIssue({
+      code: 'custom',
+      path: ['fringeStabilityFlapsPerStudentWeek'],
+      message: 'zero fringe samples require a neutral zero flap rate',
     });
   }
 });
@@ -234,9 +251,9 @@ export const replayReleaseMetricsSchema = z.strictObject({
 });
 
 export const sourceReviewAttributionSchema = z.strictObject({
-  reviewId: z.string().min(1),
-  cardId: z.string().min(1),
-  paramsVersion: z.string().min(1),
+  reviewId: unpaddedIdSchema,
+  cardId: unpaddedIdSchema,
+  paramsVersion: paramsVersionSchema,
   predictedRetention: z.number().finite().min(0).max(1),
   observedRecall: z.boolean(),
   reviewedAt: z.string().datetime(),
@@ -292,11 +309,11 @@ export const replayProgressSchema = z.strictObject({
 
 export const replayEvaluationResultSchema = z.strictObject({
   contractVersion: z.literal(EVALUATION_CONTRACT_VERSION),
-  evaluationId: z.string().min(1),
-  candidateEngineVersion: z.string().min(1),
-  candidateParamsVersion: z.string().min(1),
-  incumbentParamsVersion: z.string().min(1),
-  replayCorpusId: z.string().min(1),
+  evaluationId: unpaddedIdSchema,
+  candidateEngineVersion: unpaddedIdSchema,
+  candidateParamsVersion: paramsVersionSchema,
+  incumbentParamsVersion: paramsVersionSchema,
+  replayCorpusId: unpaddedIdSchema,
   seed: z.number().int().nonnegative().max(MAX_DETERMINISTIC_SEED),
   configHash: sha256Schema,
   replayInputHash: sha256Schema,
@@ -309,11 +326,39 @@ export const replayEvaluationResultSchema = z.strictObject({
   releaseMetrics: replayReleaseMetricsSchema,
   generatedAt: z.string().datetime(),
 }).superRefine((result, ctx) => {
+  if (result.candidateParamsVersion === result.incumbentParamsVersion) {
+    ctx.addIssue({
+      code: 'custom',
+      path: ['candidateParamsVersion'],
+      message: 'candidateParamsVersion must differ from incumbentParamsVersion',
+    });
+  }
   if (result.sourceReviews.length > result.progress.batchSize) {
     ctx.addIssue({
       code: 'custom',
       path: ['sourceReviews'],
       message: 'sourceReviews cannot exceed the bounded replay batch size',
+    });
+  }
+  const cumulativeCalibrationSampleCount = result.calibrationMetrics.bins.reduce(
+    (sum, bin) => sum + bin.sampleCount,
+    0,
+  );
+  if (cumulativeCalibrationSampleCount !== result.progress.processedReviewCount) {
+    ctx.addIssue({
+      code: 'custom',
+      path: ['calibrationMetrics', 'bins'],
+      message: 'calibration sample count must equal cumulative processedReviewCount',
+    });
+  }
+  if (
+    result.progress.startCursor === null
+    && result.sourceReviews.length !== result.progress.processedReviewCount
+  ) {
+    ctx.addIssue({
+      code: 'custom',
+      path: ['sourceReviews'],
+      message: 'an initial replay batch must expose every processed source review',
     });
   }
   const reviewIds = new Set<string>();
@@ -326,6 +371,28 @@ export const replayEvaluationResultSchema = z.strictObject({
       });
     }
     reviewIds.add(review.reviewId);
+    if (index > 0) {
+      const previous = result.sourceReviews[index - 1];
+      const reviewTime = Date.parse(review.reviewedAt);
+      const previousTime = Date.parse(previous.reviewedAt);
+      if (reviewTime < previousTime || (
+        reviewTime === previousTime
+        && review.reviewId.localeCompare(previous.reviewId) <= 0
+      )) {
+        ctx.addIssue({
+          code: 'custom',
+          path: ['sourceReviews', index],
+          message: 'source reviews must be in canonical reviewedAt/reviewId order',
+        });
+      }
+    }
+    if (Date.parse(result.generatedAt) < Date.parse(review.reviewedAt)) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['generatedAt'],
+        message: 'generatedAt cannot predate a source review',
+      });
+    }
   });
 
   result.invariantMetrics.forEach((metric, index) => {
@@ -374,7 +441,13 @@ export const replayEvaluationResultSchema = z.strictObject({
     }
   }
 
+  const hasRequiredReplayEvidence = result.invariantMetrics.every(
+    (metric) => metric.checkedCount > 0,
+  ) && result.calibrationMetrics.bins.some(
+    (bin) => bin.sampleCount > 0,
+  ) && result.recommendationMetrics.fringeStudentWeekCount > 0;
   const allGatesPassed = invariantsPassed
+    && hasRequiredReplayEvidence
     && result.releaseMetrics.retentionPredictionMae.passed
     && result.releaseMetrics.calibrationMaxAbsoluteError.passed
     && result.releaseMetrics.fringeStability.passed;

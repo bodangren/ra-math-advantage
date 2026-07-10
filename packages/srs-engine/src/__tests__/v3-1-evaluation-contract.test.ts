@@ -32,14 +32,17 @@ const invariantMetrics = SYNTHETIC_INVARIANT_NAMES.map((name) => ({
   violationCount: 0,
 }));
 
-const calibrationBins = Array.from({ length: 10 }, (_, binIndex) => ({
-  binIndex,
-  lowerBound: binIndex / 10,
-  upperBound: (binIndex + 1) / 10,
-  sampleCount: 1,
-  meanPredictedRetention: binIndex / 10 + 0.05,
-  observedRecallRate: binIndex / 10 + 0.05,
-}));
+const calibrationBins = Array.from({ length: 10 }, (_, binIndex) => {
+  const populated = binIndex === 8;
+  return {
+    binIndex,
+    lowerBound: binIndex / 10,
+    upperBound: (binIndex + 1) / 10,
+    sampleCount: populated ? 1 : 0,
+    meanPredictedRetention: populated ? 0.85 : null,
+    observedRecallRate: populated ? 0.85 : null,
+  };
+});
 
 const completedReplay = {
   contractVersion: EVALUATION_CONTRACT_VERSION,
@@ -79,6 +82,7 @@ const completedReplay = {
     placementAccuracy: 0.8,
     placementSampleCount: 20,
     fringeStabilityFlapsPerStudentWeek: 0.2,
+    fringeStudentWeekCount: 20,
     edgeCalibrationBrierScore: 0.15,
     edgeCalibrationSampleCount: 80,
   },
@@ -166,6 +170,49 @@ describe('v3.1 replay evaluation result contract', () => {
       ...completedReplay,
       sourceReviews: [{ ...completedReplay.sourceReviews[0], paramsVersion: '' }],
     }).success).toBe(false);
+    expect(replayEvaluationResultSchema.safeParse({
+      ...completedReplay,
+      sourceReviews: [{ ...completedReplay.sourceReviews[0], paramsVersion: ' padded ' }],
+    }).success).toBe(false);
+    expect(replayEvaluationResultSchema.safeParse({
+      ...completedReplay,
+      sourceReviews: [{ ...completedReplay.sourceReviews[0], reviewId: ' review-1' }],
+    }).success).toBe(false);
+    expect(replayEvaluationResultSchema.safeParse({
+      ...completedReplay,
+      sourceReviews: [{ ...completedReplay.sourceReviews[0], cardId: 'card-1 ' }],
+    }).success).toBe(false);
+  });
+
+  it('requires explicit review, fringe, and invariant evidence for eligibility', () => {
+    expect(replayEvaluationResultSchema.safeParse({
+      ...completedReplay,
+      recommendationMetrics: {
+        ...completedReplay.recommendationMetrics,
+        fringeStudentWeekCount: 0,
+      },
+    }).success).toBe(false);
+    expect(replayEvaluationResultSchema.safeParse({
+      ...completedReplay,
+      invariantMetrics: invariantMetrics.map((metric, index) => (
+        index === 0 ? { ...metric, checkedCount: 0 } : metric
+      )),
+    }).success).toBe(false);
+  });
+
+  it('binds cumulative calibration samples to processed-review accounting', () => {
+    expect(replayEvaluationResultSchema.safeParse({
+      ...completedReplay,
+      progress: {
+        ...completedReplay.progress,
+        processedReviewCount: 2,
+        totalReviewCount: 2,
+      },
+    }).success).toBe(false);
+    expect(replayEvaluationResultSchema.safeParse({
+      ...completedReplay,
+      sourceReviews: [],
+    }).success).toBe(false);
   });
 
   it('requires an auditable resume cursor until the bounded replay is complete', () => {
@@ -237,6 +284,10 @@ describe('v3.1 replay evaluation result contract', () => {
     expect(replayEvaluationResultSchema.safeParse({
       ...completedReplay,
       productionReleaseApplied: true,
+    }).success).toBe(false);
+    expect(replayEvaluationResultSchema.safeParse({
+      ...completedReplay,
+      candidateParamsVersion: completedReplay.incumbentParamsVersion,
     }).success).toBe(false);
   });
 });

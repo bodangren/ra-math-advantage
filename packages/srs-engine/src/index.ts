@@ -134,7 +134,7 @@ export type {
 } from './srs/scheduler-policy-contract';
 
 export * from './srs/fsrs-fitting-contract';
-export * from './srs/evaluation-contract';
+export * from './srs/evaluation-harness';
 export {
   evaluateFsrsFitLifecycle,
   resolveReleasedFsrsParameters,

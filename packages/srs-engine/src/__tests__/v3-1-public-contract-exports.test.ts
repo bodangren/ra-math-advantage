@@ -3,17 +3,30 @@ import {
   FSRS_FITTING_CONTRACT_VERSION as SUBPATH_FITTING_VERSION,
   evaluateFsrsFitLifecycle as evaluateFsrsFitLifecycleFromSubpath,
 } from '@math-platform/srs-engine/fsrs-fitting';
+import {
+  EVALUATION_CONTRACT_VERSION as SUBPATH_EVALUATION_VERSION,
+  runReplayEvaluationBatch as runReplayEvaluationBatchFromSubpath,
+  runSyntheticEvaluation as runSyntheticEvaluationFromSubpath,
+} from '@math-platform/srs-engine/evaluation';
 
 import {
   EVALUATION_CONTRACT_VERSION,
   FSRS_FITTING_CONTRACT_VERSION,
   SCHEDULER_POLICY_VERSION,
   assignAbilityTercile,
+  computeReplayMetrics,
+  computeSyntheticCorrectnessProbability,
   evaluateFsrsFitLifecycle,
+  evaluateReplayReleaseGates,
+  evaluateSyntheticInvariants,
+  generateSyntheticCohort,
   isFsrsFitArtifactV31,
   isReplayEvaluationResultV31,
   isSchedulerConfigV31,
   resolveReleasedFsrsParameters,
+  runReplayEvaluationBatch,
+  runSyntheticEvaluation,
+  simulateSyntheticAttempts,
   stratifyCalibrationByAbility,
 } from '../index';
 import type {
@@ -33,8 +46,19 @@ describe('v3.1 public contract exports', () => {
     expect(typeof resolveReleasedFsrsParameters).toBe('function');
     expect(typeof assignAbilityTercile).toBe('function');
     expect(typeof stratifyCalibrationByAbility).toBe('function');
+    expect(typeof generateSyntheticCohort).toBe('function');
+    expect(typeof computeSyntheticCorrectnessProbability).toBe('function');
+    expect(typeof simulateSyntheticAttempts).toBe('function');
+    expect(typeof evaluateSyntheticInvariants).toBe('function');
+    expect(typeof runSyntheticEvaluation).toBe('function');
+    expect(typeof computeReplayMetrics).toBe('function');
+    expect(typeof evaluateReplayReleaseGates).toBe('function');
+    expect(typeof runReplayEvaluationBatch).toBe('function');
     expect(SUBPATH_FITTING_VERSION).toBe(FSRS_FITTING_CONTRACT_VERSION);
     expect(evaluateFsrsFitLifecycleFromSubpath).toBe(evaluateFsrsFitLifecycle);
+    expect(SUBPATH_EVALUATION_VERSION).toBe(EVALUATION_CONTRACT_VERSION);
+    expect(runSyntheticEvaluationFromSubpath).toBe(runSyntheticEvaluation);
+    expect(runReplayEvaluationBatchFromSubpath).toBe(runReplayEvaluationBatch);
   });
 
   it('keeps priority retention additive while requiring parameter provenance in v3.1 logs', () => {
