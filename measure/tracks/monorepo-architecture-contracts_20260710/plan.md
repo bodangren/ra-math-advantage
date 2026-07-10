@@ -30,9 +30,9 @@
 - [x] Task: Test debt-record behavior [68df0f3]
     - [x] Reject unowned, unlinked, malformed, or expired exceptions
     - [x] Prove an exception cannot match unrelated future violations
-- [~] Task: Add behavioral complements for affected package boundaries
-    - [ ] Exercise public exports and at least one real consumer per shared surface
-- [ ] Task: Measure - User Manual Verification 'Phase 2: Behavioral and Architecture Tests' (Protocol in workflow.md)
+- [x] Task: Add behavioral complements for affected package boundaries [b3a2ee3]
+    - [x] Exercise public exports and at least one real consumer per shared surface
+- [~] Task: Measure - User Manual Verification 'Phase 2: Behavioral and Architecture Tests' (Protocol in workflow.md)
 
 ## Phase 3: Implementation
 
