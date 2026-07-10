@@ -25,10 +25,10 @@
 - [x] Task: Test the normative rating mapper [32c8ceb]
     - [x] Cover correctness, hint, reveal, timing, and misconception precedence
     - [x] Verify unreliable timing cannot change a rating
-- [~] Task: Test adaptive placement and priority retention
-    - [ ] Exercise two-probe traversal, budget exhaustion, disconnected DAGs, and deterministic stopping
-    - [ ] Verify scalar configuration remains backward compatible
-- [ ] Task: Test calibration, fitting, and replay release gates
+- [x] Task: Test adaptive placement and priority retention [591a74b]
+    - [x] Exercise two-probe traversal, budget exhaustion, disconnected DAGs, and deterministic stopping
+    - [x] Verify scalar configuration remains backward compatible
+- [~] Task: Test calibration, fitting, and replay release gates
     - [ ] Cover ability-band agreement and `confounded_by_ability`
     - [ ] Cover population fallback, volume rejection, holdout comparison, and human approval
     - [ ] Exercise synthetic learner invariants and parameter-version attribution
