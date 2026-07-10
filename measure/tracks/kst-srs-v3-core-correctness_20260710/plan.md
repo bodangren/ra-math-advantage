@@ -59,7 +59,7 @@
     - [x] IM3 consumes reviewed-card minimum retention without a local formula
     - [x] Package typecheck/lint passed; touched app tests and changed-file lint passed
 
-## Phase 4: Generate Docs, Doctor, and Release Gate
+## Phase 4: Generate Docs, Doctor, and Release Gate [checkpoint: 1a5e0a5]
 
 - [x] Task: Regenerate Measure architecture and contract documentation [e8cf4f2]
     - [x] Run `measure/generate.sh`
