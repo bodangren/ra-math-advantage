@@ -168,6 +168,7 @@ export function parseArchitectureManifest(rawManifest, options = {}) {
   assertUnique(temporaryDebt.map((debt) => debt.id), 'debt id');
 
   const workspaceIds = new Set(workspaces.map((workspace) => workspace.id));
+  const workspaceById = new Map(workspaces.map((workspace) => [workspace.id, workspace]));
   const debtIds = new Set(temporaryDebt.map((debt) => debt.id));
   for (const workspace of workspaces) {
     if (!owners.includes(workspace.owner)) throw new Error(`Workspace ${workspace.id} references unknown owner`);
@@ -180,6 +181,7 @@ export function parseArchitectureManifest(rawManifest, options = {}) {
     }
   }
   const referencedDebt = new Set(workspaces.flatMap((workspace) => workspace.debtRefs));
+  const exactDebtViolations = new Set();
   for (const debt of temporaryDebt) {
     if (!owners.includes(debt.owner)) throw new Error(`Debt ${debt.id} references unknown owner`);
     if (!approvedFollowUpTracks.includes(debt.followUpTrack)) throw new Error(`Debt ${debt.id} references unapproved follow-up track`);
@@ -195,6 +197,20 @@ export function parseArchitectureManifest(rawManifest, options = {}) {
       if (violation.targetWorkspace !== null && !workspaceIds.has(violation.targetWorkspace)) {
         throw new Error(`Debt ${debt.id} references unknown target workspace`);
       }
+      if (!workspaceById.get(violation.sourceWorkspace).debtRefs.includes(debt.id)) {
+        throw new Error(`Debt ${debt.id} is not linked from source workspace ${violation.sourceWorkspace}`);
+      }
+      const exactTuple = [
+        violation.ruleId,
+        violation.sourceWorkspace,
+        violation.targetWorkspace ?? '',
+        violation.sourceFile,
+        violation.exactSpecifier,
+      ].join('\0');
+      if (exactDebtViolations.has(exactTuple)) {
+        throw new Error(`Duplicate exact debt violation is ambiguous: ${violation.sourceFile}`);
+      }
+      exactDebtViolations.add(exactTuple);
     }
   }
   return Object.freeze({
