@@ -1,6 +1,6 @@
 # @math-platform/knowledge-space-core
 
-Domain-neutral contracts for `knowledge-space.v1` — a reusable directed weighted graph model for learning nodes, typed relationships, provenance, and validation.
+Domain-neutral contracts for `knowledge-space.v2` — a reusable directed weighted graph model for learning nodes, typed relationships, provenance, validation, calibration, learner state, and readiness.
 
 ## What This Package Provides
 
@@ -11,6 +11,7 @@ Domain-neutral contracts for `knowledge-space.v1` — a reusable directed weight
 | `validation.ts` | Pure-function validation helpers: alignment requirements, generator readiness, adapter validation |
 | `adapters.ts` | Domain adapter contract for metadata validation |
 | `fixtures.ts` | Synthetic test fixtures (math-like and English/GSE-like) with no proprietary data |
+| `srs-adapter.ts` | Strict boundary for already-aggregated objective evidence from SRS consumers |
 
 ## Usage
 
@@ -72,11 +73,19 @@ const mathAdapter: DomainAdapter = {
 
 ## Boundary
 
+This package owns graph schemas/validation, edge suggestions and calibration,
+equivalence, and KST learner-state/readiness behavior. It consumes
+already-aggregated objective evidence; it does **not** own FSRS retention
+formulas, proficiency aggregation, placement synthesis, or daily queues.
+
 This package ships mechanisms only. It **must not** import from:
 - `apps/`
 - `convex/_generated/`
 - `packages/math-content/`
 - Any domain content package
+
+Raw SRS fields such as stability, last-review timestamps, and cards must not
+cross the `ObjectiveStateEvidence` adapter boundary.
 
 Proprietary math maps, Pearson/GSE descriptors, standards catalogs, and curriculum files belong in app/domain content packages.
 

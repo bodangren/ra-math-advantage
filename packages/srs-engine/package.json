@@ -11,6 +11,7 @@
     "./scheduler": "./src/srs/scheduler.ts",
     "./review-processor": "./src/srs/review-processor.ts",
     "./queue": "./src/srs/queue.ts",
+    "./placement": "./src/srs/placement.ts",
     "./adapters": "./src/srs/adapters.ts",
     "./submission-adapter": "./src/srs/submission-srs-adapter.ts"
   },

@@ -62,6 +62,13 @@ export {
 
 export type { QueueItem } from './srs/queue';
 
+export { PLACEMENT_STABILITY_HORIZONS } from './srs/placement';
+export type {
+  PlacementGraphEdge,
+  PlacementGraphAdapter,
+  PlacementSeedConfig,
+} from './srs/placement';
+
 export type { CardStore, ReviewLogStore } from './srs/adapters';
 export { InMemoryCardStore, InMemoryReviewLogStore } from './srs/adapters';
 

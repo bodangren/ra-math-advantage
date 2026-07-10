@@ -27,21 +27,25 @@ The domain content is not shared:
 
 ## Package Boundaries
 
-### `@advantage/knowledge-space-core`
+### `@math-platform/knowledge-space-core`
 
 Owns domain-neutral mechanisms:
 
-- `knowledge-space.v1` graph document schemas and TypeScript types
+- `knowledge-space.v2` graph document schemas and TypeScript types
 - node, edge, provenance, confidence, weight, review, and exception schemas
 - domain adapter interfaces for metadata validation
 - graph validation helpers
+- edge suggestion and edge calibration mechanisms
 - traversal and prerequisite closure utilities
 - learner-state and readiness primitives
+- an evidence-only adapter accepting already-aggregated objective retention and proficiency
 - synthetic fixtures and examples only
 
-Must not import app code, Convex generated files, math content, GSE content, curriculum files, standards catalogs, or proprietary graph maps.
+Must not import app code, Convex generated files, math content, GSE content,
+curriculum files, standards catalogs, proprietary graph maps, or FSRS card
+semantics. It never computes retention from stability.
 
-### `@advantage/knowledge-space-practice`
+### `@math-platform/knowledge-space-practice`
 
 Owns reusable practice mechanisms:
 
@@ -53,6 +57,19 @@ Owns reusable practice mechanisms:
 - synthetic fixtures and examples only
 
 Must not bundle actual math graphs, English/GSE descriptors, domain standards catalogs, or generated app outputs.
+
+### `@math-platform/srs-engine`
+
+Owns FSRS scheduling and retention, card/review state, practice-variant and
+objective proficiency aggregation, placement synthesis/provenance, and daily
+queue/backlog behavior. It receives structural graph adapters from apps or
+domains and does not import `knowledge-space-core`, app code, Convex generated
+files, or proprietary content.
+
+### `@math-platform/practice-core`
+
+Owns `practice.v1`, timing, rating, error analysis, and the misconception
+lifecycle. It does not own graph traversal, FSRS scheduling, or domain content.
 
 ### Domain Packages and App Content
 

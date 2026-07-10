@@ -102,6 +102,9 @@ export {
   normalizeMasteryConfig,
   knowledgeStateEntrySchema,
 } from './mastery-state';
+
+export { objectiveStateEvidenceSchema } from './srs-adapter';
+export type { ObjectiveStateEvidence } from './srs-adapter';
 export type {
   MasteryThresholds,
   MasteryConfig,
