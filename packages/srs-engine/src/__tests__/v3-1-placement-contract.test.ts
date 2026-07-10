@@ -20,8 +20,9 @@ import { PLACEMENT_POLICY_VERSION as packageSubpathVersion } from '@math-platfor
 
 const instrument = {
   instrumentId: 'math.im3.multiple-choice-4',
-  policyVersion: 'math-placement.v1',
   instrumentVersion: '2026.1',
+  instrumentPolicyVersion: 'math-placement.v1',
+  guessFloorPolicyVersion: 'math-answer-formats.v1',
   highFidelity: false,
 } as const;
 
@@ -77,6 +78,13 @@ describe('v3.1 placement probe evidence contract', () => {
     expect(placementProbeEvidenceSchema.safeParse(probe(1, 'fail', {
       guessCorrectedPerformance: 0.5,
     })).success).toBe(false);
+
+    expect(placementProbeEvidenceSchema.safeParse(probe(1, 'pass', {
+      instrument: {
+        ...instrument,
+        guessFloorPolicyVersion: 'different-floor-policy.v2',
+      },
+    })).success).toBe(false);
   });
 
   it('rejects unknown fields instead of silently accepting contract drift', () => {
@@ -84,6 +92,14 @@ describe('v3.1 placement probe evidence contract', () => {
       ...probe(1, 'pass'),
       rawCorrect: true,
     }).success).toBe(false);
+    expect(placementProbeEvidenceSchema.safeParse(probe(1, 'pass', {
+      instrument: {
+        instrumentId: instrument.instrumentId,
+        instrumentVersion: instrument.instrumentVersion,
+        policyVersion: instrument.instrumentPolicyVersion,
+        highFidelity: false,
+      },
+    })).success).toBe(false);
   });
 });
 

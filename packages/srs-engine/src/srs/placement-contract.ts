@@ -40,8 +40,9 @@ export const placementConfidenceCapSchema = z.enum(['medium', 'high']);
  */
 export const placementProbeInstrumentSnapshotSchema = z.strictObject({
   instrumentId: z.string().min(1),
-  policyVersion: z.string().min(1),
   instrumentVersion: z.string().min(1),
+  instrumentPolicyVersion: z.string().min(1),
+  guessFloorPolicyVersion: z.string().min(1),
   highFidelity: z.boolean(),
 });
 
@@ -71,6 +72,13 @@ export const placementProbeEvidenceSchema = z.strictObject({
       code: 'custom',
       path: ['guessCorrectedPerformance'],
       message: 'guessCorrectedPerformance must match the declared guess floor',
+    });
+  }
+  if (evidence.instrument.guessFloorPolicyVersion !== evidence.guessFloor.policyVersion) {
+    ctx.addIssue({
+      code: 'custom',
+      path: ['instrument', 'guessFloorPolicyVersion'],
+      message: 'instrument guess-floor provenance must match the evidence guess floor',
     });
   }
   if (evidence.outcome === 'pass' && evidence.guessCorrectedPerformance <= 0) {
