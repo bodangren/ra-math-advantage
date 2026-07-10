@@ -22,6 +22,7 @@ import {
   type SrsCardId,
   type SrsCardState,
   type SrsReviewLogEntry,
+  type SrsReviewLogEntryV31,
   type SrsSessionConfig,
   type SrsSession,
 } from '@math-platform/srs-engine';
@@ -129,7 +130,7 @@ describe('SRS type export verification', () => {
     const _result: ReviewProcessorResult = {
       rating: 'Good',
       updatedCard: {} as SrsCardState,
-      reviewLog: {} as SrsReviewLogEntry,
+      reviewLog: {} as SrsReviewLogEntryV31,
     };
     expect(_input).toBeDefined();
     expect(_result).toBeDefined();

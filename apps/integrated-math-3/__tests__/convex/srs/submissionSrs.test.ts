@@ -11,13 +11,13 @@ function makeMockCtx(overrides: {
   practiceItem?: {
     _id: Id<'practice_items'>;
     activityId: Id<'activities'>;
-    problemFamilyId: string;
+    variantKey: string;
     practiceItemId: string;
     variantLabel: string;
   } | null;
-  problemFamily?: {
-    _id: Id<'problem_families'>;
-    problemFamilyId: string;
+  practiceVariant?: {
+    _id: Id<'practice_variants'>;
+    variantKey: string;
     componentKey: string;
     displayName: string;
     description: string;
@@ -26,26 +26,29 @@ function makeMockCtx(overrides: {
   } | null;
   baseline?: {
     _id: Id<'timing_baselines'>;
-    problemFamilyId: string;
+    variantKey: string;
     sampleCount: number;
     medianActiveMs: number;
+    p25ActiveMs: number;
+    p75ActiveMs: number;
+    p90ActiveMs: number;
     lastComputedAt: string;
     minSamplesMet: boolean;
   } | null;
 } = {}) {
-  const { practiceItem, problemFamily, baseline } = overrides;
-
-  const mockQuery = {
-    withIndex: vi.fn().mockReturnValue({
-      first: vi.fn().mockImplementation(() => {
-        const indexName = mockQuery.withIndex.mock.calls[mockQuery.withIndex.mock.calls.length - 1][0];
-        if (indexName === 'by_activityId') return Promise.resolve(practiceItem ?? null);
-        if (indexName === 'by_problemFamilyId') return Promise.resolve(problemFamily ?? null);
-        if (indexName === 'by_problem_family') return Promise.resolve(baseline ?? null);
-        return Promise.resolve(null);
-      }),
-    }),
+  const { practiceItem, practiceVariant, baseline } = overrides;
+  const tableRows: Record<string, unknown> = {
+    practice_items: practiceItem ?? null,
+    practice_variants: practiceVariant ?? null,
+    competency_standards: null,
+    objective_policies: null,
+    timing_baselines: baseline ?? null,
   };
+  const mockQuery = vi.fn((table: string) => ({
+    withIndex: vi.fn().mockReturnValue({
+      first: vi.fn().mockResolvedValue(tableRows[table] ?? null),
+    }),
+  }));
 
   const mockInsert = vi.fn().mockResolvedValue('card-doc-1' as Id<'srs_cards'>);
   const mockReplace = vi.fn().mockResolvedValue(undefined);
@@ -54,7 +57,7 @@ function makeMockCtx(overrides: {
 
   return {
     db: {
-      query: vi.fn().mockReturnValue(mockQuery),
+      query: mockQuery,
       insert: mockInsert,
       replace: mockReplace,
     },
@@ -103,16 +106,16 @@ describe('processSubmissionSrsHandler', () => {
     expect(result).toEqual({ ok: false, skipped: true, reason: 'no_blueprint' });
   });
 
-  it('returns skipped when practice item exists but problem family is missing', async () => {
+  it('returns skipped when practice item exists but practice variant is missing', async () => {
     const ctx = makeMockCtx({
       practiceItem: {
         _id: 'pi-1' as Id<'practice_items'>,
         activityId: 'act-1' as Id<'activities'>,
-        problemFamilyId: 'pf-1',
+        variantKey: 'pf-1',
         practiceItemId: 'pi-1',
         variantLabel: 'A',
       },
-      problemFamily: null,
+      practiceVariant: null,
     });
 
     const result = await processSubmissionSrsHandler(
@@ -132,13 +135,13 @@ describe('processSubmissionSrsHandler', () => {
       practiceItem: {
         _id: 'pi-1' as Id<'practice_items'>,
         activityId: 'act-1' as Id<'activities'>,
-        problemFamilyId: 'pf-1',
+        variantKey: 'pf-1',
         practiceItemId: 'pi-1',
         variantLabel: 'A',
       },
-      problemFamily: {
-        _id: 'pf-doc-1' as Id<'problem_families'>,
-        problemFamilyId: 'pf-1',
+      practiceVariant: {
+        _id: 'pf-doc-1' as Id<'practice_variants'>,
+        variantKey: 'pf-1',
         componentKey: 'step-by-step-solver',
         displayName: 'Test Family',
         description: 'Test description',
@@ -160,11 +163,10 @@ describe('processSubmissionSrsHandler', () => {
 
     expect(result.ok).toBe(true);
     if (!result.ok || result.skipped) return;
-    expect(result.cardId).toMatch(/^card_/);
+    expect(result.cardId).toBe('card-doc-1');
     expect(result.reviewId).toMatch(/^rev_/);
 
-    // saveCard uses runMutation (1 call); saveCardAndReview uses direct DB access (0 calls)
-    expect(ctx.mockRunMutation).toHaveBeenCalledTimes(1);
+    expect(ctx.mockRunMutation).not.toHaveBeenCalled();
   });
 
   it('catches adapter errors and returns error result without throwing', async () => {
@@ -172,13 +174,13 @@ describe('processSubmissionSrsHandler', () => {
       practiceItem: {
         _id: 'pi-1' as Id<'practice_items'>,
         activityId: 'act-1' as Id<'activities'>,
-        problemFamilyId: 'pf-1',
+        variantKey: 'pf-1',
         practiceItemId: 'pi-1',
         variantLabel: 'A',
       },
-      problemFamily: {
-        _id: 'pf-doc-1' as Id<'problem_families'>,
-        problemFamilyId: 'pf-1',
+      practiceVariant: {
+        _id: 'pf-doc-1' as Id<'practice_variants'>,
+        variantKey: 'pf-1',
         componentKey: 'step-by-step-solver',
         displayName: 'Test Family',
         description: 'Test description',
@@ -210,13 +212,13 @@ describe('processSubmissionSrsHandler', () => {
       practiceItem: {
         _id: 'pi-1' as Id<'practice_items'>,
         activityId: 'act-1' as Id<'activities'>,
-        problemFamilyId: 'pf-1',
+        variantKey: 'pf-1',
         practiceItemId: 'pi-1',
         variantLabel: 'A',
       },
-      problemFamily: {
-        _id: 'pf-doc-1' as Id<'problem_families'>,
-        problemFamilyId: 'pf-1',
+      practiceVariant: {
+        _id: 'pf-doc-1' as Id<'practice_variants'>,
+        variantKey: 'pf-1',
         componentKey: 'step-by-step-solver',
         displayName: 'Test Family',
         description: 'Test description',
@@ -239,8 +241,7 @@ describe('processSubmissionSrsHandler', () => {
     expect(result.ok).toBe(true);
     // Direct DB inserts via processReviewHandler should have been called
     expect(ctx.db.insert).toHaveBeenCalled();
-    // Only the initial saveCard should use runMutation; review save is atomic
-    expect(ctx.mockRunMutation).toHaveBeenCalledTimes(1);
+    expect(ctx.mockRunMutation).not.toHaveBeenCalled();
   });
 
   it('looks up timing baseline when available', async () => {
@@ -248,13 +249,13 @@ describe('processSubmissionSrsHandler', () => {
       practiceItem: {
         _id: 'pi-1' as Id<'practice_items'>,
         activityId: 'act-1' as Id<'activities'>,
-        problemFamilyId: 'pf-1',
+        variantKey: 'pf-1',
         practiceItemId: 'pi-1',
         variantLabel: 'A',
       },
-      problemFamily: {
-        _id: 'pf-doc-1' as Id<'problem_families'>,
-        problemFamilyId: 'pf-1',
+      practiceVariant: {
+        _id: 'pf-doc-1' as Id<'practice_variants'>,
+        variantKey: 'pf-1',
         componentKey: 'step-by-step-solver',
         displayName: 'Test Family',
         description: 'Test description',
@@ -263,9 +264,12 @@ describe('processSubmissionSrsHandler', () => {
       },
       baseline: {
         _id: 'bl-1' as Id<'timing_baselines'>,
-        problemFamilyId: 'pf-1',
+        variantKey: 'pf-1',
         sampleCount: 20,
         medianActiveMs: 5000,
+        p25ActiveMs: 3000,
+        p75ActiveMs: 7000,
+        p90ActiveMs: 9000,
         lastComputedAt: mockNow,
         minSamplesMet: true,
       },
@@ -296,6 +300,6 @@ describe('processSubmissionSrsHandler', () => {
 
     expect(result.ok).toBe(true);
     if (!result.ok || result.skipped) return;
-    expect(result.cardId).toMatch(/^card_/);
+    expect(result.cardId).toBe('card-doc-1');
   });
 });

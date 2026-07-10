@@ -7,6 +7,7 @@ import {
   srsEvidenceValidator,
   srsRatingValidator,
 } from "./validators";
+import { resolveReviewParamsVersion } from "./paramsVersion";
 
 type SrsStatePick = {
   stability: number;
@@ -71,9 +72,14 @@ export async function saveReviewHandler(
     evidence: { action: "teacher_reset"; objectiveId: string } | { baseRating: "Again" | "Hard" | "Good" | "Easy"; timingAdjusted: boolean; reasons: string[]; misconceptionTags?: string[] };
     stateBefore: { stability: number; difficulty: number; state: "new" | "learning" | "review" | "relearning"; reps: number; lapses: number };
     stateAfter: { stability: number; difficulty: number; state: "new" | "learning" | "review" | "relearning"; reps: number; lapses: number };
+    paramsVersion?: string;
     reviewedAt: string;
   }
 ) {
+  const paramsVersion = resolveReviewParamsVersion(
+    "action" in args.evidence,
+    args.paramsVersion,
+  );
   // Teacher resets bypass SRS transition validation because they are administrative
   // overrides, not learner reviews. The reset action reinitializes the card state.
   if (!('action' in args.evidence)) {
@@ -93,6 +99,7 @@ export async function saveReviewHandler(
     evidence: args.evidence,
     stateBefore: args.stateBefore,
     stateAfter: args.stateAfter,
+    ...(paramsVersion === undefined ? {} : { paramsVersion }),
     reviewedAt: reviewedAtMs,
   });
   return id;
@@ -116,6 +123,7 @@ export const saveReview = internalMutation({
     evidence: srsEvidenceValidator,
     stateBefore: srsCardStatePickValidator,
     stateAfter: srsCardStatePickValidator,
+    paramsVersion: v.optional(v.string()),
     reviewedAt: v.string(),
   },
   handler: saveReviewHandler,
@@ -148,6 +156,7 @@ export async function getReviewsByCardHandler(
       evidence: review.evidence,
       stateBefore: review.stateBefore,
       stateAfter: review.stateAfter,
+      paramsVersion: review.paramsVersion,
       reviewedAt: new Date(review.reviewedAt).toISOString(),
     }));
 }
@@ -200,6 +209,7 @@ export async function getReviewsByStudentHandler(
       evidence: review.evidence,
       stateBefore: review.stateBefore,
       stateAfter: review.stateAfter,
+      paramsVersion: review.paramsVersion,
       reviewedAt: new Date(review.reviewedAt).toISOString(),
     }));
 }

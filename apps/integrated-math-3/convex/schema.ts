@@ -630,6 +630,7 @@ export default defineSchema({
     priority: v.number(),
   })
     .index("by_standardId", ["standardId"])
+    .index("by_standardId_and_courseKey", ["standardId", "courseKey"])
     .index("by_courseKey", ["courseKey"]),
 
   srs_cards: defineTable({
@@ -664,6 +665,8 @@ export default defineSchema({
     evidence: srsEvidenceValidator,
     stateBefore: srsCardStatePickValidator,
     stateAfter: srsCardStatePickValidator,
+    // Widen-only: historical and administrative reset rows remain valid.
+    paramsVersion: v.optional(v.string()),
     reviewedAt: v.number(),
   })
     .index("by_card", ["cardId"])

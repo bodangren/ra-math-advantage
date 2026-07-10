@@ -8,6 +8,7 @@ import {
   srsEvidenceValidator,
   srsRatingValidator,
 } from "./validators";
+import { resolveReviewParamsVersion } from "./paramsVersion";
 
 const cardStateValidator = v.object({
   cardId: v.string(),
@@ -36,6 +37,7 @@ const reviewEntryValidator = v.object({
   evidence: srsEvidenceValidator,
   stateBefore: srsCardStatePickValidator,
   stateAfter: srsCardStatePickValidator,
+  paramsVersion: v.optional(v.string()),
   reviewedAt: v.string(),
 });
 
@@ -86,9 +88,24 @@ export type ProcessReviewArgs = {
     evidence: SrsEvidence;
     stateBefore: SrsStatePick;
     stateAfter: SrsStatePick;
+    paramsVersion?: string;
     reviewedAt: string;
   };
 };
+
+function assertSrsStateMatches(
+  actual: SrsStatePick,
+  expected: SrsStatePick,
+  message: string,
+): void {
+  const fields = ["stability", "difficulty", "state", "reps", "lapses"] as const;
+  const mismatch = fields.find((field) => actual[field] !== expected[field]);
+  if (mismatch !== undefined) {
+    throw new Error(
+      `${message}: ${mismatch} mismatch`,
+    );
+  }
+}
 
 // COPIED from packages/srs-engine/src/srs/transition-validator.ts — DO NOT EDIT WITHOUT SYNCING
 const VALID_STATE_TRANSITIONS: Record<string, string[]> = {
@@ -139,10 +156,20 @@ export async function processReviewHandler(
   args: ProcessReviewArgs
 ): Promise<{ cardId: string; logEntryId: Id<"srs_review_log"> }> {
   const { cardState, reviewEntry } = args;
+  const paramsVersion = resolveReviewParamsVersion(
+    "action" in reviewEntry.evidence,
+    reviewEntry.paramsVersion,
+  );
 
   if (cardState.studentId !== reviewEntry.studentId) {
     throw new Error("studentId mismatch: cardState and reviewEntry must refer to the same student");
   }
+
+  assertSrsStateMatches(
+    cardState,
+    reviewEntry.stateAfter,
+    "cardState must exactly match reviewEntry.stateAfter",
+  );
 
   // Teacher resets bypass SRS transition validation because they are administrative
   // overrides, not learner reviews. The reset action reinitializes the card state.
@@ -161,6 +188,13 @@ export async function processReviewHandler(
 
   let cardDocId: Id<"srs_cards">;
   if (existing) {
+    if (!("action" in reviewEntry.evidence)) {
+      assertSrsStateMatches(
+        existing,
+        reviewEntry.stateBefore,
+        "stale SRS review: persisted state does not match reviewEntry.stateBefore",
+      );
+    }
     await ctx.db.replace(existing._id, {
       studentId: existing.studentId,
       objectiveId: cardState.objectiveId,
@@ -206,6 +240,7 @@ export async function processReviewHandler(
     evidence: reviewEntry.evidence,
     stateBefore: reviewEntry.stateBefore,
     stateAfter: reviewEntry.stateAfter,
+    ...(paramsVersion === undefined ? {} : { paramsVersion }),
     reviewedAt: new Date(reviewEntry.reviewedAt).getTime(),
   });
 

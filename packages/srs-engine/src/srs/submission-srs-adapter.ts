@@ -12,7 +12,11 @@ import {
 } from '@math-platform/practice-core/srs-rating';
 import type { SrsRatingResultV31 } from '@math-platform/practice-core/v3-1-contracts';
 import { deriveTimingFeatures } from '@math-platform/practice-core/timing-baseline';
-import { createCard, reviewCard } from './scheduler';
+import {
+  createCard,
+  scheduleReview,
+  type ReviewSchedulerContext,
+} from './scheduler';
 import type {
   CardStore,
   ReviewLogStore,
@@ -23,6 +27,7 @@ import type {
   SrsCardState,
   SrsRating,
   SrsReviewLogEntry,
+  SrsReviewLogEntryV31,
 } from './contract';
 
 // ============================================
@@ -46,30 +51,18 @@ export type SubmissionSrsResultSuccess = {
   ok: true;
   skipped: false;
   card: SrsCardState;
-  reviewLog: {
-    reviewId: string;
-    rating: SrsRating;
-    evidence: {
-      baseRating: SrsRating;
-      timingAdjusted: boolean;
-      reasons: string[];
-      misconceptionTags?: string[];
-    };
-    stateBefore: {
-      stability: number;
-      difficulty: number;
-      state: SrsCardState['state'];
-      reps: number;
-      lapses: number;
-    };
-    stateAfter: {
-      stability: number;
-      difficulty: number;
-      state: SrsCardState['state'];
-      reps: number;
-      lapses: number;
-    };
-    reviewedAt: string;
+  reviewLog: PracticeSrsReviewLogEntryV31;
+};
+
+export type PracticeSrsReviewLogEntryV31 = Omit<
+  SrsReviewLogEntryV31,
+  'evidence'
+> & {
+  evidence: {
+    baseRating: SrsRating;
+    timingAdjusted: boolean;
+    reasons: string[];
+    misconceptionTags?: string[];
   };
 };
 
@@ -92,6 +85,8 @@ export type SubmissionSrsResultError = {
 export type PracticeVariantInfo = {
   variantKey: string;
   objectiveId: string;
+  /** Trusted server-side policy metadata; submission payloads cannot set it. */
+  schedulerContext?: ReviewSchedulerContext;
 };
 
 export interface PracticeVariantResolver {
@@ -115,17 +110,21 @@ export class SubmissionSrsAdapter {
   private reviewLogStore: ReviewLogStore;
   private resolver: PracticeVariantResolver;
   private baselineResolver: TimingBaselineResolver;
+  private requireAtomicPersistence: boolean;
 
   constructor(config: {
     cardStore: CardStore;
     reviewLogStore: ReviewLogStore;
     resolver: PracticeVariantResolver;
     baselineResolver: TimingBaselineResolver;
+    /** Fail closed unless card and review log can commit in one transaction. */
+    requireAtomicPersistence?: boolean;
   }) {
     this.cardStore = config.cardStore;
     this.reviewLogStore = config.reviewLogStore;
     this.resolver = config.resolver;
     this.baselineResolver = config.baselineResolver;
+    this.requireAtomicPersistence = config.requireAtomicPersistence ?? false;
   }
 
   async processSubmission(input: SubmissionSrsInput): Promise<SubmissionSrsResult> {
@@ -150,7 +149,7 @@ export class SubmissionSrsAdapter {
       return { ok: false, skipped: true, reason: 'no_blueprint' };
     }
 
-    const { variantKey, objectiveId } = familyInfo;
+    const { variantKey, objectiveId, schedulerContext } = familyInfo;
 
     const studentCards = await this.cardStore.getCardByStudentAndVariant(studentId, variantKey);
     let card = studentCards ?? null;
@@ -163,7 +162,6 @@ export class SubmissionSrsAdapter {
         variantKey,
         now,
       });
-      await this.cardStore.saveCard(card);
     }
 
     let ratingResult: SrsRatingResult | SrsRatingResultV31;
@@ -204,7 +202,13 @@ export class SubmissionSrsAdapter {
     );
 
     const now = new Date().toISOString();
-    const updatedCard = reviewCard(card, ratingResult.rating, now);
+    const scheduled = scheduleReview({
+      card,
+      rating: ratingResult.rating,
+      now,
+      ...schedulerContext,
+    });
+    const updatedCard = scheduled.card;
 
     const stateBefore = {
       stability: card.stability,
@@ -222,7 +226,7 @@ export class SubmissionSrsAdapter {
       lapses: updatedCard.lapses,
     };
 
-    const reviewLog = {
+    const reviewLog: PracticeSrsReviewLogEntryV31 = {
       reviewId: generateReviewId(),
       cardId: card.cardId,
       studentId,
@@ -236,12 +240,38 @@ export class SubmissionSrsAdapter {
       },
       stateBefore,
       stateAfter,
+      paramsVersion: scheduled.paramsVersion,
       reviewedAt: now,
     };
 
+    if (
+      this.requireAtomicPersistence
+      && this.cardStore.saveCardAndReview === undefined
+    ) {
+      throw new Error(
+        'Atomic persistence is required but saveCardAndReview is unavailable',
+      );
+    }
+
     // Use atomic save if the cardStore supports it (e.g., Convex direct handler)
-    if ('saveCardAndReview' in this.cardStore && typeof (this.cardStore as unknown as Record<string, unknown>).saveCardAndReview === 'function') {
-      await (this.cardStore as unknown as { saveCardAndReview(card: SrsCardState, reviewLog: SrsReviewLogEntry): Promise<void> }).saveCardAndReview(updatedCard, reviewLog);
+    let returnedCard = updatedCard;
+    let returnedReviewLog = reviewLog;
+    if (this.cardStore.saveCardAndReview !== undefined) {
+      const persistedIds = await this.cardStore.saveCardAndReview(
+        updatedCard,
+        reviewLog,
+      );
+      if (persistedIds !== undefined) {
+        returnedCard = {
+          ...updatedCard,
+          cardId: persistedIds.cardId,
+        };
+        returnedReviewLog = {
+          ...reviewLog,
+          cardId: persistedIds.cardId,
+          reviewId: persistedIds.reviewId ?? reviewLog.reviewId,
+        };
+      }
     } else {
       await this.cardStore.saveCard(updatedCard);
       await this.reviewLogStore.saveReview(reviewLog);
@@ -250,8 +280,8 @@ export class SubmissionSrsAdapter {
     return {
       ok: true,
       skipped: false,
-      card: updatedCard,
-      reviewLog,
+      card: returnedCard,
+      reviewLog: returnedReviewLog,
     };
   }
 }

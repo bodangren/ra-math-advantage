@@ -12,7 +12,11 @@ import type {
   SrsRating,
 } from '../srs/contract';
 import {
+  BUILTIN_FSRS_PARAMS_VERSION,
+  previewInterval,
   reviewCard,
+  scheduleReview,
+  type ScheduleReviewInput,
   type SchedulerConfig,
 } from '../srs/scheduler';
 
@@ -144,5 +148,98 @@ describe('v3.1 scheduler priority retention', () => {
     expect(schedulePriority('triaged', { triaged: 0.72 })).toEqual(
       scheduleWithScalarTarget(0.72),
     );
+  });
+
+  it('returns the exact retention and canonical parameter version atomically', () => {
+    const scheduled = scheduleReview({
+      card: CARD,
+      rating: 'Good',
+      now: NOW,
+      objectivePriority: 'essential',
+      config: { ...SCALAR_CONFIG, requestRetentionByPriority: {} },
+    });
+
+    expect(scheduled.requestedRetention).toBe(0.95);
+    expect(scheduled.paramsVersion).toBe(BUILTIN_FSRS_PARAMS_VERSION);
+    expect(scheduled.card).toEqual(scheduleWithScalarTarget(0.95));
+  });
+
+  it('cannot claim a fitted version until executable fitted weights are wired', () => {
+    const untrustedInput = {
+      card: CARD,
+      rating: 'Good',
+      now: NOW,
+      objectivePriority: 'extension',
+      config: {
+        ...SCALAR_CONFIG,
+        requestRetentionByPriority: { extension: 0.76 },
+      },
+      paramsVersion: 'fsrs-params.math.im3.secondary.v2',
+    } as const;
+    const scheduled = scheduleReview(untrustedInput as ScheduleReviewInput);
+
+    expect(scheduled).toMatchObject({
+      requestedRetention: 0.76,
+      paramsVersion: BUILTIN_FSRS_PARAMS_VERSION,
+    });
+  });
+
+  it('previews with the same priority-aware configuration without mutating inputs', () => {
+    const card = structuredClone(CARD);
+    const config: Partial<SchedulerConfig> = {
+      ...SCALAR_CONFIG,
+      requestRetentionByPriority: { essential: 0.96 },
+    };
+    const originalConfig = structuredClone(config);
+
+    const preview = previewInterval(card, 'Good', NOW, config, 'essential');
+    const scheduled = scheduleReview({
+      card,
+      rating: 'Good',
+      now: NOW,
+      config,
+      objectivePriority: 'essential',
+    });
+
+    expect(preview).toBe(scheduled.card.scheduledDays);
+    expect(card).toEqual(CARD);
+    expect(config).toEqual(originalConfig);
+  });
+
+  it('fails closed on invalid retention, interval, and priority values', () => {
+    expect(() => scheduleReview({
+      card: CARD,
+      rating: 'Good',
+      now: NOW,
+      config: { requestRetention: 0 },
+    })).toThrow();
+    expect(() => scheduleReview({
+      card: CARD,
+      rating: 'Good',
+      now: NOW,
+      config: { maximumInterval: 0 },
+    })).toThrow();
+    expect(() => scheduleReview({
+      card: CARD,
+      rating: 'Good',
+      now: NOW,
+      objectivePriority: 'remedial' as ObjectivePriority,
+    })).toThrow();
+  });
+
+  it('applies the maximum interval after the priority target', () => {
+    const scheduled = scheduleReview({
+      card: CARD,
+      rating: 'Easy',
+      now: NOW,
+      objectivePriority: 'extension',
+      config: {
+        ...SCALAR_CONFIG,
+        maximumInterval: 7,
+        requestRetentionByPriority: { extension: 0.7 },
+      },
+    });
+
+    expect(scheduled.card.scheduledDays).toBeLessThanOrEqual(7);
   });
 });

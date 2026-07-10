@@ -2,6 +2,10 @@ import { internalMutation } from "../_generated/server";
 import { v } from "convex/values";
 import { Id } from "../_generated/dataModel";
 import { SubmissionSrsAdapter } from "@math-platform/srs-engine";
+import type {
+  ObjectivePriority,
+  PracticeVariantInfo,
+} from "@math-platform/srs-engine";
 import { ConvexCardStore } from "../../lib/srs/convexCardStore";
 import { ConvexReviewLogStore } from "../../lib/srs/convexReviewLogStore";
 import type { PracticeTimingBaseline } from "@math-platform/practice-core";
@@ -13,10 +17,41 @@ import type { MutationCtx } from "../_generated/server";
  * @param {string} activityId - The activity ID to look up
  * @returns {Promise<{ variantKey: string; objectiveId: string } | null>} The variant key and objective ID, or null if not found
  */
-async function lookupVariant(
+const IM3_COURSE_KEY = "integrated-math-3";
+const OBJECTIVE_PRIORITIES = new Set<ObjectivePriority>([
+  "essential",
+  "supporting",
+  "extension",
+  "triaged",
+]);
+
+async function resolveObjectivePriority(
+  ctx: MutationCtx,
+  objectiveId: string,
+): Promise<ObjectivePriority> {
+  const standard = await ctx.db
+    .query("competency_standards")
+    .withIndex("by_code", (q) => q.eq("code", objectiveId))
+    .first();
+
+  if (!standard) return "essential";
+
+  const policy = await ctx.db
+    .query("objective_policies")
+    .withIndex("by_standardId_and_courseKey", (q) =>
+      q.eq("standardId", standard._id).eq("courseKey", IM3_COURSE_KEY)
+    )
+    .first();
+
+  return policy && OBJECTIVE_PRIORITIES.has(policy.policy as ObjectivePriority)
+    ? policy.policy as ObjectivePriority
+    : "essential";
+}
+
+export async function lookupVariantForScheduling(
   ctx: MutationCtx,
   activityId: string
-): Promise<{ variantKey: string; objectiveId: string } | null> {
+): Promise<PracticeVariantInfo | null> {
   const item = await ctx.db
     .query("practice_items")
     .withIndex("by_activityId", (q) =>
@@ -35,9 +70,18 @@ async function lookupVariant(
 
   if (!family) return null;
 
+  const objectiveId = family.objectiveIds[0] ?? "";
+  if (!objectiveId) return null;
+  const objectivePriority = await resolveObjectivePriority(ctx, objectiveId);
+
   return {
     variantKey: item.variantKey,
-    objectiveId: family.objectiveIds[0] ?? "",
+    objectiveId,
+    schedulerContext: {
+      objectivePriority,
+      // An explicit empty map opts into the normative v3.1 priority defaults.
+      config: { requestRetentionByPriority: {} },
+    },
   };
 }
 
@@ -91,7 +135,7 @@ export async function processSubmissionSrsHandler(
   | { ok: false; skipped: false; error: string }
 > {
   try {
-    const familyInfo = await lookupVariant(ctx, args.activityId);
+    const familyInfo = await lookupVariantForScheduling(ctx, args.activityId);
     if (!familyInfo) {
       return { ok: false, skipped: true, reason: "no_blueprint" };
     }
@@ -106,6 +150,7 @@ export async function processSubmissionSrsHandler(
         getBaseline: async (variantKey: string) =>
           lookupBaseline(ctx, variantKey),
       },
+      requireAtomicPersistence: true,
     });
 
     const result = await adapter.processSubmission({

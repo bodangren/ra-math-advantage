@@ -137,16 +137,23 @@ export * from './srs/fsrs-fitting-contract';
 export * from './srs/evaluation-contract';
 
 export {
+  BUILTIN_FSRS_PARAMS_VERSION,
   DEFAULT_SCHEDULER_CONFIG,
   mapSrsRatingToGrade,
   mapGradeToSrsRating,
   createCard,
   reviewCard,
+  scheduleReview,
   getDueCards,
   previewInterval,
 } from './srs/scheduler';
 
-export type { SchedulerConfig } from './srs/scheduler';
+export type {
+  SchedulerConfig,
+  ReviewSchedulerContext,
+  ScheduleReviewInput,
+  ScheduledReview,
+} from './srs/scheduler';
 
 export {
   processReview,
@@ -188,7 +195,11 @@ export type {
   AdaptivePlacementResult,
 } from './srs/adaptive-placement';
 
-export type { CardStore, ReviewLogStore } from './srs/adapters';
+export type {
+  CardStore,
+  ReviewLogStore,
+  AtomicReviewSaveIdentifiers,
+} from './srs/adapters';
 export { InMemoryCardStore, InMemoryReviewLogStore } from './srs/adapters';
 
 export {
@@ -213,6 +224,7 @@ export type {
   SubmissionSrsResultSuccess,
   SubmissionSrsResultSkipped,
   SubmissionSrsResultError,
+  PracticeSrsReviewLogEntryV31,
   PracticeVariantInfo,
   PracticeVariantResolver,
   TimingBaselineResolver,

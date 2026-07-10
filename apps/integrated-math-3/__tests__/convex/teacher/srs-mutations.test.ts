@@ -466,6 +466,7 @@ describe('resetStudentCardsHandler', () => {
       rating: 'Again',
       evidence: expect.objectContaining({ action: 'teacher_reset' }),
     }));
+    expect(mockInsert.mock.calls[0]?.[1]).not.toHaveProperty('paramsVersion');
   });
 
   it('clears scheduling data on reset', async () => {

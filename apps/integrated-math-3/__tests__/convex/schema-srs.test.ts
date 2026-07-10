@@ -1,5 +1,12 @@
 import { describe, it, expect } from 'vitest';
+import fs from 'node:fs';
+import path from 'node:path';
 import schema from '@/convex/schema';
+
+const schemaSource = fs.readFileSync(
+  path.resolve(__dirname, '../../convex/schema.ts'),
+  'utf8',
+);
 
 describe('srs_cards table schema', () => {
   it('exists in the schema', () => {
@@ -40,6 +47,14 @@ describe('srs_review_log table schema', () => {
     expect(() => (table as unknown as { stateBefore: unknown }).stateBefore).not.toThrow();
     expect(() => (table as unknown as { stateAfter: unknown }).stateAfter).not.toThrow();
     expect(() => (table as unknown as { reviewedAt: unknown }).reviewedAt).not.toThrow();
+  });
+
+  it('widens historical rows with an optional parameter-version stamp', () => {
+    const tableSource = schemaSource.match(
+      /srs_review_log:\s*defineTable\(\{([\s\S]*?)\}\)\s*\.index\("by_card"/,
+    )?.[1];
+
+    expect(tableSource).toMatch(/paramsVersion:\s*v\.optional\(v\.string\(\)\)/);
   });
 });
 

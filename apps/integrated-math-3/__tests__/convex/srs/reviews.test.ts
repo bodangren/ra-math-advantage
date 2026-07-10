@@ -17,6 +17,7 @@ interface MockReviewDbRecord {
   evidence: { action: 'teacher_reset'; objectiveId: string } | { baseRating: 'Again' | 'Hard' | 'Good' | 'Easy'; timingAdjusted: boolean; reasons: string[]; misconceptionTags?: string[] };
   stateBefore: { stability: number; difficulty: number; state: 'new' | 'learning' | 'review' | 'relearning'; reps: number; lapses: number };
   stateAfter: { stability: number; difficulty: number; state: 'new' | 'learning' | 'review' | 'relearning'; reps: number; lapses: number };
+  paramsVersion?: string;
   reviewedAt: number;
 }
 
@@ -85,6 +86,7 @@ describe('saveReview', () => {
         reps: 6,
         lapses: 0,
       },
+      paramsVersion: 'fsrs-defaults.ts-fsrs.v5.4.1',
       reviewedAt: '2026-04-29T12:00:00.000Z',
     };
 
@@ -118,6 +120,7 @@ describe('saveReview', () => {
       reps: 6,
       lapses: 0,
     });
+    expect(inserted.paramsVersion).toBe('fsrs-defaults.ts-fsrs.v5.4.1');
     expect(inserted.reviewedAt).toBe(new Date('2026-04-29T12:00:00.000Z').getTime());
   });
 
@@ -148,6 +151,7 @@ describe('saveReview', () => {
         reps: 6,
         lapses: 1,
       },
+      paramsVersion: 'fsrs-defaults.ts-fsrs.v5.4.1',
       reviewedAt: '2026-04-29T12:00:00.000Z',
     };
 
@@ -227,6 +231,41 @@ describe('saveReview', () => {
       reps: 2,
       lapses: 0,
     });
+    expect(inserted).not.toHaveProperty('paramsVersion');
+  });
+
+  it('rejects a teacher reset that falsely claims FSRS parameter provenance', async () => {
+    const { db, mockInsert } = makeMockMutationCtx();
+    const ctx = { db } as unknown as MutationCtx;
+
+    await expect(saveReviewHandler(ctx, {
+      cardId: 'card-2' as Id<'srs_cards'>,
+      studentId: 'student-2' as Id<'profiles'>,
+      rating: 'Again',
+      evidence: { action: 'teacher_reset', objectiveId: 'obj-123' },
+      stateBefore: { stability: 1, difficulty: 5, state: 'review', reps: 1, lapses: 0 },
+      stateAfter: { stability: 0, difficulty: 0, state: 'new', reps: 0, lapses: 0 },
+      paramsVersion: 'fsrs-defaults.ts-fsrs.v5.4.1',
+      reviewedAt: '2026-04-29T13:00:00.000Z',
+    })).rejects.toThrow(/teacher_reset.*paramsVersion/);
+    expect(mockInsert).not.toHaveBeenCalled();
+  });
+
+  it('rejects a blank parameter-version stamp before inserting', async () => {
+    const { db, mockInsert } = makeMockMutationCtx();
+    const ctx = { db } as unknown as MutationCtx;
+
+    await expect(saveReviewHandler(ctx, {
+      cardId: 'card-1' as Id<'srs_cards'>,
+      studentId: 'student-1' as Id<'profiles'>,
+      rating: 'Good',
+      evidence: { baseRating: 'Good', timingAdjusted: false, reasons: ['correct'] },
+      stateBefore: { stability: 1, difficulty: 4, state: 'review', reps: 1, lapses: 0 },
+      stateAfter: { stability: 2, difficulty: 4, state: 'review', reps: 2, lapses: 0 },
+      paramsVersion: '   ',
+      reviewedAt: '2026-04-29T12:00:00.000Z',
+    })).rejects.toThrow(/paramsVersion/);
+    expect(mockInsert).not.toHaveBeenCalled();
   });
 });
 
@@ -274,6 +313,7 @@ describe('getReviewsByCard', () => {
     expect(result).toHaveLength(2);
     expect(result[0].reviewId).toBe('rev-1');
     expect(result[1].reviewId).toBe('rev-2');
+    expect(result[0].paramsVersion).toBeUndefined();
     expect(result[0].reviewedAt).toBe('2026-04-29T10:00:00.000Z');
     expect(result[1].reviewedAt).toBe('2026-04-29T11:00:00.000Z');
   });
@@ -302,6 +342,7 @@ describe('getReviewsByCard', () => {
       },
       stateBefore: { stability: 6, difficulty: 4, state: 'review' as const, reps: 6, lapses: 0 },
       stateAfter: { stability: 8, difficulty: 4, state: 'review' as const, reps: 7, lapses: 0 },
+      paramsVersion: 'fsrs-params.math.im3.secondary.v2',
       reviewedAt: 1777456800000,
     };
     const { db } = makeMockQueryCtx({ reviews: [dbReview] });
@@ -320,6 +361,7 @@ describe('getReviewsByCard', () => {
       reasons: ['fast'],
       misconceptionTags: ['misconception-1'],
     });
+    expect(result[0].paramsVersion).toBe('fsrs-params.math.im3.secondary.v2');
     expect(result[0].reviewedAt).toBe('2026-04-29T10:00:00.000Z');
   });
 });

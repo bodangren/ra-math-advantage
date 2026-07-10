@@ -24,6 +24,15 @@ import type {
   SrsCardState,
   SrsRating,
 } from './contract';
+import {
+  normalizeSchedulerConfig,
+  objectivePrioritySchema,
+  paramsVersionSchema,
+  resolveRequestedRetention,
+} from './scheduler-policy-contract';
+
+/** Canonical provenance for the exact built-in ts-fsrs v5 parameter set. */
+export const BUILTIN_FSRS_PARAMS_VERSION = 'fsrs-defaults.ts-fsrs.v5.4.1' as const;
 
 /**
  * Scheduler configuration parameters.
@@ -64,6 +73,25 @@ export const DEFAULT_SCHEDULER_CONFIG: SchedulerConfig = {
   requestRetention: 0.9,
   maximumInterval: 365,
   enableShortTermPreview: false,
+};
+
+/** Trusted scheduling inputs resolved by server-side policy code. */
+export type ReviewSchedulerContext = {
+  objectivePriority?: ObjectivePriority;
+  config?: Partial<SchedulerConfig>;
+};
+
+/** One scheduling decision and its inseparable audit provenance. */
+export type ScheduledReview = {
+  card: SrsCardState;
+  requestedRetention: number;
+  paramsVersion: string;
+};
+
+export type ScheduleReviewInput = ReviewSchedulerContext & {
+  card: SrsCardState;
+  rating: SrsRating;
+  now?: string;
 };
 
 /**
@@ -209,12 +237,50 @@ export function reviewCard(
   rating: SrsRating,
   now?: string,
   config?: Partial<SchedulerConfig>,
+  objectivePriority?: ObjectivePriority,
 ): SrsCardState {
+  return scheduleReview({
+    card,
+    rating,
+    now,
+    config,
+    objectivePriority,
+  }).card;
+}
+
+/**
+ * Apply one review and return the card together with the exact retention and
+ * parameter-version decisions that produced it. Keeping these values in one
+ * return object prevents a caller from independently reconstructing an audit
+ * stamp that can drift from the actual scheduler inputs.
+ */
+export function scheduleReview(input: ScheduleReviewInput): ScheduledReview {
+  const {
+    card,
+    rating,
+    now,
+    config,
+    objectivePriority,
+  } = input;
   const currentTime = now ?? new Date().toISOString();
-  const fullConfig = { ...DEFAULT_SCHEDULER_CONFIG, ...config };
+  const fullConfig = normalizeSchedulerConfig({
+    ...DEFAULT_SCHEDULER_CONFIG,
+    ...config,
+  });
+  const parsedPriority = objectivePriority === undefined
+    ? undefined
+    : objectivePrioritySchema.parse(objectivePriority);
+  const requestedRetention = parsedPriority === undefined
+    ? fullConfig.requestRetention
+    : resolveRequestedRetention(fullConfig, parsedPriority);
+  // Fitted releases currently have provenance references but no executable
+  // weights bundle. Until that binding exists, claiming any fitted version
+  // here would be false attribution, so scheduling is intentionally pinned to
+  // the exact installed built-in parameter set.
+  const parsedParamsVersion = paramsVersionSchema.parse(BUILTIN_FSRS_PARAMS_VERSION);
 
   const params = generatorParameters({
-    request_retention: fullConfig.requestRetention,
+    request_retention: requestedRetention,
     maximum_interval: fullConfig.maximumInterval,
     enable_short_term: fullConfig.enableShortTermPreview,
   });
@@ -224,7 +290,7 @@ export function reviewCard(
   const grade = mapSrsRatingToGrade(rating);
   const result = scheduler.next(fsrsCard, currentTime, grade);
 
-  return mapFsrsCardToSrsCardState(
+  const scheduledCard = mapFsrsCardToSrsCardState(
     result.card,
     {
       cardId: card.cardId,
@@ -234,6 +300,21 @@ export function reviewCard(
     },
     currentTime,
   );
+  const updatedCard = scheduledCard.scheduledDays <= fullConfig.maximumInterval
+    ? scheduledCard
+    : {
+        ...scheduledCard,
+        scheduledDays: fullConfig.maximumInterval,
+        dueDate: new Date(
+          Date.parse(currentTime) + fullConfig.maximumInterval * 86_400_000,
+        ).toISOString(),
+      };
+
+  return {
+    card: updatedCard,
+    requestedRetention,
+    paramsVersion: parsedParamsVersion,
+  };
 }
 
 /**
@@ -256,20 +337,16 @@ export function previewInterval(
   card: SrsCardState,
   rating: SrsRating,
   now?: string,
+  config?: Partial<SchedulerConfig>,
+  objectivePriority?: ObjectivePriority,
 ): number {
-  const currentTime = now ?? new Date().toISOString();
-  const params = generatorParameters({
-    request_retention: DEFAULT_SCHEDULER_CONFIG.requestRetention,
-    maximum_interval: DEFAULT_SCHEDULER_CONFIG.maximumInterval,
-    enable_short_term: DEFAULT_SCHEDULER_CONFIG.enableShortTermPreview,
-  });
-
-  const scheduler = fsrs(params);
-  const fsrsCard = toFsrsCard(card);
-  const grade = mapSrsRatingToGrade(rating);
-  const result = scheduler.next(fsrsCard, currentTime, grade);
-
-  return result.card.scheduled_days;
+  return scheduleReview({
+    card,
+    rating,
+    now,
+    config,
+    objectivePriority,
+  }).card.scheduledDays;
 }
 
 /**

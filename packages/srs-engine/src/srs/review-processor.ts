@@ -19,12 +19,15 @@ import {
 } from '@math-platform/practice-core/srs-rating';
 import type { SrsRatingResultV31 } from '@math-platform/practice-core/v3-1-contracts';
 import { deriveTimingFeatures } from '@math-platform/practice-core/timing-baseline';
-import { reviewCard } from './scheduler';
+import {
+  scheduleReview,
+  type ReviewSchedulerContext,
+} from './scheduler';
 import type {
   PracticeSubmissionEnvelope,
   PracticeTimingBaseline,
   SrsCardState,
-  SrsReviewLogEntry,
+  SrsReviewLogEntryV31,
 } from './contract';
 
 /**
@@ -43,6 +46,8 @@ export type ReviewProcessorInput = {
    * by that version. When omitted, legacy rating behavior is unchanged.
    */
   ratingInputV31?: SrsRatingInputV31;
+  /** Trusted server-side scheduling policy; never derive this from submission data. */
+  schedulerContext?: ReviewSchedulerContext;
   /** Review timestamp as an ISO string. */
   now: string;
 };
@@ -56,7 +61,7 @@ export type ReviewProcessorResult = {
   /** Card state after the FSRS review has been applied. */
   updatedCard: SrsCardState;
   /** Immutable audit entry capturing before/after state and evidence. */
-  reviewLog: SrsReviewLogEntry;
+  reviewLog: SrsReviewLogEntryV31;
 };
 
 /**
@@ -64,7 +69,7 @@ export type ReviewProcessorResult = {
  * and producing an immutable review log entry.
  */
 export function processReview(input: ReviewProcessorInput): ReviewProcessorResult {
-  const { card, submission, baseline, ratingInputV31, now } = input;
+  const { card, submission, baseline, ratingInputV31, schedulerContext, now } = input;
 
   const parts = submission.parts;
   let ratingResult: SrsRatingResult | SrsRatingResultV31;
@@ -98,9 +103,15 @@ export function processReview(input: ReviewProcessorInput): ReviewProcessorResul
       : ['timing_missing', ...ratingResult.reasons];
   }
 
-  const updatedCard = reviewCard(card, ratingResult.rating, now);
+  const scheduled = scheduleReview({
+    card,
+    rating: ratingResult.rating,
+    now,
+    ...schedulerContext,
+  });
+  const updatedCard = scheduled.card;
 
-  const reviewLog: SrsReviewLogEntry = {
+  const reviewLog: SrsReviewLogEntryV31 = {
     reviewId: generateReviewId(),
     cardId: card.cardId,
     studentId: card.studentId,
@@ -125,6 +136,7 @@ export function processReview(input: ReviewProcessorInput): ReviewProcessorResul
       reps: updatedCard.reps,
       lapses: updatedCard.lapses,
     },
+    paramsVersion: scheduled.paramsVersion,
     reviewedAt: now,
   };
 

@@ -91,6 +91,7 @@ export async function aggregateCohortMetricsHandler(
       evidence: r.evidence as SrsReviewLogEntry["evidence"],
       stateBefore: r.stateBefore as SrsReviewLogEntry["stateBefore"],
       stateAfter: r.stateAfter as SrsReviewLogEntry["stateAfter"],
+      paramsVersion: r.paramsVersion,
       reviewedAt: new Date(r.reviewedAt).toISOString(),
     }));
 

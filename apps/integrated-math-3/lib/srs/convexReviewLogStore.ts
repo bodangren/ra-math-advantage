@@ -2,6 +2,7 @@ import type { SrsReviewLogEntry, SrsRating, ReviewLogStore } from "@math-platfor
 import { internal } from "../../convex/_generated/api";
 import { type MutationCtx } from "../../convex/_generated/server";
 import { type Id } from "../../convex/_generated/dataModel";
+import { resolveReviewParamsVersion } from "../../convex/srs/paramsVersion";
 
 export class ConvexReviewLogStore implements ReviewLogStore {
   private ctx: MutationCtx;
@@ -11,6 +12,10 @@ export class ConvexReviewLogStore implements ReviewLogStore {
   }
 
   async saveReview(entry: SrsReviewLogEntry): Promise<void> {
+    const paramsVersion = resolveReviewParamsVersion(
+      "action" in entry.evidence,
+      entry.paramsVersion,
+    );
     await this.ctx.runMutation(internal.srs.reviews.saveReview, {
       reviewId: entry.reviewId,
       cardId: entry.cardId as Id<"srs_cards">,
@@ -20,6 +25,7 @@ export class ConvexReviewLogStore implements ReviewLogStore {
       evidence: entry.evidence,
       stateBefore: entry.stateBefore,
       stateAfter: entry.stateAfter,
+      ...(paramsVersion === undefined ? {} : { paramsVersion }),
       reviewedAt: entry.reviewedAt,
     });
   }
