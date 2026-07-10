@@ -5,10 +5,10 @@
 
 ## Phase 1: Contract & Schema Definition
 
-- [~] Task: Version planner priority and recommendation contracts
-    - [ ] Define normalized term schemas, five weights, score diagnostics, and diversity grouping
-    - [ ] Define graph-release precomputation inputs and outputs
-- [ ] Task: Define domain utility and sparse-mode contracts
+- [x] Task: Version planner priority and recommendation contracts [0225dd7]
+    - [x] Define normalized term schemas, five weights, score diagnostics, and diversity grouping
+    - [x] Define graph-release precomputation inputs and outputs
+- [~] Task: Define domain utility and sparse-mode contracts
     - [ ] Add provider identity, version, learner context, utility, and signal provenance schemas
     - [ ] Add adapter registration and sparse-domain release metadata
 - [ ] Task: Define review-load and session-composition contracts
