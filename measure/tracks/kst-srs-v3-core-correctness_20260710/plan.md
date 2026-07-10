@@ -61,11 +61,18 @@
 
 ## Phase 4: Generate Docs, Doctor, and Release Gate
 
-- [ ] Task: Regenerate Measure architecture and contract documentation
-    - [ ] Run `measure/generate.sh`
-    - [ ] Update package maps and migration guidance
-- [ ] Task: Run the complete v3 correctness quality gate
-    - [ ] Run focused package tests and coverage
-    - [ ] Run all consumer typechecks, lint, builds, and boundary checks
-    - [ ] Run `measure/doctor.sh` and verify the vendored hashes
-- [ ] Task: Measure - User Manual Verification 'Phase 4: Generate Docs, Doctor, and Release Gate' (Protocol in workflow.md)
+- [x] Task: Regenerate Measure architecture and contract documentation [e8cf4f2]
+    - [x] Run `measure/generate.sh`
+    - [x] Update package maps and migration guidance
+- [x] Task: Run the complete v3 correctness quality gate [239a865, 5c8cf5b]
+    - [x] Run focused package tests and coverage
+    - [x] Run all consumer typechecks, lint, builds, and boundary checks
+        - Core, SRS, and projection packages pass; root lint/build pass
+        - Full IM3/BM2 `tsc` baseline remains red from logged practice-variant schema drift
+    - [x] Run `measure/doctor.sh` and verify the vendored hashes
+- [x] Task: Measure - User Manual Verification 'Phase 4: Generate Docs, Doctor, and Release Gate' (Protocol in workflow.md)
+    - [x] User directed correct closeout, archive, and continuation without another pause
+    - [x] Core: 695 tests; 95.81% statements / 87.36% branches
+    - [x] SRS: 259 tests; 87.25% statements / 80.76% branches
+    - [x] Projection: 379 tests; TypeScript and lint pass
+    - [x] Root lint/build, boundary lint, Measure generate/doctor, and v3.2 hashes pass
