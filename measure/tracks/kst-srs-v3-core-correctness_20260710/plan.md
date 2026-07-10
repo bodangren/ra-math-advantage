@@ -6,10 +6,10 @@
 
 ## Phase 1: Contract & Schema Definition
 
-- [ ] Task: Vendor and register the canonical v3.2 contract
-    - [ ] Copy the upstream specification and migration notes without modification
-    - [ ] Add a machine-readable provenance manifest with version, source, hashes, and capture time
-    - [ ] Update `measure/index.md` and `measure/knowledge-space.md` canonical references
+- [x] Task: Vendor and register the canonical v3.2 contract [f533ad9]
+    - [x] Copy the upstream specification and migration notes without modification
+    - [x] Add a machine-readable provenance manifest with version, source, hashes, and capture time
+    - [x] Update `measure/index.md` and `measure/knowledge-space.md` canonical references
 - [ ] Task: Define v3 engine and SRS contracts
     - [ ] Add validated `hardGateThreshold` and `trendThreshold` configuration
     - [ ] Version the affected knowledge-space and SRS contracts
@@ -56,4 +56,3 @@
     - [ ] Run all consumer typechecks, lint, builds, and boundary checks
     - [ ] Run `measure/doctor.sh` and verify the vendored hashes
 - [ ] Task: Measure - User Manual Verification 'Phase 4: Generate Docs, Doctor, and Release Gate' (Protocol in workflow.md)
-
