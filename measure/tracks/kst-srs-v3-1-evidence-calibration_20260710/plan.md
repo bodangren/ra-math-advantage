@@ -44,7 +44,7 @@
 - [x] Task: Implement the offline synthetic and replay evaluation harness [1918590]
 - [x] Task: Measure - User Manual Verification 'Phase 3: Implementation' (Protocol in workflow.md) [e71d1e8]
 
-## Phase 4: Generate Docs, Doctor, and Release Gate
+## Phase 4: Generate Docs, Doctor, and Release Gate [checkpoint: f80e1ff]
 
 - [x] Task: Regenerate contract, package, and evaluation documentation [99fb972]
     - [x] Run `npm run generate` (`measure/scripts/generate.sh`; optional `build-graph` unavailable, no generated diff)
@@ -53,4 +53,4 @@
     - [x] Run package tests with coverage, lint, and typecheck
     - [x] Run replay determinism and fixture-integrity checks
     - [x] Run `measure/doctor.sh` and monorepo boundary checks
-- [~] Task: Measure - User Manual Verification 'Phase 4: Generate Docs, Doctor, and Release Gate' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 4: Generate Docs, Doctor, and Release Gate' (Protocol in workflow.md) [f80e1ff]
