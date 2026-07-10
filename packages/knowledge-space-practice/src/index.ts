@@ -104,6 +104,23 @@ export {
   plannerGraphReleaseInputV3_2Schema,
   plannerGraphReleaseOutputV3_2Schema,
 } from './planner/v3-2-contract';
+export {
+  learnerUtilityContextV3_2Schema,
+  utilitySignalV3_2Schema,
+  utilityProviderResultV3_2Schema,
+  utilityResolutionV3_2Schema,
+  domainUtilityRegistryV3_2Schema,
+  prerequisiteSparseReleaseV3_2Schema,
+} from './planner/v3-2-domain-utility-contract';
+export type {
+  LearnerUtilityContextV3_2,
+  UtilitySignalV3_2,
+  UtilityProviderResultV3_2,
+  DomainUtilityProviderV3_2,
+  UtilityResolutionV3_2,
+  DomainUtilityRegistryV3_2,
+  PrerequisiteSparseReleaseV3_2,
+} from './planner/v3-2-domain-utility-contract';
 export type {
   PlannerTermsV3_2,
   PlannerWeightsV3_2,

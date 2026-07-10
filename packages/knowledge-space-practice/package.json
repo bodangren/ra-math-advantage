@@ -13,6 +13,7 @@
     "./blueprints": "./src/blueprints/index.ts",
     "./planner/types": "./src/planner/types.ts",
     "./planner/v3-2-contract": "./src/planner/v3-2-contract.ts",
+    "./planner/v3-2-domain-utility-contract": "./src/planner/v3-2-domain-utility-contract.ts",
     "./projections": "./src/projections/index.ts"
   },
   "scripts": {

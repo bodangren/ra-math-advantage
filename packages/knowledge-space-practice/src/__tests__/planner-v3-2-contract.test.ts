@@ -49,6 +49,18 @@ describe('planner.v3.2 normalized priority contract', () => {
     expect(plannerPriorityScoreV3_2Schema.safeParse(score('skill.a', 0.64)).success).toBe(false);
     expect(plannerPriorityScoreV3_2Schema.safeParse({ ...score('skill.a'), tieBreak: { rule: 'priority_desc_node_id_asc.v1', priority: 0.68, nodeId: 'skill.b' } }).success).toBe(false);
   });
+
+  it('requires utility-led scores to use only 0.7 utility and 0.3 weakness fit', () => {
+    expect(plannerPriorityScoreV3_2Schema.safeParse({
+      ...score('skill.a'), rankingMode: 'utility-led',
+    }).success).toBe(false);
+    expect(plannerPriorityScoreV3_2Schema.safeParse({
+      ...score('skill.a'), rankingMode: 'utility-led', composite: 0.76,
+      weights: { a: 0, b: 0, c: 0, d: 0.3, e: 0.7 },
+      contributions: { readiness: 0, unlockValue: 0, goalProximity: 0, weaknessFit: 0.06, utility: 0.7 },
+      tieBreak: { rule: 'priority_desc_node_id_asc.v1', priority: 0.76, nodeId: 'skill.a' },
+    }).success).toBe(true);
+  });
 });
 
 describe('planner.v3.2 recommendation and graph-release contracts', () => {
@@ -73,11 +85,26 @@ describe('planner.v3.2 recommendation and graph-release contracts', () => {
       schemaVersion: 'planner.recommendations.v3.2', requestedCount: 3,
       recommendations: [recommendation(1, 'b', 'u1'), recommendation(2, 'a', 'u1'), recommendation(3, 'c', 'u1')],
     }).success).toBe(false);
+    expect(plannerRecommendationSetV3_2Schema.safeParse({
+      schemaVersion: 'planner.recommendations.v3.2', requestedCount: 1, diversityCap: 3,
+      recommendations: [recommendation(1, 'a', 'u1')],
+    }).success).toBe(false);
+  });
+
+  it('binds diversity group identity to the ancestor or fallback node', () => {
+    expect(plannerRecommendationV3_2Schema.safeParse({
+      schemaVersion: 'planner.recommendation.v3.2', rank: 1, score: score('skill.a'),
+      diversityGroup: { groupId: 'shared', ancestorNodeId: null, ancestorKind: 'self_fallback', distance: 99 },
+    }).success).toBe(false);
+    expect(plannerRecommendationV3_2Schema.safeParse({
+      schemaVersion: 'planner.recommendation.v3.2', rank: 1, score: score('skill.a'),
+      diversityGroup: { groupId: 'other', ancestorNodeId: 'unit.1', ancestorKind: 'instructional_unit', distance: 0 },
+    }).success).toBe(false);
   });
 
   it('validates versioned graph-release input identity and references', () => {
     const input = plannerGraphReleaseInputV3_2Schema.parse({
-      schemaVersion: 'planner.graph-release-input.v3.2', graphReleaseId: 'im3.2026-07-10', domain: 'integrated-math-3',
+      schemaVersion: 'planner.graph-release-input.v3.2', graphReleaseId: 'im3.2026-07-10', graphContentHash: 'sha256:abc', domain: 'integrated-math-3',
       nodes: [{ nodeId: 'a', kind: 'skill', domain: 'integrated-math-3' }, { nodeId: 'b', kind: 'skill', domain: 'integrated-math-3' }],
       edges: [{ edgeId: 'a-b', type: 'prerequisite_for', sourceId: 'a', targetId: 'b' }], goalNodeIds: ['b'],
     });
@@ -86,7 +113,7 @@ describe('planner.v3.2 recommendation and graph-release contracts', () => {
 
   it('validates reach, goal, and sparse-mode precomputation diagnostics', () => {
     const output = plannerGraphReleaseOutputV3_2Schema.parse({
-      schemaVersion: 'planner.graph-release-output.v3.2', graphReleaseId: 'im3.2026-07-10', domain: 'integrated-math-3',
+      schemaVersion: 'planner.graph-release-output.v3.2', graphReleaseId: 'im3.2026-07-10', graphContentHash: 'sha256:abc', domain: 'integrated-math-3',
       skillCount: 2, skillsWithPrerequisiteInEdge: 1, prerequisiteInEdgeRatio: 0.5, sparseThreshold: 0.05,
       rankingMode: 'normalized-prerequisite', maxReach: 1,
       reachByNode: [
@@ -99,9 +126,19 @@ describe('planner.v3.2 recommendation and graph-release contracts', () => {
 
   it('rejects inconsistent graph-release aggregate diagnostics', () => {
     expect(plannerGraphReleaseOutputV3_2Schema.safeParse({
-      schemaVersion: 'planner.graph-release-output.v3.2', graphReleaseId: 'bad', domain: 'math', skillCount: 2,
+      schemaVersion: 'planner.graph-release-output.v3.2', graphReleaseId: 'bad', graphContentHash: 'sha256:bad', domain: 'math', skillCount: 2,
       skillsWithPrerequisiteInEdge: 3, prerequisiteInEdgeRatio: 1, sparseThreshold: 0.05,
       rankingMode: 'utility-led', maxReach: 0, reachByNode: [],
+    }).success).toBe(false);
+  });
+
+  it('rejects reach greater than the available downstream skill population', () => {
+    expect(plannerGraphReleaseOutputV3_2Schema.safeParse({
+      schemaVersion: 'planner.graph-release-output.v3.2', graphReleaseId: 'bad', graphContentHash: 'sha256:bad', domain: 'math',
+      skillCount: 1, skillsWithPrerequisiteInEdge: 0, prerequisiteInEdgeRatio: 0, sparseThreshold: 0.05,
+      rankingMode: 'utility-led', maxReach: 999,
+      reachByNode: [{ nodeId: 'ghost', downstreamReach: 999, normalizedUnlockValue: 1, goalDistance: null, goalProximity: 0,
+        diversityGroup: { groupId: 'ghost', ancestorNodeId: null, ancestorKind: 'self_fallback', distance: 0 } }],
     }).success).toBe(false);
   });
 });

@@ -69,6 +69,20 @@ export const plannerPriorityScoreV3_2Schema = z
   })
   .strict()
   .superRefine((score, ctx) => {
+    if (
+      score.rankingMode === 'utility-led' &&
+      (score.weights.a !== 0 ||
+        score.weights.b !== 0 ||
+        score.weights.c !== 0 ||
+        score.weights.d !== 0.3 ||
+        score.weights.e !== 0.7)
+    ) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['weights'],
+        message: 'Utility-led mode requires effective weights 0/0/0/0.3/0.7',
+      });
+    }
     const expected = {
       readiness: score.weights.a * score.terms.readiness,
       unlockValue: score.weights.b * score.terms.unlockValue,
@@ -119,6 +133,15 @@ export const plannerDiversityGroupV3_2Schema = z
         message: 'Only self fallback groups omit an ancestor node',
       });
     }
+    if (isFallback && group.distance !== 0) {
+      ctx.addIssue({ code: 'custom', path: ['distance'], message: 'Self fallback distance must be zero' });
+    }
+    if (!isFallback && (group.groupId !== group.ancestorNodeId || group.distance < 1)) {
+      ctx.addIssue({
+        code: 'custom',
+        message: 'Ancestor groups bind their group ID and use a positive distance',
+      });
+    }
   });
 
 export const plannerRecommendationV3_2Schema = z
@@ -128,7 +151,19 @@ export const plannerRecommendationV3_2Schema = z
     score: plannerPriorityScoreV3_2Schema,
     diversityGroup: plannerDiversityGroupV3_2Schema,
   })
-  .strict();
+  .strict()
+  .superRefine((recommendation, ctx) => {
+    if (
+      recommendation.diversityGroup.ancestorKind === 'self_fallback' &&
+      recommendation.diversityGroup.groupId !== recommendation.score.nodeId
+    ) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['diversityGroup', 'groupId'],
+        message: 'Self fallback groups must be node-specific',
+      });
+    }
+  });
 
 function compareCodePoints(left: string, right: string): number {
   return left < right ? -1 : left > right ? 1 : 0;
@@ -138,7 +173,7 @@ export const plannerRecommendationSetV3_2Schema = z
   .object({
     schemaVersion: z.literal('planner.recommendations.v3.2'),
     requestedCount: z.number().int().min(0),
-    diversityCap: z.number().int().positive().default(2),
+    diversityCap: z.literal(2).default(2),
     recommendations: z.array(plannerRecommendationV3_2Schema),
   })
   .strict()
@@ -189,7 +224,23 @@ export const plannerRecommendationSetV3_2Schema = z
   });
 
 const graphNodeSchema = z
-  .object({ nodeId: idSchema, kind: idSchema, domain: idSchema })
+  .object({
+    nodeId: idSchema,
+    kind: z.enum([
+      'domain',
+      'content_group',
+      'instructional_unit',
+      'standard',
+      'skill',
+      'concept',
+      'worked_example',
+      'task_blueprint',
+      'generator',
+      'renderer',
+      'misconception',
+    ]),
+    domain: idSchema,
+  })
   .strict();
 const graphEdgeSchema = z
   .object({
@@ -204,8 +255,9 @@ export const plannerGraphReleaseInputV3_2Schema = z
   .object({
     schemaVersion: z.literal('planner.graph-release-input.v3.2'),
     graphReleaseId: idSchema,
+    graphContentHash: idSchema,
     domain: idSchema,
-    sparseThreshold: normalizedSchema.default(0.05),
+    sparseThreshold: z.literal(0.05).default(0.05),
     nodes: z.array(graphNodeSchema),
     edges: z.array(graphEdgeSchema),
     goalNodeIds: z.array(idSchema).default([]),
@@ -243,17 +295,30 @@ const graphReachSchema = z
     goalProximity: normalizedSchema,
     diversityGroup: plannerDiversityGroupV3_2Schema,
   })
-  .strict();
+  .strict()
+  .superRefine((entry, ctx) => {
+    if (
+      entry.diversityGroup.ancestorKind === 'self_fallback' &&
+      entry.diversityGroup.groupId !== entry.nodeId
+    ) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['diversityGroup', 'groupId'],
+        message: 'Self fallback groups must be node-specific',
+      });
+    }
+  });
 
 export const plannerGraphReleaseOutputV3_2Schema = z
   .object({
     schemaVersion: z.literal('planner.graph-release-output.v3.2'),
     graphReleaseId: idSchema,
+    graphContentHash: idSchema,
     domain: idSchema,
     skillCount: z.number().int().min(0),
     skillsWithPrerequisiteInEdge: z.number().int().min(0),
     prerequisiteInEdgeRatio: normalizedSchema,
-    sparseThreshold: normalizedSchema,
+    sparseThreshold: z.literal(0.05),
     rankingMode: plannerRankingModeV3_2Schema,
     maxReach: z.number().int().min(0),
     reachByNode: z.array(graphReachSchema),
@@ -285,7 +350,11 @@ export const plannerGraphReleaseOutputV3_2Schema = z
     release.reachByNode.forEach((entry, index) => {
       const unlock = release.maxReach === 0 ? 0 : Math.log1p(entry.downstreamReach) / Math.log1p(release.maxReach);
       const proximity = entry.goalDistance === null ? 0 : 1 / (1 + entry.goalDistance);
-      if (entry.downstreamReach > release.maxReach || Math.abs(entry.normalizedUnlockValue - unlock) > EPSILON) {
+      if (
+        entry.downstreamReach > Math.max(0, release.skillCount - 1) ||
+        entry.downstreamReach > release.maxReach ||
+        Math.abs(entry.normalizedUnlockValue - unlock) > EPSILON
+      ) {
         ctx.addIssue({ code: 'custom', path: ['reachByNode', index, 'normalizedUnlockValue'], message: 'Invalid log-scaled unlock value' });
       }
       if (Math.abs(entry.goalProximity - proximity) > EPSILON) {
