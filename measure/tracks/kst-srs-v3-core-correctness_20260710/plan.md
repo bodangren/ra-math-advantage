@@ -4,7 +4,7 @@
 **Source:** approved specification; upstream `kst-srs.v3.2` snapshot  
 **Workflow:** strict contract-first TDD; atomic commits and Git notes per task
 
-## Phase 1: Contract & Schema Definition
+## Phase 1: Contract & Schema Definition [checkpoint: c85c814]
 
 - [x] Task: Vendor and register the canonical v3.2 contract [f533ad9]
     - [x] Copy the upstream specification and migration notes without modification
