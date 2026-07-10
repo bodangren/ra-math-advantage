@@ -6,10 +6,10 @@
 
 ## Phase 1: Architecture Contract Definition
 
-- [~] Task: Define the versioned workspace and ownership manifest schema
-    - [ ] Model apps, packages, layers, owners, domain classification, exports, and quality commands
-    - [ ] Model allowed edges and explicit expiring debt records
-- [ ] Task: Define dependency-DAG and boundary policies
+- [x] Task: Define the versioned workspace and ownership manifest schema [ba6498b]
+    - [x] Model apps, packages, layers, owners, domain classification, exports, and quality commands
+    - [x] Model allowed edges and explicit expiring debt records
+- [~] Task: Define dependency-DAG and boundary policies
     - [ ] Specify app/package direction, domain-content isolation, Convex generated boundaries, and public exports
     - [ ] Specify cycle, undeclared dependency, and deep-import rules
 - [ ] Task: Define workspace quality-gate parity contracts
