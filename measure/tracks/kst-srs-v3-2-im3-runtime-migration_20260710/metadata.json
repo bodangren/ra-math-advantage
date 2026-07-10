@@ -1,0 +1,13 @@
+{
+  "track_id": "kst-srs-v3-2-im3-runtime-migration_20260710",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-07-10T10:16:16Z",
+  "updated_at": "2026-07-10T10:16:16Z",
+  "description": "Adopt the completed v3.2 engines in IM3 using safe Convex migrations, comparison gates, cutover controls, and monorepo consumer compatibility tests.",
+  "estimated_tasks": 21,
+  "actual_tasks": null,
+  "deviation_notes": "",
+  "program": "KST+SRS v3.2 Migration",
+  "depends_on": ["kst-srs-v3-2-planner-session_20260710", "monorepo-architecture-contracts_20260710"]
+}

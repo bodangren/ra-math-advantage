@@ -1,0 +1,13 @@
+{
+  "track_id": "kst-srs-v3-1-evidence-calibration_20260710",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-07-10T10:16:16Z",
+  "updated_at": "2026-07-10T10:16:16Z",
+  "description": "Implement kst-srs.v3.1 proficiency evidence, rating, placement, calibration, parameter fitting, and offline evaluation contracts.",
+  "estimated_tasks": 19,
+  "actual_tasks": null,
+  "deviation_notes": "",
+  "program": "KST+SRS v3.2 Migration",
+  "depends_on": ["kst-srs-v3-core-correctness_20260710"]
+}

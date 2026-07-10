@@ -1,0 +1,13 @@
+{
+  "track_id": "app-platform-consolidation_20260710",
+  "type": "refactor",
+  "status": "new",
+  "created_at": "2026-07-10T10:16:16Z",
+  "updated_at": "2026-07-10T10:16:16Z",
+  "description": "Consolidate duplicated app scaffolding and configuration, correct package direction, and establish a reusable course-app composition model.",
+  "estimated_tasks": 20,
+  "actual_tasks": null,
+  "deviation_notes": "",
+  "program": "LMS Monorepo Modularity",
+  "depends_on": ["monorepo-architecture-contracts_20260710"]
+}

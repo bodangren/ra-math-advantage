@@ -1,0 +1,13 @@
+{
+  "track_id": "shared-lms-backend-modularization_20260710",
+  "type": "refactor",
+  "status": "new",
+  "created_at": "2026-07-10T10:16:16Z",
+  "updated_at": "2026-07-10T10:16:16Z",
+  "description": "Extract duplicated LMS backend contracts and pure behavior into reusable boundaries while preserving independent app-owned Convex deployments and data.",
+  "estimated_tasks": 21,
+  "actual_tasks": null,
+  "deviation_notes": "",
+  "program": "LMS Monorepo Modularity",
+  "depends_on": ["monorepo-architecture-contracts_20260710"]
+}

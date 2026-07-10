@@ -58,6 +58,48 @@ Dependencies:
 
 ## Active Tracks
 
+### KST+SRS v3.2 Migration Program
+
+Approved 2026-07-10. Vendor the exact `../mastery-advantage` v3.2 specification,
+then migrate through ordered correctness, evidence/calibration, planner/session,
+and IM3 runtime/data gates. Shared packages are canonical; IM3 is the first
+production adopter because it owns the repository's complete KST runtime chain.
+
+- [ ] **Track: KST+SRS v3 Contract and Core Correctness**
+   *Vendor the hash-stamped v3.2 contract and implement the v3 correctness release: gated readiness, canonical elapsed-time retention, corrected calibration, placement card synthesis, reviews-first backlog-aware queues, and trend correction.*
+   *Link: [./tracks/kst-srs-v3-core-correctness_20260710/](./tracks/kst-srs-v3-core-correctness_20260710/)*
+
+- [ ] **Track: KST+SRS v3.1 Evidence and Calibration**
+   *Depends on v3 core correctness. Implement guess-corrected Wilson evidence, normative rating caps, two-probe placement, priority retention, ability-stratified calibration, versioned FSRS fitting, and offline evaluation.*
+   *Link: [./tracks/kst-srs-v3-1-evidence-calibration_20260710/](./tracks/kst-srs-v3-1-evidence-calibration_20260710/)*
+
+- [ ] **Track: KST+SRS v3.2 Planner and Session Quality**
+   *Depends on v3.1. Implement normalized planning, domain utility providers, prerequisite-sparse ranking, diversity, review-load budgeting, deterministic interleaving, interval fuzz, and load balancing.*
+   *Link: [./tracks/kst-srs-v3-2-planner-session_20260710/](./tracks/kst-srs-v3-2-planner-session_20260710/)*
+
+- [ ] **Track: KST+SRS v3.2 IM3 Runtime and Data Migration**
+   *Depends on the v3.2 engine and monorepo architecture-contract tracks. Adopt v3.2 in IM3 through widen-migrate-narrow Convex changes, resumable dry-run backfills, comparison/cutover controls, BM2 queue reconciliation, and all-app compatibility gates.*
+   *Link: [./tracks/kst-srs-v3-2-im3-runtime-migration_20260710/](./tracks/kst-srs-v3-2-im3-runtime-migration_20260710/)*
+
+### LMS Monorepo Modularity Program
+
+Approved 2026-07-10 from a code-grounded audit: 43 identical production-file
+groups (about 123 KB), three identical 16.5 KB Convex schemas, eight of twenty
+packages omitted from CI, shallow regex-only boundary guards, and an inverted
+`activity-components -> math-content` dependency.
+
+- [ ] **Track: Monorepo Architecture Contracts and Enforcement**
+   *Define a machine-readable package DAG and ownership model, expand boundary enforcement, place every workspace under quality gates, repair math-content lint/typecheck, and generate architecture evidence.*
+   *Link: [./tracks/monorepo-architecture-contracts_20260710/](./tracks/monorepo-architecture-contracts_20260710/)*
+
+- [ ] **Track: Shared LMS Backend Modularization**
+   *Depends on architecture contracts. Extract common LMS validators, schema fragments, and pure services while preserving app-owned Convex deployments, auth wrappers, generated APIs, curriculum, and data.*
+   *Link: [./tracks/shared-lms-backend-modularization_20260710/](./tracks/shared-lms-backend-modularization_20260710/)*
+
+- [ ] **Track: App and Platform Consolidation**
+   *Depends on architecture contracts. Consolidate repeated tooling/configuration and common types, invert activity registry ownership, create reusable app composition surfaces, and preserve every app's design and curriculum.*
+   *Link: [./tracks/app-platform-consolidation_20260710/](./tracks/app-platform-consolidation_20260710/)*
+
 - [ ] **Track: Live Classroom Presentation**
    *Server/client architecture for a teacher to present lesson phases/steps with every student's screen synchronized in real time. Convex reactive queries/mutations drive sync over a new `live_sessions` table; teacher controls navigation, activity reveal, and inline annotations; students follow with local interaction. Sessions end explicitly or via idle timeout. Story-shaped spec (6 stories: S1 start, S2 follow, S3 navigate/reveal, S4 local interact, S5 annotations, S6 end).*
    *Link: [./tracks/live-classroom-presentation_20260703/](./tracks/live-classroom-presentation_20260703/)*

@@ -1,0 +1,57 @@
+# Implementation Plan: KST+SRS v3.1 Evidence and Calibration
+
+**Dependency:** `kst-srs-v3-core-correctness_20260710`  
+**Workflow:** strict contract-first TDD; synthetic data only in reusable packages
+
+## Phase 1: Contract & Schema Definition
+
+- [ ] Task: Define v3.1 proficiency evidence and rating contracts
+    - [ ] Version evidence inputs, confidence diagnostics, and rating outputs
+    - [ ] Define guess-floor and timing-baseline schemas
+- [ ] Task: Extend domain-adapter and placement contracts
+    - [ ] Add versioned guess floors, age bands, and probe instruments
+    - [ ] Define two-probe decisions, frontier state, stopping reasons, and confidence caps
+- [ ] Task: Define scheduler calibration and evaluation artifacts
+    - [ ] Add per-priority requested retention and `paramsVersion` to affected contracts
+    - [ ] Define parameter-fit provenance, holdout metrics, approval state, and fallback resolution
+    - [ ] Define synthetic-cohort and replay-result schemas
+- [ ] Task: Measure - User Manual Verification 'Phase 1: Contract & Schema Definition' (Protocol in workflow.md)
+
+## Phase 2: Behavioral and Contract Tests
+
+- [ ] Task: Test proficiency evidence mathematics
+    - [ ] Cover guess-floor rescaling, half-life weighting, Wilson bounds, and zero/one extremes
+    - [ ] Cover small-sample confidence caps and missing-baseline diagnostics
+- [ ] Task: Test the normative rating mapper
+    - [ ] Cover correctness, hint, reveal, timing, and misconception precedence
+    - [ ] Verify unreliable timing cannot change a rating
+- [ ] Task: Test adaptive placement and priority retention
+    - [ ] Exercise two-probe traversal, budget exhaustion, disconnected DAGs, and deterministic stopping
+    - [ ] Verify scalar configuration remains backward compatible
+- [ ] Task: Test calibration, fitting, and replay release gates
+    - [ ] Cover ability-band agreement and `confounded_by_ability`
+    - [ ] Cover population fallback, volume rejection, holdout comparison, and human approval
+    - [ ] Exercise synthetic learner invariants and parameter-version attribution
+- [ ] Task: Measure - User Manual Verification 'Phase 2: Behavioral and Contract Tests' (Protocol in workflow.md)
+
+## Phase 3: Implementation
+
+- [ ] Task: Implement v3.1 evidence aggregation and confidence diagnostics
+- [ ] Task: Implement the staged practice-to-SRS rating mapper
+- [ ] Task: Implement two-probe adaptive frontier placement
+- [ ] Task: Implement per-priority retention and review-log parameter stamping
+- [ ] Task: Implement ability-stratified edge calibration and versioned FSRS fitting
+- [ ] Task: Implement the offline synthetic and replay evaluation harness
+- [ ] Task: Measure - User Manual Verification 'Phase 3: Implementation' (Protocol in workflow.md)
+
+## Phase 4: Generate Docs, Doctor, and Release Gate
+
+- [ ] Task: Regenerate contract, package, and evaluation documentation
+    - [ ] Run `measure/generate.sh`
+    - [ ] Document population fallback and human-release operations
+- [ ] Task: Run the complete v3.1 quality gate
+    - [ ] Run package tests with coverage, lint, and typecheck
+    - [ ] Run replay determinism and fixture-integrity checks
+    - [ ] Run `measure/doctor.sh` and monorepo boundary checks
+- [ ] Task: Measure - User Manual Verification 'Phase 4: Generate Docs, Doctor, and Release Gate' (Protocol in workflow.md)
+
