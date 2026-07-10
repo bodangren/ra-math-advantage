@@ -3,7 +3,7 @@
 **Dependency:** `kst-srs-v3-core-correctness_20260710`  
 **Workflow:** strict contract-first TDD; synthetic data only in reusable packages
 
-## Phase 1: Contract & Schema Definition
+## Phase 1: Contract & Schema Definition [checkpoint: 43d4205]
 
 - [x] Task: Define v3.1 proficiency evidence and rating contracts [5cb6894]
     - [x] Version evidence inputs, confidence diagnostics, and rating outputs
@@ -15,11 +15,11 @@
     - [x] Add per-priority requested retention and `paramsVersion` to affected contracts
     - [x] Define parameter-fit provenance, holdout metrics, approval state, and fallback resolution
     - [x] Define synthetic-cohort and replay-result schemas
-- [~] Task: Measure - User Manual Verification 'Phase 1: Contract & Schema Definition' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 1: Contract & Schema Definition' (Protocol in workflow.md) [43d4205]
 
 ## Phase 2: Behavioral and Contract Tests
 
-- [ ] Task: Test proficiency evidence mathematics
+- [~] Task: Test proficiency evidence mathematics
     - [ ] Cover guess-floor rescaling, half-life weighting, Wilson bounds, and zero/one extremes
     - [ ] Cover small-sample confidence caps and missing-baseline diagnostics
 - [ ] Task: Test the normative rating mapper
