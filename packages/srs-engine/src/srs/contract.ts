@@ -70,6 +70,20 @@ export const PRIORITY_DEFAULTS: Record<ObjectivePriority, ObjectivePracticePolic
 
 import type { SrsRating } from '@math-platform/practice-core/srs-rating';
 export type { SrsRating, SrsRatingInput, SrsRatingResult } from '@math-platform/practice-core/srs-rating';
+export {
+  SRS_RATING_POLICY_VERSION,
+  TIMING_BASELINE_POLICY_VERSION,
+  timingZBaselineSchema,
+  ratingCapDecisionSchema,
+  timingRatingDecisionSchema,
+  srsRatingResultV31Schema,
+} from '@math-platform/practice-core/v3-1-contracts';
+export type {
+  TimingZBaseline,
+  RatingCapDecision,
+  TimingRatingDecision,
+  SrsRatingResultV31,
+} from '@math-platform/practice-core/v3-1-contracts';
 
 // ============================================
 // Types: Timing Baseline (re-exported from practice-core)

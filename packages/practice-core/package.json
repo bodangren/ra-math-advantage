@@ -12,6 +12,7 @@
     "./timing": "./src/practice/timing.ts",
     "./timing-baseline": "./src/practice/timing-baseline.ts",
     "./srs-rating": "./src/practice/srs-rating.ts",
+    "./v3-1-contracts": "./src/practice/v3-1-contracts.ts",
     "./problem-family": "./src/practice/problem-family.ts",
     "./practice-item": "./src/practice/practice-item.ts",
     "./error-analysis": "./src/practice/error-analysis/index.ts",

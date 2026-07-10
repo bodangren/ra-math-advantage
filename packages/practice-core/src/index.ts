@@ -70,6 +70,22 @@ export {
 } from './practice/srs-rating';
 
 export {
+  SRS_RATING_POLICY_VERSION,
+  TIMING_BASELINE_POLICY_VERSION,
+  timingZBaselineSchema,
+  ratingCapDecisionSchema,
+  timingPartDecisionSchema,
+  timingRatingDecisionSchema,
+  srsRatingResultV31Schema,
+} from './practice/v3-1-contracts';
+export type {
+  TimingZBaseline,
+  RatingCapDecision,
+  TimingRatingDecision,
+  SrsRatingResultV31,
+} from './practice/v3-1-contracts';
+
+export {
   DIFFICULTY_VALUES,
   type Difficulty,
   difficultySchema,

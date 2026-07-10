@@ -7,6 +7,12 @@ export {
   isPlacementEstimate,
   isPlacementSeededCard,
   isDailyQueueResult,
+  SRS_RATING_POLICY_VERSION,
+  TIMING_BASELINE_POLICY_VERSION,
+  timingZBaselineSchema,
+  ratingCapDecisionSchema,
+  timingRatingDecisionSchema,
+  srsRatingResultV31Schema,
 } from './srs/contract';
 
 export type {
@@ -31,9 +37,28 @@ export type {
   TimingSpeedBand,
   SrsRatingInput,
   SrsRatingResult,
+  TimingZBaseline,
+  RatingCapDecision,
+  TimingRatingDecision,
+  SrsRatingResultV31,
 } from './srs/contract';
 
 export type { SrsRating } from './srs/contract';
+
+export {
+  PROFICIENCY_EVIDENCE_POLICY_VERSION,
+  EVIDENCE_DIAGNOSTIC_REASONS,
+  guessFloorRefSchema,
+  practiceAttemptEvidenceSchema,
+  practiceVariantEvidenceInputSchema,
+  practiceVariantEvidenceResultSchema,
+} from './srs/proficiency-evidence-contract';
+export type {
+  GuessFloorRef,
+  PracticeAttemptEvidence,
+  PracticeVariantEvidenceInputV31,
+  PracticeVariantEvidenceResultV31,
+} from './srs/proficiency-evidence-contract';
 
 export {
   DEFAULT_SCHEDULER_CONFIG,
