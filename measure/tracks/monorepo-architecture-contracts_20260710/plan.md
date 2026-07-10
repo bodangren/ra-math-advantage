@@ -24,10 +24,10 @@
 - [x] Task: Build negative fixtures for every prohibited dependency class [a9ef764]
     - [x] Cover app-to-app, package-to-app, generated Convex, domain leakage, deep imports, and undeclared dependencies
     - [x] Cover direct and transitive cycles
-- [~] Task: Test workspace and CI inventory parity
-    - [ ] Fail when a workspace is absent, duplicated, or lacks required commands
-    - [ ] Fail when root and CI inventories diverge
-- [ ] Task: Test debt-record behavior
+- [x] Task: Test workspace and CI inventory parity [fb16971]
+    - [x] Fail when a workspace is absent, duplicated, or lacks required commands
+    - [x] Fail when root and CI inventories diverge
+- [~] Task: Test debt-record behavior
     - [ ] Reject unowned, unlinked, malformed, or expired exceptions
     - [ ] Prove an exception cannot match unrelated future violations
 - [ ] Task: Add behavioral complements for affected package boundaries
