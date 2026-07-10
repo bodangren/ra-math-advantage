@@ -28,11 +28,11 @@
 - [x] Task: Test adaptive placement and priority retention [591a74b]
     - [x] Exercise two-probe traversal, budget exhaustion, disconnected DAGs, and deterministic stopping
     - [x] Verify scalar configuration remains backward compatible
-- [~] Task: Test calibration, fitting, and replay release gates
-    - [ ] Cover ability-band agreement and `confounded_by_ability`
-    - [ ] Cover population fallback, volume rejection, holdout comparison, and human approval
-    - [ ] Exercise synthetic learner invariants and parameter-version attribution
-- [ ] Task: Measure - User Manual Verification 'Phase 2: Behavioral and Contract Tests' (Protocol in workflow.md)
+- [x] Task: Test calibration, fitting, and replay release gates [7570a61]
+    - [x] Cover ability-band agreement and `confounded_by_ability`
+    - [x] Cover population fallback, volume rejection, holdout comparison, and human approval
+    - [x] Exercise synthetic learner invariants and parameter-version attribution
+- [~] Task: Measure - User Manual Verification 'Phase 2: Behavioral and Contract Tests' (Protocol in workflow.md)
 
 ## Phase 3: Implementation
 
