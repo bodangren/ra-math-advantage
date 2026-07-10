@@ -97,7 +97,7 @@ Custom JWT-based auth built on Convex. No third-party auth provider.
 
 | Tool | Purpose |
 |------|---------|
-| Vitest ^4 | Unit/integration tests (jsdom environment) |
+| Vitest ^4 + `@vitest/coverage-v8` | Unit/integration tests (jsdom environment) and reproducible package coverage gates |
 | Playwright ^1.56 | E2E tests |
 | Testing Library | Component tests (React) |
 | @testing-library/jest-dom | DOM matchers |

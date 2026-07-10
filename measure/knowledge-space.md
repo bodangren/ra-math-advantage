@@ -42,8 +42,10 @@ Owns domain-neutral mechanisms:
 - synthetic fixtures and examples only
 
 Must not import app code, Convex generated files, math content, GSE content,
-curriculum files, standards catalogs, proprietary graph maps, or FSRS card
-semantics. It never computes retention from stability.
+curriculum files, standards catalogs, or proprietary graph maps. Its v3
+evidence boundary accepts pre-aggregated objective retention. A deprecated
+compatibility alias delegates legacy stability calls to `srs-engine`; no FSRS
+formula is implemented in core, and new consumers must use the evidence adapter.
 
 ### `@math-platform/knowledge-space-practice`
 
@@ -131,7 +133,7 @@ Concept nodes MUST NOT appear in `blueprints.json` files emitted by domain conte
 
 ## Current Measure Tracks
 
-- Track 1 (`wire-kst-pipeline_20260521`) completed the v2 production wiring. The active `kst-srs-v3-core-correctness_20260710` migration adopts [`../kst-srs.v3.2/SPECIFICATION.md`](../kst-srs.v3.2/SPECIFICATION.md) in ordered correctness, evidence/calibration, planner/session, and runtime phases.
+- Track 1 (`wire-kst-pipeline_20260521`) completed the v2 production wiring. `kst-srs-v3-core-correctness_20260710` delivered the v3 correctness layer; the remaining evidence/calibration, planner/session, and runtime cutover work continues in the ordered v3.1/v3.2 tracks.
 - Track 2 defines `knowledge-space-core`.
 - Track 6 defines reusable blueprint and generator contracts in `knowledge-space-practice`.
 - Track 7 defines reusable practice and visualization projection adapters in `knowledge-space-practice`.

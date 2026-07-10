@@ -8,8 +8,9 @@ See [Knowledge Space Architecture](./knowledge-space.md) for the full project-wi
 
 | Package / Location | Owns | Must Not Own |
 |---|---|---|
-| `packages/knowledge-space-core` | `knowledge-space.v1` graph/state schemas, validation, traversal, readiness primitives, domain adapter interfaces, synthetic fixtures | Math curriculum maps, English/GSE descriptors, standards catalogs, app code, Convex generated files |
+| `packages/knowledge-space-core` | `knowledge-space.v2` graph/state schemas, validation, traversal, gated readiness, objective-evidence adapters, domain adapter interfaces, synthetic fixtures | FSRS formulas, queues, Math curriculum maps, English/GSE descriptors, standards catalogs, app code, Convex generated files |
 | `packages/knowledge-space-practice` | reusable blueprint/generator contracts, generic evidence, practice and visualization projection utilities, `practice.v1` adapters, synthetic fixtures | Proprietary graph maps, domain descriptor text, generated app activity maps, app component registries |
+| `packages/srs-engine` | `srs.contract.v3`, FSRS retention, reviewed-variant aggregation, placement-card synthesis, review processing, and reviews-first backlog-aware queues | App code, Convex generated files, proprietary curriculum, duplicate graph/readiness logic |
 | `packages/math-content` and app curriculum folders | IM1/IM2/IM3/AP Precalculus graph artifacts, standards mappings, generator bindings, component/runtime mappings | Re-definitions of core graph theory or reusable cross-domain contracts |
 | future English/GSE content package or app folder | proprietary GSE-aligned graph artifacts, CEFR/GSE metadata, modality/task context, English-specific generators | Pearson/GSE descriptor redistribution through reusable packages |
 

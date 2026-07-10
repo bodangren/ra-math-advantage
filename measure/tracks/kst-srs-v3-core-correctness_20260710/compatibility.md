@@ -42,3 +42,15 @@ Phase 3 implementation tasks migrate consumers. Existing v2 calibration rows
 must be versioned and recomputed; they are not valid inputs to v3 incremental
 updates.
 
+## Implemented Migration Surface
+
+- `knowledge-space-core` accepts aggregated objective evidence and delegates
+  its deprecated retention alias to the sole implementation in `srs-engine`.
+- `srs-engine` exposes elapsed-time retention, reviewed-card minimum
+  aggregation, placement synthesis, and backlog-aware queue results.
+- The Business Math queue is an app-envelope adapter over the canonical queue.
+- IM3 no longer uses `stability / 20`; production persistence/backfill remains
+  assigned to the later runtime/data-gate track.
+- Full IM3/BM2 typechecks remain blocked by pre-existing practice-variant
+  schema drift. Focused v3 consumers are tested and linted; the drift is
+  retained in `measure/tech-debt.md` rather than hidden by this track.
