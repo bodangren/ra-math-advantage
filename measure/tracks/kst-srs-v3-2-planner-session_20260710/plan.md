@@ -8,10 +8,10 @@
 - [x] Task: Version planner priority and recommendation contracts [0225dd7]
     - [x] Define normalized term schemas, five weights, score diagnostics, and diversity grouping
     - [x] Define graph-release precomputation inputs and outputs
-- [~] Task: Define domain utility and sparse-mode contracts
-    - [ ] Add provider identity, version, learner context, utility, and signal provenance schemas
-    - [ ] Add adapter registration and sparse-domain release metadata
-- [ ] Task: Define review-load and session-composition contracts
+- [x] Task: Define domain utility and sparse-mode contracts [628b469]
+    - [x] Add provider identity, version, learner context, utility, and signal provenance schemas
+    - [x] Add adapter registration and sparse-domain release metadata
+- [~] Task: Define review-load and session-composition contracts
     - [ ] Add load budget configuration and role-projection fields
     - [ ] Define interleaving, deterministic fuzz, projected-day load, and maximum-interval invariants
 - [ ] Task: Measure - User Manual Verification 'Phase 1: Contract & Schema Definition' (Protocol in workflow.md)
