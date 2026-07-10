@@ -5,7 +5,7 @@
 
 ## Phase 1: Contract & Schema Definition
 
-- [ ] Task: Version planner priority and recommendation contracts
+- [~] Task: Version planner priority and recommendation contracts
     - [ ] Define normalized term schemas, five weights, score diagnostics, and diversity grouping
     - [ ] Define graph-release precomputation inputs and outputs
 - [ ] Task: Define domain utility and sparse-mode contracts
@@ -50,4 +50,3 @@
     - [ ] Run determinism, boundary, and generated-artifact freshness checks
     - [ ] Run `measure/doctor.sh`
 - [ ] Task: Measure - User Manual Verification 'Phase 4: Generate Docs, Doctor, and Release Gate' (Protocol in workflow.md)
-
