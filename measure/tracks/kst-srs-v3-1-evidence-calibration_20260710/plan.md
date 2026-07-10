@@ -11,11 +11,11 @@
 - [x] Task: Extend domain-adapter and placement contracts [4fd6184]
     - [x] Add versioned guess floors, age bands, and probe instruments
     - [x] Define two-probe decisions, frontier state, stopping reasons, and confidence caps
-- [~] Task: Define scheduler calibration and evaluation artifacts
-    - [ ] Add per-priority requested retention and `paramsVersion` to affected contracts
-    - [ ] Define parameter-fit provenance, holdout metrics, approval state, and fallback resolution
-    - [ ] Define synthetic-cohort and replay-result schemas
-- [ ] Task: Measure - User Manual Verification 'Phase 1: Contract & Schema Definition' (Protocol in workflow.md)
+- [x] Task: Define scheduler calibration and evaluation artifacts [3beffd0]
+    - [x] Add per-priority requested retention and `paramsVersion` to affected contracts
+    - [x] Define parameter-fit provenance, holdout metrics, approval state, and fallback resolution
+    - [x] Define synthetic-cohort and replay-result schemas
+- [~] Task: Measure - User Manual Verification 'Phase 1: Contract & Schema Definition' (Protocol in workflow.md)
 
 ## Phase 2: Behavioral and Contract Tests
 
