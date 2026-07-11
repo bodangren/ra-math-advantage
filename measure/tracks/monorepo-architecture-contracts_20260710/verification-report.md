@@ -16,7 +16,7 @@
 | Generated reports | PASS | DAG, ownership, exports, quality gates, and architecture JSON are fresh |
 | Existing debt | PASS | exact, owned, expiring records accepted by registered dependent tracks |
 | Doctor | PASS | generated-report freshness and live boundary checks pass |
-| Manual browser evaluation | PASS | Kimi WebBridge rendered IM3 home and verified `/dev/component-approval` redirects to `/auth/login?redirect=%2Fdev%2Fcomponent-approval` |
+| Manual browser evaluation | PASS | Kimi WebBridge rendered the IM3 home and curriculum shells and verified `/dev/component-approval` redirects to `/auth/login?redirect=%2Fdev%2Fcomponent-approval`; curriculum data remained empty because no local Convex backend was running |
 
 ## Full App Command Audit
 
