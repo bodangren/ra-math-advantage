@@ -14,7 +14,7 @@ This track owns removal or reconciliation of the exact, expiring
 - [x] Task: Inventory the complete v2 persistence and runtime surface [ecca7fc]
     - [ ] Map tables, fields, indexes, handlers, adapters, routes, and UI consumers
     - [ ] Record data-volume and migration-risk assumptions per table
-- [~] Task: Define widened Convex schemas and versioned adapters
+- [x] Task: Define widened Convex schemas and versioned adapters [96bd05d]
     - [ ] Add optional v3.2 fields and correctly named indexes
     - [ ] Define old/new read precedence, dual-write behavior, and migration-version markers
     - [ ] Define validated internal migration and verification result contracts
