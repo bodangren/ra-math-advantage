@@ -11,7 +11,7 @@ This track owns removal or reconciliation of the exact, expiring
 
 ## Phase 1: Contract & Schema Widening Definition
 
-- [ ] Task: Inventory the complete v2 persistence and runtime surface
+- [~] Task: Inventory the complete v2 persistence and runtime surface
     - [ ] Map tables, fields, indexes, handlers, adapters, routes, and UI consumers
     - [ ] Record data-volume and migration-risk assumptions per table
 - [ ] Task: Define widened Convex schemas and versioned adapters

@@ -73,7 +73,7 @@ production adopter because it owns the repository's complete KST runtime chain.
    *Implemented release-bound normalized planning, offline utility providers with mandatory provenance, prerequisite-sparse ranking, cap-two diversity, seven-day review-load budgeting, role projections, real queue interleaving, deterministic interval fuzz, and scheduler load balancing. Final gates passed 445 knowledge-space-practice tests at 88.70% statement coverage and 477 SRS-engine tests at 90.88%, plus typecheck/lint/build, determinism, generated freshness, boundaries, and Measure doctor.*
    *Link: [./archive/kst-srs-v3-2-planner-session_20260710/](./archive/kst-srs-v3-2-planner-session_20260710/)*
 
-- [ ] **Track: KST+SRS v3.2 IM3 Runtime and Data Migration**
+- [~] **Track: KST+SRS v3.2 IM3 Runtime and Data Migration**
    *Depends on the v3.2 engine and monorepo architecture-contract tracks. Adopt v3.2 in IM3 through widen-migrate-narrow Convex changes, resumable dry-run backfills, comparison/cutover controls, BM2 queue reconciliation, and all-app compatibility gates.*
    *Link: [./tracks/kst-srs-v3-2-im3-runtime-migration_20260710/](./tracks/kst-srs-v3-2-im3-runtime-migration_20260710/)*
 
