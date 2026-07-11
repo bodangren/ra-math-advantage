@@ -73,3 +73,24 @@ describe('srs_sessions table schema', () => {
     expect(() => (table as unknown as { config: unknown }).config).not.toThrow();
   });
 });
+
+describe('KST+SRS v3.2 widening schema', () => {
+  it('keeps legacy card identities readable while adding canonical migration fields', () => {
+    const cardsSource = schemaSource.match(
+      /srs_cards:\s*defineTable\(\{([\s\S]*?)\}\)\s*\.index\("by_student"/,
+    )?.[1];
+
+    expect(cardsSource).toMatch(/variantKey:\s*v\.optional\(v\.string\(\)\)/);
+    expect(cardsSource).toMatch(/problemFamilyId:\s*v\.optional\(v\.string\(\)\)/);
+    expect(cardsSource).toMatch(/legacyProblemFamilyId:\s*v\.optional\(v\.string\(\)\)/);
+    expect(cardsSource).toMatch(/migrationVersion:\s*v\.optional\(srsRuntimeMigrationVersionValidator\)/);
+  });
+
+  it('records bounded runtime controls, comparisons, and migration provenance', () => {
+    expect(schemaSource).toMatch(/srs_runtime_controls:\s*defineTable/);
+    expect(schemaSource).toMatch(/srs_runtime_comparisons:\s*defineTable/);
+    expect(schemaSource).toMatch(/evidenceType:\s*v\.optional\(placementEvidenceTypeValidator\)/);
+    expect(schemaSource).toMatch(/reviewLoadState:\s*v\.optional\(srsReviewLoadStateValidator\)/);
+    expect(schemaSource).toMatch(/srsMigrationRunStatusValidator/);
+  });
+});

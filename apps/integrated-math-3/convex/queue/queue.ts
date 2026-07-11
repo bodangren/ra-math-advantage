@@ -4,6 +4,7 @@ import { Id } from "../_generated/dataModel";
 import { buildDailyQueueResult, type QueueItem } from "@math-platform/srs-engine";
 import type { ObjectivePracticePolicy, SrsCardState } from "@math-platform/srs-engine";
 import { assessReviewLoadV3_2, type ReviewLoadAssessmentV3_2 } from "@math-platform/knowledge-space-practice";
+import { resolveCanonicalVariantKey } from "../../lib/srs/v3-runtime-contract";
 
 const VALID_PRIORITIES = new Set<string>(['essential', 'supporting', 'extension', 'triaged']);
 
@@ -23,7 +24,7 @@ export interface ResolvedDailyPracticeQueue {
 
 /**
  * Maps a database SRS card to the contract format used by the queue builder.
- * @param {{ _id: Id<"srs_cards">; studentId: Id<"profiles">; objectiveId: string; variantKey: string; stability: number; difficulty: number; state: "new" | "learning" | "review" | "relearning"; dueDate: string; elapsedDays: number; scheduledDays: number; reps: number; lapses: number; lastReview?: string; createdAt: number; updatedAt: number }} card - The raw database card object
+ * @param {{ _id: Id<"srs_cards">; studentId: Id<"profiles">; objectiveId: string; variantKey?: string; legacyProblemFamilyId?: string; problemFamilyId?: string; stability: number; difficulty: number; state: "new" | "learning" | "review" | "relearning"; dueDate: string; elapsedDays: number; scheduledDays: number; reps: number; lapses: number; lastReview?: string; createdAt: number; updatedAt: number }} card - The raw database card object
  * @returns {SrsCardState} The card in SrsCardState contract format
  */
 function mapDbCardToContract(
@@ -31,7 +32,9 @@ function mapDbCardToContract(
     _id: Id<"srs_cards">;
     studentId: Id<"profiles">;
     objectiveId: string;
-    variantKey: string;
+    variantKey?: string;
+    legacyProblemFamilyId?: string;
+    problemFamilyId?: string;
     stability: number;
     difficulty: number;
     state: "new" | "learning" | "review" | "relearning";
@@ -45,11 +48,12 @@ function mapDbCardToContract(
     updatedAt: number;
   }
 ): SrsCardState {
+  const { variantKey } = resolveCanonicalVariantKey(card);
   return {
     cardId: card._id as string,
     studentId: card.studentId as string,
     objectiveId: card.objectiveId,
-    variantKey: card.variantKey,
+    variantKey,
     stability: card.stability,
     difficulty: card.difficulty,
     state: card.state,
@@ -198,7 +202,16 @@ export async function resolveDailyPracticeQueueResult(
   };
 
   const now = args.asOfDate ?? new Date().toISOString();
-  const cardStates = cards.map(mapDbCardToContract);
+  // A malformed historic identity is a migration data gap. It is excluded from
+  // live practice instead of making the whole student's queue unavailable;
+  // the comparison telemetry records it before cutover approval.
+  const cardStates = cards.flatMap((card) => {
+    try {
+      return [mapDbCardToContract(card)];
+    } catch {
+      return [];
+    }
+  });
 
   const queueResult = buildDailyQueueResult(cardStates, policies, config, now);
 

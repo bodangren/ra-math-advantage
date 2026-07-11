@@ -165,6 +165,12 @@ describe('mapDbCardToContract studentId type alignment', () => {
     const inserted = mockInsert.mock.calls[0][1];
     expect(typeof inserted.studentId).toBe('string');
     expect(inserted.studentId).toBe(studentId);
+    expect(inserted).toMatchObject({
+      variantKey: 'pf-1',
+      legacyProblemFamilyId: 'pf-1',
+      problemFamilyId: 'pf-1',
+      migrationVersion: 'kst-srs.v3.2',
+    });
   });
 
   it('getCardsByStudent returns studentId as plain string for all cards', async () => {

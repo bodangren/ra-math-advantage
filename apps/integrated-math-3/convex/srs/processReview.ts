@@ -9,6 +9,7 @@ import {
   srsRatingValidator,
 } from "./validators";
 import { resolveReviewParamsVersion } from "./paramsVersion";
+import { dualWriteFields, findCardByStudentAndVariant } from "./cards";
 
 const cardStateValidator = v.object({
   cardId: v.string(),
@@ -177,14 +178,11 @@ export async function processReviewHandler(
     validateSrsTransition(reviewEntry.stateBefore, reviewEntry.stateAfter);
   }
 
-  const existing = await ctx.db
-    .query("srs_cards")
-    .withIndex("by_student_and_variant", (q) =>
-      q
-        .eq("studentId", cardState.studentId)
-        .eq("variantKey", cardState.variantKey)
-    )
-    .first();
+  const existing = await findCardByStudentAndVariant(
+    ctx,
+    cardState.studentId,
+    cardState.variantKey,
+  );
 
   let cardDocId: Id<"srs_cards">;
   if (existing) {
@@ -198,7 +196,7 @@ export async function processReviewHandler(
     await ctx.db.replace(existing._id, {
       studentId: existing.studentId,
       objectiveId: cardState.objectiveId,
-      variantKey: cardState.variantKey,
+      ...dualWriteFields(cardState.variantKey, existing.sourceTimestamp ?? existing.createdAt),
       stability: cardState.stability,
       difficulty: cardState.difficulty,
       state: cardState.state,
@@ -216,7 +214,7 @@ export async function processReviewHandler(
     cardDocId = await ctx.db.insert("srs_cards", {
       studentId: cardState.studentId,
       objectiveId: cardState.objectiveId,
-      variantKey: cardState.variantKey,
+      ...dualWriteFields(cardState.variantKey, new Date(cardState.createdAt).getTime()),
       stability: cardState.stability,
       difficulty: cardState.difficulty,
       state: cardState.state,
@@ -241,6 +239,8 @@ export async function processReviewHandler(
     stateBefore: reviewEntry.stateBefore,
     stateAfter: reviewEntry.stateAfter,
     ...(paramsVersion === undefined ? {} : { paramsVersion }),
+    migrationVersion: "kst-srs.v3.2",
+    sourceTimestamp: new Date(reviewEntry.reviewedAt).getTime(),
     reviewedAt: new Date(reviewEntry.reviewedAt).getTime(),
   });
 

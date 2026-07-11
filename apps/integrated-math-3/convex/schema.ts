@@ -11,6 +11,15 @@ import {
   misconceptionLifecycleStatusValidator,
   misconceptionSeverityValidator,
 } from "./misconceptionState";
+import {
+  placementEvidenceTypeValidator,
+  srsComparisonSubjectValidator,
+  srsDivergenceClassValidator,
+  srsMigrationRunStatusValidator,
+  srsReviewLoadStateValidator,
+  srsRuntimeMigrationVersionValidator,
+  srsRuntimeModeValidator,
+} from "./srs/runtime-contract";
 
 export const textContentValidator = v.object({
   markdown: v.string(),
@@ -603,6 +612,10 @@ export default defineSchema({
 
   practice_variants: defineTable({
     variantKey: v.string(),
+    // Widen-only legacy identity retained until the post-cutover narrowing task.
+    legacyProblemFamilyId: v.optional(v.string()),
+    migrationVersion: v.optional(srsRuntimeMigrationVersionValidator),
+    sourceTimestamp: v.optional(v.number()),
     componentKey: v.string(),
     displayName: v.string(),
     description: v.string(),
@@ -618,6 +631,9 @@ export default defineSchema({
     practiceItemId: v.string(),
     activityId: v.id("activities"),
     variantKey: v.string(),
+    legacyProblemFamilyId: v.optional(v.string()),
+    migrationVersion: v.optional(srsRuntimeMigrationVersionValidator),
+    sourceTimestamp: v.optional(v.number()),
     variantLabel: v.string(),
   })
     .index("by_activityId", ["activityId"])
@@ -636,7 +652,14 @@ export default defineSchema({
   srs_cards: defineTable({
     studentId: v.id("profiles"),
     objectiveId: v.string(),
-    variantKey: v.string(),
+    // During the widened window every historical identity remains readable.
+    // New writes populate all three fields; the v3.2 adapter resolves the
+    // canonical key with variantKey > legacyProblemFamilyId > problemFamilyId.
+    variantKey: v.optional(v.string()),
+    legacyProblemFamilyId: v.optional(v.string()),
+    problemFamilyId: v.optional(v.string()),
+    migrationVersion: v.optional(srsRuntimeMigrationVersionValidator),
+    sourceTimestamp: v.optional(v.number()),
     stability: v.number(),
     difficulty: v.number(),
     state: srsCardStateLiteralValidator,
@@ -654,7 +677,10 @@ export default defineSchema({
     .index("by_objective", ["objectiveId"])
     .index("by_student_and_objective", ["studentId", "objectiveId"])
     .index("by_variant", ["variantKey"])
-    .index("by_student_and_variant", ["studentId", "variantKey"]),
+    .index("by_student_and_variant", ["studentId", "variantKey"])
+    .index("by_legacy_problem_family", ["legacyProblemFamilyId"])
+    .index("by_historic_problem_family", ["problemFamilyId"])
+    .index("by_migration_version", ["migrationVersion"]),
 
   srs_review_log: defineTable({
     cardId: v.id("srs_cards"),
@@ -667,6 +693,8 @@ export default defineSchema({
     stateAfter: srsCardStatePickValidator,
     // Widen-only: historical and administrative reset rows remain valid.
     paramsVersion: v.optional(v.string()),
+    migrationVersion: v.optional(srsRuntimeMigrationVersionValidator),
+    sourceTimestamp: v.optional(v.number()),
     reviewedAt: v.number(),
   })
     .index("by_card", ["cardId"])
@@ -680,6 +708,9 @@ export default defineSchema({
     plannedCards: v.number(),
     completedCards: v.number(),
     config: sessionConfigValidator,
+    runtimeMode: v.optional(srsRuntimeModeValidator),
+    migrationVersion: v.optional(srsRuntimeMigrationVersionValidator),
+    reviewLoadState: v.optional(srsReviewLoadStateValidator),
   })
     .index("by_student", ["studentId"])
     .index("by_student_and_status", ["studentId", "completedAt"]),
@@ -775,11 +806,60 @@ export default defineSchema({
     masteryEstimate: v.number(),
     confidence: v.union(v.literal("low"), v.literal("medium")),
     source: v.string(),
+    evidenceType: v.optional(placementEvidenceTypeValidator),
+    provenance: v.optional(v.string()),
+    sourceTimestamp: v.optional(v.number()),
+    migrationVersion: v.optional(srsRuntimeMigrationVersionValidator),
+    synthesizedCardId: v.optional(v.id("srs_cards")),
     createdAt: v.number(),
   })
     .index("by_student", ["studentId"])
     .index("by_student_and_node", ["studentId", "nodeId"])
-    .index("by_student_and_createdAt", ["studentId", "createdAt"]),
+    .index("by_student_and_createdAt", ["studentId", "createdAt"])
+    .index("by_migration_version", ["migrationVersion"]),
+
+  // Only internal functions change these controls. Client arguments never
+  // select a runtime mode or authorize cutover/rollback.
+  srs_runtime_controls: defineTable({
+    scope: v.literal("im3"),
+    mode: srsRuntimeModeValidator,
+    migrationVersion: srsRuntimeMigrationVersionValidator,
+    approvedAt: v.optional(v.number()),
+    updatedAt: v.number(),
+  })
+    .index("by_scope", ["scope"])
+    .index("by_mode", ["mode"]),
+
+  // Store stable fingerprints and divergence classes, never learner answers or
+  // raw queue/recommendation payloads.
+  srs_runtime_comparisons: defineTable({
+    subject: srsComparisonSubjectValidator,
+    classification: srsDivergenceClassValidator,
+    v2Fingerprint: v.string(),
+    v3Fingerprint: v.string(),
+    migrationVersion: srsRuntimeMigrationVersionValidator,
+    observedAt: v.number(),
+  })
+    .index("by_subject_and_observed_at", ["subject", "observedAt"])
+    .index("by_classification_and_observed_at", ["classification", "observedAt"]),
+
+  // App-visible summary only; the migrations component owns cursors, retries,
+  // and workers. This table makes execution status auditable without copying
+  // any migration data payload.
+  srs_migration_runs: defineTable({
+    migrationName: v.string(),
+    status: srsMigrationRunStatusValidator,
+    dryRun: v.boolean(),
+    processed: v.number(),
+    changed: v.number(),
+    failed: v.number(),
+    cursor: v.optional(v.string()),
+    startedAt: v.number(),
+    updatedAt: v.number(),
+    completedAt: v.optional(v.number()),
+  })
+    .index("by_migration_name", ["migrationName"])
+    .index("by_status_and_updated_at", ["status", "updatedAt"]),
 
   chatbot_rate_limits: defineTable({
     userId: v.id("profiles"),
