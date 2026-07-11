@@ -21,7 +21,7 @@ This track owns removal or reconciliation of the exact, expiring
 - [x] Task: Define cutover, comparison, and rollback contracts [45af637]
     - [ ] Add feature-flag and divergence-report schemas
     - [ ] Specify cutover thresholds, rollback window, and deprecated-field policy
-- [~] Task: Measure - User Manual Verification 'Phase 1: Contract & Schema Widening Definition' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 1: Contract & Schema Widening Definition' (Protocol in workflow.md) [496e720]
 
 ## Phase 2: Migration and Runtime Tests
 
