@@ -74,6 +74,7 @@ function makeMockCtx(overrides: {
   const policyQueryMock = {
     withIndex: vi.fn().mockReturnValue({
       collect: vi.fn().mockResolvedValue(policies),
+      take: vi.fn().mockResolvedValue(policies),
     }),
   };
 

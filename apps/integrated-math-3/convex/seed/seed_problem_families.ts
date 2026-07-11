@@ -9,13 +9,13 @@ import { IM3_PROBLEM_FAMILIES } from "@math-platform/math-content/problem-famili
 export const seedProblemFamilies = internalMutation({
   args: {},
   handler: async (ctx) => {
-    const results: { problemFamilyId: string; success: boolean; error?: string }[] = [];
+    const results: { variantKey: string; success: boolean; error?: string }[] = [];
 
     for (const family of IM3_PROBLEM_FAMILIES) {
       const parseResult = problemFamilySchema.safeParse(family);
       if (!parseResult.success) {
         results.push({
-          problemFamilyId: family.problemFamilyId,
+          variantKey: family.variantKey,
           success: false,
           error: `Validation failed: ${parseResult.error.message}`,
         });
@@ -23,20 +23,23 @@ export const seedProblemFamilies = internalMutation({
       }
 
       const existing = await ctx.db
-        .query("problem_families")
-        .withIndex("by_problemFamilyId", (q) => q.eq("problemFamilyId", family.problemFamilyId))
+        .query("practice_variants")
+        .withIndex("by_variantKey", (q) => q.eq("variantKey", family.variantKey))
         .unique();
 
       if (existing) {
         results.push({
-          problemFamilyId: family.problemFamilyId,
+          variantKey: family.variantKey,
           success: true,
         });
         continue;
       }
 
-      await ctx.db.insert("problem_families", {
-        problemFamilyId: family.problemFamilyId,
+      await ctx.db.insert("practice_variants", {
+        variantKey: family.variantKey,
+        legacyProblemFamilyId: family.variantKey,
+        migrationVersion: "kst-srs.v3.2",
+        sourceTimestamp: Date.now(),
         componentKey: family.componentKey,
         displayName: family.displayName,
         description: family.description,
@@ -46,7 +49,7 @@ export const seedProblemFamilies = internalMutation({
       });
 
       results.push({
-        problemFamilyId: family.problemFamilyId,
+        variantKey: family.variantKey,
         success: true,
       });
     }

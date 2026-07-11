@@ -835,6 +835,7 @@ export default defineSchema({
   srs_runtime_comparisons: defineTable({
     subject: srsComparisonSubjectValidator,
     classification: srsDivergenceClassValidator,
+    explanationKey: v.string(),
     v2Fingerprint: v.string(),
     v3Fingerprint: v.string(),
     migrationVersion: srsRuntimeMigrationVersionValidator,

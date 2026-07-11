@@ -130,6 +130,7 @@ function makeDashboardMockCtx(overrides: {
         }
         return {
           collect: vi.fn().mockResolvedValue(sessions),
+          take: vi.fn().mockResolvedValue(sessions),
           order: vi.fn().mockReturnThis(),
         };
       }

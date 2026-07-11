@@ -85,6 +85,7 @@ function makeMockCtx(options: MakeMockCtxOptions = {}) {
           const finalFiltered = filtered;
           return {
             collect: () => Promise.resolve(finalFiltered),
+            take: () => Promise.resolve(finalFiltered),
             first: () => Promise.resolve(finalFiltered[0] ?? null),
             unique: () => Promise.resolve(finalFiltered[0] ?? null),
           };

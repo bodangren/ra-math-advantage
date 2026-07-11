@@ -7,6 +7,10 @@ import {
   resolveCanonicalVariantKey,
 } from "../../lib/srs/v3-runtime-contract";
 
+const MAX_CARDS_PER_STUDENT_READ = 500;
+const MAX_CARDS_PER_OBJECTIVE_READ = 500;
+const MAX_DUE_CARDS_READ = 100;
+
 /**
  * Maps a database SRS card to the public contract format.
  * @param {{ _id: Id<"srs_cards">; studentId: Id<"profiles">; objectiveId: string; variantKey?: string; legacyProblemFamilyId?: string; problemFamilyId?: string; stability: number; difficulty: number; state: "new" | "learning" | "review" | "relearning"; dueDate: string; elapsedDays: number; scheduledDays: number; reps: number; lapses: number; lastReview?: string; createdAt: number; updatedAt: number }} card - The raw database card object
@@ -367,7 +371,7 @@ export async function getCardsByStudentHandler(
     .withIndex("by_student", (q) =>
       q.eq("studentId", args.studentId)
     )
-    .collect();
+    .take(MAX_CARDS_PER_STUDENT_READ);
   return cards.map(mapDbCardToContract);
 }
 
@@ -434,7 +438,7 @@ export const getCardsByObjective = internalQuery({
     const cards = await ctx.db
       .query("srs_cards")
       .withIndex("by_objective", (q) => q.eq("objectiveId", args.objectiveId))
-      .collect();
+      .take(MAX_CARDS_PER_OBJECTIVE_READ);
     return cards.map(mapDbCardToContract);
   },
 });
@@ -456,7 +460,7 @@ export const getDueCards = internalQuery({
       .withIndex("by_student_and_due", (q) =>
         q.eq("studentId", args.studentId).lte("dueDate", args.asOfDate)
       )
-      .collect();
+      .take(MAX_DUE_CARDS_READ);
     return cards.map(mapDbCardToContract);
   },
 });

@@ -7,7 +7,6 @@ import {
   getCardByStudentAndFamilyHandler,
 } from '@/convex/srs/cards';
 import type { Id } from '@/convex/_generated/dataModel';
-import type { SrsCardState } from '@math-platform/srs-engine';
 
 function makeMockCtx(overrides: {
   existingCard?: {
@@ -60,6 +59,7 @@ function makeMockCtx(overrides: {
     withIndex: vi.fn().mockReturnValue({
       first: vi.fn().mockResolvedValue(existingCard ?? null),
       collect: vi.fn().mockResolvedValue(cards ?? (existingCard ? [existingCard] : [])),
+      take: vi.fn().mockResolvedValue(cards ?? (existingCard ? [existingCard] : [])),
     }),
   };
 
@@ -136,7 +136,7 @@ describe('mapDbCardToContract studentId type alignment', () => {
 
   it('should round-trip studentId through save and load as plain string', async () => {
     const studentId = 'student-abc-123';
-    const card: SrsCardState = {
+    const card = {
       cardId: 'card-1',
       studentId,
       objectiveId: 'obj-1',

@@ -46,6 +46,7 @@ function makeMockQueryCtx(overrides: {
   const mockQuery = {
     withIndex: vi.fn().mockReturnValue({
       collect: mockCollect,
+      take: mockCollect,
     }),
   };
 

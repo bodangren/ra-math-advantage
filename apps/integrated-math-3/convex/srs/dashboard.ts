@@ -3,6 +3,8 @@ import { v } from "convex/values";
 import { Id } from "../_generated/dataModel";
 import { resolveDailyPracticeQueueResult } from "../queue/queue";
 
+const MAX_STREAK_SESSIONS = 400;
+
 /**
  * Returns the UTC day start timestamp for a given timestamp.
  * @param {number} timestamp - The timestamp in milliseconds
@@ -73,7 +75,7 @@ export async function getPracticeStatsHandler(
       q.eq("studentId", args.studentId as Id<"profiles">)
     )
     .order("desc")
-    .collect();
+    .take(MAX_STREAK_SESSIONS);
 
   const completedSessions = sessions.filter(
     (s) => s.completedAt !== undefined

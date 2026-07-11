@@ -8,6 +8,10 @@ import {
   srsRatingValidator,
 } from "./validators";
 import { resolveReviewParamsVersion } from "./paramsVersion";
+import { KST_SRS_V3_2_MIGRATION_VERSION } from "../../lib/srs/v3-runtime-contract";
+
+const MAX_REVIEWS_PER_CARD_READ = 1_000;
+const MAX_REVIEWS_PER_STUDENT_READ = 2_000;
 
 type SrsStatePick = {
   stability: number;
@@ -100,6 +104,8 @@ export async function saveReviewHandler(
     stateBefore: args.stateBefore,
     stateAfter: args.stateAfter,
     ...(paramsVersion === undefined ? {} : { paramsVersion }),
+    migrationVersion: KST_SRS_V3_2_MIGRATION_VERSION,
+    sourceTimestamp: reviewedAtMs,
     reviewedAt: reviewedAtMs,
   });
   return id;
@@ -144,7 +150,7 @@ export async function getReviewsByCardHandler(
     .withIndex("by_card", (q) =>
       q.eq("cardId", args.cardId)
     )
-    .collect();
+    .take(MAX_REVIEWS_PER_CARD_READ);
   return reviews
     .sort((a, b) => a.reviewedAt - b.reviewedAt)
     .map((review) => ({
@@ -194,7 +200,7 @@ export async function getReviewsByStudentHandler(
     .withIndex("by_student", (q) =>
       q.eq("studentId", args.studentId)
     )
-    .collect();
+    .take(MAX_REVIEWS_PER_STUDENT_READ);
   return reviews
     .filter((review) =>
       sinceMs === undefined ? true : review.reviewedAt >= sinceMs

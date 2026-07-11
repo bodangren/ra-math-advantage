@@ -28,6 +28,9 @@ import {
 } from '@math-platform/knowledge-space-practice';
 import { stabilityToRetention } from '@math-platform/srs-engine';
 
+const MAX_KNOWLEDGE_STATE_CARDS = 500;
+const MAX_KNOWLEDGE_STATE_REVIEWS = 2_000;
+
 /**
  * Converts a Convex SRS card document into the bridge's SrsCardState shape.
  */
@@ -121,11 +124,11 @@ export async function getStudentKnowledgeStateHandler(
     ctx.db
       .query('srs_cards')
       .withIndex('by_student', (q) => q.eq('studentId', args.studentId))
-      .collect(),
+      .take(MAX_KNOWLEDGE_STATE_CARDS),
     ctx.db
       .query('srs_review_log')
       .withIndex('by_student', (q) => q.eq('studentId', args.studentId))
-      .collect(),
+      .take(MAX_KNOWLEDGE_STATE_REVIEWS),
   ]);
 
   // 3. Build a map of most recent review timestamp per card from review logs

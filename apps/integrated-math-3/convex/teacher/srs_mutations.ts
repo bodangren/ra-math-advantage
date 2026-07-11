@@ -2,6 +2,8 @@ import { internalMutation, type MutationCtx } from "../_generated/server";
 import { v } from "convex/values";
 import { Id, type Doc } from "../_generated/dataModel";
 import type { ObjectivePriority } from "@math-platform/srs-engine";
+import { resolveCanonicalVariantKey } from "../../lib/srs/v3-runtime-contract";
+import { dualWriteFields } from "../srs/cards";
 
 export const VALID_PRIORITIES: ObjectivePriority[] = [
   "essential",
@@ -189,7 +191,7 @@ export async function resetStudentCardsHandler(
     .withIndex("by_student_and_objective", (q) =>
       q.eq("studentId", args.studentId).eq("objectiveId", args.objectiveId)
     )
-    .collect();
+    .take(100);
 
   if (cards.length === 0) {
     return { success: true, resetCount: 0 };
@@ -199,10 +201,11 @@ export async function resetStudentCardsHandler(
   const nowIso = new Date(now).toISOString();
 
   for (const card of cards) {
+    const { variantKey } = resolveCanonicalVariantKey(card);
     await ctx.db.replace(card._id, {
       studentId: card.studentId,
       objectiveId: card.objectiveId,
-      problemFamilyId: card.problemFamilyId,
+      ...dualWriteFields(variantKey, card.sourceTimestamp ?? card.createdAt),
       stability: 0,
       difficulty: 0,
       state: "new",
@@ -234,6 +237,8 @@ export async function resetStudentCardsHandler(
         reps: 0,
         lapses: 0,
       },
+      migrationVersion: "kst-srs.v3.2",
+      sourceTimestamp: now,
       reviewedAt: now,
     });
   }
@@ -295,16 +300,16 @@ export async function addExtraCardsHandler(
     return { success: false, error: "Card already exists" };
   }
 
-  const problemFamily = await ctx.db
-    .query("problem_families")
+  const practiceVariant = await ctx.db
+    .query("practice_variants")
       .withIndex("by_objectiveId", (q) =>
         // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Convex multi-entry array index expects element, not array
         (q as any).eq("objectiveIds", args.objectiveId)
       )
     .first();
 
-  if (!problemFamily) {
-    return { success: false, error: "No problem family found for objective" };
+  if (!practiceVariant) {
+    return { success: false, error: "No practice variant found for objective" };
   }
 
   const now = Date.now();
@@ -313,7 +318,7 @@ export async function addExtraCardsHandler(
   const cardId = await ctx.db.insert("srs_cards", {
     studentId: args.studentId,
     objectiveId: args.objectiveId,
-    problemFamilyId: problemFamily.problemFamilyId,
+    ...dualWriteFields(practiceVariant.variantKey, now),
     stability: 0,
     difficulty: 0,
     state: "new",

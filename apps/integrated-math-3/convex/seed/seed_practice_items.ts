@@ -3,7 +3,7 @@ import type { Id } from "../_generated/dataModel";
 import { practiceItemSchema } from "@math-platform/practice-core";
 import { IM3_PROBLEM_FAMILIES } from "@math-platform/math-content/problem-families/im3";
 
-const ALL_PROBLEM_FAMILY_IDS = [...IM3_PROBLEM_FAMILIES].map((f) => f.problemFamilyId);
+const ALL_VARIANT_KEYS = [...IM3_PROBLEM_FAMILIES].map((f) => f.variantKey);
 
 /**
  * Convex internalMutation wrapper: seed practice items.
@@ -12,23 +12,23 @@ const ALL_PROBLEM_FAMILY_IDS = [...IM3_PROBLEM_FAMILIES].map((f) => f.problemFam
 export const seedPracticeItems = internalMutation({
   args: {},
   handler: async (ctx) => {
-    const results: { practiceItemId: string; activityId: string; problemFamilyId: string; success: boolean; error?: string }[] = [];
+    const results: { practiceItemId: string; activityId: string; variantKey: string; success: boolean; error?: string }[] = [];
 
     const variantCounters: Record<string, number> = {};
 
-    for (const problemFamilyId of ALL_PROBLEM_FAMILY_IDS) {
+    for (const seedVariantKey of ALL_VARIANT_KEYS) {
       const family = await ctx.db
-        .query("problem_families")
-        .withIndex("by_problemFamilyId", (q) => q.eq("problemFamilyId", problemFamilyId))
+        .query("practice_variants")
+        .withIndex("by_variantKey", (q) => q.eq("variantKey", seedVariantKey))
         .unique();
 
       if (!family) {
         results.push({
           practiceItemId: "",
           activityId: "",
-          problemFamilyId,
+          variantKey: seedVariantKey,
           success: false,
-          error: `Problem family ${problemFamilyId} not found`,
+          error: `Practice variant ${seedVariantKey} not found`,
         });
         continue;
       }
@@ -38,9 +38,9 @@ export const seedPracticeItems = internalMutation({
         results.push({
           practiceItemId: "",
           activityId: "",
-          problemFamilyId,
+          variantKey: seedVariantKey,
           success: false,
-          error: `No objectiveIds in problem family ${problemFamilyId}`,
+          error: `No objectiveIds in practice variant ${seedVariantKey}`,
         });
         continue;
       }
@@ -57,7 +57,7 @@ export const seedPracticeItems = internalMutation({
         activities = await ctx.db
           .query("activities")
           .withIndex("by_standard", (q) => q.eq("standardId", standardId))
-          .collect();
+          .take(200);
       }
 
       const matchingActivities = activities.filter((a) => a.componentKey === family.componentKey);
@@ -71,14 +71,14 @@ export const seedPracticeItems = internalMutation({
 
         if (fallbackActivities.length > 0) {
           for (const activity of fallbackActivities) {
-            const variantKey = `${problemFamilyId}:${activity._id}`;
+            const variantKey = `${seedVariantKey}:${activity._id}`;
             if (!variantCounters[variantKey]) {
               variantCounters[variantKey] = 0;
             }
             const variantNum = variantCounters[variantKey]++;
             const variantLabel = variantNum === 0 ? "Set A" : variantNum === 1 ? "Set B" : `Set ${String.fromCharCode(65 + variantNum)}`;
 
-            const practiceItemId = `${problemFamilyId}:${activity._id}`;
+            const practiceItemId = `${seedVariantKey}:${activity._id}`;
 
             const existing = await ctx.db
               .query("practice_items")
@@ -89,7 +89,7 @@ export const seedPracticeItems = internalMutation({
               results.push({
                 practiceItemId: existing.practiceItemId,
                 activityId: activity._id,
-                problemFamilyId,
+                variantKey,
                 success: true,
               });
               continue;
@@ -98,7 +98,7 @@ export const seedPracticeItems = internalMutation({
             const parseResult = practiceItemSchema.safeParse({
               practiceItemId,
               activityId: activity._id,
-              problemFamilyId,
+              variantKey,
               variantLabel,
             });
 
@@ -106,7 +106,7 @@ export const seedPracticeItems = internalMutation({
               results.push({
                 practiceItemId,
                 activityId: activity._id,
-                problemFamilyId,
+                variantKey,
                 success: false,
                 error: `Validation failed: ${parseResult.error.message}`,
               });
@@ -116,14 +116,17 @@ export const seedPracticeItems = internalMutation({
             await ctx.db.insert("practice_items", {
               practiceItemId,
               activityId: activity._id,
-              problemFamilyId,
+              variantKey,
+              legacyProblemFamilyId: seedVariantKey,
+              migrationVersion: "kst-srs.v3.2",
+              sourceTimestamp: Date.now(),
               variantLabel,
             });
 
             results.push({
               practiceItemId,
               activityId: activity._id,
-              problemFamilyId,
+              variantKey,
               success: true,
             });
           }
@@ -131,7 +134,7 @@ export const seedPracticeItems = internalMutation({
           results.push({
             practiceItemId: "",
             activityId: "",
-            problemFamilyId,
+            variantKey: seedVariantKey,
             success: false,
             error: `No activities found for componentKey ${family.componentKey}`,
           });
@@ -140,14 +143,14 @@ export const seedPracticeItems = internalMutation({
       }
 
       for (const activity of matchingActivities) {
-        const variantKey = `${problemFamilyId}:${activity._id}`;
+        const variantKey = `${seedVariantKey}:${activity._id}`;
         if (!variantCounters[variantKey]) {
           variantCounters[variantKey] = 0;
         }
         const variantNum = variantCounters[variantKey]++;
         const variantLabel = variantNum === 0 ? "Set A" : variantNum === 1 ? "Set B" : `Set ${String.fromCharCode(65 + variantNum)}`;
 
-        const practiceItemId = `${problemFamilyId}:${activity._id}`;
+        const practiceItemId = `${seedVariantKey}:${activity._id}`;
 
         const existing = await ctx.db
           .query("practice_items")
@@ -158,7 +161,7 @@ export const seedPracticeItems = internalMutation({
           results.push({
             practiceItemId: existing.practiceItemId,
             activityId: activity._id,
-            problemFamilyId,
+            variantKey,
             success: true,
           });
           continue;
@@ -167,7 +170,7 @@ export const seedPracticeItems = internalMutation({
         const parseResult = practiceItemSchema.safeParse({
           practiceItemId,
           activityId: activity._id,
-          problemFamilyId,
+          variantKey,
           variantLabel,
         });
 
@@ -175,7 +178,7 @@ export const seedPracticeItems = internalMutation({
           results.push({
             practiceItemId,
             activityId: activity._id,
-            problemFamilyId,
+            variantKey,
             success: false,
             error: `Validation failed: ${parseResult.error.message}`,
           });
@@ -185,14 +188,17 @@ export const seedPracticeItems = internalMutation({
         await ctx.db.insert("practice_items", {
           practiceItemId,
           activityId: activity._id,
-          problemFamilyId,
+          variantKey,
+          legacyProblemFamilyId: seedVariantKey,
+          migrationVersion: "kst-srs.v3.2",
+          sourceTimestamp: Date.now(),
           variantLabel,
         });
 
         results.push({
           practiceItemId,
           activityId: activity._id,
-          problemFamilyId,
+          variantKey,
           success: true,
         });
       }

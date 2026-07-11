@@ -7,6 +7,8 @@ import { assessReviewLoadV3_2, type ReviewLoadAssessmentV3_2 } from "@math-platf
 import { resolveCanonicalVariantKey } from "../../lib/srs/v3-runtime-contract";
 
 const VALID_PRIORITIES = new Set<string>(['essential', 'supporting', 'extension', 'triaged']);
+const MAX_CARDS_PER_DAILY_QUEUE = 100;
+const MAX_OBJECTIVE_POLICIES = 100;
 
 export type ResolvedQueueItem = QueueItem & {
   componentKey: string;
@@ -162,12 +164,12 @@ export async function resolveDailyPracticeQueueResult(
     .withIndex("by_student", (q) =>
       q.eq("studentId", args.studentId as Id<"profiles">)
     )
-    .take(100);
+    .take(MAX_CARDS_PER_DAILY_QUEUE);
 
   const policyRecords = await ctx.db
     .query("objective_policies")
     .withIndex("by_courseKey", (q) => q.eq("courseKey", "integrated-math-3"))
-    .collect();
+    .take(MAX_OBJECTIVE_POLICIES);
 
   const uniqueStandardIds = [...new Set(policyRecords.map((r) => r.standardId))];
   const standardResults = await Promise.all(
