@@ -84,8 +84,8 @@ groups (about 123 KB), three identical 16.5 KB Convex schemas, eight of twenty
 packages omitted from CI, shallow regex-only boundary guards, and an inverted
 `activity-components -> math-content` dependency.
 
-- [~] **Track: Monorepo Architecture Contracts and Enforcement**
-   *Define a machine-readable package DAG and ownership model, expand boundary enforcement, place every workspace under quality gates, repair math-content lint/typecheck, and generate architecture evidence.*
+- [x] **Track: Monorepo Architecture Contracts and Enforcement** — **COMPLETED** (2026-07-11)
+   *Delivered a versioned 25-workspace ownership/DAG/export/gate manifest, semantic dependency enforcement with exact expiring debt, complete 20-package local/CI quality coverage, deterministic architecture reports, and freshness-aware doctor checks. All package gates and 53 architecture tests pass; the full app audit remains recorded without suppressing pre-existing app migration debt.*
    *Link: [./tracks/monorepo-architecture-contracts_20260710/](./tracks/monorepo-architecture-contracts_20260710/)*
 
 - [ ] **Track: Shared LMS Backend Modularization**
