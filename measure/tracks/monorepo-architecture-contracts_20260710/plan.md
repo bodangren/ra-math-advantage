@@ -36,8 +36,8 @@
 
 ## Phase 3: Implementation
 
-- [~] Task: Implement manifest loading, graph construction, and deterministic reporting
-- [ ] Task: Replace the regex-only guard with manifest-aware dependency enforcement
+- [x] Task: Implement manifest loading, graph construction, and deterministic reporting [c084d41]
+- [~] Task: Replace the regex-only guard with manifest-aware dependency enforcement
 - [ ] Task: Generate CI/package matrices from the workspace inventory or add parity checks that make drift impossible
 - [ ] Task: Restore `math-content` lint and standalone typecheck gates
 - [ ] Task: Register bounded existing debt and link each item to an approved follow-up track
