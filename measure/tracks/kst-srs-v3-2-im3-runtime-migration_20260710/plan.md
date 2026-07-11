@@ -45,9 +45,9 @@ This track owns removal or reconciliation of the exact, expiring
 - [x] Task: Reconcile the accepted IM3 package dependencies in the app manifest [34b0c83]
 - [x] Task: Implement dual writes, bounded dual reads, comparison telemetry, and feature flags [f90fd9a]
 - [x] Task: Obtain explicit approval and integrate `@convex-dev/migrations` if not already installed [879355b]
-- [ ] Task: Implement batched placement, card, review-log, and practice-variant migrations
-- [ ] Task: Run local/dev dry runs, inspect status, and execute verification queries
-- [ ] Task: Cut IM3 runtime and BM2 queue consumers to canonical v3.2 behavior
+- [x] Task: Implement batched placement, card, review-log, and practice-variant migrations [879355b]
+- [x] Task: Run local/dev dry runs, inspect status, and execute verification queries [5361de7]
+- [x] Task: Cut IM3 runtime and BM2 queue consumers to canonical v3.2 behavior [21aa9f0]
 - [ ] Task: After verification and rollback-window approval, narrow schemas and remove v2 readers
 - [ ] Task: Measure - User Manual Verification 'Phase 3: Widen, Migrate, Cut Over, and Narrow' (Protocol in workflow.md)
 
