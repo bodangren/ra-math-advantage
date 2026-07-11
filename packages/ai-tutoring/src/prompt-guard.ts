@@ -76,7 +76,7 @@ export function normalizeInput(input: string): string {
   result = result.normalize('NFC');
 
   // Strip zero-width characters
-  result = result.replace(/[\u200B\u200C\u200D\uFEFF]/g, '');
+  result = result.replace(/\u200B|\u200C|\u200D|\uFEFF/g, '');
 
   // Map Cyrillic lookalikes to Latin
   result = result.split('').map(mapCyrillicToLatin).join('');
@@ -100,7 +100,7 @@ const INJECTION_TARGET_KEYWORDS = ['instruction', 'instructions', 'prompt', 'pro
  * e.g., "bypass.the.system" -> "bypass the system"
  */
 function stripPunctuationToSpaces(input: string): string {
-  return input.replace(/[.,;:\-]+/g, ' ');
+  return input.replace(/[.,;:-]+/g, ' ');
 }
 
 /**

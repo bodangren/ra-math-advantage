@@ -36,7 +36,7 @@ export interface StepByStepperProps {
  * @returns {React.JSX.Element} The step reveal component JSX
  */
 function SimpleStepReveal({ steps }: { steps: Array<{ content: React.ReactNode }> }) {
-  const [visibleCount, setVisibleCount] = useState(steps.length);
+  const visibleCount = steps.length;
 
   if (steps.length === 0) {
     return <div className="my-6" />;

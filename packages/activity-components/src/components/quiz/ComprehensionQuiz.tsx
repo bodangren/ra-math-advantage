@@ -58,8 +58,8 @@ export function ComprehensionQuiz({
   const isCurrentAnswerCorrect = (question: Question, answer: string | string[]): boolean => {
     if (Array.isArray(question.correctAnswer)) {
       if (!Array.isArray(answer)) return false;
-      return question.correctAnswer.length === answer.length &&
-        question.correctAnswer.every(a => answer.includes(a));
+      return question.correctAnswer.length === answer.length
+        && question.correctAnswer.every((expected) => answer.includes(expected));
     }
     if (Array.isArray(answer)) return false;
     return answer.toLowerCase().trim() === String(question.correctAnswer).toLowerCase().trim();
@@ -67,7 +67,6 @@ export function ComprehensionQuiz({
 
   const handleAnswer = (questionId: string, answer: string | string[]) => {
     const question = questions.find(q => q.id === questionId);
-    const isCorrect = question ? isCurrentAnswerCorrect(question, answer) : false;
 
     if (mode === 'guided' && question) {
       setState(prev => ({

@@ -20,7 +20,6 @@ import type {
   FamilyObjectiveMapping,
   CEDTopicMapping,
 } from './load-standards';
-import { buildLessonSlug } from './load-standards';
 
 export interface AlignmentInput {
   nodes: KnowledgeSpaceNode[];

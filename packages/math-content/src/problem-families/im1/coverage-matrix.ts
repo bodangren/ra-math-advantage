@@ -90,8 +90,6 @@ const IM1_ROLLOUT_DIR = resolve(
 const NODES_JSON = resolve(IM1_ROLLOUT_DIR, 'nodes.json');
 const GAP_QUEUE_JSON = resolve(IM1_ROLLOUT_DIR, 'generator-gap-queue.json');
 const BLUEPRINTS_JSON = resolve(IM1_ROLLOUT_DIR, 'blueprints.json');
-const MATRIX_JSON = resolve(IM1_ROLLOUT_DIR, 'im1-coverage-matrix.json');
-
 // ---------------------------------------------------------------------------
 // buildCoverageMatrix
 // ---------------------------------------------------------------------------

@@ -1,10 +1,8 @@
 #!/usr/bin/env node
 
-import { pathToFileURL } from 'node:url';
-
 import { checkRepositoryArchitecture } from './architecture/manifest-enforcer.mjs';
 
-const repositoryRoot = pathToFileURL(`${process.cwd()}/`);
+const repositoryRoot = new URL('../', import.meta.url);
 const asOf = process.env.ARCHITECTURE_AS_OF ?? new Date().toISOString().slice(0, 10);
 const result = await checkRepositoryArchitecture(repositoryRoot, { asOf });
 

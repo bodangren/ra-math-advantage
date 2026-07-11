@@ -87,6 +87,11 @@ This package ships mechanisms only. It **must not** import from:
 Raw SRS fields such as stability, last-review timestamps, and cards must not
 cross the `ObjectiveStateEvidence` adapter boundary.
 
+The v3 boundary is intentionally breaking for callers that previously passed
+raw cards into graph code. Compatibility belongs in the adapter: callers use
+`stabilityToRetention` in `srs-engine`, then pass only aggregated objective
+evidence into this package.
+
 Proprietary math maps, Pearson/GSE descriptors, standards catalogs, and curriculum files belong in app/domain content packages.
 
 ## License

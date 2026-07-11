@@ -38,18 +38,20 @@ export function HintPanel({
         const { a, b, c } = coeffs;
 
         switch (type) {
-          case 'axis_of_symmetry':
+          case 'axis_of_symmetry': {
             let axisX = -b / (2 * a);
             if (Object.is(axisX, -0)) axisX = 0;
             data = { x: axisX };
             break;
+          }
 
-          case 'vertex':
+          case 'vertex': {
             let vertexX = -b / (2 * a);
             if (Object.is(vertexX, -0)) vertexX = 0;
             const vertexY = a * vertexX * vertexX + b * vertexX + c;
             data = { x: vertexX, y: vertexY };
             break;
+          }
 
           case 'direction':
             data = { opens: a > 0 ? 'up' : 'down' };

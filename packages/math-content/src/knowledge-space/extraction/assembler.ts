@@ -14,9 +14,6 @@ import type {
   ModuleOverviewExtract,
   ClassPeriodPlanExtract,
   AleksRegistryExtract,
-  ExtractedLesson,
-  ExtractedObjective,
-  ExtractedWorkedExample,
 } from './parser';
 
 // ---------------------------------------------------------------------------
@@ -73,15 +70,6 @@ function sanitizeIdSegment(s: string): string {
 function deriveSkillSlug(objective: string): string {
   // "Graph quadratic functions" → "graph-quadratic-functions"
   return toSlug(objective).slice(0, 60);
-}
-
-/**
- * Pad a number to two digits with leading zeros.
- * @param {number} n - Number to pad
- * @returns {string} - Zero-padded string
- */
-function padNum(n: number): string {
-  return String(n).padStart(2, '0');
 }
 
 // ---------------------------------------------------------------------------

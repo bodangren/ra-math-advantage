@@ -11,7 +11,10 @@
     "./metrics/retention": "./src/metrics/retention.ts",
     "./metrics/time-to-mastery": "./src/metrics/time-to-mastery.ts",
     "./metrics/accuracy": "./src/metrics/accuracy.ts",
-    "./metrics/review-success": "./src/metrics/review-success.ts"
+    "./metrics/review-success": "./src/metrics/review-success.ts",
+    "./experiment/assign": "./src/experiment/assign.ts",
+    "./experiment/registry": "./src/experiment/registry.ts",
+    "./experiment/report": "./src/experiment/report.ts"
   },
   "scripts": {
     "test": "vitest run",

@@ -12,7 +12,7 @@ import {
   type GeneratorLike,
 } from '@math-platform/practice-core/generator-qa';
 
-import type { MathGenerator, QaSkipSpec } from './registry';
+import type { MathGenerator } from './registry';
 
 // ── Exported types ────────────────────────────────────────────────────
 

@@ -1,6 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
 import { mulberry32, seededRandom } from '../utils/prng';
-// @ts-ignore — node:fs is used only in vitest tests; @types/node is not installed in this package
 import { readFileSync } from 'node:fs';
 
 describe('mulberry32', () => {
@@ -63,7 +62,7 @@ describe('mulberry32', () => {
   });
 
   it('does not contain Math.random() in prng.ts source outside comments', () => {
-    const src = readFileSync('packages/math-content/src/utils/prng.ts', 'utf8');
+    const src = readFileSync(new URL('../utils/prng.ts', import.meta.url), 'utf8');
     // Remove single-line comments to avoid matching mentions in comments.
     const code = src.replace(/\/\/.*$/gm, '');
     expect(code).not.toMatch(/Math\.random\s*\(/);

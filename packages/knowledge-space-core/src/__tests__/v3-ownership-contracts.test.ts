@@ -42,10 +42,6 @@ describe('kst-srs.v3 package ownership', () => {
     const architecture = readFileSync(resolve(ROOT, 'measure/knowledge-space.md'), 'utf8');
     const coreReadme = readFileSync(resolve(ROOT, 'packages/knowledge-space-core/README.md'), 'utf8');
     const srsReadme = readFileSync(resolve(ROOT, 'packages/srs-engine/README.md'), 'utf8');
-    const compatibility = readFileSync(
-      resolve(ROOT, 'measure/archive/kst-srs-v3-core-correctness_20260710/compatibility.md'),
-      'utf8',
-    );
 
     expect(architecture).toMatch(/srs-engine[\s\S]*retention[\s\S]*placement/i);
     expect(architecture).toMatch(/knowledge-space-core[\s\S]*edge calibration/i);
@@ -53,7 +49,7 @@ describe('kst-srs.v3 package ownership', () => {
     expect(coreReadme).toMatch(/already-aggregated objective evidence/i);
     expect(srsReadme).toMatch(/FSRS retention/i);
     expect(srsReadme).toMatch(/placement/i);
-    expect(compatibility).toMatch(/intentionally breaking/i);
-    expect(compatibility).toMatch(/stabilityToRetention/i);
+    expect(coreReadme).toMatch(/intentionally breaking/i);
+    expect(coreReadme).toMatch(/stabilityToRetention/i);
   });
 });

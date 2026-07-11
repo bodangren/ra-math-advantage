@@ -107,7 +107,7 @@ describe('GraphingExplorer point-add announcement', () => {
     expect(svg).toBeTruthy();
 
     // Focus the canvas and place a point with Enter.
-    (svg as HTMLElement).focus();
+    (svg as unknown as HTMLElement).focus();
     await user.keyboard('{Enter}');
 
     await waitFor(() => {

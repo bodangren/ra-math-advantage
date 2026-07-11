@@ -92,7 +92,7 @@
     {
       "id": "pkg.efficacy-core", "path": "packages/efficacy-core", "kind": "package", "packageName": "@math-platform/efficacy-core",
       "owner": "learning-platform", "layer": "platform", "domainClassification": "domain-neutral", "domain": null,
-      "allowedDependencies": ["pkg.practice-core", "pkg.srs-engine"], "publicEntryPoints": [".", "./contracts", "./metrics/retention", "./metrics/time-to-mastery", "./metrics/accuracy", "./metrics/review-success"],
+      "allowedDependencies": ["pkg.practice-core", "pkg.srs-engine"], "publicEntryPoints": [".", "./contracts", "./metrics/retention", "./metrics/time-to-mastery", "./metrics/accuracy", "./metrics/review-success", "./experiment/assign", "./experiment/registry", "./experiment/report"],
       "qualityCommands": { "lint": "npm run lint --workspace=packages/efficacy-core", "test": "npm run test --workspace=packages/efficacy-core", "typecheck": "npm run typecheck --workspace=packages/efficacy-core", "build": "npm run build --workspace=packages/efficacy-core" }, "debtRefs": []
     },
     {

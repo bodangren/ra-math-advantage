@@ -85,17 +85,16 @@ describe('Phase 5 — adversarial: boundary future-proofing', () => {
       encoding: 'utf-8',
       cwd: resolve(__dirname, '../../..'),
     });
-    expect(result).toContain('[OK] No monorepo boundary violations found.');
+    expect(result).toContain('[OK] Architecture manifest covers');
   });
 
   it('boundary linter excludes test files (__tests__) from its scan', () => {
-    // verify the linter's exclusion is working — grep for test-dir patterns
-    // that should NOT trigger the linter
+    // The manifest-aware scanner owns exclusions; the CLI delegates to it.
     const scriptContent = readFileSync(
-      resolve(__dirname, '../../../../scripts/check-monorepo-boundaries.mjs'),
+      resolve(__dirname, '../../../../scripts/architecture/manifest-enforcer.mjs'),
       'utf-8',
     );
-    expect(scriptContent).toContain('--exclude-dir');
+    expect(scriptContent).toContain('IGNORED_DIRECTORIES');
     expect(scriptContent).toContain('__tests__');
   });
 });

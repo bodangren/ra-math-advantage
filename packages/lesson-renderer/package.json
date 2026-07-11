@@ -16,6 +16,7 @@
   },
   "scripts": {
     "test": "vitest run",
+    "lint": "eslint src --max-warnings 0",
     "typecheck": "tsc --noEmit",
     "build": "tsc --noEmit"
   },

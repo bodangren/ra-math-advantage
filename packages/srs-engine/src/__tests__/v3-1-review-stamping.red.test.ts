@@ -135,7 +135,10 @@ describe('v3.1 review parameter stamping', () => {
 
   it('keeps legacy unstamped stored rows readable next to stamped rows', async () => {
     const store = new InMemoryReviewLogStore();
-    const legacy: SrsReviewLogEntry = createMockSrsReviewLog({ paramsVersion: undefined });
+    const legacy: SrsReviewLogEntry = createMockSrsReviewLog({
+      reviewedAt: '2026-07-10T00:00:00.000Z',
+      paramsVersion: undefined,
+    });
     const current: SrsReviewLogEntryV31 = {
       ...createMockSrsReviewLog({ reviewedAt: '2026-07-11T00:00:00.000Z' }),
       paramsVersion: BUILTIN_FSRS_PARAMS_VERSION,
