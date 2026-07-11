@@ -40,8 +40,8 @@
 - [x] Task: Replace the regex-only guard with manifest-aware dependency enforcement [85b83e7 + c620cd9]
 - [x] Task: Generate CI/package matrices from the workspace inventory or add parity checks that make drift impossible [13d2f5b]
 - [x] Task: Restore `math-content` lint and standalone typecheck gates [11267cf]
-- [~] Task: Register bounded existing debt and link each item to an approved follow-up track
-- [ ] Task: Measure - User Manual Verification 'Phase 3: Implementation' (Protocol in workflow.md)
+- [x] Task: Register bounded existing debt and link each item to an approved follow-up track [d3eaf4b]
+- [~] Task: Measure - User Manual Verification 'Phase 3: Implementation' (Protocol in workflow.md)
 
 ## Phase 4: Generate Docs, Doctor, and Architecture Gate
 
