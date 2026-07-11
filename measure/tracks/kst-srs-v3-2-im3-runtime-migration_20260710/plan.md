@@ -37,7 +37,7 @@ This track owns removal or reconciliation of the exact, expiring
 - [x] Task: Test every monorepo consumer against the final contract [ea3f1ec]
     - [x] Cover IM3 and BM2 behavior plus IM1/IM2/Precalculus build/type compatibility
     - [x] Pin BM2 to the canonical queue implementation
-- [ ] Task: Measure - User Manual Verification 'Phase 2: Migration and Runtime Tests' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 2: Migration and Runtime Tests' [090d896]
 
 ## Phase 3: Widen, Migrate, Cut Over, and Narrow
 
