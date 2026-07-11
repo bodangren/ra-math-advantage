@@ -41,7 +41,7 @@ This track owns removal or reconciliation of the exact, expiring
 
 ## Phase 3: Widen, Migrate, Cut Over, and Narrow
 
-- [ ] Task: Implement widened schemas and dual-version adapters
+- [x] Task: Implement widened schemas and dual-version adapters [358d8b2]
 - [ ] Task: Reconcile the accepted IM3 package dependencies in the app manifest
 - [ ] Task: Implement dual writes, bounded dual reads, comparison telemetry, and feature flags
 - [ ] Task: Obtain explicit approval and integrate `@convex-dev/migrations` if not already installed
