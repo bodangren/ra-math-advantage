@@ -9,7 +9,7 @@
 This track owns removal or reconciliation of the exact, expiring
 `debt.im3-undeclared` record as IM3 adopts the canonical runtime packages.
 
-## Phase 1: Contract & Schema Widening Definition
+## Phase 1: Contract & Schema Widening Definition [checkpoint: c29bffb]
 
 - [x] Task: Inventory the complete v2 persistence and runtime surface [ecca7fc]
     - [ ] Map tables, fields, indexes, handlers, adapters, routes, and UI consumers
