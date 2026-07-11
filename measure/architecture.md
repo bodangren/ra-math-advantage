@@ -2,6 +2,27 @@
 
 Scaffolded from `bus-math-v2`. This document describes the code architecture, auth flow, routing, and course page structure.
 
+## Monorepo Architecture Contract
+
+`scripts/architecture/architecture.manifest.json` is the human-approved source
+of truth for all 5 apps and 20 non-template packages. It records ownership,
+layers, domain classification, allowed dependencies, public exports, quality
+commands, and exact expiring debt. `scripts/check-monorepo-boundaries.mjs`
+resolves real imports against that contract and rejects app-to-app,
+package-to-app, generated Convex, undeclared, prohibited-layer, domain-leak,
+private-export, and package-cycle violations.
+
+Generated views live under `measure/generated/`:
+
+- `architecture.json` — complete machine-readable workspace graph
+- `package-dag.md` — package dependency edges and cycle count
+- `ownership.md` — workspace ownership and domain classification
+- `exports.md` — package public entry points
+- `quality-gates.md` — lint, test, typecheck, and build coverage
+
+Run `npm run generate` after changing the manifest. `npm run doctor` fails when
+these reports are stale or the live dependency graph violates the contract.
+
 ## Knowledge Space Package Boundaries
 
 See [Knowledge Space Architecture](./knowledge-space.md) for the full project-wide doctrine. The short version: reusable packages own the domain-neutral learning mechanism, while app/domain packages own proprietary maps and generated outputs.

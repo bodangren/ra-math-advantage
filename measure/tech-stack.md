@@ -102,6 +102,23 @@ Custom JWT-based auth built on Convex. No third-party auth provider.
 | Testing Library | Component tests (React) |
 | @testing-library/jest-dom | DOM matchers |
 
+## Monorepo Quality Tooling
+
+| Surface | Command | Contract |
+|---|---|---|
+| Package lint | `npm run lint` | Runs the manifest-declared lint command for all 20 packages |
+| Package tests | `npm run test` | Runs the manifest-declared test command for all 20 packages |
+| Package types | `npm run typecheck` | Runs standalone TypeScript checks for all 20 packages |
+| Package builds | `npm run build` | Runs every supported package build capability |
+| Boundaries | `node scripts/check-monorepo-boundaries.mjs` | Validates imports, exports, dependency declarations, layers, domains, and cycles |
+| Inventory parity | `node scripts/architecture/check-quality-parity.mjs` | Requires manifest, root commands, and CI matrices to cover the same 25 workspaces |
+| Generated facts | `npm run generate` | Writes deterministic DAG, ownership, exports, and gate reports |
+| Architecture doctor | `npm run doctor` | Checks report freshness and the live repository boundary contract |
+
+CI runs lint, test, and typecheck for all 20 packages. App jobs remain separate,
+while the boundary job blocks drift between the manifest, root commands, and
+the CI matrix.
+
 ## Environment Variables
 
 ```env
