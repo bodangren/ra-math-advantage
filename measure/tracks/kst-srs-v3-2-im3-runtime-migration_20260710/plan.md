@@ -4,6 +4,11 @@
 **Migration strategy:** widen → dual write/read → dry-run migration → verify → cut over → narrow  
 **Workflow:** strict contract-first TDD; no production deploy without explicit approval
 
+## Accepted Architecture Debt
+
+This track owns removal or reconciliation of the exact, expiring
+`debt.im3-undeclared` record as IM3 adopts the canonical runtime packages.
+
 ## Phase 1: Contract & Schema Widening Definition
 
 - [ ] Task: Inventory the complete v2 persistence and runtime surface
@@ -37,6 +42,7 @@
 ## Phase 3: Widen, Migrate, Cut Over, and Narrow
 
 - [ ] Task: Implement widened schemas and dual-version adapters
+- [ ] Task: Reconcile the accepted IM3 package dependencies in the app manifest
 - [ ] Task: Implement dual writes, bounded dual reads, comparison telemetry, and feature flags
 - [ ] Task: Obtain explicit approval and integrate `@convex-dev/migrations` if not already installed
 - [ ] Task: Implement batched placement, card, review-log, and practice-variant migrations
@@ -56,4 +62,3 @@
 - [ ] Task: Run all-consumer compatibility and architecture gates
     - [ ] Run BM2/IM1/IM2/Precalculus gates, boundary checks, and `measure/doctor.sh`
 - [ ] Task: Measure - User Manual Verification 'Phase 4: Generate Docs, Doctor, and Migration Closeout' (Protocol in workflow.md)
-

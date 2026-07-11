@@ -4,6 +4,11 @@
 **Default shape:** normal shared package plus app-owned Convex adapters; packaged components only for isolated persistence  
 **Workflow:** strict contract-first TDD; incremental app migration
 
+## Accepted Architecture Debt
+
+This track owns removal or reconciliation of the exact, expiring
+`debt.math-content-undeclared` record.
+
 ## Phase 1: Contract, Schema, and Boundary Definition
 
 - [ ] Task: Inventory common LMS tables, handlers, and app policy seams
@@ -40,6 +45,7 @@
 
 - [ ] Task: Implement the shared LMS contract and pure-service package
 - [ ] Task: Implement schema composition and thin app adapter utilities
+- [ ] Task: Reconcile the accepted math-content dependency in the package manifest
 - [ ] Task: Implement any approved isolated packaged component and authenticated app wrappers
 - [ ] Task: Migrate IM3 and BM2 common backend behavior to the shared surfaces
 - [ ] Task: Migrate IM1, IM2, and Precalculus scaffolds without changing course policy
@@ -57,4 +63,3 @@
 - [ ] Task: Verify modularity and duplication outcomes
     - [ ] Run dependency/DAG checks, duplicate-behavior audit, and `measure/doctor.sh`
 - [ ] Task: Measure - User Manual Verification 'Phase 4: Generate Docs, Doctor, and Cross-App Gate' (Protocol in workflow.md)
-

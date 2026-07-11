@@ -4,6 +4,14 @@
 **Baseline:** 43 identical production-file groups; approximately 123 KB duplicated source  
 **Workflow:** strict contract-first TDD; preserve app product boundaries
 
+## Accepted Architecture Debt
+
+This track owns removal or reconciliation of these exact, expiring records:
+`debt.activity-content-inversion`, `debt.bus-math-undeclared`,
+`debt.im2-undeclared`, `debt.activity-components-undeclared`,
+`debt.knowledge-space-practice-undeclared`, and
+`debt.lesson-renderer-undeclared`.
+
 ## Phase 1: Platform and App Contract Definition
 
 - [ ] Task: Classify duplicate source and configuration ownership
@@ -38,6 +46,7 @@
 
 - [ ] Task: Implement shared presets, generators, common types, and app template
 - [ ] Task: Invert activity renderer/content registration and remove the `math-content` package dependency
+- [ ] Task: Reconcile the accepted undeclared dependencies in app and shared-package manifests
 - [ ] Task: Migrate IM3 and BM2 to the shared platform composition surfaces
 - [ ] Task: Migrate IM1, IM2, and Precalculus scaffolding while preserving designs and curriculum
 - [ ] Task: Remove superseded copies and add freshness/ownership checks
@@ -54,4 +63,3 @@
 - [ ] Task: Recompute and review modularity outcomes
     - [ ] Compare duplicate groups/bytes, package edges, and app parity to baseline
 - [ ] Task: Measure - User Manual Verification 'Phase 4: Generate Docs, Doctor, and Consolidation Gate' (Protocol in workflow.md)
-
