@@ -25,7 +25,7 @@ This track owns removal or reconciliation of the exact, expiring
 
 ## Phase 2: Migration and Runtime Tests
 
-- [ ] Task: Test widen–migrate–narrow behavior
+- [~] Task: Test widen–migrate–narrow behavior
     - [ ] Cover old-only, new-only, mixed, malformed, and concurrently created documents
     - [ ] Prove dry-run rollback, batching, resume, idempotency, and verification
 - [ ] Task: Test placement and practice-variant backfills
