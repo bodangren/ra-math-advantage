@@ -23,7 +23,7 @@ This track owns removal or reconciliation of the exact, expiring
     - [x] Specify cutover thresholds, rollback window, and deprecated-field policy
 - [x] Task: Measure - User Manual Verification 'Phase 1: Contract & Schema Widening Definition' (Protocol in workflow.md) [496e720]
 
-## Phase 2: Migration and Runtime Tests
+## Phase 2: Migration and Runtime Tests [checkpoint: 5d0a66f]
 
 - [x] Task: Test widen–migrate–narrow behavior [ae08bb1]
     - [x] Cover old-only, new-only, mixed, malformed, and concurrently created documents
