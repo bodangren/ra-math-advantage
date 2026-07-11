@@ -32,10 +32,10 @@
     {
       "id": "app.integrated-math-3", "path": "apps/integrated-math-3", "kind": "app", "packageName": null,
       "owner": "im3-team", "layer": "application", "domainClassification": "app-owned", "domain": "integrated-math-3",
-      "allowedDependencies": ["pkg.activity-components", "pkg.activity-runtime", "pkg.ai-tutoring", "pkg.app-shell", "pkg.component-approval", "pkg.core-auth", "pkg.core-convex", "pkg.efficacy-core", "pkg.graphing-core", "pkg.knowledge-space-practice", "pkg.lesson-renderer", "pkg.practice-core", "pkg.practice-test-engine", "pkg.srs-engine", "pkg.study-hub-core", "pkg.teacher-reporting-core", "pkg.workbook-pipeline"],
+      "allowedDependencies": ["pkg.activity-components", "pkg.activity-runtime", "pkg.ai-tutoring", "pkg.app-shell", "pkg.component-approval", "pkg.core-auth", "pkg.core-convex", "pkg.efficacy-core", "pkg.graphing-core", "pkg.knowledge-space-core", "pkg.knowledge-space-practice", "pkg.lesson-renderer", "pkg.math-content", "pkg.practice-core", "pkg.practice-test-engine", "pkg.rate-limiter", "pkg.srs-engine", "pkg.study-hub-core", "pkg.teacher-reporting-core", "pkg.workbook-pipeline"],
       "publicEntryPoints": [],
       "qualityCommands": { "lint": "npm run lint --workspace=apps/integrated-math-3", "test": "npm run test --workspace=apps/integrated-math-3", "typecheck": "npm run typecheck --workspace=apps/integrated-math-3", "build": "npm run build --workspace=apps/integrated-math-3" },
-      "debtRefs": ["debt.im3-undeclared"]
+      "debtRefs": []
     },
     {
       "id": "app.pre-calculus", "path": "apps/pre-calculus", "kind": "app", "packageName": null,
@@ -215,37 +215,6 @@
       "followUpTrack": "app-platform-consolidation_20260710", "introducedOn": "2026-07-10", "expiresOn": "2026-10-31",
       "violations": [
         { "ruleId": "undeclared-dependency", "sourceWorkspace": "app.integrated-math-2", "targetWorkspace": "pkg.math-content", "sourceFile": "apps/integrated-math-2/convex/seed/seed_problem_families.ts", "exactSpecifier": "@math-platform/math-content/problem-families/im2" }
-      ]
-    },
-    {
-      "id": "debt.im3-undeclared", "owner": "im3-team",
-      "rationale": "IM3 v3 migration and app composition imports predate package-manifest parity enforcement.",
-      "followUpTrack": "kst-srs-v3-2-im3-runtime-migration_20260710", "introducedOn": "2026-07-10", "expiresOn": "2026-10-31",
-      "violations": [
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "app.integrated-math-3", "targetWorkspace": "pkg.knowledge-space-core", "sourceFile": "apps/integrated-math-3/components/student/transfer-credit/TransferCreditPrompt.tsx", "exactSpecifier": "@math-platform/knowledge-space-core" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "app.integrated-math-3", "targetWorkspace": "pkg.knowledge-space-core", "sourceFile": "apps/integrated-math-3/convex/parent/visualization.ts", "exactSpecifier": "@math-platform/knowledge-space-core" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "app.integrated-math-3", "targetWorkspace": "pkg.knowledge-space-core", "sourceFile": "apps/integrated-math-3/convex/student/knowledge-state.ts", "exactSpecifier": "@math-platform/knowledge-space-core" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "app.integrated-math-3", "targetWorkspace": "pkg.knowledge-space-core", "sourceFile": "apps/integrated-math-3/lib/curriculum/skill-graph-loader.ts", "exactSpecifier": "@math-platform/knowledge-space-core" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "app.integrated-math-3", "targetWorkspace": "pkg.knowledge-space-core", "sourceFile": "apps/integrated-math-3/lib/level-projection/im3-level-projection.ts", "exactSpecifier": "@math-platform/knowledge-space-core/level-projection" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "app.integrated-math-3", "targetWorkspace": "pkg.knowledge-space-core", "sourceFile": "apps/integrated-math-3/lib/placement/im3-probe-adapter.ts", "exactSpecifier": "@math-platform/knowledge-space-core" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "app.integrated-math-3", "targetWorkspace": "pkg.knowledge-space-core", "sourceFile": "apps/integrated-math-3/lib/placement/placement-flow.ts", "exactSpecifier": "@math-platform/knowledge-space-core" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "app.integrated-math-3", "targetWorkspace": "pkg.knowledge-space-core", "sourceFile": "apps/integrated-math-3/lib/placement/seed-knowledge-state.ts", "exactSpecifier": "@math-platform/knowledge-space-core" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "app.integrated-math-3", "targetWorkspace": "pkg.math-content", "sourceFile": "apps/integrated-math-3/convex/seed/seed_practice_items.ts", "exactSpecifier": "@math-platform/math-content/problem-families/im3" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "app.integrated-math-3", "targetWorkspace": "pkg.math-content", "sourceFile": "apps/integrated-math-3/convex/seed/seed_problem_families.ts", "exactSpecifier": "@math-platform/math-content/problem-families/im3" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "app.integrated-math-3", "targetWorkspace": "pkg.math-content", "sourceFile": "apps/integrated-math-3/lib/activities/algebraic/distractors.ts", "exactSpecifier": "@math-platform/math-content/algebraic" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "app.integrated-math-3", "targetWorkspace": "pkg.math-content", "sourceFile": "apps/integrated-math-3/lib/activities/algebraic/equivalence.ts", "exactSpecifier": "@math-platform/math-content/algebraic" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "app.integrated-math-3", "targetWorkspace": "pkg.math-content", "sourceFile": "apps/integrated-math-3/lib/activities/schemas/comprehension-quiz.schema.ts", "exactSpecifier": "@math-platform/math-content/schemas" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "app.integrated-math-3", "targetWorkspace": "pkg.math-content", "sourceFile": "apps/integrated-math-3/lib/activities/schemas/discriminant-analyzer.schema.ts", "exactSpecifier": "@math-platform/math-content/schemas" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "app.integrated-math-3", "targetWorkspace": "pkg.math-content", "sourceFile": "apps/integrated-math-3/lib/activities/schemas/fill-in-the-blank.schema.ts", "exactSpecifier": "@math-platform/math-content/schemas" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "app.integrated-math-3", "targetWorkspace": "pkg.math-content", "sourceFile": "apps/integrated-math-3/lib/activities/schemas/graphing-explorer.schema.ts", "exactSpecifier": "@math-platform/math-content/schemas" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "app.integrated-math-3", "targetWorkspace": "pkg.math-content", "sourceFile": "apps/integrated-math-3/lib/activities/schemas/index.ts", "exactSpecifier": "@math-platform/math-content/schemas" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "app.integrated-math-3", "targetWorkspace": "pkg.math-content", "sourceFile": "apps/integrated-math-3/lib/activities/schemas/rate-of-change-calculator.schema.ts", "exactSpecifier": "@math-platform/math-content/schemas" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "app.integrated-math-3", "targetWorkspace": "pkg.math-content", "sourceFile": "apps/integrated-math-3/lib/activities/schemas/step-by-step-solver.schema.ts", "exactSpecifier": "@math-platform/math-content/schemas" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "app.integrated-math-3", "targetWorkspace": "pkg.math-content", "sourceFile": "apps/integrated-math-3/lib/practice/misconception-mapping.ts", "exactSpecifier": "@math-platform/math-content/algebraic" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "app.integrated-math-3", "targetWorkspace": "pkg.math-content", "sourceFile": "apps/integrated-math-3/lib/practice/misconception-taxonomy.ts", "exactSpecifier": "@math-platform/math-content/algebraic" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "app.integrated-math-3", "targetWorkspace": "pkg.math-content", "sourceFile": "apps/integrated-math-3/lib/study/glossary.ts", "exactSpecifier": "@math-platform/math-content/glossary" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "app.integrated-math-3", "targetWorkspace": "pkg.math-content", "sourceFile": "apps/integrated-math-3/lib/study/types.ts", "exactSpecifier": "@math-platform/math-content/glossary" },
-        { "ruleId": "undeclared-dependency", "sourceWorkspace": "app.integrated-math-3", "targetWorkspace": "pkg.rate-limiter", "sourceFile": "apps/integrated-math-3/convex/rateLimits.ts", "exactSpecifier": "@math-platform/rate-limiter" }
       ]
     },
     {
