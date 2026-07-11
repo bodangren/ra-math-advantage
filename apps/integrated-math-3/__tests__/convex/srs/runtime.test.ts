@@ -3,6 +3,7 @@ import type { Id } from '@/convex/_generated/dataModel';
 import {
   getRuntimeModeHandler,
   recordRuntimeComparisonHandler,
+  selectReviewLoadStateForRuntime,
   setRuntimeModeHandler,
 } from '@/convex/srs/runtime';
 
@@ -30,13 +31,19 @@ function makeContext(control: {
 }
 
 describe('v3.2 runtime controls', () => {
-  it('defaults safely to compare mode until an internal control is written', async () => {
+  it('defaults to the canonical v3.2 runtime until an internal control is written', async () => {
     const ctx = makeContext();
 
     await expect(getRuntimeModeHandler(ctx as never)).resolves.toEqual({
-      mode: 'compare',
+      mode: 'v3_2',
       approvedAt: null,
     });
+  });
+
+  it('keeps v3.2 review-load messaging on v3.2 and compare modes, but restores the v2 baseline on rollback', () => {
+    expect(selectReviewLoadStateForRuntime('v3_2', 'saturated')).toBe('saturated');
+    expect(selectReviewLoadStateForRuntime('compare', 'elevated')).toBe('elevated');
+    expect(selectReviewLoadStateForRuntime('rollback_v2', 'saturated')).toBe('normal');
   });
 
   it('writes runtime mode only through the internal control handler', async () => {

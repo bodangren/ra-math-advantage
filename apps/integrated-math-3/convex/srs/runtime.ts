@@ -10,6 +10,9 @@ import {
 
 const RUNTIME_SCOPE = "im3" as const;
 
+export type SrsRuntimeMode = "compare" | "v3_2" | "rollback_v2";
+export type SrsReviewLoadState = "normal" | "elevated" | "saturated";
+
 async function findRuntimeControl(ctx: { db: Pick<QueryCtx["db"], "query"> }) {
   return ctx.db
     .query("srs_runtime_controls")
@@ -21,9 +24,21 @@ async function findRuntimeControl(ctx: { db: Pick<QueryCtx["db"], "query"> }) {
 export async function getRuntimeModeHandler(ctx: QueryCtx) {
   const control = await findRuntimeControl(ctx);
   return {
-    mode: control?.mode ?? "compare",
+    mode: control?.mode ?? "v3_2",
     approvedAt: control?.approvedAt ?? null,
   };
+}
+
+/**
+ * The queue itself remains canonical during rollback; only the v3.2
+ * review-load presentation is suppressed to restore the established v2
+ * dashboard behavior while an operator investigates a divergence.
+ */
+export function selectReviewLoadStateForRuntime(
+  mode: SrsRuntimeMode,
+  v3_2ReviewLoadState: SrsReviewLoadState,
+): SrsReviewLoadState {
+  return mode === "rollback_v2" ? "normal" : v3_2ReviewLoadState;
 }
 
 /**

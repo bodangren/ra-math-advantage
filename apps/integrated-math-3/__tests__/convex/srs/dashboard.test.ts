@@ -116,8 +116,9 @@ function makeDashboardMockCtx(overrides: {
     config: unknown;
   }>;
   queueItems?: Array<{ _id: string }>;
+  runtimeMode?: 'compare' | 'v3_2' | 'rollback_v2';
 } = {}) {
-  const { sessions = [] } = overrides;
+  const { sessions = [], runtimeMode } = overrides;
 
   const sessionQueryMock = {
     withIndex: vi.fn().mockImplementation(
@@ -139,6 +140,16 @@ function makeDashboardMockCtx(overrides: {
 
   const mockQuery = vi.fn().mockImplementation((tableName: string) => {
     if (tableName === 'srs_sessions') return sessionQueryMock;
+    if (tableName === 'srs_runtime_controls') {
+      return {
+        withIndex: vi.fn().mockReturnValue({
+          first: vi.fn().mockResolvedValue(runtimeMode === undefined ? null : {
+            _id: 'runtime-1' as Id<'srs_runtime_controls'>,
+            scope: 'im3', mode: runtimeMode, migrationVersion: 'kst-srs.v3.2', updatedAt: 0,
+          }),
+        }),
+      };
+    }
     return {
       withIndex: vi.fn().mockReturnValue({
         collect: vi.fn().mockResolvedValue([]),
@@ -351,5 +362,22 @@ describe('getPracticeStatsHandler', () => {
 
     expect(result.dueCount).toBe(3);
     expect(result.reviewLoadState).toBe('saturated');
+  });
+
+  it('uses the rollback flag to restore the v2 review-day message while retaining the canonical queue', async () => {
+    const { db } = makeDashboardMockCtx({ runtimeMode: 'rollback_v2' });
+    const { resolveDailyPracticeQueueResult } = await import('@/convex/queue/queue');
+    (resolveDailyPracticeQueueResult as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
+      items: [{ _id: 'item-1' }],
+      reviewLoad: { reviewLoadState: 'saturated' },
+    });
+
+    const result = await getPracticeStatsHandler(
+      { db } as unknown as import('@/convex/_generated/server').QueryCtx,
+      { studentId: 'student-1' },
+    );
+
+    expect(result.dueCount).toBe(1);
+    expect(result.reviewLoadState).toBe('normal');
   });
 });

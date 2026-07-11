@@ -2,6 +2,10 @@ import { internalQuery, type QueryCtx } from "../_generated/server";
 import { v } from "convex/values";
 import { Id } from "../_generated/dataModel";
 import { resolveDailyPracticeQueueResult } from "../queue/queue";
+import {
+  getRuntimeModeHandler,
+  selectReviewLoadStateForRuntime,
+} from "./runtime";
 
 const MAX_STREAK_SESSIONS = 400;
 
@@ -67,6 +71,7 @@ export async function getPracticeStatsHandler(
     studentId: args.studentId,
     asOfDate: args.asOfDate,
   });
+  const runtime = await getRuntimeModeHandler(ctx);
   const dueCount = queue.items.length;
 
   const sessions = await ctx.db
@@ -97,7 +102,10 @@ export async function getPracticeStatsHandler(
     dueCount,
     streak,
     lastPracticedAt,
-    reviewLoadState: queue.reviewLoad.reviewLoadState,
+    reviewLoadState: selectReviewLoadStateForRuntime(
+      runtime.mode,
+      queue.reviewLoad.reviewLoadState,
+    ),
   };
 }
 
