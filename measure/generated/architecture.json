@@ -1,7 +1,7 @@
 {
   "schemaVersion": "lms-architecture-report.v1",
   "workspaceCount": 25,
-  "edgeCount": 64,
+  "edgeCount": 67,
   "nodes": [
     {
       "id": "app.bus-math-v2",
@@ -372,6 +372,10 @@
     },
     {
       "source": "app.integrated-math-3",
+      "target": "pkg.knowledge-space-core"
+    },
+    {
+      "source": "app.integrated-math-3",
       "target": "pkg.knowledge-space-practice"
     },
     {
@@ -380,11 +384,19 @@
     },
     {
       "source": "app.integrated-math-3",
+      "target": "pkg.math-content"
+    },
+    {
+      "source": "app.integrated-math-3",
       "target": "pkg.practice-core"
     },
     {
       "source": "app.integrated-math-3",
       "target": "pkg.practice-test-engine"
+    },
+    {
+      "source": "app.integrated-math-3",
+      "target": "pkg.rate-limiter"
     },
     {
       "source": "app.integrated-math-3",
