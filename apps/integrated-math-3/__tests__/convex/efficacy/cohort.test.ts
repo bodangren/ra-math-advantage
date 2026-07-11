@@ -28,7 +28,6 @@ import { describe, it, expect, vi } from 'vitest';
 import type { Id } from '@/convex/_generated/dataModel';
 import {
   computeRetentionCurve,
-  computeReviewSuccessRate,
 } from '@math-platform/efficacy-core';
 
 import { aggregateCohortMetricsHandler } from '@/convex/efficacy/cohort';
