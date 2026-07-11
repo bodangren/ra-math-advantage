@@ -43,7 +43,7 @@
 - [x] Task: Register bounded existing debt and link each item to an approved follow-up track [d3eaf4b]
 - [x] Task: Measure - User Manual Verification 'Phase 3: Implementation' (Protocol in workflow.md) [6069b0a]
 
-## Phase 4: Generate Docs, Doctor, and Architecture Gate
+## Phase 4: Generate Docs, Doctor, and Architecture Gate [checkpoint: 05f659e]
 
 - [x] Task: Generate package DAG, ownership, exports, and quality-gate reports [ae2c217]
     - [x] Run `measure/generate.sh`
@@ -51,4 +51,4 @@
 - [x] Task: Run all workspace and injected-violation gates [4d95c5c]
     - [x] Run every package/app quality command represented in the manifest
     - [x] Run architecture fixtures, boundary checks, and `measure/doctor.sh`
-- [~] Task: Measure - User Manual Verification 'Phase 4: Generate Docs, Doctor, and Architecture Gate' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 4: Generate Docs, Doctor, and Architecture Gate' (Protocol in workflow.md) [05f659e]
