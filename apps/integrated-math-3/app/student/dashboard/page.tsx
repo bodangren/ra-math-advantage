@@ -120,6 +120,7 @@ export default async function StudentDashboardPage({ searchParams }: PageProps) 
         dueCount={practiceStats?.dueCount ?? 0}
         streak={practiceStats?.streak ?? 0}
         lastPracticedAt={practiceStats?.lastPracticedAt ?? null}
+        reviewLoadState={practiceStats?.reviewLoadState ?? 'normal'}
       />
 
       {/* Recommended next skills — next-skill planner output */}

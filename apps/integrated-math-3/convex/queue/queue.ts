@@ -1,8 +1,9 @@
 import { internalQuery, type QueryCtx } from "../_generated/server";
 import { v } from "convex/values";
 import { Id } from "../_generated/dataModel";
-import { buildDailyQueue, type QueueItem } from "@math-platform/srs-engine";
+import { buildDailyQueueResult, type QueueItem } from "@math-platform/srs-engine";
 import type { ObjectivePracticePolicy, SrsCardState } from "@math-platform/srs-engine";
+import { assessReviewLoadV3_2, type ReviewLoadAssessmentV3_2 } from "@math-platform/knowledge-space-practice";
 
 const VALID_PRIORITIES = new Set<string>(['essential', 'supporting', 'extension', 'triaged']);
 
@@ -11,9 +12,18 @@ export type ResolvedQueueItem = QueueItem & {
   props: Record<string, unknown>;
 };
 
+export interface ResolvedDailyPracticeQueue {
+  readonly items: ResolvedQueueItem[];
+  readonly backlog: boolean;
+  readonly dueReviewCount: number;
+  readonly deferredReviewCount: number;
+  readonly newCardsSuppressed: boolean;
+  readonly reviewLoad: ReviewLoadAssessmentV3_2;
+}
+
 /**
  * Maps a database SRS card to the contract format used by the queue builder.
- * @param {{ _id: Id<"srs_cards">; studentId: Id<"profiles">; objectiveId: string; problemFamilyId: string; stability: number; difficulty: number; state: "new" | "learning" | "review" | "relearning"; dueDate: string; elapsedDays: number; scheduledDays: number; reps: number; lapses: number; lastReview?: string; createdAt: number; updatedAt: number }} card - The raw database card object
+ * @param {{ _id: Id<"srs_cards">; studentId: Id<"profiles">; objectiveId: string; variantKey: string; stability: number; difficulty: number; state: "new" | "learning" | "review" | "relearning"; dueDate: string; elapsedDays: number; scheduledDays: number; reps: number; lapses: number; lastReview?: string; createdAt: number; updatedAt: number }} card - The raw database card object
  * @returns {SrsCardState} The card in SrsCardState contract format
  */
 function mapDbCardToContract(
@@ -21,7 +31,7 @@ function mapDbCardToContract(
     _id: Id<"srs_cards">;
     studentId: Id<"profiles">;
     objectiveId: string;
-    problemFamilyId: string;
+    variantKey: string;
     stability: number;
     difficulty: number;
     state: "new" | "learning" | "review" | "relearning";
@@ -39,7 +49,7 @@ function mapDbCardToContract(
     cardId: card._id as string,
     studentId: card.studentId as string,
     objectiveId: card.objectiveId,
-    problemFamilyId: card.problemFamilyId,
+    variantKey: card.variantKey,
     stability: card.stability,
     difficulty: card.difficulty,
     state: card.state,
@@ -64,24 +74,24 @@ async function resolveQueueItems(
   ctx: QueueDbContext,
   items: QueueItem[]
 ): Promise<ResolvedQueueItem[]> {
-  const uniqueProblemFamilyIds = [...new Set(items.map((item) => item.card.problemFamilyId))];
+  const uniqueVariantKeys = [...new Set(items.map((item) => item.card.variantKey))];
 
   const practiceItemResults = await Promise.all(
-    uniqueProblemFamilyIds.map(async (problemFamilyId) => {
+    uniqueVariantKeys.map(async (variantKey) => {
       const practiceItem = await ctx.db
         .query("practice_items")
-        .withIndex("by_problemFamilyId", (q) =>
-          q.eq("problemFamilyId", problemFamilyId)
+        .withIndex("by_variantKey", (q) =>
+          q.eq("variantKey", variantKey)
         )
         .first();
-      return { problemFamilyId, practiceItem };
+      return { variantKey, practiceItem };
     })
   );
 
   const practiceItemMap = new Map(
     practiceItemResults
-      .filter((r): r is { problemFamilyId: string; practiceItem: NonNullable<typeof r.practiceItem> } => r.practiceItem !== null)
-      .map((r) => [r.problemFamilyId, r.practiceItem])
+      .filter((r): r is { variantKey: string; practiceItem: NonNullable<typeof r.practiceItem> } => r.practiceItem !== null)
+      .map((r) => [r.variantKey, r.practiceItem])
   );
 
   const activityIds = [...new Set(
@@ -105,7 +115,7 @@ async function resolveQueueItems(
 
   const resolvedItems: ResolvedQueueItem[] = [];
   for (const item of items) {
-    const practiceItem = practiceItemMap.get(item.card.problemFamilyId);
+    const practiceItem = practiceItemMap.get(item.card.variantKey);
     if (!practiceItem) continue;
 
     const activity = activityMap.get(practiceItem.activityId);
@@ -135,6 +145,14 @@ export async function resolveDailyPracticeQueue(
   ctx: QueueDbContext,
   args: { studentId: string; asOfDate?: string }
 ): Promise<ResolvedQueueItem[]> {
+  return (await resolveDailyPracticeQueueResult(ctx, args)).items;
+}
+
+/** Builds an observable v3.2 queue, including review-load guidance. */
+export async function resolveDailyPracticeQueueResult(
+  ctx: QueueDbContext,
+  args: { studentId: string; asOfDate?: string },
+): Promise<ResolvedDailyPracticeQueue> {
   const cards = await ctx.db
     .query("srs_cards")
     .withIndex("by_student", (q) =>
@@ -182,9 +200,22 @@ export async function resolveDailyPracticeQueue(
   const now = args.asOfDate ?? new Date().toISOString();
   const cardStates = cards.map(mapDbCardToContract);
 
-  const queueItems = buildDailyQueue(cardStates, policies, config, now);
+  const queueResult = buildDailyQueueResult(cardStates, policies, config, now);
 
-  return resolveQueueItems(ctx, queueItems);
+  const reviewLoad = assessReviewLoadV3_2({
+    asOf: now,
+    maxReviewsPerDay: config.maxReviewsPerDay,
+    cards: cardStates.map((card) => ({ cardId: card.cardId, dueDate: card.dueDate })),
+  });
+  const resolvedItems = await resolveQueueItems(ctx, queueResult.items);
+  return {
+    items: resolvedItems,
+    backlog: queueResult.backlog,
+    dueReviewCount: queueResult.dueReviewCount,
+    deferredReviewCount: queueResult.deferredReviewCount,
+    newCardsSuppressed: queueResult.newCardsSuppressed,
+    reviewLoad,
+  };
 }
 
 /**

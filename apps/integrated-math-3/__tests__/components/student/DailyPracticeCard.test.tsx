@@ -67,4 +67,19 @@ describe('DailyPracticeCard', () => {
 
     expect(screen.getByText('Start your streak today')).toBeInTheDocument();
   });
+
+  it('explains that a saturated queue is a review day', () => {
+    render(
+      <DailyPracticeCard
+        dueCount={20}
+        streak={3}
+        lastPracticedAt="2026-04-15T10:00:00.000Z"
+        reviewLoadState="saturated"
+      />,
+    );
+
+    expect(screen.getByTestId('review-day-message')).toHaveTextContent(
+      'Review day',
+    );
+  });
 });

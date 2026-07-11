@@ -1,7 +1,7 @@
 import { internalQuery, type QueryCtx } from "../_generated/server";
 import { v } from "convex/values";
 import { Id } from "../_generated/dataModel";
-import { resolveDailyPracticeQueue } from "../queue/queue";
+import { resolveDailyPracticeQueueResult } from "../queue/queue";
 
 /**
  * Returns the UTC day start timestamp for a given timestamp.
@@ -61,11 +61,11 @@ export async function getPracticeStatsHandler(
 ) {
   const now = args.asOfDate ? new Date(args.asOfDate).getTime() : Date.now();
 
-  const queue = await resolveDailyPracticeQueue(ctx, {
+  const queue = await resolveDailyPracticeQueueResult(ctx, {
     studentId: args.studentId,
     asOfDate: args.asOfDate,
   });
-  const dueCount = queue.length;
+  const dueCount = queue.items.length;
 
   const sessions = await ctx.db
     .query("srs_sessions")
@@ -95,6 +95,7 @@ export async function getPracticeStatsHandler(
     dueCount,
     streak,
     lastPracticedAt,
+    reviewLoadState: queue.reviewLoad.reviewLoadState,
   };
 }
 

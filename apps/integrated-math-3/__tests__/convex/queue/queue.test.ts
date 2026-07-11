@@ -15,7 +15,7 @@ function makeMockCtx(overrides: {
   standards?: Record<string, { _id: Id<'competency_standards'>; code: string }>;
   practiceItems?: Array<{
     _id: Id<'practice_items'>;
-    problemFamilyId: string;
+    variantKey: string;
     activityId: Id<'activities'>;
     practiceItemId: string;
     variantLabel: string;
@@ -35,7 +35,7 @@ function makeMockCtx(overrides: {
         _id: card.cardId as Id<'srs_cards'>,
         studentId: card.studentId as Id<'profiles'>,
         objectiveId: card.objectiveId,
-        problemFamilyId: card.problemFamilyId,
+        variantKey: card.variantKey,
         stability: card.stability,
         difficulty: card.difficulty,
         state: card.state,
@@ -53,7 +53,7 @@ function makeMockCtx(overrides: {
           _id: card.cardId as Id<'srs_cards'>,
           studentId: card.studentId as Id<'profiles'>,
           objectiveId: card.objectiveId,
-          problemFamilyId: card.problemFamilyId,
+          variantKey: card.variantKey,
           stability: card.stability,
           difficulty: card.difficulty,
           state: card.state,
@@ -82,7 +82,7 @@ function makeMockCtx(overrides: {
     withIndex: vi.fn().mockImplementation((_indexName: string, fn: (q: { eq: (field: string, value: string) => unknown }) => void) => {
       const mockQ = {
         eq: vi.fn().mockImplementation((field: string, value: string) => {
-          if (field === 'problemFamilyId') {
+          if (field === 'variantKey') {
             lastQueriedProblemFamilyId = value;
           }
           return {};
@@ -93,7 +93,7 @@ function makeMockCtx(overrides: {
       return {
         collect: vi.fn().mockResolvedValue(practiceItems),
         first: vi.fn().mockImplementation(() => {
-          const found = practiceItems.find(pi => pi.problemFamilyId === capturedId);
+          const found = practiceItems.find(pi => pi.variantKey === capturedId);
           return Promise.resolve(found ?? null);
         }),
       };
@@ -129,7 +129,7 @@ const baseCard: SrsCardState = {
   cardId: 'card-1',
   studentId: 'student-1',
   objectiveId: 'HSA-SSE.B.3',
-  problemFamilyId: 'm1-qf-factoring-1',
+  variantKey: 'm1-qf-factoring-1',
   stability: 0,
   difficulty: 0,
   state: 'new',
@@ -174,7 +174,7 @@ describe('getDailyPracticeQueueHandler', () => {
     const practiceItems = [
       {
         _id: 'pi-1' as Id<'practice_items'>,
-        problemFamilyId: 'm1-qf-factoring-1',
+        variantKey: 'm1-qf-factoring-1',
         activityId: 'act-1' as Id<'activities'>,
         practiceItemId: 'pi-a',
         variantLabel: 'variant-1',
@@ -198,15 +198,15 @@ describe('getDailyPracticeQueueHandler', () => {
 
     expect(result).toHaveLength(1);
     expect(result[0].card.cardId).toBe('card-1');
-    expect(result[0].card.problemFamilyId).toBe('m1-qf-factoring-1');
+    expect(result[0].card.variantKey).toBe('m1-qf-factoring-1');
     expect(result[0].objectivePriority).toBe('essential');
     expect(result[0].isOverdue).toBe(false);
   });
 
   it('joins card data with objective policy from competency_standards', async () => {
     const cards: SrsCardState[] = [
-      { ...baseCard, cardId: 'card-1', problemFamilyId: 'm1-family-a', state: 'new', objectiveId: 'HSA-SSE.B.3' },
-      { ...baseCard, cardId: 'card-2', problemFamilyId: 'm1-family-b', state: 'review', dueDate: '2024-01-01T00:00:00.000Z', objectiveId: 'HSA-REI.B.4' },
+      { ...baseCard, cardId: 'card-1', variantKey: 'm1-family-a', state: 'new', objectiveId: 'HSA-SSE.B.3' },
+      { ...baseCard, cardId: 'card-2', variantKey: 'm1-family-b', state: 'review', dueDate: '2024-01-01T00:00:00.000Z', objectiveId: 'HSA-REI.B.4' },
     ];
     const policies = [
       {
@@ -231,14 +231,14 @@ describe('getDailyPracticeQueueHandler', () => {
     const practiceItems = [
       {
         _id: 'pi-1' as Id<'practice_items'>,
-        problemFamilyId: 'm1-family-a',
+        variantKey: 'm1-family-a',
         activityId: 'act-1' as Id<'activities'>,
         practiceItemId: 'pi-a',
         variantLabel: 'variant-1',
       },
       {
         _id: 'pi-2' as Id<'practice_items'>,
-        problemFamilyId: 'm1-family-b',
+        variantKey: 'm1-family-b',
         activityId: 'act-2' as Id<'activities'>,
         practiceItemId: 'pi-b',
         variantLabel: 'variant-1',
@@ -267,8 +267,8 @@ describe('getDailyPracticeQueueHandler', () => {
     );
 
     expect(result).toHaveLength(2);
-    const newItem = result.find((r: { card: { problemFamilyId: string } }) => r.card.problemFamilyId === 'm1-family-a');
-    const reviewItem = result.find((r: { card: { problemFamilyId: string } }) => r.card.problemFamilyId === 'm1-family-b');
+    const newItem = result.find((r: { card: { variantKey: string } }) => r.card.variantKey === 'm1-family-a');
+    const reviewItem = result.find((r: { card: { variantKey: string } }) => r.card.variantKey === 'm1-family-b');
     expect(newItem?.objectivePriority).toBe('essential');
     expect(reviewItem?.objectivePriority).toBe('supporting');
     expect(reviewItem?.isOverdue).toBe(true);
@@ -293,7 +293,7 @@ describe('getDailyPracticeQueueHandler', () => {
     const practiceItems = [
       {
         _id: 'pi-1' as Id<'practice_items'>,
-        problemFamilyId: 'm1-qf-factoring-1',
+        variantKey: 'm1-qf-factoring-1',
         activityId: 'act-1' as Id<'activities'>,
         practiceItemId: 'pi-a',
         variantLabel: 'variant-1',
@@ -323,7 +323,7 @@ describe('getDailyPracticeQueueHandler', () => {
 describe('getDailyPracticeQueueHandler - Phase 2: Queue Item Resolution', () => {
   it('resolves queue item to practice activity with componentKey and props', async () => {
     const cards: SrsCardState[] = [
-      { ...baseCard, cardId: 'card-1', problemFamilyId: 'm1-family-a', state: 'new', objectiveId: 'HSA-SSE.B.3' },
+      { ...baseCard, cardId: 'card-1', variantKey: 'm1-family-a', state: 'new', objectiveId: 'HSA-SSE.B.3' },
     ];
     const policies = [
       {
@@ -340,7 +340,7 @@ describe('getDailyPracticeQueueHandler - Phase 2: Queue Item Resolution', () => 
     const practiceItems = [
       {
         _id: 'pi-1' as Id<'practice_items'>,
-        problemFamilyId: 'm1-family-a',
+        variantKey: 'm1-family-a',
         activityId: 'act-1' as Id<'activities'>,
         practiceItemId: 'pi-a',
         variantLabel: 'variant-1',
@@ -370,7 +370,7 @@ describe('getDailyPracticeQueueHandler - Phase 2: Queue Item Resolution', () => 
 
   it('skips card when no practice item exists for its problem family', async () => {
     const cards: SrsCardState[] = [
-      { ...baseCard, cardId: 'card-1', problemFamilyId: 'm1-no-practice-item', state: 'new', objectiveId: 'HSA-SSE.B.3' },
+      { ...baseCard, cardId: 'card-1', variantKey: 'm1-no-practice-item', state: 'new', objectiveId: 'HSA-SSE.B.3' },
     ];
     const policies = [
       {
@@ -386,7 +386,7 @@ describe('getDailyPracticeQueueHandler - Phase 2: Queue Item Resolution', () => 
     };
     const practiceItems: Array<{
       _id: Id<'practice_items'>;
-      problemFamilyId: string;
+      variantKey: string;
       activityId: Id<'activities'>;
       practiceItemId: string;
       variantLabel: string;
@@ -405,7 +405,7 @@ describe('getDailyPracticeQueueHandler - Phase 2: Queue Item Resolution', () => 
 
   it('skips card gracefully when practice item has no activity', async () => {
     const cards: SrsCardState[] = [
-      { ...baseCard, cardId: 'card-1', problemFamilyId: 'm1-family-no-activity', state: 'new', objectiveId: 'HSA-SSE.B.3' },
+      { ...baseCard, cardId: 'card-1', variantKey: 'm1-family-no-activity', state: 'new', objectiveId: 'HSA-SSE.B.3' },
     ];
     const policies = [
       {
@@ -422,7 +422,7 @@ describe('getDailyPracticeQueueHandler - Phase 2: Queue Item Resolution', () => 
     const practiceItems = [
       {
         _id: 'pi-1' as Id<'practice_items'>,
-        problemFamilyId: 'm1-family-no-activity',
+        variantKey: 'm1-family-no-activity',
         activityId: 'act-nonexistent' as Id<'activities'>,
         practiceItemId: 'pi-no-act',
         variantLabel: 'variant-1',
@@ -440,10 +440,10 @@ describe('getDailyPracticeQueueHandler - Phase 2: Queue Item Resolution', () => 
     expect(result).toHaveLength(0);
   });
 
-  it('resolves multiple items with correct ordering preserved', async () => {
+  it('presents due reviews before new cards after resolving activities', async () => {
     const cards: SrsCardState[] = [
-      { ...baseCard, cardId: 'card-1', problemFamilyId: 'm1-family-a', state: 'new', objectiveId: 'HSA-SSE.B.3' },
-      { ...baseCard, cardId: 'card-2', problemFamilyId: 'm1-family-b', state: 'review', dueDate: '2024-01-01T00:00:00.000Z', objectiveId: 'HSA-REI.B.4' },
+      { ...baseCard, cardId: 'card-1', variantKey: 'm1-family-a', state: 'new', objectiveId: 'HSA-SSE.B.3' },
+      { ...baseCard, cardId: 'card-2', variantKey: 'm1-family-b', state: 'review', dueDate: '2024-01-01T00:00:00.000Z', objectiveId: 'HSA-REI.B.4' },
     ];
     const policies = [
       {
@@ -468,14 +468,14 @@ describe('getDailyPracticeQueueHandler - Phase 2: Queue Item Resolution', () => 
     const practiceItems = [
       {
         _id: 'pi-1' as Id<'practice_items'>,
-        problemFamilyId: 'm1-family-a',
+        variantKey: 'm1-family-a',
         activityId: 'act-1' as Id<'activities'>,
         practiceItemId: 'pi-a',
         variantLabel: 'variant-1',
       },
       {
         _id: 'pi-2' as Id<'practice_items'>,
-        problemFamilyId: 'm1-family-b',
+        variantKey: 'm1-family-b',
         activityId: 'act-2' as Id<'activities'>,
         practiceItemId: 'pi-b',
         variantLabel: 'variant-1',
@@ -504,10 +504,10 @@ describe('getDailyPracticeQueueHandler - Phase 2: Queue Item Resolution', () => 
     );
 
     expect(result).toHaveLength(2);
-    expect(result[0].componentKey).toBe('step-by-step-solver');
-    expect(result[1].componentKey).toBe('graphing-explorer');
-    expect(result[0].props).toEqual({ problemType: 'factoring' });
-    expect(result[1].props).toEqual({ problemType: 'quadratic' });
+    expect(result[0].componentKey).toBe('graphing-explorer');
+    expect(result[1].componentKey).toBe('step-by-step-solver');
+    expect(result[0].props).toEqual({ problemType: 'quadratic' });
+    expect(result[1].props).toEqual({ problemType: 'factoring' });
   });
 });
 
@@ -545,7 +545,7 @@ describe('getDailyPracticeQueueHandler - batch resolution performance', () => {
     const practiceItems = [
       {
         _id: 'pi-1' as Id<'practice_items'>,
-        problemFamilyId: 'm1-qf-factoring-1',
+        variantKey: 'm1-qf-factoring-1',
         activityId: 'act-1' as Id<'activities'>,
         practiceItemId: 'pi-a',
         variantLabel: 'variant-1',
@@ -575,9 +575,9 @@ describe('getDailyPracticeQueueHandler - batch resolution performance', () => {
 
   it('batches practice item and activity lookups by unique problem family', async () => {
     const cards: SrsCardState[] = [
-      { ...baseCard, cardId: 'card-1', problemFamilyId: 'm1-family-a', state: 'new', objectiveId: 'HSA-SSE.B.3' },
-      { ...baseCard, cardId: 'card-2', problemFamilyId: 'm1-family-a', state: 'new', objectiveId: 'HSA-SSE.B.3' },
-      { ...baseCard, cardId: 'card-3', problemFamilyId: 'm1-family-a', state: 'new', objectiveId: 'HSA-SSE.B.3' },
+      { ...baseCard, cardId: 'card-1', variantKey: 'm1-family-a', state: 'new', objectiveId: 'HSA-SSE.B.3' },
+      { ...baseCard, cardId: 'card-2', variantKey: 'm1-family-a', state: 'new', objectiveId: 'HSA-SSE.B.3' },
+      { ...baseCard, cardId: 'card-3', variantKey: 'm1-family-a', state: 'new', objectiveId: 'HSA-SSE.B.3' },
     ];
     const policies = [
       {
@@ -594,7 +594,7 @@ describe('getDailyPracticeQueueHandler - batch resolution performance', () => {
     const practiceItems = [
       {
         _id: 'pi-1' as Id<'practice_items'>,
-        problemFamilyId: 'm1-family-a',
+        variantKey: 'm1-family-a',
         activityId: 'act-1' as Id<'activities'>,
         practiceItemId: 'pi-a',
         variantLabel: 'variant-1',
@@ -617,7 +617,7 @@ describe('getDailyPracticeQueueHandler - batch resolution performance', () => {
     );
 
     const practiceItemCalls = practiceItemQueryMock.withIndex.mock.calls.filter(
-      (call: unknown[]) => call[0] === 'by_problemFamilyId'
+      (call: unknown[]) => call[0] === 'by_variantKey'
     );
     expect(practiceItemCalls).toHaveLength(1);
 
@@ -629,9 +629,9 @@ describe('getDailyPracticeQueueHandler - batch resolution performance', () => {
 
   it('resolves multiple unique problem families in parallel', async () => {
     const cards: SrsCardState[] = [
-      { ...baseCard, cardId: 'card-1', problemFamilyId: 'm1-family-a', state: 'new', objectiveId: 'HSA-SSE.B.3' },
-      { ...baseCard, cardId: 'card-2', problemFamilyId: 'm1-family-b', state: 'new', objectiveId: 'HSA-REI.B.4' },
-      { ...baseCard, cardId: 'card-3', problemFamilyId: 'm1-family-c', state: 'new', objectiveId: 'HSA-REI.B.4' },
+      { ...baseCard, cardId: 'card-1', variantKey: 'm1-family-a', state: 'new', objectiveId: 'HSA-SSE.B.3' },
+      { ...baseCard, cardId: 'card-2', variantKey: 'm1-family-b', state: 'new', objectiveId: 'HSA-REI.B.4' },
+      { ...baseCard, cardId: 'card-3', variantKey: 'm1-family-c', state: 'new', objectiveId: 'HSA-REI.B.4' },
     ];
     const policies = [
       {
@@ -656,21 +656,21 @@ describe('getDailyPracticeQueueHandler - batch resolution performance', () => {
     const practiceItems = [
       {
         _id: 'pi-1' as Id<'practice_items'>,
-        problemFamilyId: 'm1-family-a',
+        variantKey: 'm1-family-a',
         activityId: 'act-1' as Id<'activities'>,
         practiceItemId: 'pi-a',
         variantLabel: 'variant-1',
       },
       {
         _id: 'pi-2' as Id<'practice_items'>,
-        problemFamilyId: 'm1-family-b',
+        variantKey: 'm1-family-b',
         activityId: 'act-2' as Id<'activities'>,
         practiceItemId: 'pi-b',
         variantLabel: 'variant-1',
       },
       {
         _id: 'pi-3' as Id<'practice_items'>,
-        problemFamilyId: 'm1-family-c',
+        variantKey: 'm1-family-c',
         activityId: 'act-3' as Id<'activities'>,
         practiceItemId: 'pi-c',
         variantLabel: 'variant-1',
@@ -707,7 +707,7 @@ describe('getDailyPracticeQueueHandler - batch resolution performance', () => {
     expect(result).toHaveLength(3);
 
     const practiceItemCalls = practiceItemQueryMock.withIndex.mock.calls.filter(
-      (call: unknown[]) => call[0] === 'by_problemFamilyId'
+      (call: unknown[]) => call[0] === 'by_variantKey'
     );
     expect(practiceItemCalls).toHaveLength(3);
 
