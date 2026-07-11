@@ -5,16 +5,16 @@ describe('validate-blueprint', () => {
   it('passes when all references are valid', () => {
     const result = runBlueprintValidation({
       timingBaselines: [
-        { problemFamilyId: 'pf-1' },
-        { problemFamilyId: 'pf-2' },
+        { variantKey: 'pf-1' },
+        { variantKey: 'pf-2' },
       ],
       practiceItems: [
-        { practiceItemId: 'pi-1', activityId: 'act-1', problemFamilyId: 'pf-1' },
-        { practiceItemId: 'pi-2', activityId: 'act-2', problemFamilyId: 'pf-2' },
+        { practiceItemId: 'pi-1', activityId: 'act-1', variantKey: 'pf-1' },
+        { practiceItemId: 'pi-2', activityId: 'act-2', variantKey: 'pf-2' },
       ],
       problemFamilies: [
-        { problemFamilyId: 'pf-1', objectiveIds: ['std-1'] },
-        { problemFamilyId: 'pf-2', objectiveIds: ['std-2'] },
+        { variantKey: 'pf-1', objectiveIds: ['std-1'] },
+        { variantKey: 'pf-2', objectiveIds: ['std-2'] },
       ],
       activities: [
         { _id: 'act-1' as unknown as import('@/convex/_generated/dataModel').Id<'activities'> },
@@ -37,7 +37,7 @@ describe('validate-blueprint', () => {
 
   it('reports missing problem family for timing baseline', () => {
     const result = runBlueprintValidation({
-      timingBaselines: [{ problemFamilyId: 'missing-pf' }],
+      timingBaselines: [{ variantKey: 'missing-pf' }],
       practiceItems: [],
       problemFamilies: [],
       activities: [],
@@ -52,7 +52,7 @@ describe('validate-blueprint', () => {
   it('reports missing problem family for practice item', () => {
     const result = runBlueprintValidation({
       timingBaselines: [],
-      practiceItems: [{ practiceItemId: 'pi-1', activityId: 'act-1', problemFamilyId: 'missing-pf' }],
+      practiceItems: [{ practiceItemId: 'pi-1', activityId: 'act-1', variantKey: 'missing-pf' }],
       problemFamilies: [],
       activities: [{ _id: 'act-1' as unknown as import('@/convex/_generated/dataModel').Id<'activities'> }],
       competencyStandards: [],
@@ -66,8 +66,8 @@ describe('validate-blueprint', () => {
   it('reports missing activity for practice item', () => {
     const result = runBlueprintValidation({
       timingBaselines: [],
-      practiceItems: [{ practiceItemId: 'pi-1', activityId: 'missing-act', problemFamilyId: 'pf-1' }],
-      problemFamilies: [{ problemFamilyId: 'pf-1', objectiveIds: [] }],
+      practiceItems: [{ practiceItemId: 'pi-1', activityId: 'missing-act', variantKey: 'pf-1' }],
+      problemFamilies: [{ variantKey: 'pf-1', objectiveIds: [] }],
       activities: [],
       competencyStandards: [],
       objectivePolicies: [],
@@ -81,7 +81,7 @@ describe('validate-blueprint', () => {
     const result = runBlueprintValidation({
       timingBaselines: [],
       practiceItems: [],
-      problemFamilies: [{ problemFamilyId: 'pf-1', objectiveIds: ['missing-std'] }],
+      problemFamilies: [{ variantKey: 'pf-1', objectiveIds: ['missing-std'] }],
       activities: [],
       competencyStandards: [{ _id: 's1' as unknown as import('@/convex/_generated/dataModel').Id<'competency_standards'>, code: 'std-1' }],
       objectivePolicies: [],
@@ -108,11 +108,11 @@ describe('validate-blueprint', () => {
   it('counts checks correctly with multiple violations', () => {
     const result = runBlueprintValidation({
       timingBaselines: [
-        { problemFamilyId: 'pf-1' },
-        { problemFamilyId: 'missing-pf' },
+        { variantKey: 'pf-1' },
+        { variantKey: 'missing-pf' },
       ],
       practiceItems: [],
-      problemFamilies: [{ problemFamilyId: 'pf-1', objectiveIds: [] }],
+      problemFamilies: [{ variantKey: 'pf-1', objectiveIds: [] }],
       activities: [],
       competencyStandards: [],
       objectivePolicies: [],

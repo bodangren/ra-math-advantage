@@ -558,12 +558,12 @@ describe('Phase 4 adversarial: stale-hash defense on inline (activity-kind) appr
     //   (a) tampering on the stored row, OR
     //   (b) the activity's props were edited in a way that did NOT
     //       trigger the handler's stale-defense refresh path.
-    await ctx.db.patch(exploreActivity!._id, {
+    await ctx.db.patch(exploreActivity!._id as Id<'activities'>, {
       approval: {
         status: 'approved',
         contentHash: `${originalHash}-forged`,
         reviewedAt: 2000,
-        reviewedBy: teacher._id,
+        reviewedBy: teacher._id as Id<'profiles'>,
       },
       updatedAt: 2000,
     });
@@ -622,7 +622,7 @@ describe('Phase 4 adversarial: stale-hash defense on inline (activity-kind) appr
 
     // Strip the inline approval entirely. The handler must refuse to
     // publish because there is no approval on record.
-    await ctx.db.patch(exploreActivity!._id, {
+    await ctx.db.patch(exploreActivity!._id as Id<'activities'>, {
       approval: undefined,
       updatedAt: 3000,
     });

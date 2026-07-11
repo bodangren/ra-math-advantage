@@ -15,7 +15,7 @@ function createCard(overrides: Partial<SrsCardState>): SrsCardState {
     cardId: `card-${Math.random().toString(36).slice(2)}`,
     studentId: 'student-1',
     objectiveId,
-    problemFamilyId: 'pf-1',
+    variantKey: 'pf-1',
     stability: 5,
     difficulty: 4,
     state: 'new',

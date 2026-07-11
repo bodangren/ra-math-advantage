@@ -54,9 +54,9 @@ describe('StudentNavigation a11y (Task 9 Group A/B)', () => {
 
 describe('LessonPageLayout a11y (Task 9 Group C/D/E)', () => {
   const samplePhases = [
-    { phaseType: 'engage' as const, label: 'Engage', completed: false, isCurrent: true },
+    { phaseType: 'learn' as const, label: 'Learn', completed: false, isCurrent: true },
     { phaseType: 'explore' as const, label: 'Explore', completed: false, isCurrent: false },
-    { phaseType: 'explain' as const, label: 'Explain', completed: false, isCurrent: false },
+    { phaseType: 'worked_example' as const, label: 'Worked Example', completed: false, isCurrent: false },
   ];
 
   it('renders exactly one h1 and phase headings do not create h1->h3 jumps', async () => {

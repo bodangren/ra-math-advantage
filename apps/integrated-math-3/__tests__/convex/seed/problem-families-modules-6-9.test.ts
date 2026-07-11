@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { problemFamilySchema } from '@math-platform/practice-core/problem-family';
+import { practiceVariantSchema } from '@math-platform/practice-core/problem-family';
 import { IM3_PROBLEM_FAMILIES } from '@math-platform/math-content/problem-families/im3';
 import { OBJECTIVE_POLICIES } from '@/convex/seed/objective_policies';
 
@@ -18,15 +18,15 @@ const ALL_MODULE_PROBLEM_FAMILIES = [
 const VALID_STANDARD_CODES = new Set(OBJECTIVE_POLICIES.map((p) => p.standardId));
 
 describe('Modules 6-9 problem families', () => {
-  it('all problem family records pass problemFamilySchema', () => {
+  it('all problem family records pass practiceVariantSchema', () => {
     for (const family of ALL_MODULE_PROBLEM_FAMILIES) {
-      const result = problemFamilySchema.safeParse(family);
+      const result = practiceVariantSchema.safeParse(family);
       expect(result.success).toBe(true);
     }
   });
 
-  it('no duplicate problemFamilyId values within seed data', () => {
-    const ids = ALL_MODULE_PROBLEM_FAMILIES.map((f) => f.problemFamilyId);
+  it('no duplicate variantKey values within seed data', () => {
+    const ids = ALL_MODULE_PROBLEM_FAMILIES.map((f) => f.variantKey);
     const uniqueIds = new Set(ids);
     expect(uniqueIds.size).toBe(ids.length);
   });

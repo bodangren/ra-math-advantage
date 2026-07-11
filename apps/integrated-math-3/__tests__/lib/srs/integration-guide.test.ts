@@ -83,7 +83,7 @@ describe('INTEGRATION.md Examples', () => {
       const card = createCard({
         studentId: 'stu_001',
         objectiveId: 'obj_quadratic_roots',
-        problemFamilyId: 'pf_qr_01',
+        variantKey: 'pf_qr_01',
         now: mockNow,
       });
 
@@ -100,7 +100,7 @@ describe('INTEGRATION.md Examples', () => {
       const pastDue = createCard({
         studentId: 'stu_001',
         objectiveId: 'obj_1',
-        problemFamilyId: 'pf_1',
+        variantKey: 'pf_1',
         now: mockNow,
       });
       pastDue.dueDate = '2026-04-10T00:00:00.000Z';
@@ -109,7 +109,7 @@ describe('INTEGRATION.md Examples', () => {
       const futureDue = createCard({
         studentId: 'stu_001',
         objectiveId: 'obj_1',
-        problemFamilyId: 'pf_2',
+        variantKey: 'pf_2',
         now: mockNow,
       });
       futureDue.dueDate = '2026-04-20T00:00:00.000Z';
@@ -128,7 +128,7 @@ describe('INTEGRATION.md Examples', () => {
       const card = createCard({
         studentId: 'stu_001',
         objectiveId: 'obj_1',
-        problemFamilyId: 'pf_1',
+        variantKey: 'pf_1',
         now: mockNow,
       });
 
@@ -168,8 +168,8 @@ describe('INTEGRATION.md Examples', () => {
 
     it('buildDailyQueue excludes triaged objectives', () => {
       const cards: SrsCardState[] = [
-        createCard({ studentId: 's1', objectiveId: 'obj_essential', problemFamilyId: 'pf_1', now: mockNow }),
-        createCard({ studentId: 's1', objectiveId: 'obj_triaged', problemFamilyId: 'pf_2', now: mockNow }),
+        createCard({ studentId: 's1', objectiveId: 'obj_essential', variantKey: 'pf_1', now: mockNow }),
+        createCard({ studentId: 's1', objectiveId: 'obj_triaged', variantKey: 'pf_2', now: mockNow }),
       ];
 
       const policies = new Map<string, ObjectivePracticePolicy>([
@@ -186,8 +186,8 @@ describe('INTEGRATION.md Examples', () => {
 
     it('buildDailyQueue prioritizes essential over supporting new cards', () => {
       const cards: SrsCardState[] = [
-        { ...createCard({ studentId: 's1', objectiveId: 'obj_essential', problemFamilyId: 'pf_1', now: mockNow }), state: 'new' as const },
-        { ...createCard({ studentId: 's1', objectiveId: 'obj_supporting', problemFamilyId: 'pf_2', now: mockNow }), state: 'new' as const },
+        { ...createCard({ studentId: 's1', objectiveId: 'obj_essential', variantKey: 'pf_1', now: mockNow }), state: 'new' as const },
+        { ...createCard({ studentId: 's1', objectiveId: 'obj_supporting', variantKey: 'pf_2', now: mockNow }), state: 'new' as const },
       ];
 
       const policies = new Map<string, ObjectivePracticePolicy>([
@@ -205,7 +205,7 @@ describe('INTEGRATION.md Examples', () => {
       const pastDueCard = createCard({
         studentId: 's1',
         objectiveId: 'obj_1',
-        problemFamilyId: 'pf_1',
+        variantKey: 'pf_1',
         now: mockNow,
       });
       pastDueCard.state = 'review';
@@ -218,7 +218,7 @@ describe('INTEGRATION.md Examples', () => {
       const newCard = createCard({
         studentId: 's1',
         objectiveId: 'obj_1',
-        problemFamilyId: 'pf_1',
+        variantKey: 'pf_1',
         now: mockNow,
       });
       newCard.state = 'new';
@@ -231,7 +231,7 @@ describe('INTEGRATION.md Examples', () => {
       const card = createCard({
         studentId: 's1',
         objectiveId: 'obj_1',
-        problemFamilyId: 'pf_1',
+        variantKey: 'pf_1',
         now: mockNow,
       });
       card.state = 'review';
@@ -241,7 +241,7 @@ describe('INTEGRATION.md Examples', () => {
     });
 
     it('QueueItem type is correctly shaped', () => {
-      const card = createCard({ studentId: 's1', objectiveId: 'obj_1', problemFamilyId: 'pf_1', now: mockNow });
+      const card = createCard({ studentId: 's1', objectiveId: 'obj_1', variantKey: 'pf_1', now: mockNow });
       const item: QueueItem = {
         card,
         objectivePriority: 'essential',
@@ -261,7 +261,7 @@ describe('INTEGRATION.md Examples', () => {
       const card = createCard({
         studentId: 'stu_001',
         objectiveId: 'obj_1',
-        problemFamilyId: 'pf_1',
+        variantKey: 'pf_1',
         now: mockNow,
       });
 
@@ -294,7 +294,7 @@ describe('INTEGRATION.md Examples', () => {
       const card = createCard({
         studentId: 'stu_001',
         objectiveId: 'obj_1',
-        problemFamilyId: 'pf_1',
+        variantKey: 'pf_1',
         now: mockNow,
       });
       card.state = 'review';
@@ -317,7 +317,7 @@ describe('INTEGRATION.md Examples', () => {
       const card = createCard({
         studentId: 'stu_001',
         objectiveId: 'obj_1',
-        problemFamilyId: 'pf_1',
+        variantKey: 'pf_1',
         now: mockNow,
       });
       card.state = 'review';
@@ -403,12 +403,12 @@ describe('INTEGRATION.md Examples', () => {
 
   describe('Card States (Quick Reference)', () => {
     it('new card has state=new', () => {
-      const card = createCard({ studentId: 's1', objectiveId: 'o1', problemFamilyId: 'p1', now: mockNow });
+      const card = createCard({ studentId: 's1', objectiveId: 'o1', variantKey: 'p1', now: mockNow });
       expect(card.state).toBe('new');
     });
 
     it('reviewCard moves to relearning on Again', () => {
-      const card = createCard({ studentId: 's1', objectiveId: 'o1', problemFamilyId: 'p1', now: mockNow });
+      const card = createCard({ studentId: 's1', objectiveId: 'o1', variantKey: 'p1', now: mockNow });
       card.state = 'review';
       card.reps = 1;
 
@@ -417,7 +417,7 @@ describe('INTEGRATION.md Examples', () => {
     });
 
     it('reviewCard keeps in review on Good', () => {
-      const card = createCard({ studentId: 's1', objectiveId: 'o1', problemFamilyId: 'p1', now: mockNow });
+      const card = createCard({ studentId: 's1', objectiveId: 'o1', variantKey: 'p1', now: mockNow });
       card.state = 'review';
       card.reps = 1;
 

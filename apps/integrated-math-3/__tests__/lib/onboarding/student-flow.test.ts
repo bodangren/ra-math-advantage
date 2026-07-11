@@ -80,6 +80,7 @@ function buildSkippedOutcome(): PlacementFlowOutcome {
 }
 
 interface RecordingDeps extends StudentFlowRouterDeps {
+  readonly callCount: number;
   __callCount: number;
   __callArgs: Array<{ studentId: string; force?: boolean }>;
   __outcome: PlacementFlowOutcome;

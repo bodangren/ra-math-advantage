@@ -47,7 +47,7 @@ const createMockQueueItem = (overrides: Partial<ResolvedQueueItem> = {}): Resolv
     cardId: 'card-1',
     studentId: 'student-1',
     objectiveId: 'obj-1',
-    problemFamilyId: 'pf-1',
+    variantKey: 'pf-1',
     stability: 1.0,
     difficulty: 0.3,
     state: 'review' as const,

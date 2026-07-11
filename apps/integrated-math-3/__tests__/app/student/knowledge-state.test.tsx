@@ -54,7 +54,7 @@ describe('Phase 4 — StudentKnowledgeStatePage route', () => {
 
   it('renders a heading indicating knowledge state', async () => {
     const { default: KnowledgeStatePage } = await import('@/app/student/knowledge-state/page');
-    const jsx = await KnowledgeStatePage({});
+    const jsx = await KnowledgeStatePage();
     render(jsx);
 
     const headings = screen.getAllByRole('heading');
@@ -63,7 +63,7 @@ describe('Phase 4 — StudentKnowledgeStatePage route', () => {
 
   it('renders Mastered Skills section', async () => {
     const { default: KnowledgeStatePage } = await import('@/app/student/knowledge-state/page');
-    const jsx = await KnowledgeStatePage({});
+    const jsx = await KnowledgeStatePage();
     render(jsx);
 
     // Should have a heading for mastered skills
@@ -73,7 +73,7 @@ describe('Phase 4 — StudentKnowledgeStatePage route', () => {
 
   it('renders Ready to Learn section', async () => {
     const { default: KnowledgeStatePage } = await import('@/app/student/knowledge-state/page');
-    const jsx = await KnowledgeStatePage({});
+    const jsx = await KnowledgeStatePage();
     render(jsx);
 
     const readyHeading = screen.getByRole('heading', { name: /ready to learn/i });
@@ -82,7 +82,7 @@ describe('Phase 4 — StudentKnowledgeStatePage route', () => {
 
   it('renders Review Due section', async () => {
     const { default: KnowledgeStatePage } = await import('@/app/student/knowledge-state/page');
-    const jsx = await KnowledgeStatePage({});
+    const jsx = await KnowledgeStatePage();
     render(jsx);
 
     const reviewHeading = screen.getByRole('heading', { name: /review due/i });
@@ -91,7 +91,7 @@ describe('Phase 4 — StudentKnowledgeStatePage route', () => {
 
   it('renders summary stats with mastered count', async () => {
     const { default: KnowledgeStatePage } = await import('@/app/student/knowledge-state/page');
-    const jsx = await KnowledgeStatePage({});
+    const jsx = await KnowledgeStatePage();
     render(jsx);
 
     // The stat card for "Mastered" should show count = 1
@@ -101,7 +101,7 @@ describe('Phase 4 — StudentKnowledgeStatePage route', () => {
 
   it('displays the mastered skill title', async () => {
     const { default: KnowledgeStatePage } = await import('@/app/student/knowledge-state/page');
-    const jsx = await KnowledgeStatePage({});
+    const jsx = await KnowledgeStatePage();
     render(jsx);
 
     expect(screen.getByText('Graph Quadratic Functions')).toBeInTheDocument();

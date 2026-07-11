@@ -80,7 +80,7 @@ const mockQueue = [
   {
     card: {
       cardId: 'c1',
-      problemFamilyId: 'pf1',
+      variantKey: 'pf1',
       objectiveId: 'obj1',
       studentId: 'p1',
       stability: 1,
@@ -104,7 +104,7 @@ const mockQueue = [
   {
     card: {
       cardId: 'c2',
-      problemFamilyId: 'pf2',
+      variantKey: 'pf2',
       objectiveId: 'obj2',
       studentId: 'p1',
       stability: 2,

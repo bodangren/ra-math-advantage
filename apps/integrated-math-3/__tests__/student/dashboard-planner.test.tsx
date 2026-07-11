@@ -15,7 +15,7 @@ vi.mock('@/lib/auth/server', () => ({
   requireStudentSessionClaims: vi.fn().mockResolvedValue(mockClaims),
 }));
 
-const mockStudentVizRef = 'mock-student-viz';
+const mockStudentVizRef = 'student/knowledge_state:getStudentKnowledgeState';
 
 vi.mock('@/lib/convex/server', () => ({
   fetchInternalQuery: vi.fn().mockImplementation((ref: unknown) => {
@@ -111,6 +111,7 @@ describe('StudentDashboardPage — planner recommendations (P3)', () => {
       schemaVersion: 'v1',
       mastered: [],
       ready: [],
+      nearlyReady: [],
       blocked: [],
       reviewDue: [],
       recommendedNext: [

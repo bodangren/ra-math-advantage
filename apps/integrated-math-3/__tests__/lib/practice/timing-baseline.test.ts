@@ -24,12 +24,12 @@ function makeTiming(activeMs: number, confidence: PracticeTimingSummary['confide
 describe('computeTimingBaseline', () => {
   it('returns zeroed baseline when no timings are provided', () => {
     const baseline = computeTimingBaseline({
-      problemFamilyId: 'family-a',
+      variantKey: 'family-a',
       timings: [],
       computedAt: '2026-01-01T00:00:00.000Z',
     });
 
-    expect(baseline.problemFamilyId).toBe('family-a');
+    expect(baseline.variantKey).toBe('family-a');
     expect(baseline.sampleCount).toBe(0);
     expect(baseline.medianActiveMs).toBe(0);
     expect(baseline.minSamplesMet).toBe(false);
@@ -40,7 +40,7 @@ describe('computeTimingBaseline', () => {
 
   it('excludes low-confidence submissions from baseline', () => {
     const baseline = computeTimingBaseline({
-      problemFamilyId: 'family-a',
+      variantKey: 'family-a',
       timings: [
         makeTiming(1000, 'high'),
         makeTiming(2000, 'medium'),
@@ -55,7 +55,7 @@ describe('computeTimingBaseline', () => {
 
   it('computes median correctly for odd and even sample counts', () => {
     const odd = computeTimingBaseline({
-      problemFamilyId: 'family-a',
+      variantKey: 'family-a',
       timings: [
         makeTiming(1000, 'high'),
         makeTiming(2000, 'high'),
@@ -65,7 +65,7 @@ describe('computeTimingBaseline', () => {
     expect(odd.medianActiveMs).toBe(2000);
 
     const even = computeTimingBaseline({
-      problemFamilyId: 'family-a',
+      variantKey: 'family-a',
       timings: [
         makeTiming(1000, 'high'),
         makeTiming(2000, 'high'),
@@ -78,7 +78,7 @@ describe('computeTimingBaseline', () => {
 
   it('computes percentiles (p25, p75, p90)', () => {
     const baseline = computeTimingBaseline({
-      problemFamilyId: 'family-a',
+      variantKey: 'family-a',
       timings: Array.from({ length: 10 }, (_, i) => makeTiming((i + 1) * 1000, 'high')),
     });
 
@@ -89,7 +89,7 @@ describe('computeTimingBaseline', () => {
 
   it('is robust to outliers because it uses median, not mean', () => {
     const baseline = computeTimingBaseline({
-      problemFamilyId: 'family-a',
+      variantKey: 'family-a',
       timings: [
         makeTiming(1000, 'high'),
         makeTiming(2000, 'high'),
@@ -103,7 +103,7 @@ describe('computeTimingBaseline', () => {
 
   it('marks minSamplesMet false when sample count is below threshold', () => {
     const baseline = computeTimingBaseline({
-      problemFamilyId: 'family-a',
+      variantKey: 'family-a',
       timings: Array.from({ length: TIMING_BASELINE_MIN_SAMPLES - 1 }, () =>
         makeTiming(1000, 'high'),
       ),
@@ -115,7 +115,7 @@ describe('computeTimingBaseline', () => {
 
   it('marks minSamplesMet true when sample count meets threshold', () => {
     const baseline = computeTimingBaseline({
-      problemFamilyId: 'family-a',
+      variantKey: 'family-a',
       timings: Array.from({ length: TIMING_BASELINE_MIN_SAMPLES }, () =>
         makeTiming(1000, 'high'),
       ),
@@ -127,7 +127,7 @@ describe('computeTimingBaseline', () => {
 
   it('uses custom minSamples when provided', () => {
     const baseline = computeTimingBaseline({
-      problemFamilyId: 'family-a',
+      variantKey: 'family-a',
       timings: Array.from({ length: 5 }, () => makeTiming(1000, 'high')),
       minSamples: 5,
     });
@@ -138,7 +138,7 @@ describe('computeTimingBaseline', () => {
 
 describe('deriveTimingFeatures', () => {
   const baseline: PracticeTimingBaseline = {
-    problemFamilyId: 'family-a',
+    variantKey: 'family-a',
     sampleCount: TIMING_BASELINE_MIN_SAMPLES,
     medianActiveMs: 10_000,
     lastComputedAt: '2026-01-01T00:00:00.000Z',

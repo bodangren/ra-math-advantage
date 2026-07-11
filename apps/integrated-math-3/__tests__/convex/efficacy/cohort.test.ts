@@ -253,8 +253,8 @@ describe('aggregateCohortMetricsHandler (Phase 2 Red — Task 1)', () => {
         makeEnrollment({ studentId: 'stu_b' }),
       ],
       cards: [
-        makeSrsCard({ studentId: 'stu_a', cardId: 'c1', stability: 30, reps: 3 }) as unknown as import('@math-platform/srs-engine').SrsCardState,
-        makeSrsCard({ studentId: 'stu_b', cardId: 'c2', stability: 90, reps: 5 }) as unknown as import('@math-platform/srs-engine').SrsCardState,
+        makeSrsCard({ studentId: 'stu_a', cardId: 'c1', stability: 30, reps: 3 }),
+        makeSrsCard({ studentId: 'stu_b', cardId: 'c2', stability: 90, reps: 5 }),
       ],
       reviews: [
         makeReviewLog({ studentId: 'stu_a', cardId: 'c1', rating: 'Good', reviewedAtMs: COHORT_START_MS + 1 * MS_PER_DAY }),
@@ -279,8 +279,8 @@ describe('aggregateCohortMetricsHandler (Phase 2 Red — Task 1)', () => {
     // reuse, no re-implementation.
     const expectedRetention = computeRetentionCurve({
       cards: [
-        makeSrsCard({ studentId: 'stu_a', cardId: 'c1', stability: 30, reps: 3 }),
-        makeSrsCard({ studentId: 'stu_b', cardId: 'c2', stability: 90, reps: 5 }),
+        makeSrsCard({ studentId: 'stu_a', cardId: 'c1', stability: 30, reps: 3 }) as unknown as import('@math-platform/srs-engine').SrsCardState,
+        makeSrsCard({ studentId: 'stu_b', cardId: 'c2', stability: 90, reps: 5 }) as unknown as import('@math-platform/srs-engine').SrsCardState,
       ],
       windowStartMs: COHORT_START_MS,
       windowEndMs: COHORT_END_MS,

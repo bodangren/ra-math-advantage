@@ -1496,12 +1496,12 @@ describe('Phase 2 — Adversarial — Approval/hash tampering', () => {
       (a) => a.componentKey === 'graphing-explorer',
     );
     expect(explorerApproval).toBeDefined();
-    await ctx.db.patch(explorerApproval!._id, {
+    await ctx.db.patch(explorerApproval!._id as Id<'activities'>, {
       approval: {
         status: 'approved',
         contentHash: 'forged-hash',
         reviewedAt: 1000,
-        reviewedBy: teacher._id,
+        reviewedBy: teacher._id as Id<'profiles'>,
       },
       updatedAt: 2000,
     });
@@ -1551,7 +1551,7 @@ describe('Phase 2 — Adversarial — Approval/hash tampering', () => {
     const stepOriginalHash = stepByStepApproval!.contentHash;
 
     // Forge the stored approval hash so it differs from the current hash.
-    await ctx.db.patch(stepByStepApproval!._id, {
+    await ctx.db.patch(stepByStepApproval!._id as Id<'component_approvals'>, {
       contentHash: `${stepOriginalHash}-tampered`,
       updatedAt: 9000,
     });
@@ -1605,7 +1605,7 @@ describe('Phase 2 — Adversarial — Approval/hash tampering', () => {
       (a) => a.componentKey === 'comprehension-quiz',
     );
     expect(quizApproval).toBeDefined();
-    await ctx.db.patch(quizApproval!._id, {
+    await ctx.db.patch(quizApproval!._id as Id<'component_approvals'>, {
       contentHash: 'tampered-mixed-set',
       updatedAt: 8000,
     });

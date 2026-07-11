@@ -44,6 +44,7 @@
 
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { render } from '@testing-library/react';
+import type { ReactElement } from 'react';
 
 import {
   richParentProjection,
@@ -64,7 +65,7 @@ type ParentDashboardProps = {
   studentName: string;
 };
 
-type ParentDashboardComponent = (props: ParentDashboardProps) => JSX.Element;
+type ParentDashboardComponent = (props: ParentDashboardProps) => ReactElement;
 
 async function loadParentDashboard(): Promise<ParentDashboardComponent> {
   const mod = await import('@/components/parent/ParentDashboard');

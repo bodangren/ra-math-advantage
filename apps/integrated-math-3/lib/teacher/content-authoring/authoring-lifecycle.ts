@@ -38,6 +38,7 @@
  */
 
 import type { ComposerState } from "./composer-state";
+import type { AuthoringPhaseType } from "./authoring-model";
 
 export interface TeacherDraftPayloadActivity {
   componentKey: string;
@@ -58,7 +59,7 @@ export interface TeacherDraftPayloadSection {
 
 export interface TeacherDraftPayloadPhase {
   title: string;
-  phaseType?: string;
+  phaseType?: AuthoringPhaseType;
   sections: TeacherDraftPayloadSection[];
 }
 

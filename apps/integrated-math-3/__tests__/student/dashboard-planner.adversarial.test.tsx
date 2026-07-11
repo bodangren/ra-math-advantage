@@ -60,7 +60,7 @@ vi.mock('@/lib/auth/server', () => ({
   requireStudentSessionClaims: vi.fn().mockResolvedValue(mockClaims),
 }));
 
-const mockStudentVizRef = 'mock-student-viz';
+const mockStudentVizRef = 'student/knowledge_state:getStudentKnowledgeState';
 const mockPracticeStatsRef = 'mock-practice-stats';
 const mockGetDashboardDataRef = 'mock-get-dashboard-data';
 

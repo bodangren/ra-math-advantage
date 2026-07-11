@@ -8,7 +8,7 @@ function makeValidInput(): PracticeItemInput {
   return {
     practiceItemId: 'item-001',
     activityId: 'act-123',
-    problemFamilyId: 'graphing-explorer:quadratic-transformations',
+    variantKey: 'graphing-explorer:quadratic-transformations',
     variantLabel: 'Set A',
   };
 }
@@ -36,8 +36,8 @@ describe('practiceItemSchema', () => {
     expect(() => practiceItemSchema.parse(input)).toThrow();
   });
 
-  it('rejects empty problemFamilyId', () => {
-    const input = { ...makeValidInput(), problemFamilyId: '  ' };
+  it('rejects empty variantKey', () => {
+    const input = { ...makeValidInput(), variantKey: '  ' };
     expect(() => practiceItemSchema.parse(input)).toThrow();
   });
 

@@ -117,7 +117,7 @@ function makeMockCtx(overrides: {
 
   const mockInsert = vi.fn().mockImplementation((tableName: string, doc: Record<string, unknown>) => {
     insertCounter++;
-    const id = `mock-id-${insertCounter}` as Id<typeof tableName>;
+    const id = `mock-id-${insertCounter}` as Id<'edge_calibration'>;
     if (tableName === 'edge_calibration') {
       insertedEdgeCalibrations.push(doc);
     } else if (tableName === 'calibration_review_queue') {
