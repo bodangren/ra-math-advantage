@@ -38,8 +38,8 @@
 
 - [x] Task: Implement manifest loading, graph construction, and deterministic reporting [c084d41]
 - [x] Task: Replace the regex-only guard with manifest-aware dependency enforcement [85b83e7 + c620cd9]
-- [~] Task: Generate CI/package matrices from the workspace inventory or add parity checks that make drift impossible
-- [ ] Task: Restore `math-content` lint and standalone typecheck gates
+- [x] Task: Generate CI/package matrices from the workspace inventory or add parity checks that make drift impossible [13d2f5b]
+- [~] Task: Restore `math-content` lint and standalone typecheck gates
 - [ ] Task: Register bounded existing debt and link each item to an approved follow-up track
 - [ ] Task: Measure - User Manual Verification 'Phase 3: Implementation' (Protocol in workflow.md)
 
