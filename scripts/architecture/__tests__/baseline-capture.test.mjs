@@ -48,8 +48,8 @@ test('pins all eight packages omitted from the legacy CI matrix', async () => {
   assert.equal(baseline.ciCoverage.coveredPackages.length, 12);
 });
 
-test('reproduces the 43-group and 123295-byte duplicate-source baseline', async () => {
-  const baseline = await captureArchitectureBaseline(REPO_ROOT, { baselineDate: '2026-07-10' });
+test('preserves the historical 43-group and 123295-byte duplicate-source baseline', async () => {
+  const baseline = await committedBaseline();
   assert.equal(baseline.duplicateProductionSources.groupCount, 43);
   assert.equal(baseline.duplicateProductionSources.redundantBytes, 123295);
 });

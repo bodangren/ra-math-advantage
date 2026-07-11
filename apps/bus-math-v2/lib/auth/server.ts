@@ -10,9 +10,7 @@ import {
   requireRequestSessionClaims as _requireRequestSessionClaims,
   requireRoleRequestClaims as _requireRoleRequestClaims,
   requireActiveRequestSessionClaims as _requireActiveRequestSessionClaims,
-  buildRequestUnauthorizedResponse,
   buildRequestForbiddenResponse,
-  buildRequestServiceUnavailableResponse,
 } from '@math-platform/core-auth';
 
 import { fetchInternalQuery, internal } from '@/lib/convex/server';
