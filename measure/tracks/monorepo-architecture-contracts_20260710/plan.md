@@ -19,7 +19,7 @@
     - [x] Record current package graph, CI omissions, duplicate-source metrics, and known violations
 - [x] Task: Measure - User Manual Verification 'Phase 1: Architecture Contract Definition' (Protocol in workflow.md) [e202fb5]
 
-## Phase 2: Behavioral and Architecture Tests
+## Phase 2: Behavioral and Architecture Tests [checkpoint: 460a215]
 
 - [x] Task: Build negative fixtures for every prohibited dependency class [a9ef764]
     - [x] Cover app-to-app, package-to-app, generated Convex, domain leakage, deep imports, and undeclared dependencies
@@ -32,11 +32,11 @@
     - [x] Prove an exception cannot match unrelated future violations
 - [x] Task: Add behavioral complements for affected package boundaries [b3a2ee3]
     - [x] Exercise public exports and at least one real consumer per shared surface
-- [~] Task: Measure - User Manual Verification 'Phase 2: Behavioral and Architecture Tests' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 2: Behavioral and Architecture Tests' (Protocol in workflow.md) [460a215]
 
 ## Phase 3: Implementation
 
-- [ ] Task: Implement manifest loading, graph construction, and deterministic reporting
+- [~] Task: Implement manifest loading, graph construction, and deterministic reporting
 - [ ] Task: Replace the regex-only guard with manifest-aware dependency enforcement
 - [ ] Task: Generate CI/package matrices from the workspace inventory or add parity checks that make drift impossible
 - [ ] Task: Restore `math-content` lint and standalone typecheck gates
