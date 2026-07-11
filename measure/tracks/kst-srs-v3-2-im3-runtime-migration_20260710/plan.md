@@ -49,7 +49,7 @@ This track owns removal or reconciliation of the exact, expiring
 - [x] Task: Run local/dev dry runs, inspect status, and execute verification queries [5361de7]
 - [x] Task: Cut IM3 runtime and BM2 queue consumers to canonical v3.2 behavior [21aa9f0]
 - [ ] Task: After verification and rollback-window approval, narrow schemas and remove v2 readers
-- [ ] Task: Measure - User Manual Verification 'Phase 3: Widen, Migrate, Cut Over, and Narrow' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 3: Widen, Migrate, Cut Over, and Narrow' (Protocol in workflow.md) [3be2faa]
 
 ## Phase 4: Generate Docs, Doctor, and Migration Closeout
 
