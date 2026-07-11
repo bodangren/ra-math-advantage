@@ -18,7 +18,7 @@ This track owns removal or reconciliation of the exact, expiring
     - [ ] Add optional v3.2 fields and correctly named indexes
     - [ ] Define old/new read precedence, dual-write behavior, and migration-version markers
     - [ ] Define validated internal migration and verification result contracts
-- [ ] Task: Define cutover, comparison, and rollback contracts
+- [~] Task: Define cutover, comparison, and rollback contracts
     - [ ] Add feature-flag and divergence-report schemas
     - [ ] Specify cutover thresholds, rollback window, and deprecated-field policy
 - [ ] Task: Measure - User Manual Verification 'Phase 1: Contract & Schema Widening Definition' (Protocol in workflow.md)
