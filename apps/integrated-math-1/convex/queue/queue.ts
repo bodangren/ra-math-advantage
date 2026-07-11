@@ -34,7 +34,7 @@ function mapDbCardToContract(
     cardId: card._id as string,
     studentId: card.studentId as string,
     objectiveId: card.objectiveId,
-    problemFamilyId: card.problemFamilyId,
+    variantKey: card.problemFamilyId,
     stability: card.stability,
     difficulty: card.difficulty,
     state: card.state,
@@ -57,24 +57,24 @@ async function resolveQueueItems(
   ctx: QueueDbContext,
   items: QueueItem[]
 ): Promise<ResolvedQueueItem[]> {
-  const uniqueProblemFamilyIds = [...new Set(items.map((item) => item.card.problemFamilyId))];
+  const uniqueVariantKeys = [...new Set(items.map((item) => item.card.variantKey))];
 
   const practiceItemResults = await Promise.all(
-    uniqueProblemFamilyIds.map(async (problemFamilyId) => {
+    uniqueVariantKeys.map(async (variantKey) => {
       const practiceItem = await ctx.db
         .query("practice_items")
         .withIndex("by_problemFamilyId", (q) =>
-          q.eq("problemFamilyId", problemFamilyId)
+          q.eq("problemFamilyId", variantKey)
         )
         .first();
-      return { problemFamilyId, practiceItem };
+      return { variantKey, practiceItem };
     })
   );
 
   const practiceItemMap = new Map(
     practiceItemResults
-      .filter((r): r is { problemFamilyId: string; practiceItem: NonNullable<typeof r.practiceItem> } => r.practiceItem !== null)
-      .map((r) => [r.problemFamilyId, r.practiceItem])
+      .filter((r): r is { variantKey: string; practiceItem: NonNullable<typeof r.practiceItem> } => r.practiceItem !== null)
+      .map((r) => [r.variantKey, r.practiceItem])
   );
 
   const activityIds = [...new Set(
@@ -98,7 +98,7 @@ async function resolveQueueItems(
 
   const resolvedItems: ResolvedQueueItem[] = [];
   for (const item of items) {
-    const practiceItem = practiceItemMap.get(item.card.problemFamilyId);
+    const practiceItem = practiceItemMap.get(item.card.variantKey);
     if (!practiceItem) continue;
 
     const activity = activityMap.get(practiceItem.activityId);

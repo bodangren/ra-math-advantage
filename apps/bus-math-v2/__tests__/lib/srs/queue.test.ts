@@ -50,7 +50,7 @@ describe('lib/srs/queue', () => {
       expect(queue.cards).toHaveLength(5);
     });
 
-    it('sorts due reviews by current retention ascending', () => {
+    it('uses canonical v3.2 review selection and deterministic presentation interleaving', () => {
       const cards = [
         makeCard('accounting-equation', 'student-1', -5000),
         makeCard('adjustment-effects', 'student-2', -10000),
@@ -63,9 +63,11 @@ describe('lib/srs/queue', () => {
       cards[2].stability = 5;
       cards[2].elapsedDays = 10;
       const queue = buildDailyQueue(cards);
-      expect(queue.cards[0].problemFamilyId).toBe('classification');
-      expect(queue.cards[1].problemFamilyId).toBe('accounting-equation');
-      expect(queue.cards[2].problemFamilyId).toBe('adjustment-effects');
+      // Selection prioritizes lowest retention, then v3.2 presentation
+      // interleaves reviews by objective with a deterministic ID tie-break.
+      expect(queue.cards[0].problemFamilyId).toBe('accounting-equation');
+      expect(queue.cards[1].problemFamilyId).toBe('adjustment-effects');
+      expect(queue.cards[2].problemFamilyId).toBe('classification');
     });
 
     it('includes sessionSize in result', () => {

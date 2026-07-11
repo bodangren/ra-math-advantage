@@ -16,19 +16,27 @@ export interface QueueOptions {
  * @param options - Queue options (sessionSize, now)
  * @returns Daily queue with cards due and session metadata
  */
-export function buildDailyQueue(cards: SrsCardState[], options: QueueOptions = {}): DailyQueue {
+export function buildDailyQueue(
+  cards: Array<SrsCardState & { problemFamilyId?: string }>,
+  options: QueueOptions = {},
+): DailyQueue {
   const { sessionSize = 10, now = new Date().toISOString() } = options;
   const cap = Number.isFinite(sessionSize) && sessionSize > 0
     ? Math.floor(sessionSize)
     : 0;
+  const canonicalCards = cards.map((card) => {
+    const variantKey = card.variantKey ?? card.problemFamilyId;
+    if (!variantKey) throw new Error(`SRS card ${card.cardId} has no variant identity`);
+    return { ...card, variantKey } as SrsCardState;
+  });
   const policies = new Map<string, ObjectivePracticePolicy>();
-  for (const card of cards) {
+  for (const card of canonicalCards) {
     policies.set(card.objectiveId, {
       objectiveId: card.objectiveId,
       priority: 'essential',
     });
   }
-  const result = buildCanonicalDailyQueue(cards, policies, {
+  const result = buildCanonicalDailyQueue(canonicalCards, policies, {
     maxReviewsPerDay: cap,
     newCardsPerDay: cap,
     prioritizeOverdue: true,
@@ -51,7 +59,7 @@ export function buildDailyQueue(cards: SrsCardState[], options: QueueOptions = {
  * @param now - Optional current time ISO string
  * @returns Queue summary with total due, total cards, and average overdue time
  */
-export function getQueueSummary(cards: SrsCardState[], now?: string): {
+export function getQueueSummary(cards: Array<SrsCardState & { problemFamilyId?: string }>, now?: string): {
   totalDue: number;
   totalCards: number;
   averageOverdue: number;

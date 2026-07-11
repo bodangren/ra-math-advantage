@@ -34,7 +34,7 @@ This track owns removal or reconciliation of the exact, expiring
 - [x] Task: Test v2/v3.2 comparison and IM3 user flows [5d071b6]
     - [x] Cover knowledge state, placement, dashboard recommendation, daily queue, and review-day messaging
     - [x] Assert divergences affect observable outputs, not merely that queries were called
-- [ ] Task: Test every monorepo consumer against the final contract
+- [~] Task: Test every monorepo consumer against the final contract
     - [ ] Cover IM3 and BM2 behavior plus IM1/IM2/Precalculus build/type compatibility
     - [ ] Pin BM2 to the canonical queue implementation
 - [ ] Task: Measure - User Manual Verification 'Phase 2: Migration and Runtime Tests' (Protocol in workflow.md)
