@@ -34,18 +34,18 @@
     - [x] Exercise public exports and at least one real consumer per shared surface
 - [x] Task: Measure - User Manual Verification 'Phase 2: Behavioral and Architecture Tests' (Protocol in workflow.md) [460a215]
 
-## Phase 3: Implementation
+## Phase 3: Implementation [checkpoint: 6069b0a]
 
 - [x] Task: Implement manifest loading, graph construction, and deterministic reporting [c084d41]
 - [x] Task: Replace the regex-only guard with manifest-aware dependency enforcement [85b83e7 + c620cd9]
 - [x] Task: Generate CI/package matrices from the workspace inventory or add parity checks that make drift impossible [13d2f5b]
 - [x] Task: Restore `math-content` lint and standalone typecheck gates [11267cf]
 - [x] Task: Register bounded existing debt and link each item to an approved follow-up track [d3eaf4b]
-- [~] Task: Measure - User Manual Verification 'Phase 3: Implementation' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 3: Implementation' (Protocol in workflow.md) [6069b0a]
 
 ## Phase 4: Generate Docs, Doctor, and Architecture Gate
 
-- [ ] Task: Generate package DAG, ownership, exports, and quality-gate reports
+- [~] Task: Generate package DAG, ownership, exports, and quality-gate reports
     - [ ] Run `measure/generate.sh`
     - [ ] Update architecture, tech stack, and CI documentation
 - [ ] Task: Run all workspace and injected-violation gates
