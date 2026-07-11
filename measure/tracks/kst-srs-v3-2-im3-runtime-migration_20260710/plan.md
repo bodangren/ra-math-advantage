@@ -28,7 +28,7 @@ This track owns removal or reconciliation of the exact, expiring
 - [x] Task: Test widen–migrate–narrow behavior [ae08bb1]
     - [ ] Cover old-only, new-only, mixed, malformed, and concurrently created documents
     - [ ] Prove dry-run rollback, batching, resume, idempotency, and verification
-- [ ] Task: Test placement and practice-variant backfills
+- [~] Task: Test placement and practice-variant backfills
     - [ ] Prove provenance/timestamps are preserved and no synthetic review history is created
     - [ ] Prove `problemFamilyId` and `variantKey` dual-read/write semantics during transition
 - [ ] Task: Test v2/v3.2 comparison and IM3 user flows
