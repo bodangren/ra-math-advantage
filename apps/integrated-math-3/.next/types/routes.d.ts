@@ -20,10 +20,10 @@ declare global {
 }
 
 declare namespace VinextRouteTypes {
-  type PageRoute = "/" | "/admin/dashboard" | "/auth/confirm" | "/auth/error" | "/auth/forgot-password" | "/auth/login" | "/auth/update-password" | "/curriculum" | "/dev/component-approval" | "/preface" | "/settings" | "/student" | "/student/dashboard" | "/student/lesson/[lessonSlug]" | "/student/practice" | "/student/study" | "/student/study/flashcards" | "/student/study/matching" | "/student/study/practice-tests" | "/student/study/practice-tests/[moduleNumber]" | "/student/study/review" | "/student/study/speed-round" | "/teacher/competency" | "/teacher/dashboard" | "/teacher/dashboard/srs" | "/teacher/gradebook" | "/teacher/lesson/[lessonSlug]" | "/teacher/lessons" | "/teacher/students" | "/teacher/students/[studentId]/competency" | "/teacher/units";
+  type PageRoute = "/" | "/admin/dashboard" | "/auth/confirm" | "/auth/error" | "/auth/forgot-password" | "/auth/login" | "/auth/update-password" | "/curriculum" | "/dev/component-approval" | "/parent" | "/preface" | "/responsive-fixtures/known-bad-overflow" | "/settings" | "/student" | "/student/dashboard" | "/student/knowledge-state" | "/student/lesson/[lessonSlug]" | "/student/practice" | "/student/study" | "/student/study/flashcards" | "/student/study/matching" | "/student/study/practice-tests" | "/student/study/practice-tests/[moduleNumber]" | "/student/study/review" | "/student/study/speed-round" | "/teacher/competency" | "/teacher/content-authoring" | "/teacher/dashboard" | "/teacher/dashboard/srs" | "/teacher/gradebook" | "/teacher/lesson/[lessonSlug]" | "/teacher/lessons" | "/teacher/students" | "/teacher/students/[studentId]/competency" | "/teacher/units";
   type LayoutRoute = "/" | "/auth" | "/student" | "/teacher";
   type RouteHandlerRoute = "/api/activities/submit" | "/api/auth/change-password" | "/api/auth/login" | "/api/auth/logout" | "/api/auth/session" | "/api/dev/review-queue" | "/api/phases/complete" | "/api/phases/skip" | "/api/practice-tests/complete" | "/api/practice/complete" | "/api/student/lesson-chatbot";
-  type AppRoute = "/" | "/admin/dashboard" | "/api/activities/submit" | "/api/auth/change-password" | "/api/auth/login" | "/api/auth/logout" | "/api/auth/session" | "/api/dev/review-queue" | "/api/phases/complete" | "/api/phases/skip" | "/api/practice-tests/complete" | "/api/practice/complete" | "/api/student/lesson-chatbot" | "/auth" | "/auth/confirm" | "/auth/error" | "/auth/forgot-password" | "/auth/login" | "/auth/update-password" | "/curriculum" | "/dev/component-approval" | "/preface" | "/settings" | "/student" | "/student/dashboard" | "/student/lesson/[lessonSlug]" | "/student/practice" | "/student/study" | "/student/study/flashcards" | "/student/study/matching" | "/student/study/practice-tests" | "/student/study/practice-tests/[moduleNumber]" | "/student/study/review" | "/student/study/speed-round" | "/teacher" | "/teacher/competency" | "/teacher/dashboard" | "/teacher/dashboard/srs" | "/teacher/gradebook" | "/teacher/lesson/[lessonSlug]" | "/teacher/lessons" | "/teacher/students" | "/teacher/students/[studentId]/competency" | "/teacher/units";
+  type AppRoute = "/" | "/admin/dashboard" | "/api/activities/submit" | "/api/auth/change-password" | "/api/auth/login" | "/api/auth/logout" | "/api/auth/session" | "/api/dev/review-queue" | "/api/phases/complete" | "/api/phases/skip" | "/api/practice-tests/complete" | "/api/practice/complete" | "/api/student/lesson-chatbot" | "/auth" | "/auth/confirm" | "/auth/error" | "/auth/forgot-password" | "/auth/login" | "/auth/update-password" | "/curriculum" | "/dev/component-approval" | "/parent" | "/preface" | "/responsive-fixtures/known-bad-overflow" | "/settings" | "/student" | "/student/dashboard" | "/student/knowledge-state" | "/student/lesson/[lessonSlug]" | "/student/practice" | "/student/study" | "/student/study/flashcards" | "/student/study/matching" | "/student/study/practice-tests" | "/student/study/practice-tests/[moduleNumber]" | "/student/study/review" | "/student/study/speed-round" | "/teacher" | "/teacher/competency" | "/teacher/content-authoring" | "/teacher/dashboard" | "/teacher/dashboard/srs" | "/teacher/gradebook" | "/teacher/lesson/[lessonSlug]" | "/teacher/lessons" | "/teacher/students" | "/teacher/students/[studentId]/competency" | "/teacher/units";
 
   interface ParamMap {
     "/": {};
@@ -47,10 +47,13 @@ declare namespace VinextRouteTypes {
     "/auth/update-password": {};
     "/curriculum": {};
     "/dev/component-approval": {};
+    "/parent": {};
     "/preface": {};
+    "/responsive-fixtures/known-bad-overflow": {};
     "/settings": {};
     "/student": {};
     "/student/dashboard": {};
+    "/student/knowledge-state": {};
     "/student/lesson/[lessonSlug]": { lessonSlug: string; };
     "/student/practice": {};
     "/student/study": {};
@@ -62,6 +65,7 @@ declare namespace VinextRouteTypes {
     "/student/study/speed-round": {};
     "/teacher": {};
     "/teacher/competency": {};
+    "/teacher/content-authoring": {};
     "/teacher/dashboard": {};
     "/teacher/dashboard/srs": {};
     "/teacher/gradebook": {};
