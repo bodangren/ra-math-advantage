@@ -12,28 +12,28 @@ This track owns removal or reconciliation of the exact, expiring
 ## Phase 1: Contract & Schema Widening Definition [checkpoint: c29bffb]
 
 - [x] Task: Inventory the complete v2 persistence and runtime surface [ecca7fc]
-    - [ ] Map tables, fields, indexes, handlers, adapters, routes, and UI consumers
-    - [ ] Record data-volume and migration-risk assumptions per table
+    - [x] Map tables, fields, indexes, handlers, adapters, routes, and UI consumers
+    - [x] Record data-volume and migration-risk assumptions per table
 - [x] Task: Define widened Convex schemas and versioned adapters [96bd05d]
-    - [ ] Add optional v3.2 fields and correctly named indexes
-    - [ ] Define old/new read precedence, dual-write behavior, and migration-version markers
-    - [ ] Define validated internal migration and verification result contracts
+    - [x] Add optional v3.2 fields and correctly named indexes
+    - [x] Define old/new read precedence, dual-write behavior, and migration-version markers
+    - [x] Define validated internal migration and verification result contracts
 - [x] Task: Define cutover, comparison, and rollback contracts [45af637]
-    - [ ] Add feature-flag and divergence-report schemas
-    - [ ] Specify cutover thresholds, rollback window, and deprecated-field policy
+    - [x] Add feature-flag and divergence-report schemas
+    - [x] Specify cutover thresholds, rollback window, and deprecated-field policy
 - [x] Task: Measure - User Manual Verification 'Phase 1: Contract & Schema Widening Definition' (Protocol in workflow.md) [496e720]
 
 ## Phase 2: Migration and Runtime Tests
 
 - [x] Task: Test widen–migrate–narrow behavior [ae08bb1]
-    - [ ] Cover old-only, new-only, mixed, malformed, and concurrently created documents
-    - [ ] Prove dry-run rollback, batching, resume, idempotency, and verification
+    - [x] Cover old-only, new-only, mixed, malformed, and concurrently created documents
+    - [x] Prove dry-run rollback, batching, resume, idempotency, and verification
 - [x] Task: Test placement and practice-variant backfills [1b5cd5a]
-    - [ ] Prove provenance/timestamps are preserved and no synthetic review history is created
-    - [ ] Prove `problemFamilyId` and `variantKey` dual-read/write semantics during transition
-- [ ] Task: Test v2/v3.2 comparison and IM3 user flows
-    - [ ] Cover knowledge state, placement, dashboard recommendation, daily queue, and review-day messaging
-    - [ ] Assert divergences affect observable outputs, not merely that queries were called
+    - [x] Prove provenance/timestamps are preserved and no synthetic review history is created
+    - [x] Prove `problemFamilyId` and `variantKey` dual-read/write semantics during transition
+- [x] Task: Test v2/v3.2 comparison and IM3 user flows [5d071b6]
+    - [x] Cover knowledge state, placement, dashboard recommendation, daily queue, and review-day messaging
+    - [x] Assert divergences affect observable outputs, not merely that queries were called
 - [ ] Task: Test every monorepo consumer against the final contract
     - [ ] Cover IM3 and BM2 behavior plus IM1/IM2/Precalculus build/type compatibility
     - [ ] Pin BM2 to the canonical queue implementation
