@@ -1,0 +1,192 @@
+{
+  "schemaVersion": "lms-architecture.v1",
+  "workspaceRoots": ["apps/*", "packages/*"],
+  "excludedWorkspaces": ["packages/_template"],
+  "owners": ["bus-math-team", "im1-team", "im2-team", "im3-team", "precalculus-team", "learning-platform", "math-content"],
+  "approvedFollowUpTracks": ["monorepo-architecture-contracts_20260710", "shared-lms-backend-modularization_20260710", "app-platform-consolidation_20260710"],
+  "workspaces": [
+    {
+      "id": "app.bus-math-v2", "path": "apps/bus-math-v2", "kind": "app", "packageName": null,
+      "owner": "bus-math-team", "layer": "application", "domainClassification": "app-owned", "domain": "business-math",
+      "allowedDependencies": ["pkg.activity-components", "pkg.activity-runtime", "pkg.ai-tutoring", "pkg.app-shell", "pkg.component-approval", "pkg.core-auth", "pkg.core-convex", "pkg.graphing-core", "pkg.knowledge-space-practice", "pkg.math-content", "pkg.practice-core", "pkg.srs-engine"],
+      "publicEntryPoints": [],
+      "qualityCommands": { "lint": "npm run lint --workspace=apps/bus-math-v2", "test": "npm run test --workspace=apps/bus-math-v2", "typecheck": "npx tsc --noEmit --project apps/bus-math-v2/tsconfig.json", "build": "npm run build --workspace=apps/bus-math-v2" },
+      "debtRefs": []
+    },
+    {
+      "id": "app.integrated-math-1", "path": "apps/integrated-math-1", "kind": "app", "packageName": null,
+      "owner": "im1-team", "layer": "application", "domainClassification": "app-owned", "domain": "integrated-math-1",
+      "allowedDependencies": ["pkg.activity-runtime", "pkg.app-shell", "pkg.core-auth", "pkg.core-convex", "pkg.lesson-renderer", "pkg.practice-core", "pkg.srs-engine"],
+      "publicEntryPoints": [],
+      "qualityCommands": { "lint": "npm run lint --workspace=apps/integrated-math-1", "test": "npm run test --workspace=apps/integrated-math-1", "typecheck": "npm run typecheck --workspace=apps/integrated-math-1", "build": "npm run build --workspace=apps/integrated-math-1" },
+      "debtRefs": []
+    },
+    {
+      "id": "app.integrated-math-2", "path": "apps/integrated-math-2", "kind": "app", "packageName": null,
+      "owner": "im2-team", "layer": "application", "domainClassification": "app-owned", "domain": "integrated-math-2",
+      "allowedDependencies": ["pkg.activity-runtime", "pkg.app-shell", "pkg.core-auth", "pkg.core-convex", "pkg.lesson-renderer", "pkg.practice-core", "pkg.srs-engine"],
+      "publicEntryPoints": [],
+      "qualityCommands": { "lint": "npm run lint --workspace=apps/integrated-math-2", "test": "npm run test --workspace=apps/integrated-math-2", "typecheck": "npm run typecheck --workspace=apps/integrated-math-2", "build": "npm run build --workspace=apps/integrated-math-2" },
+      "debtRefs": []
+    },
+    {
+      "id": "app.integrated-math-3", "path": "apps/integrated-math-3", "kind": "app", "packageName": null,
+      "owner": "im3-team", "layer": "application", "domainClassification": "app-owned", "domain": "integrated-math-3",
+      "allowedDependencies": ["pkg.activity-components", "pkg.activity-runtime", "pkg.ai-tutoring", "pkg.app-shell", "pkg.component-approval", "pkg.core-auth", "pkg.core-convex", "pkg.efficacy-core", "pkg.graphing-core", "pkg.knowledge-space-practice", "pkg.lesson-renderer", "pkg.practice-core", "pkg.practice-test-engine", "pkg.srs-engine", "pkg.study-hub-core", "pkg.teacher-reporting-core", "pkg.workbook-pipeline"],
+      "publicEntryPoints": [],
+      "qualityCommands": { "lint": "npm run lint --workspace=apps/integrated-math-3", "test": "npm run test --workspace=apps/integrated-math-3", "typecheck": "npm run typecheck --workspace=apps/integrated-math-3", "build": "npm run build --workspace=apps/integrated-math-3" },
+      "debtRefs": []
+    },
+    {
+      "id": "app.pre-calculus", "path": "apps/pre-calculus", "kind": "app", "packageName": null,
+      "owner": "precalculus-team", "layer": "application", "domainClassification": "app-owned", "domain": "precalculus",
+      "allowedDependencies": ["pkg.activity-runtime", "pkg.app-shell", "pkg.core-auth", "pkg.core-convex", "pkg.lesson-renderer", "pkg.practice-core", "pkg.srs-engine"],
+      "publicEntryPoints": [],
+      "qualityCommands": { "lint": "npm run lint --workspace=apps/pre-calculus", "test": "npm run test --workspace=apps/pre-calculus", "typecheck": "npm run typecheck --workspace=apps/pre-calculus", "build": "npm run build --workspace=apps/pre-calculus" },
+      "debtRefs": []
+    },
+    {
+      "id": "pkg.activity-components", "path": "packages/activity-components", "kind": "package", "packageName": "@math-platform/activity-components",
+      "owner": "learning-platform", "layer": "feature", "domainClassification": "domain-neutral", "domain": null,
+      "allowedDependencies": ["pkg.activity-runtime", "pkg.math-content", "pkg.practice-core"],
+      "publicEntryPoints": [".", "./registry", "./types", "./schemas", "./schemas/comprehension-quiz", "./schemas/fill-in-the-blank", "./schemas/graphing-explorer", "./schemas/step-by-step-solver", "./schemas/rate-of-change-calculator", "./schemas/discriminant-analyzer", "./quiz", "./blanks", "./discriminant", "./roc", "./algebraic", "./graphing", "./renderer"],
+      "qualityCommands": { "lint": "npm run lint --workspace=packages/activity-components", "test": "npm run test --workspace=packages/activity-components", "typecheck": "npm run typecheck --workspace=packages/activity-components", "build": "npm run build --workspace=packages/activity-components" },
+      "debtRefs": ["debt.activity-content-inversion"]
+    },
+    {
+      "id": "pkg.activity-runtime", "path": "packages/activity-runtime", "kind": "package", "packageName": "@math-platform/activity-runtime",
+      "owner": "learning-platform", "layer": "platform", "domainClassification": "domain-neutral", "domain": null,
+      "allowedDependencies": [], "publicEntryPoints": [".", "./phase-types", "./modes", "./completion"],
+      "qualityCommands": { "lint": "npm run lint --workspace=packages/activity-runtime", "test": "npm run test --workspace=packages/activity-runtime", "typecheck": "npm run typecheck --workspace=packages/activity-runtime", "build": "npm run build --workspace=packages/activity-runtime" }, "debtRefs": []
+    },
+    {
+      "id": "pkg.ai-tutoring", "path": "packages/ai-tutoring", "kind": "package", "packageName": "@math-platform/ai-tutoring",
+      "owner": "learning-platform", "layer": "feature", "domainClassification": "domain-neutral", "domain": null,
+      "allowedDependencies": [], "publicEntryPoints": [".", "./retry", "./providers", "./lesson-context"],
+      "qualityCommands": { "lint": "npm run lint --workspace=packages/ai-tutoring", "test": "npm run test --workspace=packages/ai-tutoring", "typecheck": "npm run typecheck --workspace=packages/ai-tutoring", "build": "npm run build --workspace=packages/ai-tutoring" }, "debtRefs": []
+    },
+    {
+      "id": "pkg.app-shell", "path": "packages/app-shell", "kind": "package", "packageName": "@math-platform/app-shell",
+      "owner": "learning-platform", "layer": "feature", "domainClassification": "domain-neutral", "domain": null,
+      "allowedDependencies": ["pkg.core-auth", "pkg.core-convex"], "publicEntryPoints": [".", "./providers", "./auth", "./components", "./layout"],
+      "qualityCommands": { "lint": "npm run lint --workspace=packages/app-shell", "test": "npm run test --workspace=packages/app-shell", "typecheck": "npm run typecheck --workspace=packages/app-shell", "build": "npm run build --workspace=packages/app-shell" }, "debtRefs": []
+    },
+    {
+      "id": "pkg.component-approval", "path": "packages/component-approval", "kind": "package", "packageName": "@math-platform/component-approval",
+      "owner": "learning-platform", "layer": "platform", "domainClassification": "domain-neutral", "domain": null,
+      "allowedDependencies": [], "publicEntryPoints": [".", "./content-hash", "./review-queue"],
+      "qualityCommands": { "lint": "npm run lint --workspace=packages/component-approval", "test": "npm run test --workspace=packages/component-approval", "typecheck": "npm run typecheck --workspace=packages/component-approval", "build": "npm run build --workspace=packages/component-approval" }, "debtRefs": []
+    },
+    {
+      "id": "pkg.core-auth", "path": "packages/core-auth", "kind": "package", "packageName": "@math-platform/core-auth",
+      "owner": "learning-platform", "layer": "infrastructure", "domainClassification": "domain-neutral", "domain": null,
+      "allowedDependencies": [], "publicEntryPoints": [".", "./constants", "./session", "./password-policy", "./demo-provisioning"],
+      "qualityCommands": { "lint": "npm run lint --workspace=packages/core-auth", "test": "npm run test --workspace=packages/core-auth", "typecheck": "npm run typecheck --workspace=packages/core-auth", "build": "npm run build --workspace=packages/core-auth" }, "debtRefs": []
+    },
+    {
+      "id": "pkg.core-convex", "path": "packages/core-convex", "kind": "package", "packageName": "@math-platform/core-convex",
+      "owner": "learning-platform", "layer": "infrastructure", "domainClassification": "domain-neutral", "domain": null,
+      "allowedDependencies": [], "publicEntryPoints": [".", "./admin", "./config"],
+      "qualityCommands": { "lint": "npm run lint --workspace=packages/core-convex", "test": "npm run test --workspace=packages/core-convex", "typecheck": "npm run typecheck --workspace=packages/core-convex", "build": "npm run build --workspace=packages/core-convex" }, "debtRefs": []
+    },
+    {
+      "id": "pkg.efficacy-core", "path": "packages/efficacy-core", "kind": "package", "packageName": "@math-platform/efficacy-core",
+      "owner": "learning-platform", "layer": "platform", "domainClassification": "domain-neutral", "domain": null,
+      "allowedDependencies": ["pkg.practice-core", "pkg.srs-engine"], "publicEntryPoints": [".", "./contracts", "./metrics/retention", "./metrics/time-to-mastery", "./metrics/accuracy", "./metrics/review-success"],
+      "qualityCommands": { "lint": "npm run lint --workspace=packages/efficacy-core", "test": "npm run test --workspace=packages/efficacy-core", "typecheck": "npm run typecheck --workspace=packages/efficacy-core", "build": "npm run build --workspace=packages/efficacy-core" }, "debtRefs": []
+    },
+    {
+      "id": "pkg.graphing-core", "path": "packages/graphing-core", "kind": "package", "packageName": "@math-platform/graphing-core",
+      "owner": "learning-platform", "layer": "platform", "domainClassification": "domain-neutral", "domain": null,
+      "allowedDependencies": [], "publicEntryPoints": [".", "./linear-parser", "./quadratic-parser", "./canvas-utils"],
+      "qualityCommands": { "lint": "npm run lint --workspace=packages/graphing-core", "test": "npm run test --workspace=packages/graphing-core", "typecheck": "npm run typecheck --workspace=packages/graphing-core", "build": "npm run build --workspace=packages/graphing-core" }, "debtRefs": []
+    },
+    {
+      "id": "pkg.knowledge-space-core", "path": "packages/knowledge-space-core", "kind": "package", "packageName": "@math-platform/knowledge-space-core",
+      "owner": "learning-platform", "layer": "platform", "domainClassification": "domain-neutral", "domain": null,
+      "allowedDependencies": ["pkg.srs-engine"], "publicEntryPoints": [".", "./types", "./schemas", "./validation", "./level-projection", "./progress-trend", "./adapters", "./fixtures"],
+      "qualityCommands": { "lint": "npm run lint --workspace=packages/knowledge-space-core", "test": "npm run test --workspace=packages/knowledge-space-core", "typecheck": "npm run typecheck --workspace=packages/knowledge-space-core", "build": "npm run build --workspace=packages/knowledge-space-core" }, "debtRefs": []
+    },
+    {
+      "id": "pkg.knowledge-space-practice", "path": "packages/knowledge-space-practice", "kind": "package", "packageName": "@math-platform/knowledge-space-practice",
+      "owner": "learning-platform", "layer": "platform", "domainClassification": "domain-neutral", "domain": null,
+      "allowedDependencies": ["pkg.knowledge-space-core"], "publicEntryPoints": [".", "./types", "./schemas", "./misconception-loop", "./blueprints", "./planner/types", "./planner/v3-2-contract", "./planner/v3-2-planner", "./planner/v3-2-recommendations", "./planner/v3-2-domain-utility-contract", "./planner/v3-2-domain-utility", "./planner/v3-2-review-load-contract", "./planner/v3-2-review-load", "./projections"],
+      "qualityCommands": { "lint": "npm run lint --workspace=packages/knowledge-space-practice", "test": "npm run test --workspace=packages/knowledge-space-practice", "typecheck": "npm run typecheck --workspace=packages/knowledge-space-practice", "build": "npm run build --workspace=packages/knowledge-space-practice" }, "debtRefs": []
+    },
+    {
+      "id": "pkg.lesson-renderer", "path": "packages/lesson-renderer", "kind": "package", "packageName": "@math-platform/lesson-renderer",
+      "owner": "learning-platform", "layer": "feature", "domainClassification": "domain-neutral", "domain": null,
+      "allowedDependencies": [], "publicEntryPoints": [".", "./textbook", "./components", "./video", "./markdown", "./error-boundary", "./skeletons"],
+      "qualityCommands": { "lint": "npm run lint --workspace=packages/lesson-renderer", "test": "npm run test --workspace=packages/lesson-renderer", "typecheck": "npm run typecheck --workspace=packages/lesson-renderer", "build": "npm run build --workspace=packages/lesson-renderer" }, "debtRefs": []
+    },
+    {
+      "id": "pkg.math-content", "path": "packages/math-content", "kind": "package", "packageName": "@math-platform/math-content",
+      "owner": "math-content", "layer": "domain-content", "domainClassification": "domain-specific", "domain": "math",
+      "allowedDependencies": ["pkg.activity-runtime", "pkg.knowledge-space-core", "pkg.practice-core", "pkg.study-hub-core"],
+      "publicEntryPoints": [".", "./schemas", "./schemas/comprehension-quiz", "./schemas/fill-in-the-blank", "./schemas/graphing-explorer", "./schemas/step-by-step-solver", "./schemas/rate-of-change-calculator", "./schemas/discriminant-analyzer", "./algebraic", "./glossary", "./problem-families", "./problem-families/im1", "./problem-families/im2", "./problem-families/im3", "./problem-families/precalc", "./seeds", "./knowledge-space"],
+      "qualityCommands": { "lint": "npm run lint --workspace=packages/math-content", "test": "npm run test --workspace=packages/math-content", "typecheck": "npm run typecheck --workspace=packages/math-content", "build": "npm run build --workspace=packages/math-content" }, "debtRefs": []
+    },
+    {
+      "id": "pkg.practice-core", "path": "packages/practice-core", "kind": "package", "packageName": "@math-platform/practice-core",
+      "owner": "learning-platform", "layer": "platform", "domainClassification": "domain-neutral", "domain": null,
+      "allowedDependencies": [], "publicEntryPoints": [".", "./contract", "./submission-schema", "./timing", "./timing-baseline", "./srs-rating", "./v3-1-contracts", "./problem-family", "./practice-item", "./error-analysis", "./generator-qa"],
+      "qualityCommands": { "lint": "npm run lint --workspace=packages/practice-core", "test": "npm run test --workspace=packages/practice-core", "typecheck": "npm run typecheck --workspace=packages/practice-core", "build": "npm run build --workspace=packages/practice-core" }, "debtRefs": []
+    },
+    {
+      "id": "pkg.practice-test-engine", "path": "packages/practice-test-engine", "kind": "package", "packageName": "@math-platform/practice-test-engine",
+      "owner": "learning-platform", "layer": "feature", "domainClassification": "domain-neutral", "domain": null,
+      "allowedDependencies": [], "publicEntryPoints": ["."],
+      "qualityCommands": { "lint": "npm run lint --workspace=packages/practice-test-engine", "test": "npm run test --workspace=packages/practice-test-engine", "typecheck": "npm run typecheck --workspace=packages/practice-test-engine", "build": null }, "debtRefs": []
+    },
+    {
+      "id": "pkg.rate-limiter", "path": "packages/rate-limiter", "kind": "package", "packageName": "@math-platform/rate-limiter",
+      "owner": "learning-platform", "layer": "infrastructure", "domainClassification": "domain-neutral", "domain": null,
+      "allowedDependencies": [], "publicEntryPoints": [".", "./sliding-window", "./configs"],
+      "qualityCommands": { "lint": "npm run lint --workspace=packages/rate-limiter", "test": "npm run test --workspace=packages/rate-limiter", "typecheck": "npm run typecheck --workspace=packages/rate-limiter", "build": "npm run build --workspace=packages/rate-limiter" }, "debtRefs": []
+    },
+    {
+      "id": "pkg.srs-engine", "path": "packages/srs-engine", "kind": "package", "packageName": "@math-platform/srs-engine",
+      "owner": "learning-platform", "layer": "platform", "domainClassification": "domain-neutral", "domain": null,
+      "allowedDependencies": ["pkg.practice-core"], "publicEntryPoints": [".", "./contract", "./scheduler", "./review-processor", "./queue", "./evidence", "./scheduler-policy", "./fsrs-fitting", "./evaluation", "./placement", "./placement-contract", "./adaptive-placement", "./adapters", "./submission-adapter", "./session-composition-contract", "./session-composition"],
+      "qualityCommands": { "lint": "npm run lint --workspace=packages/srs-engine", "test": "npm run test --workspace=packages/srs-engine", "typecheck": "npm run typecheck --workspace=packages/srs-engine", "build": "npm run build --workspace=packages/srs-engine" }, "debtRefs": []
+    },
+    {
+      "id": "pkg.study-hub-core", "path": "packages/study-hub-core", "kind": "package", "packageName": "@math-platform/study-hub-core",
+      "owner": "learning-platform", "layer": "feature", "domainClassification": "domain-neutral", "domain": null,
+      "allowedDependencies": [], "publicEntryPoints": [".", "./shuffle", "./base-session", "./types", "./games"],
+      "qualityCommands": { "lint": "npm run lint --workspace=packages/study-hub-core", "test": "npm run test --workspace=packages/study-hub-core", "typecheck": "npm run typecheck --workspace=packages/study-hub-core", "build": "npm run build --workspace=packages/study-hub-core" }, "debtRefs": []
+    },
+    {
+      "id": "pkg.teacher-reporting-core", "path": "packages/teacher-reporting-core", "kind": "package", "packageName": "@math-platform/teacher-reporting-core",
+      "owner": "learning-platform", "layer": "feature", "domainClassification": "domain-neutral", "domain": null,
+      "allowedDependencies": [], "publicEntryPoints": [".", "./gradebook", "./course-overview", "./competency-heatmap", "./gradebook-export"],
+      "qualityCommands": { "lint": "npm run lint --workspace=packages/teacher-reporting-core", "test": "npm run test --workspace=packages/teacher-reporting-core", "typecheck": "npm run typecheck --workspace=packages/teacher-reporting-core", "build": "npm run build --workspace=packages/teacher-reporting-core" }, "debtRefs": []
+    },
+    {
+      "id": "pkg.workbook-pipeline", "path": "packages/workbook-pipeline", "kind": "package", "packageName": "@math-platform/workbook-pipeline",
+      "owner": "learning-platform", "layer": "platform", "domainClassification": "domain-neutral", "domain": null,
+      "allowedDependencies": [], "publicEntryPoints": [".", "./manifest", "./path", "./lookup"],
+      "qualityCommands": { "lint": "npm run lint --workspace=packages/workbook-pipeline", "test": "npm run test --workspace=packages/workbook-pipeline", "typecheck": "npm run typecheck --workspace=packages/workbook-pipeline", "build": "npm run build --workspace=packages/workbook-pipeline" }, "debtRefs": []
+    }
+  ],
+  "temporaryDebt": [
+    {
+      "id": "debt.activity-content-inversion",
+      "owner": "learning-platform",
+      "rationale": "Activity renderer schemas are currently re-exported from domain-owned math-content pending registry injection.",
+      "followUpTrack": "app-platform-consolidation_20260710",
+      "introducedOn": "2026-07-10",
+      "expiresOn": "2026-12-31",
+      "violations": [
+        { "ruleId": "prohibited-layer-edge", "sourceWorkspace": "pkg.activity-components", "targetWorkspace": "pkg.math-content", "sourceFile": "packages/activity-components/src/schemas/comprehension-quiz.schema.ts", "exactSpecifier": "@math-platform/math-content/schemas" },
+        { "ruleId": "prohibited-layer-edge", "sourceWorkspace": "pkg.activity-components", "targetWorkspace": "pkg.math-content", "sourceFile": "packages/activity-components/src/schemas/discriminant-analyzer.schema.ts", "exactSpecifier": "@math-platform/math-content/schemas" },
+        { "ruleId": "prohibited-layer-edge", "sourceWorkspace": "pkg.activity-components", "targetWorkspace": "pkg.math-content", "sourceFile": "packages/activity-components/src/schemas/fill-in-the-blank.schema.ts", "exactSpecifier": "@math-platform/math-content/schemas" },
+        { "ruleId": "prohibited-layer-edge", "sourceWorkspace": "pkg.activity-components", "targetWorkspace": "pkg.math-content", "sourceFile": "packages/activity-components/src/schemas/graphing-explorer.schema.ts", "exactSpecifier": "@math-platform/math-content/schemas" },
+        { "ruleId": "prohibited-layer-edge", "sourceWorkspace": "pkg.activity-components", "targetWorkspace": "pkg.math-content", "sourceFile": "packages/activity-components/src/schemas/index.ts", "exactSpecifier": "@math-platform/math-content/schemas" },
+        { "ruleId": "prohibited-layer-edge", "sourceWorkspace": "pkg.activity-components", "targetWorkspace": "pkg.math-content", "sourceFile": "packages/activity-components/src/schemas/rate-of-change-calculator.schema.ts", "exactSpecifier": "@math-platform/math-content/schemas" },
+        { "ruleId": "prohibited-layer-edge", "sourceWorkspace": "pkg.activity-components", "targetWorkspace": "pkg.math-content", "sourceFile": "packages/activity-components/src/schemas/step-by-step-solver.schema.ts", "exactSpecifier": "@math-platform/math-content/schemas" },
+        { "ruleId": "prohibited-layer-edge", "sourceWorkspace": "pkg.activity-components", "targetWorkspace": "pkg.math-content", "sourceFile": "packages/activity-components/src/types/index.ts", "exactSpecifier": "@math-platform/math-content/schemas" }
+      ]
+    }
+  ]
+}
