@@ -19,14 +19,14 @@ const defaultProps: TeacherObjectiveDiagnosticCardProps = {
     isProficient: true,
     problemFamilyDetails: [
       {
-        problemFamilyId: 'fam-a',
+        variantKey: 'fam-a',
         retentionStrength: 0.9,
         practiceCoverage: 0.85,
         fluencyConfidence: 'high',
         baselineSampleCount: 12,
       },
       {
-        problemFamilyId: 'fam-b',
+        variantKey: 'fam-b',
         retentionStrength: 0.86,
         practiceCoverage: 0.78,
         fluencyConfidence: 'high',

@@ -42,7 +42,7 @@ export function useReviewQueueClient() {
     onlyStale: false,
   });
 
-  const fetchQueueRef = useRef<() => Promise<void>>(() => {});
+  const fetchQueueRef = useRef<() => Promise<void>>(async () => {});
 
   useEffect(() => {
     fetchQueueRef.current = async () => {

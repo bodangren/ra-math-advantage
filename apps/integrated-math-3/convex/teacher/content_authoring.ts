@@ -288,7 +288,7 @@ async function deleteLessonTree(ctx: MutationCtx, lessonId: Id<"lessons">): Prom
           if (activityId) {
             const existing = await ctx.db.get("activities", activityId as Id<"activities">);
             if (existing) {
-              await ctx.db.delete(activityId);
+              await ctx.db.delete(activityId as Id<"activities">);
             }
           }
         }

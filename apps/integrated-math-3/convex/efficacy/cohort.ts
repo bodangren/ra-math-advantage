@@ -7,6 +7,7 @@ import {
 } from "@math-platform/efficacy-core";
 import type { SrsCardState, SrsReviewLogEntry } from "@math-platform/srs-engine";
 import type { MetricResult, RetentionPoint, ReviewSuccessRate } from "@math-platform/efficacy-core";
+import { resolveCanonicalVariantKey } from "../../lib/srs/v3-runtime-contract";
 
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
 
@@ -54,26 +55,32 @@ export async function aggregateCohortMetricsHandler(
   const allCards = await ctx.db
     .query("srs_cards")
     .withIndex("by_student")
-    .collect();
+    .take(5_000);
   const studentCards: SrsCardState[] = allCards
     .filter((c) => activeStudentIds.has(c.studentId))
-    .map((c) => ({
-      cardId: c._id as unknown as string,
-      studentId: c.studentId,
-      objectiveId: c.objectiveId,
-      problemFamilyId: c.problemFamilyId,
-      stability: c.stability,
-      difficulty: c.difficulty,
-      state: c.state as SrsCardState["state"],
-      dueDate: c.dueDate,
-      elapsedDays: c.elapsedDays,
-      scheduledDays: c.scheduledDays,
-      reps: c.reps,
-      lapses: c.lapses,
-      lastReview: c.lastReview ?? null,
-      createdAt: new Date(c.createdAt).toISOString(),
-      updatedAt: new Date(c.updatedAt).toISOString(),
-    }));
+    .flatMap((c) => {
+      try {
+        return [{
+          cardId: c._id as unknown as string,
+          studentId: c.studentId,
+          objectiveId: c.objectiveId,
+          variantKey: resolveCanonicalVariantKey(c).variantKey,
+          stability: c.stability,
+          difficulty: c.difficulty,
+          state: c.state as SrsCardState["state"],
+          dueDate: c.dueDate,
+          elapsedDays: c.elapsedDays,
+          scheduledDays: c.scheduledDays,
+          reps: c.reps,
+          lapses: c.lapses,
+          lastReview: c.lastReview ?? null,
+          createdAt: new Date(c.createdAt).toISOString(),
+          updatedAt: new Date(c.updatedAt).toISOString(),
+        }];
+      } catch {
+        return [];
+      }
+    });
 
   const allReviews = await ctx.db
     .query("srs_review_log")

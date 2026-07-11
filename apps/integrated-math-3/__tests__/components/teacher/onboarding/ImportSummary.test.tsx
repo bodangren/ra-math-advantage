@@ -142,7 +142,7 @@ async function loadSummary(): Promise<ImportSummaryComponent> {
  * Golden fixture — the public shape of getImportSummary's response.
  *
  * Matches the Phase 2 return-type contract in
- *   apps/integrated-math-3/convex/onboarding/roster-import.ts:190.
+ *   apps/integrated-math-3/convex/onboarding/roster_import.ts:190.
  * ------------------------------------------------------------------ */
 
 const CLASS_ID = 'classes_test_1' as Id<'classes'>;

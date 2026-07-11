@@ -12,7 +12,7 @@
  *
  * Strategy: `test-strategy.md` §2 (Convex migration mock) and §7 row "P1 mig".
  * Targeted Red command:
- *   `npx vitest run apps/integrated-math-3/convex/migrations/__tests__/rename-problem-family.test.ts`
+ *   `npx vitest run apps/integrated-math-3/convex/migrations/__tests__/rename_problem_family.test.ts`
  *
  * The MemoryDb helper is in-test (per strategy) and is intentionally
  * limited to the migration's read/patch surface. It MUST NOT replace the
@@ -112,7 +112,7 @@ const SAMPLE_CARDS: SrsCardRow[] = [
 describe('renameProblemFamilyToVariantKey (migrate)', () => {
   it('renames problemFamilyId to variantKey on every srs_cards row', async () => {
     const { renameProblemFamilyToVariantKey } = await import(
-      '../rename-problem-family'
+      '../rename_problem_family'
     );
     const db = makeMemoryDb(SAMPLE_CARDS);
 
@@ -130,7 +130,7 @@ describe('renameProblemFamilyToVariantKey (migrate)', () => {
 
   it('preserves the original problemFamilyId field during the migration', async () => {
     const { renameProblemFamilyToVariantKey } = await import(
-      '../rename-problem-family'
+      '../rename_problem_family'
     );
     const db = makeMemoryDb(SAMPLE_CARDS);
     const before = SAMPLE_CARDS.map((c) => c.problemFamilyId);
@@ -143,7 +143,7 @@ describe('renameProblemFamilyToVariantKey (migrate)', () => {
 
   it('queries only the srs_cards table (no other tables touched)', async () => {
     const { renameProblemFamilyToVariantKey } = await import(
-      '../rename-problem-family'
+      '../rename_problem_family'
     );
     const db = makeMemoryDb(SAMPLE_CARDS);
 
@@ -157,7 +157,7 @@ describe('renameProblemFamilyToVariantKey (migrate)', () => {
 describe('renameProblemFamilyToVariantKey (rollback)', () => {
   it('restores problemFamilyId from variantKey on every row', async () => {
     const { renameProblemFamilyToVariantKey } = await import(
-      '../rename-problem-family'
+      '../rename_problem_family'
     );
     const migrated = SAMPLE_CARDS.map((row) => ({
       ...row,

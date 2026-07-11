@@ -17,7 +17,7 @@
 // same simplification used in placement.test.ts and study.test.ts.
 //
 // Production module contract under test:
-//   apps/integrated-math-3/convex/onboarding/roster-import.ts
+//   apps/integrated-math-3/convex/onboarding/roster_import.ts
 //
 // Exports expected (Red phase, do not exist yet):
 //   - importRosterMutation(ctx, { classId, rows, importedBy, source })

@@ -278,7 +278,7 @@ describe('Phase 4 adversarial: approval-storage split (exact, not just >= 2)', (
       saveTeacherDraftHandler,
       submitDraftForReviewHandler,
       reviewAuthoredLessonHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const teacher = makeTeacher('teacher_1', 'org_1');
     const { ctx, stores } = makeMutationMockCtx({ profiles: [teacher] });
@@ -359,7 +359,7 @@ describe('Phase 4 adversarial: approval-storage split (exact, not just >= 2)', (
       saveTeacherDraftHandler,
       submitDraftForReviewHandler,
       reviewAuthoredLessonHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
     const { computeComponentContentHash } = await import(
       '../../../lib/activities/content-hash'
     );
@@ -409,7 +409,7 @@ describe('Phase 4 adversarial: displayName fallback', () => {
     // The handler's `displayName || componentKey` fallback (commit
     // 705e0cc3) must still populate the column.
     const { saveTeacherDraftHandler } = await import(
-      '../../../convex/teacher/content-authoring'
+      '../../../convex/teacher/content_authoring'
     );
 
     const teacher = makeTeacher('teacher_1', 'org_1');
@@ -479,7 +479,7 @@ describe('Phase 4 adversarial: displayName fallback', () => {
     // `displayName: componentKey` per activity, the handler persists
     // it, and the column is populated.
     const { saveTeacherDraftHandler } = await import(
-      '../../../convex/teacher/content-authoring'
+      '../../../convex/teacher/content_authoring'
     );
 
     const teacher = makeTeacher('teacher_1', 'org_1');
@@ -522,7 +522,7 @@ describe('Phase 4 adversarial: stale-hash defense on inline (activity-kind) appr
       submitDraftForReviewHandler,
       reviewAuthoredLessonHandler,
       publishAuthoredLessonHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const teacher = makeTeacher('teacher_1', 'org_1');
     const { ctx, stores } = makeMutationMockCtx({ profiles: [teacher] });
@@ -592,7 +592,7 @@ describe('Phase 4 adversarial: stale-hash defense on inline (activity-kind) appr
       submitDraftForReviewHandler,
       reviewAuthoredLessonHandler,
       publishAuthoredLessonHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const teacher = makeTeacher('teacher_1', 'org_1');
     const { ctx, stores } = makeMutationMockCtx({ profiles: [teacher] });
@@ -645,7 +645,7 @@ describe('Phase 4 adversarial: cross-org student visibility (enrolled + class-as
       publishAuthoredLessonHandler,
       assignAuthoredLessonHandler,
       getAuthoredLessonForStudentHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const teacher = makeTeacher('teacher_1', 'org_1');
     const sameOrgActiveStudent = makeStudent('student_active', 'org_1');

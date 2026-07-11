@@ -21,7 +21,7 @@
  *    points teachers to the assignment surface.
  */
 
-import type { TeacherFacingStatus } from "../../../../convex/teacher/content-authoring";
+import type { TeacherFacingStatus } from "../../../convex/teacher/content_authoring";
 
 export interface TeacherAuthoringStatusView {
   label: string;

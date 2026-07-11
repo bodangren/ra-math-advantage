@@ -6,7 +6,7 @@ import {
   srsComparisonSubjectValidator,
   srsDivergenceClassValidator,
   srsRuntimeModeValidator,
-} from "./runtime-contract";
+} from "./runtime_contract";
 
 const RUNTIME_SCOPE = "im3" as const;
 

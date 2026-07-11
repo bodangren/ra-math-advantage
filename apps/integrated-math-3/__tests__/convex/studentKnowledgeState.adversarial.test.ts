@@ -15,7 +15,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import type { Id } from '@/convex/_generated/dataModel';
 
-import { getStudentKnowledgeStateHandler } from '@/convex/student/knowledge-state';
+import { getStudentKnowledgeStateHandler } from '@/convex/student/knowledge_state';
 import { loadFullCurriculumGraph } from '@/lib/curriculum/skill-graph-loader';
 
 import {
@@ -64,6 +64,7 @@ function makeCountingMockCtx(cards: SrsCardRow[] = []) {
     return {
       withIndex: vi.fn().mockReturnValue({
         collect: () => Promise.resolve(rows),
+        take: () => Promise.resolve(rows),
       }),
       collect: () => Promise.resolve(rows),
     };

@@ -9,7 +9,7 @@
 // auditability contract.
 //
 // These tests target the read-side of the Convex wiring in
-//   apps/integrated-math-3/convex/onboarding/roster-import.ts
+//   apps/integrated-math-3/convex/onboarding/roster_import.ts
 // exporting getImportSummary (and listImportsForClass for the broader
 // audit surface). The mutation that produces the persisted summary is
 // covered by roster-import.test.ts; this file is concerned with the
@@ -22,7 +22,7 @@ import type { Id } from '@/convex/_generated/dataModel';
 import {
   getImportSummary,
   listImportsForClass,
-} from '@/convex/onboarding/roster-import';
+} from '@/convex/onboarding/roster_import';
 
 import {
   makeRosterMockCtx,
@@ -290,7 +290,7 @@ describe('Phase 2 mutation + summary round-trip', () => {
     // Lazy import so we can co-test the mutation and the query together
     // without adding a hard import-time coupling between the two files.
     const { importRosterMutation } = await import(
-      '@/convex/onboarding/roster-import',
+      '@/convex/onboarding/roster_import',
     );
 
     const ctx = makeRosterMockCtx({

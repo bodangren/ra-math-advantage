@@ -10,7 +10,7 @@ export interface ActivityComponentProps {
   /** Optional equation override from authored/previewed configuration. */
   equation?: string;
   /** Optional variant override from authored/previewed configuration. */
-  variant?: string;
+  variant?: 'plot_from_equation' | 'compare_functions' | 'find_intercepts' | 'graph_system';
 }
 
 /**

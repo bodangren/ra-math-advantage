@@ -67,8 +67,8 @@ export default async function StudentDashboardPage({ searchParams }: PageProps) 
   let studentVisualization: StudentVisualizationV1 | null = null;
   try {
     studentVisualization = (await fetchInternalQuery(
-      internal.student.getStudentVisualization,
-      { userId: claims.sub },
+      'student/knowledge_state:getStudentKnowledgeState',
+      { studentId: claims.sub },
     )) as StudentVisualizationV1 | null;
   } catch (error) {
     // Don't let a planner-query failure crash the whole dashboard. The panel

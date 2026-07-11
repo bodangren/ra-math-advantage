@@ -19,7 +19,7 @@ import {
   srsReviewLoadStateValidator,
   srsRuntimeMigrationVersionValidator,
   srsRuntimeModeValidator,
-} from "./srs/runtime-contract";
+} from "./srs/runtime_contract";
 
 export const textContentValidator = v.object({
   markdown: v.string(),
@@ -356,7 +356,7 @@ export default defineSchema({
     version: v.number(),
     title: v.optional(v.string()),
     description: v.optional(v.string()),
-    status: v.union(v.literal("draft"), v.literal("review"), v.literal("published"), v.literal("archived")),
+    status: v.union(v.literal("draft"), v.literal("review"), v.literal("approved"), v.literal("published"), v.literal("archived")),
     createdAt: v.number(),
   })
     .index("by_lesson", ["lessonId"])

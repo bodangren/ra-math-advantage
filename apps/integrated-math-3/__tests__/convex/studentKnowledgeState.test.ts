@@ -2,13 +2,13 @@
  * Phase 4 — Task 2: Convex query test (GREEN).
  *
  * Tests the getStudentKnowledgeStateHandler exported from
- * convex/student/knowledge-state.ts. Uses mock-ctx pattern.
+ * convex/student/knowledge_state.ts. Uses mock-ctx pattern.
  */
 
 import { describe, it, expect, vi } from 'vitest';
 import type { Id } from '@/convex/_generated/dataModel';
 
-import { getStudentKnowledgeStateHandler } from '@/convex/student/knowledge-state';
+import { getStudentKnowledgeStateHandler } from '@/convex/student/knowledge_state';
 
 import {
   studentVisualizationV1Schema,

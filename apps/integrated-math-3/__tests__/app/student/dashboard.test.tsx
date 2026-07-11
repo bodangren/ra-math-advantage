@@ -13,6 +13,12 @@ vi.mock('@/lib/convex/server', () => ({
     if (ref === 'mock-practice-stats') {
       return Promise.resolve({ dueCount: 3, streak: 5, lastPracticedAt: '2026-04-15T10:00:00.000Z' });
     }
+    if (ref === 'student/knowledge_state:getStudentKnowledgeState') {
+      return Promise.resolve({
+        schemaVersion: 'v1', mastered: [], ready: [], blocked: [], reviewDue: [],
+        recommendedNext: [], edges: [], activeMisconceptionCount: 0,
+      });
+    }
     return Promise.resolve([
       {
         unitNumber: 1,
@@ -52,12 +58,31 @@ describe('StudentDashboardPage', () => {
     expect(screen.getByTestId('practice-link')).toHaveAttribute('href', '/student/practice');
   });
 
+  it('loads the canonical v3.2 KST projection for recommendations', async () => {
+    const { fetchInternalQuery } = await import('@/lib/convex/server');
+    const mockedFetchInternalQuery = fetchInternalQuery as unknown as ReturnType<typeof vi.fn>;
+    const { default: DashboardPage } = await import('@/app/student/dashboard/page');
+
+    await DashboardPage({ searchParams: Promise.resolve({}) });
+
+    expect(mockedFetchInternalQuery).toHaveBeenCalledWith(
+      'student/knowledge_state:getStudentKnowledgeState',
+      { studentId: mockClaims.sub },
+    );
+  });
+
   it('renders daily practice card with zero items due', async () => {
     const { fetchInternalQuery } = await import('@/lib/convex/server');
     const mockedFetchInternalQuery = fetchInternalQuery as unknown as ReturnType<typeof vi.fn>;
     mockedFetchInternalQuery.mockImplementation((ref) => {
       if (ref === 'mock-practice-stats') {
         return Promise.resolve({ dueCount: 0, streak: 0, lastPracticedAt: null });
+      }
+      if (ref === 'student/knowledge_state:getStudentKnowledgeState') {
+        return Promise.resolve({
+          schemaVersion: 'v1', mastered: [], ready: [], blocked: [], reviewDue: [],
+          recommendedNext: [], edges: [], activeMisconceptionCount: 0,
+        });
       }
       return Promise.resolve([
         {

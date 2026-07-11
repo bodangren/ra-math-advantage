@@ -21,7 +21,7 @@ interface StudentVisualizationV1 {
   activeMisconceptionCount: number;
 }
 
-const QUERY_REF = 'internal.student.getStudentKnowledgeState';
+const QUERY_REF = 'student/knowledge_state:getStudentKnowledgeState';
 
 function emptyVisualization(): StudentVisualizationV1 {
   return {
@@ -46,22 +46,19 @@ function emptyVisualization(): StudentVisualizationV1 {
  *
  * Authorization: gated by requireStudentSessionClaims (student-only).
  * The Convex call uses a pending API ref — once Convex deploys pick up
- * convex/student/knowledge-state.ts, replace QUERY_REF with
- * `internal.student.getStudentKnowledgeState`.
+ * convex/student/knowledge_state.ts, replace QUERY_REF with
+ * `student/knowledge_state:getStudentKnowledgeState`.
  */
 export default async function StudentKnowledgeStatePage() {
   const claims = await requireStudentSessionClaims('/auth/login');
 
   let visualization: StudentVisualizationV1;
   try {
-    visualization = (await fetchInternalQuery(
+    const response = (await fetchInternalQuery(
       QUERY_REF,
       { studentId: claims.sub },
     )) as StudentVisualizationV1 | null;
-
-    if (!visualization) {
-      visualization = emptyVisualization();
-    }
+    visualization = response ?? emptyVisualization();
   } catch {
     visualization = emptyVisualization();
   }

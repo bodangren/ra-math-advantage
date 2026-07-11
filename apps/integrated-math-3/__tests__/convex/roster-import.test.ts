@@ -13,7 +13,7 @@
 // profiles + auth_credentials.
 //
 // These tests target the Convex-layer handlers in
-//   apps/integrated-math-3/convex/onboarding/roster-import.ts
+//   apps/integrated-math-3/convex/onboarding/roster_import.ts
 // that do not exist yet (Red phase). The pure CSV parser that lives in
 // lib/roster/parser.ts is covered by __tests__/lib/roster/parser.test.ts.
 // This file is concerned with the Convex wiring — the mutation that
@@ -31,10 +31,10 @@ import type { Id } from '@/convex/_generated/dataModel';
 
 // Production module — does not exist yet (Red phase).
 // The Green-phase implementer creates
-//   apps/integrated-math-3/convex/onboarding/roster-import.ts
+//   apps/integrated-math-3/convex/onboarding/roster_import.ts
 // exporting importRosterMutation (and the summary retrieval handlers
 // covered by import-summary.test.ts).
-import { importRosterMutation } from '@/convex/onboarding/roster-import';
+import { importRosterMutation } from '@/convex/onboarding/roster_import';
 
 // Shared mock-ctx builder — see __tests__/convex/_helpers/mockRosterCtx.ts.
 import {

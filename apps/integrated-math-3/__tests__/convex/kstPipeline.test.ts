@@ -8,7 +8,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import type { Id } from '@/convex/_generated/dataModel';
 
-import { getStudentKnowledgeStateHandler } from '@/convex/student/knowledge-state';
+import { getStudentKnowledgeStateHandler } from '@/convex/student/knowledge_state';
 
 import {
   DefaultSrsToKstBridge,
@@ -131,7 +131,10 @@ describe('Phase 4 — KST pipeline end-to-end (bridge → getKnowledgeState → 
     const mockCtx = {
       db: {
         query: vi.fn().mockReturnValue({
-          withIndex: vi.fn().mockReturnValue({ collect: () => Promise.resolve([]) }),
+          withIndex: vi.fn().mockReturnValue({
+            collect: () => Promise.resolve([]),
+            take: () => Promise.resolve([]),
+          }),
           collect: () => Promise.resolve([]),
         }),
       },

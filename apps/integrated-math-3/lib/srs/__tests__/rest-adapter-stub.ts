@@ -28,14 +28,14 @@ export class RestAdapterStub implements CardStore, ReviewLogStore {
     );
   }
 
-  async getCardByStudentAndFamily(
+  async getCardByStudentAndVariant(
     studentId: string,
-    problemFamilyId: string
+    variantKey: string
   ): Promise<SrsCardState | null> {
     return (
       Array.from(this.cards.values()).find(
         (card) =>
-          card.studentId === studentId && card.problemFamilyId === problemFamilyId
+          card.studentId === studentId && card.variantKey === variantKey
       ) ?? null
     );
   }

@@ -4,7 +4,7 @@ import type { MutationCtx, QueryCtx } from '../../../convex/_generated/server';
 import { computeComponentContentHash } from '../../../lib/activities/content-hash';
 import { resolveComponentKind } from '../../../lib/activities/review-queue';
 import { sanitizeAuthoringText } from '../../../lib/teacher/content-authoring/sanitize-authored-text';
-import { toTeacherFacingStatus } from '../../../convex/teacher/content-authoring';
+import { toTeacherFacingStatus } from '../../../convex/teacher/content_authoring';
 
 type StoreName =
   | 'profiles'
@@ -266,7 +266,7 @@ describe('Phase 2 — Draft lifecycle and persistence', () => {
   it('creates a teacher-scoped draft in draft status with normalized content', async () => {
     const {
       saveTeacherDraftHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const teacher = makeTeacher('teacher_1', 'org_1');
     const { ctx, stores } = makeMutationMockCtx({
@@ -294,7 +294,7 @@ describe('Phase 2 — Draft lifecycle and persistence', () => {
   it('is idempotent: same idempotency key patches existing rows instead of duplicating', async () => {
     const {
       saveTeacherDraftHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const teacher = makeTeacher('teacher_1', 'org_1');
     const { ctx, stores } = makeMutationMockCtx({
@@ -323,7 +323,7 @@ describe('Phase 2 — Draft lifecycle and persistence', () => {
   it('persists sanitized free-text fields, not raw unsafe markup', async () => {
     const {
       saveTeacherDraftHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const teacher = makeTeacher('teacher_1', 'org_1');
     const { ctx, stores } = makeMutationMockCtx({
@@ -375,7 +375,7 @@ describe('Phase 2 — Draft lifecycle and persistence', () => {
       saveTeacherDraftHandler,
       submitDraftForReviewHandler,
       publishAuthoredLessonHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const teacher = makeTeacher('teacher_1', 'org_1');
     const { ctx } = makeMutationMockCtx({ profiles: [teacher] });
@@ -409,7 +409,7 @@ describe('Phase 2 — Draft lifecycle and persistence', () => {
       submitDraftForReviewHandler,
       reviewAuthoredLessonHandler,
       editRejectedDraftHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const teacher = makeTeacher('teacher_1', 'org_1');
     const { ctx, stores } = makeMutationMockCtx({ profiles: [teacher] });
@@ -454,7 +454,7 @@ describe('Phase 2 — Approval queue and content hashing', () => {
     const {
       saveTeacherDraftHandler,
       submitDraftForReviewHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const teacher = makeTeacher('teacher_1', 'org_1');
     const { ctx, stores } = makeMutationMockCtx({ profiles: [teacher] });
@@ -503,7 +503,7 @@ describe('Phase 2 — Approval queue and content hashing', () => {
       submitDraftForReviewHandler,
       reviewAuthoredLessonHandler,
       publishAuthoredLessonHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const teacher = makeTeacher('teacher_1', 'org_1');
     const { ctx } = makeMutationMockCtx({ profiles: [teacher] });
@@ -542,7 +542,7 @@ describe('Phase 2 — Approval queue and content hashing', () => {
       reviewAuthoredLessonHandler,
       editRejectedDraftHandler,
       publishAuthoredLessonHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const teacher = makeTeacher('teacher_1', 'org_1');
     const { ctx } = makeMutationMockCtx({ profiles: [teacher] });
@@ -586,7 +586,7 @@ describe('Phase 2 — Approval queue and content hashing', () => {
       saveTeacherDraftHandler,
       submitDraftForReviewHandler,
       reviewAuthoredLessonHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const teacher = makeTeacher('teacher_1', 'org_1');
     const { ctx } = makeMutationMockCtx({ profiles: [teacher] });
@@ -626,7 +626,7 @@ describe('Phase 2 — Teacher authorization and assignment/enrollment visibility
   it('rejects non-teachers from creating or mutating drafts', async () => {
     const {
       saveTeacherDraftHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const student = makeStudent('student_1', 'org_1');
     const parent = {
@@ -650,7 +650,7 @@ describe('Phase 2 — Teacher authorization and assignment/enrollment visibility
     const {
       saveTeacherDraftHandler,
       submitDraftForReviewHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const owner = makeTeacher('teacher_owner', 'org_1');
     const other = makeTeacher('teacher_other', 'org_1');
@@ -677,7 +677,7 @@ describe('Phase 2 — Teacher authorization and assignment/enrollment visibility
       saveTeacherDraftHandler,
       submitDraftForReviewHandler,
       reviewAuthoredLessonHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const owner = makeTeacher('teacher_owner', 'org_1');
     const other = makeTeacher('teacher_other', 'org_1');
@@ -719,7 +719,7 @@ describe('Phase 2 — Teacher authorization and assignment/enrollment visibility
       reviewAuthoredLessonHandler,
       publishAuthoredLessonHandler,
       assignAuthoredLessonHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const teacher = makeTeacher('teacher_1', 'org_1');
     const otherTeacher = makeTeacher('teacher_2', 'org_1');
@@ -794,7 +794,7 @@ describe('Phase 2 — Teacher authorization and assignment/enrollment visibility
       publishAuthoredLessonHandler,
       assignAuthoredLessonHandler,
       getAuthoredLessonForStudentHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const teacher = makeTeacher('teacher_1', 'org_1');
     const activeStudent = makeStudent('student_active', 'org_1');
@@ -906,7 +906,7 @@ describe('Phase 2 — Teacher-facing status mapping', () => {
       submitDraftForReviewHandler,
       reviewAuthoredLessonHandler,
       editRejectedDraftHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const teacher = makeTeacher('teacher_1', 'org_1');
     const { ctx } = makeMutationMockCtx({ profiles: [teacher] });
@@ -964,7 +964,7 @@ describe('Phase 2 — Adversarial — Lifecycle edge cases', () => {
     const {
       saveTeacherDraftHandler,
       submitDraftForReviewHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const teacher = makeTeacher('teacher_1', 'org_1');
     const { ctx } = makeMutationMockCtx({ profiles: [teacher] });
@@ -996,7 +996,7 @@ describe('Phase 2 — Adversarial — Lifecycle edge cases', () => {
       saveTeacherDraftHandler,
       submitDraftForReviewHandler,
       reviewAuthoredLessonHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const teacher = makeTeacher('teacher_1', 'org_1');
     const { ctx } = makeMutationMockCtx({ profiles: [teacher] });
@@ -1034,7 +1034,7 @@ describe('Phase 2 — Adversarial — Lifecycle edge cases', () => {
       submitDraftForReviewHandler,
       reviewAuthoredLessonHandler,
       publishAuthoredLessonHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const teacher = makeTeacher('teacher_1', 'org_1');
     const { ctx, stores } = makeMutationMockCtx({ profiles: [teacher] });
@@ -1085,7 +1085,7 @@ describe('Phase 2 — Adversarial — Lifecycle edge cases', () => {
       submitDraftForReviewHandler,
       reviewAuthoredLessonHandler,
       editRejectedDraftHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const teacher = makeTeacher('teacher_1', 'org_1');
     const { ctx, stores } = makeMutationMockCtx({ profiles: [teacher] });
@@ -1236,7 +1236,7 @@ describe('Phase 2 — Adversarial — Lifecycle edge cases', () => {
       saveTeacherDraftHandler,
       submitDraftForReviewHandler,
       editRejectedDraftHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const teacher = makeTeacher('teacher_1', 'org_1');
     const { ctx } = makeMutationMockCtx({ profiles: [teacher] });
@@ -1274,7 +1274,7 @@ describe('Phase 2 — Adversarial — Lifecycle edge cases', () => {
       saveTeacherDraftHandler,
       submitDraftForReviewHandler,
       reviewAuthoredLessonHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const teacher = makeTeacher('teacher_1', 'org_1');
     const { ctx } = makeMutationMockCtx({ profiles: [teacher] });
@@ -1314,7 +1314,7 @@ describe('Phase 2 — Adversarial — Idempotency abuse', () => {
   it('same idempotency key with DIFFERENT title patches the existing lesson (no duplicate lessons)', async () => {
     const {
       saveTeacherDraftHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const teacher = makeTeacher('teacher_1', 'org_1');
     const { ctx, stores } = makeMutationMockCtx({ profiles: [teacher] });
@@ -1344,7 +1344,7 @@ describe('Phase 2 — Adversarial — Idempotency abuse', () => {
   it('saving with the same idempotency key while reducing activity count in a section does not leave orphan activities', async () => {
     const {
       saveTeacherDraftHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const teacher = makeTeacher('teacher_1', 'org_1');
     const { ctx, stores } = makeMutationMockCtx({ profiles: [teacher] });
@@ -1422,7 +1422,7 @@ describe('Phase 2 — Adversarial — Idempotency abuse', () => {
   it('concurrent-ish sequential saves with the same key leave the DB in a coherent state', async () => {
     const {
       saveTeacherDraftHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const teacher = makeTeacher('teacher_1', 'org_1');
     const { ctx, stores } = makeMutationMockCtx({ profiles: [teacher] });
@@ -1464,7 +1464,7 @@ describe('Phase 2 — Adversarial — Approval/hash tampering', () => {
       submitDraftForReviewHandler,
       reviewAuthoredLessonHandler,
       publishAuthoredLessonHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const teacher = makeTeacher('teacher_1', 'org_1');
     const { ctx, stores } = makeMutationMockCtx({ profiles: [teacher] });
@@ -1520,7 +1520,7 @@ describe('Phase 2 — Adversarial — Approval/hash tampering', () => {
       submitDraftForReviewHandler,
       reviewAuthoredLessonHandler,
       publishAuthoredLessonHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const teacher = makeTeacher('teacher_1', 'org_1');
     const { ctx, stores } = makeMutationMockCtx({ profiles: [teacher] });
@@ -1576,7 +1576,7 @@ describe('Phase 2 — Adversarial — Approval/hash tampering', () => {
       submitDraftForReviewHandler,
       reviewAuthoredLessonHandler,
       publishAuthoredLessonHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const teacher = makeTeacher('teacher_1', 'org_1');
     const { ctx, stores } = makeMutationMockCtx({ profiles: [teacher] });
@@ -1631,7 +1631,7 @@ describe('Phase 2 — Adversarial — Approval/hash tampering', () => {
     const {
       saveTeacherDraftHandler,
       submitDraftForReviewHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const teacher = makeTeacher('teacher_1', 'org_1');
     const { ctx, stores } = makeMutationMockCtx({ profiles: [teacher] });
@@ -1749,7 +1749,7 @@ describe('Phase 2 — Adversarial — Authorization boundaries', () => {
       submitDraftForReviewHandler,
       reviewAuthoredLessonHandler,
       editRejectedDraftHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const owner = makeTeacher('teacher_owner', 'org_1');
     const other = makeTeacher('teacher_other', 'org_1');
@@ -1800,7 +1800,7 @@ describe('Phase 2 — Adversarial — Authorization boundaries', () => {
       submitDraftForReviewHandler,
       reviewAuthoredLessonHandler,
       publishAuthoredLessonHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const owner = makeTeacher('teacher_owner', 'org_1');
     const other = makeTeacher('teacher_other', 'org_1');
@@ -1839,7 +1839,7 @@ describe('Phase 2 — Adversarial — Authorization boundaries', () => {
       reviewAuthoredLessonHandler,
       publishAuthoredLessonHandler,
       assignAuthoredLessonHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const owner = makeTeacher('teacher_owner', 'org_1');
     const other = makeTeacher('teacher_other', 'org_1');
@@ -1898,7 +1898,7 @@ describe('Phase 2 — Adversarial — Authorization boundaries', () => {
       submitDraftForReviewHandler,
       reviewAuthoredLessonHandler,
       publishAuthoredLessonHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const owner = makeTeacher('teacher_owner', 'org_1');
     const admin = makeTeacher('admin_alice', 'org_1', 'admin');
@@ -1937,7 +1937,7 @@ describe('Phase 2 — Adversarial — Authorization boundaries', () => {
       reviewAuthoredLessonHandler,
       publishAuthoredLessonHandler,
       assignAuthoredLessonHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const teacher = makeTeacher('teacher_1', 'org_1');
     const cls = {
@@ -1988,7 +1988,7 @@ describe('Phase 2 — Adversarial — Authorization boundaries', () => {
     const {
       saveTeacherDraftHandler,
       assignAuthoredLessonHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const teacher = makeTeacher('teacher_1', 'org_1');
     const cls = {
@@ -2029,7 +2029,7 @@ describe('Phase 2 — Adversarial — Student visibility failure paths', () => {
       saveTeacherDraftHandler,
       submitDraftForReviewHandler,
       getAuthoredLessonForStudentHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const teacher = makeTeacher('teacher_1', 'org_1');
     const activeStudent = makeStudent('student_active', 'org_1');
@@ -2098,7 +2098,7 @@ describe('Phase 2 — Adversarial — Student visibility failure paths', () => {
       publishAuthoredLessonHandler,
       assignAuthoredLessonHandler,
       getAuthoredLessonForStudentHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const teacher = makeTeacher('teacher_1', 'org_1');
     const completedStudent = makeStudent('student_completed', 'org_1');
@@ -2169,7 +2169,7 @@ describe('Phase 2 — Adversarial — Student visibility failure paths', () => {
       reviewAuthoredLessonHandler,
       publishAuthoredLessonHandler,
       getAuthoredLessonForStudentHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const teacher = makeTeacher('teacher_1', 'org_1');
     const activeStudent = makeStudent('student_active', 'org_1');
@@ -2232,7 +2232,7 @@ describe('Phase 2 — Adversarial — Student visibility failure paths', () => {
 describe('Phase 2 — Adversarial — Input validation', () => {
   it('rejects drafts with an empty phases array at save time', async () => {
     const { saveTeacherDraftHandler } = await import(
-      '../../../convex/teacher/content-authoring'
+      '../../../convex/teacher/content_authoring'
     );
 
     const teacher = makeTeacher('teacher_1', 'org_1');
@@ -2249,7 +2249,7 @@ describe('Phase 2 — Adversarial — Input validation', () => {
 
   it('rejects drafts with an empty activities array inside a section at save time', async () => {
     const { saveTeacherDraftHandler } = await import(
-      '../../../convex/teacher/content-authoring'
+      '../../../convex/teacher/content_authoring'
     );
 
     const teacher = makeTeacher('teacher_1', 'org_1');
@@ -2280,7 +2280,7 @@ describe('Phase 2 — Adversarial — Input validation', () => {
 
   it('rejects drafts whose activity props fail the canonical schema', async () => {
     const { saveTeacherDraftHandler } = await import(
-      '../../../convex/teacher/content-authoring'
+      '../../../convex/teacher/content_authoring'
     );
 
     const teacher = makeTeacher('teacher_1', 'org_1');
@@ -2317,7 +2317,7 @@ describe('Phase 2 — Adversarial — Input validation', () => {
 
   it('rejects drafts that reference a placeholder / schema-less componentKey', async () => {
     const { saveTeacherDraftHandler } = await import(
-      '../../../convex/teacher/content-authoring'
+      '../../../convex/teacher/content_authoring'
     );
 
     const teacher = makeTeacher('teacher_1', 'org_1');
@@ -2356,7 +2356,7 @@ describe('Phase 2 — Adversarial — Input validation', () => {
   it('strips unsafe markup in activity prompts before persistence, and the sanitized text is reflected in the stored props', async () => {
     const {
       saveTeacherDraftHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const teacher = makeTeacher('teacher_1', 'org_1');
     const { ctx, stores } = makeMutationMockCtx({ profiles: [teacher] });
@@ -2440,7 +2440,7 @@ describe('Phase 2 — Adversarial — Review A orphan activity repro', () => {
       submitDraftForReviewHandler,
       reviewAuthoredLessonHandler,
       editRejectedDraftHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const teacher = makeTeacher('teacher_1', 'org_1');
     const { ctx, stores } = makeMutationMockCtx({ profiles: [teacher] });
@@ -2573,7 +2573,7 @@ describe('Phase 2 — Adversarial — Review A orphan activity repro', () => {
       submitDraftForReviewHandler,
       reviewAuthoredLessonHandler,
       editRejectedDraftHandler,
-    } = await import('../../../convex/teacher/content-authoring');
+    } = await import('../../../convex/teacher/content_authoring');
 
     const teacher = makeTeacher('teacher_1', 'org_1');
     const { ctx, stores } = makeMutationMockCtx({ profiles: [teacher] });

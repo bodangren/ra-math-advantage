@@ -77,7 +77,7 @@ function exportArgsOf(wrapper: unknown): string {
 describe('roster-import Convex wrappers — args validator correctness', () => {
   it('getImportSummaryQuery.args.importId is v.id("roster_imports")', async () => {
     const { getImportSummaryQuery } = await import(
-      '@/convex/onboarding/roster-import'
+      '@/convex/onboarding/roster_import'
     );
 
     const args = parseArgs(exportArgsOf(getImportSummaryQuery));
@@ -91,7 +91,7 @@ describe('roster-import Convex wrappers — args validator correctness', () => {
 
   it('getImportSummaryQuery.args.classId is v.id("classes")', async () => {
     const { getImportSummaryQuery } = await import(
-      '@/convex/onboarding/roster-import'
+      '@/convex/onboarding/roster_import'
     );
 
     const args = parseArgs(exportArgsOf(getImportSummaryQuery));
@@ -105,7 +105,7 @@ describe('roster-import Convex wrappers — args validator correctness', () => {
 
   it('importRoster.args.importedBy is v.id("profiles")', async () => {
     const { importRoster } = await import(
-      '@/convex/onboarding/roster-import'
+      '@/convex/onboarding/roster_import'
     );
 
     const args = parseArgs(exportArgsOf(importRoster));
@@ -119,7 +119,7 @@ describe('roster-import Convex wrappers — args validator correctness', () => {
 
   it('importRoster.args.classId is v.id("classes")', async () => {
     const { importRoster } = await import(
-      '@/convex/onboarding/roster-import'
+      '@/convex/onboarding/roster_import'
     );
 
     const args = parseArgs(exportArgsOf(importRoster));
@@ -133,7 +133,7 @@ describe('roster-import Convex wrappers — args validator correctness', () => {
 
   it('listImportsForClassQuery.args.classId is v.id("classes")', async () => {
     const { listImportsForClassQuery } = await import(
-      '@/convex/onboarding/roster-import'
+      '@/convex/onboarding/roster_import'
     );
 
     const args = parseArgs(exportArgsOf(listImportsForClassQuery));
@@ -147,7 +147,7 @@ describe('roster-import Convex wrappers — args validator correctness', () => {
 
   it('importRoster.args.rows is v.array(v.object({...})) with all four CSV columns', async () => {
     const { importRoster } = await import(
-      '@/convex/onboarding/roster-import'
+      '@/convex/onboarding/roster_import'
     );
 
     const args = parseArgs(exportArgsOf(importRoster));
@@ -169,7 +169,7 @@ describe('roster-import Convex wrappers — args validator correctness', () => {
 
   it('importRoster.args.source is v.optional(v.object({fileName, rowCount}))', async () => {
     const { importRoster } = await import(
-      '@/convex/onboarding/roster-import'
+      '@/convex/onboarding/roster_import'
     );
 
     const args = parseArgs(exportArgsOf(importRoster));

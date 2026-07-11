@@ -75,7 +75,7 @@ function makeSrsCard(args: {
     cardId,
     studentId: studentId as Id<'profiles'>,
     objectiveId: `obj_${cardId}`,
-    problemFamilyId: `pf_${cardId}`,
+    variantKey: `pf_${cardId}`,
     stability,
     difficulty: 3,
     state: 'review' as const,
@@ -254,8 +254,8 @@ describe('aggregateCohortMetricsHandler (Phase 2 Red — Task 1)', () => {
         makeEnrollment({ studentId: 'stu_b' }),
       ],
       cards: [
-        makeSrsCard({ studentId: 'stu_a', cardId: 'c1', stability: 30, reps: 3 }),
-        makeSrsCard({ studentId: 'stu_b', cardId: 'c2', stability: 90, reps: 5 }),
+        makeSrsCard({ studentId: 'stu_a', cardId: 'c1', stability: 30, reps: 3 }) as unknown as import('@math-platform/srs-engine').SrsCardState,
+        makeSrsCard({ studentId: 'stu_b', cardId: 'c2', stability: 90, reps: 5 }) as unknown as import('@math-platform/srs-engine').SrsCardState,
       ],
       reviews: [
         makeReviewLog({ studentId: 'stu_a', cardId: 'c1', rating: 'Good', reviewedAtMs: COHORT_START_MS + 1 * MS_PER_DAY }),
@@ -313,7 +313,7 @@ describe('aggregateCohortMetricsHandler (Phase 2 Red — Task 1)', () => {
       },
     );
 
-    const reviewSuccess = result.metrics.reviewSuccess as ReturnType<typeof computeReviewSuccessRate> | undefined;
+    const reviewSuccess = result.metrics.reviewSuccess;
     expect(reviewSuccess).toBeDefined();
     // Only the inside-window review counts → totalCount = 1, success = 1.
     expect(reviewSuccess?.totalCount).toBe(1);
