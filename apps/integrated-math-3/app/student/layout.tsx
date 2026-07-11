@@ -7,6 +7,6 @@ import { requireStudentSessionClaims } from '@/lib/auth/server';
  * @returns {JSX.Element} The rendered StudentLayout JSX.
  */
 export default async function StudentLayout({ children }: { children: React.ReactNode }) {
-  await requireStudentSessionClaims('/auth/login');
+  await requireStudentSessionClaims('/student/dashboard');
   return <>{children}</>;
 }
