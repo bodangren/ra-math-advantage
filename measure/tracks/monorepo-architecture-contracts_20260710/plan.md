@@ -45,10 +45,10 @@
 
 ## Phase 4: Generate Docs, Doctor, and Architecture Gate
 
-- [~] Task: Generate package DAG, ownership, exports, and quality-gate reports
-    - [ ] Run `measure/generate.sh`
-    - [ ] Update architecture, tech stack, and CI documentation
-- [ ] Task: Run all workspace and injected-violation gates
+- [x] Task: Generate package DAG, ownership, exports, and quality-gate reports [ae2c217]
+    - [x] Run `measure/generate.sh`
+    - [x] Update architecture, tech stack, and CI documentation
+- [~] Task: Run all workspace and injected-violation gates
     - [ ] Run every package/app quality command represented in the manifest
     - [ ] Run architecture fixtures, boundary checks, and `measure/doctor.sh`
 - [ ] Task: Measure - User Manual Verification 'Phase 4: Generate Docs, Doctor, and Architecture Gate' (Protocol in workflow.md)
