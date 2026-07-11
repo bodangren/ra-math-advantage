@@ -44,7 +44,7 @@ This track owns removal or reconciliation of the exact, expiring
 - [x] Task: Implement widened schemas and dual-version adapters [358d8b2]
 - [x] Task: Reconcile the accepted IM3 package dependencies in the app manifest [34b0c83]
 - [x] Task: Implement dual writes, bounded dual reads, comparison telemetry, and feature flags [f90fd9a]
-- [ ] Task: Obtain explicit approval and integrate `@convex-dev/migrations` if not already installed
+- [x] Task: Obtain explicit approval and integrate `@convex-dev/migrations` if not already installed [879355b]
 - [ ] Task: Implement batched placement, card, review-log, and practice-variant migrations
 - [ ] Task: Run local/dev dry runs, inspect status, and execute verification queries
 - [ ] Task: Cut IM3 runtime and BM2 queue consumers to canonical v3.2 behavior
