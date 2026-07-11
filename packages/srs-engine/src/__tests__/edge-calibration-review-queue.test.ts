@@ -214,16 +214,16 @@ describe('buildReviewQueueItem (FR6, AC6)', () => {
 
   it('records the flaggedAt timestamp from the `now` option (default falls back to Date.now())', () => {
     const input = makeInput();
-    const before = Date.now();
     const item = buildReviewQueueItem(input, { now: 1_700_000_000_000 });
-    const after = Date.now();
     expect(item).not.toBeNull();
     expect(item!.flaggedAt).toBe(1_700_000_000_000);
     // also assert the default path
+    const defaultBefore = Date.now();
     const defaulted = buildReviewQueueItem(input);
+    const defaultAfter = Date.now();
     expect(defaulted).not.toBeNull();
-    expect(defaulted!.flaggedAt).toBeGreaterThanOrEqual(before);
-    expect(defaulted!.flaggedAt).toBeLessThanOrEqual(after);
+    expect(defaulted!.flaggedAt).toBeGreaterThanOrEqual(defaultBefore);
+    expect(defaulted!.flaggedAt).toBeLessThanOrEqual(defaultAfter);
   });
 });
 
