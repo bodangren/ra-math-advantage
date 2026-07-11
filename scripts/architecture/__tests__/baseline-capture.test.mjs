@@ -10,10 +10,16 @@ const BASELINE_URL = new URL(
   import.meta.url,
 );
 
-test('the committed architecture baseline is a reproducible live-repository projection', async () => {
-  const committed = JSON.parse(await readFile(BASELINE_URL, 'utf8'));
-  const live = await captureArchitectureBaseline(REPO_ROOT, { baselineDate: '2026-07-10' });
-  assert.deepEqual(committed, live);
+async function committedBaseline() {
+  return JSON.parse(await readFile(BASELINE_URL, 'utf8'));
+}
+
+test('the committed architecture baseline is immutable, versioned evidence', async () => {
+  const committed = await committedBaseline();
+  assert.equal(committed.schemaVersion, 'lms-architecture-baseline.v1');
+  assert.equal(committed.baselineDate, '2026-07-10');
+  assert.equal(committed.workspaceInventory.total, 25);
+  assert.equal(committed.duplicateProductionSources.groupCount, 43);
 });
 
 test('pins the complete workspace and package-DAG baseline', async () => {
@@ -28,7 +34,7 @@ test('pins the complete workspace and package-DAG baseline', async () => {
 });
 
 test('pins all eight packages omitted from the legacy CI matrix', async () => {
-  const baseline = await captureArchitectureBaseline(REPO_ROOT, { baselineDate: '2026-07-10' });
+  const baseline = await committedBaseline();
   assert.deepEqual(baseline.ciCoverage.omittedPackages, [
     'app-shell',
     'efficacy-core',
@@ -49,7 +55,7 @@ test('reproduces the 43-group and 123295-byte duplicate-source baseline', async 
 });
 
 test('records the known policy and quality violations with follow-up ownership', async () => {
-  const baseline = await captureArchitectureBaseline(REPO_ROOT, { baselineDate: '2026-07-10' });
+  const baseline = await committedBaseline();
   assert.deepEqual(
     baseline.knownViolations.map((violation) => violation.ruleId),
     [

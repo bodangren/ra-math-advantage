@@ -29,14 +29,22 @@ jobs:
       fail-fast: false
       matrix:
         package:
+          - activity-components
           - activity-runtime
           - ai-tutoring
+          - app-shell
           - component-approval
           - core-auth
           - core-convex
+          - efficacy-core
           - graphing-core
+          - knowledge-space-core
+          - knowledge-space-practice
+          - lesson-renderer
+          - math-content
           - practice-core
           - practice-test-engine
+          - rate-limiter
           - srs-engine
           - study-hub-core
           - teacher-reporting-core
@@ -88,6 +96,11 @@ jobs:
 
       - name: Run monorepo boundary check
         run: node scripts/check-monorepo-boundaries.mjs
+        env:
+          CI: true
+
+      - name: Verify root and CI workspace parity
+        run: node scripts/architecture/check-quality-parity.mjs
         env:
           CI: true
 
