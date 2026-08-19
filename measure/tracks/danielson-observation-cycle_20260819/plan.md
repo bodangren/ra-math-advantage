@@ -8,7 +8,7 @@
 
 ## Phase 1: Contract and Schema Definition
 
-- [ ] Task 1.1: Define walkthrough and formal-observation schemas
+- [~] Task 1.1: Define walkthrough and formal-observation schemas
     - [ ] Define draft and submitted records
     - [ ] Define three target outcomes and optional evidence notes
     - [ ] Define Q1 and Q4 record types and observer permissions

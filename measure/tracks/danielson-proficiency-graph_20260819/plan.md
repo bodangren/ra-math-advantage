@@ -54,36 +54,40 @@
 - [x] Task 2.6: Measure - User Manual Verification 'Phase 2: Test' (Protocol in workflow.md)
     - User directed full-track continuation on 2026-08-19.
 
-## Phase 3: Implement
+## Phase 3: Implement [checkpoint: 7e733a0]
 
-- [ ] Task 3.1: Implement the reviewed content import
-    - [ ] Create app-owned source manifests and normalized graph data
-    - [ ] Preserve unresolved mappings in a review queue
-- [ ] Task 3.2: Implement graph validation and projections
-    - [ ] Reuse the canonical graph schemas and validation functions
-    - [ ] Expose role-safe projections instead of raw graph files
-- [ ] Task 3.3: Implement the proficiency evidence adapter
-    - [ ] Normalize and persist idempotent evidence outcomes
-    - [ ] Apply the raw-rating, point, and SRS mapping rules
-    - [ ] Exclude all comment content
-- [ ] Task 3.4: Implement Q1 and walkthrough evidence projection
-    - [ ] Fan out Q1 component evidence with shared provenance
-    - [ ] Limit walkthrough evidence to rated targets
-- [ ] Task 3.5: Implement app-owned KST and SRS adapters
-    - [ ] Connect app persistence to canonical card and review-log ports
-    - [ ] Produce due, overdue, proficiency, and evidence-gap projections
-    - [ ] Enforce the stable-skill interval cap
-- [ ] Task 3.6: Measure - User Manual Verification 'Phase 3: Implement' (Protocol in workflow.md)
+- [x] Task 3.1: Implement the reviewed content import — `7e733a0`
+    - [x] Create app-owned source manifests and normalized graph data
+    - [x] Preserve unresolved mappings in a review queue
+- [x] Task 3.2: Implement graph validation and projections — `7e733a0`
+    - [x] Reuse the canonical graph schemas and validation functions
+    - [x] Expose role-safe projections instead of raw graph files
+- [x] Task 3.3: Implement the proficiency evidence adapter — `7e733a0`
+    - [x] Normalize and persist idempotent evidence outcomes
+    - [x] Apply the raw-rating, point, and SRS mapping rules
+    - [x] Exclude all comment content
+- [x] Task 3.4: Implement Q1 and walkthrough evidence projection — `7e733a0`
+    - [x] Fan out Q1 component evidence with shared provenance
+    - [x] Limit walkthrough evidence to rated targets
+- [x] Task 3.5: Implement app-owned KST and SRS adapters — `7e733a0`
+    - [x] Connect app persistence to canonical card and review-log ports
+    - [x] Produce due, overdue, proficiency, and evidence-gap projections
+    - [x] Enforce the stable-skill interval cap
+- [x] Task 3.6: Measure - User Manual Verification 'Phase 3: Implement' — user directed full-track continuation
 
-## Phase 4: Generate Docs and Doctor
+## Phase 4: Generate Docs and Doctor [checkpoint: 7e733a0]
 
-- [ ] Task 4.1: Run focused and workspace quality gates
-    - [ ] Run graph, evidence, KST, SRS, coverage, lint, typecheck, and build gates
-    - [ ] Run deterministic replay and boundary tests
-- [ ] Task 4.2: Generate source and architecture facts
-    - [ ] Generate graph inventory, provenance, review-queue, and dependency facts
-    - [ ] Run `npm run generate`
-- [ ] Task 4.3: Run validation and Measure Doctor
-    - [ ] Run graph validation, monorepo boundaries, inventory parity, and `npm run doctor`
-    - [ ] Confirm that the active student evidence contract did not change
-- [ ] Task 4.4: Measure - User Manual Verification 'Phase 4: Generate Docs and Doctor' (Protocol in workflow.md)
+- [x] Task 4.1: Run focused and workspace quality gates — `7e733a0`
+    - [x] Run graph, evidence, KST, SRS, coverage, lint, typecheck, and build gates
+    - [x] Run deterministic replay and boundary tests
+- [x] Task 4.2: Generate source and architecture facts — `7e733a0`
+    - [x] Generate graph inventory, provenance, review-queue, and dependency facts
+    - [x] Run `npm run generate`
+- [x] Task 4.3: Run validation and Measure Doctor — `7e733a0`
+    - [x] Run graph validation, monorepo boundaries, inventory parity, and `npm run doctor`
+    - [x] Confirm that the active student evidence contract did not change
+- [x] Task 4.4: Complete the independent final review — `7e733a0`
+    - [x] Review the implementation against the specification and plan
+    - [x] Correct authorization, idempotency, event-order, SRS, KST, source, and write-scope findings
+    - [x] Confirm that no actionable finding remains
+- [x] Task 4.5: Measure - User Manual Verification 'Phase 4: Generate Docs and Doctor' — user directed full-track continuation
