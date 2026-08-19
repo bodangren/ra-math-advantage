@@ -48,18 +48,18 @@
 - [x] Task 2.6: Measure - User Manual Verification 'Phase 2: Test' (Protocol in workflow.md)
     - User directed full-track continuation on 2026-08-19.
 
-## Phase 3: Implement [checkpoint: 1b3fd51]
+## Phase 3: Implement [checkpoint: 33b0192]
 
-- [x] Task 3.1: Implement bounded portfolio queries and presentation — `e1ea479b`, `2ce973bb`, `1b3fd519`
+- [x] Task 3.1: Implement bounded portfolio queries and presentation — `e1ea479b`, `2ce973bb`, `1b3fd519`, `57e32742`
     - [x] Batch and group source data without one query per teacher
     - [x] Render compact rows, attention reasons, scope filters, and pagination
-- [x] Task 3.2: Implement teacher drill-down reports — `e1ea479b`, `2ce973bb`, `1b3fd519`
+- [x] Task 3.2: Implement teacher drill-down reports — `e1ea479b`, `2ce973bb`, `1b3fd519`, `57e32742`, `1855c805`, `33b01921`
     - [x] Render official ratings, current proficiency, history, amendments, and due evidence
     - [x] Preserve each below-standard component
-- [x] Task 3.3: Implement public and private comments — `2ce973bb`, `1b3fd519`
+- [x] Task 3.3: Implement public and private comments — `2ce973bb`, `1b3fd519`, `1855c805`, `33b01921`
     - [x] Persist separate record types
     - [x] Enforce role scope and self-subject exclusion before returning data
-- [x] Task 3.4: Implement teacher reports and one response — `2ce973bb`, `1b3fd519`
+- [x] Task 3.4: Implement teacher reports and one response — `2ce973bb`, `1b3fd519`, `33b01921`
     - [x] Render only teacher-visible fields
     - [x] Enforce one final response and no replies
 - [x] Task 3.5: Implement IP and GBF projection seams — `e1ea479b`, `2ce973bb`, `1b3fd519`
