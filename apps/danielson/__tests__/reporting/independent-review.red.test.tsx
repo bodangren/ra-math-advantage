@@ -358,17 +358,38 @@ describe('reporting independent-review backend contracts', () => {
     }
 
     const evidence = await readAllPages(
-      requiredHandler('listLeadershipEvidenceHistory'),
+      requiredHandler<
+        {
+          actorAccountId: string;
+          teacherProfileId: string;
+          paginationOpts: { cursor: string | null; numItems: number };
+        },
+        PageResult<Record<string, unknown>>
+      >('listLeadershipEvidenceHistory'),
       db,
       { actorAccountId: LEADER, teacherProfileId: TEACHER },
     );
     const publicComments = await readAllPages(
-      handler(reportingFunctions.listLeadershipPublicComments),
+      handler<
+        {
+          actorAccountId: string;
+          teacherProfileId: string;
+          paginationOpts: { cursor: string | null; numItems: number };
+        },
+        PageResult<Record<string, unknown>>
+      >(reportingFunctions.listLeadershipPublicComments),
       db,
       { actorAccountId: LEADER, teacherProfileId: TEACHER },
     );
     const privateComments = await readAllPages(
-      handler(reportingFunctions.listLeadershipPrivateComments),
+      handler<
+        {
+          actorAccountId: string;
+          teacherProfileId: string;
+          paginationOpts: { cursor: string | null; numItems: number };
+        },
+        PageResult<Record<string, unknown>>
+      >(reportingFunctions.listLeadershipPrivateComments),
       db,
       { actorAccountId: LEADER, teacherProfileId: TEACHER },
     );
