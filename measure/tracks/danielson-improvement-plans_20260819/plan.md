@@ -8,26 +8,27 @@
 
 **Pipeline:** Contract and Schema → Test → Implement → Generate Docs and Doctor
 
-## Phase 1: Contract and Schema Definition
+## Phase 1: Contract and Schema Definition [checkpoint: f9ab7ef]
 
-- [ ] Task 1.1: Freeze the normalized PIP source contract
-    - [ ] Preserve each supplied form field and fixed text section
-    - [ ] Define source version and content hash for the normalized form
-- [ ] Task 1.2: Define plan and target schemas
-    - [ ] Define teacher, department, supervisor, dates, narrative fields, targets, and expected standards
-    - [ ] Define stable Danielson and GBF or TLAC source references
-- [ ] Task 1.3: Define the lifecycle and authorization matrix
-    - [ ] Define proposed, active, and closed states
-    - [ ] Define supervisor proposal and SLT approval and closure permissions
-    - [ ] Define one-active-plan and organization-scope rules
-- [ ] Task 1.4: Define acknowledgment and version contracts
-    - [ ] Define teacher and supervisor acknowledgment records
-    - [ ] Define immutable approval and material-revision behavior
-- [ ] Task 1.5: Define cadence, progress, and report projections
-    - [ ] Define seven-day target intervals and high priority
-    - [ ] Define on-track, off-track, days-remaining, and outcome fields
-    - [ ] Exclude no-evidence outcomes and all comments
-- [ ] Task 1.6: Measure - User Manual Verification 'Phase 1: Contract and Schema Definition' (Protocol in workflow.md)
+- [x] Task 1.1: Freeze the normalized PIP source contract
+    - [x] Preserve each supplied form field and fixed text section
+    - [x] Define source version and content hash for the normalized form
+- [x] Task 1.2: Define plan and target schemas
+    - [x] Define teacher, department, supervisor, dates, narrative fields, targets, and expected standards
+    - [x] Define stable Danielson and GBF or TLAC source references
+- [x] Task 1.3: Define the lifecycle and authorization matrix
+    - [x] Define proposed, active, and closed states
+    - [x] Define supervisor proposal and SLT approval and closure permissions
+    - [x] Define one-active-plan and organization-scope rules
+- [x] Task 1.4: Define acknowledgment and version contracts
+    - [x] Define teacher and supervisor acknowledgment records
+    - [x] Define immutable approval and material-revision behavior
+- [x] Task 1.5: Define cadence, progress, and report projections
+    - [x] Define seven-day target intervals and high priority
+    - [x] Define on-track, off-track, days-remaining, and outcome fields
+    - [x] Exclude no-evidence outcomes and all comments
+- [x] Task 1.6: Measure - User Manual Verification 'Phase 1: Contract and Schema Definition' (Protocol in workflow.md)
+    - User directed full-track continuation on 2026-08-19.
 
 ## Phase 2: Test
 
