@@ -47,6 +47,7 @@ export function walkthroughDraft(overrides: Record<string, unknown> = {}) {
     schoolYear: '2026-2027',
     sourceVersion: 'danielson-observation.v1',
     frameworkVersion: 'danielson-2022',
+    observedAt: '2026-09-15T07:45:00.000Z',
     status: 'draft',
     revision: 1,
     createdAt: OBSERVATION_NOW_MS,
@@ -99,4 +100,3 @@ export function formalDraft(
     ...overrides,
   });
 }
-

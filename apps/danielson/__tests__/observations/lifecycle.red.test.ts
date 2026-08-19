@@ -73,7 +73,28 @@ describe('observation draft lifecycle', () => {
       outcome: { kind: 'rated', rating: 4 },
       evidenceNote: 'Clear evidence.',
     });
+    expect(result.record.observedAt).toBe(draft.observedAt);
     expect(draft).toEqual(before);
+  });
+
+  it('uses the observed event time for evidence instead of the later submission time', async () => {
+    const { buildObservationEvidenceCommands } = await import('../../lib/observations/evidence-adapter');
+    const draft = walkthroughDraft({
+      observedAt: '2026-09-15T07:45:00.000Z',
+      items: walkthroughDraft().items.map((item) => ({
+        ...item,
+        outcome: { kind: 'rated', rating: 3 },
+      })),
+    });
+    const result = submitObservationDraft(draft, {
+      submissionKey: 'submit-with-event-time',
+      now: OBSERVATION_NOW_MS + 30_000,
+    });
+    if (result.kind !== 'submitted') throw new Error('Expected a submitted record');
+
+    expect(result.record.submittedAt).toBe(OBSERVATION_NOW_MS + 30_000);
+    expect(buildObservationEvidenceCommands(result.record).map((command) => command.eventTime))
+      .toEqual([draft.observedAt, draft.observedAt, draft.observedAt]);
   });
 
   it('returns the first receipt for an equal retry and rejects changed content with the same key', () => {
