@@ -17,6 +17,48 @@ const BM2_PILOT_ACTIVITY_ID = 'd6b57545-65f6-4c39-80d5-000100001002';
 const BM2_PILOT_ACTIVITY_KEY = 'unit-1-lesson-1-activity-1';
 const BM2_PILOT_VARIANT_KEY = 'accounting-equation';
 
+/** The only BM2 learning-evidence node enabled by this pilot. */
+export const BM2_PILOT_NODE = BM2_PILOT_NODE_ID;
+
+/** The reviewed legacy BM2 SRS identifier for the pilot variant. */
+export const BM2_PILOT_PROBLEM_FAMILY_ID = BM2_PILOT_VARIANT_KEY;
+
+/**
+ * Convert the BM2 storage identifier to the canonical SRS identifier.
+ *
+ * BM2 storage keeps `problemFamilyId` for compatibility. The conversion is
+ * deliberately limited to the reviewed pilot mapping.
+ */
+export function bm2ProblemFamilyIdToVariantKey(problemFamilyId: string): string {
+  if (problemFamilyId.trim() !== BM2_PILOT_PROBLEM_FAMILY_ID) {
+    throw new Error(`Unsupported BM2 problemFamilyId: ${problemFamilyId}`);
+  }
+  return BM2_PILOT_VARIANT_KEY;
+}
+
+/** Convert the canonical pilot variant back to BM2's legacy storage field. */
+export function bm2VariantKeyToProblemFamilyId(variantKey: string): string {
+  if (variantKey.trim() !== BM2_PILOT_VARIANT_KEY) {
+    throw new Error(`Unsupported BM2 variantKey: ${variantKey}`);
+  }
+  return BM2_PILOT_PROBLEM_FAMILY_ID;
+}
+
+/** Validate that the runtime manifest is exactly the reviewed one-node pilot. */
+export function validateBm2LearningEvidencePilotManifest(): void {
+  const [mapping] = BM2_LEARNING_EVIDENCE_PILOT.mappings;
+  if (
+    BM2_LEARNING_EVIDENCE_PILOT.enabledNodeIds.length !== 1
+    || BM2_LEARNING_EVIDENCE_PILOT.enabledNodeIds[0] !== BM2_PILOT_NODE_ID
+    || mapping === undefined
+    || mapping.nodeId !== BM2_PILOT_NODE_ID
+    || mapping.masteryAdvantage.variantKey !== BM2_PILOT_VARIANT_KEY
+    || mapping.masteryAdvantage.problemFamilyId !== BM2_PILOT_PROBLEM_FAMILY_ID
+  ) {
+    throw new Error('BM2 learning-evidence pilot manifest is invalid.');
+  }
+}
+
 export const BM2_LEARNING_EVIDENCE_PILOT = {
   enabledNodeIds: [BM2_PILOT_NODE_ID],
   mappings: [
