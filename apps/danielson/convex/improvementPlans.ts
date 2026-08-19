@@ -133,6 +133,21 @@ const progressValidator = v.union(
     targets: v.array(targetProgressValidator),
   }),
 );
+const proposalWorkspaceValidator = v.object({
+  kind: v.literal('allowed'),
+  teacher: v.object({
+    teacherProfileId: v.string(),
+    displayName: v.string(),
+    position: v.string(),
+  }),
+  departments: v.array(v.object({ departmentId: v.string(), departmentName: v.string() })),
+  targetOptions: v.array(v.object({
+    componentId: v.string(),
+    componentTitle: v.string(),
+    skillId: v.string(),
+    skillTitle: v.string(),
+  })),
+});
 const proposalResultValidator = v.union(
   deniedValidator,
   v.object({ kind: v.literal('invalid'), reason: v.string() }),
@@ -531,6 +546,59 @@ export const createImprovementPlanProposal = internalMutation({
       payload: {},
     });
     return { kind: 'proposed' as const, planId: String(planId), versionId: String(versionId), revision, version };
+  },
+});
+
+export const readImprovementPlanProposalWorkspace = internalQuery({
+  args: {
+    actorAccountId: v.id('accounts'),
+    teacherProfileId: v.id('teacher_profiles'),
+  },
+  returns: v.union(
+    deniedValidator,
+    v.object({ kind: v.literal('capacity_exceeded') }),
+    proposalWorkspaceValidator,
+  ),
+  handler: async (ctx, args) => {
+    const access = await authorizeTeacher(
+      ctx,
+      args.actorAccountId,
+      args.teacherProfileId,
+      'pip:propose',
+    );
+    if (access.kind === 'denied') return access;
+    const memberships = await ctx.db.query('department_memberships')
+      .withIndex('by_organizationId_and_teacherProfileId_and_status', (query) => query
+        .eq('organizationId', access.teacher.organizationId)
+        .eq('teacherProfileId', access.teacher._id)
+        .eq('status', 'active'))
+      .take(101);
+    if (memberships.length > 100) return { kind: 'capacity_exceeded' as const };
+    const departments = (await Promise.all(memberships.map((membership) => ctx.db.get(membership.departmentId))))
+      .filter((department): department is Doc<'departments'> => Boolean(
+        department?.isActive && department.organizationId === access.teacher.organizationId,
+      ));
+    return {
+      kind: 'allowed' as const,
+      teacher: {
+        teacherProfileId: String(access.teacher._id),
+        displayName: access.teacherAccount.displayName,
+        position: access.teacher.position ?? 'Teacher',
+      },
+      departments: departments.map((department) => ({
+        departmentId: String(department._id),
+        departmentName: department.name,
+      })),
+      targetOptions: graph.edges.flatMap((edge) => {
+        if (edge.type !== 'contains' || nodeById.get(edge.targetId)?.kind !== 'skill') return [];
+        return [{
+          componentId: edge.sourceId,
+          componentTitle: nodeById.get(edge.sourceId)?.title ?? edge.sourceId,
+          skillId: edge.targetId,
+          skillTitle: nodeById.get(edge.targetId)?.title ?? edge.targetId,
+        }];
+      }),
+    };
   },
 });
 
