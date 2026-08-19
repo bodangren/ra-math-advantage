@@ -139,7 +139,7 @@ describe('report interface accessibility', () => {
 
     const alert = await screen.findByRole('alert');
     expect(alert).toHaveTextContent('The comment was not saved.');
-    expect(alert).toHaveFocus();
+    await waitFor(() => expect(alert).toHaveFocus());
     expect(alert).toHaveAttribute('tabindex', '-1');
   });
 
@@ -159,7 +159,7 @@ describe('report interface accessibility', () => {
 
     const alert = await screen.findByRole('alert');
     expect(alert).toHaveTextContent('A final response already exists.');
-    expect(alert).toHaveFocus();
+    await waitFor(() => expect(alert).toHaveFocus());
     await waitFor(() => expect(fetch).toHaveBeenCalledOnce());
     const request = vi.mocked(fetch).mock.calls[0][1] as RequestInit;
     expect(JSON.parse(String(request.body))).toEqual({
