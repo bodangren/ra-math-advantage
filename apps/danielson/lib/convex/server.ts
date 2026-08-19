@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { api, internal } from '@/convex/_generated/api';
+import { internal } from '@/convex/_generated/api';
 import {
   fetchInternalMutation as fetchInternalMutationBase,
   fetchInternalQuery as fetchInternalQueryBase,
@@ -13,4 +13,4 @@ export async function fetchInternalMutation(ref: any, args: Record<string, unkno
   return fetchInternalMutationBase(ref, args, { env: process.env });
 }
 
-export { api, internal };
+export { internal };

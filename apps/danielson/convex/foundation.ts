@@ -16,6 +16,24 @@ const roleValidator = v.union(
   v.literal('slt'),
   v.literal('sysadmin'),
 );
+const actionValidator = v.union(
+  v.literal('account.create'),
+  v.literal('account.update'),
+  v.literal('account.activate'),
+  v.literal('account.deactivate'),
+  v.literal('role.assign'),
+  v.literal('role.revoke'),
+  v.literal('department.create'),
+  v.literal('department.update'),
+  v.literal('department.activate'),
+  v.literal('department.deactivate'),
+  v.literal('department_membership.assign'),
+  v.literal('department_membership.revoke'),
+  v.literal('hod_assignment.assign'),
+  v.literal('hod_assignment.revoke'),
+  v.literal('coach_assignment.assign'),
+  v.literal('coach_assignment.revoke'),
+);
 const accessContextValidator = v.object({
   actor: v.union(v.null(), v.object({ accountId: v.string(), organizationId: v.string(), isActive: v.boolean(), organizationIsActive: v.boolean() })),
   subject: v.union(v.null(), v.object({ accountId: v.string(), organizationId: v.string(), departmentIds: v.array(v.string()), isActive: v.boolean() })),
@@ -25,14 +43,14 @@ const accessContextValidator = v.object({
 });
 
 const changeValidator = v.object({
-  kind: v.string(),
+  kind: actionValidator,
   targetAccountId: v.optional(v.string()),
   accountId: v.optional(v.string()),
   teacherAccountId: v.optional(v.string()),
   teacherProfileId: v.optional(v.string()),
   departmentId: v.optional(v.string()),
   targetId: v.optional(v.string()),
-  role: v.optional(v.string()),
+  role: v.optional(roleValidator),
   displayName: v.optional(v.string()),
   username: v.optional(v.string()),
   organizationId: v.optional(v.string()),
@@ -100,12 +118,6 @@ function targetTypeFor(action: Action) {
   if (action.startsWith('hod_assignment.')) return 'hod_assignment' as const;
   if (action.startsWith('coach_assignment.')) return 'coach_assignment' as const;
   return 'department' as const;
-}
-
-function administrationCapability(changeKind: string): 'accounts' | 'departments' | 'assignments' {
-  if (changeKind.startsWith('account.')) return 'accounts';
-  if (changeKind.startsWith('department.')) return 'departments';
-  return 'assignments';
 }
 
 async function activeSysadminCount(ctx: MutationCtx, organizationId: Id<'organizations'>) {
@@ -410,10 +422,6 @@ export const applyAdministrationChange = internalMutation({
 
     if (!isAction(args.change.kind)) return { kind: 'invalid' as const, reason: 'invalid_action' as const };
     const action = args.change.kind;
-    const capability = administrationCapability(action);
-    if (capability === 'accounts' && !action.startsWith('account.')) {
-      return { kind: 'invalid' as const, reason: 'invalid_action' as const };
-    }
 
     const now = Date.now();
     let targetId = '';
