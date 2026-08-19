@@ -50,34 +50,36 @@
 - [x] Task 2.6: Measure - User Manual Verification 'Phase 2: Test' (Protocol in workflow.md)
     - User directed full-track continuation on 2026-08-19.
 
-## Phase 3: Implement
+## Phase 3: Implement [checkpoint: ad541ed3]
 
-- [ ] Task 3.1: Implement PIP persistence and source versioning
-    - [ ] Add app-owned plans, versions, targets, acknowledgments, and lifecycle events
-    - [ ] Add bounded indexes and stable source references
-- [ ] Task 3.2: Implement proposal and SLT approval
-    - [ ] Build the accessible source-aligned proposal form
-    - [ ] Enforce scope and activate only through an audited approval mutation
-- [ ] Task 3.3: Implement immutable versions and acknowledgments
-    - [ ] Freeze approved versions and create revisions as new proposals
-    - [ ] Record teacher and supervisor acknowledgment without a legal-signature claim
-- [ ] Task 3.4: Implement target cadence and evidence progress
-    - [ ] Apply high priority and seven-day intervals through Track 2 SRS policy
-    - [ ] Derive progress from valid rated evidence only
-- [ ] Task 3.5: Implement Track 4 projection and SLT closure
-    - [ ] Show plan status, days, targets, evidence, support, criteria, and outcome
-    - [ ] Record successful or insufficient-improvement closure without an automated recommendation
-- [ ] Task 3.6: Measure - User Manual Verification 'Phase 3: Implement' (Protocol in workflow.md)
+- [x] Task 3.1: Implement PIP persistence and source versioning — `c1f6896b`, `e404f83f`
+    - [x] Add app-owned plans, versions, targets, acknowledgments, and lifecycle events
+    - [x] Add bounded indexes and stable source references
+- [x] Task 3.2: Implement proposal and SLT approval — `e404f83f`, `76084f2b`, `d7d4811c`, `5af222e9`
+    - [x] Build the accessible source-aligned proposal form
+    - [x] Enforce scope and activate only through an audited approval mutation
+- [x] Task 3.3: Implement immutable versions and acknowledgments — `e404f83f`, `76084f2b`, `6e8e580d`
+    - [x] Freeze approved versions and create revisions as new proposals
+    - [x] Record teacher and supervisor acknowledgment without a legal-signature claim
+- [x] Task 3.4: Implement target cadence and evidence progress — `2bd4e4e7`, `aeffaa55`, `c5274841`
+    - [x] Apply high priority and seven-day intervals through Track 2 SRS policy
+    - [x] Derive progress from valid rated evidence only
+- [x] Task 3.5: Implement Track 4 projection and SLT closure — `2bd4e4e7`, `aeffaa55`, `6e8e580d`, `77991d4e`, `ad541ed3`
+    - [x] Show plan status, days, targets, evidence, support, criteria, and outcome
+    - [x] Record successful or insufficient-improvement closure without an automated recommendation
+- [x] Task 3.6: Measure - User Manual Verification 'Phase 3: Implement' (Protocol in workflow.md)
+    - User directed full-track continuation on 2026-08-19.
 
 ## Phase 4: Generate Docs and Doctor
 
-- [ ] Task 4.1: Run focused and workspace quality gates
-    - [ ] Run PIP source, authorization, version, cadence, progress, closure, accessibility, coverage, lint, typecheck, and build gates
-    - [ ] Run private-data and no-automated-discipline adversarial tests
-- [ ] Task 4.2: Generate schema, route, ownership, and source facts
-    - [ ] Run `npm run generate`
-    - [ ] Confirm that generated facts identify restricted PIP surfaces
-- [ ] Task 4.3: Run boundaries and Measure Doctor
-    - [ ] Run inventory parity, monorepo boundaries, and `npm run doctor`
-    - [ ] Inspect the final audit and immutable-record behavior
-- [ ] Task 4.4: Measure - User Manual Verification 'Phase 4: Generate Docs and Doctor' (Protocol in workflow.md)
+- [x] Task 4.1: Run focused and workspace quality gates
+    - [x] Run PIP source, authorization, version, cadence, progress, closure, accessibility, coverage, lint, typecheck, and build gates
+    - [x] Run private-data and no-automated-discipline adversarial tests
+- [x] Task 4.2: Generate schema, route, ownership, and source facts
+    - [x] Run `npm run generate`
+    - [x] Confirm that generated facts identify restricted PIP surfaces
+- [x] Task 4.3: Run boundaries and Measure Doctor
+    - [x] Run inventory parity, monorepo boundaries, and `npm run doctor`
+    - [x] Inspect the final audit and immutable-record behavior
+- [x] Task 4.4: Measure - User Manual Verification 'Phase 4: Generate Docs and Doctor' (Protocol in workflow.md)
+    - User directed full-track continuation on 2026-08-19.
