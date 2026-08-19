@@ -69,7 +69,7 @@
 - [x] Task 3.6: Measure - User Manual Verification 'Phase 3: Implement' (Protocol in workflow.md)
     - User directed full-track continuation on 2026-08-19.
 
-## Phase 4: Generate Docs and Doctor
+## Phase 4: Generate Docs and Doctor [checkpoint: e0ef7aa5]
 
 - [x] Task 4.1: Run focused and workspace quality gates
     - [x] Run source, mapping, graph, KST, SRS, assignment, coverage, lint, typecheck, and build gates

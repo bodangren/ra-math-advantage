@@ -87,11 +87,11 @@ Dependency order:
    *Create the compact SLT portfolio, teacher drill down, official and current proficiency views, public and private comments, self-private-data exclusion, and one optional teacher response with no replies.*
    *Link: [./tracks/danielson-reporting_20260819/](./tracks/danielson-reporting_20260819/)*
 
-- [~] **Track 5: Performance Improvement Plans**
+- [x] **Track 5: Performance Improvement Plans** — **COMPLETED** (2026-08-20)
    *Implement the current one-month PIP form. Permit supervisor proposal and require SLT approval. Link approved target skills to high-cadence evidence, show progress, preserve acknowledgments, and record an audited closure without an automated disciplinary decision.*
    *Link: [./tracks/danielson-improvement-plans_20260819/](./tracks/danielson-improvement-plans_20260819/)*
 
-- [ ] **Track 6: GBF Sequence and TLAC 3.0 Edges**
+- [x] **Track 6: GBF Sequence and TLAC 3.0 Edges** — **COMPLETED** (2026-08-20)
    *Use the supplied GBF scope and sequence to define parallel Management and Rigor paths. Record direct and inferred TLAC 3.0 mappings. Activate only reviewed support and prerequisite edges.*
    *Link: [./tracks/danielson-gbf-sequencing_20260819/](./tracks/danielson-gbf-sequencing_20260819/)*
 
