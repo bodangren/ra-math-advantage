@@ -145,9 +145,9 @@ only after all three pilots are Green.
     - [x] Persist idempotent teacher-led exposure and gate BM2 Mastery Advantage progression
     - [x] Reuse canonical KST+SRS behavior rather than introducing an app-local planner or scheduler
     - [x] Make the focused BM2 Red tests Green without starting a full graph rollout
-    - [~] Follow-up: Add the pure legacy `problemFamilyId` ↔ canonical `variantKey` card compatibility boundary with focused validation tests and the BM2 Convex handler seam
-    - [~] Add red coverage for the authenticated BM2 evidence route and real teacher-led/mastery submission mappings
-    - [ ] Add the authenticated Convex transaction, persist evidence atomically, and apply the existing BM2 SRS boundary once for eligible mastery evidence
+    - [x] Follow-up: Add the pure legacy `problemFamilyId` ↔ canonical `variantKey` card compatibility boundary with focused validation tests and the BM2 Convex handler seam (37f075c)
+    - [x] Add red coverage for the authenticated BM2 evidence route and real teacher-led/mastery submission mappings (37f075c)
+    - [x] Add the authenticated Convex transaction, persist evidence atomically, and apply the existing BM2 SRS boundary once for eligible mastery evidence (37f075c)
 - [ ] Task 3.5: Complete cross-app Green and refactor pass (All lanes)
     *Note: Production Convex persistence and real KST/SRS wiring remain required for all three lanes.*
     - [ ] Make the shared conformance and exact-three-node boundary suites Green
