@@ -338,10 +338,8 @@ describe('PIP persistence and authorization', () => {
 
     expect(result).toMatchObject({ kind: 'proposed', revision: 1, version: 1 });
     expect(db.snapshot(SCORING_TABLES)).toEqual(scoring);
-    expect(db.rows('improvement_plans')[0]).toMatchObject({
-      state: 'proposed',
-      activeVersionId: undefined,
-    });
+    expect(db.rows('improvement_plans')[0]).toMatchObject({ state: 'proposed' });
+    expect(db.rows('improvement_plans')[0]).not.toHaveProperty('activeVersionId');
     await expect(handler(readImprovementPlanReportProjection)(db.context(), {
       actorAccountId: PROPOSER,
       teacherProfileId: TEACHER,

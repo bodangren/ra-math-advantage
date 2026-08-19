@@ -71,6 +71,7 @@ describe('Danielson authorization contract', () => {
       'q1_observation:submit',
       'q1_observation:amend',
       'pip:propose',
+      'pip_supervisor_acknowledgment:write',
     ]));
     expect(DANIELSON_CAPABILITIES.school_head).toEqual(expect.arrayContaining([
       'q4_observation:submit',
@@ -127,6 +128,7 @@ describe('Danielson authorization contract', () => {
       'q1_observation:submit',
       'q1_observation:amend',
       'pip:propose',
+      'pip_supervisor_acknowledgment:write',
     ] as const) {
       expect(decide(context, action)).toEqual({ allowed: true, reason: null });
     }
