@@ -33,25 +33,26 @@
 
 ## Phase 2: Test
 
-- [ ] Task 2.1: Write source-manifest and graph Red tests
-    - [ ] Test exact Danielson counts and reviewed technique reconciliation
-    - [ ] Test source labels, hashes, stable IDs, and review states
-    - [ ] Reject duplicate, dangling, invalid, and cyclic structures
-- [ ] Task 2.2: Write rating-map and proficiency Red tests
-    - [ ] Test `1 → 70`, `2 → 80`, `3 → 90`, and `4 → 100`
-    - [ ] Test the four SRS rating mappings
-    - [ ] Test that one rating below 3 remains visible and blocks all-proficient status
-- [ ] Task 2.3: Write no-evidence adversarial tests
-    - [ ] Snapshot proficiency, KST, and SRS state before and after the event
-    - [ ] Prove byte-equivalence and zero downstream writes
-- [ ] Task 2.4: Write provenance and fan-out Red tests
-    - [ ] Test Q1 fan-out to all component child skills
-    - [ ] Test one shared observation ID and provenance group
-    - [ ] Test direct walkthrough updates only for rated targets
-- [ ] Task 2.5: Write idempotency, scheduling, and comment-isolation tests
-    - [ ] Test replay, conflict, deterministic time, and the 180-day cap
-    - [ ] Inject comments and prove that all proficiency and scheduling outputs remain unchanged
-- [ ] Task 2.6: Measure - User Manual Verification 'Phase 2: Test' (Protocol in workflow.md)
+- [x] Task 2.1: Write source-manifest and graph Red tests
+    - [x] Test exact Danielson counts and reviewed technique reconciliation
+    - [x] Test source labels, hashes, stable IDs, and review states
+    - [x] Reject duplicate, dangling, invalid, and cyclic structures
+- [x] Task 2.2: Write rating-map and proficiency Red tests
+    - [x] Test `1 → 70`, `2 → 80`, `3 → 90`, and `4 → 100`
+    - [x] Test the four SRS rating mappings
+    - [x] Test that one rating below 3 remains visible and blocks all-proficient status
+- [x] Task 2.3: Write no-evidence adversarial tests
+    - [x] Snapshot proficiency, KST, and SRS state before and after the event
+    - [x] Prove byte-equivalence and zero downstream writes
+- [x] Task 2.4: Write provenance and fan-out Red tests
+    - [x] Test Q1 fan-out to all component child skills
+    - [x] Test one shared observation ID and provenance group
+    - [x] Test direct walkthrough updates only for rated targets
+- [x] Task 2.5: Write idempotency, scheduling, and comment-isolation tests
+    - [x] Test replay, conflict, deterministic time, and the 180-day cap
+    - [x] Inject comments and prove that all proficiency and scheduling outputs remain unchanged
+- [x] Task 2.6: Measure - User Manual Verification 'Phase 2: Test' (Protocol in workflow.md)
+    - User directed full-track continuation on 2026-08-19.
 
 ## Phase 3: Implement
 
