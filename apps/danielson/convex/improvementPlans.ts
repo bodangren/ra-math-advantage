@@ -127,7 +127,6 @@ const closedImprovementPlanValidator = v.object({
 });
 export const publicImprovementPlanProgressValidator = v.union(
   noImprovementPlanValidator,
-  pendingImprovementPlanValidator,
   activeImprovementPlanValidator,
   closedImprovementPlanValidator,
 );
@@ -253,6 +252,19 @@ const planViewValidator = v.object({
   closureEventId: v.union(v.string(), v.null()),
   history: planHistoryValidator,
   acknowledgments: v.array(acknowledgmentViewValidator),
+});
+const planListVersionValidator = v.object({
+  versionId: v.string(),
+  version: v.number(),
+  teacherName: v.string(),
+});
+const planListViewValidator = v.object({
+  planId: v.string(),
+  teacherProfileId: v.string(),
+  state: v.union(v.literal('proposed'), v.literal('active'), v.literal('closed')),
+  revision: v.number(),
+  activeVersion: v.union(planListVersionValidator, v.null()),
+  pendingVersion: v.union(planListVersionValidator, v.null()),
 });
 const historyResultValidator = v.union(
   deniedValidator,
@@ -428,30 +440,60 @@ async function versionView(
   };
 }
 
-async function planHistoryView(
+type PlanHistoryView = {
+  events: Array<{
+    eventId: string;
+    kind: 'proposed' | 'approved' | 'teacher_acknowledged' | 'supervisor_acknowledged' | 'closed';
+    version: number;
+    versionId: string | null;
+    occurredAt: number;
+    payload: { outcome?: 'successful' | 'insufficient_improvement'; note?: string };
+  }>;
+  priorApprovedVersions: Array<{ version: number; versionId: string; purpose: string }>;
+};
+
+const emptyPlanHistory: PlanHistoryView = { events: [], priorApprovedVersions: [] };
+
+async function readPlanHistoryPage(
   ctx: DbCtx,
   plan: Doc<'improvement_plans'>,
   includePrivate: boolean,
+  paginationOpts: { cursor: string | null; numItems: number },
 ) {
-  const [events, versions] = await Promise.all([
-    ctx.db.query('improvement_plan_events')
+  const result = await ctx.db.query('improvement_plan_events')
+    .withIndex('by_org_plan_time', (query) => query
+      .eq('organizationId', plan.organizationId)
+      .eq('planId', plan._id))
+    .order('desc')
+    .paginate(paginationOpts);
+  const versions = await ctx.db.query('improvement_plan_versions')
+    .withIndex('by_org_plan_version', (query) => query
+      .eq('organizationId', plan.organizationId)
+      .eq('planId', plan._id))
+    .order('asc')
+    .take(MAX_TARGETS + 1);
+  if (versions.length > MAX_TARGETS) throw new Error('history_capacity_exceeded');
+
+  // A version is historical only when an approval event names it. A proposal
+  // event does not make its teacher-entered text visible in history.
+  let approvalEvents = result.page;
+  if ((plan.activeVersion ?? 0) > 1) {
+    const allEvents = await ctx.db.query('improvement_plan_events')
       .withIndex('by_org_plan_time', (query) => query
         .eq('organizationId', plan.organizationId)
         .eq('planId', plan._id))
       .order('desc')
-      .take(MAX_EVIDENCE_ROWS + 1),
-    ctx.db.query('improvement_plan_versions')
-      .withIndex('by_org_plan_version', (query) => query
-        .eq('organizationId', plan.organizationId)
-        .eq('planId', plan._id))
-      .order('asc')
-      .take(MAX_TARGETS + 1),
-  ]);
-  if (events.length > MAX_EVIDENCE_ROWS || versions.length > MAX_TARGETS) {
-    throw new Error('history_capacity_exceeded');
+      .take(MAX_EVIDENCE_ROWS + 1);
+    if (allEvents.length > MAX_EVIDENCE_ROWS) throw new Error('history_capacity_exceeded');
+    approvalEvents = allEvents;
   }
-  return {
-    events: events.map((event) => ({
+  const approvedVersionIds = new Set(
+    approvalEvents
+      .filter((event) => event.kind === 'approved' && event.versionId)
+      .map((event) => String(event.versionId)),
+  );
+  const history: PlanHistoryView = {
+    events: result.page.map((event) => ({
       eventId: String(event._id),
       kind: event.kind,
       version: event.version,
@@ -463,19 +505,26 @@ async function planHistoryView(
       },
     })),
     priorApprovedVersions: versions
-      .filter((version) => version.version < (plan.activeVersion ?? Number.POSITIVE_INFINITY))
+      .filter((version) => approvedVersionIds.has(String(version._id))
+        && version.version < (plan.activeVersion ?? Number.POSITIVE_INFINITY))
       .map((version) => ({
         version: version.version,
         versionId: String(version._id),
         purpose: version.purpose,
       })),
   };
+  return { ...result, history };
 }
 
-async function readPlanView(ctx: DbCtx, plan: Doc<'improvement_plans'>, includePending: boolean) {
-  const [activeVersion, pendingVersion, acknowledgments, history] = await Promise.all([
+async function readPlanView(
+  ctx: DbCtx,
+  plan: Doc<'improvement_plans'>,
+  includePending: boolean,
+  history: PlanHistoryView = emptyPlanHistory,
+) {
+  const [activeVersion, pendingVersion, acknowledgments] = await Promise.all([
     plan.activeVersionId ? ctx.db.get(plan.activeVersionId) : Promise.resolve(null),
-    includePending && plan.pendingVersionId
+    includePending && plan.state !== 'closed' && plan.pendingVersionId
       ? ctx.db.get(plan.pendingVersionId)
       : Promise.resolve(null),
     plan.activeVersionId
@@ -485,7 +534,6 @@ async function readPlanView(ctx: DbCtx, plan: Doc<'improvement_plans'>, includeP
             .eq('versionId', plan.activeVersionId as Id<'improvement_plan_versions'>))
           .take(3)
       : Promise.resolve([]),
-    planHistoryView(ctx, plan, includePending),
   ]);
   if (acknowledgments.length > 2) throw new Error('acknowledgment_capacity_exceeded');
   return {
@@ -567,18 +615,23 @@ export const createImprovementPlanProposal = internalMutation({
     } catch (error) {
       return { kind: 'invalid' as const, reason: error instanceof Error ? error.message : 'invalid' };
     }
-    const targetDecision = validatePipTargets(normalized.targets, graph);
-    if (!targetDecision.valid) return { kind: 'invalid' as const, reason: targetDecision.reason };
+    const logicalNormalized = Object.fromEntries(
+      Object.entries(normalized)
+        .filter(([key]) => key !== 'position' && key !== 'fingerprint'),
+    );
     const fingerprint = proposalContentFingerprint({
       action: 'proposed',
       planId: args.planId ? String(args.planId) : null,
       expectedRevision: args.expectedRevision,
-      normalized,
+      normalized: logicalNormalized,
     });
     const replay = await priorEvent(ctx, access.teacher.organizationId, args.requestId);
     if (replay) return replay.fingerprint === fingerprint
       ? proposalReceipt(replay)
       : { kind: 'idempotency_conflict' as const };
+
+    const targetDecision = validatePipTargets(normalized.targets, graph);
+    if (!targetDecision.valid) return { kind: 'invalid' as const, reason: targetDecision.reason };
 
     const [department, membership] = await Promise.all([
       ctx.db.get(args.departmentId),
@@ -594,6 +647,10 @@ export const createImprovementPlanProposal = internalMutation({
       || department.organizationId !== access.teacher.organizationId
       || !membership) {
       return { kind: 'invalid' as const, reason: 'invalid_department' };
+    }
+    const requestedPlan = args.planId ? await ctx.db.get(args.planId) : null;
+    if (requestedPlan?.state === 'closed') {
+      return { kind: 'invalid' as const, reason: 'closed_plan' };
     }
     const current = await openPlan(ctx, access.teacher.organizationId, args.teacherProfileId);
     if (args.planId && (!current || String(current._id) !== String(args.planId))) {
@@ -781,6 +838,7 @@ export const approveImprovementPlan = internalMutation({
         planEndAt: replay.payload.planEndAt as number,
       };
     }
+    if (plan.state === 'closed') return { kind: 'not_found' as const };
     if (plan.pendingVersionId !== version._id) {
       return { kind: 'invalid' as const, reason: 'invalid_pending_version' };
     }
@@ -1155,8 +1213,14 @@ export async function readTeacherImprovementPlanProjection(
   teacherProfileId: Id<'teacher_profiles'>,
   now: number,
   includeClosureNote: boolean,
+  selectedPlanId?: Id<'improvement_plans'>,
 ) {
-  const plan = await currentOrLatestPlan(ctx, organizationId, teacherProfileId);
+  const plan = selectedPlanId
+    ? await ctx.db.get(selectedPlanId)
+    : await currentOrLatestPlan(ctx, organizationId, teacherProfileId);
+  if (selectedPlanId && (!plan
+    || plan.organizationId !== organizationId
+    || plan.teacherProfileId !== teacherProfileId)) return null;
   if (!plan) {
     return { contractVersion: 'danielson.ip-progress.v1' as const, state: 'not_configured' as const };
   }
@@ -1237,6 +1301,7 @@ export const closeImprovementPlan = internalMutation({
     await ctx.db.patch(plan._id, {
       state: 'closed',
       revision,
+      pendingVersionId: undefined,
       closedAt: args.now,
       closureOutcome: args.outcome,
       closureNote: note,
@@ -1297,7 +1362,13 @@ export const readImprovementPlan = internalQuery({
     if (access.kind === 'denied') return access;
     if (own && plan.state === 'proposed') return { kind: 'denied' as const, reason: 'target_out_of_scope' };
     try {
-      const view = await readPlanView(ctx, plan, !own);
+      const historyResult = await readPlanHistoryPage(
+        ctx,
+        plan,
+        !own,
+        { cursor: null, numItems: MAX_PAGE_SIZE },
+      );
+      const view = await readPlanView(ctx, plan, !own, historyResult.history);
       return {
         kind: 'allowed' as const,
         plan: view,
@@ -1317,6 +1388,7 @@ export const readImprovementPlanReportProjection = internalQuery({
   args: {
     actorAccountId: v.id('accounts'),
     teacherProfileId: v.id('teacher_profiles'),
+    planId: v.optional(v.id('improvement_plans')),
     now: v.number(),
   },
   returns: v.union(
@@ -1335,12 +1407,21 @@ export const readImprovementPlanReportProjection = internalQuery({
       own ? 'published_record:read' : 'pip:propose',
     );
     if (access.kind === 'denied') return access;
+    if (args.planId) {
+      const selectedPlan = await ctx.db.get(args.planId);
+      if (!selectedPlan
+        || selectedPlan.organizationId !== access.teacher.organizationId
+        || selectedPlan.teacherProfileId !== args.teacherProfileId) {
+        return { kind: 'denied' as const, reason: 'target_out_of_scope' };
+      }
+    }
     const projection = await readTeacherImprovementPlanProjection(
       ctx,
       access.teacher.organizationId,
       args.teacherProfileId,
       args.now,
       !own,
+      args.planId,
     );
     if (projection === null) return { kind: 'capacity_exceeded' as const };
     if (own && projection.state === 'pending_approval') {
@@ -1362,7 +1443,8 @@ export const listScopedImprovementPlans = internalQuery({
   returns: v.union(
     deniedValidator,
     v.object({ kind: v.literal('invalid_page_size') }),
-    v.object({ kind: v.literal('allowed'), page: paginationResultValidator(planViewValidator) }),
+    v.object({ kind: v.literal('invalid_cursor') }),
+    v.object({ kind: v.literal('allowed'), page: paginationResultValidator(planListViewValidator) }),
   ),
   handler: async (ctx, args) => {
     void args.now;
@@ -1371,6 +1453,8 @@ export const listScopedImprovementPlans = internalQuery({
     }
     const actor = await ctx.db.get(args.actorAccountId);
     if (!actor?.isActive) return { kind: 'denied' as const, reason: 'account_inactive' };
+    const organization = await ctx.db.get(actor.organizationId);
+    if (!organization?.isActive) return { kind: 'denied' as const, reason: 'organization_inactive' };
     const roles = await ctx.db.query('role_assignments')
       .withIndex('by_organizationId_and_accountId_and_status', (query) => query
         .eq('organizationId', actor.organizationId)
@@ -1390,7 +1474,9 @@ export const listScopedImprovementPlans = internalQuery({
       .take(251);
     if (profiles.length > 250) return { kind: 'denied' as const, reason: 'capacity_exceeded' };
     const organizationWide = supervisorRoles.has('school_head') || supervisorRoles.has('slt');
-    let scopedTeacherIds = new Set(profiles.map((profile) => String(profile._id)));
+    let scopedTeacherIds = new Set(profiles
+      .filter((profile) => String(profile.accountId) !== String(actor._id))
+      .map((profile) => String(profile._id)));
     if (!organizationWide) {
       const [memberships, departments, hodAssignments, coachAssignments] = await Promise.all([
         ctx.db.query('department_memberships')
@@ -1437,10 +1523,13 @@ export const listScopedImprovementPlans = internalQuery({
       const coachTeacherIds = new Set(coachAssignments.map((assignment) => String(assignment.teacherProfileId)));
       scopedTeacherIds = new Set(profiles
         .filter((profile) => (
+          String(profile.accountId) !== String(actor._id)
+          && (
           (supervisorRoles.has('hod')
             && [...(teacherDepartments.get(String(profile._id)) ?? [])]
               .some((departmentId) => hodDepartmentIds.has(departmentId)))
           || (supervisorRoles.has('coach') && coachTeacherIds.has(String(profile._id)))
+          )
         ))
         .map((profile) => String(profile._id)));
     }
@@ -1456,18 +1545,43 @@ export const listScopedImprovementPlans = internalQuery({
       if (rows.length > 250) return { kind: 'denied' as const, reason: 'capacity_exceeded' };
       plans.push(...rows);
     }
+    if (plans.length > 250) return { kind: 'denied' as const, reason: 'capacity_exceeded' };
     plans.sort((left, right) => right.updatedAt - left.updatedAt || String(right._id).localeCompare(String(left._id)));
     const start = args.paginationOpts.cursor === null
       ? 0
       : plans.findIndex((plan) => String(plan._id) === args.paginationOpts.cursor) + 1;
-    const pagePlans = start === 0 && args.paginationOpts.cursor !== null
-      ? []
-      : plans.slice(start, start + args.paginationOpts.numItems);
+    if (args.paginationOpts.cursor !== null && start === 0) {
+      return { kind: 'invalid_cursor' as const };
+    }
+    const pagePlans = plans.slice(start, start + args.paginationOpts.numItems);
     const isDone = start + pagePlans.length >= plans.length;
     return {
       kind: 'allowed' as const,
       page: {
-        page: await Promise.all(pagePlans.map((plan) => readPlanView(ctx, plan, true))),
+        page: await Promise.all(pagePlans.map(async (plan) => {
+          const [activeVersion, pendingVersion] = await Promise.all([
+            plan.activeVersionId ? ctx.db.get(plan.activeVersionId) : Promise.resolve(null),
+            plan.state !== 'closed' && plan.pendingVersionId
+              ? ctx.db.get(plan.pendingVersionId)
+              : Promise.resolve(null),
+          ]);
+          return {
+            planId: String(plan._id),
+            teacherProfileId: String(plan.teacherProfileId),
+            state: plan.state,
+            revision: plan.revision,
+            activeVersion: activeVersion ? {
+              versionId: String(activeVersion._id),
+              version: activeVersion.version,
+              teacherName: activeVersion.teacherName,
+            } : null,
+            pendingVersion: pendingVersion ? {
+              versionId: String(pendingVersion._id),
+              version: pendingVersion.version,
+              teacherName: pendingVersion.teacherName,
+            } : null,
+          };
+        })),
         isDone,
         continueCursor: isDone ? '' : String(pagePlans.at(-1)?._id ?? ''),
       },
@@ -1498,45 +1612,20 @@ export const listImprovementPlanHistory = internalQuery({
       own ? 'published_record:read' : 'pip:propose',
     );
     if (access.kind === 'denied') return access;
-    const [result, versions] = await Promise.all([
-      ctx.db.query('improvement_plan_events')
-        .withIndex('by_org_plan_time', (query) => query
-          .eq('organizationId', plan.organizationId)
-          .eq('planId', plan._id))
-        .order('desc')
-        .paginate(args.paginationOpts),
-      ctx.db.query('improvement_plan_versions')
-        .withIndex('by_org_plan_version', (query) => query
-          .eq('organizationId', plan.organizationId)
-          .eq('planId', plan._id))
-        .order('asc')
-        .take(MAX_TARGETS + 1),
-    ]);
-    if (versions.length > MAX_TARGETS) return { kind: 'capacity_exceeded' as const };
-    const priorApprovedVersions = versions
-      .filter((version) => version.version < (plan.activeVersion ?? Number.POSITIVE_INFINITY))
-      .map((version) => ({
-        version: version.version,
-        versionId: String(version._id),
-        purpose: version.purpose,
-      }));
+    let result;
+    try {
+      result = await readPlanHistoryPage(ctx, plan, !own, args.paginationOpts);
+    } catch {
+      return { kind: 'capacity_exceeded' as const };
+    }
     return {
       kind: 'allowed' as const,
       page: {
-        ...result,
-        page: result.page.map((event) => ({
-          eventId: String(event._id),
-          kind: event.kind,
-          version: event.version,
-          versionId: event.versionId ? String(event.versionId) : null,
-          occurredAt: event.occurredAt,
-          payload: {
-            ...(event.payload.outcome ? { outcome: event.payload.outcome } : {}),
-            ...(!own && event.payload.note ? { note: event.payload.note } : {}),
-          },
-        })),
+        page: result.history.events,
+        isDone: result.isDone,
+        continueCursor: result.continueCursor,
       },
-      priorApprovedVersions,
+      priorApprovedVersions: result.history.priorApprovedVersions,
     };
   },
 });

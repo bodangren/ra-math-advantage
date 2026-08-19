@@ -22,6 +22,7 @@ The server gets the target organization from the target record.
 | `published_record:read` | Read published results and public comments |
 | `teacher_response:write` | Add the teacher's one permitted response |
 | `pip_acknowledgment:write` | Acknowledge the teacher's improvement plan |
+| `pip_supervisor_acknowledgment:write` | Record the frozen supervisor's acknowledgment of an approved PIP |
 | `teacher_report:read` | Read a leadership teacher report |
 | `private_leadership:read` | Read the private leadership section |
 | `walkthrough:submit` | Submit a walkthrough |
@@ -47,10 +48,10 @@ Track 1 defines their access boundary.
 | Role | Scope | Capabilities |
 |---|---|---|
 | `teacher` | Own teacher profile | `published_record:read`, `teacher_response:write`, `pip_acknowledgment:write` |
-| `hod` | Teachers in assigned departments | Report and private read, walkthrough submit and amend, Q1 observation submit and amend, PIP proposal |
-| `coach` | Assigned teachers | Report and private read, walkthrough submit and amend, Q1 observation submit and amend, PIP proposal |
-| `school_head` | All teachers in the organization | HOD capabilities plus Q4 observation submit and amend, and GBF assignment |
-| `slt` | All teachers in the organization | School-head capabilities plus PIP approval and closure |
+| `hod` | Teachers in assigned departments | Report and private read, walkthrough submit and amend, Q1 observation submit and amend, PIP proposal, supervisor PIP acknowledgment |
+| `coach` | Assigned teachers | Report and private read, walkthrough submit and amend, Q1 observation submit and amend, PIP proposal, supervisor PIP acknowledgment |
+| `school_head` | All teachers in the organization | HOD capabilities plus Q4 observation submit and amend, GBF assignment, and supervisor PIP acknowledgment |
+| `slt` | All teachers in the organization | School-head capabilities plus PIP approval, closure, and supervisor PIP acknowledgment |
 | `sysadmin` | Account administration in the organization | `accounts:manage`, `departments:manage`, `assignments:manage`, `access_audit:read` |
 
 The named phrases in the role matrix refer to the exact capability codes in the

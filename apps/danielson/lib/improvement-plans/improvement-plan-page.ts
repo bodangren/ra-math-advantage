@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 import { requireDanielsonSession } from '@/lib/auth/server';
 import { fetchInternalQuery, internal } from '@/lib/convex/server';
 import type {
+  ImprovementPlanListView,
   ImprovementPlanProgress,
   ImprovementPlanView,
 } from './view';
@@ -15,7 +16,14 @@ export async function getImprovementPlanList(cursor: string | null) {
     now: Date.now(),
   });
   if (result.kind !== 'allowed') redirect('/unauthorized');
-  return { session, page: result.page as { page: ImprovementPlanView[]; isDone: boolean; continueCursor: string } };
+  return {
+    session,
+    page: result.page as {
+      page: ImprovementPlanListView[];
+      isDone: boolean;
+      continueCursor: string;
+    },
+  };
 }
 
 export async function getImprovementPlanProposalWorkspace(teacherProfileId: string) {
@@ -45,6 +53,7 @@ export async function getImprovementPlan(planId: string) {
     {
       actorAccountId: session.claims.sub,
       teacherProfileId: result.plan.teacherProfileId,
+      planId,
       now: Date.now(),
     },
   );

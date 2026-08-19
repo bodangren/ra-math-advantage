@@ -101,7 +101,12 @@ export function normalizePipProposal(input: PipProposalInput) {
       PIP_SOURCE_CONTRACT.fixedText.insufficientImprovementConsequences,
     acknowledgmentText: PIP_SOURCE_CONTRACT.fixedText.acknowledgmentText,
   };
-  return { ...normalized, fingerprint: JSON.stringify(normalized) };
+  // Position comes from the teacher profile. It can change after a request
+  // succeeds. It is not part of the logical command identity.
+  const logicalCommand = Object.fromEntries(
+    Object.entries(normalized).filter(([key]) => key !== 'position'),
+  );
+  return { ...normalized, fingerprint: JSON.stringify(logicalCommand) };
 }
 
 /** Validate distinct approved skill targets and their direct Danielson parents. */

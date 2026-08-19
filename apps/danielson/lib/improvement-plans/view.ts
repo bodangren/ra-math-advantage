@@ -71,6 +71,15 @@ export type ImprovementPlanView = {
   }>;
 };
 
+export type ImprovementPlanListView = {
+  planId: string;
+  teacherProfileId: string;
+  state: 'proposed' | 'active' | 'closed';
+  revision: number;
+  activeVersion: { versionId: string; version: number; teacherName: string } | null;
+  pendingVersion: { versionId: string; version: number; teacherName: string } | null;
+};
+
 export type ImprovementPlanProgress =
   | { contractVersion: 'danielson.ip-progress.v1'; state: 'not_configured'; planId?: never }
   | { contractVersion: 'danielson.ip-progress.v1'; state: 'pending_approval'; planId?: string }

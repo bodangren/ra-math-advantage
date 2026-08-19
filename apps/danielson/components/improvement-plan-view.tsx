@@ -75,7 +75,7 @@ export function ImprovementPlanView({
   roles: string[];
 }) {
   const active = plan.activeVersion;
-  const pending = plan.pendingVersion;
+  const pending = plan.state === 'closed' ? null : plan.pendingVersion;
   const canApprove = roles.includes('slt');
   const canClose = roles.includes('slt');
   const canRevise = roles.some((role) => ['hod', 'coach', 'school_head', 'slt'].includes(role));
@@ -106,11 +106,33 @@ export function ImprovementPlanView({
           <h2 id="pip-progress-heading">Target progress</h2>
           <ul className="record-list">{progress.targets.map((target) => (
             <li key={target.skillId}>
-              <code>{target.skillId}</code>: {stateLabel(target.state)}. Current rating: {target.currentRating ?? 'No rated plan evidence'}. Evidence {target.evidenceOverdue ? 'overdue' : target.evidenceDue ? 'due' : 'current'}.
+              <code>{target.skillId}</code>: {stateLabel(target.state)}. Current rating: {target.currentRating ?? 'No rated plan evidence'}. Evidence {target.evidenceOverdue ? 'overdue' : target.evidenceDue ? 'due' : 'current'}. Evidence due at: {dateLabel(target.evidenceDueAt)}.{target.sourceRecordId ? <span>Source record: {target.sourceRecordId}</span> : null}{target.evidenceIdempotencyKey ? <span>Evidence key: {target.evidenceIdempotencyKey}</span> : null}
             </li>
           ))}</ul>
         </section>
       ) : null}
+
+      <section className="card" aria-labelledby="pip-history-heading">
+        <h2 id="pip-history-heading">Lifecycle history</h2>
+        {plan.history.events.length === 0 ? <p>No lifecycle events are available.</p> : (
+          <ul className="record-list">{plan.history.events.map((event) => (
+            <li key={event.eventId}>
+              {stateLabel(event.kind)} · version {event.version} · {dateLabel(event.occurredAt)}
+              {event.payload.outcome ? ` · ${stateLabel(event.payload.outcome)}` : ''}
+              {event.payload.note ? ` · ${event.payload.note}` : ''}
+            </li>
+          ))}</ul>
+        )}
+      </section>
+
+      <section className="card" aria-labelledby="pip-prior-approved-heading">
+        <h2 id="pip-prior-approved-heading">Prior approved versions</h2>
+        {plan.history.priorApprovedVersions.length === 0 ? <p>No prior approved versions.</p> : (
+          <ul className="record-list">{plan.history.priorApprovedVersions.map((version) => (
+            <li key={version.versionId}>Version {version.version}: <span>{version.purpose}</span></li>
+          ))}</ul>
+        )}
+      </section>
 
       {active && viewer.isSubjectTeacher && !teacherAcknowledged ? (
         <section className="card" aria-labelledby="teacher-pip-ack-heading">
