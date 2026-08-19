@@ -124,15 +124,6 @@ export function TeacherReportView({
             <div><dt>Due skills</dt><dd>{report.gbf.dueSkillIds.length}</dd></div>
             <div><dt>Unresolved gaps</dt><dd>{report.gbf.unresolvedGapSkillIds.length}</dd></div>
           </dl>
-          {canAssignGbf ? (
-            <button
-              type="button"
-              onClick={assignGbf}
-              disabled={gbfAssignmentState === 'submitting' || gbfAssignmentState === 'assigned'}
-            >
-              {gbfAssignmentState === 'submitting' ? 'Assigning…' : 'Assign Get Better Faster'}
-            </button>
-          ) : null}
         </section>
       ) : canAssignGbf ? (
         <section className="card" aria-labelledby="gbf-progress-heading">

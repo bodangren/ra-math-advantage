@@ -167,7 +167,10 @@ describe('GBF report interface', () => {
       json: async () => ({ kind: 'assigned' }),
     }));
     const props = {
-      report,
+      report: {
+        ...report,
+        gbf: { contractVersion: 'danielson.gbf-progress.v1', state: 'not_configured' },
+      },
       canComment: false,
       canRespond: false,
       canAssignGbf: true,

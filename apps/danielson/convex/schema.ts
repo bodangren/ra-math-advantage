@@ -596,6 +596,7 @@ export default defineSchema({
   })
     .index('by_org_teacher_state', ['organizationId', 'teacherProfileId', 'state'])
     .index('by_org_updated', ['organizationId', 'updatedAt'])
+    .index('by_org_created', ['organizationId', 'createdAt'])
     .index('by_org_state_updated', ['organizationId', 'state', 'updatedAt'])
     .index('by_org_teacher_created', ['organizationId', 'teacherProfileId', 'createdAt']),
 

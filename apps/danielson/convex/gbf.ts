@@ -1,6 +1,6 @@
 import { v } from 'convex/values';
 
-import { internalMutation, type QueryCtx } from './_generated/server';
+import { internalMutation, type MutationCtx, type QueryCtx } from './_generated/server';
 import type { Doc, Id } from './_generated/dataModel';
 import { resolveAccessContextForDb } from './foundation';
 import { authorizeDanielsonAction } from '../lib/foundation/authorization';
@@ -11,6 +11,7 @@ import { GBF_SEQUENCE_RELEASE } from '../lib/gbf/source';
 const MAX_REQUEST_ID_LENGTH = 200;
 const MAX_TEACHER_ASSIGNMENTS = 100;
 const MAX_ORGANIZATION_ASSIGNMENTS = 250;
+const MAX_LEGACY_ORGANIZATION_ASSIGNMENTS = 10_000;
 
 const deniedValidator = v.object({ kind: v.literal('denied'), reason: v.string() });
 const receiptFields = {
@@ -64,6 +65,37 @@ function assignmentFingerprint(input: {
     teacherProfileId: input.teacherProfileId,
     sequenceReleaseId: input.sequenceReleaseId,
     graphReleaseId: input.graphReleaseId,
+  });
+}
+
+function compareAssignmentOrder(
+  left: Pick<Doc<'teacher_gbf_assignments'>, 'assignedAt' | 'requestId' | 'actorAccountId'>,
+  right: Pick<Doc<'teacher_gbf_assignments'>, 'assignedAt' | 'requestId' | 'actorAccountId'>,
+) {
+  const time = left.assignedAt - right.assignedAt;
+  if (time !== 0) return time;
+  const request = left.requestId.localeCompare(right.requestId);
+  if (request !== 0) return request;
+  return String(left.actorAccountId).localeCompare(String(right.actorAccountId));
+}
+
+async function selectCurrentAssignment(
+  ctx: Pick<MutationCtx, 'db'>,
+  teacher: Doc<'teacher_profiles'>,
+  candidate: Doc<'teacher_gbf_assignments'>,
+) {
+  const current = teacher.currentGbfAssignmentId
+    ? await ctx.db.get(teacher.currentGbfAssignmentId)
+    : null;
+  if (
+    current
+    && current.organizationId === teacher.organizationId
+    && current.teacherProfileId === teacher._id
+    && compareAssignmentOrder(current, candidate) >= 0
+  ) return;
+  await ctx.db.patch(teacher._id, {
+    currentGbfAssignmentId: candidate._id,
+    updatedAt: Math.max(teacher.updatedAt, candidate.assignedAt),
   });
 }
 
@@ -135,6 +167,31 @@ export async function readOrganizationCurrentGbfAssignments(
     const teacherProfileId = String(row.teacherProfileId);
     assignmentsByTeacher.set(teacherProfileId, assignmentView(row));
   }
+  const missingTeacherIds = new Set(teachers
+    .map((teacher) => String(teacher._id))
+    .filter((teacherProfileId) => !assignmentsByTeacher.has(teacherProfileId)));
+  if (missingTeacherIds.size > 0) {
+    const legacyRows = await database(ctx).query('teacher_gbf_assignments')
+      .withIndex('by_org_time', (query) => query
+        .eq('organizationId', organizationId as Id<'organizations'>))
+      .order('desc')
+      .take(MAX_LEGACY_ORGANIZATION_ASSIGNMENTS + 1);
+    if (legacyRows.length > MAX_LEGACY_ORGANIZATION_ASSIGNMENTS) {
+      return { kind: 'capacity_exceeded' };
+    }
+    const latestByTeacher = new Map<string, Doc<'teacher_gbf_assignments'>>();
+    for (const row of legacyRows) {
+      const teacherProfileId = String(row.teacherProfileId);
+      if (!missingTeacherIds.has(teacherProfileId)) continue;
+      const current = latestByTeacher.get(teacherProfileId);
+      if (!current || compareAssignmentOrder(row, current) > 0) {
+        latestByTeacher.set(teacherProfileId, row);
+      }
+    }
+    for (const [teacherProfileId, row] of latestByTeacher) {
+      assignmentsByTeacher.set(teacherProfileId, assignmentView(row));
+    }
+  }
   return { kind: 'allowed', assignmentsByTeacher };
 }
 
@@ -154,11 +211,6 @@ export const assignTeacherGbfTrack = internalMutation({
       || args.requestId.length > MAX_REQUEST_ID_LENGTH
       || !Number.isFinite(args.now)
     ) return { kind: 'invalid_input' as const };
-    if (
-      args.sequenceReleaseId !== GBF_SEQUENCE_RELEASE.releaseId
-      || args.graphReleaseId !== GBF_GRAPH_RELEASE.releaseId
-    ) return { kind: 'unsupported_release' as const };
-
     const fingerprint = assignmentFingerprint({
       teacherProfileId: String(args.teacherProfileId),
       sequenceReleaseId: args.sequenceReleaseId,
@@ -175,6 +227,8 @@ export const assignTeacherGbfTrack = internalMutation({
       .unique();
     if (existing) {
       if (existing.fingerprint !== fingerprint) return { kind: 'idempotency_conflict' as const };
+      const replayTeacher = await ctx.db.get(existing.teacherProfileId);
+      if (replayTeacher) await selectCurrentAssignment(ctx, replayTeacher, existing);
       return {
         kind: 'replayed' as const,
         assignmentId: String(existing._id),
@@ -182,6 +236,10 @@ export const assignTeacherGbfTrack = internalMutation({
         graphReleaseId: existing.graphReleaseId,
       };
     }
+    if (
+      args.sequenceReleaseId !== GBF_SEQUENCE_RELEASE.releaseId
+      || args.graphReleaseId !== GBF_GRAPH_RELEASE.releaseId
+    ) return { kind: 'unsupported_release' as const };
 
     const teacher = await ctx.db.get(args.teacherProfileId);
     if (!teacher) return { kind: 'denied' as const, reason: 'target_inactive' };
@@ -220,10 +278,9 @@ export const assignTeacherGbfTrack = internalMutation({
       fingerprint,
       assignedAt: args.now,
     });
-    await ctx.db.patch(args.teacherProfileId, {
-      currentGbfAssignmentId: assignmentId,
-      updatedAt: args.now,
-    });
+    const assignment = await ctx.db.get(assignmentId);
+    if (!assignment) throw new Error('assignment_insert_failed');
+    await selectCurrentAssignment(ctx, teacher, assignment);
     return {
       kind: 'assigned' as const,
       assignmentId: String(assignmentId),

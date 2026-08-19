@@ -568,7 +568,6 @@ export const createImprovementPlanProposal = internalMutation({
     planId: v.union(v.id('improvement_plans'), v.null()),
     requestId: v.string(),
     expectedRevision: v.number(),
-    position: v.string(),
     departmentId: v.id('departments'),
     reviewMeetingDate: v.string(),
     requestedPlanEndDate: v.union(v.string(), v.null()),
@@ -1442,6 +1441,7 @@ export const listScopedImprovementPlans = internalQuery({
   },
   returns: v.union(
     deniedValidator,
+    v.object({ kind: v.literal('capacity_exceeded') }),
     v.object({ kind: v.literal('invalid_page_size') }),
     v.object({ kind: v.literal('invalid_cursor') }),
     v.object({ kind: v.literal('allowed'), page: paginationResultValidator(planListViewValidator) }),
@@ -1472,7 +1472,7 @@ export const listScopedImprovementPlans = internalQuery({
         .eq('organizationId', actor.organizationId)
         .eq('isActive', true))
       .take(251);
-    if (profiles.length > 250) return { kind: 'denied' as const, reason: 'capacity_exceeded' };
+    if (profiles.length > 250) return { kind: 'capacity_exceeded' as const };
     const organizationWide = supervisorRoles.has('school_head') || supervisorRoles.has('slt');
     let scopedTeacherIds = new Set(profiles
       .filter((profile) => String(profile.accountId) !== String(actor._id))
@@ -1504,7 +1504,7 @@ export const listScopedImprovementPlans = internalQuery({
       ]);
       if ([memberships, departments, hodAssignments, coachAssignments]
         .some((rows) => rows.length > MAX_EVIDENCE_ROWS)) {
-        return { kind: 'denied' as const, reason: 'capacity_exceeded' };
+        return { kind: 'capacity_exceeded' as const };
       }
       const departmentIds = new Set(departments.map((department) => String(department._id)));
       const hodDepartmentIds = new Set(hodAssignments
@@ -1534,19 +1534,16 @@ export const listScopedImprovementPlans = internalQuery({
         .map((profile) => String(profile._id)));
     }
 
-    const plans: Doc<'improvement_plans'>[] = [];
-    for (const teacherProfileId of scopedTeacherIds) {
-      const rows = await ctx.db.query('improvement_plans')
-        .withIndex('by_org_teacher_created', (query) => query
-          .eq('organizationId', actor.organizationId)
-          .eq('teacherProfileId', teacherProfileId as Id<'teacher_profiles'>))
-        .order('desc')
-        .take(251);
-      if (rows.length > 250) return { kind: 'denied' as const, reason: 'capacity_exceeded' };
-      plans.push(...rows);
-    }
-    if (plans.length > 250) return { kind: 'denied' as const, reason: 'capacity_exceeded' };
-    plans.sort((left, right) => right.updatedAt - left.updatedAt || String(right._id).localeCompare(String(left._id)));
+    const organizationPlans = await ctx.db.query('improvement_plans')
+      .withIndex('by_org_created', (query) => query.eq('organizationId', actor.organizationId))
+      .order('desc')
+      .take(251);
+    if (organizationPlans.length > 250) return { kind: 'capacity_exceeded' as const };
+    const plans = organizationPlans
+      .filter((plan) => scopedTeacherIds.has(String(plan.teacherProfileId)))
+      .sort((left, right) => (
+        right.createdAt - left.createdAt || String(right._id).localeCompare(String(left._id))
+      ));
     const start = args.paginationOpts.cursor === null
       ? 0
       : plans.findIndex((plan) => String(plan._id) === args.paginationOpts.cursor) + 1;

@@ -7,6 +7,7 @@ import type {
   GbfTrajectoryProgress,
 } from './contracts';
 import { GBF_GRAPH_RELEASE, resolveGbfGraphRelease } from './graph';
+import { findGbfRelease, resolveGbfSourceRelease } from './registry';
 import {
   GBF_MAPPING_RELEASE,
   GBF_SEQUENCE_RELEASE,
@@ -97,18 +98,16 @@ export function projectGbfProgress(input: {
       graphReleaseId: input.assignment.graphReleaseId,
     })
   ) throw new Error('unknown_gbf_release');
-  const sequence = input.assignment.sequenceReleaseId === GBF_SEQUENCE_RELEASE.releaseId
-    ? GBF_SEQUENCE_RELEASE
-    : {
-        ...GBF_SEQUENCE_RELEASE,
-        releaseId: input.assignment.sequenceReleaseId,
-      };
-  const mapping = input.assignment.sequenceReleaseId === GBF_SEQUENCE_RELEASE.releaseId
-    ? GBF_MAPPING_RELEASE
-    : {
-        ...GBF_MAPPING_RELEASE,
-        sequenceReleaseId: input.assignment.sequenceReleaseId,
-      };
+  const release = findGbfRelease({
+    sequenceReleaseId: input.assignment.sequenceReleaseId,
+    graphReleaseId: input.assignment.graphReleaseId,
+  });
+  const source = release && resolveGbfSourceRelease({
+    sequenceReleaseId: release.sequenceReleaseId,
+    mappingReleaseId: release.mappingReleaseId,
+  });
+  if (!release || !source) throw new Error('unknown_gbf_release');
+  const { sequence, mapping } = source;
   const priorityBySkill = new Map(input.priorities.map((priority) => [priority.skillId, priority]));
   const trajectories = {
     management: trajectoryProgress('management', priorityBySkill, sequence, mapping),

@@ -1,22 +1,38 @@
 import type { GbfMappingRelease, GbfSequenceRelease } from './contracts';
-import { GBF_MAPPING_RELEASE } from './mappings';
-import { GBF_SEQUENCE_RELEASE } from './source';
+import type { GbfGraphRelease } from './contracts';
+import { GBF_GRAPH_RELEASE_V1 } from './graph';
+import { GBF_MAPPING_RELEASE_V1 } from './mappings';
+import { GBF_SEQUENCE_RELEASE_V1 } from './source';
 
 export type GbfReleaseRegistryEntry = {
   sequenceReleaseId: string;
   mappingReleaseId: string;
   graphReleaseId: string;
   effectiveDate: string;
+  sequence: GbfSequenceRelease;
+  mapping: GbfMappingRelease;
+  graph: GbfGraphRelease;
 };
 
+function deepFreeze<T>(value: T): T {
+  if (value && typeof value === 'object' && !Object.isFrozen(value)) {
+    for (const item of Object.values(value)) deepFreeze(item);
+    Object.freeze(value);
+  }
+  return value;
+}
+
 /** The app-owned release registry is append-only. Keep old IDs here. */
-export const GBF_RELEASE_REGISTRY: readonly GbfReleaseRegistryEntry[] = Object.freeze([
-  Object.freeze({
+export const GBF_RELEASE_REGISTRY: readonly GbfReleaseRegistryEntry[] = deepFreeze([
+  {
     sequenceReleaseId: 'danielson.gbf.sequence.2026-08-19.v1',
     mappingReleaseId: 'danielson.gbf.mapping.2026-08-19.v1',
     graphReleaseId: 'danielson.gbf.graph.2026-08-19.v1',
     effectiveDate: '2026-08-19',
-  }),
+    sequence: structuredClone(GBF_SEQUENCE_RELEASE_V1),
+    mapping: structuredClone(GBF_MAPPING_RELEASE_V1),
+    graph: structuredClone(GBF_GRAPH_RELEASE_V1),
+  },
 ]);
 
 export function findGbfRelease(input: {
@@ -29,14 +45,16 @@ export function findGbfRelease(input: {
   )) ?? null;
 }
 
-/** Resolve source records for the current registry entry. */
+/** Resolve source records from one immutable registry entry. */
 export function resolveGbfSourceRelease(input: {
   sequenceReleaseId: string;
   mappingReleaseId: string;
 }): { sequence: GbfSequenceRelease; mapping: GbfMappingRelease } | null {
-  if (
-    input.sequenceReleaseId !== GBF_SEQUENCE_RELEASE.releaseId
-    || input.mappingReleaseId !== GBF_MAPPING_RELEASE.releaseId
-  ) return null;
-  return { sequence: GBF_SEQUENCE_RELEASE, mapping: GBF_MAPPING_RELEASE };
+  const entry = GBF_RELEASE_REGISTRY.find((candidate) => (
+    candidate.sequenceReleaseId === input.sequenceReleaseId
+    && candidate.mappingReleaseId === input.mappingReleaseId
+  ));
+  return entry
+    ? { sequence: structuredClone(entry.sequence), mapping: structuredClone(entry.mapping) }
+    : null;
 }

@@ -13,8 +13,12 @@ import type {
   GbfValidationResult,
 } from './contracts';
 import { buildDanielsonGraph } from '../proficiency/graph';
-import { GBF_MAPPING_RELEASE, GBF_SEQUENCE_RELEASE } from './source';
-import { findGbfRelease } from './registry';
+import {
+  GBF_MAPPING_RELEASE,
+  GBF_MAPPING_RELEASE_V1,
+  GBF_SEQUENCE_RELEASE,
+  GBF_SEQUENCE_RELEASE_V1,
+} from './source';
 
 const REVIEW_AUTHOR = 'Danielson internal review';
 const REVIEW_DATE = '2026-08-19';
@@ -31,19 +35,24 @@ function edgeId(type: GbfEdgeCandidate['type'], sourceId: string, targetId: stri
   return `danielson.gbf.edge.${type}.${clean(stepId)}.${clean(sourceId)}.${clean(targetId)}`;
 }
 
-function primaryFor(step: GbfActionStep) {
-  return GBF_MAPPING_RELEASE.mappings.find((item) => (
+function primaryFor(step: GbfActionStep, mapping = GBF_MAPPING_RELEASE) {
+  return mapping.mappings.find((item) => (
     item.actionStepId === step.actionStepId && item.role === 'primary'
   ));
 }
 
 /** Build a fresh deterministic candidate list from the reviewed mapping release. */
-export function buildGbfEdgeCandidates(): GbfEdgeCandidate[] {
-  const requiredSteps = GBF_SEQUENCE_RELEASE.actionSteps.filter((step) => step.status === 'required');
-  const stepById = new Map(GBF_SEQUENCE_RELEASE.actionSteps.map((step) => [step.actionStepId, step]));
-  const supportEdges = GBF_MAPPING_RELEASE.mappings.flatMap((item): GbfEdgeCandidate[] => {
+export function buildGbfEdgeCandidates(input: {
+  sequence?: typeof GBF_SEQUENCE_RELEASE;
+  mapping?: typeof GBF_MAPPING_RELEASE;
+} = {}): GbfEdgeCandidate[] {
+  const sequence = input.sequence ?? GBF_SEQUENCE_RELEASE;
+  const mapping = input.mapping ?? GBF_MAPPING_RELEASE;
+  const requiredSteps = sequence.actionSteps.filter((step) => step.status === 'required');
+  const stepById = new Map(sequence.actionSteps.map((step) => [step.actionStepId, step]));
+  const supportEdges = mapping.mappings.flatMap((item): GbfEdgeCandidate[] => {
     const step = stepById.get(item.actionStepId);
-    const primary = step ? primaryFor(step) : undefined;
+    const primary = step ? primaryFor(step, mapping) : undefined;
     if (!step || step.status !== 'required' || item.role !== 'support' || !primary) return [];
     return [{
       id: edgeId('supports', item.skillId, primary.skillId, step.actionStepId),
@@ -71,8 +80,8 @@ export function buildGbfEdgeCandidates(): GbfEdgeCandidate[] {
     for (let index = 0; index < steps.length - 1; index += 1) {
       const sourceStep = steps[index];
       const targetStep = steps[index + 1];
-      const source = primaryFor(sourceStep);
-      const target = primaryFor(targetStep);
+      const source = primaryFor(sourceStep, mapping);
+      const target = primaryFor(targetStep, mapping);
       if (!source || !target) continue;
       const tuple = `${source.skillId}::${target.skillId}`;
       const rejected = rejectedPrerequisiteTuples.has(tuple);
@@ -100,27 +109,18 @@ export function buildGbfEdgeCandidates(): GbfEdgeCandidate[] {
   return structuredClone([...supportEdges, ...prerequisiteEdges]);
 }
 
-export const GBF_GRAPH_RELEASE: GbfGraphRelease = {
+export const GBF_GRAPH_RELEASE_V1: GbfGraphRelease = {
   releaseId: 'danielson.gbf.graph.2026-08-19.v1',
-  sequenceReleaseId: GBF_SEQUENCE_RELEASE.releaseId,
-  mappingReleaseId: GBF_MAPPING_RELEASE.releaseId,
+  sequenceReleaseId: GBF_SEQUENCE_RELEASE_V1.releaseId,
+  mappingReleaseId: GBF_MAPPING_RELEASE_V1.releaseId,
   effectiveDate: '2026-08-19',
-  edgeCandidates: buildGbfEdgeCandidates(),
+  edgeCandidates: buildGbfEdgeCandidates({
+    sequence: GBF_SEQUENCE_RELEASE_V1,
+    mapping: GBF_MAPPING_RELEASE_V1,
+  }),
 };
 
-const FROZEN_GRAPH_RELEASE = structuredClone(GBF_GRAPH_RELEASE);
-const V1_SEQUENCE_RELEASE_ID = 'danielson.gbf.sequence.2026-08-19.v1';
-const V1_MAPPING_RELEASE_ID = 'danielson.gbf.mapping.2026-08-19.v1';
-const V1_GRAPH_RELEASE_ID = 'danielson.gbf.graph.2026-08-19.v1';
-
-function frozenV1GraphRelease(): GbfGraphRelease {
-  return {
-    ...structuredClone(FROZEN_GRAPH_RELEASE),
-    releaseId: V1_GRAPH_RELEASE_ID,
-    sequenceReleaseId: V1_SEQUENCE_RELEASE_ID,
-    mappingReleaseId: V1_MAPPING_RELEASE_ID,
-  };
-}
+export const GBF_GRAPH_RELEASE = GBF_GRAPH_RELEASE_V1;
 
 /** Resolve a graph by the release stored on a teacher assignment. */
 export function resolveGbfGraphRelease(input: {
@@ -128,10 +128,13 @@ export function resolveGbfGraphRelease(input: {
   graphReleaseId: string;
 }): GbfGraphRelease | null {
   if (
+    input.sequenceReleaseId === GBF_SEQUENCE_RELEASE_V1.releaseId
+    && input.graphReleaseId === GBF_GRAPH_RELEASE_V1.releaseId
+  ) return structuredClone(GBF_GRAPH_RELEASE_V1);
+  if (
     input.sequenceReleaseId === GBF_SEQUENCE_RELEASE.releaseId
     && input.graphReleaseId === GBF_GRAPH_RELEASE.releaseId
-  ) return GBF_GRAPH_RELEASE;
-  if (findGbfRelease(input)) return frozenV1GraphRelease();
+  ) return structuredClone(GBF_GRAPH_RELEASE);
   return null;
 }
 
@@ -187,16 +190,20 @@ export function validateGbfGraphRelease(release: GbfGraphRelease): GbfValidation
   if (!expectedRelease) {
     issues.push({ code: 'UNKNOWN_GBF_GRAPH_RELEASE', message: 'The graph release is not registered.' });
   }
-  if (release.sequenceReleaseId !== GBF_SEQUENCE_RELEASE.releaseId
-    && release.sequenceReleaseId !== V1_SEQUENCE_RELEASE_ID) {
+  if (expectedRelease && release.sequenceReleaseId !== expectedRelease.sequenceReleaseId) {
     issues.push({ code: 'SEQUENCE_RELEASE_LINK_MISMATCH', message: 'The graph must link to a registered sequence release.' });
   }
-  if (release.mappingReleaseId !== GBF_MAPPING_RELEASE.releaseId
-    && release.mappingReleaseId !== V1_MAPPING_RELEASE_ID) {
+  if (expectedRelease && release.mappingReleaseId !== expectedRelease.mappingReleaseId) {
     issues.push({ code: 'MAPPING_RELEASE_LINK_MISMATCH', message: 'The graph must link to a registered mapping release.' });
   }
-  const derivedCandidates = buildGbfEdgeCandidates();
+  const derivedCandidates = expectedRelease?.edgeCandidates ?? [];
   const derivedById = new Map(derivedCandidates.map((edge) => [edge.id, edge]));
+  const releaseIds = new Set(release.edgeCandidates.map((edge) => edge.id));
+  for (const edge of derivedCandidates) {
+    if (!releaseIds.has(edge.id)) {
+      issues.push({ code: 'MISSING_EDGE_CANDIDATE', message: 'The graph release is missing a derived edge candidate.', recordId: edge.id });
+    }
+  }
   for (const id of duplicateValues(release.edgeCandidates.map((edge) => edge.id))) {
     issues.push({ code: 'DUPLICATE_EDGE_ID', message: 'Edge candidate IDs must be unique.', recordId: id });
   }
@@ -208,7 +215,8 @@ export function validateGbfGraphRelease(release: GbfGraphRelease): GbfValidation
     } else {
       const derivedFields = [
         'type', 'sourceId', 'targetId', 'sourceActionStepId', 'targetActionStepId',
-        'sourceTrajectory', 'targetTrajectory', 'weight', 'confidence', 'reviewAuthor', 'reviewDate',
+        'sourceTrajectory', 'targetTrajectory', 'weight', 'confidence', 'rationale',
+        'reviewAuthor', 'reviewDate',
       ] as const;
       for (const field of derivedFields) {
         if (edge[field] !== derived[field]) {

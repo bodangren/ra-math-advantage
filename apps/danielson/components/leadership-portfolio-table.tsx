@@ -25,6 +25,12 @@ function reasonLabel(value: LeadershipPortfolioRow['attentionReasons'][number]) 
   return 'overdue evidence';
 }
 
+function phaseLabel(value: string) {
+  if (value === 'complete') return 'Complete';
+  const match = /^phase_(\d+)$/.exec(value);
+  return match ? `Phase ${match[1]}` : value.replaceAll('_', ' ');
+}
+
 export function LeadershipPortfolioTable({
   rows,
   nextHref,
@@ -40,7 +46,7 @@ export function LeadershipPortfolioTable({
             <tr>
               <th scope="col">Teacher</th>
               <th scope="col">Danielson</th>
-              <th scope="col">IP</th>
+              <th scope="col">Performance Improvement Plan</th>
               <th scope="col">Get Better Faster (GBF)</th>
               <th scope="col">Evidence due</th>
             </tr>
@@ -52,10 +58,15 @@ export function LeadershipPortfolioTable({
                   <Link href={`/reports/teachers/${encodeURIComponent(row.teacherProfileId)}`}>
                     {row.displayName}
                   </Link>
-                  {' · '}
-                  <Link href={`/improvement-plans/new?teacherProfileId=${encodeURIComponent(row.teacherProfileId)}`}>
-                    Start improvement plan
-                  </Link>
+                  {row.improvementPlan.state === 'not_configured'
+                    || row.improvementPlan.state === 'closed' ? (
+                      <>
+                        {' · '}
+                        <Link href={`/improvement-plans/new?teacherProfileId=${encodeURIComponent(row.teacherProfileId)}`}>
+                          Start improvement plan
+                        </Link>
+                      </>
+                    ) : null}
                   {row.attentionReasons.length > 0 ? (
                     <span className="attention-reasons">
                       {row.attentionReasons.map(reasonLabel).join('; ')}
@@ -72,6 +83,10 @@ export function LeadershipPortfolioTable({
                       <span>Due skills: {row.gbf.dueSkillCount}</span>
                       <br />
                       <span>Unresolved gaps: {row.gbf.unresolvedGapSkillCount}</span>
+                      <br />
+                      <span>Management phase: {phaseLabel(row.gbf.managementPhaseId)}</span>
+                      <br />
+                      <span>Rigor phase: {phaseLabel(row.gbf.rigorPhaseId)}</span>
                     </>
                   ) : null}
                 </td>

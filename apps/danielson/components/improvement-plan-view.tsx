@@ -76,9 +76,10 @@ export function ImprovementPlanView({
 }) {
   const active = plan.activeVersion;
   const pending = plan.state === 'closed' ? null : plan.pendingVersion;
-  const canApprove = roles.includes('slt');
-  const canClose = roles.includes('slt');
-  const canRevise = roles.some((role) => ['hod', 'coach', 'school_head', 'slt'].includes(role));
+  const canApprove = !viewer.isSubjectTeacher && roles.includes('slt');
+  const canClose = !viewer.isSubjectTeacher && roles.includes('slt');
+  const canRevise = !viewer.isSubjectTeacher
+    && roles.some((role) => ['hod', 'coach', 'school_head', 'slt'].includes(role));
   const teacherAcknowledged = plan.acknowledgments.some((item) => item.kind === 'teacher');
   const supervisorAcknowledged = plan.acknowledgments.some((item) => item.kind === 'supervisor');
   return (

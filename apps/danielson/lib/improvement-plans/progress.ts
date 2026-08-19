@@ -17,6 +17,14 @@ type PipTarget = {
   expectedRating: 3 | 4;
 };
 
+function compareEvidence(left: PipEvidence, right: PipEvidence) {
+  const time = left.occurredAt - right.occurredAt;
+  if (time !== 0) return time;
+  const source = (left.sourceRecordId ?? '').localeCompare(right.sourceRecordId ?? '');
+  if (source !== 0) return source;
+  return (left.evidenceIdempotencyKey ?? '').localeCompare(right.evidenceIdempotencyKey ?? '');
+}
+
 /** Apply the active-plan cadence without changing the shared SRS projection. */
 export function applyPipPriorityOverlay(input: {
   priority: PriorityProjection;
@@ -68,7 +76,7 @@ export function projectImprovementPlanProgress(input: {
         && event.occurredAt <= input.planEndAt
         && event.rating !== undefined,
       )
-      .sort((left, right) => right.occurredAt - left.occurredAt)[0];
+      .sort((left, right) => compareEvidence(right, left))[0];
     const currentRating = rated?.rating ?? null;
     const cadenceDueAt = Math.min((rated?.occurredAt ?? input.approvedAt) + 7 * DAY_MS, input.planEndAt);
     return {

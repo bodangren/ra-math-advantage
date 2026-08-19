@@ -10,7 +10,11 @@ import {
   GBF_MAPPING_RELEASE,
 } from './mappings';
 
-export { GBF_MAPPING_RELEASE, GBF_UNSEQUENCED_SKILL_IDS } from './mappings';
+export {
+  GBF_MAPPING_RELEASE,
+  GBF_MAPPING_RELEASE_V1,
+  GBF_UNSEQUENCED_SKILL_IDS,
+} from './mappings';
 
 export const GBF_SOURCE_MANIFESTS: GbfSourceManifest[] = [
   {
@@ -113,13 +117,15 @@ const actionSteps: GbfActionStep[] = [
   required('stretch_it.rigor.13', 'stretch_it', 'rigor', 13, 13, 'Go Conceptual', 5),
 ];
 
-export const GBF_SEQUENCE_RELEASE: GbfSequenceRelease = {
+export const GBF_SEQUENCE_RELEASE_V1: GbfSequenceRelease = {
   releaseId: 'danielson.gbf.sequence.2026-08-19.v1',
   effectiveDate: '2026-08-19',
   sourceManifestHashes: GBF_SOURCE_MANIFESTS.map((source) => source.sha256),
   phases,
   actionSteps,
 };
+
+export const GBF_SEQUENCE_RELEASE = GBF_SEQUENCE_RELEASE_V1;
 
 // Keep an immutable copy of the reviewed source records. Runtime validation
 // uses this copy to reject accidental edits to a frozen release.

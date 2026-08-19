@@ -15,6 +15,9 @@ export async function getImprovementPlanList(cursor: string | null) {
     paginationOpts: { cursor, numItems: 25 },
     now: Date.now(),
   });
+  if (result.kind === 'capacity_exceeded') {
+    throw new Error('The improvement plan list exceeded its safe capacity.');
+  }
   if (result.kind !== 'allowed') redirect('/unauthorized');
   return {
     session,

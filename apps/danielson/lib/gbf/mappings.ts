@@ -129,10 +129,12 @@ export const GBF_UNSEQUENCED_SKILL_IDS = [
   'habits-of-attention',
 ].map(skill);
 
-export const GBF_MAPPING_RELEASE: GbfMappingRelease = {
+export const GBF_MAPPING_RELEASE_V1: GbfMappingRelease = {
   releaseId: 'danielson.gbf.mapping.2026-08-19.v1',
   sequenceReleaseId: 'danielson.gbf.sequence.2026-08-19.v1',
   effectiveDate: '2026-08-19',
   mappings: GBF_MAPPINGS,
   unsequencedSkillIds: GBF_UNSEQUENCED_SKILL_IDS,
 };
+
+export const GBF_MAPPING_RELEASE = GBF_MAPPING_RELEASE_V1;
