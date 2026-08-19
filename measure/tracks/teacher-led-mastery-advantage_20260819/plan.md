@@ -119,24 +119,30 @@ only after all three pilots are Green.
     - [x] Add pure exposure eligibility and mastery-bearing classification helpers
     - [x] Keep teacher-led evidence on a reporting-only path and Mastery Advantage evidence on the existing KST+SRS bridge
     - [x] Preserve the package DAG and avoid dependency changes unless separately approved
-- [x] Task 3.2: Implement the IM3 pilot adapter (Lane 1) (35dd3d8)
+- [~] Task 3.2: Implement the IM3 pilot adapter (Lane 1) (35dd3d8)
     - [x] Complete the overlap review against the active v3.2 migration before touching shared IM3 runtime surfaces
     - [x] Persist idempotent teacher-led exposure for only the frozen IM3 node
     - [x] Gate the pilot planner/bridge path on prior exposure and map eligible graded evidence into v3.2 KST+SRS
     - [x] Make the focused IM3 Red tests Green without enabling neighboring nodes
-- [x] Task 3.3: Implement the Precalculus pilot adapter (Lane 2) (b1e5637)
+- [~] Follow-up: Add the pure IM3 Convex learning-evidence handler seam
+    - [ ] Reuse the IM3 adapter, shared evaluator, and exact one-node manifest
+    - [ ] Preserve teacher-led persistence, pre-exposure denial, post-exposure bridge gating, and replay idempotency
+    - [ ] Keep production Convex persistence outside this seam
+- [~] Task 3.3: Implement the Precalculus pilot adapter (Lane 2) (b1e5637)
     - [ ] Persist idempotent teacher-led exposure for only the frozen Precalculus node
     - [ ] Add the smallest app-owned KST+SRS adapter needed for the bounded node
     - [ ] Keep curriculum, graph, auth, and storage details inside Precalculus
     - [ ] Make the focused Precalculus Red tests Green without enabling neighboring nodes
-- [x] Task 3.4: Implement the BM2 pilot node and adapter (Lane 3) (042e360)
+- [~] Task 3.4: Implement the BM2 pilot node and adapter (Lane 3) (042e360)
     - [x] Add the reviewed app-owned node/activity mapping for Unit 1 Lesson 1 only
     - [x] Extend shared math ID support narrowly for `bm2` with compatibility tests
     - [x] Translate the pilot's legacy `problemFamilyId` to `variantKey` only at the shared SRS boundary
     - [x] Persist idempotent teacher-led exposure and gate BM2 Mastery Advantage progression
     - [x] Reuse canonical KST+SRS behavior rather than introducing an app-local planner or scheduler
     - [x] Make the focused BM2 Red tests Green without starting a full graph rollout
+    - [~] Follow-up: Add the pure legacy `problemFamilyId` ↔ canonical `variantKey` card compatibility boundary with focused validation tests
 - [ ] Task 3.5: Complete cross-app Green and refactor pass (All lanes)
+    *Note: Production Convex persistence and real KST/SRS wiring remain required for all three lanes.*
     - [ ] Make the shared conformance and exact-three-node boundary suites Green
     - [ ] Remove duplicated app policy logic while retaining app-owned persistence/auth adapters
     - [ ] Verify duplicate delivery causes one logical event and one downstream effect in every app
