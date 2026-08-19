@@ -1,5 +1,6 @@
 import { paginationOptsValidator, paginationResultValidator } from 'convex/server';
 import { v } from 'convex/values';
+import type { KnowledgeSpace } from '@math-platform/knowledge-space-core';
 
 import { internalMutation, internalQuery } from './_generated/server';
 import type { Doc, Id } from './_generated/dataModel';
@@ -17,6 +18,7 @@ import type {
   SubmittedObservation,
 } from '../lib/observations/contracts';
 import { buildDanielsonGraph } from '../lib/proficiency/graph';
+import { resolveAssignedGbfGraph } from '../lib/gbf/graph';
 import {
   projectTeacherPriority,
   type PriorityProjection,
@@ -97,6 +99,8 @@ const compactGbfProgressValidator = v.union(
     state: v.union(v.literal('in_progress'), v.literal('proficient')),
     managementPhaseId: gbfPhaseIdValidator,
     rigorPhaseId: gbfPhaseIdValidator,
+    dueSkillCount: v.number(),
+    unresolvedGapSkillCount: v.number(),
   }),
 );
 const gbfTrajectoryProgressValidator = v.object({
@@ -377,14 +381,14 @@ function normalizeText(content: string) {
   return normalized.length > 0 && normalized.length <= 4_000 ? normalized : null;
 }
 
-const graph = buildDanielsonGraph().graph;
-const approvedSkillIds = graph.nodes
-  .filter((node) => node.kind === 'skill' && node.reviewStatus === 'approved')
-  .map((node) => node.id)
-  .sort();
+const baseGraph: KnowledgeSpace = buildDanielsonGraph().graph;
 
-function emptyPriorities(teacherProfileId: string, now: number) {
-  return projectTeacherPriority(teacherProfileId, [], [], graph, approvedSkillIds, now);
+function emptyPriorities(teacherProfileId: string, now: number, graph = baseGraph) {
+  const skillIds = graph.nodes
+    .filter((node) => node.kind === 'skill' && node.reviewStatus === 'approved')
+    .map((node) => node.id)
+    .sort();
+  return projectTeacherPriority(teacherProfileId, [], [], graph, skillIds, now);
 }
 
 export const readLeadershipPortfolio = internalQuery({
@@ -552,7 +556,14 @@ export const readLeadershipPortfolio = internalQuery({
               }
             : undefined;
       const priorities = summaryByTeacher.get(teacherProfileId)
-        ?? emptyPriorities(teacherProfileId, now);
+        ?? emptyPriorities(
+          teacherProfileId,
+          now,
+          resolveAssignedGbfGraph(
+            baseGraph,
+            gbfAssignments.assignmentsByTeacher.get(teacherProfileId) ?? null,
+          ),
+        );
       const gbf = projectGbfProgress({
         assignment: gbfAssignments.assignmentsByTeacher.get(teacherProfileId) ?? null,
         priorities,
@@ -646,6 +657,14 @@ async function buildPublicTeacherReport(
     || improvementPlan === null
     || gbfAssignment.kind === 'capacity_exceeded'
   ) return null;
+  const reportGraph = resolveAssignedGbfGraph(
+    baseGraph,
+    gbfAssignment.kind === 'allowed' ? gbfAssignment.assignment : null,
+  );
+  const reportSkillIds = reportGraph.nodes
+    .filter((node) => node.kind === 'skill' && node.reviewStatus === 'approved')
+    .map((node) => node.id)
+    .sort();
   const publicImprovementPlan = improvementPlan.state === 'pending_approval'
     ? { contractVersion: 'danielson.ip-progress.v1' as const, state: 'not_configured' as const }
     : improvementPlan;
@@ -653,8 +672,8 @@ async function buildPublicTeacherReport(
     String(teacher._id),
     cards.map((row) => row.card) as never,
     proficiency.map((row) => row.projection as Record<string, unknown>),
-    graph,
-    approvedSkillIds,
+    reportGraph,
+    reportSkillIds,
     now,
   );
   const sourceBySkill = new Map(proficiency.map((row) => [

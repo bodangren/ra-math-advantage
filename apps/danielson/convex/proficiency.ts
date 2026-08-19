@@ -3,6 +3,7 @@ import type { Id } from './_generated/dataModel';
 import { v } from 'convex/values';
 
 import { buildDanielsonGraph } from '../lib/proficiency/graph';
+import { resolveAssignedGbfGraph } from '../lib/gbf/graph';
 import { createDanielsonTeacherProficiencyPort } from '../lib/proficiency/convex-repository';
 import { normalizeObservationEvidence, observationFingerprint } from '../lib/proficiency/evidence';
 import {
@@ -12,6 +13,7 @@ import {
 } from '../lib/proficiency/processor';
 import { authorizeDanielsonAction, type DanielsonAction } from '../lib/foundation/authorization';
 import { resolveAccessContextForDb } from './foundation';
+import { readTeacherGbfAssignment } from './gbf';
 
 const sourceTypeValidator = v.union(
   v.literal('walkthrough'),
@@ -153,8 +155,8 @@ export const ingestObservationEvidence = internalMutation({
   },
   returns: ingestReturnsValidator,
   handler: async (ctx, args) => {
-    const graph = buildDanielsonGraph().graph;
-    const normalized = normalizeObservationEvidence(args.evidence, graph);
+    const baseGraph = buildDanielsonGraph().graph;
+    const normalized = normalizeObservationEvidence(args.evidence, baseGraph);
     if (normalized.organizationId !== args.organizationId) {
       return { kind: 'denied' as const, reason: 'organization_scope_denied' };
     }
@@ -170,6 +172,18 @@ export const ingestObservationEvidence = internalMutation({
       submitAction(normalized.sourceType),
     );
     if (!decision.allowed) return { kind: 'denied' as const, reason: decision.reason };
+    const assignment = await readTeacherGbfAssignment(
+      ctx,
+      args.organizationId,
+      normalized.teacherId as Id<'teacher_profiles'>,
+    );
+    if (assignment.kind === 'capacity_exceeded') {
+      return { kind: 'denied' as const, reason: 'gbf_assignment_capacity_exceeded' };
+    }
+    const graph = resolveAssignedGbfGraph(
+      baseGraph,
+      assignment.kind === 'allowed' ? assignment.assignment : null,
+    );
     const existing = await ctx.db.query('teacher_proficiency_idempotency')
       .withIndex('by_organizationId_and_idempotencyKey', (query) => query
         .eq('organizationId', args.organizationId)
@@ -240,11 +254,19 @@ export const readTeacherPriority = internalQuery({
         .order('asc')
         .take(200),
     ]);
-    const graph = buildDanielsonGraph().graph;
+    const baseGraph = buildDanielsonGraph().graph;
     const observedSkillIds = [...new Set([
       ...cardRows.map((row) => row.skillId),
       ...proficiencyRows.map((row) => row.skillId),
     ])];
+    const assignment = await readTeacherGbfAssignment(ctx, args.organizationId, teacher._id);
+    if (assignment.kind === 'capacity_exceeded') {
+      return { kind: 'denied' as const, reason: 'gbf_assignment_capacity_exceeded' };
+    }
+    const graph = resolveAssignedGbfGraph(
+      baseGraph,
+      assignment.kind === 'allowed' ? assignment.assignment : null,
+    );
     const approvedSkillIds = graph.nodes
       .filter((node) => node.kind === 'skill' && node.reviewStatus === 'approved')
       .map((node) => node.id)

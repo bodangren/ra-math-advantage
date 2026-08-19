@@ -10,6 +10,7 @@
 
 import type * as auth from "../auth.js";
 import type * as foundation from "../foundation.js";
+import type * as gbf from "../gbf.js";
 import type * as improvementPlans from "../improvementPlans.js";
 import type * as observations from "../observations.js";
 import type * as proficiency from "../proficiency.js";
@@ -24,6 +25,7 @@ import type {
 declare const fullApi: ApiFromModules<{
   auth: typeof auth;
   foundation: typeof foundation;
+  gbf: typeof gbf;
   improvementPlans: typeof improvementPlans;
   observations: typeof observations;
   proficiency: typeof proficiency;

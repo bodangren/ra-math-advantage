@@ -11,6 +11,7 @@ import { GBF_SEQUENCE_RELEASE } from '../lib/gbf/source';
 const MAX_REQUEST_ID_LENGTH = 200;
 const MAX_TEACHER_ASSIGNMENTS = 100;
 const MAX_ORGANIZATION_ASSIGNMENTS = 250;
+const MAX_ORGANIZATION_ASSIGNMENT_ROWS = 25_000;
 
 const deniedValidator = v.object({ kind: v.literal('denied'), reason: v.string() });
 const receiptFields = {
@@ -102,14 +103,17 @@ export async function readOrganizationCurrentGbfAssignments(
     .withIndex('by_org_time', (query) => query
       .eq('organizationId', organizationId as Id<'organizations'>))
     .order('desc')
-    .take(MAX_ORGANIZATION_ASSIGNMENTS + 1);
-  if (rows.length > MAX_ORGANIZATION_ASSIGNMENTS) return { kind: 'capacity_exceeded' };
+    .take(MAX_ORGANIZATION_ASSIGNMENT_ROWS + 1);
+  if (rows.length > MAX_ORGANIZATION_ASSIGNMENT_ROWS) return { kind: 'capacity_exceeded' };
   const assignmentsByTeacher = new Map<string, GbfAssignmentView>();
   for (const row of rows) {
     const teacherProfileId = String(row.teacherProfileId);
     if (!assignmentsByTeacher.has(teacherProfileId)) {
       assignmentsByTeacher.set(teacherProfileId, assignmentView(row));
     }
+  }
+  if (assignmentsByTeacher.size > MAX_ORGANIZATION_ASSIGNMENTS) {
+    return { kind: 'capacity_exceeded' };
   }
   return { kind: 'allowed', assignmentsByTeacher };
 }
@@ -135,32 +139,18 @@ export const assignTeacherGbfTrack = internalMutation({
       || args.graphReleaseId !== GBF_GRAPH_RELEASE.releaseId
     ) return { kind: 'unsupported_release' as const };
 
-    const teacher = await ctx.db.get(args.teacherProfileId);
-    if (!teacher) return { kind: 'denied' as const, reason: 'target_inactive' };
-    const accessContext = await resolveAccessContextForDb(ctx, {
-      actorAccountId: args.actorAccountId,
-      subjectAccountId: teacher.accountId,
-    });
-    const decision = authorizeDanielsonAction(accessContext, 'gbf:assign');
-    if (!decision.allowed) return { kind: 'denied' as const, reason: decision.reason };
-    if (!teacher.isActive || teacher.organizationId !== accessContext.actor?.organizationId) {
-      return {
-        kind: 'denied' as const,
-        reason: teacher.organizationId === accessContext.actor?.organizationId
-          ? 'target_inactive'
-          : 'cross_organization',
-      };
-    }
-
     const fingerprint = assignmentFingerprint({
       teacherProfileId: String(args.teacherProfileId),
       sequenceReleaseId: args.sequenceReleaseId,
       graphReleaseId: args.graphReleaseId,
     });
-    const organizationId = teacher.organizationId;
+    const actor = await ctx.db.get(args.actorAccountId);
+    if (!actor?.isActive) return { kind: 'denied' as const, reason: 'account_inactive' };
+    const organizationId = actor.organizationId;
     const existing = await ctx.db.query('teacher_gbf_assignments')
-      .withIndex('by_org_request', (query) => query
+      .withIndex('by_org_actor_request', (query) => query
         .eq('organizationId', organizationId)
+        .eq('actorAccountId', args.actorAccountId)
         .eq('requestId', args.requestId))
       .unique();
     if (existing) {
@@ -170,6 +160,23 @@ export const assignTeacherGbfTrack = internalMutation({
         assignmentId: String(existing._id),
         sequenceReleaseId: existing.sequenceReleaseId,
         graphReleaseId: existing.graphReleaseId,
+      };
+    }
+
+    const teacher = await ctx.db.get(args.teacherProfileId);
+    if (!teacher) return { kind: 'denied' as const, reason: 'target_inactive' };
+    const accessContext = await resolveAccessContextForDb(ctx, {
+      actorAccountId: args.actorAccountId,
+      subjectAccountId: teacher.accountId,
+    });
+    const decision = authorizeDanielsonAction(accessContext, 'gbf:assign');
+    if (!decision.allowed) return { kind: 'denied' as const, reason: decision.reason };
+    if (!teacher.isActive || teacher.organizationId !== organizationId) {
+      return {
+        kind: 'denied' as const,
+        reason: teacher.organizationId === organizationId
+          ? 'target_inactive'
+          : 'cross_organization',
       };
     }
 

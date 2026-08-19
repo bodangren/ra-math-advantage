@@ -1,3 +1,6 @@
+'use client';
+
+import { useState } from 'react';
 import Link from 'next/link';
 
 import { ReportCommentForm } from '@/components/report-comment-form';
@@ -53,6 +56,7 @@ export function TeacherReportView({
   report,
   canComment,
   canRespond,
+  canAssignGbf = false,
   evidenceHistoryNextHref = null,
   publicCommentsNextHref = null,
   privateCommentsNextHref = null,
@@ -60,11 +64,29 @@ export function TeacherReportView({
   report: PublicTeacherReport | PrivateTeacherReport;
   canComment: boolean;
   canRespond: boolean;
+  canAssignGbf?: boolean;
   evidenceHistoryNextHref?: string | null;
   publicCommentsNextHref?: string | null;
   privateCommentsNextHref?: string | null;
 }) {
   const privateComments = 'privateComments' in report ? report.privateComments : [];
+  const [gbfAssignmentState, setGbfAssignmentState] = useState<'idle' | 'submitting' | 'assigned' | 'error'>('idle');
+  async function assignGbf() {
+    setGbfAssignmentState('submitting');
+    try {
+      const response = await fetch(
+        `/api/reports/teachers/${encodeURIComponent(report.teacherProfileId)}/gbf-assignment`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: '{}',
+        },
+      );
+      setGbfAssignmentState(response.ok ? 'assigned' : 'error');
+    } catch {
+      setGbfAssignmentState('error');
+    }
+  }
   return (
     <>
       <section className="report-summary" aria-labelledby="report-summary-heading">
@@ -80,13 +102,14 @@ export function TeacherReportView({
                 : null}
             </dd>
           </div>
-          <div><dt>GBF</dt><dd>{gbfStateLabel(report.gbf.state)}</dd></div>
+          <div><dt>Get Better Faster (GBF)</dt><dd>{gbfStateLabel(report.gbf.state)}</dd></div>
         </dl>
       </section>
 
       {report.gbf.state !== 'not_configured' ? (
         <section className="card" aria-labelledby="gbf-progress-heading">
-          <h2 id="gbf-progress-heading">Get Better Faster progress</h2>
+          <h2 id="gbf-progress-heading">Get Better Faster (GBF) progress</h2>
+          <p>Progress</p>
           <dl className="summary-grid">
             <div>
               <dt>Management phase</dt>
@@ -101,6 +124,29 @@ export function TeacherReportView({
             <div><dt>Due skills</dt><dd>{report.gbf.dueSkillIds.length}</dd></div>
             <div><dt>Unresolved gaps</dt><dd>{report.gbf.unresolvedGapSkillIds.length}</dd></div>
           </dl>
+          {canAssignGbf ? (
+            <button
+              type="button"
+              onClick={assignGbf}
+              disabled={gbfAssignmentState === 'submitting' || gbfAssignmentState === 'assigned'}
+            >
+              {gbfAssignmentState === 'submitting' ? 'Assigning…' : 'Assign Get Better Faster'}
+            </button>
+          ) : null}
+        </section>
+      ) : canAssignGbf ? (
+        <section className="card" aria-labelledby="gbf-progress-heading">
+          <h2 id="gbf-progress-heading">Get Better Faster (GBF) progress</h2>
+          <p>There is no assigned track.</p>
+          <button
+            type="button"
+            onClick={assignGbf}
+            disabled={gbfAssignmentState === 'submitting' || gbfAssignmentState === 'assigned'}
+          >
+            {gbfAssignmentState === 'submitting' ? 'Assigning…' : 'Assign Get Better Faster'}
+          </button>
+          {gbfAssignmentState === 'assigned' ? <p role="status">Track assigned.</p> : null}
+          {gbfAssignmentState === 'error' ? <p role="alert">The track could not be assigned.</p> : null}
         </section>
       ) : null}
 

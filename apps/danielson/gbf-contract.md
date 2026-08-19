@@ -12,6 +12,11 @@ second scheduler.
 Use sequence release `danielson.gbf.sequence.2026-08-19.v1`.
 Use graph release `danielson.gbf.graph.2026-08-19.v1`.
 
+The release IDs are stored in an append-only GBF release registry. Add a new
+registry entry before the application accepts a new release. Keep the v1 entry
+so that existing assignments continue to use their recorded sequence and
+graph.
+
 The release uses these sources:
 
 | Source ID | File | Use | SHA-256 |
@@ -67,6 +72,9 @@ Each action step has these fields:
 - Short source name.
 - Source page.
 - `required` or `preview` status.
+
+Each preview also has a separate `previewOrder`. Preview order does not affect
+required path order.
 
 ## TLAC Mapping
 
@@ -162,6 +170,10 @@ metadata only.
 An assignment keeps its graph release ID. A later graph release does not change
 an earlier assignment. Do not change Track 2 node IDs or raw ratings.
 
+Resolve the assignment graph at each evidence, Knowledge Space Theory (KST),
+spaced repetition system (SRS), and report read boundary. Add only approved
+active prerequisite edges. A draft edge has no effect.
+
 ## Teacher Assignment
 
 Store one immutable assignment row for each assignment event. The row has these
@@ -179,8 +191,13 @@ fields:
 Only an active school head or SLT member in the same organization can create
 the assignment. A system administrator role alone cannot assign a professional
 learning track. The teacher account and profile must be active. The assignment
-mutation is idempotent by organization and request ID. An equal retry returns
-the first assignment. Changed content returns `idempotency_conflict`.
+mutation is idempotent by organization, actor account, and request ID. An equal
+retry returns the first assignment. Changed content returns
+`idempotency_conflict`.
+
+The server checks the actor-scoped replay before it checks mutable teacher
+state. An inactive target does not break an equal replay. An inactive actor
+still receives `account_inactive`.
 
 Do not update or delete an assignment. A later release creates a new assignment
 row. Read the latest assignment for current progress. Keep the earlier row for
@@ -209,6 +226,10 @@ Also return the assignment ID, sequence release ID, graph release ID, assigned
 skill IDs, proficient skill IDs, due skill IDs, and unresolved gap skill IDs.
 An unsequenced gap is unresolved by definition. Do not count preview mappings
 as required progress.
+
+Leadership can assign the track from the existing teacher report. The route
+uses a server-generated request ID. It does not accept release IDs or actor
+identity from the client.
 
 Use this public contract version:
 

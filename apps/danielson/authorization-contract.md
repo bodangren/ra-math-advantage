@@ -58,6 +58,10 @@ The named phrases in the role matrix refer to the exact capability codes in the
 capability table. The `sysadmin` role does not grant a teacher-report or
 evaluation capability.
 
+The leadership teacher report exposes the GBF assignment action to an active
+school head or SLT member. The server creates the request ID and release
+values. The client supplies no actor, organization, role, or release value.
+
 ## Scope Resolution
 
 Roles are additive. The server permits an operation when at least one current

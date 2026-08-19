@@ -704,7 +704,7 @@ export default defineSchema({
     fingerprint: v.string(),
     assignedAt: v.number(),
   })
-    .index('by_org_request', ['organizationId', 'requestId'])
+    .index('by_org_actor_request', ['organizationId', 'actorAccountId', 'requestId'])
     .index('by_org_teacher_time', ['organizationId', 'teacherProfileId', 'assignedAt'])
     .index('by_org_time', ['organizationId', 'assignedAt']),
 

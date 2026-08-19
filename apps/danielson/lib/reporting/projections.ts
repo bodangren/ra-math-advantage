@@ -38,6 +38,8 @@ export type PortfolioRow = {
         state: 'in_progress' | 'proficient';
         managementPhaseId: GbfPhaseId | 'complete';
         rigorPhaseId: GbfPhaseId | 'complete';
+        dueSkillCount: number;
+        unresolvedGapSkillCount: number;
       };
   evidenceDue: {
     state: 'overdue' | 'due' | 'current';
@@ -161,6 +163,8 @@ export function projectPortfolioRow(input: {
           state: input.gbf.state,
           managementPhaseId: input.gbf.trajectories.management.currentPhaseId,
           rigorPhaseId: input.gbf.trajectories.rigor.currentPhaseId,
+          dueSkillCount: input.gbf.dueSkillIds.length,
+          unresolvedGapSkillCount: input.gbf.unresolvedGapSkillIds.length,
         }
       : {
           contractVersion: 'danielson.gbf-progress.v1',

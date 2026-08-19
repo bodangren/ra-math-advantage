@@ -68,7 +68,7 @@ const required = (
   status: 'required',
 });
 
-const preview = (actionStepId: string, name: string): GbfActionStep => ({
+const preview = (actionStepId: string, name: string, previewOrder: number): GbfActionStep => ({
   actionStepId,
   phaseId: 'phase_1',
   trajectory: 'management',
@@ -77,16 +77,17 @@ const preview = (actionStepId: string, name: string): GbfActionStep => ({
   name,
   sourcePage: 1,
   status: 'preview',
+  previewOrder,
 });
 
 const actionSteps: GbfActionStep[] = [
   required('phase_1.management.1', 'phase_1', 'management', 1, 1, 'Routines and Procedures 101', 1),
   required('phase_1.management.2', 'phase_1', 'management', 2, 2, 'Strong Voice', 1),
-  preview('phase_1.management.preview.least-invasive-intervention', 'Least Invasive Intervention'),
-  preview('phase_1.management.preview.narrate-positive', 'Narrate the Positive'),
-  preview('phase_1.management.preview.build-momentum', 'Create a Challenge or Build Momentum'),
-  preview('phase_1.management.preview.teacher-radar', 'Teacher Radar'),
-  preview('phase_1.management.preview.do-it-again', 'Do It Again'),
+  preview('phase_1.management.preview.least-invasive-intervention', 'Least Invasive Intervention', 1),
+  preview('phase_1.management.preview.narrate-positive', 'Narrate the Positive', 2),
+  preview('phase_1.management.preview.build-momentum', 'Create a Challenge or Build Momentum', 3),
+  preview('phase_1.management.preview.teacher-radar', 'Teacher Radar', 4),
+  preview('phase_1.management.preview.do-it-again', 'Do It Again', 5),
   required('phase_1.rigor.1', 'phase_1', 'rigor', 1, 1, 'Develop Effective Lesson Plans 101', 1),
   required('phase_1.rigor.2', 'phase_1', 'rigor', 2, 2, 'Internalize Existing Lesson Plans', 1),
   required('phase_2.management.1', 'phase_2', 'management', 3, 1, 'What to Do', 2),
@@ -120,6 +121,11 @@ export const GBF_SEQUENCE_RELEASE: GbfSequenceRelease = {
   actionSteps,
 };
 
+// Keep an immutable copy of the reviewed source records. Runtime validation
+// uses this copy to reject accidental edits to a frozen release.
+const FROZEN_SEQUENCE_RELEASE = structuredClone(GBF_SEQUENCE_RELEASE);
+const FROZEN_MAPPING_RELEASE = structuredClone(GBF_MAPPING_RELEASE);
+
 function duplicateValues(values: readonly string[]) {
   const seen = new Set<string>();
   const duplicates = new Set<string>();
@@ -137,14 +143,43 @@ export function validateGbfSourceRelease(input: {
 }): GbfValidationResult {
   const issues: GbfValidationResult['issues'] = [];
   const expectedHashes = GBF_SOURCE_MANIFESTS.map((source) => source.sha256);
+  if (input.sequence.releaseId !== FROZEN_SEQUENCE_RELEASE.releaseId) {
+    issues.push({ code: 'SEQUENCE_RELEASE_MISMATCH', message: 'The sequence release ID is not the frozen release.' });
+  }
+  if (input.mapping.releaseId !== FROZEN_MAPPING_RELEASE.releaseId) {
+    issues.push({ code: 'MAPPING_RELEASE_MISMATCH', message: 'The mapping release ID is not the frozen release.' });
+  }
+  if (input.mapping.sequenceReleaseId !== input.sequence.releaseId) {
+    issues.push({ code: 'RELEASE_LINK_MISMATCH', message: 'The mapping must link to the sequence release.' });
+  }
   if (JSON.stringify(input.sequence.sourceManifestHashes) !== JSON.stringify(expectedHashes)) {
     issues.push({ code: 'SOURCE_HASH_MISMATCH', message: 'Source hashes do not match the frozen manifest.' });
+  }
+  if (JSON.stringify(input.sequence.phases) !== JSON.stringify(FROZEN_SEQUENCE_RELEASE.phases)) {
+    issues.push({ code: 'PHASE_RECORD_MISMATCH', message: 'Phase records do not match the frozen source sequence.' });
+  }
+  if (JSON.stringify(input.sequence.actionSteps) !== JSON.stringify(FROZEN_SEQUENCE_RELEASE.actionSteps)) {
+    issues.push({ code: 'ACTION_STEP_MISMATCH', message: 'Action-step records do not match the frozen source sequence.' });
+  }
+  if (JSON.stringify(input.mapping.mappings) !== JSON.stringify(FROZEN_MAPPING_RELEASE.mappings)) {
+    issues.push({ code: 'MAPPING_RECORD_MISMATCH', message: 'Mapping records do not match the reviewed mapping release.' });
+  }
+  if (JSON.stringify(input.mapping.unsequencedSkillIds) !== JSON.stringify(FROZEN_MAPPING_RELEASE.unsequencedSkillIds)) {
+    issues.push({ code: 'UNSEQUENCED_PARTITION_MISMATCH', message: 'The unsequenced skill partition does not match the reviewed release.' });
   }
   for (const id of duplicateValues(input.sequence.actionSteps.map((step) => step.actionStepId))) {
     issues.push({ code: 'DUPLICATE_ACTION_STEP', message: 'Action-step IDs must be unique.', recordId: id });
   }
   for (const id of duplicateValues(input.mapping.mappings.map((item) => item.mappingId))) {
     issues.push({ code: 'DUPLICATE_MAPPING', message: 'Mapping IDs must be unique.', recordId: id });
+  }
+  const mappingTuples = new Set<string>();
+  for (const item of input.mapping.mappings) {
+    const tuple = `${item.actionStepId}::${item.skillId}::${item.role}`;
+    if (mappingTuples.has(tuple)) {
+      issues.push({ code: 'DUPLICATE_MAPPING_TUPLE', message: 'Mapping tuples must be unique.', recordId: item.mappingId });
+    }
+    mappingTuples.add(tuple);
   }
   const actionIds = new Set(input.sequence.actionSteps.map((step) => step.actionStepId));
   const skillIds = new Set(buildDanielsonGraph().graph.nodes
@@ -173,6 +208,13 @@ export function validateGbfSourceRelease(input: {
     if (!skillIds.has(skillId) || input.mapping.mappings.some((item) => item.skillId === skillId)) {
       issues.push({ code: 'INVALID_UNSEQUENCED_SKILL', message: 'An unsequenced skill is invalid or mapped.', recordId: skillId });
     }
+  }
+  const partition = new Set([
+    ...input.mapping.mappings.map((item) => item.skillId),
+    ...input.mapping.unsequencedSkillIds,
+  ]);
+  if (partition.size !== skillIds.size || [...skillIds].some((skillId) => !partition.has(skillId))) {
+    issues.push({ code: 'INVALID_SKILL_PARTITION', message: 'The mapping and unsequenced lists must partition all approved skills.' });
   }
   return { valid: issues.length === 0, issues };
 }

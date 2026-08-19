@@ -11,6 +11,7 @@ import {
   type DanielsonRole,
 } from '../lib/foundation/authorization';
 import { buildDanielsonGraph, getComponentSkillIds } from '../lib/proficiency/graph';
+import { resolveAssignedGbfGraph } from '../lib/gbf/graph';
 import {
   processTeacherEvidence,
   projectTeacherPriority,
@@ -43,6 +44,7 @@ import type {
 } from '../lib/observations/contracts';
 import { applyPipPriorityOverlay } from '../lib/improvement-plans/progress';
 import { readOrganizationActiveImprovementPlans } from './improvementPlans';
+import { readTeacherGbfAssignment } from './gbf';
 
 const MAX_QUEUE_TEACHERS = 250;
 const MAX_ORGANIZATION_ACCOUNTS = 1_000;
@@ -364,7 +366,31 @@ function priorityAtClock(priority: PriorityProjection, now: number): PriorityPro
 type DbCtx = Pick<QueryCtx, 'db'> | Pick<MutationCtx, 'db'>;
 
 function graphDetails() {
-  const graph = buildDanielsonGraph().graph;
+  const graph = resolveAssignedGbfGraph(buildDanielsonGraph().graph, null);
+  const skillIds = graph.nodes
+    .filter((node) => node.kind === 'skill' && node.reviewStatus === 'approved')
+    .map((node) => node.id)
+    .sort();
+  const componentIds = new Set(
+    graph.nodes
+      .filter((node) => node.kind === 'instructional_unit')
+      .map((node) => node.id),
+  );
+  return { graph, skillIds, componentIds };
+}
+
+async function graphDetailsForTeacher(
+  ctx: DbCtx,
+  organizationId: Id<'organizations'>,
+  teacherProfileId: Id<'teacher_profiles'>,
+) {
+  const baseGraph = buildDanielsonGraph().graph;
+  const assignment = await readTeacherGbfAssignment(ctx, organizationId, teacherProfileId);
+  if (assignment.kind === 'capacity_exceeded') throw new Error('gbf_assignment_capacity_exceeded');
+  const graph = resolveAssignedGbfGraph(
+    baseGraph,
+    assignment.kind === 'allowed' ? assignment.assignment : null,
+  );
   const skillIds = graph.nodes
     .filter((node) => node.kind === 'skill' && node.reviewStatus === 'approved')
     .map((node) => node.id)
@@ -473,7 +499,7 @@ async function readTeacherPriorityRows(
         .eq('teacherId', String(teacherProfileId)))
       .take(MAX_TEACHER_ROWS),
   ]);
-  const { graph, skillIds } = graphDetails();
+  const { graph, skillIds } = await graphDetailsForTeacher(ctx, organizationId, teacherProfileId);
   return projectTeacherPriority(
     String(teacherProfileId),
     cards.map((row) => row.card) as never,
@@ -874,7 +900,17 @@ async function processSubmissionEvidence(
   record: SubmittedObservation,
   now: number,
 ) {
-  const graph = buildDanielsonGraph().graph;
+  const baseGraph = buildDanielsonGraph().graph;
+  const assignment = await readTeacherGbfAssignment(
+    ctx,
+    organizationId,
+    record.teacherProfileId as Id<'teacher_profiles'>,
+  );
+  if (assignment.kind === 'capacity_exceeded') throw new Error('gbf_assignment_capacity_exceeded');
+  const graph = resolveAssignedGbfGraph(
+    baseGraph,
+    assignment.kind === 'allowed' ? assignment.assignment : null,
+  );
   const port = createDanielsonTeacherProficiencyPort(ctx, organizationId);
   for (const command of buildObservationEvidenceCommands(record)) {
     const evidence = Object.fromEntries(
@@ -1259,6 +1295,16 @@ async function reconcileBySkill(
   now: number,
   correctionKey: string,
 ) {
+  const assignment = await readTeacherGbfAssignment(
+    ctx,
+    organizationId,
+    teacherId as Id<'teacher_profiles'>,
+  );
+  if (assignment.kind === 'capacity_exceeded') throw new Error('gbf_assignment_capacity_exceeded');
+  const graph = resolveAssignedGbfGraph(
+    buildDanielsonGraph().graph,
+    assignment.kind === 'allowed' ? assignment.assignment : null,
+  );
   const [cards, proficiency, states, priorities, reviews] = await Promise.all([
     ctx.db.query('teacher_srs_cards').withIndex('by_organizationId_and_teacherId', (q) => q
       .eq('organizationId', organizationId).eq('teacherId', teacherId)).take(MAX_TEACHER_ROWS),
@@ -1319,7 +1365,7 @@ async function reconcileBySkill(
     teacherId,
     allCards,
     replay.state.proficiency,
-    buildDanielsonGraph().graph,
+    graph,
     [...affected],
     now,
   ).map((row) => [row.skillId, row]));
@@ -1478,10 +1524,22 @@ export const amendObservation = internalMutation({
       const activeEvidence = outcomeRows
         .filter((outcome) => !excluded.has(outcome.idempotencyKey))
         .map((outcome) => outcome.outcome);
+      const assignment = await readTeacherGbfAssignment(
+        ctx,
+        row.organizationId,
+        row.teacherProfileId,
+      );
+      if (assignment.kind === 'capacity_exceeded') {
+        return { kind: 'correction_history_capacity_exceeded' as const };
+      }
+      const assignedGraph = resolveAssignedGbfGraph(
+        buildDanielsonGraph().graph,
+        assignment.kind === 'allowed' ? assignment.assignment : null,
+      );
       const replay = await replayTeacherEvidence({
         teacherId: String(row.teacherProfileId),
         evidence: [...activeEvidence, ...replacementCommands],
-        graph: buildDanielsonGraph().graph,
+        graph: assignedGraph,
         now: new Date(args.now).toISOString(),
       });
       const replacementKeys = new Set(replacementCommands.map((command) => command.idempotencyKey));
@@ -1511,7 +1569,7 @@ export const amendObservation = internalMutation({
         if (!source) continue;
         if (original.observationType === 'walkthrough' && source.skillId) affected.add(source.skillId);
         if (original.observationType === 'formal_q1') {
-          for (const skillId of getComponentSkillIds(buildDanielsonGraph().graph, source.componentId)) {
+          for (const skillId of getComponentSkillIds(assignedGraph, source.componentId)) {
             affected.add(skillId);
           }
         }

@@ -29,6 +29,8 @@ export type GbfActionStep = {
   name: string;
   sourcePage: number;
   status: 'required' | 'preview';
+  /** Preview steps have their own source order. */
+  previewOrder?: number;
 };
 
 export type GbfSequenceRelease = {

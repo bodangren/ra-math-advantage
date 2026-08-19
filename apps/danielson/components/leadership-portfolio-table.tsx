@@ -41,7 +41,7 @@ export function LeadershipPortfolioTable({
               <th scope="col">Teacher</th>
               <th scope="col">Danielson</th>
               <th scope="col">IP</th>
-              <th scope="col">GBF</th>
+              <th scope="col">Get Better Faster (GBF)</th>
               <th scope="col">Evidence due</th>
             </tr>
           </thead>
@@ -64,7 +64,17 @@ export function LeadershipPortfolioTable({
                 </th>
                 <td>{statusLabel(row.danielson.state)}</td>
                 <td>{statusLabel(row.improvementPlan.state)}</td>
-                <td>{statusLabel(row.gbf.state)}</td>
+                <td>
+                  {statusLabel(row.gbf.state)}
+                  {row.gbf.state !== 'not_configured' ? (
+                    <>
+                      <br />
+                      <span>Due skills: {row.gbf.dueSkillCount}</span>
+                      <br />
+                      <span>Unresolved gaps: {row.gbf.unresolvedGapSkillCount}</span>
+                    </>
+                  ) : null}
+                </td>
                 <td>
                   {statusLabel(row.evidenceDue.state)}
                   {row.evidenceDue.dueCount > 0 ? ` (${row.evidenceDue.dueCount})` : ''}

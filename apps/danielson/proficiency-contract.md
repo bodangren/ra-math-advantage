@@ -57,6 +57,12 @@ The app rejects a containment cycle.
 The app rejects every active `prerequisite_for` edge in Track 2.
 Track 6 owns GBF prerequisite review and activation.
 
+Track 6 keeps an append-only GBF release registry. Evidence ingestion, KST
+projection, SRS projection, observation reads, and report reads resolve the
+teacher assignment's graph release. An assignment with no GBF release uses the
+base Danielson graph. A later current release does not change a prior
+assignment.
+
 ## Evidence Contract
 
 The evidence contract has two outcomes.

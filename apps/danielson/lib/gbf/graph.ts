@@ -14,6 +14,7 @@ import type {
 } from './contracts';
 import { buildDanielsonGraph } from '../proficiency/graph';
 import { GBF_MAPPING_RELEASE, GBF_SEQUENCE_RELEASE } from './source';
+import { findGbfRelease } from './registry';
 
 const REVIEW_AUTHOR = 'Danielson internal review';
 const REVIEW_DATE = '2026-08-19';
@@ -107,6 +108,33 @@ export const GBF_GRAPH_RELEASE: GbfGraphRelease = {
   edgeCandidates: buildGbfEdgeCandidates(),
 };
 
+const FROZEN_GRAPH_RELEASE = structuredClone(GBF_GRAPH_RELEASE);
+const V1_SEQUENCE_RELEASE_ID = 'danielson.gbf.sequence.2026-08-19.v1';
+const V1_MAPPING_RELEASE_ID = 'danielson.gbf.mapping.2026-08-19.v1';
+const V1_GRAPH_RELEASE_ID = 'danielson.gbf.graph.2026-08-19.v1';
+
+function frozenV1GraphRelease(): GbfGraphRelease {
+  return {
+    ...structuredClone(FROZEN_GRAPH_RELEASE),
+    releaseId: V1_GRAPH_RELEASE_ID,
+    sequenceReleaseId: V1_SEQUENCE_RELEASE_ID,
+    mappingReleaseId: V1_MAPPING_RELEASE_ID,
+  };
+}
+
+/** Resolve a graph by the release stored on a teacher assignment. */
+export function resolveGbfGraphRelease(input: {
+  sequenceReleaseId: string;
+  graphReleaseId: string;
+}): GbfGraphRelease | null {
+  if (
+    input.sequenceReleaseId === GBF_SEQUENCE_RELEASE.releaseId
+    && input.graphReleaseId === GBF_GRAPH_RELEASE.releaseId
+  ) return GBF_GRAPH_RELEASE;
+  if (findGbfRelease(input)) return frozenV1GraphRelease();
+  return null;
+}
+
 function activePrerequisiteEdges(release: GbfGraphRelease): KnowledgeSpaceEdge[] {
   return release.edgeCandidates
     .filter((candidate) => (
@@ -152,11 +180,42 @@ export function validateGbfGraphRelease(release: GbfGraphRelease): GbfValidation
   const issues: GbfValidationResult['issues'] = [];
   const baseGraph = knowledgeSpaceSchema.parse(buildDanielsonGraph().graph);
   const skillIds = new Set(baseGraph.nodes.filter((node) => node.kind === 'skill').map((node) => node.id));
+  const expectedRelease = resolveGbfGraphRelease({
+    sequenceReleaseId: release.sequenceReleaseId,
+    graphReleaseId: release.releaseId,
+  });
+  if (!expectedRelease) {
+    issues.push({ code: 'UNKNOWN_GBF_GRAPH_RELEASE', message: 'The graph release is not registered.' });
+  }
+  if (release.sequenceReleaseId !== GBF_SEQUENCE_RELEASE.releaseId
+    && release.sequenceReleaseId !== V1_SEQUENCE_RELEASE_ID) {
+    issues.push({ code: 'SEQUENCE_RELEASE_LINK_MISMATCH', message: 'The graph must link to a registered sequence release.' });
+  }
+  if (release.mappingReleaseId !== GBF_MAPPING_RELEASE.releaseId
+    && release.mappingReleaseId !== V1_MAPPING_RELEASE_ID) {
+    issues.push({ code: 'MAPPING_RELEASE_LINK_MISMATCH', message: 'The graph must link to a registered mapping release.' });
+  }
+  const derivedCandidates = buildGbfEdgeCandidates();
+  const derivedById = new Map(derivedCandidates.map((edge) => [edge.id, edge]));
   for (const id of duplicateValues(release.edgeCandidates.map((edge) => edge.id))) {
     issues.push({ code: 'DUPLICATE_EDGE_ID', message: 'Edge candidate IDs must be unique.', recordId: id });
   }
   const tuples = new Set<string>();
   for (const edge of release.edgeCandidates) {
+    const derived = derivedById.get(edge.id);
+    if (!derived) {
+      issues.push({ code: 'UNKNOWN_EDGE_CANDIDATE', message: 'The graph contains an unknown edge candidate.', recordId: edge.id });
+    } else {
+      const derivedFields = [
+        'type', 'sourceId', 'targetId', 'sourceActionStepId', 'targetActionStepId',
+        'sourceTrajectory', 'targetTrajectory', 'weight', 'confidence', 'reviewAuthor', 'reviewDate',
+      ] as const;
+      for (const field of derivedFields) {
+        if (edge[field] !== derived[field]) {
+          issues.push({ code: 'DERIVED_EDGE_MISMATCH', message: `The ${field} field must come from the reviewed source records.`, recordId: edge.id });
+        }
+      }
+    }
     const tuple = `${edge.type}::${edge.sourceId}::${edge.targetId}`;
     if (tuples.has(tuple)) {
       issues.push({ code: 'DUPLICATE_EDGE', message: 'Edge candidate tuples must be unique.', recordId: edge.id });
@@ -208,4 +267,21 @@ export function composeAssignedGbfGraph(
     nodes: structuredClone(baseGraph.nodes),
     edges: [...structuredClone(baseGraph.edges), ...activePrerequisiteEdges(release)],
   };
+}
+
+/** Resolve one assignment snapshot and compose its graph without changing the base graph. */
+export function resolveAssignedGbfGraph(
+  baseGraph: KnowledgeSpace,
+  assignment: Pick<GbfGraphRelease, 'sequenceReleaseId' | 'releaseId'> | {
+    sequenceReleaseId: string;
+    graphReleaseId: string;
+  } | null,
+): KnowledgeSpace {
+  if (!assignment) return structuredClone(baseGraph);
+  const release = resolveGbfGraphRelease({
+    sequenceReleaseId: assignment.sequenceReleaseId,
+    graphReleaseId: 'graphReleaseId' in assignment ? assignment.graphReleaseId : assignment.releaseId,
+  });
+  if (!release) throw new Error('unknown_gbf_release');
+  return composeAssignedGbfGraph(baseGraph, release);
 }

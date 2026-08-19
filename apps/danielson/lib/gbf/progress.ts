@@ -6,12 +6,13 @@ import type {
   GbfTrajectory,
   GbfTrajectoryProgress,
 } from './contracts';
-import { GBF_GRAPH_RELEASE } from './graph';
+import { GBF_GRAPH_RELEASE, resolveGbfGraphRelease } from './graph';
 import {
   GBF_MAPPING_RELEASE,
   GBF_SEQUENCE_RELEASE,
   GBF_UNSEQUENCED_SKILL_IDS,
 } from './source';
+import type { GbfMappingRelease, GbfSequenceRelease } from './contracts';
 
 function uniqueSorted(values: readonly string[]) {
   return [...new Set(values)].sort();
@@ -43,13 +44,15 @@ function passes(priority: GbfPriorityInput | undefined) {
 function trajectoryProgress(
   trajectory: GbfTrajectory,
   priorities: ReadonlyMap<string, GbfPriorityInput>,
+  sequence: GbfSequenceRelease,
+  mapping: GbfMappingRelease,
 ): GbfTrajectoryProgress {
-  const steps = GBF_SEQUENCE_RELEASE.actionSteps
+  const steps = sequence.actionSteps
     .filter((step) => step.status === 'required' && step.trajectory === trajectory)
     .sort((left, right) => left.trajectoryOrder - right.trajectoryOrder);
   const primaryByStep = new Map(steps.map((step) => [
     step.actionStepId,
-    GBF_MAPPING_RELEASE.mappings.find((mapping) => (
+    mapping.mappings.find((mapping) => (
       mapping.actionStepId === step.actionStepId && mapping.role === 'primary'
     ))?.skillId,
   ]));
@@ -89,13 +92,27 @@ export function projectGbfProgress(input: {
     return { contractVersion: 'danielson.gbf-progress.v1', state: 'not_configured' };
   }
   if (
-    input.assignment.sequenceReleaseId !== GBF_SEQUENCE_RELEASE.releaseId
-    || input.assignment.graphReleaseId !== GBF_GRAPH_RELEASE.releaseId
+    !resolveGbfGraphRelease({
+      sequenceReleaseId: input.assignment.sequenceReleaseId,
+      graphReleaseId: input.assignment.graphReleaseId,
+    })
   ) throw new Error('unknown_gbf_release');
+  const sequence = input.assignment.sequenceReleaseId === GBF_SEQUENCE_RELEASE.releaseId
+    ? GBF_SEQUENCE_RELEASE
+    : {
+        ...GBF_SEQUENCE_RELEASE,
+        releaseId: input.assignment.sequenceReleaseId,
+      };
+  const mapping = input.assignment.sequenceReleaseId === GBF_SEQUENCE_RELEASE.releaseId
+    ? GBF_MAPPING_RELEASE
+    : {
+        ...GBF_MAPPING_RELEASE,
+        sequenceReleaseId: input.assignment.sequenceReleaseId,
+      };
   const priorityBySkill = new Map(input.priorities.map((priority) => [priority.skillId, priority]));
   const trajectories = {
-    management: trajectoryProgress('management', priorityBySkill),
-    rigor: trajectoryProgress('rigor', priorityBySkill),
+    management: trajectoryProgress('management', priorityBySkill, sequence, mapping),
+    rigor: trajectoryProgress('rigor', priorityBySkill, sequence, mapping),
   };
   const proficientSkillIds = input.assignment.assignedSkillIds.filter((skillId) => (
     passes(priorityBySkill.get(skillId))
