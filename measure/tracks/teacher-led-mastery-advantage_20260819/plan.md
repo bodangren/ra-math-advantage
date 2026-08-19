@@ -124,7 +124,7 @@ only after all three pilots are Green.
     - [ ] Persist idempotent teacher-led exposure for only the frozen IM3 node
     - [ ] Gate the pilot planner/bridge path on prior exposure and map eligible graded evidence into v3.2 KST+SRS
     - [ ] Make the focused IM3 Red tests Green without enabling neighboring nodes
-- [ ] Task 3.3: Implement the Precalculus pilot adapter (Lane 2)
+- [x] Task 3.3: Implement the Precalculus pilot adapter (Lane 2) (b1e5637)
     - [ ] Persist idempotent teacher-led exposure for only the frozen Precalculus node
     - [ ] Add the smallest app-owned KST+SRS adapter needed for the bounded node
     - [ ] Keep curriculum, graph, auth, and storage details inside Precalculus
