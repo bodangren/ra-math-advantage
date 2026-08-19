@@ -40,6 +40,10 @@ widen–migrate–narrow or cutover work
 - **Boundary:** Do not perform a full BM2 graph extraction. Extend shared math ID
   support only as narrowly as required for the one reviewed BM2 node, and make no
   dependency/package-manifest change without explicit approval.
+- **Legacy seam:** Preserve BM2's app-local
+  `problemFamilyId: 'accounting-equation'` mapping. Translate it once to the
+  canonical `variantKey: 'accounting-equation'` at the shared SRS boundary. Do
+  not absorb BM2's standing practice-variant type debt into this track.
 - **Proof:** BM2 can consume the same contract and teacher-first gate while its
   curriculum and persistence remain app owned.
 
@@ -92,8 +96,9 @@ only after all three pilots are Green.
     - [ ] Prove before-exposure denial, exposure-only introduction, and post-exposure KST+SRS progression
     - [ ] Prove a second Precalculus node remains disabled
 - [ ] Task 2.5: Write BM2 one-node pilot Red tests (Lane 3)
-    - [ ] Validate the new BM2 node ID, source mapping, and activity mapping
-    - [ ] Reuse the shared conformance fixture without importing either math app
+    - [ ] Freeze `math.bm2.skill.1.1.apply-accounting-equation` to the reviewed Unit 1 Lesson 1 source and activity mapping
+    - [ ] Call `evaluateLearningEvidenceV1` only with `{ evidence, acceptedEvidence, enabledNodeIds }` and retain its canonical decision shape
+    - [ ] Map BM2 `problemFamilyId: 'accounting-equation'` to canonical `variantKey: 'accounting-equation'` without a broad rename
     - [ ] Prove before-exposure denial, exposure-only introduction, and post-exposure KST+SRS progression
     - [ ] Prove no second BM2 graph node is introduced by this track
 - [ ] Task 2.6: Write cross-app contract and pilot-boundary tests (All lanes)
@@ -127,6 +132,7 @@ only after all three pilots are Green.
 - [ ] Task 3.4: Implement the BM2 pilot node and adapter (Lane 3)
     - [ ] Add the reviewed app-owned node/activity mapping for Unit 1 Lesson 1 only
     - [ ] Extend shared math ID support narrowly for `bm2` with compatibility tests
+    - [ ] Translate the pilot's legacy `problemFamilyId` to `variantKey` only at the shared SRS boundary
     - [ ] Persist idempotent teacher-led exposure and gate BM2 Mastery Advantage progression
     - [ ] Reuse canonical KST+SRS behavior rather than introducing an app-local planner or scheduler
     - [ ] Make the focused BM2 Red tests Green without starting a full graph rollout

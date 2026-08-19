@@ -59,6 +59,17 @@ function makeEvidence({
   });
 }
 
+function evaluate(
+  evidence: LearningEvidenceV1,
+  acceptedEvidence: readonly LearningEvidenceV1[] = [],
+) {
+  return evaluateLearningEvidenceV1({
+    evidence,
+    acceptedEvidence,
+    enabledNodeIds: [PILOT_NODE_ID],
+  });
+}
+
 describe('BM2 learning-evidence.v1 pilot', () => {
   it('freezes the one-node manifest to the reviewed Unit 1 Lesson 1 source and canonical accounting-equation mapping', () => {
     const lesson = AUTHORED_UNIT_1_LESSONS.find((candidate) => candidate.lesson.id === LESSON_ID);
@@ -128,23 +139,28 @@ describe('BM2 learning-evidence.v1 pilot', () => {
       learningEvidenceFingerprintV1(normalizeLearningEvidenceV1({ ...teacherExposure })),
     );
 
-    expect(evaluateLearningEvidenceV1(teacherExposure, { teacherExposureOccurredAt: undefined })).toMatchObject({
-      decision: 'introduced',
+    expect(evaluate(teacherExposure)).toMatchObject({
+      exposureState: 'introduced',
+      eligible: false,
+      reason: 'teacher_led',
       masteryBearing: false,
     });
-    expect(evaluateLearningEvidenceV1(beforeExposure, { teacherExposureOccurredAt: undefined })).toMatchObject({
-      decision: 'awaiting_teacher_exposure',
+    expect(evaluate(beforeExposure)).toMatchObject({
+      exposureState: 'awaiting_teacher_exposure',
+      eligible: false,
+      reason: 'awaiting_teacher_exposure',
       masteryBearing: false,
     });
-    expect(evaluateLearningEvidenceV1(afterExposure, {
-      teacherExposureOccurredAt: teacherExposure.occurredAt,
-    })).toMatchObject({
-      decision: 'eligible',
+    expect(evaluate(afterExposure, [teacherExposure])).toMatchObject({
+      exposureState: 'introduced',
+      eligible: true,
+      reason: 'eligible',
       masteryBearing: true,
     });
-    expect(evaluateLearningEvidenceV1(ungradedAfterExposure, {
-      teacherExposureOccurredAt: teacherExposure.occurredAt,
-    })).toMatchObject({
+    expect(evaluate(ungradedAfterExposure, [teacherExposure])).toMatchObject({
+      exposureState: 'introduced',
+      eligible: false,
+      reason: 'ungraded_evidence',
       masteryBearing: false,
     });
   });
@@ -159,9 +175,14 @@ describe('BM2 learning-evidence.v1 pilot', () => {
     });
 
     await expect(runtime.process({ learnerId: LEARNER_ID, evidence })).resolves.toMatchObject({
-      decision: 'awaiting_teacher_exposure',
-      masteryBearing: false,
-      replayed: false,
+      persisted: false,
+      masteryApplied: false,
+      decision: {
+        exposureState: 'awaiting_teacher_exposure',
+        eligible: false,
+        reason: 'awaiting_teacher_exposure',
+        masteryBearing: false,
+      },
     });
     await expect(runtime.snapshot({ learnerId: LEARNER_ID, nodeId: PILOT_NODE_ID })).resolves.toEqual({
       acceptedEvidence: [],
@@ -184,9 +205,15 @@ describe('BM2 learning-evidence.v1 pilot', () => {
     });
 
     await expect(runtime.process({ learnerId: LEARNER_ID, evidence })).resolves.toMatchObject({
-      decision: 'introduced',
-      masteryBearing: false,
-      replayed: false,
+      persisted: true,
+      masteryApplied: false,
+      decision: {
+        idempotency: 'new',
+        exposureState: 'introduced',
+        eligible: false,
+        reason: 'teacher_led',
+        masteryBearing: false,
+      },
     });
     const afterFirstDelivery = await runtime.snapshot({ learnerId: LEARNER_ID, nodeId: PILOT_NODE_ID });
 
@@ -201,9 +228,15 @@ describe('BM2 learning-evidence.v1 pilot', () => {
     });
 
     await expect(runtime.process({ learnerId: LEARNER_ID, evidence })).resolves.toMatchObject({
-      decision: 'introduced',
-      masteryBearing: false,
-      replayed: true,
+      persisted: false,
+      masteryApplied: false,
+      decision: {
+        idempotency: 'replay',
+        exposureState: 'introduced',
+        eligible: false,
+        reason: 'teacher_led',
+        masteryBearing: false,
+      },
     });
     await expect(runtime.snapshot({ learnerId: LEARNER_ID, nodeId: PILOT_NODE_ID })).resolves.toEqual(afterFirstDelivery);
   });
@@ -224,9 +257,15 @@ describe('BM2 learning-evidence.v1 pilot', () => {
 
     await runtime.process({ learnerId: LEARNER_ID, evidence: teacherExposure });
     await expect(runtime.process({ learnerId: LEARNER_ID, evidence: masteryEvidence })).resolves.toMatchObject({
-      decision: 'eligible',
-      masteryBearing: true,
-      replayed: false,
+      persisted: true,
+      masteryApplied: true,
+      decision: {
+        idempotency: 'new',
+        exposureState: 'introduced',
+        eligible: true,
+        reason: 'eligible',
+        masteryBearing: true,
+      },
     });
 
     await expect(runtime.snapshot({ learnerId: LEARNER_ID, nodeId: PILOT_NODE_ID })).resolves.toMatchObject({
