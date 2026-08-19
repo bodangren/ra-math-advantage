@@ -11,7 +11,11 @@ import {
   readImprovementPlanReportProjection,
 } from '../../convex/improvementPlans';
 import { readRankedTeacherQueue } from '../../convex/observations';
-import { readLeadershipPortfolio } from '../../convex/reporting';
+import {
+  readLeadershipPortfolio,
+  readLeadershipTeacherReport,
+  readMyTeacherReport,
+} from '../../convex/reporting';
 
 type StoredDocument = Record<string, unknown> & { _id: string; _creationTime: number };
 type Handler<TArgs = Record<string, unknown>, TResult = Record<string, unknown>> = (
@@ -86,18 +90,27 @@ class MemoryDb {
     const query = {
       withIndex: (
         _name: string,
-        configure: (builder: { eq: (field: string, value: unknown) => unknown }) => unknown,
+        configure: (builder: {
+          eq: (field: string, value: unknown) => unknown;
+          gte: (field: string, value: number) => unknown;
+        }) => unknown,
       ) => {
         const equalities: Array<[string, unknown]> = [];
+        const lowerBounds: Array<[string, number]> = [];
         const builder = {
           eq: (field: string, value: unknown) => {
             equalities.push([field, value]);
+            return builder;
+          },
+          gte: (field: string, value: number) => {
+            lowerBounds.push([field, value]);
             return builder;
           },
         };
         configure(builder);
         matches = matches.filter((document) => (
           equalities.every(([field, value]) => document[field] === value)
+          && lowerBounds.every(([field, value]) => Number(document[field]) >= value)
         ));
         return query;
       },
@@ -580,6 +593,29 @@ describe('PIP approval, versions, acknowledgment, and closure', () => {
     })).resolves.toMatchObject({
       kind: 'allowed',
       plan: { state: 'closed', closureOutcome: 'insufficient_improvement', closureNote: null },
+    });
+    const teacherReport = await handler(readMyTeacherReport)(db.context(), {
+      actorAccountId: TEACHER_ACCOUNT,
+      now: new Date(NOW + 31 * DAY_MS).toISOString(),
+    }) as Record<string, unknown>;
+    expect(teacherReport).toMatchObject({
+      kind: 'allowed',
+      report: { improvementPlan: { state: 'closed', outcome: 'insufficient_improvement' } },
+    });
+    expect(JSON.stringify(teacherReport)).not.toContain('The approved targets were not sustained.');
+    await expect(handler(readLeadershipTeacherReport)(db.context(), {
+      actorAccountId: PROPOSER,
+      teacherProfileId: TEACHER,
+      now: new Date(NOW + 31 * DAY_MS).toISOString(),
+    })).resolves.toMatchObject({
+      kind: 'allowed',
+      visibility: 'private',
+      report: {
+        improvementPlan: {
+          state: 'closed',
+          closureNote: 'The approved targets were not sustained.',
+        },
+      },
     });
   });
 

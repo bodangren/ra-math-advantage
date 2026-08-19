@@ -33,7 +33,7 @@ class MemoryDb {
   }
 
   rows(table: string): StoredDocument[] {
-    return [...this.table(table).values()];
+    return [...(this.tables.get(table)?.values() ?? [])];
   }
 
   snapshot() {
@@ -52,7 +52,7 @@ class MemoryDb {
   }
 
   normalizeId(table: string, id: string) {
-    return this.table(table).has(id) ? id : null;
+    return this.tables.get(table)?.has(id) ? id : null;
   }
 
   async insert(table: string, document: Record<string, unknown>) {
