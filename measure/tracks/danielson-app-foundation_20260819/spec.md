@@ -20,6 +20,10 @@ is the subject of the record.
   departments.
 - **Senior Leadership Team (SLT):** A supervisor with organization-wide teacher
   access.
+- **Performance Improvement Plan (PIP):** A time-limited plan for required
+  teacher improvement.
+- **Web Content Accessibility Guidelines (WCAG):** The accessibility standard
+  for the application interface.
 - **System administrator:** A person who manages accounts, roles, departments,
   and assignments. This role does not grant access to teacher reports.
 - **Access scope:** The set of teachers that a role assignment permits a person
@@ -31,10 +35,10 @@ is the subject of the record.
 | Role | Scope | Permitted product work |
 |---|---|---|
 | `teacher` | Own teacher record | View published results and public comments, submit one teacher response, and acknowledge a PIP |
-| `hod` | Assigned departments | View reports and complete forms |
-| `coach` | Assigned teachers | View reports and complete forms |
-| `school_head` | All teachers in the organization | View reports and complete forms |
-| `slt` | All teachers in the organization | View reports and complete forms |
+| `hod` | Assigned departments | Read reports, submit walkthroughs and Q1 observations, and propose PIPs |
+| `coach` | Assigned teachers | Read reports, submit walkthroughs and Q1 observations, and propose PIPs |
+| `school_head` | All teachers in the organization | Use HOD actions and submit Q4 observations |
+| `slt` | All teachers in the organization | Use school-head actions and approve or close PIPs |
 | `sysadmin` | Account administration | Manage accounts, roles, departments, and assignments |
 
 Roles are additive. A system administrator can view teacher reports only when
@@ -69,14 +73,23 @@ supervisor-side PIP action on themselves.
    system-administrator role alone must not permit access to evaluation data.
 8. **FR-8 — Account status:** Reuse the shared active-account and credential
    checks. A deactivated account must lose access without a data deletion.
-9. **FR-9 — Audit record:** Record the actor, time, target account, and before
-   and after values for role and assignment changes.
+9. **FR-9 — Audit record:** Record the authenticated actor, server time, action,
+   target, and strict before and after values for each successful account,
+   department, role, and assignment change. Insert the event in the same
+   transaction as the change. Keep the event immutable. Reject a replay without
+   a second state change or event.
 10. **FR-10 — Monorepo registration:** Add the application to the architecture
     manifest, workspace inventory, root quality commands, and continuous
     integration inventory.
 11. **FR-11 — Current grants:** Resolve the account, organization, Danielson
     roles, and assignments from current server data on every protected
     operation. Do not authorize from a session role or session organization.
+12. **FR-12 — Account credentials:** Create a usable temporary credential for a
+    new account with the shared password functions. Require a password change.
+    Do not store or audit a plaintext password. Limit repeated failed sign-in
+    attempts and use generic credential errors.
+13. **FR-13 — Final administrator:** Do not deactivate or revoke the final
+    active system-administrator account in an organization.
 
 ## Non-Functional Requirements
 
@@ -89,6 +102,10 @@ supervisor-side PIP action on themselves.
 - Meet WCAG 2.1 AA for sign-in, navigation, forms, focus order, labels, and error
   states.
 - Do not add a dependency without explicit approval.
+- Keep protected Convex functions internal. Verify the cookie and active
+  credential in Next.js. Pass only the derived actor account ID to the internal
+  Convex operation. Reload current grants in the same transaction as a write.
+- Do not mutate a shared Convex client with a per-request acting identity.
 
 ## Acceptance Criteria
 
@@ -112,7 +129,14 @@ supervisor-side PIP action on themselves.
     a new sign-in.
 12. A person from another organization cannot read or change any account,
    assignment, or teacher record.
-13. Authentication, authorization, architecture, accessibility, lint, test,
+13. Each successful account or access change creates one immutable audit event
+    in the same transaction. A denied or repeated request creates no state
+    change and no duplicate event.
+14. A new account gets one temporary credential. The audit event does not
+    contain the plaintext password, password hash, or salt.
+15. The application rejects an operation that would remove the final active
+    system administrator in an organization.
+16. Authentication, authorization, architecture, accessibility, lint, test,
     typecheck, build, generated-fact, boundary, and Measure Doctor gates pass.
 
 ## Out of Scope

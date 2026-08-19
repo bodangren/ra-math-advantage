@@ -24,9 +24,15 @@ The server gets the target organization from the target record.
 | `pip_acknowledgment:write` | Acknowledge the teacher's improvement plan |
 | `teacher_report:read` | Read a leadership teacher report |
 | `private_leadership:read` | Read the private leadership section |
-| `evaluation:write` | Submit a walkthrough or formal observation |
+| `walkthrough:submit` | Submit a walkthrough |
+| `walkthrough:amend` | Add an amendment to a walkthrough |
+| `q1_observation:submit` | Submit a Quarter 1 (Q1) formal observation |
+| `q1_observation:amend` | Add an amendment to a Q1 formal observation |
+| `q4_observation:submit` | Submit a Quarter 4 (Q4) formal observation |
+| `q4_observation:amend` | Add an amendment to a Q4 formal observation |
 | `pip:propose` | Propose a Performance Improvement Plan (PIP) |
 | `pip:approve` | Approve a proposed PIP |
+| `pip:close` | Close an approved PIP |
 | `accounts:manage` | Create, update, activate, or deactivate accounts |
 | `departments:manage` | Manage departments and memberships |
 | `assignments:manage` | Manage roles, HOD assignments, and coach assignments |
@@ -40,13 +46,15 @@ Track 1 defines their access boundary.
 | Role | Scope | Capabilities |
 |---|---|---|
 | `teacher` | Own teacher profile | `published_record:read`, `teacher_response:write`, `pip_acknowledgment:write` |
-| `hod` | Teachers in assigned departments | `teacher_report:read`, `private_leadership:read`, `evaluation:write`, `pip:propose` |
-| `coach` | Assigned teachers | `teacher_report:read`, `private_leadership:read`, `evaluation:write`, `pip:propose` |
-| `school_head` | All teachers in the organization | `teacher_report:read`, `private_leadership:read`, `evaluation:write`, `pip:propose` |
-| `slt` | All teachers in the organization | `teacher_report:read`, `private_leadership:read`, `evaluation:write`, `pip:propose`, `pip:approve` |
+| `hod` | Teachers in assigned departments | Report and private read, walkthrough submit and amend, Q1 observation submit and amend, PIP proposal |
+| `coach` | Assigned teachers | Report and private read, walkthrough submit and amend, Q1 observation submit and amend, PIP proposal |
+| `school_head` | All teachers in the organization | HOD capabilities plus Q4 observation submit and amend |
+| `slt` | All teachers in the organization | School-head capabilities plus PIP approval and closure |
 | `sysadmin` | Account administration in the organization | `accounts:manage`, `departments:manage`, `assignments:manage`, `access_audit:read` |
 
-The `sysadmin` role does not grant a teacher-report or evaluation capability.
+The named phrases in the role matrix refer to the exact capability codes in the
+capability table. The `sysadmin` role does not grant a teacher-report or
+evaluation capability.
 
 ## Scope Resolution
 
@@ -72,9 +80,15 @@ A supervisor role does not permit these operations when the actor is the
 subject teacher:
 
 - `private_leadership:read`
-- `evaluation:write`
+- `walkthrough:submit`
+- `walkthrough:amend`
+- `q1_observation:submit`
+- `q1_observation:amend`
+- `q4_observation:submit`
+- `q4_observation:amend`
 - `pip:propose`
 - `pip:approve`
+- `pip:close`
 
 The actor can still use these teacher capabilities on their own record:
 

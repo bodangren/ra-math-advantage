@@ -50,6 +50,7 @@ The app never uses `sharedSessionRole` as a Danielson permission.
 | `passwordSalt` | string | Required |
 | `passwordHashIterations` | number | Required |
 | `isActive` | boolean | Must match account access state |
+| `mustChangePassword` | boolean | True for a new temporary credential |
 | `createdAt` | number | Server time |
 | `updatedAt` | number | Server time |
 
@@ -89,57 +90,74 @@ Indexes: `by_organizationId_and_key`,
 
 This record connects a teacher profile to a department.
 
-Fields: `organizationId`, `departmentId`, `teacherProfileId`, `isActive`,
-`createdAt`, and `updatedAt`.
+Fields: `organizationId`, `departmentId`, `teacherProfileId`, `status`,
+`createdByAccountId`, `createdAt`, `revokedByAccountId`, and `revokedAt`. The
+status is `active` or `revoked`.
 
 Indexes:
 
-- `by_organizationId_and_departmentId_and_teacherProfileId`
-- `by_organizationId_and_departmentId_and_isActive`
-- `by_organizationId_and_teacherProfileId_and_isActive`
+- `by_organizationId_and_departmentId_and_teacherProfileId_and_status`
+- `by_organizationId_and_departmentId_and_status`
+- `by_organizationId_and_teacherProfileId_and_status`
 
 ### Role Assignment
 
 The role is one of `teacher`, `hod`, `coach`, `school_head`, `slt`, or
 `sysadmin`.
 
-Fields: `organizationId`, `accountId`, `role`, `isActive`, `createdByAccountId`,
-`createdAt`, `updatedByAccountId`, and `updatedAt`.
+Fields: `organizationId`, `accountId`, `role`, `status`, `createdByAccountId`,
+`createdAt`, `revokedByAccountId`, and `revokedAt`. The status is `active` or
+`revoked`.
 
 Indexes:
 
-- `by_organizationId_and_accountId_and_role`
-- `by_organizationId_and_accountId_and_isActive`
-- `by_organizationId_and_role_and_isActive`
+- `by_organizationId_and_accountId_and_role_and_status`
+- `by_organizationId_and_accountId_and_status`
+- `by_organizationId_and_role_and_status`
 
-The mutation reactivates an existing role-assignment record. It does not create
-a duplicate record for the same organization, account, and role.
+The mutation rejects a second active role assignment for the same organization,
+account, and role. A revocation changes the active row to `revoked`. A later
+grant creates a new row. The revoked row remains in history.
 
 ### HOD Assignment
 
 This record connects an HOD account to a department.
 
-Fields: `organizationId`, `accountId`, `departmentId`, `isActive`,
-`createdByAccountId`, `createdAt`, `updatedByAccountId`, and `updatedAt`.
+Fields: `organizationId`, `accountId`, `departmentId`, `status`,
+`createdByAccountId`, `createdAt`, `revokedByAccountId`, and `revokedAt`. The
+status is `active` or `revoked`.
 
 Indexes:
 
-- `by_organizationId_and_accountId_and_departmentId`
-- `by_organizationId_and_accountId_and_isActive`
-- `by_organizationId_and_departmentId_and_isActive`
+- `by_organizationId_and_accountId_and_departmentId_and_status`
+- `by_organizationId_and_accountId_and_status`
+- `by_organizationId_and_departmentId_and_status`
 
 ### Coach Assignment
 
 This record connects a coach account to a teacher profile.
 
-Fields: `organizationId`, `accountId`, `teacherProfileId`, `isActive`,
-`createdByAccountId`, `createdAt`, `updatedByAccountId`, and `updatedAt`.
+Fields: `organizationId`, `accountId`, `teacherProfileId`, `status`,
+`createdByAccountId`, `createdAt`, `revokedByAccountId`, and `revokedAt`. The
+status is `active` or `revoked`.
 
 Indexes:
 
-- `by_organizationId_and_accountId_and_teacherProfileId`
-- `by_organizationId_and_accountId_and_isActive`
-- `by_organizationId_and_teacherProfileId_and_isActive`
+- `by_organizationId_and_accountId_and_teacherProfileId_and_status`
+- `by_organizationId_and_accountId_and_status`
+- `by_organizationId_and_teacherProfileId_and_status`
+
+### Login Rate Limit
+
+This record limits failed sign-in attempts for one normalized username and one
+server-derived network address.
+
+Fields: `key`, `windowStartedAt`, `failureCount`, `blockedUntil`, and
+`updatedAt`.
+
+Index: `by_key`.
+
+The server does not accept the network address in the request body.
 
 ## Validation Rules
 
@@ -153,6 +171,22 @@ Indexes:
 - Reject a relation when its records are in different organizations.
 - Reject a relation to an inactive account, teacher profile, or department.
 - Do not delete an account when it is deactivated.
+- Reject an operation that would deactivate or revoke the final active system
+  administrator in an organization.
+- Keep a revoked membership or assignment as a historical row.
+
+## Credential Rules
+
+- Use the shared password generator, salt generator, and password hash.
+- Create a temporary password for a new account.
+- Return the temporary password once in the successful account-creation
+  response.
+- Do not store, log, or audit the plaintext temporary password.
+- Require a password change after the first successful sign-in.
+- Use one generic error for an unknown username and a wrong password.
+- Limit repeated failed sign-in attempts.
+- Set the session cookie as HTTP-only, secure in production, and same-site lax.
+- Accept only an app-relative post-sign-in redirect.
 
 ## Query Rules
 
