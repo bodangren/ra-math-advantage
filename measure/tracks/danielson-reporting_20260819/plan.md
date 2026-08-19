@@ -6,26 +6,27 @@
 
 **Pipeline:** Contract and Schema → Test → Implement → Generate Docs and Doctor
 
-## Phase 1: Contract and Schema Definition
+## Phase 1: Contract and Schema Definition [checkpoint: 93d3fa7]
 
-- [ ] Task 1.1: Define portfolio and attention projections
-    - [ ] Define the compact teacher row and attention reasons
-    - [ ] Define deterministic ordering, pagination, and neutral unavailable states
-- [ ] Task 1.2: Define teacher drill-down projections
-    - [ ] Separate official formal ratings from current proficiency
-    - [ ] Define component, skill, evidence, amendment, IP, GBF, and due sections
-- [ ] Task 1.3: Define public and private comment contracts
-    - [ ] Store visibility as separate record types rather than a mutable toggle
-    - [ ] Define source observation, author, date, and immutable content
-    - [ ] Define safe authorized projections
-- [ ] Task 1.4: Define the teacher-response contract
-    - [ ] Define one optional final response per submitted observation
-    - [ ] Define concurrency, visibility, immutability, and no-reply behavior
-- [ ] Task 1.5: Define privacy and non-interference rules
-    - [ ] Define subject exclusion and role-scope enforcement
-    - [ ] Define forbidden fields for teacher, system-administrator, search, summary, notification, and export projections
-    - [ ] Define read-only report behavior
-- [ ] Task 1.6: Measure - User Manual Verification 'Phase 1: Contract and Schema Definition' (Protocol in workflow.md)
+- [x] Task 1.1: Define portfolio and attention projections — `93d3fa7`
+    - [x] Define the compact teacher row and attention reasons
+    - [x] Define deterministic ordering, pagination, and neutral unavailable states
+- [x] Task 1.2: Define teacher drill-down projections — `93d3fa7`
+    - [x] Separate official formal ratings from current proficiency
+    - [x] Define component, skill, evidence, amendment, IP, GBF, and due sections
+- [x] Task 1.3: Define public and private comment contracts — `93d3fa7`
+    - [x] Store visibility as separate record types rather than a mutable toggle
+    - [x] Define source observation, author, date, and immutable content
+    - [x] Define safe authorized projections
+- [x] Task 1.4: Define the teacher-response contract — `93d3fa7`
+    - [x] Define one optional final response per submitted observation
+    - [x] Define concurrency, visibility, immutability, and no-reply behavior
+- [x] Task 1.5: Define privacy and non-interference rules — `93d3fa7`
+    - [x] Define subject exclusion and role-scope enforcement
+    - [x] Define forbidden fields for teacher, system-administrator, search, summary, notification, and export projections
+    - [x] Define read-only report behavior
+- [x] Task 1.6: Measure - User Manual Verification 'Phase 1: Contract and Schema Definition' (Protocol in workflow.md)
+    - User directed full-track continuation on 2026-08-19.
 
 ## Phase 2: Test
 
