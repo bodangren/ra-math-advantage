@@ -83,11 +83,11 @@ Dependency order:
    *Create the scoped teacher queue, three prioritized targets for each walkthrough, 5–10 minute form, Q1 and Q4 records, immediate publication, immutable submissions, amendments, and annual continuity.*
    *Link: [./tracks/danielson-observation-cycle_20260819/](./tracks/danielson-observation-cycle_20260819/)*
 
-- [~] **Track 4: Leadership Portfolio and Teacher Reports**
+- [x] **Track 4: Leadership Portfolio and Teacher Reports** — **COMPLETED** (2026-08-20)
    *Create the compact SLT portfolio, teacher drill down, official and current proficiency views, public and private comments, self-private-data exclusion, and one optional teacher response with no replies.*
    *Link: [./tracks/danielson-reporting_20260819/](./tracks/danielson-reporting_20260819/)*
 
-- [ ] **Track 5: Performance Improvement Plans**
+- [~] **Track 5: Performance Improvement Plans**
    *Implement the current one-month PIP form. Permit supervisor proposal and require SLT approval. Link approved target skills to high-cadence evidence, show progress, preserve acknowledgments, and record an audited closure without an automated disciplinary decision.*
    *Link: [./tracks/danielson-improvement-plans_20260819/](./tracks/danielson-improvement-plans_20260819/)*
 

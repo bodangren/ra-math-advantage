@@ -48,12 +48,12 @@
 - [x] Task 2.6: Measure - User Manual Verification 'Phase 2: Test' (Protocol in workflow.md)
     - User directed full-track continuation on 2026-08-19.
 
-## Phase 3: Implement [checkpoint: 33b0192]
+## Phase 3: Implement [checkpoint: e33cfcd6]
 
 - [x] Task 3.1: Implement bounded portfolio queries and presentation — `e1ea479b`, `2ce973bb`, `1b3fd519`, `57e32742`
     - [x] Batch and group source data without one query per teacher
     - [x] Render compact rows, attention reasons, scope filters, and pagination
-- [x] Task 3.2: Implement teacher drill-down reports — `e1ea479b`, `2ce973bb`, `1b3fd519`, `57e32742`, `1855c805`, `33b01921`
+- [x] Task 3.2: Implement teacher drill-down reports — `e1ea479b`, `2ce973bb`, `1b3fd519`, `57e32742`, `1855c805`, `33b01921`, `e33cfcd6`
     - [x] Render official ratings, current proficiency, history, amendments, and due evidence
     - [x] Preserve each below-standard component
 - [x] Task 3.3: Implement public and private comments — `2ce973bb`, `1b3fd519`, `1855c805`, `33b01921`
@@ -68,15 +68,16 @@
 - [x] Task 3.6: Measure - User Manual Verification 'Phase 3: Implement' (Protocol in workflow.md)
     - User directed full-track continuation on 2026-08-19.
 
-## Phase 4: Generate Docs and Doctor
+## Phase 4: Generate Docs and Doctor [checkpoint: fdac2655]
 
-- [ ] Task 4.1: Run focused and workspace quality gates
-    - [ ] Run reporting, privacy, authorization, concurrency, accessibility, pagination, coverage, lint, typecheck, and build gates
-    - [ ] Verify zero report-side proficiency and scheduling writes
-- [ ] Task 4.2: Generate route, ownership, and dependency facts
-    - [ ] Run `npm run generate`
-    - [ ] Confirm public and protected report surfaces in generated facts
-- [ ] Task 4.3: Run boundaries and Measure Doctor
-    - [ ] Run inventory parity, monorepo boundaries, and `npm run doctor`
-    - [ ] Inspect the final data-return shapes for private-field leakage
-- [ ] Task 4.4: Measure - User Manual Verification 'Phase 4: Generate Docs and Doctor' (Protocol in workflow.md)
+- [x] Task 4.1: Run focused and workspace quality gates
+    - [x] Run reporting, privacy, authorization, concurrency, accessibility, pagination, coverage, lint, typecheck, and build gates
+    - [x] Verify zero report-side proficiency and scheduling writes
+- [x] Task 4.2: Generate route, ownership, and dependency facts
+    - [x] Run `npm run generate`
+    - [x] Confirm public and protected report surfaces in generated facts
+- [x] Task 4.3: Run boundaries and Measure Doctor
+    - [x] Run inventory parity, monorepo boundaries, and `npm run doctor`
+    - [x] Inspect the final data-return shapes for private-field leakage
+- [x] Task 4.4: Measure - User Manual Verification 'Phase 4: Generate Docs and Doctor' (Protocol in workflow.md)
+    - User directed full-track continuation on 2026-08-19.
