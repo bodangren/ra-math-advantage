@@ -1511,7 +1511,7 @@ describe('PIP final independent-review regressions', () => {
     });
   });
 
-  it('derives prior versions only from approval events and keeps drafts from the teacher', async () => {
+  it('keeps unapproved proposal events and metadata leadership-only during an active revision', async () => {
     const db = new MemoryDb();
     seedBase(db);
     const planId = seedPlan(db, 'approval-event-history');
@@ -1587,9 +1587,22 @@ describe('PIP final independent-review regressions', () => {
       paginationOpts: { cursor: null, numItems: 20 },
     }) as {
       kind: string;
+      page: { page: Array<Record<string, unknown>> };
       priorApprovedVersions: Array<Record<string, unknown>>;
     };
     expect(leadershipHistory.kind).toBe('allowed');
+    expect(leadershipHistory.page.page).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        kind: 'proposed',
+        version: 1,
+        versionId: unapprovedVersionId,
+      }),
+      expect.objectContaining({
+        kind: 'proposed',
+        version: 4,
+        versionId: pendingVersionId,
+      }),
+    ]));
     expect(leadershipHistory.priorApprovedVersions).toEqual([
       {
         version: 2,
@@ -1601,9 +1614,17 @@ describe('PIP final independent-review regressions', () => {
       actorAccountId: TEACHER_ACCOUNT,
       planId,
       paginationOpts: { cursor: null, numItems: 20 },
-    });
-    expect(JSON.stringify(teacherHistory)).not.toContain('Unapproved version one narrative.');
-    expect(JSON.stringify(teacherHistory)).not.toContain('Unapproved pending version four narrative.');
+    }) as {
+      kind: string;
+      page: { page: Array<Record<string, unknown>> };
+      priorApprovedVersions: Array<Record<string, unknown>>;
+    };
+    expect(teacherHistory.kind).toBe('allowed');
+    expect(teacherHistory.page.page.map((event) => event.kind)).toEqual(['approved', 'approved']);
+    expect(JSON.stringify(teacherHistory)).not.toContain(unapprovedVersionId);
+    expect(JSON.stringify(teacherHistory)).not.toContain(pendingVersionId);
+    expect(JSON.stringify(teacherHistory)).not.toContain('improvement_plan_events:proposed-v1');
+    expect(JSON.stringify(teacherHistory)).not.toContain('improvement_plan_events:proposed-v4');
   });
 
   it('denies a scoped plan list when the actor organization is inactive', async () => {
@@ -1659,16 +1680,47 @@ describe('PIP final independent-review regressions', () => {
     expect(db.queryCount('improvement_plans')).toBe(1);
   });
 
-  it('returns a named capacity result before it can truncate the organization plan list', async () => {
+  it('returns the requested cursor page when the organization has 251 historical plans', async () => {
     const db = new MemoryDb();
     seedBase(db);
     for (let index = 0; index < 251; index += 1) seedPlan(db, `capacity-${index}`);
 
-    await expect(handler(listScopedImprovementPlans)(db.context(), {
+    const first = await handler(listScopedImprovementPlans)(db.context(), {
       actorAccountId: PROPOSER,
       paginationOpts: { cursor: null, numItems: 25 },
       now: NOW,
-    })).resolves.toEqual({ kind: 'capacity_exceeded' });
+    }) as {
+      kind: string;
+      page: {
+        page: Array<{ planId: string }>;
+        isDone: boolean;
+        continueCursor: string;
+      };
+    };
+    expect(first).toMatchObject({
+      kind: 'allowed',
+      page: {
+        page: expect.any(Array),
+        isDone: false,
+        continueCursor: expect.any(String),
+      },
+    });
+    expect(first.page.page).toHaveLength(25);
+    expect(first.page.continueCursor).not.toBe('');
+    const second = await handler(listScopedImprovementPlans)(db.context(), {
+      actorAccountId: PROPOSER,
+      paginationOpts: { cursor: first.page.continueCursor, numItems: 25 },
+      now: NOW,
+    }) as {
+      kind: string;
+      page: { page: Array<{ planId: string }> };
+    };
+    expect(second).toMatchObject({ kind: 'allowed', page: { page: expect.any(Array) } });
+    expect(second.page.page).toHaveLength(25);
+    expect(new Set([
+      ...first.page.page.map((plan) => plan.planId),
+      ...second.page.page.map((plan) => plan.planId),
+    ])).toHaveLength(50);
     expect(db.queryCount('improvement_plans')).toBe(1);
   });
 
