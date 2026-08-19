@@ -93,11 +93,10 @@ A missing SRS card is not overdue.
 The projection includes due count, overdue count, maximum overdue days, and the
 next known due date.
 
-### Improvement-Plan and GBF Seams
+### Improvement-Plan and GBF Projections
 
-Track 4 does not add an improvement-plan or Get Better Faster (GBF) source
-model.
-It returns these exact neutral projections:
+Track 4 does not add an improvement-plan source model.
+It returns this exact neutral projection when Track 5 has no plan:
 
 ```ts
 {
@@ -106,6 +105,12 @@ It returns these exact neutral projections:
 }
 ```
 
+A missing source does not create an attention reason.
+Track 5 can replace the improvement-plan projection.
+
+Track 6 supplies the Get Better Faster (GBF) projection.
+Use this exact neutral projection when a teacher has no GBF assignment:
+
 ```ts
 {
   contractVersion: 'danielson.gbf-progress.v1',
@@ -113,9 +118,17 @@ It returns these exact neutral projections:
 }
 ```
 
-A missing source does not create an attention reason.
-Track 5 can replace the improvement-plan projection.
-Track 6 can replace the GBF projection.
+Use `in_progress` when one required action step is incomplete.
+Use `proficient` when both GBF paths are complete.
+The portfolio projection contains the Management phase, the Rigor phase, the
+due-skill count, and the unresolved-gap count.
+The teacher report contains the full safe GBF progress projection.
+It includes assigned skills, proficient skills, due skills, gaps, and both
+path projections.
+Use Track 2 proficiency and due data.
+Do not calculate an average.
+Do not create a second due-date scheduler.
+Do not use GBF progress as an attention reason.
 
 ### Attention and Order
 

@@ -33,6 +33,7 @@ The server gets the target organization from the target record.
 | `pip:propose` | Propose a Performance Improvement Plan (PIP) |
 | `pip:approve` | Approve a proposed PIP |
 | `pip:close` | Close an approved PIP |
+| `gbf:assign` | Assign a versioned Get Better Faster (GBF) track |
 | `accounts:manage` | Create, update, activate, or deactivate accounts |
 | `departments:manage` | Manage departments and memberships |
 | `assignments:manage` | Manage roles, HOD assignments, and coach assignments |
@@ -48,7 +49,7 @@ Track 1 defines their access boundary.
 | `teacher` | Own teacher profile | `published_record:read`, `teacher_response:write`, `pip_acknowledgment:write` |
 | `hod` | Teachers in assigned departments | Report and private read, walkthrough submit and amend, Q1 observation submit and amend, PIP proposal |
 | `coach` | Assigned teachers | Report and private read, walkthrough submit and amend, Q1 observation submit and amend, PIP proposal |
-| `school_head` | All teachers in the organization | HOD capabilities plus Q4 observation submit and amend |
+| `school_head` | All teachers in the organization | HOD capabilities plus Q4 observation submit and amend, and GBF assignment |
 | `slt` | All teachers in the organization | School-head capabilities plus PIP approval and closure |
 | `sysadmin` | Account administration in the organization | `accounts:manage`, `departments:manage`, `assignments:manage`, `access_audit:read` |
 
@@ -89,6 +90,7 @@ subject teacher:
 - `pip:propose`
 - `pip:approve`
 - `pip:close`
+- `gbf:assign`
 
 The actor can still use these teacher capabilities on their own record:
 

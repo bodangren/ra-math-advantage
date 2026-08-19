@@ -14,11 +14,16 @@ This document is a source analysis. It does not activate graph edges.
 |---|---|---|
 | `get-better-faster-scope-sequence.pdf` | Phase and action-step order | `cf34c7ed03fd63fb0c89cb378b1fcacde4c6dc5a7238fc1b9cb059ddf733de64` |
 | `Classroom-Insights-Handbook_25-26-1.pdf` | One implementation example | `9de9a26d9acdea6fd134c50fec300822fb652f385cd1fe5cbff6b518ee311828` |
-| `../hdkwa-danielson/src/data/techniques/` | Candidate TLAC 3.0 technique IDs and local Danielson mappings | Repository source; freeze exact commit and file hashes during implementation |
+| `../hdkwa-danielson/src/data/techniques/` | Candidate TLAC 3.0 technique IDs and local Danielson mappings | `4704ae10511d27c4b3cc7951c0aadfe48558aa86e1148f8ba4f116383fe7cb1b` |
 
 The user supplied the first PDF as the GBF 2.0 scope and sequence. The visible
 PDF title does not state an edition. The implementation must preserve that
 qualification in provenance.
+
+The TLAC source is frozen at sibling commit
+`4ad319e57022ab8e334a594ee12c84a7a8886be7`.
+Its hash uses each sorted relative filename, one null byte, the file bytes, and
+one null byte.
 
 ## Classification Rules
 
