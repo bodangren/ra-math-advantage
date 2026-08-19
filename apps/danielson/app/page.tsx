@@ -14,6 +14,8 @@ export default async function HomePage() {
         showAdministration={roles.includes('sysadmin')}
         showObservations={canObserve}
         showMyObservations={isTeacher}
+        showReports={canObserve}
+        showMyReport={isTeacher}
       />
       <main id="main-content" className="page-shell">
         <p className="eyebrow">Teacher proficiency evidence</p>
@@ -25,7 +27,9 @@ export default async function HomePage() {
           <p>Username: {account.username}</p>
           <p>Roles: {roles.length > 0 ? roles.join(', ') : 'No Danielson roles assigned'}</p>
           {canObserve ? <Link className="button" href="/observations">Open observations</Link> : null}{' '}
+          {canObserve ? <Link className="button secondary" href="/reports">Open reports</Link> : null}{' '}
           {isTeacher ? <Link className="button secondary" href="/my-observations">View my observations</Link> : null}{' '}
+          {isTeacher ? <Link className="button secondary" href="/my-report">View my report</Link> : null}{' '}
           {roles.includes('sysadmin') ? <Link className="button" href="/admin">Open administration</Link> : null}
         </section>
       </main>

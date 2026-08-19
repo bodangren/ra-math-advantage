@@ -1,0 +1,165 @@
+import Link from 'next/link';
+
+import { ReportCommentForm } from '@/components/report-comment-form';
+import { TeacherResponseForm } from '@/components/teacher-response-form';
+import type {
+  PrivateTeacherReport,
+  PublicTeacherReport,
+  ReportingState,
+} from '@/lib/reporting/contracts';
+
+function stateLabel(state: ReportingState) {
+  if (state === 'below_proficient') return 'Below Proficient';
+  if (state === 'not_enough_evidence') return 'Not enough evidence';
+  return 'Proficient';
+}
+
+function outcomeLabel(outcome: { kind: string; rating?: number } | null) {
+  if (!outcome || outcome.kind === 'not_enough_evidence') return 'Not enough evidence';
+  return `Rating ${outcome.rating}`;
+}
+
+export function TeacherReportView({
+  report,
+  canComment,
+  canRespond,
+}: {
+  report: PublicTeacherReport | PrivateTeacherReport;
+  canComment: boolean;
+  canRespond: boolean;
+}) {
+  const privateComments = 'privateComments' in report ? report.privateComments : [];
+  return (
+    <>
+      <section className="report-summary" aria-labelledby="report-summary-heading">
+        <h2 id="report-summary-heading">Current summary</h2>
+        <dl className="summary-grid">
+          <div><dt>Danielson</dt><dd>{stateLabel(report.danielsonState)}</dd></div>
+          <div><dt>Improvement plan</dt><dd>Not configured</dd></div>
+          <div><dt>GBF</dt><dd>Not configured</dd></div>
+        </dl>
+      </section>
+
+      <section className="card" aria-labelledby="official-heading">
+        <h2 id="official-heading">Official evaluations</h2>
+        {report.officialEvaluations.length === 0 ? <p>No formal evaluation is published.</p> : (
+          <div className="record-list">
+            {report.officialEvaluations.map((evaluation) => (
+              <details key={evaluation.observationId}>
+                <summary>
+                  {evaluation.observationType === 'formal_q1' ? 'Q1' : 'Q4'} · {evaluation.schoolYear} · {stateLabel(evaluation.status)}
+                </summary>
+                <p>Observed {new Date(evaluation.observedAt).toLocaleDateString()} by {evaluation.observerDisplayName}.</p>
+                <p>Amendments: {evaluation.amendmentCount}</p>
+                <div className="table-wrap">
+                  <table>
+                    <thead><tr><th scope="col">Component</th><th scope="col">Rating</th><th scope="col">Points</th></tr></thead>
+                    <tbody>{evaluation.components.map((component) => (
+                      <tr key={component.componentId}>
+                        <th scope="row">{component.title}</th>
+                        <td>{component.rawRating ?? 'Not enough evidence'}</td>
+                        <td>{component.points ?? '—'}</td>
+                      </tr>
+                    ))}</tbody>
+                  </table>
+                </div>
+                <p><Link href={`/observations/records/${encodeURIComponent(evaluation.observationId)}`}>Open source observation</Link></p>
+              </details>
+            ))}
+          </div>
+        )}
+      </section>
+
+      <section className="card" aria-labelledby="proficiency-heading">
+        <h2 id="proficiency-heading">Current proficiency</h2>
+        <p>{stateLabel(report.currentProficiency.state)}</p>
+        <div className="record-list">
+          {report.currentProficiency.domains.map((domain) => (
+            <details key={domain.domainId}>
+              <summary>{domain.title} · {stateLabel(domain.state)}</summary>
+              {domain.components.map((component) => (
+                <section className="report-component" key={component.componentId}>
+                  <h3>{component.title}</h3>
+                  <p>{stateLabel(component.state)}</p>
+                  <ul>{component.skills.map((skill) => (
+                    <li key={skill.skillId}>
+                      {skill.title}: {skill.rawRating === null ? 'Not enough evidence' : `Rating ${skill.rawRating} · ${skill.points} points`}
+                      {skill.due ? ` · Due${skill.overdueDays > 0 ? ` ${skill.overdueDays} days ago` : ''}` : ''}
+                    </li>
+                  ))}</ul>
+                </section>
+              ))}
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <section className="card" aria-labelledby="history-heading">
+        <h2 id="history-heading">Evidence history</h2>
+        {report.evidenceHistory.length === 0 ? <p>No published evidence is available.</p> : (
+          <div className="record-list">
+            {report.evidenceHistory.map((record) => (
+              <details key={record.observationId}>
+                <summary>{record.observationType.replaceAll('_', ' ')} · {new Date(record.observedAt).toLocaleDateString()}</summary>
+                <p>Observer: {record.observerDisplayName}</p>
+                <p>Amendments: {record.amendmentCount}</p>
+                <ul>{record.items.map((item) => (
+                  <li key={item.itemId}>
+                    <code>{item.skillId ?? item.componentId}</code>: {outcomeLabel(item.outcome)}
+                    {item.evidenceNote ? ` · ${item.evidenceNote}` : ''}
+                  </li>
+                ))}</ul>
+                <p><Link href={`/observations/records/${encodeURIComponent(record.observationId)}`}>Open observation and amendments</Link></p>
+                {canComment ? (
+                  <div className="comment-form-grid">
+                    <ReportCommentForm observationId={record.observationId} commentType="public" />
+                    <ReportCommentForm observationId={record.observationId} commentType="private" />
+                  </div>
+                ) : null}
+                {canRespond && record.teacherResponseState === 'not_submitted' ? (
+                  <TeacherResponseForm observationId={record.observationId} />
+                ) : null}
+              </details>
+            ))}
+          </div>
+        )}
+      </section>
+
+      <section className="card" aria-labelledby="comments-heading">
+        <h2 id="comments-heading">Public comments</h2>
+        {report.publicComments.length === 0 ? <p>No public comments.</p> : (
+          <ul className="record-list">{report.publicComments.map((comment) => (
+            <li key={comment.commentId}>
+              <p>{comment.content}</p>
+              <p className="muted">Author account: {comment.authorAccountId} · {new Date(comment.createdAt).toLocaleString()} · <Link href={`/observations/records/${encodeURIComponent(comment.observationId)}`}>Source observation</Link></p>
+            </li>
+          ))}</ul>
+        )}
+      </section>
+
+      {privateComments.length > 0 ? (
+        <section className="card" aria-labelledby="private-comments-heading">
+          <h2 id="private-comments-heading">Private leadership comments</h2>
+          <ul className="record-list">{privateComments.map((comment) => (
+            <li key={comment.commentId}>
+              <p>{comment.content}</p>
+              <p className="muted">Author account: {comment.authorAccountId} · {new Date(comment.createdAt).toLocaleString()} · <Link href={`/observations/records/${encodeURIComponent(comment.observationId)}`}>Source observation</Link></p>
+            </li>
+          ))}</ul>
+        </section>
+      ) : null}
+
+      {report.responses.length > 0 ? (
+        <section className="card" aria-labelledby="responses-heading">
+          <h2 id="responses-heading">Teacher responses</h2>
+          <ul className="record-list">{report.responses.map((response) => (
+            <li key={response.responseId}>
+              <p>{response.content}</p>
+              <p className="muted">Final response submitted {new Date(response.submittedAt).toLocaleString()}.</p>
+            </li>
+          ))}</ul>
+        </section>
+      ) : null}
+    </>
+  );
+}

@@ -6,11 +6,15 @@ export function SiteHeader({
   showAdministration = false,
   showObservations = false,
   showMyObservations = false,
+  showReports = false,
+  showMyReport = false,
 }: {
   isAuthenticated?: boolean;
   showAdministration?: boolean;
   showObservations?: boolean;
   showMyObservations?: boolean;
+  showReports?: boolean;
+  showMyReport?: boolean;
 }) {
   return (
     <header className="site-header">
@@ -22,6 +26,8 @@ export function SiteHeader({
             <Link href="/">Overview</Link>
             {showObservations ? <Link href="/observations">Observations</Link> : null}
             {showMyObservations ? <Link href="/my-observations">My observations</Link> : null}
+            {showReports ? <Link href="/reports">Reports</Link> : null}
+            {showMyReport ? <Link href="/my-report">My report</Link> : null}
             {showAdministration ? <Link href="/admin">Administration</Link> : null}
             <LogoutButton className="button secondary" redirectTo="/auth/login" />
           </nav>
