@@ -21,7 +21,7 @@ function statusLabel(value: string) {
 function reasonLabel(value: LeadershipPortfolioRow['attentionReasons'][number]) {
   if (value === 'below_proficient') return 'Below Proficient';
   if (value === 'ip_off_track') return 'Improvement plan off track';
-  return 'Overdue evidence';
+  return 'overdue evidence';
 }
 
 export function LeadershipPortfolioTable({
