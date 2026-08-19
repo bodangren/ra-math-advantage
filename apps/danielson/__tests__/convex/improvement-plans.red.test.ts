@@ -6,6 +6,7 @@ import {
   closeImprovementPlan,
   createImprovementPlanProposal,
   listScopedImprovementPlans,
+  readImprovementPlanProposalWorkspace,
   readImprovementPlan,
   readImprovementPlanReportProjection,
 } from '../../convex/improvementPlans';
@@ -271,6 +272,25 @@ const SCORING_TABLES = [
 ];
 
 describe('PIP persistence and authorization', () => {
+  it('returns one scoped proposal workspace with approved target options', async () => {
+    const db = new MemoryDb();
+    seedBase(db);
+    const result = await handler(readImprovementPlanProposalWorkspace)(db.context(), {
+      actorAccountId: PROPOSER,
+      teacherProfileId: TEACHER,
+    });
+    expect(result).toMatchObject({
+      kind: 'allowed',
+      teacher: {
+        teacherProfileId: TEACHER,
+        displayName: 'Teacher One',
+        position: 'Mathematics Teacher',
+      },
+      departments: [{ departmentId: DEPARTMENT, departmentName: 'Mathematics' }],
+    });
+    expect((result as { targetOptions: unknown[] }).targetOptions).toHaveLength(63);
+  });
+
   it.each(['hod', 'coach', 'school_head', 'slt'] as const)(
     'permits an in-scope %s proposal',
     async (role) => {

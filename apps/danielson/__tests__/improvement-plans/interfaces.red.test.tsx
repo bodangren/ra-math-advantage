@@ -16,6 +16,9 @@ const { ImprovementPlanProposalForm } = await import(
 const { ImprovementPlanAcknowledgmentForm } = await import(
   '../../components/improvement-plan-acknowledgment-form'
 );
+const { ImprovementPlanDecisionForms } = await import(
+  '../../components/improvement-plan-decision-forms'
+);
 
 const target = {
   componentId: 'danielson.framework.component.1e',
@@ -137,5 +140,35 @@ describe('PIP interface', () => {
     expect(button).toBeEnabled();
     fireEvent.click(button);
     await waitFor(() => expect(fetch).toHaveBeenCalledOnce());
+  });
+
+  it('requires explicit confirmation for approval and closure', () => {
+    render(<ImprovementPlanDecisionForms
+      planId="improvement_plans:one"
+      versionId="improvement_plan_versions:one"
+      revision={1}
+      state="proposed"
+      canApprove
+      canClose
+    />);
+
+    const approve = screen.getByRole('button', { name: 'Approve plan' });
+    expect(approve).toBeDisabled();
+    fireEvent.click(screen.getByLabelText('I confirm that this plan can start.'));
+    expect(approve).toBeEnabled();
+
+    render(<ImprovementPlanDecisionForms
+      planId="improvement_plans:two"
+      versionId="improvement_plan_versions:two"
+      revision={2}
+      state="active"
+      canApprove={false}
+      canClose
+    />);
+    const close = screen.getByRole('button', { name: 'Close plan' });
+    expect(close).toBeDisabled();
+    fireEvent.click(screen.getByLabelText('I confirm this closure outcome.'));
+    fireEvent.change(screen.getByLabelText('Closure note'), { target: { value: 'Human decision.' } });
+    expect(close).toBeEnabled();
   });
 });
