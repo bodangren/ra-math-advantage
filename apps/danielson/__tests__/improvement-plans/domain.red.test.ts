@@ -120,7 +120,36 @@ describe('PIP source and proposal contract', () => {
         PIP_SOURCE_CONTRACT.fixedText.insufficientImprovementConsequences,
       acknowledgmentText: PIP_SOURCE_CONTRACT.fixedText.acknowledgmentText,
     });
-    expect(normalized.fingerprint).toMatch(/^[a-f0-9]{64}$/);
+    expect(normalizePipProposal(proposalInput())).toEqual(normalized);
+  });
+
+  it('preserves internal narrative whitespace and line breaks', () => {
+    const narrative = 'First paragraph.\n\n  Second paragraph keeps  two spaces.';
+    const normalized = normalizePipProposal({
+      ...proposalInput(),
+      purpose: `  ${narrative}\n`,
+      requiredActions: `\n${narrative}  `,
+    });
+
+    expect(normalized.purpose).toBe(narrative);
+    expect(normalized.requiredActions).toBe(narrative);
+  });
+
+  it('requires a real ISO review date and rejects calendar rollover dates', () => {
+    expect(() => normalizePipProposal({ ...proposalInput(), reviewMeetingDate: '' }))
+      .toThrow('invalid_reviewMeetingDate');
+    expect(() => normalizePipProposal({ ...proposalInput(), reviewMeetingDate: '2026-02-30' }))
+      .toThrow('invalid_reviewMeetingDate');
+    expect(() => normalizePipProposal({ ...proposalInput(), requestedPlanEndDate: '2026-02-30' }))
+      .toThrow('invalid_requestedPlanEndDate');
+    expect(normalizePipProposal({
+      ...proposalInput(),
+      reviewMeetingDate: '2028-02-29',
+      requestedPlanEndDate: '2028-03-01',
+    })).toMatchObject({
+      reviewMeetingDate: '2028-02-29',
+      requestedPlanEndDate: '2028-03-01',
+    });
   });
 
   it('rejects missing narratives, duplicate targets, and mismatched graph parents', () => {
@@ -142,6 +171,13 @@ describe('PIP source and proposal contract', () => {
       skillId: SKILL_ID,
       expectedRating: 2,
     }], graph)).toEqual({ valid: false, reason: 'invalid_expected_rating' });
+
+    const graphWithDraftSkill = structuredClone(graph);
+    const draftSkill = graphWithDraftSkill.nodes.find((node) => node.id === SKILL_ID);
+    if (!draftSkill) throw new Error('The target skill fixture is missing.');
+    draftSkill.reviewStatus = 'draft' as never;
+    expect(validatePipTargets(proposalInput().targets, graphWithDraftSkill))
+      .toEqual({ valid: false, reason: 'unapproved_target' });
   });
 });
 

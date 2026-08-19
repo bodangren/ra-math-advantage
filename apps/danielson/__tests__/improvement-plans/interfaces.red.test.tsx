@@ -40,6 +40,7 @@ describe('PIP request boundary', () => {
       body: JSON.stringify({
         teacherProfileId: 'teacher_profiles:one',
         purpose: 'Improve instruction.',
+        position: 'Chief Executive Officer',
         actorAccountId: 'accounts:attacker',
         organizationId: 'organizations:other',
         roles: ['slt'],
@@ -131,6 +132,7 @@ describe('PIP interface', () => {
     render(<ImprovementPlanAcknowledgmentForm
       planId="improvement_plans:one"
       versionId="improvement_plan_versions:one"
+      expectedRevision={2}
     />);
 
     expect(screen.getByText(/not a legal digital signature/i)).toBeVisible();
@@ -140,6 +142,8 @@ describe('PIP interface', () => {
     expect(button).toBeEnabled();
     fireEvent.click(button);
     await waitFor(() => expect(fetch).toHaveBeenCalledOnce());
+    expect(JSON.parse(String(vi.mocked(fetch).mock.calls[0]?.[1]?.body)))
+      .toMatchObject({ expectedRevision: 2 });
   });
 
   it('reuses the acknowledgment request ID after an unknown response', async () => {
@@ -149,6 +153,7 @@ describe('PIP interface', () => {
     render(<ImprovementPlanAcknowledgmentForm
       planId="improvement_plans:retry"
       versionId="improvement_plan_versions:retry"
+      expectedRevision={2}
     />);
     fireEvent.click(screen.getByLabelText('I confirm that I reviewed this plan.'));
     fireEvent.click(screen.getByRole('button', { name: 'Acknowledge plan' }));

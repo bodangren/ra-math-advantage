@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
+import * as improvementPlanModule from '../../convex/improvementPlans';
 import {
   acknowledgeImprovementPlan,
   approveImprovementPlan,
@@ -32,6 +33,7 @@ function handler<TArgs = Record<string, unknown>, TResult = Record<string, unkno
 class MemoryDb {
   private sequence = 0;
   private readonly tables = new Map<string, Map<string, StoredDocument>>();
+  readonly queryCalls: string[] = [];
 
   seed(table: string, id: string, document: Record<string, unknown>) {
     this.table(table).set(id, { _id: id, _creationTime: ++this.sequence, ...document });
@@ -85,6 +87,7 @@ class MemoryDb {
   }
 
   query(tableName: string) {
+    this.queryCalls.push(tableName);
     let matches = this.rows(tableName);
     let descending = false;
     const query = {
@@ -150,6 +153,14 @@ class MemoryDb {
 
   context() {
     return { db: this };
+  }
+
+  clearQueryCalls() {
+    this.queryCalls.length = 0;
+  }
+
+  queryCount(tableName: string) {
+    return this.queryCalls.filter((name) => name === tableName).length;
   }
 
   private table(name: string) {
@@ -236,6 +247,147 @@ function seedBase(db: MemoryDb) {
   });
 }
 
+function seedTeacher(
+  db: MemoryDb,
+  suffix: string,
+  departmentId: string,
+  organizationId = ORG,
+) {
+  const accountId = `accounts:teacher-${suffix}`;
+  const teacherProfileId = `teacher_profiles:teacher-${suffix}`;
+  seedAccount(db, accountId, `Teacher ${suffix}`, organizationId);
+  seedRole(db, accountId, 'teacher', organizationId);
+  db.seed('teacher_profiles', teacherProfileId, {
+    organizationId,
+    accountId,
+    position: 'Teacher',
+    isActive: true,
+    createdAt: NOW,
+    updatedAt: NOW,
+  });
+  db.seed('department_memberships', `department_memberships:${suffix}`, {
+    organizationId,
+    departmentId,
+    teacherProfileId,
+    status: 'active',
+    createdByAccountId: SLT,
+    createdAt: NOW,
+  });
+  return teacherProfileId;
+}
+
+function seedPlan(
+  db: MemoryDb,
+  suffix: string,
+  teacherProfileId = TEACHER,
+  updatedAt = NOW,
+) {
+  const planId = `improvement_plans:${suffix}`;
+  const versionId = `improvement_plan_versions:${suffix}`;
+  db.seed('improvement_plans', planId, {
+    organizationId: ORG,
+    teacherProfileId,
+    state: 'proposed',
+    revision: 1,
+    latestVersion: 1,
+    pendingVersionId: versionId,
+    createdAt: updatedAt,
+    updatedAt,
+  });
+  db.seed('improvement_plan_versions', versionId, {
+    organizationId: ORG,
+    planId,
+    teacherProfileId,
+    version: 1,
+    proposerAccountId: PROPOSER,
+    supervisorAccountId: PROPOSER,
+    teacherName: `Teacher ${suffix}`,
+    position: 'Teacher',
+    departmentId: DEPARTMENT,
+    departmentName: 'Mathematics',
+    requestedPlanEndDate: null,
+    reviewMeetingDate: '2026-09-20',
+    purpose: `Purpose ${suffix}`,
+    areasOfConcern: 'Concern.',
+    expectedStandard: 'Danielson Proficient.',
+    requiredActions: 'Required action.',
+    evidenceOfImprovement: 'Rated evidence.',
+    schoolSupport: 'School support.',
+    successfulCompletionCriteria: 'Expected rating met.',
+    insufficientImprovementConsequences: 'Consequences.',
+    acknowledgmentText: 'Acknowledgment.',
+    sourceId: 'school.pip-form.2026-08-19',
+    sourceVersion: '1.0.0',
+    sourceHash: 'source-hash',
+    fingerprint: `fingerprint:${suffix}`,
+    proposedAt: updatedAt,
+  });
+  db.seed('improvement_plan_targets', `improvement_plan_targets:${suffix}`, {
+    organizationId: ORG,
+    planId,
+    versionId,
+    teacherProfileId,
+    ordinal: 0,
+    componentId: 'danielson.framework.component.1e',
+    componentTitle: '1e: Planning Coherent Instruction',
+    skillId: 'danielson.tlac.skill.double-plan',
+    skillTitle: 'The Double Plan',
+    expectedRating: 3,
+    expectedPoints: 90,
+    sourceId: 'school.pip-form.2026-08-19',
+    sourceVersion: '1.0.0',
+    sourceHash: 'source-hash',
+    createdAt: updatedAt,
+  });
+  return planId;
+}
+
+function seedClosedPlan(
+  db: MemoryDb,
+  suffix: string,
+  teacherProfileId: string,
+  createdAt: number,
+  outcome: 'successful' | 'insufficient_improvement' = 'successful',
+) {
+  const planId = seedPlan(db, suffix, teacherProfileId, createdAt);
+  const versionId = `improvement_plan_versions:${suffix}`;
+  db.seed('improvement_plans', planId, {
+    organizationId: ORG,
+    teacherProfileId,
+    state: 'closed',
+    revision: 3,
+    latestVersion: 1,
+    activeVersionId: versionId,
+    activeVersion: 1,
+    activeTargets: [{
+      componentId: 'danielson.framework.component.1e',
+      skillId: 'danielson.tlac.skill.double-plan',
+      expectedRating: 3,
+    }],
+    approvedAt: createdAt,
+    planEndAt: createdAt + 30 * DAY_MS,
+    reviewMeetingAt: createdAt + 20 * DAY_MS,
+    closedAt: createdAt + 31 * DAY_MS,
+    closureOutcome: outcome,
+    closureNote: `Private closure note ${suffix}.`,
+    closedTargetResults: [{
+      componentId: 'danielson.framework.component.1e',
+      skillId: 'danielson.tlac.skill.double-plan',
+      expectedRating: 3,
+      currentRating: null,
+      state: 'no_plan_evidence',
+      evidenceDueAt: createdAt + 7 * DAY_MS,
+      evidenceDue: true,
+      evidenceOverdue: true,
+      sourceRecordId: null,
+      evidenceIdempotencyKey: null,
+    }],
+    createdAt,
+    updatedAt: createdAt + 31 * DAY_MS,
+  });
+  return planId;
+}
+
 function proposalArgs(actorAccountId = PROPOSER) {
   return {
     actorAccountId,
@@ -267,6 +419,13 @@ async function propose(db: MemoryDb, actorAccountId = PROPOSER) {
   return handler(createImprovementPlanProposal)(db.context(), proposalArgs(actorAccountId));
 }
 
+async function proposeWith(db: MemoryDb, overrides: Record<string, unknown>) {
+  return handler(createImprovementPlanProposal)(db.context(), {
+    ...proposalArgs(),
+    ...overrides,
+  });
+}
+
 async function approve(db: MemoryDb, proposal: Record<string, unknown>, actorAccountId = SLT) {
   return handler(approveImprovementPlan)(db.context(), {
     actorAccountId,
@@ -275,6 +434,39 @@ async function approve(db: MemoryDb, proposal: Record<string, unknown>, actorAcc
     requestId: 'request:approval:one',
     expectedRevision: 1,
     now: NOW,
+  });
+}
+
+async function approveWith(
+  db: MemoryDb,
+  proposal: Record<string, unknown>,
+  overrides: Record<string, unknown>,
+) {
+  return handler(approveImprovementPlan)(db.context(), {
+    actorAccountId: SLT,
+    planId: proposal.planId,
+    versionId: proposal.versionId,
+    requestId: 'request:approval:one',
+    expectedRevision: proposal.revision,
+    now: NOW,
+    ...overrides,
+  });
+}
+
+async function closeWith(
+  db: MemoryDb,
+  planId: unknown,
+  overrides: Record<string, unknown> = {},
+) {
+  return handler(closeImprovementPlan)(db.context(), {
+    actorAccountId: SLT,
+    planId,
+    requestId: 'request:close:one',
+    expectedRevision: 2,
+    outcome: 'successful',
+    note: 'The approved targets were sustained.',
+    now: NOW + 31 * DAY_MS,
+    ...overrides,
   });
 }
 
@@ -366,6 +558,96 @@ describe('PIP persistence and authorization', () => {
     },
   );
 
+  it('authorizes the actor before organization-wide PIP reads', async () => {
+    const db = new MemoryDb();
+    seedBase(db);
+
+    const reads = [
+      () => handler(readLeadershipPortfolio)(db.context(), {
+        actorAccountId: TEACHER_ACCOUNT,
+        now: new Date(NOW).toISOString(),
+        cursor: null,
+        pageSize: 25,
+      }),
+      () => handler(readRankedTeacherQueue)(db.context(), {
+        actorAccountId: TEACHER_ACCOUNT,
+        now: new Date(NOW).toISOString(),
+      }),
+    ];
+    for (const read of reads) {
+      db.clearQueryCalls();
+      await expect(read()).resolves.toMatchObject({ kind: 'denied' });
+      for (const protectedTable of [
+        'improvement_plans',
+        'teacher_observation_outcomes',
+        'teacher_evidence_supersessions',
+      ]) expect(db.queryCalls).not.toContain(protectedTable);
+    }
+  });
+
+  it('paginates only scoped plans without leaking raw organization volume', async () => {
+    const db = new MemoryDb();
+    seedBase(db);
+    db.seed('role_assignments', `role_assignments:${PROPOSER}:school_head`, {
+      organizationId: ORG,
+      accountId: PROPOSER,
+      role: 'hod',
+      status: 'active',
+      createdByAccountId: SLT,
+      createdAt: NOW,
+    });
+    db.seed('hod_assignments', 'hod_assignments:math', {
+      organizationId: ORG,
+      accountId: PROPOSER,
+      departmentId: DEPARTMENT,
+      status: 'active',
+      createdByAccountId: SLT,
+      createdAt: NOW,
+    });
+    const science = 'departments:science';
+    db.seed('departments', science, {
+      organizationId: ORG,
+      key: 'science',
+      name: 'Science',
+      isActive: true,
+      createdAt: NOW,
+      updatedAt: NOW,
+    });
+    const outOfScopeTeacher = seedTeacher(db, 'science', science);
+    seedPlan(db, 'out-of-scope-1', outOfScopeTeacher, NOW + 1);
+    seedPlan(db, 'out-of-scope-2', outOfScopeTeacher, NOW + 2);
+
+    const result = await handler(listScopedImprovementPlans)(db.context(), {
+      actorAccountId: PROPOSER,
+      paginationOpts: { cursor: null, numItems: 1 },
+      now: NOW,
+    });
+    expect(result).toEqual({
+      kind: 'allowed',
+      page: { page: [], isDone: true, continueCursor: '' },
+    });
+  });
+
+  it('loads list authorization once instead of once per plan row', async () => {
+    const db = new MemoryDb();
+    seedBase(db);
+    seedPlan(db, 'visible-1', TEACHER, NOW + 1);
+    seedPlan(db, 'visible-2', TEACHER, NOW + 2);
+    seedPlan(db, 'visible-3', TEACHER, NOW + 3);
+    db.clearQueryCalls();
+
+    const result = await handler(listScopedImprovementPlans)(db.context(), {
+      actorAccountId: PROPOSER,
+      paginationOpts: { cursor: null, numItems: 3 },
+      now: NOW,
+    }) as { kind: string; page: { page: unknown[] } };
+    expect(result.kind).toBe('allowed');
+    expect(result.page.page).toHaveLength(3);
+    expect(db.queryCount('role_assignments')).toBeLessThanOrEqual(1);
+    expect(db.queryCount('hod_assignments')).toBeLessThanOrEqual(1);
+    expect(db.queryCount('coach_assignments')).toBeLessThanOrEqual(1);
+  });
+
   it('keeps a proposal inactive and byte-isolates every scoring table', async () => {
     const db = new MemoryDb();
     seedBase(db);
@@ -392,6 +674,21 @@ describe('PIP persistence and authorization', () => {
       kind: 'allowed',
       projection: { contractVersion: 'danielson.ip-progress.v1', state: 'not_configured' },
     });
+    const selfReport = await handler(readMyTeacherReport)(db.context(), {
+      actorAccountId: TEACHER_ACCOUNT,
+      now: new Date(NOW).toISOString(),
+    });
+    expect(selfReport).toMatchObject({
+      kind: 'allowed',
+      report: {
+        improvementPlan: {
+          contractVersion: 'danielson.ip-progress.v1',
+          state: 'not_configured',
+        },
+      },
+    });
+    expect(JSON.stringify(selfReport)).not.toContain(String(result.planId));
+    expect(JSON.stringify(selfReport)).not.toContain('pending_approval');
   });
 
   it('adds an approved target to the walkthrough queue and leadership portfolio', async () => {
@@ -426,20 +723,93 @@ describe('PIP persistence and authorization', () => {
     });
   });
 
-  it('uses one request identity for replay and rejects changed content', async () => {
+  it('fingerprints the complete proposal command and replays before mutable plan checks', async () => {
     const db = new MemoryDb();
     seedBase(db);
-    const first = await propose(db);
+    const first = await propose(db) as Record<string, unknown>;
+    await approve(db, first);
     const replay = await propose(db);
     const conflict = await handler(createImprovementPlanProposal)(db.context(), {
       ...proposalArgs(),
       purpose: 'Changed purpose.',
     });
+    const planConflict = await proposeWith(db, { planId: first.planId });
+    const revisionConflict = await proposeWith(db, { expectedRevision: 1 });
     expect(first).toMatchObject({ kind: 'proposed' });
     expect(replay).toMatchObject({ kind: 'replayed' });
     expect(conflict).toEqual({ kind: 'idempotency_conflict' });
+    expect(planConflict).toEqual({ kind: 'idempotency_conflict' });
+    expect(revisionConflict).toEqual({ kind: 'idempotency_conflict' });
     expect(db.rows('improvement_plan_versions')).toHaveLength(1);
   });
+
+  it('uses the teacher profile position instead of a client-supplied position', async () => {
+    const db = new MemoryDb();
+    seedBase(db);
+
+    await expect(proposeWith(db, { position: 'Chief Executive Officer' }))
+      .resolves.toMatchObject({ kind: 'proposed' });
+    expect(db.rows('improvement_plan_versions')[0]).toMatchObject({
+      position: 'Mathematics Teacher',
+    });
+  });
+
+  it.each([
+    'purpose',
+    'areasOfConcern',
+    'expectedStandard',
+    'requiredActions',
+    'evidenceOfImprovement',
+    'schoolSupport',
+    'successfulCompletionCriteria',
+  ] as const)('enforces the 4,000-character server limit for %s', async (field) => {
+    const db = new MemoryDb();
+    seedBase(db);
+
+    await expect(proposeWith(db, { [field]: 'x'.repeat(4_001) })).resolves.toEqual({
+      kind: 'invalid',
+      reason: `invalid_${field}`,
+    });
+    expect(db.rows('improvement_plans')).toHaveLength(0);
+  });
+
+  it.each(['', '   ', 'x'.repeat(129)])(
+    'rejects an empty or oversized request ID before each lifecycle write: %j',
+    async (requestId) => {
+      const proposalDb = new MemoryDb();
+      seedBase(proposalDb);
+      await expect(proposeWith(proposalDb, { requestId })).resolves.toEqual({
+        kind: 'invalid',
+        reason: 'invalid_request_id',
+      });
+
+      const approvalDb = new MemoryDb();
+      seedBase(approvalDb);
+      const pending = await propose(approvalDb) as Record<string, unknown>;
+      await expect(approveWith(approvalDb, pending, { requestId })).resolves.toEqual({
+        kind: 'invalid',
+        reason: 'invalid_request_id',
+      });
+
+      const activeDb = new MemoryDb();
+      seedBase(activeDb);
+      const activeProposal = await propose(activeDb) as Record<string, unknown>;
+      await approve(activeDb, activeProposal);
+      await expect(handler(acknowledgeImprovementPlan)(activeDb.context(), {
+        actorAccountId: TEACHER_ACCOUNT,
+        planId: activeProposal.planId,
+        versionId: activeProposal.versionId,
+        kind: 'teacher',
+        requestId,
+        expectedRevision: 2,
+        now: NOW + 1_000,
+      })).resolves.toEqual({ kind: 'invalid', reason: 'invalid_request_id' });
+      await expect(closeWith(activeDb, activeProposal.planId, { requestId })).resolves.toEqual({
+        kind: 'invalid',
+        reason: 'invalid_request_id',
+      });
+    },
+  );
 });
 
 describe('PIP approval, versions, acknowledgment, and closure', () => {
@@ -464,6 +834,11 @@ describe('PIP approval, versions, acknowledgment, and closure', () => {
     expect(db.rows('improvement_plan_targets')).toHaveLength(1);
     expect(db.rows('improvement_plan_events').map((event) => event.kind))
       .toEqual(['proposed', 'approved']);
+    const approvalEvent = db.rows('improvement_plan_events').find((event) => event.kind === 'approved');
+    expect(approvalEvent).toBeDefined();
+    expect(db.rows('improvement_plans')[0]).toMatchObject({
+      approvalEventId: approvalEvent?._id,
+    });
     await expect(approve(db, proposal)).resolves.toMatchObject({
       kind: 'replayed',
       planStartAt: NOW,
@@ -502,12 +877,23 @@ describe('PIP approval, versions, acknowledgment, and closure', () => {
     await approve(db, proposal);
     const acknowledge = handler(acknowledgeImprovementPlan);
 
+    await expect(acknowledge(db.context(), {
+      actorAccountId: TEACHER_ACCOUNT,
+      planId: proposal.planId,
+      versionId: proposal.versionId,
+      kind: 'teacher',
+      requestId: 'request:ack:stale',
+      expectedRevision: 1,
+      now: NOW + 1_000,
+    })).resolves.toEqual({ kind: 'revision_conflict' });
+
     const teacherResult = await acknowledge(db.context(), {
       actorAccountId: TEACHER_ACCOUNT,
       planId: proposal.planId,
       versionId: proposal.versionId,
       kind: 'teacher',
       requestId: 'request:ack:teacher',
+      expectedRevision: 2,
       now: NOW + 2_000,
     });
     const supervisorResult = await acknowledge(db.context(), {
@@ -516,6 +902,7 @@ describe('PIP approval, versions, acknowledgment, and closure', () => {
       versionId: proposal.versionId,
       kind: 'supervisor',
       requestId: 'request:ack:supervisor',
+      expectedRevision: 2,
       now: NOW + 3_000,
     });
     expect(teacherResult).toMatchObject({ kind: 'acknowledged', acknowledgmentKind: 'teacher' });
@@ -529,8 +916,134 @@ describe('PIP approval, versions, acknowledgment, and closure', () => {
       versionId: proposal.versionId,
       kind: 'teacher',
       requestId: 'request:ack:changed',
+      expectedRevision: 2,
       now: NOW + 4_000,
     })).resolves.toEqual({ kind: 'acknowledgment_exists' });
+
+    const revision = await proposeWith(db, {
+      planId: proposal.planId,
+      requestId: 'request:proposal:revision',
+      expectedRevision: 2,
+      purpose: 'Revised purpose.',
+      now: NOW + 5_000,
+    }) as Record<string, unknown>;
+    await approveWith(db, revision, {
+      requestId: 'request:approval:revision',
+      expectedRevision: 3,
+      now: NOW + 6_000,
+    });
+    await expect(acknowledge(db.context(), {
+      actorAccountId: TEACHER_ACCOUNT,
+      planId: proposal.planId,
+      versionId: proposal.versionId,
+      kind: 'teacher',
+      requestId: 'request:ack:teacher',
+      expectedRevision: 2,
+      now: NOW + 7_000,
+    })).resolves.toMatchObject({ kind: 'replayed', acknowledgmentKind: 'teacher' });
+    await expect(acknowledge(db.context(), {
+      actorAccountId: TEACHER_ACCOUNT,
+      planId: proposal.planId,
+      versionId: proposal.versionId,
+      kind: 'teacher',
+      requestId: 'request:ack:teacher',
+      expectedRevision: 3,
+      now: NOW + 7_000,
+    })).resolves.toEqual({ kind: 'idempotency_conflict' });
+  });
+
+  it('freezes target graph sources and rated evidence identity in active and closed progress', async () => {
+    const db = new MemoryDb();
+    seedBase(db);
+    const proposal = await propose(db) as Record<string, unknown>;
+    await approve(db, proposal);
+
+    expect(db.rows('improvement_plan_targets')[0]).toMatchObject({
+      componentSourceRefs: expect.arrayContaining([
+        expect.objectContaining({ source: 'Danielson Framework for Teaching 2022' }),
+      ]),
+      skillSourceRefs: expect.arrayContaining([
+        expect.objectContaining({ source: 'Teach Like a Champion 3.0' }),
+      ]),
+    });
+
+    const sourceRecordId = 'observation_records:plan-evidence';
+    const evidenceIdempotencyKey = 'plan-evidence:key';
+    db.seed('teacher_observation_outcomes', 'teacher_observation_outcomes:plan-evidence', {
+      organizationId: ORG,
+      teacherId: TEACHER,
+      idempotencyKey: evidenceIdempotencyKey,
+      occurredAt: NOW + DAY_MS,
+      createdAt: NOW + DAY_MS,
+      outcome: {
+        kind: 'rated',
+        organizationId: ORG,
+        teacherId: TEACHER,
+        sourceRecordId,
+        sourceType: 'walkthrough',
+        componentId: 'danielson.framework.component.1e',
+        targetSkillIds: ['danielson.tlac.skill.double-plan'],
+        observerId: PROPOSER,
+        occurredAt: new Date(NOW + DAY_MS).toISOString(),
+        sourceVersion: '1',
+        provenanceGroupId: 'plan-evidence',
+        idempotencyKey: evidenceIdempotencyKey,
+        rating: 3,
+        targetEvidence: [{
+          skillId: 'danielson.tlac.skill.double-plan',
+          componentId: 'danielson.framework.component.1e',
+          rawRating: 3,
+          points: 90,
+          passes: true,
+          srsRating: 'Good',
+          idempotencyKey: evidenceIdempotencyKey,
+          sourceRecordId,
+          provenanceGroupId: 'plan-evidence',
+          sourceType: 'walkthrough',
+          occurredAt: new Date(NOW + DAY_MS).toISOString(),
+        }],
+      },
+    });
+
+    const active = await handler(readImprovementPlanReportProjection)(db.context(), {
+      actorAccountId: PROPOSER,
+      teacherProfileId: TEACHER,
+      now: NOW + 2 * DAY_MS,
+    });
+    expect(active).toMatchObject({
+      kind: 'allowed',
+      projection: {
+        state: 'active',
+        targets: [{
+          skillId: 'danielson.tlac.skill.double-plan',
+          currentRating: 3,
+          sourceRecordId,
+          evidenceIdempotencyKey,
+        }],
+      },
+    });
+
+    await closeWith(db, proposal.planId);
+    expect(db.rows('improvement_plans')[0]).toMatchObject({
+      closedTargetResults: [{ sourceRecordId, evidenceIdempotencyKey }],
+    });
+    expect(db.rows('improvement_plan_events').at(-1)).toMatchObject({
+      kind: 'closed',
+      payload: {
+        targetResults: [{ sourceRecordId, evidenceIdempotencyKey }],
+      },
+    });
+    await expect(handler(readImprovementPlanReportProjection)(db.context(), {
+      actorAccountId: PROPOSER,
+      teacherProfileId: TEACHER,
+      now: NOW + 32 * DAY_MS,
+    })).resolves.toMatchObject({
+      kind: 'allowed',
+      projection: {
+        state: 'closed',
+        targets: [{ sourceRecordId, evidenceIdempotencyKey }],
+      },
+    });
   });
 
   it('lets only SLT close with a human outcome and immutable target snapshot', async () => {
@@ -569,6 +1082,10 @@ describe('PIP approval, versions, acknowledgment, and closure', () => {
         targetResults: expect.any(Array),
       }),
     });
+    expect(db.rows('improvement_plans')[0]).toMatchObject({
+      approvalEventId: db.rows('improvement_plan_events').find((event) => event.kind === 'approved')?._id,
+      closureEventId: db.rows('improvement_plan_events').find((event) => event.kind === 'closed')?._id,
+    });
     await expect(close(db.context(), {
       actorAccountId: SLT,
       planId: proposal.planId,
@@ -578,6 +1095,15 @@ describe('PIP approval, versions, acknowledgment, and closure', () => {
       note: 'The approved targets were not sustained.',
       now: NOW + 31 * 86_400_000,
     })).resolves.toMatchObject({ kind: 'replayed', outcome: 'insufficient_improvement' });
+    await expect(close(db.context(), {
+      actorAccountId: SLT,
+      planId: proposal.planId,
+      requestId: 'request:close:one',
+      expectedRevision: 3,
+      outcome: 'insufficient_improvement',
+      note: 'The approved targets were not sustained.',
+      now: NOW + 31 * 86_400_000,
+    })).resolves.toEqual({ kind: 'idempotency_conflict' });
     await expect(handler(readImprovementPlanReportProjection)(db.context(), {
       actorAccountId: PROPOSER,
       teacherProfileId: TEACHER,
@@ -662,6 +1188,170 @@ describe('PIP approval, versions, acknowledgment, and closure', () => {
       teacherProfileId: TEACHER,
       now: NOW + 33 * DAY_MS,
     })).resolves.toEqual(frozenProjection);
+  });
+
+  it('shows only the latest closed plan for each teacher in the leadership portfolio', async () => {
+    const db = new MemoryDb();
+    seedBase(db);
+    const first = await propose(db) as Record<string, unknown>;
+    await approve(db, first);
+    await closeWith(db, first.planId, {
+      outcome: 'insufficient_improvement',
+      note: 'The first plan did not meet its targets.',
+    });
+
+    const second = await proposeWith(db, {
+      requestId: 'request:proposal:second-root',
+      reviewMeetingDate: '2026-11-20',
+      now: NOW + 32 * DAY_MS,
+    }) as Record<string, unknown>;
+    await approveWith(db, second, {
+      requestId: 'request:approval:second-root',
+      now: NOW + 32 * DAY_MS,
+    });
+    await closeWith(db, second.planId, {
+      requestId: 'request:close:second-root',
+      expectedRevision: 2,
+      outcome: 'successful',
+      note: 'The second plan met its targets.',
+      now: NOW + 63 * DAY_MS,
+    });
+
+    const portfolio = await handler(readLeadershipPortfolio)(db.context(), {
+      actorAccountId: PROPOSER,
+      now: new Date(NOW + 64 * DAY_MS).toISOString(),
+      cursor: null,
+      pageSize: 25,
+    }) as { kind: string; page: { items: Array<Record<string, unknown>> } };
+    expect(portfolio).toMatchObject({
+      kind: 'allowed',
+      page: {
+        items: [{
+          teacherProfileId: TEACHER,
+          improvementPlan: {
+            state: 'closed',
+            planId: second.planId,
+            outcome: 'successful',
+          },
+        }],
+      },
+    });
+    expect(JSON.stringify(portfolio)).not.toContain(String(first.planId));
+  });
+
+  it('loads the latest closed plan for all portfolio teachers in one bounded batch', async () => {
+    const db = new MemoryDb();
+    seedBase(db);
+    const teacherIds = [TEACHER];
+    for (const suffix of ['batch-a', 'batch-b', 'batch-c']) {
+      teacherIds.push(seedTeacher(db, suffix, DEPARTMENT));
+    }
+    const latestPlanIds = teacherIds.map((teacherId, index) => {
+      seedClosedPlan(db, `old-${index}`, teacherId, NOW - 100_000 - index);
+      return seedClosedPlan(db, `latest-${index}`, teacherId, NOW + index, 'successful');
+    });
+    db.clearQueryCalls();
+
+    const portfolio = await handler(readLeadershipPortfolio)(db.context(), {
+      actorAccountId: PROPOSER,
+      now: new Date(NOW + 32 * DAY_MS).toISOString(),
+      cursor: null,
+      pageSize: 25,
+    }) as { kind: string; page: { items: Array<{ improvementPlan: Record<string, unknown> }> } };
+    expect(portfolio.kind).toBe('allowed');
+    expect(portfolio.page.items).toHaveLength(teacherIds.length);
+    expect(portfolio.page.items.map((item) => item.improvementPlan.planId).sort())
+      .toEqual([...latestPlanIds].sort());
+    expect(db.queryCount('improvement_plans')).toBeLessThanOrEqual(3);
+  });
+
+  it('paginates scoped lifecycle history with prior approved versions and public-safe rows', async () => {
+    const historyDefinition = (improvementPlanModule as Record<string, unknown>)
+      .listImprovementPlanHistory;
+    expect(historyDefinition).toBeDefined();
+    if (!historyDefinition) return;
+    const listHistory = handler(historyDefinition);
+    const db = new MemoryDb();
+    seedBase(db);
+    const first = await propose(db) as Record<string, unknown>;
+    await approve(db, first);
+    const second = await proposeWith(db, {
+      planId: first.planId,
+      requestId: 'request:proposal:history-v2',
+      expectedRevision: 2,
+      purpose: 'Second approved purpose.',
+      now: NOW + 1_000,
+    }) as Record<string, unknown>;
+    await approveWith(db, second, {
+      requestId: 'request:approval:history-v2',
+      expectedRevision: 3,
+      now: NOW + 2_000,
+    });
+    const privateClosureNote = 'Private closure narrative.';
+    await closeWith(db, first.planId, {
+      requestId: 'request:close:history',
+      expectedRevision: 4,
+      note: privateClosureNote,
+      now: NOW + 31 * DAY_MS,
+    });
+
+    await expect(listHistory(db.context(), {
+      actorAccountId: PROPOSER,
+      planId: first.planId,
+      paginationOpts: { cursor: null, numItems: 51 },
+    })).resolves.toEqual({ kind: 'invalid_page_size' });
+
+    const events: Array<Record<string, unknown>> = [];
+    let cursor: string | null = null;
+    let firstPage: Record<string, unknown> | null = null;
+    do {
+      const result = await listHistory(db.context(), {
+        actorAccountId: PROPOSER,
+        planId: first.planId,
+        paginationOpts: { cursor, numItems: 2 },
+      }) as {
+        kind: string;
+        page: { page: Array<Record<string, unknown>>; isDone: boolean; continueCursor: string };
+        priorApprovedVersions: Array<Record<string, unknown>>;
+      };
+      expect(result.kind).toBe('allowed');
+      firstPage ??= result as unknown as Record<string, unknown>;
+      events.push(...result.page.page);
+      cursor = result.page.isDone ? null : result.page.continueCursor;
+    } while (cursor !== null);
+
+    expect(events.map((event) => event.kind).sort()).toEqual([
+      'approved',
+      'approved',
+      'closed',
+      'proposed',
+      'proposed',
+    ]);
+    expect(events.every((event) => typeof event.eventId === 'string')).toBe(true);
+    expect(firstPage).toMatchObject({
+      priorApprovedVersions: [{
+        version: 1,
+        purpose: 'Improve lesson coherence.',
+      }],
+    });
+    expect(JSON.stringify(events)).toContain(privateClosureNote);
+
+    const teacherHistory = await listHistory(db.context(), {
+      actorAccountId: TEACHER_ACCOUNT,
+      planId: first.planId,
+      paginationOpts: { cursor: null, numItems: 50 },
+    });
+    expect(teacherHistory).toMatchObject({ kind: 'allowed' });
+    expect(JSON.stringify(teacherHistory)).not.toContain(privateClosureNote);
+
+    const outsideSlt = 'accounts:outside-slt';
+    seedAccount(db, outsideSlt, 'Outside SLT', OTHER_ORG);
+    seedRole(db, outsideSlt, 'slt', OTHER_ORG);
+    await expect(listHistory(db.context(), {
+      actorAccountId: outsideSlt,
+      planId: first.planId,
+      paginationOpts: { cursor: null, numItems: 20 },
+    })).resolves.toMatchObject({ kind: 'denied' });
   });
 
   it('paginates scoped plans and returns approved content only to the subject teacher', async () => {
