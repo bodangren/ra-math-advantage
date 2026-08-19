@@ -19,14 +19,39 @@ function outcomeLabel(outcome: { kind: string; rating?: number } | null) {
   return `Rating ${outcome.rating}`;
 }
 
+function dueLabel(skill: { due: boolean; dueAt: string | null; overdueDays: number }) {
+  const dueAt = skill.dueAt === null ? Number.NaN : Date.parse(skill.dueAt);
+  const date = Number.isFinite(dueAt)
+    ? new Intl.DateTimeFormat('en', {
+        day: 'numeric',
+        month: 'short',
+        timeZone: 'UTC',
+        year: 'numeric',
+      }).format(dueAt)
+    : null;
+  if (skill.due) {
+    const state = skill.overdueDays > 0
+      ? `Overdue by ${skill.overdueDays} days.`
+      : 'Due.';
+    return date ? `${state} Due on ${date}.` : `${state} No due date is available.`;
+  }
+  return date ? `Current. Due on ${date}.` : 'Current. No due date is available.';
+}
+
 export function TeacherReportView({
   report,
   canComment,
   canRespond,
+  evidenceHistoryNextHref = null,
+  publicCommentsNextHref = null,
+  privateCommentsNextHref = null,
 }: {
   report: PublicTeacherReport | PrivateTeacherReport;
   canComment: boolean;
   canRespond: boolean;
+  evidenceHistoryNextHref?: string | null;
+  publicCommentsNextHref?: string | null;
+  privateCommentsNextHref?: string | null;
 }) {
   const privateComments = 'privateComments' in report ? report.privateComments : [];
   return (
@@ -83,8 +108,11 @@ export function TeacherReportView({
                   <p>{stateLabel(component.state)}</p>
                   <ul>{component.skills.map((skill) => (
                     <li key={skill.skillId}>
-                      {skill.title}: {skill.rawRating === null ? 'Not enough evidence' : `Rating ${skill.rawRating} · ${skill.points} points`}
-                      {skill.due ? ` · Due${skill.overdueDays > 0 ? ` ${skill.overdueDays} days ago` : ''}` : ''}
+                      <span>{skill.title}: {skill.rawRating === null ? 'Not enough evidence' : `Rating ${skill.rawRating} · ${skill.points} points`}</span>
+                      <span> · {dueLabel(skill)}</span>
+                      {skill.sourceRecordId ? (
+                        <> · <Link href={`/observations/records/${encodeURIComponent(skill.sourceRecordId)}`}>Open skill evidence source</Link></>
+                      ) : null}
                     </li>
                   ))}</ul>
                 </section>
@@ -123,6 +151,7 @@ export function TeacherReportView({
             ))}
           </div>
         )}
+        {evidenceHistoryNextHref ? <p><Link href={evidenceHistoryNextHref}>Next evidence page</Link></p> : null}
       </section>
 
       <section className="card" aria-labelledby="comments-heading">
@@ -135,17 +164,21 @@ export function TeacherReportView({
             </li>
           ))}</ul>
         )}
+        {publicCommentsNextHref ? <p><Link href={publicCommentsNextHref}>Next public comments page</Link></p> : null}
       </section>
 
-      {privateComments.length > 0 ? (
+      {privateComments.length > 0 || privateCommentsNextHref ? (
         <section className="card" aria-labelledby="private-comments-heading">
           <h2 id="private-comments-heading">Private leadership comments</h2>
-          <ul className="record-list">{privateComments.map((comment) => (
-            <li key={comment.commentId}>
-              <p>{comment.content}</p>
-              <p className="muted">Author account: {comment.authorAccountId} · {new Date(comment.createdAt).toLocaleString()} · <Link href={`/observations/records/${encodeURIComponent(comment.observationId)}`}>Source observation</Link></p>
-            </li>
-          ))}</ul>
+          {privateComments.length === 0 ? <p>No private comments.</p> : (
+            <ul className="record-list">{privateComments.map((comment) => (
+              <li key={comment.commentId}>
+                <p>{comment.content}</p>
+                <p className="muted">Author account: {comment.authorAccountId} · {new Date(comment.createdAt).toLocaleString()} · <Link href={`/observations/records/${encodeURIComponent(comment.observationId)}`}>Source observation</Link></p>
+              </li>
+            ))}</ul>
+          )}
+          {privateCommentsNextHref ? <p><Link href={privateCommentsNextHref}>Next private comments page</Link></p> : null}
         </section>
       ) : null}
 

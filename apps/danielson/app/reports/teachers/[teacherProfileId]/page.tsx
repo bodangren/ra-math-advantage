@@ -4,11 +4,21 @@ import { getLeadershipTeacherReport } from '@/lib/reporting/reporting-page';
 
 export default async function LeadershipTeacherReportPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ teacherProfileId: string }>;
+  searchParams: Promise<{
+    historyCursor?: string;
+    publicCommentCursor?: string;
+    privateCommentCursor?: string;
+  }>;
 }) {
   const { teacherProfileId } = await params;
-  const { session, report, visibility } = await getLeadershipTeacherReport(teacherProfileId);
+  const cursors = await searchParams;
+  const { session, report, visibility, nextHrefs } = await getLeadershipTeacherReport(
+    teacherProfileId,
+    cursors,
+  );
   const roles = session.account.danielsonRoles as string[];
   return (
     <>
@@ -17,7 +27,14 @@ export default async function LeadershipTeacherReportPage({
         <p className="eyebrow">Leadership teacher report</p>
         <h1>{report.displayName}</h1>
         <p className="lede">Official evaluations stay separate from current proficiency evidence.</p>
-        <TeacherReportView report={report} canComment={visibility === 'private'} canRespond={false} />
+        <TeacherReportView
+          report={report}
+          canComment={visibility === 'private'}
+          canRespond={false}
+          evidenceHistoryNextHref={nextHrefs.evidenceHistory}
+          publicCommentsNextHref={nextHrefs.publicComments}
+          privateCommentsNextHref={nextHrefs.privateComments}
+        />
       </main>
     </>
   );

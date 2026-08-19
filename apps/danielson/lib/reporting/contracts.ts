@@ -37,8 +37,12 @@ export type OfficialEvaluation = {
   components: Array<{
     componentId: string;
     title: string;
-    rawRating: number | null;
-    points: number | null;
+    rawRating: 1 | 2 | 3 | 4 | null;
+    points: 70 | 80 | 90 | 100 | null;
+    observedAt: string;
+    observerDisplayName: string;
+    sourceObservationId: string;
+    amendmentCount: number;
   }>;
 };
 
@@ -55,8 +59,8 @@ export type CurrentProficiency = {
       skills: Array<{
         skillId: string;
         title: string;
-        rawRating: number | null;
-        points: number | null;
+        rawRating: 1 | 2 | 3 | 4 | null;
+        points: 70 | 80 | 90 | 100 | null;
         state: ReportingState;
         due: boolean;
         dueAt: string | null;
@@ -79,7 +83,10 @@ export type EvidenceHistoryItem = {
     itemId: string;
     componentId: string;
     skillId?: string;
-    outcome: { kind: 'rated'; rating: number } | { kind: 'not_enough_evidence' } | null;
+    priorityReason?: 'below_proficient' | 'overdue' | 'evidence_gap' | 'due';
+    outcome: { kind: 'rated'; rating: 1 | 2 | 3 | 4 }
+      | { kind: 'not_enough_evidence' }
+      | null;
     evidenceNote: string | null;
   }>;
 };

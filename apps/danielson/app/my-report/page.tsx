@@ -2,8 +2,16 @@ import { SiteHeader } from '@/components/site-header';
 import { TeacherReportView } from '@/components/teacher-report-view';
 import { getMyTeacherReport } from '@/lib/reporting/reporting-page';
 
-export default async function MyReportPage() {
-  const { session, report } = await getMyTeacherReport();
+export default async function MyReportPage({
+  searchParams,
+}: {
+  searchParams: Promise<{
+    historyCursor?: string;
+    publicCommentCursor?: string;
+  }>;
+}) {
+  const cursors = await searchParams;
+  const { session, report, nextHrefs } = await getMyTeacherReport(cursors);
   const roles = session.account.danielsonRoles as string[];
   const canReport = roles.some((role) => ['hod', 'coach', 'school_head', 'slt'].includes(role));
   return (
@@ -13,7 +21,13 @@ export default async function MyReportPage() {
         <p className="eyebrow">Teacher report</p>
         <h1>My Danielson report</h1>
         <p className="lede">Review published results, public comments, and your optional final responses.</p>
-        <TeacherReportView report={report} canComment={false} canRespond />
+        <TeacherReportView
+          report={report}
+          canComment={false}
+          canRespond
+          evidenceHistoryNextHref={nextHrefs.evidenceHistory}
+          publicCommentsNextHref={nextHrefs.publicComments}
+        />
       </main>
     </>
   );

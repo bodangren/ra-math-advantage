@@ -14,6 +14,7 @@ export function ReportCommentForm({
   const [pending, setPending] = useState(false);
   const errorRef = useRef<HTMLDivElement>(null);
   const label = commentType === 'public' ? 'Public comment' : 'Private comment';
+  const fieldId = `${commentType}-comment-${encodeURIComponent(observationId)}`;
 
   useEffect(() => {
     if (error) errorRef.current?.focus();
@@ -51,8 +52,8 @@ export function ReportCommentForm({
       {error ? <div className="error-summary" role="alert" tabIndex={-1} ref={errorRef}>{error}</div> : null}
       {saved ? <p className="status-message" role="status">Comment added.</p> : null}
       <div className="field">
-        <label htmlFor={`${commentType}-comment`}>{label}</label>
-        <textarea id={`${commentType}-comment`} name="content" required maxLength={4_000} rows={4} />
+        <label htmlFor={fieldId}>{label}</label>
+        <textarea id={fieldId} name="content" required maxLength={4_000} rows={4} />
       </div>
       <button type="submit" disabled={pending}>
         {pending ? 'Saving…' : `Add ${commentType} comment`}
