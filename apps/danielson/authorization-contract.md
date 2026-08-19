@@ -114,6 +114,7 @@ Each denial uses one stable reason:
 - `self_evaluation_denied`
 - `self_pip_denied`
 - `target_inactive`
+- `final_active_sysadmin`
 
 The client can show a general message for these reasons. The server must not
 return protected record data with a denial.

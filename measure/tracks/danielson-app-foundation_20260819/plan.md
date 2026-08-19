@@ -6,7 +6,7 @@
 
 **Pipeline:** Contract and Schema → Test → Implement → Generate Docs and Doctor
 
-## Phase 1: Contract and Schema Definition
+## Phase 1: Contract and Schema Definition [checkpoint: 74496b9]
 
 - [x] Task 1.1: Define the application ownership contract — `724f77b`
     - [x] Add the application product, product-guideline, and design documents
@@ -25,11 +25,11 @@
 - [x] Task 1.4: Define account-administration audit events — `74496b9`
     - [x] Define actor, action, target, time, and before-and-after fields
     - [x] Define immutable, transactional, and replay-safe audit-event behavior
-- [~] Task 1.5: Measure - User Manual Verification 'Phase 1: Contract and Schema Definition' (Protocol in workflow.md)
+- [x] Task 1.5: Measure - User Manual Verification 'Phase 1: Contract and Schema Definition' — user directed full-track continuation
 
 ## Phase 2: Test
 
-- [ ] Task 2.1: Write account and multiple-role contract tests
+- [~] Task 2.1: Write account and multiple-role contract tests
     - [ ] Test teacher plus HOD and teacher plus SLT accounts
     - [ ] Test strict validation and duplicate assignment rejection
 - [ ] Task 2.2: Write scoped authorization Red tests
