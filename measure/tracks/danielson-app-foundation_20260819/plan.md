@@ -12,12 +12,12 @@
     - [x] Add the application product, product-guideline, and design documents
     - [x] Define app-owned routes, Convex ownership, and public entry points
     - [x] Record the allowed shared-package dependencies
-- [~] Task 1.2: Define account and organization schemas
-    - [ ] Define strict account, organization, department, and teacher-profile contracts
-    - [ ] Define app-owned many-to-many role assignments
-    - [ ] Define HOD department and coach teacher assignments
-    - [ ] Define indexes for every authorization lookup
-- [ ] Task 1.3: Define the authorization matrix
+- [x] Task 1.2: Define account and organization schemas — `e2fc1d8`
+    - [x] Define strict account, organization, department, and teacher-profile contracts
+    - [x] Define app-owned many-to-many role assignments
+    - [x] Define HOD department and coach teacher assignments
+    - [x] Define indexes for every authorization lookup
+- [~] Task 1.3: Define the authorization matrix
     - [ ] Define the six role capabilities and their scopes
     - [ ] Define additive role resolution
     - [ ] Define subject exclusion for private leadership data
