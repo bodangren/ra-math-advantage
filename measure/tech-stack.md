@@ -111,7 +111,7 @@ Custom JWT-based auth built on Convex. No third-party auth provider.
 | Package types | `npm run typecheck` | Runs standalone TypeScript checks for all 20 packages |
 | Package builds | `npm run build` | Runs every supported package build capability |
 | Boundaries | `node scripts/check-monorepo-boundaries.mjs` | Validates imports, exports, dependency declarations, layers, domains, and cycles |
-| Inventory parity | `node scripts/architecture/check-quality-parity.mjs` | Requires manifest, root commands, and CI matrices to cover the same 25 workspaces |
+| Inventory parity | `node scripts/architecture/check-quality-parity.mjs` | Requires manifest, root commands, and CI matrices to cover the same 26 workspaces |
 | Generated facts | `npm run generate` | Writes deterministic DAG, ownership, exports, and gate reports |
 | Architecture doctor | `npm run doctor` | Checks report freshness and the live repository boundary contract |
 

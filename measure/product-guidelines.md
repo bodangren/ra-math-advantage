@@ -47,6 +47,7 @@ Each app extends these shared guidelines with course-specific rules:
 |-----|------------|
 | IM3 | `apps/integrated-math-3/product-guidelines.md` |
 | BM2 | `apps/bus-math-v2/product-guidelines.md` |
+| Danielson Teacher Growth | `apps/danielson/product-guidelines.md` |
 
 ## Anti-Patterns
 

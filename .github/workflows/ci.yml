@@ -223,10 +223,9 @@ jobs:
       - name: Run IM3 E2E suite
         run: npm run test:e2e --prefix apps/integrated-math-3
 
-  # Phase 5: IM1, IM2, PreCalc lint/typecheck/build gates
-  # Test gates are deferred due to pre-existing test failures (Convex provider tests).
+  # Phase 5: IM1, IM2, PreCalc, and Danielson app gates
   # Apps share the same step structure; matrix deduplicates the config.
-  im1-im2-precalc:
+  app-foundations:
     name: ${{ matrix.app.name }} App Gates
     runs-on: ubuntu-latest
     needs: [packages, boundary-check]
@@ -237,6 +236,7 @@ jobs:
           - { name: IM1, prefix: apps/integrated-math-1, dir: apps/integrated-math-1 }
           - { name: IM2, prefix: apps/integrated-math-2, dir: apps/integrated-math-2 }
           - { name: PreCalc, prefix: apps/pre-calculus, dir: apps/pre-calculus }
+          - { name: Danielson, prefix: apps/danielson, dir: apps/danielson }
     steps:
       - name: Checkout code
         uses: actions/checkout@v4

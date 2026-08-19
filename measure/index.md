@@ -36,6 +36,7 @@ Each app owns its own product vision, guidelines, and design system. The root-le
 | **Integrated Math 3** | `../apps/integrated-math-3/product.md` |
 | **Bus Math v2** | `../apps/bus-math-v2/product.md` |
 | **AP Precalculus** | `../apps/pre-calculus/product.md` |
+| **Danielson Teacher Growth** | `../apps/danielson/product.md` |
 
 ### Product Guidelines
 
@@ -47,6 +48,7 @@ Each app owns its own product vision, guidelines, and design system. The root-le
 | **Integrated Math 3** | `../apps/integrated-math-3/product-guidelines.md` |
 | **Bus Math v2** | `../apps/bus-math-v2/product-guidelines.md` |
 | **AP Precalculus** | `../apps/pre-calculus/product-guidelines.md` |
+| **Danielson Teacher Growth** | `../apps/danielson/product-guidelines.md` |
 
 ### Design Definitions
 
@@ -57,3 +59,4 @@ Each app owns its own product vision, guidelines, and design system. The root-le
 | **Integrated Math 3** | `../apps/integrated-math-3/DESIGN.md` |
 | **Bus Math v2** | `../apps/bus-math-v2/DESIGN.md` |
 | **AP Precalculus** | `../apps/pre-calculus/DESIGN.md` |
+| **Danielson Teacher Growth** | `../apps/danielson/DESIGN.md` |

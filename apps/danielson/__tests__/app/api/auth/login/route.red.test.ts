@@ -84,10 +84,11 @@ describe('POST /api/auth/login', () => {
       mustChangePassword: false,
     });
 
-    const response = await POST(buildRequest(
-      { username: 'teacher.one', password: 'correct-password' },
-      '/admin/accounts',
-    ));
+    const response = await POST(buildRequest({
+      username: 'teacher.one',
+      password: 'correct-password',
+      redirect: '/admin/accounts',
+    }));
     const json = await response.json();
 
     expect(response.status).toBe(200);
@@ -111,10 +112,11 @@ describe('POST /api/auth/login', () => {
       mustChangePassword: true,
     });
 
-    const response = await POST(buildRequest(
-      { username: 'teacher.one', password: 'temporary-password' },
-      'https://attacker.example',
-    ));
+    const response = await POST(buildRequest({
+      username: 'teacher.one',
+      password: 'temporary-password',
+      redirect: 'https://attacker.example',
+    }));
     const json = await response.json();
 
     expect(response.status).toBe(200);

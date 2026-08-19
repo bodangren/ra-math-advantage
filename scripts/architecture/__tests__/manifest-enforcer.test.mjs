@@ -17,7 +17,7 @@ test('the live repository satisfies the manifest-aware dependency policy', async
   const result = await checkRepositoryArchitecture(REPO_ROOT, { asOf: '2026-07-11' });
   assert.deepEqual(result.violations, []);
   assert.equal(result.graph.cycles.length, 0);
-  assert.equal(result.workspaceCount, 25);
+  assert.equal(result.workspaceCount, 26);
 });
 
 test('every injected import fixture fails with its actionable rule ID', async () => {

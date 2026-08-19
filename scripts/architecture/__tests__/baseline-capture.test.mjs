@@ -24,9 +24,9 @@ test('the committed architecture baseline is immutable, versioned evidence', asy
 
 test('pins the complete workspace and package-DAG baseline', async () => {
   const baseline = await captureArchitectureBaseline(REPO_ROOT, { baselineDate: '2026-07-10' });
-  assert.equal(baseline.workspaceInventory.apps, 5);
+  assert.equal(baseline.workspaceInventory.apps, 6);
   assert.equal(baseline.workspaceInventory.packages, 20);
-  assert.equal(baseline.workspaceInventory.total, 25);
+  assert.equal(baseline.workspaceInventory.total, 26);
   assert.ok(baseline.packageGraph.edges.length > 0);
   assert.ok(baseline.packageGraph.edges.some((edge) =>
     edge.source === '@math-platform/activity-components'

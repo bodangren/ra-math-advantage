@@ -2,7 +2,7 @@
   "schemaVersion": "lms-architecture.v1",
   "workspaceRoots": ["apps/*", "packages/*"],
   "excludedWorkspaces": ["packages/_template"],
-  "owners": ["bus-math-team", "im1-team", "im2-team", "im3-team", "precalculus-team", "learning-platform", "math-content"],
+  "owners": ["bus-math-team", "danielson-team", "im1-team", "im2-team", "im3-team", "precalculus-team", "learning-platform", "math-content"],
   "approvedFollowUpTracks": ["monorepo-architecture-contracts_20260710", "shared-lms-backend-modularization_20260710", "app-platform-consolidation_20260710", "kst-srs-v3-2-im3-runtime-migration_20260710"],
   "workspaces": [
     {
@@ -12,6 +12,14 @@
       "publicEntryPoints": [],
       "qualityCommands": { "lint": "npm run lint --workspace=apps/bus-math-v2", "test": "npm run test --workspace=apps/bus-math-v2", "typecheck": "npx tsc --noEmit --project apps/bus-math-v2/tsconfig.json", "build": "npm run build --workspace=apps/bus-math-v2" },
       "debtRefs": ["debt.bus-math-undeclared"]
+    },
+    {
+      "id": "app.danielson", "path": "apps/danielson", "kind": "app", "packageName": null,
+      "owner": "danielson-team", "layer": "application", "domainClassification": "app-owned", "domain": "danielson",
+      "allowedDependencies": ["pkg.app-shell", "pkg.core-auth", "pkg.core-convex"],
+      "publicEntryPoints": [],
+      "qualityCommands": { "lint": "npm run lint --workspace=apps/danielson", "test": "npm run test --workspace=apps/danielson", "typecheck": "npm run typecheck --workspace=apps/danielson", "build": "npm run build --workspace=apps/danielson" },
+      "debtRefs": []
     },
     {
       "id": "app.integrated-math-1", "path": "apps/integrated-math-1", "kind": "app", "packageName": null,

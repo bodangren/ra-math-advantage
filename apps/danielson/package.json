@@ -1,0 +1,38 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "vinext dev",
+    "build": "vinext build",
+    "start": "vinext start",
+    "lint": "eslint . --max-warnings 0",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest watch"
+  },
+  "dependencies": {
+    "@math-platform/app-shell": "*",
+    "@math-platform/core-auth": "*",
+    "@math-platform/core-convex": "*",
+    "convex": "^1.40.0",
+    "next": "^16.0.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^6.0.0",
+    "eslint": "^10.0.0",
+    "eslint-config-next": "^16.0.0",
+    "jsdom": "^29.0.0",
+    "typescript": "^6",
+    "vinext": "^0.0.55",
+    "vite": "^8.0.0",
+    "vitest": "^4.1.8"
+  },
+  "type": "module"
+}

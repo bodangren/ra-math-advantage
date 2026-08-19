@@ -5,7 +5,7 @@ Scaffolded from `bus-math-v2`. This document describes the code architecture, au
 ## Monorepo Architecture Contract
 
 `scripts/architecture/architecture.manifest.json` is the human-approved source
-of truth for all 5 apps and 20 non-template packages. It records ownership,
+of truth for all 6 apps and 20 non-template packages. It records ownership,
 layers, domain classification, allowed dependencies, public exports, quality
 commands, and exact expiring debt. `scripts/check-monorepo-boundaries.mjs`
 resolves real imports against that contract and rejects app-to-app,

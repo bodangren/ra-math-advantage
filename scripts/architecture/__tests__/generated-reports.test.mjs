@@ -23,9 +23,9 @@ test('renders deterministic DAG, ownership, exports, and quality coverage report
     'quality-gates.md',
   ]);
   assert.match(reports['package-dag.md'], /20 packages/);
-  assert.match(reports['ownership.md'], /25 workspaces/);
+  assert.match(reports['ownership.md'], /26 workspaces/);
   assert.match(reports['exports.md'], /@math-platform\/math-content/);
-  assert.match(reports['quality-gates.md'], /25 workspaces/);
+  assert.match(reports['quality-gates.md'], /26 workspaces/);
 
   for (const workspace of manifest.workspaces) {
     assert.ok(reports['ownership.md'].includes(`\`${workspace.id}\``));

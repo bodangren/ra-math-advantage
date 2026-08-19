@@ -18,36 +18,37 @@ Accessibility Guidelines (WCAG) 2.1 AA contrast.
 | `--ink` | `#18231F` | Primary text |
 | `--muted-ink` | `#53605A` | Secondary text |
 | `--forest` | `#164C3B` | Primary actions and navigation |
-| `--ochre` | `#B65C23` | Due and attention states |
-| `--line` | `#9AA39D` | Borders and rules |
+| `--ochre` | `#8E4417` | Due and attention states |
+| `--line` | `#69766F` | Borders and rules |
 | `--danger` | `#A72F32` | Destructive actions and errors |
 
 Do not use color as the only status signal.
 
 ## Type
 
-- Use Lora for display headings.
-- Use DM Sans for body text and controls.
+- Use Georgia for display headings.
+- Use the native system font for body text and controls.
 - Use tabular numerals for dates and counts.
 - Keep body text at 16 pixels or more.
 
 ## Layout
 
-- Use a narrow left rail for role-aware navigation on wide screens.
+- Use a compact top bar for role-aware navigation.
 - Use one content column for forms.
 - Use a compact table for account and assignment lists.
 - Keep the primary action in a consistent position.
-- Collapse the rail into a labeled menu on small screens.
+- Stack the top bar links on small screens.
 
 ## Components
 
-- Reuse the shared provider, authentication context, user menu, logout control,
-  theme control, header, and footer.
+- Reuse the shared provider, authentication context, and logout control.
+- Keep the Danielson header and navigation in this app.
 - Keep all Danielson cards, tables, forms, badges, and tokens in this app.
 - Use a clear page title, purpose statement, and current scope on each protected
   page.
 - Use a visible focus ring with at least 2 pixels of thickness.
-- Use an inline error summary and field-level errors for form failures.
+- Use an inline error summary for a server failure.
+- Use native control validation for a required value.
 
 ## Motion
 

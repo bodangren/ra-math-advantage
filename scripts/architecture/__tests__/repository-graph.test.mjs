@@ -13,15 +13,15 @@ const MANIFEST_URL = new URL('../architecture.manifest.json', import.meta.url);
 
 test('loads the real versioned manifest with every non-template workspace', async () => {
   const manifest = await loadArchitectureManifest(MANIFEST_URL, { asOf: '2026-07-11' });
-  assert.equal(manifest.workspaces.length, 25);
-  assert.equal(manifest.workspaces.filter(({ kind }) => kind === 'app').length, 5);
+  assert.equal(manifest.workspaces.length, 26);
+  assert.equal(manifest.workspaces.filter(({ kind }) => kind === 'app').length, 6);
   assert.equal(manifest.workspaces.filter(({ kind }) => kind === 'package').length, 20);
 });
 
 test('builds a deterministic package DAG from approved dependencies', async () => {
   const manifest = await loadArchitectureManifest(MANIFEST_URL, { asOf: '2026-07-11' });
   const graph = buildWorkspaceGraph(manifest);
-  assert.equal(graph.nodes.length, 25);
+  assert.equal(graph.nodes.length, 26);
   assert.ok(graph.edges.some((edge) =>
     edge.source === 'pkg.activity-components'
     && edge.target === 'pkg.math-content'));

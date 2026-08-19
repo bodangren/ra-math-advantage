@@ -1,10 +1,11 @@
 # Workspace Ownership
 
-Generated ownership coverage: 25 workspaces.
+Generated ownership coverage: 26 workspaces.
 
 | Workspace | Path | Kind | Owner | Layer | Domain classification | Domain |
 |---|---|---|---|---|---|---|
 | `app.bus-math-v2` | `apps/bus-math-v2` | app | bus-math-team | application | app-owned | business-math |
+| `app.danielson` | `apps/danielson` | app | danielson-team | application | app-owned | danielson |
 | `app.integrated-math-1` | `apps/integrated-math-1` | app | im1-team | application | app-owned | integrated-math-1 |
 | `app.integrated-math-2` | `apps/integrated-math-2` | app | im2-team | application | app-owned | integrated-math-2 |
 | `app.integrated-math-3` | `apps/integrated-math-3` | app | im3-team | application | app-owned | integrated-math-3 |

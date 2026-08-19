@@ -1,7 +1,7 @@
 {
   "schemaVersion": "lms-architecture-report.v1",
-  "workspaceCount": 25,
-  "edgeCount": 67,
+  "workspaceCount": 26,
+  "edgeCount": 70,
   "nodes": [
     {
       "id": "app.bus-math-v2",
@@ -11,6 +11,15 @@
       "layer": "application",
       "domainClassification": "app-owned",
       "domain": "business-math"
+    },
+    {
+      "id": "app.danielson",
+      "path": "apps/danielson",
+      "kind": "app",
+      "owner": "danielson-team",
+      "layer": "application",
+      "domainClassification": "app-owned",
+      "domain": "danielson"
     },
     {
       "id": "app.integrated-math-1",
@@ -277,6 +286,18 @@
     {
       "source": "app.bus-math-v2",
       "target": "pkg.srs-engine"
+    },
+    {
+      "source": "app.danielson",
+      "target": "pkg.app-shell"
+    },
+    {
+      "source": "app.danielson",
+      "target": "pkg.core-auth"
+    },
+    {
+      "source": "app.danielson",
+      "target": "pkg.core-convex"
     },
     {
       "source": "app.integrated-math-1",

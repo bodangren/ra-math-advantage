@@ -1,0 +1,69 @@
+:root {
+  --paper: #f4f0e6;
+  --surface: #fffdf7;
+  --ink: #18231f;
+  --muted-ink: #53605a;
+  --forest: #164c3b;
+  --ochre: #8e4417;
+  --line: #69766f;
+  --danger: #a72f32;
+}
+
+* { box-sizing: border-box; }
+html { min-width: 320px; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+}
+a { color: var(--forest); }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 3px solid var(--ochre);
+  outline-offset: 3px;
+}
+h1, h2, h3 { font-family: Georgia, 'Times New Roman', serif; line-height: 1.2; }
+h1 { font-size: clamp(2rem, 4vw, 3.2rem); margin: 0 0 1rem; }
+h2 { font-size: 1.65rem; margin: 0 0 .75rem; }
+p { margin: 0 0 1rem; }
+.skip-link { position: absolute; left: 1rem; top: -5rem; background: var(--forest); color: white; padding: .6rem 1rem; z-index: 10; }
+.skip-link:focus { top: 1rem; }
+.site-header { background: var(--forest); color: white; }
+.site-header-inner, .page-shell { width: min(1120px, calc(100% - 2rem)); margin: 0 auto; }
+.site-header-inner { min-height: 4.5rem; display: flex; gap: 1.5rem; align-items: center; justify-content: space-between; }
+.brand { color: white; text-decoration: none; font-family: Georgia, 'Times New Roman', serif; font-weight: 700; letter-spacing: .02em; }
+.site-nav { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+.site-nav a { color: white; text-decoration: none; font-size: .95rem; }
+.site-nav a:hover { text-decoration: underline; }
+.page-shell { padding: 3rem 0 5rem; }
+.narrow { width: min(560px, 100%); }
+.eyebrow { color: var(--ochre); font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.lede { color: var(--muted-ink); max-width: 700px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: .5rem; padding: 1.5rem; box-shadow: 0 8px 24px rgb(24 35 31 / 6%); }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+.button, button { display: inline-flex; align-items: center; justify-content: center; min-height: 2.75rem; border: 1px solid var(--forest); border-radius: .35rem; background: var(--forest); color: white; padding: .6rem 1rem; font: inherit; font-weight: 600; cursor: pointer; text-decoration: none; }
+.button.secondary { background: var(--surface); color: var(--forest); }
+.form-stack { display: grid; gap: 1rem; }
+.field { display: grid; gap: .4rem; }
+label { font-weight: 600; }
+input, select, textarea { width: 100%; border: 1px solid var(--line); border-radius: .3rem; background: white; color: var(--ink); padding: .7rem .75rem; font: inherit; }
+.error-summary { border-left: 4px solid var(--danger); background: #fbeceb; color: #6e1d21; padding: .8rem 1rem; }
+.status { display: inline-flex; align-items: center; gap: .4rem; border-radius: 999px; padding: .2rem .65rem; font-size: .85rem; font-weight: 600; }
+.status::before { content: ''; width: .55rem; height: .55rem; border-radius: 50%; background: currentColor; }
+.status.active { color: var(--forest); background: #e2eee8; }
+.status.attention { color: #7a3b0c; background: #f8e7d5; }
+.admin-links { display: grid; gap: .75rem; margin: 1.5rem 0 0; }
+.admin-links a { display: block; border: 1px solid var(--line); border-radius: .35rem; padding: .9rem 1rem; text-decoration: none; background: var(--surface); }
+.admin-links a:hover { border-color: var(--forest); }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: .7rem .8rem; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+th { background: var(--paper); font-weight: 700; }
+code { overflow-wrap: anywhere; }
+@media (max-width: 640px) {
+  .site-header-inner { align-items: flex-start; flex-direction: column; padding: 1rem 0; }
+  .page-shell { padding-top: 2rem; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; } }

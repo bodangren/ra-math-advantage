@@ -1,10 +1,11 @@
 # Workspace Quality Gates
 
-Generated gate coverage: 25 workspaces. A dash is an explicitly unsupported capability.
+Generated gate coverage: 26 workspaces. A dash is an explicitly unsupported capability.
 
 | Workspace | Lint | Test | Typecheck | Build |
 |---|---|---|---|---|
 | `app.bus-math-v2` | `npm run lint --workspace=apps/bus-math-v2` | `npm run test --workspace=apps/bus-math-v2` | `npx tsc --noEmit --project apps/bus-math-v2/tsconfig.json` | `npm run build --workspace=apps/bus-math-v2` |
+| `app.danielson` | `npm run lint --workspace=apps/danielson` | `npm run test --workspace=apps/danielson` | `npm run typecheck --workspace=apps/danielson` | `npm run build --workspace=apps/danielson` |
 | `app.integrated-math-1` | `npm run lint --workspace=apps/integrated-math-1` | `npm run test --workspace=apps/integrated-math-1` | `npm run typecheck --workspace=apps/integrated-math-1` | `npm run build --workspace=apps/integrated-math-1` |
 | `app.integrated-math-2` | `npm run lint --workspace=apps/integrated-math-2` | `npm run test --workspace=apps/integrated-math-2` | `npm run typecheck --workspace=apps/integrated-math-2` | `npm run build --workspace=apps/integrated-math-2` |
 | `app.integrated-math-3` | `npm run lint --workspace=apps/integrated-math-3` | `npm run test --workspace=apps/integrated-math-3` | `npm run typecheck --workspace=apps/integrated-math-3` | `npm run build --workspace=apps/integrated-math-3` |

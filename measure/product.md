@@ -18,6 +18,7 @@ This monorepo hosts multiple high school math course applications built on a sha
 | `apps/integrated-math-2/` | Integrated Math 2 | Scaffold complete |
 | `apps/integrated-math-3/` | Integrated Math 3 Honors | Active development |
 | `apps/bus-math-v2/` | Math for Business Operations v2 | Migrated, maintained |
+| `apps/danielson/` | Danielson Teacher Growth | Active development |
 
 ## Shared Features (Platform-Level)
 
