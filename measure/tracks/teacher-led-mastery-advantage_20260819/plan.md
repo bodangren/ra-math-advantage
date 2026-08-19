@@ -129,13 +129,13 @@ only after all three pilots are Green.
     - [ ] Add the smallest app-owned KST+SRS adapter needed for the bounded node
     - [ ] Keep curriculum, graph, auth, and storage details inside Precalculus
     - [ ] Make the focused Precalculus Red tests Green without enabling neighboring nodes
-- [ ] Task 3.4: Implement the BM2 pilot node and adapter (Lane 3)
-    - [ ] Add the reviewed app-owned node/activity mapping for Unit 1 Lesson 1 only
-    - [ ] Extend shared math ID support narrowly for `bm2` with compatibility tests
-    - [ ] Translate the pilot's legacy `problemFamilyId` to `variantKey` only at the shared SRS boundary
-    - [ ] Persist idempotent teacher-led exposure and gate BM2 Mastery Advantage progression
-    - [ ] Reuse canonical KST+SRS behavior rather than introducing an app-local planner or scheduler
-    - [ ] Make the focused BM2 Red tests Green without starting a full graph rollout
+- [x] Task 3.4: Implement the BM2 pilot node and adapter (Lane 3) (042e360)
+    - [x] Add the reviewed app-owned node/activity mapping for Unit 1 Lesson 1 only
+    - [x] Extend shared math ID support narrowly for `bm2` with compatibility tests
+    - [x] Translate the pilot's legacy `problemFamilyId` to `variantKey` only at the shared SRS boundary
+    - [x] Persist idempotent teacher-led exposure and gate BM2 Mastery Advantage progression
+    - [x] Reuse canonical KST+SRS behavior rather than introducing an app-local planner or scheduler
+    - [x] Make the focused BM2 Red tests Green without starting a full graph rollout
 - [ ] Task 3.5: Complete cross-app Green and refactor pass (All lanes)
     - [ ] Make the shared conformance and exact-three-node boundary suites Green
     - [ ] Remove duplicated app policy logic while retaining app-owned persistence/auth adapters
