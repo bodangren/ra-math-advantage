@@ -2,6 +2,7 @@ import { createHash } from 'node:crypto';
 import { describe, expect, it } from 'vitest';
 
 import { buildDanielsonGraph } from '../../lib/proficiency/graph';
+import { rankPriorityTargets } from '../../lib/observations/queue';
 import {
   normalizePipProposal,
   validatePipTargets,
@@ -163,6 +164,14 @@ describe('PIP cadence and progress', () => {
       overdueDays: 0,
       approvedPriorityInputs: expect.arrayContaining(['approved_plan_priority']),
     });
+    expect(rankPriorityTargets([{
+      ...result,
+      currentProficiency: { rawRating: 3, points: 90, passes: true },
+      evidenceGaps: [],
+    }])).toMatchObject([{
+      skillId: SKILL_ID,
+      reason: 'approved_plan_priority',
+    }]);
   });
 
   it('resets cadence only for rated evidence and caps it at the plan end', () => {

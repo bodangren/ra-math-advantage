@@ -10,6 +10,8 @@ import {
   readImprovementPlan,
   readImprovementPlanReportProjection,
 } from '../../convex/improvementPlans';
+import { readRankedTeacherQueue } from '../../convex/observations';
+import { readLeadershipPortfolio } from '../../convex/reporting';
 
 type StoredDocument = Record<string, unknown> & { _id: string; _creationTime: number };
 type Handler<TArgs = Record<string, unknown>, TResult = Record<string, unknown>> = (
@@ -155,6 +157,7 @@ const TEACHER_ACCOUNT = 'accounts:teacher';
 const TEACHER = 'teacher_profiles:teacher';
 const DEPARTMENT = 'departments:math';
 const NOW = Date.parse('2026-09-01T00:00:00.000Z');
+const DAY_MS = 86_400_000;
 
 function seedAccount(db: MemoryDb, id: string, displayName: string, organizationId = ORG) {
   db.seed('accounts', id, {
@@ -375,6 +378,38 @@ describe('PIP persistence and authorization', () => {
     })).resolves.toMatchObject({
       kind: 'allowed',
       projection: { contractVersion: 'danielson.ip-progress.v1', state: 'not_configured' },
+    });
+  });
+
+  it('adds an approved target to the walkthrough queue and leadership portfolio', async () => {
+    const db = new MemoryDb();
+    seedBase(db);
+    const proposal = await propose(db) as Record<string, unknown>;
+    await approve(db, proposal);
+
+    const queue = await handler(readRankedTeacherQueue)(db.context(), {
+      actorAccountId: PROPOSER,
+      now: new Date(NOW + DAY_MS).toISOString(),
+    }) as { kind: string; items: Array<{ targets: Array<Record<string, unknown>> }> };
+    expect(queue.kind).toBe('allowed');
+    expect(queue.items[0]?.targets).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        skillId: 'danielson.tlac.skill.double-plan',
+        reason: 'approved_plan_priority',
+        approvedPriorityInputs: expect.arrayContaining(['approved_plan_priority']),
+      }),
+    ]));
+
+    const portfolio = await handler(readLeadershipPortfolio)(db.context(), {
+      actorAccountId: PROPOSER,
+      now: new Date(NOW + 8 * DAY_MS).toISOString(),
+      cursor: null,
+      pageSize: 25,
+    }) as { kind: string; page: { items: Array<Record<string, unknown>> } };
+    expect(portfolio.kind).toBe('allowed');
+    expect(portfolio.page.items[0]).toMatchObject({
+      improvementPlan: { state: 'active', trackState: 'off_track' },
+      attentionReasons: expect.arrayContaining(['ip_off_track']),
     });
   });
 
