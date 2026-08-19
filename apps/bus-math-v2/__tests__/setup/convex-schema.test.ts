@@ -6,9 +6,9 @@ describe('Convex Schema Translation', () => {
     // Convex's defineSchema returns a schema object with a tables property
     expect(schema).toBeDefined();
 
-    // Verify table count after api_rate_limits table addition
+    // Verify table count after learning_evidence table addition
     const tableNames = Object.keys(schema.tables);
-    expect(tableNames.length).toBe(36);
+    expect(tableNames.length).toBe(37);
 
     // Check study tables
     expect(tableNames).toContain('study_preferences');
@@ -30,10 +30,41 @@ describe('Convex Schema Translation', () => {
     // Check api rate limits table
     expect(tableNames).toContain('api_rate_limits');
 
+    // Check learning evidence table and its app-owned query indexes
+    expect(tableNames).toContain('learning_evidence');
+    const learningEvidenceTable = schema.tables.learning_evidence;
+    expect(Object.keys(learningEvidenceTable.validator.fields)).toEqual([
+      'studentId',
+      'contractVersion',
+      'nodeId',
+      'activityId',
+      'attemptOrdinal',
+      'origin',
+      'mode',
+      'occurredAt',
+      'gradedEvidence',
+      'idempotencyKey',
+      'fingerprint',
+      'createdAt',
+    ]);
+    expect(learningEvidenceTable.indexes).toEqual(expect.arrayContaining([
+      {
+        indexDescriptor: 'by_student_and_idempotency_key',
+        fields: ['studentId', 'idempotencyKey'],
+      },
+      {
+        indexDescriptor: 'by_student_and_node',
+        fields: ['studentId', 'nodeId'],
+      },
+    ]));
+
     // Check SRS tables
     expect(tableNames).toContain('srs_cards');
     expect(tableNames).toContain('srs_review_log');
     expect(tableNames).toContain('srs_interventions');
+    expect(Object.keys(schema.tables.srs_cards.validator.fields)).toContain('problemFamilyId');
+    expect(Object.keys(schema.tables.srs_review_log.validator.fields)).toContain('problemFamilyId');
+    expect(Object.keys(schema.tables.srs_interventions.validator.fields)).toContain('problemFamilyId');
 
     // Check some specific core tables
     expect(tableNames).toContain('organizations');

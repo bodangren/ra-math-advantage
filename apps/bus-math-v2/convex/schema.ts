@@ -238,6 +238,33 @@ export default defineSchema({
     .index("by_activity", ["activityId"])
     .index("by_user_and_activity", ["userId", "activityId"]),
 
+  learning_evidence: defineTable({
+    studentId: v.id("profiles"),
+    contractVersion: v.literal("learning-evidence.v1"),
+    nodeId: v.string(),
+    activityId: v.string(),
+    attemptOrdinal: v.number(),
+    origin: v.union(v.literal("teacher_led"), v.literal("mastery_advantage")),
+    mode: v.union(
+      v.literal("worked_example"),
+      v.literal("guided_practice"),
+      v.literal("independent_practice"),
+      v.literal("assessment"),
+      v.literal("teaching"),
+    ),
+    occurredAt: v.number(),
+    gradedEvidence: v.optional(v.object({
+      isCorrect: v.optional(v.boolean()),
+      score: v.optional(v.number()),
+      maxScore: v.optional(v.number()),
+    })),
+    idempotencyKey: v.string(),
+    fingerprint: v.string(),
+    createdAt: v.number(),
+  })
+    .index("by_student_and_idempotency_key", ["studentId", "idempotencyKey"])
+    .index("by_student_and_node", ["studentId", "nodeId"]),
+
   live_sessions: defineTable({
     activityId: v.id("activities"),
     classId: v.id("classes"),
