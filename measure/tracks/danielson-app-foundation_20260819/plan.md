@@ -22,10 +22,10 @@
     - [x] Define additive role resolution
     - [x] Define subject exclusion for private data, evaluation writes, and supervisor-side PIP actions
     - [x] Define cross-organization denial
-- [~] Task 1.4: Define account-administration audit events
-    - [ ] Define actor, action, target, time, and before-and-after fields
-    - [ ] Define immutable audit-event behavior
-- [ ] Task 1.5: Measure - User Manual Verification 'Phase 1: Contract and Schema Definition' (Protocol in workflow.md)
+- [x] Task 1.4: Define account-administration audit events — `74496b9`
+    - [x] Define actor, action, target, time, and before-and-after fields
+    - [x] Define immutable, transactional, and replay-safe audit-event behavior
+- [~] Task 1.5: Measure - User Manual Verification 'Phase 1: Contract and Schema Definition' (Protocol in workflow.md)
 
 ## Phase 2: Test
 
@@ -35,31 +35,36 @@
 - [ ] Task 2.2: Write scoped authorization Red tests
     - [ ] Test HOD, coach, school-head, and SLT access
     - [ ] Test unauthenticated, deactivated, cross-organization, and out-of-scope denial
+    - [ ] Test stale token roles and organizations, role grant, role revocation, and final-system-administrator protection
     - [ ] Assert denial occurs before a protected read or write
 - [ ] Task 2.3: Write system-administrator Red tests
     - [ ] Test account, role, department, and assignment management
     - [ ] Prove that the role alone cannot read a teacher report
     - [ ] Prove that a second SLT role grants only SLT-scoped report access
 - [ ] Task 2.4: Write subject-exclusion adversarial tests
-    - [ ] Test each supervisor role on the person's own teacher record
-    - [ ] Prove that private leadership data is absent from every returned shape
-- [ ] Task 2.5: Write workspace and architecture contract tests
+    - [ ] Test private read, walkthrough, observation, and PIP self-denial for each supervisor role
+    - [ ] Prove that teacher response and PIP acknowledgment remain allowed
+- [ ] Task 2.5: Write audit and authentication Red tests
+    - [ ] Test transactional audit events, strict before and after values, secret exclusion, denial, replay, and immutability
+    - [ ] Test temporary credentials, password change, generic errors, throttling, cookie flags, and safe redirects
+- [ ] Task 2.6: Write workspace and architecture contract tests
     - [ ] Test workspace inventory, commands, manifest ownership, dependencies, and quality gates
     - [ ] Test that shared packages do not import the new application
-- [ ] Task 2.6: Measure - User Manual Verification 'Phase 2: Test' (Protocol in workflow.md)
+- [ ] Task 2.7: Measure - User Manual Verification 'Phase 2: Test' (Protocol in workflow.md)
 
 ## Phase 3: Implement
 
 - [ ] Task 3.1: Create the minimum application workspace
     - [ ] Reuse the installed framework, configuration, application shell, and design primitives
     - [ ] Add sign-in, signed-out, unauthorized, and role-aware landing states
-- [ ] Task 3.2: Integrate shared authentication
-    - [ ] Compose the shared session and active-account guards in an app-owned wrapper
-    - [ ] Resolve Danielson roles from server-owned assignments
-- [ ] Task 3.3: Implement organization and assignment persistence
+- [ ] Task 3.2: Implement organization and assignment persistence
     - [ ] Add app-owned Convex tables and indexes
     - [ ] Add bounded internal queries and transactional mutations
     - [ ] Add immutable audit-event writes
+- [ ] Task 3.3: Integrate shared authentication
+    - [ ] Compose the shared session and active-account guards in an app-owned wrapper
+    - [ ] Resolve current Danielson roles from server-owned assignments
+    - [ ] Add temporary credentials, password change, login throttling, and safe redirects
 - [ ] Task 3.4: Implement system-administrator workflows
     - [ ] Add accessible account, role, department, and assignment controls
     - [ ] Prevent the system-administrator role from opening evaluation data

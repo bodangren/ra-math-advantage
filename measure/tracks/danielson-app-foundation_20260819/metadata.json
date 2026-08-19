@@ -1,0 +1,13 @@
+{
+  "track_id": "danielson-app-foundation_20260819",
+  "type": "feature",
+  "status": "in_progress",
+  "created_at": "2026-08-19T02:55:22Z",
+  "updated_at": "2026-08-19T03:30:00Z",
+  "description": "Create the Danielson application workspace, account model, multiple-role authorization, and organization scopes.",
+  "estimated_tasks": 22,
+  "actual_tasks": null,
+  "deviation_notes": "Security review added one Red-test task for audit and authentication behavior.",
+  "program": "Danielson Teacher Growth",
+  "depends_on": []
+}
