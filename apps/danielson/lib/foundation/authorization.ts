@@ -14,6 +14,7 @@ export const DANIELSON_CAPABILITIES = {
   hod: [
     'teacher_report:read',
     'private_leadership:read',
+    'observation_comment:write',
     'walkthrough:submit',
     'walkthrough:amend',
     'q1_observation:submit',
@@ -23,6 +24,7 @@ export const DANIELSON_CAPABILITIES = {
   coach: [
     'teacher_report:read',
     'private_leadership:read',
+    'observation_comment:write',
     'walkthrough:submit',
     'walkthrough:amend',
     'q1_observation:submit',
@@ -32,6 +34,7 @@ export const DANIELSON_CAPABILITIES = {
   school_head: [
     'teacher_report:read',
     'private_leadership:read',
+    'observation_comment:write',
     'walkthrough:submit',
     'walkthrough:amend',
     'q1_observation:submit',
@@ -43,6 +46,7 @@ export const DANIELSON_CAPABILITIES = {
   slt: [
     'teacher_report:read',
     'private_leadership:read',
+    'observation_comment:write',
     'walkthrough:submit',
     'walkthrough:amend',
     'q1_observation:submit',
@@ -63,6 +67,7 @@ export type DanielsonAction =
   | DanielsonCapability
   | 'teacher_report:read'
   | 'private_leadership:read'
+  | 'observation_comment:write'
   | 'walkthrough:submit'
   | 'walkthrough:amend'
   | 'q1_observation:submit'
@@ -135,6 +140,7 @@ const EVALUATION_ACTIONS = new Set<DanielsonAction>([
   'q1_observation:amend',
   'q4_observation:submit',
   'q4_observation:amend',
+  'observation_comment:write',
 ]);
 const PIP_ACTIONS = new Set<DanielsonAction>(['pip:propose', 'pip:approve', 'pip:close']);
 

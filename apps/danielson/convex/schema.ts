@@ -451,6 +451,7 @@ export default defineSchema({
     .index('by_org_observer_status', ['organizationId', 'observerAccountId', 'status'])
     .index('by_org_submission_key', ['organizationId', 'submissionKey'])
     .index('by_org_teacher_status_submitted', ['organizationId', 'teacherProfileId', 'status', 'submittedAt'])
+    .index('by_org_teacher_type_status_submitted', ['organizationId', 'teacherProfileId', 'observationType', 'status', 'submittedAt'])
     .index('by_org_teacher_type_year_status', ['organizationId', 'teacherProfileId', 'observationType', 'schoolYear', 'status']),
 
   observation_amendments: defineTable({
@@ -491,5 +492,40 @@ export default defineSchema({
   })
     .index('by_organizationId', ['organizationId'])
     .index('by_organizationId_and_teacherProfileId', ['organizationId', 'teacherProfileId']),
+
+  observation_public_comments: defineTable({
+    organizationId: v.id('organizations'),
+    observationId: v.id('observation_records'),
+    teacherProfileId: v.id('teacher_profiles'),
+    authorAccountId: v.id('accounts'),
+    content: v.string(),
+    createdAt: v.number(),
+  })
+    .index('by_org_created', ['organizationId', 'createdAt'])
+    .index('by_org_teacher_created', ['organizationId', 'teacherProfileId', 'createdAt'])
+    .index('by_org_observation_created', ['organizationId', 'observationId', 'createdAt']),
+
+  observation_private_comments: defineTable({
+    organizationId: v.id('organizations'),
+    observationId: v.id('observation_records'),
+    teacherProfileId: v.id('teacher_profiles'),
+    authorAccountId: v.id('accounts'),
+    content: v.string(),
+    createdAt: v.number(),
+  })
+    .index('by_org_created', ['organizationId', 'createdAt'])
+    .index('by_org_teacher_created', ['organizationId', 'teacherProfileId', 'createdAt'])
+    .index('by_org_observation_created', ['organizationId', 'observationId', 'createdAt']),
+
+  teacher_observation_responses: defineTable({
+    organizationId: v.id('organizations'),
+    observationId: v.id('observation_records'),
+    teacherProfileId: v.id('teacher_profiles'),
+    authorAccountId: v.id('accounts'),
+    content: v.string(),
+    submittedAt: v.number(),
+  })
+    .index('by_org_observation', ['organizationId', 'observationId'])
+    .index('by_org_teacher_submitted', ['organizationId', 'teacherProfileId', 'submittedAt']),
 
 });
