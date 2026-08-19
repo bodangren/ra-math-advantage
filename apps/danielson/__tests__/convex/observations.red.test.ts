@@ -210,6 +210,7 @@ async function createDraft(
     actorAccountId?: string;
     observationType?: 'walkthrough' | 'formal_q1' | 'formal_q4';
     schoolYear?: string;
+    observedAt?: string;
   } = {},
 ) {
   const create = handler(createObservationDraft);
@@ -218,7 +219,7 @@ async function createDraft(
     teacherProfileId: TEACHER_PROFILE_ID,
     observationType: input.observationType ?? 'walkthrough',
     schoolYear: input.schoolYear ?? '2026-2027',
-    observedAt: '2026-09-15T07:45:00.000Z',
+    observedAt: input.observedAt ?? '2026-09-15T07:45:00.000Z',
     sourceVersion: 'danielson-observation.v1',
     frameworkVersion: 'danielson-2022',
     ...(input.observationType && input.observationType !== 'walkthrough'
@@ -250,6 +251,28 @@ async function completeDraft(
   });
 }
 
+async function completeDraftWithFirstRating(
+  db: MemoryDb,
+  draft: Record<string, unknown>,
+  rating: 1 | 2 | 3 | 4,
+) {
+  const save = handler(saveObservationDraft);
+  const items = draft.items as Array<Record<string, unknown>>;
+  return save(db.context(), {
+    actorAccountId: OBSERVER_ACCOUNT_ID,
+    draftId: draft.draftId,
+    expectedRevision: draft.revision,
+    items: items.map((item, index) => ({
+      itemId: item.itemId,
+      outcome: index === 0
+        ? { kind: 'rated', rating }
+        : { kind: 'not_enough_evidence' },
+      evidenceNote: null,
+    })),
+    now: OBSERVATION_NOW_MS + 1_000,
+  });
+}
+
 async function createCompletedDraft(
   db: MemoryDb,
   outcomes: 'all_ne' | 'first_rated',
@@ -261,6 +284,60 @@ async function createCompletedDraft(
     'saved',
   );
   return saved.draft as Record<string, unknown>;
+}
+
+async function submitRatedWalkthrough(input: {
+  db: MemoryDb;
+  submissionKey: string;
+  rating: 1 | 2 | 3 | 4;
+  observedAt: string;
+  now: number;
+}) {
+  const created = expectKind(await createDraft(input.db, { observedAt: input.observedAt }), 'created');
+  const saved = expectKind(await completeDraftWithFirstRating(
+    input.db,
+    created.draft as Record<string, unknown>,
+    input.rating,
+  ), 'saved');
+  const submit = handler(submitObservation);
+  return expectKind(await submit(input.db.context(), {
+    actorAccountId: OBSERVER_ACCOUNT_ID,
+    draftId: (saved.draft as Record<string, unknown>).draftId,
+    submissionKey: input.submissionKey,
+    now: input.now,
+  }), 'submitted');
+}
+
+function firstSubmittedItem(result: Record<string, unknown>) {
+  return (result.record as { items: Array<Record<string, unknown>> }).items[0];
+}
+
+function effectiveReviewTimeline(
+  rows: StoredDocument[],
+  supersessions: StoredDocument[] = [],
+) {
+  const supersededEvidenceKeys = new Set(
+    supersessions.map((row) => String(row.supersededEvidenceKey)),
+  );
+  const latest = new Map<string, StoredDocument>();
+  for (const row of [...rows].sort((left, right) => left._creationTime - right._creationTime)) {
+    const logicalReviewId = String(row.logicalReviewId ?? row.reviewId);
+    const isSuperseded = [...supersededEvidenceKeys].some((evidenceKey) => (
+      logicalReviewId.startsWith(`teacher_srs_reviews:${evidenceKey}:`)
+    ));
+    if (!isSuperseded) latest.set(logicalReviewId, row);
+  }
+  return [...latest.values()]
+    .map((row) => {
+      const review = row.review as Record<string, unknown>;
+      return {
+        reviewedAt: review.reviewedAt,
+        rating: review.rating,
+        stateBefore: review.stateBefore,
+        stateAfter: review.stateAfter,
+      };
+    })
+    .sort((left, right) => String(left.reviewedAt).localeCompare(String(right.reviewedAt)));
 }
 
 describe('Danielson observation Convex boundary', () => {
@@ -406,6 +483,214 @@ describe('Danielson observation Convex boundary', () => {
     expect(db.rows('teacher_observation_outcomes')).toHaveLength(4);
     expect(db.rows('teacher_evidence_supersessions')).toHaveLength(1);
     expect(db.rows('teacher_srs_reviews').length).toBeGreaterThanOrEqual(1);
+  });
+
+  it('removes stale scoring state when an amendment changes rated evidence to no evidence', async () => {
+    const db = new MemoryDb();
+    seedFoundation(db);
+    const amend = handler(amendObservation);
+    const submitted = await submitRatedWalkthrough({
+      db,
+      submissionKey: 'rated-to-ne',
+      rating: 2,
+      observedAt: '2026-09-10T08:00:00.000Z',
+      now: OBSERVATION_NOW_MS + 2_000,
+    });
+    const item = firstSubmittedItem(submitted);
+    const skillId = String(item.skillId);
+
+    expectKind(await amend(db.context(), {
+      actorAccountId: OBSERVER_ACCOUNT_ID,
+      observationId: (submitted.receipt as Record<string, unknown>).observationId,
+      idempotencyKey: 'rated-to-ne-amendment',
+      expectedVersion: 0,
+      reason: 'The visit did not contain enough evidence.',
+      changedItems: [{ itemId: item.itemId, outcome: { kind: 'not_enough_evidence' } }],
+      now: OBSERVATION_NOW_MS + 3_000,
+    }), 'amended');
+
+    expect(db.rows('teacher_srs_cards').filter((row) => row.skillId === skillId)).toEqual([]);
+    expect(db.rows('teacher_proficiency').filter((row) => row.skillId === skillId)).toEqual([]);
+    expect(db.rows('teacher_knowledge_state').filter((row) => row.nodeId === skillId)).toEqual([]);
+    expect(db.rows('teacher_priority').filter((row) => row.skillId === skillId)).toEqual([
+      expect.objectContaining({
+        projection: expect.objectContaining({
+          skillId,
+          due: true,
+          evidenceGaps: ['no_valid_rated_evidence'],
+        }),
+      }),
+    ]);
+    const summary = db.rows('teacher_attention_summaries').find(
+      (row) => row.teacherProfileId === TEACHER_PROFILE_ID,
+    );
+    const target = (summary?.targets as Array<Record<string, unknown>> | undefined)
+      ?.find((candidate) => candidate.skillId === skillId);
+    expect(target).toMatchObject({
+      skillId,
+      due: true,
+      evidenceGaps: ['no_valid_rated_evidence'],
+    });
+    expect(db.rows('teacher_srs_reviews')).toHaveLength(1);
+    expect(db.rows('teacher_observation_outcomes')).toHaveLength(4);
+    expect(db.rows('teacher_evidence_supersessions')).toHaveLength(1);
+  });
+
+  it('creates one effective review when an amendment changes no evidence to rated evidence', async () => {
+    const db = new MemoryDb();
+    seedFoundation(db);
+    const amend = handler(amendObservation);
+    const draft = await createCompletedDraft(db, 'all_ne');
+    const submit = handler(submitObservation);
+    const submitted = expectKind(await submit(db.context(), {
+      actorAccountId: OBSERVER_ACCOUNT_ID,
+      draftId: draft.draftId,
+      submissionKey: 'ne-to-rated',
+      now: OBSERVATION_NOW_MS + 2_000,
+    }), 'submitted');
+    const item = firstSubmittedItem(submitted);
+    const skillId = String(item.skillId);
+    expect(db.rows('teacher_srs_reviews')).toEqual([]);
+
+    expectKind(await amend(db.context(), {
+      actorAccountId: OBSERVER_ACCOUNT_ID,
+      observationId: (submitted.receipt as Record<string, unknown>).observationId,
+      idempotencyKey: 'ne-to-rated-amendment',
+      expectedVersion: 0,
+      reason: 'The recorded evidence supports a rating.',
+      changedItems: [{ itemId: item.itemId, outcome: { kind: 'rated', rating: 3 } }],
+      now: OBSERVATION_NOW_MS + 3_000,
+    }), 'amended');
+
+    expect(db.rows('teacher_srs_cards')).toEqual([
+      expect.objectContaining({ skillId, card: expect.objectContaining({ reps: 1 }) }),
+    ]);
+    expect(db.rows('teacher_proficiency')).toEqual([
+      expect.objectContaining({ skillId, projection: expect.objectContaining({ rawRating: 3 }) }),
+    ]);
+    expect(effectiveReviewTimeline(
+      db.rows('teacher_srs_reviews'),
+      db.rows('teacher_evidence_supersessions'),
+    )).toHaveLength(1);
+    expect(db.rows('teacher_observation_outcomes')).toHaveLength(4);
+    expect(db.rows('teacher_evidence_supersessions')).toHaveLength(1);
+  });
+
+  it('keeps only the latest replacement effective after two amendments to one item', async () => {
+    const db = new MemoryDb();
+    seedFoundation(db);
+    const amend = handler(amendObservation);
+    const submitted = await submitRatedWalkthrough({
+      db,
+      submissionKey: 'two-amendments',
+      rating: 2,
+      observedAt: '2026-09-10T08:00:00.000Z',
+      now: OBSERVATION_NOW_MS + 2_000,
+    });
+    const item = firstSubmittedItem(submitted);
+    const observationId = (submitted.receipt as Record<string, unknown>).observationId;
+
+    expectKind(await amend(db.context(), {
+      actorAccountId: OBSERVER_ACCOUNT_ID,
+      observationId,
+      idempotencyKey: 'first-replacement',
+      expectedVersion: 0,
+      reason: 'First correction.',
+      changedItems: [{ itemId: item.itemId, outcome: { kind: 'rated', rating: 3 } }],
+      now: OBSERVATION_NOW_MS + 3_000,
+    }), 'amended');
+    expectKind(await amend(db.context(), {
+      actorAccountId: OBSERVER_ACCOUNT_ID,
+      observationId,
+      idempotencyKey: 'second-replacement',
+      expectedVersion: 1,
+      reason: 'Final correction.',
+      changedItems: [{ itemId: item.itemId, outcome: { kind: 'rated', rating: 4 } }],
+      now: OBSERVATION_NOW_MS + 4_000,
+    }), 'amended');
+
+    expect(db.rows('teacher_srs_cards')).toEqual([
+      expect.objectContaining({ card: expect.objectContaining({ reps: 1 }) }),
+    ]);
+    expect(db.rows('teacher_proficiency')).toEqual([
+      expect.objectContaining({ projection: expect.objectContaining({ rawRating: 4 }) }),
+    ]);
+    expect(effectiveReviewTimeline(
+      db.rows('teacher_srs_reviews'),
+      db.rows('teacher_evidence_supersessions'),
+    )).toHaveLength(1);
+    const supersessions = db.rows('teacher_evidence_supersessions');
+    expect(supersessions).toHaveLength(2);
+    expect(supersessions[1].supersededEvidenceKey).toBe(supersessions[0].replacementEvidenceKey);
+    expect(db.rows('teacher_observation_outcomes')).toHaveLength(5);
+  });
+
+  it('rebuilds a later transition after an early-event amendment to clean-replay equivalence', async () => {
+    const db = new MemoryDb();
+    seedFoundation(db);
+    const amend = handler(amendObservation);
+    const early = await submitRatedWalkthrough({
+      db,
+      submissionKey: 'early-observation',
+      rating: 2,
+      observedAt: '2026-09-10T08:00:00.000Z',
+      now: OBSERVATION_NOW_MS + 2_000,
+    });
+    const later = await submitRatedWalkthrough({
+      db,
+      submissionKey: 'later-observation',
+      rating: 4,
+      observedAt: '2026-09-14T08:00:00.000Z',
+      now: OBSERVATION_NOW_MS + 3_000,
+    });
+    const earlyItem = firstSubmittedItem(early);
+    const skillId = String(earlyItem.skillId);
+    expect(firstSubmittedItem(later).skillId).toBe(skillId);
+    const originalOutcomes = structuredClone(db.rows('teacher_observation_outcomes'));
+    const originalReviews = structuredClone(db.rows('teacher_srs_reviews'));
+
+    expectKind(await amend(db.context(), {
+      actorAccountId: OBSERVER_ACCOUNT_ID,
+      observationId: (early.receipt as Record<string, unknown>).observationId,
+      idempotencyKey: 'early-event-amendment',
+      expectedVersion: 0,
+      reason: 'Correct the earlier rating.',
+      changedItems: [{ itemId: earlyItem.itemId, outcome: { kind: 'rated', rating: 1 } }],
+      now: OBSERVATION_NOW_MS + 4_000,
+    }), 'amended');
+
+    for (const outcome of originalOutcomes) expect(db.rows('teacher_observation_outcomes')).toContainEqual(outcome);
+    for (const review of originalReviews) expect(db.rows('teacher_srs_reviews')).toContainEqual(review);
+
+    const cleanDb = new MemoryDb();
+    seedFoundation(cleanDb);
+    await submitRatedWalkthrough({
+      db: cleanDb,
+      submissionKey: 'clean-early-observation',
+      rating: 1,
+      observedAt: '2026-09-10T08:00:00.000Z',
+      now: OBSERVATION_NOW_MS + 2_000,
+    });
+    await submitRatedWalkthrough({
+      db: cleanDb,
+      submissionKey: 'clean-later-observation',
+      rating: 4,
+      observedAt: '2026-09-14T08:00:00.000Z',
+      now: OBSERVATION_NOW_MS + 3_000,
+    });
+
+    const amendedCard = db.rows('teacher_srs_cards').find((row) => row.skillId === skillId)?.card;
+    const cleanCard = cleanDb.rows('teacher_srs_cards').find((row) => row.skillId === skillId)?.card;
+    expect(amendedCard).toEqual(cleanCard);
+    expect(effectiveReviewTimeline(
+      db.rows('teacher_srs_reviews'),
+      db.rows('teacher_evidence_supersessions'),
+    ))
+      .toEqual(effectiveReviewTimeline(cleanDb.rows('teacher_srs_reviews')));
+    expect(db.rows('teacher_proficiency').find((row) => row.skillId === skillId)?.projection)
+      .toMatchObject({ rawRating: 4, occurredAt: '2026-09-14T08:00:00.000Z' });
+    expect(db.rows('teacher_observation_outcomes')).toHaveLength(7);
+    expect(db.rows('teacher_evidence_supersessions')).toHaveLength(1);
   });
 
   it.each(['formal_q1', 'formal_q4'] as const)('permits only one submitted %s record per school year', async (observationType) => {
