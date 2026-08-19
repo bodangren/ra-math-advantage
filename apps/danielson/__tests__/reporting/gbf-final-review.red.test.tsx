@@ -161,6 +161,24 @@ describe('GBF report interface', () => {
       .not.toBeInTheDocument();
   });
 
+  it('does not offer GBF assignment when a supervisor views their own teacher report', () => {
+    const props = {
+      report: {
+        ...report,
+        gbf: { contractVersion: 'danielson.gbf-progress.v1', state: 'not_configured' },
+      },
+      canComment: false,
+      canRespond: false,
+      canAssignGbf: true,
+      isSubjectTeacher: true,
+    } as unknown as Parameters<typeof TeacherReportView>[0];
+
+    render(<TeacherReportView {...props} />);
+
+    expect(screen.queryByRole('button', { name: 'Assign Get Better Faster' }))
+      .not.toBeInTheDocument();
+  });
+
   it('submits an assignment from the existing teacher report without a standalone page', async () => {
     vi.stubGlobal('fetch', vi.fn().mockResolvedValue({
       ok: true,

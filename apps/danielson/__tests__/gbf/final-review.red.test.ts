@@ -8,6 +8,8 @@ import type { GbfEdgeCandidate, GbfGraphRelease, GbfTeacherAssignment } from '..
 import {
   GBF_GRAPH_RELEASE,
   composeAssignedGbfGraph,
+  resolveAssignedGbfGraph,
+  resolveGbfGraphRelease,
   validateGbfGraphRelease,
 } from '../../lib/gbf/graph';
 import { projectGbfProgress } from '../../lib/gbf/progress';
@@ -213,6 +215,37 @@ describe('GBF release and source validation', () => {
 });
 
 describe('GBF graph behavior', () => {
+  it('keeps rejected prerequisites out of historical registry graphs after public constants mutate', () => {
+    const rejected = GBF_GRAPH_RELEASE.edgeCandidates.find((candidate) => (
+      candidate.type === 'prerequisite_for' && candidate.reviewStatus === 'rejected'
+    ));
+    if (!rejected) throw new Error('Expected a rejected prerequisite candidate.');
+    const original = structuredClone(rejected);
+    const historicalRelease = resolveGbfGraphRelease({
+      sequenceReleaseId: V1_SEQUENCE_RELEASE,
+      graphReleaseId: V1_GRAPH_RELEASE,
+    });
+    if (!historicalRelease) throw new Error('Expected the registered v1 graph release.');
+
+    try {
+      rejected.reviewStatus = 'approved';
+      rejected.activationState = 'active';
+
+      const resolved = resolveGbfGraphRelease({
+        sequenceReleaseId: V1_SEQUENCE_RELEASE,
+        graphReleaseId: V1_GRAPH_RELEASE,
+      });
+      const graph = resolveAssignedGbfGraph(buildDanielsonGraph().graph, assignment());
+
+      expect(resolved).toEqual(historicalRelease);
+      expect(resolved?.edgeCandidates.find((candidate) => candidate.id === rejected.id))
+        .toMatchObject({ reviewStatus: 'rejected', activationState: 'inactive' });
+      expect(graph.edges.find((edge) => edge.id === rejected.id)).toBeUndefined();
+    } finally {
+      Object.assign(rejected, original);
+    }
+  });
+
   it('rejects a missing candidate and a changed candidate rationale', () => {
     const missing = structuredClone(GBF_GRAPH_RELEASE);
     missing.edgeCandidates.pop();

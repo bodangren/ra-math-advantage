@@ -232,6 +232,7 @@ function assignmentRow(input: {
   requestId: string;
   assignedAt: number;
   organizationId?: string;
+  actorAccountId?: string;
 }) {
   return {
     organizationId: input.organizationId ?? ORG,
@@ -240,7 +241,7 @@ function assignmentRow(input: {
     graphReleaseId: GRAPH_RELEASE,
     assignedSkillIds: ['danielson.tlac.skill.double-plan'],
     unsequencedGapSkillIds: ['danielson.tlac.skill.knowledge-organizers'],
-    actorAccountId: LEADER,
+    actorAccountId: input.actorAccountId ?? LEADER,
     requestId: input.requestId,
     fingerprint: `fingerprint:${input.requestId}`,
     assignedAt: input.assignedAt,
@@ -543,6 +544,38 @@ describe('GBF assignment authorization and persistence', () => {
       .toMatchObject({ currentGbfAssignmentId: (first as { assignmentId: string }).assignmentId });
   });
 
+  it('keeps the greatest assignment tuple when an older replay repairs a missing pointer', async () => {
+    const db = new MemoryDb();
+    seedBase(db, 'school_head');
+    seedAccount(db, SECOND_LEADER);
+    seedRole(db, SECOND_LEADER, 'school_head');
+    const assign = handler(assignTeacherGbfTrack);
+    const oldest = await assign(db.context(), assignmentArgs({
+      requestId: 'request:order:a',
+      now: NOW,
+    }));
+    await assign(db.context(), assignmentArgs({
+      requestId: 'request:order:z',
+      now: NOW,
+    }));
+    const newest = await assign(db.context(), assignmentArgs({
+      actorAccountId: SECOND_LEADER,
+      requestId: 'request:order:z',
+      now: NOW,
+    }));
+    await db.patch(TEACHER, { currentGbfAssignmentId: undefined });
+
+    await expect(assign(db.context(), assignmentArgs({
+      requestId: 'request:order:a',
+      now: NOW + 1,
+    }))).resolves.toMatchObject({
+      kind: 'replayed',
+      assignmentId: (oldest as { assignmentId: string }).assignmentId,
+    });
+    expect(db.rows('teacher_profiles').find((row) => row._id === TEACHER))
+      .toMatchObject({ currentGbfAssignmentId: (newest as { assignmentId: string }).assignmentId });
+  });
+
   it('scopes idempotency to the authenticated actor and replays before mutable target checks', async () => {
     const db = new MemoryDb();
     seedBase(db, 'school_head');
@@ -620,7 +653,7 @@ describe('GBF assignment authorization and persistence', () => {
 });
 
 describe('GBF assignment read bounds', () => {
-  it('uses a legacy assignment when the active teacher pointer is absent', async () => {
+  it('returns a migration result without scanning assignment history when an active pointer is absent', async () => {
     const db = new MemoryDb();
     db.seed('teacher_gbf_assignments', 'teacher_gbf_assignments:legacy', assignmentRow({
       teacherProfileId: TEACHER,
@@ -637,10 +670,39 @@ describe('GBF assignment read bounds', () => {
 
     const result = await readOrganizationCurrentGbfAssignments(db.context(), ORG);
 
-    expect(result).toMatchObject({ kind: 'allowed' });
-    if (result.kind !== 'allowed') throw new Error('Expected legacy assignment fallback');
-    expect(result.assignmentsByTeacher.get(TEACHER))
-      .toMatchObject({ assignmentId: 'teacher_gbf_assignments:legacy' });
+    expect(['migration_required', 'capacity_exceeded'])
+      .toContain((result as unknown as { kind: string }).kind);
+    expect(db.queryCalls).toEqual([{
+      table: 'teacher_profiles',
+      index: 'by_organizationId_and_isActive',
+      take: 251,
+    }]);
+  });
+
+  it('uses the deterministic assignment tuple for a one-teacher fallback', async () => {
+    const db = new MemoryDb();
+    seedTeacher(db, TEACHER, TEACHER_ACCOUNT);
+    db.seed('teacher_gbf_assignments', 'teacher_gbf_assignments:newest', assignmentRow({
+      teacherProfileId: TEACHER,
+      requestId: 'request:order:z',
+      actorAccountId: SECOND_LEADER,
+      assignedAt: NOW,
+    }));
+    db.seed('teacher_gbf_assignments', 'teacher_gbf_assignments:middle', assignmentRow({
+      teacherProfileId: TEACHER,
+      requestId: 'request:order:z',
+      assignedAt: NOW,
+    }));
+    db.seed('teacher_gbf_assignments', 'teacher_gbf_assignments:oldest', assignmentRow({
+      teacherProfileId: TEACHER,
+      requestId: 'request:order:a',
+      assignedAt: NOW,
+    }));
+
+    await expect(readTeacherGbfAssignment(db.context(), ORG, TEACHER)).resolves.toMatchObject({
+      kind: 'allowed',
+      assignment: { assignmentId: 'teacher_gbf_assignments:newest' },
+    });
   });
 
   it('returns explicit empty states without an assignment', async () => {
