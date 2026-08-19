@@ -151,6 +151,7 @@ only after all three pilots are Green.
     - [x] Follow-up: Add the pure legacy `problemFamilyId` ↔ canonical `variantKey` card compatibility boundary with focused validation tests and the BM2 Convex handler seam (37f075c)
     - [x] Add red coverage for the authenticated BM2 evidence route and real teacher-led/mastery submission mappings (37f075c)
     - [x] Add the authenticated Convex transaction, persist evidence atomically, and apply the existing BM2 SRS boundary once for eligible mastery evidence (37f075c)
+    - [x] P1 review fix: Reject client-submitted `teacher_led` evidence at the public route and validate the frozen teacher-led source at the trusted handler boundary (1d2e7f9e)
 - [ ] Task 3.5: Complete cross-app Green and refactor pass (All lanes)
     *Note: Production Convex persistence and real KST/SRS wiring remain required for all three lanes.*
     - [ ] Make the shared conformance and exact-three-node boundary suites Green
