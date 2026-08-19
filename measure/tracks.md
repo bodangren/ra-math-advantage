@@ -75,7 +75,7 @@ Dependency order:
    *Create `apps/danielson/`. Reuse shared auth, Convex, and app-shell packages. Support one account with multiple roles, scoped leadership access, a separate system-administrator permission, and self-private-data exclusion.*
    *Link: [./tracks/danielson-app-foundation_20260819/](./tracks/danielson-app-foundation_20260819/)*
 
-- [ ] **Track 2: Danielson Proficiency Graph and Scheduling**
+- [~] **Track 2: Danielson Proficiency Graph and Scheduling**
    *Create the app-owned Danielson and TLAC graph, rating and evidence contract, Q1 fan-out, and teacher KST plus SRS adapters. Preserve `not_enough_evidence` as no proficiency or scheduling update.*
    *Link: [./tracks/danielson-proficiency-graph_20260819/](./tracks/danielson-proficiency-graph_20260819/)*
 

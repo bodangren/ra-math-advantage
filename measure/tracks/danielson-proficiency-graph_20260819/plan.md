@@ -8,27 +8,28 @@
 
 ## Phase 1: Contract and Schema Definition
 
-- [ ] Task 1.1: Freeze the source and import manifests
-    - [ ] Record the Danielson 2022 source and license boundary
-    - [ ] Inventory both sibling technique datasets and record hashes
-    - [ ] Define the reconciliation and review-status rules
-- [ ] Task 1.2: Define the app-owned graph contract
-    - [ ] Map product terms to existing node kinds
-    - [ ] Define stable IDs and `contains` edge rules
-    - [ ] Reserve GBF prerequisite ownership for Track 6
-- [ ] Task 1.3: Define the teacher-proficiency evidence contract
-    - [ ] Define rated and `not_enough_evidence` outcomes
-    - [ ] Define source, target, time, version, provenance, and idempotency fields
-    - [ ] Keep comments and responses outside the evidence contract
-- [ ] Task 1.4: Define rating and formal-observation adapters
-    - [ ] Define the point and SRS rating maps
-    - [ ] Define Q1 component fan-out with shared provenance
-    - [ ] Define direct walkthrough target behavior
-- [ ] Task 1.5: Define KST and SRS persistence ports
-    - [ ] Reuse canonical card, review-log, proficiency, and graph interfaces
-    - [ ] Define the 180-day stable-skill interval cap
-    - [ ] Define priority projections for Track 3
-- [ ] Task 1.6: Measure - User Manual Verification 'Phase 1: Contract and Schema Definition' (Protocol in workflow.md)
+- [x] Task 1.1: Freeze the source and import manifests
+    - [x] Record the Danielson 2022 source and license boundary
+    - [x] Inventory both sibling technique datasets and record hashes
+    - [x] Define the reconciliation and review-status rules
+- [x] Task 1.2: Define the app-owned graph contract
+    - [x] Map product terms to existing node kinds
+    - [x] Define stable IDs and `contains` edge rules
+    - [x] Reserve GBF prerequisite ownership for Track 6
+- [x] Task 1.3: Define the teacher-proficiency evidence contract
+    - [x] Define rated and `not_enough_evidence` outcomes
+    - [x] Define source, target, time, version, provenance, and idempotency fields
+    - [x] Keep comments and responses outside the evidence contract
+- [x] Task 1.4: Define rating and formal-observation adapters
+    - [x] Define the point and SRS rating maps
+    - [x] Define Q1 component fan-out with shared provenance
+    - [x] Define direct walkthrough target behavior
+- [x] Task 1.5: Define KST and SRS persistence ports
+    - [x] Reuse canonical card, review-log, proficiency, and graph interfaces
+    - [x] Define the 180-day stable-skill interval cap
+    - [x] Define priority projections for Track 3
+- [x] Task 1.6: Measure - User Manual Verification 'Phase 1: Contract and Schema Definition' (Protocol in workflow.md)
+    - User directed full-track continuation on 2026-08-19.
 
 ## Phase 2: Test
 

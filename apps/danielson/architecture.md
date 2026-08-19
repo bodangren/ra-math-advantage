@@ -21,6 +21,9 @@ The app can import these shared packages:
 - `@math-platform/core-auth`
 - `@math-platform/core-convex`
 - `@math-platform/app-shell`
+- `@math-platform/knowledge-space-core`
+- `@math-platform/knowledge-space-practice`
+- `@math-platform/srs-engine`
 
 The app must not copy code from these packages. A new shared dependency needs
 an approved architecture change.
@@ -59,3 +62,8 @@ lookups use indexes and bounded queries. The server denies cross-organization
 access before it reads teacher scope records. It limits a teacher to 100 active
 department memberships. Administration directories use cursor pages with no
 more than 100 records. Each paginated list uses a separate Convex query.
+
+The Danielson app owns its rubric graph, evidence commands, and persistence.
+It uses the shared knowledge-space packages for graph validation and KST
+projection. It uses the shared SRS package for card scheduling. It does not use
+the student learning-evidence contract for teacher observations.
