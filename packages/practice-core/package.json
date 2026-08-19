@@ -8,6 +8,7 @@
   "exports": {
     ".": "./src/index.ts",
     "./contract": "./src/practice/contract.ts",
+    "./learning-evidence": "./src/practice/learning-evidence.ts",
     "./submission-schema": "./src/practice/submission.schema.ts",
     "./timing": "./src/practice/timing.ts",
     "./timing-baseline": "./src/practice/timing-baseline.ts",

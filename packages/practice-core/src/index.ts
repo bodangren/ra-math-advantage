@@ -136,3 +136,20 @@ export {
   createMockPracticeTimingSummary,
   createMockPracticeSubmissionPart,
 } from './practice/fixtures';
+
+export {
+  LEARNING_EVIDENCE_CONTRACT_VERSION,
+  LEARNING_EVIDENCE_ORIGIN_VALUES,
+  learningEvidenceV1Schema,
+  evaluateLearningEvidenceV1,
+  normalizeLearningEvidenceV1,
+  learningEvidenceFingerprintV1,
+} from './practice/learning-evidence';
+export type {
+  LearningEvidenceV1,
+  LearningEvidenceIdempotencyV1,
+  LearningEvidenceExposureStateV1,
+  LearningEvidenceDecisionReasonV1,
+  LearningEvidenceDecisionV1,
+  EvaluateLearningEvidenceV1Input,
+} from './practice/learning-evidence';
