@@ -229,7 +229,11 @@ export const completePhase = internalMutation({
     }
 
     // 6. Handle competency if linkedStandardId provided
-    if (args.linkedStandardId) {
+    const isIm3TeacherLedPhase =
+      lesson.slug === IM3_TEACHER_LED_LESSON_SLUG
+      && phase.phaseNumber === IM3_TEACHER_LED_PHASE_NUMBER;
+
+    if (args.linkedStandardId && !isIm3TeacherLedPhase) {
       const standard = await ctx.db
         .query("competency_standards")
         .withIndex("by_code", (q) => q.eq("code", args.linkedStandardId!))
@@ -260,10 +264,7 @@ export const completePhase = internalMutation({
       }
     }
 
-    if (
-      lesson.slug === IM3_TEACHER_LED_LESSON_SLUG
-      && phase.phaseNumber === IM3_TEACHER_LED_PHASE_NUMBER
-    ) {
+    if (isIm3TeacherLedPhase) {
       const learningEvidenceHandler = createIm3ConvexLearningEvidenceHandler({
         ctx,
         masteryBridge: async () => {
