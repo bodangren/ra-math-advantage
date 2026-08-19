@@ -21,6 +21,9 @@ vi.mock('@/lib/convex/server', () => ({
       getActivityById: 'internal.activities.getActivityById',
       submitAssessment: 'internal.activities.submitAssessment',
     },
+    learningEvidence: {
+      submit: 'internal.learningEvidence.submit',
+    },
   },
 }));
 
@@ -101,6 +104,19 @@ describe('POST /api/progress/assessment', () => {
       }
       if (name === 'internal.activities.submitAssessment') {
         return undefined;
+      }
+      if (name === 'internal.learningEvidence.submit') {
+        return {
+          persisted: true,
+          masteryApplied: false,
+          decision: {
+            idempotency: 'new',
+            exposureState: 'introduced',
+            eligible: false,
+            reason: 'teacher_led',
+            masteryBearing: false,
+          },
+        };
       }
       return null;
     });
@@ -240,6 +256,46 @@ describe('POST /api/progress/assessment', () => {
         score: 2,
         maxScore: 2,
       }),
+    );
+  });
+
+  it('records the reviewed BM2 source as teacher-led exposure only', async () => {
+    const sourceActivityId = 'd6b57545-65f6-4c39-80d5-000100001002';
+    mockFetchInternalQuery.mockResolvedValue({ ...baseActivity, id: sourceActivityId });
+
+    const response = await POST(
+      buildRequest({
+        contractVersion: 'practice.v1',
+        activityId: sourceActivityId,
+        mode: 'guided_practice',
+        status: 'submitted',
+        attemptNumber: 1,
+        submittedAt: '2026-08-19T08:00:00.000Z',
+        answers: { q1: 'Yes', q2: 'ledger' },
+        parts: [
+          { partId: 'q1', rawAnswer: 'Yes', isCorrect: true, score: 1, maxScore: 1 },
+          { partId: 'q2', rawAnswer: 'ledger', isCorrect: true, score: 1, maxScore: 1 },
+        ],
+      }),
+    );
+
+    expect(response.status).toBe(200);
+    expect(mockFetchInternalMutation).toHaveBeenCalledWith(
+      'internal.learningEvidence.submit',
+      {
+        learnerId: 'profile_123',
+        evidence: expect.objectContaining({
+          nodeId: 'math.bm2.skill.1.1.apply-accounting-equation',
+          activityId: sourceActivityId,
+          origin: 'teacher_led',
+          mode: 'guided_practice',
+          idempotencyKey: `bm2:teacher-led:${sourceActivityId}:1`,
+        }),
+      },
+    );
+    expect(mockFetchInternalMutation).not.toHaveBeenCalledWith(
+      'internal.srs.recordSrsReview',
+      expect.anything(),
     );
   });
 

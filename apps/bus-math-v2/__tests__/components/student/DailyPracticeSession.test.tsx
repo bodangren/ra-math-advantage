@@ -6,6 +6,7 @@ const mockUseQuery = vi.fn();
 const mockUseMutation = vi.fn();
 const mockProcessPracticeSubmission = vi.fn();
 const mockBuildPracticeSubmissionEnvelope = vi.fn();
+const mockFetch = vi.fn();
 
 vi.mock('convex/react', () => ({
   useQuery: mockUseQuery,
@@ -37,6 +38,13 @@ vi.mock('@/lib/practice/engine/family-registry', () => ({
         parts: [{ partId: 'p1', isCorrect: true }],
       })),
     },
+    'accounting-equation': {
+      generate: vi.fn(() => ({ value: 12 })),
+      solve: vi.fn(() => ({ answer: 12 })),
+      grade: vi.fn(() => ({
+        parts: [{ partId: 'p1', isCorrect: true }],
+      })),
+    },
   },
 }));
 
@@ -63,6 +71,7 @@ describe('DailyPracticeSession', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
+    vi.stubGlobal('fetch', mockFetch);
     mockUseMutation.mockReturnValue(mockRecordReview);
     mockBuildPracticeSubmissionEnvelope.mockReturnValue({
       activityId: 'test-family',
@@ -95,6 +104,10 @@ describe('DailyPracticeSession', () => {
       },
       rating: 'Good',
     });
+    mockFetch.mockResolvedValue(new Response(JSON.stringify({
+      persisted: true,
+      masteryApplied: true,
+    }), { status: 200, headers: { 'content-type': 'application/json' } }));
   });
 
   it('shows loading state while fetching due cards', () => {
@@ -183,6 +196,49 @@ describe('DailyPracticeSession', () => {
 
     await userEvent.click(screen.getByTestId('next-problem-button'));
     expect(screen.getByText(/problem 2 of 2/i)).toBeInTheDocument();
+  });
+
+  it('uses the authenticated BM2 learning-evidence route once and skips the old SRS mutation', async () => {
+    mockBuildPracticeSubmissionEnvelope.mockReturnValue({
+      contractVersion: 'practice.v1',
+      activityId: 'accounting-equation-generated-7',
+      mode: 'independent_practice',
+      status: 'submitted',
+      attemptNumber: 1,
+      submittedAt: '2026-08-19T08:02:00.000Z',
+      answers: { assets: 10 },
+      parts: [{ partId: 'assets', rawAnswer: 10, isCorrect: true, score: 1, maxScore: 1 }],
+    });
+
+    mockUseQuery.mockReturnValue([
+      {
+        _id: 'card_1',
+        cardId: 'card_1',
+        studentId: 'student_1',
+        problemFamilyId: 'accounting-equation',
+        card: {},
+        due: Date.now(),
+        dueDate: new Date().toISOString(),
+        reviewCount: 0,
+        reps: 0,
+        createdAt: Date.now(),
+      },
+    ]);
+
+    render(<DailyPracticeSession studentId="student_1" />);
+
+    await userEvent.click(screen.getByRole('button', { name: /submit answer/i }));
+
+    await waitFor(() => {
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+    });
+
+    expect(mockFetch).toHaveBeenCalledWith(
+      '/api/learning-evidence/bm2-pilot',
+      expect.objectContaining({ method: 'POST' }),
+    );
+    expect(mockRecordReview).not.toHaveBeenCalled();
+    expect(screen.getByTestId('next-problem-button')).toBeInTheDocument();
   });
 
   it('shows completion state after clicking next problem on the last card', async () => {

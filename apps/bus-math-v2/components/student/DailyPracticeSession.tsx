@@ -12,6 +12,10 @@ import { processPracticeSubmission } from '@/lib/srs/review-processor';
 import { dailyPracticeInputRegistry } from '@/lib/srs/answer-inputs/registry';
 import type { SrsCardState } from '@/lib/srs/contract';
 import type { PracticeSubmissionEnvelope } from '@/lib/practice/contract';
+import {
+  BM2_PILOT_PROBLEM_FAMILY_ID,
+  buildBm2MasteryAdvantageEvidence,
+} from '@/lib/learning-evidence/bm2-pilot';
 
 interface FlatSrsCard {
   cardId: string;
@@ -95,6 +99,7 @@ export function DailyPracticeSession({ studentId }: DailyPracticeSessionProps) {
     );
   }
 
+  const isBm2MasteryAdvantage = currentCard.problemFamilyId === BM2_PILOT_PROBLEM_FAMILY_ID;
   const familyKey = currentCard.problemFamilyId;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const family = (practiceFamilyRegistry as any)[familyKey];
@@ -138,21 +143,39 @@ export function DailyPracticeSession({ studentId }: DailyPracticeSessionProps) {
       confidenceReasons: envelope.timing.confidenceReasons,
     } : undefined;
 
-    const result = processPracticeSubmission(envelope, currentCard as SrsCardState, timing, undefined, studentId);
-
     try {
-      await recordReview({
-        studentId: studentId as Parameters<typeof recordReview>[0]['studentId'],
-        problemFamilyId: result.card.problemFamilyId,
-        rating: result.rating,
-        scheduledAt: result.reviewLog.scheduledAt,
-        reviewedAt: result.reviewLog.reviewedAt,
-        elapsedDays: result.reviewLog.elapsedDays,
-        scheduledDays: result.reviewLog.scheduledDays,
-        reviewDurationMs: result.reviewLog.reviewDurationMs,
-        timingConfidence: result.reviewLog.timingConfidence,
-        card: result.card as unknown as Parameters<typeof recordReview>[0]['card'],
-      });
+      if (isBm2MasteryAdvantage) {
+        const response = await fetch('/api/learning-evidence/bm2-pilot', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({
+            evidence: buildBm2MasteryAdvantageEvidence(envelope),
+          }),
+        });
+        if (!response.ok) {
+          throw new Error('Unable to record BM2 learning evidence');
+        }
+      } else {
+        const result = processPracticeSubmission(
+          envelope,
+          currentCard as unknown as SrsCardState,
+          timing,
+          undefined,
+          studentId,
+        );
+        await recordReview({
+          studentId: studentId as Parameters<typeof recordReview>[0]['studentId'],
+          problemFamilyId: result.card.problemFamilyId,
+          rating: result.rating,
+          scheduledAt: result.reviewLog.scheduledAt,
+          reviewedAt: result.reviewLog.reviewedAt,
+          elapsedDays: result.reviewLog.elapsedDays,
+          scheduledDays: result.reviewLog.scheduledDays,
+          reviewDurationMs: result.reviewLog.reviewDurationMs,
+          timingConfidence: result.reviewLog.timingConfidence,
+          card: result.card as unknown as Parameters<typeof recordReview>[0]['card'],
+        });
+      }
       setShowNext(true);
     } catch {
       submittedRef.current = false;

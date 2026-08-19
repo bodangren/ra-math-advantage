@@ -3,6 +3,7 @@ import {
   evaluateLearningEvidenceV1,
   normalizeLearningEvidenceV1,
   type LearningEvidenceV1,
+  type PracticeSubmissionEnvelope,
 } from '@math-platform/practice-core';
 import {
   InMemorySubmissionSrsAdapter,
@@ -79,6 +80,76 @@ export const BM2_LEARNING_EVIDENCE_PILOT = {
     },
   ],
 } as const;
+
+/**
+ * Translate the reviewed Unit 1 Lesson 1 submission into exposure evidence.
+ *
+ * The source activity may contain graded parts, but the teacher-led event
+ * intentionally omits graded evidence. This keeps the exposure path away
+ * from the mastery bridge.
+ */
+export function buildBm2TeacherLedEvidence(
+  submission: PracticeSubmissionEnvelope,
+): LearningEvidenceV1 | null {
+  const source = BM2_LEARNING_EVIDENCE_PILOT.mappings[0].source;
+  if (submission.activityId !== source.activityId) return null;
+
+  return normalizeLearningEvidenceV1({
+    contractVersion: 'learning-evidence.v1',
+    nodeId: BM2_PILOT_NODE_ID,
+    activityId: source.activityId,
+    attemptOrdinal: submission.attemptNumber,
+    origin: 'teacher_led',
+    mode: source.mode,
+    occurredAt: submission.submittedAt,
+    idempotencyKey: `bm2:teacher-led:${source.activityId}:${submission.attemptNumber}`,
+  });
+}
+
+/**
+ * Translate a graded daily-practice submission into canonical BM2 evidence.
+ *
+ * The helper keeps raw answers out of the evidence route. It aggregates only
+ * the graded outcome fields that the shared contract permits.
+ */
+export function buildBm2MasteryAdvantageEvidence(
+  submission: PracticeSubmissionEnvelope,
+): LearningEvidenceV1 {
+  const parts = submission.parts;
+  const allPartsHaveBooleanOutcome = parts.length > 0
+    && parts.every((part) => typeof part.isCorrect === 'boolean');
+  const allPartsHaveScores = parts.length > 0
+    && parts.every((part) => (
+      typeof part.score === 'number'
+      && Number.isFinite(part.score)
+      && typeof part.maxScore === 'number'
+      && Number.isFinite(part.maxScore)
+    ));
+
+  const gradedEvidence = {
+    ...(allPartsHaveBooleanOutcome
+      ? { isCorrect: parts.every((part) => part.isCorrect === true) }
+      : {}),
+    ...(allPartsHaveScores
+      ? {
+          score: parts.reduce((total, part) => total + (part.score ?? 0), 0),
+          maxScore: parts.reduce((total, part) => total + (part.maxScore ?? 0), 0),
+        }
+      : {}),
+  };
+
+  return normalizeLearningEvidenceV1({
+    contractVersion: 'learning-evidence.v1',
+    nodeId: BM2_PILOT_NODE_ID,
+    activityId: BM2_LEARNING_EVIDENCE_PILOT.mappings[0].masteryAdvantage.activityId,
+    attemptOrdinal: submission.attemptNumber,
+    origin: 'mastery_advantage',
+    mode: submission.mode,
+    occurredAt: submission.submittedAt,
+    ...(Object.keys(gradedEvidence).length > 0 ? { gradedEvidence } : {}),
+    idempotencyKey: `bm2:mastery-advantage:${submission.activityId}:${submission.attemptNumber}`,
+  });
+}
 
 type LearningEvidenceDecision = ReturnType<typeof evaluateLearningEvidenceV1>;
 

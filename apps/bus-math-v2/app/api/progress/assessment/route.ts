@@ -8,6 +8,7 @@ import { fetchInternalQuery, fetchInternalMutation, internal } from '@/lib/conve
 import { formatRateLimitError } from '@/convex/apiRateLimits';
 import type { Id } from '@/convex/_generated/dataModel';
 import { normalizePracticeSubmissionInput } from '@math-platform/practice-core/contract';
+import { buildBm2TeacherLedEvidence } from '@/lib/learning-evidence/bm2-pilot';
 
 /**
  * Returns a 400 Bad Request JSON response with the given error details.
@@ -103,6 +104,14 @@ export async function POST(request: Request) {
       maxScore: score.maxScore,
       feedback: score.feedback,
     });
+
+    const teacherLedEvidence = buildBm2TeacherLedEvidence(submission);
+    if (teacherLedEvidence) {
+      await fetchInternalMutation(internal.learningEvidence.submit, {
+        learnerId: userId,
+        evidence: teacherLedEvidence,
+      });
+    }
 
     return NextResponse.json({
       score: score.score,

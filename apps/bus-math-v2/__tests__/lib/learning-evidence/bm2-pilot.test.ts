@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import {
+  buildPracticeSubmissionEnvelope,
   evaluateLearningEvidenceV1,
   learningEvidenceFingerprintV1,
   learningEvidenceV1Schema,
@@ -13,6 +14,8 @@ import {
   BM2_PILOT_PROBLEM_FAMILY_ID,
   bm2ProblemFamilyIdToVariantKey,
   bm2VariantKeyToProblemFamilyId,
+  buildBm2MasteryAdvantageEvidence,
+  buildBm2TeacherLedEvidence,
   createBm2LearningEvidenceRuntime,
   validateBm2LearningEvidencePilotManifest,
 } from '@/lib/learning-evidence/bm2-pilot';
@@ -75,6 +78,77 @@ function evaluate(
 }
 
 describe('BM2 learning-evidence.v1 pilot', () => {
+  it('maps the reviewed source submission to exposure-only evidence', () => {
+    const submission = buildPracticeSubmissionEnvelope({
+      activityId: GUIDED_ACTIVITY_ID,
+      mode: 'guided_practice',
+      status: 'submitted',
+      attemptNumber: 1,
+      submittedAt: '2026-08-19T08:00:00.000Z',
+      answers: { ledger: 'balanced' },
+      parts: [{
+        partId: 'ledger',
+        rawAnswer: 'balanced',
+        isCorrect: true,
+        score: 1,
+        maxScore: 1,
+      }],
+    });
+
+    expect(buildBm2TeacherLedEvidence(submission)).toEqual({
+      contractVersion: 'learning-evidence.v1',
+      nodeId: PILOT_NODE_ID,
+      activityId: GUIDED_ACTIVITY_ID,
+      attemptOrdinal: 1,
+      origin: 'teacher_led',
+      mode: 'guided_practice',
+      occurredAt: '2026-08-19T08:00:00.000Z',
+      idempotencyKey: `bm2:teacher-led:${GUIDED_ACTIVITY_ID}:1`,
+    });
+  });
+
+  it('maps an eligible practice submission to canonical BM2 Mastery Advantage evidence', () => {
+    const submission = buildPracticeSubmissionEnvelope({
+      activityId: 'accounting-equation-generated-7',
+      mode: 'independent_practice',
+      status: 'submitted',
+      attemptNumber: 2,
+      submittedAt: '2026-08-19T08:02:00.000Z',
+      answers: { assets: 10, liabilities: 4, equity: 6 },
+      parts: [
+        { partId: 'assets', rawAnswer: 10, isCorrect: true, score: 1, maxScore: 1 },
+        { partId: 'liabilities', rawAnswer: 4, isCorrect: true, score: 1, maxScore: 1 },
+        { partId: 'equity', rawAnswer: 6, isCorrect: false, score: 0, maxScore: 1 },
+      ],
+    });
+
+    expect(buildBm2MasteryAdvantageEvidence(submission)).toEqual({
+      contractVersion: 'learning-evidence.v1',
+      nodeId: PILOT_NODE_ID,
+      activityId: ACCOUNTING_EQUATION_VARIANT_KEY,
+      attemptOrdinal: 2,
+      origin: 'mastery_advantage',
+      mode: 'independent_practice',
+      occurredAt: '2026-08-19T08:02:00.000Z',
+      gradedEvidence: { isCorrect: false, score: 2, maxScore: 3 },
+      idempotencyKey: 'bm2:mastery-advantage:accounting-equation-generated-7:2',
+    });
+  });
+
+  it('does not map a non-pilot source activity to BM2 evidence', () => {
+    const submission = buildPracticeSubmissionEnvelope({
+      activityId: 'another-activity',
+      mode: 'assessment',
+      status: 'submitted',
+      attemptNumber: 1,
+      submittedAt: '2026-08-19T08:00:00.000Z',
+      answers: { answer: true },
+      parts: [{ partId: 'answer', rawAnswer: true, isCorrect: true }],
+    });
+
+    expect(buildBm2TeacherLedEvidence(submission)).toBeNull();
+  });
+
   it('preserves the legacy problemFamilyId mapping and validates the exact manifest', () => {
     expect(bm2ProblemFamilyIdToVariantKey(BM2_PILOT_PROBLEM_FAMILY_ID)).toBe(
       ACCOUNTING_EQUATION_VARIANT_KEY,
