@@ -91,6 +91,8 @@ only after all three pilots are Green.
     - [ ] Prove teacher exposure introduces only the IM3 pilot node exactly once
     - [ ] Prove one later graded Mastery Advantage attempt traverses the existing IM3 KST+SRS path
     - [ ] Prove a non-pilot IM3 node remains disabled
+    - [x] Terra: Added focused Red coverage for the durable IM3 Convex persistence seam (885d43f). It covers ISO-to-number normalization, learner-scoped replay, same-key conflict rejection, the one-node pilot boundary, and pre-exposure bridge denial. Red baseline: `createIm3ConvexLearningEvidenceHandler` is not implemented.
+    - **Verified runtime-hook blocker (2026-08-19):** Phase 4 of `module-1-lesson-1` stores a generated `activities` document ID for `step-by-step-solver`. The generated worked-example candidate is `math.im3.skill.1.1.graph-quadratic-functions.worked_example` for `graphing-explorer`. `lookupVariantForScheduling` reads `practice_items` by the stored `activities` ID. No current mapping joins these IDs. Do not add the teacher phase hook until an approved mapping aligns the seed, the generated activity map, and the resolver.
 - [~] Task 2.4: Write Precalculus one-node pilot Red tests (Lane 2)
     - [x] Reuse the shared conformance fixture without importing IM3 code
     - [x] Prove before-exposure denial, exposure-only introduction, and post-exposure KST+SRS progression
