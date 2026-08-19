@@ -6,30 +6,31 @@
 
 **Pipeline:** Contract and Schema → Test → Implement → Generate Docs and Doctor
 
-## Phase 1: Contract and Schema Definition
+## Phase 1: Contract and Schema Definition [checkpoint: c925d38]
 
-- [~] Task 1.1: Define walkthrough and formal-observation schemas
-    - [ ] Define draft and submitted records
-    - [ ] Define three target outcomes and optional evidence notes
-    - [ ] Define Q1 and Q4 record types and observer permissions
-- [ ] Task 1.2: Define the ranked queue contract
-    - [ ] Define candidate, priority input, reason, and deterministic tie-break fields
-    - [ ] Define grouping of Track 2 due skills by teacher
-    - [ ] Define the fewer-than-three shortfall result
-- [ ] Task 1.3: Define submission and publication transitions
-    - [ ] Define draft save, resume, discard, and submit behavior
-    - [ ] Define immediate publication and idempotency rules
-- [ ] Task 1.4: Define the amendment contract
-    - [ ] Define original record, author, reason, changed fields, and event time
-    - [ ] Define superseded evidence behavior without double counting
-- [ ] Task 1.5: Define annual continuity
-    - [ ] Define school-year labels without state reset or record cloning
-    - [ ] Define cross-year query and report inputs
-- [ ] Task 1.6: Measure - User Manual Verification 'Phase 1: Contract and Schema Definition' (Protocol in workflow.md)
+- [x] Task 1.1: Define walkthrough and formal-observation schemas
+    - [x] Define draft and submitted records
+    - [x] Define three target outcomes and optional evidence notes
+    - [x] Define Q1 and Q4 record types and observer permissions
+- [x] Task 1.2: Define the ranked queue contract
+    - [x] Define candidate, priority input, reason, and deterministic tie-break fields
+    - [x] Define grouping of Track 2 due skills by teacher
+    - [x] Define the fewer-than-three shortfall result
+- [x] Task 1.3: Define submission and publication transitions
+    - [x] Define draft save, resume, discard, and submit behavior
+    - [x] Define immediate publication and idempotency rules
+- [x] Task 1.4: Define the amendment contract
+    - [x] Define original record, author, reason, changed fields, and event time
+    - [x] Define superseded evidence behavior without double counting
+- [x] Task 1.5: Define annual continuity
+    - [x] Define school-year labels without state reset or record cloning
+    - [x] Define cross-year query and report inputs
+- [x] Task 1.6: Measure - User Manual Verification 'Phase 1: Contract and Schema Definition' (Protocol in workflow.md)
+    - User directed full-track continuation on 2026-08-19.
 
 ## Phase 2: Test
 
-- [ ] Task 2.1: Write scoped queue Red tests
+- [~] Task 2.1: Write scoped queue Red tests
     - [ ] Test HOD, coach, school-head, SLT, cross-organization, and subject access
     - [ ] Test deterministic ordering and visible reasons
 - [ ] Task 2.2: Write three-target Red tests
