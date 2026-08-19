@@ -1,7 +1,10 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
 import { ObservationForm } from '../../components/observation-form';
+import { ObservationAmendmentForm } from '../../components/observation-amendment-form';
+import { ObservationDraftClient } from '../../components/observation-draft-client';
+import { ObservationStartForm } from '../../components/observation-start-form';
 
 const draft = {
   draftId: 'observation_records:draft-1',
@@ -101,5 +104,140 @@ describe('observation form accessibility', () => {
     expect(onSave.mock.calls[0][0].items).not.toEqual(expect.arrayContaining([
       expect.objectContaining({ outcome: { kind: 'not_enough_evidence' } }),
     ]));
+  });
+
+  it('shows only permitted observation types and sends all selected formal components', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({ draft: { draftId: 'observation_records:formal' } }),
+    }));
+    render(<ObservationStartForm
+      teacherProfileId="teacher_profiles:teacher"
+      components={[
+        { value: 'component-1a', label: '1a' },
+        { value: 'component-1b', label: '1b' },
+        { value: 'component-1c', label: '1c' },
+      ]}
+      permittedTypes={['walkthrough', 'formal_q1']}
+    />);
+
+    expect(screen.queryByRole('option', { name: 'Quarter 4 formal' })).not.toBeInTheDocument();
+    fireEvent.change(screen.getByLabelText('Observation type'), { target: { value: 'formal_q1' } });
+    const componentSelect = screen.getByLabelText('Danielson components') as HTMLSelectElement;
+    componentSelect.options[0].selected = true;
+    componentSelect.options[1].selected = true;
+    fireEvent.change(componentSelect);
+    fireEvent.change(screen.getByLabelText('Observation time'), { target: { value: '2026-09-15T07:45' } });
+    fireEvent.submit(screen.getByRole('button', { name: 'Start observation' }));
+
+    await waitFor(() => expect(fetch).toHaveBeenCalledOnce());
+    const request = vi.mocked(fetch).mock.calls[0][1] as RequestInit;
+    expect(JSON.parse(String(request.body))).toMatchObject({
+      observationType: 'formal_q1',
+      componentIds: ['component-1a', 'component-1b'],
+    });
+  });
+
+  it('focuses a server error after a draft save fails', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue({
+      ok: false,
+      json: async () => ({ error: 'The server rejected the draft.' }),
+    }));
+    render(<ObservationDraftClient draft={draft} />);
+
+    fireEvent.click(screen.getByRole('button', { name: 'Save draft' }));
+
+    const alert = await screen.findByRole('alert');
+    expect(alert).toHaveTextContent('The server rejected the draft.');
+    expect(alert).toHaveFocus();
+  });
+
+  it('focuses a server error after an amendment fails', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue({
+      ok: false,
+      json: async () => ({ error: 'The server rejected the amendment.' }),
+    }));
+    render(<ObservationAmendmentForm
+      observationId="observation_records:one"
+      expectedVersion={0}
+      items={[{ itemId: 'item-a', label: 'Double Plan', evidenceNote: null }]}
+    />);
+    fireEvent.change(screen.getByLabelText('Reason for amendment'), {
+      target: { value: 'Correct the rating.' },
+    });
+    fireEvent.change(screen.getByLabelText('Outcome change'), { target: { value: '3' } });
+    fireEvent.submit(screen.getByRole('button', { name: 'Save amendment' }));
+
+    const alert = await screen.findByRole('alert');
+    expect(alert).toHaveTextContent('The server rejected the amendment.');
+    expect(alert).toHaveFocus();
+  });
+
+  it('retries the same submission without another save when the first response is lost', async () => {
+    vi.stubGlobal('fetch', vi.fn()
+      .mockResolvedValueOnce({ ok: true, json: async () => ({ draft: { revision: 2 } }) })
+      .mockRejectedValueOnce(new Error('The committed response was lost.'))
+      .mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({ receipt: { observationId: 'observation_records:one' } }),
+      }));
+    render(<ObservationDraftClient draft={draft} />);
+    for (const option of screen.getAllByRole('radio', { name: 'Not enough evidence' })) {
+      fireEvent.click(option);
+    }
+
+    fireEvent.click(screen.getByRole('button', { name: 'Submit observation' }));
+    expect(await screen.findByText('The committed response was lost.')).toBeVisible();
+    const firstRatingOne = screen.getAllByRole('radio', { name: 'Rating 1' })[0];
+    const firstNoEvidence = screen.getAllByRole('radio', { name: 'Not enough evidence' })[0];
+    expect(firstRatingOne).toBeDisabled();
+    expect(firstNoEvidence).toBeDisabled();
+    expect(firstNoEvidence).toBeChecked();
+    fireEvent.click(screen.getByRole('button', { name: 'Retry submission' }));
+
+    await waitFor(() => expect(fetch).toHaveBeenCalledTimes(3));
+    expect(vi.mocked(fetch).mock.calls.map(([url]) => String(url))).toEqual([
+      '/api/observations/drafts/observation_records%3Adraft-1',
+      '/api/observations/drafts/observation_records%3Adraft-1/submit',
+      '/api/observations/drafts/observation_records%3Adraft-1/submit',
+    ]);
+  });
+
+  it('unlocks the draft after a known submission rejection', async () => {
+    vi.stubGlobal('fetch', vi.fn()
+      .mockResolvedValueOnce({ ok: true, json: async () => ({ draft: { revision: 2 } }) })
+      .mockResolvedValueOnce({
+        ok: false,
+        json: async () => ({ error: 'The server rejected the submission.' }),
+      }));
+    render(<ObservationDraftClient draft={draft} />);
+    for (const option of screen.getAllByRole('radio', { name: 'Not enough evidence' })) {
+      fireEvent.click(option);
+    }
+
+    fireEvent.click(screen.getByRole('button', { name: 'Submit observation' }));
+
+    expect(await screen.findByText('The server rejected the submission.')).toBeVisible();
+    expect(screen.getByRole('button', { name: 'Save draft' })).toBeEnabled();
+    expect(screen.getByRole('button', { name: 'Submit observation' })).toBeEnabled();
+    expect(screen.getAllByRole('radio', { name: 'Rating 1' })[0]).toBeEnabled();
+  });
+
+  it('locks the observation controls while the first save is in flight', async () => {
+    let resolveSave: ((value: unknown) => void) | undefined;
+    vi.stubGlobal('fetch', vi.fn().mockImplementation(() => new Promise((resolve) => {
+      resolveSave = resolve;
+    })));
+    render(<ObservationDraftClient draft={draft} />);
+    for (const option of screen.getAllByRole('radio', { name: 'Not enough evidence' })) {
+      fireEvent.click(option);
+    }
+
+    fireEvent.click(screen.getByRole('button', { name: 'Submit observation' }));
+
+    await waitFor(() => expect(screen.getByRole('button', { name: 'Submitting…' })).toBeDisabled());
+    expect(screen.getAllByRole('radio', { name: 'Rating 1' })[0]).toBeDisabled();
+    expect(screen.getByRole('button', { name: 'Save draft' })).toBeDisabled();
+    resolveSave?.({ ok: false, json: async () => ({ error: 'Stop test.' }) });
   });
 });

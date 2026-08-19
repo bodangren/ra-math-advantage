@@ -54,11 +54,15 @@ export function ObservationForm({
   onSave,
   onSubmit,
   onDiscard,
+  submissionPending = false,
+  submissionBusy = false,
 }: {
   draft: ObservationFormDraft;
   onSave: (command: ObservationSaveCommand) => void | { revision?: number } | Promise<void | { revision?: number }>;
-  onSubmit: (command: ObservationSubmitCommand) => void | Promise<void>;
+  onSubmit: (command: ObservationSubmitCommand) => void | { revision?: number } | Promise<void | { revision?: number }>;
   onDiscard?: (command: { draftId: string; expectedRevision: number; confirmed: true }) => void | Promise<void>;
+  submissionPending?: boolean;
+  submissionBusy?: boolean;
 }) {
   const [items, setItems] = useState(() => structuredClone(draft.items));
   const [revision, setRevision] = useState(draft.revision);
@@ -113,7 +117,7 @@ export function ObservationForm({
     void onDiscard({ draftId: draft.draftId, expectedRevision: revision, confirmed: true });
   }
 
-  function submit(event: FormEvent<HTMLFormElement>) {
+  async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const missing = items.filter((item) => item.outcome === null).map((item) => item.itemId);
     if (missing.length > 0) {
@@ -121,7 +125,10 @@ export function ObservationForm({
       return;
     }
     const complete = submissionCommand();
-    if (complete) void onSubmit(complete);
+    if (complete) {
+      const result = await onSubmit(complete);
+      if (result?.revision !== undefined) setRevision(result.revision);
+    }
   }
 
   return (
@@ -153,6 +160,7 @@ export function ObservationForm({
             className="observation-target card"
             key={item.itemId}
             aria-describedby={hasError ? errorId : undefined}
+            disabled={submissionPending || submissionBusy}
           >
             <legend>
               <span className="target-number">Target {index + 1}</span>
@@ -201,9 +209,11 @@ export function ObservationForm({
       })}
 
       <div className="observation-actions">
-        {onDiscard ? <button className="button danger" type="button" onClick={discard}>Discard draft</button> : null}
-        <button className="button secondary" type="button" onClick={save}>Save draft</button>
-        <button type="submit">Submit observation</button>
+        {onDiscard ? <button className="button danger" type="button" onClick={discard} disabled={submissionPending || submissionBusy}>Discard draft</button> : null}
+        <button className="button secondary" type="button" onClick={save} disabled={submissionPending || submissionBusy}>Save draft</button>
+        <button type="submit" disabled={submissionBusy}>
+          {submissionBusy ? 'Submitting…' : submissionPending ? 'Retry submission' : 'Submit observation'}
+        </button>
       </div>
     </form>
   );

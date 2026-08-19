@@ -12,6 +12,7 @@ export function observationResultResponse(result: ObservationResult) {
   }
   const conflicts = new Set([
     'revision_conflict',
+    'version_conflict',
     'idempotency_conflict',
     'submitted_immutable',
     'formal_observation_exists',

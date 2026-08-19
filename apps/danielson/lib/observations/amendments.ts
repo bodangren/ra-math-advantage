@@ -176,6 +176,23 @@ export function applyObservationAmendment(input: {
   for (const change of command.changedItems) {
     if (!originalIds.has(change.itemId)) throw new Error(`Unknown observation item ${change.itemId}`);
   }
+  const effectiveBefore = projectEffectiveObservation(input.original, prior);
+  const effectiveById = new Map(effectiveBefore.items.map((item) => [item.itemId, item]));
+  const effectiveChanges = command.changedItems.flatMap((change) => {
+    const current = effectiveById.get(change.itemId);
+    if (!current) throw new Error(`Unknown observation item ${change.itemId}`);
+    const outcomeChanged = change.outcome !== undefined
+      && JSON.stringify(change.outcome) !== JSON.stringify(current.outcome);
+    const noteChanged = Object.hasOwn(change, 'evidenceNote')
+      && change.evidenceNote !== current.evidenceNote;
+    if (!outcomeChanged && !noteChanged) return [];
+    return [{
+      itemId: change.itemId,
+      ...(outcomeChanged ? { outcome: change.outcome } : {}),
+      ...(noteChanged ? { evidenceNote: change.evidenceNote ?? null } : {}),
+    }];
+  });
+  if (effectiveChanges.length === 0) return { kind: 'no_changes' as const };
   const version = latestVersion + 1;
   const occurredAt = requireTimestamp(input.now, 'now');
   const amendmentId = `observation_amendments:${encodeURIComponent(input.original.observationId)}:${version}`;
@@ -189,10 +206,9 @@ export function applyObservationAmendment(input: {
     fingerprint,
     version,
     reason: command.reason,
-    changedItems: cloneValue(command.changedItems),
+    changedItems: cloneValue(effectiveChanges),
     occurredAt,
   };
-  const effectiveBefore = projectEffectiveObservation(input.original, prior);
   return {
     kind: 'amended' as const,
     amendment,

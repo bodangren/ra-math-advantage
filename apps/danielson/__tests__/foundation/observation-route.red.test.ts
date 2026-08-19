@@ -7,6 +7,10 @@ vi.mock('@/lib/auth/server', () => ({
 }));
 
 const { readObservationRequest } = await import('../../lib/observations/observation-route');
+const {
+  canAmendPublishedObservation,
+  permittedObservationTypes,
+} = await import('../../lib/observations/observation-page');
 
 describe('observation request boundary', () => {
   beforeEach(() => {
@@ -52,5 +56,18 @@ describe('observation request boundary', () => {
     }));
 
     expect(result).toBe(unauthorized);
+  });
+
+  it('limits formal Q4 actions to school heads and SLT', () => {
+    expect(permittedObservationTypes(['hod'])).toEqual(['walkthrough', 'formal_q1']);
+    expect(permittedObservationTypes(['coach'])).toEqual(['walkthrough', 'formal_q1']);
+    expect(permittedObservationTypes(['school_head'])).toEqual([
+      'walkthrough',
+      'formal_q1',
+      'formal_q4',
+    ]);
+    expect(canAmendPublishedObservation(['hod'], 'formal_q4', false)).toBe(false);
+    expect(canAmendPublishedObservation(['slt'], 'formal_q4', false)).toBe(true);
+    expect(canAmendPublishedObservation(['slt'], 'formal_q4', true)).toBe(false);
   });
 });

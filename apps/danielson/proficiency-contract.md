@@ -163,6 +163,7 @@ The Track 2 priority projection has these fields:
 - skill ID
 - component ID
 - due status
+- due date as an ISO timestamp, or `null` when no card exists
 - whole overdue days
 - current raw rating
 - current points

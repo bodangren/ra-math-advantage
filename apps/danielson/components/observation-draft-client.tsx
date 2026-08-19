@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { ObservationForm } from './observation-form';
@@ -12,8 +12,16 @@ type SubmitCommand = Parameters<Parameters<typeof ObservationForm>[0]['onSubmit'
 export function ObservationDraftClient({ draft }: { draft: Draft }) {
   const router = useRouter();
   const submissionKey = useRef(crypto.randomUUID());
+  const pendingSubmissionRevision = useRef<number | null>(null);
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [submissionPending, setSubmissionPending] = useState(false);
+  const [submissionBusy, setSubmissionBusy] = useState(false);
+  const errorRef = useRef<HTMLParagraphElement>(null);
+
+  useEffect(() => {
+    if (error) errorRef.current?.focus();
+  }, [error]);
 
   async function save(command: SaveCommand) {
     setMessage(null);
@@ -38,24 +46,42 @@ export function ObservationDraftClient({ draft }: { draft: Draft }) {
   }
 
   async function submit(command: SubmitCommand) {
+    let savedRevision = pendingSubmissionRevision.current ?? undefined;
+    setSubmissionBusy(true);
+    setSubmissionPending(true);
     try {
-      const saved = await save(command);
-      if (saved.revision === undefined) return;
+      if (savedRevision === undefined) {
+        const saved = await save(command);
+        if (saved.revision === undefined) {
+          setSubmissionPending(false);
+          return;
+        }
+        savedRevision = saved.revision;
+        pendingSubmissionRevision.current = savedRevision;
+      }
       const response = await fetch(`/api/observations/drafts/${encodeURIComponent(draft.draftId)}/submit`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          expectedRevision: saved.revision,
+          expectedRevision: savedRevision,
           submissionKey: submissionKey.current,
         }),
       });
       const result = await response.json() as { receipt?: { observationId?: string }; error?: string };
       if (!response.ok || !result.receipt?.observationId) {
+        pendingSubmissionRevision.current = null;
+        setSubmissionPending(false);
         throw new Error(result.error ?? 'The observation could not be submitted.');
       }
+      pendingSubmissionRevision.current = null;
+      setSubmissionPending(false);
       router.push(`/observations/records/${encodeURIComponent(result.receipt.observationId)}`);
+      return { revision: savedRevision };
     } catch (error) {
       setError(error instanceof Error ? error.message : 'The observation could not be submitted.');
+      return { revision: savedRevision };
+    } finally {
+      setSubmissionBusy(false);
     }
   }
 
@@ -80,8 +106,15 @@ export function ObservationDraftClient({ draft }: { draft: Draft }) {
   return (
     <>
       {message ? <p className="status-message" role="status">{message}</p> : null}
-      {error ? <p className="error-summary" role="alert">{error}</p> : null}
-      <ObservationForm draft={draft} onSave={save} onSubmit={submit} onDiscard={discard} />
+      {error ? <p className="error-summary" role="alert" tabIndex={-1} ref={errorRef}>{error}</p> : null}
+      <ObservationForm
+        draft={draft}
+        onSave={save}
+        onSubmit={submit}
+        onDiscard={discard}
+        submissionPending={submissionPending}
+        submissionBusy={submissionBusy}
+      />
     </>
   );
 }

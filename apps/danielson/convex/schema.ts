@@ -112,6 +112,7 @@ const priorityValidator = v.object({
   skillId: v.string(),
   componentId: v.optional(v.string()),
   due: v.boolean(),
+  dueAt: v.optional(v.union(v.string(), v.null())),
   overdueDays: v.number(),
   currentProficiency: currentProficiencyValidator,
   evidenceGaps: v.array(v.string()),

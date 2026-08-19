@@ -4,12 +4,14 @@ import {
   amendObservation,
   createObservationDraft,
   discardObservationDraft,
+  listMyObservationDrafts,
   readObservationDraft,
   readPublishedObservation,
   readRankedTeacherQueue,
   saveObservationDraft,
   submitObservation,
 } from '../../convex/observations';
+import { buildDanielsonGraph } from '../../lib/proficiency/graph';
 import {
   COMPONENT_1E,
   OBSERVATION_NOW,
@@ -307,6 +309,7 @@ async function submitRatedWalkthrough(input: {
   return expectKind(await submit(input.db.context(), {
     actorAccountId: OBSERVER_ACCOUNT_ID,
     draftId: (saved.draft as Record<string, unknown>).draftId,
+    expectedRevision: (saved.draft as Record<string, unknown>).revision,
     submissionKey: input.submissionKey,
     now: input.now,
   }), 'submitted');
@@ -367,7 +370,7 @@ describe('Danielson observation Convex boundary', () => {
       now: OBSERVATION_NOW_MS + 1,
     });
 
-    expect(result).toMatchObject({ kind: 'denied' });
+    expect(result).toMatchObject({ kind: 'denied', reason: 'target_out_of_scope' });
     expect(db.allRows()).toEqual(beforeMismatch);
   });
 
@@ -383,6 +386,7 @@ describe('Danielson observation Convex boundary', () => {
     const result = expectKind(await submit(db.context(), {
       actorAccountId: OBSERVER_ACCOUNT_ID,
       draftId: draft.draftId,
+      expectedRevision: draft.revision,
       submissionKey: 'all-ne-submission',
       now: OBSERVATION_NOW_MS + 2_000,
     }), 'submitted');
@@ -407,6 +411,7 @@ describe('Danielson observation Convex boundary', () => {
     const args = {
       actorAccountId: OBSERVER_ACCOUNT_ID,
       draftId: firstDraft.draftId,
+      expectedRevision: firstDraft.revision,
       submissionKey: 'replayed-submission',
       now: OBSERVATION_NOW_MS + 2_000,
     };
@@ -420,6 +425,7 @@ describe('Danielson observation Convex boundary', () => {
     expectKind(await submit(db.context(), {
       ...args,
       draftId: changedDraft.draftId,
+      expectedRevision: changedDraft.revision,
       now: OBSERVATION_NOW_MS + 3_000,
     }), 'idempotency_conflict');
     expect(db.allRows()).toEqual(beforeConflict);
@@ -434,6 +440,7 @@ describe('Danielson observation Convex boundary', () => {
     const submitted = expectKind(await submit(db.context(), {
       actorAccountId: OBSERVER_ACCOUNT_ID,
       draftId: draft.draftId,
+      expectedRevision: draft.revision,
       submissionKey: 'immutable-submission',
       now: OBSERVATION_NOW_MS + 2_000,
     }), 'submitted');
@@ -535,6 +542,7 @@ describe('Danielson observation Convex boundary', () => {
     const submitted = expectKind(await submit(db.context(), {
       actorAccountId: OBSERVER_ACCOUNT_ID,
       draftId: draft.draftId,
+      expectedRevision: draft.revision,
       submissionKey: 'rated-submission',
       now: OBSERVATION_NOW_MS + 2_000,
     }), 'submitted');
@@ -667,6 +675,7 @@ describe('Danielson observation Convex boundary', () => {
     const submitted = expectKind(await submit(db.context(), {
       actorAccountId: OBSERVER_ACCOUNT_ID,
       draftId: draft.draftId,
+      expectedRevision: draft.revision,
       submissionKey: 'ne-to-rated',
       now: OBSERVATION_NOW_MS + 2_000,
     }), 'submitted');
@@ -815,6 +824,54 @@ describe('Danielson observation Convex boundary', () => {
     expect(db.rows('teacher_evidence_supersessions')).toHaveLength(1);
   });
 
+  it('uses the amendment key for two correction revisions created in the same millisecond', async () => {
+    const db = new MemoryDb();
+    seedFoundation(db);
+    const early = await submitRatedWalkthrough({
+      db,
+      submissionKey: 'same-time-early',
+      rating: 2,
+      observedAt: '2026-09-10T08:00:00.000Z',
+      now: OBSERVATION_NOW_MS + 2_000,
+    });
+    await submitRatedWalkthrough({
+      db,
+      submissionKey: 'same-time-later',
+      rating: 4,
+      observedAt: '2026-09-14T08:00:00.000Z',
+      now: OBSERVATION_NOW_MS + 3_000,
+    });
+    const earlyItem = firstSubmittedItem(early);
+    const observationId = (early.record as Record<string, unknown>).observationId;
+    const sameNow = OBSERVATION_NOW_MS + 4_000;
+    for (const [index, idempotencyKey, rating] of [
+      [0, 'same-time-correction-one', 1],
+      [1, 'same-time-correction-two', 3],
+    ] as const) {
+      expectKind(await handler(amendObservation)(db.context(), {
+        actorAccountId: OBSERVER_ACCOUNT_ID,
+        observationId,
+        idempotencyKey,
+        expectedVersion: index,
+        reason: `Correction ${index + 1}.`,
+        changedItems: [{ itemId: earlyItem.itemId, outcome: { kind: 'rated', rating } }],
+        now: sameNow,
+      }), 'amended');
+    }
+
+    const laterLogicalReviewId = String(db.rows('teacher_srs_reviews').find((row) => (
+      row.isCorrection === false && String(row.logicalReviewId).includes('same-time-later')
+    ))?.logicalReviewId);
+    const corrections = db.rows('teacher_srs_reviews').filter((row) => (
+      row.logicalReviewId === laterLogicalReviewId && row.isCorrection === true
+    ));
+    expect(corrections.map((row) => row.correctionIdempotencyKey)).toEqual([
+      'same-time-correction-one',
+      'same-time-correction-two',
+    ]);
+    expect(new Set(corrections.map((row) => row.reviewId)).size).toBe(2);
+  });
+
   it.each(['formal_q1', 'formal_q4'] as const)('permits only one submitted %s record per school year', async (observationType) => {
     const db = new MemoryDb();
     seedFoundation(db);
@@ -823,6 +880,7 @@ describe('Danielson observation Convex boundary', () => {
     expectKind(await submit(db.context(), {
       actorAccountId: OBSERVER_ACCOUNT_ID,
       draftId: firstDraft.draftId,
+      expectedRevision: firstDraft.revision,
       submissionKey: `${observationType}-first`,
       now: OBSERVATION_NOW_MS + 2_000,
     }), 'submitted');
@@ -831,6 +889,7 @@ describe('Danielson observation Convex boundary', () => {
     expectKind(await submit(db.context(), {
       actorAccountId: OBSERVER_ACCOUNT_ID,
       draftId: duplicateDraft.draftId,
+      expectedRevision: duplicateDraft.revision,
       submissionKey: `${observationType}-duplicate`,
       now: OBSERVATION_NOW_MS + 3_000,
     }), 'formal_observation_exists');
@@ -886,5 +945,387 @@ describe('Danielson observation Convex boundary', () => {
         shortfallReason: 'fewer_than_three_eligible_skills',
       }),
     ]);
+  });
+
+  it('excludes teachers in inactive departments from an HOD queue', async () => {
+    const db = new MemoryDb();
+    seedFoundation(db);
+    await db.delete(`role_assignments:${OBSERVER_ACCOUNT_ID}:school-head`);
+    db.seed('role_assignments', 'role_assignments:observer:hod', {
+      organizationId: ORGANIZATION_A,
+      accountId: OBSERVER_ACCOUNT_ID,
+      role: 'hod',
+      status: 'active',
+    });
+    db.seed('departments', 'departments:inactive', {
+      organizationId: ORGANIZATION_A,
+      name: 'Inactive department',
+      isActive: false,
+    });
+    db.seed('department_memberships', 'department_memberships:inactive', {
+      organizationId: ORGANIZATION_A,
+      departmentId: 'departments:inactive',
+      teacherProfileId: TEACHER_PROFILE_ID,
+      status: 'active',
+    });
+    db.seed('hod_assignments', 'hod_assignments:inactive', {
+      organizationId: ORGANIZATION_A,
+      accountId: OBSERVER_ACCOUNT_ID,
+      departmentId: 'departments:inactive',
+      status: 'active',
+    });
+
+    expect(await handler(readRankedTeacherQueue)(db.context(), {
+      actorAccountId: OBSERVER_ACCOUNT_ID,
+      now: OBSERVATION_NOW,
+    })).toMatchObject({ kind: 'allowed', items: [] });
+  });
+
+  it('hides owned drafts after the observer loses the current teacher scope', async () => {
+    const db = new MemoryDb();
+    seedFoundation(db);
+    const created = expectKind(await createDraft(db), 'created');
+    await db.delete(`role_assignments:${OBSERVER_ACCOUNT_ID}:school-head`);
+    db.seed('role_assignments', 'role_assignments:observer:hod', {
+      organizationId: ORGANIZATION_A,
+      accountId: OBSERVER_ACCOUNT_ID,
+      role: 'hod',
+      status: 'active',
+    });
+
+    const result = expectKind(await handler(listMyObservationDrafts)(db.context(), {
+      actorAccountId: OBSERVER_ACCOUNT_ID,
+      paginationOpts: { cursor: null, numItems: 20 },
+    }), 'allowed');
+
+    expect(result.page).toMatchObject({ page: [] });
+    expect(db.rows('observation_records')).toContainEqual(expect.objectContaining({
+      _id: (created.draft as Record<string, unknown>).draftId,
+      status: 'draft',
+    }));
+  });
+
+  it('returns the frozen target shortfall when it creates a walkthrough draft', async () => {
+    const db = new MemoryDb();
+    seedFoundation(db);
+    const skillIds = buildDanielsonGraph().graph.nodes
+      .filter((node) => node.kind === 'skill' && node.reviewStatus === 'approved')
+      .map((node) => node.id)
+      .sort();
+    for (const skillId of skillIds.slice(2)) {
+      db.seed('teacher_srs_cards', `teacher_srs_cards:${skillId}`, {
+        organizationId: ORGANIZATION_A,
+        teacherId: TEACHER_PROFILE_ID,
+        skillId,
+        variantKey: skillId,
+        card: {
+          objectiveId: skillId,
+          variantKey: skillId,
+          dueDate: '2027-09-15T08:00:00.000Z',
+        },
+        updatedAt: OBSERVATION_NOW_MS,
+      });
+      db.seed('teacher_proficiency', `teacher_proficiency:${skillId}`, {
+        organizationId: ORGANIZATION_A,
+        teacherId: TEACHER_PROFILE_ID,
+        skillId,
+        projection: { skillId, componentId: COMPONENT_1E, rawRating: 3 },
+        updatedAt: OBSERVATION_NOW_MS,
+      });
+    }
+
+    const result = expectKind(await createDraft(db), 'created');
+    expect(result).toMatchObject({
+      requested: 3,
+      returned: 2,
+      shortfall: 1,
+      shortfallReason: 'fewer_than_three_eligible_skills',
+    });
+  });
+
+  it('rejects an amendment key that collides with an observation submission key', async () => {
+    const db = new MemoryDb();
+    seedFoundation(db);
+    const submitted = await submitRatedWalkthrough({
+      db,
+      submissionKey: 'shared-evidence-key',
+      rating: 2,
+      observedAt: '2026-09-15T07:45:00.000Z',
+      now: OBSERVATION_NOW_MS + 2_000,
+    });
+    const before = structuredClone(db.allRows());
+
+    expectKind(await handler(amendObservation)(db.context(), {
+      actorAccountId: OBSERVER_ACCOUNT_ID,
+      observationId: (submitted.record as Record<string, unknown>).observationId,
+      idempotencyKey: 'shared-evidence-key',
+      expectedVersion: 0,
+      reason: 'Correct the rating.',
+      changedItems: [{
+        itemId: firstSubmittedItem(submitted).itemId,
+        outcome: { kind: 'rated', rating: 3 },
+      }],
+      now: OBSERVATION_NOW_MS + 3_000,
+    }), 'idempotency_conflict');
+    expect(db.allRows()).toEqual(before);
+  });
+
+  it('keeps a scoped teacher visible when the organization has more than 250 accounts', async () => {
+    const db = new MemoryDb();
+    seedFoundation(db);
+    for (let index = 0; index < 300; index += 1) {
+      db.seed('accounts', `accounts:non-teacher-${index}`, {
+        organizationId: ORGANIZATION_A,
+        username: `non-teacher-${index}`,
+        displayName: `Non-teacher ${index}`,
+        sharedSessionRole: 'admin',
+        isActive: true,
+      });
+    }
+    db.seed('accounts', 'accounts:late-teacher', {
+      organizationId: ORGANIZATION_A,
+      username: 'late-teacher',
+      displayName: 'Late Teacher',
+      sharedSessionRole: 'teacher',
+      isActive: true,
+    });
+    db.seed('teacher_profiles', 'teacher_profiles:late-teacher', {
+      organizationId: ORGANIZATION_A,
+      accountId: 'accounts:late-teacher',
+      isActive: true,
+    });
+
+    const result = expectKind(await handler(readRankedTeacherQueue)(db.context(), {
+      actorAccountId: OBSERVER_ACCOUNT_ID,
+      now: OBSERVATION_NOW,
+    }), 'allowed');
+
+    expect(result.items).toContainEqual(expect.objectContaining({
+      teacherProfileId: 'teacher_profiles:late-teacher',
+      displayName: 'Late Teacher',
+    }));
+  });
+
+  it('recomputes stored priority timing at the queue read clock', async () => {
+    const db = new MemoryDb();
+    seedFoundation(db);
+    db.seed('teacher_attention_summaries', 'teacher_attention_summaries:clock', {
+      organizationId: ORGANIZATION_A,
+      teacherProfileId: TEACHER_PROFILE_ID,
+      targets: [priority({
+        due: false,
+        overdueDays: 0,
+        dueAt: '2026-09-10T08:00:00.000Z',
+        evidenceGaps: [],
+        currentProficiency: { rawRating: 3, points: 90, passes: true },
+      })],
+      updatedAt: Date.parse('2026-09-01T08:00:00.000Z'),
+    });
+
+    const result = expectKind(await handler(readRankedTeacherQueue)(db.context(), {
+      actorAccountId: OBSERVER_ACCOUNT_ID,
+      now: OBSERVATION_NOW,
+    }), 'allowed');
+
+    expect(result.items).toEqual([
+      expect.objectContaining({
+        teacherProfileId: TEACHER_PROFILE_ID,
+        reason: 'overdue',
+        targets: [expect.objectContaining({ due: true, overdueDays: 5 })],
+      }),
+    ]);
+  });
+
+  it('keeps a proficient teacher available for a formal observation when no walkthrough is due', async () => {
+    const db = new MemoryDb();
+    seedFoundation(db);
+    db.seed('teacher_attention_summaries', 'teacher_attention_summaries:formal-only', {
+      organizationId: ORGANIZATION_A,
+      teacherProfileId: TEACHER_PROFILE_ID,
+      targets: [priority({
+        due: false,
+        dueAt: '2027-09-15T08:00:00.000Z',
+        overdueDays: 0,
+        evidenceGaps: [],
+        currentProficiency: { rawRating: 3, points: 90, passes: true },
+      })],
+      updatedAt: OBSERVATION_NOW_MS,
+    });
+
+    const result = expectKind(await handler(readRankedTeacherQueue)(db.context(), {
+      actorAccountId: OBSERVER_ACCOUNT_ID,
+      now: OBSERVATION_NOW,
+    }), 'allowed');
+
+    expect(result.items).toEqual([]);
+    expect(result.formalCandidates).toEqual([
+      { teacherProfileId: TEACHER_PROFILE_ID, displayName: 'Teacher One' },
+    ]);
+  });
+
+  it('keeps amendment and submission idempotency keys in one organization namespace', async () => {
+    const db = new MemoryDb();
+    seedFoundation(db);
+    const first = await submitRatedWalkthrough({
+      db,
+      submissionKey: 'first-submission',
+      rating: 2,
+      observedAt: '2026-09-15T07:45:00.000Z',
+      now: OBSERVATION_NOW_MS + 2_000,
+    });
+    const amendmentCommand = {
+      actorAccountId: OBSERVER_ACCOUNT_ID,
+      observationId: (first.record as Record<string, unknown>).observationId,
+      idempotencyKey: 'shared-later-key',
+      expectedVersion: 0,
+      reason: 'Correct the rating.',
+      changedItems: [{
+        itemId: firstSubmittedItem(first).itemId,
+        outcome: { kind: 'rated', rating: 3 },
+      }],
+      now: OBSERVATION_NOW_MS + 3_000,
+    };
+    expectKind(await handler(amendObservation)(db.context(), amendmentCommand), 'amended');
+
+    const second = await createCompletedDraft(db, 'first_rated', {
+      observedAt: '2026-09-16T07:45:00.000Z',
+    });
+    const beforeConflict = structuredClone(db.allRows());
+    expectKind(await handler(submitObservation)(db.context(), {
+      actorAccountId: OBSERVER_ACCOUNT_ID,
+      draftId: second.draftId,
+      expectedRevision: second.revision,
+      submissionKey: 'shared-later-key',
+      now: OBSERVATION_NOW_MS + 4_000,
+    }), 'idempotency_conflict');
+    expect(db.allRows()).toEqual(beforeConflict);
+
+    expectKind(await handler(amendObservation)(db.context(), amendmentCommand), 'replayed');
+  });
+
+  it('rejects amendment 101 before it makes the published record unreadable', async () => {
+    const db = new MemoryDb();
+    seedFoundation(db);
+    const submitted = await submitRatedWalkthrough({
+      db,
+      submissionKey: 'amendment-capacity',
+      rating: 2,
+      observedAt: '2026-09-15T07:45:00.000Z',
+      now: OBSERVATION_NOW_MS + 2_000,
+    });
+    const observationId = String((submitted.record as Record<string, unknown>).observationId);
+    for (let version = 1; version <= 100; version += 1) {
+      db.seed('observation_amendments', `observation_amendments:capacity-${version}`, {
+        organizationId: ORGANIZATION_A,
+        observationId,
+        teacherProfileId: TEACHER_PROFILE_ID,
+        authorAccountId: OBSERVER_ACCOUNT_ID,
+        idempotencyKey: `capacity-${version}`,
+        fingerprint: `fingerprint-${version}`,
+        version,
+        reason: `Correction ${version}.`,
+        changedItems: [{ itemId: firstSubmittedItem(submitted).itemId, evidenceNote: `Note ${version}` }],
+        occurredAt: OBSERVATION_NOW_MS + version,
+      });
+    }
+    const before = structuredClone(db.allRows());
+
+    expectKind(await handler(amendObservation)(db.context(), {
+      actorAccountId: OBSERVER_ACCOUNT_ID,
+      observationId,
+      idempotencyKey: 'capacity-101',
+      expectedVersion: 100,
+      reason: 'One correction too many.',
+      changedItems: [{ itemId: firstSubmittedItem(submitted).itemId, evidenceNote: 'Overflow.' }],
+      now: OBSERVATION_NOW_MS + 10_000,
+    }), 'correction_history_capacity_exceeded');
+    expect(db.allRows()).toEqual(before);
+  });
+
+  it('rejects a scoring amendment before it exceeds the evidence-history bound', async () => {
+    const db = new MemoryDb();
+    seedFoundation(db);
+    const submitted = await submitRatedWalkthrough({
+      db,
+      submissionKey: 'evidence-capacity',
+      rating: 2,
+      observedAt: '2026-09-15T07:45:00.000Z',
+      now: OBSERVATION_NOW_MS + 2_000,
+    });
+    const existingOutcomes = db.rows('teacher_observation_outcomes').length;
+    for (let index = existingOutcomes; index < 2_000; index += 1) {
+      db.seed('teacher_observation_outcomes', `teacher_observation_outcomes:capacity-${index}`, {
+        organizationId: ORGANIZATION_A,
+        teacherId: TEACHER_PROFILE_ID,
+        idempotencyKey: `existing-outcome-${index}`,
+        outcome: {},
+        occurredAt: index,
+        createdAt: index,
+      });
+    }
+    const before = structuredClone(db.allRows());
+
+    expectKind(await handler(amendObservation)(db.context(), {
+      actorAccountId: OBSERVER_ACCOUNT_ID,
+      observationId: (submitted.record as Record<string, unknown>).observationId,
+      idempotencyKey: 'evidence-capacity-amendment',
+      expectedVersion: 0,
+      reason: 'Correct the rating.',
+      changedItems: [{
+        itemId: firstSubmittedItem(submitted).itemId,
+        outcome: { kind: 'rated', rating: 3 },
+      }],
+      now: OBSERVATION_NOW_MS + 3_000,
+    }), 'correction_history_capacity_exceeded');
+    expect(db.allRows()).toEqual(before);
+  });
+
+  it('does not let a redundant outcome become the predecessor of a real correction', async () => {
+    const db = new MemoryDb();
+    seedFoundation(db);
+    const submitted = await submitRatedWalkthrough({
+      db,
+      submissionKey: 'redundant-then-real',
+      rating: 3,
+      observedAt: '2026-09-15T07:45:00.000Z',
+      now: OBSERVATION_NOW_MS + 2_000,
+    });
+    const item = firstSubmittedItem(submitted);
+    const observationId = (submitted.record as Record<string, unknown>).observationId;
+
+    expectKind(await handler(amendObservation)(db.context(), {
+      actorAccountId: OBSERVER_ACCOUNT_ID,
+      observationId,
+      idempotencyKey: 'redundant-rating',
+      expectedVersion: 0,
+      reason: 'No effective change.',
+      changedItems: [{ itemId: item.itemId, outcome: { kind: 'rated', rating: 3 } }],
+      now: OBSERVATION_NOW_MS + 3_000,
+    }), 'no_changes');
+    expect(db.rows('observation_amendments')).toEqual([]);
+
+    expectKind(await handler(amendObservation)(db.context(), {
+      actorAccountId: OBSERVER_ACCOUNT_ID,
+      observationId,
+      idempotencyKey: 'real-rating-correction',
+      expectedVersion: 0,
+      reason: 'Correct the rating.',
+      changedItems: [{ itemId: item.itemId, outcome: { kind: 'rated', rating: 2 } }],
+      now: OBSERVATION_NOW_MS + 4_000,
+    }), 'amended');
+
+    expect(db.rows('teacher_evidence_supersessions')).toEqual([
+      expect.objectContaining({
+        supersededEvidenceKey: `redundant-then-real:skill:${item.skillId}`,
+        replacementEvidenceKey: `real-rating-correction:skill:${item.skillId}`,
+      }),
+    ]);
+    expect(db.rows('teacher_srs_cards')).toEqual([
+      expect.objectContaining({ card: expect.objectContaining({ reps: 1 }) }),
+    ]);
+    expect(effectiveReviewTimeline(
+      db.rows('teacher_srs_reviews'),
+      db.rows('teacher_evidence_supersessions'),
+    )).toHaveLength(1);
   });
 });

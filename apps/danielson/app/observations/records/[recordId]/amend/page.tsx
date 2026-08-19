@@ -2,7 +2,10 @@ import { redirect } from 'next/navigation';
 
 import { ObservationAmendmentForm } from '@/components/observation-amendment-form';
 import { SiteHeader } from '@/components/site-header';
-import { getPublishedObservationPage } from '@/lib/observations/observation-page';
+import {
+  canAmendPublishedObservation,
+  getPublishedObservationPage,
+} from '@/lib/observations/observation-page';
 import { buildDanielsonGraph } from '@/lib/proficiency/graph';
 
 export default async function AmendObservationPage({
@@ -16,13 +19,14 @@ export default async function AmendObservationPage({
     recordId,
   );
   const roles = result.session.account.danielsonRoles as string[];
-  if (result.isSelf || !roles.some((role) => ['hod', 'coach', 'school_head', 'slt'].includes(role))) {
-    redirect('/unauthorized');
-  }
   const titleById = new Map(buildDanielsonGraph().graph.nodes.map((node) => [node.id, node.title]));
   const record = result.record as {
+    observationType: string;
     items: Array<{ itemId: string; componentId: string; skillId?: string; evidenceNote: string | null }>;
   };
+  if (!canAmendPublishedObservation(roles, record.observationType, result.isSelf)) {
+    redirect('/unauthorized');
+  }
   return (
     <>
       <SiteHeader isAuthenticated showObservations />

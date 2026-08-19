@@ -1,7 +1,6 @@
 import type { KnowledgeSpace } from '@math-platform/knowledge-space-core';
 
 import {
-  applyTeacherEvidenceCommitToState,
   processTeacherEvidence,
   type TeacherEvidenceCommit,
   type TeacherProficiencyPort,
@@ -22,6 +21,28 @@ function emptyTeacherState(teacherId: string): TeacherState {
   };
 }
 
+function upsertRows(
+  rows: Array<Record<string, unknown>>,
+  updates: readonly Record<string, unknown>[],
+  key: string,
+) {
+  for (const update of updates) {
+    const index = rows.findIndex((row) => row[key] === update[key]);
+    if (index >= 0) rows[index] = update;
+    else rows.push(update);
+  }
+}
+
+function applyCommit(state: TeacherState, commit: TeacherEvidenceCommit) {
+  state.idempotency.push(commit.idempotency);
+  state.observationOutcomes.push(commit.outcome);
+  upsertRows(state.cards, commit.cards ?? [], 'objectiveId');
+  upsertRows(state.reviews, commit.reviews ?? [], 'reviewId');
+  upsertRows(state.proficiency, commit.proficiency ?? [], 'skillId');
+  upsertRows(state.knowledgeState, commit.knowledgeState ?? [], 'nodeId');
+  upsertRows(state.priority, commit.priority ?? [], 'skillId');
+}
+
 function eventOrder(left: unknown, right: unknown): number {
   const leftValue = left as Record<string, unknown>;
   const rightValue = right as Record<string, unknown>;
@@ -40,15 +61,15 @@ export async function replayTeacherEvidence(input: {
   graph: KnowledgeSpace;
   now: string;
 }) {
-  let state = emptyTeacherState(input.teacherId);
+  const state = emptyTeacherState(input.teacherId);
   const commits: TeacherEvidenceCommit[] = [];
   const port: TeacherProficiencyPort = {
     async getTeacherState() {
-      return structuredClone(state);
+      return state;
     },
     async commitTeacherEvidence(commit) {
-      state = applyTeacherEvidenceCommitToState(state, commit);
-      commits.push(structuredClone(commit));
+      applyCommit(state, commit);
+      commits.push(commit);
     },
   };
   for (const rawEvidence of [...input.evidence].sort(eventOrder)) {
@@ -59,7 +80,8 @@ export async function replayTeacherEvidence(input: {
           ),
         )
       : rawEvidence;
-    await processTeacherEvidence({ evidence, graph: input.graph, now: input.now, port });
+    const result = await processTeacherEvidence({ evidence, graph: input.graph, now: input.now, port });
+    if (result.kind === 'idempotency_conflict') throw new Error('idempotency_conflict');
   }
   return { state: structuredClone(state), commits };
 }

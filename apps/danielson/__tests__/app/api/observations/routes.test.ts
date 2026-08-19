@@ -120,4 +120,13 @@ describe('observation API routes', () => {
       idempotencyKey: 'amend-key',
     }));
   });
+
+  it('returns HTTP 409 for a stale amendment version', async () => {
+    mockFetchInternalMutation.mockResolvedValue({ kind: 'version_conflict' });
+    const context = { params: Promise.resolve({ recordId: 'observation_records:actual' }) };
+
+    const response = await amendRoute.POST(request(), context);
+
+    expect(response.status).toBe(409);
+  });
 });

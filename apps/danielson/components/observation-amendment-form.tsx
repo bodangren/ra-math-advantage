@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent, useRef, useState } from 'react';
+import { FormEvent, useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 type AmendmentItem = {
@@ -21,6 +21,11 @@ export function ObservationAmendmentForm({
   const router = useRouter();
   const idempotencyKey = useRef(crypto.randomUUID());
   const [error, setError] = useState<string | null>(null);
+  const errorRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (error) errorRef.current?.focus();
+  }, [error]);
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -69,7 +74,7 @@ export function ObservationAmendmentForm({
 
   return (
     <form className="form-stack observation-form" onSubmit={submit}>
-      {error ? <div className="error-summary" role="alert">{error}</div> : null}
+      {error ? <div className="error-summary" role="alert" tabIndex={-1} ref={errorRef}>{error}</div> : null}
       <div className="field">
         <label htmlFor="amendment-reason">Reason for amendment</label>
         <textarea id="amendment-reason" name="reason" rows={3} required />

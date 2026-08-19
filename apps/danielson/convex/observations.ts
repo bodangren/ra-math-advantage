@@ -1,4 +1,4 @@
-import { paginationOptsValidator } from 'convex/server';
+import { paginationOptsValidator, paginationResultValidator } from 'convex/server';
 import { v } from 'convex/values';
 
 import { internalMutation, internalQuery } from './_generated/server';
@@ -43,6 +43,7 @@ import type {
 } from '../lib/observations/contracts';
 
 const MAX_QUEUE_TEACHERS = 250;
+const MAX_ORGANIZATION_ACCOUNTS = 1_000;
 const MAX_SCOPE_ROWS = 2_000;
 const MAX_HISTORY_ROWS = 2_000;
 const MAX_TEACHER_ROWS = 200;
@@ -67,6 +68,295 @@ const changedItemValidator = v.object({
   outcome: v.optional(observationOutcomeValidator),
   evidenceNote: v.optional(v.union(v.null(), v.string())),
 });
+
+const priorityReasonValidator = v.union(
+  v.literal('below_proficient'),
+  v.literal('overdue'),
+  v.literal('evidence_gap'),
+  v.literal('due'),
+);
+const observationItemFields = {
+  itemId: v.string(),
+  componentId: v.string(),
+  skillId: v.optional(v.string()),
+  priorityReason: v.optional(priorityReasonValidator),
+  outcome: v.union(v.null(), observationOutcomeValidator),
+  evidenceNote: v.union(v.null(), v.string()),
+};
+const observationItemValidator = v.object(observationItemFields);
+const observationDraftFields = {
+  draftId: v.string(),
+  organizationId: v.string(),
+  teacherProfileId: v.string(),
+  observerAccountId: v.string(),
+  observationType: observationTypeValidator,
+  schoolYear: v.string(),
+  sourceVersion: v.string(),
+  frameworkVersion: v.string(),
+  observedAt: v.string(),
+  revision: v.number(),
+  createdAt: v.number(),
+  updatedAt: v.number(),
+  items: v.array(observationItemValidator),
+};
+const observationDraftValidator = v.object({
+  ...observationDraftFields,
+  status: v.literal('draft'),
+});
+const submittedObservationValidator = v.object({
+  ...observationDraftFields,
+  observationId: v.string(),
+  status: v.literal('submitted'),
+  submissionKey: v.string(),
+  submissionFingerprint: v.string(),
+  submittedAt: v.number(),
+  publishedAt: v.number(),
+});
+const observationReceiptValidator = v.object({
+  observationId: v.string(),
+  submissionKey: v.string(),
+  submittedAt: v.number(),
+  publishedAt: v.number(),
+  fingerprint: v.string(),
+});
+const currentProficiencyValidator = v.object({
+  rawRating: v.union(v.number(), v.null()),
+  points: v.union(v.number(), v.null()),
+  passes: v.boolean(),
+});
+const priorityProjectionFields = {
+  teacherId: v.string(),
+  skillId: v.string(),
+  componentId: v.optional(v.string()),
+  due: v.boolean(),
+  dueAt: v.optional(v.union(v.string(), v.null())),
+  overdueDays: v.number(),
+  currentProficiency: currentProficiencyValidator,
+  evidenceGaps: v.array(v.string()),
+  approvedPriorityInputs: v.array(v.string()),
+};
+const rankedPriorityFields = {
+  ...priorityProjectionFields,
+  reason: priorityReasonValidator,
+};
+const rankedPriorityValidator = v.object(rankedPriorityFields);
+const rankedPriorityTargetValidator = v.object({
+  ...rankedPriorityFields,
+  skillTitle: v.string(),
+  componentTitle: v.string(),
+});
+const targetSelectionFields = {
+  requested: v.literal(3),
+  returned: v.number(),
+  shortfall: v.number(),
+  shortfallReason: v.union(v.literal('fewer_than_three_eligible_skills'), v.null()),
+};
+const deniedResultValidator = v.object({ kind: v.literal('denied'), reason: v.string() });
+const queueCapacityResultValidator = v.object({ kind: v.literal('queue_capacity_exceeded') });
+const queueResultValidator = v.union(
+  deniedResultValidator,
+  queueCapacityResultValidator,
+  v.object({
+    kind: v.literal('allowed'),
+    formalCandidates: v.array(v.object({ teacherProfileId: v.string(), displayName: v.string() })),
+    items: v.array(v.object({
+      teacherProfileId: v.string(),
+      displayName: v.string(),
+      reason: priorityReasonValidator,
+      eligibleTargetCount: v.number(),
+      ...targetSelectionFields,
+      targets: v.array(rankedPriorityTargetValidator),
+    })),
+  }),
+);
+const draftErrorValidators = [
+  deniedResultValidator,
+  v.object({ kind: v.literal('not_found') }),
+  v.object({ kind: v.literal('revision_conflict') }),
+  v.object({ kind: v.literal('submitted_immutable') }),
+] as const;
+const observationAmendmentFields = {
+  amendmentId: v.string(),
+  observationId: v.string(),
+  organizationId: v.string(),
+  teacherProfileId: v.string(),
+  authorAccountId: v.string(),
+  idempotencyKey: v.string(),
+  fingerprint: v.string(),
+  version: v.number(),
+  reason: v.string(),
+  changedItems: v.array(changedItemValidator),
+  occurredAt: v.number(),
+};
+const evidenceSupersessionValidator = v.object({
+  supersessionId: v.string(),
+  observationId: v.string(),
+  amendmentId: v.string(),
+  teacherProfileId: v.string(),
+  itemId: v.string(),
+  supersededEvidenceKey: v.string(),
+  replacementEvidenceKey: v.string(),
+  replacementOutcome: observationOutcomeValidator,
+  occurredAt: v.number(),
+});
+const amendmentReceiptValidator = v.object({ amendmentId: v.string(), version: v.number() });
+const createDraftResultValidator = v.union(
+  deniedResultValidator,
+  v.object({ kind: v.literal('invalid_components') }),
+  v.object({
+    kind: v.literal('no_eligible_targets'),
+    ...targetSelectionFields,
+    targets: v.array(rankedPriorityValidator),
+  }),
+  v.object({
+    kind: v.literal('created'),
+    draft: observationDraftValidator,
+    requested: v.optional(v.literal(3)),
+    returned: v.optional(v.number()),
+    shortfall: v.optional(v.number()),
+    shortfallReason: v.optional(v.union(
+      v.literal('fewer_than_three_eligible_skills'),
+      v.null(),
+    )),
+  }),
+);
+const saveDraftResultValidator = v.union(
+  ...draftErrorValidators,
+  v.object({ kind: v.literal('saved'), draft: observationDraftValidator }),
+);
+const enrichedObservationItemValidator = v.object({
+  ...observationItemFields,
+  skillTitle: v.optional(v.string()),
+  componentTitle: v.string(),
+});
+const readDraftResultValidator = v.union(
+  deniedResultValidator,
+  v.object({ kind: v.literal('not_found') }),
+  v.object({
+    kind: v.literal('allowed'),
+    draft: v.object({
+      ...observationDraftFields,
+      status: v.literal('draft'),
+      teacherDisplayName: v.string(),
+      items: v.array(enrichedObservationItemValidator),
+    }),
+  }),
+);
+const discardDraftResultValidator = v.union(
+  ...draftErrorValidators,
+  v.object({ kind: v.literal('confirmation_required') }),
+  v.object({ kind: v.literal('discarded'), draftId: v.string() }),
+);
+const submissionResultValidator = v.union(
+  ...draftErrorValidators,
+  v.object({ kind: v.literal('incomplete_items'), itemIds: v.array(v.string()) }),
+  v.object({ kind: v.literal('idempotency_conflict') }),
+  v.object({ kind: v.literal('formal_observation_exists') }),
+  v.object({
+    kind: v.union(v.literal('submitted'), v.literal('replayed')),
+    record: submittedObservationValidator,
+    receipt: observationReceiptValidator,
+  }),
+);
+const publishedObservationResultValidator = v.union(
+  deniedResultValidator,
+  v.object({ kind: v.literal('not_found') }),
+  v.object({ kind: v.literal('history_capacity_exceeded') }),
+  v.object({
+    kind: v.literal('allowed'),
+    record: submittedObservationValidator,
+    original: submittedObservationValidator,
+    amendmentCount: v.number(),
+    isSelf: v.boolean(),
+    teacherDisplayName: v.string(),
+    observerDisplayName: v.string(),
+  }),
+);
+const amendmentHistoryItemValidator = v.object({
+  ...observationAmendmentFields,
+  authorDisplayName: v.string(),
+});
+const amendmentHistoryResultValidator = v.union(
+  deniedResultValidator,
+  v.object({ kind: v.literal('not_found') }),
+  v.object({
+    kind: v.literal('allowed'),
+    page: paginationResultValidator(amendmentHistoryItemValidator),
+  }),
+);
+const observationHistoryItemValidator = v.object({
+  observationId: v.string(),
+  observationType: observationTypeValidator,
+  schoolYear: v.string(),
+  observedAt: v.string(),
+  publishedAt: v.optional(v.number()),
+});
+const teacherHistoryResultValidator = v.union(
+  deniedResultValidator,
+  v.object({ kind: v.literal('not_found') }),
+  v.object({
+    kind: v.literal('allowed'),
+    page: paginationResultValidator(observationHistoryItemValidator),
+  }),
+);
+const draftListItemValidator = v.object({
+  draftId: v.string(),
+  observationType: observationTypeValidator,
+  teacherDisplayName: v.string(),
+  observedAt: v.string(),
+  updatedAt: v.number(),
+  revision: v.number(),
+});
+const draftListResultValidator = v.union(
+  deniedResultValidator,
+  queueCapacityResultValidator,
+  v.object({
+    kind: v.literal('allowed'),
+    page: paginationResultValidator(draftListItemValidator),
+  }),
+);
+const publishedListItemValidator = v.object({
+  observationId: v.string(),
+  observationType: observationTypeValidator,
+  observedAt: v.string(),
+  publishedAt: v.optional(v.number()),
+  observerDisplayName: v.string(),
+});
+const publishedListResultValidator = v.union(
+  deniedResultValidator,
+  v.object({
+    kind: v.literal('allowed'),
+    page: paginationResultValidator(publishedListItemValidator),
+  }),
+);
+const amendmentMutationResultValidator = v.union(
+  deniedResultValidator,
+  v.object({ kind: v.literal('not_found') }),
+  v.object({ kind: v.literal('idempotency_conflict') }),
+  v.object({ kind: v.literal('correction_history_capacity_exceeded') }),
+  v.object({ kind: v.literal('version_conflict'), latestVersion: v.number() }),
+  v.object({ kind: v.literal('invalid_reason') }),
+  v.object({ kind: v.literal('no_changes') }),
+  v.object({
+    kind: v.union(v.literal('amended'), v.literal('replayed')),
+    amendment: v.object(observationAmendmentFields),
+    supersessions: v.array(evidenceSupersessionValidator),
+    receipt: amendmentReceiptValidator,
+  }),
+);
+
+function priorityAtClock(priority: PriorityProjection, now: number): PriorityProjection {
+  if (priority.dueAt === undefined) return priority;
+  const dueAt = priority.dueAt === null ? Number.NaN : Date.parse(priority.dueAt);
+  const due = priority.dueAt === null || !Number.isFinite(dueAt) || dueAt <= now;
+  return {
+    ...priority,
+    due,
+    overdueDays: due && Number.isFinite(dueAt)
+      ? Math.max(0, Math.floor((now - dueAt) / 86_400_000))
+      : 0,
+  };
+}
 
 type DbCtx = Pick<QueryCtx, 'db'> | Pick<MutationCtx, 'db'>;
 
@@ -99,8 +389,9 @@ async function authorizeTeacher(
   const actor = await ctx.db.get(actorAccountId);
   const teacher = await ctx.db.get(teacherProfileId);
   if (!actor?.isActive) return { kind: 'denied' as const, reason: 'account_inactive' };
-  if (!teacher?.isActive || teacher.organizationId !== actor.organizationId) {
-    return { kind: 'denied' as const, reason: 'teacher_scope_denied' };
+  if (!teacher?.isActive) return { kind: 'denied' as const, reason: 'target_inactive' };
+  if (teacher.organizationId !== actor.organizationId) {
+    return { kind: 'denied' as const, reason: 'cross_organization' };
   }
   const subjectAccount = await ctx.db.get(teacher.accountId);
   if (!subjectAccount?.isActive) return { kind: 'denied' as const, reason: 'target_inactive' };
@@ -209,7 +500,7 @@ async function refreshAttentionSummary(
 
 export const readRankedTeacherQueue = internalQuery({
   args: { actorAccountId: v.id('accounts'), now: v.string() },
-  returns: v.any(),
+  returns: queueResultValidator,
   handler: async (ctx, args) => {
     const now = Date.parse(args.now);
     if (!Number.isFinite(now)) return { kind: 'denied' as const, reason: 'invalid_now' };
@@ -237,7 +528,15 @@ export const readRankedTeacherQueue = internalQuery({
         .eq('isActive', true))
       .take(MAX_QUEUE_TEACHERS + 1);
     if (profiles.length > MAX_QUEUE_TEACHERS) return { kind: 'queue_capacity_exceeded' as const };
-    const [memberships, hodAssignments, coachAssignments, summaries, actorProfile, organizationAccounts] = await Promise.all([
+    const [
+      memberships,
+      hodAssignments,
+      coachAssignments,
+      summaries,
+      actorProfile,
+      organizationAccounts,
+      activeDepartments,
+    ] = await Promise.all([
       ctx.db.query('department_memberships')
         .withIndex('by_organizationId_and_status', (query) => query
           .eq('organizationId', actor.organizationId)
@@ -248,7 +547,7 @@ export const readRankedTeacherQueue = internalQuery({
           .eq('organizationId', actor.organizationId)
           .eq('accountId', actor._id)
           .eq('status', 'active'))
-        .take(100),
+        .take(MAX_SCOPE_ROWS + 1),
       ctx.db.query('coach_assignments')
         .withIndex('by_organizationId_and_accountId_and_status', (query) => query
           .eq('organizationId', actor.organizationId)
@@ -265,16 +564,25 @@ export const readRankedTeacherQueue = internalQuery({
         .withIndex('by_organizationId_and_isActive', (query) => query
           .eq('organizationId', actor.organizationId)
           .eq('isActive', true))
-        .take(MAX_QUEUE_TEACHERS + 1),
+        .take(MAX_ORGANIZATION_ACCOUNTS + 1),
+      ctx.db.query('departments')
+        .withIndex('by_organizationId_and_isActive', (query) => query
+          .eq('organizationId', actor.organizationId)
+          .eq('isActive', true))
+        .take(MAX_SCOPE_ROWS + 1),
     ]);
     if (
       memberships.length > MAX_SCOPE_ROWS
+      || hodAssignments.length > MAX_SCOPE_ROWS
       || coachAssignments.length > MAX_QUEUE_TEACHERS
       || summaries.length > MAX_QUEUE_TEACHERS
-      || organizationAccounts.length > MAX_QUEUE_TEACHERS
+      || organizationAccounts.length > MAX_ORGANIZATION_ACCOUNTS
+      || activeDepartments.length > MAX_SCOPE_ROWS
     ) return { kind: 'queue_capacity_exceeded' as const };
+    const activeDepartmentIds = new Set(activeDepartments.map((row) => String(row._id)));
     const membershipIds = new Map<string, string[]>();
     for (const membership of memberships) {
+      if (!activeDepartmentIds.has(String(membership.departmentId))) continue;
       const key = String(membership.teacherProfileId);
       membershipIds.set(key, [...(membershipIds.get(key) ?? []), String(membership.departmentId)]);
     }
@@ -290,11 +598,16 @@ export const readRankedTeacherQueue = internalQuery({
         actorTeacherProfileId: actorProfile ? String(actorProfile._id) : null,
         organizationId: String(actor.organizationId),
         roles: supervisorRoles,
-        hodDepartmentIds: hodAssignments.map((row) => String(row.departmentId)),
+        hodDepartmentIds: hodAssignments
+          .map((row) => String(row.departmentId))
+          .filter((departmentId) => activeDepartmentIds.has(departmentId)),
         coachTeacherProfileIds: coachAssignments.map((row) => String(row.teacherProfileId)),
       },
     );
-    const summaryByTeacher = new Map(summaries.map((row) => [String(row.teacherProfileId), row.targets]));
+    const summaryByTeacher = new Map(summaries.map((row) => [
+      String(row.teacherProfileId),
+      row.targets.map((target) => priorityAtClock(target, now)),
+    ]));
     const accountById = new Map(organizationAccounts.map((account) => [String(account._id), account]));
     const { graph, skillIds } = graphDetails();
     const titleById = new Map(graph.nodes.map((node) => [node.id, node.title]));
@@ -315,6 +628,12 @@ export const readRankedTeacherQueue = internalQuery({
     });
     return {
       kind: 'allowed' as const,
+      formalCandidates: candidates
+        .map(({ teacherProfileId, displayName }) => ({ teacherProfileId, displayName }))
+        .sort((left, right) => (
+          left.displayName.localeCompare(right.displayName)
+          || left.teacherProfileId.localeCompare(right.teacherProfileId)
+        )),
       items: rankTeacherQueue(candidates).map((item) => {
         const selection = selectWalkthroughTargets(item.targets);
         return {
@@ -351,7 +670,7 @@ export const createObservationDraft = internalMutation({
     componentIds: v.optional(v.array(v.string())),
     now: v.number(),
   },
-  returns: v.any(),
+  returns: createDraftResultValidator,
   handler: async (ctx, args) => {
     const access = await authorizeTeacher(
       ctx,
@@ -362,6 +681,7 @@ export const createObservationDraft = internalMutation({
     if (access.kind === 'denied') return access;
     const { componentIds } = graphDetails();
     let items: ObservationItem[];
+    let walkthroughSelection: ReturnType<typeof selectWalkthroughTargets> | null = null;
     if (args.observationType === 'walkthrough') {
       const priorities = await readTeacherPriorityRows(
         ctx,
@@ -371,6 +691,7 @@ export const createObservationDraft = internalMutation({
       );
       const selected = selectWalkthroughTargets(priorities);
       if (selected.returned === 0) return { kind: 'no_eligible_targets' as const, ...selected };
+      walkthroughSelection = selected;
       items = selected.targets.map((target) => ({
         itemId: target.skillId,
         skillId: target.skillId,
@@ -423,7 +744,16 @@ export const createObservationDraft = internalMutation({
       createdAt: args.now,
       updatedAt: args.now,
     });
-    return { kind: 'created' as const, draft: { ...draft, draftId: String(id) } };
+    return {
+      kind: 'created' as const,
+      draft: { ...draft, draftId: String(id) },
+      ...(walkthroughSelection ? {
+        requested: walkthroughSelection.requested,
+        returned: walkthroughSelection.returned,
+        shortfall: walkthroughSelection.shortfall,
+        shortfallReason: walkthroughSelection.shortfallReason,
+      } : {}),
+    };
   },
 });
 
@@ -435,11 +765,11 @@ export const saveObservationDraft = internalMutation({
     items: v.array(savedItemValidator),
     now: v.number(),
   },
-  returns: v.any(),
+  returns: saveDraftResultValidator,
   handler: async (ctx, args) => {
     const row = await ctx.db.get(args.draftId);
     if (!row) return { kind: 'not_found' as const };
-    if (row.observerAccountId !== args.actorAccountId) return { kind: 'denied' as const, reason: 'draft_owner_mismatch' };
+    if (row.observerAccountId !== args.actorAccountId) return { kind: 'denied' as const, reason: 'target_out_of_scope' };
     const access = await authorizeTeacher(
       ctx,
       args.actorAccountId,
@@ -464,12 +794,12 @@ export const readObservationDraft = internalQuery({
     actorAccountId: v.id('accounts'),
     draftId: v.id('observation_records'),
   },
-  returns: v.any(),
+  returns: readDraftResultValidator,
   handler: async (ctx, args) => {
     const row = await ctx.db.get(args.draftId);
     if (!row || row.status !== 'draft') return { kind: 'not_found' as const };
     if (row.observerAccountId !== args.actorAccountId) {
-      return { kind: 'denied' as const, reason: 'draft_owner_mismatch' };
+      return { kind: 'denied' as const, reason: 'target_out_of_scope' };
     }
     const access = await authorizeTeacher(
       ctx,
@@ -503,12 +833,12 @@ export const discardObservationDraft = internalMutation({
     expectedRevision: v.number(),
     confirmed: v.boolean(),
   },
-  returns: v.any(),
+  returns: discardDraftResultValidator,
   handler: async (ctx, args) => {
     const row = await ctx.db.get(args.draftId);
     if (!row || row.status !== 'draft') return { kind: 'not_found' as const };
     if (row.observerAccountId !== args.actorAccountId) {
-      return { kind: 'denied' as const, reason: 'draft_owner_mismatch' };
+      return { kind: 'denied' as const, reason: 'target_out_of_scope' };
     }
     const access = await authorizeTeacher(
       ctx,
@@ -550,15 +880,15 @@ export const submitObservation = internalMutation({
   args: {
     actorAccountId: v.id('accounts'),
     draftId: v.id('observation_records'),
-    expectedRevision: v.optional(v.number()),
+    expectedRevision: v.number(),
     submissionKey: v.string(),
     now: v.number(),
   },
-  returns: v.any(),
+  returns: submissionResultValidator,
   handler: async (ctx, args) => {
     const row = await ctx.db.get(args.draftId);
     if (!row) return { kind: 'not_found' as const };
-    if (row.observerAccountId !== args.actorAccountId) return { kind: 'denied' as const, reason: 'draft_owner_mismatch' };
+    if (row.observerAccountId !== args.actorAccountId) return { kind: 'denied' as const, reason: 'target_out_of_scope' };
     const access = await authorizeTeacher(
       ctx,
       args.actorAccountId,
@@ -571,7 +901,7 @@ export const submitObservation = internalMutation({
       const record = submittedFromRow(row);
       return { kind: 'replayed' as const, record, receipt: receiptFor(record) };
     }
-    if (args.expectedRevision !== undefined && args.expectedRevision !== row.revision) {
+    if (args.expectedRevision !== row.revision) {
       return { kind: 'revision_conflict' as const };
     }
     const candidate = submitObservationDraft(draftFromRow(row), {
@@ -591,6 +921,12 @@ export const submitObservation = internalMutation({
       }
       return { kind: 'replayed' as const, record: existingRecord, receipt: receiptFor(existingRecord) };
     }
+    const conflictingAmendmentKey = await ctx.db.query('observation_amendments')
+      .withIndex('by_org_idempotency_key', (query) => query
+        .eq('organizationId', row.organizationId)
+        .eq('idempotencyKey', args.submissionKey))
+      .unique();
+    if (conflictingAmendmentKey) return { kind: 'idempotency_conflict' as const };
     if (row.observationType !== 'walkthrough') {
       const existingFormal = await ctx.db.query('observation_records')
         .withIndex(
@@ -625,7 +961,7 @@ export const readPublishedObservation = internalQuery({
     actorAccountId: v.id('accounts'),
     observationId: v.id('observation_records'),
   },
-  returns: v.any(),
+  returns: publishedObservationResultValidator,
   handler: async (ctx, args) => {
     const row = await ctx.db.get(args.observationId);
     if (!row || row.status !== 'submitted') return { kind: 'not_found' as const };
@@ -666,7 +1002,7 @@ export const listObservationAmendments = internalQuery({
     observationId: v.id('observation_records'),
     paginationOpts: paginationOptsValidator,
   },
-  returns: v.any(),
+  returns: amendmentHistoryResultValidator,
   handler: async (ctx, args) => {
     const row = await ctx.db.get(args.observationId);
     if (!row || row.status !== 'submitted') return { kind: 'not_found' as const };
@@ -700,7 +1036,7 @@ export const listTeacherObservationHistory = internalQuery({
     teacherProfileId: v.id('teacher_profiles'),
     paginationOpts: paginationOptsValidator,
   },
-  returns: v.any(),
+  returns: teacherHistoryResultValidator,
   handler: async (ctx, args) => {
     const teacher = await ctx.db.get(args.teacherProfileId);
     if (!teacher) return { kind: 'not_found' as const };
@@ -737,7 +1073,7 @@ export const listMyObservationDrafts = internalQuery({
     actorAccountId: v.id('accounts'),
     paginationOpts: paginationOptsValidator,
   },
-  returns: v.any(),
+  returns: draftListResultValidator,
   handler: async (ctx, args) => {
     const actor = await ctx.db.get(args.actorAccountId);
     if (!actor?.isActive) return { kind: 'denied' as const, reason: 'account_inactive' };
@@ -748,22 +1084,31 @@ export const listMyObservationDrafts = internalQuery({
         .eq('status', 'draft'))
       .order('desc')
       .paginate(args.paginationOpts);
+    const accessDecisions = await Promise.all(page.page.map((row) => authorizeTeacher(
+      ctx,
+      args.actorAccountId,
+      row.teacherProfileId,
+      actionFor(row.observationType, 'submit'),
+    )));
+    const accessibleRows = page.page.filter((_, index) => accessDecisions[index].kind === 'allowed');
     const [accounts, profiles] = await Promise.all([
       ctx.db.query('accounts')
-        .withIndex('by_organizationId', (query) => query.eq('organizationId', actor.organizationId))
-        .take(MAX_QUEUE_TEACHERS + 1),
+        .withIndex('by_organizationId_and_isActive', (query) => query
+          .eq('organizationId', actor.organizationId)
+          .eq('isActive', true))
+        .take(MAX_ORGANIZATION_ACCOUNTS + 1),
       ctx.db.query('teacher_profiles')
         .withIndex('by_organizationId_and_isActive', (query) => query
           .eq('organizationId', actor.organizationId)
           .eq('isActive', true))
         .take(MAX_QUEUE_TEACHERS + 1),
     ]);
-    if (accounts.length > MAX_QUEUE_TEACHERS || profiles.length > MAX_QUEUE_TEACHERS) {
+    if (accounts.length > MAX_ORGANIZATION_ACCOUNTS || profiles.length > MAX_QUEUE_TEACHERS) {
       return { kind: 'queue_capacity_exceeded' as const };
     }
     const accountById = new Map(accounts.map((account) => [String(account._id), account]));
     const profileById = new Map(profiles.map((profile) => [String(profile._id), profile]));
-    const items = page.page.map((row) => {
+    const items = accessibleRows.map((row) => {
       const teacher = profileById.get(String(row.teacherProfileId));
       const account = teacher ? accountById.get(String(teacher.accountId)) : null;
       return {
@@ -784,7 +1129,7 @@ export const listMyPublishedObservations = internalQuery({
     actorAccountId: v.id('accounts'),
     paginationOpts: paginationOptsValidator,
   },
-  returns: v.any(),
+  returns: publishedListResultValidator,
   handler: async (ctx, args) => {
     const actor = await ctx.db.get(args.actorAccountId);
     if (!actor?.isActive) return { kind: 'denied' as const, reason: 'account_inactive' };
@@ -846,6 +1191,25 @@ function reviewPayload(raw: Record<string, unknown>) {
   };
 }
 
+function reviewTransitionPayload(raw: Record<string, unknown>) {
+  const payload = reviewPayload(raw);
+  return {
+    cardId: payload.cardId,
+    studentId: payload.studentId,
+    rating: payload.rating,
+    submissionId: payload.submissionId,
+    paramsVersion: payload.paramsVersion,
+    reviewedAt: payload.reviewedAt,
+    evidence: payload.evidence,
+    stateBefore: payload.stateBefore,
+    stateAfter: payload.stateAfter,
+  };
+}
+
+function reviewTargetsAffectedSkill(logicalReviewId: string, affected: Set<string>): boolean {
+  return [...affected].some((skillId) => logicalReviewId.endsWith(`:${skillId}`));
+}
+
 async function insertReviewRow(
   ctx: MutationCtx,
   organizationId: Id<'organizations'>,
@@ -879,6 +1243,7 @@ async function reconcileBySkill(
   affected: Set<string>,
   replay: Awaited<ReturnType<typeof replayTeacherEvidence>>,
   now: number,
+  correctionKey: string,
 ) {
   const [cards, proficiency, states, priorities, reviews] = await Promise.all([
     ctx.db.query('teacher_srs_cards').withIndex('by_organizationId_and_teacherId', (q) => q
@@ -956,13 +1321,18 @@ async function reconcileBySkill(
     });
   }
   const latestReviews = new Map<string, Doc<'teacher_srs_reviews'>>();
-  for (const row of reviews) latestReviews.set(row.logicalReviewId, row);
+  for (const row of reviews) {
+    if (reviewTargetsAffectedSkill(row.logicalReviewId, affected)) {
+      latestReviews.set(row.logicalReviewId, row);
+    }
+  }
   for (const raw of replay.state.reviews) {
     const logicalId = String(raw.logicalReviewId ?? raw.reviewId);
+    if (!reviewTargetsAffectedSkill(logicalId, affected)) continue;
     const existing = latestReviews.get(logicalId);
     if (!existing) await insertReviewRow(ctx, organizationId, teacherId, raw, now);
-    else if (JSON.stringify(existing.review) !== JSON.stringify(reviewPayload(raw))) {
-      await insertReviewRow(ctx, organizationId, teacherId, raw, now, `amendment-${now}`);
+    else if (JSON.stringify(reviewTransitionPayload(existing.review)) !== JSON.stringify(reviewTransitionPayload(raw))) {
+      await insertReviewRow(ctx, organizationId, teacherId, raw, now, correctionKey);
     }
   }
 }
@@ -977,7 +1347,7 @@ export const amendObservation = internalMutation({
     changedItems: v.array(changedItemValidator),
     now: v.number(),
   },
-  returns: v.any(),
+  returns: amendmentMutationResultValidator,
   handler: async (ctx, args) => {
     const row = await ctx.db.get(args.observationId);
     if (!row || row.status !== 'submitted') return { kind: 'not_found' as const };
@@ -996,13 +1366,24 @@ export const amendObservation = internalMutation({
     if (existingIdempotencyKey && existingIdempotencyKey.observationId !== row._id) {
       return { kind: 'idempotency_conflict' as const };
     }
+    if (!existingIdempotencyKey) {
+      const conflictingSubmissionKey = await ctx.db.query('observation_records')
+        .withIndex('by_org_submission_key', (query) => query
+          .eq('organizationId', row.organizationId)
+          .eq('submissionKey', args.idempotencyKey))
+        .unique();
+      if (conflictingSubmissionKey) return { kind: 'idempotency_conflict' as const };
+    }
     const priorRows = await ctx.db.query('observation_amendments')
       .withIndex('by_org_observation_version', (query) => query
         .eq('organizationId', row.organizationId)
         .eq('observationId', row._id))
       .order('asc')
       .take(MAX_AMENDMENTS + 1);
-    if (priorRows.length > MAX_AMENDMENTS) return { kind: 'correction_history_capacity_exceeded' as const };
+    if (
+      priorRows.length > MAX_AMENDMENTS
+      || (priorRows.length === MAX_AMENDMENTS && !existingIdempotencyKey)
+    ) return { kind: 'correction_history_capacity_exceeded' as const };
     const prior = priorRows.map(amendmentFromRow);
     const original = submittedFromRow(row);
     const applied = applyObservationAmendment({
@@ -1030,7 +1411,11 @@ export const amendObservation = internalMutation({
         .eq('teacherProfileId', row.teacherProfileId))
       .order('asc')
       .take(MAX_HISTORY_ROWS + 1);
-    if (outcomeRows.length > MAX_HISTORY_ROWS || existingSupersessions.length > MAX_HISTORY_ROWS) {
+    const scoringGrowth = applied.supersessions.length;
+    if (
+      outcomeRows.length + scoringGrowth > MAX_HISTORY_ROWS
+      || existingSupersessions.length + scoringGrowth > MAX_HISTORY_ROWS
+    ) {
       return { kind: 'correction_history_capacity_exceeded' as const };
     }
     const amendmentId = await ctx.db.insert('observation_amendments', {
@@ -1058,7 +1443,12 @@ export const amendObservation = internalMutation({
         replacementOutcome: supersession.replacementOutcome,
         occurredAt: args.now,
       });
-      insertedSupersessions.push({ ...supersession, _id: id });
+      insertedSupersessions.push({
+        ...supersession,
+        supersessionId: String(id),
+        amendmentId: String(amendmentId),
+        _id: id,
+      });
     }
     if (applied.supersessions.length > 0) {
       const effective = projectEffectiveObservation(original, [...prior, applied.amendment]);
@@ -1112,13 +1502,31 @@ export const amendObservation = internalMutation({
           }
         }
       }
-      await reconcileBySkill(ctx, row.organizationId, String(row.teacherProfileId), affected, replay, args.now);
+      await reconcileBySkill(
+        ctx,
+        row.organizationId,
+        String(row.teacherProfileId),
+        affected,
+        replay,
+        args.now,
+        args.idempotencyKey,
+      );
       await refreshAttentionSummary(ctx, row.organizationId, row.teacherProfileId, args.now);
     }
     return {
       kind: 'amended' as const,
       amendment: { ...applied.amendment, amendmentId: String(amendmentId) },
-      supersessions: applied.supersessions,
+      supersessions: insertedSupersessions.map((supersession) => ({
+        supersessionId: supersession.supersessionId,
+        observationId: supersession.observationId,
+        amendmentId: supersession.amendmentId,
+        teacherProfileId: supersession.teacherProfileId,
+        itemId: supersession.itemId,
+        supersededEvidenceKey: supersession.supersededEvidenceKey,
+        replacementEvidenceKey: supersession.replacementEvidenceKey,
+        replacementOutcome: supersession.replacementOutcome,
+        occurredAt: supersession.occurredAt,
+      })),
       receipt: { amendmentId: String(amendmentId), version: applied.amendment.version },
     };
   },

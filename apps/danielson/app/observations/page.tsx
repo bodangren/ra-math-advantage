@@ -20,7 +20,13 @@ export default async function ObservationsPage({
   searchParams: Promise<{ draftCursor?: string }>;
 }) {
   const parameters = await searchParams;
-  const { queue, drafts, components } = await getObservationWorkspace(
+  const {
+    queue,
+    formalCandidates,
+    drafts,
+    components,
+    permittedTypes,
+  } = await getObservationWorkspace(
     '/observations',
     parameters.draftCursor ?? null,
   );
@@ -32,18 +38,20 @@ export default async function ObservationsPage({
         <h1>Prioritized teacher queue</h1>
         <p className="lede">Start with the first teacher. Each walkthrough includes up to three current Danielson targets.</p>
 
-        {drafts.page.length > 0 ? (
+        {drafts.page.length > 0 || !drafts.isDone ? (
           <section className="card" aria-labelledby="drafts-heading">
             <h2 id="drafts-heading">Your drafts</h2>
-            <ul className="record-list">
-              {drafts.page.map((draft: { draftId: string; teacherDisplayName: string; observationType: string; observedAt: string }) => (
-                <li key={draft.draftId}>
-                  <Link href={`/observations/drafts/${encodeURIComponent(draft.draftId)}`}>
-                    {draft.teacherDisplayName} — {draft.observationType.replaceAll('_', ' ')} — {new Date(draft.observedAt).toLocaleString()}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            {drafts.page.length > 0 ? (
+              <ul className="record-list">
+                {drafts.page.map((draft: { draftId: string; teacherDisplayName: string; observationType: string; observedAt: string }) => (
+                  <li key={draft.draftId}>
+                    <Link href={`/observations/drafts/${encodeURIComponent(draft.draftId)}`}>
+                      {draft.teacherDisplayName} — {draft.observationType.replaceAll('_', ' ')} — {new Date(draft.observedAt).toLocaleString()}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            ) : <p>No drafts in your current scope appear on this page.</p>}
             {!drafts.isDone ? <Link href={`/observations?draftCursor=${encodeURIComponent(drafts.continueCursor)}`}>Next draft page</Link> : null}
           </section>
         ) : null}
@@ -61,11 +69,26 @@ export default async function ObservationsPage({
                   <li key={target.skillId}>{target.skillTitle} <span className="muted">({target.componentTitle})</span></li>
                 ))}</ul>
               </div>
-              <ObservationStartForm teacherProfileId={teacher.teacherProfileId} components={components} />
+              <ObservationStartForm
+                teacherProfileId={teacher.teacherProfileId}
+                components={components}
+                permittedTypes={permittedTypes}
+              />
             </li>
           ))}
         </ol>
         {queue.length === 0 ? <p className="card">No teacher is due in your current scope.</p> : null}
+        {formalCandidates.length > 0 ? (
+          <section className="card" aria-labelledby="formal-observation-heading">
+            <h2 id="formal-observation-heading">Start a formal observation</h2>
+            <p>Formal observations do not depend on the walkthrough queue.</p>
+            <ObservationStartForm
+              teachers={formalCandidates}
+              components={components}
+              permittedTypes={permittedTypes.filter((type) => type !== 'walkthrough')}
+            />
+          </section>
+        ) : null}
       </main>
     </>
   );

@@ -1,7 +1,10 @@
 import Link from 'next/link';
 
 import { SiteHeader } from '@/components/site-header';
-import { getPublishedObservationPage } from '@/lib/observations/observation-page';
+import {
+  canAmendPublishedObservation,
+  getPublishedObservationPage,
+} from '@/lib/observations/observation-page';
 import { buildDanielsonGraph } from '@/lib/proficiency/graph';
 
 function outcomeLabel(outcome: { kind: string; rating?: number } | null): string {
@@ -24,8 +27,6 @@ export default async function PublishedObservationPage({
     parameters.amendmentCursor ?? null,
   );
   const roles = result.session.account.danielsonRoles as string[];
-  const canAmend = !result.isSelf
-    && roles.some((role) => ['hod', 'coach', 'school_head', 'slt'].includes(role));
   const titleById = new Map(buildDanielsonGraph().graph.nodes.map((node) => [node.id, node.title]));
   const record = result.record as {
     observationType: string;
@@ -33,6 +34,7 @@ export default async function PublishedObservationPage({
     schoolYear: string;
     items: Array<{ itemId: string; componentId: string; skillId?: string; outcome: { kind: string; rating?: number } | null; evidenceNote: string | null }>;
   };
+  const canAmend = canAmendPublishedObservation(roles, record.observationType, result.isSelf);
   return (
     <>
       <SiteHeader isAuthenticated showObservations={canAmend} showMyObservations={roles.includes('teacher')} />

@@ -41,6 +41,7 @@ export type PriorityProjection = {
   skillId: string;
   componentId?: string;
   due: boolean;
+  dueAt?: string | null;
   overdueDays: number;
   currentProficiency: {
     rawRating: number | null;
@@ -246,6 +247,7 @@ export function projectTeacherPriority(
         ? current.componentId
         : componentBySkill.get(skillId),
       due,
+      dueAt: card?.dueDate ?? null,
       overdueDays: due && Number.isFinite(dueAt)
         ? Math.max(0, Math.floor((nowMs - dueAt) / 86_400_000))
         : 0,
@@ -486,8 +488,6 @@ export async function processTeacherEvidence(input: {
   }> = [];
   const targetEvidence: TargetEvidence[] = [];
   const updatedProficiency = [...current.proficiency];
-  const history = historicTargetEvidence(current.observationOutcomes);
-
   for (const skillId of targetSkillIds) {
     const item: TargetEvidence = {
       skillId,
@@ -504,7 +504,6 @@ export async function processTeacherEvidence(input: {
       occurredAt: evidence.occurredAt,
     };
     targetEvidence.push(item);
-    const existingSkillHistory = history.filter((candidate) => candidate.skillId === skillId);
     const currentProjection = previousProficiency(updatedProficiency, skillId);
     const parsedCurrent = asTargetEvidence(currentProjection);
     const isOutOfOrder = parsedCurrent !== null && compareTargetEvidence(item, parsedCurrent) < 0;
@@ -512,7 +511,11 @@ export async function processTeacherEvidence(input: {
       throw new Error('out_of_order_history_capacity_exceeded');
     }
     const effectiveHistory = isOutOfOrder
-      ? [...existingSkillHistory, item].sort(compareTargetEvidence)
+      ? [
+          ...historicTargetEvidence(current.observationOutcomes)
+            .filter((candidate) => candidate.skillId === skillId),
+          item,
+        ].sort(compareTargetEvidence)
       : [item];
     let before = isOutOfOrder
       ? {

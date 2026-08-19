@@ -136,4 +136,10 @@ describe('Danielson architecture registration contract', () => {
       expect(source, `${file} must not import the Danielson application`).not.toMatch(appImportPattern);
     }
   });
+
+  it('uses explicit return validators for every observation Convex function', () => {
+    const source = readFileSync(join(APPLICATION_ROOT, 'convex', 'observations.ts'), 'utf8');
+
+    expect(source).not.toMatch(/returns:\s*v\.any\(\)/);
+  });
 });
