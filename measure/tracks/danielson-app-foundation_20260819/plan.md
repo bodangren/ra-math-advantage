@@ -17,12 +17,12 @@
     - [x] Define app-owned many-to-many role assignments
     - [x] Define HOD department and coach teacher assignments
     - [x] Define indexes for every authorization lookup
-- [~] Task 1.3: Define the authorization matrix
-    - [ ] Define the six role capabilities and their scopes
-    - [ ] Define additive role resolution
-    - [ ] Define subject exclusion for private leadership data
-    - [ ] Define cross-organization denial
-- [ ] Task 1.4: Define account-administration audit events
+- [x] Task 1.3: Define the authorization matrix — `0dc52d0`
+    - [x] Define capabilities for the six roles and their scopes
+    - [x] Define additive role resolution
+    - [x] Define subject exclusion for private data, evaluation writes, and supervisor-side PIP actions
+    - [x] Define cross-organization denial
+- [~] Task 1.4: Define account-administration audit events
     - [ ] Define actor, action, target, time, and before-and-after fields
     - [ ] Define immutable audit-event behavior
 - [ ] Task 1.5: Measure - User Manual Verification 'Phase 1: Contract and Schema Definition' (Protocol in workflow.md)
