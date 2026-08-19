@@ -8,6 +8,7 @@ const COMMAND_FIELDS = new Set([
   'observedAt',
   'componentIds',
   'expectedRevision',
+  'expectedVersion',
   'items',
   'confirmed',
   'submissionKey',

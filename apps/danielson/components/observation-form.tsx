@@ -21,6 +21,7 @@ type ObservationFormItem = {
 type ObservationFormDraft = {
   draftId: string;
   revision: number;
+  observationType?: 'walkthrough' | 'formal_q1' | 'formal_q4';
   teacherDisplayName: string;
   items: ObservationFormItem[];
 };
@@ -52,12 +53,15 @@ export function ObservationForm({
   draft,
   onSave,
   onSubmit,
+  onDiscard,
 }: {
   draft: ObservationFormDraft;
-  onSave: (command: ObservationSaveCommand) => void | Promise<void>;
+  onSave: (command: ObservationSaveCommand) => void | { revision?: number } | Promise<void | { revision?: number }>;
   onSubmit: (command: ObservationSubmitCommand) => void | Promise<void>;
+  onDiscard?: (command: { draftId: string; expectedRevision: number; confirmed: true }) => void | Promise<void>;
 }) {
   const [items, setItems] = useState(() => structuredClone(draft.items));
+  const [revision, setRevision] = useState(draft.revision);
   const [missingItemIds, setMissingItemIds] = useState<string[]>([]);
   const errorSummaryRef = useRef<HTMLDivElement>(null);
 
@@ -82,7 +86,7 @@ export function ObservationForm({
     if (items.some((item) => item.outcome === null)) return null;
     return {
       draftId: draft.draftId,
-      expectedRevision: draft.revision,
+      expectedRevision: revision,
       items: items.map((item) => ({
         itemId: item.itemId,
         outcome: item.outcome as Exclude<FormOutcome, null>,
@@ -91,16 +95,22 @@ export function ObservationForm({
     };
   }
 
-  function save() {
-    void onSave({
+  async function save() {
+    const result = await onSave({
       draftId: draft.draftId,
-      expectedRevision: draft.revision,
+      expectedRevision: revision,
       items: items.map((item) => ({
         itemId: item.itemId,
         outcome: item.outcome,
         evidenceNote: item.evidenceNote?.trim() || null,
       })),
     });
+    if (result?.revision !== undefined) setRevision(result.revision);
+  }
+
+  function discard() {
+    if (!onDiscard || !window.confirm('Discard this draft? This action cannot be undone.')) return;
+    void onDiscard({ draftId: draft.draftId, expectedRevision: revision, confirmed: true });
   }
 
   function submit(event: FormEvent<HTMLFormElement>) {
@@ -117,9 +127,13 @@ export function ObservationForm({
   return (
     <form className="observation-form form-stack" onSubmit={submit} noValidate>
       <header className="observation-form-heading">
-        <p className="eyebrow">5–10 minute walkthrough</p>
+        <p className="eyebrow">{draft.observationType === 'formal_q1'
+          ? 'Quarter 1 formal observation'
+          : draft.observationType === 'formal_q4'
+            ? 'Quarter 4 formal observation'
+            : '5–10 minute walkthrough'}</p>
         <h1>Observe {draft.teacherDisplayName}</h1>
-        <p className="lede">Rate the three targets that you can see. Select “Not enough evidence” when the visit does not show a target.</p>
+        <p className="lede">Rate the listed targets that you can see. Select “Not enough evidence” when the visit does not show a target.</p>
       </header>
 
       {missingItemIds.length > 0 ? (
@@ -187,6 +201,7 @@ export function ObservationForm({
       })}
 
       <div className="observation-actions">
+        {onDiscard ? <button className="button danger" type="button" onClick={discard}>Discard draft</button> : null}
         <button className="button secondary" type="button" onClick={save}>Save draft</button>
         <button type="submit">Submit observation</button>
       </div>
