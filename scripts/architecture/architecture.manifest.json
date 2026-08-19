@@ -16,7 +16,7 @@
     {
       "id": "app.danielson", "path": "apps/danielson", "kind": "app", "packageName": null,
       "owner": "danielson-team", "layer": "application", "domainClassification": "app-owned", "domain": "danielson",
-      "allowedDependencies": ["pkg.app-shell", "pkg.core-auth", "pkg.core-convex"],
+      "allowedDependencies": ["pkg.app-shell", "pkg.core-auth", "pkg.core-convex", "pkg.knowledge-space-core", "pkg.srs-engine"],
       "publicEntryPoints": [],
       "qualityCommands": { "lint": "npm run lint --workspace=apps/danielson", "test": "npm run test --workspace=apps/danielson", "typecheck": "npm run typecheck --workspace=apps/danielson", "build": "npm run build --workspace=apps/danielson" },
       "debtRefs": []

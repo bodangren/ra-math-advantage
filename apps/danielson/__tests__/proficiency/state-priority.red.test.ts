@@ -14,6 +14,33 @@ import {
 const processorModule = () => import('../../lib/proficiency/processor');
 
 describe('teacher skill state and walkthrough priority', () => {
+  it('uses the approved rating map when KST has no card or stored points', async () => {
+    const { projectTeacherKnowledgeState, projectTeacherPriority } = await processorModule();
+    const state = projectTeacherKnowledgeState(
+      [],
+      [{ skillId: SKILL_IDS[0], rawRating: 2 }],
+      createFixtureGraph(),
+      [SKILL_IDS[0]],
+      Date.parse(FIXED_NOW),
+    );
+
+    expect(state).toEqual([expect.objectContaining({
+      nodeId: SKILL_IDS[0],
+      retention: 0.8,
+      isProficient: false,
+    })]);
+    expect(projectTeacherPriority(
+      TEACHER_ID,
+      [],
+      [{ skillId: SKILL_IDS[0], rawRating: 2, points: 100, passes: true }],
+      createFixtureGraph(),
+      [SKILL_IDS[0]],
+      Date.parse(FIXED_NOW),
+    )).toEqual([expect.objectContaining({
+      currentProficiency: { rawRating: 2, points: 80, passes: false },
+    })]);
+  });
+
   it('uses the canonical teacher, skill, and variant card identity and caps a stable valid review at 180 days', async () => {
     const { processTeacherEvidence } = await processorModule();
     const port = new MemoryTeacherProficiencyPort({ cards: [createStableDueCard()] });
@@ -64,6 +91,7 @@ describe('teacher skill state and walkthrough priority', () => {
     expect(result.knowledgeState.map((entry: { nodeId: string }) => entry.nodeId)).toEqual([SKILL_IDS[0]]);
     expect(state.knowledgeState.map((entry) => entry.nodeId)).toEqual([SKILL_IDS[0]]);
     expect(result.priority).toEqual([expect.objectContaining({
+      teacherId: TEACHER_ID,
       skillId: SKILL_IDS[0],
       due: expect.any(Boolean),
       overdueDays: expect.any(Number),

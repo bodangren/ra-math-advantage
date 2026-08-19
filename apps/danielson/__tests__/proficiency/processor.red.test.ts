@@ -122,8 +122,8 @@ describe('teacher proficiency evidence processor', () => {
     const graph = createFixtureGraph();
     const firstEvidence = createRatedEvidence({ targetSkillIds: [...SKILL_IDS] });
 
-    await expect(processTeacherEvidence({ evidence: firstEvidence, graph, now: FIXED_NOW, port }))
-      .resolves.toMatchObject({ kind: 'applied' });
+    const firstResult = await processTeacherEvidence({ evidence: firstEvidence, graph, now: FIXED_NOW, port });
+    expect(firstResult).toMatchObject({ kind: 'applied' });
     const beforeReplay = await port.snapshot();
 
     await expect(processTeacherEvidence({
@@ -131,7 +131,7 @@ describe('teacher proficiency evidence processor', () => {
       graph,
       now: FIXED_NOW,
       port,
-    })).resolves.toMatchObject({ kind: 'replayed' });
+    })).resolves.toEqual({ ...firstResult, kind: 'replayed' });
     expect(await port.snapshot()).toBe(beforeReplay);
     expect(port.commits).toHaveLength(1);
 
@@ -140,7 +140,7 @@ describe('teacher proficiency evidence processor', () => {
       graph,
       now: FIXED_NOW,
       port,
-    })).resolves.toMatchObject({ kind: 'conflict' });
+    })).resolves.toMatchObject({ kind: 'idempotency_conflict' });
     expect(await port.snapshot()).toBe(beforeReplay);
     expect(port.commits).toHaveLength(1);
   });
@@ -178,6 +178,81 @@ describe('teacher proficiency evidence processor', () => {
     const afterReplay = await port.getTeacherState(TEACHER_ID);
 
     expect(scoringSnapshot(afterReplay)).toBe(beforeScoring);
+    expect(port.commits).toHaveLength(1);
+  });
+
+  it('keeps review identities unique when two commands share one source record', async () => {
+    const { processTeacherEvidence } = await processorModule();
+    const port = new MemoryTeacherProficiencyPort();
+    const reversePort = new MemoryTeacherProficiencyPort();
+    const graph = createFixtureGraph();
+    const shared = {
+      sourceRecordId: 'observation_records:shared-source',
+      sourceType: 'walkthrough' as const,
+      formalObservationId: undefined,
+      targetSkillIds: [SKILL_IDS[0]],
+      occurredAt: '2026-08-10T00:00:00.000Z',
+    };
+    const commandOne = createRatedEvidence({
+      ...shared,
+      idempotencyKey: 'shared-source-command-one',
+      provenanceGroupId: 'provenance:shared-source-command-one',
+      rating: 1,
+    });
+    const commandTwo = createRatedEvidence({
+      ...shared,
+      idempotencyKey: 'shared-source-command-two',
+      provenanceGroupId: 'provenance:shared-source-command-two',
+      rating: 4,
+    });
+
+    await processTeacherEvidence({ evidence: commandOne, graph, now: FIXED_NOW, port });
+    await processTeacherEvidence({ evidence: commandTwo, graph, now: FIXED_NOW, port });
+    await processTeacherEvidence({ evidence: commandTwo, graph, now: FIXED_NOW, port: reversePort });
+    const commandTwoOriginal = (await reversePort.getTeacherState(TEACHER_ID)).reviews[0];
+    await processTeacherEvidence({ evidence: commandOne, graph, now: FIXED_NOW, port: reversePort });
+
+    const state = await port.getTeacherState(TEACHER_ID);
+    const reverseState = await reversePort.getTeacherState(TEACHER_ID);
+    expect(state.reviews).toHaveLength(2);
+    expect(new Set(state.reviews.map((review) => review.reviewId)).size).toBe(2);
+    expect(state.cards).toEqual([expect.objectContaining({ reps: 2 })]);
+    expect(reverseState.cards).toEqual(state.cards);
+    expect(reverseState.proficiency).toEqual(state.proficiency);
+    expect(reverseState.knowledgeState).toEqual(state.knowledgeState);
+    expect(new Set(reverseState.reviews.map((review) => review.reviewId)).size).toBe(3);
+    expect(reverseState.reviews).toContainEqual(expect.objectContaining({
+      isCorrection: true,
+      correctionIdempotencyKey: commandOne.idempotencyKey,
+      correctionSourceRecordId: commandOne.sourceRecordId,
+    }));
+    expect(reverseState.reviews.find((review) => review.reviewId === commandTwoOriginal.reviewId))
+      .toEqual(commandTwoOriginal);
+  });
+
+  it('replays one Q1 command across empty, partial, and full target representations', async () => {
+    const { processTeacherEvidence } = await processorModule();
+    const port = new MemoryTeacherProficiencyPort();
+    const graph = createFixtureGraph();
+    const first = await processTeacherEvidence({
+      evidence: createRatedEvidence({ targetSkillIds: [SKILL_IDS[0]] }),
+      graph,
+      now: FIXED_NOW,
+      port,
+    });
+
+    await expect(processTeacherEvidence({
+      evidence: createRatedEvidence({ targetSkillIds: [] }),
+      graph,
+      now: FIXED_NOW,
+      port,
+    })).resolves.toEqual({ ...first, kind: 'replayed' });
+    await expect(processTeacherEvidence({
+      evidence: createRatedEvidence({ targetSkillIds: [...SKILL_IDS].reverse() }),
+      graph,
+      now: FIXED_NOW,
+      port,
+    })).resolves.toEqual({ ...first, kind: 'replayed' });
     expect(port.commits).toHaveLength(1);
   });
 });

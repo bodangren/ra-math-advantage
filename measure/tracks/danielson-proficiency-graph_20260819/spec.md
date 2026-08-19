@@ -100,7 +100,8 @@ component must not cancel a rating of 1 or 2 in another component.
 
 ## Non-Functional Requirements
 
-- Reuse `knowledge-space-core`, `knowledge-space-practice`, and `srs-engine`.
+- Reuse `knowledge-space-core` and `srs-engine`.
+  Track 3 can add `knowledge-space-practice` when it creates the ranked queue.
   Do not create an application-local graph engine or scheduler.
 - Do not reuse `learning-evidence.v1` for observations of teachers. That
   contract describes student learning evidence.
@@ -108,6 +109,8 @@ component must not cancel a rating of 1 or 2 in another component.
   payloads.
 - Use deterministic adapters and a supplied clock in tests.
 - Preserve source and evidence history. Do not overwrite earlier events.
+- Append a review correction when late evidence changes a later SRS transition.
+- Use the processing clock for persistence audit timestamps.
 - Keep queries bounded and indexed. Avoid one query for each teacher or skill.
 
 ## Acceptance Criteria

@@ -10,6 +10,7 @@
 
 import type * as auth from "../auth.js";
 import type * as foundation from "../foundation.js";
+import type * as proficiency from "../proficiency.js";
 
 import type {
   ApiFromModules,
@@ -20,6 +21,7 @@ import type {
 declare const fullApi: ApiFromModules<{
   auth: typeof auth;
   foundation: typeof foundation;
+  proficiency: typeof proficiency;
 }>;
 
 /**

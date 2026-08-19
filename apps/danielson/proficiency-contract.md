@@ -40,9 +40,9 @@ The graph uses these stable ID patterns.
 | Record | ID pattern | Node kind |
 |---|---|---|
 | Framework root | `danielson.framework.2022` | `domain` |
-| Domain | `danielson.domain.<number>` | `content_group` |
-| Component | `danielson.component.<code>` | `instructional_unit` |
-| TLAC skill | `tlac3.skill.<source-id>` | `skill` |
+| Domain | `danielson.framework.domain.<number>` | `content_group` |
+| Component | `danielson.framework.component.<code>` | `instructional_unit` |
+| TLAC skill | `danielson.tlac.skill.<source-id>` | `skill` |
 
 The graph has one root, four domains, and 22 components.
 Each imported skill has one parent component.
@@ -71,6 +71,7 @@ Each command has these fields:
 - `teacherProfileId`
 - `observerAccountId`
 - `sourceRecordId`
+- `formalObservationId` for a formal observation
 - `sourceType`
 - `componentId`
 - `targetSkillIds`
@@ -81,6 +82,8 @@ Each command has these fields:
 
 `sourceType` is `walkthrough`, `formal_q1`, or `formal_q4`.
 The app sorts and de-duplicates target IDs before it creates the content hash.
+For Q1, the app replaces every valid target representation with the complete
+direct-child skill set before it creates the content hash.
 The app rejects an unknown skill.
 The app rejects a skill outside the selected component.
 The evidence record does not accept a public comment, private comment, teacher
@@ -117,13 +120,28 @@ A different normalized command with the same key returns
 The mutation writes the outcome, skill effects, cards, and review logs in one
 transaction.
 
+The processing clock sets `createdAt` and `updatedAt` audit fields.
+The evidence event time sets `occurredAt` and the SRS review time.
+An in-order event updates the current card from its current state.
+A late event rebuilds the effective event-time order from a bounded history.
+If required history is outside that bound, the app rejects the late event.
+It continues to accept later in-order events.
+
+The app does not change an earlier SRS review row.
+If a late event changes a later SRS transition, the app appends a correction
+revision for the later logical review.
+The idempotency key and skill ID identify a logical SRS review in one
+organization.
+The correction idempotency key identifies one physical correction revision.
+The latest revision for each logical review defines the effective SRS timeline.
+
 A `not_enough_evidence` command stores only the immutable observation outcome.
 It creates no proficiency effect, KST change, SRS card, or SRS review.
 
 ## KST and SRS Rule
 
 The app uses `@math-platform/srs-engine` to create and schedule cards.
-The app uses one stable variant key: `danielson.proficiency.v1`.
+The app uses the stable skill ID as the card variant key.
 It maps the teacher profile ID to the canonical card `studentId` field at the
 package boundary.
 It does not change the shared package.

@@ -13,6 +13,8 @@
     "@math-platform/app-shell": "*",
     "@math-platform/core-auth": "*",
     "@math-platform/core-convex": "*",
+    "@math-platform/knowledge-space-core": "*",
+    "@math-platform/srs-engine": "*",
     "convex": "^1.40.0",
     "next": "^16.0.0",
     "react": "^19.2.7",

@@ -121,13 +121,14 @@ function targetTypeFor(action: Action) {
   return 'department' as const;
 }
 
-export const resolveAccessContext = internalQuery({
+/** Resolve fresh Danielson roles and subject scope from current database rows. */
+export async function resolveAccessContextForDb(
+  ctx: Pick<QueryCtx, 'db'>,
   args: {
-    actorAccountId: v.id('accounts'),
-    subjectAccountId: v.optional(v.id('accounts')),
+    actorAccountId: Id<'accounts'>;
+    subjectAccountId?: Id<'accounts'>;
   },
-  returns: accessContextValidator,
-  handler: async (ctx, args) => {
+) {
     const actor = await ctx.db.get(args.actorAccountId);
     if (!actor) {
       return {
@@ -249,7 +250,15 @@ export const resolveAccessContext = internalQuery({
       })),
       coachTeacherAssignments,
     };
+}
+
+export const resolveAccessContext = internalQuery({
+  args: {
+    actorAccountId: v.id('accounts'),
+    subjectAccountId: v.optional(v.id('accounts')),
   },
+  returns: accessContextValidator,
+  handler: resolveAccessContextForDb,
 });
 
 async function resolveSysadminActor(ctx: QueryCtx, actorAccountId: Id<'accounts'>) {

@@ -92,6 +92,13 @@ describe('Danielson graph content', () => {
     duplicateNode.nodes.push(structuredClone(duplicateNode.nodes[0]));
     expect(validateDanielsonGraph(duplicateNode)).toMatchObject({ valid: false });
 
+    const duplicateEdgeId = structuredClone(validGraph);
+    duplicateEdgeId.edges[1].id = duplicateEdgeId.edges[0].id;
+    expect(validateDanielsonGraph(duplicateEdgeId)).toMatchObject({
+      valid: false,
+      issues: expect.arrayContaining([expect.objectContaining({ code: 'DUPLICATE_EDGE_ID' })]),
+    });
+
     const danglingEndpoint = structuredClone(validGraph);
     danglingEndpoint.edges[0].targetId = 'danielson.framework.missing.node';
     expect(validateDanielsonGraph(danglingEndpoint)).toMatchObject({ valid: false });

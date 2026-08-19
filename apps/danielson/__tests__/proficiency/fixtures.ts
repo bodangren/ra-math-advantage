@@ -10,6 +10,12 @@ export type FixtureNode = {
   sourceRefs: Array<{ source: string; location?: string }>;
   reviewStatus: 'approved' | 'reviewed' | 'draft';
   metadata: Record<string, unknown>;
+  exceptions?: Array<{
+    type: 'alignment' | 'generator' | 'source' | 'other';
+    reason: string;
+    reviewer?: string;
+    date?: string;
+  }>;
 };
 
 export type FixtureEdge = {
@@ -115,7 +121,7 @@ export function createFixtureGraph(): FixtureGraph {
   const skills: FixtureNode[] = [
     'double-plan',
     'change-the-pace',
-    'exemplar-planning',
+    'engineer-efficiency',
   ].map((techniqueId) => ({
     id: `danielson.tlac.skill.${techniqueId}`,
     kind: 'skill' as const,
@@ -124,6 +130,12 @@ export function createFixtureGraph(): FixtureGraph {
     sourceRefs: [{ source: 'Teach Like a Champion 3.0' }],
     reviewStatus: 'approved' as const,
     metadata: { techniqueId },
+    exceptions: [{
+      type: 'alignment' as const,
+      reason: 'The app aligns this skill to a Danielson component.',
+      reviewer: 'Danielson internal review',
+      date: '2026-08-19',
+    }],
   }));
   const edges: FixtureEdge[] = [
     ...domains.map((domain) => ({
@@ -171,7 +183,7 @@ export const COMPONENT_1E = 'danielson.framework.component.1e';
 export const SKILL_IDS = [
   'danielson.tlac.skill.change-the-pace',
   'danielson.tlac.skill.double-plan',
-  'danielson.tlac.skill.exemplar-planning',
+  'danielson.tlac.skill.engineer-efficiency',
 ] as const;
 
 export function createRatedEvidence(overrides: Record<string, unknown> = {}) {
@@ -228,7 +240,12 @@ export function createStableDueCard(overrides: Record<string, unknown> = {}) {
 
 export type TeacherState = {
   teacherId: string;
-  idempotency: Array<{ key: string; fingerprint: string }>;
+  historyComplete?: boolean;
+  idempotency: Array<{
+    key: string;
+    fingerprint: string;
+    result: import('../../lib/proficiency/processor').TeacherEvidenceSnapshot;
+  }>;
   observationOutcomes: Array<Record<string, unknown>>;
   cards: Array<Record<string, unknown>>;
   reviews: Array<Record<string, unknown>>;
@@ -240,7 +257,8 @@ export type TeacherState = {
 
 export type TeacherEvidenceCommit = {
   teacherId: string;
-  idempotency: { key: string; fingerprint: string };
+  committedAt: number;
+  idempotency: TeacherState['idempotency'][number];
   outcome: Record<string, unknown>;
   cards?: Array<Record<string, unknown>>;
   reviews?: Array<Record<string, unknown>>;
@@ -292,11 +310,45 @@ export class MemoryTeacherProficiencyPort {
     const state = await this.getTeacherState(commit.teacherId);
     state.idempotency.push(commit.idempotency);
     state.observationOutcomes.push(clone(commit.outcome));
-    state.cards = clone(commit.cards ?? state.cards);
-    state.reviews = [...state.reviews, ...clone(commit.reviews ?? [])];
-    state.proficiency = clone(commit.proficiency ?? state.proficiency);
-    state.knowledgeState = clone(commit.knowledgeState ?? state.knowledgeState);
-    state.priority = clone(commit.priority ?? state.priority);
+    if (commit.cards?.length) {
+      const cardBySkill = new Map(state.cards.map((card) => [String(card.objectiveId), card]));
+      for (const card of clone(commit.cards)) cardBySkill.set(String(card.objectiveId), card);
+      state.cards = [...cardBySkill.values()];
+    }
+    const reviewById = new Map(
+      state.reviews.map((review) => [String(review.reviewId), review]),
+    );
+    for (const review of clone(commit.reviews ?? [])) {
+      reviewById.set(String(review.reviewId), review);
+    }
+    state.reviews = [...reviewById.values()];
+    if (commit.proficiency?.length) {
+      const proficiencyBySkill = new Map(
+        state.proficiency.map((item) => [String(item.skillId), item]),
+      );
+      for (const item of clone(commit.proficiency)) {
+        proficiencyBySkill.set(String(item.skillId), item);
+      }
+      state.proficiency = [...proficiencyBySkill.values()];
+    }
+    if (commit.knowledgeState?.length) {
+      const knowledgeByNode = new Map(
+        state.knowledgeState.map((item) => [String(item.nodeId), item]),
+      );
+      for (const item of clone(commit.knowledgeState)) {
+        knowledgeByNode.set(String(item.nodeId), item);
+      }
+      state.knowledgeState = [...knowledgeByNode.values()];
+    }
+    if (commit.priority?.length) {
+      const priorityBySkill = new Map(
+        state.priority.map((item) => [String(item.skillId), item]),
+      );
+      for (const item of clone(commit.priority)) {
+        priorityBySkill.set(String(item.skillId), item);
+      }
+      state.priority = [...priorityBySkill.values()];
+    }
     if (commit.annotation) state.annotations.push(clone(commit.annotation));
     this.states.set(commit.teacherId, state);
     this.commits.push(clone(commit));

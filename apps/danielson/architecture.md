@@ -22,7 +22,6 @@ The app can import these shared packages:
 - `@math-platform/core-convex`
 - `@math-platform/app-shell`
 - `@math-platform/knowledge-space-core`
-- `@math-platform/knowledge-space-practice`
 - `@math-platform/srs-engine`
 
 The app must not copy code from these packages. A new shared dependency needs

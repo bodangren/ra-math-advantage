@@ -39,6 +39,30 @@ describe('Danielson observation evidence contract', () => {
     expect(noEvidence).not.toHaveProperty('rating');
   });
 
+  it('accepts the documented command fields and nested outcome', async () => {
+    const { normalizeObservationEvidence } = await evidenceModule();
+    const source = createRatedEvidence();
+    const documented = {
+      idempotencyKey: source.idempotencyKey,
+      organizationId: source.organizationId,
+      teacherProfileId: source.teacherId,
+      observerAccountId: source.observerId,
+      sourceRecordId: source.sourceRecordId,
+      formalObservationId: source.formalObservationId,
+      sourceType: source.sourceType,
+      componentId: source.componentId,
+      targetSkillIds: source.targetSkillIds,
+      eventTime: source.occurredAt,
+      sourceVersion: source.sourceVersion,
+      provenanceGroupId: source.provenanceGroupId,
+      outcome: { kind: 'rated', rating: source.rating },
+    };
+
+    expect(normalizeObservationEvidence(documented, createFixtureGraph())).toEqual(
+      normalizeObservationEvidence(source, createFixtureGraph()),
+    );
+  });
+
   it('uses normalized content for logical equality even when the caller orders targets differently', async () => {
     const { normalizeObservationEvidence } = await evidenceModule();
     const graph = createFixtureGraph();
