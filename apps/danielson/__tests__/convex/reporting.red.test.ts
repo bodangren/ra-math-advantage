@@ -301,7 +301,8 @@ function seedGbfAssignment(
   db: MemoryDb,
   input: { assignedAt?: number; requestId?: string; privateSentinel?: string } = {},
 ) {
-  db.seed('teacher_gbf_assignments', `teacher_gbf_assignments:${input.requestId ?? 'one'}`, {
+  const assignmentId = `teacher_gbf_assignments:${input.requestId ?? 'one'}`;
+  db.seed('teacher_gbf_assignments', assignmentId, {
     organizationId: ORG,
     teacherProfileId: TEACHER,
     sequenceReleaseId: 'danielson.gbf.sequence.2026-08-19.v1',
@@ -313,6 +314,8 @@ function seedGbfAssignment(
     fingerprint: input.privateSentinel ?? 'fingerprint:gbf:one',
     assignedAt: input.assignedAt ?? NOW,
   });
+  const teacher = db.rows('teacher_profiles').find((row) => row._id === TEACHER);
+  if (teacher) teacher.currentGbfAssignmentId = assignmentId;
 }
 
 function seedGbfProficiency(db: MemoryDb, skillId: string, rating: 1 | 2 | 3 | 4) {
@@ -439,14 +442,20 @@ describe('Danielson reporting Convex boundary', () => {
     });
     expect(Object.keys(teacher?.gbf as Record<string, unknown>).sort()).toEqual([
       'contractVersion',
+      'dueSkillCount',
       'managementPhaseId',
       'rigorPhaseId',
       'state',
+      'unresolvedGapSkillCount',
     ]);
-    expect(db.queryCalls.filter((call) => call.table === 'teacher_gbf_assignments'))
+    expect(db.queryCalls.filter((call) => call.table === 'teacher_profiles'))
       .toEqual([{
-        table: 'teacher_gbf_assignments',
-        index: 'by_org_time',
+        table: 'teacher_profiles',
+        index: 'by_organizationId_and_isActive',
+        take: 251,
+      }, {
+        table: 'teacher_profiles',
+        index: 'by_organizationId_and_isActive',
         take: 251,
       }]);
   });
@@ -496,13 +505,10 @@ describe('Danielson reporting Convex boundary', () => {
     expect(JSON.stringify({ teacher: teacherReport.gbf, leadership: leadershipReport.gbf }))
       .not.toMatch(/PRIVATE-GBF-FINGERPRINT|actorAccountId|requestId|fingerprint/);
     expect(db.queryCalls.filter((call) => call.table === 'teacher_gbf_assignments'))
-      .toEqual([
-        { table: 'teacher_gbf_assignments', index: 'by_org_teacher_time', take: 101 },
-        { table: 'teacher_gbf_assignments', index: 'by_org_teacher_time', take: 101 },
-      ]);
+      .toEqual([]);
   });
 
-  it('maps assignment read overflow to existing report capacity results', async () => {
+  it('does not treat immutable assignment history as current portfolio capacity', async () => {
     const portfolioDb = new MemoryDb();
     seedBase(portfolioDb);
     for (let index = 0; index < 251; index += 1) {
@@ -511,12 +517,16 @@ describe('Danielson reporting Convex boundary', () => {
         requestId: `request:portfolio-capacity:${index}`,
       });
     }
+    const latestAssignment = portfolioDb.rows('teacher_gbf_assignments').at(-1);
+    await portfolioDb.patch(TEACHER, {
+      currentGbfAssignmentId: latestAssignment?._id,
+    });
     await expect(handler(readLeadershipPortfolio)(portfolioDb.context(), {
       actorAccountId: LEADER,
       now: NOW_ISO,
       cursor: null,
       pageSize: 25,
-    })).resolves.toEqual({ kind: 'portfolio_capacity_exceeded' });
+    })).resolves.toMatchObject({ kind: 'allowed' });
 
     const teacherDb = new MemoryDb();
     seedBase(teacherDb);
@@ -529,7 +539,7 @@ describe('Danielson reporting Convex boundary', () => {
     await expect(handler(readMyTeacherReport)(teacherDb.context(), {
       actorAccountId: TEACHER_ACCOUNT,
       now: NOW_ISO,
-    })).resolves.toEqual({ kind: 'teacher_report_capacity_exceeded' });
+    })).resolves.toMatchObject({ kind: 'allowed' });
   });
 
   it('paginates 61 compact portfolio rows and makes no database write', async () => {

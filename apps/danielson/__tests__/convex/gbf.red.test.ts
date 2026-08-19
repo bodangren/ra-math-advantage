@@ -412,6 +412,8 @@ describe('GBF assignment authorization and persistence', () => {
         .toEqual(expect.arrayContaining(['danielson.tlac.skill.knowledge-organizers']));
       expect(db.rows('teacher_gbf_assignments')[0].assignedSkillIds).toHaveLength(50);
       expect(db.rows('teacher_gbf_assignments')[0].unsequencedGapSkillIds).toHaveLength(13);
+      expect(db.rows('teacher_profiles').find((row) => row._id === TEACHER))
+        .toMatchObject({ currentGbfAssignmentId: db.rows('teacher_gbf_assignments')[0]._id });
     },
   );
 
@@ -568,8 +570,10 @@ describe('GBF assignment authorization and persistence', () => {
 
     expect(db.rows('teacher_gbf_assignments')).toHaveLength(2);
     expect(db.rows('teacher_gbf_assignments')[0]).toEqual(first);
-    expect(db.patches).toEqual([]);
+    expect(db.patches.filter((id) => id.startsWith('teacher_gbf_assignments:'))).toEqual([]);
     expect(db.deletions).toEqual([]);
+    expect(db.rows('teacher_profiles').find((row) => row._id === TEACHER))
+      .toMatchObject({ currentGbfAssignmentId: db.rows('teacher_gbf_assignments')[1]._id });
     const current = await readTeacherGbfAssignment(db.context(), ORG, TEACHER);
     expect(current).toMatchObject({
       kind: 'allowed',
@@ -619,10 +623,13 @@ describe('GBF assignment read bounds', () => {
     const db = new MemoryDb();
     for (let index = 0; index < 250; index += 1) {
       const teacherProfileId = `teacher_profiles:${index}`;
+      const accountId = `accounts:${index}`;
+      let currentAssignmentId = '';
       for (let historyIndex = 0; historyIndex < 100; historyIndex += 1) {
+        currentAssignmentId = `teacher_gbf_assignments:${index}:${historyIndex}`;
         db.seed(
           'teacher_gbf_assignments',
-          `teacher_gbf_assignments:${index}:${historyIndex}`,
+          currentAssignmentId,
           assignmentRow({
             teacherProfileId,
             requestId: `request:${index}:${historyIndex}`,
@@ -630,6 +637,14 @@ describe('GBF assignment read bounds', () => {
           }),
         );
       }
+      db.seed('teacher_profiles', teacherProfileId, {
+        organizationId: ORG,
+        accountId,
+        isActive: true,
+        currentGbfAssignmentId: currentAssignmentId,
+        createdAt: NOW,
+        updatedAt: NOW,
+      });
     }
 
     const result = await readOrganizationCurrentGbfAssignments(db.context(), ORG);
@@ -641,35 +656,68 @@ describe('GBF assignment read bounds', () => {
     expect(result.assignmentsByTeacher.size).toBe(250);
     expect(result.assignmentsByTeacher.get('teacher_profiles:0'))
       .toMatchObject({ assignedAt: NOW + 99 });
-    expect(db.queryCalls.filter((call) => call.table === 'teacher_gbf_assignments'))
+    expect(db.queryCalls)
       .toEqual([{
-        table: 'teacher_gbf_assignments',
-        index: 'by_org_time',
-        take: 25_001,
+        table: 'teacher_profiles',
+        index: 'by_organizationId_and_isActive',
+        take: 251,
       }]);
   });
 
   it('returns a capacity error when 251 current teachers exist', async () => {
     const db = new MemoryDb();
     for (let index = 0; index < 251; index += 1) {
+      const teacherProfileId = `teacher_profiles:${index}`;
+      const assignmentId = `teacher_gbf_assignments:${index}`;
       db.seed(
         'teacher_gbf_assignments',
-        `teacher_gbf_assignments:${index}`,
+        assignmentId,
         assignmentRow({
-          teacherProfileId: `teacher_profiles:${index}`,
+          teacherProfileId,
           requestId: `request:${index}`,
           assignedAt: NOW + index,
         }),
       );
+      db.seed('teacher_profiles', teacherProfileId, {
+        organizationId: ORG,
+        accountId: `accounts:${index}`,
+        isActive: true,
+        currentGbfAssignmentId: assignmentId,
+        createdAt: NOW,
+        updatedAt: NOW,
+      });
     }
 
     await expect(readOrganizationCurrentGbfAssignments(db.context(), ORG))
       .resolves.toEqual({ kind: 'capacity_exceeded' });
-    expect(db.queryCalls.filter((call) => call.table === 'teacher_gbf_assignments'))
+    expect(db.queryCalls)
       .toEqual([{
-        table: 'teacher_gbf_assignments',
-        index: 'by_org_time',
-        take: 25_001,
+        table: 'teacher_profiles',
+        index: 'by_organizationId_and_isActive',
+        take: 251,
       }]);
+  });
+
+  it('does not use a current pointer that belongs to another teacher', async () => {
+    const db = new MemoryDb();
+    db.seed('teacher_gbf_assignments', 'teacher_gbf_assignments:other', assignmentRow({
+      teacherProfileId: 'teacher_profiles:other',
+      requestId: 'request:other',
+      assignedAt: NOW,
+    }));
+    db.seed('teacher_profiles', TEACHER, {
+      organizationId: ORG,
+      accountId: 'accounts:teacher',
+      isActive: true,
+      currentGbfAssignmentId: 'teacher_gbf_assignments:other',
+      createdAt: NOW,
+      updatedAt: NOW,
+    });
+
+    const result = await readOrganizationCurrentGbfAssignments(db.context(), ORG);
+
+    expect(result).toMatchObject({ kind: 'allowed' });
+    if (result.kind !== 'allowed') throw new Error('Expected bounded organization assignments');
+    expect(result.assignmentsByTeacher.size).toBe(0);
   });
 });

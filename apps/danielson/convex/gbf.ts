@@ -11,7 +11,6 @@ import { GBF_SEQUENCE_RELEASE } from '../lib/gbf/source';
 const MAX_REQUEST_ID_LENGTH = 200;
 const MAX_TEACHER_ASSIGNMENTS = 100;
 const MAX_ORGANIZATION_ASSIGNMENTS = 250;
-const MAX_ORGANIZATION_ASSIGNMENT_ROWS = 25_000;
 
 const deniedValidator = v.object({ kind: v.literal('denied'), reason: v.string() });
 const receiptFields = {
@@ -78,6 +77,19 @@ export async function readTeacherGbfAssignment(
   | { kind: 'capacity_exceeded' }
   | { kind: 'allowed'; assignment: GbfAssignmentView }
 > {
+  const teacher = await database(ctx).get(teacherProfileId as Id<'teacher_profiles'>);
+  if (
+    teacher?.organizationId === organizationId
+    && teacher.currentGbfAssignmentId
+  ) {
+    const current = await database(ctx).get(teacher.currentGbfAssignmentId);
+    if (
+      !current
+      || current.organizationId !== organizationId
+      || current.teacherProfileId !== teacherProfileId
+    ) return { kind: 'capacity_exceeded' };
+    return { kind: 'allowed', assignment: assignmentView(current) };
+  }
   const rows = await database(ctx).query('teacher_gbf_assignments')
     .withIndex('by_org_teacher_time', (query) => query
       .eq('organizationId', organizationId as Id<'organizations'>)
@@ -99,21 +111,29 @@ export async function readOrganizationCurrentGbfAssignments(
   | { kind: 'capacity_exceeded' }
   | { kind: 'allowed'; assignmentsByTeacher: Map<string, GbfAssignmentView> }
 > {
-  const rows = await database(ctx).query('teacher_gbf_assignments')
-    .withIndex('by_org_time', (query) => query
-      .eq('organizationId', organizationId as Id<'organizations'>))
-    .order('desc')
-    .take(MAX_ORGANIZATION_ASSIGNMENT_ROWS + 1);
-  if (rows.length > MAX_ORGANIZATION_ASSIGNMENT_ROWS) return { kind: 'capacity_exceeded' };
+  const teachers = await database(ctx).query('teacher_profiles')
+    .withIndex('by_organizationId_and_isActive', (query) => query
+      .eq('organizationId', organizationId as Id<'organizations'>)
+      .eq('isActive', true))
+    .take(MAX_ORGANIZATION_ASSIGNMENTS + 1);
+  if (teachers.length > MAX_ORGANIZATION_ASSIGNMENTS) return { kind: 'capacity_exceeded' };
+  const rows = await Promise.all(teachers.map((teacher) => (
+    teacher.currentGbfAssignmentId
+      ? database(ctx).get(teacher.currentGbfAssignmentId)
+      : Promise.resolve(null)
+  )));
   const assignmentsByTeacher = new Map<string, GbfAssignmentView>();
-  for (const row of rows) {
+  for (let index = 0; index < rows.length; index += 1) {
+    const row = rows[index];
+    const teacher = teachers[index];
+    if (
+      !row
+      || !teacher
+      || row.organizationId !== organizationId
+      || row.teacherProfileId !== teacher._id
+    ) continue;
     const teacherProfileId = String(row.teacherProfileId);
-    if (!assignmentsByTeacher.has(teacherProfileId)) {
-      assignmentsByTeacher.set(teacherProfileId, assignmentView(row));
-    }
-  }
-  if (assignmentsByTeacher.size > MAX_ORGANIZATION_ASSIGNMENTS) {
-    return { kind: 'capacity_exceeded' };
+    assignmentsByTeacher.set(teacherProfileId, assignmentView(row));
   }
   return { kind: 'allowed', assignmentsByTeacher };
 }
@@ -199,6 +219,10 @@ export const assignTeacherGbfTrack = internalMutation({
       requestId: args.requestId,
       fingerprint,
       assignedAt: args.now,
+    });
+    await ctx.db.patch(args.teacherProfileId, {
+      currentGbfAssignmentId: assignmentId,
+      updatedAt: args.now,
     });
     return {
       kind: 'assigned' as const,
