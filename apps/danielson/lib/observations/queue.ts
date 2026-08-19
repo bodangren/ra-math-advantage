@@ -7,8 +7,8 @@ import {
 } from './contracts';
 
 const REASON_ORDER: Record<ObservationPriorityReason, number> = {
-  below_proficient: 0,
-  approved_plan_priority: 1,
+  approved_plan_priority: 0,
+  below_proficient: 1,
   overdue: 2,
   evidence_gap: 3,
   due: 4,
@@ -47,11 +47,11 @@ export type RankedTeacherQueueItem = TeacherQueueCandidate & {
 };
 
 function reasonFor(priority: PriorityProjection): ObservationPriorityReason | null {
-  const rating = priority.currentProficiency.rawRating;
-  if (typeof rating === 'number' && rating < 3) return 'below_proficient';
   if (priority.approvedPriorityInputs.includes('approved_plan_priority')) {
     return 'approved_plan_priority';
   }
+  const rating = priority.currentProficiency.rawRating;
+  if (typeof rating === 'number' && rating < 3) return 'below_proficient';
   if (priority.due && priority.overdueDays > 0) return 'overdue';
   if (priority.evidenceGaps.length > 0) return 'evidence_gap';
   if (priority.due) return 'due';

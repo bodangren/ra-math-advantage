@@ -16,6 +16,7 @@ export function ImprovementPlanAcknowledgmentForm({
   const [error, setError] = useState('');
   const [saved, setSaved] = useState(false);
   const errorRef = useRef<HTMLDivElement>(null);
+  const requestIdRef = useRef<string | null>(null);
 
   useEffect(() => {
     if (error) errorRef.current?.focus();
@@ -26,6 +27,7 @@ export function ImprovementPlanAcknowledgmentForm({
     setError('');
     setPending(true);
     try {
+      requestIdRef.current ??= globalThis.crypto?.randomUUID?.() ?? `pip-ack-${Date.now()}`;
       const response = await fetch(`/api/improvement-plans/${encodeURIComponent(planId)}/acknowledgments`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -33,15 +35,17 @@ export function ImprovementPlanAcknowledgmentForm({
           planId,
           versionId,
           kind,
-          requestId: globalThis.crypto?.randomUUID?.() ?? `pip-ack-${Date.now()}`,
+          requestId: requestIdRef.current,
         }),
       });
       const result = await response.json() as { error?: string };
       if (!response.ok) {
+        requestIdRef.current = null;
         setError(result.error ?? 'The acknowledgment was not saved.');
         return;
       }
       setSaved(true);
+      requestIdRef.current = null;
     } catch {
       setError('The acknowledgment was not saved.');
     } finally {

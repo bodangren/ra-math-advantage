@@ -178,6 +178,9 @@ const improvementPlanTargetResultValidator = v.object({
     v.literal('below_expected'),
     v.literal('meets_expected'),
   ),
+  evidenceDueAt: v.number(),
+  evidenceDue: v.boolean(),
+  evidenceOverdue: v.boolean(),
 });
 
 export default defineSchema({
@@ -578,6 +581,7 @@ export default defineSchema({
     closedAt: v.optional(v.number()),
     closureOutcome: v.optional(improvementPlanOutcomeValidator),
     closureNote: v.optional(v.string()),
+    closedTargetResults: v.optional(v.array(improvementPlanTargetResultValidator)),
     createdAt: v.number(),
     updatedAt: v.number(),
   })

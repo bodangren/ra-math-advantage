@@ -56,6 +56,7 @@ export function ImprovementPlanProposalForm({
   const [saved, setSaved] = useState(false);
   const [pending, setPending] = useState(false);
   const errorRef = useRef<HTMLDivElement>(null);
+  const requestIdRef = useRef<string | null>(null);
 
   useEffect(() => {
     if (error) errorRef.current?.focus();
@@ -76,13 +77,14 @@ export function ImprovementPlanProposalForm({
       };
     });
     try {
+      requestIdRef.current ??= requestId();
       const response = await fetch('/api/improvement-plans/proposals', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           teacherProfileId,
           planId,
-          requestId: requestId(),
+          requestId: requestIdRef.current,
           expectedRevision,
           position,
           departmentId: selectedDepartmentId,
@@ -100,10 +102,12 @@ export function ImprovementPlanProposalForm({
       });
       const result = await response.json() as { error?: string };
       if (!response.ok) {
+        requestIdRef.current = null;
         setError(result.error ?? 'The proposal was not saved.');
         return;
       }
       setSaved(true);
+      requestIdRef.current = null;
     } catch {
       setError('The proposal was not saved.');
     } finally {

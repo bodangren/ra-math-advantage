@@ -19,12 +19,13 @@ function DecisionForm({
   confirmed: boolean;
   setConfirmed: (value: boolean) => void;
   disabled?: boolean;
-  command: () => { path: string; body: Record<string, unknown> };
+  command: (requestId: string) => { path: string; body: Record<string, unknown> };
 }) {
   const [pending, setPending] = useState(false);
   const [error, setError] = useState('');
   const [saved, setSaved] = useState(false);
   const errorRef = useRef<HTMLDivElement>(null);
+  const requestIdRef = useRef<string | null>(null);
   useEffect(() => {
     if (error) errorRef.current?.focus();
   }, [error]);
@@ -33,7 +34,8 @@ function DecisionForm({
     event.preventDefault();
     setError('');
     setPending(true);
-    const request = command();
+    requestIdRef.current ??= newRequestId(`pip-${action.toLowerCase()}`);
+    const request = command(requestIdRef.current);
     try {
       const response = await fetch(request.path, {
         method: 'POST',
@@ -42,10 +44,12 @@ function DecisionForm({
       });
       const result = await response.json() as { error?: string };
       if (!response.ok) {
+        requestIdRef.current = null;
         setError(result.error ?? `The plan ${action.toLowerCase()} action failed.`);
         return;
       }
       setSaved(true);
+      requestIdRef.current = null;
     } catch {
       setError(`The plan ${action.toLowerCase()} action failed.`);
     } finally {
@@ -100,13 +104,13 @@ export function ImprovementPlanDecisionForms({
             action="Approve"
             confirmed={approveConfirmed}
             setConfirmed={setApproveConfirmed}
-            command={() => ({
+            command={(requestId) => ({
               path: `/api/improvement-plans/${encodeURIComponent(planId)}/approval`,
               body: {
                 planId,
                 versionId,
                 expectedRevision: revision,
-                requestId: newRequestId('pip-approve'),
+                requestId,
               },
             })}
           >
@@ -122,12 +126,12 @@ export function ImprovementPlanDecisionForms({
             confirmed={closeConfirmed}
             setConfirmed={setCloseConfirmed}
             disabled={note.trim().length === 0}
-            command={() => ({
+            command={(requestId) => ({
               path: `/api/improvement-plans/${encodeURIComponent(planId)}/closure`,
               body: {
                 planId,
                 expectedRevision: revision,
-                requestId: newRequestId('pip-close'),
+                requestId,
                 outcome,
                 note,
               },

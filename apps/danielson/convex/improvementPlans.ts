@@ -955,6 +955,19 @@ export async function readOrganizationActiveImprovementPlans(
 async function progressForPlan(ctx: DbCtx, plan: Doc<'improvement_plans'>, now: number) {
   if (!plan.activeVersionId || plan.approvedAt === undefined
     || plan.planEndAt === undefined || plan.reviewMeetingAt === undefined) return null;
+  if (plan.state === 'closed' && plan.closureOutcome && plan.closedAt !== undefined
+    && plan.closedTargetResults) {
+    return {
+      contractVersion: 'danielson.ip-progress.v1' as const,
+      state: 'closed' as const,
+      planId: String(plan._id),
+      version: plan.activeVersion ?? 1,
+      daysRemaining: 0,
+      targets: structuredClone(plan.closedTargetResults),
+      outcome: plan.closureOutcome,
+      closedAt: plan.closedAt,
+    };
+  }
   const [targets, evidence] = await Promise.all([
     readTargets(ctx, plan.organizationId, plan.activeVersionId),
     effectivePlanEvidence(ctx, plan),
@@ -1051,6 +1064,9 @@ export const closeImprovementPlan = internalMutation({
       expectedRating: target.expectedRating,
       currentRating: target.currentRating,
       state: target.state,
+      evidenceDueAt: target.evidenceDueAt,
+      evidenceDue: target.evidenceDue,
+      evidenceOverdue: target.evidenceOverdue,
     }));
     const revision = plan.revision + 1;
     await ctx.db.patch(plan._id, {
@@ -1059,6 +1075,7 @@ export const closeImprovementPlan = internalMutation({
       closedAt: args.now,
       closureOutcome: args.outcome,
       closureNote: note,
+      closedTargetResults: targetResults,
       updatedAt: args.now,
     });
     await ctx.db.insert('improvement_plan_events', {
