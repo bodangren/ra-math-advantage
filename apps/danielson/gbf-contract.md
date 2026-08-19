@@ -176,8 +176,9 @@ fields:
 - Actor account ID.
 - Assignment time.
 
-Only an active system administrator in the same organization can create the
-assignment. The teacher account and profile must be active. The assignment
+Only an active school head or SLT member in the same organization can create
+the assignment. A system administrator role alone cannot assign a professional
+learning track. The teacher account and profile must be active. The assignment
 mutation is idempotent by organization and request ID. An equal retry returns
 the first assignment. Changed content returns `idempotency_conflict`.
 
