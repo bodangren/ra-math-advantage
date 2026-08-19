@@ -138,6 +138,7 @@ class MemoryDb {
       },
       paginate: async ({ cursor, numItems }: { cursor: string | null; numItems: number }) => {
         const start = cursor === null ? 0 : Number(cursor);
+        if (!Number.isInteger(start) || start < 0) throw new Error('Invalid cursor');
         const ordered = descending ? [...matches].reverse() : matches;
         const page = ordered.slice(start, start + numItems);
         const next = start + page.length;
@@ -638,7 +639,7 @@ describe('PIP persistence and authorization', () => {
     }
   });
 
-  it('paginates only scoped plans without leaking raw organization volume', async () => {
+  it('paginates only scoped plans and preserves the opaque source cursor', async () => {
     const db = new MemoryDb();
     seedBase(db);
     db.seed('role_assignments', `role_assignments:${PROPOSER}:school_head`, {
@@ -677,7 +678,7 @@ describe('PIP persistence and authorization', () => {
     });
     expect(result).toEqual({
       kind: 'allowed',
-      page: { page: [], isDone: true, continueCursor: '' },
+      page: { page: [], isDone: false, continueCursor: '1' },
     });
   });
 
@@ -1721,7 +1722,7 @@ describe('PIP final independent-review regressions', () => {
       ...first.page.page.map((plan) => plan.planId),
       ...second.page.page.map((plan) => plan.planId),
     ])).toHaveLength(50);
-    expect(db.queryCount('improvement_plans')).toBe(1);
+    expect(db.queryCount('improvement_plans')).toBe(2);
   });
 
   it('paginates lifecycle detail without an unbounded history read', async () => {

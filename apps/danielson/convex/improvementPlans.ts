@@ -492,8 +492,11 @@ async function readPlanHistoryPage(
       .filter((event) => event.kind === 'approved' && event.versionId)
       .map((event) => String(event.versionId)),
   );
+  const visibleEvents = includePrivate
+    ? result.page
+    : result.page.filter((event) => event.kind !== 'proposed');
   const history: PlanHistoryView = {
-    events: result.page.map((event) => ({
+    events: visibleEvents.map((event) => ({
       eventId: String(event._id),
       kind: event.kind,
       version: event.version,
@@ -1534,24 +1537,17 @@ export const listScopedImprovementPlans = internalQuery({
         .map((profile) => String(profile._id)));
     }
 
-    const organizationPlans = await ctx.db.query('improvement_plans')
-      .withIndex('by_org_created', (query) => query.eq('organizationId', actor.organizationId))
-      .order('desc')
-      .take(251);
-    if (organizationPlans.length > 250) return { kind: 'capacity_exceeded' as const };
-    const plans = organizationPlans
-      .filter((plan) => scopedTeacherIds.has(String(plan.teacherProfileId)))
-      .sort((left, right) => (
-        right.createdAt - left.createdAt || String(right._id).localeCompare(String(left._id))
-      ));
-    const start = args.paginationOpts.cursor === null
-      ? 0
-      : plans.findIndex((plan) => String(plan._id) === args.paginationOpts.cursor) + 1;
-    if (args.paginationOpts.cursor !== null && start === 0) {
+    let organizationPage;
+    try {
+      organizationPage = await ctx.db.query('improvement_plans')
+        .withIndex('by_org_created', (query) => query.eq('organizationId', actor.organizationId))
+        .order('desc')
+        .paginate(args.paginationOpts);
+    } catch {
       return { kind: 'invalid_cursor' as const };
     }
-    const pagePlans = plans.slice(start, start + args.paginationOpts.numItems);
-    const isDone = start + pagePlans.length >= plans.length;
+    const pagePlans = organizationPage.page
+      .filter((plan) => scopedTeacherIds.has(String(plan.teacherProfileId)));
     return {
       kind: 'allowed' as const,
       page: {
@@ -1579,8 +1575,8 @@ export const listScopedImprovementPlans = internalQuery({
             } : null,
           };
         })),
-        isDone,
-        continueCursor: isDone ? '' : String(pagePlans.at(-1)?._id ?? ''),
+        isDone: organizationPage.isDone,
+        continueCursor: organizationPage.continueCursor,
       },
     };
   },
