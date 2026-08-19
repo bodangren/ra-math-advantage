@@ -6,6 +6,7 @@ import { adaptDanielsonRating, isDanielsonRating } from '../proficiency/rating';
 
 export type ReportingState = 'below_proficient' | 'proficient' | 'not_enough_evidence';
 export type AttentionReason = 'below_proficient' | 'overdue_evidence';
+type ReportingPriority = PriorityProjection & { sourceRecordId?: string | null };
 
 export type PortfolioRow = {
   teacherProfileId: string;
@@ -44,11 +45,9 @@ const skillsByComponent = new Map(allComponentIds.map((componentId) => [
     .map((edge) => edge.targetId)
     .filter((skillId) => nodeById.get(skillId)?.kind === 'skill'),
 ]));
-const componentIds = allComponentIds.filter(
-  (componentId) => (skillsByComponent.get(componentId)?.length ?? 0) > 0,
-);
+const componentIds = allComponentIds;
 
-function projectComponentStates(priorities: readonly PriorityProjection[]) {
+function projectComponentStates(priorities: readonly ReportingPriority[]) {
   const priorityBySkill = new Map(priorities.map((priority) => [priority.skillId, priority]));
   return componentIds.map((componentId) => {
     const skillIds = skillsByComponent.get(componentId) ?? [];
@@ -66,7 +65,7 @@ function projectComponentStates(priorities: readonly PriorityProjection[]) {
         due: priority?.due ?? true,
         dueAt: priority?.dueAt ?? null,
         overdueDays: priority?.overdueDays ?? 0,
-        sourceRecordId: null,
+        sourceRecordId: priority?.sourceRecordId ?? null,
       };
     });
     const state: ReportingState = skills.some((skill) => skill.state === 'below_proficient')
@@ -92,7 +91,7 @@ function overallState(components: ReturnType<typeof projectComponentStates>): Re
     : 'not_enough_evidence';
 }
 
-function projectEvidenceDue(priorities: readonly PriorityProjection[]) {
+function projectEvidenceDue(priorities: readonly ReportingPriority[]) {
   const due = priorities.filter((priority) => priority.due);
   const overdue = due.filter((priority) => priority.overdueDays > 0);
   const knownDueDates = priorities
@@ -115,7 +114,7 @@ function projectEvidenceDue(priorities: readonly PriorityProjection[]) {
 export function projectPortfolioRow(input: {
   teacherProfileId: string;
   displayName: string;
-  priorities: readonly PriorityProjection[];
+  priorities: readonly ReportingPriority[];
   now: number;
 }): PortfolioRow {
   void input.now;
@@ -202,7 +201,7 @@ export function paginatePortfolioRows(
 }
 
 /** Project current proficiency at domain, component, and approved-skill levels. */
-export function projectCurrentProficiency(input: { priorities: readonly PriorityProjection[] }) {
+export function projectCurrentProficiency(input: { priorities: readonly ReportingPriority[] }) {
   const components = projectComponentStates(input.priorities);
   const domainById = new Map(graph.nodes
     .filter((node) => node.kind === 'content_group')
