@@ -1,3 +1,6 @@
+import { readFileSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 
 import * as improvementPlanModule from '../../convex/improvementPlans';
@@ -340,6 +343,48 @@ function seedPlan(
     createdAt: updatedAt,
   });
   return planId;
+}
+
+function seedPlanVersion(
+  db: MemoryDb,
+  input: {
+    planId: string;
+    version: number;
+    purpose: string;
+    versionId?: string;
+  },
+) {
+  const versionId = input.versionId ?? `improvement_plan_versions:history-${input.version}`;
+  db.seed('improvement_plan_versions', versionId, {
+    organizationId: ORG,
+    planId: input.planId,
+    teacherProfileId: TEACHER,
+    version: input.version,
+    proposerAccountId: PROPOSER,
+    supervisorAccountId: PROPOSER,
+    teacherName: 'Teacher One',
+    position: 'Mathematics Teacher',
+    departmentId: DEPARTMENT,
+    departmentName: 'Mathematics',
+    supervisorName: 'Supervisor One',
+    requestedPlanEndDate: null,
+    reviewMeetingDate: '2026-09-20',
+    purpose: input.purpose,
+    areasOfConcern: 'Concern.',
+    expectedStandard: 'Danielson Proficient.',
+    requiredActions: 'Required action.',
+    evidenceOfImprovement: 'Rated evidence.',
+    schoolSupport: 'School support.',
+    successfulCompletionCriteria: 'Expected rating met.',
+    insufficientImprovementConsequences: 'Consequences.',
+    acknowledgmentText: 'Acknowledgment.',
+    sourceId: 'school.pip-form.2026-08-19',
+    sourceVersion: '1.0.0',
+    sourceHash: 'source-hash',
+    fingerprint: `fingerprint:history:${input.version}`,
+    proposedAt: NOW + input.version,
+  });
+  return versionId;
 }
 
 function seedClosedPlan(
@@ -1381,5 +1426,323 @@ describe('PIP approval, versions, acknowledgment, and closure', () => {
       now: NOW,
     });
     expect(list).toMatchObject({ kind: 'allowed', page: { page: [{ state: 'active' }] } });
+  });
+});
+
+describe('PIP final independent-review regressions', () => {
+  it('keeps a closed root terminal when it has an old pending revision', async () => {
+    const db = new MemoryDb();
+    seedBase(db);
+    const first = await propose(db) as Record<string, unknown>;
+    await approve(db, first);
+    const pending = await proposeWith(db, {
+      planId: first.planId,
+      requestId: 'request:proposal:closed-pending',
+      expectedRevision: 2,
+      reviewMeetingDate: '2026-11-20',
+      purpose: 'Unapproved revision after the active version.',
+      now: NOW + 1_000,
+    }) as Record<string, unknown>;
+    await closeWith(db, first.planId, {
+      expectedRevision: 3,
+      requestId: 'request:close:closed-pending',
+    });
+
+    await expect(approveWith(db, pending, {
+      expectedRevision: 4,
+      requestId: 'request:approval:closed-pending',
+      now: NOW + 31 * DAY_MS + 1,
+    })).resolves.toEqual({ kind: 'not_found' });
+    expect(db.rows('improvement_plans')[0]).toMatchObject({
+      state: 'closed',
+      activeVersionId: first.versionId,
+      pendingVersionId: undefined,
+    });
+    await expect(handler(readImprovementPlan)(db.context(), {
+      actorAccountId: PROPOSER,
+      planId: first.planId,
+      now: NOW + 31 * DAY_MS + 1,
+    })).resolves.toMatchObject({
+      kind: 'allowed',
+      plan: { state: 'closed', pendingVersion: null },
+    });
+  });
+
+  it('uses the selected historical plan root for its progress projection', async () => {
+    const db = new MemoryDb();
+    seedBase(db);
+    const historical = await propose(db) as Record<string, unknown>;
+    await approve(db, historical);
+    await closeWith(db, historical.planId, {
+      requestId: 'request:close:historical-root',
+      outcome: 'successful',
+      note: 'The historical plan closed successfully.',
+    });
+    const current = await proposeWith(db, {
+      requestId: 'request:proposal:current-root',
+      reviewMeetingDate: '2026-11-20',
+      now: NOW + 32 * DAY_MS,
+    }) as Record<string, unknown>;
+    await approveWith(db, current, {
+      requestId: 'request:approval:current-root',
+      now: NOW + 32 * DAY_MS,
+    });
+
+    await expect(handler(readImprovementPlanReportProjection)(db.context(), {
+      actorAccountId: PROPOSER,
+      teacherProfileId: TEACHER,
+      planId: historical.planId,
+      now: NOW + 33 * DAY_MS,
+    })).resolves.toMatchObject({
+      kind: 'allowed',
+      projection: {
+        state: 'closed',
+        planId: historical.planId,
+        outcome: 'successful',
+      },
+    });
+  });
+
+  it('derives prior versions only from approval events and keeps drafts from the teacher', async () => {
+    const db = new MemoryDb();
+    seedBase(db);
+    const planId = seedPlan(db, 'approval-event-history');
+    const unapprovedVersionId = seedPlanVersion(db, {
+      planId,
+      version: 1,
+      versionId: 'improvement_plan_versions:approval-event-history',
+      purpose: 'Unapproved version one narrative.',
+    });
+    const priorApprovedVersionId = seedPlanVersion(db, {
+      planId,
+      version: 2,
+      purpose: 'Approved version two narrative.',
+    });
+    const activeVersionId = seedPlanVersion(db, {
+      planId,
+      version: 3,
+      purpose: 'Approved active version three narrative.',
+    });
+    const pendingVersionId = seedPlanVersion(db, {
+      planId,
+      version: 4,
+      purpose: 'Unapproved pending version four narrative.',
+    });
+    db.seed('improvement_plans', planId, {
+      organizationId: ORG,
+      teacherProfileId: TEACHER,
+      state: 'active',
+      revision: 6,
+      latestVersion: 4,
+      activeVersionId,
+      activeVersion: 3,
+      pendingVersionId,
+      approvedAt: NOW,
+      planEndAt: NOW + 30 * DAY_MS,
+      reviewMeetingAt: NOW + 20 * DAY_MS,
+      activeTargets: [],
+      createdAt: NOW,
+      updatedAt: NOW,
+    });
+    const event = (
+      id: string,
+      kind: 'proposed' | 'approved',
+      version: number,
+      versionId: string,
+    ) => db.seed('improvement_plan_events', id, {
+      organizationId: ORG,
+      planId,
+      teacherProfileId: TEACHER,
+      version,
+      versionId,
+      kind,
+      requestId: `request:${id}`,
+      fingerprint: `fingerprint:${id}`,
+      actorAccountId: PROPOSER,
+      occurredAt: NOW + version,
+      revision: version,
+      payload: {},
+    });
+    event('improvement_plan_events:proposed-v1', 'proposed', 1, unapprovedVersionId);
+    event('improvement_plan_events:approved-v2', 'approved', 2, priorApprovedVersionId);
+    event('improvement_plan_events:approved-v3', 'approved', 3, activeVersionId);
+    event('improvement_plan_events:proposed-v4', 'proposed', 4, pendingVersionId);
+    const historyDefinition = (improvementPlanModule as Record<string, unknown>)
+      .listImprovementPlanHistory;
+    expect(historyDefinition).toBeDefined();
+    if (!historyDefinition) throw new Error('The PIP history query is missing.');
+    const listHistory = handler(historyDefinition);
+
+    const leadershipHistory = await listHistory(db.context(), {
+      actorAccountId: PROPOSER,
+      planId,
+      paginationOpts: { cursor: null, numItems: 20 },
+    }) as {
+      kind: string;
+      priorApprovedVersions: Array<Record<string, unknown>>;
+    };
+    expect(leadershipHistory.kind).toBe('allowed');
+    expect(leadershipHistory.priorApprovedVersions).toEqual([
+      {
+        version: 2,
+        versionId: priorApprovedVersionId,
+        purpose: 'Approved version two narrative.',
+      },
+    ]);
+    const teacherHistory = await listHistory(db.context(), {
+      actorAccountId: TEACHER_ACCOUNT,
+      planId,
+      paginationOpts: { cursor: null, numItems: 20 },
+    });
+    expect(JSON.stringify(teacherHistory)).not.toContain('Unapproved version one narrative.');
+    expect(JSON.stringify(teacherHistory)).not.toContain('Unapproved pending version four narrative.');
+  });
+
+  it('denies a scoped plan list when the actor organization is inactive', async () => {
+    const db = new MemoryDb();
+    seedBase(db);
+    seedPlan(db, 'inactive-organization');
+    db.seed('organizations', ORG, {
+      slug: 'one',
+      name: 'School One',
+      isActive: false,
+      activeSysadminCount: 1,
+      createdAt: NOW,
+      updatedAt: NOW,
+    });
+
+    await expect(handler(listScopedImprovementPlans)(db.context(), {
+      actorAccountId: PROPOSER,
+      paginationOpts: { cursor: null, numItems: 25 },
+      now: NOW,
+    })).resolves.toEqual({ kind: 'denied', reason: 'organization_inactive' });
+  });
+
+  it('keeps a supervisor list self-safe for an account with teacher and supervisor roles', async () => {
+    const db = new MemoryDb();
+    seedBase(db);
+    seedRole(db, TEACHER_ACCOUNT, 'school_head');
+    seedPlan(db, 'self-plan');
+
+    await expect(handler(listScopedImprovementPlans)(db.context(), {
+      actorAccountId: TEACHER_ACCOUNT,
+      paginationOpts: { cursor: null, numItems: 25 },
+      now: NOW,
+    })).resolves.toEqual({
+      kind: 'allowed',
+      page: { page: [], isDone: true, continueCursor: '' },
+    });
+  });
+
+  it('keeps the plan list lightweight and reserves lifecycle history for a detail query', async () => {
+    const db = new MemoryDb();
+    seedBase(db);
+    seedPlan(db, 'lightweight-one');
+    seedPlan(db, 'lightweight-two', seedTeacher(db, 'lightweight-two', DEPARTMENT), NOW + 1);
+    seedPlan(db, 'lightweight-three', seedTeacher(db, 'lightweight-three', DEPARTMENT), NOW + 2);
+    db.clearQueryCalls();
+
+    await expect(handler(listScopedImprovementPlans)(db.context(), {
+      actorAccountId: PROPOSER,
+      paginationOpts: { cursor: null, numItems: 25 },
+      now: NOW,
+    })).resolves.toMatchObject({ kind: 'allowed', page: { page: expect.any(Array) } });
+    expect(db.queryCount('improvement_plan_events')).toBe(0);
+  });
+
+  it('paginates lifecycle detail without an unbounded history read', async () => {
+    const db = new MemoryDb();
+    seedBase(db);
+    const planId = seedPlan(db, 'paginated-history');
+    for (let index = 0; index < 55; index += 1) {
+      db.seed('improvement_plan_events', `improvement_plan_events:paginated-${index}`, {
+        organizationId: ORG,
+        planId,
+        teacherProfileId: TEACHER,
+        version: 1,
+        versionId: 'improvement_plan_versions:paginated-history',
+        kind: 'proposed',
+        requestId: `request:paginated-${index}`,
+        fingerprint: `fingerprint:paginated-${index}`,
+        actorAccountId: PROPOSER,
+        occurredAt: NOW + index,
+        revision: 1,
+        payload: {},
+      });
+    }
+    const historyDefinition = (improvementPlanModule as Record<string, unknown>)
+      .listImprovementPlanHistory;
+    expect(historyDefinition).toBeDefined();
+    if (!historyDefinition) throw new Error('The PIP history query is missing.');
+    const listHistory = handler(historyDefinition);
+    const events: Array<Record<string, unknown>> = [];
+    let cursor: string | null = null;
+    db.clearQueryCalls();
+
+    do {
+      const result = await listHistory(db.context(), {
+        actorAccountId: PROPOSER,
+        planId,
+        paginationOpts: { cursor, numItems: 20 },
+      }) as {
+        kind: string;
+        page: { page: Array<Record<string, unknown>>; isDone: boolean; continueCursor: string };
+      };
+      expect(result.kind).toBe('allowed');
+      events.push(...result.page.page);
+      cursor = result.page.isDone ? null : result.page.continueCursor;
+    } while (cursor !== null);
+
+    expect(events).toHaveLength(55);
+    expect(db.queryCount('improvement_plan_events')).toBe(3);
+  });
+
+  it('rejects an invalid scoped-list cursor without returning the first page', async () => {
+    const db = new MemoryDb();
+    seedBase(db);
+    seedPlan(db, 'cursor');
+
+    await expect(handler(listScopedImprovementPlans)(db.context(), {
+      actorAccountId: PROPOSER,
+      paginationOpts: { cursor: 'improvement_plans:missing', numItems: 25 },
+      now: NOW,
+    })).resolves.toEqual({ kind: 'invalid_cursor' });
+  });
+
+  it('replays a proposal after the server-owned teacher position changes', async () => {
+    const db = new MemoryDb();
+    seedBase(db);
+    const first = await propose(db) as Record<string, unknown>;
+    await db.patch(TEACHER, { position: 'Teacher and Department Lead' });
+
+    await expect(propose(db)).resolves.toEqual({ ...first, kind: 'replayed' });
+  });
+
+  it('keeps public PIP output pending-safe and excludes pending from its validator', async () => {
+    const db = new MemoryDb();
+    seedBase(db);
+    await propose(db);
+
+    await expect(handler(readMyTeacherReport)(db.context(), {
+      actorAccountId: TEACHER_ACCOUNT,
+      now: new Date(NOW).toISOString(),
+    })).resolves.toMatchObject({
+      kind: 'allowed',
+      report: {
+        improvementPlan: {
+          contractVersion: 'danielson.ip-progress.v1',
+          state: 'not_configured',
+        },
+      },
+    });
+    const source = readFileSync(resolve(
+      dirname(fileURLToPath(import.meta.url)),
+      '../../convex/improvementPlans.ts',
+    ), 'utf8');
+    const publicValidator = source.slice(
+      source.indexOf('export const publicImprovementPlanProgressValidator'),
+      source.indexOf('export const improvementPlanProgressValidator'),
+    );
+    expect(publicValidator).not.toContain('pendingImprovementPlanValidator');
   });
 });

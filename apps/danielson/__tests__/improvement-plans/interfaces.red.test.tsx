@@ -1,6 +1,11 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
+import type {
+  ImprovementPlanProgress,
+  ImprovementPlanView as PlanView,
+} from '../../lib/improvement-plans/view';
+
 const mockRequireDanielsonApiSession = vi.hoisted(() => vi.fn());
 
 vi.mock('@/lib/auth/server', () => ({
@@ -19,6 +24,9 @@ const { ImprovementPlanAcknowledgmentForm } = await import(
 const { ImprovementPlanDecisionForms } = await import(
   '../../components/improvement-plan-decision-forms'
 );
+const { ImprovementPlanView } = await import(
+  '../../components/improvement-plan-view'
+);
 
 const target = {
   componentId: 'danielson.framework.component.1e',
@@ -26,6 +34,123 @@ const target = {
   skillId: 'danielson.tlac.skill.double-plan',
   skillTitle: 'Double Plan',
 };
+
+function planVersion(version: number, purpose: string): NonNullable<PlanView['activeVersion']> {
+  return {
+    versionId: `improvement_plan_versions:${version}`,
+    version,
+    teacherName: 'Teacher One',
+    position: 'Mathematics Teacher',
+    departmentId: 'departments:math',
+    departmentName: 'Mathematics',
+    supervisorAccountId: 'accounts:supervisor',
+    supervisorName: 'Supervisor One',
+    requestedPlanEndDate: null,
+    reviewMeetingDate: '2026-09-20',
+    purpose,
+    areasOfConcern: 'Concern.',
+    expectedStandard: 'Danielson Proficient.',
+    requiredActions: 'Required action.',
+    evidenceOfImprovement: 'Rated evidence.',
+    schoolSupport: 'School support.',
+    successfulCompletionCriteria: 'Expected rating met.',
+    insufficientImprovementConsequences: 'Consequences.',
+    acknowledgmentText: 'Acknowledgment.',
+    sourceId: 'school.pip-form.2026-08-19',
+    sourceVersion: '1.0.0',
+    sourceHash: 'source-hash',
+    proposedAt: Date.parse('2026-09-01T00:00:00.000Z'),
+    targets: [{
+      targetId: 'improvement_plan_targets:one',
+      componentId: target.componentId,
+      componentTitle: target.componentTitle,
+      skillId: target.skillId,
+      skillTitle: target.skillTitle,
+      expectedRating: 3,
+      expectedPoints: 90,
+      componentSourceRefs: [{ source: 'Danielson Framework for Teaching 2022' }],
+      skillSourceRefs: [{ source: 'Teach Like a Champion 3.0', location: 'Technique 1' }],
+    }],
+  };
+}
+
+function closedPlanView(): { plan: PlanView; progress: ImprovementPlanProgress } {
+  const priorApproved = planVersion(1, 'Approved version one purpose.');
+  const approved = planVersion(2, 'Active version two purpose.');
+  return {
+    plan: {
+      planId: 'improvement_plans:closed',
+      teacherProfileId: 'teacher_profiles:one',
+      state: 'closed',
+      revision: 5,
+      activeVersion: approved,
+      pendingVersion: planVersion(3, 'Stale pending revision.'),
+      approvedAt: Date.parse('2026-09-01T00:00:00.000Z'),
+      planEndAt: Date.parse('2026-10-01T00:00:00.000Z'),
+      reviewMeetingAt: Date.parse('2026-09-20T00:00:00.000Z'),
+      closedAt: Date.parse('2026-10-02T00:00:00.000Z'),
+      closureOutcome: 'successful',
+      closureNote: 'Private closure note.',
+      approvalEventId: 'improvement_plan_events:approved',
+      closureEventId: 'improvement_plan_events:closed',
+      history: {
+        events: [
+          {
+            eventId: 'improvement_plan_events:approved',
+            kind: 'approved',
+            version: 1,
+            versionId: priorApproved.versionId,
+            occurredAt: Date.parse('2026-09-01T00:00:00.000Z'),
+            payload: {},
+          },
+          {
+            eventId: 'improvement_plan_events:approved-current',
+            kind: 'approved',
+            version: 2,
+            versionId: approved.versionId,
+            occurredAt: Date.parse('2026-09-15T00:00:00.000Z'),
+            payload: {},
+          },
+          {
+            eventId: 'improvement_plan_events:closed',
+            kind: 'closed',
+            version: 2,
+            versionId: approved.versionId,
+            occurredAt: Date.parse('2026-10-02T00:00:00.000Z'),
+            payload: { outcome: 'successful', note: 'Private closure note.' },
+          },
+        ],
+        priorApprovedVersions: [{
+          version: 1,
+          versionId: priorApproved.versionId,
+          purpose: 'Approved version one purpose.',
+        }],
+      },
+      acknowledgments: [],
+    },
+    progress: {
+      contractVersion: 'danielson.ip-progress.v1',
+      state: 'closed',
+      planId: 'improvement_plans:closed',
+      version: 1,
+      daysRemaining: 0,
+      outcome: 'successful',
+      closedAt: Date.parse('2026-10-02T00:00:00.000Z'),
+      targets: [{
+        componentId: target.componentId,
+        skillId: target.skillId,
+        expectedRating: 3,
+        currentRating: 3,
+        state: 'meets_expected',
+        evidenceDueAt: Date.parse('2026-09-08T12:34:56.000Z'),
+        evidenceDue: true,
+        evidenceOverdue: false,
+        sourceRecordId: 'observation_records:source-one',
+        evidenceIdempotencyKey: 'evidence:source-one',
+      }],
+    },
+  };
+}
 
 describe('PIP request boundary', () => {
   beforeEach(() => {
@@ -192,5 +317,35 @@ describe('PIP interface', () => {
     fireEvent.click(screen.getByLabelText('I confirm this closure outcome.'));
     fireEvent.change(screen.getByLabelText('Closure note'), { target: { value: 'Human decision.' } });
     expect(close).toBeEnabled();
+  });
+
+  it('does not render a stale pending revision or approval action after closure', () => {
+    const { plan, progress } = closedPlanView();
+    render(<ImprovementPlanView
+      plan={plan}
+      progress={progress}
+      viewer={{ isSubjectTeacher: false, isFrozenSupervisor: false }}
+      roles={['slt']}
+    />);
+
+    expect(screen.queryByRole('heading', { name: 'Pending version 3' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Approve plan' })).not.toBeInTheDocument();
+  });
+
+  it('renders lifecycle history, prior approved versions, evidence due time, and provenance IDs', () => {
+    const { plan, progress } = closedPlanView();
+    render(<ImprovementPlanView
+      plan={plan}
+      progress={progress}
+      viewer={{ isSubjectTeacher: false, isFrozenSupervisor: false }}
+      roles={[]}
+    />);
+
+    expect(screen.getByRole('heading', { name: 'Lifecycle history' })).toBeVisible();
+    expect(screen.getByRole('heading', { name: 'Prior approved versions' })).toBeVisible();
+    expect(screen.getByText('Approved version one purpose.')).toBeVisible();
+    expect(screen.getByText(/Evidence due at:.*Sep.*2026/i)).toBeVisible();
+    expect(screen.getByText('Source record: observation_records:source-one')).toBeVisible();
+    expect(screen.getByText('Evidence key: evidence:source-one')).toBeVisible();
   });
 });
