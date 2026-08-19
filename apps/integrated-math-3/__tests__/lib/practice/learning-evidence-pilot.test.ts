@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import {
   buildPracticeSubmissionEnvelope,
+  type LearningEvidenceV1,
 } from '@math-platform/practice-core';
-import type { LearningEvidenceV1 } from '@math-platform/practice-core/learning-evidence';
 import {
   InMemorySubmissionSrsAdapter,
 } from '@math-platform/srs-engine';
@@ -175,6 +175,7 @@ describe('IM3 teacher-led Mastery Advantage pilot boundary', () => {
       persisted: true,
       masteryApplied: false,
       decision: {
+        idempotency: 'new',
         exposureState: 'introduced',
         eligible: false,
         reason: 'teacher_led',
@@ -184,7 +185,13 @@ describe('IM3 teacher-led Mastery Advantage pilot boundary', () => {
     expect(replay).toMatchObject({
       persisted: false,
       masteryApplied: false,
-      decision: { idempotency: 'replay' },
+      decision: {
+        idempotency: 'replay',
+        exposureState: 'introduced',
+        eligible: false,
+        reason: 'teacher_led',
+        masteryBearing: false,
+      },
     });
     expect(store.events).toHaveLength(1);
     expect(masteryEvents).toHaveLength(0);
@@ -211,6 +218,7 @@ describe('IM3 teacher-led Mastery Advantage pilot boundary', () => {
       persisted: false,
       masteryApplied: false,
       decision: {
+        idempotency: 'new',
         exposureState: 'awaiting_teacher_exposure',
         eligible: false,
         reason: 'awaiting_teacher_exposure',
@@ -245,6 +253,7 @@ describe('IM3 teacher-led Mastery Advantage pilot boundary', () => {
       persisted: true,
       masteryApplied: true,
       decision: {
+        idempotency: 'new',
         exposureState: 'introduced',
         eligible: true,
         reason: 'eligible',
@@ -282,9 +291,10 @@ describe('IM3 teacher-led Mastery Advantage pilot boundary', () => {
       persisted: false,
       masteryApplied: false,
       decision: {
+        idempotency: 'new',
         exposureState: 'awaiting_teacher_exposure',
         eligible: false,
-        reason: 'pilot_node_disabled',
+        reason: 'node_not_enabled',
         masteryBearing: false,
       },
     });
