@@ -115,13 +115,22 @@ export function ImprovementPlanView({
       {active && viewer.isSubjectTeacher && !teacherAcknowledged ? (
         <section className="card" aria-labelledby="teacher-pip-ack-heading">
           <h2 id="teacher-pip-ack-heading">Teacher acknowledgment</h2>
-          <ImprovementPlanAcknowledgmentForm planId={plan.planId} versionId={active.versionId} />
+          <ImprovementPlanAcknowledgmentForm
+            planId={plan.planId}
+            versionId={active.versionId}
+            expectedRevision={plan.revision}
+          />
         </section>
       ) : null}
       {active && viewer.isFrozenSupervisor && !supervisorAcknowledged ? (
         <section className="card" aria-labelledby="supervisor-pip-ack-heading">
           <h2 id="supervisor-pip-ack-heading">Supervisor acknowledgment</h2>
-          <ImprovementPlanAcknowledgmentForm planId={plan.planId} versionId={active.versionId} kind="supervisor" />
+          <ImprovementPlanAcknowledgmentForm
+            planId={plan.planId}
+            versionId={active.versionId}
+            expectedRevision={plan.revision}
+            kind="supervisor"
+          />
         </section>
       ) : null}
 

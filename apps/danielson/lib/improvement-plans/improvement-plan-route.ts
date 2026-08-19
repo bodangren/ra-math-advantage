@@ -6,7 +6,6 @@ const COMMAND_FIELDS = new Set([
   'versionId',
   'requestId',
   'expectedRevision',
-  'position',
   'departmentId',
   'reviewMeetingDate',
   'requestedPlanEndDate',

@@ -7,6 +7,8 @@ type PipEvidence = {
   kind: 'rated' | 'not_enough_evidence';
   rating?: 1 | 2 | 3 | 4;
   occurredAt: number;
+  sourceRecordId?: string | null;
+  evidenceIdempotencyKey?: string | null;
 };
 
 type PipTarget = {
@@ -82,6 +84,8 @@ export function projectImprovementPlanProgress(input: {
       evidenceDueAt: cadenceDueAt,
       evidenceDue: input.now >= cadenceDueAt,
       evidenceOverdue: input.now > cadenceDueAt,
+      sourceRecordId: rated?.sourceRecordId ?? null,
+      evidenceIdempotencyKey: rated?.evidenceIdempotencyKey ?? null,
     };
   });
   const base = {

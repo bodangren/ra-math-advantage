@@ -86,7 +86,6 @@ export function ImprovementPlanProposalForm({
           planId,
           requestId: requestIdRef.current,
           expectedRevision,
-          position,
           departmentId: selectedDepartmentId,
           requestedPlanEndDate: form.get('requestedPlanEndDate') || null,
           reviewMeetingDate: form.get('reviewMeetingDate'),

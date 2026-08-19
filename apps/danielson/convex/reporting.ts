@@ -32,6 +32,7 @@ import {
   improvementPlanProgressValidator,
   publicImprovementPlanProgressValidator,
   readOrganizationActiveImprovementPlans,
+  readOrganizationLatestClosedImprovementPlans,
   readTeacherImprovementPlanProjection,
 } from './improvementPlans';
 import {
@@ -415,14 +416,6 @@ export const readLeadershipPortfolio = internalQuery({
     if (!organization?.isActive) {
       return { kind: 'denied' as const, reason: 'organization_inactive' };
     }
-    const improvementPlans = await readOrganizationActiveImprovementPlans(
-      ctx,
-      actor.organizationId,
-      now,
-    );
-    if (improvementPlans.kind === 'capacity_exceeded') {
-      return { kind: 'portfolio_capacity_exceeded' as const };
-    }
     const roles = await ctx.db.query('role_assignments')
       .withIndex('by_organizationId_and_accountId_and_status', (query) => query
         .eq('organizationId', actor.organizationId)
@@ -436,6 +429,13 @@ export const readLeadershipPortfolio = internalQuery({
       ));
     if (supervisorRoles.length === 0) {
       return { kind: 'denied' as const, reason: 'capability_not_granted' };
+    }
+    const [improvementPlans, closedPlans] = await Promise.all([
+      readOrganizationActiveImprovementPlans(ctx, actor.organizationId, now),
+      readOrganizationLatestClosedImprovementPlans(ctx, actor.organizationId),
+    ]);
+    if (improvementPlans.kind === 'capacity_exceeded' || closedPlans.kind === 'capacity_exceeded') {
+      return { kind: 'portfolio_capacity_exceeded' as const };
     }
     const profiles = await ctx.db.query('teacher_profiles')
       .withIndex('by_organizationId_and_isActive', (query) => query
@@ -529,6 +529,7 @@ export const readLeadershipPortfolio = internalQuery({
       if (!inScope || !account?.isActive) return [];
       const activePlan = improvementPlans.progressByTeacher.get(teacherProfileId);
       const pendingPlanId = improvementPlans.pendingByTeacher.get(teacherProfileId);
+      const closedPlan = closedPlans.plansByTeacher.get(teacherProfileId);
       const improvementPlan = activePlan?.state === 'active'
         ? {
             contractVersion: activePlan.contractVersion,
@@ -542,7 +543,14 @@ export const readLeadershipPortfolio = internalQuery({
               contractVersion: 'danielson.ip-progress.v1' as const,
               state: 'pending_approval' as const,
             }
-          : undefined;
+          : closedPlan?.closureOutcome
+            ? {
+                contractVersion: 'danielson.ip-progress.v1' as const,
+                state: 'closed' as const,
+                planId: String(closedPlan._id),
+                outcome: closedPlan.closureOutcome,
+              }
+            : undefined;
       const priorities = summaryByTeacher.get(teacherProfileId)
         ?? emptyPriorities(teacherProfileId, now);
       const gbf = projectGbfProgress({
@@ -638,6 +646,9 @@ async function buildPublicTeacherReport(
     || improvementPlan === null
     || gbfAssignment.kind === 'capacity_exceeded'
   ) return null;
+  const publicImprovementPlan = improvementPlan.state === 'pending_approval'
+    ? { contractVersion: 'danielson.ip-progress.v1' as const, state: 'not_configured' as const }
+    : improvementPlan;
   const priorities = projectTeacherPriority(
     String(teacher._id),
     cards.map((row) => row.card) as never,
@@ -685,7 +696,7 @@ async function buildPublicTeacherReport(
     danielsonState: currentProficiency.state,
     officialEvaluations,
     currentProficiency,
-    improvementPlan,
+    improvementPlan: publicImprovementPlan,
     gbf,
     evidenceHistory: [],
     publicComments: [],

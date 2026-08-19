@@ -107,6 +107,10 @@ const currentProficiencyValidator = v.object({
   points: v.union(v.number(), v.null()),
   passes: v.boolean(),
 });
+const improvementPlanSourceRefValidator = v.object({
+  source: v.string(),
+  location: v.optional(v.string()),
+});
 const priorityValidator = v.object({
   teacherId: v.string(),
   skillId: v.string(),
@@ -181,6 +185,8 @@ const improvementPlanTargetResultValidator = v.object({
   evidenceDueAt: v.number(),
   evidenceDue: v.boolean(),
   evidenceOverdue: v.boolean(),
+  sourceRecordId: v.union(v.string(), v.null()),
+  evidenceIdempotencyKey: v.union(v.string(), v.null()),
 });
 
 export default defineSchema({
@@ -581,6 +587,8 @@ export default defineSchema({
     closedAt: v.optional(v.number()),
     closureOutcome: v.optional(improvementPlanOutcomeValidator),
     closureNote: v.optional(v.string()),
+    approvalEventId: v.optional(v.string()),
+    closureEventId: v.optional(v.string()),
     closedTargetResults: v.optional(v.array(improvementPlanTargetResultValidator)),
     createdAt: v.number(),
     updatedAt: v.number(),
@@ -637,6 +645,8 @@ export default defineSchema({
     sourceId: v.string(),
     sourceVersion: v.string(),
     sourceHash: v.string(),
+    componentSourceRefs: v.array(improvementPlanSourceRefValidator),
+    skillSourceRefs: v.array(improvementPlanSourceRefValidator),
     createdAt: v.number(),
   })
     .index('by_org_version_ordinal', ['organizationId', 'versionId', 'ordinal'])

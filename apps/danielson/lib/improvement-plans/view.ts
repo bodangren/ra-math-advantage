@@ -6,6 +6,8 @@ export type ImprovementPlanTargetView = {
   skillTitle: string;
   expectedRating: number;
   expectedPoints: number;
+  componentSourceRefs: Array<{ source: string; location?: string }>;
+  skillSourceRefs: Array<{ source: string; location?: string }>;
 };
 
 export type ImprovementPlanVersionView = {
@@ -48,6 +50,19 @@ export type ImprovementPlanView = {
   closedAt: number | null;
   closureOutcome: 'successful' | 'insufficient_improvement' | null;
   closureNote: string | null;
+  approvalEventId: string | null;
+  closureEventId: string | null;
+  history: {
+    events: Array<{
+      eventId: string;
+      kind: 'proposed' | 'approved' | 'teacher_acknowledged' | 'supervisor_acknowledged' | 'closed';
+      version: number;
+      versionId: string | null;
+      occurredAt: number;
+      payload: { outcome?: 'successful' | 'insufficient_improvement'; note?: string };
+    }>;
+    priorApprovedVersions: Array<{ version: number; versionId: string; purpose: string }>;
+  };
   acknowledgments: Array<{
     acknowledgmentId: string;
     kind: 'teacher' | 'supervisor';
@@ -77,6 +92,8 @@ export type ImprovementPlanProgress =
         evidenceDueAt: number;
         evidenceDue: boolean;
         evidenceOverdue: boolean;
+        sourceRecordId: string | null;
+        evidenceIdempotencyKey: string | null;
       }>;
       schoolSupport?: string;
       successfulCompletionCriteria?: string;

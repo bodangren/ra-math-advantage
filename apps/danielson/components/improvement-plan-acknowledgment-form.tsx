@@ -5,10 +5,12 @@ import { useEffect, useRef, useState, type FormEvent } from 'react';
 export function ImprovementPlanAcknowledgmentForm({
   planId,
   versionId,
+  expectedRevision,
   kind = 'teacher',
 }: {
   planId: string;
   versionId: string;
+  expectedRevision: number;
   kind?: 'teacher' | 'supervisor';
 }) {
   const [confirmed, setConfirmed] = useState(false);
@@ -34,6 +36,7 @@ export function ImprovementPlanAcknowledgmentForm({
         body: JSON.stringify({
           planId,
           versionId,
+          expectedRevision,
           kind,
           requestId: requestIdRef.current,
         }),

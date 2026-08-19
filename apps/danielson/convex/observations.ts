@@ -511,10 +511,6 @@ export const readRankedTeacherQueue = internalQuery({
     if (!actor?.isActive) return { kind: 'denied' as const, reason: 'account_inactive' };
     const organization = await ctx.db.get(actor.organizationId);
     if (!organization?.isActive) return { kind: 'denied' as const, reason: 'organization_inactive' };
-    const activePlans = await readOrganizationActiveImprovementPlans(ctx, actor.organizationId, now);
-    if (activePlans.kind === 'capacity_exceeded') {
-      return { kind: 'queue_capacity_exceeded' as const };
-    }
     const roles = await ctx.db.query('role_assignments')
       .withIndex('by_organizationId_and_accountId_and_status', (query) => query
         .eq('organizationId', actor.organizationId)
@@ -528,6 +524,10 @@ export const readRankedTeacherQueue = internalQuery({
       ));
     if (supervisorRoles.length === 0) {
       return { kind: 'denied' as const, reason: 'capability_not_granted' };
+    }
+    const activePlans = await readOrganizationActiveImprovementPlans(ctx, actor.organizationId, now);
+    if (activePlans.kind === 'capacity_exceeded') {
+      return { kind: 'queue_capacity_exceeded' as const };
     }
     const profiles = await ctx.db.query('teacher_profiles')
       .withIndex('by_organizationId_and_isActive', (query) => query

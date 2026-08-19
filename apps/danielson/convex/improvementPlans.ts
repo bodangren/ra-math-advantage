@@ -25,6 +25,10 @@ const graph = buildDanielsonGraph().graph;
 const nodeById = new Map(graph.nodes.map((node) => [node.id, node]));
 
 const deniedValidator = v.object({ kind: v.literal('denied'), reason: v.string() });
+const sourceRefValidator = v.object({
+  source: v.string(),
+  location: v.optional(v.string()),
+});
 const targetArgValidator = v.object({
   componentId: v.string(),
   skillId: v.string(),
@@ -38,6 +42,8 @@ const targetViewValidator = v.object({
   skillTitle: v.string(),
   expectedRating: v.number(),
   expectedPoints: v.number(),
+  componentSourceRefs: v.array(sourceRefValidator),
+  skillSourceRefs: v.array(sourceRefValidator),
 });
 const versionViewValidator = v.object({
   versionId: v.string(),
@@ -71,25 +77,6 @@ const acknowledgmentViewValidator = v.object({
   actorAccountId: v.string(),
   acknowledgedAt: v.number(),
 });
-const planViewValidator = v.object({
-  planId: v.string(),
-  teacherProfileId: v.string(),
-  state: v.union(v.literal('proposed'), v.literal('active'), v.literal('closed')),
-  revision: v.number(),
-  activeVersion: v.union(versionViewValidator, v.null()),
-  pendingVersion: v.union(versionViewValidator, v.null()),
-  approvedAt: v.union(v.number(), v.null()),
-  planEndAt: v.union(v.number(), v.null()),
-  reviewMeetingAt: v.union(v.number(), v.null()),
-  closedAt: v.union(v.number(), v.null()),
-  closureOutcome: v.union(
-    v.literal('successful'),
-    v.literal('insufficient_improvement'),
-    v.null(),
-  ),
-  closureNote: v.union(v.string(), v.null()),
-  acknowledgments: v.array(acknowledgmentViewValidator),
-});
 const targetProgressValidator = v.object({
   componentId: v.string(),
   skillId: v.string(),
@@ -103,6 +90,8 @@ const targetProgressValidator = v.object({
   evidenceDueAt: v.number(),
   evidenceDue: v.boolean(),
   evidenceOverdue: v.boolean(),
+  sourceRecordId: v.union(v.string(), v.null()),
+  evidenceIdempotencyKey: v.union(v.string(), v.null()),
 });
 const noImprovementPlanValidator = v.object({
   contractVersion: v.literal('danielson.ip-progress.v1'),
@@ -208,11 +197,72 @@ const acknowledgmentResultValidator = v.union(
   deniedValidator,
   v.object({ kind: v.literal('not_found') }),
   v.object({ kind: v.literal('acknowledgment_exists') }),
+  v.object({ kind: v.literal('revision_conflict') }),
+  v.object({ kind: v.literal('invalid'), reason: v.string() }),
   v.object({ kind: v.literal('idempotency_conflict') }),
   v.object({
     kind: v.union(v.literal('acknowledged'), v.literal('replayed')),
     acknowledgmentId: v.string(),
     acknowledgmentKind: v.union(v.literal('teacher'), v.literal('supervisor')),
+  }),
+);
+const lifecycleHistoryEventValidator = v.object({
+  eventId: v.string(),
+  kind: v.union(
+    v.literal('proposed'),
+    v.literal('approved'),
+    v.literal('teacher_acknowledged'),
+    v.literal('supervisor_acknowledged'),
+    v.literal('closed'),
+  ),
+  version: v.number(),
+  versionId: v.union(v.string(), v.null()),
+  occurredAt: v.number(),
+  payload: v.object({
+    outcome: v.optional(v.union(v.literal('successful'), v.literal('insufficient_improvement'))),
+    note: v.optional(v.string()),
+  }),
+});
+const priorApprovedVersionValidator = v.object({
+  version: v.number(),
+  versionId: v.string(),
+  purpose: v.string(),
+});
+const planHistoryValidator = v.object({
+  events: v.array(lifecycleHistoryEventValidator),
+  priorApprovedVersions: v.array(priorApprovedVersionValidator),
+});
+const planViewValidator = v.object({
+  planId: v.string(),
+  teacherProfileId: v.string(),
+  state: v.union(v.literal('proposed'), v.literal('active'), v.literal('closed')),
+  revision: v.number(),
+  activeVersion: v.union(versionViewValidator, v.null()),
+  pendingVersion: v.union(versionViewValidator, v.null()),
+  approvedAt: v.union(v.number(), v.null()),
+  planEndAt: v.union(v.number(), v.null()),
+  reviewMeetingAt: v.union(v.number(), v.null()),
+  closedAt: v.union(v.number(), v.null()),
+  closureOutcome: v.union(
+    v.literal('successful'),
+    v.literal('insufficient_improvement'),
+    v.null(),
+  ),
+  closureNote: v.union(v.string(), v.null()),
+  approvalEventId: v.union(v.string(), v.null()),
+  closureEventId: v.union(v.string(), v.null()),
+  history: planHistoryValidator,
+  acknowledgments: v.array(acknowledgmentViewValidator),
+});
+const historyResultValidator = v.union(
+  deniedValidator,
+  v.object({ kind: v.literal('not_found') }),
+  v.object({ kind: v.literal('invalid_page_size') }),
+  v.object({ kind: v.literal('capacity_exceeded') }),
+  v.object({
+    kind: v.literal('allowed'),
+    page: paginationResultValidator(lifecycleHistoryEventValidator),
+    priorApprovedVersions: v.array(priorApprovedVersionValidator),
   }),
 );
 const closureResultValidator = v.union(
@@ -294,6 +344,10 @@ function proposalContentFingerprint(value: unknown) {
   return JSON.stringify(value);
 }
 
+function validRequestId(value: string) {
+  return value.trim().length > 0 && value.length <= 128;
+}
+
 async function priorEvent(ctx: DbCtx, organizationId: Id<'organizations'>, requestId: string) {
   return ctx.db.query('improvement_plan_events')
     .withIndex('by_org_request', (query) => query
@@ -334,6 +388,8 @@ function targetView(row: Doc<'improvement_plan_targets'>) {
     skillTitle: row.skillTitle,
     expectedRating: row.expectedRating,
     expectedPoints: row.expectedPoints,
+    componentSourceRefs: row.componentSourceRefs ?? [],
+    skillSourceRefs: row.skillSourceRefs ?? [],
   };
 }
 
@@ -372,8 +428,52 @@ async function versionView(
   };
 }
 
+async function planHistoryView(
+  ctx: DbCtx,
+  plan: Doc<'improvement_plans'>,
+  includePrivate: boolean,
+) {
+  const [events, versions] = await Promise.all([
+    ctx.db.query('improvement_plan_events')
+      .withIndex('by_org_plan_time', (query) => query
+        .eq('organizationId', plan.organizationId)
+        .eq('planId', plan._id))
+      .order('desc')
+      .take(MAX_EVIDENCE_ROWS + 1),
+    ctx.db.query('improvement_plan_versions')
+      .withIndex('by_org_plan_version', (query) => query
+        .eq('organizationId', plan.organizationId)
+        .eq('planId', plan._id))
+      .order('asc')
+      .take(MAX_TARGETS + 1),
+  ]);
+  if (events.length > MAX_EVIDENCE_ROWS || versions.length > MAX_TARGETS) {
+    throw new Error('history_capacity_exceeded');
+  }
+  return {
+    events: events.map((event) => ({
+      eventId: String(event._id),
+      kind: event.kind,
+      version: event.version,
+      versionId: event.versionId ? String(event.versionId) : null,
+      occurredAt: event.occurredAt,
+      payload: {
+        ...(event.payload.outcome ? { outcome: event.payload.outcome } : {}),
+        ...(includePrivate && event.payload.note ? { note: event.payload.note } : {}),
+      },
+    })),
+    priorApprovedVersions: versions
+      .filter((version) => version.version < (plan.activeVersion ?? Number.POSITIVE_INFINITY))
+      .map((version) => ({
+        version: version.version,
+        versionId: String(version._id),
+        purpose: version.purpose,
+      })),
+  };
+}
+
 async function readPlanView(ctx: DbCtx, plan: Doc<'improvement_plans'>, includePending: boolean) {
-  const [activeVersion, pendingVersion, acknowledgments] = await Promise.all([
+  const [activeVersion, pendingVersion, acknowledgments, history] = await Promise.all([
     plan.activeVersionId ? ctx.db.get(plan.activeVersionId) : Promise.resolve(null),
     includePending && plan.pendingVersionId
       ? ctx.db.get(plan.pendingVersionId)
@@ -385,6 +485,7 @@ async function readPlanView(ctx: DbCtx, plan: Doc<'improvement_plans'>, includeP
             .eq('versionId', plan.activeVersionId as Id<'improvement_plan_versions'>))
           .take(3)
       : Promise.resolve([]),
+    planHistoryView(ctx, plan, includePending),
   ]);
   if (acknowledgments.length > 2) throw new Error('acknowledgment_capacity_exceeded');
   return {
@@ -400,6 +501,9 @@ async function readPlanView(ctx: DbCtx, plan: Doc<'improvement_plans'>, includeP
     closedAt: plan.closedAt ?? null,
     closureOutcome: plan.closureOutcome ?? null,
     closureNote: includePending ? plan.closureNote ?? null : null,
+    approvalEventId: plan.approvalEventId ?? null,
+    closureEventId: plan.closureEventId ?? null,
+    history,
     acknowledgments: acknowledgments.map((row) => ({
       acknowledgmentId: String(row._id),
       kind: row.kind,
@@ -432,6 +536,9 @@ export const createImprovementPlanProposal = internalMutation({
   },
   returns: proposalResultValidator,
   handler: async (ctx, args) => {
+    if (!validRequestId(args.requestId)) {
+      return { kind: 'invalid' as const, reason: 'invalid_request_id' };
+    }
     const access = await authorizeTeacher(
       ctx,
       args.actorAccountId,
@@ -443,7 +550,7 @@ export const createImprovementPlanProposal = internalMutation({
     try {
       normalized = normalizePipProposal({
         teacherProfileId: String(args.teacherProfileId),
-        position: args.position,
+        position: access.teacher.position ?? 'Teacher',
         departmentId: String(args.departmentId),
         supervisorAccountId: String(args.actorAccountId),
         requestedPlanEndDate: args.requestedPlanEndDate,
@@ -462,7 +569,12 @@ export const createImprovementPlanProposal = internalMutation({
     }
     const targetDecision = validatePipTargets(normalized.targets, graph);
     if (!targetDecision.valid) return { kind: 'invalid' as const, reason: targetDecision.reason };
-    const fingerprint = proposalContentFingerprint({ action: 'proposed', normalized });
+    const fingerprint = proposalContentFingerprint({
+      action: 'proposed',
+      planId: args.planId ? String(args.planId) : null,
+      expectedRevision: args.expectedRevision,
+      normalized,
+    });
     const replay = await priorEvent(ctx, access.teacher.organizationId, args.requestId);
     if (replay) return replay.fingerprint === fingerprint
       ? proposalReceipt(replay)
@@ -547,6 +659,8 @@ export const createImprovementPlanProposal = internalMutation({
         sourceId: normalized.sourceId,
         sourceVersion: normalized.sourceVersion,
         sourceHash: normalized.sourceHash,
+        componentSourceRefs: nodeById.get(target.componentId)?.sourceRefs ?? [],
+        skillSourceRefs: nodeById.get(target.skillId)?.sourceRefs ?? [],
         createdAt: args.now,
       });
     }
@@ -640,6 +754,9 @@ export const approveImprovementPlan = internalMutation({
   },
   returns: approvalResultValidator,
   handler: async (ctx, args) => {
+    if (!validRequestId(args.requestId)) {
+      return { kind: 'invalid' as const, reason: 'invalid_request_id' };
+    }
     const plan = await ctx.db.get(args.planId);
     if (!plan) return { kind: 'not_found' as const };
     const access = await authorizeTeacher(ctx, args.actorAccountId, plan.teacherProfileId, 'pip:approve');
@@ -702,7 +819,7 @@ export const approveImprovementPlan = internalMutation({
       closureNote: undefined,
       updatedAt: args.now,
     });
-    await ctx.db.insert('improvement_plan_events', {
+    const approvalEventId = await ctx.db.insert('improvement_plan_events', {
       organizationId: plan.organizationId,
       planId: plan._id,
       teacherProfileId: plan.teacherProfileId,
@@ -716,6 +833,7 @@ export const approveImprovementPlan = internalMutation({
       revision,
       payload: { planStartAt: args.now, planEndAt: requestedEnd },
     });
+    await ctx.db.patch(plan._id, { approvalEventId: String(approvalEventId) });
     return {
       kind: 'approved' as const,
       planId: String(plan._id),
@@ -734,15 +852,18 @@ export const acknowledgeImprovementPlan = internalMutation({
     versionId: v.id('improvement_plan_versions'),
     kind: v.union(v.literal('teacher'), v.literal('supervisor')),
     requestId: v.string(),
+    expectedRevision: v.number(),
     now: v.number(),
   },
   returns: acknowledgmentResultValidator,
   handler: async (ctx, args) => {
+    if (!validRequestId(args.requestId)) {
+      return { kind: 'invalid' as const, reason: 'invalid_request_id' };
+    }
     const plan = await ctx.db.get(args.planId);
-    if (!plan || (plan.state !== 'active' && plan.state !== 'closed')
-      || plan.activeVersionId !== args.versionId) return { kind: 'not_found' as const };
+    if (!plan) return { kind: 'not_found' as const };
     const version = await ctx.db.get(args.versionId);
-    if (!version) return { kind: 'not_found' as const };
+    if (!version || version.planId !== plan._id) return { kind: 'not_found' as const };
     const action: DanielsonAction = args.kind === 'teacher'
       ? 'pip_acknowledgment:write'
       : 'pip_supervisor_acknowledgment:write';
@@ -755,7 +876,11 @@ export const acknowledgeImprovementPlan = internalMutation({
       return { kind: 'denied' as const, reason: 'target_out_of_scope' };
     }
     const fingerprint = proposalContentFingerprint({
-      action: 'acknowledged', planId: String(plan._id), versionId: String(version._id), kind: args.kind,
+      action: 'acknowledged',
+      planId: String(plan._id),
+      versionId: String(version._id),
+      kind: args.kind,
+      expectedRevision: args.expectedRevision,
     });
     const replay = await priorEvent(ctx, plan.organizationId, args.requestId);
     if (replay) {
@@ -766,6 +891,11 @@ export const acknowledgeImprovementPlan = internalMutation({
         acknowledgmentKind: args.kind,
       };
     }
+    if (!plan.activeVersionId || plan.activeVersionId !== args.versionId) {
+      return { kind: 'not_found' as const };
+    }
+    if (plan.state !== 'active' && plan.state !== 'closed') return { kind: 'not_found' as const };
+    if (plan.revision !== args.expectedRevision) return { kind: 'revision_conflict' as const };
     const existing = await ctx.db.query('improvement_plan_acknowledgments')
       .withIndex('by_org_version_kind', (query) => query
         .eq('organizationId', plan.organizationId)
@@ -829,6 +959,8 @@ async function effectivePlanEvidence(ctx: DbCtx, plan: Doc<'improvement_plans'>)
       kind: 'rated' as const,
       rating: evidence.rawRating as 1 | 2 | 3 | 4,
       occurredAt: Date.parse(evidence.occurredAt),
+      sourceRecordId: evidence.sourceRecordId ?? null,
+      evidenceIdempotencyKey: evidence.idempotencyKey,
     }));
   });
 }
@@ -896,6 +1028,8 @@ export async function readOrganizationActiveImprovementPlans(
     kind: 'rated';
     rating: 1 | 2 | 3 | 4;
     occurredAt: number;
+    sourceRecordId: string | null;
+    evidenceIdempotencyKey: string;
   }>>();
   for (const row of outcomes) {
     if (superseded.has(row.idempotencyKey) || row.outcome.kind !== 'rated') continue;
@@ -907,6 +1041,8 @@ export async function readOrganizationActiveImprovementPlans(
         kind: 'rated',
         rating: evidence.rawRating as 1 | 2 | 3 | 4,
         occurredAt: Date.parse(evidence.occurredAt),
+        sourceRecordId: evidence.sourceRecordId ?? null,
+        evidenceIdempotencyKey: evidence.idempotencyKey,
       });
     }
     evidenceByTeacher.set(teacherId, current);
@@ -950,6 +1086,26 @@ export async function readOrganizationActiveImprovementPlans(
     overlaysByTeacher.set(String(plan.teacherProfileId), targetOverlays);
   }
   return { kind: 'allowed' as const, overlaysByTeacher, progressByTeacher, pendingByTeacher };
+}
+
+/** Read one latest closed plan per teacher for the leadership portfolio. */
+export async function readOrganizationLatestClosedImprovementPlans(
+  ctx: DbCtx,
+  organizationId: Id<'organizations'>,
+) {
+  const plans = await ctx.db.query('improvement_plans')
+    .withIndex('by_org_state_updated', (query) => query
+      .eq('organizationId', organizationId)
+      .eq('state', 'closed'))
+    .order('desc')
+    .take(251);
+  if (plans.length > 250) return { kind: 'capacity_exceeded' as const };
+  const plansByTeacher = new Map<string, Doc<'improvement_plans'>>();
+  for (const plan of plans) {
+    const teacherId = String(plan.teacherProfileId);
+    if (!plansByTeacher.has(teacherId)) plansByTeacher.set(teacherId, plan);
+  }
+  return { kind: 'allowed' as const, plansByTeacher };
 }
 
 async function progressForPlan(ctx: DbCtx, plan: Doc<'improvement_plans'>, now: number) {
@@ -1035,6 +1191,9 @@ export const closeImprovementPlan = internalMutation({
   },
   returns: closureResultValidator,
   handler: async (ctx, args) => {
+    if (!validRequestId(args.requestId)) {
+      return { kind: 'invalid' as const, reason: 'invalid_request_id' };
+    }
     const plan = await ctx.db.get(args.planId);
     if (!plan) return { kind: 'not_found' as const };
     const access = await authorizeTeacher(ctx, args.actorAccountId, plan.teacherProfileId, 'pip:close');
@@ -1042,7 +1201,11 @@ export const closeImprovementPlan = internalMutation({
     const note = args.note.trim();
     if (!note || note.length > 4_000) return { kind: 'invalid' as const, reason: 'invalid_closure_note' };
     const fingerprint = proposalContentFingerprint({
-      action: 'closed', planId: String(plan._id), outcome: args.outcome, note,
+      action: 'closed',
+      planId: String(plan._id),
+      expectedRevision: args.expectedRevision,
+      outcome: args.outcome,
+      note,
     });
     const replay = await priorEvent(ctx, plan.organizationId, args.requestId);
     if (replay) {
@@ -1067,6 +1230,8 @@ export const closeImprovementPlan = internalMutation({
       evidenceDueAt: target.evidenceDueAt,
       evidenceDue: target.evidenceDue,
       evidenceOverdue: target.evidenceOverdue,
+      sourceRecordId: target.sourceRecordId,
+      evidenceIdempotencyKey: target.evidenceIdempotencyKey,
     }));
     const revision = plan.revision + 1;
     await ctx.db.patch(plan._id, {
@@ -1078,7 +1243,7 @@ export const closeImprovementPlan = internalMutation({
       closedTargetResults: targetResults,
       updatedAt: args.now,
     });
-    await ctx.db.insert('improvement_plan_events', {
+    const closureEventId = await ctx.db.insert('improvement_plan_events', {
       organizationId: plan.organizationId,
       planId: plan._id,
       teacherProfileId: plan.teacherProfileId,
@@ -1092,6 +1257,7 @@ export const closeImprovementPlan = internalMutation({
       revision,
       payload: { outcome: args.outcome, note, targetResults },
     });
+    await ctx.db.patch(plan._id, { closureEventId: String(closureEventId) });
     return { kind: 'closed' as const, planId: String(plan._id), revision, outcome: args.outcome };
   },
 });
@@ -1205,15 +1371,172 @@ export const listScopedImprovementPlans = internalQuery({
     }
     const actor = await ctx.db.get(args.actorAccountId);
     if (!actor?.isActive) return { kind: 'denied' as const, reason: 'account_inactive' };
-    const raw = await ctx.db.query('improvement_plans')
-      .withIndex('by_org_updated', (query) => query.eq('organizationId', actor.organizationId))
-      .order('desc')
-      .paginate(args.paginationOpts);
-    const visible = [];
-    for (const plan of raw.page) {
-      const access = await authorizeTeacher(ctx, args.actorAccountId, plan.teacherProfileId, 'pip:propose');
-      if (access.kind === 'allowed') visible.push(await readPlanView(ctx, plan, true));
+    const roles = await ctx.db.query('role_assignments')
+      .withIndex('by_organizationId_and_accountId_and_status', (query) => query
+        .eq('organizationId', actor.organizationId)
+        .eq('accountId', actor._id)
+        .eq('status', 'active'))
+      .take(7);
+    const supervisorRoles = new Set(roles
+      .map((row) => row.role)
+      .filter((role) => role === 'hod' || role === 'coach' || role === 'school_head' || role === 'slt'));
+    if (supervisorRoles.size === 0) {
+      return { kind: 'denied' as const, reason: 'capability_not_granted' };
     }
-    return { kind: 'allowed' as const, page: { ...raw, page: visible } };
+    const profiles = await ctx.db.query('teacher_profiles')
+      .withIndex('by_organizationId_and_isActive', (query) => query
+        .eq('organizationId', actor.organizationId)
+        .eq('isActive', true))
+      .take(251);
+    if (profiles.length > 250) return { kind: 'denied' as const, reason: 'capacity_exceeded' };
+    const organizationWide = supervisorRoles.has('school_head') || supervisorRoles.has('slt');
+    let scopedTeacherIds = new Set(profiles.map((profile) => String(profile._id)));
+    if (!organizationWide) {
+      const [memberships, departments, hodAssignments, coachAssignments] = await Promise.all([
+        ctx.db.query('department_memberships')
+          .withIndex('by_organizationId_and_status', (query) => query
+            .eq('organizationId', actor.organizationId)
+            .eq('status', 'active'))
+          .take(MAX_EVIDENCE_ROWS + 1),
+        ctx.db.query('departments')
+          .withIndex('by_organizationId_and_isActive', (query) => query
+            .eq('organizationId', actor.organizationId)
+            .eq('isActive', true))
+          .take(MAX_EVIDENCE_ROWS + 1),
+        ctx.db.query('hod_assignments')
+          .withIndex('by_organizationId_and_accountId_and_status', (query) => query
+            .eq('organizationId', actor.organizationId)
+            .eq('accountId', actor._id)
+            .eq('status', 'active'))
+          .take(MAX_EVIDENCE_ROWS + 1),
+        ctx.db.query('coach_assignments')
+          .withIndex('by_organizationId_and_accountId_and_status', (query) => query
+            .eq('organizationId', actor.organizationId)
+            .eq('accountId', actor._id)
+            .eq('status', 'active'))
+          .take(MAX_EVIDENCE_ROWS + 1),
+      ]);
+      if ([memberships, departments, hodAssignments, coachAssignments]
+        .some((rows) => rows.length > MAX_EVIDENCE_ROWS)) {
+        return { kind: 'denied' as const, reason: 'capacity_exceeded' };
+      }
+      const departmentIds = new Set(departments.map((department) => String(department._id)));
+      const hodDepartmentIds = new Set(hodAssignments
+        .map((assignment) => String(assignment.departmentId))
+        .filter((departmentId) => departmentIds.has(departmentId)));
+      const teacherDepartments = new Map<string, Set<string>>();
+      for (const membership of memberships) {
+        const departmentId = String(membership.departmentId);
+        if (!departmentIds.has(departmentId)) continue;
+        const teacherId = String(membership.teacherProfileId);
+        teacherDepartments.set(teacherId, new Set([
+          ...(teacherDepartments.get(teacherId) ?? []),
+          departmentId,
+        ]));
+      }
+      const coachTeacherIds = new Set(coachAssignments.map((assignment) => String(assignment.teacherProfileId)));
+      scopedTeacherIds = new Set(profiles
+        .filter((profile) => (
+          (supervisorRoles.has('hod')
+            && [...(teacherDepartments.get(String(profile._id)) ?? [])]
+              .some((departmentId) => hodDepartmentIds.has(departmentId)))
+          || (supervisorRoles.has('coach') && coachTeacherIds.has(String(profile._id)))
+        ))
+        .map((profile) => String(profile._id)));
+    }
+
+    const plans: Doc<'improvement_plans'>[] = [];
+    for (const teacherProfileId of scopedTeacherIds) {
+      const rows = await ctx.db.query('improvement_plans')
+        .withIndex('by_org_teacher_created', (query) => query
+          .eq('organizationId', actor.organizationId)
+          .eq('teacherProfileId', teacherProfileId as Id<'teacher_profiles'>))
+        .order('desc')
+        .take(251);
+      if (rows.length > 250) return { kind: 'denied' as const, reason: 'capacity_exceeded' };
+      plans.push(...rows);
+    }
+    plans.sort((left, right) => right.updatedAt - left.updatedAt || String(right._id).localeCompare(String(left._id)));
+    const start = args.paginationOpts.cursor === null
+      ? 0
+      : plans.findIndex((plan) => String(plan._id) === args.paginationOpts.cursor) + 1;
+    const pagePlans = start === 0 && args.paginationOpts.cursor !== null
+      ? []
+      : plans.slice(start, start + args.paginationOpts.numItems);
+    const isDone = start + pagePlans.length >= plans.length;
+    return {
+      kind: 'allowed' as const,
+      page: {
+        page: await Promise.all(pagePlans.map((plan) => readPlanView(ctx, plan, true))),
+        isDone,
+        continueCursor: isDone ? '' : String(pagePlans.at(-1)?._id ?? ''),
+      },
+    };
+  },
+});
+
+export const listImprovementPlanHistory = internalQuery({
+  args: {
+    actorAccountId: v.id('accounts'),
+    planId: v.id('improvement_plans'),
+    paginationOpts: paginationOptsValidator,
+  },
+  returns: historyResultValidator,
+  handler: async (ctx, args) => {
+    if (args.paginationOpts.numItems < 1 || args.paginationOpts.numItems > MAX_PAGE_SIZE) {
+      return { kind: 'invalid_page_size' as const };
+    }
+    const plan = await ctx.db.get(args.planId);
+    if (!plan) return { kind: 'not_found' as const };
+    const teacher = await ctx.db.get(plan.teacherProfileId);
+    if (!teacher) return { kind: 'not_found' as const };
+    const own = String(teacher.accountId) === String(args.actorAccountId);
+    const access = await authorizeTeacher(
+      ctx,
+      args.actorAccountId,
+      plan.teacherProfileId,
+      own ? 'published_record:read' : 'pip:propose',
+    );
+    if (access.kind === 'denied') return access;
+    const [result, versions] = await Promise.all([
+      ctx.db.query('improvement_plan_events')
+        .withIndex('by_org_plan_time', (query) => query
+          .eq('organizationId', plan.organizationId)
+          .eq('planId', plan._id))
+        .order('desc')
+        .paginate(args.paginationOpts),
+      ctx.db.query('improvement_plan_versions')
+        .withIndex('by_org_plan_version', (query) => query
+          .eq('organizationId', plan.organizationId)
+          .eq('planId', plan._id))
+        .order('asc')
+        .take(MAX_TARGETS + 1),
+    ]);
+    if (versions.length > MAX_TARGETS) return { kind: 'capacity_exceeded' as const };
+    const priorApprovedVersions = versions
+      .filter((version) => version.version < (plan.activeVersion ?? Number.POSITIVE_INFINITY))
+      .map((version) => ({
+        version: version.version,
+        versionId: String(version._id),
+        purpose: version.purpose,
+      }));
+    return {
+      kind: 'allowed' as const,
+      page: {
+        ...result,
+        page: result.page.map((event) => ({
+          eventId: String(event._id),
+          kind: event.kind,
+          version: event.version,
+          versionId: event.versionId ? String(event.versionId) : null,
+          occurredAt: event.occurredAt,
+          payload: {
+            ...(event.payload.outcome ? { outcome: event.payload.outcome } : {}),
+            ...(!own && event.payload.note ? { note: event.payload.note } : {}),
+          },
+        })),
+      },
+      priorApprovedVersions,
+    };
   },
 });

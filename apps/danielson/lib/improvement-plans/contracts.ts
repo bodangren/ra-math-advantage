@@ -28,28 +28,34 @@ export type PipProposalInput = {
 
 function requiredText(value: unknown, name: string) {
   if (typeof value !== 'string' || value.trim().length === 0) throw new Error(`invalid_${name}`);
-  return value.trim().replace(/\s+/g, ' ');
+  return value.trim();
+}
+
+function requiredNarrative(value: unknown, name: string) {
+  const normalized = requiredText(value, name);
+  if (normalized.length > 4_000) throw new Error(`invalid_${name}`);
+  return normalized;
 }
 
 function optionalDate(value: unknown, name: string): string | null {
   if (value === null || value === undefined || value === '') return null;
   const normalized = requiredText(value, name);
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(normalized) || !Number.isFinite(Date.parse(`${normalized}T00:00:00.000Z`))) {
+  if (!isIsoCalendarDate(normalized)) {
     throw new Error(`invalid_${name}`);
   }
   return normalized;
 }
 
-function stableFingerprint(value: string) {
-  const segments = [0x811c9dc5, 0x9e3779b9, 0x85ebca6b, 0xc2b2ae35];
-  for (let index = 0; index < value.length; index += 1) {
-    const code = value.charCodeAt(index);
-    for (let salt = 0; salt < segments.length; salt += 1) {
-      segments[salt] = Math.imul(segments[salt] ^ (code + salt), 0x01000193) >>> 0;
-    }
-  }
-  const half = segments.map((segment) => segment.toString(16).padStart(8, '0')).join('');
-  return `${half}${half}`;
+function isIsoCalendarDate(value: string) {
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
+  if (!match) return false;
+  const year = Number(match[1]);
+  const month = Number(match[2]);
+  const day = Number(match[3]);
+  const date = new Date(Date.UTC(year, month - 1, day));
+  return date.getUTCFullYear() === year
+    && date.getUTCMonth() === month - 1
+    && date.getUTCDate() === day;
 }
 
 /** Normalize one complete proposal and restore the reviewed fixed source text. */
@@ -72,14 +78,18 @@ export function normalizePipProposal(input: PipProposalInput) {
     departmentId: requiredText(input.departmentId, 'departmentId'),
     supervisorAccountId: requiredText(input.supervisorAccountId, 'supervisorAccountId'),
     requestedPlanEndDate: optionalDate(input.requestedPlanEndDate, 'requestedPlanEndDate'),
-    reviewMeetingDate: optionalDate(input.reviewMeetingDate, 'reviewMeetingDate') as string,
-    purpose: requiredText(input.purpose, 'purpose'),
-    areasOfConcern: requiredText(input.areasOfConcern, 'areasOfConcern'),
-    expectedStandard: requiredText(input.expectedStandard, 'expectedStandard'),
-    requiredActions: requiredText(input.requiredActions, 'requiredActions'),
-    evidenceOfImprovement: requiredText(input.evidenceOfImprovement, 'evidenceOfImprovement'),
-    schoolSupport: requiredText(input.schoolSupport, 'schoolSupport'),
-    successfulCompletionCriteria: requiredText(
+    reviewMeetingDate: (() => {
+      const date = optionalDate(input.reviewMeetingDate, 'reviewMeetingDate');
+      if (!date) throw new Error('invalid_reviewMeetingDate');
+      return date;
+    })(),
+    purpose: requiredNarrative(input.purpose, 'purpose'),
+    areasOfConcern: requiredNarrative(input.areasOfConcern, 'areasOfConcern'),
+    expectedStandard: requiredNarrative(input.expectedStandard, 'expectedStandard'),
+    requiredActions: requiredNarrative(input.requiredActions, 'requiredActions'),
+    evidenceOfImprovement: requiredNarrative(input.evidenceOfImprovement, 'evidenceOfImprovement'),
+    schoolSupport: requiredNarrative(input.schoolSupport, 'schoolSupport'),
+    successfulCompletionCriteria: requiredNarrative(
       input.successfulCompletionCriteria,
       'successfulCompletionCriteria',
     ),
@@ -91,7 +101,7 @@ export function normalizePipProposal(input: PipProposalInput) {
       PIP_SOURCE_CONTRACT.fixedText.insufficientImprovementConsequences,
     acknowledgmentText: PIP_SOURCE_CONTRACT.fixedText.acknowledgmentText,
   };
-  return { ...normalized, fingerprint: stableFingerprint(JSON.stringify(normalized)) };
+  return { ...normalized, fingerprint: JSON.stringify(normalized) };
 }
 
 /** Validate distinct approved skill targets and their direct Danielson parents. */
@@ -110,6 +120,10 @@ export function validatePipTargets(targets: readonly PipTargetInput[], graph: Kn
     if (nodes.get(target.skillId)?.kind !== 'skill'
       || nodes.get(target.componentId)?.kind !== 'instructional_unit') {
       return { valid: false as const, reason: 'invalid_target' as const };
+    }
+    if (nodes.get(target.skillId)?.reviewStatus !== 'approved'
+      || nodes.get(target.componentId)?.reviewStatus !== 'approved') {
+      return { valid: false as const, reason: 'unapproved_target' as const };
     }
     const contained = graph.edges.some((edge) =>
       edge.type === 'contains'

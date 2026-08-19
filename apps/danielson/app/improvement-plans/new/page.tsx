@@ -2,6 +2,7 @@ import Link from 'next/link';
 
 import { ImprovementPlanProposalForm } from '@/components/improvement-plan-proposal-form';
 import { SiteHeader } from '@/components/site-header';
+import { requireDanielsonSession } from '@/lib/auth/server';
 import { getImprovementPlanProposalWorkspace } from '@/lib/improvement-plans/improvement-plan-page';
 
 export default async function NewImprovementPlanPage({
@@ -9,6 +10,7 @@ export default async function NewImprovementPlanPage({
 }: {
   searchParams: Promise<{ teacherProfileId?: string }>;
 }) {
+  await requireDanielsonSession('/improvement-plans/new');
   const { teacherProfileId } = await searchParams;
   if (!teacherProfileId) {
     return (
