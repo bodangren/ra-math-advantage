@@ -57,6 +57,20 @@ input, select, textarea { width: 100%; border: 1px solid var(--line); border-rad
 .admin-links { display: grid; gap: .75rem; margin: 1.5rem 0 0; }
 .admin-links a { display: block; border: 1px solid var(--line); border-radius: .35rem; padding: .9rem 1rem; text-decoration: none; background: var(--surface); }
 .admin-links a:hover { border-color: var(--forest); }
+.observation-form { width: min(760px, 100%); }
+.observation-form-heading { padding-bottom: .5rem; border-bottom: 2px solid var(--forest); }
+.observation-target { display: grid; gap: 1rem; margin: 0; }
+.observation-target legend { display: grid; gap: .15rem; max-width: calc(100% - 2rem); padding: 0 .45rem; }
+.target-number { color: var(--ochre); font-size: .78rem; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
+.target-title { font-family: Georgia, 'Times New Roman', serif; font-size: 1.35rem; font-weight: 700; }
+.target-component { color: var(--muted-ink); font-size: .92rem; }
+.rating-options { display: grid; grid-template-columns: repeat(4, minmax(5rem, 1fr)); gap: .55rem; }
+.rating-option { display: flex; min-height: 2.8rem; align-items: center; gap: .45rem; border: 1px solid var(--line); border-radius: .3rem; background: white; padding: .5rem .65rem; font-weight: 600; cursor: pointer; }
+.rating-option:has(input:checked) { border-color: var(--forest); box-shadow: inset 0 0 0 1px var(--forest); }
+.rating-option input { width: auto; margin: 0; }
+.rating-option.wide { grid-column: 1 / -1; }
+.field-error { margin: -.35rem 0 0; color: var(--danger); font-weight: 650; }
+.observation-actions { display: flex; justify-content: flex-end; gap: .75rem; padding-top: .5rem; }
 .table-wrap { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; }
 th, td { padding: .7rem .8rem; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
@@ -65,5 +79,7 @@ code { overflow-wrap: anywhere; }
 @media (max-width: 640px) {
   .site-header-inner { align-items: flex-start; flex-direction: column; padding: 1rem 0; }
   .page-shell { padding-top: 2rem; }
+  .rating-options { grid-template-columns: repeat(2, minmax(5rem, 1fr)); }
+  .observation-actions { align-items: stretch; flex-direction: column-reverse; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; } }
