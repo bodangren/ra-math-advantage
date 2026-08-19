@@ -10,7 +10,11 @@ import {
 import { AUTHORED_UNIT_1_LESSONS } from '@/lib/curriculum/generated/unit1-authored';
 import {
   BM2_LEARNING_EVIDENCE_PILOT,
+  BM2_PILOT_PROBLEM_FAMILY_ID,
+  bm2ProblemFamilyIdToVariantKey,
+  bm2VariantKeyToProblemFamilyId,
   createBm2LearningEvidenceRuntime,
+  validateBm2LearningEvidencePilotManifest,
 } from '@/lib/learning-evidence/bm2-pilot';
 
 const PILOT_NODE_ID = 'math.bm2.skill.1.1.apply-accounting-equation';
@@ -71,6 +75,22 @@ function evaluate(
 }
 
 describe('BM2 learning-evidence.v1 pilot', () => {
+  it('preserves the legacy problemFamilyId mapping and validates the exact manifest', () => {
+    expect(bm2ProblemFamilyIdToVariantKey(BM2_PILOT_PROBLEM_FAMILY_ID)).toBe(
+      ACCOUNTING_EQUATION_VARIANT_KEY,
+    );
+    expect(bm2VariantKeyToProblemFamilyId(ACCOUNTING_EQUATION_VARIANT_KEY)).toBe(
+      BM2_PILOT_PROBLEM_FAMILY_ID,
+    );
+    expect(() => validateBm2LearningEvidencePilotManifest()).not.toThrow();
+    expect(() => bm2ProblemFamilyIdToVariantKey('another-problem-family')).toThrow(
+      'Unsupported BM2 problemFamilyId',
+    );
+    expect(() => bm2VariantKeyToProblemFamilyId('another-variant')).toThrow(
+      'Unsupported BM2 variantKey',
+    );
+  });
+
   it('freezes the one-node manifest to the reviewed Unit 1 Lesson 1 source and canonical accounting-equation mapping', () => {
     const lesson = AUTHORED_UNIT_1_LESSONS.find((candidate) => candidate.lesson.id === LESSON_ID);
     const guidedActivity = lesson?.activities.find((candidate) => candidate.id === GUIDED_ACTIVITY_ID);
