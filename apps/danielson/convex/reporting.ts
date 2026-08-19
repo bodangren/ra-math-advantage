@@ -10,6 +10,7 @@ import {
   type DanielsonAction,
   type DanielsonRole,
 } from '../lib/foundation/authorization';
+import { projectEffectiveObservation } from '../lib/observations/amendments';
 import type {
   ObservationAmendment,
   ObservationItem,
@@ -42,6 +43,29 @@ const reportingStateValidator = v.union(
   v.literal('proficient'),
   v.literal('not_enough_evidence'),
 );
+const observationTypeValidator = v.union(
+  v.literal('walkthrough'),
+  v.literal('formal_q1'),
+  v.literal('formal_q4'),
+);
+const observationPriorityReasonValidator = v.union(
+  v.literal('below_proficient'),
+  v.literal('overdue'),
+  v.literal('evidence_gap'),
+  v.literal('due'),
+);
+const observationOutcomeValidator = v.union(
+  v.object({ kind: v.literal('rated'), rating: v.number() }),
+  v.object({ kind: v.literal('not_enough_evidence') }),
+);
+const observationItemValidator = v.object({
+  itemId: v.string(),
+  componentId: v.string(),
+  skillId: v.optional(v.string()),
+  priorityReason: v.optional(observationPriorityReasonValidator),
+  outcome: v.union(observationOutcomeValidator, v.null()),
+  evidenceNote: v.union(v.string(), v.null()),
+});
 const portfolioRowValidator = v.object({
   teacherProfileId: v.string(),
   displayName: v.string(),
@@ -85,12 +109,68 @@ const responseValidator = v.object({
   content: v.string(),
   submittedAt: v.number(),
 });
+const officialEvaluationValidator = v.object({
+  observationId: v.string(),
+  observationType: v.union(v.literal('formal_q1'), v.literal('formal_q4')),
+  schoolYear: v.string(),
+  observedAt: v.string(),
+  observerDisplayName: v.string(),
+  amendmentCount: v.number(),
+  status: reportingStateValidator,
+  components: v.array(v.object({
+    componentId: v.string(),
+    title: v.string(),
+    rawRating: v.union(v.number(), v.null()),
+    points: v.union(v.number(), v.null()),
+    observedAt: v.string(),
+    observerDisplayName: v.string(),
+    sourceObservationId: v.string(),
+    amendmentCount: v.number(),
+  })),
+});
+const currentProficiencyValidator = v.object({
+  state: reportingStateValidator,
+  domains: v.array(v.object({
+    domainId: v.string(),
+    title: v.string(),
+    state: reportingStateValidator,
+    components: v.array(v.object({
+      componentId: v.string(),
+      title: v.string(),
+      state: reportingStateValidator,
+      skills: v.array(v.object({
+        skillId: v.string(),
+        title: v.string(),
+        rawRating: v.union(v.number(), v.null()),
+        points: v.union(v.number(), v.null()),
+        state: reportingStateValidator,
+        due: v.boolean(),
+        dueAt: v.union(v.string(), v.null()),
+        overdueDays: v.number(),
+        sourceRecordId: v.union(v.string(), v.null()),
+      })),
+    })),
+  })),
+});
+const evidenceHistoryItemValidator = v.object({
+  observationId: v.string(),
+  observationType: observationTypeValidator,
+  schoolYear: v.string(),
+  observedAt: v.string(),
+  observerDisplayName: v.string(),
+  amendmentCount: v.number(),
+  teacherResponseState: v.union(
+    v.literal('submitted'),
+    v.literal('not_submitted'),
+  ),
+  items: v.array(observationItemValidator),
+});
 const publicReportValidator = v.object({
   teacherProfileId: v.string(),
   displayName: v.string(),
   danielsonState: reportingStateValidator,
-  officialEvaluations: v.array(v.any()),
-  currentProficiency: v.any(),
+  officialEvaluations: v.array(officialEvaluationValidator),
+  currentProficiency: currentProficiencyValidator,
   improvementPlan: v.object({
     contractVersion: v.literal('danielson.ip-progress.v1'),
     state: v.literal('not_configured'),
@@ -99,7 +179,7 @@ const publicReportValidator = v.object({
     contractVersion: v.literal('danielson.gbf-progress.v1'),
     state: v.literal('not_configured'),
   }),
-  evidenceHistory: v.array(v.any()),
+  evidenceHistory: v.array(evidenceHistoryItemValidator),
   publicComments: v.array(commentValidator),
   responses: v.array(responseValidator),
 });
@@ -107,8 +187,8 @@ const privateReportValidator = v.object({
   teacherProfileId: v.string(),
   displayName: v.string(),
   danielsonState: reportingStateValidator,
-  officialEvaluations: v.array(v.any()),
-  currentProficiency: v.any(),
+  officialEvaluations: v.array(officialEvaluationValidator),
+  currentProficiency: currentProficiencyValidator,
   improvementPlan: v.object({
     contractVersion: v.literal('danielson.ip-progress.v1'),
     state: v.literal('not_configured'),
@@ -117,7 +197,7 @@ const privateReportValidator = v.object({
     contractVersion: v.literal('danielson.gbf-progress.v1'),
     state: v.literal('not_configured'),
   }),
-  evidenceHistory: v.array(v.any()),
+  evidenceHistory: v.array(evidenceHistoryItemValidator),
   publicComments: v.array(commentValidator),
   privateComments: v.array(commentValidator),
   responses: v.array(responseValidator),
@@ -400,7 +480,7 @@ async function buildPublicTeacherReport(
   account: Doc<'accounts'>,
   now: number,
 ) {
-  const [records, amendments, cards, proficiency, publicComments, responses, accounts] = await Promise.all([
+  const [records, amendments, cards, proficiency, responses, accounts] = await Promise.all([
     ctx.db.query('observation_records')
       .withIndex('by_org_teacher_status_submitted', (query) => query
         .eq('organizationId', teacher.organizationId)
@@ -423,12 +503,6 @@ async function buildPublicTeacherReport(
         .eq('organizationId', teacher.organizationId)
         .eq('teacherId', String(teacher._id)))
       .take(MAX_TEACHER_ROWS + 1),
-    ctx.db.query('observation_public_comments')
-      .withIndex('by_org_teacher_created', (query) => query
-        .eq('organizationId', teacher.organizationId)
-        .eq('teacherProfileId', teacher._id))
-      .order('desc')
-      .take(MAX_PAGE_SIZE),
     ctx.db.query('teacher_observation_responses')
       .withIndex('by_org_teacher_submitted', (query) => query
         .eq('organizationId', teacher.organizationId)
@@ -455,7 +529,16 @@ async function buildPublicTeacherReport(
     approvedSkillIds,
     now,
   );
-  const currentProficiency = projectCurrentProficiency({ priorities });
+  const sourceBySkill = new Map(proficiency.map((row) => [
+    row.projection.skillId,
+    row.projection.sourceRecordId,
+  ]));
+  const currentProficiency = projectCurrentProficiency({
+    priorities: priorities.map((priority) => ({
+      ...priority,
+      sourceRecordId: sourceBySkill.get(priority.skillId) ?? null,
+    })),
+  });
   const amendmentRows = amendments.map(amendmentFromRow);
   const accountById = new Map(accounts.map((row) => [String(row._id), row]));
   const submittedRecords = records.map(submittedFromRow);
@@ -465,14 +548,16 @@ async function buildPublicTeacherReport(
   const officialEvaluations = (['formal_q1', 'formal_q4'] as const).flatMap((type) => {
     const record = latestFormal(type);
     if (!record) return [];
-    return [projectOfficialEvaluation({
-      record,
-      amendments: amendmentRows.filter((row) => row.observationId === record.observationId),
-      observerDisplayName: accountById.get(record.observerAccountId)?.displayName
-        ?? record.observerAccountId,
-    })];
+    return [{
+      ...projectOfficialEvaluation({
+        record,
+        amendments: amendmentRows.filter((row) => row.observationId === record.observationId),
+        observerDisplayName: accountById.get(record.observerAccountId)?.displayName
+          ?? record.observerAccountId,
+      }),
+      observationType: type,
+    }];
   });
-  const responseByObservation = new Set(responses.map((row) => String(row.observationId)));
   return {
     teacherProfileId: String(teacher._id),
     displayName: account.displayName,
@@ -487,20 +572,8 @@ async function buildPublicTeacherReport(
       contractVersion: 'danielson.gbf-progress.v1' as const,
       state: 'not_configured' as const,
     },
-    evidenceHistory: submittedRecords.map((record) => ({
-      observationId: record.observationId,
-      observationType: record.observationType,
-      schoolYear: record.schoolYear,
-      observedAt: record.observedAt,
-      observerDisplayName: accountById.get(record.observerAccountId)?.displayName
-        ?? record.observerAccountId,
-      amendmentCount: amendmentRows.filter((row) => row.observationId === record.observationId).length,
-      teacherResponseState: responseByObservation.has(record.observationId)
-        ? 'submitted' as const
-        : 'not_submitted' as const,
-      items: record.items,
-    })),
-    publicComments: publicComments.map(commentFromRow),
+    evidenceHistory: [],
+    publicComments: [],
     responses: responses.map(responseFromRow),
   };
 }
@@ -538,16 +611,10 @@ export const readLeadershipTeacherReport = internalQuery({
     if (privateAccess.kind === 'denied') {
       return { kind: 'allowed' as const, visibility: 'public' as const, report };
     }
-    const privateComments = await ctx.db.query('observation_private_comments')
-      .withIndex('by_org_teacher_created', (query) => query
-        .eq('organizationId', access.teacher.organizationId)
-        .eq('teacherProfileId', access.teacher._id))
-      .order('desc')
-      .take(MAX_PAGE_SIZE);
     return {
       kind: 'allowed' as const,
       visibility: 'private' as const,
-      report: { ...report, privateComments: privateComments.map(commentFromRow) },
+      report: { ...report, privateComments: [] },
     };
   },
 });
@@ -577,6 +644,127 @@ export const readMyTeacherReport = internalQuery({
     return report
       ? { kind: 'allowed' as const, report }
       : { kind: 'teacher_report_capacity_exceeded' as const };
+  },
+});
+
+async function listEvidenceHistory(
+  ctx: Pick<QueryCtx, 'db'>,
+  args: {
+    actorAccountId: Id<'accounts'>;
+    teacherProfileId: Id<'teacher_profiles'>;
+    paginationOpts: { cursor: string | null; numItems: number };
+  },
+  action: 'teacher_report:read' | 'published_record:read',
+) {
+  const access = await authorizeTeacher(
+    ctx,
+    args.actorAccountId,
+    args.teacherProfileId,
+    action,
+  );
+  if (access.kind === 'denied') return access;
+  const [result, amendments, responses, accounts] = await Promise.all([
+    ctx.db.query('observation_records')
+      .withIndex('by_org_teacher_status_submitted', (query) => query
+        .eq('organizationId', access.teacher.organizationId)
+        .eq('teacherProfileId', access.teacher._id)
+        .eq('status', 'submitted'))
+      .order('desc')
+      .paginate({
+        cursor: args.paginationOpts.cursor,
+        numItems: Math.min(args.paginationOpts.numItems, MAX_PAGE_SIZE),
+      }),
+    ctx.db.query('observation_amendments')
+      .withIndex('by_org_teacher_occurred', (query) => query
+        .eq('organizationId', access.teacher.organizationId)
+        .eq('teacherProfileId', access.teacher._id))
+      .take(MAX_HISTORY_ROWS + 1),
+    ctx.db.query('teacher_observation_responses')
+      .withIndex('by_org_teacher_submitted', (query) => query
+        .eq('organizationId', access.teacher.organizationId)
+        .eq('teacherProfileId', access.teacher._id))
+      .take(MAX_HISTORY_ROWS + 1),
+    ctx.db.query('accounts')
+      .withIndex('by_organizationId', (query) => query
+        .eq('organizationId', access.teacher.organizationId))
+      .take(MAX_ACCOUNTS + 1),
+  ]);
+  if (
+    amendments.length > MAX_HISTORY_ROWS
+    || responses.length > MAX_HISTORY_ROWS
+    || accounts.length > MAX_ACCOUNTS
+  ) return { kind: 'history_capacity_exceeded' as const };
+
+  const amendmentsByObservation = new Map<string, ObservationAmendment[]>();
+  for (const row of amendments) {
+    const amendment = amendmentFromRow(row);
+    amendmentsByObservation.set(amendment.observationId, [
+      ...(amendmentsByObservation.get(amendment.observationId) ?? []),
+      amendment,
+    ]);
+  }
+  const responseByObservation = new Set(responses.map((row) => String(row.observationId)));
+  const accountById = new Map(accounts.map((row) => [String(row._id), row]));
+  return {
+    kind: 'allowed' as const,
+    page: {
+      ...result,
+      page: result.page.map((row) => {
+        const original = submittedFromRow(row);
+        const observationAmendments = amendmentsByObservation.get(original.observationId) ?? [];
+        const effective = projectEffectiveObservation(original, observationAmendments);
+        return {
+          observationId: effective.observationId,
+          observationType: effective.observationType,
+          schoolYear: effective.schoolYear,
+          observedAt: effective.observedAt,
+          observerDisplayName: accountById.get(effective.observerAccountId)?.displayName
+            ?? effective.observerAccountId,
+          amendmentCount: observationAmendments.length,
+          teacherResponseState: responseByObservation.has(effective.observationId)
+            ? 'submitted' as const
+            : 'not_submitted' as const,
+          items: effective.items,
+        };
+      }),
+    },
+  };
+}
+
+const evidenceHistoryPageResultValidator = v.union(
+  deniedValidator,
+  v.object({ kind: v.literal('history_capacity_exceeded') }),
+  v.object({
+    kind: v.literal('allowed'),
+    page: paginationResultValidator(evidenceHistoryItemValidator),
+  }),
+);
+
+export const listLeadershipEvidenceHistory = internalQuery({
+  args: {
+    actorAccountId: v.id('accounts'),
+    teacherProfileId: v.id('teacher_profiles'),
+    paginationOpts: paginationOptsValidator,
+  },
+  returns: evidenceHistoryPageResultValidator,
+  handler: (ctx, args) => listEvidenceHistory(ctx, args, 'teacher_report:read'),
+});
+
+export const listMyEvidenceHistory = internalQuery({
+  args: {
+    actorAccountId: v.id('accounts'),
+    paginationOpts: paginationOptsValidator,
+  },
+  returns: evidenceHistoryPageResultValidator,
+  handler: async (ctx, args) => {
+    const teacher = await ctx.db.query('teacher_profiles')
+      .withIndex('by_accountId', (query) => query.eq('accountId', args.actorAccountId))
+      .unique();
+    if (!teacher) return { kind: 'denied' as const, reason: 'target_inactive' };
+    return listEvidenceHistory(ctx, {
+      ...args,
+      teacherProfileId: teacher._id,
+    }, 'published_record:read');
   },
 });
 
