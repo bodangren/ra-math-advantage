@@ -581,6 +581,38 @@ describe('reporting independent-review interface contracts', () => {
       );
   });
 
+  it('shows the target skill and parent component in evidence history', () => {
+    render(<TeacherReportView
+      report={{
+        ...report,
+        evidenceHistory: [{
+          observationId: 'observation_records:history',
+          observationType: 'walkthrough',
+          schoolYear: '2026-2027',
+          observedAt: NOW_ISO,
+          observerDisplayName: 'Observer One',
+          amendmentCount: 0,
+          teacherResponseState: 'not_submitted',
+          items: [{
+            itemId: 'history-item',
+            componentId: 'danielson.framework.component.1e',
+            skillId: 'danielson.tlac.skill.double-plan',
+            outcome: { kind: 'rated', rating: 3 },
+            evidenceNote: null,
+          }],
+        }],
+      }}
+      canComment={false}
+      canRespond={false}
+    />);
+
+    fireEvent.click(screen.getByText(/walkthrough/));
+    expect(screen.getByText('danielson.tlac.skill.double-plan')).toBeVisible();
+    expect(screen.getByText(
+      'Parent component: danielson.framework.component.1e',
+    )).toBeVisible();
+  });
+
   it('renders continuation links for evidence and public and private comments', () => {
     type PaginatedViewProps = ComponentProps<typeof TeacherReportView> & {
       evidenceHistoryNextHref: string | null;
