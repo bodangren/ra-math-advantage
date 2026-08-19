@@ -3,6 +3,9 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import {
   amendObservation,
   createObservationDraft,
+  discardObservationDraft,
+  readObservationDraft,
+  readPublishedObservation,
   readRankedTeacherQueue,
   saveObservationDraft,
   submitObservation,
@@ -446,6 +449,82 @@ describe('Danielson observation Convex boundary', () => {
     expect(await db.get(observationId)).toEqual(before);
   });
 
+  it('reads and discards only the owner draft with the current revision', async () => {
+    const db = new MemoryDb();
+    seedFoundation(db);
+    const created = expectKind(await createDraft(db), 'created');
+    const draft = created.draft as Record<string, unknown>;
+    const read = handler(readObservationDraft);
+    const discard = handler(discardObservationDraft);
+
+    expectKind(await read(db.context(), {
+      actorAccountId: SECOND_OBSERVER,
+      draftId: draft.draftId,
+    }), 'denied');
+    expectKind(await discard(db.context(), {
+      actorAccountId: OBSERVER_ACCOUNT_ID,
+      draftId: draft.draftId,
+      expectedRevision: Number(draft.revision) + 1,
+      confirmed: true,
+    }), 'revision_conflict');
+    expectKind(await read(db.context(), {
+      actorAccountId: OBSERVER_ACCOUNT_ID,
+      draftId: draft.draftId,
+    }), 'allowed');
+    expectKind(await discard(db.context(), {
+      actorAccountId: OBSERVER_ACCOUNT_ID,
+      draftId: draft.draftId,
+      expectedRevision: draft.revision,
+      confirmed: true,
+    }), 'discarded');
+    expect(await db.get(draft.draftId)).toBeNull();
+  });
+
+  it('rejects a stale submission revision before evidence writes', async () => {
+    const db = new MemoryDb();
+    seedFoundation(db);
+    const draft = await createCompletedDraft(db, 'all_ne');
+    const before = structuredClone(db.allRows());
+
+    expectKind(await handler(submitObservation)(db.context(), {
+      actorAccountId: OBSERVER_ACCOUNT_ID,
+      draftId: draft.draftId,
+      expectedRevision: Number(draft.revision) - 1,
+      submissionKey: 'stale-revision',
+      now: OBSERVATION_NOW_MS + 2_000,
+    }), 'revision_conflict');
+    expect(db.allRows()).toEqual(before);
+  });
+
+  it('lets the teacher read a published record but never a draft', async () => {
+    const db = new MemoryDb();
+    seedFoundation(db);
+    db.seed('role_assignments', 'role_assignments:teacher', {
+      organizationId: ORGANIZATION_A,
+      accountId: 'accounts:teacher',
+      role: 'teacher',
+      status: 'active',
+    });
+    const draft = await createCompletedDraft(db, 'all_ne');
+    const read = handler(readPublishedObservation);
+    expectKind(await read(db.context(), {
+      actorAccountId: 'accounts:teacher',
+      observationId: draft.draftId,
+    }), 'not_found');
+
+    const submitted = expectKind(await handler(submitObservation)(db.context(), {
+      actorAccountId: OBSERVER_ACCOUNT_ID,
+      draftId: draft.draftId,
+      expectedRevision: draft.revision,
+      submissionKey: 'teacher-visible-record',
+      now: OBSERVATION_NOW_MS + 2_000,
+    }), 'submitted');
+    expectKind(await read(db.context(), {
+      actorAccountId: 'accounts:teacher',
+      observationId: (submitted.receipt as Record<string, unknown>).observationId,
+    }), 'allowed');
+  });
+
   it('preserves the original during a scoring amendment and rebuilds one effective review', async () => {
     const db = new MemoryDb();
     seedFoundation(db);
@@ -483,6 +562,48 @@ describe('Danielson observation Convex boundary', () => {
     expect(db.rows('teacher_observation_outcomes')).toHaveLength(4);
     expect(db.rows('teacher_evidence_supersessions')).toHaveLength(1);
     expect(db.rows('teacher_srs_reviews').length).toBeGreaterThanOrEqual(1);
+  });
+
+  it('rejects one amendment idempotency key reused for another observation', async () => {
+    const db = new MemoryDb();
+    seedFoundation(db);
+    const amend = handler(amendObservation);
+    const first = await submitRatedWalkthrough({
+      db,
+      submissionKey: 'first-for-shared-amendment-key',
+      rating: 2,
+      observedAt: '2026-09-10T08:00:00.000Z',
+      now: OBSERVATION_NOW_MS + 2_000,
+    });
+    const second = await submitRatedWalkthrough({
+      db,
+      submissionKey: 'second-for-shared-amendment-key',
+      rating: 2,
+      observedAt: '2026-09-11T08:00:00.000Z',
+      now: OBSERVATION_NOW_MS + 3_000,
+    });
+    const firstItem = firstSubmittedItem(first);
+    const secondItem = firstSubmittedItem(second);
+    const command = {
+      actorAccountId: OBSERVER_ACCOUNT_ID,
+      idempotencyKey: 'one-amendment-command',
+      expectedVersion: 0,
+      reason: 'Correct the rating.',
+      now: OBSERVATION_NOW_MS + 4_000,
+    };
+    expectKind(await amend(db.context(), {
+      ...command,
+      observationId: (first.receipt as Record<string, unknown>).observationId,
+      changedItems: [{ itemId: firstItem.itemId, outcome: { kind: 'rated', rating: 3 } }],
+    }), 'amended');
+    const before = structuredClone(db.allRows());
+
+    expectKind(await amend(db.context(), {
+      ...command,
+      observationId: (second.receipt as Record<string, unknown>).observationId,
+      changedItems: [{ itemId: secondItem.itemId, outcome: { kind: 'rated', rating: 4 } }],
+    }), 'idempotency_conflict');
+    expect(db.allRows()).toEqual(before);
   });
 
   it('removes stale scoring state when an amendment changes rated evidence to no evidence', async () => {

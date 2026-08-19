@@ -122,6 +122,34 @@ const teacherEvidenceResultValidator = v.object({
   knowledgeState: v.array(knowledgeStateValidator),
   priority: v.array(priorityValidator),
 });
+const observationTypeValidator = v.union(
+  v.literal('walkthrough'),
+  v.literal('formal_q1'),
+  v.literal('formal_q4'),
+);
+const observationPriorityReasonValidator = v.union(
+  v.literal('below_proficient'),
+  v.literal('overdue'),
+  v.literal('evidence_gap'),
+  v.literal('due'),
+);
+const observationItemOutcomeValidator = v.union(
+  v.object({ kind: v.literal('rated'), rating: v.number() }),
+  v.object({ kind: v.literal('not_enough_evidence') }),
+);
+const observationItemValidator = v.object({
+  itemId: v.string(),
+  componentId: v.string(),
+  skillId: v.optional(v.string()),
+  priorityReason: v.optional(observationPriorityReasonValidator),
+  outcome: v.union(v.null(), observationItemOutcomeValidator),
+  evidenceNote: v.union(v.null(), v.string()),
+});
+const observationItemChangeValidator = v.object({
+  itemId: v.string(),
+  outcome: v.optional(observationItemOutcomeValidator),
+  evidenceNote: v.optional(v.union(v.null(), v.string())),
+});
 
 export default defineSchema({
   organizations: defineTable({
@@ -195,6 +223,7 @@ export default defineSchema({
     revokedByAccountId: v.optional(v.id('accounts')),
     revokedAt: v.optional(v.number()),
   })
+    .index('by_organizationId_and_status', ['organizationId', 'status'])
     .index('by_org_dept_teacher_status', ['organizationId', 'departmentId', 'teacherProfileId', 'status'])
     .index('by_organizationId_and_departmentId_and_status', ['organizationId', 'departmentId', 'status'])
     .index('by_organizationId_and_teacherProfileId_and_status', ['organizationId', 'teacherProfileId', 'status']),
@@ -398,5 +427,68 @@ export default defineSchema({
   })
     .index('by_organizationId_and_teacherId', ['organizationId', 'teacherId'])
     .index('by_organizationId_and_teacherId_and_skillId', ['organizationId', 'teacherId', 'skillId']),
+
+  observation_records: defineTable({
+    organizationId: v.id('organizations'),
+    teacherProfileId: v.id('teacher_profiles'),
+    observerAccountId: v.id('accounts'),
+    observationType: observationTypeValidator,
+    schoolYear: v.string(),
+    sourceVersion: v.string(),
+    frameworkVersion: v.string(),
+    observedAt: v.string(),
+    status: v.union(v.literal('draft'), v.literal('submitted')),
+    revision: v.number(),
+    items: v.array(observationItemValidator),
+    submissionKey: v.optional(v.string()),
+    submissionFingerprint: v.optional(v.string()),
+    submittedAt: v.optional(v.number()),
+    publishedAt: v.optional(v.number()),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  })
+    .index('by_org_observer_status', ['organizationId', 'observerAccountId', 'status'])
+    .index('by_org_submission_key', ['organizationId', 'submissionKey'])
+    .index('by_org_teacher_status_submitted', ['organizationId', 'teacherProfileId', 'status', 'submittedAt'])
+    .index('by_org_teacher_type_year_status', ['organizationId', 'teacherProfileId', 'observationType', 'schoolYear', 'status']),
+
+  observation_amendments: defineTable({
+    organizationId: v.id('organizations'),
+    observationId: v.id('observation_records'),
+    teacherProfileId: v.id('teacher_profiles'),
+    authorAccountId: v.id('accounts'),
+    idempotencyKey: v.string(),
+    fingerprint: v.string(),
+    version: v.number(),
+    reason: v.string(),
+    changedItems: v.array(observationItemChangeValidator),
+    occurredAt: v.number(),
+  })
+    .index('by_org_observation_version', ['organizationId', 'observationId', 'version'])
+    .index('by_org_idempotency_key', ['organizationId', 'idempotencyKey'])
+    .index('by_org_teacher_occurred', ['organizationId', 'teacherProfileId', 'occurredAt']),
+
+  teacher_evidence_supersessions: defineTable({
+    organizationId: v.id('organizations'),
+    teacherProfileId: v.id('teacher_profiles'),
+    observationId: v.id('observation_records'),
+    amendmentId: v.id('observation_amendments'),
+    itemId: v.string(),
+    supersededEvidenceKey: v.string(),
+    replacementEvidenceKey: v.string(),
+    replacementOutcome: observationItemOutcomeValidator,
+    occurredAt: v.number(),
+  })
+    .index('by_org_teacher_occurred', ['organizationId', 'teacherProfileId', 'occurredAt'])
+    .index('by_org_superseded_key', ['organizationId', 'supersededEvidenceKey']),
+
+  teacher_attention_summaries: defineTable({
+    organizationId: v.id('organizations'),
+    teacherProfileId: v.id('teacher_profiles'),
+    targets: v.array(priorityValidator),
+    updatedAt: v.number(),
+  })
+    .index('by_organizationId', ['organizationId'])
+    .index('by_organizationId_and_teacherProfileId', ['organizationId', 'teacherProfileId']),
 
 });

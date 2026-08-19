@@ -102,6 +102,7 @@ function supersessionsFor(
   original: SubmittedObservation,
   effectiveBefore: SubmittedObservation,
   amendment: ObservationAmendment,
+  priorAmendments: readonly ObservationAmendment[] = [],
 ): EvidenceSupersession[] {
   const beforeById = new Map(effectiveBefore.items.map((item) => [item.itemId, item]));
   const originalById = new Map(original.items.map((item) => [item.itemId, item]));
@@ -112,7 +113,16 @@ function supersessionsFor(
     const source = originalById.get(change.itemId);
     if (!before || !source) throw new Error(`Unknown observation item ${change.itemId}`);
     if (JSON.stringify(before.outcome) === JSON.stringify(change.outcome)) continue;
-    const supersededEvidenceKey = evidenceKey(original, source);
+    const priorOutcomeAmendment = [...priorAmendments]
+      .sort((left, right) => right.version - left.version)
+      .find((candidate) => candidate.changedItems.some((item) => (
+        item.itemId === change.itemId && item.outcome !== undefined
+      )));
+    const targetKind = original.observationType === 'walkthrough' ? 'skill' : 'component';
+    const targetId = original.observationType === 'walkthrough' ? source.skillId : source.componentId;
+    const supersededEvidenceKey = priorOutcomeAmendment
+      ? `${priorOutcomeAmendment.idempotencyKey}:${targetKind}:${targetId}`
+      : evidenceKey(original, source);
     supersessions.push({
       supersessionId: `teacher_evidence_supersessions:${encodeURIComponent(amendment.idempotencyKey)}:${encodeURIComponent(change.itemId)}`,
       observationId: original.observationId,
@@ -120,7 +130,7 @@ function supersessionsFor(
       teacherProfileId: original.teacherProfileId,
       itemId: change.itemId,
       supersededEvidenceKey,
-      replacementEvidenceKey: `${amendment.idempotencyKey}:${original.observationType === 'walkthrough' ? 'skill' : 'component'}:${original.observationType === 'walkthrough' ? source.skillId : source.componentId}`,
+      replacementEvidenceKey: `${amendment.idempotencyKey}:${targetKind}:${targetId}`,
       replacementOutcome: cloneValue(change.outcome),
       occurredAt: amendment.occurredAt,
     });
@@ -147,7 +157,12 @@ export function applyObservationAmendment(input: {
     return {
       kind: 'replayed' as const,
       amendment: cloneValue(replay),
-      supersessions: supersessionsFor(input.original, effectiveBefore, replay),
+      supersessions: supersessionsFor(
+        input.original,
+        effectiveBefore,
+        replay,
+        prior.filter((amendment) => amendment.version < replay.version),
+      ),
       receipt: { amendmentId: replay.amendmentId, version: replay.version },
     };
   }
@@ -181,8 +196,7 @@ export function applyObservationAmendment(input: {
   return {
     kind: 'amended' as const,
     amendment,
-    supersessions: supersessionsFor(input.original, effectiveBefore, amendment),
+    supersessions: supersessionsFor(input.original, effectiveBefore, amendment, prior),
     receipt: { amendmentId, version },
   };
 }
-

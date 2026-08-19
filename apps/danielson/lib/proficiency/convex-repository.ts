@@ -2,11 +2,12 @@ import type { QueryCtx, MutationCtx } from '../../convex/_generated/server';
 import type { Doc, Id } from '../../convex/_generated/dataModel';
 import type { SrsCardState, SrsReviewLogEntryV31 } from '@math-platform/srs-engine';
 
-import type {
-  TeacherEvidenceCommit,
-  TeacherEvidenceSnapshot,
-  TeacherProficiencyPort,
-  TeacherState,
+import {
+  applyTeacherEvidenceCommitToState,
+  type TeacherEvidenceCommit,
+  type TeacherEvidenceSnapshot,
+  type TeacherProficiencyPort,
+  type TeacherState,
 } from './processor';
 
 const MAX_TEACHER_ROWS = 200;
@@ -21,6 +22,7 @@ type StateRows = {
   proficiency: Doc<'teacher_proficiency'>[];
   knowledgeState: Doc<'teacher_knowledge_state'>[];
   priority: Doc<'teacher_priority'>[];
+  supersessions: Doc<'teacher_evidence_supersessions'>[];
 };
 
 function stateDefaults(teacherId: string): TeacherState {
@@ -42,7 +44,7 @@ async function readStateRows(
   organizationId: Id<'organizations'>,
   teacherId: string,
 ): Promise<StateRows> {
-  const [idempotency, outcomes, cards, proficiency, knowledgeState, priority] = await Promise.all([
+  const [idempotency, outcomes, cards, proficiency, knowledgeState, priority, supersessions] = await Promise.all([
     db.query('teacher_proficiency_idempotency')
       .withIndex('by_organizationId_and_teacherId', (query) => query
         .eq('organizationId', organizationId)
@@ -79,11 +81,18 @@ async function readStateRows(
         .eq('teacherId', teacherId))
       .order('asc')
       .take(MAX_TEACHER_ROWS),
+    db.query('teacher_evidence_supersessions')
+      .withIndex('by_org_teacher_occurred', (query) => query
+        .eq('organizationId', organizationId)
+        .eq('teacherProfileId', teacherId as Id<'teacher_profiles'>))
+      .order('asc')
+      .take(MAX_REBUILD_OUTCOMES + 1),
   ]);
-  return { idempotency, outcomes, cards, proficiency, knowledgeState, priority };
+  return { idempotency, outcomes, cards, proficiency, knowledgeState, priority, supersessions };
 }
 
 function stateFromRows(teacherId: string, rows: StateRows): TeacherState {
+  const supersededKeys = new Set(rows.supersessions.map((row) => row.supersededEvidenceKey));
   return {
     ...stateDefaults(teacherId),
     historyComplete: rows.outcomes.length <= MAX_REBUILD_OUTCOMES,
@@ -94,6 +103,7 @@ function stateFromRows(teacherId: string, rows: StateRows): TeacherState {
     })),
     observationOutcomes: rows.outcomes
       .slice(0, MAX_REBUILD_OUTCOMES)
+      .filter((row) => !supersededKeys.has(row.idempotencyKey))
       .sort((left, right) => left.occurredAt - right.occurredAt)
       .map((row) => ({ ...row.outcome })),
     cards: rows.cards.map((row) => ({ ...row.card })),
@@ -131,13 +141,16 @@ export function createDanielsonTeacherProficiencyPort(
   const db = ctx.db as WriterDb;
   let cachedTeacherId: string | null = null;
   let cachedRows: StateRows | null = null;
+  let cachedState: TeacherState | null = null;
 
   return {
     async getTeacherState(teacherId) {
+      if (cachedTeacherId === teacherId && cachedState) return structuredClone(cachedState);
       const rows = await readStateRows(db, organizationId, teacherId);
       cachedTeacherId = teacherId;
       cachedRows = rows;
-      return stateFromRows(teacherId, rows);
+      cachedState = stateFromRows(teacherId, rows);
+      return structuredClone(cachedState);
     },
 
     async commitTeacherEvidence(commit: TeacherEvidenceCommit) {
@@ -294,6 +307,9 @@ export function createDanielsonTeacherProficiencyPort(
           const id = await db.insert('teacher_priority', row);
           priorityBySkill.set(skillId, { ...row, _id: id, _creationTime: now } as Doc<'teacher_priority'>);
         }
+      }
+      if (cachedTeacherId === commit.teacherId && cachedState) {
+        cachedState = applyTeacherEvidenceCommitToState(cachedState, commit);
       }
     },
   };

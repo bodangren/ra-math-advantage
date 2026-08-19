@@ -97,6 +97,33 @@ export interface TeacherProficiencyPort {
   commitTeacherEvidence(commit: TeacherEvidenceCommit): Promise<void>;
 }
 
+function replaceByKey(
+  current: readonly Record<string, unknown>[],
+  updates: readonly Record<string, unknown>[],
+  key: string,
+): Array<Record<string, unknown>> {
+  const values = new Map(current.map((item) => [String(item[key]), clone(item)]));
+  for (const item of updates) values.set(String(item[key]), clone(item));
+  return [...values.values()];
+}
+
+/** Apply one commit to an in-memory state without changing the input state. */
+export function applyTeacherEvidenceCommitToState(
+  state: TeacherState,
+  commit: TeacherEvidenceCommit,
+): TeacherState {
+  return {
+    ...clone(state),
+    idempotency: [...clone(state.idempotency), clone(commit.idempotency)],
+    observationOutcomes: [...clone(state.observationOutcomes), clone(commit.outcome)],
+    cards: replaceByKey(state.cards, commit.cards ?? [], 'objectiveId'),
+    reviews: replaceByKey(state.reviews, commit.reviews ?? [], 'reviewId'),
+    proficiency: replaceByKey(state.proficiency, commit.proficiency ?? [], 'skillId'),
+    knowledgeState: replaceByKey(state.knowledgeState, commit.knowledgeState ?? [], 'nodeId'),
+    priority: replaceByKey(state.priority, commit.priority ?? [], 'skillId'),
+  };
+}
+
 const MAX_INTERVAL_DAYS = 180;
 const APPROVED_PRIORITY_INPUTS = [
   'due_status',

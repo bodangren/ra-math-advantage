@@ -231,6 +231,7 @@ export function submitObservationDraft(
     ...cloneValue(draft),
     observationId,
     status: 'submitted',
+    updatedAt: now,
     submissionKey,
     submissionFingerprint: fingerprint,
     submittedAt: now,
