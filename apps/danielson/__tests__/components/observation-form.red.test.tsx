@@ -81,4 +81,25 @@ describe('observation form accessibility', () => {
       expect(document.getElementById(String(errorId))).toHaveTextContent('Select an outcome.');
     }
   });
+
+  it('keeps an unset draft outcome unset when the observer saves', () => {
+    const onSave = vi.fn();
+    render(<ObservationForm draft={draft} onSave={onSave} onSubmit={vi.fn()} />);
+
+    fireEvent.click(screen.getByRole('button', { name: 'Save draft' }));
+
+    expect(onSave).toHaveBeenCalledOnce();
+    expect(onSave).toHaveBeenCalledWith({
+      draftId: draft.draftId,
+      expectedRevision: draft.revision,
+      items: draft.items.map((item) => ({
+        itemId: item.itemId,
+        outcome: null,
+        evidenceNote: null,
+      })),
+    });
+    expect(onSave.mock.calls[0][0].items).not.toEqual(expect.arrayContaining([
+      expect.objectContaining({ outcome: { kind: 'not_enough_evidence' } }),
+    ]));
+  });
 });
