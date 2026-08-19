@@ -22,6 +22,19 @@ Never start significant work without an active track. Always update `measure/tra
 This project uses the **measure** skill for spec-driven development.
 Follow Measure tracks and the workflow in `measure/workflow.md`.
 
+## Standing Orchestration Preference
+
+For almost any substantive task, act as orchestrator and delegate through this
+default role split:
+
+1. **Sol (max reasoning):** plan work assignments and review completed work.
+2. **Sol (low reasoning):** unblock focused issues and remove straightforward blockers.
+3. **Terra (max reasoning):** write tests from Sol's plans before implementation.
+4. **Luna (max reasoning):** implement Sol's plans and make Terra's tests pass.
+
+Use judgment for trivial, tightly coupled, read-only, or authority-blocked work;
+in those cases, explain why delegation is unnecessary or cannot proceed.
+
 
 ## Scope
 
