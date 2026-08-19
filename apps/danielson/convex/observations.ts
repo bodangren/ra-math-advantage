@@ -315,19 +315,26 @@ export const readRankedTeacherQueue = internalQuery({
     });
     return {
       kind: 'allowed' as const,
-      items: rankTeacherQueue(candidates).map((item) => ({
-        teacherProfileId: item.teacherProfileId,
-        displayName: item.displayName,
-        reason: item.reason,
-        eligibleTargetCount: item.eligibleTargetCount,
-        targets: item.targets.slice(0, 3).map((target) => ({
-          ...target,
-          skillTitle: titleById.get(target.skillId) ?? target.skillId,
-          componentTitle: target.componentId
-            ? titleById.get(target.componentId) ?? target.componentId
-            : 'Danielson component',
-        })),
-      })),
+      items: rankTeacherQueue(candidates).map((item) => {
+        const selection = selectWalkthroughTargets(item.targets);
+        return {
+          teacherProfileId: item.teacherProfileId,
+          displayName: item.displayName,
+          reason: item.reason,
+          eligibleTargetCount: item.eligibleTargetCount,
+          requested: selection.requested,
+          returned: selection.returned,
+          shortfall: selection.shortfall,
+          shortfallReason: selection.shortfallReason,
+          targets: selection.targets.map((target) => ({
+            ...target,
+            skillTitle: titleById.get(target.skillId) ?? target.skillId,
+            componentTitle: target.componentId
+              ? titleById.get(target.componentId) ?? target.componentId
+              : 'Danielson component',
+          })),
+        };
+      }),
     };
   },
 });

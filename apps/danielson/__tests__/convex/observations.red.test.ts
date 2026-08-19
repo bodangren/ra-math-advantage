@@ -17,6 +17,7 @@ import {
   OBSERVER_ACCOUNT_ID,
   ORGANIZATION_A,
   TEACHER_PROFILE_ID,
+  priority,
 } from '../observations/fixtures';
 
 type StoredDocument = Record<string, unknown> & { _id: string; _creationTime: number };
@@ -859,5 +860,31 @@ describe('Danielson observation Convex boundary', () => {
       actorAccountId: OBSERVER_ACCOUNT_ID,
       now: OBSERVATION_NOW,
     })).toEqual({ kind: 'queue_capacity_exceeded' });
+  });
+
+  it('returns the explicit target shortfall through the persistent queue boundary', async () => {
+    const db = new MemoryDb();
+    seedFoundation(db);
+    db.seed('teacher_attention_summaries', 'teacher_attention_summaries:teacher', {
+      organizationId: ORGANIZATION_A,
+      teacherProfileId: TEACHER_PROFILE_ID,
+      targets: [priority({ skillId: 'skill-a' }), priority({ skillId: 'skill-b' })],
+      updatedAt: OBSERVATION_NOW_MS,
+    });
+
+    const result = expectKind(await handler(readRankedTeacherQueue)(db.context(), {
+      actorAccountId: OBSERVER_ACCOUNT_ID,
+      now: OBSERVATION_NOW,
+    }), 'allowed');
+
+    expect(result.items).toEqual([
+      expect.objectContaining({
+        teacherProfileId: TEACHER_PROFILE_ID,
+        requested: 3,
+        returned: 2,
+        shortfall: 1,
+        shortfallReason: 'fewer_than_three_eligible_skills',
+      }),
+    ]);
   });
 });

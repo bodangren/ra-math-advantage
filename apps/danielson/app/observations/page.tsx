@@ -9,6 +9,8 @@ type QueueItem = {
   displayName: string;
   reason: string;
   eligibleTargetCount: number;
+  shortfall: number;
+  shortfallReason: string | null;
   targets: Array<{ skillId: string; skillTitle: string; componentTitle: string }>;
 };
 
@@ -54,6 +56,7 @@ export default async function ObservationsPage({
                 <h2>{teacher.displayName}</h2>
                 <p><span className="status attention">{teacher.reason.replaceAll('_', ' ')}</span></p>
                 <p>{teacher.eligibleTargetCount} eligible targets</p>
+                {teacher.shortfall > 0 ? <p className="field-error">Only {3 - teacher.shortfall} eligible targets are available.</p> : null}
                 <ul>{teacher.targets.map((target) => (
                   <li key={target.skillId}>{target.skillTitle} <span className="muted">({target.componentTitle})</span></li>
                 ))}</ul>
