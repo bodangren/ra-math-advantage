@@ -87,7 +87,7 @@ only after all three pilots are Green.
     - [ ] Prove teacher exposure introduces only the IM3 pilot node exactly once
     - [ ] Prove one later graded Mastery Advantage attempt traverses the existing IM3 KST+SRS path
     - [ ] Prove a non-pilot IM3 node remains disabled
-- [ ] Task 2.4: Write Precalculus one-node pilot Red tests (Lane 2)
+- [~] Task 2.4: Write Precalculus one-node pilot Red tests (Lane 2)
     - [ ] Reuse the shared conformance fixture without importing IM3 code
     - [ ] Prove before-exposure denial, exposure-only introduction, and post-exposure KST+SRS progression
     - [ ] Prove a second Precalculus node remains disabled
