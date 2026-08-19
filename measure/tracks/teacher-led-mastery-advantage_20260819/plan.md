@@ -73,16 +73,16 @@ only after all three pilots are Green.
 
 ## Phase 2: Test
 
-- [ ] Task 2.1: Write shared contract, normalization, and idempotency tests (Lane 1)
+- [~] Task 2.1: Write shared contract, normalization, and idempotency tests (Lane 1)
     - [ ] Cover all required fields, both origins, all five `practice.v1` modes, and valid optional graded evidence
     - [ ] Reject invalid timestamps, ordinals, origins, scores, node/activity IDs, and idempotency keys
     - [ ] Prove normalized same-key replay is idempotent and conflicting reuse is rejected
-- [ ] Task 2.2: Write adversarial no-teacher-mastery tests (Lane 1)
+- [~] Task 2.2: Write adversarial no-teacher-mastery tests (Lane 1)
     - [ ] Snapshot KST mastery/readiness/outer-fringe state before and after ungraded teacher exposure
     - [ ] Repeat with correct/full-score teacher graded evidence and prove byte-equivalent KST state
     - [ ] Prove no SRS card creation, rating, scheduling, rescheduling, or mastery-attempt increment occurs
     - [ ] Prove source-presence assertions alone cannot satisfy this behavioral invariant
-- [ ] Task 2.3: Write IM3 one-node pilot Red tests (Lane 1)
+- [~] Task 2.3: Write IM3 one-node pilot Red tests (Lane 1)
     - [ ] Prove Mastery Advantage returns `awaiting_teacher_exposure` before exposure and performs no write
     - [ ] Prove teacher exposure introduces only the IM3 pilot node exactly once
     - [ ] Prove one later graded Mastery Advantage attempt traverses the existing IM3 KST+SRS path
