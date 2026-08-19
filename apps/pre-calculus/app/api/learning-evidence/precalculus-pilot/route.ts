@@ -114,6 +114,10 @@ export function createPrecalculusPilotRoute({
         return jsonResponse({ error: 'Invalid learning evidence' }, 400);
       }
 
+      if (parsedEvidence.data.origin !== 'mastery_advantage') {
+        return jsonResponse({ error: 'Invalid learning evidence' }, 400);
+      }
+
       let result: unknown;
       try {
         result = await submitLearningEvidence({
