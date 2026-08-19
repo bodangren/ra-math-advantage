@@ -322,6 +322,48 @@ describe('IM3 durable learning-evidence Convex boundary', () => {
     expect(masteryBridge).not.toHaveBeenCalled();
   });
 
+  it('persists eligible evidence before invoking the atomic bridge seam', async () => {
+    const { handler, masteryBridge, rows } = await createHarness();
+
+    await handler.process({
+      learnerId: LEARNER_A,
+      evidence: makeEvidence({ idempotencyKey: 'im3-durable-bridge-exposure' }),
+    });
+
+    const evidence = makeEvidence({
+      activityId: INDEPENDENT_PRACTICE_ACTIVITY_ID,
+      origin: 'mastery_advantage',
+      mode: 'independent_practice',
+      occurredAt: '2026-08-19T09:00:00.000Z',
+      gradedEvidence: { isCorrect: true, score: 6, maxScore: 6 },
+      idempotencyKey: 'im3-durable-bridge-mastery',
+    });
+    const normalized = normalizeLearningEvidenceV1(evidence);
+
+    const result = await handler.process({ learnerId: LEARNER_A, evidence });
+
+    expect(result).toMatchObject({
+      persisted: true,
+      masteryApplied: true,
+      decision: {
+        idempotency: 'new',
+        reason: 'eligible',
+        masteryBearing: true,
+      },
+    });
+    expect(rows).toHaveLength(2);
+    expect(rows[1]).toMatchObject({
+      learnerId: LEARNER_A,
+      occurredAt: Date.parse(normalized.occurredAt),
+      gradedEvidence: normalized.gradedEvidence,
+      fingerprint: learningEvidenceFingerprintV1(normalized),
+    });
+    expect(masteryBridge).toHaveBeenCalledWith({
+      learnerId: LEARNER_A,
+      evidence: normalized,
+    });
+  });
+
   it('does not call the bridge for the independent-practice candidate before exposure', async () => {
     const { handler, masteryBridge, rows } = await createHarness();
 

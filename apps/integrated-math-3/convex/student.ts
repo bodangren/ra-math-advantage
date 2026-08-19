@@ -1,4 +1,8 @@
-import { internalMutation, internalQuery, type QueryCtx } from "./_generated/server";
+import {
+  internalMutation,
+  internalQuery,
+  type QueryCtx,
+} from "./_generated/server";
 import { v, ConvexError } from "convex/values";
 import { Id } from "./_generated/dataModel";
 import { coerceNullableString } from "./dashboardHelpers";
@@ -12,6 +16,17 @@ import {
   projectStudentVisualization,
   type StudentVisualizationV1,
 } from "@math-platform/knowledge-space-practice";
+import {
+  createIm3ConvexLearningEvidenceHandler,
+} from "./learningEvidence";
+import {
+  IM3_LEARNING_EVIDENCE_PILOT_NODE_IDS,
+} from "../lib/practice/learning-evidence-pilot";
+
+const IM3_TEACHER_LED_LESSON_SLUG = "module-1-lesson-1";
+const IM3_TEACHER_LED_PHASE_NUMBER = 4;
+const IM3_TEACHER_LED_ACTIVITY_ID =
+  `${IM3_LEARNING_EVIDENCE_PILOT_NODE_IDS[0]}.worked_example`;
 
 /**
  * Convex internalQuery wrapper: get dashboard data.
@@ -243,6 +258,34 @@ export const completePhase = internalMutation({
           });
         }
       }
+    }
+
+    if (
+      lesson.slug === IM3_TEACHER_LED_LESSON_SLUG
+      && phase.phaseNumber === IM3_TEACHER_LED_PHASE_NUMBER
+    ) {
+      const learningEvidenceHandler = createIm3ConvexLearningEvidenceHandler({
+        ctx,
+        masteryBridge: async () => {
+          throw new ConvexError(
+            "IM3 Mastery Advantage bridge is disabled until the canonical independent-practice mapping is approved",
+          );
+        },
+      });
+
+      await learningEvidenceHandler.process({
+        learnerId: args.userId,
+        evidence: {
+          contractVersion: "learning-evidence.v1",
+          nodeId: IM3_LEARNING_EVIDENCE_PILOT_NODE_IDS[0],
+          activityId: IM3_TEACHER_LED_ACTIVITY_ID,
+          attemptOrdinal: 1,
+          origin: "teacher_led",
+          mode: "worked_example",
+          occurredAt: new Date(now).toISOString(),
+          idempotencyKey: `teacher-led:${lesson._id}:${phase._id}`,
+        },
+      });
     }
 
     return {
