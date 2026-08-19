@@ -25,4 +25,16 @@ describe('LoginForm', () => {
 
     await waitFor(() => expect(push).toHaveBeenCalledWith('/admin/accounts'));
   });
+
+  it('shows a useful error when the authentication service is unavailable', async () => {
+    vi.mocked(fetch).mockRejectedValueOnce(new Error('network unavailable'));
+    render(<LoginForm redirectTo="/" />);
+    fireEvent.change(screen.getByLabelText('Username'), { target: { value: 'teacher.one' } });
+    fireEvent.change(screen.getByLabelText('Password'), { target: { value: 'password' } });
+
+    fireEvent.submit(screen.getByRole('button', { name: 'Sign in' }));
+
+    expect(await screen.findByRole('alert')).toHaveTextContent('Unable to sign in. Try again.');
+    expect(screen.getByRole('button', { name: 'Sign in' })).toBeEnabled();
+  });
 });

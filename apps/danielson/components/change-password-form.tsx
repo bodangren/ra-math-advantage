@@ -14,15 +14,20 @@ export function ChangePasswordForm() {
     event.preventDefault();
     setBusy(true);
     setError(null);
-    const response = await fetch('/api/auth/change-password', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(values),
-    });
-    const payload = await response.json().catch(() => ({})) as { error?: string };
-    if (!response.ok) setError(payload.error ?? 'Unable to update password.');
-    else { setSaved(true); router.push('/'); router.refresh(); }
-    setBusy(false);
+    try {
+      const response = await fetch('/api/auth/change-password', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(values),
+      });
+      const payload = await response.json().catch(() => ({})) as { error?: string };
+      if (!response.ok) setError(payload.error ?? 'Unable to update password.');
+      else { setSaved(true); router.push('/'); router.refresh(); }
+    } catch {
+      setError('Unable to update password. Try again.');
+    } finally {
+      setBusy(false);
+    }
   }
 
   return (

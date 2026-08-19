@@ -27,6 +27,8 @@ export function LoginForm({ redirectTo }: { redirectTo: string }) {
       }
       router.push(payload.redirect ?? '/');
       router.refresh();
+    } catch {
+      setError('Unable to sign in. Try again.');
     } finally {
       setBusy(false);
     }
