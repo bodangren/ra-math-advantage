@@ -8,25 +8,26 @@
 
 **Pipeline:** Contract and Schema → Test → Implement → Generate Docs and Doctor
 
-## Phase 1: Contract and Schema Definition
+## Phase 1: Contract and Schema Definition [checkpoint: 3805ba28]
 
-- [ ] Task 1.1: Freeze the two supplied PDF sources
-    - [ ] Record filenames, hashes, visible metadata, and user-provided edition context
-    - [ ] Record the internal-use and quotation boundary
-- [ ] Task 1.2: Define the normalized GBF sequence contract
-    - [ ] Define phase, trajectory, action-step, order, source-page, and version fields
-    - [ ] Preserve parallel Management and Rigor paths
-- [ ] Task 1.3: Define direct and inferred TLAC mapping contracts
-    - [ ] Define rationale, confidence, author, date, and review status
-    - [ ] Define explicit unsequenced gaps
-- [ ] Task 1.4: Define support and prerequisite candidate rules
-    - [ ] Define same-step `supports` candidates
-    - [ ] Define consecutive-step `prerequisite_for` inference
-    - [ ] Prohibit default hard gates and unreviewed activation
-- [ ] Task 1.5: Define assignment and progress projections
-    - [ ] Define versioned new-teacher track assignments
-    - [ ] Define phase, proficiency, due-skill, and gap outputs for Track 4
-- [ ] Task 1.6: Measure - User Manual Verification 'Phase 1: Contract and Schema Definition' (Protocol in workflow.md)
+- [x] Task 1.1: Freeze the two supplied PDF sources
+    - [x] Record filenames, hashes, visible metadata, and user-provided edition context
+    - [x] Record the internal-use and quotation boundary
+- [x] Task 1.2: Define the normalized GBF sequence contract
+    - [x] Define phase, trajectory, action-step, order, source-page, and version fields
+    - [x] Preserve parallel Management and Rigor paths
+- [x] Task 1.3: Define direct and inferred TLAC mapping contracts
+    - [x] Define rationale, confidence, author, date, and review status
+    - [x] Define explicit unsequenced gaps
+- [x] Task 1.4: Define support and prerequisite candidate rules
+    - [x] Define same-step `supports` candidates
+    - [x] Define consecutive-step `prerequisite_for` inference
+    - [x] Prohibit default hard gates and unreviewed activation
+- [x] Task 1.5: Define assignment and progress projections
+    - [x] Define versioned new-teacher track assignments
+    - [x] Define phase, proficiency, due-skill, and gap outputs for Track 4
+- [x] Task 1.6: Measure - User Manual Verification 'Phase 1: Contract and Schema Definition' (Protocol in workflow.md)
+    - User directed full-track continuation on 2026-08-19.
 
 ## Phase 2: Test
 
