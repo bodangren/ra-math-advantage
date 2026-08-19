@@ -28,30 +28,31 @@
 - [x] Task 1.6: Measure - User Manual Verification 'Phase 1: Contract and Schema Definition' (Protocol in workflow.md)
     - User directed full-track continuation on 2026-08-19.
 
-## Phase 2: Test
+## Phase 2: Test [checkpoint: 09d6f8b]
 
-- [~] Task 2.1: Write scoped queue Red tests
-    - [ ] Test HOD, coach, school-head, SLT, cross-organization, and subject access
-    - [ ] Test deterministic ordering and visible reasons
-- [ ] Task 2.2: Write three-target Red tests
-    - [ ] Test exactly three unique skills and parent components
-    - [ ] Test shortfall and duplicate rejection
-- [ ] Task 2.3: Write observation lifecycle Red tests
-    - [ ] Test recoverable drafts and immediate publication
-    - [ ] Test valid ratings, optional notes, and all-no-evidence visits
-    - [ ] Prove that no-evidence outcomes make zero Track 2 writes
-- [ ] Task 2.4: Write formal-observation Red tests
-    - [ ] Test Q1 and Q4 role rules and official-record separation
-    - [ ] Test Q1 fan-out provenance through the Track 2 port
-- [ ] Task 2.5: Write immutability, amendment, idempotency, and carryover tests
-    - [ ] Reject direct update, delete, cross-scope amendment, and conflicting replay
-    - [ ] Preserve original bytes and prevent evidence double counting
-    - [ ] Prove that the school-year boundary does not reset KST or SRS state
-- [ ] Task 2.6: Measure - User Manual Verification 'Phase 2: Test' (Protocol in workflow.md)
+- [x] Task 2.1: Write scoped queue Red tests — `674e9de`
+    - [x] Test HOD, coach, school-head, SLT, cross-organization, and subject access
+    - [x] Test deterministic ordering and visible reasons
+- [x] Task 2.2: Write three-target Red tests — `674e9de`
+    - [x] Test exactly three unique skills and parent components
+    - [x] Test shortfall and duplicate rejection
+- [x] Task 2.3: Write observation lifecycle Red tests — `674e9de`, `295a391`, `09d6f8b`
+    - [x] Test recoverable drafts and immediate publication
+    - [x] Test valid ratings, optional notes, and all-no-evidence visits
+    - [x] Prove that no-evidence outcomes make zero Track 2 writes
+- [x] Task 2.4: Write formal-observation Red tests — `674e9de`, `09d6f8b`
+    - [x] Test Q1 and Q4 role rules and official-record separation
+    - [x] Test Q1 fan-out provenance through the Track 2 port
+- [x] Task 2.5: Write immutability, amendment, idempotency, and carryover tests — `674e9de`, `09d6f8b`
+    - [x] Reject direct update, delete, cross-scope amendment, and conflicting replay
+    - [x] Preserve original bytes and prevent evidence double counting
+    - [x] Prove that the school-year boundary does not reset KST or SRS state
+- [x] Task 2.6: Measure - User Manual Verification 'Phase 2: Test' (Protocol in workflow.md)
+    - User directed full-track continuation on 2026-08-19.
 
 ## Phase 3: Implement
 
-- [ ] Task 3.1: Implement bounded ranked-queue projections
+- [~] Task 3.1: Implement bounded ranked-queue projections
     - [ ] Reuse Track 2 KST, SRS, proficiency, and evidence-gap outputs
     - [ ] Apply Track 1 scope before ranking
     - [ ] Return deterministic teacher and target reasons
