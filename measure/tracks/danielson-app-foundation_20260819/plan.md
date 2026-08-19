@@ -27,34 +27,34 @@
     - [x] Define immutable, transactional, and replay-safe audit-event behavior
 - [x] Task 1.5: Measure - User Manual Verification 'Phase 1: Contract and Schema Definition' — user directed full-track continuation
 
-## Phase 2: Test
+## Phase 2: Test [checkpoint: bc10524]
 
-- [~] Task 2.1: Write account and multiple-role contract tests
-    - [ ] Test teacher plus HOD and teacher plus SLT accounts
-    - [ ] Test strict validation and duplicate assignment rejection
-- [ ] Task 2.2: Write scoped authorization Red tests
-    - [ ] Test HOD, coach, school-head, and SLT access
-    - [ ] Test unauthenticated, deactivated, cross-organization, and out-of-scope denial
-    - [ ] Test stale token roles and organizations, role grant, role revocation, and final-system-administrator protection
-    - [ ] Assert denial occurs before a protected read or write
-- [ ] Task 2.3: Write system-administrator Red tests
-    - [ ] Test account, role, department, and assignment management
-    - [ ] Prove that the role alone cannot read a teacher report
-    - [ ] Prove that a second SLT role grants only SLT-scoped report access
-- [ ] Task 2.4: Write subject-exclusion adversarial tests
-    - [ ] Test private read, walkthrough, observation, and PIP self-denial for each supervisor role
-    - [ ] Prove that teacher response and PIP acknowledgment remain allowed
-- [ ] Task 2.5: Write audit and authentication Red tests
-    - [ ] Test transactional audit events, strict before and after values, secret exclusion, denial, replay, and immutability
-    - [ ] Test temporary credentials, password change, generic errors, throttling, cookie flags, and safe redirects
-- [ ] Task 2.6: Write workspace and architecture contract tests
-    - [ ] Test workspace inventory, commands, manifest ownership, dependencies, and quality gates
-    - [ ] Test that shared packages do not import the new application
-- [ ] Task 2.7: Measure - User Manual Verification 'Phase 2: Test' (Protocol in workflow.md)
+- [x] Task 2.1: Write account and multiple-role contract tests — `bc10524`
+    - [x] Test teacher plus HOD and teacher plus SLT accounts
+    - [x] Test strict validation and duplicate assignment rejection
+- [x] Task 2.2: Write scoped authorization Red tests — `bc10524`
+    - [x] Test HOD, coach, school-head, and SLT access
+    - [x] Test unauthenticated, deactivated, cross-organization, and out-of-scope denial
+    - [x] Test stale token roles and organizations, role grant, role revocation, and final-system-administrator protection
+    - [x] Assert denial occurs before a protected read or write
+- [x] Task 2.3: Write system-administrator Red tests — `bc10524`
+    - [x] Test account, role, department, and assignment management
+    - [x] Prove that the role alone cannot read a teacher report
+    - [x] Prove that a second SLT role grants only SLT-scoped report access
+- [x] Task 2.4: Write subject-exclusion adversarial tests — `bc10524`
+    - [x] Test private read, walkthrough, observation, and PIP self-denial for each supervisor role
+    - [x] Prove that teacher response and PIP acknowledgment remain allowed
+- [x] Task 2.5: Write audit and authentication Red tests — `bc10524`
+    - [x] Test transactional audit events, strict before and after values, secret exclusion, denial, replay, and immutability
+    - [x] Test temporary credentials, password change, generic errors, throttling, cookie flags, and safe redirects
+- [x] Task 2.6: Write workspace and architecture contract tests — `bc10524`
+    - [x] Test workspace inventory, commands, manifest ownership, dependencies, and quality gates
+    - [x] Test that shared packages do not import the new application
+- [x] Task 2.7: Measure - User Manual Verification 'Phase 2: Test' — user directed full-track continuation
 
 ## Phase 3: Implement
 
-- [ ] Task 3.1: Create the minimum application workspace
+- [~] Task 3.1: Create the minimum application workspace
     - [ ] Reuse the installed framework, configuration, application shell, and design primitives
     - [ ] Add sign-in, signed-out, unauthorized, and role-aware landing states
 - [ ] Task 3.2: Implement organization and assignment persistence
