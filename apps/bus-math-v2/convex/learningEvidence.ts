@@ -124,6 +124,15 @@ function canonicalizeEvidence(evidence: LearningEvidenceV1): LearningEvidenceV1 
   return normalizeLearningEvidenceV1(learningEvidenceV1Schema.parse(evidence));
 }
 
+function validateTeacherLedSource(evidence: LearningEvidenceV1): void {
+  if (evidence.origin !== 'teacher_led') return;
+
+  const source = BM2_LEARNING_EVIDENCE_PILOT.mappings[0].source;
+  if (evidence.activityId !== source.activityId || evidence.mode !== source.mode) {
+    throw new TypeError('BM2 teacher-led evidence must use the frozen source activity and mode');
+  }
+}
+
 function addExistingEvidence(
   acceptedEvidence: readonly LearningEvidenceV1[],
   existingEvidence: LearningEvidenceV1 | null,
@@ -215,6 +224,7 @@ export function createBm2LearningEvidenceHandler({
     }
 
     const normalizedEvidence = canonicalizeEvidence(evidence);
+    validateTeacherLedSource(normalizedEvidence);
     const key = operationKey(learnerId, normalizedEvidence.idempotencyKey);
     const previous = inFlight.get(key);
     const operation = (previous ?? Promise.resolve())

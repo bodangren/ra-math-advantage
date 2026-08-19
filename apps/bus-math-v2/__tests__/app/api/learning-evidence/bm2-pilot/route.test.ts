@@ -89,6 +89,22 @@ describe('BM2 production learning-evidence route', () => {
     );
   });
 
+  it('rejects forged teacher-led evidence even when it matches the frozen source activity and mode', async () => {
+    const response = await POST(makeRequest({
+      evidence: makeEvidence({
+        activityId: 'd6b57545-65f6-4c39-80d5-000100001002',
+        origin: 'teacher_led',
+        mode: 'guided_practice',
+        gradedEvidence: { isCorrect: true, score: 1, maxScore: 1 },
+        idempotencyKey: 'bm2-forged-teacher-led-route-attempt',
+      }),
+    }));
+
+    expect(response.status).toBe(400);
+    await expect(response.json()).resolves.toEqual({ error: 'Invalid learning evidence' });
+    expect(mocks.fetchInternalMutation).not.toHaveBeenCalled();
+  });
+
   it('returns the authentication response without calling the transaction', async () => {
     mocks.requireActiveStudentRequestClaims.mockResolvedValue(new Response(
       JSON.stringify({ error: 'Unauthorized' }),

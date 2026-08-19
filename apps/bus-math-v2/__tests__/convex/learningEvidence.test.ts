@@ -10,6 +10,7 @@ import {
 const LEARNER_ID = 'student-bm2-convex-pilot';
 const PILOT_NODE_ID = 'math.bm2.skill.1.1.apply-accounting-equation';
 const PILOT_ACTIVITY_ID = 'accounting-equation';
+const FROZEN_SOURCE_ACTIVITY_ID = 'd6b57545-65f6-4c39-80d5-000100001002';
 
 class InMemoryEvidenceStore implements Bm2LearningEvidenceStore {
   readonly events: Array<{ learnerId: string; evidence: LearningEvidenceV1 }> = [];
@@ -67,9 +68,9 @@ describe('BM2 Convex learning-evidence boundary', () => {
   it('persists teacher-led exposure without invoking the mastery bridge', async () => {
     const { handler, masteryBridge, store } = createHarness();
     const exposure = makeEvidence({
-      activityId: 'unit-1-lesson-1-activity-1',
+      activityId: FROZEN_SOURCE_ACTIVITY_ID,
       origin: 'teacher_led',
-      mode: 'teaching',
+      mode: 'guided_practice',
       gradedEvidence: undefined,
       idempotencyKey: 'bm2-convex-teacher-exposure',
     });
@@ -88,6 +89,26 @@ describe('BM2 Convex learning-evidence boundary', () => {
       },
     });
     expect(store.events).toEqual([{ learnerId: LEARNER_ID, evidence: exposure }]);
+    expect(masteryBridge).not.toHaveBeenCalled();
+  });
+
+  it.each([
+    ['a non-frozen activity', { activityId: PILOT_ACTIVITY_ID, mode: 'guided_practice' as const }],
+    ['a non-frozen mode', { activityId: FROZEN_SOURCE_ACTIVITY_ID, mode: 'teaching' as const }],
+  ])('rejects teacher-led evidence from %s', async (_label, sourceOverride) => {
+    const { handler, masteryBridge, store } = createHarness();
+
+    await expect(handler.process({
+      learnerId: LEARNER_ID,
+      evidence: makeEvidence({
+        ...sourceOverride,
+        origin: 'teacher_led',
+        gradedEvidence: undefined,
+        idempotencyKey: `bm2-convex-invalid-teacher-source-${_label}`,
+      }),
+    })).rejects.toThrow('frozen source activity and mode');
+
+    expect(store.events).toHaveLength(0);
     expect(masteryBridge).not.toHaveBeenCalled();
   });
 
@@ -117,9 +138,9 @@ describe('BM2 Convex learning-evidence boundary', () => {
   it('bridges one eligible post-exposure event and ignores its replay', async () => {
     const { handler, masteryBridge, store } = createHarness();
     const exposure = makeEvidence({
-      activityId: 'unit-1-lesson-1-activity-1',
+      activityId: FROZEN_SOURCE_ACTIVITY_ID,
       origin: 'teacher_led',
-      mode: 'teaching',
+      mode: 'guided_practice',
       gradedEvidence: undefined,
       idempotencyKey: 'bm2-convex-exposure-before-bridge',
     });
@@ -147,9 +168,9 @@ describe('BM2 Convex learning-evidence boundary', () => {
   it('rejects a same-key conflict without a write or bridge call', async () => {
     const { handler, masteryBridge, store } = createHarness();
     const exposure = makeEvidence({
-      activityId: 'unit-1-lesson-1-activity-1',
+      activityId: FROZEN_SOURCE_ACTIVITY_ID,
       origin: 'teacher_led',
-      mode: 'teaching',
+      mode: 'guided_practice',
       gradedEvidence: undefined,
       idempotencyKey: 'bm2-convex-conflict-exposure',
     });
