@@ -12,11 +12,16 @@ function statusLabel(value: string) {
   if (value === 'not_configured') return 'Not configured';
   if (value === 'overdue') return 'Overdue';
   if (value === 'due') return 'Due';
+  if (value === 'pending_approval') return 'Pending approval';
+  if (value === 'active') return 'Active';
+  if (value === 'closed') return 'Closed';
   return 'Proficient';
 }
 
 function reasonLabel(value: LeadershipPortfolioRow['attentionReasons'][number]) {
-  return value === 'below_proficient' ? 'Below Proficient' : 'overdue evidence';
+  if (value === 'below_proficient') return 'Below Proficient';
+  if (value === 'ip_off_track') return 'Improvement plan off track';
+  return 'Overdue evidence';
 }
 
 export function LeadershipPortfolioTable({

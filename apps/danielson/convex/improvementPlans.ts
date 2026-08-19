@@ -104,24 +104,48 @@ const targetProgressValidator = v.object({
   evidenceDue: v.boolean(),
   evidenceOverdue: v.boolean(),
 });
-const progressValidator = v.union(
-  v.object({
-    contractVersion: v.literal('danielson.ip-progress.v1'),
-    state: v.literal('not_configured'),
-  }),
-  v.object({
-    contractVersion: v.literal('danielson.ip-progress.v1'),
-    state: v.literal('pending_approval'),
-  }),
-  v.object({
-    contractVersion: v.literal('danielson.ip-progress.v1'),
-    state: v.literal('active'),
-    planId: v.string(),
-    version: v.number(),
-    daysRemaining: v.number(),
-    trackState: v.union(v.literal('on_track'), v.literal('off_track')),
-    targets: v.array(targetProgressValidator),
-  }),
+const noImprovementPlanValidator = v.object({
+  contractVersion: v.literal('danielson.ip-progress.v1'),
+  state: v.literal('not_configured'),
+});
+const pendingImprovementPlanValidator = v.object({
+  contractVersion: v.literal('danielson.ip-progress.v1'),
+  state: v.literal('pending_approval'),
+  planId: v.optional(v.string()),
+});
+const activeImprovementPlanValidator = v.object({
+  contractVersion: v.literal('danielson.ip-progress.v1'),
+  state: v.literal('active'),
+  planId: v.string(),
+  version: v.number(),
+  daysRemaining: v.number(),
+  trackState: v.union(v.literal('on_track'), v.literal('off_track')),
+  targets: v.array(targetProgressValidator),
+  schoolSupport: v.optional(v.string()),
+  successfulCompletionCriteria: v.optional(v.string()),
+});
+const closedImprovementPlanValidator = v.object({
+  contractVersion: v.literal('danielson.ip-progress.v1'),
+  state: v.literal('closed'),
+  planId: v.string(),
+  version: v.number(),
+  daysRemaining: v.number(),
+  outcome: v.union(v.literal('successful'), v.literal('insufficient_improvement')),
+  closedAt: v.number(),
+  targets: v.array(targetProgressValidator),
+  schoolSupport: v.optional(v.string()),
+  successfulCompletionCriteria: v.optional(v.string()),
+});
+export const publicImprovementPlanProgressValidator = v.union(
+  noImprovementPlanValidator,
+  pendingImprovementPlanValidator,
+  activeImprovementPlanValidator,
+  closedImprovementPlanValidator,
+);
+export const improvementPlanProgressValidator = v.union(
+  noImprovementPlanValidator,
+  pendingImprovementPlanValidator,
+  activeImprovementPlanValidator,
   v.object({
     contractVersion: v.literal('danielson.ip-progress.v1'),
     state: v.literal('closed'),
@@ -131,6 +155,9 @@ const progressValidator = v.union(
     outcome: v.union(v.literal('successful'), v.literal('insufficient_improvement')),
     closedAt: v.number(),
     targets: v.array(targetProgressValidator),
+    schoolSupport: v.optional(v.string()),
+    successfulCompletionCriteria: v.optional(v.string()),
+    closureNote: v.optional(v.string()),
   }),
 );
 const proposalWorkspaceValidator = v.object({
@@ -651,12 +678,21 @@ export const approveImprovementPlan = internalMutation({
     if (!Number.isFinite(reviewMeetingAt) || reviewMeetingAt < args.now) {
       return { kind: 'invalid' as const, reason: 'invalid_review_meeting_date' };
     }
+    const approvedTargets = await readTargets(ctx, plan.organizationId, version._id);
+    if (approvedTargets.length > MAX_TARGETS) {
+      return { kind: 'invalid' as const, reason: 'target_capacity_exceeded' };
+    }
     const revision = plan.revision + 1;
     await ctx.db.patch(plan._id, {
       state: 'active',
       revision,
       activeVersionId: version._id,
       activeVersion: version.version,
+      activeTargets: approvedTargets.map((target) => ({
+        componentId: target.componentId,
+        skillId: target.skillId,
+        expectedRating: target.expectedRating,
+      })),
       pendingVersionId: undefined,
       approvedAt: args.now,
       planEndAt: requestedEnd,
@@ -797,6 +833,125 @@ async function effectivePlanEvidence(ctx: DbCtx, plan: Doc<'improvement_plans'>)
   });
 }
 
+export type ActivePlanPriorityOverlay = {
+  approvedAt: number;
+  planEndAt: number;
+  latestRatedEvidenceAt: number | null;
+};
+
+/** Read active PIP cadence and progress once for an organization. */
+export async function readOrganizationActiveImprovementPlans(
+  ctx: DbCtx,
+  organizationId: Id<'organizations'>,
+  now: number,
+) {
+  const [plans, proposedPlans] = await Promise.all([
+    ctx.db.query('improvement_plans')
+      .withIndex('by_org_state_updated', (query) => query
+        .eq('organizationId', organizationId)
+        .eq('state', 'active'))
+      .take(251),
+    ctx.db.query('improvement_plans')
+      .withIndex('by_org_state_updated', (query) => query
+        .eq('organizationId', organizationId)
+        .eq('state', 'proposed'))
+      .take(251),
+  ]);
+  if (plans.length > 250 || proposedPlans.length > 250) {
+    return { kind: 'capacity_exceeded' as const };
+  }
+  const pendingByTeacher = new Map(proposedPlans.map((plan) => [
+    String(plan.teacherProfileId),
+    String(plan._id),
+  ]));
+  if (plans.length === 0) {
+    return {
+      kind: 'allowed' as const,
+      overlaysByTeacher: new Map<string, Map<string, ActivePlanPriorityOverlay>>(),
+      progressByTeacher: new Map<string, ReturnType<typeof projectImprovementPlanProgress>>(),
+      pendingByTeacher,
+    };
+  }
+  const earliestApproval = Math.min(...plans.map((plan) => plan.approvedAt ?? now));
+  const [outcomes, supersessions] = await Promise.all([
+    ctx.db.query('teacher_observation_outcomes')
+      .withIndex('by_organizationId_and_occurredAt', (query) => query
+        .eq('organizationId', organizationId)
+        .gte('occurredAt', earliestApproval))
+      .order('asc')
+      .take(MAX_EVIDENCE_ROWS + 1),
+    ctx.db.query('teacher_evidence_supersessions')
+      .withIndex('by_org_occurred', (query) => query
+        .eq('organizationId', organizationId)
+        .gte('occurredAt', earliestApproval))
+      .order('asc')
+      .take(MAX_EVIDENCE_ROWS + 1),
+  ]);
+  if (outcomes.length > MAX_EVIDENCE_ROWS || supersessions.length > MAX_EVIDENCE_ROWS) {
+    return { kind: 'capacity_exceeded' as const };
+  }
+  const superseded = new Set(supersessions.map((row) => row.supersededEvidenceKey));
+  const evidenceByTeacher = new Map<string, Array<{
+    skillId: string;
+    kind: 'rated';
+    rating: 1 | 2 | 3 | 4;
+    occurredAt: number;
+  }>>();
+  for (const row of outcomes) {
+    if (superseded.has(row.idempotencyKey) || row.outcome.kind !== 'rated') continue;
+    const teacherId = row.teacherId;
+    const current = evidenceByTeacher.get(teacherId) ?? [];
+    for (const evidence of row.outcome.targetEvidence) {
+      current.push({
+        skillId: evidence.skillId,
+        kind: 'rated',
+        rating: evidence.rawRating as 1 | 2 | 3 | 4,
+        occurredAt: Date.parse(evidence.occurredAt),
+      });
+    }
+    evidenceByTeacher.set(teacherId, current);
+  }
+  const overlaysByTeacher = new Map<string, Map<string, ActivePlanPriorityOverlay>>();
+  const progressByTeacher = new Map<string, ReturnType<typeof projectImprovementPlanProgress>>();
+  for (const plan of plans) {
+    if (plan.approvedAt === undefined || plan.planEndAt === undefined
+      || plan.reviewMeetingAt === undefined || plan.activeVersion === undefined) continue;
+    const targets = (plan.activeTargets ?? []).map((target) => ({
+      componentId: target.componentId,
+      skillId: target.skillId,
+      expectedRating: target.expectedRating as 3 | 4,
+    }));
+    const evidence = evidenceByTeacher.get(String(plan.teacherProfileId)) ?? [];
+    progressByTeacher.set(String(plan.teacherProfileId), projectImprovementPlanProgress({
+      planId: String(plan._id),
+      version: plan.activeVersion,
+      approvedAt: plan.approvedAt,
+      planEndAt: plan.planEndAt,
+      reviewMeetingAt: plan.reviewMeetingAt,
+      now,
+      targets,
+      evidence,
+    }));
+    const targetOverlays = new Map<string, ActivePlanPriorityOverlay>();
+    for (const target of targets) {
+      const latestRatedEvidenceAt = evidence
+        .filter((event) => event.skillId === target.skillId
+          && event.occurredAt >= plan.approvedAt!
+          && event.occurredAt <= plan.planEndAt!)
+        .reduce<number | null>((latest, event) => (
+          latest === null || event.occurredAt > latest ? event.occurredAt : latest
+        ), null);
+      targetOverlays.set(target.skillId, {
+        approvedAt: plan.approvedAt,
+        planEndAt: plan.planEndAt,
+        latestRatedEvidenceAt,
+      });
+    }
+    overlaysByTeacher.set(String(plan.teacherProfileId), targetOverlays);
+  }
+  return { kind: 'allowed' as const, overlaysByTeacher, progressByTeacher, pendingByTeacher };
+}
+
 async function progressForPlan(ctx: DbCtx, plan: Doc<'improvement_plans'>, now: number) {
   if (!plan.activeVersionId || plan.approvedAt === undefined
     || plan.planEndAt === undefined || plan.reviewMeetingAt === undefined) return null;
@@ -822,6 +977,37 @@ async function progressForPlan(ctx: DbCtx, plan: Doc<'improvement_plans'>, now: 
       ? { closure: { outcome: plan.closureOutcome, closedAt: plan.closedAt } }
       : {}),
   });
+}
+
+/** Build the current PIP reporting seam without applying actor authorization. */
+export async function readTeacherImprovementPlanProjection(
+  ctx: DbCtx,
+  organizationId: Id<'organizations'>,
+  teacherProfileId: Id<'teacher_profiles'>,
+  now: number,
+  includeClosureNote: boolean,
+) {
+  const plan = await currentOrLatestPlan(ctx, organizationId, teacherProfileId);
+  if (!plan) {
+    return { contractVersion: 'danielson.ip-progress.v1' as const, state: 'not_configured' as const };
+  }
+  if (plan.state === 'proposed') {
+    return {
+      contractVersion: 'danielson.ip-progress.v1' as const,
+      state: 'pending_approval' as const,
+      planId: String(plan._id),
+    };
+  }
+  const progress = await progressForPlan(ctx, plan, now);
+  if (!progress || !plan.activeVersionId) return null;
+  const version = await ctx.db.get(plan.activeVersionId);
+  if (!version) return null;
+  return {
+    ...progress,
+    schoolSupport: version.schoolSupport,
+    successfulCompletionCriteria: version.successfulCompletionCriteria,
+    ...(includeClosureNote && plan.closureNote ? { closureNote: plan.closureNote } : {}),
+  };
 }
 
 export const closeImprovementPlan = internalMutation({
@@ -953,7 +1139,7 @@ export const readImprovementPlanReportProjection = internalQuery({
   returns: v.union(
     deniedValidator,
     v.object({ kind: v.literal('capacity_exceeded') }),
-    v.object({ kind: v.literal('allowed'), projection: progressValidator }),
+    v.object({ kind: v.literal('allowed'), projection: improvementPlanProgressValidator }),
   ),
   handler: async (ctx, args) => {
     const teacher = await ctx.db.get(args.teacherProfileId);
@@ -966,23 +1152,21 @@ export const readImprovementPlanReportProjection = internalQuery({
       own ? 'published_record:read' : 'pip:propose',
     );
     if (access.kind === 'denied') return access;
-    const plan = await currentOrLatestPlan(ctx, access.teacher.organizationId, args.teacherProfileId);
-    if (!plan || (own && plan.state === 'proposed')) {
+    const projection = await readTeacherImprovementPlanProjection(
+      ctx,
+      access.teacher.organizationId,
+      args.teacherProfileId,
+      args.now,
+      !own,
+    );
+    if (projection === null) return { kind: 'capacity_exceeded' as const };
+    if (own && projection.state === 'pending_approval') {
       return {
         kind: 'allowed' as const,
         projection: { contractVersion: 'danielson.ip-progress.v1' as const, state: 'not_configured' as const },
       };
     }
-    if (plan.state === 'proposed') {
-      return {
-        kind: 'allowed' as const,
-        projection: { contractVersion: 'danielson.ip-progress.v1' as const, state: 'pending_approval' as const },
-      };
-    }
-    const projection = await progressForPlan(ctx, plan, args.now);
-    return projection
-      ? { kind: 'allowed' as const, projection }
-      : { kind: 'capacity_exceeded' as const };
+    return { kind: 'allowed' as const, projection };
   },
 });
 

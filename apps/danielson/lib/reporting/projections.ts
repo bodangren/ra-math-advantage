@@ -5,7 +5,22 @@ import { buildDanielsonGraph } from '../proficiency/graph';
 import { adaptDanielsonRating, isDanielsonRating } from '../proficiency/rating';
 
 export type ReportingState = 'below_proficient' | 'proficient' | 'not_enough_evidence';
-export type AttentionReason = 'below_proficient' | 'overdue_evidence';
+export type AttentionReason = 'below_proficient' | 'overdue_evidence' | 'ip_off_track';
+export type ImprovementPlanPortfolioProjection =
+  | { contractVersion: 'danielson.ip-progress.v1'; state: 'not_configured' | 'pending_approval' }
+  | {
+      contractVersion: 'danielson.ip-progress.v1';
+      state: 'active';
+      planId: string;
+      trackState: 'on_track' | 'off_track';
+      daysRemaining: number;
+    }
+  | {
+      contractVersion: 'danielson.ip-progress.v1';
+      state: 'closed';
+      planId: string;
+      outcome: 'successful' | 'insufficient_improvement';
+    };
 type ReportingPriority = PriorityProjection & { sourceRecordId?: string | null };
 
 export type PortfolioRow = {
@@ -15,10 +30,7 @@ export type PortfolioRow = {
     state: ReportingState;
     belowComponentIds: string[];
   };
-  improvementPlan: {
-    contractVersion: 'danielson.ip-progress.v1';
-    state: 'not_configured';
-  };
+  improvementPlan: ImprovementPlanPortfolioProjection;
   gbf: {
     contractVersion: 'danielson.gbf-progress.v1';
     state: 'not_configured';
@@ -116,6 +128,7 @@ export function projectPortfolioRow(input: {
   displayName: string;
   priorities: readonly ReportingPriority[];
   now: number;
+  improvementPlan?: ImprovementPlanPortfolioProjection;
 }): PortfolioRow {
   void input.now;
   const components = projectComponentStates(input.priorities);
@@ -127,11 +140,13 @@ export function projectPortfolioRow(input: {
   const attentionReasons: AttentionReason[] = [];
   if (state === 'below_proficient') attentionReasons.push('below_proficient');
   if (evidenceDue.state === 'overdue') attentionReasons.push('overdue_evidence');
+  if (input.improvementPlan?.state === 'active'
+    && input.improvementPlan.trackState === 'off_track') attentionReasons.push('ip_off_track');
   return {
     teacherProfileId: input.teacherProfileId,
     displayName: input.displayName,
     danielson: { state, belowComponentIds },
-    improvementPlan: {
+    improvementPlan: input.improvementPlan ?? {
       contractVersion: 'danielson.ip-progress.v1',
       state: 'not_configured',
     },
@@ -147,6 +162,7 @@ export function projectPortfolioRow(input: {
 const reasonOrder: Record<AttentionReason, number> = {
   below_proficient: 0,
   overdue_evidence: 1,
+  ip_off_track: 2,
 };
 
 function normalizeDisplayName(value: string) {

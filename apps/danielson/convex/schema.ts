@@ -130,6 +130,7 @@ const observationTypeValidator = v.union(
 );
 const observationPriorityReasonValidator = v.union(
   v.literal('below_proficient'),
+  v.literal('approved_plan_priority'),
   v.literal('overdue'),
   v.literal('evidence_gap'),
   v.literal('due'),
@@ -366,6 +367,7 @@ export default defineSchema({
     occurredAt: v.number(),
     createdAt: v.number(),
   })
+    .index('by_organizationId_and_occurredAt', ['organizationId', 'occurredAt'])
     .index('by_organizationId_and_teacherId_and_occurredAt', ['organizationId', 'teacherId', 'occurredAt'])
     .index('by_organizationId_and_idempotencyKey', ['organizationId', 'idempotencyKey']),
 
@@ -508,6 +510,7 @@ export default defineSchema({
     replacementOutcome: observationItemOutcomeValidator,
     occurredAt: v.number(),
   })
+    .index('by_org_occurred', ['organizationId', 'occurredAt'])
     .index('by_org_teacher_occurred', ['organizationId', 'teacherProfileId', 'occurredAt'])
     .index('by_org_superseded_key', ['organizationId', 'supersededEvidenceKey']),
 
@@ -564,6 +567,11 @@ export default defineSchema({
     pendingVersionId: v.optional(v.id('improvement_plan_versions')),
     activeVersionId: v.optional(v.id('improvement_plan_versions')),
     activeVersion: v.optional(v.number()),
+    activeTargets: v.optional(v.array(v.object({
+      componentId: v.string(),
+      skillId: v.string(),
+      expectedRating: v.number(),
+    }))),
     approvedAt: v.optional(v.number()),
     planEndAt: v.optional(v.number()),
     reviewMeetingAt: v.optional(v.number()),

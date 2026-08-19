@@ -60,10 +60,37 @@ export function TeacherReportView({
         <h2 id="report-summary-heading">Current summary</h2>
         <dl className="summary-grid">
           <div><dt>Danielson</dt><dd>{stateLabel(report.danielsonState)}</dd></div>
-          <div><dt>Improvement plan</dt><dd>Not configured</dd></div>
+          <div>
+            <dt>Improvement plan</dt>
+            <dd>
+              {report.improvementPlan.state.replaceAll('_', ' ')}
+              {'planId' in report.improvementPlan && report.improvementPlan.planId
+                ? <> · <Link href={`/improvement-plans/${encodeURIComponent(report.improvementPlan.planId)}`}>Open plan</Link></>
+                : null}
+            </dd>
+          </div>
           <div><dt>GBF</dt><dd>Not configured</dd></div>
         </dl>
       </section>
+
+      {report.improvementPlan.state === 'active' || report.improvementPlan.state === 'closed' ? (
+        <section className="card" aria-labelledby="improvement-plan-progress-heading">
+          <h2 id="improvement-plan-progress-heading">Improvement plan progress</h2>
+          {'trackState' in report.improvementPlan && report.improvementPlan.trackState
+            ? <p>Status: {report.improvementPlan.trackState.replaceAll('_', ' ')}.</p>
+            : null}
+          <p>Days remaining: {report.improvementPlan.daysRemaining}.</p>
+          {report.improvementPlan.schoolSupport ? <p>School support: {report.improvementPlan.schoolSupport}</p> : null}
+          {report.improvementPlan.successfulCompletionCriteria ? <p>Successful completion: {report.improvementPlan.successfulCompletionCriteria}</p> : null}
+          <ul>{report.improvementPlan.targets.map((target) => (
+            <li key={target.skillId}>
+              <code>{target.skillId}</code>: {target.state.replaceAll('_', ' ')}. Current rating: {target.currentRating ?? 'No rated plan evidence'}. Evidence {target.evidenceOverdue ? 'overdue' : target.evidenceDue ? 'due' : 'current'}.
+            </li>
+          ))}</ul>
+          {report.improvementPlan.closureNote ? <p>Leadership closure note: {report.improvementPlan.closureNote}</p> : null}
+          <p><Link href={`/improvement-plans/${encodeURIComponent(report.improvementPlan.planId)}`}>Open full improvement plan</Link></p>
+        </section>
+      ) : null}
 
       <section className="card" aria-labelledby="official-heading">
         <h2 id="official-heading">Official evaluations</h2>

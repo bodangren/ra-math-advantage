@@ -28,6 +28,12 @@ import {
   projectOfficialEvaluation,
   projectPortfolioRow,
 } from '../lib/reporting/projections';
+import {
+  improvementPlanProgressValidator,
+  publicImprovementPlanProgressValidator,
+  readOrganizationActiveImprovementPlans,
+  readTeacherImprovementPlanProjection,
+} from './improvementPlans';
 
 const MAX_TEACHERS = 250;
 const MAX_ACCOUNTS = 1_000;
@@ -50,6 +56,7 @@ const observationTypeValidator = v.union(
 );
 const observationPriorityReasonValidator = v.union(
   v.literal('below_proficient'),
+  v.literal('approved_plan_priority'),
   v.literal('overdue'),
   v.literal('evidence_gap'),
   v.literal('due'),
@@ -73,10 +80,25 @@ const portfolioRowValidator = v.object({
     state: reportingStateValidator,
     belowComponentIds: v.array(v.string()),
   }),
-  improvementPlan: v.object({
-    contractVersion: v.literal('danielson.ip-progress.v1'),
-    state: v.literal('not_configured'),
-  }),
+  improvementPlan: v.union(
+    v.object({
+      contractVersion: v.literal('danielson.ip-progress.v1'),
+      state: v.union(v.literal('not_configured'), v.literal('pending_approval')),
+    }),
+    v.object({
+      contractVersion: v.literal('danielson.ip-progress.v1'),
+      state: v.literal('active'),
+      planId: v.string(),
+      trackState: v.union(v.literal('on_track'), v.literal('off_track')),
+      daysRemaining: v.number(),
+    }),
+    v.object({
+      contractVersion: v.literal('danielson.ip-progress.v1'),
+      state: v.literal('closed'),
+      planId: v.string(),
+      outcome: v.union(v.literal('successful'), v.literal('insufficient_improvement')),
+    }),
+  ),
   gbf: v.object({
     contractVersion: v.literal('danielson.gbf-progress.v1'),
     state: v.literal('not_configured'),
@@ -91,6 +113,7 @@ const portfolioRowValidator = v.object({
   attentionReasons: v.array(v.union(
     v.literal('below_proficient'),
     v.literal('overdue_evidence'),
+    v.literal('ip_off_track'),
   )),
 });
 const commentValidator = v.object({
@@ -171,10 +194,7 @@ const publicReportValidator = v.object({
   danielsonState: reportingStateValidator,
   officialEvaluations: v.array(officialEvaluationValidator),
   currentProficiency: currentProficiencyValidator,
-  improvementPlan: v.object({
-    contractVersion: v.literal('danielson.ip-progress.v1'),
-    state: v.literal('not_configured'),
-  }),
+  improvementPlan: publicImprovementPlanProgressValidator,
   gbf: v.object({
     contractVersion: v.literal('danielson.gbf-progress.v1'),
     state: v.literal('not_configured'),
@@ -189,10 +209,7 @@ const privateReportValidator = v.object({
   danielsonState: reportingStateValidator,
   officialEvaluations: v.array(officialEvaluationValidator),
   currentProficiency: currentProficiencyValidator,
-  improvementPlan: v.object({
-    contractVersion: v.literal('danielson.ip-progress.v1'),
-    state: v.literal('not_configured'),
-  }),
+  improvementPlan: improvementPlanProgressValidator,
   gbf: v.object({
     contractVersion: v.literal('danielson.gbf-progress.v1'),
     state: v.literal('not_configured'),
@@ -353,6 +370,14 @@ export const readLeadershipPortfolio = internalQuery({
     if (!organization?.isActive) {
       return { kind: 'denied' as const, reason: 'organization_inactive' };
     }
+    const improvementPlans = await readOrganizationActiveImprovementPlans(
+      ctx,
+      actor.organizationId,
+      now,
+    );
+    if (improvementPlans.kind === 'capacity_exceeded') {
+      return { kind: 'portfolio_capacity_exceeded' as const };
+    }
     const roles = await ctx.db.query('role_assignments')
       .withIndex('by_organizationId_and_accountId_and_status', (query) => query
         .eq('organizationId', actor.organizationId)
@@ -453,11 +478,28 @@ export const readLeadershipPortfolio = internalQuery({
         || (supervisorRoles.includes('coach') && coachTeacherIds.has(teacherProfileId));
       const account = accountById.get(String(profile.accountId));
       if (!inScope || !account?.isActive) return [];
+      const activePlan = improvementPlans.progressByTeacher.get(teacherProfileId);
+      const pendingPlanId = improvementPlans.pendingByTeacher.get(teacherProfileId);
+      const improvementPlan = activePlan?.state === 'active'
+        ? {
+            contractVersion: activePlan.contractVersion,
+            state: activePlan.state,
+            planId: activePlan.planId,
+            trackState: activePlan.trackState,
+            daysRemaining: activePlan.daysRemaining,
+          }
+        : pendingPlanId
+          ? {
+              contractVersion: 'danielson.ip-progress.v1' as const,
+              state: 'pending_approval' as const,
+            }
+          : undefined;
       return [projectPortfolioRow({
         teacherProfileId,
         displayName: account.displayName,
         priorities: summaryByTeacher.get(teacherProfileId) ?? emptyPriorities(teacherProfileId, now),
         now,
+        improvementPlan,
       })];
     }).sort(comparePortfolioRows);
     try {
@@ -480,7 +522,7 @@ async function buildPublicTeacherReport(
   account: Doc<'accounts'>,
   now: number,
 ) {
-  const [records, amendments, cards, proficiency, responses, accounts] = await Promise.all([
+  const [records, amendments, cards, proficiency, responses, accounts, improvementPlan] = await Promise.all([
     ctx.db.query('observation_records')
       .withIndex('by_org_teacher_status_submitted', (query) => query
         .eq('organizationId', teacher.organizationId)
@@ -512,6 +554,13 @@ async function buildPublicTeacherReport(
     ctx.db.query('accounts')
       .withIndex('by_organizationId', (query) => query.eq('organizationId', teacher.organizationId))
       .take(MAX_ACCOUNTS + 1),
+    readTeacherImprovementPlanProjection(
+      ctx,
+      teacher.organizationId,
+      teacher._id,
+      now,
+      false,
+    ),
   ]);
   if (
     records.length > MAX_HISTORY_ROWS
@@ -520,6 +569,7 @@ async function buildPublicTeacherReport(
     || proficiency.length > MAX_TEACHER_ROWS
     || responses.length > MAX_HISTORY_ROWS
     || accounts.length > MAX_ACCOUNTS
+    || improvementPlan === null
   ) return null;
   const priorities = projectTeacherPriority(
     String(teacher._id),
@@ -564,10 +614,7 @@ async function buildPublicTeacherReport(
     danielsonState: currentProficiency.state,
     officialEvaluations,
     currentProficiency,
-    improvementPlan: {
-      contractVersion: 'danielson.ip-progress.v1' as const,
-      state: 'not_configured' as const,
-    },
+    improvementPlan,
     gbf: {
       contractVersion: 'danielson.gbf-progress.v1' as const,
       state: 'not_configured' as const,
@@ -611,10 +658,20 @@ export const readLeadershipTeacherReport = internalQuery({
     if (privateAccess.kind === 'denied') {
       return { kind: 'allowed' as const, visibility: 'public' as const, report };
     }
+    const privateImprovementPlan = await readTeacherImprovementPlanProjection(
+      ctx,
+      access.teacher.organizationId,
+      access.teacher._id,
+      now,
+      true,
+    );
+    if (privateImprovementPlan === null) {
+      return { kind: 'teacher_report_capacity_exceeded' as const };
+    }
     return {
       kind: 'allowed' as const,
       visibility: 'private' as const,
-      report: { ...report, privateComments: [] },
+      report: { ...report, improvementPlan: privateImprovementPlan, privateComments: [] },
     };
   },
 });

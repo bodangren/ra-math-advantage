@@ -9,6 +9,7 @@ export const OBSERVATION_TYPES = [
 export type ObservationType = (typeof OBSERVATION_TYPES)[number];
 export type ObservationPriorityReason =
   | 'below_proficient'
+  | 'approved_plan_priority'
   | 'overdue'
   | 'evidence_gap'
   | 'due';

@@ -17,6 +17,7 @@ import {
 
 const PRIORITY_REASONS = new Set<ObservationPriorityReason>([
   'below_proficient',
+  'approved_plan_priority',
   'overdue',
   'evidence_gap',
   'due',

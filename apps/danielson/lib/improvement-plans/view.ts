@@ -57,7 +57,8 @@ export type ImprovementPlanView = {
 };
 
 export type ImprovementPlanProgress =
-  | { contractVersion: 'danielson.ip-progress.v1'; state: 'not_configured' | 'pending_approval' }
+  | { contractVersion: 'danielson.ip-progress.v1'; state: 'not_configured'; planId?: never }
+  | { contractVersion: 'danielson.ip-progress.v1'; state: 'pending_approval'; planId?: string }
   | {
       contractVersion: 'danielson.ip-progress.v1';
       state: 'active' | 'closed';
@@ -77,4 +78,7 @@ export type ImprovementPlanProgress =
         evidenceDue: boolean;
         evidenceOverdue: boolean;
       }>;
+      schoolSupport?: string;
+      successfulCompletionCriteria?: string;
+      closureNote?: string;
     };

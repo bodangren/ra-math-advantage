@@ -41,6 +41,8 @@ import type {
   ObservationType,
   SubmittedObservation,
 } from '../lib/observations/contracts';
+import { applyPipPriorityOverlay } from '../lib/improvement-plans/progress';
+import { readOrganizationActiveImprovementPlans } from './improvementPlans';
 
 const MAX_QUEUE_TEACHERS = 250;
 const MAX_ORGANIZATION_ACCOUNTS = 1_000;
@@ -71,6 +73,7 @@ const changedItemValidator = v.object({
 
 const priorityReasonValidator = v.union(
   v.literal('below_proficient'),
+  v.literal('approved_plan_priority'),
   v.literal('overdue'),
   v.literal('evidence_gap'),
   v.literal('due'),
@@ -508,6 +511,10 @@ export const readRankedTeacherQueue = internalQuery({
     if (!actor?.isActive) return { kind: 'denied' as const, reason: 'account_inactive' };
     const organization = await ctx.db.get(actor.organizationId);
     if (!organization?.isActive) return { kind: 'denied' as const, reason: 'organization_inactive' };
+    const activePlans = await readOrganizationActiveImprovementPlans(ctx, actor.organizationId, now);
+    if (activePlans.kind === 'capacity_exceeded') {
+      return { kind: 'queue_capacity_exceeded' as const };
+    }
     const roles = await ctx.db.query('role_assignments')
       .withIndex('by_organizationId_and_accountId_and_status', (query) => query
         .eq('organizationId', actor.organizationId)
@@ -615,7 +622,7 @@ export const readRankedTeacherQueue = internalQuery({
       const profile = profiles.find((row) => String(row._id) === candidate.teacherProfileId);
       const account = profile ? accountById.get(String(profile.accountId)) : null;
       if (!account?.isActive) return [];
-      const targets = summaryByTeacher.get(candidate.teacherProfileId)
+      const baseTargets = summaryByTeacher.get(candidate.teacherProfileId)
         ?? projectTeacherPriority(
           candidate.teacherProfileId,
           [],
@@ -624,6 +631,13 @@ export const readRankedTeacherQueue = internalQuery({
           skillIds,
           now,
         );
+      const overlays = activePlans.overlaysByTeacher.get(candidate.teacherProfileId);
+      const targets = baseTargets.map((priority) => {
+        const overlay = overlays?.get(priority.skillId);
+        return overlay
+          ? applyPipPriorityOverlay({ priority, ...overlay, now })
+          : priority;
+      });
       return [{ teacherProfileId: candidate.teacherProfileId, displayName: account.displayName, targets }];
     });
     return {
