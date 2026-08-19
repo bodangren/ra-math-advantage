@@ -74,10 +74,9 @@ A component is `not_enough_evidence` in all other cases.
 
 The portfolio state is `below_proficient` when one component is below
 Proficient.
-The portfolio state is `proficient` when each component that has approved child
-skills is Proficient.
-Keep a component without an approved child skill out of the current
-skill-proficiency denominator.
+The portfolio state is `proficient` when all 22 Danielson components are
+Proficient.
+A component without sufficient approved-skill evidence is Not enough evidence.
 The portfolio state is `not_enough_evidence` in all other cases.
 
 Do not average ratings.

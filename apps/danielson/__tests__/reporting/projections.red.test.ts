@@ -15,6 +15,7 @@ type Priority = {
   teacherId: string;
   skillId: string;
   componentId: string;
+  sourceRecordId: string;
   due: boolean;
   dueAt: string | null;
   overdueDays: number;
@@ -50,6 +51,7 @@ function priorities(
     teacherId,
     skillId,
     componentId,
+    sourceRecordId: `observation_records:${encodeURIComponent(skillId)}`,
     due: false,
     dueAt: '2027-01-01T00:00:00.000Z',
     overdueDays: 0,
@@ -78,19 +80,27 @@ function portfolioRow(input: {
 }
 
 describe('Danielson reporting projections', () => {
-  it('uses complete component evidence and never averages away a low skill', () => {
-    const complete = priorities();
+  it('requires all 22 components and never averages away a low skill', () => {
+    const partial = priorities();
+    const graph = buildDanielsonGraph().graph;
+    const componentIds = graph.nodes
+      .filter((node) => node.kind === 'instructional_unit')
+      .map((node) => node.id);
+    const coveredComponentIds = new Set(partial.map((item) => item.componentId));
+
+    expect(componentIds).toHaveLength(22);
+    expect(coveredComponentIds.size).toBeLessThan(22);
     expect(portfolioRow({
       teacherProfileId: 'teacher_profiles:one',
       displayName: 'Teacher One',
-      priorities: complete,
+      priorities: partial,
     })).toMatchObject({
-      danielson: { state: 'proficient', belowComponentIds: [] },
+      danielson: { state: 'not_enough_evidence', belowComponentIds: [] },
       attentionReasons: [],
     });
 
-    const lowComponentId = complete[0].componentId;
-    const oneLow = complete.map((item, index) => index === 0 ? {
+    const lowComponentId = partial[0].componentId;
+    const oneLow = partial.map((item, index) => index === 0 ? {
       ...item,
       currentProficiency: { rawRating: 2, points: 80, passes: false },
     } : item);
@@ -109,8 +119,22 @@ describe('Danielson reporting projections', () => {
     expect(portfolioRow({
       teacherProfileId: 'teacher_profiles:one',
       displayName: 'Teacher One',
-      priorities: complete.slice(1),
+      priorities: partial.slice(1),
     })).toMatchObject({ danielson: { state: 'not_enough_evidence' } });
+  });
+
+  it('preserves the Track 2 source record on current skill proficiency', () => {
+    const sourceRecordId = 'observation_records:walkthrough-source';
+    const input = priorities().map((item, index) => index === 0
+      ? { ...item, sourceRecordId }
+      : item);
+    const current = projectCurrentProficiency({ priorities: input });
+    const skill = current.domains
+      .flatMap((domain) => domain.components)
+      .flatMap((component) => component.skills)
+      .find((candidate) => candidate.skillId === input[0].skillId);
+
+    expect(skill).toMatchObject({ sourceRecordId });
   });
 
   it('returns exact neutral IP and GBF seams before their source tracks are active', () => {
@@ -271,7 +295,8 @@ describe('Danielson reporting projections', () => {
       ],
     });
     expect(official).not.toHaveProperty('average');
-    expect(current).toMatchObject({ state: 'proficient' });
+    expect(current).toMatchObject({ state: 'not_enough_evidence' });
+    expect(current.domains.flatMap((domain) => domain.components)).toHaveLength(22);
     expect(current).not.toHaveProperty('officialEvaluations');
   });
 
