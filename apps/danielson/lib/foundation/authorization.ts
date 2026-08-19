@@ -43,6 +43,7 @@ export const DANIELSON_CAPABILITIES = {
     'q1_observation:amend',
     'q4_observation:submit',
     'q4_observation:amend',
+    'gbf:assign',
     'pip:propose',
     'pip_supervisor_acknowledgment:write',
   ],
@@ -56,6 +57,7 @@ export const DANIELSON_CAPABILITIES = {
     'q1_observation:amend',
     'q4_observation:submit',
     'q4_observation:amend',
+    'gbf:assign',
     'pip:propose',
     'pip:approve',
     'pip:close',
@@ -78,6 +80,7 @@ export type DanielsonAction =
   | 'q1_observation:amend'
   | 'q4_observation:submit'
   | 'q4_observation:amend'
+  | 'gbf:assign'
   | 'pip:propose'
   | 'pip:approve'
   | 'pip:close'
@@ -146,6 +149,7 @@ const EVALUATION_ACTIONS = new Set<DanielsonAction>([
   'q4_observation:submit',
   'q4_observation:amend',
   'observation_comment:write',
+  'gbf:assign',
 ]);
 const PIP_ACTIONS = new Set<DanielsonAction>([
   'pip:propose',

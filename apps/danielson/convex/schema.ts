@@ -682,4 +682,20 @@ export default defineSchema({
     .index('by_org_plan_time', ['organizationId', 'planId', 'occurredAt'])
     .index('by_org_teacher_time', ['organizationId', 'teacherProfileId', 'occurredAt']),
 
+  teacher_gbf_assignments: defineTable({
+    organizationId: v.id('organizations'),
+    teacherProfileId: v.id('teacher_profiles'),
+    sequenceReleaseId: v.string(),
+    graphReleaseId: v.string(),
+    assignedSkillIds: v.array(v.string()),
+    unsequencedGapSkillIds: v.array(v.string()),
+    actorAccountId: v.id('accounts'),
+    requestId: v.string(),
+    fingerprint: v.string(),
+    assignedAt: v.number(),
+  })
+    .index('by_org_request', ['organizationId', 'requestId'])
+    .index('by_org_teacher_time', ['organizationId', 'teacherProfileId', 'assignedAt'])
+    .index('by_org_time', ['organizationId', 'assignedAt']),
+
 });

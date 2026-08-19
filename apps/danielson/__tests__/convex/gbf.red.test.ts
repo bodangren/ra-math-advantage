@@ -349,7 +349,7 @@ describe('GBF assignment schema and Convex boundary', () => {
     expect(args.value.requestId.fieldType).toEqual({ type: 'string' });
     expect(args.value.now.fieldType).toEqual({ type: 'number' });
     const returns = JSON.parse(
-      (assignTeacherGbfTrack as { exportReturns(): string }).exportReturns(),
+      (assignTeacherGbfTrack as unknown as { exportReturns(): string }).exportReturns(),
     ) as {
       type: 'union';
       value: Array<{
