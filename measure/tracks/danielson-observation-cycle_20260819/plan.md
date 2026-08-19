@@ -50,36 +50,38 @@
 - [x] Task 2.6: Measure - User Manual Verification 'Phase 2: Test' (Protocol in workflow.md)
     - User directed full-track continuation on 2026-08-19.
 
-## Phase 3: Implement
+## Phase 3: Implement [checkpoint: 566a9eaf]
 
-- [~] Task 3.1: Implement bounded ranked-queue projections
-    - [ ] Reuse Track 2 KST, SRS, proficiency, and evidence-gap outputs
-    - [ ] Apply Track 1 scope before ranking
-    - [ ] Return deterministic teacher and target reasons
-- [ ] Task 3.2: Implement walkthrough drafts and submission
-    - [ ] Add recoverable draft persistence
-    - [ ] Add the accessible three-target form
-    - [ ] Finalize and publish with one idempotent mutation
-- [ ] Task 3.3: Implement Q1 and Q4 formal observations
-    - [ ] Enforce observer permissions and record types
-    - [ ] Send approved evidence through the Track 2 adapter
-- [ ] Task 3.4: Implement immutable amendments
-    - [ ] Preserve original records and append correction events
-    - [ ] Supersede downstream evidence without double counting
-- [ ] Task 3.5: Implement annual continuity and bounded history reads
-    - [ ] Keep KST and SRS state continuous across year labels
-    - [ ] Paginate historical observations and amendments
-- [ ] Task 3.6: Measure - User Manual Verification 'Phase 3: Implement' (Protocol in workflow.md)
+- [x] Task 3.1: Implement bounded ranked-queue projections — `9b570c84`, `34aad2be`, `566a9eaf`
+    - [x] Reuse Track 2 KST, SRS, proficiency, and evidence-gap outputs
+    - [x] Apply Track 1 scope before ranking
+    - [x] Return deterministic teacher and target reasons
+- [x] Task 3.2: Implement walkthrough drafts and submission — `06355c2c`, `566a9eaf`
+    - [x] Add recoverable draft persistence
+    - [x] Add the accessible three-target form
+    - [x] Finalize and publish with one idempotent mutation
+- [x] Task 3.3: Implement Q1 and Q4 formal observations — `9b570c84`, `06355c2c`, `566a9eaf`
+    - [x] Enforce observer permissions and record types
+    - [x] Send approved evidence through the Track 2 adapter
+- [x] Task 3.4: Implement immutable amendments — `9b570c84`, `566a9eaf`
+    - [x] Preserve original records and append correction events
+    - [x] Supersede downstream evidence without double counting
+- [x] Task 3.5: Implement annual continuity and bounded history reads — `9b570c84`, `566a9eaf`
+    - [x] Keep KST and SRS state continuous across year labels
+    - [x] Paginate historical observations and amendments
+- [x] Task 3.6: Measure - User Manual Verification 'Phase 3: Implement' (Protocol in workflow.md)
+    - User directed full-track continuation on 2026-08-19.
 
-## Phase 4: Generate Docs and Doctor
+## Phase 4: Generate Docs and Doctor [checkpoint: 566a9eaf]
 
-- [ ] Task 4.1: Run focused and workspace quality gates
-    - [ ] Run queue, form, formal-observation, amendment, carryover, coverage, lint, typecheck, and build gates
-    - [ ] Run authorization, idempotency, and accessibility tests
-- [ ] Task 4.2: Generate route, schema, ownership, and dependency facts
-    - [ ] Run `npm run generate`
-    - [ ] Confirm that generated facts contain the observation surfaces
-- [ ] Task 4.3: Run boundaries and Measure Doctor
-    - [ ] Run inventory parity, monorepo boundaries, and `npm run doctor`
-    - [ ] Inspect for unrelated active-track changes
-- [ ] Task 4.4: Measure - User Manual Verification 'Phase 4: Generate Docs and Doctor' (Protocol in workflow.md)
+- [x] Task 4.1: Run focused and workspace quality gates
+    - [x] Run queue, form, formal-observation, amendment, carryover, coverage, lint, typecheck, and build gates
+    - [x] Run authorization, idempotency, and accessibility tests
+- [x] Task 4.2: Generate route, schema, ownership, and dependency facts
+    - [x] Run `npm run generate`
+    - [x] Confirm that generated facts contain the observation surfaces
+- [x] Task 4.3: Run boundaries and Measure Doctor
+    - [x] Run inventory parity, monorepo boundaries, and `npm run doctor`
+    - [x] Inspect for unrelated active-track changes
+- [x] Task 4.4: Measure - User Manual Verification 'Phase 4: Generate Docs and Doctor' (Protocol in workflow.md)
+    - User directed full-track continuation on 2026-08-19.

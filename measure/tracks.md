@@ -79,11 +79,11 @@ Dependency order:
    *Create the app-owned Danielson and TLAC graph, rating and evidence contract, Q1 fan-out, and teacher KST plus SRS adapters. Preserve `not_enough_evidence` as no proficiency or scheduling update.*
    *Link: [./tracks/danielson-proficiency-graph_20260819/](./tracks/danielson-proficiency-graph_20260819/)*
 
-- [~] **Track 3: Ranked Walkthroughs and Formal Observations**
+- [x] **Track 3: Ranked Walkthroughs and Formal Observations** — **COMPLETED** (2026-08-19)
    *Create the scoped teacher queue, three prioritized targets for each walkthrough, 5–10 minute form, Q1 and Q4 records, immediate publication, immutable submissions, amendments, and annual continuity.*
    *Link: [./tracks/danielson-observation-cycle_20260819/](./tracks/danielson-observation-cycle_20260819/)*
 
-- [ ] **Track 4: Leadership Portfolio and Teacher Reports**
+- [~] **Track 4: Leadership Portfolio and Teacher Reports**
    *Create the compact SLT portfolio, teacher drill down, official and current proficiency views, public and private comments, self-private-data exclusion, and one optional teacher response with no replies.*
    *Link: [./tracks/danielson-reporting_20260819/](./tracks/danielson-reporting_20260819/)*
 
