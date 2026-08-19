@@ -314,7 +314,9 @@ describe('Danielson reporting projections', () => {
       amendments: [],
       observerDisplayName: 'Observer One',
     });
-    expect(projected.components.map((component) => [component.rawRating, component.points]))
+    expect(projected.components.map((component: { rawRating: number | null; points: number | null }) => (
+      [component.rawRating, component.points]
+    )))
       .toEqual([[1, 70], [2, 80], [3, 90], [4, 100]]);
   });
 });
