@@ -231,6 +231,7 @@ function seedTeacher(
   db.seed('teacher_profiles', teacherProfileId, {
     organizationId,
     accountId,
+    currentGbfAssignmentId: null,
     isActive: true,
     createdAt: NOW,
     updatedAt: NOW,

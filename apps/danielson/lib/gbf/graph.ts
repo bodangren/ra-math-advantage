@@ -10,6 +10,8 @@ import type {
   GbfActionStep,
   GbfEdgeCandidate,
   GbfGraphRelease,
+  GbfMappingRelease,
+  GbfSequenceRelease,
   GbfValidationResult,
 } from './contracts';
 import { buildDanielsonGraph } from '../proficiency/graph';
@@ -122,20 +124,47 @@ export const GBF_GRAPH_RELEASE_V1: GbfGraphRelease = {
 
 export const GBF_GRAPH_RELEASE = GBF_GRAPH_RELEASE_V1;
 
+export type GbfReleaseRegistryEntry = {
+  sequenceReleaseId: string;
+  mappingReleaseId: string;
+  graphReleaseId: string;
+  effectiveDate: string;
+  sequence: GbfSequenceRelease;
+  mapping: GbfMappingRelease;
+  graph: GbfGraphRelease;
+};
+
+function deepFreeze<T>(value: T): T {
+  if (value && typeof value === 'object' && !Object.isFrozen(value)) {
+    for (const item of Object.values(value)) deepFreeze(item);
+    Object.freeze(value);
+  }
+  return value;
+}
+
+/** The app-owned release registry is append-only. Keep old snapshots here. */
+export const GBF_RELEASE_REGISTRY: readonly GbfReleaseRegistryEntry[] = deepFreeze([
+  {
+    sequenceReleaseId: GBF_SEQUENCE_RELEASE_V1.releaseId,
+    mappingReleaseId: GBF_MAPPING_RELEASE_V1.releaseId,
+    graphReleaseId: GBF_GRAPH_RELEASE_V1.releaseId,
+    effectiveDate: GBF_GRAPH_RELEASE_V1.effectiveDate,
+    sequence: structuredClone(GBF_SEQUENCE_RELEASE_V1),
+    mapping: structuredClone(GBF_MAPPING_RELEASE_V1),
+    graph: structuredClone(GBF_GRAPH_RELEASE_V1),
+  },
+]);
+
 /** Resolve a graph by the release stored on a teacher assignment. */
 export function resolveGbfGraphRelease(input: {
   sequenceReleaseId: string;
   graphReleaseId: string;
 }): GbfGraphRelease | null {
-  if (
-    input.sequenceReleaseId === GBF_SEQUENCE_RELEASE_V1.releaseId
-    && input.graphReleaseId === GBF_GRAPH_RELEASE_V1.releaseId
-  ) return structuredClone(GBF_GRAPH_RELEASE_V1);
-  if (
-    input.sequenceReleaseId === GBF_SEQUENCE_RELEASE.releaseId
-    && input.graphReleaseId === GBF_GRAPH_RELEASE.releaseId
-  ) return structuredClone(GBF_GRAPH_RELEASE);
-  return null;
+  const entry = GBF_RELEASE_REGISTRY.find((candidate) => (
+    candidate.sequenceReleaseId === input.sequenceReleaseId
+    && candidate.graphReleaseId === input.graphReleaseId
+  ));
+  return entry ? structuredClone(entry.graph) : null;
 }
 
 function activePrerequisiteEdges(release: GbfGraphRelease): KnowledgeSpaceEdge[] {
@@ -222,6 +251,16 @@ export function validateGbfGraphRelease(release: GbfGraphRelease): GbfValidation
         if (edge[field] !== derived[field]) {
           issues.push({ code: 'DERIVED_EDGE_MISMATCH', message: `The ${field} field must come from the reviewed source records.`, recordId: edge.id });
         }
+      }
+      if (
+        derived.reviewStatus === 'rejected'
+        && (edge.reviewStatus !== 'rejected' || edge.activationState !== 'inactive')
+      ) {
+        issues.push({
+          code: 'REJECTED_EDGE_REACTIVATION',
+          message: 'A release-defined rejected edge must stay rejected and inactive.',
+          recordId: edge.id,
+        });
       }
     }
     const tuple = `${edge.type}::${edge.sourceId}::${edge.targetId}`;

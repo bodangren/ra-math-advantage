@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 
 import {
   assignTeacherGbfTrack,
+  backfillTeacherGbfAssignmentPointer,
   readOrganizationCurrentGbfAssignments,
   readTeacherGbfAssignment,
 } from '../../convex/gbf';
@@ -366,6 +367,7 @@ describe('GBF assignment schema and Convex boundary', () => {
     expect(returns.value.map((member) => member.value.kind.fieldType.value).sort())
       .toEqual([
         'assigned',
+        'capacity_exceeded',
         'denied',
         'idempotency_conflict',
         'invalid_input',
@@ -653,6 +655,30 @@ describe('GBF assignment authorization and persistence', () => {
 });
 
 describe('GBF assignment read bounds', () => {
+  it('backfills one legacy pointer with the deterministic newest assignment', async () => {
+    const db = new MemoryDb();
+    seedTeacher(db, TEACHER, TEACHER_ACCOUNT);
+    db.seed('teacher_gbf_assignments', 'teacher_gbf_assignments:older', assignmentRow({
+      teacherProfileId: TEACHER,
+      requestId: 'request:order:a',
+      assignedAt: NOW,
+    }));
+    db.seed('teacher_gbf_assignments', 'teacher_gbf_assignments:newer', assignmentRow({
+      teacherProfileId: TEACHER,
+      requestId: 'request:order:z',
+      assignedAt: NOW,
+    }));
+
+    await expect(handler(backfillTeacherGbfAssignmentPointer)(db.context(), {
+      teacherProfileId: TEACHER,
+    })).resolves.toEqual({
+      kind: 'migrated',
+      currentAssignmentId: 'teacher_gbf_assignments:newer',
+    });
+    expect(db.rows('teacher_profiles').find((row) => row._id === TEACHER))
+      .toMatchObject({ currentGbfAssignmentId: 'teacher_gbf_assignments:newer' });
+  });
+
   it('returns a migration result without scanning assignment history when an active pointer is absent', async () => {
     const db = new MemoryDb();
     db.seed('teacher_gbf_assignments', 'teacher_gbf_assignments:legacy', assignmentRow({

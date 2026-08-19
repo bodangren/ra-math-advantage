@@ -57,6 +57,7 @@ export function TeacherReportView({
   canComment,
   canRespond,
   canAssignGbf = false,
+  isSubjectTeacher = false,
   evidenceHistoryNextHref = null,
   publicCommentsNextHref = null,
   privateCommentsNextHref = null,
@@ -65,6 +66,7 @@ export function TeacherReportView({
   canComment: boolean;
   canRespond: boolean;
   canAssignGbf?: boolean;
+  isSubjectTeacher?: boolean;
   evidenceHistoryNextHref?: string | null;
   publicCommentsNextHref?: string | null;
   privateCommentsNextHref?: string | null;
@@ -125,7 +127,7 @@ export function TeacherReportView({
             <div><dt>Unresolved gaps</dt><dd>{report.gbf.unresolvedGapSkillIds.length}</dd></div>
           </dl>
         </section>
-      ) : canAssignGbf ? (
+      ) : canAssignGbf && !isSubjectTeacher ? (
         <section className="card" aria-labelledby="gbf-progress-heading">
           <h2 id="gbf-progress-heading">Get Better Faster (GBF) progress</h2>
           <p>There is no assigned track.</p>

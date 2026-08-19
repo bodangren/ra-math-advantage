@@ -232,7 +232,7 @@ export default defineSchema({
     organizationId: v.id('organizations'),
     accountId: v.id('accounts'),
     position: v.optional(v.string()),
-    currentGbfAssignmentId: v.optional(v.id('teacher_gbf_assignments')),
+    currentGbfAssignmentId: v.optional(v.union(v.id('teacher_gbf_assignments'), v.null())),
     isActive: v.boolean(),
     createdAt: v.number(),
     updatedAt: v.number(),

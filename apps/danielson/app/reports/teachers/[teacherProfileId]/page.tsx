@@ -31,7 +31,8 @@ export default async function LeadershipTeacherReportPage({
           report={report}
           canComment={visibility === 'private'}
           canRespond={false}
-          canAssignGbf={roles.includes('school_head') || roles.includes('slt')}
+          canAssignGbf={visibility === 'private' && (roles.includes('school_head') || roles.includes('slt'))}
+          isSubjectTeacher={visibility !== 'private'}
           evidenceHistoryNextHref={nextHrefs.evidenceHistory}
           publicCommentsNextHref={nextHrefs.publicComments}
           privateCommentsNextHref={nextHrefs.privateComments}

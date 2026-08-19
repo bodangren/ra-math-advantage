@@ -461,7 +461,7 @@ export const readLeadershipPortfolio = internalQuery({
         .take(MAX_ATTENTION_SUMMARIES + 1),
       readOrganizationCurrentGbfAssignments(ctx, actor.organizationId),
     ]);
-    if (gbfAssignments.kind === 'capacity_exceeded') {
+    if (gbfAssignments.kind !== 'allowed') {
       return { kind: 'portfolio_capacity_exceeded' as const };
     }
     let memberships: Doc<'department_memberships'>[] = [];

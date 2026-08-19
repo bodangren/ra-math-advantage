@@ -1,39 +1,7 @@
 import type { GbfMappingRelease, GbfSequenceRelease } from './contracts';
-import type { GbfGraphRelease } from './contracts';
-import { GBF_GRAPH_RELEASE_V1 } from './graph';
-import { GBF_MAPPING_RELEASE_V1 } from './mappings';
-import { GBF_SEQUENCE_RELEASE_V1 } from './source';
+import { GBF_RELEASE_REGISTRY } from './graph';
 
-export type GbfReleaseRegistryEntry = {
-  sequenceReleaseId: string;
-  mappingReleaseId: string;
-  graphReleaseId: string;
-  effectiveDate: string;
-  sequence: GbfSequenceRelease;
-  mapping: GbfMappingRelease;
-  graph: GbfGraphRelease;
-};
-
-function deepFreeze<T>(value: T): T {
-  if (value && typeof value === 'object' && !Object.isFrozen(value)) {
-    for (const item of Object.values(value)) deepFreeze(item);
-    Object.freeze(value);
-  }
-  return value;
-}
-
-/** The app-owned release registry is append-only. Keep old IDs here. */
-export const GBF_RELEASE_REGISTRY: readonly GbfReleaseRegistryEntry[] = deepFreeze([
-  {
-    sequenceReleaseId: 'danielson.gbf.sequence.2026-08-19.v1',
-    mappingReleaseId: 'danielson.gbf.mapping.2026-08-19.v1',
-    graphReleaseId: 'danielson.gbf.graph.2026-08-19.v1',
-    effectiveDate: '2026-08-19',
-    sequence: structuredClone(GBF_SEQUENCE_RELEASE_V1),
-    mapping: structuredClone(GBF_MAPPING_RELEASE_V1),
-    graph: structuredClone(GBF_GRAPH_RELEASE_V1),
-  },
-]);
+export { GBF_RELEASE_REGISTRY, type GbfReleaseRegistryEntry } from './graph';
 
 export function findGbfRelease(input: {
   sequenceReleaseId: string;

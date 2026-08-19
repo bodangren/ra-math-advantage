@@ -11,7 +11,6 @@ import { GBF_SEQUENCE_RELEASE } from '../lib/gbf/source';
 const MAX_REQUEST_ID_LENGTH = 200;
 const MAX_TEACHER_ASSIGNMENTS = 100;
 const MAX_ORGANIZATION_ASSIGNMENTS = 250;
-const MAX_LEGACY_ORGANIZATION_ASSIGNMENTS = 10_000;
 
 const deniedValidator = v.object({ kind: v.literal('denied'), reason: v.string() });
 const receiptFields = {
@@ -23,6 +22,7 @@ const assignmentResultValidator = v.union(
   deniedValidator,
   v.object({ kind: v.literal('invalid_input') }),
   v.object({ kind: v.literal('unsupported_release') }),
+  v.object({ kind: v.literal('capacity_exceeded') }),
   v.object({ kind: v.literal('idempotency_conflict') }),
   v.object({ kind: v.literal('assigned'), ...receiptFields }),
   v.object({ kind: v.literal('replayed'), ...receiptFields }),
@@ -99,6 +99,26 @@ async function selectCurrentAssignment(
   });
 }
 
+function newestAssignment(rows: readonly Doc<'teacher_gbf_assignments'>[]) {
+  return rows.reduce<Doc<'teacher_gbf_assignments'> | null>((newest, row) => (
+    !newest || compareAssignmentOrder(row, newest) > 0 ? row : newest
+  ), null);
+}
+
+async function readBoundedTeacherAssignments(
+  ctx: DbCtx,
+  organizationId: Id<'organizations'> | string,
+  teacherProfileId: Id<'teacher_profiles'> | string,
+) {
+  const rows = await database(ctx).query('teacher_gbf_assignments')
+    .withIndex('by_org_teacher_time', (query) => query
+      .eq('organizationId', organizationId as Id<'organizations'>)
+      .eq('teacherProfileId', teacherProfileId as Id<'teacher_profiles'>))
+    .order('desc')
+    .take(MAX_TEACHER_ASSIGNMENTS + 1);
+  return rows.length > MAX_TEACHER_ASSIGNMENTS ? null : rows;
+}
+
 /** Read the latest immutable assignment for one teacher. */
 export async function readTeacherGbfAssignment(
   ctx: DbCtx,
@@ -122,14 +142,12 @@ export async function readTeacherGbfAssignment(
     ) return { kind: 'capacity_exceeded' };
     return { kind: 'allowed', assignment: assignmentView(current) };
   }
-  const rows = await database(ctx).query('teacher_gbf_assignments')
-    .withIndex('by_org_teacher_time', (query) => query
-      .eq('organizationId', organizationId as Id<'organizations'>)
-      .eq('teacherProfileId', teacherProfileId as Id<'teacher_profiles'>))
-    .order('desc')
-    .take(MAX_TEACHER_ASSIGNMENTS + 1);
-  if (rows.length > MAX_TEACHER_ASSIGNMENTS) return { kind: 'capacity_exceeded' };
-  const current = rows[0];
+  if (teacher?.organizationId === organizationId && teacher.currentGbfAssignmentId === null) {
+    return { kind: 'not_configured' };
+  }
+  const rows = await readBoundedTeacherAssignments(ctx, organizationId, teacherProfileId);
+  if (!rows) return { kind: 'capacity_exceeded' };
+  const current = newestAssignment(rows);
   return current
     ? { kind: 'allowed', assignment: assignmentView(current) }
     : { kind: 'not_configured' };
@@ -141,6 +159,7 @@ export async function readOrganizationCurrentGbfAssignments(
   organizationId: Id<'organizations'> | string,
 ): Promise<
   | { kind: 'capacity_exceeded' }
+  | { kind: 'migration_required' }
   | { kind: 'allowed'; assignmentsByTeacher: Map<string, GbfAssignmentView> }
 > {
   const teachers = await database(ctx).query('teacher_profiles')
@@ -149,6 +168,9 @@ export async function readOrganizationCurrentGbfAssignments(
       .eq('isActive', true))
     .take(MAX_ORGANIZATION_ASSIGNMENTS + 1);
   if (teachers.length > MAX_ORGANIZATION_ASSIGNMENTS) return { kind: 'capacity_exceeded' };
+  if (teachers.some((teacher) => teacher.currentGbfAssignmentId === undefined)) {
+    return { kind: 'migration_required' };
+  }
   const rows = await Promise.all(teachers.map((teacher) => (
     teacher.currentGbfAssignmentId
       ? database(ctx).get(teacher.currentGbfAssignmentId)
@@ -167,33 +189,39 @@ export async function readOrganizationCurrentGbfAssignments(
     const teacherProfileId = String(row.teacherProfileId);
     assignmentsByTeacher.set(teacherProfileId, assignmentView(row));
   }
-  const missingTeacherIds = new Set(teachers
-    .map((teacher) => String(teacher._id))
-    .filter((teacherProfileId) => !assignmentsByTeacher.has(teacherProfileId)));
-  if (missingTeacherIds.size > 0) {
-    const legacyRows = await database(ctx).query('teacher_gbf_assignments')
-      .withIndex('by_org_time', (query) => query
-        .eq('organizationId', organizationId as Id<'organizations'>))
-      .order('desc')
-      .take(MAX_LEGACY_ORGANIZATION_ASSIGNMENTS + 1);
-    if (legacyRows.length > MAX_LEGACY_ORGANIZATION_ASSIGNMENTS) {
-      return { kind: 'capacity_exceeded' };
-    }
-    const latestByTeacher = new Map<string, Doc<'teacher_gbf_assignments'>>();
-    for (const row of legacyRows) {
-      const teacherProfileId = String(row.teacherProfileId);
-      if (!missingTeacherIds.has(teacherProfileId)) continue;
-      const current = latestByTeacher.get(teacherProfileId);
-      if (!current || compareAssignmentOrder(row, current) > 0) {
-        latestByTeacher.set(teacherProfileId, row);
-      }
-    }
-    for (const [teacherProfileId, row] of latestByTeacher) {
-      assignmentsByTeacher.set(teacherProfileId, assignmentView(row));
-    }
-  }
   return { kind: 'allowed', assignmentsByTeacher };
 }
+
+/** Backfill one legacy profile without adding assignment-history reads to reports. */
+export const backfillTeacherGbfAssignmentPointer = internalMutation({
+  args: { teacherProfileId: v.id('teacher_profiles') },
+  returns: v.union(
+    v.object({ kind: v.literal('invalid_input') }),
+    v.object({ kind: v.literal('capacity_exceeded') }),
+    v.object({
+      kind: v.literal('migrated'),
+      currentAssignmentId: v.union(v.string(), v.null()),
+    }),
+  ),
+  handler: async (ctx, args) => {
+    const teacher = await ctx.db.get(args.teacherProfileId);
+    if (!teacher) return { kind: 'invalid_input' as const };
+    const rows = await readBoundedTeacherAssignments(
+      ctx,
+      teacher.organizationId,
+      teacher._id,
+    );
+    if (!rows) return { kind: 'capacity_exceeded' as const };
+    const newest = newestAssignment(rows);
+    await ctx.db.patch(teacher._id, {
+      currentGbfAssignmentId: newest?._id ?? null,
+    });
+    return {
+      kind: 'migrated' as const,
+      currentAssignmentId: newest ? String(newest._id) : null,
+    };
+  },
+});
 
 export const assignTeacherGbfTrack = internalMutation({
   args: {
@@ -228,7 +256,14 @@ export const assignTeacherGbfTrack = internalMutation({
     if (existing) {
       if (existing.fingerprint !== fingerprint) return { kind: 'idempotency_conflict' as const };
       const replayTeacher = await ctx.db.get(existing.teacherProfileId);
-      if (replayTeacher) await selectCurrentAssignment(ctx, replayTeacher, existing);
+      const history = await readBoundedTeacherAssignments(
+        ctx,
+        existing.organizationId,
+        existing.teacherProfileId,
+      );
+      if (!history) return { kind: 'capacity_exceeded' as const };
+      const newest = newestAssignment(history);
+      if (replayTeacher && newest) await selectCurrentAssignment(ctx, replayTeacher, newest);
       return {
         kind: 'replayed' as const,
         assignmentId: String(existing._id),
@@ -258,6 +293,15 @@ export const assignTeacherGbfTrack = internalMutation({
       };
     }
 
+    const priorAssignments = await readBoundedTeacherAssignments(
+      ctx,
+      organizationId,
+      args.teacherProfileId,
+    );
+    if (!priorAssignments || priorAssignments.length >= MAX_TEACHER_ASSIGNMENTS) {
+      return { kind: 'capacity_exceeded' as const };
+    }
+
     const snapshot = createCurrentGbfAssignment({
       assignmentId: 'pending',
       organizationId: String(organizationId),
@@ -280,7 +324,8 @@ export const assignTeacherGbfTrack = internalMutation({
     });
     const assignment = await ctx.db.get(assignmentId);
     if (!assignment) throw new Error('assignment_insert_failed');
-    await selectCurrentAssignment(ctx, teacher, assignment);
+    const newest = newestAssignment([...priorAssignments, assignment]);
+    if (newest) await selectCurrentAssignment(ctx, teacher, newest);
     return {
       kind: 'assigned' as const,
       assignmentId: String(assignmentId),

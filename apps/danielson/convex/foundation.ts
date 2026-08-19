@@ -505,6 +505,7 @@ export const applyAdministrationChange = internalMutation({
           organizationId: args.organizationId,
           accountId,
           position: args.change.position,
+          currentGbfAssignmentId: null,
           isActive: true,
           createdAt: now,
           updatedAt: now,

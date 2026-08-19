@@ -25,6 +25,7 @@ export default async function MyReportPage({
           report={report}
           canComment={false}
           canRespond
+          isSubjectTeacher
           evidenceHistoryNextHref={nextHrefs.evidenceHistory}
           publicCommentsNextHref={nextHrefs.publicComments}
         />
