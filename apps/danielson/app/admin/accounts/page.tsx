@@ -1,12 +1,18 @@
 import Link from 'next/link';
 import { SiteHeader } from '@/components/site-header';
-import { getAdministrationDirectory } from '@/lib/foundation/admin-page';
+import { getAdministrationDirectory, getDirectoryPageHref } from '@/lib/foundation/admin-page';
 import { AccountCreateForm } from '@/components/account-create-form';
 import { AdminChangeForm } from '@/components/admin-change-form';
 
-export default async function AccountsPage() {
-  const directory = await getAdministrationDirectory('/admin/accounts');
-  const accountOptions = directory.accounts.map((account) => ({
+export default async function AccountsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ accountCursor?: string }>;
+}) {
+  const cursors = await searchParams;
+  const directory = await getAdministrationDirectory('/admin/accounts', cursors);
+  const accounts = directory.accountPage.items;
+  const accountOptions = accounts.map((account) => ({
     value: account.accountId,
     label: `${account.displayName} (${account.username})`,
   }));
@@ -21,13 +27,16 @@ export default async function AccountsPage() {
           <h2 id="account-directory-heading">Current accounts</h2>
           <div className="table-wrap"><table>
             <thead><tr><th scope="col">Name</th><th scope="col">Username</th><th scope="col">Status</th><th scope="col">Roles</th><th scope="col">Account ID</th></tr></thead>
-            <tbody>{directory.accounts.map((account) => <tr key={account.accountId}>
+            <tbody>{accounts.map((account) => <tr key={account.accountId}>
               <td>{account.displayName}</td><td>{account.username}</td>
               <td>{account.isActive ? 'Active' : 'Inactive'}</td>
               <td>{account.roles.length ? account.roles.join(', ') : 'None'}</td>
               <td><code>{account.accountId}</code></td>
             </tr>)}</tbody>
           </table></div>
+          {directory.accountPage.nextCursor ? <p><Link href={getDirectoryPageHref('/admin/accounts', {
+            accountCursor: directory.accountPage.nextCursor,
+          })}>Next account page</Link></p> : null}
         </section>
         <div className="card narrow"><AccountCreateForm /></div>
         <div className="card-grid" style={{ marginTop: '1rem' }}>

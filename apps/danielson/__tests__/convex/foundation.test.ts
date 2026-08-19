@@ -33,6 +33,7 @@ function handler<TArgs, TResult>(value: unknown): Handler<TArgs, TResult> {
 class MemoryDb {
   private sequence = 0;
   private readonly tables = new Map<string, Map<string, StoredDocument>>();
+  readonly queryCalls: string[] = [];
 
   seed(table: string, id: string, document: Record<string, unknown>) {
     this.table(table).set(id, {
@@ -82,6 +83,7 @@ class MemoryDb {
   }
 
   query(tableName: string) {
+    this.queryCalls.push(tableName);
     let matches = this.rows(tableName);
     let descending = false;
     const query = {
@@ -168,7 +170,8 @@ const changePassword = handler<Record<string, unknown>, { ok: boolean }>(
 
 function seedAdministrator(db: MemoryDb) {
   db.seed('organizations', 'organizations:school', {
-    slug: 'school', name: 'School', isActive: true, createdAt: 1, updatedAt: 1,
+    slug: 'school', name: 'School', isActive: true, activeSysadminCount: 1,
+    createdAt: 1, updatedAt: 1,
   });
   db.seed('accounts', 'accounts:admin', {
     organizationId: 'organizations:school', username: 'admin', displayName: 'Admin',
@@ -313,34 +316,48 @@ describe('Danielson Convex foundation handlers', () => {
     expect(db.rows('accounts')[0].isActive).toBe(true);
   });
 
-  it('finds a second active system administrator after more than 100 inactive assignments', async () => {
+  it('maintains the active system administrator count without a table scan', async () => {
     const db = new MemoryDb();
     seedAdministrator(db);
-    for (let index = 0; index < 100; index += 1) {
-      const accountId = `accounts:inactive-${index}`;
-      db.seed('accounts', accountId, {
-        organizationId: 'organizations:school', username: `inactive-${index}`,
-        displayName: `Inactive ${index}`, sharedSessionRole: 'admin', isActive: false,
-        createdAt: 1, updatedAt: 1,
-      });
-      db.seed('role_assignments', `role_assignments:inactive-${index}`, {
-        organizationId: 'organizations:school', accountId, role: 'sysadmin', status: 'active',
-        createdByAccountId: 'accounts:admin', createdAt: 1,
-      });
-    }
     db.seed('accounts', 'accounts:second-admin', {
       organizationId: 'organizations:school', username: 'second-admin', displayName: 'Second Admin',
       sharedSessionRole: 'admin', isActive: true, createdAt: 1, updatedAt: 1,
     });
-    db.seed('role_assignments', 'role_assignments:second-admin', {
-      organizationId: 'organizations:school', accountId: 'accounts:second-admin',
-      role: 'sysadmin', status: 'active', createdByAccountId: 'accounts:admin', createdAt: 1,
-    });
+
+    await expect(applyChange(db.context(), administrationArgs('assign-second-admin', {
+      kind: 'role.assign', targetAccountId: 'accounts:second-admin', role: 'sysadmin',
+    }))).resolves.toMatchObject({ kind: 'applied' });
+    expect(await db.get('organizations:school')).toMatchObject({ activeSysadminCount: 2 });
 
     await expect(applyChange(db.context(), administrationArgs('deactivate-first-admin', {
       kind: 'account.deactivate', targetAccountId: 'accounts:admin',
     }))).resolves.toMatchObject({ kind: 'applied' });
     expect((await db.get('accounts:admin'))?.isActive).toBe(false);
+    expect(await db.get('organizations:school')).toMatchObject({ activeSysadminCount: 1 });
+
+    const secondActor = { actorAccountId: 'accounts:second-admin' };
+    await expect(applyChange(db.context(), {
+      ...administrationArgs('reactivate-first-admin', {
+        kind: 'account.activate', targetAccountId: 'accounts:admin',
+      }),
+      ...secondActor,
+    })).resolves.toMatchObject({ kind: 'applied' });
+    expect(await db.get('organizations:school')).toMatchObject({ activeSysadminCount: 2 });
+
+    await expect(applyChange(db.context(), {
+      ...administrationArgs('revoke-first-admin', {
+        kind: 'role.revoke', targetAccountId: 'accounts:admin', role: 'sysadmin',
+      }),
+      ...secondActor,
+    })).resolves.toMatchObject({ kind: 'applied' });
+    expect(await db.get('organizations:school')).toMatchObject({ activeSysadminCount: 1 });
+
+    await expect(applyChange(db.context(), {
+      ...administrationArgs('deactivate-final-admin', {
+        kind: 'account.deactivate', targetAccountId: 'accounts:second-admin',
+      }),
+      ...secondActor,
+    })).resolves.toEqual({ kind: 'denied', reason: 'final_active_sysadmin' });
   });
 
   it('does not treat an account without an active teacher profile as an active subject', async () => {
@@ -355,6 +372,97 @@ describe('Danielson Convex foundation handlers', () => {
       actorAccountId: 'accounts:admin',
       subjectAccountId: 'accounts:subject',
     })).resolves.toMatchObject({ subject: { accountId: 'accounts:subject', isActive: false } });
+  });
+
+  it('stops before protected scope reads for a subject in another organization', async () => {
+    const db = new MemoryDb();
+    seedAdministrator(db);
+    db.seed('organizations', 'organizations:other', {
+      slug: 'other', name: 'Other', isActive: true, activeSysadminCount: 0,
+      createdAt: 1, updatedAt: 1,
+    });
+    db.seed('accounts', 'accounts:foreign', {
+      organizationId: 'organizations:other', username: 'foreign', displayName: 'Foreign',
+      sharedSessionRole: 'teacher', isActive: true, createdAt: 1, updatedAt: 1,
+    });
+    db.queryCalls.length = 0;
+
+    await expect(resolveContext(db.context(), {
+      actorAccountId: 'accounts:admin',
+      subjectAccountId: 'accounts:foreign',
+    })).resolves.toMatchObject({
+      subject: {
+        accountId: 'accounts:foreign',
+        organizationId: 'organizations:other',
+        departmentIds: [],
+      },
+    });
+    expect(db.queryCalls).not.toContain('teacher_profiles');
+    expect(db.queryCalls).not.toContain('department_memberships');
+    expect(db.queryCalls).not.toContain('hod_assignments');
+    expect(db.queryCalls).not.toContain('coach_assignments');
+  });
+
+  it('rejects teacher assignments when the profile owner account is inactive', async () => {
+    const db = new MemoryDb();
+    seedAdministrator(db);
+    db.seed('accounts', 'accounts:teacher', {
+      organizationId: 'organizations:school', username: 'teacher', displayName: 'Teacher',
+      sharedSessionRole: 'teacher', isActive: false, createdAt: 1, updatedAt: 1,
+    });
+    db.seed('teacher_profiles', 'teacher_profiles:teacher', {
+      organizationId: 'organizations:school', accountId: 'accounts:teacher', isActive: true,
+      createdAt: 1, updatedAt: 1,
+    });
+    db.seed('departments', 'departments:math', {
+      organizationId: 'organizations:school', key: 'math', name: 'Math', isActive: true,
+      createdAt: 1, updatedAt: 1,
+    });
+
+    await expect(applyChange(db.context(), administrationArgs('inactive-membership', {
+      kind: 'department_membership.assign',
+      departmentId: 'departments:math',
+      teacherProfileId: 'teacher_profiles:teacher',
+    }))).resolves.toEqual({ kind: 'invalid', reason: 'relation_not_found' });
+    await expect(applyChange(db.context(), administrationArgs('inactive-coach', {
+      kind: 'coach_assignment.assign',
+      accountId: 'accounts:admin',
+      teacherProfileId: 'teacher_profiles:teacher',
+    }))).resolves.toEqual({ kind: 'invalid', reason: 'relation_not_found' });
+    expect(db.rows('access_audit_events')).toHaveLength(0);
+  });
+
+  it('limits one teacher profile to 100 active department memberships', async () => {
+    const db = new MemoryDb();
+    seedAdministrator(db);
+    db.seed('accounts', 'accounts:teacher', {
+      organizationId: 'organizations:school', username: 'teacher', displayName: 'Teacher',
+      sharedSessionRole: 'teacher', isActive: true, createdAt: 1, updatedAt: 1,
+    });
+    db.seed('teacher_profiles', 'teacher_profiles:teacher', {
+      organizationId: 'organizations:school', accountId: 'accounts:teacher', isActive: true,
+      createdAt: 1, updatedAt: 1,
+    });
+    db.seed('departments', 'departments:new', {
+      organizationId: 'organizations:school', key: 'new', name: 'New', isActive: true,
+      createdAt: 1, updatedAt: 1,
+    });
+    for (let index = 0; index < 100; index += 1) {
+      db.seed('department_memberships', `department_memberships:${index}`, {
+        organizationId: 'organizations:school',
+        departmentId: `departments:existing-${index}`,
+        teacherProfileId: 'teacher_profiles:teacher',
+        status: 'active', createdByAccountId: 'accounts:admin', createdAt: 1,
+      });
+    }
+
+    await expect(applyChange(db.context(), administrationArgs('membership-over-limit', {
+      kind: 'department_membership.assign',
+      departmentId: 'departments:new',
+      teacherAccountId: 'accounts:teacher',
+    }))).resolves.toEqual({ kind: 'denied', reason: 'assignment_limit_reached' });
+    expect(db.rows('department_memberships')).toHaveLength(100);
+    expect(db.rows('access_audit_events')).toHaveLength(0);
   });
 
   it('finds an exact HOD assignment when more than 100 unrelated assignments exist', async () => {
@@ -420,16 +528,69 @@ describe('Danielson Convex foundation handlers', () => {
 
     await expect(readDirectory(db.context(), {
       actorAccountId: 'accounts:admin',
+      accountPaginationOpts: { cursor: null, numItems: 100 },
+      departmentPaginationOpts: { cursor: null, numItems: 100 },
     })).resolves.toMatchObject({
       kind: 'allowed',
-      accounts: expect.arrayContaining([{
-        accountId: 'accounts:teacher', username: 'teacher', displayName: 'Teacher',
-        isActive: true, isTeacher: true, roles: ['teacher'],
-      }]),
-      departments: [{
-        departmentId: 'departments:math', key: 'math', name: 'Math', isActive: true,
-      }],
+      accountPage: {
+        items: expect.arrayContaining([{
+          accountId: 'accounts:teacher', username: 'teacher', displayName: 'Teacher',
+          isActive: true, isTeacher: true, roles: ['teacher'],
+        }]),
+        nextCursor: null,
+      },
+      departmentPage: {
+        items: [{
+          departmentId: 'departments:math', key: 'math', name: 'Math', isActive: true,
+        }],
+        nextCursor: null,
+      },
     });
+  });
+
+  it('returns the next administration page after the first 100 records', async () => {
+    const db = new MemoryDb();
+    seedAdministrator(db);
+    for (let index = 0; index < 100; index += 1) {
+      db.seed('accounts', `accounts:teacher-${index}`, {
+        organizationId: 'organizations:school', username: `teacher-${index}`,
+        displayName: `Teacher ${index}`, sharedSessionRole: 'teacher', isActive: true,
+        createdAt: index + 2, updatedAt: index + 2,
+      });
+    }
+    for (let index = 0; index < 101; index += 1) {
+      db.seed('departments', `departments:department-${index}`, {
+        organizationId: 'organizations:school', key: `department-${index}`,
+        name: `Department ${index}`, isActive: true,
+        createdAt: index + 2, updatedAt: index + 2,
+      });
+    }
+
+    const first = await readDirectory(db.context(), {
+      actorAccountId: 'accounts:admin',
+      accountPaginationOpts: { cursor: null, numItems: 500 },
+      departmentPaginationOpts: { cursor: null, numItems: 500 },
+    });
+    expect(first).toMatchObject({
+      kind: 'allowed',
+      accountPage: { items: expect.any(Array), nextCursor: '100' },
+      departmentPage: { items: expect.any(Array), nextCursor: '100' },
+    });
+    expect((first as { accountPage: { items: unknown[] } }).accountPage.items).toHaveLength(100);
+    expect((first as { departmentPage: { items: unknown[] } }).departmentPage.items).toHaveLength(100);
+
+    const second = await readDirectory(db.context(), {
+      actorAccountId: 'accounts:admin',
+      accountPaginationOpts: { cursor: '100', numItems: 100 },
+      departmentPaginationOpts: { cursor: '100', numItems: 100 },
+    });
+    expect(second).toMatchObject({
+      kind: 'allowed',
+      accountPage: { nextCursor: null },
+      departmentPage: { nextCursor: null },
+    });
+    expect((second as { accountPage: { items: unknown[] } }).accountPage.items).toHaveLength(1);
+    expect((second as { departmentPage: { items: unknown[] } }).departmentPage.items).toHaveLength(1);
   });
 
   it('reads audit events with bounded cursor pagination', async () => {

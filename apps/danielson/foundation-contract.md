@@ -18,6 +18,7 @@ next protected operation.
 | `slug` | string | Stable and unique |
 | `name` | string | Required |
 | `isActive` | boolean | Required |
+| `activeSysadminCount` | number | Server-maintained count of active system administrators |
 | `createdAt` | number | Server time |
 | `updatedAt` | number | Server time |
 
@@ -96,7 +97,7 @@ status is `active` or `revoked`.
 
 Indexes:
 
-- `by_organizationId_and_departmentId_and_teacherProfileId_and_status`
+- `by_org_dept_teacher_status`
 - `by_organizationId_and_departmentId_and_status`
 - `by_organizationId_and_teacherProfileId_and_status`
 
@@ -118,6 +119,11 @@ Indexes:
 The mutation rejects a second active role assignment for the same organization,
 account, and role. A revocation changes the active row to `revoked`. A later
 grant creates a new row. The revoked row remains in history.
+
+The server updates `activeSysadminCount` in the same transaction as an account
+status change or a system-administrator role change. The count prevents removal
+of the final active system administrator. Organization bootstrap must set this
+count to `1` when it creates the first system administrator.
 
 ### HOD Assignment
 
@@ -168,6 +174,7 @@ The server does not accept the network address in the request body.
 - Reject a duplicate organization slug.
 - Reject a duplicate department key in one organization.
 - Reject a duplicate active membership or assignment.
+- Limit one teacher profile to 100 active department memberships.
 - Reject a relation when its records are in different organizations.
 - Reject a relation to an inactive account, teacher profile, or department.
 - Do not delete an account when it is deactivated.
@@ -185,6 +192,8 @@ The server does not accept the network address in the request body.
 - Require a password change after the first successful sign-in.
 - Use one generic error for an unknown username and a wrong password.
 - Limit repeated failed sign-in attempts.
+- In production, require a trusted proxy source for the client network address.
+- Fail the sign-in request when the trusted network header is not available.
 - Set the session cookie as HTTP-only, secure in production, and same-site lax.
 - Accept only an app-relative post-sign-in redirect.
 
@@ -193,6 +202,8 @@ The server does not accept the network address in the request body.
 - Use the listed index for every authorization lookup.
 - Use `unique()` for unique identity and assignment lookups.
 - Use `take(6)` for the active role set.
-- Use `take(100)` for one administration list page.
-- Use cursor pagination when a list can exceed 100 records.
+- Limit one administration list page to 100 records.
+- Return a cursor when an administration list has more records.
+- Limit scope resolution to 100 active department memberships.
+- Reject a 101st active department membership.
 - Do not use `.filter()` or an unbounded `.collect()`.

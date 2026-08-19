@@ -62,7 +62,25 @@ describe('Danielson trusted client address', () => {
       headers: { 'x-forwarded-for': '203.0.113.90' },
     });
 
-    expect(getTrustedClientAddress(request, {})).toBe('unknown');
+    expect(getTrustedClientAddress(request, {})).toBe('local-development');
+  });
+
+  it('rejects a production login when no trusted client address source exists', () => {
+    const request = new Request('https://example.test/login', {
+      headers: { 'x-forwarded-for': '203.0.113.90' },
+    });
+
+    expect(() => getTrustedClientAddress(request, { NODE_ENV: 'production' }))
+      .toThrow('Trusted client IP header is not configured');
+  });
+
+  it('rejects a production login when the configured trusted header is missing', () => {
+    const request = new Request('https://example.test/login');
+
+    expect(() => getTrustedClientAddress(request, {
+      NODE_ENV: 'production',
+      TRUSTED_CLIENT_IP_HEADER: 'X-School-Client-IP',
+    })).toThrow('Trusted client IP header is missing');
   });
 
   it('uses only the explicitly configured trusted proxy header', () => {

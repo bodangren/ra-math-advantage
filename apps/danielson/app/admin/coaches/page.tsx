@@ -1,15 +1,21 @@
 import Link from 'next/link';
 import { SiteHeader } from '@/components/site-header';
-import { getAdministrationDirectory } from '@/lib/foundation/admin-page';
+import { getAdministrationDirectory, getDirectoryPageHref } from '@/lib/foundation/admin-page';
 import { AdminChangeForm } from '@/components/admin-change-form';
 
-export default async function CoachesPage() {
-  const directory = await getAdministrationDirectory('/admin/coaches');
-  const accountOptions = directory.accounts.map((account) => ({
+export default async function CoachesPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ accountCursor?: string }>;
+}) {
+  const cursors = await searchParams;
+  const directory = await getAdministrationDirectory('/admin/coaches', cursors);
+  const accounts = directory.accountPage.items;
+  const accountOptions = accounts.map((account) => ({
     value: account.accountId,
     label: `${account.displayName} (${account.username})`,
   }));
-  const teacherOptions = directory.accounts.filter((account) => account.isTeacher).map((account) => ({
+  const teacherOptions = accounts.filter((account) => account.isTeacher).map((account) => ({
     value: account.accountId,
     label: `${account.displayName} (${account.username})`,
   }));
@@ -27,6 +33,9 @@ export default async function CoachesPage() {
             { name: 'teacherAccountId', label: 'Teacher', type: 'select', required: true, options: teacherOptions },
           ]} />
         </div>
+        {directory.accountPage.nextCursor ? <p><Link href={getDirectoryPageHref('/admin/coaches', {
+          accountCursor: directory.accountPage.nextCursor,
+        })}>Next account page</Link></p> : null}
         <p><Link href="/admin">Back to administration</Link></p>
       </main>
     </>

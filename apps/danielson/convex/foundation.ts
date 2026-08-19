@@ -1,10 +1,11 @@
 import { paginationOptsValidator } from 'convex/server';
-import { internalMutation, internalQuery, type MutationCtx } from './_generated/server';
-import type { Doc, Id } from './_generated/dataModel';
+import { internalMutation, internalQuery } from './_generated/server';
+import type { Doc } from './_generated/dataModel';
 import { v } from 'convex/values';
 
 import { sanitizeAuditSnapshot } from '../lib/foundation/audit';
-import { countActiveSysadmins } from '../lib/foundation/sysadmin-policy';
+
+const MAX_ACTIVE_DEPARTMENT_MEMBERSHIPS = 100;
 
 const scalarValidator = v.union(v.string(), v.number(), v.boolean(), v.null());
 const snapshotValidator = v.record(v.string(), scalarValidator);
@@ -120,24 +121,6 @@ function targetTypeFor(action: Action) {
   return 'department' as const;
 }
 
-async function activeSysadminCount(ctx: MutationCtx, organizationId: Id<'organizations'>) {
-  let cursor: string | null = null;
-  let count = 0;
-  do {
-    const result = await ctx.db
-      .query('role_assignments')
-      .withIndex('by_organizationId_and_role_and_status', (query) =>
-        query.eq('organizationId', organizationId).eq('role', 'sysadmin').eq('status', 'active'),
-      )
-      .paginate({ cursor, numItems: 100 });
-    const accounts = await Promise.all(result.page.map((role) => ctx.db.get(role.accountId)));
-    count += countActiveSysadmins(accounts, String(organizationId));
-    if (count >= 2 || result.isDone) return count;
-    cursor = result.continueCursor;
-  } while (cursor);
-  return count;
-}
-
 export const resolveAccessContext = internalQuery({
   args: {
     actorAccountId: v.id('accounts'),
@@ -174,33 +157,36 @@ export const resolveAccessContext = internalQuery({
     if (args.subjectAccountId) {
       const subjectAccount = await ctx.db.get(args.subjectAccountId);
       if (subjectAccount) {
-        const teacherProfile = await ctx.db
-          .query('teacher_profiles')
-          .withIndex('by_accountId', (query) => query.eq('accountId', subjectAccount._id))
-          .unique();
-        const departmentIds: string[] = [];
-        if (teacherProfile?.isActive) {
-          const memberships: Doc<'department_memberships'>[] = [];
-          let cursor: string | null = null;
-          do {
-            const result = await ctx.db
+        if (subjectAccount.organizationId !== actor.organizationId) {
+          subject = {
+            accountId: String(subjectAccount._id),
+            organizationId: String(subjectAccount.organizationId),
+            departmentIds: [],
+            isActive: subjectAccount.isActive,
+          };
+        } else {
+          const teacherProfile = await ctx.db
+            .query('teacher_profiles')
+            .withIndex('by_accountId', (query) => query.eq('accountId', subjectAccount._id))
+            .unique();
+          const departmentIds: string[] = [];
+          if (teacherProfile?.isActive) {
+            const memberships = await ctx.db
               .query('department_memberships')
               .withIndex('by_organizationId_and_teacherProfileId_and_status', (query) =>
                 query.eq('organizationId', subjectAccount.organizationId)
                   .eq('teacherProfileId', teacherProfile._id)
                   .eq('status', 'active'),
               )
-              .paginate({ cursor, numItems: 100 });
-            memberships.push(...result.page);
-            if (result.isDone) break;
-            cursor = result.continueCursor;
-          } while (cursor);
-
-          for (const membership of memberships) {
-            const department = await ctx.db.get(membership.departmentId);
-            if (!department?.isActive) continue;
-            departmentIds.push(String(department._id));
-            const hodAssignment = await ctx.db
+              .take(MAX_ACTIVE_DEPARTMENT_MEMBERSHIPS);
+            const departments = await Promise.all(
+              memberships.map((membership) => ctx.db.get(membership.departmentId)),
+            );
+            const activeDepartments = departments.filter(
+              (department): department is Doc<'departments'> => Boolean(department?.isActive),
+            );
+            departmentIds.push(...activeDepartments.map((department) => String(department._id)));
+            const hodAssignments = await Promise.all(activeDepartments.map((department) => ctx.db
               .query('hod_assignments')
               .withIndex('by_organizationId_and_accountId_and_departmentId_and_status', (query) =>
                 query.eq('organizationId', actor.organizationId)
@@ -208,34 +194,36 @@ export const resolveAccessContext = internalQuery({
                   .eq('departmentId', department._id)
                   .eq('status', 'active'),
               )
-              .unique();
-            if (hodAssignment) hodDepartmentAssignments.push(hodAssignment);
-          }
+              .unique()));
+            hodDepartmentAssignments.push(...hodAssignments.filter(
+              (assignment): assignment is Doc<'hod_assignments'> => Boolean(assignment),
+            ));
 
-          const coachAssignment = await ctx.db
-            .query('coach_assignments')
-            .withIndex('by_organizationId_and_accountId_and_teacherProfileId_and_status', (query) =>
-              query.eq('organizationId', actor.organizationId)
-                .eq('accountId', actor._id)
-                .eq('teacherProfileId', teacherProfile._id)
-                .eq('status', 'active'),
-            )
-            .unique();
-          if (coachAssignment) {
-            coachTeacherAssignments.push({
-              accountId: String(actor._id),
-              organizationId: String(actor.organizationId),
-              teacherAccountId: String(subjectAccount._id),
-              status: 'active',
-            });
+            const coachAssignment = await ctx.db
+              .query('coach_assignments')
+              .withIndex('by_organizationId_and_accountId_and_teacherProfileId_and_status', (query) =>
+                query.eq('organizationId', actor.organizationId)
+                  .eq('accountId', actor._id)
+                  .eq('teacherProfileId', teacherProfile._id)
+                  .eq('status', 'active'),
+              )
+              .unique();
+            if (coachAssignment) {
+              coachTeacherAssignments.push({
+                accountId: String(actor._id),
+                organizationId: String(actor.organizationId),
+                teacherAccountId: String(subjectAccount._id),
+                status: 'active',
+              });
+            }
           }
+          subject = {
+            accountId: String(subjectAccount._id),
+            organizationId: String(subjectAccount.organizationId),
+            departmentIds,
+            isActive: subjectAccount.isActive && (teacherProfile?.isActive ?? false),
+          };
         }
-        subject = {
-          accountId: String(subjectAccount._id),
-          organizationId: String(subjectAccount.organizationId),
-          departmentIds,
-          isActive: subjectAccount.isActive && (teacherProfile?.isActive ?? false),
-        };
       }
     }
 
@@ -265,25 +253,35 @@ export const resolveAccessContext = internalQuery({
 });
 
 export const listAdministrationDirectory = internalQuery({
-  args: { actorAccountId: v.id('accounts') },
+  args: {
+    actorAccountId: v.id('accounts'),
+    accountPaginationOpts: paginationOptsValidator,
+    departmentPaginationOpts: paginationOptsValidator,
+  },
   returns: v.union(
     v.object({ kind: v.literal('denied'), reason: v.string() }),
     v.object({
       kind: v.literal('allowed'),
-      accounts: v.array(v.object({
-        accountId: v.id('accounts'),
-        username: v.string(),
-        displayName: v.string(),
-        isActive: v.boolean(),
-        isTeacher: v.boolean(),
-        roles: v.array(roleValidator),
-      })),
-      departments: v.array(v.object({
-        departmentId: v.id('departments'),
-        key: v.string(),
-        name: v.string(),
-        isActive: v.boolean(),
-      })),
+      accountPage: v.object({
+        items: v.array(v.object({
+          accountId: v.id('accounts'),
+          username: v.string(),
+          displayName: v.string(),
+          isActive: v.boolean(),
+          isTeacher: v.boolean(),
+          roles: v.array(roleValidator),
+        })),
+        nextCursor: v.union(v.string(), v.null()),
+      }),
+      departmentPage: v.object({
+        items: v.array(v.object({
+          departmentId: v.id('departments'),
+          key: v.string(),
+          name: v.string(),
+          isActive: v.boolean(),
+        })),
+        nextCursor: v.union(v.string(), v.null()),
+      }),
     }),
   ),
   handler: async (ctx, args) => {
@@ -302,51 +300,58 @@ export const listAdministrationDirectory = internalQuery({
       .unique();
     if (!sysadmin) return { kind: 'denied' as const, reason: 'capability_not_granted' };
 
-    const accounts = await ctx.db
+    const accountResult = await ctx.db
       .query('accounts')
       .withIndex('by_organizationId', (query) => query.eq('organizationId', actor.organizationId))
-      .take(100);
-    const departments = await ctx.db
+      .paginate({
+        cursor: args.accountPaginationOpts.cursor,
+        numItems: Math.min(args.accountPaginationOpts.numItems, 100),
+      });
+    const departmentResult = await ctx.db
       .query('departments')
       .withIndex('by_organizationId', (query) => query.eq('organizationId', actor.organizationId))
-      .take(100);
-    const teacherProfiles = await ctx.db
-      .query('teacher_profiles')
-      .withIndex('by_organizationId_and_isActive', (query) =>
-        query.eq('organizationId', actor.organizationId).eq('isActive', true),
-      )
-      .take(100);
-    const teacherAccountIds = new Set(teacherProfiles.map((profile) => String(profile.accountId)));
-    const rolesByAccount = new Map<string, Role[]>();
-    for (const role of ['teacher', 'hod', 'coach', 'school_head', 'slt', 'sysadmin'] as const) {
-      const assignments = await ctx.db
-        .query('role_assignments')
-        .withIndex('by_organizationId_and_role_and_status', (query) =>
-          query.eq('organizationId', actor.organizationId).eq('role', role).eq('status', 'active'),
-        )
-        .take(100);
-      for (const assignment of assignments) {
-        const key = String(assignment.accountId);
-        rolesByAccount.set(key, [...(rolesByAccount.get(key) ?? []), role]);
-      }
-    }
-
-    return {
-      kind: 'allowed' as const,
-      accounts: accounts.map((account) => ({
+      .paginate({
+        cursor: args.departmentPaginationOpts.cursor,
+        numItems: Math.min(args.departmentPaginationOpts.numItems, 100),
+      });
+    const accounts = await Promise.all(accountResult.page.map(async (account) => {
+      const [profile, roles] = await Promise.all([
+        ctx.db.query('teacher_profiles')
+          .withIndex('by_accountId', (query) => query.eq('accountId', account._id))
+          .unique(),
+        ctx.db.query('role_assignments')
+          .withIndex('by_organizationId_and_accountId_and_status', (query) =>
+            query.eq('organizationId', actor.organizationId)
+              .eq('accountId', account._id)
+              .eq('status', 'active'),
+          )
+          .take(6),
+      ]);
+      return {
         accountId: account._id,
         username: account.username,
         displayName: account.displayName,
         isActive: account.isActive,
-        isTeacher: teacherAccountIds.has(String(account._id)),
-        roles: rolesByAccount.get(String(account._id)) ?? [],
-      })),
-      departments: departments.map((department) => ({
-        departmentId: department._id,
-        key: department.key,
-        name: department.name,
-        isActive: department.isActive,
-      })),
+        isTeacher: profile?.isActive ?? false,
+        roles: roles.map((assignment) => assignment.role),
+      };
+    }));
+
+    return {
+      kind: 'allowed' as const,
+      accountPage: {
+        items: accounts,
+        nextCursor: accountResult.isDone ? null : accountResult.continueCursor,
+      },
+      departmentPage: {
+        items: departmentResult.page.map((department) => ({
+          departmentId: department._id,
+          key: department.key,
+          name: department.name,
+          isActive: department.isActive,
+        })),
+        nextCursor: departmentResult.isDone ? null : departmentResult.continueCursor,
+      },
     };
   },
 });
@@ -499,15 +504,27 @@ export const applyAdministrationChange = internalMutation({
         if (target.isActive === isActive) {
           return { kind: 'invalid' as const, reason: 'no_change' as const };
         }
-        if (action === 'account.deactivate' && target.isActive) {
-          const roles = await ctx.db.query('role_assignments').withIndex('by_organizationId_and_accountId_and_status', (query) => query.eq('organizationId', args.organizationId).eq('accountId', target._id).eq('status', 'active')).take(6);
-          if (roles.some((role) => role.role === 'sysadmin') && await activeSysadminCount(ctx, args.organizationId) <= 1) {
-            return { kind: 'denied' as const, reason: 'final_active_sysadmin' as const };
-          }
+        const roles = await ctx.db.query('role_assignments')
+          .withIndex('by_organizationId_and_accountId_and_status', (query) =>
+            query.eq('organizationId', args.organizationId)
+              .eq('accountId', target._id)
+              .eq('status', 'active'),
+          )
+          .take(6);
+        const hasSysadminRole = roles.some((role) => role.role === 'sysadmin');
+        const activeSysadminCount = organization.activeSysadminCount;
+        if (action === 'account.deactivate' && hasSysadminRole && activeSysadminCount <= 1) {
+          return { kind: 'denied' as const, reason: 'final_active_sysadmin' as const };
         }
         await ctx.db.patch(target._id, { isActive, updatedAt: now });
         const credential = await ctx.db.query('auth_credentials').withIndex('by_accountId', (query) => query.eq('accountId', target._id)).unique();
         if (credential) await ctx.db.patch(credential._id, { isActive, updatedAt: now });
+        if (hasSysadminRole) {
+          await ctx.db.patch(organization._id, {
+            activeSysadminCount: activeSysadminCount + (isActive ? 1 : -1),
+            updatedAt: now,
+          });
+        }
       }
       const updated = await ctx.db.get(target._id);
       after = updated ? sanitizeAuditSnapshot({ accountId: targetId, organizationId: String(updated.organizationId), username: updated.username, displayName: updated.displayName, isActive: updated.isActive }) : null;
@@ -515,17 +532,35 @@ export const applyAdministrationChange = internalMutation({
       if (!isRole(args.change.role)) return { kind: 'invalid' as const, reason: 'invalid_role' as const };
       const accountId = ctx.db.normalizeId('accounts', args.change.targetAccountId ?? args.change.accountId ?? '');
       const target = accountId ? await ctx.db.get(accountId) : null;
-      if (!target || target.organizationId !== args.organizationId || !target.isActive) return { kind: 'invalid' as const, reason: 'target_not_found' as const };
+      if (!target || target.organizationId !== args.organizationId || (action === 'role.assign' && !target.isActive)) {
+        return { kind: 'invalid' as const, reason: 'target_not_found' as const };
+      }
       const existing = await ctx.db.query('role_assignments').withIndex('by_organizationId_and_accountId_and_role_and_status', (query) => query.eq('organizationId', args.organizationId).eq('accountId', target._id).eq('role', args.change.role as Role).eq('status', 'active')).unique();
       if (action === 'role.assign') {
         if (existing) return { kind: 'denied' as const, reason: 'duplicate_assignment' as const };
         const assignmentId = await ctx.db.insert('role_assignments', { organizationId: args.organizationId, accountId: target._id, role: args.change.role, status: 'active', createdByAccountId: actor._id, createdAt: now });
+        if (args.change.role === 'sysadmin') {
+          await ctx.db.patch(organization._id, {
+            activeSysadminCount: organization.activeSysadminCount + 1,
+            updatedAt: now,
+          });
+        }
         targetId = String(assignmentId);
         after = sanitizeAuditSnapshot({ accountId: String(target._id), organizationId: String(args.organizationId), role: args.change.role, status: 'active' });
       } else {
         if (!existing) return { kind: 'invalid' as const, reason: 'assignment_not_found' as const };
-        if (args.change.role === 'sysadmin' && await activeSysadminCount(ctx, args.organizationId) <= 1) return { kind: 'denied' as const, reason: 'final_active_sysadmin' as const };
+        const removesActiveSysadmin = args.change.role === 'sysadmin' && target.isActive;
+        const activeSysadminCount = organization.activeSysadminCount;
+        if (removesActiveSysadmin && activeSysadminCount <= 1) {
+          return { kind: 'denied' as const, reason: 'final_active_sysadmin' as const };
+        }
         await ctx.db.patch(existing._id, { status: 'revoked', revokedByAccountId: actor._id, revokedAt: now });
+        if (removesActiveSysadmin) {
+          await ctx.db.patch(organization._id, {
+            activeSysadminCount: activeSysadminCount - 1,
+            updatedAt: now,
+          });
+        }
         targetId = String(existing._id);
         before = sanitizeAuditSnapshot({ accountId: String(target._id), organizationId: String(args.organizationId), role: args.change.role, status: 'active' });
         after = sanitizeAuditSnapshot({ accountId: String(target._id), organizationId: String(args.organizationId), role: args.change.role, status: 'revoked' });
@@ -572,12 +607,28 @@ export const applyAdministrationChange = internalMutation({
           ? (await ctx.db.query('teacher_profiles').withIndex('by_accountId', (query) => query.eq('accountId', teacherAccountId)).unique())?._id ?? null
           : null);
       const profile = profileId ? await ctx.db.get(profileId) : null;
-      if (!department || !profile || department.organizationId !== args.organizationId || profile.organizationId !== args.organizationId || !department.isActive || !profile.isActive) {
+      const teacherAccount = profile ? await ctx.db.get(profile.accountId) : null;
+      if (!department || !profile || !teacherAccount
+        || department.organizationId !== args.organizationId
+        || profile.organizationId !== args.organizationId
+        || teacherAccount.organizationId !== args.organizationId
+        || (teacherAccountId !== null && teacherAccount._id !== teacherAccountId)
+        || !department.isActive || !profile.isActive || !teacherAccount.isActive) {
         return { kind: 'invalid' as const, reason: 'relation_not_found' as const };
       }
       const existing = await ctx.db.query('department_memberships').withIndex('by_org_dept_teacher_status', (query) => query.eq('organizationId', args.organizationId).eq('departmentId', department._id).eq('teacherProfileId', profile._id).eq('status', 'active')).unique();
       if (action.endsWith('.assign')) {
         if (existing) return { kind: 'denied' as const, reason: 'duplicate_assignment' as const };
+        const activeMemberships = await ctx.db.query('department_memberships')
+          .withIndex('by_organizationId_and_teacherProfileId_and_status', (query) =>
+            query.eq('organizationId', args.organizationId)
+              .eq('teacherProfileId', profile._id)
+              .eq('status', 'active'),
+          )
+          .take(MAX_ACTIVE_DEPARTMENT_MEMBERSHIPS);
+        if (activeMemberships.length >= MAX_ACTIVE_DEPARTMENT_MEMBERSHIPS) {
+          return { kind: 'denied' as const, reason: 'assignment_limit_reached' as const };
+        }
         const membershipId = await ctx.db.insert('department_memberships', { organizationId: args.organizationId, departmentId: department._id, teacherProfileId: profile._id, status: 'active', createdByAccountId: actor._id, createdAt: now });
         targetId = String(membershipId);
         after = sanitizeAuditSnapshot({ departmentId: String(department._id), teacherProfileId: String(profile._id), organizationId: String(args.organizationId), status: 'active' });
@@ -618,7 +669,13 @@ export const applyAdministrationChange = internalMutation({
           : null);
       const target = accountId ? await ctx.db.get(accountId) : null;
       const profile = profileId ? await ctx.db.get(profileId) : null;
-      if (!target || !profile || target.organizationId !== args.organizationId || profile.organizationId !== args.organizationId || !target.isActive || !profile.isActive) {
+      const teacherAccount = profile ? await ctx.db.get(profile.accountId) : null;
+      if (!target || !profile || !teacherAccount
+        || target.organizationId !== args.organizationId
+        || profile.organizationId !== args.organizationId
+        || teacherAccount.organizationId !== args.organizationId
+        || (teacherAccountId !== null && teacherAccount._id !== teacherAccountId)
+        || !target.isActive || !profile.isActive || !teacherAccount.isActive) {
         return { kind: 'invalid' as const, reason: 'relation_not_found' as const };
       }
       const existing = await ctx.db.query('coach_assignments').withIndex('by_organizationId_and_accountId_and_teacherProfileId_and_status', (query) => query.eq('organizationId', args.organizationId).eq('accountId', target._id).eq('teacherProfileId', profile._id).eq('status', 'active')).unique();

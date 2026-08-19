@@ -1,19 +1,26 @@
 import Link from 'next/link';
 import { SiteHeader } from '@/components/site-header';
-import { getAdministrationDirectory } from '@/lib/foundation/admin-page';
+import { getAdministrationDirectory, getDirectoryPageHref } from '@/lib/foundation/admin-page';
 import { AdminChangeForm } from '@/components/admin-change-form';
 
-export default async function DepartmentsPage() {
-  const directory = await getAdministrationDirectory('/admin/departments');
-  const departmentOptions = directory.departments.map((department) => ({
+export default async function DepartmentsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ accountCursor?: string; departmentCursor?: string }>;
+}) {
+  const cursors = await searchParams;
+  const directory = await getAdministrationDirectory('/admin/departments', cursors);
+  const accounts = directory.accountPage.items;
+  const departments = directory.departmentPage.items;
+  const departmentOptions = departments.map((department) => ({
     value: department.departmentId,
     label: `${department.name} (${department.key})`,
   }));
-  const accountOptions = directory.accounts.map((account) => ({
+  const accountOptions = accounts.map((account) => ({
     value: account.accountId,
     label: `${account.displayName} (${account.username})`,
   }));
-  const teacherOptions = directory.accounts.filter((account) => account.isTeacher).map((account) => ({
+  const teacherOptions = accounts.filter((account) => account.isTeacher).map((account) => ({
     value: account.accountId,
     label: `${account.displayName} (${account.username})`,
   }));
@@ -28,12 +35,22 @@ export default async function DepartmentsPage() {
           <h2 id="department-directory-heading">Current departments</h2>
           <div className="table-wrap"><table>
             <thead><tr><th scope="col">Department</th><th scope="col">Key</th><th scope="col">Status</th><th scope="col">Department ID</th></tr></thead>
-            <tbody>{directory.departments.map((department) => <tr key={department.departmentId}>
+            <tbody>{departments.map((department) => <tr key={department.departmentId}>
               <td>{department.name}</td><td>{department.key}</td>
               <td>{department.isActive ? 'Active' : 'Inactive'}</td>
               <td><code>{department.departmentId}</code></td>
             </tr>)}</tbody>
           </table></div>
+          <nav aria-label="Directory pages">
+            {directory.accountPage.nextCursor ? <p><Link href={getDirectoryPageHref('/admin/departments', {
+              accountCursor: directory.accountPage.nextCursor,
+              departmentCursor: cursors.departmentCursor,
+            })}>Next account page</Link></p> : null}
+            {directory.departmentPage.nextCursor ? <p><Link href={getDirectoryPageHref('/admin/departments', {
+              accountCursor: cursors.accountCursor,
+              departmentCursor: directory.departmentPage.nextCursor,
+            })}>Next department page</Link></p> : null}
+          </nav>
         </section>
         <div className="card narrow">
           <AdminChangeForm endpoint="/api/admin/departments" title="Create department" submitLabel="Create department" fields={[

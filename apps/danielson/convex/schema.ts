@@ -20,6 +20,7 @@ export default defineSchema({
     slug: v.string(),
     name: v.string(),
     isActive: v.boolean(),
+    activeSysadminCount: v.number(),
     createdAt: v.number(),
     updatedAt: v.number(),
   })

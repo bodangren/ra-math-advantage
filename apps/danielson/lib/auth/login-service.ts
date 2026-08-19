@@ -18,12 +18,22 @@ export function getTrustedClientAddress(
   env: Record<string, string | undefined> = process.env,
 ): string {
   if (env.VERCEL === '1') {
-    return request.headers.get('x-vercel-forwarded-for')?.split(',')[0]?.trim()
-      || request.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
-      || 'unknown';
+    const address = request.headers.get('x-vercel-forwarded-for')?.split(',')[0]?.trim();
+    if (address) return address;
+    if (env.NODE_ENV === 'production') throw new Error('Trusted client IP header is missing');
+    return 'local-development';
   }
   const trustedHeader = env.TRUSTED_CLIENT_IP_HEADER?.trim().toLowerCase();
-  return trustedHeader ? request.headers.get(trustedHeader)?.trim() || 'unknown' : 'unknown';
+  if (trustedHeader) {
+    const address = request.headers.get(trustedHeader)?.trim();
+    if (address) return address;
+    if (env.NODE_ENV === 'production') throw new Error('Trusted client IP header is missing');
+    return 'local-development';
+  }
+  if (env.NODE_ENV === 'production') {
+    throw new Error('Trusted client IP header is not configured');
+  }
+  return 'local-development';
 }
 
 export async function authenticateDanielsonLogin(
