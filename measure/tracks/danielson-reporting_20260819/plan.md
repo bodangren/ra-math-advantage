@@ -28,24 +28,25 @@
 - [x] Task 1.6: Measure - User Manual Verification 'Phase 1: Contract and Schema Definition' (Protocol in workflow.md)
     - User directed full-track continuation on 2026-08-19.
 
-## Phase 2: Test
+## Phase 2: Test [checkpoint: f2f1e83]
 
-- [ ] Task 2.1: Write portfolio Red tests
-    - [ ] Test more than 50 teachers, pagination, compact rows, attention order, and reasons
-    - [ ] Test neutral IP and GBF states before their source tracks are active
-- [ ] Task 2.2: Write drill-down and score-integrity Red tests
-    - [ ] Test official versus current evidence separation
-    - [ ] Test raw ratings, derived points, and a below-Proficient blocking component
-- [ ] Task 2.3: Write comment authorization and isolation Red tests
-    - [ ] Test teacher, HOD, coach, school-head, SLT, system-administrator, self-subject, and cross-organization views
-    - [ ] Inject comments and prove all proficiency and scheduling outputs remain unchanged
-- [ ] Task 2.4: Write private-data leak adversarial tests
-    - [ ] Test unauthorized report, search, summary, notification, and export shapes
-    - [ ] Assert that private text, author, and count are absent before rendering
-- [ ] Task 2.5: Write teacher-response concurrency Red tests
-    - [ ] Test one response, concurrent second submission, visibility, and no reply
-    - [ ] Prove that a response makes no evidence, KST, or SRS write
-- [ ] Task 2.6: Measure - User Manual Verification 'Phase 2: Test' (Protocol in workflow.md)
+- [x] Task 2.1: Write portfolio Red tests — `395a1c25`, `58555c8f`
+    - [x] Test more than 50 teachers, pagination, compact rows, attention order, and reasons
+    - [x] Test neutral IP and GBF states before their source tracks are active
+- [x] Task 2.2: Write drill-down and score-integrity Red tests — `395a1c25`, `58555c8f`
+    - [x] Test official versus current evidence separation
+    - [x] Test raw ratings, derived points, and a below-Proficient blocking component
+- [x] Task 2.3: Write comment authorization and isolation Red tests — `58555c8f`
+    - [x] Test teacher, HOD, coach, school-head, SLT, system-administrator, self-subject, and cross-organization views
+    - [x] Inject comments and prove all proficiency and scheduling outputs remain unchanged
+- [x] Task 2.4: Write private-data leak adversarial tests — `58555c8f`
+    - [x] Test unauthorized report, search, summary, notification, and export shapes
+    - [x] Assert that private text, author, and count are absent before rendering
+- [x] Task 2.5: Write teacher-response concurrency Red tests — `58555c8f`, `c9964248`
+    - [x] Test one response, concurrent second submission, visibility, and no reply
+    - [x] Prove that a response makes no evidence, KST, or SRS write
+- [x] Task 2.6: Measure - User Manual Verification 'Phase 2: Test' (Protocol in workflow.md)
+    - User directed full-track continuation on 2026-08-19.
 
 ## Phase 3: Implement
 
