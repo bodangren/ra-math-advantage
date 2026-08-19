@@ -12,7 +12,7 @@ export default async function ReportsPage({
   const roles = session.account.danielsonRoles as string[];
   return (
     <>
-      <SiteHeader isAuthenticated showReports showMyReport={roles.includes('teacher')} />
+      <SiteHeader isAuthenticated showReports showImprovementPlans showMyReport={roles.includes('teacher')} />
       <main id="main-content" className="page-shell">
         <p className="eyebrow">Leadership portfolio</p>
         <h1>Teacher proficiency</h1>

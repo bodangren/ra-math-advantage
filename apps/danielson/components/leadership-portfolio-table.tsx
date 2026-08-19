@@ -46,6 +46,10 @@ export function LeadershipPortfolioTable({
                   <Link href={`/reports/teachers/${encodeURIComponent(row.teacherProfileId)}`}>
                     {row.displayName}
                   </Link>
+                  {' · '}
+                  <Link href={`/improvement-plans/new?teacherProfileId=${encodeURIComponent(row.teacherProfileId)}`}>
+                    Start improvement plan
+                  </Link>
                   {row.attentionReasons.length > 0 ? (
                     <span className="attention-reasons">
                       {row.attentionReasons.map(reasonLabel).join('; ')}

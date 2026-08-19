@@ -903,7 +903,14 @@ export const readImprovementPlan = internalQuery({
     deniedValidator,
     v.object({ kind: v.literal('not_found') }),
     v.object({ kind: v.literal('capacity_exceeded') }),
-    v.object({ kind: v.literal('allowed'), plan: planViewValidator }),
+    v.object({
+      kind: v.literal('allowed'),
+      plan: planViewValidator,
+      viewer: v.object({
+        isSubjectTeacher: v.boolean(),
+        isFrozenSupervisor: v.boolean(),
+      }),
+    }),
   ),
   handler: async (ctx, args) => {
     void args.now;
@@ -921,7 +928,16 @@ export const readImprovementPlan = internalQuery({
     if (access.kind === 'denied') return access;
     if (own && plan.state === 'proposed') return { kind: 'denied' as const, reason: 'target_out_of_scope' };
     try {
-      return { kind: 'allowed' as const, plan: await readPlanView(ctx, plan, !own) };
+      const view = await readPlanView(ctx, plan, !own);
+      return {
+        kind: 'allowed' as const,
+        plan: view,
+        viewer: {
+          isSubjectTeacher: own,
+          isFrozenSupervisor:
+            view.activeVersion?.supervisorAccountId === String(args.actorAccountId),
+        },
+      };
     } catch {
       return { kind: 'capacity_exceeded' as const };
     }

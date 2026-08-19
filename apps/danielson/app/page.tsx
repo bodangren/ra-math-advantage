@@ -16,6 +16,7 @@ export default async function HomePage() {
         showMyObservations={isTeacher}
         showReports={canObserve}
         showMyReport={isTeacher}
+        showImprovementPlans={canObserve}
       />
       <main id="main-content" className="page-shell">
         <p className="eyebrow">Teacher proficiency evidence</p>
@@ -28,6 +29,7 @@ export default async function HomePage() {
           <p>Roles: {roles.length > 0 ? roles.join(', ') : 'No Danielson roles assigned'}</p>
           {canObserve ? <Link className="button" href="/observations">Open observations</Link> : null}{' '}
           {canObserve ? <Link className="button secondary" href="/reports">Open reports</Link> : null}{' '}
+          {canObserve ? <Link className="button secondary" href="/improvement-plans">Open improvement plans</Link> : null}{' '}
           {isTeacher ? <Link className="button secondary" href="/my-observations">View my observations</Link> : null}{' '}
           {isTeacher ? <Link className="button secondary" href="/my-report">View my report</Link> : null}{' '}
           {roles.includes('sysadmin') ? <Link className="button" href="/admin">Open administration</Link> : null}

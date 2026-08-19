@@ -21,20 +21,37 @@ export function ImprovementPlanProposalForm({
   position,
   departmentId,
   departmentName,
+  departmentOptions,
   targetOptions,
   planId = null,
   expectedRevision = 0,
+  initial,
 }: {
   teacherProfileId: string;
   teacherDisplayName: string;
   position: string;
   departmentId: string;
   departmentName: string;
+  departmentOptions?: Array<{ departmentId: string; departmentName: string }>;
   targetOptions: TargetOption[];
   planId?: string | null;
   expectedRevision?: number;
+  initial?: Partial<{
+    requestedPlanEndDate: string | null;
+    reviewMeetingDate: string;
+    purpose: string;
+    areasOfConcern: string;
+    expectedStandard: string;
+    requiredActions: string;
+    evidenceOfImprovement: string;
+    schoolSupport: string;
+    successfulCompletionCriteria: string;
+    targets: Array<{ skillId: string; expectedRating: number }>;
+  }>;
 }) {
-  const [rows, setRows] = useState([{ skillId: targetOptions[0]?.skillId ?? '', expectedRating: 3 }]);
+  const departments = departmentOptions ?? [{ departmentId, departmentName }];
+  const [selectedDepartmentId, setSelectedDepartmentId] = useState(departmentId);
+  const [rows, setRows] = useState(initial?.targets ?? [{ skillId: targetOptions[0]?.skillId ?? '', expectedRating: 3 }]);
   const [error, setError] = useState('');
   const [saved, setSaved] = useState(false);
   const [pending, setPending] = useState(false);
@@ -68,7 +85,7 @@ export function ImprovementPlanProposalForm({
           requestId: requestId(),
           expectedRevision,
           position,
-          departmentId,
+          departmentId: selectedDepartmentId,
           requestedPlanEndDate: form.get('requestedPlanEndDate') || null,
           reviewMeetingDate: form.get('reviewMeetingDate'),
           purpose: form.get('purpose'),
@@ -101,8 +118,18 @@ export function ImprovementPlanProposalForm({
       <dl className="summary-list">
         <div><dt>Teacher</dt><dd>{teacherDisplayName}</dd></div>
         <div><dt>Position</dt><dd>{position}</dd></div>
-        <div><dt>Department</dt><dd>{departmentName}</dd></div>
+        <div><dt>Department</dt><dd>{departments.find((item) => item.departmentId === selectedDepartmentId)?.departmentName ?? departmentName}</dd></div>
       </dl>
+      {departments.length > 1 ? (
+        <div className="field">
+          <label htmlFor="pip-department">Department</label>
+          <select id="pip-department" value={selectedDepartmentId} onChange={(event) => setSelectedDepartmentId(event.target.value)}>
+            {departments.map((department) => (
+              <option value={department.departmentId} key={department.departmentId}>{department.departmentName}</option>
+            ))}
+          </select>
+        </div>
+      ) : null}
       <fieldset>
         <legend>School values</legend>
         <p>{PIP_SOURCE_CONTRACT.schoolValues.join(' ')}</p>
@@ -110,11 +137,11 @@ export function ImprovementPlanProposalForm({
       </fieldset>
       <div className="field">
         <label htmlFor="pip-end-date">Plan end date</label>
-        <input id="pip-end-date" name="requestedPlanEndDate" type="date" />
+        <input id="pip-end-date" name="requestedPlanEndDate" type="date" defaultValue={initial?.requestedPlanEndDate ?? ''} />
       </div>
       <div className="field">
         <label htmlFor="pip-review-date">Review meeting date</label>
-        <input id="pip-review-date" name="reviewMeetingDate" type="date" required />
+        <input id="pip-review-date" name="reviewMeetingDate" type="date" required defaultValue={initial?.reviewMeetingDate ?? ''} />
       </div>
       {[
         ['purpose', 'Purpose of the plan'],
@@ -127,7 +154,7 @@ export function ImprovementPlanProposalForm({
       ].map(([name, label]) => (
         <div className="field" key={name}>
           <label htmlFor={`pip-${name}`}>{label}</label>
-          <textarea id={`pip-${name}`} name={name} required maxLength={4_000} rows={4} />
+          <textarea id={`pip-${name}`} name={name} required maxLength={4_000} rows={4} defaultValue={initial?.[name as keyof typeof initial] as string | undefined} />
         </div>
       ))}
       <fieldset>
