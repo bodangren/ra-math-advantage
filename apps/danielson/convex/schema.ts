@@ -151,6 +151,33 @@ const observationItemChangeValidator = v.object({
   outcome: v.optional(observationItemOutcomeValidator),
   evidenceNote: v.optional(v.union(v.null(), v.string())),
 });
+const improvementPlanStateValidator = v.union(
+  v.literal('proposed'),
+  v.literal('active'),
+  v.literal('closed'),
+);
+const improvementPlanOutcomeValidator = v.union(
+  v.literal('successful'),
+  v.literal('insufficient_improvement'),
+);
+const improvementPlanEventKindValidator = v.union(
+  v.literal('proposed'),
+  v.literal('approved'),
+  v.literal('teacher_acknowledged'),
+  v.literal('supervisor_acknowledged'),
+  v.literal('closed'),
+);
+const improvementPlanTargetResultValidator = v.object({
+  componentId: v.string(),
+  skillId: v.string(),
+  expectedRating: v.number(),
+  currentRating: v.union(v.number(), v.null()),
+  state: v.union(
+    v.literal('no_plan_evidence'),
+    v.literal('below_expected'),
+    v.literal('meets_expected'),
+  ),
+});
 
 export default defineSchema({
   organizations: defineTable({
@@ -527,5 +554,120 @@ export default defineSchema({
   })
     .index('by_org_observation', ['organizationId', 'observationId'])
     .index('by_org_teacher_submitted', ['organizationId', 'teacherProfileId', 'submittedAt']),
+
+  improvement_plans: defineTable({
+    organizationId: v.id('organizations'),
+    teacherProfileId: v.id('teacher_profiles'),
+    state: improvementPlanStateValidator,
+    revision: v.number(),
+    latestVersion: v.number(),
+    pendingVersionId: v.optional(v.id('improvement_plan_versions')),
+    activeVersionId: v.optional(v.id('improvement_plan_versions')),
+    activeVersion: v.optional(v.number()),
+    approvedAt: v.optional(v.number()),
+    planEndAt: v.optional(v.number()),
+    reviewMeetingAt: v.optional(v.number()),
+    closedAt: v.optional(v.number()),
+    closureOutcome: v.optional(improvementPlanOutcomeValidator),
+    closureNote: v.optional(v.string()),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  })
+    .index('by_org_teacher_state', ['organizationId', 'teacherProfileId', 'state'])
+    .index('by_org_updated', ['organizationId', 'updatedAt'])
+    .index('by_org_state_updated', ['organizationId', 'state', 'updatedAt'])
+    .index('by_org_teacher_created', ['organizationId', 'teacherProfileId', 'createdAt']),
+
+  improvement_plan_versions: defineTable({
+    organizationId: v.id('organizations'),
+    planId: v.id('improvement_plans'),
+    teacherProfileId: v.id('teacher_profiles'),
+    version: v.number(),
+    proposerAccountId: v.id('accounts'),
+    supervisorAccountId: v.id('accounts'),
+    teacherName: v.string(),
+    position: v.string(),
+    departmentId: v.id('departments'),
+    departmentName: v.string(),
+    supervisorName: v.string(),
+    requestedPlanEndDate: v.union(v.string(), v.null()),
+    reviewMeetingDate: v.string(),
+    purpose: v.string(),
+    areasOfConcern: v.string(),
+    expectedStandard: v.string(),
+    requiredActions: v.string(),
+    evidenceOfImprovement: v.string(),
+    schoolSupport: v.string(),
+    successfulCompletionCriteria: v.string(),
+    insufficientImprovementConsequences: v.string(),
+    acknowledgmentText: v.string(),
+    sourceId: v.string(),
+    sourceVersion: v.string(),
+    sourceHash: v.string(),
+    fingerprint: v.string(),
+    proposedAt: v.number(),
+  })
+    .index('by_org_plan_version', ['organizationId', 'planId', 'version'])
+    .index('by_org_teacher_proposed', ['organizationId', 'teacherProfileId', 'proposedAt']),
+
+  improvement_plan_targets: defineTable({
+    organizationId: v.id('organizations'),
+    planId: v.id('improvement_plans'),
+    versionId: v.id('improvement_plan_versions'),
+    teacherProfileId: v.id('teacher_profiles'),
+    ordinal: v.number(),
+    componentId: v.string(),
+    componentTitle: v.string(),
+    skillId: v.string(),
+    skillTitle: v.string(),
+    expectedRating: v.number(),
+    expectedPoints: v.number(),
+    sourceId: v.string(),
+    sourceVersion: v.string(),
+    sourceHash: v.string(),
+    createdAt: v.number(),
+  })
+    .index('by_org_version_ordinal', ['organizationId', 'versionId', 'ordinal'])
+    .index('by_org_teacher_skill', ['organizationId', 'teacherProfileId', 'skillId']),
+
+  improvement_plan_acknowledgments: defineTable({
+    organizationId: v.id('organizations'),
+    planId: v.id('improvement_plans'),
+    versionId: v.id('improvement_plan_versions'),
+    teacherProfileId: v.id('teacher_profiles'),
+    kind: v.union(v.literal('teacher'), v.literal('supervisor')),
+    actorAccountId: v.id('accounts'),
+    requestId: v.string(),
+    acknowledgedAt: v.number(),
+  })
+    .index('by_org_version_kind', ['organizationId', 'versionId', 'kind'])
+    .index('by_org_request', ['organizationId', 'requestId'])
+    .index('by_org_teacher_time', ['organizationId', 'teacherProfileId', 'acknowledgedAt']),
+
+  improvement_plan_events: defineTable({
+    organizationId: v.id('organizations'),
+    planId: v.id('improvement_plans'),
+    teacherProfileId: v.id('teacher_profiles'),
+    version: v.number(),
+    versionId: v.optional(v.id('improvement_plan_versions')),
+    kind: improvementPlanEventKindValidator,
+    requestId: v.string(),
+    fingerprint: v.string(),
+    actorAccountId: v.id('accounts'),
+    occurredAt: v.number(),
+    revision: v.number(),
+    payload: v.object({
+      outcome: v.optional(improvementPlanOutcomeValidator),
+      note: v.optional(v.string()),
+      planStartAt: v.optional(v.number()),
+      planEndAt: v.optional(v.number()),
+      acknowledgmentKind: v.optional(v.union(v.literal('teacher'), v.literal('supervisor'))),
+      acknowledgmentId: v.optional(v.string()),
+      targetResults: v.optional(v.array(improvementPlanTargetResultValidator)),
+    }),
+  })
+    .index('by_org_request', ['organizationId', 'requestId'])
+    .index('by_org_plan_time', ['organizationId', 'planId', 'occurredAt'])
+    .index('by_org_teacher_time', ['organizationId', 'teacherProfileId', 'occurredAt']),
 
 });

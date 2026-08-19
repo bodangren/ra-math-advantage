@@ -20,6 +20,7 @@ export const DANIELSON_CAPABILITIES = {
     'q1_observation:submit',
     'q1_observation:amend',
     'pip:propose',
+    'pip_supervisor_acknowledgment:write',
   ],
   coach: [
     'teacher_report:read',
@@ -30,6 +31,7 @@ export const DANIELSON_CAPABILITIES = {
     'q1_observation:submit',
     'q1_observation:amend',
     'pip:propose',
+    'pip_supervisor_acknowledgment:write',
   ],
   school_head: [
     'teacher_report:read',
@@ -42,6 +44,7 @@ export const DANIELSON_CAPABILITIES = {
     'q4_observation:submit',
     'q4_observation:amend',
     'pip:propose',
+    'pip_supervisor_acknowledgment:write',
   ],
   slt: [
     'teacher_report:read',
@@ -56,6 +59,7 @@ export const DANIELSON_CAPABILITIES = {
     'pip:propose',
     'pip:approve',
     'pip:close',
+    'pip_supervisor_acknowledgment:write',
   ],
   sysadmin: ['accounts:manage', 'departments:manage', 'assignments:manage', 'access_audit:read'],
 } as const satisfies Record<DanielsonRole, readonly string[]>;
@@ -77,6 +81,7 @@ export type DanielsonAction =
   | 'pip:propose'
   | 'pip:approve'
   | 'pip:close'
+  | 'pip_supervisor_acknowledgment:write'
   | 'accounts:manage'
   | 'departments:manage'
   | 'assignments:manage'
@@ -142,7 +147,12 @@ const EVALUATION_ACTIONS = new Set<DanielsonAction>([
   'q4_observation:amend',
   'observation_comment:write',
 ]);
-const PIP_ACTIONS = new Set<DanielsonAction>(['pip:propose', 'pip:approve', 'pip:close']);
+const PIP_ACTIONS = new Set<DanielsonAction>([
+  'pip:propose',
+  'pip:approve',
+  'pip:close',
+  'pip_supervisor_acknowledgment:write',
+]);
 
 function active<T extends { status?: 'active' | 'revoked' }>(value: T): boolean {
   return value.status !== 'revoked';
