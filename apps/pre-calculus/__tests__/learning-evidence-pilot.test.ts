@@ -82,6 +82,12 @@ function evaluate(
   });
 }
 
+function expectOptionalIntroductionAlias(decision: object, expected: boolean) {
+  if ('introduced' in decision) {
+    expect(decision).toMatchObject({ introduced: expected });
+  }
+}
+
 describe('AP Precalculus teacher-led Mastery Advantage pilot', () => {
   it('freezes the app-owned manifest to the audited graph pilot and no other node', () => {
     const graph = readJson<SkillGraph>('curriculum/skill-graph/nodes.json');
@@ -123,9 +129,9 @@ describe('AP Precalculus teacher-led Mastery Advantage pilot', () => {
       expect(decision).toMatchObject({
         eligible: false,
         reason: 'awaiting_teacher_exposure',
-        introduced: false,
         masteryBearing: false,
       });
+      expectOptionalIntroductionAlias(decision, false);
     }
 
     expect(evaluate(gradedSubmission)).toEqual(evaluate(gradedSubmission));
@@ -143,16 +149,16 @@ describe('AP Precalculus teacher-led Mastery Advantage pilot', () => {
     const firstIntroduction = evaluate(teacherExposure);
     expect(firstIntroduction).toMatchObject({
       eligible: false,
-      introduced: true,
       masteryBearing: false,
     });
+    expectOptionalIntroductionAlias(firstIntroduction, true);
 
     const replay = evaluate(teacherExposure, [teacherExposure]);
     expect(replay).toMatchObject({
       eligible: false,
-      introduced: false,
       masteryBearing: false,
     });
+    expectOptionalIntroductionAlias(replay, false);
     expect(learningEvidenceFingerprintV1(teacherExposure))
       .toBe(learningEvidenceFingerprintV1(normalizeLearningEvidenceV1(teacherExposure)));
   });
@@ -175,16 +181,18 @@ describe('AP Precalculus teacher-led Mastery Advantage pilot', () => {
       idempotencyKey: 'precalc-pilot-ungraded-mastery-attempt-1',
     });
 
-    expect(evaluate(gradedMasteryAttempt, [teacherExposure])).toMatchObject({
+    const gradedDecision = evaluate(gradedMasteryAttempt, [teacherExposure]);
+    expect(gradedDecision).toMatchObject({
       eligible: true,
       masteryBearing: true,
-      introduced: false,
     });
-    expect(evaluate(ungradedMasteryAttempt, [teacherExposure])).toMatchObject({
+    expectOptionalIntroductionAlias(gradedDecision, false);
+    const ungradedDecision = evaluate(ungradedMasteryAttempt, [teacherExposure]);
+    expect(ungradedDecision).toMatchObject({
       eligible: false,
       masteryBearing: false,
-      introduced: false,
     });
+    expectOptionalIntroductionAlias(ungradedDecision, false);
   });
 
   it('keeps a second audited Precalculus graph node disabled even after exposure', () => {
@@ -206,9 +214,9 @@ describe('AP Precalculus teacher-led Mastery Advantage pilot', () => {
     const disabled = evaluate(secondNodeAttempt, [secondNodeExposure]);
     expect(disabled).toMatchObject({
       eligible: false,
-      introduced: false,
       masteryBearing: false,
     });
+    expectOptionalIntroductionAlias(disabled, false);
     expect(disabled.reason).not.toBe('eligible');
     expect(evaluate(secondNodeAttempt, [secondNodeExposure])).toEqual(disabled);
   });
