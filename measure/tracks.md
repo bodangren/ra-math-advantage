@@ -60,7 +60,7 @@ Dependencies:
 
 ### Teacher-Led Mastery Advantage Progression
 
-- [ ] **Track: Teacher-Led First Exposure and Mastery Advantage Pilots**
+- [~] **Track: Teacher-Led First Exposure and Mastery Advantage Pilots**
    *Define the shared `learning-evidence.v1` contract and require teacher-led first exposure before supplementary Mastery Advantage KST+SRS progression. Prove the policy with exactly one mastery-bearing node each in IM3, AP Precalculus, and BM2; teacher-led evidence can introduce a node but can never award mastery or schedule SRS.*
    *Link: [./tracks/teacher-led-mastery-advantage_20260819/](./tracks/teacher-led-mastery-advantage_20260819/)*
 

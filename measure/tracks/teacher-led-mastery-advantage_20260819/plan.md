@@ -95,13 +95,13 @@ only after all three pilots are Green.
     - [ ] Reuse the shared conformance fixture without importing IM3 code
     - [ ] Prove before-exposure denial, exposure-only introduction, and post-exposure KST+SRS progression
     - [ ] Prove a second Precalculus node remains disabled
-- [ ] Task 2.5: Write BM2 one-node pilot Red tests (Lane 3)
+- [~] Task 2.5: Write BM2 one-node pilot Red tests (Lane 3)
     - [ ] Freeze `math.bm2.skill.1.1.apply-accounting-equation` to the reviewed Unit 1 Lesson 1 source and activity mapping
     - [ ] Call `evaluateLearningEvidenceV1` only with `{ evidence, acceptedEvidence, enabledNodeIds }` and retain its canonical decision shape
     - [ ] Map BM2 `problemFamilyId: 'accounting-equation'` to canonical `variantKey: 'accounting-equation'` without a broad rename
     - [ ] Prove before-exposure denial, exposure-only introduction, and post-exposure KST+SRS progression
     - [ ] Prove no second BM2 graph node is introduced by this track
-- [ ] Task 2.6: Write cross-app contract and pilot-boundary tests (All lanes)
+- [~] Task 2.6: Write cross-app contract and pilot-boundary tests (All lanes)
     - [ ] Run identical origin/mode/idempotency cases against all three adapters
     - [ ] Assert exactly one enabled node per app and exactly three enabled node IDs total
     - [ ] Assert shared packages contain no app or `convex/_generated` imports
@@ -114,16 +114,16 @@ only after all three pilots are Green.
 
 ## Phase 3: Implement
 
-- [ ] Task 3.1: Implement the shared evidence contract and policy helpers (Lane 1)
-    - [ ] Add the schema/type/public exports and deterministic normalization/fingerprint behavior
-    - [ ] Add pure exposure eligibility and mastery-bearing classification helpers
-    - [ ] Keep teacher-led evidence on a reporting-only path and Mastery Advantage evidence on the existing KST+SRS bridge
-    - [ ] Preserve the package DAG and avoid dependency changes unless separately approved
-- [ ] Task 3.2: Implement the IM3 pilot adapter (Lane 1)
-    - [ ] Complete the overlap review against the active v3.2 migration before touching shared IM3 runtime surfaces
-    - [ ] Persist idempotent teacher-led exposure for only the frozen IM3 node
-    - [ ] Gate the pilot planner/bridge path on prior exposure and map eligible graded evidence into v3.2 KST+SRS
-    - [ ] Make the focused IM3 Red tests Green without enabling neighboring nodes
+- [x] Task 3.1: Implement the shared evidence contract and policy helpers (Lane 1) (62b2cf5)
+    - [x] Add the schema/type/public exports and deterministic normalization/fingerprint behavior
+    - [x] Add pure exposure eligibility and mastery-bearing classification helpers
+    - [x] Keep teacher-led evidence on a reporting-only path and Mastery Advantage evidence on the existing KST+SRS bridge
+    - [x] Preserve the package DAG and avoid dependency changes unless separately approved
+- [x] Task 3.2: Implement the IM3 pilot adapter (Lane 1) (35dd3d8)
+    - [x] Complete the overlap review against the active v3.2 migration before touching shared IM3 runtime surfaces
+    - [x] Persist idempotent teacher-led exposure for only the frozen IM3 node
+    - [x] Gate the pilot planner/bridge path on prior exposure and map eligible graded evidence into v3.2 KST+SRS
+    - [x] Make the focused IM3 Red tests Green without enabling neighboring nodes
 - [x] Task 3.3: Implement the Precalculus pilot adapter (Lane 2) (b1e5637)
     - [ ] Persist idempotent teacher-led exposure for only the frozen Precalculus node
     - [ ] Add the smallest app-owned KST+SRS adapter needed for the bounded node
