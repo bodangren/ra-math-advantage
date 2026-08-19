@@ -192,6 +192,7 @@ function seedBase(db: MemoryDb) {
   seedAccount(db, TEACHER_ACCOUNT, 'Teacher One');
   seedRole(db, PROPOSER, 'school_head');
   seedRole(db, SLT, 'slt');
+  seedRole(db, TEACHER_ACCOUNT, 'teacher');
   db.seed('teacher_profiles', TEACHER, {
     organizationId: ORG,
     accountId: TEACHER_ACCOUNT,
