@@ -396,6 +396,11 @@ describe('PIP approval, versions, acknowledgment, and closure', () => {
     expect(db.rows('improvement_plan_targets')).toHaveLength(1);
     expect(db.rows('improvement_plan_events').map((event) => event.kind))
       .toEqual(['proposed', 'approved']);
+    await expect(approve(db, proposal)).resolves.toMatchObject({
+      kind: 'replayed',
+      planStartAt: NOW,
+      planEndAt: NOW + 30 * 86_400_000,
+    });
   });
 
   it('creates a pending revision without modifying the approved version', async () => {
@@ -496,6 +501,31 @@ describe('PIP approval, versions, acknowledgment, and closure', () => {
         targetResults: expect.any(Array),
       }),
     });
+    await expect(close(db.context(), {
+      actorAccountId: SLT,
+      planId: proposal.planId,
+      requestId: 'request:close:one',
+      expectedRevision: 2,
+      outcome: 'insufficient_improvement',
+      note: 'The approved targets were not sustained.',
+      now: NOW + 31 * 86_400_000,
+    })).resolves.toMatchObject({ kind: 'replayed', outcome: 'insufficient_improvement' });
+    await expect(handler(readImprovementPlanReportProjection)(db.context(), {
+      actorAccountId: PROPOSER,
+      teacherProfileId: TEACHER,
+      now: NOW + 31 * 86_400_000,
+    })).resolves.toMatchObject({
+      kind: 'allowed',
+      projection: { state: 'closed', outcome: 'insufficient_improvement' },
+    });
+    await expect(handler(readImprovementPlan)(db.context(), {
+      actorAccountId: TEACHER_ACCOUNT,
+      planId: proposal.planId,
+      now: NOW + 31 * 86_400_000,
+    })).resolves.toMatchObject({
+      kind: 'allowed',
+      plan: { state: 'closed', closureOutcome: 'insufficient_improvement', closureNote: null },
+    });
   });
 
   it('paginates scoped plans and returns approved content only to the subject teacher', async () => {
@@ -518,6 +548,7 @@ describe('PIP approval, versions, acknowledgment, and closure', () => {
       kind: 'allowed',
       plan: { state: 'active', activeVersion: { version: 1 } },
     });
+    expect(teacherRead).toMatchObject({ plan: { closureNote: null } });
     const list = await handler(listScopedImprovementPlans)(db.context(), {
       actorAccountId: PROPOSER,
       paginationOpts: { cursor: null, numItems: 25 },
