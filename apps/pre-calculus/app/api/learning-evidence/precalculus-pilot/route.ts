@@ -64,7 +64,12 @@ function projectResult(result: unknown): unknown {
 
   const source = result as Record<string, unknown>;
   const decision = projectDecision(source.decision);
-  if (decision === undefined && !('persisted' in source) && !('masteryApplied' in source)) {
+  if (
+    decision === undefined
+    && !('persisted' in source)
+    && !('masteryApplied' in source)
+    && !('kstApplied' in source)
+  ) {
     return { accepted: true };
   }
 
@@ -73,6 +78,7 @@ function projectResult(result: unknown): unknown {
     ...(typeof source.masteryApplied === 'boolean'
       ? { masteryApplied: source.masteryApplied }
       : {}),
+    ...(typeof source.kstApplied === 'boolean' ? { kstApplied: source.kstApplied } : {}),
     ...(decision ? { decision } : {}),
   };
 }
