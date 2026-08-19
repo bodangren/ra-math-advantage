@@ -6,7 +6,7 @@
 
 **Pipeline:** Contract and Schema → Test → Implement → Generate Docs and Doctor
 
-## Phase 1: Contract and Schema Definition [checkpoint: 74496b9]
+## Phase 1: Contract and Schema Definition [checkpoint: 849f220]
 
 - [x] Task 1.1: Define the application ownership contract — `724f77b`
     - [x] Add the application product, product-guideline, and design documents
@@ -27,7 +27,7 @@
     - [x] Define immutable, transactional, and replay-safe audit-event behavior
 - [x] Task 1.5: Measure - User Manual Verification 'Phase 1: Contract and Schema Definition' — user directed full-track continuation
 
-## Phase 2: Test [checkpoint: bc10524]
+## Phase 2: Test [checkpoint: 6cffd96]
 
 - [x] Task 2.1: Write account and multiple-role contract tests — `bc10524`
     - [x] Test teacher plus HOD and teacher plus SLT accounts
@@ -52,36 +52,40 @@
     - [x] Test that shared packages do not import the new application
 - [x] Task 2.7: Measure - User Manual Verification 'Phase 2: Test' — user directed full-track continuation
 
-## Phase 3: Implement
+## Phase 3: Implement [checkpoint: 8d57514]
 
-- [~] Task 3.1: Create the minimum application workspace
-    - [ ] Reuse the installed framework, configuration, application shell, and design primitives
-    - [ ] Add sign-in, signed-out, unauthorized, and role-aware landing states
-- [ ] Task 3.2: Implement organization and assignment persistence
-    - [ ] Add app-owned Convex tables and indexes
-    - [ ] Add bounded internal queries and transactional mutations
-    - [ ] Add immutable audit-event writes
-- [ ] Task 3.3: Integrate shared authentication
-    - [ ] Compose the shared session and active-account guards in an app-owned wrapper
-    - [ ] Resolve current Danielson roles from server-owned assignments
-    - [ ] Add temporary credentials, password change, login throttling, and safe redirects
-- [ ] Task 3.4: Implement system-administrator workflows
-    - [ ] Add accessible account, role, department, and assignment controls
-    - [ ] Prevent the system-administrator role from opening evaluation data
-- [ ] Task 3.5: Implement the role-aware application shell
-    - [ ] Show only actions permitted by the resolved roles and scope
-    - [ ] Keep all security decisions on the server boundary
-- [ ] Task 3.6: Measure - User Manual Verification 'Phase 3: Implement' (Protocol in workflow.md)
+- [x] Task 3.1: Create the minimum application workspace — `8d57514`
+    - [x] Reuse the installed framework, configuration, application shell, and design primitives
+    - [x] Add sign-in, signed-out, unauthorized, and role-aware landing states
+- [x] Task 3.2: Implement organization and assignment persistence — `8d57514`
+    - [x] Add app-owned Convex tables and indexes
+    - [x] Add bounded internal queries and transactional mutations
+    - [x] Add immutable audit-event writes
+- [x] Task 3.3: Integrate shared authentication — `8d57514`
+    - [x] Compose the shared session and active-account guards in an app-owned wrapper
+    - [x] Resolve current Danielson roles from server-owned assignments
+    - [x] Add temporary credentials, password change, login throttling, and safe redirects
+- [x] Task 3.4: Implement system-administrator workflows — `8d57514`
+    - [x] Add accessible account, role, department, and assignment controls
+    - [x] Prevent the system-administrator role from opening evaluation data
+- [x] Task 3.5: Implement the role-aware application shell — `8d57514`
+    - [x] Show only actions permitted by the resolved roles and scope
+    - [x] Keep all security decisions on the server boundary
+- [x] Task 3.6: Measure - User Manual Verification 'Phase 3: Implement' — user directed full-track continuation
 
-## Phase 4: Generate Docs and Doctor
+## Phase 4: Generate Docs and Doctor [checkpoint: 08a18fc3]
 
-- [ ] Task 4.1: Run focused and workspace quality gates
-    - [ ] Run tests, coverage, lint, typecheck, and build for the new application and changed packages
-    - [ ] Run authorization and accessibility integration tests
-- [ ] Task 4.2: Update deterministic architecture facts
-    - [ ] Run `npm run generate`
-    - [ ] Run boundary and inventory-parity checks
-- [ ] Task 4.3: Run Measure Doctor and inspect the final diff
-    - [ ] Run `npm run doctor`
-    - [ ] Confirm that no unrelated active-track files changed
-- [ ] Task 4.4: Measure - User Manual Verification 'Phase 4: Generate Docs and Doctor' (Protocol in workflow.md)
+- [x] Task 4.1: Run focused and workspace quality gates — `08a18fc3`
+    - [x] Run tests, coverage, lint, typecheck, and build for the new application and changed packages
+    - [x] Run authorization and accessibility integration tests
+- [x] Task 4.2: Update deterministic architecture facts — `8d57514`
+    - [x] Run `npm run generate`
+    - [x] Run boundary and inventory-parity checks
+- [x] Task 4.3: Run Measure Doctor and inspect the final diff — `8d57514`
+    - [x] Run `npm run doctor`
+    - [x] Confirm that no unrelated active-track files changed
+- [x] Task 4.4: Complete the independent final review — `08a18fc3`
+    - [x] Review the implementation against the specification and plan
+    - [x] Correct the security, replay, test, scale, usability, and accessibility findings
+    - [x] Confirm that the corrections satisfy the review
+- [x] Task 4.5: Measure - User Manual Verification 'Phase 4: Generate Docs and Doctor' — user directed full-track continuation

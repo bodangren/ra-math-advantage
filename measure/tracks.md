@@ -58,6 +58,43 @@ Dependencies:
 
 ## Active Tracks
 
+### Danielson Teacher Growth Program
+
+Build a first-class teacher-proficiency application. Use the 2022 Framework for
+Teaching, reviewed TLAC 3.0 skills, and the existing KST plus SRS system. Keep
+retention decisions, culture fit, market availability, and growth-mindset
+scoring outside the application.
+
+Dependency order:
+
+`Foundation → Proficiency Graph → Observation Cycle → Reporting → PIP`
+
+`Proficiency Graph → GBF Sequencing`
+
+- [x] **Track 1: Danielson Application Foundation and Access** — **COMPLETED** (2026-08-19)
+   *Create `apps/danielson/`. Reuse shared auth, Convex, and app-shell packages. Support one account with multiple roles, scoped leadership access, a separate system-administrator permission, and self-private-data exclusion.*
+   *Link: [./tracks/danielson-app-foundation_20260819/](./tracks/danielson-app-foundation_20260819/)*
+
+- [ ] **Track 2: Danielson Proficiency Graph and Scheduling**
+   *Create the app-owned Danielson and TLAC graph, rating and evidence contract, Q1 fan-out, and teacher KST plus SRS adapters. Preserve `not_enough_evidence` as no proficiency or scheduling update.*
+   *Link: [./tracks/danielson-proficiency-graph_20260819/](./tracks/danielson-proficiency-graph_20260819/)*
+
+- [ ] **Track 3: Ranked Walkthroughs and Formal Observations**
+   *Create the scoped teacher queue, three prioritized targets for each walkthrough, 5–10 minute form, Q1 and Q4 records, immediate publication, immutable submissions, amendments, and annual continuity.*
+   *Link: [./tracks/danielson-observation-cycle_20260819/](./tracks/danielson-observation-cycle_20260819/)*
+
+- [ ] **Track 4: Leadership Portfolio and Teacher Reports**
+   *Create the compact SLT portfolio, teacher drill down, official and current proficiency views, public and private comments, self-private-data exclusion, and one optional teacher response with no replies.*
+   *Link: [./tracks/danielson-reporting_20260819/](./tracks/danielson-reporting_20260819/)*
+
+- [ ] **Track 5: Performance Improvement Plans**
+   *Implement the current one-month PIP form. Permit supervisor proposal and require SLT approval. Link approved target skills to high-cadence evidence, show progress, preserve acknowledgments, and record an audited closure without an automated disciplinary decision.*
+   *Link: [./tracks/danielson-improvement-plans_20260819/](./tracks/danielson-improvement-plans_20260819/)*
+
+- [ ] **Track 6: GBF Sequence and TLAC 3.0 Edges**
+   *Use the supplied GBF scope and sequence to define parallel Management and Rigor paths. Record direct and inferred TLAC 3.0 mappings. Activate only reviewed support and prerequisite edges.*
+   *Link: [./tracks/danielson-gbf-sequencing_20260819/](./tracks/danielson-gbf-sequencing_20260819/)*
+
 ### Teacher-Led Mastery Advantage Progression
 
 - [~] **Track: Teacher-Led First Exposure and Mastery Advantage Pilots**
