@@ -129,7 +129,7 @@
     {
       "id": "pkg.practice-core", "path": "packages/practice-core", "kind": "package", "packageName": "@math-platform/practice-core",
       "owner": "learning-platform", "layer": "platform", "domainClassification": "domain-neutral", "domain": null,
-      "allowedDependencies": [], "publicEntryPoints": [".", "./contract", "./submission-schema", "./timing", "./timing-baseline", "./srs-rating", "./v3-1-contracts", "./problem-family", "./practice-item", "./error-analysis", "./generator-qa"],
+      "allowedDependencies": [], "publicEntryPoints": [".", "./contract", "./learning-evidence", "./submission-schema", "./timing", "./timing-baseline", "./srs-rating", "./v3-1-contracts", "./problem-family", "./practice-item", "./error-analysis", "./generator-qa"],
       "qualityCommands": { "lint": "npm run lint --workspace=packages/practice-core", "test": "npm run test --workspace=packages/practice-core", "typecheck": "npm run typecheck --workspace=packages/practice-core", "build": "npm run build --workspace=packages/practice-core" }, "debtRefs": []
     },
     {

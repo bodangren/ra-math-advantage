@@ -1,7 +1,7 @@
 import {
   learningEvidenceV1Schema,
   type LearningEvidenceV1,
-} from '@math-platform/practice-core/learning-evidence';
+} from '@math-platform/practice-core';
 
 import {
   requireRequestSessionClaims,

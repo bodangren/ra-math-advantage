@@ -4,7 +4,7 @@ import {
   learningEvidenceV1Schema,
   normalizeLearningEvidenceV1,
   type LearningEvidenceV1,
-} from '@math-platform/practice-core/learning-evidence';
+} from '@math-platform/practice-core';
 import {
   buildPracticeSubmissionEnvelope,
   toConvexActivityId,

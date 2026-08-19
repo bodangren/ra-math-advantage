@@ -3,7 +3,7 @@ import {
   learningEvidenceV1Schema,
   normalizeLearningEvidenceV1,
   type LearningEvidenceV1,
-} from '@math-platform/practice-core/learning-evidence';
+} from '@math-platform/practice-core';
 
 export const PRECALCULUS_PILOT_NODE_ID =
   'math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs' as const;
