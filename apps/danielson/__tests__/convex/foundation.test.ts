@@ -4,7 +4,8 @@ import type { MutationCtx, QueryCtx } from '../../convex/_generated/server';
 import {
   applyAdministrationChange,
   listAccessAuditEvents,
-  listAdministrationDirectory,
+  listAdministrationAccounts,
+  listAdministrationDepartments,
   resolveAccessContext,
 } from '../../convex/foundation';
 import {
@@ -143,8 +144,11 @@ const applyChange = handler<Record<string, unknown>, Record<string, unknown>>(
 const resolveContext = handler<Record<string, unknown>, Record<string, unknown>>(
   resolveAccessContext,
 );
-const readDirectory = handler<Record<string, unknown>, Record<string, unknown>>(
-  listAdministrationDirectory,
+const readAdministrationAccounts = handler<Record<string, unknown>, Record<string, unknown>>(
+  listAdministrationAccounts,
+);
+const readAdministrationDepartments = handler<Record<string, unknown>, Record<string, unknown>>(
+  listAdministrationDepartments,
 );
 const readAudit = handler<Record<string, unknown>, Record<string, unknown>>(
   listAccessAuditEvents,
@@ -432,6 +436,55 @@ describe('Danielson Convex foundation handlers', () => {
     expect(db.rows('access_audit_events')).toHaveLength(0);
   });
 
+  it('revokes existing relationships after linked records become inactive', async () => {
+    const db = new MemoryDb();
+    seedAdministrator(db);
+    db.seed('accounts', 'accounts:teacher', {
+      organizationId: 'organizations:school', username: 'teacher', displayName: 'Teacher',
+      sharedSessionRole: 'teacher', isActive: true, createdAt: 1, updatedAt: 1,
+    });
+    db.seed('teacher_profiles', 'teacher_profiles:teacher', {
+      organizationId: 'organizations:school', accountId: 'accounts:teacher', isActive: true,
+      createdAt: 1, updatedAt: 1,
+    });
+    db.seed('departments', 'departments:math', {
+      organizationId: 'organizations:school', key: 'math', name: 'Math', isActive: true,
+      createdAt: 1, updatedAt: 1,
+    });
+
+    await applyChange(db.context(), administrationArgs('assign-membership', {
+      kind: 'department_membership.assign', departmentId: 'departments:math',
+      teacherAccountId: 'accounts:teacher',
+    }));
+    await applyChange(db.context(), administrationArgs('assign-hod', {
+      kind: 'hod_assignment.assign', departmentId: 'departments:math',
+      accountId: 'accounts:admin',
+    }));
+    await applyChange(db.context(), administrationArgs('assign-coach', {
+      kind: 'coach_assignment.assign', accountId: 'accounts:admin',
+      teacherAccountId: 'accounts:teacher',
+    }));
+    await db.patch('accounts:teacher', { isActive: false });
+    await db.patch('teacher_profiles:teacher', { isActive: false });
+    await db.patch('departments:math', { isActive: false });
+
+    await expect(applyChange(db.context(), administrationArgs('revoke-membership', {
+      kind: 'department_membership.revoke', departmentId: 'departments:math',
+      teacherAccountId: 'accounts:teacher',
+    }))).resolves.toMatchObject({ kind: 'applied' });
+    await expect(applyChange(db.context(), administrationArgs('revoke-hod', {
+      kind: 'hod_assignment.revoke', departmentId: 'departments:math',
+      accountId: 'accounts:admin',
+    }))).resolves.toMatchObject({ kind: 'applied' });
+    await expect(applyChange(db.context(), administrationArgs('revoke-coach', {
+      kind: 'coach_assignment.revoke', accountId: 'accounts:admin',
+      teacherAccountId: 'accounts:teacher',
+    }))).resolves.toMatchObject({ kind: 'applied' });
+    expect(db.rows('department_memberships')[0]).toMatchObject({ status: 'revoked' });
+    expect(db.rows('hod_assignments')[0]).toMatchObject({ status: 'revoked' });
+    expect(db.rows('coach_assignments')[0]).toMatchObject({ status: 'revoked' });
+  });
+
   it('limits one teacher profile to 100 active department memberships', async () => {
     const db = new MemoryDb();
     seedAdministrator(db);
@@ -526,10 +579,9 @@ describe('Danielson Convex foundation handlers', () => {
       createdAt: 1, updatedAt: 1,
     });
 
-    await expect(readDirectory(db.context(), {
+    await expect(readAdministrationAccounts(db.context(), {
       actorAccountId: 'accounts:admin',
-      accountPaginationOpts: { cursor: null, numItems: 100 },
-      departmentPaginationOpts: { cursor: null, numItems: 100 },
+      paginationOpts: { cursor: null, numItems: 100 },
     })).resolves.toMatchObject({
       kind: 'allowed',
       accountPage: {
@@ -539,6 +591,12 @@ describe('Danielson Convex foundation handlers', () => {
         }]),
         nextCursor: null,
       },
+    });
+    await expect(readAdministrationDepartments(db.context(), {
+      actorAccountId: 'accounts:admin',
+      paginationOpts: { cursor: null, numItems: 100 },
+    })).resolves.toMatchObject({
+      kind: 'allowed',
       departmentPage: {
         items: [{
           departmentId: 'departments:math', key: 'math', name: 'Math', isActive: true,
@@ -566,31 +624,43 @@ describe('Danielson Convex foundation handlers', () => {
       });
     }
 
-    const first = await readDirectory(db.context(), {
+    const firstAccounts = await readAdministrationAccounts(db.context(), {
       actorAccountId: 'accounts:admin',
-      accountPaginationOpts: { cursor: null, numItems: 500 },
-      departmentPaginationOpts: { cursor: null, numItems: 500 },
+      paginationOpts: { cursor: null, numItems: 500 },
     });
-    expect(first).toMatchObject({
+    const firstDepartments = await readAdministrationDepartments(db.context(), {
+      actorAccountId: 'accounts:admin',
+      paginationOpts: { cursor: null, numItems: 500 },
+    });
+    expect(firstAccounts).toMatchObject({
       kind: 'allowed',
       accountPage: { items: expect.any(Array), nextCursor: '100' },
+    });
+    expect(firstDepartments).toMatchObject({
+      kind: 'allowed',
       departmentPage: { items: expect.any(Array), nextCursor: '100' },
     });
-    expect((first as { accountPage: { items: unknown[] } }).accountPage.items).toHaveLength(100);
-    expect((first as { departmentPage: { items: unknown[] } }).departmentPage.items).toHaveLength(100);
+    expect((firstAccounts as { accountPage: { items: unknown[] } }).accountPage.items).toHaveLength(100);
+    expect((firstDepartments as { departmentPage: { items: unknown[] } }).departmentPage.items).toHaveLength(100);
 
-    const second = await readDirectory(db.context(), {
+    const secondAccounts = await readAdministrationAccounts(db.context(), {
       actorAccountId: 'accounts:admin',
-      accountPaginationOpts: { cursor: '100', numItems: 100 },
-      departmentPaginationOpts: { cursor: '100', numItems: 100 },
+      paginationOpts: { cursor: '100', numItems: 100 },
     });
-    expect(second).toMatchObject({
+    const secondDepartments = await readAdministrationDepartments(db.context(), {
+      actorAccountId: 'accounts:admin',
+      paginationOpts: { cursor: '100', numItems: 100 },
+    });
+    expect(secondAccounts).toMatchObject({
       kind: 'allowed',
       accountPage: { nextCursor: null },
+    });
+    expect(secondDepartments).toMatchObject({
+      kind: 'allowed',
       departmentPage: { nextCursor: null },
     });
-    expect((second as { accountPage: { items: unknown[] } }).accountPage.items).toHaveLength(1);
-    expect((second as { departmentPage: { items: unknown[] } }).departmentPage.items).toHaveLength(1);
+    expect((secondAccounts as { accountPage: { items: unknown[] } }).accountPage.items).toHaveLength(1);
+    expect((secondDepartments as { departmentPage: { items: unknown[] } }).departmentPage.items).toHaveLength(1);
   });
 
   it('reads audit events with bounded cursor pagination', async () => {

@@ -176,7 +176,9 @@ The server does not accept the network address in the request body.
 - Reject a duplicate active membership or assignment.
 - Limit one teacher profile to 100 active department memberships.
 - Reject a relation when its records are in different organizations.
-- Reject a relation to an inactive account, teacher profile, or department.
+- Reject a new relation to an inactive account, teacher profile, or department.
+- Permit revocation of an existing same-organization relation after a linked
+  record becomes inactive.
 - Do not delete an account when it is deactivated.
 - Reject an operation that would deactivate or revoke the final active system
   administrator in an organization.
@@ -204,6 +206,8 @@ The server does not accept the network address in the request body.
 - Use `take(6)` for the active role set.
 - Limit one administration list page to 100 records.
 - Return a cursor when an administration list has more records.
+- Use a separate Convex query for each paginated list.
+- Use independent coach and teacher cursors on the coach-assignment page.
 - Limit scope resolution to 100 active department memberships.
 - Reject a 101st active department membership.
 - Do not use `.filter()` or an unbounded `.collect()`.

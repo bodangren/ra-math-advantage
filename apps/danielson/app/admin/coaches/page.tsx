@@ -1,21 +1,20 @@
 import Link from 'next/link';
 import { SiteHeader } from '@/components/site-header';
-import { getAdministrationDirectory, getDirectoryPageHref } from '@/lib/foundation/admin-page';
+import { getCoachAssignmentDirectory, getDirectoryPageHref } from '@/lib/foundation/admin-page';
 import { AdminChangeForm } from '@/components/admin-change-form';
 
 export default async function CoachesPage({
   searchParams,
 }: {
-  searchParams: Promise<{ accountCursor?: string }>;
+  searchParams: Promise<{ coachCursor?: string; teacherCursor?: string }>;
 }) {
   const cursors = await searchParams;
-  const directory = await getAdministrationDirectory('/admin/coaches', cursors);
-  const accounts = directory.accountPage.items;
-  const accountOptions = accounts.map((account) => ({
+  const directory = await getCoachAssignmentDirectory('/admin/coaches', cursors);
+  const accountOptions = directory.coachPage.items.map((account) => ({
     value: account.accountId,
     label: `${account.displayName} (${account.username})`,
   }));
-  const teacherOptions = accounts.filter((account) => account.isTeacher).map((account) => ({
+  const teacherOptions = directory.teacherPage.items.filter((account) => account.isTeacher).map((account) => ({
     value: account.accountId,
     label: `${account.displayName} (${account.username})`,
   }));
@@ -33,9 +32,16 @@ export default async function CoachesPage({
             { name: 'teacherAccountId', label: 'Teacher', type: 'select', required: true, options: teacherOptions },
           ]} />
         </div>
-        {directory.accountPage.nextCursor ? <p><Link href={getDirectoryPageHref('/admin/coaches', {
-          accountCursor: directory.accountPage.nextCursor,
-        })}>Next account page</Link></p> : null}
+        <nav aria-label="Coach assignment pages">
+          {directory.coachPage.nextCursor ? <p><Link href={getDirectoryPageHref('/admin/coaches', {
+            coachCursor: directory.coachPage.nextCursor,
+            teacherCursor: cursors.teacherCursor,
+          })}>Next coach page</Link></p> : null}
+          {directory.teacherPage.nextCursor ? <p><Link href={getDirectoryPageHref('/admin/coaches', {
+            coachCursor: cursors.coachCursor,
+            teacherCursor: directory.teacherPage.nextCursor,
+          })}>Next teacher page</Link></p> : null}
+        </nav>
         <p><Link href="/admin">Back to administration</Link></p>
       </main>
     </>

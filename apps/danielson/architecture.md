@@ -58,4 +58,4 @@ All Convex functions use argument and return validators. All authorization
 lookups use indexes and bounded queries. The server denies cross-organization
 access before it reads teacher scope records. It limits a teacher to 100 active
 department memberships. Administration directories use cursor pages with no
-more than 100 records.
+more than 100 records. Each paginated list uses a separate Convex query.

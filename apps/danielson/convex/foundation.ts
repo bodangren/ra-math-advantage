@@ -1,6 +1,6 @@
 import { paginationOptsValidator } from 'convex/server';
-import { internalMutation, internalQuery } from './_generated/server';
-import type { Doc } from './_generated/dataModel';
+import { internalMutation, internalQuery, type QueryCtx } from './_generated/server';
+import type { Doc, Id } from './_generated/dataModel';
 import { v } from 'convex/values';
 
 import { sanitizeAuditSnapshot } from '../lib/foundation/audit';
@@ -252,11 +252,28 @@ export const resolveAccessContext = internalQuery({
   },
 });
 
-export const listAdministrationDirectory = internalQuery({
+async function resolveSysadminActor(ctx: QueryCtx, actorAccountId: Id<'accounts'>) {
+  const actor = await ctx.db.get(actorAccountId);
+  if (!actor?.isActive) return { kind: 'denied' as const, reason: 'account_inactive' };
+  const organization = await ctx.db.get(actor.organizationId);
+  if (!organization?.isActive) return { kind: 'denied' as const, reason: 'organization_inactive' };
+  const sysadmin = await ctx.db
+    .query('role_assignments')
+    .withIndex('by_organizationId_and_accountId_and_role_and_status', (query) =>
+      query.eq('organizationId', actor.organizationId)
+        .eq('accountId', actor._id)
+        .eq('role', 'sysadmin')
+        .eq('status', 'active'),
+    )
+    .unique();
+  if (!sysadmin) return { kind: 'denied' as const, reason: 'capability_not_granted' };
+  return { kind: 'allowed' as const, actor };
+}
+
+export const listAdministrationAccounts = internalQuery({
   args: {
     actorAccountId: v.id('accounts'),
-    accountPaginationOpts: paginationOptsValidator,
-    departmentPaginationOpts: paginationOptsValidator,
+    paginationOpts: paginationOptsValidator,
   },
   returns: v.union(
     v.object({ kind: v.literal('denied'), reason: v.string() }),
@@ -273,46 +290,18 @@ export const listAdministrationDirectory = internalQuery({
         })),
         nextCursor: v.union(v.string(), v.null()),
       }),
-      departmentPage: v.object({
-        items: v.array(v.object({
-          departmentId: v.id('departments'),
-          key: v.string(),
-          name: v.string(),
-          isActive: v.boolean(),
-        })),
-        nextCursor: v.union(v.string(), v.null()),
-      }),
     }),
   ),
   handler: async (ctx, args) => {
-    const actor = await ctx.db.get(args.actorAccountId);
-    if (!actor?.isActive) return { kind: 'denied' as const, reason: 'account_inactive' };
-    const organization = await ctx.db.get(actor.organizationId);
-    if (!organization?.isActive) return { kind: 'denied' as const, reason: 'organization_inactive' };
-    const sysadmin = await ctx.db
-      .query('role_assignments')
-      .withIndex('by_organizationId_and_accountId_and_role_and_status', (query) =>
-        query.eq('organizationId', actor.organizationId)
-          .eq('accountId', actor._id)
-          .eq('role', 'sysadmin')
-          .eq('status', 'active'),
-      )
-      .unique();
-    if (!sysadmin) return { kind: 'denied' as const, reason: 'capability_not_granted' };
-
+    const access = await resolveSysadminActor(ctx, args.actorAccountId);
+    if (access.kind === 'denied') return access;
+    const { actor } = access;
     const accountResult = await ctx.db
       .query('accounts')
       .withIndex('by_organizationId', (query) => query.eq('organizationId', actor.organizationId))
       .paginate({
-        cursor: args.accountPaginationOpts.cursor,
-        numItems: Math.min(args.accountPaginationOpts.numItems, 100),
-      });
-    const departmentResult = await ctx.db
-      .query('departments')
-      .withIndex('by_organizationId', (query) => query.eq('organizationId', actor.organizationId))
-      .paginate({
-        cursor: args.departmentPaginationOpts.cursor,
-        numItems: Math.min(args.departmentPaginationOpts.numItems, 100),
+        cursor: args.paginationOpts.cursor,
+        numItems: Math.min(args.paginationOpts.numItems, 100),
       });
     const accounts = await Promise.all(accountResult.page.map(async (account) => {
       const [profile, roles] = await Promise.all([
@@ -343,6 +332,44 @@ export const listAdministrationDirectory = internalQuery({
         items: accounts,
         nextCursor: accountResult.isDone ? null : accountResult.continueCursor,
       },
+    };
+  },
+});
+
+export const listAdministrationDepartments = internalQuery({
+  args: {
+    actorAccountId: v.id('accounts'),
+    paginationOpts: paginationOptsValidator,
+  },
+  returns: v.union(
+    v.object({ kind: v.literal('denied'), reason: v.string() }),
+    v.object({
+      kind: v.literal('allowed'),
+      departmentPage: v.object({
+        items: v.array(v.object({
+          departmentId: v.id('departments'),
+          key: v.string(),
+          name: v.string(),
+          isActive: v.boolean(),
+        })),
+        nextCursor: v.union(v.string(), v.null()),
+      }),
+    }),
+  ),
+  handler: async (ctx, args) => {
+    const access = await resolveSysadminActor(ctx, args.actorAccountId);
+    if (access.kind === 'denied') return access;
+    const departmentResult = await ctx.db
+      .query('departments')
+      .withIndex('by_organizationId', (query) =>
+        query.eq('organizationId', access.actor.organizationId),
+      )
+      .paginate({
+        cursor: args.paginationOpts.cursor,
+        numItems: Math.min(args.paginationOpts.numItems, 100),
+      });
+    return {
+      kind: 'allowed' as const,
       departmentPage: {
         items: departmentResult.page.map((department) => ({
           departmentId: department._id,
@@ -608,16 +635,17 @@ export const applyAdministrationChange = internalMutation({
           : null);
       const profile = profileId ? await ctx.db.get(profileId) : null;
       const teacherAccount = profile ? await ctx.db.get(profile.accountId) : null;
+      const isAssign = action === 'department_membership.assign';
       if (!department || !profile || !teacherAccount
         || department.organizationId !== args.organizationId
         || profile.organizationId !== args.organizationId
         || teacherAccount.organizationId !== args.organizationId
         || (teacherAccountId !== null && teacherAccount._id !== teacherAccountId)
-        || !department.isActive || !profile.isActive || !teacherAccount.isActive) {
+        || (isAssign && (!department.isActive || !profile.isActive || !teacherAccount.isActive))) {
         return { kind: 'invalid' as const, reason: 'relation_not_found' as const };
       }
       const existing = await ctx.db.query('department_memberships').withIndex('by_org_dept_teacher_status', (query) => query.eq('organizationId', args.organizationId).eq('departmentId', department._id).eq('teacherProfileId', profile._id).eq('status', 'active')).unique();
-      if (action.endsWith('.assign')) {
+      if (isAssign) {
         if (existing) return { kind: 'denied' as const, reason: 'duplicate_assignment' as const };
         const activeMemberships = await ctx.db.query('department_memberships')
           .withIndex('by_organizationId_and_teacherProfileId_and_status', (query) =>
@@ -644,11 +672,15 @@ export const applyAdministrationChange = internalMutation({
       const accountId = ctx.db.normalizeId('accounts', args.change.accountId ?? args.change.targetAccountId ?? '');
       const department = departmentId ? await ctx.db.get(departmentId) : null;
       const target = accountId ? await ctx.db.get(accountId) : null;
-      if (!department || !target || department.organizationId !== args.organizationId || target.organizationId !== args.organizationId || !department.isActive || !target.isActive) {
+      const isAssign = action === 'hod_assignment.assign';
+      if (!department || !target
+        || department.organizationId !== args.organizationId
+        || target.organizationId !== args.organizationId
+        || (isAssign && (!department.isActive || !target.isActive))) {
         return { kind: 'invalid' as const, reason: 'relation_not_found' as const };
       }
       const existing = await ctx.db.query('hod_assignments').withIndex('by_organizationId_and_accountId_and_departmentId_and_status', (query) => query.eq('organizationId', args.organizationId).eq('accountId', target._id).eq('departmentId', department._id).eq('status', 'active')).unique();
-      if (action.endsWith('.assign')) {
+      if (isAssign) {
         if (existing) return { kind: 'denied' as const, reason: 'duplicate_assignment' as const };
         const assignmentId = await ctx.db.insert('hod_assignments', { organizationId: args.organizationId, accountId: target._id, departmentId: department._id, status: 'active', createdByAccountId: actor._id, createdAt: now });
         targetId = String(assignmentId);
@@ -670,16 +702,17 @@ export const applyAdministrationChange = internalMutation({
       const target = accountId ? await ctx.db.get(accountId) : null;
       const profile = profileId ? await ctx.db.get(profileId) : null;
       const teacherAccount = profile ? await ctx.db.get(profile.accountId) : null;
+      const isAssign = action === 'coach_assignment.assign';
       if (!target || !profile || !teacherAccount
         || target.organizationId !== args.organizationId
         || profile.organizationId !== args.organizationId
         || teacherAccount.organizationId !== args.organizationId
         || (teacherAccountId !== null && teacherAccount._id !== teacherAccountId)
-        || !target.isActive || !profile.isActive || !teacherAccount.isActive) {
+        || (isAssign && (!target.isActive || !profile.isActive || !teacherAccount.isActive))) {
         return { kind: 'invalid' as const, reason: 'relation_not_found' as const };
       }
       const existing = await ctx.db.query('coach_assignments').withIndex('by_organizationId_and_accountId_and_teacherProfileId_and_status', (query) => query.eq('organizationId', args.organizationId).eq('accountId', target._id).eq('teacherProfileId', profile._id).eq('status', 'active')).unique();
-      if (action.endsWith('.assign')) {
+      if (isAssign) {
         if (existing) return { kind: 'denied' as const, reason: 'duplicate_assignment' as const };
         const assignmentId = await ctx.db.insert('coach_assignments', { organizationId: args.organizationId, accountId: target._id, teacherProfileId: profile._id, status: 'active', createdByAccountId: actor._id, createdAt: now });
         targetId = String(assignmentId);
