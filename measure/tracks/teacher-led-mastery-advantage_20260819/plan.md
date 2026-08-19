@@ -92,9 +92,10 @@ only after all three pilots are Green.
     - [ ] Prove one later graded Mastery Advantage attempt traverses the existing IM3 KST+SRS path
     - [ ] Prove a non-pilot IM3 node remains disabled
 - [~] Task 2.4: Write Precalculus one-node pilot Red tests (Lane 2)
-    - [ ] Reuse the shared conformance fixture without importing IM3 code
-    - [ ] Prove before-exposure denial, exposure-only introduction, and post-exposure KST+SRS progression
-    - [ ] Prove a second Precalculus node remains disabled
+    - [x] Reuse the shared conformance fixture without importing IM3 code
+    - [x] Prove before-exposure denial, exposure-only introduction, and post-exposure KST+SRS progression
+    - [x] Prove a second Precalculus node remains disabled
+    - [x] Terra: Added transaction and route contract tests for authenticated identity, strict v1 validation, idempotency, SRS-only mastery effects, and the KST fail-closed state. Red: the route omits `kstApplied: false`.
 - [~] Task 2.5: Write BM2 one-node pilot Red tests (Lane 3)
     - [ ] Freeze `math.bm2.skill.1.1.apply-accounting-equation` to the reviewed Unit 1 Lesson 1 source and activity mapping
     - [ ] Call `evaluateLearningEvidenceV1` only with `{ evidence, acceptedEvidence, enabledNodeIds }` and retain its canonical decision shape
@@ -124,15 +125,19 @@ only after all three pilots are Green.
     - [x] Persist idempotent teacher-led exposure for only the frozen IM3 node
     - [x] Gate the pilot planner/bridge path on prior exposure and map eligible graded evidence into v3.2 KST+SRS
     - [x] Make the focused IM3 Red tests Green without enabling neighboring nodes
-- [~] Follow-up: Add the pure IM3 Convex learning-evidence handler seam
-    - [ ] Reuse the IM3 adapter, shared evaluator, and exact one-node manifest
-    - [ ] Preserve teacher-led persistence, pre-exposure denial, post-exposure bridge gating, and replay idempotency
-    - [ ] Keep production Convex persistence outside this seam
+- [x] Follow-up: Add the pure IM3 Convex learning-evidence handler seam (d1f2de0)
+    - [x] Reuse the IM3 adapter, shared evaluator, and exact one-node manifest
+    - [x] Preserve teacher-led persistence, pre-exposure denial, post-exposure bridge gating, replay idempotency, and same-key conflict rejection
+    - [x] Keep production Convex persistence outside this seam
 - [~] Task 3.3: Implement the Precalculus pilot adapter (Lane 2) (b1e5637)
-    - [ ] Persist idempotent teacher-led exposure for only the frozen Precalculus node
-    - [ ] Add the smallest app-owned KST+SRS adapter needed for the bounded node
-    - [ ] Keep curriculum, graph, auth, and storage details inside Precalculus
-    - [ ] Make the focused Precalculus Red tests Green without enabling neighboring nodes
+    - [x] Persist idempotent teacher-led exposure for only the frozen Precalculus node
+    - [x] Add the smallest app-owned SRS adapter needed for the bounded node; keep KST fail-closed
+    - [x] Keep curriculum, graph, auth, and storage details inside Precalculus
+    - [x] Make the focused Precalculus Red tests Green without enabling neighboring nodes
+    - [x] Preserve the explicit fail-closed `kstApplied: false` result in the authenticated Next route (719369d6)
+    - [~] Add the authenticated internal Convex transaction and concrete Next route call
+    - [~] Persist normalized evidence and the atomic SRS card/review effect exactly once
+    - [ ] Required follow-up: add the app-owned KST projection before claiming production KST completion
 - [~] Task 3.4: Implement the BM2 pilot node and adapter (Lane 3) (042e360)
     - [x] Add the reviewed app-owned node/activity mapping for Unit 1 Lesson 1 only
     - [x] Extend shared math ID support narrowly for `bm2` with compatibility tests
@@ -140,7 +145,9 @@ only after all three pilots are Green.
     - [x] Persist idempotent teacher-led exposure and gate BM2 Mastery Advantage progression
     - [x] Reuse canonical KST+SRS behavior rather than introducing an app-local planner or scheduler
     - [x] Make the focused BM2 Red tests Green without starting a full graph rollout
-    - [~] Follow-up: Add the pure legacy `problemFamilyId` ↔ canonical `variantKey` card compatibility boundary with focused validation tests
+    - [~] Follow-up: Add the pure legacy `problemFamilyId` ↔ canonical `variantKey` card compatibility boundary with focused validation tests and the BM2 Convex handler seam
+    - [~] Add red coverage for the authenticated BM2 evidence route and real teacher-led/mastery submission mappings
+    - [ ] Add the authenticated Convex transaction, persist evidence atomically, and apply the existing BM2 SRS boundary once for eligible mastery evidence
 - [ ] Task 3.5: Complete cross-app Green and refactor pass (All lanes)
     *Note: Production Convex persistence and real KST/SRS wiring remain required for all three lanes.*
     - [ ] Make the shared conformance and exact-three-node boundary suites Green
