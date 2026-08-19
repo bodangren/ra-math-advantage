@@ -34,6 +34,11 @@ import {
   readOrganizationActiveImprovementPlans,
   readTeacherImprovementPlanProjection,
 } from './improvementPlans';
+import {
+  readOrganizationCurrentGbfAssignments,
+  readTeacherGbfAssignment,
+} from './gbf';
+import { projectGbfProgress } from '../lib/gbf/progress';
 
 const MAX_TEACHERS = 250;
 const MAX_ACCOUNTS = 1_000;
@@ -73,6 +78,55 @@ const observationItemValidator = v.object({
   outcome: v.union(observationOutcomeValidator, v.null()),
   evidenceNote: v.union(v.string(), v.null()),
 });
+const gbfPhaseIdValidator = v.union(
+  v.literal('phase_1'),
+  v.literal('phase_2'),
+  v.literal('phase_3'),
+  v.literal('phase_4'),
+  v.literal('stretch_it'),
+  v.literal('complete'),
+);
+const compactGbfProgressValidator = v.union(
+  v.object({
+    contractVersion: v.literal('danielson.gbf-progress.v1'),
+    state: v.literal('not_configured'),
+  }),
+  v.object({
+    contractVersion: v.literal('danielson.gbf-progress.v1'),
+    state: v.union(v.literal('in_progress'), v.literal('proficient')),
+    managementPhaseId: gbfPhaseIdValidator,
+    rigorPhaseId: gbfPhaseIdValidator,
+  }),
+);
+const gbfTrajectoryProgressValidator = v.object({
+  currentPhaseId: gbfPhaseIdValidator,
+  requiredActionStepIds: v.array(v.string()),
+  completedActionStepIds: v.array(v.string()),
+  assignedPrimarySkillIds: v.array(v.string()),
+  proficientPrimarySkillIds: v.array(v.string()),
+  duePrimarySkillIds: v.array(v.string()),
+});
+const gbfProgressValidator = v.union(
+  v.object({
+    contractVersion: v.literal('danielson.gbf-progress.v1'),
+    state: v.literal('not_configured'),
+  }),
+  v.object({
+    contractVersion: v.literal('danielson.gbf-progress.v1'),
+    state: v.union(v.literal('in_progress'), v.literal('proficient')),
+    assignmentId: v.string(),
+    sequenceReleaseId: v.string(),
+    graphReleaseId: v.string(),
+    trajectories: v.object({
+      management: gbfTrajectoryProgressValidator,
+      rigor: gbfTrajectoryProgressValidator,
+    }),
+    assignedSkillIds: v.array(v.string()),
+    proficientSkillIds: v.array(v.string()),
+    dueSkillIds: v.array(v.string()),
+    unresolvedGapSkillIds: v.array(v.string()),
+  }),
+);
 const portfolioRowValidator = v.object({
   teacherProfileId: v.string(),
   displayName: v.string(),
@@ -99,10 +153,7 @@ const portfolioRowValidator = v.object({
       outcome: v.union(v.literal('successful'), v.literal('insufficient_improvement')),
     }),
   ),
-  gbf: v.object({
-    contractVersion: v.literal('danielson.gbf-progress.v1'),
-    state: v.literal('not_configured'),
-  }),
+  gbf: compactGbfProgressValidator,
   evidenceDue: v.object({
     state: v.union(v.literal('overdue'), v.literal('due'), v.literal('current')),
     dueCount: v.number(),
@@ -195,10 +246,7 @@ const publicReportValidator = v.object({
   officialEvaluations: v.array(officialEvaluationValidator),
   currentProficiency: currentProficiencyValidator,
   improvementPlan: publicImprovementPlanProgressValidator,
-  gbf: v.object({
-    contractVersion: v.literal('danielson.gbf-progress.v1'),
-    state: v.literal('not_configured'),
-  }),
+  gbf: gbfProgressValidator,
   evidenceHistory: v.array(evidenceHistoryItemValidator),
   publicComments: v.array(commentValidator),
   responses: v.array(responseValidator),
@@ -210,10 +258,7 @@ const privateReportValidator = v.object({
   officialEvaluations: v.array(officialEvaluationValidator),
   currentProficiency: currentProficiencyValidator,
   improvementPlan: improvementPlanProgressValidator,
-  gbf: v.object({
-    contractVersion: v.literal('danielson.gbf-progress.v1'),
-    state: v.literal('not_configured'),
-  }),
+  gbf: gbfProgressValidator,
   evidenceHistory: v.array(evidenceHistoryItemValidator),
   publicComments: v.array(commentValidator),
   privateComments: v.array(commentValidator),
@@ -401,7 +446,7 @@ export const readLeadershipPortfolio = internalQuery({
       return { kind: 'portfolio_capacity_exceeded' as const };
     }
     const organizationWide = supervisorRoles.includes('school_head') || supervisorRoles.includes('slt');
-    const [accounts, summaries] = await Promise.all([
+    const [accounts, summaries, gbfAssignments] = await Promise.all([
       ctx.db.query('accounts')
         .withIndex('by_organizationId_and_isActive', (query) => query
           .eq('organizationId', actor.organizationId)
@@ -410,7 +455,11 @@ export const readLeadershipPortfolio = internalQuery({
       ctx.db.query('teacher_attention_summaries')
         .withIndex('by_organizationId', (query) => query.eq('organizationId', actor.organizationId))
         .take(MAX_ATTENTION_SUMMARIES + 1),
+      readOrganizationCurrentGbfAssignments(ctx, actor.organizationId),
     ]);
+    if (gbfAssignments.kind === 'capacity_exceeded') {
+      return { kind: 'portfolio_capacity_exceeded' as const };
+    }
     let memberships: Doc<'department_memberships'>[] = [];
     let departments: Doc<'departments'>[] = [];
     let hodAssignments: Doc<'hod_assignments'>[] = [];
@@ -494,12 +543,19 @@ export const readLeadershipPortfolio = internalQuery({
               state: 'pending_approval' as const,
             }
           : undefined;
+      const priorities = summaryByTeacher.get(teacherProfileId)
+        ?? emptyPriorities(teacherProfileId, now);
+      const gbf = projectGbfProgress({
+        assignment: gbfAssignments.assignmentsByTeacher.get(teacherProfileId) ?? null,
+        priorities,
+      });
       return [projectPortfolioRow({
         teacherProfileId,
         displayName: account.displayName,
-        priorities: summaryByTeacher.get(teacherProfileId) ?? emptyPriorities(teacherProfileId, now),
+        priorities,
         now,
         improvementPlan,
+        gbf,
       })];
     }).sort(comparePortfolioRows);
     try {
@@ -522,7 +578,16 @@ async function buildPublicTeacherReport(
   account: Doc<'accounts'>,
   now: number,
 ) {
-  const [records, amendments, cards, proficiency, responses, accounts, improvementPlan] = await Promise.all([
+  const [
+    records,
+    amendments,
+    cards,
+    proficiency,
+    responses,
+    accounts,
+    improvementPlan,
+    gbfAssignment,
+  ] = await Promise.all([
     ctx.db.query('observation_records')
       .withIndex('by_org_teacher_status_submitted', (query) => query
         .eq('organizationId', teacher.organizationId)
@@ -561,6 +626,7 @@ async function buildPublicTeacherReport(
       now,
       false,
     ),
+    readTeacherGbfAssignment(ctx, teacher.organizationId, teacher._id),
   ]);
   if (
     records.length > MAX_HISTORY_ROWS
@@ -570,6 +636,7 @@ async function buildPublicTeacherReport(
     || responses.length > MAX_HISTORY_ROWS
     || accounts.length > MAX_ACCOUNTS
     || improvementPlan === null
+    || gbfAssignment.kind === 'capacity_exceeded'
   ) return null;
   const priorities = projectTeacherPriority(
     String(teacher._id),
@@ -588,6 +655,10 @@ async function buildPublicTeacherReport(
       ...priority,
       sourceRecordId: sourceBySkill.get(priority.skillId) ?? null,
     })),
+  });
+  const gbf = projectGbfProgress({
+    assignment: gbfAssignment.kind === 'allowed' ? gbfAssignment.assignment : null,
+    priorities,
   });
   const amendmentRows = amendments.map(amendmentFromRow);
   const accountById = new Map(accounts.map((row) => [String(row._id), row]));
@@ -615,10 +686,7 @@ async function buildPublicTeacherReport(
     officialEvaluations,
     currentProficiency,
     improvementPlan,
-    gbf: {
-      contractVersion: 'danielson.gbf-progress.v1' as const,
-      state: 'not_configured' as const,
-    },
+    gbf,
     evidenceHistory: [],
     publicComments: [],
     responses: responses.map(responseFromRow),

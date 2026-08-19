@@ -3,6 +3,7 @@ import { projectEffectiveObservation } from '../observations/amendments';
 import type { PriorityProjection } from '../proficiency/processor';
 import { buildDanielsonGraph } from '../proficiency/graph';
 import { adaptDanielsonRating, isDanielsonRating } from '../proficiency/rating';
+import type { GbfPhaseId, GbfProgress } from '../gbf/contracts';
 
 export type ReportingState = 'below_proficient' | 'proficient' | 'not_enough_evidence';
 export type AttentionReason = 'below_proficient' | 'overdue_evidence' | 'ip_off_track';
@@ -31,10 +32,13 @@ export type PortfolioRow = {
     belowComponentIds: string[];
   };
   improvementPlan: ImprovementPlanPortfolioProjection;
-  gbf: {
-    contractVersion: 'danielson.gbf-progress.v1';
-    state: 'not_configured';
-  };
+  gbf: { contractVersion: 'danielson.gbf-progress.v1'; state: 'not_configured' }
+    | {
+        contractVersion: 'danielson.gbf-progress.v1';
+        state: 'in_progress' | 'proficient';
+        managementPhaseId: GbfPhaseId | 'complete';
+        rigorPhaseId: GbfPhaseId | 'complete';
+      };
   evidenceDue: {
     state: 'overdue' | 'due' | 'current';
     dueCount: number;
@@ -129,6 +133,7 @@ export function projectPortfolioRow(input: {
   priorities: readonly ReportingPriority[];
   now: number;
   improvementPlan?: ImprovementPlanPortfolioProjection;
+  gbf?: GbfProgress;
 }): PortfolioRow {
   void input.now;
   const components = projectComponentStates(input.priorities);
@@ -150,10 +155,17 @@ export function projectPortfolioRow(input: {
       contractVersion: 'danielson.ip-progress.v1',
       state: 'not_configured',
     },
-    gbf: {
-      contractVersion: 'danielson.gbf-progress.v1',
-      state: 'not_configured',
-    },
+    gbf: input.gbf && input.gbf.state !== 'not_configured'
+      ? {
+          contractVersion: input.gbf.contractVersion,
+          state: input.gbf.state,
+          managementPhaseId: input.gbf.trajectories.management.currentPhaseId,
+          rigorPhaseId: input.gbf.trajectories.rigor.currentPhaseId,
+        }
+      : {
+          contractVersion: 'danielson.gbf-progress.v1',
+          state: 'not_configured',
+        },
     evidenceDue,
     attentionReasons,
   };

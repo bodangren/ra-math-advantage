@@ -75,7 +75,14 @@ function trajectoryProgress(
 
 /** Project GBF progress without changing Track 2 evidence or scheduling state. */
 export function projectGbfProgress(input: {
-  assignment: GbfTeacherAssignment | null;
+  assignment: Pick<
+    GbfTeacherAssignment,
+    | 'assignmentId'
+    | 'sequenceReleaseId'
+    | 'graphReleaseId'
+    | 'assignedSkillIds'
+    | 'unresolvedGapSkillIds'
+  > | null;
   priorities: readonly GbfPriorityInput[];
 }): GbfProgress {
   if (!input.assignment) {

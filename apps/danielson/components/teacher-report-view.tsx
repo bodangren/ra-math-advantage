@@ -38,6 +38,17 @@ function dueLabel(skill: { due: boolean; dueAt: string | null; overdueDays: numb
   return date ? `Current. Due on ${date}.` : 'Current. No due date is available.';
 }
 
+function gbfStateLabel(state: PublicTeacherReport['gbf']['state']) {
+  if (state === 'not_configured') return 'Not configured';
+  if (state === 'in_progress') return 'In progress';
+  return 'Proficient';
+}
+
+function gbfPhaseLabel(value: string) {
+  if (value === 'complete') return 'Complete';
+  return value.replace('_', ' ').replace(/^./, (first) => first.toUpperCase());
+}
+
 export function TeacherReportView({
   report,
   canComment,
@@ -69,9 +80,29 @@ export function TeacherReportView({
                 : null}
             </dd>
           </div>
-          <div><dt>GBF</dt><dd>Not configured</dd></div>
+          <div><dt>GBF</dt><dd>{gbfStateLabel(report.gbf.state)}</dd></div>
         </dl>
       </section>
+
+      {report.gbf.state !== 'not_configured' ? (
+        <section className="card" aria-labelledby="gbf-progress-heading">
+          <h2 id="gbf-progress-heading">Get Better Faster progress</h2>
+          <dl className="summary-grid">
+            <div>
+              <dt>Management phase</dt>
+              <dd>{gbfPhaseLabel(report.gbf.trajectories.management.currentPhaseId)}</dd>
+            </div>
+            <div>
+              <dt>Rigor phase</dt>
+              <dd>{gbfPhaseLabel(report.gbf.trajectories.rigor.currentPhaseId)}</dd>
+            </div>
+            <div><dt>Assigned skills</dt><dd>{report.gbf.assignedSkillIds.length}</dd></div>
+            <div><dt>Proficient skills</dt><dd>{report.gbf.proficientSkillIds.length}</dd></div>
+            <div><dt>Due skills</dt><dd>{report.gbf.dueSkillIds.length}</dd></div>
+            <div><dt>Unresolved gaps</dt><dd>{report.gbf.unresolvedGapSkillIds.length}</dd></div>
+          </dl>
+        </section>
+      ) : null}
 
       {report.improvementPlan.state === 'active' || report.improvementPlan.state === 'closed' ? (
         <section className="card" aria-labelledby="improvement-plan-progress-heading">

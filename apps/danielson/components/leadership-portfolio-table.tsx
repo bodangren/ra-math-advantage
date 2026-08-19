@@ -15,6 +15,7 @@ function statusLabel(value: string) {
   if (value === 'pending_approval') return 'Pending approval';
   if (value === 'active') return 'Active';
   if (value === 'closed') return 'Closed';
+  if (value === 'in_progress') return 'In progress';
   return 'Proficient';
 }
 

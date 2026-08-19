@@ -1,5 +1,6 @@
 import type { PortfolioRow, ReportingState } from './projections';
 import type { ImprovementPlanProgress } from '../improvement-plans/view';
+import type { GbfProgress } from '../gbf/contracts';
 
 export type { AttentionReason, PortfolioRow, ReportingState } from './projections';
 
@@ -99,10 +100,7 @@ export type PublicTeacherReport = {
   officialEvaluations: OfficialEvaluation[];
   currentProficiency: CurrentProficiency;
   improvementPlan: ImprovementPlanProgress;
-  gbf: {
-    contractVersion: 'danielson.gbf-progress.v1';
-    state: 'not_configured';
-  };
+  gbf: GbfProgress;
   evidenceHistory: EvidenceHistoryItem[];
   publicComments: ReportingComment[];
   responses: TeacherObservationResponse[];
