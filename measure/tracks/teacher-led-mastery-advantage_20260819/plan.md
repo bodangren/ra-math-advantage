@@ -127,6 +127,7 @@ only after all three pilots are Green.
     - [x] Persist idempotent teacher-led exposure for only the frozen IM3 node
     - [x] Gate the pilot planner/bridge path on prior exposure and map eligible graded evidence into v3.2 KST+SRS
     - [x] Make the focused IM3 Red tests Green without enabling neighboring nodes
+    - [x] Add the durable Convex evidence store/mutation and the phase-4 teacher-led exposure hook (a833e06). Keep the graded Mastery Advantage bridge fail-closed until the resolver blocker is resolved.
 - [x] Follow-up: Add the pure IM3 Convex learning-evidence handler seam (d1f2de0)
     - [x] Reuse the IM3 adapter, shared evaluator, and exact one-node manifest
     - [x] Preserve teacher-led persistence, pre-exposure denial, post-exposure bridge gating, replay idempotency, and same-key conflict rejection
