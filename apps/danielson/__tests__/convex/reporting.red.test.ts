@@ -11,6 +11,8 @@ import {
   readMyTeacherReport,
   submitTeacherResponse,
 } from '../../convex/reporting';
+import { GBF_MAPPING_RELEASE, GBF_SEQUENCE_RELEASE } from '../../lib/gbf/source';
+import { buildDanielsonGraph } from '../../lib/proficiency/graph';
 
 type StoredDocument = Record<string, unknown> & { _id: string; _creationTime: number };
 type Handler<TArgs = Record<string, unknown>, TResult = Record<string, unknown>> = (
@@ -27,6 +29,7 @@ function handler<TArgs = Record<string, unknown>, TResult = Record<string, unkno
 class MemoryDb {
   private sequence = 0;
   private readonly tables = new Map<string, Map<string, StoredDocument>>();
+  readonly queryCalls: Array<{ table: string; index: string | null; take: number | null }> = [];
 
   seed(table: string, id: string, document: Record<string, unknown>) {
     this.table(table).set(id, { _id: id, _creationTime: ++this.sequence, ...document });
@@ -82,11 +85,14 @@ class MemoryDb {
   query(tableName: string) {
     let matches = this.rows(tableName);
     let descending = false;
+    const call = { table: tableName, index: null as string | null, take: null as number | null };
+    this.queryCalls.push(call);
     const query = {
       withIndex: (
-        _name: string,
+        name: string,
         configure: (builder: { eq: (field: string, value: unknown) => unknown }) => unknown,
       ) => {
+        call.index = name;
         const equalities: Array<[string, unknown]> = [];
         const builder = {
           eq: (field: string, value: unknown) => {
@@ -113,6 +119,7 @@ class MemoryDb {
         return ordered[0] ?? null;
       },
       take: async (count: number) => {
+        call.take = count;
         const ordered = descending ? [...matches].reverse() : matches;
         return ordered.slice(0, count);
       },
@@ -266,6 +273,72 @@ function seedAttention(db: MemoryDb, teacherProfileId = TEACHER, targets = [prio
   });
 }
 
+const DANIELSON_GRAPH = buildDanielsonGraph().graph;
+const COMPONENT_BY_SKILL = new Map(DANIELSON_GRAPH.edges
+  .filter((edge) => edge.type === 'contains')
+  .map((edge) => [edge.targetId, edge.sourceId]));
+const ASSIGNED_GBF_SKILL_IDS = [...new Set(
+  GBF_MAPPING_RELEASE.mappings.map((mapping) => mapping.skillId),
+)];
+const UNSEQUENCED_GBF_SKILL_IDS = DANIELSON_GRAPH.nodes
+  .filter((node) => (
+    node.kind === 'skill'
+    && !ASSIGNED_GBF_SKILL_IDS.includes(node.id)
+  ))
+  .map((node) => node.id)
+  .sort();
+
+function primarySkillIds(trajectory: 'management' | 'rigor') {
+  return GBF_SEQUENCE_RELEASE.actionSteps
+    .filter((step) => step.status === 'required' && step.trajectory === trajectory)
+    .map((step) => GBF_MAPPING_RELEASE.mappings.find((mapping) => (
+      mapping.actionStepId === step.actionStepId && mapping.role === 'primary'
+    ))?.skillId)
+    .filter((skillId): skillId is string => skillId !== undefined);
+}
+
+function seedGbfAssignment(
+  db: MemoryDb,
+  input: { assignedAt?: number; requestId?: string; privateSentinel?: string } = {},
+) {
+  db.seed('teacher_gbf_assignments', `teacher_gbf_assignments:${input.requestId ?? 'one'}`, {
+    organizationId: ORG,
+    teacherProfileId: TEACHER,
+    sequenceReleaseId: 'danielson.gbf.sequence.2026-08-19.v1',
+    graphReleaseId: 'danielson.gbf.graph.2026-08-19.v1',
+    assignedSkillIds: ASSIGNED_GBF_SKILL_IDS,
+    unsequencedGapSkillIds: UNSEQUENCED_GBF_SKILL_IDS,
+    actorAccountId: LEADER,
+    requestId: input.requestId ?? 'request:gbf:one',
+    fingerprint: input.privateSentinel ?? 'fingerprint:gbf:one',
+    assignedAt: input.assignedAt ?? NOW,
+  });
+}
+
+function seedGbfProficiency(db: MemoryDb, skillId: string, rating: 1 | 2 | 3 | 4) {
+  const componentId = COMPONENT_BY_SKILL.get(skillId);
+  if (!componentId) throw new Error(`Missing component for ${skillId}`);
+  db.seed('teacher_proficiency', `teacher_proficiency:${skillId}`, {
+    organizationId: ORG,
+    teacherId: TEACHER,
+    skillId,
+    projection: {
+      skillId,
+      componentId,
+      rawRating: rating,
+      points: { 1: 70, 2: 80, 3: 90, 4: 100 }[rating],
+      passes: rating >= 3,
+      srsRating: rating === 1 ? 'Again' : rating === 2 ? 'Hard' : rating === 3 ? 'Good' : 'Easy',
+      idempotencyKey: `evidence:${skillId}`,
+      sourceRecordId: `observation:${skillId}`,
+      provenanceGroupId: `provenance:${skillId}`,
+      sourceType: 'walkthrough',
+      occurredAt: NOW_ISO,
+    },
+    updatedAt: NOW,
+  });
+}
+
 function seedSubmittedObservation(db: MemoryDb, input: {
   observationId?: string;
   teacherProfileId?: string;
@@ -325,6 +398,140 @@ function expectAllowed<T extends Record<string, unknown>>(result: T) {
 }
 
 describe('Danielson reporting Convex boundary', () => {
+  it('projects one compact GBF state from one organization assignment batch', async () => {
+    const db = new MemoryDb();
+    seedBase(db);
+    seedGbfAssignment(db);
+    const management = [...new Set(primarySkillIds('management'))];
+    const rigorFirst = primarySkillIds('rigor')[0];
+    expect(rigorFirst).toBeDefined();
+    seedAttention(db, TEACHER, [
+      ...management.map((skillId) => priority({
+        skillId,
+        componentId: COMPONENT_BY_SKILL.get(skillId),
+        rating: 3,
+      })),
+      ...(rigorFirst ? [priority({
+        skillId: rigorFirst,
+        componentId: COMPONENT_BY_SKILL.get(rigorFirst),
+        rating: 2,
+        due: true,
+        dueAt: NOW_ISO,
+      })] : []),
+    ]);
+
+    const result = expectAllowed(await handler(readLeadershipPortfolio)(db.context(), {
+      actorAccountId: LEADER,
+      now: NOW_ISO,
+      cursor: null,
+      pageSize: 25,
+    }));
+    const page = result.page as { items: Array<Record<string, unknown>> };
+    const teacher = page.items.find((row) => row.teacherProfileId === TEACHER);
+
+    expect(teacher).toMatchObject({
+      gbf: {
+        contractVersion: 'danielson.gbf-progress.v1',
+        state: 'in_progress',
+        managementPhaseId: 'complete',
+        rigorPhaseId: 'phase_1',
+      },
+    });
+    expect(Object.keys(teacher?.gbf as Record<string, unknown>).sort()).toEqual([
+      'contractVersion',
+      'managementPhaseId',
+      'rigorPhaseId',
+      'state',
+    ]);
+    expect(db.queryCalls.filter((call) => call.table === 'teacher_gbf_assignments'))
+      .toEqual([{
+        table: 'teacher_gbf_assignments',
+        index: 'by_org_time',
+        take: 251,
+      }]);
+  });
+
+  it('returns the same safe full GBF progress to the teacher and leadership', async () => {
+    const db = new MemoryDb();
+    seedBase(db);
+    seedGbfAssignment(db, { privateSentinel: 'PRIVATE-GBF-FINGERPRINT' });
+    for (const skillId of new Set(primarySkillIds('management'))) {
+      seedGbfProficiency(db, skillId, 3);
+    }
+    const rigorFirst = primarySkillIds('rigor')[0];
+    expect(rigorFirst).toBeDefined();
+    if (rigorFirst) seedGbfProficiency(db, rigorFirst, 2);
+
+    const teacherResult = expectAllowed(await handler(readMyTeacherReport)(db.context(), {
+      actorAccountId: TEACHER_ACCOUNT,
+      now: NOW_ISO,
+    }));
+    const leadershipResult = expectAllowed(await handler(readLeadershipTeacherReport)(
+      db.context(),
+      {
+        actorAccountId: LEADER,
+        teacherProfileId: TEACHER,
+        now: NOW_ISO,
+      },
+    ));
+    const teacherReport = teacherResult.report as Record<string, unknown>;
+    const leadershipReport = leadershipResult.report as Record<string, unknown>;
+    const gbf = teacherReport.gbf as Record<string, unknown>;
+
+    expect(leadershipReport.gbf).toEqual(gbf);
+    expect(gbf).toMatchObject({
+      contractVersion: 'danielson.gbf-progress.v1',
+      state: 'in_progress',
+      sequenceReleaseId: 'danielson.gbf.sequence.2026-08-19.v1',
+      graphReleaseId: 'danielson.gbf.graph.2026-08-19.v1',
+      assignedSkillIds: expect.arrayContaining(['danielson.tlac.skill.double-plan']),
+      unresolvedGapSkillIds: expect.arrayContaining([
+        'danielson.tlac.skill.knowledge-organizers',
+      ]),
+      trajectories: {
+        management: { currentPhaseId: 'complete' },
+        rigor: { currentPhaseId: 'phase_1' },
+      },
+    });
+    expect(JSON.stringify({ teacher: teacherReport.gbf, leadership: leadershipReport.gbf }))
+      .not.toMatch(/PRIVATE-GBF-FINGERPRINT|actorAccountId|requestId|fingerprint/);
+    expect(db.queryCalls.filter((call) => call.table === 'teacher_gbf_assignments'))
+      .toEqual([
+        { table: 'teacher_gbf_assignments', index: 'by_org_teacher_time', take: 101 },
+        { table: 'teacher_gbf_assignments', index: 'by_org_teacher_time', take: 101 },
+      ]);
+  });
+
+  it('maps assignment read overflow to existing report capacity results', async () => {
+    const portfolioDb = new MemoryDb();
+    seedBase(portfolioDb);
+    for (let index = 0; index < 251; index += 1) {
+      seedGbfAssignment(portfolioDb, {
+        assignedAt: NOW + index,
+        requestId: `request:portfolio-capacity:${index}`,
+      });
+    }
+    await expect(handler(readLeadershipPortfolio)(portfolioDb.context(), {
+      actorAccountId: LEADER,
+      now: NOW_ISO,
+      cursor: null,
+      pageSize: 25,
+    })).resolves.toEqual({ kind: 'portfolio_capacity_exceeded' });
+
+    const teacherDb = new MemoryDb();
+    seedBase(teacherDb);
+    for (let index = 0; index < 101; index += 1) {
+      seedGbfAssignment(teacherDb, {
+        assignedAt: NOW + index,
+        requestId: `request:teacher-capacity:${index}`,
+      });
+    }
+    await expect(handler(readMyTeacherReport)(teacherDb.context(), {
+      actorAccountId: TEACHER_ACCOUNT,
+      now: NOW_ISO,
+    })).resolves.toEqual({ kind: 'teacher_report_capacity_exceeded' });
+  });
+
   it('paginates 61 compact portfolio rows and makes no database write', async () => {
     const db = new MemoryDb();
     seedBase(db);
