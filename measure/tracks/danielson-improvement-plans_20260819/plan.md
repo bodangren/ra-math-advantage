@@ -30,24 +30,25 @@
 - [x] Task 1.6: Measure - User Manual Verification 'Phase 1: Contract and Schema Definition' (Protocol in workflow.md)
     - User directed full-track continuation on 2026-08-19.
 
-## Phase 2: Test
+## Phase 2: Test [checkpoint: 9f4b078, ce125841]
 
-- [ ] Task 2.1: Write source and schema Red tests
-    - [ ] Test every supplied form field, required value, date, target, and fixed text section
-    - [ ] Reject an unreviewed source change
-- [ ] Task 2.2: Write proposal and approval authorization Red tests
-    - [ ] Test HOD, coach, school-head, SLT, system-administrator, teacher, and cross-organization cases
-    - [ ] Prove that a proposal is inactive until SLT approval
-- [ ] Task 2.3: Write immutable version and acknowledgment Red tests
-    - [ ] Reject update or delete of an approved plan
-    - [ ] Test a new version and one teacher and supervisor acknowledgment
-- [ ] Task 2.4: Write cadence and progress Red tests
-    - [ ] Test seven-day active-target intervals and evidence due status
-    - [ ] Test rated evidence and no-evidence or comment non-interference
-- [ ] Task 2.5: Write closure and no-automated-discipline tests
-    - [ ] Test both closure outcomes, actor, time, note, and report projection
-    - [ ] Prove that no retention or disciplinary recommendation is produced
-- [ ] Task 2.6: Measure - User Manual Verification 'Phase 2: Test' (Protocol in workflow.md)
+- [x] Task 2.1: Write source and schema Red tests
+    - [x] Test every supplied form field, required value, date, target, and fixed text section
+    - [x] Reject an unreviewed source change
+- [x] Task 2.2: Write proposal and approval authorization Red tests
+    - [x] Test HOD, coach, school-head, SLT, system-administrator, teacher, and cross-organization cases
+    - [x] Prove that a proposal is inactive until SLT approval
+- [x] Task 2.3: Write immutable version and acknowledgment Red tests
+    - [x] Reject update or delete of an approved plan
+    - [x] Test a new version and one teacher and supervisor acknowledgment
+- [x] Task 2.4: Write cadence and progress Red tests
+    - [x] Test seven-day active-target intervals and evidence due status
+    - [x] Test rated evidence and no-evidence or comment non-interference
+- [x] Task 2.5: Write closure and no-automated-discipline tests
+    - [x] Test both closure outcomes, actor, time, note, and report projection
+    - [x] Prove that no retention or disciplinary recommendation is produced
+- [x] Task 2.6: Measure - User Manual Verification 'Phase 2: Test' (Protocol in workflow.md)
+    - User directed full-track continuation on 2026-08-19.
 
 ## Phase 3: Implement
 
