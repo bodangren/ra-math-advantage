@@ -1,4 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
+import { readFile } from 'node:fs/promises';
+import { resolve } from 'node:path';
 
 import type { LearningEvidenceV1 } from '@math-platform/practice-core/learning-evidence';
 
@@ -86,10 +88,10 @@ function makeEvidence(
 }
 
 async function loadLearningEvidenceHandlerFactory(): Promise<LearningEvidenceHandlerFactory> {
-  let module: Record<string, unknown>;
+  let loadedModule: Record<string, unknown>;
 
   try {
-    module = await vi.importActual<Record<string, unknown>>(LEARNING_EVIDENCE_MODULE);
+    loadedModule = await vi.importActual<Record<string, unknown>>(LEARNING_EVIDENCE_MODULE);
   } catch (error) {
     const detail = error instanceof Error ? ` ${error.message}` : '';
     throw new Error(
@@ -99,7 +101,7 @@ async function loadLearningEvidenceHandlerFactory(): Promise<LearningEvidenceHan
     );
   }
 
-  const factory = module.createPrecalculusLearningEvidenceHandler;
+  const factory = loadedModule.createPrecalculusLearningEvidenceHandler;
   if (typeof factory !== 'function') {
     throw new Error(
       'AP Precalculus learning-evidence boundary must export '
@@ -134,6 +136,16 @@ async function createHarness() {
 }
 
 describe('AP Precalculus Convex learning-evidence boundary', () => {
+  it('declares the exact return validator on the internal submit mutation', async () => {
+    const source = await readFile(
+      resolve(process.cwd(), 'convex/learning-evidence.ts'),
+      'utf8',
+    );
+
+    expect(source).toMatch(/export const submit = internalMutation\(\{[\s\S]*?returns: learningEvidenceResultValidator,[\s\S]*?handler:/);
+    expect(source).toMatch(/const learningEvidenceResultValidator = v\.object\(\{[\s\S]*?persisted: v\.boolean\(\),[\s\S]*?masteryApplied: v\.boolean\(\),[\s\S]*?decision: learningEvidenceDecisionValidator,[\s\S]*?kstApplied: v\.literal\(false\),[\s\S]*?\}\);/);
+  });
+
   it('persists teacher exposure once and treats a same-key replay as a replay', async () => {
     const { handler, masteryBridge, store } = await createHarness();
     const exposure = makeEvidence({

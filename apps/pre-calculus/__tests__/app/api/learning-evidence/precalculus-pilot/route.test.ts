@@ -53,10 +53,10 @@ function makeRequest(body: Record<string, unknown>): Request {
 }
 
 async function loadPrecalculusPilotRouteFactory(): Promise<PrecalculusPilotRouteFactory> {
-  let module: Record<string, unknown>;
+  let loadedModule: Record<string, unknown>;
 
   try {
-    module = await vi.importActual<Record<string, unknown>>(ROUTE_MODULE);
+    loadedModule = await vi.importActual<Record<string, unknown>>(ROUTE_MODULE);
   } catch (error) {
     const detail = error instanceof Error ? ` ${error.message}` : '';
     throw new Error(
@@ -66,7 +66,7 @@ async function loadPrecalculusPilotRouteFactory(): Promise<PrecalculusPilotRoute
     );
   }
 
-  const factory = module.createPrecalculusPilotRoute;
+  const factory = loadedModule.createPrecalculusPilotRoute;
   if (typeof factory !== 'function') {
     throw new Error(
       'AP Precalculus learning-evidence route must export '
@@ -81,7 +81,7 @@ async function createHarness() {
   const getServerSession = vi.fn(async (): Promise<ServerSession> => ({
     user: { id: SERVER_LEARNER_ID },
   }));
-  const submitLearningEvidence = vi.fn(async () => ({ accepted: true }));
+  const submitLearningEvidence = vi.fn(async (): Promise<unknown> => ({ accepted: true }));
   const factory = await loadPrecalculusPilotRouteFactory();
   const route = factory({ getServerSession, submitLearningEvidence });
 
@@ -127,5 +127,52 @@ describe('AP Precalculus learning-evidence route', () => {
     expect(submitLearningEvidence).not.toHaveBeenCalledWith(expect.objectContaining({
       learnerId: CLIENT_LEARNER_ID,
     }));
+  });
+
+  it.each([
+    ['a non-positive attempt ordinal', { attemptOrdinal: 0 }],
+    ['an invalid graded score pair', { gradedEvidence: { score: 2, maxScore: 1 } }],
+  ])('returns 400 for %s', async (_label, evidenceOverrides) => {
+    const { route, submitLearningEvidence } = await createHarness();
+
+    const response = await route.POST(makeRequest({
+      evidence: makeEvidence(evidenceOverrides as Partial<LearningEvidenceV1>),
+    }));
+
+    expect(response.status).toBe(400);
+    await expect(response.json()).resolves.toEqual({ error: 'Invalid learning evidence' });
+    expect(submitLearningEvidence).not.toHaveBeenCalled();
+  });
+
+  it('returns only the decision projection and never raw answer data', async () => {
+    const { route, submitLearningEvidence } = await createHarness();
+    submitLearningEvidence.mockResolvedValueOnce({
+      persisted: true,
+      masteryApplied: true,
+      decision: {
+        idempotency: 'new',
+        exposureState: 'introduced',
+        eligible: true,
+        reason: 'eligible',
+        masteryBearing: true,
+      },
+      evidence: { rawAnswer: 'do-not-return' },
+    });
+
+    const response = await route.POST(makeRequest({ evidence: makeEvidence() }));
+    const body = await response.json();
+
+    expect(body).toEqual({
+      persisted: true,
+      masteryApplied: true,
+      decision: {
+        idempotency: 'new',
+        exposureState: 'introduced',
+        eligible: true,
+        reason: 'eligible',
+        masteryBearing: true,
+      },
+    });
+    expect(JSON.stringify(body)).not.toContain('do-not-return');
   });
 });
