@@ -48,24 +48,25 @@
 - [x] Task 2.6: Measure - User Manual Verification 'Phase 2: Test' (Protocol in workflow.md)
     - User directed full-track continuation on 2026-08-19.
 
-## Phase 3: Implement
+## Phase 3: Implement [checkpoint: 1b3fd51]
 
-- [ ] Task 3.1: Implement bounded portfolio queries and presentation
-    - [ ] Batch and group source data without one query per teacher
-    - [ ] Render compact rows, attention reasons, filters, and pagination
-- [ ] Task 3.2: Implement teacher drill-down reports
-    - [ ] Render official ratings, current proficiency, history, amendments, and due evidence
-    - [ ] Preserve each below-standard component
-- [ ] Task 3.3: Implement public and private comments
-    - [ ] Persist separate record types
-    - [ ] Enforce role scope and self-subject exclusion before returning data
-- [ ] Task 3.4: Implement teacher reports and one response
-    - [ ] Render only teacher-visible fields
-    - [ ] Enforce one final response and no replies
-- [ ] Task 3.5: Implement IP and GBF projection seams
-    - [ ] Render neutral states before Tracks 5 and 6 publish projections
-    - [ ] Keep missing source data out of attention reasons
-- [ ] Task 3.6: Measure - User Manual Verification 'Phase 3: Implement' (Protocol in workflow.md)
+- [x] Task 3.1: Implement bounded portfolio queries and presentation — `e1ea479b`, `2ce973bb`, `1b3fd519`
+    - [x] Batch and group source data without one query per teacher
+    - [x] Render compact rows, attention reasons, scope filters, and pagination
+- [x] Task 3.2: Implement teacher drill-down reports — `e1ea479b`, `2ce973bb`, `1b3fd519`
+    - [x] Render official ratings, current proficiency, history, amendments, and due evidence
+    - [x] Preserve each below-standard component
+- [x] Task 3.3: Implement public and private comments — `2ce973bb`, `1b3fd519`
+    - [x] Persist separate record types
+    - [x] Enforce role scope and self-subject exclusion before returning data
+- [x] Task 3.4: Implement teacher reports and one response — `2ce973bb`, `1b3fd519`
+    - [x] Render only teacher-visible fields
+    - [x] Enforce one final response and no replies
+- [x] Task 3.5: Implement IP and GBF projection seams — `e1ea479b`, `2ce973bb`, `1b3fd519`
+    - [x] Render neutral states before Tracks 5 and 6 publish projections
+    - [x] Keep missing source data out of attention reasons
+- [x] Task 3.6: Measure - User Manual Verification 'Phase 3: Implement' (Protocol in workflow.md)
+    - User directed full-track continuation on 2026-08-19.
 
 ## Phase 4: Generate Docs and Doctor
 
