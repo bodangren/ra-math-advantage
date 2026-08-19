@@ -184,6 +184,30 @@ describe('PIP request boundary', () => {
 });
 
 describe('PIP interface', () => {
+  it('does not show supervisor actions on the viewer own proposed plan', () => {
+    const fixture = closedPlanView();
+    const plan: PlanView = {
+      ...fixture.plan,
+      state: 'proposed',
+      activeVersion: null,
+      pendingVersion: planVersion(3, 'Pending self proposal.'),
+      closedAt: null,
+      closureOutcome: null,
+      closureNote: null,
+    };
+
+    render(<ImprovementPlanView
+      plan={plan}
+      progress={{ contractVersion: 'danielson.ip-progress.v1', state: 'not_configured' }}
+      viewer={{ isSubjectTeacher: true, isFrozenSupervisor: false }}
+      roles={['teacher', 'slt']}
+    />);
+
+    expect(screen.queryByRole('link', { name: /revised proposal/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /approve/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /close/i })).not.toBeInTheDocument();
+  });
+
   it('shows every editable form section, fixed text, values, and a structured target', () => {
     render(<ImprovementPlanProposalForm
       teacherProfileId="teacher_profiles:one"

@@ -67,6 +67,7 @@ afterEach(() => {
 describe('GBF release and source validation', () => {
   it('keeps an assigned v1 projection after v2 becomes the current release', async () => {
     const historicAssignment = assignment();
+    const baseline = projectGbfProgress({ assignment: historicAssignment, priorities: [] });
     vi.resetModules();
     vi.doMock('../../lib/gbf/source', async (importOriginal) => {
       const actual = await importOriginal() as typeof import('../../lib/gbf/source');
@@ -75,6 +76,13 @@ describe('GBF release and source validation', () => {
         GBF_SEQUENCE_RELEASE: {
           ...actual.GBF_SEQUENCE_RELEASE,
           releaseId: V2_SEQUENCE_RELEASE,
+          actionSteps: actual.GBF_SEQUENCE_RELEASE.actionSteps.slice(1),
+        },
+        GBF_MAPPING_RELEASE: {
+          ...actual.GBF_MAPPING_RELEASE,
+          releaseId: 'danielson.gbf.mapping.2026-09-01.v2',
+          sequenceReleaseId: V2_SEQUENCE_RELEASE,
+          mappings: actual.GBF_MAPPING_RELEASE.mappings.slice(1),
         },
       };
     });
@@ -93,10 +101,7 @@ describe('GBF release and source validation', () => {
     const { projectGbfProgress: projectWithV2Current } = await import('../../lib/gbf/progress');
     expect(() => projectWithV2Current({ assignment: historicAssignment, priorities: [] })).not.toThrow();
     expect(projectWithV2Current({ assignment: historicAssignment, priorities: [] }))
-      .toMatchObject({
-        sequenceReleaseId: V1_SEQUENCE_RELEASE,
-        graphReleaseId: V1_GRAPH_RELEASE,
-      });
+      .toEqual(baseline);
   });
 
   it('rejects changed release links, phase fields, action fields, and action order', () => {
@@ -208,6 +213,16 @@ describe('GBF release and source validation', () => {
 });
 
 describe('GBF graph behavior', () => {
+  it('rejects a missing candidate and a changed candidate rationale', () => {
+    const missing = structuredClone(GBF_GRAPH_RELEASE);
+    missing.edgeCandidates.pop();
+    expect(validateGbfGraphRelease(missing)).toMatchObject({ valid: false });
+
+    const changed = structuredClone(GBF_GRAPH_RELEASE);
+    changed.edgeCandidates[0].rationale = 'Changed without a new release.';
+    expect(validateGbfGraphRelease(changed)).toMatchObject({ valid: false });
+  });
+
   it('rejects graph release links that no longer refer to frozen source and mapping releases', () => {
     const wrongSequence = structuredClone(GBF_GRAPH_RELEASE);
     wrongSequence.sequenceReleaseId = 'danielson.gbf.sequence.other';

@@ -182,6 +182,44 @@ describe('PIP source and proposal contract', () => {
 });
 
 describe('PIP cadence and progress', () => {
+  it('uses the Track 2 tie-break order for evidence at the same time', () => {
+    const evidence = [
+      {
+        skillId: SKILL_ID,
+        kind: 'rated' as const,
+        rating: 1 as const,
+        occurredAt: APPROVED_AT + 1,
+        sourceRecordId: 'observation:a',
+        evidenceIdempotencyKey: 'evidence:a',
+      },
+      {
+        skillId: SKILL_ID,
+        kind: 'rated' as const,
+        rating: 4 as const,
+        occurredAt: APPROVED_AT + 1,
+        sourceRecordId: 'observation:b',
+        evidenceIdempotencyKey: 'evidence:b',
+      },
+    ];
+    const project = (events: typeof evidence) => projectImprovementPlanProgress({
+      planId: 'improvement_plans:one',
+      version: 1,
+      approvedAt: APPROVED_AT,
+      planEndAt: END_AT,
+      reviewMeetingAt: REVIEW_AT,
+      now: APPROVED_AT + 2,
+      targets: [{ componentId: COMPONENT_ID, skillId: SKILL_ID, expectedRating: 3 }],
+      evidence: events,
+    });
+
+    expect(project(evidence).targets[0]).toMatchObject({
+      currentRating: 4,
+      sourceRecordId: 'observation:b',
+      evidenceIdempotencyKey: 'evidence:b',
+    });
+    expect(project([...evidence].reverse())).toEqual(project(evidence));
+  });
+
   it('adds high priority and a seven-day first evidence interval without changing SRS data', () => {
     const priority = basePriority();
     const snapshot = structuredClone(priority);

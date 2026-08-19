@@ -125,8 +125,40 @@ describe('GBF report interface', () => {
     render(<LeadershipPortfolioTable rows={[row]} nextHref={null} />);
 
     expect(screen.getByRole('columnheader', { name: 'Get Better Faster (GBF)' })).toBeVisible();
+    expect(screen.getByRole('columnheader', { name: 'Performance Improvement Plan' })).toBeVisible();
     expect(screen.getByText('Due skills: 2')).toBeVisible();
     expect(screen.getByText('Unresolved gaps: 2')).toBeVisible();
+    expect(screen.getByText('Management phase: Phase 2')).toBeVisible();
+    expect(screen.getByText('Rigor phase: Phase 1')).toBeVisible();
+  });
+
+  it('does not offer a new improvement plan while one is open', () => {
+    const activeRow = {
+      ...row,
+      improvementPlan: {
+        contractVersion: 'danielson.ip-progress.v1' as const,
+        state: 'active' as const,
+        planId: 'improvement_plans:one',
+        trackState: 'on_track' as const,
+        daysRemaining: 20,
+      },
+    };
+    render(<LeadershipPortfolioTable rows={[activeRow]} nextHref={null} />);
+
+    expect(screen.queryByRole('link', { name: 'Start improvement plan' }))
+      .not.toBeInTheDocument();
+  });
+
+  it('does not offer a duplicate same-release assignment for a configured report', () => {
+    render(<TeacherReportView
+      report={report}
+      canComment={false}
+      canRespond={false}
+      canAssignGbf
+    />);
+
+    expect(screen.queryByRole('button', { name: 'Assign Get Better Faster' }))
+      .not.toBeInTheDocument();
   });
 
   it('submits an assignment from the existing teacher report without a standalone page', async () => {

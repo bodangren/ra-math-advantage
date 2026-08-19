@@ -528,6 +528,21 @@ describe('GBF assignment authorization and persistence', () => {
     expect(db.rows('teacher_gbf_assignments')).toHaveLength(1);
   });
 
+  it('repairs a missing current pointer during an equal retry', async () => {
+    const db = new MemoryDb();
+    seedBase(db, 'school_head');
+    const assign = handler(assignTeacherGbfTrack);
+    const first = await assign(db.context(), assignmentArgs());
+    await db.patch(TEACHER, { currentGbfAssignmentId: undefined });
+
+    await expect(assign(db.context(), assignmentArgs({ now: NOW + 1 }))).resolves.toMatchObject({
+      kind: 'replayed',
+      assignmentId: (first as { assignmentId: string }).assignmentId,
+    });
+    expect(db.rows('teacher_profiles').find((row) => row._id === TEACHER))
+      .toMatchObject({ currentGbfAssignmentId: (first as { assignmentId: string }).assignmentId });
+  });
+
   it('scopes idempotency to the authenticated actor and replays before mutable target checks', async () => {
     const db = new MemoryDb();
     seedBase(db, 'school_head');
@@ -585,9 +600,49 @@ describe('GBF assignment authorization and persistence', () => {
     expect(current.assignment).not.toHaveProperty('actorAccountId');
     expect(current.assignment).not.toHaveProperty('organizationId');
   });
+
+  it('does not replace a newer current assignment with an older event', async () => {
+    const db = new MemoryDb();
+    seedBase(db, 'slt');
+    const assign = handler(assignTeacherGbfTrack);
+    const newer = await assign(db.context(), assignmentArgs({
+      requestId: 'request:newer',
+      now: NOW + 10,
+    }));
+    await assign(db.context(), assignmentArgs({
+      requestId: 'request:older',
+      now: NOW,
+    }));
+
+    expect(db.rows('teacher_profiles').find((row) => row._id === TEACHER))
+      .toMatchObject({ currentGbfAssignmentId: (newer as { assignmentId: string }).assignmentId });
+  });
 });
 
 describe('GBF assignment read bounds', () => {
+  it('uses a legacy assignment when the active teacher pointer is absent', async () => {
+    const db = new MemoryDb();
+    db.seed('teacher_gbf_assignments', 'teacher_gbf_assignments:legacy', assignmentRow({
+      teacherProfileId: TEACHER,
+      requestId: 'request:legacy',
+      assignedAt: NOW,
+    }));
+    db.seed('teacher_profiles', TEACHER, {
+      organizationId: ORG,
+      accountId: 'accounts:teacher',
+      isActive: true,
+      createdAt: NOW,
+      updatedAt: NOW,
+    });
+
+    const result = await readOrganizationCurrentGbfAssignments(db.context(), ORG);
+
+    expect(result).toMatchObject({ kind: 'allowed' });
+    if (result.kind !== 'allowed') throw new Error('Expected legacy assignment fallback');
+    expect(result.assignmentsByTeacher.get(TEACHER))
+      .toMatchObject({ assignmentId: 'teacher_gbf_assignments:legacy' });
+  });
+
   it('returns explicit empty states without an assignment', async () => {
     const db = new MemoryDb();
 

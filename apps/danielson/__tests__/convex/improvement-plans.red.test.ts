@@ -525,6 +525,14 @@ const SCORING_TABLES = [
 ];
 
 describe('PIP persistence and authorization', () => {
+  it('does not require the client-owned position in the proposal mutation contract', () => {
+    const args = JSON.parse(
+      (createImprovementPlanProposal as unknown as { exportArgs(): string }).exportArgs(),
+    ) as { value: Record<string, unknown> };
+
+    expect(args.value).not.toHaveProperty('position');
+  });
+
   it('returns one scoped proposal workspace with approved target options', async () => {
     const db = new MemoryDb();
     seedBase(db);
@@ -1648,6 +1656,20 @@ describe('PIP final independent-review regressions', () => {
       now: NOW,
     })).resolves.toMatchObject({ kind: 'allowed', page: { page: expect.any(Array) } });
     expect(db.queryCount('improvement_plan_events')).toBe(0);
+    expect(db.queryCount('improvement_plans')).toBe(1);
+  });
+
+  it('returns a named capacity result before it can truncate the organization plan list', async () => {
+    const db = new MemoryDb();
+    seedBase(db);
+    for (let index = 0; index < 251; index += 1) seedPlan(db, `capacity-${index}`);
+
+    await expect(handler(listScopedImprovementPlans)(db.context(), {
+      actorAccountId: PROPOSER,
+      paginationOpts: { cursor: null, numItems: 25 },
+      now: NOW,
+    })).resolves.toEqual({ kind: 'capacity_exceeded' });
+    expect(db.queryCount('improvement_plans')).toBe(1);
   });
 
   it('paginates lifecycle detail without an unbounded history read', async () => {
