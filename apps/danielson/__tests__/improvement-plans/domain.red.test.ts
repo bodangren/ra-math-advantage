@@ -164,11 +164,7 @@ describe('PIP cadence and progress', () => {
       overdueDays: 0,
       approvedPriorityInputs: expect.arrayContaining(['approved_plan_priority']),
     });
-    expect(rankPriorityTargets([{
-      ...result,
-      currentProficiency: { rawRating: 3, points: 90, passes: true },
-      evidenceGaps: [],
-    }])).toMatchObject([{
+    expect(rankPriorityTargets([result])).toMatchObject([{
       skillId: SKILL_ID,
       reason: 'approved_plan_priority',
     }]);

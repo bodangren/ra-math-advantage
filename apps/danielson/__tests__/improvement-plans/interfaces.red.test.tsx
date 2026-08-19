@@ -142,6 +142,23 @@ describe('PIP interface', () => {
     await waitFor(() => expect(fetch).toHaveBeenCalledOnce());
   });
 
+  it('reuses the acknowledgment request ID after an unknown response', async () => {
+    vi.stubGlobal('fetch', vi.fn()
+      .mockRejectedValueOnce(new Error('The response was lost.'))
+      .mockResolvedValueOnce({ ok: true, json: async () => ({}) }));
+    render(<ImprovementPlanAcknowledgmentForm
+      planId="improvement_plans:retry"
+      versionId="improvement_plan_versions:retry"
+    />);
+    fireEvent.click(screen.getByLabelText('I confirm that I reviewed this plan.'));
+    fireEvent.click(screen.getByRole('button', { name: 'Acknowledge plan' }));
+    expect(await screen.findByRole('alert')).toHaveTextContent('The acknowledgment was not saved.');
+    fireEvent.click(screen.getByRole('button', { name: 'Acknowledge plan' }));
+    await waitFor(() => expect(fetch).toHaveBeenCalledTimes(2));
+    const bodies = vi.mocked(fetch).mock.calls.map(([, init]) => JSON.parse(String(init?.body)));
+    expect(bodies[0].requestId).toBe(bodies[1].requestId);
+  });
+
   it('requires explicit confirmation for approval and closure', () => {
     render(<ImprovementPlanDecisionForms
       planId="improvement_plans:one"

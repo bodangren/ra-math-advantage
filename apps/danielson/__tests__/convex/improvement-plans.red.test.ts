@@ -617,6 +617,51 @@ describe('PIP approval, versions, acknowledgment, and closure', () => {
         },
       },
     });
+    const frozenProjection = await handler(readImprovementPlanReportProjection)(db.context(), {
+      actorAccountId: PROPOSER,
+      teacherProfileId: TEACHER,
+      now: NOW + 31 * DAY_MS,
+    });
+    db.seed('teacher_observation_outcomes', 'teacher_observation_outcomes:late-correction', {
+      organizationId: ORG,
+      teacherId: TEACHER,
+      idempotencyKey: 'late-correction',
+      occurredAt: NOW + DAY_MS,
+      createdAt: NOW + 32 * DAY_MS,
+      outcome: {
+        kind: 'rated',
+        organizationId: ORG,
+        teacherId: TEACHER,
+        sourceRecordId: 'observation_records:corrected',
+        sourceType: 'walkthrough',
+        componentId: 'danielson.framework.component.1e',
+        targetSkillIds: ['danielson.tlac.skill.double-plan'],
+        observerId: PROPOSER,
+        occurredAt: new Date(NOW + DAY_MS).toISOString(),
+        sourceVersion: '1',
+        provenanceGroupId: 'correction',
+        idempotencyKey: 'late-correction',
+        rating: 4,
+        targetEvidence: [{
+          skillId: 'danielson.tlac.skill.double-plan',
+          componentId: 'danielson.framework.component.1e',
+          rawRating: 4,
+          points: 100,
+          passes: true,
+          srsRating: 'Easy',
+          idempotencyKey: 'late-correction',
+          sourceRecordId: 'observation_records:corrected',
+          provenanceGroupId: 'correction',
+          sourceType: 'walkthrough',
+          occurredAt: new Date(NOW + DAY_MS).toISOString(),
+        }],
+      },
+    });
+    await expect(handler(readImprovementPlanReportProjection)(db.context(), {
+      actorAccountId: PROPOSER,
+      teacherProfileId: TEACHER,
+      now: NOW + 33 * DAY_MS,
+    })).resolves.toEqual(frozenProjection);
   });
 
   it('paginates scoped plans and returns approved content only to the subject teacher', async () => {
