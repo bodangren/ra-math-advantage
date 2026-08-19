@@ -133,7 +133,14 @@ export function TeacherReportView({
                 <p>Amendments: {record.amendmentCount}</p>
                 <ul>{record.items.map((item) => (
                   <li key={item.itemId}>
-                    <code>{item.skillId ?? item.componentId}</code>: {outcomeLabel(item.outcome)}
+                    {item.skillId ? (
+                      <>
+                        <code>{item.skillId}</code>
+                        {' · '}
+                        <span>Parent component: {item.componentId}</span>
+                      </>
+                    ) : <code>{item.componentId}</code>}
+                    : {outcomeLabel(item.outcome)}
                     {item.evidenceNote ? ` · ${item.evidenceNote}` : ''}
                   </li>
                 ))}</ul>
