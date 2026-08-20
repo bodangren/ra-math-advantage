@@ -8,7 +8,8 @@ tests before implementation. Commit each task. Attach the required Git note.
 Update this plan in the required follow-up commit.
 
 Phase 1 contract and baseline artifacts are in commit `d20b6e88`. Dependency
-installation remains pending explicit owner approval.
+installation and the initial cutover are in commit `6dd1f551` after explicit
+owner approval.
 Phase 2 test artifacts and expected Red evidence are in commit `6a7f275b`.
 
 Start implementation in the main worktree at one recorded commit, as directed
@@ -277,26 +278,15 @@ because its source backlog is outside this track.
 
 ## Phase 3: Implement
 
-- [~] Task: Obtain dependency approval and add compatibility dependencies
-  - Approval is pending for one root dependency operation.
-  - Proposed additions: `oxlint-plugin-eslint@1.79.0`, `eslint-plugin-react@7.37.5`, and `eslint-plugin-react-hooks@7.1.1` as root development dependencies.
-  - Proposed removals: direct `eslint`, `@eslint/js`, `@eslint/eslintrc`, `eslint-config-next`, and `typescript-eslint` declarations from the root, six apps, and applicable packages, plus the root ESLint override. The lockfile will be updated once after these manifest edits.
-  - [ ] Present the exact root dependency additions and removals to the user.
-  - [ ] Obtain explicit approval before the first `npm install`, `npm uninstall`, or lockfile command.
-  - [ ] Stop if approval is not explicit.
-  - [ ] Add `oxlint-plugin-eslint` as a root development dependency.
-  - [ ] Add `eslint-plugin-react` as a root development dependency.
-  - [ ] Add `eslint-plugin-react-hooks` as a root development dependency.
-  - [ ] Use the versions and semver policy recorded in Phase 1.
-  - [ ] Keep `oxlint` and `@oxlint/plugins` on compatible versions.
-  - [ ] Do not add `@oxlint/migrate` as a permanent dependency.
-  - [ ] Do not add `oxlint-tsgolint`.
-  - [ ] Do not perform an unrelated dependency upgrade.
-  - [ ] Run `npm ls --workspaces --depth=0`.
-  - [ ] Stop if npm reports an invalid or missing peer dependency.
-  - [ ] Run `npm explain eslint` and save the peer path in `baseline.md` when ESLint remains.
+- [x] Task: Obtain dependency approval and add compatibility dependencies (commit `6dd1f551`)
+  - Owner approval was explicit before the dependency operation.
+  - Added `oxlint-plugin-eslint@1.79.0`, `eslint-plugin-react@7.37.5`, and `eslint-plugin-react-hooks@7.1.1` as root development dependencies.
+  - Removed direct ESLint declarations and the root ESLint override.
+  - Kept ESLint only as an automatic peer path required by the approved compatibility plugins.
+  - Ran `npm ls --workspaces --depth=0` successfully.
+  - Ran `npm explain eslint`; the remaining path is peer-only.
 
-- [ ] Task: Separate the standard and anti-slop configurations
+- [x] Task: Separate the standard and anti-slop configurations (commit `6dd1f551`)
   - [ ] Create `.oxlintrc.json` with no anti-slop plugin or rule.
   - [ ] Rename or move `oxlint.config.ts` to `oxlint.anti-slop.config.ts`.
   - [ ] Keep the local anti-slop plugin path correct after the move.
@@ -308,7 +298,7 @@ because its source backlog is outside this track.
   - [ ] Run the controlled anti-slop fixture.
   - [ ] Record the expected repository-wide nonzero anti-slop result as non-blocking.
 
-- [ ] Task: Implement the standard Oxlint policy profiles
+- [x] Task: Implement the standard Oxlint policy profiles (commit `6dd1f551`)
   - [ ] Disable default category rules that are absent from `legacy-policy.json`.
   - [ ] Enable the native `typescript`, `react`, `import`, `jsx-a11y`, and `nextjs` plugins explicitly.
   - [ ] Set React version 19.
@@ -344,7 +334,7 @@ because its source backlog is outside this track.
   - [ ] Do not modify source to force parity.
   - [ ] Keep the temporary adapter until script cutover verification is complete.
 
-- [ ] Task: Switch all 26 workspace lint scripts
+- [x] Task: Switch all 26 workspace lint scripts (commit `6dd1f551`)
   - [ ] Change the six application scripts to `oxlint --config ../../.oxlintrc.json . --max-warnings 0`.
   - [ ] Change the 20 package scripts to `oxlint --config ../../.oxlintrc.json src --max-warnings 0`.
   - [ ] Remove the four shared ESLint `--config` arguments.
@@ -368,7 +358,7 @@ because its source backlog is outside this track.
   - [ ] Stop and use the peer-review protocol if `measure/automation-supervisor.py` must change.
   - [ ] Do not rewrite historical records that correctly say ESLint was used at that time.
 
-- [ ] Task: Remove ESLint configurations and direct dependencies
+- [x] Task: Remove ESLint configurations and direct dependencies (commit `6dd1f551`)
   - [ ] Delete the six application `eslint.config.mjs` files listed in the specification.
   - [ ] Delete the 16 package `eslint.config.mjs` files listed in the specification.
   - [ ] Delete `scripts/architecture/eslint.package.config.mjs`.
