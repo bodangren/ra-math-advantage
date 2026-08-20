@@ -119,6 +119,14 @@ CI runs lint, test, and typecheck for all 20 packages. App jobs remain separate,
 while the boundary job blocks drift between the manifest, root commands, and
 the CI matrix.
 
+## Static Analysis
+
+The repository also uses Oxlint 1.79.0 with the vendored `anti-slop` plugin.
+Run `npm run lint:oxlint` to apply the 15 generic anti-slop rules. The rules
+reject low-evidence TypeScript and JavaScript patterns. The generic plugin is
+enabled without the optional Effect rule group because no workspace declares a
+direct `effect` dependency.
+
 ## Environment Variables
 
 ```env

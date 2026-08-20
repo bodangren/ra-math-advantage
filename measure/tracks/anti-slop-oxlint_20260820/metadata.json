@@ -1,0 +1,11 @@
+{
+  "track_id": "anti-slop-oxlint_20260820",
+  "type": "chore",
+  "status": "complete",
+  "created_at": "2026-08-20T00:00:00Z",
+  "updated_at": "2026-08-20T00:00:00Z",
+  "description": "Install dmmulroy/anti-slop and configure the generic Oxlint rules in the monorepo.",
+  "estimated_tasks": 4,
+  "actual_tasks": 4,
+  "deviation_notes": "The existing workspace lint commands remain ESLint-based. Oxlint is exposed through a separate root command."
+}

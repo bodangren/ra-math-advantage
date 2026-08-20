@@ -95,6 +95,11 @@ Dependency order:
    *Use the supplied GBF scope and sequence to define parallel Management and Rigor paths. Record direct and inferred TLAC 3.0 mappings. Activate only reviewed support and prerequisite edges.*
    *Link: [./tracks/danielson-gbf-sequencing_20260819/](./tracks/danielson-gbf-sequencing_20260819/)*
 
+
+- [~] **Track: Anti-Slop Oxlint Integration**
+   *Install `dmmulroy/anti-slop` and configure its 15 generic Oxlint rules in the monorepo while preserving the existing ESLint workspace commands.*
+   *Link: [./tracks/anti-slop-oxlint_20260820/](./tracks/anti-slop-oxlint_20260820/)*
+
 ### Teacher-Led Mastery Advantage Progression
 
 - [~] **Track: Teacher-Led First Exposure and Mastery Advantage Pilots**

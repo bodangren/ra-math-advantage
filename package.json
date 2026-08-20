@@ -6,6 +6,7 @@
   ],
   "scripts": {
     "lint": "node scripts/architecture/run-workspace-quality.mjs --kind package --capability lint",
+    "lint:oxlint": "oxlint --config oxlint.config.ts .",
     "build": "node scripts/architecture/run-workspace-quality.mjs --kind package --capability build",
     "test": "node scripts/architecture/run-workspace-quality.mjs --kind package --capability test",
     "typecheck": "node scripts/architecture/run-workspace-quality.mjs --kind package --capability typecheck",
@@ -41,9 +42,11 @@
   },
   "devDependencies": {
     "@eslint/js": "^10",
+    "@oxlint/plugins": "^1.79.0",
     "@vitejs/plugin-react": "^6.0.0",
     "@vitest/coverage-v8": "^4.1.8",
     "next": "^16.0.0",
+    "oxlint": "^1.79.0",
     "react-server-dom-webpack": "^19.2.7",
     "typescript": "^6",
     "vinext": "^0.0.55"
