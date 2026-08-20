@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -118,9 +117,9 @@ export default function RegisterPage() {
 
         <p className="text-center text-muted-text text-sm mt-6">
           Already have an account?{" "}
-          <Link href="/auth/login" className="text-accent hover:text-accent-light transition-colors">
+          <a href="/auth/login" className="text-accent hover:text-accent-light transition-colors">
             Sign in
-          </Link>
+          </a>
         </p>
       </div>
     </div>
