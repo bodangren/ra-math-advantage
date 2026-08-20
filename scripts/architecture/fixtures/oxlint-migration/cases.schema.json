@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ra-math-advantage.local/oxlint-migration/cases.schema.json",
+  "title": "ESLint to Oxlint behavior cases",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "schemaVersion", "cases"],
+  "properties": {
+    "$schema": { "const": "./cases.schema.json" },
+    "schemaVersion": { "const": 1 },
+    "cases": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/case" }
+    }
+  },
+  "$defs": {
+    "case": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "policyId",
+        "profile",
+        "legacyRule",
+        "targetRule",
+        "severity",
+        "provider",
+        "purpose",
+        "relativePath",
+        "source",
+        "expectedDiagnostic",
+        "expectedLine"
+      ],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "policyId": { "type": "string", "minLength": 1 },
+        "profile": {
+          "enum": [
+            "app-production",
+            "app-test",
+            "im3-test",
+            "package-production",
+            "package-shared-production",
+            "package-test",
+            "lesson-renderer-test",
+            "math-content-production",
+            "math-content-test"
+          ]
+        },
+        "legacyRule": { "type": "string", "minLength": 1 },
+        "targetRule": {
+          "anyOf": [{ "type": "string", "minLength": 1 }, { "type": "null" }]
+        },
+        "severity": { "enum": ["off", "warning", "error"] },
+        "provider": {
+          "enum": ["native", "eslint-js", "react-js", "react-hooks-js", "none"]
+        },
+        "purpose": { "enum": ["violation", "valid", "ignore", "suppression"] },
+        "relativePath": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$)).+"
+        },
+        "source": { "type": "string", "minLength": 1 },
+        "expectedDiagnostic": { "type": "boolean" },
+        "expectedLine": {
+          "anyOf": [{ "type": "integer", "minimum": 1 }, { "type": "null" }]
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "expectedDiagnostic": { "const": true } } },
+          "then": {
+            "properties": {
+              "expectedLine": { "type": "integer", "minimum": 1 }
+            }
+          },
+          "else": {
+            "properties": { "expectedLine": { "const": null } }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -121,11 +121,22 @@ the CI matrix.
 
 ## Static Analysis
 
-The repository also uses Oxlint 1.79.0 with the vendored `anti-slop` plugin.
-Run `npm run lint:oxlint` to apply the 15 generic anti-slop rules. The rules
-reject low-evidence TypeScript and JavaScript patterns. The generic plugin is
-enabled without the optional Effect rule group because no workspace declares a
-direct `effect` dependency.
+The repository uses Oxlint 1.79.0 as the standard lint engine. The root
+`.oxlintrc.json` file defines the ESLint-compatible policy for six apps and 20
+packages. The policy keeps native Oxlint rules where behavior matches and uses
+JavaScript plugins only where the migration contract requires them.
+
+The compatibility plugins are temporary adapters for verified rule gaps. The
+track does not add type-aware Oxlint or `oxlint-tsgolint`. TypeScript uses the
+separate blocking `tsc --noEmit` gate. A root ESLint package can remain only as
+a peer resolution required by an approved compatibility plugin. It cannot be a
+root dependency or override, and no command can execute its binary or API.
+
+Run `npm run lint` for the governed workspace lint gate. Run
+`npm run lint:anti-slop` for the separate generic anti-slop gate. The
+anti-slop configuration is `oxlint.anti-slop.config.ts` and contains 15
+generic rules. The generic plugin is enabled without the optional Effect rule
+group because no workspace declares a direct `effect` dependency.
 
 ## Environment Variables
 

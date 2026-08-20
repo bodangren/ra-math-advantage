@@ -7,11 +7,12 @@ Complete the phases and tasks in order. Follow the task and phase protocols in
 tests before implementation. Commit each task. Attach the required Git note.
 Update this plan in the required follow-up commit.
 
-Start implementation in a clean or isolated worktree at one recorded commit.
-The worktree at track creation contains unrelated changes in migration targets.
-These targets include `measure/tracks.md`, `package-lock.json`, generated
-architecture data, and several workspace manifests. Do not use this dirty state
-as parity evidence.
+Start implementation in the main worktree at one recorded commit, as directed
+by the repository owner. The worktree at track creation contains unrelated
+changes in migration targets. These targets include `measure/tracks.md`,
+`package-lock.json`, generated architecture data, and several workspace
+manifests. Do not use this dirty state as clean parity evidence. Preserve
+unrelated edits and stage exact paths or hunks.
 
 Before each edit, run `git diff -- <target>`. Stop when an unrelated change
 overlaps the required hunk and cannot be preserved. Stage exact paths or exact
@@ -27,8 +28,8 @@ because its source backlog is outside this track.
 
 ## Phase 1: Contract & Schema Definition
 
-- [ ] Task: Complete the clean-worktree and runtime preflight
-  - [ ] Create an isolated worktree or start from a worktree with no unrelated changes.
+- [x] Task: Complete the main-worktree and runtime preflight (commit `45c95cec`)
+  - [x] Use the main worktree and preserve unrelated live-agent changes, per owner direction.
   - [ ] Run `git status --short`.
   - [ ] Record the migration start commit with `git rev-parse HEAD` in `baseline.md`.
   - [ ] Run `node --version` and record the result.
@@ -41,7 +42,7 @@ because its source backlog is outside this track.
   - [ ] Record all pre-existing Red quality gates separately from the migration.
   - [ ] Stop if the worktree state cannot identify migration changes against one commit.
 
-- [ ] Task: Capture the pre-migration command and result baseline
+- [x] Task: Capture the pre-migration command and result baseline (dirty-worktree diagnostics recorded; pre-existing failures are listed)
   - [ ] Create `measure/tracks/eslint-to-oxlint-migration_20260820/baseline.md`.
   - [ ] Record the 6 application and 20 package workspace names from `scripts/architecture/architecture.manifest.json`.
   - [ ] Confirm that `packages/_template` is not one of the 26 governed workspaces.
@@ -78,7 +79,7 @@ because its source backlog is outside this track.
   - [ ] Stop if an unexplained ESLint failure prevents a valid baseline.
   - [ ] Do not add a hash, checksum, or source-tree manifest to `baseline.md`.
 
-- [ ] Task: Capture the legacy rule and profile contract
+- [x] Task: Capture the legacy rule and profile contract
   - [ ] Create `scripts/architecture/fixtures/oxlint-migration/legacy-policy.schema.json` from the exact schema contract in `spec.md`.
   - [ ] Create `scripts/architecture/fixtures/oxlint-migration/cases.schema.json` from the exact schema contract in `spec.md`.
   - [ ] Create `scripts/architecture/fixtures/oxlint-migration/legacy-policy.json`.
@@ -105,7 +106,7 @@ because its source backlog is outside this track.
   - [ ] Record every override and ignore from the 23 ESLint configs.
   - [ ] Stop if one retained rule needs an `unsupported` disposition.
 
-- [ ] Task: Define the configuration, command, and dependency contract
+- [x] Task: Define the configuration, command, and dependency contract
   - [ ] Use `.oxlintrc.json` as the root blocking configuration.
   - [ ] Set `$schema` to `./node_modules/oxlint/configuration_schema.json`.
   - [ ] Use `oxlint.anti-slop.config.ts` as the separate anti-slop configuration.
@@ -125,7 +126,7 @@ because its source backlog is outside this track.
   - [ ] Define the peer-only ESLint exception from the specification.
   - [ ] Define that no final command, config, test, or API call can execute ESLint.
 
-- [ ] Task: Record the technology decision before implementation
+- [x] Task: Record the technology decision before implementation
   - [ ] Update the static analysis section of `measure/tech-stack.md`.
   - [ ] Define Oxlint as the standard lint engine.
   - [ ] Define the compatibility plugins as temporary adapters for verified gaps.
