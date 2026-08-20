@@ -348,9 +348,10 @@ because its source backlog is outside this track.
   - [ ] Run all six application aliases.
   - [ ] Require the same Green or approved pre-existing result as the baseline.
 
-- [ ] Task: Update live audit contracts and documentation
-  - [ ] Make the four focused dependency-audit test files Green with the forward Oxlint contract.
-  - [ ] Preserve historical fixture evidence.
+- [~] Task: Update live audit contracts and documentation (audit commit `ef35552a`)
+  - [x] Make the four focused dependency-audit test files Green with the forward Oxlint contract.
+  - [x] Preserve historical fixture evidence.
+  - [x] Keep the removed `typescript-eslint` package out of the historical live-lockfile assertion.
   - [ ] Inspect `README.md` and `INTEGRATION.md` for live ESLint or `vinext lint` instructions.
   - [ ] Update `measure/tech-stack.md` and `measure/tech-specs.md` with the final commands.
   - [ ] Update product-guideline wording to `lint suppression comment` where exact syntax is not required.
