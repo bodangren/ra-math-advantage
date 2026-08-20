@@ -96,7 +96,7 @@ Dependency order:
    *Link: [./tracks/danielson-gbf-sequencing_20260819/](./tracks/danielson-gbf-sequencing_20260819/)*
 
 
-- [~] **Track: Anti-Slop Oxlint Integration**
+- [x] **Track: Anti-Slop Oxlint Integration**
    *Install `dmmulroy/anti-slop` and configure its 15 generic Oxlint rules in the monorepo while preserving the existing ESLint workspace commands.*
    *Link: [./tracks/anti-slop-oxlint_20260820/](./tracks/anti-slop-oxlint_20260820/)*
 

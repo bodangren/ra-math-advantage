@@ -21,7 +21,7 @@
 
 ## Phase 4: Generate Docs and Doctor
 
-- [x] Task 4: Verify and record the result
+- [x] Task 4: Verify and record the result — commit `3a078a2`
   - [x] Run the focused Oxlint configuration check.
   - [x] Run the repository quality checks.
   - [x] Run Measure Doctor. Defer Measure generation because the worktree contains user-owned generated changes.
