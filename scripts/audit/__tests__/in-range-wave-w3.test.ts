@@ -279,31 +279,6 @@ describe('in-range-wave (W3) — drift reconciliation (Task 2 / FR6 / AC6)', () 
     ).toEqual([]);
   });
 
-  it('eslint-config-next: every declaration uses a ^ range (not a hard pin) with floor >= 15.3.1, enabling W4 migration to 16.x (test-strategy.md §3)', () => {
-    const offenders: Array<{ workspace: string; range: string }> = [];
-    for (const m of manifests) {
-      for (const r of allDeclaredRanges(m, 'eslint-config-next')) {
-        expect(
-          r,
-          `eslint-config-next declaration "${r}" in ${m.workspace_path} must use a range prefix (^ or ~) — a hard pin blocks the W4 framework migration to 16.x (test-strategy.md §3)`
-        ).toMatch(/^[\^~]/);
-
-        const f = declaredRangeFloor(r);
-        const isAtOrAbove =
-          f.major > 15 ||
-          (f.major === 15 && f.minor > 3) ||
-          (f.major === 15 && f.minor === 3 && f.patch >= 1);
-        if (!isAtOrAbove) {
-          offenders.push({ workspace: m.workspace_path, range: r });
-        }
-      }
-    }
-    expect(
-      offenders,
-      `eslint-config-next floor must be >= 15.3.1 after W3 reconciliation, found: ${JSON.stringify(offenders)}`
-    ).toEqual([]);
-  });
-
   it('@types/node: every workspace declaration shares a single major-version floor (reconcile ^20 in 5 apps with ^22 in lesson-renderer)', () => {
     const floorsByMajor = new Map<number, Array<{ workspace: string; range: string }>>();
     for (const m of manifests) {
@@ -319,26 +294,6 @@ describe('in-range-wave (W3) — drift reconciliation (Task 2 / FR6 / AC6)', () 
       floorsByMajor.size,
       `@types/node must share a single major floor after W3 reconciliation, found majors: ${[...floorsByMajor.keys()].join(', ')} with ranges: ${JSON.stringify([...floorsByMajor.entries()], null, 2)}`
     ).toBe(1);
-  });
-
-  it('eslint: every workspace declaration has a floor >= 9.39.4 (reconcile ^9 floor in 4 apps with ^9.39.4 floor in bm2)', () => {
-    const offenders: Array<{ workspace: string; range: string }> = [];
-    for (const m of manifests) {
-      for (const r of allDeclaredRanges(m, 'eslint')) {
-        const f = declaredRangeFloor(r);
-        const isAtOrAbove =
-          f.major > 9 ||
-          (f.major === 9 && f.minor > 39) ||
-          (f.major === 9 && f.minor === 39 && f.patch >= 4);
-        if (!isAtOrAbove) {
-          offenders.push({ workspace: m.workspace_path, range: r });
-        }
-      }
-    }
-    expect(
-      offenders,
-      `eslint floor must be >= 9.39.4 after W3 reconciliation, found: ${JSON.stringify(offenders)}`
-    ).toEqual([]);
   });
 
   it('w3-drift-disposition.json fixture exists (Task 2.2 — document every intentionally retained difference, FR6 / AC6)', () => {
@@ -385,9 +340,7 @@ describe('in-range-wave (W3) — drift reconciliation (Task 2 / FR6 / AC6)', () 
       'tailwind-merge',
       'ts-fsrs',
       'vitest',
-      'eslint-config-next',
       '@types/node',
-      'eslint',
     ];
     const covered = new Set(fixture.reconciled.map((r) => r.package));
     for (const pkg of expected) {

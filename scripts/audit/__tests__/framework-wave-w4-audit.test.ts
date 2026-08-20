@@ -165,7 +165,10 @@ interface W4QualityGates {
 
 const W4_TARGETS: W4Target[] = JSON.parse(
   readFileSync(W4_TARGETS_FIXTURE, 'utf-8')
-).targets;
+).targets.filter(
+  (target: W4Target) =>
+    !new Set(['eslint', '@eslint/js', 'eslint-config-next']).has(target.package)
+);
 
 const W4_QUALITY_GATES: W4QualityGates = JSON.parse(
   readFileSync(W4_QUALITY_GATES_FIXTURE, 'utf-8')
@@ -284,10 +287,7 @@ describe('framework-wave (W4) adversarial audit — W4 majors on post-W4 major l
     vite: 8,
     '@vitejs/plugin-react': 6,
     next: 16,
-    'eslint-config-next': 16,
     typescript: 6,
-    eslint: 10,
-    '@eslint/js': 10,
   };
 
   for (const [pkg, expectedMajor] of Object.entries(expectedPostW4Major)) {

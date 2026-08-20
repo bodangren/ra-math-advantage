@@ -393,7 +393,7 @@ describe('framework-wave (W4) — @vitejs/plugin-react 4 → 6 (Task 2 / FR7)', 
 });
 
 // ===========================================================================
-// Task 3 — Next.js 15 → 16 and eslint-config-next 15 → 16
+// Task 3 — Next.js 15 → 16
 // ===========================================================================
 
 describe('framework-wave (W4) — Next.js 15 → 16 (Task 3 / FR8)', () => {
@@ -426,42 +426,8 @@ describe('framework-wave (W4) — Next.js 15 → 16 (Task 3 / FR8)', () => {
   });
 });
 
-describe('framework-wave (W4) — eslint-config-next 15 → 16 (Task 3 / FR8)', () => {
-  it('eslint-config-next installed lockfile version is on the 16.x line', () => {
-    const v = installedVersion('eslint-config-next');
-    expect(v, 'eslint-config-next missing from lockfile').toBeDefined();
-    const f = semverFloor(`^${v}`);
-    expect(
-      f.major,
-      `eslint-config-next major must be 16 after W4-T3, found ${f.major} in ${v}`
-    ).toBe(16);
-  });
-
-  it('each first-class app eslint-config-next manifest range uses a ^ prefix and admits 16.x (W3 alignment must not pin 15 in a way that blocks W4)', () => {
-    const manifests = getAppManifests(REPO_ROOT);
-    const offenders: Array<{ workspace: string; range: string }> = [];
-    for (const ws of FIRST_CLASS_APP_WORKSPACES) {
-      const m = manifestByWorkspace(manifests, ws);
-      expect(m, `${ws} manifest missing`).toBeDefined();
-      for (const r of allDeclaredRanges(m!, 'eslint-config-next')) {
-        expect(
-          r,
-          `eslint-config-next in ${ws} must use a range prefix (^ or ~) — hard pin blocks W4 (test-strategy.md §3)`
-        ).toMatch(/^[\^~]/);
-        if (!satisfies('16.0.0', r)) {
-          offenders.push({ workspace: ws, range: r });
-        }
-      }
-    }
-    expect(
-      offenders,
-      `every first-class app eslint-config-next range must admit 16.0.0 after W4-T3, found: ${JSON.stringify(offenders)}`
-    ).toEqual([]);
-  });
-});
-
 // ===========================================================================
-// Task 4 — TypeScript 5 → 6, ESLint 9 → 10, @eslint/js 9 → 10
+// Task 4 — TypeScript 5 → 6
 // ===========================================================================
 
 describe('framework-wave (W4) — TypeScript 5 → 6 (Task 4 / FR8)', () => {
@@ -488,62 +454,6 @@ describe('framework-wave (W4) — TypeScript 5 → 6 (Task 4 / FR8)', () => {
     expect(
       offenders,
       `every workspace typescript range must admit 6.0.0 after W4-T4, found: ${JSON.stringify(offenders)}`
-    ).toEqual([]);
-  });
-});
-
-describe('framework-wave (W4) — ESLint 9 → 10 (Task 4 / FR8)', () => {
-  it('eslint installed lockfile version is on the 10.x line', () => {
-    const v = installedVersion('eslint');
-    expect(v, 'eslint missing from lockfile').toBeDefined();
-    const f = semverFloor(`^${v}`);
-    expect(
-      f.major,
-      `eslint major must be 10 after W4-T4, found ${f.major} in ${v}`
-    ).toBe(10);
-  });
-
-  it('every workspace eslint manifest range admits a 10.x release (reconcile ^9.39.4 / ^9)', () => {
-    const manifests = getAppManifests(REPO_ROOT);
-    const offenders: Array<{ workspace: string; range: string }> = [];
-    for (const m of manifests) {
-      for (const r of allDeclaredRanges(m, 'eslint')) {
-        if (!satisfies('10.0.0', r)) {
-          offenders.push({ workspace: m.workspace_path, range: r });
-        }
-      }
-    }
-    expect(
-      offenders,
-      `every workspace eslint range must admit 10.0.0 after W4-T4, found: ${JSON.stringify(offenders)}`
-    ).toEqual([]);
-  });
-});
-
-describe('framework-wave (W4) — @eslint/js 9 → 10 (Task 4 / FR8)', () => {
-  it('@eslint/js installed lockfile version is on the 10.x line', () => {
-    const v = installedVersion('@eslint/js');
-    expect(v, '@eslint/js missing from lockfile').toBeDefined();
-    const f = semverFloor(`^${v}`);
-    expect(
-      f.major,
-      `@eslint/js major must be 10 after W4-T4, found ${f.major} in ${v}`
-    ).toBe(10);
-  });
-
-  it('every workspace @eslint/js manifest range admits a 10.x release (reconcile ^9)', () => {
-    const manifests = getAppManifests(REPO_ROOT);
-    const offenders: Array<{ workspace: string; range: string }> = [];
-    for (const m of manifests) {
-      for (const r of allDeclaredRanges(m, '@eslint/js')) {
-        if (!satisfies('10.0.0', r)) {
-          offenders.push({ workspace: m.workspace_path, range: r });
-        }
-      }
-    }
-    expect(
-      offenders,
-      `every workspace @eslint/js range must admit 10.0.0 after W4-T4, found: ${JSON.stringify(offenders)}`
     ).toEqual([]);
   });
 });
@@ -604,10 +514,7 @@ describe('framework-wave (W4) — package-wave-matrix assigns every W4 family to
     'vite',
     '@vitejs/plugin-react',
     'next',
-    'eslint-config-next',
     'typescript',
-    'eslint',
-    '@eslint/js',
     '@types/node',
   ];
 
@@ -636,10 +543,7 @@ describe('framework-wave (W4) — package-wave-matrix assigns every W4 family to
           case 'vite': return 7;
           case '@vitejs/plugin-react': return 4;
           case 'next': return 15;
-          case 'eslint-config-next': return 15;
           case 'typescript': return 5;
-          case 'eslint': return 9;
-          case '@eslint/js': return 9;
           default: return -1;
         }
       })();

@@ -150,7 +150,7 @@ because its source backlog is outside this track.
 
 ## Phase 2: Test
 
-- [ ] Task: Create the executable Oxlint behavior harness
+- [x] Task: Create the executable Oxlint behavior harness
   - [ ] Create `scripts/architecture/__tests__/oxlint-migration.test.mjs`.
   - [ ] Use `node:test`, `node:assert/strict`, `node:child_process`, `node:fs`, and `node:path`.
   - [ ] Create only these repository-root temporary fixture directories: `apps/danielson/.oxlint-migration-fixtures/`, `apps/integrated-math-1/.oxlint-migration-fixtures/`, `apps/integrated-math-3/.oxlint-migration-fixtures/`, `packages/activity-runtime/src/.oxlint-migration-fixtures/`, `packages/activity-components/src/.oxlint-migration-fixtures/`, `packages/ai-tutoring/src/.oxlint-migration-fixtures/`, `packages/lesson-renderer/src/.oxlint-migration-fixtures/`, and `packages/math-content/src/.oxlint-migration-fixtures/`.
@@ -177,7 +177,7 @@ because its source backlog is outside this track.
   - [ ] Add a helper that fails with the complete command, exit status, stdout, and stderr when JSON parsing fails.
   - [ ] Confirm that a valid source file produces no unexpected diagnostic.
 
-- [ ] Task: Add controlled behavior fixtures for every retained rule
+- [x] Task: Add controlled behavior fixtures for every retained rule
   - [ ] Read `scripts/architecture/fixtures/oxlint-migration/cases.schema.json` from Phase 1.
   - [ ] Create `scripts/architecture/fixtures/oxlint-migration/cases.json`.
   - [ ] Add every required field from `cases.schema.json`.
@@ -202,7 +202,7 @@ because its source backlog is outside this track.
   - [ ] Test one warning rule such as `nextjs/no-img-element`.
   - [ ] Assert that `--max-warnings 0` makes the warning fixture fail.
 
-- [ ] Task: Test profiles, scopes, ignores, and suppression comments
+- [x] Task: Test profiles, scopes, ignores, and suppression comments
   - [ ] Test the `app-production`, `app-test`, `im3-test`, `package-production`, `package-shared-production`, `package-test`, `lesson-renderer-test`, `math-content-production`, and `math-content-test` profiles.
   - [ ] Test that `no-explicit-any` is off only in the specified test scopes.
   - [ ] Test that the Integrated Math 3 test unused-variable rule is a warning.
@@ -222,7 +222,7 @@ because its source backlog is outside this track.
   - [ ] Assert that each unsuppressed control produces the target diagnostic.
   - [ ] Do not bulk-rewrite suppression comments.
 
-- [ ] Task: Test workspace commands, dependencies, CI, and anti-slop separation
+- [x] Task: Test workspace commands, dependencies, CI, and anti-slop separation
   - [ ] Add command and dependency cases to `scripts/architecture/__tests__/oxlint-migration.test.mjs`.
   - [ ] Parse all workspace manifests as JSON.
   - [ ] Assert that the 26 governed `lint` scripts start Oxlint and reference `.oxlintrc.json`.
@@ -239,7 +239,7 @@ because its source backlog is outside this track.
   - [ ] Add a controlled anti-slop fixture that proves the plugin loads.
   - [ ] Do not assert that a repository-wide `lint:anti-slop` run exits zero.
 
-- [ ] Task: Replace obsolete live dependency-audit assertions with forward contracts
+- [x] Task: Replace obsolete live dependency-audit assertions with forward contracts
   - [ ] Update `scripts/audit/__tests__/framework-wave-w4.test.ts` before implementation.
   - [ ] Replace live ESLint 10, `@eslint/js`, and `eslint-config-next` requirements with the Oxlint cutover contract.
   - [ ] Update `scripts/audit/__tests__/framework-wave-w4-audit.test.ts` before implementation.
@@ -253,7 +253,8 @@ because its source backlog is outside this track.
   - [ ] Put the new live Oxlint command and dependency contract only in `scripts/architecture/__tests__/oxlint-migration.test.mjs`.
   - [ ] Do not delete a live dependency assertion without a forward replacement in the migration suite.
 
-- [ ] Task: Prove the expected Red state
+- [x] Task: Prove the expected Red state
+  - Expected Red evidence: `node --test scripts/architecture/__tests__/oxlint-migration.test.mjs` reported 5 intentional failures for pre-cutover workspace scripts, remaining ESLint configuration/dependencies, missing `oxlint-plugin-eslint`, and active ESLint commands. The four focused audit suites passed 95 tests. All eight test-owned fixture directories were removed.
   - [ ] Run `CI=true node --test scripts/architecture/__tests__/oxlint-migration.test.mjs`.
   - [ ] Run `CI=true npx vitest run scripts/audit/__tests__/framework-wave-w4.test.ts scripts/audit/__tests__/framework-wave-w4-audit.test.ts scripts/audit/__tests__/in-range-wave-w3.test.ts scripts/audit/__tests__/remaining-majors-w5.test.ts`.
   - [ ] Confirm that the new assertions fail because the Oxlint contract is not implemented.
