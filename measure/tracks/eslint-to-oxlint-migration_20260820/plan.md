@@ -287,95 +287,95 @@ because its source backlog is outside this track.
   - Ran `npm explain eslint`; the remaining path is peer-only.
 
 - [x] Task: Separate the standard and anti-slop configurations (commit `6dd1f551`)
-  - [ ] Create `.oxlintrc.json` with no anti-slop plugin or rule.
-  - [ ] Rename or move `oxlint.config.ts` to `oxlint.anti-slop.config.ts`.
-  - [ ] Keep the local anti-slop plugin path correct after the move.
-  - [ ] Keep all 15 anti-slop rules at error severity.
-  - [ ] Keep the current agent-tooling and vendored-plugin ignores.
-  - [ ] Replace root `lint:oxlint` with `lint:anti-slop`.
-  - [ ] Set `lint:anti-slop` to `oxlint --config oxlint.anti-slop.config.ts .`.
-  - [ ] Confirm that no blocking command invokes `lint:anti-slop`.
-  - [ ] Run the controlled anti-slop fixture.
-  - [ ] Record the expected repository-wide nonzero anti-slop result as non-blocking.
+  - [x] Create `.oxlintrc.json` with no anti-slop plugin or rule.
+  - [x] Rename or move `oxlint.config.ts` to `oxlint.anti-slop.config.ts`.
+  - [x] Keep the local anti-slop plugin path correct after the move.
+  - [x] Keep all 15 anti-slop rules at error severity.
+  - [x] Keep the current agent-tooling and vendored-plugin ignores.
+  - [x] Replace root `lint:oxlint` with `lint:anti-slop`.
+  - [x] Set `lint:anti-slop` to `oxlint --config oxlint.anti-slop.config.ts .`.
+  - [x] Confirm that no blocking command invokes `lint:anti-slop`.
+  - [x] Run the controlled anti-slop fixture.
+  - [x] Record the expected repository-wide nonzero anti-slop result as non-blocking.
 
 - [x] Task: Implement the standard Oxlint policy profiles (commit `6dd1f551`)
-  - [ ] Disable default category rules that are absent from `legacy-policy.json`.
-  - [ ] Enable the native `typescript`, `react`, `import`, `jsx-a11y`, and `nextjs` plugins explicitly.
-  - [ ] Set React version 19.
-  - [ ] Load `oxlint-plugin-eslint` as `eslint-js`.
-  - [ ] Load `eslint-plugin-react` as `react-js`.
-  - [ ] Load `eslint-plugin-react-hooks` as `react-hooks-js` for the verified compiler gaps.
-  - [ ] Add every `native` entry from `legacy-policy.json` with its recorded severity and options.
-  - [ ] Add every `javascript-plugin` entry with its recorded severity and options.
-  - [ ] Do not add the two `remove-obsolete` entries.
-  - [ ] Do not configure native `react/react-compiler` in this track.
-  - [ ] Add the application and package root-relative overrides.
-  - [ ] Add the Integrated Math 3 test override.
-  - [ ] Add the shared-config, lesson renderer, and math content exceptions.
-  - [ ] Keep the TypeScript-only test globs exact.
-  - [ ] Add all required root-relative ignore patterns.
-  - [ ] Do not ignore the behavior fixtures when the test invokes them directly.
-  - [ ] Run every controlled behavior case and require the expected rule and severity.
-  - [ ] Stop if a JavaScript plugin fails to load or changes a required result.
+  - [x] Disable default category rules that are absent from `legacy-policy.json`.
+  - [x] Enable the native `typescript`, `react`, `import`, `jsx-a11y`, and `nextjs` plugins explicitly.
+  - [x] Set React version 19.
+  - [x] Load `oxlint-plugin-eslint` as `eslint-js`.
+  - [x] Load `eslint-plugin-react` as `react-js`.
+  - [x] Load `eslint-plugin-react-hooks` as `react-hooks-js` for the verified compiler gaps.
+  - [x] Add every `native` entry from `legacy-policy.json` with its recorded severity and options.
+  - [x] Add every `javascript-plugin` entry with its recorded severity and options.
+  - [x] Do not add the two `remove-obsolete` entries.
+  - [x] Do not configure native `react/react-compiler` in this track.
+  - [x] Add the application and package root-relative overrides.
+  - [x] Add the Integrated Math 3 test override.
+  - [x] Add the shared-config, lesson renderer, and math content exceptions.
+  - [x] Keep the TypeScript-only test globs exact.
+  - [x] Add all required root-relative ignore patterns.
+  - [x] Do not ignore the behavior fixtures when the test invokes them directly.
+  - [x] Run every controlled behavior case and require the expected rule and severity.
+  - [x] Stop if a JavaScript plugin fails to load or changes a required result.
 
-- [ ] Task: Run the temporary dual-engine parity gate
-  - [ ] Create a temporary dual-run adapter that is not part of the final test suite.
-  - [ ] Run each `cases.json` fixture through legacy ESLint and Oxlint.
-  - [ ] Normalize only the aliases recorded in `legacy-policy.json`.
-  - [ ] Compare pass or fail behavior, rule identity, and severity.
-  - [ ] Run the 20 package ESLint commands from the clean baseline.
-  - [ ] Run the 6 application ESLint commands from the clean baseline.
-  - [ ] Run Oxlint on the same scopes.
-  - [ ] Confirm that both engines return the recorded workspace baseline result.
-  - [ ] Confirm that Oxlint adds no unapproved blocking rule.
-  - [ ] Record the Oxlint elapsed time in `baseline.md`.
-  - [ ] Record every intentional alias and the two obsolete removals.
-  - [ ] Stop on a behavior or severity difference.
-  - [ ] Do not modify source to force parity.
-  - [ ] Keep the temporary adapter until script cutover verification is complete.
+- [x] Task: Run the temporary dual-engine parity gate (commit `f304f670`)
+  - [x] Create a temporary dual-run adapter that is not part of the final test suite.
+  - [x] Run each `cases.json` fixture through legacy ESLint and Oxlint.
+  - [x] Normalize only the aliases recorded in `legacy-policy.json`.
+  - [x] Compare pass or fail behavior, rule identity, and severity.
+  - [x] Run the 20 package ESLint commands from the clean baseline.
+  - [x] Run the 6 application ESLint commands from the clean baseline.
+  - [x] Run Oxlint on the same scopes.
+  - [x] Confirm that both engines return the recorded workspace baseline result.
+  - [x] Confirm that Oxlint adds no unapproved blocking rule.
+  - [x] Record the Oxlint elapsed time in `baseline.md`.
+  - [x] Record every intentional alias and the two obsolete removals.
+  - [x] Stop on a behavior or severity difference.
+  - [x] Do not modify source to force parity.
+  - [x] Keep the temporary adapter until script cutover verification is complete.
 
 - [x] Task: Switch all 26 workspace lint scripts (commit `6dd1f551`)
-  - [ ] Change the six application scripts to `oxlint --config ../../.oxlintrc.json . --max-warnings 0`.
-  - [ ] Change the 20 package scripts to `oxlint --config ../../.oxlintrc.json src --max-warnings 0`.
-  - [ ] Remove the four shared ESLint `--config` arguments.
-  - [ ] Keep every workspace script name as `lint`.
-  - [ ] Keep root `npm run lint` unchanged.
-  - [ ] Keep the six root `ws:*:lint` aliases unchanged.
-  - [ ] Keep the architecture manifest command names unchanged unless a parity test proves a required change.
-  - [ ] Keep `.github/workflows/ci.yml` command names unchanged.
-  - [ ] Keep `.github/workflows/cloudflare-deploy.yml` command names unchanged.
-  - [ ] Run the root package dispatcher.
-  - [ ] Run all six application aliases.
-  - [ ] Require the same Green or approved pre-existing result as the baseline.
+  - [x] Change the six application scripts to `oxlint --config ../../.oxlintrc.json . --max-warnings 0`.
+  - [x] Change the 20 package scripts to `oxlint --config ../../.oxlintrc.json src --max-warnings 0`.
+  - [x] Remove the four shared ESLint `--config` arguments.
+  - [x] Keep every workspace script name as `lint`.
+  - [x] Keep root `npm run lint` unchanged.
+  - [x] Keep the six root `ws:*:lint` aliases unchanged.
+  - [x] Keep the architecture manifest command names unchanged unless a parity test proves a required change.
+  - [x] Keep `.github/workflows/ci.yml` command names unchanged.
+  - [x] Keep `.github/workflows/cloudflare-deploy.yml` command names unchanged.
+  - [x] Run the root package dispatcher.
+  - [x] Run all six application aliases.
+  - [x] Require the same Green or approved pre-existing result as the baseline.
 
-- [~] Task: Update live audit contracts and documentation (audit commit `ef35552a`)
+- [x] Task: Update live audit contracts and documentation (commits `ef35552a`, `ebd0b29d`)
   - [x] Make the four focused dependency-audit test files Green with the forward Oxlint contract.
   - [x] Preserve historical fixture evidence.
   - [x] Keep the removed `typescript-eslint` package out of the historical live-lockfile assertion.
-  - [ ] Inspect `README.md` and `INTEGRATION.md` for live ESLint or `vinext lint` instructions.
-  - [ ] Update `measure/tech-stack.md` and `measure/tech-specs.md` with the final commands.
-  - [ ] Update product-guideline wording to `lint suppression comment` where exact syntax is not required.
-  - [ ] Inspect `measure/automation-supervisor.py` and keep it unchanged when `npm run lint` remains correct.
-  - [ ] Stop and use the peer-review protocol if `measure/automation-supervisor.py` must change.
-  - [ ] Do not rewrite historical records that correctly say ESLint was used at that time.
+  - [x] Inspect `README.md` and `INTEGRATION.md` for live ESLint or `vinext lint` instructions.
+  - [x] Update `measure/tech-stack.md` and `measure/tech-specs.md` with the final commands.
+  - [x] Update product-guideline wording to `lint suppression comment` where exact syntax is not required.
+  - [x] Inspect `measure/automation-supervisor.py` and keep it unchanged when `npm run lint` remains correct.
+  - [x] Stop and use the peer-review protocol if `measure/automation-supervisor.py` must change.
+  - [x] Do not rewrite historical records that correctly say ESLint was used at that time.
 
 - [x] Task: Remove ESLint configurations and direct dependencies (commit `6dd1f551`)
-  - [ ] Delete the six application `eslint.config.mjs` files listed in the specification.
-  - [ ] Delete the 16 package `eslint.config.mjs` files listed in the specification.
-  - [ ] Delete `scripts/architecture/eslint.package.config.mjs`.
-  - [ ] Remove `@eslint/eslintrc`, `eslint`, and `eslint-config-next` from all six application manifests.
-  - [ ] Remove `@eslint/js`, `eslint`, and `typescript-eslint` from package manifests that declare them.
-  - [ ] Remove root `@eslint/js`.
-  - [ ] Remove the root ESLint override.
-  - [ ] Update `package-lock.json` once after the manifest edits.
-  - [ ] Run `npm explain eslint`.
-  - [ ] Confirm that each remaining ESLint path is a compatibility-plugin peer path.
-  - [ ] Run `npm ls eslint eslint-config-next @eslint/js @eslint/eslintrc typescript-eslint --all`.
-  - [ ] Confirm that no application or package declares a direct removed dependency.
-  - [ ] Search all scripts and CI files for active ESLint executable commands.
-  - [ ] Review every search result manually.
-  - [ ] Delete the temporary dual-run ESLint adapter.
-  - [ ] Assert that every retained test invokes Oxlint only.
+  - [x] Delete the six application `eslint.config.mjs` files listed in the specification.
+  - [x] Delete the 16 package `eslint.config.mjs` files listed in the specification.
+  - [x] Delete `scripts/architecture/eslint.package.config.mjs`.
+  - [x] Remove `@eslint/eslintrc`, `eslint`, and `eslint-config-next` from all six application manifests.
+  - [x] Remove `@eslint/js`, `eslint`, and `typescript-eslint` from package manifests that declare them.
+  - [x] Remove root `@eslint/js`.
+  - [x] Remove the root ESLint override.
+  - [x] Update `package-lock.json` once after the manifest edits.
+  - [x] Run `npm explain eslint`.
+  - [x] Confirm that each remaining ESLint path is a compatibility-plugin peer path.
+  - [x] Run `npm ls eslint eslint-config-next @eslint/js @eslint/eslintrc typescript-eslint --all`.
+  - [x] Confirm that no application or package declares a direct removed dependency.
+  - [x] Search all scripts and CI files for active ESLint executable commands.
+  - [x] Review every search result manually.
+  - [x] Delete the temporary dual-run ESLint adapter.
+  - [x] Assert that every retained test invokes Oxlint only.
 
 - [ ] Task: Make the migration and lint suites Green
   - [ ] Run `CI=true node --test scripts/architecture/__tests__/oxlint-migration.test.mjs`.
