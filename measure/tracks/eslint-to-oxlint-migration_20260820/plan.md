@@ -9,6 +9,7 @@ Update this plan in the required follow-up commit.
 
 Phase 1 contract and baseline artifacts are in commit `d20b6e88`. Dependency
 installation remains pending explicit owner approval.
+Phase 2 test artifacts and expected Red evidence are in commit `6a7f275b`.
 
 Start implementation in the main worktree at one recorded commit, as directed
 by the repository owner. The worktree at track creation contains unrelated
