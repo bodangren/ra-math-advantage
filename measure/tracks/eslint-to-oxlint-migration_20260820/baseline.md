@@ -106,5 +106,26 @@ Registry metadata at track start recorded these approved candidates:
 The React plugin 7.37.5 peer range does not accept ESLint 10. The final
 cutover must not retain an ESLint 10 root override. Any retained ESLint package
 must exist only as a peer resolution required by an approved compatibility
-plugin. No install, uninstall, or lockfile command has been run for this
-track.
+plugin. The dependency operation was approved by the repository owner and
+completed in the cutover commit.
+
+## Dual-Engine Parity Verification
+
+A temporary dual-run adapter used the pre-cutover ESLint 10.4.1 configurations
+and the final Oxlint 1.79.0 configuration. The adapter and its dependency
+installation were outside the repository.
+
+- 700 controlled cases ran through both engines.
+- The cases produced zero behavior, rule-identity, severity, or line-number
+  mismatches.
+- The six application scopes and 20 package scopes from the start commit each
+  returned exit 0 under both engines.
+- The adapter normalized the two React Hooks legacy rule-code aliases recorded
+  by the policy contract.
+- The `no-octal` fixture used a temporary script-mode parser override because
+  the legacy TypeScript parser rejects octal syntax before the configured rule
+  can run. The final repository configuration has no such override.
+- The final root package Oxlint dispatcher completed in 13.83 seconds.
+
+The temporary adapter and all test-owned fixture directories were removed after
+the comparison.
