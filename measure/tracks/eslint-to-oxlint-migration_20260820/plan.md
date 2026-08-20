@@ -482,7 +482,7 @@ because its source backlog is outside this track.
     - [x] Revert the six authentication-page source edits from the migration cutover.
     - [ ] Reconcile application typecheck and test results against a clean pre-migration baseline or record explicit owner approval.
     - [x] Add baseline and parity-report links to the track index.
-    - [~] Update the review evidence and keep manual-verification tasks pending until explicit confirmation.
+    - [x] Update the review evidence and keep manual-verification tasks pending until explicit confirmation.
     - [ ] Obtain owner approval for the explicit parity exceptions and the remaining application gate variances.
 
 - [ ] Task: Measure - User Manual Verification 'Phase 4: Generate Docs & Doctor' (Protocol in workflow.md)
