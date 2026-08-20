@@ -24,7 +24,7 @@ Follow Measure tracks and the workflow in `measure/workflow.md`.
 
 ## Writing Standard
 
-Use ASD-STE100 Simplified Technical English for all documents, plans, specifications, status updates, and reports.
+Use ASD-STE100 Simplified Technical English for all documents, plans, specifications, status updates, reports, and user-facing web text.
 
 - Use short and direct sentences.
 - Use active voice.
@@ -33,6 +33,7 @@ Use ASD-STE100 Simplified Technical English for all documents, plans, specificat
 - Define an abbreviation when you first use it.
 - Do not use idioms, vague words, or unnecessary modifiers.
 - Preserve exact code, API, product, and source terms when accuracy requires them.
+- Apply this standard to page content, navigation labels, form labels, help text, validation messages, error messages, empty states, and confirmation messages.
 
 ## Ponytail Rule
 
@@ -47,6 +48,15 @@ Before you write code, understand the problem. Read the code that the change tou
 7. Only then, create the minimum solution that works.
 
 Be lazy about the solution. Do not be lazy about reading or verification. Do not reduce trust-boundary validation, data-loss protection, security, or accessibility.
+
+### Over-Engineering Limits
+
+- Implement the requested behavior. Do not build for hypothetical future needs.
+- Do not add registries, approval workflows, audit ledgers, event sourcing, caches, projection tables, wrappers, adapters, or extension points unless the current behavior requires them.
+- Prefer deletion, reuse, and direct code before you add a new layer.
+- Keep one source of truth. Do not persist data that the application can read or derive safely at the required scale.
+- Do not turn documentation, provenance, or review notes into runtime systems.
+- If a correct change requires more scope, stop and explain why before implementation.
 
 ## Hashing and Scope Policy
 
