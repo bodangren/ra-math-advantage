@@ -476,6 +476,13 @@ because its source backlog is outside this track.
   - [x] Review every acceptance criterion in `spec.md`.
   - [x] Do not mark the track complete while an unapproved acceptance difference remains.
 
+- [~] Task: Address review findings before manual completion
+  - [ ] Add a diagnostic-producing case for every active policy entry and rerun dual-engine parity.
+  - [ ] Revert the six authentication-page source edits from the migration cutover.
+  - [ ] Reconcile application typecheck and test results against a clean pre-migration baseline or record explicit owner approval.
+  - [ ] Add baseline and parity-report links to the track index.
+  - [ ] Update the review evidence and keep manual-verification tasks pending until explicit confirmation.
+
 - [ ] Task: Measure - User Manual Verification 'Phase 4: Generate Docs & Doctor' (Protocol in workflow.md)
   - [ ] Run the automated tests required by the phase protocol.
   - [ ] Present `parity-report.md` and the complete gate results.
