@@ -277,7 +277,10 @@ because its source backlog is outside this track.
 
 ## Phase 3: Implement
 
-- [ ] Task: Obtain dependency approval and add compatibility dependencies
+- [~] Task: Obtain dependency approval and add compatibility dependencies
+  - Approval is pending for one root dependency operation.
+  - Proposed additions: `oxlint-plugin-eslint@1.79.0`, `eslint-plugin-react@7.37.5`, and `eslint-plugin-react-hooks@7.1.1` as root development dependencies.
+  - Proposed removals: direct `eslint`, `@eslint/js`, `@eslint/eslintrc`, `eslint-config-next`, and `typescript-eslint` declarations from the root, six apps, and applicable packages, plus the root ESLint override. The lockfile will be updated once after these manifest edits.
   - [ ] Present the exact root dependency additions and removals to the user.
   - [ ] Obtain explicit approval before the first `npm install`, `npm uninstall`, or lockfile command.
   - [ ] Stop if approval is not explicit.
