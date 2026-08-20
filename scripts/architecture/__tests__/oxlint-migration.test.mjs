@@ -10,6 +10,7 @@ const FIXTURE_ROOT = path.join(ROOT, "scripts/architecture/fixtures/oxlint-migra
 const POLICY_PATH = path.join(FIXTURE_ROOT, "legacy-policy.json");
 const CASES_PATH = path.join(FIXTURE_ROOT, "cases.json");
 const CONFIG_PATH = path.join(ROOT, ".oxlintrc.json");
+const RUNTIME_CONFIG_PATH = path.join(ROOT, ".oxlint-migration-runtime.config.json");
 
 const fixtureDirectories = [
   "apps/danielson/.oxlint-migration-fixtures",
@@ -67,6 +68,13 @@ const policy = readJson(POLICY_PATH);
 const cases = readJson(CASES_PATH);
 const manifest = readJson(path.join(ROOT, "scripts/architecture/architecture.manifest.json"));
 
+const runtimeConfig = readJson(CONFIG_PATH);
+runtimeConfig.ignorePatterns = runtimeConfig.ignorePatterns.filter(
+  (pattern) => pattern !== "**/.oxlint-migration-fixtures/**",
+);
+fs.writeFileSync(RUNTIME_CONFIG_PATH, `${JSON.stringify(runtimeConfig)}\n`, "utf8");
+process.on("exit", () => fs.rmSync(RUNTIME_CONFIG_PATH, { force: true }));
+
 function assertFixtureDirectoriesAbsent() {
   for (const directory of fixtureDirectories) {
     assert.equal(
@@ -78,7 +86,7 @@ function assertFixtureDirectoriesAbsent() {
 }
 
 function runOxlint(filePath, extraArgs = []) {
-  const args = ["--config", CONFIG_PATH, "--no-ignore", "--format", "json", ...extraArgs, filePath];
+  const args = ["--config", RUNTIME_CONFIG_PATH, "--no-ignore", "--format", "json", ...extraArgs, filePath];
   const result = spawnSync(OXLINT, args, { cwd: ROOT, encoding: "utf8" });
   let parsed;
   try {
@@ -102,8 +110,10 @@ function expectedCode(targetRule) {
   if (targetRule === null) return null;
   const separator = targetRule.indexOf("/");
   if (separator === -1) return `eslint(${targetRule})`;
-  const scope = targetRule.slice(0, separator).replace("jsx-a11y", "jsx_a11y");
-  return `${scope}(${targetRule.slice(separator + 1)})`;
+  const scope = targetRule.slice(0, separator);
+  const ruleName = targetRule.slice(separator + 1);
+  const diagnosticScope = scope === "nextjs" ? "next" : scope === "react" && ["rules-of-hooks", "exhaustive-deps"].includes(ruleName) ? "react-hooks" : scope;
+  return `${diagnosticScope}(${ruleName})`;
 }
 
 function caseFilePath(testCase) {
@@ -252,13 +262,13 @@ test("anti-slop config loads its 15 error rules without entering standard policy
 });
 
 test("no final command invokes ESLint or next lint", () => {
-  const files = ["package.json", ...appConfigFiles.map((file) => file.replace(/\/eslint\.config\.mjs$/, "/package.json")), ...packageConfigFiles.map((file) => file.replace(/\/eslint\.config\.mjs$/, "/package.json"))];
   const offenders = [];
+  const files = ["package.json", ...manifest.workspaces.map((workspace) => `${workspace.path}/package.json`)];
   for (const relativePath of files) {
-    const absolutePath = path.join(ROOT, relativePath);
-    if (!fs.existsSync(absolutePath)) continue;
-    const contents = fs.readFileSync(absolutePath, "utf8");
-    if (/\b(?:eslint|next lint)\b/.test(contents)) offenders.push(relativePath);
+    const packageJson = readJson(path.join(ROOT, relativePath));
+    for (const [scriptName, command] of Object.entries(packageJson.scripts ?? {})) {
+      if (/\beslint(?:\s|$)|\bnext lint\b/.test(command)) offenders.push(`${relativePath}#${scriptName}`);
+    }
   }
   assert.deepEqual(offenders, []);
 });

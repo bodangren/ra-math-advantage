@@ -27,7 +27,7 @@
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest watch",
-    "lint": "eslint src --max-warnings 0",
+    "lint": "oxlint --config ../../.oxlintrc.json src --max-warnings 0",
     "typecheck": "tsc --noEmit",
     "build": "tsc --noEmit",
     "extract-inventory": "npx tsx ../../scripts/extract-skill-inventory.ts",
@@ -41,10 +41,7 @@
     "zod": "^4.1.12"
   },
   "devDependencies": {
-    "@eslint/js": "^10",
-    "eslint": "^10.0.0",
     "typescript": "^6",
-    "typescript-eslint": "^8",
     "vitest": "^4.1.8"
   }
 }
