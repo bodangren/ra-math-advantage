@@ -103,6 +103,10 @@ Dependency order:
    *Install `dmmulroy/anti-slop` and configure its 15 generic Oxlint rules in the monorepo while preserving the existing ESLint workspace commands.*
    *Link: [./tracks/anti-slop-oxlint_20260820/](./tracks/anti-slop-oxlint_20260820/)*
 
+- [ ] **Track: ESLint to Oxlint Migration**
+   *Replace ESLint execution with Oxlint across all 26 workspaces. Preserve the blocking lint policy. Keep anti-slop separate and non-blocking.*
+   *Link: [./tracks/eslint-to-oxlint-migration_20260820/](./tracks/eslint-to-oxlint-migration_20260820/)*
+
 ### Teacher-Led Mastery Advantage Progression
 
 - [~] **Track: Teacher-Led First Exposure and Mastery Advantage Pilots**
