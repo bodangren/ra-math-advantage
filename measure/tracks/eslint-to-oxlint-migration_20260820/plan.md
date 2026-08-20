@@ -7,6 +7,9 @@ Complete the phases and tasks in order. Follow the task and phase protocols in
 tests before implementation. Commit each task. Attach the required Git note.
 Update this plan in the required follow-up commit.
 
+Phase 1 contract and baseline artifacts are in commit `d20b6e88`. Dependency
+installation remains pending explicit owner approval.
+
 Start implementation in the main worktree at one recorded commit, as directed
 by the repository owner. The worktree at track creation contains unrelated
 changes in migration targets. These targets include `measure/tracks.md`,
