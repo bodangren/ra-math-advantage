@@ -380,7 +380,8 @@ describe('in-range-wave (W3) — in-range refresh verification (Task 1 / FR5)', 
   });
 
   it('every W3 in-range family installed lockfile version equals the registry-stub latest (Task 1.1 — refresh complete)', () => {
-    const inRange = getInRangeFamilies();
+    // typescript-eslint is no longer a live dependency after the Oxlint cutover.
+    const inRange = getInRangeFamilies().filter((pkg) => pkg !== 'typescript-eslint');
     const offenders: Array<{ pkg: string; installed: string; target: string }> = [];
     for (const pkg of inRange) {
       const target = REGISTRY_STUB.registry_latest[pkg];
