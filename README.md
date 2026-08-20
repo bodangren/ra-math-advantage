@@ -186,7 +186,7 @@ Run from `apps/integrated-math-3/`:
 | `npm run dev:stack` | Start Convex + dev server together |
 | `npm run build` | Production build |
 | `npm run start` | Start production server |
-| `npm run lint` | Run ESLint |
+| `npm run lint` | Run Oxlint |
 | `npm test` | Run Vitest suite |
 | `npm run test:watch` | Vitest in watch mode |
 

@@ -111,7 +111,7 @@ AUTH_JWT_SECRET=replace-with-a-long-random-secret
 npm run dev          # Start dev server (vinext dev)
 npm run dev:stack    # Start full stack (node scripts/dev-stack.mjs)
 npm run build        # Production build (vinext build)
-npm run lint         # Lint (vinext lint)
+npm run lint         # Lint (Oxlint)
 npm run test         # Run Vitest
 npm run test:watch   # Vitest in watch mode
 ```

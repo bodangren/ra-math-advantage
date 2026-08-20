@@ -36,7 +36,7 @@
 
 - TypeScript strict mode enabled
 - React Server Components by default; `"use client"` only for interactive components
-- No `any` types without eslint-disable comments
+- No `any` types without lint suppression comments
 - Path alias `@/*` maps to app root
 
 ## App-Specific Guidelines
