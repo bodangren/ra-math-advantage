@@ -1,7 +1,5 @@
-import type { GbfMapping, GbfMappingRelease } from './contracts';
+import type { GbfMapping } from './contracts';
 
-const REVIEW_AUTHOR = 'Danielson internal review';
-const REVIEW_DATE = '2026-08-19';
 const skill = (id: string) => `danielson.tlac.skill.${id}`;
 
 function mapping(
@@ -10,19 +8,13 @@ function mapping(
   role: GbfMapping['role'],
   classification: GbfMapping['classification'],
   rationale: string,
-  confidence: GbfMapping['confidence'] = classification === 'direct' ? 'high' : 'medium',
 ): GbfMapping {
   return {
-    mappingId: `danielson.gbf.mapping.${actionStepId}.${techniqueId}`,
     actionStepId,
     skillId: skill(techniqueId),
     role,
     classification,
     rationale,
-    confidence,
-    reviewAuthor: REVIEW_AUTHOR,
-    reviewDate: REVIEW_DATE,
-    reviewStatus: 'reviewed',
   };
 }
 
@@ -128,13 +120,3 @@ export const GBF_UNSEQUENCED_SKILL_IDS = [
   'threshold-strong-start',
   'habits-of-attention',
 ].map(skill);
-
-export const GBF_MAPPING_RELEASE_V1: GbfMappingRelease = {
-  releaseId: 'danielson.gbf.mapping.2026-08-19.v1',
-  sequenceReleaseId: 'danielson.gbf.sequence.2026-08-19.v1',
-  effectiveDate: '2026-08-19',
-  mappings: GBF_MAPPINGS,
-  unsequencedSkillIds: GBF_UNSEQUENCED_SKILL_IDS,
-};
-
-export const GBF_MAPPING_RELEASE = GBF_MAPPING_RELEASE_V1;

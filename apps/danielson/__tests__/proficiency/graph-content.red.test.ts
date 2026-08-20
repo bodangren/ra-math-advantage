@@ -1,31 +1,14 @@
 import { describe, expect, it } from 'vitest';
 
 import {
-  APPROVED_STANDALONE_SOURCE_HASH,
   COMPONENT_1E,
   DANIELSON_COMPONENT_IDS,
-  RUNTIME_ARRAY_SOURCE_HASH,
-  RUNTIME_ONLY_TECHNIQUES,
   createFixtureGraph,
   type FixtureEdge,
   type FixtureNode,
 } from './fixtures';
 
 const graphModule = () => import('../../lib/proficiency/graph');
-
-type SourceManifest = {
-  stableId: string;
-  source: string;
-  version: string;
-  effectiveDate: string;
-  contentHash: string;
-  reviewStatus: string;
-};
-
-type ReviewQueueItem = {
-  id: string;
-  source: string;
-};
 
 describe('Danielson graph content', () => {
   it('builds the approved Danielson hierarchy and imports each standalone TLAC skill once', async () => {
@@ -58,28 +41,6 @@ describe('Danielson graph content', () => {
     }
     expect(edges.some((edge: FixtureEdge) => edge.type === 'prerequisite_for')).toBe(false);
     expect(validateDanielsonGraph(result.graph)).toMatchObject({ valid: true, issues: [] });
-  });
-
-  it('freezes both source manifests and preserves every runtime-only source label in the review queue', async () => {
-    const { buildDanielsonGraph } = await graphModule();
-
-    const result = buildDanielsonGraph();
-    const manifestHashes = result.sourceManifests.map((manifest: SourceManifest) => manifest.contentHash);
-    const reviewRows = result.reviewQueue.map((item: ReviewQueueItem) => ({ id: item.id, source: item.source }));
-
-    expect(manifestHashes).toEqual(expect.arrayContaining([
-      APPROVED_STANDALONE_SOURCE_HASH,
-      RUNTIME_ARRAY_SOURCE_HASH,
-    ]));
-    for (const manifest of result.sourceManifests as SourceManifest[]) {
-      expect(manifest.stableId).toEqual(expect.any(String));
-      expect(manifest.source).toEqual(expect.any(String));
-      expect(manifest.version).toEqual(expect.any(String));
-      expect(manifest.effectiveDate).toEqual(expect.any(String));
-      expect(manifest.contentHash).toMatch(/^[a-f0-9]{64}$/);
-      expect(manifest.reviewStatus).toBeDefined();
-    }
-    expect(reviewRows).toEqual(RUNTIME_ONLY_TECHNIQUES);
   });
 
   it('rejects duplicate IDs, dangling endpoints, invalid containment, cycles, and active GBF prerequisites', async () => {

@@ -22,23 +22,53 @@ Never start significant work without an active track. Always update `measure/tra
 This project uses the **measure** skill for spec-driven development.
 Follow Measure tracks and the workflow in `measure/workflow.md`.
 
-## Standing Orchestration Preference
+## Writing Standard
 
-For almost any substantive task, act as orchestrator and delegate through this
-default role split:
+Use ASD-STE100 Simplified Technical English for all documents, plans, specifications, status updates, and reports.
 
-1. **Sol (max reasoning):** plan work assignments and review completed work.
-2. **Sol (low reasoning):** unblock focused issues and remove straightforward blockers.
-3. **Terra (max reasoning):** write tests from Sol's plans before implementation.
-4. **Luna (max reasoning):** implement Sol's plans and make Terra's tests pass.
+- Use short and direct sentences.
+- Use active voice.
+- Give one instruction in each sentence.
+- Use one term for one concept.
+- Define an abbreviation when you first use it.
+- Do not use idioms, vague words, or unnecessary modifiers.
+- Preserve exact code, API, product, and source terms when accuracy requires them.
 
-Use judgment for trivial, tightly coupled, read-only, or authority-blocked work;
-in those cases, explain why delegation is unnecessary or cannot proceed.
+## Ponytail Rule
+
+Before you write code, understand the problem. Read the code that the change touches. Trace the real flow. Then stop at the first rung that solves the problem:
+
+1. Does this need to exist? If no, skip it. Apply YAGNI.
+2. Does this codebase already have it? If yes, reuse it.
+3. Does the standard library provide it? If yes, use it.
+4. Does the native platform provide it? If yes, use it.
+5. Does an installed dependency provide it? If yes, use it.
+6. Can one line solve it? If yes, use one line.
+7. Only then, create the minimum solution that works.
+
+Be lazy about the solution. Do not be lazy about reading or verification. Do not reduce trust-boundary validation, data-loss protection, security, or accessibility.
+
+## Hashing and Scope Policy
+
+Do not add or expand cryptographic hashing unless an explicit existing specification, protocol, test, or external interface requires the exact change.
+
+- Do not add SHA or checksum fields for screenshots, reports, snapshots, tests, manifests, review subjects, or source trees for audit purposes.
+- Do not expand a hash to cover more files unless a documented contract requires it.
+- Do not create a chain in which one generated artifact hashes another generated artifact.
+- Do not regenerate an unrelated hash because a nearby implementation file changed.
+- Use Git commit or tree identity for repository provenance.
+- Use tests and assertions to verify correctness.
+- Treat existing hash code as local legacy behavior. Do not copy its pattern.
+- Before you add or broaden a hash, checksum, manifest, or provenance field, stop and explain the explicit existing contract and the minimum required scope.
+- Change only the hashes that the requested behavior requires.
+
+A hash proves content identity. It does not prove correctness.
+
+Keep each change narrow. Do not add or expand manifests, checksums, tree hashes, screenshot hashes, provenance metadata, or audit machinery without an explicit existing contract.
 
 
 ## Scope
 
-- Edit `apps/integrated-math-3/` and `apps/bus-math-v2/` — both are first-class apps in this monorepo.
 - Shared code lives in `packages/` and must not import from `apps/` or `convex/_generated/`.
 - Each app owns its own design system, curriculum, and domain-specific components.
 

@@ -14,17 +14,16 @@ describe('administrator request parsing', () => {
     mockRequireDanielsonApiSession.mockResolvedValue({ sub: 'accounts:admin' });
   });
 
-  it('requires a stable client request ID', async () => {
+  it('accepts a change without client audit metadata', async () => {
     const result = await readAdminChange(new Request('http://localhost/api/admin/accounts', {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ kind: 'account.deactivate', targetAccountId: 'accounts:teacher' }),
     }));
 
-    expect(result).toBeInstanceOf(Response);
-    expect((result as Response).status).toBe(400);
-    await expect((result as Response).json()).resolves.toEqual({
-      error: 'A valid request ID is required',
+    expect(result).toMatchObject({
+      claims: { sub: 'accounts:admin' },
+      change: { kind: 'account.deactivate', targetAccountId: 'accounts:teacher' },
     });
   });
 
@@ -44,7 +43,6 @@ describe('administrator request parsing', () => {
     expect(result).not.toBeInstanceOf(Response);
     expect(result).toMatchObject({
       claims: { sub: 'accounts:admin' },
-      requestId: 'request-1',
       change: { kind: 'account.deactivate', targetAccountId: 'accounts:teacher' },
     });
   });

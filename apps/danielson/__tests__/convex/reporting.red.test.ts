@@ -11,7 +11,7 @@ import {
   readMyTeacherReport,
   submitTeacherResponse,
 } from '../../convex/reporting';
-import { GBF_MAPPING_RELEASE, GBF_SEQUENCE_RELEASE } from '../../lib/gbf/source';
+import { GBF_ACTION_STEPS, GBF_MAPPINGS } from '../../lib/gbf/source';
 import { buildDanielsonGraph } from '../../lib/proficiency/graph';
 
 type StoredDocument = Record<string, unknown> & { _id: string; _creationTime: number };
@@ -169,7 +169,6 @@ function seedOrganization(db: MemoryDb, organizationId = ORG) {
     slug: organizationId,
     name: organizationId,
     isActive: true,
-    activeSysadminCount: 1,
     createdAt: NOW,
     updatedAt: NOW,
   });
@@ -279,7 +278,7 @@ const COMPONENT_BY_SKILL = new Map(DANIELSON_GRAPH.edges
   .filter((edge) => edge.type === 'contains')
   .map((edge) => [edge.targetId, edge.sourceId]));
 const ASSIGNED_GBF_SKILL_IDS = [...new Set(
-  GBF_MAPPING_RELEASE.mappings.map((mapping) => mapping.skillId),
+  GBF_MAPPINGS.map((mapping) => mapping.skillId),
 )];
 const UNSEQUENCED_GBF_SKILL_IDS = DANIELSON_GRAPH.nodes
   .filter((node) => (
@@ -290,9 +289,9 @@ const UNSEQUENCED_GBF_SKILL_IDS = DANIELSON_GRAPH.nodes
   .sort();
 
 function primarySkillIds(trajectory: 'management' | 'rigor') {
-  return GBF_SEQUENCE_RELEASE.actionSteps
+  return GBF_ACTION_STEPS
     .filter((step) => step.status === 'required' && step.trajectory === trajectory)
-    .map((step) => GBF_MAPPING_RELEASE.mappings.find((mapping) => (
+    .map((step) => GBF_MAPPINGS.find((mapping) => (
       mapping.actionStepId === step.actionStepId && mapping.role === 'primary'
     ))?.skillId)
     .filter((skillId): skillId is string => skillId !== undefined);
@@ -300,19 +299,15 @@ function primarySkillIds(trajectory: 'management' | 'rigor') {
 
 function seedGbfAssignment(
   db: MemoryDb,
-  input: { assignedAt?: number; requestId?: string; privateSentinel?: string } = {},
+  input: { assignedAt?: number; suffix?: string } = {},
 ) {
-  const assignmentId = `teacher_gbf_assignments:${input.requestId ?? 'one'}`;
+  const assignmentId = `teacher_gbf_assignments:${input.suffix ?? 'one'}`;
   db.seed('teacher_gbf_assignments', assignmentId, {
     organizationId: ORG,
     teacherProfileId: TEACHER,
-    sequenceReleaseId: 'danielson.gbf.sequence.2026-08-19.v1',
-    graphReleaseId: 'danielson.gbf.graph.2026-08-19.v1',
     assignedSkillIds: ASSIGNED_GBF_SKILL_IDS,
     unsequencedGapSkillIds: UNSEQUENCED_GBF_SKILL_IDS,
     actorAccountId: LEADER,
-    requestId: input.requestId ?? 'request:gbf:one',
-    fingerprint: input.privateSentinel ?? 'fingerprint:gbf:one',
     assignedAt: input.assignedAt ?? NOW,
   });
   const teacher = db.rows('teacher_profiles').find((row) => row._id === TEACHER);
@@ -464,7 +459,7 @@ describe('Danielson reporting Convex boundary', () => {
   it('returns the same safe full GBF progress to the teacher and leadership', async () => {
     const db = new MemoryDb();
     seedBase(db);
-    seedGbfAssignment(db, { privateSentinel: 'PRIVATE-GBF-FINGERPRINT' });
+    seedGbfAssignment(db);
     for (const skillId of new Set(primarySkillIds('management'))) {
       seedGbfProficiency(db, skillId, 3);
     }
@@ -492,8 +487,6 @@ describe('Danielson reporting Convex boundary', () => {
     expect(gbf).toMatchObject({
       contractVersion: 'danielson.gbf-progress.v1',
       state: 'in_progress',
-      sequenceReleaseId: 'danielson.gbf.sequence.2026-08-19.v1',
-      graphReleaseId: 'danielson.gbf.graph.2026-08-19.v1',
       assignedSkillIds: expect.arrayContaining(['danielson.tlac.skill.double-plan']),
       unresolvedGapSkillIds: expect.arrayContaining([
         'danielson.tlac.skill.knowledge-organizers',
@@ -515,7 +508,7 @@ describe('Danielson reporting Convex boundary', () => {
     for (let index = 0; index < 251; index += 1) {
       seedGbfAssignment(portfolioDb, {
         assignedAt: NOW + index,
-        requestId: `request:portfolio-capacity:${index}`,
+        suffix: `portfolio-capacity:${index}`,
       });
     }
     const latestAssignment = portfolioDb.rows('teacher_gbf_assignments').at(-1);
@@ -534,7 +527,7 @@ describe('Danielson reporting Convex boundary', () => {
     for (let index = 0; index < 101; index += 1) {
       seedGbfAssignment(teacherDb, {
         assignedAt: NOW + index,
-        requestId: `request:teacher-capacity:${index}`,
+        suffix: `teacher-capacity:${index}`,
       });
     }
     await expect(handler(readMyTeacherReport)(teacherDb.context(), {

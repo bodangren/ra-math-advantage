@@ -7,7 +7,7 @@
 - Next.js routes and server actions
 - the app authentication wrapper
 - the Convex schema and functions
-- Danielson accounts, roles, scopes, and audit events
+- Danielson accounts, roles, and scopes
 - the design system and domain components
 - all later Danielson rubric and evidence content
 
@@ -49,7 +49,7 @@ shape.
 
 The Convex boundary owns account, organization, department, teacher-profile,
 role-assignment, department-membership, HOD-assignment, coach-assignment, and
-audit-event tables.
+domain tables.
 
 Next.js server code calls internal Convex functions with the existing admin
 transport. Each protected operation verifies the session first. The Convex

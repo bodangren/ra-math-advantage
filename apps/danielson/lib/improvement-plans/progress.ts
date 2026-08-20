@@ -63,9 +63,6 @@ export function projectImprovementPlanProgress(input: {
     outcome: 'successful' | 'insufficient_improvement';
     closedAt: number;
   };
-  comments?: unknown;
-  responses?: unknown;
-  evidenceNotes?: unknown;
 }) {
   const targets = input.targets.map((target) => {
     const rated = input.evidence

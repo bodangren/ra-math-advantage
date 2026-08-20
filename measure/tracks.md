@@ -88,13 +88,16 @@ Dependency order:
    *Link: [./tracks/danielson-reporting_20260819/](./tracks/danielson-reporting_20260819/)*
 
 - [x] **Track 5: Performance Improvement Plans** — **COMPLETED** (2026-08-20)
-   *Implement the current one-month PIP form. Permit supervisor proposal and require SLT approval. Link approved target skills to high-cadence evidence, show progress, preserve acknowledgments, and record an audited closure without an automated disciplinary decision.*
+   *Implement the current one-month PIP form. Permit supervisor proposal and require SLT approval. Link approved target skills to high-cadence evidence, show progress, preserve acknowledgments, and record closure without an automated disciplinary decision.*
    *Link: [./tracks/danielson-improvement-plans_20260819/](./tracks/danielson-improvement-plans_20260819/)*
 
-- [x] **Track 6: GBF Sequence and TLAC 3.0 Edges** — **COMPLETED** (2026-08-20)
-   *Use the supplied GBF scope and sequence to define parallel Management and Rigor paths. Record direct and inferred TLAC 3.0 mappings. Activate only reviewed support and prerequisite edges.*
+- [x] **Track 6: GBF Sequence and TLAC 3.0 Mapping** — **COMPLETED** (2026-08-20)
+   *Use the supplied GBF scope and sequence to define parallel Management and Rigor paths. Map the paths to TLAC 3.0 skills. Use each current phase in walkthrough priority. Keep SRS as the only due-date scheduler.*
    *Link: [./tracks/danielson-gbf-sequencing_20260819/](./tracks/danielson-gbf-sequencing_20260819/)*
 
+- [~] **Track: Danielson Ponytail Cleanup**
+   *Remove agent-created audit, hash, release, test-only, and dead-code scope. Complete GBF walkthrough priority and the first-administrator production seed path.*
+   *Link: [./tracks/danielson-ponytail-cleanup_20260820/](./tracks/danielson-ponytail-cleanup_20260820/)*
 
 - [x] **Track: Anti-Slop Oxlint Integration**
    *Install `dmmulroy/anti-slop` and configure its 15 generic Oxlint rules in the monorepo while preserving the existing ESLint workspace commands.*

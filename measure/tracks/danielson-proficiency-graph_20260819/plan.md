@@ -8,10 +8,10 @@
 
 ## Phase 1: Contract and Schema Definition
 
-- [x] Task 1.1: Freeze the source and import manifests
+- [x] Task 1.1: Define the app-owned source data
     - [x] Record the Danielson 2022 source and license boundary
-    - [x] Inventory both sibling technique datasets and record hashes
-    - [x] Define the reconciliation and review-status rules
+    - [x] Record the 63 standalone TLAC techniques
+    - [x] Define stable skill IDs and source labels
 - [x] Task 1.2: Define the app-owned graph contract
     - [x] Map product terms to existing node kinds
     - [x] Define stable IDs and `contains` edge rules
@@ -33,9 +33,9 @@
 
 ## Phase 2: Test
 
-- [x] Task 2.1: Write source-manifest and graph Red tests
-    - [x] Test exact Danielson counts and reviewed technique reconciliation
-    - [x] Test source labels, hashes, stable IDs, and review states
+- [x] Task 2.1: Write source-data and graph Red tests
+    - [x] Test exact Danielson and TLAC counts
+    - [x] Test source labels and stable IDs
     - [x] Reject duplicate, dangling, invalid, and cyclic structures
 - [x] Task 2.2: Write rating-map and proficiency Red tests
     - [x] Test `1 → 70`, `2 → 80`, `3 → 90`, and `4 → 100`
@@ -56,9 +56,9 @@
 
 ## Phase 3: Implement [checkpoint: 7e733a0]
 
-- [x] Task 3.1: Implement the reviewed content import — `7e733a0`
-    - [x] Create app-owned source manifests and normalized graph data
-    - [x] Preserve unresolved mappings in a review queue
+- [x] Task 3.1: Implement the content import — `7e733a0`
+    - [x] Create app-owned source data and normalized graph data
+    - [x] Keep the sibling project out of the runtime path
 - [x] Task 3.2: Implement graph validation and projections — `7e733a0`
     - [x] Reuse the canonical graph schemas and validation functions
     - [x] Expose role-safe projections instead of raw graph files
@@ -81,7 +81,7 @@
     - [x] Run graph, evidence, KST, SRS, coverage, lint, typecheck, and build gates
     - [x] Run deterministic replay and boundary tests
 - [x] Task 4.2: Generate source and architecture facts — `7e733a0`
-    - [x] Generate graph inventory, provenance, review-queue, and dependency facts
+    - [x] Generate graph inventory and dependency facts
     - [x] Run `npm run generate`
 - [x] Task 4.3: Run validation and Measure Doctor — `7e733a0`
     - [x] Run graph validation, monorepo boundaries, inventory parity, and `npm run doctor`

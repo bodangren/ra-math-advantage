@@ -430,11 +430,6 @@ export async function processTeacherEvidence(input: {
   graph: KnowledgeSpace;
   now: string;
   port: TeacherProficiencyPort;
-  annotations?: {
-    publicComment?: string;
-    privateComment?: string;
-    teacherResponse?: string;
-  };
 }): Promise<TeacherEvidenceResult> {
   const evidence = normalizeObservationEvidence(input.evidence, input.graph);
   const nowMs = Date.parse(input.now);

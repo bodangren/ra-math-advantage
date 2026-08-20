@@ -145,42 +145,6 @@ describe('teacher proficiency evidence processor', () => {
     expect(port.commits).toHaveLength(1);
   });
 
-  it('keeps comments out of the idempotency fingerprint and every scoring projection', async () => {
-    const { processTeacherEvidence } = await processorModule();
-    const port = new MemoryTeacherProficiencyPort();
-    const graph = createFixtureGraph();
-
-    await expect(processTeacherEvidence({
-      evidence: createRatedEvidence(),
-      annotations: {
-        publicComment: 'First public comment.',
-        privateComment: 'First private comment.',
-        teacherResponse: 'First teacher response.',
-      },
-      graph,
-      now: FIXED_NOW,
-      port,
-    })).resolves.toMatchObject({ kind: 'applied' });
-    const beforeReplay = await port.getTeacherState(TEACHER_ID);
-    const beforeScoring = scoringSnapshot(beforeReplay);
-
-    await expect(processTeacherEvidence({
-      evidence: createRatedEvidence(),
-      annotations: {
-        publicComment: 'Changed public comment.',
-        privateComment: 'Changed private comment.',
-        teacherResponse: 'Changed teacher response.',
-      },
-      graph,
-      now: FIXED_NOW,
-      port,
-    })).resolves.toMatchObject({ kind: 'replayed' });
-    const afterReplay = await port.getTeacherState(TEACHER_ID);
-
-    expect(scoringSnapshot(afterReplay)).toBe(beforeScoring);
-    expect(port.commits).toHaveLength(1);
-  });
-
   it('keeps review identities unique when two commands share one source record', async () => {
     const { processTeacherEvidence } = await processorModule();
     const port = new MemoryTeacherProficiencyPort();

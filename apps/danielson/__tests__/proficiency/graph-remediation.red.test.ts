@@ -60,41 +60,8 @@ describe('Track 2 remediation: graph integrity', () => {
       source: 'Teach Like a Champion 3.0',
       location: `src/data/techniques/${id}.ts`,
     })));
-    expect(result.mappings.map((mapping) => mapping.skillId).sort()).toEqual(
-      COMMITTED_STANDALONE_TLAC_IDS.map((id) => `danielson.tlac.skill.${id}`),
+    expect(graphInventory.map((row) => row.id)).toEqual(
+      APPROVED_TLAC_SOURCE_INVENTORY.map((row) => row.id).sort(),
     );
-    expect(result.mappings.sort((left, right) => left.skillId.localeCompare(right.skillId))).toEqual(
-      APPROVED_TLAC_SOURCE_INVENTORY.map((row) => ({
-        skillId: `danielson.tlac.skill.${row.id}`,
-        componentId: `danielson.framework.component.${row.componentId}`,
-        reviewStatus: 'approved',
-      })).sort((left, right) => left.skillId.localeCompare(right.skillId)),
-    );
-    expect(result.sourceManifests).toEqual(expect.arrayContaining([
-      expect.objectContaining({
-        stableId: 'sibling.tlac3.modules',
-        source: 'Teach Like a Champion 3.0',
-        recordCount: COMMITTED_STANDALONE_TLAC_IDS.length,
-        contentHash: '4704ae10511d27c4b3cc7951c0aadfe48558aa86e1148f8ba4f116383fe7cb1b',
-      }),
-    ]));
-  });
-
-  it('preserves mixed runtime provenance for overlapping technique IDs', async () => {
-    const { buildDanielsonGraph } = await graphModule();
-    const { graph, reviewQueue } = buildDanielsonGraph();
-    const coldCall = graph.nodes.find((node) => node.id === 'danielson.tlac.skill.cold-call');
-    const turnAndTalk = graph.nodes.find((node) => node.id === 'danielson.tlac.skill.turn-and-talk');
-
-    expect(coldCall?.sourceRefs).toEqual(expect.arrayContaining([
-      expect.objectContaining({ source: 'Teach Like a Champion 3.0' }),
-      expect.objectContaining({ source: 'Uncommon Schools' }),
-    ]));
-    expect(turnAndTalk?.sourceRefs).toEqual(expect.arrayContaining([
-      expect.objectContaining({ source: 'Teach Like a Champion 3.0' }),
-      expect.objectContaining({ source: 'Teaching Channel' }),
-    ]));
-    expect(reviewQueue.map((row) => row.id)).not.toContain('cold-call');
-    expect(reviewQueue.map((row) => row.id)).not.toContain('turn-and-talk');
   });
 });

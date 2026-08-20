@@ -1,7 +1,4 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { readFileSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
 import type { ComponentProps, ComponentType } from 'react';
 import { describe, expect, it } from 'vitest';
 
@@ -186,7 +183,6 @@ function seedOrganization(db: MemoryDb, organizationId = ORG) {
     slug: organizationId,
     name: organizationId,
     isActive: true,
-    activeSysadminCount: 1,
     createdAt: NOW,
     updatedAt: NOW,
   });
@@ -435,16 +431,6 @@ describe('reporting independent-review backend contracts', () => {
       outcome: { kind: 'rated', rating: 4 },
       evidenceNote: 'Effective amended note.',
     });
-  });
-
-  it('uses exact nested return validators for every report shape', () => {
-    const testDirectory = dirname(fileURLToPath(import.meta.url));
-    const source = readFileSync(resolve(testDirectory, '../../convex/reporting.ts'), 'utf8');
-
-    expect(source).not.toMatch(/\bv\.any\s*\(/);
-    expect(source).toMatch(/officialEvaluations:\s*v\.array\(officialEvaluationValidator\)/);
-    expect(source).toMatch(/currentProficiency:\s*currentProficiencyValidator/);
-    expect(source).toMatch(/paginationResultValidator\(evidenceHistoryItemValidator\)/);
   });
 
   it('keeps one response after truly interleaved empty indexed reads', async () => {

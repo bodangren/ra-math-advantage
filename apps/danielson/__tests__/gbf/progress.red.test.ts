@@ -1,10 +1,11 @@
 import { describe, expect, it } from 'vitest';
 
 import {
+  applyGbfPhasePriority,
   createCurrentGbfAssignment,
   projectGbfProgress,
 } from '../../lib/gbf/progress';
-import { GBF_MAPPING_RELEASE, GBF_SEQUENCE_RELEASE } from '../../lib/gbf/source';
+import { GBF_ACTION_STEPS, GBF_MAPPINGS } from '../../lib/gbf/source';
 
 const TEACHER = 'teacher_profiles:one';
 
@@ -26,6 +27,30 @@ function priority(skillId: string, rating: 1 | 2 | 3 | 4 | null, due = false) {
 }
 
 describe('GBF teacher progress', () => {
+  it('marks the current Management and Rigor phase skills as walkthrough priorities', () => {
+    const assignment = createCurrentGbfAssignment({
+      assignmentId: 'teacher_gbf_assignments:one',
+      organizationId: 'organizations:one',
+      teacherProfileId: TEACHER,
+      assignedByAccountId: 'accounts:leader',
+      assignedAt: 1,
+    });
+    const priorities = [
+      priority('danielson.tlac.skill.routine-building', null),
+      priority('danielson.tlac.skill.strong-voice', null),
+      priority('danielson.tlac.skill.stretch-it', null),
+    ];
+
+    const result = applyGbfPhasePriority({ assignment, priorities });
+
+    expect(result.find((row) => row.skillId === 'danielson.tlac.skill.routine-building')
+      ?.approvedPriorityInputs).toContain('gbf_phase_priority');
+    expect(result.find((row) => row.skillId === 'danielson.tlac.skill.strong-voice')
+      ?.approvedPriorityInputs).toContain('gbf_phase_priority');
+    expect(result.find((row) => row.skillId === 'danielson.tlac.skill.stretch-it')
+      ?.approvedPriorityInputs).not.toContain('gbf_phase_priority');
+  });
+
   it('returns the neutral versioned projection without an assignment', () => {
     expect(projectGbfProgress({ assignment: null, priorities: [] })).toEqual({
       contractVersion: 'danielson.gbf-progress.v1',
@@ -39,16 +64,15 @@ describe('GBF teacher progress', () => {
       organizationId: 'organizations:one',
       teacherProfileId: TEACHER,
       assignedByAccountId: 'accounts:sysadmin',
-      requestId: 'request:one',
       assignedAt: Date.parse('2026-08-19T00:00:00.000Z'),
     });
-    const managementPrimary = GBF_SEQUENCE_RELEASE.actionSteps
+    const managementPrimary = GBF_ACTION_STEPS
       .filter((step) => step.status === 'required' && step.trajectory === 'management')
-      .map((step) => GBF_MAPPING_RELEASE.mappings.find((mapping) => (
+      .map((step) => GBF_MAPPINGS.find((mapping) => (
         mapping.actionStepId === step.actionStepId && mapping.role === 'primary'
       ))?.skillId)
       .filter((skillId): skillId is string => skillId !== undefined);
-    const rigorFirst = GBF_MAPPING_RELEASE.mappings.find((mapping) => (
+    const rigorFirst = GBF_MAPPINGS.find((mapping) => (
       mapping.actionStepId === 'phase_1.rigor.1' && mapping.role === 'primary'
     ))?.skillId;
     expect(rigorFirst).toBeDefined();
@@ -61,8 +85,6 @@ describe('GBF teacher progress', () => {
     expect(result).toMatchObject({
       contractVersion: 'danielson.gbf-progress.v1',
       state: 'in_progress',
-      sequenceReleaseId: 'danielson.gbf.sequence.2026-08-19.v1',
-      graphReleaseId: 'danielson.gbf.graph.2026-08-19.v1',
       trajectories: {
         management: { currentPhaseId: 'complete' },
         rigor: { currentPhaseId: 'phase_1' },
@@ -75,16 +97,54 @@ describe('GBF teacher progress', () => {
     expect(result.unresolvedGapSkillIds).toHaveLength(13);
   });
 
+  it('applies each current phase only to its own trajectory', () => {
+    const assignment = createCurrentGbfAssignment({
+      assignmentId: 'teacher_gbf_assignments:one',
+      organizationId: 'organizations:one',
+      teacherProfileId: TEACHER,
+      assignedByAccountId: 'accounts:sysadmin',
+      assignedAt: 1,
+    });
+    const priorities = [
+      priority('danielson.tlac.skill.routine-building', 3),
+      priority('danielson.tlac.skill.strong-voice', 3),
+      priority('danielson.tlac.skill.double-plan', 3),
+      priority('danielson.tlac.skill.exemplar-planning', 3),
+      priority('danielson.tlac.skill.silent-solo', 3),
+      priority('danielson.tlac.skill.active-observation', 3),
+      priority('danielson.tlac.skill.what-to-do', null),
+      priority('danielson.tlac.skill.accountable-independent-reading', null),
+      priority('danielson.tlac.skill.brighten-the-lines', null),
+    ];
+
+    expect(projectGbfProgress({ assignment, priorities })).toMatchObject({
+      trajectories: {
+        management: { currentPhaseId: 'phase_2' },
+        rigor: { currentPhaseId: 'phase_3' },
+      },
+    });
+
+    const result = applyGbfPhasePriority({ assignment, priorities });
+    const inputsFor = (skillId: string) => result.find((row) => row.skillId === skillId)
+      ?.approvedPriorityInputs;
+    expect(inputsFor('danielson.tlac.skill.what-to-do')).toContain('gbf_phase_priority');
+    expect(inputsFor('danielson.tlac.skill.accountable-independent-reading'))
+      .toContain('gbf_phase_priority');
+    expect(inputsFor('danielson.tlac.skill.brighten-the-lines'))
+      .not.toContain('gbf_phase_priority');
+    expect(inputsFor('danielson.tlac.skill.silent-solo'))
+      .not.toContain('gbf_phase_priority');
+  });
+
   it('uses raw ratings 3 and 4 as proficiency and does not change the input', () => {
     const assignment = createCurrentGbfAssignment({
       assignmentId: 'teacher_gbf_assignments:one',
       organizationId: 'organizations:one',
       teacherProfileId: TEACHER,
       assignedByAccountId: 'accounts:sysadmin',
-      requestId: 'request:one',
       assignedAt: 1,
     });
-    const primaryIds = [...new Set(GBF_MAPPING_RELEASE.mappings
+    const primaryIds = [...new Set(GBF_MAPPINGS
       .filter((mapping) => mapping.role === 'primary')
       .map((mapping) => mapping.skillId))];
     const priorities = primaryIds.map((skillId, index) => priority(skillId, index % 2 === 0 ? 3 : 4));
@@ -98,13 +158,12 @@ describe('GBF teacher progress', () => {
       .toEqual(before.map((row) => row.currentProficiency.rawRating));
   });
 
-  it('keeps a historical assignment on its recorded releases', () => {
+  it('does not change an assignment while it projects progress', () => {
     const assignment = createCurrentGbfAssignment({
       assignmentId: 'teacher_gbf_assignments:historic',
       organizationId: 'organizations:one',
       teacherProfileId: TEACHER,
       assignedByAccountId: 'accounts:sysadmin',
-      requestId: 'request:historic',
       assignedAt: 1,
     });
     const snapshot = structuredClone(assignment);
@@ -112,7 +171,5 @@ describe('GBF teacher progress', () => {
     projectGbfProgress({ assignment, priorities: [] });
 
     expect(assignment).toEqual(snapshot);
-    expect(assignment.sequenceReleaseId).toBe('danielson.gbf.sequence.2026-08-19.v1');
-    expect(assignment.graphReleaseId).toBe('danielson.gbf.graph.2026-08-19.v1');
   });
 });

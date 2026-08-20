@@ -1,6 +1,3 @@
-import { existsSync, readFileSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
@@ -9,14 +6,10 @@ import { TeacherReportView } from '../../components/teacher-report-view';
 import type { PublicTeacherReport } from '../../lib/reporting/contracts';
 import { projectPortfolioRow } from '../../lib/reporting/projections';
 
-const APP_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
-
 const configuredGbf = {
   contractVersion: 'danielson.gbf-progress.v1' as const,
   state: 'in_progress' as const,
   assignmentId: 'teacher_gbf_assignments:one',
-  sequenceReleaseId: 'danielson.gbf.sequence.2026-08-19.v1',
-  graphReleaseId: 'danielson.gbf.graph.2026-08-19.v1',
   trajectories: {
     management: {
       currentPhaseId: 'phase_2' as const,
@@ -149,7 +142,7 @@ describe('GBF report interface', () => {
       .not.toBeInTheDocument();
   });
 
-  it('does not offer a duplicate same-release assignment for a configured report', () => {
+  it('does not offer a duplicate assignment for a configured report', () => {
     render(<TeacherReportView
       report={report}
       canComment={false}
@@ -207,9 +200,5 @@ describe('GBF report interface', () => {
       }),
     );
 
-    expect(existsSync(resolve(APP_ROOT, 'app/gbf-assignment/page.tsx'))).toBe(false);
-    expect(existsSync(resolve(APP_ROOT, 'app/gbf-assignments/page.tsx'))).toBe(false);
-    expect(readFileSync(resolve(APP_ROOT, 'app/reports/teachers/[teacherProfileId]/page.tsx'), 'utf8'))
-      .toContain('canAssignGbf');
   });
 });

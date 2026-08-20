@@ -29,14 +29,3 @@ export const PIP_SOURCE_CONTRACT = {
       'This plan is intended to support professional improvement and ensure alignment with the instructional standards of the school.',
   },
 } as const;
-
-export const PIP_SOURCE_CANONICAL_JSON = JSON.stringify(PIP_SOURCE_CONTRACT);
-export const PIP_SOURCE_HASH =
-  'c997419fcc7b922422dc505779c2ca8a145cb679c100606ce01fa9efdfebdbdb';
-
-/** Reject a source object that differs from the reviewed canonical source. */
-export function validatePipSourceContract(value: unknown) {
-  return JSON.stringify(value) === PIP_SOURCE_CANONICAL_JSON
-    ? { valid: true as const }
-    : { valid: false as const, reason: 'source_hash_mismatch' as const };
-}

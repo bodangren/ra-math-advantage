@@ -53,7 +53,7 @@ not make a disciplinary or retention decision.
     remains below the approved expected standard.
 12. **FR-12 — Report projection:** Give Track 4 the plan state, days remaining,
     target proficiency, evidence due, support, completion criteria, and outcome.
-13. **FR-13 — Audited closure:** Require an SLT member to close a plan with
+13. **FR-13 — Recorded closure:** Require an SLT member to close a plan with
     `successful` or `insufficient_improvement`, an outcome note, actor, and time.
 14. **FR-14 — No automated discipline:** Do not create a termination,
     retention, warning, or other disciplinary recommendation.
@@ -65,7 +65,7 @@ not make a disciplinary or retention decision.
 - Treat PIP data as restricted personnel data.
 - Apply Track 1 organization, role, scope, and self-subject rules on the server.
 - Keep approved records and lifecycle events append-only.
-- Keep target evidence references stable when graph or source releases change.
+- Keep target evidence references stable when graph or source content changes.
 - Use bounded, indexed queries for plan lists and evidence history.
 - Make the plan form, acknowledgment, and progress view accessible.
 
@@ -92,7 +92,7 @@ not make a disciplinary or retention decision.
     no score and no effect on teacher proficiency.
 13. Cross-organization, out-of-scope, system-administrator-only, and
     unauthenticated requests return no protected PIP data.
-14. Authorization, audit, immutability, accessibility, tests, coverage, lint,
+14. Authorization, record integrity, accessibility, tests, coverage, lint,
     typecheck, build, generated-fact, boundary, and Measure Doctor gates pass.
 
 ## Out of Scope

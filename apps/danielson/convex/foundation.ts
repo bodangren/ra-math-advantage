@@ -3,12 +3,8 @@ import { internalMutation, internalQuery, type QueryCtx } from './_generated/ser
 import type { Doc, Id } from './_generated/dataModel';
 import { v } from 'convex/values';
 
-import { sanitizeAuditSnapshot } from '../lib/foundation/audit';
-
 const MAX_ACTIVE_DEPARTMENT_MEMBERSHIPS = 100;
 
-const scalarValidator = v.union(v.string(), v.number(), v.boolean(), v.null());
-const snapshotValidator = v.record(v.string(), scalarValidator);
 const roleValidator = v.union(
   v.literal('teacher'),
   v.literal('hod'),
@@ -110,15 +106,6 @@ function isAction(value: string): value is Action {
     || value === 'hod_assignment.revoke'
     || value === 'coach_assignment.assign'
     || value === 'coach_assignment.revoke';
-}
-
-function targetTypeFor(action: Action) {
-  if (action.startsWith('account.')) return 'account' as const;
-  if (action.startsWith('role.')) return 'role_assignment' as const;
-  if (action.startsWith('department_membership.')) return 'department_membership' as const;
-  if (action.startsWith('hod_assignment.')) return 'hod_assignment' as const;
-  if (action.startsWith('coach_assignment.')) return 'coach_assignment' as const;
-  return 'department' as const;
 }
 
 /** Resolve fresh Danielson roles and subject scope from current database rows. */
@@ -279,6 +266,112 @@ async function resolveSysadminActor(ctx: QueryCtx, actorAccountId: Id<'accounts'
   return { kind: 'allowed' as const, actor };
 }
 
+async function hasOtherActiveSysadmin(
+  ctx: Pick<QueryCtx, 'db'>,
+  organizationId: Id<'organizations'>,
+  excludedAccountId: Id<'accounts'>,
+) {
+  const assignments = await ctx.db.query('role_assignments')
+    .withIndex('by_organizationId_and_role_and_status', (query) => query
+      .eq('organizationId', organizationId)
+      .eq('role', 'sysadmin')
+      .eq('status', 'active'))
+    .take(100);
+  const accounts = await Promise.all(assignments
+    .filter((assignment) => assignment.accountId !== excludedAccountId)
+    .map((assignment) => ctx.db.get(assignment.accountId)));
+  return accounts.some((account) => account?.isActive === true);
+}
+
+/** Create the first organization and administrator on an empty deployment. */
+export const bootstrapFirstSysadmin = internalMutation({
+  args: {
+    organizationSlug: v.string(),
+    organizationName: v.string(),
+    username: v.string(),
+    displayName: v.string(),
+    passwordHash: v.string(),
+    passwordSalt: v.string(),
+    passwordHashIterations: v.number(),
+  },
+  returns: v.union(
+    v.object({ kind: v.literal('invalid_input') }),
+    v.object({ kind: v.literal('already_bootstrapped') }),
+    v.object({
+      kind: v.literal('created'),
+      organizationId: v.id('organizations'),
+      accountId: v.id('accounts'),
+    }),
+  ),
+  handler: async (ctx, args) => {
+    const organizationSlug = args.organizationSlug.trim().toLowerCase();
+    const organizationName = args.organizationName.trim();
+    const username = args.username.trim().toLowerCase();
+    const displayName = args.displayName.trim();
+    if (
+      !organizationSlug
+      || !organizationName
+      || !username
+      || !displayName
+      || !args.passwordHash
+      || !args.passwordSalt
+      || !Number.isInteger(args.passwordHashIterations)
+      || args.passwordHashIterations < 1
+    ) return { kind: 'invalid_input' as const };
+
+    const [organization, account] = await Promise.all([
+      ctx.db.query('organizations')
+        .withIndex('by_slug', (query) => query.eq('slug', organizationSlug))
+        .unique(),
+      ctx.db.query('accounts')
+        .withIndex('by_username', (query) => query.eq('username', username))
+        .unique(),
+    ]);
+    if (organization || account) return { kind: 'already_bootstrapped' as const };
+    if ((await ctx.db.query('organizations').take(1)).length > 0) {
+      return { kind: 'already_bootstrapped' as const };
+    }
+
+    const now = Date.now();
+    const organizationId = await ctx.db.insert('organizations', {
+      slug: organizationSlug,
+      name: organizationName,
+      isActive: true,
+      createdAt: now,
+      updatedAt: now,
+    });
+    const accountId = await ctx.db.insert('accounts', {
+      organizationId,
+      username,
+      displayName,
+      sharedSessionRole: 'admin',
+      isActive: true,
+      createdAt: now,
+      updatedAt: now,
+    });
+    await ctx.db.insert('auth_credentials', {
+      accountId,
+      username,
+      passwordHash: args.passwordHash,
+      passwordSalt: args.passwordSalt,
+      passwordHashIterations: args.passwordHashIterations,
+      isActive: true,
+      mustChangePassword: true,
+      createdAt: now,
+      updatedAt: now,
+    });
+    await ctx.db.insert('role_assignments', {
+      organizationId,
+      accountId,
+      role: 'sysadmin',
+      status: 'active',
+      createdByAccountId: accountId,
+      createdAt: now,
+    });
+    return { kind: 'created' as const, organizationId, accountId };
+  },
+});
+
 export const listAdministrationAccounts = internalQuery({
   args: {
     actorAccountId: v.id('accounts'),
@@ -392,46 +485,15 @@ export const listAdministrationDepartments = internalQuery({
   },
 });
 
-export const listAccessAuditEvents = internalQuery({
-  args: {
-    organizationId: v.id('organizations'),
-    paginationOpts: paginationOptsValidator,
-  },
-  returns: v.object({
-    page: v.array(v.object({
-      _id: v.id('access_audit_events'),
-      _creationTime: v.number(),
-      organizationId: v.id('organizations'),
-      requestId: v.string(),
-      actorAccountId: v.id('accounts'),
-      action: v.string(),
-      targetType: v.string(),
-      targetId: v.string(),
-      occurredAt: v.number(),
-      before: v.union(snapshotValidator, v.null()),
-      after: v.union(snapshotValidator, v.null()),
-    })),
-    isDone: v.boolean(),
-    continueCursor: v.string(),
-  }),
-  handler: async (ctx, args) => ctx.db
-    .query('access_audit_events')
-    .withIndex('by_organizationId_and_occurredAt', (query) => query.eq('organizationId', args.organizationId))
-    .order('desc')
-    .paginate(args.paginationOpts),
-});
-
 export const applyAdministrationChange = internalMutation({
   args: {
     actorAccountId: v.id('accounts'),
     organizationId: v.id('organizations'),
-    requestId: v.string(),
     change: changeValidator,
   },
   returns: v.object({
     kind: v.string(),
     reason: v.optional(v.string()),
-    auditEventId: v.optional(v.id('access_audit_events')),
     targetId: v.optional(v.string()),
   }),
   handler: async (ctx, args) => {
@@ -453,21 +515,11 @@ export const applyAdministrationChange = internalMutation({
       .unique();
     if (!sysadmin) return { kind: 'denied' as const, reason: 'capability_not_granted' as const };
 
-    const duplicate = await ctx.db
-      .query('access_audit_events')
-      .withIndex('by_organizationId_and_requestId', (query) =>
-        query.eq('organizationId', args.organizationId).eq('requestId', args.requestId),
-      )
-      .unique();
-    if (duplicate) return { kind: 'denied' as const, reason: 'duplicate_request' as const };
-
     if (!isAction(args.change.kind)) return { kind: 'invalid' as const, reason: 'invalid_action' as const };
     const action = args.change.kind;
 
     const now = Date.now();
     let targetId = '';
-    let before: Record<string, string | number | boolean | null> | null = null;
-    let after: Record<string, string | number | boolean | null> | null = null;
 
     if (action === 'account.create') {
       const username = args.change.username?.trim().toLowerCase();
@@ -512,13 +564,11 @@ export const applyAdministrationChange = internalMutation({
         });
       }
       targetId = String(accountId);
-      after = sanitizeAuditSnapshot({ accountId: targetId, organizationId: String(args.organizationId), username, displayName, isActive: true });
     } else if (action.startsWith('account.')) {
       const accountId = ctx.db.normalizeId('accounts', args.change.targetAccountId ?? args.change.accountId ?? '');
       const target = accountId ? await ctx.db.get(accountId) : null;
       if (!target || target.organizationId !== args.organizationId) return { kind: 'invalid' as const, reason: 'target_not_found' as const };
       targetId = String(target._id);
-      before = sanitizeAuditSnapshot({ accountId: targetId, organizationId: String(target.organizationId), username: target.username, displayName: target.displayName, isActive: target.isActive });
       if (action === 'account.update') {
         const username = args.change.username?.trim().toLowerCase() || target.username;
         const displayName = args.change.displayName?.trim() || target.displayName;
@@ -549,22 +599,15 @@ export const applyAdministrationChange = internalMutation({
           )
           .take(6);
         const hasSysadminRole = roles.some((role) => role.role === 'sysadmin');
-        const activeSysadminCount = organization.activeSysadminCount;
-        if (action === 'account.deactivate' && hasSysadminRole && activeSysadminCount <= 1) {
+        if (action === 'account.deactivate'
+          && hasSysadminRole
+          && !await hasOtherActiveSysadmin(ctx, args.organizationId, target._id)) {
           return { kind: 'denied' as const, reason: 'final_active_sysadmin' as const };
         }
         await ctx.db.patch(target._id, { isActive, updatedAt: now });
         const credential = await ctx.db.query('auth_credentials').withIndex('by_accountId', (query) => query.eq('accountId', target._id)).unique();
         if (credential) await ctx.db.patch(credential._id, { isActive, updatedAt: now });
-        if (hasSysadminRole) {
-          await ctx.db.patch(organization._id, {
-            activeSysadminCount: activeSysadminCount + (isActive ? 1 : -1),
-            updatedAt: now,
-          });
-        }
       }
-      const updated = await ctx.db.get(target._id);
-      after = updated ? sanitizeAuditSnapshot({ accountId: targetId, organizationId: String(updated.organizationId), username: updated.username, displayName: updated.displayName, isActive: updated.isActive }) : null;
     } else if (action === 'role.assign' || action === 'role.revoke') {
       if (!isRole(args.change.role)) return { kind: 'invalid' as const, reason: 'invalid_role' as const };
       const accountId = ctx.db.normalizeId('accounts', args.change.targetAccountId ?? args.change.accountId ?? '');
@@ -576,31 +619,16 @@ export const applyAdministrationChange = internalMutation({
       if (action === 'role.assign') {
         if (existing) return { kind: 'denied' as const, reason: 'duplicate_assignment' as const };
         const assignmentId = await ctx.db.insert('role_assignments', { organizationId: args.organizationId, accountId: target._id, role: args.change.role, status: 'active', createdByAccountId: actor._id, createdAt: now });
-        if (args.change.role === 'sysadmin') {
-          await ctx.db.patch(organization._id, {
-            activeSysadminCount: organization.activeSysadminCount + 1,
-            updatedAt: now,
-          });
-        }
         targetId = String(assignmentId);
-        after = sanitizeAuditSnapshot({ accountId: String(target._id), organizationId: String(args.organizationId), role: args.change.role, status: 'active' });
       } else {
         if (!existing) return { kind: 'invalid' as const, reason: 'assignment_not_found' as const };
         const removesActiveSysadmin = args.change.role === 'sysadmin' && target.isActive;
-        const activeSysadminCount = organization.activeSysadminCount;
-        if (removesActiveSysadmin && activeSysadminCount <= 1) {
+        if (removesActiveSysadmin
+          && !await hasOtherActiveSysadmin(ctx, args.organizationId, target._id)) {
           return { kind: 'denied' as const, reason: 'final_active_sysadmin' as const };
         }
         await ctx.db.patch(existing._id, { status: 'revoked', revokedByAccountId: actor._id, revokedAt: now });
-        if (removesActiveSysadmin) {
-          await ctx.db.patch(organization._id, {
-            activeSysadminCount: activeSysadminCount - 1,
-            updatedAt: now,
-          });
-        }
         targetId = String(existing._id);
-        before = sanitizeAuditSnapshot({ accountId: String(target._id), organizationId: String(args.organizationId), role: args.change.role, status: 'active' });
-        after = sanitizeAuditSnapshot({ accountId: String(target._id), organizationId: String(args.organizationId), role: args.change.role, status: 'revoked' });
       }
     } else if (action === 'department.create') {
       const key = args.change.key?.trim().toLowerCase();
@@ -610,13 +638,11 @@ export const applyAdministrationChange = internalMutation({
       if (duplicate) return { kind: 'denied' as const, reason: 'duplicate_department' as const };
       const departmentId = await ctx.db.insert('departments', { organizationId: args.organizationId, key, name, isActive: true, createdAt: now, updatedAt: now });
       targetId = String(departmentId);
-      after = sanitizeAuditSnapshot({ departmentId: targetId, organizationId: String(args.organizationId), key, name, isActive: true });
     } else if (action.startsWith('department.')) {
       const departmentId = ctx.db.normalizeId('departments', args.change.departmentId ?? args.change.targetId ?? '');
       const department = departmentId ? await ctx.db.get(departmentId) : null;
       if (!department || department.organizationId !== args.organizationId) return { kind: 'invalid' as const, reason: 'target_not_found' as const };
       targetId = String(department._id);
-      before = sanitizeAuditSnapshot({ departmentId: targetId, organizationId: String(department.organizationId), key: department.key, name: department.name, isActive: department.isActive });
       if (action === 'department.update') {
         const key = args.change.key?.trim().toLowerCase() || department.key;
         const name = args.change.name?.trim() || department.name;
@@ -633,8 +659,6 @@ export const applyAdministrationChange = internalMutation({
         }
         await ctx.db.patch(department._id, { isActive, updatedAt: now });
       }
-      const updated = await ctx.db.get(department._id);
-      after = updated ? sanitizeAuditSnapshot({ departmentId: targetId, organizationId: String(updated.organizationId), key: updated.key, name: updated.name, isActive: updated.isActive }) : null;
     } else if (action === 'department_membership.assign' || action === 'department_membership.revoke') {
       const departmentId = ctx.db.normalizeId('departments', args.change.departmentId ?? args.change.targetId ?? '');
       const department = departmentId ? await ctx.db.get(departmentId) : null;
@@ -669,13 +693,10 @@ export const applyAdministrationChange = internalMutation({
         }
         const membershipId = await ctx.db.insert('department_memberships', { organizationId: args.organizationId, departmentId: department._id, teacherProfileId: profile._id, status: 'active', createdByAccountId: actor._id, createdAt: now });
         targetId = String(membershipId);
-        after = sanitizeAuditSnapshot({ departmentId: String(department._id), teacherProfileId: String(profile._id), organizationId: String(args.organizationId), status: 'active' });
       } else {
         if (!existing) return { kind: 'invalid' as const, reason: 'assignment_not_found' as const };
         await ctx.db.patch(existing._id, { status: 'revoked', revokedByAccountId: actor._id, revokedAt: now });
         targetId = String(existing._id);
-        before = sanitizeAuditSnapshot({ departmentId: String(department._id), teacherProfileId: String(profile._id), organizationId: String(args.organizationId), status: 'active' });
-        after = sanitizeAuditSnapshot({ departmentId: String(department._id), teacherProfileId: String(profile._id), organizationId: String(args.organizationId), status: 'revoked' });
       }
     } else if (action === 'hod_assignment.assign' || action === 'hod_assignment.revoke') {
       const departmentId = ctx.db.normalizeId('departments', args.change.departmentId ?? args.change.targetId ?? '');
@@ -694,13 +715,10 @@ export const applyAdministrationChange = internalMutation({
         if (existing) return { kind: 'denied' as const, reason: 'duplicate_assignment' as const };
         const assignmentId = await ctx.db.insert('hod_assignments', { organizationId: args.organizationId, accountId: target._id, departmentId: department._id, status: 'active', createdByAccountId: actor._id, createdAt: now });
         targetId = String(assignmentId);
-        after = sanitizeAuditSnapshot({ accountId: String(target._id), departmentId: String(department._id), organizationId: String(args.organizationId), status: 'active' });
       } else {
         if (!existing) return { kind: 'invalid' as const, reason: 'assignment_not_found' as const };
         await ctx.db.patch(existing._id, { status: 'revoked', revokedByAccountId: actor._id, revokedAt: now });
         targetId = String(existing._id);
-        before = sanitizeAuditSnapshot({ accountId: String(target._id), departmentId: String(department._id), organizationId: String(args.organizationId), status: 'active' });
-        after = sanitizeAuditSnapshot({ accountId: String(target._id), departmentId: String(department._id), organizationId: String(args.organizationId), status: 'revoked' });
       }
     } else if (action === 'coach_assignment.assign' || action === 'coach_assignment.revoke') {
       const accountId = ctx.db.normalizeId('accounts', args.change.accountId ?? args.change.targetAccountId ?? '');
@@ -726,29 +744,15 @@ export const applyAdministrationChange = internalMutation({
         if (existing) return { kind: 'denied' as const, reason: 'duplicate_assignment' as const };
         const assignmentId = await ctx.db.insert('coach_assignments', { organizationId: args.organizationId, accountId: target._id, teacherProfileId: profile._id, status: 'active', createdByAccountId: actor._id, createdAt: now });
         targetId = String(assignmentId);
-        after = sanitizeAuditSnapshot({ accountId: String(target._id), teacherProfileId: String(profile._id), organizationId: String(args.organizationId), status: 'active' });
       } else {
         if (!existing) return { kind: 'invalid' as const, reason: 'assignment_not_found' as const };
         await ctx.db.patch(existing._id, { status: 'revoked', revokedByAccountId: actor._id, revokedAt: now });
         targetId = String(existing._id);
-        before = sanitizeAuditSnapshot({ accountId: String(target._id), teacherProfileId: String(profile._id), organizationId: String(args.organizationId), status: 'active' });
-        after = sanitizeAuditSnapshot({ accountId: String(target._id), teacherProfileId: String(profile._id), organizationId: String(args.organizationId), status: 'revoked' });
       }
     } else {
       return { kind: 'invalid' as const, reason: 'unsupported_change' as const };
     }
 
-    const auditEvent = await ctx.db.insert('access_audit_events', {
-      organizationId: args.organizationId,
-      requestId: args.requestId,
-      actorAccountId: actor._id,
-      action,
-      targetType: targetTypeFor(action),
-      targetId,
-      occurredAt: now,
-      before,
-      after,
-    });
-    return { kind: 'applied' as const, auditEventId: auditEvent, targetId };
+    return { kind: 'applied' as const, targetId };
   },
 });

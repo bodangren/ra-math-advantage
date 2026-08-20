@@ -1,7 +1,5 @@
 import { fetchInternalMutation, internal } from '@/lib/convex/server';
 import { requireDanielsonApiSession } from '@/lib/auth/server';
-import { GBF_GRAPH_RELEASE } from '@/lib/gbf/graph';
-import { GBF_SEQUENCE_RELEASE } from '@/lib/gbf/source';
 
 type AssignmentResult = { kind?: string; reason?: string };
 
@@ -27,9 +25,6 @@ export async function POST(
     {
       actorAccountId: claimsOrResponse.sub,
       teacherProfileId,
-      sequenceReleaseId: GBF_SEQUENCE_RELEASE.releaseId,
-      graphReleaseId: GBF_GRAPH_RELEASE.releaseId,
-      requestId: `gbf-assignment:${claimsOrResponse.sub}:${teacherProfileId}:${crypto.randomUUID()}`,
       now: Date.now(),
     },
   ) as AssignmentResult;

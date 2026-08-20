@@ -10,9 +10,9 @@
 
 ## Phase 1: Contract and Schema Definition [checkpoint: f9ab7ef]
 
-- [x] Task 1.1: Freeze the normalized PIP source contract
+- [x] Task 1.1: Define the normalized PIP source contract
     - [x] Preserve each supplied form field and fixed text section
-    - [x] Define source version and content hash for the normalized form
+    - [x] Define the normalized form version
 - [x] Task 1.2: Define plan and target schemas
     - [x] Define teacher, department, supervisor, dates, narrative fields, targets, and expected standards
     - [x] Define stable Danielson and GBF or TLAC source references
@@ -34,7 +34,7 @@
 
 - [x] Task 2.1: Write source and schema Red tests
     - [x] Test every supplied form field, required value, date, target, and fixed text section
-    - [x] Reject an unreviewed source change
+    - [x] Reject an invalid source form
 - [x] Task 2.2: Write proposal and approval authorization Red tests
     - [x] Test HOD, coach, school-head, SLT, system-administrator, teacher, and cross-organization cases
     - [x] Prove that a proposal is inactive until SLT approval
@@ -57,7 +57,7 @@
     - [x] Add bounded indexes and stable source references
 - [x] Task 3.2: Implement proposal and SLT approval — `e404f83f`, `76084f2b`, `d7d4811c`, `5af222e9`
     - [x] Build the accessible source-aligned proposal form
-    - [x] Enforce scope and activate only through an audited approval mutation
+    - [x] Enforce scope and activate only through an SLT approval mutation
 - [x] Task 3.3: Implement immutable versions and acknowledgments — `e404f83f`, `76084f2b`, `6e8e580d`
     - [x] Freeze approved versions and create revisions as new proposals
     - [x] Record teacher and supervisor acknowledgment without a legal-signature claim
@@ -80,6 +80,6 @@
     - [x] Confirm that generated facts identify restricted PIP surfaces
 - [x] Task 4.3: Run boundaries and Measure Doctor
     - [x] Run inventory parity, monorepo boundaries, and `npm run doctor`
-    - [x] Inspect the final audit and immutable-record behavior
+    - [x] Inspect the final access and immutable-record behavior
 - [x] Task 4.4: Measure - User Manual Verification 'Phase 4: Generate Docs and Doctor' (Protocol in workflow.md)
     - User directed full-track continuation on 2026-08-19.

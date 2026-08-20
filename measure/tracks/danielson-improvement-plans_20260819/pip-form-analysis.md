@@ -41,8 +41,8 @@ growth mindset. It tracks Danielson and GBF proficiency only.
 | Supervisor Signature and Date | Supervisor acknowledgment actor and time |
 
 The application also needs an approval actor, approval time, plan version,
-start time, target skill links, and lifecycle state. These are application audit
-fields. They do not replace the source form fields.
+start time, target skill links, and lifecycle state. These are workflow fields.
+They do not replace the source form fields.
 
 ## Confirmed Workflow
 

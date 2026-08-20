@@ -1,9 +1,5 @@
-import { readFileSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 
-import * as improvementPlanModule from '../../convex/improvementPlans';
 import {
   acknowledgeImprovementPlan,
   approveImprovementPlan,
@@ -212,11 +208,11 @@ function seedRole(db: MemoryDb, accountId: string, role: string, organizationId 
 
 function seedBase(db: MemoryDb) {
   db.seed('organizations', ORG, {
-    slug: 'one', name: 'School One', isActive: true, activeSysadminCount: 1,
+    slug: 'one', name: 'School One', isActive: true,
     createdAt: NOW, updatedAt: NOW,
   });
   db.seed('organizations', OTHER_ORG, {
-    slug: 'other', name: 'Other', isActive: true, activeSysadminCount: 1,
+    slug: 'other', name: 'Other', isActive: true,
     createdAt: NOW, updatedAt: NOW,
   });
   seedAccount(db, PROPOSER, 'Supervisor One');
@@ -324,7 +320,6 @@ function seedPlan(
     acknowledgmentText: 'Acknowledgment.',
     sourceId: 'school.pip-form.2026-08-19',
     sourceVersion: '1.0.0',
-    sourceHash: 'source-hash',
     fingerprint: `fingerprint:${suffix}`,
     proposedAt: updatedAt,
   });
@@ -342,52 +337,9 @@ function seedPlan(
     expectedPoints: 90,
     sourceId: 'school.pip-form.2026-08-19',
     sourceVersion: '1.0.0',
-    sourceHash: 'source-hash',
     createdAt: updatedAt,
   });
   return planId;
-}
-
-function seedPlanVersion(
-  db: MemoryDb,
-  input: {
-    planId: string;
-    version: number;
-    purpose: string;
-    versionId?: string;
-  },
-) {
-  const versionId = input.versionId ?? `improvement_plan_versions:history-${input.version}`;
-  db.seed('improvement_plan_versions', versionId, {
-    organizationId: ORG,
-    planId: input.planId,
-    teacherProfileId: TEACHER,
-    version: input.version,
-    proposerAccountId: PROPOSER,
-    supervisorAccountId: PROPOSER,
-    teacherName: 'Teacher One',
-    position: 'Mathematics Teacher',
-    departmentId: DEPARTMENT,
-    departmentName: 'Mathematics',
-    supervisorName: 'Supervisor One',
-    requestedPlanEndDate: null,
-    reviewMeetingDate: '2026-09-20',
-    purpose: input.purpose,
-    areasOfConcern: 'Concern.',
-    expectedStandard: 'Danielson Proficient.',
-    requiredActions: 'Required action.',
-    evidenceOfImprovement: 'Rated evidence.',
-    schoolSupport: 'School support.',
-    successfulCompletionCriteria: 'Expected rating met.',
-    insufficientImprovementConsequences: 'Consequences.',
-    acknowledgmentText: 'Acknowledgment.',
-    sourceId: 'school.pip-form.2026-08-19',
-    sourceVersion: '1.0.0',
-    sourceHash: 'source-hash',
-    fingerprint: `fingerprint:history:${input.version}`,
-    proposedAt: NOW + input.version,
-  });
-  return versionId;
 }
 
 function seedClosedPlan(
@@ -1321,95 +1273,6 @@ describe('PIP approval, versions, acknowledgment, and closure', () => {
     expect(db.queryCount('improvement_plans')).toBeLessThanOrEqual(3);
   });
 
-  it('paginates scoped lifecycle history with prior approved versions and public-safe rows', async () => {
-    const historyDefinition = (improvementPlanModule as Record<string, unknown>)
-      .listImprovementPlanHistory;
-    expect(historyDefinition).toBeDefined();
-    if (!historyDefinition) return;
-    const listHistory = handler(historyDefinition);
-    const db = new MemoryDb();
-    seedBase(db);
-    const first = await propose(db) as Record<string, unknown>;
-    await approve(db, first);
-    const second = await proposeWith(db, {
-      planId: first.planId,
-      requestId: 'request:proposal:history-v2',
-      expectedRevision: 2,
-      purpose: 'Second approved purpose.',
-      now: NOW + 1_000,
-    }) as Record<string, unknown>;
-    await approveWith(db, second, {
-      requestId: 'request:approval:history-v2',
-      expectedRevision: 3,
-      now: NOW + 2_000,
-    });
-    const privateClosureNote = 'Private closure narrative.';
-    await closeWith(db, first.planId, {
-      requestId: 'request:close:history',
-      expectedRevision: 4,
-      note: privateClosureNote,
-      now: NOW + 31 * DAY_MS,
-    });
-
-    await expect(listHistory(db.context(), {
-      actorAccountId: PROPOSER,
-      planId: first.planId,
-      paginationOpts: { cursor: null, numItems: 51 },
-    })).resolves.toEqual({ kind: 'invalid_page_size' });
-
-    const events: Array<Record<string, unknown>> = [];
-    let cursor: string | null = null;
-    let firstPage: Record<string, unknown> | null = null;
-    do {
-      const result = await listHistory(db.context(), {
-        actorAccountId: PROPOSER,
-        planId: first.planId,
-        paginationOpts: { cursor, numItems: 2 },
-      }) as {
-        kind: string;
-        page: { page: Array<Record<string, unknown>>; isDone: boolean; continueCursor: string };
-        priorApprovedVersions: Array<Record<string, unknown>>;
-      };
-      expect(result.kind).toBe('allowed');
-      firstPage ??= result as unknown as Record<string, unknown>;
-      events.push(...result.page.page);
-      cursor = result.page.isDone ? null : result.page.continueCursor;
-    } while (cursor !== null);
-
-    expect(events.map((event) => event.kind).sort()).toEqual([
-      'approved',
-      'approved',
-      'closed',
-      'proposed',
-      'proposed',
-    ]);
-    expect(events.every((event) => typeof event.eventId === 'string')).toBe(true);
-    expect(firstPage).toMatchObject({
-      priorApprovedVersions: [{
-        version: 1,
-        purpose: 'Improve lesson coherence.',
-      }],
-    });
-    expect(JSON.stringify(events)).toContain(privateClosureNote);
-
-    const teacherHistory = await listHistory(db.context(), {
-      actorAccountId: TEACHER_ACCOUNT,
-      planId: first.planId,
-      paginationOpts: { cursor: null, numItems: 50 },
-    });
-    expect(teacherHistory).toMatchObject({ kind: 'allowed' });
-    expect(JSON.stringify(teacherHistory)).not.toContain(privateClosureNote);
-
-    const outsideSlt = 'accounts:outside-slt';
-    seedAccount(db, outsideSlt, 'Outside SLT', OTHER_ORG);
-    seedRole(db, outsideSlt, 'slt', OTHER_ORG);
-    await expect(listHistory(db.context(), {
-      actorAccountId: outsideSlt,
-      planId: first.planId,
-      paginationOpts: { cursor: null, numItems: 20 },
-    })).resolves.toMatchObject({ kind: 'denied' });
-  });
-
   it('paginates scoped plans and returns approved content only to the subject teacher', async () => {
     const db = new MemoryDb();
     seedBase(db);
@@ -1514,122 +1377,6 @@ describe('PIP final independent-review regressions', () => {
     });
   });
 
-  it('keeps unapproved proposal events and metadata leadership-only during an active revision', async () => {
-    const db = new MemoryDb();
-    seedBase(db);
-    const planId = seedPlan(db, 'approval-event-history');
-    const unapprovedVersionId = seedPlanVersion(db, {
-      planId,
-      version: 1,
-      versionId: 'improvement_plan_versions:approval-event-history',
-      purpose: 'Unapproved version one narrative.',
-    });
-    const priorApprovedVersionId = seedPlanVersion(db, {
-      planId,
-      version: 2,
-      purpose: 'Approved version two narrative.',
-    });
-    const activeVersionId = seedPlanVersion(db, {
-      planId,
-      version: 3,
-      purpose: 'Approved active version three narrative.',
-    });
-    const pendingVersionId = seedPlanVersion(db, {
-      planId,
-      version: 4,
-      purpose: 'Unapproved pending version four narrative.',
-    });
-    db.seed('improvement_plans', planId, {
-      organizationId: ORG,
-      teacherProfileId: TEACHER,
-      state: 'active',
-      revision: 6,
-      latestVersion: 4,
-      activeVersionId,
-      activeVersion: 3,
-      pendingVersionId,
-      approvedAt: NOW,
-      planEndAt: NOW + 30 * DAY_MS,
-      reviewMeetingAt: NOW + 20 * DAY_MS,
-      activeTargets: [],
-      createdAt: NOW,
-      updatedAt: NOW,
-    });
-    const event = (
-      id: string,
-      kind: 'proposed' | 'approved',
-      version: number,
-      versionId: string,
-    ) => db.seed('improvement_plan_events', id, {
-      organizationId: ORG,
-      planId,
-      teacherProfileId: TEACHER,
-      version,
-      versionId,
-      kind,
-      requestId: `request:${id}`,
-      fingerprint: `fingerprint:${id}`,
-      actorAccountId: PROPOSER,
-      occurredAt: NOW + version,
-      revision: version,
-      payload: {},
-    });
-    event('improvement_plan_events:proposed-v1', 'proposed', 1, unapprovedVersionId);
-    event('improvement_plan_events:approved-v2', 'approved', 2, priorApprovedVersionId);
-    event('improvement_plan_events:approved-v3', 'approved', 3, activeVersionId);
-    event('improvement_plan_events:proposed-v4', 'proposed', 4, pendingVersionId);
-    const historyDefinition = (improvementPlanModule as Record<string, unknown>)
-      .listImprovementPlanHistory;
-    expect(historyDefinition).toBeDefined();
-    if (!historyDefinition) throw new Error('The PIP history query is missing.');
-    const listHistory = handler(historyDefinition);
-
-    const leadershipHistory = await listHistory(db.context(), {
-      actorAccountId: PROPOSER,
-      planId,
-      paginationOpts: { cursor: null, numItems: 20 },
-    }) as {
-      kind: string;
-      page: { page: Array<Record<string, unknown>> };
-      priorApprovedVersions: Array<Record<string, unknown>>;
-    };
-    expect(leadershipHistory.kind).toBe('allowed');
-    expect(leadershipHistory.page.page).toEqual(expect.arrayContaining([
-      expect.objectContaining({
-        kind: 'proposed',
-        version: 1,
-        versionId: unapprovedVersionId,
-      }),
-      expect.objectContaining({
-        kind: 'proposed',
-        version: 4,
-        versionId: pendingVersionId,
-      }),
-    ]));
-    expect(leadershipHistory.priorApprovedVersions).toEqual([
-      {
-        version: 2,
-        versionId: priorApprovedVersionId,
-        purpose: 'Approved version two narrative.',
-      },
-    ]);
-    const teacherHistory = await listHistory(db.context(), {
-      actorAccountId: TEACHER_ACCOUNT,
-      planId,
-      paginationOpts: { cursor: null, numItems: 20 },
-    }) as {
-      kind: string;
-      page: { page: Array<Record<string, unknown>> };
-      priorApprovedVersions: Array<Record<string, unknown>>;
-    };
-    expect(teacherHistory.kind).toBe('allowed');
-    expect(teacherHistory.page.page.map((event) => event.kind)).toEqual(['approved', 'approved']);
-    expect(JSON.stringify(teacherHistory)).not.toContain(unapprovedVersionId);
-    expect(JSON.stringify(teacherHistory)).not.toContain(pendingVersionId);
-    expect(JSON.stringify(teacherHistory)).not.toContain('improvement_plan_events:proposed-v1');
-    expect(JSON.stringify(teacherHistory)).not.toContain('improvement_plan_events:proposed-v4');
-  });
-
   it('denies a scoped plan list when the actor organization is inactive', async () => {
     const db = new MemoryDb();
     seedBase(db);
@@ -1638,7 +1385,6 @@ describe('PIP final independent-review regressions', () => {
       slug: 'one',
       name: 'School One',
       isActive: false,
-      activeSysadminCount: 1,
       createdAt: NOW,
       updatedAt: NOW,
     });
@@ -1727,53 +1473,6 @@ describe('PIP final independent-review regressions', () => {
     expect(db.queryCount('improvement_plans')).toBe(2);
   });
 
-  it('paginates lifecycle detail without an unbounded history read', async () => {
-    const db = new MemoryDb();
-    seedBase(db);
-    const planId = seedPlan(db, 'paginated-history');
-    for (let index = 0; index < 55; index += 1) {
-      db.seed('improvement_plan_events', `improvement_plan_events:paginated-${index}`, {
-        organizationId: ORG,
-        planId,
-        teacherProfileId: TEACHER,
-        version: 1,
-        versionId: 'improvement_plan_versions:paginated-history',
-        kind: 'proposed',
-        requestId: `request:paginated-${index}`,
-        fingerprint: `fingerprint:paginated-${index}`,
-        actorAccountId: PROPOSER,
-        occurredAt: NOW + index,
-        revision: 1,
-        payload: {},
-      });
-    }
-    const historyDefinition = (improvementPlanModule as Record<string, unknown>)
-      .listImprovementPlanHistory;
-    expect(historyDefinition).toBeDefined();
-    if (!historyDefinition) throw new Error('The PIP history query is missing.');
-    const listHistory = handler(historyDefinition);
-    const events: Array<Record<string, unknown>> = [];
-    let cursor: string | null = null;
-    db.clearQueryCalls();
-
-    do {
-      const result = await listHistory(db.context(), {
-        actorAccountId: PROPOSER,
-        planId,
-        paginationOpts: { cursor, numItems: 20 },
-      }) as {
-        kind: string;
-        page: { page: Array<Record<string, unknown>>; isDone: boolean; continueCursor: string };
-      };
-      expect(result.kind).toBe('allowed');
-      events.push(...result.page.page);
-      cursor = result.page.isDone ? null : result.page.continueCursor;
-    } while (cursor !== null);
-
-    expect(events).toHaveLength(55);
-    expect(db.queryCount('improvement_plan_events')).toBe(3);
-  });
-
   it('rejects an invalid scoped-list cursor without returning the first page', async () => {
     const db = new MemoryDb();
     seedBase(db);
@@ -1812,14 +1511,5 @@ describe('PIP final independent-review regressions', () => {
         },
       },
     });
-    const source = readFileSync(resolve(
-      dirname(fileURLToPath(import.meta.url)),
-      '../../convex/improvementPlans.ts',
-    ), 'utf8');
-    const publicValidator = source.slice(
-      source.indexOf('export const publicImprovementPlanProgressValidator'),
-      source.indexOf('export const improvementPlanProgressValidator'),
-    );
-    expect(publicValidator).not.toContain('pendingImprovementPlanValidator');
   });
 });

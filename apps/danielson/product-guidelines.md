@@ -3,7 +3,6 @@
 ## Evidence and Trust
 
 - Show the source and status of each administrative fact.
-- Keep access-management audit events immutable.
 - Use clear denial messages. Do not expose private record details in an error.
 - Do not infer Danielson proficiency from account or role data.
 - Do not use system-administrator access as evaluation access.

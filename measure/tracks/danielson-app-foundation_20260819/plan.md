@@ -22,9 +22,9 @@
     - [x] Define additive role resolution
     - [x] Define subject exclusion for private data, evaluation writes, and supervisor-side PIP actions
     - [x] Define cross-organization denial
-- [x] Task 1.4: Define account-administration audit events — `74496b9`
-    - [x] Define actor, action, target, time, and before-and-after fields
-    - [x] Define immutable, transactional, and replay-safe audit-event behavior
+- [x] Task 1.4: Define the production bootstrap and administration boundaries
+    - [x] Define the first organization and system-administrator seed path
+    - [x] Keep authorization in each administration mutation
 - [x] Task 1.5: Measure - User Manual Verification 'Phase 1: Contract and Schema Definition' — user directed full-track continuation
 
 ## Phase 2: Test [checkpoint: 6cffd96]
@@ -44,8 +44,8 @@
 - [x] Task 2.4: Write subject-exclusion adversarial tests — `bc10524`
     - [x] Test private read, walkthrough, observation, and PIP self-denial for each supervisor role
     - [x] Prove that teacher response and PIP acknowledgment remain allowed
-- [x] Task 2.5: Write audit and authentication Red tests — `bc10524`
-    - [x] Test transactional audit events, strict before and after values, secret exclusion, denial, replay, and immutability
+- [x] Task 2.5: Write bootstrap and authentication Red tests — `bc10524`
+    - [x] Test first-administrator creation, secret exclusion, denial, and final-administrator protection
     - [x] Test temporary credentials, password change, generic errors, throttling, cookie flags, and safe redirects
 - [x] Task 2.6: Write workspace and architecture contract tests — `bc10524`
     - [x] Test workspace inventory, commands, manifest ownership, dependencies, and quality gates
@@ -60,7 +60,7 @@
 - [x] Task 3.2: Implement organization and assignment persistence — `8d57514`
     - [x] Add app-owned Convex tables and indexes
     - [x] Add bounded internal queries and transactional mutations
-    - [x] Add immutable audit-event writes
+    - [x] Keep actor and time fields on assignment records
 - [x] Task 3.3: Integrate shared authentication — `8d57514`
     - [x] Compose the shared session and active-account guards in an app-owned wrapper
     - [x] Resolve current Danielson roles from server-owned assignments

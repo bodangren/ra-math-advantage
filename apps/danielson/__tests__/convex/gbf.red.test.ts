@@ -2,50 +2,38 @@ import { describe, expect, it } from 'vitest';
 
 import {
   assignTeacherGbfTrack,
-  backfillTeacherGbfAssignmentPointer,
   readOrganizationCurrentGbfAssignments,
   readTeacherGbfAssignment,
 } from '../../convex/gbf';
 import schema from '../../convex/schema';
 
 type StoredDocument = Record<string, unknown> & { _id: string; _creationTime: number };
-type Handler<TArgs = Record<string, unknown>, TResult = Record<string, unknown>> = (
+type Handler = (
   ctx: { db: MemoryDb },
-  args: TArgs,
-) => Promise<TResult>;
+  args: Record<string, unknown>,
+) => Promise<Record<string, unknown>>;
 
-type QueryCall = {
-  table: string;
-  index: string | null;
-  take: number | null;
-};
-
-function handler<TArgs = Record<string, unknown>, TResult = Record<string, unknown>>(
-  value: unknown,
-): Handler<TArgs, TResult> {
-  return (value as { _handler: Handler<TArgs, TResult> })._handler;
+function handler(value: unknown): Handler {
+  return (value as { _handler: Handler })._handler;
 }
 
 class MemoryDb {
   private sequence = 0;
   private readonly tables = new Map<string, Map<string, StoredDocument>>();
-  readonly queryCalls: QueryCall[] = [];
-  readonly patches: string[] = [];
-  readonly deletions: string[] = [];
 
   seed(table: string, id: string, document: Record<string, unknown>) {
     this.table(table).set(id, { _id: id, _creationTime: ++this.sequence, ...document });
   }
 
-  rows(table: string): StoredDocument[] {
+  rows(table: string) {
     return [...this.table(table).values()];
   }
 
   async get(id: unknown) {
     if (typeof id !== 'string') return null;
     for (const rows of this.tables.values()) {
-      const document = rows.get(id);
-      if (document) return document;
+      const row = rows.get(id);
+      if (row) return row;
     }
     return null;
   }
@@ -57,36 +45,23 @@ class MemoryDb {
   }
 
   async patch(id: string, patch: Record<string, unknown>) {
-    this.patches.push(id);
     for (const rows of this.tables.values()) {
-      const current = rows.get(id);
-      if (current) {
-        rows.set(id, { ...current, ...patch });
+      const row = rows.get(id);
+      if (row) {
+        rows.set(id, { ...row, ...patch });
         return;
       }
     }
     throw new Error(`Missing ${id}`);
   }
 
-  async delete(id: string) {
-    this.deletions.push(id);
-    for (const rows of this.tables.values()) {
-      if (rows.delete(id)) return;
-    }
-    throw new Error(`Missing ${id}`);
-  }
-
   query(tableName: string) {
     let matches = this.rows(tableName);
-    let descending = false;
-    const call: QueryCall = { table: tableName, index: null, take: null };
-    this.queryCalls.push(call);
     const query = {
       withIndex: (
-        name: string,
+        _name: string,
         configure: (builder: { eq: (field: string, value: unknown) => unknown }) => unknown,
       ) => {
-        call.index = name;
         const equalities: Array<[string, unknown]> = [];
         const builder = {
           eq: (field: string, value: unknown) => {
@@ -95,31 +70,14 @@ class MemoryDb {
           },
         };
         configure(builder);
-        matches = matches.filter((document) => (
-          equalities.every(([field, value]) => document[field] === value)
-        ));
-        return query;
-      },
-      order: (direction: 'asc' | 'desc') => {
-        descending = direction === 'desc';
+        matches = matches.filter((row) => equalities.every(([field, value]) => row[field] === value));
         return query;
       },
       unique: async () => {
         if (matches.length > 1) throw new Error(`Expected one ${tableName} row`);
         return matches[0] ?? null;
       },
-      first: async () => {
-        const ordered = descending ? [...matches].reverse() : matches;
-        return ordered[0] ?? null;
-      },
-      take: async (count: number) => {
-        call.take = count;
-        const ordered = descending ? [...matches].reverse() : matches;
-        return ordered.slice(0, count);
-      },
-      collect: async () => {
-        throw new Error(`Unbounded collect is prohibited for ${tableName}`);
-      },
+      take: async (count: number) => matches.slice(0, count),
     };
     return query;
   }
@@ -141,726 +99,106 @@ class MemoryDb {
 const ORG = 'organizations:one';
 const OTHER_ORG = 'organizations:other';
 const LEADER = 'accounts:leader';
-const SECOND_LEADER = 'accounts:second-leader';
 const TEACHER_ACCOUNT = 'accounts:teacher';
 const TEACHER = 'teacher_profiles:teacher';
-const OTHER_TEACHER_ACCOUNT = 'accounts:other-teacher';
-const OTHER_TEACHER = 'teacher_profiles:other-teacher';
-const SEQUENCE_RELEASE = 'danielson.gbf.sequence.2026-08-19.v1';
-const GRAPH_RELEASE = 'danielson.gbf.graph.2026-08-19.v1';
 const NOW = Date.parse('2026-08-20T00:00:00.000Z');
 
-function seedOrganization(db: MemoryDb, organizationId = ORG, isActive = true) {
-  db.seed('organizations', organizationId, {
-    slug: organizationId,
-    name: organizationId,
-    isActive,
-    activeSysadminCount: 1,
-    createdAt: NOW,
-    updatedAt: NOW,
+function seedBase(db: MemoryDb) {
+  db.seed('organizations', ORG, {
+    slug: 'school', name: 'School', isActive: true,
+    createdAt: NOW, updatedAt: NOW,
+  });
+  db.seed('organizations', OTHER_ORG, {
+    slug: 'other', name: 'Other', isActive: true,
+    createdAt: NOW, updatedAt: NOW,
+  });
+  db.seed('accounts', LEADER, {
+    organizationId: ORG, username: 'leader', displayName: 'Leader',
+    sharedSessionRole: 'admin', isActive: true, createdAt: NOW, updatedAt: NOW,
+  });
+  db.seed('role_assignments', 'role_assignments:leader', {
+    organizationId: ORG, accountId: LEADER, role: 'school_head', status: 'active',
+    createdByAccountId: LEADER, createdAt: NOW,
+  });
+  db.seed('accounts', TEACHER_ACCOUNT, {
+    organizationId: ORG, username: 'teacher', displayName: 'Teacher',
+    sharedSessionRole: 'teacher', isActive: true, createdAt: NOW, updatedAt: NOW,
+  });
+  db.seed('teacher_profiles', TEACHER, {
+    organizationId: ORG, accountId: TEACHER_ACCOUNT, currentGbfAssignmentId: null,
+    isActive: true, createdAt: NOW, updatedAt: NOW,
   });
 }
 
-function seedAccount(
-  db: MemoryDb,
-  accountId: string,
-  organizationId = ORG,
-  isActive = true,
-) {
-  db.seed('accounts', accountId, {
-    organizationId,
-    username: accountId,
-    displayName: accountId,
-    sharedSessionRole: accountId === TEACHER_ACCOUNT ? 'teacher' : 'admin',
-    isActive,
-    createdAt: NOW,
-    updatedAt: NOW,
-  });
-}
-
-function seedRole(db: MemoryDb, accountId: string, role: string, organizationId = ORG) {
-  db.seed('role_assignments', `role_assignments:${accountId}:${role}`, {
-    organizationId,
-    accountId,
-    role,
-    status: 'active',
-    createdByAccountId: accountId,
-    createdAt: NOW,
-  });
-}
-
-function seedTeacher(
-  db: MemoryDb,
-  teacherProfileId: string,
-  accountId: string,
-  organizationId = ORG,
-  input: { accountActive?: boolean; profileActive?: boolean } = {},
-) {
-  seedAccount(db, accountId, organizationId, input.accountActive ?? true);
-  seedRole(db, accountId, 'teacher', organizationId);
-  db.seed('teacher_profiles', teacherProfileId, {
-    organizationId,
-    accountId,
-    isActive: input.profileActive ?? true,
-    createdAt: NOW,
-    updatedAt: NOW,
-  });
-}
-
-function seedBase(db: MemoryDb, leaderRole: string) {
-  seedOrganization(db);
-  seedOrganization(db, OTHER_ORG);
-  seedAccount(db, LEADER);
-  seedRole(db, LEADER, leaderRole);
-  seedTeacher(db, TEACHER, TEACHER_ACCOUNT);
-  seedTeacher(db, OTHER_TEACHER, OTHER_TEACHER_ACCOUNT);
-}
-
-function assignmentArgs(input: Partial<Record<string, unknown>> = {}) {
+function assignmentArgs(extra: Record<string, unknown> = {}) {
   return {
     actorAccountId: LEADER,
     teacherProfileId: TEACHER,
-    sequenceReleaseId: SEQUENCE_RELEASE,
-    graphReleaseId: GRAPH_RELEASE,
-    requestId: 'request:gbf:one',
     now: NOW,
-    ...input,
+    ...extra,
   };
 }
 
-function assignmentRow(input: {
-  teacherProfileId: string;
-  requestId: string;
-  assignedAt: number;
-  organizationId?: string;
-  actorAccountId?: string;
-}) {
-  return {
-    organizationId: input.organizationId ?? ORG,
-    teacherProfileId: input.teacherProfileId,
-    sequenceReleaseId: SEQUENCE_RELEASE,
-    graphReleaseId: GRAPH_RELEASE,
-    assignedSkillIds: ['danielson.tlac.skill.double-plan'],
-    unsequencedGapSkillIds: ['danielson.tlac.skill.knowledge-organizers'],
-    actorAccountId: input.actorAccountId ?? LEADER,
-    requestId: input.requestId,
-    fingerprint: `fingerprint:${input.requestId}`,
-    assignedAt: input.assignedAt,
-  };
-}
-
-type ValidatorJson = {
-  type: string;
-  tableName?: string;
-  value?: unknown;
-};
-
-function exportedArgs(value: unknown) {
-  return JSON.parse((value as { exportArgs(): string }).exportArgs()) as {
-    type: 'object';
-    value: Record<string, { fieldType: ValidatorJson; optional: boolean }>;
-  };
-}
-
-describe('GBF assignment schema and Convex boundary', () => {
-  it('uses one immutable assignment table with the exact fields and indexes', () => {
-    expect(Object.keys(schema.tables).filter((name) => name.includes('gbf')))
-      .toEqual(['teacher_gbf_assignments']);
-
+describe('GBF assignment boundary', () => {
+  it('stores only the current assignment data', () => {
     const table = schema.tables.teacher_gbf_assignments as unknown as {
-      indexes: Array<{ indexDescriptor: string; fields: string[] }>;
-      validator: {
-        fields: Record<string, {
-          kind: string;
-          tableName?: string;
-          element?: { kind: string };
-        }>;
-      };
+      indexes: Array<{ indexDescriptor: string }>;
+      validator: { fields: Record<string, unknown> };
     };
     expect(Object.keys(table.validator.fields).sort()).toEqual([
       'actorAccountId',
       'assignedAt',
       'assignedSkillIds',
-      'fingerprint',
-      'graphReleaseId',
       'organizationId',
-      'requestId',
-      'sequenceReleaseId',
       'teacherProfileId',
       'unsequencedGapSkillIds',
     ]);
-    expect(table.validator.fields.organizationId).toMatchObject({
-      kind: 'id',
-      tableName: 'organizations',
-    });
-    expect(table.validator.fields.teacherProfileId).toMatchObject({
-      kind: 'id',
-      tableName: 'teacher_profiles',
-    });
-    expect(table.validator.fields.actorAccountId).toMatchObject({
-      kind: 'id',
-      tableName: 'accounts',
-    });
-    for (const field of [
-      'sequenceReleaseId',
-      'graphReleaseId',
-      'requestId',
-      'fingerprint',
-    ]) {
-      expect(table.validator.fields[field]).toMatchObject({ kind: 'string' });
-    }
-    expect(table.validator.fields.assignedAt).toMatchObject({ kind: 'float64' });
-    expect(table.validator.fields.assignedSkillIds).toMatchObject({
-      kind: 'array',
-      element: { kind: 'string' },
-    });
-    expect(table.validator.fields.unsequencedGapSkillIds).toMatchObject({
-      kind: 'array',
-      element: { kind: 'string' },
-    });
-    expect(table.indexes).toEqual([
-      {
-        indexDescriptor: 'by_org_actor_request',
-        fields: ['organizationId', 'actorAccountId', 'requestId'],
-      },
-      {
-        indexDescriptor: 'by_org_teacher_time',
-        fields: ['organizationId', 'teacherProfileId', 'assignedAt'],
-      },
-      { indexDescriptor: 'by_org_time', fields: ['organizationId', 'assignedAt'] },
-    ]);
+    expect(table.indexes).toEqual([]);
+    expect(JSON.parse((assignTeacherGbfTrack as unknown as { exportArgs(): string }).exportArgs()))
+      .not.toHaveProperty('value.requestId');
   });
 
-  it('accepts only server-owned release assignment arguments', () => {
-    const args = exportedArgs(assignTeacherGbfTrack);
-
-    expect(Object.keys(args.value).sort()).toEqual([
-      'actorAccountId',
-      'graphReleaseId',
-      'now',
-      'requestId',
-      'sequenceReleaseId',
-      'teacherProfileId',
-    ]);
-    expect(args.value.actorAccountId).toEqual({
-      fieldType: { type: 'id', tableName: 'accounts' },
-      optional: false,
-    });
-    expect(args.value.teacherProfileId).toEqual({
-      fieldType: { type: 'id', tableName: 'teacher_profiles' },
-      optional: false,
-    });
-    expect(args.value.sequenceReleaseId.fieldType).toEqual({ type: 'string' });
-    expect(args.value.graphReleaseId.fieldType).toEqual({ type: 'string' });
-    expect(args.value.requestId.fieldType).toEqual({ type: 'string' });
-    expect(args.value.now.fieldType).toEqual({ type: 'number' });
-    const returns = JSON.parse(
-      (assignTeacherGbfTrack as unknown as { exportReturns(): string }).exportReturns(),
-    ) as {
-      type: 'union';
-      value: Array<{
-        type: 'object';
-        value: Record<string, { fieldType: ValidatorJson; optional: boolean }>;
-      }>;
-    };
-    expect(JSON.stringify(returns)).not.toContain('"type":"any"');
-    expect(returns.value.map((member) => member.value.kind.fieldType.value).sort())
-      .toEqual([
-        'assigned',
-        'capacity_exceeded',
-        'denied',
-        'idempotency_conflict',
-        'invalid_input',
-        'replayed',
-        'unsupported_release',
-      ]);
-    for (const kind of ['assigned', 'replayed']) {
-      const member = returns.value.find((candidate) => candidate.value.kind.fieldType.value === kind);
-      expect(member).toBeDefined();
-      expect(Object.keys(member?.value ?? {}).sort()).toEqual([
-        'assignmentId',
-        'graphReleaseId',
-        'kind',
-        'sequenceReleaseId',
-      ]);
-      expect(member?.value.assignmentId.fieldType).toEqual({ type: 'string' });
-      expect(member?.value.sequenceReleaseId.fieldType).toEqual({ type: 'string' });
-      expect(member?.value.graphReleaseId.fieldType).toEqual({ type: 'string' });
-    }
-  });
-});
-
-describe('GBF assignment authorization and persistence', () => {
-  it.each(['school_head', 'slt'])(
-    'permits an active same-organization %s to assign the current release',
-    async (role) => {
-      const db = new MemoryDb();
-      seedBase(db, role);
-
-      await expect(handler(assignTeacherGbfTrack)(db.context(), assignmentArgs()))
-        .resolves.toMatchObject({ kind: 'assigned' });
-      expect(db.rows('teacher_gbf_assignments')).toHaveLength(1);
-      expect(db.rows('teacher_gbf_assignments')[0]).toMatchObject({
-        organizationId: ORG,
-        teacherProfileId: TEACHER,
-        sequenceReleaseId: SEQUENCE_RELEASE,
-        graphReleaseId: GRAPH_RELEASE,
-        actorAccountId: LEADER,
-        requestId: 'request:gbf:one',
-        assignedAt: NOW,
-      });
-      expect(db.rows('teacher_gbf_assignments')[0].assignedSkillIds)
-        .toEqual(expect.arrayContaining(['danielson.tlac.skill.double-plan']));
-      expect(db.rows('teacher_gbf_assignments')[0].unsequencedGapSkillIds)
-        .toEqual(expect.arrayContaining(['danielson.tlac.skill.knowledge-organizers']));
-      expect(db.rows('teacher_gbf_assignments')[0].assignedSkillIds).toHaveLength(50);
-      expect(db.rows('teacher_gbf_assignments')[0].unsequencedGapSkillIds).toHaveLength(13);
-      expect(db.rows('teacher_profiles').find((row) => row._id === TEACHER))
-        .toMatchObject({ currentGbfAssignmentId: db.rows('teacher_gbf_assignments')[0]._id });
-    },
-  );
-
-  it.each(['sysadmin', 'hod', 'coach'])(
-    'denies a %s-only assignment before the write',
-    async (role) => {
-      const db = new MemoryDb();
-      seedBase(db, role);
-
-      await expect(handler(assignTeacherGbfTrack)(db.context(), assignmentArgs()))
-        .resolves.toMatchObject({ kind: 'denied', reason: 'capability_not_granted' });
-      expect(db.rows('teacher_gbf_assignments')).toEqual([]);
-    },
-  );
-
-  it('denies cross-organization, inactive, and self assignments', async () => {
-    const crossOrganization = new MemoryDb();
-    seedBase(crossOrganization, 'slt');
-    seedTeacher(
-      crossOrganization,
-      'teacher_profiles:cross',
-      'accounts:cross',
-      OTHER_ORG,
-    );
-    await expect(handler(assignTeacherGbfTrack)(crossOrganization.context(), assignmentArgs({
-      teacherProfileId: 'teacher_profiles:cross',
-      requestId: 'request:cross',
-    }))).resolves.toMatchObject({ kind: 'denied', reason: 'cross_organization' });
-
-    for (const inactiveField of ['account', 'profile'] as const) {
-      const inactive = new MemoryDb();
-      seedBase(inactive, 'school_head');
-      seedTeacher(inactive, 'teacher_profiles:inactive', 'accounts:inactive', ORG, {
-        accountActive: inactiveField !== 'account',
-        profileActive: inactiveField !== 'profile',
-      });
-      await expect(handler(assignTeacherGbfTrack)(inactive.context(), assignmentArgs({
-        teacherProfileId: 'teacher_profiles:inactive',
-        requestId: `request:inactive:${inactiveField}`,
-      }))).resolves.toMatchObject({ kind: 'denied', reason: 'target_inactive' });
-      expect(inactive.rows('teacher_gbf_assignments')).toEqual([]);
-    }
-
-    const self = new MemoryDb();
-    seedBase(self, 'slt');
-    self.seed('teacher_profiles', 'teacher_profiles:leader', {
-      organizationId: ORG,
-      accountId: LEADER,
-      isActive: true,
-      createdAt: NOW,
-      updatedAt: NOW,
-    });
-    await expect(handler(assignTeacherGbfTrack)(self.context(), assignmentArgs({
-      teacherProfileId: 'teacher_profiles:leader',
-      requestId: 'request:self',
-    }))).resolves.toMatchObject({ kind: 'denied', reason: 'self_evaluation_denied' });
-    expect(self.rows('teacher_gbf_assignments')).toEqual([]);
-    expect(crossOrganization.rows('teacher_gbf_assignments')).toEqual([]);
-  });
-
-  it('rejects an unknown or mismatched release pair before the write', async () => {
-    for (const releases of [
-      { sequenceReleaseId: 'danielson.gbf.sequence.unknown', graphReleaseId: GRAPH_RELEASE },
-      { sequenceReleaseId: SEQUENCE_RELEASE, graphReleaseId: 'danielson.gbf.graph.unknown' },
-    ]) {
-      const db = new MemoryDb();
-      seedBase(db, 'school_head');
-      const result = await handler(assignTeacherGbfTrack)(db.context(), assignmentArgs({
-        ...releases,
-        requestId: `request:${releases.sequenceReleaseId}:${releases.graphReleaseId}`,
-      }));
-      expect(result).toEqual({ kind: 'unsupported_release' });
-      expect(db.rows('teacher_gbf_assignments')).toEqual([]);
-    }
-  });
-
-  it('rejects invalid request IDs and clocks before the write', async () => {
-    for (const invalid of [
-      { requestId: '' },
-      { requestId: 'x'.repeat(10_001) },
-      { now: Number.NaN },
-      { now: Number.POSITIVE_INFINITY },
-    ]) {
-      const db = new MemoryDb();
-      seedBase(db, 'school_head');
-      await expect(handler(assignTeacherGbfTrack)(db.context(), assignmentArgs(invalid)))
-        .resolves.toEqual({ kind: 'invalid_input' });
-      expect(db.rows('teacher_gbf_assignments')).toEqual([]);
-    }
-  });
-
-  it('returns the first assignment for an equal retry and rejects changed content', async () => {
+  it('assigns once and treats a repeated assignment as a replay', async () => {
     const db = new MemoryDb();
-    seedBase(db, 'school_head');
+    seedBase(db);
     const assign = handler(assignTeacherGbfTrack);
-    const first = await assign(db.context(), assignmentArgs());
-    const retry = await assign(db.context(), assignmentArgs({ now: NOW + 10_000 }));
 
-    expect(first).toMatchObject({ kind: 'assigned' });
-    expect(retry).toMatchObject({
-      kind: 'replayed',
-      assignmentId: (first as { assignmentId: string }).assignmentId,
-      sequenceReleaseId: SEQUENCE_RELEASE,
-      graphReleaseId: GRAPH_RELEASE,
-    });
+    await expect(assign(db.context(), assignmentArgs())).resolves.toMatchObject({ kind: 'assigned' });
+    await expect(assign(db.context(), assignmentArgs({ now: NOW + 1 })))
+      .resolves.toMatchObject({ kind: 'replayed' });
+
     expect(db.rows('teacher_gbf_assignments')).toHaveLength(1);
-
-    await expect(assign(db.context(), assignmentArgs({
-      teacherProfileId: OTHER_TEACHER,
-      now: NOW + 20_000,
-    }))).resolves.toEqual({ kind: 'idempotency_conflict' });
-    expect(db.rows('teacher_gbf_assignments')).toHaveLength(1);
+    expect(db.rows('teacher_gbf_assignments')[0]).not.toHaveProperty('requestId');
+    expect(db.rows('teacher_gbf_assignments')[0]).not.toHaveProperty('fingerprint');
+    expect(await readTeacherGbfAssignment(db.context(), ORG, TEACHER))
+      .toMatchObject({ kind: 'allowed', assignment: { teacherProfileId: TEACHER } });
   });
 
-  it('repairs a missing current pointer during an equal retry', async () => {
+  it('rejects cross-organization assignment', async () => {
     const db = new MemoryDb();
-    seedBase(db, 'school_head');
-    const assign = handler(assignTeacherGbfTrack);
-    const first = await assign(db.context(), assignmentArgs());
-    await db.patch(TEACHER, { currentGbfAssignmentId: undefined });
+    seedBase(db);
+    await db.patch(TEACHER_ACCOUNT, { organizationId: OTHER_ORG });
+    await db.patch(TEACHER, { organizationId: OTHER_ORG });
 
-    await expect(assign(db.context(), assignmentArgs({ now: NOW + 1 }))).resolves.toMatchObject({
-      kind: 'replayed',
-      assignmentId: (first as { assignmentId: string }).assignmentId,
-    });
-    expect(db.rows('teacher_profiles').find((row) => row._id === TEACHER))
-      .toMatchObject({ currentGbfAssignmentId: (first as { assignmentId: string }).assignmentId });
+    await expect(handler(assignTeacherGbfTrack)(db.context(), assignmentArgs()))
+      .resolves.toMatchObject({ kind: 'denied', reason: 'cross_organization' });
+    expect(db.rows('teacher_gbf_assignments')).toHaveLength(0);
   });
 
-  it('keeps the greatest assignment tuple when an older replay repairs a missing pointer', async () => {
+  it('returns a named capacity result above 250 active teachers', async () => {
     const db = new MemoryDb();
-    seedBase(db, 'school_head');
-    seedAccount(db, SECOND_LEADER);
-    seedRole(db, SECOND_LEADER, 'school_head');
-    const assign = handler(assignTeacherGbfTrack);
-    const oldest = await assign(db.context(), assignmentArgs({
-      requestId: 'request:order:a',
-      now: NOW,
-    }));
-    await assign(db.context(), assignmentArgs({
-      requestId: 'request:order:z',
-      now: NOW,
-    }));
-    const newest = await assign(db.context(), assignmentArgs({
-      actorAccountId: SECOND_LEADER,
-      requestId: 'request:order:z',
-      now: NOW,
-    }));
-    await db.patch(TEACHER, { currentGbfAssignmentId: undefined });
-
-    await expect(assign(db.context(), assignmentArgs({
-      requestId: 'request:order:a',
-      now: NOW + 1,
-    }))).resolves.toMatchObject({
-      kind: 'replayed',
-      assignmentId: (oldest as { assignmentId: string }).assignmentId,
-    });
-    expect(db.rows('teacher_profiles').find((row) => row._id === TEACHER))
-      .toMatchObject({ currentGbfAssignmentId: (newest as { assignmentId: string }).assignmentId });
-  });
-
-  it('scopes idempotency to the authenticated actor and replays before mutable target checks', async () => {
-    const db = new MemoryDb();
-    seedBase(db, 'school_head');
-    seedAccount(db, SECOND_LEADER);
-    seedRole(db, SECOND_LEADER, 'school_head');
-    const assign = handler(assignTeacherGbfTrack);
-    const first = await assign(db.context(), assignmentArgs());
-
-    await expect(assign(db.context(), assignmentArgs({
-      actorAccountId: SECOND_LEADER,
-      now: NOW + 1,
-    }))).resolves.toMatchObject({ kind: 'assigned' });
-    expect(db.rows('teacher_gbf_assignments')).toHaveLength(2);
-    expect(db.rows('teacher_gbf_assignments').map((row) => row.actorAccountId).sort())
-      .toEqual([LEADER, SECOND_LEADER].sort());
-
-    await db.patch(TEACHER, { isActive: false });
-    await expect(assign(db.context(), assignmentArgs({ now: NOW + 2 }))).resolves.toMatchObject({
-      kind: 'replayed',
-      assignmentId: (first as { assignmentId: string }).assignmentId,
-    });
-
-    await db.patch(LEADER, { isActive: false });
-    await expect(assign(db.context(), assignmentArgs({ now: NOW + 3 }))).resolves.toEqual({
-      kind: 'denied',
-      reason: 'account_inactive',
-    });
-  });
-
-  it('appends a reassignment and reads the latest row without rewriting history', async () => {
-    const db = new MemoryDb();
-    seedBase(db, 'slt');
-    const assign = handler(assignTeacherGbfTrack);
-    await assign(db.context(), assignmentArgs());
-    const first = structuredClone(db.rows('teacher_gbf_assignments')[0]);
-    await assign(db.context(), assignmentArgs({
-      requestId: 'request:gbf:two',
-      now: NOW + 1,
-    }));
-
-    expect(db.rows('teacher_gbf_assignments')).toHaveLength(2);
-    expect(db.rows('teacher_gbf_assignments')[0]).toEqual(first);
-    expect(db.patches.filter((id) => id.startsWith('teacher_gbf_assignments:'))).toEqual([]);
-    expect(db.deletions).toEqual([]);
-    expect(db.rows('teacher_profiles').find((row) => row._id === TEACHER))
-      .toMatchObject({ currentGbfAssignmentId: db.rows('teacher_gbf_assignments')[1]._id });
-    const current = await readTeacherGbfAssignment(db.context(), ORG, TEACHER);
-    expect(current).toMatchObject({
-      kind: 'allowed',
-      assignment: { assignedAt: NOW + 1 },
-    });
-    if (current.kind !== 'allowed') throw new Error('Expected current assignment');
-    expect(current.assignment).not.toHaveProperty('requestId');
-    expect(current.assignment).not.toHaveProperty('fingerprint');
-    expect(current.assignment).not.toHaveProperty('actorAccountId');
-    expect(current.assignment).not.toHaveProperty('organizationId');
-  });
-
-  it('does not replace a newer current assignment with an older event', async () => {
-    const db = new MemoryDb();
-    seedBase(db, 'slt');
-    const assign = handler(assignTeacherGbfTrack);
-    const newer = await assign(db.context(), assignmentArgs({
-      requestId: 'request:newer',
-      now: NOW + 10,
-    }));
-    await assign(db.context(), assignmentArgs({
-      requestId: 'request:older',
-      now: NOW,
-    }));
-
-    expect(db.rows('teacher_profiles').find((row) => row._id === TEACHER))
-      .toMatchObject({ currentGbfAssignmentId: (newer as { assignmentId: string }).assignmentId });
-  });
-});
-
-describe('GBF assignment read bounds', () => {
-  it('backfills one legacy pointer with the deterministic newest assignment', async () => {
-    const db = new MemoryDb();
-    seedTeacher(db, TEACHER, TEACHER_ACCOUNT);
-    db.seed('teacher_gbf_assignments', 'teacher_gbf_assignments:older', assignmentRow({
-      teacherProfileId: TEACHER,
-      requestId: 'request:order:a',
-      assignedAt: NOW,
-    }));
-    db.seed('teacher_gbf_assignments', 'teacher_gbf_assignments:newer', assignmentRow({
-      teacherProfileId: TEACHER,
-      requestId: 'request:order:z',
-      assignedAt: NOW,
-    }));
-
-    await expect(handler(backfillTeacherGbfAssignmentPointer)(db.context(), {
-      teacherProfileId: TEACHER,
-    })).resolves.toEqual({
-      kind: 'migrated',
-      currentAssignmentId: 'teacher_gbf_assignments:newer',
-    });
-    expect(db.rows('teacher_profiles').find((row) => row._id === TEACHER))
-      .toMatchObject({ currentGbfAssignmentId: 'teacher_gbf_assignments:newer' });
-  });
-
-  it('returns a migration result without scanning assignment history when an active pointer is absent', async () => {
-    const db = new MemoryDb();
-    db.seed('teacher_gbf_assignments', 'teacher_gbf_assignments:legacy', assignmentRow({
-      teacherProfileId: TEACHER,
-      requestId: 'request:legacy',
-      assignedAt: NOW,
-    }));
-    db.seed('teacher_profiles', TEACHER, {
-      organizationId: ORG,
-      accountId: 'accounts:teacher',
-      isActive: true,
-      createdAt: NOW,
-      updatedAt: NOW,
-    });
-
-    const result = await readOrganizationCurrentGbfAssignments(db.context(), ORG);
-
-    expect(['migration_required', 'capacity_exceeded'])
-      .toContain((result as unknown as { kind: string }).kind);
-    expect(db.queryCalls).toEqual([{
-      table: 'teacher_profiles',
-      index: 'by_organizationId_and_isActive',
-      take: 251,
-    }]);
-  });
-
-  it('uses the deterministic assignment tuple for a one-teacher fallback', async () => {
-    const db = new MemoryDb();
-    seedTeacher(db, TEACHER, TEACHER_ACCOUNT);
-    db.seed('teacher_gbf_assignments', 'teacher_gbf_assignments:newest', assignmentRow({
-      teacherProfileId: TEACHER,
-      requestId: 'request:order:z',
-      actorAccountId: SECOND_LEADER,
-      assignedAt: NOW,
-    }));
-    db.seed('teacher_gbf_assignments', 'teacher_gbf_assignments:middle', assignmentRow({
-      teacherProfileId: TEACHER,
-      requestId: 'request:order:z',
-      assignedAt: NOW,
-    }));
-    db.seed('teacher_gbf_assignments', 'teacher_gbf_assignments:oldest', assignmentRow({
-      teacherProfileId: TEACHER,
-      requestId: 'request:order:a',
-      assignedAt: NOW,
-    }));
-
-    await expect(readTeacherGbfAssignment(db.context(), ORG, TEACHER)).resolves.toMatchObject({
-      kind: 'allowed',
-      assignment: { assignmentId: 'teacher_gbf_assignments:newest' },
-    });
-  });
-
-  it('returns explicit empty states without an assignment', async () => {
-    const db = new MemoryDb();
-
-    await expect(readTeacherGbfAssignment(db.context(), ORG, TEACHER))
-      .resolves.toEqual({ kind: 'not_configured' });
-    const organization = await readOrganizationCurrentGbfAssignments(db.context(), ORG);
-    expect(organization).toMatchObject({ kind: 'allowed' });
-    if (organization.kind !== 'allowed') throw new Error('Expected empty organization batch');
-    expect(organization.assignmentsByTeacher.size).toBe(0);
-  });
-
-  it('reads at most 101 teacher rows and returns a capacity error instead of truncation', async () => {
-    const db = new MemoryDb();
-    for (let index = 0; index < 101; index += 1) {
-      db.seed('teacher_gbf_assignments', `teacher_gbf_assignments:${index}`, assignmentRow({
-        teacherProfileId: TEACHER,
-        requestId: `request:${index}`,
-        assignedAt: NOW + index,
-      }));
-    }
-
-    await expect(readTeacherGbfAssignment(db.context(), ORG, TEACHER))
-      .resolves.toEqual({ kind: 'capacity_exceeded' });
-    expect(db.queryCalls.filter((call) => call.table === 'teacher_gbf_assignments'))
-      .toEqual([{
-        table: 'teacher_gbf_assignments',
-        index: 'by_org_teacher_time',
-        take: 101,
-      }]);
-  });
-
-  it('keeps bounded immutable history out of the current-portfolio capacity', async () => {
-    const db = new MemoryDb();
+    seedBase(db);
     for (let index = 0; index < 250; index += 1) {
-      const teacherProfileId = `teacher_profiles:${index}`;
-      const accountId = `accounts:${index}`;
-      let currentAssignmentId = '';
-      for (let historyIndex = 0; historyIndex < 100; historyIndex += 1) {
-        currentAssignmentId = `teacher_gbf_assignments:${index}:${historyIndex}`;
-        db.seed(
-          'teacher_gbf_assignments',
-          currentAssignmentId,
-          assignmentRow({
-            teacherProfileId,
-            requestId: `request:${index}:${historyIndex}`,
-            assignedAt: NOW + historyIndex,
-          }),
-        );
-      }
-      db.seed('teacher_profiles', teacherProfileId, {
-        organizationId: ORG,
-        accountId,
-        isActive: true,
-        currentGbfAssignmentId: currentAssignmentId,
-        createdAt: NOW,
-        updatedAt: NOW,
-      });
-    }
-
-    const result = await readOrganizationCurrentGbfAssignments(db.context(), ORG);
-    expect(result).toMatchObject({
-      kind: 'allowed',
-      assignmentsByTeacher: expect.any(Map),
-    });
-    if (result.kind !== 'allowed') throw new Error('Expected bounded organization assignments');
-    expect(result.assignmentsByTeacher.size).toBe(250);
-    expect(result.assignmentsByTeacher.get('teacher_profiles:0'))
-      .toMatchObject({ assignedAt: NOW + 99 });
-    expect(db.queryCalls)
-      .toEqual([{
-        table: 'teacher_profiles',
-        index: 'by_organizationId_and_isActive',
-        take: 251,
-      }]);
-  });
-
-  it('returns a capacity error when 251 current teachers exist', async () => {
-    const db = new MemoryDb();
-    for (let index = 0; index < 251; index += 1) {
-      const teacherProfileId = `teacher_profiles:${index}`;
-      const assignmentId = `teacher_gbf_assignments:${index}`;
-      db.seed(
-        'teacher_gbf_assignments',
-        assignmentId,
-        assignmentRow({
-          teacherProfileId,
-          requestId: `request:${index}`,
-          assignedAt: NOW + index,
-        }),
-      );
-      db.seed('teacher_profiles', teacherProfileId, {
+      db.seed('teacher_profiles', `teacher_profiles:${index}`, {
         organizationId: ORG,
         accountId: `accounts:${index}`,
+        currentGbfAssignmentId: null,
         isActive: true,
-        currentGbfAssignmentId: assignmentId,
         createdAt: NOW,
         updatedAt: NOW,
       });
     }
-
     await expect(readOrganizationCurrentGbfAssignments(db.context(), ORG))
       .resolves.toEqual({ kind: 'capacity_exceeded' });
-    expect(db.queryCalls)
-      .toEqual([{
-        table: 'teacher_profiles',
-        index: 'by_organizationId_and_isActive',
-        take: 251,
-      }]);
-  });
-
-  it('does not use a current pointer that belongs to another teacher', async () => {
-    const db = new MemoryDb();
-    db.seed('teacher_gbf_assignments', 'teacher_gbf_assignments:other', assignmentRow({
-      teacherProfileId: 'teacher_profiles:other',
-      requestId: 'request:other',
-      assignedAt: NOW,
-    }));
-    db.seed('teacher_profiles', TEACHER, {
-      organizationId: ORG,
-      accountId: 'accounts:teacher',
-      isActive: true,
-      currentGbfAssignmentId: 'teacher_gbf_assignments:other',
-      createdAt: NOW,
-      updatedAt: NOW,
-    });
-
-    const result = await readOrganizationCurrentGbfAssignments(db.context(), ORG);
-
-    expect(result).toMatchObject({ kind: 'allowed' });
-    if (result.kind !== 'allowed') throw new Error('Expected bounded organization assignments');
-    expect(result.assignmentsByTeacher.size).toBe(0);
   });
 });

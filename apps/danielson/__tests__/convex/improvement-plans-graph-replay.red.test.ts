@@ -144,7 +144,6 @@ function seedBase(db: MemoryDb) {
     slug: 'one',
     name: 'School One',
     isActive: true,
-    activeSysadminCount: 1,
     createdAt: NOW,
     updatedAt: NOW,
   });

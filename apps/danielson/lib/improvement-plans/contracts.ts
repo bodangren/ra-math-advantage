@@ -1,7 +1,7 @@
 import type { KnowledgeSpace } from '@math-platform/knowledge-space-core';
 
 import { adaptDanielsonRating } from '../proficiency/rating';
-import { PIP_SOURCE_CONTRACT, PIP_SOURCE_HASH } from './source';
+import { PIP_SOURCE_CONTRACT } from './source';
 
 export type PipTargetInput = {
   componentId: string;
@@ -96,7 +96,6 @@ export function normalizePipProposal(input: PipProposalInput) {
     targets,
     sourceId: PIP_SOURCE_CONTRACT.sourceId,
     sourceVersion: PIP_SOURCE_CONTRACT.sourceVersion,
-    sourceHash: PIP_SOURCE_HASH,
     insufficientImprovementConsequences:
       PIP_SOURCE_CONTRACT.fixedText.insufficientImprovementConsequences,
     acknowledgmentText: PIP_SOURCE_CONTRACT.fixedText.acknowledgmentText,

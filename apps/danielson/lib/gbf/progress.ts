@@ -6,33 +6,27 @@ import type {
   GbfTrajectory,
   GbfTrajectoryProgress,
 } from './contracts';
-import { GBF_GRAPH_RELEASE, resolveGbfGraphRelease } from './graph';
-import { findGbfRelease, resolveGbfSourceRelease } from './registry';
 import {
-  GBF_MAPPING_RELEASE,
-  GBF_SEQUENCE_RELEASE,
+  GBF_ACTION_STEPS,
+  GBF_MAPPINGS,
   GBF_UNSEQUENCED_SKILL_IDS,
 } from './source';
-import type { GbfMappingRelease, GbfSequenceRelease } from './contracts';
 
 function uniqueSorted(values: readonly string[]) {
   return [...new Set(values)].sort();
 }
 
-/** Create the immutable current-release snapshot stored with an assignment. */
+/** Create the skill snapshot stored with an assignment. */
 export function createCurrentGbfAssignment(input: {
   assignmentId: string;
   organizationId: string;
   teacherProfileId: string;
   assignedByAccountId: string;
-  requestId: string;
   assignedAt: number;
 }): GbfTeacherAssignment {
   return {
     ...input,
-    sequenceReleaseId: GBF_SEQUENCE_RELEASE.releaseId,
-    graphReleaseId: GBF_GRAPH_RELEASE.releaseId,
-    assignedSkillIds: uniqueSorted(GBF_MAPPING_RELEASE.mappings.map((mapping) => mapping.skillId)),
+    assignedSkillIds: uniqueSorted(GBF_MAPPINGS.map((mapping) => mapping.skillId)),
     unresolvedGapSkillIds: [...GBF_UNSEQUENCED_SKILL_IDS],
   };
 }
@@ -45,15 +39,13 @@ function passes(priority: GbfPriorityInput | undefined) {
 function trajectoryProgress(
   trajectory: GbfTrajectory,
   priorities: ReadonlyMap<string, GbfPriorityInput>,
-  sequence: GbfSequenceRelease,
-  mapping: GbfMappingRelease,
 ): GbfTrajectoryProgress {
-  const steps = sequence.actionSteps
+  const steps = GBF_ACTION_STEPS
     .filter((step) => step.status === 'required' && step.trajectory === trajectory)
     .sort((left, right) => left.trajectoryOrder - right.trajectoryOrder);
   const primaryByStep = new Map(steps.map((step) => [
     step.actionStepId,
-    mapping.mappings.find((mapping) => (
+    GBF_MAPPINGS.find((mapping) => (
       mapping.actionStepId === step.actionStepId && mapping.role === 'primary'
     ))?.skillId,
   ]));
@@ -82,8 +74,6 @@ export function projectGbfProgress(input: {
   assignment: Pick<
     GbfTeacherAssignment,
     | 'assignmentId'
-    | 'sequenceReleaseId'
-    | 'graphReleaseId'
     | 'assignedSkillIds'
     | 'unresolvedGapSkillIds'
   > | null;
@@ -92,26 +82,10 @@ export function projectGbfProgress(input: {
   if (!input.assignment) {
     return { contractVersion: 'danielson.gbf-progress.v1', state: 'not_configured' };
   }
-  if (
-    !resolveGbfGraphRelease({
-      sequenceReleaseId: input.assignment.sequenceReleaseId,
-      graphReleaseId: input.assignment.graphReleaseId,
-    })
-  ) throw new Error('unknown_gbf_release');
-  const release = findGbfRelease({
-    sequenceReleaseId: input.assignment.sequenceReleaseId,
-    graphReleaseId: input.assignment.graphReleaseId,
-  });
-  const source = release && resolveGbfSourceRelease({
-    sequenceReleaseId: release.sequenceReleaseId,
-    mappingReleaseId: release.mappingReleaseId,
-  });
-  if (!release || !source) throw new Error('unknown_gbf_release');
-  const { sequence, mapping } = source;
   const priorityBySkill = new Map(input.priorities.map((priority) => [priority.skillId, priority]));
   const trajectories = {
-    management: trajectoryProgress('management', priorityBySkill, sequence, mapping),
-    rigor: trajectoryProgress('rigor', priorityBySkill, sequence, mapping),
+    management: trajectoryProgress('management', priorityBySkill),
+    rigor: trajectoryProgress('rigor', priorityBySkill),
   };
   const proficientSkillIds = input.assignment.assignedSkillIds.filter((skillId) => (
     passes(priorityBySkill.get(skillId))
@@ -126,8 +100,6 @@ export function projectGbfProgress(input: {
       ? 'proficient'
       : 'in_progress',
     assignmentId: input.assignment.assignmentId,
-    sequenceReleaseId: input.assignment.sequenceReleaseId,
-    graphReleaseId: input.assignment.graphReleaseId,
     trajectories,
     assignedSkillIds: [...input.assignment.assignedSkillIds],
     proficientSkillIds,
@@ -135,4 +107,39 @@ export function projectGbfProgress(input: {
     unresolvedGapSkillIds: [...input.assignment.unresolvedGapSkillIds],
   };
   return result;
+}
+
+/** Mark skills in the teacher's current GBF phases for walkthrough selection. */
+export function applyGbfPhasePriority<T extends GbfPriorityInput>(input: {
+  assignment: Pick<
+    GbfTeacherAssignment,
+    | 'assignmentId'
+    | 'assignedSkillIds'
+    | 'unresolvedGapSkillIds'
+  > | null;
+  priorities: readonly T[];
+}): T[] {
+  const priorities = input.priorities.map((priority) => structuredClone(priority));
+  const progress = projectGbfProgress({ assignment: input.assignment, priorities });
+  if (progress.state === 'not_configured') return priorities;
+
+  const currentStepIds = new Set(GBF_ACTION_STEPS
+    .filter((step) => (
+      step.status === 'required'
+      && progress.trajectories[step.trajectory].currentPhaseId === step.phaseId
+    ))
+    .map((step) => step.actionStepId));
+  const currentSkillIds = new Set(GBF_MAPPINGS
+    .filter((mapping) => currentStepIds.has(mapping.actionStepId))
+    .map((mapping) => mapping.skillId));
+
+  return priorities.map((priority) => currentSkillIds.has(priority.skillId)
+    ? {
+        ...priority,
+        approvedPriorityInputs: uniqueSorted([
+          ...(priority.approvedPriorityInputs ?? []),
+          'gbf_phase_priority',
+        ]),
+      }
+    : priority);
 }

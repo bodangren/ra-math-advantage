@@ -32,7 +32,6 @@ One person has one account. One account can have more than one role.
 - The server checks current role and assignment data for every protected action.
 - A system administrator can manage accounts, departments, roles, and
   assignments.
-- The app records each access-management change in an immutable audit event.
 - A supervisor cannot evaluate themselves or read private leadership data about
   themselves.
 

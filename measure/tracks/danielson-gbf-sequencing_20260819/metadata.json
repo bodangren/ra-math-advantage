@@ -3,11 +3,11 @@
   "type": "feature",
   "status": "completed",
   "created_at": "2026-08-19T02:55:22Z",
-  "updated_at": "2026-08-20T03:22:19+08:00",
-  "description": "Create a source-backed GBF sequence, TLAC 3.0 mappings, and reviewed prerequisite and support edges.",
-  "estimated_tasks": 22,
-  "actual_tasks": 22,
-  "deviation_notes": "Full-book enrichment remains deferred until the book is available. Independent review found immutable-release, rejected-edge, assignment-pointer, read-bound, and interface defects. The implementation fixes all findings and adds regression tests. No prerequisite edge is active.",
+  "updated_at": "2026-08-20T15:40:00+08:00",
+  "description": "Map the GBF sequence to TLAC 3.0 skills and use it in reports and walkthrough priority.",
+  "estimated_tasks": 17,
+  "actual_tasks": 17,
+  "deviation_notes": "The Ponytail cleanup removed source hashes, graph releases, edge candidates, and edge review code. The app keeps the sequence, mappings, assignment snapshot, reports, and walkthrough priority.",
   "program": "Danielson Teacher Growth",
   "depends_on": [
     "danielson-proficiency-graph_20260819"

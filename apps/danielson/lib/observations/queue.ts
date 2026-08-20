@@ -9,9 +9,10 @@ import {
 const REASON_ORDER: Record<ObservationPriorityReason, number> = {
   approved_plan_priority: 0,
   below_proficient: 1,
-  overdue: 2,
-  evidence_gap: 3,
-  due: 4,
+  gbf_phase_priority: 2,
+  overdue: 3,
+  evidence_gap: 4,
+  due: 5,
 };
 
 export type RankedPriorityTarget = PriorityProjection & {
@@ -52,6 +53,9 @@ function reasonFor(priority: PriorityProjection): ObservationPriorityReason | nu
   }
   const rating = priority.currentProficiency.rawRating;
   if (typeof rating === 'number' && rating < 3) return 'below_proficient';
+  if (priority.approvedPriorityInputs.includes('gbf_phase_priority')) {
+    return 'gbf_phase_priority';
+  }
   if (priority.due && priority.overdueDays > 0) return 'overdue';
   if (priority.evidenceGaps.length > 0) return 'evidence_gap';
   if (priority.due) return 'due';

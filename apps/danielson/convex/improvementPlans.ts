@@ -67,7 +67,6 @@ const versionViewValidator = v.object({
   acknowledgmentText: v.string(),
   sourceId: v.string(),
   sourceVersion: v.string(),
-  sourceHash: v.string(),
   proposedAt: v.number(),
   targets: v.array(targetViewValidator),
 });
@@ -266,17 +265,6 @@ const planListViewValidator = v.object({
   activeVersion: v.union(planListVersionValidator, v.null()),
   pendingVersion: v.union(planListVersionValidator, v.null()),
 });
-const historyResultValidator = v.union(
-  deniedValidator,
-  v.object({ kind: v.literal('not_found') }),
-  v.object({ kind: v.literal('invalid_page_size') }),
-  v.object({ kind: v.literal('capacity_exceeded') }),
-  v.object({
-    kind: v.literal('allowed'),
-    page: paginationResultValidator(lifecycleHistoryEventValidator),
-    priorApprovedVersions: v.array(priorApprovedVersionValidator),
-  }),
-);
 const closureResultValidator = v.union(
   deniedValidator,
   v.object({ kind: v.literal('not_found') }),
@@ -434,7 +422,6 @@ async function versionView(
     acknowledgmentText: version.acknowledgmentText,
     sourceId: version.sourceId,
     sourceVersion: version.sourceVersion,
-    sourceHash: version.sourceHash,
     proposedAt: version.proposedAt,
     targets: targets.map(targetView),
   };
@@ -697,7 +684,6 @@ export const createImprovementPlanProposal = internalMutation({
       acknowledgmentText: normalized.acknowledgmentText,
       sourceId: normalized.sourceId,
       sourceVersion: normalized.sourceVersion,
-      sourceHash: normalized.sourceHash,
       fingerprint,
       proposedAt: args.now,
     });
@@ -717,7 +703,6 @@ export const createImprovementPlanProposal = internalMutation({
         expectedPoints: target.expectedPoints,
         sourceId: normalized.sourceId,
         sourceVersion: normalized.sourceVersion,
-        sourceHash: normalized.sourceHash,
         componentSourceRefs: nodeById.get(target.componentId)?.sourceRefs ?? [],
         skillSourceRefs: nodeById.get(target.skillId)?.sourceRefs ?? [],
         createdAt: args.now,
@@ -1578,47 +1563,6 @@ export const listScopedImprovementPlans = internalQuery({
         isDone: organizationPage.isDone,
         continueCursor: organizationPage.continueCursor,
       },
-    };
-  },
-});
-
-export const listImprovementPlanHistory = internalQuery({
-  args: {
-    actorAccountId: v.id('accounts'),
-    planId: v.id('improvement_plans'),
-    paginationOpts: paginationOptsValidator,
-  },
-  returns: historyResultValidator,
-  handler: async (ctx, args) => {
-    if (args.paginationOpts.numItems < 1 || args.paginationOpts.numItems > MAX_PAGE_SIZE) {
-      return { kind: 'invalid_page_size' as const };
-    }
-    const plan = await ctx.db.get(args.planId);
-    if (!plan) return { kind: 'not_found' as const };
-    const teacher = await ctx.db.get(plan.teacherProfileId);
-    if (!teacher) return { kind: 'not_found' as const };
-    const own = String(teacher.accountId) === String(args.actorAccountId);
-    const access = await authorizeTeacher(
-      ctx,
-      args.actorAccountId,
-      plan.teacherProfileId,
-      own ? 'published_record:read' : 'pip:propose',
-    );
-    if (access.kind === 'denied') return access;
-    let result;
-    try {
-      result = await readPlanHistoryPage(ctx, plan, !own, args.paginationOpts);
-    } catch {
-      return { kind: 'capacity_exceeded' as const };
-    }
-    return {
-      kind: 'allowed' as const,
-      page: {
-        page: result.history.events,
-        isDone: result.isDone,
-        continueCursor: result.continueCursor,
-      },
-      priorApprovedVersions: result.history.priorApprovedVersions,
     };
   },
 });

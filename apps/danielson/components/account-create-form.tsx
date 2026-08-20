@@ -1,13 +1,12 @@
 'use client';
 
-import { FormEvent, useRef, useState } from 'react';
+import { FormEvent, useState } from 'react';
 
 export function AccountCreateForm() {
   const [error, setError] = useState<string | null>(null);
   const [temporaryPassword, setTemporaryPassword] = useState<string | null>(null);
   const [targetId, setTargetId] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
-  const requestId = useRef(crypto.randomUUID());
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -20,17 +19,13 @@ export function AccountCreateForm() {
       const response = await fetch('/api/admin/accounts', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...Object.fromEntries(new FormData(form).entries()),
-          requestId: requestId.current,
-        }),
+        body: JSON.stringify(Object.fromEntries(new FormData(form).entries())),
       });
       const payload = await response.json().catch(() => ({})) as { error?: string; temporaryPassword?: string; targetId?: string };
       if (!response.ok) setError(payload.error ?? 'Unable to create account.');
       else {
         setTemporaryPassword(payload.temporaryPassword ?? null);
         setTargetId(payload.targetId ?? null);
-        requestId.current = crypto.randomUUID();
         form.reset();
       }
     } catch {

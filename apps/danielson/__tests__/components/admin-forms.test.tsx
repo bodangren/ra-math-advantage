@@ -4,8 +4,6 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { AccountCreateForm } from '../../components/account-create-form';
 import { AdminChangeForm } from '../../components/admin-change-form';
 
-const randomUUID = vi.fn();
-
 function response(ok: boolean, body: Record<string, unknown>) {
   return { ok, json: async () => body };
 }
@@ -13,14 +11,11 @@ function response(ok: boolean, body: Record<string, unknown>) {
 describe('administrator forms', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    randomUUID.mockReset();
-    randomUUID.mockReturnValueOnce('request-1').mockReturnValue('request-2');
-    vi.stubGlobal('crypto', { randomUUID });
     vi.stubGlobal('fetch', vi.fn());
     vi.stubGlobal('confirm', vi.fn(() => true));
   });
 
-  it('reuses a request ID after failure and rotates it only after success', async () => {
+  it('retries a failed change without adding audit metadata', async () => {
     const fetchMock = vi.mocked(fetch);
     fetchMock
       .mockResolvedValueOnce(response(false, { error: 'Try again' }) as Response)
@@ -43,10 +38,9 @@ describe('administrator forms', () => {
     fireEvent.submit(screen.getByRole('button', { name: 'Save status' }));
     await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(3));
 
-    const requestIds = fetchMock.mock.calls.map(([, init]) => (
-      JSON.parse(String(init?.body)) as { requestId: string }
-    ).requestId);
-    expect(requestIds).toEqual(['request-1', 'request-1', 'request-2']);
+    for (const [, init] of fetchMock.mock.calls) {
+      expect(JSON.parse(String(init?.body))).not.toHaveProperty('requestId');
+    }
   });
 
   it('requires confirmation before account deactivation', async () => {
@@ -67,7 +61,7 @@ describe('administrator forms', () => {
     expect(fetch).not.toHaveBeenCalled();
   });
 
-  it('sends a stable request ID when it creates an account', async () => {
+  it('creates an account without adding audit metadata', async () => {
     vi.mocked(fetch).mockResolvedValue(response(true, {
       temporaryPassword: 'temporary-password',
       targetId: 'accounts:teacher',
@@ -79,7 +73,7 @@ describe('administrator forms', () => {
     fireEvent.submit(screen.getByRole('button', { name: 'Create account' }));
 
     await screen.findByText('temporary-password');
-    const body = JSON.parse(String(vi.mocked(fetch).mock.calls[0][1]?.body)) as { requestId: string };
-    expect(body.requestId).toBe('request-1');
+    const body = JSON.parse(String(vi.mocked(fetch).mock.calls[0][1]?.body));
+    expect(body).not.toHaveProperty('requestId');
   });
 });

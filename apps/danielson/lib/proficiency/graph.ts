@@ -6,14 +6,7 @@ import {
   type KnowledgeSpaceNode,
 } from '@math-platform/knowledge-space-core';
 
-import {
-  APPROVED_TLAC_SKILLS,
-  DANIELSON_SOURCE_MANIFESTS,
-  RUNTIME_OVERLAP_TECHNIQUES,
-  RUNTIME_ONLY_TECHNIQUES,
-  type DanielsonSourceManifest,
-  type RuntimeReviewRow,
-} from './content-manifest';
+import { APPROVED_TLAC_SOURCE_INVENTORY } from './source-inventory';
 
 type DanielsonSourceRef = { source: string; location?: string };
 export type DanielsonNode = Omit<KnowledgeSpaceNode, 'kind' | 'sourceRefs' | 'reviewStatus' | 'metadata'> & {
@@ -80,11 +73,9 @@ const COMPONENT_TITLES: Record<DanielsonComponentId, string> = {
   '4f': 'Acting in Service of Students',
 };
 
-const sourceReviewException = {
+const alignmentException = {
   type: 'alignment' as const,
   reason: 'Danielson skills align directly to app-owned components; no standard nodes are imported in Track 2.',
-  reviewer: 'Danielson internal review',
-  date: '2026-08-19',
 };
 
 function rootNode(): DanielsonNode {
@@ -123,29 +114,20 @@ function componentNode(componentId: DanielsonComponentId): DanielsonNode {
   };
 }
 
-function skillNode(skill: (typeof APPROVED_TLAC_SKILLS)[number]): DanielsonNode {
-  const runtimeOverlap = RUNTIME_OVERLAP_TECHNIQUES.find((row) => row.id === skill.id);
-  const sourceRefs = [{ ...TLAC_SOURCE, location: skill.sourceLocation }];
-  if (runtimeOverlap) {
-    sourceRefs.push({
-      source: runtimeOverlap.source,
-      location: runtimeOverlap.sourceLocation,
-    });
-  }
+function skillNode(skill: (typeof APPROVED_TLAC_SOURCE_INVENTORY)[number]): DanielsonNode {
   return {
     id: `danielson.tlac.skill.${skill.id}`,
     kind: 'skill',
     title: skill.title,
     domain: 'danielson',
-    sourceRefs,
+    sourceRefs: [{ ...TLAC_SOURCE, location: skill.sourceLocation }],
     reviewStatus: 'approved',
     metadata: {
       techniqueId: skill.id,
       componentId: skill.componentId,
       sourceId: 'sibling.tlac3.modules',
-      ...(runtimeOverlap ? { runtimeSource: runtimeOverlap.source } : {}),
     },
-    exceptions: [sourceReviewException],
+    exceptions: [alignmentException],
   };
 }
 
@@ -173,17 +155,13 @@ function clone<T>(value: T): T {
 
 export type DanielsonGraphBuild = {
   graph: DanielsonGraph;
-  sourceManifests: DanielsonSourceManifest[];
-  reviewQueue: RuntimeReviewRow[];
-  mappings: Array<{ skillId: string; componentId: string; reviewStatus: 'approved' }>;
-  unresolvedMappings: RuntimeReviewRow[];
 };
 
 function buildGraph(): DanielsonGraph {
   const root = rootNode();
   const domains = ['1', '2', '3', '4'].map(domainNode);
   const components = DANIELSON_COMPONENT_IDS.map(componentNode);
-  const skills = APPROVED_TLAC_SKILLS.map(skillNode);
+  const skills = APPROVED_TLAC_SOURCE_INVENTORY.map(skillNode);
   const edges: DanielsonEdge[] = [];
 
   for (const domain of domains) {
@@ -196,7 +174,7 @@ function buildGraph(): DanielsonGraph {
       component.id,
     ));
   }
-  for (const skill of APPROVED_TLAC_SKILLS) {
+  for (const skill of APPROVED_TLAC_SOURCE_INVENTORY) {
     edges.push(containsEdge(
       `danielson.framework.component.${skill.componentId}`,
       `danielson.tlac.skill.${skill.id}`,
@@ -207,20 +185,9 @@ function buildGraph(): DanielsonGraph {
   return { nodes: [root, ...domains, ...components, ...skills], edges };
 }
 
-/** Build a fresh graph projection from the frozen app-owned manifest. */
+/** Build the Danielson graph from the app-owned framework and skill data. */
 export function buildDanielsonGraph(): DanielsonGraphBuild {
-  const graph = buildGraph();
-  return {
-    graph: clone(graph),
-    sourceManifests: clone([...DANIELSON_SOURCE_MANIFESTS]),
-    reviewQueue: clone([...RUNTIME_ONLY_TECHNIQUES]),
-    mappings: APPROVED_TLAC_SKILLS.map((skill) => ({
-      skillId: `danielson.tlac.skill.${skill.id}`,
-      componentId: `danielson.framework.component.${skill.componentId}`,
-      reviewStatus: 'approved' as const,
-    })),
-    unresolvedMappings: clone([...RUNTIME_ONLY_TECHNIQUES]),
-  };
+  return { graph: clone(buildGraph()) };
 }
 
 export function getComponentSkillIds(
@@ -247,67 +214,32 @@ export type DanielsonGraphValidation = {
   issues: DanielsonGraphIssue[];
 };
 
-function duplicateIds<T extends { id: string }>(records: readonly T[]): string[] {
-  const seen = new Set<string>();
-  const duplicates = new Set<string>();
-  for (const record of records) {
-    if (seen.has(record.id)) duplicates.add(record.id);
-    seen.add(record.id);
-  }
-  return [...duplicates];
-}
-
-function containsCycle(graph: KnowledgeSpace): string[][] {
-  const adjacency = new Map<string, string[]>();
-  for (const edge of graph.edges) {
-    if (edge.type !== 'contains') continue;
-    const targets = adjacency.get(edge.sourceId) ?? [];
-    targets.push(edge.targetId);
-    adjacency.set(edge.sourceId, targets);
-  }
-
-  const cycles: string[][] = [];
-  const visiting = new Set<string>();
-  const visited = new Set<string>();
-  const path: string[] = [];
-  const walk = (nodeId: string) => {
-    if (visiting.has(nodeId)) {
-      const start = path.indexOf(nodeId);
-      cycles.push([...path.slice(start), nodeId]);
-      return;
-    }
-    if (visited.has(nodeId)) return;
-    visiting.add(nodeId);
-    path.push(nodeId);
-    for (const target of adjacency.get(nodeId) ?? []) walk(target);
-    path.pop();
-    visiting.delete(nodeId);
-    visited.add(nodeId);
-  };
-  for (const node of graph.nodes) walk(node.id);
-  return cycles;
-}
-
-function validContainment(
-  source: KnowledgeSpaceNode,
-  target: KnowledgeSpaceNode,
-): boolean {
-  return (source.kind === 'domain' && target.kind === 'content_group')
-    || (source.kind === 'content_group' && target.kind === 'instructional_unit')
-    || (source.kind === 'instructional_unit' && target.kind === 'skill');
-}
-
 /** Validate the canonical graph plus Danielson's fixed hierarchy rules. */
 export function validateDanielsonGraph(graph: KnowledgeSpace): DanielsonGraphValidation {
   const issues: DanielsonGraphIssue[] = [];
-  const nodeById = new Map<string, KnowledgeSpaceNode>();
-  const duplicateNodeIdsList = duplicateIds(graph.nodes);
-  for (const id of duplicateNodeIdsList) {
-    issues.push({ code: 'DUPLICATE_NODE_ID', message: `Duplicate node ID "${id}"`, nodeId: id });
+  const canonicalSchema = knowledgeSpaceSchema.safeParse(graph);
+  if (!canonicalSchema.success) {
+    return {
+      valid: false,
+      issues: canonicalSchema.error.issues.map((issue) => ({
+        code: 'CANONICAL_SCHEMA',
+        message: issue.message,
+      })),
+    };
   }
-  for (const node of graph.nodes) nodeById.set(node.id, node);
-  for (const id of duplicateIds(graph.edges)) {
-    issues.push({ code: 'DUPLICATE_EDGE_ID', message: `Duplicate edge ID "${id}"`, edgeId: id });
+  issues.push(...validateKnowledgeSpace(graph).errors);
+
+  const nodeById = new Map(graph.nodes.map((node) => [node.id, node]));
+  const edgeIds = new Set<string>();
+  for (const edge of graph.edges) {
+    if (edgeIds.has(edge.id)) {
+      issues.push({
+        code: 'DUPLICATE_EDGE_ID',
+        message: `Duplicate edge ID "${edge.id}"`,
+        edgeId: edge.id,
+      });
+    }
+    edgeIds.add(edge.id);
   }
 
   const rootId = 'danielson.framework.2022';
@@ -352,23 +284,8 @@ export function validateDanielsonGraph(graph: KnowledgeSpace): DanielsonGraphVal
     }
   }
 
-  const duplicateEdgeKeys = new Set<string>();
   const containmentParents = new Map<string, string[]>();
   for (const edge of graph.edges) {
-    const key = `${edge.sourceId}::${edge.targetId}::${edge.type}`;
-    if (duplicateEdgeKeys.has(key)) {
-      issues.push({ code: 'DUPLICATE_EDGE', message: `Duplicate edge "${edge.id}"`, edgeId: edge.id });
-    }
-    duplicateEdgeKeys.add(key);
-    const source = nodeById.get(edge.sourceId);
-    const target = nodeById.get(edge.targetId);
-    if (!source || !target) {
-      issues.push({ code: 'DANGLING_EDGE', message: `Edge "${edge.id}" references a missing node`, edgeId: edge.id });
-      continue;
-    }
-    if (edge.type === 'contains' && !validContainment(source, target)) {
-      issues.push({ code: 'INVALID_CONTAINMENT', message: `Edge "${edge.id}" violates the Danielson hierarchy`, edgeId: edge.id });
-    }
     if (edge.type === 'contains') {
       const parents = containmentParents.get(edge.targetId) ?? [];
       parents.push(edge.sourceId);
@@ -376,9 +293,6 @@ export function validateDanielsonGraph(graph: KnowledgeSpace): DanielsonGraphVal
     }
     if (edge.type === 'prerequisite_for') {
       issues.push({ code: 'PROHIBITED_PREREQUISITE', message: 'Track 2 cannot activate GBF prerequisite edges', edgeId: edge.id });
-    }
-    if (!edge.sourceRefs?.length || !edge.reviewStatus) {
-      issues.push({ code: 'MISSING_EDGE_PROVENANCE', message: `Edge "${edge.id}" lacks provenance`, edgeId: edge.id });
     }
   }
   for (const node of graph.nodes) {
@@ -416,26 +330,5 @@ export function validateDanielsonGraph(graph: KnowledgeSpace): DanielsonGraphVal
       }
     }
   }
-  for (const node of graph.nodes) {
-    if (!node.sourceRefs?.length || !node.reviewStatus) {
-      issues.push({ code: 'MISSING_NODE_PROVENANCE', message: `Node "${node.id}" lacks provenance`, nodeId: node.id });
-    }
-  }
-
-  for (const cycle of containsCycle(graph)) {
-    issues.push({ code: 'CONTAINMENT_CYCLE', message: `Containment cycle detected: ${cycle.join(' → ')}` });
-  }
-
-  const canonicalSchema = knowledgeSpaceSchema.safeParse(graph);
-  if (!canonicalSchema.success) {
-    for (const issue of canonicalSchema.error.issues) {
-      issues.push({ code: 'CANONICAL_SCHEMA', message: issue.message });
-    }
-  }
-  const canonicalValidation = validateKnowledgeSpace(graph);
-  for (const error of canonicalValidation.errors) {
-    issues.push(error);
-  }
-
   return { valid: issues.length === 0, issues };
 }

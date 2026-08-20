@@ -58,7 +58,6 @@ function planVersion(version: number, purpose: string): NonNullable<PlanView['ac
     acknowledgmentText: 'Acknowledgment.',
     sourceId: 'school.pip-form.2026-08-19',
     sourceVersion: '1.0.0',
-    sourceHash: 'source-hash',
     proposedAt: Date.parse('2026-09-01T00:00:00.000Z'),
     targets: [{
       targetId: 'improvement_plan_targets:one',
@@ -273,7 +272,7 @@ describe('PIP interface', () => {
 
     const alert = await screen.findByRole('alert');
     expect(alert).toHaveTextContent('The proposal was not saved.');
-    expect(alert).toHaveFocus();
+    await waitFor(() => expect(alert).toHaveFocus());
   });
 
   it('states that acknowledgment is not a legal signature and requires confirmation', async () => {

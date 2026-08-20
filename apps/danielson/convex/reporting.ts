@@ -18,7 +18,6 @@ import type {
   SubmittedObservation,
 } from '../lib/observations/contracts';
 import { buildDanielsonGraph } from '../lib/proficiency/graph';
-import { resolveAssignedGbfGraph } from '../lib/gbf/graph';
 import {
   projectTeacherPriority,
   type PriorityProjection,
@@ -65,6 +64,7 @@ const observationTypeValidator = v.union(
 const observationPriorityReasonValidator = v.union(
   v.literal('below_proficient'),
   v.literal('approved_plan_priority'),
+  v.literal('gbf_phase_priority'),
   v.literal('overdue'),
   v.literal('evidence_gap'),
   v.literal('due'),
@@ -120,8 +120,6 @@ const gbfProgressValidator = v.union(
     contractVersion: v.literal('danielson.gbf-progress.v1'),
     state: v.union(v.literal('in_progress'), v.literal('proficient')),
     assignmentId: v.string(),
-    sequenceReleaseId: v.string(),
-    graphReleaseId: v.string(),
     trajectories: v.object({
       management: gbfTrajectoryProgressValidator,
       rigor: gbfTrajectoryProgressValidator,
@@ -559,10 +557,7 @@ export const readLeadershipPortfolio = internalQuery({
         ?? emptyPriorities(
           teacherProfileId,
           now,
-          resolveAssignedGbfGraph(
-            baseGraph,
-            gbfAssignments.assignmentsByTeacher.get(teacherProfileId) ?? null,
-          ),
+          baseGraph,
         );
       const gbf = projectGbfProgress({
         assignment: gbfAssignments.assignmentsByTeacher.get(teacherProfileId) ?? null,
@@ -657,10 +652,7 @@ async function buildPublicTeacherReport(
     || improvementPlan === null
     || gbfAssignment.kind === 'capacity_exceeded'
   ) return null;
-  const reportGraph = resolveAssignedGbfGraph(
-    baseGraph,
-    gbfAssignment.kind === 'allowed' ? gbfAssignment.assignment : null,
-  );
+  const reportGraph = baseGraph;
   const reportSkillIds = reportGraph.nodes
     .filter((node) => node.kind === 'skill' && node.reviewStatus === 'approved')
     .map((node) => node.id)

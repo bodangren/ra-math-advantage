@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import type { MutationCtx, QueryCtx } from '../../convex/_generated/server';
 import {
   applyAdministrationChange,
-  listAccessAuditEvents,
+  bootstrapFirstSysadmin,
   listAdministrationAccounts,
   listAdministrationDepartments,
   resolveAccessContext,
@@ -141,6 +141,9 @@ class MemoryDb {
 const applyChange = handler<Record<string, unknown>, Record<string, unknown>>(
   applyAdministrationChange,
 );
+const bootstrapAdministrator = handler<Record<string, unknown>, Record<string, unknown>>(
+  bootstrapFirstSysadmin,
+);
 const resolveContext = handler<Record<string, unknown>, Record<string, unknown>>(
   resolveAccessContext,
 );
@@ -149,9 +152,6 @@ const readAdministrationAccounts = handler<Record<string, unknown>, Record<strin
 );
 const readAdministrationDepartments = handler<Record<string, unknown>, Record<string, unknown>>(
   listAdministrationDepartments,
-);
-const readAudit = handler<Record<string, unknown>, Record<string, unknown>>(
-  listAccessAuditEvents,
 );
 const readAccount = handler<Record<string, unknown>, Record<string, unknown> | null>(
   getAccountById,
@@ -174,7 +174,7 @@ const changePassword = handler<Record<string, unknown>, { ok: boolean }>(
 
 function seedAdministrator(db: MemoryDb) {
   db.seed('organizations', 'organizations:school', {
-    slug: 'school', name: 'School', isActive: true, activeSysadminCount: 1,
+    slug: 'school', name: 'School', isActive: true,
     createdAt: 1, updatedAt: 1,
   });
   db.seed('accounts', 'accounts:admin', {
@@ -187,17 +187,47 @@ function seedAdministrator(db: MemoryDb) {
   });
 }
 
-function administrationArgs(requestId: string, change: Record<string, unknown>) {
+function administrationArgs(_requestId: string, change: Record<string, unknown>) {
   return {
     actorAccountId: 'accounts:admin',
     organizationId: 'organizations:school',
-    requestId,
     change,
   };
 }
 
 describe('Danielson Convex foundation handlers', () => {
-  it('creates one account, one temporary credential, and one secret-free audit event', async () => {
+  it('seeds the first organization and sysadmin with a required password change', async () => {
+    const db = new MemoryDb();
+
+    await expect(bootstrapAdministrator(db.context(), {
+      organizationSlug: 'school',
+      organizationName: 'School',
+      username: 'admin',
+      displayName: 'System Administrator',
+      passwordHash: 'temporary-password-hash',
+      passwordSalt: 'temporary-password-salt',
+      passwordHashIterations: 120000,
+    })).resolves.toMatchObject({ kind: 'created' });
+
+    expect(db.rows('organizations')).toHaveLength(1);
+    expect(db.rows('accounts')).toHaveLength(1);
+    expect(db.rows('role_assignments')).toHaveLength(1);
+    expect(db.rows('auth_credentials')[0]).toMatchObject({
+      mustChangePassword: true,
+      isActive: true,
+    });
+    await expect(bootstrapAdministrator(db.context(), {
+      organizationSlug: 'school-two',
+      organizationName: 'School Two',
+      username: 'admin-two',
+      displayName: 'Second Administrator',
+      passwordHash: 'temporary-password-hash',
+      passwordSalt: 'temporary-password-salt',
+      passwordHashIterations: 120000,
+    })).resolves.toEqual({ kind: 'already_bootstrapped' });
+  });
+
+  it('creates one account and one temporary credential', async () => {
     const db = new MemoryDb();
     seedAdministrator(db);
     const args = administrationArgs('create-teacher-1', {
@@ -215,19 +245,10 @@ describe('Danielson Convex foundation handlers', () => {
     expect(db.rows('accounts')).toHaveLength(2);
     expect(db.rows('auth_credentials')).toHaveLength(1);
     expect(db.rows('teacher_profiles')).toHaveLength(1);
-    expect(db.rows('access_audit_events')).toHaveLength(1);
     expect(db.rows('auth_credentials')[0]).toMatchObject({
       username: 'teacher.one',
       mustChangePassword: true,
     });
-    expect(JSON.stringify(db.rows('access_audit_events')[0])).not.toMatch(/secret-hash|secret-salt|password/i);
-
-    await expect(applyChange(db.context(), args)).resolves.toEqual({
-      kind: 'denied',
-      reason: 'duplicate_request',
-    });
-    expect(db.rows('accounts')).toHaveLength(2);
-    expect(db.rows('access_audit_events')).toHaveLength(1);
   });
 
   it('applies every account, department, role, and supervisor assignment change', async () => {
@@ -294,7 +315,6 @@ describe('Danielson Convex foundation handlers', () => {
     await run({ kind: 'department.deactivate', departmentId });
     await run({ kind: 'department.activate', departmentId });
 
-    expect(db.rows('access_audit_events')).toHaveLength(sequence);
     expect(await db.get('accounts:teacher')).toMatchObject({
       username: 'teacher.updated', displayName: 'Teacher Updated', isActive: true,
     });
@@ -316,11 +336,10 @@ describe('Danielson Convex foundation handlers', () => {
     await expect(applyChange(db.context(), administrationArgs('final-admin', {
       kind: 'account.deactivate', targetAccountId: 'accounts:admin',
     }))).resolves.toEqual({ kind: 'denied', reason: 'final_active_sysadmin' });
-    expect(db.rows('access_audit_events')).toHaveLength(0);
     expect(db.rows('accounts')[0].isActive).toBe(true);
   });
 
-  it('maintains the active system administrator count without a table scan', async () => {
+  it('uses current accounts and roles to protect the final active system administrator', async () => {
     const db = new MemoryDb();
     seedAdministrator(db);
     db.seed('accounts', 'accounts:second-admin', {
@@ -331,13 +350,11 @@ describe('Danielson Convex foundation handlers', () => {
     await expect(applyChange(db.context(), administrationArgs('assign-second-admin', {
       kind: 'role.assign', targetAccountId: 'accounts:second-admin', role: 'sysadmin',
     }))).resolves.toMatchObject({ kind: 'applied' });
-    expect(await db.get('organizations:school')).toMatchObject({ activeSysadminCount: 2 });
 
     await expect(applyChange(db.context(), administrationArgs('deactivate-first-admin', {
       kind: 'account.deactivate', targetAccountId: 'accounts:admin',
     }))).resolves.toMatchObject({ kind: 'applied' });
     expect((await db.get('accounts:admin'))?.isActive).toBe(false);
-    expect(await db.get('organizations:school')).toMatchObject({ activeSysadminCount: 1 });
 
     const secondActor = { actorAccountId: 'accounts:second-admin' };
     await expect(applyChange(db.context(), {
@@ -346,7 +363,6 @@ describe('Danielson Convex foundation handlers', () => {
       }),
       ...secondActor,
     })).resolves.toMatchObject({ kind: 'applied' });
-    expect(await db.get('organizations:school')).toMatchObject({ activeSysadminCount: 2 });
 
     await expect(applyChange(db.context(), {
       ...administrationArgs('revoke-first-admin', {
@@ -354,7 +370,6 @@ describe('Danielson Convex foundation handlers', () => {
       }),
       ...secondActor,
     })).resolves.toMatchObject({ kind: 'applied' });
-    expect(await db.get('organizations:school')).toMatchObject({ activeSysadminCount: 1 });
 
     await expect(applyChange(db.context(), {
       ...administrationArgs('deactivate-final-admin', {
@@ -382,7 +397,7 @@ describe('Danielson Convex foundation handlers', () => {
     const db = new MemoryDb();
     seedAdministrator(db);
     db.seed('organizations', 'organizations:other', {
-      slug: 'other', name: 'Other', isActive: true, activeSysadminCount: 0,
+      slug: 'other', name: 'Other', isActive: true,
       createdAt: 1, updatedAt: 1,
     });
     db.seed('accounts', 'accounts:foreign', {
@@ -433,7 +448,6 @@ describe('Danielson Convex foundation handlers', () => {
       accountId: 'accounts:admin',
       teacherProfileId: 'teacher_profiles:teacher',
     }))).resolves.toEqual({ kind: 'invalid', reason: 'relation_not_found' });
-    expect(db.rows('access_audit_events')).toHaveLength(0);
   });
 
   it('revokes existing relationships after linked records become inactive', async () => {
@@ -515,7 +529,6 @@ describe('Danielson Convex foundation handlers', () => {
       teacherAccountId: 'accounts:teacher',
     }))).resolves.toEqual({ kind: 'denied', reason: 'assignment_limit_reached' });
     expect(db.rows('department_memberships')).toHaveLength(100);
-    expect(db.rows('access_audit_events')).toHaveLength(0);
   });
 
   it('finds an exact HOD assignment when more than 100 unrelated assignments exist', async () => {
@@ -663,21 +676,6 @@ describe('Danielson Convex foundation handlers', () => {
     expect((secondDepartments as { departmentPage: { items: unknown[] } }).departmentPage.items).toHaveLength(1);
   });
 
-  it('reads audit events with bounded cursor pagination', async () => {
-    const db = new MemoryDb();
-    seedAdministrator(db);
-    await applyChange(db.context(), administrationArgs('create-department', {
-      kind: 'department.create', key: 'math', name: 'Math',
-    }));
-
-    await expect(readAudit(db.context(), {
-      organizationId: 'organizations:school',
-      paginationOpts: { cursor: null, numItems: 10 },
-    })).resolves.toMatchObject({
-      page: [{ action: 'department.create', requestId: 'create-department' }],
-      isDone: true,
-    });
-  });
 });
 
 describe('Danielson Convex authentication handlers', () => {

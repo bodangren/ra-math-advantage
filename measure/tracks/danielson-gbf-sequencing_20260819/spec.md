@@ -1,89 +1,51 @@
-# Specification: GBF Sequence and TLAC 3.0 Edges
+# Specification: GBF Sequence and TLAC 3.0 Mapping
 
-## Overview
+## Purpose
 
-Use the supplied GBF scope and sequence to assign reviewed TLAC 3.0 skills to
-parallel Management and Rigor trajectories. Record direct mappings and
-inferences separately. Create reviewed support and prerequisite candidates for
-the professional-learning graph.
+Use the supplied Get Better Faster (GBF) scope and sequence to organize Teach
+Like a Champion 3.0 (TLAC 3.0) skills. Keep Management and Rigor as separate
+paths. Use existing Danielson proficiency and due-date data.
 
-The scope and sequence is sufficient to start this track. The full GBF 2.0 book
-can later improve rationales and resolve gaps. Its absence does not permit
-invented source claims.
+This track does not create graph edges. It does not create a release system or
+a review workflow.
 
-## Functional Requirements
+## Requirements
 
-1. **FR-1 — Source manifest:** Record the exact source filenames, hashes,
-   visible metadata, user-provided edition context, and permitted internal use.
-2. **FR-2 — Source extraction:** Preserve the two parallel trajectories, phase
-   boundaries, action-step numbers, names, and source pages.
-3. **FR-3 — Versioned mapping:** Map each source action step to zero or more
-   stable Track 2 skill IDs. Mark each mapping `direct` or `inferred`.
-4. **FR-4 — Inference rationale:** Record the behavior match, author, date,
-   confidence, and review status for each inferred mapping.
-5. **FR-5 — Unsupported gaps:** Keep a gap list for TLAC 3.0 skills that the
-   source does not safely place. Do not assign them a false GBF phase.
-6. **FR-6 — Parallel paths:** Keep Management and Rigor progress separate. Do
-   not require completion of one whole trajectory before the other.
-7. **FR-7 — Support candidates:** Use `supports` for secondary skills that help
-   deliver one source action step but are not required predecessors.
-8. **FR-8 — Prerequisite candidates:** Infer `prerequisite_for` candidates only
-   between reviewed primary skills in consecutive steps of one trajectory.
-9. **FR-9 — Safe activation:** Keep every new edge in `draft` until human
-   review. Do not assign hard-gate weight by default.
-10. **FR-10 — Assigned GBF track:** Assign a new teacher a versioned set of GBF
-    skills and trajectory phases. Keep the assignment separate from observed
-    proficiency.
-11. **FR-11 — KST readiness:** Use only approved prerequisite edges in KST
-    readiness and outer-fringe calculations.
-12. **FR-12 — SRS due dates:** Continue to use Track 2 SRS cards for time and
-    review scheduling. GBF phase metadata must not create a second scheduler.
-13. **FR-13 — Progress projection:** Provide current phase, assigned skills,
-    proficient skills, due skills, and unresolved gaps to Track 4.
-14. **FR-14 — Version stability:** A source or mapping update creates a new
-    release. It must not rewrite historical assignments or evidence.
-
-## Non-Functional Requirements
-
-- Keep source text, mappings, and graph edges application-owned.
-- Do not import the sibling application at runtime.
-- Do not copy long source passages into application data.
-- Use stable source locations and short rationales.
-- Validate graph closure, duplicate IDs, endpoints, and prerequisite cycles.
-- Keep edge activation deterministic, reviewable, and reversible.
+1. Record the supplied source filenames and visible page counts.
+2. Preserve the five GBF phases and the source order of each action step.
+3. Keep Management and Rigor as separate paths.
+4. Map each action step to one primary TLAC skill.
+5. Map related TLAC skills as support skills.
+6. Mark each mapping as direct or inferred.
+7. Give each inferred mapping a short rationale.
+8. Keep the 13 skills without a supported GBF placement as unsequenced skills.
+9. Let a school head or Senior Leadership Team (SLT) member assign GBF to a
+   teacher in scope.
+10. Store the assigned and unsequenced skill lists with the assignment.
+11. Return the current assignment when the same assignment is submitted again.
+12. Show each path's current phase, proficient skills, due skills, and gaps.
+13. Add the current GBF phase to walkthrough priority.
+14. Use the existing Spaced Repetition System (SRS) due dates.
 
 ## Acceptance Criteria
 
-1. The source manifest matches both supplied PDF hashes.
-2. The normalized sequence contains Phase 1, Phase 2, Phase 3, Phase 4, and
-   Stretch It with separate Management and Rigor trajectories.
-3. Every mapping has a stable source action-step ID, TLAC skill ID, mapping
-   status, rationale, confidence, and review status.
-4. The mapping output matches `tlac3-sequence.md` or records an approved review
-   amendment.
-5. Unsequenced TLAC skills receive no GBF phase or prerequisite edge.
-6. Draft mappings and edges have no effect on KST readiness, SRS due dates, or
-   teacher reports.
-7. Approved support edges do not become prerequisites.
-8. Approved prerequisite edges stay inside one trajectory unless a separate
-   reviewed rationale permits a cross-trajectory edge.
-9. No activated edge has a dangling endpoint, duplicate identity, prohibited
-   pairing, or medium- or high-confidence prerequisite cycle.
-10. A new-teacher assignment records the exact graph and sequence release.
-11. GBF progress shows phase and skill status without changing raw Danielson
-    ratings.
-12. A new source release does not rewrite an earlier assignment, observation,
-    or report.
-13. Source, graph, KST, SRS, projection, tests, coverage, lint, typecheck, build,
-    generated-fact, boundary, and Measure Doctor gates pass.
+- The sequence has 5 phases, 12 required Management steps, 13 required Rigor
+  steps, and 5 preview steps.
+- The mapping has 78 rows and 50 unique TLAC skills.
+- Each required action step has one primary skill.
+- The 13 unsequenced skills remain valid Danielson skills.
+- A repeated assignment does not create a duplicate row.
+- Management progress does not block Rigor progress.
+- Rating 3 is the minimum passing rating.
+- GBF phase priority changes walkthrough order.
+- GBF does not change Danielson ratings or SRS due dates.
+- Tests, lint, typecheck, build, boundaries, and Measure Doctor pass.
 
 ## Out of Scope
 
-- Reproducing the full GBF 2.0 book.
-- Treating chapter or phase order as an automatic hard prerequisite.
-- Changing KST or SRS algorithms.
-- Changing Track 2 stable node IDs.
-- A second scheduling system.
-- Automatic changes to Danielson ratings.
-- Source-informed coaching meetings, reflections, or surveys that the school
-  has not approved.
+- The full GBF or TLAC book.
+- GBF prerequisite or support graph edges.
+- A graph release registry.
+- A source review queue.
+- A second scheduler.
+- Automatic teacher assignment.

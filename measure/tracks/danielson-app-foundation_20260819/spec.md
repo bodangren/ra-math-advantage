@@ -73,11 +73,9 @@ supervisor-side PIP action on themselves.
    system-administrator role alone must not permit access to evaluation data.
 8. **FR-8 — Account status:** Reuse the shared active-account and credential
    checks. A deactivated account must lose access without a data deletion.
-9. **FR-9 — Audit record:** Record the authenticated actor, server time, action,
-   target, and strict before and after values for each successful account,
-   department, role, and assignment change. Insert the event in the same
-   transaction as the change. Keep the event immutable. Reject a replay without
-   a second state change or event.
+9. **FR-9 — Production bootstrap:** Permit a deployment operator to create the
+   first organization and system administrator only when no organization exists.
+   Give the administrator a temporary credential and require a password change.
 10. **FR-10 — Monorepo registration:** Add the application to the architecture
     manifest, workspace inventory, root quality commands, and continuous
     integration inventory.
@@ -86,7 +84,7 @@ supervisor-side PIP action on themselves.
     operation. Do not authorize from a session role or session organization.
 12. **FR-12 — Account credentials:** Create a usable temporary credential for a
     new account with the shared password functions. Require a password change.
-    Do not store or audit a plaintext password. Limit repeated failed sign-in
+    Do not store a plaintext password. Limit repeated failed sign-in
     attempts and use generic credential errors.
 13. **FR-13 — Final administrator:** Do not deactivate or revoke the final
     active system-administrator account in an organization.
@@ -129,11 +127,10 @@ supervisor-side PIP action on themselves.
     a new sign-in.
 12. A person from another organization cannot read or change any account,
    assignment, or teacher record.
-13. Each successful account or access change creates one immutable audit event
-    in the same transaction. A denied or repeated request creates no state
-    change and no duplicate event.
-14. A new account gets one temporary credential. The audit event does not
-    contain the plaintext password, password hash, or salt.
+13. A deployment operator can create the first organization and system
+    administrator. The bootstrap rejects a second organization.
+14. A new account gets one temporary credential. The application does not
+    expose the password hash or salt.
 15. The application rejects an operation that would remove the final active
     system administrator in an organization.
 16. Authentication, authorization, architecture, accessibility, lint, test,

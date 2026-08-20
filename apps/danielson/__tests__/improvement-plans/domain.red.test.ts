@@ -1,4 +1,3 @@
-import { createHash } from 'node:crypto';
 import { describe, expect, it } from 'vitest';
 
 import { buildDanielsonGraph } from '../../lib/proficiency/graph';
@@ -11,12 +10,7 @@ import {
   applyPipPriorityOverlay,
   projectImprovementPlanProgress,
 } from '../../lib/improvement-plans/progress';
-import {
-  PIP_SOURCE_CANONICAL_JSON,
-  PIP_SOURCE_CONTRACT,
-  PIP_SOURCE_HASH,
-  validatePipSourceContract,
-} from '../../lib/improvement-plans/source';
+import { PIP_SOURCE_CONTRACT } from '../../lib/improvement-plans/source';
 
 const APPROVED_AT = Date.parse('2026-09-01T00:00:00.000Z');
 const END_AT = Date.parse('2026-10-01T00:00:00.000Z');
@@ -67,7 +61,7 @@ function basePriority() {
 }
 
 describe('PIP source and proposal contract', () => {
-  it('freezes every source field, fixed text, value, and hash', () => {
+  it('preserves every source field and fixed text value', () => {
     expect(PIP_SOURCE_CONTRACT).toMatchObject({
       sourceId: 'school.pip-form.2026-08-19',
       sourceVersion: '1.0.0',
@@ -97,15 +91,6 @@ describe('PIP source and proposal contract', () => {
       'teacherAcknowledgment',
       'supervisorAcknowledgment',
     ]));
-    expect(createHash('sha256').update(PIP_SOURCE_CANONICAL_JSON).digest('hex'))
-      .toBe(PIP_SOURCE_HASH);
-    expect(PIP_SOURCE_HASH)
-      .toBe('c997419fcc7b922422dc505779c2ca8a145cb679c100606ce01fa9efdfebdbdb');
-    expect(validatePipSourceContract(PIP_SOURCE_CONTRACT)).toEqual({ valid: true });
-    expect(validatePipSourceContract({
-      ...PIP_SOURCE_CONTRACT,
-      title: 'Changed title',
-    })).toEqual({ valid: false, reason: 'source_hash_mismatch' });
     expect(JSON.stringify(PIP_SOURCE_CONTRACT.schoolValues)).not.toMatch(/score|weight|rating/i);
   });
 
@@ -115,7 +100,6 @@ describe('PIP source and proposal contract', () => {
       ...proposalInput(),
       sourceId: PIP_SOURCE_CONTRACT.sourceId,
       sourceVersion: PIP_SOURCE_CONTRACT.sourceVersion,
-      sourceHash: PIP_SOURCE_HASH,
       insufficientImprovementConsequences:
         PIP_SOURCE_CONTRACT.fixedText.insufficientImprovementConsequences,
       acknowledgmentText: PIP_SOURCE_CONTRACT.fixedText.acknowledgmentText,
@@ -266,7 +250,7 @@ describe('PIP cadence and progress', () => {
     expect(capped.overdueDays).toBe(1);
   });
 
-  it('uses effective rated plan-period evidence and excludes all non-scoring text', () => {
+  it('uses effective rated plan-period evidence', () => {
     const input = {
       planId: 'improvement_plans:one',
       version: 1,
@@ -285,14 +269,7 @@ describe('PIP cadence and progress', () => {
       ],
     };
     const baseline = projectImprovementPlanProgress(input);
-    const withText = projectImprovementPlanProgress({
-      ...input,
-      comments: ['private', 'public'],
-      responses: ['teacher response'],
-      evidenceNotes: ['note'],
-    });
 
-    expect(baseline).toEqual(withText);
     expect(baseline).toMatchObject({
       contractVersion: 'danielson.ip-progress.v1',
       state: 'active',

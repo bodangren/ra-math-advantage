@@ -32,7 +32,6 @@ export type ImprovementPlanVersionView = {
   acknowledgmentText: string;
   sourceId: string;
   sourceVersion: string;
-  sourceHash: string;
   proposedAt: number;
   targets: ImprovementPlanTargetView[];
 };

@@ -6,24 +6,19 @@ Map the provided Get Better Faster (GBF) scope and sequence to the 63 Teach Like
 a Champion 3.0 (TLAC 3.0) technique modules in the sibling prototype. Preserve
 the source order. Mark every mapping as direct or inferred.
 
-This document is a source analysis. It does not activate graph edges.
+This document is a source analysis. It does not create graph edges.
 
 ## Source Register
 
-| Source | Use | SHA-256 |
-|---|---|---|
-| `get-better-faster-scope-sequence.pdf` | Phase and action-step order | `cf34c7ed03fd63fb0c89cb378b1fcacde4c6dc5a7238fc1b9cb059ddf733de64` |
-| `Classroom-Insights-Handbook_25-26-1.pdf` | One implementation example | `9de9a26d9acdea6fd134c50fec300822fb652f385cd1fe5cbff6b518ee311828` |
-| `../hdkwa-danielson/src/data/techniques/` | Candidate TLAC 3.0 technique IDs and local Danielson mappings | `4704ae10511d27c4b3cc7951c0aadfe48558aa86e1148f8ba4f116383fe7cb1b` |
+| Source | Use |
+|---|---|
+| `get-better-faster-scope-sequence.pdf` | Phase and action-step order |
+| `Classroom-Insights-Handbook_25-26-1.pdf` | One implementation example |
+| `../hdkwa-danielson/src/data/techniques/` | TLAC 3.0 technique IDs and local Danielson mappings |
 
 The user supplied the first PDF as the GBF 2.0 scope and sequence. The visible
-PDF title does not state an edition. The implementation must preserve that
-qualification in provenance.
-
-The TLAC source is frozen at sibling commit
-`4ad319e57022ab8e334a594ee12c84a7a8886be7`.
-Its hash uses each sorted relative filename, one null byte, the file bytes, and
-one null byte.
+PDF title does not state an edition. The application must preserve that
+qualification.
 
 ## Classification Rules
 
@@ -35,8 +30,7 @@ one null byte.
   the source does not use the current title.
 - **Unsequenced:** The supplied source does not support a safe phase placement.
 
-An inferred mapping must record its rationale and receive human review. It must
-not become a hard gate by default.
+An inferred mapping must record its rationale.
 
 ## Source-Stated Trajectories
 
@@ -106,26 +100,12 @@ these local modules:
 - `48 Habits of Attention`
 
 These skills remain valid Danielson child skills. Their KST and SRS state can
-still make them due. They receive no GBF phase or prerequisite edge until a
-reviewed source or approved inference supports one.
+still make them due. They receive no GBF phase.
 
-## Edge Inference Policy
+## Graph Rule
 
-1. Keep the Management and Rigor trajectories separate.
-2. Treat source order as a recommended progression.
-3. Create `supports` candidates for secondary techniques inside one action-step
-   bundle.
-4. Create low- or medium-confidence `prerequisite_for` candidates only between
-   reviewed primary techniques in consecutive steps of the same trajectory.
-5. Give every inferred edge the source page, action-step IDs, rationale,
-   confidence, weight, author, and review status.
-6. Keep all new edges in `draft` until a human approves them.
-7. Do not assign hard-gate weight by default.
-8. Reject duplicate endpoints, dangling endpoints, and medium- or
-   high-confidence prerequisite cycles.
-
-The user permits prerequisite inference from GBF sequencing. This policy keeps
-that inference visible and reversible.
+The application does not convert the GBF sequence into KST graph edges. The
+sequence sets a coaching priority. Existing SRS data sets the due date.
 
 ## Source-Informed Implementation Practices
 

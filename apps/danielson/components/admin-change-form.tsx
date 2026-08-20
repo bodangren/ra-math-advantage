@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent, useRef, useState } from 'react';
+import { FormEvent, useState } from 'react';
 
 type Field = {
   name: string;
@@ -27,7 +27,6 @@ export function AdminChangeForm({
   const [status, setStatus] = useState<string | null>(null);
   const [targetId, setTargetId] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
-  const requestId = useRef(crypto.randomUUID());
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -37,10 +36,9 @@ export function AdminChangeForm({
     setStatus(null);
     setTargetId(null);
     try {
-      const data: Record<string, FormDataEntryValue | string> = {
-        ...Object.fromEntries(new FormData(form).entries()),
-        requestId: requestId.current,
-      };
+      const data: Record<string, FormDataEntryValue | string> = Object.fromEntries(
+        new FormData(form).entries(),
+      );
       if (data.kind === 'account.deactivate'
         && !window.confirm('Deactivate this account? The person will lose access.')) {
         setBusy(false);
@@ -56,7 +54,6 @@ export function AdminChangeForm({
       else {
         setTargetId(result.targetId ?? null);
         setStatus('Change saved.');
-        requestId.current = crypto.randomUUID();
         form.reset();
       }
     } catch {

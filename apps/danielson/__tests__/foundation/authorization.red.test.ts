@@ -85,7 +85,6 @@ describe('Danielson authorization contract', () => {
       'accounts:manage',
       'departments:manage',
       'assignments:manage',
-      'access_audit:read',
     ]));
   });
 

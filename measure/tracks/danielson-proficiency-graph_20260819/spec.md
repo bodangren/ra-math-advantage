@@ -4,7 +4,7 @@
 
 Create an application-owned professional-learning graph for teacher
 proficiency. Use the 2022 Framework for Teaching as the rubric structure. Use
-reviewed Teach Like a Champion 3.0 (TLAC 3.0) techniques as learnable skill
+Teach Like a Champion 3.0 (TLAC 3.0) techniques as learnable skill
 nodes. Reuse the existing Knowledge Space Theory (KST) and Spaced Repetition
 System (SRS) packages.
 
@@ -14,11 +14,9 @@ result of `not_enough_evidence` does not update proficiency or SRS state.
 
 ## Source Boundary
 
-The sibling project has two technique datasets. The standalone technique
-modules provide a complete candidate set of 63 TLAC 3.0 techniques. The runtime
-array contains 63 curated techniques from several sources. The import process
-must reconcile these datasets and record the source for every imported skill.
-It must not label a mixed-source technique as TLAC 3.0.
+The sibling project has 63 standalone TLAC 3.0 technique modules. The app owns
+a copy of the stable IDs, titles, Danielson components, and source locations.
+The app does not read the sibling project at runtime.
 
 The school has permission to use the full Danielson rubric internally. The
 application must record the framework version and source provenance. It must
@@ -33,11 +31,10 @@ The application will use the existing graph node kinds as follows:
 | 2022 Framework for Teaching root | `domain` |
 | Danielson Domain 1–4 | `content_group` |
 | Danielson Component, such as `1e` or `2c` | `instructional_unit` |
-| Reviewed TLAC or GBF skill | `skill` |
+| TLAC or GBF skill | `skill` |
 
-`contains` edges define the hierarchy. Track 6 owns source-backed
-`prerequisite_for` edges from Get Better Faster 2.0 (GBF 2.0). This track must
-not invent those edges.
+`contains` edges define the hierarchy. This track does not add GBF prerequisite
+edges.
 
 ## Rating and Evidence Rules
 
@@ -55,20 +52,17 @@ component must not cancel a rating of 1 or 2 in another component.
 
 ## Functional Requirements
 
-1. **FR-1 — Versioned content manifest:** Create an app-owned import manifest
-   for the Danielson framework and reviewed technique sources. Record stable ID,
-   source name, version, effective date, content hash, and review status.
+1. **FR-1 — App-owned content:** Store the stable ID, title, source, and
+   Danielson component for each imported technique.
 2. **FR-2 — Framework graph:** Create exactly four Danielson domain nodes and 22
    Danielson component nodes from the approved 2022 source.
-3. **FR-3 — Technique reconciliation:** Reconcile the sibling standalone modules
-   and mixed runtime array. Import each approved technique once with an accurate
-   source label and stable ID.
+3. **FR-3 — Technique import:** Import each standalone TLAC technique once with
+   an accurate source label and stable ID.
 4. **FR-4 — App-owned mappings:** Store technique-to-component mappings in the
    Danielson application. Do not put Danielson or TLAC content into the
    domain-neutral KST packages.
 5. **FR-5 — Graph validation:** Reject duplicate IDs, dangling endpoints,
-   invalid containment, and prohibited cycles. Keep unresolved mappings in a
-   review queue.
+   invalid containment, and prohibited cycles.
 6. **FR-6 — Proficiency evidence contract:** Define a strict, app-owned evidence
    union for a rated result and `not_enough_evidence`. Include the teacher,
    source record, source type, component, target skills, observer, event time,
@@ -110,14 +104,14 @@ component must not cancel a rating of 1 or 2 in another component.
 - Use deterministic adapters and a supplied clock in tests.
 - Preserve source and evidence history. Do not overwrite earlier events.
 - Append a review correction when late evidence changes a later SRS transition.
-- Use the processing clock for persistence audit timestamps.
+- Use the processing clock for persistence update times.
 - Keep queries bounded and indexed. Avoid one query for each teacher or skill.
 
 ## Acceptance Criteria
 
-1. The approved graph has one framework root, four domains, 22 components, and
-   one stable node for each reviewed imported technique.
-2. Every node and edge has source provenance and review status.
+1. The graph has one framework root, four domains, 22 components, and one stable
+   node for each imported technique.
+2. Every node and edge satisfies the shared KST graph contract.
 3. The graph has no duplicate IDs, dangling edges, invalid containment, or
    prohibited cycles.
 4. No GBF prerequisite edge becomes active in this track.

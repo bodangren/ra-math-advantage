@@ -156,7 +156,6 @@ function seedFoundation(db: MemoryDb) {
     slug: 'school-a',
     name: 'School A',
     isActive: true,
-    activeSysadminCount: 1,
   });
   db.seed('accounts', OBSERVER_ACCOUNT_ID, {
     organizationId: ORGANIZATION_A,

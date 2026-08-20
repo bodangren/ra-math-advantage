@@ -85,7 +85,7 @@ export type EvidenceHistoryItem = {
     itemId: string;
     componentId: string;
     skillId?: string;
-    priorityReason?: 'below_proficient' | 'approved_plan_priority' | 'overdue' | 'evidence_gap' | 'due';
+    priorityReason?: 'below_proficient' | 'approved_plan_priority' | 'gbf_phase_priority' | 'overdue' | 'evidence_gap' | 'due';
     outcome: { kind: 'rated'; rating: 1 | 2 | 3 | 4 }
       | { kind: 'not_enough_evidence' }
       | null;

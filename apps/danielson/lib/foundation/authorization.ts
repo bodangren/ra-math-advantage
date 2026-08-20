@@ -63,7 +63,7 @@ export const DANIELSON_CAPABILITIES = {
     'pip:close',
     'pip_supervisor_acknowledgment:write',
   ],
-  sysadmin: ['accounts:manage', 'departments:manage', 'assignments:manage', 'access_audit:read'],
+  sysadmin: ['accounts:manage', 'departments:manage', 'assignments:manage'],
 } as const satisfies Record<DanielsonRole, readonly string[]>;
 
 export type DanielsonCapability =
@@ -87,8 +87,7 @@ export type DanielsonAction =
   | 'pip_supervisor_acknowledgment:write'
   | 'accounts:manage'
   | 'departments:manage'
-  | 'assignments:manage'
-  | 'access_audit:read';
+  | 'assignments:manage';
 
 export type DanielsonDecisionReason =
   | 'unauthenticated'
@@ -207,8 +206,7 @@ export function authorizeDanielsonAction(
 
   const subjectAction = action !== 'accounts:manage'
     && action !== 'departments:manage'
-    && action !== 'assignments:manage'
-    && action !== 'access_audit:read';
+    && action !== 'assignments:manage';
 
   if (subjectAction) {
     const subject = context.subject;
