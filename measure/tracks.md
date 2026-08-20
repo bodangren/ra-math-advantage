@@ -106,6 +106,7 @@ Dependency order:
 - [ ] **Track: ESLint to Oxlint Migration**
    *Replace ESLint execution with Oxlint across all 26 workspaces. Preserve the blocking lint policy. Keep anti-slop separate and non-blocking.*
    *Link: [./tracks/eslint-to-oxlint-migration_20260820/](./tracks/eslint-to-oxlint-migration_20260820/)*
+   *Evidence: [baseline](./tracks/eslint-to-oxlint-migration_20260820/baseline.md) and [parity report](./tracks/eslint-to-oxlint-migration_20260820/parity-report.md).*
 
 ### Teacher-Led Mastery Advantage Progression
 
