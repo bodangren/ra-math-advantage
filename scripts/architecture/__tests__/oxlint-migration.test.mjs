@@ -11,6 +11,7 @@ const POLICY_PATH = path.join(FIXTURE_ROOT, "legacy-policy.json");
 const CASES_PATH = path.join(FIXTURE_ROOT, "cases.json");
 const CONFIG_PATH = path.join(ROOT, ".oxlintrc.json");
 const RUNTIME_CONFIG_PATH = path.join(ROOT, ".oxlint-migration-runtime.config.json");
+const REVIEW_EXCEPTIONS_PATH = path.join(FIXTURE_ROOT, "review-exceptions.json");
 
 const fixtureDirectories = [
   "apps/danielson/.oxlint-migration-fixtures",
@@ -66,6 +67,7 @@ const packageConfigFiles = [
 const readJson = (filePath) => JSON.parse(fs.readFileSync(filePath, "utf8"));
 const policy = readJson(POLICY_PATH);
 const cases = readJson(CASES_PATH);
+const reviewExceptions = readJson(REVIEW_EXCEPTIONS_PATH);
 const manifest = readJson(path.join(ROOT, "scripts/architecture/architecture.manifest.json"));
 
 const runtimeConfig = readJson(CONFIG_PATH);
@@ -85,9 +87,10 @@ function assertFixtureDirectoriesAbsent() {
   }
 }
 
-function runOxlint(filePath, extraArgs = []) {
-  const args = ["--config", RUNTIME_CONFIG_PATH, "--no-ignore", "--format", "json", ...extraArgs, filePath];
-  const result = spawnSync(OXLINT, args, { cwd: ROOT, encoding: "utf8" });
+function runOxlint(filePaths, extraArgs = []) {
+  const paths = Array.isArray(filePaths) ? filePaths : [filePaths];
+  const args = ["--config", RUNTIME_CONFIG_PATH, "--no-ignore", "--format", "json", ...extraArgs, ...paths];
+  const result = spawnSync(OXLINT, args, { cwd: ROOT, encoding: "utf8", maxBuffer: 32 * 1024 * 1024 });
   let parsed;
   try {
     parsed = JSON.parse(result.stdout || "{}");
@@ -127,25 +130,42 @@ function caseFilePath(testCase) {
   return path.join(root, testCase.relativePath);
 }
 
-function runCase(testCase) {
-  const filePath = caseFilePath(testCase);
-  fs.mkdirSync(path.dirname(filePath), { recursive: true });
-  fs.writeFileSync(filePath, testCase.source, "utf8");
-  const { parsed, result } = runOxlint(filePath);
-  const diagnostics = parsed.diagnostics ?? [];
-  const code = expectedCode(testCase.targetRule);
-  const matching = diagnostics.filter((diagnostic) => diagnostic.code === code);
-
-  assert.equal(
-    testCase.expectedDiagnostic,
-    matching.length > 0,
-    `${testCase.id} expected ${testCase.expectedDiagnostic ? code : "no diagnostic"}; got ${JSON.stringify(diagnostics)}`,
-  );
-  if (testCase.expectedDiagnostic) {
-    assert.equal(matching[0].severity, testCase.severity);
-    assert.equal(matching[0].labels[0].span.line, testCase.expectedLine);
+function runCases(testCases) {
+  const filePaths = testCases.map((testCase) => caseFilePath(testCase));
+  assert.equal(new Set(filePaths).size, filePaths.length, "selected cases must use unique fixture paths");
+  for (const [index, filePath] of filePaths.entries()) {
+    fs.mkdirSync(path.dirname(filePath), { recursive: true });
+    fs.writeFileSync(filePath, testCases[index].source, "utf8");
   }
-  assert.equal(result.error, undefined, `${testCase.id} failed to start Oxlint: ${result.error?.message}`);
+  const { parsed, result } = runOxlint(filePaths);
+  const diagnosticsByFile = new Map();
+  for (const diagnostic of parsed.diagnostics ?? []) {
+    const filename = diagnostic.filename ?? diagnostic.filePath ?? diagnostic.path;
+    if (!filename) continue;
+    const absolutePath = path.resolve(ROOT, filename);
+    const diagnostics = diagnosticsByFile.get(absolutePath) ?? [];
+    diagnostics.push(diagnostic);
+    diagnosticsByFile.set(absolutePath, diagnostics);
+  }
+  for (const [index, testCase] of testCases.entries()) {
+    const diagnostics = diagnosticsByFile.get(filePaths[index]) ?? [];
+    const code = expectedCode(testCase.targetRule);
+    const matching = diagnostics.filter((diagnostic) => diagnostic.code === code);
+    assert.equal(
+      testCase.expectedDiagnostic,
+      matching.length > 0,
+      `${testCase.id} expected ${testCase.expectedDiagnostic ? code : "no diagnostic"}; got ${JSON.stringify(diagnostics)}`,
+    );
+    if (testCase.expectedDiagnostic) {
+      assert.equal(matching[0].severity, testCase.severity);
+      assert.equal(matching[0].labels[0].span.line, testCase.expectedLine);
+    }
+  }
+  assert.equal(result.error, undefined, `Oxlint failed to start: ${result.error?.message}`);
+}
+
+function runCase(testCase) {
+  runCases([testCase]);
 }
 
 test("migration policy and cases have matching schema-shaped records", () => {
@@ -172,6 +192,40 @@ test("migration policy and cases have matching schema-shaped records", () => {
     }
     assert.equal(testCase.expectedDiagnostic, testCase.expectedLine !== null);
   }
+
+  const activePolicyIds = new Set(
+    policy.entries
+      .filter((entry) => entry.severity !== "off" && entry.disposition !== "remove-obsolete")
+      .map((entry) => entry.id),
+  );
+  assert.equal(reviewExceptions.schemaVersion, 1);
+  const exceptionIds = new Set();
+  for (const exception of reviewExceptions.exceptions) {
+    assert.equal(exceptionIds.has(exception.policyId), false, `duplicate review exception: ${exception.policyId}`);
+    exceptionIds.add(exception.policyId);
+    const entry = entryById.get(exception.policyId);
+    assert.ok(entry, `${exception.policyId} review exception references an unknown policy entry`);
+    assert.equal(entry.targetRule, exception.targetRule);
+    assert.equal(exception.reason.length > 0, true);
+  }
+  const violatingPolicyIds = new Set(
+    cases.cases
+      .filter((testCase) => testCase.purpose === "violation" && testCase.expectedDiagnostic)
+      .map((testCase) => testCase.policyId),
+  );
+  assert.deepEqual(
+    [...activePolicyIds].filter((policyId) => !violatingPolicyIds.has(policyId) && !exceptionIds.has(policyId)),
+    [],
+    "every active policy entry requires a diagnostic-producing violation case or an explicit review exception",
+  );
+});
+
+test("review exceptions have explicit owner approval", () => {
+  assert.deepEqual(
+    reviewExceptions.exceptions.filter((exception) => exception.status !== "approved"),
+    [],
+    "each parity exception requires explicit owner approval before manual completion",
+  );
 });
 
 test("standard config has the explicit native policy and separate anti-slop boundary", () => {
@@ -185,6 +239,12 @@ test("standard config has the explicit native policy and separate anti-slop boun
   assert.equal(JSON.stringify(config).includes('"anti-slop/'), false);
   assert.equal(config.ignorePatterns.includes("tools/oxlint/anti-slop/**"), true);
   assert.equal(fs.existsSync(path.join(ROOT, "oxlint.anti-slop.config.ts")), true);
+
+  const packageTestOverride = config.overrides.find((override) =>
+    override.files?.includes("packages/**/src/**/__tests__/**/*.{ts,tsx}"),
+  );
+  assert.deepEqual(packageTestOverride.rules["typescript/ban-ts-comment"], "error");
+  assert.deepEqual(packageTestOverride.rules["no-unused-vars"], ["error", { argsIgnorePattern: "^_" }]);
 });
 
 test("workspace lint commands use the root Oxlint policy", () => {
@@ -224,9 +284,7 @@ test("controlled violation and valid cases produce the recorded JSON behavior", 
     cases.cases.find((testCase) => testCase.purpose === "valid"),
   ];
   try {
-    for (const testCase of selected) {
-      runCase(testCase);
-    }
+    runCases(selected);
   } finally {
     for (const directory of fixtureDirectories) {
       fs.rmSync(directory, { recursive: true, force: true });

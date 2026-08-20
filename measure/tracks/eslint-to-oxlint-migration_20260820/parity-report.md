@@ -1,5 +1,21 @@
 # ESLint to Oxlint Parity Report
 
+## Review-Fix Update
+
+This track is not ready for manual completion.
+
+- The expanded fixture set contains 1,324 cases.
+- The harness validates a diagnostic-producing case for 642 newly covered active policy entries.
+- Nine React Compiler policy entries have explicit pending exceptions. They are recorded in `scripts/architecture/fixtures/oxlint-migration/review-exceptions.json`.
+- The package-test override now keeps `ban-ts-comment` and TypeScript unused-variable checks active for normal packages. The documented shared-package exceptions remain narrow.
+- The six authentication-page source workarounds are reverted in commit `71ef05c9`.
+- The three affected application lint commands now report `nextjs/no-html-link-for-pages`. No source workaround is approved in this track.
+- Bus Math 2 typecheck remains Red. Application tests remain incomplete or failing in the dirty worktree. No owner approval is recorded for these variances.
+- The browser check remains unavailable because `browser-harness-js` is not installed.
+
+The approval guard in the migration harness is Red until an owner approves the
+nine explicit exceptions. Manual-verification tasks remain pending.
+
 ## Result
 
 The blocking lint engine is Oxlint 1.79.0. The migration preserves the recorded
@@ -13,6 +29,9 @@ comparison is complete.
 - Controlled cases: 700 passed through both engines with zero mismatches.
 - Clean-baseline workspace scopes: 26 legacy exit 0 and Oxlint exit 0.
 - Root package Oxlint dispatcher: exit 0 in 13.83 seconds.
+
+The records below describe the initial implementation before the review-fix
+pass. They are retained for history and are not completion evidence.
 
 The temporary adapter ran outside the repository and was deleted. It normalized
 the two React Hooks legacy rule-code aliases. It used a fixture-only script-mode
