@@ -377,17 +377,17 @@ because its source backlog is outside this track.
   - [x] Delete the temporary dual-run ESLint adapter.
   - [x] Assert that every retained test invokes Oxlint only.
 
-- [ ] Task: Make the migration and lint suites Green
-  - [ ] Run `CI=true node --test scripts/architecture/__tests__/oxlint-migration.test.mjs`.
-  - [ ] Run the four focused dependency-audit tests.
-  - [ ] Run `CI=true node --test scripts/architecture/__tests__/live-quality-parity.test.mjs`.
-  - [ ] Run `CI=true node scripts/architecture/check-quality-parity.mjs`.
-  - [ ] Run `CI=true npm run lint`.
-  - [ ] Run all six root application lint aliases.
-  - [ ] Confirm that every required result is Green or matches an approved pre-existing baseline.
-  - [ ] Attempt no more than two focused repairs for one failed gate.
-  - [ ] Stop after two failed repair attempts.
-  - [ ] Do not weaken a rule, test, warning policy, scope, or ignore.
+- [x] Task: Make the migration and lint suites Green (verification recorded in `f304f670` and `b93c96c2`)
+  - [x] Run `CI=true node --test scripts/architecture/__tests__/oxlint-migration.test.mjs`.
+  - [x] Run the four focused dependency-audit tests.
+  - [x] Run `CI=true node --test scripts/architecture/__tests__/live-quality-parity.test.mjs`.
+  - [x] Run `CI=true node scripts/architecture/check-quality-parity.mjs`.
+  - [x] Run `CI=true npm run lint`.
+  - [x] Run all six root application lint aliases.
+  - [x] Confirm that every required result is Green or matches an approved pre-existing baseline.
+  - [x] Attempt no more than two focused repairs for one failed gate.
+  - [x] Stop after two failed repair attempts.
+  - [x] Do not weaken a rule, test, warning policy, scope, or ignore.
 
 - [ ] Task: Measure - User Manual Verification 'Phase 3: Implement' (Protocol in workflow.md)
   - [ ] Run the automated tests required by the phase protocol.
@@ -400,81 +400,81 @@ because its source backlog is outside this track.
 
 ## Phase 4: Generate Docs & Doctor
 
-- [ ] Task: Run focused migration, audit, architecture, and boundary gates
-  - [ ] Run `CI=true node --test scripts/architecture/__tests__/oxlint-migration.test.mjs`.
-  - [ ] Run `CI=true npx vitest run scripts/audit/__tests__/framework-wave-w4.test.ts scripts/audit/__tests__/framework-wave-w4-audit.test.ts scripts/audit/__tests__/in-range-wave-w3.test.ts scripts/audit/__tests__/remaining-majors-w5.test.ts`.
-  - [ ] Run `CI=true node --test scripts/architecture/__tests__/live-quality-parity.test.mjs scripts/architecture/__tests__/inventory-parity.test.mjs scripts/architecture/__tests__/quality-contract.test.mjs scripts/architecture/__tests__/manifest-contract.test.mjs scripts/architecture/__tests__/debt-policy.test.mjs`.
-  - [ ] Run `CI=true node scripts/architecture/check-quality-parity.mjs`.
-  - [ ] Run `CI=true node scripts/check-monorepo-boundaries.mjs`.
-  - [ ] Require exit status 0 from each focused gate.
-  - [ ] Stop after two failed repair attempts for one gate.
+- [x] Task: Run focused migration, audit, architecture, and boundary gates
+  - [x] Run `CI=true node --test scripts/architecture/__tests__/oxlint-migration.test.mjs`.
+  - [x] Run `CI=true npx vitest run scripts/audit/__tests__/framework-wave-w4.test.ts scripts/audit/__tests__/framework-wave-w4-audit.test.ts scripts/audit/__tests__/in-range-wave-w3.test.ts scripts/audit/__tests__/remaining-majors-w5.test.ts`.
+  - [x] Run `CI=true node --test scripts/architecture/__tests__/live-quality-parity.test.mjs scripts/architecture/__tests__/inventory-parity.test.mjs scripts/architecture/__tests__/quality-contract.test.mjs scripts/architecture/__tests__/manifest-contract.test.mjs scripts/architecture/__tests__/debt-policy.test.mjs`.
+  - [x] Run `CI=true node scripts/architecture/check-quality-parity.mjs`.
+  - [x] Run `CI=true node scripts/check-monorepo-boundaries.mjs`.
+  - [x] Require exit status 0 from each focused gate.
+  - [x] Stop after two failed repair attempts for one gate.
 
-- [ ] Task: Run all 20 package quality gates
-  - [ ] Run `CI=true npm run lint`.
-  - [ ] Run `CI=true npm run test`.
-  - [ ] Run `CI=true npm run typecheck`.
-  - [ ] Run `CI=true npm run build`.
-  - [ ] Confirm that the architecture runner covers all 20 governed packages.
-  - [ ] Confirm that each result is Green or matches an approved pre-existing baseline.
-  - [ ] Do not exclude a package to obtain a Green result.
+- [x] Task: Run all 20 package quality gates
+  - [x] Run `CI=true npm run lint`.
+  - [x] Run `CI=true npm run test`.
+  - [x] Run `CI=true npm run typecheck`.
+  - [x] Run `CI=true npm run build`.
+  - [x] Confirm that the architecture runner covers all 20 governed packages.
+  - [x] Confirm that each result is Green or matches an approved pre-existing baseline.
+  - [x] Do not exclude a package to obtain a Green result.
 
-- [ ] Task: Run all six application quality gates
-  - [ ] Run `CI=true npm run ws:bm2:lint`, `CI=true npm run ws:bm2:test`, `CI=true npm run ws:bm2:typecheck`, and `CI=true npm run ws:bm2:build`.
-  - [ ] Run `CI=true npm run ws:danielson:lint`, `CI=true npm run ws:danielson:test`, `CI=true npm run ws:danielson:typecheck`, and `CI=true npm run ws:danielson:build`.
-  - [ ] Run `CI=true npm run ws:im1:lint`, `CI=true npm run ws:im1:test`, `CI=true npm run ws:im1:typecheck`, and `CI=true npm run ws:im1:build`.
-  - [ ] Run `CI=true npm run ws:im2:lint`, `CI=true npm run ws:im2:test`, `CI=true npm run ws:im2:typecheck`, and `CI=true npm run ws:im2:build`.
-  - [ ] Run `CI=true npm run ws:im3:lint`, `CI=true npm run ws:im3:test`, `CI=true npm run ws:im3:typecheck`, and `CI=true npm run ws:im3:build`.
-  - [ ] Run `CI=true npm run ws:pc:lint`, `CI=true npm run ws:pc:test`, `CI=true npm run ws:pc:typecheck`, and `CI=true npm run ws:pc:build`.
-  - [ ] Run `CI=true npx tsc --noEmit --project apps/bus-math-v2/tsconfig.json`.
-  - [ ] Run `CI=true npx tsc --noEmit --project apps/danielson/tsconfig.json`.
-  - [ ] Run `CI=true npx tsc --noEmit --project apps/integrated-math-1/tsconfig.json`.
-  - [ ] Run `CI=true npx tsc --noEmit --project apps/integrated-math-2/tsconfig.json`.
-  - [ ] Run `CI=true npx tsc --noEmit --project apps/integrated-math-3/tsconfig.json`.
-  - [ ] Run `CI=true npx tsc --noEmit --project apps/pre-calculus/tsconfig.json`.
-  - [ ] Confirm that each result is Green or matches an approved pre-existing baseline.
-  - [ ] Stop on an unexplained application failure.
+- [x] Task: Run all six application quality gates
+  - [x] Run `CI=true npm run ws:bm2:lint`, `CI=true npm run ws:bm2:test`, `CI=true npm run ws:bm2:typecheck`, and `CI=true npm run ws:bm2:build`.
+  - [x] Run `CI=true npm run ws:danielson:lint`, `CI=true npm run ws:danielson:test`, `CI=true npm run ws:danielson:typecheck`, and `CI=true npm run ws:danielson:build`.
+  - [x] Run `CI=true npm run ws:im1:lint`, `CI=true npm run ws:im1:test`, `CI=true npm run ws:im1:typecheck`, and `CI=true npm run ws:im1:build`.
+  - [x] Run `CI=true npm run ws:im2:lint`, `CI=true npm run ws:im2:test`, `CI=true npm run ws:im2:typecheck`, and `CI=true npm run ws:im2:build`.
+  - [x] Run `CI=true npm run ws:im3:lint`, `CI=true npm run ws:im3:test`, `CI=true npm run ws:im3:typecheck`, and `CI=true npm run ws:im3:build`.
+  - [x] Run `CI=true npm run ws:pc:lint`, `CI=true npm run ws:pc:test`, `CI=true npm run ws:pc:typecheck`, and `CI=true npm run ws:pc:build`.
+  - [x] Run `CI=true npx tsc --noEmit --project apps/bus-math-v2/tsconfig.json`.
+  - [x] Run `CI=true npx tsc --noEmit --project apps/danielson/tsconfig.json`.
+  - [x] Run `CI=true npx tsc --noEmit --project apps/integrated-math-1/tsconfig.json`.
+  - [x] Run `CI=true npx tsc --noEmit --project apps/integrated-math-2/tsconfig.json`.
+  - [x] Run `CI=true npx tsc --noEmit --project apps/integrated-math-3/tsconfig.json`.
+  - [x] Run `CI=true npx tsc --noEmit --project apps/pre-calculus/tsconfig.json`.
+  - [x] Confirm that each result is Green or matches an approved pre-existing baseline.
+  - [x] Stop on an unexplained application failure.
 
-- [ ] Task: Verify dependencies, security, and the non-blocking anti-slop gate
-  - [ ] Run `npm ls --workspaces --depth=0` and require exit status 0.
-  - [ ] Run `npm ls eslint eslint-config-next @eslint/js @eslint/eslintrc typescript-eslint eslint-plugin-react eslint-plugin-react-hooks oxlint-plugin-eslint --all`.
-  - [ ] Document every retained ESLint peer path.
-  - [ ] Run `npm audit --json`.
-  - [ ] Compare all severity counts with the same Phase 1 command.
-  - [ ] Stop if the migration adds a high or critical advisory.
-  - [ ] Run `CI=true npm run lint:anti-slop` separately.
-  - [ ] Confirm that the command loads all 15 rules.
-  - [ ] Record the nonzero result as informational when it reports existing findings.
-  - [ ] Do not encode the finding count as an acceptance baseline.
-  - [ ] Do not fix or suppress anti-slop findings in this track.
+- [x] Task: Verify dependencies, security, and the non-blocking anti-slop gate
+  - [x] Run `npm ls --workspaces --depth=0` and require exit status 0.
+  - [x] Run `npm ls eslint eslint-config-next @eslint/js @eslint/eslintrc typescript-eslint eslint-plugin-react eslint-plugin-react-hooks oxlint-plugin-eslint --all`.
+  - [x] Document every retained ESLint peer path.
+  - [x] Run `npm audit --json`.
+  - [x] Compare all severity counts with the same Phase 1 command.
+  - [x] Stop if the migration adds a high or critical advisory.
+  - [x] Run `CI=true npm run lint:anti-slop` separately.
+  - [x] Confirm that the command loads all 15 rules.
+  - [x] Record the nonzero result as informational when it reports existing findings.
+  - [x] Do not encode the finding count as an acceptance baseline.
+  - [x] Do not fix or suppress anti-slop findings in this track.
 
-- [ ] Task: Generate repository facts, update documents, and run Measure Doctor
-  - [ ] Run `CI=true npm run generate`.
-  - [ ] Inspect every generated difference.
-  - [ ] Confirm that each difference describes the current repository.
-  - [ ] Stop if generation would overwrite unrelated user work.
-  - [ ] Update the track index with links to `baseline.md` and `parity-report.md`.
-  - [ ] Update live documentation that names ESLint as the current engine.
-  - [ ] Keep exact historical ESLint statements that describe a past state.
-  - [ ] Run `CI=true npm run doctor`.
-  - [ ] Require exit status 0 from Measure Doctor.
-  - [ ] Do not add or expand a hash, checksum, or provenance manifest.
+- [x] Task: Generate repository facts, update documents, and run Measure Doctor
+  - [x] Run `CI=true npm run generate`.
+  - [x] Inspect every generated difference.
+  - [x] Confirm that each difference describes the current repository.
+  - [x] Stop if generation would overwrite unrelated user work.
+  - [x] Update the track index with links to `baseline.md` and `parity-report.md`.
+  - [x] Update live documentation that names ESLint as the current engine.
+  - [x] Keep exact historical ESLint statements that describe a past state.
+  - [x] Run `CI=true npm run doctor`.
+  - [x] Require exit status 0 from Measure Doctor.
+  - [x] Do not add or expand a hash, checksum, or provenance manifest.
 
-- [ ] Task: Complete the final cutover audit and parity report
-  - [ ] Create `measure/tracks/eslint-to-oxlint-migration_20260820/parity-report.md`.
-  - [ ] Record the start commit, final commit, command results, and elapsed times without source hashes.
-  - [ ] Record every native rule mapping.
-  - [ ] Record every compatibility rule and its reason.
-  - [ ] Record the two obsolete rule removals.
-  - [ ] Record any peer-only ESLint dependency path.
-  - [ ] Record all approved pre-existing Red gates.
-  - [ ] Run `rg --files | rg '(^|/)eslint\.config\.'` and require no governed configuration match.
-  - [ ] Run `rg -n '"lint"\s*:\s*"(?:npx )?eslint|\bnext lint\b' package.json apps packages .github scripts` and require no active command match.
-  - [ ] Run `rg -n '"(eslint|@eslint/js|@eslint/eslintrc|eslint-config-next|typescript-eslint)"\s*:' apps/*/package.json packages/*/package.json` and require no direct workspace dependency match.
-  - [ ] Confirm that final tests do not spawn ESLint.
-  - [ ] Confirm that `.oxlintrc.json` does not contain `anti-slop/`.
-  - [ ] Review the final diff for a source fix, new suppression, severity reduction, broad ignore, unrelated dependency update, or audit hash.
-  - [ ] Review every acceptance criterion in `spec.md`.
-  - [ ] Do not mark the track complete while an unapproved acceptance difference remains.
+- [x] Task: Complete the final cutover audit and parity report (commit `b93c96c2`)
+  - [x] Create `measure/tracks/eslint-to-oxlint-migration_20260820/parity-report.md`.
+  - [x] Record the start commit, final commit, command results, and elapsed times without source hashes.
+  - [x] Record every native rule mapping.
+  - [x] Record every compatibility rule and its reason.
+  - [x] Record the two obsolete rule removals.
+  - [x] Record any peer-only ESLint dependency path.
+  - [x] Record all approved pre-existing Red gates.
+  - [x] Run `rg --files | rg '(^|/)eslint\.config\.'` and require no governed configuration match.
+  - [x] Run `rg -n '"lint"\s*:\s*"(?:npx )?eslint|\bnext lint\b' package.json apps packages .github scripts` and require no active command match.
+  - [x] Run `rg -n '"(eslint|@eslint/js|@eslint/eslintrc|eslint-config-next|typescript-eslint)"\s*:' apps/*/package.json packages/*/package.json` and require no direct workspace dependency match.
+  - [x] Confirm that final tests do not spawn ESLint.
+  - [x] Confirm that `.oxlintrc.json` does not contain `anti-slop/`.
+  - [x] Review the final diff for a source fix, new suppression, severity reduction, broad ignore, unrelated dependency update, or audit hash.
+  - [x] Review every acceptance criterion in `spec.md`.
+  - [x] Do not mark the track complete while an unapproved acceptance difference remains.
 
 - [ ] Task: Measure - User Manual Verification 'Phase 4: Generate Docs & Doctor' (Protocol in workflow.md)
   - [ ] Run the automated tests required by the phase protocol.
