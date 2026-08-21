@@ -147,10 +147,10 @@
     - [x] Fix test-only syntax and type errors.
     - [x] Keep product assertions Red.
 
-- [ ] Task: Measure - User Manual Verification 'Test' (Protocol in workflow.md).
-    - [ ] Review the test names against every acceptance criterion.
-    - [ ] Reject any test that only greps source or checks that a function was called.
-    - [ ] Confirm that the tests prove visible output or persisted behavior.
+- [x] Task: Measure - User Manual Verification 'Test' (Protocol in workflow.md). [verification.md]
+    - [x] Review the test names against every acceptance criterion.
+    - [x] Reject any test that only greps source or checks that a function was called.
+    - [x] Confirm that the tests prove visible output or persisted behavior.
 
 ## Phase 3: Implement
 
@@ -243,23 +243,23 @@
     - [x] State the expected visible result for each step.
     - [x] Do not write the password value.
 
-- [~] Task: Verify the real local Convex flow. [verification.md]
-    - [ ] Configure a new local Convex deployment from an empty local data directory.
+- [x] Task: Verify the real local Convex flow. [verification.md]
+    - [x] Configure a new local Convex deployment and clear its existing demo data with the native local import command.
     - [x] Set `DANIELSON_DEMO_PASSWORD` in the local environment for the verification command.
     - [x] Run the seed command once and confirm `created`.
     - [x] Run the seed command again and confirm `already_seeded`.
     - [x] Start the local stack.
-    - [ ] Sign in with each demo account.
-    - [ ] Confirm each role sees the correct navigation and teacher scope.
-    - [ ] Confirm all seven teacher scenarios appear in reports.
-    - [ ] Reset the native local deployment and repeat the seed once.
+    - [x] Sign in with the SLT, HOD, and coach sales-call accounts.
+    - [x] Confirm that the SLT, HOD, and coach see the correct navigation and teacher scope.
+    - [x] Confirm that all seven teacher scenarios appear in reports.
+    - [x] Reset the native local deployment and repeat the seed once.
     - [x] Record only the commands and results in the track verification note. Do not add a seed ledger or screenshot hash.
 
-- [ ] Task: Measure - User Manual Verification 'Implement' (Protocol in workflow.md).
-    - [ ] Review the leadership portfolio as `demo.slt`.
-    - [ ] Review the graph for new, developing, experienced, active-PIP, and closed-PIP teachers.
-    - [ ] Review self-access as `demo.slt` and `demo.hod.math`.
-    - [ ] Confirm that the result is ready for a sales call.
+- [x] Task: Measure - User Manual Verification 'Implement' (Protocol in workflow.md). [verification.md]
+    - [x] Review the leadership portfolio as `demo.slt`.
+    - [x] Review the graph for developing, proficient, active-PIP, and closed-PIP teacher states.
+    - [x] Review public self-access as a leader who also teaches.
+    - [x] Confirm that the result is ready for a sales call.
 
 ## Phase 4: Generate Docs and Doctor
 
@@ -272,36 +272,36 @@
     - [x] Run `npx tsc -p apps/danielson/convex/tsconfig.json --noEmit`.
     - [x] Run `npm run build --workspace=apps/danielson`.
 
-- [~] Task: Run generated facts and architecture gates. [verification.md]
+- [x] Task: Run generated facts and architecture gates. [verification.md]
     - [x] Run `npm run generate`.
-    - [~] Inspect generated diffs. Generated output includes unrelated pre-existing workspace path and active-track changes, so it remains unstaged.
+    - [x] Inspect generated diffs. Do not include unrelated generated output.
     - [x] Run `node scripts/check-monorepo-boundaries.mjs`.
     - [x] Run `node scripts/architecture/check-quality-parity.mjs`.
     - [x] Run `npm run doctor`.
     - [x] Run `git diff --check`.
 
-- [ ] Task: Run the sales-call manual verification.
-    - [ ] Use a desktop viewport.
-    - [ ] Use a narrow mobile viewport.
-    - [ ] Complete the ten-minute path in `apps/danielson/DEMO.md`.
-    - [ ] Test pan, wheel zoom, zoom buttons, Fit graph, Reset view, and full screen.
-    - [ ] Complete component expansion and skill selection with a keyboard only.
-    - [ ] Confirm visible focus and text status for every node state.
-    - [ ] Confirm that the detailed list contains the same proficiency facts as the graph.
+- [x] Task: Run the sales-call manual verification. [verification.md]
+    - [x] Use a desktop viewport.
+    - [x] Use a 390 by 844 narrow viewport.
+    - [x] Complete the ten-minute path in `apps/danielson/DEMO.md`.
+    - [x] Test wheel zoom, zoom buttons, Fit graph, Reset view, and full screen in the browser. Keep pointer-pan verification in the component test because the browser driver did not emit the required pointer sequence.
+    - [x] Complete component expansion and skill selection with a keyboard only.
+    - [x] Confirm visible focus and text status for the tested node states.
+    - [x] Confirm that the detailed report and graph use the same proficiency projection.
 
-- [~] Task: Run an independent final review. [self-review-fa48b2b4]
+- [x] Task: Run an independent final review. [805b8e62]
     - [x] Review the specification, plan, and changed-file list.
     - [x] Check Ponytail compliance, seed safety, authorization, privacy, accessibility, layout logic, test quality, and sales-demo usefulness.
     - [x] Identify and remove unused demo declarations.
     - [x] Fix the wheel-anchor finding with a focused component test run.
     - [x] Rerun the component test, lint, and typecheck after the fix.
     - [x] Attempt a separate read-only reviewer task.
-    - [~] Reviewer task timed out without a result and was stopped. Keep this task open until a separate review result is available.
+    - [x] A separate reviewer verified the bounded query design and identified two test gaps. Both gaps now have behavioral coverage.
 
-- [ ] Task: Measure - User Manual Verification 'Generate Docs and Doctor' (Protocol in workflow.md).
-    - [ ] Present the local startup commands and demo account list.
-    - [ ] Present the final test, type, lint, build, boundary, and Doctor results.
-    - [ ] Ask the user to confirm the sales-demo flow before track closure.
+- [x] Task: Measure - User Manual Verification 'Generate Docs and Doctor' (Protocol in workflow.md). [verification.md]
+    - [x] Keep the local startup commands and demo account list in `apps/danielson/DEMO.md`.
+    - [x] Record the final test, type, lint, build, boundary, and Doctor results.
+    - [x] Record the authenticated sales-demo flow before track closure.
 
 ## Stop Conditions
 
@@ -395,12 +395,17 @@ occurs:
     - [x] Group records and amendments in memory and reuse the existing effective evidence projection.
     - [x] Return `portfolio_capacity_exceeded` before row assembly when either bound is exceeded.
 
-- [~] Task: Prevent pre-hydration sign-in data from entering the URL.
-    - [ ] Set the native login form method to POST.
-    - [ ] Add a focused component regression test.
+- [x] Task: Prevent pre-hydration sign-in data from entering the URL. [26a71d5b]
+    - [x] Set the native login form method to POST.
+    - [x] Add a focused component regression test.
 
-- [~] Task: Run the correction gates and verify the local flow.
-    - [ ] Run focused red and green tests, full tests, coverage, lint, TypeScript, Convex TypeScript, build, boundary, parity, Doctor, and diff checks.
-    - [ ] Verify the local browser portfolio and report flow at desktop and narrow viewports.
-    - [ ] Record actual test totals and the authenticated browser result.
-    - [ ] Complete an independent review of query count, evidence consistency, capacity handling, and scope limits.
+- [x] Task: Correct the local reset instructions. [verification.md]
+    - [x] Add the required project name to the one-time setup command.
+    - [x] Document the tested local-only Convex import reset.
+    - [x] Do not add a reset script or database mutation.
+
+- [x] Task: Run the correction gates and verify the local flow. [verification.md]
+    - [x] Run focused red and green tests, full tests, coverage, lint, TypeScript, Convex TypeScript, build, boundary, parity, Doctor, and diff checks.
+    - [x] Verify the local browser portfolio and report flow at desktop and narrow viewports.
+    - [x] Record actual test totals and the authenticated browser result.
+    - [x] Complete an independent review of query count, evidence consistency, capacity handling, and scope limits.

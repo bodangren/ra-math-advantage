@@ -7,7 +7,7 @@ This demo uses fictional accounts and local Convex data. Do not use it with a cl
 Run the one-time local Convex configuration command from `apps/danielson`.
 
 ```sh
-npx convex dev --configure new --dev-deployment local --once
+npx convex dev --configure new --dev-deployment local --project danielson --once
 ```
 
 Set `DANIELSON_DEMO_PASSWORD` in `.env.local`. Use one local password for all demo accounts.
@@ -26,7 +26,16 @@ Start the application and Convex together.
 npm run dev:stack
 ```
 
-Use the native local Convex configuration command to reset the local deployment. Seed the demo again after the reset. Do not use a cloud deployment or a shell delete command as a reset process.
+Use Convex import to clear only the selected local deployment.
+
+```sh
+printf '[]\n' > .convex/empty-organizations.json
+npx convex import --table organizations --replace-all --yes --deployment local .convex/empty-organizations.json
+rm .convex/empty-organizations.json
+npm run seed:demo
+```
+
+The import command clears all application tables in the local deployment. Do not add `--prod`.
 
 ## Account roster
 

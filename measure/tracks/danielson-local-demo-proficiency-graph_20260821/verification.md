@@ -28,9 +28,9 @@ Date: 2026-08-21
 - The documented `.env.local` password path is covered by the seed-script tests.
 - The Danielson-local installer residue and duplicate app guidance files were removed.
 
-## Local Convex checks
+## Initial local Convex checks
 
-- `npx convex dev --configure new --dev-deployment local --once` could not run in the non-interactive shell because the Convex CLI requested a project name.
+- The first local setup command stopped because it did not include a project name. The final correction verification below supersedes this result.
 - The existing local deployment started with `npx convex dev --once`.
 - `DANIELSON_DEMO_PASSWORD=<local value> node scripts/seed-demo.mjs` returned `created`.
 - The same command returned `already_seeded` on the second run.
@@ -39,7 +39,7 @@ Date: 2026-08-21
 ## Browser check
 
 - The local sign-in page loaded at `http://localhost:3000/auth/login`.
-- The authenticated graph path was not entered in the browser because the demo password was not typed into the browser session.
+- This initial check did not enter the authenticated graph path. The final correction verification below supersedes this limit.
 - Automated component and report tests cover graph expansion, keyboard selection, evidence detail, zoom, pan, full screen, privacy, and the detailed companion list.
 - Direct browser verification confirmed the page title `Danielson Teacher Growth`, visible username and password fields, and a visible sign-in button.
 - Direct browser verification reported no console warnings or errors on the sign-in page.
@@ -62,4 +62,33 @@ Date: 2026-08-21
 - Quality parity check passed.
 - `git diff --check` passed.
 
-The second-review implementation fixes the organization-wide observation scan, shared effective formal evidence projection, legacy seed detection, SVG screen transforms, due labels, database-backed sales acceptance coverage, and environment-file parsing. The sign-in page is verified. The authenticated sales path remains open because the combined local stack requested a Convex deployment link.
+The second-review implementation fixes the organization-wide observation scan, shared effective formal evidence projection, legacy seed detection, SVG screen transforms, due labels, database-backed sales acceptance coverage, and environment-file parsing. The final correction verification below supersedes the earlier browser limit.
+
+## Final correction verification
+
+Date: 2026-08-21
+
+- The focused reporting suite passed: 19 tests.
+- The focused login suite passed: 3 tests.
+- The full Danielson suite passed: 352 tests in 50 files.
+- Coverage passed: 84.88 percent statements, 73.96 percent branches, 91.66 percent functions, and 90.14 percent lines.
+- Danielson lint passed.
+- Danielson TypeScript passed.
+- Convex TypeScript passed.
+- The Danielson production build passed.
+- The monorepo boundary check passed for 26 workspaces and 391 imports.
+- The quality parity check passed.
+- Measure Doctor passed.
+- `git diff --check` passed.
+
+The local-only reset cleared the previous demo data. The first seed returned `created`. The second seed returned `already_seeded`. The seed created the 10 documented accounts and the seven teacher profiles. No cloud data changed.
+
+The independent reviewer confirmed that the portfolio uses three bounded queries. The reviewer confirmed that the formal evidence projection includes submitted records and effective amendments. The reviewer confirmed that the capacity failures return the required result. The reviewer also confirmed that the native login form uses `POST` before hydration.
+
+The in-app browser was available. The browser verified authenticated access for SLT, HOD, and coach accounts. Each account saw the correct teacher scope. The SLT portfolio showed all seven teacher scenarios. The reports showed developing, proficient, active-PIP, closed-PIP, and GBF states. The SLT self-report did not show private comments.
+
+The browser verified Noah's three priority targets in the report and graph. It verified keyboard selection, wheel zoom, zoom buttons, Fit graph, Reset view, and full screen. The browser driver did not send the pointer sequence that the pan control requires. The component test verifies pointer pan.
+
+The browser verified the portfolio and report at a 390 by 844 viewport. The page did not have horizontal overflow. The browser found one pre-hydration login risk. The native `POST` form method and its regression test correct this risk. The only console warning was the expected warning for the local development token.
+
+The correction adds one required observation index. It adds no table, cache, audit system, hash, dependency, or runtime layer.
