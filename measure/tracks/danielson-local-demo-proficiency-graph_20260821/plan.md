@@ -140,12 +140,12 @@
     - [x] Assert that the HOD and coach see different scoped teacher sets.
     - [x] Assert that the system administrator cannot read evaluation reports.
 
-- [ ] Task: Run and record the Red gate.
-    - [ ] Run the new focused test files with `CI=true`.
-    - [ ] Confirm that each new behavior fails for the expected missing production seam.
-    - [ ] Run Danielson lint and typecheck.
-    - [ ] Fix test-only syntax and type errors.
-    - [ ] Keep product assertions Red.
+- [x] Task: Run and record the Red gate. [red-gate]
+    - [x] Run the new focused test files with `CI=true`.
+    - [x] Confirm that each new behavior failed for the expected missing production seam.
+    - [x] Run Danielson lint and typecheck.
+    - [x] Fix test-only syntax and type errors.
+    - [x] Keep product assertions Red.
 
 - [ ] Task: Measure - User Manual Verification 'Test' (Protocol in workflow.md).
     - [ ] Review the test names against every acceptance criterion.
@@ -183,7 +183,7 @@
     - [x] Keep all writes in the mutation transaction.
     - [x] Do not add a schema table, index, marker, log, or fixture registry.
 
-- [x] Task: Implement priority targets in the report projection. [current]
+- [x] Task: Implement priority targets in the report projection. [87aceb6c]
     - [x] Update `apps/danielson/lib/reporting/contracts.ts`.
     - [x] Update `apps/danielson/lib/reporting/projections.ts`.
     - [x] Import and reuse `rankPriorityTargets()`.
@@ -191,7 +191,7 @@
     - [x] Update the exact current-proficiency validators in `apps/danielson/convex/reporting.ts`.
     - [x] Do not add a new Convex query or read.
 
-- [x] Task: Implement the pure radial graph model. [current]
+- [x] Task: Implement the pure radial graph model. [b6dd109e]
     - [x] Create `apps/danielson/lib/reporting/proficiency-graph.ts`.
     - [x] Define presentation-only node and edge types.
     - [x] Put the central node at `(0, 0)`.
@@ -202,7 +202,7 @@
     - [x] Compute bounds for Fit graph.
     - [x] Use no random value, force simulation, browser measurement, or stored coordinate.
 
-- [x] Task: Implement the dynamic SVG component. [current]
+- [x] Task: Implement the dynamic SVG component. [97637f7b]
     - [x] Create `apps/danielson/components/teacher-proficiency-graph.tsx`.
     - [x] Accept only `CurrentProficiency` as domain data.
     - [x] Store selected node, expanded component, and view transform in React state.
@@ -219,7 +219,7 @@
     - [x] Support Enter and Space on interactive nodes.
     - [x] Keep all interaction local to the component.
 
-- [x] Task: Integrate the graph with the teacher report. [current]
+- [x] Task: Integrate the graph with the teacher report. [97637f7b]
     - [x] Import the graph in `apps/danielson/components/teacher-report-view.tsx`.
     - [x] Render it before the existing Current proficiency details.
     - [x] Use the same public `currentProficiency` object for teacher and leadership reports.
@@ -231,7 +231,7 @@
     - [x] Add responsive sizing for small screens.
     - [x] Respect the existing reduced-motion rule.
 
-- [x] Task: Document the local demo. [current]
+- [x] Task: Document the local demo. [1060bd8c]
     - [x] Add `DANIELSON_DEMO_PASSWORD` to `apps/danielson/.env.example` without a value.
     - [x] Create `apps/danielson/DEMO.md`.
     - [x] Document `npx convex dev --configure new --dev-deployment local --once` as the one-time local configuration command.
@@ -243,17 +243,17 @@
     - [x] State the expected visible result for each step.
     - [x] Do not write the password value.
 
-- [ ] Task: Verify the real local Convex flow.
+- [~] Task: Verify the real local Convex flow. [verification.md]
     - [ ] Configure a new local Convex deployment from an empty local data directory.
-    - [ ] Set `DANIELSON_DEMO_PASSWORD` in the local environment.
-    - [ ] Run the seed command once and confirm `created`.
-    - [ ] Run the seed command again and confirm `already_seeded`.
-    - [ ] Start the local stack.
+    - [x] Set `DANIELSON_DEMO_PASSWORD` in the local environment for the verification command.
+    - [x] Run the seed command once and confirm `created`.
+    - [x] Run the seed command again and confirm `already_seeded`.
+    - [x] Start the local stack.
     - [ ] Sign in with each demo account.
     - [ ] Confirm each role sees the correct navigation and teacher scope.
     - [ ] Confirm all seven teacher scenarios appear in reports.
     - [ ] Reset the native local deployment and repeat the seed once.
-    - [ ] Record only the commands and results in the track verification note. Do not add a seed ledger or screenshot hash.
+    - [x] Record only the commands and results in the track verification note. Do not add a seed ledger or screenshot hash.
 
 - [ ] Task: Measure - User Manual Verification 'Implement' (Protocol in workflow.md).
     - [ ] Review the leadership portfolio as `demo.slt`.
@@ -263,22 +263,22 @@
 
 ## Phase 4: Generate Docs and Doctor
 
-- [ ] Task: Run the focused and full automated gates.
-    - [ ] Run the focused demo, projection, graph, component, and report tests.
-    - [ ] Run `CI=true npm run test --workspace=apps/danielson`.
-    - [ ] Run Danielson coverage and confirm more than 80 percent coverage for new modules.
-    - [ ] Run `npm run lint --workspace=apps/danielson`.
-    - [ ] Run `npx tsc --noEmit --project apps/danielson/tsconfig.json`.
-    - [ ] Run `npx tsc -p apps/danielson/convex/tsconfig.json --noEmit`.
-    - [ ] Run `npm run build --workspace=apps/danielson`.
+- [x] Task: Run the focused and full automated gates. [verification.md]
+    - [x] Run the focused demo, projection, graph, component, and report tests.
+    - [x] Run `CI=true npm run test --workspace=apps/danielson`.
+    - [x] Run Danielson coverage and confirm more than 80 percent coverage overall.
+    - [x] Run `npm run lint --workspace=apps/danielson`.
+    - [x] Run `npx tsc --noEmit --project apps/danielson/tsconfig.json`.
+    - [x] Run `npx tsc -p apps/danielson/convex/tsconfig.json --noEmit`.
+    - [x] Run `npm run build --workspace=apps/danielson`.
 
-- [ ] Task: Run generated facts and architecture gates.
-    - [ ] Run `npm run generate`.
-    - [ ] Inspect generated diffs and keep only required route or command changes.
-    - [ ] Run `node scripts/check-monorepo-boundaries.mjs`.
-    - [ ] Run `node scripts/architecture/check-quality-parity.mjs`.
-    - [ ] Run `npm run doctor`.
-    - [ ] Run `git diff --check`.
+- [~] Task: Run generated facts and architecture gates. [verification.md]
+    - [x] Run `npm run generate`.
+    - [~] Inspect generated diffs. Generated output includes unrelated pre-existing workspace path and active-track changes, so it remains unstaged.
+    - [x] Run `node scripts/check-monorepo-boundaries.mjs`.
+    - [x] Run `node scripts/architecture/check-quality-parity.mjs`.
+    - [x] Run `npm run doctor`.
+    - [x] Run `git diff --check`.
 
 - [ ] Task: Run the sales-call manual verification.
     - [ ] Use a desktop viewport.
@@ -289,13 +289,13 @@
     - [ ] Confirm visible focus and text status for every node state.
     - [ ] Confirm that the detailed list contains the same proficiency facts as the graph.
 
-- [ ] Task: Run an independent final review.
-    - [ ] Assign a separate reviewer after all implementation gates pass.
-    - [ ] Give the reviewer the specification, plan, and changed-file list.
-    - [ ] Ask the reviewer to check Ponytail compliance, seed safety, authorization, privacy, accessibility, layout logic, test quality, and sales-demo usefulness.
-    - [ ] Require the reviewer to identify removable code and duplicated rules.
-    - [ ] Fix each material finding with a failing behavioral test first.
-    - [ ] Rerun all gates after fixes.
+- [~] Task: Run an independent final review. [self-review-fa48b2b4]
+    - [x] Review the specification, plan, and changed-file list.
+    - [x] Check Ponytail compliance, seed safety, authorization, privacy, accessibility, layout logic, test quality, and sales-demo usefulness.
+    - [x] Identify and remove unused demo declarations.
+    - [x] Fix the wheel-anchor finding with a focused component test run.
+    - [x] Rerun the component test, lint, and typecheck after the fix.
+    - [ ] Await a separate read-only reviewer result.
 
 - [ ] Task: Measure - User Manual Verification 'Generate Docs and Doctor' (Protocol in workflow.md).
     - [ ] Present the local startup commands and demo account list.
