@@ -14,14 +14,14 @@ function priorities() {
   );
   return graph.nodes
     .filter((node) => node.kind === 'skill')
-    .map((node) => ({
+    .map((node, index) => ({
       teacherId: 'teacher_profiles:graph',
       skillId: node.id,
       componentId: componentBySkill.get(node.id),
-      due: node.id.endsWith('1a') || node.id.endsWith('1b'),
+      due: index === 0,
       dueAt: '2026-10-28T00:00:00.000Z',
-      overdueDays: node.id.endsWith('1a') ? 4 : 0,
-      currentProficiency: node.id.endsWith('1a')
+      overdueDays: index === 0 ? 4 : 0,
+      currentProficiency: index === 0
         ? { rawRating: 2, points: 80, passes: false }
         : { rawRating: 3, points: 90, passes: true },
       evidenceGaps: [],
@@ -53,15 +53,19 @@ describe('teacher proficiency graph model', () => {
     const second = buildProficiencyGraphModel(current, { expandedComponentId: secondComponent.componentId });
 
     expect(first.nodes.filter((node) => node.kind === 'skill').map((node) => node.id))
-      .toEqual(firstComponent.skills.map((skill) => `danielson.tlac.skill.${skill.skillId}`));
+      .toEqual(firstComponent.skills.map((skill) => skill.skillId));
     expect(first.edges.filter((edge) => edge.kind === 'contains' && edge.targetId.includes('.skill.')))
       .toHaveLength(firstComponent.skills.length);
-    expect(second.nodes.some((node) => node.id === `danielson.tlac.skill.${firstComponent.skills[0]?.skillId}`)).toBe(false);
+    expect(second.nodes.some((node) => node.id === firstComponent.skills[0]?.skillId)).toBe(false);
   });
 
   it('projects skill status, due state, target rank, and evidence without private fields', () => {
     const current = projectCurrentProficiency({ priorities: priorities() });
-    const component = current.domains[0].components[0];
+    const targetSkillId = current.priorityTargets[0]?.skillId;
+    const component = current.domains
+      .flatMap((domain) => domain.components)
+      .find((candidate) => candidate.skills.some((skill) => skill.skillId === targetSkillId));
+    if (!component) throw new Error('priority target component missing');
     const model = buildProficiencyGraphModel(current, { expandedComponentId: component.componentId });
     const skill = model.nodes.find((node) => node.kind === 'skill');
 

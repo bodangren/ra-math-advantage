@@ -191,18 +191,18 @@
     - [x] Update the exact current-proficiency validators in `apps/danielson/convex/reporting.ts`.
     - [x] Do not add a new Convex query or read.
 
-- [~] Task: Implement the pure radial graph model.
-    - [ ] Create `apps/danielson/lib/reporting/proficiency-graph.ts`.
-    - [ ] Define presentation-only node and edge types.
-    - [ ] Put the central node at `(0, 0)`.
-    - [ ] Place the four domains at equal angles on the first radius.
-    - [ ] Place each domain's components in stable graph order on that domain's outer arc.
-    - [ ] Place the selected component's skills on the next outer arc.
-    - [ ] Add state, due, target rank, and evidence fields from `CurrentProficiency`.
-    - [ ] Compute bounds for Fit graph.
-    - [ ] Use no random value, force simulation, browser measurement, or stored coordinate.
+- [x] Task: Implement the pure radial graph model. [current]
+    - [x] Create `apps/danielson/lib/reporting/proficiency-graph.ts`.
+    - [x] Define presentation-only node and edge types.
+    - [x] Put the central node at `(0, 0)`.
+    - [x] Place the four domains at equal angles on the first radius.
+    - [x] Place each domain's components in stable graph order on that domain's outer arc.
+    - [x] Place the selected component's skills on the next outer arc.
+    - [x] Add state, due, target rank, and evidence fields from `CurrentProficiency`.
+    - [x] Compute bounds for Fit graph.
+    - [x] Use no random value, force simulation, browser measurement, or stored coordinate.
 
-- [ ] Task: Implement the dynamic SVG component.
+- [~] Task: Implement the dynamic SVG component.
     - [ ] Create `apps/danielson/components/teacher-proficiency-graph.tsx`.
     - [ ] Accept only `CurrentProficiency` as domain data.
     - [ ] Store selected node, expanded component, and view transform in React state.
