@@ -7,6 +7,7 @@ import type {
   ImprovementPlanVersionView,
   ImprovementPlanView as PlanView,
 } from '@/lib/improvement-plans/view';
+import { learnHref } from '@/lib/learn/href';
 
 function dateLabel(value: number | null) {
   return value === null
@@ -48,7 +49,10 @@ function VersionDetails({ version, heading }: { version: ImprovementPlanVersionV
             <thead><tr><th scope="col">Skill</th><th scope="col">Parent component</th><th scope="col">Expected rating</th></tr></thead>
             <tbody>{version.targets.map((target) => (
               <tr key={target.targetId}>
-                <th scope="row">{target.skillTitle}</th>
+                <th scope="row">
+                  {target.skillTitle}<br />
+                  <Link href={learnHref(target.skillId)}>Learn {target.skillTitle}</Link>
+                </th>
                 <td>{target.componentTitle}</td>
                 <td>{target.expectedRating} · {target.expectedPoints} points</td>
               </tr>
@@ -82,6 +86,10 @@ export function ImprovementPlanView({
     && roles.some((role) => ['hod', 'coach', 'school_head', 'slt'].includes(role));
   const teacherAcknowledged = plan.acknowledgments.some((item) => item.kind === 'teacher');
   const supervisorAcknowledged = plan.acknowledgments.some((item) => item.kind === 'supervisor');
+  const targetTitleBySkill = new Map(
+    [...(active?.targets ?? []), ...(pending?.targets ?? [])]
+      .map((target) => [target.skillId, target.skillTitle]),
+  );
   return (
     <div className="report-stack">
       <section className="report-summary" aria-labelledby="pip-summary-heading">
@@ -108,6 +116,7 @@ export function ImprovementPlanView({
           <ul className="record-list">{progress.targets.map((target) => (
             <li key={target.skillId}>
               <code>{target.skillId}</code>: {stateLabel(target.state)}. Current rating: {target.currentRating ?? 'No rated plan evidence'}. Evidence {target.evidenceOverdue ? 'overdue' : target.evidenceDue ? 'due' : 'current'}. Evidence due at: {dateLabel(target.evidenceDueAt)}.{target.sourceRecordId ? <span>Source record: {target.sourceRecordId}</span> : null}{target.evidenceIdempotencyKey ? <span>Evidence key: {target.evidenceIdempotencyKey}</span> : null}
+              {' '}<Link href={learnHref(target.skillId)}>Learn {targetTitleBySkill.get(target.skillId) ?? 'target skill'}</Link>
             </li>
           ))}</ul>
         </section>

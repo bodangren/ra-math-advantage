@@ -55,6 +55,7 @@ export function SiteHeader({
         {isAuthenticated ? (
           <nav className="site-nav" aria-label="Main navigation">
             <Link href="/">Overview</Link>
+            <Link href="/learn">Learn</Link>
             {showObservations ? <Link href="/observations">Observations</Link> : null}
             {showMyObservations ? <Link href="/my-observations">My observations</Link> : null}
             {showReports ? <Link href="/reports">Reports</Link> : null}

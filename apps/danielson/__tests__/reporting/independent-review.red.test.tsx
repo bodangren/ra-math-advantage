@@ -610,7 +610,7 @@ describe('reporting independent-review interface contracts', () => {
     fireEvent.click(within(detailedProficiency).getByText(/Domain 1: Planning and Preparation/));
 
     expect(within(detailedProficiency).getByText('1e: Planning Coherent Instruction')).toBeVisible();
-    expect(within(detailedProficiency).getByText(/Double Plan/)).toBeVisible();
+    expect(within(detailedProficiency).getByText(/Double Plan: Rating 3/)).toBeVisible();
     expect(within(detailedProficiency).getByText(/Due on .*2027/i)).toBeVisible();
     expect(within(detailedProficiency).getByRole('link', { name: 'Open skill evidence source' }))
       .toHaveAttribute(

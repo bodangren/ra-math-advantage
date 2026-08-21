@@ -1,7 +1,9 @@
 'use client';
 
+import Link from 'next/link';
 import { useMemo, useRef, useState } from 'react';
 
+import { learnHref } from '../lib/learn/href';
 import type { CurrentProficiency, ReportingState } from '../lib/reporting/contracts';
 import {
   buildProficiencyGraphModel,
@@ -312,6 +314,7 @@ export function TeacherProficiencyGraph({
               {selectedNode.overdueDays && selectedNode.overdueDays > 0 ? <p>Overdue by {selectedNode.overdueDays} days</p> : null}
               {selectedNode.priorityRank ? <p>Priority: {selectedNode.priorityRank}</p> : null}
               {selectedNode.priorityReason ? <p>Priority reason: {selectedNode.priorityReason.replaceAll('_', ' ')}</p> : null}
+              <p><Link href={learnHref(selectedNode.id)}>Learn {selectedNode.title}</Link></p>
             </div>
           ) : null}
           {selectedNode.evidenceHref ? <a href={selectedNode.evidenceHref}>Open evidence record</a> : null}

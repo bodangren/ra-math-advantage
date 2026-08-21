@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { ReportCommentForm } from '@/components/report-comment-form';
 import { TeacherResponseForm } from '@/components/teacher-response-form';
 import { TeacherProficiencyGraph } from '@/components/teacher-proficiency-graph';
+import { learnHref } from '@/lib/learn/href';
 import type {
   PrivateTeacherReport,
   PublicTeacherReport,
@@ -222,6 +223,7 @@ export function TeacherReportView({
                       {priorityBySkill.get(skill.skillId) ? (
                         <> · Priority {priorityBySkill.get(skill.skillId)?.rank}: {priorityBySkill.get(skill.skillId)?.reason.replaceAll('_', ' ')}</>
                       ) : null}
+                      <> · <Link href={learnHref(skill.skillId)}>Learn {skill.title}</Link></>
                       {skill.sourceRecordId ? (
                         <> · <Link href={`/observations/records/${encodeURIComponent(skill.sourceRecordId)}`}>Open skill evidence source</Link></>
                       ) : null}

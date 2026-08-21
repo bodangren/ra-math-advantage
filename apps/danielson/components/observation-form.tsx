@@ -1,6 +1,9 @@
 'use client';
 
 import { FormEvent, useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
+
+import { learnHref } from '@/lib/learn/href';
 
 type FormOutcome =
   | { kind: 'rated'; rating: 1 | 2 | 3 | 4 }
@@ -170,6 +173,7 @@ export function ObservationForm({
             {reasonLabel(item.priorityReason) ? (
               <p><span className="status attention">{reasonLabel(item.priorityReason)}</span></p>
             ) : null}
+            {item.skillId ? <p><Link href={learnHref(item.skillId)}>Learn {title}</Link></p> : null}
             <div className="rating-options" aria-label={`Outcome for ${title}`}>
               {([1, 2, 3, 4] as const).map((rating) => (
                 <label className="rating-option" key={rating}>

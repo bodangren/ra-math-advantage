@@ -2,6 +2,7 @@ import Link from 'next/link';
 
 import { ObservationStartForm } from '@/components/observation-start-form';
 import { SiteHeader } from '@/components/site-header';
+import { learnHref } from '@/lib/learn/href';
 import { getObservationWorkspace } from '@/lib/observations/observation-page';
 
 type QueueItem = {
@@ -66,7 +67,10 @@ export default async function ObservationsPage({
                 <p>{teacher.eligibleTargetCount} eligible targets</p>
                 {teacher.shortfall > 0 ? <p className="field-error">Only {3 - teacher.shortfall} eligible targets are available.</p> : null}
                 <ul>{teacher.targets.map((target) => (
-                  <li key={target.skillId}>{target.skillTitle} <span className="muted">({target.componentTitle})</span></li>
+                  <li key={target.skillId}>
+                    {target.skillTitle} <span className="muted">({target.componentTitle})</span>{' '}
+                    <Link href={learnHref(target.skillId)}>Learn {target.skillTitle}</Link>
+                  </li>
                 ))}</ul>
               </div>
               <ObservationStartForm
