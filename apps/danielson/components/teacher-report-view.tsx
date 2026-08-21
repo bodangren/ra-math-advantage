@@ -208,7 +208,13 @@ export function TeacherReportView({
               {domain.components.map((component) => (
                 <section className="report-component" key={component.componentId}>
                   <h3>{component.title}</h3>
-                  <p>{stateLabel(component.state)}</p>
+                  <p>
+                    {stateLabel(component.state)}
+                    {component.rawRating === null ? '' : ` · Rating ${component.rawRating} · ${component.points} points`}
+                  </p>
+                  {component.sourceRecordId ? (
+                    <p><Link href={`/observations/records/${encodeURIComponent(component.sourceRecordId)}`}>Open component evidence source</Link></p>
+                  ) : null}
                   <ul>{component.skills.map((skill) => (
                     <li key={skill.skillId}>
                       <span>{skill.title}: {skill.rawRating === null ? 'Not enough evidence' : `Rating ${skill.rawRating} · ${skill.points} points`}</span>

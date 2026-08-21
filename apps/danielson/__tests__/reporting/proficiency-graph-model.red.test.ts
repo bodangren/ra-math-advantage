@@ -80,6 +80,28 @@ describe('teacher proficiency graph model', () => {
     expect(skill).not.toHaveProperty('response');
   });
 
+  it('projects component rating data and its evidence link', () => {
+    const current = projectCurrentProficiency({
+      priorities: [],
+      componentEvidence: [{
+        componentId: 'danielson.framework.component.1a',
+        rawRating: 4,
+        sourceRecordId: 'observation_records:component-source',
+      }],
+    });
+    const model = buildProficiencyGraphModel(current);
+    const component = model.nodes.find(
+      (node) => node.id === 'danielson.framework.component.1a',
+    );
+
+    expect(component).toMatchObject({
+      rawRating: 4,
+      points: 100,
+      sourceRecordId: 'observation_records:component-source',
+      evidenceHref: '/observations/records/observation_records%3Acomponent-source',
+    });
+  });
+
   it('computes bounds from the deterministic node positions', () => {
     const current = projectCurrentProficiency({ priorities: priorities() });
     const model = buildProficiencyGraphModel(current);

@@ -375,6 +375,27 @@ describe('Danielson reporting projections', () => {
     expect(current).not.toHaveProperty('officialEvaluations');
   });
 
+  it('preserves the formal rating that supplies a current component state', () => {
+    const current = projectCurrentProficiency({
+      priorities: [],
+      componentEvidence: [{
+        componentId: 'danielson.framework.component.1a',
+        rawRating: 4,
+        sourceRecordId: 'observation_records:component-source',
+      }],
+    });
+    const component = current.domains
+      .flatMap((domain) => domain.components)
+      .find((candidate) => candidate.componentId === 'danielson.framework.component.1a');
+
+    expect(component).toMatchObject({
+      state: 'proficient',
+      rawRating: 4,
+      points: 100,
+      sourceRecordId: 'observation_records:component-source',
+    });
+  });
+
   it('maps each official raw rating to the exact derived points', () => {
     const componentIds = [
       'danielson.framework.component.1a',

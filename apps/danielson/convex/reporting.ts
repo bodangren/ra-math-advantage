@@ -228,6 +228,9 @@ const currentProficiencyValidator = v.object({
       componentId: v.string(),
       title: v.string(),
       state: reportingStateValidator,
+      rawRating: v.union(v.number(), v.null()),
+      points: v.union(v.number(), v.null()),
+      sourceRecordId: v.union(v.string(), v.null()),
       skills: v.array(v.object({
         skillId: v.string(),
         title: v.string(),

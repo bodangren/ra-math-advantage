@@ -31,11 +31,20 @@ function nodeRadius(node: ProficiencyGraphNode) {
 }
 
 function nodeLabel(node: ProficiencyGraphNode) {
-  return `${node.title}: ${stateLabel(node.state)}${node.due ? ': Due' : ''}`;
+  const rating = node.rawRating === null || node.rawRating === undefined
+    ? ''
+    : `: Rating ${node.rawRating}: ${node.points} points`;
+  return `${node.title}: ${stateLabel(node.state)}${rating}${node.due ? ': Due' : ''}`;
 }
 
 function nodeStatusLabel(node: ProficiencyGraphNode) {
   return `${stateLabel(node.state)}${node.due ? ' · Due' : ''}`;
+}
+
+function nodeRatingLabel(node: ProficiencyGraphNode) {
+  return node.rawRating === null || node.rawRating === undefined
+    ? null
+    : `Rating ${node.rawRating} · ${node.points} points`;
 }
 
 function visibleNodeTitle(node: ProficiencyGraphNode) {
@@ -254,8 +263,11 @@ export function TeacherProficiencyGraph({
                 <circle r={nodeRadius(node)} />
                 <text className="teacher-proficiency-graph-node-title" y={nodeRadius(node) + 20}>{visibleNodeTitle(node)}</text>
                 <text className="teacher-proficiency-graph-node-state" y={nodeRadius(node) + 37}>{nodeStatusLabel(node)}</text>
+                {nodeRatingLabel(node) ? (
+                  <text className="teacher-proficiency-graph-node-rating" y={nodeRadius(node) + 54}>{nodeRatingLabel(node)}</text>
+                ) : null}
                 {node.kind === 'skill' && node.priorityRank ? (
-                  <text className="teacher-proficiency-graph-node-priority" y={nodeRadius(node) + 54}>Priority {node.priorityRank}</text>
+                  <text className="teacher-proficiency-graph-node-priority" y={nodeRadius(node) + (nodeRatingLabel(node) ? 71 : 54)}>Priority {node.priorityRank}</text>
                 ) : null}
               </g>
             ))}
@@ -270,10 +282,15 @@ export function TeacherProficiencyGraph({
         <aside className="teacher-proficiency-graph-detail" aria-label="Selected graph node details">
           <h3>{selectedNode.title}:</h3>
           <p>Status: {stateLabel(selectedNode.state)}</p>
+          {selectedNode.rawRating !== null && selectedNode.rawRating !== undefined ? (
+            <>
+              <p>Rating: {selectedNode.rawRating}</p>
+              <p>Points: {selectedNode.points}</p>
+            </>
+          ) : null}
           {selectedNode.kind === 'skill' ? (
             <div className="teacher-proficiency-graph-detail-list">
-              <p>Rating: {selectedNode.rawRating ?? 'Not enough evidence'}</p>
-              <p>Points: {selectedNode.points ?? '—'}</p>
+              {selectedNode.rawRating === null || selectedNode.rawRating === undefined ? <p>Rating: Not enough evidence</p> : null}
               <p>Evidence: {formatDue(selectedNode)}</p>
               {selectedNode.dueAt ? <p>Due date: {selectedNode.dueAt}</p> : null}
               {selectedNode.overdueDays && selectedNode.overdueDays > 0 ? <p>Overdue by {selectedNode.overdueDays} days</p> : null}

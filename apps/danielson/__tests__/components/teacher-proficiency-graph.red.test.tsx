@@ -38,6 +38,29 @@ afterEach(() => {
 });
 
 describe('TeacherProficiencyGraph', () => {
+  it('shows component ratings and points without requiring selection', () => {
+    const current = projectCurrentProficiency({
+      priorities: [],
+      componentEvidence: [{
+        componentId: 'danielson.framework.component.1a',
+        rawRating: 4,
+        sourceRecordId: 'observation_records:component-source',
+      }],
+    });
+    render(<TeacherProficiencyGraph currentProficiency={current} />);
+
+    const component = screen.getByRole('button', {
+      name: /Applying Knowledge of Content and Pedagogy: Proficient: Rating 4: 100 points/,
+    });
+    expect(screen.getByText('Rating 4 · 100 points')).toBeVisible();
+
+    fireEvent.keyDown(component, { key: 'Enter' });
+    const details = screen.getByRole('complementary', { name: 'Selected graph node details' });
+    expect(details).toHaveTextContent('Rating: 4');
+    expect(details).toHaveTextContent('Points: 100');
+    expect(details).toHaveTextContent('Open evidence record');
+  });
+
   it('renders the accessible collapsed graph and controls', () => {
     render(<TeacherProficiencyGraph currentProficiency={currentProficiency()} />);
 
@@ -55,7 +78,9 @@ describe('TeacherProficiencyGraph', () => {
     expect(screen.getAllByText('Not enough evidence').length).toBeGreaterThan(0);
     fireEvent.keyDown(screen.getByRole('button', { name: /1a: Applying Knowledge/ }), { key: 'Enter' });
     expect(screen.getAllByText(/Below Proficient · Due/).length).toBeGreaterThan(0);
-    expect(screen.getByRole('button', { name: /Exemplar Planning: Below Proficient: Due/ })).toBeInTheDocument();
+    expect(screen.getByRole('button', {
+      name: /Exemplar Planning: Below Proficient: Rating 2: 80 points: Due/,
+    })).toBeInTheDocument();
   });
 
   it('expands a component with pointer and keyboard activation', () => {

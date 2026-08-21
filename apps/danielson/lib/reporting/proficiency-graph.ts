@@ -136,6 +136,12 @@ export function buildProficiencyGraphModel(
         kind: 'component',
         title: component.title,
         state: component.state,
+        rawRating: component.rawRating,
+        points: component.points,
+        sourceRecordId: component.sourceRecordId,
+        ...(component.sourceRecordId
+          ? { evidenceHref: `/observations/records/${encodeURIComponent(component.sourceRecordId)}` }
+          : {}),
         ...componentPosition,
       });
       edges.push(edge(domainId, componentId));

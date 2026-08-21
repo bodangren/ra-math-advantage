@@ -645,6 +645,9 @@ describe('Danielson reporting Convex boundary', () => {
     })).report as Record<string, unknown>;
     expect(componentFromReport(report, 'danielson.framework.component.1a')).toMatchObject({
       state: 'proficient',
+      rawRating: 4,
+      points: 100,
+      sourceRecordId,
     });
     const q4 = (report.officialEvaluations as Array<Record<string, unknown>>)
       .find((evaluation) => evaluation.observationType === 'formal_q4');

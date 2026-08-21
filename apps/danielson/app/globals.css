@@ -115,6 +115,7 @@ details[open] > summary { margin-bottom: 1rem; }
 .teacher-proficiency-graph-node:focus-visible circle { stroke: var(--ochre); stroke-width: 7; }
 .teacher-proficiency-graph-node-title { fill: var(--ink); font-size: 18px; font-weight: 700; text-anchor: middle; pointer-events: none; }
 .teacher-proficiency-graph-node-state { fill: var(--ink); font-size: 13px; font-weight: 600; text-anchor: middle; pointer-events: none; }
+.teacher-proficiency-graph-node-rating { fill: var(--ink); font-size: 13px; font-weight: 700; text-anchor: middle; pointer-events: none; }
 .teacher-proficiency-graph-node-priority { fill: var(--ochre); font-size: 15px; font-weight: 700; text-anchor: middle; pointer-events: none; }
 .teacher-proficiency-graph-status { margin: 0; border-left: 4px solid var(--forest); background: #e2eee8; padding: .65rem .8rem; }
 .teacher-proficiency-graph-overall-status { margin: 0; font-weight: 700; }

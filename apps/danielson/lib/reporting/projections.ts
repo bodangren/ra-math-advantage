@@ -127,14 +127,21 @@ function projectComponentStates(
       : skills.length > 0 && skills.every((skill) => skill.state === 'proficient')
         ? 'proficient'
         : 'not_enough_evidence';
-    const componentRating = evidenceByComponent.get(componentId)?.rawRating;
-    const state: ReportingState = skillState === 'not_enough_evidence' && componentRating !== undefined
+    const componentEvidenceEntry = evidenceByComponent.get(componentId);
+    const componentRating = componentEvidenceEntry?.rawRating;
+    const usesComponentEvidence = skillState === 'not_enough_evidence' && componentRating !== undefined;
+    const state: ReportingState = usesComponentEvidence
       ? componentRating >= 3 ? 'proficient' : 'below_proficient'
       : skillState;
     return {
       componentId,
       title: nodeById.get(componentId)?.title ?? componentId,
       state,
+      rawRating: usesComponentEvidence ? componentRating : null,
+      points: usesComponentEvidence ? adaptDanielsonRating(componentRating).points : null,
+      sourceRecordId: usesComponentEvidence && componentEvidenceEntry
+        ? componentEvidenceEntry.sourceRecordId
+        : null,
       skills,
     };
   });

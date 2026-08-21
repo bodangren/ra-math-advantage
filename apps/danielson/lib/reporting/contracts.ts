@@ -63,6 +63,9 @@ export type CurrentProficiency = {
       componentId: string;
       title: string;
       state: ReportingState;
+      rawRating: 1 | 2 | 3 | 4 | null;
+      points: 70 | 80 | 90 | 100 | null;
+      sourceRecordId: string | null;
       skills: Array<{
         skillId: string;
         title: string;

@@ -315,6 +315,9 @@ const report: PrivateTeacherReport = {
         componentId: 'danielson.framework.component.1e',
         title: '1e: Planning Coherent Instruction',
         state: 'not_enough_evidence',
+        rawRating: null,
+        points: null,
+        sourceRecordId: null,
         skills: [{
           skillId: 'danielson.tlac.skill.double-plan',
           title: 'Double Plan',
