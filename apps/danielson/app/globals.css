@@ -8,7 +8,7 @@
   --brand-accent: #c5a059;
   --action: #0066cc;
   --forest: var(--brand-primary);
-  --ochre: var(--brand-accent);
+  --ochre: #765916;
   --line: #d2d2d7;
   --danger: #a72f32;
 }
@@ -99,7 +99,7 @@ code { overflow-wrap: anywhere; }
 .report-stack > h1, .report-stack > .eyebrow, .report-stack > .lede { margin-bottom: 0; }
 .report-summary { border-block: 2px solid var(--forest); padding: 1.25rem 0; }
 .summary-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin: 0; }
-.summary-grid div { border-left: 3px solid var(--ochre); padding-left: .75rem; }
+.summary-grid div { border-left: 3px solid var(--brand-accent); padding-left: .75rem; }
 .summary-grid dt { color: var(--muted-ink); font-size: .85rem; font-weight: 700; text-transform: uppercase; }
 .summary-grid dd { margin: .2rem 0 0; font-size: 1.2rem; font-weight: 700; }
 details { border: 1px solid var(--line); border-radius: .75rem; padding: .8rem 1rem; }
@@ -144,8 +144,12 @@ details[open] > summary { margin-bottom: 1rem; }
 .teacher-proficiency-graph-detail p { margin: .25rem 0; }
 .teacher-proficiency-graph-accessible-note { margin-bottom: 0; }
 .comment-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-block: 1rem; }
+@media (max-width: 1100px) {
+  .site-header-inner { align-items: flex-start; flex-direction: column; padding: .85rem 0; }
+  .site-nav { gap: .65rem 1rem; }
+}
 @media (max-width: 640px) {
-  .site-header-inner { align-items: flex-start; flex-direction: column; padding: 1rem 0; }
+  .site-header-inner { padding: 1rem 0; }
   .page-shell { padding-top: 2rem; }
   .rating-options { grid-template-columns: repeat(2, minmax(5rem, 1fr)); }
   .observation-actions { align-items: stretch; flex-direction: column-reverse; }
