@@ -14,7 +14,7 @@
 
 ## Phase 1: Contract and Schema Definition
 
-- [ ] Task: Define the local demo contract.
+- [x] Task: Define the local demo contract. [01d22e15]
     - [ ] Create `apps/danielson/demo-contract.md`.
     - [ ] Copy the confirmed organization, account, department, and teacher scenario tables from `spec.md`.
     - [ ] Define the seed results as `created`, `already_seeded`, and `conflict`.
@@ -25,7 +25,7 @@
     - [ ] State that the seed is local only and internal only.
     - [ ] State that native local Convex reset is the only reset process.
 
-- [ ] Task: Define the report and graph contract.
+- [~] Task: Define the report and graph contract.
     - [ ] Update `apps/danielson/reporting-contract.md`.
     - [ ] Add `priorityTargets` to the current proficiency projection.
     - [ ] Define each target as `{ rank, skillId, reason }`.
