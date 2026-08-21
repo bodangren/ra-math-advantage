@@ -19,6 +19,7 @@ The application supports these users:
 - Quarter 1 and Quarter 4 formal observation records.
 - Dynamic proficiency graph with 1–4 scores, score colors, zoom, pan, and
   keyboard controls.
+- Learn catalog and guidance pages for all 63 approved target skills.
 - Performance Improvement Plan (PIP) proposals, approval, progress, revision,
   and closure.
 - Get Better Faster (GBF) progress when a teacher has an assignment.
@@ -74,13 +75,25 @@ The HDKWA local seed uses the approved HDKWA logo, navy, and gold colors. The
 application uses the same organization brand on the header and primary
 controls.
 
+## Learn pages
+
+Open `/learn` to see the 63 approved Teach Like a Champion 3.0 skills. The
+catalog groups each skill by Danielson domain and component.
+
+Open `/learn/<skill-id>` to see the skill purpose, action steps, approved
+summary, available video example, and book reference. Reports, the proficiency
+graph, walkthroughs, and improvement plans link to these pages.
+
+The Learn pages use static application content. They do not create progress
+records or change proficiency.
+
 ## Review artifacts
 
-The interface review contains 33 desktop screenshots and five mobile
+The interface review contains 35 desktop screenshots and six mobile
 screenshots.
 
-The Senior Leadership Team (SLT) presentation contains 14 slides. It includes
-clear desktop and mobile walkthrough views.
+The Senior Leadership Team (SLT) presentation contains 15 slides. It includes
+desktop and mobile walkthrough views and the Learn pages.
 
 - [Screenshot catalog](../../outputs/danielson-hdkwa-system-review_20260821/screenshots/)
 - [SLT presentation](../../outputs/danielson-hdkwa-system-review_20260821/HDKWA-Danielson-System-Review.pptx)
