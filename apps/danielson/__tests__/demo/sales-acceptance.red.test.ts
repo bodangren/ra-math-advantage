@@ -160,11 +160,12 @@ const ORGANIZATION_ID = 'organizations:demo';
 const NOW_ISO = new Date(REFERENCE_TIME).toISOString();
 
 function seedArgs() {
+  const scenario = buildDemoScenario(REFERENCE_TIME);
   return {
-    organizationSlug: 'danielson-school',
-    organizationName: 'Danielson School',
+    organizationSlug: scenario.organization.slug,
+    organizationName: scenario.organization.name,
     referenceTime: REFERENCE_TIME,
-    credentials: buildDemoScenario(REFERENCE_TIME).accounts.map((account, index) => ({
+    credentials: scenario.accounts.map((account, index) => ({
       username: account.username,
       passwordHash: `hash-${index}`,
       passwordSalt: `salt-${index}`,
