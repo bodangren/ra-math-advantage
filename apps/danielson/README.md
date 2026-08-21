@@ -79,6 +79,9 @@ controls.
 The interface review contains 33 desktop screenshots and five mobile
 screenshots.
 
+The Senior Leadership Team (SLT) presentation contains 14 slides. It includes
+clear desktop and mobile walkthrough views.
+
 - [Screenshot catalog](../../outputs/danielson-hdkwa-system-review_20260821/screenshots/)
 - [SLT presentation](../../outputs/danielson-hdkwa-system-review_20260821/HDKWA-Danielson-System-Review.pptx)
 

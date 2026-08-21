@@ -1,32 +1,29 @@
-# Danielson Design Definition
+# Danielson Design Guide
 
-## Direction
+## Purpose
 
-The interface uses the approved HDKWA professional-development visual language.
-It combines a museum-gallery canvas with the compact information that leaders
-need during a school day.
+Use this guide for the Danielson application.
 
-The approved reference is
-`/Users/daniel.bodanske/Desktop/hdkwa-danielson/DESIGN.md`.
+Use the approved HDKWA visual design as the main reference. The reference file
+is `/Users/daniel.bodanske/Desktop/hdkwa-danielson/DESIGN.md`.
 
-The application does not copy the MVP layout. The MVP is a content hub. This
-application is an evidence and workflow system. It keeps compact tables,
-forms, reports, and graphs.
+Do not copy the layout of the Minimum Viable Product (MVP). The MVP is a
+content hub. This application contains evidence, reports, forms, and graphs.
+Keep these functions compact and clear.
 
-## Organization Branding
+## Organization Brand
 
-The organization record owns these optional values:
+Store these optional values on the organization record:
 
 - Display name.
 - Logo path.
 - Primary color.
 - Accent color.
 
-The authenticated session supplies the values for the current organization.
-The application uses generic Danielson values when an organization has no
-brand values.
+Get the values from the authenticated session. Use the generic Danielson brand
+when an organization has no brand values.
 
-The local demo uses these HDKWA values:
+Use these values for the local HDKWA pilot:
 
 | Value | HDKWA setting |
 |---|---|
@@ -36,20 +33,20 @@ The local demo uses these HDKWA values:
 | Accent color | `#C5A059` |
 | Logo | HDKWA navy and gold logo |
 
-Do not create a brand registry, brand table, upload system, or runtime theme
-editor for this release.
+Do not add a brand registry. Do not add a brand table. Do not add a logo upload
+system. Do not add a theme editor.
 
 ## Color
 
-Use these default tokens. Organization values replace the primary and accent
-tokens after sign-in.
+Use these default color tokens. After sign-in, replace the primary and accent
+tokens with the organization values.
 
 | Token | Default value | Use |
 |---|---:|---|
-| `--paper` | `#FFFFFF` | Page canvas |
-| `--surface` | `#FFFFFF` | Forms and primary content |
+| `--paper` | `#FFFFFF` | Page background |
+| `--surface` | `#FFFFFF` | Forms and main content |
 | `--tile` | `#F5F5F7` | Grouped sections and table headings |
-| `--ink` | `#1D1D1F` | Primary text |
+| `--ink` | `#1D1D1F` | Main text |
 | `--muted-ink` | `#515154` | Secondary text |
 | `--brand-primary` | `#003366` | Navigation and primary actions |
 | `--brand-accent` | `#C5A059` | Focus, progress, and selected details |
@@ -57,17 +54,23 @@ tokens after sign-in.
 | `--line` | `#D2D2D7` | Borders and rules |
 | `--danger` | `#A72F32` | Destructive actions and errors |
 
-Keep the proficiency score colors. Use red for 1.0 to 1.9. Use yellow for 2.0
-to 2.9. Use green for 3.0 to 3.9. Use blue for 4.0. Always show text with the
-color.
+Keep the proficiency score colors:
+
+- Use red for scores from 1.0 to 1.9.
+- Use yellow for scores from 2.0 to 2.9.
+- Use green for scores from 3.0 to 3.9.
+- Use blue for a score of 4.0.
+- Use an outline for a missing score.
+
+Always show a text label with a status color.
 
 ## Type
 
-- Use the native sans-serif stack for headings, body text, and controls.
-- Use a weight of 600 for display headings.
-- Use negative letter spacing only on headings that are larger than 32 pixels.
-- Use a body size of 17 pixels.
-- Use the native monospace stack for record identifiers and framework codes.
+- Use the native sans-serif font stack for all interface text.
+- Use a font weight of 600 for display headings.
+- Use negative letter spacing only for headings larger than 32 pixels.
+- Use a body text size of 17 pixels.
+- Use the native monospace font stack for record identifiers and framework codes.
 - Use tabular numerals for dates, ratings, and counts.
 
 ## Surfaces and Controls
@@ -75,38 +78,90 @@ color.
 - Use a 12-pixel radius for cards, controls, and buttons.
 - Use flat surfaces.
 - Do not use card shadows.
-- Use white for primary content.
-- Use the light gray tile color for grouped content.
-- Use a light border when a boundary is required.
+- Use white for main content.
+- Use light gray for grouped content.
+- Use a light border when an element needs a boundary.
 - Use the organization primary color for the main action.
-- Use the organization accent color for selected and progress states.
-- Use the action blue for text links and secondary utilities.
+- Use the organization accent color for a selected state.
+- Use action blue for text links and utility actions.
 
 ## Header and Navigation
 
 - Put the organization logo at the start of the header.
-- Show the organization name and `Danielson Teacher Growth`.
-- Keep the role-aware navigation.
-- Keep the header compact on desktop.
+- Show the organization name.
+- Show the product name `Danielson Teacher Growth`.
+- Show only the navigation items that the current user can use.
+- Keep the desktop header compact.
 - Stack the navigation on a small screen.
 - Keep the sign-out action visible.
 
-## Reports and Forms
+## Reports
 
-- Keep the compact report and table structure.
-- Use clear section headings and generous vertical spacing.
-- Keep one primary action for each form.
-- Use the accent color for due dates and selected evidence.
-- Keep the proficiency graph on a calm light canvas.
-- Keep public and private information visually separate.
+- Keep report tables compact.
+- Put teachers who need attention first.
+- Show one clear state for each report category.
+- Show text with every color state.
+- Keep public and private information in separate sections.
+- Do not send private information to a teacher view.
+
+## Forms
+
+- Give each form one main action.
+- Put a visible label on each control.
+- Put related rating controls in a fieldset.
+- Use a legend to identify each rating group.
+- Show an error summary after a failed submission.
+- Move keyboard focus to the error summary.
+- Keep save and submit actions clear on a small screen.
+
+## Proficiency Graph
+
+- Use a light gray graph background.
+- Show the current average score to one decimal place.
+- Show a text state below each score.
+- Keep the score colors defined in this guide.
+- Let the user expand one component to show its approved skills.
+- Provide zoom, pan, fit, reset, and full-screen controls.
+- Provide a keyboard method for each graph action.
+- Keep the detailed proficiency list below the graph.
+
+## Mobile Layout
+
+- Use one content column on a small screen.
+- Keep tap targets at least 44 pixels high.
+- Keep a body text size of at least 16 pixels.
+- Show all three walkthrough targets in one vertical form.
+- Keep rating choices large enough for touch input.
+- Keep submit, save, and discard actions visible at the end of the form.
+
+## Interface Writing
+
+Use ASD-STE100 Simplified Technical English for all user-facing text.
+
+- Use short sentences.
+- Use active voice.
+- Give one instruction in each sentence.
+- Use one term for one concept.
+- Define an abbreviation when it first appears.
+- Use the same label for the same action on each page.
+- Use direct labels for buttons and navigation.
+- Tell the user what happened in an error message.
+- Tell the user what to do next in an error message.
+- Do not use idioms.
+- Do not use vague words.
+- Do not use decorative slogans.
+- Keep exact framework, product, and source terms when they are required.
+
+Apply these rules to navigation, labels, help text, validation messages, error
+messages, empty states, confirmation messages, reports, and presentation text.
 
 ## Accessibility
 
-- Each text and control pair must meet Web Content Accessibility Guidelines
-  (WCAG) 2.1 AA contrast.
+- Meet Web Content Accessibility Guidelines (WCAG) 2.1 AA contrast.
 - Do not use color as the only status signal.
-- Keep visible keyboard focus.
-- Use a focus ring with at least 3 pixels of thickness.
+- Keep a visible keyboard focus indicator.
+- Use a focus ring that is at least 3 pixels thick.
 - Keep form labels and error summaries.
 - Respect `prefers-reduced-motion`.
-- Keep a body text size of at least 16 pixels on small screens.
+- Use text alternatives for meaningful images.
+- Use a body text size of at least 16 pixels on a small screen.
