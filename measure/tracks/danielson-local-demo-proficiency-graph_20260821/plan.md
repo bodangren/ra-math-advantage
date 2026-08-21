@@ -374,22 +374,22 @@ occurs:
 
 ## Phase: Portfolio Evidence Read Corrections
 
-- [~] Task: Record the portfolio evidence read correction requirements.
-    - [ ] Use a constant number of formal-evidence queries.
-    - [ ] Keep query count independent of teacher count.
-    - [ ] Prevent drafts from consuming the submitted-record limit.
-    - [ ] Keep older rated component evidence until newer rated evidence replaces it.
-    - [ ] Use the same effective component evidence in the portfolio and teacher report.
-    - [ ] Return `portfolio_capacity_exceeded` without partial proficiency data at capacity.
+- [x] Task: Record the portfolio evidence read correction requirements. [7a8f8f1f]
+    - [x] Use a constant number of formal-evidence queries.
+    - [x] Keep query count independent of teacher count.
+    - [x] Prevent drafts from consuming the submitted-record limit.
+    - [x] Keep older rated component evidence until newer rated evidence replaces it.
+    - [x] Use the same effective component evidence in the portfolio and teacher report.
+    - [x] Return `portfolio_capacity_exceeded` without partial proficiency data at capacity.
 
-- [ ] Task: Add failing regression coverage for batched portfolio evidence reads.
-    - [ ] Assert two formal-record queries and one amendment query for any teacher count.
-    - [ ] Assert drafts cannot hide submitted evidence.
-    - [ ] Assert evidence remains active across more than four formal records.
-    - [ ] Assert amendments remain effective and preserve the original source record.
-    - [ ] Assert capacity failure returns no partial portfolio page.
+- [x] Task: Add failing regression coverage for batched portfolio evidence reads. [1784c2a8]
+    - [x] Assert two formal-record queries and one amendment query for any teacher count.
+    - [x] Assert drafts cannot hide submitted evidence.
+    - [x] Assert evidence remains active across more than four formal records.
+    - [x] Assert amendments remain effective and preserve the original source record.
+    - [x] Assert capacity failure returns no partial portfolio page.
 
-- [ ] Task: Batch the portfolio formal evidence reads.
+- [~] Task: Batch the portfolio formal evidence reads.
     - [ ] Add only the required organization/status/type/school-year observation index.
     - [ ] Read submitted Q1 records, submitted Q4 records, and organization amendments in three bounded queries.
     - [ ] Group records and amendments in memory and reuse the existing effective evidence projection.
