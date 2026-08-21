@@ -50,6 +50,11 @@ export type OfficialEvaluation = {
 
 export type CurrentProficiency = {
   state: ReportingState;
+  priorityTargets: Array<{
+    rank: 1 | 2 | 3;
+    skillId: string;
+    reason: 'below_proficient' | 'approved_plan_priority' | 'gbf_phase_priority' | 'overdue' | 'evidence_gap' | 'due';
+  }>;
   domains: Array<{
     domainId: string;
     title: string;

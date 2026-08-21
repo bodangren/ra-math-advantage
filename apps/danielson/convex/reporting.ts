@@ -207,6 +207,11 @@ const officialEvaluationValidator = v.object({
 });
 const currentProficiencyValidator = v.object({
   state: reportingStateValidator,
+  priorityTargets: v.array(v.object({
+    rank: v.union(v.literal(1), v.literal(2), v.literal(3)),
+    skillId: v.string(),
+    reason: observationPriorityReasonValidator,
+  })),
   domains: v.array(v.object({
     domainId: v.string(),
     title: v.string(),

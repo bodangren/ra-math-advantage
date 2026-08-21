@@ -183,15 +183,15 @@
     - [x] Keep all writes in the mutation transaction.
     - [x] Do not add a schema table, index, marker, log, or fixture registry.
 
-- [~] Task: Implement priority targets in the report projection.
-    - [ ] Update `apps/danielson/lib/reporting/contracts.ts`.
-    - [ ] Update `apps/danielson/lib/reporting/projections.ts`.
-    - [ ] Import and reuse `rankPriorityTargets()`.
-    - [ ] Return only rank, skill ID, and reason for the first three targets.
-    - [ ] Update the exact current-proficiency validators in `apps/danielson/convex/reporting.ts`.
-    - [ ] Do not add a new Convex query or read.
+- [x] Task: Implement priority targets in the report projection. [current]
+    - [x] Update `apps/danielson/lib/reporting/contracts.ts`.
+    - [x] Update `apps/danielson/lib/reporting/projections.ts`.
+    - [x] Import and reuse `rankPriorityTargets()`.
+    - [x] Return only rank, skill ID, and reason for the first three targets.
+    - [x] Update the exact current-proficiency validators in `apps/danielson/convex/reporting.ts`.
+    - [x] Do not add a new Convex query or read.
 
-- [ ] Task: Implement the pure radial graph model.
+- [~] Task: Implement the pure radial graph model.
     - [ ] Create `apps/danielson/lib/reporting/proficiency-graph.ts`.
     - [ ] Define presentation-only node and edge types.
     - [ ] Put the central node at `(0, 0)`.

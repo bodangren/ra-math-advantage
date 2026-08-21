@@ -1,5 +1,6 @@
 import type { ObservationAmendment, SubmittedObservation } from '../observations/contracts';
 import { projectEffectiveObservation } from '../observations/amendments';
+import { rankPriorityTargets } from '../observations/queue';
 import type { PriorityProjection } from '../proficiency/processor';
 import { buildDanielsonGraph } from '../proficiency/graph';
 import { adaptDanielsonRating, isDanielsonRating } from '../proficiency/rating';
@@ -250,7 +251,14 @@ export function projectCurrentProficiency(input: { priorities: readonly Reportin
       components: domainComponents,
     };
   });
-  return { state: overallState(components), domains };
+  const priorityTargets = rankPriorityTargets(input.priorities)
+    .slice(0, 3)
+    .map((target, index) => ({
+      rank: (index + 1) as 1 | 2 | 3,
+      skillId: target.skillId,
+      reason: target.reason,
+    }));
+  return { state: overallState(components), priorityTargets, domains };
 }
 
 /** Project one effective formal evaluation without averaging component ratings. */
