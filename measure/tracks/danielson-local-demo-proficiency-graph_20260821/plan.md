@@ -25,7 +25,7 @@
     - [ ] State that the seed is local only and internal only.
     - [ ] State that native local Convex reset is the only reset process.
 
-- [~] Task: Define the report and graph contract.
+- [x] Task: Define the report and graph contract. [01d22e15]
     - [ ] Update `apps/danielson/reporting-contract.md`.
     - [ ] Add `priorityTargets` to the current proficiency projection.
     - [ ] Define each target as `{ rank, skillId, reason }`.
@@ -37,7 +37,7 @@
     - [ ] Define pan, zoom, Fit graph, Reset view, full screen, selection, and expansion.
     - [ ] Define the accessible detailed list as a required companion view.
 
-- [ ] Task: Confirm the minimum persistence boundary.
+- [~] Task: Confirm the minimum persistence boundary.
     - [ ] Read `apps/danielson/convex/schema.ts` before editing any Convex file.
     - [ ] Check for `apps/danielson/convex/_generated/ai/guidelines.md`.
     - [ ] If the file is absent, run `npx convex ai-files install` from `apps/danielson/`.
