@@ -529,6 +529,51 @@ describe('reporting independent-review backend contracts', () => {
 });
 
 describe('reporting independent-review interface contracts', () => {
+  it('renders the same graph before the detailed proficiency list for teacher and leadership reports', () => {
+    const { privateComments: _privateComments, ...publicReport } = report;
+    render(<TeacherReportView report={publicReport} canComment={false} canRespond={false} />);
+
+    expect(screen.getByRole('img', { name: /teacher proficiency graph/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Current proficiency' })).toBeInTheDocument();
+
+    const firstGraph = screen.getByRole('img', { name: /teacher proficiency graph/i });
+    const currentHeading = screen.getByRole('heading', { name: 'Current proficiency' });
+    expect(firstGraph.compareDocumentPosition(currentHeading) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+
+    render(<TeacherReportView report={report} canComment={false} canRespond={false} />);
+    expect(screen.getAllByRole('img', { name: /teacher proficiency graph/i })).toHaveLength(2);
+  });
+
+  it('keeps private leadership comments outside the graph view', () => {
+    const privateComment = 'private leadership comment sentinel';
+    render(<TeacherReportView
+      report={{
+        ...report,
+        privateComments: [{
+          commentId: 'comment:private',
+          observationId: 'observation_records:private',
+          teacherProfileId: TEACHER,
+          authorAccountId: LEADER,
+          content: privateComment,
+          createdAt: NOW,
+        }],
+      }}
+      canComment={false}
+      canRespond={false}
+    />);
+
+    expect(screen.getByText(privateComment)).toBeInTheDocument();
+    expect(screen.getByRole('img', { name: /teacher proficiency graph/i })).not.toHaveTextContent(privateComment);
+  });
+
+  it('keeps self-view reports free of private-comment data', () => {
+    const { privateComments: _privateComments, ...publicReport } = report;
+    render(<TeacherReportView report={publicReport} canComment={false} canRespond={false} />);
+
+    expect(screen.queryByRole('heading', { name: 'Private leadership comments' })).not.toBeInTheDocument();
+    expect(screen.getByRole('img', { name: /teacher proficiency graph/i })).toBeInTheDocument();
+  });
+
   it('keeps every comment label and field ID unique across observations', () => {
     const { container } = render(<>
       {['one', 'two', 'three'].flatMap((suffix) => (
