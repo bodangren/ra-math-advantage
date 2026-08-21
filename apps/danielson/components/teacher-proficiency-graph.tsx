@@ -115,7 +115,19 @@ export function TeacherProficiencyGraph({
 
   function handleWheel(event: React.WheelEvent<SVGSVGElement>) {
     event.preventDefault();
-    changeZoom(event.deltaY < 0 ? 0.1 : -0.1);
+    const rect = event.currentTarget.getBoundingClientRect();
+    const pointerX = event.clientX - (rect.left + rect.width / 2);
+    const pointerY = event.clientY - (rect.top + rect.height / 2);
+    setView((previous) => {
+      const nextScale = Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, previous.scale + (event.deltaY < 0 ? 0.1 : -0.1)));
+      const factor = nextScale / previous.scale;
+      return {
+        scale: nextScale,
+        x: pointerX + (previous.x - pointerX) * factor,
+        y: pointerY + (previous.y - pointerY) * factor,
+      };
+    });
+    setStatus('Graph zoom changed around the pointer.');
   }
 
   async function requestFullScreen() {
