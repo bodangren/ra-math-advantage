@@ -131,14 +131,14 @@
     - [ ] Inject sentinel private comment text and assert that it does not enter the graph props, SVG labels, or detail panel.
     - [ ] Assert that a self-view still has no private-comment property.
 
-- [~] Task: Write Red sales-demo acceptance tests.
-    - [ ] Add a behavioral test that reads the seeded leadership portfolio.
-    - [ ] Assert at least one Below Proficient teacher, one Proficient teacher, and one teacher with Not Enough Evidence.
-    - [ ] Assert that Noah Williams has three walkthrough targets.
-    - [ ] Assert that Ethan Brooks has an active approved PIP.
-    - [ ] Assert that Lina Park has a closed successful PIP and one response.
-    - [ ] Assert that the HOD and coach see different scoped teacher sets.
-    - [ ] Assert that the system administrator cannot read evaluation reports.
+- [x] Task: Write Red sales-demo acceptance tests. [current]
+    - [x] Add a behavioral test that reads the seeded leadership portfolio.
+    - [x] Assert at least one Below Proficient teacher, one Proficient teacher, and one teacher with Not Enough Evidence.
+    - [x] Assert that Noah Williams has three walkthrough targets.
+    - [x] Assert that Ethan Brooks has an active approved PIP.
+    - [x] Assert that Lina Park has a closed successful PIP and one response.
+    - [x] Assert that the HOD and coach see different scoped teacher sets.
+    - [x] Assert that the system administrator cannot read evaluation reports.
 
 - [ ] Task: Run and record the Red gate.
     - [ ] Run the new focused test files with `CI=true`.
@@ -231,17 +231,17 @@
     - [x] Add responsive sizing for small screens.
     - [x] Respect the existing reduced-motion rule.
 
-- [ ] Task: Document the local demo.
-    - [ ] Add `DANIELSON_DEMO_PASSWORD` to `apps/danielson/.env.example` without a value.
-    - [ ] Create `apps/danielson/DEMO.md`.
-    - [ ] Document `npx convex dev --configure new --dev-deployment local --once` as the one-time local configuration command.
-    - [ ] Document `npm run seed:demo`.
-    - [ ] Document `npm run dev:stack`.
-    - [ ] Document the account roster and role for each account.
-    - [ ] Document the native local Convex reset procedure.
-    - [ ] Add a ten-minute sales path through login, portfolio, teacher report, full-screen graph, walkthrough queue, and PIP.
-    - [ ] State the expected visible result for each step.
-    - [ ] Do not write the password value.
+- [x] Task: Document the local demo. [current]
+    - [x] Add `DANIELSON_DEMO_PASSWORD` to `apps/danielson/.env.example` without a value.
+    - [x] Create `apps/danielson/DEMO.md`.
+    - [x] Document `npx convex dev --configure new --dev-deployment local --once` as the one-time local configuration command.
+    - [x] Document `npm run seed:demo`.
+    - [x] Document `npm run dev:stack`.
+    - [x] Document the account roster and role for each account.
+    - [x] Document the native local Convex reset procedure.
+    - [x] Add a ten-minute sales path through login, portfolio, teacher report, full-screen graph, walkthrough queue, and PIP.
+    - [x] State the expected visible result for each step.
+    - [x] Do not write the password value.
 
 - [ ] Task: Verify the real local Convex flow.
     - [ ] Configure a new local Convex deployment from an empty local data directory.

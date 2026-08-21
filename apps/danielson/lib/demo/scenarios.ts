@@ -233,6 +233,7 @@ export function buildDemoScenario(referenceTime: number): DemoScenario {
       observations: [
         observation({ id: 'noah-walkthrough-1', teacherUsername: 'demo.teacher.developing', observationType: 'walkthrough', observedAt: daysBefore(referenceTime, 18), componentId: 'danielson.framework.component.3b', targetSkillIds: ['danielson.tlac.skill.cold-call'], rating: 1 }),
         observation({ id: 'noah-walkthrough-2', teacherUsername: 'demo.teacher.developing', observationType: 'walkthrough', observedAt: daysBefore(referenceTime, 10), componentId: 'danielson.framework.component.3b', targetSkillIds: ['danielson.tlac.skill.stretch-it'], rating: 2 }),
+        observation({ id: 'noah-walkthrough-3', teacherUsername: 'demo.teacher.developing', observationType: 'walkthrough', observedAt: daysBefore(referenceTime, 5), componentId: 'danielson.framework.component.3c', targetSkillIds: ['danielson.tlac.skill.turn-and-talk'], rating: 2 }),
       ],
       publicComments: [], privateComments: [], responses: [], gbf: null, pip: null,
     },
