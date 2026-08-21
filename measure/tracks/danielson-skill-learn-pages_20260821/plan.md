@@ -20,27 +20,27 @@
 
 ## Phase 2: Test
 
-- [~] Task: Write catalog and route Red tests.
-    - [ ] Test exactly 63 unique approved IDs.
-    - [ ] Test exact parity with `APPROVED_TLAC_SOURCE_INVENTORY`.
-    - [ ] Test title and component parity.
-    - [ ] Test that no supplemental ID enters the catalog.
-    - [ ] Test URL normalization for plain and canonical skill IDs.
-    - [ ] Test the known and unknown slug behavior.
-    - [ ] Run the focused tests and confirm Red before production changes.
+- [x] Task: Write catalog and route Red tests. [e5b9f96]
+    - [x] Test exactly 63 unique approved IDs.
+    - [x] Test exact parity with `APPROVED_TLAC_SOURCE_INVENTORY`.
+    - [x] Test title and component parity.
+    - [x] Test that no supplemental ID enters the catalog.
+    - [x] Test URL normalization for plain and canonical skill IDs.
+    - [x] Test the known and unknown slug behavior.
+    - [x] Run the focused tests and confirm Red before production changes.
 
-- [ ] Task: Write interface and integration Red tests.
-    - [ ] Test 63 unique links on the Learn index.
-    - [ ] Test the Cold Call title, alignment, description, steps, source, and book reference.
-    - [ ] Test that an empty video ID renders no iframe.
-    - [ ] Test semantic headings, list structure, and navigation labels.
-    - [ ] Test the authenticated header Learn link.
-    - [ ] Test direct Learn links in the report, graph, queue, walkthrough form, and improvement plan.
-    - [ ] Run the focused tests and confirm Red before production changes.
+- [x] Task: Write interface and integration Red tests. [e5b9f96]
+    - [x] Test 63 unique links on the Learn index.
+    - [x] Test the Cold Call title, alignment, description, steps, source, and book reference.
+    - [x] Test that an empty video ID renders no iframe.
+    - [x] Test semantic headings, list structure, and navigation labels.
+    - [x] Test the authenticated header Learn link.
+    - [x] Test direct Learn links in the report, graph, queue, walkthrough form, and improvement plan.
+    - [x] Run the focused tests and confirm Red before production changes.
 
 ## Phase 3: Implement
 
-- [ ] Task: Add the approved 63-module catalog.
+- [~] Task: Add the approved 63-module catalog.
     - [ ] Copy only the 63 modules exported by the approved MVP index.
     - [ ] Change only local type import paths.
     - [ ] Add the minimal catalog access functions.
