@@ -35,7 +35,7 @@ export function LoginForm({ redirectTo }: { redirectTo: string }) {
   }
 
   return (
-    <form className="form-stack" onSubmit={submit} noValidate>
+    <form className="form-stack" method="post" onSubmit={submit} noValidate>
       {error ? <div className="error-summary" role="alert">{error}</div> : null}
       <div className="field">
         <label htmlFor="username">Username</label>

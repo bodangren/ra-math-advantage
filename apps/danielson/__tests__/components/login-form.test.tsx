@@ -17,6 +17,13 @@ describe('LoginForm', () => {
     }));
   });
 
+  it('uses POST when the browser submits before client code loads', () => {
+    render(<LoginForm redirectTo="/" />);
+
+    expect(screen.getByRole('button', { name: 'Sign in' }).closest('form'))
+      .toHaveAttribute('method', 'post');
+  });
+
   it('follows the redirect returned by the server', async () => {
     render(<LoginForm redirectTo="/" />);
     fireEvent.change(screen.getByLabelText('Username'), { target: { value: 'teacher.one' } });
