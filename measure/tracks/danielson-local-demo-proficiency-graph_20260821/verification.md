@@ -4,9 +4,9 @@ Date: 2026-08-21
 
 ## Automated checks
 
-- Focused demo, projection, graph, component, report, and acceptance tests passed: 60 tests.
-- Full Danielson test suite passed: 332 tests in 49 files.
-- Coverage passed: 83.68 percent statements overall.
+- Focused review-fix demo, projection, graph, component, report, and acceptance tests passed: 66 tests.
+- Full Danielson test suite passed: 338 tests in 49 files.
+- Coverage passed: 84.17 percent statements, 72.57 percent branches, 90.51 percent functions, and 89.38 percent lines overall.
 - Danielson lint passed.
 - Danielson TypeScript passed.
 - Convex TypeScript passed.
@@ -15,6 +15,18 @@ Date: 2026-08-21
 - Quality parity check passed.
 - Measure Doctor passed.
 - `git diff --check` passed.
+
+## Review-fix checks
+
+- Seeded attention summaries are written for all seven demo teachers.
+- Noah's seeded summary retains ratings 1, 2, and 2 for his three observed techniques.
+- Formal Q4 component evidence covers all 22 components for the experienced scenarios.
+- Portfolio and teacher reports use the existing formal component projection and preserve the 22-component rule.
+- Report, graph, and walkthrough queue priority overlays use the same PIP and GBF rules.
+- The SVG exposes a named group and keeps its node buttons in the accessibility tree.
+- Seed conflicts preserve their reason and return a failing process status.
+- The documented `.env.local` password path is covered by the seed-script tests.
+- The Danielson-local installer residue and duplicate app guidance files were removed.
 
 ## Local Convex checks
 

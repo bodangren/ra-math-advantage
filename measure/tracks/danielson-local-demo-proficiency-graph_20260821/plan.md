@@ -319,29 +319,29 @@ occurs:
 
 ## Phase: Review Fixes
 
-- [~] Task: Reconcile seeded attention summaries and report priorities.
-    - [ ] Refresh attention summaries after all demo evidence and GBF records exist.
-    - [ ] Apply the existing PIP and GBF priority overlays before report ranking.
-    - [ ] Add behavioral coverage for seeded summaries and report target alignment.
+- [x] Task: Reconcile seeded attention summaries and report priorities. [a7019238]
+    - [x] Refresh attention summaries after all demo evidence and GBF records exist.
+    - [x] Apply the existing PIP and GBF priority overlays before report ranking.
+    - [x] Add behavioral coverage for seeded summaries and report target alignment.
 
-- [ ] Task: Make the demo produce truthful 22-component proficiency states.
-    - [ ] Preserve the 22-component completion rule.
-    - [ ] Add component-level formal evidence for the experienced demo scenarios.
-    - [ ] Use formal component evidence only when skill evidence cannot determine a component state.
-    - [ ] Add behavioral coverage for Proficient, Below Proficient, and Not Enough Evidence reports.
+- [x] Task: Make the demo produce truthful 22-component proficiency states. [a7019238]
+    - [x] Preserve the 22-component completion rule.
+    - [x] Add component-level formal evidence for the experienced demo scenarios.
+    - [x] Use formal component evidence only when skill evidence cannot determine a component state.
+    - [x] Add behavioral coverage for Proficient, Below Proficient, and Not Enough Evidence reports.
 
-- [ ] Task: Fix graph accessibility, visible status, and view transforms.
-    - [ ] Preserve interactive SVG node roles in the accessibility tree.
-    - [ ] Show state text and priority details without selection or color.
-    - [ ] Convert wheel coordinates to view-box units.
-    - [ ] Add wheel, zoom-limit, Fit graph, Reset view, and bounded-label coverage.
+- [x] Task: Fix graph accessibility, visible status, and view transforms. [a7019238]
+    - [x] Preserve interactive SVG node roles in the accessibility tree.
+    - [x] Show state text and priority details without selection or color.
+    - [x] Convert wheel coordinates to view-box units.
+    - [x] Add wheel, zoom-limit, Fit graph, Reset view, and bounded-label coverage.
 
-- [ ] Task: Fix seed setup and remove installer residue.
-    - [ ] Load the documented local password configuration.
-    - [ ] Return a failing process status for seed conflicts and preserve the reason.
-    - [ ] Remove generated installer residue and mismatched audit-only guidance.
+- [x] Task: Fix seed setup and remove installer residue. [a7019238]
+    - [x] Load the documented local password configuration.
+    - [x] Return a failing process status for seed conflicts and preserve the reason.
+    - [x] Remove generated installer residue and mismatched audit-only guidance.
 
-- [ ] Task: Run and record the review-fix gates.
-    - [ ] Run focused and full Danielson tests.
-    - [ ] Run lint, TypeScript, Convex TypeScript, build, boundary, parity, Doctor, and diff checks.
-    - [ ] Record the review-fix verification and update the task hashes.
+- [x] Task: Run and record the review-fix gates. [a7019238]
+    - [x] Run focused and full Danielson tests.
+    - [x] Run lint, TypeScript, Convex TypeScript, build, boundary, parity, Doctor, and diff checks.
+    - [x] Record the review-fix verification and update the task hashes.
