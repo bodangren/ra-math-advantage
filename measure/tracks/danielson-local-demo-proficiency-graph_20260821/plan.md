@@ -409,3 +409,18 @@ occurs:
     - [x] Verify the local browser portfolio and report flow at desktop and narrow viewports.
     - [x] Record actual test totals and the authenticated browser result.
     - [x] Complete an independent review of query count, evidence consistency, capacity handling, and scope limits.
+
+## Phase: Pilot Account Sign-in Correction
+
+- [~] Task: Show pilot account credentials on the local login page.
+    - [ ] Reuse the existing demo username list.
+    - [ ] Read the shared password from the server environment.
+    - [ ] Show the pilot account panel only for a local Convex deployment.
+    - [ ] Keep the standard login form unchanged.
+    - [ ] Add behavioral tests for the local and hosted deployment cases.
+
+- [ ] Task: Verify and close the correction.
+    - [ ] Run the focused tests.
+    - [ ] Run Danielson lint and TypeScript.
+    - [ ] Verify the local login page in the in-app browser.
+    - [ ] Run Measure Doctor and `git diff --check`.
