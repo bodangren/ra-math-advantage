@@ -31,7 +31,11 @@ function nodeRadius(node: ProficiencyGraphNode) {
 }
 
 function nodeLabel(node: ProficiencyGraphNode) {
-  return `${node.title}: ${stateLabel(node.state)}`;
+  return `${node.title}: ${stateLabel(node.state)}${node.due ? ': Due' : ''}`;
+}
+
+function nodeStatusLabel(node: ProficiencyGraphNode) {
+  return `${stateLabel(node.state)}${node.due ? ' · Due' : ''}`;
 }
 
 function visibleNodeTitle(node: ProficiencyGraphNode) {
@@ -44,12 +48,36 @@ function formatViewValue(value: number) {
   return Number(value.toFixed(2));
 }
 
+function screenToViewBoxPoint(
+  svg: SVGSVGElement,
+  clientX: number,
+  clientY: number,
+) {
+  const transform = svg.getScreenCTM?.();
+  if (transform) {
+    const inverse = transform.inverse();
+    return {
+      x: inverse.a * clientX + inverse.c * clientY + inverse.e,
+      y: inverse.b * clientX + inverse.d * clientY + inverse.f,
+    };
+  }
+  const rect = svg.getBoundingClientRect();
+  const size = Math.max(Math.min(rect.width, rect.height), 1);
+  const offsetX = rect.left + (rect.width - size) / 2;
+  const offsetY = rect.top + (rect.height - size) / 2;
+  return {
+    x: (clientX - offsetX) * VIEWBOX_SIZE / size - VIEWBOX_SIZE / 2,
+    y: (clientY - offsetY) * VIEWBOX_SIZE / size - VIEWBOX_SIZE / 2,
+  };
+}
+
 export function TeacherProficiencyGraph({
   currentProficiency,
 }: {
   currentProficiency: CurrentProficiency;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const svgRef = useRef<SVGSVGElement>(null);
   const dragRef = useRef<{ pointerId: number; x: number; y: number; originX: number; originY: number } | null>(null);
   const [expandedComponentId, setExpandedComponentId] = useState<string | undefined>();
   const [selectedNodeId, setSelectedNodeId] = useState<string | undefined>();
@@ -99,10 +127,13 @@ export function TeacherProficiencyGraph({
   }
 
   function startPan(event: React.PointerEvent<SVGGElement>) {
+    const svg = svgRef.current;
+    if (!svg) return;
+    const point = screenToViewBoxPoint(svg, event.clientX, event.clientY);
     dragRef.current = {
       pointerId: event.pointerId,
-      x: event.clientX,
-      y: event.clientY,
+      x: point.x,
+      y: point.y,
       originX: view.x,
       originY: view.y,
     };
@@ -112,10 +143,13 @@ export function TeacherProficiencyGraph({
   function movePan(event: React.PointerEvent<SVGGElement>) {
     const drag = dragRef.current;
     if (!drag || drag.pointerId !== event.pointerId) return;
+    const svg = svgRef.current;
+    if (!svg) return;
+    const point = screenToViewBoxPoint(svg, event.clientX, event.clientY);
     setView((previous) => ({
       ...previous,
-      x: drag.originX + (event.clientX - drag.x),
-      y: drag.originY + (event.clientY - drag.y),
+      x: drag.originX + (point.x - drag.x),
+      y: drag.originY + (point.y - drag.y),
     }));
   }
 
@@ -125,11 +159,9 @@ export function TeacherProficiencyGraph({
 
   function handleWheel(event: React.WheelEvent<SVGSVGElement>) {
     event.preventDefault();
-    const rect = event.currentTarget.getBoundingClientRect();
-    const width = Math.max(rect.width, 1);
-    const height = Math.max(rect.height, 1);
-    const pointerX = (event.clientX - (rect.left + width / 2)) * VIEWBOX_SIZE / width;
-    const pointerY = (event.clientY - (rect.top + height / 2)) * VIEWBOX_SIZE / height;
+    const pointer = screenToViewBoxPoint(event.currentTarget, event.clientX, event.clientY);
+    const pointerX = pointer.x;
+    const pointerY = pointer.y;
     setView((previous) => {
       const nextScale = Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, previous.scale + (event.deltaY < 0 ? 0.1 : -0.1)));
       const factor = nextScale / previous.scale;
@@ -173,6 +205,7 @@ export function TeacherProficiencyGraph({
       </div>
       <div ref={containerRef} className="teacher-proficiency-graph-canvas">
         <svg
+          ref={svgRef}
           role="group"
           aria-labelledby="teacher-proficiency-graph-svg-label"
           viewBox={`${-VIEWBOX_SIZE / 2} ${-VIEWBOX_SIZE / 2} ${VIEWBOX_SIZE} ${VIEWBOX_SIZE}`}
@@ -220,7 +253,7 @@ export function TeacherProficiencyGraph({
                 {node.kind === 'component' ? <title>{node.title}</title> : null}
                 <circle r={nodeRadius(node)} />
                 <text className="teacher-proficiency-graph-node-title" y={nodeRadius(node) + 20}>{visibleNodeTitle(node)}</text>
-                <text className="teacher-proficiency-graph-node-state" y={nodeRadius(node) + 37}>{stateLabel(node.state)}</text>
+                <text className="teacher-proficiency-graph-node-state" y={nodeRadius(node) + 37}>{nodeStatusLabel(node)}</text>
                 {node.kind === 'skill' && node.priorityRank ? (
                   <text className="teacher-proficiency-graph-node-priority" y={nodeRadius(node) + 54}>Priority {node.priorityRank}</text>
                 ) : null}

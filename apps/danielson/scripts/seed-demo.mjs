@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
+import { parseEnv } from 'node:util';
 import { createPasswordCredential } from './password-hash.mjs';
 
 export const DEMO_USERNAMES = [
@@ -17,7 +18,7 @@ export const DEMO_USERNAMES = [
 
 /** @param {Record<string, string | undefined>} [env] @param {string | null} [envFileText] */
 export function requireDemoPassword(env = process.env, envFileText = null) {
-  const fileValues = envFileText === null ? readLocalEnvFile() : parseEnvFile(envFileText);
+  const fileValues = envFileText === null ? readLocalEnvFile() : parseEnv(envFileText);
   const password = env.DANIELSON_DEMO_PASSWORD || fileValues.DANIELSON_DEMO_PASSWORD;
   if (typeof password !== 'string' || password.length === 0) {
     throw new Error('DANIELSON_DEMO_PASSWORD is required');
@@ -35,21 +36,9 @@ export function isLocalConvexUrl(value) {
   }
 }
 
-function parseEnvFile(value) {
-  return Object.fromEntries(value.split(/\r?\n/)
-    .map((line) => line.trim())
-    .filter((line) => line && !line.startsWith('#'))
-    .map((line) => {
-      const separator = line.indexOf('=');
-      return separator < 0
-        ? [line, '']
-        : [line.slice(0, separator).trim(), line.slice(separator + 1).trim()];
-    }));
-}
-
 function readLocalEnvFile() {
   try {
-    return parseEnvFile(readFileSync(new URL('../.env.local', import.meta.url), 'utf8'));
+    return parseEnv(readFileSync(new URL('../.env.local', import.meta.url), 'utf8'));
   } catch {
     return {};
   }
@@ -59,7 +48,7 @@ function readLocalEnvFile() {
 export function readConvexUrl(env = process.env, envFileText = null) {
   const fileValues = envFileText === null
     ? readLocalEnvFile()
-    : parseEnvFile(envFileText);
+    : parseEnv(envFileText);
   const value = env.NEXT_PUBLIC_CONVEX_URL || fileValues.NEXT_PUBLIC_CONVEX_URL;
   if (!value || !isLocalConvexUrl(value)) {
     throw new Error('NEXT_PUBLIC_CONVEX_URL must be a local Convex URL');

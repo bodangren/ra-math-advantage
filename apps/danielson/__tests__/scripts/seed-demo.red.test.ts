@@ -73,6 +73,16 @@ describe('local demo seed command boundary', () => {
       .toBe('http://127.0.0.1:3210');
   });
 
+  it('uses dotenv syntax for exports, quotes, and inline comments', () => {
+    const envFile = [
+      'export DANIELSON_DEMO_PASSWORD="demo # secret" # local demo password',
+      "NEXT_PUBLIC_CONVEX_URL='http://127.0.0.1:3210' # local Convex",
+    ].join('\n');
+
+    expect(requireDemoPassword({}, envFile)).toBe('demo # secret');
+    expect(readConvexUrl({}, envFile)).toBe('http://127.0.0.1:3210');
+  });
+
   it('preserves a seed conflict reason and returns a failing exit code', () => {
     const output = formatSeedOutput({
       kind: 'conflict',

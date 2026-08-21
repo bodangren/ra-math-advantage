@@ -31,6 +31,10 @@ import {
   projectPortfolioRow,
 } from '../lib/reporting/projections';
 import {
+  latestFormalRecord,
+  projectLatestFormalComponentEvidence,
+} from '../lib/reporting/formal-evidence';
+import {
   improvementPlanProgressValidator,
   publicImprovementPlanProgressValidator,
   readOrganizationActiveImprovementPlans,
@@ -42,7 +46,6 @@ import {
   readTeacherGbfAssignment,
 } from './gbf';
 import { projectGbfProgress } from '../lib/gbf/progress';
-import { isDanielsonRating } from '../lib/proficiency/rating';
 
 const MAX_TEACHERS = 250;
 const MAX_ACCOUNTS = 1_000;
@@ -50,6 +53,8 @@ const MAX_SCOPE_ROWS = 2_000;
 const MAX_ATTENTION_SUMMARIES = 250;
 const MAX_TEACHER_ROWS = 200;
 const MAX_HISTORY_ROWS = 2_000;
+const MAX_FORMAL_RECORDS_PER_TYPE = 4;
+const MAX_FORMAL_AMENDMENTS_PER_RECORD = 100;
 const MAX_PAGE_SIZE = 50;
 
 const deniedValidator = v.object({ kind: v.literal('denied'), reason: v.string() });
@@ -338,6 +343,48 @@ function amendmentFromRow(row: Doc<'observation_amendments'>): ObservationAmendm
   };
 }
 
+async function readPortfolioFormalEvidence(
+  ctx: DbCtx,
+  organizationId: Id<'organizations'>,
+  profiles: readonly Doc<'teacher_profiles'>[],
+) {
+  const formalRows = await Promise.all(profiles.flatMap((profile) => (
+    (['formal_q1', 'formal_q4'] as const).map((observationType) => ctx.db.query('observation_records')
+      .withIndex('by_org_teacher_type_year_status', (query) => query
+        .eq('organizationId', organizationId)
+        .eq('teacherProfileId', profile._id)
+        .eq('observationType', observationType))
+      .order('desc')
+      .take(MAX_FORMAL_RECORDS_PER_TYPE))
+  )));
+  const candidates = formalRows.flatMap((rows) => rows.flatMap((row) => {
+    if (row.status !== 'submitted') return [];
+    return [{ row, record: submittedFromRow(row) }];
+  }));
+  const candidateAmendments = await Promise.all(candidates.map(async ({ row, record }) => ({
+    teacherProfileId: record.teacherProfileId,
+    record,
+    amendments: (await ctx.db.query('observation_amendments')
+      .withIndex('by_org_observation_version', (query) => query
+        .eq('organizationId', organizationId)
+        .eq('observationId', row._id))
+      .order('asc')
+      .take(MAX_FORMAL_AMENDMENTS_PER_RECORD))
+      .map(amendmentFromRow),
+  })));
+  const byTeacher = new Map<string, typeof candidateAmendments>();
+  for (const candidate of candidateAmendments) {
+    byTeacher.set(candidate.teacherProfileId, [
+      ...(byTeacher.get(candidate.teacherProfileId) ?? []),
+      candidate,
+    ]);
+  }
+  return new Map([...byTeacher.entries()].map(([teacherProfileId, observations]) => [
+    teacherProfileId,
+    projectLatestFormalComponentEvidence(observations),
+  ]));
+}
+
 function commentFromRow(
   row: Doc<'observation_public_comments'> | Doc<'observation_private_comments'>,
 ) {
@@ -455,7 +502,7 @@ export const readLeadershipPortfolio = internalQuery({
       return { kind: 'portfolio_capacity_exceeded' as const };
     }
     const organizationWide = supervisorRoles.includes('school_head') || supervisorRoles.includes('slt');
-    const [accounts, summaries, gbfAssignments, observations] = await Promise.all([
+    const [accounts, summaries, gbfAssignments, formalEvidenceByTeacher] = await Promise.all([
       ctx.db.query('accounts')
         .withIndex('by_organizationId_and_isActive', (query) => query
           .eq('organizationId', actor.organizationId)
@@ -465,10 +512,7 @@ export const readLeadershipPortfolio = internalQuery({
         .withIndex('by_organizationId', (query) => query.eq('organizationId', actor.organizationId))
         .take(MAX_ATTENTION_SUMMARIES + 1),
       readOrganizationCurrentGbfAssignments(ctx, actor.organizationId),
-      ctx.db.query('observation_records')
-        .withIndex('by_org_observer_status', (query) => query
-          .eq('organizationId', actor.organizationId))
-        .take(MAX_HISTORY_ROWS + 1),
+      readPortfolioFormalEvidence(ctx, actor.organizationId, profiles),
     ]);
     if (gbfAssignments.kind !== 'allowed') {
       return { kind: 'portfolio_capacity_exceeded' as const };
@@ -510,7 +554,6 @@ export const readLeadershipPortfolio = internalQuery({
       || hodAssignments.length > MAX_SCOPE_ROWS
       || coachAssignments.length > MAX_SCOPE_ROWS
       || summaries.length > MAX_ATTENTION_SUMMARIES
-      || observations.length > MAX_HISTORY_ROWS
     ) return { kind: 'portfolio_capacity_exceeded' as const };
 
     const activeDepartmentIds = new Set(departments.map((row) => String(row._id)));
@@ -533,21 +576,6 @@ export const readLeadershipPortfolio = internalQuery({
       String(summary.teacherProfileId),
       summary.targets.map((target) => priorityAtClock(target, now)),
     ]));
-    const formalByTeacher = new Map<string, Doc<'observation_records'>>();
-    for (const observation of observations) {
-      if (observation.status !== 'submitted'
-        || (observation.observationType !== 'formal_q1' && observation.observationType !== 'formal_q4')) continue;
-      const teacherId = String(observation.teacherProfileId);
-      const current = formalByTeacher.get(teacherId);
-      const observationAt = observation.submittedAt ?? observation.updatedAt;
-      const currentAt = current?.submittedAt ?? current?.updatedAt ?? 0;
-      if (!current
-        || (observation.observationType === 'formal_q4' && current.observationType === 'formal_q1')
-        || (observation.observationType === current.observationType
-          && observationAt > currentAt)) {
-        formalByTeacher.set(teacherId, observation);
-      }
-    }
     const rows = profiles.flatMap((profile) => {
       const teacherProfileId = String(profile._id);
       const inScope = organizationWide
@@ -586,16 +614,6 @@ export const readLeadershipPortfolio = internalQuery({
           now,
           baseGraph,
         );
-      const formal = formalByTeacher.get(teacherProfileId);
-      const formalEvidence = formal?.items.flatMap((item) => (
-        item.outcome?.kind === 'rated' && isDanielsonRating(item.outcome.rating)
-          ? [{
-              componentId: item.componentId,
-              rawRating: item.outcome.rating,
-              sourceRecordId: String(formal._id),
-            }]
-          : []
-      )) ?? [];
       const gbf = projectGbfProgress({
         assignment: gbfAssignments.assignmentsByTeacher.get(teacherProfileId) ?? null,
         priorities,
@@ -605,7 +623,7 @@ export const readLeadershipPortfolio = internalQuery({
         displayName: account.displayName,
         priorities,
         now,
-        componentEvidence: formalEvidence,
+        componentEvidence: formalEvidenceByTeacher.get(teacherProfileId) ?? [],
         improvementPlan,
         gbf,
       })];
@@ -703,22 +721,15 @@ async function buildPublicTeacherReport(
     : improvementPlan;
   const submittedRecords = records.map(submittedFromRow);
   const amendmentRows = amendments.map(amendmentFromRow);
-  const latestFormal = (type: 'formal_q1' | 'formal_q4') => submittedRecords
-    .filter((record) => record.observationType === type)
-    .sort((left, right) => right.submittedAt - left.submittedAt)[0];
-  const formalRecord = latestFormal('formal_q4') ?? latestFormal('formal_q1');
-  const formalEvidence = formalRecord
-    ? projectEffectiveObservation(
-        formalRecord,
-        amendmentRows.filter((row) => row.observationId === formalRecord.observationId),
-      ).items.flatMap((item) => item.outcome?.kind === 'rated'
-        ? [{
-            componentId: item.componentId,
-            rawRating: item.outcome.rating,
-            sourceRecordId: formalRecord.observationId,
-          }]
-        : [])
-    : [];
+  const latestFormal = (type: 'formal_q1' | 'formal_q4') => latestFormalRecord(submittedRecords, type);
+  const formalEvidence = projectLatestFormalComponentEvidence(
+    submittedRecords
+      .filter((record) => record.observationType === 'formal_q1' || record.observationType === 'formal_q4')
+      .map((record) => ({
+        record,
+        amendments: amendmentRows.filter((row) => row.observationId === record.observationId),
+      })),
+  );
   const rawPriorities = projectTeacherPriority(
     String(teacher._id),
     cards.map((row) => row.card) as never,

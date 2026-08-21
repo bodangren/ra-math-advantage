@@ -160,6 +160,30 @@ describe('local Danielson Convex demo seed', () => {
     for (const [table, count] of counts) expect(db.rows(table)).toHaveLength(count);
   });
 
+  it('requires a reset when the legacy organization has only identity rows', async () => {
+    const db = new MemoryDb();
+    db.seed('organizations', 'organizations:legacy-demo', {
+      slug: 'danielson-school',
+      name: 'Danielson School',
+      isActive: true,
+    });
+    for (const [index, username] of DEMO_USERNAMES.entries()) {
+      db.seed(`accounts`, `accounts:legacy-${index}`, {
+        organizationId: 'organizations:legacy-demo',
+        username,
+        isActive: true,
+      });
+    }
+    const before = db.rows('accounts').length;
+
+    await expect(seed(db.context(), seedArgs())).resolves.toEqual({
+      kind: 'conflict',
+      reason: 'demo_reset_required',
+    });
+    expect(db.rows('accounts')).toHaveLength(before);
+    expect(db.rows('teacher_profiles')).toHaveLength(0);
+  });
+
   it('returns conflict without writing when the stable organization is mismatched', async () => {
     const db = new MemoryDb();
     db.seed('organizations', 'organizations:unrelated', {

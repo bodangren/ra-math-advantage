@@ -53,6 +53,9 @@ describe('TeacherProficiencyGraph', () => {
     expect(screen.getByRole('button', { name: 'Full screen' })).toBeInTheDocument();
     expect(screen.getAllByText('Below Proficient').length).toBeGreaterThan(0);
     expect(screen.getAllByText('Not enough evidence').length).toBeGreaterThan(0);
+    fireEvent.keyDown(screen.getByRole('button', { name: /1a: Applying Knowledge/ }), { key: 'Enter' });
+    expect(screen.getAllByText(/Below Proficient · Due/).length).toBeGreaterThan(0);
+    expect(screen.getByRole('button', { name: /Exemplar Planning: Below Proficient: Due/ })).toBeInTheDocument();
   });
 
   it('expands a component with pointer and keyboard activation', () => {
@@ -107,7 +110,7 @@ describe('TeacherProficiencyGraph', () => {
     expect(fetchSpy).not.toHaveBeenCalled();
   });
 
-  it('anchors wheel zoom in view-box units and clamps zoom controls', () => {
+  it('anchors wheel zoom in view-box units under a letterboxed SVG', () => {
     render(<TeacherProficiencyGraph currentProficiency={currentProficiency()} />);
     const svg = screen.getByRole('group', { name: /teacher proficiency graph/i });
     const viewport = screen.getByTestId('proficiency-graph-viewport');
@@ -122,9 +125,15 @@ describe('TeacherProficiencyGraph', () => {
       y: 0,
       toJSON: () => ({}),
     });
+    Object.defineProperty(svg, 'getScreenCTM', {
+      configurable: true,
+      value: () => ({
+        inverse: () => ({ a: 3.8, b: 0, c: 0, d: 3.8, e: -1_805, f: -950 }),
+      }),
+    });
 
-    fireEvent.wheel(svg, { clientX: 100, clientY: 250, deltaY: -100 });
-    expect(viewport.getAttribute('transform')).toContain('translate(75 0) scale(1.1)');
+    fireEvent.wheel(svg, { clientX: 350, clientY: 250, deltaY: -100 });
+    expect(viewport.getAttribute('transform')).toContain('translate(47.5 0) scale(1.1)');
 
     for (let index = 0; index < 20; index += 1) {
       fireEvent.click(screen.getByRole('button', { name: 'Zoom in' }));
@@ -135,6 +144,24 @@ describe('TeacherProficiencyGraph', () => {
       fireEvent.click(screen.getByRole('button', { name: 'Zoom out' }));
     }
     expect(viewport.getAttribute('transform')).toContain('scale(0.55)');
+  });
+
+  it('converts drag panning through the SVG screen transform', () => {
+    render(<TeacherProficiencyGraph currentProficiency={currentProficiency()} />);
+    const svg = screen.getByRole('group', { name: /teacher proficiency graph/i });
+    const viewport = screen.getByTestId('proficiency-graph-viewport');
+    Object.defineProperty(svg, 'getScreenCTM', {
+      configurable: true,
+      value: () => ({
+        inverse: () => ({ a: 3.8, b: 0, c: 0, d: 3.8, e: -1_805, f: -950 }),
+      }),
+    });
+
+    fireEvent.pointerDown(viewport, { clientX: 350, clientY: 250, pointerId: 7 });
+    fireEvent.pointerMove(viewport, { clientX: 400, clientY: 250, pointerId: 7 });
+    fireEvent.pointerUp(viewport, { clientX: 400, clientY: 250, pointerId: 7 });
+
+    expect(viewport.getAttribute('transform')).toContain('translate(190 0) scale(1)');
   });
 
   it('fits and resets the graph view', () => {

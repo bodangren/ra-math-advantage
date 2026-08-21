@@ -6,7 +6,7 @@ import { buildDemoScenario, type DemoObservation, type DemoTeacher } from '../li
 import { createCurrentGbfAssignment } from '../lib/gbf/progress';
 import { PIP_SOURCE_CONTRACT } from '../lib/improvement-plans/source';
 import { createDanielsonTeacherProficiencyPort } from '../lib/proficiency/convex-repository';
-import { buildDanielsonGraph } from '../lib/proficiency/graph';
+import { buildDanielsonGraph, DANIELSON_COMPONENT_IDS } from '../lib/proficiency/graph';
 import { processTeacherEvidence } from '../lib/proficiency/processor';
 import { refreshAttentionSummary } from './observations';
 
@@ -248,6 +248,64 @@ async function writePip(
   }
 }
 
+async function hasCorrectedDemoData(
+  ctx: MutationCtx,
+  organizationId: Id<'organizations'>,
+  scenario: ReturnType<typeof buildDemoScenario>,
+  accounts: Array<{ _id: Id<'accounts'>; username: string; organizationId: Id<'organizations'> } | null>,
+) {
+  const accountByUsername = new Map(accounts
+    .filter((account): account is NonNullable<typeof account> => account !== null)
+    .map((account) => [account.username, account]));
+  const profiles = await Promise.all(scenario.teachers.map((teacher) => {
+    const accountId = accountByUsername.get(teacher.username)?._id;
+    if (!accountId) return Promise.resolve(null);
+    return ctx.db.query('teacher_profiles')
+      .withIndex('by_accountId', (query) => query.eq('accountId', accountId))
+      .unique();
+  }));
+  if (profiles.some((profile) => !profile || profile.organizationId !== organizationId)) return false;
+
+  const summaries = await ctx.db.query('teacher_attention_summaries')
+    .withIndex('by_organizationId', (query) => query.eq('organizationId', organizationId))
+    .take(scenario.teachers.length + 1);
+  if (summaries.length !== scenario.teachers.length) return false;
+  const summaryTeacherIds = new Set(summaries.map((summary) => String(summary.teacherProfileId)));
+  if (profiles.some((profile) => !profile || !summaryTeacherIds.has(String(profile._id)))) return false;
+
+  const requiredFormalData = scenario.teachers.map((teacher, index) => {
+    const observation = teacher.observations.find((candidate) => (
+      candidate.observationType === 'formal_q4'
+      && candidate.componentRatings?.length === DANIELSON_COMPONENT_IDS.length
+    ));
+    return { observation, profile: profiles[index] };
+  }).filter((value): value is {
+    observation: NonNullable<typeof value.observation>;
+    profile: NonNullable<typeof value.profile>;
+  } => value.observation !== undefined && value.profile !== null);
+  if (requiredFormalData.length === 0) return false;
+
+  const formalRows = await Promise.all(requiredFormalData.map(({ observation, profile }) => (
+    ctx.db.query('observation_records')
+      .withIndex('by_org_teacher_type_year_status', (query) => query
+        .eq('organizationId', organizationId)
+        .eq('teacherProfileId', profile._id)
+        .eq('observationType', 'formal_q4')
+        .eq('schoolYear', observation.schoolYear)
+        .eq('status', 'submitted'))
+      .unique()
+  )));
+  return formalRows.every((row) => {
+    if (!row || row.items.length < DANIELSON_COMPONENT_IDS.length) return false;
+    const ratedComponents = new Set(row.items.flatMap((item) => (
+      item.outcome?.kind === 'rated' ? [item.componentId] : []
+    )));
+    return DANIELSON_COMPONENT_IDS.every((componentId) => (
+      ratedComponents.has(`danielson.framework.component.${componentId}`)
+    ));
+  });
+}
+
 export const seedLocalDemo = internalMutation({
   args: {
     organizationSlug: v.string(),
@@ -275,6 +333,9 @@ export const seedLocalDemo = internalMutation({
         .unique()));
       const complete = organization.name === args.organizationName
         && accounts.every((account) => account?.organizationId === organization._id);
+      if (complete && !(await hasCorrectedDemoData(ctx, organization._id, scenario, accounts))) {
+        return { kind: 'conflict' as const, reason: 'demo_reset_required' };
+      }
       return complete
         ? { kind: 'already_seeded' as const, organizationId: organization._id, usernames: [...scenario.accounts.map((account) => account.username)] }
         : { kind: 'conflict' as const, reason: 'organization_identity_conflict' };
