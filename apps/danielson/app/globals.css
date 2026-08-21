@@ -48,6 +48,7 @@ p { margin: 0 0 1rem; }
 .button.danger { border-color: var(--danger); background: var(--danger); }
 .button:disabled, button:disabled { cursor: wait; opacity: .65; }
 .form-stack { display: grid; gap: 1rem; }
+.pilot-accounts { margin-top: 2rem; }
 .field { display: grid; gap: .4rem; }
 label { font-weight: 600; }
 input, select, textarea { width: 100%; border: 1px solid var(--line); border-radius: .3rem; background: white; color: var(--ink); padding: .7rem .75rem; font: inherit; }
