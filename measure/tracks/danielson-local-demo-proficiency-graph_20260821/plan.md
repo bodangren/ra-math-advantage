@@ -56,7 +56,7 @@
 
 ## Phase 2: Test
 
-- [~] Task: Write Red tests for the demo scenario builder.
+- [x] Task: Write Red tests for the demo scenario builder. [83035f6d]
     - [ ] Create `apps/danielson/__tests__/demo/scenarios.red.test.ts`.
     - [ ] Use a fixed reference time.
     - [ ] Assert the organization slug and name.
@@ -68,7 +68,7 @@
     - [ ] Assert that all dates follow the required event order.
     - [ ] Assert that the fixture contains no real school or teacher data.
 
-- [ ] Task: Write Red tests for the local seed script.
+- [x] Task: Write Red tests for the local seed script. [3046cb1d]
     - [ ] Create `apps/danielson/__tests__/scripts/seed-demo.red.test.ts`.
     - [ ] Export small pure helpers from `apps/danielson/scripts/seed-demo.mjs` for tests.
     - [ ] Assert failure when `DANIELSON_DEMO_PASSWORD` is missing.
@@ -79,7 +79,7 @@
     - [ ] Assert that each credential gets a unique salt.
     - [ ] Add regression coverage for `apps/danielson/scripts/seed-admin.mjs` if password hashing moves to a shared app-local helper.
 
-- [ ] Task: Write Red Convex tests for demo seeding.
+- [x] Task: Write Red Convex tests for demo seeding. [3adbbafc]
     - [ ] Create `apps/danielson/__tests__/convex/demo.red.test.ts`.
     - [ ] Use the existing Danielson in-memory Convex test pattern.
     - [ ] Invoke the real internal mutation handler.
@@ -93,7 +93,7 @@
     - [ ] Assert the public comment, private comment, and teacher response records.
     - [ ] Assert the GBF assignment and due skills for Maya Chen.
 
-- [ ] Task: Write Red tests for the report priority projection and graph model.
+- [x] Task: Write Red tests for the report priority projection and graph model. [4ca69070]
     - [ ] Create `apps/danielson/__tests__/reporting/proficiency-graph-model.red.test.ts`.
     - [ ] Update `apps/danielson/__tests__/reporting/projections.red.test.ts`.
     - [ ] Assert that `priorityTargets` equals the first three results from `rankPriorityTargets()`.
@@ -106,7 +106,7 @@
     - [ ] Assert proficiency, due, evidence, and target fields on skill nodes.
     - [ ] Assert that the graph model contains no comment or response field.
 
-- [ ] Task: Write Red component tests for the SVG graph.
+- [x] Task: Write Red component tests for the SVG graph. [eff09f98]
     - [ ] Create `apps/danielson/__tests__/components/teacher-proficiency-graph.red.test.tsx`.
     - [ ] Render the component with a representative current proficiency fixture.
     - [ ] Assert one SVG with a useful accessible name.
@@ -123,7 +123,7 @@
     - [ ] Assert that pointer drag changes only the local SVG transform.
     - [ ] Assert that graph interaction performs no fetch or Convex call.
 
-- [ ] Task: Write Red report integration and privacy tests.
+- [x] Task: Write Red report integration and privacy tests. [aa554583]
     - [ ] Update `apps/danielson/__tests__/reporting/independent-review.red.test.tsx` or add one focused report test file.
     - [ ] Assert that `TeacherReportView` renders the graph for a teacher report.
     - [ ] Assert that the same component renders for a leadership report.
@@ -131,7 +131,7 @@
     - [ ] Inject sentinel private comment text and assert that it does not enter the graph props, SVG labels, or detail panel.
     - [ ] Assert that a self-view still has no private-comment property.
 
-- [ ] Task: Write Red sales-demo acceptance tests.
+- [~] Task: Write Red sales-demo acceptance tests.
     - [ ] Add a behavioral test that reads the seeded leadership portfolio.
     - [ ] Assert at least one Below Proficient teacher, one Proficient teacher, and one teacher with Not Enough Evidence.
     - [ ] Assert that Noah Williams has three walkthrough targets.
@@ -154,36 +154,36 @@
 
 ## Phase 3: Implement
 
-- [ ] Task: Implement the local credential helper and seed command.
-    - [ ] Create `apps/danielson/scripts/password-hash.mjs` only because two seed scripts need the same PBKDF2 code.
-    - [ ] Move the existing `seed-admin.mjs` hashing behavior to the helper without changing its production result.
-    - [ ] Create `apps/danielson/scripts/seed-demo.mjs`.
-    - [ ] Read `DANIELSON_DEMO_PASSWORD` and fail when it is missing.
-    - [ ] Read `NEXT_PUBLIC_CONVEX_URL` from the process environment or `apps/danielson/.env.local` with `node:fs`.
-    - [ ] Parse the URL with the native `URL` class and require a loopback host.
-    - [ ] Create one salted credential payload for each stable username.
-    - [ ] Call `demo:seedLocalDemo` without `--prod`.
-    - [ ] Print the result and username list without the password.
-    - [ ] Add `"seed:demo": "node scripts/seed-demo.mjs"` to `apps/danielson/package.json`.
-    - [ ] Add `"dev:stack": "convex dev --start 'vinext dev'"` to `apps/danielson/package.json`.
-    - [ ] Do not create a second process supervisor.
+- [x] Task: Implement the local credential helper and seed command. [0a578fe8]
+    - [x] Create `apps/danielson/scripts/password-hash.mjs` only because two seed scripts need the same PBKDF2 code.
+    - [x] Move the existing `seed-admin.mjs` hashing behavior to the helper without changing its production result.
+    - [x] Create `apps/danielson/scripts/seed-demo.mjs`.
+    - [x] Read `DANIELSON_DEMO_PASSWORD` and fail when it is missing.
+    - [x] Read `NEXT_PUBLIC_CONVEX_URL` from the process environment or `apps/danielson/.env.local` with `node:fs`.
+    - [x] Parse the URL with the native `URL` class and require a loopback host.
+    - [x] Create one salted credential payload for each stable username.
+    - [x] Call `demo:seedLocalDemo` without `--prod`.
+    - [x] Print the result and username list without the password.
+    - [x] Add `"seed:demo": "node scripts/seed-demo.mjs"` to `apps/danielson/package.json`.
+    - [x] Add `"dev:stack": "convex dev --start 'vinext dev'"` to `apps/danielson/package.json`.
+    - [x] Do not create a second process supervisor.
 
-- [ ] Task: Implement the internal Convex demo seed.
-    - [ ] Create `apps/danielson/convex/demo.ts`.
-    - [ ] Add exact argument and return validators.
-    - [ ] Keep `seedLocalDemo` as an `internalMutation`.
-    - [ ] Check for existing organization data before the first write.
-    - [ ] Return `already_seeded` only when the expected organization and account identities exist.
-    - [ ] Return `conflict` for unrelated or mismatched data.
-    - [ ] Insert the organization, accounts, credentials, roles, profiles, departments, memberships, HOD assignment, and coach assignments.
-    - [ ] Insert submitted observation records and comments with the current schema.
-    - [ ] Use `processTeacherEvidence()` with `createDanielsonTeacherProficiencyPort()` for rated and Not Enough Evidence events.
-    - [ ] Insert the GBF assignment with the current GBF contract.
-    - [ ] Insert active and closed PIP data with the current PIP contract.
-    - [ ] Keep all writes in the mutation transaction.
-    - [ ] Do not add a schema table, index, marker, log, or fixture registry.
+- [x] Task: Implement the internal Convex demo seed. [6d0e5676]
+    - [x] Create `apps/danielson/convex/demo.ts`.
+    - [x] Add exact argument and return validators.
+    - [x] Keep `seedLocalDemo` as an `internalMutation`.
+    - [x] Check for existing organization data before the first write.
+    - [x] Return `already_seeded` only when the expected organization and account identities exist.
+    - [x] Return `conflict` for unrelated or mismatched data.
+    - [x] Insert the organization, accounts, credentials, roles, profiles, departments, memberships, HOD assignment, and coach assignments.
+    - [x] Insert submitted observation records and comments with the current schema.
+    - [x] Use `processTeacherEvidence()` with `createDanielsonTeacherProficiencyPort()` for rated and Not Enough Evidence events.
+    - [x] Insert the GBF assignment with the current GBF contract.
+    - [x] Insert active and closed PIP data with the current PIP contract.
+    - [x] Keep all writes in the mutation transaction.
+    - [x] Do not add a schema table, index, marker, log, or fixture registry.
 
-- [ ] Task: Implement priority targets in the report projection.
+- [~] Task: Implement priority targets in the report projection.
     - [ ] Update `apps/danielson/lib/reporting/contracts.ts`.
     - [ ] Update `apps/danielson/lib/reporting/projections.ts`.
     - [ ] Import and reuse `rankPriorityTargets()`.
