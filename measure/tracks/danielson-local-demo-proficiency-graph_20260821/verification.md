@@ -109,3 +109,26 @@ Date: 2026-08-21
 - Measure Doctor passed.
 - `git diff --check` passed.
 - The in-app browser showed the complete pilot account table on the visible login page.
+
+## Visible proficiency data correction
+
+Date: 2026-08-21
+
+- The focused reporting and graph suite passed: 58 tests in 5 files.
+- The full Danielson suite passed: 357 tests in 51 files.
+- Danielson lint passed.
+- Danielson TypeScript passed.
+- Convex TypeScript passed.
+- The Danielson production build passed.
+- Measure Doctor passed.
+- `git diff --check` passed.
+
+The report projection now preserves a component rating, mapped points, and its
+evidence source when formal evidence supplies the current component state. The
+graph shows these values on each rated component. The selected-node panel shows
+the same values and links to the evidence record. Skill nodes keep their existing
+rating and point values. Domain and framework nodes do not use an average.
+
+The local Convex development process accepted the updated return validator. The
+in-app browser showed rating and point values for all 22 components. It also
+showed the selected component's rating, points, and evidence link.

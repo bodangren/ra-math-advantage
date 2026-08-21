@@ -427,18 +427,18 @@ occurs:
 
 ## Phase: Visible Proficiency Data Correction
 
-- [~] Task: Show the proficiency values that produce each graph state.
-    - [ ] Preserve a component rating, points, and evidence source when formal evidence supplies the current component state.
-    - [ ] Keep skill ratings and points on expanded skill nodes.
-    - [ ] Show rating and point text on graph nodes that have a rating.
-    - [ ] Include rating and point text in each rated node's accessible name.
-    - [ ] Show rating, points, and evidence in the selected-node details.
-    - [ ] Do not average ratings for domain or framework nodes.
-    - [ ] Add behavioral projection, model, component, and Convex return-validator tests.
+- [x] Task: Show the proficiency values that produce each graph state. [b7eee13e]
+    - [x] Preserve a component rating, points, and evidence source when formal evidence supplies the current component state.
+    - [x] Keep skill ratings and points on expanded skill nodes.
+    - [x] Show rating and point text on graph nodes that have a rating.
+    - [x] Include rating and point text in each rated node's accessible name.
+    - [x] Show rating, points, and evidence in the selected-node details.
+    - [x] Do not average ratings for domain or framework nodes.
+    - [x] Add behavioral projection, model, component, and Convex return-validator tests.
 
-- [ ] Task: Verify and close the visible proficiency correction.
-    - [ ] Run focused and full Danielson tests.
-    - [ ] Run Danielson lint, app TypeScript, and Convex TypeScript.
-    - [ ] Push the updated Convex functions to the local deployment.
-    - [ ] Verify component and skill values in the in-app browser.
-    - [ ] Run the Danielson build, Measure Doctor, and `git diff --check`.
+- [x] Task: Verify and close the visible proficiency correction. [verification.md]
+    - [x] Run focused and full Danielson tests.
+    - [x] Run Danielson lint, app TypeScript, and Convex TypeScript.
+    - [x] Push the updated Convex functions to the local deployment.
+    - [x] Verify component and skill values in the in-app browser.
+    - [x] Run the Danielson build, Measure Doctor, and `git diff --check`.
