@@ -27,9 +27,9 @@ export function SiteHeader({
   organizationName?: string;
   branding?: OrganizationBranding;
 }) {
-  const shellBranding = useOrganizationBranding();
-  const currentBranding = shellBranding ?? branding;
-  const currentOrganizationName = organizationName ?? currentBranding?.displayName;
+  const shellBrand = useOrganizationBranding();
+  const currentBranding = shellBrand.branding ?? branding;
+  const currentOrganizationName = shellBrand.organizationName ?? organizationName ?? currentBranding?.displayName;
 
   return (
     <header className="site-header">

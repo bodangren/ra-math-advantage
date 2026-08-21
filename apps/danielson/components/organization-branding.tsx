@@ -13,7 +13,10 @@ function profileBranding(metadata: Record<string, unknown> | null | undefined) {
     : null;
 }
 
-const OrganizationBrandingContext = createContext<OrganizationBrandingValue | undefined>(undefined);
+const OrganizationBrandingContext = createContext<{
+  branding?: OrganizationBrandingValue;
+  organizationName?: string;
+}>({});
 
 export function useOrganizationBranding() {
   return useContext(OrganizationBrandingContext);
@@ -22,19 +25,24 @@ export function useOrganizationBranding() {
 export function OrganizationBranding({
   children,
   publicBranding,
+  publicOrganizationName,
 }: {
   children: ReactNode;
   publicBranding?: OrganizationBrandingValue;
+  publicOrganizationName?: string;
 }) {
   const { profile } = useAuth();
   const branding = profileBranding(profile?.metadata) ?? publicBranding;
+  const organizationName = typeof profile?.metadata?.organizationName === 'string'
+    ? profile.metadata.organizationName
+    : publicOrganizationName;
   const style = branding ? {
     '--brand-primary': branding.primaryColor,
     '--brand-accent': branding.accentColor,
   } as CSSProperties : undefined;
 
   return (
-    <OrganizationBrandingContext.Provider value={branding}>
+    <OrganizationBrandingContext.Provider value={{ branding, organizationName }}>
       <div data-testid="organization-branding" style={style}>{children}</div>
     </OrganizationBrandingContext.Provider>
   );
