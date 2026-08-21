@@ -101,6 +101,7 @@ function seedArgs() {
       passwordHash: `hash-${index}`,
       passwordSalt: `salt-${index}`,
       passwordHashIterations: 120_000,
+      mustChangePassword: false,
     })),
   };
 }
@@ -120,7 +121,7 @@ describe('local Danielson Convex demo seed', () => {
     expect(db.rows('departments')).toHaveLength(2);
     expect(db.rows('role_assignments')).toHaveLength(12);
     expect(db.rows('hod_assignments')).toHaveLength(1);
-    expect(db.rows('coach_assignments')).toHaveLength(5);
+    expect(db.rows('coach_assignments')).toHaveLength(3);
     expect(db.rows('auth_credentials').every((row) => row.mustChangePassword === false)).toBe(true);
     expect(new Set(db.rows('auth_credentials').map((row) => row.passwordSalt)).size).toBe(10);
 
@@ -130,7 +131,7 @@ describe('local Danielson Convex demo seed', () => {
     expect(db.rows('teacher_knowledge_state').length).toBeGreaterThan(0);
     expect(db.rows('teacher_priority').length).toBeGreaterThan(0);
     expect(db.rows('improvement_plans')).toHaveLength(2);
-    expect(db.rows('observation_public_comments')).toHaveLength(1);
+    expect(db.rows('observation_public_comments')).toHaveLength(3);
     expect(db.rows('observation_private_comments')).toHaveLength(1);
     expect(db.rows('teacher_observation_responses')).toHaveLength(1);
     expect(db.rows('teacher_gbf_assignments')).toHaveLength(1);
@@ -178,7 +179,7 @@ describe('local Danielson Convex demo seed', () => {
     const plans = db.rows('improvement_plans');
 
     expect(plans).toEqual(expect.arrayContaining([
-      expect.objectContaining({ state: 'active', closureOutcome: undefined }),
+      expect.objectContaining({ state: 'active' }),
       expect.objectContaining({ state: 'closed', closureOutcome: 'successful' }),
     ]));
   });

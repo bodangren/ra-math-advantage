@@ -152,7 +152,7 @@ function activePip(referenceTime: number): DemoPip {
     targetCount: 2,
     targets: [
       { componentId: 'danielson.framework.component.3b', skillId: 'danielson.tlac.skill.cold-call', expectedRating: 3 },
-      { componentId: 'danielson.framework.component.3c', skillId: 'danielson.tlac.skill.stretch-it', expectedRating: 3 },
+      { componentId: 'danielson.framework.component.3b', skillId: 'danielson.tlac.skill.stretch-it', expectedRating: 3 },
     ],
     purpose: 'Support consistent evidence-based discussion and student thinking.',
     areasOfConcern: 'Walkthrough evidence shows inconsistent questioning and follow-through.',
@@ -174,7 +174,7 @@ function closedPip(referenceTime: number): DemoPip {
     reviewMeetingDate: calendarDate(daysBefore(referenceTime, 10)),
     targetCount: 2,
     targets: [
-      { componentId: 'danielson.framework.component.1e', skillId: 'danielson.tlac.skill.plan-for-error', expectedRating: 3 },
+      { componentId: 'danielson.framework.component.3e', skillId: 'danielson.tlac.skill.plan-for-error', expectedRating: 3 },
       { componentId: 'danielson.framework.component.3d', skillId: 'danielson.tlac.skill.show-me', expectedRating: 3 },
     ],
     purpose: 'Support reliable lesson preparation and whole-class assessment.',
@@ -232,7 +232,7 @@ export function buildDemoScenario(referenceTime: number): DemoScenario {
       walkthroughPriorityCount: 3, formalObservationTypes: [], responseCount: 0,
       observations: [
         observation({ id: 'noah-walkthrough-1', teacherUsername: 'demo.teacher.developing', observationType: 'walkthrough', observedAt: daysBefore(referenceTime, 18), componentId: 'danielson.framework.component.3b', targetSkillIds: ['danielson.tlac.skill.cold-call'], rating: 1 }),
-        observation({ id: 'noah-walkthrough-2', teacherUsername: 'demo.teacher.developing', observationType: 'walkthrough', observedAt: daysBefore(referenceTime, 10), componentId: 'danielson.framework.component.3c', targetSkillIds: ['danielson.tlac.skill.stretch-it'], rating: 2 }),
+        observation({ id: 'noah-walkthrough-2', teacherUsername: 'demo.teacher.developing', observationType: 'walkthrough', observedAt: daysBefore(referenceTime, 10), componentId: 'danielson.framework.component.3b', targetSkillIds: ['danielson.tlac.skill.stretch-it'], rating: 2 }),
       ],
       publicComments: [], privateComments: [], responses: [], gbf: null, pip: null,
     },
@@ -252,7 +252,7 @@ export function buildDemoScenario(referenceTime: number): DemoScenario {
       walkthroughPriorityCount: 3, formalObservationTypes: [], responseCount: 0,
       observations: [
         observation({ id: 'ethan-walkthrough-1', teacherUsername: 'demo.teacher.pip', observationType: 'walkthrough', observedAt: daysBefore(referenceTime, 20), componentId: 'danielson.framework.component.3b', targetSkillIds: ['danielson.tlac.skill.cold-call'], rating: 2 }),
-        observation({ id: 'ethan-walkthrough-2', teacherUsername: 'demo.teacher.pip', observationType: 'walkthrough', observedAt: daysBefore(referenceTime, 3), componentId: 'danielson.framework.component.3c', targetSkillIds: ['danielson.tlac.skill.stretch-it'], rating: 3 }),
+        observation({ id: 'ethan-walkthrough-2', teacherUsername: 'demo.teacher.pip', observationType: 'walkthrough', observedAt: daysBefore(referenceTime, 3), componentId: 'danielson.framework.component.3b', targetSkillIds: ['danielson.tlac.skill.stretch-it'], rating: 3 }),
       ],
       publicComments: ['Ethan has a clear support plan for the current review period.'], privateComments: ['Leadership will review Ethan\'s target evidence weekly.'], responses: [], gbf: null, pip: activePip(referenceTime),
     },
@@ -261,8 +261,8 @@ export function buildDemoScenario(referenceTime: number): DemoScenario {
       departmentKeys: ['primary-school'], experience: 'experienced', expectedState: 'proficient',
       walkthroughPriorityCount: 0, formalObservationTypes: [], responseCount: 1,
       observations: [
-        observation({ id: 'lina-walkthrough-1', teacherUsername: 'demo.teacher.growth', observationType: 'walkthrough', observedAt: daysBefore(referenceTime, 42), componentId: 'danielson.framework.component.1e', targetSkillIds: ['danielson.tlac.skill.plan-for-error'], rating: 2 }),
-        observation({ id: 'lina-walkthrough-2', teacherUsername: 'demo.teacher.growth', observationType: 'walkthrough', observedAt: daysBefore(referenceTime, 20), componentId: 'danielson.framework.component.1e', targetSkillIds: ['danielson.tlac.skill.plan-for-error'], rating: 3 }),
+        observation({ id: 'lina-walkthrough-1', teacherUsername: 'demo.teacher.growth', observationType: 'walkthrough', observedAt: daysBefore(referenceTime, 42), componentId: 'danielson.framework.component.3e', targetSkillIds: ['danielson.tlac.skill.plan-for-error'], rating: 2 }),
+        observation({ id: 'lina-walkthrough-2', teacherUsername: 'demo.teacher.growth', observationType: 'walkthrough', observedAt: daysBefore(referenceTime, 20), componentId: 'danielson.framework.component.3e', targetSkillIds: ['danielson.tlac.skill.plan-for-error'], rating: 3 }),
       ],
       publicComments: [], privateComments: [], responses: ['I used the planning check before the next lesson and saw a stronger result.'], gbf: null, pip: closedPip(referenceTime),
     },
