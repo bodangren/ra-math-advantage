@@ -37,7 +37,7 @@
     - [ ] Define pan, zoom, Fit graph, Reset view, full screen, selection, and expansion.
     - [ ] Define the accessible detailed list as a required companion view.
 
-- [~] Task: Confirm the minimum persistence boundary.
+- [x] Task: Confirm the minimum persistence boundary. [01d22e15]
     - [ ] Read `apps/danielson/convex/schema.ts` before editing any Convex file.
     - [ ] Check for `apps/danielson/convex/_generated/ai/guidelines.md`.
     - [ ] If the file is absent, run `npx convex ai-files install` from `apps/danielson/`.
@@ -48,7 +48,7 @@
     - [ ] Do not add an index for a seven-teacher fixture.
     - [ ] If the current schema cannot represent one required scenario, stop and report the exact field or relation that is missing.
 
-- [ ] Task: Measure - User Manual Verification 'Contract and Schema Definition' (Protocol in workflow.md).
+- [x] Task: Measure - User Manual Verification 'Contract and Schema Definition' (Protocol in workflow.md). [manual-contract-check]
     - [ ] Confirm that the account roster has ten accounts and seven teacher profiles.
     - [ ] Confirm that the scenario list includes new and experienced teachers.
     - [ ] Confirm that the scenario list includes teachers with and without a PIP.
@@ -56,7 +56,7 @@
 
 ## Phase 2: Test
 
-- [ ] Task: Write Red tests for the demo scenario builder.
+- [~] Task: Write Red tests for the demo scenario builder.
     - [ ] Create `apps/danielson/__tests__/demo/scenarios.red.test.ts`.
     - [ ] Use a fixed reference time.
     - [ ] Assert the organization slug and name.
