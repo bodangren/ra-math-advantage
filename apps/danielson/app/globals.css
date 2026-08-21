@@ -111,11 +111,16 @@ details[open] > summary { margin-bottom: 1rem; }
 .teacher-proficiency-graph-edge { stroke: var(--line); stroke-width: 2; opacity: .8; }
 .teacher-proficiency-graph-node { cursor: pointer; outline: none; }
 .teacher-proficiency-graph-node circle { fill: var(--surface); stroke: var(--forest); stroke-width: 3; }
-.teacher-proficiency-graph-node.score-red circle, .teacher-proficiency-graph-legend .score-red { fill: #a72f32; }
-.teacher-proficiency-graph-node.score-yellow circle, .teacher-proficiency-graph-legend .score-yellow { fill: #e5b93f; }
-.teacher-proficiency-graph-node.score-green circle, .teacher-proficiency-graph-legend .score-green { fill: #247154; }
-.teacher-proficiency-graph-node.score-blue circle, .teacher-proficiency-graph-legend .score-blue { fill: #2f68a2; }
-.teacher-proficiency-graph-node.score-neutral circle, .teacher-proficiency-graph-legend .score-neutral { fill: var(--surface); }
+.teacher-proficiency-graph-node.score-red circle { fill: #a72f32; }
+.teacher-proficiency-graph-node.score-yellow circle { fill: #e5b93f; }
+.teacher-proficiency-graph-node.score-green circle { fill: #247154; }
+.teacher-proficiency-graph-node.score-blue circle { fill: #2f68a2; }
+.teacher-proficiency-graph-node.score-neutral circle { fill: var(--surface); }
+.teacher-proficiency-graph-legend .score-red { background-color: #a72f32; }
+.teacher-proficiency-graph-legend .score-yellow { background-color: #e5b93f; }
+.teacher-proficiency-graph-legend .score-green { background-color: #247154; }
+.teacher-proficiency-graph-legend .score-blue { background-color: #2f68a2; }
+.teacher-proficiency-graph-legend .score-neutral { background-color: var(--surface); }
 .teacher-proficiency-graph-node.is-due circle { stroke-width: 5; }
 .teacher-proficiency-graph-node.is-selected circle { stroke: var(--forest); stroke-width: 7; }
 .teacher-proficiency-graph-node:focus-visible circle { stroke: var(--ochre); stroke-width: 7; }

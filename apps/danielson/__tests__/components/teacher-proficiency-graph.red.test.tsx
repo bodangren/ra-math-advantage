@@ -1,3 +1,6 @@
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+
 import { fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
@@ -38,6 +41,16 @@ afterEach(() => {
 });
 
 describe('TeacherProficiencyGraph', () => {
+  it('uses background colors for the HTML legend swatches', () => {
+    const stylesheet = readFileSync(resolve(process.cwd(), 'app/globals.css'), 'utf8');
+
+    expect(stylesheet).toMatch(/\.teacher-proficiency-graph-legend \.score-red\s*{\s*background-color:\s*#a72f32;/);
+    expect(stylesheet).toMatch(/\.teacher-proficiency-graph-legend \.score-yellow\s*{\s*background-color:\s*#e5b93f;/);
+    expect(stylesheet).toMatch(/\.teacher-proficiency-graph-legend \.score-green\s*{\s*background-color:\s*#247154;/);
+    expect(stylesheet).toMatch(/\.teacher-proficiency-graph-legend \.score-blue\s*{\s*background-color:\s*#2f68a2;/);
+    expect(stylesheet).toMatch(/\.teacher-proficiency-graph-legend \.score-neutral\s*{\s*background-color:\s*var\(--surface\);/);
+  });
+
   it('shows rounded scores inside nodes with text-backed color bands', () => {
     render(<TeacherProficiencyGraph currentProficiency={currentProficiency()} />);
 
