@@ -89,7 +89,7 @@ async function main() {
   const credentials = await createCredentialPayloads(DEMO_USERNAMES, password);
   const payload = {
     organizationSlug: 'danielson-school',
-    organizationName: 'Danielson School',
+    organizationName: 'Haidian Kaiwen Academy',
     referenceTime: Date.now(),
     credentials,
   };

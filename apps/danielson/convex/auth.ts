@@ -86,6 +86,15 @@ export const getAccountById = internalQuery({
       sharedSessionRole: sharedSessionRoleValidator,
       organizationId: v.id('organizations'),
       organizationName: v.union(v.string(), v.null()),
+      organizationBranding: v.union(
+        v.null(),
+        v.object({
+          displayName: v.string(),
+          logoPath: v.string(),
+          primaryColor: v.string(),
+          accentColor: v.string(),
+        }),
+      ),
       accountIsActive: v.boolean(),
       organizationIsActive: v.boolean(),
       credentialIsActive: v.boolean(),
@@ -107,6 +116,7 @@ export const getAccountById = internalQuery({
       sharedSessionRole: account.sharedSessionRole,
       organizationId: account.organizationId,
       organizationName: organization?.name ?? null,
+      organizationBranding: organization?.branding ?? null,
       accountIsActive: account.isActive,
       organizationIsActive: organization?.isActive ?? false,
       credentialIsActive: credential?.isActive ?? false,

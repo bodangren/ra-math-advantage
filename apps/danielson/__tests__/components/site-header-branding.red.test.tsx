@@ -9,6 +9,7 @@ vi.mock('@math-platform/app-shell', () => ({
 }));
 
 const { SiteHeader } = await import('../../components/site-header');
+const { OrganizationBranding } = await import('../../components/organization-branding');
 
 describe('SiteHeader organization brand', () => {
   beforeEach(() => vi.clearAllMocks());
@@ -28,7 +29,11 @@ describe('SiteHeader organization brand', () => {
       },
     });
 
-    render(<SiteHeader isAuthenticated showReports />);
+    render(
+      <OrganizationBranding>
+        <SiteHeader isAuthenticated showReports organizationName="Haidian Kaiwen Academy" />
+      </OrganizationBranding>,
+    );
 
     expect(screen.getByRole('img', { name: 'Haidian Kaiwen Academy logo' })).toHaveAttribute(
       'src',

@@ -191,6 +191,12 @@ export default defineSchema({
   organizations: defineTable({
     slug: v.string(),
     name: v.string(),
+    branding: v.optional(v.object({
+      displayName: v.string(),
+      logoPath: v.string(),
+      primaryColor: v.string(),
+      accentColor: v.string(),
+    })),
     isActive: v.boolean(),
     createdAt: v.number(),
     updatedAt: v.number(),

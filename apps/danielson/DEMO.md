@@ -1,6 +1,6 @@
 # Danielson Local Demo
 
-This demo uses fictional accounts and local Convex data. Do not use it with a cloud deployment.
+This demo uses the HDKWA brand with fictional accounts and local Convex data. Do not use it with a cloud deployment.
 
 ## Start the local demo
 
@@ -19,6 +19,8 @@ npm run seed:demo
 ```
 
 The first run returns `created`. A second run returns `already_seeded`. The command accepts only a loopback Convex URL.
+
+The seed creates the Haidian Kaiwen Academy organization. It uses the approved HDKWA logo, navy, and gold colors.
 
 Start the application and Convex together.
 

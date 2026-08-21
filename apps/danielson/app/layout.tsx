@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import { ConvexClientProvider, AuthProvider } from '@math-platform/app-shell';
+import { OrganizationBranding } from '@/components/organization-branding';
+import { HDKWA_BRANDING } from '@/lib/organization-branding';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -8,11 +10,14 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const publicBranding = process.env.CONVEX_DEPLOYMENT?.startsWith('local:') ? HDKWA_BRANDING : undefined;
   return (
     <html lang="en">
       <body>
         <ConvexClientProvider>
-          <AuthProvider>{children}</AuthProvider>
+          <AuthProvider>
+            <OrganizationBranding publicBranding={publicBranding}>{children}</OrganizationBranding>
+          </AuthProvider>
         </ConvexClientProvider>
       </body>
     </html>

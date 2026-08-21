@@ -1,6 +1,7 @@
 import type { DanielsonRole } from '../foundation/authorization';
 import type { ObservationPriorityReason, ObservationType } from '../observations/contracts';
 import { DANIELSON_COMPONENT_IDS } from '../proficiency/graph';
+import { HDKWA_BRANDING, HDKWA_ORGANIZATION_NAME, type OrganizationBranding } from '../organization-branding';
 
 export const DEMO_USERNAMES = [
   'demo.sysadmin',
@@ -97,7 +98,7 @@ export type DemoTeacher = {
 
 export type DemoScenario = {
   referenceTime: number;
-  organization: { slug: 'danielson-school'; name: 'Danielson School' };
+  organization: { slug: 'danielson-school'; name: typeof HDKWA_ORGANIZATION_NAME; branding: OrganizationBranding };
   accounts: DemoAccount[];
   departments: Array<{ key: string; name: string }>;
   departmentMemberships: Array<{ teacherUsername: DemoTeacherUsername; departmentKey: string }>;
@@ -286,7 +287,7 @@ export function buildDemoScenario(referenceTime: number): DemoScenario {
 
   return {
     referenceTime,
-    organization: { slug: 'danielson-school', name: 'Danielson School' },
+    organization: { slug: 'danielson-school', name: HDKWA_ORGANIZATION_NAME, branding: HDKWA_BRANDING },
     accounts,
     departments: [
       { key: 'mathematics', name: 'Mathematics' },

@@ -2,6 +2,7 @@ import { getSafePostSignInRedirect } from '@/lib/auth/login-policy';
 import { LoginForm } from '@/components/login-form';
 import { SiteHeader } from '@/components/site-header';
 import { DEMO_USERNAMES } from '@/lib/demo/scenarios';
+import { HDKWA_BRANDING, HDKWA_ORGANIZATION_NAME } from '@/lib/organization-branding';
 
 export default async function LoginPage({ searchParams }: { searchParams: Promise<{ redirect?: string }> }) {
   const params = await searchParams;
@@ -11,7 +12,10 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
     : undefined;
   return (
     <>
-      <SiteHeader />
+      <SiteHeader
+        organizationName={demoPassword ? HDKWA_ORGANIZATION_NAME : undefined}
+        branding={demoPassword ? HDKWA_BRANDING : undefined}
+      />
       <main id="main-content" className="page-shell">
         <div className="narrow card">
           <p className="eyebrow">Secure sign-in</p>
@@ -20,7 +24,7 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
           <LoginForm redirectTo={redirectTo} />
           {demoPassword ? (
             <section className="pilot-accounts" aria-labelledby="pilot-accounts-heading">
-              <h2 id="pilot-accounts-heading">Danielson School pilot accounts</h2>
+              <h2 id="pilot-accounts-heading">HDKWA pilot accounts</h2>
               <p>Use any pilot account below. Each account uses the listed password.</p>
               <div className="table-wrap">
                 <table>

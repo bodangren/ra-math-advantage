@@ -331,12 +331,16 @@ export const seedLocalDemo = internalMutation({
       const accounts = await Promise.all(scenario.accounts.map((account) => ctx.db.query('accounts')
         .withIndex('by_username', (query) => query.eq('username', account.username))
         .unique()));
-      const complete = organization.name === args.organizationName
+      const identityMatches = organization.name === args.organizationName
         && accounts.every((account) => account?.organizationId === organization._id);
-      if (complete && !(await hasCorrectedDemoData(ctx, organization._id, scenario, accounts))) {
+      const brandingMatches = organization.branding?.displayName === scenario.organization.branding.displayName
+        && organization.branding?.logoPath === scenario.organization.branding.logoPath
+        && organization.branding?.primaryColor === scenario.organization.branding.primaryColor
+        && organization.branding?.accentColor === scenario.organization.branding.accentColor;
+      if (identityMatches && (!brandingMatches || !(await hasCorrectedDemoData(ctx, organization._id, scenario, accounts)))) {
         return { kind: 'conflict' as const, reason: 'demo_reset_required' };
       }
-      return complete
+      return identityMatches
         ? { kind: 'already_seeded' as const, organizationId: organization._id, usernames: [...scenario.accounts.map((account) => account.username)] }
         : { kind: 'conflict' as const, reason: 'organization_identity_conflict' };
     }
@@ -354,6 +358,7 @@ export const seedLocalDemo = internalMutation({
     const createdOrganizationId = await ctx.db.insert('organizations', {
       slug: scenario.organization.slug,
       name: scenario.organization.name,
+      branding: scenario.organization.branding,
       isActive: true,
       createdAt: now,
       updatedAt: now,

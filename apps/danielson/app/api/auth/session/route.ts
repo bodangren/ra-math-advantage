@@ -33,7 +33,11 @@ export async function GET() {
         role: account.sharedSessionRole,
         display_name: account.displayName,
         avatar_url: null,
-        metadata: { danielsonRoles: context.roleAssignments.map((assignment: { role: string }) => assignment.role) },
+        metadata: {
+          danielsonRoles: context.roleAssignments.map((assignment: { role: string }) => assignment.role),
+          organizationName: account.organizationName,
+          organizationBranding: account.organizationBranding,
+        },
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
       },

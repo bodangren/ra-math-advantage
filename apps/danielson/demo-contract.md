@@ -14,7 +14,11 @@ production Convex deployment.
 | Field | Value |
 |---|---|
 | Slug | `danielson-school` |
-| Name | `Danielson School` |
+| Name | `Haidian Kaiwen Academy` |
+| Display name | `HDKWA` |
+| Logo | `/brands/hdkwa-logo.png` |
+| Primary color | `#003366` |
+| Accent color | `#C5A059` |
 | Departments | `Mathematics`, `Primary School` |
 | Reference time | One value for every generated date in one seed call |
 
