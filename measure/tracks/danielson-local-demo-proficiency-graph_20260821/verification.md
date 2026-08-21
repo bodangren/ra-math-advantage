@@ -41,6 +41,8 @@ Date: 2026-08-21
 - The local sign-in page loaded at `http://localhost:3000/auth/login`.
 - The authenticated graph path was not entered in the browser because the demo password was not typed into the browser session.
 - Automated component and report tests cover graph expansion, keyboard selection, evidence detail, zoom, pan, full screen, privacy, and the detailed companion list.
+- Browser verification confirmed the page title `Danielson Teacher Growth`, visible username and password fields, and a visible sign-in button.
+- Browser verification reported no console warnings or errors on the sign-in page.
 
 ## Second review verification
 
@@ -60,4 +62,4 @@ Date: 2026-08-21
 - Quality parity check passed.
 - `git diff --check` passed.
 
-The second-review implementation fixes the organization-wide observation scan, shared effective formal evidence projection, legacy seed detection, SVG screen transforms, due labels, database-backed sales acceptance coverage, and environment-file parsing. The browser remains unavailable for the authenticated sales path, so browser verification remains open.
+The second-review implementation fixes the organization-wide observation scan, shared effective formal evidence projection, legacy seed detection, SVG screen transforms, due labels, database-backed sales acceptance coverage, and environment-file parsing. The sign-in page is verified. The authenticated sales path remains open for browser verification.
