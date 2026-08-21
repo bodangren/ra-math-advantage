@@ -345,3 +345,29 @@ occurs:
     - [x] Run focused and full Danielson tests.
     - [x] Run lint, TypeScript, Convex TypeScript, build, boundary, parity, Doctor, and diff checks.
     - [x] Record the review-fix verification and update the task hashes.
+
+## Phase: Second Review Fixes
+
+- [~] Task: Bound formal evidence reads and project effective evidence consistently.
+    - [ ] Read only the formal records required by the portfolio projection.
+    - [ ] Select the latest effective rated component evidence by school year and event time.
+    - [ ] Apply amendments consistently in the portfolio and teacher report.
+
+- [ ] Task: Detect incomplete legacy demo data.
+    - [ ] Validate corrected summaries and formal component evidence in the existing-seed check.
+    - [ ] Return a clear reset-required conflict without modifying old data.
+
+- [ ] Task: Correct graph screen transforms and due text.
+    - [ ] Convert pointer and drag coordinates through the inverse screen transform matrix.
+    - [ ] Include due state in visible node text and accessible names.
+    - [ ] Add behavioral coverage for letterboxed wheel zoom, drag pan, and due labels.
+
+- [ ] Task: Add database-backed sales acceptance coverage.
+    - [ ] Seed the in-memory database through the real demo mutation.
+    - [ ] Read the real portfolio, queue, and teacher report handlers.
+    - [ ] Assert the required teacher states, targets, scopes, PIP, GBF, and response outcomes.
+
+- [ ] Task: Replace the custom environment parser and run second-review gates.
+    - [ ] Use the supported Node dotenv parser for `.env.local` values.
+    - [ ] Run focused and full Danielson tests, coverage, lint, TypeScript, Convex TypeScript, build, boundary, parity, Doctor, and diff checks.
+    - [ ] Record the results and task hashes.
