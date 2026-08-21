@@ -419,8 +419,8 @@ occurs:
     - [x] Keep the standard login form unchanged.
     - [x] Add behavioral tests for the local and hosted deployment cases.
 
-- [~] Task: Verify and close the correction.
+- [x] Task: Verify and close the correction. [verification.md]
     - [x] Run the focused tests.
     - [x] Run Danielson lint and TypeScript.
     - [x] Verify the local login page in the in-app browser.
-    - [ ] Run Measure Doctor and `git diff --check`.
+    - [x] Run Measure Doctor and `git diff --check`.

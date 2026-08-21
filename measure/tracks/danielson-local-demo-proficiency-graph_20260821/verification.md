@@ -92,3 +92,20 @@ The browser verified Noah's three priority targets in the report and graph. It v
 The browser verified the portfolio and report at a 390 by 844 viewport. The page did not have horizontal overflow. The browser found one pre-hydration login risk. The native `POST` form method and its regression test correct this risk. The only console warning was the expected warning for the local development token.
 
 The correction adds one required observation index. It adds no table, cache, audit system, hash, dependency, or runtime layer.
+
+## Pilot account login correction
+
+Date: 2026-08-21
+
+- The local login page shows all 10 pilot usernames and the shared password.
+- The page uses the existing demo username list.
+- The server reads the password from the local environment.
+- A hosted deployment does not render the pilot account panel.
+- The focused login tests passed: 5 tests in 2 files.
+- The full Danielson suite passed: 354 tests in 51 files.
+- Danielson lint passed.
+- Danielson TypeScript passed.
+- The Danielson production build passed.
+- Measure Doctor passed.
+- `git diff --check` passed.
+- The in-app browser showed the complete pilot account table on the visible login page.
