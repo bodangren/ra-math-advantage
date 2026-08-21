@@ -40,32 +40,32 @@
 
 ## Phase 3: Implement
 
-- [~] Task: Add the approved 63-module catalog.
-    - [ ] Copy only the 63 modules exported by the approved MVP index.
-    - [ ] Change only local type import paths.
-    - [ ] Add the minimal catalog access functions.
-    - [ ] Do not copy supplemental records or image assets.
-    - [ ] Run the catalog tests until Green.
+- [x] Task: Add the approved 63-module catalog. [4dc4161]
+    - [x] Copy only the 63 modules exported by the approved MVP index.
+    - [x] Change only local type import paths.
+    - [x] Add the minimal catalog access functions.
+    - [x] Do not copy supplemental records or image assets.
+    - [x] Run the catalog tests until Green.
 
-- [ ] Task: Add the Learn index and detail pages.
-    - [ ] Add the protected `/learn` server page.
-    - [ ] Group the index by domain and component.
-    - [ ] Add the protected `/learn/[slug]` server page.
-    - [ ] Render the explanation, action steps, optional details, quote, video, and book reference.
-    - [ ] Add previous, next, and index navigation.
-    - [ ] Add responsive HDKWA styles with visible focus and 44-pixel touch targets.
-    - [ ] Use ASD-STE100 for new interface text.
-    - [ ] Run the route and component tests until Green.
+- [x] Task: Add the Learn index and detail pages. [e6ef8eb]
+    - [x] Add the protected `/learn` server page.
+    - [x] Group the index by domain and component.
+    - [x] Add the protected `/learn/[slug]` server page.
+    - [x] Render the explanation, action steps, optional details, quote, video, and book reference.
+    - [x] Add previous, next, and index navigation.
+    - [x] Add responsive HDKWA styles with visible focus and 44-pixel touch targets.
+    - [x] Use ASD-STE100 for new interface text.
+    - [x] Run the route and component tests until Green.
 
-- [ ] Task: Link Learn pages and update the deployment-review presentation.
-    - [ ] Add `Learn` to the authenticated header.
-    - [ ] Add direct skill links to the five required current views.
-    - [ ] Verify that no private data enters a Learn URL or Learn page.
-    - [ ] Capture desktop index, desktop detail, and mobile detail screenshots.
-    - [ ] Add one Learn-page slide to the SLT presentation.
-    - [ ] Update `apps/danielson/README.md` with the routes and slide count.
-    - [ ] Render and inspect every slide.
-    - [ ] Run the slide overflow check.
+- [x] Task: Link Learn pages and update the deployment-review presentation. [e6ef8eb, 207f49a]
+    - [x] Add `Learn` to the authenticated header.
+    - [x] Add direct skill links to the five required current views.
+    - [x] Verify that no private data enters a Learn URL or Learn page.
+    - [x] Capture desktop index, desktop detail, and mobile detail screenshots.
+    - [x] Add one Learn-page slide to the SLT presentation.
+    - [x] Update `apps/danielson/README.md` with the routes and slide count.
+    - [x] Render and inspect every slide.
+    - [x] Run the slide overflow check.
 
 ## Phase 4: Generate Docs and Doctor
 
