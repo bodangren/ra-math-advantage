@@ -84,11 +84,11 @@
 
 ## Phase 5: Mobile Presentation Correction
 
-- [~] Task: Make the mobile walkthrough clear and correct the design guide.
-    - [ ] Rewrite `apps/danielson/DESIGN.md` in ASD-STE100 Simplified Technical English.
-    - [ ] Add direct ASD-STE100 rules for user-facing text.
-    - [ ] Add one clear mobile walkthrough slide to the SLT presentation.
-    - [ ] Render and inspect every slide again.
-    - [ ] Run the slide overflow check.
-    - [ ] Update the README when the presentation count changes.
-    - [ ] Run the relevant documentation and Measure checks.
+- [x] Task: Make the mobile walkthrough clear and correct the design guide. [f192391]
+    - [x] Rewrite `apps/danielson/DESIGN.md` in ASD-STE100 Simplified Technical English.
+    - [x] Add direct ASD-STE100 rules for user-facing text.
+    - [x] Add one clear mobile walkthrough slide to the SLT presentation.
+    - [x] Render and inspect every slide again.
+    - [x] Run the slide overflow check.
+    - [x] Update the README when the presentation count changes.
+    - [x] Run the relevant documentation and Measure checks.
