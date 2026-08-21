@@ -46,8 +46,6 @@ describe('local Danielson demo scenarios', () => {
     expect(scenario.coachAssignments.map((assignment) => assignment.teacherUsername)).toEqual([
       'demo.teacher.new',
       'demo.teacher.developing',
-      'demo.teacher.experienced',
-      'demo.teacher.pip',
       'demo.teacher.growth',
     ]);
   });

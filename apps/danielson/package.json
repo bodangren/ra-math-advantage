@@ -8,7 +8,9 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest watch",
-    "seed:admin:prod": "node scripts/seed-admin.mjs"
+    "seed:admin:prod": "node scripts/seed-admin.mjs",
+    "seed:demo": "node scripts/seed-demo.mjs",
+    "dev:stack": "convex dev --start 'vinext dev'"
   },
   "dependencies": {
     "@math-platform/app-shell": "*",
