@@ -1,11 +1,11 @@
 {
   "track_id": "danielson-hdkwa-branding-presentation_20260821",
   "type": "feature",
-  "status": "complete",
+  "status": "in_progress",
   "created_at": "2026-08-21T11:28:39Z",
-  "updated_at": "2026-08-21T12:07:00Z",
+  "updated_at": "2026-08-21T12:20:00Z",
   "description": "Align the Danielson application with the approved HDKWA MVP style, add organization-owned white-label branding, capture the complete user interface, and create an SLT deployment-review presentation.",
   "estimated_tasks": 9,
   "actual_tasks": 9,
-  "deviation_notes": "The full architecture test set has one unrelated failure. The active ESLint-to-Oxlint migration has nine pending owner approvals. The Danielson boundary, quality-parity, generation, and Doctor checks pass."
+  "deviation_notes": "The user requested a clearer mobile walkthrough slide and a full ASD-STE100 correction for the design guide after the first closeout. The full architecture test set has one unrelated failure. The active ESLint-to-Oxlint migration has nine pending owner approvals."
 }

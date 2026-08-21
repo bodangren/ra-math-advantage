@@ -103,7 +103,7 @@ Dependency order:
    *Seed a local Convex deployment with fictional Danielson School demo accounts and representative teacher data. Add a dynamic zoomable SVG proficiency graph to teacher reports.*
    *Link: [./tracks/danielson-local-demo-proficiency-graph_20260821/](./tracks/danielson-local-demo-proficiency-graph_20260821/)*
 
-- [x] **Track: Danielson HDKWA Branding and Presentation**
+- [~] **Track: Danielson HDKWA Branding and Presentation**
    *Align the application with the approved HDKWA MVP style. Add organization-owned white-label branding. Capture the complete interface. Create an SLT deployment-review presentation.*
    *Link: [./tracks/danielson-hdkwa-branding-presentation_20260821/](./tracks/danielson-hdkwa-branding-presentation_20260821/)*
 

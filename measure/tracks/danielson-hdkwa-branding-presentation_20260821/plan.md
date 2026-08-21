@@ -81,3 +81,14 @@
 - The PowerPoint contains 13 inspected slides. The geometry check found no overflow.
 - One separate architecture test has nine pending owner approvals in the active
   ESLint-to-Oxlint migration. This result is outside the Danielson track.
+
+## Phase 5: Mobile Presentation Correction
+
+- [~] Task: Make the mobile walkthrough clear and correct the design guide.
+    - [ ] Rewrite `apps/danielson/DESIGN.md` in ASD-STE100 Simplified Technical English.
+    - [ ] Add direct ASD-STE100 rules for user-facing text.
+    - [ ] Add one clear mobile walkthrough slide to the SLT presentation.
+    - [ ] Render and inspect every slide again.
+    - [ ] Run the slide overflow check.
+    - [ ] Update the README when the presentation count changes.
+    - [ ] Run the relevant documentation and Measure checks.

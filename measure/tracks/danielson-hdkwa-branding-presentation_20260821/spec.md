@@ -140,6 +140,7 @@ The presentation must include:
 10. System administration and organization scope.
 11. Pilot data and access controls.
 12. The deployment decision and next steps.
+13. A clear mobile walkthrough view that shows the short evidence workflow.
 
 Use the HDKWA visual system. Use application screenshots as the primary visual
 evidence. Do not claim browser behavior or product capability that was not
@@ -148,7 +149,7 @@ verified.
 ## Non-Functional Requirements
 
 1. Use ASD-STE100 Simplified Technical English for interface text, track files,
-   and slide text.
+   the design guide, and slide text.
 2. Add no dependency.
 3. Add no new table.
 4. Add no hash, audit, release, or provenance subsystem.
@@ -171,7 +172,8 @@ verified.
 7. Every screenshot shows the expected role, scope, and privacy state.
 8. The final PowerPoint renders without overlap, clipping, or missing images.
 9. Every slide has a clear purpose for the SLT deployment decision.
-10. Danielson tests, coverage, lint, application TypeScript, Convex TypeScript,
+10. The presentation shows a readable mobile walkthrough view.
+11. Danielson tests, coverage, lint, application TypeScript, Convex TypeScript,
     build, architecture checks, and Measure Doctor pass.
 
 ## Out of Scope
