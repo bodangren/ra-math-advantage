@@ -463,13 +463,13 @@ occurs:
 
 ## Phase: Colored Legend Correction
 
-- [~] Task: Color the proficiency legend swatches.
-    - [ ] Add a regression test for the swatch background colors.
-    - [ ] Use the existing score colors for the HTML swatches.
-    - [ ] Keep the legend text and neutral state.
+- [x] Task: Color the proficiency legend swatches. [556d3023]
+    - [x] Add a regression test for the swatch background colors.
+    - [x] Use the existing score colors for the HTML swatches.
+    - [x] Keep the legend text and neutral state.
 
-- [ ] Task: Verify and close the correction.
-    - [ ] Run the focused graph test.
-    - [ ] Run Danielson lint and TypeScript.
-    - [ ] Verify the legend in the in-app browser.
-    - [ ] Run Measure Doctor and `git diff --check`.
+- [x] Task: Verify and close the correction. [verification.md]
+    - [x] Run the focused graph test.
+    - [x] Run Danielson lint and TypeScript.
+    - [x] Verify the legend in the in-app browser.
+    - [x] Run Measure Doctor and `git diff --check`.

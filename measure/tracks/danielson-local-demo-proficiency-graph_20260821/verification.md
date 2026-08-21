@@ -159,3 +159,21 @@ also state the score range. State text remains visible.
 The in-app browser verified Ethan Brooks with a yellow 2.5 framework score. It
 verified Sofia Patel with green 3.x and blue 4.0 scores. The browser remains on
 Sofia Patel's graph.
+
+## Colored legend correction
+
+Date: 2026-08-21
+
+- The focused graph suite passed: 10 tests.
+- The full Danielson suite passed: 360 tests in 51 files.
+- Danielson lint passed.
+- Danielson TypeScript passed.
+- Convex TypeScript passed.
+- The Danielson production build passed.
+- Measure Doctor passed.
+- `git diff --check` passed.
+
+The HTML legend swatches now use `background-color`. The SVG graph nodes still
+use `fill`. The legend keeps the red, yellow, green, blue, and neutral states.
+The in-app browser confirmed all five computed background colors on the open
+Sofia Patel report.
