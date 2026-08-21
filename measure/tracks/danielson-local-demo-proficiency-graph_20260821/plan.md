@@ -412,15 +412,15 @@ occurs:
 
 ## Phase: Pilot Account Sign-in Correction
 
-- [~] Task: Show pilot account credentials on the local login page.
-    - [ ] Reuse the existing demo username list.
-    - [ ] Read the shared password from the server environment.
-    - [ ] Show the pilot account panel only for a local Convex deployment.
-    - [ ] Keep the standard login form unchanged.
-    - [ ] Add behavioral tests for the local and hosted deployment cases.
+- [x] Task: Show pilot account credentials on the local login page. [4b6438f3]
+    - [x] Reuse the existing demo username list.
+    - [x] Read the shared password from the server environment.
+    - [x] Show the pilot account panel only for a local Convex deployment.
+    - [x] Keep the standard login form unchanged.
+    - [x] Add behavioral tests for the local and hosted deployment cases.
 
-- [ ] Task: Verify and close the correction.
-    - [ ] Run the focused tests.
-    - [ ] Run Danielson lint and TypeScript.
-    - [ ] Verify the local login page in the in-app browser.
+- [~] Task: Verify and close the correction.
+    - [x] Run the focused tests.
+    - [x] Run Danielson lint and TypeScript.
+    - [x] Verify the local login page in the in-app browser.
     - [ ] Run Measure Doctor and `git diff --check`.
