@@ -348,26 +348,26 @@ occurs:
 
 ## Phase: Second Review Fixes
 
-- [~] Task: Bound formal evidence reads and project effective evidence consistently.
-    - [ ] Read only the formal records required by the portfolio projection.
-    - [ ] Select the latest effective rated component evidence by school year and event time.
-    - [ ] Apply amendments consistently in the portfolio and teacher report.
+- [x] Task: Bound formal evidence reads and project effective evidence consistently. [0b714d84]
+    - [x] Read only the formal records required by the portfolio projection.
+    - [x] Select the latest effective rated component evidence by school year and event time.
+    - [x] Apply amendments consistently in the portfolio and teacher report.
 
-- [ ] Task: Detect incomplete legacy demo data.
-    - [ ] Validate corrected summaries and formal component evidence in the existing-seed check.
-    - [ ] Return a clear reset-required conflict without modifying old data.
+- [x] Task: Detect incomplete legacy demo data. [0b714d84]
+    - [x] Validate corrected summaries and formal component evidence in the existing-seed check.
+    - [x] Return a clear reset-required conflict without modifying old data.
 
-- [ ] Task: Correct graph screen transforms and due text.
-    - [ ] Convert pointer and drag coordinates through the inverse screen transform matrix.
-    - [ ] Include due state in visible node text and accessible names.
-    - [ ] Add behavioral coverage for letterboxed wheel zoom, drag pan, and due labels.
+- [x] Task: Correct graph screen transforms and due text. [0b714d84]
+    - [x] Convert pointer and drag coordinates through the inverse screen transform matrix.
+    - [x] Include due state in visible node text and accessible names.
+    - [x] Add behavioral coverage for letterboxed wheel zoom, drag pan, and due labels.
 
-- [ ] Task: Add database-backed sales acceptance coverage.
-    - [ ] Seed the in-memory database through the real demo mutation.
-    - [ ] Read the real portfolio, queue, and teacher report handlers.
-    - [ ] Assert the required teacher states, targets, scopes, PIP, GBF, and response outcomes.
+- [x] Task: Add database-backed sales acceptance coverage. [0b714d84]
+    - [x] Seed the in-memory database through the real demo mutation.
+    - [x] Read the real portfolio, queue, and teacher report handlers.
+    - [x] Assert the required teacher states, targets, scopes, PIP, GBF, and response outcomes.
 
-- [ ] Task: Replace the custom environment parser and run second-review gates.
-    - [ ] Use the supported Node dotenv parser for `.env.local` values.
-    - [ ] Run focused and full Danielson tests, coverage, lint, TypeScript, Convex TypeScript, build, boundary, parity, Doctor, and diff checks.
-    - [ ] Record the results and task hashes.
+- [x] Task: Replace the custom environment parser and run second-review gates. [0b714d84]
+    - [x] Use the supported Node dotenv parser for `.env.local` values.
+    - [x] Run focused and full Danielson tests, coverage, lint, TypeScript, Convex TypeScript, build, boundary, parity, Doctor, and diff checks.
+    - [x] Record the results and task hashes.
