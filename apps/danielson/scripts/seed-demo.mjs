@@ -15,6 +15,7 @@ export const DEMO_USERNAMES = [
   'demo.teacher.growth',
 ];
 
+/** @param {Record<string, string | undefined>} [env] */
 export function requireDemoPassword(env = process.env) {
   const password = env.DANIELSON_DEMO_PASSWORD;
   if (typeof password !== 'string' || password.length === 0) {
@@ -45,6 +46,7 @@ function parseEnvFile(value) {
     }));
 }
 
+/** @param {Record<string, string | undefined>} [env] @param {string | null} [envFileText] */
 export function readConvexUrl(env = process.env, envFileText = null) {
   const fileValues = envFileText === null
     ? parseEnvFile(readFileSync(new URL('../.env.local', import.meta.url), 'utf8'))
@@ -56,7 +58,7 @@ export function readConvexUrl(env = process.env, envFileText = null) {
   return value;
 }
 
-export function buildSeedCommand({ convexUrl, payload, npxCommand = process.platform === 'win32' ? 'npx.cmd' : 'npx' }) {
+export function buildSeedCommand({ convexUrl, payload = undefined, npxCommand = process.platform === 'win32' ? 'npx.cmd' : 'npx' }) {
   const args = ['convex', 'run', 'demo:seedLocalDemo'];
   if (payload) args.push(JSON.stringify(payload));
   args.push('--url', convexUrl);

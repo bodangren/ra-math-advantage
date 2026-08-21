@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, within } from '@testing-library/react';
 import type { ComponentProps, ComponentType } from 'react';
 import { describe, expect, it } from 'vitest';
 
@@ -306,6 +306,7 @@ const report: PrivateTeacherReport = {
   officialEvaluations: [],
   currentProficiency: {
     state: 'not_enough_evidence',
+    priorityTargets: [],
     domains: [{
       domainId: 'danielson.framework.domain.1',
       title: 'Domain 1: Planning and Preparation',
@@ -601,12 +602,14 @@ describe('reporting independent-review interface contracts', () => {
       canComment={false}
       canRespond={false}
     />);
-    fireEvent.click(screen.getByText(/Domain 1: Planning and Preparation/));
+    const detailedProficiency = screen.getByRole('heading', { name: 'Current proficiency' }).closest('section');
+    if (!detailedProficiency) throw new Error('detailed proficiency section missing');
+    fireEvent.click(within(detailedProficiency).getByText(/Domain 1: Planning and Preparation/));
 
-    expect(screen.getByText('1e: Planning Coherent Instruction')).toBeVisible();
-    expect(screen.getByText(/Double Plan/)).toBeVisible();
-    expect(screen.getByText(/Due on .*2027/i)).toBeVisible();
-    expect(screen.getByRole('link', { name: 'Open skill evidence source' }))
+    expect(within(detailedProficiency).getByText('1e: Planning Coherent Instruction')).toBeVisible();
+    expect(within(detailedProficiency).getByText(/Double Plan/)).toBeVisible();
+    expect(within(detailedProficiency).getByText(/Due on .*2027/i)).toBeVisible();
+    expect(within(detailedProficiency).getByRole('link', { name: 'Open skill evidence source' }))
       .toHaveAttribute(
         'href',
         '/observations/records/observation_records%3Askill-source',

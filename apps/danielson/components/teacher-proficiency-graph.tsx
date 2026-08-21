@@ -1,0 +1,232 @@
+'use client';
+
+import { useMemo, useRef, useState } from 'react';
+
+import type { CurrentProficiency, ReportingState } from '../lib/reporting/contracts';
+import {
+  buildProficiencyGraphModel,
+  type ProficiencyGraphNode,
+} from '../lib/reporting/proficiency-graph';
+
+const MIN_ZOOM = 0.55;
+const MAX_ZOOM = 1.8;
+const VIEWBOX_SIZE = 1_900;
+
+function stateLabel(state: ReportingState) {
+  if (state === 'below_proficient') return 'Below Proficient';
+  if (state === 'not_enough_evidence') return 'Not enough evidence';
+  return 'Proficient';
+}
+
+function formatDue(node: ProficiencyGraphNode) {
+  if (!node.due) return 'Current';
+  return 'Due';
+}
+
+function nodeRadius(node: ProficiencyGraphNode) {
+  if (node.kind === 'framework') return 48;
+  if (node.kind === 'domain') return 36;
+  if (node.kind === 'component') return 28;
+  return 22;
+}
+
+function nodeLabel(node: ProficiencyGraphNode) {
+  return `${node.title}: ${stateLabel(node.state)}`;
+}
+
+export function TeacherProficiencyGraph({
+  currentProficiency,
+}: {
+  currentProficiency: CurrentProficiency;
+}) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const dragRef = useRef<{ pointerId: number; x: number; y: number; originX: number; originY: number } | null>(null);
+  const [expandedComponentId, setExpandedComponentId] = useState<string | undefined>();
+  const [selectedNodeId, setSelectedNodeId] = useState<string | undefined>();
+  const [view, setView] = useState({ scale: 1, x: 0, y: 0 });
+  const [status, setStatus] = useState('Use the graph controls or select a node for details.');
+  const model = useMemo(
+    () => buildProficiencyGraphModel(currentProficiency, { expandedComponentId }),
+    [currentProficiency, expandedComponentId],
+  );
+  const selectedNode = model.nodes.find((node) => node.id === selectedNodeId);
+
+  function selectNode(node: ProficiencyGraphNode) {
+    setSelectedNodeId(node.id);
+    if (node.kind === 'component') {
+      const nextExpanded = expandedComponentId === node.id ? undefined : node.id;
+      setExpandedComponentId(nextExpanded);
+      setStatus(nextExpanded
+        ? `Danielson component expanded: ${node.title}`
+        : `Danielson component collapsed: ${node.title}`);
+      return;
+    }
+    setStatus(`Selected ${node.title}: ${stateLabel(node.state)}.`);
+  }
+
+  function handleNodeKeyDown(event: React.KeyboardEvent<SVGGElement>, node: ProficiencyGraphNode) {
+    if (event.key !== 'Enter' && event.key !== ' ') return;
+    event.preventDefault();
+    selectNode(node);
+  }
+
+  function changeZoom(delta: number) {
+    setView((previous) => ({ ...previous, scale: Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, previous.scale + delta)) }));
+    setStatus('Graph zoom changed.');
+  }
+
+  function fitGraph() {
+    const width = Math.max(model.bounds.width, 1);
+    const height = Math.max(model.bounds.height, 1);
+    const scale = Math.min(1.25, Math.max(MIN_ZOOM, Math.min(1_500 / width, 1_100 / height)));
+    setView({ scale, x: 0, y: 0 });
+    setStatus('Graph fitted to the available view.');
+  }
+
+  function resetView() {
+    setView({ scale: 1, x: 0, y: 0 });
+    setStatus('Graph view reset.');
+  }
+
+  function startPan(event: React.PointerEvent<SVGGElement>) {
+    dragRef.current = {
+      pointerId: event.pointerId,
+      x: event.clientX,
+      y: event.clientY,
+      originX: view.x,
+      originY: view.y,
+    };
+    event.currentTarget.setPointerCapture?.(event.pointerId);
+  }
+
+  function movePan(event: React.PointerEvent<SVGGElement>) {
+    const drag = dragRef.current;
+    if (!drag || drag.pointerId !== event.pointerId) return;
+    setView((previous) => ({
+      ...previous,
+      x: drag.originX + (event.clientX - drag.x),
+      y: drag.originY + (event.clientY - drag.y),
+    }));
+  }
+
+  function endPan(event: React.PointerEvent<SVGGElement>) {
+    if (dragRef.current?.pointerId === event.pointerId) dragRef.current = null;
+  }
+
+  function handleWheel(event: React.WheelEvent<SVGSVGElement>) {
+    event.preventDefault();
+    changeZoom(event.deltaY < 0 ? 0.1 : -0.1);
+  }
+
+  async function requestFullScreen() {
+    if (!containerRef.current?.requestFullscreen) {
+      setStatus('Full screen is not available in this browser.');
+      return;
+    }
+    try {
+      await containerRef.current.requestFullscreen();
+      setStatus('Graph is in full screen.');
+    } catch {
+      setStatus('Full screen could not be opened.');
+    }
+  }
+
+  return (
+    <section className="teacher-proficiency-graph card" aria-labelledby="teacher-proficiency-graph-heading">
+      <div className="teacher-proficiency-graph-heading">
+        <div>
+          <p className="eyebrow">Current proficiency</p>
+          <h2 id="teacher-proficiency-graph-heading">Teacher proficiency graph</h2>
+          <p className="muted">Select a component to expand its approved skills.</p>
+        </div>
+        <div className="teacher-proficiency-graph-controls" aria-label="Graph controls">
+          <button type="button" onClick={() => changeZoom(0.1)}>Zoom in</button>
+          <button type="button" onClick={() => changeZoom(-0.1)}>Zoom out</button>
+          <button type="button" onClick={fitGraph}>Fit graph</button>
+          <button type="button" onClick={resetView}>Reset view</button>
+          <button type="button" onClick={() => void requestFullScreen()}>Full screen</button>
+        </div>
+      </div>
+      <div ref={containerRef} className="teacher-proficiency-graph-canvas">
+        <svg
+          role="img"
+          aria-label="Teacher proficiency graph"
+          viewBox={`${-VIEWBOX_SIZE / 2} ${-VIEWBOX_SIZE / 2} ${VIEWBOX_SIZE} ${VIEWBOX_SIZE}`}
+          onWheel={handleWheel}
+        >
+          <g
+            data-testid="proficiency-graph-viewport"
+            transform={`translate(${view.x} ${view.y}) scale(${view.scale})`}
+            onPointerDown={startPan}
+            onPointerMove={movePan}
+            onPointerUp={endPan}
+            onPointerCancel={endPan}
+          >
+            {model.edges.map((graphEdge) => {
+              const source = model.nodes.find((node) => node.id === graphEdge.sourceId);
+              const target = model.nodes.find((node) => node.id === graphEdge.targetId);
+              if (!source || !target) return null;
+              return (
+                <line
+                  key={graphEdge.id}
+                  className="teacher-proficiency-graph-edge"
+                  x1={source.x}
+                  y1={source.y}
+                  x2={target.x}
+                  y2={target.y}
+                />
+              );
+            })}
+            {model.nodes.map((node) => (
+              <g
+                key={node.id}
+                role="button"
+                tabIndex={0}
+                aria-label={nodeLabel(node)}
+                className={`teacher-proficiency-graph-node teacher-proficiency-graph-node-${node.kind} state-${node.state}${node.due ? ' is-due' : ''}${selectedNodeId === node.id ? ' is-selected' : ''}`}
+                transform={`translate(${node.x} ${node.y})`}
+                onPointerDown={(event) => event.stopPropagation()}
+                onPointerUp={(event) => {
+                  event.stopPropagation();
+                  selectNode(node);
+                }}
+                onKeyDown={(event) => handleNodeKeyDown(event, node)}
+              >
+                <circle r={nodeRadius(node)} />
+                <text className="teacher-proficiency-graph-node-title" y={nodeRadius(node) + 20}>{node.title}</text>
+                {node.kind === 'skill' && node.priorityRank ? (
+                  <text className="teacher-proficiency-graph-node-priority" y={nodeRadius(node) + 39}>Priority {node.priorityRank}</text>
+                ) : null}
+              </g>
+            ))}
+          </g>
+        </svg>
+      </div>
+      <p className="teacher-proficiency-graph-status" role="status">{status}</p>
+      <p className="teacher-proficiency-graph-overall-status">
+        Current state: <strong>{stateLabel(currentProficiency.state)}</strong>
+      </p>
+      {selectedNode ? (
+        <aside className="teacher-proficiency-graph-detail" aria-label="Selected graph node details">
+          <h3>{selectedNode.title}:</h3>
+          <p>Status: {stateLabel(selectedNode.state)}</p>
+          {selectedNode.kind === 'skill' ? (
+            <div className="teacher-proficiency-graph-detail-list">
+              <p>Rating: {selectedNode.rawRating ?? 'Not enough evidence'}</p>
+              <p>Points: {selectedNode.points ?? '—'}</p>
+              <p>Evidence: {formatDue(selectedNode)}</p>
+              {selectedNode.dueAt ? <p>Due date: {selectedNode.dueAt}</p> : null}
+              {selectedNode.overdueDays && selectedNode.overdueDays > 0 ? <p>Overdue by {selectedNode.overdueDays} days</p> : null}
+              {selectedNode.priorityRank ? <p>Priority: {selectedNode.priorityRank}</p> : null}
+              {selectedNode.priorityReason ? <p>Priority reason: {selectedNode.priorityReason.replaceAll('_', ' ')}</p> : null}
+            </div>
+          ) : null}
+          {selectedNode.evidenceHref ? <a href={selectedNode.evidenceHref}>Open evidence record</a> : null}
+        </aside>
+      ) : null}
+      <p className="muted teacher-proficiency-graph-accessible-note">
+        The detailed proficiency list below provides the same skill information without requiring graph interaction.
+      </p>
+    </section>
+  );
+}

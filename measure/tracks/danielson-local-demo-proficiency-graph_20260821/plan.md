@@ -202,34 +202,34 @@
     - [x] Compute bounds for Fit graph.
     - [x] Use no random value, force simulation, browser measurement, or stored coordinate.
 
-- [~] Task: Implement the dynamic SVG component.
-    - [ ] Create `apps/danielson/components/teacher-proficiency-graph.tsx`.
-    - [ ] Accept only `CurrentProficiency` as domain data.
-    - [ ] Store selected node, expanded component, and view transform in React state.
-    - [ ] Render hierarchy edges before nodes.
-    - [ ] Render status text in each node label or accessible name.
-    - [ ] Render priority ranks 1, 2, and 3.
-    - [ ] Use a distinct due border and a text due label.
-    - [ ] Clamp zoom to the tested minimum and maximum.
-    - [ ] Use pointer capture for drag pan.
-    - [ ] Implement wheel zoom around the pointer position.
-    - [ ] Implement Zoom in, Zoom out, Fit graph, and Reset view with native buttons.
-    - [ ] Use `requestFullscreen()` on the graph container.
-    - [ ] Handle missing full-screen support with a clear status message.
-    - [ ] Support Enter and Space on interactive nodes.
-    - [ ] Keep all interaction local to the component.
+- [x] Task: Implement the dynamic SVG component. [current]
+    - [x] Create `apps/danielson/components/teacher-proficiency-graph.tsx`.
+    - [x] Accept only `CurrentProficiency` as domain data.
+    - [x] Store selected node, expanded component, and view transform in React state.
+    - [x] Render hierarchy edges before nodes.
+    - [x] Render status text in each node label or accessible name.
+    - [x] Render priority ranks 1, 2, and 3.
+    - [x] Use a distinct due border and a text due label.
+    - [x] Clamp zoom to the tested minimum and maximum.
+    - [x] Use pointer capture for drag pan.
+    - [x] Implement wheel zoom around the pointer position.
+    - [x] Implement Zoom in, Zoom out, Fit graph, and Reset view with native buttons.
+    - [x] Use `requestFullscreen()` on the graph container.
+    - [x] Handle missing full-screen support with a clear status message.
+    - [x] Support Enter and Space on interactive nodes.
+    - [x] Keep all interaction local to the component.
 
-- [ ] Task: Integrate the graph with the teacher report.
-    - [ ] Import the graph in `apps/danielson/components/teacher-report-view.tsx`.
-    - [ ] Render it before the existing Current proficiency details.
-    - [ ] Use the same public `currentProficiency` object for teacher and leadership reports.
-    - [ ] Keep the existing details and evidence links below the graph.
-    - [ ] Do not pass comments, responses, PIP text, or private data to the graph.
-    - [ ] Add graph styles to `apps/danielson/app/globals.css`.
-    - [ ] Use existing design tokens.
-    - [ ] Add a visible focus style.
-    - [ ] Add responsive sizing for small screens.
-    - [ ] Respect the existing reduced-motion rule.
+- [x] Task: Integrate the graph with the teacher report. [current]
+    - [x] Import the graph in `apps/danielson/components/teacher-report-view.tsx`.
+    - [x] Render it before the existing Current proficiency details.
+    - [x] Use the same public `currentProficiency` object for teacher and leadership reports.
+    - [x] Keep the existing details and evidence links below the graph.
+    - [x] Do not pass comments, responses, PIP text, or private data to the graph.
+    - [x] Add graph styles to `apps/danielson/app/globals.css`.
+    - [x] Use existing design tokens.
+    - [x] Add a visible focus style.
+    - [x] Add responsive sizing for small screens.
+    - [x] Respect the existing reduced-motion rule.
 
 - [ ] Task: Document the local demo.
     - [ ] Add `DANIELSON_DEMO_PASSWORD` to `apps/danielson/.env.example` without a value.

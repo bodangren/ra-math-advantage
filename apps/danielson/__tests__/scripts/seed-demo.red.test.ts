@@ -34,7 +34,6 @@ describe('local demo seed command boundary', () => {
   it('builds an internal local command without a production flag', () => {
     const command = buildSeedCommand({
       convexUrl: 'http://127.0.0.1:3210',
-      password: 'demo-secret',
       npxCommand: 'npx',
     });
 

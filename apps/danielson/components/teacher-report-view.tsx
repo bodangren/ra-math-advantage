@@ -5,6 +5,7 @@ import Link from 'next/link';
 
 import { ReportCommentForm } from '@/components/report-comment-form';
 import { TeacherResponseForm } from '@/components/teacher-response-form';
+import { TeacherProficiencyGraph } from '@/components/teacher-proficiency-graph';
 import type {
   PrivateTeacherReport,
   PublicTeacherReport,
@@ -191,6 +192,8 @@ export function TeacherReportView({
           </div>
         )}
       </section>
+
+      <TeacherProficiencyGraph currentProficiency={report.currentProficiency} />
 
       <section className="card" aria-labelledby="proficiency-heading">
         <h2 id="proficiency-heading">Current proficiency</h2>

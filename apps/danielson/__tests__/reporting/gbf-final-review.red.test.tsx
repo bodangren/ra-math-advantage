@@ -50,6 +50,7 @@ const report = {
   officialEvaluations: [],
   currentProficiency: {
     state: 'not_enough_evidence',
+    priorityTargets: [],
     domains: [],
   },
   improvementPlan: {

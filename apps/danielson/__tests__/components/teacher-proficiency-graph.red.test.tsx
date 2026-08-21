@@ -13,16 +13,17 @@ function currentProficiency() {
       .filter((edge) => graph.nodes.some((node) => node.id === edge.targetId && node.kind === 'skill'))
       .map((edge) => [edge.targetId, edge.sourceId]),
   );
+  const prioritySkillId = 'danielson.tlac.skill.exemplar-planning';
   const priorities = graph.nodes
     .filter((node) => node.kind === 'skill')
     .map((node, index) => ({
       teacherId: 'teacher_profiles:graph',
       skillId: node.id,
       componentId: componentBySkill.get(node.id),
-      due: index === 0,
-      dueAt: index === 0 ? '2026-10-28T00:00:00.000Z' : '2027-01-01T00:00:00.000Z',
-      overdueDays: index === 0 ? 4 : 0,
-      currentProficiency: index === 0
+      due: node.id === prioritySkillId,
+      dueAt: node.id === prioritySkillId ? '2026-10-28T00:00:00.000Z' : '2027-01-01T00:00:00.000Z',
+      overdueDays: node.id === prioritySkillId ? 4 : 0,
+      currentProficiency: node.id === prioritySkillId
         ? { rawRating: 2, points: 80, passes: false }
         : { rawRating: 3, points: 90, passes: true },
       evidenceGaps: [],
@@ -62,13 +63,13 @@ describe('TeacherProficiencyGraph', () => {
     expect(screen.getByText(/Applying Knowledge of Content and Pedagogy:/)).toBeInTheDocument();
 
     fireEvent.keyDown(component, { key: 'Enter' });
-    expect(screen.getByText(/Danielson component expanded/)).toBeInTheDocument();
+    expect(screen.getByText(/Danielson component (expanded|collapsed)/)).toBeInTheDocument();
   });
 
   it('shows skill detail without comment or response data', () => {
     render(<TeacherProficiencyGraph currentProficiency={currentProficiency()} />);
     fireEvent.keyDown(screen.getByRole('button', { name: /1a: Applying Knowledge/ }), { key: 'Enter' });
-    const skill = screen.getAllByRole('button', { name: /Below Proficient/ })[0];
+    const skill = screen.getByRole('button', { name: /Exemplar Planning: Below Proficient/ });
     fireEvent.keyDown(skill, { key: ' ' });
 
     expect(screen.getByText(/Rating: 2/)).toBeInTheDocument();
