@@ -371,3 +371,32 @@ occurs:
     - [x] Use the supported Node dotenv parser for `.env.local` values.
     - [x] Run focused and full Danielson tests, coverage, lint, TypeScript, Convex TypeScript, build, boundary, parity, Doctor, and diff checks.
     - [x] Record the results and task hashes.
+
+## Phase: Portfolio Evidence Read Corrections
+
+- [~] Task: Record the portfolio evidence read correction requirements.
+    - [ ] Use a constant number of formal-evidence queries.
+    - [ ] Keep query count independent of teacher count.
+    - [ ] Prevent drafts from consuming the submitted-record limit.
+    - [ ] Keep older rated component evidence until newer rated evidence replaces it.
+    - [ ] Use the same effective component evidence in the portfolio and teacher report.
+    - [ ] Return `portfolio_capacity_exceeded` without partial proficiency data at capacity.
+
+- [ ] Task: Add failing regression coverage for batched portfolio evidence reads.
+    - [ ] Assert two formal-record queries and one amendment query for any teacher count.
+    - [ ] Assert drafts cannot hide submitted evidence.
+    - [ ] Assert evidence remains active across more than four formal records.
+    - [ ] Assert amendments remain effective and preserve the original source record.
+    - [ ] Assert capacity failure returns no partial portfolio page.
+
+- [ ] Task: Batch the portfolio formal evidence reads.
+    - [ ] Add only the required organization/status/type/school-year observation index.
+    - [ ] Read submitted Q1 records, submitted Q4 records, and organization amendments in three bounded queries.
+    - [ ] Group records and amendments in memory and reuse the existing effective evidence projection.
+    - [ ] Return `portfolio_capacity_exceeded` before row assembly when either bound is exceeded.
+
+- [ ] Task: Run the correction gates and verify the local flow.
+    - [ ] Run focused red and green tests, full tests, coverage, lint, TypeScript, Convex TypeScript, build, boundary, parity, Doctor, and diff checks.
+    - [ ] Verify the local browser portfolio and report flow at desktop and narrow viewports.
+    - [ ] Record actual test totals and the authenticated browser result.
+    - [ ] Complete an independent review of query count, evidence consistency, capacity handling, and scope limits.
