@@ -2,14 +2,14 @@
 
 ## Phase 1: Contract and Schema Definition
 
-- [~] Task: Define the minimum organization branding contract.
-    - [ ] Keep branding on the existing organization document.
-    - [ ] Define optional display name, logo path, primary color, and accent color fields.
-    - [ ] Define generic fallback values.
-    - [ ] Define the HDKWA demo values.
-    - [ ] Add no branding table, editor, registry, or upload flow.
+- [x] Task: Define the minimum organization branding contract. [27d6bf3]
+    - [x] Keep branding on the existing organization document.
+    - [x] Define optional display name, logo path, primary color, and accent color fields.
+    - [x] Define generic fallback values.
+    - [x] Define the HDKWA demo values.
+    - [x] Add no branding table, editor, registry, or upload flow.
 
-- [ ] Task: Update the Danielson design definition.
+- [~] Task: Update the Danielson design definition.
     - [ ] Record the approved MVP reference.
     - [ ] Replace parchment, forest, ochre, Georgia, shadows, and small radii.
     - [ ] Preserve the current application layout and information density.
