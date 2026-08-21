@@ -389,13 +389,13 @@ occurs:
     - [x] Assert amendments remain effective and preserve the original source record.
     - [x] Assert capacity failure returns no partial portfolio page.
 
-- [~] Task: Batch the portfolio formal evidence reads.
-    - [ ] Add only the required organization/status/type/school-year observation index.
-    - [ ] Read submitted Q1 records, submitted Q4 records, and organization amendments in three bounded queries.
-    - [ ] Group records and amendments in memory and reuse the existing effective evidence projection.
-    - [ ] Return `portfolio_capacity_exceeded` before row assembly when either bound is exceeded.
+- [x] Task: Batch the portfolio formal evidence reads. [a2fe2ffc]
+    - [x] Add only the required organization/status/type/school-year observation index.
+    - [x] Read submitted Q1 records, submitted Q4 records, and organization amendments in three bounded queries.
+    - [x] Group records and amendments in memory and reuse the existing effective evidence projection.
+    - [x] Return `portfolio_capacity_exceeded` before row assembly when either bound is exceeded.
 
-- [ ] Task: Run the correction gates and verify the local flow.
+- [~] Task: Run the correction gates and verify the local flow.
     - [ ] Run focused red and green tests, full tests, coverage, lint, TypeScript, Convex TypeScript, build, boundary, parity, Doctor, and diff checks.
     - [ ] Verify the local browser portfolio and report flow at desktop and narrow viewports.
     - [ ] Record actual test totals and the authenticated browser result.
