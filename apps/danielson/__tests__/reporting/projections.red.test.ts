@@ -7,6 +7,7 @@ import {
   projectOfficialEvaluation,
   projectPortfolioRow,
 } from '../../lib/reporting/projections';
+import { rankPriorityTargets } from '../../lib/observations/queue';
 import { buildDanielsonGraph } from '../../lib/proficiency/graph';
 
 const NOW = Date.parse('2026-11-01T00:00:00.000Z');
@@ -80,6 +81,27 @@ function portfolioRow(input: {
 }
 
 describe('Danielson reporting projections', () => {
+  it('returns the first three priority targets from the existing queue order', () => {
+    const input = priorities().map((item, index) => index < 4
+      ? {
+          ...item,
+          currentProficiency: index === 0
+            ? { rawRating: 1, points: 70, passes: false }
+            : item.currentProficiency,
+          due: index < 3,
+          overdueDays: index === 0 ? 5 : 0,
+        }
+      : item);
+    const expected = rankPriorityTargets(input).slice(0, 3).map((target, index) => ({
+      rank: (index + 1) as 1 | 2 | 3,
+      skillId: target.skillId,
+      reason: target.reason,
+    }));
+
+    expect(projectCurrentProficiency({ priorities: input }).priorityTargets).toEqual(expected);
+    expect(expected).toHaveLength(3);
+  });
+
   it('requires all 22 components and never averages away a low skill', () => {
     const partial = priorities();
     const graph = buildDanielsonGraph().graph;
