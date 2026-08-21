@@ -107,6 +107,10 @@ Dependency order:
    *Align the application with the approved HDKWA MVP style. Add organization-owned white-label branding. Capture the complete interface. Create an SLT deployment-review presentation.*
    *Link: [./tracks/danielson-hdkwa-branding-presentation_20260821/](./tracks/danielson-hdkwa-branding-presentation_20260821/)*
 
+- [ ] **Track: Danielson Skill Learn Pages**
+   *Add one authenticated Learn page for each of the 63 approved TLAC 3.0 skills. Link the pages from current skill views and add them to the SLT presentation.*
+   *Link: [./tracks/danielson-skill-learn-pages_20260821/](./tracks/danielson-skill-learn-pages_20260821/)*
+
 - [x] **Track: Anti-Slop Oxlint Integration**
    *Install `dmmulroy/anti-slop` and configure its 15 generic Oxlint rules in the monorepo while preserving the existing ESLint workspace commands.*
    *Link: [./tracks/anti-slop-oxlint_20260820/](./tracks/anti-slop-oxlint_20260820/)*
