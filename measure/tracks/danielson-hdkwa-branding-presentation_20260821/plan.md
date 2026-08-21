@@ -9,15 +9,15 @@
     - [x] Define the HDKWA demo values.
     - [x] Add no branding table, editor, registry, or upload flow.
 
-- [~] Task: Update the Danielson design definition.
-    - [ ] Record the approved MVP reference.
-    - [ ] Replace parchment, forest, ochre, Georgia, shadows, and small radii.
-    - [ ] Preserve the current application layout and information density.
-    - [ ] Preserve score colors, text states, keyboard focus, and reduced motion.
+- [x] Task: Update the Danielson design definition. [267d1be]
+    - [x] Record the approved MVP reference.
+    - [x] Replace parchment, forest, ochre, Georgia, shadows, and small radii.
+    - [x] Preserve the current application layout and information density.
+    - [x] Preserve score colors, text states, keyboard focus, and reduced motion.
 
 ## Phase 2: Test
 
-- [ ] Task: Add organization-branding and session tests.
+- [~] Task: Add organization-branding and session tests.
     - [ ] Test an HDKWA organization.
     - [ ] Test an organization without optional branding.
     - [ ] Test organization isolation in the session result.
