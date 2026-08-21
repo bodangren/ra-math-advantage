@@ -592,6 +592,92 @@ describe('Danielson reporting Convex boundary', () => {
     });
   });
 
+  it('applies database amendments to the portfolio and teacher report', async () => {
+    const db = new MemoryDb();
+    seedBase(db);
+    seedAttention(db);
+    const componentIds = DANIELSON_GRAPH.nodes
+      .filter((node) => node.kind === 'instructional_unit')
+      .map((node) => node.id);
+    seedFormalObservation(db, {
+      observationId: 'observation_records:amended-q1',
+      observationType: 'formal_q1',
+      componentIds,
+      rating: 3,
+    });
+    const sourceRecordId = seedFormalObservation(db, {
+      observationId: 'observation_records:amended-q4',
+      observationType: 'formal_q4',
+      componentId: 'danielson.framework.component.1a',
+      rating: 2,
+      observedAt: '2026-10-15T00:00:00.000Z',
+    });
+    db.seed('observation_amendments', 'observation_amendments:amended-q4:1', {
+      organizationId: ORG,
+      observationId: sourceRecordId,
+      teacherProfileId: TEACHER,
+      authorAccountId: LEADER,
+      idempotencyKey: 'amended-q4:1',
+      fingerprint: 'amended-q4:1:fingerprint',
+      version: 1,
+      reason: 'Correct the component rating.',
+      changedItems: [{
+        itemId: `${sourceRecordId}:danielson.framework.component.1a:item`,
+        outcome: { kind: 'rated', rating: 4 },
+      }],
+      occurredAt: NOW + 1,
+    });
+
+    const portfolio = expectAllowed(await handler(readLeadershipPortfolio)(db.context(), {
+      actorAccountId: LEADER,
+      now: NOW_ISO,
+      cursor: null,
+      pageSize: 25,
+    }));
+    const row = (portfolio.page as { items: Array<Record<string, unknown>> }).items
+      .find((item) => item.teacherProfileId === TEACHER);
+    expect(row?.danielson).toMatchObject({ state: 'proficient' });
+
+    const report = expectAllowed(await handler(readLeadershipTeacherReport)(db.context(), {
+      actorAccountId: LEADER,
+      teacherProfileId: TEACHER,
+      now: NOW_ISO,
+    })).report as Record<string, unknown>;
+    expect(componentFromReport(report, 'danielson.framework.component.1a')).toMatchObject({
+      state: 'proficient',
+    });
+    const q4 = (report.officialEvaluations as Array<Record<string, unknown>>)
+      .find((evaluation) => evaluation.observationType === 'formal_q4');
+    expect(q4).toMatchObject({
+      observationId: sourceRecordId,
+      amendmentCount: 1,
+      components: [{
+        componentId: 'danielson.framework.component.1a',
+        rawRating: 4,
+        sourceObservationId: sourceRecordId,
+      }],
+    });
+  });
+
+  it('returns capacity without a partial portfolio when formal records exceed the limit', async () => {
+    const db = new MemoryDb();
+    seedBase(db);
+    seedAttention(db);
+    for (let index = 0; index < 2_001; index += 1) {
+      seedFormalObservation(db, {
+        observationId: `observation_records:formal-capacity-${index}`,
+        observationType: 'formal_q1',
+      });
+    }
+
+    await expect(handler(readLeadershipPortfolio)(db.context(), {
+      actorAccountId: LEADER,
+      now: NOW_ISO,
+      cursor: null,
+      pageSize: 25,
+    })).resolves.toEqual({ kind: 'portfolio_capacity_exceeded' });
+  });
+
   it('returns capacity without a partial portfolio when amendments exceed the limit', async () => {
     const db = new MemoryDb();
     seedBase(db);
