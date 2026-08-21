@@ -94,7 +94,7 @@ const REFERENCE_TIME = Date.parse('2026-08-21T12:00:00.000Z');
 function seedArgs() {
   return {
     organizationSlug: 'danielson-school',
-    organizationName: 'Danielson School',
+    organizationName: 'Haidian Kaiwen Academy',
     referenceTime: REFERENCE_TIME,
     credentials: DEMO_USERNAMES.map((username, index) => ({
       username,
@@ -115,6 +115,15 @@ describe('local Danielson Convex demo seed', () => {
       usernames: [...DEMO_USERNAMES],
     });
     expect(db.rows('organizations')).toHaveLength(1);
+    expect(db.rows('organizations')[0]).toMatchObject({
+      name: 'Haidian Kaiwen Academy',
+      branding: {
+        displayName: 'HDKWA',
+        logoPath: '/brands/hdkwa-logo.png',
+        primaryColor: '#003366',
+        accentColor: '#C5A059',
+      },
+    });
     expect(db.rows('accounts')).toHaveLength(10);
     expect(db.rows('auth_credentials')).toHaveLength(10);
     expect(db.rows('teacher_profiles')).toHaveLength(7);
@@ -164,7 +173,7 @@ describe('local Danielson Convex demo seed', () => {
     const db = new MemoryDb();
     db.seed('organizations', 'organizations:legacy-demo', {
       slug: 'danielson-school',
-      name: 'Danielson School',
+      name: 'Haidian Kaiwen Academy',
       isActive: true,
     });
     for (const [index, username] of DEMO_USERNAMES.entries()) {

@@ -12,7 +12,8 @@ describe('LoginPage pilot accounts', () => {
 
     render(await LoginPage({ searchParams: Promise.resolve({}) }));
 
-    expect(screen.getByRole('heading', { name: 'Danielson School pilot accounts' })).toBeVisible();
+    expect(screen.getByRole('img', { name: 'Haidian Kaiwen Academy logo' })).toBeVisible();
+    expect(screen.getByRole('heading', { name: 'HDKWA pilot accounts' })).toBeVisible();
     expect(screen.getAllByText('pilot-password')).toHaveLength(DEMO_USERNAMES.length);
     for (const username of DEMO_USERNAMES) {
       expect(screen.getByText(username)).toBeVisible();
@@ -25,7 +26,8 @@ describe('LoginPage pilot accounts', () => {
 
     render(await LoginPage({ searchParams: Promise.resolve({}) }));
 
-    expect(screen.queryByRole('heading', { name: 'Danielson School pilot accounts' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('img', { name: 'Haidian Kaiwen Academy logo' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('heading', { name: 'HDKWA pilot accounts' })).not.toBeInTheDocument();
     expect(screen.queryByText('pilot-password')).not.toBeInTheDocument();
   });
 });

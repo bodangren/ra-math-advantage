@@ -14,7 +14,13 @@ describe('local Danielson demo scenarios', () => {
 
     expect(scenario.organization).toEqual({
       slug: 'danielson-school',
-      name: 'Danielson School',
+      name: 'Haidian Kaiwen Academy',
+      branding: {
+        displayName: 'HDKWA',
+        logoPath: '/brands/hdkwa-logo.png',
+        primaryColor: '#003366',
+        accentColor: '#C5A059',
+      },
     });
     expect(scenario.accounts.map((account) => account.username)).toEqual([...DEMO_USERNAMES]);
     expect(scenario.teachers.map((teacher) => teacher.username)).toEqual([...DEMO_TEACHER_USERNAMES]);
@@ -103,6 +109,7 @@ describe('local Danielson demo scenarios', () => {
     expect(serialized).not.toContain('@');
     expect(serialized).not.toContain('real');
     expect(serialized).toContain('Casey Rivera');
-    expect(serialized).toContain('Danielson School');
+    expect(serialized).toContain('Haidian Kaiwen Academy');
+    expect(serialized).toContain('/brands/hdkwa-logo.png');
   });
 });
