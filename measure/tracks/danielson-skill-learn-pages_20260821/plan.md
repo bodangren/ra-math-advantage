@@ -2,25 +2,25 @@
 
 ## Phase 1: Contract and Catalog Definition
 
-- [ ] Task: Define the app-owned Learn content contract.
-    - [ ] Add one `Technique` type with only the fields in the approved MVP modules.
-    - [ ] Define a catalog with exactly 63 technique records.
-    - [ ] Keep `source-inventory.ts` as the skill identity and component source.
-    - [ ] Define `learnHref(skillId)` for a slug or canonical skill ID.
-    - [ ] Define `getLearnTechnique(slug)` and ordered previous and next records.
-    - [ ] Add no database, API route, manifest, checksum, or approval state.
+- [x] Task: Define the app-owned Learn content contract. [e6160ea]
+    - [x] Add one `Technique` type with only the fields in the approved MVP modules.
+    - [x] Define a catalog with exactly 63 technique records.
+    - [x] Keep `source-inventory.ts` as the skill identity and component source.
+    - [x] Define `learnHref(skillId)` for a slug or canonical skill ID.
+    - [x] Define `getLearnTechnique(slug)` and ordered previous and next records.
+    - [x] Add no database, API route, manifest, checksum, or approval state.
 
-- [ ] Task: Define the Learn route and interface contract.
-    - [ ] Use `/learn` for the catalog.
-    - [ ] Use `/learn/[slug]` for one technique.
-    - [ ] Require an active Danielson session on both routes.
-    - [ ] Permit every active Danielson account to read the content.
-    - [ ] Return not found for an unknown slug.
-    - [ ] Define the exact index, detail, navigation, video, and mobile content.
+- [x] Task: Define the Learn route and interface contract. [e6160ea]
+    - [x] Use `/learn` for the catalog.
+    - [x] Use `/learn/[slug]` for one technique.
+    - [x] Require an active Danielson session on both routes.
+    - [x] Permit every active Danielson account to read the content.
+    - [x] Return not found for an unknown slug.
+    - [x] Define the exact index, detail, navigation, video, and mobile content.
 
 ## Phase 2: Test
 
-- [ ] Task: Write catalog and route Red tests.
+- [~] Task: Write catalog and route Red tests.
     - [ ] Test exactly 63 unique approved IDs.
     - [ ] Test exact parity with `APPROVED_TLAC_SOURCE_INVENTORY`.
     - [ ] Test title and component parity.
