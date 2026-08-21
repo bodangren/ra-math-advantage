@@ -2,7 +2,7 @@ import { internalMutation, type MutationCtx } from './_generated/server';
 import type { Id } from './_generated/dataModel';
 import { v } from 'convex/values';
 
-import { buildDemoScenario, type DemoObservation, type DemoPip, type DemoTeacher } from '../lib/demo/scenarios';
+import { buildDemoScenario, type DemoObservation, type DemoTeacher } from '../lib/demo/scenarios';
 import { createCurrentGbfAssignment } from '../lib/gbf/progress';
 import { PIP_SOURCE_CONTRACT } from '../lib/improvement-plans/source';
 import { createDanielsonTeacherProficiencyPort } from '../lib/proficiency/convex-repository';
@@ -37,10 +37,6 @@ function observationItems(observation: DemoObservation) {
       : { kind: 'rated' as const, rating: observation.rating },
     evidenceNote: observation.evidenceNote,
   }];
-}
-
-function asCalendarDate(value: string): string {
-  return value.slice(0, 10);
 }
 
 async function writeObservation(
