@@ -249,6 +249,15 @@ Show proficiency with text and color:
 Show due state with text and a separate border treatment. Show priority rank 1,
 2, or 3 on each current target. Do not use color as the only status signal.
 
+Show a 1–4 display score inside each rated node. Round the score to one decimal
+place. A skill uses its raw rating. A component uses the mean of its rated
+skills. It uses its formal component rating when it has no rated skill. A domain
+uses the mean of its rated components. The framework uses the mean of all rated
+components. Exclude missing evidence from each mean.
+
+Use red for 1.0–1.9. Use yellow for 2.0–2.9. Use green for 3.0–3.9. Use blue for
+4.0. Use a neutral style when the node has no rated evidence.
+
 ### FR-11: Graph Interaction
 
 The graph must support:

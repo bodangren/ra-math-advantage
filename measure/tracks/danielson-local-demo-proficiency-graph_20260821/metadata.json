@@ -1,11 +1,11 @@
 {
   "track_id": "danielson-local-demo-proficiency-graph_20260821",
   "type": "feature",
-  "status": "complete",
+  "status": "in_progress",
   "created_at": "2026-08-21T00:14:30Z",
-  "updated_at": "2026-08-21T08:46:06Z",
+  "updated_at": "2026-08-21T08:54:09Z",
   "description": "Create a local Convex sales demo for Danielson School and add a dynamic zoomable teacher proficiency graph to teacher reports.",
   "estimated_tasks": 27,
-  "actual_tasks": 47,
-  "deviation_notes": "The browser review found one pre-hydration form safety defect. The final fix added the native POST method and one regression test. The portfolio correction added one observation index and no new table or runtime layer. A later correction added the missing local-only pilot credentials to the login page. The final graph correction preserved and displayed component ratings, points, and evidence sources that the report already calculated."
+  "actual_tasks": null,
+  "deviation_notes": "The browser review found one pre-hydration form safety defect. The final fix added the native POST method and one regression test. The portfolio correction added one observation index and no new table or runtime layer. A later correction added the missing local-only pilot credentials to the login page. One graph correction preserved component rating data. A later user review required visible 1–4 averages and score colors on all rated hierarchy nodes."
 }

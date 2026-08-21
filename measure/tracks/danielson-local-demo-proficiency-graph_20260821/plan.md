@@ -442,3 +442,21 @@ occurs:
     - [x] Push the updated Convex functions to the local deployment.
     - [x] Verify component and skill values in the in-app browser.
     - [x] Run the Danielson build, Measure Doctor, and `git diff --check`.
+
+## Phase: Graph Score and Color Correction
+
+- [~] Task: Show one scored color inside each rated graph node.
+    - [ ] Add behavioral tests for skill, component, domain, and framework scores.
+    - [ ] Exclude missing evidence from each mean.
+    - [ ] Round each displayed score to one decimal place.
+    - [ ] Add red, yellow, green, blue, and neutral node styles.
+    - [ ] Show the score inside the node and in its accessible name.
+    - [ ] Keep state text visible.
+    - [ ] Add a score legend.
+
+- [ ] Task: Verify the corrected graph in the local application.
+    - [ ] Run focused and full Danielson tests.
+    - [ ] Run Danielson lint, app TypeScript, and Convex TypeScript.
+    - [ ] Run the Danielson build and Measure Doctor.
+    - [ ] Verify a developing teacher and an experienced teacher in the in-app browser.
+    - [ ] Leave the browser on a page that shows scored graph nodes.
