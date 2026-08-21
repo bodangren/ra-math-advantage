@@ -130,6 +130,17 @@ describe('local Danielson Convex demo seed', () => {
     expect(db.rows('teacher_srs_cards').length).toBeGreaterThan(0);
     expect(db.rows('teacher_knowledge_state').length).toBeGreaterThan(0);
     expect(db.rows('teacher_priority').length).toBeGreaterThan(0);
+    expect(db.rows('teacher_attention_summaries')).toHaveLength(7);
+    const noahAccount = db.rows('accounts').find((row) => row.username === 'demo.teacher.developing');
+    const noahProfile = db.rows('teacher_profiles').find((row) => row.accountId === noahAccount?._id);
+    const noahSummary = db.rows('teacher_attention_summaries').find((row) => row.teacherProfileId === noahProfile?._id);
+    expect(noahSummary).toEqual(expect.objectContaining({
+      targets: expect.arrayContaining([
+        expect.objectContaining({ skillId: 'danielson.tlac.skill.cold-call', currentProficiency: expect.objectContaining({ rawRating: 1 }) }),
+        expect.objectContaining({ skillId: 'danielson.tlac.skill.stretch-it', currentProficiency: expect.objectContaining({ rawRating: 2 }) }),
+        expect.objectContaining({ skillId: 'danielson.tlac.skill.turn-and-talk', currentProficiency: expect.objectContaining({ rawRating: 2 }) }),
+      ]),
+    }));
     expect(db.rows('improvement_plans')).toHaveLength(2);
     expect(db.rows('observation_public_comments')).toHaveLength(3);
     expect(db.rows('observation_private_comments')).toHaveLength(1);

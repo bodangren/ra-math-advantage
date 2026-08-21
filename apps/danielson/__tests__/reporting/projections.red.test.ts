@@ -9,6 +9,7 @@ import {
 } from '../../lib/reporting/projections';
 import { rankPriorityTargets } from '../../lib/observations/queue';
 import { buildDanielsonGraph } from '../../lib/proficiency/graph';
+import { applyPriorityOverlays } from '../../lib/reporting/projections';
 
 const NOW = Date.parse('2026-11-01T00:00:00.000Z');
 
@@ -100,6 +101,58 @@ describe('Danielson reporting projections', () => {
 
     expect(projectCurrentProficiency({ priorities: input }).priorityTargets).toEqual(expected);
     expect(expected).toHaveLength(3);
+  });
+
+  it('applies the existing PIP overlay before report target ranking', () => {
+    const base = priorities().find((item) => item.skillId === 'danielson.tlac.skill.cold-call');
+    expect(base).toBeDefined();
+    const overlaid = applyPriorityOverlays({
+      priorities: [base!],
+      pipOverlays: new Map([[
+        'danielson.tlac.skill.cold-call',
+        {
+          approvedAt: Date.parse('2026-10-20T00:00:00.000Z'),
+          planEndAt: Date.parse('2026-11-30T00:00:00.000Z'),
+          latestRatedEvidenceAt: null,
+        },
+      ]]),
+      gbfAssignment: null,
+      now: NOW,
+    });
+
+    expect(overlaid[0].approvedPriorityInputs).toContain('approved_plan_priority');
+    expect(projectCurrentProficiency({ priorities: overlaid }).priorityTargets).toEqual([{
+      rank: 1,
+      skillId: 'danielson.tlac.skill.cold-call',
+      reason: 'approved_plan_priority',
+    }]);
+  });
+
+  it('uses formal component evidence when skill evidence cannot determine a component', () => {
+    const graph = buildDanielsonGraph().graph;
+    const componentEvidence = graph.nodes
+      .filter((node) => node.kind === 'instructional_unit')
+      .map((node) => ({
+        componentId: node.id,
+        rawRating: 3 as const,
+        sourceRecordId: 'observation_records:formal-q4',
+      }));
+
+    expect(projectCurrentProficiency({ priorities: [], componentEvidence })).toMatchObject({
+      state: 'proficient',
+      domains: expect.arrayContaining([
+        expect.objectContaining({ state: 'proficient' }),
+      ]),
+    });
+    expect(projectPortfolioRow({
+      teacherProfileId: 'teacher_profiles:one',
+      displayName: 'Teacher One',
+      priorities: [],
+      componentEvidence,
+      now: NOW,
+    })).toMatchObject({
+      danielson: { state: 'proficient', belowComponentIds: [] },
+    });
   });
 
   it('requires all 22 components and never averages away a low skill', () => {

@@ -8,6 +8,7 @@ import { PIP_SOURCE_CONTRACT } from '../lib/improvement-plans/source';
 import { createDanielsonTeacherProficiencyPort } from '../lib/proficiency/convex-repository';
 import { buildDanielsonGraph } from '../lib/proficiency/graph';
 import { processTeacherEvidence } from '../lib/proficiency/processor';
+import { refreshAttentionSummary } from './observations';
 
 const credentialInputValidator = v.object({
   username: v.string(),
@@ -26,17 +27,24 @@ const resultValidator = v.union(
 const DAY_MS = 86_400_000;
 
 function observationItems(observation: DemoObservation) {
-  const skillId = observation.targetSkillIds[0];
-  return [{
-    itemId: `demo:${observation.id}:item`,
+  const items = observation.componentRatings?.map((item) => ({
+    componentId: item.componentId,
+    rating: item.rating,
+  })) ?? [{
     componentId: observation.componentId,
-    ...(skillId ? { skillId } : {}),
-    priorityReason: observation.priorityReason,
-    outcome: observation.rating === null
-      ? { kind: 'not_enough_evidence' as const }
-      : { kind: 'rated' as const, rating: observation.rating },
-    evidenceNote: observation.evidenceNote,
+    skillId: observation.targetSkillIds[0],
+    rating: observation.rating,
   }];
+  return items.map((item, index) => ({
+    itemId: `demo:${observation.id}:item:${index}`,
+    componentId: item.componentId,
+    ...('skillId' in item && item.skillId ? { skillId: item.skillId } : {}),
+    priorityReason: observation.priorityReason,
+    outcome: item.rating === null
+      ? { kind: 'not_enough_evidence' as const }
+      : { kind: 'rated' as const, rating: item.rating },
+    evidenceNote: observation.evidenceNote,
+  }));
 }
 
 async function writeObservation(
@@ -479,6 +487,11 @@ export const seedLocalDemo = internalMutation({
           });
         }
       }
+    }
+    for (const teacher of scenario.teachers) {
+      const profileId = teacherProfileIds.get(teacher.username);
+      if (!profileId) throw new Error('demo_teacher_profile_missing_for_summary');
+      await refreshAttentionSummary(ctx, createdOrganizationId, profileId, now);
     }
     return {
       kind: 'created' as const,

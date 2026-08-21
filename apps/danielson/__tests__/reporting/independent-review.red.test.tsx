@@ -534,15 +534,15 @@ describe('reporting independent-review interface contracts', () => {
     const { privateComments: _privateComments, ...publicReport } = report;
     render(<TeacherReportView report={publicReport} canComment={false} canRespond={false} />);
 
-    expect(screen.getByRole('img', { name: /teacher proficiency graph/i })).toBeInTheDocument();
+    expect(screen.getByRole('group', { name: /teacher proficiency graph/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Current proficiency' })).toBeInTheDocument();
 
-    const firstGraph = screen.getByRole('img', { name: /teacher proficiency graph/i });
+    const firstGraph = screen.getByRole('group', { name: /teacher proficiency graph/i });
     const currentHeading = screen.getByRole('heading', { name: 'Current proficiency' });
     expect(firstGraph.compareDocumentPosition(currentHeading) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
 
     render(<TeacherReportView report={report} canComment={false} canRespond={false} />);
-    expect(screen.getAllByRole('img', { name: /teacher proficiency graph/i })).toHaveLength(2);
+    expect(screen.getAllByRole('group', { name: /teacher proficiency graph/i })).toHaveLength(2);
   });
 
   it('keeps private leadership comments outside the graph view', () => {
@@ -564,7 +564,7 @@ describe('reporting independent-review interface contracts', () => {
     />);
 
     expect(screen.getByText(privateComment)).toBeInTheDocument();
-    expect(screen.getByRole('img', { name: /teacher proficiency graph/i })).not.toHaveTextContent(privateComment);
+    expect(screen.getByRole('group', { name: /teacher proficiency graph/i })).not.toHaveTextContent(privateComment);
   });
 
   it('keeps self-view reports free of private-comment data', () => {
@@ -572,7 +572,7 @@ describe('reporting independent-review interface contracts', () => {
     render(<TeacherReportView report={publicReport} canComment={false} canRespond={false} />);
 
     expect(screen.queryByRole('heading', { name: 'Private leadership comments' })).not.toBeInTheDocument();
-    expect(screen.getByRole('img', { name: /teacher proficiency graph/i })).toBeInTheDocument();
+    expect(screen.getByRole('group', { name: /teacher proficiency graph/i })).toBeInTheDocument();
   });
 
   it('keeps every comment label and field ID unique across observations', () => {

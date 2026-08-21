@@ -1,5 +1,6 @@
 import type { DanielsonRole } from '../foundation/authorization';
 import type { ObservationPriorityReason, ObservationType } from '../observations/contracts';
+import { DANIELSON_COMPONENT_IDS } from '../proficiency/graph';
 
 export const DEMO_USERNAMES = [
   'demo.sysadmin',
@@ -40,6 +41,7 @@ export type DemoObservation = {
   componentId: string;
   targetSkillIds: string[];
   rating: 1 | 2 | 3 | 4 | null;
+  componentRatings?: Array<{ componentId: string; rating: 1 | 2 | 3 | 4 }>;
   priorityReason: ObservationPriorityReason;
   evidenceNote: string | null;
 };
@@ -120,6 +122,7 @@ function observation(input: {
   componentId: string;
   targetSkillIds?: string[];
   rating?: 1 | 2 | 3 | 4 | null;
+  componentRatings?: Array<{ componentId: string; rating: 1 | 2 | 3 | 4 }>;
   priorityReason?: ObservationPriorityReason;
   evidenceNote?: string | null;
 }): DemoObservation {
@@ -134,11 +137,19 @@ function observation(input: {
     componentId: input.componentId,
     targetSkillIds: input.targetSkillIds ?? [],
     rating: input.rating ?? null,
+    ...(input.componentRatings ? { componentRatings: input.componentRatings } : {}),
     priorityReason: input.priorityReason ?? (input.rating !== null && input.rating !== undefined && input.rating < 3
       ? 'below_proficient'
       : 'due'),
     evidenceNote: input.evidenceNote ?? null,
   };
+}
+
+function formalComponentRatings(rating: 3 | 4) {
+  return DANIELSON_COMPONENT_IDS.map((componentId) => ({
+    componentId: `danielson.framework.component.${componentId}`,
+    rating,
+  }));
 }
 
 function activePip(referenceTime: number): DemoPip {
@@ -207,14 +218,17 @@ export function buildDemoScenario(referenceTime: number): DemoScenario {
       username: 'demo.slt', displayName: 'Alex Morgan', position: 'Senior Leadership Team and Teacher',
       departmentKeys: ['mathematics'], experience: 'experienced', expectedState: 'proficient',
       walkthroughPriorityCount: 0, formalObservationTypes: ['formal_q4'], responseCount: 0,
-      observations: [observation({ id: 'alex-q4', teacherUsername: 'demo.slt', observationType: 'formal_q4', observedAt: daysBefore(referenceTime, 20), componentId: 'danielson.framework.component.4a', rating: 3 })],
+      observations: [observation({ id: 'alex-q4', teacherUsername: 'demo.slt', observationType: 'formal_q4', observedAt: daysBefore(referenceTime, 20), componentId: 'danielson.framework.component.4a', rating: 3, componentRatings: formalComponentRatings(3) })],
       publicComments: ['Alex published a clear reflection on the Q4 observation.'], privateComments: [], responses: [], gbf: null, pip: null,
     },
     {
       username: 'demo.hod.math', displayName: 'Jordan Lee', position: 'Head of Mathematics',
       departmentKeys: ['mathematics'], experience: 'experienced', expectedState: 'proficient',
-      walkthroughPriorityCount: 0, formalObservationTypes: [], responseCount: 0,
-      observations: [observation({ id: 'jordan-walkthrough', teacherUsername: 'demo.hod.math', observationType: 'walkthrough', observedAt: daysBefore(referenceTime, 30), componentId: 'danielson.framework.component.1e', targetSkillIds: ['danielson.tlac.skill.double-plan'], rating: 4 })],
+      walkthroughPriorityCount: 0, formalObservationTypes: ['formal_q4'], responseCount: 0,
+      observations: [
+        observation({ id: 'jordan-walkthrough', teacherUsername: 'demo.hod.math', observationType: 'walkthrough', observedAt: daysBefore(referenceTime, 30), componentId: 'danielson.framework.component.1e', targetSkillIds: ['danielson.tlac.skill.double-plan'], rating: 4 }),
+        observation({ id: 'jordan-q4', teacherUsername: 'demo.hod.math', observationType: 'formal_q4', observedAt: daysBefore(referenceTime, 12), componentId: 'danielson.framework.component.4a', rating: 3, componentRatings: formalComponentRatings(3) }),
+      ],
       publicComments: [], privateComments: [], responses: [], gbf: null, pip: null,
     },
     {
@@ -243,7 +257,7 @@ export function buildDemoScenario(referenceTime: number): DemoScenario {
       walkthroughPriorityCount: 0, formalObservationTypes: ['formal_q1', 'formal_q4'], responseCount: 0,
       observations: [
         observation({ id: 'sofia-q1', teacherUsername: 'demo.teacher.experienced', observationType: 'formal_q1', observedAt: daysBefore(referenceTime, 60), componentId: 'danielson.framework.component.1e', rating: 3 }),
-        observation({ id: 'sofia-q4', teacherUsername: 'demo.teacher.experienced', observationType: 'formal_q4', observedAt: daysBefore(referenceTime, 12), componentId: 'danielson.framework.component.4a', rating: 4 }),
+        observation({ id: 'sofia-q4', teacherUsername: 'demo.teacher.experienced', observationType: 'formal_q4', observedAt: daysBefore(referenceTime, 12), componentId: 'danielson.framework.component.4a', rating: 4, componentRatings: formalComponentRatings(4) }),
       ],
       publicComments: ['Sofia shows sustained practice across the school year.'], privateComments: [], responses: [], gbf: null, pip: null,
     },
@@ -260,10 +274,11 @@ export function buildDemoScenario(referenceTime: number): DemoScenario {
     {
       username: 'demo.teacher.growth', displayName: 'Lina Park', position: 'Teacher',
       departmentKeys: ['primary-school'], experience: 'experienced', expectedState: 'proficient',
-      walkthroughPriorityCount: 0, formalObservationTypes: [], responseCount: 1,
+      walkthroughPriorityCount: 0, formalObservationTypes: ['formal_q4'], responseCount: 1,
       observations: [
         observation({ id: 'lina-walkthrough-1', teacherUsername: 'demo.teacher.growth', observationType: 'walkthrough', observedAt: daysBefore(referenceTime, 42), componentId: 'danielson.framework.component.3e', targetSkillIds: ['danielson.tlac.skill.plan-for-error'], rating: 2 }),
         observation({ id: 'lina-walkthrough-2', teacherUsername: 'demo.teacher.growth', observationType: 'walkthrough', observedAt: daysBefore(referenceTime, 20), componentId: 'danielson.framework.component.3e', targetSkillIds: ['danielson.tlac.skill.plan-for-error'], rating: 3 }),
+        observation({ id: 'lina-q4', teacherUsername: 'demo.teacher.growth', observationType: 'formal_q4', observedAt: daysBefore(referenceTime, 12), componentId: 'danielson.framework.component.4a', rating: 3, componentRatings: formalComponentRatings(3) }),
       ],
       publicComments: [], privateComments: [], responses: ['I used the planning check before the next lesson and saw a stronger result.'], gbf: null, pip: closedPip(referenceTime),
     },

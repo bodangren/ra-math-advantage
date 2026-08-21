@@ -73,6 +73,9 @@ export function TeacherReportView({
   privateCommentsNextHref?: string | null;
 }) {
   const privateComments = 'privateComments' in report ? report.privateComments : [];
+  const priorityBySkill = new Map(
+    report.currentProficiency.priorityTargets.map((target) => [target.skillId, target]),
+  );
   const [gbfAssignmentState, setGbfAssignmentState] = useState<'idle' | 'submitting' | 'assigned' | 'error'>('idle');
   async function assignGbf() {
     setGbfAssignmentState('submitting');
@@ -210,6 +213,9 @@ export function TeacherReportView({
                     <li key={skill.skillId}>
                       <span>{skill.title}: {skill.rawRating === null ? 'Not enough evidence' : `Rating ${skill.rawRating} · ${skill.points} points`}</span>
                       <span> · {dueLabel(skill)}</span>
+                      {priorityBySkill.get(skill.skillId) ? (
+                        <> · Priority {priorityBySkill.get(skill.skillId)?.rank}: {priorityBySkill.get(skill.skillId)?.reason.replaceAll('_', ' ')}</>
+                      ) : null}
                       {skill.sourceRecordId ? (
                         <> · <Link href={`/observations/records/${encodeURIComponent(skill.sourceRecordId)}`}>Open skill evidence source</Link></>
                       ) : null}

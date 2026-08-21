@@ -25,6 +25,7 @@ import {
 import {
   comparePortfolioRows,
   paginatePortfolioRows,
+  applyPriorityOverlays,
   projectCurrentProficiency,
   projectOfficialEvaluation,
   projectPortfolioRow,
@@ -41,6 +42,7 @@ import {
   readTeacherGbfAssignment,
 } from './gbf';
 import { projectGbfProgress } from '../lib/gbf/progress';
+import { isDanielsonRating } from '../lib/proficiency/rating';
 
 const MAX_TEACHERS = 250;
 const MAX_ACCOUNTS = 1_000;
@@ -453,7 +455,7 @@ export const readLeadershipPortfolio = internalQuery({
       return { kind: 'portfolio_capacity_exceeded' as const };
     }
     const organizationWide = supervisorRoles.includes('school_head') || supervisorRoles.includes('slt');
-    const [accounts, summaries, gbfAssignments] = await Promise.all([
+    const [accounts, summaries, gbfAssignments, observations] = await Promise.all([
       ctx.db.query('accounts')
         .withIndex('by_organizationId_and_isActive', (query) => query
           .eq('organizationId', actor.organizationId)
@@ -463,6 +465,10 @@ export const readLeadershipPortfolio = internalQuery({
         .withIndex('by_organizationId', (query) => query.eq('organizationId', actor.organizationId))
         .take(MAX_ATTENTION_SUMMARIES + 1),
       readOrganizationCurrentGbfAssignments(ctx, actor.organizationId),
+      ctx.db.query('observation_records')
+        .withIndex('by_org_observer_status', (query) => query
+          .eq('organizationId', actor.organizationId))
+        .take(MAX_HISTORY_ROWS + 1),
     ]);
     if (gbfAssignments.kind !== 'allowed') {
       return { kind: 'portfolio_capacity_exceeded' as const };
@@ -504,6 +510,7 @@ export const readLeadershipPortfolio = internalQuery({
       || hodAssignments.length > MAX_SCOPE_ROWS
       || coachAssignments.length > MAX_SCOPE_ROWS
       || summaries.length > MAX_ATTENTION_SUMMARIES
+      || observations.length > MAX_HISTORY_ROWS
     ) return { kind: 'portfolio_capacity_exceeded' as const };
 
     const activeDepartmentIds = new Set(departments.map((row) => String(row._id)));
@@ -526,6 +533,21 @@ export const readLeadershipPortfolio = internalQuery({
       String(summary.teacherProfileId),
       summary.targets.map((target) => priorityAtClock(target, now)),
     ]));
+    const formalByTeacher = new Map<string, Doc<'observation_records'>>();
+    for (const observation of observations) {
+      if (observation.status !== 'submitted'
+        || (observation.observationType !== 'formal_q1' && observation.observationType !== 'formal_q4')) continue;
+      const teacherId = String(observation.teacherProfileId);
+      const current = formalByTeacher.get(teacherId);
+      const observationAt = observation.submittedAt ?? observation.updatedAt;
+      const currentAt = current?.submittedAt ?? current?.updatedAt ?? 0;
+      if (!current
+        || (observation.observationType === 'formal_q4' && current.observationType === 'formal_q1')
+        || (observation.observationType === current.observationType
+          && observationAt > currentAt)) {
+        formalByTeacher.set(teacherId, observation);
+      }
+    }
     const rows = profiles.flatMap((profile) => {
       const teacherProfileId = String(profile._id);
       const inScope = organizationWide
@@ -564,6 +586,16 @@ export const readLeadershipPortfolio = internalQuery({
           now,
           baseGraph,
         );
+      const formal = formalByTeacher.get(teacherProfileId);
+      const formalEvidence = formal?.items.flatMap((item) => (
+        item.outcome?.kind === 'rated' && isDanielsonRating(item.outcome.rating)
+          ? [{
+              componentId: item.componentId,
+              rawRating: item.outcome.rating,
+              sourceRecordId: String(formal._id),
+            }]
+          : []
+      )) ?? [];
       const gbf = projectGbfProgress({
         assignment: gbfAssignments.assignmentsByTeacher.get(teacherProfileId) ?? null,
         priorities,
@@ -573,6 +605,7 @@ export const readLeadershipPortfolio = internalQuery({
         displayName: account.displayName,
         priorities,
         now,
+        componentEvidence: formalEvidence,
         improvementPlan,
         gbf,
       })];
@@ -606,6 +639,7 @@ async function buildPublicTeacherReport(
     accounts,
     improvementPlan,
     gbfAssignment,
+    activePlanData,
   ] = await Promise.all([
     ctx.db.query('observation_records')
       .withIndex('by_org_teacher_status_submitted', (query) => query
@@ -646,6 +680,7 @@ async function buildPublicTeacherReport(
       false,
     ),
     readTeacherGbfAssignment(ctx, teacher.organizationId, teacher._id),
+    readOrganizationActiveImprovementPlans(ctx, teacher.organizationId, now),
   ]);
   if (
     records.length > MAX_HISTORY_ROWS
@@ -656,6 +691,7 @@ async function buildPublicTeacherReport(
     || accounts.length > MAX_ACCOUNTS
     || improvementPlan === null
     || gbfAssignment.kind === 'capacity_exceeded'
+    || activePlanData.kind === 'capacity_exceeded'
   ) return null;
   const reportGraph = baseGraph;
   const reportSkillIds = reportGraph.nodes
@@ -665,7 +701,25 @@ async function buildPublicTeacherReport(
   const publicImprovementPlan = improvementPlan.state === 'pending_approval'
     ? { contractVersion: 'danielson.ip-progress.v1' as const, state: 'not_configured' as const }
     : improvementPlan;
-  const priorities = projectTeacherPriority(
+  const submittedRecords = records.map(submittedFromRow);
+  const amendmentRows = amendments.map(amendmentFromRow);
+  const latestFormal = (type: 'formal_q1' | 'formal_q4') => submittedRecords
+    .filter((record) => record.observationType === type)
+    .sort((left, right) => right.submittedAt - left.submittedAt)[0];
+  const formalRecord = latestFormal('formal_q4') ?? latestFormal('formal_q1');
+  const formalEvidence = formalRecord
+    ? projectEffectiveObservation(
+        formalRecord,
+        amendmentRows.filter((row) => row.observationId === formalRecord.observationId),
+      ).items.flatMap((item) => item.outcome?.kind === 'rated'
+        ? [{
+            componentId: item.componentId,
+            rawRating: item.outcome.rating,
+            sourceRecordId: formalRecord.observationId,
+          }]
+        : [])
+    : [];
+  const rawPriorities = projectTeacherPriority(
     String(teacher._id),
     cards.map((row) => row.card) as never,
     proficiency.map((row) => row.projection as Record<string, unknown>),
@@ -677,22 +731,24 @@ async function buildPublicTeacherReport(
     row.projection.skillId,
     row.projection.sourceRecordId,
   ]));
-  const currentProficiency = projectCurrentProficiency({
-    priorities: priorities.map((priority) => ({
+  const priorities = applyPriorityOverlays({
+    priorities: rawPriorities.map((priority) => ({
       ...priority,
       sourceRecordId: sourceBySkill.get(priority.skillId) ?? null,
     })),
+    pipOverlays: activePlanData.overlaysByTeacher.get(String(teacher._id)) ?? new Map(),
+    gbfAssignment: gbfAssignment.kind === 'allowed' ? gbfAssignment.assignment : null,
+    now,
+  });
+  const currentProficiency = projectCurrentProficiency({
+    priorities,
+    componentEvidence: formalEvidence,
   });
   const gbf = projectGbfProgress({
     assignment: gbfAssignment.kind === 'allowed' ? gbfAssignment.assignment : null,
     priorities,
   });
-  const amendmentRows = amendments.map(amendmentFromRow);
   const accountById = new Map(accounts.map((row) => [String(row._id), row]));
-  const submittedRecords = records.map(submittedFromRow);
-  const latestFormal = (type: 'formal_q1' | 'formal_q4') => submittedRecords
-    .filter((record) => record.observationType === type)
-    .sort((left, right) => right.submittedAt - left.submittedAt)[0];
   const officialEvaluations = (['formal_q1', 'formal_q4'] as const).flatMap((type) => {
     const record = latestFormal(type);
     if (!record) return [];

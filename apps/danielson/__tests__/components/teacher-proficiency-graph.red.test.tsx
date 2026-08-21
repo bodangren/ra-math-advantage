@@ -41,17 +41,18 @@ describe('TeacherProficiencyGraph', () => {
   it('renders the accessible collapsed graph and controls', () => {
     render(<TeacherProficiencyGraph currentProficiency={currentProficiency()} />);
 
-    expect(screen.getByRole('img', { name: /teacher proficiency graph/i })).toBeInTheDocument();
+    expect(screen.getByRole('group', { name: /teacher proficiency graph/i })).toBeInTheDocument();
     expect(screen.getByText('Framework for Teaching 2022')).toBeInTheDocument();
     expect(screen.getByText(/Domain 1:/)).toBeInTheDocument();
-    expect(screen.getByText(/1a:/)).toBeInTheDocument();
+    expect(screen.getAllByText(/1a:/).length).toBeGreaterThan(0);
     expect(screen.queryByText('Applying Knowledge of Content and Pedagogy: Rating 2')).not.toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Zoom in' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Zoom out' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Fit graph' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Reset view' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Full screen' })).toBeInTheDocument();
-    expect(screen.getByText('Below Proficient')).toBeInTheDocument();
+    expect(screen.getAllByText('Below Proficient').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('Not enough evidence').length).toBeGreaterThan(0);
   });
 
   it('expands a component with pointer and keyboard activation', () => {
@@ -104,5 +105,46 @@ describe('TeacherProficiencyGraph', () => {
     expect(viewport.getAttribute('transform')).not.toBe(initialTransform);
     expect(requestFullscreen).toHaveBeenCalledTimes(1);
     expect(fetchSpy).not.toHaveBeenCalled();
+  });
+
+  it('anchors wheel zoom in view-box units and clamps zoom controls', () => {
+    render(<TeacherProficiencyGraph currentProficiency={currentProficiency()} />);
+    const svg = screen.getByRole('group', { name: /teacher proficiency graph/i });
+    const viewport = screen.getByTestId('proficiency-graph-viewport');
+    vi.spyOn(svg, 'getBoundingClientRect').mockReturnValue({
+      width: 950,
+      height: 500,
+      top: 0,
+      left: 0,
+      right: 950,
+      bottom: 500,
+      x: 0,
+      y: 0,
+      toJSON: () => ({}),
+    });
+
+    fireEvent.wheel(svg, { clientX: 100, clientY: 250, deltaY: -100 });
+    expect(viewport.getAttribute('transform')).toContain('translate(75 0) scale(1.1)');
+
+    for (let index = 0; index < 20; index += 1) {
+      fireEvent.click(screen.getByRole('button', { name: 'Zoom in' }));
+    }
+    expect(viewport.getAttribute('transform')).toContain('scale(1.8)');
+
+    for (let index = 0; index < 30; index += 1) {
+      fireEvent.click(screen.getByRole('button', { name: 'Zoom out' }));
+    }
+    expect(viewport.getAttribute('transform')).toContain('scale(0.55)');
+  });
+
+  it('fits and resets the graph view', () => {
+    render(<TeacherProficiencyGraph currentProficiency={currentProficiency()} />);
+    const viewport = screen.getByTestId('proficiency-graph-viewport');
+
+    fireEvent.click(screen.getByRole('button', { name: 'Fit graph' }));
+    expect(viewport.getAttribute('transform')).not.toBe('translate(0 0) scale(1)');
+
+    fireEvent.click(screen.getByRole('button', { name: 'Reset view' }));
+    expect(viewport.getAttribute('transform')).toBe('translate(0 0) scale(1)');
   });
 });

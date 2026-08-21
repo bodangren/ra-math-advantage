@@ -1,6 +1,6 @@
 # Convex guidelines
 
-These guidelines target Convex `^1.44.0`.
+These guidelines target Convex `^1.40.0`.
 
 ## Function guidelines
 

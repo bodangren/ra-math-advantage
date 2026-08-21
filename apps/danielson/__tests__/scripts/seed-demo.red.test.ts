@@ -6,13 +6,16 @@ import {
   createCredentialPayloads,
   formatSeedOutput,
   isLocalConvexUrl,
+  readConvexUrl,
   requireDemoPassword,
+  seedResultExitCode,
 } from '../../scripts/seed-demo.mjs';
 
 describe('local demo seed command boundary', () => {
   it('requires the demo password', () => {
     expect(() => requireDemoPassword({})).toThrow('DANIELSON_DEMO_PASSWORD is required');
     expect(requireDemoPassword({ DANIELSON_DEMO_PASSWORD: 'demo-secret' })).toBe('demo-secret');
+    expect(requireDemoPassword({}, 'DANIELSON_DEMO_PASSWORD=from-file')).toBe('from-file');
   });
 
   it.each([
@@ -63,5 +66,22 @@ describe('local demo seed command boundary', () => {
     expect(output).toContain('created');
     expect(output).toContain('demo.slt');
     expect(output).not.toContain('demo-secret');
+  });
+
+  it('reads the local Convex URL from the environment file', () => {
+    expect(readConvexUrl({}, 'NEXT_PUBLIC_CONVEX_URL=http://127.0.0.1:3210'))
+      .toBe('http://127.0.0.1:3210');
+  });
+
+  it('preserves a seed conflict reason and returns a failing exit code', () => {
+    const output = formatSeedOutput({
+      kind: 'conflict',
+      reason: 'unrelated_organization_exists',
+    }, 'demo-secret');
+
+    expect(output).toContain('unrelated_organization_exists');
+    expect(seedResultExitCode('conflict')).toBe(1);
+    expect(seedResultExitCode('created')).toBe(0);
+    expect(seedResultExitCode('already_seeded')).toBe(0);
   });
 });

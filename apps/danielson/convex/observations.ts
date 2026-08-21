@@ -41,10 +41,10 @@ import type {
   ObservationType,
   SubmittedObservation,
 } from '../lib/observations/contracts';
-import { applyPipPriorityOverlay } from '../lib/improvement-plans/progress';
 import { readOrganizationActiveImprovementPlans } from './improvementPlans';
 import { applyGbfPhasePriority } from '../lib/gbf/progress';
 import { readOrganizationCurrentGbfAssignments, readTeacherGbfAssignment } from './gbf';
+import { applyPriorityOverlays } from '../lib/reporting/projections';
 
 const MAX_QUEUE_TEACHERS = 250;
 const MAX_ORGANIZATION_ACCOUNTS = 1_000;
@@ -503,7 +503,7 @@ async function readTeacherPriorityRows(
   return applyGbfPhasePriority({ assignment, priorities });
 }
 
-async function refreshAttentionSummary(
+export async function refreshAttentionSummary(
   ctx: Pick<MutationCtx, 'db'>,
   organizationId: Id<'organizations'>,
   teacherProfileId: Id<'teacher_profiles'>,
@@ -653,16 +653,11 @@ export const readRankedTeacherQueue = internalQuery({
           skillIds,
           now,
         );
-      const overlays = activePlans.overlaysByTeacher.get(candidate.teacherProfileId);
-      const pipTargets = baseTargets.map((priority) => {
-        const overlay = overlays?.get(priority.skillId);
-        return overlay
-          ? applyPipPriorityOverlay({ priority, ...overlay, now })
-          : priority;
-      });
-      const targets = applyGbfPhasePriority({
-        assignment: gbfAssignments.assignmentsByTeacher.get(candidate.teacherProfileId) ?? null,
-        priorities: pipTargets,
+      const targets = applyPriorityOverlays({
+        priorities: baseTargets,
+        pipOverlays: activePlans.overlaysByTeacher.get(candidate.teacherProfileId) ?? new Map(),
+        gbfAssignment: gbfAssignments.assignmentsByTeacher.get(candidate.teacherProfileId) ?? null,
+        now,
       });
       return [{ teacherProfileId: candidate.teacherProfileId, displayName: account.displayName, targets }];
     });

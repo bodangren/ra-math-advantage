@@ -34,6 +34,16 @@ function nodeLabel(node: ProficiencyGraphNode) {
   return `${node.title}: ${stateLabel(node.state)}`;
 }
 
+function visibleNodeTitle(node: ProficiencyGraphNode) {
+  if (node.kind === 'component') return `${node.title.split(':', 1)[0]}:`;
+  if (node.kind === 'domain') return `${node.title.split(':', 1)[0]}:`;
+  return node.title;
+}
+
+function formatViewValue(value: number) {
+  return Number(value.toFixed(2));
+}
+
 export function TeacherProficiencyGraph({
   currentProficiency,
 }: {
@@ -116,8 +126,10 @@ export function TeacherProficiencyGraph({
   function handleWheel(event: React.WheelEvent<SVGSVGElement>) {
     event.preventDefault();
     const rect = event.currentTarget.getBoundingClientRect();
-    const pointerX = event.clientX - (rect.left + rect.width / 2);
-    const pointerY = event.clientY - (rect.top + rect.height / 2);
+    const width = Math.max(rect.width, 1);
+    const height = Math.max(rect.height, 1);
+    const pointerX = (event.clientX - (rect.left + width / 2)) * VIEWBOX_SIZE / width;
+    const pointerY = (event.clientY - (rect.top + height / 2)) * VIEWBOX_SIZE / height;
     setView((previous) => {
       const nextScale = Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, previous.scale + (event.deltaY < 0 ? 0.1 : -0.1)));
       const factor = nextScale / previous.scale;
@@ -161,14 +173,15 @@ export function TeacherProficiencyGraph({
       </div>
       <div ref={containerRef} className="teacher-proficiency-graph-canvas">
         <svg
-          role="img"
-          aria-label="Teacher proficiency graph"
+          role="group"
+          aria-labelledby="teacher-proficiency-graph-svg-label"
           viewBox={`${-VIEWBOX_SIZE / 2} ${-VIEWBOX_SIZE / 2} ${VIEWBOX_SIZE} ${VIEWBOX_SIZE}`}
           onWheel={handleWheel}
         >
+          <title id="teacher-proficiency-graph-svg-label">Teacher proficiency graph</title>
           <g
             data-testid="proficiency-graph-viewport"
-            transform={`translate(${view.x} ${view.y}) scale(${view.scale})`}
+            transform={`translate(${formatViewValue(view.x)} ${formatViewValue(view.y)}) scale(${formatViewValue(view.scale)})`}
             onPointerDown={startPan}
             onPointerMove={movePan}
             onPointerUp={endPan}
@@ -204,10 +217,12 @@ export function TeacherProficiencyGraph({
                 }}
                 onKeyDown={(event) => handleNodeKeyDown(event, node)}
               >
+                {node.kind === 'component' ? <title>{node.title}</title> : null}
                 <circle r={nodeRadius(node)} />
-                <text className="teacher-proficiency-graph-node-title" y={nodeRadius(node) + 20}>{node.title}</text>
+                <text className="teacher-proficiency-graph-node-title" y={nodeRadius(node) + 20}>{visibleNodeTitle(node)}</text>
+                <text className="teacher-proficiency-graph-node-state" y={nodeRadius(node) + 37}>{stateLabel(node.state)}</text>
                 {node.kind === 'skill' && node.priorityRank ? (
-                  <text className="teacher-proficiency-graph-node-priority" y={nodeRadius(node) + 39}>Priority {node.priorityRank}</text>
+                  <text className="teacher-proficiency-graph-node-priority" y={nodeRadius(node) + 54}>Priority {node.priorityRank}</text>
                 ) : null}
               </g>
             ))}

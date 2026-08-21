@@ -4,7 +4,9 @@ import { rankPriorityTargets } from '../observations/queue';
 import type { PriorityProjection } from '../proficiency/processor';
 import { buildDanielsonGraph } from '../proficiency/graph';
 import { adaptDanielsonRating, isDanielsonRating } from '../proficiency/rating';
-import type { GbfPhaseId, GbfProgress } from '../gbf/contracts';
+import { applyGbfPhasePriority } from '../gbf/progress';
+import type { GbfPhaseId, GbfProgress, GbfTeacherAssignment } from '../gbf/contracts';
+import { applyPipPriorityOverlay } from '../improvement-plans/progress';
 
 export type ReportingState = 'below_proficient' | 'proficient' | 'not_enough_evidence';
 export type AttentionReason = 'below_proficient' | 'overdue_evidence' | 'ip_off_track';
@@ -23,7 +25,36 @@ export type ImprovementPlanPortfolioProjection =
       planId: string;
       outcome: 'successful' | 'insufficient_improvement';
     };
-type ReportingPriority = PriorityProjection & { sourceRecordId?: string | null };
+export type ReportingPriority = PriorityProjection & { sourceRecordId?: string | null };
+
+export type ComponentEvidence = {
+  componentId: string;
+  rawRating: 1 | 2 | 3 | 4;
+  sourceRecordId: string | null;
+};
+
+/** Apply the same PIP and GBF priority overlays used by the leadership queue. */
+export function applyPriorityOverlays(input: {
+  priorities: readonly ReportingPriority[];
+  pipOverlays: ReadonlyMap<string, {
+    approvedAt: number;
+    planEndAt: number;
+    latestRatedEvidenceAt: number | null;
+  }>;
+  gbfAssignment: Pick<
+    GbfTeacherAssignment,
+    'assignmentId' | 'assignedSkillIds' | 'unresolvedGapSkillIds'
+  > | null;
+  now: number;
+}) {
+  const pipPriorities = input.priorities.map((priority) => {
+    const overlay = input.pipOverlays.get(priority.skillId);
+    return overlay
+      ? applyPipPriorityOverlay({ priority, ...overlay, now: input.now })
+      : priority;
+  });
+  return applyGbfPhasePriority({ assignment: input.gbfAssignment, priorities: pipPriorities });
+}
 
 export type PortfolioRow = {
   teacherProfileId: string;
@@ -66,8 +97,12 @@ const skillsByComponent = new Map(allComponentIds.map((componentId) => [
 ]));
 const componentIds = allComponentIds;
 
-function projectComponentStates(priorities: readonly ReportingPriority[]) {
+function projectComponentStates(
+  priorities: readonly ReportingPriority[],
+  componentEvidence: readonly ComponentEvidence[] = [],
+) {
   const priorityBySkill = new Map(priorities.map((priority) => [priority.skillId, priority]));
+  const evidenceByComponent = new Map(componentEvidence.map((evidence) => [evidence.componentId, evidence]));
   return componentIds.map((componentId) => {
     const skillIds = skillsByComponent.get(componentId) ?? [];
     const skills = skillIds.map((skillId) => {
@@ -87,11 +122,15 @@ function projectComponentStates(priorities: readonly ReportingPriority[]) {
         sourceRecordId: priority?.sourceRecordId ?? null,
       };
     });
-    const state: ReportingState = skills.some((skill) => skill.state === 'below_proficient')
+    const skillState: ReportingState = skills.some((skill) => skill.state === 'below_proficient')
       ? 'below_proficient'
       : skills.length > 0 && skills.every((skill) => skill.state === 'proficient')
         ? 'proficient'
         : 'not_enough_evidence';
+    const componentRating = evidenceByComponent.get(componentId)?.rawRating;
+    const state: ReportingState = skillState === 'not_enough_evidence' && componentRating !== undefined
+      ? componentRating >= 3 ? 'proficient' : 'below_proficient'
+      : skillState;
     return {
       componentId,
       title: nodeById.get(componentId)?.title ?? componentId,
@@ -135,11 +174,12 @@ export function projectPortfolioRow(input: {
   displayName: string;
   priorities: readonly ReportingPriority[];
   now: number;
+  componentEvidence?: readonly ComponentEvidence[];
   improvementPlan?: ImprovementPlanPortfolioProjection;
   gbf?: GbfProgress;
 }): PortfolioRow {
   void input.now;
-  const components = projectComponentStates(input.priorities);
+  const components = projectComponentStates(input.priorities, input.componentEvidence);
   const state = overallState(components);
   const belowComponentIds = components
     .filter((component) => component.state === 'below_proficient')
@@ -234,8 +274,11 @@ export function paginatePortfolioRows(
 }
 
 /** Project current proficiency at domain, component, and approved-skill levels. */
-export function projectCurrentProficiency(input: { priorities: readonly ReportingPriority[] }) {
-  const components = projectComponentStates(input.priorities);
+export function projectCurrentProficiency(input: {
+  priorities: readonly ReportingPriority[];
+  componentEvidence?: readonly ComponentEvidence[];
+}) {
+  const components = projectComponentStates(input.priorities, input.componentEvidence);
   const domainById = new Map(graph.nodes
     .filter((node) => node.kind === 'content_group')
     .map((node) => [node.id, node]));

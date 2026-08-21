@@ -15,9 +15,10 @@ export const DEMO_USERNAMES = [
   'demo.teacher.growth',
 ];
 
-/** @param {Record<string, string | undefined>} [env] */
-export function requireDemoPassword(env = process.env) {
-  const password = env.DANIELSON_DEMO_PASSWORD;
+/** @param {Record<string, string | undefined>} [env] @param {string | null} [envFileText] */
+export function requireDemoPassword(env = process.env, envFileText = null) {
+  const fileValues = envFileText === null ? readLocalEnvFile() : parseEnvFile(envFileText);
+  const password = env.DANIELSON_DEMO_PASSWORD || fileValues.DANIELSON_DEMO_PASSWORD;
   if (typeof password !== 'string' || password.length === 0) {
     throw new Error('DANIELSON_DEMO_PASSWORD is required');
   }
@@ -46,10 +47,18 @@ function parseEnvFile(value) {
     }));
 }
 
+function readLocalEnvFile() {
+  try {
+    return parseEnvFile(readFileSync(new URL('../.env.local', import.meta.url), 'utf8'));
+  } catch {
+    return {};
+  }
+}
+
 /** @param {Record<string, string | undefined>} [env] @param {string | null} [envFileText] */
 export function readConvexUrl(env = process.env, envFileText = null) {
   const fileValues = envFileText === null
-    ? parseEnvFile(readFileSync(new URL('../.env.local', import.meta.url), 'utf8'))
+    ? readLocalEnvFile()
     : parseEnvFile(envFileText);
   const value = env.NEXT_PUBLIC_CONVEX_URL || fileValues.NEXT_PUBLIC_CONVEX_URL;
   if (!value || !isLocalConvexUrl(value)) {
@@ -76,8 +85,13 @@ export async function createCredentialPayloads(usernames, password) {
 export function formatSeedOutput(result, _password) {
   return JSON.stringify({
     kind: result.kind,
-    usernames: result.usernames,
+    ...(result.reason ? { reason: result.reason } : {}),
+    usernames: result.kind === 'conflict' ? [] : result.usernames,
   }, null, 2);
+}
+
+export function seedResultExitCode(kind) {
+  return kind === 'created' || kind === 'already_seeded' ? 0 : 1;
 }
 
 async function main() {
@@ -97,8 +111,13 @@ async function main() {
   });
   if (result.status !== 0) process.exit(result.status ?? 1);
   const parsed = JSON.parse(result.stdout.trim());
-  const output = formatSeedOutput({ kind: parsed.kind, usernames: DEMO_USERNAMES }, password);
+  const output = formatSeedOutput({
+    kind: parsed.kind,
+    ...(parsed.reason ? { reason: parsed.reason } : {}),
+    usernames: DEMO_USERNAMES,
+  }, password);
   process.stdout.write(`${output}\n`);
+  process.exitCode = seedResultExitCode(parsed.kind);
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) await main();
