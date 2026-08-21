@@ -460,3 +460,16 @@ occurs:
     - [x] Run the Danielson build and Measure Doctor.
     - [x] Verify a developing teacher and an experienced teacher in the in-app browser.
     - [x] Leave the browser on a page that shows scored graph nodes.
+
+## Phase: Colored Legend Correction
+
+- [~] Task: Color the proficiency legend swatches.
+    - [ ] Add a regression test for the swatch background colors.
+    - [ ] Use the existing score colors for the HTML swatches.
+    - [ ] Keep the legend text and neutral state.
+
+- [ ] Task: Verify and close the correction.
+    - [ ] Run the focused graph test.
+    - [ ] Run Danielson lint and TypeScript.
+    - [ ] Verify the legend in the in-app browser.
+    - [ ] Run Measure Doctor and `git diff --check`.
