@@ -370,5 +370,9 @@ describe('PIP interface', () => {
     expect(screen.getByText(/Evidence due at:.*Sep.*2026/i)).toBeVisible();
     expect(screen.getByText('Source record: observation_records:source-one')).toBeVisible();
     expect(screen.getByText('Evidence key: evidence:source-one')).toBeVisible();
+    expect(screen.getAllByRole('link', { name: 'Learn Double Plan' }).length).toBeGreaterThan(0);
+    for (const link of screen.getAllByRole('link', { name: 'Learn Double Plan' })) {
+      expect(link).toHaveAttribute('href', '/learn/double-plan');
+    }
   });
 });

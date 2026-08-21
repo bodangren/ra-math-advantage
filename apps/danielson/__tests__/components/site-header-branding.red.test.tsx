@@ -42,6 +42,7 @@ describe('SiteHeader organization brand', () => {
     expect(screen.getByText('HDKWA')).toBeVisible();
     expect(screen.getByText('Danielson Teacher Growth')).toBeVisible();
     expect(screen.getByRole('link', { name: 'Reports' })).toBeVisible();
+    expect(screen.getByRole('link', { name: 'Learn' })).toHaveAttribute('href', '/learn');
   });
 
   it('uses the generic application brand when organization branding is absent', () => {

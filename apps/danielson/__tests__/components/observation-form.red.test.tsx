@@ -56,6 +56,10 @@ describe('observation form accessibility', () => {
     expect(screen.getAllByRole('radio', { name: /^Not enough evidence$/ })[0]).toHaveAttribute('type', 'radio');
     expect(screen.getByLabelText('Evidence note for Double Plan')).toBeVisible();
     expect(screen.getByText('Evidence gap')).toBeVisible();
+    expect(screen.getByRole('link', { name: 'Learn Double Plan' })).toHaveAttribute(
+      'href',
+      '/learn/double-plan',
+    );
 
     for (const action of [
       screen.getByRole('button', { name: 'Save draft' }),

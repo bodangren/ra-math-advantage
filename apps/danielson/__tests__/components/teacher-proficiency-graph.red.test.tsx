@@ -144,6 +144,10 @@ describe('TeacherProficiencyGraph', () => {
       'href',
       expect.stringContaining('observation_records'),
     );
+    expect(screen.getByRole('link', { name: 'Learn Exemplar Planning' })).toHaveAttribute(
+      'href',
+      '/learn/exemplar-planning',
+    );
     expect(screen.queryByText('private leadership comment')).not.toBeInTheDocument();
     expect(screen.queryByText('teacher response')).not.toBeInTheDocument();
   });

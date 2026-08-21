@@ -617,6 +617,8 @@ describe('reporting independent-review interface contracts', () => {
         'href',
         '/observations/records/observation_records%3Askill-source',
       );
+    expect(within(detailedProficiency).getByRole('link', { name: 'Learn Double Plan' }))
+      .toHaveAttribute('href', '/learn/double-plan');
   });
 
   it('shows the target skill and parent component in evidence history', () => {
