@@ -32,23 +32,23 @@
 
 ## Phase 3: Implement
 
-- [~] Task: Implement organization-owned branding and the HDKWA demo.
-    - [ ] Add the optional fields to the organization schema.
-    - [ ] Return the fields through the existing account and session reads.
-    - [ ] Apply the fields through the existing application shell.
-    - [ ] Reuse the approved MVP logo asset.
-    - [ ] Change the demo organization to Haidian Kaiwen Academy.
-    - [ ] Keep all local seed checks and scenarios.
+- [x] Task: Implement organization-owned branding and the HDKWA demo. [980fd23]
+    - [x] Add the optional fields to the organization schema.
+    - [x] Return the fields through the existing account and session reads.
+    - [x] Apply the fields through the existing application shell.
+    - [x] Reuse the approved MVP logo asset.
+    - [x] Change the demo organization to Haidian Kaiwen Academy.
+    - [x] Keep all local seed checks and scenarios.
 
-- [ ] Task: Align the visual system with the approved MVP.
-    - [ ] Use the approved white, gray, navy, gold, blue, and ink colors.
-    - [ ] Use native sans-serif type.
-    - [ ] Use flat 12-pixel surfaces and controls.
-    - [ ] Refine the header, cards, tables, forms, reports, and graph canvas.
-    - [ ] Verify contrast, focus, mobile layout, and reduced motion.
+- [x] Task: Align the visual system with the approved MVP. [541976b]
+    - [x] Use the approved white, gray, navy, gold, blue, and ink colors.
+    - [x] Use native sans-serif type.
+    - [x] Use flat 12-pixel surfaces and controls.
+    - [x] Refine the header, cards, tables, forms, reports, and graph canvas.
+    - [x] Verify contrast, focus, mobile layout, and reduced motion.
 
-- [ ] Task: Verify the local demo and capture the interface.
-    - [ ] Reset and reseed only the local Danielson deployment when required.
+- [~] Task: Verify the local demo and capture the interface.
+    - [x] Reset and reseed only the local Danielson deployment when required.
     - [ ] Verify the 10 pilot accounts and seven teacher scenarios.
     - [ ] Capture every desktop page and state in the specification.
     - [ ] Capture the five required mobile views.
