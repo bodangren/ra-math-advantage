@@ -2,56 +2,111 @@
 
 ## Direction
 
-The interface uses the visual language of a precise field notebook. It must
-feel calm, credible, and quick to scan during a school day. It must not look
-like a generic software dashboard.
+The interface uses the approved HDKWA professional-development visual language.
+It combines a museum-gallery canvas with the compact information that leaders
+need during a school day.
+
+The approved reference is
+`/Users/daniel.bodanske/Desktop/hdkwa-danielson/DESIGN.md`.
+
+The application does not copy the MVP layout. The MVP is a content hub. This
+application is an evidence and workflow system. It keeps compact tables,
+forms, reports, and graphs.
+
+## Organization Branding
+
+The organization record owns these optional values:
+
+- Display name.
+- Logo path.
+- Primary color.
+- Accent color.
+
+The authenticated session supplies the values for the current organization.
+The application uses generic Danielson values when an organization has no
+brand values.
+
+The local demo uses these HDKWA values:
+
+| Value | HDKWA setting |
+|---|---|
+| Display name | Haidian Kaiwen Academy |
+| Short name | HDKWA |
+| Primary color | `#003366` |
+| Accent color | `#C5A059` |
+| Logo | HDKWA navy and gold logo |
+
+Do not create a brand registry, brand table, upload system, or runtime theme
+editor for this release.
 
 ## Color
 
-Use these semantic tokens. Each text and control pair must meet Web Content
-Accessibility Guidelines (WCAG) 2.1 AA contrast.
+Use these default tokens. Organization values replace the primary and accent
+tokens after sign-in.
 
-| Token | Light value | Use |
+| Token | Default value | Use |
 |---|---:|---|
-| `--paper` | `#F4F0E6` | Page background |
-| `--surface` | `#FFFDF7` | Cards and forms |
-| `--ink` | `#18231F` | Primary text |
-| `--muted-ink` | `#53605A` | Secondary text |
-| `--forest` | `#164C3B` | Primary actions and navigation |
-| `--ochre` | `#8E4417` | Due and attention states |
-| `--line` | `#69766F` | Borders and rules |
+| `--paper` | `#FFFFFF` | Page canvas |
+| `--surface` | `#FFFFFF` | Forms and primary content |
+| `--tile` | `#F5F5F7` | Grouped sections and table headings |
+| `--ink` | `#1D1D1F` | Primary text |
+| `--muted-ink` | `#515154` | Secondary text |
+| `--brand-primary` | `#003366` | Navigation and primary actions |
+| `--brand-accent` | `#C5A059` | Focus, progress, and selected details |
+| `--action` | `#0066CC` | Links and utility actions |
+| `--line` | `#D2D2D7` | Borders and rules |
 | `--danger` | `#A72F32` | Destructive actions and errors |
 
-Do not use color as the only status signal.
+Keep the proficiency score colors. Use red for 1.0 to 1.9. Use yellow for 2.0
+to 2.9. Use green for 3.0 to 3.9. Use blue for 4.0. Always show text with the
+color.
 
 ## Type
 
-- Use Georgia for display headings.
-- Use the native system font for body text and controls.
-- Use tabular numerals for dates and counts.
-- Keep body text at 16 pixels or more.
+- Use the native sans-serif stack for headings, body text, and controls.
+- Use a weight of 600 for display headings.
+- Use negative letter spacing only on headings that are larger than 32 pixels.
+- Use a body size of 17 pixels.
+- Use the native monospace stack for record identifiers and framework codes.
+- Use tabular numerals for dates, ratings, and counts.
 
-## Layout
+## Surfaces and Controls
 
-- Use a compact top bar for role-aware navigation.
-- Use one content column for forms.
-- Use a compact table for account and assignment lists.
-- Keep the primary action in a consistent position.
-- Stack the top bar links on small screens.
+- Use a 12-pixel radius for cards, controls, and buttons.
+- Use flat surfaces.
+- Do not use card shadows.
+- Use white for primary content.
+- Use the light gray tile color for grouped content.
+- Use a light border when a boundary is required.
+- Use the organization primary color for the main action.
+- Use the organization accent color for selected and progress states.
+- Use the action blue for text links and secondary utilities.
 
-## Components
+## Header and Navigation
 
-- Reuse the shared provider, authentication context, and logout control.
-- Keep the Danielson header and navigation in this app.
-- Keep all Danielson cards, tables, forms, badges, and tokens in this app.
-- Use a clear page title, purpose statement, and current scope on each protected
-  page.
-- Use a visible focus ring with at least 2 pixels of thickness.
-- Use an inline error summary for a server failure.
-- Use native control validation for a required value.
+- Put the organization logo at the start of the header.
+- Show the organization name and `Danielson Teacher Growth`.
+- Keep the role-aware navigation.
+- Keep the header compact on desktop.
+- Stack the navigation on a small screen.
+- Keep the sign-out action visible.
 
-## Motion
+## Reports and Forms
 
-- Use motion only to show a state change.
+- Keep the compact report and table structure.
+- Use clear section headings and generous vertical spacing.
+- Keep one primary action for each form.
+- Use the accent color for due dates and selected evidence.
+- Keep the proficiency graph on a calm light canvas.
+- Keep public and private information visually separate.
+
+## Accessibility
+
+- Each text and control pair must meet Web Content Accessibility Guidelines
+  (WCAG) 2.1 AA contrast.
+- Do not use color as the only status signal.
+- Keep visible keyboard focus.
+- Use a focus ring with at least 3 pixels of thickness.
+- Keep form labels and error summaries.
 - Respect `prefers-reduced-motion`.
-- Keep transitions at 180 milliseconds or less.
+- Keep a body text size of at least 16 pixels on small screens.
