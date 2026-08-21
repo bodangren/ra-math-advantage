@@ -1,6 +1,7 @@
 import type { CurrentProficiency, ReportingState } from './contracts';
 
 export type ProficiencyGraphNodeKind = 'framework' | 'domain' | 'component' | 'skill';
+export type ProficiencyScoreBand = 'red' | 'yellow' | 'green' | 'blue' | 'neutral';
 
 export type ProficiencyGraphNode = {
   id: string;
@@ -9,6 +10,8 @@ export type ProficiencyGraphNode = {
   state: ReportingState;
   x: number;
   y: number;
+  displayScore: number | null;
+  scoreBand: ProficiencyScoreBand;
   rawRating?: 1 | 2 | 3 | 4 | null;
   points?: 70 | 80 | 90 | 100 | null;
   due?: boolean;
@@ -73,12 +76,39 @@ function componentAngle(domainIndex: number, componentIndex: number, componentCo
   return domainAngle + offset;
 }
 
+function meanScore(values: readonly number[]) {
+  if (values.length === 0) return null;
+  return values.reduce((total, value) => total + value, 0) / values.length;
+}
+
+function roundScore(score: number | null) {
+  return score === null ? null : Math.round(score * 10) / 10;
+}
+
+function componentScore(
+  component: CurrentProficiency['domains'][number]['components'][number],
+) {
+  const skillRatings = component.skills.flatMap((skill) => (
+    skill.rawRating === null ? [] : [skill.rawRating]
+  ));
+  return skillRatings.length > 0 ? meanScore(skillRatings) : component.rawRating;
+}
+
+function scoreBand(score: number | null): ProficiencyScoreBand {
+  if (score === null) return 'neutral';
+  if (score < 2) return 'red';
+  if (score < 3) return 'yellow';
+  if (score < 4) return 'green';
+  return 'blue';
+}
+
 function makeSkillNode(
   skill: CurrentProficiency['domains'][number]['components'][number]['skills'][number],
   target: CurrentProficiency['priorityTargets'][number] | undefined,
   position: { x: number; y: number },
 ): ProficiencyGraphNode {
   const id = skillNodeId(skill.skillId);
+  const displayScore = skill.rawRating;
   return {
     id,
     kind: 'skill',
@@ -86,6 +116,8 @@ function makeSkillNode(
     state: skill.state,
     x: position.x,
     y: position.y,
+    displayScore,
+    scoreBand: scoreBand(displayScore),
     rawRating: skill.rawRating,
     points: skill.points,
     due: skill.due,
@@ -104,6 +136,12 @@ export function buildProficiencyGraphModel(
   current: CurrentProficiency,
   options: { expandedComponentId?: string } = {},
 ): ProficiencyGraphModel {
+  const componentScores = new Map(current.domains.flatMap((domain) => (
+    domain.components.map((component) => [component.componentId, componentScore(component)] as const)
+  )));
+  const frameworkScore = roundScore(meanScore([...componentScores.values()].flatMap((score) => (
+    score === null ? [] : [score]
+  ))));
   const nodes: ProficiencyGraphNode[] = [{
     id: 'danielson.framework.2022',
     kind: 'framework',
@@ -111,6 +149,8 @@ export function buildProficiencyGraphModel(
     state: current.state,
     x: 0,
     y: 0,
+    displayScore: frameworkScore,
+    scoreBand: scoreBand(frameworkScore),
   }];
   const edges: ProficiencyGraphEdge[] = [];
   const targets = new Map(current.priorityTargets.map((target) => [skillNodeId(target.skillId), target]));
@@ -118,11 +158,17 @@ export function buildProficiencyGraphModel(
   current.domains.forEach((domain, domainIndex) => {
     const domainId = domain.domainId;
     const domainPosition = point(DOMAIN_RADIUS, -Math.PI / 2 + (domainIndex * Math.PI * 2) / 4);
+    const displayScore = roundScore(meanScore(domain.components.flatMap((component) => {
+      const score = componentScores.get(component.componentId);
+      return score === null || score === undefined ? [] : [score];
+    })));
     nodes.push({
       id: domainId,
       kind: 'domain',
       title: domain.title,
       state: domain.state,
+      displayScore,
+      scoreBand: scoreBand(displayScore),
       ...domainPosition,
     });
     edges.push(edge('danielson.framework.2022', domainId));
@@ -131,11 +177,14 @@ export function buildProficiencyGraphModel(
       const componentId = component.componentId;
       const angle = componentAngle(domainIndex, componentIndex, domain.components.length);
       const componentPosition = point(COMPONENT_RADIUS, angle);
+      const displayScore = roundScore(componentScores.get(componentId) ?? null);
       nodes.push({
         id: componentId,
         kind: 'component',
         title: component.title,
         state: component.state,
+        displayScore,
+        scoreBand: scoreBand(displayScore),
         rawRating: component.rawRating,
         points: component.points,
         sourceRecordId: component.sourceRecordId,

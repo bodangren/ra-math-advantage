@@ -6,6 +6,7 @@ import type { CurrentProficiency, ReportingState } from '../lib/reporting/contra
 import {
   buildProficiencyGraphModel,
   type ProficiencyGraphNode,
+  type ProficiencyScoreBand,
 } from '../lib/reporting/proficiency-graph';
 
 const MIN_ZOOM = 0.55;
@@ -31,20 +32,25 @@ function nodeRadius(node: ProficiencyGraphNode) {
 }
 
 function nodeLabel(node: ProficiencyGraphNode) {
+  const score = node.displayScore === null
+    ? ': No score'
+    : `: Score ${node.displayScore.toFixed(1)} of 4: ${scoreBandLabel(node.scoreBand)}`;
   const rating = node.rawRating === null || node.rawRating === undefined
     ? ''
     : `: Rating ${node.rawRating}: ${node.points} points`;
-  return `${node.title}: ${stateLabel(node.state)}${rating}${node.due ? ': Due' : ''}`;
+  return `${node.title}: ${stateLabel(node.state)}${score}${rating}${node.due ? ': Due' : ''}`;
 }
 
 function nodeStatusLabel(node: ProficiencyGraphNode) {
   return `${stateLabel(node.state)}${node.due ? ' · Due' : ''}`;
 }
 
-function nodeRatingLabel(node: ProficiencyGraphNode) {
-  return node.rawRating === null || node.rawRating === undefined
-    ? null
-    : `Rating ${node.rawRating} · ${node.points} points`;
+function scoreBandLabel(band: ProficiencyScoreBand) {
+  if (band === 'red') return 'Red';
+  if (band === 'yellow') return 'Yellow';
+  if (band === 'green') return 'Green';
+  if (band === 'blue') return 'Blue';
+  return 'No score';
 }
 
 function visibleNodeTitle(node: ProficiencyGraphNode) {
@@ -212,6 +218,13 @@ export function TeacherProficiencyGraph({
           <button type="button" onClick={() => void requestFullScreen()}>Full screen</button>
         </div>
       </div>
+      <div className="teacher-proficiency-graph-legend" role="region" aria-label="Proficiency score colors">
+        <span><i className="score-red" aria-hidden="true" />Red 1.0–1.9</span>
+        <span><i className="score-yellow" aria-hidden="true" />Yellow 2.0–2.9</span>
+        <span><i className="score-green" aria-hidden="true" />Green 3.0–3.9</span>
+        <span><i className="score-blue" aria-hidden="true" />Blue 4.0</span>
+        <span><i className="score-neutral" aria-hidden="true" />No score</span>
+      </div>
       <div ref={containerRef} className="teacher-proficiency-graph-canvas">
         <svg
           ref={svgRef}
@@ -250,7 +263,7 @@ export function TeacherProficiencyGraph({
                 role="button"
                 tabIndex={0}
                 aria-label={nodeLabel(node)}
-                className={`teacher-proficiency-graph-node teacher-proficiency-graph-node-${node.kind} state-${node.state}${node.due ? ' is-due' : ''}${selectedNodeId === node.id ? ' is-selected' : ''}`}
+                className={`teacher-proficiency-graph-node teacher-proficiency-graph-node-${node.kind} state-${node.state} score-${node.scoreBand}${node.due ? ' is-due' : ''}${selectedNodeId === node.id ? ' is-selected' : ''}`}
                 transform={`translate(${node.x} ${node.y})`}
                 onPointerDown={(event) => event.stopPropagation()}
                 onPointerUp={(event) => {
@@ -261,13 +274,13 @@ export function TeacherProficiencyGraph({
               >
                 {node.kind === 'component' ? <title>{node.title}</title> : null}
                 <circle r={nodeRadius(node)} />
+                {node.displayScore === null ? null : (
+                  <text className="teacher-proficiency-graph-node-score" y="0.35em">{node.displayScore.toFixed(1)}</text>
+                )}
                 <text className="teacher-proficiency-graph-node-title" y={nodeRadius(node) + 20}>{visibleNodeTitle(node)}</text>
                 <text className="teacher-proficiency-graph-node-state" y={nodeRadius(node) + 37}>{nodeStatusLabel(node)}</text>
-                {nodeRatingLabel(node) ? (
-                  <text className="teacher-proficiency-graph-node-rating" y={nodeRadius(node) + 54}>{nodeRatingLabel(node)}</text>
-                ) : null}
                 {node.kind === 'skill' && node.priorityRank ? (
-                  <text className="teacher-proficiency-graph-node-priority" y={nodeRadius(node) + (nodeRatingLabel(node) ? 71 : 54)}>Priority {node.priorityRank}</text>
+                  <text className="teacher-proficiency-graph-node-priority" y={nodeRadius(node) + 54}>Priority {node.priorityRank}</text>
                 ) : null}
               </g>
             ))}
@@ -282,6 +295,9 @@ export function TeacherProficiencyGraph({
         <aside className="teacher-proficiency-graph-detail" aria-label="Selected graph node details">
           <h3>{selectedNode.title}:</h3>
           <p>Status: {stateLabel(selectedNode.state)}</p>
+          {selectedNode.displayScore === null ? <p>Score: No rated evidence</p> : (
+            <p>Score: {selectedNode.displayScore.toFixed(1)} of 4</p>
+          )}
           {selectedNode.rawRating !== null && selectedNode.rawRating !== undefined ? (
             <>
               <p>Rating: {selectedNode.rawRating}</p>

@@ -38,7 +38,29 @@ afterEach(() => {
 });
 
 describe('TeacherProficiencyGraph', () => {
-  it('shows component ratings and points without requiring selection', () => {
+  it('shows rounded scores inside nodes with text-backed color bands', () => {
+    render(<TeacherProficiencyGraph currentProficiency={currentProficiency()} />);
+
+    const framework = screen.getByRole('button', {
+      name: /Framework for Teaching 2022: Below Proficient: Score 3\.0 of 4: Green/,
+    });
+    const component = screen.getByRole('button', {
+      name: /Applying Knowledge of Content and Pedagogy: Below Proficient: Score 2\.5 of 4: Yellow/,
+    });
+
+    expect(framework).toHaveClass('score-green');
+    expect(component).toHaveClass('score-yellow');
+    expect(component).toHaveTextContent('2.5');
+    expect(screen.getByRole('region', { name: 'Proficiency score colors' })).toHaveTextContent(
+      'Red 1.0–1.9Yellow 2.0–2.9Green 3.0–3.9Blue 4.0No score',
+    );
+
+    fireEvent.keyDown(component, { key: 'Enter' });
+    expect(screen.getByRole('complementary', { name: 'Selected graph node details' }))
+      .toHaveTextContent('Score: 2.5 of 4');
+  });
+
+  it('shows a component score without requiring selection', () => {
     const current = projectCurrentProficiency({
       priorities: [],
       componentEvidence: [{
@@ -50,9 +72,9 @@ describe('TeacherProficiencyGraph', () => {
     render(<TeacherProficiencyGraph currentProficiency={current} />);
 
     const component = screen.getByRole('button', {
-      name: /Applying Knowledge of Content and Pedagogy: Proficient: Rating 4: 100 points/,
+      name: /Applying Knowledge of Content and Pedagogy: Proficient: Score 4\.0 of 4: Blue: Rating 4: 100 points/,
     });
-    expect(screen.getByText('Rating 4 · 100 points')).toBeVisible();
+    expect(component).toHaveTextContent('4.0');
 
     fireEvent.keyDown(component, { key: 'Enter' });
     const details = screen.getByRole('complementary', { name: 'Selected graph node details' });
@@ -79,7 +101,7 @@ describe('TeacherProficiencyGraph', () => {
     fireEvent.keyDown(screen.getByRole('button', { name: /1a: Applying Knowledge/ }), { key: 'Enter' });
     expect(screen.getAllByText(/Below Proficient · Due/).length).toBeGreaterThan(0);
     expect(screen.getByRole('button', {
-      name: /Exemplar Planning: Below Proficient: Rating 2: 80 points: Due/,
+      name: /Exemplar Planning: Below Proficient: Score 2\.0 of 4: Yellow: Rating 2: 80 points: Due/,
     })).toBeInTheDocument();
   });
 
