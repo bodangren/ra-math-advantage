@@ -23,16 +23,16 @@
     - [x] Test organization isolation in the session result.
     - [x] Test the authenticated session brand result.
 
-- [~] Task: Add demo and shell behavior tests.
-    - [ ] Test the HDKWA demo organization name and brand fields.
-    - [ ] Test that all existing demo accounts and scenarios remain.
-    - [ ] Test the header logo, organization name, navigation, and fallback brand.
-    - [ ] Test the organization color variables.
-    - [ ] Confirm Red before production changes.
+- [x] Task: Add demo and shell behavior tests. [258645d]
+    - [x] Test the HDKWA demo organization name and brand fields.
+    - [x] Test that all existing demo accounts and scenarios remain.
+    - [x] Test the header logo, organization name, navigation, and fallback brand.
+    - [x] Test the organization color variables.
+    - [x] Confirm Red before production changes.
 
 ## Phase 3: Implement
 
-- [ ] Task: Implement organization-owned branding and the HDKWA demo.
+- [~] Task: Implement organization-owned branding and the HDKWA demo.
     - [ ] Add the optional fields to the organization schema.
     - [ ] Return the fields through the existing account and session reads.
     - [ ] Apply the fields through the existing application shell.
