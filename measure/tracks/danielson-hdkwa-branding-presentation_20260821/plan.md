@@ -47,26 +47,37 @@
     - [x] Refine the header, cards, tables, forms, reports, and graph canvas.
     - [x] Verify contrast, focus, mobile layout, and reduced motion.
 
-- [~] Task: Verify the local demo and capture the interface.
+- [x] Task: Verify the local demo and capture the interface. [d42ffa4]
     - [x] Reset and reseed only the local Danielson deployment when required.
-    - [ ] Verify the 10 pilot accounts and seven teacher scenarios.
-    - [ ] Capture every desktop page and state in the specification.
-    - [ ] Capture the five required mobile views.
-    - [ ] Keep private leadership data out of teacher screenshots.
+    - [x] Verify the 10 pilot accounts and seven teacher scenarios.
+    - [x] Capture every desktop page and state in the specification.
+    - [x] Capture the five required mobile views.
+    - [x] Keep private leadership data out of teacher screenshots.
 
-- [ ] Task: Create and verify the SLT presentation.
-    - [ ] Use the HDKWA visual system and selected application screenshots.
-    - [ ] Use a decision-focused narrative for SLT.
-    - [ ] Render every slide.
-    - [ ] Inspect every slide at full size.
-    - [ ] Correct overlap, clipping, wrapping, and inconsistent treatment.
+- [x] Task: Create and verify the SLT presentation. [d42ffa4]
+    - [x] Use the HDKWA visual system and selected application screenshots.
+    - [x] Use a decision-focused narrative for SLT.
+    - [x] Render every slide.
+    - [x] Inspect every slide at full size.
+    - [x] Correct overlap, clipping, wrapping, and inconsistent treatment.
 
 ## Phase 4: Generate Docs and Doctor
 
-- [ ] Task: Run final verification and close the track.
-    - [ ] Run focused and full Danielson tests.
-    - [ ] Run coverage, lint, application TypeScript, and Convex TypeScript.
-    - [ ] Run the Danielson production build.
-    - [ ] Run architecture boundaries, quality parity, generation, and Measure Doctor.
-    - [ ] Verify the screenshot catalog and final PowerPoint paths.
-    - [ ] Record the verified limits and close the track.
+- [x] Task: Run final verification and close the track. [560d087]
+    - [x] Run focused and full Danielson tests.
+    - [x] Run coverage, lint, application TypeScript, and Convex TypeScript.
+    - [x] Run the Danielson production build.
+    - [x] Run architecture boundaries, quality parity, generation, and Measure Doctor.
+    - [x] Verify the screenshot catalog and final PowerPoint paths.
+    - [x] Record the verified limits and close the track.
+
+## Final Verification
+
+- 367 Danielson tests passed.
+- Statement coverage is 84.98 percent.
+- Lint, application TypeScript, Convex TypeScript, and the production build passed.
+- Architecture boundaries, quality parity, Measure generation, and Measure Doctor passed.
+- The catalog contains 33 desktop screenshots and five mobile screenshots.
+- The PowerPoint contains 13 inspected slides. The geometry check found no overflow.
+- One separate architecture test has nine pending owner approvals in the active
+  ESLint-to-Oxlint migration. This result is outside the Danielson track.
