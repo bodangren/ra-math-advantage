@@ -17,13 +17,13 @@
 
 ## Phase 2: Test
 
-- [~] Task: Add organization-branding and session tests.
-    - [ ] Test an HDKWA organization.
-    - [ ] Test an organization without optional branding.
-    - [ ] Test organization isolation in the session result.
-    - [ ] Test the local login branding.
+- [x] Task: Add organization-branding and session tests. [a782986]
+    - [x] Test an HDKWA organization.
+    - [x] Test an organization without optional branding.
+    - [x] Test organization isolation in the session result.
+    - [x] Test the authenticated session brand result.
 
-- [ ] Task: Add demo and shell behavior tests.
+- [~] Task: Add demo and shell behavior tests.
     - [ ] Test the HDKWA demo organization name and brand fields.
     - [ ] Test that all existing demo accounts and scenarios remain.
     - [ ] Test the header logo, organization name, navigation, and fallback brand.
