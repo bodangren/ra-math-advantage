@@ -132,3 +132,30 @@ rating and point values. Domain and framework nodes do not use an average.
 The local Convex development process accepted the updated return validator. The
 in-app browser showed rating and point values for all 22 components. It also
 showed the selected component's rating, points, and evidence link.
+
+## Graph score and color correction
+
+Date: 2026-08-21
+
+- The focused graph suite passed: 15 tests in 2 files.
+- The full Danielson suite passed: 359 tests in 51 files.
+- Danielson lint passed.
+- Danielson TypeScript passed.
+- Convex TypeScript passed.
+- The Danielson production build passed.
+- Measure Doctor passed.
+- `git diff --check` passed.
+
+The graph now derives one display score from the current report projection. A
+skill uses its raw rating. A component uses the mean of its rated skills or its
+formal component rating. A domain uses its rated component scores. The framework
+uses all rated component scores. Missing evidence does not enter a mean. Each
+display score is rounded to one decimal place.
+
+The graph shows red, yellow, green, blue, and neutral nodes. Each rated node
+shows its score inside the circle. The visible legend and accessible node names
+also state the score range. State text remains visible.
+
+The in-app browser verified Ethan Brooks with a yellow 2.5 framework score. It
+verified Sofia Patel with green 3.x and blue 4.0 scores. The browser remains on
+Sofia Patel's graph.

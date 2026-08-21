@@ -99,7 +99,7 @@ Dependency order:
    *Remove agent-created audit, hash, release, test-only, and dead-code scope. Complete GBF walkthrough priority and the first-administrator production seed path.*
    *Link: [./tracks/danielson-ponytail-cleanup_20260820/](./tracks/danielson-ponytail-cleanup_20260820/)*
 
-- [~] **Track: Danielson Local Demo and Teacher Proficiency Graph**
+- [x] **Track: Danielson Local Demo and Teacher Proficiency Graph** — **COMPLETED** (2026-08-21)
    *Seed a local Convex deployment with fictional Danielson School demo accounts and representative teacher data. Add a dynamic zoomable SVG proficiency graph to teacher reports.*
    *Link: [./tracks/danielson-local-demo-proficiency-graph_20260821/](./tracks/danielson-local-demo-proficiency-graph_20260821/)*
 
