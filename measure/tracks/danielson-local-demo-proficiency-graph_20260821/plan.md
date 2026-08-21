@@ -395,6 +395,10 @@ occurs:
     - [x] Group records and amendments in memory and reuse the existing effective evidence projection.
     - [x] Return `portfolio_capacity_exceeded` before row assembly when either bound is exceeded.
 
+- [~] Task: Prevent pre-hydration sign-in data from entering the URL.
+    - [ ] Set the native login form method to POST.
+    - [ ] Add a focused component regression test.
+
 - [~] Task: Run the correction gates and verify the local flow.
     - [ ] Run focused red and green tests, full tests, coverage, lint, TypeScript, Convex TypeScript, build, boundary, parity, Doctor, and diff checks.
     - [ ] Verify the local browser portfolio and report flow at desktop and narrow viewports.
