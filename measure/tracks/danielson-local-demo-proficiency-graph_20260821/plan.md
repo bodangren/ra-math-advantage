@@ -131,7 +131,7 @@
     - [ ] Inject sentinel private comment text and assert that it does not enter the graph props, SVG labels, or detail panel.
     - [ ] Assert that a self-view still has no private-comment property.
 
-- [x] Task: Write Red sales-demo acceptance tests. [current]
+- [x] Task: Write Red sales-demo acceptance tests. [83035f6d]
     - [x] Add a behavioral test that reads the seeded leadership portfolio.
     - [x] Assert at least one Below Proficient teacher, one Proficient teacher, and one teacher with Not Enough Evidence.
     - [x] Assert that Noah Williams has three walkthrough targets.
@@ -295,7 +295,8 @@
     - [x] Identify and remove unused demo declarations.
     - [x] Fix the wheel-anchor finding with a focused component test run.
     - [x] Rerun the component test, lint, and typecheck after the fix.
-    - [ ] Await a separate read-only reviewer result.
+    - [x] Attempt a separate read-only reviewer task.
+    - [~] Reviewer task timed out without a result and was stopped. Keep this task open until a separate review result is available.
 
 - [ ] Task: Measure - User Manual Verification 'Generate Docs and Doctor' (Protocol in workflow.md).
     - [ ] Present the local startup commands and demo account list.
