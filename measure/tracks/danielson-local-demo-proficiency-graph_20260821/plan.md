@@ -424,3 +424,21 @@ occurs:
     - [x] Run Danielson lint and TypeScript.
     - [x] Verify the local login page in the in-app browser.
     - [x] Run Measure Doctor and `git diff --check`.
+
+## Phase: Visible Proficiency Data Correction
+
+- [~] Task: Show the proficiency values that produce each graph state.
+    - [ ] Preserve a component rating, points, and evidence source when formal evidence supplies the current component state.
+    - [ ] Keep skill ratings and points on expanded skill nodes.
+    - [ ] Show rating and point text on graph nodes that have a rating.
+    - [ ] Include rating and point text in each rated node's accessible name.
+    - [ ] Show rating, points, and evidence in the selected-node details.
+    - [ ] Do not average ratings for domain or framework nodes.
+    - [ ] Add behavioral projection, model, component, and Convex return-validator tests.
+
+- [ ] Task: Verify and close the visible proficiency correction.
+    - [ ] Run focused and full Danielson tests.
+    - [ ] Run Danielson lint, app TypeScript, and Convex TypeScript.
+    - [ ] Push the updated Convex functions to the local deployment.
+    - [ ] Verify component and skill values in the in-app browser.
+    - [ ] Run the Danielson build, Measure Doctor, and `git diff --check`.
