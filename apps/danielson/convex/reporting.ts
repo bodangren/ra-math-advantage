@@ -29,6 +29,7 @@ import {
   projectCurrentProficiency,
   projectOfficialEvaluation,
   projectPortfolioRow,
+  type ComponentEvidence,
 } from '../lib/reporting/projections';
 import {
   latestFormalRecord,
@@ -53,8 +54,8 @@ const MAX_SCOPE_ROWS = 2_000;
 const MAX_ATTENTION_SUMMARIES = 250;
 const MAX_TEACHER_ROWS = 200;
 const MAX_HISTORY_ROWS = 2_000;
-const MAX_FORMAL_RECORDS_PER_TYPE = 4;
-const MAX_FORMAL_AMENDMENTS_PER_RECORD = 100;
+const MAX_PORTFOLIO_FORMAL_RECORDS = 2_000;
+const MAX_PORTFOLIO_AMENDMENTS = 2_000;
 const MAX_PAGE_SIZE = 50;
 
 const deniedValidator = v.object({ kind: v.literal('denied'), reason: v.string() });
@@ -347,42 +348,79 @@ async function readPortfolioFormalEvidence(
   ctx: DbCtx,
   organizationId: Id<'organizations'>,
   profiles: readonly Doc<'teacher_profiles'>[],
-) {
-  const formalRows = await Promise.all(profiles.flatMap((profile) => (
-    (['formal_q1', 'formal_q4'] as const).map((observationType) => ctx.db.query('observation_records')
-      .withIndex('by_org_teacher_type_year_status', (query) => query
-        .eq('organizationId', organizationId)
-        .eq('teacherProfileId', profile._id)
-        .eq('observationType', observationType))
+): Promise<
+  | { kind: 'allowed'; evidenceByTeacher: Map<string, ComponentEvidence[]> }
+  | { kind: 'capacity_exceeded' }
+> {
+  const [q1Rows, q4Rows, amendmentRows] = await Promise.all([
+    ctx.db.query('observation_records')
+      .withIndex(
+        'by_organizationId_and_status_and_observationType_and_schoolYear',
+        (query) => query
+          .eq('organizationId', organizationId)
+          .eq('status', 'submitted')
+          .eq('observationType', 'formal_q1'),
+      )
       .order('desc')
-      .take(MAX_FORMAL_RECORDS_PER_TYPE))
-  )));
-  const candidates = formalRows.flatMap((rows) => rows.flatMap((row) => {
-    if (row.status !== 'submitted') return [];
-    return [{ row, record: submittedFromRow(row) }];
-  }));
-  const candidateAmendments = await Promise.all(candidates.map(async ({ row, record }) => ({
-    teacherProfileId: record.teacherProfileId,
-    record,
-    amendments: (await ctx.db.query('observation_amendments')
-      .withIndex('by_org_observation_version', (query) => query
-        .eq('organizationId', organizationId)
-        .eq('observationId', row._id))
-      .order('asc')
-      .take(MAX_FORMAL_AMENDMENTS_PER_RECORD))
-      .map(amendmentFromRow),
-  })));
-  const byTeacher = new Map<string, typeof candidateAmendments>();
-  for (const candidate of candidateAmendments) {
-    byTeacher.set(candidate.teacherProfileId, [
-      ...(byTeacher.get(candidate.teacherProfileId) ?? []),
-      candidate,
+      .take(MAX_PORTFOLIO_FORMAL_RECORDS + 1),
+    ctx.db.query('observation_records')
+      .withIndex(
+        'by_organizationId_and_status_and_observationType_and_schoolYear',
+        (query) => query
+          .eq('organizationId', organizationId)
+          .eq('status', 'submitted')
+          .eq('observationType', 'formal_q4'),
+      )
+      .order('desc')
+      .take(MAX_PORTFOLIO_FORMAL_RECORDS + 1),
+    ctx.db.query('observation_amendments')
+      .withIndex('by_org_teacher_occurred', (query) => query
+        .eq('organizationId', organizationId))
+      .take(MAX_PORTFOLIO_AMENDMENTS + 1),
+  ]);
+  if (
+    q1Rows.length + q4Rows.length > MAX_PORTFOLIO_FORMAL_RECORDS
+    || amendmentRows.length > MAX_PORTFOLIO_AMENDMENTS
+  ) return { kind: 'capacity_exceeded' };
+
+  const activeTeacherIds = new Set(profiles.map((profile) => String(profile._id)));
+  const formalRows = [...q1Rows, ...q4Rows]
+    .filter((row) => activeTeacherIds.has(String(row.teacherProfileId)));
+  const formalObservationIds = new Set(formalRows.map((row) => String(row._id)));
+  const amendmentsByObservation = new Map<string, ObservationAmendment[]>();
+  for (const row of amendmentRows) {
+    const observationId = String(row.observationId);
+    if (!formalObservationIds.has(observationId)) continue;
+    amendmentsByObservation.set(observationId, [
+      ...(amendmentsByObservation.get(observationId) ?? []),
+      amendmentFromRow(row),
     ]);
   }
-  return new Map([...byTeacher.entries()].map(([teacherProfileId, observations]) => [
-    teacherProfileId,
-    projectLatestFormalComponentEvidence(observations),
-  ]));
+
+  const observationsByTeacher = new Map<string, Array<{
+    record: SubmittedObservation;
+    amendments: ObservationAmendment[];
+  }>>();
+  for (const row of formalRows) {
+    const teacherProfileId = String(row.teacherProfileId);
+    const observationId = String(row._id);
+    observationsByTeacher.set(teacherProfileId, [
+      ...(observationsByTeacher.get(teacherProfileId) ?? []),
+      {
+        record: submittedFromRow(row),
+        amendments: amendmentsByObservation.get(observationId) ?? [],
+      },
+    ]);
+  }
+
+  return {
+    kind: 'allowed',
+    evidenceByTeacher: new Map([...observationsByTeacher.entries()]
+      .map(([teacherProfileId, observations]) => [
+        teacherProfileId,
+        projectLatestFormalComponentEvidence(observations),
+      ])),
+  };
 }
 
 function commentFromRow(
@@ -502,7 +540,7 @@ export const readLeadershipPortfolio = internalQuery({
       return { kind: 'portfolio_capacity_exceeded' as const };
     }
     const organizationWide = supervisorRoles.includes('school_head') || supervisorRoles.includes('slt');
-    const [accounts, summaries, gbfAssignments, formalEvidenceByTeacher] = await Promise.all([
+    const [accounts, summaries, gbfAssignments, formalEvidence] = await Promise.all([
       ctx.db.query('accounts')
         .withIndex('by_organizationId_and_isActive', (query) => query
           .eq('organizationId', actor.organizationId)
@@ -515,6 +553,9 @@ export const readLeadershipPortfolio = internalQuery({
       readPortfolioFormalEvidence(ctx, actor.organizationId, profiles),
     ]);
     if (gbfAssignments.kind !== 'allowed') {
+      return { kind: 'portfolio_capacity_exceeded' as const };
+    }
+    if (formalEvidence.kind !== 'allowed') {
       return { kind: 'portfolio_capacity_exceeded' as const };
     }
     let memberships: Doc<'department_memberships'>[] = [];
@@ -623,7 +664,7 @@ export const readLeadershipPortfolio = internalQuery({
         displayName: account.displayName,
         priorities,
         now,
-        componentEvidence: formalEvidenceByTeacher.get(teacherProfileId) ?? [],
+        componentEvidence: formalEvidence.evidenceByTeacher.get(teacherProfileId) ?? [],
         improvementPlan,
         gbf,
       })];

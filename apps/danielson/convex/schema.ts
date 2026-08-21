@@ -430,7 +430,11 @@ export default defineSchema({
     .index('by_org_observer_status', ['organizationId', 'observerAccountId', 'status'])
     .index('by_org_submission_key', ['organizationId', 'submissionKey'])
     .index('by_org_teacher_status_submitted', ['organizationId', 'teacherProfileId', 'status', 'submittedAt'])
-    .index('by_org_teacher_type_year_status', ['organizationId', 'teacherProfileId', 'observationType', 'schoolYear', 'status']),
+    .index('by_org_teacher_type_year_status', ['organizationId', 'teacherProfileId', 'observationType', 'schoolYear', 'status'])
+    .index(
+      'by_organizationId_and_status_and_observationType_and_schoolYear',
+      ['organizationId', 'status', 'observationType', 'schoolYear'],
+    ),
 
   observation_amendments: defineTable({
     organizationId: v.id('organizations'),
