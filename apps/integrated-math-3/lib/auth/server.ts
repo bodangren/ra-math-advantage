@@ -20,6 +20,7 @@ import {
   buildRequestUnauthorizedResponse,
   getRequestSessionClaims as _getRequestSessionClaims,
   requireActiveRequestSessionClaims as _requireActiveRequestSessionClaims,
+  requireActiveRoleRequestClaims as _requireActiveRoleRequestClaims,
   requireRequestSessionClaims as _requireRequestSessionClaims,
   requireRoleRequestClaims as _requireRoleRequestClaims,
 } from '@math-platform/core-auth';
@@ -70,7 +71,7 @@ export async function requireStudentRequestClaims(
   unauthorizedMessage = 'Unauthorized',
   forbiddenMessage = 'Forbidden',
 ): Promise<SessionClaims | Response> {
-  return _requireRoleRequestClaims(request, verifyToken, ['student'], {
+  return _requireActiveRoleRequestClaims(request, verifyToken, ['student'], verifyActiveCredential, {
     cookieName: SESSION_COOKIE_NAME,
     unauthorizedMessage,
     forbiddenMessage,

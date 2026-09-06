@@ -100,6 +100,7 @@ describe('IM3 auth server composition (FR-14) — arch-lint', () => {
 const mockGetRequestSessionClaims = vi.fn();
 const mockRequireRequestSessionClaims = vi.fn();
 const mockRequireRoleRequestClaims = vi.fn();
+const mockRequireActiveRoleRequestClaims = vi.fn();
 const mockRequireActiveRequestSessionClaims = vi.fn();
 const mockBuildRequestUnauthorizedResponse = vi.fn(
   (msg = 'Unauthorized') =>
@@ -134,6 +135,7 @@ vi.mock('@math-platform/core-auth', async () => {
     getRequestSessionClaims: mockGetRequestSessionClaims,
     requireRequestSessionClaims: mockRequireRequestSessionClaims,
     requireRoleRequestClaims: mockRequireRoleRequestClaims,
+    requireActiveRoleRequestClaims: mockRequireActiveRoleRequestClaims,
     requireActiveRequestSessionClaims: mockRequireActiveRequestSessionClaims,
     buildRequestUnauthorizedResponse: mockBuildRequestUnauthorizedResponse,
     buildRequestForbiddenResponse: mockBuildRequestForbiddenResponse,
@@ -173,7 +175,7 @@ describe('IM3 auth server composition (FR-14) — delegation to core-auth', () =
     expect(result).toBe(serviceUnavailable);
   });
 
-  it('requireStudentRequestClaims delegates to requireRoleRequestClaims for [student]', async () => {
+  it('requireStudentRequestClaims delegates to requireActiveRoleRequestClaims for [student]', async () => {
     const claims = {
       sub: 'p1',
       username: 'alice',
@@ -181,12 +183,12 @@ describe('IM3 auth server composition (FR-14) — delegation to core-auth', () =
       iat: 1,
       exp: 9999999999,
     };
-    mockRequireRoleRequestClaims.mockResolvedValue(claims);
+    mockRequireActiveRoleRequestClaims.mockResolvedValue(claims);
 
     const { requireStudentRequestClaims } = await import('@/lib/auth/server');
     const result = await requireStudentRequestClaims(makeRequest('session=tok'));
 
-    expect(mockRequireRoleRequestClaims).toHaveBeenCalledTimes(1);
+    expect(mockRequireActiveRoleRequestClaims).toHaveBeenCalledTimes(1);
     expect(result).toEqual(claims);
   });
 

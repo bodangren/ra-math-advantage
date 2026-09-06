@@ -173,7 +173,12 @@ export async function verifySessionToken(token: string, secret: string): Promise
   const [header, payload, signature] = segments;
   const signingInput = `${header}.${payload}`;
   const expectedSig = await hmacSign(signingInput, secret);
-  const actualSig = base64UrlDecodeToBytes(signature);
+  let actualSig: Uint8Array;
+  try {
+    actualSig = base64UrlDecodeToBytes(signature);
+  } catch {
+    return null;
+  }
 
   if (!timingSafeEquals(expectedSig, actualSig)) {
     return null;
