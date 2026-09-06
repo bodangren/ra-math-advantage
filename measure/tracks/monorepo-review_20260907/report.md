@@ -1,5 +1,7 @@
 # Monorepo Review — 2026-09-07
 
+**Current status:** The five findings are fixed in the working tree. Authentication fixes are committed in `2ba9cfe4`. See the resolution section below. The initial review evidence is preserved.
+
 ## Scope
 
 This is a risk-based review of the current working tree. It is not a full audit of every file. The initial tree had 193 changed tracked files and 418 untracked entries. The review covered shared authentication, IM3 submission and phase completion, grading, package boundaries, and quality commands. BM2 and other app paths received limited inspection. No production system was tested.
@@ -73,3 +75,33 @@ Coverage was not measured. Full application suites, other application builds, li
 ## Changes
 
 Only Measure review documents were intentionally edited. Existing application changes were preserved. No fixes were applied. No commit was created. Build commands can update generated files.
+
+
+## Resolution — 2026-09-07
+
+1. IM3 student request guards now use the shared active-role guard. Inactive and missing credentials return 401. A failed credential lookup returns 503.
+2. The first competency row now uses the same server score percentage as the existing-row increment. Regression tests verify zero mastery for a wrong answer and 100 for a fully correct answer.
+3. Session verification catches invalid signature encoding and returns null. Three malformed-signature cases pass.
+4. Activity schemas now live in activity-components. Math-content preserves its public schema imports through re-exports. Components use local schema imports. Existing package dependencies are declared in package.json, the lockfile, and the architecture contract. Three resolved exception groups were removed. No boundary rule was weakened. No package was installed.
+5. The activity and content registry tests now cover all 25 supported keys. Grading fixtures now set eligibility explicitly. The generic profit-model test uses the current eligible seed. The original seven grading failures are resolved without a production grading-policy change.
+
+### Final verification
+
+- All 20 package suites passed across the verification runs. Activity-components passed 253 tests. Math-content passed 854 tests. Core-auth passed 57 tests.
+- The selected IM3 mutation, grading, guard, and route suites passed 431 tests across seven files.
+- The 21 selected architecture tests passed. These include the live graph, exact exceptions, negative fixtures, and root/CI parity.
+- Root package lint, typecheck, and build passed. Package build commands run tsc --noEmit.
+- IM3 lint, tsc --noEmit, and application build passed.
+- Precalculus tsc --noEmit and application build passed.
+- The boundary check passed for 26 workspaces and 594 internal imports. The package graph has no cycle.
+- Measure doctor passed after the required documentation generation.
+
+The default root test run had a component timeout under concurrent load. The affected component suite and math suite passed with two workers. No timeout threshold was changed. The final package evidence combines runs; it is not one successful root-command run.
+
+The broader architecture suite retains one unrelated failing test: `review exceptions have explicit owner approval` in oxlint-migration.test.mjs. Its existing exception records are pending owner approval. This task did not change that approval state.
+
+No production deployment or browser verification was performed. Full application suites and test coverage were not measured. These limits remain separate from the five fixed findings.
+
+### Commit scope
+
+The authentication fix is isolated in `2ba9cfe4`. The competency, schema, and related test fixes remain in the working tree because they overlap prior uncommitted and untracked work. Committing those files would also commit that prior work. No existing work was discarded. Measure generation also refreshed generated architecture and route documentation.

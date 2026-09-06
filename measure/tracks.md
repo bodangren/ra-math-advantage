@@ -58,6 +58,9 @@ Dependencies:
 
 ## Active Tracks
 
+- [x] **Monorepo Review (2026-09-07)** — Five findings fixed. See the track report for checks and commit scope.
+  *Link: [./tracks/monorepo-review_20260907/](./tracks/monorepo-review_20260907/)*
+
 ### Danielson Teacher Growth Program
 
 Build a first-class teacher-proficiency application. Use the 2022 Framework for
