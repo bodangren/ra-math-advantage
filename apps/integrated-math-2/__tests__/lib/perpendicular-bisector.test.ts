@@ -2,7 +2,9 @@
 import { it, expect } from "vitest";
 import {
   generatePerpendicularBisector,
+  gradePerpendicularBisector,
   nodeId,
+  projectPerpendicularBisector,
 } from "../../lib/practice/perpendicular-bisector";
 import { questionSchema, gradeQuestion } from "../../lib/practice/question";
 import {
@@ -33,6 +35,23 @@ it("creates deterministic, valid questions with independently verified equations
     prompts.add(result.prompt);
   }
   expect(prompts.size).toBe(960);
+});
+it("projects three modes and keeps the independent answer private", () => {
+  const input = { nodeId, seed: 7, difficulty: 1 };
+  const worked = projectPerpendicularBisector(input, "worked_example", "worked");
+  const guided = projectPerpendicularBisector(input, "guided_practice", "guided");
+  const independent = projectPerpendicularBisector(input, "independent_practice", "independent");
+  expect(worked).toHaveProperty("answer");
+  expect(worked).toHaveProperty("solutionSteps");
+  expect(guided).toHaveProperty("hint");
+  expect(independent).not.toHaveProperty("answer");
+  expect(independent).not.toHaveProperty("hint");
+  expect(independent).not.toHaveProperty("solutionSteps");
+  // DA = x + 2 and DB = 2x - 9, so equal distances give x = 11.
+  expect(independent.prompt).toBe("D lies on the perpendicular bisector of AB. DA = (1x + 2) cm and DB = (2x - 9) cm. Find x.");
+  expect(worked).toHaveProperty("answer", 11);
+  expect(gradePerpendicularBisector(input, "11").score).toBe(1);
+  expect(gradePerpendicularBisector(input, "12").score).toBe(0);
 });
 it("rejects unsupported node IDs and invalid generator inputs", () => {
   for (const changes of [
