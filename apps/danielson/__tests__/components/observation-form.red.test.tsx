@@ -52,7 +52,7 @@ describe('observation form accessibility', () => {
     expect(groups).toHaveLength(3);
     expect(groups[0]).toHaveAccessibleName(/Double Plan.*1e: Planning Coherent Instruction/i);
     expect(screen.getAllByRole('radio')).toHaveLength(15);
-    expect(screen.getAllByRole('radio', { name: /^Rating 1$/ })[0]).toHaveAttribute('type', 'radio');
+    expect(screen.getAllByRole('radio', { name: /^Rating 1 — Unsatisfactory$/ })[0]).toHaveAttribute('type', 'radio');
     expect(screen.getAllByRole('radio', { name: /^Not enough evidence$/ })[0]).toHaveAttribute('type', 'radio');
     expect(screen.getByLabelText('Evidence note for Double Plan')).toBeVisible();
     expect(screen.getByText('Evidence gap')).toBeVisible();
@@ -192,7 +192,7 @@ describe('observation form accessibility', () => {
 
     fireEvent.click(screen.getByRole('button', { name: 'Submit observation' }));
     expect(await screen.findByText('The committed response was lost.')).toBeVisible();
-    const firstRatingOne = screen.getAllByRole('radio', { name: 'Rating 1' })[0];
+    const firstRatingOne = screen.getAllByRole('radio', { name: 'Rating 1 — Unsatisfactory' })[0];
     const firstNoEvidence = screen.getAllByRole('radio', { name: 'Not enough evidence' })[0];
     expect(firstRatingOne).toBeDisabled();
     expect(firstNoEvidence).toBeDisabled();
@@ -224,7 +224,7 @@ describe('observation form accessibility', () => {
     expect(await screen.findByText('The server rejected the submission.')).toBeVisible();
     expect(screen.getByRole('button', { name: 'Save draft' })).toBeEnabled();
     expect(screen.getByRole('button', { name: 'Submit observation' })).toBeEnabled();
-    expect(screen.getAllByRole('radio', { name: 'Rating 1' })[0]).toBeEnabled();
+    expect(screen.getAllByRole('radio', { name: 'Rating 1 — Unsatisfactory' })[0]).toBeEnabled();
   });
 
   it('locks the observation controls while the first save is in flight', async () => {
@@ -240,7 +240,7 @@ describe('observation form accessibility', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Submit observation' }));
 
     await waitFor(() => expect(screen.getByRole('button', { name: 'Submitting…' })).toBeDisabled());
-    expect(screen.getAllByRole('radio', { name: 'Rating 1' })[0]).toBeDisabled();
+    expect(screen.getAllByRole('radio', { name: 'Rating 1 — Unsatisfactory' })[0]).toBeDisabled();
     expect(screen.getByRole('button', { name: 'Save draft' })).toBeDisabled();
     resolveSave?.({ ok: false, json: async () => ({ error: 'Stop test.' }) });
   });

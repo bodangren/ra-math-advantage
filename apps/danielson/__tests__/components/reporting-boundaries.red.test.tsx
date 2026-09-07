@@ -109,7 +109,7 @@ describe('report interface accessibility', () => {
   it('renders the compact portfolio columns, text reasons, and pagination link', () => {
     render(<LeadershipPortfolioTable rows={[row]} nextHref="/reports?cursor=next" />);
 
-    for (const heading of ['Teacher', 'Danielson', 'Performance Improvement Plan', 'Get Better Faster (GBF)', 'Evidence due']) {
+    for (const heading of ['Teacher', 'Danielson', 'Performance Improvement Plan', 'Get Better Faster (GBF)', 'Evidence and coaching']) {
       expect(screen.getByRole('columnheader', { name: heading })).toBeVisible();
     }
     expect(screen.getByRole('link', { name: 'Teacher One' }))

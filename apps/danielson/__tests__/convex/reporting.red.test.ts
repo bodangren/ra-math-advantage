@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import {
+  readObservationConversation,
   addPrivateObservationComment,
   addPublicObservationComment,
   listLeadershipPrivateComments,
@@ -1256,4 +1257,43 @@ describe('Danielson reporting Convex boundary', () => {
     })).resolves.toEqual({ kind: 'not_found' });
     expect(db.rows('teacher_observation_responses')).toEqual([]);
   });
+});
+
+
+describe('leadership search', () => {
+  it('searches all authorized rows before pagination', async () => {
+    const db = new MemoryDb(); seedBase(db);
+    for (let i = 0; i < 30; i++) seedTeacher(db, `teacher_profiles:extra${i}`, `accounts:extra${i}`, `Extra ${i}`);
+    const result = await handler(readLeadershipPortfolio)(db.context(), {
+      actorAccountId: LEADER, now: NOW_ISO, cursor: null, pageSize: 1, search: 'Extra 29',
+    });
+    expect(result.kind).toBe('allowed');
+    expect((result.page as { items: { displayName: string }[] }).items.map(row => row.displayName)).toEqual(['Extra 29']);
+  });
+  it('filters attention before pagination', async () => {
+    const db = new MemoryDb(); seedBase(db);
+    const result = await handler(readLeadershipPortfolio)(db.context(), {
+      actorAccountId: LEADER, now: NOW_ISO, cursor: null, attention: 'ip_off_track',
+    });
+    expect((result.page as { items: unknown[] }).items).toEqual([]);
+  });
+});
+
+it('reads only public feedback and the response for one observation', async () => {
+  const db = new MemoryDb(); seedBase(db);
+  db.seed('observation_records', 'observation_records:conversation', { organizationId: ORG, teacherProfileId: TEACHER, status: 'submitted' });
+  for (const table of ['observation_public_comments', 'observation_private_comments']) db.seed(table, `${table}:one`, {
+    organizationId: ORG, teacherProfileId: TEACHER, observationId: 'observation_records:conversation', authorAccountId: LEADER, content: table, createdAt: NOW,
+  });
+  const result = await handler(readObservationConversation)(db.context(), { actorAccountId: TEACHER_ACCOUNT, observationId: 'observation_records:conversation', cursor: null });
+  expect(result.kind).toBe('allowed');
+  expect(JSON.stringify(result)).toContain('observation_public_comments');
+  expect(JSON.stringify(result)).not.toContain('observation_private_comments');
+});
+
+it('shows due coaching follow-ups from active cycles', async () => {
+  const db = new MemoryDb(); seedBase(db);
+  db.seed('coaching_cycles', 'coaching_cycles:one', { organizationId: ORG, teacherProfileId: TEACHER, state: 'active', followUpDate: '2026-10-01' });
+  const result = await handler(readLeadershipPortfolio)(db.context(), { actorAccountId: LEADER, now: NOW_ISO, cursor: null });
+  expect((result.page as { items: Array<{ coaching: unknown }> }).items[0].coaching).toEqual({ activeCount: 1, overdueCount: 1, nextFollowUpDate: '2026-10-01' });
 });
