@@ -1,7 +1,7 @@
 # Precalculus Q18 selected writer independent review
 
-Reviewer: graph_inventory  
-Date: 2026-09-08  
+Reviewer: graph_inventory
+Date: 2026-09-08
 Patch base: `dc57eb14` as assigned
 
 ## Result
@@ -101,3 +101,57 @@ Idempotency keys are opaque. Distinct strings do not require normalization unles
 Validate client timestamp and attempt fields against the existing practice.v1 contract. Keep server time and attempt ordinal authoritative. Do not impose a stricter date format without a contract requirement. A successful route response must contain a nonempty physical submission ID.
 
 The author prepares the selected generator and grader as a separate prerequisite. That patch must pass source review before the writer can compile and run from committed files. The later stored-evidence and SRS transaction remains open under Q18.
+
+## Repaired writer review — 2026-09-08
+
+### Result
+
+The repaired patch resolves several original defects. Three P1 validation groups remain. Do not accept it yet.
+
+### P1 — The mode publication check still accepts placeholder content
+
+`isPrecalculusPilotPublished` checks shallow object presence at `apps/pre-calculus/convex/activities.ts:31-70`. It accepts an empty `scaffoldedPrompt`, arbitrary `stepPrompts` items, arbitrary hints, Guided renderer props with only the presentation mode, empty Independent `variantParameters`, empty `answerSchema`, any three grading rules, Independent renderer props with only the presentation mode, and an empty `gradingSpec`.
+
+The positive test fixture demonstrates this gap at `apps/pre-calculus/__tests__/convex/selected-topic11-submission-writer.test.ts:13-47`. Its `gradingSpec.partIds` is empty. Its renderer props have no source geometry. Its mode specifications do not establish the exact three part rules or the selected seed behavior. This fixture passes publication.
+
+An approved placeholder blueprint can therefore activate both physical writers. Require the exact selected mode contract from the current reviewed blueprint: renderer key and mode map, nonempty Guided instructions and field help, seed-0 Guided geometry, seed-2 Independent geometry, the three exact answer fields and custom one-point grading rules, generator key, and the matching three-part grading specification. A reusable existing schema can validate the renderer props if its dependency direction permits it. Do not add a new registry.
+
+Add negative fixtures for empty strings, empty answer schema, wrong part IDs, wrong rule type or score, empty grading spec, and wrong seed geometry. Add one positive fixture copied from the selected reviewed blueprint shape.
+
+### P1 — Replay does not validate the full stored envelope
+
+The replay branch validates the three expected part rows and several identity fields at `apps/pre-calculus/convex/activities.ts:322-380`. It does not require the stored answer map to have exactly the three expected keys. An extra stored answer key survives replay because lines 369-371 iterate only the new answer entries.
+
+It also does not validate the stored `submittedAt` field or any stored optional contract field. It does not compare `artifact`, `interactionHistory`, `analytics`, `studentFeedback`, `teacherSummary`, or `timing` from the retry with the stored payload. A changed retry under the same create key is accepted. Corrupt stored optional data is also returned as a valid replay.
+
+Require exact stored answer keys and a valid server ISO timestamp. Define whether optional contract fields are part of create idempotency. The existing “one create key, one semantic request” rule indicates that they are. Compare their canonical stored values with the retry, or reject them from this selected writer if they are not part of its contract. Add tests for an extra stored answer, invalid stored timestamp, changed retry timing or interaction history, and corrupt stored optional fields.
+
+The replay also checks only that `existing.activityId` is a nonempty string at lines 359-362. If the selected physical activity still exists, require this ID to match it. If the activity was removed, preserve replay through the stored stable identity and validated envelope. Add a test that changes the stored physical ID to another existing activity and verify conflict.
+
+### Resolved original P1 findings
+
+- The route and Convex validator now accept the same optional top-level fields. The writer preserves them.
+- Authentication runs before replay. Exact stored replay can return after graph and activity withdrawal without new writes.
+- The writer stores the same normalized answer in the answer map and matching graded part.
+- Replay now rejects wrong contract version, mode, status, stable activity string, duplicate or missing expected parts, raw-answer mismatch, assistance mismatch, part-grade mismatch, aggregate-grade corruption, and attempt corruption.
+- An approved blueprint with a missing Guided specification is rejected. The remaining publication issue is exact content validation, as described above.
+
+### Parent scope decisions accepted
+
+The writer stores server time and server attempt ordinal. It validates that the client attempt is positive and integral and that the client timestamp is parseable. The create key remains an exact opaque string. Surrounding spaces are not normalized into another key. The route rejects an empty physical result ID.
+
+### P1 — Optional `practice.v1` fields are accepted as arbitrary values and the test bypasses Convex validation
+
+The mutation declares all six optional fields as `v.any()` at `apps/pre-calculus/convex/activities.ts:99-104`. `canonical` copies them without validating the existing `practice.v1` schemas at lines 256-267. The route checks only their key names. It does not validate their values.
+
+The new optional-field test calls the mutation `_handler` directly. This bypasses Convex argument validation. It then checks source text for field names. It does not exercise the real route-to-Convex validator boundary.
+
+Its `timing: { elapsedMs: 1200 }` fixture is not a valid `PracticeTimingSummary`. The existing practice-core schema requires the standard timing fields such as `startedAt`, `submittedAt`, `wallClockMs`, and `activeMs`. The patch therefore proves storage of an invented timing shape, not parity with the real contract.
+
+Reuse the existing `practice.v1` schema for optional field validation where the package boundary permits it. Otherwise, mirror its exact selected field validators. Use a valid timing fixture. Add malformed timing and malformed optional-field rejection tests before storage. Exercise the exported Convex mutation argument validator or a real route-to-mutation adapter path instead of only `_handler` plus source-text assertions.
+
+## Parent durability clarification
+
+Validate the stored physical activity ID for the activities table. If its original referenced row still exists, verify its selected identity, props, and rubric without requiring current approval. A deleted source row must not discard an otherwise valid durable submission. Do not compare the old reference with a replacement row found by stable ID. Do not add a tombstone or provenance system.
+
+Validate the stored envelope with the existing practice.v1 schema and exact selected answer keys, grades, and server timestamp consistency. Define which optional fields affect semantic retry identity. Preserve original stored telemetry. A retry must not overwrite it.
