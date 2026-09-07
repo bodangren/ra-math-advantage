@@ -1376,10 +1376,28 @@
       "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
       "gap": "No generator binding or complete three-mode blueprint",
       "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.1.interpret-intercepts-in-the-context-of-real-world-situations",
+      "title": "Interpret intercepts in the context of real-world situations modeled by linear functions",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.1.rewrite-linear-equations-in-equivalent-forms-to-identify-int",
+      "title": "Rewrite linear equations in equivalent forms to identify intercepts and slope",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
     }
   ],
   "meta": {
-    "totalSkills": 153,
+    "totalSkills": 155,
     "allNeedGenerators": true
   }
 }

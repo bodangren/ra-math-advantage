@@ -6,8 +6,8 @@
     "pilotEdgesPreserved": 0,
     "standardEdgesMerged": 941,
     "suggestedEdges": 1277,
-    "totalEdges": 2228,
-    "totalNodes": 735,
+    "totalEdges": 2230,
+    "totalNodes": 737,
     "normalizedWeights": 539
   },
   "nodes": [
@@ -12963,6 +12963,42 @@
         "exampleNumber": 2,
         "sourceLesson": "2-5",
         "rawText": "Example 2 \u2014 Identify Equations with No Solution"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.1.interpret-intercepts-in-the-context-of-real-world-situations",
+      "kind": "skill",
+      "title": "Interpret intercepts in the context of real-world situations modeled by linear functions",
+      "domain": "math.im1",
+      "description": "Interpret the x-intercept and y-intercept in the context of a real-world situation modeled by a linear function.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4b)",
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-1 (Example 3)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.1.rewrite-linear-equations-in-equivalent-forms-to-identify-int",
+      "kind": "skill",
+      "title": "Rewrite linear equations in equivalent forms to identify intercepts and slope",
+      "domain": "math.im1",
+      "description": "Rewrite a linear equation in an equivalent form that makes its intercepts or slope easier to identify.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4b)",
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-1 (Today's Goals)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "1"
       }
     }
   ],
@@ -56095,6 +56131,38 @@
       "metadata": {
         "module": "3",
         "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.source-correction.4.1.interpret-intercepts-in-the-context-of-real-world-situations.contains",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.4.1",
+      "targetId": "math.im1.skill.4.1.interpret-intercepts-in-the-context-of-real-world-situations",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "lesson-4-1-source-review-20260907",
+      "rationale": "Lesson 4-1 teaches this source capability.",
+      "metadata": {
+        "module": "4",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.source-correction.4.1.rewrite-linear-equations-in-equivalent-forms-to-identify-int.contains",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.4.1",
+      "targetId": "math.im1.skill.4.1.rewrite-linear-equations-in-equivalent-forms-to-identify-int",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "lesson-4-1-source-review-20260907",
+      "rationale": "Lesson 4-1 teaches this source capability.",
+      "metadata": {
+        "module": "4",
+        "lesson": "1"
       }
     }
   ]

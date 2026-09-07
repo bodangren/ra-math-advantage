@@ -3142,7 +3142,10 @@
     },
     {
       "nodeId": "math.im1.skill.4.1.graph-linear-equations-by-making-a-table-of-values-and-by-fi",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im1.example.4.1.001",
+        "math.im1.example.4.1.002"
+      ],
       "alignmentNodeIds": [
         "math.standard.ccss.8-f-a-1",
         "math.standard.ccss.8-f-b-4"
@@ -4852,6 +4855,30 @@
         "course": "im1",
         "module": "3",
         "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.4.1.interpret-intercepts-in-the-context-of-real-world-situations",
+      "sourceNodeIds": [
+        "math.im1.example.4.1.004"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.4.1.rewrite-linear-equations-in-equivalent-forms-to-identify-int",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "1"
       }
     }
   ]

@@ -1,10 +1,10 @@
 {
   "version": 1,
   "course": "im1",
-  "totalSkills": 159,
+  "totalSkills": 161,
   "counts": {
     "served": 6,
-    "gap": 153,
+    "gap": 155,
     "newComponent": 0
   },
   "byModule": [
@@ -31,9 +31,9 @@
     },
     {
       "module": "4",
-      "totalSkills": 8,
+      "totalSkills": 10,
       "served": 0,
-      "gap": 8,
+      "gap": 10,
       "newComponent": 0
     },
     {
@@ -443,6 +443,22 @@
       "tier": "none",
       "rendererKey": "graphing-explorer",
       "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.4.1.interpret-intercepts-in-the-context-of-real-world-situations",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
+      "skillId": "math.im1.skill.4.1.rewrite-linear-equations-in-equivalent-forms-to-identify-int",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
     },
     {
       "skillId": "math.im1.skill.4.2.calculate-the-rate-of-change-from-tables-graphs-and-real-wor",

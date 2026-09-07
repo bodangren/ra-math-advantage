@@ -11,20 +11,20 @@ This audit contains a frozen 2026-05-10 baseline and a current source-inventory 
 
 ## Current Source Inventory
 
-- Current graph skills: 159.
+- Current graph skills: 161.
 - Historical frozen skill baseline: 138.
 - Registered generator bindings: 6.
-- Skills without a registered generator binding: 153.
-- Skills with a blueprint row: 155.
+- Skills without a registered generator binding: 155.
+- Skills with a blueprint row: 157.
 - Skills without a blueprint row: 4.
 - Blueprint rows with three schema-valid mode specifications: 6.
 - Blueprint rows with three empty mode specifications: 126.
-- Source-only blueprint rows without mode specifications: 23.
+- Source-only blueprint rows without mode specifications: 25.
 - Approved skill nodes in the current graph: 137.
 
 The legacy coverage matrix status `served` means only that `IM1_GENERATORS` contains the node ID. It does not mean that the application serves a complete Worked, Guided, and Independent practice path. It does not prove renderer wiring, answer concealment, server grading, evidence persistence, or readiness approval. No production-served total is established by this inventory.
 
-The current `generator-gap-queue.json` contains 153 current skill candidates. This includes six restored objectives in each of Modules 1, 2, and 3. These 18 candidates do not have generator bindings. All 15 Module 3 blueprints are source-only draft rows. Three new rows separate numerical evaluation, algebraic evaluation, and interpretation in context. The legacy 3d objective remains an inactive aggregate. Some objectives still combine separate capabilities. Four Module 1 candidates do not have a blueprint row. The six schema-valid blueprint bundles are not proof of production readiness.
+The current `generator-gap-queue.json` contains 155 current skill candidates. This includes six restored objectives in each of Modules 1, 2, and 3. These 18 candidates do not have generator bindings. All 15 Module 3 blueprints are source-only draft rows. Three new rows separate numerical evaluation, algebraic evaluation, and interpretation in context. The legacy 3d objective remains an inactive aggregate. Two new Lesson 4-1 rows separate contextual intercept interpretation from equivalent-form rewriting. Some objectives still combine separate capabilities. Four Module 1 candidates do not have a blueprint row. The six schema-valid blueprint bundles are not proof of production readiness.
 
 ## Frozen 2026-05-10 Baseline
 
@@ -135,7 +135,7 @@ Renderer distribution across 138 skills:
 
 ## Tracked Long Tail
 
-153 skill candidates outside the registered generator set remain without a current binding. The table below is the historical 132-skill baseline and does not include the 18 restored objectives or the three new capability rows:
+155 skill candidates outside the registered generator set remain without a current binding. The table below is the historical 132-skill baseline and does not include the 18 restored objectives or the five new capability rows:
 
 | Module | Skills Without Generators | Notes |
 |--------|--------------------------|-------|
@@ -154,7 +154,7 @@ Renderer distribution across 138 skills:
 | 14: Congruent Figures | 14 | |
 | **Total long tail** | **132** | **138 − 6 (Module 1 vertical slice)** |
 
-Each long-tail skill retains its `.pending.test.ts` in `_pending/` until promoted. The current `generator-gap-queue.json` lists all 153 unbound skill candidates.
+Each long-tail skill retains its `.pending.test.ts` in `_pending/` until promoted. The current `generator-gap-queue.json` lists all 155 unbound skill candidates.
 
 ## Historical Validation Results
 
