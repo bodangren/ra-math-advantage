@@ -112,7 +112,8 @@ Scheduling: one worker owns shared graph mechanisms. Two workers can review disj
 - [x] Task G13: Reconcile IM1 embedded node catalogs from current draft nodes and canonical standards. Resolve 17 dangling endpoint references. Preserve edge arrays and review states. Correct existing current counts. Independent review, source/inventory tests, full app lint, TypeScript, and build pass. Commit `001b410b`.
 
 - [x] Task G14: Restore IM1 Lesson 4-3 capability and source-example identities. Four draft goals and exact available source links passed independent review. Existing IDs and edges remain intact. Inventory and app gates passed. Commit `73280b7b`.
-- [~] Task G15: Review IM1 Lesson 4-4 goals and example identities from the full source. Preserve existing IDs and add only source-supported draft capabilities.
+- [x] Task G15: Record IM1 Lesson 4-4 goals and example identities from the full extraction. Preserve existing IDs. Six provisional draft candidates and the notation caveat passed source inventory review. Commit `fe6476d9`. Assessable boundaries remain unapproved.
+- [~] Task G16: Locate the original Lesson 4-4 worksheet and verify the parent-function notation. Do not infer missing absolute-value bars.
 
 ## Phase 4 — Implement the minimum shared repairs and five pilots
 
@@ -120,7 +121,7 @@ Scheduling: one worker owns shared graph mechanisms. Two workers can review disj
   Reuse the current projector and registries. Preserve app ownership. Avoid a new generated-instance framework or broad primitive program.
   The current interval component repair must await durable submission and describe actual graph coordinates without revealing the classification.
 - [~] Task 4.2: Complete and verify the IM3 reference pilot.
-  Connect source, all three modes, generator, renderer, server grading, stored submission, and exact-node evidence. Verify the real student route. Current parent review covers organization boundaries, candidate identity parity, and conflicting replay keys.
+  Connect source, all three modes, generator, renderer, server grading, stored submission, and exact-node evidence. Verify the real student route. Current parent review covers organization boundaries, candidate identity parity, and conflicting replay keys. Shared table-graph submission must wait for durable storage and show retry state on failure.
 - [~] Task 4.3: Complete and verify the Precalculus pilot.
   Reuse current local corrections. Check the selected activity and exact evidence binding. Verify all three modes in the student route. The parent is adding teacher source context and durable confirmation controls, plus accurate student acknowledgement text.
 - [~] Task 4.4: Complete and verify the IM1 pilot.

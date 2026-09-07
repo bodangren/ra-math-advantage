@@ -227,3 +227,13 @@ The IM2 production-flow review exposed invalid replay state, missing organizatio
 The Precalculus final evidence writer now rejects stored Topic 1.1 Guided or Independent work after node or blueprint publication withdrawal. The flow tests use independently solved literal answers. Replays preserve one card and two review records after two Independent attempts. The final 247 focused tests, lint, and TypeScript passed. The build passed before the final test-quality and formatting changes. These app changes remain pending integration.
 
 G15 starts the Lesson 4-4 source review. Shared IM3 renderer extraction continues. Source approval, browser acceptance, and all-course practice completion remain open.
+
+## Shared IM3 graph save and answer contract
+
+The parent reproduced three premature-save failures. The local shared renderer now waits for storage, blocks repeated pending clicks, and exposes a retry message. Independent review found incompatible answer keys between the rendered activity and the production writer. The renderer now uses the required snake_case keys. The table remains available after completion, so a student can correct it. Clearing a cell invalidates the stored table response.
+
+Seven app graph tests and 31 shared graph tests passed. Shared and app lint, standalone TypeScript, and build passed. The rendered-UI-to-production-writer test and isolated commit extraction remain in progress. See `im3-shared-graph-durable-review.md`. No source approval or deployment occurred.
+
+## G15 provisional source inventory
+
+Commit `fe6476d9` records six provisional Lesson 4-4 goal candidates and corrects eight retained example titles. The extracted parent-function notation is ambiguous. The commit records that limit and grants no capability approval. Eight source tests, 36 coverage and audit tests, app lint, standalone TypeScript, and build passed. All previous IDs and edges remain intact. The current inventory has 177 provisional candidates, six generator bindings, and 171 gaps. G16 checks for the original worksheet.
