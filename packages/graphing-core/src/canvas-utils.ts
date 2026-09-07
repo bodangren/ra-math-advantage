@@ -167,29 +167,39 @@ export function evaluateFunction(
 }
 
 /**
- * Generates an SVG path string for a function over a domain.
+ * Generates an SVG path string for plotting a function on the canvas.
  * @param {string} expression - Math expression string
  * @param {[number, number]} domain - X axis [min, max] range
- * @param {number} width - Canvas pixel width (determines point density)
- * @returns {string} - Space-separated "x,y" point pairs for SVG path
+ * @param {[number, number]} range - Y axis [min, max] range
+ * @param {number} width - Canvas pixel width
+ * @param {number} height - Canvas pixel height
+ * @returns {string} - Space-separated SVG path coordinates
  */
 export function generateFunctionPath(
   expression: string,
   domain: [number, number],
+  range: [number, number],
   width: number,
+  height: number,
 ): string {
   const [xMin, xMax] = domain;
-  const step = (xMax - xMin) / width;
-
+  if (!Number.isFinite(width) || width <= 0 || width > 10000 || xMax <= xMin || range[1] <= range[0]) return '';
   const points: string[] = [];
-
-  for (let x = xMin; x <= xMax; x += step) {
+  let connected = false;
+  let previousY = 0;
+  const samples = Math.ceil(width);
+  for (let index = 0; index <= samples; index++) {
+    const x = xMin + (xMax - xMin) * index / samples;
     const y = evaluateFunction(expression, x);
-
-    if (isFinite(y) && Math.abs(y) < 1000) {
-      points.push(`${x},${y}`);
+    if (!Number.isFinite(y) || y < range[0] || y > range[1]) {
+      connected = false;
+      continue;
     }
+    const { canvasX, canvasY } = transformDataToCanvas(x, y, domain, range, width, height);
+    const command = connected && Math.abs(canvasY - previousY) < height ? 'L' : 'M';
+    points.push(`${command} ${canvasX},${canvasY}`);
+    previousY = canvasY;
+    connected = true;
   }
-
   return points.join(' ');
 }
