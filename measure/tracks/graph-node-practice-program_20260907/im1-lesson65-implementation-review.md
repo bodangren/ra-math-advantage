@@ -1,0 +1,31 @@
+# IM1 Lesson 6-5 implementation review
+
+## Review state
+
+The parent reviewed the candidate in `/tmp/im1-g32-head-20260908` against its base `91bea18c`. The implementation is not accepted yet. The shared working tree remains unchanged by this source repair.
+
+## Verified graph changes
+
+The candidate preserves all 910 prior node identities and adds 11 draft capabilities. It has 921 node records. These are graph records, not a count of approved assessable capabilities.
+
+The candidate preserves all prior blueprint identities and adds 11 source-only blueprints. It has 320 blueprint records. The new capabilities are inactive. They have no renderer specification or Independent practice readiness.
+
+The candidate removes exactly `math.im1.edge.1258` and `math.im1.edge.1259`. These are the two unsupported sequence prerequisites identified in the accepted proposal. It adds 14 draft containment edges: 11 new capabilities and three reused capabilities. The result has 2,426 edge records. It adds no prerequisite or equivalence edge.
+
+The new source mappings use `sourceNodeIds`. The slope-intercept capability references the preserved joint Examples 1 and 2 source IDs. The broad legacy skill rows remain stable, draft, and inactive.
+
+The rejected duplicate `.025` remains present. Its historical context and containment edges remain present. Its two standard alignment edges change to rejected. The author must explain why this extra status change is necessary for the selected projection before acceptance.
+
+## Required source corrections
+
+The current lesson rewrite is an answer summary. Restore the source givens that a learner needs to solve each problem. In particular, include all four tested points in Problem 13, the original inequalities in Problems 15 through 17, the context and variable meanings in Problems 24 through 26, and the three required solution points in Problem 29.
+
+Preserve useful goals, vocabulary, and teaching steps from the previous lesson when they remain accurate. Keep the corrected joint Examples 1 and 2 source heading. Keep the corrected Problem 28 graph analysis and the nonunique or domain-dependent answers.
+
+The modified source examples `.022`, `.023`, `.024`, and `.026` remain approved in `nodes.json` but draft in the other three node copies. The author must resolve this selected approval boundary. Historical approval must not silently approve replacement content. Do not change unrelated historical status differences.
+
+## Verification limits
+
+The author reports 105 curriculum tests, 36 coverage and audit tests, and lint passing. Four existing test typing errors remain in the isolated baseline. The build was running when this review started.
+
+These results do not resolve the missing source conditions or selected source approval status. The parent must inspect the final candidate and required gates before integration.
