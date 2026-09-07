@@ -5337,6 +5337,110 @@
         "module": "4",
         "lesson": "6"
       }
+    },
+    {
+      "nodeId": "math.im1.skill.4.7.describe-translations-of-absolute-value-functions-from-equations",
+      "sourceNodeIds": [
+        "math.im1.example.4.7.034"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "7"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.4.7.write-absolute-value-equations-from-graphs",
+      "sourceNodeIds": [
+        "math.im1.example.4.7.035"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "7"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.4.7.describe-dilations-of-absolute-value-functions-from-equations",
+      "sourceNodeIds": [
+        "math.im1.example.4.7.036"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "7"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.4.7.describe-reflections-of-absolute-value-functions-from-equations",
+      "sourceNodeIds": [
+        "math.im1.example.4.7.037"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "7"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.4.7.describe-combined-transformations-of-absolute-value-functions",
+      "sourceNodeIds": [
+        "math.im1.example.4.7.037"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "7"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.4.7.graph-absolute-value-functions",
+      "sourceNodeIds": [
+        "math.im1.example.4.7.038"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "7"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.4.7.identify-the-domain-and-range-of-absolute-value-functions",
+      "sourceNodeIds": [
+        "math.im1.example.4.7.038"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "7"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.4.7.model-real-world-situations-with-absolute-value-functions",
+      "sourceNodeIds": [
+        "math.im1.example.4.7.040"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "7"
+      }
     }
   ]
 }

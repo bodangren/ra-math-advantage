@@ -1,10 +1,10 @@
 {
   "version": 1,
   "course": "im1",
-  "totalSkills": 196,
+  "totalSkills": 204,
   "counts": {
     "served": 6,
-    "gap": 190,
+    "gap": 198,
     "newComponent": 0
   },
   "byModule": [
@@ -31,9 +31,9 @@
     },
     {
       "module": "4",
-      "totalSkills": 45,
+      "totalSkills": 53,
       "served": 0,
-      "gap": 45,
+      "gap": 53,
       "newComponent": 0
     },
     {
@@ -789,12 +789,76 @@
       "priority": "medium"
     },
     {
+      "skillId": "math.im1.skill.4.7.describe-combined-transformations-of-absolute-value-functions",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
+      "skillId": "math.im1.skill.4.7.describe-dilations-of-absolute-value-functions-from-equations",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
+      "skillId": "math.im1.skill.4.7.describe-reflections-of-absolute-value-functions-from-equations",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
       "skillId": "math.im1.skill.4.7.describe-translations-dilations-and-reflections-of-absolute",
       "module": "4",
       "status": "gap",
       "tier": "none",
       "rendererKey": "graphing-explorer",
       "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.4.7.describe-translations-of-absolute-value-functions-from-equations",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
+      "skillId": "math.im1.skill.4.7.graph-absolute-value-functions",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
+      "skillId": "math.im1.skill.4.7.identify-the-domain-and-range-of-absolute-value-functions",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
+      "skillId": "math.im1.skill.4.7.model-real-world-situations-with-absolute-value-functions",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
+      "skillId": "math.im1.skill.4.7.write-absolute-value-equations-from-graphs",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
     },
     {
       "skillId": "math.im1.skill.5.1.write-linear-equations-in-slope-intercept-form-given-a-point",

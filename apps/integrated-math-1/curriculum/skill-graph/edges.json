@@ -6,8 +6,8 @@
     "pilotEdgesPreserved": 0,
     "standardEdgesMerged": 941,
     "suggestedEdges": 1277,
-    "totalEdges": 2268,
-    "totalNodes": 785,
+    "totalEdges": 2276,
+    "totalNodes": 793,
     "normalizedWeights": 539
   },
   "nodes": [
@@ -4883,10 +4883,10 @@
     {
       "id": "math.im1.example.4.7.034",
       "kind": "worked_example",
-      "title": "Example 1: Describe Translations; Write the Equation from a Graph; Describe Dilations; Describe Combined Transformations; Graph Absolute Value Functions and State Domain and Range",
+      "title": "Example 1: Describe Translations",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4-7, Example 1)"
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-7 (Example 1)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4895,16 +4895,16 @@
         "lesson": "7",
         "exampleNumber": 1,
         "sourceLesson": "4-7",
-        "rawText": "4-7, Examples 1-5 \u2014 Describe Translations; Write the Equation from a Graph; Describe Dilations; Describe Combined Transformations; Graph Absolute Value Functions and State Domain and Range"
+        "rawText": "Example 1: Describe Translations"
       }
     },
     {
       "id": "math.im1.example.4.7.035",
       "kind": "worked_example",
-      "title": "Example 2: Describe Translations; Write the Equation from a Graph; Describe Dilations; Describe Combined Transformations; Graph Absolute Value Functions and State Domain and Range",
+      "title": "Example 2: Write the Equation from a Graph",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4-7, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-7 (Example 2)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4913,16 +4913,16 @@
         "lesson": "7",
         "exampleNumber": 2,
         "sourceLesson": "4-7",
-        "rawText": "4-7, Examples 1-5 \u2014 Describe Translations; Write the Equation from a Graph; Describe Dilations; Describe Combined Transformations; Graph Absolute Value Functions and State Domain and Range"
+        "rawText": "Example 2: Write the Equation from a Graph"
       }
     },
     {
       "id": "math.im1.example.4.7.036",
       "kind": "worked_example",
-      "title": "Example 3: Describe Translations; Write the Equation from a Graph; Describe Dilations; Describe Combined Transformations; Graph Absolute Value Functions and State Domain and Range",
+      "title": "Example 3: Describe Dilations",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4-7, Example 3)"
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-7 (Example 3)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4931,16 +4931,16 @@
         "lesson": "7",
         "exampleNumber": 3,
         "sourceLesson": "4-7",
-        "rawText": "4-7, Examples 1-5 \u2014 Describe Translations; Write the Equation from a Graph; Describe Dilations; Describe Combined Transformations; Graph Absolute Value Functions and State Domain and Range"
+        "rawText": "Example 3: Describe Dilations"
       }
     },
     {
       "id": "math.im1.example.4.7.037",
       "kind": "worked_example",
-      "title": "Example 4: Describe Translations; Write the Equation from a Graph; Describe Dilations; Describe Combined Transformations; Graph Absolute Value Functions and State Domain and Range",
+      "title": "Example 4: Describe Combined Transformations",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4-7, Example 4)"
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-7 (Example 4)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4949,16 +4949,16 @@
         "lesson": "7",
         "exampleNumber": 4,
         "sourceLesson": "4-7",
-        "rawText": "4-7, Examples 1-5 \u2014 Describe Translations; Write the Equation from a Graph; Describe Dilations; Describe Combined Transformations; Graph Absolute Value Functions and State Domain and Range"
+        "rawText": "Example 4: Describe Combined Transformations"
       }
     },
     {
       "id": "math.im1.example.4.7.038",
       "kind": "worked_example",
-      "title": "Example 5: Describe Translations; Write the Equation from a Graph; Describe Dilations; Describe Combined Transformations; Graph Absolute Value Functions and State Domain and Range",
+      "title": "Example 5: Graph Absolute Value Functions and State Domain and Range",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4-7, Example 5)"
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-7 (Example 5)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4967,16 +4967,16 @@
         "lesson": "7",
         "exampleNumber": 5,
         "sourceLesson": "4-7",
-        "rawText": "4-7, Examples 1-5 \u2014 Describe Translations; Write the Equation from a Graph; Describe Dilations; Describe Combined Transformations; Graph Absolute Value Functions and State Domain and Range"
+        "rawText": "Example 5: Graph Absolute Value Functions and State Domain and Range"
       }
     },
     {
       "id": "math.im1.example.4.7.039",
       "kind": "worked_example",
-      "title": "Example 2: Write the Equation from a Graph; Model with Absolute Value Functions",
+      "title": "Example 2: Write the Equation from a Graph",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4-7, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-7 (Example 2)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4985,16 +4985,16 @@
         "lesson": "7",
         "exampleNumber": 2,
         "sourceLesson": "4-7",
-        "rawText": "4-7, Examples 2, 6 \u2014 Write the Equation from a Graph; Model with Absolute Value Functions"
+        "rawText": "Example 2: Write the Equation from a Graph"
       }
     },
     {
       "id": "math.im1.example.4.7.040",
       "kind": "worked_example",
-      "title": "Example 6: Write the Equation from a Graph; Model with Absolute Value Functions",
+      "title": "Example 6: Model with Absolute Value Functions",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4-7, Example 6)"
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-7 (Example 6)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -5003,7 +5003,7 @@
         "lesson": "7",
         "exampleNumber": 6,
         "sourceLesson": "4-7",
-        "rawText": "4-7, Examples 2, 6 \u2014 Write the Equation from a Graph; Model with Absolute Value Functions"
+        "rawText": "Example 6: Model with Absolute Value Functions"
       }
     },
     {
@@ -13827,6 +13827,142 @@
         "course": "im1",
         "module": "4",
         "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.7.describe-translations-of-absolute-value-functions-from-equations",
+      "kind": "skill",
+      "title": "Describe translations of absolute value functions from equations",
+      "domain": "math.im1",
+      "description": "Describe translations of absolute value functions from equations",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-7"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.7.write-absolute-value-equations-from-graphs",
+      "kind": "skill",
+      "title": "Write absolute value equations from graphs",
+      "domain": "math.im1",
+      "description": "Write absolute value equations from graphs",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-7"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.7.describe-dilations-of-absolute-value-functions-from-equations",
+      "kind": "skill",
+      "title": "Describe dilations of absolute value functions from equations",
+      "domain": "math.im1",
+      "description": "Describe dilations of absolute value functions from equations",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-7"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.7.describe-reflections-of-absolute-value-functions-from-equations",
+      "kind": "skill",
+      "title": "Describe reflections of absolute value functions from equations",
+      "domain": "math.im1",
+      "description": "Describe reflections of absolute value functions from equations",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-7"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.7.describe-combined-transformations-of-absolute-value-functions",
+      "kind": "skill",
+      "title": "Describe combined transformations of absolute value functions",
+      "domain": "math.im1",
+      "description": "Describe combined transformations of absolute value functions",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-7"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.7.graph-absolute-value-functions",
+      "kind": "skill",
+      "title": "Graph absolute value functions",
+      "domain": "math.im1",
+      "description": "Graph absolute value functions",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-7"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.7.identify-the-domain-and-range-of-absolute-value-functions",
+      "kind": "skill",
+      "title": "Identify the domain and range of absolute value functions",
+      "domain": "math.im1",
+      "description": "Identify the domain and range of absolute value functions",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-7"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.7.model-real-world-situations-with-absolute-value-functions",
+      "kind": "skill",
+      "title": "Model real-world situations with absolute value functions",
+      "domain": "math.im1",
+      "description": "Model real-world situations with absolute value functions",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-7"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "7"
       }
     }
   ],
@@ -57599,6 +57735,134 @@
       "metadata": {
         "module": "4",
         "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.source-correction.4.7.describe-translations-of-absolute-value-functions-from-equations.contains",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.4.7",
+      "targetId": "math.im1.skill.4.7.describe-translations-of-absolute-value-functions-from-equations",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "lesson-4-7-source-review-20260907",
+      "rationale": "Lesson 4-7 contains this source capability.",
+      "metadata": {
+        "module": "4",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.im1.source-correction.4.7.write-absolute-value-equations-from-graphs.contains",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.4.7",
+      "targetId": "math.im1.skill.4.7.write-absolute-value-equations-from-graphs",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "lesson-4-7-source-review-20260907",
+      "rationale": "Lesson 4-7 contains this source capability.",
+      "metadata": {
+        "module": "4",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.im1.source-correction.4.7.describe-dilations-of-absolute-value-functions-from-equations.contains",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.4.7",
+      "targetId": "math.im1.skill.4.7.describe-dilations-of-absolute-value-functions-from-equations",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "lesson-4-7-source-review-20260907",
+      "rationale": "Lesson 4-7 contains this source capability.",
+      "metadata": {
+        "module": "4",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.im1.source-correction.4.7.describe-reflections-of-absolute-value-functions-from-equations.contains",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.4.7",
+      "targetId": "math.im1.skill.4.7.describe-reflections-of-absolute-value-functions-from-equations",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "lesson-4-7-source-review-20260907",
+      "rationale": "Lesson 4-7 contains this source capability.",
+      "metadata": {
+        "module": "4",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.im1.source-correction.4.7.describe-combined-transformations-of-absolute-value-functions.contains",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.4.7",
+      "targetId": "math.im1.skill.4.7.describe-combined-transformations-of-absolute-value-functions",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "lesson-4-7-source-review-20260907",
+      "rationale": "Lesson 4-7 contains this source capability.",
+      "metadata": {
+        "module": "4",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.im1.source-correction.4.7.graph-absolute-value-functions.contains",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.4.7",
+      "targetId": "math.im1.skill.4.7.graph-absolute-value-functions",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "lesson-4-7-source-review-20260907",
+      "rationale": "Lesson 4-7 contains this source capability.",
+      "metadata": {
+        "module": "4",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.im1.source-correction.4.7.identify-the-domain-and-range-of-absolute-value-functions.contains",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.4.7",
+      "targetId": "math.im1.skill.4.7.identify-the-domain-and-range-of-absolute-value-functions",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "lesson-4-7-source-review-20260907",
+      "rationale": "Lesson 4-7 contains this source capability.",
+      "metadata": {
+        "module": "4",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.im1.source-correction.4.7.model-real-world-situations-with-absolute-value-functions.contains",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.4.7",
+      "targetId": "math.im1.skill.4.7.model-real-world-situations-with-absolute-value-functions",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "lesson-4-7-source-review-20260907",
+      "rationale": "Lesson 4-7 contains this source capability.",
+      "metadata": {
+        "module": "4",
+        "lesson": "7"
       }
     }
   ]
