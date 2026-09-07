@@ -59,3 +59,9 @@ The parent integrates the completed shared boundaries and IM1 Module 1 source re
 `8c9bef54`: committed renderer compatibility for all mode overrides. Three focused tests pass. Existing schema changes remain outside the commit.
 
 `67d972dc`: restored six IM1 Module 1 draft capabilities and exact available example links. Independent source review found no source error or accidental activation. Three focused tests and IM1 standalone TypeScript pass. The test uses a partial-object assertion because the JSON type has no readiness field. Module 2 source restoration is now in progress.
+
+`ac4a6a4f`: committed exact-capability activity projection, existing-schema validation, and per-mode renderer choice. The architecture document now states the same identity rule. All 35 focused projection tests, lint, and standalone TypeScript pass. Existing renderer-props, rubric, and SRS changes remain unstaged.
+
+## IM1 application integration finding
+
+The current `PracticeSessionProvider` displays only session and objective IDs. It does not render an activity or submit a response. The queue copies stored activity props. It does not generate the translation prompt or hold private expected answers. The current route test replaces the provider with another identifier-only component. It cannot prove student practice. Task 4.2 must implement the actual activity, server submission, and evidence flow before the pilot is complete. The existing route test remains useful only as a route wiring check.

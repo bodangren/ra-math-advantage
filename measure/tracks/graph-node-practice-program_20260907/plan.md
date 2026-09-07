@@ -164,3 +164,5 @@ Task 1.1 is complete. The first bounded graph and projection repairs are in prog
 ## Accepted-equivalence repair checkpoint
 
 The shared SRS and teacher projections now require an approved edge and approved skill endpoints (`b11b5032`). The focused regression has eight passing tests. Tasks 2.4 and 3.2 remain open for the full graph and evidence scope.
+
+The exact-capability projection repair is committed as `ac4a6a4f`. The IM1 pilot still requires a real activity provider and server submission flow. The existing provider is an identifier display. A route test that replaces it cannot satisfy pilot acceptance.

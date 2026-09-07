@@ -32,6 +32,8 @@ a separate source capability, objective `1b`.
 | Shared schema | `packages/activity-components/src/schemas/step-by-step-solver.schema.ts` | The schema accepts `problemType`, `equation`, optional algebraic steps, and hints. It has no verbal prompt or translation-answer field. |
 | Shared renderer | `packages/activity-components/src/components/algebraic/StepByStepSolverActivity.tsx` and `StepByStepper.tsx` | Guided mode selects a displayed solution step. Independent mode asks the learner to reproduce each solution-step expression. It does not ask for one translation of the verbal phrase. |
 | Shared submission | `StepByStepSolverActivity.tsx` | The browser sets each step's `isCorrect` value and submits it. This is not server-owned grading of the generated expression. |
+| Existing blank schema | `packages/activity-components/src/schemas/fill-in-the-blank.schema.ts` | Each blank has `id`, one required `correctAnswer`, and optional `isMath`. The schema has no accepted-answer list and cannot omit the answer from Independent client props. |
+| Existing blank renderer | `packages/activity-components/src/components/blanks/FillInTheBlank.tsx` | The renderer already uses `MathInputField` in all three modes. It compares trimmed, case-folded text. Guided mode reveals the answer after an incorrect response. Independent mode calculates correctness in the browser. It calls completion without waiting for persistence. |
 | Math domain registry | `packages/math-content/src/knowledge-space/generators/registry.ts` | `getGenerator('1-1-verbal-to-numerical')` is unavailable. The generator exists only in the separate `IM1_GENERATORS` list. |
 | Existing tests | `packages/math-content/src/problem-families/im1/__tests__/1-1-verbal-to-numerical.test.ts` | The tests prove determinism and generic generator shape. They do not require an expression answer or prove the learner translates the phrase. |
 
@@ -71,49 +73,97 @@ blueprint. These examples support translation. Do not add evaluation examples
 
 ## Smallest reusable correction
 
-Add one small expression-translation activity to the shared activity package.
-Reuse `MathInputField`. Do not extend the algebraic stepper with another
-problem type because its interaction is a sequence of transformations. This
-task requires one source phrase and one expression response.
+Reuse `FillInTheBlank` and `MathInputField`. Do not add an expression-
+translation component. The blank activity already supports one math response,
+Worked display, Guided input, and Independent input. A small schema and grading
+change is sufficient.
 
-Use a narrow props contract:
+Extend each blank with these optional fields:
 
 ```ts
-type ExpressionTranslationProps = {
-  prompt: string;
-  verbalExpression: string;
-  expectedExpression?: string;
-  hint?: string;
+type Blank = {
+  id: string;
+  correctAnswer?: string;
+  acceptedAnswers?: string[];
+  isMath?: boolean;
 };
 ```
 
-The server-owned generator output and grading metadata must use one part:
+Worked and Guided props can contain `correctAnswer` and `acceptedAnswers`.
+Independent props must omit both fields. The mode adapter must require an
+answer for Worked and Guided modes. Independent mode must submit the raw value
+without local correctness. The server must own its accepted list.
+
+Use this bounded shape for a Worked or Guided item:
+
+```ts
+{
+  template: 'Write a numerical expression for “the difference of 20 and the product of 4 and 3”: {{blank:expression}}',
+  blanks: [{
+    id: 'expression',
+    correctAnswer: '20 - 4 * 3',
+    acceptedAnswers: [
+      '20 - 4 * 3',
+      '20 - (4 * 3)',
+      '20 - 4 × 3',
+      '20 - (4 × 3)',
+    ],
+    isMath: true,
+  }],
+}
+```
+
+The bounded templates must produce a finite accepted set. Apply only narrow
+notation normalization before membership comparison. Remove whitespace.
+Normalize `×` to `*`, `÷` to `/`, and the Unicode minus sign to `-`. Do not
+evaluate the expression. Do not remove internal parentheses. Do not reorder
+operands. The accepted set above rejects `8`, `4 * 3 - 20`, and
+`(20 - 4) * 3`.
+
+The server-owned grading metadata must use the expression part for this node:
 
 ```ts
 expectedAnswer: { expression: "5 + 3 * 4" }
 partAnswers: { expression: "5 + 3 * 4" }
 partMaxScores: { expression: 1 }
-partGradingRules: { expression: "expression_equivalence" }
+partGradingRules: { expression: "custom" }
 ```
 
+The custom rule must compare against the private finite accepted set. The
+existing `numeric_tolerance` and general `expression_equivalence` rules are not
+suitable. They can accept the same evaluated constant from a different
+structure. A generalized computer algebra system or expression parser is not
+required for these bounded templates.
+
 The renderer must show the verbal phrase. Worked mode must show the complete
-translation and explain the grouping. Guided mode must accept an expression,
-offer one operation or grouping hint, and reveal the answer only through the
-existing assistance policy. Independent mode must accept one expression and
-must not show the solution before submission.
+translation and explain the grouping. Guided mode must accept one expression.
+It must record hint and reveal assistance. Independent mode must not receive or
+show the solution before submission.
 
 The submission must contain part ID `expression` and the raw student
-expression. The server must parse and grade the permitted numerical-expression
-grammar. The grammar must reject variables, equations, functions, and unsafe
-input. It must compare expression structure or the approved equivalence rule.
-Evaluation at sampled numeric values is insufficient for constant-only
-expressions because different expressions can have the same value.
+expression. The server must ignore browser-owned correctness. The blank
+renderer must await `onSubmit`. It must call `onComplete` only after a
+successful save. It must preserve the learner response after a rejected save.
 
 ## Generator adapter correction
 
-Keep the deterministic template generation. Change its assessed output from
-`result` to `expression`. Keep the numeric value in solution data for Worked
-explanation. Do not use it as the mastery part for `1a`.
+Keep the deterministic template generation. Add the generated expression to
+the assessed output. Keep the numeric result in `data.value` and the solution
+steps. A later objective `1b` adapter can use this result as separate evidence.
+The `1a` adapter must project only `expression` as a participating part.
+
+For example, the corrected generator result can contain:
+
+```ts
+data: { verbal, expression, value, acceptedExpressions }
+expectedAnswer: { expression }
+partAnswers: { expression }
+partMaxScores: { expression: 1 }
+partGradingRules: { expression: 'custom' }
+```
+
+The value remains available for the separate `1b` activity. It must not enter
+the `1a` score or evidence event.
 
 Register the corrected generator in the runtime path used by the graph domain
 adapter. The smallest compatible choices are:
@@ -123,20 +173,24 @@ adapter. The smallest compatible choices are:
 2. Change the blueprint only if the runtime registry requires a different
    stable key. Do not maintain two keys for one generator.
 
-The adapter must translate `GeneratorOutput.data.verbal` and the expression
-answer into the expression-translation props. It must not map the generated
-numeric result into the primary response.
+The adapter must translate `GeneratorOutput.data.verbal` into the blank
+template. It must map the generated expression to blank ID `expression`.
+Worked and Guided adapters can include the accepted forms. The Independent
+adapter must keep accepted forms in private server grading data. It must not
+map the generated numeric result into the `1a` response.
 
 ## Required behavior tests
 
-1. A generator test must assert that `expression` is the sole mastery part.
+1. A generator test must assert that `expression` is the sole `1a` mastery
+   part and that `data.value` remains available for `1b`.
 2. Use at least one grouping-sensitive case. Example: “the product of 4 and the
    difference between 11 and 3” must require `4 * (11 - 3)`. The response
    `4 * 11 - 3` must fail.
 3. Use an order-sensitive case. “The difference of 11 and 3” must reject
    `3 - 11`.
-4. Accept harmless notation variants such as `3 × 4` and `3 * 4` when the
-   approved parser treats them as the same structure.
+4. Accept only emitted structural forms after narrow notation normalization.
+   Accept `3 × 4` and `3 * 4` when both normalize to an accepted form. Reject
+   the evaluated scalar.
 5. Guided mode must record hint or reveal assistance.
 6. Independent mode must conceal the expected expression before submission.
 7. A rejected save must preserve the learner's expression and must not call
@@ -168,8 +222,8 @@ It does not approve the rows or their future practice specifications.
 
 1. Add failing generator semantics and registry tests.
 2. Correct the generator grading part and add the main-registry adapter.
-3. Add the shared expression-translation schema and activity with behavior
-   tests.
+3. Extend the existing blank schema and activity with accepted-form and
+   persistence behavior tests.
 4. Update the one pilot blueprint and regenerate only its three projection
    rows.
 5. Add the server grader and exact-node evidence test.
