@@ -69,6 +69,7 @@ const graphingExplorerPropsValidator = v.object({
   comparisonQuestion: v.optional(v.string()),
   comparisonAnswer: v.optional(v.union(v.literal("first"), v.literal("second"))),
   linearEquation: v.optional(v.string()),
+  responseVariant: v.optional(v.literal("table_graph")),
 });
 
 const stepByStepSolverPropsValidator = v.object({
@@ -155,7 +156,9 @@ const gradingConfigValidator = v.object({
   autoGrade: v.boolean(),
   passingScore: v.optional(v.number()),
   partialCredit: v.boolean(),
+  partIds: v.optional(v.array(v.string())),
   rubric: v.optional(v.array(v.object({
+    partId: v.optional(v.string()),
     criteria: v.string(),
     points: v.number(),
   }))),
@@ -429,6 +432,9 @@ export default defineSchema({
     props: activityPropsValidator,
     gradingConfig: v.optional(gradingConfigValidator),
     standardId: v.optional(v.id("competency_standards")),
+    stableActivityId: v.optional(v.string()),
+    masteryNodeId: v.optional(v.string()),
+    srsEligible: v.optional(v.boolean()),
     approval: v.optional(v.object({
       status: v.union(
         v.literal("unreviewed"),
@@ -443,7 +449,9 @@ export default defineSchema({
     })),
     createdAt: v.number(),
     updatedAt: v.number(),
-  }).index("by_standard", ["standardId"]),
+  })
+    .index("by_standard", ["standardId"])
+    .index("by_stable_activity_id", ["stableActivityId"]),
 
   student_competency: defineTable({
     studentId: v.id("profiles"),
@@ -504,12 +512,17 @@ export default defineSchema({
     submittedAt: v.number(),
     gradedAt: v.optional(v.number()),
     gradedBy: v.optional(v.id("profiles")),
+    attemptOrdinal: v.optional(v.number()),
+    idempotencyKey: v.optional(v.string()),
+    masteryContractVersion: v.optional(v.literal("learning-evidence.v1")),
     createdAt: v.number(),
     updatedAt: v.number(),
   })
     .index("by_user", ["userId"])
     .index("by_activity", ["activityId"])
-    .index("by_user_and_activity", ["userId", "activityId"]),
+    .index("by_user_and_activity", ["userId", "activityId"])
+    .index("by_user_activity_attempt_ordinal", ["userId", "activityId", "attemptOrdinal"])
+    .index("by_user_activity_idempotency_key", ["userId", "activityId", "idempotencyKey"]),
 
   learning_evidence: defineTable({
     learnerId: v.id("profiles"),
