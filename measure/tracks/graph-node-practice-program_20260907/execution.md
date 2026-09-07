@@ -77,3 +77,5 @@ The IM1 source additions expose frozen inventory assertions in existing coverage
 ## Active follow-up ownership
 
 The runtime worker implements the single-node IM1 server submission and client flow. The inventory worker reconciles saved Module 1 and Module 2 source examples. The readiness worker corrects the existing IM1 inventory audit and tests. The parent retains integration ownership. The practice component now has explicit Worked reasoning and Guided Check, Hint, and Reveal behavior. The app must use an awaited durable submission callback. Draft rows remain outside ordinary adaptive recommendations.
+
+`6ac498a6`: committed the expression-capable blank renderer and its required contract fields. Worked mode shows reasoning. Guided mode checks before hints and reveals. Independent mode submits raw answers. Save failures preserve the response. Review tests exposed lost reveal assistance after an edit and missing Guided error output. Both are corrected. Eleven interaction tests, component lint, standalone TypeScript, root lint, and all package builds pass. The earlier schema ownership migration remains unstaged.

@@ -87,6 +87,8 @@ Scheduling: one worker owns shared graph mechanisms. Two workers can review disj
 
 - [~] Task G5: Reconcile the existing IM1 inventory reports and tests with source repairs. Remove frozen 138-node assertions. Distinguish a registered generator from a complete practice bundle. Derive existing report totals from the current graph. Record missing blueprints and incomplete modes without fabricating specifications. Preserve historical audit context.
 
+- [~] Task G6: Review IM2 Module 1 capability and source-example identities against current lesson sources. Prepare bounded graph corrections. Preserve the perpendicular-bisector pilot identity.
+
 ## Phase 4 — Implement the minimum shared repairs and five pilots
 
 - [~] Task 4.1: Repair shared projection and registration gaps required by pilots.
