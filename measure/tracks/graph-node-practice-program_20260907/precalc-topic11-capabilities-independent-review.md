@@ -45,3 +45,11 @@ The source repair can proceed after the author revises the two overlapping or un
 The parent independently read official CED PDF pages 39 and 40. They confirm the revised objectives and concavity statements. They do not explicitly state constant behavior. Label the pilot constant segment as authored extension content. The graph-construction objective remains a coverage gap because selecting a supplied graph does not prove construction mastery.
 
 The revised three-candidate source repair is accepted for draft authoring. Preserve the two existing skill identities, restore the ten missing numbered examples, and correct readiness, vocabulary, authored attribution, and source mappings. This acceptance does not approve curriculum publication or complete Topic 1.1 coverage.
+
+## Draft repair review on 2026-09-08
+
+The parent compared the draft repair with its recorded pre-batch snapshot. It adds 13 nodes and 24 edges. It removes no pre-batch node or edge. It changes only the two existing Topic 1.1 skill records and the interval blueprint among existing graph rows. The three new blueprints have no placeholder mode specifications.
+
+The lesson repair still needs the source figures or complete accessible figure descriptions. Examples 1 and 5 through 8 refer to absent figures or choices. Coordinates alone do not establish the concavity used in Examples 3 and 4. The author is correcting these omissions. The physical-context skill description must also stop claiming variable-role assessment. The source supplies those roles.
+
+The pre-batch snapshot is not the committed graph. Earlier pending changes remove the committed `math.precalc.skill.1.1.describe-covariation-in-tandem-change` identity and add the physical-context skill. They also change other topics. The integration owner must resolve the Topic 1.1 baseline and preserve stable identities before committing the batch. Whole-file staging would include unrelated graph changes. This review does not accept those changes.
