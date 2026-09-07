@@ -20,9 +20,15 @@ export default function LoginPage() {
 
     try {
       await signIn(username, password);
-      const session = await fetch("/api/auth/session").then((response) =>
-        response.json(),
-      );
+      const response = await fetch("/api/auth/session");
+      const session = await response.json();
+      if (
+        !response.ok ||
+        session.authenticated !== true ||
+        !["student", "teacher", "admin"].includes(session.profile?.role)
+      ) {
+        throw new Error("Could not verify your session. Sign in again.");
+      }
       const fallback =
         session.profile?.role === "student"
           ? "/student/dashboard"

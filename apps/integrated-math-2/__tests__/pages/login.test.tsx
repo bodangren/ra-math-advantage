@@ -38,6 +38,7 @@ it("routes a teacher to the dashboard and rejects an external redirect", async (
     vi
       .fn()
       .mockResolvedValue({
+        ok: true,
         json: async () => ({
           authenticated: true,
           profile: { role: "teacher" },
@@ -56,5 +57,21 @@ it("routes a teacher to the dashboard and rejects an external redirect", async (
   await waitFor(() =>
     expect(mocks.push).toHaveBeenCalledWith("/teacher/dashboard"),
   );
+  vi.unstubAllGlobals();
+});
+
+it.each([
+  { ok: true, body: { authenticated: false } },
+  { ok: false, body: { authenticated: true, profile: { role: "teacher" } } },
+  { ok: true, body: { authenticated: true, profile: { role: "unknown" } } },
+])("keeps the login form when session verification fails: %j", async ({ ok, body }) => {
+  mocks.signIn.mockResolvedValueOnce(undefined);
+  vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok, json: async () => body }));
+  render(<Login />);
+  fireEvent.change(screen.getByLabelText("Username"), { target: { value: "learner" } });
+  fireEvent.change(screen.getByLabelText("Password"), { target: { value: "password" } });
+  fireEvent.click(screen.getByRole("button", { name: "Sign In" }));
+  expect(await screen.findByRole("alert")).toHaveTextContent("Could not verify your session. Sign in again.");
+  expect(mocks.push).not.toHaveBeenCalled();
   vi.unstubAllGlobals();
 });
