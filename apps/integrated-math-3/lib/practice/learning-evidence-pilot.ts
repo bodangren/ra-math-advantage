@@ -153,3 +153,14 @@ export function createIm3LearningEvidenceAdapter({
 
   return { process };
 }
+
+/** Canonical node for the selected IM3 quadratic graph pilot. */
+export const IM3_PILOT_NODE = IM3_LEARNING_EVIDENCE_PILOT_NODE_IDS[0];
+
+/** Canonical Guided activity for the selected IM3 quadratic graph pilot. */
+export const IM3_GUIDED_PRACTICE_ACTIVITY_ID =
+  `${IM3_PILOT_NODE}.guided_practice` as const;
+
+/** Canonical Independent activity for the selected IM3 quadratic graph pilot. */
+export const IM3_MASTERY_ADVANTAGE_ACTIVITY_ID =
+  `${IM3_PILOT_NODE}.independent_practice` as const;
