@@ -210,7 +210,7 @@ export function validateBlueprintGeneratorReadiness(
 }
 
 /**
- * Validates that a blueprint's rendererKey is accepted by a schema adapter.
+ * Validates the fallback renderer and mode overrides with the schema adapter.
  * @param {KnowledgeBlueprint} blueprint - Knowledge blueprint to validate
  * @param {SchemaAdapter} adapter - Schema adapter with acceptRendererKey method
  * @returns {ValidationResult} - ValidationResult with valid flag and any errors
@@ -219,16 +219,18 @@ export function validateRendererCompatibility(
   blueprint: KnowledgeBlueprint,
   adapter: SchemaAdapter,
 ): ValidationResult {
-  if (!blueprint.rendererKey || blueprint.rendererKey.length === 0) {
-    return { valid: true };
-  }
-  if (!adapter.acceptRendererKey(blueprint.rendererKey)) {
+  const rendererKeys = new Set([
+    blueprint.rendererKey,
+    ...Object.values(blueprint.rendererModeMap ?? {}),
+  ].filter(Boolean));
+  const unknownKeys = [...rendererKeys].filter((key) => !adapter.acceptRendererKey(key));
+  if (unknownKeys.length > 0) {
     return {
       valid: false,
-      errors: [{
+      errors: unknownKeys.map((key) => ({
         code: 'UNKNOWN_RENDERER',
-        message: `Renderer key "${blueprint.rendererKey}" is not accepted by the schema adapter`,
-      }],
+        message: `Renderer key "${key}" is not accepted by the schema adapter`,
+      })),
     };
   }
   return { valid: true };
