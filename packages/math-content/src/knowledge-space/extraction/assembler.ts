@@ -156,6 +156,7 @@ export function assembleDraftInventory(
   const skillSlugSet = new Set<string>();
   if (classPeriodPlan) {
     let globalExampleIdx = 0;
+    const sourceExamples = new Set<string>();
 
     for (const lesson of classPeriodPlan.lessons) {
       const [mod, les] = lesson.lessonRef.split('-').map(sanitizeIdSegment);
@@ -186,6 +187,11 @@ export function assembleDraftInventory(
       for (const example of lesson.examples) {
         for (const num of example.exampleNumbers) {
           globalExampleIdx++;
+          // Retain later occurrence IDs while shared lesson examples use the
+          // first identity. Do not renumber saved examples during deduplication.
+          const sourceExample = `${mod}.${les}.${num}`;
+          if (sourceExamples.has(sourceExample)) continue;
+          sourceExamples.add(sourceExample);
           const idxStr = String(globalExampleIdx).padStart(3, '0');
           nodes.push({
             id: buildWorkedExampleId(course, mod, les, idxStr),
