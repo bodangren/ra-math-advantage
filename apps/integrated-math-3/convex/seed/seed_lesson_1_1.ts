@@ -1,6 +1,297 @@
-import { internalMutation } from "../_generated/server";
+import { internalMutation, type MutationCtx } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
+import { getGenerator } from "@math-platform/math-content/knowledge-space";
+import { v } from "convex/values";
+import type { GraphingExplorerSchemaProps } from "@math-platform/math-content";
+import {
+  IM3_GUIDED_PRACTICE_ACTIVITY_ID,
+  IM3_GUIDED_VARIANT_KEY,
+  IM3_MASTERY_ADVANTAGE_ACTIVITY_ID,
+  IM3_PILOT_NODE,
+  IM3_PILOT_VARIANT_KEY,
+  IM3_TEACHER_LED_ACTIVITY_ID,
+} from "../../lib/practice/learning-evidence-pilot";
+
+const IM3_SELECTED_WORKED_MARKDOWN = "## Example 1: Graph $f(x) = x^2$ Using a Table\n\nLet's graph $f(x) = x^2$ by creating a table of values.";
+
+const IM3_SELECTED_ORIGINAL_WORKED_PROPS = {
+  problemType: "graphing",
+  equation: "f(x) = x^2",
+  steps: [
+    { expression: "x = -2", explanation: "Evaluate at x = -2" },
+    { expression: "f(-2) = (-2)^2 = 4", explanation: "Calculate f(-2)" },
+    { expression: "x = -1", explanation: "Evaluate at x = -1" },
+    { expression: "f(-1) = (-1)^2 = 1", explanation: "Calculate f(-1)" },
+    { expression: "x = 0", explanation: "Evaluate at x = 0" },
+    { expression: "f(0) = 0^2 = 0", explanation: "Calculate f(0) — the vertex" },
+    { expression: "x = 1", explanation: "Evaluate at x = 1" },
+    { expression: "f(1) = 1^2 = 1", explanation: "Calculate f(1)" },
+    { expression: "x = 2", explanation: "Evaluate at x = 2" },
+    { expression: "f(2) = 2^2 = 4", explanation: "Calculate f(2)" },
+  ],
+};
+
+function serializeSelectedSeedContent(value: unknown): string {
+  return JSON.stringify(value, (_key, entry) => (
+    entry !== null && typeof entry === "object" && !Array.isArray(entry)
+      ? Object.fromEntries(Object.keys(entry).sort().map((key) => [key, entry[key]]))
+      : entry
+  ));
+}
+
+function buildGeneratedPilotActivity(stableActivityId: string, seed: number, displayName: string) {
+  const generated = getGenerator("quadratic-graph-analysis").generate({
+    nodeId: IM3_PILOT_NODE,
+    seed,
+    difficulty: 0.5,
+  });
+  const rendererProps = generated.data.rendererProps;
+  if (!rendererProps || typeof rendererProps !== "object" || Array.isArray(rendererProps)) {
+    throw new Error("Quadratic graph-analysis generator returned invalid renderer props");
+  }
+  const partIds = Object.keys(generated.expectedAnswer);
+  return {
+    componentKey: "graphing-explorer" as const,
+    displayName,
+    description: "Complete the table and plot the points for the IM3 graph pilot.",
+    props: rendererProps as GraphingExplorerSchemaProps,
+    gradingConfig: {
+      autoGrade: true,
+      partialCredit: true,
+      passingScore: 2,
+      partIds,
+      rubric: partIds.map((partId) => ({
+        criteria: `Correct ${partId}`,
+        partId,
+        points: generated.gradingMetadata.partMaxScores[partId],
+      })),
+    },
+    stableActivityId,
+    masteryNodeId: IM3_PILOT_NODE,
+    approval: { status: "unreviewed" as const },
+    srsEligible: false,
+  };
+}
+
+export function buildIm3WorkedPilotSeedDocument(now: number) {
+  return {
+    componentKey: "graphing-explorer" as const,
+    displayName: "Graph a quadratic function by using a table",
+    description: "Graph f(x) = x^2 by using a table.",
+    props: { variant: "plot_from_equation" as const, equation: "f(x) = x^2" },
+    gradingConfig: { autoGrade: false, partialCredit: false },
+    stableActivityId: IM3_TEACHER_LED_ACTIVITY_ID,
+    masteryNodeId: IM3_PILOT_NODE,
+    learningEvidenceMode: "worked_example" as const,
+    approval: { status: "unreviewed" as const },
+    srsEligible: false,
+    createdAt: now,
+    updatedAt: now,
+  };
+}
+
+export function buildIm3PilotSeedDocuments(activityId: Id<"activities">, now: number) {
+  const activity = { ...buildGeneratedPilotActivity(IM3_MASTERY_ADVANTAGE_ACTIVITY_ID, 0, "Mastery Advantage: Complete a quadratic table and plot the points"), createdAt: now, updatedAt: now };
+  return {
+    activity,
+    variant: { variantKey: IM3_PILOT_VARIANT_KEY, legacyProblemFamilyId: IM3_PILOT_VARIANT_KEY, migrationVersion: "kst-srs.v3.2" as const, sourceTimestamp: now, componentKey: "graphing-explorer", displayName: "Graph quadratic functions", description: "The exact IM3 Mastery Advantage pilot variant.", objectiveIds: [IM3_PILOT_NODE], difficulty: "pilot", metadata: { pilot: true, stableActivityId: IM3_MASTERY_ADVANTAGE_ACTIVITY_ID } },
+    item: { practiceItemId: `${IM3_PILOT_VARIANT_KEY}:pilot`, activityId, variantKey: IM3_PILOT_VARIANT_KEY, legacyProblemFamilyId: IM3_PILOT_VARIANT_KEY, migrationVersion: "kst-srs.v3.2" as const, sourceTimestamp: now, variantLabel: "Pilot A" },
+  };
+}
+
+export function buildIm3GuidedPilotSeedDocuments(activityId: Id<"activities">, now: number) {
+  const activity = { ...buildGeneratedPilotActivity(IM3_GUIDED_PRACTICE_ACTIVITY_ID, 1, "Guided graphing: Complete a quadratic table and plot the points"), createdAt: now, updatedAt: now };
+  return {
+    activity,
+    variant: { variantKey: IM3_GUIDED_VARIANT_KEY, legacyProblemFamilyId: IM3_GUIDED_VARIANT_KEY, migrationVersion: "kst-srs.v3.2" as const, sourceTimestamp: now, componentKey: "graphing-explorer", displayName: "Guided graph quadratic functions", description: "Complete a quadratic table and plot the points.", objectiveIds: [IM3_PILOT_NODE], difficulty: "standard", metadata: { stableActivityId: IM3_GUIDED_PRACTICE_ACTIVITY_ID } },
+    item: { practiceItemId: `${IM3_GUIDED_VARIANT_KEY}:seed-1`, activityId, variantKey: IM3_GUIDED_VARIANT_KEY, legacyProblemFamilyId: IM3_GUIDED_VARIANT_KEY, migrationVersion: "kst-srs.v3.2" as const, sourceTimestamp: now, variantLabel: "Seed 1" },
+  };
+}
+
+type SelectedActivitySeedDocument =
+  | ReturnType<typeof buildIm3WorkedPilotSeedDocument>
+  | ReturnType<typeof buildIm3PilotSeedDocuments>["activity"]
+  | ReturnType<typeof buildIm3GuidedPilotSeedDocuments>["activity"];
+
+async function upsertSelectedActivity(
+  ctx: MutationCtx,
+  stableActivityId: string,
+  document: SelectedActivitySeedDocument,
+): Promise<Id<"activities">> {
+  const existing = await ctx.db.query("activities")
+    .withIndex("by_stable_activity_id", (query) => query.eq("stableActivityId", stableActivityId))
+    .unique();
+  if (!existing) return ctx.db.insert("activities", document);
+  const reviewedContent = serializeSelectedSeedContent({
+    componentKey: existing.componentKey,
+    displayName: existing.displayName,
+    description: existing.description,
+    masteryNodeId: existing.masteryNodeId,
+    stableActivityId: existing.stableActivityId,
+    learningEvidenceMode: "learningEvidenceMode" in existing
+      ? existing.learningEvidenceMode
+      : undefined,
+    props: existing.props,
+    gradingConfig: existing.gradingConfig,
+  });
+  const nextContent = serializeSelectedSeedContent({
+    componentKey: document.componentKey,
+    displayName: document.displayName,
+    description: document.description,
+    masteryNodeId: document.masteryNodeId,
+    stableActivityId: document.stableActivityId,
+    learningEvidenceMode: "learningEvidenceMode" in document ? document.learningEvidenceMode : undefined,
+    props: document.props,
+    gradingConfig: document.gradingConfig,
+  });
+  if (existing.approval?.status === "approved" && reviewedContent !== nextContent) {
+    throw new Error("Approved selected IM3 activity content changed");
+  }
+  const contentIsIdentical = reviewedContent === nextContent;
+  await ctx.db.patch(existing._id, {
+    ...document,
+    approval: contentIsIdentical ? existing.approval ?? document.approval : document.approval,
+    srsEligible: contentIsIdentical ? existing.srsEligible ?? document.srsEligible : false,
+    createdAt: existing.createdAt,
+  });
+  return existing._id;
+}
+
+async function upsertSelectedPracticeDocuments(
+  ctx: MutationCtx,
+  documents:
+    | ReturnType<typeof buildIm3PilotSeedDocuments>
+    | ReturnType<typeof buildIm3GuidedPilotSeedDocuments>,
+): Promise<void> {
+  const variant = await ctx.db.query("practice_variants")
+    .withIndex("by_variantKey", (query) => query.eq("variantKey", documents.variant.variantKey))
+    .unique();
+  if (variant) await ctx.db.patch(variant._id, documents.variant);
+  else await ctx.db.insert("practice_variants", documents.variant);
+
+  const byVariant = await ctx.db.query("practice_items")
+    .withIndex("by_variantKey", (query) => query.eq("variantKey", documents.item.variantKey))
+    .take(2);
+  const byActivity = await ctx.db.query("practice_items")
+    .withIndex("by_activityId", (query) => query.eq("activityId", documents.item.activityId))
+    .take(2);
+  const items = [...new Map([...byVariant, ...byActivity].map((row) => [String(row._id), row])).values()];
+  if (
+    items.length > 1
+    || items.some((row) => (
+      row.variantKey !== documents.item.variantKey
+      || String(row.activityId) !== String(documents.item.activityId)
+      || row.practiceItemId !== documents.item.practiceItemId
+    ))
+  ) throw new Error("Duplicate or conflicting selected IM3 practice-item mapping");
+  if (items[0]) await ctx.db.patch(items[0]._id, documents.item);
+  else await ctx.db.insert("practice_items", documents.item);
+}
+
+export async function upsertIm3SelectedPilotSeed(
+  ctx: MutationCtx,
+  lessonVersionId: Id<"lesson_versions">,
+  now: number,
+) {
+  const lessonVersion = await ctx.db.get(lessonVersionId);
+  const lesson = lessonVersion ? await ctx.db.get(lessonVersion.lessonId) : null;
+  const lessonVersions = lesson ? await ctx.db.query("lesson_versions")
+    .withIndex("by_lesson", (query) => query.eq("lessonId", lesson._id))
+    .collect() : [];
+  const publishedVersions = lessonVersions
+    .filter((version) => version.status === "published")
+    .sort((left, right) => right.version - left.version);
+  if (
+    !lessonVersion
+    || lessonVersion.status !== "published"
+    || !lesson
+    || lesson.slug !== "module-1-lesson-1"
+    || publishedVersions[0]?._id !== lessonVersionId
+    || publishedVersions.filter((version) => version.version === lessonVersion.version).length !== 1
+  ) {
+    throw new Error("Selected IM3 lesson version is invalid");
+  }
+  const phases = await ctx.db.query("phase_versions")
+    .withIndex("by_lesson_version_and_phase", (query) => (
+      query.eq("lessonVersionId", lessonVersionId).eq("phaseNumber", 4)
+    ))
+    .collect();
+  if (phases.length !== 1 || phases[0].phaseType !== "worked_example") {
+    throw new Error("Lesson 1.1 Worked Phase 4 must be unique");
+  }
+  const phase = phases[0];
+  const sections = await ctx.db.query("phase_sections")
+    .withIndex("by_phase_version", (query) => query.eq("phaseVersionId", phase._id))
+    .collect();
+  const sourceSections = sections.filter((section) => section.sequenceOrder === 1);
+  const activitySections = sections.filter((section) => section.sequenceOrder === 2);
+  if (
+    sourceSections.length !== 1
+    || sourceSections[0].sectionType !== "text"
+    || (sourceSections[0].content as { markdown?: unknown }).markdown !== IM3_SELECTED_WORKED_MARKDOWN
+    || activitySections.length !== 1
+    || activitySections[0].sectionType !== "activity"
+  ) {
+    throw new Error("Lesson 1.1 Worked Phase 4 source sections must be unique");
+  }
+  const currentSectionContent = activitySections[0].content as {
+    activityId?: Id<"activities">;
+    componentKey?: string;
+    props?: { equation?: string };
+  };
+  const linkedActivity = currentSectionContent.activityId
+    ? await ctx.db.get(currentSectionContent.activityId)
+    : null;
+  const isOriginalWorkedSection = currentSectionContent.componentKey === "step-by-step-solver"
+    && linkedActivity?.componentKey === "step-by-step-solver"
+    && serializeSelectedSeedContent(linkedActivity.props) === serializeSelectedSeedContent(IM3_SELECTED_ORIGINAL_WORKED_PROPS);
+  const isCanonicalWorkedSection = currentSectionContent.componentKey === "graphing-explorer"
+    && linkedActivity?.componentKey === "graphing-explorer"
+    && linkedActivity.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID
+    && linkedActivity.masteryNodeId === IM3_PILOT_NODE
+    && linkedActivity.learningEvidenceMode === "worked_example"
+    && serializeSelectedSeedContent(linkedActivity.props)
+      === serializeSelectedSeedContent(buildIm3WorkedPilotSeedDocument(now).props);
+  if (!isOriginalWorkedSection && !isCanonicalWorkedSection) {
+    throw new Error("Lesson 1.1 Worked activity source is invalid");
+  }
+  const worked = buildIm3WorkedPilotSeedDocument(now);
+  const workedActivityId = await upsertSelectedActivity(ctx, worked.stableActivityId, worked);
+
+  const independentDraft = {
+    ...buildGeneratedPilotActivity(IM3_MASTERY_ADVANTAGE_ACTIVITY_ID, 0, "Mastery Advantage: Complete a quadratic table and plot the points"),
+    createdAt: now,
+    updatedAt: now,
+  };
+  const independentActivityId = await upsertSelectedActivity(
+    ctx,
+    independentDraft.stableActivityId,
+    independentDraft,
+  );
+  const independent = buildIm3PilotSeedDocuments(independentActivityId, now);
+  await upsertSelectedPracticeDocuments(ctx, independent);
+
+  const guidedDraft = {
+    ...buildGeneratedPilotActivity(IM3_GUIDED_PRACTICE_ACTIVITY_ID, 1, "Guided graphing: Complete a quadratic table and plot the points"),
+    createdAt: now,
+    updatedAt: now,
+  };
+  const guidedActivityId = await upsertSelectedActivity(
+    ctx,
+    guidedDraft.stableActivityId,
+    guidedDraft,
+  );
+  const guided = buildIm3GuidedPilotSeedDocuments(guidedActivityId, now);
+  await upsertSelectedPracticeDocuments(ctx, guided);
+
+  const activitySection = activitySections[0];
+  await ctx.db.patch(activitySection._id, {
+    content: { componentKey: "graphing-explorer", activityId: workedActivityId },
+  });
+
+  return { workedActivityId, guidedActivityId, independentActivityId };
+}
 
 interface SeedLesson1Result {
   lessonId: Id<"lessons">;
@@ -15,6 +306,12 @@ interface SeedLesson1Result {
  */
 export const seedLesson1 = internalMutation({
   args: {},
+  returns: v.object({
+    lessonId: v.id("lessons"),
+    lessonVersionId: v.id("lesson_versions"),
+    phasesCreated: v.number(),
+    activitiesCreated: v.number(),
+  }),
   handler: async (ctx): Promise<SeedLesson1Result> => {
     const now = Date.now();
     const lessonSlug = "module-1-lesson-1";
@@ -36,10 +333,23 @@ export const seedLesson1 = internalMutation({
           updatedAt: now,
         });
 
-    const existingLessonVersion = await ctx.db
+    const existingLessonVersions = await ctx.db
       .query("lesson_versions")
       .withIndex("by_lesson", (q) => q.eq("lessonId", lessonId))
-      .first();
+      .collect();
+    const publishedLessonVersions = existingLessonVersions
+      .filter((version) => version.status === "published")
+      .sort((left, right) => right.version - left.version);
+    if (existingLessonVersions.length > 0 && publishedLessonVersions.length === 0) {
+      throw new Error("Lesson 1.1 has no published version");
+    }
+    if (
+      publishedLessonVersions[0]
+      && publishedLessonVersions.filter((version) => (
+        version.version === publishedLessonVersions[0].version
+      )).length !== 1
+    ) throw new Error("Lesson 1.1 has duplicate latest published versions");
+    const existingLessonVersion = publishedLessonVersions[0];
 
     const lessonVersionId: Id<"lesson_versions"> = existingLessonVersion
       ? existingLessonVersion._id
@@ -113,7 +423,7 @@ export const seedLesson1 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 1: Graph $f(x) = x^2$ Using a Table\n\nLet's graph $f(x) = x^2$ by creating a table of values.",
+              markdown: IM3_SELECTED_WORKED_MARKDOWN,
             },
           },
           {
@@ -121,22 +431,7 @@ export const seedLesson1 = internalMutation({
             sectionType: "activity" as const,
             content: {
               componentKey: "step-by-step-solver",
-              props: {
-                problemType: "graphing",
-                equation: "f(x) = x^2",
-                steps: [
-                  { expression: "x = -2", explanation: "Evaluate at x = -2" },
-                  { expression: "f(-2) = (-2)^2 = 4", explanation: "Calculate f(-2)" },
-                  { expression: "x = -1", explanation: "Evaluate at x = -1" },
-                  { expression: "f(-1) = (-1)^2 = 1", explanation: "Calculate f(-1)" },
-                  { expression: "x = 0", explanation: "Evaluate at x = 0" },
-                  { expression: "f(0) = 0^2 = 0", explanation: "Calculate f(0) — the vertex" },
-                  { expression: "x = 1", explanation: "Evaluate at x = 1" },
-                  { expression: "f(1) = 1^2 = 1", explanation: "Calculate f(1)" },
-                  { expression: "x = 2", explanation: "Evaluate at x = 2" },
-                  { expression: "f(2) = 2^2 = 4", explanation: "Calculate f(2)" },
-                ],
-              },
+              props: IM3_SELECTED_ORIGINAL_WORKED_PROPS,
             },
           },
         ],
@@ -429,6 +724,8 @@ export const seedLesson1 = internalMutation({
         }
       }
     }
+
+    await upsertIm3SelectedPilotSeed(ctx, lessonVersionId, now);
 
     return {
       lessonId,

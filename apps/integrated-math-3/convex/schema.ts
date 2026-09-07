@@ -435,6 +435,7 @@ export default defineSchema({
     stableActivityId: v.optional(v.string()),
     masteryNodeId: v.optional(v.string()),
     srsEligible: v.optional(v.boolean()),
+    learningEvidenceMode: v.optional(v.literal("worked_example")),
     approval: v.optional(v.object({
       status: v.union(
         v.literal("unreviewed"),

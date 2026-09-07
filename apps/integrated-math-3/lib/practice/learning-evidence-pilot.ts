@@ -164,3 +164,8 @@ export const IM3_GUIDED_PRACTICE_ACTIVITY_ID =
 /** Canonical Independent activity for the selected IM3 quadratic graph pilot. */
 export const IM3_MASTERY_ADVANTAGE_ACTIVITY_ID =
   `${IM3_PILOT_NODE}.independent_practice` as const;
+
+/** Canonical Worked activity for the selected IM3 quadratic graph pilot. */
+export const IM3_TEACHER_LED_ACTIVITY_ID = `${IM3_PILOT_NODE}.worked_example` as const;
+export const IM3_GUIDED_VARIANT_KEY = IM3_GUIDED_PRACTICE_ACTIVITY_ID;
+export const IM3_PILOT_VARIANT_KEY = IM3_MASTERY_ADVANTAGE_ACTIVITY_ID;
