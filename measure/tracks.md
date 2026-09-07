@@ -1,7 +1,7 @@
 # Project Tracks
 
 - [~] **Track: Graph Node Practice Program** — **IN PROGRESS**
-   *Investigation complete. Correct all five knowledge space graphs and deliver a source-based three-mode rollout. Use gpt-5.6-sol at low reasoning effort with up to three workers. Graph review and course pilots precede broad authoring. Implementation is authorized. IM1 source and count repairs are committed. IM2 source correction is committed. Source review and five course pilots remain open. Current repairs cover teacher exposure, durable submission, and source-based publication.*
+   *Investigation complete. Correct all five knowledge space graphs and deliver a source-based three-mode rollout. Use gpt-5.6-sol at low reasoning effort with up to three workers. Graph review and course pilots precede broad authoring. Implementation is authorized. IM1 source and count repairs are committed. IM2 source correction is committed. Source review and five course pilots remain open. Current repairs cover trusted teacher exposure, usable teacher actions, source-based publication, and IM1 objective 3d granularity.*
    *Link: [./tracks/graph-node-practice-program_20260907/](./tracks/graph-node-practice-program_20260907/)*
 
 This file tracks all major tracks for the project.

@@ -97,6 +97,8 @@ Scheduling: one worker owns shared graph mechanisms. Two workers can review disj
 
 - [~] Task G8: Review IM1 Module 3 capabilities against the full current lesson bodies and class-period objectives. Correct missing or mixed draft capabilities and exact source references. Preserve stable identities and keep unreviewed relationships inactive. The bounded objective and source restoration is committed as `7b9b4993`. Atomic capability splitting and source-image review remain open.
 
+- [x] Task G9: Split IM1 objective 3d into source-based numerical evaluation, algebraic evaluation, and contextual interpretation capabilities. Preserve the legacy objective ID as an inactive aggregate. Use Lesson 3-2 Examples 3 and 4. No prerequisites or approval were added. Independent review, 10 source/pilot tests, 42 inventory tests, app/package lint, standalone TypeScript, and builds pass. Commit `4c29f791`.
+
 ## Phase 4 — Implement the minimum shared repairs and five pilots
 
 - [~] Task 4.1: Repair shared projection and registration gaps required by pilots.

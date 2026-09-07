@@ -135,3 +135,13 @@ G8 found six omitted Module 3 objectives and one omitted source example. The wor
 Independent IM1 review rejected the first teacher-exposure implementation. It lacks the current catalog publication check and verified source class linkage. The teacher form requires raw IDs and does not preserve a retry key. The author is repairing these defects in IM1 and checking the equivalent IM2 flow. No pilot release or source approval is recorded.
 
 The Business Math author has disabled the generated path for the current source blueprint and delayed expected-answer feedback until durable submission. The full goal still requires the source-based artifact practice and teacher-review flow. The author is now tracing that path.
+
+## Function evaluation and trusted teacher actions
+
+The previous goal turn made verified progress through the committed interval and Module 3 source repairs. This continuation checked live agents and current files before further work.
+
+`4c29f791`: split IM1 objective 3d into numerical evaluation, algebraic evaluation, and interpretation in context. The legacy identity remains an inactive draft aggregate. The new rows cite exact source examples. They have only draft containment edges and no active projection rows. Independent source review passed. All 10 source/pilot tests and 42 inventory tests pass. IM1 and math-content lint, standalone TypeScript, and builds pass. The inventory now has 159 skill candidates, six generator bindings, and 153 generator gaps. These are candidate counts.
+
+The Precalculus review confirmed that a student Worked acknowledgement creates teacher-led exposure. Its lesson write path also bypasses current draft publication. The author is replacing this with an explicit acknowledgement and a trusted teacher action. The same Business Math source reconstruction uses a student Guided submission as teacher-led exposure. That origin requires repair even though the event itself has no mastery score. It can affect later eligibility.
+
+IM1 and IM2 now have usable teacher selection controls instead of raw ID forms. The author added tests for visible source context, hidden selected identities, empty states, and retry keys. The parent is checking the complete affected suite before integration. The workspace dependency request remains unanswered. No dependency files, deployments, or live records have changed.
