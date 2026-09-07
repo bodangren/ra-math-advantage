@@ -51,3 +51,5 @@ Saved explanation correction: `2501e93c`. Saved session-navigation correction: `
 Saved phase-evidence correction: `6f12c263`. Saved extractor protection: `2d03992a`. All gates passed with 213 tests. Local backend replay remains under verification.
 
 Saved student-phase cleanup: `c30fe687`. All gates and local seed replay passed. Vocabulary correction and remaining practice workflows are in progress.
+
+Saved vocabulary correction: `b3384565`. All gates passed. Remaining graph practice, scope limits, standards alignment, and dependency work remain open.
