@@ -4746,10 +4746,10 @@
     {
       "id": "math.im1.example.4.5.027",
       "kind": "worked_example",
-      "title": "Example 1: Determine Whether a Sequence Is Arithmetic; Find the Common Difference and Next Three Terms",
+      "title": "Example 1: Determine Whether a Sequence Is Arithmetic",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4-5, Example 1)"
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-5 (Example 1)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4758,16 +4758,16 @@
         "lesson": "5",
         "exampleNumber": 1,
         "sourceLesson": "4-5",
-        "rawText": "4-5, Examples 1-2 \u2014 Determine Whether a Sequence Is Arithmetic; Find the Common Difference and Next Three Terms"
+        "rawText": "Example 1: Determine Whether a Sequence Is Arithmetic"
       }
     },
     {
       "id": "math.im1.example.4.5.028",
       "kind": "worked_example",
-      "title": "Example 2: Determine Whether a Sequence Is Arithmetic; Find the Common Difference and Next Three Terms",
+      "title": "Example 2: Find the Common Difference and Next Three Terms",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4-5, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-5 (Example 2)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4776,16 +4776,16 @@
         "lesson": "5",
         "exampleNumber": 2,
         "sourceLesson": "4-5",
-        "rawText": "4-5, Examples 1-2 \u2014 Determine Whether a Sequence Is Arithmetic; Find the Common Difference and Next Three Terms"
+        "rawText": "Example 2: Find the Common Difference and Next Three Terms"
       }
     },
     {
       "id": "math.im1.example.4.5.029",
       "kind": "worked_example",
-      "title": "Example 3: Write an Equation and Find the 7th Term; Model Real-World Situations with Arithmetic Sequences",
+      "title": "Example 3: Write an Equation and Find the 7th Term",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4-5, Example 3)"
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-5 (Example 3)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4794,16 +4794,16 @@
         "lesson": "5",
         "exampleNumber": 3,
         "sourceLesson": "4-5",
-        "rawText": "4-5, Examples 3-4 \u2014 Write an Equation and Find the 7th Term; Model Real-World Situations with Arithmetic Sequences"
+        "rawText": "Example 3: Write an Equation and Find the 7th Term"
       }
     },
     {
       "id": "math.im1.example.4.5.030",
       "kind": "worked_example",
-      "title": "Example 4: Write an Equation and Find the 7th Term; Model Real-World Situations with Arithmetic Sequences",
+      "title": "Example 4: Model Real-World Situations with Arithmetic Sequences",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4-5, Example 4)"
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-5 (Example 4)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4812,7 +4812,7 @@
         "lesson": "5",
         "exampleNumber": 4,
         "sourceLesson": "4-5",
-        "rawText": "4-5, Examples 3-4 \u2014 Write an Equation and Find the 7th Term; Model Real-World Situations with Arithmetic Sequences"
+        "rawText": "Example 4: Model Real-World Situations with Arithmetic Sequences"
       }
     },
     {
@@ -13493,6 +13493,125 @@
         "course": "im1",
         "module": "4",
         "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.5.find-the-common-difference-of-an-arithmetic-sequence",
+      "kind": "skill",
+      "title": "Find the common difference of an arithmetic sequence",
+      "domain": "math.im1",
+      "description": "Find the common difference of an arithmetic sequence",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-5"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.5.extend-an-arithmetic-sequence",
+      "kind": "skill",
+      "title": "Extend an arithmetic sequence using its common difference",
+      "domain": "math.im1",
+      "description": "Extend an arithmetic sequence using its common difference",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-5"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.5.write-an-explicit-equation-for-an-arithmetic-sequence",
+      "kind": "skill",
+      "title": "Write an explicit equation for an arithmetic sequence",
+      "domain": "math.im1",
+      "description": "Write an explicit equation for an arithmetic sequence",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-5"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.5.use-an-explicit-equation-to-find-a-sequence-term",
+      "kind": "skill",
+      "title": "Use an explicit equation to find a specified term of an arithmetic sequence",
+      "domain": "math.im1",
+      "description": "Use an explicit equation to find a specified term of an arithmetic sequence",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-5"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.5.model-a-real-world-situation-with-an-arithmetic-sequence",
+      "kind": "skill",
+      "title": "Model a real-world situation with an arithmetic sequence",
+      "domain": "math.im1",
+      "description": "Model a real-world situation with an arithmetic sequence",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-5"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.5.graph-an-arithmetic-sequence-as-a-discrete-function",
+      "kind": "skill",
+      "title": "Graph an arithmetic sequence as a discrete function",
+      "domain": "math.im1",
+      "description": "Graph an arithmetic sequence as a discrete function",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-5"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.5.answer-contextual-questions-with-an-arithmetic-sequence-model",
+      "kind": "skill",
+      "title": "Answer contextual questions with an arithmetic sequence model",
+      "domain": "math.im1",
+      "description": "Answer contextual questions with an arithmetic sequence model",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-5"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "5"
       }
     }
   ],
@@ -34918,7 +35037,7 @@
       "mediumConfidence": 0,
       "lowConfidence": 0,
       "exceptions": 0,
-      "missingStandards": 77,
+      "missingStandards": 84,
       "reviewQueue": 0
     }
   }

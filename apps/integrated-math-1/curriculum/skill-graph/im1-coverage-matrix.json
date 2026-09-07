@@ -1,10 +1,10 @@
 {
   "version": 1,
   "course": "im1",
-  "totalSkills": 177,
+  "totalSkills": 184,
   "counts": {
     "served": 6,
-    "gap": 171,
+    "gap": 178,
     "newComponent": 0
   },
   "byModule": [
@@ -31,9 +31,9 @@
     },
     {
       "module": "4",
-      "totalSkills": 26,
+      "totalSkills": 33,
       "served": 0,
-      "gap": 26,
+      "gap": 33,
       "newComponent": 0
     },
     {
@@ -621,12 +621,68 @@
       "priority": "medium"
     },
     {
+      "skillId": "math.im1.skill.4.5.answer-contextual-questions-with-an-arithmetic-sequence-model",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
       "skillId": "math.im1.skill.4.5.determine-whether-a-given-sequence-is-arithmetic-and-justify",
       "module": "4",
       "status": "gap",
       "tier": "none",
       "rendererKey": "fill-in-the-blank",
       "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.4.5.extend-an-arithmetic-sequence",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
+      "skillId": "math.im1.skill.4.5.find-the-common-difference-of-an-arithmetic-sequence",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
+      "skillId": "math.im1.skill.4.5.graph-an-arithmetic-sequence-as-a-discrete-function",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
+      "skillId": "math.im1.skill.4.5.model-a-real-world-situation-with-an-arithmetic-sequence",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
+      "skillId": "math.im1.skill.4.5.use-an-explicit-equation-to-find-a-sequence-term",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
+      "skillId": "math.im1.skill.4.5.write-an-explicit-equation-for-an-arithmetic-sequence",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
     },
     {
       "skillId": "math.im1.skill.4.6.graph-piecewise-defined-functions-and-step-functions-greates",

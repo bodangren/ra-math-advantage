@@ -1538,10 +1538,73 @@
       "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
       "gap": "No generator binding or complete three-mode blueprint",
       "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.5.find-the-common-difference-of-an-arithmetic-sequence",
+      "title": "Find the common difference of an arithmetic sequence",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.5.extend-an-arithmetic-sequence",
+      "title": "Extend an arithmetic sequence using its common difference",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.5.write-an-explicit-equation-for-an-arithmetic-sequence",
+      "title": "Write an explicit equation for an arithmetic sequence",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.5.use-an-explicit-equation-to-find-a-sequence-term",
+      "title": "Use an explicit equation to find a specified term of an arithmetic sequence",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.5.model-a-real-world-situation-with-an-arithmetic-sequence",
+      "title": "Model a real-world situation with an arithmetic sequence",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.5.graph-an-arithmetic-sequence-as-a-discrete-function",
+      "title": "Graph an arithmetic sequence as a discrete function",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.5.answer-contextual-questions-with-an-arithmetic-sequence-model",
+      "title": "Answer contextual questions with an arithmetic sequence model",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
     }
   ],
   "meta": {
-    "totalSkills": 171,
+    "totalSkills": 178,
     "allNeedGenerators": true
   }
 }

@@ -5104,6 +5104,97 @@
         "module": "4",
         "lesson": "4"
       }
+    },
+    {
+      "nodeId": "math.im1.skill.4.5.find-the-common-difference-of-an-arithmetic-sequence",
+      "sourceNodeIds": [
+        "math.im1.example.4.5.028"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.4.5.extend-an-arithmetic-sequence",
+      "sourceNodeIds": [
+        "math.im1.example.4.5.028"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.4.5.write-an-explicit-equation-for-an-arithmetic-sequence",
+      "sourceNodeIds": [
+        "math.im1.example.4.5.029"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.4.5.use-an-explicit-equation-to-find-a-sequence-term",
+      "sourceNodeIds": [
+        "math.im1.example.4.5.029"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.4.5.model-a-real-world-situation-with-an-arithmetic-sequence",
+      "sourceNodeIds": [
+        "math.im1.example.4.5.030"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.4.5.graph-an-arithmetic-sequence-as-a-discrete-function",
+      "sourceNodeIds": [
+        "math.im1.example.4.5.030"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.4.5.answer-contextual-questions-with-an-arithmetic-sequence-model",
+      "sourceNodeIds": [
+        "math.im1.example.4.5.030"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "5"
+      }
     }
   ]
 }
