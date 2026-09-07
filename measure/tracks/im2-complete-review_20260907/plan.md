@@ -37,3 +37,5 @@ Saved Modules 6 and 7 correction: `ebf5009a`. All gates passed. Module 8 content
 Saved Module 8 correction: `a2761276`. All gates passed. Module 9 content review is in progress.
 
 Saved Module 9 correction: `5c36349a`. All gates passed. Module 10 content review is in progress.
+
+Saved Module 10 correction: `f80cc2b4`. All gates passed. Module 11 content review is in progress.
