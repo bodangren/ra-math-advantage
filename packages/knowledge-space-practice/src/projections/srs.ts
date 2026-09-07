@@ -21,6 +21,12 @@ export function projectSrsInputs(
   blueprints: KnowledgeBlueprint[],
 ): SrsProjectionEntry[] {
   const blueprintByNodeId = new Map(blueprints.map((b) => [b.nodeId, b]));
+  const acceptedSkillIds = new Set(nodes
+    .filter((node) => node.kind === 'skill' && node.reviewStatus === 'approved')
+    .map((node) => node.id));
+  const equivalences = edges.filter((edge) =>
+    edge.type === 'equivalent_to' && edge.reviewStatus === 'approved'
+    && acceptedSkillIds.has(edge.sourceId) && acceptedSkillIds.has(edge.targetId));
 
   const entries: SrsProjectionEntry[] = [];
 
@@ -73,7 +79,7 @@ export function projectSrsInputs(
       difficulty,
       generatorKey,
       generatorReady,
-      equivalentNodeIds: edges
+      equivalentNodeIds: equivalences
         .filter(
           (e) =>
             e.type === 'equivalent_to' &&
