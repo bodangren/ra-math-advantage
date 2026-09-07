@@ -14,8 +14,8 @@ describe('AccountingEquationEventActivity', () => {
     render(<AccountingEquationEventActivity {...accountingEquationEventDrafts.worked} onSubmit={onSubmit} onComplete={onComplete} />);
 
     expect(screen.getByText('5000 = 0 + 5000')).toBeInTheDocument();
-    expect(screen.getByText('Cash: increase by 3000')).toBeInTheDocument();
-    expect(screen.getByText('Bank Loan: increase by 3000')).toBeInTheDocument();
+    expect(screen.getByText('Cash (Asset): increase by 3000')).toBeInTheDocument();
+    expect(screen.getByText('Bank Loan (Liability): increase by 3000')).toBeInTheDocument();
     expect(screen.getByText('8000 = 3000 + 5000')).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: 'Continue' }));
     await waitFor(() => expect(onSubmit).toHaveBeenCalledOnce());
@@ -34,7 +34,12 @@ describe('AccountingEquationEventActivity', () => {
     expect(screen.getByText(/buys the same laptop on credit/i)).toBeInTheDocument();
     fireEvent.click(screen.getAllByRole('button', { name: 'Use hint' })[0]!);
     expect(screen.getByText('Identify how TechStart pays for the laptop.')).toBeInTheDocument();
+    expect(screen.getByRole('radio', { name: 'Cash: Increase' })).not.toHaveAttribute('aria-describedby');
 
+    fireEvent.click(screen.getByRole('radio', { name: 'Cash: Asset' }));
+    fireEvent.click(screen.getAllByRole('radio', { name: 'Equipment: Asset' })[0]!);
+    fireEvent.click(screen.getAllByRole('radio', { name: 'Equipment: Asset' })[1]!);
+    fireEvent.click(screen.getByRole('radio', { name: 'Amount Owed: Liability' }));
     fireEvent.click(screen.getByRole('radio', { name: 'Cash: Decrease' }));
     fireEvent.click(screen.getAllByRole('radio', { name: 'Equipment: Increase' })[0]!);
     fireEvent.click(screen.getAllByRole('radio', { name: 'Equipment: Increase' })[1]!);
@@ -61,6 +66,8 @@ describe('AccountingEquationEventActivity', () => {
     const envelope = onSubmit.mock.calls[0][0];
     expect(envelope.mode).toBe('guided_practice');
     expect(envelope.answers).toHaveProperty('cash_purchase.account_effects');
+    expect(envelope.answers).toHaveProperty('cash_purchase.account_categories', { cash: 'Asset', equipment: 'Asset' });
+    expect(envelope.artifact.cases[0]).toHaveProperty('accountCategories', { cash: 'Asset', equipment: 'Asset' });
     expect(envelope.answers).toHaveProperty('cash_purchase.account_amounts', { cash: 2000, equipment: 2000 });
     expect(envelope.answers).toHaveProperty('credit_purchase.ending_assets', 7000);
     expect(envelope.parts.some((part: { hintsUsed?: number }) => part.hintsUsed === 1)).toBe(true);
@@ -71,7 +78,8 @@ describe('AccountingEquationEventActivity', () => {
   it('conceals all answers in the Independent draft', () => {
     expect(independentAccountingEquationEventDraft).not.toHaveProperty('workedSolution');
     expect(independentAccountingEquationEventDraft).not.toHaveProperty('guidedHints');
-    expect(JSON.stringify(independentAccountingEquationEventDraft)).not.toMatch(/endingTotals|correct|expected/i);
+    expect(JSON.stringify(independentAccountingEquationEventDraft)).not.toMatch(/endingTotals|correct|expected|category/i);
+    expect(JSON.stringify(accountingEquationEventDrafts.guided)).not.toMatch(/"category"/i);
   });
 
   it('requires nonnegative change amounts and accepts a corrected amount', () => {
@@ -79,6 +87,10 @@ describe('AccountingEquationEventActivity', () => {
     render(<AccountingEquationEventActivity {...accountingEquationEventDrafts.independent} onSubmit={onSubmit} />);
 
     expect(screen.getByText('Enter a positive change amount or zero. Choose the direction separately.')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('radio', { name: 'Cash: Asset' }));
+    fireEvent.click(screen.getByRole('radio', { name: "Owner's Equity: Equity" }));
+    fireEvent.click(screen.getByRole('radio', { name: 'Bank Loan: Liability' }));
+    fireEvent.click(screen.getByRole('radio', { name: 'Equipment: Asset' }));
     fireEvent.click(screen.getByRole('radio', { name: 'Cash: Increase' }));
     fireEvent.click(screen.getByRole('radio', { name: "Owner's Equity: Increase" }));
     fireEvent.click(screen.getByRole('radio', { name: 'Bank Loan: No effect' }));
@@ -107,6 +119,10 @@ describe('AccountingEquationEventActivity', () => {
     const onComplete = vi.fn();
     render(<AccountingEquationEventActivity {...accountingEquationEventDrafts.independent} onSubmit={onSubmit} onComplete={onComplete} />);
 
+    fireEvent.click(screen.getByRole('radio', { name: 'Cash: Asset' }));
+    fireEvent.click(screen.getByRole('radio', { name: "Owner's Equity: Equity" }));
+    fireEvent.click(screen.getByRole('radio', { name: 'Bank Loan: Liability' }));
+    fireEvent.click(screen.getByRole('radio', { name: 'Equipment: Asset' }));
     fireEvent.click(screen.getByRole('radio', { name: 'Cash: Increase' }));
     fireEvent.click(screen.getByRole('radio', { name: "Owner's Equity: Increase" }));
     fireEvent.click(screen.getByRole('radio', { name: 'Bank Loan: No effect' }));

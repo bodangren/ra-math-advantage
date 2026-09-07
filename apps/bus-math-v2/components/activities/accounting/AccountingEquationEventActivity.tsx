@@ -21,10 +21,17 @@ const directionColumns = [
   { id: 'no-effect', label: 'No effect' },
 ];
 
+const categoryColumns = [
+  { id: 'Asset', label: 'Asset' },
+  { id: 'Liability', label: 'Liability' },
+  { id: 'Equity', label: 'Equity' },
+];
+
 export function AccountingEquationEventActivity({
   activityId, mode, title, description, cases, onSubmit, onComplete,
 }: AccountingEquationEventActivityProps) {
   const [effects, setEffects] = useState<Record<string, Record<string, string | string[]>>>({});
+  const [categories, setCategories] = useState<Record<string, Record<string, string | string[]>>>({});
   const [accountAmounts, setAccountAmounts] = useState<Record<string, Record<string, string>>>({});
   const [totals, setTotals] = useState<Record<string, Record<string, string>>>({});
   const [differences, setDifferences] = useState<Record<string, string>>({});
@@ -39,9 +46,11 @@ export function AccountingEquationEventActivity({
     explanation.trim().length > 0
     && cases.every((eventCase) => {
       const caseEffects = effects[eventCase.id] ?? {};
+      const caseCategories = categories[eventCase.id] ?? {};
       const caseAmounts = accountAmounts[eventCase.id] ?? {};
       const caseTotals = totals[eventCase.id] ?? {};
-      return eventCase.accountRows.every((row) => typeof caseEffects[row.id] === 'string')
+      return eventCase.accountRows.every((row) => typeof caseCategories[row.id] === 'string')
+        && eventCase.accountRows.every((row) => typeof caseEffects[row.id] === 'string')
         && eventCase.accountRows.every((row) => {
           const value = caseAmounts[row.id];
           return value !== undefined
@@ -70,10 +79,12 @@ export function AccountingEquationEventActivity({
     const parts: PracticeSubmissionEnvelope['parts'] = [];
     for (const eventCase of cases) {
       const caseEffects = effects[eventCase.id] ?? {};
+      const caseCategories = categories[eventCase.id] ?? {};
       const caseAmounts = accountAmounts[eventCase.id] ?? {};
       const caseTotals = totals[eventCase.id] ?? {};
       const prefix = eventCase.id;
       const values = {
+        [`${prefix}.account_categories`]: caseCategories,
         [`${prefix}.account_effects`]: caseEffects,
         [`${prefix}.account_amounts`]: Object.fromEntries(
           Object.entries(caseAmounts).map(([accountId, amount]) => [accountId, Number(amount)]),
@@ -104,6 +115,7 @@ export function AccountingEquationEventActivity({
           eventNarrative: eventCase.eventNarrative,
           eventAmount: eventCase.eventAmount,
           startingTotals: eventCase.startingTotals,
+          accountCategories: categories[eventCase.id] ?? {},
           accountEffects: effects[eventCase.id] ?? {},
           accountAmounts: accountAmounts[eventCase.id] ?? {},
           endingTotals: totals[eventCase.id] ?? {},
@@ -145,7 +157,7 @@ export function AccountingEquationEventActivity({
           <ul className="space-y-1">
             {eventCase.accountRows.map((row) => (
               <li key={row.id}>
-                {row.label}: {eventCase.workedSolution?.accountEffects[row.id]} by {eventCase.eventAmount}
+                {row.label} ({row.category}): {eventCase.workedSolution?.accountEffects[row.id]} by {eventCase.eventAmount}
               </li>
             ))}
           </ul>
@@ -168,9 +180,19 @@ export function AccountingEquationEventActivity({
             <h3 className="font-serif text-xl font-semibold">{eventCase.eventNarrative}</h3>
             <p className="font-mono text-sm">Event amount: {eventCase.eventAmount}</p>
             <SelectionMatrix
+              title="Account categories"
+              description="Select the category for each account."
+              rows={eventCase.accountRows.map((row) => ({ id: row.id, label: row.label }))}
+              columns={categoryColumns}
+              mode={mode}
+              value={categories[eventCase.id] ?? {}}
+              readOnly={isSaving || saveError || saved}
+              onValueChange={(value) => setCategories((current) => ({ ...current, [eventCase.id]: value }))}
+            />
+            <SelectionMatrix
               title="Account effects"
               description="Select the direction for each affected account."
-              rows={eventCase.accountRows.map((row) => ({ id: row.id, label: row.label, description: row.category }))}
+              rows={eventCase.accountRows.map((row) => ({ id: row.id, label: row.label }))}
               columns={directionColumns}
               mode={mode}
               value={effects[eventCase.id] ?? {}}

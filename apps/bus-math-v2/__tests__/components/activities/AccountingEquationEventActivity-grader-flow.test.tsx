@@ -23,6 +23,10 @@ describe('AccountingEquationEventActivity UI-to-grader flow', () => {
     const hintButtons = screen.getAllByRole('button', { name: 'Use hint' });
     fireEvent.click(hintButtons[0]!);
     fireEvent.click(hintButtons[1]!);
+    fireEvent.click(screen.getByRole('radio', { name: 'Cash: Asset' }));
+    fireEvent.click(screen.getAllByRole('radio', { name: 'Equipment: Asset' })[0]!);
+    fireEvent.click(screen.getAllByRole('radio', { name: 'Equipment: Asset' })[1]!);
+    fireEvent.click(screen.getByRole('radio', { name: 'Amount Owed: Liability' }));
     fireEvent.click(hintButtons[1]!);
     fireEvent.click(screen.getByRole('radio', { name: 'Cash: Decrease' }));
     fireEvent.click(screen.getAllByRole('radio', { name: 'Equipment: Increase' })[0]!);
@@ -42,7 +46,7 @@ describe('AccountingEquationEventActivity UI-to-grader flow', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Submit event analysis' }));
 
     await waitFor(() => expect(onSubmit).toHaveBeenCalledOnce());
-    expect(grade).toMatchObject({ automaticScore: 16, automaticMaxScore: 16, hintsUsed: 3 });
+    expect(grade).toMatchObject({ automaticScore: 20, automaticMaxScore: 20, hintsUsed: 3 });
     expect(grade?.manualReview).toMatchObject({
       partId: 'explanation', status: 'manual_review_required',
     });
@@ -57,6 +61,10 @@ describe('AccountingEquationEventActivity UI-to-grader flow', () => {
     });
     render(<AccountingEquationEventActivity {...accountingEquationEventDrafts.independent} onSubmit={onSubmit} />);
 
+    fireEvent.click(screen.getByRole('radio', { name: 'Cash: Liability' }));
+    fireEvent.click(screen.getByRole('radio', { name: "Owner's Equity: Equity" }));
+    fireEvent.click(screen.getByRole('radio', { name: 'Bank Loan: Liability' }));
+    fireEvent.click(screen.getByRole('radio', { name: 'Equipment: Asset' }));
     fireEvent.click(screen.getByRole('radio', { name: 'Cash: Increase' }));
     fireEvent.click(screen.getByRole('radio', { name: "Owner's Equity: Increase" }));
     fireEvent.click(screen.getByRole('radio', { name: 'Bank Loan: No effect' }));
@@ -76,7 +84,9 @@ describe('AccountingEquationEventActivity UI-to-grader flow', () => {
     expect(submittedEnvelope).toMatchObject({
       answers: { 'owner_investment.ending_assets': -6000 },
     });
-    expect(grade).toMatchObject({ automaticScore: 11, automaticMaxScore: 12, hintsUsed: 0 });
+    expect(grade).toMatchObject({ automaticScore: 14, automaticMaxScore: 16, hintsUsed: 0 });
+    expect(grade?.parts.find((part) => part.partId === 'owner_investment.account_categories'))
+      .toMatchObject({ score: 3, maxScore: 4, isCorrect: false });
     expect(grade?.parts.find((part) => part.partId === 'owner_investment.ending_assets'))
       .toMatchObject({ rawAnswer: -6000, isCorrect: false, score: 0, maxScore: 1 });
     expect(grade?.manualReview.status).toBe('manual_review_required');

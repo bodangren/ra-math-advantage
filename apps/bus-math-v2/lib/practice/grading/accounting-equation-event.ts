@@ -2,8 +2,10 @@ import { normalizePracticeValue } from '@/lib/practice/contract';
 
 type Mode = 'guided_practice' | 'independent_practice';
 type Direction = 'increase' | 'decrease' | 'no-effect';
+type Category = 'Asset' | 'Liability' | 'Equity';
 
 interface CaseAnswer {
+  accountCategories: Record<string, Category>;
   accountEffects: Record<string, Direction>;
   accountAmounts: Record<string, number>;
   endingAssets: number;
@@ -53,6 +55,7 @@ export interface AccountingEquationEventGradeResult {
 const SERVER_CASES: Record<Mode, Record<string, CaseAnswer>> = {
   guided_practice: {
     cash_purchase: {
+      accountCategories: { cash: 'Asset', equipment: 'Asset' },
       accountEffects: { cash: 'decrease', equipment: 'increase' },
       accountAmounts: { cash: 2000, equipment: 2000 },
       endingAssets: 7000,
@@ -61,6 +64,7 @@ const SERVER_CASES: Record<Mode, Record<string, CaseAnswer>> = {
       equationDifference: 0,
     },
     credit_purchase: {
+      accountCategories: { equipment: 'Asset', payable: 'Liability' },
       accountEffects: { equipment: 'increase', payable: 'increase' },
       accountAmounts: { equipment: 2000, payable: 2000 },
       endingAssets: 7000,
@@ -71,6 +75,9 @@ const SERVER_CASES: Record<Mode, Record<string, CaseAnswer>> = {
   },
   independent_practice: {
     owner_investment: {
+      accountCategories: {
+        cash: 'Asset', owner_equity: 'Equity', bank_loan: 'Liability', equipment: 'Asset',
+      },
       accountEffects: {
         cash: 'increase', owner_equity: 'increase', bank_loan: 'no-effect', equipment: 'no-effect',
       },
@@ -123,14 +130,18 @@ function scoreRecord(
   partId: string,
   rawAnswer: unknown,
   expected: Record<string, string | number>,
-  valueType: 'direction' | 'amount',
+  valueType: 'category' | 'direction' | 'amount',
 ): AccountingEquationEventGradePart {
   if (!isPlainObject(rawAnswer)) throw new TypeError(`${partId} must be an object`);
   assertExactKeys(rawAnswer, Object.keys(expected), partId);
   let score = 0;
   for (const [key, expectedValue] of Object.entries(expected)) {
     const value = rawAnswer[key];
-    if (valueType === 'direction') {
+    if (valueType === 'category') {
+      if (value !== 'Asset' && value !== 'Liability' && value !== 'Equity') {
+        throw new TypeError(`${partId}.${key} has an invalid category`);
+      }
+    } else if (valueType === 'direction') {
       if (value !== 'increase' && value !== 'decrease' && value !== 'no-effect') {
         throw new TypeError(`${partId}.${key} has an invalid direction`);
       }
@@ -148,7 +159,7 @@ function scoreRecord(
 function expectedPartIds(mode: Mode) {
   return [
     ...Object.keys(SERVER_CASES[mode]).flatMap((caseId) => [
-      `${caseId}.account_effects`, `${caseId}.account_amounts`,
+      `${caseId}.account_categories`, `${caseId}.account_effects`, `${caseId}.account_amounts`,
       `${caseId}.ending_assets`, `${caseId}.ending_liabilities`,
       `${caseId}.ending_equity`, `${caseId}.equation_difference`,
     ]),
@@ -205,6 +216,7 @@ export function gradeAccountingEquationEventSubmission(
   const gradedParts: AccountingEquationEventGradePart[] = [];
   for (const [caseId, expected] of Object.entries(SERVER_CASES[mode])) {
     const values = [
+      scoreRecord(`${caseId}.account_categories`, submission.answers[`${caseId}.account_categories`], expected.accountCategories, 'category'),
       scoreRecord(`${caseId}.account_effects`, submission.answers[`${caseId}.account_effects`], expected.accountEffects, 'direction'),
       scoreRecord(`${caseId}.account_amounts`, submission.answers[`${caseId}.account_amounts`], expected.accountAmounts, 'amount'),
     ];

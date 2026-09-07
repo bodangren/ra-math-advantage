@@ -43,10 +43,10 @@ It rejects positive hint assistance in Independent mode.
 
 ## Scoring
 
-Each account effect and account amount has one automatic point.
+Each account category, account effect, and account amount has one automatic point.
 Each ending total and equation difference has one automatic point.
-The Guided maximum is 16 points.
-The Independent maximum is 12 points.
+The Guided maximum is 20 points.
+The Independent maximum is 16 points.
 Valid wrong answers stay in the result with a zero or partial part score.
 
 The explanation has no automatic correctness value.
@@ -55,7 +55,7 @@ Its rubric asks the teacher to verify the explanation of equal account changes a
 
 ## Verification
 
-Thirteen focused tests passed.
+Fourteen focused grader tests passed.
 The tests use literal accounting math.
 They cover correct and wrong responses, sign errors, reordered record keys, shape attacks, invalid numbers, assistance, and the manual rubric.
 Oxlint passed for the grader and test.
@@ -68,25 +68,33 @@ A separate integration test now sends the real component envelope to the real pu
 The Guided test uses both laptop cases.
 It enters all account directions, change amounts, ending totals, and equation differences through the visible controls.
 It uses one hint in the cash case and two hints in the credit case.
-The grader returns 16 of 16 automatic points and three total hints.
+The grader returns 20 of 20 automatic points and three total hints.
 It returns the explanation with `manual_review_required`.
 
 The Independent test enters the owner-investment response through the visible controls.
 It enters negative 6000 for ending Assets.
 The component preserves this finite sign error in the envelope.
-The grader returns 11 of 12 automatic points.
+The test also enters an incorrect Cash category. The grader returns 14 of 16 automatic points.
 It keeps the negative value in the wrong part result.
 It keeps the explanation for manual review.
 
-The complete focused component and grader run passed 19 tests in three files.
+The complete focused component and grader run passed 21 tests in three files.
 Oxlint passed for the new integration test.
 The app TypeScript check passed.
 No UI-to-grader contract mismatch was found.
 
 ## Parent review and integration boundary
 
-The parent verified the literal before-and-after equations in all three assessed cases. The grader preserves wrong finite totals, compares answer records without key-order dependence, and adds assistance once per case. The 19 focused tests, full app lint, standalone TypeScript, and build pass.
+The parent verified the literal before-and-after equations in all three assessed cases. The grader preserves wrong finite totals, compares answer records without key-order dependence, and adds assistance once per case. The 21 focused tests, full app lint, standalone TypeScript, and build pass.
 
 This pure function does not authorize an activity. The future trusted writer must bind the exact stored activity, node, mode, and approved content before it calls the grader. It must persist the automatic result and the manual-review response. The teacher must review the complete event model and explanation before application mastery. A numeric score alone cannot complete that review.
 
 The parent also found that the UI accepted negative change magnitudes that this grader rejects. The component now rejects negative change magnitudes before submission. A regression verifies that correction enables submission. The grader correctly retains negative ending totals as student mistakes.
+
+## Category-response review
+
+The parent found that the earlier activity supplied the account categories. Those labels did not establish learner classification. Guided and Independent now require category choices through the existing matrix control. Their public props contain no category answers. The private grader validates the choices and awards one point for each correct category.
+
+The artifact preserves the choices for teacher review. A wrong Cash category and a negative ending Assets value remain in the real UI-to-grader result. They reduce the Independent score to 14/16. Explanation review remains manual.
+
+Coverage passes: 93.33% statements, 86.12% branches, 100% functions, and 95.3% lines. No source publication or trusted storage is enabled by this change.

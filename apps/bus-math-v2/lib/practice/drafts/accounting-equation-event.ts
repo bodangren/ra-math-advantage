@@ -5,7 +5,7 @@ export interface AccountingEquationEventCase {
   eventNarrative: string;
   eventAmount: number;
   startingTotals: { assets: number; liabilities: number; equity: number };
-  accountRows: Array<{ id: string; label: string; category: 'Asset' | 'Liability' | 'Equity' }>;
+  accountRows: Array<{ id: string; label: string; category?: 'Asset' | 'Liability' | 'Equity' }>;
   guidedHints?: string[];
   workedSolution?: {
     accountEffects: Record<string, 'increase' | 'decrease' | 'no-effect'>;
@@ -58,8 +58,8 @@ const guidedAccountingEquationEventDraft: AccountingEquationEventDraft = {
       eventAmount: 2000,
       startingTotals: { assets: 7000, liabilities: 2000, equity: 5000 },
       accountRows: [
-        { id: 'cash', label: 'Cash', category: 'Asset' },
-        { id: 'equipment', label: 'Equipment', category: 'Asset' },
+        { id: 'cash', label: 'Cash' },
+        { id: 'equipment', label: 'Equipment' },
       ],
       guidedHints: [
         'Identify how TechStart pays for the laptop.',
@@ -73,8 +73,8 @@ const guidedAccountingEquationEventDraft: AccountingEquationEventDraft = {
       eventAmount: 2000,
       startingTotals: { assets: 5000, liabilities: 0, equity: 5000 },
       accountRows: [
-        { id: 'equipment', label: 'Equipment', category: 'Asset' },
-        { id: 'payable', label: 'Amount Owed', category: 'Liability' },
+        { id: 'equipment', label: 'Equipment' },
+        { id: 'payable', label: 'Amount Owed' },
       ],
       guidedHints: [
         'Identify what TechStart receives and what it now owes.',
@@ -96,10 +96,10 @@ export const independentAccountingEquationEventDraft: AccountingEquationEventDra
     eventAmount: 1000,
     startingTotals: { assets: 5000, liabilities: 1000, equity: 4000 },
     accountRows: [
-      { id: 'cash', label: 'Cash', category: 'Asset' },
-      { id: 'owner_equity', label: "Owner's Equity", category: 'Equity' },
-      { id: 'bank_loan', label: 'Bank Loan', category: 'Liability' },
-      { id: 'equipment', label: 'Equipment', category: 'Asset' },
+      { id: 'cash', label: 'Cash' },
+      { id: 'owner_equity', label: "Owner's Equity" },
+      { id: 'bank_loan', label: 'Bank Loan' },
+      { id: 'equipment', label: 'Equipment' },
     ],
   }],
 };

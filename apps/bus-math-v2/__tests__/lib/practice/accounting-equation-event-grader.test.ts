@@ -3,12 +3,14 @@ import { describe, expect, it } from 'vitest';
 import { gradeAccountingEquationEventSubmission } from '@/lib/practice/grading/accounting-equation-event';
 
 const guidedAnswers = {
+  'cash_purchase.account_categories': { cash: 'Asset', equipment: 'Asset' },
   'cash_purchase.account_effects': { cash: 'decrease', equipment: 'increase' },
   'cash_purchase.account_amounts': { cash: 2000, equipment: 2000 },
   'cash_purchase.ending_assets': 7000,
   'cash_purchase.ending_liabilities': 2000,
   'cash_purchase.ending_equity': 5000,
   'cash_purchase.equation_difference': 0,
+  'credit_purchase.account_categories': { equipment: 'Asset', payable: 'Liability' },
   'credit_purchase.account_effects': { equipment: 'increase', payable: 'increase' },
   'credit_purchase.account_amounts': { equipment: 2000, payable: 2000 },
   'credit_purchase.ending_assets': 7000,
@@ -41,7 +43,7 @@ describe('gradeAccountingEquationEventSubmission', () => {
     value.parts.filter((part) => part.partId.startsWith('credit_purchase.'))
       .forEach((part) => { part.hintsUsed = 2; });
     const result = gradeAccountingEquationEventSubmission(value);
-    expect(result).toMatchObject({ automaticScore: 16, automaticMaxScore: 16, hintsUsed: 3 });
+    expect(result).toMatchObject({ automaticScore: 20, automaticMaxScore: 20, hintsUsed: 3 });
     expect(result.manualReview).toEqual({
       partId: 'explanation',
       rawAnswer: guidedAnswers.explanation,
@@ -53,6 +55,9 @@ describe('gradeAccountingEquationEventSubmission', () => {
 
   it('grades the literal Independent owner investment without exposing an answer table', () => {
     const answers = {
+      'owner_investment.account_categories': {
+        cash: 'Asset', owner_equity: 'Equity', bank_loan: 'Liability', equipment: 'Asset',
+      },
       'owner_investment.account_effects': {
         cash: 'increase', owner_equity: 'increase', bank_loan: 'no-effect', equipment: 'no-effect',
       },
@@ -64,7 +69,7 @@ describe('gradeAccountingEquationEventSubmission', () => {
       explanation: 'Cash and equity increase by the same amount.',
     };
     expect(gradeAccountingEquationEventSubmission(submission('independent_practice', answers)))
-      .toMatchObject({ automaticScore: 12, automaticMaxScore: 12, hintsUsed: 0 });
+      .toMatchObject({ automaticScore: 16, automaticMaxScore: 16, hintsUsed: 0 });
   });
 
   it('preserves a valid wrong response as scored evidence', () => {
@@ -75,13 +80,29 @@ describe('gradeAccountingEquationEventSubmission', () => {
       'cash_purchase.equation_difference': -100,
     };
     const result = gradeAccountingEquationEventSubmission(submission('guided_practice', answers));
-    expect(result.automaticScore).toBe(12);
-    expect(result.automaticMaxScore).toBe(16);
+    expect(result.automaticScore).toBe(16);
+    expect(result.automaticMaxScore).toBe(20);
     expect(result.parts.filter((part) => !part.isCorrect).map((part) => part.partId)).toEqual([
       'cash_purchase.account_effects',
       'cash_purchase.ending_assets',
       'cash_purchase.equation_difference',
     ]);
+  });
+
+  it('scores literal learner categories and retains a wrong category', () => {
+    const answers = {
+      ...guidedAnswers,
+      'credit_purchase.account_categories': { equipment: 'Liability', payable: 'Liability' },
+    };
+    const result = gradeAccountingEquationEventSubmission(submission('guided_practice', answers));
+    expect(result).toMatchObject({ automaticScore: 19, automaticMaxScore: 20 });
+    expect(result.parts.find((part) => part.partId === 'credit_purchase.account_categories'))
+      .toMatchObject({
+        rawAnswer: { equipment: 'Liability', payable: 'Liability' },
+        isCorrect: false,
+        score: 1,
+        maxScore: 2,
+      });
   });
 
   it.each([
@@ -119,7 +140,7 @@ describe('gradeAccountingEquationEventSubmission', () => {
   it('preserves a finite negative ending total as a scored sign error', () => {
     const answers = { ...guidedAnswers, 'cash_purchase.ending_assets': -7000 };
     const result = gradeAccountingEquationEventSubmission(submission('guided_practice', answers));
-    expect(result.automaticScore).toBe(15);
+    expect(result.automaticScore).toBe(19);
     expect(result.parts.find((part) => part.partId === 'cash_purchase.ending_assets'))
       .toMatchObject({ rawAnswer: -7000, isCorrect: false, score: 0, maxScore: 1 });
   });
@@ -136,6 +157,9 @@ describe('gradeAccountingEquationEventSubmission', () => {
 
   it('rejects Independent assistance and accepts nonnegative Guided hint counts', () => {
     const independent = submission('independent_practice', {
+      'owner_investment.account_categories': {
+        cash: 'Asset', owner_equity: 'Equity', bank_loan: 'Liability', equipment: 'Asset',
+      },
       'owner_investment.account_effects': {
         cash: 'increase', owner_equity: 'increase', bank_loan: 'no-effect', equipment: 'no-effect',
       },
