@@ -2663,10 +2663,109 @@
       "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.4.rewrite-and-solve-less-than-absolute-value-inequalities",
+      "title": "Rewrite and solve less-than absolute value inequalities as bounded and inequalities",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.4.rewrite-and-solve-greater-than-absolute-value-inequalities",
+      "title": "Rewrite and solve greater-than absolute value inequalities as exterior or inequalities",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.4.classify-negative-bound-absolute-value-inequalities",
+      "title": "Classify negative-bound absolute value inequalities as no solution or all real numbers",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.4.isolate-scaled-absolute-value-expressions-before-solving",
+      "title": "Isolate scaled or rational absolute value expressions before solving",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.4.model-centered-within-tolerance-ranges-with-absolute-value-inequalities",
+      "title": "Model centered within-tolerance ranges with absolute value inequalities",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.4.model-values-outside-centered-ranges-with-absolute-value-inequalities",
+      "title": "Model values outside centered ranges with absolute value inequalities",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.4.write-absolute-value-inequalities-from-symmetric-bounded-graphs",
+      "title": "Write absolute value inequalities from symmetric bounded number-line graphs",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.4.write-absolute-value-inequalities-from-symmetric-exterior-graphs",
+      "title": "Write absolute value inequalities from symmetric exterior number-line graphs",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.4.solve-two-sided-bounds-on-absolute-value-expressions",
+      "title": "Solve two-sided bounds on absolute value expressions",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.4.analyze-equivalence-and-structural-claims-about-absolute-value-inequalities",
+      "title": "Analyze equivalence and structural claims about absolute value and compound inequalities",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.4.construct-absolute-value-inequalities-from-numerical-constraints",
+      "title": "Construct absolute value inequalities from specified numerical constraints",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
     }
   ],
   "meta": {
-    "totalSkills": 296,
+    "totalSkills": 307,
     "allNeedGenerators": true
   }
 }

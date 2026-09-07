@@ -6341,7 +6341,8 @@
         "math.im1.example.6.1.006",
         "math.im1.example.6.1.007",
         "math.im1.example.6.2.008",
-        "math.im1.example.6.3.014"
+        "math.im1.example.6.3.014",
+        "math.im1.example.6.4.019"
       ],
       "alignmentNodeIds": [],
       "reviewStatus": "draft",
@@ -6547,7 +6548,11 @@
       "sourceNodeIds": [
         "math.im1.example.6.3.013",
         "math.im1.example.6.3.016",
-        "math.im1.example.6.3.source-004"
+        "math.im1.example.6.3.source-004",
+        "math.im1.example.6.4.017",
+        "math.im1.example.6.4.018",
+        "math.im1.example.6.4.020",
+        "math.im1.example.6.4.021"
       ],
       "alignmentNodeIds": [],
       "reviewStatus": "draft",
@@ -6562,7 +6567,11 @@
       "sourceNodeIds": [
         "math.im1.example.6.3.013",
         "math.im1.example.6.3.016",
-        "math.im1.example.6.3.source-004"
+        "math.im1.example.6.3.source-004",
+        "math.im1.example.6.4.017",
+        "math.im1.example.6.4.018",
+        "math.im1.example.6.4.020",
+        "math.im1.example.6.4.021"
       ],
       "alignmentNodeIds": [],
       "reviewStatus": "draft",
@@ -6607,7 +6616,11 @@
       "sourceNodeIds": [
         "math.im1.example.6.3.013",
         "math.im1.example.6.3.016",
-        "math.im1.example.6.3.source-004"
+        "math.im1.example.6.3.source-004",
+        "math.im1.example.6.4.017",
+        "math.im1.example.6.4.018",
+        "math.im1.example.6.4.020",
+        "math.im1.example.6.4.021"
       ],
       "alignmentNodeIds": [],
       "reviewStatus": "draft",
@@ -6677,6 +6690,151 @@
         "course": "im1",
         "module": "6",
         "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.4.rewrite-and-solve-less-than-absolute-value-inequalities",
+      "sourceNodeIds": [
+        "math.im1.example.6.4.017",
+        "math.im1.example.6.4.018",
+        "math.im1.example.6.4.020",
+        "math.im1.example.6.4.021"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.4.rewrite-and-solve-greater-than-absolute-value-inequalities",
+      "sourceNodeIds": [
+        "math.im1.example.6.4.017",
+        "math.im1.example.6.4.018",
+        "math.im1.example.6.4.020",
+        "math.im1.example.6.4.021"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.4.classify-negative-bound-absolute-value-inequalities",
+      "sourceNodeIds": [
+        "math.im1.example.6.4.017",
+        "math.im1.example.6.4.018",
+        "math.im1.example.6.4.020",
+        "math.im1.example.6.4.021"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.4.isolate-scaled-absolute-value-expressions-before-solving",
+      "sourceNodeIds": [
+        "math.im1.example.6.4.017",
+        "math.im1.example.6.4.018",
+        "math.im1.example.6.4.020",
+        "math.im1.example.6.4.021"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.4.model-centered-within-tolerance-ranges-with-absolute-value-inequalities",
+      "sourceNodeIds": [
+        "math.im1.example.6.4.019"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.4.model-values-outside-centered-ranges-with-absolute-value-inequalities",
+      "sourceNodeIds": [
+        "math.im1.example.6.4.019"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.4.write-absolute-value-inequalities-from-symmetric-bounded-graphs",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.4.write-absolute-value-inequalities-from-symmetric-exterior-graphs",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.4.solve-two-sided-bounds-on-absolute-value-expressions",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.4.analyze-equivalence-and-structural-claims-about-absolute-value-inequalities",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.4.construct-absolute-value-inequalities-from-numerical-constraints",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "4"
       }
     }
   ]

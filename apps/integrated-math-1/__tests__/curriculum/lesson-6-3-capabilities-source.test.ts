@@ -20,6 +20,12 @@ const examples = [
 ] as const;
 const solveSources = ['math.im1.example.6.3.013', 'math.im1.example.6.3.016', 'math.im1.example.6.3.source-004'];
 const graphSources = ['math.im1.example.6.3.source-005', 'math.im1.example.6.3.source-006'];
+const lesson64SolveSources = ['math.im1.example.6.4.017', 'math.im1.example.6.4.018', 'math.im1.example.6.4.020', 'math.im1.example.6.4.021'];
+const lesson64Reuses = new Set([
+  'math.im1.skill.6.3.solve-and-compound-inequalities-as-intersections',
+  'math.im1.skill.6.3.solve-or-compound-inequalities-as-unions',
+  'math.im1.skill.6.3.graph-compound-inequality-solution-sets',
+]);
 const definitions = [
   ['solve-and-compound-inequalities-as-intersections', 'Solve compound inequalities joined by and as intersections', solveSources],
   ['solve-or-compound-inequalities-as-unions', 'Solve compound inequalities joined by or as unions', solveSources],
@@ -66,8 +72,13 @@ describe('Lesson 6-3 source capabilities', () => {
       const copies = [canonical, draft, graph, standards].map((document) => document.nodes.find((node) => node.id === id));
       expect(copies.every((node) => node?.title === title && node.reviewStatus === 'draft' && node.independentPracticeReady === false)).toBe(true);
       expect(copies.slice(1)).toEqual([copies[0], copies[0], copies[0]]);
-      expect(catalog.blueprints.find((row) => row.nodeId === id)).toEqual({ nodeId: id, sourceNodeIds, alignmentNodeIds: [], reviewStatus: 'draft', metadata: { course: 'im1', module: '6', lesson: '3' } });
-      expect(graph.edges.filter((edge) => edge.sourceId === id || edge.targetId === id)).toEqual([expect.objectContaining({ type: 'contains', sourceId: 'math.im1.lesson.6.3', targetId: id, reviewStatus: 'draft' })]);
+      expect(catalog.blueprints.find((row) => row.nodeId === id)).toEqual({ nodeId: id, sourceNodeIds: [...sourceNodeIds, ...(lesson64Reuses.has(id) ? lesson64SolveSources : [])], alignmentNodeIds: [], reviewStatus: 'draft', metadata: { course: 'im1', module: '6', lesson: '3' } });
+      const incident = graph.edges.filter((edge) => edge.sourceId === id || edge.targetId === id);
+      expect(incident).toContainEqual(expect.objectContaining({ type: 'contains', sourceId: 'math.im1.lesson.6.3', targetId: id, reviewStatus: 'draft' }));
+      if (lesson64Reuses.has(id)) {
+        expect(incident).toContainEqual(expect.objectContaining({ type: 'contains', sourceId: 'math.im1.lesson.6.4', targetId: id, reviewStatus: 'draft' }));
+      }
+      expect(incident).toHaveLength(1 + Number(lesson64Reuses.has(id)));
     }
   });
 

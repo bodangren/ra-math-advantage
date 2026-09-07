@@ -5777,7 +5777,7 @@
     {
       "id": "math.im1.example.6.4.017",
       "kind": "worked_example",
-      "title": "Example 1: Solve Less-Than Absolute Value Inequalities; Solve Greater-Than Absolute Value Inequalities; Real-World Applications",
+      "title": "Example 1: Solve and Graph Absolute Value Inequalities",
       "domain": "math.im1",
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/module-6-class-period-plan.md (6-4, Example 1)"
@@ -5789,13 +5789,13 @@
         "lesson": "4",
         "exampleNumber": 1,
         "sourceLesson": "6-4",
-        "rawText": "6-4, Examples 1-3 \u2014 Solve Less-Than Absolute Value Inequalities; Solve Greater-Than Absolute Value Inequalities; Real-World Applications"
+        "rawText": "6-4, Examples 1, 2, 4, 5 \u2014 Solve and graph absolute value inequalities"
       }
     },
     {
       "id": "math.im1.example.6.4.018",
       "kind": "worked_example",
-      "title": "Example 2: Solve Less-Than Absolute Value Inequalities; Solve Greater-Than Absolute Value Inequalities; Real-World Applications",
+      "title": "Example 2: Solve and Graph Absolute Value Inequalities",
       "domain": "math.im1",
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/module-6-class-period-plan.md (6-4, Example 2)"
@@ -5807,13 +5807,13 @@
         "lesson": "4",
         "exampleNumber": 2,
         "sourceLesson": "6-4",
-        "rawText": "6-4, Examples 1-3 \u2014 Solve Less-Than Absolute Value Inequalities; Solve Greater-Than Absolute Value Inequalities; Real-World Applications"
+        "rawText": "6-4, Examples 1, 2, 4, 5 \u2014 Solve and graph absolute value inequalities"
       }
     },
     {
       "id": "math.im1.example.6.4.019",
       "kind": "worked_example",
-      "title": "Example 3: Solve Less-Than Absolute Value Inequalities; Solve Greater-Than Absolute Value Inequalities; Real-World Applications",
+      "title": "Example 3: Model Absolute Value Inequalities in Context",
       "domain": "math.im1",
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/module-6-class-period-plan.md (6-4, Example 3)"
@@ -5825,13 +5825,13 @@
         "lesson": "4",
         "exampleNumber": 3,
         "sourceLesson": "6-4",
-        "rawText": "6-4, Examples 1-3 \u2014 Solve Less-Than Absolute Value Inequalities; Solve Greater-Than Absolute Value Inequalities; Real-World Applications"
+        "rawText": "6-4, Example 3 \u2014 Model absolute value inequalities in context"
       }
     },
     {
       "id": "math.im1.example.6.4.020",
       "kind": "worked_example",
-      "title": "Example 4: Special Cases; Fractional Coefficients and Mixed Practice",
+      "title": "Example 4: Solve and Graph Absolute Value Inequalities",
       "domain": "math.im1",
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/module-6-class-period-plan.md (6-4, Example 4)"
@@ -5843,13 +5843,13 @@
         "lesson": "4",
         "exampleNumber": 4,
         "sourceLesson": "6-4",
-        "rawText": "6-4, Examples 4-5 \u2014 Special Cases; Fractional Coefficients and Mixed Practice"
+        "rawText": "6-4, Examples 1, 2, 4, 5 \u2014 Solve and graph absolute value inequalities"
       }
     },
     {
       "id": "math.im1.example.6.4.021",
       "kind": "worked_example",
-      "title": "Example 5: Special Cases; Fractional Coefficients and Mixed Practice",
+      "title": "Example 5: Solve and Graph Absolute Value Inequalities",
       "domain": "math.im1",
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/module-6-class-period-plan.md (6-4, Example 5)"
@@ -5861,7 +5861,7 @@
         "lesson": "4",
         "exampleNumber": 5,
         "sourceLesson": "6-4",
-        "rawText": "6-4, Examples 4-5 \u2014 Special Cases; Fractional Coefficients and Mixed Practice"
+        "rawText": "6-4, Examples 1, 2, 4, 5 \u2014 Solve and graph absolute value inequalities"
       }
     },
     {
@@ -14150,6 +14150,193 @@
         "course": "im1",
         "module": "6",
         "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.4.rewrite-and-solve-less-than-absolute-value-inequalities",
+      "kind": "skill",
+      "title": "Rewrite and solve less-than absolute value inequalities as bounded and inequalities",
+      "domain": "math.im1",
+      "description": "Rewrite and solve less-than absolute value inequalities as bounded and inequalities",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-4"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.4.rewrite-and-solve-greater-than-absolute-value-inequalities",
+      "kind": "skill",
+      "title": "Rewrite and solve greater-than absolute value inequalities as exterior or inequalities",
+      "domain": "math.im1",
+      "description": "Rewrite and solve greater-than absolute value inequalities as exterior or inequalities",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-4"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.4.classify-negative-bound-absolute-value-inequalities",
+      "kind": "skill",
+      "title": "Classify negative-bound absolute value inequalities as no solution or all real numbers",
+      "domain": "math.im1",
+      "description": "Classify negative-bound absolute value inequalities as no solution or all real numbers",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-4"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.4.isolate-scaled-absolute-value-expressions-before-solving",
+      "kind": "skill",
+      "title": "Isolate scaled or rational absolute value expressions before solving",
+      "domain": "math.im1",
+      "description": "Isolate scaled or rational absolute value expressions before solving",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-4"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.4.model-centered-within-tolerance-ranges-with-absolute-value-inequalities",
+      "kind": "skill",
+      "title": "Model centered within-tolerance ranges with absolute value inequalities",
+      "domain": "math.im1",
+      "description": "Model centered within-tolerance ranges with absolute value inequalities",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-4"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.4.model-values-outside-centered-ranges-with-absolute-value-inequalities",
+      "kind": "skill",
+      "title": "Model values outside centered ranges with absolute value inequalities",
+      "domain": "math.im1",
+      "description": "Model values outside centered ranges with absolute value inequalities",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-4"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.4.write-absolute-value-inequalities-from-symmetric-bounded-graphs",
+      "kind": "skill",
+      "title": "Write absolute value inequalities from symmetric bounded number-line graphs",
+      "domain": "math.im1",
+      "description": "Write absolute value inequalities from symmetric bounded number-line graphs",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-4"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.4.write-absolute-value-inequalities-from-symmetric-exterior-graphs",
+      "kind": "skill",
+      "title": "Write absolute value inequalities from symmetric exterior number-line graphs",
+      "domain": "math.im1",
+      "description": "Write absolute value inequalities from symmetric exterior number-line graphs",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-4"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.4.solve-two-sided-bounds-on-absolute-value-expressions",
+      "kind": "skill",
+      "title": "Solve two-sided bounds on absolute value expressions",
+      "domain": "math.im1",
+      "description": "Solve two-sided bounds on absolute value expressions",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-4"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.4.analyze-equivalence-and-structural-claims-about-absolute-value-inequalities",
+      "kind": "skill",
+      "title": "Analyze equivalence and structural claims about absolute value and compound inequalities",
+      "domain": "math.im1",
+      "description": "Analyze equivalence and structural claims about absolute value and compound inequalities",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-4"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.4.construct-absolute-value-inequalities-from-numerical-constraints",
+      "kind": "skill",
+      "title": "Construct absolute value inequalities from specified numerical constraints",
+      "domain": "math.im1",
+      "description": "Construct absolute value inequalities from specified numerical constraints",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-4"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "4"
       }
     }
   ]

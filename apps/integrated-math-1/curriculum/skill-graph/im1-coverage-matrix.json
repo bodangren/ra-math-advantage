@@ -1,10 +1,10 @@
 {
   "version": 1,
   "course": "im1",
-  "totalSkills": 302,
+  "totalSkills": 313,
   "counts": {
     "served": 6,
-    "gap": 296,
+    "gap": 307,
     "newComponent": 0
   },
   "byModule": [
@@ -45,9 +45,9 @@
     },
     {
       "module": "6",
-      "totalSkills": 38,
+      "totalSkills": 49,
       "served": 0,
-      "gap": 38,
+      "gap": 49,
       "newComponent": 0
     },
     {
@@ -1717,7 +1717,95 @@
       "priority": "standard"
     },
     {
+      "skillId": "math.im1.skill.6.4.analyze-equivalence-and-structural-claims-about-absolute-value-inequalities",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.4.classify-negative-bound-absolute-value-inequalities",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.4.construct-absolute-value-inequalities-from-numerical-constraints",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.4.isolate-scaled-absolute-value-expressions-before-solving",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.4.model-centered-within-tolerance-ranges-with-absolute-value-inequalities",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.4.model-values-outside-centered-ranges-with-absolute-value-inequalities",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.4.rewrite-and-solve-greater-than-absolute-value-inequalities",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.4.rewrite-and-solve-less-than-absolute-value-inequalities",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
+    },
+    {
       "skillId": "math.im1.skill.6.4.solve-absolute-value-inequalities-and-rewrite-them-as-compou",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.4.solve-two-sided-bounds-on-absolute-value-expressions",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.4.write-absolute-value-inequalities-from-symmetric-bounded-graphs",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.4.write-absolute-value-inequalities-from-symmetric-exterior-graphs",
       "module": "6",
       "status": "gap",
       "tier": "none",
