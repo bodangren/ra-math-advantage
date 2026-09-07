@@ -175,3 +175,18 @@ The Business Math teacher action and IM3 graph teacher action are available for 
 Independent Business Math review found missing evidence publication checks, archived-class authorization, and replay timestamp changes. Its assignment check uses student progress, which does not itself prove class assignment. The repair must first trace the Business Math access policy. It must not import another course's assignment model without source support. The reviewer now owns these repairs. See `bm2-teacher-independent-review.md`.
 
 G11 now covers the source-supported Lesson 4-1 capability distinction. The source worker owns the bounded IM1 catalog edits. The parent owns count integration and independent acceptance.
+
+
+## Lesson 4-1 capability inventory and IM3 boundary review
+
+The previous goal turn committed G10 and independent teacher-flow findings. This turn completed G11 inventory restoration as `76e7654c`.
+
+The contextual-intercept draft cites source Example 3. Independent review rejected the rewrite blueprint's links to Examples 1 and 2. Those examples use rearrangement only as a supporting step. The explicit rewrite objective remains a draft candidate with no worked-example links. Its full worked example and separate assessment remain missing. No practice readiness or curriculum approval changed.
+
+The existing reports now record 161 skill candidates, six generator bindings, 155 gaps, and 157 blueprint rows. There are 25 source-only rows, 126 empty bundles, six schema-valid bundles, and four candidates with no blueprint. Three report regressions failed before the update. Twenty inventory tests pass. Eleven related source tests pass. IM1 and math-content lint, standalone TypeScript, and builds pass.
+
+The parent IM3 review added five failing regressions. The teacher writer now checks learner and teacher organizations. The candidate query checks component and SRS policy. A reused key for another source now conflicts before same-source replay. Fifteen teacher tests pass. The two broader seed-2 failures came from a positive test fixture using the current draft seed, which sets SRS eligibility false. The fixture now explicitly supplies hypothetical approved publication. All 144 combined tests pass. The real catalog remains draft.
+
+The IM3 author added published lesson-phase linkage and a positive teacher-to-Independent test. Independent review is checking whether that test proves the complete production flow. No IM3 pilot acceptance is recorded.
+
+The Precalculus author repaired organization and published-source checks. Independent review is active. Its student wording and teacher UI state coverage remain open. Business Math now separates manual source publication from generated adaptive publication. Its product gives access to the full published curriculum and does not define class lesson assignments. The author reports 32 affected tests, full lint, TypeScript, and build passing. Integration and live verification remain open.
