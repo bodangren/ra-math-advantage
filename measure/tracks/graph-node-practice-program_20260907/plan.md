@@ -78,6 +78,8 @@ Scheduling: one worker owns shared graph mechanisms. Two workers can review disj
 
 ### Bounded graph repair tasks
 
+- [~] Task Q5: Add the Precalculus Topic 1.1 teacher confirmation control. Show source context, lock pending requests, retain retry selection, and accept durable confirmation state. Standalone control and four tests committed as `3459b282`. Two existing-page integration tests pass. Durable query integration and accurate student acknowledgement text remain in the shared working tree for integration.
+
 - [x] Task Q4: Make IM1 teacher confirmation usable and stable during retries. Show source context. Freeze selection during a save. Preserve the request key after failure. Remove confirmed work from choices. Four UI tests and full app lint, standalone TypeScript, and build pass. Commit `7860fc43`. Backend integration and live verification remain open.
 
 - [x] Task Q3: Add the interval component and strict mode schema. Await durable submission. Retain answers after a failed save. Describe actual graph points without giving classification answers. Two regressions failed before the fix. Thirteen focused tests, package lint, standalone TypeScript, and build pass. Commit `b9e7cb21`. App integration remains open.
@@ -115,7 +117,7 @@ Scheduling: one worker owns shared graph mechanisms. Two workers can review disj
 - [~] Task 4.2: Complete and verify the IM3 reference pilot.
   Connect source, all three modes, generator, renderer, server grading, stored submission, and exact-node evidence. Verify the real student route. Current parent review covers organization boundaries, candidate identity parity, and conflicting replay keys.
 - [~] Task 4.3: Complete and verify the Precalculus pilot.
-  Reuse current local corrections. Check the selected activity and exact evidence binding. Verify all three modes in the student route.
+  Reuse current local corrections. Check the selected activity and exact evidence binding. Verify all three modes in the student route. The parent is adding teacher source context and durable confirmation controls, plus accurate student acknowledgement text.
 - [~] Task 4.4: Complete and verify the IM1 pilot.
   Reuse a valid existing algebra generator. Complete source mapping and the required app rendering/submission path.
 - [~] Task 4.5: Complete and verify the IM2 pilot.

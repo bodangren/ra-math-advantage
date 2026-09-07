@@ -190,3 +190,16 @@ The parent IM3 review added five failing regressions. The teacher writer now che
 The IM3 author added published lesson-phase linkage and a positive teacher-to-Independent test. Independent review is checking whether that test proves the complete production flow. No IM3 pilot acceptance is recorded.
 
 The Precalculus author repaired organization and published-source checks. Independent review is active. Its student wording and teacher UI state coverage remain open. Business Math now separates manual source publication from generated adaptive publication. Its product gives access to the full published curriculum and does not define class lesson assignments. The author reports 32 affected tests, full lint, TypeScript, and build passing. Integration and live verification remain open.
+
+
+## Precalculus teacher confirmation interface
+
+The previous goal turn committed G11 and verified bounded IM3 repairs. This turn implements Q5.
+
+`3459b282` adds the standalone Topic 1.1 teacher confirmation control and four component tests. It shows the learner, lesson, activity, acknowledgement state, and source time. It locks controls during a request, retains selection after failure, and shows confirmed state from server data after a reload. Coverage is 95.45 percent for statements, 86.66 percent for branches, and 100 percent for lines and functions.
+
+The existing teacher page now filters class choices by exact lesson assignment, active enrollment, and both source-time checks. Two integration tests pass. The student success message now states that the acknowledgement was saved. An obsolete test expected fabricated classification answers; it now requires the empty acknowledgement. Ten initial student/teacher UI tests pass. The coverage run and preserved physical-context handler tests pass 24 tests. Full Precalculus lint, standalone TypeScript, and build pass. Five unused test fixtures left by earlier Topic 1.1 changes were removed to restore full lint.
+
+Independent review found a missing durable confirmed projection and missing time filters. The time filters and component reload behavior are repaired. The backend projection is in progress. The parent rejected a truncated 200-event lookup because it can miss recent confirmations. The worker is using exact visible source-submission indexes and adding a regression with more than 200 historical events. The existing page and backend integration remain uncommitted; no live acceptance is claimed.
+
+G12 source edits are available for independent review. They add draft capabilities and missing source example identities. The author is updating the existing current-count reports. The parent has not accepted the G12 source mappings or expanded any activity projection from the candidate counts.
