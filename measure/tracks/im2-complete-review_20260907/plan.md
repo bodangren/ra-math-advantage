@@ -23,3 +23,5 @@ Saved draft replay correction: `c24887ba`. Verification passed with 186 tests. F
 Saved graph correction checkpoint: `8801f36a`. Verification passed with 192 tests and all 960 generator variants. Full correction remains in progress.
 
 Saved administrator publication correction: `77f360b1`. All gates and the local browser journey passed. Existing-account class enrollment is the next workflow correction.
+
+Saved existing-account enrollment correction: `6e5710ac`. Verification passed with 205 tests and a local browser replay. Standards seeds remain under review.
