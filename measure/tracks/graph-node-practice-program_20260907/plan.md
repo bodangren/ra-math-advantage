@@ -123,13 +123,15 @@ Scheduling: one worker owns shared graph mechanisms. Two workers can review disj
 
 - [x] Task G22: Restore IM1 Lesson 5-3 source capabilities and example identities. Twelve draft candidates passed independent review. Current metadata totals match arrays. Source, inventory, lint, TypeScript, and build checks pass. Commit `a23c5951`. Approval and complete practice remain open.
 
+- [~] Task G23: Review IM1 Lesson 5-4 correlation and causation from the original worksheet. Preserve stable identities and distinguish association from causal claims. Keep proposed capability changes draft.
+
 ## Phase 4 — Implement the minimum shared repairs and five pilots
 
 - [~] Task 4.1: Repair shared projection and registration gaps required by pilots.
   Reuse the current projector and registries. Preserve app ownership. Avoid a new generated-instance framework or broad primitive program. The selected quadratic generator projection is committed as `07630ba0`. The shared SRS submission link and timestamp repair is committed as `3420e8c4`.
   The current interval component repair must await durable submission and describe actual graph coordinates without revealing the classification.
 - [x] Task Q7: Integrate the selected IM3 quadratic server grader. Commit `9951fa09` preserves the stripped ungraded fallback. The selected 28 tests pass in the isolated patch and current app. App lint, standalone TypeScript, and build pass. Isolated statement coverage is 96.15 percent. Strict writer rejection and evidence integration remain open.
-- [~] Task Q8: Integrate the selected IM3 physical submission writer and authenticated route. Root review requires active credential checks, stored activity approval, assistance-sensitive replay, strict contract validation, and route tests before acceptance.
+- [~] Task Q8: Integrate the selected IM3 physical submission writer and authenticated route. Root review requires active credential checks, stored activity approval, assistance-sensitive replay, strict contract validation, and route tests before acceptance. The current app passes 213 tests, lint, TypeScript, and build. Final HEAD patch review remains open.
 - [~] Task 4.2: Complete and verify the IM3 reference pilot.
   Connect source, all three modes, generator, renderer, server grading, stored submission, and exact-node evidence. Verify the real student route. Current parent review covers organization boundaries, candidate identity parity, and conflicting replay keys. Shared table-graph save and response contract committed as `4146100a`. Rendered answers reach the real server grader. Valid SVG curve coordinates and the complete Worked view are committed as `1128aef8` and `83d0710d`.
 - [~] Task 4.3: Complete and verify the Precalculus pilot.
@@ -208,3 +210,7 @@ Task 1.1 is complete. The first bounded graph and projection repairs are in prog
 The shared SRS and teacher projections now require an approved edge and approved skill endpoints (`b11b5032`). The focused regression has eight passing tests. Tasks 2.4 and 3.2 remain open for the full graph and evidence scope.
 
 The exact-capability projection repair is committed as `ac4a6a4f`. The IM1 pilot still requires a real activity provider and server submission flow. The existing provider is an identifier display. A route test that replaces it cannot satisfy pilot acceptance.
+
+## Workspace preservation follow-up
+
+A Business Math build check restored `apps/bus-math-v2/lib/workbooks-manifest.json` from HEAD without a recorded pre-build copy or status for that file. The parent is checking the generator and available copies. Do not include this file in practice commits or claim that its prior state is known.
