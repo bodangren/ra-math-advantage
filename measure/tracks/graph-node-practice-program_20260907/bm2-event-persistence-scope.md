@@ -269,3 +269,21 @@ Lint, standalone TypeScript, and the production build pass.
 The four registration tests also pass with the patch applied to a detached HEAD checkout.
 This separate check excludes unrelated registry edits in the shared worktree.
 These checks do not establish publication or student-flow acceptance.
+
+## Lesson renderer integration review
+
+The event branch passes direct validated props to the registered component.
+It awaits the assessment save and rejects a failed save.
+The component retains the same envelope for retry.
+The event branch does not use the generic retry action that can complete a phase without a saved assessment.
+
+The Worked exemption requires the renderer activity identifier, Worked mode, submitted status, empty answers, empty parts, and the acknowledgement artifact.
+The server must return `acknowledged: true` before the component completes.
+Guided and Independent responses require numeric grade fields.
+The server remains responsible for exact stored identity, publication, private grading, and manual review.
+
+Four real component tests cover delayed persistence, failed persistence and identical retry, Worked acknowledgement without a score, and a mismatched activity identifier.
+The same four tests pass with only the event patch applied to a detached HEAD checkout.
+Detached HEAD TypeScript still reports pre-existing shared-package contract errors.
+The authoritative app worktree passes TypeScript.
+This renderer change does not publish draft activities or implement the remaining server writer.

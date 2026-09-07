@@ -28,6 +28,29 @@ interface ActivityRendererProps {
 
 type ActivitySubmissionPayload = PracticeSubmissionCallbackPayload;
 
+const ACCOUNTING_EQUATION_EVENT_KEY = 'accounting-equation-event';
+
+function isWorkedEventAcknowledgement(
+  payload: ActivitySubmissionPayload,
+  expectedActivityId: string,
+): boolean {
+  if (!isPracticeSubmissionEnvelope(payload)
+    || payload.activityId !== expectedActivityId
+    || payload.mode !== 'worked_example'
+    || payload.status !== 'submitted'
+    || Array.isArray(payload.answers)
+    || typeof payload.answers !== 'object'
+    || payload.answers === null
+    || Object.keys(payload.answers).length !== 0
+    || !Array.isArray(payload.parts)
+    || payload.parts.length !== 0) return false;
+  const artifact = payload.artifact;
+  return typeof artifact === 'object'
+    && artifact !== null
+    && !Array.isArray(artifact)
+    && (artifact as { kind?: unknown }).kind === 'accounting-equation-event-acknowledgement';
+}
+
 interface AssessmentResponse {
   score: number;
   maxScore: number;
@@ -125,7 +148,11 @@ export function ActivityRenderer({
 
   const handleAssessmentSubmit = useCallback(
     async (payload: ActivitySubmissionPayload): Promise<boolean> => {
-      if (!activity || !activity.gradingConfig?.autoGrade) {
+      if (!activity) {
+        return false;
+      }
+      const isAccountingEquationEvent = activity.componentKey === ACCOUNTING_EQUATION_EVENT_KEY;
+      if (!isAccountingEquationEvent && !activity.gradingConfig?.autoGrade) {
         return false;
       }
 
@@ -135,11 +162,14 @@ export function ActivityRenderer({
 
       const canonicalSubmission = payload;
       const answers = canonicalSubmission.answers;
+      const isWorkedAcknowledgement = isAccountingEquationEvent
+        && isWorkedEventAcknowledgement(canonicalSubmission, activityId);
       if (
-        !answers ||
-        typeof answers !== 'object' ||
-        Array.isArray(answers) ||
-        Object.keys(answers).length === 0
+        !isWorkedAcknowledgement
+        && (!answers
+          || typeof answers !== 'object'
+          || Array.isArray(answers)
+          || Object.keys(answers).length === 0)
       ) {
         setSubmissionError('Please complete the assessment before submitting.');
         setSubmissionResult(null);
@@ -155,6 +185,9 @@ export function ActivityRenderer({
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            ...(isAccountingEquationEvent
+              ? { 'Idempotency-Key': canonicalSubmission.submittedAt }
+              : {}),
           },
           body: JSON.stringify(canonicalSubmission),
         });
@@ -164,12 +197,25 @@ export function ActivityRenderer({
           throw new Error(data?.error ?? 'Unable to submit assessment');
         }
 
-        setSubmissionResult({
-          score: data.score,
-          maxScore: data.maxScore,
-          percentage: data.percentage,
-          feedback: data.feedback,
-        });
+        if (isWorkedAcknowledgement) {
+          if (data?.acknowledged !== true) {
+            throw new Error('The acknowledgement was not saved.');
+          }
+          setSubmissionResult(null);
+        } else {
+          if (isAccountingEquationEvent
+            && (typeof data?.score !== 'number'
+              || typeof data?.maxScore !== 'number'
+              || typeof data?.percentage !== 'number')) {
+            throw new Error('The saved assessment result is invalid.');
+          }
+          setSubmissionResult({
+            score: data.score,
+            maxScore: data.maxScore,
+            percentage: data.percentage,
+            feedback: data.feedback,
+          });
+        }
         return true;
       } catch (submitError) {
         setSubmissionResult(null);
@@ -183,7 +229,17 @@ export function ActivityRenderer({
         setSubmitting(false);
       }
     },
-    [activity],
+    [activity, activityId],
+  );
+
+  const handleAccountingEquationEventSubmit = useCallback(
+    async (payload: ActivitySubmissionPayload): Promise<void> => {
+      const assessmentWasRecorded = await handleAssessmentSubmit(payload);
+      if (!assessmentWasRecorded) {
+        throw new Error('The event response was not saved.');
+      }
+    },
+    [handleAssessmentSubmit],
   );
 
   /**
@@ -247,6 +303,7 @@ export function ActivityRenderer({
   }
 
   const activityComponent = getActivityComponent(activity.componentKey);
+  const isAccountingEquationEvent = activity.componentKey === ACCOUNTING_EQUATION_EVENT_KEY;
 
   if (!activityComponent) {
     return (
@@ -274,7 +331,12 @@ export function ActivityRenderer({
         )}
       </CardHeader>
       <CardContent className="space-y-4">
-        {createElement(activityComponent, {
+        {createElement(activityComponent, isAccountingEquationEvent ? {
+          ...(activity.props as Record<string, unknown>),
+          key: activityId,
+          onSubmit: handleAccountingEquationEventSubmit,
+          onComplete: handleActivityComplete,
+        } : {
           activity,
           onSubmit: handleActivitySubmit,
           onComplete: handleActivityComplete,
@@ -319,7 +381,7 @@ export function ActivityRenderer({
             </AlertDescription>
           </Alert>
         )}
-        {submissionError && !submitting && !isCompleting && (
+        {submissionError && !submitting && !isCompleting && !isAccountingEquationEvent && (
           <Alert variant="destructive">
             <AlertTitle>Error</AlertTitle>
             <AlertDescription>
