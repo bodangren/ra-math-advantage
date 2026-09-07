@@ -42,8 +42,13 @@ const approvedPublication = {
   blueprints: [{ nodeId: IM3_PILOT_NODE, reviewStatus: "approved" }],
 };
 
-const createHandler: ServerOwnedSubmissionHandler = (ctx, args) =>
-  createServerOwnedSubmissionHandler(ctx, args as never, approvedPublication);
+const createHandler: ServerOwnedSubmissionHandler = async (ctx, args) => {
+  const result = await createServerOwnedSubmissionHandler(ctx, args as never, approvedPublication);
+  if (!("score" in result) || result.score === undefined || result.maxScore === undefined) {
+    throw new Error("Expected a graded selected submission");
+  }
+  return { ...result, score: result.score, maxScore: result.maxScore };
+};
 
 const PILOT_POINTS = [
   { x: -2, y: -5 },

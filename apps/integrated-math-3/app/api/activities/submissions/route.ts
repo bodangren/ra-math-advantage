@@ -28,6 +28,11 @@ function finitePoints(value: unknown): boolean {
 function validSelectedEnvelope(
   value: ReturnType<typeof practiceSubmissionEnvelopeSchema.parse>,
 ): boolean {
+  if (value.mode === "worked_example") {
+    return value.status === "submitted"
+      && Object.keys(value.answers).length === 0
+      && value.parts.length === 0;
+  }
   if (
     (value.mode !== "guided_practice" &&
       value.mode !== "independent_practice") ||
@@ -81,11 +86,9 @@ export async function POST(request: Request) {
         idempotencyKey,
       },
     );
-    return NextResponse.json({
-      submissionId: result.submissionId,
-      score: result.score,
-      maxScore: result.maxScore,
-    });
+    return NextResponse.json("acknowledged" in result
+      ? { submissionId: result.submissionId, acknowledged: true }
+      : { submissionId: result.submissionId, score: result.score, maxScore: result.maxScore });
   } catch (error) {
     if (error instanceof Error && error.message.includes("idempotency_conflict"))
       return NextResponse.json(

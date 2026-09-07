@@ -2,12 +2,12 @@ import { internalMutation, internalQuery, type MutationCtx } from "./_generated/
 import { v } from "convex/values";
 import { internal } from "./_generated/api";
 import { practiceSubmissionEnvelopeValidator } from "./practice_submission";
-import type { Id } from "./_generated/dataModel";
+import type { Doc, Id } from "./_generated/dataModel";
 import { practiceSubmissionEnvelopeSchema, type PracticeSubmissionEnvelope } from "@math-platform/practice-core/contract";
 import { gradeServerOwnedSubmission } from "../lib/activities/server-grading";
 import nodesDocument from "../curriculum/skill-graph/nodes.json";
 import blueprintsDocument from "../curriculum/skill-graph/blueprints.json";
-import { IM3_GUIDED_PRACTICE_ACTIVITY_ID, IM3_MASTERY_ADVANTAGE_ACTIVITY_ID, IM3_PILOT_NODE } from "../lib/practice/learning-evidence-pilot";
+import { IM3_GUIDED_PRACTICE_ACTIVITY_ID, IM3_MASTERY_ADVANTAGE_ACTIVITY_ID, IM3_PILOT_NODE, IM3_TEACHER_LED_ACTIVITY_ID } from "../lib/practice/learning-evidence-pilot";
 
 /**
  * Internal query that returns the in-progress spreadsheet draft for a
@@ -489,6 +489,17 @@ function canonicalPayload(value: PracticeSubmissionEnvelope): string {
   const parts = [...value.parts].sort((a, b) => a.partId.localeCompare(b.partId)).map(({ partId, rawAnswer, hintsUsed, revealStepsSeen, changedCount, firstInteractionAt, answeredAt, wallClockMs, activeMs }) => ({ partId, rawAnswer, hintsUsed, revealStepsSeen, changedCount, firstInteractionAt, answeredAt, wallClockMs, activeMs }));
   return JSON.stringify({ contractVersion: value.contractVersion, activityId: value.activityId, mode: value.mode, answers: value.answers, parts });
 }
+function canonicalWorkedPayload(value: PracticeSubmissionEnvelope): string {
+  return JSON.stringify({
+    contractVersion: value.contractVersion,
+    activityId: value.activityId,
+    mode: value.mode,
+    status: value.status,
+    submittedAt: value.submittedAt,
+    answers: value.answers,
+    parts: value.parts,
+  });
+}
 
 function validateSelectedEnvelope(value: PracticeSubmissionEnvelope): void {
   if (
@@ -527,6 +538,37 @@ function validateSelectedEnvelope(value: PracticeSubmissionEnvelope): void {
       throw new Error("Invalid selected IM3 point response");
   }
 }
+
+function isSelectedWorkedAcknowledgement(value: PracticeSubmissionEnvelope): boolean {
+  const keys = Object.keys(value);
+  return keys.length === 8
+    && keys.every((key) => ["contractVersion", "activityId", "mode", "status", "attemptNumber", "submittedAt", "answers", "parts"].includes(key))
+    && value.mode === "worked_example"
+    && value.status === "submitted"
+    && Number.isInteger(value.attemptNumber)
+    && value.attemptNumber > 0
+    && !Number.isNaN(Date.parse(value.submittedAt))
+    && new Date(value.submittedAt).toISOString() === value.submittedAt
+    && Object.keys(value.answers).length === 0
+    && value.parts.length === 0;
+}
+
+function isSelectedWorkedActivity(activity: Doc<"activities">): boolean {
+  const props = activity.props as Record<string, unknown>;
+  const grading = activity.gradingConfig as Record<string, unknown> | undefined;
+  return activity.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID
+    && activity.masteryNodeId === IM3_PILOT_NODE
+    && activity.componentKey === "graphing-explorer"
+    && activity.learningEvidenceMode === "worked_example"
+    && activity.srsEligible === false
+    && activity.approval?.status === "approved"
+    && Object.keys(props).sort().join("|") === "equation|variant"
+    && props.variant === "plot_from_equation"
+    && props.equation === "f(x) = x^2"
+    && Object.keys(grading ?? {}).sort().join("|") === "autoGrade|partialCredit"
+    && grading?.autoGrade === false
+    && grading.partialCredit === false;
+}
 export async function createServerOwnedSubmissionHandler(
   ctx: MutationCtx,
   args: ServerOwnedSubmissionArgs,
@@ -542,13 +584,22 @@ export async function createServerOwnedSubmissionHandler(
     throw new Error(
       "Submission activityId must match the server activity document",
     );
-  validateSelectedEnvelope(args.submissionData);
   const activity = await ctx.db.get(args.activityId);
+  const isWorked = args.submissionData.mode === "worked_example";
+  if (isWorked) {
+    if (!isSelectedWorkedAcknowledgement(args.submissionData))
+      throw new Error("Invalid selected IM3 Worked acknowledgement");
+  } else {
+    validateSelectedEnvelope(args.submissionData);
+  }
   const expectedStable =
     args.submissionData.mode === "guided_practice"
       ? IM3_GUIDED_PRACTICE_ACTIVITY_ID
       : IM3_MASTERY_ADVANTAGE_ACTIVITY_ID;
-  if (
+  if (isWorked) {
+    if (!activity || !isIm3GraphPilotPublished(publication) || !isSelectedWorkedActivity(activity))
+      throw new Error("IM3 pilot activity metadata does not match the approved server-owned create mapping");
+  } else if (
     !activity ||
     !isIm3GraphPilotPublished(publication) ||
     activity.masteryNodeId !== IM3_PILOT_NODE ||
@@ -571,22 +622,32 @@ export async function createServerOwnedSubmissionHandler(
     .unique();
   if (existing) {
     if (
-      canonicalPayload(
+      (isWorked ? canonicalWorkedPayload : canonicalPayload)(
         existing.submissionData as PracticeSubmissionEnvelope,
-      ) !== canonicalPayload(args.submissionData)
+      ) !== (isWorked ? canonicalWorkedPayload : canonicalPayload)(args.submissionData)
     )
       throw new Error("idempotency_conflict");
-    if (
-      existing.attemptOrdinal === undefined
-      || existing.score === undefined
-      || existing.maxScore === undefined
-    )
+    if (existing.attemptOrdinal === undefined
+      || (!isWorked && (existing.score === undefined || existing.maxScore === undefined)))
+      throw new Error("Stored IM3 submission is incomplete");
+    if (isWorked) {
+      if (existing.score !== undefined || existing.maxScore !== undefined || existing.gradedAt !== undefined)
+        throw new Error("Stored IM3 Worked acknowledgement is graded");
+      return {
+        id: existing._id,
+        submissionId: existing._id,
+        acknowledged: true as const,
+      };
+    }
+    const score = existing.score;
+    const maxScore = existing.maxScore;
+    if (score === undefined || maxScore === undefined)
       throw new Error("Stored IM3 submission is incomplete");
     return {
       id: existing._id,
       submissionId: existing._id,
-      score: existing.score,
-      maxScore: existing.maxScore,
+      score,
+      maxScore,
     };
   }
   const prior = await ctx.db
@@ -597,6 +658,21 @@ export async function createServerOwnedSubmissionHandler(
     .order("desc")
     .first();
   const attemptOrdinal = (prior?.attemptOrdinal ?? 0) + 1;
+  if (isWorked) {
+    const now = Date.now();
+    const submissionId = await ctx.db.insert("activity_submissions", {
+      userId: args.userId,
+      activityId: args.activityId,
+      submissionData: { ...args.submissionData, attemptNumber: attemptOrdinal },
+      attemptOrdinal,
+      idempotencyKey: key,
+      masteryContractVersion: "learning-evidence.v1",
+      submittedAt: now,
+      createdAt: now,
+      updatedAt: now,
+    });
+    return { id: submissionId, submissionId, acknowledged: true as const };
+  }
   const graded = gradeServerOwnedSubmission(
     {
       id: String(activity._id),
@@ -611,6 +687,8 @@ export async function createServerOwnedSubmissionHandler(
   );
   if (graded.score === undefined || graded.maxScore === undefined)
     throw new Error("IM3 pilot did not produce a server grade");
+  const score = graded.score;
+  const maxScore = graded.maxScore;
   const now = Date.now();
   const submissionData = {
     ...graded.submissionData,
@@ -622,8 +700,8 @@ export async function createServerOwnedSubmissionHandler(
     submissionData,
     attemptOrdinal,
     idempotencyKey: key,
-    score: graded.score,
-    maxScore: graded.maxScore,
+    score,
+    maxScore,
     gradedAt: now,
     masteryContractVersion: graded.masteryContractVersion,
     submittedAt: now,
@@ -633,16 +711,20 @@ export async function createServerOwnedSubmissionHandler(
   return {
     id: submissionId,
     submissionId,
-    score: graded.score,
-    maxScore: graded.maxScore,
+    score,
+    maxScore,
   };
 }
-const selectedResult = v.object({
+const selectedResult = v.union(v.object({
   id: v.id("activity_submissions"),
   submissionId: v.id("activity_submissions"),
   score: v.number(),
   maxScore: v.number(),
-});
+}), v.object({
+  id: v.id("activity_submissions"),
+  submissionId: v.id("activity_submissions"),
+  acknowledged: v.literal(true),
+}));
 export const createServerOwnedSubmission = internalMutation({
   args: {
     userId: v.id("profiles"),
