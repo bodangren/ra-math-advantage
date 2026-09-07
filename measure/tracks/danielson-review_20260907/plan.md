@@ -16,14 +16,15 @@
 - `evidence/video-checks.json`: results for 38 configured videos.
 - `evidence/learn-mobile.png` and `evidence/draft-mobile.png`: local mobile review captures.
 
-## Open correction work
+## Correction work
 
 - [ ] F01–F05: Correct technique content, references, media, and component labels.
-- [ ] F06–F07: Preserve unsaved work and reject future observation evidence.
-- [ ] F08–F09: Preserve existing due dates and exclude inactive plan subjects.
-- [ ] F10–F11: Update displayed data and revisions after successful changes.
+- [x] F06–F07: Preserve unsaved work and reject future observation evidence. `07c4c342`
+- [x] F08–F09: Preserve existing due dates and exclude inactive plan subjects. `07c4c342`
+- [~] F10–F11: Update displayed data and revisions after successful changes.
 - [ ] F12–F13: Improve navigation, touch targets, and current documentation.
 - [ ] G01–G07: Resolve the product decisions and operational gaps in the report.
 
-The review is complete. Corrections remain open. No app source was changed.
+The review is complete. The user authorized corrections on 2026-09-07.
+Correction work is in progress.
 The local browser draft was discarded. The review-owned local stack was stopped.
