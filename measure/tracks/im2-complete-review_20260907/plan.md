@@ -49,3 +49,5 @@ Saved complete worked-example checkpoint: `6a894de1`. All gates passed with 208 
 Saved explanation correction: `2501e93c`. Saved session-navigation correction: `df8966ce`. All gates passed with 211 tests. Full correction remains open.
 
 Saved phase-evidence correction: `6f12c263`. Saved extractor protection: `2d03992a`. All gates passed with 213 tests. Local backend replay remains under verification.
+
+Saved student-phase cleanup: `c30fe687`. All gates and local seed replay passed. Vocabulary correction and remaining practice workflows are in progress.
