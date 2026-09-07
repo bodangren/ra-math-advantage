@@ -1,1 +1,11 @@
-{"track_id":"danielson-admin-growth_20260907","type":"feature","status":"in_progress","created_at":"2026-09-07T00:00:00Z","updated_at":"2026-09-07T00:00:00Z","description":"Implement seven admin and teacher coaching improvements. Record AI as a possible feature only.","estimated_tasks":8,"actual_tasks":null,"deviation_notes":"Approved rubric source is pending."}
+{
+  "track_id": "danielson-admin-growth_20260907",
+  "type": "feature",
+  "status": "in_progress",
+  "created_at": "2026-09-07T00:00:00Z",
+  "updated_at": "2026-09-07T00:00:00Z",
+  "description": "Implement seven admin and teacher coaching improvements. Record AI as a possible feature only.",
+  "estimated_tasks": 8,
+  "actual_tasks": 6,
+  "deviation_notes": "Core app improvements are implemented and verified. Approved rubric descriptors and user manual review remain pending. Doctor reports five external dependency-boundary failures. No hosted deployment changed."
+}
