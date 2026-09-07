@@ -13,3 +13,5 @@ Review result: Not ready for student use. See `report.md` for 29 findings and `m
 ## Authorized correction work
 
 - [~] Task: Fix all findings. Follow `fix-plan.md`.
+
+Saved correction checkpoint: `02b497a9`. Calendar, source graph inventory, and published progress corrections passed verification. Full correction remains in progress.
