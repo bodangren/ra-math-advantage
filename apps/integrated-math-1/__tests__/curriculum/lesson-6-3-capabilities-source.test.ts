@@ -64,7 +64,7 @@ describe('Lesson 6-3 source capabilities', () => {
         expect(row?.metadata.exampleNumber).toBe(number);
       }
     }
-    expect(catalog.blueprints.every((row) => !row.sourceNodeIds.includes('math.im1.example.6.3.015'))).toBe(true);
+    expect(catalog.blueprints.every((row) => !(row.sourceNodeIds as readonly string[]).includes('math.im1.example.6.3.015'))).toBe(true);
   });
 
   it('keeps ten new candidates draft, inactive, source-only, and contained', () => {

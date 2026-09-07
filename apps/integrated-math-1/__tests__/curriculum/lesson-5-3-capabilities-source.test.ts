@@ -47,7 +47,7 @@ describe('Lesson 5-3 source capabilities', () => {
       expect(rows.find((node) => node.id === 'math.im1.example.5.3.015')?.metadata.exampleNumber).toBe(2);
       expect(rows.find((node) => node.id === 'math.im1.example.5.3.016')?.metadata.exampleNumber).toBe(2);
     }
-    expect(catalog.blueprints.filter((row) => row.sourceNodeIds.includes('math.im1.example.5.3.016'))).toEqual([]);
+    expect(catalog.blueprints.filter((row) => (row.sourceNodeIds as readonly string[]).includes('math.im1.example.5.3.016'))).toEqual([]);
   });
 
   it('keeps each candidate draft, inactive, source-only, and contained by Lesson 5-3', () => {
