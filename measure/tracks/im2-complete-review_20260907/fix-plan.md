@@ -252,6 +252,10 @@ This section supersedes earlier checkpoint lists. The full correction task remai
 - All 403 worked examples have explicit problems and solutions. Learning explanations and vocabulary across all 96 lessons were reviewed. The full original worksheet exercise bank and all mixed-exercise summaries have not received a complete mathematical audit.
 - Six high-severity dependency package entries remain in the current audit. See `dependencies.md` for candidate updates. Dependency approval is pending. No package or lockfile update was made in this pass.
 - Production data, production migration behavior, and production deployment remain unverified. Unused schema tables with possible stored data were retained.
-- Bounded enrollment and assignment queries still need volume-limit review. Local runtime verification covers the tested class fixtures, not arbitrary historical data volumes.
+- Closed enrollment records no longer consume the active enrollment query limit. More than 100 active enrollments and large assignment queries still need volume-limit review. Local runtime verification covers the tested class fixtures, not arbitrary historical data volumes.
 
 Do not interpret passing tests as closure of these open items.
+
+## Closed enrollment history correction
+
+The student dashboard and lesson access query now select active enrollments through a status index. More than 100 withdrawn or completed records cannot hide the current class. The regression failed before correction. Verification passed with 222 tests, lint, both TypeScript checks, and production build. The local backend accepted the new index. Saved correction: `72eee707`.

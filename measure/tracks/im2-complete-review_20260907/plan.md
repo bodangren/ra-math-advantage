@@ -59,3 +59,5 @@ Saved active class-owner correction: `aedbe79b`. All gates passed with 215 tests
 Saved additional standards correction: `793549bf`. All gates passed with 219 tests. Final math rendering and text contrast checks are in progress.
 
 Saved presentation correction: `f26dd7dd`. Saved math rendering correction: `4729840b`. All gates passed with 221 tests. Local seed replay returned 96 lessons. Dependency candidates are recorded in `dependencies.md`. See the current open work section in `fix-plan.md`. The full task remains open.
+
+Saved closed enrollment history correction: `72eee707`. All gates passed with 222 tests. The local backend accepted the new index. The full correction task remains open.
