@@ -30,6 +30,7 @@ const verbalToNumerical: IM1GeneratorEntry = {
     type Template = {
       verbal: string;
       expression: string;
+      acceptedExpressions?: string[];
       value: number;
       steps: Array<{ description: string; expression: string; value: number }>;
     };
@@ -77,11 +78,12 @@ const verbalToNumerical: IM1GeneratorEntry = {
       {
         verbal: `the sum of ${a} and the product of ${b} and ${c}`,
         expression: `${a} + ${b} * ${c}`,
+        acceptedExpressions: [`${a} + (${b} * ${c})`],
         value: a + b * c,
         steps: [
           { description: 'Identify the operations', expression: `"sum" (addition) and "product" (multiplication)`, value: a + b * c },
-          { description: 'Write the inner product', expression: `${b} × ${c} = ${b * c}`, value: b * c },
-          { description: 'Write the full expression', expression: `${a} + ${b * c}`, value: a + b * c },
+          { description: 'Write the inner product', expression: `${b} × ${c}`, value: b * c },
+          { description: 'Write the full expression', expression: `${a} + ${b} × ${c}`, value: a + b * c },
           { description: 'Evaluate', expression: `${a} + ${b * c} = ${a + b * c}`, value: a + b * c },
         ],
       },
@@ -91,8 +93,8 @@ const verbalToNumerical: IM1GeneratorEntry = {
         value: a * b,
         steps: [
           { description: 'Identify the operations', expression: `"product" (multiplication) and "difference" (subtraction)`, value: a * b },
-          { description: 'Write the inner difference', expression: `${b + c} - ${c} = ${b}`, value: b },
-          { description: 'Write the full expression', expression: `${a} × ${b}`, value: a * b },
+          { description: 'Write the inner difference', expression: `${b + c} - ${c}`, value: b },
+          { description: 'Write the full expression', expression: `${a} × (${b + c} - ${c})`, value: a * b },
           { description: 'Evaluate', expression: `${a} × ${b} = ${a * b}`, value: a * b },
         ],
       },
@@ -102,34 +104,49 @@ const verbalToNumerical: IM1GeneratorEntry = {
         value: Math.round(((a + b) / c) * 100) / 100,
         steps: [
           { description: 'Identify the operations', expression: `"sum" then "divided by"`, value: Math.round(((a + b) / c) * 100) / 100 },
-          { description: 'Write the sum', expression: `${a} + ${b} = ${a + b}`, value: a + b },
-          { description: 'Write the full expression', expression: `(${a + b}) ÷ ${c}`, value: Math.round(((a + b) / c) * 100) / 100 },
+          { description: 'Write the sum', expression: `${a} + ${b}`, value: a + b },
+          { description: 'Write the full expression', expression: `(${a} + ${b}) ÷ ${c}`, value: Math.round(((a + b) / c) * 100) / 100 },
           { description: 'Evaluate', expression: `${a + b} ÷ ${c} = ${Math.round(((a + b) / c) * 100) / 100}`, value: Math.round(((a + b) / c) * 100) / 100 },
         ],
       },
       {
         verbal: `the difference between the product of ${a} and ${b} and ${d}`,
         expression: `${a} * ${b} - ${d}`,
+        acceptedExpressions: [`(${a} * ${b}) - ${d}`],
         value: a * b - d,
         steps: [
           { description: 'Identify the operations', expression: `"product" (multiplication) then "difference" (subtraction)`, value: a * b - d },
-          { description: 'Write the inner product', expression: `${a} × ${b} = ${a * b}`, value: a * b },
-          { description: 'Write the full expression', expression: `${a * b} - ${d}`, value: a * b - d },
+          { description: 'Write the inner product', expression: `${a} × ${b}`, value: a * b },
+          { description: 'Write the full expression', expression: `${a} × ${b} - ${d}`, value: a * b - d },
           { description: 'Evaluate', expression: `${a * b} - ${d} = ${a * b - d}`, value: a * b - d },
         ],
       },
     ];
 
     const t = pick(templates);
+    const acceptedExpressions = Array.from(new Set([
+      t.expression,
+      ...(t.acceptedExpressions ?? []),
+      t.expression.replace(/\*/g, '×').replace(/\//g, '÷'),
+      ...(t.acceptedExpressions ?? []).map(expression =>
+        expression.replace(/\*/g, '×').replace(/\//g, '÷')
+      ),
+    ]));
     const gradingMetadata: GradingMetadata = {
-      partAnswers: { result: t.value },
-      partMaxScores: { result: 5 },
-      partGradingRules: { result: 'exact_match' },
+      partAnswers: { expression: t.expression },
+      partMaxScores: { expression: 1 },
+      partGradingRules: { expression: 'custom' },
     };
     return {
-      prompt: `Write a numerical expression for: ${t.verbal}. Then evaluate it.`,
-      data: { verbal: t.verbal, expression: t.expression, seed: input.seed },
-      expectedAnswer: { result: t.value },
+      prompt: `Write a numerical expression for: ${t.verbal}.`,
+      data: {
+        verbal: t.verbal,
+        expression: t.expression,
+        acceptedExpressions,
+        value: t.value,
+        seed: input.seed,
+      },
+      expectedAnswer: { expression: t.expression },
       solutionSteps: t.steps,
       gradingMetadata,
     };

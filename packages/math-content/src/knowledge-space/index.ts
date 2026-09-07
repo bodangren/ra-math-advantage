@@ -34,6 +34,16 @@ export {
 
 export { getGenerator, GENERATOR_KEYS } from './generators/registry';
 export type { MathGenerator } from './generators/registry';
+export {
+  generateIM1VerbalToNumericalOutput,
+  gradeIM1VerbalToNumerical,
+  projectIM1VerbalToNumerical,
+} from './generators/im1-verbal-to-numerical-adapter';
+export type {
+  IM1TranslationGrade,
+  IM1TranslationMode,
+  IM1TranslationProjection,
+} from './generators/im1-verbal-to-numerical-adapter';
 
 export { getRenderer, RENDERER_KEYS } from './renderers/registry';
 export type { MathRendererDescriptor } from './renderers/registry';

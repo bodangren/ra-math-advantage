@@ -113,7 +113,7 @@ export const gradingMetadataSchema = z.object({
   partMaxScores: z.record(z.string(), z.number()),
   partGradingRules: z.record(
     z.string(),
-    z.enum(['exact_match', 'numeric_tolerance', 'expression_equivalence']),
+    z.enum(['exact_match', 'numeric_tolerance', 'expression_equivalence', 'custom']),
   ),
   partTolerances: z.record(z.string(), z.number()).optional(),
 });

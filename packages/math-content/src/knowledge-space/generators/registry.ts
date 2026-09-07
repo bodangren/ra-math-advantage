@@ -4,6 +4,7 @@
 // Generators conform to the knowledge-space-practice DeterministicGenerator contract.
 // Pilot generators produce deterministic output for Module 1 skills.
 
+import { im1VerbalToNumericalGenerator } from './im1-verbal-to-numerical-adapter';
 import type { GeneratorInput, GeneratorOutput, GradingMetadata } from '@math-platform/knowledge-space-practice';
 import {
   polynomialOperationsAdapter,
@@ -236,6 +237,7 @@ const statisticsStubGenerator: MathGenerator = {
 // ---------------------------------------------------------------------------
 
 const GENERATOR_REGISTRY: Record<string, MathGenerator> = {
+  [im1VerbalToNumericalGenerator.key]: im1VerbalToNumericalGenerator,
   [quadraticGraphAnalysisGenerator.key]: quadraticGraphAnalysisGenerator,
   [averageRateOfChangeGenerator.key]: averageRateOfChangeGenerator,
   [solveQuadraticByGraphingGenerator.key]: solveQuadraticByGraphingGenerator,

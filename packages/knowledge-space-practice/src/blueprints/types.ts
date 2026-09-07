@@ -90,7 +90,7 @@ export interface GeneratorOutput {
 export interface GradingMetadata {
   partAnswers: Record<string, unknown>;
   partMaxScores: Record<string, number>;
-  partGradingRules: Record<string, 'exact_match' | 'numeric_tolerance' | 'expression_equivalence'>;
+  partGradingRules: Record<string, 'exact_match' | 'numeric_tolerance' | 'expression_equivalence' | 'custom'>;
   partTolerances?: Record<string, number>;
 }
 
