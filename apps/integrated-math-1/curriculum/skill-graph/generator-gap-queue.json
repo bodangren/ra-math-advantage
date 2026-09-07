@@ -1484,10 +1484,64 @@
       "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
       "gap": "No generator binding or complete three-mode blueprint",
       "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.4.describe-translations-of-linear-functions-relative-to-the-parent-function",
+      "title": "Describe translations of linear functions relative to the parent function",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.4.describe-dilations-of-linear-functions-relative-to-the-parent-function",
+      "title": "Describe dilations of linear functions relative to the parent function",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.4.describe-reflections-of-linear-functions-relative-to-the-parent-function",
+      "title": "Describe reflections of linear functions relative to the parent function",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.4.distinguish-vertical-and-horizontal-transformations-from-a-function-rule",
+      "title": "Distinguish vertical and horizontal transformations from a function rule",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.4.write-transformed-linear-functions-from-verbal-descriptions",
+      "title": "Write transformed linear functions from verbal descriptions",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.4.write-transformed-linear-functions-from-real-world-contexts",
+      "title": "Write transformed linear functions from real-world contexts",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
     }
   ],
   "meta": {
-    "totalSkills": 165,
+    "totalSkills": 171,
     "allNeedGenerators": true
   }
 }

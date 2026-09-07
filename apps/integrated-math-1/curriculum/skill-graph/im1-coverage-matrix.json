@@ -1,10 +1,10 @@
 {
   "version": 1,
   "course": "im1",
-  "totalSkills": 171,
+  "totalSkills": 177,
   "counts": {
     "served": 6,
-    "gap": 165,
+    "gap": 171,
     "newComponent": 0
   },
   "byModule": [
@@ -31,9 +31,9 @@
     },
     {
       "module": "4",
-      "totalSkills": 20,
+      "totalSkills": 26,
       "served": 0,
-      "gap": 20,
+      "gap": 26,
       "newComponent": 0
     },
     {
@@ -565,12 +565,60 @@
       "priority": "medium"
     },
     {
+      "skillId": "math.im1.skill.4.4.describe-dilations-of-linear-functions-relative-to-the-parent-function",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
+      "skillId": "math.im1.skill.4.4.describe-reflections-of-linear-functions-relative-to-the-parent-function",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
       "skillId": "math.im1.skill.4.4.describe-translations-dilations-and-reflections-of-linear-fu",
       "module": "4",
       "status": "gap",
       "tier": "none",
       "rendererKey": "graphing-explorer",
       "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.4.4.describe-translations-of-linear-functions-relative-to-the-parent-function",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
+      "skillId": "math.im1.skill.4.4.distinguish-vertical-and-horizontal-transformations-from-a-function-rule",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
+      "skillId": "math.im1.skill.4.4.write-transformed-linear-functions-from-real-world-contexts",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
+      "skillId": "math.im1.skill.4.4.write-transformed-linear-functions-from-verbal-descriptions",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
     },
     {
       "skillId": "math.im1.skill.4.5.determine-whether-a-given-sequence-is-arithmetic-and-justify",

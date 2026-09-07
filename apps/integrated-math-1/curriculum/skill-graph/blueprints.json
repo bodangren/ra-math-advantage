@@ -5018,6 +5018,92 @@
         "module": "4",
         "lesson": "3"
       }
+    },
+    {
+      "nodeId": "math.im1.skill.4.4.describe-translations-of-linear-functions-relative-to-the-parent-function",
+      "sourceNodeIds": [
+        "math.im1.example.4.4.019",
+        "math.im1.example.4.4.020",
+        "math.im1.example.4.4.021",
+        "math.im1.example.4.4.022"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.4.4.describe-dilations-of-linear-functions-relative-to-the-parent-function",
+      "sourceNodeIds": [
+        "math.im1.example.4.4.023",
+        "math.im1.example.4.4.024"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.4.4.describe-reflections-of-linear-functions-relative-to-the-parent-function",
+      "sourceNodeIds": [
+        "math.im1.example.4.4.025",
+        "math.im1.example.4.4.026"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.4.4.distinguish-vertical-and-horizontal-transformations-from-a-function-rule",
+      "sourceNodeIds": [
+        "math.im1.example.4.4.019",
+        "math.im1.example.4.4.020",
+        "math.im1.example.4.4.023",
+        "math.im1.example.4.4.024",
+        "math.im1.example.4.4.025",
+        "math.im1.example.4.4.026"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.4.4.write-transformed-linear-functions-from-verbal-descriptions",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.4.4.write-transformed-linear-functions-from-real-world-contexts",
+      "sourceNodeIds": [
+        "math.im1.example.4.4.022"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "4"
+      }
     }
   ]
 }

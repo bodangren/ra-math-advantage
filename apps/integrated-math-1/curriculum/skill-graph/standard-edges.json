@@ -4602,10 +4602,10 @@
     {
       "id": "math.im1.example.4.4.019",
       "kind": "worked_example",
-      "title": "Example 1: Describe Vertical Translations; Describe Horizontal Translations; Describe Combined Translations; Translations in Context",
+      "title": "Example 1: Describe Vertical Translations",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4-4, Example 1)"
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-4 (Example 1)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4614,16 +4614,16 @@
         "lesson": "4",
         "exampleNumber": 1,
         "sourceLesson": "4-4",
-        "rawText": "4-4, Examples 1-4 \u2014 Describe Vertical Translations; Describe Horizontal Translations; Describe Combined Translations; Translations in Context"
+        "rawText": "Example 1: Describe Vertical Translations"
       }
     },
     {
       "id": "math.im1.example.4.4.020",
       "kind": "worked_example",
-      "title": "Example 2: Describe Vertical Translations; Describe Horizontal Translations; Describe Combined Translations; Translations in Context",
+      "title": "Example 2: Describe Horizontal Translations",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4-4, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-4 (Example 2)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4632,16 +4632,16 @@
         "lesson": "4",
         "exampleNumber": 2,
         "sourceLesson": "4-4",
-        "rawText": "4-4, Examples 1-4 \u2014 Describe Vertical Translations; Describe Horizontal Translations; Describe Combined Translations; Translations in Context"
+        "rawText": "Example 2: Describe Horizontal Translations"
       }
     },
     {
       "id": "math.im1.example.4.4.021",
       "kind": "worked_example",
-      "title": "Example 3: Describe Vertical Translations; Describe Horizontal Translations; Describe Combined Translations; Translations in Context",
+      "title": "Example 3: Describe Combined Translations",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4-4, Example 3)"
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-4 (Example 3)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4650,16 +4650,16 @@
         "lesson": "4",
         "exampleNumber": 3,
         "sourceLesson": "4-4",
-        "rawText": "4-4, Examples 1-4 \u2014 Describe Vertical Translations; Describe Horizontal Translations; Describe Combined Translations; Translations in Context"
+        "rawText": "Example 3: Describe Combined Translations"
       }
     },
     {
       "id": "math.im1.example.4.4.022",
       "kind": "worked_example",
-      "title": "Example 4: Describe Vertical Translations; Describe Horizontal Translations; Describe Combined Translations; Translations in Context",
+      "title": "Example 4: Translations in Context",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4-4, Example 4)"
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-4 (Example 4)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4668,16 +4668,16 @@
         "lesson": "4",
         "exampleNumber": 4,
         "sourceLesson": "4-4",
-        "rawText": "4-4, Examples 1-4 \u2014 Describe Vertical Translations; Describe Horizontal Translations; Describe Combined Translations; Translations in Context"
+        "rawText": "Example 4: Translations in Context"
       }
     },
     {
       "id": "math.im1.example.4.4.023",
       "kind": "worked_example",
-      "title": "Example 5: Describe Vertical Dilations; Describe Horizontal Dilations; Reflections Across the x-Axis; Reflections Across the y-Axis",
+      "title": "Example 5: Describe Vertical Dilations",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4-4, Example 5)"
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-4 (Example 5)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4686,16 +4686,16 @@
         "lesson": "4",
         "exampleNumber": 5,
         "sourceLesson": "4-4",
-        "rawText": "4-4, Examples 5-8 \u2014 Describe Vertical Dilations; Describe Horizontal Dilations; Reflections Across the x-Axis; Reflections Across the y-Axis"
+        "rawText": "Example 5: Describe Vertical Dilations"
       }
     },
     {
       "id": "math.im1.example.4.4.024",
       "kind": "worked_example",
-      "title": "Example 6: Describe Vertical Dilations; Describe Horizontal Dilations; Reflections Across the x-Axis; Reflections Across the y-Axis",
+      "title": "Example 6: Describe Horizontal Dilations",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4-4, Example 6)"
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-4 (Example 6)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4704,16 +4704,16 @@
         "lesson": "4",
         "exampleNumber": 6,
         "sourceLesson": "4-4",
-        "rawText": "4-4, Examples 5-8 \u2014 Describe Vertical Dilations; Describe Horizontal Dilations; Reflections Across the x-Axis; Reflections Across the y-Axis"
+        "rawText": "Example 6: Describe Horizontal Dilations"
       }
     },
     {
       "id": "math.im1.example.4.4.025",
       "kind": "worked_example",
-      "title": "Example 7: Describe Vertical Dilations; Describe Horizontal Dilations; Reflections Across the x-Axis; Reflections Across the y-Axis",
+      "title": "Example 7: Reflections Across the x-Axis",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4-4, Example 7)"
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-4 (Example 7)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4722,16 +4722,16 @@
         "lesson": "4",
         "exampleNumber": 7,
         "sourceLesson": "4-4",
-        "rawText": "4-4, Examples 5-8 \u2014 Describe Vertical Dilations; Describe Horizontal Dilations; Reflections Across the x-Axis; Reflections Across the y-Axis"
+        "rawText": "Example 7: Reflections Across the x-Axis"
       }
     },
     {
       "id": "math.im1.example.4.4.026",
       "kind": "worked_example",
-      "title": "Example 8: Describe Vertical Dilations; Describe Horizontal Dilations; Reflections Across the x-Axis; Reflections Across the y-Axis",
+      "title": "Example 8: Reflections Across the y-Axis",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4-4, Example 8)"
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-4 (Example 8)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4740,7 +4740,7 @@
         "lesson": "4",
         "exampleNumber": 8,
         "sourceLesson": "4-4",
-        "rawText": "4-4, Examples 5-8 \u2014 Describe Vertical Dilations; Describe Horizontal Dilations; Reflections Across the x-Axis; Reflections Across the y-Axis"
+        "rawText": "Example 8: Reflections Across the y-Axis"
       }
     },
     {
@@ -13391,6 +13391,108 @@
         "course": "im1",
         "module": "4",
         "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.4.describe-translations-of-linear-functions-relative-to-the-parent-function",
+      "kind": "skill",
+      "title": "Describe translations of linear functions relative to the parent function",
+      "domain": "math.im1",
+      "description": "Describe translations of linear functions relative to the parent function",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-4"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.4.describe-dilations-of-linear-functions-relative-to-the-parent-function",
+      "kind": "skill",
+      "title": "Describe dilations of linear functions relative to the parent function",
+      "domain": "math.im1",
+      "description": "Describe dilations of linear functions relative to the parent function",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-4"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.4.describe-reflections-of-linear-functions-relative-to-the-parent-function",
+      "kind": "skill",
+      "title": "Describe reflections of linear functions relative to the parent function",
+      "domain": "math.im1",
+      "description": "Describe reflections of linear functions relative to the parent function",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-4"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.4.distinguish-vertical-and-horizontal-transformations-from-a-function-rule",
+      "kind": "skill",
+      "title": "Distinguish vertical and horizontal transformations from a function rule",
+      "domain": "math.im1",
+      "description": "Distinguish vertical and horizontal transformations from a function rule",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-4"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.4.write-transformed-linear-functions-from-verbal-descriptions",
+      "kind": "skill",
+      "title": "Write transformed linear functions from verbal descriptions",
+      "domain": "math.im1",
+      "description": "Write transformed linear functions from verbal descriptions",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-4"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.4.write-transformed-linear-functions-from-real-world-contexts",
+      "kind": "skill",
+      "title": "Write transformed linear functions from real-world contexts",
+      "domain": "math.im1",
+      "description": "Write transformed linear functions from real-world contexts",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-4"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "4"
       }
     }
   ],
