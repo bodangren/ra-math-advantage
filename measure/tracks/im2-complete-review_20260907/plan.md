@@ -33,3 +33,5 @@ Saved Modules 3 and 4 worked-example correction: `9615b353`. All gates passed. M
 Saved Module 5 correction: `01f70774`. All gates passed. Module 6 content review is in progress.
 
 Saved Modules 6 and 7 correction: `ebf5009a`. All gates passed. Module 8 content review is in progress.
+
+Saved Module 8 correction: `a2761276`. All gates passed. Module 9 content review is in progress.
