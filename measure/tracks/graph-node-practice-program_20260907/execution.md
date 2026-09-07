@@ -255,3 +255,11 @@ Commit `1128aef8` repairs malformed SVG function paths. The curve now uses the s
 ## G17 arithmetic sequence source review
 
 Commit `de78dbca` restores seven provisional source capabilities and corrects four retained example descriptions. Independent review confirms the source mapping and the cooler model correction. Existing node IDs, edge arrays, and gap queue entries remain intact. The current inventory has 184 candidates, six bindings, and 178 gaps. Nine source tests and 40 inventory tests pass. IM1 lint, standalone TypeScript, and build pass. G18 continues the source review. Curriculum approval remains open.
+
+## Business Math event component and pure grader
+
+Commit `41a5c5c9` adds exact structured grading for both Guided cases and the Independent investment. It preserves finite wrong responses and keeps explanation review manual. Commit `469787a9` adds the three-mode draft component with actual response controls and durable retries.
+
+Parent review repaired mutable hint state during storage and negative change magnitudes that the grader rejects. The UI-to-grader tests confirm the full response contract. Twenty tests pass. Full BM2 lint, standalone TypeScript, and build pass. Focused coverage is 93.75% statements, 86.62% branches, 100% functions, and 95.86% lines.
+
+The next integration review covers exact activity authorization, storage, teacher model review, and source mapping. No publication or application mastery is enabled by these commits.

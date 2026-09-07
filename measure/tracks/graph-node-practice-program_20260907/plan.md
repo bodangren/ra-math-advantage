@@ -131,7 +131,7 @@ Scheduling: one worker owns shared graph mechanisms. Two workers can review disj
 - [~] Task 4.5: Complete and verify the IM2 pilot.
   Reuse the current lesson runtime and perpendicular-bisector work where correct. Coordinate with the active correction track. Parent verification covers actual Worked/Guided/teacher/Independent flow and accurate replay evidence state. Student save and retry controls are committed as `bca8c9e6`. The indexed evidence read passes 18 flow tests and remains pending backend integration.
 - [~] Task 4.6: Complete and verify the Business Math pilot.
-  Reconcile published activity mapping with the three modes. Preserve manual evidence for artifacts that require teacher review. Keep adaptive activation within the existing approved policy. Add an app-owned event-analysis activity for complete before-and-after application. Reuse current controls and preserve manual explanation review.
+  Reconcile published activity mapping with the three modes. Preserve manual evidence for artifacts that require teacher review. Keep adaptive activation within the existing approved policy. The app-owned event draft is committed as `469787a9`. The pure grader is committed as `41a5c5c9`. Twenty tests and app gates pass. Trusted persistence, source mapping, teacher model review, and student route integration remain open.
 - [ ] Task 4.7: Measure — User Manual Verification: Five course pilots.
 
 Scheduling: stabilize shared contracts first. IM1 pilot implementation starts with the completed Module 1 source review and available renderer. IM3 and Precalculus pilot integration remains pending. Run independent source and runtime work when paths do not overlap.
