@@ -181,3 +181,95 @@ No current production draft path exists. I found no route that can create eviden
 The first-exposure query now requires an active authenticated learner. It checks existing correct Independent submissions for the current activity seed. A completed learner returns to the ordinary queue. A new seed permits a new first exposure. The provider prepends the three pilot modes and preserves the remaining daily queue. It removes only duplicate activity IDs from that queue.
 
 The interaction test now uses `projectIM1VerbalToNumerical` props for all three modes. It follows the real Guided Check and Finish controls. It also checks the final completion message. The parent ran 28 focused tests, standalone TypeScript, full app lint, and the app build. All pass. Hosted and real-browser verification remain open. The repository boundary check still requires explicit approval for the missing workspace dependency declarations.
+
+## Teacher-first history review
+
+Date: 2026-09-07
+
+The new history integration applies `evaluateLearningEvidenceV1` to the current learner and exact node. It keeps all graded Guided and Independent attempts as history. It does not treat the Worked acknowledgement as teacher exposure. It also checks graph readiness, activity SRS eligibility, Independent mode, and assistance before it sets `masteryBearing`.
+
+Idempotent replay is consistent. The mutation finds the original submission by learner, activity, and idempotency key. It rejects a changed body. It returns the stored evidence result for an identical replay. It does not write a second submission or evidence row.
+
+The event-time rule is correct. Evidence from another learner or node does not introduce this learner. A teacher event after the graded event does not introduce the earlier event.
+
+### P1: Production has no trusted teacher-exposure producer
+
+No production IM1 function writes `teacher_led` rows to `learning_evidence`. The only production insert in this app writes `origin: mastery_advantage`. The tests add teacher rows directly to the mock table.
+
+Therefore, current production Guided and Independent attempts always remain in `awaiting_teacher_exposure`. This fail-closed behavior is safe. It also means no current attempt can become eligible through the teacher-first policy.
+
+Add a trusted teacher workflow that creates exact-node `teacher_led` evidence from an authenticated teacher-owned source submission. Validate the learner, node, source activity, event time, and idempotency key at that boundary. Do not infer teacher exposure from the student's Worked acknowledgement.
+
+### Remaining mastery bridge gap
+
+The mutation stores the decision in `masteryBearing`. It does not update spaced repetition system (SRS), Knowledge Space Theory (KST), or another mastery record. This is consistent with the present bounded pilot. A later bridge must consume both correct and incorrect eligible graded evidence. It must not interpret `masteryBearing: true` as a correct answer. The stored `gradedEvidence.isCorrect`, score, and maximum score contain the outcome.
+
+No additional correctness defect was found in the history, replay, or assistance boundaries.
+
+## Independent trusted-exposure and SRS review
+
+Date: 2026-09-07
+
+This review checks the new teacher exposure producer and the spaced repetition system (SRS) bridge. It checks the current shared working tree. It does not change app source.
+
+The exact pilot ID is `math.im1.skill.1.1.translate-verbal-descriptions-into-correct-numerical-express`. The current node and blueprint both have `reviewStatus: draft`. The node does not have `independentPracticeReady: true`. All three catalog projection rows have `srsEligible: false`. Therefore, the current student query and submission mutation fail closed.
+
+The student submission path uses the authenticated learner ID. The teacher route uses the authenticated teacher ID. The teacher mutation verifies the teacher role, class owner, active class, active enrollment, student role, source learner, exact Guided activity ID, and graded source submission. These checks are correct.
+
+### P0: The teacher mutation bypasses current curriculum publication
+
+`recordTeacherTranslationExposureHandler` checks the stored activity approval. It does not call `isTranslationPilotPublished`. It does not check `independentPracticeReady`.
+
+An old approved Guided activity and submission can create a `teacher_led` row while the current node and blueprint are draft. This contradicts the publication gate used by the student query, student submission, and queue.
+
+Require the exact current node and blueprint to be approved before the mutation creates teacher exposure. Keep readiness separate if teacher exposure is valid before independent practice is ready. Add tests for a draft node and a draft blueprint.
+
+### P1: The source submission has no class ownership proof
+
+The mutation verifies that the learner has an active enrollment in the selected class. It also verifies that the teacher owns that class. The source submission does not contain a class or assignment reference.
+
+A teacher can record exposure from any known graded Guided submission for that learner. The submission can predate enrollment. It can also come from a different class or teacher context.
+
+Use an existing assignment or class activity link when one exists. Otherwise, store the class context on the trusted source event before this workflow becomes active. Do not infer source ownership only from the learner's current enrollment.
+
+### P1: The form does not give a usable or repeat-safe teacher workflow
+
+`TranslationExposureForm` requires three opaque database IDs. It does not show a class roster, learner name, Guided response, score, assistance, or submission time. A teacher cannot make an informed selection from this form.
+
+The form creates a new idempotency key for every submit action. A retry after an uncertain network result creates a second evidence row. The backend only replays by learner and idempotency key. It does not de-duplicate the same source submission.
+
+Use existing class and submission queries to present eligible Guided submissions. Keep one idempotency key for retries of the same selected source. Add a backend duplicate rule for the same learner, source submission, and `teacher_led` origin.
+
+### P1: The teacher page has no page access gate
+
+The middleware protects only `/dev/component-approval`. It does not protect `/teacher/dashboard`. Any visitor can see the teacher exposure form. The API route and Convex mutation still reject unauthorized writes, so this is not a write authorization bypass.
+
+Apply the existing teacher page guard to the dashboard. Keep the route and mutation checks as the trust boundary.
+
+### P0: The SRS bridge does not pass TypeScript validation
+
+`activities.ts` passes `activity.stableActivityId as never` to `processReview`. The app TypeScript check reports an error at this call because the practice submission contract requires its branded activity ID type. The unsafe cast also hides the contract mismatch.
+
+Construct the practice submission through the existing validated contract or branded ID helper. Do not use `as never`. Run `npx tsc --noEmit` after the fix.
+
+### SRS and evidence behavior that is correct
+
+The evidence evaluator requires same-node teacher exposure at or before the graded event. It rejects exposure from another learner, another node, or a later time. Guided evidence remains historical. Assisted Independent evidence remains historical.
+
+After valid teacher exposure, an incorrect Independent response creates an SRS review with rating `Again`. A later correct response updates the same card and adds a second review log. This is the required wrong-then-correct review sequence. In this contract, `masteryBearing` means eligible for the mastery bridge. It does not mean that the response is correct.
+
+An identical submission replay returns the stored result. It does not call `processReview` again. A changed replay returns an idempotency conflict. Convex mutation atomicity protects the submission, evidence, card, and review-log writes in one transaction.
+
+### Test result and missing tests
+
+The focused Convex tests pass: 26 tests in `activities-pilot`, `translation-queue`, and `seed-translation-pilot`.
+
+The current tests use a local database mock. No route test covers authentication, role rejection, malformed IDs, or error mapping. No component test covers the real teacher form. Add focused route and form tests after the workflow uses selectable class and submission data.
+
+## Parent review of the actual Guided-to-teacher flow
+
+The graded Guided handler writes a historical `learning_evidence` row with the submission ID. The teacher candidate query excludes a source if any evidence row exists. The teacher mutation also rejects an existing row unless its origin is `teacher_led`. Thus, a real Guided submission cannot become a teacher candidate. The positive teacher fixtures did not include the historical row that the real student handler writes.
+
+Preserve both events. A teacher attestation must not replace the graded student history. Scope replay and source checks to the correct event origin. Test the real sequence: student Guided submission, teacher candidate query, teacher attestation, then Independent submission.
+
+The current IM1 form also lacks a catch for rejected `fetch`. The existing failure test covers an HTTP response, not a rejected network Promise. It has no pending control. A retained key can become associated with a different selected candidate. These conditions need dedicated tests and repair before acceptance.
