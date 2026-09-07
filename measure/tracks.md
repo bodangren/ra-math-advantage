@@ -58,13 +58,13 @@ Dependencies:
 
 ## Active Tracks
 
-- [~] **Business Math Review Fixes (2026-09-07)** — Resolve all 42 review findings.
+- [~] **Business Math Review Fixes (2026-09-07)** — 41 local corrections verified. Dependency approval and integration of overlapping changes remain open. See `fixes.md`.
   *Link: [./tracks/business-math-review-fixes_20260907/](./tracks/business-math-review-fixes_20260907/)*
 
 - [~] **IM2 Complete Review (2026-09-07)** — Corrections in progress. Runtime, 96-lesson inventory, and 180-period calendar verified. Graph teaching coverage and full practice remain open. See `fix-plan.md`.
   *Link: [./tracks/im2-complete-review_20260907/](./tracks/im2-complete-review_20260907/)*
 
-- [x] **Business Math Complete Review (2026-09-07)** — Review complete. 42 findings remain open. See the report for evidence and verification limits.
+- [x] **Business Math Complete Review (2026-09-07)** — Review complete. The correction track verifies 41 local fixes. One dependency finding remains open. See the correction report for release limits.
   *Link: [./tracks/business-math-complete-review_20260907/](./tracks/business-math-complete-review_20260907/)*
 
 - [~] **Precalculus Complete Review (2026-09-07)** — 44 local corrections verified. PC-43 needs the hosted target. Integration of overlapping changes remains open. See `remediation.md`.
