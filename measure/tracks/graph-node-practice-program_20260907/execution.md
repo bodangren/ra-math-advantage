@@ -271,3 +271,9 @@ Commit `ec9e0b71` records twelve provisional Lesson 4-6 source candidates. Paren
 Commit `07630ba0` provides the exact table-and-graph generator output for the IM3 pilot. Literal seeds 0 and 1 verify downward and upward functions. Thirty-four math-content tests and two activity-component tests pass. Both packages pass lint, standalone TypeScript, and build. The other four draft generator consumers still require their own branches before seed integration. The test changes use only declared package dependencies.
 
 Business Math now has a category-response repair under review. Supplied category labels did not prove learner classification. The new response uses the existing matrix control and private grading. Trusted persistence remains pending.
+
+## Shared SRS linkage and Business Math category evidence
+
+Commit `3420e8c4` preserves one server timestamp and the physical submission ID through the existing SRS adapter. Its baseline test failed on wall-clock timestamps. The final seven adapter tests and package lint, standalone TypeScript, and build pass. The unrelated evidence fingerprint deletion remains outside this integration.
+
+Commit `a9a38498` requires learner account categories in Business Math. Guided and Independent props no longer supply those answers. The private grader scores each choice. The real UI-to-grader test retains an incorrect category and incorrect total, with an Independent score of 14/16. Explanation review remains manual. Twenty-one tests and full app gates pass. Coverage exceeds 80% for statements, branches, functions, and lines.
