@@ -214,8 +214,8 @@ export function GraphingExplorer({
           placed_points: submittedPlacedPoints,
         },
         parts: [
-          { partId: 'table_values', rawAnswer: submittedTableValues },
-          { partId: 'placed_points', rawAnswer: submittedPlacedPoints },
+          { partId: 'table_values', rawAnswer: submittedTableValues, hintsUsed: 0 },
+          { partId: 'placed_points', rawAnswer: submittedPlacedPoints, hintsUsed: hints.length },
         ],
         artifact: {
           graphState: {
