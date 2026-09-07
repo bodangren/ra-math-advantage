@@ -15,3 +15,5 @@ Review result: Not ready for student use. See `report.md` for 29 findings and `m
 - [~] Task: Fix all findings. Follow `fix-plan.md`.
 
 Saved correction checkpoint: `02b497a9`. Calendar, source graph inventory, and published progress corrections passed verification. Full correction remains in progress.
+
+Saved worked-example correction: `488354e8`. Ninety-one sections now have complete givens and solutions. All current gates pass. Full correction remains in progress.
