@@ -135,6 +135,8 @@ Scheduling: one worker owns shared graph mechanisms. Two workers can review disj
 - [~] Task Q10: Integrate the exact selected IM3 Worked acknowledgement through the existing server writer. Require active student identity, reviewed physical content, published catalog, exact source props, empty acknowledgement, and replay safety. Persist no teacher evidence or SRS result. Prepare the minimum HEAD patch before teacher attestation integration.
 - [~] Task Q11: Preserve Guided table-and-graph assistance through the real consumer. Commit `745faac0` records each graph hint once on the submitted graph part. Nine component tests, lint, standalone TypeScript, and build pass. Verify server retention and the existing hint and reveal rating caps before acceptance.
 
+- [~] Task Q12: Require an explicit student action before recording selected Worked review. Preserve durable retry payloads and phase completion gating. Opening a phase no longer submits an acknowledgement in main. The new regression and 76 existing renderer tests pass. Lint, standalone TypeScript, and build pass. Independent review and isolated selected-caller integration remain open.
+
 ## Phase 4 — Implement the minimum shared repairs and five pilots
 
 - [~] Task 4.1: Repair shared projection and registration gaps required by pilots.
