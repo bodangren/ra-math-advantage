@@ -1,13 +1,32 @@
 # IM1 Skill Graph Rollout Audit
 
 **Generated**: 2026-05-10
-**Updated**: 2026-06-11
+**Updated**: 2026-09-07
 **Track**: skill-rollout-im1 (T9)
 **Validation**: `validateKnowledgeSpace` passed with 0 errors on 724 nodes / 2,218 edges
 
 ## Overview
 
-This audit documents the skill graph artifacts generated for Integrated Math 1 as part of the IM1 rollout. All artifacts are derived from existing draft data (T3-T5 pipeline) and follow the IM3 M1 pilot format.
+This audit contains a frozen 2026-05-10 baseline and a current source-inventory correction. The number 138 is historical. Do not use a generator binding as proof of production readiness.
+
+## Current Source Inventory
+
+- Current graph skills: 150.
+- Historical frozen skill baseline: 138.
+- Registered generator bindings: 6.
+- Skills without a registered generator binding: 144.
+- Skills with a blueprint row: 146.
+- Skills without a blueprint row: 4.
+- Blueprint rows with three schema-valid mode specifications: 6.
+- Blueprint rows with three empty mode specifications: 132.
+- Source-only blueprint rows without mode specifications: 8.
+- Approved skill nodes in the current graph: 138.
+
+The legacy coverage matrix status `served` means only that `IM1_GENERATORS` contains the node ID. It does not mean that the application serves a complete Worked, Guided, and Independent practice path. It does not prove renderer wiring, answer concealment, server grading, evidence persistence, or readiness approval. No production-served total is established by this inventory.
+
+The current `generator-gap-queue.json` contains 144 current skills. This includes six restored Module 1 source candidates and six restored Module 2 source candidates. These 12 candidates do not have generator bindings. Eight have source-only blueprint rows without mode specifications. Four do not have a blueprint row. The six schema-valid blueprint bundles are not proof of production readiness.
+
+## Frozen 2026-05-10 Baseline
 
 ## Node and Edge Counts
 
@@ -29,7 +48,7 @@ This audit documents the skill graph artifacts generated for Integrated Math 1 a
 
 ## Module-by-Module Coverage
 
-| Module | Lessons | Skills | Examples | Standards | Generator Readiness |
+| Module | Lessons | Skills | Examples | Standards | Historical Generator Bindings |
 |--------|---------|--------|----------|-----------|-------------------|
 | 1: Expressions | 6 | 6 | 34 | 6 | 6/6 (100%) |
 | 2: Linear Equations | 7 | 8 | 33 | 7 | 0/8 (0%) |
@@ -47,7 +66,7 @@ This audit documents the skill graph artifacts generated for Integrated Math 1 a
 | 14: Congruent Figures | 6 | 14 | 26 | 7 | 0/14 (0%) |
 | Total | 93 | 138 | 401 | 77 | 6/138 (4.3%) |
 
-## Standard Coverage
+## Historical Standard Coverage
 
 - All 138 skills have at least one `aligned_to_standard` edge (100% coverage)
 - 77 unique CCSS standard nodes across all modules
@@ -55,7 +74,7 @@ This audit documents the skill graph artifacts generated for Integrated Math 1 a
 - Standards review queue: 0 items (no skills missing standards)
 - Standard edge distribution: 1-5 standards per skill
 
-## Component Mapping Summary
+## Historical Component Mapping Summary
 
 Renderer distribution across 138 skills:
 
@@ -67,9 +86,9 @@ Renderer distribution across 138 skills:
 | `step-by-step-solver` | 22 | M1, M2, M6, M8, M10, M11, M13, M14 |
 | `rate-of-change-calculator` | 1 | M4 |
 
-## Generator Readiness
+## Historical Generator Binding Coverage
 
-- **6 of 138 skills (4.3%)** have working generators
+- **6 of 138 skills (4.3%)** had registered generator bindings in the frozen baseline. This is not a production-readiness claim.
 - 6 Module-1 generators implemented (vertical-slice module):
   - `math.im1.skill.1.1.translate-verbal-descriptions-into-correct-numerical-express`
   - `math.im1.skill.1.2.translate-between-algebraic-expressions-and-verbal-expressio`
@@ -87,13 +106,13 @@ Renderer distribution across 138 skills:
   - Medium priority (M2 Algebra): 8 skills — closest to existing step-by-step solver patterns
   - Standard priority: 112 skills
 
-## Exception Types
+## Historical Exception Types
 
 | Type | Count | Description |
 |------|-------|-------------|
 | `generator` | 132 | No generator available for IM1 curriculum (6 Module-1 generators implemented) |
 
-## Review Queue Counts
+## Historical Review Queue Counts
 
 | Queue File | Count | Description |
 |------------|-------|-------------|
@@ -102,12 +121,12 @@ Renderer distribution across 138 skills:
 | `generator-gap-queue.json` | 132 | Remaining IM1 skills needing generators |
 | `component-gap-queue.json` | 42 | Geometry/stats skills needing specialized components |
 
-## Component Gap Details
+## Historical Component Gap Details
 
 - **geometry-fill-in-blank** (30 skills): Modules 10, 11, 12, 14 — geometry skills may require diagram-aware components beyond generic fill-in-the-blank
 - **stats-comprehension-quiz** (12 skills): Module 9 + scatter plot skills — statistics skills may require data-display-aware components
 
-## Known Gaps (from tech-debt.md)
+## Historical Known Gaps (from tech-debt.md)
 
 - IM1 missing `seed_standards.ts` — CCSS standards seeded at graph-generation time, no independent seed file
 - IM1 Module 1 problem families implemented; Modules 2–14 problem families not yet built
@@ -116,7 +135,7 @@ Renderer distribution across 138 skills:
 
 ## Tracked Long Tail
 
-132 skills outside the vertical slice (Module 1) remain without working generators. These are tracked per test-strategy §8 and will be implemented in subsequent phases:
+144 skills outside the registered generator set remain without a current binding. The table below is the historical 132-skill baseline and does not include the 12 restored source candidates:
 
 | Module | Skills Without Generators | Notes |
 |--------|--------------------------|-------|
@@ -137,7 +156,7 @@ Renderer distribution across 138 skills:
 
 Each long-tail skill retains its `.pending.test.ts` in `_pending/` until promoted. The `generator-gap-queue.json` lists all 132 remaining skills.
 
-## Validation Results
+## Historical Validation Results
 
 - **`validateKnowledgeSpace`**: PASSED (724 nodes, 2,218 edges, 0 errors)
 - **knowledge-space-core tests**: PASSED (3 files, 76 tests)
@@ -148,7 +167,7 @@ Each long-tail skill retains its `.pending.test.ts` in `_pending/` until promote
 - **No invalid edge pairings**: 0 violations
 - **No missing required alignments**: 0 violations
 
-## Artifacts Generated
+## Historical Artifacts Generated
 
 | File | Size | Description |
 |------|------|-------------|

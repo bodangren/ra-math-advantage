@@ -8,6 +8,7 @@ import { IM1_GENERATORS } from './generators';
 // Types
 // ---------------------------------------------------------------------------
 
+/** `served` means that the skill has a registered generator binding only. */
 export type CoverageStatus = 'served' | 'gap' | 'newComponent';
 
 export type CoverageMatrixSkillEntry = {
@@ -118,6 +119,8 @@ export function buildCoverageMatrix(): CoverageMatrix {
   const bpByNodeId = new Map<string, BlueprintEntry>(
     blueprints.blueprints.map((b) => [b.nodeId, b]),
   );
+  // This legacy field reports generator registration. It does not prove that
+  // Worked, Guided, and Independent practice is complete or production-ready.
   const servedNodeIds = new Set(
     IM1_GENERATORS.flatMap((entry) => entry.nodeIds),
   );

@@ -1187,6 +1187,114 @@
       "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
       "gap": "No generator available for IM1",
       "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.1.1.evaluate-numerical-expressions-accurately-using-the-order-of",
+      "title": "1b: Evaluate numerical expressions accurately using the order of operations",
+      "module": "1",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.1.2.evaluate-algebraic-expressions-by-substituting-given-values",
+      "title": "1d: Evaluate algebraic expressions by substituting given values for variables and following the order of operations",
+      "module": "1",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.1.3.use-the-commutative-associative-identity-and-inverse-propert",
+      "title": "1f: Use the commutative, associative, identity, and inverse properties to simplify calculations and justify each step",
+      "module": "1",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.1.4.use-the-distributive-property-to-simplify-algebraic-expressi",
+      "title": "1h: Use the Distributive Property to simplify algebraic expressions and combine like terms",
+      "module": "1",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.1.5.evaluate-absolute-value-expressions-by-substituting-given-va",
+      "title": "1j: Evaluate absolute value expressions by substituting given values and simplify correctly",
+      "module": "1",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.1.6.determine-a-reasonable-level-of-accuracy-when-performing-mul",
+      "title": "1l: Determine a reasonable level of accuracy when performing multi-step calculations and evaluate the accuracy of reported data",
+      "module": "1",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.2.1.translate-algebraic-equations-and-formulas-into-complete-ver",
+      "title": "2b: Translate algebraic equations and formulas into complete verbal sentences and interpret formulas in context",
+      "module": "2",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.2.2.write-and-solve-one-step-equations-to-model-real-world-situa",
+      "title": "2d: Write and solve one-step equations to model real-world situations and apply the correct Property of Equality to verify solutions",
+      "module": "2",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.2.3.solve-literal-equations-for-a-specified-variable-and-solve-e",
+      "title": "2f: Solve literal equations for a specified variable and solve equations requiring the Distributive Property",
+      "module": "2",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.2.4.determine-whether-an-equation-has-one-solution-no-solution-o",
+      "title": "2h: Determine whether an equation has one solution, no solution, or is an identity and apply equations to geometric situations",
+      "module": "2",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.2.6.apply-proportions-to-percent-situations-scaling-problems-and",
+      "title": "2l: Apply proportions to percent situations, scaling problems, and mixture contexts",
+      "module": "2",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.2.7.use-dimensional-analysis-to-convert-between-units-of-measure",
+      "title": "2n: Use dimensional analysis to convert between units of measurement and apply formulas to solve real-world problems",
+      "module": "2",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
     }
   ],
   "meta": {

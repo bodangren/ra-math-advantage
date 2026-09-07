@@ -317,13 +317,11 @@ describe('IM1 audit refresh — Generated/Updated date (Phase 5 Task 1)', () => 
 });
 
 // ---------------------------------------------------------------------------
-// 2. Generator-readiness numbers (Phase 5 Task 1).
-//    The doc's headline readiness ratio must reflect the live state
-//    (≥ 6/138 served, 132/138 tracked as long tail).
+// 2. Historical generator-binding baseline and current binding inventory.
 // ---------------------------------------------------------------------------
 
-describe('IM1 audit refresh — generator-readiness numbers (Phase 5 Task 1)', () => {
-  it('audit doc declares served count ≥ 6/138 (not the stale 0/138)', () => {
+describe('IM1 audit refresh — historical baseline and current bindings', () => {
+  it('historical table records six generator bindings instead of the old zero claim', () => {
     const audit = loadAuditText();
     // The original line: "**0 of 138 skills (0%)**" plus a
     // Total row of "0/138 (0%)". Phase 5 Green rewrites those
@@ -339,11 +337,11 @@ describe('IM1 audit refresh — generator-readiness numbers (Phase 5 Task 1)', (
     );
     expect(
       staleClaim || staleTotalRow,
-      `audit doc must not still claim 0/138 readiness (live state is ${live}/138)`,
+      `historical table must not still claim 0/138 generator bindings (live state is ${live}/138)`,
     ).toBe(false);
   });
 
-  it('audit doc declares a non-zero "served" or "ready" ratio in the Generator Readiness section', () => {
+  it('audit doc reports the live generator binding count without calling it readiness', () => {
     const audit = loadAuditText();
     const live = collectRegisteredGeneratorCount();
     expect(live).toBeGreaterThanOrEqual(MIN_VERTICAL_SLICE_GENERATORS);
@@ -352,38 +350,28 @@ describe('IM1 audit refresh — generator-readiness numbers (Phase 5 Task 1)', (
     // contains a positive served count. We accept any of:
     //   - "X of 138 skills (Y%)" with X ≥ live
     //   - "X/138 (Y%)" in the per-module Total row
-    const sectionMatch = audit.match(
-      /##\s*Generator Readiness[\s\S]*?(?=\n##\s|\Z)/,
-    );
+    const sectionMatch = audit.match(/##\s*Current Source Inventory[\s\S]*?(?=\n##\s|\Z)/);
     expect(
       sectionMatch,
-      'audit doc is missing the "Generator Readiness" section',
+      'audit doc is missing the current source inventory section',
     ).not.toBeNull();
     const section = sectionMatch![0];
     // Pattern A: "X of 138 skills (Y%)" with X ≥ 1
-    const headline = section.match(
-      /(\d+)\s*of\s*138\s*skills\s*\(\s*\d+(?:\.\d+)?%\s*\)/,
-    );
+    const headline = section.match(/Registered generator bindings:\s*(\d+)/i);
     const headlineServed = headline ? Number(headline[1]) : 0;
     // Pattern B: bullet form "X of 138 skills have working generators"
-    const bulletForm = section.match(
-      /(\d+)\s*of\s*138\s*skills\s*have\s*working\s*generators/i,
-    );
-    const bulletServed = bulletForm ? Number(bulletForm[1]) : 0;
-    const served = Math.max(headlineServed, bulletServed);
+    const served = headlineServed;
     expect(
       served,
-      `Generator Readiness section served count is ${served}; expected ≥ ${live} based on IM1_GENERATORS`,
+      `Current Source Inventory generator binding count is ${served}; expected ≥ ${live} based on IM1_GENERATORS`,
     ).toBeGreaterThanOrEqual(live);
   });
 
-  it('Module-by-Module Coverage table shows Module 1 with 6/6 readiness (not 0/6)', () => {
+  it('historical Module-by-Module Coverage table records six Module 1 bindings', () => {
     const audit = loadAuditText();
     // The per-module table row for Module 1 was
     //   "| 1: Expressions | 6 | 6 | 34 | 6 | 0/6 (0%) |"
-    // Phase 5 Green flips the readiness column for Module 1 to
-    // match the live state (6/6, 100%). Assert the row exists
-    // and the readiness cell is positive.
+    // The frozen table records the six bindings that existed at its date.
     const module1Row = audit.match(
       /\|\s*1: Expressions\s*\|\s*6\s*\|\s*6\s*\|\s*34\s*\|\s*6\s*\|\s*([0-9]+\/[0-9]+\s*\(\s*\d+%\s*\))\s*\|/,
     );
@@ -399,7 +387,7 @@ describe('IM1 audit refresh — generator-readiness numbers (Phase 5 Task 1)', (
     expect(total).toBe(6);
     expect(
       served,
-      `Module-1 readiness cell is ${cell}; expected 6/6 (100%) — the audit doc is stale`,
+      `Historical Module-1 binding cell is ${cell}; expected 6/6 (100%) — the audit doc is stale`,
     ).toBe(6);
   });
 });
@@ -424,24 +412,14 @@ describe('IM1 audit refresh — long-tail tracking section (Phase 5 Task 1)', ()
     ).toBe(true);
   });
 
-  it('long-tail section accounts for the 132 skills outside the vertical slice', () => {
+  it('long-tail section labels 132 as frozen and reports 144 current gaps', () => {
     const audit = loadAuditText();
     const longTailRe = /^#{2,3}\s+(Long\s*tail|Tracked\s*long\s*tail)\b([\s\S]*?)(?=\n#{2,3}\s|\Z)/im;
     const m = audit.match(longTailRe);
     expect(m).not.toBeNull();
     const body = m![2];
-    // The body must mention "132" (138 - 6 vertical-slice skills)
-    // OR enumerate per-module counts that sum to 132. The live
-    // count comes from the registry; the audit must show
-    // 138 - 6 = 132 long-tail skills.
-    const live = collectRegisteredGeneratorCount();
-    const expectedLongTail = 138 - live;
-    expect(expectedLongTail).toBe(132);
-    const mentions132 = /\b132\b/.test(body);
-    expect(
-      mentions132,
-      `long-tail section does not mention 132 skills (expected ${expectedLongTail} = 138 - ${live})`,
-    ).toBe(true);
+    expect(body).toMatch(/144 skills outside the registered generator set/);
+    expect(body).toMatch(/historical 132-skill baseline/);
   });
 });
 
@@ -453,43 +431,29 @@ describe('IM1 audit refresh — long-tail tracking section (Phase 5 Task 1)', ()
 //    test-strategy §1 row Phase 5.
 // ---------------------------------------------------------------------------
 
-describe('IM1 audit refresh — live coverage vs. audit doc (Phase 5 Task 1)', () => {
+describe('IM1 audit refresh — live bindings vs. audit doc (Phase 5 Task 1)', () => {
   it('live generator-gap-queue count agrees with the audit doc long-tail claim', () => {
     const audit = loadAuditText();
     const gapQueue = JSON.parse(readFileSync(GENERATOR_GAP_QUEUE_JSON, 'utf-8')) as {
       queue: Array<{ nodeId: string }>;
     };
-    const longTail = audit.match(/\b(\d+)\s+skills outside the vertical slice/i);
+    const longTail = audit.match(/\b(\d+)\s+skills outside the registered generator set/i);
     expect(longTail).not.toBeNull();
     expect(Number(longTail![1])).toBe(gapQueue.queue.length);
-    expect(gapQueue.queue.length).toBe(132);
+    expect(gapQueue.queue.length).toBeGreaterThan(132);
   });
 
-  it('live IM1_GENERATORS registry count agrees with the doc\'s Generator Readiness served count', () => {
+  it('live IM1_GENERATORS registry count agrees with Current Source Inventory', () => {
     const audit = loadAuditText();
     const live = collectRegisteredGeneratorCount();
     expect(live).toBeGreaterThanOrEqual(MIN_VERTICAL_SLICE_GENERATORS);
 
-    // The doc should claim at least `live` served skills. Parse
-    // either the "X of 138 skills (Y%)" headline or the Total
-    // row "X/138" readiness cell.
-    const headline = audit.match(
-      /(\d+)\s*of\s*138\s*skills\s*\(\s*\d+(?:\.\d+)?%\s*\)/,
-    );
-    const totalRow = audit.match(
-      /\|\s*Total\s*\|\s*93\s*\|\s*138\s*\|\s*401\s*\|\s*77\s*\|\s*(\d+)\/138/,
-    );
-    const docServed = Math.max(
-      headline ? Number(headline[1]) : 0,
-      totalRow ? Number(totalRow[1]) : 0,
-    );
-    expect(
-      docServed,
-      `audit doc claims ${docServed} served skills; live IM1_GENERATORS has ${live} — audit is stale`,
-    ).toBeGreaterThanOrEqual(live);
+    const inventory = audit.match(/Registered generator bindings:\s*(\d+)/i);
+    expect(inventory).not.toBeNull();
+    expect(Number(inventory![1])).toBe(live);
   });
 
-  it('live vertical-slice real-blueprint count agrees with the doc\'s Module-1 row', () => {
+  it('schema-valid vertical-slice blueprint count agrees with the historical Module-1 row', () => {
     const audit = loadAuditText();
     const real = countVerticalSliceRealBlueprints();
     expect(real).toBeGreaterThanOrEqual(MIN_VERTICAL_SLICE_GENERATORS);
@@ -501,7 +465,7 @@ describe('IM1 audit refresh — live coverage vs. audit doc (Phase 5 Task 1)', (
     const docServed = Number(module1Row![1]);
     expect(
       docServed,
-      `audit doc claims Module-1 served=${docServed}; live real-blueprint count is ${real}`,
+      `historical table claims Module-1 bindings=${docServed}; live real-blueprint count is ${real}`,
     ).toBeGreaterThanOrEqual(real);
   });
 });

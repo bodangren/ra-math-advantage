@@ -55,6 +55,12 @@ import {
   type CoverageMatrixByModule,
   type CoverageStatus,
 } from '../coverage-matrix'; // Intentional: non-existent module → Red.
+import { IM1_GENERATORS } from '../generators';
+import {
+  guidedPracticeSpecSchema,
+  independentPracticeSpecSchema,
+  workedExampleSpecSchema,
+} from '@math-platform/knowledge-space-practice';
 
 // ---------------------------------------------------------------------------
 // Resolve the IM1 rollout-artifact directory and the matrix-file path.
@@ -113,7 +119,7 @@ describe('Coverage matrix — shape contract (Phase 1, Task 2)', () => {
     expect(matrix.version).toBeGreaterThan(0);
   });
 
-  it('counts object sums to totalSkills (served + gap + new == 138)', () => {
+  it('counts object sums to the current totalSkills', () => {
     const matrix = buildCoverageMatrix();
     const c: CoverageMatrixCounts = matrix.counts;
     expect(c.served + c.gap + c.newComponent).toBe(matrix.totalSkills);
@@ -154,16 +160,18 @@ describe('Coverage matrix — shape contract (Phase 1, Task 2)', () => {
 });
 
 // ---------------------------------------------------------------------------
-// Task 1 — Enumerate the 138 IM1 skills.
+// Task 1 — Enumerate the current IM1 skills.
 // The matrix.skills array must be the exhaustive enumeration derived from
 // `apps/integrated-math-1/curriculum/skill-graph/nodes.json` (kind === 'skill').
 // ---------------------------------------------------------------------------
 
 describe('Coverage matrix — skill enumeration (Phase 1, Task 1)', () => {
-  it('enumerates exactly 138 IM1 skills from the rollout nodes artifact', () => {
+  it('enumerates the exact current IM1 skill set from the rollout nodes artifact', () => {
     const matrix = buildCoverageMatrix();
-    expect(matrix.totalSkills).toBe(138);
-    expect(matrix.skills).toHaveLength(138);
+    const nodes = JSON.parse(readFileSync(NODES_JSON, 'utf-8')) as { nodes: Array<{ id: string; kind: string }> };
+    const expected = nodes.nodes.filter((node) => node.kind === 'skill').map((node) => node.id).sort();
+    expect(matrix.totalSkills).toBe(expected.length);
+    expect(matrix.skills.map((skill) => skill.skillId).sort()).toEqual(expected);
   });
 
   it('every skill entry carries the required fields (skillId, module, status, tier)', () => {
@@ -200,14 +208,11 @@ describe('Coverage matrix — skill enumeration (Phase 1, Task 1)', () => {
 });
 
 // ---------------------------------------------------------------------------
-// Integration: counts ↔ rollout-audit (test-strategy §1 row Phase 1).
-// The audit claims 138 skills with 0/138 generator readiness.
-// The matrix's totalSkills must equal 138 and initial counts must reflect
-// 0 served / 138 gap / 0 newComponent.
+// Integration: current graph counts and the frozen audit baseline.
 // ---------------------------------------------------------------------------
 
 describe('Coverage matrix — integration with rollout-audit (Phase 1, Task 1↔audit)', () => {
-  it('audit.md declares totalSkills === 138 (live read of the source document)', () => {
+  it('audit.md preserves the explicit frozen 138-skill baseline', () => {
     const audit = readFileSync(AUDIT_MD, 'utf-8');
     // The audit's "Total" row in the Module-by-Module Coverage table
     // is the canonical claim. We assert both the "| 138" token and
@@ -223,7 +228,6 @@ describe('Coverage matrix — integration with rollout-audit (Phase 1, Task 1↔
       nodes: Array<{ id: string; kind: string }>;
     };
     const skillCount = nodes.nodes.filter((n) => n.kind === 'skill').length;
-    expect(skillCount).toBe(138);
     expect(matrix.totalSkills).toBe(skillCount);
   });
 
@@ -243,25 +247,62 @@ describe('Coverage matrix — integration with rollout-audit (Phase 1, Task 1↔
     }
   });
 
-  it('matrix skills join exhaustively with blueprints.json (138/138)', () => {
+  it('reports exact missing blueprint IDs and mode-spec schema results', () => {
     const matrix = buildCoverageMatrix();
     const bp = JSON.parse(readFileSync(BLUEPRINTS_JSON, 'utf-8')) as {
-      blueprints: Array<{ nodeId: string }>;
+      blueprints: Array<{
+        nodeId: string;
+        workedExampleSpec?: unknown;
+        guidedPracticeSpec?: unknown;
+        independentPracticeSpec?: unknown;
+      }>;
     };
     const matrixIds = new Set(
       (matrix.skills as CoverageMatrixSkillEntry[]).map((s) => s.skillId),
     );
-    let matched = 0;
-    for (const b of bp.blueprints) {
-      if (matrixIds.has(b.nodeId)) matched += 1;
-    }
-    expect(matched).toBe(138);
+    const blueprintIds = new Set(bp.blueprints.map((row) => row.nodeId));
+    const missingBlueprintIds = [...matrixIds]
+      .filter((nodeId) => !blueprintIds.has(nodeId))
+      .sort();
+    const schemaValid = bp.blueprints.filter((row) =>
+      workedExampleSpecSchema.safeParse(row.workedExampleSpec).success
+      && guidedPracticeSpecSchema.safeParse(row.guidedPracticeSpec).success
+      && independentPracticeSpecSchema.safeParse(row.independentPracticeSpec).success
+    );
+    const empty = bp.blueprints.filter((row) =>
+      JSON.stringify(row.workedExampleSpec) === '{}'
+      && JSON.stringify(row.guidedPracticeSpec) === '{}'
+      && JSON.stringify(row.independentPracticeSpec) === '{}'
+    );
+    const sourceOnly = bp.blueprints.filter((row) =>
+      row.workedExampleSpec === undefined
+      && row.guidedPracticeSpec === undefined
+      && row.independentPracticeSpec === undefined
+    );
+
+    expect(missingBlueprintIds).toEqual([
+      'math.im1.skill.1.1.evaluate-numerical-expressions-accurately-using-the-order-of',
+      'math.im1.skill.1.2.evaluate-algebraic-expressions-by-substituting-given-values',
+      'math.im1.skill.1.3.use-the-commutative-associative-identity-and-inverse-propert',
+      'math.im1.skill.1.6.determine-a-reasonable-level-of-accuracy-when-performing-mul',
+    ]);
+    expect(schemaValid.map((row) => row.nodeId).sort()).toEqual(
+      IM1_GENERATORS.flatMap((entry) => entry.nodeIds).sort(),
+    );
+    expect(empty).toHaveLength(132);
+    expect(sourceOnly).toHaveLength(8);
+
+    const audit = readFileSync(AUDIT_MD, 'utf-8');
+    expect(audit).toMatch(/Blueprint rows with three schema-valid mode specifications: 6\./);
+    expect(audit).toMatch(/Blueprint rows with three empty mode specifications: 132\./);
+    expect(audit).toMatch(/Source-only blueprint rows without mode specifications: 8\./);
+    expect(audit).toMatch(/Skills without a blueprint row: 4\./);
   });
 
-  it('matrix reflects refreshed generator coverage (6 served, 132 gap, 0 newComponent)', () => {
+  it('reports generator bindings separately from all current gaps', () => {
     const matrix = buildCoverageMatrix();
     expect(matrix.counts.served).toBe(6);
-    expect(matrix.counts.gap).toBe(132);
+    expect(matrix.counts.gap).toBe(matrix.totalSkills - matrix.counts.served);
     expect(matrix.counts.newComponent).toBe(0);
   });
 
@@ -275,6 +316,13 @@ describe('Coverage matrix — integration with rollout-audit (Phase 1, Task 1↔
       expect(s.module).toBe('1');
       expect(s.tier).not.toBe('none');
     }
+    const registered = IM1_GENERATORS.flatMap((entry) => entry.nodeIds).sort();
+    expect(served.map((entry) => entry.skillId).sort()).toEqual(registered);
+  });
+
+  it('stored matrix equals the current derived report', () => {
+    const stored = JSON.parse(readFileSync(MATRIX_JSON, 'utf-8'));
+    expect(stored).toEqual(buildCoverageMatrix());
   });
 
   it('gap skills remain explicitly tracked with tier="none"', () => {
@@ -282,7 +330,7 @@ describe('Coverage matrix — integration with rollout-audit (Phase 1, Task 1↔
     const gaps = (matrix.skills as CoverageMatrixSkillEntry[]).filter(
       (s) => s.status === 'gap',
     );
-    expect(gaps).toHaveLength(132);
+    expect(gaps).toHaveLength(matrix.totalSkills - matrix.counts.served);
     for (const s of gaps) {
       expect(s.tier).toBe('none');
     }
