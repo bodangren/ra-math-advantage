@@ -180,3 +180,9 @@ Verification passed with 207 tests, lint, frontend and backend TypeScript, and p
 Completed 33 polynomial examples. The cumulative correction covers 340 headings. Corrected the multivariable binomial classification and its degree in one variable. Corrected a factorable quadratic labeled prime and the incorrect decimal factorization. The counting-sum example now specifies positive integers. The area models state positive-dimension conditions and distinguish a parameter from a full side length.
 
 Verification passed with 207 tests, lint, frontend and backend TypeScript, and production build. Independent substitutions checked the corrected factorizations.
+
+## Module 12 worked examples
+
+Completed 37 quadratic examples. The compiled curriculum now has 382 complete worked-example sections. Earlier cumulative counts omitted five sections that were already complete. Corrected integer profit thresholds, physical time domains, and the condition that a quadratic coefficient must be nonzero. Regression examples now state which model families are compared. Exact rational calculations checked the fitted coefficients and predictions.
+
+Verification passed with 207 tests, lint, frontend and backend TypeScript, and production build.

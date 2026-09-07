@@ -5705,25 +5705,25 @@
         "phaseNumber": 5,
         "title": "Example 1 — Identify Key Features from a Graph",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Identify the Axis of Symmetry\n\nFor each graph, find the vertical line that divides the parabola in half. The axis of symmetry passes through the vertex and is equidistant from matching points on either side.\n\n### Step 2: Identify the Vertex\n\nRead the coordinates of the vertex from the graph. If the parabola opens downward, the vertex is the maximum point. If it opens upward, the vertex is the minimum point.\n\n### Step 3: Identify the Y-Intercept\n\nFind where the graph crosses the y-axis (where x = 0).\n\n### Step 4: Describe End Behavior\n\nState what happens to y as x becomes very large positive and as x becomes very large negative.\n\nProblems 1-4: Identify the axis of symmetry, the vertex, and the y-intercept of each graph. Then describe the end behavior."
+        "markdown": "### Problem\n\nAn upward-opening parabola has vertex (2,-1) and passes through (0,3) and (4,3). Identify its axis of symmetry, vertical intercept, minimum, and end behavior.\n\n### Solution\n\nThe axis is x=2. The vertical intercept is (0,3). The minimum value is -1 at x=2. Both ends rise as x increases or decreases without bound. The equal-height points at x=0 and x=4 lie equally far from the axis."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Graph Quadratic Functions Using Key Features",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Find the Axis of Symmetry\n\nFor [y = -3x^2 + 6x - 4], the axis of symmetry is [x = -b/(2a) = -6/(2(-3)) = 1].\n\n### Step 2: Find the Vertex\n\nSubstitute x = 1 into the function: [y = -3(1)^2 + 6(1) - 4 = -1]. The vertex is (1, -1).\n\n### Step 3: Find the Y-Intercept\n\nEvaluate at x = 0: [y = -4], so the y-intercept is (0, -4).\n\n### Step 4: Plot Points and Draw the Parabola\n\nUse the axis of symmetry to find symmetric points on the other side of the axis. Draw the curve through these points.\n\nProblems 5-10: Graph each function. Find the axis of symmetry, vertex, and y-intercept first."
+        "markdown": "### Problem\n\nGraph y=-3x²+6x-4 using its key features.\n\n### Solution\n\nThe axis is x=-6/(2(-3))=1. Substitution gives vertex (1,-1). The vertical intercept is (0,-4), with reflected point (2,-4). The parabola opens downward. Its maximum is -1, so it has no horizontal intercepts."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Graph with a Table of Values",
         "phaseType": "worked_example",
-        "markdown": "When the coefficients are not friendly for completing the square, use a table of values to plot points. Choose x-values that are symmetric about the axis of symmetry for an accurate parabola shape.\n\n### Step 1: Build a Table\n\nFor [y = x^2 + 6x - 6], find the axis of symmetry [x = -3]. Create a table with x-values around -3.\n\n### Step 2: Compute Y-Values\n\nCalculate y for each x-value. Plot the points.\n\n### Step 3: State Domain and Range\n\nThe domain of any quadratic function is all real numbers. The range is [[vertex_y), ∞)) for upward-opening parabolas or [(-∞, vertex_y]] for downward-opening ones.\n\nProblems 11-16: Use a table of values to graph each function. State the domain and range."
+        "markdown": "### Problem\n\nBuild a table for y=x²+6x-6 using x=-5,-4,-3,-2,-1. State the unrestricted domain and range.\n\n### Solution\n\nThe respective y-values are -11,-14,-15,-14,-11. The vertex is (-3,-15), and the parabola opens upward. The domain is all real numbers and the range is [-15,infinity). Plot the five points and reflect about x=-3."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — Real-World Quadratic Models",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Identify the Variables\n\nIn the Olympics pole vault problem, x represents the Olympiad number and y represents the winning height in meters.\n\n### Step 2: Complete the Table\n\nSubstitute x-values into [y = 0.37x^2 + 4.3x + 126] and compute y.\n\n### Step 3: Graph the Function\n\nPlot the points from the table and connect them with a smooth curve.\n\n### Step 4: Interpret Key Features\n\nThe vertex represents the maximum or minimum winning height. The y-intercept represents the winning height at the first Olympiad. Zeros would represent times when the height was zero, though in context they often fall outside the reasonable domain.\n\nProblems 17-20: For each real-world scenario, graph the function and interpret the key features in terms of the quantities described."
+        "markdown": "### Problem\n\nA modeled ball height is h(t)=-16t²+32t+48 feet for time t≥0 until landing. Find its initial height, maximum height, and landing time.\n\n### Solution\n\nComplete the square: h(t)=-16(t-1)²+64. The initial height h(0) is 48 ft. The maximum is 64 ft at 1 second. The equation h(t)=0 gives t=-1 or t=3. Only t=3 is in the physical time domain, so the modeled flight lasts 3 seconds."
       },
       {
         "phaseNumber": 9,
@@ -5773,31 +5773,31 @@
         "phaseNumber": 5,
         "title": "Example 1 — Describe Vertical and Horizontal Translations",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Identify the Constant Outside the Square\n\nIf the equation has [+ k] or [- k] outside the squared term, the graph shifts vertically.\n\n### Step 2: Identify the Expression Inside the Square\n\nIf the equation has [(x - h)] inside the square, the graph shifts horizontally.\n\nProblems 1-12: Describe how each function is related to the graph of [y = x^2]."
+        "markdown": "### Problem\n\nDescribe the translation from y=x² to y=(x-3)²-5.\n\n### Solution\n\nMove the graph right 3 units and down 5 units. The vertex moves from (0,0) to (3,-5). The shape and upward opening stay the same."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Describe Dilations from Coefficients",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Check the Coefficient of x^2\n\nA coefficient greater than 1 makes the parabola narrower. A coefficient between 0 and 1 makes it wider.\n\n### Step 2: Check for Negative Sign\n\nA negative coefficient reflects the parabola across the x-axis.\n\n### Step 3: Check for Horizontal Dilation\n\nWhen x is multiplied by a factor inside the square, the graph is compressed or stretched horizontally.\n\nProblems 13-20: Describe the dilation in each function as it relates to the graph of [y = x^2]."
+        "markdown": "### Problem\n\nCompare y=4x², y=(1/4)x², and y=-4x² with y=x².\n\n### Solution\n\nMultiplying outputs by 4 makes y=4x² narrower. Multiplying outputs by 1/4 makes y=(1/4)x² wider. The graph y=-4x² has the same width as y=4x² but reflects across the x-axis. Width depends on the coefficient magnitude."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Describe Combined Transformations",
         "phaseType": "worked_example",
-        "markdown": "For [g(x) = -5 - (4/3)x^2], the negative sign reflects the parabola, the coefficient (4/3) affects the width, and the -5 shifts it down.\n\nFor [h(x) = 3 + (5/2)x^2], the coefficient (5/2) stretches the parabola vertically and the +3 shifts it up.\n\nProblems 21-32: Describe how each function is related to the graph of [y = x^2]."
+        "markdown": "### Problem\n\nDescribe g(x)=-5-(4/3)x² relative to y=x².\n\n### Solution\n\nMultiply vertical coordinates by 4/3, reflect across the x-axis, and shift down 5. The parabola is narrower than the parent, opens downward, and has vertex (0,-5). Its range is (-infinity,-5]."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — Use a Graph to Write the Equation",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Identify the Vertex\n\nFind the (h, k) coordinates from the graph.\n\n### Step 2: Identify the Direction and Width\n\nDetermine whether [a] is positive or negative (opens up or down) and estimate its magnitude from how wide or narrow the parabola is.\n\n### Step 3: Write the Equation\n\nSubstitute into [f(x) = a(x - h)^2 + k] and solve for a if needed by substituting another point.\n\nProblems 36-38: Use the graph of each function to write its equation."
+        "markdown": "### Problem\n\nA parabola has vertex (2,-3) and passes through (4,5). Find its equation.\n\n### Solution\n\nUse y=a(x-2)²-3. Substituting (4,5) gives 5=4a-3, so a=2. The equation is y=2(x-2)²-3. A second point determines the coefficient; visual width alone is not an exact measurement."
       },
       {
         "phaseNumber": 9,
         "title": "Example 5 — Transformations in Real-World Contexts",
         "phaseType": "worked_example",
-        "markdown": "The spring constant problem compares [U_s = (1/2)kx^2] for k = 10 versus k = 2. The larger spring constant produces a steeper, narrower parabola.\n\nThe falling ball problem [h = -16t^2 + 20] is a vertical stretch (narrower than [y = t^2]) combined with a reflection across the x-axis and a vertical shift up 20 units.\n\nThe racing car problem compares [d = 3t^2] and [d = 2t^2 + 100]. The second car's equation represents a vertical stretch factor of 2 and a vertical translation up 100 units.\n\nProblems 33-35: Compare each real-world quadratic model to its parent function."
+        "markdown": "### Problem\n\nFor the spring-energy model U=(1/2)kx², compare k=2 and k=10 using the same displacement x and the same axis scales.\n\n### Solution\n\nThe two functions are U₁=x² and U₂=5x². For every fixed x, U₂ is five times U₁. Its graph is a vertical stretch by 5 and appears narrower. Both have their minimum at x=0."
       },
       {
         "phaseNumber": 10,
@@ -5847,19 +5847,19 @@
         "phaseNumber": 5,
         "title": "Example 1 — Identify a Quadratic with No Real Solutions",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Graph the Function\n\nFor [x^2 + 7x + 14 = 0], graph [y = x^2 + 7x + 14]. The discriminant is [7^2 - 4(1)(14) = -7]. The graph has no x-intercepts, so the equation has no real solutions.\n\n### Step 2: Find the X-Intercepts\n\nLook for points where the graph crosses the x-axis. Read the x-values at those points.\n\n### Step 3: Write the Solutions\n\nThe x-coordinate(s) of the x-intercept(s) are the solution(s).\n\nProblems 1-12: Solve each equation by graphing."
+        "markdown": "### Problem\n\nDetermine whether x²+7x+14=0 has real solutions by examining its graph.\n\n### Solution\n\nComplete the square: y=(x+3.5)²+1.75. The parabola opens upward with minimum 1.75. It never reaches y=0, so there are no real solutions. A graph window must include the vertex to show the relevant minimum."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Solve Quadratics with Non-Integer Solutions",
         "phaseType": "worked_example",
-        "markdown": "When the x-intercepts are not at integer values, use the graph to estimate. For [x^2 - 5x + 12 = 0], if the graph does not cross the x-axis, there are no real solutions.\n\nProblems 4-6: Solve each equation by graphing. Note which have no real solutions."
+        "markdown": "### Problem\n\nUse a graph to estimate the real solutions of x²-2=0 to the nearest hundredth.\n\n### Solution\n\nThe parabola y=x²-2 meets the horizontal axis near -1.41 and 1.41. The exact solutions are $x=\\pm\\sqrt{2}$. These values verify the estimates. Unlike a quadratic with negative discriminant, this example has two real non-integer roots."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Real-World Projectile Motion",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Identify the Function\n\nFor the soccer ball kicked off a platform: [y = -x^2 + 3x + 12].\n\n### Step 2: Graph the Function\n\nPlot the parabola with the given equation.\n\n### Step 3: Find the X-Intercepts\n\nThe x-intercepts represent when the ball is at ground level (height = 0).\n\n### Step 4: Interpret the Solutions\n\nThe time the ball is in the air is the positive x-intercept (or the difference between the two intercepts if both are positive). The y-intercept represents the initial height at the moment of the kick.\n\nProblems 13-14: For each real-world scenario, determine approximately how long the object is in the air."
+        "markdown": "### Problem\n\nA model gives a ball height h(t)=-16t²+32t+48 feet. Use a graph to find when it first reaches the ground after t=0.\n\n### Solution\n\nThe graph has horizontal intercepts at t=-1 and t=3. Time starts at 0, so the physical landing time is 3 seconds. The negative root is outside the model domain. The flight duration is not the distance between both intercepts when launch occurs at t=0 above the ground."
       },
       {
         "phaseNumber": 8,
@@ -5909,43 +5909,43 @@
         "phaseNumber": 5,
         "title": "Example 1 — Solve Equations with Squares and Simple Factors",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Isolate One Side\n\nFor [x^2 = 36], rewrite as [x^2 - 36 = 0].\n\n### Step 2: Factor\n\nRecognize [x^2 - 36] as a difference of squares: [(x + 6)(x - 6) = 0].\n\n### Step 3: Apply Zero Product Property\n\n[x + 6 = 0] gives [x = -6]; [x - 6 = 0] gives [x = 6].\n\n### Step 4: Check Solutions\n\nSubstitute back into the original equation.\n\nProblems 1-14: Solve each equation. Check your solutions."
+        "markdown": "### Problem\n\nSolve x²=36 by factoring.\n\n### Solution\n\nRewrite as x²-36=0 and factor to (x-6)(x+6)=0. The zero-product property gives x=6 or x=-6. Both square to 36."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Solve Equations with Trinomials",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Write in Standard Form\n\nFor [x^2 - 6x = 27], rewrite as [x^2 - 6x - 27 = 0].\n\n### Step 2: Factor the Trinomial\n\nFind two numbers that multiply to the constant term and add to the coefficient of x.\n\n### Step 3: Apply Zero Product Property\n\nSet each factor equal to zero and solve.\n\nProblems 15-18: Solve each equation by factoring."
+        "markdown": "### Problem\n\nSolve x²-6x=27 by factoring.\n\n### Solution\n\nMove 27 to the left: x²-6x-27=0. Factor as (x-9)(x+3)=0. The solutions are x=9 and x=-3. Each satisfies the original equation."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Solve Equations with Divided Terms",
         "phaseType": "worked_example",
-        "markdown": "For [81 - (1/25)x^2 = 0], rearrange to [(9 - (1/5)x)(9 + (1/5)x) = 0] and solve.\n\nFor [3b(9b - 27) = 0], factor out the common factor first, then apply the Zero Product Property.\n\nProblems 19-24: Solve each equation. Check your solutions."
+        "markdown": "### Problem\n\nSolve 81-x²/25=0.\n\n### Solution\n\nFactor as (9-x/5)(9+x/5)=0. This gives x=45 or x=-45. In either case x²/25=81."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — Use Roots to Sketch the Related Function",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Solve by Factoring\n\nFind the roots of the quadratic equation.\n\n### Step 2: Identify Key Features\n\nThe roots are the x-intercepts. The axis of symmetry is halfway between the roots. The vertex lies on the axis of symmetry.\n\n### Step 3: Sketch the Parabola\n\nPlot the x-intercepts, find the vertex, and draw a smooth curve through the points.\n\nProblems 25-26: Consider each equation. Solve by factoring, then use the roots to sketch the related function."
+        "markdown": "### Problem\n\nSolve x²-6x-27=0 and use the roots to sketch y=x²-6x-27.\n\n### Solution\n\nThe factorization is (x-9)(x+3), so the roots are 9 and -3. The axis lies halfway between them at x=3. The vertex is (3,-36). The vertical intercept is (0,-27), and the parabola opens upward."
       },
       {
         "phaseNumber": 9,
         "title": "Example 5 — Real-World Problems",
         "phaseType": "worked_example",
-        "markdown": "### Number Theory Problem\n\nLet the consecutive integers be n and n+1. The product [n(n+1)] equals the sum [n + (n+1)] plus 11. Write and solve the equation.\n\n### Ladder Problem\n\nLet the distance from the wall be x. The length of the ladder is [2x + 1] (one foot more than twice the distance). Use the Pythagorean Theorem: [x^2 + 15^2 = (2x + 1)^2]. Solve for x.\n\n### Free Fall Problem\n\nSet [f(t) = -16t^2 + 576 = 0] and solve for t. The positive solution is when the ballast bag hits the ground.\n\n### Volume Problem\n\nGiven [V = 3x^2 - 36x + 108], factor to find when the volume equals a given value, or find the dimensions when the original cardboard length is known.\n\nProblems 27-30: Solve each real-world problem."
+        "markdown": "### Problem\n\nTwo consecutive integers have a product equal to their sum plus 11. Find both possible pairs.\n\n### Solution\n\nWrite n(n+1)=n+(n+1)+11. Simplify to n²-n-12=0, or (n-4)(n+3)=0. Thus n=4 or n=-3. The pairs are (4,5) and (-3,-2). Both satisfy the stated product relation."
       },
       {
         "phaseNumber": 10,
         "title": "Example 6 — Write a Quadratic Function from a Graph",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Identify the X-Intercepts\n\nRead the x-intercepts from the graph. If the vertex is on the x-axis, the quadratic has a repeated root.\n\n### Step 2: Write Factored Form\n\nIf the x-intercepts are r1 and r2, write [f(x) = a(x - r1)(x - r2)].\n\n### Step 3: Find a\n\nSubstitute another point from the graph to solve for a.\n\n### Step 4: Write the Equation\n\nSubstitute the value of a back into the factored form.\n\nProblems 31-34: Write a quadratic function for each given graph."
+        "markdown": "### Problem\n\nA parabola has horizontal intercepts -1 and 3 and passes through (0,-6). Find its equation.\n\n### Solution\n\nWrite y=a(x+1)(x-3). Substituting (0,-6) gives -6=-3a, so a=2. The equation is y=2(x+1)(x-3), or y=2x²-4x-6."
       },
       {
         "phaseNumber": 11,
         "title": "Example 7 — Write a Quadratic Function Given Three Points",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Set Up a System\n\nSubstitute each point (x, y) into [f(x) = ax^2 + bx + c] to get three equations.\n\n### Step 2: Solve the System\n\nSolve for a, b, and c.\n\n### Step 3: Write the Function\n\nSubstitute the values into [f(x) = ax^2 + bx + c].\n\nProblems 35-38: Write a quadratic function that contains the given points."
+        "markdown": "### Problem\n\nFind a quadratic through (0,1), (1,4), and (2,9).\n\n### Solution\n\nLet y=ax²+bx+c. The first point gives c=1. The next gives a+b=3. The third gives 4a+2b=8. Subtract twice the second reduced equation to get 2a=2. Thus a=1 and b=2. The function is y=x²+2x+1, which fits all three points."
       },
       {
         "phaseNumber": 12,
@@ -5995,37 +5995,37 @@
         "phaseNumber": 5,
         "title": "Example 1 — Find the Value of c",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Identify b\n\nIn [x^2 + bx], b is the coefficient of x.\n\n### Step 2: Compute (b/2)^2\n\nFor [x^2 + 26x], b = 26, so [(26/2)^2 = 169].\n\n### Step 3: Verify\n\n[x^2 + 26x + 169 = (x + 13)^2].\n\nProblems 1-9: Find the value of c that makes each trinomial a perfect square."
+        "markdown": "### Problem\n\nFind c so that x²+26x+c is a perfect square trinomial.\n\n### Solution\n\nHalf the coefficient of x is 13. Square it to get c=169. The trinomial is (x+13)²."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Solve Equations by Completing the Square",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Move Constants\n\nFor [x^2 + 6x - 16 = 0], add 16 to both sides: [x^2 + 6x = 16].\n\n### Step 2: Complete the Square\n\nAdd [(6/2)^2 = 9] to both sides: [x^2 + 6x + 9 = 25].\n\n### Step 3: Factor\n\n[(x + 3)^2 = 25].\n\n### Step 4: Solve\n\n[x + 3 = ±5], so [x = 2] or [x = -8].\n\n### Step 5: Check\n\nSubstitute back into the original equation.\n\nProblems 10-21: Solve each equation by completing the square. Round to the nearest tenth if necessary."
+        "markdown": "### Problem\n\nSolve x²+6x-16=0 by completing the square.\n\n### Solution\n\nMove the constant: x²+6x=16. Add 9 to both sides: (x+3)²=25. Thus x+3=5 or -5, giving x=2 or -8. Both satisfy the original equation."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Solve Equations with Different Coefficients",
         "phaseType": "worked_example",
-        "markdown": "When a ≠ 1, divide both sides by a first before completing the square.\n\nFor [5x^2 - 10x = 23]:\n1. Divide by 5: [x^2 - 2x = 23/5].\n2. Complete: [( -2/2)^2 = 1], add 1 to both sides.\n3. Factor: [(x - 1)^2 = 28/5].\n4. Solve: [x = 1 ± √(28/5)].\n5. Approximate if needed.\n\nFor [2x^2 - 2x + 7 = 5]:\n1. Move constants: [2x^2 - 2x = -2].\n2. Divide by 2: [x^2 - x = -1].\n3. Complete: add [( -1/2)^2 = 1/4].\n4. Factor: [(x - 1/2)^2 = -3/4].\n5. Recognize there is no real solution since the right side is negative.\n\nProblems 14-21: Solve each equation by completing the square."
+        "markdown": "### Problem\n\nSolve 2x²+8x-10=0 by completing the square.\n\n### Solution\n\nDivide by 2 to obtain x²+4x-5=0. Then x²+4x=5. Add 4: (x+2)²=9. Thus x=1 or x=-5. Dividing first makes the squared term coefficient 1."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — Write in Vertex Form",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Complete the Square\n\nFor [y = x^2 + 8x + 7]:\n1. Group: [(x^2 + 8x) + 7].\n2. Complete: [x^2 + 8x + 16 + 7 - 16 = (x + 4)^2 - 9].\n3. Vertex form: [y = (x + 4)^2 - 9].\n\n### Step 2: Identify Key Features\n\nAxis of symmetry: [x = -4]. Vertex: (-4, -9). Opens upward (a = 1 > 0), so minimum at y = -9.\n\n### Step 3: Find Zeros\n\nSet vertex form equal to zero and solve: [(x + 4)^2 - 9 = 0] gives [x = -1] or [x = -7].\n\nProblems 22-25: Write each equation in vertex form. Identify the axis of symmetry, extrema, and zeros. Then use the key features to graph the function."
+        "markdown": "### Problem\n\nWrite y=x²+8x+7 in vertex form and find its zeros.\n\n### Solution\n\nAdd and subtract 16: y=(x+4)²-9. The vertex is (-4,-9). Set (x+4)²=9 to get x=-1 or x=-7. The axis is x=-4."
       },
       {
         "phaseNumber": 9,
         "title": "Example 5 — Graph Using Vertex Form",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Locate the Vertex\n\nFrom [y = (x + 4)^2 - 9], the vertex is (-4, -9).\n\n### Step 2: Determine Direction and Width\n\nSince a = 1 > 0, the parabola opens upward.\n\n### Step 3: Plot Additional Points\n\nUse the y-intercept and symmetric points to plot the curve.\n\n### Step 4: Draw the Parabola\n\nConnect with a smooth curve.\n\nProblems 22-25 (continued): Graph each function using its vertex form."
+        "markdown": "### Problem\n\nSketch y=(x+4)²-9 using the vertex and intercepts.\n\n### Solution\n\nThe vertex is (-4,-9), and the graph opens upward. The horizontal intercepts are (-7,0) and (-1,0). The vertical intercept is (0,7). Plot these points and use symmetry about x=-4. The unrestricted range is [-9,infinity)."
       },
       {
         "phaseNumber": 10,
         "title": "Example 6 — Real-World Problems",
         "phaseType": "worked_example",
-        "markdown": "### Mars Gravity Problem\n\nFor [h = -1.9t^2 + 26t]:\n1. Find the time when height is maximum: vertex at [t = -b/(2a) = 26/(3.8) ≈ 6.8 seconds].\n2. Compare to Earth's time (5.4 seconds): the difference is how much longer on Mars.\n3. Find maximum height: substitute t into the equation.\n\n### Frog Jump Problem\n\nFor [h = -0.5d^2 + 2d + 3]:\n1. Find when the frog lands (h = 0): solve [0 = -0.5d^2 + 2d + 3].\n2. Find maximum height: find the vertex of the parabola.\n\n### Falling Object Problem\n\nFor [d = 16t^2 + 64t]:\n1. Set d = 80 and solve [16t^2 + 64t = 80].\n2. Complete the square to find t.\n\nProblems 26-28: For each scenario, solve the problem and interpret your answer in context."
+        "markdown": "### Problem\n\nA model gives vertical distance d(t)=16t²+64t feet for t≥0. Find when the distance is 80 ft by completing the square.\n\n### Solution\n\nSet 16t²+64t=80 and divide by 16: t²+4t=5. Add 4: (t+2)²=9. The algebraic solutions are t=1 and t=-5. Only t=1 second is in the time domain. Substitution gives 16+64=80 ft."
       },
       {
         "phaseNumber": 11,
@@ -6075,25 +6075,25 @@
         "phaseNumber": 5,
         "title": "Example 1 — Solve Quadratic Equations with the Quadratic Formula",
         "phaseType": "worked_example",
-        "markdown": "Solve quadratic equations by applying the Quadratic Formula. Equations may already be in standard form or may require rearrangement.\n\n### Step 1: Write in Standard Form\n\nEnsure the equation is in the form [ ax^2 + bx + c = 0 ].\n\n### Step 2: Identify Coefficients\n\nDetermine [ a ], [ b ], and [ c ] from the standard form. Watch for missing terms and negative signs.\n\n### Step 3: Substitute and Simplify\n\nSubstitute the coefficients into the Quadratic Formula:\n\n$$\nx = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}\n$$\nSimplify the expression under the radical and the entire fraction. If the discriminant is a perfect square, the solutions are rational. If not, approximate to the nearest tenth.\n\nFor example, for [ x^2 - x - 20 = 0 ] with [ a = 1 ], [ b = -1 ], and [ c = -20 ]:\n\n$$\nx = \\frac{-(-1) \\pm \\sqrt{(-1)^2 - 4(1)(-20)}}{2(1)} = \\frac{1 \\pm \\sqrt{81}}{2} = \\frac{1 \\pm 9}{2}\n$$\nThis gives [ x = 5 ] or [ x = -4 ]."
+        "markdown": "### Problem\n\nUse the quadratic formula to solve x²-x-20=0.\n\n### Solution\n\nHere a=1, b=-1, and c=-20. Thus $x=(1\\pm\\sqrt{1+80})/2=(1\\pm9)/2$. The solutions are 5 and -4."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Solve Equations Requiring Rearrangement",
         "phaseType": "worked_example",
-        "markdown": "Solve quadratic equations that are not initially given in standard form, including equations with missing terms, decimals, or fractional coefficients.\n\n### Step 1: Rearrange into Standard Form\n\nMove all terms to one side to obtain [ ax^2 + bx + c = 0 ]. For example, [ 5x^2 - 8x = 6 ] becomes [ 5x^2 - 8x - 6 = 0 ].\n\n### Step 2: Identify Coefficients and Solve\n\nIdentify [ a ], [ b ], and [ c ] from the rearranged equation, then substitute into the Quadratic Formula and simplify.\n\n### Step 3: Simplify Special Cases\n\nFor equations with no linear term, such as [ x^2 - 49 = 0 ]:\n\n$$\nx = \\frac{-0 \\pm \\sqrt{0^2 - 4(1)(-49)}}{2(1)} = \\frac{\\pm \\sqrt{196}}{2} = \\pm 7\n$$\nFor equations with no real solutions, such as [ x^2 + 16 = 0 ]:\n\n$$\nx = \\frac{-0 \\pm \\sqrt{0 - 4(1)(16)}}{2(1)} = \\frac{\\pm \\sqrt{-64}}{2} = \\pm 4i\n$$"
+        "markdown": "### Problem\n\nSolve 5x²-8x=6 exactly using the quadratic formula.\n\n### Solution\n\nStandard form is 5x²-8x-6=0. The discriminant is 64+120=184. Therefore $x=(8\\pm\\sqrt{184})/10=(4\\pm\\sqrt{46})/5$. The approximate solutions are 2.16 and -0.56."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Apply Quadratic Equations to Real-World Problems",
         "phaseType": "worked_example",
-        "markdown": "Use the Quadratic Formula to solve application problems from business, physics, architecture, and crafts.\n\n### Step 1: Model the Situation\n\nWrite a quadratic equation that represents the problem. For example, a profit function [ f(x) = x^2 + 2x - 37 ] can be set equal to zero to find break-even points, or set greater than zero to find the minimum number of meals needed for a profit.\n\n### Step 2: Solve and Interpret\n\nApply the Quadratic Formula, then interpret the result in context. Discard solutions that do not make sense for the situation (e.g., negative time or a negative count of items).\n\n### Step 3: Round Appropriately\n\nRound answers to the nearest tenth (or hundredth when specified) and include appropriate units.\n\nRepresentative applications include:\n* Free-fall motion modeled by [ h = -16t^2 + 50 ], where [ h ] is height in feet and [ t ] is time in seconds.\n* The Golden Ratio relationship in architecture: $ \\frac{W + H}{W} = \\frac{W}{H} $, which simplifies to a quadratic in [ W ] when [ H ] is known.\n* Dividing a length into two unequal pieces to form squares with a specified total area."
+        "markdown": "### Problem\n\nA modeled profit is P(n)=n²+2n-37 dollars for nonnegative integer sales quantity n. Find the smallest quantity with positive modeled profit.\n\n### Solution\n\nThe zero-profit roots are $n=-1\\pm\\sqrt{38}$. The positive root is approximately 5.16. For n≥0, profit is positive above that root. The smallest integer is 6. Check P(5)=-2 and P(6)=11. Rounding the root to the nearest integer would give the wrong threshold."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — Use the Discriminant",
         "phaseType": "worked_example",
-        "markdown": "Determine the number of real solutions of a quadratic equation without fully solving it by evaluating the discriminant.\n\n### Step 1: Identify Coefficients\n\nFrom [ ax^2 + bx + c = 0 ], identify [ a ], [ b ], and [ c ].\n\n### Step 2: Calculate the Discriminant\n\nEvaluate [ b^2 - 4ac ].\n\n### Step 3: Determine the Number of Solutions\n\n* If [ b^2 - 4ac > 0 ], the equation has **two distinct real solutions**.\n* If [ b^2 - 4ac = 0 ], the equation has **one real solution** (a repeated root).\n* If [ b^2 - 4ac < 0 ], the equation has **no real solutions** (two complex solutions).\n\nFor example, for [ x^2 - 4x + 10 = 0 ]:\n\n[\nb^2 - 4ac = (-4)^2 - 4(1)(10) = 16 - 40 = -24\n]\n\nSince [ -24 < 0 ], there are no real solutions."
+        "markdown": "### Problem\n\nClassify the real solutions of (a) x²-4x+10=0 and (b) x²-6x+9=0 using discriminants.\n\n### Solution\n\nFor (a), the discriminant is 16-40=-24, so there are no real roots. For (b), it is 36-36=0, so there is one repeated real root, x=3. These statements assume the leading coefficient is nonzero."
       },
       {
         "phaseNumber": 9,
@@ -6143,19 +6143,19 @@
         "phaseNumber": 5,
         "title": "Example 1 — Solve Systems by Graphing",
         "phaseType": "worked_example",
-        "markdown": "Graph each system and identify the solution point(s) where the parabola and line intersect.\n\n### Step 1: Graph the Parabola\n\nUse a table of values or vertex form to sketch the quadratic function. Plot several points to reveal the shape of the parabola.\n\n[\ny = x^2 - 4\n]\n[\ny = -3\n]\n\nThe parabola [y = x^2 - 4] opens upward with vertex at (0, -4).\n\n[\ny = x^2 + x - 2\n]\n[\ny = -x + 1\n]\n\nThe parabola [y = x^2 + x - 2] opens upward, shifted left and down from [y = x^2].\n\n[\ny = 2x^2 + 1\n]\n[\ny = 1\n]\n\nThe parabola [y = 2x^2 + 1] is vertically stretched and shifted up one unit.\n\n[\ny = x^2 + 3x + 1\n]\n[\ny = x + 1\n]\n\nThe parabola [y = x^2 + 3x + 1] opens upward and intersects the line [y = x + 1].\n\n### Step 2: Graph the Line\n\nPlot the linear function using its slope and y-intercept. Extend the line across the coordinate plane.\n\n### Step 3: Identify Intersection Points\n\nRead the coordinates of each point where the line and parabola cross. These coordinates are the solution(s) to the system."
+        "markdown": "### Problem\n\nSolve y=x²-4 and y=-3 by graphing.\n\n### Solution\n\nThe parabola has vertex (0,-4). The horizontal line y=-3 crosses it at (-1,-3) and (1,-3). Both points satisfy x²-4=-3. A system solution must include both coordinates."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Solve Systems Algebraically",
         "phaseType": "worked_example",
-        "markdown": "Solve each system exactly using substitution or elimination. Find both coordinates of each solution.\n\n### Step 1: Substitute the Quadratic Expression into the Linear Equation\n\nFor a system written as [y =] quadratic and [y =] linear, substitute the right-hand side of the quadratic for [y] in the linear equation. This eliminates [y] and leaves an equation in [x].\n\n[\ny = x^2 - 2x - 5\n]\n[\ny = 3\n]\n\nSubstitute [3] for [y] in the first equation:\n[\n3 = x^2 - 2x - 5\n]\n\n[\ny = x^2 + 4x - 1\n]\n[\ny = 3x + 1\n]\n\nSubstitute [3x + 1] for [y]:\n[\n3x + 1 = x^2 + 4x - 1\n]\n\n[\ny = x^2 - 6x + 5\n]\n[\nx + y = -1\n]\n\nRearrange the linear equation: [y = -x - 1]. Substitute into the quadratic:\n[\n-x - 1 = x^2 - 6x + 5\n]\n\n### Step 2: Solve Each Resulting Equation\n\nFirst system: [x^2 - 2x - 8 = 0]. Factor to get [(x - 4)(x + 2) = 0].\nThus [x = 4] or [x = -2]. With [y = 3], the solutions are [(4, 3)] and [(-2, 3)].\n\nSecond system: [x^2 + x - 2 = 0]. Factor to get [(x + 2)(x - 1) = 0].\nThus [x = -2] or [x = 1]. With [y = 3x + 1], the solutions are [(-2, -5)] and [(1, 4)].\n\nThird system: [x^2 - 5x + 6 = 0]. Factor to get [(x - 2)(x - 3) = 0].\nThus [x = 2] or [x = 3]. With [y = -x - 1], the solutions are [(2, -3)] and [(3, -4)].\n\n### Step 3: Check Both Coordinates\n\nSubstitute each pair into both original equations. For example, the second system gives [(-2)^2 + 4(-2) - 1 = -5] and [3(-2) + 1 = -5]."
+        "markdown": "### Problem\n\nSolve y=x²-6x+5 and x+y=-1 algebraically.\n\n### Solution\n\nThe line gives y=-x-1. Substitute: -x-1=x²-6x+5, so x²-5x+6=0. Factor (x-2)(x-3)=0. At x=2, y=-3; at x=3, y=-4. The solutions are (2,-3) and (3,-4), and both satisfy both equations."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Real-World Systems",
         "phaseType": "worked_example",
-        "markdown": "### Gymnastics Problem\n\nA gymnast throws a baton into the air. The height of the baton is modeled by a quadratic function, and the gym ceiling is modeled by a horizontal line.\n\n**a.** Solve the system algebraically to find when and where the baton height equals the ceiling height.\n\nSet the quadratic expression equal to [42] and solve for [x]:\n[\n-16x^2 + 24x + 4 = 42\n]\n[\n-16x^2 + 24x - 38 = 0\n]\n\nDivide by -2 and solve:\n[\n8x^2 - 12x + 19 = 0\n]\n\nApply the quadratic formula. If the discriminant is negative, the baton does not reach the ceiling.\n\n**b.** Explain whether the baton reaches the ceiling, using the number of real solutions found in part a.\n\n### Disc Golf Problem\n\nA disc's height is modeled by a quadratic function and Rodrigo's hand height by a linear function.\n\n**a.** Solve the system algebraically to find when the disc reaches Rodrigo's hand height.\n\n**b.** Substitute the [x]-value(s) into the linear function to find the catch height.\n\n### Zoo Revenue Problem\n\nTwo revenue functions (single-day tickets and season passes) intersect at a specific month.\n\nSolve the system:\n[\ny = -x^2 + 25x + 80\n]\n[\ny = -4x + 200\n]\n\nSet equal and solve:\n[\n-x^2 + 25x + 80 = -4x + 200\n]\n\nThe positive [x]-value that is less than 12 represents a month. Convert [x] months past January to find the actual month."
+        "markdown": "### Problem\n\nA baton height is modeled by h(t)=-16t²+24t+4 feet. The ceiling is 42 ft high. Determine whether the modeled path reaches the ceiling.\n\n### Solution\n\nSet -16t²+24t+4=42, giving 8t²-12t+19=0. Its discriminant is 144-608=-464, so there is no real intersection. The vertex occurs at t=0.75 seconds and height 13 ft, which is also below the ceiling."
       },
       {
         "phaseNumber": 8,
@@ -6205,19 +6205,19 @@
         "phaseNumber": 5,
         "title": "Example 1 — Identify the Model Type from a Table",
         "phaseType": "worked_example",
-        "markdown": "**Problem:** Look for a pattern in the table of values to determine which kind of model best describes the data. Then write an equation for the function that models the data.\n\n| x | 0 | 1 | 2 | 3 | 4 |\n|---|---|---|---|---|---|\n| y | 2 | 6 | 18 | 54 | 162 |\n\n### Step 1: Compute first differences\n\n- y₂ − y₁ = 6 − 2 = 4\n- y₃ − y₂ = 18 − 6 = 12\n- y₄ − y₃ = 54 − 18 = 36\n- y₅ − y₄ = 162 − 54 = 108\n\nFirst differences are **not constant** (4, 12, 36, 108).\n\n### Step 2: Compute second differences\n\n- 12 − 4 = 8\n- 36 − 12 = 24\n- 108 − 36 = 72\n\nSecond differences are **not constant** (8, 24, 72).\n\n### Step 3: Compute ratios\n\n- 6 ÷ 2 = 3\n- 18 ÷ 6 = 3\n- 54 ÷ 18 = 3\n- 162 ÷ 54 = 3\n\nRatios are **constant (3)**. This indicates an **exponential model**.\n\n### Step 4: Write the exponential equation\n\nThe general form is $y = a \\cdot b^x$. From the ratio, b = 3. Using the point (0, 2): $2 = a \\cdot 3^0 = a$, so a = 2.\n\n**Answer:** $y = 2 \\cdot 3^x$\n\n---"
+        "markdown": "### Problem\n\nFor equally spaced inputs x=0,1,2,3,4, the outputs are 2,6,18,54,162. Choose a linear, quadratic, or exponential model and write its equation.\n\n### Solution\n\nEach output is three times the previous one. Constant ratios for unit input steps support the exponential model $y=2\\cdot3^x$. The initial output is 2. This model fits all five points; finite data alone do not prove a unique function outside those inputs."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Model Data with a Quadratic Function",
         "phaseType": "worked_example",
-        "markdown": "**Problem:** The table shows the height of a ball thrown upward at various times.\n\n| t (seconds) | 0 | 1 | 2 | 3 | 4 |\n|---|---|---|---|---|---|\n| h (feet) | 0 | 48 | 64 | 48 | 0 |\n\n### Step 1: Compute first differences\n\n- 48 − 0 = 48\n- 64 − 48 = 16\n- 48 − 64 = −16\n- 0 − 48 = −48\n\nFirst differences are **not constant**.\n\n### Step 2: Compute second differences\n\n- 16 − 48 = −32\n- −16 − 16 = −32\n- −48 − (−16) = −32\n\nSecond differences are **constant (−32)**. This indicates a **quadratic model**.\n\n### Step 3: Write the quadratic equation\n\nThe general form is [h = at^2 + bt + c]. Using the three points:\n- t = 0: h = 0 → c = 0\n- t = 1: h = 48 → a + b = 48\n- t = 2: h = 64 → 4a + 2b = 64\n\nSolving: From a + b = 48, b = 48 − a. Substituting: 4a + 2(48 − a) = 64 → 4a + 96 − 2a = 64 → 2a = −32 → a = −16.\nThen b = 48 − (−16) = 64.\n\n**Answer:** [h = -16t^2 + 64t] (a projectile motion model)\n\n---"
+        "markdown": "### Problem\n\nA ball-height table gives h=0,48,64,48,0 feet at t=0,1,2,3,4 seconds. Find a quadratic model and its relevant domain.\n\n### Solution\n\nThe second differences are -32, so for unit steps the quadratic coefficient is -16. Since h(0)=0, the constant is 0. Using h(1)=48 gives the linear coefficient 64. Thus h(t)=-16t²+64t. It fits every row. The modeled flight domain is [0,4] seconds, with maximum height 64 ft at t=2."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Use Regression to Find the Best Model",
         "phaseType": "worked_example",
-        "markdown": "**Problem:** A drone's height is recorded at various times after launch.\n\n| Time (s) | 0 | 1 | 2 | 3 | 4 | 5 |\n|---|---|---|---|---|---|---|\n| Height (ft) | 0 | 62 | 95 | 108 | 115 | 120 |\n\n**(a)** Make a scatter plot of the data.\n\n**(b)** Which regression equation has an R² value closest to 1?\n\n**(c)** Find an appropriate regression equation and state the coefficient of determination. What are the relevant domain and range?\n\n**(d)** Predict the height of the drone 7 seconds after launch.\n\n### Step 1: Analyze the scatter plot\n\nPlot the points (0, 0), (1, 62), (2, 95), (3, 108), (4, 115), (5, 120). The relationship appears to increase rapidly at first, then level off — suggesting an exponential or logarithmic model.\n\n### Step 2: Fit and Compare Models\n\nUse least squares on the six stated points. The quadratic fit has [R^2 ≈ 0.983240]. A standard log-linear exponential fit cannot include the zero height at [t = 0]. Do not remove that observation without explaining the change to the data.\n\n### Step 3: Write the Quadratic Fit\n\n[h = -(389/56)t^2 + (15901/280)t + 141/28]\nApproximately, [h = -6.94643t^2 + 56.78929t + 5.03571].\nThe observed domain is [0 ≤ t ≤ 5]. The observed heights range from 0 to 120 feet. The fitted curve is an estimate and need not pass through every observation.\n\n### Step 4: Estimate at t = 7\n\n[h(7) ≈ 62.1857] feet.\nThis is an extrapolation beyond the observations. More data are needed to confirm the drone's actual height at 7 seconds."
+        "markdown": "### Problem\n\nA drone-height table has points (0,0), (1,62), (2,95), (3,108), (4,115), and (5,120), with time in seconds and height in feet. Compare least-squares linear and quadratic fits by R². Evaluate the quadratic at t=7 and state the limitation.\n\n### Solution\n\nThe linear fit is approximately $h=22.05714t+28.19048$, with $R^2\\approx0.81153$. The quadratic fit is $h=-(389/56)t^2+(15901/280)t+141/28$, with $R^2\\approx0.98324$. The quadratic fits these six points more closely under this measure. It does not establish the correct physical model. Its value at t=7 is approximately 62.19 ft. That is extrapolation beyond the observed time interval [0,5]. The observed height range is [0,120] ft. A standard log-linear exponential fit cannot include the zero height without changing the method or data."
       },
       {
         "phaseNumber": 8,
@@ -6267,13 +6267,13 @@
         "phaseNumber": 5,
         "title": "Example 1 — Add and Subtract Functions",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Identify the Functions\n\nGiven [f(x) = x - 9], [g(x) = 3x² - 2x + 5], and [h(x) = -6x].\n\n### Step 2: Compute (f + g)(x)\n\n[\n(f + g)(x) = (x - 9) + (3x² - 2x + 5)\n]\n[\n= 3x² + (x - 2x) + (-9 + 5)\n]\n[\n= 3x² - x - 4\n]\n\n### Step 3: Compute (g - h)(x)\n\n[\n(g - h)(x) = (3x² - 2x + 5) - (-6x)\n]\n[\n= 3x² - 2x + 5 + 6x\n]\n[\n= 3x² + 4x + 5\n]\n\n### Step 4: Interpret in Context\n\n(f + g)(x) combines the outputs of f and g at the same input. (g - h)(x) subtracts h's output from g's output."
+        "markdown": "### Problem\n\nLet f(x)=x-9, g(x)=3x²-2x+5, and h(x)=-6x, all on the real numbers. Find f+g and g-h.\n\n### Solution\n\nAdd like terms to obtain (f+g)(x)=3x²-x-4. Subtracting h means adding 6x, so (g-h)(x)=3x²+4x+5. Both combined domains are all real numbers."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Compose Functions",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Identify the Inner Function\n\nGiven [f(x) = 11x] and [g(x) = x² - 6x + 3]. For (f ∘ g)(x), g(x) is the inner function.\n\n### Step 2: Substitute g(x) into f(x)\n\n[\n(f ∘ g)(x) = f(g(x)) = 11 · (x² - 6x + 3)\n]\n\n### Step 3: Simplify\n\n[\n= 11x² - 66x + 33\n]\n\n### Step 4: Find (g ∘ f)(x) for Comparison\n\n[\n(g ∘ f)(x) = g(f(x)) = (11x)² - 6(11x) + 3 = 121x² - 66x + 3\n]\n\nComposition is not commutative: [(f ∘ g)(x) ≠ (g ∘ f)(x)] in general."
+        "markdown": "### Problem\n\nLet f(x)=11x and g(x)=x²-6x+3. Find f(g(x)) and g(f(x)).\n\n### Solution\n\nSubstituting g into f gives f(g(x))=11x²-66x+33. Substituting f into g gives g(f(x))=121x²-66x+3. Both domains are all real numbers. The two results differ, so composition is not commutative in general."
       },
       {
         "phaseNumber": 7,

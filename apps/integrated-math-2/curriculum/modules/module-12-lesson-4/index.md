@@ -42,119 +42,73 @@ If [(x - r1)(x - r2) = 0], then [x - r1 = 0] or [x - r2 = 0], giving [x = r1] or
 
 ## Example 1 — Solve Equations with Squares and Simple Factors
 
-### Step 1: Isolate One Side
+### Problem
 
-For [x^2 = 36], rewrite as [x^2 - 36 = 0].
+Solve x²=36 by factoring.
 
-### Step 2: Factor
+### Solution
 
-Recognize [x^2 - 36] as a difference of squares: [(x + 6)(x - 6) = 0].
-
-### Step 3: Apply Zero Product Property
-
-[x + 6 = 0] gives [x = -6]; [x - 6 = 0] gives [x = 6].
-
-### Step 4: Check Solutions
-
-Substitute back into the original equation.
-
-Problems 1-14: Solve each equation. Check your solutions.
+Rewrite as x²-36=0 and factor to (x-6)(x+6)=0. The zero-product property gives x=6 or x=-6. Both square to 36.
 
 ## Example 2 — Solve Equations with Trinomials
 
-### Step 1: Write in Standard Form
+### Problem
 
-For [x^2 - 6x = 27], rewrite as [x^2 - 6x - 27 = 0].
+Solve x²-6x=27 by factoring.
 
-### Step 2: Factor the Trinomial
+### Solution
 
-Find two numbers that multiply to the constant term and add to the coefficient of x.
-
-### Step 3: Apply Zero Product Property
-
-Set each factor equal to zero and solve.
-
-Problems 15-18: Solve each equation by factoring.
+Move 27 to the left: x²-6x-27=0. Factor as (x-9)(x+3)=0. The solutions are x=9 and x=-3. Each satisfies the original equation.
 
 ## Example 3 — Solve Equations with Divided Terms
 
-For [81 - (1/25)x^2 = 0], rearrange to [(9 - (1/5)x)(9 + (1/5)x) = 0] and solve.
+### Problem
 
-For [3b(9b - 27) = 0], factor out the common factor first, then apply the Zero Product Property.
+Solve 81-x²/25=0.
 
-Problems 19-24: Solve each equation. Check your solutions.
+### Solution
+
+Factor as (9-x/5)(9+x/5)=0. This gives x=45 or x=-45. In either case x²/25=81.
 
 ## Example 4 — Use Roots to Sketch the Related Function
 
-### Step 1: Solve by Factoring
+### Problem
 
-Find the roots of the quadratic equation.
+Solve x²-6x-27=0 and use the roots to sketch y=x²-6x-27.
 
-### Step 2: Identify Key Features
+### Solution
 
-The roots are the x-intercepts. The axis of symmetry is halfway between the roots. The vertex lies on the axis of symmetry.
-
-### Step 3: Sketch the Parabola
-
-Plot the x-intercepts, find the vertex, and draw a smooth curve through the points.
-
-Problems 25-26: Consider each equation. Solve by factoring, then use the roots to sketch the related function.
+The factorization is (x-9)(x+3), so the roots are 9 and -3. The axis lies halfway between them at x=3. The vertex is (3,-36). The vertical intercept is (0,-27), and the parabola opens upward.
 
 ## Example 5 — Real-World Problems
 
-### Number Theory Problem
+### Problem
 
-Let the consecutive integers be n and n+1. The product [n(n+1)] equals the sum [n + (n+1)] plus 11. Write and solve the equation.
+Two consecutive integers have a product equal to their sum plus 11. Find both possible pairs.
 
-### Ladder Problem
+### Solution
 
-Let the distance from the wall be x. The length of the ladder is [2x + 1] (one foot more than twice the distance). Use the Pythagorean Theorem: [x^2 + 15^2 = (2x + 1)^2]. Solve for x.
-
-### Free Fall Problem
-
-Set [f(t) = -16t^2 + 576 = 0] and solve for t. The positive solution is when the ballast bag hits the ground.
-
-### Volume Problem
-
-Given [V = 3x^2 - 36x + 108], factor to find when the volume equals a given value, or find the dimensions when the original cardboard length is known.
-
-Problems 27-30: Solve each real-world problem.
+Write n(n+1)=n+(n+1)+11. Simplify to n²-n-12=0, or (n-4)(n+3)=0. Thus n=4 or n=-3. The pairs are (4,5) and (-3,-2). Both satisfy the stated product relation.
 
 ## Example 6 — Write a Quadratic Function from a Graph
 
-### Step 1: Identify the X-Intercepts
+### Problem
 
-Read the x-intercepts from the graph. If the vertex is on the x-axis, the quadratic has a repeated root.
+A parabola has horizontal intercepts -1 and 3 and passes through (0,-6). Find its equation.
 
-### Step 2: Write Factored Form
+### Solution
 
-If the x-intercepts are r1 and r2, write [f(x) = a(x - r1)(x - r2)].
-
-### Step 3: Find a
-
-Substitute another point from the graph to solve for a.
-
-### Step 4: Write the Equation
-
-Substitute the value of a back into the factored form.
-
-Problems 31-34: Write a quadratic function for each given graph.
+Write y=a(x+1)(x-3). Substituting (0,-6) gives -6=-3a, so a=2. The equation is y=2(x+1)(x-3), or y=2x²-4x-6.
 
 ## Example 7 — Write a Quadratic Function Given Three Points
 
-### Step 1: Set Up a System
+### Problem
 
-Substitute each point (x, y) into [f(x) = ax^2 + bx + c] to get three equations.
+Find a quadratic through (0,1), (1,4), and (2,9).
 
-### Step 2: Solve the System
+### Solution
 
-Solve for a, b, and c.
-
-### Step 3: Write the Function
-
-Substitute the values into [f(x) = ax^2 + bx + c].
-
-Problems 35-38: Write a quadratic function that contains the given points.
+Let y=ax²+bx+c. The first point gives c=1. The next gives a+b=3. The third gives 4a+2b=8. Subtract twice the second reduced equation to get 2a=2. Thus a=1 and b=2. The function is y=x²+2x+1, which fits all three points.
 
 ## Mixed Exercises
 

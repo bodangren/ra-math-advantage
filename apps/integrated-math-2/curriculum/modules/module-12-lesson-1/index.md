@@ -44,81 +44,43 @@ To graph a quadratic function:
 
 ## Example 1 — Identify Key Features from a Graph
 
-### Step 1: Identify the Axis of Symmetry
+### Problem
 
-For each graph, find the vertical line that divides the parabola in half. The axis of symmetry passes through the vertex and is equidistant from matching points on either side.
+An upward-opening parabola has vertex (2,-1) and passes through (0,3) and (4,3). Identify its axis of symmetry, vertical intercept, minimum, and end behavior.
 
-### Step 2: Identify the Vertex
+### Solution
 
-Read the coordinates of the vertex from the graph. If the parabola opens downward, the vertex is the maximum point. If it opens upward, the vertex is the minimum point.
-
-### Step 3: Identify the Y-Intercept
-
-Find where the graph crosses the y-axis (where x = 0).
-
-### Step 4: Describe End Behavior
-
-State what happens to y as x becomes very large positive and as x becomes very large negative.
-
-Problems 1-4: Identify the axis of symmetry, the vertex, and the y-intercept of each graph. Then describe the end behavior.
+The axis is x=2. The vertical intercept is (0,3). The minimum value is -1 at x=2. Both ends rise as x increases or decreases without bound. The equal-height points at x=0 and x=4 lie equally far from the axis.
 
 ## Example 2 — Graph Quadratic Functions Using Key Features
 
-### Step 1: Find the Axis of Symmetry
+### Problem
 
-For [y = -3x^2 + 6x - 4], the axis of symmetry is [x = -b/(2a) = -6/(2(-3)) = 1].
+Graph y=-3x²+6x-4 using its key features.
 
-### Step 2: Find the Vertex
+### Solution
 
-Substitute x = 1 into the function: [y = -3(1)^2 + 6(1) - 4 = -1]. The vertex is (1, -1).
-
-### Step 3: Find the Y-Intercept
-
-Evaluate at x = 0: [y = -4], so the y-intercept is (0, -4).
-
-### Step 4: Plot Points and Draw the Parabola
-
-Use the axis of symmetry to find symmetric points on the other side of the axis. Draw the curve through these points.
-
-Problems 5-10: Graph each function. Find the axis of symmetry, vertex, and y-intercept first.
+The axis is x=-6/(2(-3))=1. Substitution gives vertex (1,-1). The vertical intercept is (0,-4), with reflected point (2,-4). The parabola opens downward. Its maximum is -1, so it has no horizontal intercepts.
 
 ## Example 3 — Graph with a Table of Values
 
-When the coefficients are not friendly for completing the square, use a table of values to plot points. Choose x-values that are symmetric about the axis of symmetry for an accurate parabola shape.
+### Problem
 
-### Step 1: Build a Table
+Build a table for y=x²+6x-6 using x=-5,-4,-3,-2,-1. State the unrestricted domain and range.
 
-For [y = x^2 + 6x - 6], find the axis of symmetry [x = -3]. Create a table with x-values around -3.
+### Solution
 
-### Step 2: Compute Y-Values
-
-Calculate y for each x-value. Plot the points.
-
-### Step 3: State Domain and Range
-
-The domain of any quadratic function is all real numbers. The range is [[vertex_y), ∞)) for upward-opening parabolas or [(-∞, vertex_y]] for downward-opening ones.
-
-Problems 11-16: Use a table of values to graph each function. State the domain and range.
+The respective y-values are -11,-14,-15,-14,-11. The vertex is (-3,-15), and the parabola opens upward. The domain is all real numbers and the range is [-15,infinity). Plot the five points and reflect about x=-3.
 
 ## Example 4 — Real-World Quadratic Models
 
-### Step 1: Identify the Variables
+### Problem
 
-In the Olympics pole vault problem, x represents the Olympiad number and y represents the winning height in meters.
+A modeled ball height is h(t)=-16t²+32t+48 feet for time t≥0 until landing. Find its initial height, maximum height, and landing time.
 
-### Step 2: Complete the Table
+### Solution
 
-Substitute x-values into [y = 0.37x^2 + 4.3x + 126] and compute y.
-
-### Step 3: Graph the Function
-
-Plot the points from the table and connect them with a smooth curve.
-
-### Step 4: Interpret Key Features
-
-The vertex represents the maximum or minimum winning height. The y-intercept represents the winning height at the first Olympiad. Zeros would represent times when the height was zero, though in context they often fall outside the reasonable domain.
-
-Problems 17-20: For each real-world scenario, graph the function and interpret the key features in terms of the quantities described.
+Complete the square: h(t)=-16(t-1)²+64. The initial height h(0) is 48 ft. The maximum is 64 ft at 1 second. The equation h(t)=0 gives t=-1 or t=3. Only t=3 is in the physical time domain, so the modeled flight lasts 3 seconds.
 
 ## Mixed Exercises
 

@@ -42,45 +42,33 @@ In real-world problems, a zero of the function often has a physical meaning. For
 
 ## Example 1 — Identify a Quadratic with No Real Solutions
 
-### Step 1: Graph the Function
+### Problem
 
-For [x^2 + 7x + 14 = 0], graph [y = x^2 + 7x + 14]. The discriminant is [7^2 - 4(1)(14) = -7]. The graph has no x-intercepts, so the equation has no real solutions.
+Determine whether x²+7x+14=0 has real solutions by examining its graph.
 
-### Step 2: Find the X-Intercepts
+### Solution
 
-Look for points where the graph crosses the x-axis. Read the x-values at those points.
-
-### Step 3: Write the Solutions
-
-The x-coordinate(s) of the x-intercept(s) are the solution(s).
-
-Problems 1-12: Solve each equation by graphing.
+Complete the square: y=(x+3.5)²+1.75. The parabola opens upward with minimum 1.75. It never reaches y=0, so there are no real solutions. A graph window must include the vertex to show the relevant minimum.
 
 ## Example 2 — Solve Quadratics with Non-Integer Solutions
 
-When the x-intercepts are not at integer values, use the graph to estimate. For [x^2 - 5x + 12 = 0], if the graph does not cross the x-axis, there are no real solutions.
+### Problem
 
-Problems 4-6: Solve each equation by graphing. Note which have no real solutions.
+Use a graph to estimate the real solutions of x²-2=0 to the nearest hundredth.
+
+### Solution
+
+The parabola y=x²-2 meets the horizontal axis near -1.41 and 1.41. The exact solutions are $x=\pm\sqrt{2}$. These values verify the estimates. Unlike a quadratic with negative discriminant, this example has two real non-integer roots.
 
 ## Example 3 — Real-World Projectile Motion
 
-### Step 1: Identify the Function
+### Problem
 
-For the soccer ball kicked off a platform: [y = -x^2 + 3x + 12].
+A model gives a ball height h(t)=-16t²+32t+48 feet. Use a graph to find when it first reaches the ground after t=0.
 
-### Step 2: Graph the Function
+### Solution
 
-Plot the parabola with the given equation.
-
-### Step 3: Find the X-Intercepts
-
-The x-intercepts represent when the ball is at ground level (height = 0).
-
-### Step 4: Interpret the Solutions
-
-The time the ball is in the air is the positive x-intercept (or the difference between the two intercepts if both are positive). The y-intercept represents the initial height at the moment of the kick.
-
-Problems 13-14: For each real-world scenario, determine approximately how long the object is in the air.
+The graph has horizontal intercepts at t=-1 and t=3. Time starts at 0, so the physical landing time is 3 seconds. The negative root is outside the model domain. The flight duration is not the distance between both intercepts when launch occurs at t=0 above the ground.
 
 ## Mixed Exercises
 

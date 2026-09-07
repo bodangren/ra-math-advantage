@@ -66,63 +66,23 @@ Walking speed example: If Jan's walking speed is [f(t) = 4t + 3] and a walkway s
 
 ## Example 1 — Add and Subtract Functions
 
-### Step 1: Identify the Functions
+### Problem
 
-Given [f(x) = x - 9], [g(x) = 3x² - 2x + 5], and [h(x) = -6x].
+Let f(x)=x-9, g(x)=3x²-2x+5, and h(x)=-6x, all on the real numbers. Find f+g and g-h.
 
-### Step 2: Compute (f + g)(x)
+### Solution
 
-[
-(f + g)(x) = (x - 9) + (3x² - 2x + 5)
-]
-[
-= 3x² + (x - 2x) + (-9 + 5)
-]
-[
-= 3x² - x - 4
-]
-
-### Step 3: Compute (g - h)(x)
-
-[
-(g - h)(x) = (3x² - 2x + 5) - (-6x)
-]
-[
-= 3x² - 2x + 5 + 6x
-]
-[
-= 3x² + 4x + 5
-]
-
-### Step 4: Interpret in Context
-
-(f + g)(x) combines the outputs of f and g at the same input. (g - h)(x) subtracts h's output from g's output.
+Add like terms to obtain (f+g)(x)=3x²-x-4. Subtracting h means adding 6x, so (g-h)(x)=3x²+4x+5. Both combined domains are all real numbers.
 
 ## Example 2 — Compose Functions
 
-### Step 1: Identify the Inner Function
+### Problem
 
-Given [f(x) = 11x] and [g(x) = x² - 6x + 3]. For (f ∘ g)(x), g(x) is the inner function.
+Let f(x)=11x and g(x)=x²-6x+3. Find f(g(x)) and g(f(x)).
 
-### Step 2: Substitute g(x) into f(x)
+### Solution
 
-[
-(f ∘ g)(x) = f(g(x)) = 11 · (x² - 6x + 3)
-]
-
-### Step 3: Simplify
-
-[
-= 11x² - 66x + 33
-]
-
-### Step 4: Find (g ∘ f)(x) for Comparison
-
-[
-(g ∘ f)(x) = g(f(x)) = (11x)² - 6(11x) + 3 = 121x² - 66x + 3
-]
-
-Composition is not commutative: [(f ∘ g)(x) ≠ (g ∘ f)(x)] in general.
+Substituting g into f gives f(g(x))=11x²-66x+33. Substituting f into g gives g(f(x))=121x²-66x+3. Both domains are all real numbers. The two results differ, so composition is not commutative in general.
 
 ## Mixed Exercises
 
