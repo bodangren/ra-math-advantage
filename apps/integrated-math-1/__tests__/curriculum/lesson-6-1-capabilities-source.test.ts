@@ -10,6 +10,22 @@ import gapQueue from '../../curriculum/skill-graph/generator-gap-queue.json';
 
 const source = readFileSync(resolve(import.meta.dirname, '../../curriculum/modules/module-6-lesson-1'), 'utf8');
 const multiplicationSources = ['math.im1.example.6.1.source-008', 'math.im1.example.6.1.source-009', 'math.im1.example.6.1.source-010'];
+const lesson62Reuses = new Set([
+  'math.im1.skill.6.1.write-inequalities-from-contextual-statements',
+  'math.im1.skill.6.1.solve-contextual-inequalities',
+  'math.im1.skill.6.1.interpret-inequality-solutions-in-context',
+  'math.im1.skill.6.1.graph-solved-one-step-inequalities-on-number-lines',
+  'math.im1.skill.6.1.translate-comparative-statements-into-symbolic-inequalities',
+  'math.im1.skill.6.1.check-whether-values-satisfy-inequalities',
+  'math.im1.skill.6.1.solve-literal-inequalities-with-unknown-coefficient-signs',
+]);
+const lesson62BlueprintSources = new Map([
+  ['math.im1.skill.6.1.write-inequalities-from-contextual-statements', ['math.im1.example.6.2.008']],
+  ['math.im1.skill.6.1.solve-contextual-inequalities', ['math.im1.example.6.2.008']],
+  ['math.im1.skill.6.1.interpret-inequality-solutions-in-context', ['math.im1.example.6.2.008']],
+  ['math.im1.skill.6.1.graph-solved-one-step-inequalities-on-number-lines', ['math.im1.example.6.2.009', 'math.im1.example.6.2.010']],
+  ['math.im1.skill.6.1.translate-comparative-statements-into-symbolic-inequalities', ['math.im1.example.6.2.009']],
+]);
 const definitions = [
   ['graph-symbolic-inequalities-on-number-lines', 'Graph symbolic inequalities on number lines', ['math.im1.example.6.1.001']],
   ['write-inequalities-from-number-line-graphs', 'Write inequalities from number-line graphs', ['math.im1.example.6.1.002']],
@@ -57,8 +73,15 @@ describe('Lesson 6-1 source capabilities', () => {
       const copies = [canonical, draft, graph, standards].map((document) => document.nodes.find((node) => node.id === id));
       expect(copies.every((node) => node?.title === title && node.reviewStatus === 'draft' && node.independentPracticeReady === false)).toBe(true);
       expect(copies.slice(1)).toEqual([copies[0], copies[0], copies[0]]);
-      expect(catalog.blueprints.find((row) => row.nodeId === id)).toEqual({ nodeId: id, sourceNodeIds, alignmentNodeIds: [], reviewStatus: 'draft', metadata: { course: 'im1', module: '6', lesson: '1' } });
-      expect(graph.edges.filter((edge) => edge.sourceId === id || edge.targetId === id)).toEqual([expect.objectContaining({ type: 'contains', sourceId: 'math.im1.lesson.6.1', targetId: id, reviewStatus: 'draft' })]);
+      expect(catalog.blueprints.find((row) => row.nodeId === id)).toEqual({ nodeId: id, sourceNodeIds: [...sourceNodeIds, ...(lesson62BlueprintSources.get(id) ?? [])], alignmentNodeIds: [], reviewStatus: 'draft', metadata: { course: 'im1', module: '6', lesson: '1' } });
+      const incident = graph.edges.filter((edge) => edge.sourceId === id || edge.targetId === id);
+      expect(incident).toContainEqual(expect.objectContaining({ type: 'contains', sourceId: 'math.im1.lesson.6.1', targetId: id, reviewStatus: 'draft' }));
+      if (lesson62Reuses.has(id)) {
+        expect(incident).toContainEqual(expect.objectContaining({ type: 'contains', sourceId: 'math.im1.lesson.6.2', targetId: id, reviewStatus: 'draft' }));
+        expect(incident).toHaveLength(2);
+      } else {
+        expect(incident).toHaveLength(1);
+      }
     }
   });
 

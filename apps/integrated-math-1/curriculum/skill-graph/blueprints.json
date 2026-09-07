@@ -6309,7 +6309,8 @@
       "nodeId": "math.im1.skill.6.1.write-inequalities-from-contextual-statements",
       "sourceNodeIds": [
         "math.im1.example.6.1.006",
-        "math.im1.example.6.1.007"
+        "math.im1.example.6.1.007",
+        "math.im1.example.6.2.008"
       ],
       "alignmentNodeIds": [],
       "reviewStatus": "draft",
@@ -6323,7 +6324,8 @@
       "nodeId": "math.im1.skill.6.1.solve-contextual-inequalities",
       "sourceNodeIds": [
         "math.im1.example.6.1.006",
-        "math.im1.example.6.1.007"
+        "math.im1.example.6.1.007",
+        "math.im1.example.6.2.008"
       ],
       "alignmentNodeIds": [],
       "reviewStatus": "draft",
@@ -6337,7 +6339,8 @@
       "nodeId": "math.im1.skill.6.1.interpret-inequality-solutions-in-context",
       "sourceNodeIds": [
         "math.im1.example.6.1.006",
-        "math.im1.example.6.1.007"
+        "math.im1.example.6.1.007",
+        "math.im1.example.6.2.008"
       ],
       "alignmentNodeIds": [],
       "reviewStatus": "draft",
@@ -6382,7 +6385,9 @@
       "sourceNodeIds": [
         "math.im1.example.6.1.source-008",
         "math.im1.example.6.1.source-009",
-        "math.im1.example.6.1.source-010"
+        "math.im1.example.6.1.source-010",
+        "math.im1.example.6.2.009",
+        "math.im1.example.6.2.010"
       ],
       "alignmentNodeIds": [],
       "reviewStatus": "draft",
@@ -6394,7 +6399,9 @@
     },
     {
       "nodeId": "math.im1.skill.6.1.translate-comparative-statements-into-symbolic-inequalities",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im1.example.6.2.009"
+      ],
       "alignmentNodeIds": [],
       "reviewStatus": "draft",
       "metadata": {
@@ -6445,6 +6452,93 @@
         "course": "im1",
         "module": "6",
         "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.2.solve-multi-step-linear-inequalities-by-simplifying-and-collecting-terms",
+      "sourceNodeIds": [
+        "math.im1.example.6.2.008",
+        "math.im1.example.6.2.009",
+        "math.im1.example.6.2.010"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.2.apply-the-distributive-property-in-linear-inequalities",
+      "sourceNodeIds": [
+        "math.im1.example.6.2.010"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.2.classify-no-solution-and-all-real-number-inequalities",
+      "sourceNodeIds": [
+        "math.im1.example.6.2.010"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.2.generalize-contextual-inequality-models-with-parameterized-unit-intervals",
+      "sourceNodeIds": [
+        "math.im1.example.6.2.008"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.2.construct-multi-step-inequalities-with-specified-solution-sets",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.2.explain-and-justify-multi-step-inequality-transformations",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.2.analyze-dependent-geometric-constraints-with-linear-inequalities",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "2"
       }
     }
   ]

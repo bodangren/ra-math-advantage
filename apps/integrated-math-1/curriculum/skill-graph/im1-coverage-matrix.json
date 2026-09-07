@@ -1,10 +1,10 @@
 {
   "version": 1,
   "course": "im1",
-  "totalSkills": 285,
+  "totalSkills": 292,
   "counts": {
     "served": 6,
-    "gap": 279,
+    "gap": 286,
     "newComponent": 0
   },
   "byModule": [
@@ -45,9 +45,9 @@
     },
     {
       "module": "6",
-      "totalSkills": 21,
+      "totalSkills": 28,
       "served": 0,
-      "gap": 21,
+      "gap": 28,
       "newComponent": 0
     },
     {
@@ -1562,6 +1562,62 @@
       "status": "gap",
       "tier": "none",
       "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.2.analyze-dependent-geometric-constraints-with-linear-inequalities",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.2.apply-the-distributive-property-in-linear-inequalities",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.2.classify-no-solution-and-all-real-number-inequalities",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.2.construct-multi-step-inequalities-with-specified-solution-sets",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.2.explain-and-justify-multi-step-inequality-transformations",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.2.generalize-contextual-inequality-models-with-parameterized-unit-intervals",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.2.solve-multi-step-linear-inequalities-by-simplifying-and-collecting-terms",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
       "priority": "standard"
     },
     {

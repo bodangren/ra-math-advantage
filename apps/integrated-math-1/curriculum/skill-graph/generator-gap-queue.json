@@ -2510,10 +2510,73 @@
       "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
       "gap": "No generator binding or complete three-mode blueprint",
       "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.2.solve-multi-step-linear-inequalities-by-simplifying-and-collecting-terms",
+      "title": "Solve multi-step linear inequalities by simplifying and collecting terms",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.2.apply-the-distributive-property-in-linear-inequalities",
+      "title": "Apply the Distributive Property in linear inequalities, including a negative factor",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.2.classify-no-solution-and-all-real-number-inequalities",
+      "title": "Classify inequalities as no solution or all real numbers after variable terms cancel",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.2.generalize-contextual-inequality-models-with-parameterized-unit-intervals",
+      "title": "Generalize contextual inequality models with parameterized unit intervals",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.2.construct-multi-step-inequalities-with-specified-solution-sets",
+      "title": "Construct multi-step inequalities with specified solution sets and algebraic properties",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.2.explain-and-justify-multi-step-inequality-transformations",
+      "title": "Explain and justify transformations in multi-step inequality solutions",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.2.analyze-dependent-geometric-constraints-with-linear-inequalities",
+      "title": "Analyze dependent geometric constraints with linear inequalities",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
     }
   ],
   "meta": {
-    "totalSkills": 279,
+    "totalSkills": 286,
     "allNeedGenerators": true
   }
 }

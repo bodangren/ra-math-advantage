@@ -5610,10 +5610,11 @@
     {
       "id": "math.im1.example.6.2.008",
       "kind": "worked_example",
-      "title": "Example 1: Write and Solve Real-World Inequalities; Translate Verbal Sentences into Inequalities; Solve and Graph Multi-Step Inequalities",
+      "title": "Example 1: Write and Solve Contextual Inequalities",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-6-class-period-plan.md (6-2, Example 1)"
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-2 (Example 1 heading)",
+        "apps/integrated-math-1/curriculum/module-6-class-period-plan.md (6-2 schedule)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -5622,16 +5623,17 @@
         "lesson": "2",
         "exampleNumber": 1,
         "sourceLesson": "6-2",
-        "rawText": "6-2, Examples 1-3 \u2014 Write and Solve Real-World Inequalities; Translate Verbal Sentences into Inequalities; Solve and Graph Multi-Step Inequalities"
+        "rawText": "Example 1 \u2014 Write and Solve Contextual Inequalities"
       }
     },
     {
       "id": "math.im1.example.6.2.009",
       "kind": "worked_example",
-      "title": "Example 2: Write and Solve Real-World Inequalities; Translate Verbal Sentences into Inequalities; Solve and Graph Multi-Step Inequalities",
+      "title": "Example 2: Translate, Solve, and Graph Verbal Inequalities",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-6-class-period-plan.md (6-2, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-2 (Example 2 heading)",
+        "apps/integrated-math-1/curriculum/module-6-class-period-plan.md (6-2 schedule)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -5640,16 +5642,17 @@
         "lesson": "2",
         "exampleNumber": 2,
         "sourceLesson": "6-2",
-        "rawText": "6-2, Examples 1-3 \u2014 Write and Solve Real-World Inequalities; Translate Verbal Sentences into Inequalities; Solve and Graph Multi-Step Inequalities"
+        "rawText": "Example 2 \u2014 Translate, Solve, and Graph Verbal Inequalities"
       }
     },
     {
       "id": "math.im1.example.6.2.010",
       "kind": "worked_example",
-      "title": "Example 3: Write and Solve Real-World Inequalities; Translate Verbal Sentences into Inequalities; Solve and Graph Multi-Step Inequalities",
+      "title": "Example 3: Solve and Graph Multi-Step Inequalities",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-6-class-period-plan.md (6-2, Example 3)"
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-2 (Example 3 heading)",
+        "apps/integrated-math-1/curriculum/module-6-class-period-plan.md (6-2 schedule)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -5658,16 +5661,17 @@
         "lesson": "2",
         "exampleNumber": 3,
         "sourceLesson": "6-2",
-        "rawText": "6-2, Examples 1-3 \u2014 Write and Solve Real-World Inequalities; Translate Verbal Sentences into Inequalities; Solve and Graph Multi-Step Inequalities"
+        "rawText": "Example 3 \u2014 Solve and Graph Multi-Step Inequalities"
       }
     },
     {
       "id": "math.im1.example.6.2.011",
       "kind": "worked_example",
-      "title": "Example 2: Translate Verbal Sentences (continued); Solve and Graph Multi-Step Inequalities (continued)",
+      "title": "Example 2: Translate, Solve, and Graph Verbal Inequalities (schedule repeat)",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-6-class-period-plan.md (6-2, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-2 (Example 2 heading)",
+        "apps/integrated-math-1/curriculum/module-6-class-period-plan.md (6-2 schedule)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -5676,16 +5680,17 @@
         "lesson": "2",
         "exampleNumber": 2,
         "sourceLesson": "6-2",
-        "rawText": "6-2, Examples 2-3 \u2014 Translate Verbal Sentences (continued); Solve and Graph Multi-Step Inequalities (continued)"
+        "rawText": "Example 2 \u2014 Translate, Solve, and Graph Verbal Inequalities (schedule repeat)"
       }
     },
     {
       "id": "math.im1.example.6.2.012",
       "kind": "worked_example",
-      "title": "Example 3: Translate Verbal Sentences (continued); Solve and Graph Multi-Step Inequalities (continued)",
+      "title": "Example 3: Solve and Graph Multi-Step Inequalities (schedule repeat)",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-6-class-period-plan.md (6-2, Example 3)"
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-2 (Example 3 heading)",
+        "apps/integrated-math-1/curriculum/module-6-class-period-plan.md (6-2 schedule)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -5694,7 +5699,7 @@
         "lesson": "2",
         "exampleNumber": 3,
         "sourceLesson": "6-2",
-        "rawText": "6-2, Examples 2-3 \u2014 Translate Verbal Sentences (continued); Solve and Graph Multi-Step Inequalities (continued)"
+        "rawText": "Example 3 \u2014 Solve and Graph Multi-Step Inequalities (schedule repeat)"
       }
     },
     {
@@ -15419,6 +15424,125 @@
         "course": "im1",
         "module": "6",
         "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.2.solve-multi-step-linear-inequalities-by-simplifying-and-collecting-terms",
+      "kind": "skill",
+      "title": "Solve multi-step linear inequalities by simplifying and collecting terms",
+      "domain": "math.im1",
+      "description": "Solve multi-step linear inequalities by simplifying and collecting terms",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-2"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.2.apply-the-distributive-property-in-linear-inequalities",
+      "kind": "skill",
+      "title": "Apply the Distributive Property in linear inequalities, including a negative factor",
+      "domain": "math.im1",
+      "description": "Apply the Distributive Property in linear inequalities, including a negative factor",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-2"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.2.classify-no-solution-and-all-real-number-inequalities",
+      "kind": "skill",
+      "title": "Classify inequalities as no solution or all real numbers after variable terms cancel",
+      "domain": "math.im1",
+      "description": "Classify inequalities as no solution or all real numbers after variable terms cancel",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-2"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.2.generalize-contextual-inequality-models-with-parameterized-unit-intervals",
+      "kind": "skill",
+      "title": "Generalize contextual inequality models with parameterized unit intervals",
+      "domain": "math.im1",
+      "description": "Generalize contextual inequality models with parameterized unit intervals",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-2"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.2.construct-multi-step-inequalities-with-specified-solution-sets",
+      "kind": "skill",
+      "title": "Construct multi-step inequalities with specified solution sets and algebraic properties",
+      "domain": "math.im1",
+      "description": "Construct multi-step inequalities with specified solution sets and algebraic properties",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-2"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.2.explain-and-justify-multi-step-inequality-transformations",
+      "kind": "skill",
+      "title": "Explain and justify transformations in multi-step inequality solutions",
+      "domain": "math.im1",
+      "description": "Explain and justify transformations in multi-step inequality solutions",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-2"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.2.analyze-dependent-geometric-constraints-with-linear-inequalities",
+      "kind": "skill",
+      "title": "Analyze dependent geometric constraints with linear inequalities",
+      "domain": "math.im1",
+      "description": "Analyze dependent geometric constraints with linear inequalities",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-2"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "2"
       }
     }
   ],
