@@ -55,3 +55,5 @@ Saved student-phase cleanup: `c30fe687`. All gates and local seed replay passed.
 Saved vocabulary correction: `b3384565`. All gates passed. Remaining graph practice, scope limits, standards alignment, and dependency work remain open.
 
 Saved active class-owner correction: `aedbe79b`. All gates passed with 215 tests. Local published-lesson access and preserved progress passed.
+
+Saved additional standards correction: `793549bf`. All gates passed with 219 tests. Final math rendering and text contrast checks are in progress.
