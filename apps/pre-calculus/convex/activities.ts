@@ -1,5 +1,625 @@
-import { internalQuery } from "./_generated/server";
+import { internalMutation, internalQuery } from "./_generated/server";
 import { v } from "convex/values";
+import nodesDocument from "../curriculum/skill-graph/nodes.json";
+import blueprintsDocument from "../curriculum/skill-graph/blueprints.json";
+import { PRECALCULUS_PILOT_NODE_ID } from "../lib/learning-evidence/precalc-pilot";
+import { gradeTopic11IntervalGraph } from "../lib/practice/topic11-interval-graph";
+import { PracticeSubmissionEnvelopeSchema } from "@math-platform/practice-core";
+import { generateTopic11IntervalGraphOutput } from "@math-platform/math-content/knowledge-space";
+
+export const PRECALCULUS_PILOT_ACTIVITY_ID = `${PRECALCULUS_PILOT_NODE_ID}.guided_practice`;
+export const PRECALCULUS_PILOT_INDEPENDENT_ACTIVITY_ID = `${PRECALCULUS_PILOT_NODE_ID}.independent_practice`;
+export const PRECALCULUS_PILOT_COMPONENT_KEY =
+  "precalculus-mastery-advantage-pilot";
+
+type Publication = {
+  nodes: ReadonlyArray<{ id: string; kind?: string; reviewStatus?: string }>;
+  blueprints: ReadonlyArray<{
+    nodeId: string;
+    reviewStatus?: string;
+    rendererKey?: string;
+    rendererModeMap?: Record<string, unknown>;
+    guidedPracticeSpec?: unknown;
+    independentPracticeSpec?: unknown;
+    generatorKey?: string;
+    gradingSpec?: unknown;
+  }>;
+};
+const publication: Publication = {
+  nodes: nodesDocument.nodes,
+  blueprints: blueprintsDocument.blueprints,
+};
+const SELECTED_GUIDED_PROMPT =
+  "Identify the intervals where the graph increases, decreases, and stays constant.";
+const SELECTED_GUIDED_STEPS = [
+  "Mark the domain endpoints and the change points x=3 and x=7.",
+  "Read each graph segment from left to right and decide whether it rises, falls, or stays flat.",
+  "Write each interval. Use U or ∪ between multiple intervals. Enter none when no interval exists.",
+];
+const SELECTED_GUIDED_HINTS = [
+  "Use the two change points to separate the graph into three segments.",
+  "Read each segment from left to right.",
+  "Enter none when no segment has the requested behavior.",
+];
+const SELECTED_GUIDED_CHECKS = [
+  { check: "The domain endpoints and both change points are identified." },
+  { check: "Each segment is classified as rising, falling, or flat." },
+  { check: "All three interval fields are completed." },
+];
+const SELECTED_FIELD_HELP = {
+  increasingIntervals: "Find every segment that rises.",
+  decreasingIntervals: "Find every segment that falls.",
+  constantIntervals: "Check whether any segment stays flat.",
+};
+const SELECTED_RUBRIC_CRITERIA = {
+  increasingIntervals: "Correct increasing intervals",
+  decreasingIntervals: "Correct decreasing intervals",
+  constantIntervals: "Correct constant intervals",
+} as const;
+const SELECTED_VARIANT_PARAMETERS = {
+  seed: {
+    type: "integer",
+    min: 0,
+    description: "Deterministic Topic 1.1 interval graph variant seed",
+  },
+};
+const SELECTED_ENVELOPE_KEYS = new Set([
+  "activityId",
+  "answers",
+  "attemptNumber",
+  "contractVersion",
+  "mode",
+  "parts",
+  "status",
+  "submittedAt",
+  "artifact",
+  "interactionHistory",
+  "analytics",
+  "studentFeedback",
+  "teacherSummary",
+  "timing",
+]);
+const SELECTED_STORED_PART_KEYS =
+  "changedCount|hintsUsed|isCorrect|maxScore|partId|rawAnswer|revealStepsSeen|score";
+
+export function isPrecalculusPilotPublished(
+  value: Publication = publication,
+): boolean {
+  return (
+    value.nodes.some(
+      (node) =>
+        node.id === PRECALCULUS_PILOT_NODE_ID &&
+        node.kind === "skill" &&
+        node.reviewStatus === "approved",
+    ) &&
+    value.blueprints.some((blueprint) => {
+      const modeMap = blueprint.rendererModeMap;
+      const guided = blueprint.guidedPracticeSpec;
+      const independent = blueprint.independentPracticeSpec;
+      const guidedProps =
+        record(guided) && record(guided.rendererProps)
+          ? guided.rendererProps
+          : null;
+      const independentProps =
+        record(independent) && record(independent.rendererProps)
+          ? independent.rendererProps
+          : null;
+      const guidedVariant = generateTopic11IntervalGraphOutput(0).data
+        .rendererProps as Record<string, unknown>;
+      const independentVariant = generateTopic11IntervalGraphOutput(2).data
+        .rendererProps as Record<string, unknown>;
+      const matchesGeometry = (
+        actual: Record<string, unknown>,
+        expected: Record<string, unknown>,
+      ) =>
+        JSON.stringify(actual.domain) === JSON.stringify(expected.domain) &&
+        JSON.stringify(actual.changePoints) ===
+          JSON.stringify(expected.changePoints) &&
+        JSON.stringify(actual.points) === JSON.stringify(expected.points);
+      const grading = record(blueprint.gradingSpec)
+        ? blueprint.gradingSpec
+        : null;
+      const partIds =
+        grading && Array.isArray(grading.partIds) ? grading.partIds : [];
+      const rubric =
+        grading && Array.isArray(grading.rubric) ? grading.rubric : [];
+      return (
+        blueprint.nodeId === PRECALCULUS_PILOT_NODE_ID &&
+        blueprint.reviewStatus === "approved" &&
+        blueprint.rendererKey === "interval-classification" &&
+        record(modeMap) &&
+        modeMap.guidedPractice === "interval-classification" &&
+        modeMap.independentPractice === "interval-classification" &&
+        record(guided) &&
+        guided.scaffoldedPrompt === SELECTED_GUIDED_PROMPT &&
+        JSON.stringify(guided.stepPrompts) ===
+          JSON.stringify(SELECTED_GUIDED_STEPS) &&
+        JSON.stringify(guided.hints) ===
+          JSON.stringify(SELECTED_GUIDED_HINTS) &&
+        JSON.stringify(guided.checksPerStep) ===
+          JSON.stringify(SELECTED_GUIDED_CHECKS) &&
+        guided.revealPolicy === "one_at_a_time" &&
+        guidedProps !== null &&
+        Object.keys(guidedProps).sort().join("|") ===
+          "changePoints|domain|fieldHelp|guidedSteps|points|presentationMode|prompt|title" &&
+        guidedProps.title === "Guided Practice: Classify Graph Intervals" &&
+        guidedProps.prompt === SELECTED_GUIDED_PROMPT &&
+        guidedProps.presentationMode === "guided_practice" &&
+        Array.isArray(guidedProps.guidedSteps) &&
+        JSON.stringify(guidedProps.guidedSteps) ===
+          JSON.stringify(SELECTED_GUIDED_STEPS) &&
+        record(guidedProps.fieldHelp) &&
+        JSON.stringify(guidedProps.fieldHelp) ===
+          JSON.stringify(SELECTED_FIELD_HELP) &&
+        matchesGeometry(guidedProps, guidedVariant) &&
+        record(independent) &&
+        JSON.stringify(independent.variantParameters) ===
+          JSON.stringify(SELECTED_VARIANT_PARAMETERS) &&
+        record(independent.answerSchema) &&
+        Object.keys(independent.answerSchema).sort().join("|") ===
+          "constantIntervals|decreasingIntervals|increasingIntervals" &&
+        Object.values(independent.answerSchema).every(
+          (value) => value === "string",
+        ) &&
+        Array.isArray(independent.gradingRules) &&
+        independent.gradingRules.length === 3 &&
+        independent.gradingRules.every(record) &&
+        independent.gradingRules
+          .map((rule) => rule.partId)
+          .slice()
+          .sort()
+          .join("|") ===
+          "constantIntervals|decreasingIntervals|increasingIntervals" &&
+        independent.gradingRules.every(
+          (rule) => rule.ruleType === "custom" && rule.maxScore === 1,
+        ) &&
+        independent.replayPolicy === "any_seed" &&
+        independentProps !== null &&
+        Object.keys(independentProps).sort().join("|") ===
+          "changePoints|domain|points|presentationMode|prompt|title" &&
+        independentProps.title === "Independent Practice: Classify Graph Intervals" &&
+        independentProps.prompt === SELECTED_GUIDED_PROMPT &&
+        independentProps.presentationMode === "independent_practice" &&
+        matchesGeometry(independentProps, independentVariant) &&
+        blueprint.generatorKey === "topic11-interval-graph" &&
+        partIds.slice().sort().join("|") ===
+          "constantIntervals|decreasingIntervals|increasingIntervals" &&
+        grading?.passingScore === 3 &&
+        grading.partialCredit === true &&
+        rubric.length === 3 &&
+        new Set(rubric.filter(record).map((row) => row.partId)).size === 3 &&
+        rubric.every(
+          (row) =>
+            record(row) &&
+            row.points === 1 &&
+            typeof row.partId === "string" &&
+            partIds.includes(row.partId) &&
+            row.criteria ===
+              SELECTED_RUBRIC_CRITERIA[
+                row.partId as keyof typeof SELECTED_RUBRIC_CRITERIA
+              ],
+        )
+      );
+    })
+  );
+}
+
+const partValidator = v.object({
+  partId: v.string(),
+  rawAnswer: v.string(),
+  isCorrect: v.optional(v.boolean()),
+  score: v.optional(v.number()),
+  maxScore: v.optional(v.number()),
+  hintsUsed: v.optional(v.number()),
+  revealStepsSeen: v.optional(v.number()),
+  changedCount: v.optional(v.number()),
+});
+const dataValidator = v.object({
+  contractVersion: v.literal("practice.v1"),
+  activityId: v.string(),
+  mode: v.union(
+    v.literal("guided_practice"),
+    v.literal("independent_practice"),
+  ),
+  status: v.literal("submitted"),
+  attemptNumber: v.number(),
+  submittedAt: v.string(),
+  answers: v.object({
+    increasingIntervals: v.string(),
+    decreasingIntervals: v.string(),
+    constantIntervals: v.string(),
+  }),
+  parts: v.array(partValidator),
+  artifact: v.optional(v.any()),
+  interactionHistory: v.optional(v.any()),
+  analytics: v.optional(v.any()),
+  studentFeedback: v.optional(v.any()),
+  teacherSummary: v.optional(v.any()),
+  timing: v.optional(v.any()),
+});
+const resultValidator = v.object({
+  submissionId: v.id("activity_submissions"),
+  score: v.number(),
+  maxScore: v.number(),
+  attemptOrdinal: v.number(),
+  feedback: v.string(),
+});
+const expectedActivity = (
+  mode: "guided_practice" | "independent_practice",
+) => ({
+  stableActivityId:
+    mode === "guided_practice"
+      ? PRECALCULUS_PILOT_ACTIVITY_ID
+      : PRECALCULUS_PILOT_INDEPENDENT_ACTIVITY_ID,
+  displayName:
+    mode === "guided_practice"
+      ? "Mastery Advantage: Identify Graph Intervals"
+      : "Independent Practice: Classify Graph Intervals",
+  description:
+    mode === "guided_practice"
+      ? "Classify the increasing, decreasing, and constant intervals from a graph."
+      : "Classify the increasing, decreasing, and constant intervals from a generated graph.",
+  props: { nodeId: PRECALCULUS_PILOT_NODE_ID, mode },
+  variantSeed: mode === "guided_practice" ? 0 : 2,
+});
+function record(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+function sameRecord(a: unknown, b: Record<string, unknown>): boolean {
+  return (
+    record(a) &&
+    Object.keys(a).length === Object.keys(b).length &&
+    Object.entries(b).every(([key, value]) => a[key] === value)
+  );
+}
+function hasExpectedActivityIdentity(
+  activity: Record<string, unknown>,
+  expected: ReturnType<typeof expectedActivity>,
+): boolean {
+  return (
+    activity.stableActivityId === expected.stableActivityId &&
+    activity.componentKey === PRECALCULUS_PILOT_COMPONENT_KEY &&
+    activity.displayName === expected.displayName &&
+    activity.description === expected.description &&
+    sameRecord(activity.props, expected.props) &&
+    sameRecord(activity.gradingConfig, { variantSeed: expected.variantSeed })
+  );
+}
+function normalize(value: unknown): string | null {
+  return typeof value === "string" && value.trim()
+    ? value.trim().replace(/[−–—]/g, "-").replace(/\s+/g, "")
+    : null;
+}
+function canonical(
+  data: Record<string, unknown>,
+  stableActivityId: string,
+  mode: string,
+) {
+  if (!PracticeSubmissionEnvelopeSchema.safeParse(data).success)
+    throw new Error("Invalid Precalculus pilot practice envelope");
+  if (
+    data.contractVersion !== "practice.v1" ||
+    data.activityId !== stableActivityId ||
+    data.mode !== mode ||
+    data.status !== "submitted"
+  )
+    throw new Error("Invalid Precalculus pilot practice envelope");
+  if (
+    !Number.isInteger(data.attemptNumber) ||
+    (data.attemptNumber as number) < 1 ||
+    typeof data.submittedAt !== "string" ||
+    !data.submittedAt.trim() ||
+    !Number.isFinite(Date.parse(data.submittedAt))
+  )
+    throw new Error("Invalid Precalculus pilot practice envelope");
+  const allowed = [
+    "activityId",
+    "answers",
+    "attemptNumber",
+    "contractVersion",
+    "mode",
+    "parts",
+    "status",
+    "submittedAt",
+    "artifact",
+    "interactionHistory",
+    "analytics",
+    "studentFeedback",
+    "teacherSummary",
+    "timing",
+  ];
+  if (Object.keys(data).some((key) => !allowed.includes(key)))
+    throw new Error("Invalid Precalculus pilot submission fields");
+  if (
+    !record(data.answers) ||
+    Object.keys(data.answers).sort().join("|") !==
+      "constantIntervals|decreasingIntervals|increasingIntervals"
+  )
+    throw new Error("Invalid Precalculus pilot answers");
+  const answers = {
+    increasingIntervals: normalize(data.answers.increasingIntervals),
+    decreasingIntervals: normalize(data.answers.decreasingIntervals),
+    constantIntervals: normalize(data.answers.constantIntervals),
+  };
+  if (Object.values(answers).some((answer) => answer === null))
+    throw new Error("Invalid Precalculus pilot answers");
+  if (!Array.isArray(data.parts) || data.parts.length !== 3)
+    throw new Error("Invalid Precalculus pilot parts");
+  const parts = new Map<
+    string,
+    {
+      rawAnswer: string;
+      hintsUsed: number;
+      revealStepsSeen: number;
+      changedCount: number;
+    }
+  >();
+  for (const part of data.parts) {
+    if (
+      !record(part) ||
+      typeof part.partId !== "string" ||
+      typeof part.rawAnswer !== "string" ||
+      parts.has(part.partId)
+    )
+      throw new Error("Invalid Precalculus pilot parts");
+    if (
+      Object.keys(part).some(
+        (key) =>
+          ![
+            "partId",
+            "rawAnswer",
+            "hintsUsed",
+            "revealStepsSeen",
+            "changedCount",
+          ].includes(key),
+      )
+    )
+      throw new Error("Invalid Precalculus pilot parts");
+    const hintsUsed = part.hintsUsed ?? 0;
+    const revealStepsSeen = part.revealStepsSeen ?? 0;
+    const changedCount = part.changedCount ?? 0;
+    if (
+      ![hintsUsed, revealStepsSeen, changedCount].every(
+        (item) =>
+          typeof item === "number" && Number.isInteger(item) && item >= 0,
+      )
+    )
+      throw new Error("Invalid Precalculus pilot assistance");
+    parts.set(part.partId, {
+      rawAnswer: part.rawAnswer,
+      hintsUsed: hintsUsed as number,
+      revealStepsSeen: revealStepsSeen as number,
+      changedCount: changedCount as number,
+    });
+  }
+  for (const key of Object.keys(answers))
+    if (parts.get(key)?.rawAnswer !== data.answers[key])
+      throw new Error("Precalculus pilot raw answer mismatch");
+  return {
+    answers: answers as {
+      increasingIntervals: string;
+      decreasingIntervals: string;
+      constantIntervals: string;
+    },
+    parts,
+    optionalFields: Object.fromEntries(
+      [
+        "artifact",
+        "interactionHistory",
+        "analytics",
+        "studentFeedback",
+        "teacherSummary",
+        "timing",
+      ]
+        .filter((key) => key in data)
+        .map((key) => [key, data[key]]),
+    ),
+  };
+}
+
+export const createServerOwnedSubmission = internalMutation({
+  args: {
+    userId: v.id("profiles"),
+    activityId: v.string(),
+    submissionData: dataValidator,
+    idempotencyKey: v.string(),
+  },
+  returns: resultValidator,
+  handler: async (ctx, args) => {
+    const mode =
+      args.activityId === PRECALCULUS_PILOT_ACTIVITY_ID
+        ? "guided_practice"
+        : args.activityId === PRECALCULUS_PILOT_INDEPENDENT_ACTIVITY_ID
+          ? "independent_practice"
+          : null;
+    if (
+      !mode ||
+      !args.idempotencyKey.trim() ||
+      args.idempotencyKey.length > 256
+    )
+      throw new Error("Invalid Precalculus pilot activity or idempotency key");
+    const profile = await ctx.db.get("profiles", args.userId);
+    const credential = profile
+      ? await ctx.db
+          .query("auth_credentials")
+          .withIndex("by_username", (q) => q.eq("username", profile.username))
+          .unique()
+      : null;
+    if (
+      !profile ||
+      profile.role !== "student" ||
+      !credential ||
+      !credential.isActive ||
+      credential.profileId !== profile._id ||
+      credential.username !== profile.username ||
+      credential.role !== profile.role ||
+      credential.organizationId !== profile.organizationId
+    )
+      throw new Error("Inactive student identity");
+    const expected = expectedActivity(mode);
+    const submitted = canonical(args.submissionData, args.activityId, mode);
+    const answers = submitted.answers;
+    const graded = gradeTopic11IntervalGraph(expected.variantSeed, answers);
+    const existing = await ctx.db
+      .query("activity_submissions")
+      .withIndex("by_user_and_create_idempotency_key", (q) =>
+        q
+          .eq("userId", args.userId)
+          .eq("createIdempotencyKey", args.idempotencyKey),
+      )
+      .unique();
+    if (existing) {
+      const originalActivity = await ctx.db.get(
+        "activities",
+        existing.activityId,
+      );
+      const stored = record(existing.submissionData)
+        ? existing.submissionData
+        : null;
+      const storedEnvelopeValid =
+        stored !== null &&
+        PracticeSubmissionEnvelopeSchema.safeParse(stored).success &&
+        Object.keys(stored).every((key) => SELECTED_ENVELOPE_KEYS.has(key));
+      const old = stored && record(stored.answers) ? stored.answers : null;
+      const oldParts =
+        stored && Array.isArray(stored.parts) ? stored.parts : [];
+      const expectedPartIds = new Set(Object.keys(answers));
+      const seenPartIds = new Set<string>();
+      const gradedPartMap = new Map(
+        graded.parts.map((part) => [part.partId, part]),
+      );
+      const partsMatch =
+        oldParts.length === expectedPartIds.size &&
+        oldParts.every((part) => {
+          if (
+            !record(part) ||
+            Object.keys(part).sort().join("|") !== SELECTED_STORED_PART_KEYS ||
+            typeof part.partId !== "string" ||
+            !expectedPartIds.has(part.partId) ||
+            seenPartIds.has(part.partId)
+          )
+            return false;
+          seenPartIds.add(part.partId);
+          const submittedPart = submitted.parts.get(part.partId);
+          const expectedPart = gradedPartMap.get(part.partId);
+          return (
+            submittedPart !== undefined &&
+            expectedPart !== undefined &&
+            part.rawAnswer === answers[part.partId as keyof typeof answers] &&
+            (part.hintsUsed ?? 0) === submittedPart.hintsUsed &&
+            (part.revealStepsSeen ?? 0) === submittedPart.revealStepsSeen &&
+            (part.changedCount ?? 0) === submittedPart.changedCount &&
+            part.isCorrect === expectedPart.isCorrect &&
+            part.score === expectedPart.score &&
+            part.maxScore === expectedPart.maxScore
+          );
+        });
+      if (
+        typeof existing.activityId !== "string" ||
+        !existing.activityId.trim() ||
+        (originalActivity !== null &&
+          (!record(originalActivity) ||
+            !hasExpectedActivityIdentity(originalActivity, expected))) ||
+        existing.stableActivityId !== args.activityId ||
+        existing.masteryContractVersion !== "learning-evidence.v1" ||
+        !stored ||
+        !storedEnvelopeValid ||
+        stored.contractVersion !== "practice.v1" ||
+        stored.activityId !== args.activityId ||
+        stored.mode !== mode ||
+        stored.status !== "graded" ||
+        typeof existing.submittedAt !== "number" ||
+        !Number.isFinite(existing.submittedAt) ||
+        stored.submittedAt !== new Date(existing.submittedAt).toISOString() ||
+        !old ||
+        Object.keys(old).sort().join("|") !==
+          "constantIntervals|decreasingIntervals|increasingIntervals" ||
+        Object.entries(answers).some(
+          ([key, value]) => normalize(old[key]) !== value,
+        ) ||
+        !partsMatch ||
+        !Number.isInteger(existing.attemptOrdinal) ||
+        existing.attemptOrdinal! < 1 ||
+        stored.attemptNumber !== existing.attemptOrdinal ||
+        existing.score !== graded.score ||
+        existing.maxScore !== graded.maxScore ||
+        typeof existing.feedback !== "string"
+      )
+        throw new Error("idempotency_conflict");
+      return {
+        submissionId: existing._id,
+        score: existing.score!,
+        maxScore: existing.maxScore!,
+        attemptOrdinal: existing.attemptOrdinal!,
+        feedback: existing.feedback,
+      };
+    }
+    if (!isPrecalculusPilotPublished())
+      throw new Error("Precalculus pilot curriculum is not approved");
+    const activity = await ctx.db
+      .query("activities")
+      .withIndex("by_stable_activity_id", (q) =>
+        q.eq("stableActivityId", args.activityId),
+      )
+      .unique();
+    if (
+      !activity ||
+      !hasExpectedActivityIdentity(activity, expected) ||
+      activity.approval?.status !== "approved"
+    )
+      throw new Error(
+        "Precalculus pilot activity is not approved or has invalid identity",
+      );
+    const latest = await ctx.db
+      .query("activity_submissions")
+      .withIndex("by_user_and_activity_and_attempt_ordinal", (q) =>
+        q.eq("userId", args.userId).eq("activityId", activity._id),
+      )
+      .order("desc")
+      .first();
+    const attemptOrdinal = (latest?.attemptOrdinal ?? 0) + 1;
+    const now = Date.now();
+    const feedback = `${graded.score}/${graded.maxScore} interval classifications matched the server rubric.`;
+    const gradedParts = graded.parts.map((part) => ({
+      ...submitted.parts.get(part.partId),
+      ...part,
+      rawAnswer: answers[part.partId as keyof typeof answers],
+    }));
+    const submissionId = await ctx.db.insert("activity_submissions", {
+      userId: args.userId,
+      activityId: activity._id,
+      stableActivityId: args.activityId,
+      submissionData: {
+        contractVersion: "practice.v1",
+        activityId: args.activityId,
+        mode,
+        status: "graded",
+        attemptNumber: attemptOrdinal,
+        submittedAt: new Date(now).toISOString(),
+        answers,
+        parts: gradedParts,
+        ...submitted.optionalFields,
+      },
+      masteryContractVersion: "learning-evidence.v1",
+      createIdempotencyKey: args.idempotencyKey,
+      attemptOrdinal,
+      score: graded.score,
+      maxScore: graded.maxScore,
+      feedback,
+      submittedAt: now,
+      gradedAt: now,
+      createdAt: now,
+      updatedAt: now,
+    });
+    return {
+      submissionId,
+      score: graded.score,
+      maxScore: graded.maxScore,
+      attemptOrdinal,
+      feedback,
+    };
+  },
+});
 
 export const getProfileByUsername = internalQuery({
   args: { username: v.string() },

@@ -274,3 +274,71 @@ The parent ran the selected writer, route, and grader tests in an isolated candi
 The parent then added three direct regression cases. Each request resolved when it had to reject: empty variant parameters, an extra stored top-level field, and unowned stored part metadata. The three Red results confirm the two remaining findings. Revision 3 remains outside runtime integration. Revision 4 must repair these cases and preserve the existing positive behavior.
 
 Logs: `/tmp/precalc-q18-writer-v3-parent-tests.log`, `/tmp/precalc-q18-writer-v3-parent-lint.log`, `/tmp/precalc-q18-writer-v3-parent-build.log`, `/tmp/precalc-q18-writer-v3-parent-tsc.log`, and `/tmp/precalc-q18-parent-v3-red.log`.
+
+## Selected writer revision 4 review — 2026-09-08
+
+### Result
+
+Do not integrate revision 4 yet. The frozen parent patch and author patch are byte-identical by direct comparison.
+
+Revision 4 resolves both revision 3 counterexamples. One P1 publication and concealment gap remains.
+
+### Resolved in revision 4
+
+- `variantParameters` now equals the pending selected seed contract at `apps/pre-calculus/convex/activities.ts:153-154`.
+- Stored replay uses the shared envelope schema and a selected top-level key allowlist at lines 473-476.
+- Each stored part must have the exact selected stored key set at lines 485-510.
+- Tests reject empty, unrelated, wrong-type, and negative-minimum variant contracts at `selected-topic11-submission-writer.test.ts:847-915`.
+- Tests reject unexpected stored top-level fields and unowned part metadata at lines 821-846.
+- Authentication occurs before replay. Server grading, canonical storage, immutable optional telemetry, physical receipt identity, withdrawal replay, deletion replay, and existing-original-activity validation remain correct.
+
+### P1 — the publication check permits fields that violate the renderer contract
+
+The predicate compares selected renderer values, but it does not enforce selected renderer key sets. `matchesGeometry` checks only `domain`, `changePoints`, and `points` at `activities.ts:111-118`. The surrounding conditions check the prompt, mode, Guided steps, and field help. They do not reject extra renderer fields.
+
+This approved Independent specification still passes publication:
+
+```ts
+independentPracticeSpec.rendererProps.correctAnswer = {
+  increasingIntervals: "[0,2]",
+  decreasingIntervals: "[4,8]",
+  constantIntervals: "[2,4]",
+};
+```
+
+An equivalent `answers`, `solution`, or `finalAnswer` field also passes the publication predicate. The existing strict `intervalClassificationSchema` rejects extra fields. Thus, the publication predicate can activate a blueprint that the intended renderer contract rejects.
+
+The current component destructures known fields and does not render these extra values. The review did not prove visible answer exposure in that component. The delivery boundary must still exclude answer-bearing fields. It must not depend on component destructuring to enforce Independent concealment.
+
+The positive test fixture also omits the selected renderer `title` fields that exist in the pending source blueprint. It is therefore not an exact copy of the pending selected renderer contract. The report's claim that the gate requires exact selected mode specifications is too broad.
+
+Use manual exact key sets for the selected Guided and Independent renderer props because the renderer schema is absent from HEAD. Match the pending source blueprint fields. At minimum, reject all extra Independent renderer keys and test `correctAnswer`, `answers`, and `finalAnswer`. Add the real selected titles to the positive fixture and exact check if title is part of the renderer contract.
+
+### Verification assessment
+
+The reported 51 tests, lint, TypeScript check, and build support all fixed writer and replay boundaries. They do not test an answer-bearing extra renderer field. Revision 4 is not ready until Independent concealment fails closed at publication.
+
+## Selected writer revision 5 review — 2026-09-08
+
+### Result
+
+Accept revision 5 for the selected Topic 1.1 submission writer scope.
+
+### Evidence
+
+The v5 delta adds exact renderer property key checks for Guided and Independent specifications. The key sets match the pending Topic 1.1 source blueprint:
+
+- Guided: `title`, `prompt`, `domain`, `changePoints`, `points`, `presentationMode`, `guidedSteps`, and `fieldHelp`.
+- Independent: `title`, `prompt`, `domain`, `changePoints`, `points`, and `presentationMode`.
+
+The predicate also requires the exact source titles. The positive fixture now contains those titles. The fixture matches the pending selected blueprint for all fields used by the publication predicate.
+
+The three new tests add `correctAnswer`, `answers`, and `finalAnswer` to Independent renderer properties. The parent Red log at `/tmp/precalc-q18-parent-v5-red.log` proves that v4 accepted all three invalid specifications. The v5 exact key check rejects them.
+
+This resolves the final v4 finding. The previous checks remain present for exact mode content, generator geometry, variant parameters, answer schema, grading rules, rubric, stored envelope keys, stored part keys, canonical server grades, active learner authentication, and durable replay.
+
+The current graph blueprint remains draft and source-only. The writer stays closed until the complete selected blueprint and node are approved through the separate curriculum process. This review does not approve that curriculum content.
+
+### Scope boundary
+
+Revision 5 adds the physical submission writer and authenticated create route only. It does not create learning evidence or SRS effects. Those effects require the separately reviewed opaque-submission evidence transaction and trusted teacher-exposure prerequisite.

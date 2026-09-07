@@ -159,6 +159,7 @@ export default defineSchema({
     .index("by_lesson_version_and_standard", ["lessonVersionId", "standardId"]),
 
   activities: defineTable({
+    stableActivityId: v.optional(v.string()),
     componentKey: v.string(),
     displayName: v.string(),
     description: v.optional(v.string()),
@@ -179,7 +180,9 @@ export default defineSchema({
     })),
     createdAt: v.number(),
     updatedAt: v.number(),
-  }).index("by_standard", ["standardId"]),
+  })
+    .index("by_standard", ["standardId"])
+    .index("by_stable_activity_id", ["stableActivityId"]),
 
   student_competency: defineTable({
     studentId: v.id("profiles"),
@@ -233,7 +236,11 @@ export default defineSchema({
   activity_submissions: defineTable({
     userId: v.id("profiles"),
     activityId: v.id("activities"),
+    stableActivityId: v.optional(v.string()),
     submissionData: v.any(),
+    masteryContractVersion: v.optional(v.string()),
+    createIdempotencyKey: v.optional(v.string()),
+    attemptOrdinal: v.optional(v.number()),
     score: v.optional(v.number()),
     maxScore: v.optional(v.number()),
     feedback: v.optional(v.string()),
@@ -245,7 +252,16 @@ export default defineSchema({
   })
     .index("by_user", ["userId"])
     .index("by_activity", ["activityId"])
-    .index("by_user_and_activity", ["userId", "activityId"]),
+    .index("by_user_and_activity", ["userId", "activityId"])
+    .index("by_user_and_create_idempotency_key", [
+      "userId",
+      "createIdempotencyKey",
+    ])
+    .index("by_user_and_activity_and_attempt_ordinal", [
+      "userId",
+      "activityId",
+      "attemptOrdinal",
+    ]),
 
   learning_evidence: defineTable({
     learnerId: v.id("profiles"),
