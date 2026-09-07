@@ -19,6 +19,10 @@ import {
   quadraticFormulaAdapter,
 } from './algebra-generators-adapters';
 import { seededRandom } from '../../utils/prng';
+import {
+  generateTopic11IntervalGraphOutput,
+  TOPIC11_INTERVAL_GRAPH_NODE_ID,
+} from './topic11-interval-graph';
 
 export interface QaSkipSpec {
   readonly uniqueAnswer?: boolean;
@@ -217,6 +221,14 @@ const graphingExplorerStubGenerator: MathGenerator = {
   }),
 };
 
+const topic11IntervalGraphGenerator: MathGenerator = {
+  key: 'topic11-interval-graph',
+  nodeIds: [TOPIC11_INTERVAL_GRAPH_NODE_ID],
+  description: 'Generates piecewise-linear graphs for interval classification.',
+  generate: (input: GeneratorInput): GeneratorOutput =>
+    generateTopic11IntervalGraphOutput(input.seed),
+};
+
 const statisticsStubGenerator: MathGenerator = {
   key: 'statistics',
   nodeIds: [],
@@ -241,6 +253,7 @@ const statisticsStubGenerator: MathGenerator = {
 // ---------------------------------------------------------------------------
 
 const GENERATOR_REGISTRY: Record<string, MathGenerator> = {
+  [topic11IntervalGraphGenerator.key]: topic11IntervalGraphGenerator,
   [im1VerbalToNumericalGenerator.key]: im1VerbalToNumericalGenerator,
   [quadraticGraphAnalysisGenerator.key]: quadraticGraphAnalysisGenerator,
   [averageRateOfChangeGenerator.key]: averageRateOfChangeGenerator,

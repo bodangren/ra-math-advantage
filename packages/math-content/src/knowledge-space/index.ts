@@ -44,6 +44,16 @@ export type {
   IM1TranslationMode,
   IM1TranslationProjection,
 } from './generators/im1-verbal-to-numerical-adapter';
+export {
+  generateTopic11IntervalGraph,
+  generateTopic11IntervalGraphOutput,
+  TOPIC11_INTERVAL_GRAPH_NODE_ID,
+} from './generators/topic11-interval-graph';
+export type {
+  Interval,
+  Topic11IntervalGraphPoint,
+  Topic11IntervalGraphVariant,
+} from './generators/topic11-interval-graph';
 
 export { getRenderer, RENDERER_KEYS } from './renderers/registry';
 export type { MathRendererDescriptor } from './renderers/registry';
