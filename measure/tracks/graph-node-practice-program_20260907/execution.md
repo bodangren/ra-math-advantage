@@ -263,3 +263,11 @@ Commit `41a5c5c9` adds exact structured grading for both Guided cases and the In
 Parent review repaired mutable hint state during storage and negative change magnitudes that the grader rejects. The UI-to-grader tests confirm the full response contract. Twenty tests pass. Full BM2 lint, standalone TypeScript, and build pass. Focused coverage is 93.75% statements, 86.62% branches, 100% functions, and 95.86% lines.
 
 The next integration review covers exact activity authorization, storage, teacher model review, and source mapping. No publication or application mastery is enabled by these commits.
+
+## G18 and the quadratic generator projection
+
+Commit `ec9e0b71` records twelve provisional Lesson 4-6 source candidates. Parent review corrected the rounding domains and recorded a prompt/figure mismatch in Problem 17. The inventory now has 196 candidates, six bindings, and 190 gaps. Ten source tests, 40 inventory tests, and full IM1 gates pass. Source approval remains open.
+
+Commit `07630ba0` provides the exact table-and-graph generator output for the IM3 pilot. Literal seeds 0 and 1 verify downward and upward functions. Thirty-four math-content tests and two activity-component tests pass. Both packages pass lint, standalone TypeScript, and build. The other four draft generator consumers still require their own branches before seed integration. The test changes use only declared package dependencies.
+
+Business Math now has a category-response repair under review. Supplied category labels did not prove learner classification. The new response uses the existing matrix control and private grading. Trusted persistence remains pending.
