@@ -29,3 +29,5 @@ Saved existing-account enrollment correction: `6e5710ac`. Verification passed wi
 Saved standards seed correction: `783fedd9`. Verification passed with 207 tests and local seed replay. Full source-content and practice completion remain open.
 
 Saved Modules 3 and 4 worked-example correction: `9615b353`. All gates passed. Module 5 content review is in progress.
+
+Saved Module 5 correction: `01f70774`. All gates passed. Module 6 content review is in progress.
