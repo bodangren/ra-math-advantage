@@ -105,3 +105,13 @@ The IM1 app pilot has 28 passing focused tests. These tests use the actual gener
 The boundary check found four IM1 undeclared-import paths and one Precalculus sync-script path. They require three existing workspace dependency declarations. The parent prepared `/tmp/graph-program-workspace-dependencies.patch` and requested explicit approval under AGENTS.md:104. No dependency file has changed. No install or upgrade is proposed. App integration remains open while independent course work continues.
 
 The IM2 three-mode app draft is implemented and awaits independent review. The Precalculus pilot now includes a positive constant segment and current graph publication checks. Its author reports 137 focused tests, lint, TypeScript, and build passing. The parent has not yet integrated or accepted that patch. The IM3 worker selected `math.im3.skill.1.1.graph-quadratic-functions`. The Business Math worker selected `math.bm2.skill.1.1.apply-accounting-equation`. Both workers are tracing the current source and app boundaries.
+
+## Next integration boundary
+
+The parent found that the Precalculus approved-pilot query had no production caller. The dashboard still rendered the selected practice. The author is now connecting the query to the real consumer and regenerating public Independent props. A callable query test cannot prove the student route.
+
+The constant-interval generator initially used a special case for seed 2 only. A new regression tested fresh seeds beyond the pilot. It failed. Constant segments now appear for a recurring set of seeds. All six generator tests pass. Seed 0 and the fixed Independent seed 2 retain their exact expected geometry.
+
+Independent IM2 review found missing teacher-first evidence policy, incomplete Guided interaction, repeat entry, and missing return validators. The author is repairing these findings. The canonical rule is `evaluateLearningEvidenceV1` in practice-core. Student acknowledgement does not establish teacher-led exposure. IM1 currently stores selected graded evidence but does not update SRS or mastery. Its full historical-evidence and teacher-first bridge remains open under Tasks 2.3, 3.6, and 4.4. Incorrect grades must remain available for later learning decisions.
+
+IM3 canonical seed and direct-submission publication checks are now implemented by the worker. The worker is resolving seed TypeScript errors caused by the shared optional-answer display schema. The Convex private-answer requirement must remain intact. Business Math implementation is awaiting independent integration review.

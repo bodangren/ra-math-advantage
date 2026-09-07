@@ -48,7 +48,7 @@ Exit condition: agreed capability scope for pilot groups, exact contracts, and o
   Cover empty/missing specs, actual app registration, per-mode props, and stable activity/part IDs. Add a mode-routing test only where a real capability requires different renderers.
 - [ ] Task 2.2: Test generator mathematics and presentation.
   Use independently solved examples, deterministic replay, invalid inputs, domain limits, and varied seeds. Check that prompt, figure, solution, and canonical answer describe the same problem.
-- [ ] Task 2.3: Test submissions and exact-node evidence.
+- [~] Task 2.3: Test submissions and exact-node evidence.
   Exercise correct, incorrect, assisted, revealed, repeated, and mismatched submissions. Verify server-owned grading and identity. Reject client-provided correctness as authority. Preserve teacher review and first-exposure behavior.
 - [~] Task 2.4: Test graph semantics at the decision boundary.
   Reproduce current identity, containment, prerequisite, equivalence, and evidence defects. Include valid positive relationships and missing-state cases. Use the existing semantic repair tests where they already cover the behavior.
@@ -70,7 +70,7 @@ This is in-scope implementation. Use the existing graph repair plans as detailed
   Compare actual capability scope, representations, conditions, and evidence demands. Reject standard overlap and lesson order as sufficient proof. Test direction, hard prerequisites, equivalence closure, and missing foreign learner state.
 - [ ] Task 3.5: Correct the Business Math graph and activity relationships.
   Verify all 89 current lesson-based capability candidates against published objectives. Split or combine only where the sources require it. Reconcile prerequisite vocabulary, review status, three-mode mappings, and manual evidence. Preserve the existing limited adaptive activation policy until its runtime tests pass.
-- [ ] Task 3.6: Verify graph corrections through actual learning decisions.
+- [~] Task 3.6: Verify graph corrections through actual learning decisions.
   Add failing cases before each repair. Show that a false prerequisite cannot block or unlock work, false equivalence cannot grant credit, a valid hard prerequisite still controls readiness, and unrelated skills do not receive evidence. Verify role projections and deterministic regeneration. Preserve valid positive behavior.
 - [ ] Task 3.7: Measure — User Manual Verification: Corrected knowledge space graphs.
 
