@@ -47,3 +47,5 @@ Saved Module 12 correction: `b830a64d`. All gates passed. Module 13 content veri
 Saved complete worked-example checkpoint: `6a894de1`. All gates passed with 208 tests. Remaining lesson explanations and workflow issues are under review.
 
 Saved explanation correction: `2501e93c`. Saved session-navigation correction: `df8966ce`. All gates passed with 211 tests. Full correction remains open.
+
+Saved phase-evidence correction: `6f12c263`. Saved extractor protection: `2d03992a`. All gates passed with 213 tests. Local backend replay remains under verification.
