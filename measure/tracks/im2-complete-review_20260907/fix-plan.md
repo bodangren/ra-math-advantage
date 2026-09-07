@@ -4,8 +4,8 @@ The user authorized correction of all 29 findings on 2026-09-07. The review repo
 
 ## Phase 1: Authentication and backend correctness
 
-- [~] Task: Repair atomic registration, password login, current-account checks, role routing, and accessible input errors. R01, R02, R08, R09, R10, R11, R15.
-- [~] Task: Repair seeds and typed function references. Verify backend types and seed replay. R03, R04, R05, R12, R28.
+- [x] Task: Repair atomic registration, password login, current-account checks, role routing, and accessible input errors. R01, R02, R08, R09, R10, R11, R15.
+- [x] Task: Repair seeds and typed function references. Verify backend types and seed replay. R03, R04, R05, R12, R28.
 
 ## Phase 2: Source content and curriculum consistency
 
@@ -14,8 +14,8 @@ The user authorized correction of all 29 findings on 2026-09-07. The review repo
 
 ## Phase 3: Learning and teacher workflows
 
-- [~] Task: Implement authenticated lesson delivery, graded practice, phase progress, and student dashboard data. R06, R07.
-- [~] Task: Implement organization-scoped class enrollment, teacher dashboard, gradebook, and submission evidence. R06, R09, R11.
+- [x] Task: Implement authenticated lesson delivery, graded practice, phase progress, and student dashboard data. R06, R07.
+- [x] Task: Implement organization-scoped class enrollment, teacher dashboard, gradebook, and submission evidence. R06, R09, R11.
 
 ## Phase 4: Knowledge graph
 
@@ -24,9 +24,9 @@ The user authorized correction of all 29 findings on 2026-09-07. The review repo
 
 ## Phase 5: Integration and verification
 
-- [~] Task: Repair CSS sources, links, stale setup tests, development commands, and deployment configuration. R14, R26, R27.
-- [ ] Task: Triage dependency advisories and apply approved compatible updates. R29.
-- [ ] Task: Run frontend and backend gates, isolated backend checks, and student/teacher browser journeys. Record closure evidence for every finding.
+- [x] Task: Repair CSS sources, links, stale setup tests, development commands, and deployment configuration. R14, R26, R27.
+- [~] Task: Triage dependency advisories and apply approved compatible updates. R29.
+- [~] Task: Run frontend and backend gates, isolated backend checks, and student/teacher browser journeys. Record closure evidence for every finding.
 
 No new hash, checksum, provenance system, or approval runtime is required. Dependency changes remain subject to the project approval rule. Production deployment is separate from local correction and verification.
 
@@ -236,3 +236,22 @@ These are topic and foundation links. They do not establish full standards maste
 Sources: [Grade 7 geometry](https://www.thecorestandards.org/Math/Content/7/G/), [Grade 8 geometry](https://www.thecorestandards.org/Math/Content/8/G/), [triangle and parallelogram theorems](https://www.thecorestandards.org/Math/Content/HSG/CO/), [circle relationships](https://www.thecorestandards.org/Math/Content/HSG/C/), [volume](https://www.thecorestandards.org/Math/Content/HSG/GMD/), [probability](https://www.thecorestandards.org/Math/Content/HSS/CP/), and [linear systems](https://www.thecorestandards.org/Math/Content/HSA/REI/).
 
 Verification passed with 219 tests, lint, both TypeScript checks, and production build after concurrent graph work stabilized. The new mapping test checks persisted seed results.
+
+## Final saved checkpoint for this pass
+
+Saved text contrast and availability correction: `f26dd7dd`. Saved remaining multiline math correction: `4729840b`. Four source lessons contained 14 unsupported multiline expressions. The regression failed before regeneration and passed after correction. Calendar wording now distinguishes composition from multiplication.
+
+Verification passed with 221 tests in 39 files, lint, frontend TypeScript, backend TypeScript, and production build. Local seed replay returned 96 lessons. No production deployment occurred. Concurrent graph program changes were present during these checks. They remain owned by that program and were not included in these correction commits.
+
+## Current open work
+
+This section supersedes earlier checkpoint lists. The full correction task remains open.
+
+- Full graph practice, objective decomposition, teaching alignment, and mastery evidence remain under the active Graph Node Practice Program. The first valid generator and the lesson checkpoint path do not establish complete practice coverage.
+- The 180-period calendar has source-linked tasks. A timed class-period runtime, secure assessment forms, and formal retake rules remain unimplemented.
+- All 403 worked examples have explicit problems and solutions. Learning explanations and vocabulary across all 96 lessons were reviewed. The full original worksheet exercise bank and all mixed-exercise summaries have not received a complete mathematical audit.
+- Six high-severity dependency package entries remain in the current audit. See `dependencies.md` for candidate updates. Dependency approval is pending. No package or lockfile update was made in this pass.
+- Production data, production migration behavior, and production deployment remain unverified. Unused schema tables with possible stored data were retained.
+- Bounded enrollment and assignment queries still need volume-limit review. Local runtime verification covers the tested class fixtures, not arbitrary historical data volumes.
+
+Do not interpret passing tests as closure of these open items.
