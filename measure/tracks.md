@@ -1450,5 +1450,5 @@ Parallel tracks delivering complete curriculum for all three new apps. Tracks 1 
 - [~] **Danielson admin and coaching improvements** — Core improvements implemented and verified (`83db7af0`). FFT 2022 component summaries added (a4668221). Full official descriptor text and manual review remain pending. AI remains deferred.
   *Link: [./tracks/danielson-admin-growth_20260907/](./tracks/danielson-admin-growth_20260907/)*
 
-- [~] **Danielson SLT presentation rebuild** — Rebuild the feature presentation with current workflows and app screens.
+- [~] **Danielson SLT presentation rebuild** — New 16-slide deck is ready (f336c096). Manual review remains open.
   *Link: [./tracks/danielson-slt-deck_20260907/](./tracks/danielson-slt-deck_20260907/)*

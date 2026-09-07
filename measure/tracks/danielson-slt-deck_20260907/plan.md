@@ -4,13 +4,15 @@
 - [x] T01: Locate the source decks and define audience, factual scope, and output.
 
 ## Test
-- [~] T02: Check feature claims against app code. Define package, content, and visual checks.
+- [x] T02: Check feature claims against app code. Define package, content, and visual checks.
 
 ## Implement
-- [ ] T03: Capture current demo screens and rebuild the narrative and slides.
+- [x] T03: Capture current demo screens and rebuild the narrative and slides.
 
 ## Generate docs and Doctor
-- [ ] T04: Render every slide. Inspect and repair. Run presentation validation and applicable Measure checks. Record the final path.
-- [ ] T05: Deliver the presentation for user review.
+- [x] T04: Render every slide. Inspect and repair. Run presentation validation and applicable Measure checks. Record the final path.
+- [~] T05: Deliver the presentation for user review. The manual checkpoint remains open.
 
 No application code changes. Presentation content and package checks replace app unit tests for this document task.
+
+Presentation commit: `f336c096`. The new 16-slide PowerPoint is ready for user review. T01 uses planning commit `200ab714`. T02–T04 use `f336c096`.
