@@ -30,9 +30,7 @@ When triangles are similar, how do the lengths of corresponding altitudes, media
 
 ### Key Concept: Altitudes in Similar Triangles
 
-If △RST ∼ △EFG and [SH] and [FJ] are altitudes, then [
-\frac{SH}{FJ} = \frac{ST}{FG} = k
-], where [k] is the scale factor.
+If △RST ∼ △EFG and [SH] and [FJ] are altitudes, then $\frac{SH}{FJ} = \frac{ST}{FG} = k$, where [k] is the scale factor.
 
 ### Key Concept: Perimeters Ratio
 
@@ -40,21 +38,15 @@ The ratio of the perimeters of similar triangles equals the scale factor.
 
 ### Key Concept: Medians in Similar Triangles
 
-If △ABC ∼ △RST, [AD] is a median of △ABC, and [RU] is a median of △RST, then [
-\frac{AD}{RU} = \frac{AB}{RS} = k
-].
+If △ABC ∼ △RST, [AD] is a median of △ABC, and [RU] is a median of △RST, then $\frac{AD}{RU} = \frac{AB}{RS} = k$.
 
 ### Key Concept: Angle Bisectors in Similar Triangles
 
-If △RTS ∼ △EGF and [TA] and [GB] are angle bisectors, then [
-\frac{TA}{GB} = \frac{RT}{EG} = k
-].
+If △RTS ∼ △EGF and [TA] and [GB] are angle bisectors, then $\frac{TA}{GB} = \frac{RT}{EG} = k$.
 
 ### Key Concept: Triangle Angle Bisector Theorem
 
-Let D lie on side AB of triangle ABC. If [CD] bisects [∠ACB], then [
-\frac{AD}{DB} = \frac{AC}{BC}
-].
+Let D lie on side AB of triangle ABC. If [CD] bisects [∠ACB], then $\frac{AD}{DB} = \frac{AC}{BC}$.
 
 ## Example 1 — Find Unknown Side Lengths
 

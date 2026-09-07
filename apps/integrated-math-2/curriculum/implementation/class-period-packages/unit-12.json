@@ -403,7 +403,7 @@
       "sourceLesson": "module-12-lesson-9",
       "objective": "Add and subtract functions to create new functions.",
       "embeddedObjectives": [
-        "Multiply (compose) functions and interpret the result in context.",
+        "Distinguish function multiplication from composition. Interpret composition in context.",
         "Write real-world scenarios as combined functions representing total quantity, difference, or composite relationships.",
         "Analyze how function operations affect domain restrictions."
       ],

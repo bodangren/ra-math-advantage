@@ -31,6 +31,7 @@ it("does not repeat the phase title in its body", () => {
 it("does not leave TeX expressions in unsupported square-bracket delimiters", () => {
   for (const lesson of lessons) {
     for (const phase of lesson.phases) {
+      expect(phase.markdown, lesson.slug).not.toMatch(/\[\s*\n\s*\\(?:frac|sqrt|sin|cos|tan|cdot|pi|theta)\b/);
       expect(phase.markdown, lesson.slug).not.toMatch(
         /(?<!!)\[[^\]\n]*\\(?:frac|sqrt|sin|cos|tan|left|cdot|pi|theta|neq)\b[^\]\n]*\](?!\()/,
       );

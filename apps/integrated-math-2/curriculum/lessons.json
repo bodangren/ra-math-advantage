@@ -1031,7 +1031,7 @@
         "phaseNumber": 4,
         "title": "Learn: SSS and SAS Similarity",
         "phaseType": "learn",
-        "markdown": "### Key Concept: SSS Similarity Theorem\n\nIf [\n\\frac{AB}{DE} = \\frac{BC}{EF} = \\frac{AC}{DF}\n], then △ABC ∼ △DEF.\n\nAll three side ratios must be equal.\n\n### Key Concept: SAS Similarity Theorem\n\nIf [\n\\frac{AB}{DE} = \\frac{AC}{DF}\n] and [∠A ≅ ∠D], then △ABC ∼ △DEF.\n\nTwo sides must be proportional AND the included angle must be congruent.\n\n### Key Concept: SSS vs. SAS\n\n* **SSS**: Requires all three side ratios\n* **SAS**: Requires two side ratios and the included angle"
+        "markdown": "### Key Concept: SSS Similarity Theorem\n\nIf $\\frac{AB}{DE} = \\frac{BC}{EF} = \\frac{AC}{DF}$, then △ABC ∼ △DEF.\n\nAll three side ratios must be equal.\n\n### Key Concept: SAS Similarity Theorem\n\nIf $\\frac{AB}{DE} = \\frac{AC}{DF}$ and [∠A ≅ ∠D], then △ABC ∼ △DEF.\n\nTwo sides must be proportional AND the included angle must be congruent.\n\n### Key Concept: SSS vs. SAS\n\n* **SSS**: Requires all three side ratios\n* **SAS**: Requires two side ratios and the included angle"
       },
       {
         "phaseNumber": 5,
@@ -1087,7 +1087,7 @@
         "phaseNumber": 4,
         "title": "Learn: Triangle Proportionality",
         "phaseType": "learn",
-        "markdown": "### Key Concept: Triangle Proportionality Theorem\n\nLet D lie between A and B, and let E lie between A and C. If [DE ∥ BC] in △ABC, then [\n\\frac{AD}{DB} = \\frac{AE}{EC}\n].\n\nConversely, if [\n\\frac{AD}{DB} = \\frac{AE}{EC}\n], then [DE ∥ BC].\n\n### Key Concept: Midsegments\n\nA **midsegment** connects the midpoints of two sides of a triangle.\n\n* A midsegment is **parallel** to the third side.\n* A midsegment is **half the length** of the third side.\n\n### Key Concept: Corollary 8.1 (Three Parallel Lines)\n\nLet three distinct parallel lines meet one transversal at A, B, C and the other at E, F, G, in corresponding order. They divide the transversals proportionally: [\n\\frac{AB}{BC} = \\frac{EF}{FG}\n]."
+        "markdown": "### Key Concept: Triangle Proportionality Theorem\n\nLet D lie between A and B, and let E lie between A and C. If [DE ∥ BC] in △ABC, then $\\frac{AD}{DB} = \\frac{AE}{EC}$.\n\nConversely, if $\\frac{AD}{DB} = \\frac{AE}{EC}$, then [DE ∥ BC].\n\n### Key Concept: Midsegments\n\nA **midsegment** connects the midpoints of two sides of a triangle.\n\n* A midsegment is **parallel** to the third side.\n* A midsegment is **half the length** of the third side.\n\n### Key Concept: Corollary 8.1 (Three Parallel Lines)\n\nLet three distinct parallel lines meet one transversal at A, B, C and the other at E, F, G, in corresponding order. They divide the transversals proportionally: $\\frac{AB}{BC} = \\frac{EF}{FG}$."
       },
       {
         "phaseNumber": 5,
@@ -1155,7 +1155,7 @@
         "phaseNumber": 4,
         "title": "Learn: Parts of Similar Triangles",
         "phaseType": "learn",
-        "markdown": "### Key Concept: Altitudes in Similar Triangles\n\nIf △RST ∼ △EFG and [SH] and [FJ] are altitudes, then [\n\\frac{SH}{FJ} = \\frac{ST}{FG} = k\n], where [k] is the scale factor.\n\n### Key Concept: Perimeters Ratio\n\nThe ratio of the perimeters of similar triangles equals the scale factor.\n\n### Key Concept: Medians in Similar Triangles\n\nIf △ABC ∼ △RST, [AD] is a median of △ABC, and [RU] is a median of △RST, then [\n\\frac{AD}{RU} = \\frac{AB}{RS} = k\n].\n\n### Key Concept: Angle Bisectors in Similar Triangles\n\nIf △RTS ∼ △EGF and [TA] and [GB] are angle bisectors, then [\n\\frac{TA}{GB} = \\frac{RT}{EG} = k\n].\n\n### Key Concept: Triangle Angle Bisector Theorem\n\nLet D lie on side AB of triangle ABC. If [CD] bisects [∠ACB], then [\n\\frac{AD}{DB} = \\frac{AC}{BC}\n]."
+        "markdown": "### Key Concept: Altitudes in Similar Triangles\n\nIf △RST ∼ △EFG and [SH] and [FJ] are altitudes, then $\\frac{SH}{FJ} = \\frac{ST}{FG} = k$, where [k] is the scale factor.\n\n### Key Concept: Perimeters Ratio\n\nThe ratio of the perimeters of similar triangles equals the scale factor.\n\n### Key Concept: Medians in Similar Triangles\n\nIf △ABC ∼ △RST, [AD] is a median of △ABC, and [RU] is a median of △RST, then $\\frac{AD}{RU} = \\frac{AB}{RS} = k$.\n\n### Key Concept: Angle Bisectors in Similar Triangles\n\nIf △RTS ∼ △EGF and [TA] and [GB] are angle bisectors, then $\\frac{TA}{GB} = \\frac{RT}{EG} = k$.\n\n### Key Concept: Triangle Angle Bisector Theorem\n\nLet D lie on side AB of triangle ABC. If [CD] bisects [∠ACB], then $\\frac{AD}{DB} = \\frac{AC}{BC}$."
       },
       {
         "phaseNumber": 5,
@@ -4613,13 +4613,13 @@
         "phaseNumber": 4,
         "title": "Learn: Adding and Subtracting Radical Expressions",
         "phaseType": "learn",
-        "markdown": "To add or subtract radicals, treat them like variable terms: only like radicals can be combined.\n\n### Key Concept: Like Radicals\n\n* Like radicals have the same index and the same radicand\n* Add or subtract the coefficients while keeping the radical part unchanged\n* Example:\n  [\n  7\\sqrt{7} - 2\\sqrt{7} = (7 - 2)\\sqrt{7} = 5\\sqrt{7}\n  ]\n\n### Key Concept: Simplify Before Combining\n\n* A sum or difference may appear to have unlike radicals until one or more terms are simplified\n* Factor out perfect squares from radicands, simplify each term, then combine any like radicals that appear\n* Example:\n  [\n  3\\sqrt{50} - 3\\sqrt{32} = 3\\sqrt{25 \\cdot 2} - 3\\sqrt{16 \\cdot 2} = 15\\sqrt{2} - 12\\sqrt{2} = 3\\sqrt{2}\n  ]"
+        "markdown": "To add or subtract radicals, treat them like variable terms: only like radicals can be combined.\n\n### Key Concept: Like Radicals\n\n* Like radicals have the same index and the same radicand\n* Add or subtract the coefficients while keeping the radical part unchanged\n* Example:\n  $7\\sqrt{7} - 2\\sqrt{7} = (7 - 2)\\sqrt{7} = 5\\sqrt{7}$\n\n### Key Concept: Simplify Before Combining\n\n* A sum or difference may appear to have unlike radicals until one or more terms are simplified\n* Factor out perfect squares from radicands, simplify each term, then combine any like radicals that appear\n* Example:\n  $3\\sqrt{50} - 3\\sqrt{32} = 3\\sqrt{25 \\cdot 2} - 3\\sqrt{16 \\cdot 2} = 15\\sqrt{2} - 12\\sqrt{2} = 3\\sqrt{2}$"
       },
       {
         "phaseNumber": 5,
         "title": "Learn: Multiplying Radical Expressions",
         "phaseType": "learn",
-        "markdown": "Multiplication of radicals uses the product property: the product of two square roots equals the square root of the product.\n\n### Key Concept: Product Property of Radicals\n\n* For nonnegative real numbers [ a ] and [ b ]:\n  [\n  \\sqrt{a} \\cdot \\sqrt{b} = \\sqrt{ab}\n  ]\n* Multiply the coefficients together and multiply the radicands together\n* Simplify the resulting radical by removing perfect-square factors\n* Example:\n  [\n  2\\sqrt{3} \\cdot 3\\sqrt{15} = 6\\sqrt{45} = 6\\sqrt{9 \\cdot 5} = 18\\sqrt{5}\n  ]\n\n### Key Concept: Distributing a Radical Over a Binomial\n\n* Use the distributive property to multiply a radical across each term inside parentheses\n* Multiply the radical by each term, simplify each product, and combine like radicals if possible\n* Example:\n  [\n  \\sqrt{5}(\\sqrt{10} - \\sqrt{3}) = \\sqrt{50} - \\sqrt{15} = 5\\sqrt{2} - \\sqrt{15}\n  ]"
+        "markdown": "Multiplication of radicals uses the product property: the product of two square roots equals the square root of the product.\n\n### Key Concept: Product Property of Radicals\n\n* For nonnegative real numbers [ a ] and [ b ]:\n  $\\sqrt{a} \\cdot \\sqrt{b} = \\sqrt{ab}$\n* Multiply the coefficients together and multiply the radicands together\n* Simplify the resulting radical by removing perfect-square factors\n* Example:\n  $2\\sqrt{3} \\cdot 3\\sqrt{15} = 6\\sqrt{45} = 6\\sqrt{9 \\cdot 5} = 18\\sqrt{5}$\n\n### Key Concept: Distributing a Radical Over a Binomial\n\n* Use the distributive property to multiply a radical across each term inside parentheses\n* Multiply the radical by each term, simplify each product, and combine like radicals if possible\n* Example:\n  $\\sqrt{5}(\\sqrt{10} - \\sqrt{3}) = \\sqrt{50} - \\sqrt{15} = 5\\sqrt{2} - \\sqrt{15}$"
       },
       {
         "phaseNumber": 6,

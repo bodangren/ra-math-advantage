@@ -27,17 +27,13 @@ What combinations of side lengths and angles are sufficient to guarantee that tw
 
 ### Key Concept: SSS Similarity Theorem
 
-If [
-\frac{AB}{DE} = \frac{BC}{EF} = \frac{AC}{DF}
-], then △ABC ∼ △DEF.
+If $\frac{AB}{DE} = \frac{BC}{EF} = \frac{AC}{DF}$, then △ABC ∼ △DEF.
 
 All three side ratios must be equal.
 
 ### Key Concept: SAS Similarity Theorem
 
-If [
-\frac{AB}{DE} = \frac{AC}{DF}
-] and [∠A ≅ ∠D], then △ABC ∼ △DEF.
+If $\frac{AB}{DE} = \frac{AC}{DF}$ and [∠A ≅ ∠D], then △ABC ∼ △DEF.
 
 Two sides must be proportional AND the included angle must be congruent.
 

@@ -31,18 +31,14 @@ To add or subtract radicals, treat them like variable terms: only like radicals 
 * Like radicals have the same index and the same radicand
 * Add or subtract the coefficients while keeping the radical part unchanged
 * Example:
-  [
-  7\sqrt{7} - 2\sqrt{7} = (7 - 2)\sqrt{7} = 5\sqrt{7}
-  ]
+  $7\sqrt{7} - 2\sqrt{7} = (7 - 2)\sqrt{7} = 5\sqrt{7}$
 
 ### Key Concept: Simplify Before Combining
 
 * A sum or difference may appear to have unlike radicals until one or more terms are simplified
 * Factor out perfect squares from radicands, simplify each term, then combine any like radicals that appear
 * Example:
-  [
-  3\sqrt{50} - 3\sqrt{32} = 3\sqrt{25 \cdot 2} - 3\sqrt{16 \cdot 2} = 15\sqrt{2} - 12\sqrt{2} = 3\sqrt{2}
-  ]
+  $3\sqrt{50} - 3\sqrt{32} = 3\sqrt{25 \cdot 2} - 3\sqrt{16 \cdot 2} = 15\sqrt{2} - 12\sqrt{2} = 3\sqrt{2}$
 
 ## Learn: Multiplying Radical Expressions
 
@@ -51,24 +47,18 @@ Multiplication of radicals uses the product property: the product of two square 
 ### Key Concept: Product Property of Radicals
 
 * For nonnegative real numbers [ a ] and [ b ]:
-  [
-  \sqrt{a} \cdot \sqrt{b} = \sqrt{ab}
-  ]
+  $\sqrt{a} \cdot \sqrt{b} = \sqrt{ab}$
 * Multiply the coefficients together and multiply the radicands together
 * Simplify the resulting radical by removing perfect-square factors
 * Example:
-  [
-  2\sqrt{3} \cdot 3\sqrt{15} = 6\sqrt{45} = 6\sqrt{9 \cdot 5} = 18\sqrt{5}
-  ]
+  $2\sqrt{3} \cdot 3\sqrt{15} = 6\sqrt{45} = 6\sqrt{9 \cdot 5} = 18\sqrt{5}$
 
 ### Key Concept: Distributing a Radical Over a Binomial
 
 * Use the distributive property to multiply a radical across each term inside parentheses
 * Multiply the radical by each term, simplify each product, and combine like radicals if possible
 * Example:
-  [
-  \sqrt{5}(\sqrt{10} - \sqrt{3}) = \sqrt{50} - \sqrt{15} = 5\sqrt{2} - \sqrt{15}
-  ]
+  $\sqrt{5}(\sqrt{10} - \sqrt{3}) = \sqrt{50} - \sqrt{15} = 5\sqrt{2} - \sqrt{15}$
 
 ## Example 1 — Add and Subtract Like Radicals
 

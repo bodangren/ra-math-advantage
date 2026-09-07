@@ -28,13 +28,9 @@ If a line parallel to one side of a triangle divides the other two sides proport
 
 ### Key Concept: Triangle Proportionality Theorem
 
-Let D lie between A and B, and let E lie between A and C. If [DE ∥ BC] in △ABC, then [
-\frac{AD}{DB} = \frac{AE}{EC}
-].
+Let D lie between A and B, and let E lie between A and C. If [DE ∥ BC] in △ABC, then $\frac{AD}{DB} = \frac{AE}{EC}$.
 
-Conversely, if [
-\frac{AD}{DB} = \frac{AE}{EC}
-], then [DE ∥ BC].
+Conversely, if $\frac{AD}{DB} = \frac{AE}{EC}$, then [DE ∥ BC].
 
 ### Key Concept: Midsegments
 
@@ -45,9 +41,7 @@ A **midsegment** connects the midpoints of two sides of a triangle.
 
 ### Key Concept: Corollary 8.1 (Three Parallel Lines)
 
-Let three distinct parallel lines meet one transversal at A, B, C and the other at E, F, G, in corresponding order. They divide the transversals proportionally: [
-\frac{AB}{BC} = \frac{EF}{FG}
-].
+Let three distinct parallel lines meet one transversal at A, B, C and the other at E, F, G, in corresponding order. They divide the transversals proportionally: $\frac{AB}{BC} = \frac{EF}{FG}$.
 
 ## Example 1 — Apply the Triangle Proportionality Theorem
 
