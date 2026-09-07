@@ -1446,3 +1446,6 @@ Parallel tracks delivering complete curriculum for all three new apps. Tracks 1 
 - [x] **Track: Reliability Contracts & DB Boundary Enforcement** — **COMPLETED**
      *Replace critical `v.any()` schema definitions with discriminated unions, introduce Branded IDs to prevent reference bugs, enforce SRS transitions mathematically, and export canonical test fixtures.*
      *Link: [./archive/reliability-contracts_20260504/](./archive/reliability-contracts_20260504/)*
+
+- [~] **Danielson admin and coaching improvements** — Implement admin effectiveness priorities 1–7. Approved rubric source is pending. AI remains deferred.
+  *Link: [./tracks/danielson-admin-growth_20260907/](./tracks/danielson-admin-growth_20260907/)*
