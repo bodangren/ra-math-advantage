@@ -28,7 +28,7 @@ How does the inequality symbol determine which side of the boundary line is part
 ### Key Concept: Three Methods for Graphing Lines
 
 1. **Table method:** Choose x-values, compute y-values, plot points, draw line.
-2. **Intercept method:** Find where the line crosses each axis, plot those points, draw the line through them.
+2. **Intercept method:** Find two distinct intercepts and draw the line through them. If the intercepts coincide or one does not exist, use another point or a different method.
 3. **Slope-intercept method (m and b):** Plot the y-intercept [(0, b)], use the slope [m] to find another point, draw the line.
 
 ### Key Concept: Graphing Linear Inequalities

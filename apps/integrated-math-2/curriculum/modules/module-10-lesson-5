@@ -28,7 +28,7 @@ How do the Product and Quotient Properties of Radicals help us write radical exp
 
 ### Key Concept: Product Property of Square Roots
 
-The square root of a product equals the product of the square roots.
+For nonnegative real factors, the square root of a product equals the product of the square roots.
 
 $$
 \sqrt{52} = \sqrt{4 \cdot 13} = \sqrt{4} \cdot \sqrt{13} = 2\sqrt{13}
@@ -38,7 +38,7 @@ $$
 $$
 ### Key Concept: Quotient Property of Square Roots
 
-The square root of a quotient equals the quotient of the square roots.
+For a nonnegative numerator and a positive denominator, the square root of a quotient equals the quotient of the square roots.
 
 $$
 \sqrt{\frac{75}{49}} = \frac{\sqrt{75}}{\sqrt{49}} = \frac{\sqrt{25 \cdot 3}}{7} = \frac{5\sqrt{3}}{7}
@@ -48,7 +48,7 @@ $$
 $$
 ### Key Concept: Simplifying Variables
 
-When the radicand contains variables raised to powers, extract even powers as coefficients.
+Use the principal square root: √(u²) = |u|. The last example below assumes q ≥ 0 and r ≥ 0. Without sign conditions, do not remove an absolute value.
 
 $$
 \sqrt{16b^4} = 4b^2

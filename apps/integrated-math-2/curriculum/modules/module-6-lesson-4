@@ -32,6 +32,8 @@ How does finding the surface area of a three-dimensional figure compare to findi
 * Lateral Area of a right prism: [L = Perimeter of base * height]
 * Surface Area: [SA = L + 2B] where B is the area of the base
 
+The following cylinder and cone formulas require right circular solids. The pyramid lateral-area formula requires equal face slant heights, as in a regular pyramid. For a general pyramid, add the areas of the triangular faces.
+
 ### Key Concept: Lateral Area and Surface Area of a Cylinder
 
 * Lateral Area: [L = 2pi * r * h]

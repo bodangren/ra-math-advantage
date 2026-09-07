@@ -54,9 +54,9 @@ The constant first differences (4) indicate a **linear model**: [y = 4x + 3]
    * Quadratic: acceleration or parabolic motion (height over time, area problems)
    * Exponential: growth/decay by percentage (population, radioactive decay, interest)
 
-2. **Check the differences** — Use finite differences or ratios to confirm your hypothesis
+2. **Check the differences** — For equally spaced inputs, constant first differences support a linear model. Constant nonzero second differences support a quadratic model. Constant ratios of nonzero successive outputs support an exponential model.
 
-3. **Use technology for regression** — When differences are not perfectly constant (real-world data), use a graphing calculator to find the regression equation with the highest R² value
+3. **Use technology for regression** — Compare plausible model families using residuals, context, and prediction error. Compare R² only on the same response scale and data. A larger R² alone does not justify a more complex model. Do not log-transform zero or negative outputs.
 
 4. **Interpret domain and range** — In context, domain is typically the range of x-values (time, age, etc.) and range is the corresponding y-values (height, population, etc.)
 

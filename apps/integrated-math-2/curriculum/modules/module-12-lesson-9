@@ -5,7 +5,7 @@ Source: (Module 12, Lesson 12-N, Int2_1209_practice.docx)
 ## Today's Goals
 
 * Add and subtract functions to create new functions.
-* Multiply (compose) functions and interpret the result in context.
+* Distinguish function multiplication from composition. Interpret composition in context.
 * Write real-world scenarios as combined functions representing total quantity, difference, or composite relationships.
 * Analyze how function operations affect domain restrictions.
 
@@ -46,7 +46,7 @@ Given [f(x) = x - 9], [g(x) = 3x² - 2x + 5], and [h(x) = -6x]:
 
 ### Key Concept: Composing Functions
 
-When composing functions [(f ∘ g)(x)], substitute the entire expression of g(x) into f(x) and simplify.
+Composition (f ∘ g)(x) = f(g(x)) substitutes the output of g into f. Multiplication (fg)(x) = f(x)g(x) multiplies two outputs and is a different operation. A composition requires x in the domain of g and g(x) in the domain of f. Sums, differences, and products require x in both domains.
 
 Given [f(x) = 11x], [g(x) = x² - 6x + 3], and [h(x) = -x + 4]:
 

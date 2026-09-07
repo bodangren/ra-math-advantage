@@ -36,8 +36,8 @@ Find two numbers that multiply to c and add to b.
 
 ### Key Concept: Sign Patterns
 
-When c is positive and b is negative, both factors are negative.
-When c is negative, one factor is positive and one is negative.
+When c is positive and b is negative, the two constant terms in (x + r)(x + s) are negative.
+When c is negative, the constant terms have opposite signs. The signs of the full factors depend on x.
 
 [a^2 + 8a - 48] → Two numbers that multiply to -48 and add to 8: 12 and -4.
 → [(a + 12)(a - 4)]

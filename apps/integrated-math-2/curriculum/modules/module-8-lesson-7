@@ -44,7 +44,7 @@ How can you look at an equation and know exactly how the graph will be transform
 
 ### Key Concept: Combined Transformations
 
-When multiple transformations are present, apply them in order: horizontal shifts, dilations/reflections, then vertical shifts.
+For $g(x)=a f(b(x-h))+k$, where a and b are nonzero, map each parent point $(u,v)$ to $(h+u/b,k+av)$. Scale or reflect the coordinates first, then translate. This rule prevents a horizontal shift from being incorrectly scaled.
 
 ## Example 1 — Describe Translations
 

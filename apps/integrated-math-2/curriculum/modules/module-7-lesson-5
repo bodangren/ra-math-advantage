@@ -38,7 +38,7 @@ $P(\text{heads and 3}) = \frac{1}{2} \times \frac{1}{6} = \frac{1}{12}$
 
 ### Key Concept: Multiplication Rule for Dependent Events
 
-For dependent events (without replacement):
+For any events with P(A) > 0, including dependent draws without replacement:
 
 $P(A \text{ and } B) = P(A) \times P(B | A)$
 
@@ -53,7 +53,7 @@ Events A and B are independent if and only if:
 
 $P(A \text{ and } B) = P(A) \times P(B)$
 or equivalently
-[P(B) = P(B | A)]
+[P(B) = P(B | A)] when P(A) > 0. The product test also applies when P(A) = 0.
 
 ## Example 1 — Independent Events and Joint Probability
 

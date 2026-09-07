@@ -51,7 +51,7 @@ When events share outcomes, use:
 
 $P(A \cup B) = P(A) + P(B) - P(A \cap B)$
 
-**Example:** For a spinner with sections labeled 1–10, let [A] be landing on a vowel and [B] be landing on J.
+**Example:** For a spinner with ten equal sections labeled A–J, let [A] be landing on a vowel and [B] be landing on J.
 
 [A = {A, E}]
 [B = {J}]

@@ -30,7 +30,7 @@ Can a system of two linear inequalities have no solution? Under what conditions 
 ### Key Concept: Graphing a System of Two Inequalities
 
 1. Graph each boundary line (solid for $\leq$ or $\geq$, dashed for [<] or [>]).
-2. Shade the appropriate half-plane for each inequality using a test point such as the origin.
+2. Shade the appropriate half-plane for each inequality using a test point that is not on the boundary, such as the origin when permitted.
 3. The solution region is the intersection of all shaded areas.
 
 ### Key Concept: Testing a Point in the Solution Region

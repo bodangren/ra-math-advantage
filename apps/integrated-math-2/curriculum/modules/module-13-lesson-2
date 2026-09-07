@@ -32,7 +32,7 @@ Pick the more complex side and transform it step by step until it matches the si
 ### Key Concept: Useful Strategies
 
 1. Rewrite all trig functions in terms of sin and cos
-2. Factor and cancel common factors
+2. Factor and cancel common nonzero factors. Retain the original domain.
 3. Look for patterns like [1 - sin^2 theta = cos^2 theta]
 4. Multiply by conjugates to create difference of squares
 5. Break up complex fractions

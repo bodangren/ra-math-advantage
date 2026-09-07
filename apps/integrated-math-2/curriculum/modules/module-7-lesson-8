@@ -46,8 +46,8 @@ A two-way table has:
 
 Relative frequency can be calculated three ways:
 * **Overall:** Each cell divided by the grand total
-* **By Row:** Each cell divided by its row total (gives conditional distribution on the row variable)
-* **By Column:** Each cell divided by its column total (gives conditional distribution on the column variable)
+* **By Row:** Each cell divided by its nonzero row total (gives conditional distribution on the row variable)
+* **By Column:** Each cell divided by its nonzero column total (gives conditional distribution on the column variable)
 
 ### Key Concept: Conditional Probability from Tables
 
@@ -59,7 +59,7 @@ $P(A | B) = \frac{\text{count in } A \cap B}{\text{count in } B}$
 ### Key Concept: Testing Independence
 
 Events are independent if:
-[P(A | B) = P(A)] — the conditional probability equals the marginal probability.
+[P(A | B) = P(A)] when P(B) > 0. This checks independence in the empirical distribution represented by the table. A sample result alone does not establish population independence.
 
 ## Example 1 — Create Two-Way Frequency and Relative Frequency Tables
 

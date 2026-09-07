@@ -28,7 +28,7 @@ What determines whether a line and a parabola will intersect at 0, 1, or 2 point
 A system of one linear and one quadratic equation can have 0, 1, or 2 solutions depending on how many times the line intersects the parabola:
 
 * **0 solutions** — The line does not intersect the parabola (line is entirely above or below, or opens in a direction away from the line).
-* **1 solution** — The line is tangent to the parabola (touches at exactly one point).
+* **1 solution** — A nonvertical line can be tangent to a vertical-axis parabola. A vertical line also meets that parabola once, without being tangent.
 * **2 solutions** — The line crosses the parabola at two distinct points.
 
 ### Key Concept: Solving by Graphing

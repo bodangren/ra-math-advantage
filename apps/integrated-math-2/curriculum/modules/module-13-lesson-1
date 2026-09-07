@@ -19,7 +19,7 @@ Source: (Module 13, Lesson 13-1, Int2_1301_practice.docx)
 
 ## Explore: Identities and the Unit Circle
 
-Trigonometric identities are equations that hold true for all values of the variable. Just as simplifying algebraic expressions makes computation easier, simplifying trigonometric expressions reveals underlying relationships between functions.
+Trigonometric identities hold for all values where both sides are defined. Just as simplifying algebraic expressions makes computation easier, simplifying trigonometric expressions reveals underlying relationships between functions.
 
 Inquiry Question:
 How can you determine which reciprocal or quotient identity to apply when simplifying a given expression?
@@ -36,6 +36,8 @@ How can you determine which reciprocal or quotient identity to apply when simpli
 
 [tan theta = sin theta / cos theta]
 [cot theta = cos theta / sin theta]
+
+Every displayed quotient requires a nonzero denominator. The reciprocal formula cot θ = 1/tan θ requires both sine and cosine to be nonzero. The definition cot θ = cos θ/sin θ also permits cosine to be zero. Retain the original domain after cancellation.
 
 ### Key Concept: Simplification Strategy
 

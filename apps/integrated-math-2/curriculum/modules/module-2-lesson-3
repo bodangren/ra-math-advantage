@@ -37,7 +37,7 @@ A quadrilateral is a parallelogram if any of the following is true:
 
 To verify a quadrilateral is a parallelogram using coordinates:
 
-* **Slope Formula** — Opposite sides have the same slope (parallel).
+* **Slope Formula** — Opposite nonvertical sides have the same slope. Two vertical sides are parallel and have undefined slopes.
 * **Distance Formula** — Opposite sides have the same length (congruent).
 * **Midpoint Formula** — Diagonals have the same midpoint (bisect each other).
 

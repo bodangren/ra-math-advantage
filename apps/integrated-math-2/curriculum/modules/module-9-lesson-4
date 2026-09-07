@@ -38,7 +38,7 @@ If two lines have different slopes, how many points do they share? What if they 
 | Inconsistent | Two parallel lines | 0 | [m1 = m2], different b |
 | Consistent and Dependent | Two coincident lines | Infinitely many | Same line |
 
-To classify algebraically: write both equations in slope-intercept form and compare slopes and intercepts.
+For nonvertical lines, compare slopes and intercepts. Two different vertical lines are parallel. A vertical line and a nonvertical line meet once. Two equations for the same vertical line have infinitely many solutions.
 
 ## Example 1 — Classify Each System
 

@@ -37,7 +37,7 @@ For [c < 0], there is no solution because absolute value is always non-negative.
 
 ### Key Concept: Cases for Absolute Value
 
-When solving equations with multiple absolute values, such as [|x - 3| = |2x + 1|], consider all combinations of positive and negative cases for each expression. With two absolute values, there are 4 combinations, but only 2 unique cases need be considered because if [A = B], then either [A = B] or [A = -B].
+When solving equations with multiple absolute values, such as [|x - 3| = |2x + 1|], consider all combinations of positive and negative cases for each expression. With two absolute values, there are 4 combinations, but only 2 unique cases need be considered because |A| = |B| is equivalent to A = B or A = −B for real A and B.
 
 ## Example 1 — Solve Equations with One Absolute Value
 

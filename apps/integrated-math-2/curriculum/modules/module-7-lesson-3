@@ -28,7 +28,7 @@ How can you use the dimensions of a figure to find the probability that a random
 
 ### Key Concept: Length-Based Geometric Probability
 
-When a point is chosen at random on a line segment, the probability it falls in a particular subsegment equals the ratio of the subsegment length to the total length.
+When a point is chosen uniformly on a line segment, the probability it falls in a particular subsegment equals the ratio of the subsegment length to the total length.
 
 $P(\text{point in region}) = \frac{\text{length of region}}{\text{total length}}$
 
@@ -36,7 +36,7 @@ $P(\text{point in region}) = \frac{\text{length of region}}{\text{total length}}
 
 ### Key Concept: Area-Based Geometric Probability
 
-When a point is chosen at random in a two-dimensional region, the probability it falls in a particular subregion equals the ratio of the subregion area to the total area.
+When a point is chosen uniformly in a two-dimensional region, the probability it falls in a particular subregion equals the ratio of the subregion area to the total area.
 
 $P(\text{point in region}) = \frac{\text{area of region}}{\text{total area}}$
 
@@ -44,7 +44,7 @@ $P(\text{point in region}) = \frac{\text{area of region}}{\text{total area}}$
 
 ### Key Concept: Time-Based Geometric Probability
 
-Convert all time measures to the same unit, then use the ratio of favorable time to total time.
+Assume arrival time is uniform over the stated time interval. Convert all times to one unit. Then use the ratio of favorable time to total time.
 
 **Example:** A traffic light is green for 2 minutes 27 seconds, yellow for 6 seconds, and red for 2 minutes 27 seconds in a 5-minute cycle.
 $P(\text{green}) = \frac{2\text{ min }27\text{ s}}{5\text{ min}} = \frac{147\text{ s}}{300\text{ s}}$

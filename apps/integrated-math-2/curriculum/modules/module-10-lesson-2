@@ -27,7 +27,7 @@ How does the Quotient of Powers Property combine with the Power of a Quotient Pr
 
 ### Key Concept: Quotient of Powers Property
 
-To divide two powers with the same base, keep the base and subtract the exponents.
+To divide two powers with the same nonzero base, subtract the exponents. Retain all original denominator restrictions after simplification.
 
 $$
 \frac{m^4p^2}{m^2p} = m^{4-2}p^{2-1} = m^2p

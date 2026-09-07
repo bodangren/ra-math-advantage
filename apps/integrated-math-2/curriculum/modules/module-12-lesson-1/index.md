@@ -28,7 +28,7 @@ How does the sign of the leading coefficient affect whether a parabola opens upw
 
 ### Key Concept: Parts of a Parabola
 
-Every quadratic function [y = ax^2 + bx + c] produces a parabola with these key features:
+Every quadratic function [y = ax^2 + bx + c] with a ≠ 0 produces a parabola with these key features:
 
 * **Axis of Symmetry**: The vertical line [x = -b/(2a)] that passes through the vertex.
 * **Vertex**: The point [( -b/(2a) , f( -b/(2a) ) )]; a maximum when [a < 0], a minimum when [a > 0].

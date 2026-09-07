@@ -30,11 +30,11 @@ If you know a line passes through (2, 5) with slope 3, what information can you 
 ### Key Concept: Standard Form
 
 In standard form [Ax + By = C]:
-* A, B, and C are integers (preferably positive).
+* A, B, and C are real constants. For rational coefficients, this course uses integer coefficients with no common factor when possible. Their signs cannot always all be positive.
 * A and B are not both zero.
 * If possible, A, B, and C share no common factor greater than 1.
 
-To check if a point (x, y) is on the line, substitute into Ax + By and verify it equals C.
+A vertical line x = c has undefined slope and cannot use slope-intercept form. To check if a point (x, y) is on the line, substitute into Ax + By and verify it equals C.
 
 ### Key Concept: Slope-Intercept Form
 

@@ -36,6 +36,8 @@ Why doesn't [sin(A + B) = sin A + sin B]? Can you find a counterexample using sp
 
 [cos(A - B) = cos A cos B + sin A sin B]
 
+The tangent formulas require tan A and tan B to be defined and the displayed denominator to be nonzero.
+
 ### Key Concept: Tangent Sum and Difference
 
 [tan(A + B) = (tan A + tan B) / (1 - tan A tan B)]

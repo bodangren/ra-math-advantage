@@ -28,7 +28,7 @@ Why does the incenter always lie inside the triangle while the circumcenter can 
 
 ### Key Concept: Angle Bisector Theorem
 
-If a point lies on the bisector of an angle, then the perpendicular distances from that point to the two sides of the angle are equal. The converse states that if a point is equally distant from the two sides, it lies on the angle bisector.
+For a point in the interior of an angle, the point lies on the internal angle bisector if and only if its perpendicular distances to the two side lines are equal. The interior condition excludes the external angle bisector.
 
 ### Key Concept: The Incenter
 

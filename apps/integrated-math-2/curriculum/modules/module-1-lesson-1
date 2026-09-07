@@ -34,7 +34,7 @@ If a point lies on the perpendicular bisector of a segment, then it is equally d
 
 The circumcenter is the point where all three perpendicular bisectors of a triangle meet. It is equidistant from the three vertices. To find the circumcenter:
 1. Find the midpoints of at least two sides.
-2. Find the slopes of the perpendicular lines to those sides.
+2. Find perpendicular slopes for nonvertical, nonhorizontal sides. A horizontal side has a vertical perpendicular bisector. A vertical side has a horizontal perpendicular bisector.
 3. Write equations of the perpendicular bisectors.
 4. Solve the system to find the intersection point.
 

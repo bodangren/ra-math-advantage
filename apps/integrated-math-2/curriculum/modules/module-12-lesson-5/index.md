@@ -37,10 +37,10 @@ For [x^2 + bx + c] to be a perfect square, [c = (b/2)^2]. The term you add is al
 
 ### Key Concept: Steps to Complete the Square
 
-1. Move constant terms to the other side so [x^2 + bx] is alone.
+1. Divide by the nonzero leading coefficient. Then move the constant term so [x^2 + bx] is alone.
 2. Add [(b/2)^2] to both sides.
 3. Factor the perfect square trinomial.
-4. Take the square root of both sides.
+4. Take both square-root signs when the right side is positive. Zero gives one value. A negative right side gives no real solution.
 5. Solve for x.
 
 ## Example 1 — Find the Value of c

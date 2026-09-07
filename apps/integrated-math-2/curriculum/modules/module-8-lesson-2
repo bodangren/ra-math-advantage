@@ -30,7 +30,7 @@ What do the intercepts of a linear function tell you about the situation it mode
 
 ### Key Concept: Identifying Linear Functions
 
-A function is linear if it can be written as [y = mx + b] and its graph is a straight line. Nonlinear functions include quadratics, absolute value, radicals, and any equation where [x] appears with an exponent other than 1.
+A function is linear if it can be written as [y = mx + b] and its graph is a straight line. Simplify the expression first. For example, x² − x² + x is linear. Quadratic and absolute-value parent functions are nonlinear.
 
 ### Key Concept: Finding Intercepts
 
@@ -39,12 +39,12 @@ A function is linear if it can be written as [y = mx + b] and its graph is a str
 
 ### Key Concept: Symmetry Types
 
-* **Line symmetry** — the graph mirrors across a vertical or horizontal line.
+* **Line symmetry** — reflection across a line preserves the graph. The line need not be vertical or horizontal.
 * **Point symmetry** — the graph looks the same when rotated 180°.
 
 ### Key Concept: Even vs. Odd Functions
 
-Test algebraically:
+First require a domain symmetric about zero. Then test every x in the domain:
 * Even: [f(-x) = f(x)]
 * Odd: [f(-x) = -f(x)]
 

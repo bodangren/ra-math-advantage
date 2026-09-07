@@ -31,7 +31,7 @@ What characteristics determine whether an algebraic expression is a polynomial, 
 
 ### Key Concept: Identifying Polynomials
 
-A polynomial is a sum of terms each consisting of a coefficient multiplied by a variable raised to a nonnegative integer power.
+A polynomial is a finite sum of terms. Each term has a coefficient multiplied by variables raised to nonnegative integer powers. The total degree of a term is the sum of its variable exponents. The degree in one variable counts only that variable's exponent.
 
 Determine whether each expression is a polynomial. If it is, find the degree and classify it as a monomial, binomial, or trinomial.
 

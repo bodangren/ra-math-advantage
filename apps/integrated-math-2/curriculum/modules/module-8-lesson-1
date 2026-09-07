@@ -37,8 +37,8 @@ How can changing the codomain change whether a function is onto?
 ### Key Concept: Discrete vs. Continuous
 
 * A function is **discrete** when its domain consists of isolated points (e.g., whole numbers).
-* A function is **continuous** when its domain is an unbroken interval with no gaps.
-* Some functions are neither discrete nor continuous — for example, a function with domain {1, 3, 5}.
+* A function is **continuous** on an interval when its values approach its value at each point without a jump or break. An interval domain alone does not guarantee continuity.
+* A function with domain {1, 3, 5} is discrete. A step function on the real numbers has a nondiscrete domain and is discontinuous at its jumps.
 
 ## Example 1 — Identify Domain, Range, Codomain, and Determine If Onto
 

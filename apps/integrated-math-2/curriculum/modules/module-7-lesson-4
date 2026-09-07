@@ -28,7 +28,7 @@ Why is the probability of being chosen as captain and co-captain different from 
 
 ### Key Concept: Probability with Permutations
 
-When finding the probability that specific items are selected in a particular order, use permutations for both favorable outcomes and total outcomes.
+For equally likely ordered selections, count favorable ordered outcomes and total ordered outcomes. Permutations count selections without replacement.
 
 $P(E) = \frac{\text{favorable ordered outcomes}}{\text{total ordered outcomes}}$
 
@@ -41,7 +41,9 @@ Favorable ordered outcomes: 2. Either girl can be captain. [P = 2/132 = 1/66].
 
 When order does not matter, use combinations.
 
-$P(E) = \frac{\binom{n}{r}}{\binom{N}{R}}$
+$P(E)=\frac{\text{favorable combinations}}{\text{total combinations}}$
+
+The combinations must be equally likely. The numerator depends on the event. It is not always one binomial coefficient.
 
 **Example:** From 20 flavors of frozen yogurt, choosing 3 flavors. Probability the chosen flavors are vanilla, chocolate, and strawberry (in any order).
 

@@ -34,11 +34,11 @@ Why does the maximum or minimum value of a linear objective function over a feas
 2. Identify the feasible region and find the coordinates of all vertices.
 3. Write the objective function [f(x, y) = ax + by].
 4. Evaluate the objective function at each vertex.
-5. The largest value is the maximum; the smallest value is the minimum.
+5. For a nonempty closed bounded polygon, the largest vertex value is a maximum and the smallest is a minimum. For unbounded or open regions, check whether each bound exists and is attained.
 
 ### Key Concept: Bounded vs. Unbounded Regions
 
-* For a **bounded** feasible region, both a maximum and a minimum value of the objective function always exist.
+* For a nonempty **closed and bounded** feasible region, a linear objective attains both a maximum and a minimum. Strict inequalities can exclude a boundary optimum. Integer restrictions require checking feasible integer points.
 * For an **unbounded** feasible region, a maximum or minimum may not exist if the objective function increases or decreases without bound in the allowed direction.
 
 ## Example 1 — Find Maximum and Minimum on a Bounded Feasible Region

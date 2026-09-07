@@ -24,7 +24,7 @@ How does the geometric mean relate to similar right triangles?
 
 For two positive numbers [a] and [b], the geometric mean [x] satisfies [a/x = x/b].
 
-This relationship comes from the similarity of triangles formed when an altitude is drawn to the hypotenuse of a right triangle. Each altitude creates three similar right triangles.
+This relationship comes from the similarity of triangles formed when an altitude is drawn to the hypotenuse of a right triangle. The altitude to the hypotenuse divides the original triangle into two smaller right triangles. All three triangles are similar. The positive geometric mean is $x=\sqrt{ab}$.
 
 ## Example 1 — Find the Geometric Mean
 

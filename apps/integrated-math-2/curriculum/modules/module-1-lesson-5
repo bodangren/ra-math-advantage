@@ -39,7 +39,7 @@ For statements like "if x squared plus 8 is less than or equal to 12, then x is 
 
 ### Key Concept: Common Geometric Applications
 
-For statements about triangles (e.g., "a triangle can have only one right angle"):
+For statements about triangles (e.g., "a triangle can have at most one right angle"):
 1. Assume the triangle has two right angles.
 2. Show this would make the angle sum > 180 degrees.
 3. Conclude the original statement is true.
@@ -96,7 +96,7 @@ Practice involves:
 * Proving that if x is an odd number, then x is not divisible by 4.
 * Proving that if xy is an even integer, then x or y is even.
 * Proving that in an isosceles triangle, neither base angle can be a right angle.
-* Proving a triangle can have only one right angle.
+* Proving a triangle can have at most one right angle.
 * Proving that if angle C is 100 degrees, then angle A is not a right angle.
 * Proving that if angle D is not congruent to angle F, then DE is not equal to EF.
 * Indirect proof that if 1/b < 0, then b is negative.

@@ -29,7 +29,7 @@ If you know that a card drawn from a deck is a face card, what is the probabilit
 
 $P(B | A) = \frac{P(A \cap B)}{P(A)}$
 
-This formula arises from restricting the sample space to only the outcomes in event A.
+Require P(A) > 0. This formula arises from restricting the sample space to only the outcomes in event A.
 
 **Example:** From a standard deck, P(king | face card):
 Face cards = {Jacks, Queens, Kings} of all 4 suits = 12 cards
@@ -45,7 +45,7 @@ $P(B | A) = \frac{\text{count in } A \cap B}{\text{count in } A}$
 ### Key Concept: Testing for Independence
 
 Events A and B are independent if:
-[P(B | A) = P(B)] or [P(A | B) = P(A)]
+[P(B | A) = P(B)] when P(A) > 0, or [P(A | B) = P(A)] when P(B) > 0. If a conditioning event has probability zero, use the product test P(A ∩ B) = P(A)P(B).
 
 If knowing A occurred does not change the probability of B, the events are independent.
 

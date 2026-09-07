@@ -46,7 +46,7 @@ The sign is counterintuitive: (x - 3) means shift right 3 because you solve x - 
 
 * [g(x) = ax^2] where [a > 1] stretches the parabola vertically, making it narrower.
 * [g(x) = ax^2] where [0 < a < 1] compresses the parabola vertically, making it wider.
-* [g(x) = -ax^2] reflects the parabola across the x-axis, opening downward.
+* For a > 0, [g(x) = -ax^2] reflects the upward parabola across the x-axis and opens downward.
 
 When the dilation factor is inside the squared term as [(bx)^2], the width is affected horizontally. The effective horizontal stretch factor is [|1/b|].
 

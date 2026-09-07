@@ -32,7 +32,8 @@ What does the scale factor tell you about whether a dilation produces an enlarge
 * If [k > 1], the dilation is an **enlargement** — the image is larger than the original.
 * If [0 < k < 1], the dilation is a **reduction** — the image is smaller than the original.
 * If [k = 1], the image is congruent to the original (no change).
-* If [k < 0], the dilation also includes a rotation of 180° about the center.
+* If [k < 0], use |k| for the length scale and rotate 180° about the center.
+* A nondegenerate dilation requires k ≠ 0. At k = 0, all points collapse to the center.
 
 ### Key Concept: Coordinates After a Dilation
 

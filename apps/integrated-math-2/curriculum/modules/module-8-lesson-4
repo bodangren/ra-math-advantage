@@ -25,10 +25,10 @@ How can you use key features to sketch a graph if you don't have an equation?
 
 ### Key Concept: Key Features to Identify
 
-* **x-intercept(s):** where the graph crosses the x-axis
+* **x-intercept(s):** where the graph meets the x-axis, including tangency
 * **y-intercept:** where the graph crosses the y-axis
 * **Linearity:** linear (straight line) or nonlinear
-* **Continuity:** continuous (no breaks) or discrete (isolated points)
+* **Continuity:** check for jumps, holes, and other breaks. A discrete domain consists of isolated points. These are different properties.
 * **Positive/Negative:** where the graph is above/below the x-axis
 * **Increasing/Decreasing:** where the function rises or falls as you move left to right
 * **Symmetry:** line symmetry (about a vertical/horizontal line) or point symmetry

@@ -47,10 +47,12 @@ Distance formula: [r = sqrt((x₂ - x₁)² + (y₂ - y₁)²)]
 
 To convert [x² + y² + Dx + Ey + F = 0] to standard form, complete the square for both [x] and [y]:
 
-[x² + Dx → (x + D/2)²]
-[y² + Ey → (y + E/2)²]
+$x^2+Dx=(x+D/2)^2-(D/2)^2$
+$y^2+Ey=(y+E/2)^2-(E/2)^2$
 
 The center is [(-D/2, -E/2)] and the radius is [r = sqrt((D/2)² + (E/2)² - F)].
+
+A circle requires a positive radius squared. Zero gives one point. A negative value gives no real points.
 
 ### Key Concept: Intersections of Circles and Lines
 

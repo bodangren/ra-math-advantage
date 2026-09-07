@@ -36,6 +36,8 @@ Why are there three forms of cos(2theta)? When is each form most useful?
 
 [tan(2theta) = (2 tan theta) / (1 - tan^2 theta)]
 
+The tangent double-angle formula requires tan θ to be defined and 1 − tan² θ ≠ 0.
+
 ### Key Concept: Choosing the Right Form for cos(2theta)
 
 * Use [cos^2 theta - sin^2 theta] when you know both sin and cos

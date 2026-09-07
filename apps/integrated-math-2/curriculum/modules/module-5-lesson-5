@@ -35,7 +35,8 @@ If two tangent segments are drawn from the same external point to a circle, they
 
 ### Key Concept: Common Tangents
 
-* Two circles can have 0, 1, or 2 common tangents.
+* Two distinct circles have four common tangents when separate, three when externally tangent, two when intersecting twice, one when internally tangent, and zero when one lies strictly inside the other.
+* Coincident circles have infinitely many common tangent lines.
 * External tangents do not cross the segment connecting the two centers.
 * Internal tangents cross the segment connecting the two centers.
 

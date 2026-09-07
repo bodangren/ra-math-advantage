@@ -31,7 +31,7 @@ If two chords in the same circle have the same length, what can you say about th
 Within the same circle or congruent circles:
 
 * Congruent arcs have congruent chords.
-* Congruent chords have congruent arcs.
+* Congruent chords have congruent minor arcs and congruent major arcs. Compare the same arc type.
 
 ### Key Concept: Perpendicular Bisector Theorem
 
@@ -39,7 +39,7 @@ The perpendicular from the center of a circle to a chord bisects the chord. Conv
 
 ### Key Concept: Distance from Center to Chord
 
-If two chords are equidistant from the center, they are congruent. This is the converse of the perpendicular bisector relationship.
+In one circle, two chords are congruent if and only if their perpendicular distances from the center are equal. The same rule applies to congruent circles, using each circle's center.
 
 ## Example 1 — Find Missing Values Using Chord Relationships
 

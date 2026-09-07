@@ -26,11 +26,11 @@ How does the end behavior of a polynomial relate to the degree and leading coeff
 
 ### Key Concept: Identifying Extrema
 
-Relative maxima and minima are found where the function changes direction. Estimate x- and y-values to the nearest tenth when necessary.
+A local maximum has a value at least as large as nearby domain values. A local minimum has a value at most as large as nearby domain values. Direction changes can identify strict extrema, but flat sections need separate attention. Estimate coordinates only when exact values are unavailable.
 
 ### Key Concept: End Behavior Patterns
 
-* Even-degree polynomials: both ends go the same direction.
+* Nonconstant even-degree polynomials: both ends go the same direction.
 * Odd-degree polynomials: ends go in opposite directions.
 * Positive leading coefficient (even degree): [x -> +/- infinity, f(x) -> +infinity]
 * Negative leading coefficient (even degree): [x -> +/- infinity, f(x) -> -infinity]

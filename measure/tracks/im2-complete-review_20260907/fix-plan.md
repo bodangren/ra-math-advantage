@@ -194,3 +194,11 @@ Completed the remaining 21 Module 13 sections and corrected five older sections 
 Corrected trigonometric inverse-value interval selection and original-domain restrictions. The food-mixture example now uses 100 g portions with physically consistent composition units. Exact elimination gives the third portion as 17/89, rather than the earlier prematurely rounded 0.18.
 
 Verification passed with 208 tests, lint, frontend and backend TypeScript, and production build. The new completeness test failed against the old bundle and passed after correction.
+
+## Lesson explanation correction
+
+Read the compiled learning explanations across all 96 lessons. Corrected geometry conditions, common tangent counts, circle completion-of-square steps, and surface-area assumptions. Added missing three-dimensional coordinate formulas. Corrected probability sample labels, uniform-selection assumptions, and zero-denominator conditions.
+
+Corrected continuity, symmetry, intercept, transformation-order, and optimization rules. Distinguished composition from multiplication. Added exponent, radical, and trigonometric domain restrictions. Regression guidance now checks model assumptions and comparable response scales. The source worksheets and remaining exercise summaries still require separate review.
+
+Verification passed with 211 tests, lint, frontend and backend TypeScript, and production build.

@@ -32,7 +32,7 @@ For a parabola with vertex at the origin and focus at (0, p):
 * If the focus is at (0, p) and directrix is [y = -p], the equation is [x² = 4py].
 * If the focus is at (0, -p) and directrix is [y = p], the equation is [x² = -4py].
 
-For a parabola with vertex at (h, k):
+For a parabola with vertex at (h, k), use a signed nonzero parameter p:
 
 [(x - h)² = 4p(y - k)] (opens upward if p > 0, downward if p < 0)
 [(y - k)² = 4p(x - h)] (opens right if p > 0, left if p < 0)
@@ -49,7 +49,7 @@ For focus (0, 4) and directrix [y = -4]: [p = 4], so [x² = 16y].
 
 For focus (0, 2) and directrix [y = -2]: [p = 2], so [x² = 8y].
 
-### Key Concept: Parabolas with Horizontal Axes
+### Key Concept: A Shifted Vertical Axis
 
 If the focus is at (1, 7) and directrix is [y = -9], the axis of symmetry is vertical. The vertex is midway between the focus and directrix: [(1, -1)]. The distance [p = 8]. Since the focus is above the directrix, the parabola opens upward. The equation is [(x - 1)² = 32(y + 1)].
 

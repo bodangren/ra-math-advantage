@@ -24,7 +24,7 @@ How do the Distance and Midpoint Formulas change when you add a third dimension?
 
 ## Learn: Coordinates in Space
 
-The distance between two points in space uses the same principle as the Pythagorean Theorem extended into three dimensions.
+The distance between $(x_1,y_1,z_1)$ and $(x_2,y_2,z_2)$ is $d=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2+(z_2-z_1)^2}$. Their midpoint is $((x_1+x_2)/2,(y_1+y_2)/2,(z_1+z_2)/2)$. Use the same unit on all three axes.
 
 ## Example 1 — Graph a Rectangular Solid
 
