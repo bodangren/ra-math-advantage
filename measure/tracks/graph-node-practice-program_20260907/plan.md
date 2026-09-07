@@ -109,7 +109,9 @@ Scheduling: one worker owns shared graph mechanisms. Two workers can review disj
 
 - [x] Task G12: Restore IM1 Lesson 4-2 draft capability and source-example identities. Independent review passed. Real-world-data example mapping remains empty. Twelve source tests, 20 inventory tests, app/package lint, TypeScript, and builds pass. Commit `cadf514e`.
 
-- [~] Task G13: Reconcile IM1 embedded node catalogs with their existing draft-node and standard-node sources. Resolve dangling endpoints caused by stale copies. Preserve all edge arrays and review states. Correct existing current-count fields.
+- [x] Task G13: Reconcile IM1 embedded node catalogs from current draft nodes and canonical standards. Resolve 17 dangling endpoint references. Preserve edge arrays and review states. Correct existing current counts. Independent review, source/inventory tests, full app lint, TypeScript, and build pass. Commit `001b410b`.
+
+- [~] Task G14: Review IM1 Lesson 4-3 capability and source-example identities. Restore source-based draft candidates and exact available source links. Preserve graph source consistency and stable identities.
 
 ## Phase 4 — Implement the minimum shared repairs and five pilots
 
