@@ -126,6 +126,7 @@ Scheduling: one worker owns shared graph mechanisms. Two workers can review disj
 - [x] Task G23: Review IM1 Lesson 5-4 correlation and causation from the original worksheet. Commit `7e388118` adds five draft candidates and reuses two Lesson 5-3 capabilities. Source data and causal evidence limits are corrected. Seven focused tests, lint, standalone TypeScript, and build pass. Curriculum approval remains open.
 - [~] Task G24: Review and repair IM1 Lesson 5-5 from the original source. The initial review proposes ten draft capabilities and reuse of existing prediction and causal-evidence capabilities. Author repair is in progress.
 - [~] Task B2: Correct the Business Math Unit 2 Lesson 11 assessment aggregate. The working-tree repair preserves physical activities and removes seven prerequisite edges and two aggregate mappings. Source review is committed as `bda89f3d`. Parent review and eleven consumer tests pass. Catalog integration and broader source review remain open.
+- [~] Task B3: Make Business Math source publication honor withdrawn exact-node mappings. Verify that the old notebook cannot establish exposure to the event-analysis capability.
 - [~] Task Q9: Integrate the selected IM3 three-mode seed with idempotent upsert and draft phase links. Preserve approval boundaries. Independent review found a missing caller, source-equation mismatch, approval transfer on content changes, and practice-item conflict gaps. The author is repairing these before integration.
 
 ## Phase 4 — Implement the minimum shared repairs and five pilots
