@@ -6,8 +6,8 @@
     "pilotEdgesPreserved": 0,
     "standardEdgesMerged": 941,
     "suggestedEdges": 1277,
-    "totalEdges": 2380,
-    "totalNodes": 886,
+    "totalEdges": 2398,
+    "totalNodes": 899,
     "normalizedWeights": 539
   },
   "nodes": [
@@ -5716,10 +5716,10 @@
     {
       "id": "math.im1.example.6.3.013",
       "kind": "worked_example",
-      "title": "Example 1: Solve Compound Inequalities; Model Real-World Situations",
+      "title": "Example 1: Solve and Graph Compound Inequalities",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-6-class-period-plan.md (6-3, Example 1)"
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-3 (Examples 1, 3, and 4 \u2014 Solve and Graph Compound Inequalities heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -5728,16 +5728,16 @@
         "lesson": "3",
         "exampleNumber": 1,
         "sourceLesson": "6-3",
-        "rawText": "6-3, Examples 1-2 \u2014 Solve Compound Inequalities; Model Real-World Situations"
+        "rawText": "Examples 1, 3, and 4 \u2014 Solve and Graph Compound Inequalities"
       }
     },
     {
       "id": "math.im1.example.6.3.014",
       "kind": "worked_example",
-      "title": "Example 2: Solve Compound Inequalities; Model Real-World Situations",
+      "title": "Example 2: Model, Solve, and Graph Contextual Compound Inequalities",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-6-class-period-plan.md (6-3, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-3 (Example 2 \u2014 Model, Solve, and Graph Contextual Compound Inequalities heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -5746,16 +5746,16 @@
         "lesson": "3",
         "exampleNumber": 2,
         "sourceLesson": "6-3",
-        "rawText": "6-3, Examples 1-2 \u2014 Solve Compound Inequalities; Model Real-World Situations"
+        "rawText": "Example 2 \u2014 Model, Solve, and Graph Contextual Compound Inequalities"
       }
     },
     {
       "id": "math.im1.example.6.3.015",
       "kind": "worked_example",
-      "title": "Example 2: Model Real-World Situations (continued); Write Inequalities from Graphs",
+      "title": "Example 2: Model, Solve, and Graph Contextual Compound Inequalities (schedule repeat)",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-6-class-period-plan.md (6-3, Example 2)"
+        "apps/integrated-math-1/curriculum/module-6-class-period-plan.md (6-3 schedule repeat)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -5764,16 +5764,16 @@
         "lesson": "3",
         "exampleNumber": 2,
         "sourceLesson": "6-3",
-        "rawText": "6-3, Examples 2-3 \u2014 Model Real-World Situations (continued); Write Inequalities from Graphs"
+        "rawText": "Example 2 \u2014 Model, Solve, and Graph Contextual Compound Inequalities (schedule repeat)"
       }
     },
     {
       "id": "math.im1.example.6.3.016",
       "kind": "worked_example",
-      "title": "Example 3: Model Real-World Situations (continued); Write Inequalities from Graphs",
+      "title": "Example 3: Solve and Graph Compound Inequalities",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-6-class-period-plan.md (6-3, Example 3)"
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-3 (Examples 1, 3, and 4 \u2014 Solve and Graph Compound Inequalities heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -5782,7 +5782,7 @@
         "lesson": "3",
         "exampleNumber": 3,
         "sourceLesson": "6-3",
-        "rawText": "6-3, Examples 2-3 \u2014 Model Real-World Situations (continued); Write Inequalities from Graphs"
+        "rawText": "Examples 1, 3, and 4 \u2014 Solve and Graph Compound Inequalities"
       }
     },
     {
@@ -15554,6 +15554,230 @@
         "course": "im1",
         "module": "6",
         "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.example.6.3.source-004",
+      "kind": "worked_example",
+      "title": "Example 4: Solve and Graph Compound Inequalities",
+      "domain": "math.im1",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-3 (Examples 1, 3, and 4 \u2014 Solve and Graph Compound Inequalities heading)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "3",
+        "exampleNumber": 4,
+        "sourceLesson": "6-3",
+        "rawText": "Examples 1, 3, and 4 \u2014 Solve and Graph Compound Inequalities"
+      }
+    },
+    {
+      "id": "math.im1.example.6.3.source-005",
+      "kind": "worked_example",
+      "title": "Example 5: Write Compound Inequalities from Graphs",
+      "domain": "math.im1",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-3 (Examples 5 and 6 \u2014 Write Compound Inequalities from Graphs heading)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "3",
+        "exampleNumber": 5,
+        "sourceLesson": "6-3",
+        "rawText": "Examples 5 and 6 \u2014 Write Compound Inequalities from Graphs"
+      }
+    },
+    {
+      "id": "math.im1.example.6.3.source-006",
+      "kind": "worked_example",
+      "title": "Example 6: Write Compound Inequalities from Graphs",
+      "domain": "math.im1",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-3 (Examples 5 and 6 \u2014 Write Compound Inequalities from Graphs heading)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "3",
+        "exampleNumber": 6,
+        "sourceLesson": "6-3",
+        "rawText": "Examples 5 and 6 \u2014 Write Compound Inequalities from Graphs"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.3.solve-and-compound-inequalities-as-intersections",
+      "kind": "skill",
+      "title": "Solve compound inequalities joined by and as intersections",
+      "domain": "math.im1",
+      "description": "Solve compound inequalities joined by and as intersections",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-3"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.3.solve-or-compound-inequalities-as-unions",
+      "kind": "skill",
+      "title": "Solve compound inequalities joined by or as unions",
+      "domain": "math.im1",
+      "description": "Solve compound inequalities joined by or as unions",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-3"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.3.solve-three-part-linear-inequalities",
+      "kind": "skill",
+      "title": "Solve three-part linear inequalities by applying each operation to all three parts",
+      "domain": "math.im1",
+      "description": "Solve three-part linear inequalities by applying each operation to all three parts",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-3"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.3.simplify-overlapping-and-special-compound-solution-sets",
+      "kind": "skill",
+      "title": "Simplify compound solution sets with overlap, absorption, all real numbers, or the empty set",
+      "domain": "math.im1",
+      "description": "Simplify compound solution sets with overlap, absorption, all real numbers, or the empty set",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-3"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.3.graph-compound-inequality-solution-sets",
+      "kind": "skill",
+      "title": "Graph compound inequality solution sets on number lines",
+      "domain": "math.im1",
+      "description": "Graph compound inequality solution sets on number lines",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-3"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.3.write-compound-inequalities-from-number-line-graphs",
+      "kind": "skill",
+      "title": "Write compound inequalities from number-line graphs",
+      "domain": "math.im1",
+      "description": "Write compound inequalities from number-line graphs",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-3"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.3.model-bounded-contextual-ranges-with-compound-inequalities",
+      "kind": "skill",
+      "title": "Model bounded contextual ranges with compound inequalities",
+      "domain": "math.im1",
+      "description": "Model bounded contextual ranges with compound inequalities",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-3"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.3.model-exterior-contextual-conditions-with-compound-inequalities",
+      "kind": "skill",
+      "title": "Model exterior or disjoint contextual conditions with compound inequalities",
+      "domain": "math.im1",
+      "description": "Model exterior or disjoint contextual conditions with compound inequalities",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-3"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.3.compare-unions-and-intersections-of-graphed-solution-sets",
+      "kind": "skill",
+      "title": "Compare unions and intersections of graphed solution sets",
+      "domain": "math.im1",
+      "description": "Compare unions and intersections of graphed solution sets",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-3"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.3.classify-structural-claims-about-compound-inequalities",
+      "kind": "skill",
+      "title": "Classify structural claims about compound inequalities as always, sometimes, or never true",
+      "domain": "math.im1",
+      "description": "Classify structural claims about compound inequalities as always, sometimes, or never true",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-3"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "3"
       }
     }
   ],
@@ -61118,6 +61342,294 @@
       "metadata": {
         "module": "6",
         "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.edge.1373",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.6.3",
+      "targetId": "math.im1.example.6.3.source-004",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains source example",
+      "metadata": {
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.edge.1374",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.6.3",
+      "targetId": "math.im1.example.6.3.source-005",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains source example",
+      "metadata": {
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.edge.1375",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.6.3",
+      "targetId": "math.im1.example.6.3.source-006",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains source example",
+      "metadata": {
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.edge.1376",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.6.3",
+      "targetId": "math.im1.skill.6.3.solve-and-compound-inequalities-as-intersections",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.edge.1377",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.6.3",
+      "targetId": "math.im1.skill.6.3.solve-or-compound-inequalities-as-unions",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.edge.1378",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.6.3",
+      "targetId": "math.im1.skill.6.3.solve-three-part-linear-inequalities",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.edge.1379",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.6.3",
+      "targetId": "math.im1.skill.6.3.simplify-overlapping-and-special-compound-solution-sets",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.edge.1380",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.6.3",
+      "targetId": "math.im1.skill.6.3.graph-compound-inequality-solution-sets",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.edge.1381",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.6.3",
+      "targetId": "math.im1.skill.6.3.write-compound-inequalities-from-number-line-graphs",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.edge.1382",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.6.3",
+      "targetId": "math.im1.skill.6.3.model-bounded-contextual-ranges-with-compound-inequalities",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.edge.1383",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.6.3",
+      "targetId": "math.im1.skill.6.3.model-exterior-contextual-conditions-with-compound-inequalities",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.edge.1384",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.6.3",
+      "targetId": "math.im1.skill.6.3.compare-unions-and-intersections-of-graphed-solution-sets",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.edge.1385",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.6.3",
+      "targetId": "math.im1.skill.6.3.classify-structural-claims-about-compound-inequalities",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.edge.1386",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.6.3",
+      "targetId": "math.im1.skill.6.1.interpret-inequality-solutions-in-context",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.edge.1387",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.6.3",
+      "targetId": "math.im1.skill.6.1.check-whether-values-satisfy-inequalities",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.edge.1388",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.6.3",
+      "targetId": "math.im1.skill.6.1.diagnose-inequality-solving-errors",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.edge.1389",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.6.3",
+      "targetId": "math.im1.skill.6.2.construct-multi-step-inequalities-with-specified-solution-sets",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.edge.1390",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.6.3",
+      "targetId": "math.im1.skill.6.2.analyze-dependent-geometric-constraints-with-linear-inequalities",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "6",
+        "lesson": "3"
       }
     }
   ]

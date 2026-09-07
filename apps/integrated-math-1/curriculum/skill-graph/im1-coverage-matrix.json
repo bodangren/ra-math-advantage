@@ -1,10 +1,10 @@
 {
   "version": 1,
   "course": "im1",
-  "totalSkills": 292,
+  "totalSkills": 302,
   "counts": {
     "served": 6,
-    "gap": 286,
+    "gap": 296,
     "newComponent": 0
   },
   "byModule": [
@@ -45,9 +45,9 @@
     },
     {
       "module": "6",
-      "totalSkills": 28,
+      "totalSkills": 38,
       "served": 0,
-      "gap": 28,
+      "gap": 38,
       "newComponent": 0
     },
     {
@@ -1629,7 +1629,87 @@
       "priority": "standard"
     },
     {
+      "skillId": "math.im1.skill.6.3.classify-structural-claims-about-compound-inequalities",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.3.compare-unions-and-intersections-of-graphed-solution-sets",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.3.graph-compound-inequality-solution-sets",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.3.model-bounded-contextual-ranges-with-compound-inequalities",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.3.model-exterior-contextual-conditions-with-compound-inequalities",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.3.simplify-overlapping-and-special-compound-solution-sets",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.3.solve-and-compound-inequalities-as-intersections",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
+    },
+    {
       "skillId": "math.im1.skill.6.3.solve-compound-inequalities-involving-and-and-or-and-express",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.3.solve-or-compound-inequalities-as-unions",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.3.solve-three-part-linear-inequalities",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.3.write-compound-inequalities-from-number-line-graphs",
       "module": "6",
       "status": "gap",
       "tier": "none",

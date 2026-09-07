@@ -25,6 +25,10 @@ const definitions = [
   ['explain-and-justify-multi-step-inequality-transformations', 'Explain and justify transformations in multi-step inequality solutions', []],
   ['analyze-dependent-geometric-constraints-with-linear-inequalities', 'Analyze dependent geometric constraints with linear inequalities', []],
 ].map(([slug, title, refs]) => [`math.im1.skill.6.2.${slug}`, title, refs] as const);
+const lesson63Reuses = new Set([
+  'math.im1.skill.6.2.construct-multi-step-inequalities-with-specified-solution-sets',
+  'math.im1.skill.6.2.analyze-dependent-geometric-constraints-with-linear-inequalities',
+]);
 
 const reused = new Map([
   ['math.im1.skill.6.1.write-inequalities-from-contextual-statements', ['math.im1.example.6.2.008']],
@@ -64,7 +68,12 @@ describe('Lesson 6-2 source capabilities', () => {
       expect(copies.every((node) => node?.title === title && node.reviewStatus === 'draft' && node.independentPracticeReady === false)).toBe(true);
       expect(copies.slice(1)).toEqual([copies[0], copies[0], copies[0]]);
       expect(catalog.blueprints.find((row) => row.nodeId === id)).toEqual({ nodeId: id, sourceNodeIds, alignmentNodeIds: [], reviewStatus: 'draft', metadata: { course: 'im1', module: '6', lesson: '2' } });
-      expect(graph.edges.filter((edge) => edge.sourceId === id || edge.targetId === id)).toEqual([expect.objectContaining({ type: 'contains', sourceId: 'math.im1.lesson.6.2', targetId: id, reviewStatus: 'draft' })]);
+      const incident = graph.edges.filter((edge) => edge.sourceId === id || edge.targetId === id);
+      expect(incident).toContainEqual(expect.objectContaining({ type: 'contains', sourceId: 'math.im1.lesson.6.2', targetId: id, reviewStatus: 'draft' }));
+      if (lesson63Reuses.has(id)) {
+        expect(incident).toContainEqual(expect.objectContaining({ type: 'contains', sourceId: 'math.im1.lesson.6.3', targetId: id, reviewStatus: 'draft' }));
+      }
+      expect(incident).toHaveLength(1 + Number(lesson63Reuses.has(id)));
     }
   });
 

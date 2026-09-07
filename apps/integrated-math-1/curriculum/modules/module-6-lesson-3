@@ -33,7 +33,7 @@ A compound inequality can be written as two separate inequalities joined by "and
 ]
 * When solving a three-part inequality, perform the same operation on all three parts to isolate the variable.
 
-## Example 1 — Solve Compound Inequalities
+## Examples 1, 3, and 4 — Solve and Graph Compound Inequalities
 
 Solve compound inequalities involving "and" or "or." Graph the solution set on a number line.
 
@@ -71,7 +71,7 @@ Representative three-part inequality:
 
 Shade the number line to represent the final interval. Use open circles for [<] or [>] and closed circles for [\le] or [\ge].
 
-## Example 2 — Model Real-World Situations
+## Example 2 — Model, Solve, and Graph Contextual Compound Inequalities
 
 Define a variable, write a compound inequality, and solve word problems in context.
 
@@ -90,7 +90,7 @@ x + 8 < 20 \quad \text{or} \quad x + 8 > 35
 
 Solve for the variable and interpret the solution within the constraints of the problem. Check that the answer is reasonable in context.
 
-## Example 3 — Write Inequalities from Graphs
+## Examples 5 and 6 — Write Compound Inequalities from Graphs
 
 Given a number-line graph, write the compound inequality it represents.
 
@@ -128,15 +128,40 @@ The mixed exercises integrate all skills from the lesson:
 
 Problems include multiple-choice analysis, finding errors in student work, and creating original compound inequalities that meet specified constraints.
 
-## Review Notes
+## Recovered Source Details and Verified Limits
 
-* Example 2, problem 17: Image of a store sign diagram (`image1.png`) is present but not described in the extracted text.
-* Examples 5 and 6, problems 19–26: Number-line graphs (`image2.png` through `image9.png`) are referenced but not described.
-* Mixed Exercise 35: Weather forecast number-line graph (`image10.png`) is referenced but not described.
-* Mixed Exercise 39: Triangle diagram (`image11.png`) is referenced but not described.
-* Mixed Exercise 41: Number-line graph (`image12.png`) is referenced but not described.
-* Mixed Exercise 42: Density table (`image13.png`) is referenced but not described.
-* Mixed Exercise 44: Number-line graph (`image14.png`) is referenced but not described.
-* Mixed Exercise 46: Error-analysis work (`image15.png`) is referenced but not described.
-* Mixed Exercises 47–49: Two number-line graphs (`image16.png` and `image17.png`) are referenced but not described.
-* Mixed Exercise 50: Triangular flower bed diagram (`image18.png`) is referenced but not described.
+Problem 3 gives `y >= 8` or `y < -4`. Problems 8 and 10 give all real numbers and no solution. Problem 14 gives all real numbers except `-3`.
+
+The store-sign diagram supports `x + 8 < 20` or `x + 8 > 35`. Thus, Problem 17 gives `x < 12` or `x > 27`. A physical pole height is positive, so the contextual result is `0 < x < 12` or `x > 27` feet.
+
+Problem 18 gives `770000 <= 365x <= 1600000`. The exact daily range is approximately `2109.589 <= x <= 4383.562` gallons. The source requests endpoint rounding to 2,110 and 4,384 gallons. This rounded report differs from an integer-feasibility interpretation, whose greatest whole number is 4,383.
+
+The number-line graphs in Problems 19 through 26 show `-3 < x <= 3`, `1 <= x <= 4`, `x < -2` or `x >= 1`, `x < -1` or `x > 2`, `x <= 0` or `x > 3`, `-2 <= x <= 3`, `x < -1` or `x >= 1`, and `x <= -1` or `x > 2`.
+
+Problem 35 shows the closed interval `54 <= t <= 68` degrees Fahrenheit. Problem 36 describes values outside the ideal pH interval. Assessment content must state whether the source word “between” includes the endpoints.
+
+Problem 37 requires 67 through 100 whole students. The 100-seat bus capacity controls the maximum.
+
+Problem 38 gives `18.5 <= 703w/72^2 <= 24.9`. The exact weight range is approximately `136.421 <= w <= 183.615` pounds. The requested nearest-tenth report is `136.4 <= w <= 183.6`. This is textbook mathematics. It is not medical guidance.
+
+The triangle in Problem 39 has sides 5, `x`, and `9 - x`. The Triangle Inequality gives `2 < x < 7`.
+
+Problem 40 excludes `k`. Thus, `x < k` or `x > k` is not all real numbers. Problem 41 gives `-2 < x < 5`.
+
+The density table in Problem 42 gives 1.40 g/mL for concentrated calcium chloride and 0.92 g/mL for 70 percent isopropyl alcohol. The 0.4 gram tablet condition gives `2/7 < v < 10/23` mL. The endpoints are strict because equal density does not describe the stated sinking or floating.
+
+The sale label in Problem 43 shows a 20 percent discount. The $500 through $1,000 source range becomes $400 through $800 after the discount and $428 through $856 after 7 percent sales tax.
+
+Problem 44 shows `-1 <= x < 8`. Many compound inequalities use the required properties and have this solution set. Grade the specified operations and the final set.
+
+Problem 45 has solution `x < 2` or `x >= 4`. The value 2 is not a solution.
+
+Problem 46 contains a sign error. The displayed expression `-3x + 7x - 1` simplifies to `4x - 1`, not `-4x - 1`.
+
+The graphs for Problems 47 through 49 show `x > -1` and `x >= 4`. Their union is `x > -1`. Their intersection is `x >= 4`.
+
+The flower bed in Problem 50 has side lengths `a`, `a`, and `a + 4`. Under inclusive budget endpoints, `60 <= 1.50(3a + 4) <= 75`, so `12 <= a <= 46/3`. The triangle condition `a > 4` does not change the lower bound. Strict budget endpoints would not give a shortest continuous length.
+
+Problem 51 states `a > 0`. Its results are `-4/a < x <= 4/a` and `x > 5a` or `x < -6/a`.
+
+Problems 52 and 54 have many valid answers. Problem 53 is sometimes true under the two-boundary-point interpretation. The phrase “bounded on the left and right” is ambiguous. Assessment content must define whether it means two boundary points or a bounded solution set.

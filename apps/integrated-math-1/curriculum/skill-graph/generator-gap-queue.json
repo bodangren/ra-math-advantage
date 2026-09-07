@@ -2573,10 +2573,100 @@
       "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.3.solve-and-compound-inequalities-as-intersections",
+      "title": "Solve compound inequalities joined by and as intersections",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.3.solve-or-compound-inequalities-as-unions",
+      "title": "Solve compound inequalities joined by or as unions",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.3.solve-three-part-linear-inequalities",
+      "title": "Solve three-part linear inequalities by applying each operation to all three parts",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.3.simplify-overlapping-and-special-compound-solution-sets",
+      "title": "Simplify compound solution sets with overlap, absorption, all real numbers, or the empty set",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.3.graph-compound-inequality-solution-sets",
+      "title": "Graph compound inequality solution sets on number lines",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.3.write-compound-inequalities-from-number-line-graphs",
+      "title": "Write compound inequalities from number-line graphs",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.3.model-bounded-contextual-ranges-with-compound-inequalities",
+      "title": "Model bounded contextual ranges with compound inequalities",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.3.model-exterior-contextual-conditions-with-compound-inequalities",
+      "title": "Model exterior or disjoint contextual conditions with compound inequalities",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.3.compare-unions-and-intersections-of-graphed-solution-sets",
+      "title": "Compare unions and intersections of graphed solution sets",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.3.classify-structural-claims-about-compound-inequalities",
+      "title": "Classify structural claims about compound inequalities as always, sometimes, or never true",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
     }
   ],
   "meta": {
-    "totalSkills": 286,
+    "totalSkills": 296,
     "allNeedGenerators": true
   }
 }

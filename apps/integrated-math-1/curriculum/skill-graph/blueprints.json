@@ -6340,7 +6340,8 @@
       "sourceNodeIds": [
         "math.im1.example.6.1.006",
         "math.im1.example.6.1.007",
-        "math.im1.example.6.2.008"
+        "math.im1.example.6.2.008",
+        "math.im1.example.6.3.014"
       ],
       "alignmentNodeIds": [],
       "reviewStatus": "draft",
@@ -6539,6 +6540,143 @@
         "course": "im1",
         "module": "6",
         "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.3.solve-and-compound-inequalities-as-intersections",
+      "sourceNodeIds": [
+        "math.im1.example.6.3.013",
+        "math.im1.example.6.3.016",
+        "math.im1.example.6.3.source-004"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.3.solve-or-compound-inequalities-as-unions",
+      "sourceNodeIds": [
+        "math.im1.example.6.3.013",
+        "math.im1.example.6.3.016",
+        "math.im1.example.6.3.source-004"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.3.solve-three-part-linear-inequalities",
+      "sourceNodeIds": [
+        "math.im1.example.6.3.013",
+        "math.im1.example.6.3.016",
+        "math.im1.example.6.3.source-004"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.3.simplify-overlapping-and-special-compound-solution-sets",
+      "sourceNodeIds": [
+        "math.im1.example.6.3.013",
+        "math.im1.example.6.3.016",
+        "math.im1.example.6.3.source-004"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.3.graph-compound-inequality-solution-sets",
+      "sourceNodeIds": [
+        "math.im1.example.6.3.013",
+        "math.im1.example.6.3.016",
+        "math.im1.example.6.3.source-004"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.3.write-compound-inequalities-from-number-line-graphs",
+      "sourceNodeIds": [
+        "math.im1.example.6.3.source-005",
+        "math.im1.example.6.3.source-006"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.3.model-bounded-contextual-ranges-with-compound-inequalities",
+      "sourceNodeIds": [
+        "math.im1.example.6.3.014"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.3.model-exterior-contextual-conditions-with-compound-inequalities",
+      "sourceNodeIds": [
+        "math.im1.example.6.3.014"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.3.compare-unions-and-intersections-of-graphed-solution-sets",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.3.classify-structural-claims-about-compound-inequalities",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "3"
       }
     }
   ]
