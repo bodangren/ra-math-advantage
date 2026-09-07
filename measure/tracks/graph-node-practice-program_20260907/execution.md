@@ -85,3 +85,23 @@ The runtime worker implements the single-node IM1 server submission and client f
 `3df086f6`: committed all 67 actual Module 1 and Module 2 example identities. Four missing draft examples use source-number IDs. Four confirmed duplicate occurrences redirect to retained identities. Full lesson-body review corrected unsupported shared mappings. The inverse graph-to-equation example remains a distinct source awaiting capability inventory. Ten source tests and IM1 TypeScript pass. No node outside the two modules changed.
 
 `6f595dd4`: committed the current IM1 inventory correction. Current totals are 150 skill candidates and six generator bindings. The 146 blueprint rows contain six schema-valid mode bundles, 132 empty bundles, and eight source-only rows. Four capabilities have no blueprint. None of these counts proves a complete production practice path. All 42 inventory tests and math-content TypeScript pass.
+
+## Continued pilot and source work
+
+The previous goal turn recorded the existing objective. It did not change the implementation. This turn rechecked current files and resumed live workers. The Precalculus review found incomplete Worked instruction, no positive constant interval, and an approval bypass. Task 4.3 now covers these fixes. G6 continues with IM2 Lesson 1.1 source distinctions. G7 corrects the IM1 translation catalog, which still asks for numeric evaluation although the new adapter grades expressions. The existing debt registry still presents historical 138-node counts as current. Those statements require correction.
+
+`72eee707`: the shared projector now requires approved exact node and blueprint states plus explicit readiness for SRS eligibility. It retains mode-specific renderer props. The approval regression failed before the repair. All 59 focused tests, package lint, TypeScript, and package build pass.
+
+`fae19087`: IM1 authentication links now use the existing Next Link component. Full app lint, standalone TypeScript, and build pass.
+
+`bf57ae6a`: IM2 now has distinct draft coordinate-circumcenter and coordinate-centroid capabilities. The source review preserves the perpendicular-bisector pilot and both legacy identities. Independent review found no blocking defect. The worker ran 14 focused tests. The parent repeated the four new source tests, app lint, and TypeScript. Whole-course taxonomy remains open.
+
+The IM1 legacy blueprint test still claimed that all Module 1 source candidates had generators. It also treated generic prompt and answerSchema fields as proof of renderer usability. Five assertions failed after the source and renderer fixes. G7 updates that test to distinguish registered bindings from source-only gaps. Exact renderer behavior remains covered by the new catalog and student-flow tests.
+
+`43c0ac98`: the IM1 translation catalog now uses expression-only grading and actual mode props. Guided seed 1110 assesses grouping. Both unsupported direct standard edges are rejected. All three projection consumers discard rejected edges. The saved activity and SRS copies agree. The selected graph node remains draft. Three catalog tests, 46 inventory tests, and 59 shared tests pass.
+
+The IM1 app pilot has 28 passing focused tests. These tests use the actual generated mode props and renderer, the server grading handler, a durable in-memory store, and separate real seed tests. They cover Worked retry, final completion, incorrect-answer correction, current publication, exact readiness, queue preservation, and repeated-visit first exposure. These tests do not prove a deployed Convex or browser session. No process listens on local port 3210.
+
+The boundary check found four IM1 undeclared-import paths and one Precalculus sync-script path. They require three existing workspace dependency declarations. The parent prepared `/tmp/graph-program-workspace-dependencies.patch` and requested explicit approval under AGENTS.md:104. No dependency file has changed. No install or upgrade is proposed. App integration remains open while independent course work continues.
+
+The IM2 three-mode app draft is implemented and awaits independent review. The Precalculus pilot now includes a positive constant segment and current graph publication checks. Its author reports 137 focused tests, lint, TypeScript, and build passing. The parent has not yet integrated or accepted that patch. The IM3 worker selected `math.im3.skill.1.1.graph-quadratic-functions`. The Business Math worker selected `math.bm2.skill.1.1.apply-accounting-equation`. Both workers are tracing the current source and app boundaries.

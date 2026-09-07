@@ -142,3 +142,42 @@ The provider submits an empty expression for Worked Example. The server runs the
 This record means that the learner answered incorrectly. The learner only acknowledged a displayed example. Use an explicit acknowledgement result, or use a server-owned Worked completion result that does not claim an incorrect response.
 
 The current new tests verify the real component provider path and the submission handler. They still do not verify the seed mutation or one complete seed-to-storage flow.
+
+## Final integration resolution
+
+Date: 2026-09-07
+
+The final implementation resolves the remaining seed and Worked Example findings.
+
+- An unchanged seed replay preserves the reviewed `approval` and `srsEligible` values.
+- A content change clears `approval` and resets `srsEligible` to `false`.
+- Worked Example stores an acknowledgement. It does not store `score`, `maxScore`, or `gradedAt`.
+- A Worked Example network failure keeps the activity visible. The retry uses the same idempotency key.
+- The provider displays `Practice complete.` after the third mode.
+- The query and submit mutation require the exact graph node and blueprint to be approved.
+- The current graph node and blueprint are draft. Therefore, the production query returns no pilot rows and the submit mutation rejects direct pilot submissions.
+- Learning evidence also requires `independentPracticeReady: true` on the exact graph node. An approved activity cannot create evidence when the graph node is not ready.
+- The daily queue applies the same readiness gate to identity-aware rows. It rejects a stored activity when the curriculum is not published.
+- The daily queue regenerates props from the server seed. It does not return stored Independent Practice props that can contain an answer.
+
+The focused tests cover seed replay, approval invalidation, Worked acknowledgement, Worked network retry, final completion, exact-node readiness, curriculum publication, queue publication, stored-answer removal, raw server grading, assistance, identical replay, conflict handling, and exact-node evidence.
+
+### Remaining integration finding
+
+#### P1: Three approved pilot rows replace the complete daily queue on every visit
+
+`PracticeSessionProvider` selects `pilotActivities` whenever the query returns exactly three rows. It ignores every SRS queue item for that render. The app does not store pilot completion for the learner. A later visit runs the same query and starts the three-mode pilot again.
+
+This behavior is inactive while the node and blueprint are draft. It becomes active for every signed-in student when the curriculum and all three activity rows are approved. Confirm that this global and repeated replacement is the intended pilot entry policy. If it is not intended, add an existing assignment or preview eligibility check before the page passes `pilotActivities`, or store completion through an existing learner progress contract. Do not add a new rollout system for this decision.
+
+### Supplemental test limitation
+
+The real renderer test uses generated correct answers, but it builds synthetic `Mode 1`, `Mode 2`, and `Mode 3` props. It does not pass the actual three projections from `projectIM1VerbalToNumerical` to `FillInTheBlank`. The generator and component have separate focused tests. Add one actual-projection UI fixture if the integration acceptance rule requires direct proof of the complete projection-to-renderer boundary.
+
+No current production draft path exists. I found no route that can create evidence for the exact node while its readiness value is false.
+
+## Integration resolution: first exposure and real props
+
+The first-exposure query now requires an active authenticated learner. It checks existing correct Independent submissions for the current activity seed. A completed learner returns to the ordinary queue. A new seed permits a new first exposure. The provider prepends the three pilot modes and preserves the remaining daily queue. It removes only duplicate activity IDs from that queue.
+
+The interaction test now uses `projectIM1VerbalToNumerical` props for all three modes. It follows the real Guided Check and Finish controls. It also checks the final completion message. The parent ran 28 focused tests, standalone TypeScript, full app lint, and the app build. All pass. Hosted and real-browser verification remain open. The repository boundary check still requires explicit approval for the missing workspace dependency declarations.

@@ -78,6 +78,8 @@ Scheduling: one worker owns shared graph mechanisms. Two workers can review disj
 
 ### Bounded graph repair tasks
 
+- [x] Task Q2: Use the existing Next Link component for the IM1 login and registration links. The two observed app lint errors are resolved. Full app lint, standalone TypeScript, and build pass. Commit `fae19087`.
+
 - [x] Task Q1: Declare the existing KaTeX stylesheet import for the shared lesson renderer. TypeScript, package lint, and both package tests pass. Commit `97b46bfc`.
 
 - [x] Task G1: Repair IM1 objective extraction for repeated rows and absolute-value notation. Own the extraction parser and focused tests. Preserve compact Markdown tables. Verified with 55 extraction tests, package lint, and standalone TypeScript. Commit `ecedf2b1`.
@@ -87,21 +89,23 @@ Scheduling: one worker owns shared graph mechanisms. Two workers can review disj
 
 - [x] Task G5: Reconcile the existing IM1 inventory reports and tests with source repairs. Remove frozen 138-node assertions. Distinguish a registered generator from a complete practice bundle. Derive existing report totals from the current graph. Record missing blueprints and incomplete modes without fabricating specifications. Preserve historical audit context. Commit: `6f595dd4`.
 
-- [~] Task G6: Review IM2 Module 1 capability and source-example identities against current lesson sources. Prepare bounded graph corrections. Preserve the perpendicular-bisector pilot identity.
+- [x] Task G6: Review IM2 Module 1 capability and source-example identities against current lesson sources. Prepare bounded graph corrections. Preserve the perpendicular-bisector pilot identity. The source review and bounded Lesson 1.1 and 1.3 corrections are committed as `bf57ae6a`. Remaining Module 1 taxonomy work stays open under Task 3.2.
+
+- [x] Task G7: Align the IM1 translation blueprint and saved mode projection with expression-only grading. Preserve source identity and draft review status. Correct remaining current-count claims in the debt registry. Commit `43c0ac98`.
 
 ## Phase 4 — Implement the minimum shared repairs and five pilots
 
 - [~] Task 4.1: Repair shared projection and registration gaps required by pilots.
   Reuse the current projector and registries. Preserve app ownership. Avoid a new generated-instance framework or broad primitive program.
-- [ ] Task 4.2: Complete and verify the IM3 reference pilot.
+- [~] Task 4.2: Complete and verify the IM3 reference pilot.
   Connect source, all three modes, generator, renderer, server grading, stored submission, and exact-node evidence. Verify the real student route.
-- [ ] Task 4.3: Complete and verify the Precalculus pilot.
+- [~] Task 4.3: Complete and verify the Precalculus pilot.
   Reuse current local corrections. Check the selected activity and exact evidence binding. Verify all three modes in the student route.
 - [~] Task 4.4: Complete and verify the IM1 pilot.
   Reuse a valid existing algebra generator. Complete source mapping and the required app rendering/submission path.
-- [ ] Task 4.5: Complete and verify the IM2 pilot.
+- [~] Task 4.5: Complete and verify the IM2 pilot.
   Reuse the current lesson runtime and perpendicular-bisector work where correct. Coordinate with the active correction track.
-- [ ] Task 4.6: Complete and verify the Business Math pilot.
+- [~] Task 4.6: Complete and verify the Business Math pilot.
   Reconcile published activity mapping with the three modes. Preserve manual evidence for artifacts that require teacher review. Keep adaptive activation within the existing approved policy.
 - [ ] Task 4.7: Measure — User Manual Verification: Five course pilots.
 
