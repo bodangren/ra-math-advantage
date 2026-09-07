@@ -9040,6 +9040,108 @@
       }
     },
     {
+      "id": "math.im1.skill.1.1.evaluate-numerical-expressions-accurately-using-the-order-of",
+      "kind": "skill",
+      "title": "1b: Evaluate numerical expressions accurately using the order of operations",
+      "domain": "math.im1",
+      "description": "Evaluate numerical expressions accurately using the order of operations.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-1"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "1",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.1.2.evaluate-algebraic-expressions-by-substituting-given-values",
+      "kind": "skill",
+      "title": "1d: Evaluate algebraic expressions by substituting given values for variables and following the order of operations",
+      "domain": "math.im1",
+      "description": "Evaluate algebraic expressions by substituting given values for variables and following the order of operations.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-2"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "1",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.1.3.use-the-commutative-associative-identity-and-inverse-propert",
+      "kind": "skill",
+      "title": "1f: Use the commutative, associative, identity, and inverse properties to simplify calculations and justify each step",
+      "domain": "math.im1",
+      "description": "Use the commutative, associative, identity, and inverse properties to simplify calculations and justify each step. Apply the multiplicative inverse only to nonzero values.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-3"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "1",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.1.4.use-the-distributive-property-to-simplify-algebraic-expressi",
+      "kind": "skill",
+      "title": "1h: Use the Distributive Property to simplify algebraic expressions and combine like terms",
+      "domain": "math.im1",
+      "description": "Use the Distributive Property to simplify algebraic expressions and combine like terms, including negative and fractional coefficients.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-4"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "1",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.1.5.evaluate-absolute-value-expressions-by-substituting-given-va",
+      "kind": "skill",
+      "title": "1j: Evaluate absolute value expressions by substituting given values and simplify correctly",
+      "domain": "math.im1",
+      "description": "Evaluate absolute value expressions by substituting given values and simplify correctly.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-5"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "1",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.1.6.determine-a-reasonable-level-of-accuracy-when-performing-mul",
+      "kind": "skill",
+      "title": "1l: Determine a reasonable level of accuracy when performing multi-step calculations and evaluate the accuracy of reported data",
+      "domain": "math.im1",
+      "description": "Determine a reasonable level of accuracy for multi-step calculations. Evaluate the accuracy of reported data from its context and source.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-6"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "1",
+        "lesson": "6"
+      }
+    },
+    {
       "id": "math.im1.skill.10.1.differentiate-between-synthetic-geometry-and-analytic-geomet",
       "kind": "skill",
       "title": "10b: Differentiate between synthetic geometry and analytic geometry based on their defining characteristics",
