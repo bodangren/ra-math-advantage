@@ -38,6 +38,10 @@ export type SubmissionSrsInput = {
   submission: PracticeSubmissionEnvelope;
   studentId: string;
   activityId: string;
+  /** One server-owned timestamp for the whole SRS transition. */
+  now?: string;
+  /** Opaque app-owned submission ID for deterministic replay linkage. */
+  submissionId?: string;
   /** Explicit opt-in enriched evidence for the normative v3.1 rating path. */
   ratingInputV31?: SrsRatingInputV31;
 };
@@ -154,8 +158,8 @@ export class SubmissionSrsAdapter {
     const studentCards = await this.cardStore.getCardByStudentAndVariant(studentId, variantKey);
     let card = studentCards ?? null;
 
+    const now = input.now ?? new Date().toISOString();
     if (!card) {
-      const now = new Date().toISOString();
       card = createCard({
         studentId,
         objectiveId,
@@ -201,7 +205,6 @@ export class SubmissionSrsAdapter {
       new Set(submission.parts.flatMap((p) => p.misconceptionTags ?? []))
     );
 
-    const now = new Date().toISOString();
     const scheduled = scheduleReview({
       card,
       rating: ratingResult.rating,
@@ -231,7 +234,8 @@ export class SubmissionSrsAdapter {
       cardId: card.cardId,
       studentId,
       rating: ratingResult.rating,
-      submissionId: `${submission.activityId}-${submission.attemptNumber}`,
+      submissionId: input.submissionId
+        ?? `${submission.activityId}-${submission.attemptNumber}`,
       evidence: {
         baseRating: ratingResult.baseRating,
         timingAdjusted: ratingResult.timingAdjusted,
