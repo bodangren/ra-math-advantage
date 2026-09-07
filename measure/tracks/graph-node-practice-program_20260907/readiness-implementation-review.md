@@ -53,3 +53,7 @@ The focused test command passed:
 Result: 2 test files passed. All 13 tests passed.
 
 An initial repository-level test command started the workspace quality runner. I stopped it because it did not apply the requested file filter. It ended with exit code 130 after the interrupt.
+
+## Integration owner verification
+
+The parent reviewed the corrected parent handler and its behavioral test. The handler preserves `nearly_ready` from the canonical student output. The test uses an approved graph and checks that this state is not selected as `nextFocus`. Both new readiness suites pass: 14 tests. This resolves the reported omission. Full curriculum approval remains open.
