@@ -47,113 +47,43 @@ When c is negative, one factor is positive and one is negative.
 
 ## Example 1 — Factor x^2 + bx + c Trinomials
 
-Factor each polynomial, if possible. If the polynomial cannot be factored using integers, write prime.
+### Problem
 
-### Step 1: Identify the Sign Pattern
+Factor x²-5x-24 over the integers.
 
-For [x^2 + 17x + 42]: c is positive, b is positive → both factors positive.
-For [y^2 - 17y + 72]: c is positive, b is negative → both factors negative.
-For [a^2 + 8a - 48]: c is negative → one factor positive, one negative.
+### Solution
 
-### Step 2: Find the Number Pair
-
-44 + 15h + h^2 → Rewrite as [h^2 + 15h + 44]. Find numbers that multiply to 44 and add to 15: 4 and 11.
-→ [(h + 4)(h + 11)]
-
-40 - 22x + x^2 → Rewrite as [x^2 - 22x + 40]. Find numbers that multiply to 40 and add to -22: -2 and -20.
-→ [(x - 2)(x - 20)]
-
-[-24 - 5x + x^2] → Rewrite as [x^2 - 5x - 24]. Find numbers that multiply to -24 and add to -5: -8 and 3.
-→ [(x - 8)(x + 3)]
-
-### Step 3: Check for Prime Cases
-
-[d^2 + 5d - 13] → Find two numbers that multiply to -13 and add to 5: ±1 and ±13. No pair works. → prime
-
-[y^2 - 6y + 17] → Find two numbers that multiply to 17 and add to -6: ±1 and ±17. No pair works. → prime
+Find integers with product -24 and sum -5. They are -8 and 3. Thus x²-5x-24=(x-8)(x+3). Expansion gives x²+3x-8x-24.
 
 ## Example 2 — More x^2 + bx + c Problems
 
-Continue factoring or identifying prime trinomials.
+### Problem
 
-[n^2 + 7n + 12] → Numbers that multiply to 12 and add to 7: 3 and 4 → [(n + 3)(n + 4)]
+Determine whether c²+c+21 factors into integer-coefficient linear factors.
 
-[b^2 - 12b - 101] → No integer pair multiplies to -101 and adds to -12. → prime
+### Solution
 
-[p^2 + 9p + 20] → Numbers that multiply to 20 and add to 9: 4 and 5 → [(p + 4)(p + 5)]
-
-[c^2 + c + 21] → No integer pair multiplies to 21 and adds to 1. → prime
+Integer factors of a monic quadratic require two integers with product 21 and sum 1. The positive pairs (1,21) and (3,7) have sums 22 and 10. The negative pairs have sums -22 and -10. None has sum 1, so there are no integer-coefficient linear factors. The conclusion is relative to the stated coefficient system.
 
 ## Example 3 — Real-World Applications
 
-### Step 1: Cosmetics Case Problem
+### Problem
 
-A cosmetics case has width that is 2 cm greater than the length x. The area is [x^2 + 26x + 168]. Factor this expression.
+A rectangular case has area x²+26x+168 square centimeters. Factor the area and give one possible pair of dimensions differing by 2 cm. Use x>0.
 
-Find numbers that multiply to 168 and add to 26: 12 and 14.
-[x^2 + 26x + 168 = (x + 12)(x + 14)]
-The length is x + 12 and the width is x + 14 (or vice versa). ![Worksheet figure 1](/curriculum/module-11-lesson-6/image1.png)
+### Solution
 
-### Step 2: Carpentry Crate Problem
-
-A crate volume is [2x^2 - 6x - 80]. Factor this expression.
-
-[2x^2 - 6x - 80] → First factor out 2: [2(x^2 - 3x - 40)]
-Find numbers that multiply to -40 and add to -3: -8 and 5.
-→ [2(x - 8)(x + 5)]
-
-### Step 3: Bridge Cable Height
-
-A cable's height above the deck at distance d yards from the first tower is [d^2 - 36d + 324]. Factor this expression.
-
-Find numbers that multiply to 324 and add to -36: -18 and -18.
-[d^2 - 36d + 324 = (d - 18)^2] ![Worksheet figure 2](/curriculum/module-11-lesson-6/image2.png)
-
-### Step 4: Break-Even Point
-
-A museum's break-even point is modeled by [2h^2 - 2h - 24], where h is hours open per day. Factor this expression.
-
-[2h^2 - 2h - 24] → Factor out 2: [2(h^2 - h - 12)]
-Find numbers that multiply to -12 and add to -1: -4 and 3.
-→ [2(h - 4)(h + 3)]
+The numbers 12 and 14 have product 168 and sum 26. Therefore the area is (x+12)(x+14). One possible length is x+12 cm and width is x+14 cm. Their difference is 2 cm. The parameter x itself is not the full length.
 
 ## Example 4 — Factor ax^2 + bx + c where a ≠ 1
 
-Use the AC method: multiply a and c, find factors that sum to b, then rewrite and group.
+### Problem
 
-### Step 1: Apply AC Method
+Factor 4x²+22x+10 completely over the integers.
 
-[5x^2 + 34x + 24] → Multiply a and c: 5 × 24 = 120
-Find factors of 120 that sum to 34: 4 and 30
-Rewrite: [5x^2 + 4x + 30x + 24]
-Group: [(5x^2 + 4x) + (30x + 24)]
-Factor: [x(5x + 4) + 6(5x + 4)]
-→ [(5x + 4)(x + 6)]
+### Solution
 
-[2x^2 + 19x + 24] → Multiply: 2 × 24 = 48
-Find factors of 48 that sum to 19: 3 and 16
-Rewrite: [2x^2 + 3x + 16x + 24]
-Factor: [x(2x + 3) + 8(2x + 3)]
-→ [(2x + 3)(x + 8)]
-
-### Step 2: Check if Prime
-
-[4x^2 + 22x + 10] → Multiply: 4 × 10 = 40
-Find factors of 40 that sum to 22: No pair works → prime
-
-[2x^2 + 3x + 6] → Multiply: 2 × 6 = 12
-Find factors of 12 that sum to 3: No pair works → prime
-
-[5x^2 + 3x + 4] → Multiply: 5 × 4 = 20
-Find factors of 20 that sum to 3: No pair works → prime
-
-### Step 3: Trinomials with Negative Middle Term
-
-[4x^2 - 13x + 10] → Multiply: 4 × 10 = 40
-Find factors of 40 that sum to -13: -5 and -8
-Rewrite: [4x^2 - 5x - 8x + 10]
-Factor: [x(4x - 5) - 2(4x - 5)]
-→ [(4x - 5)(x - 2)]
+First extract 2: 2(2x²+11x+5). The inner trinomial factors as (2x+1)(x+5). Thus the result is 2(2x+1)(x+5). Expansion gives 4x²+22x+10. This polynomial is not prime.
 
 ## Mixed Exercises
 

@@ -63,105 +63,63 @@ To subtract polynomials, distribute the negative sign to each term of the polyno
 
 ## Example 1 — Classify Polynomials
 
-Determine whether each expression is a polynomial. If it is a polynomial, find the degree and determine whether it is a monomial, binomial, or trinomial.
+### Problem
 
-### Step 1: Identify Polynomial Characteristics
+Classify 5n³+nq³ by number of terms and total degree as a polynomial in n and q. Also give its degree in n when q is treated as a constant coefficient.
 
-Check if every term has a variable raised to a nonnegative integer power and no variables in denominators. If it qualifies, count the terms and find the highest exponent.
+### Solution
 
-[5y^3/x^2 + 4x] — Not a polynomial (negative exponent in denominator)
-[21] — Monomial, degree 0
-[c^4 - 2c^2 + 1] — Trinomial, degree 4
-[d + 3d^c] — Not a polynomial (variable exponent)
-
-### Step 2: Classify and Determine Degree
-
-[a - a^2] — Binomial (reorder to standard form: -a^2 + a)
-[5n^3 + nq^3] — Trinomial, degree 4 (when treated as polynomial in n)
+There are two unlike terms, so it is a binomial. The total degrees are 3 and 1+3=4, so its total degree is 4. Its degree in n is 3. The expression is not a trinomial. Total degree and degree in one selected variable are different measures.
 
 ## Example 2 — Write Polynomials in Standard Form
 
-Write each polynomial in standard form and identify the leading coefficient.
+### Problem
 
-### Step 1: Arrange Terms by Descending Exponent
+Write -y³+3y-3y²+2 in descending powers of y and identify the leading coefficient.
 
-[5x^2 - 2 + 3x] → [5x^2 + 3x - 2], leading coefficient: 5
-[8y + 7y^3] → [7y^3 + 8y], leading coefficient: 7
-[4 - 3c - 5c^2] → [-5c^2 - 3c + 4], leading coefficient: -5
-[-y^3 + 3y - 3y^2 + 2] → [-y^3 - 3y^2 + 3y + 2], leading coefficient: -1
+### Solution
+
+The standard form is -y³-3y²+3y+2. Its degree is 3 and its leading coefficient is -1.
 
 ## Example 3 — Add and Subtract Polynomials
 
-Find each sum or difference using the horizontal method.
+### Problem
 
-### Step 1: Group Like Terms
+Simplify (2x+3x²)-(7-8x²).
 
-[(5f + g - 2) + (-2f + 3)]
-= [5f - 2f + g - 2 + 3]
-= [3f + g + 1]
+### Solution
 
-[(6k^2 + 2k + 9) + (4k^2 - 5k)]
-= [6k^2 + 4k^2 + 2k - 5k + 9]
-= [10k^2 - 3k + 9]
-
-[(2c^2 + 6c + 4) + (5c^2 - 7)]
-= [7c^2 + 6c - 3]
-
-[(2x + 3x^2) - (7 - 8x^2)]
-= [2x + 3x^2 - 7 + 8x^2]
-= [11x^2 + 2x - 7]
+Distribute the subtraction sign: 2x+3x²-7+8x². Combine like terms to obtain 11x²+2x-7.
 
 ## Example 4 — Subtract with Negative Signs
 
-[(3c^3 - c + 11) - (c^2 + 2c + 8)]
-= [3c^3 - c^2 - c - 2c + 11 - 8]
-= [3c^3 - c^2 - 3c + 3]
+### Problem
 
-[(z^2 + z) + (z^2 - 11)]
-= [2z^2 + z - 11]
+Simplify (3c³-c+11)-(c²+2c+8).
+
+### Solution
+
+Subtract every term in the second parentheses: 3c³-c+11-c²-2c-8. The result is 3c³-c²-3c+3.
 
 ## Example 5 — Polynomials with Multiple Variables
 
-[(x^2y - 3x^2 + y) + (3y - 2x^2y)]
-= [-x^2y - 3x^2 + 4y]
+### Problem
 
-[(-8xy + 3x^2 - 5y) + (4x^2 - 2y + 6xy)]
-= [-2xy + 7x^2 - 7y]
+Simplify (x²y-3x²+y)+(3y-2x²y).
 
-[(5n - 2p^2 + 2np) - (4p^2 + 4n)]
-= [5n - 2p^2 + 2np - 4p^2 - 4n]
-= [n - 6p^2 + 2np]
+### Solution
+
+Combine terms with identical variable parts. The x²y terms give -x²y, the x² term remains -3x², and the y terms give 4y. The result is -x²y-3x²+4y.
 
 ## Example 6 — Real-World Applications
 
-Write polynomial equations to represent real-world situations and evaluate them.
+### Problem
 
-### Step 1: Write a Polynomial Equation
+A rectangular envelope has width x cm and length 2x+4 cm, where x>0. Write its perimeter as a polynomial and evaluate at x=6.
 
-Company A profit: [P = 3.2x + 12]
-Company B profit: [P = 2.7x + 10]
+### Solution
 
-Write a polynomial equation to give the difference in profit D after x years.
-
-[D = (3.2x + 12) - (2.7x + 10)]
-
-### Step 2: Evaluate the Polynomial
-
-Predict the difference in profit after 10 years.
-
-[D = 3.2(10) + 12 - (2.7(10) + 10) = 32 + 12 - 27 - 10 = 7] million dollars
-
-### Step 3: Perimeter Application
-
-The length of an envelope is always 4 centimeters more than double the width x.
-
-Write a polynomial equation to give the perimeter P of any envelope.
-
-[P = 2(2x + 4) + 2x = 6x + 8]
-
-Predict the perimeter when x = 6 cm.
-
-[P = 6(6) + 8 = 44] cm
+The perimeter is P(x)=2x+2(2x+4)=6x+8 cm. At x=6, the perimeter is 44 cm.
 
 ## Mixed Exercises
 

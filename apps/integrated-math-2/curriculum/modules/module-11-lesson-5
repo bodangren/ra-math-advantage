@@ -45,94 +45,43 @@ When factoring expressions with multiple variables, find the GCF for both the nu
 
 ## Example 1 — Factor Using the Distributive Property
 
-Use the Distributive Property to factor each polynomial by extracting the GCF.
+### Problem
 
-### Step 1: Find the GCF of All Terms
+Factor 16t-40y and 5z²+10z by their greatest common factors.
 
-[16t - 40y] → Numbers: factors of 16: 1, 2, 4, 8, 16; factors of 40: 1, 2, 4, 5, 8, 10, 20, 40 → GCF of coefficients: 8. No common variable. → [8(2t - 5y)]
+### Solution
 
-[5z^2 + 10z] → GCF is 5z → [5z(z + 2)]
+The coefficient greatest common factor of 16 and 40 is 8, with no shared variable, so 16t-40y=8(2t-5y). The second expression has greatest common factor 5z, so it equals 5z(z+2).
 
 ## Example 2 — Factor to Solve Real-World Problems
 
-Factor expressions that model real-world scenarios.
+### Problem
 
-### Step 1: Falling Object Height
+Factor the modeled height expression h(t)=13.7t-4.9t² exactly.
 
-The height of an object launched upward from ground level at 32 feet per second is given by [32t - 16t^2]. Factor this expression.
+### Solution
 
-GCF is 16t: [16t(2 - t)]
-
-### Step 2: Swimming Pool Area
-
-The area of a rectangular pool is given by [12w - w^2], where w is the width. Factor this expression.
-
-GCF is w: [w(12 - w)]
-
-### Step 3: Vertical Jump Height
-
-A basketball player's height above standing reach after t seconds is modeled by [162t - 192t^2]. Factor this expression.
-
-GCF is 6t: [6t(27 - 32t)]
-
-### Step 4: Treat Toss Height
-
-A treat tossed upward at 13.7 meters per second has height given by [13.7t - 4.9t^2]. Factor this expression.
-
-GCF is 0.7t: [0.7t(19.5 - 7t)]
+Factor out t to obtain t(13.7-4.9t). With integer coefficients inside parentheses, use 0.1t(137-49t). Expansion returns 13.7t-4.9t². The expression 0.7t(19.5-7t) is incorrect because its first coefficient is 13.65, not 13.7.
 
 ## Example 3 — Factor by Grouping
 
-When a polynomial has four or more terms, try grouping terms that share a common factor.
+### Problem
 
-### Step 1: Group Terms with Common Factors
+Factor 3dt-21d+35-5t by grouping.
 
-[fg - 5g + 4f - 20]
-Group: [(fg - 5g) + (4f - 20)]
-Factor each group: [g(f - 5) + 4(f - 5)]
-Factor out (f - 5): [(f - 5)(g + 4)]
+### Solution
 
-[xy - 2x - 2 + y]
-Group: [(xy - 2x) + (y - 2)]
-Factor each group: [x(y - 2) + 1(y - 2)]
-Factor out (y - 2): [(y - 2)(x + 1)]
-
-### Step 2: Arrange Terms Before Grouping
-
-[3dt - 21d + 35 - 5t]
-Reorder: [3dt - 21d - 5t + 35]
-Group: [(3dt - 21d) + (-5t + 35)]
-Factor each group: [3d(t - 7) - 5(t - 7)]
-Factor out (t - 7): [(t - 7)(3d - 5)]
+Reorder as (3dt-21d)+(-5t+35). Factor each group: 3d(t-7)-5(t-7). The shared binomial gives (t-7)(3d-5).
 
 ## Example 4 — More Factoring by Grouping
 
-Continue practicing the grouping technique with various polynomial structures.
+### Problem
 
-[45pq - 27q - 50p + 30]
-Group: [(45pq - 27q) + (-50p + 30)]
-Factor each group: [9q(5p - 3) - 10(5p - 3)]
-Factor out (5p - 3): [(5p - 3)(9q - 10)]
+Factor 45pq-27q-50p+30.
 
-[24ty - 18t + 4y - 3]
-Group: [(24ty - 18t) + (4y - 3)]
-Factor each group: [6t(4y - 3) + 1(4y - 3)]
-Factor out (4y - 3): [(4y - 3)(6t + 1)]
+### Solution
 
-[vp + 12v + 8p + 96]
-Group: [(vp + 12v) + (8p + 96)]
-Factor each group: [v(p + 12) + 8(p + 12)]
-Factor out (p + 12): [(p + 12)(v + 8)]
-
-[5br - 25b + 2r - 10]
-Group: [(5br - 25b) + (2r - 10)]
-Factor each group: [5b(r - 5) + 2(r - 5)]
-Factor out (r - 5): [(r - 5)(5b + 2)]
-
-[2nu - 8u + 3n - 12]
-Group: [(2nu - 8u) + (3n - 12)]
-Factor each group: [2u(n - 4) + 3(n - 4)]
-Factor out (n - 4): [(n - 4)(2u + 3)]
+Group the terms: 9q(5p-3)-10(5p-3). Factor out 5p-3 to obtain (5p-3)(9q-10). Expanding gives the original four terms.
 
 ## Mixed Exercises
 

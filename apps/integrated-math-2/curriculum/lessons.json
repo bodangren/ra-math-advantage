@@ -5199,37 +5199,37 @@
         "phaseNumber": 5,
         "title": "Example 1 — Classify Polynomials",
         "phaseType": "worked_example",
-        "markdown": "Determine whether each expression is a polynomial. If it is a polynomial, find the degree and determine whether it is a monomial, binomial, or trinomial.\n\n### Step 1: Identify Polynomial Characteristics\n\nCheck if every term has a variable raised to a nonnegative integer power and no variables in denominators. If it qualifies, count the terms and find the highest exponent.\n\n[5y^3/x^2 + 4x] — Not a polynomial (negative exponent in denominator)\n[21] — Monomial, degree 0\n[c^4 - 2c^2 + 1] — Trinomial, degree 4\n[d + 3d^c] — Not a polynomial (variable exponent)\n\n### Step 2: Classify and Determine Degree\n\n[a - a^2] — Binomial (reorder to standard form: -a^2 + a)\n[5n^3 + nq^3] — Trinomial, degree 4 (when treated as polynomial in n)"
+        "markdown": "### Problem\n\nClassify 5n³+nq³ by number of terms and total degree as a polynomial in n and q. Also give its degree in n when q is treated as a constant coefficient.\n\n### Solution\n\nThere are two unlike terms, so it is a binomial. The total degrees are 3 and 1+3=4, so its total degree is 4. Its degree in n is 3. The expression is not a trinomial. Total degree and degree in one selected variable are different measures."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Write Polynomials in Standard Form",
         "phaseType": "worked_example",
-        "markdown": "Write each polynomial in standard form and identify the leading coefficient.\n\n### Step 1: Arrange Terms by Descending Exponent\n\n[5x^2 - 2 + 3x] → [5x^2 + 3x - 2], leading coefficient: 5\n[8y + 7y^3] → [7y^3 + 8y], leading coefficient: 7\n[4 - 3c - 5c^2] → [-5c^2 - 3c + 4], leading coefficient: -5\n[-y^3 + 3y - 3y^2 + 2] → [-y^3 - 3y^2 + 3y + 2], leading coefficient: -1"
+        "markdown": "### Problem\n\nWrite -y³+3y-3y²+2 in descending powers of y and identify the leading coefficient.\n\n### Solution\n\nThe standard form is -y³-3y²+3y+2. Its degree is 3 and its leading coefficient is -1."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Add and Subtract Polynomials",
         "phaseType": "worked_example",
-        "markdown": "Find each sum or difference using the horizontal method.\n\n### Step 1: Group Like Terms\n\n[(5f + g - 2) + (-2f + 3)]\n= [5f - 2f + g - 2 + 3]\n= [3f + g + 1]\n\n[(6k^2 + 2k + 9) + (4k^2 - 5k)]\n= [6k^2 + 4k^2 + 2k - 5k + 9]\n= [10k^2 - 3k + 9]\n\n[(2c^2 + 6c + 4) + (5c^2 - 7)]\n= [7c^2 + 6c - 3]\n\n[(2x + 3x^2) - (7 - 8x^2)]\n= [2x + 3x^2 - 7 + 8x^2]\n= [11x^2 + 2x - 7]"
+        "markdown": "### Problem\n\nSimplify (2x+3x²)-(7-8x²).\n\n### Solution\n\nDistribute the subtraction sign: 2x+3x²-7+8x². Combine like terms to obtain 11x²+2x-7."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — Subtract with Negative Signs",
         "phaseType": "worked_example",
-        "markdown": "[(3c^3 - c + 11) - (c^2 + 2c + 8)]\n= [3c^3 - c^2 - c - 2c + 11 - 8]\n= [3c^3 - c^2 - 3c + 3]\n\n[(z^2 + z) + (z^2 - 11)]\n= [2z^2 + z - 11]"
+        "markdown": "### Problem\n\nSimplify (3c³-c+11)-(c²+2c+8).\n\n### Solution\n\nSubtract every term in the second parentheses: 3c³-c+11-c²-2c-8. The result is 3c³-c²-3c+3."
       },
       {
         "phaseNumber": 9,
         "title": "Example 5 — Polynomials with Multiple Variables",
         "phaseType": "worked_example",
-        "markdown": "[(x^2y - 3x^2 + y) + (3y - 2x^2y)]\n= [-x^2y - 3x^2 + 4y]\n\n[(-8xy + 3x^2 - 5y) + (4x^2 - 2y + 6xy)]\n= [-2xy + 7x^2 - 7y]\n\n[(5n - 2p^2 + 2np) - (4p^2 + 4n)]\n= [5n - 2p^2 + 2np - 4p^2 - 4n]\n= [n - 6p^2 + 2np]"
+        "markdown": "### Problem\n\nSimplify (x²y-3x²+y)+(3y-2x²y).\n\n### Solution\n\nCombine terms with identical variable parts. The x²y terms give -x²y, the x² term remains -3x², and the y terms give 4y. The result is -x²y-3x²+4y."
       },
       {
         "phaseNumber": 10,
         "title": "Example 6 — Real-World Applications",
         "phaseType": "worked_example",
-        "markdown": "Write polynomial equations to represent real-world situations and evaluate them.\n\n### Step 1: Write a Polynomial Equation\n\nCompany A profit: [P = 3.2x + 12]\nCompany B profit: [P = 2.7x + 10]\n\nWrite a polynomial equation to give the difference in profit D after x years.\n\n[D = (3.2x + 12) - (2.7x + 10)]\n\n### Step 2: Evaluate the Polynomial\n\nPredict the difference in profit after 10 years.\n\n[D = 3.2(10) + 12 - (2.7(10) + 10) = 32 + 12 - 27 - 10 = 7] million dollars\n\n### Step 3: Perimeter Application\n\nThe length of an envelope is always 4 centimeters more than double the width x.\n\nWrite a polynomial equation to give the perimeter P of any envelope.\n\n[P = 2(2x + 4) + 2x = 6x + 8]\n\nPredict the perimeter when x = 6 cm.\n\n[P = 6(6) + 8 = 44] cm"
+        "markdown": "### Problem\n\nA rectangular envelope has width x cm and length 2x+4 cm, where x>0. Write its perimeter as a polynomial and evaluate at x=6.\n\n### Solution\n\nThe perimeter is P(x)=2x+2(2x+4)=6x+8 cm. At x=6, the perimeter is 44 cm."
       },
       {
         "phaseNumber": 11,
@@ -5279,25 +5279,25 @@
         "phaseNumber": 5,
         "title": "Example 1 — Multiply Monomials by Polynomials",
         "phaseType": "worked_example",
-        "markdown": "Simplify each expression by distributing the monomial.\n\n### Step 1: Distribute to Each Term\n\n[b(b^2 - 12b + 1)] = [b^3 - 12b^2 + b]\n\n[f(f^2 + 2f + 25)] = [f^3 + 2f^2 + 25f]\n\n[-3m^3(2m^3 - 12m^2 + 2m + 25)] = [-6m^6 + 36m^5 - 6m^4 - 75m^3]\n\n[2j^2(5j^3 - 15j^2 + 2j + 2)] = [10j^5 - 30j^4 + 4j^3 + 4j^2]"
+        "markdown": "### Problem\n\nExpand -3m³(2m³-12m²+2m+25).\n\n### Solution\n\nMultiply -3m³ by each term. The result is -6m⁶+36m⁵-6m⁴-75m³. The positive second term comes from multiplying two negative factors."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Combine Multiplication with Addition/Subtraction",
         "phaseType": "worked_example",
-        "markdown": "Simplify each expression involving multiple operations.\n\n### Step 1: Distribute First, Then Combine Like Terms\n\n[-3(5x^2 + 2x + 9) + x(2x - 3)]\n= [-15x^2 - 6x - 27 + 2x^2 - 3x]\n= [-13x^2 - 9x - 27]\n\n[a(-8a^2 + 2a + 4) + 3(6a^2 - 4)]\n= [-8a^3 + 2a^2 + 4a + 18a^2 - 12]\n= [-8a^3 + 20a^2 + 4a - 12]\n\n[-4d(5d^2 - 12) + 7(d + 5)]\n= [-20d^3 + 48d + 7d + 35]\n= [-20d^3 + 55d + 35]\n\n[-9g(-2g + g^2) + 3(g^3 + 4)]\n= [18g^2 - 9g^3 + 3g^3 + 12]\n= [-6g^3 + 18g^2 + 12]"
+        "markdown": "### Problem\n\nSimplify -3(5x²+2x+9)+x(2x-3).\n\n### Solution\n\nDistribute to get -15x²-6x-27+2x²-3x. Combine like terms: -13x²-9x-27."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Real-World Applications",
         "phaseType": "worked_example",
-        "markdown": "Apply polynomial multiplication to solve problems involving sums, volumes, and linear equations.\n\n### Step 1: Write and Simplify an Expression\n\nThe sum of the first n whole numbers is given by [1/2(n^2 + n)]. Expand the expression by multiplying, then find the sum of the first 12 whole numbers.\n\n[1/2(n^2 + n) = n^2/2 + n/2]\nFor n = 12: [12^2/2 + 12/2 = 72 + 6 = 78]\n\n### Step 2: Apply to College Savings\n\nTroy's grandfather gives him $700 to start an account, then $40 each month. His mother gives him $50 each month but has been doing so for 4 fewer months than the grandfather. Write a simplified expression for the amount after m months.\n\nLet grandfather's months = m, mother's months = m - 4.\nTotal = [700 + 40m + 50(m - 4) = 700 + 40m + 50m - 200 = 90m + 500]\n\n### Step 3: Geometry Application — Pyramid Volume\n\nThe volume of a pyramid is one-third of base area times height. The base area is [B = x^2 - 4x - 12]. Write a polynomial for the volume when the height is 10 meters, then find the volume when x = 12 m.\n\n[V = 1/3(x^2 - 4x - 12)(10) = 10/3x^2 - 40/3x - 40]\nWhen x = 12: [V = 10/3(144) - 40/3(12) - 40 = 480 - 160 - 40 = 280] cubic meters"
+        "markdown": "### Problem\n\nThe sum of the first n positive integers is n(n+1)/2. Expand the formula and evaluate the sum from 1 through 12.\n\n### Solution\n\nThe expansion is n²/2+n/2. At n=12, it gives 144/2+12/2=72+6=78. These are the first twelve positive integers. The first twelve whole numbers include zero and instead sum from 0 through 11."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — Solve Equations with Polynomial Multiplication",
         "phaseType": "worked_example",
-        "markdown": "Solve each equation by first simplifying both sides using the Distributive Property.\n\n### Step 1: Expand Both Sides\n\n[7(t^2 + 5t - 9) + t = t(7t - 2) + 13]\n= [7t^2 + 35t - 63 + t = 7t^2 - 2t + 13]\n= [7t^2 + 36t - 63 = 7t^2 - 2t + 13]\n= [36t - 63 = -2t + 13]\n= [38t = 76]\n= [t = 2]\n\n[w(4w + 6) + 2w = 2(2w^2 + 7w - 3)]\n= [4w^2 + 6w + 2w = 4w^2 + 14w - 6]\n= [4w^2 + 8w = 4w^2 + 14w - 6]\n= [8w = 14w - 6]\n= [-6w = -6]\n= [w = 1]"
+        "markdown": "### Problem\n\nSolve 7(t²+5t-9)+t=t(7t-2)+13.\n\n### Solution\n\nExpand both sides: 7t²+36t-63=7t²-2t+13. Cancel 7t² and rearrange to get 38t=76, so t=2. Substitution in the original equation gives 37 on both sides."
       },
       {
         "phaseNumber": 9,
@@ -5347,37 +5347,37 @@
         "phaseNumber": 5,
         "title": "Example 1 — Multiply Binomials",
         "phaseType": "worked_example",
-        "markdown": "Find each product using FOIL or vertical method.\n\n### Step 1: Apply FOIL\n\n[(3c - 5)(c + 3)] = [3c^2 + 9c - 5c - 15] = [3c^2 + 4c - 15]\n\n[(g + 10)(2g - 5)] = [2g^2 - 5g + 20g - 50] = [2g^2 + 15g - 50]\n\n[(6a + 5)(5a + 3)] = [30a^2 + 18a + 25a + 15] = [30a^2 + 43a + 15]\n\n[(4x + 1)(6x + 3)] = [24x^2 + 12x + 6x + 3] = [24x^2 + 18x + 3]\n\n### Step 2: Check for Special Patterns\n\n[(5r + 7)(5r - 7)] = [(5r)^2 - 7^2] = [25r^2 - 49] (sum and difference)"
+        "markdown": "### Problem\n\nExpand (3c-5)(c+3).\n\n### Solution\n\nDistribute each term: 3c²+9c-5c-15. Combine like terms to obtain 3c²+4c-15."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Multiply Binomials with Different Variables",
         "phaseType": "worked_example",
-        "markdown": "[(8w + 4x)(5w - 6x)] = [40w^2 - 48wx + 20wx - 24x^2] = [40w^2 - 28wx - 24x^2]\n\n[(11z - 5y)(3z + 2y)] = [33z^2 + 22zy - 15zy - 10y^2] = [33z^2 + 7zy - 10y^2]"
+        "markdown": "### Problem\n\nExpand (8w+4x)(5w-6x).\n\n### Solution\n\nThe four products are 40w², -48wx, 20wx, and -24x². Combine the middle terms to obtain 40w²-28wx-24x²."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Area and Volume Applications",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Write Polynomial Expressions for Area\n\nA playground has width [9x + 1] feet and length [5x - 2] feet. Write an expression for the area.\n\n[A = (9x + 1)(5x - 2) = 45x^2 - 18x + 5x - 2 = 45x^2 - 13x - 2] square feet\n\nA theater has [3c + 8] rows with [4c - 1] seats per row. Write an expression for total seats.\n\n[Seats = (3c + 8)(4c - 1) = 12c^2 - 3c + 32c - 8 = 12c^2 + 29c - 8]\n\n### Step 2: Number Trick with Polynomials\n\nThink of a whole number n. Subtract 2 and write it down. Take the original number, add 2, and write it down. Find the product and subtract [n^2]. The result is always -4. Show why using polynomials.\n\nOriginal: n\nFirst result: n - 2\nSecond result: n + 2\nProduct: (n - 2)(n + 2) = [n^2 - 4]\nSubtract [n^2]: [[n^2 - 4] - n^2 = -4]"
+        "markdown": "### Problem\n\nA rectangular playground has width 9x+1 ft and length 5x-2 ft. State a condition that makes both dimensions positive and write its area polynomial.\n\n### Solution\n\nThe length requires x>2/5, which also makes the width positive. Multiply the dimensions: A=(9x+1)(5x-2)=45x²-13x-2 square feet. The physical model uses x>2/5."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — Multiply a Binomial by a Trinomial",
         "phaseType": "worked_example",
-        "markdown": "Use horizontal distribution: multiply each term of the binomial by each term of the trinomial.\n\n### Step 1: Distribute Each Term\n\n[(2y - 11)(y^2 - 3y + 2)]\n= [2y(y^2) + 2y(-3y) + 2y(2) - 11(y^2) - 11(-3y) - 11(2)]\n= [2y^3 - 6y^2 + 4y - 11y^2 + 33y - 22]\n= [2y^3 - 17y^2 + 37y - 22]\n\n[(4a + 7)(9a^2 + 2a - 7)]\n= [36a^3 + 8a^2 - 28a + 63a^2 + 14a - 49]\n= [36a^3 + 71a^2 - 14a - 49]"
+        "markdown": "### Problem\n\nExpand (2y-11)(y²-3y+2).\n\n### Solution\n\nThe first distribution gives 2y³-6y²+4y. The second gives -11y²+33y-22. Combine them to obtain 2y³-17y²+37y-22."
       },
       {
         "phaseNumber": 9,
         "title": "Example 5 — Cubes of Binomials",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Expand Step by Step\n\n[(2r - 3t)^3 = (2r - 3t)(2r - 3t)(2r - 3t)]\n\nFirst: [(2r - 3t)^2 = 4r^2 - 12rt + 9t^2]\n\nThen: [(4r^2 - 12rt + 9t^2)(2r - 3t)]\n= [8r^3 - 12r^2t - 24r^2t + 36rt^2 + 18rt^2 - 27t^3]\n= [8r^3 - 36r^2t + 54rt^2 - 27t^3]"
+        "markdown": "### Problem\n\nExpand (2r-3t)³.\n\n### Solution\n\nUse (a-b)³=a³-3a²b+3ab²-b³ with a=2r and b=3t. The result is 8r³-36r²t+54rt²-27t³."
       },
       {
         "phaseNumber": 10,
         "title": "Example 6 — Simplify and Find Products",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Combine Like Terms Before Multiplying\n\n[(m + 2)[(m^2 + 3m - 6) + (m^2 - 2m + 4)]]\n= [(m + 2)(2m^2 + m - 2)]\n= [2m^3 + m^2 - 2m + 4m^2 + 2m - 4]\n= [2m^3 + 5m^2 - 4]\n\n### Step 2: Subtract First, Then Multiply\n\n[(t^2 + 3t - 8) - (t^2 - 2t + 6)](t - 4)]\n= [(t^2 + 3t - 8 - t^2 + 2t - 6)](t - 4)]\n= [(5t - 14)](t - 4)]\n= [5t^2 - 20t - 14t + 56]\n= [5t^2 - 34t + 56]"
+        "markdown": "### Problem\n\nSimplify (m+2)((m²+3m-6)+(m²-2m+4)).\n\n### Solution\n\nCombine the inner sum to get 2m²+m-2. Then distribute (m+2): 2m³+m²-2m+4m²+2m-4. The result is 2m³+5m²-4."
       },
       {
         "phaseNumber": 11,
@@ -5427,25 +5427,25 @@
         "phaseNumber": 5,
         "title": "Example 1 — Apply Special Product Patterns",
         "phaseType": "worked_example",
-        "markdown": "Find each product using the appropriate special pattern.\n\n### Step 1: Identify the Pattern\n\n[(8h - 4n)^2] — Square of a difference: a = 8h, b = 4n\n= [(8h)^2 - 2(8h)(4n) + (4n)^2]\n= [64h^2 - 64hn + 16n^2]\n\n[(4m - 5n)^2] — Square of a difference: a = 4m, b = 5n\n= [(4m)^2 - 2(4m)(5n) + (5n)^2]\n= [16m^2 - 40mn + 25n^2]"
+        "markdown": "### Problem\n\nExpand (8h-4n)².\n\n### Solution\n\nUse the square-of-a-difference pattern. The result is (8h)²-2(8h)(4n)+(4n)²=64h²-64hn+16n². Squaring a difference includes the middle product term."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Real-World Applications",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Roundabout Area Problem\n\nA city roundabout has radius r for the traffic circle and a 18-foot wide road surrounding it. Write a polynomial for the total area A of the traffic circle.\n\nTotal radius = [r + 18]\n[A = π(r + 18)^2 = π(r^2 + 36r + 324) = πr^2 + 36πr + 324π] ![Worksheet figure 1](/curriculum/module-11-lesson-4/image1.png)\n\n### Step 2: Number Cube Problem\n\nCube A has edges 3 mm less than cube B. If cube B has edge length x mm, write a model for the surface area of cube A.\n\nCube B edge: x mm\nCube A edge: [x - 3] mm\nSurface area of cube A: [6(x - 3)^2 = 6(x^2 - 6x + 9) = 6x^2 - 36x + 54] square mm ![Worksheet figure 2](/curriculum/module-11-lesson-4/image2.png)\n\n### Step 3: Probability with Square of a Sum\n\nA spinner has two equal sections, blue (B) and red (R). Use the square of a sum to determine all possible combinations when spinning the spinner twice.\n\n[(B + R)^2 = B^2 + 2BR + R^2]\nPossible combinations: BB, BR, RB, RR\n\n### Step 4: Business Profit Model\n\nA company's profit from 2015 to present is modeled by [y = (2n + 11)^2], where y is profit n years since 2015. Which special product does this demonstrate? Simplify it.\n\nThis is the square of a sum: [(2n)^2 + 2(2n)(11) + 11^2 = 4n^2 + 44n + 121]"
+        "markdown": "### Problem\n\nA circular island has radius r ft, with r>0. A road of width 18 ft surrounds it. Write the total disk area and the road area as expressions in r.\n\n### Solution\n\nThe outer radius is r+18. The total disk area is $\\pi(r+18)^2=\\pi r^2+36\\pi r+324\\pi$ square feet. Subtract the island area $\\pi r^2$ to get road area $36\\pi r+324\\pi$. The total disk and the road are different regions."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — More Sum and Difference Products",
         "phaseType": "worked_example",
-        "markdown": "[(u + 3)(u - 3)] = [u^2 - 9]\n[(b + 7)(b - 7)] = [b^2 - 49]\n[(2 + x)(2 - x)] = [4 - x^2]\n[(4 - x)(4 + x)] = [16 - x^2]\n[(2q + 5r)(2q - 5r)] = [4q^2 - 25r^2]\n[(3a^2 + 7b)(3a^2 - 7b)] = [9a^4 - 49b^2]"
+        "markdown": "### Problem\n\nExpand (3a²+7b)(3a²-7b).\n\n### Solution\n\nThe factors are a sum and difference. Use (u+v)(u-v)=u²-v² to obtain 9a⁴-49b². The cross terms cancel."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — Cubes of Binomials",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Pattern for Cube of a Sum\n\n[(a + b)^3 = (a + b)(a + b)(a + b)]\n\nFirst find (a + b)^2: [a^2 + 2ab + b^2]\n\nThen multiply by (a + b): [(a^2 + 2ab + b^2)(a + b)]\n= [a^3 + a^2b + 2a^2b + 2ab^2 + ab^2 + b^3]\n= [a^3 + 3a^2b + 3ab^2 + b^3]\n\n### Step 2: Pattern for Cube of a Difference\n\n[(a - b)^3 = a^3 - 3a^2b + 3ab^2 - b^3]\n\n### Step 3: Apply to Find (x + 2)^3\n\nLet a = x and b = 2:\n[(x + 2)^3 = x^3 + 3x^2(2) + 3x(2^2) + 2^3 = x^3 + 6x^2 + 12x + 8]"
+        "markdown": "### Problem\n\nExpand (x+2)³ and explain why x³+8 is not the full result.\n\n### Solution\n\nFirst square x+2 to get x²+4x+4. Multiply this by x+2 to obtain x³+6x²+12x+8. The mixed products 6x² and 12x are required."
       },
       {
         "phaseNumber": 9,
@@ -5495,25 +5495,25 @@
         "phaseNumber": 5,
         "title": "Example 1 — Factor Using the Distributive Property",
         "phaseType": "worked_example",
-        "markdown": "Use the Distributive Property to factor each polynomial by extracting the GCF.\n\n### Step 1: Find the GCF of All Terms\n\n[16t - 40y] → Numbers: factors of 16: 1, 2, 4, 8, 16; factors of 40: 1, 2, 4, 5, 8, 10, 20, 40 → GCF of coefficients: 8. No common variable. → [8(2t - 5y)]\n\n[5z^2 + 10z] → GCF is 5z → [5z(z + 2)]"
+        "markdown": "### Problem\n\nFactor 16t-40y and 5z²+10z by their greatest common factors.\n\n### Solution\n\nThe coefficient greatest common factor of 16 and 40 is 8, with no shared variable, so 16t-40y=8(2t-5y). The second expression has greatest common factor 5z, so it equals 5z(z+2)."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Factor to Solve Real-World Problems",
         "phaseType": "worked_example",
-        "markdown": "Factor expressions that model real-world scenarios.\n\n### Step 1: Falling Object Height\n\nThe height of an object launched upward from ground level at 32 feet per second is given by [32t - 16t^2]. Factor this expression.\n\nGCF is 16t: [16t(2 - t)]\n\n### Step 2: Swimming Pool Area\n\nThe area of a rectangular pool is given by [12w - w^2], where w is the width. Factor this expression.\n\nGCF is w: [w(12 - w)]\n\n### Step 3: Vertical Jump Height\n\nA basketball player's height above standing reach after t seconds is modeled by [162t - 192t^2]. Factor this expression.\n\nGCF is 6t: [6t(27 - 32t)]\n\n### Step 4: Treat Toss Height\n\nA treat tossed upward at 13.7 meters per second has height given by [13.7t - 4.9t^2]. Factor this expression.\n\nGCF is 0.7t: [0.7t(19.5 - 7t)]"
+        "markdown": "### Problem\n\nFactor the modeled height expression h(t)=13.7t-4.9t² exactly.\n\n### Solution\n\nFactor out t to obtain t(13.7-4.9t). With integer coefficients inside parentheses, use 0.1t(137-49t). Expansion returns 13.7t-4.9t². The expression 0.7t(19.5-7t) is incorrect because its first coefficient is 13.65, not 13.7."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Factor by Grouping",
         "phaseType": "worked_example",
-        "markdown": "When a polynomial has four or more terms, try grouping terms that share a common factor.\n\n### Step 1: Group Terms with Common Factors\n\n[fg - 5g + 4f - 20]\nGroup: [(fg - 5g) + (4f - 20)]\nFactor each group: [g(f - 5) + 4(f - 5)]\nFactor out (f - 5): [(f - 5)(g + 4)]\n\n[xy - 2x - 2 + y]\nGroup: [(xy - 2x) + (y - 2)]\nFactor each group: [x(y - 2) + 1(y - 2)]\nFactor out (y - 2): [(y - 2)(x + 1)]\n\n### Step 2: Arrange Terms Before Grouping\n\n[3dt - 21d + 35 - 5t]\nReorder: [3dt - 21d - 5t + 35]\nGroup: [(3dt - 21d) + (-5t + 35)]\nFactor each group: [3d(t - 7) - 5(t - 7)]\nFactor out (t - 7): [(t - 7)(3d - 5)]"
+        "markdown": "### Problem\n\nFactor 3dt-21d+35-5t by grouping.\n\n### Solution\n\nReorder as (3dt-21d)+(-5t+35). Factor each group: 3d(t-7)-5(t-7). The shared binomial gives (t-7)(3d-5)."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — More Factoring by Grouping",
         "phaseType": "worked_example",
-        "markdown": "Continue practicing the grouping technique with various polynomial structures.\n\n[45pq - 27q - 50p + 30]\nGroup: [(45pq - 27q) + (-50p + 30)]\nFactor each group: [9q(5p - 3) - 10(5p - 3)]\nFactor out (5p - 3): [(5p - 3)(9q - 10)]\n\n[24ty - 18t + 4y - 3]\nGroup: [(24ty - 18t) + (4y - 3)]\nFactor each group: [6t(4y - 3) + 1(4y - 3)]\nFactor out (4y - 3): [(4y - 3)(6t + 1)]\n\n[vp + 12v + 8p + 96]\nGroup: [(vp + 12v) + (8p + 96)]\nFactor each group: [v(p + 12) + 8(p + 12)]\nFactor out (p + 12): [(p + 12)(v + 8)]\n\n[5br - 25b + 2r - 10]\nGroup: [(5br - 25b) + (2r - 10)]\nFactor each group: [5b(r - 5) + 2(r - 5)]\nFactor out (r - 5): [(r - 5)(5b + 2)]\n\n[2nu - 8u + 3n - 12]\nGroup: [(2nu - 8u) + (3n - 12)]\nFactor each group: [2u(n - 4) + 3(n - 4)]\nFactor out (n - 4): [(n - 4)(2u + 3)]"
+        "markdown": "### Problem\n\nFactor 45pq-27q-50p+30.\n\n### Solution\n\nGroup the terms: 9q(5p-3)-10(5p-3). Factor out 5p-3 to obtain (5p-3)(9q-10). Expanding gives the original four terms."
       },
       {
         "phaseNumber": 9,
@@ -5563,25 +5563,25 @@
         "phaseNumber": 5,
         "title": "Example 1 — Factor x^2 + bx + c Trinomials",
         "phaseType": "worked_example",
-        "markdown": "Factor each polynomial, if possible. If the polynomial cannot be factored using integers, write prime.\n\n### Step 1: Identify the Sign Pattern\n\nFor [x^2 + 17x + 42]: c is positive, b is positive → both factors positive.\nFor [y^2 - 17y + 72]: c is positive, b is negative → both factors negative.\nFor [a^2 + 8a - 48]: c is negative → one factor positive, one negative.\n\n### Step 2: Find the Number Pair\n\n44 + 15h + h^2 → Rewrite as [h^2 + 15h + 44]. Find numbers that multiply to 44 and add to 15: 4 and 11.\n→ [(h + 4)(h + 11)]\n\n40 - 22x + x^2 → Rewrite as [x^2 - 22x + 40]. Find numbers that multiply to 40 and add to -22: -2 and -20.\n→ [(x - 2)(x - 20)]\n\n[-24 - 5x + x^2] → Rewrite as [x^2 - 5x - 24]. Find numbers that multiply to -24 and add to -5: -8 and 3.\n→ [(x - 8)(x + 3)]\n\n### Step 3: Check for Prime Cases\n\n[d^2 + 5d - 13] → Find two numbers that multiply to -13 and add to 5: ±1 and ±13. No pair works. → prime\n\n[y^2 - 6y + 17] → Find two numbers that multiply to 17 and add to -6: ±1 and ±17. No pair works. → prime"
+        "markdown": "### Problem\n\nFactor x²-5x-24 over the integers.\n\n### Solution\n\nFind integers with product -24 and sum -5. They are -8 and 3. Thus x²-5x-24=(x-8)(x+3). Expansion gives x²+3x-8x-24."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — More x^2 + bx + c Problems",
         "phaseType": "worked_example",
-        "markdown": "Continue factoring or identifying prime trinomials.\n\n[n^2 + 7n + 12] → Numbers that multiply to 12 and add to 7: 3 and 4 → [(n + 3)(n + 4)]\n\n[b^2 - 12b - 101] → No integer pair multiplies to -101 and adds to -12. → prime\n\n[p^2 + 9p + 20] → Numbers that multiply to 20 and add to 9: 4 and 5 → [(p + 4)(p + 5)]\n\n[c^2 + c + 21] → No integer pair multiplies to 21 and adds to 1. → prime"
+        "markdown": "### Problem\n\nDetermine whether c²+c+21 factors into integer-coefficient linear factors.\n\n### Solution\n\nInteger factors of a monic quadratic require two integers with product 21 and sum 1. The positive pairs (1,21) and (3,7) have sums 22 and 10. The negative pairs have sums -22 and -10. None has sum 1, so there are no integer-coefficient linear factors. The conclusion is relative to the stated coefficient system."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Real-World Applications",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Cosmetics Case Problem\n\nA cosmetics case has width that is 2 cm greater than the length x. The area is [x^2 + 26x + 168]. Factor this expression.\n\nFind numbers that multiply to 168 and add to 26: 12 and 14.\n[x^2 + 26x + 168 = (x + 12)(x + 14)]\nThe length is x + 12 and the width is x + 14 (or vice versa). ![Worksheet figure 1](/curriculum/module-11-lesson-6/image1.png)\n\n### Step 2: Carpentry Crate Problem\n\nA crate volume is [2x^2 - 6x - 80]. Factor this expression.\n\n[2x^2 - 6x - 80] → First factor out 2: [2(x^2 - 3x - 40)]\nFind numbers that multiply to -40 and add to -3: -8 and 5.\n→ [2(x - 8)(x + 5)]\n\n### Step 3: Bridge Cable Height\n\nA cable's height above the deck at distance d yards from the first tower is [d^2 - 36d + 324]. Factor this expression.\n\nFind numbers that multiply to 324 and add to -36: -18 and -18.\n[d^2 - 36d + 324 = (d - 18)^2] ![Worksheet figure 2](/curriculum/module-11-lesson-6/image2.png)\n\n### Step 4: Break-Even Point\n\nA museum's break-even point is modeled by [2h^2 - 2h - 24], where h is hours open per day. Factor this expression.\n\n[2h^2 - 2h - 24] → Factor out 2: [2(h^2 - h - 12)]\nFind numbers that multiply to -12 and add to -1: -4 and 3.\n→ [2(h - 4)(h + 3)]"
+        "markdown": "### Problem\n\nA rectangular case has area x²+26x+168 square centimeters. Factor the area and give one possible pair of dimensions differing by 2 cm. Use x>0.\n\n### Solution\n\nThe numbers 12 and 14 have product 168 and sum 26. Therefore the area is (x+12)(x+14). One possible length is x+12 cm and width is x+14 cm. Their difference is 2 cm. The parameter x itself is not the full length."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — Factor ax^2 + bx + c where a ≠ 1",
         "phaseType": "worked_example",
-        "markdown": "Use the AC method: multiply a and c, find factors that sum to b, then rewrite and group.\n\n### Step 1: Apply AC Method\n\n[5x^2 + 34x + 24] → Multiply a and c: 5 × 24 = 120\nFind factors of 120 that sum to 34: 4 and 30\nRewrite: [5x^2 + 4x + 30x + 24]\nGroup: [(5x^2 + 4x) + (30x + 24)]\nFactor: [x(5x + 4) + 6(5x + 4)]\n→ [(5x + 4)(x + 6)]\n\n[2x^2 + 19x + 24] → Multiply: 2 × 24 = 48\nFind factors of 48 that sum to 19: 3 and 16\nRewrite: [2x^2 + 3x + 16x + 24]\nFactor: [x(2x + 3) + 8(2x + 3)]\n→ [(2x + 3)(x + 8)]\n\n### Step 2: Check if Prime\n\n[4x^2 + 22x + 10] → Multiply: 4 × 10 = 40\nFind factors of 40 that sum to 22: No pair works → prime\n\n[2x^2 + 3x + 6] → Multiply: 2 × 6 = 12\nFind factors of 12 that sum to 3: No pair works → prime\n\n[5x^2 + 3x + 4] → Multiply: 5 × 4 = 20\nFind factors of 20 that sum to 3: No pair works → prime\n\n### Step 3: Trinomials with Negative Middle Term\n\n[4x^2 - 13x + 10] → Multiply: 4 × 10 = 40\nFind factors of 40 that sum to -13: -5 and -8\nRewrite: [4x^2 - 5x - 8x + 10]\nFactor: [x(4x - 5) - 2(4x - 5)]\n→ [(4x - 5)(x - 2)]"
+        "markdown": "### Problem\n\nFactor 4x²+22x+10 completely over the integers.\n\n### Solution\n\nFirst extract 2: 2(2x²+11x+5). The inner trinomial factors as (2x+1)(x+5). Thus the result is 2(2x+1)(x+5). Expansion gives 4x²+22x+10. This polynomial is not prime."
       },
       {
         "phaseNumber": 9,
@@ -5625,19 +5625,19 @@
         "phaseNumber": 4,
         "title": "Example 1 — Factor Difference of Squares",
         "phaseType": "worked_example",
-        "markdown": "Factor polynomials that are differences of squares, including those requiring multiple applications of the pattern or preliminary factoring.\n\n### Step 1: Look for a GCF\n\nCheck whether all terms share a common factor. If so, factor it out first.\n\n[\n3c^3 + 2c^2 - 147c - 98 = c^2(3c + 2) - 49(3c + 2)\n]\n\n### Step 2: Identify Perfect Squares\n\nRewrite each term as a perfect square.\n\n[\na^2 - b^2\n]\n\n### Step 3: Apply the Pattern\n\nWrite the factored form using the sum and difference of the square roots.\n\n[\na^2 - b^2 = (a+b)(a-b)\n]\n\n### Step 4: Check for Repeated Patterns\n\nIf a factor is itself a difference of squares, apply the pattern again until fully factored.\n\n[\nw^4 - 625 = (w^2+25)(w^2-25) = (w^2+25)(w+5)(w-5)\n]"
+        "markdown": "### Problem\n\nFactor w⁴-625 completely over the integers.\n\n### Solution\n\nUse a difference of squares twice: w⁴-625=(w²+25)(w²-25)=(w²+25)(w+5)(w-5). The factor w²+25 has no real roots and does not factor further over the integers."
       },
       {
         "phaseNumber": 5,
         "title": "Example 2 — Factor by Grouping",
         "phaseType": "worked_example",
-        "markdown": "Factor polynomials with four terms by grouping pairs of terms and then applying special factoring patterns.\n\n### Step 1: Group Terms\n\nGroup the first two terms and the last two terms.\n\n[\n(2x^3 - x^2) - (162x - 81)\n]\n\n### Step 2: Factor Out the GCF from Each Group\n\nFactor out the greatest common factor from each group.\n\n[\nx^2(2x - 1) - 81(2x - 1)\n]\n\n### Step 3: Factor Out the Common Binomial\n\nFactor out the common binomial factor.\n\n[\n(2x - 1)(x^2 - 81)\n]\n\n### Step 4: Apply Special Factoring Patterns\n\nIf the remaining factor fits a special pattern, continue factoring.\n\n[\n(2x - 1)(x+9)(x-9)\n]"
+        "markdown": "### Problem\n\nFactor 2x³-x²-162x+81 completely over the integers.\n\n### Solution\n\nGroup as x²(2x-1)-81(2x-1). Factor the common binomial to get (2x-1)(x²-81). The difference of squares gives (2x-1)(x+9)(x-9)."
       },
       {
         "phaseNumber": 6,
         "title": "Example 3 — Apply Difference of Squares to Area Problems",
         "phaseType": "worked_example",
-        "markdown": "Use the difference of squares pattern to factor expressions that represent areas of squares and rectangles, then interpret the factors as dimensions.\n\n### Step 1: Write the Area Expression\n\nIdentify the expression that represents the area of the region.\n\n[\nA = x^2 - 25\n]\n\n### Step 2: Factor the Expression\n\nRecognize the difference of squares and factor.\n\n[\nx^2 - 25 = (x+5)(x-5)\n]\n\n### Step 3: Interpret the Factors\n\nThe factors represent the possible length and width of the rectangular region.\n\n[\nA = a^2 - 4b^2 = (a+2b)(a-2b)\n]\n\nThe factors [ (a+2b) ] and [ (a-2b) ] represent the length and width."
+        "markdown": "### Problem\n\nA region has area x²-25 square units, with x>5. Factor the expression and give possible positive dimensions for a rectangle of that area.\n\n### Solution\n\nThe expression factors as (x+5)(x-5). Both factors are positive for x>5, so x+5 and x-5 are possible rectangle dimensions. The area alone does not uniquely determine the dimensions."
       },
       {
         "phaseNumber": 7,
@@ -5649,13 +5649,13 @@
         "phaseNumber": 8,
         "title": "Example 4 — Identify Perfect Square Trinomials",
         "phaseType": "worked_example",
-        "markdown": "Determine whether a trinomial is a perfect square by checking the relationship between its terms.\n\n### Step 1: Check the First and Last Terms\n\nVerify that the first term and the last term are perfect squares.\n\n$$\n16x^2 = (4x)^2, \\quad 49 = 7^2\n$$\n### Step 2: Check the Middle Term\n\nConfirm that the middle term equals [ 2ab ] or [ -2ab ].\n\n[\n-56x = -2(4x)(7)\n]\n\n### Step 3: Write Yes or No\n\nIf all conditions are met, write *yes* and factor. Otherwise, write *no*.\n\n[\n16x^2 - 56x + 49 = (4x - 7)^2\n]"
+        "markdown": "### Problem\n\nDetermine whether 16x²-56x+49 is a perfect square trinomial. Factor it if it is.\n\n### Solution\n\nThe first and last terms are (4x)² and 7². The middle term is -2(4x)(7)=-56x. Therefore the expression is (4x-7)²."
       },
       {
         "phaseNumber": 9,
         "title": "Example 5 — Factor Perfect Square Trinomials",
         "phaseType": "worked_example",
-        "markdown": "Factor trinomials that have been identified as perfect squares.\n\n### Step 1: Identify [ a ] and [ b ]\n\nFind the square roots of the first and last terms.\n\n$$\na = 3n, \\quad b = 5\n$$\n### Step 2: Write the Factored Form\n\nUse the sign of the middle term to determine whether to use [ (a+b)^2 ] or [ (a-b)^2 ].\n\n[\n9n^2 + 30n + 25 = (3n + 5)^2\n]"
+        "markdown": "### Problem\n\nFactor 9n²+30n+25.\n\n### Solution\n\nThe first term is (3n)², the last is 5², and the middle is 2(3n)(5). The factorization is (3n+5)². Expanding gives 9n²+30n+25."
       },
       {
         "phaseNumber": 10,

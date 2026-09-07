@@ -174,3 +174,9 @@ Verification passed with 207 tests, lint, frontend and backend TypeScript, and p
 Completed 26 exponent and radical examples. The cumulative correction covers 307 headings. Examples now retain original nonzero denominator conditions, state nonnegative real-radical conditions, and use absolute value for the principal square root of a squared variable. The unfinished negative-exponent expression now has a complete solution. Unsupported biological and economic quantities are replaced with explicit mathematical models.
 
 Verification passed with 207 tests, lint, frontend and backend TypeScript, and production build.
+
+## Module 11 worked examples
+
+Completed 33 polynomial examples. The cumulative correction covers 340 headings. Corrected the multivariable binomial classification and its degree in one variable. Corrected a factorable quadratic labeled prime and the incorrect decimal factorization. The counting-sum example now specifies positive integers. The area models state positive-dimension conditions and distinguish a parameter from a full side length.
+
+Verification passed with 207 tests, lint, frontend and backend TypeScript, and production build. Independent substitutions checked the corrected factorizations.

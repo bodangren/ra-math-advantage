@@ -39,84 +39,43 @@ When multiplying like bases, add the exponents. Apply this rule to each term aft
 
 ## Example 1 — Multiply Monomials by Polynomials
 
-Simplify each expression by distributing the monomial.
+### Problem
 
-### Step 1: Distribute to Each Term
+Expand -3m³(2m³-12m²+2m+25).
 
-[b(b^2 - 12b + 1)] = [b^3 - 12b^2 + b]
+### Solution
 
-[f(f^2 + 2f + 25)] = [f^3 + 2f^2 + 25f]
-
-[-3m^3(2m^3 - 12m^2 + 2m + 25)] = [-6m^6 + 36m^5 - 6m^4 - 75m^3]
-
-[2j^2(5j^3 - 15j^2 + 2j + 2)] = [10j^5 - 30j^4 + 4j^3 + 4j^2]
+Multiply -3m³ by each term. The result is -6m⁶+36m⁵-6m⁴-75m³. The positive second term comes from multiplying two negative factors.
 
 ## Example 2 — Combine Multiplication with Addition/Subtraction
 
-Simplify each expression involving multiple operations.
+### Problem
 
-### Step 1: Distribute First, Then Combine Like Terms
+Simplify -3(5x²+2x+9)+x(2x-3).
 
-[-3(5x^2 + 2x + 9) + x(2x - 3)]
-= [-15x^2 - 6x - 27 + 2x^2 - 3x]
-= [-13x^2 - 9x - 27]
+### Solution
 
-[a(-8a^2 + 2a + 4) + 3(6a^2 - 4)]
-= [-8a^3 + 2a^2 + 4a + 18a^2 - 12]
-= [-8a^3 + 20a^2 + 4a - 12]
-
-[-4d(5d^2 - 12) + 7(d + 5)]
-= [-20d^3 + 48d + 7d + 35]
-= [-20d^3 + 55d + 35]
-
-[-9g(-2g + g^2) + 3(g^3 + 4)]
-= [18g^2 - 9g^3 + 3g^3 + 12]
-= [-6g^3 + 18g^2 + 12]
+Distribute to get -15x²-6x-27+2x²-3x. Combine like terms: -13x²-9x-27.
 
 ## Example 3 — Real-World Applications
 
-Apply polynomial multiplication to solve problems involving sums, volumes, and linear equations.
+### Problem
 
-### Step 1: Write and Simplify an Expression
+The sum of the first n positive integers is n(n+1)/2. Expand the formula and evaluate the sum from 1 through 12.
 
-The sum of the first n whole numbers is given by [1/2(n^2 + n)]. Expand the expression by multiplying, then find the sum of the first 12 whole numbers.
+### Solution
 
-[1/2(n^2 + n) = n^2/2 + n/2]
-For n = 12: [12^2/2 + 12/2 = 72 + 6 = 78]
-
-### Step 2: Apply to College Savings
-
-Troy's grandfather gives him $700 to start an account, then $40 each month. His mother gives him $50 each month but has been doing so for 4 fewer months than the grandfather. Write a simplified expression for the amount after m months.
-
-Let grandfather's months = m, mother's months = m - 4.
-Total = [700 + 40m + 50(m - 4) = 700 + 40m + 50m - 200 = 90m + 500]
-
-### Step 3: Geometry Application — Pyramid Volume
-
-The volume of a pyramid is one-third of base area times height. The base area is [B = x^2 - 4x - 12]. Write a polynomial for the volume when the height is 10 meters, then find the volume when x = 12 m.
-
-[V = 1/3(x^2 - 4x - 12)(10) = 10/3x^2 - 40/3x - 40]
-When x = 12: [V = 10/3(144) - 40/3(12) - 40 = 480 - 160 - 40 = 280] cubic meters
+The expansion is n²/2+n/2. At n=12, it gives 144/2+12/2=72+6=78. These are the first twelve positive integers. The first twelve whole numbers include zero and instead sum from 0 through 11.
 
 ## Example 4 — Solve Equations with Polynomial Multiplication
 
-Solve each equation by first simplifying both sides using the Distributive Property.
+### Problem
 
-### Step 1: Expand Both Sides
+Solve 7(t²+5t-9)+t=t(7t-2)+13.
 
-[7(t^2 + 5t - 9) + t = t(7t - 2) + 13]
-= [7t^2 + 35t - 63 + t = 7t^2 - 2t + 13]
-= [7t^2 + 36t - 63 = 7t^2 - 2t + 13]
-= [36t - 63 = -2t + 13]
-= [38t = 76]
-= [t = 2]
+### Solution
 
-[w(4w + 6) + 2w = 2(2w^2 + 7w - 3)]
-= [4w^2 + 6w + 2w = 4w^2 + 14w - 6]
-= [4w^2 + 8w = 4w^2 + 14w - 6]
-= [8w = 14w - 6]
-= [-6w = -6]
-= [w = 1]
+Expand both sides: 7t²+36t-63=7t²-2t+13. Cancel 7t² and rearrange to get 38t=76, so t=2. Substitution in the original equation gives 37 on both sides.
 
 ## Mixed Exercises
 
