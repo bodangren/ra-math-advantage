@@ -258,4 +258,4 @@ Do not interpret passing tests as closure of these open items.
 
 ## Closed enrollment history correction
 
-The student dashboard and lesson access query now select active enrollments through a status index. More than 100 withdrawn or completed records cannot hide the current class. The regression failed before correction. Verification passed with 222 tests, lint, both TypeScript checks, and production build. The local backend accepted the new index. Saved correction: `72eee707`.
+The student dashboard and lesson access query now select active enrollments through a status index. More than 100 withdrawn or completed records cannot hide the current class. The regression failed before correction. Verification passed with 222 tests, lint, both TypeScript checks, and production build. The local backend accepted the new index. Saved correction: `478431ae`.
