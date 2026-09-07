@@ -73,14 +73,14 @@ describe('IM1 Module 2 graph source coverage', () => {
       [newSkills[0][0], ['math.im1.example.2.1.004', 'math.im1.example.2.1.005', 'math.im1.example.2.1.006']],
       ['math.im1.skill.2.2.solve-one-step-equations-involving-addition-subtraction-mult', ['math.im1.example.2.2.007', 'math.im1.example.2.2.008']],
       [newSkills[1][0], ['math.im1.example.2.2.009', 'math.im1.example.2.2.010', 'math.im1.example.2.2.011']],
-      ['math.im1.skill.2.3.solve-multi-step-linear-equations-using-properties-of-equali', ['math.im1.example.2.3.012']],
+      ['math.im1.skill.2.3.solve-multi-step-linear-equations-using-properties-of-equali', ['math.im1.example.2.3.012', 'math.im1.example.2.3.013']],
       [newSkills[2][0], ['math.im1.example.2.3.015']],
       ['math.im1.skill.2.4.solve-linear-equations-that-have-the-variable-on-both-sides', ['math.im1.example.2.4.016', 'math.im1.example.2.4.017']],
       [newSkills[3][0], ['math.im1.example.2.4.018', 'math.im1.example.2.4.019']],
-      [legacy2i, []],
-      ['math.im1.skill.2.5.graph-the-solution-set-of-an-absolute-value-equation-on-a-nu', ['math.im1.example.2.5.021']],
-      ['math.im1.skill.2.6.solve-proportions-algebraically-including-those-with-variabl', ['math.im1.example.2.6.022', 'math.im1.example.2.6.023']],
-      [newSkills[4][0], ['math.im1.example.2.6.026']],
+      [legacy2i, ['math.im1.example.2.5.source-001', 'math.im1.example.2.5.source-002', 'math.im1.example.2.5.020']],
+      ['math.im1.skill.2.5.graph-the-solution-set-of-an-absolute-value-equation-on-a-nu', ['math.im1.example.2.5.source-001']],
+      ['math.im1.skill.2.6.solve-proportions-algebraically-including-those-with-variabl', ['math.im1.example.2.6.022', 'math.im1.example.2.6.023', 'math.im1.example.2.6.024']],
+      [newSkills[4][0], ['math.im1.example.2.6.024', 'math.im1.example.2.6.026']],
       ['math.im1.skill.2.7.solve-literal-equations-and-formulas-for-a-specified-variabl', ['math.im1.example.2.7.027', 'math.im1.example.2.7.028', 'math.im1.example.2.7.029', 'math.im1.example.2.7.030']],
       [newSkills[5][0], ['math.im1.example.2.7.031', 'math.im1.example.2.7.032', 'math.im1.example.2.7.033']],
     ]);
@@ -99,13 +99,13 @@ describe('IM1 Module 2 graph source coverage', () => {
       [newSkills[0][0], /Write a Sentence|Interpret Formulas/],
       ['math.im1.skill.2.2.solve-one-step-equations-involving-addition-subtraction-mult', /Solve Addition|Solve Multiplication/],
       [newSkills[1][0], /Real-World Equations|Fractions|Percentages/],
-      ['math.im1.skill.2.3.solve-multi-step-linear-equations-using-properties-of-equali', /Solve Linear Equations/],
+      ['math.im1.skill.2.3.solve-multi-step-linear-equations-using-properties-of-equali', /Solve Linear Equations|Word Problems/],
       [newSkills[2][0], /Solve Literal Equations/],
       ['math.im1.skill.2.4.solve-linear-equations-that-have-the-variable-on-both-sides', /Variables on Both Sides|Word Problems/],
       [newSkills[3][0], /Geometry Applications|Classify Equations/],
-      ['math.im1.skill.2.5.graph-the-solution-set-of-an-absolute-value-equation-on-a-nu', /Write Absolute Value Equations from Graphs/],
-      ['math.im1.skill.2.6.solve-proportions-algebraically-including-those-with-variabl', /Basic Proportions|Linear Expressions/],
-      [newSkills[4][0], /Percent and Mixture Problems/],
+      ['math.im1.skill.2.5.graph-the-solution-set-of-an-absolute-value-equation-on-a-nu', /Solve and Graph Simple Absolute Value Equations/],
+      ['math.im1.skill.2.6.solve-proportions-algebraically-including-those-with-variabl', /Basic Proportions|Linear Expressions|Real-World Proportion Problems/],
+      [newSkills[4][0], /Real-World Proportion Problems|Percent and Mixture Problems/],
       ['math.im1.skill.2.7.solve-literal-equations-and-formulas-for-a-specified-variabl', /Solve for a Specified Variable|Apply Formulas|Constraints/],
       [newSkills[5][0], /Dimensional Analysis and Unit Conversion/],
     ]);
@@ -117,10 +117,7 @@ describe('IM1 Module 2 graph source coverage', () => {
     }
 
     const unresolvedDuplicateOccurrences = new Set([
-      'math.im1.example.2.3.013',
       'math.im1.example.2.3.014',
-      'math.im1.example.2.5.020',
-      'math.im1.example.2.6.024',
       'math.im1.example.2.6.025',
     ]);
     const moduleTwoLinks = blueprintsDocument.blueprints

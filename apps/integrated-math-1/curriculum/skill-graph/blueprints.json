@@ -4,7 +4,8 @@
       "nodeId": "math.im1.skill.1.1.translate-verbal-descriptions-into-correct-numerical-express",
       "sourceNodeIds": [
         "math.im1.example.1.1.001",
-        "math.im1.example.1.1.002"
+        "math.im1.example.1.1.002",
+        "math.im1.example.1.1.source-003"
       ],
       "alignmentNodeIds": [
         "math.standard.ccss.6-ee-a-1",
@@ -2761,7 +2762,8 @@
     {
       "nodeId": "math.im1.skill.2.3.solve-multi-step-linear-equations-using-properties-of-equali",
       "sourceNodeIds": [
-        "math.im1.example.2.3.012"
+        "math.im1.example.2.3.012",
+        "math.im1.example.2.3.013"
       ],
       "alignmentNodeIds": [
         "math.standard.ccss.a-ced-a-4",
@@ -2824,7 +2826,7 @@
     {
       "nodeId": "math.im1.skill.2.5.graph-the-solution-set-of-an-absolute-value-equation-on-a-nu",
       "sourceNodeIds": [
-        "math.im1.example.2.5.021"
+        "math.im1.example.2.5.source-001"
       ],
       "alignmentNodeIds": [
         "math.standard.ccss.a-ced-a-1",
@@ -2854,7 +2856,11 @@
     },
     {
       "nodeId": "math.im1.skill.2.5.solve-absolute-value-equations-of-the-form",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im1.example.2.5.source-001",
+        "math.im1.example.2.5.source-002",
+        "math.im1.example.2.5.020"
+      ],
       "alignmentNodeIds": [
         "math.standard.ccss.a-ced-a-1",
         "math.standard.ccss.a-rei-a-1"
@@ -2885,7 +2891,8 @@
       "nodeId": "math.im1.skill.2.6.solve-proportions-algebraically-including-those-with-variabl",
       "sourceNodeIds": [
         "math.im1.example.2.6.022",
-        "math.im1.example.2.6.023"
+        "math.im1.example.2.6.023",
+        "math.im1.example.2.6.024"
       ],
       "alignmentNodeIds": [
         "math.standard.ccss.7-ee-b-3",
@@ -4590,6 +4597,7 @@
     {
       "nodeId": "math.im1.skill.2.6.apply-proportions-to-percent-situations-scaling-problems-and",
       "sourceNodeIds": [
+        "math.im1.example.2.6.024",
         "math.im1.example.2.6.026"
       ],
       "alignmentNodeIds": [],
@@ -4625,6 +4633,48 @@
         "course": "im1",
         "module": "2",
         "lesson": "7"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.1.4.use-the-distributive-property-to-simplify-algebraic-expressi",
+      "sourceNodeIds": [
+        "math.im1.example.1.4.021",
+        "math.im1.example.1.4.023",
+        "math.im1.example.1.4.024",
+        "math.im1.example.1.4.025"
+      ],
+      "alignmentNodeIds": [],
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM1 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "1",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.1.5.evaluate-absolute-value-expressions-by-substituting-given-va",
+      "sourceNodeIds": [
+        "math.im1.example.1.5.027",
+        "math.im1.example.1.5.029"
+      ],
+      "alignmentNodeIds": [],
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM1 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "1",
+        "lesson": "5"
       }
     }
   ]

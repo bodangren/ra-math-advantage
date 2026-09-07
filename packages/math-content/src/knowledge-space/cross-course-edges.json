@@ -18388,28 +18388,6 @@
     }
   },
   {
-    "id": "cross-course.edge.0835",
-    "type": "equivalent_to",
-    "sourceId": "math.im1.example.2.3.014",
-    "targetId": "math.im2.skill.9.2.graph-linear-equations-using-slope-intercept-standard-and-po",
-    "weight": 0.75,
-    "confidence": "medium",
-    "reviewStatus": "draft",
-    "derived": true,
-    "derivationMethod": "cross-course-standard-overlap-v1",
-    "rationale": "Shared standard alignment between math.im1 and math.im2",
-    "metadata": {
-      "matchType": "standard",
-      "courses": [
-        "math.im1",
-        "math.im2"
-      ],
-      "sharedStandards": [
-        "math.standard.ccss.a-rei-b-3"
-      ]
-    }
-  },
-  {
     "id": "cross-course.edge.0836",
     "type": "equivalent_to",
     "sourceId": "math.im1.example.2.3.015",
