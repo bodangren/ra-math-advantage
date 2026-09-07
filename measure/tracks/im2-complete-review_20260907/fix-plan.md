@@ -56,3 +56,5 @@ The local browser journey passed. See `runtime-verification.md`.
 The full correction task remains open. Do not mark the practice blueprint, calendar, mastery, source-content, or dependency findings closed based on this checkpoint.
 
 Verification before the correction checkpoint: 24 test files and 172 tests passed. Frontend TypeScript, backend TypeScript, lint, and the production build passed.
+
+Saved correction checkpoint: `dd1c25a`. This commit does not close the full correction task.
