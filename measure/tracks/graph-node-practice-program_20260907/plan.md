@@ -121,7 +121,7 @@ Scheduling: one worker owns shared graph mechanisms. Two workers can review disj
 - [x] Task G20: Restore Lesson 5-1 source capability candidates and retained example descriptions. Independent source review and app gates pass. Commit `228082b5`. Ten candidates remain draft.
 - [x] Task G21: Restore Lesson 5-2 goals and source-example identities from the original worksheet. Correct combined Examples 7 and 8 mapping. Preserve previous IDs. Twelve draft candidates, 58 curriculum tests, 40 inventory tests, and app gates pass. Commit `7d98d7a6`.
 
-- [~] Task G22: Review IM1 Lesson 5-3 scatter plots and lines of fit against the original worksheet. Identify assessable capability boundaries and source errors. Preserve stable identities and keep proposed changes draft.
+- [x] Task G22: Restore IM1 Lesson 5-3 source capabilities and example identities. Twelve draft candidates passed independent review. Current metadata totals match arrays. Source, inventory, lint, TypeScript, and build checks pass. Commit `a23c5951`. Approval and complete practice remain open.
 
 ## Phase 4 — Implement the minimum shared repairs and five pilots
 
