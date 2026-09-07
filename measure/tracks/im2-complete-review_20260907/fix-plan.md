@@ -202,3 +202,9 @@ Read the compiled learning explanations across all 96 lessons. Corrected geometr
 Corrected continuity, symmetry, intercept, transformation-order, and optimization rules. Distinguished composition from multiplication. Added exponent, radical, and trigonometric domain restrictions. Regression guidance now checks model assumptions and comparable response scales. The source worksheets and remaining exercise summaries still require separate review.
 
 Verification passed with 211 tests, lint, frontend and backend TypeScript, and production build.
+
+## Evidence retention and extractor protection
+
+Phase completion now queries correct evidence by student, activity, phase, and score. More than 100 later attempts cannot hide the correct submission. The legacy inventory extractor rejects IM2 and --all before writing files. Its current parser cannot read the corrected IM2 source format.
+
+Verification passed with 213 tests, lint, both TypeScript checks, and production build. Regression tests failed before each correction. The extractor test runs against an isolated temporary directory.

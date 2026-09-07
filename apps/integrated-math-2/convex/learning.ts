@@ -192,21 +192,17 @@ export const completePhase = internalMutation({
         | Id<"activities">
         | undefined;
       if (!activityId) throw new ConvexError("not_available");
-      const submissions = await ctx.db
+      const correct = await ctx.db
         .query("activity_submissions")
-        .withIndex("by_user_and_activity", (q) =>
-          q.eq("userId", args.userId).eq("activityId", activityId),
+        .withIndex("by_user_activity_phase_score", (q) =>
+          q.eq("userId", args.userId)
+            .eq("activityId", activityId)
+            .eq("phaseId", args.phaseId)
+            .eq("score", 1)
+            .eq("maxScore", 1),
         )
-        .order("desc")
-        .take(100);
-      if (
-        !submissions.some(
-          (submission) =>
-            submission.phaseId === args.phaseId &&
-            submission.maxScore === 1 &&
-            submission.score === 1,
-        )
-      )
+        .first();
+      if (!correct)
         throw new ConvexError("complete_practice");
     }
     const now = Date.now();

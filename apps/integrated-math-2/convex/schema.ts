@@ -286,6 +286,7 @@ export default defineSchema({
     .index("by_user", ["userId"])
     .index("by_activity", ["activityId"])
     .index("by_user_and_activity", ["userId", "activityId"])
+    .index("by_user_activity_phase_score", ["userId", "activityId", "phaseId", "score", "maxScore"])
     .index("by_user_and_key", ["userId", "submissionKey"])
     .index("by_user_and_lesson", ["userId", "lessonId"]),
 

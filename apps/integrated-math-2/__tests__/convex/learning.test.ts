@@ -119,3 +119,13 @@ it("replays a submission without writing duplicate evidence and rejects a change
     invoke(submitAnswer, t.ctx, { ...args, answer: "8" }),
   ).rejects.toThrow();
 });
+
+it("retains correct evidence after more than 100 later incorrect attempts", async () => {
+  const t = await setup();
+  await invoke(completePhase, t.ctx, { userId: t.user, phaseId: t.first });
+  await invoke(submitAnswer, t.ctx, { userId: t.user, phaseId: t.second, activityId: t.activity, answer: "5", submissionKey: "correct" });
+  for (let n = 0; n < 101; n++) {
+    await t.db.insert("activity_submissions", { userId: t.user, phaseId: t.second, activityId: t.activity, score: 0, maxScore: 1 });
+  }
+  await expect(invoke(completePhase, t.ctx, { userId: t.user, phaseId: t.second })).resolves.toBeNull();
+});
