@@ -122,13 +122,13 @@ Scheduling: one worker owns shared graph mechanisms. Two workers can review disj
   Reuse the current projector and registries. Preserve app ownership. Avoid a new generated-instance framework or broad primitive program.
   The current interval component repair must await durable submission and describe actual graph coordinates without revealing the classification.
 - [~] Task 4.2: Complete and verify the IM3 reference pilot.
-  Connect source, all three modes, generator, renderer, server grading, stored submission, and exact-node evidence. Verify the real student route. Current parent review covers organization boundaries, candidate identity parity, and conflicting replay keys. Shared table-graph save and response contract committed as `4146100a`. Rendered answers reach the real server grader. Worked renderer extraction remains in progress.
+  Connect source, all three modes, generator, renderer, server grading, stored submission, and exact-node evidence. Verify the real student route. Current parent review covers organization boundaries, candidate identity parity, and conflicting replay keys. Shared table-graph save and response contract committed as `4146100a`. Rendered answers reach the real server grader. Valid SVG curve coordinates and the complete Worked view are committed as `1128aef8` and `83d0710d`.
 - [~] Task 4.3: Complete and verify the Precalculus pilot.
   Reuse current local corrections. Check the selected activity and exact evidence binding. Verify all three modes in the student route. The parent is adding teacher source context and durable confirmation controls, plus accurate student acknowledgement text.
 - [~] Task 4.4: Complete and verify the IM1 pilot.
   Reuse a valid existing algebra generator. Complete source mapping and the required app rendering/submission path.
 - [~] Task 4.5: Complete and verify the IM2 pilot.
-  Reuse the current lesson runtime and perpendicular-bisector work where correct. Coordinate with the active correction track. Parent verification now covers actual Worked/Guided/teacher/Independent flow and accurate replay evidence state.
+  Reuse the current lesson runtime and perpendicular-bisector work where correct. Coordinate with the active correction track. Parent verification covers actual Worked/Guided/teacher/Independent flow and accurate replay evidence state. Student save and retry controls are committed as `bca8c9e6`. The indexed evidence read passes 18 flow tests and remains pending backend integration.
 - [~] Task 4.6: Complete and verify the Business Math pilot.
   Reconcile published activity mapping with the three modes. Preserve manual evidence for artifacts that require teacher review. Keep adaptive activation within the existing approved policy. Add an app-owned event-analysis activity for complete before-and-after application. Reuse current controls and preserve manual explanation review.
 - [ ] Task 4.7: Measure — User Manual Verification: Five course pilots.

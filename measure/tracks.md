@@ -2,7 +2,7 @@
 
 - [~] **Track: Graph Node Practice Program** — **IN PROGRESS**
    *Investigation complete. Correct all five knowledge space graphs and deliver a source-based three-mode rollout. Use gpt-5.6-sol at low reasoning effort with up to three workers. Graph review and course pilots precede broad authoring. Implementation is authorized. IM1 source and count repairs are committed. IM2 source correction is committed. Source review and five course pilots remain open. Current repairs cover trusted teacher exposure, usable teacher actions, source-based publication, and IM1 objective 3d granularity.*
-   Current work: Shared table-and-graph submission and original Lesson 4-4 source verification are committed. Worked graph renderer integration, Lesson 4-5 source review, and Business Math event-analysis content continue. Course approval and complete practice remain open.
+   Current work: Shared Worked graph rendering and IM2 student save controls are committed. Lesson 4-5 source review and Business Math event-analysis grading continue. Course approval and complete practice remain open.
    *Link: [./tracks/graph-node-practice-program_20260907/](./tracks/graph-node-practice-program_20260907/)*
 
 This file tracks all major tracks for the project.

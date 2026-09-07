@@ -245,3 +245,9 @@ Commit `4146100a` integrates the shared table-and-graph response contract. The e
 Commit `501c5952` corrects the Lesson 4-4 extraction note from the original DOCX. The parent reviewed the rendered fourth page. The worksheet confirms `f(x) = x` and asks students to reason about horizontal and vertical equivalence. Nine source checks, lint, standalone TypeScript, and build passed. The six goal candidates remain draft.
 
 The BM2 review confirms that classification and totals do not prove complete accounting-equation event application. The next local component composes current controls with before-and-after response fields. It keeps explanation review manual and leaves publication disabled.
+
+## Worked graph and IM2 student save integration
+
+Commit `bca8c9e6` prevents repeated pending clicks from skipping a practice phase. Unchanged retries keep their request key. Edited answers get a new key. Five UI tests and 18 backend flow tests pass. IM2 lint, standalone TypeScript, and build pass. The backend changes remain pending integration.
+
+Commit `1128aef8` repairs malformed SVG function paths. The curve now uses the same pixel coordinates as plotted points. Commit `83d0710d` adds the complete Worked quadratic view with steps, table, plotted points, domain, and range. Independent isolated checks and current-workspace checks pass. The current check covers one graph-core test and 12 activity-component tests. Both packages pass lint, standalone TypeScript, and build. These changes do not approve source content or complete the app pilot.
