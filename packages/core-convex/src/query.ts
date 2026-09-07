@@ -87,7 +87,8 @@ export async function fetchPublicMutation<Mutation extends FunctionReference<'mu
   args: FunctionArgs<Mutation>,
 ): Promise<FunctionReturnType<Mutation>> {
   const client = getPublicConvexClient();
-  return client.mutation(ref, args);
+  // A server call must not wait on a queue owned by another Worker request.
+  return client.mutation(ref, args, { skipQueue: true });
 }
 
 /**
@@ -119,5 +120,6 @@ export async function fetchInternalMutation<Mutation extends FunctionReference<'
   options: CreateInternalClientOptions = {},
 ): Promise<FunctionReturnType<Mutation>> {
   const client = await getInternalConvexClient(options);
-  return client.mutation(ref as FunctionReference<'mutation'>, args) as Promise<FunctionReturnType<Mutation>>;
+  // Keep each request independent. Callers await dependent mutations explicitly.
+  return client.mutation(ref as FunctionReference<'mutation'>, args, { skipQueue: true }) as Promise<FunctionReturnType<Mutation>>;
 }
