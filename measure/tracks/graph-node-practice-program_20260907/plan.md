@@ -95,7 +95,7 @@ Scheduling: one worker owns shared graph mechanisms. Two workers can review disj
   Connect source, all three modes, generator, renderer, server grading, stored submission, and exact-node evidence. Verify the real student route.
 - [ ] Task 4.3: Complete and verify the Precalculus pilot.
   Reuse current local corrections. Check the selected activity and exact evidence binding. Verify all three modes in the student route.
-- [ ] Task 4.4: Complete and verify the IM1 pilot.
+- [~] Task 4.4: Complete and verify the IM1 pilot.
   Reuse a valid existing algebra generator. Complete source mapping and the required app rendering/submission path.
 - [ ] Task 4.5: Complete and verify the IM2 pilot.
   Reuse the current lesson runtime and perpendicular-bisector work where correct. Coordinate with the active correction track.
@@ -103,7 +103,7 @@ Scheduling: one worker owns shared graph mechanisms. Two workers can review disj
   Reconcile published activity mapping with the three modes. Preserve manual evidence for artifacts that require teacher review. Keep adaptive activation within the existing approved policy.
 - [ ] Task 4.7: Measure — User Manual Verification: Five course pilots.
 
-Scheduling: stabilize shared contracts first. Run IM3 and Precalculus pilot work with a reviewer. Then use the released slots for IM1, IM2, and Business Math. Pilot source review can run in parallel when paths do not overlap.
+Scheduling: stabilize shared contracts first. IM1 pilot implementation starts with the completed Module 1 source review and available renderer. IM3 and Precalculus pilot integration remains pending. Run independent source and runtime work when paths do not overlap.
 
 ## Phase 5 — Implement complete capability batches
 

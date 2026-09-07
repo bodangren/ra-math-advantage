@@ -64,7 +64,7 @@ The parent integrates the completed shared boundaries and IM1 Module 1 source re
 
 ## IM1 application integration finding
 
-The current `PracticeSessionProvider` displays only session and objective IDs. It does not render an activity or submit a response. The queue copies stored activity props. It does not generate the translation prompt or hold private expected answers. The current route test replaces the provider with another identifier-only component. It cannot prove student practice. Task 4.2 must implement the actual activity, server submission, and evidence flow before the pilot is complete. The existing route test remains useful only as a route wiring check.
+The current `PracticeSessionProvider` displays only session and objective IDs. It does not render an activity or submit a response. The queue copies stored activity props. It does not generate the translation prompt or hold private expected answers. The current route test replaces the provider with another identifier-only component. It cannot prove student practice. Task 4.4 must implement the actual activity, server submission, and evidence flow before the pilot is complete. The existing route test remains useful only as a route wiring check.
 
 The parent readiness omission is resolved in the working tree. Independent integration review confirmed state preservation. Both new readiness suites pass, with 14 tests. The readiness changes overlap earlier parent evidence-source corrections. They remain uncommitted while the integration owner separates their scope. No file was restored or overwritten.
 
@@ -73,3 +73,7 @@ The IM1 source additions expose frozen inventory assertions in existing coverage
 `6011c71d`: committed six Module 2 draft capabilities, source-only blueprints, and corrected 2i text on its original ID. The corrected tests check source numbers and capability-specific titles. Ambiguous occurrence links are excluded pending G4. Four tests and IM1 standalone TypeScript pass.
 
 `7d6b7c61`: deduplicated repeated lesson examples in extraction. Two new regressions failed before the change. All 57 extraction tests pass after the change. Math-content lint and standalone TypeScript pass. The occurrence counter still advances for repeated references. Later identifiers therefore remain unchanged for the same input. Saved catalogs were not regenerated. G4 still must restore missing source nodes and reconcile saved duplicate references.
+
+## Active follow-up ownership
+
+The runtime worker implements the single-node IM1 server submission and client flow. The inventory worker reconciles saved Module 1 and Module 2 source examples. The readiness worker corrects the existing IM1 inventory audit and tests. The parent retains integration ownership. The practice component now has explicit Worked reasoning and Guided Check, Hint, and Reveal behavior. The app must use an awaited durable submission callback. Draft rows remain outside ordinary adaptive recommendations.
