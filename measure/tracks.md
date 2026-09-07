@@ -58,6 +58,9 @@ Dependencies:
 
 ## Active Tracks
 
+- [x] **Danielson Review (2026-09-07)** — Whole-app review complete. Includes all 63 training pages, 13 finding groups, and seven product gaps. Corrections remain open.
+  *Link: [./tracks/danielson-review_20260907/](./tracks/danielson-review_20260907/)*
+
 - [x] **Monorepo Review (2026-09-07)** — Five findings fixed. See the track report for checks and commit scope.
   *Link: [./tracks/monorepo-review_20260907/](./tracks/monorepo-review_20260907/)*
 
