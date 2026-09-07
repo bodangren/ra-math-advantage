@@ -19,7 +19,9 @@ for (const slug of files) {
     .split("\n")[0]
     .replace(/^#\s*(?:Lesson\s+\d+-\d+\s*[—–:-]\s*)?/, "")
     .trim();
-  const sections = markdown.split(/^## /m).slice(1);
+  const sections = markdown.split(/^## /m).slice(1).filter((section) =>
+    !/^(Review Notes|Objective Alignment)\s*(?:\n|$)/i.test(section),
+  );
   const phases = sections.map((section, i) => {
     const title = section.split("\n")[0].trim();
     const phaseType = /^Explore/i.test(title)
@@ -30,9 +32,7 @@ for (const slug of files) {
           ? "worked_example"
           : /^Mixed|^Practice/i.test(title)
             ? "independent_practice"
-            : /^Review Notes/i.test(title)
-              ? "reflection"
-              : "learn";
+            : "learn";
     return {
       phaseNumber: i + 1,
       title,

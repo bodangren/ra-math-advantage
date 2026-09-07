@@ -33,6 +33,11 @@ describe("current source curriculum", () => {
       expect(example.markdown, example.title).toMatch(/^### Solution$/m);
     }
   });
+  it("keeps editorial review notes out of required student phases", () => {
+    for (const lesson of lessons) {
+      expect(lesson.phases.some((phase) => /^(Review Notes|Objective Alignment)$/i.test(phase.title)), lesson.slug).toBe(false);
+    }
+  });
   it.each(sourceFiles)(
     "%s has goals, examples, valid phases, and accessible local images",
     (slug) => {

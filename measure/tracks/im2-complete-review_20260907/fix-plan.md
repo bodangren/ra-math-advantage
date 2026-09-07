@@ -208,3 +208,9 @@ Verification passed with 211 tests, lint, frontend and backend TypeScript, and p
 Phase completion now queries correct evidence by student, activity, phase, and score. More than 100 later attempts cannot hide the correct submission. The legacy inventory extractor rejects IM2 and --all before writing files. Its current parser cannot read the corrected IM2 source format.
 
 Verification passed with 213 tests, lint, both TypeScript checks, and production build. Regression tests failed before each correction. The extractor test runs against an isolated temporary directory.
+
+## Student phase cleanup
+
+The compiler excludes Review Notes and Objective Alignment from required student phases. The source files retain this editorial information. Published revisions remain unchanged. The seed replay updates drafts and preserves published evidence.
+
+Verification passed with 214 tests, lint, both TypeScript checks, and production build. Local seed replay returned 96 lessons. The running local backend accepted the new evidence index. A second dev process correctly refused to start on the occupied IM2 port.
