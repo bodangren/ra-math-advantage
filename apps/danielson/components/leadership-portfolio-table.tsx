@@ -49,7 +49,7 @@ export function LeadershipPortfolioTable({
               <th scope="col">Danielson</th>
               <th scope="col">Performance Improvement Plan</th>
               <th scope="col">Get Better Faster (GBF)</th>
-              <th scope="col">Evidence due</th>
+              <th scope="col">Evidence and coaching</th>
             </tr>
           </thead>
           <tbody>
@@ -75,7 +75,13 @@ export function LeadershipPortfolioTable({
                   ) : null}
                 </th>
                 <td>{statusLabel(row.danielson.state)}</td>
-                <td>{statusLabel(row.improvementPlan.state)}</td>
+                <td>{statusLabel(row.improvementPlan.state)}
+                  {row.improvementPlan.state === 'active' ? <>
+                    <br />{row.improvementPlan.trackState === 'off_track' ? 'Off track' : 'On track'}
+                    <br />{row.improvementPlan.daysRemaining < 0 ? `${-row.improvementPlan.daysRemaining} days past end date` : `${row.improvementPlan.daysRemaining} days remaining`}
+                    <br /><Link href={`/improvement-plans/${encodeURIComponent(row.improvementPlan.planId)}`}>Review plan</Link>
+                  </> : null}
+                </td>
                 <td>
                   {statusLabel(row.gbf.state)}
                   {row.gbf.state !== 'not_configured' ? (
@@ -92,8 +98,12 @@ export function LeadershipPortfolioTable({
                   ) : null}
                 </td>
                 <td>
+                  {row.coaching && row.coaching.activeCount > 0 ? <p>Coaching: {row.coaching.activeCount} active · {row.coaching.overdueCount} overdue<br />Next follow-up: {row.coaching.nextFollowUpDate}</p> : null}
                   {statusLabel(row.evidenceDue.state)}
                   {row.evidenceDue.dueCount > 0 ? ` (${row.evidenceDue.dueCount})` : ''}
+                  {row.evidenceDue.maximumOverdueDays > 0 ? <p>{row.evidenceDue.maximumOverdueDays} days overdue</p> : null}
+                  {row.evidenceDue.nextDueAt ? <p>Next evidence: {new Date(row.evidenceDue.nextDueAt).toLocaleDateString()}</p> : null}
+                  {row.canStartPlan !== false ? <p><Link href={`/observations#teacher-${encodeURIComponent(row.teacherProfileId)}`}>Open observation queue</Link>{' · '}<Link href={`/coaching/${encodeURIComponent(row.teacherProfileId)}`}>Open coaching</Link></p> : null}
                 </td>
               </tr>
             ))}

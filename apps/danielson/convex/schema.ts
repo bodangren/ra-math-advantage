@@ -1,5 +1,6 @@
 import { defineSchema, defineTable } from 'convex/server';
 import { v } from 'convex/values';
+import { coachingFields } from './coachingModel';
 
 const roleValidator = v.union(
   v.literal('teacher'),
@@ -188,6 +189,9 @@ const improvementPlanTargetResultValidator = v.object({
 });
 
 export default defineSchema({
+  coaching_cycles: defineTable(coachingFields)
+    .index('by_organizationId_and_teacherProfileId', ['organizationId', 'teacherProfileId'])
+    .index('by_organizationId_and_state', ['organizationId', 'state']),
   organizations: defineTable({
     slug: v.string(),
     name: v.string(),
@@ -306,7 +310,8 @@ export default defineSchema({
     revokedAt: v.optional(v.number()),
   })
     .index('by_organizationId_and_accountId_and_teacherProfileId_and_status', ['organizationId', 'accountId', 'teacherProfileId', 'status'])
-    .index('by_organizationId_and_accountId_and_status', ['organizationId', 'accountId', 'status']),
+    .index('by_organizationId_and_accountId_and_status', ['organizationId', 'accountId', 'status'])
+    .index('by_organizationId_and_teacherProfileId_and_status', ['organizationId', 'teacherProfileId', 'status']),
 
   login_rate_limits: defineTable({
     key: v.string(),
@@ -488,7 +493,8 @@ export default defineSchema({
     authorAccountId: v.id('accounts'),
     content: v.string(),
     createdAt: v.number(),
-  }).index('by_org_teacher_created', ['organizationId', 'teacherProfileId', 'createdAt']),
+  }).index('by_org_teacher_created', ['organizationId', 'teacherProfileId', 'createdAt'])
+    .index('by_organizationId_and_observationId', ['organizationId', 'observationId']),
 
   observation_private_comments: defineTable({
     organizationId: v.id('organizations'),

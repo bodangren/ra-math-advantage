@@ -83,3 +83,16 @@ The Danielson app owns its rubric graph, evidence commands, and persistence.
 It uses the shared knowledge-space packages for graph validation and KST
 projection. It uses the shared SRS package for card scheduling. It does not use
 the student learning-evidence contract for teacher observations.
+
+## Routine coaching
+
+`coaching_cycles` stores one small coaching record per cycle.
+It references baseline and follow-up observation IDs. It does not copy evidence.
+`/coaching/[teacherProfileId]` serves the current teacher or an authorized supervisor.
+`/api/coaching` gets the actor from the verified session.
+Internal mutations reuse the existing current scope checks and require a revision for updates.
+A teacher can write only their own reflection. Supervisors cannot write a teacher reflection.
+Completed cycles cannot change. No new approval or rating process is added.
+
+`/calibration` is supervisor-only. Its exercise values remain in browser memory.
+`/admin/accounts/[accountId]` is system-administrator-only and returns no evaluation data.

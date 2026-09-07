@@ -55,6 +55,7 @@ export function ReportCommentForm({
     <form className="form-stack compact-form" onSubmit={submit}>
       {error ? <div className="error-summary" role="alert" tabIndex={-1} ref={errorRef}>{error}</div> : null}
       {saved ? <p className="status-message" role="status">Comment added.</p> : null}
+      <p>{commentType === 'public' ? 'The teacher can read this feedback. Describe what worked, the next action, and the support needed.' : 'Only authorized leadership can read this comment.'}</p>
       <div className="field">
         <label htmlFor={fieldId}>{label}</label>
         <textarea id={fieldId} name="content" required maxLength={4_000} rows={4} />

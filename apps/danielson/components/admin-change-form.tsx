@@ -8,7 +8,8 @@ type Field = {
   name: string;
   label: string;
   required?: boolean;
-  type?: 'text' | 'select';
+  type?: 'text' | 'select' | 'hidden';
+  defaultValue?: string;
   options?: Array<{ value: string; label: string }>;
 };
 
@@ -85,15 +86,17 @@ export function AdminChangeForm({
       {temporaryPassword ? <div role="status"><strong>Temporary password</strong><p>{temporaryPassword}</p><p>Give this password to the account owner. It will not appear again.</p></div> : null}
       {error ? <div className="error-summary" role="alert">{error}</div> : null}
       {status ? <div role="status"><p>{status}</p>{targetId ? <p>Target ID: <code>{targetId}</code></p> : null}</div> : null}
-      {fields.map((field) => (
+      {fields.map((field) => field.type === 'hidden' || (field.name === 'kind' && field.options?.length === 1) ? (
+        <input key={field.name} type="hidden" name={field.name} value={field.defaultValue ?? field.options?.[0]?.value ?? ''} />
+      ) : (
         <div className="field" key={field.name}>
           <label htmlFor={`${formKey}-${field.name}`}>{field.label}</label>
           {field.type === 'select' ? (
-            <select id={`${formKey}-${field.name}`} name={field.name} required={field.required} defaultValue={field.options?.[0]?.value}>
+            <select id={`${formKey}-${field.name}`} name={field.name} required={field.required} defaultValue={field.defaultValue ?? field.options?.[0]?.value}>
               {field.options?.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
             </select>
           ) : (
-            <input id={`${formKey}-${field.name}`} name={field.name} type="text" required={field.required} />
+            <input id={`${formKey}-${field.name}`} name={field.name} type="text" defaultValue={field.defaultValue} required={field.required} />
           )}
         </div>
       ))}

@@ -27,6 +27,7 @@ export type AdministrationDirectory = {
 };
 
 export type AdministrationDirectoryCursors = {
+  search?: string;
   accountCursor?: string | null;
   departmentCursor?: string | null;
   coachCursor?: string | null;
@@ -46,6 +47,7 @@ export async function requireSysadminPage(path: string) {
 
 export function getDirectoryPageHref(path: string, cursors: AdministrationDirectoryCursors) {
   const parameters = new URLSearchParams();
+  if (cursors.search) parameters.set('search', cursors.search);
   if (cursors.accountCursor) parameters.set('accountCursor', cursors.accountCursor);
   if (cursors.departmentCursor) parameters.set('departmentCursor', cursors.departmentCursor);
   if (cursors.coachCursor) parameters.set('coachCursor', cursors.coachCursor);
@@ -86,6 +88,7 @@ export async function getAdministrationDirectory(
   const [accountResult, departmentResult] = await Promise.all([
     fetchInternalQuery(internal.foundation.listAdministrationAccounts, {
       actorAccountId: session.claims.sub,
+      ...(cursors.search ? { search: cursors.search } : {}),
       paginationOpts: { cursor: cursors.accountCursor ?? null, numItems: 100 },
     }),
     fetchInternalQuery(internal.foundation.listAdministrationDepartments, {
@@ -93,6 +96,8 @@ export async function getAdministrationDirectory(
       paginationOpts: { cursor: cursors.departmentCursor ?? null, numItems: 100 },
     }),
   ]);
+  if (accountResult.kind === 'capacity_exceeded') throw new Error('The account directory exceeded its safe search capacity.');
+  if (accountResult.kind === 'invalid_cursor') redirect(path);
   if (accountResult.kind !== 'allowed' || departmentResult.kind !== 'allowed') {
     redirect('/unauthorized');
   }

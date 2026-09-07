@@ -102,6 +102,7 @@ export function TeacherReportView({
   }
   return (
     <>
+      <p><Link className="button" href={`/coaching/${encodeURIComponent(report.teacherProfileId)}`}>Open coaching cycles</Link></p>
       <section className="report-summary" aria-labelledby="report-summary-heading">
         <h2 id="report-summary-heading">Current summary</h2>
         <dl className="summary-grid">

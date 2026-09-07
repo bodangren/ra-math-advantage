@@ -57,6 +57,7 @@ export function applyPriorityOverlays(input: {
 }
 
 export type PortfolioRow = {
+  coaching?: { activeCount: number; overdueCount: number; nextFollowUpDate: string | null };
   canStartPlan?: boolean;
   teacherProfileId: string;
   displayName: string;

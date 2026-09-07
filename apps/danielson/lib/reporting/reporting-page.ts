@@ -37,13 +37,14 @@ function nextPageHref(
   return `${path}?${parameters.toString()}`;
 }
 
-export async function getLeadershipPortfolio(cursor: string | null) {
+export async function getLeadershipPortfolio(cursor: string | null, filters: { search?: string; department?: string; attention?: string; assignedOnly?: boolean } = {}) {
   const session = await requireDanielsonSession('/reports');
   const result = await fetchInternalQuery(internal.reporting.readLeadershipPortfolio, {
     actorAccountId: session.claims.sub,
     now: new Date().toISOString(),
     cursor,
     pageSize: 25,
+    ...filters,
   });
   if (result.kind === 'portfolio_capacity_exceeded') {
     throw new Error('The reporting portfolio exceeded its safe capacity.');

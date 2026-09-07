@@ -1,4 +1,8 @@
 import Link from 'next/link';
+import { fetchInternalQuery, internal } from '@/lib/convex/server';
+import { ReportCommentForm } from '@/components/report-comment-form';
+import { TeacherResponseForm } from '@/components/teacher-response-form';
+import type { ReportingComment } from '@/lib/reporting/contracts';
 
 import { SiteHeader } from '@/components/site-header';
 import {
@@ -17,7 +21,7 @@ export default async function PublishedObservationPage({
   searchParams,
 }: {
   params: Promise<{ recordId: string }>;
-  searchParams: Promise<{ amendmentCursor?: string }>;
+  searchParams: Promise<{ amendmentCursor?: string; commentCursor?: string }>;
 }) {
   const { recordId } = await params;
   const parameters = await searchParams;
@@ -26,9 +30,14 @@ export default async function PublishedObservationPage({
     recordId,
     parameters.amendmentCursor ?? null,
   );
+  const conversation = await fetchInternalQuery(internal.reporting.readObservationConversation, {
+    actorAccountId: result.session.claims.sub, observationId: recordId, cursor: parameters.commentCursor ?? null,
+  });
+  if (conversation.kind !== 'allowed') throw new Error('Observation feedback is not available.');
   const roles = result.session.account.danielsonRoles as string[];
   const titleById = new Map(buildDanielsonGraph().graph.nodes.map((node) => [node.id, node.title]));
   const record = result.record as {
+    teacherProfileId: string;
     observationType: string;
     observedAt: string;
     schoolYear: string;
@@ -73,6 +82,18 @@ export default async function PublishedObservationPage({
             ) : null}
           </section>
         ) : null}
+        <section className="card">
+          <h2>Feedback and teacher response</h2>
+          <p>Teacher-visible feedback for this observation.</p>
+          {(conversation.comments.page as ReportingComment[]).map(comment => <article key={comment.commentId}><p>{comment.content}</p><p>{new Date(comment.createdAt).toLocaleString()}</p></article>)}
+          {conversation.comments.page.length === 0 ? <p>No feedback on this page.</p> : null}
+          {!conversation.comments.isDone ? <Link href={`?commentCursor=${encodeURIComponent(conversation.comments.continueCursor)}`}>Next feedback page</Link> : null}
+          {conversation.response ? <><h3>Teacher response</h3><p>{conversation.response.content}</p><p>{new Date(conversation.response.submittedAt).toLocaleString()}</p></> : null}
+          {result.isSelf && !conversation.response ? <TeacherResponseForm observationId={recordId} /> : null}
+          {!result.isSelf ? <ReportCommentForm observationId={recordId} commentType="public" /> : null}
+          <p>A teacher response does not mean agreement with the rating.</p>
+          <Link href={`/coaching/${encodeURIComponent(record.teacherProfileId)}`}>Open agreed coaching actions</Link>
+        </section>
         <div className="observation-actions">
           {canAmend ? <Link className="button" href={`/observations/records/${encodeURIComponent(recordId)}/amend`}>Add amendment</Link> : null}
           <Link className="button secondary" href={canAmend ? '/observations' : '/my-observations'}>Back</Link>

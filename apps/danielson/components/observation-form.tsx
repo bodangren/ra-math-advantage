@@ -224,7 +224,7 @@ export function ObservationForm({
                     checked={selectedRating === rating}
                     onChange={() => setOutcome(item.itemId, { kind: 'rated', rating })}
                   />
-                  Rating {rating}
+                  Rating {rating} — {['Unsatisfactory', 'Basic', 'Proficient', 'Distinguished'][rating - 1]}
                 </label>
               ))}
               <label className="rating-option wide">
@@ -241,7 +241,9 @@ export function ObservationForm({
             {hasError ? <p className="field-error" id={errorId}>Select an outcome.</p> : null}
             <div className="field">
               <label htmlFor={`${groupId}-note`}>Evidence note for {title}</label>
+              <p id={`${groupId}-prompt`}>What did the teacher do? What did students do? What happened next? Record facts before interpretation.</p>
               <textarea
+                aria-describedby={`${groupId}-prompt`}
                 id={`${groupId}-note`}
                 rows={3}
                 value={item.evidenceNote ?? ''}

@@ -139,6 +139,7 @@ const gbfProgressValidator = v.union(
   }),
 );
 const portfolioRowValidator = v.object({
+  coaching: v.optional(v.object({ activeCount: v.number(), overdueCount: v.number(), nextFollowUpDate: v.union(v.string(), v.null()) })),
   canStartPlan: v.optional(v.boolean()),
   teacherProfileId: v.string(),
   displayName: v.string(),
@@ -451,7 +452,7 @@ function responseFromRow(row: Doc<'teacher_observation_responses'>) {
   };
 }
 
-async function authorizeTeacher(
+export async function authorizeTeacher(
   ctx: DbCtx,
   actorAccountId: Id<'accounts'>,
   teacherProfileId: Id<'teacher_profiles'>,
@@ -491,6 +492,10 @@ export const readLeadershipPortfolio = internalQuery({
     now: v.string(),
     cursor: v.union(v.string(), v.null()),
     pageSize: v.optional(v.number()),
+    search: v.optional(v.string()),
+    department: v.optional(v.string()),
+    assignedOnly: v.optional(v.boolean()),
+    attention: v.optional(v.string()),
   },
   returns: v.union(
     deniedValidator,
@@ -566,7 +571,7 @@ export const readLeadershipPortfolio = internalQuery({
     let departments: Doc<'departments'>[] = [];
     let hodAssignments: Doc<'hod_assignments'>[] = [];
     let coachAssignments: Doc<'coach_assignments'>[] = [];
-    if (!organizationWide) {
+    if (!organizationWide || args.department?.trim() || args.assignedOnly) {
       [memberships, departments, hodAssignments, coachAssignments] = await Promise.all([
         ctx.db.query('department_memberships')
           .withIndex('by_organizationId_and_status', (query) => query
@@ -621,6 +626,9 @@ export const readLeadershipPortfolio = internalQuery({
       String(summary.teacherProfileId),
       summary.targets.map((target) => priorityAtClock(target, now)),
     ]));
+    const coachingCycles = await ctx.db.query('coaching_cycles')
+      .withIndex('by_organizationId_and_state', q => q.eq('organizationId', actor.organizationId).eq('state', 'active')).take(2001);
+    if (coachingCycles.length > 2000) return { kind: 'portfolio_capacity_exceeded' as const };
     const rows = profiles.flatMap((profile) => {
       const teacherProfileId = String(profile._id);
       const inScope = organizationWide
@@ -629,6 +637,11 @@ export const readLeadershipPortfolio = internalQuery({
         || (supervisorRoles.includes('coach') && coachTeacherIds.has(teacherProfileId));
       const account = accountById.get(String(profile.accountId));
       if (!inScope || !account?.isActive) return [];
+      if (args.search?.trim() && !account.displayName.toLowerCase().includes(args.search.trim().toLowerCase())) return [];
+      if (args.department?.trim() && !(departmentsByTeacher.get(teacherProfileId) ?? []).some(id =>
+        departments.find(row => String(row._id) === id)?.name.toLowerCase().includes(args.department!.trim().toLowerCase()))) return [];
+      if (args.assignedOnly && !coachTeacherIds.has(teacherProfileId)
+        && !(departmentsByTeacher.get(teacherProfileId) ?? []).some(id => hodDepartmentIds.has(id))) return [];
       const activePlan = improvementPlans.progressByTeacher.get(teacherProfileId);
       const pendingPlanId = improvementPlans.pendingByTeacher.get(teacherProfileId);
       const closedPlan = closedPlans.plansByTeacher.get(teacherProfileId);
@@ -663,7 +676,13 @@ export const readLeadershipPortfolio = internalQuery({
         assignment: gbfAssignments.assignmentsByTeacher.get(teacherProfileId) ?? null,
         priorities,
       });
-      return [{ ...projectPortfolioRow({
+      const activeCycles = coachingCycles.filter(c => c.teacherProfileId === profile._id && c.state === 'active');
+      const coaching = {
+        activeCount: activeCycles.length,
+        overdueCount: activeCycles.filter(c => c.followUpDate < args.now.slice(0, 10)).length,
+        nextFollowUpDate: activeCycles.map(c => c.followUpDate).sort()[0] ?? null,
+      };
+      return [{ coaching, ...projectPortfolioRow({
         teacherProfileId,
         displayName: account.displayName,
         priorities,
@@ -672,7 +691,9 @@ export const readLeadershipPortfolio = internalQuery({
         improvementPlan,
         gbf,
       }), canStartPlan: profile.accountId !== actor._id }];
-    }).sort(comparePortfolioRows);
+    }).filter(row => !args.attention || (args.attention === 'not_enough_evidence'
+      ? row.danielson.state === 'not_enough_evidence'
+      : row.attentionReasons.some(reason => reason === args.attention))).sort(comparePortfolioRows);
     try {
       return {
         kind: 'allowed' as const,
@@ -1235,5 +1256,27 @@ export const submitTeacherResponse = internalMutation({
       submittedAt: args.now,
     });
     return { kind: 'submitted' as const, responseId: String(responseId) };
+  },
+});
+
+
+/** Return teacher-visible feedback beside its source observation. */
+export const readObservationConversation = internalQuery({
+  args: { actorAccountId: v.id('accounts'), observationId: v.id('observation_records'), cursor: v.union(v.string(), v.null()) },
+  returns: v.union(deniedValidator, v.object({ kind: v.literal('allowed'), isSelf: v.boolean(),
+    comments: paginationResultValidator(commentValidator), response: v.union(responseValidator, v.null()) })),
+  handler: async (ctx, args) => {
+    const observation = await ctx.db.get(args.observationId);
+    if (!observation || observation.status !== 'submitted') return { kind: 'denied' as const, reason: 'not_found' };
+    const teacher = await ctx.db.get(observation.teacherProfileId);
+    const isSelf = teacher?.accountId === args.actorAccountId;
+    const access = await authorizeTeacher(ctx, args.actorAccountId, observation.teacherProfileId, isSelf ? 'published_record:read' : 'teacher_report:read');
+    if (access.kind === 'denied') return access;
+    const [comments, response] = await Promise.all([
+      ctx.db.query('observation_public_comments').withIndex('by_organizationId_and_observationId', q => q.eq('organizationId', observation.organizationId).eq('observationId', observation._id))
+        .order('desc').paginate({ cursor: args.cursor, numItems: 20 }),
+      ctx.db.query('teacher_observation_responses').withIndex('by_org_observation', q => q.eq('organizationId', observation.organizationId).eq('observationId', observation._id)).unique(),
+    ]);
+    return { kind: 'allowed' as const, isSelf, comments: { ...comments, page: comments.page.map(commentFromRow) }, response: response ? responseFromRow(response) : null };
   },
 });

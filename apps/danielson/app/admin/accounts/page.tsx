@@ -7,7 +7,7 @@ import { AdminChangeForm } from '@/components/admin-change-form';
 export default async function AccountsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ accountCursor?: string }>;
+  searchParams: Promise<{ accountCursor?: string; search?: string }>;
 }) {
   const cursors = await searchParams;
   const directory = await getAdministrationDirectory('/admin/accounts', cursors);
@@ -23,19 +23,22 @@ export default async function AccountsPage({
         <p className="eyebrow">Administration / accounts</p>
         <h1>Accounts and roles</h1>
         <p className="lede">Create an account or manage an existing account. The temporary password appears once after account creation.</p>
+        <form className="card form-stack" method="get"><label htmlFor="account-search">Name or username</label>
+          <input id="account-search" name="search" defaultValue={cursors.search} maxLength={100} /><button>Find accounts</button><Link href="/admin/accounts">Clear search</Link></form>
         <section className="card" aria-labelledby="account-directory-heading">
           <h2 id="account-directory-heading">Current accounts</h2>
           <div className="table-wrap"><table>
-            <thead><tr><th scope="col">Name</th><th scope="col">Username</th><th scope="col">Status</th><th scope="col">Roles</th><th scope="col">Account ID</th></tr></thead>
+            <thead><tr><th scope="col">Name</th><th scope="col">Username</th><th scope="col">Status</th><th scope="col">Roles</th><th scope="col">Actions</th></tr></thead>
             <tbody>{accounts.map((account) => <tr key={account.accountId}>
               <td>{account.displayName}</td><td>{account.username}</td>
               <td>{account.isActive ? 'Active' : 'Inactive'}</td>
               <td>{account.roles.length ? account.roles.join(', ') : 'None'}</td>
-              <td><code>{account.accountId}</code></td>
+              <td><Link href={`/admin/accounts/${encodeURIComponent(account.accountId)}`}>Manage {account.displayName}</Link></td>
             </tr>)}</tbody>
           </table></div>
           {directory.accountPage.nextCursor ? <p><Link href={getDirectoryPageHref('/admin/accounts', {
             accountCursor: directory.accountPage.nextCursor,
+            search: cursors.search,
           })}>Next account page</Link></p> : null}
         </section>
         <div className="card narrow"><AccountCreateForm /></div>

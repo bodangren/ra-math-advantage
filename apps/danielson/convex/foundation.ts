@@ -379,8 +379,11 @@ export const listAdministrationAccounts = internalQuery({
   args: {
     actorAccountId: v.id('accounts'),
     paginationOpts: paginationOptsValidator,
+    search: v.optional(v.string()),
   },
   returns: v.union(
+    v.object({ kind: v.literal('capacity_exceeded') }),
+    v.object({ kind: v.literal('invalid_cursor') }),
     v.object({ kind: v.literal('denied'), reason: v.string() }),
     v.object({
       kind: v.literal('allowed'),
@@ -401,13 +404,23 @@ export const listAdministrationAccounts = internalQuery({
     const access = await resolveSysadminActor(ctx, args.actorAccountId);
     if (access.kind === 'denied') return access;
     const { actor } = access;
-    const accountResult = await ctx.db
-      .query('accounts')
-      .withIndex('by_organizationId', (query) => query.eq('organizationId', actor.organizationId))
-      .paginate({
-        cursor: args.paginationOpts.cursor,
-        numItems: Math.min(args.paginationOpts.numItems, 100),
-      });
+    const query = ctx.db.query('accounts').withIndex('by_organizationId', q => q.eq('organizationId', actor.organizationId));
+    const search = args.search?.trim().toLowerCase();
+    let accountResult;
+    if (search) {
+      const all = await query.take(1001);
+      if (all.length > 1000) return { kind: 'capacity_exceeded' as const };
+      const matches = all.filter(row => `${row.displayName} ${row.username}`.toLowerCase().includes(search));
+      const cursor = args.paginationOpts.cursor;
+      if (cursor !== null && !/^search:\d+$/.test(cursor)) return { kind: 'invalid_cursor' as const };
+      const offset = cursor === null ? 0 : Number(cursor.slice(7));
+      if (!Number.isSafeInteger(offset) || offset > matches.length) return { kind: 'invalid_cursor' as const };
+      const size = Math.max(1, Math.min(100, args.paginationOpts.numItems));
+      const page = matches.slice(offset, offset + size);
+      accountResult = { page, isDone: offset + page.length >= matches.length, continueCursor: `search:${offset + page.length}` };
+    } else {
+      accountResult = await query.paginate({ ...args.paginationOpts, numItems: Math.max(1, Math.min(args.paginationOpts.numItems, 100)) });
+    }
     const accounts = await Promise.all(accountResult.page.map(async (account) => {
       const [profile, roles] = await Promise.all([
         ctx.db.query('teacher_profiles')
@@ -815,5 +828,45 @@ export const listAdministrationAssignments = internalQuery({
       };
     }));
     return { kind: 'allowed' as const, items: items.filter((item) => item !== null), nextCursor: result.isDone ? null : result.continueCursor };
+  },
+});
+
+/** Read one account and its current assignment names without evaluation data. */
+export const readAdministrationAccount = internalQuery({
+  args: { actorAccountId: v.id('accounts'), accountId: v.id('accounts') },
+  returns: v.union(v.object({ kind: v.literal('denied'), reason: v.string() }),
+    v.object({ kind: v.literal('capacity_exceeded') }),
+    v.object({ kind: v.literal('allowed'), account: v.object({ accountId: v.id('accounts'), displayName: v.string(), username: v.string(), isActive: v.boolean(), isTeacher: v.boolean(), roles: v.array(roleValidator) }),
+      assignments: v.array(v.object({ kind: v.string(), label: v.string(), departmentId: v.optional(v.id('departments')), coachAccountId: v.optional(v.id('accounts')), teacherAccountId: v.optional(v.id('accounts')) })) })),
+  handler: async (ctx, args) => {
+    const access = await resolveSysadminActor(ctx, args.actorAccountId);
+    if (access.kind === 'denied') return access;
+    const account = await ctx.db.get(args.accountId);
+    if (!account || account.organizationId !== access.actor.organizationId) return { kind: 'denied' as const, reason: 'not_found' };
+    const org = account.organizationId;
+    const profile = await ctx.db.query('teacher_profiles').withIndex('by_accountId', q => q.eq('accountId', account._id)).unique();
+    const [roles, memberships, departments, coached, coaches] = await Promise.all([
+      ctx.db.query('role_assignments').withIndex('by_organizationId_and_accountId_and_status', q => q.eq('organizationId', org).eq('accountId', account._id).eq('status', 'active')).take(7),
+      profile ? ctx.db.query('department_memberships').withIndex('by_organizationId_and_teacherProfileId_and_status', q => q.eq('organizationId', org).eq('teacherProfileId', profile._id).eq('status', 'active')).take(101) : [],
+      ctx.db.query('hod_assignments').withIndex('by_organizationId_and_accountId_and_status', q => q.eq('organizationId', org).eq('accountId', account._id).eq('status', 'active')).take(101),
+      ctx.db.query('coach_assignments').withIndex('by_organizationId_and_accountId_and_status', q => q.eq('organizationId', org).eq('accountId', account._id).eq('status', 'active')).take(251),
+      profile ? ctx.db.query('coach_assignments').withIndex('by_organizationId_and_teacherProfileId_and_status', q => q.eq('organizationId', org).eq('teacherProfileId', profile._id).eq('status', 'active')).take(101) : [],
+    ]);
+    if (roles.length > 6 || memberships.length > 100 || departments.length > 100 || coached.length > 250 || coaches.length > 100) return { kind: 'capacity_exceeded' as const };
+    const assignments: Array<{ kind: string; label: string; departmentId?: Id<'departments'>; coachAccountId?: Id<'accounts'>; teacherAccountId?: Id<'accounts'> }> = [];
+    for (const row of [...memberships, ...departments]) {
+      const department = await ctx.db.get(row.departmentId);
+      if (department?.organizationId === org) assignments.push({ kind: 'teacherProfileId' in row ? 'department_membership' : 'hod_assignment', label: `${department.name}${department.isActive ? '' : ' (inactive)'}`, departmentId: department._id });
+    }
+    for (const row of coached) {
+      const teacher = await ctx.db.get(row.teacherProfileId);
+      const target = teacher ? await ctx.db.get(teacher.accountId) : null;
+      if (teacher?.organizationId === org && target?.organizationId === org) assignments.push({ kind: 'coaches_teacher', label: target.displayName, coachAccountId: account._id, teacherAccountId: target._id });
+    }
+    for (const row of coaches) {
+      const coach = await ctx.db.get(row.accountId);
+      if (coach?.organizationId === org) assignments.push({ kind: 'assigned_coach', label: coach.displayName, coachAccountId: coach._id, teacherAccountId: account._id });
+    }
+    return { kind: 'allowed' as const, account: { accountId: account._id, displayName: account.displayName, username: account.username, isActive: account.isActive, isTeacher: profile?.isActive ?? false, roles: roles.map(r => r.role) }, assignments };
   },
 });

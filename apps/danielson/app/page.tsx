@@ -22,6 +22,11 @@ export default async function HomePage() {
         <p className="eyebrow">Teacher proficiency evidence</p>
         <h1>Welcome, {account.displayName}</h1>
         <p className="lede">Use current Danielson evidence to plan walkthroughs, complete observations, and review published results.</p>
+        {canObserve ? <section className="card"><h2>Next leadership actions</h2>
+          <p>Find teachers who need evidence. Review coaching follow-ups and active plans.</p>
+          <Link className="button" href="/reports">Open leadership workspace</Link>{' '}
+          <Link className="button secondary" href="/calibration">Prepare an observation</Link>
+        </section> : null}
         <section className="card" aria-labelledby="access-heading">
           <h2 id="access-heading">Current access</h2>
           <p><span className="status active">Account active</span></p>

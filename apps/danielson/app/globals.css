@@ -236,3 +236,8 @@ details[open] > summary { margin-bottom: 1rem; }
   .learn-sequence-nav { grid-template-columns: 1fr; }
   .learn-sequence-nav a:last-child { text-align: left; }
 }
+
+.portfolio-filters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; align-items: end; }
+.assignment-filter { display: flex; align-items: center; gap: .6rem; min-height: 44px; }
+.assignment-filter input { width: 1.25rem; height: 1.25rem; flex: 0 0 auto; }
+@media (max-width: 700px) { .portfolio-filters { grid-template-columns: 1fr; } }

@@ -59,7 +59,7 @@ export default async function ObservationsPage({
 
         <ol className="teacher-queue">
           {(queue as QueueItem[]).map((teacher, index) => (
-            <li className="card teacher-queue-item" key={teacher.teacherProfileId}>
+            <li className="card teacher-queue-item" key={teacher.teacherProfileId} id={`teacher-${encodeURIComponent(teacher.teacherProfileId)}`}>
               <div>
                 <p className="eyebrow">Priority {index + 1}</p>
                 <h2>{teacher.displayName}</h2>
