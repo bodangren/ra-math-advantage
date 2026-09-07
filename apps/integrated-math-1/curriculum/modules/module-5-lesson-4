@@ -17,7 +17,7 @@ Source: (Module 5, Lesson 5-4, Int1_0504_practice.docx)
 
 ## Learn: Distinguishing Correlation and Causation
 
-When two variables change together, they may be correlated. However, correlation alone does not prove that one variable causes the other. To claim causation, there must be evidence of a direct cause-and-effect mechanism, such as a controlled experiment.
+When two variables change together, they may be correlated. However, correlation alone does not prove that one variable causes the other. A plausible mechanism does not by itself prove causation. A controlled experiment must use an appropriate intervention and controls. Random assignment can reduce confounding when it is feasible.
 
 ### Key Concept: Correlation vs. Causation
 
@@ -51,6 +51,10 @@ Examine the overall trend of the plotted points to determine whether the scatter
 
 Determine whether the data illustrate correlation only or causation. Consider what other factors (lurking variables) may influence the data, such as season, personal preference, or economic conditions.
 
+The frozen-yogurt values are `0.9, 1.0, 1.2, 1.1, 1.4, 1.3, 1.4, 1.2`. The sherbet values are `1.0, 1.0, 0.9, 0.8, 0.9, 0.9, 0.8, 0.8`. They have a negative association. The table does not establish that consumption of one dessert causes consumption of the other.
+
+The reading values are `7, 9, 12, 17, 30, 50`. The television values are `117, 115, 113, 127, 155, 236`. The full set has a positive association. Age changes with both averages and can explain part of the association.
+
 ## Example 2 — Classify Relationships as Correlation or Causation
 
 Determine whether each described situation illustrates correlation (but not causation) or causation. Explain your reasoning by considering whether one variable directly causes the other, or whether a third factor or coincidence could explain the relationship.
@@ -62,10 +66,18 @@ Representative situations include:
 * A negative association between the price of cereal and the number of boxes sold.
 * An observed relationship between daily temperature and time spent outside.
 
+Price can affect demand. Temperature can affect outdoor activity. These possible mechanisms do not prove a causal effect from the reported associations. The descriptions do not specify an intervention or control of other variables. A justified answer can identify that limit instead of asserting causation.
+
 ## Mixed Exercises
 
 The mixed exercises integrate the skills from Examples 1 and 2. Students create scatter plots from tabular data, classify correlations, distinguish correlation from causation, and construct arguments about why correlation does not imply causation. Some exercises also require analyzing a given scatter plot and critiquing a causal claim based on correlational data.
 
+Exercise 9 links pizzas sold to cheese used. Keep the cheese quantity per pizza constant. Exercise 10 links word count to page count. Keep page size, font size, and spacing constant. These conditions support the stated dependencies.
+
 ## Review Notes
 
-* The worksheet contains embedded images and data tables (`media/image1.png` through `media/image5.png`) that could not be described in this extracted source. These include the data tables for Exercises 1, 2, 7, and 8, as well as the scatter plot referenced in Exercises 12 and 13. A human reviewer should verify the numerical values and the scatter plot details when building interactive practice items.
+* Gardening uses strawberry values `6.5, 8, 12, 13.5, 20` and blueberry values `6, 5, 4.5, 3, 2.5`. The association is negative.
+* Shoe sales use sandal values `12, 153, 215, 27` and snow-boot values `268, 34, 6, 272`. The association is strongly negative. Month, season, and temperature can affect both quantities.
+* The source says `show boots`; the intended term is `snow boots`.
+* The swimsuits and air-conditioning plot has a strong positive association. Warm weather is a plausible common cause. Buying fewer swimsuits does not follow as a method to reduce electricity use.
+* The DOCX render places floating tables over some prompt lines. The paragraph text retains the complete prompts.

@@ -6,8 +6,8 @@
     "pilotEdgesPreserved": 0,
     "standardEdgesMerged": 941,
     "suggestedEdges": 1277,
-    "totalEdges": 2310,
-    "totalNodes": 829,
+    "totalEdges": 2317,
+    "totalNodes": 834,
     "normalizedWeights": 539
   },
   "nodes": [
@@ -5297,10 +5297,10 @@
     {
       "id": "math.im1.example.5.4.017",
       "kind": "worked_example",
-      "title": "Example 1: Analyze Real-World Data with Scatter Plots; Classify Relationships as Correlation or Causation",
+      "title": "Example 1: Analyze Real-World Data with Scatter Plots",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-5-class-period-plan.md (5-4, Example 1)"
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-4 (Example 1)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -5309,16 +5309,16 @@
         "lesson": "4",
         "exampleNumber": 1,
         "sourceLesson": "5-4",
-        "rawText": "5-4, Examples 1-2 \u2014 Analyze Real-World Data with Scatter Plots; Classify Relationships as Correlation or Causation"
+        "rawText": "Example 1: Analyze Real-World Data with Scatter Plots"
       }
     },
     {
       "id": "math.im1.example.5.4.018",
       "kind": "worked_example",
-      "title": "Example 2: Analyze Real-World Data with Scatter Plots; Classify Relationships as Correlation or Causation",
+      "title": "Example 2: Classify Relationships as Correlation or Causation",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-5-class-period-plan.md (5-4, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-4 (Example 2)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -5327,7 +5327,7 @@
         "lesson": "4",
         "exampleNumber": 2,
         "sourceLesson": "5-4",
-        "rawText": "5-4, Examples 1-2 \u2014 Analyze Real-World Data with Scatter Plots; Classify Relationships as Correlation or Causation"
+        "rawText": "Example 2: Classify Relationships as Correlation or Causation"
       }
     },
     {
@@ -14577,6 +14577,91 @@
         "course": "im1",
         "module": "5",
         "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.4.assess-causal-interpretations-of-described-relationships",
+      "kind": "skill",
+      "title": "Assess causal interpretations of described relationships",
+      "domain": "math.im1",
+      "description": "Assess causal interpretations of described relationships",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-4"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.4.explain-correlation-and-causation-classifications-with-evidence",
+      "kind": "skill",
+      "title": "Explain correlation and causation classifications with evidence",
+      "domain": "math.im1",
+      "description": "Explain correlation and causation classifications with evidence",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-4"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.4.identify-lurking-variables-or-common-causes",
+      "kind": "skill",
+      "title": "Identify lurking variables or common causes",
+      "domain": "math.im1",
+      "description": "Identify lurking variables or common causes",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-4"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.4.explain-why-correlation-alone-does-not-establish-causation",
+      "kind": "skill",
+      "title": "Explain why correlation alone does not establish causation",
+      "domain": "math.im1",
+      "description": "Explain why correlation alone does not establish causation",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-4"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.4.critique-causal-conclusions-from-correlational-evidence",
+      "kind": "skill",
+      "title": "Critique causal conclusions from correlational evidence",
+      "domain": "math.im1",
+      "description": "Critique causal conclusions from correlational evidence",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-4"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "4"
       }
     }
   ],
@@ -59021,6 +59106,118 @@
       "metadata": {
         "module": "5",
         "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.edge.1302",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.4",
+      "targetId": "math.im1.skill.5.4.assess-causal-interpretations-of-described-relationships",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "5",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.edge.1303",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.4",
+      "targetId": "math.im1.skill.5.4.explain-correlation-and-causation-classifications-with-evidence",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "5",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.edge.1304",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.4",
+      "targetId": "math.im1.skill.5.4.identify-lurking-variables-or-common-causes",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "5",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.edge.1305",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.4",
+      "targetId": "math.im1.skill.5.4.explain-why-correlation-alone-does-not-establish-causation",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "5",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.edge.1306",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.4",
+      "targetId": "math.im1.skill.5.4.critique-causal-conclusions-from-correlational-evidence",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "5",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.edge.1307",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.4",
+      "targetId": "math.im1.skill.5.3.construct-scatter-plots-from-paired-data",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "5",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.edge.1308",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.4",
+      "targetId": "math.im1.skill.5.3.classify-scatter-plot-correlation",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "5",
+        "lesson": "4"
       }
     }
   ]

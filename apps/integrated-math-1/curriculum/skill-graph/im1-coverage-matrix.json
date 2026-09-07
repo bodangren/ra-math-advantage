@@ -1,10 +1,10 @@
 {
   "version": 1,
   "course": "im1",
-  "totalSkills": 238,
+  "totalSkills": 243,
   "counts": {
     "served": 6,
-    "gap": 232,
+    "gap": 237,
     "newComponent": 0
   },
   "byModule": [
@@ -38,9 +38,9 @@
     },
     {
       "module": "5",
-      "totalSkills": 40,
+      "totalSkills": 45,
       "served": 0,
-      "gap": 40,
+      "gap": 45,
       "newComponent": 0
     },
     {
@@ -1157,11 +1157,51 @@
       "priority": "standard"
     },
     {
+      "skillId": "math.im1.skill.5.4.assess-causal-interpretations-of-described-relationships",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.4.critique-causal-conclusions-from-correlational-evidence",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
       "skillId": "math.im1.skill.5.4.distinguish-between-correlation-and-causation-in-real-world",
       "module": "5",
       "status": "gap",
       "tier": "none",
       "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.4.explain-correlation-and-causation-classifications-with-evidence",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.4.explain-why-correlation-alone-does-not-establish-causation",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.4.identify-lurking-variables-or-common-causes",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
       "priority": "standard"
     },
     {

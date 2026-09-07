@@ -5719,7 +5719,8 @@
     {
       "nodeId": "math.im1.skill.5.3.classify-scatter-plot-correlation",
       "sourceNodeIds": [
-        "math.im1.example.5.3.014"
+        "math.im1.example.5.3.014",
+        "math.im1.example.5.4.017"
       ],
       "alignmentNodeIds": [],
       "reviewStatus": "draft",
@@ -5744,7 +5745,9 @@
     },
     {
       "nodeId": "math.im1.skill.5.3.construct-scatter-plots-from-paired-data",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im1.example.5.4.017"
+      ],
       "alignmentNodeIds": [],
       "reviewStatus": "draft",
       "metadata": {
@@ -5854,6 +5857,67 @@
         "course": "im1",
         "module": "5",
         "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.4.assess-causal-interpretations-of-described-relationships",
+      "sourceNodeIds": [
+        "math.im1.example.5.4.018"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.4.explain-correlation-and-causation-classifications-with-evidence",
+      "sourceNodeIds": [
+        "math.im1.example.5.4.018"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.4.identify-lurking-variables-or-common-causes",
+      "sourceNodeIds": [
+        "math.im1.example.5.4.017"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.4.explain-why-correlation-alone-does-not-establish-causation",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.4.critique-causal-conclusions-from-correlational-evidence",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "4"
       }
     }
   ]

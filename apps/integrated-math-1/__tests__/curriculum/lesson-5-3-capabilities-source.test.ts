@@ -10,9 +10,9 @@ import gapQueue from '../../curriculum/skill-graph/generator-gap-queue.json';
 
 const source = readFileSync(resolve(import.meta.dirname, '../../curriculum/modules/module-5-lesson-3'), 'utf8');
 const definitions = [
-  ['classify-scatter-plot-correlation', 'Classify scatter-plot correlation', ['math.im1.example.5.3.014']],
+  ['classify-scatter-plot-correlation', 'Classify scatter-plot correlation', ['math.im1.example.5.3.014', 'math.im1.example.5.4.017']],
   ['interpret-scatter-plot-correlation-in-context', 'Interpret scatter-plot correlation in context', ['math.im1.example.5.3.014']],
-  ['construct-scatter-plots-from-paired-data', 'Construct scatter plots from paired data', []],
+  ['construct-scatter-plots-from-paired-data', 'Construct scatter plots from paired data', ['math.im1.example.5.4.017']],
   ['draw-reasonable-lines-of-fit', 'Draw reasonable lines of fit', []],
   ['write-line-of-fit-equations-from-specified-points', 'Write line-of-fit equations from specified points', ['math.im1.example.5.3.015']],
   ['write-equations-from-student-selected-fit-points', 'Write equations from student-selected fit points', []],
@@ -56,7 +56,11 @@ describe('Lesson 5-3 source capabilities', () => {
       expect(copies.every((node) => node?.title === title && node.reviewStatus === 'draft' && node.independentPracticeReady === false)).toBe(true);
       expect(copies.slice(1)).toEqual([copies[0], copies[0], copies[0]]);
       expect(catalog.blueprints.find((row) => row.nodeId === id)).toEqual({ nodeId: id, sourceNodeIds, alignmentNodeIds: [], reviewStatus: 'draft', metadata: { course: 'im1', module: '5', lesson: '3' } });
-      expect(graph.edges.filter((edge) => edge.sourceId === id || edge.targetId === id)).toEqual([expect.objectContaining({ type: 'contains', sourceId: 'math.im1.lesson.5.3', targetId: id, reviewStatus: 'draft' })]);
+      const expectedLessons = [
+        'math.im1.lesson.5.3',
+        ...(['math.im1.skill.5.3.classify-scatter-plot-correlation', 'math.im1.skill.5.3.construct-scatter-plots-from-paired-data'].includes(id) ? ['math.im1.lesson.5.4'] : []),
+      ];
+      expect(graph.edges.filter((edge) => edge.sourceId === id || edge.targetId === id)).toEqual(expectedLessons.map((sourceId) => expect.objectContaining({ type: 'contains', sourceId, targetId: id, reviewStatus: 'draft' })));
     }
   });
 });

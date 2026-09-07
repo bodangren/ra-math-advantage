@@ -2087,10 +2087,55 @@
       "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
       "gap": "No generator binding or complete three-mode blueprint",
       "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.4.assess-causal-interpretations-of-described-relationships",
+      "title": "Assess causal interpretations of described relationships",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.4.explain-correlation-and-causation-classifications-with-evidence",
+      "title": "Explain correlation and causation classifications with evidence",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.4.identify-lurking-variables-or-common-causes",
+      "title": "Identify lurking variables or common causes",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.4.explain-why-correlation-alone-does-not-establish-causation",
+      "title": "Explain why correlation alone does not establish causation",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.4.critique-causal-conclusions-from-correlational-evidence",
+      "title": "Critique causal conclusions from correlational evidence",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
     }
   ],
   "meta": {
-    "totalSkills": 232,
+    "totalSkills": 237,
     "allNeedGenerators": true
   }
 }
