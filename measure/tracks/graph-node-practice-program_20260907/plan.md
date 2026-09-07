@@ -111,7 +111,8 @@ Scheduling: one worker owns shared graph mechanisms. Two workers can review disj
 
 - [x] Task G13: Reconcile IM1 embedded node catalogs from current draft nodes and canonical standards. Resolve 17 dangling endpoint references. Preserve edge arrays and review states. Correct existing current counts. Independent review, source/inventory tests, full app lint, TypeScript, and build pass. Commit `001b410b`.
 
-- [~] Task G14: Review IM1 Lesson 4-3 capability and source-example identities. Restore source-based draft candidates and exact available source links. Preserve graph source consistency and stable identities.
+- [x] Task G14: Restore IM1 Lesson 4-3 capability and source-example identities. Four draft goals and exact available source links passed independent review. Existing IDs and edges remain intact. Inventory and app gates passed. Commit `73280b7b`.
+- [~] Task G15: Review IM1 Lesson 4-4 goals and example identities from the full source. Preserve existing IDs and add only source-supported draft capabilities.
 
 ## Phase 4 — Implement the minimum shared repairs and five pilots
 
@@ -125,7 +126,7 @@ Scheduling: one worker owns shared graph mechanisms. Two workers can review disj
 - [~] Task 4.4: Complete and verify the IM1 pilot.
   Reuse a valid existing algebra generator. Complete source mapping and the required app rendering/submission path.
 - [~] Task 4.5: Complete and verify the IM2 pilot.
-  Reuse the current lesson runtime and perpendicular-bisector work where correct. Coordinate with the active correction track.
+  Reuse the current lesson runtime and perpendicular-bisector work where correct. Coordinate with the active correction track. Parent verification now covers actual Worked/Guided/teacher/Independent flow and accurate replay evidence state.
 - [~] Task 4.6: Complete and verify the Business Math pilot.
   Reconcile published activity mapping with the three modes. Preserve manual evidence for artifacts that require teacher review. Keep adaptive activation within the existing approved policy.
 - [ ] Task 4.7: Measure — User Manual Verification: Five course pilots.

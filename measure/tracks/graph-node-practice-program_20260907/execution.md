@@ -217,3 +217,13 @@ Four regressions failed before G13. Five focused source-contract tests and 15 re
 The IM3 real production-flow test exposed a graph answer-key mismatch between the component and server grader. The author repaired the exact `table_values` and `placed_points` mappings. The test now calls actual student writers, the teacher mutation, the grading path, and the production evidence/SRS wrapper. Independent review is checking its mathematical oracle and replay coverage. The author is now applying the same production-flow verification to Precalculus. No signed-in browser journey or course pilot acceptance is recorded.
 
 Precalculus now has a real production-flow test from Worked acknowledgement through teacher attestation, Guided grading, and Independent evidence/SRS. It tests incorrect answers, changed-answer conflicts, exact-node card updates, and replay. The author reports 122 focused tests passing. Independent review remains required. IM3 independent review found a missing composed replay test and insufficient same-source teacher replay identity checks. The reviewer now owns that bounded repair.
+
+## G14 source correction and production-flow repairs
+
+Lesson 4-3 source restoration is committed as `73280b7b`. Four draft capabilities match the explicit source goals. Examples 5 and 6 retain separate IDs and cite their shared section. The inventory now has 171 candidates, six generator bindings, and 165 binding gaps. Eight source tests and twenty inventory tests passed. App lint, standalone TypeScript, and build passed. Existing node identities and edges remain intact.
+
+The IM2 production-flow review exposed invalid replay state, missing organization and component checks, and insufficient canonical teacher replay validation. The local repairs now preserve the actual Worked, Guided, teacher, and Independent sequence. Conflicting keys and malformed teacher receipts fail. Eighteen focused tests and app lint, TypeScript, curriculum checks, and build passed. These app changes remain pending integration.
+
+The Precalculus final evidence writer now rejects stored Topic 1.1 Guided or Independent work after node or blueprint publication withdrawal. The flow tests use independently solved literal answers. Replays preserve one card and two review records after two Independent attempts. The final 247 focused tests, lint, and TypeScript passed. The build passed before the final test-quality and formatting changes. These app changes remain pending integration.
+
+G15 starts the Lesson 4-4 source review. Shared IM3 renderer extraction continues. Source approval, browser acceptance, and all-course practice completion remain open.
