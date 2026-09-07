@@ -107,7 +107,9 @@ Scheduling: one worker owns shared graph mechanisms. Two workers can review disj
 
 - [x] Task G11: Restore IM1 Lesson 4-1 contextual intercept interpretation and equivalent-form objective candidates. Keep both as inactive drafts. Independent review rejected the rewrite example mapping; its blueprint has no example links. This task completes inventory restoration only. Eleven source tests, 20 inventory tests, IM1/package lint, standalone TypeScript, and builds pass. Commit `76e7654c`. Full rewrite teaching and assessment remain Phase 5 work.
 
-- [~] Task G12: Review IM1 Lesson 4-2 source capability and example identities. Restore missing draft objectives and correct supported mappings. Preserve stable identities and keep unreviewed readiness inactive.
+- [x] Task G12: Restore IM1 Lesson 4-2 draft capability and source-example identities. Independent review passed. Real-world-data example mapping remains empty. Twelve source tests, 20 inventory tests, app/package lint, TypeScript, and builds pass. Commit `cadf514e`.
+
+- [~] Task G13: Reconcile IM1 embedded node catalogs with their existing draft-node and standard-node sources. Resolve dangling endpoints caused by stale copies. Preserve all edge arrays and review states. Correct existing current-count fields.
 
 ## Phase 4 — Implement the minimum shared repairs and five pilots
 
