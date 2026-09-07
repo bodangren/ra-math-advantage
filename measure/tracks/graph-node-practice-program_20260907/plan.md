@@ -124,8 +124,8 @@ Scheduling: one worker owns shared graph mechanisms. Two workers can review disj
 - [x] Task G22: Restore IM1 Lesson 5-3 source capabilities and example identities. Twelve draft candidates passed independent review. Current metadata totals match arrays. Source, inventory, lint, TypeScript, and build checks pass. Commit `a23c5951`. Approval and complete practice remain open.
 
 - [x] Task G23: Review IM1 Lesson 5-4 correlation and causation from the original worksheet. Commit `7e388118` adds five draft candidates and reuses two Lesson 5-3 capabilities. Source data and causal evidence limits are corrected. Seven focused tests, lint, standalone TypeScript, and build pass. Curriculum approval remains open.
-- [~] Task G24: Review IM1 Lesson 5-5 from the original source before defining capability repairs.
-- [~] Task B2: Correct the Business Math Unit 2 Lesson 11 assessment aggregate. Preserve physical activities and remove unsupported exact-node mappings.
+- [~] Task G24: Review and repair IM1 Lesson 5-5 from the original source. The initial review proposes ten draft capabilities and reuse of existing prediction and causal-evidence capabilities. Author repair is in progress.
+- [~] Task B2: Correct the Business Math Unit 2 Lesson 11 assessment aggregate. The working-tree repair preserves physical activities and removes seven prerequisite edges and two aggregate mappings. Source review is committed as `bda89f3d`. Parent review and eleven consumer tests pass. Catalog integration and broader source review remain open.
 - [~] Task Q9: Integrate the selected IM3 three-mode seed with idempotent upsert and draft phase links. Preserve approval boundaries.
 
 ## Phase 4 — Implement the minimum shared repairs and five pilots
