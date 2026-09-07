@@ -3203,7 +3203,9 @@
     },
     {
       "nodeId": "math.im1.skill.4.2.interpret-slope-and-rate-of-change-in-real-world-contexts-in",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im1.example.4.2.011"
+      ],
       "alignmentNodeIds": [
         "math.standard.ccss.8-f-a-2",
         "math.standard.ccss.f-if-b-6"
@@ -4879,6 +4881,86 @@
         "course": "im1",
         "module": "4",
         "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.4.2.calculate-the-rate-of-change-from-a-table",
+      "sourceNodeIds": [
+        "math.im1.example.4.2.005"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.4.2.calculate-the-rate-of-change-from-a-graph",
+      "sourceNodeIds": [
+        "math.im1.example.4.2.006"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.4.2.determine-whether-a-function-is-linear-by-checking-for-a-con",
+      "sourceNodeIds": [
+        "math.im1.example.4.2.007",
+        "math.im1.example.4.2.008"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.4.2.compute-the-slope-of-a-line-passing-through-two-given-points",
+      "sourceNodeIds": [
+        "math.im1.example.4.2.009",
+        "math.im1.example.4.2.010",
+        "math.im1.example.4.2.source-007",
+        "math.im1.example.4.2.source-008"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.4.2.solve-for-an-unknown-coordinate-given-two-points-and-a-targe",
+      "sourceNodeIds": [
+        "math.im1.example.4.2.source-009"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.4.2.calculate-the-rate-of-change-from-real-world-data",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "2"
       }
     }
   ]

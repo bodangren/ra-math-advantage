@@ -1,10 +1,10 @@
 {
   "version": 1,
   "course": "im1",
-  "totalSkills": 161,
+  "totalSkills": 167,
   "counts": {
     "served": 6,
-    "gap": 155,
+    "gap": 161,
     "newComponent": 0
   },
   "byModule": [
@@ -31,9 +31,9 @@
     },
     {
       "module": "4",
-      "totalSkills": 10,
+      "totalSkills": 16,
       "served": 0,
-      "gap": 10,
+      "gap": 16,
       "newComponent": 0
     },
     {
@@ -461,6 +461,30 @@
       "priority": "medium"
     },
     {
+      "skillId": "math.im1.skill.4.2.calculate-the-rate-of-change-from-a-graph",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
+      "skillId": "math.im1.skill.4.2.calculate-the-rate-of-change-from-a-table",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
+      "skillId": "math.im1.skill.4.2.calculate-the-rate-of-change-from-real-world-data",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
       "skillId": "math.im1.skill.4.2.calculate-the-rate-of-change-from-tables-graphs-and-real-wor",
       "module": "4",
       "status": "gap",
@@ -469,12 +493,36 @@
       "priority": "standard"
     },
     {
+      "skillId": "math.im1.skill.4.2.compute-the-slope-of-a-line-passing-through-two-given-points",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
+      "skillId": "math.im1.skill.4.2.determine-whether-a-function-is-linear-by-checking-for-a-con",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
       "skillId": "math.im1.skill.4.2.interpret-slope-and-rate-of-change-in-real-world-contexts-in",
       "module": "4",
       "status": "gap",
       "tier": "none",
       "rendererKey": "rate-of-change-calculator",
       "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.4.2.solve-for-an-unknown-coordinate-given-two-points-and-a-targe",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
     },
     {
       "skillId": "math.im1.skill.4.3.write-linear-equations-in-slope-intercept-form-given-the-slo",

@@ -4350,10 +4350,10 @@
     {
       "id": "math.im1.example.4.2.005",
       "kind": "worked_example",
-      "title": "Example 1: Find the Rate of Change from a Table; Find the Rate of Change from a Graph",
+      "title": "Example 1: Find the Rate of Change from a Table",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4-2, Example 1)"
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-2 (Example 1)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4362,16 +4362,16 @@
         "lesson": "2",
         "exampleNumber": 1,
         "sourceLesson": "4-2",
-        "rawText": "4-2, Examples 1-2 \u2014 Find the Rate of Change from a Table; Find the Rate of Change from a Graph"
+        "rawText": "Example 1: Find the Rate of Change from a Table"
       }
     },
     {
       "id": "math.im1.example.4.2.006",
       "kind": "worked_example",
-      "title": "Example 2: Find the Rate of Change from a Table; Find the Rate of Change from a Graph",
+      "title": "Example 2: Find the Rate of Change from a Graph",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4-2, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-2 (Example 2)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4380,16 +4380,16 @@
         "lesson": "2",
         "exampleNumber": 2,
         "sourceLesson": "4-2",
-        "rawText": "4-2, Examples 1-2 \u2014 Find the Rate of Change from a Table; Find the Rate of Change from a Graph"
+        "rawText": "Example 2: Find the Rate of Change from a Graph"
       }
     },
     {
       "id": "math.im1.example.4.2.007",
       "kind": "worked_example",
-      "title": "Example 3: Determine Whether a Function Is Linear; Find the Slope Through Two Points; Find an Unknown Coordinate Given Slope",
+      "title": "Example 3: Determine Whether a Function Is Linear",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4-2, Example 3)"
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-2 (Example 3)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4398,16 +4398,16 @@
         "lesson": "2",
         "exampleNumber": 3,
         "sourceLesson": "4-2",
-        "rawText": "4-2, Examples 3-6 \u2014 Determine Whether a Function Is Linear; Find the Slope Through Two Points; Find an Unknown Coordinate Given Slope"
+        "rawText": "Example 3: Determine Whether a Function Is Linear"
       }
     },
     {
       "id": "math.im1.example.4.2.008",
       "kind": "worked_example",
-      "title": "Example 4: Determine Whether a Function Is Linear; Find the Slope Through Two Points; Find an Unknown Coordinate Given Slope",
+      "title": "Example 4: Determine Whether a Function Is Linear",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4-2, Example 4)"
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-2 (Example 4)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4416,16 +4416,16 @@
         "lesson": "2",
         "exampleNumber": 4,
         "sourceLesson": "4-2",
-        "rawText": "4-2, Examples 3-6 \u2014 Determine Whether a Function Is Linear; Find the Slope Through Two Points; Find an Unknown Coordinate Given Slope"
+        "rawText": "Example 4: Determine Whether a Function Is Linear"
       }
     },
     {
       "id": "math.im1.example.4.2.009",
       "kind": "worked_example",
-      "title": "Example 5: Determine Whether a Function Is Linear; Find the Slope Through Two Points; Find an Unknown Coordinate Given Slope",
+      "title": "Example 5: Find the Slope Through Two Points",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4-2, Example 5)"
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-2 (Example 5)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4434,16 +4434,16 @@
         "lesson": "2",
         "exampleNumber": 5,
         "sourceLesson": "4-2",
-        "rawText": "4-2, Examples 3-6 \u2014 Determine Whether a Function Is Linear; Find the Slope Through Two Points; Find an Unknown Coordinate Given Slope"
+        "rawText": "Example 5: Find the Slope Through Two Points"
       }
     },
     {
       "id": "math.im1.example.4.2.010",
       "kind": "worked_example",
-      "title": "Example 6: Determine Whether a Function Is Linear; Find the Slope Through Two Points; Find an Unknown Coordinate Given Slope",
+      "title": "Example 6: Find the Slope Through Two Points",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4-2, Example 6)"
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-2 (Example 6)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4452,7 +4452,7 @@
         "lesson": "2",
         "exampleNumber": 6,
         "sourceLesson": "4-2",
-        "rawText": "4-2, Examples 3-6 \u2014 Determine Whether a Function Is Linear; Find the Slope Through Two Points; Find an Unknown Coordinate Given Slope"
+        "rawText": "Example 6: Find the Slope Through Two Points"
       }
     },
     {
@@ -4461,7 +4461,7 @@
       "title": "Example 10: Slope in Real-World Contexts",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4-2, Example 10)"
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-2 (Example 10)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4470,7 +4470,7 @@
         "lesson": "2",
         "exampleNumber": 10,
         "sourceLesson": "4-2",
-        "rawText": "4-2, Example 10 \u2014 Slope in Real-World Contexts"
+        "rawText": "Example 10: Slope in Real-World Contexts"
       }
     },
     {
@@ -10409,6 +10409,168 @@
         "course": "im1",
         "module": "4",
         "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.example.4.2.source-007",
+      "kind": "worked_example",
+      "title": "Example 7: Find the Slope Through Two Points",
+      "domain": "math.im1",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-2 (Example 7)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "2",
+        "exampleNumber": 7,
+        "sourceLesson": "4-2",
+        "rawText": "Example 7: Find the Slope Through Two Points"
+      }
+    },
+    {
+      "id": "math.im1.example.4.2.source-008",
+      "kind": "worked_example",
+      "title": "Example 8: Find the Slope Through Two Points",
+      "domain": "math.im1",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-2 (Example 8)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "2",
+        "exampleNumber": 8,
+        "sourceLesson": "4-2",
+        "rawText": "Example 8: Find the Slope Through Two Points"
+      }
+    },
+    {
+      "id": "math.im1.example.4.2.source-009",
+      "kind": "worked_example",
+      "title": "Example 9: Find an Unknown Coordinate Given Slope",
+      "domain": "math.im1",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-2 (Example 9)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "2",
+        "exampleNumber": 9,
+        "sourceLesson": "4-2",
+        "rawText": "Example 9: Find an Unknown Coordinate Given Slope"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.2.calculate-the-rate-of-change-from-a-table",
+      "kind": "skill",
+      "title": "Calculate the rate of change from a table",
+      "domain": "math.im1",
+      "description": "Calculate the rate of change from a table.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4c)",
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-2"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.2.calculate-the-rate-of-change-from-a-graph",
+      "kind": "skill",
+      "title": "Calculate the rate of change from a graph",
+      "domain": "math.im1",
+      "description": "Calculate the rate of change from a graph.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4c)",
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-2"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.2.determine-whether-a-function-is-linear-by-checking-for-a-con",
+      "kind": "skill",
+      "title": "Determine whether a function is linear by checking for a constant rate of change",
+      "domain": "math.im1",
+      "description": "Determine whether a function is linear by checking for a constant rate of change.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4d)",
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-2"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.2.compute-the-slope-of-a-line-passing-through-two-given-points",
+      "kind": "skill",
+      "title": "Compute the slope of a line passing through two given points",
+      "domain": "math.im1",
+      "description": "Compute the slope of a line passing through two given points.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4c)",
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-2"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.2.solve-for-an-unknown-coordinate-given-two-points-and-a-targe",
+      "kind": "skill",
+      "title": "Solve for an unknown coordinate given two points and a target slope",
+      "domain": "math.im1",
+      "description": "Solve for an unknown coordinate given two points and a target slope.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4d)",
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-2"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.2.calculate-the-rate-of-change-from-real-world-data",
+      "kind": "skill",
+      "title": "Calculate the rate of change from real-world data",
+      "domain": "math.im1",
+      "description": "Calculate the rate of change from real-world data.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4c)",
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-2"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "2"
       }
     },
     {

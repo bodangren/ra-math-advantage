@@ -3,7 +3,7 @@
 **Generated**: 2026-05-10
 **Updated**: 2026-09-07
 **Track**: skill-rollout-im1 (T9)
-**Validation**: `validateKnowledgeSpace` passed with 0 errors on 724 nodes / 2,218 edges
+**Current inventory**: 756 canonical nodes. The edge artifact contains 746 embedded nodes and 2,239 edges. The frozen validation result appears below.
 
 ## Overview
 
@@ -11,20 +11,20 @@ This audit contains a frozen 2026-05-10 baseline and a current source-inventory 
 
 ## Current Source Inventory
 
-- Current graph skills: 161.
+- Current graph skills: 167.
 - Historical frozen skill baseline: 138.
 - Registered generator bindings: 6.
-- Skills without a registered generator binding: 155.
-- Skills with a blueprint row: 157.
+- Skills without a registered generator binding: 161.
+- Skills with a blueprint row: 163.
 - Skills without a blueprint row: 4.
 - Blueprint rows with three schema-valid mode specifications: 6.
 - Blueprint rows with three empty mode specifications: 126.
-- Source-only blueprint rows without mode specifications: 25.
+- Source-only blueprint rows without mode specifications: 31.
 - Approved skill nodes in the current graph: 137.
 
 The legacy coverage matrix status `served` means only that `IM1_GENERATORS` contains the node ID. It does not mean that the application serves a complete Worked, Guided, and Independent practice path. It does not prove renderer wiring, answer concealment, server grading, evidence persistence, or readiness approval. No production-served total is established by this inventory.
 
-The current `generator-gap-queue.json` contains 155 current skill candidates. This includes six restored objectives in each of Modules 1, 2, and 3. These 18 candidates do not have generator bindings. All 15 Module 3 blueprints are source-only draft rows. Three new rows separate numerical evaluation, algebraic evaluation, and interpretation in context. The legacy 3d objective remains an inactive aggregate. Two new Lesson 4-1 rows separate contextual intercept interpretation from equivalent-form rewriting. Some objectives still combine separate capabilities. Four Module 1 candidates do not have a blueprint row. The six schema-valid blueprint bundles are not proof of production readiness.
+The current `generator-gap-queue.json` contains 161 current skill candidates. This includes six restored objectives in each of Modules 1, 2, and 3. These 18 candidates do not have generator bindings. All 15 Module 3 blueprints are source-only draft rows. Three new rows separate numerical evaluation, algebraic evaluation, and interpretation in context. The legacy 3d objective remains an inactive aggregate. Two new Lesson 4-1 rows separate contextual intercept interpretation from equivalent-form rewriting. Six new Lesson 4-2 rows separate table, graph, contextual data, linearity, two-point slope, and unknown-coordinate capabilities. The contextual-data row has no source example mapping because the source examples use context only as part of another worked method. Some legacy objectives still combine separate capabilities. Four Module 1 candidates do not have a blueprint row. The six schema-valid blueprint bundles are not proof of production readiness.
 
 ## Frozen 2026-05-10 Baseline
 
@@ -135,7 +135,7 @@ Renderer distribution across 138 skills:
 
 ## Tracked Long Tail
 
-155 skill candidates outside the registered generator set remain without a current binding. The table below is the historical 132-skill baseline and does not include the 18 restored objectives or the five new capability rows:
+161 skill candidates outside the registered generator set remain without a current binding. The table below is the historical 132-skill baseline. It does not include the 18 restored objectives or the 11 new capability rows:
 
 | Module | Skills Without Generators | Notes |
 |--------|--------------------------|-------|
@@ -154,7 +154,7 @@ Renderer distribution across 138 skills:
 | 14: Congruent Figures | 14 | |
 | **Total long tail** | **132** | **138 − 6 (Module 1 vertical slice)** |
 
-Each long-tail skill retains its `.pending.test.ts` in `_pending/` until promoted. The current `generator-gap-queue.json` lists all 155 unbound skill candidates.
+Each long-tail skill retains its `.pending.test.ts` in `_pending/` until promoted. The current `generator-gap-queue.json` lists all 161 unbound skill candidates.
 
 ## Historical Validation Results
 
