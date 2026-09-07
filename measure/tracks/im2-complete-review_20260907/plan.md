@@ -19,3 +19,5 @@ Saved correction checkpoint: `02b497a9`. Calendar, source graph inventory, and p
 Saved worked-example correction: `488354e8`. Ninety-one sections now have complete givens and solutions. All current gates pass. Full correction remains in progress.
 
 Saved draft replay correction: `c24887ba`. Verification passed with 186 tests. Full correction remains in progress.
+
+Saved graph correction checkpoint: `8801f36a`. Verification passed with 192 tests and all 960 generator variants. Full correction remains in progress.
