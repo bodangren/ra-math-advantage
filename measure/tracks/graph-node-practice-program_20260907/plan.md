@@ -118,13 +118,14 @@ Scheduling: one worker owns shared graph mechanisms. Two workers can review disj
 - [x] Task G18: Restore Lesson 4-6 source goals and example identities. Correct the rounding domains and record the Problem 17 mismatch. Preserve existing IDs and edges. Ten source tests, 40 inventory tests, and app gates pass. Commit `ec9e0b71`. Candidates remain draft.
 - [x] Task G19: Correct Lesson 4-7 source extraction and preserve retained example identities. Eight draft candidates passed source inventory review. Nine source tests, 40 inventory tests, and app gates pass. Commit `4c4797ef`.
 - [x] Task G20: Restore Lesson 5-1 source capability candidates and retained example descriptions. Independent source review and app gates pass. Commit `228082b5`. Ten candidates remain draft.
-- [~] Task G21: Review Lesson 5-2 goals and source-example identities against the full extraction and original worksheet. Preserve previous IDs and keep capability boundaries draft.
+- [x] Task G21: Restore Lesson 5-2 goals and source-example identities from the original worksheet. Correct combined Examples 7 and 8 mapping. Preserve previous IDs. Twelve draft candidates, 58 curriculum tests, 40 inventory tests, and app gates pass. Commit `7d98d7a6`.
 
 ## Phase 4 — Implement the minimum shared repairs and five pilots
 
 - [~] Task 4.1: Repair shared projection and registration gaps required by pilots.
   Reuse the current projector and registries. Preserve app ownership. Avoid a new generated-instance framework or broad primitive program. The selected quadratic generator projection is committed as `07630ba0`. The shared SRS submission link and timestamp repair is committed as `3420e8c4`.
   The current interval component repair must await durable submission and describe actual graph coordinates without revealing the classification.
+- [~] Task Q7: Integrate the selected IM3 quadratic server grader. The isolated patch passes 28 tests. The current broad grader correctly leaves malformed selected identities ungraded. Its 28 tests now check this fallback. Verify strict rejection in the writer before integration.
 - [~] Task 4.2: Complete and verify the IM3 reference pilot.
   Connect source, all three modes, generator, renderer, server grading, stored submission, and exact-node evidence. Verify the real student route. Current parent review covers organization boundaries, candidate identity parity, and conflicting replay keys. Shared table-graph save and response contract committed as `4146100a`. Rendered answers reach the real server grader. Valid SVG curve coordinates and the complete Worked view are committed as `1128aef8` and `83d0710d`.
 - [~] Task 4.3: Complete and verify the Precalculus pilot.
