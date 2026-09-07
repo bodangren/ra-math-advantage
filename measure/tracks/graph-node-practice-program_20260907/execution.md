@@ -147,3 +147,15 @@ The Precalculus review confirmed that a student Worked acknowledgement creates t
 IM1 and IM2 now have usable teacher selection controls instead of raw ID forms. The author added tests for visible source context, hidden selected identities, empty states, and retry keys. The parent is checking the complete affected suite before integration. The workspace dependency request remains unanswered. No dependency files, deployments, or live records have changed.
 
 The parent found another actual-flow failure in the IM1 teacher action. Every real Guided attempt already has a historical evidence row. The candidate query excludes that row, and the teacher mutation rejects its origin. Positive fixtures omitted the historical row. The author is adding a complete student-to-teacher-to-Independent handler test and preserving both distinct events. The parent also requested actual rejected-network and candidate-change retry tests. The teacher path remains unaccepted.
+
+## Teacher confirmation verification
+
+The previous goal turn committed the IM1 function split and recorded a real teacher-history defect. This turn verified the current worker state and repaired the teacher UI.
+
+`7860fc43`: the IM1 teacher form shows the selected class, student, lesson, answer, score, and time. It asks the teacher to confirm instruction. It freezes selection during the save, retains the exact request key after failure, and removes confirmed work from the choices. Two regressions failed before the repair. Four component tests pass with 100 percent line coverage and 92.85 percent branch coverage. Full IM1 lint, standalone TypeScript, and build pass.
+
+A new parent test executes the actual Guided handler, candidate query, teacher mutation, and Independent handler in order. It confirms that both historical events remain and that replay does not repeat SRS updates. Three new candidate-identity cases failed. The query now checks the exact node, mode, and component. The combined seven-file suite passes 40 tests. Three separate teacher-route tests also pass. These app backend changes remain uncommitted while the dependency declaration request is pending.
+
+The Precalculus worker attempted a broad patch in repeated writer code. It restored its owned files to the saved baseline. This rollback removed its uncommitted Topic 1.1 repair as well. The earlier passing repair tests do not describe the current implementation. The worker is recovering Topic 1.1 only with changes limited to named functions. Topic 1.2 and the remaining equivalent routes are still open.
+
+The IM3 review found the same student Worked-to-teacher-origin error and a missing publication check in the evidence loader. The worker now owns the exact graph pilot trust-boundary repair. The Business Math worker is completing the real teacher UI and lesson/time checks. No course pilot is accepted.
