@@ -68,7 +68,8 @@ This is in-scope implementation. Use the existing graph repair plans as detailed
   Resolve the concept/skill contract before changing target types. Review all modules and units. Correct containment, capability bindings, and missing or overbroad skills. Do not assign a concept's evidence to an arbitrary child or all children without assessment support.
 - [ ] Task 3.4: Correct cross-course prerequisites and equivalence.
   Compare actual capability scope, representations, conditions, and evidence demands. Reject standard overlap and lesson order as sufficient proof. Test direction, hard prerequisites, equivalence closure, and missing foreign learner state.
-- [ ] Task 3.5: Correct the Business Math graph and activity relationships.
+- [~] Task 3.5: Correct the Business Math graph and activity relationships.
+  Unit 1 source review found incorrect exact-event evidence mappings and an unsupported prerequisite. The bounded repair preserves physical lesson activities. Catalog-wide acceptance remains open.
   Verify all 89 current lesson-based capability candidates against published objectives. Split or combine only where the sources require it. Reconcile prerequisite vocabulary, review status, three-mode mappings, and manual evidence. Preserve the existing limited adaptive activation policy until its runtime tests pass.
 - [~] Task 3.6: Verify graph corrections through actual learning decisions.
   Add failing cases before each repair. Show that a false prerequisite cannot block or unlock work, false equivalence cannot grant credit, a valid hard prerequisite still controls readiness, and unrelated skills do not receive evidence. Verify role projections and deterministic regeneration. Preserve valid positive behavior.
@@ -128,6 +129,7 @@ Scheduling: one worker owns shared graph mechanisms. Two workers can review disj
   Reuse the current projector and registries. Preserve app ownership. Avoid a new generated-instance framework or broad primitive program. The selected quadratic generator projection is committed as `07630ba0`. The shared SRS submission link and timestamp repair is committed as `3420e8c4`.
   The current interval component repair must await durable submission and describe actual graph coordinates without revealing the classification.
 - [x] Task Q7: Integrate the selected IM3 quadratic server grader. Commit `9951fa09` preserves the stripped ungraded fallback. The selected 28 tests pass in the isolated patch and current app. App lint, standalone TypeScript, and build pass. Isolated statement coverage is 96.15 percent. Strict writer rejection and evidence integration remain open.
+- [~] Task Q8: Integrate the selected IM3 physical submission writer and authenticated route. Root review requires active credential checks, stored activity approval, assistance-sensitive replay, strict contract validation, and route tests before acceptance.
 - [~] Task 4.2: Complete and verify the IM3 reference pilot.
   Connect source, all three modes, generator, renderer, server grading, stored submission, and exact-node evidence. Verify the real student route. Current parent review covers organization boundaries, candidate identity parity, and conflicting replay keys. Shared table-graph save and response contract committed as `4146100a`. Rendered answers reach the real server grader. Valid SVG curve coordinates and the complete Worked view are committed as `1128aef8` and `83d0710d`.
 - [~] Task 4.3: Complete and verify the Precalculus pilot.
