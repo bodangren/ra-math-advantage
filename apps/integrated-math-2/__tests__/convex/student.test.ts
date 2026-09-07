@@ -22,6 +22,9 @@ it("uses the published revision and its progress after more than 100 revisions",
     role: "teacher",
     organizationId: "org",
   });
+  const teacherCredential = await t.db.insert("auth_credentials", {
+    username: "teacher", profileId: teacher, role: "teacher", organizationId: "org", isActive: true,
+  });
   const classId = await t.db.insert("classes", { teacherId: teacher });
   await t.db.insert("class_enrollments", {
     classId,
@@ -80,4 +83,8 @@ it("uses the published revision and its progress after more than 100 revisions",
   expect(
     await invoke(getLesson, t.ctx, { userId: student, slug: "example" }),
   ).toMatchObject({ title: "Published title" });
+  await t.db.patch(teacherCredential, { isActive: false });
+  expect(await invoke(getDashboardData, t.ctx, { userId: student })).toEqual([]);
+  await expect(invoke(getLesson, t.ctx, { userId: student, slug: "example" })).rejects.toThrow("not_allowed");
+
 });

@@ -26,11 +26,12 @@ export const getDashboardData = internalQuery({
     for (const enrollment of enrollments) {
       if (enrollment.status !== "active") continue;
       const classroom = await ctx.db.get(enrollment.classId);
-      const teacher = classroom ? await ctx.db.get(classroom.teacherId) : null;
+      const teacher = classroom ? await activeAccount(ctx, classroom.teacherId) : null;
       if (
         !classroom ||
         classroom.archived ||
         !teacher ||
+        teacher.role === "student" ||
         teacher.organizationId !== user.organizationId
       )
         continue;

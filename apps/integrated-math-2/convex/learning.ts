@@ -20,7 +20,7 @@ async function accessibleLesson(
     if (enrollment.status !== "active") continue;
     const classroom = await ctx.db.get(enrollment.classId);
     if (!classroom || classroom.archived) continue;
-    const teacher = await ctx.db.get(classroom.teacherId);
+    const teacher = await activeAccount(ctx, classroom.teacherId);
     if (
       !teacher ||
       teacher.role === "student" ||

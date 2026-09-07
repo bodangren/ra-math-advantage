@@ -220,3 +220,9 @@ Verification passed with 214 tests, lint, both TypeScript checks, and production
 Read all compiled vocabulary sections. Corrected 44 definitions and related terms. Changes include finite and infinite sample spaces, marginal frequencies, independent draws, continuous functions, polynomial degree, principal roots, and regression R². The kite definition now uses one explicit course convention. Prism definitions distinguish general prisms from right prisms.
 
 Verification passed with 214 tests, lint, both TypeScript checks, and production build.
+
+## Active class-owner checks
+
+Student lesson access and dashboard assignment lists now use the same active-account check as enrollment. A class owned by an inactive or invalid teacher account cannot grant access. Existing evidence remains stored.
+
+Verification passed with 215 tests, lint, both TypeScript checks, and production build. The local student browser still opens the assigned published lesson and shows its saved 10-of-10 progress. The old published revision remains unchanged while corrected content is held in a draft.

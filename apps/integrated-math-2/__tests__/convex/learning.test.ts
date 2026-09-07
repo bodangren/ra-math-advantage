@@ -21,6 +21,9 @@ async function setup() {
     role: "teacher",
     organizationId: "org1",
   });
+  const teacherCredential = await t.db.insert("auth_credentials", {
+    profileId: teacher, username: "teacher", role: "teacher", organizationId: "org1", isActive: true,
+  });
   const classroom = await t.db.insert("classes", {
     teacherId: teacher,
     archived: false,
@@ -59,7 +62,7 @@ async function setup() {
     content: { activityId: activity },
     sequenceOrder: 1,
   });
-  return { ...t, user, first, second, activity };
+  return { ...t, user, first, second, activity, teacherCredential };
 }
 it("requires the previous phase and correct server grading before completion", async () => {
   const t = await setup();
@@ -128,4 +131,10 @@ it("retains correct evidence after more than 100 later incorrect attempts", asyn
     await t.db.insert("activity_submissions", { userId: t.user, phaseId: t.second, activityId: t.activity, score: 0, maxScore: 1 });
   }
   await expect(invoke(completePhase, t.ctx, { userId: t.user, phaseId: t.second })).resolves.toBeNull();
+});
+
+it("rejects a class whose teacher account is inactive", async () => {
+  const t = await setup();
+  await t.db.patch(t.teacherCredential, { isActive: false });
+  await expect(invoke(completePhase, t.ctx, { userId: t.user, phaseId: t.first })).rejects.toThrow("not_allowed");
 });
