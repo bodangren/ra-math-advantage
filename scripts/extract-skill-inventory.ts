@@ -637,6 +637,10 @@ async function main() {
     process.exit(1);
   }
 
+  if (courses.includes('im2')) {
+    throw new Error('IM2 uses the reviewed source inventory. This legacy extractor cannot read its current lesson format. Select another course instead of --all.');
+  }
+
   const allStats: AuditStats[] = [];
 
   for (const course of courses) {

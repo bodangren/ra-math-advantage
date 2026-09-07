@@ -8,4 +8,4 @@ The other 202 blueprint records are unavailable draft candidates. They have no s
 
 The implemented lesson checkpoints are listed in `../implementation/practice-v1/activity-map.json`. They are separate from graph practice.
 
-Run the app tests to validate source coverage, blueprint schemas, and the generator. Review teaching prerequisites and standards alignment before enabling graph practice. The old root inventory extractor reads an older class-period table format. Do not use its IM2 output to replace this corrected inventory.
+Run the app tests to validate source coverage, blueprint schemas, and the generator. Review teaching prerequisites and standards alignment before enabling graph practice. The old root inventory extractor reads an older class-period table format. The extractor rejects IM2 and --all before it writes any file. Select each supported course separately.
