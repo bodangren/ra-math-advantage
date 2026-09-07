@@ -1,10 +1,10 @@
 {
   "version": 1,
   "course": "im1",
-  "totalSkills": 214,
+  "totalSkills": 226,
   "counts": {
     "served": 6,
-    "gap": 208,
+    "gap": 220,
     "newComponent": 0
   },
   "byModule": [
@@ -38,9 +38,9 @@
     },
     {
       "module": "5",
-      "totalSkills": 16,
+      "totalSkills": 28,
       "served": 0,
-      "gap": 16,
+      "gap": 28,
       "newComponent": 0
     },
     {
@@ -949,11 +949,107 @@
       "priority": "standard"
     },
     {
+      "skillId": "math.im1.skill.5.2.classify-lines-as-parallel-perpendicular-or-neither",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.2.convert-linear-equations-to-standard-form",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.2.convert-point-slope-form-to-slope-intercept-form",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.2.find-a-missing-coordinate-for-collinear-points",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.2.graph-lines-from-point-slope-information",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.2.model-contexts-in-point-slope-form",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
       "skillId": "math.im1.skill.5.2.write-linear-equations-in-point-slope-form-given-a-point-and",
       "module": "5",
       "status": "gap",
       "tier": "none",
       "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.2.write-parallel-line-equations-through-a-point",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.2.write-perpendicular-line-equations-through-a-point",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.2.write-point-slope-equations-from-a-point-and-slope",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.2.write-point-slope-equations-from-two-points",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.2.write-standard-form-equations-from-intercepts",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.2.write-standard-form-equations-from-two-points",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
       "priority": "standard"
     },
     {

@@ -1871,6 +1871,114 @@
       "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
       "gap": "No generator binding or complete three-mode blueprint",
       "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.2.write-point-slope-equations-from-a-point-and-slope",
+      "title": "Write point-slope equations from a point and slope",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.2.write-point-slope-equations-from-two-points",
+      "title": "Write point-slope equations from two points",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.2.convert-point-slope-form-to-slope-intercept-form",
+      "title": "Convert point-slope form to slope-intercept form",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.2.model-contexts-in-point-slope-form",
+      "title": "Model real-world contexts in point-slope form",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.2.convert-linear-equations-to-standard-form",
+      "title": "Convert linear equations to standard form",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.2.write-standard-form-equations-from-two-points",
+      "title": "Write standard-form equations from two points",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.2.write-parallel-line-equations-through-a-point",
+      "title": "Write parallel-line equations through a point",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.2.write-perpendicular-line-equations-through-a-point",
+      "title": "Write perpendicular-line equations through a point",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.2.classify-lines-as-parallel-perpendicular-or-neither",
+      "title": "Classify lines as parallel, perpendicular, or neither",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.2.graph-lines-from-point-slope-information",
+      "title": "Graph lines from point-slope information",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.2.write-standard-form-equations-from-intercepts",
+      "title": "Write standard-form equations from intercepts",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.2.find-a-missing-coordinate-for-collinear-points",
+      "title": "Find a missing coordinate for collinear points",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
     }
   ],
   "meta": {

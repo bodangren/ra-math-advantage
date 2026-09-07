@@ -5561,6 +5561,160 @@
         "module": "5",
         "lesson": "1"
       }
+    },
+    {
+      "nodeId": "math.im1.skill.5.2.write-point-slope-equations-from-a-point-and-slope",
+      "sourceNodeIds": [
+        "math.im1.example.5.2.007"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.2.write-point-slope-equations-from-two-points",
+      "sourceNodeIds": [
+        "math.im1.example.5.2.008"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.2.convert-point-slope-form-to-slope-intercept-form",
+      "sourceNodeIds": [
+        "math.im1.example.5.2.009"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.2.model-contexts-in-point-slope-form",
+      "sourceNodeIds": [
+        "math.im1.example.5.2.source-004"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.2.convert-linear-equations-to-standard-form",
+      "sourceNodeIds": [
+        "math.im1.example.5.2.010"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.2.write-standard-form-equations-from-two-points",
+      "sourceNodeIds": [
+        "math.im1.example.5.2.source-006"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.2.write-parallel-line-equations-through-a-point",
+      "sourceNodeIds": [
+        "math.im1.example.5.2.011",
+        "math.im1.example.5.2.012"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.2.write-perpendicular-line-equations-through-a-point",
+      "sourceNodeIds": [
+        "math.im1.example.5.2.011",
+        "math.im1.example.5.2.012"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.2.classify-lines-as-parallel-perpendicular-or-neither",
+      "sourceNodeIds": [
+        "math.im1.example.5.2.013"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.2.graph-lines-from-point-slope-information",
+      "sourceNodeIds": [
+        "math.im1.example.5.2.007"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.2.write-standard-form-equations-from-intercepts",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.2.find-a-missing-coordinate-for-collinear-points",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "2"
+      }
     }
   ]
 }

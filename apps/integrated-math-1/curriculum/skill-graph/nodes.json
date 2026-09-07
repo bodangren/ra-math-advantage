@@ -5106,10 +5106,10 @@
     {
       "id": "math.im1.example.5.2.007",
       "kind": "worked_example",
-      "title": "Example 1: Write Point-Slope Form Given a Point and Slope; Write Point-Slope Form Given Two Points; Convert Point-Slope Form to Slope-Intercept Form; Convert Equations to Standard Form",
+      "title": "Example 1: Write Point-Slope Form Given a Point and Slope",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-5-class-period-plan.md (5-2, Example 1)"
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-2 (Example 1)"
       ],
       "reviewStatus": "approved",
       "metadata": {
@@ -5118,16 +5118,16 @@
         "lesson": "2",
         "exampleNumber": 1,
         "sourceLesson": "5-2",
-        "rawText": "5-2, Examples 1-3, 5 \u2014 Write Point-Slope Form Given a Point and Slope; Write Point-Slope Form Given Two Points; Convert Point-Slope Form to Slope-Intercept Form; Convert Equations to Standard Form"
+        "rawText": "Example 1: Write Point-Slope Form Given a Point and Slope"
       }
     },
     {
       "id": "math.im1.example.5.2.008",
       "kind": "worked_example",
-      "title": "Example 2: Write Point-Slope Form Given a Point and Slope; Write Point-Slope Form Given Two Points; Convert Point-Slope Form to Slope-Intercept Form; Convert Equations to Standard Form",
+      "title": "Example 2: Write Point-Slope Form Given Two Points",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-5-class-period-plan.md (5-2, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-2 (Example 2)"
       ],
       "reviewStatus": "approved",
       "metadata": {
@@ -5136,16 +5136,16 @@
         "lesson": "2",
         "exampleNumber": 2,
         "sourceLesson": "5-2",
-        "rawText": "5-2, Examples 1-3, 5 \u2014 Write Point-Slope Form Given a Point and Slope; Write Point-Slope Form Given Two Points; Convert Point-Slope Form to Slope-Intercept Form; Convert Equations to Standard Form"
+        "rawText": "Example 2: Write Point-Slope Form Given Two Points"
       }
     },
     {
       "id": "math.im1.example.5.2.009",
       "kind": "worked_example",
-      "title": "Example 3: Write Point-Slope Form Given a Point and Slope; Write Point-Slope Form Given Two Points; Convert Point-Slope Form to Slope-Intercept Form; Convert Equations to Standard Form",
+      "title": "Example 3: Convert Point-Slope Form to Slope-Intercept Form",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-5-class-period-plan.md (5-2, Example 3)"
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-2 (Example 3)"
       ],
       "reviewStatus": "approved",
       "metadata": {
@@ -5154,16 +5154,16 @@
         "lesson": "2",
         "exampleNumber": 3,
         "sourceLesson": "5-2",
-        "rawText": "5-2, Examples 1-3, 5 \u2014 Write Point-Slope Form Given a Point and Slope; Write Point-Slope Form Given Two Points; Convert Point-Slope Form to Slope-Intercept Form; Convert Equations to Standard Form"
+        "rawText": "Example 3: Convert Point-Slope Form to Slope-Intercept Form"
       }
     },
     {
       "id": "math.im1.example.5.2.010",
       "kind": "worked_example",
-      "title": "Example 5: Write Point-Slope Form Given a Point and Slope; Write Point-Slope Form Given Two Points; Convert Point-Slope Form to Slope-Intercept Form; Convert Equations to Standard Form",
+      "title": "Example 5: Convert Equations to Standard Form",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-5-class-period-plan.md (5-2, Example 5)"
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-2 (Example 5)"
       ],
       "reviewStatus": "approved",
       "metadata": {
@@ -5172,16 +5172,16 @@
         "lesson": "2",
         "exampleNumber": 5,
         "sourceLesson": "5-2",
-        "rawText": "5-2, Examples 1-3, 5 \u2014 Write Point-Slope Form Given a Point and Slope; Write Point-Slope Form Given Two Points; Convert Point-Slope Form to Slope-Intercept Form; Convert Equations to Standard Form"
+        "rawText": "Example 5: Convert Equations to Standard Form"
       }
     },
     {
       "id": "math.im1.example.5.2.011",
       "kind": "worked_example",
-      "title": "Example 7: Parallel and Perpendicular Lines; Determine Parallel, Perpendicular, or Neither",
+      "title": "Example 7 and 8: Write Parallel and Perpendicular Lines Through a Point",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-5-class-period-plan.md (5-2, Example 7)"
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-2 (Example 7)"
       ],
       "reviewStatus": "approved",
       "metadata": {
@@ -5190,16 +5190,16 @@
         "lesson": "2",
         "exampleNumber": 7,
         "sourceLesson": "5-2",
-        "rawText": "5-2, Examples 7-9 \u2014 Parallel and Perpendicular Lines; Determine Parallel, Perpendicular, or Neither"
+        "rawText": "Example 7 and 8: Write Parallel and Perpendicular Lines Through a Point"
       }
     },
     {
       "id": "math.im1.example.5.2.012",
       "kind": "worked_example",
-      "title": "Example 8: Parallel and Perpendicular Lines; Determine Parallel, Perpendicular, or Neither",
+      "title": "Example 7 and 8: Write Parallel and Perpendicular Lines Through a Point",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-5-class-period-plan.md (5-2, Example 8)"
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-2 (Example 8)"
       ],
       "reviewStatus": "approved",
       "metadata": {
@@ -5208,16 +5208,16 @@
         "lesson": "2",
         "exampleNumber": 8,
         "sourceLesson": "5-2",
-        "rawText": "5-2, Examples 7-9 \u2014 Parallel and Perpendicular Lines; Determine Parallel, Perpendicular, or Neither"
+        "rawText": "Example 7 and 8: Write Parallel and Perpendicular Lines Through a Point"
       }
     },
     {
       "id": "math.im1.example.5.2.013",
       "kind": "worked_example",
-      "title": "Example 9: Parallel and Perpendicular Lines; Determine Parallel, Perpendicular, or Neither",
+      "title": "Example 9: Determine Parallel, Perpendicular, or Neither",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-5-class-period-plan.md (5-2, Example 9)"
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-2 (Example 9)"
       ],
       "reviewStatus": "approved",
       "metadata": {
@@ -5226,7 +5226,7 @@
         "lesson": "2",
         "exampleNumber": 9,
         "sourceLesson": "5-2",
-        "rawText": "5-2, Examples 7-9 \u2014 Parallel and Perpendicular Lines; Determine Parallel, Perpendicular, or Neither"
+        "rawText": "Example 9: Determine Parallel, Perpendicular, or Neither"
       }
     },
     {
@@ -14122,6 +14122,246 @@
         "course": "im1",
         "module": "5",
         "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.example.5.2.source-004",
+      "kind": "worked_example",
+      "title": "Example 4: Model Real-World Situations in Point-Slope Form",
+      "domain": "math.im1",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-2 (Example 4)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "2",
+        "exampleNumber": 4,
+        "sourceLesson": "5-2",
+        "rawText": "Example 4: Model Real-World Situations in Point-Slope Form"
+      }
+    },
+    {
+      "id": "math.im1.example.5.2.source-006",
+      "kind": "worked_example",
+      "title": "Example 6: Write Standard Form Given Two Points",
+      "domain": "math.im1",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-2 (Example 6)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "2",
+        "exampleNumber": 6,
+        "sourceLesson": "5-2",
+        "rawText": "Example 6: Write Standard Form Given Two Points"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.2.write-point-slope-equations-from-a-point-and-slope",
+      "kind": "skill",
+      "title": "Write point-slope equations from a point and slope",
+      "domain": "math.im1",
+      "description": "Write point-slope equations from a point and slope",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-2"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.2.write-point-slope-equations-from-two-points",
+      "kind": "skill",
+      "title": "Write point-slope equations from two points",
+      "domain": "math.im1",
+      "description": "Write point-slope equations from two points",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-2"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.2.convert-point-slope-form-to-slope-intercept-form",
+      "kind": "skill",
+      "title": "Convert point-slope form to slope-intercept form",
+      "domain": "math.im1",
+      "description": "Convert point-slope form to slope-intercept form",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-2"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.2.model-contexts-in-point-slope-form",
+      "kind": "skill",
+      "title": "Model real-world contexts in point-slope form",
+      "domain": "math.im1",
+      "description": "Model real-world contexts in point-slope form",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-2"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.2.convert-linear-equations-to-standard-form",
+      "kind": "skill",
+      "title": "Convert linear equations to standard form",
+      "domain": "math.im1",
+      "description": "Convert linear equations to standard form",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-2"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.2.write-standard-form-equations-from-two-points",
+      "kind": "skill",
+      "title": "Write standard-form equations from two points",
+      "domain": "math.im1",
+      "description": "Write standard-form equations from two points",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-2"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.2.write-parallel-line-equations-through-a-point",
+      "kind": "skill",
+      "title": "Write parallel-line equations through a point",
+      "domain": "math.im1",
+      "description": "Write parallel-line equations through a point",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-2"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.2.write-perpendicular-line-equations-through-a-point",
+      "kind": "skill",
+      "title": "Write perpendicular-line equations through a point",
+      "domain": "math.im1",
+      "description": "Write perpendicular-line equations through a point",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-2"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.2.classify-lines-as-parallel-perpendicular-or-neither",
+      "kind": "skill",
+      "title": "Classify lines as parallel, perpendicular, or neither",
+      "domain": "math.im1",
+      "description": "Classify lines as parallel, perpendicular, or neither",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-2"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.2.graph-lines-from-point-slope-information",
+      "kind": "skill",
+      "title": "Graph lines from point-slope information",
+      "domain": "math.im1",
+      "description": "Graph lines from point-slope information",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-2"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.2.write-standard-form-equations-from-intercepts",
+      "kind": "skill",
+      "title": "Write standard-form equations from intercepts",
+      "domain": "math.im1",
+      "description": "Write standard-form equations from intercepts",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-2"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.2.find-a-missing-coordinate-for-collinear-points",
+      "kind": "skill",
+      "title": "Find a missing coordinate for collinear points",
+      "domain": "math.im1",
+      "description": "Find a missing coordinate for collinear points",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-2"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "2"
       }
     }
   ]

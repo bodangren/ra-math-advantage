@@ -13,10 +13,10 @@ Source: (Module 5, Lesson 5-2, Int1_0502_practice.docx)
 ## Vocabulary
 
 * **Point-slope form** — A linear equation written as [ y - y_1 = m(x - x_1) ], where [ m ] is the slope and [ (x_1, y_1) ] is a point on the line.
-* **Standard form** — A linear equation written as [ Ax + By = C ], where [ A ], [ B ], and [ C ] are integers and [ A \ne 0 ].
+* **Standard form** — A linear equation written as [ Ax + By = C ], where [ A ], [ B ], and [ C ] are integers and [ A ] and [ B ] are not both zero.
 * **Slope-intercept form** — A linear equation written as [ y = mx + b ], where [ m ] is the slope and [ b ] is the [ y ]-intercept.
-* **Parallel lines** — Lines in the same plane that never intersect; they have identical slopes.
-* **Perpendicular lines** — Lines that intersect at a right angle; their slopes are negative reciprocals (product is [ -1 ]).
+* **Parallel lines** — Distinct nonvertical lines in the same plane are parallel when they have equal slopes. Vertical parallel lines are a separate case.
+* **Perpendicular lines** — Lines intersect at a right angle. When both slopes exist, perpendicular slopes are negative reciprocals and their product is [ -1 ]. A horizontal line and a vertical line are perpendicular.
 
 ## Learn: Writing Equations in Point-Slope and Standard Forms
 
@@ -26,7 +26,7 @@ Different situations call for different forms of a linear equation. Point-slope 
 
 * **Point-slope form:** [ y - y_1 = m(x - x_1) ] 
 * **Slope-intercept form:** [ y = mx + b ] 
-* **Standard form:** [ Ax + By = C ] with integer coefficients
+* **Standard form:** [ Ax + By = C ] with integer coefficients, where [ A ] and [ B ] are not both zero
 
 ## Example 1 — Write Point-Slope Form Given a Point and Slope
 
@@ -111,13 +111,13 @@ Translate a verbal description or graph of a linear relationship into an equatio
 
 Extract a known point [ (x_1, y_1) ] and the rate of change [ m ] from the context or graph.
 
-For example, a cricket chirps at a rate related to temperature. From the graph, identify a point such as [ (30, 67) ] and slope [ m = \frac{3}{5} ].
+For example, a cricket chirps at a rate related to temperature. From the graph, identify a point [ (20, 60) ] and slope [ m = 1 ].
 
 ### Step 2: Write the Equation
 
 Substitute into [ y - y_1 = m(x - x_1) ]:
 [
-y - 67 = \frac{3}{5}(x - 30)
+y - 60 = 1(x - 20)
 ]
 
 Scenarios in the worksheet include:
@@ -190,6 +190,8 @@ Multiply through by [ 3 ] to clear fractions, then rearrange:
 
 ## Example 7 and 8 — Parallel and Perpendicular Lines
 
+The worksheet uses one combined heading for Examples 7 and 8. Each problem asks for both a parallel line and a perpendicular line.
+
 Given a point and the equation of a line, write equations in slope-intercept form for the line through the given point that is parallel to the given line, and for the line through the given point that is perpendicular to the given line.
 
 ### Step 1: Identify the Slope of the Given Line
@@ -239,8 +241,8 @@ y = 4x + 3 \quad \text{and} \quad 4x + y = 3 \implies y = -4x + 3
 
 ### Step 2: Compare the Slopes
 
-* **Parallel:** [ m_1 = m_2 ] 
-* **Perpendicular:** [ m_1 \cdot m_2 = -1 ] (negative reciprocals)
+* **Parallel:** [ m_1 = m_2 ] for distinct nonvertical lines; distinct vertical lines are also parallel
+* **Perpendicular:** [ m_1 \cdot m_2 = -1 ] when both slopes exist; a horizontal line and a vertical line are also perpendicular
 * **Neither:** neither condition holds
 
 In the example above, [ m_1 = 4 ] and [ m_2 = -4 ], so the lines are **neither** parallel nor perpendicular.
