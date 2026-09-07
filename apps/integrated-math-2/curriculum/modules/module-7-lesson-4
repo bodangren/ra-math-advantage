@@ -60,80 +60,33 @@ $P = \frac{1}{1140}$
 
 ## Example 1 — Probability with Permutations
 
-### Step 1: Identify When Order Matters
+### Problem
 
-**Problem 1:** 12 girls, captain and co-captain selected. Probability Chantel and Clover are chosen.
-Total ways: [_{12}P_{2} = 132]
-If the two positions are distinct (captain vs. co-captain), there are 2 ways to assign Chantel and Clover to the two positions. Thus [P = 2/132 = 1/66]. If we count unordered pairs instead, [P = 1/binom(12,2) = 1/66].
+A team has 12 students. It selects a captain and a different co-captain uniformly from all ordered pairs. Find the probability that Chantel and Clover receive the two roles in either order.
 
-**Problem 2:** 6 textbooks (Spanish, English, Chemistry, Geometry, History, Psychology). Choosing 4 to arrange on a shelf. Probability Geometry is first and Chemistry is second from the left.
-Total arrangements of 4 from 6: [_{6}P_{4} = 360]
-Favorable: Geometry and Chemistry occupy the first two positions. The other two positions have [4P2 = 12] arrangements. [P = 12/360 = 1/30].
+### Solution
 
-**Problem 3:** 50 raffle tickets, Alfonso and Cordell each buy one ticket. Their ticket numbers are 14 and 23. The two tickets are drawn in that order. Probability their specific tickets are drawn.
-Total ways to assign 2 specific tickets: $50 \times 49 = 2450$
-Favorable: 1 specific assignment.
-$P = \frac{1}{2450}$
-
-**Problem 4:** Row of seats C11 and C12, Ciro in C11 and Nia in C12. Probability of this specific seating.
-Total pairs of seats available: depends on row length.
-Favorable: 1 specific assignment.
-$P = \frac{1}{\text{total possible seat pairs}}$
+There are 12(11) = 132 ordered pairs. Two pairs are favorable: Chantel then Clover, or Clover then Chantel. The probability is 2/132 = 1/66. Requiring one specified order would instead give 1/132.
 
 ## Examples 2 and 3 — Permutations with Repetition and Specific Sequences
 
-### Step 1: Count Total and Favorable Outcomes
+### Problem
 
-**Problem 5:** Phone number generated using digits 2, 3, 2, 5, 2, 7, 3. Probability of getting 222-3357.
-Total possible arrangements of the 7 digits: $\frac{7!}{3! \times 2!} = 420$
-Only 1 favorable arrangement (the exact sequence).
-$P = \frac{1}{420}$
+Distinct arrangements of the digits 2, 2, 2, 3, 3, 5, 7 are equally likely. Find the probability of the exact sequence 2223357. Then find the probability of the exact sequence 25938 when five distinct digits are chosen in order from 1 through 9.
 
-**Problem 6:** 5-digit identification numbers from digits 1–9, no repetition. Probability of 25938.
-Total: [_{9}P_{5} = 15,120]
-Favorable: 1
-$P = \frac{1}{15,120}$
+### Solution
 
-**Problem 7a:** Class president finalists — probability Denny, Kelli, and Chaminade are the first 3 speakers in any order.
-Total ways to arrange 3 speakers from the full list of finalists: use permutation if order matters among the 3.
-Favorable: the specific set {Denny, Kelli, Chaminade} in any of their 3! = 6 possible orders.
-
-**Problem 7b:** Same finalists but Denny first, Kelli second, Chaminade third (specific order).
-Only 1 favorable arrangement out of the total possible arrangements.
+The repeated-digit count is $7!/(3!2!)=420$. Exactly one arrangement is 2223357, so its probability is 1/420. For the second experiment, there are $9(8)(7)(6)(5)=15120$ ordered sequences. The probability of 25938 is 1/15120.
 
 ## Example 4 — Probability with Combinations
 
-### Step 1: Use Combinations for Unordered Selection
+### Problem
 
-**Problem 8:** Taryn has 15 soccer trophies, displays 9. Probability that trophies from 1st through 9th grades are all chosen.
-Total ways to choose 9 from 15: $\binom{15}{9}$
-Favorable ways: only 1 way to select those specific 9 trophies.
-$P = \frac{1}{\binom{15}{9}}$
+An app chooses four different attractions uniformly from 12 attractions. Four are roller coasters. Find the probability that all four selected attractions are roller coasters.
 
-**Problem 9:** 20 frozen yogurt flavors, choosing 3. Probability of vanilla, chocolate, and strawberry.
-Total: $\binom{20}{3} = 1140$
-Favorable: 1
-$P = \frac{1}{1140}$
+### Solution
 
-**Problem 10:** Kaja serves 9 dogs, chooses 4 randomly for an extra trip. Probability that Cherish, Taffy, Haunter, and Maverick are chosen.
-Total: $\binom{9}{4} = 126$
-Favorable: 1
-$P = \frac{1}{126}$
-
-**Problem 11:** 10 food trucks, trying half (5). Probability of selecting 5 specific trucks.
-Total: $\binom{10}{5} = 252$
-Favorable: 1
-$P = \frac{1}{252}$
-
-**Problem 12:** Emily has 20 collectible dolls, donates 10. Probability of selecting 10 specific country dolls.
-Total: $\binom{20}{10}$
-Favorable: 1
-$P = \frac{1}{\binom{20}{10}}$
-
-**Problem 13:** 12 attractions (4 roller coasters, 2 carousels, 2 drop towers, 2 gravity rides, 2 dark rides). App suggests 4 in order. Probability the first 4 suggested are the four roller coasters.
-Total ordered sequences of 4 from 12: [_{12}P_{4} = 11,880]
-Favorable: the 4 roller coasters in any order = [4! = 24].
-[P = 24/11,880 = 1/495]
+There are $\binom{12}{4}=495$ equally likely sets. Exactly one set contains all four roller coasters, so the probability is 1/495. If the selections are ordered, the same probability is $4!/(12\cdot11\cdot10\cdot9)=24/11880$.
 
 ## Mixed Exercises
 

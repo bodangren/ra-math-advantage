@@ -47,61 +47,33 @@ Find the volume of each component and add them together (or subtract holes).
 
 ## Example 1 — Volume of Prisms
 
-Find the volume of each prism. Round to the nearest tenth, if necessary.
+### Problem
 
-### Step 1: Find the Area of the Base
+Find the volumes of (a) a rectangular prism measuring 5 cm by 3 cm by 4 cm and (b) a prism with base area 12 square inches and perpendicular height 8 inches.
 
-Calculate the base area using the appropriate formula for the base shape.
+### Solution
 
-### Step 2: Multiply by the Height
-
-[
-V = B * h
-]
-
-A rectangular prism with length 5 cm, width 3 cm, and height 4 cm:
-[
-V = 5 * 3 * 4 = 60 cm^3
-]
-
-A triangular prism with base area 12 in^2 and height 8 in:
-[
-V = 12 * 8 = 96 in^3
-]
+Prism volume is base area times perpendicular height. (a) V = 5(3)(4) = 60 cubic centimeters. (b) V = 12(8) = 96 cubic inches.
 
 ## Example 2 — Volume of Pyramids
 
-Find the volume of each pyramid. Round to the nearest tenth, if necessary.
+### Problem
 
-### Step 1: Find the Area of the Base
+A square pyramid has base side 6 m and perpendicular height 4 m. Find its volume.
 
-Calculate the base area.
+### Solution
 
-### Step 2: Multiply by Height and Divide by 3
-
-[
-V = (1/3) * B * h
-]
-
-A square pyramid with base side 6 m and height 4 m:
-[
-B = 6^2 = 36 m^2
-]
-[
-V = (1/3) * 36 * 4 = 48 m^3
-]
+The base area is 6² = 36 square meters. Pyramid volume is one third of base area times height. Thus V = 36(4)/3 = 48 cubic meters.
 
 ## Example 3 — Volume with Variables
 
-Find the volume in terms of x.
+### Problem
 
-CHOCOLATE: Leah wants to calculate the volume of chocolate in her candy bar.
-a. Find the volume in terms of x.
-b. Find the volume if x = 2 inches.
+A rectangular chocolate bar measures 3x inches by 2x inches by x inches, with x > 0. Find its volume in terms of x and evaluate at x = 2.
 
-CANDLE: Benton wants to calculate the volume of wax needed for a candle.
-a. Find the volume in terms of x.
-b. Find the volume if x = 3 centimeters.
+### Solution
+
+Multiply the three perpendicular dimensions: V = (3x)(2x)(x) = 6x³ cubic inches. At x = 2, V = 6(8) = 48 cubic inches.
 
 ## Example 4 — More Volume Problems
 
@@ -115,15 +87,13 @@ The base area is B = 6(9) = 54 square centimeters. Use V = Bh/3 to obtain V = 54
 
 ## Example 5 — Volume of Pyramids with Variables
 
-Find the volume in terms of x.
+### Problem
 
-SAND ART: Noelle wants to calculate the volume of sand in a regular hexagonal pyramid.
-a. Find the volume in terms of x.
-b. Find the volume if x = 5 inches.
+A square pyramid has base side 2x cm and perpendicular height 5x cm, with x > 0. Find its volume in terms of x and evaluate at x = 3.
 
-PUZZLE: A puzzle shaped like a pyramid with square base and height 5x units.
-a. Find the volume in terms of x.
-b. Find the volume if x = 10 centimeters.
+### Solution
+
+The base area is (2x)² = 4x² square centimeters. The volume is (4x²)(5x)/3 = 20x³/3 cubic centimeters. At x = 3, V = 20(27)/3 = 180 cubic centimeters.
 
 ## Example 6 — Volume of Composite Solids
 
@@ -137,15 +107,13 @@ The prism volume is 8(6)(4) = 192 cubic meters. The roof volume is (1/3)(8)(6)(3
 
 ## Example 7 — Volume of Frames
 
-FRAMES: Margaret makes a square frame out of four pieces of wood. Each piece is a rectangular prism with length 40 cm, height 4 cm, and depth 6 cm. What is the total volume of wood?
-[
-Volume of one piece = 40 * 4 * 6 = 960 cm^3
-]
-[
-Total volume = 4 * 960 = 3840 cm^3
-]
+### Problem
 
-PARKS: Find the volume of a trashcan shaped like a composite solid.
+Four separate pieces of wood are rectangular prisms, each 40 cm long, 4 cm high, and 6 cm deep. Find their total volume before cutting or joining.
+
+### Solution
+
+One piece has volume 40(4)(6) = 960 cubic centimeters. Four pieces have total volume 3840 cubic centimeters. This is the volume before any material is removed for joints or cuts.
 
 ## Mixed Exercises
 

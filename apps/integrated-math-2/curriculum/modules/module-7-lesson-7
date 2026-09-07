@@ -51,25 +51,13 @@ If knowing A occurred does not change the probability of B, the events are indep
 
 ## Example 1 — Conditional Probability
 
-### Step 1: Identify the Given Event and Apply Definition
+### Problem
 
-**Problem 1:** Spanish Club — 10 students draw cards 1–10. Odd numbers bring main dishes, even numbers bring desserts. Given Cynthia is bringing a dessert, what is P(she drew 10)?
-Given: Cynthia drew an even number (2, 4, 6, 8, 10) — sample space size = 5
-Favorable: 10 is one of the options
-$P(10 | even) = \frac{1}{5}$
+Cards numbered 1 through 15 are equally likely to be selected. Given that the selected number is odd, find the probability that it is divisible by 3.
 
-**Problem 2:** Card drawn from standard deck. P(king of diamonds | card is a king).
-Given: card is a king (4 possible kings)
-$P(king of diamonds | king) = \frac{1}{4}$
+### Solution
 
-**Problem 3:** Spinner with 7 colors of the rainbow. P(blue | primary color).
-Primary colors: red, yellow, blue — only 3 possible outcomes in restricted space.
-$P(blue | primary) = \frac{1}{3}$
-
-**Problem 4:** Cards 1–15 in a hat. P(multiple of 3 | odd).
-Odd numbers: {1, 3, 5, 7, 9, 11, 13, 15} — 8 cards
-Multiples of 3 among these: {3, 9, 15}
-$P(multiple of 3 | odd) = \frac{3}{8}$
+The restricted sample space is {1,3,5,7,9,11,13,15}, with eight equally likely outcomes. Three are divisible by 3: 3, 9, and 15. The conditional probability is 3/8.
 
 ## Mixed Exercises
 

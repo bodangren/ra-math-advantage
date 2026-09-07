@@ -53,261 +53,93 @@ How does finding the surface area of a three-dimensional figure compare to findi
 
 ## Example 1 — Surface Area of Prisms
 
-Find the lateral area and surface area of each prism. Round to the nearest tenth, if necessary.
+### Problem
 
-### Step 1: Find the Perimeter and Area of the Base
+A right rectangular prism has base dimensions 5 cm by 3 cm and height 4 cm. Find its lateral area and total surface area.
 
-Calculate these from the given base dimensions.
+### Solution
 
-### Step 2: Find the Lateral Area
-
-Multiply the perimeter of the base by the height of the prism.
-
-### Step 3: Find the Surface Area
-
-Add twice the base area to the lateral area: [SA = L + 2B]
-
-A rectangular prism with length 5 cm, width 3 cm, and height 4 cm:
-[
-P = 2(5 + 3) = 16 cm
-]
-[
-L = 16 * 4 = 64 cm^2
-]
-[
-B = 5 * 3 = 15 cm^2
-]
-[
-SA = 64 + 2(15) = 94 cm^2
-]
-
-A triangular prism with base area 12 in^2, base perimeter 16 in, and height 8 in:
-[
-L = 16 * 8 = 128 in^2
-]
-[
-SA = 128 + 2(12) = 152 in^2
-]
+The base perimeter is 2(5+3) = 16 cm. The lateral area is 16(4) = 64 square centimeters. Each base has area 15 square centimeters. The total surface area is 64+2(15) = 94 square centimeters.
 
 ## Example 2 — Surface Area of Cylinders
 
-Find the lateral area and surface area of each cylinder. Round to the nearest tenth, if necessary.
+### Problem
 
-### Step 1: Find the Lateral Area
+A closed right circular cylinder has radius 3 cm and height 7 cm. Find its lateral and total surface areas. Give exact answers.
 
-[L = 2pi * r * h]
+### Solution
 
-### Step 2: Find the Surface Area
-
-[SA = 2pi * r * h + 2pi * r^2]
-
-A cylinder with radius 3 cm and height 7 cm:
-[
-L = 2pi * 3 * 7 = 42pi = 131.9 cm^2
-]
-[
-SA = 42pi + 2pi * 9 = 42pi + 18pi = 60pi = 188.5 cm^2
-]
+The lateral area is $2\pi rh=42\pi$ square centimeters. The two circular ends have total area $2\pi r^2=18\pi$. The total surface area is $60\pi$ square centimeters.
 
 ## Example 3 — Surface Area of Prisms with Variables
 
-Find the surface area in terms of x.
+### Problem
 
-PAINTING: Greg is painting the four walls of his bedroom and the ceiling. The height of the walls is x and the edge length of the square ceiling is 2x.
-a. Surface area in terms of x:
-[
-Wall area = 4 * (x * 2x) = 8x^2
-]
-[
-Ceiling area = (2x)^2 = 4x^2
-]
-[
-Total = 12x^2
-]
-b. If x = 8 feet:
-[
-Total = 12 * 64 = 768 ft^2
-]
+A room has a square floor with side 2x ft and vertical walls of height x ft, where x > 0. Find the area of its four walls and ceiling, without subtracting doors or windows. Evaluate at x = 8.
+
+### Solution
+
+The four walls have area 4(x)(2x) = 8x² square feet. The ceiling has area (2x)² = 4x² square feet. The total is 12x² square feet. At x = 8, the total is 768 square feet.
 
 ## Example 4 — Surface Area of Pyramids
 
-Find the lateral area and surface area of each pyramid. Round to the nearest tenth, if necessary.
+### Problem
 
-### Step 1: Find the Perimeter of the Base
+A regular square pyramid has base side 6 m and slant height 5 m. Find its lateral and total surface areas.
 
-Calculate the perimeter from the base dimensions.
+### Solution
 
-### Step 2: Find the Lateral Area
-
-[L = (1/2) * P * slant height]
-
-### Step 3: Find the Surface Area
-
-[SA = L + B]
-
-A square pyramid with base side 6 m and slant height 5 m:
-[
-P = 4 * 6 = 24 m
-]
-[
-L = (1/2) * 24 * 5 = 60 m^2
-]
-[
-B = 6^2 = 36 m^2
-]
-[
-SA = 60 + 36 = 96 m^2
-]
+The base perimeter is 24 m. The four triangular faces have total area 24(5)/2 = 60 square meters. The square base has area 36 square meters. Total surface area is 96 square meters. The slant height is the altitude of a lateral face, not the vertical height of the pyramid.
 
 ## Example 5 — Surface Area of Cones
 
-Find the lateral area and surface area of each cone. Round to the nearest tenth, if necessary.
+### Problem
 
-### Step 1: Find the Slant Height if Not Given
+A closed right circular cone has radius 4 cm and slant height 9 cm. Find its lateral and total surface areas.
 
-Use the Pythagorean Theorem if needed: [l = sqrt(r^2 + h^2)]
+### Solution
 
-### Step 2: Apply the Formulas
-
-[L = pi * r * l]
-[SA = pi * r * l + pi * r^2]
-
-A cone with radius 4 cm and slant height 9 cm:
-[
-L = pi * 4 * 9 = 36pi = 113.1 cm^2
-]
-[
-SA = 36pi + 16pi = 52pi = 163.4 cm^2
-]
+The lateral area is $\pi r\ell=36\pi$ square centimeters. The base area is $16\pi$. Total surface area is $52\pi$ square centimeters, approximately 163.4 square centimeters.
 
 ## Example 6 — Surface Area of Cones with Variables
 
-MANUFACTURING: A cylindrical package with radius x and height x + 4. Find surface area that is cardboard (lateral area + bottom):
-[
-L = 2pi * x * (x + 4) = 2pi(x^2 + 4x)
-]
-[
-Bottom = pi * x^2
-]
-[
-Cardboard area = 3pi * x^2 + 8pi * x
-]
-If x = 6 cm:
-[
-= 3pi(36) + 8pi(6) = 108pi + 48pi = 156pi = 490.1 cm^2
-]
+### Problem
 
-CAMPING: A tent shaped like a square pyramid with base x and slant height 1.5x. Find sidewall area:
-[
-P = 4x
-]
-[
-L = (1/2) * 4x * 1.5x = 3x^2
-]
-If x = 9 ft:
-[
-L = 3(81) = 243 ft^2
-]
+A conical slipcover has radius x m and slant height 4x m, with x > 0. It has no base. Find its area in terms of x, then evaluate at x = 0.75 to the nearest tenth.
 
-TOPIARY: A bush shaped like a cone with radius x and slant height 4x. Find lateral area:
-[
-L = pi * x * 4x = 4pi * x^2
-]
-Surface area of slipcover (no base):
-[
-SA = pi * x * 4x = 4pi * x^2
-]
-If x = 0.75 m:
-[
-SA = 4pi(0.5625) = 7.1 m^2
-]
+### Solution
+
+Only the lateral area is needed. It is $\pi r\ell=4\pi x^2$ square meters. At x = 0.75, the area is $2.25\pi$, approximately 7.1 square meters.
 
 ## Example 7 — Surface Area of Spheres
 
-Find the surface area of each sphere to the nearest tenth.
+### Problem
 
-### Step 1: Identify the Radius
+A sphere has radius 5 cm. Find its exact surface area and round it to the nearest tenth.
 
-Use the given radius or diameter to find the radius.
+### Solution
 
-### Step 2: Apply the Sphere Formula
-
-[SA = 4pi * r^2]
-
-A sphere with radius 5 cm:
-[
-SA = 4pi * 25 = 100pi = 314.2 cm^2
-]
-
-MOONS OF SATURN: Titan has radius about 2575 kilometers. Find surface area:
-[
-SA = 4pi * (2575)^2
-]
-[
-SA = 4pi * 6,630,625
-]
-[
-SA = 83,304,588 km^2
-]
+Use $S=4\pi r^2$. Thus $S=4\pi(25)=100\pi$ square centimeters, approximately 314.2 square centimeters.
 
 ## Example 8 — Surface Area from Circumference
 
-Find the surface area in terms of pi.
+### Problem
 
-### Step 1: Find the Radius from Circumference
+A sphere has a great-circle circumference of $12\pi$ cm. Find its surface area in terms of pi.
 
-[C = 2pi * r] so [r = C/(2pi)]
+### Solution
 
-### Step 2: Apply the Sphere Formula
-
-AMUSEMENT PARK: Spaceship Earth has circumference [C]. Find surface area in terms of [C] and [pi]:
-[
-r = C/(2pi)
-]
-[
-SA = 4pi * (C/(2pi))^2
-]
-[
-SA = 4pi * C^2/(4pi^2)
-]
-[
-SA = C^2/pi
-]
-
-BILLIARDS: An eight-ball with circumference [C]. Find surface area in terms of [C] and [pi]:
-[
-SA = C^2/pi
-]
+The great circle has the same radius as the sphere. From $2\pi r=12\pi$, r = 6 cm. The sphere surface area is $4\pi(6^2)=144\pi$ square centimeters.
 
 ## Example 9 — Surface Area of Composite Solids
 
-Find the surface area of each figure to the nearest tenth.
+### Problem
 
-### Step 1: Identify All Components
+A hollow cylindrical prop has outer radius 3 ft, inner radius 2.5 ft, and height 8 ft. Both ends are open. Find the total area of the outer wall, inner wall, and two exposed end rings.
 
-Break the composite solid into simpler shapes.
+### Solution
 
-### Step 2: Find Each Surface Area
-
-Calculate the surface area of each component.
-
-### Step 3: Combine Appropriately
-
-Add areas that are exposed, subtract areas that are joined.
-
-THEATER: Carlos is building a tower prop that is a hollow cylinder with no base. Radius is 2.5 feet.
-[
-Lateral area of outside = 2pi * 2.5 * h
-]
-[
-Lateral area of inside = 2pi * 2.5 * h
-]
-[
-Top ring area = pi * (R^2 - r^2)
-]
-[
-Total = 2pi * 2.5 * h + 2pi * 2.5 * h + top ring
-]
+The outer wall area is $2\pi(3)(8)=48\pi$ square feet. The inner wall area is $2\pi(2.5)(8)=40\pi$. Each end ring has area $\pi(3^2-2.5^2)=2.75\pi$. Total exposed area is $93.5\pi$ square feet, approximately 293.7 square feet. Inner and outer radii must be different for a wall with positive thickness.
 
 ## Mixed Exercises
 

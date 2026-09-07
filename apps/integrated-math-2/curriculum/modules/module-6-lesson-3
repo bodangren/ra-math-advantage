@@ -50,280 +50,43 @@ r = d/2
 
 ## Example 1 — Find the Area of a Circle
 
-Find the area of each circle. Round to the nearest tenth.
+### Problem
 
-### Step 1: Identify the Radius or Diameter
+A circular tabletop has diameter 8 ft. Find its area to the nearest tenth of a square foot. Fabric costs 13.99 dollars per square yard. Find the material cost using exact area, with no waste or overhang.
 
-Read the problem to find either the radius directly or the diameter from which you can calculate the radius.
+### Solution
 
-### Step 2: Apply the Area Formula
-
-[
-A = pi * r^2
-]
-
-If the radius is 5 inches:
-[
-A = pi * 5^2
-]
-[
-A = 25pi
-]
-[
-A = 78.5 in^2
-]
-
-If the diameter is 10 centimeters:
-[
-r = 10/2 = 5 cm
-]
-[
-A = pi * 5^2
-]
-[
-A = 78.5 cm^2
-]
-
-DINING: Maricela is making a tablecloth for a circular table with diameter 8 feet.
-a. Find the area of the tabletop. Round to the nearest tenth.
-[
-r = 8/2 = 4 ft
-]
-[
-A = pi * 4^2 = 16pi = 50.3 ft^2
-]
-b. If a square yard of fabric costs $13.99, what is the minimum cost?
-[
-A = 50.3 ft^2 = 50.3/9 yd^2 = 5.59 yd^2
-]
-[
-Cost = 5.59 * 13.99 = $78.20
-]
-
-GAMES: Kiyoshi is making circular tiles with radius 2 inches. Balsa wood costs $1.99 per square foot.
-a. Find the area of a single tile. Round to the nearest tenth.
-[
-A = pi * 2^2 = 4pi = 12.6 in^2
-]
-b. Cost for 30 tiles:
-[
-30 * 12.6 = 378 in^2 = 378/144 ft^2 = 2.625 ft^2
-]
-[
-Cost = 2.625 * 1.99 = $5.22
-]
-
-PORTHOLES: A circular window with radius 8 inches. Find the area of glass needed.
-[
-A = pi * 8^2 = 64pi = 201.06 in^2
-]
+The radius is 4 ft, so the area is $16\pi$ square feet, approximately 50.3 square feet. Divide the exact area by 9 to convert to square yards. The cost is $13.99(16\pi/9)$, approximately 78.13 dollars. This is an ideal area-based cost. Cutting a circle from rectangular fabric can require more material.
 
 ## Example 2 — Find Diameter, Radius, or Area Given One Measure
 
-Find the indicated measure. Round to the nearest tenth.
+### Problem
 
-### Step 1: Use the Appropriate Formula
+A circle has area 94 square millimeters. Find its diameter to the nearest tenth of a millimeter.
 
-If given area, solve for radius or diameter using the area formula.
+### Solution
 
-### Step 2: Show All Steps
-
-Work through the algebra to isolate the unknown variable.
-
-Find the diameter of a circle with an area of 94 square millimeters.
-[
-A = pi * r^2
-]
-[
-94 = pi * r^2
-]
-[
-r^2 = 94/pi
-]
-[
-r = sqrt(94/pi) = 5.5 mm
-]
-[
-d = 2r = 11 mm
-]
-
-The area of a circle is 132.7 square centimeters. Find the diameter.
-[
-132.7 = pi * r^2
-]
-[
-r^2 = 132.7/pi
-]
-[
-r = 6.5 cm
-]
-[
-d = 13 cm
-]
-
-The area of a circle is 112 square inches. Find the radius.
-[
-112 = pi * r^2
-]
-[
-r^2 = 112/pi
-]
-[
-r = 6.0 in
-]
-
-Find the diameter of a circle with area 1134.1 square millimeters.
-[
-1134.1 = pi * r^2
-]
-[
-r = sqrt(1134.1/pi) = 19.0 mm
-]
-[
-d = 38.0 mm
-]
-
-The area of a circle is 706.9 square inches. Find the radius.
-[
-r = sqrt(706.9/pi) = 15.0 in
-]
-
-Find the radius of a circle with area 2827.4 square feet.
-[
-r = sqrt(2827.4/pi) = 30.0 ft
-]
+From $94=\pi r^2$, the radius is $\sqrt{94/\pi}$. The diameter is $2\sqrt{94/\pi}$, approximately 10.9 mm. Do not double an already rounded radius.
 
 ## Example 3 — Find the Area of a Sector
 
-Find the area of each shaded sector. Round to the nearest tenth.
+### Problem
 
-### Step 1: Find the Radius
+A circular spinner has radius 6 inches and eight equal sectors. Find the exact area of one sector and round it to the nearest tenth.
 
-Identify the radius of the circle from the diagram or given information.
+### Solution
 
-### Step 2: Find the Central Angle
-
-Read the measure of the arc or central angle that bounds the sector.
-
-### Step 3: Apply the Sector Area Formula
-
-[
-A = (x/360) * pi * r^2
-]
-
-Find the area of a sector with radius 6 inches and central angle 60 degrees.
-[
-A = (60/360) * pi * 6^2
-]
-[
-A = (1/6) * 36pi
-]
-[
-A = 6pi = 18.8 in^2
-]
-
-Find the area of a sector with radius 4 centimeters and central angle 90 degrees.
-[
-A = (90/360) * pi * 4^2
-]
-[
-A = (1/4) * 16pi
-]
-[
-A = 4pi = 12.6 cm^2
-]
-
-SPINNERS: Jeremy wants to make a spinner divided into 8 congruent pieces. What is the area of each piece?
-[
-Central angle = 360/8 = 45 degrees
-]
-[
-A = (45/360) * pi * r^2
-]
-[
-If r is given or needs to be found from context
-]
+One sector is one eighth of the circle, with central angle 45°. Its area is $\pi(6^2)/8=9\pi/2$, approximately 14.1 square inches.
 
 ## Example 4 — Find the Area of a Circle Containing a Sector
 
-Find the area of the circle that contains each sector. Round to the nearest tenth, if necessary.
+### Problem
 
-### Step 1: Use the Sector Area Formula in Reverse
+A sector has area 167 square inches and central angle 110°. Find the area of the whole circle to the nearest tenth.
 
-If a sector has area A and central angle x, the whole circle area can be found:
-[
-A_circle = A_sector * (360/x)
-]
+### Solution
 
-### Step 2: Verify with Radius if Possible
-
-If the sector's radius is known, you can also use [A = pi * r^2] directly.
-
-One sector has an area of 210 square centimeters and arc measure of 30 degrees.
-[
-A_circle = 210 * (360/30)
-]
-[
-A_circle = 210 * 12
-]
-[
-A_circle = 2520 cm^2
-]
-
-One sector has an area of 65 square feet and arc measure of 270 degrees.
-[
-A_circle = 65 * (360/270)
-]
-[
-A_circle = 65 * (4/3)
-]
-[
-A_circle = 86.7 ft^2
-]
-
-One sector has an area of 325 square millimeters and arc measure of 72 degrees.
-[
-A_circle = 325 * (360/72)
-]
-[
-A_circle = 325 * 5
-]
-[
-A_circle = 1625 mm^2
-]
-
-One sector has an area of 167 square inches and arc measure of 110 degrees.
-[
-A_circle = 167 * (360/110)
-]
-[
-A_circle = 167 * (36/11)
-]
-[
-A_circle = 546.5 in^2
-]
-
-One sector has an area of 98 square meters and arc measure of 40 degrees.
-[
-A_circle = 98 * (360/40)
-]
-[
-A_circle = 98 * 9
-]
-[
-A_circle = 882 m^2
-]
-
-One sector has an area of 412 square inches and arc measure of 82 degrees.
-[
-A_circle = 412 * (360/82)
-]
-[
-A_circle = 412 * (180/41)
-]
-[
-A_circle = 1808.8 in^2
-]
+The sector is 110/360 of the circle. Divide by this fraction: the whole area is 167(360/110) = 6012/11 square inches, approximately 546.5 square inches.
 
 ## Mixed Exercises
 

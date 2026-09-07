@@ -42,285 +42,73 @@ The area of a kite is half the product of the lengths of its diagonals: [A = d1 
 
 ## Example 1 — Find Areas of Parallelograms and Rhombuses
 
-Find the area of each parallelogram or rhombus.
+### Problem
 
-### Step 1: Identify Base and Height
+Find the areas of (a) a parallelogram with base 10 cm and perpendicular height 7 cm, and (b) a rhombus with diagonals 8 inches and 6 inches.
 
-For a parallelogram, identify one side as the base and draw the perpendicular height to the opposite side. The height must be perpendicular to the base.
+### Solution
 
-### Step 2: Apply the Formula
-
-For a parallelogram: [A = bh]
-For a rhombus: [A = d1 * d2 / 2]
-
-Find the area of a parallelogram with base 10 centimeters and height 7 centimeters.
-[
-A = bh
-]
-[
-A = 10 * 7
-]
-[
-A = 70 cm^2
-]
-
-Find the area of a rhombus with diagonals measuring 8 inches and 6 inches.
-[
-A = d1 * d2 / 2
-]
-[
-A = 8 * 6 / 2
-]
-[
-A = 24 in^2
-]
-
-Find the area of a rhombus with diagonals measuring 12 meters and 10 meters.
-[
-A = d1 * d2 / 2
-]
-[
-A = 12 * 10 / 2
-]
-[
-A = 60 m^2
-]
-
-Find the area of a parallelogram with base 9 feet and height 11 feet.
-[
-A = bh
-]
-[
-A = 9 * 11
-]
-[
-A = 99 ft^2
-]
+(a) Base times perpendicular height gives 10(7) = 70 square centimeters. (b) Half the diagonal product gives 8(6)/2 = 24 square inches.
 
 ## Example 2 — Find Areas of Trapezoids and Kites
 
-Find the area of each trapezoid or kite.
+### Problem
 
-### Step 1: Identify the Parallel Bases (for Trapezoid)
+Find the areas of (a) a trapezoid with parallel bases 8 inches and 12 inches and perpendicular height 5 inches, and (b) a kite with diagonals 7 cm and 10 cm.
 
-For a trapezoid, identify the two parallel sides as the bases. Find the length of each base and the perpendicular height.
+### Solution
 
-### Step 2: Identify the Diagonals (for Kite)
-
-For a kite, identify the two diagonals and find their lengths.
-
-### Step 3: Apply the Formula
-
-For a trapezoid: [A = (b1 + b2)/2 * h]
-For a kite: [A = d1 * d2 / 2]
-
-Find the area of a trapezoid with bases 8 inches and 12 inches, and height 5 inches.
-[
-A = (b1 + b2)/2 * h
-]
-[
-A = (8 + 12)/2 * 5
-]
-[
-A = 50 in^2
-]
-
-Find the area of a kite with diagonals 7 centimeters and 10 centimeters.
-[
-A = d1 * d2 / 2
-]
-[
-A = 7 * 10 / 2
-]
-[
-A = 35 cm^2
-]
-
-Find the area of a trapezoid with bases 6 meters and 14 meters, and height 4 meters.
-[
-A = (b1 + b2)/2 * h
-]
-[
-A = (6 + 14)/2 * 4
-]
-[
-A = 40 m^2
-]
-
-Find the area of a kite with diagonals 9 feet and 6 feet.
-[
-A = d1 * d2 / 2
-]
-[
-A = 9 * 6 / 2
-]
-[
-A = 27 ft^2
-]
+(a) The trapezoid area is (8+12)(5)/2 = 50 square inches. (b) The kite diagonals are perpendicular, so its area is 7(10)/2 = 35 square centimeters.
 
 ## Example 3 — Construction: Trapezoidal Window
 
-A contractor is replacing a trapezoidal window on the front of a house.
+### Problem
 
-**a.** Find the area of the window.
+A trapezoidal window has parallel bases of 4 ft and 6 ft and perpendicular height 3.5 ft. Glass costs 7 dollars per square foot. Find the window area and glass cost, excluding waste, labor, and tax.
 
-**b.** If the glass for the window costs $7 per square foot, about how much should the contractor expect to pay to replace the window?
+### Solution
 
-The window has a height of 3.5 feet and base lengths of 4 feet and 6 feet.
-[
-A = (b1 + b2)/2 * h
-]
-[
-A = (4 + 6)/2 * 3.5
-]
-[
-A = 5 * 3.5
-]
-[
-A = 17.5 ft^2
-]
-
-For part b:
-[
-Cost = 17.5 * 7 = $122.50
-]
+The area is (4+6)(3.5)/2 = 17.5 square feet. The glass cost is 17.5(7) = 122.50 dollars.
 
 ## Example 4 — Find Areas of Parallelograms and Rhombuses
 
-Find the area of each parallelogram or rhombus.
+### Problem
 
-Find the area of a parallelogram with base 7 meters and height 8 meters.
-[
-A = bh
-]
-[
-A = 7 * 8
-]
-[
-A = 56 m^2
-]
+A parallelogram has area 56 square meters and base 7 m. Find its perpendicular height. A rhombus has area 30 square centimeters and one diagonal of 10 cm. Find the other diagonal.
 
-Find the area of a rhombus with diagonals measuring 10 centimeters and 6 centimeters.
-[
-A = d1 * d2 / 2
-]
-[
-A = 10 * 6 / 2
-]
-[
-A = 30 cm^2
-]
+### Solution
 
-Find the area of a parallelogram with base 12 inches and height 6 inches.
-[
-A = bh
-]
-[
-A = 12 * 6
-]
-[
-A = 72 in^2
-]
+For the parallelogram, 56 = 7h, so h = 8 m. For the rhombus, 30 = 10d/2, so d = 6 cm.
 
 ## Example 5 — Find Areas of Trapezoids and Kites
 
-Find the area of each trapezoid or kite.
+### Problem
 
-Find the area of a trapezoid with bases 9 feet and 13 feet, and height 5 feet.
-[
-A = (b1 + b2)/2 * h
-]
-[
-A = (9 + 13)/2 * 5
-]
-[
-A = 55 ft^2
-]
+A trapezoid has area 55 square feet, height 5 ft, and one base of 9 ft. Find its other base. A kite has area 48 square meters and one diagonal of 8 m. Find its other diagonal.
 
-Find the area of a kite with diagonals 8 meters and 12 meters.
-[
-A = d1 * d2 / 2
-]
-[
-A = 8 * 12 / 2
-]
-[
-A = 48 m^2
-]
+### Solution
 
-Find the area of a trapezoid with bases 7 inches and 11 inches, and height 4 inches.
-[
-A = (b1 + b2)/2 * h
-]
-[
-A = (7 + 11)/2 * 4
-]
-[
-A = 36 in^2
-]
+For the trapezoid, 55 = (9+b)(5)/2. Thus 22 = 9+b, so b = 13 ft. For the kite, 48 = 8d/2, so d = 12 m.
 
 ## Example 6 — More Area Problems
 
-Find the area of each parallelogram, trapezoid, rhombus, or kite.
+### Problem
 
-Find the area of a rhombus with diagonals measuring 14 meters and 8 meters.
-[
-A = d1 * d2 / 2
-]
-[
-A = 14 * 8 / 2
-]
-[
-A = 56 m^2
-]
+A rhombus has diagonals of 14 m and 8 m. A parallelogram has base 7 m and height 8 m. Compare their areas.
 
-Find the area of a parallelogram with base 15 feet and height 9 feet.
-[
-A = bh
-]
-[
-A = 15 * 9
-]
-[
-A = 135 ft^2
-]
+### Solution
 
-Find the area of a kite with diagonals 10 centimeters and 7 centimeters.
-[
-A = d1 * d2 / 2
-]
-[
-A = 10 * 7 / 2
-]
-[
-A = 35 cm^2
-]
+The rhombus area is 14(8)/2 = 56 square meters. The parallelogram area is 7(8) = 56 square meters. Their areas are equal. Equal area does not imply congruence or similarity.
 
 ## Example 7 — Find Diagonal Lengths
 
-The area of a rhombus is 168 square centimeters. If one diagonal is three times as long as the other, what are the lengths of the diagonals to the nearest tenth of a centimeter?
+### Problem
 
-Let d1 = x and d2 = 3x.
-[
-A = d1 * d2 / 2
-]
-[
-168 = x * 3x / 2
-]
-[
-168 = 3x^2 / 2
-]
-[
-336 = 3x^2
-]
-[
-x^2 = 112
-]
-[
-x ≈ 10.6
-]
+A rhombus has area 168 square centimeters. One diagonal is three times the other. Find both diagonals to the nearest tenth.
 
-So d1 ≈ 10.6 cm and d2 ≈ 31.8 cm.
+### Solution
+
+Let the shorter diagonal be x and the longer be 3x. Then $168=x(3x)/2$, so $x^2=112$. The exact lengths are $4\sqrt{7}$ cm and $12\sqrt{7}$ cm. Round each exact value separately: 10.6 cm and 31.7 cm. Multiplying the rounded 10.6 by 3 gives an incorrect rounded longer diagonal.
 
 ## Mixed Exercises
 

@@ -61,60 +61,43 @@ RP = 20 - 5 - 8 = 7 cm. Uniform selection makes each probability equal to favora
 
 ## Example 2 — Time-Based and Real-World Probability
 
-### Step 1: Convert All Measures and Compute Ratios
+### Problem
 
-**Problem 7:** A 15-foot log with frogs 5 feet apart and third frog 10 feet from the second. Find probability fourth frog lands between first two.
-$P = \frac{5}{15}$
+A traffic light repeats a 300-second cycle: green for 147 seconds, yellow for 6 seconds, and red for 147 seconds. An observation time is uniform within a cycle. Find the probability that the light is green.
 
-**Problem 9:** Traffic light green for 2 min 27 s, yellow for 6 s, red for 2 min 27 s in a 5-minute cycle.
-$P(\text{green}) = \frac{147}{300}$
+### Solution
 
-**Problem 10:** Battery takes 2 hours to fully charge. Probability battery is between $\frac{1}{4}$ and $\frac{1}{2}$ charged when checked randomly.
-$P = \frac{\frac{1}{2} - \frac{1}{4}}{1} = \frac{1}{4}$
-
-**Problem 11:** A 2-hour movie with a 6 minute 31 second song. Probability a random customer hears the song playing.
-$P = \frac{6\text{ min }31\text{ s}}{120\text{ min}}$
-
-**Problem 12:** A song is 2 minutes 40 seconds played sometime between noon and 4 P.M. (4 hours = 240 minutes). Find probability of hearing it.
-$P = \frac{160\text{ s}}{14400\text{ s}}$
+The favorable time interval has length 147 seconds out of 300 seconds. The probability is 147/300 = 49/100 = 49%. The uniform observation-time assumption is necessary.
 
 ## Example 3 — Area-Based Probability
 
-### Step 1: Calculate Areas and Find Ratio
+### Problem
 
-**Problem 13:** A fish charm lands on a circular landing pad. Center circle has 4-foot diameter. Find probability of landing in center.
-$P = \frac{\text{area of center circle}}{\text{area of entire pad}} = \frac{\pi (2)^2}{\pi r^2}$
+A point is selected uniformly by area in a rectangular field measuring 120 yd by 30 yd. A circular target of radius 10 yd lies entirely inside the field. Find the probability that the point lies in the target.
 
-**Problem 14:** Circular target with 10-yard radius inside a rectangular field 120 yards by 30 yards.
-$P = \frac{\text{area of target}}{\text{area of field}}$
+### Solution
+
+The field area is 3600 square yards. The target area is $100\pi$ square yards. The probability is $100\pi/3600=\pi/36$, approximately 0.0873. Uniform area selection gives an area ratio; an actual throw need not follow this model.
 
 ## Example 4 — Spinner Probability
 
-### Step 1: Determine Favorable and Total Outcomes
+### Problem
 
-**Problems 15–19:** Use the spinner to find each probability. If the spinner lands on a line, spin again.
+A fair spinner has eight equal-angle sectors: three red, two blue, one green, and two yellow. Find the probability of (a) green or blue and (b) neither red nor yellow.
 
-$P(\text{red}) = \frac{\text{red sections}}{\text{total sections}}$
-$P(\text{blue}) = \frac{\text{blue sections}}{\text{total sections}}$
-$P(\text{green}) = \frac{\text{green sections}}{\text{total sections}}$
-$P(\text{green or blue}) = P(\text{green}) + P(\text{blue})$
-$P(\text{neither red nor yellow}) = 1 - P(\text{red}) - P(\text{yellow})$
+### Solution
+
+Each sector has probability 1/8. (a) Green or blue covers 1+2 = 3 sectors, so the probability is 3/8. (b) Neither red nor yellow also means green or blue, so the probability is 3/8. The complement check gives 1 - 3/8 - 2/8 = 3/8.
 
 ## Example 5 — Assumptions in Geometric Probability
 
-### Step 1: State Assumptions and Calculate
+### Problem
 
-**Problem 20:** Deangelo waits for the Crimson bus (every 8 minutes) or Gold bus (every 15 minutes) with a 5-minute maximum wait.
+Assume two waiting times are independent. One is uniform from 0 to 8 minutes and the other from 0 to 15 minutes. Find the probability that (a) both waits are at most 5 minutes and (b) exactly one wait is at most 5 minutes.
 
-**a.** Assumption: Buses arrive at consistent intervals and passengers arrive randomly.
+### Solution
 
-**b.** Probability of waiting 5 minutes or less for both buses.
-$P(\text{Crimson} \leq 5) = \frac{5}{8} = 0.625$
-$P(\text{Gold} \leq 5) = \frac{5}{15} = 0.333$
-Assuming independence: $P(\text{both}) = 0.625 \times 0.333 \approx 0.208 = 20.8\%$
-
-**c.** Probability of waiting 5 minutes or less for only one bus.
-$0.625 \times (1 - 0.333) + (1 - 0.625) \times 0.333 \approx 0.417 + 0.125 = 0.542 = 54.2\%$
+The individual probabilities are 5/8 and 1/3. (a) Independence gives $(5/8)(1/3)=5/24$, approximately 20.8%. (b) The two disjoint cases give $(5/8)(2/3)+(3/8)(1/3)=13/24$, approximately 54.2%. Regular bus intervals alone do not establish independence of the waiting times.
 
 ## Mixed Exercises
 

@@ -54,38 +54,23 @@ This is useful when it is easier to find the probability that an event does NOT 
 
 ## Example 1 — Classify Events as Mutually Exclusive or Not
 
-### Step 1: Check for Common Outcomes
+### Problem
 
-**Problem 1:** Rolling a die — event of rolling a 6 and event of rolling an even number.
-These events are not mutually exclusive because 6 is both a 6 and an even number.
+A six-sided die is rolled. Let A be the event of a 6 and B the event of an even number. Are A and B mutually exclusive? Compare them with the events of an odd number and an even number.
 
-**Problem 2:** T-shirt selection — blue or large.
-Check whether being blue and being large are mutually exclusive based on the table data.
-If there are blue large shirts, they are not mutually exclusive.
+### Solution
+
+A and B are not mutually exclusive because 6 belongs to both. The odd and even events are mutually exclusive because no result belongs to both. Mutually exclusive means an empty intersection; it does not mean independent.
 
 ## Examples 2 and 3 — Apply the Addition Rule
 
-### Step 1: Identify Mutually Exclusive or Not, Then Apply Appropriate Rule
+### Problem
 
-**Problem 3:** Student of month chooses from 9 gift certificates, 8 T-shirts, 6 water bottles, 5 gift cards. What is probability of choosing a T-shirt or water bottle?
-These are mutually exclusive (a student cannot choose both a T-shirt and water bottle as the single award).
-$P = \frac{8}{28} + \frac{6}{28} = \frac{14}{28} = \frac{1}{2}$
+A group has five women and three men. Four women and two men are international students. A person is selected uniformly. Find the probability that the person is a man or an international student.
 
-**Problem 4:** Store envelopes — 10 with coupons, 8 with gift cards, 2 with $100. Probability of gift card or $100.
-Mutually exclusive.
-$P = \frac{8}{20} + \frac{2}{20} = \frac{10}{20} = \frac{1}{2}$
+### Solution
 
-**Problem 5:** Traffic light — 35% chance of green. Probability of yellow or red.
-Mutually exclusive to green (only one color at a time).
-[P = 1 - 0.35 = 0.65]
-
-**Problem 6:** Graduate students — 4 of 5 females are international, 2 of 3 males are international. Probability of male or international student.
-Not mutually exclusive — some males are international, some internationals are male.
-Use general addition rule:
-Total females = 5. Total males = 3. The 2 international men are part of the 3 men.
-Total students = 8.
-[P(male) = 3/8], [P(international) = 6/8], and [P(male and international) = 2/8].
-[P(male or international) = 3/8 + 6/8 - 2/8 = 7/8 = 0.875].
+There are eight people, three men, six international students, and two people in both categories. The addition rule gives (3+6-2)/8 = 7/8. Subtract the overlap to avoid counting those two people twice.
 
 ## Mixed Exercises
 

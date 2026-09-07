@@ -148,3 +148,11 @@ Modules 3 and 4 verification: 207 tests, lint, frontend and backend TypeScript, 
 Completed the remaining 20 circle and parabola examples. There are now 155 complete worked-example sections. Corrected common tangent counts: four for separate circles, three for external tangency, two for two intersections, one for internal tangency, and zero for strict containment. Removed an unsupported inference about arbitrary chords in congruent circles. Specified full-precision pi before rounding. The tunnel problem now gives road elevation and distinguishes road width from overhead clearance.
 
 Verification passed with 207 tests, lint, frontend and backend TypeScript, and production build.
+
+## Modules 6 and 7 worked examples
+
+Completed 44 area, volume, and density sections and 24 probability sections. The cumulative correction now covers 223 worked-example headings. Corrected the cake calculation from a cone formula to a cylinder formula. Corrected early rounding, including a rhombus diagonal, circle diameter, material cost, and cylinder volume. The density example now supplies mass and volume with consistent units.
+
+Probability examples state uniform-selection and independence assumptions. They distinguish overall from conditional frequencies and empirical dependence from a population significance test. Corrected the twelve-sided die terminology and one conditional-probability rounding error.
+
+The full suite passed with 207 tests using two test workers. Two earlier checks exceeded the default time limit during a busy parallel build; the rerun passed. Lint, frontend and backend TypeScript, and production build passed.

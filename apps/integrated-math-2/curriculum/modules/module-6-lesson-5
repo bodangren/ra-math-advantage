@@ -40,21 +40,13 @@ Rotating a shape around an axis creates a solid. The shape of the resulting soli
 
 ## Example 1 — Planes of Symmetry
 
-Describe each plane of symmetry for each solid.
+### Problem
 
-### Step 1: Identify Symmetry Planes
+Describe all planes of reflection symmetry of (a) a rectangular prism with three distinct edge lengths, (b) a finite right circular cylinder, and (c) a sphere.
 
-Look for ways to divide the solid into two equal halves.
+### Solution
 
-### Step 2: Describe Each Plane
-
-A rectangular prism has 3 planes of symmetry: one through the length, one through the width, and one through the height (each dividing the prism into two congruent halves).
-
-A cylinder has infinitely many planes of symmetry if it is a right circular cylinder — any plane containing the central axis.
-
-A cone has planes of symmetry that contain the central axis.
-
-A sphere has infinitely many planes of symmetry — any plane through the center.
+(a) The prism has three planes, each through its center and parallel to a pair of opposite faces. The distinct-length condition excludes the additional symmetries of a square prism or cube. (b) The cylinder has every plane through its axis and the plane perpendicular to the axis halfway between its bases. (c) Every plane through the sphere center is a symmetry plane. A symmetry plane must make reflection preserve the solid; equal volumes alone are not sufficient.
 
 ## Example 2 — Identify Cross Section Shapes
 
