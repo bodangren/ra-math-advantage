@@ -39,12 +39,12 @@ const module13LessonStandards: SeedLessonStandard[] = [
   },
   {
     lessonSlug: "module-13-lesson-4",
-    standardCode: "F-TF.C.7",
+    standardCode: "F-TF.B.7",
     isPrimary: true,
   },
   {
     lessonSlug: "module-13-lesson-4",
-    standardCode: "F-TF.C.6",
+    standardCode: "F-TF.B.6",
     isPrimary: false,
   },
   {
@@ -119,7 +119,9 @@ export const seedModule13LessonStandards = internalMutation({
         const existing = await ctx.db
           .query("lesson_standards")
           .withIndex("by_lesson_version_and_standard", (q) =>
-            q.eq("lessonVersionId", lessonVersion._id).eq("standardId", standard._id)
+            q
+              .eq("lessonVersionId", lessonVersion._id)
+              .eq("standardId", standard._id),
           )
           .unique();
 

@@ -44,12 +44,13 @@ export const getDashboardData = internalQuery({
     for (const lessonId of ids) {
       const lesson = await ctx.db.get(lessonId);
       if (!lesson) continue;
-      const versions = await ctx.db
+      const version = await ctx.db
         .query("lesson_versions")
-        .withIndex("by_lesson_and_version", (q) => q.eq("lessonId", lessonId))
+        .withIndex("by_lesson_status_version", (q) =>
+          q.eq("lessonId", lessonId).eq("status", "published"),
+        )
         .order("desc")
-        .take(100);
-      const version = versions.find((v) => v.status === "published");
+        .first();
       if (!version) continue;
       const phases = await ctx.db
         .query("phase_versions")
@@ -57,20 +58,19 @@ export const getDashboardData = internalQuery({
           q.eq("lessonVersionId", version._id),
         )
         .take(100);
-      const progress = await ctx.db
-        .query("student_progress")
-        .withIndex("by_user_and_lesson", (q) =>
-          q.eq("userId", args.userId).eq("lessonId", lessonId),
-        )
-        .take(100);
-      const completed = phases.filter((phase) =>
-        progress.some(
-          (p) => p.phaseId === phase._id && p.status === "completed",
-        ),
-      ).length;
+      let completed = 0;
+      for (const phase of phases) {
+        const progress = await ctx.db
+          .query("student_progress")
+          .withIndex("by_user_and_phase", (q) =>
+            q.eq("userId", args.userId).eq("phaseId", phase._id),
+          )
+          .unique();
+        if (progress?.status === "completed") completed++;
+      }
       result.push({
         id: lessonId,
-        title: lesson.title,
+        title: version.title ?? lesson.title,
         slug: lesson.slug,
         unitNumber: lesson.unitNumber,
         orderIndex: lesson.orderIndex,

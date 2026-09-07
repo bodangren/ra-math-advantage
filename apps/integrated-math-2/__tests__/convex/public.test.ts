@@ -19,6 +19,7 @@ it("uses unit metadata and includes only published lesson versions", async () =>
   await t.db.insert("lesson_versions", {
     lessonId: a,
     status: "published",
+    title: "Published bisectors",
     version: 1,
   });
   await t.db.insert("lesson_versions", {
@@ -28,9 +29,10 @@ it("uses unit metadata and includes only published lesson versions", async () =>
   });
   const result = await invoke<
     Record<string, never>,
-    Array<{ title: string; lessons: Array<{ slug: string }> }>
+    Array<{ title: string; lessons: Array<{ slug: string; title: string }> }>
   >(getCurriculum, t.ctx, {});
   expect(result).toHaveLength(1);
+  expect(result[0].lessons[0].title).toBe("Published bisectors");
   expect(result[0].title).toBe("Relationships in Triangles");
   expect(result[0].lessons.map((l) => l.slug)).toEqual(["module-1-lesson-1"]);
 });

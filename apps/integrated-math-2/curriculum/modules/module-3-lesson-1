@@ -46,10 +46,9 @@ Determine whether each dilation is an enlargement or reduction, then find the sc
 
 For each figure pair, compare corresponding lengths. If the image is larger, it is an enlargement. If smaller, it is a reduction.
 
-[
+$$
 scale\ factor = \frac{image\ length}{original\ length}
-]
-
+$$
 ### Step 2: Classify the Dilation
 
 Based on the scale factor value, classify as enlargement ([k > 1]), reduction ([0 < k < 1]), or identity ([k = 1]).
@@ -58,9 +57,9 @@ Based on the scale factor value, classify as enlargement ([k > 1]), reduction ([
 
 ### Step 1: Apply the Scale Factor
 
-When a dilation has scale factor [k = \frac{1}{2}], the image dimensions are half the original dimensions. The perimeter of the image is also half the original perimeter.
+When a dilation has scale factor $k = \frac{1}{2}$, the image dimensions are half the original dimensions. The perimeter of the image is also half the original perimeter.
 
-**BLUEPRINTS:** Ezra is redrawing a blueprint so that the image is [k = \frac{1}{2}] the size of the original. If the original perimeter is [P], the new perimeter is [\frac{1}{2}P].
+**BLUEPRINTS:** Ezra is redrawing a blueprint so that the image is $k = \frac{1}{2}$ the size of the original. If the original perimeter is [P], the new perimeter is $\frac{1}{2}P$.
 
 ## Example 3 — Graph Dilated Triangles
 
@@ -86,10 +85,9 @@ Plot the original triangle and its dilated image on the coordinate plane.
 
 To find the scale factor, compare the lengths of corresponding sides or distances from the center of dilation to corresponding points.
 
-[
+$$
 k = \frac{image\ length}{original\ length}
-]
-
+$$
 ## Mixed Exercises
 
 The mixed exercises section provides practice with all skills from the lesson. Problems include:

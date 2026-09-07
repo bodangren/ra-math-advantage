@@ -33,7 +33,7 @@ What makes an isosceles trapezoid different from a regular trapezoid? What speci
 * In an isosceles trapezoid, the base angles are congruent and the diagonals are congruent.
 * The midsegment of a trapezoid is parallel to both bases and its length equals the average of the base lengths:
 
-[m = \frac{b_1 + b_2}{2}]
+$m = \frac{b_1 + b_2}{2}$
 
 ### Key Concept: Kite Properties
 
@@ -76,7 +76,7 @@ The midsegment connects the midpoints of the legs.
 
 ### Step 2: Apply the Formula
 
-Substitute the known base lengths into [m = \frac{b_1 + b_2}{2}] and solve for the unknown.
+Substitute the known base lengths into $m = \frac{b_1 + b_2}{2}$ and solve for the unknown.
 
 ## Example 4 — Find Midsegment Endpoints
 

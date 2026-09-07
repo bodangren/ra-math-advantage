@@ -35,7 +35,10 @@ async function publishedCurriculum(ctx: QueryCtx) {
         .sort((a, b) => a.orderIndex - b.orderIndex)
         .map((row) => ({
           id: row._id,
-          title: row.title,
+          title:
+            versions
+              .filter((v) => v.lessonId === row._id)
+              .sort((a, b) => b.version - a.version)[0].title ?? row.title,
           slug: row.slug,
           orderIndex: row.orderIndex,
         })),

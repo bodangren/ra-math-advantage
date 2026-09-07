@@ -58,19 +58,17 @@ Use similar triangles to find distances that cannot be measured directly.
 **CELL TOWERS (Problem 7):** Tower shadow = 100 ft, Lia's shadow = 3 ft 4 in (3.33 ft), Lia's height = 4 ft 6 in (4.5 ft).
 
 The tower and Lia form similar triangles with their shadows:
-[
+$$
 \frac{tower\ height}{tower\ shadow} = \frac{Lia's\ height}{Lia's\ shadow}
-]
-[
+$$
+$$
 \frac{h}{100} = \frac{4.5}{3.33}
-]
-
+$$
 ### Step 2: Solve for the Unknown
 
-[
+$$
 h = \frac{4.5 \times 100}{3.33} ≈ 135\ ft
-]
-
+$$
 **LIGHTHOUSE (Problem 8):** Maya's shadow coincides with the lighthouse shadow. Use the similar triangles formed by each object and its shadow to find distances [x] and [y].
 
 ## Mixed Exercises

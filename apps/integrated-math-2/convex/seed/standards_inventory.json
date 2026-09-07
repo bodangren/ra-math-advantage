@@ -145,12 +145,12 @@
     "framework": "CCSS-M"
   },
   {
-    "code": "F-TF.C.6",
+    "code": "F-TF.B.6",
     "source": "Common Core State Standards Initiative",
     "framework": "CCSS-M"
   },
   {
-    "code": "F-TF.C.7",
+    "code": "F-TF.B.7",
     "source": "Common Core State Standards Initiative",
     "framework": "CCSS-M"
   },
@@ -320,87 +320,47 @@
     "framework": "CCSS-M"
   },
   {
-    "code": "HSA-APR.A.1",
+    "code": "A-APR.A.1",
     "source": "Common Core State Standards Initiative",
     "framework": "CCSS-M"
   },
   {
-    "code": "HSA-APR.B.2",
+    "code": "A-APR.B.2",
     "source": "Common Core State Standards Initiative",
     "framework": "CCSS-M"
   },
   {
-    "code": "HSA-APR.B.3",
+    "code": "A-APR.C.4",
     "source": "Common Core State Standards Initiative",
     "framework": "CCSS-M"
   },
   {
-    "code": "HSA-APR.C.4",
+    "code": "F-BF.A.2",
     "source": "Common Core State Standards Initiative",
     "framework": "CCSS-M"
   },
   {
-    "code": "HSA-CED.A.2",
+    "code": "F-IF.A.1",
     "source": "Common Core State Standards Initiative",
     "framework": "CCSS-M"
   },
   {
-    "code": "HSA-CED.A.3",
+    "code": "F-IF.A.2",
     "source": "Common Core State Standards Initiative",
     "framework": "CCSS-M"
   },
   {
-    "code": "HSA-SSE.A.2",
+    "code": "F-IF.B.5",
     "source": "Common Core State Standards Initiative",
     "framework": "CCSS-M"
   },
   {
-    "code": "HSF-BF.A.1",
+    "code": "F-IF.B.6",
     "source": "Common Core State Standards Initiative",
     "framework": "CCSS-M"
   },
   {
-    "code": "HSF-BF.A.2",
-    "source": "Common Core State Standards Initiative",
-    "framework": "CCSS-M"
-  },
-  {
-    "code": "HSF-IF.A.1",
-    "source": "Common Core State Standards Initiative",
-    "framework": "CCSS-M"
-  },
-  {
-    "code": "HSF-IF.A.2",
-    "source": "Common Core State Standards Initiative",
-    "framework": "CCSS-M"
-  },
-  {
-    "code": "HSF-IF.B.4",
-    "source": "Common Core State Standards Initiative",
-    "framework": "CCSS-M"
-  },
-  {
-    "code": "HSF-IF.B.5",
-    "source": "Common Core State Standards Initiative",
-    "framework": "CCSS-M"
-  },
-  {
-    "code": "HSF-IF.B.6",
-    "source": "Common Core State Standards Initiative",
-    "framework": "CCSS-M"
-  },
-  {
-    "code": "HSF-IF.C.7",
-    "source": "Common Core State Standards Initiative",
-    "framework": "CCSS-M"
-  },
-  {
-    "code": "HSF-IF.C.7b",
-    "source": "Common Core State Standards Initiative",
-    "framework": "CCSS-M"
-  },
-  {
-    "code": "HSF-IF.C.9",
+    "code": "F-IF.C.7b",
     "source": "Common Core State Standards Initiative",
     "framework": "CCSS-M"
   },

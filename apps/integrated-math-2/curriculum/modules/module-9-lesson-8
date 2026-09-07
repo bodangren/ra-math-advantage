@@ -107,16 +107,15 @@ a - 2b + c = -5
 
 From [b - c = 15], express [b = c + 15].
 
-From [2a + c = -10], express [a = \frac{-10 - c}{2}].
+From [2a + c = -10], express $a = \frac{-10 - c}{2}$.
 
 ### Step 2: Substitute into the Third Equation
 
 Substitute [a] and [b] into [a - 2b + c = -5]:
 
-[
+$$
 \frac{-10 - c}{2} - 2(c + 15) + c = -5
-]
-
+$$
 Multiply by 2:
 
 [
@@ -137,9 +136,9 @@ c = -20
 
 ### Step 3: Find a and b
 
-[
+$$
 a = \frac{-10 - (-20)}{2} = \frac{10}{2} = 5
-]
+$$
 [
 b = -20 + 15 = -5
 ]
@@ -160,15 +159,15 @@ Let [m_1], [m_2], and [m_3] represent the grams of Mix 1, Mix 2, and Mix 3.
 
 Write equations based on the nutritional requirements:
 
-[
+$$
 \text{Protein: } 10m_1 + 5m_2 + 3m_3 = 23
-]
-[
+$$
+$$
 \text{Fat: } 2m_1 + 4m_2 + m_3 = 6.2
-]
-[
-\text Moistrue: } 6m_1 + 5m_2 + 8m_3 = 16
-]
+$$
+$
+\text{Moisture: } 6m_1 + 5m_2 + 8m_3 = 16
+$
 
 ### Step 2: Solve the System
 
@@ -219,10 +218,9 @@ Multiply the first equation by 5 and the second by 2:
 [
 -89m_2 = -45.2
 ]
-[
+$$
 m_2 = \frac{45.2}{89} \approx 0.51
-]
-
+$$
 Substitute back to find [m_1] and [m_3]:
 
 [
@@ -231,10 +229,9 @@ Substitute back to find [m_1] and [m_3]:
 [
 4m_1 = 4.4 + 3.57 = 7.97
 ]
-[
+$$
 m_1 = \frac{7.97}{4} \approx 1.99
-]
-
+$$
 [
 2(1.99) + 4(0.51) + m_3 = 6.2
 ]
@@ -293,10 +290,9 @@ n = 2a
 
 Cost equation:
 
-[
+$$
 4.48a + 2.40r + 3.44n = 3.18 \times 16 = 50.88
-]
-
+$$
 ### Step 2: Solve
 
 Substitute [n = 2a] into the weight equation:

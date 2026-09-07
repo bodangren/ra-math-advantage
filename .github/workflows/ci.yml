@@ -256,6 +256,12 @@ jobs:
           CI: true
 
       - name: Run ${{ matrix.app.name }} typecheck
+      - name: Check IM2 backend types and content bundle
+        if: matrix.app.name == 'IM2'
+        run: cd apps/integrated-math-2 && npx tsc --noEmit -p convex/tsconfig.json && npm run curriculum:check
+        env:
+          CI: true
+
         run: cd ${{ matrix.app.dir }} && npx tsc --noEmit
         env:
           CI: true

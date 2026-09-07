@@ -50,7 +50,9 @@ export default defineSchema({
     key: v.string(),
     windowStart: v.number(),
     count: v.number(),
-  }).index("by_key", ["key"]),
+  })
+    .index("by_key", ["key"])
+    .index("by_window_start", ["windowStart"]),
 
   classes: defineTable({
     joinCode: v.optional(v.string()),
@@ -120,7 +122,8 @@ export default defineSchema({
   })
     .index("by_lesson", ["lessonId"])
     .index("by_status", ["status"])
-    .index("by_lesson_and_version", ["lessonId", "version"]),
+    .index("by_lesson_and_version", ["lessonId", "version"])
+    .index("by_lesson_status_version", ["lessonId", "status", "version"]),
 
   phase_versions: defineTable({
     lessonVersionId: v.id("lesson_versions"),

@@ -2754,8 +2754,8 @@
       "nodeId": "math.im2.skill.8.1.determine-whether-a-relation-is-a-function-using-tables-mapp",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.hsf-if-a-1",
-        "math.standard.ccss.hsf-if-a-2"
+        "math.standard.ccss.f-if-a-1",
+        "math.standard.ccss.f-if-a-2"
       ],
       "rendererKey": "graphing-explorer",
       "rendererModeMap": {
@@ -2783,8 +2783,8 @@
       "nodeId": "math.im2.skill.8.1.identify-domain-and-range-from-various-representations",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.hsf-if-a-1",
-        "math.standard.ccss.hsf-if-a-2"
+        "math.standard.ccss.f-if-a-1",
+        "math.standard.ccss.f-if-a-2"
       ],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {
@@ -2812,8 +2812,8 @@
       "nodeId": "math.im2.skill.8.2.describe-domain-and-range-restrictions-in-terms-of-real-worl",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.hsf-if-c-9",
-        "math.standard.ccss.hsf-if-b-4"
+        "math.standard.ccss.f-if-c-9",
+        "math.standard.ccss.f-if-b-4"
       ],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {
@@ -2841,8 +2841,8 @@
       "nodeId": "math.im2.skill.8.2.find-domain-and-range-from-graphs-tables-equations-and-word",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.hsf-if-c-9",
-        "math.standard.ccss.hsf-if-b-4"
+        "math.standard.ccss.f-if-c-9",
+        "math.standard.ccss.f-if-b-4"
       ],
       "rendererKey": "graphing-explorer",
       "rendererModeMap": {
@@ -2870,8 +2870,8 @@
       "nodeId": "math.im2.skill.8.3.interpret-and-evaluate-function-notation-fx",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.hsf-if-b-4",
-        "math.standard.ccss.hsf-if-b-5"
+        "math.standard.ccss.f-if-b-4",
+        "math.standard.ccss.f-if-b-5"
       ],
       "rendererKey": "graphing-explorer",
       "rendererModeMap": {
@@ -2899,8 +2899,8 @@
       "nodeId": "math.im2.skill.8.4.distinguish-linear-from-nonlinear-functions-using-rate-of-ch",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.hsf-if-c-7",
-        "math.standard.ccss.hsf-if-b-6"
+        "math.standard.ccss.f-if-c-7",
+        "math.standard.ccss.f-if-b-6"
       ],
       "rendererKey": "rate-of-change-calculator",
       "rendererModeMap": {
@@ -2928,8 +2928,8 @@
       "nodeId": "math.im2.skill.8.5.graph-reflections-stretches-and-compressions-of-parent-funct",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.hsa-ced-a-2",
-        "math.standard.ccss.hsa-ced-a-3"
+        "math.standard.ccss.a-ced-a-2",
+        "math.standard.ccss.a-ced-a-3"
       ],
       "rendererKey": "graphing-explorer",
       "rendererModeMap": {
@@ -2957,8 +2957,8 @@
       "nodeId": "math.im2.skill.8.5.graph-vertical-and-horizontal-shifts-of-parent-functions",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.hsa-ced-a-2",
-        "math.standard.ccss.hsa-ced-a-3"
+        "math.standard.ccss.a-ced-a-2",
+        "math.standard.ccss.a-ced-a-3"
       ],
       "rendererKey": "graphing-explorer",
       "rendererModeMap": {
@@ -2986,8 +2986,8 @@
       "nodeId": "math.im2.skill.8.6.compare-two-or-more-functions-represented-as-graphs-tables-e",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.hsf-if-c-7b",
-        "math.standard.ccss.hsf-if-a-2"
+        "math.standard.ccss.f-if-c-7b",
+        "math.standard.ccss.f-if-a-2"
       ],
       "rendererKey": "graphing-explorer",
       "rendererModeMap": {
@@ -3442,8 +3442,8 @@
       "nodeId": "math.im2.skill.11.1.classify-polynomials-by-degree-number-of-terms-and-write-in",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.hsa-apr-a-1",
-        "math.standard.ccss.hsa-sse-a-2"
+        "math.standard.ccss.a-apr-a-1",
+        "math.standard.ccss.a-sse-a-2"
       ],
       "rendererKey": "graphing-explorer",
       "rendererModeMap": {
@@ -3471,8 +3471,8 @@
       "nodeId": "math.im2.skill.11.1.determine-whether-an-expression-is-a-polynomial-and-identify",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.hsa-apr-a-1",
-        "math.standard.ccss.hsa-sse-a-2"
+        "math.standard.ccss.a-apr-a-1",
+        "math.standard.ccss.a-sse-a-2"
       ],
       "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
@@ -3500,8 +3500,8 @@
       "nodeId": "math.im2.skill.11.2.add-and-subtract-polynomials-by-combining-like-terms",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.hsa-apr-a-1",
-        "math.standard.ccss.hsa-apr-b-2"
+        "math.standard.ccss.a-apr-a-1",
+        "math.standard.ccss.a-apr-b-2"
       ],
       "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
@@ -3529,8 +3529,8 @@
       "nodeId": "math.im2.skill.11.2.apply-addition-of-polynomials-to-find-total-area-in-geometri",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.hsa-apr-a-1",
-        "math.standard.ccss.hsa-apr-b-2"
+        "math.standard.ccss.a-apr-a-1",
+        "math.standard.ccss.a-apr-b-2"
       ],
       "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
@@ -3558,8 +3558,8 @@
       "nodeId": "math.im2.skill.11.3.multiply-polynomials-in-real-world-area-and-geometric-contex",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.hsa-apr-a-1",
-        "math.standard.ccss.hsa-apr-c-4"
+        "math.standard.ccss.a-apr-a-1",
+        "math.standard.ccss.a-apr-c-4"
       ],
       "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
@@ -3587,8 +3587,8 @@
       "nodeId": "math.im2.skill.11.3.multiply-polynomials-using-the-distributive-property-and-foi",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.hsa-apr-a-1",
-        "math.standard.ccss.hsa-apr-c-4"
+        "math.standard.ccss.a-apr-a-1",
+        "math.standard.ccss.a-apr-c-4"
       ],
       "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
@@ -3616,8 +3616,8 @@
       "nodeId": "math.im2.skill.11.4.recognize-and-apply-special-product-patterns-ab-ab-abab",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.hsa-apr-c-4",
-        "math.standard.ccss.hsa-apr-b-3"
+        "math.standard.ccss.a-apr-c-4",
+        "math.standard.ccss.a-apr-b-3"
       ],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {
@@ -3645,8 +3645,8 @@
       "nodeId": "math.im2.skill.11.5.factor-polynomials-using-gcf-grouping-trinomials-and-differe",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.hsa-apr-a-1",
-        "math.standard.ccss.hsa-sse-a-2"
+        "math.standard.ccss.a-apr-a-1",
+        "math.standard.ccss.a-sse-a-2"
       ],
       "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
@@ -3674,8 +3674,8 @@
       "nodeId": "math.im2.skill.11.6.solve-polynomial-equations-by-factoring-using-the-zero-produ",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.hsa-apr-b-3",
-        "math.standard.ccss.hsa-apr-b-2"
+        "math.standard.ccss.a-apr-b-3",
+        "math.standard.ccss.a-apr-b-2"
       ],
       "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
@@ -3703,8 +3703,8 @@
       "nodeId": "math.im2.skill.11.6.write-polynomial-equations-given-zeros-or-a-graph-use-zeros",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.hsa-apr-b-3",
-        "math.standard.ccss.hsa-apr-b-2"
+        "math.standard.ccss.a-apr-b-3",
+        "math.standard.ccss.a-apr-b-2"
       ],
       "rendererKey": "graphing-explorer",
       "rendererModeMap": {
@@ -4196,8 +4196,8 @@
       "nodeId": "math.im2.skill.13.4.apply-double-angle-identities-for-sine-cosine-all-three-form",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.f-tf-c-7",
-        "math.standard.ccss.f-tf-c-6"
+        "math.standard.ccss.f-tf-b-7",
+        "math.standard.ccss.f-tf-b-6"
       ],
       "rendererKey": "step-by-step-solver",
       "rendererModeMap": {

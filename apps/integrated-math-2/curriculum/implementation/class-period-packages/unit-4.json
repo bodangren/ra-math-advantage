@@ -1,407 +1,551 @@
 {
   "schemaVersion": "class-period-package.v1",
   "unit": 4,
-  "generatedFrom": "curriculum/unit-4-class-period-plan.md",
   "periods": [
     {
-      "periodId": "u04-p01",
-      "unit": 4,
-      "period": 1,
+      "periodId": "m4-p01",
+      "number": 40,
+      "unitNumber": 4,
       "dayType": "instruction",
-      "sourceLesson": "4-1",
-      "objectiveCode": "4a",
-      "objective": "Apply the Pythagorean theorem to find missing sides of right triangles.",
-      "workedExamples": "4-1, Examples 1-3 — Find the Hypotenuse Given the Legs; Find a Missing Leg; Converse: Determine If a Triangle Is Right",
-      "embeddedObjectives": [],
-      "problemTypes": ["pythagorean_theorem"],
-      "notes": "Core Pythagorean theorem and its converse.",
+      "sourceLesson": "module-4-lesson-1",
+      "objective": "Find the geometric mean between two numbers.",
+      "embeddedObjectives": [
+        "Write similarity statements for the three similar right triangles in a diagram.",
+        "Find unknown side lengths in right triangles using geometric mean relationships."
+      ],
+      "workedExamples": [
+        "Example 1 — Find the Geometric Mean",
+        "Example 2 — Similarity Statements for Right Triangles"
+      ],
       "dailyPhases": {
-        "warmUp": "Activate prior knowledge for 4a with one retrieval prompt on identifying the hypotenuse and legs of a right triangle.",
-        "conceptDevelopment": "Use 4-1, Examples 1-3 to develop: apply a² + b² = c² to find the hypotenuse from two legs, rearrange to find a missing leg, and use the converse to determine if three lengths form a right triangle.",
-        "guidedPractice": "Students complete scaffolded problems modeled on 4-1, Examples 1-3: compute missing sides and test right-triangle validity; teacher checks formula setup and algebraic manipulation.",
-        "independentPractice": "Students complete aligned practice on pythagorean_theorem: hypotenuse, missing leg, and converse problems.",
-        "assessment": "Exit ticket: one missing-side computation and one converse right-triangle check.",
-        "capReflection": "CAP reflection: Name the strategy that helped you persist with the Pythagorean theorem."
+        "warmUp": "Two similar triangles have corresponding side lengths 6 cm and 9 cm. The altitude to the 6 cm side is 4 cm. Find the altitude to the 9 cm side, in centimeters.",
+        "conceptDevelopment": {
+          "sourceLesson": "module-4-lesson-1",
+          "workedExamples": [
+            "Example 1 — Find the Geometric Mean"
+          ]
+        },
+        "guidedPractice": {
+          "sourceLesson": "module-4-lesson-1",
+          "workedExamples": [
+            "Example 2 — Similarity Statements for Right Triangles"
+          ]
+        },
+        "independentPractice": {
+          "questionId": "module-4-lesson-1",
+          "prompt": "Find the positive geometric mean of 4 and 9."
+        },
+        "assessment": {
+          "questionId": "module-4-lesson-1",
+          "requireExplanation": true
+        },
+        "capReflection": "Which step in geometric mean required a change in your method? Explain the change."
       }
     },
     {
-      "periodId": "u04-p02",
-      "unit": 4,
-      "period": 2,
+      "periodId": "m4-p02",
+      "number": 41,
+      "unitNumber": 4,
       "dayType": "instruction",
-      "sourceLesson": "4-1",
-      "objectiveCode": "4b",
-      "objective": "Derive the distance formula from the Pythagorean theorem and apply to real-world problems.",
-      "workedExamples": "4-1, Examples 4-6 — Distance Formula Derived from the Pythagorean Theorem; Real-World: Ladder Against a Wall; Pythagorean Triples: Identify and Generate",
-      "embeddedObjectives": ["4a"],
-      "problemTypes": ["pythagorean_theorem"],
-      "notes": "Distance formula derivation, real-world application, and Pythagorean triples.",
+      "sourceLesson": "module-4-lesson-2",
+      "objective": "Find unknown side lengths in right triangles using the Pythagorean Theorem.",
+      "embeddedObjectives": [
+        "Identify and use Pythagorean triples.",
+        "Classify triangles as acute, right, or obtuse using the converse of the Pythagorean Theorem.",
+        "Apply the Pythagorean Theorem in real-world contexts."
+      ],
+      "workedExamples": [
+        "Example 1 — Find the Value of x",
+        "Example 2 — Use Pythagorean Triples"
+      ],
       "dailyPhases": {
-        "warmUp": "Activate prior knowledge for 4b with one retrieval prompt on plotting two points on a coordinate plane and finding the horizontal and vertical distances.",
-        "conceptDevelopment": "Use 4-1, Examples 4-6 to develop: derive the distance formula by applying the Pythagorean theorem to coordinate differences, solve a real-world ladder problem, and identify and generate Pythagorean triples.",
-        "guidedPractice": "Students complete scaffolded problems modeled on 4-1, Examples 4-6: derive and apply the distance formula and verify Pythagorean triples; teacher checks derivation understanding.",
-        "independentPractice": "Students complete aligned practice on pythagorean_theorem: distance formula applications, real-world problems, and triple identification.",
-        "assessment": "Exit ticket: one distance formula computation and one Pythagorean triple identification.",
-        "capReflection": "CAP reflection: Name the strategy that helped you persist with the distance formula and Pythagorean triples."
+        "warmUp": "Find the positive geometric mean of 4 and 9.",
+        "conceptDevelopment": {
+          "sourceLesson": "module-4-lesson-2",
+          "workedExamples": [
+            "Example 1 — Find the Value of x"
+          ]
+        },
+        "guidedPractice": {
+          "sourceLesson": "module-4-lesson-2",
+          "workedExamples": [
+            "Example 2 — Use Pythagorean Triples"
+          ]
+        },
+        "independentPractice": {
+          "questionId": "module-4-lesson-2",
+          "prompt": "A right triangle has legs 9 cm and 12 cm. Find the hypotenuse length in centimeters."
+        },
+        "assessment": {
+          "questionId": "module-4-lesson-2",
+          "requireExplanation": true
+        },
+        "capReflection": "Which step in pythagorean theorem and its converse required a change in your method? Explain the change."
       }
     },
     {
-      "periodId": "u04-p03",
-      "unit": 4,
-      "period": 3,
+      "periodId": "m4-p03",
+      "number": 42,
+      "unitNumber": 4,
+      "dayType": "instruction",
+      "sourceLesson": "module-4-lesson-3",
+      "objective": "Graph a rectangular solid given vertices in three-dimensional space.",
+      "embeddedObjectives": [
+        "Find the distance between two points in three-dimensional space.",
+        "Find the midpoint of a segment in three-dimensional space.",
+        "Apply the Distance Formula and Midpoint Formula in space."
+      ],
+      "workedExamples": [
+        "Example 1 — Graph a Rectangular Solid",
+        "Example 2 — Distance in Space"
+      ],
+      "dailyPhases": {
+        "warmUp": "A right triangle has legs 9 cm and 12 cm. Find the hypotenuse length in centimeters.",
+        "conceptDevelopment": {
+          "sourceLesson": "module-4-lesson-3",
+          "workedExamples": [
+            "Example 1 — Graph a Rectangular Solid"
+          ]
+        },
+        "guidedPractice": {
+          "sourceLesson": "module-4-lesson-3",
+          "workedExamples": [
+            "Example 2 — Distance in Space"
+          ]
+        },
+        "independentPractice": {
+          "questionId": "module-4-lesson-3",
+          "prompt": "Find the distance from (0, 0, 0) to (2, 3, 6)."
+        },
+        "assessment": {
+          "questionId": "module-4-lesson-3",
+          "requireExplanation": true
+        },
+        "capReflection": "Which step in coordinates in space required a change in your method? Explain the change."
+      }
+    },
+    {
+      "periodId": "m4-p04",
+      "number": 43,
+      "unitNumber": 4,
       "dayType": "mastery",
-      "notes": "Mastery cycle on 4a-4b.",
-      "nonInstructionArtifact": {
-        "artifactType": "mastery",
-        "objectiveScope": "Mastery cycle on 4a-4b.",
-        "srsSources": [
-          "worked-example-derived practice",
-          "problem-type practice where available",
-          "prior-unit spiral review"
-        ],
-        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
-        "extensionOptions": "Offer synthesis problems that combine current objectives with prior units.",
-        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
-      }
+      "sourceLessons": [
+        "module-4-lesson-1",
+        "module-4-lesson-2",
+        "module-4-lesson-3"
+      ],
+      "questionIds": [
+        "module-4-lesson-1",
+        "module-4-lesson-2",
+        "module-4-lesson-3"
+      ],
+      "task": "Solve the listed checkpoint questions. Explain each method. Use the source worked examples to correct an error. Recheck the corrected answer."
     },
     {
-      "periodId": "u04-p04",
-      "unit": 4,
-      "period": 4,
+      "periodId": "m4-p05",
+      "number": 44,
+      "unitNumber": 4,
       "dayType": "instruction",
-      "sourceLesson": "4-2",
-      "objectiveCode": "4c",
-      "objective": "Use the side ratios in 30-60-90 and 45-45-90 triangles to find missing sides.",
-      "workedExamples": "4-2, Examples 1-3 — Find All Sides of a 30-60-90 Triangle Given the Short Leg; Find All Sides of a 45-45-90 Triangle Given the Hypotenuse; Find the Altitude of an Equilateral Triangle",
-      "embeddedObjectives": [],
-      "problemTypes": ["special_right_triangles"],
-      "notes": "Core special right triangles: 30-60-90 ratios, 45-45-90 ratios, and equilateral triangle altitude.",
+      "sourceLesson": "module-4-lesson-4",
+      "objective": "Find missing side lengths in 45°-45°-90° triangles using the special ratio.",
+      "embeddedObjectives": [
+        "Find missing side lengths in 30°-60°-90° triangles using the special ratio.",
+        "Apply special right triangle ratios to solve real-world problems."
+      ],
+      "workedExamples": [
+        "Example 1 — 45°-45°-90° Triangles",
+        "Example 2 — 30°-60°-90° Triangles"
+      ],
       "dailyPhases": {
-        "warmUp": "Activate prior knowledge for 4c with one retrieval prompt listing the side ratios for 30-60-90 and 45-45-90 triangles.",
-        "conceptDevelopment": "Use 4-2, Examples 1-3 to develop: find all sides of a 30-60-90 triangle from the short leg using the 1 : √3 : 2 ratio, find all sides of a 45-45-90 from the hypotenuse using the 1 : 1 : √2 ratio, and compute the altitude of an equilateral triangle by recognizing it creates two 30-60-90 triangles.",
-        "guidedPractice": "Students complete scaffolded problems modeled on 4-2, Examples 1-3: apply ratio relationships to find missing sides in both triangle types; teacher checks ratio application and simplification.",
-        "independentPractice": "Students complete aligned practice on special_right_triangles: side-finding and altitude problems for both triangle types.",
-        "assessment": "Exit ticket: one 30-60-90 side calculation and one 45-45-90 side calculation.",
-        "capReflection": "CAP reflection: Name the strategy that helped you persist with special right triangle ratios."
+        "warmUp": "Find the distance from (0, 0, 0) to (2, 3, 6).",
+        "conceptDevelopment": {
+          "sourceLesson": "module-4-lesson-4",
+          "workedExamples": [
+            "Example 1 — 45°-45°-90° Triangles"
+          ]
+        },
+        "guidedPractice": {
+          "sourceLesson": "module-4-lesson-4",
+          "workedExamples": [
+            "Example 2 — 30°-60°-90° Triangles"
+          ]
+        },
+        "independentPractice": {
+          "questionId": "module-4-lesson-4",
+          "prompt": "A 30-60-90 triangle has hypotenuse 14 cm. Find the length of the side opposite 30 degrees, in centimeters."
+        },
+        "assessment": {
+          "questionId": "module-4-lesson-4",
+          "requireExplanation": true
+        },
+        "capReflection": "Which step in special right triangles required a change in your method? Explain the change."
       }
     },
     {
-      "periodId": "u04-p05",
-      "unit": 4,
-      "period": 5,
+      "periodId": "m4-p06",
+      "number": 45,
+      "unitNumber": 4,
       "dayType": "instruction",
-      "sourceLesson": "4-2",
-      "objectiveCode": "4d",
-      "objective": "Apply special right triangles to unit circle coordinates and real-world problems.",
-      "workedExamples": "4-2, Examples 4-5 — Use Special Right Triangles to Find Coordinates on the Unit Circle; Real-World: Diagonal of a Square Table",
-      "embeddedObjectives": ["4c"],
-      "problemTypes": ["special_right_triangles"],
-      "notes": "Unit circle coordinate derivation from special triangles and real-world diagonal application.",
+      "sourceLesson": "module-4-lesson-4",
+      "objective": "Find missing side lengths in 30°-60°-90° triangles using the special ratio.",
+      "embeddedObjectives": [
+        "Apply special right triangle ratios to solve real-world problems."
+      ],
+      "workedExamples": [
+        "Example 3 — Mixed Special Triangles",
+        "Example 4 — Find x and y",
+        "Example 5 — Real-World Applications"
+      ],
       "dailyPhases": {
-        "warmUp": "Activate prior knowledge for 4d with one retrieval prompt on what the unit circle is and why its radius is 1.",
-        "conceptDevelopment": "Use 4-2, Examples 4-5 to develop: use a 30-60-90 triangle with hypotenuse 1 to find coordinates at 60° on the unit circle, and apply the 45-45-90 ratio to find the diagonal of a square table in a real-world context.",
-        "guidedPractice": "Students complete scaffolded problems modeled on 4-2, Examples 4-5: find unit circle coordinates at 30°, 45°, and 60° using special triangle ratios; teacher checks triangle setup and quadrant reasoning.",
-        "independentPractice": "Students complete aligned practice on special_right_triangles: unit circle coordinate problems and real-world diagonal applications.",
-        "assessment": "Exit ticket: one unit circle coordinate problem and one real-world special triangle problem.",
-        "capReflection": "CAP reflection: Name the strategy that helped you persist with connecting special right triangles to the unit circle."
+        "warmUp": "A 30-60-90 triangle has hypotenuse 14 cm. Find the length of the side opposite 30 degrees, in centimeters.",
+        "conceptDevelopment": {
+          "sourceLesson": "module-4-lesson-4",
+          "workedExamples": [
+            "Example 3 — Mixed Special Triangles"
+          ]
+        },
+        "guidedPractice": {
+          "sourceLesson": "module-4-lesson-4",
+          "workedExamples": [
+            "Example 4 — Find x and y",
+            "Example 5 — Real-World Applications"
+          ]
+        },
+        "independentPractice": {
+          "sourceLesson": "module-4-lesson-4",
+          "workedExamples": [
+            "Example 3 — Mixed Special Triangles",
+            "Example 4 — Find x and y",
+            "Example 5 — Real-World Applications"
+          ]
+        },
+        "assessment": {
+          "questionId": "module-4-lesson-4",
+          "requireExplanation": true
+        },
+        "capReflection": "Explain how the additional examples change your understanding of special right triangles."
       }
     },
     {
-      "periodId": "u04-p06",
-      "unit": 4,
-      "period": 6,
+      "periodId": "m4-p07",
+      "number": 46,
+      "unitNumber": 4,
       "dayType": "instruction",
-      "sourceLesson": "4-3",
-      "objectiveCode": "4e",
-      "objective": "Define and apply the three primary trigonometric ratios (sine, cosine, tangent).",
-      "workedExamples": "4-3, Examples 1-3 — Find sin, cos, tan Given a Right Triangle; Find a Side Using the Sine Ratio; Find a Side Using the Tangent Ratio",
-      "embeddedObjectives": [],
-      "problemTypes": ["trig_ratios"],
-      "notes": "SOH-CAH-TOA definitions and using trig ratios to find missing sides.",
+      "sourceLesson": "module-4-lesson-5",
+      "objective": "Find trigonometric ratios (sine, cosine, tangent) for acute angles in right triangles.",
+      "embeddedObjectives": [
+        "Use special right triangles to find exact trigonometric values.",
+        "Use trigonometric ratios to find missing side lengths and angle measures.",
+        "Solve right triangles."
+      ],
+      "workedExamples": [
+        "Example 1 — Find Trigonometric Ratios",
+        "Example 2 — Special Triangle Trigonometry"
+      ],
       "dailyPhases": {
-        "warmUp": "Activate prior knowledge for 4e with one retrieval prompt writing the definitions of sine, cosine, and tangent as ratios of sides.",
-        "conceptDevelopment": "Use 4-3, Examples 1-3 to develop: identify opposite, adjacent, and hypotenuse relative to a given angle, compute sin, cos, and tan from a right triangle, and use sine and tangent ratios to solve for missing side lengths.",
-        "guidedPractice": "Students complete scaffolded problems modeled on 4-3, Examples 1-3: label sides relative to the reference angle and set up trig ratios to find sides; teacher checks side labeling and ratio selection.",
-        "independentPractice": "Students complete aligned practice on trig_ratios: compute trig ratios and use them to find missing sides in right triangles.",
-        "assessment": "Exit ticket: one trig ratio computation and one find-the-side problem using SOH-CAH-TOA.",
-        "capReflection": "CAP reflection: Name the strategy that helped you persist with trigonometric ratios."
+        "warmUp": "A 30-60-90 triangle has hypotenuse 14 cm. Find the length of the side opposite 30 degrees, in centimeters.",
+        "conceptDevelopment": {
+          "sourceLesson": "module-4-lesson-5",
+          "workedExamples": [
+            "Example 1 — Find Trigonometric Ratios"
+          ]
+        },
+        "guidedPractice": {
+          "sourceLesson": "module-4-lesson-5",
+          "workedExamples": [
+            "Example 2 — Special Triangle Trigonometry"
+          ]
+        },
+        "independentPractice": {
+          "questionId": "module-4-lesson-5",
+          "prompt": "In a right triangle, angle theta has opposite side 3 cm and hypotenuse 5 cm. Find sin(theta). Enter a fraction or decimal."
+        },
+        "assessment": {
+          "questionId": "module-4-lesson-5",
+          "requireExplanation": true
+        },
+        "capReflection": "Which step in trigonometry required a change in your method? Explain the change."
       }
     },
     {
-      "periodId": "u04-p07",
-      "unit": 4,
-      "period": 7,
+      "periodId": "m4-p08",
+      "number": 47,
+      "unitNumber": 4,
       "dayType": "instruction",
-      "sourceLesson": "4-3",
-      "objectiveCode": "4f",
-      "objective": "Use inverse trig functions to find missing angles and apply trig to real-world problems.",
-      "workedExamples": "4-3, Examples 4-6 — Find an Angle Using Inverse Trig; Real-World: Angle of Elevation to the Top of a Building; Trig Ratio from a Coordinate Point on the Terminal Side",
-      "embeddedObjectives": ["4e"],
-      "problemTypes": ["inverse_trig"],
-      "notes": "Inverse trig, angle of elevation, and trig ratios from coordinate points.",
+      "sourceLesson": "module-4-lesson-6",
+      "objective": "Solve problems involving angles of elevation and depression.",
+      "embeddedObjectives": [
+        "Use trigonometry to find areas of triangles.",
+        "Apply indirect measurement techniques using trigonometry."
+      ],
+      "workedExamples": [
+        "Example 1 — Angle of Elevation Problems",
+        "Example 2 — Angle of Depression Problems"
+      ],
       "dailyPhases": {
-        "warmUp": "Activate prior knowledge for 4f with one retrieval prompt on how inverse operations undo trig functions to find angles.",
-        "conceptDevelopment": "Use 4-3, Examples 4-6 to develop: apply inverse sine, cosine, and tangent to find missing angles, compute the angle of elevation in a real-world building scenario, and determine trig ratios from a coordinate point on the terminal side of an angle.",
-        "guidedPractice": "Students complete scaffolded problems modeled on 4-3, Examples 4-6: use inverse trig to find angles and set up angle-of-elevation diagrams; teacher checks inverse function use and diagram accuracy.",
-        "independentPractice": "Students complete aligned practice on inverse_trig: angle-finding with inverse trig, elevation/depression, and coordinate-point problems.",
-        "assessment": "Exit ticket: one inverse trig angle calculation and one real-world elevation problem.",
-        "capReflection": "CAP reflection: Name the strategy that helped you persist with inverse trigonometric functions."
+        "warmUp": "In a right triangle, angle theta has opposite side 3 cm and hypotenuse 5 cm. Find sin(theta). Enter a fraction or decimal.",
+        "conceptDevelopment": {
+          "sourceLesson": "module-4-lesson-6",
+          "workedExamples": [
+            "Example 1 — Angle of Elevation Problems"
+          ]
+        },
+        "guidedPractice": {
+          "sourceLesson": "module-4-lesson-6",
+          "workedExamples": [
+            "Example 2 — Angle of Depression Problems"
+          ]
+        },
+        "independentPractice": {
+          "questionId": "module-4-lesson-6",
+          "prompt": "A 10 m ladder makes an angle of 30 degrees with level ground. Find the vertical height of its top in meters."
+        },
+        "assessment": {
+          "questionId": "module-4-lesson-6",
+          "requireExplanation": true
+        },
+        "capReflection": "Which step in applying trigonometry required a change in your method? Explain the change."
       }
     },
     {
-      "periodId": "u04-p08",
-      "unit": 4,
-      "period": 8,
+      "periodId": "m4-p09",
+      "number": 48,
+      "unitNumber": 4,
+      "dayType": "mastery",
+      "sourceLessons": [
+        "module-4-lesson-1",
+        "module-4-lesson-2",
+        "module-4-lesson-3",
+        "module-4-lesson-4",
+        "module-4-lesson-5",
+        "module-4-lesson-6"
+      ],
+      "questionIds": [
+        "module-4-lesson-1",
+        "module-4-lesson-2",
+        "module-4-lesson-3",
+        "module-4-lesson-4",
+        "module-4-lesson-5",
+        "module-4-lesson-6"
+      ],
+      "task": "Solve the listed checkpoint questions. Explain each method. Use the source worked examples to correct an error. Recheck the corrected answer."
+    },
+    {
+      "periodId": "m4-p10",
+      "number": 49,
+      "unitNumber": 4,
+      "dayType": "instruction",
+      "sourceLesson": "module-4-lesson-7",
+      "objective": "Apply the Law of Sines to find missing sides and angles in oblique triangles.",
+      "embeddedObjectives": [
+        "Determine whether a triangle has no solution, one solution, or two solutions (ambiguous case).",
+        "Solve triangles using the Law of Sines.",
+        "Apply the Law of Sines in real-world contexts."
+      ],
+      "workedExamples": [
+        "Examples 1 and 2 — Find the Value of x",
+        "Example 3 — Real-World Applications"
+      ],
+      "dailyPhases": {
+        "warmUp": "A 10 m ladder makes an angle of 30 degrees with level ground. Find the vertical height of its top in meters.",
+        "conceptDevelopment": {
+          "sourceLesson": "module-4-lesson-7",
+          "workedExamples": [
+            "Examples 1 and 2 — Find the Value of x"
+          ]
+        },
+        "guidedPractice": {
+          "sourceLesson": "module-4-lesson-7",
+          "workedExamples": [
+            "Example 3 — Real-World Applications"
+          ]
+        },
+        "independentPractice": {
+          "questionId": "module-4-lesson-7",
+          "prompt": "In triangle ABC, angle A is 30 degrees, angle B is 90 degrees, and side a opposite A is 5 cm. Find side b opposite B, in centimeters."
+        },
+        "assessment": {
+          "questionId": "module-4-lesson-7",
+          "requireExplanation": true
+        },
+        "capReflection": "Which step in the law of sines required a change in your method? Explain the change."
+      }
+    },
+    {
+      "periodId": "m4-p11",
+      "number": 50,
+      "unitNumber": 4,
+      "dayType": "instruction",
+      "sourceLesson": "module-4-lesson-8",
+      "objective": "Apply the Law of Cosines to find missing sides and angles in oblique triangles.",
+      "embeddedObjectives": [
+        "Determine whether to use the Law of Sines or Law of Cosines to solve a triangle.",
+        "Solve triangles using the Law of Cosines.",
+        "Apply the Law of Cosines in real-world contexts."
+      ],
+      "workedExamples": [
+        "Examples 1 and 2 — Find the Value of x",
+        "Example 3 — Real-World Applications"
+      ],
+      "dailyPhases": {
+        "warmUp": "In triangle ABC, angle A is 30 degrees, angle B is 90 degrees, and side a opposite A is 5 cm. Find side b opposite B, in centimeters.",
+        "conceptDevelopment": {
+          "sourceLesson": "module-4-lesson-8",
+          "workedExamples": [
+            "Examples 1 and 2 — Find the Value of x"
+          ]
+        },
+        "guidedPractice": {
+          "sourceLesson": "module-4-lesson-8",
+          "workedExamples": [
+            "Example 3 — Real-World Applications"
+          ]
+        },
+        "independentPractice": {
+          "questionId": "module-4-lesson-8",
+          "prompt": "A triangle has sides a = 5 and b = 7 with included angle C = 60 degrees. Find c squared, where c is opposite C."
+        },
+        "assessment": {
+          "questionId": "module-4-lesson-8",
+          "requireExplanation": true
+        },
+        "capReflection": "Which step in the law of cosines required a change in your method? Explain the change."
+      }
+    },
+    {
+      "periodId": "m4-p12",
+      "number": 51,
+      "unitNumber": 4,
+      "dayType": "mastery",
+      "sourceLessons": [
+        "module-4-lesson-1",
+        "module-4-lesson-2",
+        "module-4-lesson-3",
+        "module-4-lesson-4",
+        "module-4-lesson-5",
+        "module-4-lesson-6",
+        "module-4-lesson-7",
+        "module-4-lesson-8"
+      ],
+      "questionIds": [
+        "module-4-lesson-1",
+        "module-4-lesson-2",
+        "module-4-lesson-3",
+        "module-4-lesson-4",
+        "module-4-lesson-5",
+        "module-4-lesson-6",
+        "module-4-lesson-7",
+        "module-4-lesson-8"
+      ],
+      "task": "Solve the listed checkpoint questions. Explain each method. Use the source worked examples to correct an error. Recheck the corrected answer."
+    },
+    {
+      "periodId": "m4-p13",
+      "number": 52,
+      "unitNumber": 4,
       "dayType": "jigsaw",
-      "notes": "Mathematical practices focus: choosing between Pythagorean theorem, special triangles, and trig; error analysis in ratio setup.",
-      "nonInstructionArtifact": {
-        "artifactType": "jigsaw",
-        "groupTask": "Mathematical practices focus: choosing between Pythagorean theorem, special triangles, and trig; error analysis in ratio setup.",
-        "sourceWorkedExamples": "Use the prior instruction periods named in the notes as the problem bank.",
-        "deliverable": "Group solution poster or shared explanation with one strategy comparison.",
-        "facilitationNotes": "Assign roles for strategy selection, computation, diagramming, and explanation.",
-        "completionCriteria": "Correct method, accurate result, clear justification, and response to peer question."
-      }
+      "sourceLessons": [
+        "module-4-lesson-1",
+        "module-4-lesson-3",
+        "module-4-lesson-5",
+        "module-4-lesson-7"
+      ],
+      "questionIds": [
+        "module-4-lesson-1",
+        "module-4-lesson-3",
+        "module-4-lesson-5",
+        "module-4-lesson-7"
+      ],
+      "task": "Assign one listed lesson to each group. Prepare a solution and explain each step. Exchange solutions with another group. Check the method and identify any restriction."
     },
     {
-      "periodId": "u04-p09",
-      "unit": 4,
-      "period": 9,
+      "periodId": "m4-p14",
+      "number": 53,
+      "unitNumber": 4,
+      "dayType": "jigsaw",
+      "sourceLessons": [
+        "module-4-lesson-2",
+        "module-4-lesson-4",
+        "module-4-lesson-6",
+        "module-4-lesson-8"
+      ],
+      "questionIds": [
+        "module-4-lesson-2",
+        "module-4-lesson-4",
+        "module-4-lesson-6",
+        "module-4-lesson-8"
+      ],
+      "task": "Assign one listed lesson to each group. Prepare a solution and explain each step. Exchange solutions with another group. Check the method and identify any restriction."
+    },
+    {
+      "periodId": "m4-p15",
+      "number": 54,
+      "unitNumber": 4,
       "dayType": "review",
-      "notes": "Mid-unit review across 4a-4f. Covers Pythagorean theorem, distance formula, special right triangles, and trig ratios.",
-      "nonInstructionArtifact": {
-        "artifactType": "review",
-        "objectiveScope": "Mid-unit review across 4a-4f.",
-        "srsSources": [
-          "worked-example-derived practice",
-          "problem-type practice where available",
-          "prior-unit spiral review"
-        ],
-        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
-        "extensionOptions": "Offer synthesis problems that combine Pythagorean theorem, special triangles, and trig ratios in multi-step problems.",
-        "evidence": "Student completes review problem set and submits one self-identified area for improvement."
-      }
+      "assessmentModules": [
+        3,
+        4
+      ],
+      "sourceLessons": [
+        "module-3-lesson-1",
+        "module-3-lesson-2",
+        "module-3-lesson-3",
+        "module-3-lesson-4",
+        "module-3-lesson-5",
+        "module-3-lesson-6",
+        "module-4-lesson-1",
+        "module-4-lesson-2",
+        "module-4-lesson-3",
+        "module-4-lesson-4",
+        "module-4-lesson-5",
+        "module-4-lesson-6",
+        "module-4-lesson-7",
+        "module-4-lesson-8"
+      ],
+      "questionIds": [
+        "module-3-lesson-1",
+        "module-3-lesson-2",
+        "module-3-lesson-3",
+        "module-3-lesson-4",
+        "module-3-lesson-5",
+        "module-3-lesson-6",
+        "module-4-lesson-1",
+        "module-4-lesson-2",
+        "module-4-lesson-3",
+        "module-4-lesson-4",
+        "module-4-lesson-5",
+        "module-4-lesson-6",
+        "module-4-lesson-7",
+        "module-4-lesson-8"
+      ],
+      "task": "Review the listed lessons. Solve their checkpoint questions and explain the method. Review the source examples for each error."
     },
     {
-      "periodId": "u04-p10",
-      "unit": 4,
-      "period": 10,
-      "dayType": "instruction",
-      "sourceLesson": "4-4",
-      "objectiveCode": "4g",
-      "objective": "Solve right triangles given partial information.",
-      "workedExamples": "4-4, Examples 1-3 — Solve a Right Triangle Given One Angle and One Side; Solve a Right Triangle Given Two Sides; Angle of Depression Problem",
-      "embeddedObjectives": [],
-      "problemTypes": ["solving_right_triangles"],
-      "notes": "Core solving-right-triangles: given angle+side using trig, given two sides using Pythagorean theorem and inverse trig, and angle of depression.",
-      "dailyPhases": {
-        "warmUp": "Activate prior knowledge for 4g with one retrieval prompt on what it means to fully solve a right triangle (find all sides and angles).",
-        "conceptDevelopment": "Use 4-4, Examples 1-3 to develop: solve a right triangle given one angle and one side using trig ratios, solve given two sides using the Pythagorean theorem and inverse trig, and handle angle-of-depression problems using alternate interior angles.",
-        "guidedPractice": "Students complete scaffolded problems modeled on 4-4, Examples 1-3: organize given information and select the right tool to solve each triangle; teacher checks tool selection and solution completeness.",
-        "independentPractice": "Students complete aligned practice on solving_right_triangles: varied problems requiring Pythagorean theorem, trig, and inverse trig.",
-        "assessment": "Exit ticket: one solve-the-right-triangle problem requiring at least two steps.",
-        "capReflection": "CAP reflection: Name the strategy that helped you persist with solving right triangles."
-      }
-    },
-    {
-      "periodId": "u04-p11",
-      "unit": 4,
-      "period": 11,
-      "dayType": "instruction",
-      "sourceLesson": "4-4",
-      "objectiveCode": "4h",
-      "objective": "Apply right triangle solving to navigation and composite figures.",
-      "workedExamples": "4-4, Examples 4-5 — Navigation/Bearing Problem Using Trig; Multi-Step: Solve a Composite Right Triangle Figure",
-      "embeddedObjectives": ["4g"],
-      "problemTypes": ["solving_right_triangles"],
-      "notes": "Navigation bearing problems and composite right triangle figures requiring multiple trig steps.",
-      "dailyPhases": {
-        "warmUp": "Activate prior knowledge for 4h with one retrieval prompt on how to break a bearing like N40°E into north and east components.",
-        "conceptDevelopment": "Use 4-4, Examples 4-5 to develop: decompose a multi-leg navigation problem by breaking each bearing into north and east components and finding total displacement, and solve a composite right triangle figure by setting up two triangle equations and solving the system.",
-        "guidedPractice": "Students complete scaffolded problems modeled on 4-4, Examples 4-5: draw bearing diagrams and composite triangle figures; teacher checks component decomposition and equation setup.",
-        "independentPractice": "Students complete aligned practice on solving_right_triangles: navigation bearing and composite figure problems.",
-        "assessment": "Exit ticket: one bearing problem requiring component decomposition.",
-        "capReflection": "CAP reflection: Name the strategy that helped you persist with navigation and composite triangle problems."
-      }
-    },
-    {
-      "periodId": "u04-p12",
-      "unit": 4,
-      "period": 12,
-      "dayType": "instruction",
-      "sourceLesson": "4-5",
-      "objectiveCode": "4i",
-      "objective": "Apply the Law of Sines to find missing sides and angles in any triangle.",
-      "workedExamples": "4-5, Examples 1-2 — Find a Missing Side Using Law of Sines (AAS); Area of a Triangle Using ½ ab sin C",
-      "embeddedObjectives": [],
-      "problemTypes": ["law_of_sines"],
-      "notes": "Core Law of Sines: AAS/ASA side-finding and triangle area formula.",
-      "dailyPhases": {
-        "warmUp": "Activate prior knowledge for 4i with one retrieval prompt on the Law of Sines formula and when it applies.",
-        "conceptDevelopment": "Use 4-5, Examples 1-2 to develop: apply the Law of Sines to find a missing side in an AAS triangle, and use the area formula ½ab sin C for non-right triangles.",
-        "guidedPractice": "Students complete scaffolded problems modeled on 4-5, Examples 1-2: set up the Law of Sines proportion and solve; teacher checks angle-side pairing.",
-        "independentPractice": "Students complete aligned practice on law_of_sines: AAS side-finding and area calculations.",
-        "assessment": "Exit ticket: one Law of Sines side calculation and one area-of-triangle problem.",
-        "capReflection": "CAP reflection: Name the strategy that helped you persist with the Law of Sines."
-      }
-    },
-    {
-      "periodId": "u04-p13",
-      "unit": 4,
-      "period": 13,
-      "dayType": "instruction",
-      "sourceLesson": "4-5",
-      "objectiveCode": "4j",
-      "objective": "Analyze the ambiguous case (SSA) using the Law of Sines.",
-      "workedExamples": "4-5, Examples 3-4 — Find a Missing Angle Using Law of Sines (SSA — Ambiguous Case); Real-World: Triangulation",
-      "embeddedObjectives": ["4i"],
-      "problemTypes": ["law_of_sines"],
-      "notes": "SSA ambiguous case analysis and real-world triangulation application.",
-      "dailyPhases": {
-        "warmUp": "Activate prior knowledge for 4j with one retrieval prompt on what makes the SSA case ambiguous and how many triangles it can produce.",
-        "conceptDevelopment": "Use 4-5, Examples 3-4 to develop: navigate the ambiguous case when given SSA information, determine zero, one, or two solutions, and apply the Law of Sines to a real-world triangulation problem.",
-        "guidedPractice": "Students complete scaffolded problems modeled on 4-5, Examples 3-4: analyze SSA configurations and draw triangulation diagrams; teacher checks ambiguous case analysis.",
-        "independentPractice": "Students complete aligned practice on law_of_sines: SSA ambiguous case and triangulation problems.",
-        "assessment": "Exit ticket: one SSA ambiguous case analysis and one triangulation word problem.",
-        "capReflection": "CAP reflection: Name the strategy that helped you persist with the ambiguous case."
-      }
-    },
-    {
-      "periodId": "u04-p14",
-      "unit": 4,
-      "period": 14,
-      "dayType": "instruction",
-      "sourceLesson": "4-5",
-      "objectiveCode": "4k",
-      "objective": "Solve oblique triangles completely using the Law of Sines.",
-      "workedExamples": "4-5, Example 5 — Solve an Oblique Triangle Completely Using Law of Sines",
-      "embeddedObjectives": ["4i", "4j"],
-      "problemTypes": ["law_of_sines"],
-      "notes": "Complete oblique triangle solution combining all Law of Sines techniques.",
-      "dailyPhases": {
-        "warmUp": "Activate prior knowledge for 4k with one retrieval prompt on what information is needed to fully solve a triangle (find all sides and angles).",
-        "conceptDevelopment": "Use 4-5, Example 5 to develop: combine AAS/ASA side-finding, area computation, and ambiguous case analysis to completely solve an oblique triangle given partial information.",
-        "guidedPractice": "Students complete scaffolded problems modeled on 4-5, Example 5: organize given information and systematically find all unknowns; teacher checks solution completeness.",
-        "independentPractice": "Students complete aligned practice on law_of_sines: complete oblique triangle solutions.",
-        "assessment": "Exit ticket: one solve-the-oblique-triangle problem requiring at least three steps.",
-        "capReflection": "CAP reflection: Name the strategy that helped you persist with solving oblique triangles."
-      }
-    },
-    {
-      "periodId": "u04-p15",
-      "unit": 4,
-      "period": 15,
-      "dayType": "instruction",
-      "sourceLesson": "4-6",
-      "objectiveCode": "4l",
-      "objective": "Apply the Law of Cosines to find missing sides (SAS) and missing angles (SSS).",
-      "workedExamples": "4-6, Examples 1-2 — Find a Missing Side Using Law of Cosines (SAS); Find a Missing Angle Using Law of Cosines (SSS)",
-      "embeddedObjectives": [],
-      "problemTypes": ["law_of_cosines"],
-      "notes": "Law of Cosines foundations: SAS side-finding and SSS angle-finding.",
-      "dailyPhases": {
-        "warmUp": "Activate prior knowledge for 4l with one retrieval prompt on the Law of Cosines formula and when it is preferred over the Law of Sines.",
-        "conceptDevelopment": "Use 4-6, Examples 1-2 to develop: apply the Law of Cosines to find a missing side given SAS, and rearrange to find a missing angle given SSS.",
-        "guidedPractice": "Students complete scaffolded problems modeled on 4-6, Examples 1-2: set up the Law of Cosines for SAS and SSS cases and solve; teacher checks formula setup.",
-        "independentPractice": "Students complete aligned practice on law_of_cosines: SAS side-finding and SSS angle-finding.",
-        "assessment": "Exit ticket: one Law of Cosines side calculation and one angle calculation.",
-        "capReflection": "CAP reflection: Name the strategy that helped you persist with the Law of Cosines."
-      }
-    },
-    {
-      "periodId": "u04-p16",
-      "unit": 4,
-      "period": 16,
-      "dayType": "instruction",
-      "sourceLesson": "4-6",
-      "objectiveCode": "4m",
-      "objective": "Choose between Law of Sines and Law of Cosines and apply Heron's formula.",
-      "workedExamples": "4-6, Examples 3-4 — Determine Whether to Use Law of Sines or Law of Cosines; Area of a Triangle Using Heron's Formula",
-      "embeddedObjectives": ["4l"],
-      "problemTypes": ["law_of_cosines"],
-      "notes": "Method selection between Law of Sines and Law of Cosines; Heron's formula for area from three sides.",
-      "dailyPhases": {
-        "warmUp": "Activate prior knowledge for 4m with one retrieval prompt classifying scenarios as SAS, SSS, AAS, or ASA.",
-        "conceptDevelopment": "Use 4-6, Examples 3-4 to develop: choose the correct law based on given information (SAS/SSS → Law of Cosines, AAS/ASA → Law of Sines), and apply Heron's formula to find area from three sides.",
-        "guidedPractice": "Students complete scaffolded problems modeled on 4-6, Examples 3-4: classify triangles and select the appropriate law, then compute area with Heron's formula; teacher checks method selection reasoning.",
-        "independentPractice": "Students complete aligned practice on law_of_cosines: method selection problems and Heron's formula calculations.",
-        "assessment": "Exit ticket: one Law of Sines vs. Law of Cosines decision problem and one Heron's formula computation.",
-        "capReflection": "CAP reflection: Name the strategy that helped you persist with choosing between laws and using Heron's formula."
-      }
-    },
-    {
-      "periodId": "u04-p17",
-      "unit": 4,
-      "period": 17,
-      "dayType": "instruction",
-      "sourceLesson": "4-6",
-      "objectiveCode": "4n",
-      "objective": "Apply the Law of Cosines to real-world problems.",
-      "workedExamples": "4-6, Example 5 — Real-World: Find Distance Between Two Non-Visible Points",
-      "embeddedObjectives": ["4l", "4m"],
-      "problemTypes": ["law_of_cosines"],
-      "notes": "Real-world application of Law of Cosines to find distance between non-visible points.",
-      "dailyPhases": {
-        "warmUp": "Activate prior knowledge for 4n with one retrieval prompt on setting up a triangle from a real-world scenario with two known sides and the included angle.",
-        "conceptDevelopment": "Use 4-6, Example 5 to develop: model a ranger station triangulation problem, apply the Law of Cosines to find the angle between observation points, compute area using both the sine formula and Heron's formula, and find all unknown angles.",
-        "guidedPractice": "Students complete scaffolded problems modeled on 4-6, Example 5: draw the real-world diagram and solve step-by-step using Law of Cosines; teacher checks modeling and multi-step reasoning.",
-        "independentPractice": "Students complete aligned practice on law_of_cosines: real-world problems requiring distance, angle, and area computations.",
-        "assessment": "Exit ticket: one real-world Law of Cosines problem requiring at least two computations.",
-        "capReflection": "CAP reflection: Name the strategy that helped you persist with real-world Law of Cosines applications."
-      }
-    },
-    {
-      "periodId": "u04-p18",
-      "unit": 4,
-      "period": 18,
-      "dayType": "mastery",
-      "notes": "Mastery cycle on 4e-4n.",
-      "nonInstructionArtifact": {
-        "artifactType": "mastery",
-        "objectiveScope": "Mastery cycle on 4e-4n.",
-        "srsSources": [
-          "worked-example-derived practice",
-          "problem-type practice where available",
-          "prior-unit spiral review"
-        ],
-        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
-        "extensionOptions": "Offer synthesis problems that combine current objectives with prior units.",
-        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
-      }
-    },
-    {
-      "periodId": "u04-p19",
-      "unit": 4,
-      "period": 19,
-      "dayType": "review",
-      "notes": "Unit 4 review across 4a-4n.",
-      "nonInstructionArtifact": {
-        "artifactType": "review",
-        "objectiveScope": "Unit 4 review across 4a-4n.",
-        "srsSources": [
-          "worked-example-derived practice",
-          "problem-type practice where available",
-          "prior-unit spiral review"
-        ],
-        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
-        "extensionOptions": "Offer synthesis problems that combine current objectives with prior units.",
-        "evidence": "Student completes review problem set and submits one self-identified area for improvement."
-      }
-    },
-    {
-      "periodId": "u04-p20",
-      "unit": 4,
-      "period": 20,
+      "periodId": "m4-p16",
+      "number": 55,
+      "unitNumber": 4,
       "dayType": "test",
-      "notes": "Unit 4 assessment.",
-      "nonInstructionArtifact": {
-        "artifactType": "test",
-        "objectiveScope": "Unit 4 assessment covering 4a-4n.",
-        "srsSources": [],
-        "remediationGrouping": "N/A — summative assessment day.",
-        "extensionOptions": "N/A — summative assessment day.",
-        "evidence": "Student completes unit test."
-      }
+      "assessmentModules": [
+        3,
+        4
+      ],
+      "sourceLessons": [
+        "module-3-lesson-1",
+        "module-3-lesson-2",
+        "module-3-lesson-3",
+        "module-3-lesson-4",
+        "module-3-lesson-5",
+        "module-3-lesson-6",
+        "module-4-lesson-1",
+        "module-4-lesson-2",
+        "module-4-lesson-3",
+        "module-4-lesson-4",
+        "module-4-lesson-5",
+        "module-4-lesson-6",
+        "module-4-lesson-7",
+        "module-4-lesson-8"
+      ],
+      "task": "Use a teacher-authored assessment for the listed modules. Include reasoning, application, and restrictions. The public checkpoint bank is review material and is not a secure test form."
     }
   ]
 }

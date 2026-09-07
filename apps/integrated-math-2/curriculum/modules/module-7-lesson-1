@@ -19,7 +19,7 @@ Source: (Module 7, Lesson 7-1, Int2_0701_practice.docx)
 * **Discrete Sample Space** — An infinite sample space where outcomes can be listed (e.g., whole numbers).
 * **Continuous Sample Space** — An infinite sample space where any value in an interval is possible.
 * **Tree Diagram** — A visual representation of the possible outcomes of a multi-stage experiment.
-* **Fundamental Counting Principle** — If one event has [m] possible outcomes and a second event has [n] possible outcomes, the combined event has [m \times n] possible outcomes.
+* **Fundamental Counting Principle** — If one event has [m] possible outcomes and a second event has [n] possible outcomes, the combined event has $m \times n$ possible outcomes.
 
 ## Explore: What Are All the Possible Outcomes?
 
@@ -54,9 +54,9 @@ For multi-stage experiments where each stage has a fixed number of choices:
 
 If a experiment has [k] stages and stage 1 has [n_1] outcomes, stage 2 has [n_2] outcomes, and so on, the total number of outcomes is:
 
-[P = n_1 \times n_2 \times \cdots \times n_k]
+$P = n_1 \times n_2 \times \cdots \times n_k$
 
-Example: A bedroom can be decorated using 3 paint colors, 2 furniture sets, and 4 lamp styles. The total combinations are [3 \times 2 \times 4 = 24].
+Example: A bedroom can be decorated using 3 paint colors, 2 furniture sets, and 4 lamp styles. The total combinations are $3 \times 2 \times 4 = 24$.
 
 ## Example 1 — Define Sample Spaces
 
@@ -101,7 +101,7 @@ Use a table or tree diagram to show all four combinations:
 Stage 1: Drink type — [2] choices (apple juice, milk)
 Stage 2: Container type — [2] choices (bottle, toddler cup)
 
-Total outcomes: [2 \times 2 = 4]
+Total outcomes: $2 \times 2 = 4$
 
 ## Example 3 — Classify Sample Spaces
 
@@ -128,16 +128,16 @@ Find the number of possible outcomes for each situation using the Fundamental Co
 ### Step 1: Identify Each Stage and Its Options
 
 **Problem 11:** A video game lets you decorate a bedroom with one choice from each category:
-[The total = n_1 \times n_2 \times n_3 \times \cdots]
+$The total = n_1 \times n_2 \times n_3 \times \cdots$
 
 **Problem 12:** A cafeteria meal includes one choice from each category:
 [Multiply the number of options at each stage.]
 
 **Problem 13:** A patio set includes 4 stone types, 3 edging types, 5 dining sets, and 6 grills.
-[4 \times 3 \times 5 \times 6 = 360] different patio sets.
+$4 \times 3 \times 5 \times 6 = 360$ different patio sets.
 
 **Problem 14:** Auditions for 6 roles with 5, 3, 8, 4, 2, and 3 applicants respectively.
-[5 \times 3 \times 8 \times 4 \times 2 \times 3 = 2880] possible casts.
+$5 \times 3 \times 8 \times 4 \times 2 \times 3 = 2880$ possible casts.
 
 ## Mixed Exercises
 

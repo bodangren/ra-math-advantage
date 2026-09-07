@@ -72,16 +72,15 @@ Cross-multiply and solve.
 **ROOFING (Problem 9):** Find [x] such that triangles DEF and FBC in the roof outline are similar.
 
 **RADIO (Problem 10):** Radio tower shadow = 8 ft, yardstick shadow = 1/2 in = 1/24 ft, yardstick height = 3 ft.
-[
+$$
 \frac{tower\ height}{8} = \frac{3}{1/24}
-]
-[
+$$
+$$
 tower\ height = 3 \times \frac{8}{1/24} = 576\ ft
-]
-
+$$
 **SAILING (Problem 11):** Find [x] given similar sails.
 
-**MOUNTAIN PEAKS (Problem 12):** Marcus and Skye measure distances to a mountain peak. Given the actual distance between houses is [1\frac{1}{2}] miles, find distances from each house to the peak.
+**MOUNTAIN PEAKS (Problem 12):** Marcus and Skye measure distances to a mountain peak. Given the actual distance between houses is $1\frac{1}{2}$ miles, find distances from each house to the peak.
 
 ## Mixed Exercises
 

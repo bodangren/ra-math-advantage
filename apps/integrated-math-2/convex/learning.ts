@@ -274,12 +274,13 @@ export const getLesson = internalQuery({
       .unique();
     if (!lesson) return null;
     await accessibleLesson(ctx, args.userId, lesson._id);
-    const versions = await ctx.db
+    const version = await ctx.db
       .query("lesson_versions")
-      .withIndex("by_lesson_and_version", (q) => q.eq("lessonId", lesson._id))
+      .withIndex("by_lesson_status_version", (q) =>
+        q.eq("lessonId", lesson._id).eq("status", "published"),
+      )
       .order("desc")
-      .take(100);
-    const version = versions.find((v) => v.status === "published");
+      .first();
     if (!version) return null;
     const phases = await ctx.db
       .query("phase_versions")
@@ -346,7 +347,7 @@ export const getLesson = internalQuery({
     }
     return {
       id: lesson._id,
-      title: lesson.title,
+      title: version.title ?? lesson.title,
       slug: lesson.slug,
       phases: result,
     };

@@ -49,85 +49,84 @@ Graph systems of inequalities with vertical, horizontal, and slanted boundaries.
 
 Graph the boundary lines for the given system and shade the appropriate half-planes. The feasible region is the overlapping shaded area. Find the coordinates of each vertex by solving the systems of equations formed by intersecting boundary pairs.
 
-[
+$$
 y \geq 2
-]
-[
+$$
+$$
 1 \leq x \leq 5
-]
-[
+$$
+$$
 y \leq x + 3
-]
-
+$$
 [
 f(x, y) = 3x - 2y
 ]
 
 The vertices of the feasible region are found at the intersections of [x = 1], [x = 5], [y = 2], and [y = x + 3].
 
-[
+$$
 y \geq -2
-]
-[
+$$
+$$
 y \geq 2x - 4
-]
+$$
 [
 f(x, y) = 4x - y
 ]
 
 Find where the boundary lines meet and test each vertex in the objective function.
 
-[
+$$
 x + y \geq 2
-]
-[
+$$
+$$
 4y \leq x + 8
-]
-[
+$$
+$$
 y \geq 2x - 5
-]
+$$
 [
 f(x, y) = 4x + 3y
 ]
 
-[
+$$
 x \geq 2
-]
-[
+$$
+$$
 x \leq 5
-]
-[
+$$
+$$
 y \geq 1
-]
-[
+$$
+$$
 y \leq 4
-]
+$$
 [
 f(x, y) = x + y
 ]
 
-[
+$$
 x \geq 1
-]
-[
+$$
+$$
 y \leq 6
-]
-[
+$$
+$$
 y \geq x - 2
-]
+$$
 [
 f(x, y) = x - y
 ]
 
-[
+$$
 x \geq 0
-]
-[
+$$
+$$
 y \geq 0
-]
-[
+$$
+$$
 y \leq 7 - x
-]
+$$
 [
 f(x, y) = 3x + y
 ]
@@ -158,45 +157,45 @@ Graph systems that produce both bounded and unbounded feasible regions. Evaluate
 
 ### Step 1: Analyze Unbounded Regions
 
-[
+$$
 x \geq -1
-]
-[
+$$
+$$
 x + y \leq 6
-]
+$$
 [
 f(x, y) = x + 2y
 ]
 
 Graph the vertical boundary [x = -1] and the slanted boundary [y = -x + 6]. The feasible region extends downward and to the left, so it is unbounded in some directions. Check whether the objective function has both a maximum and a minimum, or if one value does not exist.
 
-[
+$$
 y \leq 2x
-]
-[
+$$
+$$
 y \geq 6 - x
-]
-[
+$$
+$$
 y \leq 6
-]
-[
+$$
+$$
 x \geq -2
-]
+$$
 [
 f(x, y) = 4x + 3y
 ]
 
 ### Step 2: Evaluate at Vertices for Bounded Portions
 
-[
+$$
 y \leq 3x + 6
-]
-[
+$$
+$$
 4y + 3x \leq 3
-]
-[
+$$
+$$
 x \geq -2
-]
+$$
 [
 f(x, y) = -x + 3y
 ]
@@ -214,21 +213,19 @@ Translate resource and cost constraints into a system of inequalities, graph the
 Let [a] represent gallons of color A and [b] represent gallons of color B.
 
 Constraints based on available dye:
-[
+$$
 4a + b \leq 32
-]
-[
+$$
+$$
 a + 6b \leq 54
-]
-
+$$
 Non-negativity constraints:
-[
+$$
 a \geq 0
-]
-[
+$$
+$$
 b \geq 0
-]
-
+$$
 Objective: maximize total gallons mixed.
 [
 G = a + b
@@ -239,16 +236,15 @@ G = a + b
 Let [c] represent clay beads and [g] represent glass beads.
 
 Constraints based on bead limits:
-[
+$$
 c \leq 10
-]
-[
+$$
+$$
 g \geq 4
-]
-[
+$$
+$$
 4g \leq 2c + 8
-]
-
+$$
 Cost function to minimize:
 [
 C = 0.20c + 0.40g

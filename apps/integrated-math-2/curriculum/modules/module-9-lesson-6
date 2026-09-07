@@ -16,7 +16,7 @@ Source: (Module 9, Lesson 9-6, Int2_0906_practice.docx)
 * **Boundary Line** — The line formed by replacing the inequality symbol with an equals sign; solid for inclusive inequalities and dashed for strict inequalities.
 * **Feasible Region** — The solution region in a real-world context, restricted to values that make practical sense.
 * **Corner Point** — A vertex of the feasible region where two boundary lines intersect.
-* **Linear Inequality** — An inequality that can be written in the form [Ax + By \leq C] (or similar with other inequality symbols).
+* **Linear Inequality** — An inequality that can be written in the form $Ax + By \leq C$ (or similar with other inequality symbols).
 
 ## Explore: Where Do the Shaded Regions Overlap?
 
@@ -29,7 +29,7 @@ Can a system of two linear inequalities have no solution? Under what conditions 
 
 ### Key Concept: Graphing a System of Two Inequalities
 
-1. Graph each boundary line (solid for [\leq] or [\geq], dashed for [<] or [>]).
+1. Graph each boundary line (solid for $\leq$ or $\geq$, dashed for [<] or [>]).
 2. Shade the appropriate half-plane for each inequality using a test point such as the origin.
 3. The solution region is the intersection of all shaded areas.
 
@@ -49,38 +49,36 @@ Graph each system of two linear inequalities and identify the solution region.
 
 Rewrite each inequality in slope-intercept form when helpful, then graph the boundary lines and shade the appropriate half-planes.
 
-[
+$$
 x - y \leq 2
-]
-[
+$$
+$$
 x + 2y \geq 1
-]
+$$
+Rewrite as $y \geq x - 2$ and $y \geq -\frac{1}{2}x + \frac{1}{2}$. Both boundary lines are solid. Shade above each line. The solution region is the overlap above both boundaries.
 
-Rewrite as [y \geq x - 2] and [y \geq -\frac{1}{2}x + \frac{1}{2}]. Both boundary lines are solid. Shade above each line. The solution region is the overlap above both boundaries.
-
-[
+$$
 3x - 2y \leq -1
-]
-[
+$$
+$$
 x + 4y \geq -12
-]
-
-Rewrite as [y \geq \frac{3}{2}x + \frac{1}{2}] and [y \geq -\frac{1}{4}x - 3]. Graph both solid boundary lines and shade above each.
+$$
+Rewrite as $y \geq \frac{3}{2}x + \frac{1}{2}$ and $y \geq -\frac{1}{4}x - 3$. Graph both solid boundary lines and shade above each.
 
 ### Step 2: Graph Systems with Fractional Coefficients
 
-[
+$$
 y \geq \frac{x}{2} - 3
-]
+$$
 [
 y < 2x
 ]
 
-Graph [y = \frac{x}{2} - 3] as a solid line and shade above. Graph [y = 2x] as a dashed line and shade below. The solution region lies between the two lines.
+Graph $y = \frac{x}{2} - 3$ as a solid line and shade above. Graph [y = 2x] as a dashed line and shade below. The solution region lies between the two lines.
 
-[
+$$
 y < \frac{x}{3} + 2
-]
+$$
 [
 y < -2x + 1
 ]
@@ -89,23 +87,22 @@ Both inequalities use "less than," so graph both boundaries as dashed lines and 
 
 ### Step 3: Graph Systems with Mixed Inequality Types
 
-[
+$$
 x + y \geq 4
-]
+$$
 [
 2x - y > 2
 ]
 
-Rewrite as [y \geq -x + 4] (solid, shade above) and [y < 2x - 2] (dashed, shade below). The solution region is above the solid line and below the dashed line.
+Rewrite as $y \geq -x + 4$ (solid, shade above) and [y < 2x - 2] (dashed, shade below). The solution region is above the solid line and below the dashed line.
 
 [
 x + 3y < 3
 ]
-[
+$$
 x - 2y \geq 4
-]
-
-Rewrite as [y < -\frac{x}{3} + 1] (dashed, shade below) and [y \leq \frac{x}{2} - 2] (solid, shade below). The solution region is below both boundaries.
+$$
+Rewrite as $y < -\frac{x}{3} + 1$ (dashed, shade below) and $y \leq \frac{x}{2} - 2$ (solid, shade below). The solution region is below both boundaries.
 
 ## Example 2 — Solve Systems with Three or More Inequalities
 
@@ -113,18 +110,17 @@ Graph systems that include multiple boundary lines, including horizontal and ver
 
 ### Step 1: Graph Systems with Slanted Boundaries
 
-[
+$$
 y \geq -3x + 7
-]
-[
+$$
+$$
 y > \frac{1}{2}x
-]
-
+$$
 Graph both boundary lines and shade above each. The first line is solid; the second is dashed.
 
-[
+$$
 y < -\frac{1}{2}x + 3
-]
+$$
 [
 y > x - 1
 ]
@@ -139,12 +135,12 @@ Graph all three boundaries with the correct line styles. Shade below the first d
 [
 x > -3
 ]
-[
+$$
 y < -\frac{1}{3}x + 3
-]
-[
+$$
+$$
 y > \frac{1}{2}x + 1
-]
+$$
 [
 y < 2
 ]
@@ -153,41 +149,38 @@ Graph the vertical dashed line [x = -3] and shade to the right. Graph each slant
 
 ### Step 3: Graph Systems Involving the Axes
 
-[
+$$
 y \leq 0
-]
-[
+$$
+$$
 x \leq 0
-]
-[
+$$
+$$
 y \geq -x - 1
-]
-
+$$
 Shade below the x-axis, to the left of the y-axis, and above the line [y = -x - 1]. The solution region lies in the third quadrant and is bounded by the axes.
 
-[
+$$
 y \leq 3 - x
-]
-[
+$$
+$$
 y \geq 3
-]
-[
+$$
+$$
 y \geq x - 2
-]
-[
+$$
+$$
 x \geq -5
-]
-
+$$
 Graph all four boundaries. The region satisfying all four constraints is a bounded polygon.
 
-[
+$$
 x \geq -2
-]
-[
+$$
+$$
 x + y \leq 2
-]
-
-Graph the vertical solid line [x = -2] and shade to the right. Graph [y \leq -x + 2] as a solid line and shade below.
+$$
+Graph the vertical solid line [x = -2] and shade to the right. Graph $y \leq -x + 2$ as a solid line and shade below.
 
 ## Example 3 — Real-World Applications
 
@@ -198,14 +191,13 @@ Write systems of inequalities to represent constraints, then graph and analyze f
 A venue has a seat capacity and a revenue goal. Student and adult tickets have different prices. Define variables for the number of each type of ticket sold.
 
 Write constraints for total attendance and minimum revenue:
-[
+$$
 s + a \leq 800
-]
-[
+$$
+$$
 4s + 7a \geq 3400
-]
-
-Add non-negativity constraints: [s \geq 0] and [a \geq 0].
+$$
+Add non-negativity constraints: $s \geq 0$ and $a \geq 0$.
 
 Graph the system in the first quadrant. The feasible region shows all combinations of student and adult tickets that meet both constraints. Test a specific ordered pair by substituting into both inequalities to determine whether it satisfies the revenue goal.
 
@@ -214,23 +206,22 @@ Graph the system in the first quadrant. The feasible region shows all combinatio
 A person earns different rates for two jobs and has limits on total hours and minimum earnings. Define variables for hours spent on each activity.
 
 Write constraints for total hours and minimum earnings:
-[
+$$
 t + b \leq 14
-]
-[
+$$
+$$
 15t + 10b \geq 125
-]
-
+$$
 Add non-negativity constraints. Graph the feasible region and test ordered pairs by substituting into each inequality to determine which combinations satisfy all constraints.
 
 ## Mixed Exercises
 
 The mixed exercises section provides practice with all skills from the lesson. Problems include:
 
-* Solving systems involving absolute value inequalities combined with linear constraints, such as [y \geq |2x + 4| - 2] paired with a linear inequality.
-* Solving systems with [y \geq |6 - x|] and horizontal boundaries.
+* Solving systems involving absolute value inequalities combined with linear constraints, such as $y \geq |2x + 4| - 2$ paired with a linear inequality.
+* Solving systems with $y \geq |6 - x|$ and horizontal boundaries.
 * Graphing systems with three linear inequalities in two variables.
-* Solving systems containing absolute value and horizontal boundaries, such as [|x| > y] with [y \leq 6] and [y \geq -2].
+* Solving systems containing absolute value and horizontal boundaries, such as [|x| > y] with $y \leq 6$ and $y \geq -2$.
 * Finance application: splitting an investment between two accounts with different simple interest rates, subject to constraints on total investment and minimum annual return.
 * Writing a system of inequalities from a given graph.
 * Finding the area of a polygon defined by four linear inequalities.

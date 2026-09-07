@@ -10,35 +10,34 @@ Source: (Module 12, Lesson 12-N, Int2_1206_practice.docx)
 
 ## Vocabulary
 
-* **Quadratic Formula** — The formula [ x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} ] used to find the exact solutions of any quadratic equation written in standard form [ ax^2 + bx + c = 0 ].
+* **Quadratic Formula** — The formula $ x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} $ used to find the exact solutions of any quadratic equation written in standard form [ ax^2 + bx + c = 0 ].
 * **Discriminant** — The expression [ b^2 - 4ac ] under the radical in the Quadratic Formula, which determines the number and nature of the solutions.
 * **Real solutions** — Solutions to a quadratic equation that are real numbers; they occur when the discriminant is greater than or equal to zero.
 * **Complex (nonreal) solutions** — Solutions that involve the imaginary unit [ i ]; they occur when the discriminant is negative.
 
 ## Explore: Why Does the Quadratic Formula Work?
 
-The Quadratic Formula provides the exact solutions to any quadratic equation [ ax^2 + bx + c = 0 ]. Students explore how completing the square on the general quadratic leads to this powerful formula, and why it works for every value of [ a ], [ b ], and [ c ] (as long as [ a \ne 0 ]).
+The Quadratic Formula provides the exact solutions to any quadratic equation [ ax^2 + bx + c = 0 ]. Students explore how completing the square on the general quadratic leads to this powerful formula, and why it works for every value of [ a ], [ b ], and [ c ] (as long as $ a \ne 0 $).
 
 Inquiry Question:
 Why does the Quadratic Formula give all solutions to a quadratic equation, and what does the discriminant reveal about those solutions?
 
 ## Learn: The Quadratic Formula
 
-For any quadratic equation in standard form [ ax^2 + bx + c = 0 ] where [ a \ne 0 ], the Quadratic Formula gives the exact solutions:
+For any quadratic equation in standard form [ ax^2 + bx + c = 0 ] where $ a \ne 0 $, the Quadratic Formula gives the exact solutions:
 
-[
+$$
 x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
-]
-
-Before applying the formula, rewrite the equation in standard form and identify the coefficients [ a ], [ b ], and [ c ]. Substitute these values into the formula, simplify the radical and the fraction, and separate the two solutions indicated by [ \pm ]. Round to the nearest tenth when instructed.
+$$
+Before applying the formula, rewrite the equation in standard form and identify the coefficients [ a ], [ b ], and [ c ]. Substitute these values into the formula, simplify the radical and the fraction, and separate the two solutions indicated by $ \pm $. Round to the nearest tenth when instructed.
 
 ### Key Concept: Using the Quadratic Formula
 
 * Rewrite the equation in standard form [ ax^2 + bx + c = 0 ].
 * Identify [ a ], [ b ], and [ c ], including their signs.
-* Substitute into [ x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} ].
+* Substitute into $ x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} $.
 * Simplify the discriminant and the entire fraction.
-* Use [ \pm ] to write both solutions; round when necessary.
+* Use $ \pm $ to write both solutions; round when necessary.
 
 ## Example 1 — Solve Quadratic Equations with the Quadratic Formula
 
@@ -56,18 +55,16 @@ Determine [ a ], [ b ], and [ c ] from the standard form. Watch for missing term
 
 Substitute the coefficients into the Quadratic Formula:
 
-[
+$$
 x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
-]
-
+$$
 Simplify the expression under the radical and the entire fraction. If the discriminant is a perfect square, the solutions are rational. If not, approximate to the nearest tenth.
 
 For example, for [ x^2 - x - 20 = 0 ] with [ a = 1 ], [ b = -1 ], and [ c = -20 ]:
 
-[
+$$
 x = \frac{-(-1) \pm \sqrt{(-1)^2 - 4(1)(-20)}}{2(1)} = \frac{1 \pm \sqrt{81}}{2} = \frac{1 \pm 9}{2}
-]
-
+$$
 This gives [ x = 5 ] or [ x = -4 ].
 
 ## Example 2 — Solve Equations Requiring Rearrangement
@@ -86,16 +83,14 @@ Identify [ a ], [ b ], and [ c ] from the rearranged equation, then substitute i
 
 For equations with no linear term, such as [ x^2 - 49 = 0 ]:
 
-[
+$$
 x = \frac{-0 \pm \sqrt{0^2 - 4(1)(-49)}}{2(1)} = \frac{\pm \sqrt{196}}{2} = \pm 7
-]
-
+$$
 For equations with no real solutions, such as [ x^2 + 16 = 0 ]:
 
-[
+$$
 x = \frac{-0 \pm \sqrt{0 - 4(1)(16)}}{2(1)} = \frac{\pm \sqrt{-64}}{2} = \pm 4i
-]
-
+$$
 ## Example 3 — Apply Quadratic Equations to Real-World Problems
 
 Use the Quadratic Formula to solve application problems from business, physics, architecture, and crafts.
@@ -114,7 +109,7 @@ Round answers to the nearest tenth (or hundredth when specified) and include app
 
 Representative applications include:
 * Free-fall motion modeled by [ h = -16t^2 + 50 ], where [ h ] is height in feet and [ t ] is time in seconds.
-* The Golden Ratio relationship in architecture: [ \frac{W + H}{W} = \frac{W}{H} ], which simplifies to a quadratic in [ W ] when [ H ] is known.
+* The Golden Ratio relationship in architecture: $ \frac{W + H}{W} = \frac{W}{H} $, which simplifies to a quadratic in [ W ] when [ H ] is known.
 * Dividing a length into two unequal pieces to form squares with a specified total area.
 
 ## Example 4 — Use the Discriminant

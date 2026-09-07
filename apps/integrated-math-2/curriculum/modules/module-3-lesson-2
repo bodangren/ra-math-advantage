@@ -30,7 +30,7 @@ If two polygons are similar, what must be true about their corresponding angles 
 
 * Corresponding angles are **congruent** (equal in measure).
 * Corresponding sides are **proportional** (ratios equal the scale factor).
-* The ratio of perimeters equals the scale factor: [\frac{perimeter_{image}}{perimeter_{original}} = k]
+* The ratio of perimeters equals the scale factor: $\frac{perimeter_{image}}{perimeter_{original}} = k$
 
 ### Key Concept: Writing Similarity Statements
 
@@ -50,10 +50,9 @@ Congruent angles: [∠A ≅ ∠W], [∠B ≅ ∠X], [∠C ≅ ∠Y], [∠D ≅ �
 
 Write proportions relating corresponding sides using the similarity statement.
 
-[
+$$
 \frac{AB}{WX} = \frac{BC}{XY} = \frac{CD}{YZ} = \frac{DA}{ZW}
-]
-
+$$
 ## Example 2 — Determine Similarity and Scale Factor
 
 ### Step 1: Compare Angle Measures
@@ -64,10 +63,9 @@ Check whether corresponding angles are congruent. If all corresponding angles ar
 
 Verify that all pairs of corresponding sides have the same ratio (scale factor). If they do, the polygons are similar.
 
-[
+$$
 k = \frac{side_{image}}{side_{original}}
-]
-
+$$
 ## Example 3 — Find Unknown Values
 
 ### Step 1: Set Up a Proportion
@@ -88,10 +86,9 @@ Identify the actual distances or measurements from the problem.
 
 ### Step 2: Find the Scale Factor
 
-[
+$$
 k = \frac{actual\ distance}{map\ distance}
-]
-
+$$
 ### Step 3: Calculate the Requested Distance
 
 Apply the scale factor to find other actual distances.

@@ -9,72 +9,72 @@ interface LessonStandardLink {
 const module8LessonStandards: LessonStandardLink[] = [
   {
     lessonSlug: "module-8-lesson-1",
-    standardCode: "HSF-IF.A.1",
+    standardCode: "F-IF.A.1",
     isPrimary: true,
   },
   {
     lessonSlug: "module-8-lesson-1",
-    standardCode: "HSF-IF.A.2",
+    standardCode: "F-IF.A.2",
     isPrimary: false,
   },
   {
     lessonSlug: "module-8-lesson-2",
-    standardCode: "HSF-IF.C.9",
+    standardCode: "F-IF.C.9",
     isPrimary: true,
   },
   {
     lessonSlug: "module-8-lesson-2",
-    standardCode: "HSF-IF.B.4",
+    standardCode: "F-IF.B.4",
     isPrimary: false,
   },
   {
     lessonSlug: "module-8-lesson-3",
-    standardCode: "HSF-IF.B.4",
+    standardCode: "F-IF.B.4",
     isPrimary: true,
   },
   {
     lessonSlug: "module-8-lesson-3",
-    standardCode: "HSF-IF.B.5",
+    standardCode: "F-IF.B.5",
     isPrimary: false,
   },
   {
     lessonSlug: "module-8-lesson-4",
-    standardCode: "HSF-IF.C.7",
+    standardCode: "F-IF.C.7",
     isPrimary: true,
   },
   {
     lessonSlug: "module-8-lesson-4",
-    standardCode: "HSF-IF.B.6",
+    standardCode: "F-IF.B.6",
     isPrimary: false,
   },
   {
     lessonSlug: "module-8-lesson-5",
-    standardCode: "HSA-CED.A.2",
+    standardCode: "A-CED.A.2",
     isPrimary: true,
   },
   {
     lessonSlug: "module-8-lesson-5",
-    standardCode: "HSA-CED.A.3",
+    standardCode: "A-CED.A.3",
     isPrimary: false,
   },
   {
     lessonSlug: "module-8-lesson-6",
-    standardCode: "HSF-IF.C.7b",
+    standardCode: "F-IF.C.7b",
     isPrimary: true,
   },
   {
     lessonSlug: "module-8-lesson-6",
-    standardCode: "HSF-IF.A.2",
+    standardCode: "F-IF.A.2",
     isPrimary: false,
   },
   {
     lessonSlug: "module-8-lesson-7",
-    standardCode: "HSF-BF.A.1",
+    standardCode: "F-BF.A.1",
     isPrimary: true,
   },
   {
     lessonSlug: "module-8-lesson-7",
-    standardCode: "HSF-BF.A.2",
+    standardCode: "F-BF.A.2",
     isPrimary: false,
   },
 ];
@@ -139,7 +139,9 @@ export const seedModule8LessonStandards = internalMutation({
         const existing = await ctx.db
           .query("lesson_standards")
           .withIndex("by_lesson_version_and_standard", (q) =>
-            q.eq("lessonVersionId", lessonVersion._id).eq("standardId", standard._id)
+            q
+              .eq("lessonVersionId", lessonVersion._id)
+              .eq("standardId", standard._id),
           )
           .unique();
 

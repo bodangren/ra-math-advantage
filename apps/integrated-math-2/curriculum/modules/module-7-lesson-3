@@ -30,15 +30,15 @@ How can you use the dimensions of a figure to find the probability that a random
 
 When a point is chosen at random on a line segment, the probability it falls in a particular subsegment equals the ratio of the subsegment length to the total length.
 
-[P(\text{point in region}) = \frac{\text{length of region}}{\text{total length}}]
+$P(\text{point in region}) = \frac{\text{length of region}}{\text{total length}}$
 
-**Example:** On a 15-foot log with frogs at positions Z, Q, and R, the probability a fourth frog lands between the first two (5 feet apart) is [\frac{5}{15} = \frac{1}{3}].
+**Example:** On a 15-foot log with frogs at positions Z, Q, and R, the probability a fourth frog lands between the first two (5 feet apart) is $\frac{5}{15} = \frac{1}{3}$.
 
 ### Key Concept: Area-Based Geometric Probability
 
 When a point is chosen at random in a two-dimensional region, the probability it falls in a particular subregion equals the ratio of the subregion area to the total area.
 
-[P(\text{point in region}) = \frac{\text{area of region}}{\text{total area}}]
+$P(\text{point in region}) = \frac{\text{area of region}}{\text{total area}}$
 
 **Example:** A circular target with diameter 4 feet inside a rectangular field 120 yards by 30 yards. First find the target radius and area, then the field area, then compute the ratio.
 
@@ -47,7 +47,7 @@ When a point is chosen at random in a two-dimensional region, the probability it
 Convert all time measures to the same unit, then use the ratio of favorable time to total time.
 
 **Example:** A traffic light is green for 2 minutes 27 seconds, yellow for 6 seconds, and red for 2 minutes 27 seconds in a 5-minute cycle.
-[P(\text{green}) = \frac{2\text{ min }27\text{ s}}{5\text{ min}} = \frac{147\text{ s}}{300\text{ s}}]
+$P(\text{green}) = \frac{2\text{ min }27\text{ s}}{5\text{ min}} = \frac{147\text{ s}}{300\text{ s}}$
 
 ## Example 1 — Length-Based Probability
 
@@ -70,29 +70,29 @@ Point [X] is chosen at random on segment [LP]. Find each probability:
 ### Step 1: Convert All Measures and Compute Ratios
 
 **Problem 7:** A 15-foot log with frogs 5 feet apart and third frog 10 feet from the second. Find probability fourth frog lands between first two.
-[P = \frac{5}{15}]
+$P = \frac{5}{15}$
 
 **Problem 9:** Traffic light green for 2 min 27 s, yellow for 6 s, red for 2 min 27 s in a 5-minute cycle.
-[P(\text{green}) = \frac{147}{300}]
+$P(\text{green}) = \frac{147}{300}$
 
-**Problem 10:** Battery takes 2 hours to fully charge. Probability battery is between [\frac{1}{4}] and [\frac{1}{2}] charged when checked randomly.
-[P = \frac{\frac{1}{2} - \frac{1}{4}}{1} = \frac{1}{4}]
+**Problem 10:** Battery takes 2 hours to fully charge. Probability battery is between $\frac{1}{4}$ and $\frac{1}{2}$ charged when checked randomly.
+$P = \frac{\frac{1}{2} - \frac{1}{4}}{1} = \frac{1}{4}$
 
 **Problem 11:** A 2-hour movie with a 6 minute 31 second song. Probability a random customer hears the song playing.
-[P = \frac{6\text{ min }31\text{ s}}{120\text{ min}}]
+$P = \frac{6\text{ min }31\text{ s}}{120\text{ min}}$
 
 **Problem 12:** A song is 2 minutes 40 seconds played sometime between noon and 4 P.M. (4 hours = 240 minutes). Find probability of hearing it.
-[P = \frac{160\text{ s}}{14400\text{ s}}]
+$P = \frac{160\text{ s}}{14400\text{ s}}$
 
 ## Example 3 — Area-Based Probability
 
 ### Step 1: Calculate Areas and Find Ratio
 
 **Problem 13:** A fish charm lands on a circular landing pad. Center circle has 4-foot diameter. Find probability of landing in center.
-[P = \frac{\text{area of center circle}}{\text{area of entire pad}} = \frac{\pi (2)^2}{\pi r^2}]
+$P = \frac{\text{area of center circle}}{\text{area of entire pad}} = \frac{\pi (2)^2}{\pi r^2}$
 
 **Problem 14:** Circular target with 10-yard radius inside a rectangular field 120 yards by 30 yards.
-[P = \frac{\text{area of target}}{\text{area of field}}]
+$P = \frac{\text{area of target}}{\text{area of field}}$
 
 ## Example 4 — Spinner Probability
 
@@ -100,11 +100,11 @@ Point [X] is chosen at random on segment [LP]. Find each probability:
 
 **Problems 15–19:** Use the spinner to find each probability. If the spinner lands on a line, spin again.
 
-[P(\text{red}) = \frac{\text{red sections}}{\text{total sections}}]
-[P(\text{blue}) = \frac{\text{blue sections}}{\text{total sections}}]
-[P(\text{green}) = \frac{\text{green sections}}{\text{total sections}}]
-[P(\text{green or blue}) = P(\text{green}) + P(\text{blue})]
-[P(\text{neither red nor yellow}) = 1 - P(\text{red}) - P(\text{yellow})]
+$P(\text{red}) = \frac{\text{red sections}}{\text{total sections}}$
+$P(\text{blue}) = \frac{\text{blue sections}}{\text{total sections}}$
+$P(\text{green}) = \frac{\text{green sections}}{\text{total sections}}$
+$P(\text{green or blue}) = P(\text{green}) + P(\text{blue})$
+$P(\text{neither red nor yellow}) = 1 - P(\text{red}) - P(\text{yellow})$
 
 ## Example 5 — Assumptions in Geometric Probability
 
@@ -115,12 +115,12 @@ Point [X] is chosen at random on segment [LP]. Find each probability:
 **a.** Assumption: Buses arrive at consistent intervals and passengers arrive randomly.
 
 **b.** Probability of waiting 5 minutes or less for both buses.
-[P(\text{Crimson} \leq 5) = \frac{5}{8} = 0.625]
-[P(\text{Gold} \leq 5) = \frac{5}{15} = 0.333]
-Assuming independence: [P(\text{both}) = 0.625 \times 0.333 \approx 0.208 = 20.8\%]
+$P(\text{Crimson} \leq 5) = \frac{5}{8} = 0.625$
+$P(\text{Gold} \leq 5) = \frac{5}{15} = 0.333$
+Assuming independence: $P(\text{both}) = 0.625 \times 0.333 \approx 0.208 = 20.8\%$
 
 **c.** Probability of waiting 5 minutes or less for only one bus.
-[0.625 \times (1 - 0.333) + (1 - 0.625) \times 0.333 \approx 0.417 + 0.125 = 0.542 = 54.2\%]
+$0.625 \times (1 - 0.333) + (1 - 0.625) \times 0.333 \approx 0.417 + 0.125 = 0.542 = 54.2\%$
 
 ## Mixed Exercises
 
@@ -131,7 +131,7 @@ Problems 21–35 provide practice with all skills:
 * Darts: equally likely to land anywhere on the dart board — find probability of landing in a shaded sector.
 * Washers game: 17-inch by 17-inch square pit with 4-inch diameter circular region. Find probability of landing in the circle.
 * Dance stage illuminated by two overlapping circles passing through each other's centers. Find probability of landing in illuminated area and in the overlap.
-* Prove probability in shaded circular region equals [\frac{x}{360}].
+* Prove probability in shaded circular region equals $\frac{x}{360}$.
 * Find probability in a complex shaded figure (rounded to nearest tenth of a percent).
 * Isosceles triangle with perimeter 32 cm and integer side lengths — find probability area is exactly 48 sq cm.
 * Explain whether athletic events can be considered random.

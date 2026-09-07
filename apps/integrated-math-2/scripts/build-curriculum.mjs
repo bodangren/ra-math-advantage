@@ -64,3 +64,40 @@ if (process.argv.includes("--check")) {
     );
 } else await writeFile(target, output);
 console.log(`Checked ${lessons.length} source lessons.`);
+
+const questions = JSON.parse(
+  await readFile(path.join(app, "curriculum/questions.json"), "utf8"),
+);
+const activityMap = {
+  contractVersion: "practice.v1",
+  schemaVersion: "curriculum-activity-map.v1",
+  generatedFrom: ["curriculum/questions.json"],
+  scope:
+    "Implemented lesson checkpoints. Full practice and spaced review remain incomplete.",
+  activities: lessons.map(({ slug }) => {
+    if (!questions[slug]) throw Error(`Missing checkpoint: ${slug}`);
+    return {
+      stableActivityId: `im2.checkpoint.${slug}`,
+      sourceReference: `curriculum/questions.json#${slug}`,
+      componentKey: "im2-question",
+      mode: "assessment",
+      props: questions[slug],
+      gradingConfig: { autoGrade: true, partialCredit: false },
+      srsEligible: false,
+    };
+  }),
+};
+const activityTarget = path.join(
+  app,
+  "curriculum/implementation/practice-v1/activity-map.json",
+);
+const activityOutput = JSON.stringify(activityMap, null, 2) + "\n";
+if (process.argv.includes("--check")) {
+  if (
+    (await readFile(activityTarget, "utf8").catch(() => null)) !==
+    activityOutput
+  )
+    throw Error(
+      "Activity map is stale. Run node scripts/build-curriculum.mjs.",
+    );
+} else await writeFile(activityTarget, activityOutput);

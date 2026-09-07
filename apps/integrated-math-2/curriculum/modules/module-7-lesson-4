@@ -11,11 +11,11 @@ Source: (Module 7, Lesson 7-4, Int2_0704_practice.docx)
 
 ## Vocabulary
 
-* **Permutation** — An arrangement of objects where order matters; formula: [nPr = \frac{n!}{(n-r)!}]
-* **Combination** — A selection of objects where order does not matter; formula: [nCr = \frac{n!}{r!(n-r)!}]
+* **Permutation** — An arrangement of objects where order matters; formula: $nPr = \frac{n!}{(n-r)!}$
+* **Combination** — A selection of objects where order does not matter; formula: $nCr = \frac{n!}{r!(n-r)!}$
 * **Favorable Outcomes** — The outcomes that satisfy the event of interest.
 * **Total Outcomes** — All possible outcomes in the sample space.
-* **Probability with Permutations** — [P(E) = \frac{\text{favorable permutations}}{\text{total permutations}}]
+* **Probability with Permutations** — $P(E) = \frac{\text{favorable permutations}}{\text{total permutations}}$
 
 ## Explore: When Order Matters
 
@@ -30,24 +30,24 @@ Why is the probability of being chosen as captain and co-captain different from 
 
 When finding the probability that specific items are selected in a particular order, use permutations for both favorable outcomes and total outcomes.
 
-[P(E) = \frac{\text{favorable ordered outcomes}}{\text{total ordered outcomes}}]
+$P(E) = \frac{\text{favorable ordered outcomes}}{\text{total ordered outcomes}}$
 
 **Example:** Cheerleading squad of 12 girls, captain and co-captain selected randomly. Probability that Chantel and Clover are chosen as the two leaders (in any order).
 
-Total ways to choose 2 leaders from 12: [_{12}P_{2} = 12 \times 11 = 132]
+Total ways to choose 2 leaders from 12: $_{12}P_{2} = 12 \times 11 = 132$
 Favorable ordered outcomes: 2. Either girl can be captain. [P = 2/132 = 1/66].
 
 ### Key Concept: Probability with Combinations
 
 When order does not matter, use combinations.
 
-[P(E) = \frac{\binom{n}{r}}{\binom{N}{R}}]
+$P(E) = \frac{\binom{n}{r}}{\binom{N}{R}}$
 
 **Example:** From 20 flavors of frozen yogurt, choosing 3 flavors. Probability the chosen flavors are vanilla, chocolate, and strawberry (in any order).
 
-Total ways to choose 3 from 20: [\binom{20}{3} = 1140]
-Favorable ways (the specific 3 flavors): [\binom{3}{3} = 1] (since the set {vanilla, chocolate, strawberry} is one specific combination)
-[P = \frac{1}{1140}]
+Total ways to choose 3 from 20: $\binom{20}{3} = 1140$
+Favorable ways (the specific 3 flavors): $\binom{3}{3} = 1$ (since the set {vanilla, chocolate, strawberry} is one specific combination)
+$P = \frac{1}{1140}$
 
 ### Key Concept: Distinguishing Permutations from Combinations
 
@@ -71,28 +71,28 @@ Total arrangements of 4 from 6: [_{6}P_{4} = 360]
 Favorable: Geometry and Chemistry occupy the first two positions. The other two positions have [4P2 = 12] arrangements. [P = 12/360 = 1/30].
 
 **Problem 3:** 50 raffle tickets, Alfonso and Cordell each buy one ticket. Their ticket numbers are 14 and 23. The two tickets are drawn in that order. Probability their specific tickets are drawn.
-Total ways to assign 2 specific tickets: [50 \times 49 = 2450]
+Total ways to assign 2 specific tickets: $50 \times 49 = 2450$
 Favorable: 1 specific assignment.
-[P = \frac{1}{2450}]
+$P = \frac{1}{2450}$
 
 **Problem 4:** Row of seats C11 and C12, Ciro in C11 and Nia in C12. Probability of this specific seating.
 Total pairs of seats available: depends on row length.
 Favorable: 1 specific assignment.
-[P = \frac{1}{\text{total possible seat pairs}}]
+$P = \frac{1}{\text{total possible seat pairs}}$
 
 ## Examples 2 and 3 — Permutations with Repetition and Specific Sequences
 
 ### Step 1: Count Total and Favorable Outcomes
 
 **Problem 5:** Phone number generated using digits 2, 3, 2, 5, 2, 7, 3. Probability of getting 222-3357.
-Total possible arrangements of the 7 digits: [\frac{7!}{3! \times 2!} = 420]
+Total possible arrangements of the 7 digits: $\frac{7!}{3! \times 2!} = 420$
 Only 1 favorable arrangement (the exact sequence).
-[P = \frac{1}{420}]
+$P = \frac{1}{420}$
 
 **Problem 6:** 5-digit identification numbers from digits 1–9, no repetition. Probability of 25938.
 Total: [_{9}P_{5} = 15,120]
 Favorable: 1
-[P = \frac{1}{15,120}]
+$P = \frac{1}{15,120}$
 
 **Problem 7a:** Class president finalists — probability Denny, Kelli, and Chaminade are the first 3 speakers in any order.
 Total ways to arrange 3 speakers from the full list of finalists: use permutation if order matters among the 3.
@@ -106,29 +106,29 @@ Only 1 favorable arrangement out of the total possible arrangements.
 ### Step 1: Use Combinations for Unordered Selection
 
 **Problem 8:** Taryn has 15 soccer trophies, displays 9. Probability that trophies from 1st through 9th grades are all chosen.
-Total ways to choose 9 from 15: [\binom{15}{9}]
+Total ways to choose 9 from 15: $\binom{15}{9}$
 Favorable ways: only 1 way to select those specific 9 trophies.
-[P = \frac{1}{\binom{15}{9}}]
+$P = \frac{1}{\binom{15}{9}}$
 
 **Problem 9:** 20 frozen yogurt flavors, choosing 3. Probability of vanilla, chocolate, and strawberry.
-Total: [\binom{20}{3} = 1140]
+Total: $\binom{20}{3} = 1140$
 Favorable: 1
-[P = \frac{1}{1140}]
+$P = \frac{1}{1140}$
 
 **Problem 10:** Kaja serves 9 dogs, chooses 4 randomly for an extra trip. Probability that Cherish, Taffy, Haunter, and Maverick are chosen.
-Total: [\binom{9}{4} = 126]
+Total: $\binom{9}{4} = 126$
 Favorable: 1
-[P = \frac{1}{126}]
+$P = \frac{1}{126}$
 
 **Problem 11:** 10 food trucks, trying half (5). Probability of selecting 5 specific trucks.
-Total: [\binom{10}{5} = 252]
+Total: $\binom{10}{5} = 252$
 Favorable: 1
-[P = \frac{1}{252}]
+$P = \frac{1}{252}$
 
 **Problem 12:** Emily has 20 collectible dolls, donates 10. Probability of selecting 10 specific country dolls.
-Total: [\binom{20}{10}]
+Total: $\binom{20}{10}$
 Favorable: 1
-[P = \frac{1}{\binom{20}{10}}]
+$P = \frac{1}{\binom{20}{10}}$
 
 **Problem 13:** 12 attractions (4 roller coasters, 2 carousels, 2 drop towers, 2 gravity rides, 2 dark rides). App suggests 4 in order. Probability the first 4 suggested are the four roller coasters.
 Total ordered sequences of 4 from 12: [_{12}P_{4} = 11,880]
@@ -153,8 +153,8 @@ Problems 14–30 provide practice with all skills:
 * 15 boys and 15 girls entered drawing for 4 movie tickets — probability all 4 won by girls.
 * Analyze when [_{n}P_{r} = \,_{n}C_{r}].
 * Compare and contrast permutations and combinations.
-* Describe situation with probability [\frac{1}{n}].
-* Show algebraically why [r! \times \,_{n}C_{r} = \,_{n}P_{r}].
+* Describe situation with probability $\frac{1}{n}$.
+* Show algebraically why $r! \times \,_{n}C_{r} = \,_{n}P_{r}$.
 * Evaluate Charlie's claim that [nP_{n} = \,_{n}P_{n-1}].
 
 ## Review Notes

@@ -37,6 +37,12 @@ it("creates a teacher-owned class and rejects another teacher assignment", async
     version: 2,
     status: "published",
   });
+  for (let n = 0; n < 105; n++)
+    await t.db.insert("lesson_versions", {
+      lessonId,
+      version: n + 3,
+      status: "archived",
+    });
   await invoke(assignLesson, t.ctx, {
     teacherId: t.teacher,
     classId,

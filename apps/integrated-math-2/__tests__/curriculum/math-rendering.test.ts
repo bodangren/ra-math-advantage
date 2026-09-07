@@ -1,3 +1,7 @@
+import { unified } from "unified";
+import remarkParse from "remark-parse";
+import remarkMath from "remark-math";
+import katex from "katex";
 // @vitest-environment node
 import { it, expect } from "vitest";
 import { readFileSync } from "node:fs";
@@ -22,4 +26,41 @@ it("does not repeat the phase title in its body", () => {
         phase.markdown.startsWith(`## ${phase.title}\n`),
         lesson.slug,
       ).toBe(false);
+});
+
+it("does not leave TeX expressions in unsupported square-bracket delimiters", () => {
+  for (const lesson of lessons) {
+    for (const phase of lesson.phases) {
+      expect(phase.markdown, lesson.slug).not.toMatch(
+        /(?<!!)\[[^\]\n]*\\(?:frac|sqrt|sin|cos|tan|left|cdot|pi|theta|neq)\b[^\]\n]*\](?!\()/,
+      );
+    }
+  }
+});
+
+it("renders every marked math expression without a KaTeX error", () => {
+  for (const lesson of lessons)
+    for (const phase of lesson.phases) {
+      const tree = unified()
+        .use(remarkParse)
+        .use(remarkMath)
+        .parse(phase.markdown);
+      const visit = (node: {
+        type: string;
+        value?: string;
+        children?: typeof tree.children;
+      }) => {
+        if (node.type === "math" || node.type === "inlineMath")
+          expect(
+            () =>
+              katex.renderToString(node.value!, {
+                throwOnError: true,
+                strict: "ignore",
+              }),
+            `${lesson.slug}: ${phase.title}`,
+          ).not.toThrow();
+        node.children?.forEach(visit);
+      };
+      visit(tree);
+    }
 });

@@ -109,3 +109,33 @@ describe("registration storage", () => {
     ).toEqual({ allowed: false });
   });
 });
+it("retires expired rate-limit buckets without removing current limits", async () => {
+  const t = database();
+  for (let i = 0; i < 30; i++)
+    await t.db.insert("auth_rate_limits", {
+      key: `old:${i}`,
+      windowStart: Date.now() - 120000,
+      count: 10,
+    });
+  await t.db.insert("auth_rate_limits", {
+    key: "login:user:blocked",
+    windowStart: Date.now(),
+    count: 10,
+  });
+  for (let i = 0; i < 5; i++)
+    await invoke(consumeAuthAttempt, t.ctx, {
+      username: `new${i}`,
+      operation: "login",
+    });
+  expect(
+    t.tables.auth_rate_limits.filter((row) =>
+      String(row.key).startsWith("old:"),
+    ),
+  ).toHaveLength(0);
+  expect(
+    await invoke(consumeAuthAttempt, t.ctx, {
+      username: "blocked",
+      operation: "login",
+    }),
+  ).toEqual({ allowed: false });
+});

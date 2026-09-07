@@ -59,6 +59,12 @@ it("publishes valid content, archives the prior revision, and preserves evidence
     sectionType: "activity",
     content: { activityId },
   });
+  for (let n = 0; n < 105; n++)
+    await t.db.insert("lesson_versions", {
+      lessonId,
+      version: n + 3,
+      status: "archived",
+    });
   const evidenceId = await t.db.insert("activity_submissions", { score: 1 });
   await invoke(publishLesson, t.ctx, { versionId });
   await invoke(publishLesson, t.ctx, { versionId });

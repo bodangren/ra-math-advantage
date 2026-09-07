@@ -144,12 +144,13 @@ export const getGradebook = internalQuery({
     for (const lesson of rows.filter((row) =>
       assigned.some((a) => a.lessonId === row._id),
     )) {
-      const versions = await ctx.db
+      const version = await ctx.db
         .query("lesson_versions")
-        .withIndex("by_lesson_and_version", (q) => q.eq("lessonId", lesson._id))
+        .withIndex("by_lesson_status_version", (q) =>
+          q.eq("lessonId", lesson._id).eq("status", "published"),
+        )
         .order("desc")
-        .take(100);
-      const version = versions.find((v) => v.status === "published");
+        .first();
       if (!version) continue;
       const phases = await ctx.db
         .query("phase_versions")
@@ -159,7 +160,7 @@ export const getGradebook = internalQuery({
         .take(100);
       lessons.push({
         id: lesson._id,
-        title: lesson.title,
+        title: version.title ?? lesson.title,
         total: phases.length,
       });
       phaseIds.push(new Set(phases.map((p) => p._id)));
@@ -180,17 +181,17 @@ export const getGradebook = internalQuery({
         continue;
       const completed = [];
       for (let i = 0; i < lessons.length; i++) {
-        const progress = await ctx.db
-          .query("student_progress")
-          .withIndex("by_user_and_lesson", (q) =>
-            q.eq("userId", student._id).eq("lessonId", lessons[i].id),
-          )
-          .take(100);
-        completed.push(
-          progress.filter(
-            (p) => p.status === "completed" && phaseIds[i].has(p.phaseId),
-          ).length,
-        );
+        let count = 0;
+        for (const phaseId of phaseIds[i]) {
+          const progress = await ctx.db
+            .query("student_progress")
+            .withIndex("by_user_and_phase", (q) =>
+              q.eq("userId", student._id).eq("phaseId", phaseId),
+            )
+            .unique();
+          if (progress?.status === "completed") count++;
+        }
+        completed.push(count);
       }
       students.push({
         id: student._id,

@@ -79,25 +79,23 @@ If △RST ∼ △EFG and [SH] is an altitude of △RST and [FJ] is an altitude o
 Since [
 \frac{SH}{FJ} = \frac{ST}{FG}
 ]:
-[
+$$
 \frac{5}{7} = \frac{6}{FG}
-]
-[
+$$
+$$
 FG = \frac{6 \times 7}{5} = 8.4
-]
-
+$$
 **Problem 6:** △ABC ∼ △MNP, [AB = 24], [AD = 14], [MQ = 10.5], find [MN].
 
 Since [
 \frac{AD}{MQ} = \frac{AB}{MN}
 ]:
-[
+$$
 \frac{14}{10.5} = \frac{24}{MN}
-]
-[
+$$
+$$
 MN = \frac{24 \times 10.5}{14} = 18
-]
-
+$$
 ## Example 3 — Real-World Application
 
 ### Step 1: Set Up the Proportion

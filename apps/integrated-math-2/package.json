@@ -9,10 +9,11 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest watch",
-    "curriculum:build": "node scripts/build-curriculum.mjs",
-    "curriculum:check": "node scripts/build-curriculum.mjs --check",
+    "curriculum:build": "node scripts/build-curriculum.mjs && node scripts/build-calendar.mjs",
+    "curriculum:check": "node scripts/build-curriculum.mjs --check && node scripts/build-calendar.mjs --check",
     "prebuild": "npm run curriculum:check",
-    "typecheck:backend": "tsc --noEmit -p convex/tsconfig.json"
+    "typecheck:backend": "tsc --noEmit -p convex/tsconfig.json",
+    "curriculum:audit": "vitest run __tests__/curriculum"
   },
   "dependencies": {
     "@math-platform/activity-runtime": "*",

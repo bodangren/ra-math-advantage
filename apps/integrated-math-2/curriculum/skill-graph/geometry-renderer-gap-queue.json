@@ -25,7 +25,7 @@
       "title": "1b: Apply properties of circumcenters and perpendicular bisectors in real-world contexts",
       "module": "1",
       "lesson": "1",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -39,7 +39,7 @@
       "title": "1a: Find measures of segments and angles using perpendicular bisector and angle bisector theorems",
       "module": "1",
       "lesson": "1",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -53,7 +53,7 @@
       "title": "1d: Solve real-world problems involving angle bisectors and the incenter",
       "module": "1",
       "lesson": "2",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -67,7 +67,7 @@
       "title": "1c: Use the Angle Bisector Theorem to find angle and segment measures",
       "module": "1",
       "lesson": "2",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -81,7 +81,7 @@
       "title": "1e: Find lengths of medians using the Centroid Theorem",
       "module": "1",
       "lesson": "3",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -95,7 +95,7 @@
       "title": "1f: Find the coordinates of the orthocenter and compare medians, perpendicular bisectors, and altitudes",
       "module": "1",
       "lesson": "3",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "graphing-explorer",
       "neededRendererTypes": [
         "coordinate-geometry-canvas",
         "interactive-diagram-solver"
@@ -110,7 +110,7 @@
       "title": "1h: Apply triangle inequality relationships in proofs and real-world contexts",
       "module": "1",
       "lesson": "4",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "graphing-explorer",
       "neededRendererTypes": [
         "proof-builder",
         "interactive-diagram-solver"
@@ -153,7 +153,7 @@
       "title": "1i: Write indirect proofs of algebraic and geometric statements",
       "module": "1",
       "lesson": "5",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "proof-builder"
       ],
@@ -167,7 +167,7 @@
       "title": "1l: Apply the Triangle Inequality Theorem in proofs and real-world contexts",
       "module": "1",
       "lesson": "6",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "graphing-explorer",
       "neededRendererTypes": [
         "proof-builder",
         "interactive-diagram-solver"
@@ -182,7 +182,7 @@
       "title": "1k: Determine whether three lengths can form a triangle; find the range of the third side",
       "module": "1",
       "lesson": "6",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "comprehension-quiz",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -196,7 +196,7 @@
       "title": "1m: Apply the Hinge Theorem to compare sides and angles in two triangles",
       "module": "1",
       "lesson": "7",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -210,7 +210,7 @@
       "title": "1n: Use the Hinge Theorem and its converse to find ranges of values and solve problems",
       "module": "1",
       "lesson": "7",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -224,7 +224,7 @@
       "title": "10j: Apply solving radical equations to real-world problems involving distance and measurement",
       "module": "10",
       "lesson": "5",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -238,7 +238,7 @@
       "title": "11d: Apply addition of polynomials to find total area in geometric contexts",
       "module": "11",
       "lesson": "2",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -252,7 +252,7 @@
       "title": "11f: Multiply polynomials in real-world area and geometric contexts",
       "module": "11",
       "lesson": "3",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -266,7 +266,7 @@
       "title": "11h: Factor polynomials using GCF, grouping, trinomials, and difference of squares",
       "module": "11",
       "lesson": "5",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -280,7 +280,7 @@
       "title": "12a: Identify the axis of symmetry, vertex, and end behavior of a quadratic function from its graph",
       "module": "12",
       "lesson": "1",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "graphing-explorer",
       "neededRendererTypes": [
         "coordinate-geometry-canvas"
       ],
@@ -294,7 +294,7 @@
       "title": "12c: Describe how the graph of a quadratic relates to y = x\u00b2 based on translations and dilations",
       "module": "12",
       "lesson": "2",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "graphing-explorer",
       "neededRendererTypes": [
         "coordinate-geometry-canvas"
       ],
@@ -308,7 +308,7 @@
       "title": "12d: Write quadratic equations given a graph using transformations",
       "module": "12",
       "lesson": "2",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "graphing-explorer",
       "neededRendererTypes": [
         "coordinate-geometry-canvas"
       ],
@@ -322,7 +322,7 @@
       "title": "12l: Apply completing the square to real-world problems involving projectile motion and optimization",
       "module": "12",
       "lesson": "5",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -336,7 +336,7 @@
       "title": "12i: Find the value of c that completes the square for a trinomial in the form x\u00b2 + bx",
       "module": "12",
       "lesson": "5",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -350,7 +350,7 @@
       "title": "12j: Solve quadratic equations by completing the square",
       "module": "12",
       "lesson": "5",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "graphing-explorer",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -364,7 +364,7 @@
       "title": "12k: Write quadratic functions in vertex form and identify extrema and axis of symmetry",
       "module": "12",
       "lesson": "5",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "graphing-explorer",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -378,7 +378,7 @@
       "title": "13a: Apply reciprocal and quotient identities to simplify and evaluate trigonometric expressions",
       "module": "13",
       "lesson": "1",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -406,7 +406,7 @@
       "title": "13c: Apply sin\u00b2\u03b8 + cos\u00b2\u03b8 = 1 and its Pythagorean variants",
       "module": "13",
       "lesson": "2",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -420,7 +420,7 @@
       "title": "13d: Use Pythagorean identities to find missing trig values and simplify expressions",
       "module": "13",
       "lesson": "2",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -434,7 +434,7 @@
       "title": "13e: Apply sum and difference identities for sine, cosine, and tangent",
       "module": "13",
       "lesson": "3",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -448,7 +448,7 @@
       "title": "13g: Apply double-angle identities for sine, cosine (all three forms), and tangent",
       "module": "13",
       "lesson": "4",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -462,7 +462,7 @@
       "title": "13i: Solve trigonometric equations on a restricted domain using algebraic manipulation and identities",
       "module": "13",
       "lesson": "5",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -476,7 +476,7 @@
       "title": "13k: Use graphical methods to verify solutions of trigonometric equations",
       "module": "13",
       "lesson": "5",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "graphing-explorer",
       "neededRendererTypes": [
         "coordinate-geometry-canvas"
       ],
@@ -490,7 +490,7 @@
       "title": "2b: Find the sum of exterior angles and apply exterior angle relationships",
       "module": "2",
       "lesson": "1",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -504,7 +504,7 @@
       "title": "2a: Find the sum of interior angles and the measure of each interior angle in regular polygons",
       "module": "2",
       "lesson": "1",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -518,7 +518,7 @@
       "title": "2d: Find the area and perimeter of parallelograms and solve for unknown values",
       "module": "2",
       "lesson": "2",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -532,7 +532,7 @@
       "title": "2c: Use properties of parallelograms to find angle measures and side lengths",
       "module": "2",
       "lesson": "2",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -546,7 +546,7 @@
       "title": "2e: Determine whether a quadrilateral is a parallelogram using side, angle, and diagonal properties",
       "module": "2",
       "lesson": "3",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "comprehension-quiz",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -560,7 +560,7 @@
       "title": "2f: Use coordinate geometry to verify parallelograms and write coordinate proofs",
       "module": "2",
       "lesson": "3",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "graphing-explorer",
       "neededRendererTypes": [
         "proof-builder",
         "coordinate-geometry-canvas"
@@ -575,7 +575,7 @@
       "title": "2g: Apply properties of rectangles to find angle measures, diagonal lengths, and prove triangles congruent",
       "module": "2",
       "lesson": "4",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "comprehension-quiz",
       "neededRendererTypes": [
         "proof-builder",
         "interactive-diagram-solver"
@@ -590,7 +590,7 @@
       "title": "2h: Use coordinate geometry to determine whether a quadrilateral is a rectangle",
       "module": "2",
       "lesson": "4",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "graphing-explorer",
       "neededRendererTypes": [
         "coordinate-geometry-canvas",
         "interactive-diagram-solver"
@@ -605,7 +605,7 @@
       "title": "2i: Apply properties of rhombi and squares to find angle measures and diagonal lengths",
       "module": "2",
       "lesson": "5",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -619,7 +619,7 @@
       "title": "2j: Classify quadrilaterals and prove that a quadrilateral is a rhombus or square",
       "module": "2",
       "lesson": "5",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "comprehension-quiz",
       "neededRendererTypes": [
         "proof-builder"
       ],
@@ -633,7 +633,7 @@
       "title": "2l: Apply kite properties and solve perimeter/area problems",
       "module": "2",
       "lesson": "6",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -647,7 +647,7 @@
       "title": "2k: Apply properties of trapezoids and isosceles trapezoids; find midsegment length",
       "module": "2",
       "lesson": "6",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -661,7 +661,7 @@
       "title": "2m: Compare and classify quadrilaterals based on their properties",
       "module": "2",
       "lesson": "6",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "comprehension-quiz",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -675,7 +675,7 @@
       "title": "3a: Determine whether a dilation is an enlargement or reduction and find its scale factor",
       "module": "3",
       "lesson": "1",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -689,7 +689,7 @@
       "title": "3b: Graph dilated images and find perimeter relationships",
       "module": "3",
       "lesson": "1",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "graphing-explorer",
       "neededRendererTypes": [
         "coordinate-geometry-canvas",
         "interactive-diagram-solver"
@@ -704,7 +704,7 @@
       "title": "3d: Find unknown side lengths in similar polygons using proportions; apply to real-world problems",
       "module": "3",
       "lesson": "2",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -718,7 +718,7 @@
       "title": "3c: Identify pairs of congruent angles and write proportions for corresponding sides of similar polygons",
       "module": "3",
       "lesson": "2",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "comprehension-quiz",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -732,7 +732,7 @@
       "title": "3e: Determine whether two triangles are similar using the AA Similarity Postulate",
       "module": "3",
       "lesson": "3",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "comprehension-quiz",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -746,7 +746,7 @@
       "title": "3g: Apply SSS and SAS similarity to real-world proportional reasoning problems",
       "module": "3",
       "lesson": "4",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "proof-builder"
       ],
@@ -760,7 +760,7 @@
       "title": "3f: Determine whether triangles are similar using SSS and SAS Similarity Theorems",
       "module": "3",
       "lesson": "4",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -774,7 +774,7 @@
       "title": "3h: Apply the Triangle Proportionality Theorem to find unknown lengths; use the converse to identify parallel lines",
       "module": "3",
       "lesson": "5",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -788,7 +788,7 @@
       "title": "3i: Find lengths using midsegments and apply triangle proportionality to real-world problems",
       "module": "3",
       "lesson": "5",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -802,7 +802,7 @@
       "title": "3k: Apply the Triangle Angle Bisector Theorem and relate special segments in similar triangles",
       "module": "3",
       "lesson": "6",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -816,7 +816,7 @@
       "title": "3j: Find unknown side lengths and altitudes in similar triangles using proportional reasoning",
       "module": "3",
       "lesson": "6",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "proof-builder",
         "interactive-diagram-solver"
@@ -831,7 +831,7 @@
       "title": "3l: Write proofs involving similar triangle theorems and special segments",
       "module": "3",
       "lesson": "6",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "proof-builder",
         "interactive-diagram-solver"
@@ -846,7 +846,7 @@
       "title": "4a: Find the geometric mean between two numbers and write similarity statements for the three similar right triangles",
       "module": "4",
       "lesson": "1",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -860,7 +860,7 @@
       "title": "4b: Find unknown side lengths in right triangles using geometric mean relationships",
       "module": "4",
       "lesson": "1",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -874,7 +874,7 @@
       "title": "4d: Classify triangles as acute, right, or obtuse using the converse of the Pythagorean Theorem",
       "module": "4",
       "lesson": "2",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -888,7 +888,7 @@
       "title": "4c: Find unknown side lengths in right triangles using the Pythagorean Theorem",
       "module": "4",
       "lesson": "2",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -902,7 +902,7 @@
       "title": "4f: Find the midpoint of a segment in three-dimensional space and apply formulas in real-world contexts",
       "module": "4",
       "lesson": "3",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -916,7 +916,7 @@
       "title": "4e: Graph a rectangular solid and find the distance between two points in three-dimensional space",
       "module": "4",
       "lesson": "3",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "graphing-explorer",
       "neededRendererTypes": [
         "coordinate-geometry-canvas",
         "interactive-diagram-solver"
@@ -931,7 +931,7 @@
       "title": "4h: Apply special right triangle ratios to solve real-world problems",
       "module": "4",
       "lesson": "4",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -945,7 +945,7 @@
       "title": "4g: Find missing side lengths in 45\u00b0-45\u00b0-90\u00b0 and 30\u00b0-60\u00b0-90\u00b0 triangles using special ratios",
       "module": "4",
       "lesson": "4",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -959,7 +959,7 @@
       "title": "4i: Find trigonometric ratios (sine, cosine, tangent) for acute angles in right triangles",
       "module": "4",
       "lesson": "5",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -973,7 +973,7 @@
       "title": "4j: Use trigonometric ratios to find missing side lengths and angle measures; solve right triangles",
       "module": "4",
       "lesson": "5",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -987,7 +987,7 @@
       "title": "4k: Solve problems involving angles of elevation and depression",
       "module": "4",
       "lesson": "6",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -1001,7 +1001,7 @@
       "title": "4l: Use trigonometry to find areas of triangles and solve indirect measurement problems with two angles",
       "module": "4",
       "lesson": "6",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "proof-builder",
         "interactive-diagram-solver"
@@ -1016,7 +1016,7 @@
       "title": "4m: Apply the Law of Sines to find missing sides and angles in oblique triangles",
       "module": "4",
       "lesson": "7",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -1030,7 +1030,7 @@
       "title": "4n: Determine whether a triangle has no solution, one solution, or two solutions (ambiguous case)",
       "module": "4",
       "lesson": "7",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "comprehension-quiz",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -1044,7 +1044,7 @@
       "title": "4o: Apply the Law of Cosines to find missing sides and angles in oblique triangles",
       "module": "4",
       "lesson": "8",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -1058,7 +1058,7 @@
       "title": "4p: Determine whether to use Law of Sines or Law of Cosines and apply to real-world problems",
       "module": "4",
       "lesson": "8",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "comprehension-quiz",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -1072,7 +1072,7 @@
       "title": "5b: Find radius, diameter, and circumference given any one of these measures",
       "module": "5",
       "lesson": "1",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -1086,7 +1086,7 @@
       "title": "5a: Identify and name circles, radii, chords, and diameters; use the relationship between radii and diameter",
       "module": "5",
       "lesson": "1",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "comprehension-quiz",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -1100,7 +1100,7 @@
       "title": "5c: Find central angle measures and arc measures in degrees; classify arcs as major, minor, or semicircles",
       "module": "5",
       "lesson": "2",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "comprehension-quiz",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -1114,7 +1114,7 @@
       "title": "5e: Use relationships among arcs, chords, and central angles; apply Theorems 10.5 and 10.6",
       "module": "5",
       "lesson": "3",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -1128,7 +1128,7 @@
       "title": "5f: Find the measure of inscribed angles and their intercepted arcs",
       "module": "5",
       "lesson": "4",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -1142,7 +1142,7 @@
       "title": "5g: Prove theorems about inscribed angles and apply properties of angles inscribed in semicircles",
       "module": "5",
       "lesson": "4",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "proof-builder",
         "interactive-diagram-solver"
@@ -1157,7 +1157,7 @@
       "title": "5i: Find angle measures involving tangents; find perimeters of polygons circumscribed about circles",
       "module": "5",
       "lesson": "5",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -1171,7 +1171,7 @@
       "title": "5h: Identify the number of common tangents to pairs of circles; determine whether a segment is tangent",
       "module": "5",
       "lesson": "5",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "comprehension-quiz",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -1185,7 +1185,7 @@
       "title": "5k: Apply angle measure relationships to find arc measures and unknown angles; relate to real-world contexts",
       "module": "5",
       "lesson": "6",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -1199,7 +1199,7 @@
       "title": "5j: Find angle measures formed by chords, tangents, and secants (inside, on, and outside circles)",
       "module": "5",
       "lesson": "6",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -1213,7 +1213,7 @@
       "title": "5m: Find points of intersection between a circle and a line; apply circle equations to real-world contexts",
       "module": "5",
       "lesson": "7",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -1227,7 +1227,7 @@
       "title": "5l: Write the equation of a circle in standard form given center and radius, center and diameter, or center and a point on the circle",
       "module": "5",
       "lesson": "7",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "graphing-explorer",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -1241,7 +1241,7 @@
       "title": "6a: Find areas of parallelograms and rhombuses using appropriate formulas",
       "module": "6",
       "lesson": "1",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -1255,7 +1255,7 @@
       "title": "6b: Find areas of trapezoids and kites; solve real-world area problems",
       "module": "6",
       "lesson": "1",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -1269,7 +1269,7 @@
       "title": "6d: Find the area of composite figures involving regular polygons",
       "module": "6",
       "lesson": "2",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -1283,7 +1283,7 @@
       "title": "6c: Identify the center, radius, apothem, and central angle of a regular polygon; find the area of regular polygons",
       "module": "6",
       "lesson": "2",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "comprehension-quiz",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -1297,7 +1297,7 @@
       "title": "6e: Find the area of a circle and relate diameter and radius",
       "module": "6",
       "lesson": "3",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -1311,7 +1311,7 @@
       "title": "6f: Find the area of a sector of a circle",
       "module": "6",
       "lesson": "3",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -1325,7 +1325,7 @@
       "title": "6g: Find lateral areas and surface areas of prisms and cylinders",
       "module": "6",
       "lesson": "4",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -1339,7 +1339,7 @@
       "title": "6h: Find lateral areas and surface areas of pyramids and cones",
       "module": "6",
       "lesson": "4",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -1353,7 +1353,7 @@
       "title": "6i: Find surface areas of spheres and composite solids",
       "module": "6",
       "lesson": "4",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -1367,7 +1367,7 @@
       "title": "6j: Describe planes of symmetry for three-dimensional solids; identify shapes of cross sections",
       "module": "6",
       "lesson": "5",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "comprehension-quiz",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -1381,7 +1381,7 @@
       "title": "6k: Identify solids formed by rotating two-dimensional shapes about an axis; determine axis symmetry",
       "module": "6",
       "lesson": "5",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "comprehension-quiz",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -1395,7 +1395,7 @@
       "title": "6m: Find volumes of composite solids and solve real-world volume problems",
       "module": "6",
       "lesson": "6",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -1409,7 +1409,7 @@
       "title": "6l: Find volumes of prisms and pyramids",
       "module": "6",
       "lesson": "6",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -1423,7 +1423,7 @@
       "title": "6o: Find volumes of composite solids involving cylinders, cones, and spheres; apply hemisphere volume",
       "module": "6",
       "lesson": "7",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -1437,7 +1437,7 @@
       "title": "6n: Find volumes of cylinders, cones, and spheres",
       "module": "6",
       "lesson": "7",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -1451,7 +1451,7 @@
       "title": "6p: Find missing areas given similar figures; find scale factors from areas of similar figures",
       "module": "6",
       "lesson": "8",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -1465,7 +1465,7 @@
       "title": "6q: Find volumes of similar solids and apply similarity to real-world problems involving surface areas and volumes",
       "module": "6",
       "lesson": "8",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "step-by-step-solver",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -1479,7 +1479,7 @@
       "title": "8j: Graph reflections, stretches, and compressions of parent functions",
       "module": "8",
       "lesson": "5",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "graphing-explorer",
       "neededRendererTypes": [
         "coordinate-geometry-canvas"
       ],
@@ -1493,7 +1493,7 @@
       "title": "9f: Interpret solutions of linear inequalities in context",
       "module": "9",
       "lesson": "3",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "graphing-explorer",
       "neededRendererTypes": [
         "interactive-diagram-solver"
       ],
@@ -1507,7 +1507,7 @@
       "title": "9e: Solve and graph one-variable and two-variable linear inequalities",
       "module": "9",
       "lesson": "3",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "graphing-explorer",
       "neededRendererTypes": [
         "coordinate-geometry-canvas"
       ],
@@ -1521,7 +1521,7 @@
       "title": "9i: Graph systems of linear inequalities and identify the solution region",
       "module": "9",
       "lesson": "5",
-      "currentRenderer": "fill-in-the-blank",
+      "currentRenderer": "graphing-explorer",
       "neededRendererTypes": [
         "coordinate-geometry-canvas"
       ],

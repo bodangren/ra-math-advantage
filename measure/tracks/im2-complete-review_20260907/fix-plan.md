@@ -58,3 +58,29 @@ The full correction task remains open. Do not mark the practice blueprint, calen
 Verification before the correction checkpoint: 24 test files and 172 tests passed. Frontend TypeScript, backend TypeScript, lint, and the production build passed.
 
 Saved correction checkpoint: `dd1c25a`. This commit does not close the full correction task.
+
+## Calendar correction
+
+The generated calendar now has 180 periods: 108 instruction, 36 mastery, 18 jigsaw, nine review, and nine test periods. Nine assessment blocks preserve the existing year-level instruction budget. The old rule for 13 separate review/test pairs conflicted with that budget. A preference question remains available to the user.
+
+All 96 source lessons occur in the calendar. Twelve lessons receive an additional instruction period. Tests verify the exact counts and worked-example titles. The 239 older individual period packages are removed. The 13 module views now use the current calendar.
+
+This closes the numerical calendar conflict in R19. It does not complete secure test forms, daily practice authoring, or the class-period runtime. Those remain open under R06 and R20.
+
+## Calendar, standards, and revision correction checkpoint
+
+- The activity map now contains the 96 implemented checkpoints. It no longer marks generic text as auto-graded practice or spaced review.
+- Canonical standard codes replace duplicate HS-prefixed aliases. The graph has 72 standard definitions. No graph definition remains a placeholder. The remaining teaching alignment edges still require review.
+- Trigonometry references use F-TF.B.6 and F-TF.B.7. The official trigonometric-functions standard places these statements in cluster B.
+- Rate-limit cleanup removes a bounded number of expired records. It preserves active limits.
+- Student lesson access, assignment, publication, and gradebook queries select published revisions by status. More than 100 archived revisions no longer hide published content. Progress queries use current phase IDs. Published titles take precedence over draft titles.
+- The renderer parses all 596 marked math expressions without an error. This includes more than 520 delimiter or syntax corrections. Plain-text mathematical notation and complete worked-example givens remain open.
+- The obsolete stored curriculum pass report is removed. Current tests verify source files instead.
+
+Verification: 27 test files and 181 tests passed. Lint, frontend TypeScript, backend TypeScript, and the production build passed. The isolated IM2 backend accepted both new indexes on local ports 3222 and 3223. No production deployment or dependency update occurred.
+
+Remaining work includes complete worked examples, full practice and mastery coverage, graph teaching relationships and blueprints, class-period workflows, and approved dependency updates. This checkpoint does not close those findings.
+
+The graph now contains all 403 current worked-example headings. The correction preserves existing IDs where the lesson and example number still match. It removes edges to examples absent from the source. It does not mark teaching alignment as reviewed.
+
+The example correction passes the graph validator. Seventy-three restored headings have explicit pending-alignment exceptions. The validator result does not mean that these headings have reviewed standards or practice coverage.

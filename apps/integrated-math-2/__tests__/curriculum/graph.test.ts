@@ -41,3 +41,43 @@ it("includes every current lesson with the correct title and source path in both
 it("does not use the nonexistent conditional probability cluster C", () => {
   expect(JSON.stringify(graph)).not.toContain("s-cp-c-9");
 });
+it("uses canonical standards with real definitions and valid trigonometry clusters", () => {
+  const standards = graph.nodes.filter((node) => node.kind === "standard");
+  const codes = standards.map((node) => node.metadata?.code);
+  expect(new Set(codes).size).toBe(codes.length);
+  for (const standard of standards) {
+    expect(standard.id).not.toMatch(/\.hs[afgns]-/);
+    expect(standard.title).not.toContain("(placeholder)");
+    expect(standard.description).not.toContain("definition not yet available");
+    expect(standard.id).not.toMatch(/f-tf-c-[67]$/);
+  }
+});
+it("maps each source worked example to one graph node with its actual title", () => {
+  const expected = lessons.flatMap((lesson) =>
+    lesson.phases
+      .filter((phase) => phase.phaseType === "worked_example")
+      .map((phase) => ({
+        key: `${lesson.unitNumber}.${lesson.orderIndex}.${phase.phaseNumber}`,
+        title: phase.title,
+        source: `apps/integrated-math-2/curriculum/modules/${lesson.slug}`,
+      })),
+  );
+  for (const nodes of [
+    graph.nodes,
+    inventory.nodes,
+    draft.nodes,
+    standardGraph.nodes,
+  ]) {
+    const examples = nodes.filter((node) => node.kind === "worked_example");
+    expect(examples).toHaveLength(expected.length);
+    for (const example of expected) {
+      const node = examples.find(
+        (item) =>
+          `${item.metadata?.module}.${item.metadata?.lesson}.${item.metadata?.phaseNumber}` ===
+          example.key,
+      );
+      expect(node?.title, example.key).toBe(example.title);
+      expect(node?.sourceRefs, example.key).toContain(example.source);
+    }
+  }
+});

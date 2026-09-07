@@ -44,7 +44,7 @@ Why do we perform the same operation on both sides of an equation? What would ha
 
 | Simplification | Conclusion |
 |----------------|------------|
-| [a = b] where [a \neq b] (e.g., [0 = 5]) | **No solution** |
+| [a = b] where $a \neq b$ (e.g., [0 = 5]) | **No solution** |
 | [a = a] (e.g., [3 = 3]) | **Infinitely many solutions** |
 
 ---
@@ -94,11 +94,9 @@ x = 3
 
 
 
-[
+$$
 2(3) + 15 = 6 + 15 = 21 \checkmark
-]
-
-
+$$
 ✅ Answer: [x = 3].
 
 ---
@@ -134,11 +132,9 @@ Add 3 to both sides:
 ### Step 3: Divide
 
 
-[
+$$
 x = \frac{12}{3} = 4
-]
-
-
+$$
 ### Step 4: Verify
 
 
@@ -148,30 +144,25 @@ x = \frac{12}{3} = 4
 
 
 
-[
+$$
 2(4) + 9 = 8 + 9 = 17 \checkmark
-]
-
-
+$$
 ✅ Answer: [x = 4].
 
 ---
 
 ## Example 3 — Solve Equation with Fractions
 
-Solve [\frac{2}{3}x + 5 = \frac{1}{2}x + 7].
+Solve $\frac{2}{3}x + 5 = \frac{1}{2}x + 7$.
 
 ### Step 1: Clear Fractions by Multiplying by the LCD
 
 The LCD of 3 and 2 is 6. Multiply every term by 6:
 
 
-[
+$$
 6 \cdot \frac{2}{3}x + 6 \cdot 5 = 6 \cdot \frac{1}{2}x + 6 \cdot 7
-]
-
-
-
+$$
 [
 4x + 30 = 3x + 42
 ]
@@ -198,17 +189,12 @@ x = 42 - 30 = 12
 ### Step 4: Verify
 
 
-[
+$$
 \frac{2}{3}(12) + 5 = 8 + 5 = 13
-]
-
-
-
-[
+$$
+$$
 \frac{1}{2}(12) + 7 = 6 + 7 = 13 \checkmark
-]
-
-
+$$
 ✅ Answer: [x = 12].
 
 ---
@@ -324,11 +310,9 @@ R(20) = 15(20) = 300
 
 
 
-[
+$$
 C(20) = 5(20) + 200 = 100 + 200 = 300 \checkmark
-]
-
-
+$$
 Revenue equals cost at [x = 20].
 
 ### Step 5: Interpret

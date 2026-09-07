@@ -1,66 +1,44 @@
-# Integrated Math 2 — Curriculum
+# Integrated Math 2 curriculum
 
-This folder contains the canonical curriculum specification for the IM2 course.
+The source inventory has 13 modules and 96 lessons.
 
-## Files
+## Content sources
 
-| File | Description |
-|------|-------------|
-| `course-spec.md` | Full course overview, goals, assessment philosophy, and instructional priorities |
-| `overview.md` | 13-unit course overview with lesson lists and core objectives |
-| `source/` | Extracted and normalized problem-type PDF source evidence |
-| `practice/` | Problem-family registry and course-plan mapping |
-| `modules/` | Per-unit summary files and per-lesson source files with worked examples |
-| `implementation/` | Generated class-period packages, `practice.v1` activity mappings, source exceptions, and audit output |
+- `modules/module-N-lesson-L` contains the lesson source. Some sources use an `index.md` file inside that directory.
+- `questions.json` contains one scored checkpoint for each lesson. This is not the complete practice bank.
+- `units.json` contains public module titles and descriptions.
+- `source/` contains extracted problem-type documents.
+- Original lesson worksheets provide the figures and problem statements. Published local assets are in `public/curriculum/`.
 
-## Curriculum Summary
+## Course plan
 
-- **13 units**, **67 lessons** total
-- Covers: geometric reasoning (Units 1–5), measurement (Unit 6), probability (Unit 7), algebraic functions (Units 8–10), polynomials and quadratics (Units 11–12), trigonometry (Unit 13)
-- Each lesson maps to the 6-phase daily routine: warmUp → conceptDevelopment → guidedPractice → independentPractice → assessment → capReflection
-- Problem-family mappings are tracked separately in `practice/course-plan-map.md`
-- The audited planning layer contains class periods using IM3 day types: `instruction`, `mastery`, `jigsaw`, `review`, `test`
-- Instruction periods map to the daily routine through generated phase-package artifacts in `implementation/class-period-packages/`
-- Activity candidates map to the `practice.v1` contract in `implementation/practice-v1/activity-map.json`
-- Source materials: overview.md, 18 local ALEKS problem-type PDFs
+`calendar.json` contains 180 periods. It covers all 96 lessons. The budget has 108 instruction periods, 36 mastery periods, 18 group-work periods, nine review periods, and nine test periods. The nine assessment blocks are defined in `course-spec.md`.
 
-## Validation
+`implementation/class-period-packages/unit-N.json` and `module-N-class-period-plan.md` provide module views of that calendar. The old individual period files have been removed.
 
-Run the curriculum audit after curriculum, problem-family, or implementation-artifact changes:
+The lesson runtime and the period plan are distinct. The current runtime delivers a lesson through ordered phases and a scored checkpoint. Full daily practice, mastery, spaced practice, group-work evidence, and secure assessment authoring remain open in the correction track. Do not treat planning entries as implemented activities.
 
-```bash
+## Build and verify
+
+Run from the app directory:
+
+```sh
+npm run curriculum:build
+npm run curriculum:check
 npm run curriculum:audit
 ```
 
-The audit writes `curriculum/implementation/audit/latest.json` and checks curriculum counts, lesson source quality, problem-family coverage, class-period package coverage, and `practice.v1` activity mapping coverage.
+The build reads the lesson sources and creates `lessons.json`. It then creates the calendar and module plans. The check command fails if a generated output is stale. The audit command tests the current files. Historical audit JSON files are not proof that the current curriculum passes.
 
-## Source Materials
+## Knowledge graph
 
-| Source | Role |
-|--------|------|
-| `overview.md` | 13-unit course overview, lesson lists, core objectives |
-| 18 problem-type PDFs | ALEKS-style question banks per module (see `source/pdf-manifest.json`) |
+The graph inventories contain all 96 lessons. Work on atomic skills, standards, prerequisites, practice blueprints, and projections continues in `measure/tracks/im2-complete-review_20260907/fix-plan.md` at the repository root.
 
-## Known Source Anomalies
+## Source limitations
 
-See `implementation/exceptions.json` for full documentation.
+- One source PDF uses `PRoblem` in its filename.
+- One source PDF uses the range `12-15 to 12-10` in its filename.
+- Some diagrams require the original worksheet for complete interpretation.
+- Legacy mathematical notation and worked-example completeness still require review.
 
-- Module 2 PDF filename has typo: "PRoblem" instead of "Problem"
-- Module 12 PDF filename has reversed range: "12-15 to 12-10" (likely means "12-5 to 12-10")
-- Modules 6, 8, 9, 10, 12 have split PDFs (multiple files per module)
-- PDF module lesson ranges may not match overview unit lesson counts 1:1
-- PDF extraction quality varies for diagrams, graphs, construction tasks, and formula notation
-
-## Relationship to Codebase
-
-- `convex/schema.ts` stores lessons in the `lessons` table with `unitNumber` (1-13) and `orderIndex`
-- Lesson slugs follow the pattern `{unitNumber}-{lessonNumber}` (e.g., `1-1`, `5-3`)
-- `measure/product.md` references this folder for the curriculum definition
-- Activity implementations should use `practice/problem-type-registry.md` family keys as the curriculum-facing vocabulary for reusable practice and assessment types
-
-## Relationship to Other Tracks
-
-- `curriculum-authoring-im2_20260425`: Downstream authoring track depends on this definition track
-- Standards seeding: Depends on this track for objective codes and lesson structure
-- Lesson seeding: Depends on this track for canonical lesson source files
-- Problem-family implementation: Depends on this track for familyKey registry
+Keep exact source filenames when you cite these documents. Do not use a filename anomaly as a lesson identifier.

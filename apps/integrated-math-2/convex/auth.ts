@@ -327,6 +327,11 @@ export const consumeAuthAttempt = internalMutation({
   returns: v.object({ allowed: v.boolean() }),
   handler: async (ctx, args) => {
     const now = Date.now();
+    const expired = await ctx.db
+      .query("auth_rate_limits")
+      .withIndex("by_window_start", (q) => q.lt("windowStart", now - 60000))
+      .take(10);
+    for (const row of expired) await ctx.db.delete(row._id);
     const keys = [
       `${args.operation}:global`,
       `${args.operation}:user:${args.username}`,

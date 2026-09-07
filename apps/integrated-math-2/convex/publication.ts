@@ -56,8 +56,8 @@ export const publishLesson = internalMutation({
     if (!questionCount) throw new ConvexError("missing_practice");
     const versions = await ctx.db
       .query("lesson_versions")
-      .withIndex("by_lesson_and_version", (q) =>
-        q.eq("lessonId", version.lessonId),
+      .withIndex("by_lesson_status_version", (q) =>
+        q.eq("lessonId", version.lessonId).eq("status", "published"),
       )
       .take(101);
     if (versions.length > 100) throw new ConvexError("too_many_versions");

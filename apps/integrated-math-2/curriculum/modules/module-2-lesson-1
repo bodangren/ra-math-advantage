@@ -13,7 +13,7 @@ Source: (Module 2, Lesson 2-1, Int2_0201_practice.docx)
 * **Interior Angle** — An angle inside a polygon at one of its vertices.
 * **Exterior Angle** — An angle formed by one side of a polygon and the extension of an adjacent side.
 * **Regular Polygon** — A polygon with all sides congruent and all interior angles congruent.
-* **Polygon Interior Angles Sum Theorem** — The sum of the interior angles of a convex n-gon is [(n - 2) \times 180] degrees.
+* **Polygon Interior Angles Sum Theorem** — The sum of the interior angles of a convex n-gon is $(n - 2) \times 180$ degrees.
 * **Polygon Exterior Angles Sum Theorem** — The sum of the exterior angles of any convex polygon is 360 degrees.
 
 ## Explore: Interior and Exterior Angles
@@ -29,11 +29,11 @@ If you know the number of sides of a regular polygon, how can you find the measu
 
 The sum of the measures of the interior angles of a convex n-gon is:
 
-[S = (n - 2) \times 180]
+$S = (n - 2) \times 180$
 
 For a regular polygon, each interior angle measures:
 
-[A = \frac{(n - 2) \times 180}{n}]
+$A = \frac{(n - 2) \times 180}{n}$
 
 ### Key Concept: Exterior Angle Sum
 
@@ -41,7 +41,7 @@ The sum of the measures of the exterior angles of any convex polygon is always 3
 
 Each exterior angle of a regular n-gon measures:
 
-[E = \frac{360}{n}]
+$E = \frac{360}{n}$
 
 ## Example 1 — Find Measures of Interior Angles
 
@@ -53,7 +53,7 @@ For a regular polygon with n sides, substitute n into the formula for each inter
 
 ### Step 2: Verify with the Sum Formula
 
-Check that the sum of all interior angles equals [(n - 2) \times 180] by adding the individual angle measures.
+Check that the sum of all interior angles equals $(n - 2) \times 180$ by adding the individual angle measures.
 
 ## Example 2 — Apply Interior Angles to Real Polygons
 
@@ -75,7 +75,7 @@ Given the measure of one interior angle of a regular polygon, find the number of
 
 Use the formula for a regular polygon's interior angle:
 
-[A = \frac{(n - 2) \times 180}{n}]
+$A = \frac{(n - 2) \times 180}{n}$
 
 Substitute the given angle measure for A and solve for n.
 
@@ -101,7 +101,7 @@ Find the measure of each exterior angle of given regular polygons.
 
 ### Step 1: Apply the Exterior Angle Formula
 
-For a regular n-gon, each exterior angle measures [E = \frac{360}{n}].
+For a regular n-gon, each exterior angle measures $E = \frac{360}{n}$.
 
 ### Step 2: Calculate for Each Polygon
 

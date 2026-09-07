@@ -58,6 +58,21 @@ Dependencies:
 
 ## Active Tracks
 
+- [~] **Business Math Review Fixes (2026-09-07)** — Resolve all 42 review findings.
+  *Link: [./tracks/business-math-review-fixes_20260907/](./tracks/business-math-review-fixes_20260907/)*
+
+- [~] **IM2 Complete Review (2026-09-07)** — Corrections in progress. Runtime, 96-lesson inventory, and 180-period calendar verified. Graph teaching coverage and full practice remain open. See `fix-plan.md`.
+  *Link: [./tracks/im2-complete-review_20260907/](./tracks/im2-complete-review_20260907/)*
+
+- [x] **Business Math Complete Review (2026-09-07)** — Review complete. 42 findings remain open. See the report for evidence and verification limits.
+  *Link: [./tracks/business-math-complete-review_20260907/](./tracks/business-math-complete-review_20260907/)*
+
+- [~] **Precalculus Complete Review (2026-09-07)** — 44 local corrections verified. PC-43 needs the hosted target. Integration of overlapping changes remains open. See `remediation.md`.
+  *Link: [./tracks/precalculus-complete-review_20260907/](./tracks/precalculus-complete-review_20260907/)*
+
+- [~] **IM3 Complete Review (2026-09-07)** — All 38 local corrections verified. Integration commits remain pending because concurrent work overlaps the same files. See `fixes.md`.
+  *Link: [./tracks/im3-complete-review_20260907/](./tracks/im3-complete-review_20260907/)*
+
 - [~] **Danielson Review (2026-09-07)** — Confirmed app and curriculum defects corrected. School-policy decisions remain open. See `fixes.md`.
   *Link: [./tracks/danielson-review_20260907/](./tracks/danielson-review_20260907/)*
 

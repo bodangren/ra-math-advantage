@@ -407,8 +407,8 @@
       "lesson": "1",
       "standardsCoverage": {
         "alignedStandards": [
-          "math.standard.ccss.hsa-apr-a-1",
-          "math.standard.ccss.hsa-sse-a-2"
+          "math.standard.ccss.a-apr-a-1",
+          "math.standard.ccss.a-sse-a-2"
         ],
         "hasStandardsGap": false,
         "placeholderCount": 0
@@ -427,8 +427,8 @@
       "lesson": "1",
       "standardsCoverage": {
         "alignedStandards": [
-          "math.standard.ccss.hsa-apr-a-1",
-          "math.standard.ccss.hsa-sse-a-2"
+          "math.standard.ccss.a-apr-a-1",
+          "math.standard.ccss.a-sse-a-2"
         ],
         "hasStandardsGap": false,
         "placeholderCount": 0
@@ -445,8 +445,8 @@
       "lesson": "2",
       "standardsCoverage": {
         "alignedStandards": [
-          "math.standard.ccss.hsa-apr-a-1",
-          "math.standard.ccss.hsa-apr-b-2"
+          "math.standard.ccss.a-apr-a-1",
+          "math.standard.ccss.a-apr-b-2"
         ],
         "hasStandardsGap": false,
         "placeholderCount": 0
@@ -465,8 +465,8 @@
       "lesson": "2",
       "standardsCoverage": {
         "alignedStandards": [
-          "math.standard.ccss.hsa-apr-a-1",
-          "math.standard.ccss.hsa-apr-b-2"
+          "math.standard.ccss.a-apr-a-1",
+          "math.standard.ccss.a-apr-b-2"
         ],
         "hasStandardsGap": false,
         "placeholderCount": 0
@@ -483,8 +483,8 @@
       "lesson": "3",
       "standardsCoverage": {
         "alignedStandards": [
-          "math.standard.ccss.hsa-apr-a-1",
-          "math.standard.ccss.hsa-apr-c-4"
+          "math.standard.ccss.a-apr-a-1",
+          "math.standard.ccss.a-apr-c-4"
         ],
         "hasStandardsGap": false,
         "placeholderCount": 0
@@ -503,8 +503,8 @@
       "lesson": "3",
       "standardsCoverage": {
         "alignedStandards": [
-          "math.standard.ccss.hsa-apr-a-1",
-          "math.standard.ccss.hsa-apr-c-4"
+          "math.standard.ccss.a-apr-a-1",
+          "math.standard.ccss.a-apr-c-4"
         ],
         "hasStandardsGap": false,
         "placeholderCount": 0
@@ -521,8 +521,8 @@
       "lesson": "4",
       "standardsCoverage": {
         "alignedStandards": [
-          "math.standard.ccss.hsa-apr-c-4",
-          "math.standard.ccss.hsa-apr-b-3"
+          "math.standard.ccss.a-apr-c-4",
+          "math.standard.ccss.a-apr-b-3"
         ],
         "hasStandardsGap": false,
         "placeholderCount": 0
@@ -541,8 +541,8 @@
       "lesson": "5",
       "standardsCoverage": {
         "alignedStandards": [
-          "math.standard.ccss.hsa-apr-a-1",
-          "math.standard.ccss.hsa-sse-a-2"
+          "math.standard.ccss.a-apr-a-1",
+          "math.standard.ccss.a-sse-a-2"
         ],
         "hasStandardsGap": false,
         "placeholderCount": 0
@@ -561,8 +561,8 @@
       "lesson": "6",
       "standardsCoverage": {
         "alignedStandards": [
-          "math.standard.ccss.hsa-apr-b-3",
-          "math.standard.ccss.hsa-apr-b-2"
+          "math.standard.ccss.a-apr-b-3",
+          "math.standard.ccss.a-apr-b-2"
         ],
         "hasStandardsGap": false,
         "placeholderCount": 0
@@ -581,8 +581,8 @@
       "lesson": "6",
       "standardsCoverage": {
         "alignedStandards": [
-          "math.standard.ccss.hsa-apr-b-3",
-          "math.standard.ccss.hsa-apr-b-2"
+          "math.standard.ccss.a-apr-b-3",
+          "math.standard.ccss.a-apr-b-2"
         ],
         "hasStandardsGap": false,
         "placeholderCount": 0
@@ -903,8 +903,8 @@
       "lesson": "4",
       "standardsCoverage": {
         "alignedStandards": [
-          "math.standard.ccss.f-tf-c-7",
-          "math.standard.ccss.f-tf-c-6"
+          "math.standard.ccss.f-tf-b-7",
+          "math.standard.ccss.f-tf-b-6"
         ],
         "hasStandardsGap": false,
         "placeholderCount": 0
@@ -2497,8 +2497,8 @@
       "lesson": "1",
       "standardsCoverage": {
         "alignedStandards": [
-          "math.standard.ccss.hsf-if-a-1",
-          "math.standard.ccss.hsf-if-a-2"
+          "math.standard.ccss.f-if-a-1",
+          "math.standard.ccss.f-if-a-2"
         ],
         "hasStandardsGap": false,
         "placeholderCount": 0
@@ -2517,8 +2517,8 @@
       "lesson": "1",
       "standardsCoverage": {
         "alignedStandards": [
-          "math.standard.ccss.hsf-if-a-1",
-          "math.standard.ccss.hsf-if-a-2"
+          "math.standard.ccss.f-if-a-1",
+          "math.standard.ccss.f-if-a-2"
         ],
         "hasStandardsGap": false,
         "placeholderCount": 0
@@ -2535,8 +2535,8 @@
       "lesson": "2",
       "standardsCoverage": {
         "alignedStandards": [
-          "math.standard.ccss.hsf-if-c-9",
-          "math.standard.ccss.hsf-if-b-4"
+          "math.standard.ccss.f-if-c-9",
+          "math.standard.ccss.f-if-b-4"
         ],
         "hasStandardsGap": false,
         "placeholderCount": 0
@@ -2555,8 +2555,8 @@
       "lesson": "2",
       "standardsCoverage": {
         "alignedStandards": [
-          "math.standard.ccss.hsf-if-c-9",
-          "math.standard.ccss.hsf-if-b-4"
+          "math.standard.ccss.f-if-c-9",
+          "math.standard.ccss.f-if-b-4"
         ],
         "hasStandardsGap": false,
         "placeholderCount": 0
@@ -2573,8 +2573,8 @@
       "lesson": "3",
       "standardsCoverage": {
         "alignedStandards": [
-          "math.standard.ccss.hsf-if-b-4",
-          "math.standard.ccss.hsf-if-b-5"
+          "math.standard.ccss.f-if-b-4",
+          "math.standard.ccss.f-if-b-5"
         ],
         "hasStandardsGap": false,
         "placeholderCount": 0
@@ -2593,8 +2593,8 @@
       "lesson": "4",
       "standardsCoverage": {
         "alignedStandards": [
-          "math.standard.ccss.hsf-if-c-7",
-          "math.standard.ccss.hsf-if-b-6"
+          "math.standard.ccss.f-if-c-7",
+          "math.standard.ccss.f-if-b-6"
         ],
         "hasStandardsGap": false,
         "placeholderCount": 0
@@ -2613,8 +2613,8 @@
       "lesson": "5",
       "standardsCoverage": {
         "alignedStandards": [
-          "math.standard.ccss.hsa-ced-a-2",
-          "math.standard.ccss.hsa-ced-a-3"
+          "math.standard.ccss.a-ced-a-2",
+          "math.standard.ccss.a-ced-a-3"
         ],
         "hasStandardsGap": false,
         "placeholderCount": 0
@@ -2633,8 +2633,8 @@
       "lesson": "5",
       "standardsCoverage": {
         "alignedStandards": [
-          "math.standard.ccss.hsa-ced-a-2",
-          "math.standard.ccss.hsa-ced-a-3"
+          "math.standard.ccss.a-ced-a-2",
+          "math.standard.ccss.a-ced-a-3"
         ],
         "hasStandardsGap": false,
         "placeholderCount": 0
@@ -2651,8 +2651,8 @@
       "lesson": "6",
       "standardsCoverage": {
         "alignedStandards": [
-          "math.standard.ccss.hsf-if-c-7b",
-          "math.standard.ccss.hsf-if-a-2"
+          "math.standard.ccss.f-if-c-7b",
+          "math.standard.ccss.f-if-a-2"
         ],
         "hasStandardsGap": false,
         "placeholderCount": 0

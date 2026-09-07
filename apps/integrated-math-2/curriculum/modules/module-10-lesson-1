@@ -47,10 +47,10 @@ $$
 (j^5k^7)^4 = j^{5 \cdot 4}k^{7 \cdot 4} = j^{20}k^{28}
 $$
 $$
-$(2^2)^2$^2 = 2^{2 \cdot 2 \cdot 2} = 2^8
+[(2^2)^2]^2 = 2^{2 \cdot 2 \cdot 2} = 2^8
 $$
 $$
-$(4r^2t)^3$^2 = (4r^2t)^{3 \cdot 2} = (4r^2t)^6
+[(4r^2t)^3]^2 = (4r^2t)^{3 \cdot 2} = (4r^2t)^6
 $$
 ### Key Concept: Power of a Product Property
 
@@ -93,7 +93,7 @@ $$
 (n^3p)^4 = n^{3 \cdot 4}p^{1 \cdot 4} = n^{12}p^4
 $$
 $$
-$(4r^2t)^3$^2 = (4r^2t)^6 = 4^6 \cdot r^{2 \cdot 6}t^{1 \cdot 6}
+[(4r^2t)^3]^2 = (4r^2t)^6 = 4^6 \cdot r^{2 \cdot 6}t^{1 \cdot 6}
 $$
 ## Example 2 — Scientific Notation
 

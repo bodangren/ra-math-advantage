@@ -98,9 +98,9 @@ Ratios are **constant (3)**. This indicates an **exponential model**.
 
 ### Step 4: Write the exponential equation
 
-The general form is [y = a \cdot b^x]. From the ratio, b = 3. Using the point (0, 2): [2 = a \cdot 3^0 = a], so a = 2.
+The general form is $y = a \cdot b^x$. From the ratio, b = 3. Using the point (0, 2): $2 = a \cdot 3^0 = a$, so a = 2.
 
-**Answer:** [y = 2 \cdot 3^x]
+**Answer:** $y = 2 \cdot 3^x$
 
 ---
 

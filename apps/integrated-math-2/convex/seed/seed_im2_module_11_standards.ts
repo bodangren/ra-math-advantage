@@ -9,72 +9,72 @@ interface LessonStandardLink {
 const module11LessonStandards: LessonStandardLink[] = [
   {
     lessonSlug: "module-11-lesson-1",
-    standardCode: "HSA-APR.A.1",
+    standardCode: "A-APR.A.1",
     isPrimary: true,
   },
   {
     lessonSlug: "module-11-lesson-1",
-    standardCode: "HSA-SSE.A.2",
+    standardCode: "A-SSE.A.2",
     isPrimary: false,
   },
   {
     lessonSlug: "module-11-lesson-2",
-    standardCode: "HSA-APR.A.1",
+    standardCode: "A-APR.A.1",
     isPrimary: true,
   },
   {
     lessonSlug: "module-11-lesson-2",
-    standardCode: "HSA-APR.B.2",
+    standardCode: "A-APR.B.2",
     isPrimary: false,
   },
   {
     lessonSlug: "module-11-lesson-3",
-    standardCode: "HSA-APR.A.1",
+    standardCode: "A-APR.A.1",
     isPrimary: true,
   },
   {
     lessonSlug: "module-11-lesson-3",
-    standardCode: "HSA-APR.C.4",
+    standardCode: "A-APR.C.4",
     isPrimary: false,
   },
   {
     lessonSlug: "module-11-lesson-4",
-    standardCode: "HSA-APR.C.4",
+    standardCode: "A-APR.C.4",
     isPrimary: true,
   },
   {
     lessonSlug: "module-11-lesson-4",
-    standardCode: "HSA-APR.B.3",
+    standardCode: "A-APR.B.3",
     isPrimary: false,
   },
   {
     lessonSlug: "module-11-lesson-5",
-    standardCode: "HSA-APR.A.1",
+    standardCode: "A-APR.A.1",
     isPrimary: true,
   },
   {
     lessonSlug: "module-11-lesson-5",
-    standardCode: "HSA-SSE.A.2",
+    standardCode: "A-SSE.A.2",
     isPrimary: false,
   },
   {
     lessonSlug: "module-11-lesson-6",
-    standardCode: "HSA-APR.B.3",
+    standardCode: "A-APR.B.3",
     isPrimary: true,
   },
   {
     lessonSlug: "module-11-lesson-6",
-    standardCode: "HSA-APR.B.2",
+    standardCode: "A-APR.B.2",
     isPrimary: false,
   },
   {
     lessonSlug: "module-11-lesson-7",
-    standardCode: "HSA-APR.B.3",
+    standardCode: "A-APR.B.3",
     isPrimary: true,
   },
   {
     lessonSlug: "module-11-lesson-7",
-    standardCode: "HSA-APR.C.4",
+    standardCode: "A-APR.C.4",
     isPrimary: false,
   },
 ];
@@ -139,7 +139,9 @@ export const seedModule11LessonStandards = internalMutation({
         const existing = await ctx.db
           .query("lesson_standards")
           .withIndex("by_lesson_version_and_standard", (q) =>
-            q.eq("lessonVersionId", lessonVersion._id).eq("standardId", standard._id)
+            q
+              .eq("lessonVersionId", lessonVersion._id)
+              .eq("standardId", standard._id),
           )
           .unique();
 

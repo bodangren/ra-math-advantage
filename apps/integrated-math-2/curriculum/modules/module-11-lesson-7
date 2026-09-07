@@ -138,7 +138,7 @@ Some trinomials are the square of a binomial. Recognizing this pattern avoids le
 * A trinomial is a perfect square if the first and last terms are perfect squares and the middle term is twice the product of their square roots.
 * [ a^2 + 2ab + b^2 = (a+b)^2 ]
 * [ a^2 - 2ab + b^2 = (a-b)^2 ]
-* If the middle term does not equal [ \pm 2ab ], the trinomial is not a perfect square.
+* If the middle term does not equal $ \pm 2ab $, the trinomial is not a perfect square.
 
 ## Example 4 — Identify Perfect Square Trinomials
 
@@ -148,10 +148,9 @@ Determine whether a trinomial is a perfect square by checking the relationship b
 
 Verify that the first term and the last term are perfect squares.
 
-[
+$$
 16x^2 = (4x)^2, \quad 49 = 7^2
-]
-
+$$
 ### Step 2: Check the Middle Term
 
 Confirm that the middle term equals [ 2ab ] or [ -2ab ].
@@ -176,10 +175,9 @@ Factor trinomials that have been identified as perfect squares.
 
 Find the square roots of the first and last terms.
 
-[
+$$
 a = 3n, \quad b = 5
-]
-
+$$
 ### Step 2: Write the Factored Form
 
 Use the sign of the middle term to determine whether to use [ (a+b)^2 ] or [ (a-b)^2 ].

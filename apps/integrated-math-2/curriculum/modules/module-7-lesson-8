@@ -52,7 +52,7 @@ Relative frequency can be calculated three ways:
 ### Key Concept: Conditional Probability from Tables
 
 [P(A | B)] is found by restricting to the row or column representing B:
-[P(A | B) = \frac{\text{count in } A \cap B}{\text{count in } B}]
+$P(A | B) = \frac{\text{count in } A \cap B}{\text{count in } B}$
 
 **Example:** From vehicle survey, P(Female | SUV) = [40/55] — restrict to SUV column.
 

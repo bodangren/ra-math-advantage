@@ -9,6 +9,13 @@ export function database() {
       let descending = false;
       const predicates: Array<(row: Row) => boolean> = [];
       const range = {
+        lt(key: string, value: number) {
+          predicates.push(
+            (row) =>
+              typeof row[key] === "number" && (row[key] as number) < value,
+          );
+          return range;
+        },
         eq(key: string, value: unknown) {
           predicates.push((row) => row[key] === value);
           return range;

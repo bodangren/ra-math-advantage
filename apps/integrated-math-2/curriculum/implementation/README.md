@@ -1,26 +1,11 @@
-# Curriculum Implementation Artifacts
+# Curriculum implementation records
 
-This directory contains generated planning artifacts that bridge the source curriculum to app implementation.
+`calendar.json` is the 180-period course plan. Run `npm run curriculum:build` from the app directory to generate it.
 
-## Files
+- `class-period-packages/unit-*.json` contains one module view of the calendar. Each file contains multiple periods.
+- `practice-v1/activity-map.json` lists the 96 implemented lesson checkpoints. It uses the questions in `curriculum/questions.json`.
+- `exceptions.json` records earlier source limitations. Check each item against the current source before use.
 
-- `class-period-packages/unit-*.json`: one package for each planned class period.
-- `practice-v1/activity-map.json`: activity candidates mapped to the `practice.v1` contract.
-- `exceptions.json`: explicit source limitations and replacement plans.
-- `audit/latest.json`: latest machine-readable curriculum audit report.
+Instruction periods refer to source lesson goals and worked examples. Each period includes the six planned daily phases. These records do not implement a class-period runtime. Mastery tasks, group tasks, secure tests, and spaced review still require implementation.
 
-## Class-Period Package Schema
-
-Instruction packages include `periodId`, `unit`, `period`, `dayType`, `sourceLesson`, `objectiveCode`, `objective`, `workedExamples`, `problemTypes` or `srsSubstitute`, and six daily phases: `warmUp`, `conceptDevelopment`, `guidedPractice`, `independentPractice`, `assessment`, and `capReflection`.
-
-Non-instruction packages include a `nonInstructionArtifact` object for `mastery`, `jigsaw`, `review`, or `test` day work.
-
-## Validation
-
-Run:
-
-```bash
-npm run curriculum:audit
-```
-
-The audit verifies curriculum counts, lesson source quality, problem-family coverage, package coverage, and `practice.v1` mapping coverage.
+Run `npm run curriculum:check` to detect stale generated files. Run `npm run curriculum:audit` to test current source files, assets, calendar counts, question data, graph inventory, and math rendering. The old stored audit report is removed. Its pass claims did not describe the current app.

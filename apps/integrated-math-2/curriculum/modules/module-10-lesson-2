@@ -11,10 +11,10 @@ Source: (Module 10, Lesson 10-2, Int2_1002_practice.docx)
 
 ## Vocabulary
 
-* **Quotient of Powers Property** — When dividing two expressions with the same base, subtract the exponents: [\frac{a^m}{a^n} = a^{m-n}], where [a \neq 0].
-* **Power of a Quotient Property** — When raising a quotient to a power, raise both the numerator and denominator to that power: [\left(\frac{a}{b}\right)^n = \frac{a^n}{b^n}], where [b \neq 0].
-* **Zero Exponent Property** — Any nonzero base raised to the zero power equals 1: [a^0 = 1] where [a \neq 0].
-* **Negative Exponent Property** — A base raised to a negative exponent equals the reciprocal of that base raised to the positive exponent: [a^{-n} = \frac{1}{a^n}].
+* **Quotient of Powers Property** — When dividing two expressions with the same base, subtract the exponents: $\frac{a^m}{a^n} = a^{m-n}$, where $a \neq 0$.
+* **Power of a Quotient Property** — When raising a quotient to a power, raise both the numerator and denominator to that power: $\left(\frac{a}{b}\right)^n = \frac{a^n}{b^n}$, where $b \neq 0$.
+* **Zero Exponent Property** — Any nonzero base raised to the zero power equals 1: [a^0 = 1] where $a \neq 0$.
+* **Negative Exponent Property** — A base raised to a negative exponent equals the reciprocal of that base raised to the positive exponent: $a^{-n} = \frac{1}{a^n}$.
 
 ## Explore: Dividing with Exponents
 
@@ -29,26 +29,22 @@ How does the Quotient of Powers Property combine with the Power of a Quotient Pr
 
 To divide two powers with the same base, keep the base and subtract the exponents.
 
-[
+$$
 \frac{m^4p^2}{m^2p} = m^{4-2}p^{2-1} = m^2p
-]
-
-[
+$$
+$$
 \frac{p^{12}t^3r}{p^2tr} = p^{12-2}t^{3-1}r^{1-1} = p^{10}t^2
-]
-
+$$
 ### Key Concept: Power of a Quotient Property
 
 To find the power of a quotient, raise both the numerator and denominator to the power.
 
-[
+$$
 \left(\frac{3xy^4}{5z^2}\right)^2 = \frac{9x^2y^8}{25z^4}
-]
-
-[
+$$
+$$
 \left(\frac{p^2t^7}{10}\right)^3 = \frac{p^6t^{21}}{1000}
-]
-
+$$
 ## Example 1 — Quotient of Powers
 
 Divide expressions with the same base using the Quotient of Powers Property.
@@ -57,26 +53,22 @@ Divide expressions with the same base using the Quotient of Powers Property.
 
 When dividing powers with the same base, subtract the exponent of the divisor from the exponent of the dividend.
 
-[
+$$
 \frac{m^4p^2}{m^2p} = m^{4-2}p^{2-1} = m^2p
-]
-
-[
+$$
+$$
 \frac{c^4d^4f^3}{c^2d^4f^3} = c^{4-2}d^{4-4}f^{3-3} = c^2d^0f^0 = c^2
-]
-
+$$
 ### Step 2: Simplify Completely
 
 Reduce coefficients and combine like variables using exponent rules.
 
-[
+$$
 \frac{32x^3y^2z^5}{-8xyz^2} = -4x^{3-1}y^{2-1}z^{5-2} = -4x^2y^1z^3
-]
-
-[
+$$
+$$
 \frac{9d^7}{3d^6} = 3d^{7-6} = 3d
-]
-
+$$
 ## Example 2 — Real-World Ratios
 
 Apply exponent properties to solve problems involving ratios and exponential relationships.
@@ -85,44 +77,38 @@ Apply exponent properties to solve problems involving ratios and exponential rel
 
 The distance from Earth to the Moon is approximately [25^4] kilometers. Olympus Mons is 25 kilometers high. How many volcanoes stacked would fit between Earth and the Moon?
 
-[
+$$
 \frac{25^4}{25} = 25^{4-1} = 25^3 = 15,625 \text{ volcanoes}
-]
-
+$$
 ### Step 2: Apply to Combinations and Blood Counts
 
 The number of four-letter combinations from the alphabet is [26^4]. Six-letter combinations is [26^6].
 
-[
+$$
 \frac{26^6}{26^4} = 26^{6-4} = 26^2 = 676 \text{ times more six-letter combinations}
-]
-
+$$
 A cubic millimeter of blood contains [22^5] red blood cells and [22^3] white blood cells:
 
-[
+$$
 \frac{22^5}{22^3} = 22^{5-3} = 22^2 = 484 \text{ times more red blood cells}
-]
-
+$$
 ## Example 3 — Power of a Quotient
 
 Raise quotients to powers using the Power of a Quotient Property.
 
 ### Step 1: Raise Both Numerator and Denominator
 
-[
+$$
 \left(\frac{3np^3}{7q^2}\right)^2 = \frac{9n^2p^6}{49q^4}
-]
-
-[
+$$
+$$
 \left(\frac{2r^3t^6}{5u^9}\right)^4 = \frac{16r^{12}t^{24}}{625u^{36}}
-]
-
+$$
 ### Step 2: Simplify Complex Expressions
 
-[
+$$
 \left(\frac{24a^{11}b^{16}c^6}{18a^6b^6c^6}\right)^3 = \left(\frac{4a^5b^{10}}{3}\right)^3 = \frac{64a^{15}b^{30}}{27}
-]
-
+$$
 ## Mixed Exercises
 
 Practice problems covering all skills in the lesson:
@@ -136,7 +122,7 @@ Practice problems covering all skills in the lesson:
 * Find errors in student work showing incorrect application of quotient of powers property.
 * Determine whether expressions are sometimes, always, or never true.
 * Create monomials with specified quotient relationships.
-* Evaluate and justify arguments about when [x^y \cdot x^z = x^{yz}] holds.
+* Evaluate and justify arguments about when $x^y \cdot x^z = x^{yz}$ holds.
 
 ## Review Notes
 

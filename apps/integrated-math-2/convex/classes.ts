@@ -63,15 +63,14 @@ export const assignLesson = internalMutation({
   returns: v.null(),
   handler: async (ctx, args) => {
     await teacherClass(ctx, args.teacherId, args.classId);
-    const versions = await ctx.db
+    const published = await ctx.db
       .query("lesson_versions")
-      .withIndex("by_lesson_and_version", (q) =>
-        q.eq("lessonId", args.lessonId),
+      .withIndex("by_lesson_status_version", (q) =>
+        q.eq("lessonId", args.lessonId).eq("status", "published"),
       )
       .order("desc")
-      .take(100);
-    if (!versions.some((version) => version.status === "published"))
-      throw new ConvexError("not_available");
+      .first();
+    if (!published) throw new ConvexError("not_available");
     const existing = await ctx.db
       .query("class_lessons")
       .withIndex("by_class_and_lesson", (q) =>
