@@ -1,5 +1,6 @@
 import { z } from 'zod';
 
+import { accountingEquationEventPropsSchema } from './accounting-equation-event.schema';
 import { categorizationActivityPropsSchemas } from './activities-categorization';
 import { exerciseActivityPropsSchemas } from './activities-exercises';
 import { quizActivityPropsSchemas } from './activities-quiz';
@@ -109,6 +110,7 @@ const coreActivityPropsSchemas = {
 } as const;
 
 export const activityPropsSchemas = {
+  'accounting-equation-event': accountingEquationEventPropsSchema,
   ...quizActivityPropsSchemas,
   ...categorizationActivityPropsSchemas,
   ...coreActivityPropsSchemas,

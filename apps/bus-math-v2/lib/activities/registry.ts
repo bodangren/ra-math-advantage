@@ -13,6 +13,7 @@ import { InventoryFlowDiagram } from '@/components/activities/drag-drop/Inventor
 import { PercentageCalculationSorting } from '@/components/activities/drag-drop/PercentageCalculationSorting';
 import { FillInTheBlank } from '@/components/activities/quiz/FillInTheBlank';
 import { JournalEntryActivity } from '@/components/activities/accounting/JournalEntryActivity';
+import { AccountingEquationEventActivity } from '@/components/activities/accounting/AccountingEquationEventActivity';
 import { ComprehensionCheck } from '@/components/activities/quiz/ComprehensionCheck';
 import { TieredAssessment } from '@/components/activities/quiz/TieredAssessment';
 import { PeerCritiqueForm } from '@/components/activities/quiz/PeerCritiqueForm';
@@ -71,6 +72,7 @@ export const activityRegistry: Record<ActivityComponentKey, ComponentType<any>> 
   'cash-flow-timeline': CashFlowTimeline,
   'fill-in-the-blank': FillInTheBlank,
   'journal-entry-building': JournalEntryActivity,
+  'accounting-equation-event': AccountingEquationEventActivity,
   'reflection-journal': ReflectionJournal,
   'peer-critique-form': PeerCritiqueForm,
 
