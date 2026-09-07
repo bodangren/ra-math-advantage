@@ -74,7 +74,8 @@ describe('ActivityRenderer', () => {
         <ActivityRenderer componentKey="unknown-key" activityId="act-1" />
       );
       expect(screen.queryByTestId('test-activity')).not.toBeInTheDocument();
-      expect(screen.getByText(/unknown-key/)).toBeInTheDocument();
+      expect(screen.getByText('This activity is not available.')).toBeInTheDocument();
+      expect(screen.queryByText(/unknown-key/)).not.toBeInTheDocument();
     });
 
     it('placeholder does not crash the page', () => {

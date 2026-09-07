@@ -17,16 +17,55 @@ import {
   type StudentVisualizationV1,
 } from "@math-platform/knowledge-space-practice";
 import {
-  createIm3ConvexLearningEvidenceHandler,
+  isIm3GraphPilotPublished,
 } from "./learningEvidence";
 import {
-  IM3_LEARNING_EVIDENCE_PILOT_NODE_IDS,
+  getSelectedWorkedAcknowledgementHandler,
+  isSelectedWorkedActivity,
+} from "./activities";
+import {
+  IM3_PILOT_NODE,
+  IM3_TEACHER_LED_ACTIVITY_ID,
 } from "../lib/practice/learning-evidence-pilot";
 
 const IM3_TEACHER_LED_LESSON_SLUG = "module-1-lesson-1";
 const IM3_TEACHER_LED_PHASE_NUMBER = 4;
-const IM3_TEACHER_LED_ACTIVITY_ID =
-  `${IM3_LEARNING_EVIDENCE_PILOT_NODE_IDS[0]}.worked_example`;
+
+async function projectSelectedWorkedSection(ctx: QueryCtx, section: {
+  _id: Id<"phase_sections">;
+  sequenceOrder: number;
+  sectionType: string;
+  content: unknown;
+}, selectedSourceSection: boolean) {
+  if (section.sectionType !== "activity") return section;
+  const content = section.content as { activityId?: Id<"activities">; componentKey?: string; stableActivityId?: string };
+  const withoutSelectedIdentity = (activityStableId?: string) => {
+    const claimsSelectedIdentity = selectedSourceSection
+      || activityStableId === IM3_TEACHER_LED_ACTIVITY_ID
+      || content.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID
+      || (content as Record<string, unknown>).masteryNodeId === IM3_PILOT_NODE;
+    if (!claimsSelectedIdentity) return section;
+    const { stableActivityId: _stableActivityId, masteryNodeId: _masteryNodeId,
+      learningEvidenceMode: _learningEvidenceMode, srsEligible: _srsEligible,
+      activityProps: _activityProps, ...storedContent } = content as Record<string, unknown>;
+    return { ...section, content: { ...storedContent, componentKey: "unavailable" } };
+  };
+  const activity = content.activityId ? await ctx.db.get(content.activityId) : null;
+  if (!isIm3GraphPilotPublished()) return withoutSelectedIdentity(activity?.stableActivityId);
+  if (!activity || !isSelectedWorkedActivity(activity)) return withoutSelectedIdentity(activity?.stableActivityId);
+  return {
+    ...section,
+    content: {
+      ...content,
+      componentKey: activity.componentKey,
+      stableActivityId: activity.stableActivityId,
+      masteryNodeId: activity.masteryNodeId,
+      learningEvidenceMode: activity.learningEvidenceMode,
+      srsEligible: activity.srsEligible,
+      activityProps: activity.props,
+    },
+  };
+}
 
 /**
  * Convex internalQuery wrapper: get dashboard data.
@@ -116,12 +155,22 @@ export const getLessonProgress = internalQuery({
     // 5. Fetch sections for each phase (batched via Promise.all)
     const phaseIds = phases.map(p => p._id);
     const allSections = await Promise.all(
-      phaseIds.map(phaseId =>
-        ctx.db
+      phases.map(async phase => {
+        const phaseId = phase._id;
+        const sections = await ctx.db
           .query("phase_sections")
           .withIndex("by_phase_version", (q) => q.eq("phaseVersionId", phaseId))
-          .collect()
-      )
+          .collect();
+        return Promise.all(sections.map((section) => projectSelectedWorkedSection(ctx, {
+          _id: section._id,
+          sequenceOrder: section.sequenceOrder,
+          sectionType: section.sectionType,
+          content: section.content,
+        }, lesson.slug === IM3_TEACHER_LED_LESSON_SLUG
+          && phase.phaseNumber === IM3_TEACHER_LED_PHASE_NUMBER
+          && section.sectionType === "activity"
+          && section.sequenceOrder === 2)));
+      })
     );
     const sectionsByPhaseId = new Map<string, { id: string; sequenceOrder: number; sectionType: string; content: unknown }[]>();
     phaseIds.forEach((phaseId, i) => {
@@ -191,7 +240,10 @@ export const completePhase = internalMutation({
       .unique();
     if (!phase) throw new ConvexError("Phase not found");
 
-    // 4. Check idempotency
+    const isIm3TeacherLedPhase =
+      lesson.slug === IM3_TEACHER_LED_LESSON_SLUG
+      && phase.phaseNumber === IM3_TEACHER_LED_PHASE_NUMBER;
+
     const existing = await ctx.db
       .query("student_progress")
       .withIndex("by_user_and_phase", (q) =>
@@ -201,6 +253,33 @@ export const completePhase = internalMutation({
 
     if (existing?.status === "completed") {
       return { success: true, alreadyCompleted: true };
+    }
+
+    if (isIm3TeacherLedPhase) {
+      const sections = await ctx.db.query("phase_sections")
+        .withIndex("by_phase_version", (q) => q.eq("phaseVersionId", phase._id))
+        .collect();
+      const activities = await Promise.all(sections
+        .filter((section) => section.sectionType === "activity")
+        .map((section) => {
+          const activityId = (section.content as { activityId?: Id<"activities"> }).activityId;
+          return activityId ? ctx.db.get(activityId) : null;
+        }));
+      const selectedWorked = activities.filter((activity) => (
+        activity?.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID
+        && isSelectedWorkedActivity(activity)
+      ));
+      const selectedActivity = selectedWorked[0];
+      if (!selectedActivity || selectedWorked.length !== 1) {
+        throw new ConvexError("Selected Worked activity is not available");
+      }
+      const acknowledgement = await getSelectedWorkedAcknowledgementHandler(ctx, {
+        userId: args.userId,
+        activityId: selectedActivity._id,
+      });
+      if (!acknowledgement?.acknowledged) {
+        throw new ConvexError("Selected Worked acknowledgement is required");
+      }
     }
 
     const now = Date.now();
@@ -229,10 +308,6 @@ export const completePhase = internalMutation({
     }
 
     // 6. Handle competency if linkedStandardId provided
-    const isIm3TeacherLedPhase =
-      lesson.slug === IM3_TEACHER_LED_LESSON_SLUG
-      && phase.phaseNumber === IM3_TEACHER_LED_PHASE_NUMBER;
-
     if (args.linkedStandardId && !isIm3TeacherLedPhase) {
       const standard = await ctx.db
         .query("competency_standards")
@@ -262,31 +337,6 @@ export const completePhase = internalMutation({
           });
         }
       }
-    }
-
-    if (isIm3TeacherLedPhase) {
-      const learningEvidenceHandler = createIm3ConvexLearningEvidenceHandler({
-        ctx,
-        masteryBridge: async () => {
-          throw new ConvexError(
-            "IM3 Mastery Advantage bridge is disabled until the canonical independent-practice mapping is approved",
-          );
-        },
-      });
-
-      await learningEvidenceHandler.process({
-        learnerId: args.userId,
-        evidence: {
-          contractVersion: "learning-evidence.v1",
-          nodeId: IM3_LEARNING_EVIDENCE_PILOT_NODE_IDS[0],
-          activityId: IM3_TEACHER_LED_ACTIVITY_ID,
-          attemptOrdinal: 1,
-          origin: "teacher_led",
-          mode: "worked_example",
-          occurredAt: new Date(now).toISOString(),
-          idempotencyKey: `teacher-led:${lesson._id}:${phase._id}`,
-        },
-      });
     }
 
     return {

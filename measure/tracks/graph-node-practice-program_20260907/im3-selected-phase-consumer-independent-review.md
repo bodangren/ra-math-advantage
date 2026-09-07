@@ -4,9 +4,9 @@ Reviewer: graph_inventory
 Author under review: Maxwell  
 Review date: 2026-09-08
 
-## Result
+## Initial review result
 
-Do not integrate this patch as a complete production consumer yet. The server links the seeded physical activity to the current published lesson phase. The server also requires the exact stored acknowledgement before first completion. However, the real student renderer does not consume the projected activity props and does not render the selected activity as a Worked example.
+The first patch was not ready for integration. The server links the seeded physical activity to the current published lesson phase. The server also requires the exact stored acknowledgement before first completion. However, the real student renderer does not consume the projected activity props and does not render the selected activity as a Worked example.
 
 ## Findings
 
@@ -56,3 +56,74 @@ Treat stored projection fields as untrusted for the selected physical section. S
 2. Interact with the graph before acknowledgement and prove that the acknowledgement action does not disappear.
 3. Complete once, withdraw publication, and replay without new writes.
 4. Reject or sanitize invalid physical activity data when cached identity fields are absent or mismatched.
+
+## Revised patch review — 2026-09-08
+
+### Result
+
+The revision resolves the four findings from the first review, except for one withdrawal behavior defect. Do not accept the revised patch until the remaining P1 defect is fixed.
+
+### P1 — A withdrawn selected activity still renders and can use the generic submission path
+
+The revised sanitizer removes `stableActivityId`, `masteryNodeId`, `learningEvidenceMode`, `srsEligible`, and `activityProps`. It keeps `componentKey` and `activityId` at `apps/integrated-math-3/convex/student.ts:42-54`. The real seeded section already contains `componentKey: "graphing-explorer"` and the physical activity ID.
+
+`PhaseRenderer` renders every activity section from these two retained fields at `apps/integrated-math-3/components/lesson/PhaseRenderer.tsx:161-179`. Because the selected stable ID is absent, it passes the normal student mode. `GraphingExplorerActivity` then uses its default `y = x^2` equation. The withdrawn selected source is still visible as an interactive graph.
+
+`LessonRenderer` also does not identify this row as `selectedWorkedSource`. Therefore, its generic-submit exclusion at `apps/integrated-math-3/components/lesson/LessonRenderer.tsx:133-135` does not apply. A learner can send the withdrawn physical activity through the generic activity submission route. The server correctly blocks selected phase completion, but the client still exposes and submits the withdrawn activity.
+
+The revised test at `apps/integrated-math-3/__tests__/convex/selected-worked-lesson-consumer.test.tsx:122-137` checks only that the acknowledgement button is absent. It does not assert that the graph and its generic submission action are absent.
+
+Make the invalid or withdrawn selected physical section non-renderable as an activity. Preserve the phase guard. Add a real renderer test that asserts no graph UI and no submission call after physical approval or graph publication withdrawal. Test the normal seed shape, which contains only `componentKey` and `activityId`, and the stale-claim shape.
+
+### Resolved findings
+
+- The query props now reach `ActivityRenderer` through `PhaseRenderer`.
+- The selected activity now uses the shared Worked display. The real test checks both Worked step headings and the absence of the graph check action.
+- A generic submit from the selected Worked activity is ignored. The acknowledgement action remains available.
+- Existing completion replay now runs before current source and acknowledgement checks. The new test proves no additional records after withdrawal.
+- The sanitizer now recognizes stale selected claims by the physical stable ID or pilot node ID. This resolves the narrow stale-identity case from the first review.
+- Student phase completion still creates no `teacher_led` evidence. Independent evidence still remains `awaiting_teacher_exposure` until a trusted teacher action occurs.
+
+## Final withdrawal patch review — 2026-09-08
+
+### Result
+
+The final patch resolves the withdrawal behavior defect. The selected graph does not render. The acknowledgement control does not render. No selected or generic submission callback runs. New completion remains blocked. A completed phase still replays without new effects.
+
+One user-facing copy defect remains before acceptance.
+
+### P2 — The unavailable state exposes the internal sentinel key
+
+The projection sets `componentKey: "unavailable"` at `apps/integrated-math-3/convex/student.ts:42-54`. The key is not registered. Thus, no activity fallback can run and no submission callback is attached. This behavior is correct.
+
+However, the generic missing-component UI prints the key at `apps/integrated-math-3/components/lesson/ActivityRenderer.tsx:63-69`. The student sees “Activity unavailable is not yet available.” The word `unavailable` is an internal sentinel value. The sentence is repetitive and unclear.
+
+Show a short message such as “This activity is not available.” Do not show the sentinel key for this state. Update the real renderer tests to assert the student message instead of selecting the internal `code` value at `apps/integrated-math-3/__tests__/convex/selected-worked-lesson-consumer.test.tsx:147,170`.
+
+### Final verification
+
+- `unavailable` is not registered in the activity registry. The renderer returns before it creates an activity component or submission callback.
+- The physical activity ID remains in the section. Therefore, the existing client phase gate remains closed.
+- The physical-withdrawal test asserts no graph heading, Submit control, acknowledgement control, or server-owned submission call.
+- The graph-publication-withdrawal test uses the normal seed section. It asserts the exact unavailable projection, no Submit control, no submission call, and no new completion.
+- The completion replay check remains before all current source checks and preserves row counts.
+
+## Final physical-source patch review — 2026-09-08
+
+### Acceptance
+
+Accepted for integration. No open Q16 finding remains.
+
+The query now marks the exact Lesson 1.1, Phase 4, sequence-2 activity section as unavailable when its physical activity row is missing, changed, unapproved, or blocked by graph publication. It retains the physical activity ID for phase gating. It does not render a registered activity component. It does not call the selected acknowledgement writer or the generic submission writer.
+
+The context predicate at `apps/integrated-math-3/convex/student.ts:164-172` limits the missing-physical-row fallback to the selected source position. Normal unrelated sections keep their content. A section outside that position changes only if its physical or cached metadata claims the selected stable activity or pilot node. This is a valid fail-closed identity rule.
+
+The unknown-component branch at `apps/integrated-math-3/components/lesson/ActivityRenderer.tsx:61-68` uses the plain message `This activity is not available.` It does not show the internal component key.
+
+The real-renderer tests cover missing physical activity, changed physical stable ID, physical approval withdrawal, graph publication withdrawal, no graph, no submit action, no acknowledgement action, blocked first completion, and preserved completed-phase replay. The existing downstream test still proves that student acknowledgement and phase completion do not create teacher exposure or SRS effects.
+
+## Parent integration decision
+
+Accept the selected HEAD patch after the final independent review. All reported Q16 findings are resolved in this patch. Parent verification passes 38 tests in seven files, app lint, a fresh app build, and post-build standalone TypeScript with candidate source mappings.
+
+The shared worktree reconciliation remains under Q16. Source approval and the complete signed-in student journey remain open under Task 4.2. These checks do not approve the draft curriculum.

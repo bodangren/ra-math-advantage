@@ -153,28 +153,26 @@ describe('student completePhase linked-standard handling', () => {
     createHandlerMock.mockReturnValue({ process: processMock });
   });
 
-  it('resolves phase 4 and does not write student_competency for the IM3 teacher-led exposure', async () => {
+  it('rejects phase 4 when the selected Worked activity is not available', async () => {
     const harness = createContextHarness({
       lessonSlug: 'module-1-lesson-1',
       phaseNumber: 4,
     });
 
-    await expect(runCompletion(harness, 'module-1-lesson-1', 4)).resolves.toEqual({
-      success: true,
-      nextPhaseUnlocked: true,
-    });
+    await expect(runCompletion(harness, 'module-1-lesson-1', 4))
+      .rejects.toThrow('Selected Worked activity is not available');
 
     expect(harness.queryCalls).toContainEqual({
       table: 'phase_versions',
       index: 'by_lesson_version_and_phase',
     });
-    expect(harness.inserts.map(({ table }) => table)).toEqual(['student_progress']);
+    expect(harness.inserts).toHaveLength(0);
     expect(harness.inserts).not.toContainEqual(expect.objectContaining({
       table: 'student_competency',
     }));
     expect(harness.patches).toHaveLength(0);
-    expect(createHandlerMock).toHaveBeenCalledTimes(1);
-    expect(processMock).toHaveBeenCalledTimes(1);
+    expect(createHandlerMock).not.toHaveBeenCalled();
+    expect(processMock).not.toHaveBeenCalled();
   });
 
   it('writes student_competency for module-1-lesson-1 phase 3 with a linked standard', async () => {

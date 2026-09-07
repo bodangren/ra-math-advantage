@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic';
 import { VideoPlayer } from './VideoPlayer';
 import { ActivityRenderer } from './ActivityRenderer';
 import { ContentBlockErrorBoundary } from './ContentBlockErrorBoundary';
+import { IM3_TEACHER_LED_ACTIVITY_ID } from '@/lib/practice/learning-evidence-pilot';
 
 const LessonMarkdownRenderer = dynamic(() => import('./MarkdownRenderer').then(m => ({ default: m.LessonMarkdownRenderer })), {
   ssr: true,
@@ -171,7 +172,8 @@ function SectionBlock({
           activityId={activityId}
           lessonId={lessonId}
           phaseNumber={phaseNumber}
-          mode={mode}
+          mode={section.content.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID ? 'teaching' : mode}
+          activityProps={section.content.activityProps as Record<string, unknown> | undefined}
           onSubmit={handleSubmit}
           onComplete={handleComplete}
         />

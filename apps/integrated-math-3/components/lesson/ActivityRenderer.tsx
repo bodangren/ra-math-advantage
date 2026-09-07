@@ -63,9 +63,7 @@ export function ActivityRenderer({
   if (!ActivityComponent) {
     return (
       <div className="my-4 rounded-lg border border-yellow-200 bg-yellow-50 p-4">
-        <p className="text-sm text-yellow-700">
-          Activity <code className="font-mono text-xs">{componentKey}</code> is not yet available.
-        </p>
+        <p className="text-sm text-yellow-700">This activity is not available.</p>
       </div>
     );
   }

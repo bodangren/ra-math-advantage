@@ -553,7 +553,7 @@ function isSelectedWorkedAcknowledgement(value: PracticeSubmissionEnvelope): boo
     && value.parts.length === 0;
 }
 
-function isSelectedWorkedActivity(activity: Doc<"activities">): boolean {
+export function isSelectedWorkedActivity(activity: Doc<"activities">): boolean {
   const props = activity.props as Record<string, unknown>;
   const grading = activity.gradingConfig as Record<string, unknown> | undefined;
   return activity.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID

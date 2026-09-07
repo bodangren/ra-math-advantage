@@ -131,6 +131,7 @@ export function LessonRenderer({
   }, [phases, activePhaseNumber]);
 
   const handleActivitySubmit = useCallback(async (activityId: string, payload: unknown) => {
+    if (selectedWorkedSource?.content.activityId === activityId) return;
     setCompletedActivities(prev => new Set([...prev, activityId]));
     try {
       let input: SubmitActivityInput;
@@ -167,7 +168,7 @@ export function LessonRenderer({
       });
       throw err;
     }
-  }, [mode]);
+  }, [mode, selectedWorkedSource]);
 
   const deliverSelectedWorked = useCallback(async () => {
     if (!selectedWorkedSource) return;
