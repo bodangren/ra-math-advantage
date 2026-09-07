@@ -8,7 +8,7 @@ This audit compares the pending Integrated Math 2 (IM2) perpendicular-bisector p
 
 ## Current Result
 
-The backend flow remains under integration review. The real catalog stays unavailable because the selected node and blueprint are draft. The seed also keeps all three activity rows unapproved and sets `srsEligible` to false.
+The local backend and route integration groups are committed. The real catalog stays unavailable because the selected node and blueprint are draft. The seed also keeps all three activity rows unapproved and sets `srsEligible` to false.
 
 The initial focused Convex run passed 19 tests in two files. Later review added regression tests. Use the final integration result for the current count.
 
@@ -20,7 +20,9 @@ npx vitest run __tests__/convex/perpendicular-bisector-pilot.test.ts __tests__/c
 
 Result: 2 files passed and 19 tests passed.
 
-## Required Integration Groups
+Integration commits: local projection `c2e8813d`, trusted storage `fc6c3870`, student route `5c7a48d7`, and teacher action `3b1b5206`.
+
+## Integration Groups
 
 ### Group 1: Local Generator, Projector, and Grader
 
