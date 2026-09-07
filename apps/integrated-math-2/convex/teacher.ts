@@ -1,6 +1,7 @@
 import { internalQuery } from "./_generated/server";
 import type { Id } from "./_generated/dataModel";
 import { v, ConvexError } from "convex/values";
+import { isPilotPublished } from "./activities";
 import { teacherAccount, teacherClass } from "./classes";
 export const getTeacherDashboardData = internalQuery({
   args: { teacherId: v.id("profiles") },
@@ -46,6 +47,7 @@ export const getStudentEvidence = internalQuery({
         maxScore: v.number(),
         feedback: v.string(),
         submittedAt: v.number(),
+        canRecordExposure: v.boolean(),
       }),
     ),
   }),
@@ -74,22 +76,43 @@ export const getStudentEvidence = internalQuery({
       .query("class_lessons")
       .withIndex("by_class_and_lesson", (q) => q.eq("classId", args.classId))
       .take(200);
+    const sourceLesson = await ctx.db
+      .query("lessons")
+      .withIndex("by_slug", (q) => q.eq("slug", "module-1-lesson-1"))
+      .unique();
     const rows = page.page.filter((row) =>
       assigned.some((a) => a.lessonId === row.lessonId),
     );
     const submissions = await Promise.all(
-      rows.map(async (row) => ({
+      rows.map(async (row) => {
+        const activity = await ctx.db.get(row.activityId);
+        return ({
         id: row._id,
-        activity: (await ctx.db.get(row.activityId))?.displayName ?? "Practice",
+        activity: activity?.displayName ?? "Practice",
         answer:
-          typeof row.submissionData?.answers?.response === "string"
+          typeof row.submissionData?.rawResponse === "string"
+            ? row.submissionData.rawResponse
+            : typeof row.submissionData?.answers?.response === "string"
             ? row.submissionData.answers.response
             : "",
         score: row.score ?? 0,
         maxScore: row.maxScore ?? 1,
         feedback: row.feedback ?? "",
         submittedAt: row.submittedAt,
-      })),
+        canRecordExposure: isPilotPublished()
+          && sourceLesson !== null
+          && row.lessonId === sourceLesson._id
+          && row.submittedAt >= Math.max(
+            enrollment.enrolledAt,
+            assigned.find((assignment) => assignment.lessonId === sourceLesson._id)?.assignedAt ?? Number.POSITIVE_INFINITY,
+          )
+          && activity?.stableActivityId === "math.im2.skill.1.1.perpendicular-bisector-equidistance.guided_practice"
+          && activity.masteryNodeId === "math.im2.skill.1.1.perpendicular-bisector-equidistance"
+          && activity.learningEvidenceMode === "guided_practice"
+          && activity.componentKey === "im2-question"
+          && activity.approval?.status === "approved"
+          && row.gradedAt !== undefined,
+      });}),
     );
     return {
       name: student.displayName ?? student.username,

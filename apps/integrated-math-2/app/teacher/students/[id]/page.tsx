@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { requireTeacherSessionClaims } from "@/lib/auth/server";
 import { fetchInternalQuery, internal } from "@/lib/convex/server";
 import type { Id } from "@/convex/_generated/dataModel";
+import { PerpendicularBisectorExposureForm } from "@/components/teacher/PerpendicularBisectorExposureForm";
 export default async function StudentEvidence({
   params,
   searchParams,
@@ -13,6 +14,7 @@ export default async function StudentEvidence({
   const { id } = await params;
   const query = await searchParams;
   if (!query.classId) notFound();
+  const classId = query.classId;
   const claims = await requireTeacherSessionClaims("/teacher/dashboard");
   const evidence = await fetchInternalQuery(
     internal.teacher.getStudentEvidence,
@@ -44,6 +46,7 @@ export default async function StudentEvidence({
               <time dateTime={new Date(s.submittedAt).toISOString()}>
                 {new Date(s.submittedAt).toISOString()}
               </time>
+              {s.canRecordExposure && <PerpendicularBisectorExposureForm classId={classId} studentId={id} submissionId={s.id} />}
             </li>
           ))}
         </ul>
