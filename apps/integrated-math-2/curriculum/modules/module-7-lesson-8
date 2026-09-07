@@ -13,10 +13,10 @@ Source: (Module 7, Lesson 7-8, Int2_0708_practice.docx)
 
 * **Two-Way Frequency Table** — A table that displays the frequencies of two categorical variables.
 * **Joint Frequency** — The count in a cell where both row and column categories apply.
-* **Marginal Frequency** — The total in each row or column (excluding the cell itself).
+* **Marginal Frequency** — The sum of the joint cell counts in a row or column. Do not include an existing total cell in the sum.
 * **Relative Frequency** — A proportion or percentage; frequency divided by the total.
 * **Conditional Probability** — Probability of an event given that another condition is satisfied; found by restricting to a row or column.
-* **Independence** — Events A and B are independent if [P(A | B) = P(A)] or equivalently [P(B | A) = P(B)].
+* **Independence** — Events A and B satisfy $P(A\cap B)=P(A)P(B)$. The equivalent conditional test requires a positive conditioning probability.
 
 ## Explore: Organizing Data with Two Variables
 

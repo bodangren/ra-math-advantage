@@ -13,7 +13,7 @@ Source: (Module 12, Lesson 12-3, Int2_1203_practice.docx)
 
 * **Zero of a Function** — An input x for which [f(x) = 0]; the x-intercept of the graph.
 * **Root** — A solution to the quadratic equation [ax^2 + bx + c = 0].
-* **X-Intercept** — The point where the graph crosses the x-axis; where [y = 0].
+* **X-Intercept** — A point where the graph meets the x-axis, including tangency; its y-coordinate is zero.
 * **Quadratic Equation** — An equation of the form [ax^2 + bx + c = 0] where [a ≠ 0].
 * **Projectile Motion** — Motion that follows a parabolic path, modeled by a quadratic function where the variable represents time.
 

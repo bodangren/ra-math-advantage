@@ -11,12 +11,12 @@ Source: (Module 7, Lesson 7-5, Int2_0705_practice.docx)
 
 ## Vocabulary
 
-* **Independent Events** — Two events where the occurrence of one does not affect the probability of the other; [P(A | B) = P(A)].
+* **Independent Events** — Events satisfying $P(A\cap B)=P(A)P(B)$. A conditional-probability test also requires the conditioning probability to be positive.
 * **Dependent Events** — Two events where the occurrence of one affects the probability of the other.
 * **Joint Probability** — The probability of two events occurring together; $P(A \text{ and } B)$.
 * **Conditional Probability** — [P(B | A)] — the probability of event B given that event A has occurred.
-* **With Replacement** — Drawing an item and returning it before the next draw; events remain independent.
-* **Without Replacement** — Drawing an item and not returning it; events become dependent.
+* **With Replacement** — Returning an item before the next draw. Independent random selection after replacement gives independent draws; replacement alone is not an independence assumption.
+* **Without Replacement** — Keeping a drawn item out of the next draw. This changes the available outcomes. Check the specific events before concluding that they are dependent.
 
 ## Explore: When Does One Event Affect Another?
 

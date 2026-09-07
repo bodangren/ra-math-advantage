@@ -11,8 +11,8 @@ Source: (Module 7, Lesson 7-4, Int2_0704_practice.docx)
 
 ## Vocabulary
 
-* **Permutation** — An arrangement of objects where order matters; formula: $nPr = \frac{n!}{(n-r)!}$
-* **Combination** — A selection of objects where order does not matter; formula: $nCr = \frac{n!}{r!(n-r)!}$
+* **Permutation** — An ordered selection of r distinct objects from n distinct objects without replacement. Its count is $n!/(n-r)!$ for integers $0\le r\le n$.
+* **Combination** — An unordered selection of r distinct objects from n distinct objects without replacement. Its count is $n!/(r!(n-r)!)$ for integers $0\le r\le n$.
 * **Favorable Outcomes** — The outcomes that satisfy the event of interest.
 * **Total Outcomes** — All possible outcomes in the sample space.
 * **Probability with Permutations** — $P(E) = \frac{\text{favorable permutations}}{\text{total permutations}}$

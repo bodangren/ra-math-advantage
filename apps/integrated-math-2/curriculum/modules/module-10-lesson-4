@@ -12,7 +12,7 @@ Source: (Module 10, Lesson 10-4, Int2_1004_practice.docx)
 ## Vocabulary
 
 * **Rational Exponent** — An exponent that is a fraction: $a^{\frac{m}{n}} = \sqrt[n]{a^m} = (\sqrt[n]{a})^m$, where $a \geq 0$ when [n] is even.
-* **Principal Root** — The nonnegative root of a number; for $\sqrt[n]{a}$, the principal root is always nonnegative when [n] is even.
+* **Principal Root** — For an even index, the nonnegative real root of a nonnegative number. For an odd index, the unique real root, which can be negative.
 * **nth Root** — A number that when raised to the [n]th power gives the original number: $\sqrt[n]{a} = b$ means [b^n = a].
 
 ## Explore: Roots as Exponents

@@ -15,8 +15,8 @@ Source: (Module 10, Lesson 10-7, Int2_1007_practice.docx)
 * **Common Base** — When both sides of an exponential equation can be expressed using the same base number.
 * **Base** — The number being raised to a power in an exponential expression.
 * **Exponent** — The power to which the base is raised.
-* **Exponential Growth** — A pattern of increase where a quantity multiplies by a constant factor over equal intervals.
-* **Exponential Decay** — A pattern of decrease where a quantity divides by a constant factor over equal intervals.
+* **Exponential Growth** — For a positive quantity, multiplication by a fixed factor greater than 1 over equal input intervals.
+* **Exponential Decay** — For a positive quantity, multiplication by a fixed factor strictly between 0 and 1 over equal input intervals.
 
 ## Explore: What Makes Exponential Equations Unique?
 

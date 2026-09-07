@@ -11,7 +11,7 @@ Source: (Module 9, Lesson 9-8, Int2_0908_practice.docx)
 ## Vocabulary
 
 * **System of Equations in Three Variables** — A set of three linear equations each containing three variables, typically written in the form [ax + by + cz = d].
-* **Ordered Triple** — A solution [(x, y, z)] that satisfies all three equations in the system.
+* **Ordered Triple** — Three ordered coordinates (x, y, z). A solution triple must satisfy every equation in the system.
 * **Trivariate Linear System** — Another term for a system of three equations in three variables.
 
 ## Explore: Where Do Three Planes Intersect?

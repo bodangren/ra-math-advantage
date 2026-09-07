@@ -11,10 +11,10 @@ Source: (Module 3, Lesson 3-1, Int2_0301_practice.docx)
 
 ## Vocabulary
 
-* **Dilation** — A transformation that produces an image that is the same shape as the original, but not necessarily the same size.
+* **Dilation** — A transformation with center C and nonzero scale k that maps each point P to C + k(P − C). Lengths change by |k|. A negative k also reverses the direction from C.
 * **Enlargement** — A dilation with a scale factor greater than 1, producing a larger image.
 * **Reduction** — A dilation with a scale factor between 0 and 1, producing a smaller image.
-* **Scale Factor** — The ratio of the distances (or lengths) of corresponding points of the image to the original.
+* **Scale Factor** — The signed multiplier k in a dilation. The ratio of corresponding lengths is |k|. For similarity ratios in this course, use a positive length scale.
 * **Invariant Point** — A point that remains fixed under a transformation.
 * **Center of Dilation** — The fixed point about which a dilation is performed.
 

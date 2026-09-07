@@ -12,7 +12,7 @@ Source: (Module 12, Lesson 12-N, Int2_1207_practice.docx)
 
 * **System of Linear and Quadratic Equations** — A system containing one equation of degree 1 and one equation of degree 2, typically a parabola and a line.
 * **Substitution Method** — An algebraic technique where one equation is solved for a variable in terms of the others and substituted into the remaining equation(s).
-* **Intersection Point** — The coordinate(s) where the graph of the linear function and the graph of the quadratic function cross each other; the solution to the system.
+* **Intersection Point** — A point that belongs to both graphs. It can be a crossing or a tangent contact. Its coordinates solve both equations.
 
 ## Explore: Intersection of Parabolas and Lines
 

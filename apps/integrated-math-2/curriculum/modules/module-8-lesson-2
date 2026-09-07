@@ -12,7 +12,7 @@ Source: (Module 8, Lesson 8-2, Int2_0802_practice.docx)
 
 * **Linear Function** — A function that can be written in the form [y = mx + b], where [m] and [b] are constants; its graph is a straight line.
 * **Nonlinear Function** — Any function that does not form a straight line when graphed.
-* **x-Intercept** — The point where a graph crosses the x-axis; [(a, 0)].
+* **x-Intercept** — A point where the graph meets the x-axis, including a point where it touches without crossing.
 * **y-Intercept** — The point where a graph crosses the y-axis; [(0, b)].
 * **Line Symmetry (Reflectional Symmetry)** — A graph is symmetric about a line if one half is a mirror image of the other across that line.
 * **Point Symmetry (Rotational Symmetry)** — A graph has point symmetry if it looks the same after a 180° rotation about a point.

@@ -15,7 +15,7 @@ Source: (Module 9, Lesson 9-4, Int2_0904_practice.docx)
 * **Solution of a System** — An ordered pair (x, y) that makes all equations in the system true.
 * **Consistent System** — A system that has at least one solution.
 * **Inconsistent System** — A system that has no solution.
-* **Independent System** — A system where the equations represent two different lines.
+* **Independent System** — For two linear equations in two variables, a system whose coefficient rows are not scalar multiples. The lines meet in exactly one point.
 * **Dependent System** — A system where the equations represent the same line (infinitely many solutions).
 * **Intersecting Lines** — Two lines that cross at exactly one point (one solution, consistent and independent).
 * **Parallel Lines** — Two lines that never intersect (no solution, inconsistent).

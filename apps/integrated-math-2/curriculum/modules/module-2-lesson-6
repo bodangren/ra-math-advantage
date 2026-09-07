@@ -14,7 +14,7 @@ Source: (Module 2, Lesson 2-6, Int2_0206_practice.docx)
 * **Trapezoid** — A quadrilateral with exactly one pair of parallel sides.
 * **Isosceles Trapezoid** — A trapezoid with congruent non-parallel sides (legs).
 * **Midsegment of a Trapezoid** — The segment connecting the midpoints of the legs; its length is the average of the two bases.
-* **Kite** — A quadrilateral with two pairs of adjacent congruent sides.
+* **Kite** — In this course, a quadrilateral with two pairs of adjacent congruent sides, with different lengths for the two pairs. This convention excludes rhombi.
 * **Legs of a Trapezoid** — The non-parallel sides of a trapezoid.
 * **Bases of a Trapezoid** — The parallel sides of a trapezoid.
 

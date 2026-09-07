@@ -13,9 +13,9 @@ Source: (Module 12, Lesson 12-N, Int2_1208_practice.docx)
 ## Vocabulary
 
 * **Linear model** — a function with constant first differences; grows by equal differences over equal intervals
-* **Quadratic model** — a function with constant second differences; characterized by a² term
+* **Quadratic model** — A model of the form ax² + bx + c with a ≠ 0. Its second differences are constant and nonzero for equally spaced inputs.
 * **Exponential model** — a function with constant ratios; grows by equal factors over equal intervals
-* **Coefficient of determination (R²)** — a value between 0 and 1 indicating how well a regression model fits data; values closer to 1 indicate a better fit
+* **Coefficient of determination (R²)** — The value 1 − SSE/SST, where SSE is the sum of squared residuals and SST is the total squared deviation from the response mean. For least-squares fitting with an intercept on the fitted data, it lies between 0 and 1 when SST > 0. It can be negative for other predictions and is undefined when SST = 0.
 * **Scatter plot** — a graph of plotted points showing the relationship between two variables
 * **Regression equation** — an equation derived from data that best fits a given pattern (linear, quadratic, or exponential)
 

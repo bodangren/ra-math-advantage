@@ -214,3 +214,9 @@ Verification passed with 213 tests, lint, both TypeScript checks, and production
 The compiler excludes Review Notes and Objective Alignment from required student phases. The source files retain this editorial information. Published revisions remain unchanged. The seed replay updates drafts and preserves published evidence.
 
 Verification passed with 214 tests, lint, both TypeScript checks, and production build. Local seed replay returned 96 lessons. The running local backend accepted the new evidence index. A second dev process correctly refused to start on the occupied IM2 port.
+
+## Vocabulary correction
+
+Read all compiled vocabulary sections. Corrected 44 definitions and related terms. Changes include finite and infinite sample spaces, marginal frequencies, independent draws, continuous functions, polynomial degree, principal roots, and regression R². The kite definition now uses one explicit course convention. Prism definitions distinguish general prisms from right prisms.
+
+Verification passed with 214 tests, lint, both TypeScript checks, and production build.

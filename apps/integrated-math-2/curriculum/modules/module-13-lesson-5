@@ -14,7 +14,7 @@ Source: (Module 13, Lesson 13-5, Int2_1305_practice.docx)
 ## Vocabulary
 
 * **Principal solutions** — solutions within one period ([0, 2pi) or [0 degrees, 360 degrees))
-* **General solution** — all solutions expressed with +2pi n (or +360 degrees n) for integer n
+* **General solution** — All solutions described with an integer parameter and the correct repetition interval. The interval can be π, 2π, or another value after an angle transformation.
 * **Quadratic-type equation** — an equation that can be written in the form [a u^2 + bu + c = 0] where u is a trigonometric function
 
 ## Explore: Infinite Solutions

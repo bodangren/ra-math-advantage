@@ -77,7 +77,7 @@
         "phaseNumber": 2,
         "title": "Vocabulary",
         "phaseType": "vocabulary",
-        "markdown": "* **Angle Bisector** — A ray that divides an angle into two congruent angles.\n* **Incenter** — The point of concurrency of the three angle bisectors of a triangle; equidistant from all three sides.\n* **Angle Bisector Theorem** — If a point is on the bisector of an angle, then it is equidistant from the two sides of the angle.\n* **Converse of the Angle Bisector Theorem** — If a point is equidistant from the two sides of an angle, then it lies on the angle bisector.\n* **Incenter Theorem** — The incenter of a triangle is equidistant from all three sides."
+        "markdown": "* **Angle Bisector** — A ray that divides an angle into two congruent angles.\n* **Incenter** — The point of concurrency of the three angle bisectors of a triangle; equidistant from all three sides.\n* **Angle Bisector Theorem** — If a point is on the bisector of an angle, then it is equidistant from the two sides of the angle.\n* **Converse of the Angle Bisector Theorem** — A point inside an angle that has equal perpendicular distances to its side lines lies on its internal angle bisector.\n* **Incenter Theorem** — The incenter of a triangle is equidistant from all three sides."
       },
       {
         "phaseNumber": 3,
@@ -703,7 +703,7 @@
         "phaseNumber": 2,
         "title": "Vocabulary",
         "phaseType": "vocabulary",
-        "markdown": "* **Rhombus** — A parallelogram with all four sides congruent.\n* **Square** — A parallelogram with all sides congruent and all angles right angles (a regular quadrilateral).\n* **Diagonal of a Rhombus** — The diagonals of a rhombus are perpendicular bisectors of each other.\n* **Kite** — A quadrilateral with two pairs of adjacent congruent sides."
+        "markdown": "* **Rhombus** — A parallelogram with all four sides congruent.\n* **Square** — A parallelogram with all sides congruent and all angles right angles (a regular quadrilateral).\n* **Diagonal of a Rhombus** — The diagonals of a rhombus are perpendicular bisectors of each other.\n* **Kite** — In this course, a quadrilateral with two pairs of adjacent congruent sides, with different lengths for the two pairs. This convention excludes rhombi."
       },
       {
         "phaseNumber": 3,
@@ -771,7 +771,7 @@
         "phaseNumber": 2,
         "title": "Vocabulary",
         "phaseType": "vocabulary",
-        "markdown": "* **Trapezoid** — A quadrilateral with exactly one pair of parallel sides.\n* **Isosceles Trapezoid** — A trapezoid with congruent non-parallel sides (legs).\n* **Midsegment of a Trapezoid** — The segment connecting the midpoints of the legs; its length is the average of the two bases.\n* **Kite** — A quadrilateral with two pairs of adjacent congruent sides.\n* **Legs of a Trapezoid** — The non-parallel sides of a trapezoid.\n* **Bases of a Trapezoid** — The parallel sides of a trapezoid."
+        "markdown": "* **Trapezoid** — A quadrilateral with exactly one pair of parallel sides.\n* **Isosceles Trapezoid** — A trapezoid with congruent non-parallel sides (legs).\n* **Midsegment of a Trapezoid** — The segment connecting the midpoints of the legs; its length is the average of the two bases.\n* **Kite** — In this course, a quadrilateral with two pairs of adjacent congruent sides, with different lengths for the two pairs. This convention excludes rhombi.\n* **Legs of a Trapezoid** — The non-parallel sides of a trapezoid.\n* **Bases of a Trapezoid** — The parallel sides of a trapezoid."
       },
       {
         "phaseNumber": 3,
@@ -845,7 +845,7 @@
         "phaseNumber": 2,
         "title": "Vocabulary",
         "phaseType": "vocabulary",
-        "markdown": "* **Dilation** — A transformation that produces an image that is the same shape as the original, but not necessarily the same size.\n* **Enlargement** — A dilation with a scale factor greater than 1, producing a larger image.\n* **Reduction** — A dilation with a scale factor between 0 and 1, producing a smaller image.\n* **Scale Factor** — The ratio of the distances (or lengths) of corresponding points of the image to the original.\n* **Invariant Point** — A point that remains fixed under a transformation.\n* **Center of Dilation** — The fixed point about which a dilation is performed."
+        "markdown": "* **Dilation** — A transformation with center C and nonzero scale k that maps each point P to C + k(P − C). Lengths change by |k|. A negative k also reverses the direction from C.\n* **Enlargement** — A dilation with a scale factor greater than 1, producing a larger image.\n* **Reduction** — A dilation with a scale factor between 0 and 1, producing a smaller image.\n* **Scale Factor** — The signed multiplier k in a dilation. The ratio of corresponding lengths is |k|. For similarity ratios in this course, use a positive length scale.\n* **Invariant Point** — A point that remains fixed under a transformation.\n* **Center of Dilation** — The fixed point about which a dilation is performed."
       },
       {
         "phaseNumber": 3,
@@ -2131,7 +2131,7 @@
         "phaseNumber": 2,
         "title": "Vocabulary",
         "phaseType": "vocabulary",
-        "markdown": "* **Parallelogram** — A quadrilateral with both pairs of opposite sides parallel.\n* **Rhombus** — A parallelogram with four congruent sides.\n* **Trapezoid** — A quadrilateral with exactly one pair of parallel sides.\n* **Kite** — A quadrilateral with two pairs of consecutive sides that are congruent, but no opposite sides are congruent."
+        "markdown": "* **Parallelogram** — A quadrilateral with both pairs of opposite sides parallel.\n* **Rhombus** — A parallelogram with four congruent sides.\n* **Trapezoid** — A quadrilateral with exactly one pair of parallel sides.\n* **Kite** — In this course, a quadrilateral with two pairs of adjacent congruent sides, with different lengths for the two pairs. This convention excludes rhombi."
       },
       {
         "phaseNumber": 3,
@@ -2335,7 +2335,7 @@
         "phaseNumber": 2,
         "title": "Vocabulary",
         "phaseType": "vocabulary",
-        "markdown": "* **Surface Area** — The total area of all faces of a three-dimensional figure.\n* **Lateral Area** — The sum of the areas of the lateral faces of a prism or pyramid.\n* **Prism** — A polyhedron with two parallel, congruent bases and rectangular lateral faces.\n* **Cylinder** — A solid with two parallel, congruent circular bases.\n* **Pyramid** — A polyhedron with one base and triangular lateral faces meeting at a vertex.\n* **Cone** — A solid with one circular base and a curved lateral surface meeting at a vertex.\n* **Sphere** — The set of all points equidistant from a center point in three-dimensional space."
+        "markdown": "* **Surface Area** — The total area of the boundary surfaces of a solid, including curved surfaces.\n* **Lateral Area** — The sum of the areas of the lateral faces of a prism or pyramid.\n* **Prism** — A polyhedron with two congruent parallel polygonal bases and parallelogram lateral faces. A right prism has rectangular lateral faces.\n* **Cylinder** — A solid with two parallel, congruent circular bases.\n* **Pyramid** — A polyhedron with one base and triangular lateral faces meeting at a vertex.\n* **Cone** — A solid with one circular base and a curved lateral surface meeting at a vertex.\n* **Sphere** — The set of all points equidistant from a center point in three-dimensional space."
       },
       {
         "phaseNumber": 3,
@@ -2489,7 +2489,7 @@
         "phaseNumber": 2,
         "title": "Vocabulary",
         "phaseType": "vocabulary",
-        "markdown": "* **Volume** — The amount of space occupied by a three-dimensional solid.\n* **Prism** — A polyhedron with two parallel, congruent bases and rectangular lateral faces.\n* **Pyramid** — A polyhedron with one base and triangular lateral faces meeting at a vertex.\n* **Composite Solid** — A three-dimensional solid made up of two or more simpler solids.\n* **Base** — A congruent, parallel face of a prism or pyramid."
+        "markdown": "* **Volume** — The amount of space occupied by a three-dimensional solid.\n* **Prism** — A polyhedron with two congruent parallel polygonal bases and parallelogram lateral faces. A right prism has rectangular lateral faces.\n* **Pyramid** — A polyhedron with one base and triangular lateral faces meeting at a vertex.\n* **Composite Solid** — A three-dimensional solid made up of two or more simpler solids.\n* **Base** — Either of the two parallel congruent polygonal faces of a prism, or the polygonal face opposite a pyramid's apex."
       },
       {
         "phaseNumber": 3,
@@ -2779,7 +2779,7 @@
         "phaseNumber": 2,
         "title": "Vocabulary",
         "phaseType": "vocabulary",
-        "markdown": "* **Sample Space** — The set of all possible outcomes of an experiment.\n* **Outcome** — A single possible result of an experiment.\n* **Event** — A subset of the sample space; a specific outcome or set of outcomes.\n* **Finite Sample Space** — A sample space with a countable number of outcomes.\n* **Infinite Sample Space** — A sample space with an uncountable number of outcomes.\n* **Discrete Sample Space** — An infinite sample space where outcomes can be listed (e.g., whole numbers).\n* **Continuous Sample Space** — An infinite sample space where any value in an interval is possible.\n* **Tree Diagram** — A visual representation of the possible outcomes of a multi-stage experiment.\n* **Fundamental Counting Principle** — If one event has [m] possible outcomes and a second event has [n] possible outcomes, the combined event has $m \\times n$ possible outcomes."
+        "markdown": "* **Sample Space** — The set of all possible outcomes of an experiment.\n* **Outcome** — A single possible result of an experiment.\n* **Event** — A subset of the sample space; a specific outcome or set of outcomes.\n* **Finite Sample Space** — A sample space with a finite number of outcomes.\n* **Infinite Sample Space** — A sample space with infinitely many outcomes. It can be countably infinite or uncountable.\n* **Discrete Sample Space** — A sample space with a finite or countably infinite set of distinct outcomes.\n* **Continuous Sample Space** — An infinite sample space where any value in an interval is possible.\n* **Tree Diagram** — A visual representation of the possible outcomes of a multi-stage experiment.\n* **Fundamental Counting Principle** — If a first stage has m choices and every first-stage choice permits n second-stage choices, there are mn ordered two-stage outcomes."
       },
       {
         "phaseNumber": 3,
@@ -2971,7 +2971,7 @@
         "phaseNumber": 2,
         "title": "Vocabulary",
         "phaseType": "vocabulary",
-        "markdown": "* **Permutation** — An arrangement of objects where order matters; formula: $nPr = \\frac{n!}{(n-r)!}$\n* **Combination** — A selection of objects where order does not matter; formula: $nCr = \\frac{n!}{r!(n-r)!}$\n* **Favorable Outcomes** — The outcomes that satisfy the event of interest.\n* **Total Outcomes** — All possible outcomes in the sample space.\n* **Probability with Permutations** — $P(E) = \\frac{\\text{favorable permutations}}{\\text{total permutations}}$"
+        "markdown": "* **Permutation** — An ordered selection of r distinct objects from n distinct objects without replacement. Its count is $n!/(n-r)!$ for integers $0\\le r\\le n$.\n* **Combination** — An unordered selection of r distinct objects from n distinct objects without replacement. Its count is $n!/(r!(n-r)!)$ for integers $0\\le r\\le n$.\n* **Favorable Outcomes** — The outcomes that satisfy the event of interest.\n* **Total Outcomes** — All possible outcomes in the sample space.\n* **Probability with Permutations** — $P(E) = \\frac{\\text{favorable permutations}}{\\text{total permutations}}$"
       },
       {
         "phaseNumber": 3,
@@ -3027,7 +3027,7 @@
         "phaseNumber": 2,
         "title": "Vocabulary",
         "phaseType": "vocabulary",
-        "markdown": "* **Independent Events** — Two events where the occurrence of one does not affect the probability of the other; [P(A | B) = P(A)].\n* **Dependent Events** — Two events where the occurrence of one affects the probability of the other.\n* **Joint Probability** — The probability of two events occurring together; $P(A \\text{ and } B)$.\n* **Conditional Probability** — [P(B | A)] — the probability of event B given that event A has occurred.\n* **With Replacement** — Drawing an item and returning it before the next draw; events remain independent.\n* **Without Replacement** — Drawing an item and not returning it; events become dependent."
+        "markdown": "* **Independent Events** — Events satisfying $P(A\\cap B)=P(A)P(B)$. A conditional-probability test also requires the conditioning probability to be positive.\n* **Dependent Events** — Two events where the occurrence of one affects the probability of the other.\n* **Joint Probability** — The probability of two events occurring together; $P(A \\text{ and } B)$.\n* **Conditional Probability** — [P(B | A)] — the probability of event B given that event A has occurred.\n* **With Replacement** — Returning an item before the next draw. Independent random selection after replacement gives independent draws; replacement alone is not an independence assumption.\n* **Without Replacement** — Keeping a drawn item out of the next draw. This changes the available outcomes. Check the specific events before concluding that they are dependent."
       },
       {
         "phaseNumber": 3,
@@ -3133,7 +3133,7 @@
         "phaseNumber": 2,
         "title": "Vocabulary",
         "phaseType": "vocabulary",
-        "markdown": "* **Conditional Probability** — The probability of an event occurring given that another event has already occurred; [P(B | A)].\n* **Given Information** — The event that has already occurred, which restricts the sample space.\n* **Restricted Sample Space** — The set of outcomes that satisfy the given condition.\n* **Independence** — Two events A and B are independent if [P(B | A) = P(B)] or equivalently [P(A | B) = P(A)]."
+        "markdown": "* **Conditional Probability** — The probability of an event occurring given that another event has already occurred; [P(B | A)].\n* **Given Information** — The event that has already occurred, which restricts the sample space.\n* **Restricted Sample Space** — The set of outcomes that satisfy the given condition.\n* **Independence** — Events A and B satisfy $P(A\\cap B)=P(A)P(B)$. The equivalent conditional test requires a positive conditioning probability."
       },
       {
         "phaseNumber": 3,
@@ -3177,7 +3177,7 @@
         "phaseNumber": 2,
         "title": "Vocabulary",
         "phaseType": "vocabulary",
-        "markdown": "* **Two-Way Frequency Table** — A table that displays the frequencies of two categorical variables.\n* **Joint Frequency** — The count in a cell where both row and column categories apply.\n* **Marginal Frequency** — The total in each row or column (excluding the cell itself).\n* **Relative Frequency** — A proportion or percentage; frequency divided by the total.\n* **Conditional Probability** — Probability of an event given that another condition is satisfied; found by restricting to a row or column.\n* **Independence** — Events A and B are independent if [P(A | B) = P(A)] or equivalently [P(B | A) = P(B)]."
+        "markdown": "* **Two-Way Frequency Table** — A table that displays the frequencies of two categorical variables.\n* **Joint Frequency** — The count in a cell where both row and column categories apply.\n* **Marginal Frequency** — The sum of the joint cell counts in a row or column. Do not include an existing total cell in the sum.\n* **Relative Frequency** — A proportion or percentage; frequency divided by the total.\n* **Conditional Probability** — Probability of an event given that another condition is satisfied; found by restricting to a row or column.\n* **Independence** — Events A and B satisfy $P(A\\cap B)=P(A)P(B)$. The equivalent conditional test requires a positive conditioning probability."
       },
       {
         "phaseNumber": 3,
@@ -3233,7 +3233,7 @@
         "phaseNumber": 2,
         "title": "Vocabulary",
         "phaseType": "vocabulary",
-        "markdown": "* **Domain** — The set of all possible input values (x-values) of a function.\n* **Range** — The set of all actual output values of a function.\n* **Codomain** — The set of all possible output values; the range is a subset of the codomain.\n* **One-to-One** — A function where each element in the domain maps to a unique element in the range; no range value is repeated.\n* **Onto (Surjective)** — A function where every element in the codomain has at least one corresponding input in the domain.\n* **Discrete Function** — A function with a domain that consists of isolated, individual points.\n* **Continuous Function** — A function with an unbroken domain, often an interval, with no gaps or jumps."
+        "markdown": "* **Domain** — The set of all possible input values (x-values) of a function.\n* **Range** — The set of all actual output values of a function.\n* **Codomain** — The declared target set of a function. It contains the range and can include values that the function never produces.\n* **One-to-One** — A function where each element in the domain maps to a unique element in the range; no range value is repeated.\n* **Onto (Surjective)** — A function where every element in the codomain has at least one corresponding input in the domain.\n* **Discrete Function** — A function with a domain that consists of isolated, individual points.\n* **Continuous Function** — A function whose values approach the function value at each point in its domain. An interval domain alone does not guarantee continuity."
       },
       {
         "phaseNumber": 3,
@@ -3307,7 +3307,7 @@
         "phaseNumber": 2,
         "title": "Vocabulary",
         "phaseType": "vocabulary",
-        "markdown": "* **Linear Function** — A function that can be written in the form [y = mx + b], where [m] and [b] are constants; its graph is a straight line.\n* **Nonlinear Function** — Any function that does not form a straight line when graphed.\n* **x-Intercept** — The point where a graph crosses the x-axis; [(a, 0)].\n* **y-Intercept** — The point where a graph crosses the y-axis; [(0, b)].\n* **Line Symmetry (Reflectional Symmetry)** — A graph is symmetric about a line if one half is a mirror image of the other across that line.\n* **Point Symmetry (Rotational Symmetry)** — A graph has point symmetry if it looks the same after a 180° rotation about a point.\n* **Even Function** — A function where [f(-x) = f(x)] for all [x] in the domain; symmetric about the y-axis.\n* **Odd Function** — A function where [f(-x) = -f(x)] for all [x] in the domain; symmetric about the origin."
+        "markdown": "* **Linear Function** — A function that can be written in the form [y = mx + b], where [m] and [b] are constants; its graph is a straight line.\n* **Nonlinear Function** — Any function that does not form a straight line when graphed.\n* **x-Intercept** — A point where the graph meets the x-axis, including a point where it touches without crossing.\n* **y-Intercept** — The point where a graph crosses the y-axis; [(0, b)].\n* **Line Symmetry (Reflectional Symmetry)** — A graph is symmetric about a line if one half is a mirror image of the other across that line.\n* **Point Symmetry (Rotational Symmetry)** — A graph has point symmetry if it looks the same after a 180° rotation about a point.\n* **Even Function** — A function where [f(-x) = f(x)] for all [x] in the domain; symmetric about the y-axis.\n* **Odd Function** — A function where [f(-x) = -f(x)] for all [x] in the domain; symmetric about the origin."
       },
       {
         "phaseNumber": 3,
@@ -3387,7 +3387,7 @@
         "phaseNumber": 2,
         "title": "Vocabulary",
         "phaseType": "vocabulary",
-        "markdown": "* **Relative Maximum** — A point where a function changes from increasing to decreasing; a \"peak\" in the graph.\n* **Relative Minimum** — A point where a function changes from decreasing to increasing; a \"valley\" in the graph.\n* **Extrema** — Collective term for relative maxima and minima.\n* **End Behavior** — The behavior of a function as [x] approaches very large positive values [(infinity)] or very large negative values [(-infinity)]."
+        "markdown": "* **Relative Maximum** — A function value at least as large as all nearby domain values. The corresponding input and point locate the maximum.\n* **Relative Minimum** — A function value at most as large as all nearby domain values. The corresponding input and point locate the minimum.\n* **Extrema** — Collective term for relative maxima and minima.\n* **End Behavior** — The behavior of a function as [x] approaches very large positive values [(infinity)] or very large negative values [(-infinity)]."
       },
       {
         "phaseNumber": 3,
@@ -3845,7 +3845,7 @@
         "phaseNumber": 2,
         "title": "Vocabulary",
         "phaseType": "vocabulary",
-        "markdown": "* **Standard Form** — A linear equation written as [Ax + By = C], where A, B, and C are integers and A is non-negative.\n* **Slope-Intercept Form** — A linear equation written as [y = mx + b], where m is the slope and b is the y-intercept.\n* **Point-Slope Form** — A linear equation written as [y - y1 = m(x - x1)], where m is the slope and (x1, y1) is a point on the line.\n* **Slope** — The ratio of the change in y to the change in x between two points on a line; also [m = rise/run].\n* **Y-Intercept** — The point where a line crosses the y-axis; the value of y when [x = 0].\n* **X-Intercept** — The point where a line crosses the x-axis; the value of x when [y = 0]."
+        "markdown": "* **Standard Form** — A line equation Ax + By = C with A and B not both zero. For rational coefficients, this course uses integer coefficients with no common factor when possible.\n* **Slope-Intercept Form** — A linear equation written as [y = mx + b], where m is the slope and b is the y-intercept.\n* **Point-Slope Form** — A linear equation written as [y - y1 = m(x - x1)], where m is the slope and (x1, y1) is a point on the line.\n* **Slope** — The ratio of the change in y to a nonzero change in x. A vertical line has undefined slope.\n* **Y-Intercept** — The point where a line crosses the y-axis; the value of y when [x = 0].\n* **X-Intercept** — The point where a line crosses the x-axis; the value of x when [y = 0]."
       },
       {
         "phaseNumber": 3,
@@ -3925,7 +3925,7 @@
         "phaseNumber": 2,
         "title": "Vocabulary",
         "phaseType": "vocabulary",
-        "markdown": "* **System of Equations** — Two or more equations considered together with the same variables.\n* **Solution of a System** — An ordered pair (x, y) that makes all equations in the system true.\n* **Consistent System** — A system that has at least one solution.\n* **Inconsistent System** — A system that has no solution.\n* **Independent System** — A system where the equations represent two different lines.\n* **Dependent System** — A system where the equations represent the same line (infinitely many solutions).\n* **Intersecting Lines** — Two lines that cross at exactly one point (one solution, consistent and independent).\n* **Parallel Lines** — Two lines that never intersect (no solution, inconsistent).\n* **Coincident Lines** — Two lines that lie on top of each other (infinitely many solutions, consistent and dependent)."
+        "markdown": "* **System of Equations** — Two or more equations considered together with the same variables.\n* **Solution of a System** — An ordered pair (x, y) that makes all equations in the system true.\n* **Consistent System** — A system that has at least one solution.\n* **Inconsistent System** — A system that has no solution.\n* **Independent System** — For two linear equations in two variables, a system whose coefficient rows are not scalar multiples. The lines meet in exactly one point.\n* **Dependent System** — A system where the equations represent the same line (infinitely many solutions).\n* **Intersecting Lines** — Two lines that cross at exactly one point (one solution, consistent and independent).\n* **Parallel Lines** — Two lines that never intersect (no solution, inconsistent).\n* **Coincident Lines** — Two lines that lie on top of each other (infinitely many solutions, consistent and dependent)."
       },
       {
         "phaseNumber": 3,
@@ -4179,7 +4179,7 @@
         "phaseNumber": 2,
         "title": "Vocabulary",
         "phaseType": "vocabulary",
-        "markdown": "* **System of Equations in Three Variables** — A set of three linear equations each containing three variables, typically written in the form [ax + by + cz = d].\n* **Ordered Triple** — A solution [(x, y, z)] that satisfies all three equations in the system.\n* **Trivariate Linear System** — Another term for a system of three equations in three variables."
+        "markdown": "* **System of Equations in Three Variables** — A set of three linear equations each containing three variables, typically written in the form [ax + by + cz = d].\n* **Ordered Triple** — Three ordered coordinates (x, y, z). A solution triple must satisfy every equation in the system.\n* **Trivariate Linear System** — Another term for a system of three equations in three variables."
       },
       {
         "phaseNumber": 3,
@@ -4303,7 +4303,7 @@
         "phaseNumber": 2,
         "title": "Vocabulary",
         "phaseType": "vocabulary",
-        "markdown": "* **Product of Powers Property** — When multiplying two expressions with the same base, add the exponents: $a^m \\cdot a^n = a^{m+n}$.\n* **Power of a Power Property** — When raising an expression with an exponent to another power, multiply the exponents: $(a^m)^n = a^{m \\cdot n}$.\n* **Power of a Product Property** — When raising a product to a power, raise each factor to that power: $(ab)^n = a^n \\cdot b^n$.\n* **Scientific Notation** — A way to write very large or very small numbers as a number between 1 and 10 multiplied by a power of 10: $a \\times 10^n$."
+        "markdown": "* **Product of Powers Property** — When multiplying two expressions with the same base, add the exponents: $a^m \\cdot a^n = a^{m+n}$.\n* **Power of a Power Property** — When raising an expression with an exponent to another power, multiply the exponents: $(a^m)^n = a^{m \\cdot n}$.\n* **Power of a Product Property** — When raising a product to a power, raise each factor to that power: $(ab)^n = a^n \\cdot b^n$.\n* **Scientific Notation** — A nonzero number written as $a\\times10^n$, where $1\\le|a|<10$ and n is an integer."
       },
       {
         "phaseNumber": 3,
@@ -4471,7 +4471,7 @@
         "phaseNumber": 2,
         "title": "Vocabulary",
         "phaseType": "vocabulary",
-        "markdown": "* **Rational Exponent** — An exponent that is a fraction: $a^{\\frac{m}{n}} = \\sqrt[n]{a^m} = (\\sqrt[n]{a})^m$, where $a \\geq 0$ when [n] is even.\n* **Principal Root** — The nonnegative root of a number; for $\\sqrt[n]{a}$, the principal root is always nonnegative when [n] is even.\n* **nth Root** — A number that when raised to the [n]th power gives the original number: $\\sqrt[n]{a} = b$ means [b^n = a]."
+        "markdown": "* **Rational Exponent** — An exponent that is a fraction: $a^{\\frac{m}{n}} = \\sqrt[n]{a^m} = (\\sqrt[n]{a})^m$, where $a \\geq 0$ when [n] is even.\n* **Principal Root** — For an even index, the nonnegative real root of a nonnegative number. For an odd index, the unique real root, which can be negative.\n* **nth Root** — A number that when raised to the [n]th power gives the original number: $\\sqrt[n]{a} = b$ means [b^n = a]."
       },
       {
         "phaseNumber": 3,
@@ -4675,7 +4675,7 @@
         "phaseNumber": 2,
         "title": "Vocabulary",
         "phaseType": "vocabulary",
-        "markdown": "* **Exponential Equation** — An equation where the variable appears in an exponent, such as [a^x = b].\n* **Common Base** — When both sides of an exponential equation can be expressed using the same base number.\n* **Base** — The number being raised to a power in an exponential expression.\n* **Exponent** — The power to which the base is raised.\n* **Exponential Growth** — A pattern of increase where a quantity multiplies by a constant factor over equal intervals.\n* **Exponential Decay** — A pattern of decrease where a quantity divides by a constant factor over equal intervals."
+        "markdown": "* **Exponential Equation** — An equation where the variable appears in an exponent, such as [a^x = b].\n* **Common Base** — When both sides of an exponential equation can be expressed using the same base number.\n* **Base** — The number being raised to a power in an exponential expression.\n* **Exponent** — The power to which the base is raised.\n* **Exponential Growth** — For a positive quantity, multiplication by a fixed factor greater than 1 over equal input intervals.\n* **Exponential Decay** — For a positive quantity, multiplication by a fixed factor strictly between 0 and 1 over equal input intervals."
       },
       {
         "phaseNumber": 3,
@@ -4731,7 +4731,7 @@
         "phaseNumber": 2,
         "title": "Vocabulary",
         "phaseType": "vocabulary",
-        "markdown": "* **Polynomial** — A mathematical expression consisting of terms combined by addition or subtraction.\n* **Monomial** — A polynomial with one term.\n* **Binomial** — A polynomial with two terms.\n* **Trinomial** — A polynomial with three terms.\n* **Degree of a Polynomial** — The highest exponent in a polynomial when written in standard form.\n* **Standard Form** — A polynomial written with terms in descending order of exponent.\n* **Leading Coefficient** — The coefficient of the term with the highest exponent.\n* **Closed under Addition** — A property where the sum of any two elements in a set remains in that set."
+        "markdown": "* **Polynomial** — A finite sum of terms with real coefficients and variables raised to nonnegative integer powers.\n* **Monomial** — A polynomial with one term.\n* **Binomial** — A polynomial with two terms.\n* **Trinomial** — A polynomial with three terms.\n* **Degree of a Polynomial** — For a nonzero polynomial, the largest total degree of its nonzero terms after combining like terms. A term's total degree is the sum of its variable exponents. The zero polynomial has no degree in this course.\n* **Standard Form** — A polynomial written with terms in descending order of exponent.\n* **Leading Coefficient** — For a polynomial in one variable, the coefficient of the highest-degree term after combining like terms.\n* **Closed under Addition** — A property where the sum of any two elements in a set remains in that set."
       },
       {
         "phaseNumber": 3,
@@ -5195,7 +5195,7 @@
         "phaseNumber": 2,
         "title": "Vocabulary",
         "phaseType": "vocabulary",
-        "markdown": "* **Axis of Symmetry** — The vertical line that divides a parabola into two mirror images; passes through the vertex.\n* **Vertex** — The highest or lowest point of a parabola; the maximum or minimum value of the function.\n* **End Behavior** — Describes what happens to the output values as x approaches very large positive or very large negative values.\n* **Parabola** — The U-shaped graph of a quadratic function.\n* **Quadratic Function** — A function of the form [y = ax^2 + bx + c] where [a ≠ 0]."
+        "markdown": "* **Axis of Symmetry** — The vertical line that divides a parabola into two mirror images; passes through the vertex.\n* **Vertex** — The turning point (h, k) of a vertical-axis parabola. Its y-coordinate k is the minimum or maximum value of the quadratic function.\n* **End Behavior** — Describes what happens to the output values as x approaches very large positive or very large negative values.\n* **Parabola** — The U-shaped graph of a quadratic function.\n* **Quadratic Function** — A function of the form [y = ax^2 + bx + c] where [a ≠ 0]."
       },
       {
         "phaseNumber": 3,
@@ -5325,7 +5325,7 @@
         "phaseNumber": 2,
         "title": "Vocabulary",
         "phaseType": "vocabulary",
-        "markdown": "* **Zero of a Function** — An input x for which [f(x) = 0]; the x-intercept of the graph.\n* **Root** — A solution to the quadratic equation [ax^2 + bx + c = 0].\n* **X-Intercept** — The point where the graph crosses the x-axis; where [y = 0].\n* **Quadratic Equation** — An equation of the form [ax^2 + bx + c = 0] where [a ≠ 0].\n* **Projectile Motion** — Motion that follows a parabolic path, modeled by a quadratic function where the variable represents time."
+        "markdown": "* **Zero of a Function** — An input x for which [f(x) = 0]; the x-intercept of the graph.\n* **Root** — A solution to the quadratic equation [ax^2 + bx + c = 0].\n* **X-Intercept** — A point where the graph meets the x-axis, including tangency; its y-coordinate is zero.\n* **Quadratic Equation** — An equation of the form [ax^2 + bx + c = 0] where [a ≠ 0].\n* **Projectile Motion** — Motion that follows a parabolic path, modeled by a quadratic function where the variable represents time."
       },
       {
         "phaseNumber": 3,
@@ -5597,7 +5597,7 @@
         "phaseNumber": 2,
         "title": "Vocabulary",
         "phaseType": "vocabulary",
-        "markdown": "* **System of Linear and Quadratic Equations** — A system containing one equation of degree 1 and one equation of degree 2, typically a parabola and a line.\n* **Substitution Method** — An algebraic technique where one equation is solved for a variable in terms of the others and substituted into the remaining equation(s).\n* **Intersection Point** — The coordinate(s) where the graph of the linear function and the graph of the quadratic function cross each other; the solution to the system."
+        "markdown": "* **System of Linear and Quadratic Equations** — A system containing one equation of degree 1 and one equation of degree 2, typically a parabola and a line.\n* **Substitution Method** — An algebraic technique where one equation is solved for a variable in terms of the others and substituted into the remaining equation(s).\n* **Intersection Point** — A point that belongs to both graphs. It can be a crossing or a tangent contact. Its coordinates solve both equations."
       },
       {
         "phaseNumber": 3,
@@ -5653,7 +5653,7 @@
         "phaseNumber": 2,
         "title": "Vocabulary",
         "phaseType": "vocabulary",
-        "markdown": "* **Linear model** — a function with constant first differences; grows by equal differences over equal intervals\n* **Quadratic model** — a function with constant second differences; characterized by a² term\n* **Exponential model** — a function with constant ratios; grows by equal factors over equal intervals\n* **Coefficient of determination (R²)** — a value between 0 and 1 indicating how well a regression model fits data; values closer to 1 indicate a better fit\n* **Scatter plot** — a graph of plotted points showing the relationship between two variables\n* **Regression equation** — an equation derived from data that best fits a given pattern (linear, quadratic, or exponential)\n\n---"
+        "markdown": "* **Linear model** — a function with constant first differences; grows by equal differences over equal intervals\n* **Quadratic model** — A model of the form ax² + bx + c with a ≠ 0. Its second differences are constant and nonzero for equally spaced inputs.\n* **Exponential model** — a function with constant ratios; grows by equal factors over equal intervals\n* **Coefficient of determination (R²)** — The value 1 − SSE/SST, where SSE is the sum of squared residuals and SST is the total squared deviation from the response mean. For least-squares fitting with an intercept on the fitted data, it lies between 0 and 1 when SST > 0. It can be negative for other predictions and is undefined when SST = 0.\n* **Scatter plot** — a graph of plotted points showing the relationship between two variables\n* **Regression equation** — an equation derived from data that best fits a given pattern (linear, quadratic, or exponential)\n\n---"
       },
       {
         "phaseNumber": 3,
@@ -5827,7 +5827,7 @@
         "phaseNumber": 2,
         "title": "Vocabulary",
         "phaseType": "vocabulary",
-        "markdown": "* **Verify an identity** — to prove that an equation is true for all values of the variable by transforming one side into the other\n* **Identity** — an equation that holds true for all values in the domain\n* **Not an identity** — an equation that is false for some values in the domain (a contradiction or conditional equation)"
+        "markdown": "* **Verify an identity** — Prove that both expressions are equal for every value in their common domain. Preserve restrictions during cancellation.\n* **Identity** — an equation that holds true for all values in the domain\n* **Not an identity** — an equation that is false for some values in the domain (a contradiction or conditional equation)"
       },
       {
         "phaseNumber": 3,
@@ -6025,7 +6025,7 @@
         "phaseNumber": 2,
         "title": "Vocabulary",
         "phaseType": "vocabulary",
-        "markdown": "* **Principal solutions** — solutions within one period ([0, 2pi) or [0 degrees, 360 degrees))\n* **General solution** — all solutions expressed with +2pi n (or +360 degrees n) for integer n\n* **Quadratic-type equation** — an equation that can be written in the form [a u^2 + bu + c = 0] where u is a trigonometric function"
+        "markdown": "* **Principal solutions** — solutions within one period ([0, 2pi) or [0 degrees, 360 degrees))\n* **General solution** — All solutions described with an integer parameter and the correct repetition interval. The interval can be π, 2π, or another value after an angle transformation.\n* **Quadratic-type equation** — an equation that can be written in the form [a u^2 + bu + c = 0] where u is a trigonometric function"
       },
       {
         "phaseNumber": 3,

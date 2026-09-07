@@ -12,7 +12,7 @@ Source: (Module 12, Lesson 12-1, Int2_1201_practice.docx)
 ## Vocabulary
 
 * **Axis of Symmetry** — The vertical line that divides a parabola into two mirror images; passes through the vertex.
-* **Vertex** — The highest or lowest point of a parabola; the maximum or minimum value of the function.
+* **Vertex** — The turning point (h, k) of a vertical-axis parabola. Its y-coordinate k is the minimum or maximum value of the quadratic function.
 * **End Behavior** — Describes what happens to the output values as x approaches very large positive or very large negative values.
 * **Parabola** — The U-shaped graph of a quadratic function.
 * **Quadratic Function** — A function of the form [y = ax^2 + bx + c] where [a ≠ 0].

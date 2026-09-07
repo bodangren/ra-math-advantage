@@ -15,7 +15,7 @@ Source: (Module 10, Lesson 10-1, Int2_1001_practice.docx)
 * **Product of Powers Property** — When multiplying two expressions with the same base, add the exponents: $a^m \cdot a^n = a^{m+n}$.
 * **Power of a Power Property** — When raising an expression with an exponent to another power, multiply the exponents: $(a^m)^n = a^{m \cdot n}$.
 * **Power of a Product Property** — When raising a product to a power, raise each factor to that power: $(ab)^n = a^n \cdot b^n$.
-* **Scientific Notation** — A way to write very large or very small numbers as a number between 1 and 10 multiplied by a power of 10: $a \times 10^n$.
+* **Scientific Notation** — A nonzero number written as $a\times10^n$, where $1\le|a|<10$ and n is an integer.
 
 ## Explore: Multiplying with Exponents
 

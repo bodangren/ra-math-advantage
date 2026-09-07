@@ -14,12 +14,12 @@ Source: (Module 7, Lesson 7-1, Int2_0701_practice.docx)
 * **Sample Space** — The set of all possible outcomes of an experiment.
 * **Outcome** — A single possible result of an experiment.
 * **Event** — A subset of the sample space; a specific outcome or set of outcomes.
-* **Finite Sample Space** — A sample space with a countable number of outcomes.
-* **Infinite Sample Space** — A sample space with an uncountable number of outcomes.
-* **Discrete Sample Space** — An infinite sample space where outcomes can be listed (e.g., whole numbers).
+* **Finite Sample Space** — A sample space with a finite number of outcomes.
+* **Infinite Sample Space** — A sample space with infinitely many outcomes. It can be countably infinite or uncountable.
+* **Discrete Sample Space** — A sample space with a finite or countably infinite set of distinct outcomes.
 * **Continuous Sample Space** — An infinite sample space where any value in an interval is possible.
 * **Tree Diagram** — A visual representation of the possible outcomes of a multi-stage experiment.
-* **Fundamental Counting Principle** — If one event has [m] possible outcomes and a second event has [n] possible outcomes, the combined event has $m \times n$ possible outcomes.
+* **Fundamental Counting Principle** — If a first stage has m choices and every first-stage choice permits n second-stage choices, there are mn ordered two-stage outcomes.
 
 ## Explore: What Are All the Possible Outcomes?
 

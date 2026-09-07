@@ -13,11 +13,11 @@ Source: (Module 8, Lesson 8-1, Int2_0801_practice.docx)
 
 * **Domain** — The set of all possible input values (x-values) of a function.
 * **Range** — The set of all actual output values of a function.
-* **Codomain** — The set of all possible output values; the range is a subset of the codomain.
+* **Codomain** — The declared target set of a function. It contains the range and can include values that the function never produces.
 * **One-to-One** — A function where each element in the domain maps to a unique element in the range; no range value is repeated.
 * **Onto (Surjective)** — A function where every element in the codomain has at least one corresponding input in the domain.
 * **Discrete Function** — A function with a domain that consists of isolated, individual points.
-* **Continuous Function** — A function with an unbroken domain, often an interval, with no gaps or jumps.
+* **Continuous Function** — A function whose values approach the function value at each point in its domain. An interval domain alone does not guarantee continuity.
 
 ## Explore: What Can a Function Look Like?
 

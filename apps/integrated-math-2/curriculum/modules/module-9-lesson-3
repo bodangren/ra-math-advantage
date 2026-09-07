@@ -11,10 +11,10 @@ Source: (Module 9, Lesson 9-3, Int2_0903_practice.docx)
 
 ## Vocabulary
 
-* **Standard Form** — A linear equation written as [Ax + By = C], where A, B, and C are integers and A is non-negative.
+* **Standard Form** — A line equation Ax + By = C with A and B not both zero. For rational coefficients, this course uses integer coefficients with no common factor when possible.
 * **Slope-Intercept Form** — A linear equation written as [y = mx + b], where m is the slope and b is the y-intercept.
 * **Point-Slope Form** — A linear equation written as [y - y1 = m(x - x1)], where m is the slope and (x1, y1) is a point on the line.
-* **Slope** — The ratio of the change in y to the change in x between two points on a line; also [m = rise/run].
+* **Slope** — The ratio of the change in y to a nonzero change in x. A vertical line has undefined slope.
 * **Y-Intercept** — The point where a line crosses the y-axis; the value of y when [x = 0].
 * **X-Intercept** — The point where a line crosses the x-axis; the value of x when [y = 0].
 

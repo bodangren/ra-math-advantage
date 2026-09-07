@@ -14,7 +14,7 @@ Source: (Module 7, Lesson 7-7, Int2_0707_practice.docx)
 * **Conditional Probability** — The probability of an event occurring given that another event has already occurred; [P(B | A)].
 * **Given Information** — The event that has already occurred, which restricts the sample space.
 * **Restricted Sample Space** — The set of outcomes that satisfy the given condition.
-* **Independence** — Two events A and B are independent if [P(B | A) = P(B)] or equivalently [P(A | B) = P(A)].
+* **Independence** — Events A and B satisfy $P(A\cap B)=P(A)P(B)$. The equivalent conditional test requires a positive conditioning probability.
 
 ## Explore: How New Information Changes Probability
 

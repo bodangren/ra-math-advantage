@@ -10,8 +10,8 @@ Source: (Module 8, Lesson 8-3, Int2_0803_practice.docx)
 
 ## Vocabulary
 
-* **Relative Maximum** — A point where a function changes from increasing to decreasing; a "peak" in the graph.
-* **Relative Minimum** — A point where a function changes from decreasing to increasing; a "valley" in the graph.
+* **Relative Maximum** — A function value at least as large as all nearby domain values. The corresponding input and point locate the maximum.
+* **Relative Minimum** — A function value at most as large as all nearby domain values. The corresponding input and point locate the minimum.
 * **Extrema** — Collective term for relative maxima and minima.
 * **End Behavior** — The behavior of a function as [x] approaches very large positive values [(infinity)] or very large negative values [(-infinity)].
 

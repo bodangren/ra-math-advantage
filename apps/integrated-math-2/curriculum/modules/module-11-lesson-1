@@ -11,13 +11,13 @@ Source: (Module 11, Lesson 11-1, Int2_1101_practice.docx)
 
 ## Vocabulary
 
-* **Polynomial** — A mathematical expression consisting of terms combined by addition or subtraction.
+* **Polynomial** — A finite sum of terms with real coefficients and variables raised to nonnegative integer powers.
 * **Monomial** — A polynomial with one term.
 * **Binomial** — A polynomial with two terms.
 * **Trinomial** — A polynomial with three terms.
-* **Degree of a Polynomial** — The highest exponent in a polynomial when written in standard form.
+* **Degree of a Polynomial** — For a nonzero polynomial, the largest total degree of its nonzero terms after combining like terms. A term's total degree is the sum of its variable exponents. The zero polynomial has no degree in this course.
 * **Standard Form** — A polynomial written with terms in descending order of exponent.
-* **Leading Coefficient** — The coefficient of the term with the highest exponent.
+* **Leading Coefficient** — For a polynomial in one variable, the coefficient of the highest-degree term after combining like terms.
 * **Closed under Addition** — A property where the sum of any two elements in a set remains in that set.
 
 ## Explore: What Makes a Polynomial?
