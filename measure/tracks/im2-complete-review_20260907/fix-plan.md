@@ -156,3 +156,9 @@ Completed 44 area, volume, and density sections and 24 probability sections. The
 Probability examples state uniform-selection and independence assumptions. They distinguish overall from conditional frequencies and empirical dependence from a population significance test. Corrected the twelve-sided die terminology and one conditional-probability rounding error.
 
 The full suite passed with 207 tests using two test workers. Two earlier checks exceeded the default time limit during a busy parallel build; the rerun passed. Lint, frontend and backend TypeScript, and production build passed.
+
+## Module 8 worked examples
+
+Completed 19 further function examples. The cumulative correction covers 242 headings. The examples now state codomains, discrete domains, piecewise endpoints, and the meaning of floor notation. Corrected the two-end behavior of a nonconstant line. Replaced missing graph references with explicit equations and plotting instructions.
+
+Verification passed with 207 tests, lint, frontend and backend TypeScript, and production build.

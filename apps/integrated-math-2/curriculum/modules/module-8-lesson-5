@@ -49,11 +49,13 @@ Choose x = 0, 1, and 2. The corresponding y-values are 2, 1, and 0. Plot (0, 2),
 
 ## Example 2 — Graph Using Intercepts
 
-Graph each equation by using the x- and y-intercepts.
+### Problem
 
-### Step 1: Find Both Intercepts
+Graph 2x+3y=12 using intercepts.
 
-Set [y = 0] to find the x-intercept; set [x = 0] to find the y-intercept. Plot both and draw the line through them.
+### Solution
+
+Set y=0 to obtain x=6, giving (6,0). Set x=0 to obtain y=4, giving (0,4). Plot both points and draw the line through them. The equivalent equation is y=4-(2/3)x.
 
 ## Example 3 — Graph Using m and b
 
@@ -77,23 +79,13 @@ Draw the boundary line through (0, -3) and (2, 1). Use a dashed line because the
 
 ## Example 6 — Real-World Inequality Problems
 
-Write and graph inequalities for real-world constraint situations.
+### Problem
 
-### Step 1: CRAFT FAIR
+An artist sells drawings for 100 dollars each and watercolors for 400 dollars each. Let d and w be the respective quantities sold. Write a constraint for revenue of at least 2000 dollars and describe its feasible graph.
 
-Kylie wants to sell two paintings for at least $400 total. If x is the price of the first painting and y is the price of the second: [x + y >= 400].
+### Solution
 
-### Step 2: BUILDING CODES
-
-Building height must be less than 0.1x, where x is distance in hundreds of feet from the park center: [y < 0.1x].
-
-### Step 3: WEIGHT
-
-Truck weight limit: [200t + 60c < 1200], where t is tables and c is chairs.
-
-### Step 4: ART
-
-Artist sells drawings at $100 and watercolors at $400, wants at least $2000: [100d + 400w >= 2000].
+The constraint is 100d+400w≥2000, or d+4w≥20. Both variables are nonnegative integers. The boundary line passes through (20,0) and (0,5). Include the boundary and the side above it. Only integer lattice points in the first quadrant represent sales quantities.
 
 ## Mixed Exercises
 

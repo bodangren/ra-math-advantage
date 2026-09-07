@@ -48,16 +48,13 @@ When multiple transformations are present, apply them in order: horizontal shift
 
 ## Example 1 — Describe Translations
 
-Describe each translation as it relates to the graph of the parent function.
+### Problem
 
-### Step 1: Identify the Type of Shift
+Describe the translations from y=x² to y=(x-5)²+4 and from y=|x| to y=|x+6|-3.
 
-* [y = x^2 + 4] — shift up 4
-* [y = |x| - 3] — shift down 3
-* [y = x - 1] — shift right 1
-* [y = x + 2] — shift left 2
-* [y = (x - 5)^2] — shift right 5
-* [y = |x + 6|] — shift left 6
+### Solution
+
+The first graph moves right 5 units and up 4 units, with vertex (5,4). The second moves left 6 units and down 3 units, with vertex (-6,-3). A change inside the input controls the horizontal shift; a term added outside controls the vertical shift.
 
 ## Example 2 — Write Equations from Graphs
 
@@ -71,47 +68,33 @@ Use y = a(x - 3) squared - 2. Substitute (4, -1): -1 = a(1) - 2, so a = 1. The e
 
 ## Examples 3 and 4 — Describe Dilations and Reflections
 
-Describe each dilation and reflection as it relates to the parent function.
+### Problem
 
-### Step 1: Analyze the Transformation
+Describe y=(-3x)² relative to y=x², and y=-4|x| relative to y=|x|.
 
-* [y = (-3x)^2] — horizontal compression by factor of 3, then reflection over y-axis (net effect equals [y = 9x^2])
-* [y = -6x] — reflection over x-axis, vertical stretch
-* [y = -4|x|] — reflection over x-axis, vertical stretch by factor of 4
-* [y = |-2x|] — horizontal compression by factor of 2, then reflection over y-axis (net effect: V-shape opening up)
-* [y = -(2/3)x] — reflection over x-axis, dilation
-* [y = -(1/2)x^2] — reflection over x-axis, vertical compression
+### Solution
+
+Replacing x with -3x reflects across the y-axis and multiplies horizontal coordinates by 1/3. The reflection has no visible effect on the even parent x². Equivalently, y=9x² is a vertical stretch by 9. For y=-4|x|, multiply vertical coordinates by 4 and reflect across the x-axis.
 
 ## Example 5 — Describe Combined Transformations
 
-Describe each transformation as it relates to the graph of the parent function.
+### Problem
 
-### Step 1: Break Down the Transformation
+Describe the transformation from y=|x| to y=(1/2)|x-1|+14. Give the new vertex and range.
 
-* [y = -6|x| - 4] — reflect over x-axis, vertical stretch 6, shift down 4
-* [y = 3x + 11] — vertical stretch by 3 of [y = x], then shift up 11
-* [y = (1/3)x^2 - 2] — vertical compression by 1/3, shift down 2
-* [y = (1/2)|x - 1| + 14] — horizontal shift right 1, vertical compression 1/2, shift up 14
-* [y = -0.8(x + 3)] — shift left 3, reflection/dilation
-* [y = (1.5x)^2 + 22] — horizontal compression by 2/3, shift up 22
+### Solution
+
+Shift right 1, multiply vertical distances from the x-axis by 1/2, then shift up 14. The vertex is (1,14). The graph opens upward, so the range is [14,infinity).
 
 ## Example 6 — Real-World Transformation Problems
 
-### Step 1: BILLIARDS
+### Problem
 
-[g(x) = |0.5x|] models a cue ball path. The absolute value creates the V-shape; the 0.5 stretches it horizontally by a factor of 2. The x-axis represents the edge of the table.
+A delivery model charges C(x)=0.75|x|+25 dollars, where x is signed displacement in miles east or west of a depot. Interpret the transformations from y=|x| and find the cost for x=-8.
 
-### Step 2: SALAD
+### Solution
 
-[c(x) = 4.5 + 0.32x] — vertical shift up 4.5 and slope 0.32 (linear, not a transformation of a parent quadratic or absolute value function in the traditional sense).
-
-### Step 3: TRAVEL
-
-[c(x) = 0.75|x| + 25] — absolute value makes cost the same east or west; shift up 25 represents base fare.
-
-### Step 4: ARCHERY
-
-[h(x) = -0.03x^2 + 6] — this is a vertical dilation (compress by 0.03), reflection over x-axis (negative), and vertical shift up 6 of [y = x^2].
+Multiply the parent output by 0.75 and shift it up 25. The 25-dollar term is a base charge. The absolute value gives the same modeled charge for equal east and west distances. C(-8)=0.75(8)+25=31 dollars. This model assumes the route cost depends only on the stated displacement magnitude.
 
 ## Example 7 — Write Equations from Graphs
 

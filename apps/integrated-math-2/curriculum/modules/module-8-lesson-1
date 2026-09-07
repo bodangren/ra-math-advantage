@@ -52,19 +52,13 @@ The domain is {1, 2, 3}. The range is {2, 4, 6}. The codomain is {2, 4, 6, 8}. T
 
 ## Example 2 — Analyze Functions from Tables
 
-Define the domain and range of each function and state whether it is one-to-one, onto, both, or neither.
+### Problem
 
-### Step 1: Analyze the Sales Data
+A function maps weeks {1,2,3,4} to sales counts using f(1)=12, f(2)=18, f(3)=12, and f(4)=20. Its stated codomain is {12,18,20,25}. Find its domain and range. Is it one-to-one or onto this codomain?
 
-A table shows Cool Athletics' Power Sneaker sales over 6 weeks.
+### Solution
 
-### Step 2: Interpret Temperatures
-
-A table shows low temperatures in degrees Fahrenheit for a week in Sioux Falls, Idaho.
-
-### Step 3: Examine Planetary Data
-
-A table shows the orbital period of the eight major planets given their mean distance from the Sun.
+The domain is {1,2,3,4}. The range is {12,18,20}. It is not one-to-one because weeks 1 and 3 both map to 12. It is not onto the stated codomain because 25 is never an output. Onto must be evaluated against a stated codomain, not an unspecified set of possible outputs.
 
 ## Example 3 — Determine One-to-One, Onto, Both, or Neither
 
@@ -88,19 +82,13 @@ The ticket model is C = 12n with n a nonnegative integer. Its domain is discrete
 
 ## Example 5 — Real-World Discrete and Continuous Functions
 
-Determine whether the function that models each situation is discrete, continuous, or neither. Then state the domain and range.
+### Problem
 
-### Step 1: Probability (Rolling a Number Cube)
+Model (a) admission cost at 12 dollars per person for a group of 1 to 50 people, and (b) grape cost at 1.99 dollars per pound for weights from 0 to 10 pounds. Give each domain and range and classify each input model.
 
-The outcome of rolling a number cube produces a discrete function with domain {1, 2, 3, 4, 5, 6} and range {1, 2, 3, 4, 5, 6}.
+### Solution
 
-### Step 2: Amusement Park Pricing
-
-Ticket price based on group size is discrete because group size is measured in whole people.
-
-### Step 3: Grocery Pricing (Grapes)
-
-Grapes sold at $1.99 per pound produce a continuous function — weight can be any nonnegative real number.
+(a) C(n)=12n, with integer domain {1,...,50} and range {12,24,...,600} dollars. This is discrete. (b) G(w)=1.99w, with real domain [0,10] and range [0,19.90] dollars before currency rounding. This ideal weight model is continuous. A random die outcome is not by itself a deterministic function of the trial number.
 
 ## Examples 6 and 7 — Write Domain and Range in Set-Builder and Interval Notation
 

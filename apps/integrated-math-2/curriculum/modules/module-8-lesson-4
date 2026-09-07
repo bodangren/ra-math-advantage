@@ -44,25 +44,23 @@ How can you use key features to sketch a graph if you don't have an equation?
 
 ## Examples 1 and 2 — Sketch from Key Features
 
-Use the given key features to sketch each graph.
+### Problem
 
-### Step 1: Plot Key Points and Determine Shape
+Sketch (a) the line with intercepts (2,0) and (0,-6), and (b) the line through the origin with slope -2. State the end behavior of each.
 
-* Problem 1: x-intercept (2, 0), y-intercept (0, -6), linear, continuous, positive for x > 2, increasing for all x, end behavior both infinity.
-* Problem 2: x-intercept (0, 0), y-intercept (0, 0), linear, continuous, positive for x < 0, negative for x > 0, decreasing for all x, end behavior opposite.
-* Problems 3–8: continue with various combinations of linear and nonlinear functions with different key feature sets.
+### Solution
+
+(a) The slope is (0+6)/(2-0)=3, so y=3x-6. Plot the two intercepts and connect them. As x increases without bound, y increases without bound; as x decreases without bound, y decreases without bound. (b) The equation is y=-2x. Its left end rises and its right end falls. A nonconstant line cannot have both ends rising.
 
 ## Example 3 — Real-World Graph Sketches
 
-Use key features to sketch graphs for real-world situations.
+### Problem
 
-### Step 1: Pelicans
+A pelican descends at a constant rate from 6 ft above the water to the water in 3 seconds. Write a height function and describe its graph during the descent.
 
-A pelican descends from 6 feet to 0 feet over 3 seconds. Linear function.
+### Solution
 
-### Step 2: Scooters
-
-Greg's scooter ride: starts at 0 mph, reaches 35 mph at 5 minutes, speed behavior over 20 minutes with increases and decreases.
+The slope is (0-6)/(3-0)=-2 feet per second. The model is h(t)=6-2t for 0≤t≤3. Its graph is the segment from (0,6) to (3,0). The range is [0,6] feet. The model does not describe motion after landing.
 
 ## Examples 4 and 5 — Compare Functions Across Representations
 

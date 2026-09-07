@@ -3569,7 +3569,7 @@
         "phaseNumber": 6,
         "title": "Example 2 — Analyze Functions from Tables",
         "phaseType": "worked_example",
-        "markdown": "Define the domain and range of each function and state whether it is one-to-one, onto, both, or neither.\n\n### Step 1: Analyze the Sales Data\n\nA table shows Cool Athletics' Power Sneaker sales over 6 weeks.\n\n### Step 2: Interpret Temperatures\n\nA table shows low temperatures in degrees Fahrenheit for a week in Sioux Falls, Idaho.\n\n### Step 3: Examine Planetary Data\n\nA table shows the orbital period of the eight major planets given their mean distance from the Sun."
+        "markdown": "### Problem\n\nA function maps weeks {1,2,3,4} to sales counts using f(1)=12, f(2)=18, f(3)=12, and f(4)=20. Its stated codomain is {12,18,20,25}. Find its domain and range. Is it one-to-one or onto this codomain?\n\n### Solution\n\nThe domain is {1,2,3,4}. The range is {12,18,20}. It is not one-to-one because weeks 1 and 3 both map to 12. It is not onto the stated codomain because 25 is never an output. Onto must be evaluated against a stated codomain, not an unspecified set of possible outputs."
       },
       {
         "phaseNumber": 7,
@@ -3587,7 +3587,7 @@
         "phaseNumber": 9,
         "title": "Example 5 — Real-World Discrete and Continuous Functions",
         "phaseType": "worked_example",
-        "markdown": "Determine whether the function that models each situation is discrete, continuous, or neither. Then state the domain and range.\n\n### Step 1: Probability (Rolling a Number Cube)\n\nThe outcome of rolling a number cube produces a discrete function with domain {1, 2, 3, 4, 5, 6} and range {1, 2, 3, 4, 5, 6}.\n\n### Step 2: Amusement Park Pricing\n\nTicket price based on group size is discrete because group size is measured in whole people.\n\n### Step 3: Grocery Pricing (Grapes)\n\nGrapes sold at $1.99 per pound produce a continuous function — weight can be any nonnegative real number."
+        "markdown": "### Problem\n\nModel (a) admission cost at 12 dollars per person for a group of 1 to 50 people, and (b) grape cost at 1.99 dollars per pound for weights from 0 to 10 pounds. Give each domain and range and classify each input model.\n\n### Solution\n\n(a) C(n)=12n, with integer domain {1,...,50} and range {12,24,...,600} dollars. This is discrete. (b) G(w)=1.99w, with real domain [0,10] and range [0,19.90] dollars before currency rounding. This ideal weight model is continuous. A random die outcome is not by itself a deterministic function of the trial number."
       },
       {
         "phaseNumber": 10,
@@ -3643,7 +3643,7 @@
         "phaseNumber": 5,
         "title": "Example 1 — Identify Linear Functions",
         "phaseType": "worked_example",
-        "markdown": "Determine whether each equation represents a linear function. Justify your answer.\n\n### Step 1: Check the Equation Form\n\n* [y = 3x] — linear (in the form [y = mx + b])\n* [y = -2 + 5x] — linear\n* [2x + y = 10] — linear (rearranges to [y = -2x + 10])\n* [y = 4x^2] — nonlinear (exponent on [x] is 2)"
+        "markdown": "### Problem\n\nDetermine whether each equation represents a linear function of x: (a) 2x+y=10 and (b) y=4x².\n\n### Solution\n\n(a) Solve for y to get y=-2x+10. It has constant slope -2 and is linear. (b) The squared x term prevents this form. Its rate of change is not constant, so it is nonlinear."
       },
       {
         "phaseNumber": 6,
@@ -3667,19 +3667,19 @@
         "phaseNumber": 9,
         "title": "Example 6 — Interpret Intercepts in Context",
         "phaseType": "worked_example",
-        "markdown": "Interpret the x- and y-intercepts in the context of each situation.\n\n### Step 1: Money Problem (Aksa's Lunch Account)\n\nA deposit of $20 at the start of the week. The x-intercept represents when the account reaches zero; the y-intercept represents the starting balance.\n\n### Step 2: Golf Problem\n\nHeight of a golf ball after being hit off a tee. The x-intercept represents when the ball hits the ground; the y-intercept represents the initial height."
+        "markdown": "### Problem\n\nA lunch account begins with 20 dollars and decreases by 4 dollars per purchased lunch. Use B(n)=20-4n for integers 0 through 5. Find and interpret the intercepts.\n\n### Solution\n\nThe vertical intercept is (0,20), the starting balance before a purchase. Setting B(n)=0 gives n=5, so the horizontal intercept is (5,0). The account reaches zero after five lunches. The actual domain is discrete; the connecting line is a model extension."
       },
       {
         "phaseNumber": 10,
         "title": "Example 7 — Identify Symmetry Type",
         "phaseType": "worked_example",
-        "markdown": "Identify the type of symmetry for the graph of each function.\n\n### Step 1: Visual Inspection\n\nDetermine whether the graph has line symmetry (mirror image across a line) or point symmetry (looks the same after 180° rotation)."
+        "markdown": "### Problem\n\nIdentify the symmetry of (a) y=x² and (b) y=x³. Justify each result.\n\n### Solution\n\nFor (a), replacing x with -x gives (-x)²=x². The graph has reflection symmetry across the y-axis. For (b), (-x)³=-x³, so negating both coordinates preserves the graph. It has point symmetry about the origin."
       },
       {
         "phaseNumber": 11,
         "title": "Example 8 — Determine Even, Odd, or Neither",
         "phaseType": "worked_example",
-        "markdown": "Determine whether each function is even, odd, or neither. Confirm algebraically. If the function is odd or even, describe the symmetry.\n\n### Step 1: Test with [f(-x)]\n\n* [f(x) = 2x^3 - 8x] — odd (symmetric about the origin)\n* [f(x) = x^3 + x^2] — neither\n* [f(x) = x^2 + 2] — even (symmetric about the y-axis)"
+        "markdown": "### Problem\n\nClassify f(x)=2x³-8x, g(x)=x³+x², and h(x)=x²+2 as even, odd, or neither. Each has domain all real numbers.\n\n### Solution\n\nFor f, f(-x)=-2x³+8x=-f(x), so f is odd. For g, g(-x)=-x³+x² differs from both g(x) and -g(x), so g is neither. For h, h(-x)=x²+2=h(x), so h is even. Odd graphs have origin symmetry, and even graphs have y-axis symmetry."
       },
       {
         "phaseNumber": 12,
@@ -3791,13 +3791,13 @@
         "phaseNumber": 5,
         "title": "Examples 1 and 2 — Sketch from Key Features",
         "phaseType": "worked_example",
-        "markdown": "Use the given key features to sketch each graph.\n\n### Step 1: Plot Key Points and Determine Shape\n\n* Problem 1: x-intercept (2, 0), y-intercept (0, -6), linear, continuous, positive for x > 2, increasing for all x, end behavior both infinity.\n* Problem 2: x-intercept (0, 0), y-intercept (0, 0), linear, continuous, positive for x < 0, negative for x > 0, decreasing for all x, end behavior opposite.\n* Problems 3–8: continue with various combinations of linear and nonlinear functions with different key feature sets."
+        "markdown": "### Problem\n\nSketch (a) the line with intercepts (2,0) and (0,-6), and (b) the line through the origin with slope -2. State the end behavior of each.\n\n### Solution\n\n(a) The slope is (0+6)/(2-0)=3, so y=3x-6. Plot the two intercepts and connect them. As x increases without bound, y increases without bound; as x decreases without bound, y decreases without bound. (b) The equation is y=-2x. Its left end rises and its right end falls. A nonconstant line cannot have both ends rising."
       },
       {
         "phaseNumber": 6,
         "title": "Example 3 — Real-World Graph Sketches",
         "phaseType": "worked_example",
-        "markdown": "Use key features to sketch graphs for real-world situations.\n\n### Step 1: Pelicans\n\nA pelican descends from 6 feet to 0 feet over 3 seconds. Linear function.\n\n### Step 2: Scooters\n\nGreg's scooter ride: starts at 0 mph, reaches 35 mph at 5 minutes, speed behavior over 20 minutes with increases and decreases."
+        "markdown": "### Problem\n\nA pelican descends at a constant rate from 6 ft above the water to the water in 3 seconds. Write a height function and describe its graph during the descent.\n\n### Solution\n\nThe slope is (0-6)/(3-0)=-2 feet per second. The model is h(t)=6-2t for 0≤t≤3. Its graph is the segment from (0,6) to (3,0). The range is [0,6] feet. The model does not describe motion after landing."
       },
       {
         "phaseNumber": 7,
@@ -3859,7 +3859,7 @@
         "phaseNumber": 6,
         "title": "Example 2 — Graph Using Intercepts",
         "phaseType": "worked_example",
-        "markdown": "Graph each equation by using the x- and y-intercepts.\n\n### Step 1: Find Both Intercepts\n\nSet [y = 0] to find the x-intercept; set [x = 0] to find the y-intercept. Plot both and draw the line through them."
+        "markdown": "### Problem\n\nGraph 2x+3y=12 using intercepts.\n\n### Solution\n\nSet y=0 to obtain x=6, giving (6,0). Set x=0 to obtain y=4, giving (0,4). Plot both points and draw the line through them. The equivalent equation is y=4-(2/3)x."
       },
       {
         "phaseNumber": 7,
@@ -3877,7 +3877,7 @@
         "phaseNumber": 9,
         "title": "Example 6 — Real-World Inequality Problems",
         "phaseType": "worked_example",
-        "markdown": "Write and graph inequalities for real-world constraint situations.\n\n### Step 1: CRAFT FAIR\n\nKylie wants to sell two paintings for at least $400 total. If x is the price of the first painting and y is the price of the second: [x + y >= 400].\n\n### Step 2: BUILDING CODES\n\nBuilding height must be less than 0.1x, where x is distance in hundreds of feet from the park center: [y < 0.1x].\n\n### Step 3: WEIGHT\n\nTruck weight limit: [200t + 60c < 1200], where t is tables and c is chairs.\n\n### Step 4: ART\n\nArtist sells drawings at $100 and watercolors at $400, wants at least $2000: [100d + 400w >= 2000]."
+        "markdown": "### Problem\n\nAn artist sells drawings for 100 dollars each and watercolors for 400 dollars each. Let d and w be the respective quantities sold. Write a constraint for revenue of at least 2000 dollars and describe its feasible graph.\n\n### Solution\n\nThe constraint is 100d+400w≥2000, or d+4w≥20. Both variables are nonnegative integers. The boundary line passes through (20,0) and (0,5). Include the boundary and the side above it. Only integer lattice points in the first quadrant represent sales quantities."
       },
       {
         "phaseNumber": 10,
@@ -3927,31 +3927,31 @@
         "phaseNumber": 5,
         "title": "Example 1 — Graph a Piecewise Function",
         "phaseType": "worked_example",
-        "markdown": "Graph each function. Then analyze the key features.\n\n### Step 1: Graph Each Piece\n\nFor [f(x) = {-1 if x <= 0; 2x if 0 < x <= 3; 6 if x > 3}], draw each branch in its corresponding domain interval."
+        "markdown": "### Problem\n\nLet f(x)=-1 for x≤0, f(x)=2x for 0<x≤3, and f(x)=6 for x>3. Describe the graph, domain, range, and discontinuities.\n\n### Solution\n\nDraw a horizontal ray at -1 including (0,-1), a line segment y=2x open at (0,0) and closed at (3,6), and a horizontal ray at 6 for x>3. The domain is all real numbers. The range is {-1} together with (0,6]. There is a jump at x=0. The pieces meet continuously at x=3."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Another Piecewise Function",
         "phaseType": "worked_example",
-        "markdown": "Graph [f(x) = {-x if x < -1; 0 if -1 <= x <= 1; x if x > 1}] and analyze its key features."
+        "markdown": "### Problem\n\nLet f(x)=-x for x<-1, f(x)=0 for -1≤x≤1, and f(x)=x for x>1. Describe its range, endpoint markers, and continuity.\n\n### Solution\n\nThe outer rays give outputs greater than 1, with open points at (-1,1) and (1,1). The middle segment has value 0, including (-1,0) and (1,0). The range is {0} together with (1,infinity). The function jumps at -1 and 1. It is even because the left and right pieces reflect across the y-axis."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Write a Piecewise Function from a Description",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: TILE\n\nMark buys tile at $48/box for 3 or fewer, $45/box for 4–8 boxes, $42/box for 9–19 boxes, $38/box for more than 19.\n\n[f(x) = {48x if x <= 3; 45x if 3 < x <= 8; 42x if 8 < x <= 19; 38x if x > 19}]\n\n### Step 2: BOOKLETS\n\nDigital media company orders booklets with quantity discounts and a $10 shipping charge per order."
+        "markdown": "### Problem\n\nA tile store charges each box at a rate based on the total order: 48 dollars for 1–3 boxes, 45 dollars for 4–8, 42 dollars for 9–19, and 38 dollars for 20 or more. Write total cost C(n) and find C(8) and C(9).\n\n### Solution\n\nFor positive integer n, C(n)=48n for 1≤n≤3; 45n for 4≤n≤8; 42n for 9≤n≤19; and 38n for n≥20. Thus C(8)=360 dollars and C(9)=378 dollars. This is an all-units discount, not a price applied only to boxes above each threshold."
       },
       {
         "phaseNumber": 8,
         "title": "Examples 3 and 4 — Graph Greatest Integer Functions",
         "phaseType": "worked_example",
-        "markdown": "Graph each function. State the domain and range.\n\n### Step 1: Identify the Steps\n\n[f(x) = [[x]] - 6], [h(x) = [[3x]] - 8], [f(x) = [[x + 1]]], [f(x) = [[x - 3]]]"
+        "markdown": "### Problem\n\nGraph $f(x)=\\lfloor x\\rfloor-6$. State its domain and range, and find f(-0.2).\n\n### Solution\n\nFor each integer n, draw y=n-6 on [n,n+1), with a closed left endpoint and an open right endpoint. The domain is all real numbers and the range is all integers. Since $\\lfloor-0.2\\rfloor=-1$, f(-0.2)=-7. The floor function rounds down, not toward zero."
       },
       {
         "phaseNumber": 9,
         "title": "Examples 5 and 6 — Graph Absolute Value Functions",
         "phaseType": "worked_example",
-        "markdown": "Graph each function. State the domain and range.\n\n### Step 1: Apply Transformations\n\n[f(x) = |x - 5|], [g(x) = |x + 2|], [h(x) = |2x| - 8], [k(x) = |-3x| + 3], [f(x) = 2|x - 4| + 6], [h(x) = -3|0.5x + 1| - 2]"
+        "markdown": "### Problem\n\nGraph f(x)=2|x-4|+6. State its vertex, domain, range, and slopes of its two branches.\n\n### Solution\n\nThe vertex is (4,6). The graph is a V opening upward. Its left branch has slope -2 and its right branch has slope 2. The domain is all real numbers and the range is [6,infinity). Points (3,8) and (5,8) help locate the branches."
       },
       {
         "phaseNumber": 10,
@@ -4001,7 +4001,7 @@
         "phaseNumber": 5,
         "title": "Example 1 — Describe Translations",
         "phaseType": "worked_example",
-        "markdown": "Describe each translation as it relates to the graph of the parent function.\n\n### Step 1: Identify the Type of Shift\n\n* [y = x^2 + 4] — shift up 4\n* [y = |x| - 3] — shift down 3\n* [y = x - 1] — shift right 1\n* [y = x + 2] — shift left 2\n* [y = (x - 5)^2] — shift right 5\n* [y = |x + 6|] — shift left 6"
+        "markdown": "### Problem\n\nDescribe the translations from y=x² to y=(x-5)²+4 and from y=|x| to y=|x+6|-3.\n\n### Solution\n\nThe first graph moves right 5 units and up 4 units, with vertex (5,4). The second moves left 6 units and down 3 units, with vertex (-6,-3). A change inside the input controls the horizontal shift; a term added outside controls the vertical shift."
       },
       {
         "phaseNumber": 6,
@@ -4013,19 +4013,19 @@
         "phaseNumber": 7,
         "title": "Examples 3 and 4 — Describe Dilations and Reflections",
         "phaseType": "worked_example",
-        "markdown": "Describe each dilation and reflection as it relates to the parent function.\n\n### Step 1: Analyze the Transformation\n\n* [y = (-3x)^2] — horizontal compression by factor of 3, then reflection over y-axis (net effect equals [y = 9x^2])\n* [y = -6x] — reflection over x-axis, vertical stretch\n* [y = -4|x|] — reflection over x-axis, vertical stretch by factor of 4\n* [y = |-2x|] — horizontal compression by factor of 2, then reflection over y-axis (net effect: V-shape opening up)\n* [y = -(2/3)x] — reflection over x-axis, dilation\n* [y = -(1/2)x^2] — reflection over x-axis, vertical compression"
+        "markdown": "### Problem\n\nDescribe y=(-3x)² relative to y=x², and y=-4|x| relative to y=|x|.\n\n### Solution\n\nReplacing x with -3x reflects across the y-axis and multiplies horizontal coordinates by 1/3. The reflection has no visible effect on the even parent x². Equivalently, y=9x² is a vertical stretch by 9. For y=-4|x|, multiply vertical coordinates by 4 and reflect across the x-axis."
       },
       {
         "phaseNumber": 8,
         "title": "Example 5 — Describe Combined Transformations",
         "phaseType": "worked_example",
-        "markdown": "Describe each transformation as it relates to the graph of the parent function.\n\n### Step 1: Break Down the Transformation\n\n* [y = -6|x| - 4] — reflect over x-axis, vertical stretch 6, shift down 4\n* [y = 3x + 11] — vertical stretch by 3 of [y = x], then shift up 11\n* [y = (1/3)x^2 - 2] — vertical compression by 1/3, shift down 2\n* [y = (1/2)|x - 1| + 14] — horizontal shift right 1, vertical compression 1/2, shift up 14\n* [y = -0.8(x + 3)] — shift left 3, reflection/dilation\n* [y = (1.5x)^2 + 22] — horizontal compression by 2/3, shift up 22"
+        "markdown": "### Problem\n\nDescribe the transformation from y=|x| to y=(1/2)|x-1|+14. Give the new vertex and range.\n\n### Solution\n\nShift right 1, multiply vertical distances from the x-axis by 1/2, then shift up 14. The vertex is (1,14). The graph opens upward, so the range is [14,infinity)."
       },
       {
         "phaseNumber": 9,
         "title": "Example 6 — Real-World Transformation Problems",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: BILLIARDS\n\n[g(x) = |0.5x|] models a cue ball path. The absolute value creates the V-shape; the 0.5 stretches it horizontally by a factor of 2. The x-axis represents the edge of the table.\n\n### Step 2: SALAD\n\n[c(x) = 4.5 + 0.32x] — vertical shift up 4.5 and slope 0.32 (linear, not a transformation of a parent quadratic or absolute value function in the traditional sense).\n\n### Step 3: TRAVEL\n\n[c(x) = 0.75|x| + 25] — absolute value makes cost the same east or west; shift up 25 represents base fare.\n\n### Step 4: ARCHERY\n\n[h(x) = -0.03x^2 + 6] — this is a vertical dilation (compress by 0.03), reflection over x-axis (negative), and vertical shift up 6 of [y = x^2]."
+        "markdown": "### Problem\n\nA delivery model charges C(x)=0.75|x|+25 dollars, where x is signed displacement in miles east or west of a depot. Interpret the transformations from y=|x| and find the cost for x=-8.\n\n### Solution\n\nMultiply the parent output by 0.75 and shift it up 25. The 25-dollar term is a base charge. The absolute value gives the same modeled charge for equal east and west distances. C(-8)=0.75(8)+25=31 dollars. This model assumes the route cost depends only on the stated displacement magnitude."
       },
       {
         "phaseNumber": 10,

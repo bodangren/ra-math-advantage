@@ -50,14 +50,13 @@ Test algebraically:
 
 ## Example 1 — Identify Linear Functions
 
-Determine whether each equation represents a linear function. Justify your answer.
+### Problem
 
-### Step 1: Check the Equation Form
+Determine whether each equation represents a linear function of x: (a) 2x+y=10 and (b) y=4x².
 
-* [y = 3x] — linear (in the form [y = mx + b])
-* [y = -2 + 5x] — linear
-* [2x + y = 10] — linear (rearranges to [y = -2x + 10])
-* [y = 4x^2] — nonlinear (exponent on [x] is 2)
+### Solution
+
+(a) Solve for y to get y=-2x+10. It has constant slope -2 and is linear. (b) The squared x term prevents this form. Its rate of change is not constant, so it is nonlinear.
 
 ## Example 2 — Linear vs. Nonlinear Graphs
 
@@ -91,33 +90,33 @@ The slope is (2 - 6)/(2 - 0) = -2, so the equation is y = -2x + 6. For the x-int
 
 ## Example 6 — Interpret Intercepts in Context
 
-Interpret the x- and y-intercepts in the context of each situation.
+### Problem
 
-### Step 1: Money Problem (Aksa's Lunch Account)
+A lunch account begins with 20 dollars and decreases by 4 dollars per purchased lunch. Use B(n)=20-4n for integers 0 through 5. Find and interpret the intercepts.
 
-A deposit of $20 at the start of the week. The x-intercept represents when the account reaches zero; the y-intercept represents the starting balance.
+### Solution
 
-### Step 2: Golf Problem
-
-Height of a golf ball after being hit off a tee. The x-intercept represents when the ball hits the ground; the y-intercept represents the initial height.
+The vertical intercept is (0,20), the starting balance before a purchase. Setting B(n)=0 gives n=5, so the horizontal intercept is (5,0). The account reaches zero after five lunches. The actual domain is discrete; the connecting line is a model extension.
 
 ## Example 7 — Identify Symmetry Type
 
-Identify the type of symmetry for the graph of each function.
+### Problem
 
-### Step 1: Visual Inspection
+Identify the symmetry of (a) y=x² and (b) y=x³. Justify each result.
 
-Determine whether the graph has line symmetry (mirror image across a line) or point symmetry (looks the same after 180° rotation).
+### Solution
+
+For (a), replacing x with -x gives (-x)²=x². The graph has reflection symmetry across the y-axis. For (b), (-x)³=-x³, so negating both coordinates preserves the graph. It has point symmetry about the origin.
 
 ## Example 8 — Determine Even, Odd, or Neither
 
-Determine whether each function is even, odd, or neither. Confirm algebraically. If the function is odd or even, describe the symmetry.
+### Problem
 
-### Step 1: Test with [f(-x)]
+Classify f(x)=2x³-8x, g(x)=x³+x², and h(x)=x²+2 as even, odd, or neither. Each has domain all real numbers.
 
-* [f(x) = 2x^3 - 8x] — odd (symmetric about the origin)
-* [f(x) = x^3 + x^2] — neither
-* [f(x) = x^2 + 2] — even (symmetric about the y-axis)
+### Solution
+
+For f, f(-x)=-2x³+8x=-f(x), so f is odd. For g, g(-x)=-x³+x² differs from both g(x) and -g(x), so g is neither. For h, h(-x)=x²+2=h(x), so h is even. Odd graphs have origin symmetry, and even graphs have y-axis symmetry.
 
 ## Mixed Exercises
 
