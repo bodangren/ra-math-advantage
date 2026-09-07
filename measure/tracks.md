@@ -77,7 +77,7 @@ Dependencies:
 - [~] **IM3 Complete Review (2026-09-07)** — All 38 local corrections verified. Integration commits remain pending because concurrent work overlaps the same files. See `fixes.md`.
   *Link: [./tracks/im3-complete-review_20260907/](./tracks/im3-complete-review_20260907/)*
 
-- [~] **Danielson Review (2026-09-07)** — Confirmed app and curriculum defects corrected. Source video inclusion is in progress. School-policy decisions remain open. See `fixes.md`.
+- [~] **Danielson Review (2026-09-07)** — Confirmed app and curriculum defects corrected. Eight source TLAC videos added. Get Better Faster source location is pending. School-policy decisions remain open. See `fixes.md`.
   *Link: [./tracks/danielson-review_20260907/](./tracks/danielson-review_20260907/)*
 
 - [x] **Monorepo Review (2026-09-07)** — Five findings fixed. See the track report for checks and commit scope.
