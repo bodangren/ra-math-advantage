@@ -89,4 +89,4 @@ The parent verified the literal before-and-after equations in all three assessed
 
 This pure function does not authorize an activity. The future trusted writer must bind the exact stored activity, node, mode, and approved content before it calls the grader. It must persist the automatic result and the manual-review response. The teacher must review the complete event model and explanation before application mastery. A numeric score alone cannot complete that review.
 
-The parent also found that the UI accepted negative change magnitudes that this grader rejects. The component repair remains in progress. The grader correctly retains negative ending totals as student mistakes.
+The parent also found that the UI accepted negative change magnitudes that this grader rejects. The component now rejects negative change magnitudes before submission. A regression verifies that correction enables submission. The grader correctly retains negative ending totals as student mistakes.

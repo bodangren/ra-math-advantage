@@ -84,3 +84,60 @@ Keep the current node and blueprint state unchanged.
 Keep the existing classification activity identifiers unchanged.
 Keep adaptive publication false.
 Do not add `guidedPracticeSpec` until the component and server grader have tests for this exact response contract.
+
+## Implementation result
+
+The app-owned component now exists as an isolated draft.
+It uses `SelectionMatrix` and `AccountingEquationLayout`.
+It adds only the amount inputs, equation difference input, explanation field, and durable submission control that this response requires.
+
+The Worked draft uses the published loan example.
+It shows the starting equation, both account changes with the 3000 amount, the explanation, and the ending equation.
+Its submission is an acknowledgement only.
+It contains no grade and does not create teacher attestation.
+
+The Guided draft includes both published laptop cases.
+The cash case records Cash down by 2000 and Equipment up by 2000.
+The credit case records Equipment up by 2000 and Amount Owed up by 2000.
+Each case records ending totals and the equation difference.
+Used hints add `hintsUsed` to the applicable case parts.
+
+The Independent draft uses a distinct owner investment event.
+It includes Bank Loan and Equipment as plausible no-effect rows.
+It contains no `workedSolution` or `guidedHints` property.
+It contains no expected totals or expected response.
+
+The response uses these `practice.v1` part suffixes for each case:
+
+- `account_effects`
+- `account_amounts`
+- `ending_assets`
+- `ending_liabilities`
+- `ending_equity`
+- `equation_difference`
+
+The final `explanation` part stays ungraded for manual review.
+The component does not add client grade fields.
+
+The component validates all selections and finite numeric fields before submission.
+It blocks a second click while a save is pending.
+It freezes the response after an uncertain save.
+The explicit retry sends the same envelope.
+It calls completion only after a successful save.
+
+Four focused component tests passed.
+Oxlint passed for the three new files.
+The app TypeScript check passed.
+The server grader and publication mapping remain a separate bounded task.
+
+## Parent integration review
+
+The parent verified the source loan sequence and both laptop cases. The response records account directions, change magnitudes, ending totals, and the equation difference. It preserves an explanation for teacher review.
+
+The parent found and repaired two input-state defects. Hint controls now remain disabled while a response is pending, failed, or saved. Account-change magnitudes must be nonnegative before submission. Students still can submit negative ending totals as scored mistakes. Network retries preserve the same frozen envelope.
+
+The real UI-to-grader tests verify Guided scores of 16/16 and an Independent score of 11/12 with a retained sign error. The combined suite has 20 passing tests. Full app lint, standalone TypeScript, and build pass.
+
+The component remains an isolated draft. Registration, trusted persistence, approved source mapping, teacher review, and the real student route remain pending. The pilot task stays open.
+
+Focused coverage: 93.75% statements, 86.62% branches, 100% functions, and 95.86% lines across the component and grader.
