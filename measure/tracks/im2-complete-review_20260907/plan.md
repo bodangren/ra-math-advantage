@@ -25,3 +25,5 @@ Saved graph correction checkpoint: `8801f36a`. Verification passed with 192 test
 Saved administrator publication correction: `77f360b1`. All gates and the local browser journey passed. Existing-account class enrollment is the next workflow correction.
 
 Saved existing-account enrollment correction: `6e5710ac`. Verification passed with 205 tests and a local browser replay. Standards seeds remain under review.
+
+Saved standards seed correction: `783fedd9`. Verification passed with 207 tests and local seed replay. Full source-content and practice completion remain open.
