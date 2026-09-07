@@ -28,6 +28,13 @@ const skills = [
 ] as const;
 
 describe('Lesson 4-4 source capabilities', () => {
+  it('records the verified linear parent and its equivalent transformation descriptions', () => {
+    expect(source).toContain('The original worksheet confirms the linear parent function `f(x) = x`.');
+    expect(source).toContain('Accept equivalent horizontal and vertical descriptions when the resulting linear function is the same.');
+    expect(source).toContain('Use the operation shown in the unsimplified notation when the prompt asks for that operation.');
+    expect(source).not.toContain('absolute value bars seen in the original printed worksheet');
+  });
+
   it('corrects retained worked-example titles in all embedded node catalogs', () => {
     expect(source).toContain('Write transformed linear functions from verbal descriptions and real-world contexts');
     for (const document of [canonical, draft, graph, standards]) {

@@ -245,5 +245,6 @@ The mixed exercises provide comprehensive practice with all transformation types
 ## Review Notes
 
 * The extracted worksheet contains image placeholders (`media/image1.png` through `media/image8.png`) that could not be described. These likely contain graphs of the parent function and transformed functions for problems 1–6, 10–21, and 22–27. Verify that graph images are available for the activity renderer.
-* The worksheet notation uses parentheses [ (x - h) ] and [ (bx) ] to denote horizontal transformations of the linear parent function. Confirm that the absolute value bars seen in the original printed worksheet are properly rendered if applicable.
+* The original worksheet confirms the linear parent function `f(x) = x`. Its rules use parentheses for [ (x - h) ] and [ (bx) ]. They do not use absolute-value bars.
+* For this linear parent, some horizontal and vertical transformations give the same resulting function. Accept equivalent horizontal and vertical descriptions when the resulting linear function is the same. Use the operation shown in the unsimplified notation when the prompt asks for that operation.
 * Problems 34–36 are open-ended reasoning and creation tasks that may require free-response input or discussion prompts rather than auto-graded numeric answers.

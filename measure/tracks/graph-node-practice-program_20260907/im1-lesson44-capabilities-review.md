@@ -29,10 +29,10 @@ Each new candidate has one draft lesson-containment edge in `edges.json`. No oth
 
 The new source test failed in all three sections before the catalog update. It passed after the update. Oxlint and TypeScript passed. The focused source suite passed 17 tests in five files. The embedded graph metadata now matches 766 nodes and 2,249 edges.
 
-## Unresolved source notation issue
+## Verified source notation
 
-The original worksheet notation is not verified. The extracted source uses the parent function `f(x) = x`. For this function, `f(x - h) = f(x) - h`. Also, `f(bx) = b f(x)`. Thus, the displayed rules do not uniquely distinguish a horizontal transformation from a vertical transformation by their graphs or simplified equations.
+The original `Int1_0404_practice.docx` confirms the parent function `f(x) = x`. The worksheet uses parentheses. It does not use absolute-value bars. Problems 33 and 35 state the linear parent directly.
 
-The Review Notes state that the original worksheet can contain absolute-value bars that the extraction did not preserve. The source files do not prove that the intended parent function was `f(x) = |x|`. This inventory does not make that correction.
+For the parent `f(x) = x`, `f(x - h) = f(x) - h`. Also, `f(bx) = b f(x)`. Thus, the displayed parent-function rules do not uniquely distinguish a horizontal transformation from a vertical transformation by their graphs or simplified equations. Problems 34 and 35 ask the student to analyze when horizontal and vertical descriptions have the same effect. This identity does not apply unchanged to every linear function.
 
-The six new rows are provisional goal candidates. They are not independently assessable approved atomic skills. They remain draft and inactive. This source issue prevents any mastery, equivalence, prerequisite, renderer, or approval claim. An independent reviewer must decide whether the direct example links remain sufficiently precise after review of the original worksheet images.
+The six new rows are provisional goal candidates. They are not independently assessable approved atomic skills. They remain draft and inactive. This review does not add a mastery, equivalence, prerequisite, renderer, or approval claim. A later assessment must accept an equivalent horizontal or vertical description when it asks about the resulting graph or simplified function. It can require the named operation when the unsimplified notation identifies that operation.
