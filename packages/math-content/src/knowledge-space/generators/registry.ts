@@ -40,39 +40,43 @@ export interface MathGenerator {
 const quadraticGraphAnalysisGenerator: MathGenerator = {
   key: 'quadratic-graph-analysis',
   nodeIds: ['math.im3.skill.1.1.graph-quadratic-functions'],
-  description: 'Generates quadratic function graph analysis problems. Students identify vertex, intercepts, and direction.',
+  description: 'Generates quadratic table-and-graph problems.',
   generate: (input: GeneratorInput): GeneratorOutput => {
     const rand = seededRandom(input.seed);
-    const a = Math.round((rand() * 2 + 1) * 10) / 10; // a ∈ [1, 3]
-    const b = Math.round((rand() * 8 - 4) * 10) / 10; // b ∈ [-4, 4]
-    const c = Math.round((rand() * 12 - 6) * 10) / 10; // c ∈ [-6, 6]
-    const difficulty = input.difficulty ?? 0.5;
+    const a = rand() < 0.5 ? -1 : 1;
+    const bValues = [-1, 0, 1];
+    const b = bValues[Math.min(bValues.length - 1, Math.floor(rand() * bValues.length))] ?? 0;
+    const cValues = [-2, -1, 0, 1, 2];
+    const c = cValues[Math.min(cValues.length - 1, Math.floor(rand() * cValues.length))] ?? 0;
+    const quadraticTerm = a === 1 ? 'x^2' : '-x^2';
+    const linearTerm = b === 0 ? '' : b === 1 ? ' + x' : ' - x';
+    const constantTerm = c === 0 ? '' : c > 0 ? ` + ${c}` : ` - ${Math.abs(c)}`;
+    const equation = `y = ${quadraticTerm}${linearTerm}${constantTerm}`;
 
-    const vertexX = Math.round((-b / (2 * a)) * 100) / 100;
-    const vertexY = Math.round((a * vertexX * vertexX + b * vertexX + c) * 100) / 100;
-    const direction = a > 0 ? 'upward' : 'downward';
-
-    const prompt = difficulty < 0.4
-      ? `Graph the quadratic function f(x) = ${a}x² ${b >= 0 ? '+' : ''}${b}x ${c >= 0 ? '+' : ''}${c} and identify its key features.`
-      : `Graph f(x) = ${a}x² ${b >= 0 ? '+' : ''}${b}x ${c >= 0 ? '+' : ''}${c}, find the vertex, axis of symmetry, intercepts, and determine if it opens up or down.`;
+    const xValues = [-2, -1, 0, 1, 2];
+    const tableValues = xValues.map((x) => ({ x, y: a * x * x + b * x + c }));
+    const rendererProps = {
+      equation,
+      variant: 'plot_from_equation' as const,
+      responseVariant: 'table_graph' as const,
+      domain: [-5, 5] as [number, number],
+      range: [-10, 10] as [number, number],
+    };
 
     const gradingMetadata: GradingMetadata = {
-      partAnswers: { vertex_x: vertexX, vertex_y: vertexY, direction, y_intercept: c },
-      partMaxScores: { vertex_x: 2, vertex_y: 2, direction: 1, y_intercept: 1 },
-      partGradingRules: { vertex_x: 'numeric_tolerance', vertex_y: 'numeric_tolerance', direction: 'exact_match', y_intercept: 'numeric_tolerance' },
-      partTolerances: { vertex_x: 0.01, vertex_y: 0.01, y_intercept: 0.01 },
+      partAnswers: { table_values: tableValues, placed_points: tableValues },
+      partMaxScores: { table_values: 1, placed_points: 1 },
+      partGradingRules: { table_values: 'custom', placed_points: 'custom' },
     };
 
     return {
-      prompt,
-      data: { a, b, c, difficulty },
-      expectedAnswer: { vertex_x: vertexX, vertex_y: vertexY, direction, y_intercept: c },
+      prompt: `Complete the table for ${equation} using x = -2, -1, 0, 1, 2, then plot all five points.`,
+      data: { a, b, c, difficulty: input.difficulty, tableValues, rendererProps },
+      expectedAnswer: { table_values: tableValues, placed_points: tableValues },
       solutionSteps: [
-        { description: 'Identify coefficients', expression: `a = ${a}, b = ${b}, c = ${c}`, value: { a, b, c } },
-        { description: 'Calculate vertex x-coordinate', expression: `h = -b/(2a) = ${vertexX}`, value: vertexX },
-        { description: 'Calculate vertex y-coordinate', expression: `k = f(${vertexX}) = ${vertexY}`, value: vertexY },
-        { description: 'Determine direction', expression: `a = ${a} ${a > 0 ? '> 0 (opens upward)' : '< 0 (opens downward)'}`, value: direction },
-        { description: 'Find y-intercept', expression: `f(0) = ${c}`, value: c },
+        { description: 'Substitute each x-value', expression: `${equation} for x = -2, -1, 0, 1, 2` },
+        { description: 'Complete the table', expression: tableValues.map(({ x, y }) => `(${x}, ${y})`).join(', ') },
+        { description: 'Plot all five points', expression: tableValues.map(({ x, y }) => `(${x}, ${y})`).join(', ') },
       ],
       gradingMetadata,
     };
