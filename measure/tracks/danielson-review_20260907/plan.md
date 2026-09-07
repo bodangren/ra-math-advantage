@@ -42,3 +42,8 @@ The review is complete. The user authorized corrections on 2026-09-07.
 Confirmed defects are corrected. The school decisions above remain open.
 See `fixes.md` for the exact scope and verification.
 The local browser draft was discarded. The review-owned local stack was stopped.
+
+## Source video inclusion (2026-09-07)
+
+- [~] V01: Include the eight TLAC 3.0 videos from the source CSV. Show the overview in Learn. Connect seven tutorials to their technique pages. Preserve source titles and explain the Replace Self-Report number error. Test links, embeds, and lesson mapping.
+- [ ] V02: Include Get Better Faster videos when their source location is identified. The supplied directory has no matching files or text links. A source-location question is pending.

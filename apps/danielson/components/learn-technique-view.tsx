@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import { TLAC_SOURCE_VIDEOS } from '@/content/learn/source-videos';
+import { LearnSourceVideos } from './learn-source-videos';
 import { COMPONENT_TITLES, type DanielsonComponentId } from '@/lib/proficiency/graph';
 
 import { learnHref, type Technique } from '@/lib/learn/catalog';
@@ -70,6 +72,7 @@ export function LearnTechniqueView({
         </div>
 
         <aside className="learn-technique-aside" aria-label="Technique references">
+          <LearnSourceVideos videos={TLAC_SOURCE_VIDEOS.filter((video) => video.techniqueId === technique.id)} />
 
           {hasVideo(technique) ? (
             <section aria-labelledby="learn-video-heading">

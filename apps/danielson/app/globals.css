@@ -205,6 +205,10 @@ details[open] > summary { margin-bottom: 1rem; }
 .learn-video-frame { overflow: hidden; aspect-ratio: 16 / 9; border-radius: .75rem; background: #000; }
 .learn-video-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
 .learn-book-reference { background: var(--tile) !important; }
+.learn-source-videos { margin-block: 1.5rem; }
+.learn-source-videos details { margin-block: .75rem; padding: .75rem; border: 1px solid var(--muted-ink); border-radius: .75rem; }
+.learn-source-videos summary { min-height: 44px; padding-block: .75rem; cursor: pointer; font-weight: 600; }
+.learn-source-videos a { display: inline-block; padding-block: .75rem; }
 .learn-book-reference .eyebrow { margin-bottom: .35rem; }
 .learn-sequence-nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; border-top: 1px solid var(--line); padding-top: 1.5rem; }
 .learn-sequence-nav a { display: grid; min-height: 4.5rem; align-content: center; border: 1px solid var(--line); border-radius: .75rem; padding: .8rem 1rem; color: var(--brand-primary); text-decoration: none; }

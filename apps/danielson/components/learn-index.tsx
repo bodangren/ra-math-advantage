@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import { TLAC_SOURCE_VIDEOS } from '@/content/learn/source-videos';
+import { LearnSourceVideos } from './learn-source-videos';
 import { COMPONENT_TITLES, type DanielsonComponentId } from '@/lib/proficiency/graph';
 
 import { learnHref, type Technique } from '@/lib/learn/catalog';
@@ -22,6 +24,8 @@ export function LearnIndex({ techniques }: { techniques: readonly Technique[] })
         <p>This reference library does not cover all 22 Danielson components. It includes selected classroom techniques. The component mapping is school-defined.</p>
         <p className="learn-index-count"><strong>{techniques.length}</strong> approved skills</p>
       </header>
+
+      <LearnSourceVideos videos={TLAC_SOURCE_VIDEOS} showTechniqueLinks />
 
       {[1, 2, 3, 4].map((domain) => {
         const domainTechniques = techniques.filter((technique) => technique.domain === domain);

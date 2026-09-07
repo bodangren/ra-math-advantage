@@ -77,3 +77,25 @@ password functions. It adds no hash or session ledger.
 - `07c4c342`: Observation and plan evidence protection.
 - `69249bf2`: Curriculum and reference corrections.
 - `b8959159`: Saved workflows, navigation, administration, recovery, and guidance.
+
+## Source video addition (2026-09-07)
+
+Added all eight TLAC 3.0 videos from
+`hdkwa-danielson/public/youtube-channel-video-links-2026-05-20-11-18-44.csv`.
+Learn now lists the overview and seven technique tutorials. The seven matching
+technique pages also contain the tutorials. Each video has an embedded player
+and a direct YouTube link. Source titles are preserved. A note corrects the
+Replace Self-Report title: the book uses Technique 6, not Technique 7.
+
+All eight YouTube oEmbed responses returned matching titles on 2026-09-07.
+This check verifies public metadata, not playback in every region. The browser
+check verifies the player frame and fallback link, not video playback.
+
+The supplied directory contains no Get Better Faster video filenames or text
+references. Checked source, public files, scripts, Measure files, outputs, and
+ignored files. The PDF directory contains the 63 TLAC technique files. The
+Get Better Faster video task remains open. A source-location question is pending.
+
+Validation: 409 tests in 61 files passed. App lint, TypeScript, and production
+build passed. Browser checks passed for keyboard expansion, overview and
+technique embeds, direct links, the source-number correction, and mobile width.
