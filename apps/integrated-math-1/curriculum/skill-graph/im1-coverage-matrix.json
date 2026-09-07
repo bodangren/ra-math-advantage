@@ -1,10 +1,10 @@
 {
   "version": 1,
   "course": "im1",
-  "totalSkills": 184,
+  "totalSkills": 196,
   "counts": {
     "served": 6,
-    "gap": 178,
+    "gap": 190,
     "newComponent": 0
   },
   "byModule": [
@@ -31,9 +31,9 @@
     },
     {
       "module": "4",
-      "totalSkills": 33,
+      "totalSkills": 45,
       "served": 0,
-      "gap": 33,
+      "gap": 45,
       "newComponent": 0
     },
     {
@@ -685,12 +685,108 @@
       "priority": "medium"
     },
     {
+      "skillId": "math.im1.skill.4.6.graph-greatest-integer-step-functions",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
+      "skillId": "math.im1.skill.4.6.graph-piecewise-defined-functions",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
       "skillId": "math.im1.skill.4.6.graph-piecewise-defined-functions-and-step-functions-greates",
       "module": "4",
       "status": "gap",
       "tier": "none",
       "rendererKey": "comprehension-quiz",
       "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.4.6.identify-the-domain-and-range-of-piecewise-defined-functions",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
+      "skillId": "math.im1.skill.4.6.identify-the-domain-and-range-of-step-functions",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
+      "skillId": "math.im1.skill.4.6.model-real-world-situations-with-piecewise-linear-functions",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
+      "skillId": "math.im1.skill.4.6.model-real-world-situations-with-step-functions",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
+      "skillId": "math.im1.skill.4.6.write-piecewise-functions-from-graphs",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
+      "skillId": "math.im1.skill.4.6.write-piecewise-functions-from-tables",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
+      "skillId": "math.im1.skill.4.6.write-piecewise-functions-from-verbal-descriptions",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
+      "skillId": "math.im1.skill.4.6.write-step-functions-from-graphs",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
+      "skillId": "math.im1.skill.4.6.write-step-functions-from-tables",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
+      "skillId": "math.im1.skill.4.6.write-step-functions-from-verbal-descriptions",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
     },
     {
       "skillId": "math.im1.skill.4.7.describe-translations-dilations-and-reflections-of-absolute",

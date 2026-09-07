@@ -104,7 +104,9 @@ Read the problem to determine how fractions are handled. For example, rounding e
 
 ### Step 3: Draw the Graph
 
-Draw horizontal segments with jumps at the boundary values. Use closed circles where the higher value applies and open circles where the lower value ends.
+Draw horizontal segments with jumps at the boundary values. Problem 13 uses continuous time and rounds up to the next half-hour. At exactly 0.5 hour, the earnings are $4. Immediately after 0.5 hour, the earnings are $8. Thus, each positive earnings step is open on the left and closed on the right.
+
+Problem 14 counts whole boxes. For the boxes model, `n` is a nonnegative integer. 0 boxes require 0 cases. 1 through 12 boxes require 1 case. 13 through 24 boxes require 2 cases. Thus, the change from one case to two cases occurs between 12 and 13 boxes.
 
 ## Mixed Exercises
 
@@ -124,5 +126,5 @@ The mixed exercises provide practice across all lesson skills:
 
 * The original worksheet contains numerous blank graph grids (image placeholders) for student graphing. These cannot be described in text; digital activities should provide an interactive graphing canvas or pre-plotted coordinate grid.
 * Problems 13, 14, 16, 20, 21, and 22 reference tables and graphs in the original document that are represented as image placeholders. The tabular data should be extracted and presented as structured tables in any digital implementation.
-* Problems 17 and 27–31 refer to graphs that students must analyze. Descriptions of these graphs (key points, segments, open/closed circles) would need to be provided or replaced with interactive graph elements.
+* Problems 17 and 27–31 refer to graphs that students must analyze. Descriptions of these graphs (key points, segments, open/closed circles) would need to be provided or replaced with interactive graph elements. The Problem 17 figure has two sloped rays. It is not a step-function graph. This conflicts with the prompt to write a step function.
 * Problem 26 asks students to analyze whether a piecewise relation is a function, noting that the two pieces overlap in their domain conditions.

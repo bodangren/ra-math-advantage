@@ -5195,6 +5195,148 @@
         "module": "4",
         "lesson": "5"
       }
+    },
+    {
+      "nodeId": "math.im1.skill.4.6.graph-piecewise-defined-functions",
+      "sourceNodeIds": [
+        "math.im1.example.4.6.031"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.4.6.identify-the-domain-and-range-of-piecewise-defined-functions",
+      "sourceNodeIds": [
+        "math.im1.example.4.6.031"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.4.6.graph-greatest-integer-step-functions",
+      "sourceNodeIds": [
+        "math.im1.example.4.6.032"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.4.6.identify-the-domain-and-range-of-step-functions",
+      "sourceNodeIds": [
+        "math.im1.example.4.6.032"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.4.6.model-real-world-situations-with-piecewise-linear-functions",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.4.6.model-real-world-situations-with-step-functions",
+      "sourceNodeIds": [
+        "math.im1.example.4.6.033"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.4.6.write-piecewise-functions-from-tables",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.4.6.write-piecewise-functions-from-graphs",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.4.6.write-piecewise-functions-from-verbal-descriptions",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.4.6.write-step-functions-from-tables",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.4.6.write-step-functions-from-graphs",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.4.6.write-step-functions-from-verbal-descriptions",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "6"
+      }
     }
   ]
 }

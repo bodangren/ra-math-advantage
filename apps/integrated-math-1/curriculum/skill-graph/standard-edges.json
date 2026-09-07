@@ -4818,10 +4818,10 @@
     {
       "id": "math.im1.example.4.6.031",
       "kind": "worked_example",
-      "title": "Example 1: Graph Piecewise-Defined Functions; Graph Step Functions",
+      "title": "Example 1: Graph Piecewise-Defined Functions",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4-6, Example 1)"
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-6 (Example 1)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4830,16 +4830,16 @@
         "lesson": "6",
         "exampleNumber": 1,
         "sourceLesson": "4-6",
-        "rawText": "4-6, Examples 1-2 \u2014 Graph Piecewise-Defined Functions; Graph Step Functions"
+        "rawText": "Example 1: Graph Piecewise-Defined Functions"
       }
     },
     {
       "id": "math.im1.example.4.6.032",
       "kind": "worked_example",
-      "title": "Example 2: Graph Piecewise-Defined Functions; Graph Step Functions",
+      "title": "Example 2: Graph Step Functions",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4-6, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-6 (Example 2)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4848,7 +4848,7 @@
         "lesson": "6",
         "exampleNumber": 2,
         "sourceLesson": "4-6",
-        "rawText": "4-6, Examples 1-2 \u2014 Graph Piecewise-Defined Functions; Graph Step Functions"
+        "rawText": "Example 2: Graph Step Functions"
       }
     },
     {
@@ -4857,7 +4857,7 @@
       "title": "Example 3: Model Real-World Situations with Step Functions",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4-6, Example 3)"
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-6 (Example 3)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4866,7 +4866,7 @@
         "lesson": "6",
         "exampleNumber": 3,
         "sourceLesson": "4-6",
-        "rawText": "4-6, Example 3 \u2014 Model Real-World Situations with Step Functions"
+        "rawText": "Example 3: Model Real-World Situations with Step Functions"
       }
     },
     {
@@ -13612,6 +13612,210 @@
         "course": "im1",
         "module": "4",
         "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.6.graph-piecewise-defined-functions",
+      "kind": "skill",
+      "title": "Graph piecewise-defined functions",
+      "domain": "math.im1",
+      "description": "Graph piecewise-defined functions",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-6"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.6.identify-the-domain-and-range-of-piecewise-defined-functions",
+      "kind": "skill",
+      "title": "Identify the domain and range of piecewise-defined functions",
+      "domain": "math.im1",
+      "description": "Identify the domain and range of piecewise-defined functions",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-6"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.6.graph-greatest-integer-step-functions",
+      "kind": "skill",
+      "title": "Graph greatest integer step functions",
+      "domain": "math.im1",
+      "description": "Graph greatest integer step functions",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-6"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.6.identify-the-domain-and-range-of-step-functions",
+      "kind": "skill",
+      "title": "Identify the domain and range of step functions",
+      "domain": "math.im1",
+      "description": "Identify the domain and range of step functions",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-6"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.6.model-real-world-situations-with-piecewise-linear-functions",
+      "kind": "skill",
+      "title": "Model real-world situations with piecewise-linear functions",
+      "domain": "math.im1",
+      "description": "Model real-world situations with piecewise-linear functions",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-6"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.6.model-real-world-situations-with-step-functions",
+      "kind": "skill",
+      "title": "Model real-world situations with step functions",
+      "domain": "math.im1",
+      "description": "Model real-world situations with step functions",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-6"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.6.write-piecewise-functions-from-tables",
+      "kind": "skill",
+      "title": "Write piecewise functions from tables",
+      "domain": "math.im1",
+      "description": "Write piecewise functions from tables",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-6"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.6.write-piecewise-functions-from-graphs",
+      "kind": "skill",
+      "title": "Write piecewise functions from graphs",
+      "domain": "math.im1",
+      "description": "Write piecewise functions from graphs",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-6"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.6.write-piecewise-functions-from-verbal-descriptions",
+      "kind": "skill",
+      "title": "Write piecewise functions from verbal descriptions",
+      "domain": "math.im1",
+      "description": "Write piecewise functions from verbal descriptions",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-6"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.6.write-step-functions-from-tables",
+      "kind": "skill",
+      "title": "Write step functions from tables",
+      "domain": "math.im1",
+      "description": "Write step functions from tables",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-6"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.6.write-step-functions-from-graphs",
+      "kind": "skill",
+      "title": "Write step functions from graphs",
+      "domain": "math.im1",
+      "description": "Write step functions from graphs",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-6"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.6.write-step-functions-from-verbal-descriptions",
+      "kind": "skill",
+      "title": "Write step functions from verbal descriptions",
+      "domain": "math.im1",
+      "description": "Write step functions from verbal descriptions",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-6"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "6"
       }
     }
   ],
@@ -35037,7 +35241,7 @@
       "mediumConfidence": 0,
       "lowConfidence": 0,
       "exceptions": 0,
-      "missingStandards": 84,
+      "missingStandards": 96,
       "reviewQueue": 0
     }
   }
