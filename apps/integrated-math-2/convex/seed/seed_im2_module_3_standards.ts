@@ -34,13 +34,8 @@ const module3LessonStandards: LessonStandardLink[] = [
   },
   {
     lessonSlug: "module-3-lesson-4",
-    standardCode: "G-SRT.A.3",
+    standardCode: "G-SRT.B.5",
     isPrimary: true,
-  },
-  {
-    lessonSlug: "module-3-lesson-4",
-    standardCode: "G-SRT.B.4",
-    isPrimary: false,
   },
   {
     lessonSlug: "module-3-lesson-5",

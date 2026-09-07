@@ -24,7 +24,7 @@ const module2LessonStandards: LessonStandardLink[] = [
   },
   {
     lessonSlug: "module-2-lesson-3",
-    standardCode: "G-CO.A.2",
+    standardCode: "G-CO.C.11",
     isPrimary: false,
   },
   {

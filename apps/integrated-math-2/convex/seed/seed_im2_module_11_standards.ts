@@ -34,17 +34,17 @@ const module11LessonStandards: LessonStandardLink[] = [
   },
   {
     lessonSlug: "module-11-lesson-4",
-    standardCode: "A-APR.B.3",
+    standardCode: "A-APR.A.1",
     isPrimary: false,
   },
   {
     lessonSlug: "module-11-lesson-5",
-    standardCode: "A-APR.A.1",
+    standardCode: "A-SSE.A.2",
     isPrimary: true,
   },
   {
     lessonSlug: "module-11-lesson-5",
-    standardCode: "A-SSE.A.2",
+    standardCode: "A-APR.A.1",
     isPrimary: false,
   },
   {

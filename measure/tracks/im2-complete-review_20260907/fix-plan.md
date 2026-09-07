@@ -226,3 +226,13 @@ Verification passed with 214 tests, lint, both TypeScript checks, and production
 Student lesson access and dashboard assignment lists now use the same active-account check as enrollment. A class owned by an inactive or invalid teacher account cannot grant access. Existing evidence remains stored.
 
 Verification passed with 215 tests, lint, both TypeScript checks, and production build. The local student browser still opens the assigned published lesson and shows its saved 10-of-10 progress. The old published revision remains unchanged while corrected content is held in a draft.
+
+## Additional standards correction
+
+Corrected 23 lesson mappings and added four foundation standards. Coordinate distance now uses 8.G.B.8 and 8.G.B.7. Circle circumference uses 7.G.B.4. Polygon area and prism surface area use 7.G.B.6. Triangle feasibility uses 7.G.A.2. Tangent relationships use G-C.A.2. Volume calculation uses G-GMD.A.3. Three-variable elimination uses A-REI.C.6 as a supporting extension of its two-variable focus. It does not claim matrix-inverse work.
+
+These are topic and foundation links. They do not establish full standards mastery. Some lessons extend beyond the linked foundation. Broad graph teaching relationships remain under the active Graph Node Practice Program.
+
+Sources: [Grade 7 geometry](https://www.thecorestandards.org/Math/Content/7/G/), [Grade 8 geometry](https://www.thecorestandards.org/Math/Content/8/G/), [triangle and parallelogram theorems](https://www.thecorestandards.org/Math/Content/HSG/CO/), [circle relationships](https://www.thecorestandards.org/Math/Content/HSG/C/), [volume](https://www.thecorestandards.org/Math/Content/HSG/GMD/), [probability](https://www.thecorestandards.org/Math/Content/HSS/CP/), and [linear systems](https://www.thecorestandards.org/Math/Content/HSA/REI/).
+
+Verification passed with 219 tests, lint, both TypeScript checks, and production build after concurrent graph work stabilized. The new mapping test checks persisted seed results.

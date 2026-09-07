@@ -27,18 +27,18 @@ const module4LessonStandards: LessonStandardLink[] = [
   // 4-3 Coordinates in Space
   {
     lessonSlug: "module-4-lesson-3",
-    standardCode: "G-GPE.B.4",
+    standardCode: "8.G.B.8",
     isPrimary: true,
   },
   {
     lessonSlug: "module-4-lesson-3",
-    standardCode: "G-GPE.B.5",
+    standardCode: "8.G.B.7",
     isPrimary: false,
   },
   // 4-4 Special Right Triangles
   {
     lessonSlug: "module-4-lesson-4",
-    standardCode: "G-SRT.C.6",
+    standardCode: "8.G.B.7",
     isPrimary: true,
   },
   {

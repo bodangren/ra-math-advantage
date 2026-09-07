@@ -39,7 +39,7 @@ const module9LessonStandards: LessonStandardLink[] = [
   },
   {
     lessonSlug: "module-9-lesson-8",
-    standardCode: "A-REI.C.9",
+    standardCode: "A-REI.C.6",
     isPrimary: true,
   },
   {

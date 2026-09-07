@@ -9,8 +9,13 @@ const module7LessonStandards: LessonStandardLink[] = [
   },
   {
     lessonSlug: "module-7-lesson-2",
-    standardCode: "S-CP.A.2",
+    standardCode: "S-CP.A.1",
     isPrimary: true,
+  },
+  {
+    lessonSlug: "module-7-lesson-2",
+    standardCode: "S-CP.B.7",
+    isPrimary: false,
   },
   {
     lessonSlug: "module-7-lesson-3",

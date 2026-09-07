@@ -14,12 +14,12 @@ const module8LessonStandards: LessonStandardLink[] = [
   },
   {
     lessonSlug: "module-8-lesson-2",
-    standardCode: "F-IF.C.9",
+    standardCode: "F-IF.B.4",
     isPrimary: true,
   },
   {
     lessonSlug: "module-8-lesson-2",
-    standardCode: "F-IF.B.4",
+    standardCode: "F-BF.B.3",
     isPrimary: false,
   },
   {

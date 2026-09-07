@@ -13,6 +13,34 @@ export const seedStandards = internalMutation({
   handler: async (ctx) => {
     const standards: SeedCompetencyStandard[] = [
       {
+        code: "7.G.A.2",
+        description: "Construct figures from stated measurements. For triangles, determine whether the conditions give one triangle, multiple triangles, or none.",
+        studentFriendlyDescription: "I can use side and angle conditions to decide whether a triangle can exist.",
+        category: "Geometry",
+        isActive: true,
+      },
+      {
+        code: "7.G.B.4",
+        description: "Use circle area and circumference formulas to solve problems. Explain informally how circumference and area are related.",
+        studentFriendlyDescription: "I can calculate circle area and circumference and explain their relationship.",
+        category: "Geometry",
+        isActive: true,
+      },
+      {
+        code: "7.G.B.6",
+        description: "Solve area, surface-area, and volume problems for objects built from triangles, quadrilaterals, polygons, cubes, and right prisms.",
+        studentFriendlyDescription: "I can calculate area, surface area, and volume for polygonal objects.",
+        category: "Geometry",
+        isActive: true,
+      },
+      {
+        code: "8.G.B.8",
+        description: "Use the Pythagorean theorem to calculate the distance between two coordinate points.",
+        studentFriendlyDescription: "I can use coordinates to calculate the distance between two points.",
+        category: "Geometry",
+        isActive: true,
+      },
+      {
         code: "G-SRT.D.11",
         description: "Apply the laws of sines and cosines to find measurements in right and non-right triangles.",
         studentFriendlyDescription: "I can use the laws of sines and cosines to solve triangles.",

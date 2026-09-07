@@ -24,7 +24,7 @@ const module12LessonStandards: LessonStandardLink[] = [
   },
   {
     lessonSlug: "module-12-lesson-3",
-    standardCode: "A-REI.D.10",
+    standardCode: "A-REI.D.11",
     isPrimary: true,
   },
   {

@@ -432,5 +432,29 @@
     "code": "S-CP.B.9",
     "source": "Common Core State Standards Initiative",
     "framework": "CCSS-M"
+  },
+  {
+    "code": "7.G.A.2",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M",
+    "url": "https://www.thecorestandards.org/Math/Content/7/G/"
+  },
+  {
+    "code": "7.G.B.4",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M",
+    "url": "https://www.thecorestandards.org/Math/Content/7/G/"
+  },
+  {
+    "code": "7.G.B.6",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M",
+    "url": "https://www.thecorestandards.org/Math/Content/7/G/"
+  },
+  {
+    "code": "8.G.B.8",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M",
+    "url": "https://www.thecorestandards.org/Math/Content/8/G/"
   }
 ]

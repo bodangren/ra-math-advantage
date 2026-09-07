@@ -4,7 +4,7 @@ import { seedLessonStandards, type LessonStandardLink } from "./lesson_standards
 const module5LessonStandards: LessonStandardLink[] = [
   {
     lessonSlug: "module-5-lesson-1",
-    standardCode: "G-C.A.1",
+    standardCode: "7.G.B.4",
     isPrimary: true,
   },
   {
@@ -23,11 +23,6 @@ const module5LessonStandards: LessonStandardLink[] = [
     isPrimary: true,
   },
   {
-    lessonSlug: "module-5-lesson-3",
-    standardCode: "G-C.B.5",
-    isPrimary: false,
-  },
-  {
     lessonSlug: "module-5-lesson-4",
     standardCode: "G-C.A.2",
     isPrimary: true,
@@ -39,23 +34,13 @@ const module5LessonStandards: LessonStandardLink[] = [
   },
   {
     lessonSlug: "module-5-lesson-5",
-    standardCode: "G-C.A.3",
-    isPrimary: true,
-  },
-  {
-    lessonSlug: "module-5-lesson-5",
-    standardCode: "G-C.A.4",
-    isPrimary: false,
-  },
-  {
-    lessonSlug: "module-5-lesson-6",
-    standardCode: "G-C.A.3",
+    standardCode: "G-C.A.2",
     isPrimary: true,
   },
   {
     lessonSlug: "module-5-lesson-6",
-    standardCode: "G-C.A.4",
-    isPrimary: false,
+    standardCode: "G-C.A.2",
+    isPrimary: true,
   },
   {
     lessonSlug: "module-5-lesson-7",

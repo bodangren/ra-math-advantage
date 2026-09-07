@@ -34,22 +34,22 @@ const module1LessonStandards: LessonStandardLink[] = [
   },
   {
     lessonSlug: "module-1-lesson-4",
-    standardCode: "G-CO.B.7",
+    standardCode: "G-CO.C.10",
     isPrimary: true,
   },
   {
     lessonSlug: "module-1-lesson-5",
-    standardCode: "G-CO.A.3",
+    standardCode: "G-CO.C.10",
     isPrimary: true,
   },
   {
     lessonSlug: "module-1-lesson-6",
-    standardCode: "G-CO.B.7",
+    standardCode: "7.G.A.2",
     isPrimary: true,
   },
   {
     lessonSlug: "module-1-lesson-7",
-    standardCode: "G-CO.B.8",
+    standardCode: "G-CO.C.10",
     isPrimary: true,
   },
 ];
