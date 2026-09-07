@@ -128,14 +128,14 @@
 
   .text-primary-text { color: #242220; }
   .text-secondary-text { color: #5C5955; }
-  .text-muted-text { color: #8A8680; }
+  .text-muted-text { color: #706B64; }
 
   .dark .text-primary-text { color: #EDEBE8; }
   .dark .text-secondary-text { color: #B5B0A8; }
-  .dark .text-muted-text { color: #7A756E; }
+  .dark .text-muted-text { color: #9D968C; }
 
   .text-brand { color: #B14C00; }
-  .text-accent { color: #00828C; }
+  .text-accent { color: #006F78; }
 
   .dark .text-brand { color: #E07030; }
   .dark .text-accent { color: #00A3AE; }

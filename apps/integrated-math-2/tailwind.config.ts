@@ -21,7 +21,7 @@ export default {
         },
         'text-primary': '#242220',
         'text-secondary': '#5C5955',
-        'text-muted': '#8A8680',
+        'text-muted': '#706B64',
         brand: {
           DEFAULT: '#B14C00',
           hover: '#9A4200',

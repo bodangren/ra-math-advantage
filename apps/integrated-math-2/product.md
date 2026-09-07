@@ -1,49 +1,31 @@
 # Product Definition — Integrated Math 2
 
-## Overview
+## Current implementation
 
-Integrated Math 2 is a web-based learning management system for high school Integrated Math 2 courses. It provides structured, phase-based lessons with interactive activities, real-time progress tracking, and teacher tooling for monitoring student performance. The platform is built on the same architecture as Integrated Math 3 and Math for Business Operations v2.
+IM2 provides authenticated student lessons, server-graded checkpoints, phase progress, class enrollment, and teacher evidence views. Administrators can review and publish draft lesson revisions. These paths have local verification. Production deployment remains separate.
 
-## Target Users
+The source course contains 96 lessons and 403 worked-example sections. Each lesson has one scored numeric checkpoint. A checkpoint result measures that question. It does not establish mastery of every lesson objective or a complete standard.
 
-### Students
-- High school students enrolled in Integrated Math 2
-- Progress through structured, variable-length, typed phase lessons (e.g., Explore → Learn → Worked Example → Practice)
-- Complete interactive activities (graphing, practice problems, drag-and-drop, assessments)
-- Track their own progress via a personal dashboard
+Students can join a class with a valid code. They can open assigned published lessons and complete phases in order. Teachers can create classes, assign published lessons, inspect rosters, and read submission evidence. Access checks use the current account and organization.
 
-### Teachers
-- Manage student rosters via classes and enrollments
-- Monitor real-time student progress across units and lessons
-- View detailed gradebook per unit with phase-level completion
-- Review individual student submissions and error analysis
-- Access course overview with competency/standards alignment
+## Planned capabilities
 
-### Admins
-- Treated as teacher-compatible for routing purposes
-- Access to teacher dashboard and admin-specific pages
+The following capabilities remain product requirements. They are not current availability claims.
 
-## Core Features
+- Full graph-based Worked, Guided Practice, and Independent Practice modes.
+- Complete practice variants for each approved objective.
+- Graph-based mastery and spaced review with valid evidence.
+- A class-period runtime for the 180-period teaching calendar.
+- Secure assessment forms and formal retake grading.
+- Additional graphing and drag-and-drop activities.
 
-1. **Phase-Based Lesson System** — Lessons divided into variable-length, typed phase sequences with content sections (text, callout, activity, video, image). Phase types include Explore, Vocabulary, Learn, Key Concept, Worked Example, Guided Practice, Independent Practice, Assessment, Discourse, and Reflection. Students progress linearly through phases.
+The separate Graph Node Practice Program track owns active graph component work. Unfinished graph candidates remain ineligible for mastery and spaced review.
 
-2. **Student Dashboard** — Shows overall progress, next lesson recommendation, and unit-by-unit breakdown with per-lesson progress bars.
+## Roles
 
-3. **Interactive Activities** — Component-based activity system with graphing exercises, practice problem sets, drag-and-drop interactions, and auto-graded assessments.
-
-4. **Teacher Dashboard** — Organization-scoped view of all students with progress percentages and last-active timestamps.
-
-5. **Gradebook** — Unit-level grid showing per-student, per-lesson progress with competency tracking against standards.
-
-6. **Student Detail View** — Drill-down into individual student's per-lesson, per-phase completion with submission evidence.
-
-7. **Competency Tracking** — Activities linked to competency standards; mastery levels updated on completion.
-
-8. **Curriculum Public Page** — Public-facing overview of the course structure for prospective students/parents.
-
-9. **Custom Auth** — JWT-based authentication with username/password (no third-party provider). Role-based access control (student/teacher/admin).
-
-10. **Multi-Tenant** — Organization-scoped data isolation for profiles, classes, and enrollments.
+- Students use assigned published content and their own progress.
+- Teachers manage their own classes and enrolled student evidence.
+- Administrators can also review and publish curriculum drafts.
 
 ## Curriculum Structure
 
@@ -78,14 +60,14 @@ Course (Integrated Math 2)
 
 ## Instructional Model
 
-Lessons follow a structured daily routine:
+The teaching calendar specifies this daily routine. The app lesson phases do not yet implement a timed class-period session:
 1. Warm-Up (skill activation)
 2. Concept development through exploration or mini-lesson
 3. Guided and independent practice
 4. In-class assessment (exit ticket or quick check)
 5. CAP reflection (Courage, Adaptability, Persistence)
 
-All graded work is completed in class. Retakes allowed (max score 85%).
+The intended formal assessment policy requires in-class work and permits retakes with an 85% score cap. The current formative checkpoint flow does not enforce this formal assessment policy.
 
 ## Non-Goals (Current Scope)
 

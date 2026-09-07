@@ -203,7 +203,7 @@ export default function HomePage() {
               key={group.title}
               className={`space-y-3 animate-fade-up-${groupIndex + 3}`}
             >
-              <h3 className="text-sm font-mono-num tracking-widest uppercase text-muted-text/60 mb-3">
+              <h3 className="text-sm font-mono-num tracking-widest uppercase text-muted-text mb-3">
                 {group.title}
               </h3>
               {group.units.map((unit) => (
@@ -255,7 +255,7 @@ export default function HomePage() {
               className="text-primary-text text-3xl md:text-4xl mb-4 font-display"
               style={{ fontWeight: 700 }}
             >
-              Standards-Aligned
+              Course Topics
             </h2>
             <p className="text-lg text-secondary-text leading-relaxed mb-6">
               Covers relationships in triangles, quadrilaterals, similarity,
@@ -265,8 +265,8 @@ export default function HomePage() {
             </p>
             <Link
               href="/curriculum"
-              className="inline-flex items-center gap-2 text-sm transition-all hover:gap-3"
-              style={{ color: "#00828C", fontWeight: 500 }}
+              className="inline-flex items-center gap-2 text-sm text-accent transition-all hover:gap-3 hover:underline"
+              style={{ fontWeight: 500 }}
             >
               Explore the full curriculum
               <svg

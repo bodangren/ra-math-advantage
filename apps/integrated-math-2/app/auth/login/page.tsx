@@ -127,7 +127,7 @@ export default function LoginPage() {
           Don&apos;t have an account?{" "}
           <Link
             href="/auth/register"
-            className="text-accent hover:text-accent-light transition-colors"
+            className="text-accent hover:underline"
           >
             Register
           </Link>
