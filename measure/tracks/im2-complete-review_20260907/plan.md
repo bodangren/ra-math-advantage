@@ -27,3 +27,5 @@ Saved administrator publication correction: `77f360b1`. All gates and the local 
 Saved existing-account enrollment correction: `6e5710ac`. Verification passed with 205 tests and a local browser replay. Standards seeds remain under review.
 
 Saved standards seed correction: `783fedd9`. Verification passed with 207 tests and local seed replay. Full source-content and practice completion remain open.
+
+Saved Modules 3 and 4 worked-example correction: `9615b353`. All gates passed. Module 5 content review is in progress.
