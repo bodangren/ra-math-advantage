@@ -4729,19 +4729,19 @@
         "phaseNumber": 5,
         "title": "Example 1 — Product of Powers",
         "phaseType": "worked_example",
-        "markdown": "Multiply expressions with the same base using the Product of Powers Property.\n\n### Step 1: Identify the Common Base\n\nWhen multiplying powers, identify expressions that share the same base variable.\n\n$$\n(q^2)(2q^4) = 2q^{2+4} = 2q^6\n$$\n$$\n(-2u^2)(6u^6) = -12u^{2+6} = -12u^8\n$$\n$$\n(y^6z^9)(6y^4z^2) = 6y^{6+4}z^{9+2} = 6y^{10}z^{11}\n$$\n### Step 2: Apply the Power of a Power\n\nWhen an expression with an exponent is raised to another power, multiply all exponents involved.\n\n$$\n(j^5k^7)^4 = j^{5 \\cdot 4}k^{7 \\cdot 4} = j^{20}k^{28}\n$$\n$$\n(n^3p)^4 = n^{3 \\cdot 4}p^{1 \\cdot 4} = n^{12}p^4\n$$\n$$\n[(4r^2t)^3]^2 = (4r^2t)^6 = 4^6 \\cdot r^{2 \\cdot 6}t^{1 \\cdot 6}\n$$"
+        "markdown": "### Problem\n\nSimplify $(y^6z^9)(6y^4z^2)$ for real y and z.\n\n### Solution\n\nMultiply the coefficients and add exponents for each common base: $6y^{6+4}z^{9+2}=6y^{10}z^{11}$. The product rule adds exponents; it does not multiply them."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Scientific Notation",
         "phaseType": "worked_example",
-        "markdown": "Apply exponent properties to express very large and very small numbers in scientific notation.\n\n### Step 1: Understand Scientific Notation\n\nA number in scientific notation has the form $a \\times 10^n$ where $1 \\leq a < 10$ and $n$ is an integer.\n\nDuring a community service project, each student planted $1.2 \\times 10^2$ flowers. With $1.5 \\times 10^3$ students:\n\n$$\n(1.2 \\times 10^2)(1.5 \\times 10^3) = (1.2 \\cdot 1.5) \\times 10^{2+3} = 1.8 \\times 10^5\n$$\n### Step 2: Solve Applied Problems\n\nA farmer has 350 cherry trees, each yielding 6200 cherries per year:\n\n$$\n350 \\cdot 6200 = 3.5 \\times 10^2 \\cdot 6.2 \\times 10^3 = 21.7 \\times 10^5 = 2.17 \\times 10^6\n$$\nAn adult panda weighs $1.1 \\times 10^3$ times more than a newborn panda weighing $2.2 \\times 10^{-1}$ pounds:\n\n$$\n(2.2 \\times 10^{-1})(1.1 \\times 10^3) = 2.42 \\times 10^2 \\text{ pounds}\n$$"
+        "markdown": "### Problem\n\nEach of $1.5\\times10^3$ students plants $1.2\\times10^2$ flowers. Find the total in scientific notation.\n\n### Solution\n\nMultiply coefficients and powers separately: $(1.5)(1.2)10^{3+2}=1.8\\times10^5$ flowers. For a nonzero signed number in scientific notation, the coefficient magnitude is at least 1 and less than 10."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Power of a Product",
         "phaseType": "worked_example",
-        "markdown": "Apply the Power of a Product Property to expressions with multiple variables and coefficients.\n\n### Step 1: Raise Each Factor to the Power\n\n$$\n(b^8c^6d^5)(7b^6c^2d) = 7b^{8+6}c^{6+2}d^{5+1} = 7b^{14}c^8d^6\n$$\n$$\n(14fg^2h^2)(3f^4g^2h^2) = 42f^{1+4}g^{2+2}h^{2+2} = 42f^5g^4h^4\n$$\n### Step 2: Combine Multiple Properties\n\nWhen multiplying a power raised to a power, multiply the exponents:\n\n$$\n(2a^3)^4(a^3)^3 = 2^4 \\cdot a^{3 \\cdot 4} \\cdot a^{3 \\cdot 3} = 16a^{12}a^9 = 16a^{21}\n$$\n$$\n(c^3)^2(-3c^5)^2 = c^6 \\cdot 9c^{10} = 9c^{16}\n$$"
+        "markdown": "### Problem\n\nSimplify $(2a^3)^4(a^3)^3$.\n\n### Solution\n\nRaise each factor in the first parentheses to the fourth power: $(2a^3)^4=16a^{12}$. The second factor is $a^9$. Multiply to obtain $16a^{21}$."
       },
       {
         "phaseNumber": 8,
@@ -4791,19 +4791,19 @@
         "phaseNumber": 5,
         "title": "Example 1 — Quotient of Powers",
         "phaseType": "worked_example",
-        "markdown": "Divide expressions with the same base using the Quotient of Powers Property.\n\n### Step 1: Subtract the Exponents\n\nWhen dividing powers with the same base, subtract the exponent of the divisor from the exponent of the dividend.\n\n$$\n\\frac{m^4p^2}{m^2p} = m^{4-2}p^{2-1} = m^2p\n$$\n$$\n\\frac{c^4d^4f^3}{c^2d^4f^3} = c^{4-2}d^{4-4}f^{3-3} = c^2d^0f^0 = c^2\n$$\n### Step 2: Simplify Completely\n\nReduce coefficients and combine like variables using exponent rules.\n\n$$\n\\frac{32x^3y^2z^5}{-8xyz^2} = -4x^{3-1}y^{2-1}z^{5-2} = -4x^2y^1z^3\n$$\n$$\n\\frac{9d^7}{3d^6} = 3d^{7-6} = 3d\n$$"
+        "markdown": "### Problem\n\nSimplify $32x^3y^2z^5/(-8xyz^2)$. State restrictions from the original denominator.\n\n### Solution\n\nThe original expression requires x, y, and z to be nonzero. Divide coefficients and subtract exponents: $-4x^{3-1}y^{2-1}z^{5-2}=-4x^2yz^3$. The original restrictions remain even though the simplified expression has no denominator."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Real-World Ratios",
         "phaseType": "worked_example",
-        "markdown": "Apply exponent properties to solve problems involving ratios and exponential relationships.\n\n### Step 1: Set Up the Ratio\n\nThe distance from Earth to the Moon is approximately [25^4] kilometers. Olympus Mons is 25 kilometers high. How many volcanoes stacked would fit between Earth and the Moon?\n\n$$\n\\frac{25^4}{25} = 25^{4-1} = 25^3 = 15,625 \\text{ volcanoes}\n$$\n### Step 2: Apply to Combinations and Blood Counts\n\nThe number of four-letter combinations from the alphabet is [26^4]. Six-letter combinations is [26^6].\n\n$$\n\\frac{26^6}{26^4} = 26^{6-4} = 26^2 = 676 \\text{ times more six-letter combinations}\n$$\nA cubic millimeter of blood contains [22^5] red blood cells and [22^3] white blood cells:\n\n$$\n\\frac{22^5}{22^3} = 22^{5-3} = 22^2 = 484 \\text{ times more red blood cells}\n$$"
+        "markdown": "### Problem\n\nAn identifier uses any of 26 letters in each position, with repetition allowed. How many times as many six-letter identifiers as four-letter identifiers are possible?\n\n### Solution\n\nThe counts are $26^6$ and $26^4$. Their ratio is $26^{6-4}=26^2=676$. There are 676 times as many six-letter identifiers."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Power of a Quotient",
         "phaseType": "worked_example",
-        "markdown": "Raise quotients to powers using the Power of a Quotient Property.\n\n### Step 1: Raise Both Numerator and Denominator\n\n$$\n\\left(\\frac{3np^3}{7q^2}\\right)^2 = \\frac{9n^2p^6}{49q^4}\n$$\n$$\n\\left(\\frac{2r^3t^6}{5u^9}\\right)^4 = \\frac{16r^{12}t^{24}}{625u^{36}}\n$$\n### Step 2: Simplify Complex Expressions\n\n$$\n\\left(\\frac{24a^{11}b^{16}c^6}{18a^6b^6c^6}\\right)^3 = \\left(\\frac{4a^5b^{10}}{3}\\right)^3 = \\frac{64a^{15}b^{30}}{27}\n$$"
+        "markdown": "### Problem\n\nSimplify $\\left(3np^3/(7q^2)\\right)^2$ for q≠0.\n\n### Solution\n\nSquare the numerator and denominator: $9n^2p^6/(49q^4)$. The condition q≠0 remains. A power applies to the coefficient as well as every variable factor."
       },
       {
         "phaseNumber": 8,
@@ -4853,19 +4853,19 @@
         "phaseNumber": 5,
         "title": "Example 1 — Simplifying Expressions with Negative Exponents",
         "phaseType": "worked_example",
-        "markdown": "Rewrite expressions using only positive exponents.\n\n### Step 1: Apply the Negative Exponent Definition\n\nConvert negative exponents to positive by moving factors between numerator and denominator.\n\n$$\n\\frac{r^6n^{-7}}{r^4n^2} = \\frac{r^6}{r^4} \\cdot \\frac{n^{-7}}{n^2} = r^2 \\cdot n^{-9} = \\frac{r^2}{n^9}\n$$\n$$\n\\frac{f^{-7}}{f^4} = f^{-7-4} = f^{-11} = \\frac{1}{f^{11}}\n$$\n### Step 2: Simplify Completely\n\n$$\n\\frac{-15t^0u^{-1}}{5u^3} = \\frac{-15 \\cdot 1 \\cdot u^{-1}}{5u^3} = -3u^{-1-3} = -3u^{-4} = -\\frac{3}{u^4}\n$$\n$$\n\\frac{(z^2w^{-1})^3}{(z^3w^2)^2} = \\frac{z^6w^{-3}}{z^6w^4} = z^{6-6}w^{-3-4} = w^{-7} = \\frac{1}{w^7}\n$$"
+        "markdown": "### Problem\n\nRewrite $r^6n^{-7}/(r^4n^2)$ with positive exponents. Assume r≠0 and n≠0.\n\n### Solution\n\nSubtract exponents for each base: $r^{6-4}n^{-7-2}=r^2n^{-9}=r^2/n^9$. Keep both original nonzero restrictions."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Orders of Magnitude",
         "phaseType": "worked_example",
-        "markdown": "Compare very large and very small quantities using orders of magnitude (powers of 10).\n\n### Step 1: Calculate the Ratio as a Power of 10\n\nA dust mite measures [10^{-3}] millimeters. A gecko measures 10 centimeters = [10^2] millimeters.\n\n$$\n\\frac{10^2}{10^{-3}} = 10^{2-(-3)} = 10^5\n$$\nThe gecko is [10^5] (five orders of magnitude) longer than the mite.\n\n### Step 2: Apply to Real-World Comparisons\n\nA paper clip weighs about [10^{-3}] kilograms. A draft horse weighs about [10^3] kilograms.\n\n$$\n\\frac{10^3}{10^{-3}} = 10^6\n$$\nThe draft horse is six orders of magnitude heavier than a paper clip.\n\nGDP comparisons: Indonesia's GDP is approximately $1.02 \\times 10^{12}$ while Madagascar's is approximately $1.04 \\times 10^{10}$. The ratio is approximately [10^2] (two orders of magnitude)."
+        "markdown": "### Problem\n\nTwo modeled lengths are $10^2$ mm and $10^{-3}$ mm. Find their ratio and the difference in orders of magnitude.\n\n### Solution\n\nThe ratio is $10^2/10^{-3}=10^{2-(-3)}=10^5$. The larger length is 100000 times the smaller, a difference of five orders of magnitude."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Complex Expressions with Negative Exponents",
         "phaseType": "worked_example",
-        "markdown": "Simplify expressions involving multiple factors and operations.\n\n### Step 1: Apply Quotient of Powers First\n\n$$\n\\left(\\frac{2a^{-2}b^4c^2}{-4a^{-2}b^{-5}c^{-7}}\\right)^{-1} = \\left(\\frac{2b^4c^2}{-4b^{-5}c^{-7}}\\right)^{-1} = \\left(\\frac{b^9c^9}{-2}\\right)^{-1} = -\\frac{2}{b^9c^9}\n$$\n### Step 2: Handle Multiple Negative Exponents\n\n$$\n\\left(\\frac{-3x^{-6}y^{-1}z^{-2}}{6x^{-2}yz^{-5}}\\right)^{-2} = \\left(\\frac{-3x^{-6}y^{-1}z^{-2}}{6x^{-2}yz^{-5}}\\right)^{-2}\n$$\nSimplify inside first, then apply the outer negative exponent."
+        "markdown": "### Problem\n\nSimplify $\\left((-3x^{-6}y^{-1}z^{-2})/(6x^{-2}yz^{-5})\\right)^{-2}$. Assume x, y, and z are nonzero.\n\n### Solution\n\nInside the parentheses, divide coefficients and subtract exponents to get $-z^3/(2x^4y^2)$. The outer power -2 takes the reciprocal and squares: $\\left(-2x^4y^2/z^3\\right)^2=4x^8y^4/z^6$."
       },
       {
         "phaseNumber": 8,
@@ -4915,25 +4915,25 @@
         "phaseNumber": 5,
         "title": "Example 1 — Converting Between Forms",
         "phaseType": "worked_example",
-        "markdown": "Convert expressions between radical form and exponential form.\n\n### Step 1: Convert Exponential to Radical\n\n$$\n15^{\\frac{1}{2}} = \\sqrt{15}\n$$\n$$\n24^{\\frac{1}{2}} = \\sqrt{24}\n$$\n$$\n4k^{\\frac{1}{2}} = 4\\sqrt{k}\n$$\n### Step 2: Convert Radical to Exponential\n\n$$\n\\sqrt{26} = 26^{\\frac{1}{2}}\n$$\n$$\n\\sqrt{44} = 44^{\\frac{1}{2}}\n$$\n$$\n2\\sqrt{ab} = 2(ab)^{\\frac{1}{2}} = 2a^{\\frac{1}{2}}b^{\\frac{1}{2}}\n$$"
+        "markdown": "### Problem\n\nWrite $15^{1/2}$ in radical form. Write $2\\sqrt{ab}$ using rational exponents when a≥0 and b≥0.\n\n### Solution\n\nThe first expression is $\\sqrt{15}$. The second is $2(ab)^{1/2}=2a^{1/2}b^{1/2}$. The separate square roots require a and b to be nonnegative. A nonnegative product alone does not ensure that both separate real square roots exist."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Evaluating Rational Exponents",
         "phaseType": "worked_example",
-        "markdown": "Evaluate expressions with rational exponents.\n\n### Step 1: Evaluate Perfect Powers\n\n$$\n\\left(\\frac{1}{16}\\right)^{\\frac{1}{4}} = \\frac{1}{\\sqrt[4]{16}} = \\frac{1}{2}\n$$\n$$\n\\sqrt[5]{3125} = 3125^{\\frac{1}{5}} = 5\n$$\n$$\n729^{\\frac{1}{3}} = \\sqrt[3]{729} = 9\n$$\n### Step 2: Evaluate Mixed Numerator and Denominator\n\n$$\n729^{\\frac{5}{6}} = (\\sqrt[6]{729})^5 = 3^5 = 243\n$$\n$$\n256^{\\frac{3}{8}} = (\\sqrt[8]{256})^3 = 2^3 = 8\n$$\n$$\n\\left(\\frac{9}{100}\\right)^{\\frac{3}{2}} = \\left(\\frac{3}{10}\\right)^3 = \\frac{27}{1000}\n$$"
+        "markdown": "### Problem\n\nEvaluate $729^{5/6}$ and $(9/100)^{3/2}$ exactly.\n\n### Solution\n\nSince $729=3^6$, the first value is $3^5=243$. The principal square root of 9/100 is 3/10, so the second value is $(3/10)^3=27/1000$."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Real-World Applications",
         "phaseType": "worked_example",
-        "markdown": "Apply rational exponents in formulas from science and geometry.\n\n### Step 1: Velocity Formula\n\nThe velocity of a freely falling object: $v = 8h^{\\frac{1}{2}}$. If the object has fallen 144 feet:\n\n$$\nv = 8 \\cdot \\sqrt{144} = 8 \\cdot 12 = 96 \\text{ feet per second}\n$$\n### Step 2: Geometry Formulas\n\nSurface area of a cube: $S = 6V^{\\frac{2}{3}}$. For a cube with volume 4096 cubic inches:\n\n$$\nS = 6 \\cdot \\sqrt[3]{4096^2} = 6 \\cdot (16)^2 = 6 \\cdot 256 = 1536 \\text{ square inches}\n$$\n### Step 3: Astronomy\n\nAverage distance from Sun: $d = t^{\\frac{2}{3}}$ where [t] is in Earth years. For a planet with 27-year orbit:\n\n$$\nd = \\sqrt[3]{27^2} = \\sqrt[3]{729} = 9 \\text{ astronomical units}\n$$\n### Step 4: Biology\n\nMetabolism relationship: $P = 73.3\\sqrt[4]{m^3}$. For a 16-kilogram organism:\n\n$$\nP = 73.3 \\cdot \\sqrt[4]{16^3} = 73.3 \\cdot \\sqrt[4]{4096} = 73.3 \\cdot 8 = 586.4 \\text{ Calories per day}\n$$"
+        "markdown": "### Problem\n\nA cube has volume 4096 cubic inches. Express its surface area using a rational power of its volume, then evaluate.\n\n### Solution\n\nIf the side is s, then $V=s^3$ and $s=V^{1/3}$. Thus $S=6s^2=6V^{2/3}$. The cube root of 4096 is 16, so the surface area is $6(16^2)=1536$ square inches."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — Simplifying Expressions with Rational Exponents",
         "phaseType": "worked_example",
-        "markdown": "Apply exponent properties to simplify expressions with rational exponents.\n\n### Step 1: Multiply Rational Exponents\n\n$$\na^{\\frac{1}{3}} \\cdot a^{\\frac{2}{3}} = a^{\\frac{1}{3}+\\frac{2}{3}} = a^1 = a\n$$\n$$\nc^{\\frac{1}{2}} \\cdot c^{\\frac{3}{2}} = c^{\\frac{1}{2}+\\frac{3}{2}} = c^2\n$$\n### Step 2: Apply Power of a Power\n\n$$\n(8^2)^{\\frac{2}{3}} = 64^{\\frac{2}{3}} = (\\sqrt[3]{64})^2 = 4^2 = 16\n$$\n$$\n\\left(y^{\\frac{3}{4}}\\right)^{\\frac{1}{2}} = y^{\\frac{3}{4} \\cdot \\frac{1}{2}} = y^{\\frac{3}{8}}\n$$\n### Step 3: Handle Negative Rational Exponents\n\n$$\n9^{-\\frac{1}{2}} = \\frac{1}{9^{\\frac{1}{2}}} = \\frac{1}{3}\n$$\n$$\n16^{-\\frac{3}{2}} = \\frac{1}{16^{\\frac{3}{2}}} = \\frac{1}{64}\n$$"
+        "markdown": "### Problem\n\nSimplify $(y^{3/4})^{1/2}$ for y≥0 and evaluate $16^{-3/2}$.\n\n### Solution\n\nFor the stated nonnegative domain, multiply the exponents: $(y^{3/4})^{1/2}=y^{3/8}$. The negative exponent gives $16^{-3/2}=1/(\\sqrt{16})^3=1/64$."
       },
       {
         "phaseNumber": 9,
@@ -4983,31 +4983,31 @@
         "phaseNumber": 5,
         "title": "Example 1 — Simplifying Square Roots",
         "phaseType": "worked_example",
-        "markdown": "Simplify square root expressions by identifying perfect square factors.\n\n### Step 1: Factor Out Perfect Squares\n\n$$\n\\sqrt{52} = \\sqrt{4 \\cdot 13} = 2\\sqrt{13}\n$$\n$$\n\\sqrt{56} = \\sqrt{4 \\cdot 14} = 2\\sqrt{14}\n$$\n$$\n\\sqrt{72} = \\sqrt{36 \\cdot 2} = 6\\sqrt{2}\n$$\n### Step 2: Simplify Variable Expressions\n\n$$\n\\sqrt{16b^4} = 4b^2\n$$\n$$\n\\sqrt{81a^{12}d^4} = 9a^6d^2\n$$\n$$\n\\sqrt{28a^4b^3} = \\sqrt{4 \\cdot 7 \\cdot a^4 \\cdot b^2 \\cdot b} = 2a^2b\\sqrt{7b}\n$$"
+        "markdown": "### Problem\n\nSimplify $\\sqrt{52}$ and $\\sqrt{16b^2}$ for real b.\n\n### Solution\n\nFactor out the perfect square: $\\sqrt{52}=\\sqrt{4\\cdot13}=2\\sqrt{13}$. The principal square root is nonnegative, so $\\sqrt{16b^2}=4|b|$. It equals 4b only when b≥0."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Multiplying Radicals",
         "phaseType": "worked_example",
-        "markdown": "Multiply radical expressions and simplify the result.\n\n### Step 1: Multiply Under the Radical\n\n$$\n\\sqrt{5} \\cdot \\sqrt{10} = \\sqrt{50} = \\sqrt{25 \\cdot 2} = 5\\sqrt{2}\n$$\n$$\n\\sqrt{10} \\cdot \\sqrt{20} = \\sqrt{200} = \\sqrt{100 \\cdot 2} = 10\\sqrt{2}\n$$\n### Step 2: Simplify the Product\n\n$$\n\\sqrt{2} \\cdot \\sqrt{10} = \\sqrt{20} = 2\\sqrt{5}\n$$\n$$\n\\sqrt{8} \\cdot \\sqrt{12} = \\sqrt{96} = \\sqrt{16 \\cdot 6} = 4\\sqrt{6}\n$$"
+        "markdown": "### Problem\n\nSimplify $\\sqrt{8}\\sqrt{12}$.\n\n### Solution\n\nBoth radicands are nonnegative, so the product is $\\sqrt{96}=\\sqrt{16\\cdot6}=4\\sqrt{6}$. The real-number product rule for square roots requires nonnegative radicands."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Dividing Radicals",
         "phaseType": "worked_example",
-        "markdown": "Apply the Quotient Property to simplify radical expressions involving fractions.\n\n### Step 1: Apply Quotient Property\n\n$$\n\\sqrt{\\frac{75}{49}} = \\frac{\\sqrt{75}}{\\sqrt{49}} = \\frac{\\sqrt{25 \\cdot 3}}{7} = \\frac{5\\sqrt{3}}{7}\n$$\n$$\n\\sqrt{\\frac{8}{81}} = \\frac{\\sqrt{8}}{\\sqrt{81}} = \\frac{2\\sqrt{2}}{9}\n$$\n$$\n\\sqrt{\\frac{84}{121}} = \\frac{\\sqrt{84}}{\\sqrt{121}} = \\frac{2\\sqrt{21}}{11}\n$$"
+        "markdown": "### Problem\n\nSimplify $\\sqrt{75/49}$.\n\n### Solution\n\nThe denominator is positive, so $\\sqrt{75/49}=\\sqrt{75}/7=5\\sqrt{3}/7$."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — Real-World Applications",
         "phaseType": "worked_example",
-        "markdown": "Apply radical formulas to solve real-world problems involving measurement.\n\n### Step 1: Tsunami Velocity\n\nThe velocity formula is $V = \\sqrt{16} \\cdot \\sqrt{d}$. In 300 feet of water:\n\n$$\nV = 4 \\cdot \\sqrt{300} = 4 \\cdot 10\\sqrt{3} = 40\\sqrt{3} \\text{ feet per second}\n$$\n### Step 2: Pendulum Period\n\nThe period formula is $t = 0.2\\sqrt{p}$ where [p] is the pendulum length in centimeters. For a 22 cm pendulum:\n\n$$\nt = 0.2 \\cdot \\sqrt{22} \\approx 0.2 \\cdot 4.7 = 0.94 \\text{ seconds}\n$$\n### Step 3: Horizon Distance\n\nThe distance to the horizon formula is $d = \\sqrt{\\frac{3h}{2}}$ where [h] is height in feet. For someone 60 feet above sea level:\n\n$$\nd = \\sqrt{\\frac{180}{2}} = \\sqrt{90} = 3\\sqrt{10} \\text{ miles}\n$$"
+        "markdown": "### Problem\n\nA model gives a pendulum period of $t=0.2\\sqrt{p}$ seconds for length p in centimeters. Use the model for p=22 and round to the nearest hundredth.\n\n### Solution\n\nSubstitute the given length: $t=0.2\\sqrt{22}\\approx0.9381$ seconds. The rounded result is 0.94 seconds. This answer uses the stated approximation; retain the exact radical until rounding."
       },
       {
         "phaseNumber": 9,
         "title": "Example 5 — Cube Roots and Higher Index Radicals",
         "phaseType": "worked_example",
-        "markdown": "Simplify cube roots and other radicals with indices greater than 2.\n\n### Step 1: Identify Perfect Cubes\n\n$$\n\\sqrt[3]{8} = 2\n$$\n$$\n\\sqrt[3]{125} = 5\n$$\n$$\n\\sqrt[3]{216} = 6\n$$\n### Step 2: Simplify Expressions with Variables\n\n$$\n\\sqrt[3]{54b^8} = \\sqrt[3]{27 \\cdot 2 \\cdot b^6 \\cdot b^2} = 3b^2\\sqrt[3]{2b^2}\n$$\n$$\n\\sqrt[3]{10yz^5} \\cdot \\sqrt[3]{4y^3} = \\sqrt[3]{40y^4z^5} = \\sqrt[3]{8 \\cdot 5 \\cdot y^3 \\cdot y \\cdot z^3 \\cdot z^2} = 2yz\\sqrt[3]{5yz^2}\n$$\n### Step 3: Simplify Quotients of Cube Roots\n\n$$\n\\sqrt[3]{\\frac{162}{375}} = \\sqrt[3]{\\frac{54}{125}} = \\frac{\\sqrt[3]{54}}{\\sqrt[3]{125}} = \\frac{3\\sqrt[3]{2}}{5}\n$$"
+        "markdown": "### Problem\n\nSimplify $\\sqrt[3]{54b^8}$ for real b.\n\n### Solution\n\nFactor the radicand as $27b^6(2b^2)$. The cube root of $27b^6$ is $3b^2$. Therefore the expression is $3b^2\\sqrt[3]{2b^2}$. Odd roots are defined for negative real inputs and do not require the absolute-value rule used for square roots."
       },
       {
         "phaseNumber": 10,
@@ -5063,31 +5063,31 @@
         "phaseNumber": 6,
         "title": "Example 1 — Add and Subtract Like Radicals",
         "phaseType": "worked_example",
-        "markdown": "Combine radical terms that already have the same radicand by adding or subtracting their coefficients.\n\n### Step 1: Identify Like Radicals\n\nRecognize that all terms share the same radicand. Only coefficients may differ.\n\n### Step 2: Combine the Coefficients\n\nAdd or subtract the numerical coefficients while keeping the radical part unchanged.\n\n### Step 3: Simplify the Result\n\nWrite the combined coefficient multiplied by the common radical.\n\n$$\n3\\sqrt{13} + 7\\sqrt{13} = (3 + 7)\\sqrt{13} = 10\\sqrt{13}\n$$\n$$\n12\\sqrt{r} - 9\\sqrt{r} = (12 - 9)\\sqrt{r} = 3\\sqrt{r}\n$$\nWhen three or more terms are present, combine them in order:\n\n$$\n9\\sqrt{6a} - 11\\sqrt{6a} + 4\\sqrt{6a} = (9 - 11 + 4)\\sqrt{6a} = 2\\sqrt{6a}\n$$"
+        "markdown": "### Problem\n\nSimplify $9\\sqrt{6a}-11\\sqrt{6a}+4\\sqrt{6a}$ for a≥0.\n\n### Solution\n\nThe radical parts are identical, so combine coefficients: $(9-11+4)\\sqrt{6a}=2\\sqrt{6a}$. The condition a≥0 makes the square roots real."
       },
       {
         "phaseNumber": 7,
         "title": "Example 2 — Simplify Before Adding or Subtracting",
         "phaseType": "worked_example",
-        "markdown": "Simplify radicals to reveal hidden like terms, then combine.\n\n### Step 1: Factor the Radicand\n\nIdentify perfect-square factors within each radicand to simplify the radical expressions.\n\n### Step 2: Simplify Each Term\n\nRewrite each radical in simplest form by extracting perfect squares.\n\n$$\n3\\sqrt{5} - 2\\sqrt{20} = 3\\sqrt{5} - 2\\sqrt{4 \\cdot 5} = 3\\sqrt{5} - 4\\sqrt{5}\n$$\n### Step 3: Combine Like Radicals\n\nAdd or subtract the coefficients of the now-like radicals.\n\n$$\n3\\sqrt{5} - 4\\sqrt{5} = -\\sqrt{5}\n$$\nFor expressions with multiple unlike radicals, simplify each term and group like radicals:\n\n$$\n7\\sqrt{3} - 2\\sqrt{2} + 3\\sqrt{2} + 5\\sqrt{3} = (7\\sqrt{3} + 5\\sqrt{3}) + (-2\\sqrt{2} + 3\\sqrt{2}) = 12\\sqrt{3} + \\sqrt{2}\n$$"
+        "markdown": "### Problem\n\nSimplify $3\\sqrt{5}-2\\sqrt{20}$.\n\n### Solution\n\nFirst rewrite $\\sqrt{20}=2\\sqrt{5}$. Then $3\\sqrt{5}-2(2\\sqrt{5})=-\\sqrt{5}$. Simplification reveals the like radical terms."
       },
       {
         "phaseNumber": 8,
         "title": "Example 3 — Apply Radical Operations to Real-World Problems",
         "phaseType": "worked_example",
-        "markdown": "Use addition and subtraction of radicals to solve perimeter, distance, and measurement problems.\n\n### Step 1: Identify Relevant Lengths or Distances\n\nRead the problem to find the lengths or distances expressed as radicals.\n\nPerimeter of a regular pentagon with side length $ 23\\sqrt{149} $ meters:\n\n$$\nP = 5 \\times 23\\sqrt{149} = 115\\sqrt{149}\n$$\nTotal distance traveled on three trails:\n\n$$\n2\\sqrt{3} + 4\\sqrt{3} + 3\\sqrt{3} = 9\\sqrt{3} \\text{ kilometers}\n$$\n### Step 2: Perform the Operation and Simplify\n\nDetermine the correct operation based on context (perimeter means add, difference means subtract), then simplify.\n\nDifference between two radii:\n\n$$\n\\sqrt{\\frac{400}{\\pi}} - \\sqrt{\\frac{200}{\\pi}} = \\frac{20}{\\sqrt{\\pi}} - \\frac{10\\sqrt{2}}{\\sqrt{\\pi}} = \\frac{20 - 10\\sqrt{2}}{\\sqrt{\\pi}}\n$$"
+        "markdown": "### Problem\n\nThree successive trail sections have lengths $2\\sqrt{3}$ km, $4\\sqrt{3}$ km, and $3\\sqrt{3}$ km. Find the exact total length.\n\n### Solution\n\nAdd the three lengths: $(2+4+3)\\sqrt{3}=9\\sqrt{3}$ km. The shared radical stays unchanged while the coefficients add."
       },
       {
         "phaseNumber": 9,
         "title": "Example 4 — Multiply Radical Expressions",
         "phaseType": "worked_example",
-        "markdown": "Multiply two radical expressions using the product property of radicals.\n\n### Step 1: Multiply the Coefficients\n\nMultiply the numerical coefficients together.\n\n### Step 2: Multiply the Radicands\n\nMultiply the radicands together under a single radical.\n\n$$\n6\\sqrt{7} \\cdot 2\\sqrt{8} = 12\\sqrt{56}\n$$\n### Step 3: Simplify the Result\n\nFactor out perfect squares from the resulting radicand.\n\n$$\n12\\sqrt{56} = 12\\sqrt{4 \\cdot 14} = 24\\sqrt{14}\n$$\nWhen the product of radicands is already a perfect square:\n\n$$\n7\\sqrt{10} \\cdot 4\\sqrt{10} = 28\\sqrt{100} = 28 \\cdot 10 = 280\n$$"
+        "markdown": "### Problem\n\nSimplify $(6\\sqrt{7})(2\\sqrt{8})$.\n\n### Solution\n\nMultiply coefficients to get 12 and radicands to get 56. Thus the product is $12\\sqrt{56}=12(2\\sqrt{14})=24\\sqrt{14}$."
       },
       {
         "phaseNumber": 10,
         "title": "Example 5 — Distribute a Radical Over a Binomial",
         "phaseType": "worked_example",
-        "markdown": "Use the distributive property to multiply a radical expression by a sum or difference of radicals.\n\n### Step 1: Distribute the Radical\n\nApply the outside radical to each term inside the parentheses.\n\n$$\n\\sqrt{6}(2\\sqrt{10} + 3\\sqrt{2}) = 2\\sqrt{60} + 3\\sqrt{12}\n$$\n### Step 2: Multiply and Simplify Each Term\n\nMultiply coefficients and radicands, then simplify each resulting radical.\n\n$$\n2\\sqrt{60} + 3\\sqrt{12} = 2\\sqrt{4 \\cdot 15} + 3\\sqrt{4 \\cdot 3} = 4\\sqrt{15} + 6\\sqrt{3}\n$$\nWith a coefficient on the outside radical:\n\n$$\n4\\sqrt{5}(3\\sqrt{5} + 8\\sqrt{2}) = 12\\sqrt{25} + 32\\sqrt{10} = 12 \\cdot 5 + 32\\sqrt{10} = 60 + 32\\sqrt{10}\n$$"
+        "markdown": "### Problem\n\nExpand and simplify $\\sqrt{6}(2\\sqrt{10}+3\\sqrt{2})$.\n\n### Solution\n\nDistribute to get $2\\sqrt{60}+3\\sqrt{12}$. Extract perfect squares to obtain $4\\sqrt{15}+6\\sqrt{3}$. These two radical terms are unlike and do not combine further."
       },
       {
         "phaseNumber": 11,
@@ -5137,19 +5137,19 @@
         "phaseNumber": 5,
         "title": "Example 1 — Solve Exponential Equations with Common Bases",
         "phaseType": "worked_example",
-        "markdown": "Solve each equation by rewriting both sides with the same base.\n\n### Step 1: Identify a Common Base\n\nFor [2^x = 512], recognize that [512 = 2^9], so rewrite as [2^x = 2^9] and set [x = 9].\n\nFor [3^x = 243], recognize that [243 = 3^5], so rewrite as [3^x = 3^5] and set [x = 5].\n\nFor [6^x = 46656], find the power: [6^6 = 46656], so [x = 6].\n\nFor [5^x = 125], recognize that [125 = 5^3], so [x = 3].\n\n### Step 2: Solve for the Variable\n\nWork through each equation by expressing the right side as a power of the left side's base:\n\n$$\n2^x = 512 \\Rightarrow 2^x = 2^9 \\Rightarrow x = 9\n$$\n$$\n3^x = 243 \\Rightarrow 3^x = 3^5 \\Rightarrow x = 5\n$$\n$$\n6^x = 46656 \\Rightarrow 6^x = 6^6 \\Rightarrow x = 6\n$$\n$$\n5^x = 125 \\Rightarrow 5^x = 5^3 \\Rightarrow x = 3\n$$"
+        "markdown": "### Problem\n\nSolve $2^x=512$ over the real numbers.\n\n### Solution\n\nSince $512=2^9$, the equation is $2^x=2^9$. The function $2^x$ is one-to-one, so x=9. Substitution gives 512 on both sides."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Solve Equations with Exponent Operations",
         "phaseType": "worked_example",
-        "markdown": "Solve equations where exponents involve sums, differences, or coefficients by first simplifying each side to a common base or form.\n\n### Step 1: Simplify Exponents Before Matching\n\nFor [3^{x-3} = 243], note that [243 = 3^5], so [3^{x-3} = 3^5], giving [x - 3 = 5] and [x = 8].\n\nFor [4^{x-1} = 1024], note that [1024 = 4^5] (since [4^5 = 1024]), so [4^{x-1} = 4^5], giving [x - 1 = 5] and [x = 6].\n\nFor [6^{x-1} = 1296], find that [1296 = 6^4], so [6^{x-1} = 6^4], giving [x - 1 = 4] and [x = 5].\n\nFor [4^{2x+1} = 1024], note [1024 = 4^5], so [4^{2x+1} = 4^5], giving [2x + 1 = 5] and [x = 2].\n\n### Step 2: Apply to Equations with Multiple Coefficients\n\nFor [2^{4x+3} = 2048], find [2048 = 2^{11}], so [2^{4x+3} = 2^{11}], giving [4x + 3 = 11] and [x = 2].\n\nFor [3^{3x+3} = 6561], find [6561 = 3^8], so [3^{3x+3} = 3^8], giving [3x + 3 = 8] and $x = \\frac{5}{3}$."
+        "markdown": "### Problem\n\nSolve $3^{3x+3}=6561$.\n\n### Solution\n\nWrite $6561=3^8$. Equal powers of the same positive base other than 1 have equal exponents. Thus 3x+3=8, so x=5/3. Substitution gives exponent 8."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Exponential Equations in Applied Contexts",
         "phaseType": "worked_example",
-        "markdown": "Use exponential models to solve real-world problems involving electricity, video views, and land development.\n\n### Step 1: Translate the Real-World Situation into an Equation\n\n**Electricity Problem:** Given $I\\sqrt{R} = \\sqrt{P}$ with [I = 2.5] amperes and [P = 100] watts, solve for [R].\n\n$$\n2.5\\sqrt{R} = \\sqrt{100} = 10\n$$\n$$\n\\sqrt{R} = 4\n$$\n$$\nR = 16 \\text{ ohms}\n$$\n**Video Views Problem:** Given [v = 4^{1.25d}] and [v = 1024], solve for [d].\n\n[\n1024 = 4^{1.25d}\n]\n[\n1024 = 4^5 = 4^{1.25(4)}\n]\n$$\nd = 4 \\text{ days}\n$$\n**Land Development Problem:** Given $A = 6250 \\cdot 10^{-0.1t}$ and [A = 62.5], solve for [t].\n\n$$\n62.5 = 6250 \\cdot 10^{-0.1t}\n$$\n[\n0.01 = 10^{-0.1t}\n]\n[\n10^{-2} = 10^{-0.1t}\n]\n$$\nt = 20 \\text{ months}\n$$\n### Step 2: Check Units and Context\n\nVerify that answers make sense in context. For instance, the electricity problem asks for resistance, so a positive value of 16 ohms is reasonable."
+        "markdown": "### Problem\n\nA model for remaining undeveloped area is $A(t)=6250\\cdot10^{-0.1t}$ square meters, where t is months. Find when the area reaches 62.5 square meters.\n\n### Solution\n\nDivide by 6250 to obtain $0.01=10^{-0.1t}$. Since $0.01=10^{-2}$, solve -0.1t=-2 to get t=20 months. Substitution gives $6250(0.01)=62.5$ square meters."
       },
       {
         "phaseNumber": 8,

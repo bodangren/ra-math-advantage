@@ -67,81 +67,34 @@ $$
 $$
 ## Example 1 — Product of Powers
 
-Multiply expressions with the same base using the Product of Powers Property.
+### Problem
 
-### Step 1: Identify the Common Base
+Simplify $(y^6z^9)(6y^4z^2)$ for real y and z.
 
-When multiplying powers, identify expressions that share the same base variable.
+### Solution
 
-$$
-(q^2)(2q^4) = 2q^{2+4} = 2q^6
-$$
-$$
-(-2u^2)(6u^6) = -12u^{2+6} = -12u^8
-$$
-$$
-(y^6z^9)(6y^4z^2) = 6y^{6+4}z^{9+2} = 6y^{10}z^{11}
-$$
-### Step 2: Apply the Power of a Power
+Multiply the coefficients and add exponents for each common base: $6y^{6+4}z^{9+2}=6y^{10}z^{11}$. The product rule adds exponents; it does not multiply them.
 
-When an expression with an exponent is raised to another power, multiply all exponents involved.
-
-$$
-(j^5k^7)^4 = j^{5 \cdot 4}k^{7 \cdot 4} = j^{20}k^{28}
-$$
-$$
-(n^3p)^4 = n^{3 \cdot 4}p^{1 \cdot 4} = n^{12}p^4
-$$
-$$
-[(4r^2t)^3]^2 = (4r^2t)^6 = 4^6 \cdot r^{2 \cdot 6}t^{1 \cdot 6}
-$$
 ## Example 2 — Scientific Notation
 
-Apply exponent properties to express very large and very small numbers in scientific notation.
+### Problem
 
-### Step 1: Understand Scientific Notation
+Each of $1.5\times10^3$ students plants $1.2\times10^2$ flowers. Find the total in scientific notation.
 
-A number in scientific notation has the form $a \times 10^n$ where $1 \leq a < 10$ and $n$ is an integer.
+### Solution
 
-During a community service project, each student planted $1.2 \times 10^2$ flowers. With $1.5 \times 10^3$ students:
+Multiply coefficients and powers separately: $(1.5)(1.2)10^{3+2}=1.8\times10^5$ flowers. For a nonzero signed number in scientific notation, the coefficient magnitude is at least 1 and less than 10.
 
-$$
-(1.2 \times 10^2)(1.5 \times 10^3) = (1.2 \cdot 1.5) \times 10^{2+3} = 1.8 \times 10^5
-$$
-### Step 2: Solve Applied Problems
-
-A farmer has 350 cherry trees, each yielding 6200 cherries per year:
-
-$$
-350 \cdot 6200 = 3.5 \times 10^2 \cdot 6.2 \times 10^3 = 21.7 \times 10^5 = 2.17 \times 10^6
-$$
-An adult panda weighs $1.1 \times 10^3$ times more than a newborn panda weighing $2.2 \times 10^{-1}$ pounds:
-
-$$
-(2.2 \times 10^{-1})(1.1 \times 10^3) = 2.42 \times 10^2 \text{ pounds}
-$$
 ## Example 3 — Power of a Product
 
-Apply the Power of a Product Property to expressions with multiple variables and coefficients.
+### Problem
 
-### Step 1: Raise Each Factor to the Power
+Simplify $(2a^3)^4(a^3)^3$.
 
-$$
-(b^8c^6d^5)(7b^6c^2d) = 7b^{8+6}c^{6+2}d^{5+1} = 7b^{14}c^8d^6
-$$
-$$
-(14fg^2h^2)(3f^4g^2h^2) = 42f^{1+4}g^{2+2}h^{2+2} = 42f^5g^4h^4
-$$
-### Step 2: Combine Multiple Properties
+### Solution
 
-When multiplying a power raised to a power, multiply the exponents:
+Raise each factor in the first parentheses to the fourth power: $(2a^3)^4=16a^{12}$. The second factor is $a^9$. Multiply to obtain $16a^{21}$.
 
-$$
-(2a^3)^4(a^3)^3 = 2^4 \cdot a^{3 \cdot 4} \cdot a^{3 \cdot 3} = 16a^{12}a^9 = 16a^{21}
-$$
-$$
-(c^3)^2(-3c^5)^2 = c^6 \cdot 9c^{10} = 9c^{16}
-$$
 ## Mixed Exercises
 
 Practice problems covering all skills in the lesson:

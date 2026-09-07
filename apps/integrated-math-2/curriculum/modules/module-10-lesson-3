@@ -60,65 +60,33 @@ $$
 $$
 ## Example 1 — Simplifying Expressions with Negative Exponents
 
-Rewrite expressions using only positive exponents.
+### Problem
 
-### Step 1: Apply the Negative Exponent Definition
+Rewrite $r^6n^{-7}/(r^4n^2)$ with positive exponents. Assume r≠0 and n≠0.
 
-Convert negative exponents to positive by moving factors between numerator and denominator.
+### Solution
 
-$$
-\frac{r^6n^{-7}}{r^4n^2} = \frac{r^6}{r^4} \cdot \frac{n^{-7}}{n^2} = r^2 \cdot n^{-9} = \frac{r^2}{n^9}
-$$
-$$
-\frac{f^{-7}}{f^4} = f^{-7-4} = f^{-11} = \frac{1}{f^{11}}
-$$
-### Step 2: Simplify Completely
+Subtract exponents for each base: $r^{6-4}n^{-7-2}=r^2n^{-9}=r^2/n^9$. Keep both original nonzero restrictions.
 
-$$
-\frac{-15t^0u^{-1}}{5u^3} = \frac{-15 \cdot 1 \cdot u^{-1}}{5u^3} = -3u^{-1-3} = -3u^{-4} = -\frac{3}{u^4}
-$$
-$$
-\frac{(z^2w^{-1})^3}{(z^3w^2)^2} = \frac{z^6w^{-3}}{z^6w^4} = z^{6-6}w^{-3-4} = w^{-7} = \frac{1}{w^7}
-$$
 ## Example 2 — Orders of Magnitude
 
-Compare very large and very small quantities using orders of magnitude (powers of 10).
+### Problem
 
-### Step 1: Calculate the Ratio as a Power of 10
+Two modeled lengths are $10^2$ mm and $10^{-3}$ mm. Find their ratio and the difference in orders of magnitude.
 
-A dust mite measures [10^{-3}] millimeters. A gecko measures 10 centimeters = [10^2] millimeters.
+### Solution
 
-$$
-\frac{10^2}{10^{-3}} = 10^{2-(-3)} = 10^5
-$$
-The gecko is [10^5] (five orders of magnitude) longer than the mite.
-
-### Step 2: Apply to Real-World Comparisons
-
-A paper clip weighs about [10^{-3}] kilograms. A draft horse weighs about [10^3] kilograms.
-
-$$
-\frac{10^3}{10^{-3}} = 10^6
-$$
-The draft horse is six orders of magnitude heavier than a paper clip.
-
-GDP comparisons: Indonesia's GDP is approximately $1.02 \times 10^{12}$ while Madagascar's is approximately $1.04 \times 10^{10}$. The ratio is approximately [10^2] (two orders of magnitude).
+The ratio is $10^2/10^{-3}=10^{2-(-3)}=10^5$. The larger length is 100000 times the smaller, a difference of five orders of magnitude.
 
 ## Example 3 — Complex Expressions with Negative Exponents
 
-Simplify expressions involving multiple factors and operations.
+### Problem
 
-### Step 1: Apply Quotient of Powers First
+Simplify $\left((-3x^{-6}y^{-1}z^{-2})/(6x^{-2}yz^{-5})\right)^{-2}$. Assume x, y, and z are nonzero.
 
-$$
-\left(\frac{2a^{-2}b^4c^2}{-4a^{-2}b^{-5}c^{-7}}\right)^{-1} = \left(\frac{2b^4c^2}{-4b^{-5}c^{-7}}\right)^{-1} = \left(\frac{b^9c^9}{-2}\right)^{-1} = -\frac{2}{b^9c^9}
-$$
-### Step 2: Handle Multiple Negative Exponents
+### Solution
 
-$$
-\left(\frac{-3x^{-6}y^{-1}z^{-2}}{6x^{-2}yz^{-5}}\right)^{-2} = \left(\frac{-3x^{-6}y^{-1}z^{-2}}{6x^{-2}yz^{-5}}\right)^{-2}
-$$
-Simplify inside first, then apply the outer negative exponent.
+Inside the parentheses, divide coefficients and subtract exponents to get $-z^3/(2x^4y^2)$. The outer power -2 takes the reciprocal and squares: $\left(-2x^4y^2/z^3\right)^2=4x^8y^4/z^6$.
 
 ## Mixed Exercises
 

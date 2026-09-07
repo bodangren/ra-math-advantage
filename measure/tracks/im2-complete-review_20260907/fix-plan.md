@@ -168,3 +168,9 @@ Verification passed with 207 tests, lint, frontend and backend TypeScript, and p
 Completed 39 linear-equation, system, inequality, and optimization examples. There are now 281 complete headings. Corrected an inequality sign during the intermediate solution. The container-cost example now distinguishes the real-valued line intersection from valid integer orders. The optimization example correctly describes its unbounded directions and proves the missing minimum.
 
 Verification passed with 207 tests, lint, frontend and backend TypeScript, and production build.
+
+## Module 10 worked examples
+
+Completed 26 exponent and radical examples. The cumulative correction covers 307 headings. Examples now retain original nonzero denominator conditions, state nonnegative real-radical conditions, and use absolute value for the principal square root of a squared variable. The unfinished negative-exponent expression now has a complete solution. Unsupported biological and economic quantities are replaced with explicit mathematical models.
+
+Verification passed with 207 tests, lint, frontend and backend TypeScript, and production build.
