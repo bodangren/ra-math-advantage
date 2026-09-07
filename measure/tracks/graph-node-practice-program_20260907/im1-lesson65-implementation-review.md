@@ -29,3 +29,11 @@ The modified source examples `.022`, `.023`, `.024`, and `.026` remain approved 
 The author reports 105 curriculum tests, 36 coverage and audit tests, and lint passing. Four existing test typing errors remain in the isolated baseline. The build was running when this review started.
 
 These results do not resolve the missing source conditions or selected source approval status. The parent must inspect the final candidate and required gates before integration.
+
+## Parent projection review
+
+The candidate removes exactly six legacy Lesson 6-5 placeholder activities. Every remaining activity record is unchanged. It preserves all prior SRS and teacher skill identities. It adds 11 inactive planning rows to each projection. The generator queue preserves its prior order and changes only the two selected legacy reason fields before appending 11 gaps.
+
+A direct assertion found an incomplete prerequisite repair. The graph removes edge `math.im1.edge.1259`, but the Lesson 7-1 systems capability still lists the legacy Lesson 6-5 systems row as a prerequisite in both `projection/srs-input.json` and the embedded SRS inputs in `projection/practice-v1-activity-map.json`.
+
+Regenerate the exact affected Lesson 7-1 projection through the existing projector. Preserve its other fields. Add a regression that checks the withdrawn prerequisite in both consumer projections. Also check prerequisite gaps derived from the two removed edges. Graph edge removal alone does not complete this repair.
