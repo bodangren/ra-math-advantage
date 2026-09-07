@@ -81,13 +81,14 @@ Plot the original triangle and its dilated image on the coordinate plane.
 
 ## Example 4 — Find the Scale Factor
 
-### Step 1: Use Corresponding Points
+### Problem
 
-To find the scale factor, compare the lengths of corresponding sides or distances from the center of dilation to corresponding points.
+A dilation maps a segment of length 6 cm to a corresponding segment of length 15 cm. Find the scale factor from the original to the image.
 
-$$
-k = \frac{image\ length}{original\ length}
-$$
+### Solution
+
+The scale factor is image length divided by original length: k = 15/6 = 5/2 = 2.5. The reverse dilation has scale factor 2/5.
+
 ## Mixed Exercises
 
 The mixed exercises section provides practice with all skills from the lesson. Problems include:

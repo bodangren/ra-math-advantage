@@ -105,9 +105,13 @@ b. Find the volume if x = 3 centimeters.
 
 ## Example 4 — More Volume Problems
 
-Find the volume of each prism or pyramid. Round to the nearest tenth, if necessary.
+### Problem
 
-Work through problems involving various base shapes including rectangles, triangles, and regular polygons.
+A pyramid has a rectangular base measuring 6 cm by 9 cm. Its perpendicular height is 10 cm. Find its volume.
+
+### Solution
+
+The base area is B = 6(9) = 54 square centimeters. Use V = Bh/3 to obtain V = 54(10)/3 = 180 cubic centimeters.
 
 ## Example 5 — Volume of Pyramids with Variables
 
@@ -123,19 +127,13 @@ b. Find the volume if x = 10 centimeters.
 
 ## Example 6 — Volume of Composite Solids
 
-Find the volume of each composite solid. Round to the nearest tenth, if necessary.
+### Problem
 
-### Step 1: Decompose the Solid
+A rectangular prism is 8 m long, 6 m wide, and 4 m high. A rectangular pyramid roof has the same base and perpendicular height 3 m. The interiors do not overlap. Find the total volume.
 
-Break the composite solid into recognizable prisms, pyramids, cylinders, cones, or spheres.
+### Solution
 
-### Step 2: Find Each Volume
-
-Calculate the volume of each component.
-
-### Step 3: Combine the Volumes
-
-Add all component volumes to find the total volume.
+The prism volume is 8(6)(4) = 192 cubic meters. The roof volume is (1/3)(8)(6)(3) = 48 cubic meters. The total is 240 cubic meters.
 
 ## Example 7 — Volume of Frames
 

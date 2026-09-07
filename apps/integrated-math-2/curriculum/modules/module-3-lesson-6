@@ -58,13 +58,13 @@ If [CD] bisects [∠ACB], then [
 
 ## Example 1 — Find Unknown Side Lengths
 
-### Step 1: Set Up a Proportion
+### Problem
 
-Given similar triangles, use the ratio of corresponding sides to set up a proportion.
+An altitude from the right-angle vertex of a right triangle divides the hypotenuse into segments of lengths 9 cm and 16 cm. Find the altitude and both legs.
 
-### Step 2: Solve for the Unknown
+### Solution
 
-Cross-multiply and solve.
+The hypotenuse is 25 cm. The altitude is $\sqrt{9(16)}=12$ cm. The leg adjacent to the 9 cm hypotenuse segment is $\sqrt{25(9)}=15$ cm. The other leg is $\sqrt{25(16)}=20$ cm. Check: 15 squared + 20 squared = 25 squared.
 
 ## Example 2 — Altitudes in Similar Triangles
 

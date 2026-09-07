@@ -58,59 +58,33 @@ A sphere has infinitely many planes of symmetry — any plane through the center
 
 ## Example 2 — Identify Cross Section Shapes
 
-Identify the shape of each cross section.
+### Problem
 
-### Step 1: Identify the Cutting Direction
+A right circular cone has base radius 6 cm and height 12 cm. A plane parallel to its base cuts the cone halfway between the vertex and the base. Identify the cross section and its radius.
 
-Determine whether the cut is parallel or perpendicular to the base, or at some other angle.
+### Solution
 
-### Step 2: Match the Shape to the Solid
-
-A slice parallel to the base of a pyramid gives a smaller similar shape.
-A slice perpendicular to the base gives a triangle (for a pyramid) or rectangle (for a prism).
-A diagonal slice gives various quadrilaterals or triangles.
-
-Cross sections can be: triangles, rectangles, squares, pentagons, hexagons, circles, ellipses.
+A plane parallel to the circular base produces a circle. At half the height from the vertex, all linear dimensions are half the base dimensions by similarity. The cross-section radius is 3 cm.
 
 ## Example 3 — Identify Solids of Revolution
 
-Identify the solid formed by rotating the two-dimensional shape about each line.
+### Problem
 
-### Step 1: Visualize the Rotation
+Rotate a 3 cm by 5 cm rectangle through one full turn about one of its 5 cm sides. Identify the solid and its dimensions.
 
-Think about what the shape would look like if spun around the given axis.
+### Solution
 
-### Step 2: Match to Known Solids
-
-Rotating a rectangle about one side creates a cylinder.
-Rotating a right triangle about one leg creates a cone.
-Rotating a semicircle about its diameter creates a sphere.
-Rotating a rectangle about its diagonal creates a cylinder with an oblique appearance.
-Rotating a trapezoid about its parallel side creates a truncated cone (frustum).
+The fixed 5 cm side becomes the axis. The opposite side moves in a circle of radius 3 cm. The solid is a right circular cylinder with radius 3 cm and height 5 cm.
 
 ## Example 4 — Axis Symmetry
 
-Determine whether each item has axis symmetry. Write yes or no.
+### Problem
 
-### Step 1: Identify the Axis
+Rotate the region bounded by x = 0, x = 2, y = 0, and y = 5 about the y-axis. Identify the solid and describe its axial symmetry.
 
-Look for a central line around which the object could rotate.
+### Solution
 
-### Step 2: Check if Rotation Leaves the Object Unchanged
-
-If rotating the object around an axis produces the same appearance, it has axis symmetry.
-
-A traffic cone with a base: Yes — any rotation around its central vertical axis leaves it unchanged.
-
-A one pound weight: Yes — a standard weight has axis symmetry around its central vertical axis.
-
-A flower petal and stem: No — the petal is not symmetric around the stem axis.
-
-A golf ball: Yes — rotation around any axis through the center leaves it appearing the same (if the dimples are uniform).
-
-A tree: Generally No — most trees are not perfectly symmetric around a central axis.
-
-A lamp: It depends on the lamp design. A symmetrical lamp shade would have axis symmetry.
+The result is a cylinder with radius 2 and height 5. Rotating the cylinder by any angle about the y-axis leaves it unchanged. Every plane through the y-axis is also a plane of reflection symmetry.
 
 ## Mixed Exercises
 

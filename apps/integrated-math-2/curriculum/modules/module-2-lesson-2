@@ -39,55 +39,43 @@ The diagonals of a parallelogram bisect each other, meaning they cut each other 
 
 ## Example 1 — Find Measures in a Parallelogram
 
-Use parallelogram properties to find unknown angle measures and side lengths.
+### Problem
 
-### Step 1: Use Opposite Angle Congruence
+ABCD is a parallelogram. AB = 12 cm, BC = 7 cm, and angle A = 65 degrees. Find CD, AD, and angles B, C, and D.
 
-In parallelogram PQRS, opposite angles are congruent, so m∠R = m∠P and m∠Q = m∠S. Use this to find missing angle measures.
+### Solution
 
-### Step 2: Use Parallel Side Congruence
-
-Opposite sides of a parallelogram are congruent. Use this to find the length of QR or QP when given a diagram with measurements.
+Opposite sides are congruent, so CD = 12 cm and AD = 7 cm. Opposite angles are congruent, so angle C = 65 degrees. Consecutive angles are supplementary, so angles B and D are each 180 - 65 = 115 degrees.
 
 ## Example 2 — Write Parallelogram Proofs
 
-Write two-column and paragraph proofs to prove statements about parallelograms using established theorems.
+### Problem
 
-### Step 1: Identify Given Information
+ABCD is a parallelogram. Draw diagonal AC. Prove triangle ABC is congruent to triangle CDA.
 
-Note the parallelogram stated in the problem and any additional congruent segments or angles provided.
+### Solution
 
-### Step 2: Plan the Proof Steps
-
-Use properties of parallelograms (opposite sides parallel, opposite angles congruent, consecutive angles supplementary) to build a logical chain of reasoning.
-
-### Step 3: Write the Proof
-
-Present the proof in two-column format with statements and reasons, or as a coherent paragraph.
+AB is parallel to CD, so angle BAC equals angle DCA by alternate interior angles. BC is parallel to AD, so angle BCA equals angle DAC. AC is a common side with equal length in both triangles. The two triangles are congruent by ASA. This proof uses 2 angle pairs and their included side.
 
 ## Example 3 — Find Unknown Values in Parallelograms
 
-Solve for variables in parallelogram diagrams using angle and side relationships.
+### Problem
 
-### Step 1: Set Up Equations
+The diagonals of parallelogram ABCD meet at E. AE = 3x - 2 cm and EC = x + 6 cm. Find x and AC.
 
-Use the property that opposite angles are congruent and consecutive angles are supplementary to write equations involving the unknown variables.
+### Solution
 
-### Step 2: Solve the Equations
-
-Solve for each variable, then substitute to find angle measures or side lengths.
+Diagonals of a parallelogram bisect each other, so AE = EC. Solve 3x - 2 = x + 6 to obtain x = 4. AE = EC = 10 cm, so AC = 20 cm.
 
 ## Example 4 — Area and Perimeter of Parallelograms
 
-Calculate the area and perimeter of parallelograms in real-world contexts like park design and cookie cutting.
+### Problem
 
-### Step 1: Find Perimeter
+A parallelogram has adjacent side lengths 10 m and 6 m. Its perpendicular height to the 10 m base is 4 m. Find its perimeter and area.
 
-Add all four side lengths. Since opposite sides are congruent, perimeter = 2(length + width).
+### Solution
 
-### Step 2: Find Area
-
-The area of a parallelogram is A = base × height, where the height is the perpendicular distance between the parallel sides.
+The perimeter is 2(10 + 6) = 32 m. The area is base times perpendicular height: 10(4) = 40 square meters. The 6 m sloping side is not the perpendicular height.
 
 ## Mixed Exercises
 

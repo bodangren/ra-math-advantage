@@ -39,27 +39,33 @@ Relative maxima and minima are found where the function changes direction. Estim
 
 ## Examples 1 and 2 — Identify and Estimate Extrema
 
-Identify and estimate the x- and y-values of the extrema. Round to the nearest tenth if necessary.
+### Problem
 
-### Step 1: Read the Graph
+Find the absolute extrema of f(x) = (x - 2) squared + 1 on the closed interval 0 <= x <= 5.
 
-Find the peaks and valleys. Record the coordinates.
+### Solution
+
+The square is smallest at x = 2, so the minimum value is f(2) = 1. The endpoint values are f(0) = 5 and f(5) = 10. Since the parabola opens upward, the maximum on this interval is 10 at x = 5.
 
 ## Examples 3–5 — Describe End Behavior
 
-Describe the end behavior of each function.
+### Problem
 
-### Step 1: Analyze the Graph's Ends
+Describe both ends of the graph of f(x) = -2x cubed + 3x.
 
-Look at both the left and right ends of the graph and describe where [f(x)] goes as [x] goes to [+-infinity].
+### Solution
+
+The leading term -2x cubed controls the end behavior. As x approaches negative infinity, f(x) approaches positive infinity. As x approaches positive infinity, f(x) approaches negative infinity. The graph rises to the left and falls to the right.
 
 ## Example 6 — Interpret End Behavior in Context
 
-The roller coaster problem describes the height of a coaster as a function of distance from the start.
+### Problem
 
-### Step 1: Contextualize the Ends
+A model for temperature is T(t) = 20 + 60/(t + 1) degrees Celsius for t >= 0. Describe what the model predicts as time increases without bound.
 
-As the coaster moves away from the start, its height eventually decreases — interpret what happens to height as distance increases.
+### Solution
+
+As t increases, 60/(t + 1) approaches 0. Thus T(t) approaches 20 degrees Celsius from above. It never equals 20 at a finite nonnegative time in this model. This is a prediction of the model, not a guarantee about every real object.
 
 ## Mixed Exercises
 

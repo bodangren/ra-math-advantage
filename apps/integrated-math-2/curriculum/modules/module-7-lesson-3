@@ -51,19 +51,13 @@ $P(\text{green}) = \frac{2\text{ min }27\text{ s}}{5\text{ min}} = \frac{147\tex
 
 ## Example 1 — Length-Based Probability
 
-### Step 1: Identify Total Length and Favorable Length
+### Problem
 
-Point [M] is chosen at random on segment [ZP]. Find each probability:
+A point M is chosen uniformly at random on a 20 cm segment ZP. Points Q and R divide it in order Z, Q, R, P, with ZQ = 5 cm and QR = 8 cm. Find the probabilities that M lies on ZQ, QR, and RP.
 
-**Problem 1:** [P(M] is on [ZQ)]
-**Problem 2:** [P(M] is on [QR])
-**Problem 3:** [P(M] is on [RP])
-**Problem 4:** [P(M] is on [QP])
+### Solution
 
-Point [X] is chosen at random on segment [LP]. Find each probability:
-
-**Problem 5:** [P(X] is on [LN])
-**Problem 6:** [P(X] is on [MO])
+RP = 20 - 5 - 8 = 7 cm. Uniform selection makes each probability equal to favorable length divided by 20. The probabilities are 5/20 = 1/4, 8/20 = 2/5, and 7/20. They total 1. Individual endpoints have probability 0 under this continuous model.
 
 ## Example 2 — Time-Based and Real-World Probability
 

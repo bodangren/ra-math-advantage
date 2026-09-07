@@ -42,67 +42,43 @@ If two pairs of sides are congruent and the third sides differ, the triangle wit
 
 ## Example 1 — Compare Distances Using the Hinge Theorem
 
-Two planes take off from the same airstrip and travel different courses. Use the Hinge Theorem to determine which plane is farther from the starting point.
+### Problem
 
-### Step 1: Identify the Two Sides for Each Triangle
+Triangles ABC and DEF have AB = DE = 5 cm and AC = DF = 7 cm. Angle BAC is 40 degrees and angle EDF is 70 degrees. Compare BC and EF.
 
-For each plane, the two legs of the journey form two sides of a triangle.
+### Solution
 
-### Step 2: Identify the Included Angle
-
-The change in direction forms the included angle between the two legs.
-
-### Step 3: Apply the Hinge Theorem
-
-If one included angle is smaller than the other, the third side (distance from starting point) is shorter.
+The pairs of sides around the given angles have equal lengths. Since 70 > 40, the hinge theorem gives EF > BC. The angle comparison alone does not give the exact side lengths.
 
 ## Example 2 — Write Proofs Using the Hinge Theorem
 
-Write two-column proofs that apply the Hinge Theorem or its converse.
+### Problem
 
-### Step 1: Identify the Two Triangles
+Triangles ABC and DEF satisfy AB = DE, AC = DF, and angle BAC = 80 degrees. Angle EDF = 50 degrees. Prove BC > EF.
 
-Note which two triangles are being compared and which sides are congruent.
+### Solution
 
-### Step 2: Compare the Included Angles
-
-State which angle is larger based on the given information.
-
-### Step 3: Apply the Hinge Theorem
-
-Conclude that the third side opposite the larger angle is longer.
+AB and DE are one congruent side pair. AC and DF are another congruent side pair. Angle BAC is larger than the included angle EDF because 80 > 50. By the hinge theorem, the side opposite angle BAC is longer: BC > EF.
 
 ## Example 3 — Find the Range of Values for x
 
-Given a diagram with an unknown x, use triangle inequality relationships to find the range of possible values.
+### Problem
 
-### Step 1: Set Up the Inequality
+Triangles ABC and DEF satisfy AB = DE and AC = DF. BC > EF. Angle BAC is (3x + 10) degrees, and angle EDF is 40 degrees. Find the possible values of x based on these angle conditions.
 
-For the given diagram, use the relationship between the given sides and the unknown side to create an inequality.
+### Solution
 
-### Step 2: Solve for x
-
-Isolate x to find the range of values that satisfy the triangle inequality.
-
-### Step 3: Express the Range
-
-Write the range of possible values for x.
+The converse hinge theorem gives 3x + 10 > 40, so x > 10. An interior triangle angle must also be less than 180 degrees. Thus 3x + 10 < 180, so x < 170/3. The range is 10 < x < 170/3.
 
 ## Example 4 — Hinge Theorem in Proofs
 
-Write two-column or paragraph proofs applying the Hinge Theorem.
+### Problem
 
-### Step 1: Identify Given Information
+Triangles ABC and DEF have AB = DE = 6 cm and AC = DF = 8 cm. BC = 9 cm and EF = 7 cm. Prove that angle BAC is larger than angle EDF.
 
-Extract the two pairs of congruent sides and any additional angle information.
+### Solution
 
-### Step 2: Apply the Hinge Theorem
-
-Use the theorem to relate the third sides or third angles.
-
-### Step 3: Write the Proof
-
-Organize the logical steps with reasons.
+Two corresponding side pairs are congruent. The remaining side satisfies BC > EF because 9 > 7. The converse hinge theorem therefore gives angle BAC > angle EDF.
 
 ## Mixed Exercises
 

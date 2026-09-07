@@ -61,11 +61,13 @@ Describe each translation as it relates to the graph of the parent function.
 
 ## Example 2 — Write Equations from Graphs
 
-Use the graph of each translated parent function to write its equation.
+### Problem
 
-### Step 1: Identify the Parent Function and the Shift
+A parabola has vertex (3, -2), opens upward, and passes through (4, -1). Write its equation as a transformation of y = x squared.
 
-Determine which parent function the graph comes from, then measure how it has been shifted.
+### Solution
+
+Use y = a(x - 3) squared - 2. Substitute (4, -1): -1 = a(1) - 2, so a = 1. The equation is y = (x - 3) squared - 2. It shifts the parent graph 3 units right and 2 units down.
 
 ## Examples 3 and 4 — Describe Dilations and Reflections
 
@@ -113,11 +115,13 @@ Describe each transformation as it relates to the graph of the parent function.
 
 ## Example 7 — Write Equations from Graphs
 
-Write an equation for each function.
+### Problem
 
-### Step 1: Identify the Parent Function and All Transformations
+An absolute value graph has vertex (-2, 3) and passes through (0, -1). Write its equation.
 
-Determine the parent function, then measure each transformation from the graph.
+### Solution
+
+Use y = a|x + 2| + 3. Substituting (0, -1) gives -1 = 2a + 3, so a = -2. The equation is y = -2|x + 2| + 3. It reflects the parent graph across the x-axis, stretches it vertically by 2, and shifts it 2 units left and 3 units up.
 
 ## Mixed Exercises
 

@@ -36,55 +36,43 @@ To order angles or sides from smallest to largest:
 
 ## Example 1 — List Angles Satisfying a Condition
 
-Given a triangle diagram with numbered angles, list all angles that satisfy conditions such as "measures greater than m∠3" or "measures less than m∠1."
+### Problem
 
-### Step 1: Compare Angle Numbers
+A triangle has angles labeled 1, 2, and 3 with measures 35, 65, and 80 degrees, respectively. List the angles larger than angle 1 and smaller than angle 3.
 
-Use the diagram to compare the positions and measures of numbered angles. Angles that share a side or are vertical angles may have special relationships.
+### Solution
 
-### Step 2: Apply the Side-Angle Relationship
-
-If a side appears longer or shorter in a diagram, the angle opposite that side will be correspondingly larger or smaller.
-
-### Step 3: List All Matching Angles
-
-Compile all angles from the diagram that satisfy the stated condition.
+Angle 2 satisfies both conditions because 35 < 65 < 80. Angle 1 is not larger than itself, and angle 3 is not smaller than itself. Use the stated measures, not the apparent size of a drawing.
 
 ## Example 2 — Order Angles and Sides from Smallest to Largest
 
-Given a triangle with side lengths or angle measures, list the angles and sides in order from smallest to largest.
+### Problem
 
-### Step 1: Identify the Smallest and Largest
+In triangle ABC, AB = 7 cm, BC = 9 cm, and CA = 5 cm. Order the angles from smallest to largest.
 
-Find the smallest angle (opposite the shortest side) and the largest angle (opposite the longest side). Fill in the middle values.
+### Solution
 
-### Step 2: Write the Ordering
-
-List the angles in order and separately list the sides in order.
+Each angle is opposite a side. Angle B is opposite CA = 5, angle C is opposite AB = 7, and angle A is opposite BC = 9. Therefore angle B < angle C < angle A.
 
 ## Example 3 — Compare Angles and Sides in Multiple Triangles
 
-Given multiple triangle diagrams, determine the ordering for each triangle.
+### Problem
 
-### Step 1: Analyze Each Triangle
+Triangle ABC has angles A = 40 degrees, B = 60 degrees, and C = 80 degrees. Triangle DEF has angles D = 50 degrees, E = 60 degrees, and F = 70 degrees. Name the longest side in each triangle. Can these angles alone determine which triangle has the longer longest side?
 
-Apply the side-angle relationship to each triangle separately.
+### Solution
 
-### Step 2: Compare Across Triangles
-
-If the problem asks for comparisons across triangles, use the given measurements or diagram relationships.
+AB is opposite angle C, so AB is longest in ABC. DE is opposite angle F, so DE is longest in DEF. The angles do not determine the scale of either triangle. Thus they do not determine whether AB or DE is longer.
 
 ## Example 4 — Real-World Angle Comparison
 
-Use the relationship between side lengths and opposite angles to solve real-world problems.
+### Problem
 
-### Step 1: Model the Situation
+Three straight paths form triangle ABC. AB = 300 m, BC = 500 m, and CA = 400 m. Which corner has the largest angle?
 
-Identify the three points (e.g., trees on a golf course) and the angles between them.
+### Solution
 
-### Step 2: Apply the Relationship
-
-The largest angle is opposite the longest side. Determine which side is the longest to find the largest angle.
+The largest angle is opposite the longest side. BC is the longest side, so angle A is the largest. Also, 300 squared + 400 squared = 500 squared, so angle A is 90 degrees.
 
 ## Mixed Exercises
 

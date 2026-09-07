@@ -74,11 +74,13 @@ An angle formed by a tangent and a chord through the point of tangency equals ha
 
 ## Example 4 — Find Perimeter of Circumscribed Polygons
 
-Each polygon is circumscribed about a circle. Find the perimeter.
+### Problem
 
-### Step 1: Recognize That Opposite Sides Have Common External Tangents
+A triangle has an inscribed circle. The tangent lengths from its three vertices to the points of tangency are 4 cm, 5 cm, and 6 cm, respectively. Find the perimeter.
 
-For a polygon circumscribed about a circle, the sum of the lengths of opposite sides are equal. Add all side lengths to find the perimeter.
+### Solution
+
+Tangent segments from the same exterior point are congruent. Each vertex contributes its tangent length to two sides. The perimeter is 2(4 + 5 + 6) = 30 cm. The side lengths are 9 cm, 11 cm, and 10 cm.
 
 ## Mixed Exercises
 

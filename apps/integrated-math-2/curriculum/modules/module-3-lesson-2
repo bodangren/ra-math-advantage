@@ -55,26 +55,23 @@ $$
 $$
 ## Example 2 — Determine Similarity and Scale Factor
 
-### Step 1: Compare Angle Measures
+### Problem
 
-Check whether corresponding angles are congruent. If all corresponding angles are equal, the figures may be similar.
+Triangles ABC and DEF have corresponding side lengths (3, 4, 5) cm and (6, 8, 10) cm. Determine whether they are similar and find the scale factor from ABC to DEF.
 
-### Step 2: Compare Side Ratios
+### Solution
 
-Verify that all pairs of corresponding sides have the same ratio (scale factor). If they do, the polygons are similar.
+The corresponding side ratios are 6/3 = 8/4 = 10/5 = 2. The triangles are similar by SSS similarity. The scale factor from ABC to DEF is 2.
 
-$$
-k = \frac{side_{image}}{side_{original}}
-$$
 ## Example 3 — Find Unknown Values
 
-### Step 1: Set Up a Proportion
+### Problem
 
-Use the known side lengths and the scale factor to set up a proportion.
+Triangle ABC is similar to triangle DEF in the stated order. AB = 4 cm, BC = 6 cm, DE = 10 cm, and EF = x cm. Find x.
 
-### Step 2: Solve for the Unknown
+### Solution
 
-Cross-multiply and solve for the variable.
+The scale factor from ABC to DEF is DE/AB = 10/4 = 2.5. Thus EF = 2.5(BC) = 2.5(6) = 15 cm, so x = 15.
 
 ## Example 4 — Apply Similarity to Real-World Problems
 

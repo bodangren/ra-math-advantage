@@ -41,67 +41,43 @@ This means c is greater than the absolute difference of a and b, and less than t
 
 ## Example 1 — Can These Lengths Form a Triangle?
 
-Given multiple sets of three lengths, determine which can form a triangle and explain why not for those that cannot.
+### Problem
 
-### Step 1: Check the Sum Condition
+Determine which length sets can form triangles: (8, 9, 17), (5, 6, 8), and (2, 3, 7), all in centimeters.
 
-For each set, check if the sum of the two smallest lengths is greater than the largest length.
+### Solution
 
-### Step 2: Apply to All Sets
-
-Some sets will fail (like 8, 9, 17 where 8 + 9 = 17 exactly), meaning they form a degenerate line segment rather than a triangle.
-
-### Step 3: Explain Why Not
-
-For sets that cannot form a triangle, explain that the sum of two sides must be strictly greater than the third side.
+For positive lengths, compare the two shortest lengths with the longest. In the first set, 8 + 9 = 17, so no triangle forms. In the second, 5 + 6 > 8, so a triangle forms. In the third, 2 + 3 < 7, so no triangle forms.
 
 ## Example 2 — Find the Range for the Third Side
 
-Given two side lengths, find the range of possible values for the third side.
+### Problem
 
-### Step 1: Apply the Difference Condition
+Two sides of a triangle measure 6 ft and 19 ft. Find the possible lengths x of the third side.
 
-The third side must be greater than the difference of the two given sides.
+### Solution
 
-### Step 2: Apply the Sum Condition
-
-The third side must be less than the sum of the two given sides.
-
-### Step 3: Express the Range
-
-Write the range as an inequality, for example: if sides are 6 ft and 19 ft, then x > 13 and x < 25, so 13 < x < 25.
+The third side must exceed the difference and be less than the sum. Thus 19 - 6 < x < 19 + 6, which gives 13 < x < 25 feet. Neither endpoint is permitted.
 
 ## Example 3 — Real-World Triangle Inequality
 
-Apply the Triangle Inequality Theorem to real situations like distances between cities or fencing a plot of land.
+### Problem
 
-### Step 1: Identify the Two Known Sides
+Two sides of a triangular garden are 8 m and 13 m. Let the third side have length x meters. Find the possible values of x.
 
-Extract the two given lengths from the problem context.
+### Solution
 
-### Step 2: Calculate the Range
-
-Apply the formula for the range of the third side.
-
-### Step 3: Interpret in Context
-
-For a city distance problem, the third side must be greater than some minimum (the difference) and less than some maximum (the sum). For fencing, calculate both minimum and maximum fencing needed.
+The triangle inequality requires x + 8 > 13 and 8 + 13 > x. These give x > 5 and x < 21. Therefore 5 < x < 21. The endpoints would produce a straight line, not a triangle.
 
 ## Example 4 — Proofs Using the Triangle Inequality
 
-Write two-column proofs that apply the Triangle Inequality Theorem.
+### Problem
 
-### Step 1: Identify the Given Information
+Prove that segments of lengths 3 cm, 4 cm, and 8 cm cannot form a triangle.
 
-Note what is provided (parallel lines, midpoints, congruent triangles).
+### Solution
 
-### Step 2: Plan the Proof Steps
-
-Use the Triangle Inequality Theorem to establish that a sum of two lengths is greater than a third length.
-
-### Step 3: Write the Proof
-
-Organize into a two-column format with statements and reasons.
+If these segments formed a triangle, the sum of any two side lengths would exceed the third. However, 3 + 4 = 7, and 7 < 8. This contradicts the triangle inequality. Thus no such triangle exists.
 
 ## Mixed Exercises
 

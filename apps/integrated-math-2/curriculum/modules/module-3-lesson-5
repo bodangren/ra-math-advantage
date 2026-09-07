@@ -107,15 +107,23 @@ Use the given lengths to solve for [x] in each problem (Problems 5–8).
 
 ## Example 4 — Apply to Real-World Problems
 
-**MAPS (Problem 9):** Cay Street ∥ Bay Street. Find [x], the distance between streets along Earl Street.
+### Problem
 
-**PLAYSCAPES (Problem 10):** Two-story playscape with parallel supports. Find [x].
+In triangle ABC, D is on AB, E is on AC, and DE is parallel to BC. A road segment AD is 200 m, DB is 300 m, and AE is 160 m. Find EC.
+
+### Solution
+
+The triangle proportionality theorem gives AD/DB = AE/EC. Thus 200/300 = 160/EC. Cross multiplication gives 200(EC) = 48000, so EC = 240 m.
 
 ## Example 5 — Find Multiple Unknown Values
 
-### Step 1: Set Up Multiple Proportions
+### Problem
 
-For problems with two unknowns, set up a system of equations using the proportionality relationships.
+In triangle ABC, D lies on AB and E lies on AC, with DE parallel to BC. AD = 4 cm, DB = 6 cm, AE = x cm, EC = 9 cm, DE = 8 cm, and BC = y cm. Find x and y.
+
+### Solution
+
+Parallel lines give AD/DB = AE/EC. Thus 4/6 = x/9 and x = 6. Triangles ADE and ABC are similar with ratio AD/AB = 4/10. Therefore DE/BC = 8/y = 4/10, so y = 20.
 
 ## Mixed Exercises
 

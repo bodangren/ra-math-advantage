@@ -33,25 +33,25 @@
         "phaseNumber": 5,
         "title": "Example 1 — Find Segment Lengths Using Perpendicular Bisectors",
         "phaseType": "worked_example",
-        "markdown": "Use the Perpendicular Bisector Theorem and properties of perpendicular bisectors to find unknown segment lengths. If a point is on the perpendicular bisector, distances to the endpoints are equal.\n\n### Step 1: Identify Known Information\n\nRead the diagram to identify which segments are bisected and what relationships are given. Look for right angles at the midpoint of a side, or for equal distances from a point to both endpoints of a segment.\n\n### Step 2: Apply the Perpendicular Bisector Theorem\n\nIf point D is on the perpendicular bisector of segment AB, then DA equals DB. Set up an equation using the given expressions and solve for the unknown. For circumcenter problems, CD equals RD when D is the circumcenter.\n\n### Step 3: Verify and Round\n\nCheck that the solution makes sense in the context of the diagram. If the problem requires rounding, round to the nearest tenth or hundredth as specified."
+        "markdown": "### Problem\n\nD lies on the perpendicular bisector of AB. DA = 3x + 2 cm and DB = 5x - 6 cm. Find x and both distances.\n\n### Solution\n\nThe perpendicular bisector theorem gives DA = DB. Solve 3x + 2 = 5x - 6 to get x = 4. Both distances are 14 cm."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Find Coordinates of the Circumcenter",
         "phaseType": "worked_example",
-        "markdown": "Given the vertices of a triangle, find the circumcenter by solving for the intersection of two perpendicular bisectors.\n\n### Step 1: Find Midpoints and Slopes\n\nFor two sides of the triangle, calculate the midpoint and the slope of the side. The slope of the perpendicular bisector is the negative reciprocal.\n\n### Step 2: Write Equations\n\nUse point-slope form to write the equations of two perpendicular bisectors.\n\n### Step 3: Solve the System\n\nSolve the two equations simultaneously to find the coordinates of the circumcenter. Verify by checking that the third perpendicular bisector passes through the same point."
+        "markdown": "### Problem\n\nFind the circumcenter of the triangle with A(0, 0), B(6, 0), and C(0, 8).\n\n### Solution\n\nThe perpendicular bisector of AB is x = 3. The perpendicular bisector of AC is y = 4. Their intersection is (3, 4). Its distance from each vertex is 5 units."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Apply Circumcenter in Coordinate Problems",
         "phaseType": "worked_example",
-        "markdown": "Use coordinates to solve real-world problems involving the circumcenter, such as finding the location of a monument equidistant from three points.\n\n### Step 1: Plot the Points\n\nGraph the three given vertices on a coordinate plane.\n\n### Step 2: Find the Circumcenter\n\nApply the same procedure as in Example 2 to find the point equidistant from all three vertices.\n\n### Step 3: Interpret the Result\n\nThe circumcenter represents the location that is equally distant from all three vertices. In a real-world context, this point could be where a monument or facility should be placed."
+        "markdown": "### Problem\n\nA monument must be equidistant from landmarks A(2, 2), B(8, 2), and C(2, 10). Find its coordinates.\n\n### Solution\n\nThe perpendicular bisectors of AB and AC are x = 5 and y = 6. Their intersection is (5, 6). The distance from this point to each landmark is 5 units, so it meets the requirement."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — Real-World Circumcenter Applications",
         "phaseType": "worked_example",
-        "markdown": "Solve applied problems where the circumcenter represents an optimal location for something that must be equidistant from three other locations.\n\n### Step 1: Set Up Coordinates\n\nAssign coordinates to each of the three given locations based on the problem context.\n\n### Step 2: Calculate the Circumcenter\n\nUse the perpendicular bisector intersection method to find the point that is equidistant from all three locations.\n\n### Step 3: Describe the Location\n\nGive the approximate coordinates and explain what this location represents in the context of the problem."
+        "markdown": "### Problem\n\nThree trees are at A(0, 0), B(10, 0), and C(0, 6), with coordinates in meters. Find a sprinkler location equidistant from all three trees and the required spray radius.\n\n### Solution\n\nThe perpendicular bisectors of AB and AC are x = 5 and y = 3. Place the sprinkler at (5, 3). The distance to each tree is $\\sqrt{5^2+3^2}=\\sqrt{34}$ meters, approximately 5.83 meters."
       },
       {
         "phaseNumber": 9,
@@ -101,25 +101,25 @@
         "phaseNumber": 5,
         "title": "Example 1 — Find Angle and Segment Measures Using Angle Bisectors",
         "phaseType": "worked_example",
-        "markdown": "Given a triangle with an angle bisector, use the Angle Bisector Theorem to find unknown angle measures and segment lengths.\n\n### Step 1: Identify the Angle Bisector\n\nLocate the ray that divides an angle into two equal parts. The point where the angle bisector meets the opposite side is on the segment connecting to the vertex.\n\n### Step 2: Apply Proportional Relationships\n\nWhen a ray bisects an angle, it divides the opposite side into segments that are proportional to the adjacent sides. Use this relationship to set up equations.\n\n### Step 3: Solve and Check\n\nSolve for the unknown variable and substitute back to find the requested angle or segment measure."
+        "markdown": "### Problem\n\nBD bisects angle ABC. Angle ABD is (3x + 4) degrees and angle DBC is (5x - 12) degrees. Find angle ABC.\n\n### Solution\n\nThe two angles are equal. Solve 3x + 4 = 5x - 12 to obtain x = 8. Each smaller angle is 28 degrees, so angle ABC is 56 degrees."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Use the Incenter to Find Measures",
         "phaseType": "worked_example",
-        "markdown": "The incenter is where all three angle bisectors meet. Use its properties to find distances and angle measures.\n\n### Step 1: Recognize the Incenter\n\nThe incenter is equidistant from all three sides, so perpendicular segments from the incenter to the sides are congruent.\n\n### Step 2: Use Equal Distances\n\nSet up relationships using the fact that the incenter's distance to each side is the same."
+        "markdown": "### Problem\n\nI is the incenter of triangle ABC. D and E are the feet of perpendiculars from I to AB and BC. ID = 2x + 1 cm and IE = 5x - 8 cm. Find the inradius.\n\n### Solution\n\nThe incenter has equal perpendicular distances to all three sides. Thus 2x + 1 = 5x - 8, so x = 3. The inradius is ID = IE = 7 cm."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Incenter in Triangles",
         "phaseType": "worked_example",
-        "markdown": "Given a triangle with an incenter, find angle measures and distances from the incenter to the vertices.\n\n### Step 1: Find Angle Measures\n\nSince the incenter is on all three angle bisectors, the angles around the incenter relate to the original triangle's angles. The angle between any two bisectors equals [90] plus half of the opposite angle.\n\n### Step 2: Find Distances\n\nUse triangle geometry relationships to find distances from the incenter to the vertices."
+        "markdown": "### Problem\n\nI is the incenter of triangle ABC. Angle A is 60 degrees and angle B is 50 degrees. Find angle BIC.\n\n### Solution\n\nSince BI and CI bisect their vertex angles, the angle at I in triangle BIC is $180^\\circ-(B/2+C/2)$. Also B + C = 180 degrees - A. Therefore angle BIC = 90 degrees + A/2 = 120 degrees. Distances from I to the vertices are not generally equal."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — Real-World Angle Bisector Applications",
         "phaseType": "worked_example",
-        "markdown": "Use angle bisectors to find points that are equidistant from the sides of an angle, such as locating a facility that should be equally distant from two roads.\n\n### Step 1: Interpret the Problem\n\nIdentify the two lines (roads) that form an angle, and determine what \"equidistant from the roads\" means in context.\n\n### Step 2: Locate the Point\n\nThe set of points equidistant from two intersecting lines is the union of the two angle bisectors. Determine which bisector makes sense given the constraints.\n\n### Step 3: Apply Coordinates\n\nIf coordinates are given for the roads' intersection and other reference points, find the coordinates of the point on the appropriate bisector."
+        "markdown": "### Problem\n\nTwo straight road edges meet at a right angle. A marker must be 4 meters from each edge. Use the edges as the positive coordinate axes. Find the marker location inside the angle.\n\n### Solution\n\nDistance from the x-axis is y, and distance from the y-axis is x. Thus x = 4 and y = 4. The location (4, 4) lies on the angle bisector y = x."
       },
       {
         "phaseNumber": 9,
@@ -169,25 +169,25 @@
         "phaseNumber": 5,
         "title": "Example 1 — Find Segment Lengths Using the Centroid",
         "phaseType": "worked_example",
-        "markdown": "Given the centroid and some segment lengths, find other lengths in the triangle.\n\n### Step 1: Use the [2/3] and [1/3] Relationships\n\nSince the centroid divides each median in a [2 to 1] ratio, if you know the distance from a vertex to the centroid, you can find the distance from the centroid to the midpoint, and vice versa.\n\n### Step 2: Set Up Equations\n\nLet the unknown be x and use the given lengths to set up equations based on the centroid's position on each median.\n\n### Step 3: Solve and Verify\n\nSolve for x, then find the requested segment lengths. Check that the results are consistent with the median lengths."
+        "markdown": "### Problem\n\nG is the centroid of triangle ABC, and M is the midpoint of BC. The median AM is 24 cm long. Find AG and GM.\n\n### Solution\n\nThe centroid divides a median in a 2:1 ratio from the vertex. Thus AG = (2/3)(24) = 16 cm and GM = (1/3)(24) = 8 cm. Their sum is the full median length, 24 cm."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Find Coordinates of the Centroid",
         "phaseType": "worked_example",
-        "markdown": "Given the coordinates of the vertices of a triangle, find the coordinates of the centroid.\n\n### Step 1: Apply the Centroid Formula\n\nThe centroid is at [(x1 + x2 + x3) / 3, (y1 + y2 + y3) / 3].\n\n### Step 2: Substitute and Simplify\n\nPlug in the coordinates and compute the averages."
+        "markdown": "### Problem\n\nFind the centroid of the triangle with vertices A(-3, 2), B(6, 5), and C(0, -1).\n\n### Solution\n\nAverage the coordinates. The x-coordinate is (-3 + 6 + 0)/3 = 1. The y-coordinate is (2 + 5 - 1)/3 = 2. The centroid is (1, 2)."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Real-World Centroid Application",
         "phaseType": "worked_example",
-        "markdown": "Use the centroid to find the point where a collage should be hung so that it balances.\n\n### Step 1: Model with Coordinates\n\nPlace the collage on a coordinate grid and find the coordinates of its vertices or corners.\n\n### Step 2: Find the Centroid\n\nUse the centroid formula to find the balance point.\n\n### Step 3: Describe the Location\n\nThe centroid is where the string should be attached to balance the collage."
+        "markdown": "### Problem\n\nA uniform triangular sign has vertices (0, 0), (12, 0), and (0, 9), in centimeters. At which point can the sign balance on a small support?\n\n### Solution\n\nFor a uniform triangular plate, the balance point is the centroid. Average the coordinates: x = (0 + 12 + 0)/3 = 4 and y = (0 + 0 + 9)/3 = 3. Place the support at (4, 3)."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — Find the Orthocenter",
         "phaseType": "worked_example",
-        "markdown": "Given the coordinates of the vertices of a triangle, find the orthocenter.\n\n### Step 1: Find Equations of Two Altitudes\n\nFor each altitude, find the slope of the opposite side, then the negative reciprocal slope for the altitude line, and write the equation through the given vertex.\n\n### Step 2: Solve the System\n\nFind the intersection point of the two altitude equations.\n\n### Step 3: Verify with the Third Altitude\n\nCheck that the third altitude passes through the same point."
+        "markdown": "### Problem\n\nFind the orthocenter of the triangle with A(0, 0), B(6, 0), and C(0, 8).\n\n### Solution\n\nAB is horizontal and AC is vertical. The altitude from C lies on x = 0. The altitude from B lies on y = 0. They meet at A(0, 0), the orthocenter of this right triangle."
       },
       {
         "phaseNumber": 9,
@@ -237,25 +237,25 @@
         "phaseNumber": 5,
         "title": "Example 1 — List Angles Satisfying a Condition",
         "phaseType": "worked_example",
-        "markdown": "Given a triangle diagram with numbered angles, list all angles that satisfy conditions such as \"measures greater than m∠3\" or \"measures less than m∠1.\"\n\n### Step 1: Compare Angle Numbers\n\nUse the diagram to compare the positions and measures of numbered angles. Angles that share a side or are vertical angles may have special relationships.\n\n### Step 2: Apply the Side-Angle Relationship\n\nIf a side appears longer or shorter in a diagram, the angle opposite that side will be correspondingly larger or smaller.\n\n### Step 3: List All Matching Angles\n\nCompile all angles from the diagram that satisfy the stated condition."
+        "markdown": "### Problem\n\nA triangle has angles labeled 1, 2, and 3 with measures 35, 65, and 80 degrees, respectively. List the angles larger than angle 1 and smaller than angle 3.\n\n### Solution\n\nAngle 2 satisfies both conditions because 35 < 65 < 80. Angle 1 is not larger than itself, and angle 3 is not smaller than itself. Use the stated measures, not the apparent size of a drawing."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Order Angles and Sides from Smallest to Largest",
         "phaseType": "worked_example",
-        "markdown": "Given a triangle with side lengths or angle measures, list the angles and sides in order from smallest to largest.\n\n### Step 1: Identify the Smallest and Largest\n\nFind the smallest angle (opposite the shortest side) and the largest angle (opposite the longest side). Fill in the middle values.\n\n### Step 2: Write the Ordering\n\nList the angles in order and separately list the sides in order."
+        "markdown": "### Problem\n\nIn triangle ABC, AB = 7 cm, BC = 9 cm, and CA = 5 cm. Order the angles from smallest to largest.\n\n### Solution\n\nEach angle is opposite a side. Angle B is opposite CA = 5, angle C is opposite AB = 7, and angle A is opposite BC = 9. Therefore angle B < angle C < angle A."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Compare Angles and Sides in Multiple Triangles",
         "phaseType": "worked_example",
-        "markdown": "Given multiple triangle diagrams, determine the ordering for each triangle.\n\n### Step 1: Analyze Each Triangle\n\nApply the side-angle relationship to each triangle separately.\n\n### Step 2: Compare Across Triangles\n\nIf the problem asks for comparisons across triangles, use the given measurements or diagram relationships."
+        "markdown": "### Problem\n\nTriangle ABC has angles A = 40 degrees, B = 60 degrees, and C = 80 degrees. Triangle DEF has angles D = 50 degrees, E = 60 degrees, and F = 70 degrees. Name the longest side in each triangle. Can these angles alone determine which triangle has the longer longest side?\n\n### Solution\n\nAB is opposite angle C, so AB is longest in ABC. DE is opposite angle F, so DE is longest in DEF. The angles do not determine the scale of either triangle. Thus they do not determine whether AB or DE is longer."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — Real-World Angle Comparison",
         "phaseType": "worked_example",
-        "markdown": "Use the relationship between side lengths and opposite angles to solve real-world problems.\n\n### Step 1: Model the Situation\n\nIdentify the three points (e.g., trees on a golf course) and the angles between them.\n\n### Step 2: Apply the Relationship\n\nThe largest angle is opposite the longest side. Determine which side is the longest to find the largest angle."
+        "markdown": "### Problem\n\nThree straight paths form triangle ABC. AB = 300 m, BC = 500 m, and CA = 400 m. Which corner has the largest angle?\n\n### Solution\n\nThe largest angle is opposite the longest side. BC is the longest side, so angle A is the largest. Also, 300 squared + 400 squared = 500 squared, so angle A is 90 degrees."
       },
       {
         "phaseNumber": 9,
@@ -305,25 +305,25 @@
         "phaseNumber": 5,
         "title": "Example 1 — Indirect Proofs of Algebraic Statements",
         "phaseType": "worked_example",
-        "markdown": "Write indirect proofs for statements about inequalities and algebraic relationships.\n\n### Step 1: State the Original Statement\n\nIdentify what you are trying to prove, for example: If x squared plus 8 ≤ 12, then x ≤ 2.\n\n### Step 2: Assume the Opposite\n\nAssume x > 2. This is the negation of x ≤ 2.\n\n### Step 3: Derive a Contradiction\n\nUse algebraic manipulation: if x > 2, then x squared > 4, so x squared plus 8 > 12. This contradicts the given that x squared plus 8 ≤ 12.\n\n### Step 4: Conclude\n\nSince the assumption leads to a contradiction, the original statement must be true."
+        "markdown": "### Problem\n\nFor real x, prove indirectly that if x squared + 8 <= 12, then x <= 2.\n\n### Solution\n\nAssume x > 2. Since x is then positive, x squared > 4. Adding 8 gives x squared + 8 > 12, which contradicts the given inequality. Therefore x <= 2."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Indirect Proofs in Real-World Contexts",
         "phaseType": "worked_example",
-        "markdown": "Use indirect reasoning to solve problems about purchases, sales, and quantities.\n\n### Step 1: Interpret the Situation\n\nUnderstand what you are trying to show, for example: proving at least one bracelet costs more than $20 when two bracelets together cost a little over $40.\n\n### Step 2: Set Up the Negation\n\nAssume both bracelets cost $20 or less. Then the total would be $40 or less.\n\n### Step 3: Show the Contradiction\n\nThe problem states the total is a little more than $40. If both were $20 or less, the total could not exceed $40. Therefore at least one bracelet must cost more than $20."
+        "markdown": "### Problem\n\nTwo bracelets cost 43 dollars in total before tax. Prove that at least one bracelet costs more than 20 dollars.\n\n### Solution\n\nAssume both bracelets cost at most 20 dollars. Their total would then be at most 40 dollars. This contradicts the stated total of 43 dollars. Thus at least one bracelet costs more than 20 dollars."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Indirect Proofs with Integer Properties",
         "phaseType": "worked_example",
-        "markdown": "Prove statements about integers using indirect reasoning.\n\n### Step 1: Identify the Goal\n\nFor example, prove that if the product xy is odd, then both x and y are odd integers.\n\n### Step 2: Assume the Opposite\n\nAssume at least one of x or y is even. Without loss of generality, suppose x is even.\n\n### Step 3: Derive the Contradiction\n\nIf x is even, then x = 2k for some integer k. Then xy = (2k)y = 2(ky), which is even. But the given says xy is odd. Contradiction.\n\n### Step 4: Conclude\n\nBoth x and y must be odd."
+        "markdown": "### Problem\n\nLet x and y be integers. Prove indirectly that if xy is odd, then both x and y are odd.\n\n### Solution\n\nAssume at least one factor is even. If x is even, write x = 2k for an integer k. Then xy = 2(ky), which is even. The same argument applies if y is even. Both cases contradict the given odd product. Therefore both factors are odd."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — Indirect Proofs in Geometry",
         "phaseType": "worked_example",
-        "markdown": "Use indirect proof to establish geometric properties.\n\n### Step 1: State What to Prove\n\nFor example, prove that in an isosceles triangle, neither base angle can be a right angle.\n\n### Step 2: Assume the Opposite\n\nAssume one base angle is a right angle. Then the triangle has a right angle and two equal sides.\n\n### Step 3: Show the Contradiction\n\nIn an isosceles triangle with a right angle at the base, the other base angle would also be 90 degrees, making the sum 180 degrees plus the vertex angle, which is impossible in Euclidean geometry.\n\n### Step 4: Conclude\n\nNeither base angle can be a right angle."
+        "markdown": "### Problem\n\nIn a nondegenerate isosceles triangle ABC, AB = AC. Prove that neither base angle B nor base angle C can be a right angle.\n\n### Solution\n\nAssume angle B is 90 degrees. The equal sides give equal base angles, so angle C is also 90 degrees. These two angles already total 180 degrees, leaving angle A equal to 0 degrees. That contradicts a nondegenerate triangle. The same reasoning applies if angle C is assumed right."
       },
       {
         "phaseNumber": 9,
@@ -373,25 +373,25 @@
         "phaseNumber": 5,
         "title": "Example 1 — Can These Lengths Form a Triangle?",
         "phaseType": "worked_example",
-        "markdown": "Given multiple sets of three lengths, determine which can form a triangle and explain why not for those that cannot.\n\n### Step 1: Check the Sum Condition\n\nFor each set, check if the sum of the two smallest lengths is greater than the largest length.\n\n### Step 2: Apply to All Sets\n\nSome sets will fail (like 8, 9, 17 where 8 + 9 = 17 exactly), meaning they form a degenerate line segment rather than a triangle.\n\n### Step 3: Explain Why Not\n\nFor sets that cannot form a triangle, explain that the sum of two sides must be strictly greater than the third side."
+        "markdown": "### Problem\n\nDetermine which length sets can form triangles: (8, 9, 17), (5, 6, 8), and (2, 3, 7), all in centimeters.\n\n### Solution\n\nFor positive lengths, compare the two shortest lengths with the longest. In the first set, 8 + 9 = 17, so no triangle forms. In the second, 5 + 6 > 8, so a triangle forms. In the third, 2 + 3 < 7, so no triangle forms."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Find the Range for the Third Side",
         "phaseType": "worked_example",
-        "markdown": "Given two side lengths, find the range of possible values for the third side.\n\n### Step 1: Apply the Difference Condition\n\nThe third side must be greater than the difference of the two given sides.\n\n### Step 2: Apply the Sum Condition\n\nThe third side must be less than the sum of the two given sides.\n\n### Step 3: Express the Range\n\nWrite the range as an inequality, for example: if sides are 6 ft and 19 ft, then x > 13 and x < 25, so 13 < x < 25."
+        "markdown": "### Problem\n\nTwo sides of a triangle measure 6 ft and 19 ft. Find the possible lengths x of the third side.\n\n### Solution\n\nThe third side must exceed the difference and be less than the sum. Thus 19 - 6 < x < 19 + 6, which gives 13 < x < 25 feet. Neither endpoint is permitted."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Real-World Triangle Inequality",
         "phaseType": "worked_example",
-        "markdown": "Apply the Triangle Inequality Theorem to real situations like distances between cities or fencing a plot of land.\n\n### Step 1: Identify the Two Known Sides\n\nExtract the two given lengths from the problem context.\n\n### Step 2: Calculate the Range\n\nApply the formula for the range of the third side.\n\n### Step 3: Interpret in Context\n\nFor a city distance problem, the third side must be greater than some minimum (the difference) and less than some maximum (the sum). For fencing, calculate both minimum and maximum fencing needed."
+        "markdown": "### Problem\n\nTwo sides of a triangular garden are 8 m and 13 m. Let the third side have length x meters. Find the possible values of x.\n\n### Solution\n\nThe triangle inequality requires x + 8 > 13 and 8 + 13 > x. These give x > 5 and x < 21. Therefore 5 < x < 21. The endpoints would produce a straight line, not a triangle."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — Proofs Using the Triangle Inequality",
         "phaseType": "worked_example",
-        "markdown": "Write two-column proofs that apply the Triangle Inequality Theorem.\n\n### Step 1: Identify the Given Information\n\nNote what is provided (parallel lines, midpoints, congruent triangles).\n\n### Step 2: Plan the Proof Steps\n\nUse the Triangle Inequality Theorem to establish that a sum of two lengths is greater than a third length.\n\n### Step 3: Write the Proof\n\nOrganize into a two-column format with statements and reasons."
+        "markdown": "### Problem\n\nProve that segments of lengths 3 cm, 4 cm, and 8 cm cannot form a triangle.\n\n### Solution\n\nIf these segments formed a triangle, the sum of any two side lengths would exceed the third. However, 3 + 4 = 7, and 7 < 8. This contradicts the triangle inequality. Thus no such triangle exists."
       },
       {
         "phaseNumber": 9,
@@ -441,25 +441,25 @@
         "phaseNumber": 5,
         "title": "Example 1 — Compare Distances Using the Hinge Theorem",
         "phaseType": "worked_example",
-        "markdown": "Two planes take off from the same airstrip and travel different courses. Use the Hinge Theorem to determine which plane is farther from the starting point.\n\n### Step 1: Identify the Two Sides for Each Triangle\n\nFor each plane, the two legs of the journey form two sides of a triangle.\n\n### Step 2: Identify the Included Angle\n\nThe change in direction forms the included angle between the two legs.\n\n### Step 3: Apply the Hinge Theorem\n\nIf one included angle is smaller than the other, the third side (distance from starting point) is shorter."
+        "markdown": "### Problem\n\nTriangles ABC and DEF have AB = DE = 5 cm and AC = DF = 7 cm. Angle BAC is 40 degrees and angle EDF is 70 degrees. Compare BC and EF.\n\n### Solution\n\nThe pairs of sides around the given angles have equal lengths. Since 70 > 40, the hinge theorem gives EF > BC. The angle comparison alone does not give the exact side lengths."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Write Proofs Using the Hinge Theorem",
         "phaseType": "worked_example",
-        "markdown": "Write two-column proofs that apply the Hinge Theorem or its converse.\n\n### Step 1: Identify the Two Triangles\n\nNote which two triangles are being compared and which sides are congruent.\n\n### Step 2: Compare the Included Angles\n\nState which angle is larger based on the given information.\n\n### Step 3: Apply the Hinge Theorem\n\nConclude that the third side opposite the larger angle is longer."
+        "markdown": "### Problem\n\nTriangles ABC and DEF satisfy AB = DE, AC = DF, and angle BAC = 80 degrees. Angle EDF = 50 degrees. Prove BC > EF.\n\n### Solution\n\nAB and DE are one congruent side pair. AC and DF are another congruent side pair. Angle BAC is larger than the included angle EDF because 80 > 50. By the hinge theorem, the side opposite angle BAC is longer: BC > EF."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Find the Range of Values for x",
         "phaseType": "worked_example",
-        "markdown": "Given a diagram with an unknown x, use triangle inequality relationships to find the range of possible values.\n\n### Step 1: Set Up the Inequality\n\nFor the given diagram, use the relationship between the given sides and the unknown side to create an inequality.\n\n### Step 2: Solve for x\n\nIsolate x to find the range of values that satisfy the triangle inequality.\n\n### Step 3: Express the Range\n\nWrite the range of possible values for x."
+        "markdown": "### Problem\n\nTriangles ABC and DEF satisfy AB = DE and AC = DF. BC > EF. Angle BAC is (3x + 10) degrees, and angle EDF is 40 degrees. Find the possible values of x based on these angle conditions.\n\n### Solution\n\nThe converse hinge theorem gives 3x + 10 > 40, so x > 10. An interior triangle angle must also be less than 180 degrees. Thus 3x + 10 < 180, so x < 170/3. The range is 10 < x < 170/3."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — Hinge Theorem in Proofs",
         "phaseType": "worked_example",
-        "markdown": "Write two-column or paragraph proofs applying the Hinge Theorem.\n\n### Step 1: Identify Given Information\n\nExtract the two pairs of congruent sides and any additional angle information.\n\n### Step 2: Apply the Hinge Theorem\n\nUse the theorem to relate the third sides or third angles.\n\n### Step 3: Write the Proof\n\nOrganize the logical steps with reasons."
+        "markdown": "### Problem\n\nTriangles ABC and DEF have AB = DE = 6 cm and AC = DF = 8 cm. BC = 9 cm and EF = 7 cm. Prove that angle BAC is larger than angle EDF.\n\n### Solution\n\nTwo corresponding side pairs are congruent. The remaining side satisfies BC > EF because 9 > 7. The converse hinge theorem therefore gives angle BAC > angle EDF."
       },
       {
         "phaseNumber": 9,
@@ -509,31 +509,31 @@
         "phaseNumber": 5,
         "title": "Example 1 — Find Measures of Interior Angles",
         "phaseType": "worked_example",
-        "markdown": "Use the Polygon Interior Angles Sum Theorem to find the measure of each interior angle of given regular polygons shown in diagrams.\n\n### Step 1: Apply the Interior Angle Formula\n\nFor a regular polygon with n sides, substitute n into the formula for each interior angle. Use given diagrams to identify the polygon and count the number of sides.\n\n### Step 2: Verify with the Sum Formula\n\nCheck that the sum of all interior angles equals $(n - 2) \\times 180$ by adding the individual angle measures."
+        "markdown": "### Problem\n\nFind the sum of the interior angles of a hexagon. Then find each interior angle if the hexagon is regular.\n\n### Solution\n\nFor n = 6, the interior angle sum is (6 - 2)(180) = 720 degrees. A regular hexagon has six equal interior angles, so each is 720/6 = 120 degrees."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Apply Interior Angles to Real Polygons",
         "phaseType": "worked_example",
-        "markdown": "Use knowledge of interior angles to solve applied problems involving regular polygons found in architecture and real-world contexts.\n\n### Step 1: Identify the Polygon Type\n\nDetermine the number of sides from the context (octagon has 8 sides, dodecagon has 12 sides, heptagon has 7 sides).\n\n### Step 2: Calculate the Interior Angle\n\nFor a regular octagon, the measure of the angle formed by two consecutive walls is found by computing the interior angle measure using the formula."
+        "markdown": "### Problem\n\nA room has the shape of a regular octagon. Find the interior angle between two consecutive walls.\n\n### Solution\n\nAn octagon has 8 sides. Its interior angle sum is (8 - 2)(180) = 1080 degrees. Divide by 8 because the octagon is regular. Each interior angle is 135 degrees."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Find Number of Sides Given Interior Angle",
         "phaseType": "worked_example",
-        "markdown": "Given the measure of one interior angle of a regular polygon, find the number of sides.\n\n### Step 1: Set Up the Equation\n\nUse the formula for a regular polygon's interior angle:\n\n$A = \\frac{(n - 2) \\times 180}{n}$\n\nSubstitute the given angle measure for A and solve for n.\n\n### Step 2: Solve for n\n\nMultiply both sides by n, expand, and isolate n to find the number of sides."
+        "markdown": "### Problem\n\nEach interior angle of a regular polygon is 150 degrees. Find the number of sides.\n\n### Solution\n\nEach exterior angle is 180 - 150 = 30 degrees. One exterior angle at each vertex totals 360 degrees. Thus the number of sides is 360/30 = 12."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — Find Unknown Values in Diagrams",
         "phaseType": "worked_example",
-        "markdown": "Solve for unknown variables in polygon diagrams using angle relationships and the interior angle sum theorem.\n\n### Step 1: Write Equations\n\nUse the interior angle sum to write an equation involving the unknown variable.\n\n### Step 2: Solve the Equation\n\nSolve for the unknown, then substitute back to find the angle measures."
+        "markdown": "### Problem\n\nThe interior angles of a quadrilateral are x degrees, (x + 10) degrees, (x + 20) degrees, and (x + 30) degrees. Find the four angles.\n\n### Solution\n\nA quadrilateral has interior angle sum (4 - 2)(180) = 360 degrees. Thus 4x + 60 = 360 and x = 75. The angles are 75, 85, 95, and 105 degrees. Their sum is 360 degrees."
       },
       {
         "phaseNumber": 9,
         "title": "Example 5 — Find Exterior Angle Measures",
         "phaseType": "worked_example",
-        "markdown": "Find the measure of each exterior angle of given regular polygons.\n\n### Step 1: Apply the Exterior Angle Formula\n\nFor a regular n-gon, each exterior angle measures $E = \\frac{360}{n}$.\n\n### Step 2: Calculate for Each Polygon\n\nSubstitute the number of sides (pentagon = 5, 15-gon = 15, hexagon = 6, etc.) to find each exterior angle measure."
+        "markdown": "### Problem\n\nFind each exterior angle of a regular pentagon, a regular hexagon, and a regular 15-gon.\n\n### Solution\n\nFor a regular n-gon, each exterior angle is 360/n degrees. The values are 72 degrees for the pentagon, 60 degrees for the hexagon, and 24 degrees for the 15-gon."
       },
       {
         "phaseNumber": 10,
@@ -583,25 +583,25 @@
         "phaseNumber": 5,
         "title": "Example 1 — Find Measures in a Parallelogram",
         "phaseType": "worked_example",
-        "markdown": "Use parallelogram properties to find unknown angle measures and side lengths.\n\n### Step 1: Use Opposite Angle Congruence\n\nIn parallelogram PQRS, opposite angles are congruent, so m∠R = m∠P and m∠Q = m∠S. Use this to find missing angle measures.\n\n### Step 2: Use Parallel Side Congruence\n\nOpposite sides of a parallelogram are congruent. Use this to find the length of QR or QP when given a diagram with measurements."
+        "markdown": "### Problem\n\nABCD is a parallelogram. AB = 12 cm, BC = 7 cm, and angle A = 65 degrees. Find CD, AD, and angles B, C, and D.\n\n### Solution\n\nOpposite sides are congruent, so CD = 12 cm and AD = 7 cm. Opposite angles are congruent, so angle C = 65 degrees. Consecutive angles are supplementary, so angles B and D are each 180 - 65 = 115 degrees."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Write Parallelogram Proofs",
         "phaseType": "worked_example",
-        "markdown": "Write two-column and paragraph proofs to prove statements about parallelograms using established theorems.\n\n### Step 1: Identify Given Information\n\nNote the parallelogram stated in the problem and any additional congruent segments or angles provided.\n\n### Step 2: Plan the Proof Steps\n\nUse properties of parallelograms (opposite sides parallel, opposite angles congruent, consecutive angles supplementary) to build a logical chain of reasoning.\n\n### Step 3: Write the Proof\n\nPresent the proof in two-column format with statements and reasons, or as a coherent paragraph."
+        "markdown": "### Problem\n\nABCD is a parallelogram. Draw diagonal AC. Prove triangle ABC is congruent to triangle CDA.\n\n### Solution\n\nAB is parallel to CD, so angle BAC equals angle DCA by alternate interior angles. BC is parallel to AD, so angle BCA equals angle DAC. AC is a common side with equal length in both triangles. The two triangles are congruent by ASA. This proof uses 2 angle pairs and their included side."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Find Unknown Values in Parallelograms",
         "phaseType": "worked_example",
-        "markdown": "Solve for variables in parallelogram diagrams using angle and side relationships.\n\n### Step 1: Set Up Equations\n\nUse the property that opposite angles are congruent and consecutive angles are supplementary to write equations involving the unknown variables.\n\n### Step 2: Solve the Equations\n\nSolve for each variable, then substitute to find angle measures or side lengths."
+        "markdown": "### Problem\n\nThe diagonals of parallelogram ABCD meet at E. AE = 3x - 2 cm and EC = x + 6 cm. Find x and AC.\n\n### Solution\n\nDiagonals of a parallelogram bisect each other, so AE = EC. Solve 3x - 2 = x + 6 to obtain x = 4. AE = EC = 10 cm, so AC = 20 cm."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — Area and Perimeter of Parallelograms",
         "phaseType": "worked_example",
-        "markdown": "Calculate the area and perimeter of parallelograms in real-world contexts like park design and cookie cutting.\n\n### Step 1: Find Perimeter\n\nAdd all four side lengths. Since opposite sides are congruent, perimeter = 2(length + width).\n\n### Step 2: Find Area\n\nThe area of a parallelogram is A = base × height, where the height is the perpendicular distance between the parallel sides."
+        "markdown": "### Problem\n\nA parallelogram has adjacent side lengths 10 m and 6 m. Its perpendicular height to the 10 m base is 4 m. Find its perimeter and area.\n\n### Solution\n\nThe perimeter is 2(10 + 6) = 32 m. The area is base times perpendicular height: 10(4) = 40 square meters. The 6 m sloping side is not the perpendicular height."
       },
       {
         "phaseNumber": 9,
@@ -651,25 +651,25 @@
         "phaseNumber": 5,
         "title": "Example 1 — Identify Parallelograms from Diagrams",
         "phaseType": "worked_example",
-        "markdown": "Determine whether each given quadrilateral is a parallelogram based on visual inspection and measurement information.\n\n### Step 1: Check Side Relationships\n\nLook for parallel sides (indicated by arrows), congruent sides (tick marks), or other properties shown in the diagram.\n\n### Step 2: Apply a Test\n\nUse one of the parallelogram tests to justify whether the quadrilateral is or is not a parallelogram."
+        "markdown": "### Problem\n\nThe diagonals of quadrilateral ABCD meet at E. AE = EC = 5 cm and BE = ED = 3 cm. Must ABCD be a parallelogram?\n\n### Solution\n\nYes. E is the midpoint of each diagonal, so the diagonals bisect each other. A quadrilateral whose diagonals bisect each other is a parallelogram."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Find Values to Form a Parallelogram",
         "phaseType": "worked_example",
-        "markdown": "Solve for x and y so that a quadrilateral satisfies the conditions to be a parallelogram.\n\n### Step 1: Identify the Test Being Used\n\nDetermine whether to use opposite sides parallel, opposite sides congruent, or another condition based on the problem context.\n\n### Step 2: Set Up Equations\n\nCreate equations using the given expressions for sides or angles, then solve for the unknowns."
+        "markdown": "### Problem\n\nIn quadrilateral ABCD, AB is parallel to CD. AB = 2x + 1 cm and CD = 5x - 8 cm. Find x so that this side pair proves ABCD is a parallelogram.\n\n### Solution\n\nOne pair of opposite sides must be both parallel and congruent. The parallel condition is given. Set 2x + 1 = 5x - 8 to obtain x = 3. Both sides then have length 7 cm, so the quadrilateral is a parallelogram."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Coordinate Geometry Verification",
         "phaseType": "worked_example",
-        "markdown": "Graph quadrilaterals with given vertices and determine whether each is a parallelogram using the indicated formula.\n\n### Step 1: Calculate Slopes, Distances, or Midpoints\n\nUse the appropriate formula based on whether the problem asks for slope formula, distance and slope formulas, or midpoint formula verification.\n\n### Step 2: Compare Results\n\nFor opposite sides to be parallel, their slopes must be equal. For opposite sides to be congruent, their lengths must be equal. For diagonals to bisect each other, their midpoints must be equal."
+        "markdown": "### Problem\n\nDetermine whether A(0, 0), B(4, 1), C(6, 4), and D(2, 3), in that order, form a parallelogram.\n\n### Solution\n\nThe slope of AB is 1/4, and the slope of CD is (3 - 4)/(2 - 6) = 1/4. The slope of BC is 3/2, and the slope of AD is 3/2. Both pairs of opposite sides are parallel, so ABCD is a parallelogram."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — Write Coordinate Proofs",
         "phaseType": "worked_example",
-        "markdown": "Write coordinate proofs for statements about parallelograms.\n\n### Step 1: Position the Figure\n\nPlace the parallelogram conveniently on the coordinate plane, often with one vertex at the origin and sides along the axes.\n\n### Step 2: Use Algebraic Methods\n\nCalculate slopes, distances, or midpoints algebraically to prove the desired property."
+        "markdown": "### Problem\n\nProve that A(0, 0), B(a, 0), C(a + b, c), and D(b, c) form a parallelogram when a > 0 and c > 0.\n\n### Solution\n\nThe midpoint of AC is ((a + b)/2, c/2). The midpoint of BD is also ((a + b)/2, c/2). The diagonals therefore bisect each other. Thus ABCD is a parallelogram. The positive conditions prevent a degenerate quadrilateral."
       },
       {
         "phaseNumber": 9,
@@ -719,25 +719,25 @@
         "phaseNumber": 5,
         "title": "Example 1 — Find Measures in Rectangles",
         "phaseType": "worked_example",
-        "markdown": "Use rectangle properties and the Pythagorean Theorem to find side lengths, diagonal lengths, and angle measures.\n\n### Step 1: Identify Right Angles\n\nIn a rectangle, all angles are right angles (90°). Use this to find complementary and supplementary angles.\n\n### Step 2: Apply the Pythagorean Theorem\n\nWhen a rectangle's sides form right triangles with the diagonal, use a² + b² = c² to find unknown side lengths."
+        "markdown": "### Problem\n\nA rectangle is 9 cm long and 12 cm wide. Find its diagonal length and the measure of each interior angle.\n\n### Solution\n\nThe diagonal is the hypotenuse of a right triangle. Its length is $\\sqrt{9^2+12^2}=\\sqrt{225}=15$ cm. Each interior angle of the rectangle is 90 degrees."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Solve Algebraic Problems with Rectangles",
         "phaseType": "worked_example",
-        "markdown": "Set up and solve equations involving angle measures and side lengths in rectangles.\n\n### Step 1: Write Equations\n\nUse the given angle expressions and the fact that angles in a rectangle are right angles or that consecutive angles are supplementary.\n\n### Step 2: Solve for the Unknown\n\nSolve the equation to find the value of the variable, then substitute to find the actual measure."
+        "markdown": "### Problem\n\nABCD is a rectangle. Its diagonals have lengths AC = 3x + 2 cm and BD = 5x - 6 cm. Find x and each diagonal length.\n\n### Solution\n\nDiagonals of a rectangle are congruent. Solve 3x + 2 = 5x - 6 to obtain x = 4. Each diagonal has length 14 cm."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Prove Triangles Congruent Using Rectangles",
         "phaseType": "worked_example",
-        "markdown": "Write two-column proofs showing that triangles within or created by rectangle diagonals are congruent.\n\n### Step 1: Identify Congruent Triangles\n\nRectangles have diagonals that bisect each other and create two pairs of congruent triangles.\n\n### Step 2: List Corresponding Parts\n\nUse the properties of rectangles (right angles, congruent diagonals, bisecting diagonals) to justify triangle congruence criteria."
+        "markdown": "### Problem\n\nABCD is a rectangle with AB = 8 cm and BC = 5 cm. Draw diagonal AC. Prove triangle ABC is congruent to triangle CDA.\n\n### Solution\n\nOpposite sides give AB = CD = 8 cm and BC = AD = 5 cm. The triangles share AC. All 3 corresponding side pairs are congruent, so the triangles are congruent by SSS."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — Coordinate Geometry with Rectangles",
         "phaseType": "worked_example",
-        "markdown": "Graph quadrilaterals on the coordinate plane and determine whether each is a rectangle using slope and distance formulas.\n\n### Step 1: Check for Right Angles (Slope Formula)\n\nFor adjacent sides to be perpendicular, the product of their slopes must equal -1.\n\n### Step 2: Check for Congruent Diagonals (Distance Formula)\n\nCalculate the lengths of both diagonals and verify they are equal."
+        "markdown": "### Problem\n\nDetermine whether A(0, 0), B(4, 0), C(4, 3), and D(0, 3), in that order, form a rectangle.\n\n### Solution\n\nAB and CD are horizontal. BC and AD are vertical. Opposite sides are parallel, and each horizontal side is perpendicular to each adjacent vertical side. Thus ABCD is a rectangle. Both diagonals have length 5. Do not use a slope product for vertical lines because their slopes are undefined."
       },
       {
         "phaseNumber": 9,
@@ -787,31 +787,31 @@
         "phaseNumber": 5,
         "title": "Example 1 — Find Values in a Rhombus",
         "phaseType": "worked_example",
-        "markdown": "Use rhombus properties to find unknown angle measures and diagonal lengths.\n\n### Step 1: Use Diagonal Perpendicularity\n\nThe diagonals of a rhombus intersect at right angles (are perpendicular).\n\n### Step 2: Use Angle Bisector Properties\n\nEach diagonal bisects the angles at the vertices it connects."
+        "markdown": "### Problem\n\nThe diagonals of a rhombus have lengths 12 cm and 16 cm. Find its side length and perimeter.\n\n### Solution\n\nThe diagonals bisect each other at right angles. Each side is the hypotenuse of a right triangle with legs 6 and 8 cm. Its length is $\\sqrt{6^2+8^2}=10$ cm. The perimeter is 4(10) = 40 cm."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Find Diagonal Lengths in Squares",
         "phaseType": "worked_example",
-        "markdown": "Solve for unknown values in square diagrams using the relationship between side lengths and diagonal lengths.\n\n### Step 1: Apply Square Properties\n\nIn a square, all sides are congruent and diagonals are equal in length. The diagonal and two sides form an isosceles right triangle.\n\n### Step 2: Use the Pythagorean Theorem\n\nFor a square with side s, diagonal d = s√2."
+        "markdown": "### Problem\n\nA square has side length 7 cm. Find its exact diagonal length and an approximation to the nearest hundredth.\n\n### Solution\n\nThe diagonal is the hypotenuse of a right triangle with legs 7 and 7. Its length is $\\sqrt{7^2+7^2}=7\\sqrt{2}$ cm, approximately 9.90 cm."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Prove Quadrilaterals Are Rhombi or Squares",
         "phaseType": "worked_example",
-        "markdown": "Write two-column proofs to demonstrate that a given quadrilateral satisfies the definition of a rhombus or square.\n\n### Step 1: Show the Quadrilateral Is a Parallelogram\n\nFirst prove the quadrilateral is a parallelogram using appropriate tests.\n\n### Step 2: Show Additional Properties\n\nFor a rhombus, prove all sides are congruent. For a square, prove all sides congruent and all angles right (or prove it's both a rectangle and a rhombus)."
+        "markdown": "### Problem\n\nABCD is a parallelogram. Its diagonals are perpendicular and congruent, with each diagonal 10 cm long. Prove that ABCD is a square.\n\n### Solution\n\nA parallelogram with perpendicular diagonals is a rhombus. A parallelogram with congruent diagonals is a rectangle. ABCD is therefore both a rhombus and a rectangle, so it is a square."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — Precision Problems with Real Objects",
         "phaseType": "worked_example",
-        "markdown": "Determine what measurements are needed to confirm whether a garden box or quilt patch is a square.\n\n### Step 1: Identify Required Properties\n\nA square requires: four right angles and four congruent sides.\n\n### Step 2: State What to Measure\n\nExplain what measurements (side lengths, diagonals, angles) would confirm the shape is a square."
+        "markdown": "### Problem\n\nAn ideal rhombus-shaped tile has diagonals 10 cm and 24 cm. Find the side length. State why measurements of a real tile alone cannot prove an exact rhombus.\n\n### Solution\n\nThe half-diagonals are 5 cm and 12 cm. The side length is $\\sqrt{5^2+12^2}=13$ cm. Measurements have limited precision. They can support a classification within a stated tolerance, but they do not establish exact equality of all four sides."
       },
       {
         "phaseNumber": 9,
         "title": "Example 5 — Classify Quadrilaterals Using Coordinates",
         "phaseType": "worked_example",
-        "markdown": "Given coordinates of four vertices, determine whether the quadrilateral is a rhombus, rectangle, square, parallelogram, or none. List all that apply.\n\n### Step 1: Calculate Slopes and Distances\n\nFind slopes of all sides, lengths of all sides, and slopes of diagonals.\n\n### Step 2: Check Each Category\n\n* Parallelogram: opposite sides parallel.\n* Rectangle: parallelogram with right angles or congruent diagonals.\n* Rhombus: parallelogram with all sides congruent or perpendicular diagonals.\n* Square: both rectangle and rhombus properties."
+        "markdown": "### Problem\n\nClassify the quadrilateral with vertices A(0, 0), B(2, 2), C(4, 0), and D(2, -2), in that order.\n\n### Solution\n\nEach side has length $\\sqrt{8}$. The slopes of AB and BC are 1 and -1, so these adjacent sides are perpendicular. A quadrilateral with four congruent sides and a right angle is a square."
       },
       {
         "phaseNumber": 10,
@@ -861,37 +861,37 @@
         "phaseNumber": 5,
         "title": "Example 1 — Solve Problems with Trapezoids",
         "phaseType": "worked_example",
-        "markdown": "Use trapezoid properties to solve for unknown variables, angle measures, and perimeters.\n\n### Step 1: Set Up Equations\n\nUse the given algebraic expressions for side lengths and the properties of trapezoids (or isosceles trapezoids) to write equations.\n\n### Step 2: Solve and Verify\n\nSolve for the unknown variable, then use this to find angle measures or perimeter."
+        "markdown": "### Problem\n\nAn isosceles trapezoid has parallel bases AB and CD. Angle A is 70 degrees. Find angles B, C, and D.\n\n### Solution\n\nBase angles of an isosceles trapezoid are congruent, so angle B is 70 degrees. Angles on the same leg are supplementary because the bases are parallel. Thus angles C and D are each 110 degrees."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Verify Trapezoids Using Coordinates",
         "phaseType": "worked_example",
-        "markdown": "Determine whether a quadrilateral is a trapezoid or an isosceles trapezoid by calculating slopes and distances.\n\n### Step 1: Check for Parallel Sides\n\nCalculate slopes to determine which sides are parallel. A trapezoid has exactly one pair of parallel sides.\n\n### Step 2: Check for Congruent Legs (Isosceles)\n\nCalculate the lengths of the non-parallel sides (legs). If they are congruent, the trapezoid is isosceles."
+        "markdown": "### Problem\n\nVerify that A(0, 0), B(8, 0), C(6, 4), and D(2, 4) form an isosceles trapezoid.\n\n### Solution\n\nAB and CD are horizontal, so they are parallel. The slopes of AD and BC are 2 and -2, so these sides are not parallel. AD and BC each have length $\\sqrt{2^2+4^2}=\\sqrt{20}$. The trapezoid is isosceles."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Find Midsegment Lengths",
         "phaseType": "worked_example",
-        "markdown": "Use the midsegment formula to find unknown lengths in trapezoids.\n\n### Step 1: Identify the Bases and Midsegment\n\nThe midsegment connects the midpoints of the legs.\n\n### Step 2: Apply the Formula\n\nSubstitute the known base lengths into $m = \\frac{b_1 + b_2}{2}$ and solve for the unknown."
+        "markdown": "### Problem\n\nA trapezoid has base lengths 12 cm and 20 cm. Find its midsegment length.\n\n### Solution\n\nThe midsegment length is the average of the base lengths. Thus m = (12 + 20)/2 = 16 cm."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — Find Midsegment Endpoints",
         "phaseType": "worked_example",
-        "markdown": "Find the coordinates of the endpoints of the midsegment of a trapezoid given the vertices.\n\n### Step 1: Find Midpoints of the Legs\n\nUse the midpoint formula to find where each leg is bisected.\n\n### Step 2: Connect the Midpoints\n\nThe segment connecting these midpoints is the midsegment."
+        "markdown": "### Problem\n\nA trapezoid has vertices A(0, 0), B(8, 0), C(6, 4), and D(2, 4). Find the endpoints and length of its midsegment.\n\n### Solution\n\nThe midpoint of AD is M(1, 2). The midpoint of BC is N(7, 2). The horizontal distance MN is 6. This also equals the average base length: (8 + 4)/2 = 6."
       },
       {
         "phaseNumber": 9,
         "title": "Example 5 — Find Angle Measures in Kites",
         "phaseType": "worked_example",
-        "markdown": "Use kite properties to find unknown angle measures.\n\n### Step 1: Identify Congruent Angles\n\nIn a kite, the angles between pairs of unequal adjacent sides are congruent.\n\n### Step 2: Apply Angle Sum\n\nUse the fact that the sum of interior angles in a quadrilateral is 360 degrees."
+        "markdown": "### Problem\n\nKite ABCD has AB = AD and CB = CD. Angle A is 70 degrees and angle C is 110 degrees. Find angles B and D.\n\n### Solution\n\nAngles B and D are the angles between unequal adjacent sides, so they are congruent. The angle sum gives B + D = 360 - 70 - 110 = 180 degrees. Therefore each angle is 90 degrees."
       },
       {
         "phaseNumber": 10,
         "title": "Example 6 — Perimeter and Area Problems with Kites",
         "phaseType": "worked_example",
-        "markdown": "Solve for unknown side lengths and find perimeters of kites.\n\n### Step 1: Use Diagonal Properties\n\nThe diagonals of a kite are perpendicular and one diagonal bisects the other.\n\n### Step 2: Apply the Pythagorean Theorem\n\nRight triangles formed by the diagonals allow use of the Pythagorean Theorem to find unknown lengths."
+        "markdown": "### Problem\n\nA kite has vertices A(0, 6), B(4, 0), C(0, -3), and D(-4, 0). Find its area and perimeter.\n\n### Solution\n\nThe perpendicular diagonals have lengths AC = 9 and BD = 8. The area is (1/2)(9)(8) = 36 square units. AB and AD each have length $\\sqrt{52}=2\\sqrt{13}$. BC and CD each have length 5. The perimeter is $10+4\\sqrt{13}$ units, approximately 24.42 units."
       },
       {
         "phaseNumber": 11,
@@ -959,7 +959,7 @@
         "phaseNumber": 8,
         "title": "Example 4 — Find the Scale Factor",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Use Corresponding Points\n\nTo find the scale factor, compare the lengths of corresponding sides or distances from the center of dilation to corresponding points.\n\n$$\nk = \\frac{image\\ length}{original\\ length}\n$$"
+        "markdown": "### Problem\n\nA dilation maps a segment of length 6 cm to a corresponding segment of length 15 cm. Find the scale factor from the original to the image.\n\n### Solution\n\nThe scale factor is image length divided by original length: k = 15/6 = 5/2 = 2.5. The reverse dilation has scale factor 2/5."
       },
       {
         "phaseNumber": 9,
@@ -1015,13 +1015,13 @@
         "phaseNumber": 6,
         "title": "Example 2 — Determine Similarity and Scale Factor",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Compare Angle Measures\n\nCheck whether corresponding angles are congruent. If all corresponding angles are equal, the figures may be similar.\n\n### Step 2: Compare Side Ratios\n\nVerify that all pairs of corresponding sides have the same ratio (scale factor). If they do, the polygons are similar.\n\n$$\nk = \\frac{side_{image}}{side_{original}}\n$$"
+        "markdown": "### Problem\n\nTriangles ABC and DEF have corresponding side lengths (3, 4, 5) cm and (6, 8, 10) cm. Determine whether they are similar and find the scale factor from ABC to DEF.\n\n### Solution\n\nThe corresponding side ratios are 6/3 = 8/4 = 10/5 = 2. The triangles are similar by SSS similarity. The scale factor from ABC to DEF is 2."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Find Unknown Values",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Set Up a Proportion\n\nUse the known side lengths and the scale factor to set up a proportion.\n\n### Step 2: Solve for the Unknown\n\nCross-multiply and solve for the variable."
+        "markdown": "### Problem\n\nTriangle ABC is similar to triangle DEF in the stated order. AB = 4 cm, BC = 6 cm, DE = 10 cm, and EF = x cm. Find x.\n\n### Solution\n\nThe scale factor from ABC to DEF is DE/AB = 10/4 = 2.5. Thus EF = 2.5(BC) = 2.5(6) = 15 cm, so x = 15."
       },
       {
         "phaseNumber": 8,
@@ -1077,7 +1077,7 @@
         "phaseNumber": 5,
         "title": "Example 1 — Determine Triangle Similarity",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Identify Given Angle Relationships\n\nLook for angles that are congruent based on given information (shared angles, vertical angles, right angles, or parallel line angle relationships).\n\n### Step 2: Apply the AA Similarity Postulate\n\nIf two angles of one triangle are congruent to two angles of another triangle, conclude the triangles are similar and write the similarity statement."
+        "markdown": "### Problem\n\nTriangle ABC has angles A = 40 degrees and B = 60 degrees. Triangle DEF has angles D = 40 degrees and E = 60 degrees. Determine whether the triangles are similar.\n\n### Solution\n\nTwo corresponding angle pairs are congruent. Therefore triangle ABC is similar to triangle DEF by AA similarity. Each remaining angle is 180 - 40 - 60 = 80 degrees."
       },
       {
         "phaseNumber": 6,
@@ -1133,13 +1133,13 @@
         "phaseNumber": 5,
         "title": "Example 1 — Determine Similarity Using SSS or SAS",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Identify Given Information\n\nLook for side length ratios or angle measures that are given or can be deduced.\n\n### Step 2: Apply the Appropriate Theorem\n\n* For SSS: Verify all three side ratios are equal.\n* For SAS: Verify two side ratios are equal AND the included angle is congruent."
+        "markdown": "### Problem\n\nIn triangle ABC, AB = 4 cm, AC = 6 cm, and angle A = 50 degrees. In triangle DEF, DE = 6 cm, DF = 9 cm, and angle D = 50 degrees. Determine whether the triangles are similar.\n\n### Solution\n\nAB/DE = 4/6 = 2/3 and AC/DF = 6/9 = 2/3. The included angles A and D are congruent. The triangles are similar by SAS similarity."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Find Unknown Values Using Similarity",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Set Up the Proportion\n\nUse the given side lengths to set up a proportion based on the similarity relationship.\n\n### Step 2: Solve for the Unknown\n\nCross-multiply and solve."
+        "markdown": "### Problem\n\nTriangle ABC is similar to triangle DEF in the stated order. AB = 5 cm, AC = 7 cm, DE = 15 cm, and DF = x cm. Find x.\n\n### Solution\n\nDE/AB = 15/5 = 3. Corresponding sides have the same scale factor, so DF = 3(7) = 21 cm. Therefore x = 21."
       },
       {
         "phaseNumber": 7,
@@ -1213,13 +1213,13 @@
         "phaseNumber": 8,
         "title": "Example 4 — Apply to Real-World Problems",
         "phaseType": "worked_example",
-        "markdown": "**MAPS (Problem 9):** Cay Street ∥ Bay Street. Find [x], the distance between streets along Earl Street.\n\n**PLAYSCAPES (Problem 10):** Two-story playscape with parallel supports. Find [x]."
+        "markdown": "### Problem\n\nIn triangle ABC, D is on AB, E is on AC, and DE is parallel to BC. A road segment AD is 200 m, DB is 300 m, and AE is 160 m. Find EC.\n\n### Solution\n\nThe triangle proportionality theorem gives AD/DB = AE/EC. Thus 200/300 = 160/EC. Cross multiplication gives 200(EC) = 48000, so EC = 240 m."
       },
       {
         "phaseNumber": 9,
         "title": "Example 5 — Find Multiple Unknown Values",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Set Up Multiple Proportions\n\nFor problems with two unknowns, set up a system of equations using the proportionality relationships."
+        "markdown": "### Problem\n\nIn triangle ABC, D lies on AB and E lies on AC, with DE parallel to BC. AD = 4 cm, DB = 6 cm, AE = x cm, EC = 9 cm, DE = 8 cm, and BC = y cm. Find x and y.\n\n### Solution\n\nParallel lines give AD/DB = AE/EC. Thus 4/6 = x/9 and x = 6. Triangles ADE and ABC are similar with ratio AD/AB = 4/10. Therefore DE/BC = 8/y = 4/10, so y = 20."
       },
       {
         "phaseNumber": 10,
@@ -1269,7 +1269,7 @@
         "phaseNumber": 5,
         "title": "Example 1 — Find Unknown Side Lengths",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Set Up a Proportion\n\nGiven similar triangles, use the ratio of corresponding sides to set up a proportion.\n\n### Step 2: Solve for the Unknown\n\nCross-multiply and solve."
+        "markdown": "### Problem\n\nAn altitude from the right-angle vertex of a right triangle divides the hypotenuse into segments of lengths 9 cm and 16 cm. Find the altitude and both legs.\n\n### Solution\n\nThe hypotenuse is 25 cm. The altitude is $\\sqrt{9(16)}=12$ cm. The leg adjacent to the 9 cm hypotenuse segment is $\\sqrt{25(9)}=15$ cm. The other leg is $\\sqrt{25(16)}=20$ cm. Check: 15 squared + 20 squared = 25 squared."
       },
       {
         "phaseNumber": 6,
@@ -2049,7 +2049,7 @@
         "phaseNumber": 6,
         "title": "Example 2 — Find Angle Measures in Overlapping Triangles",
         "phaseType": "worked_example",
-        "markdown": "Use properties of inscribed angles to find [m∠N], [m∠L], [m∠C], and [m∠A] from circle diagrams.\n\n### Step 1: Identify the Intercepted Arc for Each Angle\n\nFor each inscribed angle, find the arc it intercepts, then apply the inscribed angle theorem."
+        "markdown": "### Problem\n\nA, B, C, and D lie on the same circle. C and D lie on the same arc AB. Angle ACB intercepts the other arc AB and measures 35 degrees. Find angle ADB.\n\n### Solution\n\nAngles ACB and ADB intercept the same arc AB. Inscribed angles that intercept the same arc are congruent. Therefore angle ADB is 35 degrees. The intercepted arc measures 70 degrees."
       },
       {
         "phaseNumber": 7,
@@ -2123,7 +2123,7 @@
         "phaseNumber": 8,
         "title": "Example 4 — Find Perimeter of Circumscribed Polygons",
         "phaseType": "worked_example",
-        "markdown": "Each polygon is circumscribed about a circle. Find the perimeter.\n\n### Step 1: Recognize That Opposite Sides Have Common External Tangents\n\nFor a polygon circumscribed about a circle, the sum of the lengths of opposite sides are equal. Add all side lengths to find the perimeter."
+        "markdown": "### Problem\n\nA triangle has an inscribed circle. The tangent lengths from its three vertices to the points of tangency are 4 cm, 5 cm, and 6 cm, respectively. Find the perimeter.\n\n### Solution\n\nTangent segments from the same exterior point are congruent. Each vertex contributes its tangent length to two sides. The perimeter is 2(4 + 5 + 6) = 30 cm. The side lengths are 9 cm, 11 cm, and 10 cm."
       },
       {
         "phaseNumber": 9,
@@ -2463,7 +2463,7 @@
         "phaseNumber": 8,
         "title": "Example 4 — Composite Figures with Regular Polygons",
         "phaseType": "worked_example",
-        "markdown": "Find the area of each figure. Round to the nearest tenth, if necessary.\n\n### Step 1: Decompose the Figure\n\nBreak the composite figure into regular polygons and other shapes.\n\n### Step 2: Find the Area of Each Part\n\nCalculate the area of each component.\n\n### Step 3: Combine or Subtract\n\nAdd areas of combined shapes or subtract holes from larger areas."
+        "markdown": "### Problem\n\nA regular hexagon with side length 4 cm shares one full side with a square of side length 4 cm. Their interiors do not overlap. Find the combined area.\n\n### Solution\n\nThe hexagon contains six equilateral triangles. Each triangle has area $(\\sqrt{3}/4)(4^2)=4\\sqrt{3}$ square centimeters. The hexagon area is $24\\sqrt{3}$. Add the square area, 16. The total is $16+24\\sqrt{3}$ square centimeters, approximately 57.57 square centimeters."
       },
       {
         "phaseNumber": 9,
@@ -2685,19 +2685,19 @@
         "phaseNumber": 6,
         "title": "Example 2 — Identify Cross Section Shapes",
         "phaseType": "worked_example",
-        "markdown": "Identify the shape of each cross section.\n\n### Step 1: Identify the Cutting Direction\n\nDetermine whether the cut is parallel or perpendicular to the base, or at some other angle.\n\n### Step 2: Match the Shape to the Solid\n\nA slice parallel to the base of a pyramid gives a smaller similar shape.\nA slice perpendicular to the base gives a triangle (for a pyramid) or rectangle (for a prism).\nA diagonal slice gives various quadrilaterals or triangles.\n\nCross sections can be: triangles, rectangles, squares, pentagons, hexagons, circles, ellipses."
+        "markdown": "### Problem\n\nA right circular cone has base radius 6 cm and height 12 cm. A plane parallel to its base cuts the cone halfway between the vertex and the base. Identify the cross section and its radius.\n\n### Solution\n\nA plane parallel to the circular base produces a circle. At half the height from the vertex, all linear dimensions are half the base dimensions by similarity. The cross-section radius is 3 cm."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Identify Solids of Revolution",
         "phaseType": "worked_example",
-        "markdown": "Identify the solid formed by rotating the two-dimensional shape about each line.\n\n### Step 1: Visualize the Rotation\n\nThink about what the shape would look like if spun around the given axis.\n\n### Step 2: Match to Known Solids\n\nRotating a rectangle about one side creates a cylinder.\nRotating a right triangle about one leg creates a cone.\nRotating a semicircle about its diameter creates a sphere.\nRotating a rectangle about its diagonal creates a cylinder with an oblique appearance.\nRotating a trapezoid about its parallel side creates a truncated cone (frustum)."
+        "markdown": "### Problem\n\nRotate a 3 cm by 5 cm rectangle through one full turn about one of its 5 cm sides. Identify the solid and its dimensions.\n\n### Solution\n\nThe fixed 5 cm side becomes the axis. The opposite side moves in a circle of radius 3 cm. The solid is a right circular cylinder with radius 3 cm and height 5 cm."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — Axis Symmetry",
         "phaseType": "worked_example",
-        "markdown": "Determine whether each item has axis symmetry. Write yes or no.\n\n### Step 1: Identify the Axis\n\nLook for a central line around which the object could rotate.\n\n### Step 2: Check if Rotation Leaves the Object Unchanged\n\nIf rotating the object around an axis produces the same appearance, it has axis symmetry.\n\nA traffic cone with a base: Yes — any rotation around its central vertical axis leaves it unchanged.\n\nA one pound weight: Yes — a standard weight has axis symmetry around its central vertical axis.\n\nA flower petal and stem: No — the petal is not symmetric around the stem axis.\n\nA golf ball: Yes — rotation around any axis through the center leaves it appearing the same (if the dimples are uniform).\n\nA tree: Generally No — most trees are not perfectly symmetric around a central axis.\n\nA lamp: It depends on the lamp design. A symmetrical lamp shade would have axis symmetry."
+        "markdown": "### Problem\n\nRotate the region bounded by x = 0, x = 2, y = 0, and y = 5 about the y-axis. Identify the solid and describe its axial symmetry.\n\n### Solution\n\nThe result is a cylinder with radius 2 and height 5. Rotating the cylinder by any angle about the y-axis leaves it unchanged. Every plane through the y-axis is also a plane of reflection symmetry."
       },
       {
         "phaseNumber": 9,
@@ -2765,7 +2765,7 @@
         "phaseNumber": 8,
         "title": "Example 4 — More Volume Problems",
         "phaseType": "worked_example",
-        "markdown": "Find the volume of each prism or pyramid. Round to the nearest tenth, if necessary.\n\nWork through problems involving various base shapes including rectangles, triangles, and regular polygons."
+        "markdown": "### Problem\n\nA pyramid has a rectangular base measuring 6 cm by 9 cm. Its perpendicular height is 10 cm. Find its volume.\n\n### Solution\n\nThe base area is B = 6(9) = 54 square centimeters. Use V = Bh/3 to obtain V = 54(10)/3 = 180 cubic centimeters."
       },
       {
         "phaseNumber": 9,
@@ -2777,7 +2777,7 @@
         "phaseNumber": 10,
         "title": "Example 6 — Volume of Composite Solids",
         "phaseType": "worked_example",
-        "markdown": "Find the volume of each composite solid. Round to the nearest tenth, if necessary.\n\n### Step 1: Decompose the Solid\n\nBreak the composite solid into recognizable prisms, pyramids, cylinders, cones, or spheres.\n\n### Step 2: Find Each Volume\n\nCalculate the volume of each component.\n\n### Step 3: Combine the Volumes\n\nAdd all component volumes to find the total volume."
+        "markdown": "### Problem\n\nA rectangular prism is 8 m long, 6 m wide, and 4 m high. A rectangular pyramid roof has the same base and perpendicular height 3 m. The interiors do not overlap. Find the total volume.\n\n### Solution\n\nThe prism volume is 8(6)(4) = 192 cubic meters. The roof volume is (1/3)(8)(6)(3) = 48 cubic meters. The total is 240 cubic meters."
       },
       {
         "phaseNumber": 11,
@@ -2869,7 +2869,7 @@
         "phaseNumber": 11,
         "title": "Example 7 — Volume of Composite Solids with Cylinders and Cones",
         "phaseType": "worked_example",
-        "markdown": "Find the volume of each composite solid. Round to the nearest tenth.\n\n### Step 1: Identify the Components\n\nBreak into cylinder, cone, and/or other shapes.\n\n### Step 2: Find Each Volume\n\nCalculate separately.\n\n### Step 3: Combine Appropriately\n\nAdd or subtract as needed."
+        "markdown": "### Problem\n\nA cylinder has radius 3 cm and height 8 cm. A cone with the same radius and height 4 cm sits on one circular end. Find the total volume.\n\n### Solution\n\nThe cylinder volume is $\\pi(3^2)(8)=72\\pi$. The cone volume is $(1/3)\\pi(3^2)(4)=12\\pi$. Their interiors do not overlap, so the total is $84\\pi$ cubic centimeters, approximately 263.89 cubic centimeters."
       },
       {
         "phaseNumber": 12,
@@ -3197,7 +3197,7 @@
         "phaseNumber": 5,
         "title": "Example 1 — Length-Based Probability",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Identify Total Length and Favorable Length\n\nPoint [M] is chosen at random on segment [ZP]. Find each probability:\n\n**Problem 1:** [P(M] is on [ZQ)]\n**Problem 2:** [P(M] is on [QR])\n**Problem 3:** [P(M] is on [RP])\n**Problem 4:** [P(M] is on [QP])\n\nPoint [X] is chosen at random on segment [LP]. Find each probability:\n\n**Problem 5:** [P(X] is on [LN])\n**Problem 6:** [P(X] is on [MO])"
+        "markdown": "### Problem\n\nA point M is chosen uniformly at random on a 20 cm segment ZP. Points Q and R divide it in order Z, Q, R, P, with ZQ = 5 cm and QR = 8 cm. Find the probabilities that M lies on ZQ, QR, and RP.\n\n### Solution\n\nRP = 20 - 5 - 8 = 7 cm. Uniform selection makes each probability equal to favorable length divided by 20. The probabilities are 5/20 = 1/4, 8/20 = 2/5, and 7/20. They total 1. Individual endpoints have probability 0 under this continuous model."
       },
       {
         "phaseNumber": 6,
@@ -3563,7 +3563,7 @@
         "phaseNumber": 5,
         "title": "Example 1 — Identify Domain, Range, Codomain, and Determine If Onto",
         "phaseType": "worked_example",
-        "markdown": "Use the codomain and range to determine whether the function is onto.\n\n### Step 1: Examine the Graphs\n\nFor each graph, identify the domain (all x-values covered), the range (all y-values actually attained), and the codomain (as stated or implied).\n\nThe function is onto when every value in the codomain also appears in the range."
+        "markdown": "### Problem\n\nLet f map the domain {1, 2, 3} into the codomain {2, 4, 6, 8}, with f(1) = 2, f(2) = 4, and f(3) = 6. State the domain, range, and codomain. Is f onto?\n\n### Solution\n\nThe domain is {1, 2, 3}. The range is {2, 4, 6}. The codomain is {2, 4, 6, 8}. The value 8 has no input that maps to it, so f is not onto this codomain."
       },
       {
         "phaseNumber": 6,
@@ -3575,13 +3575,13 @@
         "phaseNumber": 7,
         "title": "Example 3 — Determine One-to-One, Onto, Both, or Neither",
         "phaseType": "worked_example",
-        "markdown": "For each graphed function, determine whether it is one-to-one, onto, both, or neither.\n\n### Step 1: Analyze Each Graph\n\nUse the vertical line test (one-to-one) and compare range to codomain (onto)."
+        "markdown": "### Problem\n\nClassify each function by whether it is one-to-one and onto. Both have domain {1, 2, 3}. Function f has codomain {a, b, c} and maps 1 to a, 2 to b, and 3 to c. Function g has codomain {a, b, c} and maps 1 to a, 2 to a, and 3 to b.\n\n### Solution\n\nFor f, different inputs have different outputs, and every codomain element is reached. Thus f is both one-to-one and onto. For g, two inputs map to a, and c is not reached. Thus g is neither one-to-one nor onto."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — Classify Functions as Discrete or Continuous",
         "phaseType": "worked_example",
-        "markdown": "Examine each graph. Determine whether each function is discrete, continuous, or neither discrete nor continuous. Then state the domain and range of each function.\n\n### Step 1: Identify the Type\n\nLook at the domain — is it an unbroken interval (continuous) or a set of isolated points (discrete)?"
+        "markdown": "### Problem\n\nA ticket costs 12 dollars. Model the cost C of n tickets. Water flows at 2 liters per minute for 5 minutes. Model its volume V at time t. Classify the domains as discrete or continuous.\n\n### Solution\n\nThe ticket model is C = 12n with n a nonnegative integer. Its domain is discrete because fractional tickets are excluded. The water model is V = 2t for real t with 0 <= t <= 5. Its domain is continuous because any time in that interval is allowed."
       },
       {
         "phaseNumber": 9,
@@ -3593,7 +3593,7 @@
         "phaseNumber": 10,
         "title": "Examples 6 and 7 — Write Domain and Range in Set-Builder and Interval Notation",
         "phaseType": "worked_example",
-        "markdown": "For each graph, write the domain and range in both set-builder and interval notation.\n\n### Step 1: Analyze the Graphs\n\nUse the visual extent of the graph to determine which x-values and y-values are covered. Then convert to both notation forms."
+        "markdown": "### Problem\n\nFor $f(x)=\\sqrt{x-2}$ with real inputs and outputs, write the domain and range in set-builder and interval notation.\n\n### Solution\n\nThe radicand must satisfy x - 2 >= 0, so x >= 2. The domain is $\\{x\\in\\mathbb{R}:x\\geq2\\}=[2,\\infty)$. The principal square root is nonnegative and takes every nonnegative value. The range is $\\{y\\in\\mathbb{R}:y\\geq0\\}=[0,\\infty)$."
       },
       {
         "phaseNumber": 11,
@@ -3649,19 +3649,19 @@
         "phaseNumber": 6,
         "title": "Example 2 — Linear vs. Nonlinear Graphs",
         "phaseType": "worked_example",
-        "markdown": "Determine whether each graph represents a linear or nonlinear function.\n\n### Step 1: Examine the Shape\n\nLinear graphs are straight lines. Any curve or bend indicates a nonlinear function."
+        "markdown": "### Problem\n\nDetermine whether f(x) = 2x + 1 and g(x) = x squared are linear. Compare their outputs at x = 0, 1, and 2.\n\n### Solution\n\nThe outputs of f are 1, 3, and 5. Equal input steps give equal output steps of 2, so its graph is a line. The outputs of g are 0, 1, and 4, with changes 1 and 3. Its rate of change is not constant, so its graph is nonlinear."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Tables: Linear or Nonlinear?",
         "phaseType": "worked_example",
-        "markdown": "Determine whether the relationship in each table can be modeled by a linear or nonlinear function.\n\n### Step 1: Check for Constant Rate of Change\n\nIn a linear function, the difference in [y] values is constant for equal steps in [x]."
+        "markdown": "### Problem\n\nTable A has input-output pairs (0, 2), (1, 5), (2, 8), and (3, 11). Table B has pairs (0, 1), (1, 2), (2, 4), and (3, 8). Which table is consistent with a linear function?\n\n### Solution\n\nTable A has a constant output change of 3 for each input increase of 1. It is consistent with y = 3x + 2. Table B has changes 1, 2, and 4, so it is not consistent with a linear function."
       },
       {
         "phaseNumber": 8,
         "title": "Examples 4 and 5 — Estimate Intercepts from Graphs",
         "phaseType": "worked_example",
-        "markdown": "Use the graph to estimate the x- and y-intercepts.\n\n### Step 1: Read the Intercept Values\n\nFind where the graph crosses each axis. Estimate coordinates to the nearest tenth if needed."
+        "markdown": "### Problem\n\nA line crosses the y-axis at (0, 6) and passes through (2, 2). Find its x-intercept and y-intercept.\n\n### Solution\n\nThe slope is (2 - 6)/(2 - 0) = -2, so the equation is y = -2x + 6. For the x-intercept, set y = 0 to obtain x = 3. The intercepts are (3, 0) and (0, 6)."
       },
       {
         "phaseNumber": 9,
@@ -3729,19 +3729,19 @@
         "phaseNumber": 5,
         "title": "Examples 1 and 2 — Identify and Estimate Extrema",
         "phaseType": "worked_example",
-        "markdown": "Identify and estimate the x- and y-values of the extrema. Round to the nearest tenth if necessary.\n\n### Step 1: Read the Graph\n\nFind the peaks and valleys. Record the coordinates."
+        "markdown": "### Problem\n\nFind the absolute extrema of f(x) = (x - 2) squared + 1 on the closed interval 0 <= x <= 5.\n\n### Solution\n\nThe square is smallest at x = 2, so the minimum value is f(2) = 1. The endpoint values are f(0) = 5 and f(5) = 10. Since the parabola opens upward, the maximum on this interval is 10 at x = 5."
       },
       {
         "phaseNumber": 6,
         "title": "Examples 3–5 — Describe End Behavior",
         "phaseType": "worked_example",
-        "markdown": "Describe the end behavior of each function.\n\n### Step 1: Analyze the Graph's Ends\n\nLook at both the left and right ends of the graph and describe where [f(x)] goes as [x] goes to [+-infinity]."
+        "markdown": "### Problem\n\nDescribe both ends of the graph of f(x) = -2x cubed + 3x.\n\n### Solution\n\nThe leading term -2x cubed controls the end behavior. As x approaches negative infinity, f(x) approaches positive infinity. As x approaches positive infinity, f(x) approaches negative infinity. The graph rises to the left and falls to the right."
       },
       {
         "phaseNumber": 7,
         "title": "Example 6 — Interpret End Behavior in Context",
         "phaseType": "worked_example",
-        "markdown": "The roller coaster problem describes the height of a coaster as a function of distance from the start.\n\n### Step 1: Contextualize the Ends\n\nAs the coaster moves away from the start, its height eventually decreases — interpret what happens to height as distance increases."
+        "markdown": "### Problem\n\nA model for temperature is T(t) = 20 + 60/(t + 1) degrees Celsius for t >= 0. Describe what the model predicts as time increases without bound.\n\n### Solution\n\nAs t increases, 60/(t + 1) approaches 0. Thus T(t) approaches 20 degrees Celsius from above. It never equals 20 at a finite nonnegative time in this model. This is a prediction of the model, not a guarantee about every real object."
       },
       {
         "phaseNumber": 8,
@@ -3803,7 +3803,7 @@
         "phaseNumber": 7,
         "title": "Examples 4 and 5 — Compare Functions Across Representations",
         "phaseType": "worked_example",
-        "markdown": "Compare the key features of functions represented with a graph, a table, and a verbal description.\n\n### Step 1: Graph and Table Comparison\n\n### Step 2: Graph and Verbal Description\n\n### Step 3: Table and Verbal Description\n\n### Step 4: More Comparisons"
+        "markdown": "### Problem\n\nFunction f is given by f(x) = 2x + 3. Function g has values g(0) = 1, g(1) = 4, and g(2) = 7 and is known to be linear. Compare their rates of change and initial values.\n\n### Solution\n\nThe rate of change of f is 2, and its initial value is 3. For g, each input increase of 1 adds 3 to the output, so its rate is 3 and its initial value is 1. Function g increases faster, but f starts higher. They have equal values when 2x + 3 = 3x + 1, which gives x = 2 and y = 7."
       },
       {
         "phaseNumber": 8,
@@ -3853,7 +3853,7 @@
         "phaseNumber": 5,
         "title": "Example 1 — Graph Using a Table",
         "phaseType": "worked_example",
-        "markdown": "Graph each equation by using a table.\n\n### Step 1: Make a Table of Values\n\nChoose x-values, compute corresponding y-values, plot the points, and connect them."
+        "markdown": "### Problem\n\nUse a table to graph y = -x + 2.\n\n### Solution\n\nChoose x = 0, 1, and 2. The corresponding y-values are 2, 1, and 0. Plot (0, 2), (1, 1), and (2, 0). Draw the straight line through them and extend it in both directions."
       },
       {
         "phaseNumber": 6,
@@ -3865,13 +3865,13 @@
         "phaseNumber": 7,
         "title": "Example 3 — Graph Using m and b",
         "phaseType": "worked_example",
-        "markdown": "Graph each equation by using [m] and [b].\n\n### Step 1: Identify m and b\n\nWrite each equation in the form [y = mx + b], identify [m] and [b], plot the y-intercept, use the slope to find another point, draw the line."
+        "markdown": "### Problem\n\nGraph y = (3/2)x - 1 using its slope and y-intercept.\n\n### Solution\n\nThe y-intercept is (0, -1). The slope 3/2 means rise 3 units for a run of 2 units. This gives the second point (2, 2). Draw the straight line through these points."
       },
       {
         "phaseNumber": 8,
         "title": "Examples 4 and 5 — Graph Inequalities",
         "phaseType": "worked_example",
-        "markdown": "Graph each inequality.\n\n### Step 1: Graph the Boundary, then Shade"
+        "markdown": "### Problem\n\nGraph the solution set of y > 2x - 3. State whether the origin and the boundary point (0, -3) belong to the solution set.\n\n### Solution\n\nDraw the boundary line through (0, -3) and (2, 1). Use a dashed line because the inequality is strict. Shade above the line. The origin satisfies 0 > -3, so it is included. The boundary point (0, -3) is excluded because -3 > -3 is false."
       },
       {
         "phaseNumber": 9,
@@ -4007,7 +4007,7 @@
         "phaseNumber": 6,
         "title": "Example 2 — Write Equations from Graphs",
         "phaseType": "worked_example",
-        "markdown": "Use the graph of each translated parent function to write its equation.\n\n### Step 1: Identify the Parent Function and the Shift\n\nDetermine which parent function the graph comes from, then measure how it has been shifted."
+        "markdown": "### Problem\n\nA parabola has vertex (3, -2), opens upward, and passes through (4, -1). Write its equation as a transformation of y = x squared.\n\n### Solution\n\nUse y = a(x - 3) squared - 2. Substitute (4, -1): -1 = a(1) - 2, so a = 1. The equation is y = (x - 3) squared - 2. It shifts the parent graph 3 units right and 2 units down."
       },
       {
         "phaseNumber": 7,
@@ -4031,7 +4031,7 @@
         "phaseNumber": 10,
         "title": "Example 7 — Write Equations from Graphs",
         "phaseType": "worked_example",
-        "markdown": "Write an equation for each function.\n\n### Step 1: Identify the Parent Function and All Transformations\n\nDetermine the parent function, then measure each transformation from the graph."
+        "markdown": "### Problem\n\nAn absolute value graph has vertex (-2, 3) and passes through (0, -1). Write its equation.\n\n### Solution\n\nUse y = a|x + 2| + 3. Substituting (0, -1) gives -1 = 2a + 3, so a = -2. The equation is y = -2|x + 2| + 3. It reflects the parent graph across the x-axis, stretches it vertically by 2, and shifts it 2 units left and 3 units up."
       },
       {
         "phaseNumber": 11,

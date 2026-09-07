@@ -66,15 +66,13 @@ Greg's scooter ride: starts at 0 mph, reaches 35 mph at 5 minutes, speed behavio
 
 ## Examples 4 and 5 — Compare Functions Across Representations
 
-Compare the key features of functions represented with a graph, a table, and a verbal description.
+### Problem
 
-### Step 1: Graph and Table Comparison
+Function f is given by f(x) = 2x + 3. Function g has values g(0) = 1, g(1) = 4, and g(2) = 7 and is known to be linear. Compare their rates of change and initial values.
 
-### Step 2: Graph and Verbal Description
+### Solution
 
-### Step 3: Table and Verbal Description
-
-### Step 4: More Comparisons
+The rate of change of f is 2, and its initial value is 3. For g, each input increase of 1 adds 3 to the output, so its rate is 3 and its initial value is 1. Function g increases faster, but f starts higher. They have equal values when 2x + 3 = 3x + 1, which gives x = 2 and y = 7.
 
 ## Mixed Exercises
 

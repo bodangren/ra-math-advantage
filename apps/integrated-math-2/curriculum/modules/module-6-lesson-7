@@ -243,19 +243,13 @@ Examine spheres and find volumes for various values of x.
 
 ## Example 7 — Volume of Composite Solids with Cylinders and Cones
 
-Find the volume of each composite solid. Round to the nearest tenth.
+### Problem
 
-### Step 1: Identify the Components
+A cylinder has radius 3 cm and height 8 cm. A cone with the same radius and height 4 cm sits on one circular end. Find the total volume.
 
-Break into cylinder, cone, and/or other shapes.
+### Solution
 
-### Step 2: Find Each Volume
-
-Calculate separately.
-
-### Step 3: Combine Appropriately
-
-Add or subtract as needed.
+The cylinder volume is $\pi(3^2)(8)=72\pi$. The cone volume is $(1/3)\pi(3^2)(4)=12\pi$. Their interiors do not overlap, so the total is $84\pi$ cubic centimeters, approximately 263.89 cubic centimeters.
 
 ## Example 8 — More Composite Solids
 

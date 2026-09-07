@@ -48,24 +48,23 @@ Two sides must be proportional AND the included angle must be congruent.
 
 ## Example 1 — Determine Similarity Using SSS or SAS
 
-### Step 1: Identify Given Information
+### Problem
 
-Look for side length ratios or angle measures that are given or can be deduced.
+In triangle ABC, AB = 4 cm, AC = 6 cm, and angle A = 50 degrees. In triangle DEF, DE = 6 cm, DF = 9 cm, and angle D = 50 degrees. Determine whether the triangles are similar.
 
-### Step 2: Apply the Appropriate Theorem
+### Solution
 
-* For SSS: Verify all three side ratios are equal.
-* For SAS: Verify two side ratios are equal AND the included angle is congruent.
+AB/DE = 4/6 = 2/3 and AC/DF = 6/9 = 2/3. The included angles A and D are congruent. The triangles are similar by SAS similarity.
 
 ## Example 2 — Find Unknown Values Using Similarity
 
-### Step 1: Set Up the Proportion
+### Problem
 
-Use the given side lengths to set up a proportion based on the similarity relationship.
+Triangle ABC is similar to triangle DEF in the stated order. AB = 5 cm, AC = 7 cm, DE = 15 cm, and DF = x cm. Find x.
 
-### Step 2: Solve for the Unknown
+### Solution
 
-Cross-multiply and solve.
+DE/AB = 15/5 = 3. Corresponding sides have the same scale factor, so DF = 3(7) = 21 cm. Therefore x = 21.
 
 ## Example 3 — Apply Similarity to Real-World Problems
 

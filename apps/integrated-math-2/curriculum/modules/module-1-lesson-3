@@ -40,63 +40,43 @@ The orthocenter is where all three altitudes intersect. In an acute triangle, it
 
 ## Example 1 — Find Segment Lengths Using the Centroid
 
-Given the centroid and some segment lengths, find other lengths in the triangle.
+### Problem
 
-### Step 1: Use the [2/3] and [1/3] Relationships
+G is the centroid of triangle ABC, and M is the midpoint of BC. The median AM is 24 cm long. Find AG and GM.
 
-Since the centroid divides each median in a [2 to 1] ratio, if you know the distance from a vertex to the centroid, you can find the distance from the centroid to the midpoint, and vice versa.
+### Solution
 
-### Step 2: Set Up Equations
-
-Let the unknown be x and use the given lengths to set up equations based on the centroid's position on each median.
-
-### Step 3: Solve and Verify
-
-Solve for x, then find the requested segment lengths. Check that the results are consistent with the median lengths.
+The centroid divides a median in a 2:1 ratio from the vertex. Thus AG = (2/3)(24) = 16 cm and GM = (1/3)(24) = 8 cm. Their sum is the full median length, 24 cm.
 
 ## Example 2 — Find Coordinates of the Centroid
 
-Given the coordinates of the vertices of a triangle, find the coordinates of the centroid.
+### Problem
 
-### Step 1: Apply the Centroid Formula
+Find the centroid of the triangle with vertices A(-3, 2), B(6, 5), and C(0, -1).
 
-The centroid is at [(x1 + x2 + x3) / 3, (y1 + y2 + y3) / 3].
+### Solution
 
-### Step 2: Substitute and Simplify
-
-Plug in the coordinates and compute the averages.
+Average the coordinates. The x-coordinate is (-3 + 6 + 0)/3 = 1. The y-coordinate is (2 + 5 - 1)/3 = 2. The centroid is (1, 2).
 
 ## Example 3 — Real-World Centroid Application
 
-Use the centroid to find the point where a collage should be hung so that it balances.
+### Problem
 
-### Step 1: Model with Coordinates
+A uniform triangular sign has vertices (0, 0), (12, 0), and (0, 9), in centimeters. At which point can the sign balance on a small support?
 
-Place the collage on a coordinate grid and find the coordinates of its vertices or corners.
+### Solution
 
-### Step 2: Find the Centroid
-
-Use the centroid formula to find the balance point.
-
-### Step 3: Describe the Location
-
-The centroid is where the string should be attached to balance the collage.
+For a uniform triangular plate, the balance point is the centroid. Average the coordinates: x = (0 + 12 + 0)/3 = 4 and y = (0 + 0 + 9)/3 = 3. Place the support at (4, 3).
 
 ## Example 4 — Find the Orthocenter
 
-Given the coordinates of the vertices of a triangle, find the orthocenter.
+### Problem
 
-### Step 1: Find Equations of Two Altitudes
+Find the orthocenter of the triangle with A(0, 0), B(6, 0), and C(0, 8).
 
-For each altitude, find the slope of the opposite side, then the negative reciprocal slope for the altitude line, and write the equation through the given vertex.
+### Solution
 
-### Step 2: Solve the System
-
-Find the intersection point of the two altitude equations.
-
-### Step 3: Verify with the Third Altitude
-
-Check that the third altitude passes through the same point.
+AB is horizontal and AC is vertical. The altitude from C lies on x = 0. The altitude from B lies on y = 0. They meet at A(0, 0), the orthocenter of this right triangle.
 
 ## Mixed Exercises
 

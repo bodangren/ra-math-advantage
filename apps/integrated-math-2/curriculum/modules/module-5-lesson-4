@@ -53,11 +53,13 @@ Use the relationship [m∠ = (1/2)m(intercepted arc)]. Identify the intercepted 
 
 ## Example 2 — Find Angle Measures in Overlapping Triangles
 
-Use properties of inscribed angles to find [m∠N], [m∠L], [m∠C], and [m∠A] from circle diagrams.
+### Problem
 
-### Step 1: Identify the Intercepted Arc for Each Angle
+A, B, C, and D lie on the same circle. C and D lie on the same arc AB. Angle ACB intercepts the other arc AB and measures 35 degrees. Find angle ADB.
 
-For each inscribed angle, find the arc it intercepts, then apply the inscribed angle theorem.
+### Solution
+
+Angles ACB and ADB intercept the same arc AB. Inscribed angles that intercept the same arc are congruent. Therefore angle ADB is 35 degrees. The intercepted arc measures 70 degrees.
 
 ## Example 3 — Prove Inscribed Angle Theorems
 

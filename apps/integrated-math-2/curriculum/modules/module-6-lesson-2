@@ -127,19 +127,13 @@ Use [A = (1/2) * P * a] where P is perimeter and a is apothem.
 
 ## Example 4 — Composite Figures with Regular Polygons
 
-Find the area of each figure. Round to the nearest tenth, if necessary.
+### Problem
 
-### Step 1: Decompose the Figure
+A regular hexagon with side length 4 cm shares one full side with a square of side length 4 cm. Their interiors do not overlap. Find the combined area.
 
-Break the composite figure into regular polygons and other shapes.
+### Solution
 
-### Step 2: Find the Area of Each Part
-
-Calculate the area of each component.
-
-### Step 3: Combine or Subtract
-
-Add areas of combined shapes or subtract holes from larger areas.
+The hexagon contains six equilateral triangles. Each triangle has area $(\sqrt{3}/4)(4^2)=4\sqrt{3}$ square centimeters. The hexagon area is $24\sqrt{3}$. Add the square area, 16. The total is $16+24\sqrt{3}$ square centimeters, approximately 57.57 square centimeters.
 
 ## Mixed Exercises
 

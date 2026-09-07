@@ -49,66 +49,53 @@ A square is simultaneously a rectangle and a rhombus.
 
 ## Example 1 — Find Values in a Rhombus
 
-Use rhombus properties to find unknown angle measures and diagonal lengths.
+### Problem
 
-### Step 1: Use Diagonal Perpendicularity
+The diagonals of a rhombus have lengths 12 cm and 16 cm. Find its side length and perimeter.
 
-The diagonals of a rhombus intersect at right angles (are perpendicular).
+### Solution
 
-### Step 2: Use Angle Bisector Properties
-
-Each diagonal bisects the angles at the vertices it connects.
+The diagonals bisect each other at right angles. Each side is the hypotenuse of a right triangle with legs 6 and 8 cm. Its length is $\sqrt{6^2+8^2}=10$ cm. The perimeter is 4(10) = 40 cm.
 
 ## Example 2 — Find Diagonal Lengths in Squares
 
-Solve for unknown values in square diagrams using the relationship between side lengths and diagonal lengths.
+### Problem
 
-### Step 1: Apply Square Properties
+A square has side length 7 cm. Find its exact diagonal length and an approximation to the nearest hundredth.
 
-In a square, all sides are congruent and diagonals are equal in length. The diagonal and two sides form an isosceles right triangle.
+### Solution
 
-### Step 2: Use the Pythagorean Theorem
-
-For a square with side s, diagonal d = s√2.
+The diagonal is the hypotenuse of a right triangle with legs 7 and 7. Its length is $\sqrt{7^2+7^2}=7\sqrt{2}$ cm, approximately 9.90 cm.
 
 ## Example 3 — Prove Quadrilaterals Are Rhombi or Squares
 
-Write two-column proofs to demonstrate that a given quadrilateral satisfies the definition of a rhombus or square.
+### Problem
 
-### Step 1: Show the Quadrilateral Is a Parallelogram
+ABCD is a parallelogram. Its diagonals are perpendicular and congruent, with each diagonal 10 cm long. Prove that ABCD is a square.
 
-First prove the quadrilateral is a parallelogram using appropriate tests.
+### Solution
 
-### Step 2: Show Additional Properties
-
-For a rhombus, prove all sides are congruent. For a square, prove all sides congruent and all angles right (or prove it's both a rectangle and a rhombus).
+A parallelogram with perpendicular diagonals is a rhombus. A parallelogram with congruent diagonals is a rectangle. ABCD is therefore both a rhombus and a rectangle, so it is a square.
 
 ## Example 4 — Precision Problems with Real Objects
 
-Determine what measurements are needed to confirm whether a garden box or quilt patch is a square.
+### Problem
 
-### Step 1: Identify Required Properties
+An ideal rhombus-shaped tile has diagonals 10 cm and 24 cm. Find the side length. State why measurements of a real tile alone cannot prove an exact rhombus.
 
-A square requires: four right angles and four congruent sides.
+### Solution
 
-### Step 2: State What to Measure
-
-Explain what measurements (side lengths, diagonals, angles) would confirm the shape is a square.
+The half-diagonals are 5 cm and 12 cm. The side length is $\sqrt{5^2+12^2}=13$ cm. Measurements have limited precision. They can support a classification within a stated tolerance, but they do not establish exact equality of all four sides.
 
 ## Example 5 — Classify Quadrilaterals Using Coordinates
 
-Given coordinates of four vertices, determine whether the quadrilateral is a rhombus, rectangle, square, parallelogram, or none. List all that apply.
+### Problem
 
-### Step 1: Calculate Slopes and Distances
+Classify the quadrilateral with vertices A(0, 0), B(2, 2), C(4, 0), and D(2, -2), in that order.
 
-Find slopes of all sides, lengths of all sides, and slopes of diagonals.
+### Solution
 
-### Step 2: Check Each Category
-
-* Parallelogram: opposite sides parallel.
-* Rectangle: parallelogram with right angles or congruent diagonals.
-* Rhombus: parallelogram with all sides congruent or perpendicular diagonals.
-* Square: both rectangle and rhombus properties.
+Each side has length $\sqrt{8}$. The slopes of AB and BC are 1 and -1, so these adjacent sides are perpendicular. A quadrilateral with four congruent sides and a right angle is a square.
 
 ## Mixed Exercises
 

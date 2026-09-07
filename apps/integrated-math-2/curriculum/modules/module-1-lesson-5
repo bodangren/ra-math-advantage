@@ -46,79 +46,43 @@ For statements about triangles (e.g., "a triangle can have only one right angle"
 
 ## Example 1 — Indirect Proofs of Algebraic Statements
 
-Write indirect proofs for statements about inequalities and algebraic relationships.
+### Problem
 
-### Step 1: State the Original Statement
+For real x, prove indirectly that if x squared + 8 <= 12, then x <= 2.
 
-Identify what you are trying to prove, for example: If x squared plus 8 ≤ 12, then x ≤ 2.
+### Solution
 
-### Step 2: Assume the Opposite
-
-Assume x > 2. This is the negation of x ≤ 2.
-
-### Step 3: Derive a Contradiction
-
-Use algebraic manipulation: if x > 2, then x squared > 4, so x squared plus 8 > 12. This contradicts the given that x squared plus 8 ≤ 12.
-
-### Step 4: Conclude
-
-Since the assumption leads to a contradiction, the original statement must be true.
+Assume x > 2. Since x is then positive, x squared > 4. Adding 8 gives x squared + 8 > 12, which contradicts the given inequality. Therefore x <= 2.
 
 ## Example 2 — Indirect Proofs in Real-World Contexts
 
-Use indirect reasoning to solve problems about purchases, sales, and quantities.
+### Problem
 
-### Step 1: Interpret the Situation
+Two bracelets cost 43 dollars in total before tax. Prove that at least one bracelet costs more than 20 dollars.
 
-Understand what you are trying to show, for example: proving at least one bracelet costs more than $20 when two bracelets together cost a little over $40.
+### Solution
 
-### Step 2: Set Up the Negation
-
-Assume both bracelets cost $20 or less. Then the total would be $40 or less.
-
-### Step 3: Show the Contradiction
-
-The problem states the total is a little more than $40. If both were $20 or less, the total could not exceed $40. Therefore at least one bracelet must cost more than $20.
+Assume both bracelets cost at most 20 dollars. Their total would then be at most 40 dollars. This contradicts the stated total of 43 dollars. Thus at least one bracelet costs more than 20 dollars.
 
 ## Example 3 — Indirect Proofs with Integer Properties
 
-Prove statements about integers using indirect reasoning.
+### Problem
 
-### Step 1: Identify the Goal
+Let x and y be integers. Prove indirectly that if xy is odd, then both x and y are odd.
 
-For example, prove that if the product xy is odd, then both x and y are odd integers.
+### Solution
 
-### Step 2: Assume the Opposite
-
-Assume at least one of x or y is even. Without loss of generality, suppose x is even.
-
-### Step 3: Derive the Contradiction
-
-If x is even, then x = 2k for some integer k. Then xy = (2k)y = 2(ky), which is even. But the given says xy is odd. Contradiction.
-
-### Step 4: Conclude
-
-Both x and y must be odd.
+Assume at least one factor is even. If x is even, write x = 2k for an integer k. Then xy = 2(ky), which is even. The same argument applies if y is even. Both cases contradict the given odd product. Therefore both factors are odd.
 
 ## Example 4 — Indirect Proofs in Geometry
 
-Use indirect proof to establish geometric properties.
+### Problem
 
-### Step 1: State What to Prove
+In a nondegenerate isosceles triangle ABC, AB = AC. Prove that neither base angle B nor base angle C can be a right angle.
 
-For example, prove that in an isosceles triangle, neither base angle can be a right angle.
+### Solution
 
-### Step 2: Assume the Opposite
-
-Assume one base angle is a right angle. Then the triangle has a right angle and two equal sides.
-
-### Step 3: Show the Contradiction
-
-In an isosceles triangle with a right angle at the base, the other base angle would also be 90 degrees, making the sum 180 degrees plus the vertex angle, which is impossible in Euclidean geometry.
-
-### Step 4: Conclude
-
-Neither base angle can be a right angle.
+Assume angle B is 90 degrees. The equal sides give equal base angles, so angle C is also 90 degrees. These two angles already total 180 degrees, leaving angle A equal to 0 degrees. That contradicts a nondegenerate triangle. The same reasoning applies if angle C is assumed right.
 
 ## Mixed Exercises
 

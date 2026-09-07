@@ -42,13 +42,13 @@ How can changing the codomain change whether a function is onto?
 
 ## Example 1 — Identify Domain, Range, Codomain, and Determine If Onto
 
-Use the codomain and range to determine whether the function is onto.
+### Problem
 
-### Step 1: Examine the Graphs
+Let f map the domain {1, 2, 3} into the codomain {2, 4, 6, 8}, with f(1) = 2, f(2) = 4, and f(3) = 6. State the domain, range, and codomain. Is f onto?
 
-For each graph, identify the domain (all x-values covered), the range (all y-values actually attained), and the codomain (as stated or implied).
+### Solution
 
-The function is onto when every value in the codomain also appears in the range.
+The domain is {1, 2, 3}. The range is {2, 4, 6}. The codomain is {2, 4, 6, 8}. The value 8 has no input that maps to it, so f is not onto this codomain.
 
 ## Example 2 — Analyze Functions from Tables
 
@@ -68,19 +68,23 @@ A table shows the orbital period of the eight major planets given their mean dis
 
 ## Example 3 — Determine One-to-One, Onto, Both, or Neither
 
-For each graphed function, determine whether it is one-to-one, onto, both, or neither.
+### Problem
 
-### Step 1: Analyze Each Graph
+Classify each function by whether it is one-to-one and onto. Both have domain {1, 2, 3}. Function f has codomain {a, b, c} and maps 1 to a, 2 to b, and 3 to c. Function g has codomain {a, b, c} and maps 1 to a, 2 to a, and 3 to b.
 
-Use the vertical line test (one-to-one) and compare range to codomain (onto).
+### Solution
+
+For f, different inputs have different outputs, and every codomain element is reached. Thus f is both one-to-one and onto. For g, two inputs map to a, and c is not reached. Thus g is neither one-to-one nor onto.
 
 ## Example 4 — Classify Functions as Discrete or Continuous
 
-Examine each graph. Determine whether each function is discrete, continuous, or neither discrete nor continuous. Then state the domain and range of each function.
+### Problem
 
-### Step 1: Identify the Type
+A ticket costs 12 dollars. Model the cost C of n tickets. Water flows at 2 liters per minute for 5 minutes. Model its volume V at time t. Classify the domains as discrete or continuous.
 
-Look at the domain — is it an unbroken interval (continuous) or a set of isolated points (discrete)?
+### Solution
+
+The ticket model is C = 12n with n a nonnegative integer. Its domain is discrete because fractional tickets are excluded. The water model is V = 2t for real t with 0 <= t <= 5. Its domain is continuous because any time in that interval is allowed.
 
 ## Example 5 — Real-World Discrete and Continuous Functions
 
@@ -100,11 +104,13 @@ Grapes sold at $1.99 per pound produce a continuous function — weight can be a
 
 ## Examples 6 and 7 — Write Domain and Range in Set-Builder and Interval Notation
 
-For each graph, write the domain and range in both set-builder and interval notation.
+### Problem
 
-### Step 1: Analyze the Graphs
+For $f(x)=\sqrt{x-2}$ with real inputs and outputs, write the domain and range in set-builder and interval notation.
 
-Use the visual extent of the graph to determine which x-values and y-values are covered. Then convert to both notation forms.
+### Solution
+
+The radicand must satisfy x - 2 >= 0, so x >= 2. The domain is $\{x\in\mathbb{R}:x\geq2\}=[2,\infty)$. The principal square root is nonnegative and takes every nonnegative value. The range is $\{y\in\mathbb{R}:y\geq0\}=[0,\infty)$.
 
 ## Mixed Exercises
 

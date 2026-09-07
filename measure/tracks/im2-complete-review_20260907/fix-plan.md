@@ -84,3 +84,9 @@ Remaining work includes complete worked examples, full practice and mastery cove
 The graph now contains all 403 current worked-example headings. The correction preserves existing IDs where the lesson and example number still match. It removes edges to examples absent from the source. It does not mark teaching alignment as reviewed.
 
 The example correction passes the graph validator. Seventy-three restored headings have explicit pending-alignment exceptions. The validator result does not mean that these headings have reviewed standards or practice coverage.
+
+## Worked-example content correction
+
+Ninety-one worked-example sections now have complete givens and solutions. This includes every worked example in Modules 1 and 2. The correction replaces general instructions in those sections. It also corrects drawing-based length inference, vertical-line slope handling, and an unsupported centroid claim for an arbitrary collage. The original worksheets remain available as source documents.
+
+Source, asset, and math-rendering checks pass after this update. This does not establish complete practice variants or a full mathematical review of every remaining source section.
