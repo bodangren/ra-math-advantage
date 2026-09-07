@@ -159,3 +159,19 @@ A new parent test executes the actual Guided handler, candidate query, teacher m
 The Precalculus worker attempted a broad patch in repeated writer code. It restored its owned files to the saved baseline. This rollback removed its uncommitted Topic 1.1 repair as well. The earlier passing repair tests do not describe the current implementation. The worker is recovering Topic 1.1 only with changes limited to named functions. Topic 1.2 and the remaining equivalent routes are still open.
 
 The IM3 review found the same student Worked-to-teacher-origin error and a missing publication check in the evidence loader. The worker now owns the exact graph pilot trust-boundary repair. The Business Math worker is completing the real teacher UI and lesson/time checks. No course pilot is accepted.
+
+## Lesson 4-1 identity and independent teacher review
+
+The previous goal turn only restated the active objective. This turn continued source repair and independent review.
+
+`f86a265b`: G10 corrects the three Lesson 4-1 example titles against the lesson body. It removes duplicate Example 2 identity `math.im1.example.4.1.003`. The retained identity is `math.im1.example.4.1.002`. All four duplicate edges have equivalent edges at the retained identity. The activity and teacher projections no longer count the duplicate source. Examples 1 and 3 retain IDs ending in `001` and `004`. No skill status, capability count, or practice mode changed. Two tests failed before the repair. All 13 related source tests pass. Full IM1 lint, standalone TypeScript, and build pass.
+
+The source has a separate objective 4b for contextual intercept interpretation and equivalent equation forms. The graph still lacks that distinction. This remains Task 3.2 work. The embedded node catalogs also omit prior source repairs. G10 does not establish full catalog agreement. Historical alignment counters remain for Task 3.1 review.
+
+The recovered Precalculus Topic 1.1 flow passed its author's tests. Independent review found two authorization gaps in the hypothetical approved path: missing organization equality and missing published lesson-to-activity validation. The current draft catalog still prevents activation. The reviewer now owns the bounded repair. Student wording and teacher context and interaction tests also remain open. See `precalc-topic11-independent-review.md`.
+
+The Business Math teacher action and IM3 graph teacher action are available for independent review. Their author test results do not establish pilot acceptance. No source approval, dependency approval, deployment, or live database write occurred.
+
+Independent Business Math review found missing evidence publication checks, archived-class authorization, and replay timestamp changes. Its assignment check uses student progress, which does not itself prove class assignment. The repair must first trace the Business Math access policy. It must not import another course's assignment model without source support. The reviewer now owns these repairs. See `bm2-teacher-independent-review.md`.
+
+G11 now covers the source-supported Lesson 4-1 capability distinction. The source worker owns the bounded IM1 catalog edits. The parent owns count integration and independent acceptance.
