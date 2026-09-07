@@ -1447,5 +1447,5 @@ Parallel tracks delivering complete curriculum for all three new apps. Tracks 1 
      *Replace critical `v.any()` schema definitions with discriminated unions, introduce Branded IDs to prevent reference bugs, enforce SRS transitions mathematically, and export canonical test fixtures.*
      *Link: [./archive/reliability-contracts_20260504/](./archive/reliability-contracts_20260504/)*
 
-- [~] **Danielson admin and coaching improvements** — Core improvements implemented and verified (`83db7af0`). Approved rubric descriptors and manual review remain pending. AI remains deferred.
+- [~] **Danielson admin and coaching improvements** — Core improvements implemented and verified (`83db7af0`). FFT 2022 component summaries added (a4668221). Full official descriptor text and manual review remain pending. AI remains deferred.
   *Link: [./tracks/danielson-admin-growth_20260907/](./tracks/danielson-admin-growth_20260907/)*

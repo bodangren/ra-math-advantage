@@ -12,7 +12,7 @@
 
 - [x] T03: `83db7af0` Implement portfolio urgency, search, filters, and direct actions.
 - [x] T04: `83db7af0` Implement coaching persistence, forms, teacher reflection, and evidence progress.
-- [~] T05: `83db7af0` implements the available changes. Connect feedback and responses. Improve evidence prompts and rating labels. Add calibration guidance and exercise. Approved component descriptors remain pending.
+- [~] T05: `83db7af0` implements the available changes. Connect feedback and responses. Improve evidence prompts and rating labels. Add calibration guidance and exercise. `a4668221` adds FFT 2022 component summaries. Full official performance-level descriptors remain pending.
 - [x] T06: `83db7af0` Implement account search, selected-account actions, and assignment detail.
 
 ## Generate docs and Doctor
@@ -24,7 +24,7 @@
 
 Initial full run: 420 tests passed. App and Convex TypeScript checks passed. Build passed. Local Convex schema push passed. Expanded behavior tests and browser checks are in progress.
 
-Approved rubric content remains pending. Numeric labels and evidence prompts are implemented. No replacement rubric was authored.
+Full official rubric text remains pending. Numeric labels and evidence prompts are implemented. No replacement rubric was authored.
 
 ## Repository check findings
 
@@ -34,4 +34,10 @@ Measure generation completed. Doctor found five undeclared dependency imports in
 
 Implementation commit: `83db7af0`. All 432 app tests, lint, both TypeScript checks, build, local Convex push, and targeted browser checks passed. The verification cycle was removed. The local app remains on port 3014 for review.
 
-T05 cannot include approved component descriptors until the school provides the rubric source. T08 remains the user manual review checkpoint. The track remains open for these items.
+The user selected FFT. Full official performance-level text remains unavailable in the project. T08 remains the user manual review checkpoint. The track remains open for these items.
+
+## FFT source follow-up
+
+The user selected Danielson FFT on 2026-09-07. Retain the existing 2022 edition. Add the existing source-app component summaries beside ratings. Label summaries clearly. The full official rating descriptors are not available in the project.
+
+FFT reference update: `a4668221`. All 434 tests, lint, TypeScript, and build pass. Manual review remains open.
