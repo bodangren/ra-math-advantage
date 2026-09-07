@@ -4,7 +4,8 @@ const BLANK_PLACEHOLDER_REGEX = /\{\{blank:(\w+)\}\}/g;
 
 const blankSchema = z.object({
   id: z.string().min(1),
-  correctAnswer: z.string().min(1),
+  correctAnswer: z.string().min(1).optional(),
+  acceptedAnswers: z.array(z.string().min(1)).min(1).optional(),
   isMath: z.boolean().optional(),
 });
 
@@ -13,6 +14,15 @@ export const fillInTheBlankSchema = z
     activityId: z.string().min(1).optional(),
     template: z.string().min(1),
     blanks: z.array(blankSchema).min(1),
+    reasoningSteps: z.array(z.object({
+      description: z.string().min(1),
+      expression: z.string().min(1).optional(),
+    })).min(1).optional(),
+    guidedSupport: z.object({
+      feedback: z.literal('on_check'),
+      hints: z.array(z.string().min(1)).min(1),
+      revealAfterAttempts: z.number().int().positive(),
+    }).optional(),
     wordBank: z
       .array(
         z.object({
