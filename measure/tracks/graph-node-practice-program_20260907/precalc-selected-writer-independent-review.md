@@ -155,3 +155,122 @@ Reuse the existing `practice.v1` schema for optional field validation where the 
 Validate the stored physical activity ID for the activities table. If its original referenced row still exists, verify its selected identity, props, and rubric without requiring current approval. A deleted source row must not discard an otherwise valid durable submission. Do not compare the old reference with a replacement row found by stable ID. Do not add a tombstone or provenance system.
 
 Validate the stored envelope with the existing practice.v1 schema and exact selected answer keys, grades, and server timestamp consistency. Define which optional fields affect semantic retry identity. Preserve original stored telemetry. A retry must not overwrite it.
+
+## Repaired writer revision 2 review — 2026-09-08
+
+### Result
+
+Do not integrate revision 2 yet. It resolves the optional-field input boundary and the durable replay order. Two P1 trust-boundary defects remain.
+
+### Resolved — optional input fields use the shared contract
+
+`canonical` now calls `PracticeSubmissionEnvelopeSchema.safeParse` before it accepts the selected envelope at `apps/pre-calculus/convex/activities.ts:223-229`. The route-to-writer test uses a valid `PracticeTimingSummary` at `selected-topic11-submission-writer.test.ts:600-638`. The malformed timing, analytics, and student feedback cases reach the real writer and leave the submission table empty at lines 662-689. This resolves the prior optional-field input-validation finding. The Convex argument validator still uses `v.any` for these optional fields, but the writer validates them before storage.
+
+The accepted idempotency policy is also implemented. A retry can supply different optional telemetry. The writer returns the first receipt and does not overwrite the first stored telemetry. The optional fields do not define semantic create identity.
+
+### Resolved — replay is independent of current publication
+
+The writer authenticates the learner before the idempotency lookup. It processes an exact stored replay before the current publication and current activity approval checks at `activities.ts:371-479`. The tests preserve one row and the original physical submission ID after graph withdrawal, activity withdrawal, replacement, and deletion at `selected-topic11-submission-writer.test.ts:513-556`.
+
+If the original physical activity row still exists, the writer checks its exact selected identity at `activities.ts:402-447`. If that row no longer exists, the writer can return the durable receipt. This matches the assigned replay policy.
+
+### P1 — publication still accepts malformed selected mode specifications
+
+The publication predicate compares both selected geometries with the committed generator. It also checks the three part IDs. These checks are necessary, but they do not validate the complete selected contract.
+
+Concrete approved malformed blueprints still return `true`:
+
+- `guidedPracticeSpec.rendererProps.guidedSteps` can contain a number or an empty string. The predicate checks only that the array is nonempty at `activities.ts:98-100`.
+- `guidedPracticeSpec.rendererProps.fieldHelp` can be `{}` or contain unrelated keys. The predicate checks only that it is a record at line 100.
+- `independentPracticeSpec.variantParameters` can be `{}`. The predicate checks only that it is a record at line 103.
+- Each `answerSchema` value can be an arbitrary value. The predicate checks only the three keys at lines 104-106.
+- Each grading rule can use the correct `partId` with an invalid `ruleType` or `maxScore`. Lines 107-115 do not check either field.
+- The rubric can repeat one valid part ID three times. Lines 124-131 check membership and points, but do not require unique rubric IDs or exact set equality.
+
+The test at lines 242-265 covers an empty prompt, one wrong point, empty grading part IDs, and wrong rule IDs. It does not cover the malformed cases above. An approved placeholder can therefore activate the selected writer even when the renderer, answer, or grading contract is not usable.
+
+Use exact manual checks for the selected fields because the interval schema is absent from HEAD. Require nonempty string Guided steps, the exact three nonempty `fieldHelp` keys, the selected seed variant definition, the three answer-schema string values, three unique `custom` grading rules with `maxScore: 1`, and three unique one-point rubric rows. Add one negative fixture for each boundary.
+
+### P1 — replay does not validate the full stored envelope
+
+The author report says replay validates the stored practice contract. The code validates selected required fields, parts, grade totals, and server timestamp consistency. It does not validate the complete stored envelope.
+
+Concrete corrupt stored rows still replay:
+
+- `submissionData.answers` can contain an extra key. Lines 458-461 compare only the retry's three keys.
+- `submissionData` can contain an extra top-level key. The replay branch has no exact-key check.
+- A stored optional field can have an invalid shared-contract shape, such as `timing: { wallClockMs: -1 }`, `analytics: "bad"`, or `studentFeedback: { private: true }`. `PracticeSubmissionEnvelopeSchema.safeParse` runs only on the retry at lines 223-229. It never runs on `stored`.
+
+These corrupt rows can pass all conditions at lines 442-469 and return a successful receipt. The current corruption tests cover required identity, status, duplicate or missing parts, raw-answer parity, grade data, attempt data, and the server timestamp. They do not cover exact stored keys or malformed stored optional fields.
+
+Validate the stored object with the shared envelope schema. Also require the exact selected top-level and answer key sets because the shared Zod objects are not strict. Keep the current explicit checks for graded status, canonical parts, server grades, server timestamp, and physical identity. Add corrupt stored fixtures for an extra answer key, an extra top-level key, malformed timing, and malformed analytics or feedback.
+
+### Verification assessment
+
+The reported 40 passing tests, lint, TypeScript check, and build show that the patch compiles and preserves the tested paths. They do not cover the two malformed-data counterexamples above. The patch is not ready for integration until those two boundaries fail closed.
+
+### Independent counterexample result
+
+The parent ran five direct counterexamples in `/tmp/precalc-q18-parent-v2-red.log`. All five requests resolved when they had to reject. The accepted corrupt cases were a stored extra answer, invalid stored timing, wrong blueprint `ruleType`, `maxScore: 99`, and duplicate rubric IDs. The fixtures are in `/tmp/precalc-q18-parent-v2-extra-tests.txt`.
+
+These Red results confirm both P1 findings. Revision 2 must not be accepted on its reported Green suite. Revision 3 must add the missing exact publication checks and stored-envelope validation. It must keep the resolved route validation and durable replay behavior.
+
+## Repaired writer revision 3 review — 2026-09-08
+
+### Result
+
+Do not integrate revision 3 yet. It makes the parent five Red cases Green. It still does not enforce the full selected publication contract or the exact stored selected envelope.
+
+### Resolved in revision 3
+
+- The publication predicate rejects a wrong grading `ruleType`, a wrong `maxScore`, and duplicate rubric part IDs.
+- It requires the exact Guided prompt, step prompts, hints, checks, reveal policy, field help, and seed-0 geometry.
+- It requires string answer-schema values, the three selected rule IDs, the replay policy, seed-2 geometry, the passing score, partial credit, and exact rubric criteria.
+- Replay validates the stored object with `PracticeSubmissionEnvelopeSchema` and requires the exact three answer keys.
+- The five parent regression cases now have direct tests at `selected-topic11-submission-writer.test.ts:746-813`.
+- Authentication, server grading, canonical answer-to-part storage, immutable first optional telemetry, withdrawal replay, deletion replay, and existing-original-activity identity checks remain intact.
+
+### P1 — the Independent variant definition is still not validated
+
+The author report says that the predicate requires the exact selected mode content. The actual predicate only requires `independentPracticeSpec.variantParameters` to be a record at `apps/pre-calculus/convex/activities.ts:127-129`.
+
+The pending selected blueprint defines this exact variant contract:
+
+```json
+{
+  "seed": {
+    "type": "integer",
+    "min": 0,
+    "description": "Deterministic Topic 1.1 interval graph variant seed"
+  }
+}
+```
+
+An approved blueprint with `variantParameters: {}` or an unrelated record still activates the writer. This is the same concrete placeholder boundary that revision 2 left open. Revision 3 has no negative fixture for it.
+
+Compare `variantParameters` with the exact selected object. Add negative fixtures for `{}`, a non-integer seed type, and a negative minimum. This is a manual selected check. It does not require a new schema or registry.
+
+### P1 — shared schema parsing is not exact stored-envelope validation
+
+Replay calls `PracticeSubmissionEnvelopeSchema.safeParse(stored)` at `activities.ts:447-449`. The shared Zod object is not strict. It accepts and strips unknown keys during parsing. The replay branch then reads the original `stored` object and has no exact top-level key check.
+
+Thus, these corrupt stored rows still replay:
+
+- `submissionData.unexpected = true`
+- a selected part with an extra shared-schema field, such as `misconceptionTags: ["corrupt"]`
+
+The selected writer never creates either field. Both values pass the shared envelope schema. The explicit replay conditions at lines 483-513 do not reject them. The report claim that replay validates the complete exact selected envelope is therefore incorrect.
+
+Require the exact selected top-level key set. Account for the six supported optional fields only when each field is present. Require the exact selected stored part key set: `partId`, `rawAnswer`, the three assistance counters, and the three server grade fields. Keep the shared schema validation for optional value shapes. Add corrupt stored fixtures for an extra top-level key and an extra part field.
+
+### Evidence assessment
+
+The reported 45 tests, lint, TypeScript check, and build show that revision 3 preserves the tested behavior. The five former Red cases are now covered. The suite does not test the two remaining counterexamples. Revision 3 is not ready for integration.
+
+## Parent revision 3 verification
+
+The parent ran the selected writer, route, and grader tests in an isolated candidate. All 45 tests passed. App lint, a fresh build, and standalone TypeScript with local source mappings passed.
+
+The parent then added three direct regression cases. Each request resolved when it had to reject: empty variant parameters, an extra stored top-level field, and unowned stored part metadata. The three Red results confirm the two remaining findings. Revision 3 remains outside runtime integration. Revision 4 must repair these cases and preserve the existing positive behavior.
+
+Logs: `/tmp/precalc-q18-writer-v3-parent-tests.log`, `/tmp/precalc-q18-writer-v3-parent-lint.log`, `/tmp/precalc-q18-writer-v3-parent-build.log`, `/tmp/precalc-q18-writer-v3-parent-tsc.log`, and `/tmp/precalc-q18-parent-v3-red.log`.
