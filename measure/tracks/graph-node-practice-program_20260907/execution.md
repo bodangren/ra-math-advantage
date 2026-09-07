@@ -55,3 +55,7 @@ IM1 full-suite result: 38 passed, one assertion failed, and one suite failed to 
 The parent integrates the completed shared boundaries and IM1 Module 1 source repair. The runtime worker reviews the source repair. The inventory worker implements expression input for the IM1 translation pilot. The readiness worker resolves the parent nearly-ready state defect and adds a behavioral test. Each worker has separate file ownership. Other course correction commits continue in the shared checkout.
 
 `b11b5032`: committed the approved-equivalence boundary. All eight focused tests pass. Current standalone shared-practice TypeScript, root lint, and all package builds pass. Earlier shared-practice full-suite result: 469 passed. Other pending SRS generator-readiness changes remain outside this commit.
+
+`8c9bef54`: committed renderer compatibility for all mode overrides. Three focused tests pass. Existing schema changes remain outside the commit.
+
+`67d972dc`: restored six IM1 Module 1 draft capabilities and exact available example links. Independent source review found no source error or accidental activation. Three focused tests and IM1 standalone TypeScript pass. The test uses a partial-object assertion because the JSON type has no readiness field. Module 2 source restoration is now in progress.
