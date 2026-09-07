@@ -45,7 +45,11 @@ describe('Lesson 5-4 source capabilities', () => {
       expect(copies.every((node) => node?.title === title && node.reviewStatus === 'draft' && node.independentPracticeReady === false)).toBe(true);
       expect(copies.slice(1)).toEqual([copies[0], copies[0], copies[0]]);
       expect(catalog.blueprints.find((row) => row.nodeId === id)).toEqual({ nodeId: id, sourceNodeIds, alignmentNodeIds: [], reviewStatus: 'draft', metadata: { course: 'im1', module: '5', lesson: '4' } });
-      expect(graph.edges.filter((edge) => edge.sourceId === id || edge.targetId === id)).toEqual([expect.objectContaining({ type: 'contains', sourceId: 'math.im1.lesson.5.4', reviewStatus: 'draft' })]);
+      const expectedLessons = [
+        'math.im1.lesson.5.4',
+        ...(id === 'math.im1.skill.5.4.explain-why-correlation-alone-does-not-establish-causation' ? ['math.im1.lesson.5.5'] : []),
+      ];
+      expect(graph.edges.filter((edge) => edge.sourceId === id || edge.targetId === id)).toEqual(expectedLessons.map((sourceId) => expect.objectContaining({ type: 'contains', sourceId, targetId: id, reviewStatus: 'draft' })));
     }
   });
 });

@@ -5794,7 +5794,8 @@
     {
       "nodeId": "math.im1.skill.5.3.predict-response-values-with-lines-of-fit",
       "sourceNodeIds": [
-        "math.im1.example.5.3.015"
+        "math.im1.example.5.3.015",
+        "math.im1.example.5.5.020"
       ],
       "alignmentNodeIds": [],
       "reviewStatus": "draft",
@@ -5918,6 +5919,130 @@
         "course": "im1",
         "module": "5",
         "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.5.calculate-linear-regression-equations-with-technology",
+      "sourceNodeIds": [
+        "math.im1.example.5.5.019",
+        "math.im1.example.5.5.020",
+        "math.im1.example.5.5.021"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.5.calculate-correlation-coefficients-with-technology",
+      "sourceNodeIds": [
+        "math.im1.example.5.5.019"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.5.interpret-correlation-direction-and-strength-in-context",
+      "sourceNodeIds": [
+        "math.im1.example.5.5.019"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.5.calculate-residuals-from-observed-and-predicted-values",
+      "sourceNodeIds": [
+        "math.im1.example.5.5.021"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.5.construct-residual-plots",
+      "sourceNodeIds": [
+        "math.im1.example.5.5.021"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.5.assess-linear-model-appropriateness-from-residual-plots",
+      "sourceNodeIds": [
+        "math.im1.example.5.5.021"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.5.identify-contextual-constraints-on-regression-models",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.5.relate-correlation-sign-and-magnitude-to-linear-model-fit",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.5.compare-student-selected-lines-of-fit-with-regression-models",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.5.evaluate-sample-support-for-population-predictions",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "5"
       }
     }
   ]

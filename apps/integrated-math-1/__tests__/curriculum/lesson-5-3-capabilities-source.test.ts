@@ -16,7 +16,7 @@ const definitions = [
   ['draw-reasonable-lines-of-fit', 'Draw reasonable lines of fit', []],
   ['write-line-of-fit-equations-from-specified-points', 'Write line-of-fit equations from specified points', ['math.im1.example.5.3.015']],
   ['write-equations-from-student-selected-fit-points', 'Write equations from student-selected fit points', []],
-  ['predict-response-values-with-lines-of-fit', 'Predict response values with lines of fit', ['math.im1.example.5.3.015']],
+  ['predict-response-values-with-lines-of-fit', 'Predict response values with lines of fit', ['math.im1.example.5.3.015', 'math.im1.example.5.5.020']],
   ['estimate-explanatory-values-with-lines-of-fit', 'Estimate explanatory values with lines of fit', []],
   ['evaluate-extrapolation-reliability-and-assumptions', 'Evaluate extrapolation reliability and assumptions', []],
   ['interpret-line-of-fit-intercepts-in-context', 'Interpret line-of-fit intercepts in context', []],
@@ -59,6 +59,7 @@ describe('Lesson 5-3 source capabilities', () => {
       const expectedLessons = [
         'math.im1.lesson.5.3',
         ...(['math.im1.skill.5.3.classify-scatter-plot-correlation', 'math.im1.skill.5.3.construct-scatter-plots-from-paired-data'].includes(id) ? ['math.im1.lesson.5.4'] : []),
+        ...(['math.im1.skill.5.3.predict-response-values-with-lines-of-fit', 'math.im1.skill.5.3.estimate-explanatory-values-with-lines-of-fit', 'math.im1.skill.5.3.evaluate-extrapolation-reliability-and-assumptions'].includes(id) ? ['math.im1.lesson.5.5'] : []),
       ];
       expect(graph.edges.filter((edge) => edge.sourceId === id || edge.targetId === id)).toEqual(expectedLessons.map((sourceId) => expect.objectContaining({ type: 'contains', sourceId, targetId: id, reviewStatus: 'draft' })));
     }

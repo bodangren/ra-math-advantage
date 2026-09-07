@@ -6,8 +6,8 @@
     "pilotEdgesPreserved": 0,
     "standardEdgesMerged": 941,
     "suggestedEdges": 1277,
-    "totalEdges": 2317,
-    "totalNodes": 834,
+    "totalEdges": 2331,
+    "totalNodes": 844,
     "normalizedWeights": 539
   },
   "nodes": [
@@ -5333,10 +5333,10 @@
     {
       "id": "math.im1.example.5.5.019",
       "kind": "worked_example",
-      "title": "Example 1: Best-Fit Line and Correlation Coefficient; Prediction with Linear Regression",
+      "title": "Example 1: Best-Fit Line and Correlation Coefficient",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-5-class-period-plan.md (5-5, Example 1)"
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-5 (Example 1)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -5345,16 +5345,16 @@
         "lesson": "5",
         "exampleNumber": 1,
         "sourceLesson": "5-5",
-        "rawText": "5-5, Examples 1-2 \u2014 Best-Fit Line and Correlation Coefficient; Prediction with Linear Regression"
+        "rawText": "Example 1: Best-Fit Line and Correlation Coefficient"
       }
     },
     {
       "id": "math.im1.example.5.5.020",
       "kind": "worked_example",
-      "title": "Example 2: Best-Fit Line and Correlation Coefficient; Prediction with Linear Regression",
+      "title": "Example 2: Prediction with Linear Regression",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-5-class-period-plan.md (5-5, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-5 (Example 2)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -5363,7 +5363,7 @@
         "lesson": "5",
         "exampleNumber": 2,
         "sourceLesson": "5-5",
-        "rawText": "5-5, Examples 1-2 \u2014 Best-Fit Line and Correlation Coefficient; Prediction with Linear Regression"
+        "rawText": "Example 2: Prediction with Linear Regression"
       }
     },
     {
@@ -5372,7 +5372,7 @@
       "title": "Example 3: Residual Plot Analysis",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-5-class-period-plan.md (5-5, Example 3)"
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-5 (Example 3)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -5381,7 +5381,7 @@
         "lesson": "5",
         "exampleNumber": 3,
         "sourceLesson": "5-5",
-        "rawText": "5-5, Example 3 \u2014 Residual Plot Analysis"
+        "rawText": "Example 3: Residual Plot Analysis"
       }
     },
     {
@@ -14662,6 +14662,176 @@
         "course": "im1",
         "module": "5",
         "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.5.calculate-linear-regression-equations-with-technology",
+      "kind": "skill",
+      "title": "Use technology to calculate linear regression equations",
+      "domain": "math.im1",
+      "description": "Use technology to calculate linear regression equations",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-5"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.5.calculate-correlation-coefficients-with-technology",
+      "kind": "skill",
+      "title": "Use technology to calculate correlation coefficients",
+      "domain": "math.im1",
+      "description": "Use technology to calculate correlation coefficients",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-5"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.5.interpret-correlation-direction-and-strength-in-context",
+      "kind": "skill",
+      "title": "Interpret correlation direction and strength in context",
+      "domain": "math.im1",
+      "description": "Interpret correlation direction and strength in context",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-5"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.5.calculate-residuals-from-observed-and-predicted-values",
+      "kind": "skill",
+      "title": "Calculate residuals from observed and predicted values",
+      "domain": "math.im1",
+      "description": "Calculate residuals from observed and predicted values",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-5"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.5.construct-residual-plots",
+      "kind": "skill",
+      "title": "Construct residual plots",
+      "domain": "math.im1",
+      "description": "Construct residual plots",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-5"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.5.assess-linear-model-appropriateness-from-residual-plots",
+      "kind": "skill",
+      "title": "Assess linear model appropriateness from residual plots",
+      "domain": "math.im1",
+      "description": "Assess linear model appropriateness from residual plots",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-5"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.5.identify-contextual-constraints-on-regression-models",
+      "kind": "skill",
+      "title": "Identify contextual constraints on regression models",
+      "domain": "math.im1",
+      "description": "Identify contextual constraints on regression models",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-5"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.5.relate-correlation-sign-and-magnitude-to-linear-model-fit",
+      "kind": "skill",
+      "title": "Relate correlation sign and magnitude to linear model fit",
+      "domain": "math.im1",
+      "description": "Relate correlation sign and magnitude to linear model fit",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-5"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.5.compare-student-selected-lines-of-fit-with-regression-models",
+      "kind": "skill",
+      "title": "Compare student-selected lines of fit with regression models",
+      "domain": "math.im1",
+      "description": "Compare student-selected lines of fit with regression models",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-5"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.5.evaluate-sample-support-for-population-predictions",
+      "kind": "skill",
+      "title": "Evaluate whether sample data support population predictions",
+      "domain": "math.im1",
+      "description": "Evaluate whether sample data support population predictions",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-5"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "5"
       }
     }
   ],
@@ -59218,6 +59388,230 @@
       "metadata": {
         "module": "5",
         "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.edge.1309",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.5",
+      "targetId": "math.im1.skill.5.5.calculate-linear-regression-equations-with-technology",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "5",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.edge.1310",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.5",
+      "targetId": "math.im1.skill.5.5.calculate-correlation-coefficients-with-technology",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "5",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.edge.1311",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.5",
+      "targetId": "math.im1.skill.5.5.interpret-correlation-direction-and-strength-in-context",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "5",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.edge.1312",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.5",
+      "targetId": "math.im1.skill.5.5.calculate-residuals-from-observed-and-predicted-values",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "5",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.edge.1313",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.5",
+      "targetId": "math.im1.skill.5.5.construct-residual-plots",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "5",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.edge.1314",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.5",
+      "targetId": "math.im1.skill.5.5.assess-linear-model-appropriateness-from-residual-plots",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "5",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.edge.1315",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.5",
+      "targetId": "math.im1.skill.5.5.identify-contextual-constraints-on-regression-models",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "5",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.edge.1316",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.5",
+      "targetId": "math.im1.skill.5.5.relate-correlation-sign-and-magnitude-to-linear-model-fit",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "5",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.edge.1317",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.5",
+      "targetId": "math.im1.skill.5.5.compare-student-selected-lines-of-fit-with-regression-models",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "5",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.edge.1318",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.5",
+      "targetId": "math.im1.skill.5.5.evaluate-sample-support-for-population-predictions",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "5",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.edge.1319",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.5",
+      "targetId": "math.im1.skill.5.3.predict-response-values-with-lines-of-fit",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "5",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.edge.1320",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.5",
+      "targetId": "math.im1.skill.5.3.estimate-explanatory-values-with-lines-of-fit",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "5",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.edge.1321",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.5",
+      "targetId": "math.im1.skill.5.3.evaluate-extrapolation-reliability-and-assumptions",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "5",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.edge.1322",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.5",
+      "targetId": "math.im1.skill.5.4.explain-why-correlation-alone-does-not-establish-causation",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "5",
+        "lesson": "5"
       }
     }
   ]

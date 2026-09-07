@@ -1,10 +1,10 @@
 {
   "version": 1,
   "course": "im1",
-  "totalSkills": 243,
+  "totalSkills": 253,
   "counts": {
     "served": 6,
-    "gap": 237,
+    "gap": 247,
     "newComponent": 0
   },
   "byModule": [
@@ -38,9 +38,9 @@
     },
     {
       "module": "5",
-      "totalSkills": 45,
+      "totalSkills": 55,
       "served": 0,
-      "gap": 45,
+      "gap": 55,
       "newComponent": 0
     },
     {
@@ -1198,6 +1198,86 @@
     },
     {
       "skillId": "math.im1.skill.5.4.identify-lurking-variables-or-common-causes",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.5.assess-linear-model-appropriateness-from-residual-plots",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.5.calculate-correlation-coefficients-with-technology",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.5.calculate-linear-regression-equations-with-technology",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.5.calculate-residuals-from-observed-and-predicted-values",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.5.compare-student-selected-lines-of-fit-with-regression-models",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.5.construct-residual-plots",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.5.evaluate-sample-support-for-population-predictions",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.5.identify-contextual-constraints-on-regression-models",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.5.interpret-correlation-direction-and-strength-in-context",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.5.relate-correlation-sign-and-magnitude-to-linear-model-fit",
       "module": "5",
       "status": "gap",
       "tier": "none",
