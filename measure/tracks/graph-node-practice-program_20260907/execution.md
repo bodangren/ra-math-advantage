@@ -237,3 +237,11 @@ Seven app graph tests and 31 shared graph tests passed. Shared and app lint, sta
 ## G15 provisional source inventory
 
 Commit `fe6476d9` records six provisional Lesson 4-4 goal candidates and corrects eight retained example titles. The extracted parent-function notation is ambiguous. The commit records that limit and grants no capability approval. Eight source tests, 36 coverage and audit tests, app lint, standalone TypeScript, and build passed. All previous IDs and edges remain intact. The current inventory has 177 provisional candidates, six generator bindings, and 171 gaps. G16 checks for the original worksheet.
+
+## Shared renderer integration and G16 verification
+
+Commit `4146100a` integrates the shared table-and-graph response contract. The extracted patch passed seven tests, lint, standalone TypeScript, and build in a HEAD source snapshot. A real app UI-to-server test verifies literal quadratic response scores of 1/2 and 2/2. App integration remains pending. Worked renderer extraction is next.
+
+Commit `501c5952` corrects the Lesson 4-4 extraction note from the original DOCX. The parent reviewed the rendered fourth page. The worksheet confirms `f(x) = x` and asks students to reason about horizontal and vertical equivalence. Nine source checks, lint, standalone TypeScript, and build passed. The six goal candidates remain draft.
+
+The BM2 review confirms that classification and totals do not prove complete accounting-equation event application. The next local component composes current controls with before-and-after response fields. It keeps explanation review manual and leaves publication disabled.
