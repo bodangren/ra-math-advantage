@@ -116,7 +116,8 @@ Scheduling: one worker owns shared graph mechanisms. Two workers can review disj
 - [x] Task G16: Verify the original Lesson 4-4 worksheet and correct the extraction note. The source confirms the linear parent and intentional equivalent descriptions. Commit `501c5952`.
 - [x] Task G17: Review Lesson 4-5 goals and example identities against the full extraction and original worksheet. Correct the cooler indexing error. Preserve all previous IDs and edges. Nine source tests, 40 inventory tests, and app gates pass. Commit `de78dbca`. New capabilities remain draft.
 - [x] Task G18: Restore Lesson 4-6 source goals and example identities. Correct the rounding domains and record the Problem 17 mismatch. Preserve existing IDs and edges. Ten source tests, 40 inventory tests, and app gates pass. Commit `ec9e0b71`. Candidates remain draft.
-- [~] Task G19: Review Lesson 4-7 goals and source-example identities against the full extraction and original worksheet. Preserve existing IDs and keep new capabilities draft.
+- [x] Task G19: Correct Lesson 4-7 source extraction and preserve retained example identities. Eight draft candidates passed source inventory review. Nine source tests, 40 inventory tests, and app gates pass. Commit `4c4797ef`.
+- [~] Task G20: Review Lesson 5-1 goals and example identities against the full extraction and original worksheet. Preserve existing IDs. Keep capability boundaries draft.
 
 ## Phase 4 — Implement the minimum shared repairs and five pilots
 
@@ -130,7 +131,7 @@ Scheduling: one worker owns shared graph mechanisms. Two workers can review disj
 - [~] Task 4.4: Complete and verify the IM1 pilot.
   Reuse a valid existing algebra generator. Complete source mapping and the required app rendering/submission path.
 - [~] Task 4.5: Complete and verify the IM2 pilot.
-  Reuse the current lesson runtime and perpendicular-bisector work where correct. Coordinate with the active correction track. Parent verification covers actual Worked/Guided/teacher/Independent flow and accurate replay evidence state. Student save and retry controls are committed as `bca8c9e6`. The indexed evidence read passes 18 flow tests and remains pending backend integration.
+  Reuse the current lesson runtime and perpendicular-bisector work where correct. Coordinate with the active correction track. Parent verification covers actual Worked/Guided/teacher/Independent flow and accurate replay evidence state. Student save and retry controls are committed as `bca8c9e6`. The local mode projector and private grader are committed as `c2e8813d`. Five generator tests and app gates pass. The backend review also corrected source-lesson authority and teacher answer display. Backend and route integration remain pending.
 - [~] Task 4.6: Complete and verify the Business Math pilot.
   Reconcile published activity mapping with the three modes. Preserve manual evidence for artifacts that require teacher review. Keep adaptive activation within the existing approved policy. The app-owned event draft is committed as `469787a9`. The pure grader is committed as `41a5c5c9`. Category-choice assessment is committed as `a9a38498`. Strict props and real registry integration are committed as `093386d2`. Forty-two tests and app gates pass. Trusted persistence, source mapping, teacher model review, and student route integration remain open.
 - [ ] Task 4.7: Measure — User Manual Verification: Five course pilots.
