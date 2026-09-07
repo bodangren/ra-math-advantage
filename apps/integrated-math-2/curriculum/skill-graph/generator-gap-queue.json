@@ -1,10 +1,9 @@
 {
   "meta": {
     "course": "im2",
-    "generatedAt": "2026-05-10T06:45:49.000Z",
-    "description": "IM2 generator gap queue \u2014 all 149 skills lack generator implementations",
-    "totalSkills": 149,
-    "generatorCoverage": "0/149 (0%)"
+    "description": "One validated generator. Other objective candidates remain unavailable.",
+    "totalSkills": 203,
+    "generatorCoverage": "1/203"
   },
   "items": [
     {
@@ -13,7 +12,7 @@
       "module": "1",
       "lesson": "1",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -23,7 +22,7 @@
       "module": "1",
       "lesson": "1",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -33,7 +32,7 @@
       "module": "1",
       "lesson": "2",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -43,7 +42,7 @@
       "module": "1",
       "lesson": "2",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -53,7 +52,7 @@
       "module": "1",
       "lesson": "3",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -63,7 +62,7 @@
       "module": "1",
       "lesson": "3",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -73,7 +72,7 @@
       "module": "1",
       "lesson": "4",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -83,7 +82,7 @@
       "module": "1",
       "lesson": "4",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -93,7 +92,7 @@
       "module": "1",
       "lesson": "5",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -103,7 +102,7 @@
       "module": "1",
       "lesson": "5",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -113,7 +112,7 @@
       "module": "1",
       "lesson": "6",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -123,7 +122,7 @@
       "module": "1",
       "lesson": "6",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -133,7 +132,7 @@
       "module": "1",
       "lesson": "7",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -143,7 +142,7 @@
       "module": "1",
       "lesson": "7",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -153,7 +152,7 @@
       "module": "10",
       "lesson": "1",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -163,7 +162,7 @@
       "module": "10",
       "lesson": "1",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -173,7 +172,7 @@
       "module": "10",
       "lesson": "2",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -183,7 +182,7 @@
       "module": "10",
       "lesson": "3",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -193,7 +192,7 @@
       "module": "10",
       "lesson": "4",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -203,7 +202,7 @@
       "module": "10",
       "lesson": "5",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -213,7 +212,7 @@
       "module": "10",
       "lesson": "5",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -223,7 +222,7 @@
       "module": "11",
       "lesson": "1",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -233,7 +232,7 @@
       "module": "11",
       "lesson": "1",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -243,7 +242,7 @@
       "module": "11",
       "lesson": "2",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -253,7 +252,7 @@
       "module": "11",
       "lesson": "2",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -263,7 +262,7 @@
       "module": "11",
       "lesson": "3",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -273,7 +272,7 @@
       "module": "11",
       "lesson": "3",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -283,7 +282,7 @@
       "module": "11",
       "lesson": "4",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -293,7 +292,7 @@
       "module": "11",
       "lesson": "5",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -303,7 +302,7 @@
       "module": "11",
       "lesson": "6",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -313,7 +312,7 @@
       "module": "11",
       "lesson": "6",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -323,7 +322,7 @@
       "module": "12",
       "lesson": "1",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -333,7 +332,7 @@
       "module": "12",
       "lesson": "1",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -343,7 +342,7 @@
       "module": "12",
       "lesson": "2",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -353,7 +352,7 @@
       "module": "12",
       "lesson": "2",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -363,7 +362,7 @@
       "module": "12",
       "lesson": "3",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -373,7 +372,7 @@
       "module": "12",
       "lesson": "3",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -383,7 +382,7 @@
       "module": "12",
       "lesson": "4",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -393,7 +392,7 @@
       "module": "12",
       "lesson": "5",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -403,7 +402,7 @@
       "module": "12",
       "lesson": "5",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -413,7 +412,7 @@
       "module": "12",
       "lesson": "5",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -423,7 +422,7 @@
       "module": "12",
       "lesson": "5",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -433,7 +432,7 @@
       "module": "13",
       "lesson": "1",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -443,7 +442,7 @@
       "module": "13",
       "lesson": "1",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -453,7 +452,7 @@
       "module": "13",
       "lesson": "2",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -463,7 +462,7 @@
       "module": "13",
       "lesson": "2",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -473,7 +472,7 @@
       "module": "13",
       "lesson": "3",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -483,7 +482,7 @@
       "module": "13",
       "lesson": "4",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -493,7 +492,7 @@
       "module": "13",
       "lesson": "5",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -503,7 +502,7 @@
       "module": "13",
       "lesson": "5",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -513,7 +512,7 @@
       "module": "2",
       "lesson": "1",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -523,7 +522,7 @@
       "module": "2",
       "lesson": "1",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -533,7 +532,7 @@
       "module": "2",
       "lesson": "2",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -543,7 +542,7 @@
       "module": "2",
       "lesson": "2",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -553,7 +552,7 @@
       "module": "2",
       "lesson": "3",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -563,7 +562,7 @@
       "module": "2",
       "lesson": "3",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -573,7 +572,7 @@
       "module": "2",
       "lesson": "4",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -583,7 +582,7 @@
       "module": "2",
       "lesson": "4",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -593,7 +592,7 @@
       "module": "2",
       "lesson": "5",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -603,7 +602,7 @@
       "module": "2",
       "lesson": "5",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -613,7 +612,7 @@
       "module": "2",
       "lesson": "6",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -623,7 +622,7 @@
       "module": "2",
       "lesson": "6",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -633,7 +632,7 @@
       "module": "2",
       "lesson": "6",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -643,7 +642,7 @@
       "module": "3",
       "lesson": "1",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -653,7 +652,7 @@
       "module": "3",
       "lesson": "1",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -663,7 +662,7 @@
       "module": "3",
       "lesson": "2",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -673,7 +672,7 @@
       "module": "3",
       "lesson": "2",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -683,7 +682,7 @@
       "module": "3",
       "lesson": "3",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -693,7 +692,7 @@
       "module": "3",
       "lesson": "4",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -703,7 +702,7 @@
       "module": "3",
       "lesson": "4",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -713,7 +712,7 @@
       "module": "3",
       "lesson": "5",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -723,7 +722,7 @@
       "module": "3",
       "lesson": "5",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -733,7 +732,7 @@
       "module": "3",
       "lesson": "6",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -743,7 +742,7 @@
       "module": "3",
       "lesson": "6",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -753,7 +752,7 @@
       "module": "3",
       "lesson": "6",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -763,7 +762,7 @@
       "module": "4",
       "lesson": "1",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -773,7 +772,7 @@
       "module": "4",
       "lesson": "1",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -783,7 +782,7 @@
       "module": "4",
       "lesson": "2",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -793,7 +792,7 @@
       "module": "4",
       "lesson": "2",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -803,7 +802,7 @@
       "module": "4",
       "lesson": "3",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -813,7 +812,7 @@
       "module": "4",
       "lesson": "3",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -823,7 +822,7 @@
       "module": "4",
       "lesson": "4",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -833,7 +832,7 @@
       "module": "4",
       "lesson": "4",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -843,7 +842,7 @@
       "module": "4",
       "lesson": "5",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -853,7 +852,7 @@
       "module": "4",
       "lesson": "5",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -863,7 +862,7 @@
       "module": "4",
       "lesson": "6",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -873,7 +872,7 @@
       "module": "4",
       "lesson": "6",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -883,7 +882,7 @@
       "module": "4",
       "lesson": "7",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -893,7 +892,7 @@
       "module": "4",
       "lesson": "7",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -903,7 +902,7 @@
       "module": "4",
       "lesson": "8",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -913,7 +912,7 @@
       "module": "4",
       "lesson": "8",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -923,7 +922,7 @@
       "module": "5",
       "lesson": "1",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -933,7 +932,7 @@
       "module": "5",
       "lesson": "1",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -943,7 +942,7 @@
       "module": "5",
       "lesson": "2",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -953,7 +952,7 @@
       "module": "5",
       "lesson": "2",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -963,7 +962,7 @@
       "module": "5",
       "lesson": "3",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -973,7 +972,7 @@
       "module": "5",
       "lesson": "4",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -983,7 +982,7 @@
       "module": "5",
       "lesson": "4",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -993,7 +992,7 @@
       "module": "5",
       "lesson": "5",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1003,7 +1002,7 @@
       "module": "5",
       "lesson": "5",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1013,7 +1012,7 @@
       "module": "5",
       "lesson": "6",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1023,7 +1022,7 @@
       "module": "5",
       "lesson": "6",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1033,7 +1032,7 @@
       "module": "5",
       "lesson": "7",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1043,7 +1042,7 @@
       "module": "5",
       "lesson": "7",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1053,7 +1052,7 @@
       "module": "5",
       "lesson": "8",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1063,7 +1062,7 @@
       "module": "5",
       "lesson": "8",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1073,7 +1072,7 @@
       "module": "6",
       "lesson": "1",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1083,7 +1082,7 @@
       "module": "6",
       "lesson": "1",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1093,7 +1092,7 @@
       "module": "6",
       "lesson": "2",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1103,7 +1102,7 @@
       "module": "6",
       "lesson": "2",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1113,7 +1112,7 @@
       "module": "6",
       "lesson": "3",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1123,7 +1122,7 @@
       "module": "6",
       "lesson": "3",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1133,7 +1132,7 @@
       "module": "6",
       "lesson": "4",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1143,7 +1142,7 @@
       "module": "6",
       "lesson": "4",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1153,7 +1152,7 @@
       "module": "6",
       "lesson": "4",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1163,7 +1162,7 @@
       "module": "6",
       "lesson": "5",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1173,7 +1172,7 @@
       "module": "6",
       "lesson": "5",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1183,7 +1182,7 @@
       "module": "6",
       "lesson": "6",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1193,7 +1192,7 @@
       "module": "6",
       "lesson": "6",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1203,7 +1202,7 @@
       "module": "6",
       "lesson": "7",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1213,7 +1212,7 @@
       "module": "6",
       "lesson": "7",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1223,7 +1222,7 @@
       "module": "6",
       "lesson": "8",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1233,7 +1232,7 @@
       "module": "6",
       "lesson": "8",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1243,7 +1242,7 @@
       "module": "6",
       "lesson": "9",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1253,7 +1252,7 @@
       "module": "7",
       "lesson": "1",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1263,7 +1262,7 @@
       "module": "7",
       "lesson": "2",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1273,7 +1272,7 @@
       "module": "7",
       "lesson": "3",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1283,7 +1282,7 @@
       "module": "7",
       "lesson": "4",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1293,7 +1292,7 @@
       "module": "7",
       "lesson": "4",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1303,7 +1302,7 @@
       "module": "7",
       "lesson": "5",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1313,7 +1312,7 @@
       "module": "7",
       "lesson": "6",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1323,7 +1322,7 @@
       "module": "7",
       "lesson": "6",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1333,7 +1332,7 @@
       "module": "8",
       "lesson": "1",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1343,7 +1342,7 @@
       "module": "8",
       "lesson": "1",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1353,7 +1352,7 @@
       "module": "8",
       "lesson": "2",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1363,7 +1362,7 @@
       "module": "8",
       "lesson": "2",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1373,7 +1372,7 @@
       "module": "8",
       "lesson": "3",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1383,7 +1382,7 @@
       "module": "8",
       "lesson": "4",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1393,7 +1392,7 @@
       "module": "8",
       "lesson": "5",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1403,7 +1402,7 @@
       "module": "8",
       "lesson": "5",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1413,7 +1412,7 @@
       "module": "8",
       "lesson": "6",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1423,7 +1422,7 @@
       "module": "9",
       "lesson": "1",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1433,7 +1432,7 @@
       "module": "9",
       "lesson": "1",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1443,7 +1442,7 @@
       "module": "9",
       "lesson": "2",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1453,7 +1452,7 @@
       "module": "9",
       "lesson": "3",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1463,7 +1462,7 @@
       "module": "9",
       "lesson": "3",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1473,7 +1472,7 @@
       "module": "9",
       "lesson": "4",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1483,7 +1482,7 @@
       "module": "9",
       "lesson": "5",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
       "priority": "medium"
     },
@@ -1493,8 +1492,538 @@
       "module": "9",
       "lesson": "5",
       "gap": "NO_GENERATOR",
-      "reason": "Generator not yet implemented for IM2 rollout \u2014 stub blueprint only",
+      "reason": "No validated generator is available for this draft skill candidate.",
       "impact": "Blocks independent practice generation; skill requires manual activity authoring",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.7.7.source-objective-1",
+      "title": "Calculate conditional probabilities using the definition $P(B | A) = \\frac{P(A \\cap B)}{P(A)}$.",
+      "module": "7",
+      "lesson": "7",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.7.7.source-objective-2",
+      "title": "Find probabilities given new information that restricts the sample space.",
+      "module": "7",
+      "lesson": "7",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.7.7.source-objective-3",
+      "title": "Determine whether two events are independent using conditional probability.",
+      "module": "7",
+      "lesson": "7",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.7.7.source-objective-4",
+      "title": "Apply conditional probability to real-world scenarios involving Venn diagrams and two-way tables.",
+      "module": "7",
+      "lesson": "7",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.7.8.source-objective-1",
+      "title": "Create and interpret two-way frequency tables.",
+      "module": "7",
+      "lesson": "8",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.7.8.source-objective-2",
+      "title": "Construct and interpret relative frequency tables (by row, by column, and overall).",
+      "module": "7",
+      "lesson": "8",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.7.8.source-objective-3",
+      "title": "Find conditional probabilities from two-way tables.",
+      "module": "7",
+      "lesson": "8",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.7.8.source-objective-4",
+      "title": "Determine whether two events are independent using two-way table data.",
+      "module": "7",
+      "lesson": "8",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.8.7.source-objective-1",
+      "title": "Describe translations (shifts) of functions as they relate to the parent function.",
+      "module": "8",
+      "lesson": "7",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.8.7.source-objective-2",
+      "title": "Describe dilations and reflections of functions.",
+      "module": "8",
+      "lesson": "7",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.8.7.source-objective-3",
+      "title": "Write equations for transformed functions given their graphs.",
+      "module": "8",
+      "lesson": "7",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.8.7.source-objective-4",
+      "title": "Apply transformations to model real-world situations.",
+      "module": "8",
+      "lesson": "7",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.9.6.source-objective-1",
+      "title": "Graph systems of two or more linear inequalities and identify the overlapping solution region.",
+      "module": "9",
+      "lesson": "6",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.9.6.source-objective-2",
+      "title": "Determine whether a given ordered pair satisfies a system of inequalities.",
+      "module": "9",
+      "lesson": "6",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.9.6.source-objective-3",
+      "title": "Write systems of inequalities to represent real-world constraints involving two quantities.",
+      "module": "9",
+      "lesson": "6",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.9.6.source-objective-4",
+      "title": "Apply systems of inequalities to solve problems involving maximum capacity, minimum revenue, and time allocation.",
+      "module": "9",
+      "lesson": "6",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.9.7.source-objective-1",
+      "title": "Graph a system of linear inequalities and identify the vertices of the feasible region.",
+      "module": "9",
+      "lesson": "7",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.9.7.source-objective-2",
+      "title": "Evaluate a linear objective function at each vertex to find the maximum and minimum values.",
+      "module": "9",
+      "lesson": "7",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.9.7.source-objective-3",
+      "title": "Set up a system of inequalities from a real-world scenario involving resource constraints.",
+      "module": "9",
+      "lesson": "7",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.9.7.source-objective-4",
+      "title": "Apply linear programming to optimize quantities such as profit, cost, or production in applied problems.",
+      "module": "9",
+      "lesson": "7",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.9.8.source-objective-1",
+      "title": "Solve systems of three linear equations with three variables using elimination and substitution.",
+      "module": "9",
+      "lesson": "8",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.9.8.source-objective-2",
+      "title": "Set up and solve real-world problems that lead to systems of three equations in three variables.",
+      "module": "9",
+      "lesson": "8",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.9.8.source-objective-3",
+      "title": "Interpret solutions as ordered triples in the context of applied problems.",
+      "module": "9",
+      "lesson": "8",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.9.9.source-objective-1",
+      "title": "Solve absolute value equations by graphing the related function and identifying intersection points with a horizontal line.",
+      "module": "9",
+      "lesson": "9",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.9.9.source-objective-2",
+      "title": "Solve absolute value equations algebraically by isolating the absolute value expression and considering both positive and negative cases.",
+      "module": "9",
+      "lesson": "9",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.9.9.source-objective-3",
+      "title": "Solve absolute value inequalities by graphing and by using a graphing calculator to identify solution regions.",
+      "module": "9",
+      "lesson": "9",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.9.9.source-objective-4",
+      "title": "Write absolute value equations and inequalities to model real-world tolerance and range problems.",
+      "module": "9",
+      "lesson": "9",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.9.9.source-objective-5",
+      "title": "Recognize when an absolute value equation or inequality has no solution or all real numbers as its solution set.",
+      "module": "9",
+      "lesson": "9",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.10.6.source-objective-1",
+      "title": "Add and subtract radical expressions by combining like radicals",
+      "module": "10",
+      "lesson": "6",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.10.6.source-objective-2",
+      "title": "Simplify radical expressions before adding or subtracting",
+      "module": "10",
+      "lesson": "6",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.10.6.source-objective-3",
+      "title": "Multiply radical expressions and distribute radicals over binomials",
+      "module": "10",
+      "lesson": "6",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.10.6.source-objective-4",
+      "title": "Apply operations with radicals to solve real-world geometry and measurement problems",
+      "module": "10",
+      "lesson": "6",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.10.7.source-objective-1",
+      "title": "Solve exponential equations by writing both sides with a common base.",
+      "module": "10",
+      "lesson": "7",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.10.7.source-objective-2",
+      "title": "Apply properties of exponents to rewrite exponential expressions.",
+      "module": "10",
+      "lesson": "7",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.10.7.source-objective-3",
+      "title": "Interpret exponential models in real-world contexts involving growth and decay.",
+      "module": "10",
+      "lesson": "7",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.10.7.source-objective-4",
+      "title": "Use exponential equations to solve for unknown quantities in applied problems.",
+      "module": "10",
+      "lesson": "7",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.11.7.source-objective-1",
+      "title": "Factor polynomials using the difference of squares pattern, including repeated application and factoring by grouping.",
+      "module": "11",
+      "lesson": "7",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.11.7.source-objective-2",
+      "title": "Recognize perfect square trinomials by verifying the relationship between the first, middle, and last terms, then factor them.",
+      "module": "11",
+      "lesson": "7",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.11.7.source-objective-3",
+      "title": "Identify prime polynomials that cannot be factored over the integers.",
+      "module": "11",
+      "lesson": "7",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.11.7.source-objective-4",
+      "title": "Apply special factoring patterns to solve real-world area and volume problems.",
+      "module": "11",
+      "lesson": "7",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.12.6.source-objective-1",
+      "title": "Apply the Quadratic Formula to solve quadratic equations written in standard form.",
+      "module": "12",
+      "lesson": "6",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.12.6.source-objective-2",
+      "title": "Use the discriminant to determine the number and type of solutions of a quadratic equation.",
+      "module": "12",
+      "lesson": "6",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.12.6.source-objective-3",
+      "title": "Solve real-world problems modeled by quadratic equations, including business, physics, and geometry contexts.",
+      "module": "12",
+      "lesson": "6",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.12.7.source-objective-1",
+      "title": "Solve a system of linear and quadratic equations by graphing, identifying intersection points of the parabola and line.",
+      "module": "12",
+      "lesson": "7",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.12.7.source-objective-2",
+      "title": "Solve a system of linear and quadratic equations algebraically by substitution or elimination.",
+      "module": "12",
+      "lesson": "7",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.12.7.source-objective-3",
+      "title": "Interpret real-world scenarios involving parabolic and linear relationships to find solution points and explain their meaning in context.",
+      "module": "12",
+      "lesson": "7",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.12.8.source-objective-1",
+      "title": "Identify whether data is best modeled by a linear, quadratic, or exponential function by examining patterns in tables",
+      "module": "12",
+      "lesson": "8",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.12.8.source-objective-2",
+      "title": "Write equations that model data using first/second differences and ratios",
+      "module": "12",
+      "lesson": "8",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.12.8.source-objective-3",
+      "title": "Use regression equations to make predictions and interpret the coefficient of determination (R\u00b2)",
+      "module": "12",
+      "lesson": "8",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.12.9.source-objective-1",
+      "title": "Add and subtract functions to create new functions.",
+      "module": "12",
+      "lesson": "9",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.12.9.source-objective-2",
+      "title": "Multiply (compose) functions and interpret the result in context.",
+      "module": "12",
+      "lesson": "9",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.12.9.source-objective-3",
+      "title": "Write real-world scenarios as combined functions representing total quantity, difference, or composite relationships.",
+      "module": "12",
+      "lesson": "9",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.12.9.source-objective-4",
+      "title": "Analyze how function operations affect domain restrictions.",
+      "module": "12",
+      "lesson": "9",
+      "gap": "NO_GENERATOR",
+      "reason": "The source objective has no validated generator.",
+      "impact": "Unavailable for graph practice.",
       "priority": "medium"
     }
   ]

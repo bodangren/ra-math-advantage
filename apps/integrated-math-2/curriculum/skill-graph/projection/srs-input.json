@@ -1,9 +1,8 @@
 {
   "metadata": {
     "course": "im2",
-    "generatedAt": "2026-05-10T06:42:40.000Z",
-    "description": "IM2 SRS input projection \u2014 no generators implemented, all skills ineligible",
-    "totalSkills": 149,
+    "description": "Graph practice is not connected to the runtime. All skills remain ineligible for spaced review.",
+    "totalSkills": 203,
     "srsEligibleCount": 0
   },
   "skills": [
@@ -40,9 +39,7 @@
       "lesson": "2",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.1.1.find-measures-of-segments-and-angles-using-perpendicular-bis"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -66,9 +63,7 @@
       "lesson": "3",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.1.2.use-the-angle-bisector-theorem-to-find-angle-and-segment-mea"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -92,9 +87,7 @@
       "lesson": "4",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.1.3.find-the-coordinates-of-the-orthocenter-and-compare-medians"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -118,9 +111,7 @@
       "lesson": "5",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.1.4.order-angles-and-sides-of-a-triangle-from-smallest-to-larges"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -144,9 +135,7 @@
       "lesson": "6",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.1.5.write-indirect-proofs-of-algebraic-and-geometric-statements"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -170,9 +159,7 @@
       "lesson": "7",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.1.6.determine-whether-three-lengths-can-form-a-triangle-find-the"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -196,9 +183,7 @@
       "lesson": "1",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.9.5.graph-systems-of-linear-inequalities-and-identify-the-soluti"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -222,9 +207,7 @@
       "lesson": "2",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.10.1.combine-multiple-laws-of-exponents-in-complex-expressions"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -236,9 +219,7 @@
       "lesson": "3",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.10.2.rewrite-expressions-with-negative-exponents-using-positive-e"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -250,9 +231,7 @@
       "lesson": "4",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.10.3.convert-between-standard-form-and-scientific-notation"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -264,9 +243,7 @@
       "lesson": "5",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.10.4.simplify-and-perform-operations-with-radical-expressions"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -290,9 +267,7 @@
       "lesson": "1",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.10.5.solve-radical-equations-by-isolating-the-radical-and-squarin"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -316,9 +291,7 @@
       "lesson": "2",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.11.1.determine-whether-an-expression-is-a-polynomial-and-identify"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -342,9 +315,7 @@
       "lesson": "3",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.11.2.apply-addition-of-polynomials-to-find-total-area-in-geometri"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -368,9 +339,7 @@
       "lesson": "4",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.11.3.multiply-polynomials-using-the-distributive-property-and-foi"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -382,9 +351,7 @@
       "lesson": "5",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.11.4.recognize-and-apply-special-product-patterns-ab-ab-abab"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -396,9 +363,7 @@
       "lesson": "6",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.11.5.factor-polynomials-using-gcf-grouping-trinomials-and-differe"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -422,9 +387,7 @@
       "lesson": "1",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.11.6.write-polynomial-equations-given-zeros-or-a-graph-use-zeros"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -448,9 +411,7 @@
       "lesson": "2",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.12.1.identify-the-axis-of-symmetry-vertex-and-end-behavior-of-a-q"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -474,9 +435,7 @@
       "lesson": "3",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.12.2.write-quadratic-equations-given-a-graph-using-transformation"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -500,9 +459,7 @@
       "lesson": "4",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.12.3.solve-quadratic-equations-by-finding-x-intercepts-of-the-rel"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -514,9 +471,7 @@
       "lesson": "5",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.12.4.solve-quadratic-equations-by-factoring-and-using-the-zero-pr"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -564,9 +519,7 @@
       "lesson": "1",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.12.5.write-quadratic-functions-in-vertex-form-and-identify-extrem"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -590,9 +543,7 @@
       "lesson": "2",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.13.1.verify-trigonometric-identities-using-fundamental-relationsh"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -616,9 +567,7 @@
       "lesson": "3",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.13.2.use-pythagorean-identities-to-find-missing-trig-values-and-s"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -630,9 +579,7 @@
       "lesson": "4",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.13.3.apply-sum-and-difference-identities-for-sine-cosine-and-tang"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -644,9 +591,7 @@
       "lesson": "5",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.13.4.apply-double-angle-identities-for-sine-cosine-all-three-form"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -670,9 +615,7 @@
       "lesson": "1",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.1.7.use-the-hinge-theorem-and-its-converse-to-find-ranges-of-val"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -696,9 +639,7 @@
       "lesson": "2",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.2.1.find-the-sum-of-interior-angles-and-the-measure-of-each-inte"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -722,9 +663,7 @@
       "lesson": "3",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.2.2.use-properties-of-parallelograms-to-find-angle-measures-and"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -748,9 +687,7 @@
       "lesson": "4",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.2.3.use-coordinate-geometry-to-verify-parallelograms-and-write-c"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -774,9 +711,7 @@
       "lesson": "5",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.2.4.use-coordinate-geometry-to-determine-whether-a-quadrilateral"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -800,9 +735,7 @@
       "lesson": "6",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.2.5.classify-quadrilaterals-and-prove-that-a-quadrilateral-is-a"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -838,9 +771,7 @@
       "lesson": "1",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.2.6.compare-and-classify-quadrilaterals-based-on-their-propertie"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -864,9 +795,7 @@
       "lesson": "2",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.3.1.graph-dilated-images-and-find-perimeter-relationships"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -890,9 +819,7 @@
       "lesson": "3",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.3.2.identify-pairs-of-congruent-angles-and-write-proportions-for"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -904,9 +831,7 @@
       "lesson": "4",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.3.3.determine-whether-two-triangles-are-similar-using-the-aa-sim"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -930,9 +855,7 @@
       "lesson": "5",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.3.4.determine-whether-triangles-are-similar-using-sss-and-sas-si"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -956,9 +879,7 @@
       "lesson": "6",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.3.5.find-lengths-using-midsegments-and-apply-triangle-proportion"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -994,9 +915,7 @@
       "lesson": "1",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.3.6.write-proofs-involving-similar-triangle-theorems-and-special"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -1020,9 +939,7 @@
       "lesson": "2",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.4.1.find-unknown-side-lengths-in-right-triangles-using-geometric"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -1046,9 +963,7 @@
       "lesson": "3",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.4.2.find-unknown-side-lengths-in-right-triangles-using-the-pytha"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -1072,9 +987,7 @@
       "lesson": "4",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.4.3.graph-a-rectangular-solid-and-find-the-distance-between-two"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -1098,9 +1011,7 @@
       "lesson": "5",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.4.4.find-missing-side-lengths-in-45-45-90-and-30-60-90-triangles"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -1150,9 +1061,7 @@
       "lesson": "7",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.4.6.use-trigonometry-to-find-areas-of-triangles-and-solve-indire"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -1176,9 +1085,7 @@
       "lesson": "8",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.4.7.determine-whether-a-triangle-has-no-solution-one-solution-or"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -1202,9 +1109,7 @@
       "lesson": "1",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.4.8.determine-whether-to-use-law-of-sines-or-law-of-cosines-and"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -1228,9 +1133,7 @@
       "lesson": "2",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.5.1.identify-and-name-circles-radii-chords-and-diameters-use-the"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -1254,9 +1157,7 @@
       "lesson": "3",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.5.2.find-central-angle-measures-and-arc-measures-in-degrees-clas"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -1268,9 +1169,7 @@
       "lesson": "4",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.5.3.use-relationships-among-arcs-chords-and-central-angles-apply"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -1294,9 +1193,7 @@
       "lesson": "5",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.5.4.prove-theorems-about-inscribed-angles-and-apply-properties-o"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -1320,9 +1217,7 @@
       "lesson": "6",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.5.5.identify-the-number-of-common-tangents-to-pairs-of-circles-d"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -1346,9 +1241,7 @@
       "lesson": "7",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.5.6.find-angle-measures-formed-by-chords-tangents-and-secants-in"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -1372,9 +1265,7 @@
       "lesson": "8",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.5.7.write-the-equation-of-a-circle-in-standard-form-given-center"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -1398,9 +1289,7 @@
       "lesson": "1",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.5.8.write-the-equation-of-a-parabola-given-the-focus-and-directr"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -1424,9 +1313,7 @@
       "lesson": "2",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.6.1.find-areas-of-trapezoids-and-kites-solve-real-world-area-pro"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -1450,9 +1337,7 @@
       "lesson": "3",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.6.2.identify-the-center-radius-apothem-and-central-angle-of-a-re"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -1476,9 +1361,7 @@
       "lesson": "4",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.6.3.find-the-area-of-a-sector-of-a-circle"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -1514,9 +1397,7 @@
       "lesson": "5",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.6.4.find-surface-areas-of-spheres-and-composite-solids"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -1540,9 +1421,7 @@
       "lesson": "6",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.6.5.identify-solids-formed-by-rotating-two-dimensional-shapes-ab"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -1566,9 +1445,7 @@
       "lesson": "7",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.6.6.find-volumes-of-prisms-and-pyramids"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -1592,9 +1469,7 @@
       "lesson": "8",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.6.7.find-volumes-of-cylinders-cones-and-spheres"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -1618,9 +1493,7 @@
       "lesson": "9",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.6.8.find-volumes-of-similar-solids-and-apply-similarity-to-real"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -1632,9 +1505,7 @@
       "lesson": "1",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.6.9.find-population-density-and-mass-density-solve-real-world-de"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -1646,9 +1517,7 @@
       "lesson": "2",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.7.1.understand-experimental-vs-theoretical-probability-and-sampl"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -1660,9 +1529,7 @@
       "lesson": "3",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.7.2.apply-the-fundamental-counting-principle-to-determine-the-nu"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -1674,9 +1541,7 @@
       "lesson": "4",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.7.3.compute-permutations-and-interpret-npr-in-context"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -1700,9 +1565,7 @@
       "lesson": "5",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.7.4.use-combinations-and-permutations-to-solve-real-world-select"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -1714,9 +1577,7 @@
       "lesson": "6",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.7.5.find-probabilities-of-independent-and-dependent-events"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -1740,9 +1601,7 @@
       "lesson": "1",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.7.6.calculate-expected-value-to-evaluate-outcomes-of-random-proc"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -1766,9 +1625,7 @@
       "lesson": "2",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.8.1.identify-domain-and-range-from-various-representations"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -1792,9 +1649,7 @@
       "lesson": "3",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.8.2.find-domain-and-range-from-graphs-tables-equations-and-word"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -1806,9 +1661,7 @@
       "lesson": "4",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.8.3.interpret-and-evaluate-function-notation-fx"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -1820,9 +1673,7 @@
       "lesson": "5",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.8.4.distinguish-linear-from-nonlinear-functions-using-rate-of-ch"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -1846,9 +1697,7 @@
       "lesson": "6",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.8.5.graph-vertical-and-horizontal-shifts-of-parent-functions"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -1860,9 +1709,7 @@
       "lesson": "1",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.8.6.compare-two-or-more-functions-represented-as-graphs-tables-e"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -1886,9 +1733,7 @@
       "lesson": "2",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.9.1.solve-multi-step-linear-equations-with-variables-on-one-or-b"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -1900,9 +1745,7 @@
       "lesson": "3",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.9.2.graph-linear-equations-using-slope-intercept-standard-and-po"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -1926,9 +1769,7 @@
       "lesson": "4",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.9.3.solve-and-graph-one-variable-and-two-variable-linear-inequal"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -1940,9 +1781,7 @@
       "lesson": "5",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
-      "prerequisiteNodeIds": [
-        "math.im2.skill.9.4.solve-systems-of-equations-by-graphing-substitution-and-elim"
-      ],
+      "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     },
     {
@@ -1954,6 +1793,654 @@
       "lesson": "5",
       "srsEligible": false,
       "rationale": "No generator implemented for IM2 rollout",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.1.1.perpendicular-bisector-equidistance.independent_practice",
+      "nodeId": "math.im2.skill.1.1.perpendicular-bisector-equidistance",
+      "title": "Solve an equal-distance equation from a perpendicular bisector",
+      "course": "im2",
+      "module": "1",
+      "lesson": "1",
+      "srsEligible": false,
+      "rationale": "A generator is validated, but graph practice is not connected to the runtime.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.7.7.source-objective-1.independent_practice",
+      "nodeId": "math.im2.skill.7.7.source-objective-1",
+      "title": "Calculate conditional probabilities using the definition $P(B | A) = \\frac{P(A \\cap B)}{P(A)}$.",
+      "course": "im2",
+      "module": "7",
+      "lesson": "7",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.7.7.source-objective-2.independent_practice",
+      "nodeId": "math.im2.skill.7.7.source-objective-2",
+      "title": "Find probabilities given new information that restricts the sample space.",
+      "course": "im2",
+      "module": "7",
+      "lesson": "7",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.7.7.source-objective-3.independent_practice",
+      "nodeId": "math.im2.skill.7.7.source-objective-3",
+      "title": "Determine whether two events are independent using conditional probability.",
+      "course": "im2",
+      "module": "7",
+      "lesson": "7",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.7.7.source-objective-4.independent_practice",
+      "nodeId": "math.im2.skill.7.7.source-objective-4",
+      "title": "Apply conditional probability to real-world scenarios involving Venn diagrams and two-way tables.",
+      "course": "im2",
+      "module": "7",
+      "lesson": "7",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.7.8.source-objective-1.independent_practice",
+      "nodeId": "math.im2.skill.7.8.source-objective-1",
+      "title": "Create and interpret two-way frequency tables.",
+      "course": "im2",
+      "module": "7",
+      "lesson": "8",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.7.8.source-objective-2.independent_practice",
+      "nodeId": "math.im2.skill.7.8.source-objective-2",
+      "title": "Construct and interpret relative frequency tables (by row, by column, and overall).",
+      "course": "im2",
+      "module": "7",
+      "lesson": "8",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.7.8.source-objective-3.independent_practice",
+      "nodeId": "math.im2.skill.7.8.source-objective-3",
+      "title": "Find conditional probabilities from two-way tables.",
+      "course": "im2",
+      "module": "7",
+      "lesson": "8",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.7.8.source-objective-4.independent_practice",
+      "nodeId": "math.im2.skill.7.8.source-objective-4",
+      "title": "Determine whether two events are independent using two-way table data.",
+      "course": "im2",
+      "module": "7",
+      "lesson": "8",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.8.7.source-objective-1.independent_practice",
+      "nodeId": "math.im2.skill.8.7.source-objective-1",
+      "title": "Describe translations (shifts) of functions as they relate to the parent function.",
+      "course": "im2",
+      "module": "8",
+      "lesson": "7",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.8.7.source-objective-2.independent_practice",
+      "nodeId": "math.im2.skill.8.7.source-objective-2",
+      "title": "Describe dilations and reflections of functions.",
+      "course": "im2",
+      "module": "8",
+      "lesson": "7",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.8.7.source-objective-3.independent_practice",
+      "nodeId": "math.im2.skill.8.7.source-objective-3",
+      "title": "Write equations for transformed functions given their graphs.",
+      "course": "im2",
+      "module": "8",
+      "lesson": "7",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.8.7.source-objective-4.independent_practice",
+      "nodeId": "math.im2.skill.8.7.source-objective-4",
+      "title": "Apply transformations to model real-world situations.",
+      "course": "im2",
+      "module": "8",
+      "lesson": "7",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.9.6.source-objective-1.independent_practice",
+      "nodeId": "math.im2.skill.9.6.source-objective-1",
+      "title": "Graph systems of two or more linear inequalities and identify the overlapping solution region.",
+      "course": "im2",
+      "module": "9",
+      "lesson": "6",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.9.6.source-objective-2.independent_practice",
+      "nodeId": "math.im2.skill.9.6.source-objective-2",
+      "title": "Determine whether a given ordered pair satisfies a system of inequalities.",
+      "course": "im2",
+      "module": "9",
+      "lesson": "6",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.9.6.source-objective-3.independent_practice",
+      "nodeId": "math.im2.skill.9.6.source-objective-3",
+      "title": "Write systems of inequalities to represent real-world constraints involving two quantities.",
+      "course": "im2",
+      "module": "9",
+      "lesson": "6",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.9.6.source-objective-4.independent_practice",
+      "nodeId": "math.im2.skill.9.6.source-objective-4",
+      "title": "Apply systems of inequalities to solve problems involving maximum capacity, minimum revenue, and time allocation.",
+      "course": "im2",
+      "module": "9",
+      "lesson": "6",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.9.7.source-objective-1.independent_practice",
+      "nodeId": "math.im2.skill.9.7.source-objective-1",
+      "title": "Graph a system of linear inequalities and identify the vertices of the feasible region.",
+      "course": "im2",
+      "module": "9",
+      "lesson": "7",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.9.7.source-objective-2.independent_practice",
+      "nodeId": "math.im2.skill.9.7.source-objective-2",
+      "title": "Evaluate a linear objective function at each vertex to find the maximum and minimum values.",
+      "course": "im2",
+      "module": "9",
+      "lesson": "7",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.9.7.source-objective-3.independent_practice",
+      "nodeId": "math.im2.skill.9.7.source-objective-3",
+      "title": "Set up a system of inequalities from a real-world scenario involving resource constraints.",
+      "course": "im2",
+      "module": "9",
+      "lesson": "7",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.9.7.source-objective-4.independent_practice",
+      "nodeId": "math.im2.skill.9.7.source-objective-4",
+      "title": "Apply linear programming to optimize quantities such as profit, cost, or production in applied problems.",
+      "course": "im2",
+      "module": "9",
+      "lesson": "7",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.9.8.source-objective-1.independent_practice",
+      "nodeId": "math.im2.skill.9.8.source-objective-1",
+      "title": "Solve systems of three linear equations with three variables using elimination and substitution.",
+      "course": "im2",
+      "module": "9",
+      "lesson": "8",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.9.8.source-objective-2.independent_practice",
+      "nodeId": "math.im2.skill.9.8.source-objective-2",
+      "title": "Set up and solve real-world problems that lead to systems of three equations in three variables.",
+      "course": "im2",
+      "module": "9",
+      "lesson": "8",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.9.8.source-objective-3.independent_practice",
+      "nodeId": "math.im2.skill.9.8.source-objective-3",
+      "title": "Interpret solutions as ordered triples in the context of applied problems.",
+      "course": "im2",
+      "module": "9",
+      "lesson": "8",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.9.9.source-objective-1.independent_practice",
+      "nodeId": "math.im2.skill.9.9.source-objective-1",
+      "title": "Solve absolute value equations by graphing the related function and identifying intersection points with a horizontal line.",
+      "course": "im2",
+      "module": "9",
+      "lesson": "9",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.9.9.source-objective-2.independent_practice",
+      "nodeId": "math.im2.skill.9.9.source-objective-2",
+      "title": "Solve absolute value equations algebraically by isolating the absolute value expression and considering both positive and negative cases.",
+      "course": "im2",
+      "module": "9",
+      "lesson": "9",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.9.9.source-objective-3.independent_practice",
+      "nodeId": "math.im2.skill.9.9.source-objective-3",
+      "title": "Solve absolute value inequalities by graphing and by using a graphing calculator to identify solution regions.",
+      "course": "im2",
+      "module": "9",
+      "lesson": "9",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.9.9.source-objective-4.independent_practice",
+      "nodeId": "math.im2.skill.9.9.source-objective-4",
+      "title": "Write absolute value equations and inequalities to model real-world tolerance and range problems.",
+      "course": "im2",
+      "module": "9",
+      "lesson": "9",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.9.9.source-objective-5.independent_practice",
+      "nodeId": "math.im2.skill.9.9.source-objective-5",
+      "title": "Recognize when an absolute value equation or inequality has no solution or all real numbers as its solution set.",
+      "course": "im2",
+      "module": "9",
+      "lesson": "9",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.10.6.source-objective-1.independent_practice",
+      "nodeId": "math.im2.skill.10.6.source-objective-1",
+      "title": "Add and subtract radical expressions by combining like radicals",
+      "course": "im2",
+      "module": "10",
+      "lesson": "6",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.10.6.source-objective-2.independent_practice",
+      "nodeId": "math.im2.skill.10.6.source-objective-2",
+      "title": "Simplify radical expressions before adding or subtracting",
+      "course": "im2",
+      "module": "10",
+      "lesson": "6",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.10.6.source-objective-3.independent_practice",
+      "nodeId": "math.im2.skill.10.6.source-objective-3",
+      "title": "Multiply radical expressions and distribute radicals over binomials",
+      "course": "im2",
+      "module": "10",
+      "lesson": "6",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.10.6.source-objective-4.independent_practice",
+      "nodeId": "math.im2.skill.10.6.source-objective-4",
+      "title": "Apply operations with radicals to solve real-world geometry and measurement problems",
+      "course": "im2",
+      "module": "10",
+      "lesson": "6",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.10.7.source-objective-1.independent_practice",
+      "nodeId": "math.im2.skill.10.7.source-objective-1",
+      "title": "Solve exponential equations by writing both sides with a common base.",
+      "course": "im2",
+      "module": "10",
+      "lesson": "7",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.10.7.source-objective-2.independent_practice",
+      "nodeId": "math.im2.skill.10.7.source-objective-2",
+      "title": "Apply properties of exponents to rewrite exponential expressions.",
+      "course": "im2",
+      "module": "10",
+      "lesson": "7",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.10.7.source-objective-3.independent_practice",
+      "nodeId": "math.im2.skill.10.7.source-objective-3",
+      "title": "Interpret exponential models in real-world contexts involving growth and decay.",
+      "course": "im2",
+      "module": "10",
+      "lesson": "7",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.10.7.source-objective-4.independent_practice",
+      "nodeId": "math.im2.skill.10.7.source-objective-4",
+      "title": "Use exponential equations to solve for unknown quantities in applied problems.",
+      "course": "im2",
+      "module": "10",
+      "lesson": "7",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.11.7.source-objective-1.independent_practice",
+      "nodeId": "math.im2.skill.11.7.source-objective-1",
+      "title": "Factor polynomials using the difference of squares pattern, including repeated application and factoring by grouping.",
+      "course": "im2",
+      "module": "11",
+      "lesson": "7",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.11.7.source-objective-2.independent_practice",
+      "nodeId": "math.im2.skill.11.7.source-objective-2",
+      "title": "Recognize perfect square trinomials by verifying the relationship between the first, middle, and last terms, then factor them.",
+      "course": "im2",
+      "module": "11",
+      "lesson": "7",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.11.7.source-objective-3.independent_practice",
+      "nodeId": "math.im2.skill.11.7.source-objective-3",
+      "title": "Identify prime polynomials that cannot be factored over the integers.",
+      "course": "im2",
+      "module": "11",
+      "lesson": "7",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.11.7.source-objective-4.independent_practice",
+      "nodeId": "math.im2.skill.11.7.source-objective-4",
+      "title": "Apply special factoring patterns to solve real-world area and volume problems.",
+      "course": "im2",
+      "module": "11",
+      "lesson": "7",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.12.6.source-objective-1.independent_practice",
+      "nodeId": "math.im2.skill.12.6.source-objective-1",
+      "title": "Apply the Quadratic Formula to solve quadratic equations written in standard form.",
+      "course": "im2",
+      "module": "12",
+      "lesson": "6",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.12.6.source-objective-2.independent_practice",
+      "nodeId": "math.im2.skill.12.6.source-objective-2",
+      "title": "Use the discriminant to determine the number and type of solutions of a quadratic equation.",
+      "course": "im2",
+      "module": "12",
+      "lesson": "6",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.12.6.source-objective-3.independent_practice",
+      "nodeId": "math.im2.skill.12.6.source-objective-3",
+      "title": "Solve real-world problems modeled by quadratic equations, including business, physics, and geometry contexts.",
+      "course": "im2",
+      "module": "12",
+      "lesson": "6",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.12.7.source-objective-1.independent_practice",
+      "nodeId": "math.im2.skill.12.7.source-objective-1",
+      "title": "Solve a system of linear and quadratic equations by graphing, identifying intersection points of the parabola and line.",
+      "course": "im2",
+      "module": "12",
+      "lesson": "7",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.12.7.source-objective-2.independent_practice",
+      "nodeId": "math.im2.skill.12.7.source-objective-2",
+      "title": "Solve a system of linear and quadratic equations algebraically by substitution or elimination.",
+      "course": "im2",
+      "module": "12",
+      "lesson": "7",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.12.7.source-objective-3.independent_practice",
+      "nodeId": "math.im2.skill.12.7.source-objective-3",
+      "title": "Interpret real-world scenarios involving parabolic and linear relationships to find solution points and explain their meaning in context.",
+      "course": "im2",
+      "module": "12",
+      "lesson": "7",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.12.8.source-objective-1.independent_practice",
+      "nodeId": "math.im2.skill.12.8.source-objective-1",
+      "title": "Identify whether data is best modeled by a linear, quadratic, or exponential function by examining patterns in tables",
+      "course": "im2",
+      "module": "12",
+      "lesson": "8",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.12.8.source-objective-2.independent_practice",
+      "nodeId": "math.im2.skill.12.8.source-objective-2",
+      "title": "Write equations that model data using first/second differences and ratios",
+      "course": "im2",
+      "module": "12",
+      "lesson": "8",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.12.8.source-objective-3.independent_practice",
+      "nodeId": "math.im2.skill.12.8.source-objective-3",
+      "title": "Use regression equations to make predictions and interpret the coefficient of determination (R\u00b2)",
+      "course": "im2",
+      "module": "12",
+      "lesson": "8",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.12.9.source-objective-1.independent_practice",
+      "nodeId": "math.im2.skill.12.9.source-objective-1",
+      "title": "Add and subtract functions to create new functions.",
+      "course": "im2",
+      "module": "12",
+      "lesson": "9",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.12.9.source-objective-2.independent_practice",
+      "nodeId": "math.im2.skill.12.9.source-objective-2",
+      "title": "Multiply (compose) functions and interpret the result in context.",
+      "course": "im2",
+      "module": "12",
+      "lesson": "9",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.12.9.source-objective-3.independent_practice",
+      "nodeId": "math.im2.skill.12.9.source-objective-3",
+      "title": "Write real-world scenarios as combined functions representing total quantity, difference, or composite relationships.",
+      "course": "im2",
+      "module": "12",
+      "lesson": "9",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
+      "prerequisiteNodeIds": [],
+      "objectiveDomain": "math.im2"
+    },
+    {
+      "stableActivityId": "math.im2.skill.12.9.source-objective-4.independent_practice",
+      "nodeId": "math.im2.skill.12.9.source-objective-4",
+      "title": "Analyze how function operations affect domain restrictions.",
+      "course": "im2",
+      "module": "12",
+      "lesson": "9",
+      "srsEligible": false,
+      "rationale": "No validated generator or approved mastery scope.",
       "prerequisiteNodeIds": [],
       "objectiveDomain": "math.im2"
     }

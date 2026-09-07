@@ -81,3 +81,35 @@ it("maps each source worked example to one graph node with its actual title", ()
     }
   }
 });
+it("does not use lesson-order guesses as prerequisite requirements", () => {
+  const prerequisites = graph.edges.filter(
+    (edge) => edge.type === "prerequisite_for",
+  );
+  expect(prerequisites.length).toBeGreaterThan(0);
+  for (const edge of prerequisites) {
+    expect(edge.reviewStatus).toBe("reviewed");
+    expect(edge.derived).toBe(false);
+    expect(edge.rationale).not.toContain("Lesson-sequence prerequisite");
+  }
+});
+it("gives every source lesson at least one linked objective candidate", () => {
+  for (const lesson of lessons) {
+    const parent = `math.im2.lesson.${lesson.unitNumber}.${lesson.orderIndex}`;
+    const skills = graph.nodes.filter(
+      (node) =>
+        node.kind === "skill" &&
+        node.metadata?.module === String(lesson.unitNumber) &&
+        node.metadata?.lesson === String(lesson.orderIndex),
+    );
+    expect(skills.length, lesson.slug).toBeGreaterThan(0);
+    expect(
+      graph.edges.some(
+        (edge) =>
+          edge.type === "contains" &&
+          edge.sourceId === parent &&
+          skills.some((skill) => skill.id === edge.targetId),
+      ),
+      lesson.slug,
+    ).toBe(true);
+  }
+});

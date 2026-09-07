@@ -20,7 +20,7 @@ The user authorized correction of all 29 findings on 2026-09-07. The review repo
 ## Phase 4: Knowledge graph
 
 - [~] Task: Reconcile lesson and skill nodes, source links, standards, and actual prerequisites. R21, R23, R24.
-- [ ] Task: Author valid practice blueprints and generators. Connect consistent practice and teacher projections. R20, R22.
+- [~] Task: Author valid practice blueprints and generators. Connect consistent practice and teacher projections. R20, R22.
 
 ## Phase 5: Integration and verification
 
@@ -96,3 +96,17 @@ Source, asset, and math-rendering checks pass after this update. This does not e
 Seed replay removes obsolete draft phases and extra sections. It restores text sections when a former checkpoint position becomes source text. It refuses to overwrite draft content with progress, submissions, completions, spreadsheet responses, or linked phase resources. Published revisions remain unchanged.
 
 Verification: 186 tests passed. Lint, frontend and backend TypeScript, build, and isolated local Convex deployment validation passed.
+
+## First graph generator
+
+The perpendicular-bisector generator passes 960 deterministic replay and equation checks. Its blueprint includes a source example, givens, solution steps, hints, answer schema, and grading rules. The remaining 149 candidates have no supported modes. Their empty specifications are removed. The 447 projected placeholder activities are removed. Graph practice and spaced review remain disabled until the runtime integration and teaching review are complete.
+
+## Prerequisite and unused-code correction
+
+Reviewed all 81 lesson-order prerequisite suggestions. Retained the right-triangle trigonometry requirement for elevation and depression problems. Removed the other 80 requirements from the graph. Their broad, misplaced, or alternative-method relationships do not justify blocking every target task. Teacher and spaced-review projections now use the retained reviewed edge. The 149 broad legacy skill candidates still require source-level refinement before mastery use.
+
+Removed middleware for `/dev/component-approval`. IM2 has no matching route. Protected student and teacher routes keep their current-account server guards.
+
+The 14 previously missing lessons now have 53 source objective candidates. Every source lesson has a linked skill or objective candidate. The new objectives remain unavailable for mastery. Their standards gaps appear in both the review queue and teacher projection. There are now 203 blueprint records: one validated generator blueprint and 202 unavailable drafts.
+
+Graph checkpoint verification: 28 test files and 192 tests passed. The generator test checks all 960 variants. Lint, frontend TypeScript, backend TypeScript, production build, node schemas, and graph structure passed. This does not certify the unavailable draft objectives or enable graph practice.
