@@ -69,7 +69,7 @@ This is in-scope implementation. Use the existing graph repair plans as detailed
 - [ ] Task 3.4: Correct cross-course prerequisites and equivalence.
   Compare actual capability scope, representations, conditions, and evidence demands. Reject standard overlap and lesson order as sufficient proof. Test direction, hard prerequisites, equivalence closure, and missing foreign learner state.
 - [~] Task 3.5: Correct the Business Math graph and activity relationships.
-  Unit 1 source review found incorrect exact-event evidence mappings and an unsupported prerequisite. The bounded repair preserves physical lesson activities. Catalog-wide acceptance remains open.
+  Unit 1 source review found incorrect exact-event evidence mappings and an unsupported prerequisite. The bounded repair preserves physical lesson activities. Nine focused tests and app gates pass. Source review report commit `e3cc8eec`. Catalog-wide acceptance remains open.
   Verify all 89 current lesson-based capability candidates against published objectives. Split or combine only where the sources require it. Reconcile prerequisite vocabulary, review status, three-mode mappings, and manual evidence. Preserve the existing limited adaptive activation policy until its runtime tests pass.
 - [~] Task 3.6: Verify graph corrections through actual learning decisions.
   Add failing cases before each repair. Show that a false prerequisite cannot block or unlock work, false equivalence cannot grant credit, a valid hard prerequisite still controls readiness, and unrelated skills do not receive evidence. Verify role projections and deterministic regeneration. Preserve valid positive behavior.
