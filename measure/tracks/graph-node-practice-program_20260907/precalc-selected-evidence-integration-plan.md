@@ -58,4 +58,4 @@ The parent inspected the committed Precalculus evidence module, the pending sele
 
 The existing shared evaluator suite passes all 35 tests. Log: `/tmp/q18-evidence-policy-parent-tests.log`. This verifies the shared temporal policy. It does not verify the pending Precalculus teacher action or the new evidence transaction.
 
-Independent plan review remains open. Runtime implementation remains under Task Q18.
+Independent review accepts this corrected plan. See `precalc-selected-evidence-plan-review.md`. The pending teacher producer uses truncated lesson-version, phase, and section queries. Repair those lookups before accepting the teacher producer. Runtime implementation remains under Task Q18.
