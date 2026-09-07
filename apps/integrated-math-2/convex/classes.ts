@@ -137,3 +137,32 @@ export const getClass = internalQuery({
     };
   },
 });
+
+export const joinClass = internalMutation({
+  args: { studentId: v.id("profiles"), classCode: v.string() },
+  returns: v.null(),
+  handler: async (ctx, args) => {
+    const student = await activeAccount(ctx, args.studentId);
+    if (!student || student.role !== "student") throw new ConvexError("not_allowed");
+    const classCode = args.classCode.trim();
+    if (classCode.length < 12 || classCode.length > 80) throw new ConvexError("invalid_class");
+    const classroom = await ctx.db.query("classes")
+      .withIndex("by_join_code", (q) => q.eq("joinCode", classCode)).unique();
+    const teacher = classroom && !classroom.archived
+      ? await activeAccount(ctx, classroom.teacherId) : null;
+    if (!classroom || !teacher || teacher.role === "student" || teacher.organizationId !== student.organizationId)
+      throw new ConvexError("invalid_class");
+    const existing = await ctx.db.query("class_enrollments")
+      .withIndex("by_class_and_student", (q) => q.eq("classId", classroom._id).eq("studentId", student._id)).unique();
+    if (existing) {
+      if (existing.status !== "active") throw new ConvexError("enrollment_closed");
+      return null;
+    }
+    const now = Date.now();
+    await ctx.db.insert("class_enrollments", {
+      classId: classroom._id, studentId: student._id, status: "active",
+      enrolledAt: now, createdAt: now, updatedAt: now,
+    });
+    return null;
+  },
+});

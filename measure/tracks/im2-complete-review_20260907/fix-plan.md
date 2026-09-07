@@ -116,3 +116,9 @@ Graph checkpoint verification: 28 test files and 192 tests passed. The generator
 An active administrator can review draft content and answer keys in the app. The preview links to the source worksheet. Publication uses the current server session and rejects teacher or inactive accounts. Lists have pagination. Structural validation remains separate from mathematical review.
 
 Local browser verification passed for draft selection, preview, and publication of Lesson 1.1 revision 2. The published preview shows the worksheet link. No production content changed. Verification passed with 199 tests, lint, frontend and backend TypeScript, and the production build.
+
+## Existing-account enrollment
+
+Students can join another class with its code from the dashboard. The server uses the current student identity. It requires an active class, an active teacher, and the same organization. Replay preserves one enrollment. Shared codes cannot reopen withdrawn or completed enrollments. Tests cover these boundaries and forged form identities. The local browser showed a successful enrollment replay without losing lesson progress.
+
+Verification passed with 205 tests, lint, frontend and backend TypeScript, production build, and isolated backend validation.
