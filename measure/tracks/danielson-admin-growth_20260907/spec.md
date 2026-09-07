@@ -21,7 +21,7 @@ No dependency changes. No hosted deployment. No AI implementation.
 
 ## Policy dependency
 
-The approved rubric edition and descriptor source are requested. Implement generic evidence support while that request is pending. Do not claim descriptor completion without that source.
+The user selected Danielson FFT. Retain the existing 2022 edition. Show the existing source-app component summaries and an official reference link. Label these as summaries. Full official performance-level descriptors are not available in the project. Do not claim full descriptor completion.
 
 ## Coaching contract details
 

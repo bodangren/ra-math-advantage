@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
 import { ObservationForm } from '../../components/observation-form';
@@ -45,6 +45,25 @@ const draft = {
 };
 
 describe('observation form accessibility', () => {
+  it('shows the matching FFT 2022 component summary beside a rating', () => {
+    render(<ObservationForm draft={draft} onSave={vi.fn()} onSubmit={vi.fn()} />);
+    expect(screen.getAllByText('FFT 2022 component summary')).toHaveLength(3);
+    expect(screen.getAllByText('Learning activities are sequenced and connected so they build toward the intended outcomes.')).toHaveLength(3);
+    expect(screen.getAllByText(/This summary is not a rating descriptor/)).toHaveLength(3);
+  });
+
+  it('matches component guidance to each target and omits unknown components', () => {
+    render(<ObservationForm draft={{ ...draft, items: [
+      { ...draft.items[0], componentId: 'danielson.framework.component.3b' },
+      { ...draft.items[1], componentId: 'danielson.framework.component.4e' },
+      { ...draft.items[2], componentId: 'unknown' },
+    ] }} onSave={vi.fn()} onSubmit={vi.fn()} />);
+    const groups = screen.getAllByRole('group').filter((element) => element.tagName === 'FIELDSET');
+    expect(within(groups[0]).getByText('Questions and discussion techniques promote reasoning, evidence, and student-to-student talk.')).toBeInTheDocument();
+    expect(within(groups[1]).getByText('Teachers seek professional learning and apply it to improve practice.')).toBeInTheDocument();
+    expect(within(groups[2]).queryByText('FFT 2022 component summary')).not.toBeInTheDocument();
+  });
+
   it('uses native grouped controls, visible labels, text status, and keyboard actions', () => {
     render(<ObservationForm draft={draft} onSave={vi.fn()} onSubmit={vi.fn()} />);
 

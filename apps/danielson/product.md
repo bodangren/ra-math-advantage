@@ -81,5 +81,8 @@ Each account has a detail page with current values, roles, assignments, and dire
 The portfolio supports at most 2,000 active coaching cycles per organization.
 Coaching history uses pages of 20 records.
 
-The school-approved rubric source is still required for component descriptors.
+The user selected Danielson Framework for Teaching (FFT). The app retains its 2022 edition.
+Observation targets show the existing source-app component summaries.
+These summaries do not replace the full official performance-level descriptors.
+The full descriptor text is not included in the project.
 The AI coaching brief is a possible feature only. See `possible-features.md`.

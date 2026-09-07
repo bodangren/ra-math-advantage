@@ -63,3 +63,16 @@ in Integrated Math 1 and AP Precalculus. It reported no Danielson boundary viola
 These failures are outside this change. The existing generated route report uses the repository
 knowledge graph and does not contain the new Danielson routes. App-owned architecture documentation
 lists the new routes. No unrelated generated-file changes are included in the implementation commits.
+
+## FFT reference follow-up
+
+The user selected Danielson FFT on 2026-09-07. The app retains its existing 2022 edition.
+All 22 component summaries come from the existing source app at `hdkwa-danielson/src/data/danielson.ts`.
+The observation form labels these as summaries, not official performance-level descriptors.
+The official reference is https://danielsongroup.org/the-framework-for-teaching/.
+The full official descriptor text is not available in the project.
+
+The new component display test failed before implementation. All 434 tests now pass.
+Lint, TypeScript, and build pass. Statement coverage is 85.46%.
+Tests verify matching component text and omit guidance for unknown component IDs.
+No backend or hosted deployment changed. AI remains deferred.

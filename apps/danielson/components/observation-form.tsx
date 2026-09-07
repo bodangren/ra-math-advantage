@@ -1,5 +1,7 @@
 'use client';
 
+import { FFT_COMPONENT_SUMMARIES } from '@/lib/proficiency/component-summaries';
+import type { DanielsonComponentId } from '@/lib/proficiency/graph';
 import { FormEvent, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 
@@ -182,7 +184,7 @@ export function ObservationForm({
 
       <details className="card">
         <summary>Rating guide</summary>
-        <p>Use the school-approved descriptor for the component. Record the observed action and student response.</p>
+        <p>Use the Danielson Framework for Teaching (FFT) 2022 descriptor for the component. Record the observed action and student response.</p>
         <ul>
           <li>1 — Unsatisfactory</li>
           <li>2 — Basic</li>
@@ -193,6 +195,7 @@ export function ObservationForm({
         <p><a href="https://danielsongroup.org/the-framework-for-teaching/" target="_blank" rel="noopener noreferrer">Framework for Teaching reference</a></p>
       </details>
       {items.map((item, index) => {
+        const componentSummary = FFT_COMPONENT_SUMMARIES[item.componentId.replace('danielson.framework.component.', '') as DanielsonComponentId];
         const title = item.skillTitle ?? item.skillId ?? item.componentTitle;
         const groupId = `observation-item-${item.itemId}`;
         const errorId = `${groupId}-error`;
@@ -214,6 +217,12 @@ export function ObservationForm({
               <p><span className="status attention">{reasonLabel(item.priorityReason)}</span></p>
             ) : null}
             {item.skillId ? <p><Link href={learnHref(item.skillId)} target="_blank" rel="noopener noreferrer">Learn {title}</Link></p> : null}
+            {componentSummary ? <details>
+              <summary>FFT 2022 component summary</summary>
+              <p>{componentSummary}</p>
+              <p>This summary is not a rating descriptor. Compare the evidence with the full FFT 2022 rubric before you rate.</p>
+              <a href="https://danielsongroup.org/the-framework-for-teaching/" target="_blank" rel="noopener noreferrer">Open the official FFT reference</a>
+            </details> : null}
             <div className="rating-options" aria-label={`Outcome for ${title}`}>
               {([1, 2, 3, 4] as const).map((rating) => (
                 <label className="rating-option" key={rating}>
