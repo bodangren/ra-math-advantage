@@ -286,8 +286,8 @@ function canonicalSelectedContent(value: unknown): string {
   );
 }
 
-function hasCurrentSelectedActivityIdentity(
-  submission: Im3ActivitySubmission,
+export function hasCurrentSelectedActivityIdentity(
+  submission: Pick<Im3ActivitySubmission, "activity" | "activityId">,
   mode: "guided" | "independent",
 ): boolean {
   const activity = submission.activity;

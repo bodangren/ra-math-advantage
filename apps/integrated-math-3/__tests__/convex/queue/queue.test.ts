@@ -1,5 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
-import { getDailyPracticeQueueHandler } from '@/convex/queue/queue';
+import { getDailyPracticeQueueHandler, resolveDailyPracticeQueue } from '@/convex/queue/queue';
+import { IM3_GUIDED_PRACTICE_ACTIVITY_ID, IM3_PILOT_NODE } from '@/lib/practice/learning-evidence-pilot';
+import { buildIm3GuidedPilotSeedDocuments } from '@/convex/seed/seed_lesson_1_1';
 import type { Id } from '@/convex/_generated/dataModel';
 import type { SrsCardState } from '@math-platform/srs-engine';
 
@@ -25,6 +27,16 @@ function makeMockCtx(overrides: {
     componentKey: string;
     props: Record<string, unknown>;
     displayName: string;
+    stableActivityId?: string;
+    masteryNodeId?: string;
+    srsEligible?: boolean;
+    approval?: { status: string };
+    gradingConfig?: {
+      autoGrade: boolean;
+      partialCredit: boolean;
+      passingScore?: number;
+      partIds?: string[];
+    };
   }>;
 } = {}) {
   const { cards = [], policies = [], standards = {}, practiceItems = [], activities = {} } = overrides;
@@ -366,7 +378,7 @@ describe('getDailyPracticeQueueHandler - Phase 2: Queue Item Resolution', () => 
     expect(result).toHaveLength(1);
     expect(result[0]).toHaveProperty('componentKey', 'step-by-step-solver');
     expect(result[0]).toHaveProperty('props');
-    expect(result[0].props).toEqual({ problemType: 'factoring', difficulty: 'easy' });
+    expect(result[0].props).toEqual({ problemType: 'factoring', difficulty: 'easy', activityId: 'act-1' });
   });
 
   it('skips card when no practice item exists for its problem family', async () => {
@@ -507,8 +519,8 @@ describe('getDailyPracticeQueueHandler - Phase 2: Queue Item Resolution', () => 
     expect(result).toHaveLength(2);
     expect(result[0].componentKey).toBe('graphing-explorer');
     expect(result[1].componentKey).toBe('step-by-step-solver');
-    expect(result[0].props).toEqual({ problemType: 'quadratic' });
-    expect(result[1].props).toEqual({ problemType: 'factoring' });
+    expect(result[0].props).toEqual({ problemType: 'quadratic', activityId: 'act-2' });
+    expect(result[1].props).toEqual({ problemType: 'factoring', activityId: 'act-1' });
   });
 });
 
@@ -717,4 +729,48 @@ describe('getDailyPracticeQueueHandler - batch resolution performance', () => {
     );
     expect(activityGetCalls).toHaveLength(3);
   });
+
+  it.each([['approved', 'approved', IM3_GUIDED_PRACTICE_ACTIVITY_ID, true], ['unreviewed', 'approved', IM3_GUIDED_PRACTICE_ACTIVITY_ID, false], ['approved', 'reviewed', IM3_GUIDED_PRACTICE_ACTIVITY_ID, false], ['approved', 'approved', 'changed-stable-id', false]])('fails closed for a selected activity with %s activity and %s publication', async (status, publicationStatus, activityStableId, active) => {
+    const generated = buildIm3GuidedPilotSeedDocuments('act-selected' as never, 1).activity;
+    const cards = [{ ...baseCard, variantKey: IM3_GUIDED_PRACTICE_ACTIVITY_ID, objectiveId: IM3_PILOT_NODE }];
+    const practiceItems = [{ _id: 'pi-selected' as Id<'practice_items'>, variantKey: IM3_GUIDED_PRACTICE_ACTIVITY_ID, activityId: 'act-selected' as Id<'activities'>, practiceItemId: 'pi-selected', variantLabel: 'Selected' }];
+    const activities = { 'act-selected': { _id: 'act-selected' as Id<'activities'>, ...generated, stableActivityId: activityStableId, srsEligible: true, approval: { status } } };
+    const policies = [{ _id: 'policy' as Id<'objective_policies'>, standardId: 'standard' as Id<'competency_standards'>, policy: 'essential', courseKey: 'integrated-math-3', priority: 1 }];
+    const standards = { standard: { _id: 'standard' as Id<'competency_standards'>, code: IM3_PILOT_NODE } };
+    const { db } = makeMockCtx({ cards, policies, standards, practiceItems, activities });
+    const result = await resolveDailyPracticeQueue({ db } as never, { studentId: 'student-1', asOfDate: new Date().toISOString() }, { nodes: [{ id: IM3_PILOT_NODE, kind: 'skill', reviewStatus: publicationStatus }], blueprints: [{ nodeId: IM3_PILOT_NODE, reviewStatus: publicationStatus }] });
+    if (!active) { expect(result).toEqual([]); return; }
+    expect(result[0]?.props).toMatchObject({ activityId: 'act-selected', stableActivityId: IM3_GUIDED_PRACTICE_ACTIVITY_ID, masteryNodeId: IM3_PILOT_NODE, srsEligible: true, practiceMode: 'guided_practice' });
+  });
+
+  it('does not route a selected-node card through a generic activity', async () => {
+    const cards = [{ ...baseCard, objectiveId: IM3_PILOT_NODE, variantKey: 'generic-family' }];
+    const practiceItems = [{ _id: 'pi-generic' as Id<'practice_items'>, variantKey: 'generic-family', activityId: 'act-generic' as Id<'activities'>, practiceItemId: 'pi-generic', variantLabel: 'Generic' }];
+    const activities = { 'act-generic': { _id: 'act-generic' as Id<'activities'>, componentKey: 'comprehension-quiz', props: { topic: 'generic' }, displayName: 'Generic' } };
+    const policies = [{ _id: 'policy' as Id<'objective_policies'>, standardId: 'standard' as Id<'competency_standards'>, policy: 'essential', courseKey: 'integrated-math-3', priority: 1 }];
+    const standards = { standard: { _id: 'standard' as Id<'competency_standards'>, code: IM3_PILOT_NODE } };
+    const { db } = makeMockCtx({ cards, policies, standards, practiceItems, activities });
+
+    const result = await resolveDailyPracticeQueue({ db } as never, { studentId: 'student-1', asOfDate: new Date().toISOString() }, { nodes: [{ id: IM3_PILOT_NODE, kind: 'skill', reviewStatus: 'approved' }], blueprints: [{ nodeId: IM3_PILOT_NODE, reviewStatus: 'approved' }] });
+
+    expect(result).toEqual([]);
+  });
+
+  it.each(['props', 'grading'] as const)('rejects changed selected %s at the queue boundary', async (changedField) => {
+    const generated = buildIm3GuidedPilotSeedDocuments('act-selected' as never, 1).activity;
+    const changed = changedField === 'props'
+      ? { ...generated, props: { ...generated.props, equation: 'y = x^2' } }
+      : { ...generated, gradingConfig: { ...generated.gradingConfig, passingScore: 1 } };
+    const cards = [{ ...baseCard, variantKey: IM3_GUIDED_PRACTICE_ACTIVITY_ID, objectiveId: IM3_PILOT_NODE }];
+    const practiceItems = [{ _id: 'pi-selected' as Id<'practice_items'>, variantKey: IM3_GUIDED_PRACTICE_ACTIVITY_ID, activityId: 'act-selected' as Id<'activities'>, practiceItemId: 'pi-selected', variantLabel: 'Selected' }];
+    const activities = { 'act-selected': { _id: 'act-selected' as Id<'activities'>, ...changed, srsEligible: true, approval: { status: 'approved' } } };
+    const policies = [{ _id: 'policy' as Id<'objective_policies'>, standardId: 'standard' as Id<'competency_standards'>, policy: 'essential', courseKey: 'integrated-math-3', priority: 1 }];
+    const standards = { standard: { _id: 'standard' as Id<'competency_standards'>, code: IM3_PILOT_NODE } };
+    const { db } = makeMockCtx({ cards, policies, standards, practiceItems, activities });
+
+    const result = await resolveDailyPracticeQueue({ db } as never, { studentId: 'student-1', asOfDate: new Date().toISOString() }, { nodes: [{ id: IM3_PILOT_NODE, kind: 'skill', reviewStatus: 'approved' }], blueprints: [{ nodeId: IM3_PILOT_NODE, reviewStatus: 'approved' }] });
+
+    expect(result).toEqual([]);
+  });
+
 });

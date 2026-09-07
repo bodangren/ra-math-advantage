@@ -5,6 +5,8 @@ import { buildDailyQueueResult, type QueueItem } from "@math-platform/srs-engine
 import type { ObjectivePracticePolicy, SrsCardState } from "@math-platform/srs-engine";
 import { assessReviewLoadV3_2, type ReviewLoadAssessmentV3_2 } from "@math-platform/knowledge-space-practice";
 import { resolveCanonicalVariantKey } from "../../lib/srs/v3-runtime-contract";
+import { hasCurrentSelectedActivityIdentity, isIm3GraphPilotPublished, type Im3GraphPilotPublication } from "../learningEvidence";
+import { IM3_GUIDED_PRACTICE_ACTIVITY_ID, IM3_MASTERY_ADVANTAGE_ACTIVITY_ID, IM3_PILOT_NODE } from "../../lib/practice/learning-evidence-pilot";
 
 const VALID_PRIORITIES = new Set<string>(['essential', 'supporting', 'extension', 'triaged']);
 const MAX_CARDS_PER_DAILY_QUEUE = 100;
@@ -78,7 +80,8 @@ function mapDbCardToContract(
  */
 async function resolveQueueItems(
   ctx: QueueDbContext,
-  items: QueueItem[]
+  items: QueueItem[],
+  publication?: Im3GraphPilotPublication,
 ): Promise<ResolvedQueueItem[]> {
   const uniqueVariantKeys = [...new Set(items.map((item) => item.card.variantKey))];
 
@@ -127,10 +130,44 @@ async function resolveQueueItems(
     const activity = activityMap.get(practiceItem.activityId);
     if (!activity) continue;
 
+    const selectedIds = [IM3_GUIDED_PRACTICE_ACTIVITY_ID, IM3_MASTERY_ADVANTAGE_ACTIVITY_ID];
+    const claimsSelected = selectedIds.includes(item.card.variantKey as typeof selectedIds[number])
+      || selectedIds.includes(practiceItem.variantKey as typeof selectedIds[number])
+      || selectedIds.includes(activity.stableActivityId as typeof selectedIds[number])
+      || activity.masteryNodeId === IM3_PILOT_NODE
+      || item.card.objectiveId === IM3_PILOT_NODE;
+    const selectedStableId = selectedIds.includes(activity.stableActivityId as typeof selectedIds[number]);
+    const selectedMode = activity.stableActivityId === IM3_GUIDED_PRACTICE_ACTIVITY_ID ? "guided" : "independent";
+    if (claimsSelected && (
+      !isIm3GraphPilotPublished(publication)
+      || activity.approval?.status !== "approved"
+      || activity.masteryNodeId !== IM3_PILOT_NODE
+      || activity.componentKey !== "graphing-explorer"
+      || activity.srsEligible !== true
+      || !selectedStableId
+      || item.card.objectiveId !== IM3_PILOT_NODE
+      || item.card.variantKey !== practiceItem.variantKey
+      || practiceItem.variantKey !== activity.stableActivityId
+      || !hasCurrentSelectedActivityIdentity({ activityId: String(activity._id), activity }, selectedMode)
+    )) continue;
+
+    const props: Record<string, unknown> = {
+      ...(activity.props as Record<string, unknown>),
+      activityId: String(activity._id),
+    };
+    if (claimsSelected) {
+      props.stableActivityId = activity.stableActivityId;
+      props.masteryNodeId = activity.masteryNodeId;
+      props.srsEligible = true;
+      props.practiceMode = activity.stableActivityId === IM3_GUIDED_PRACTICE_ACTIVITY_ID
+        ? "guided_practice"
+        : "independent_practice";
+    }
+
     resolvedItems.push({
       ...item,
       componentKey: activity.componentKey,
-      props: activity.props as Record<string, unknown>,
+      props,
     });
   }
 
@@ -149,15 +186,17 @@ export interface QueueDbContext {
  */
 export async function resolveDailyPracticeQueue(
   ctx: QueueDbContext,
-  args: { studentId: string; asOfDate?: string }
+  args: { studentId: string; asOfDate?: string },
+  publication?: Im3GraphPilotPublication,
 ): Promise<ResolvedQueueItem[]> {
-  return (await resolveDailyPracticeQueueResult(ctx, args)).items;
+  return (await resolveDailyPracticeQueueResult(ctx, args, publication)).items;
 }
 
 /** Builds an observable v3.2 queue, including review-load guidance. */
 export async function resolveDailyPracticeQueueResult(
   ctx: QueueDbContext,
   args: { studentId: string; asOfDate?: string },
+  publication?: Im3GraphPilotPublication,
 ): Promise<ResolvedDailyPracticeQueue> {
   const cards = await ctx.db
     .query("srs_cards")
@@ -222,7 +261,7 @@ export async function resolveDailyPracticeQueueResult(
     maxReviewsPerDay: config.maxReviewsPerDay,
     cards: cardStates.map((card) => ({ cardId: card.cardId, dueDate: card.dueDate })),
   });
-  const resolvedItems = await resolveQueueItems(ctx, queueResult.items);
+  const resolvedItems = await resolveQueueItems(ctx, queueResult.items, publication);
   return {
     items: resolvedItems,
     backlog: queueResult.backlog,

@@ -27,12 +27,16 @@ vi.mock('@/components/practice-timing', () => ({
 }));
 
 const TestActivity = vi.fn(
-  ({ activityId, onSubmit, onComplete }: { activityId: string; onSubmit?: (payload: unknown) => void; onComplete?: () => void }) => (
+  ({ activityId, mode, responseVariant, onSubmit, onComplete }: { activityId: string; mode?: string; responseVariant?: string; onSubmit?: (payload: unknown) => void; onComplete?: () => void }) => (
     <div data-testid="practice-card-activity" data-activity-id={activityId}>
       <button
         data-testid="submit-btn"
         onClick={() => {
-          onSubmit?.({ answer: 'test' });
+          onSubmit?.(responseVariant === 'table_graph' ? {
+            contractVersion: 'practice.v1', activityId, mode: mode === 'guided' ? 'guided_practice' : 'independent_practice', status: 'submitted', attemptNumber: 1,
+            submittedAt: '2026-09-07T00:00:00.000Z', answers: { table_values: [], placed_points: [] },
+            parts: [{ partId: 'table_values', rawAnswer: [], hintsUsed: 0 }, { partId: 'placed_points', rawAnswer: [], hintsUsed: 2 }],
+          } : { answer: 'test' });
           onComplete?.();
         }}
       >
@@ -212,6 +216,24 @@ describe('PracticeCardRenderer', () => {
           })
         );
       });
+    });
+
+    it('uses the server-resolved Guided mode', async () => {
+      const onSubmit = vi.fn();
+      const queueItem = createMockQueueItem({ props: { activityId: 'physical-guided', practiceMode: 'guided_practice', equation: 'f(x) = -x^2 - 1', responseVariant: 'table_graph' } });
+      render(<PracticeCardRenderer queueItem={queueItem} currentIndex={0} totalCount={1} onSubmit={onSubmit} onComplete={vi.fn()} />);
+      fireEvent.click(screen.getByTestId('submit-btn'));
+      await waitFor(() => expect(onSubmit).toHaveBeenCalledWith(expect.objectContaining({ activityId: 'physical-guided', mode: 'guided_practice' })));
+      expect(onSubmit.mock.calls[0]?.[0].parts).toEqual([
+        { partId: 'table_values', rawAnswer: [], hintsUsed: 0 },
+        { partId: 'placed_points', rawAnswer: [], hintsUsed: 2 },
+      ]);
+      expect(TestActivity).toHaveBeenCalledWith(expect.objectContaining({
+        activityId: 'physical-guided',
+        mode: 'guided',
+        equation: 'f(x) = -x^2 - 1',
+        responseVariant: 'table_graph',
+      }), undefined);
     });
 
     it('forwards onComplete to activity component', async () => {

@@ -16,3 +16,13 @@ The existing new renderer test supplies raw answers through a mocked ActivityRen
 ## Disposition
 
 Return the patch for repair. The producer and consumer must agree before this task can complete. Existing generic activities retain their current behavior. The selected draft remains unavailable. No curriculum approval, deployment, or schema change follows from this review.
+
+## Corrected daily queue patch accepted
+
+The parent applied the final selected patch to a fresh copy of committed HEAD on 2026-09-08. The real queue resolver supplies the exact Guided seed to the real app and shared graph components. The test enters five table values, plots five points, and uses two hints. The server grader returns 2 out of 2.
+
+The queue now treats the selected card objective as a selected claim. A generic activity cannot satisfy that card. Tests also reject changed selected props and grading configuration. The renderer forwards the full response envelope and selected mode.
+
+Parent checks pass: 46 tests, app lint, production build, and standalone TypeScript against the candidate practice-core sources. The first TypeScript run preceded the build and lacked the generated server entry. It passes after the build. The source mapping preserves the committed evidence serializer contract while the shared worktree contains a pending export removal. No source files are excluded from the type check.
+
+This accepts the bounded committed daily queue repair. Shared worktree reconciliation remains required because those files contain pending later-node work. The Worked lesson path remains under Task Q16. This result does not prove the full signed-in student journey or approve curriculum publication.

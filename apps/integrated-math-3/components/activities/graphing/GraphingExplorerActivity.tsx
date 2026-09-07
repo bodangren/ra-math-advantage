@@ -11,6 +11,9 @@ export interface ActivityComponentProps {
   equation?: string;
   /** Optional variant override from authored/previewed configuration. */
   variant?: 'plot_from_equation' | 'compare_functions' | 'find_intercepts' | 'graph_system';
+  domain?: [number, number];
+  range?: [number, number];
+  responseVariant?: 'table_graph';
 }
 
 /**
@@ -26,6 +29,9 @@ export function GraphingExplorerActivity({
   onComplete,
   equation = 'y = x^2',
   variant = 'plot_from_equation',
+  domain,
+  range,
+  responseVariant,
 }: ActivityComponentProps) {
   const handleSubmit = (payload: unknown) => {
     onSubmit?.(payload);
@@ -39,6 +45,9 @@ export function GraphingExplorerActivity({
         mode={mode}
         variant={variant}
         equation={equation}
+        domain={domain}
+        range={range}
+        responseVariant={responseVariant}
         onSubmit={handleSubmit}
       />
     </div>

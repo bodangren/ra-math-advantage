@@ -6,6 +6,7 @@ import { CardProgressBar } from './CardProgressBar';
 import type { ResolvedQueueItem } from '@/convex/queue/queue';
 import {
   buildPracticeSubmissionEnvelope,
+  practiceSubmissionEnvelopeSchema,
   type PracticeSubmissionEnvelope,
 } from '@math-platform/practice-core/contract';
 import { usePracticeTiming } from '@/components/practice-timing';
@@ -40,15 +41,22 @@ export function PracticeCardRenderer({
         console.error('PracticeCardRenderer: missing or invalid activityId in queue item props');
         return;
       }
+      const existingEnvelope = practiceSubmissionEnvelopeSchema.safeParse(payload);
+      if (existingEnvelope.success) {
+        onSubmit(existingEnvelope.data);
+        return;
+      }
       const envelope = buildPracticeSubmissionEnvelope({
         activityId,
-        mode: 'independent_practice',
+        mode: queueItem.props.practiceMode === 'guided_practice'
+          ? 'guided_practice'
+          : 'independent_practice',
         answers: payload as Record<string, unknown>,
         timing: getTiming() ?? undefined,
       });
       onSubmit(envelope);
     },
-    [queueItem.props.activityId, getTiming, onSubmit],
+    [queueItem.props.activityId, queueItem.props.practiceMode, getTiming, onSubmit],
   );
 
   return (
@@ -58,7 +66,8 @@ export function PracticeCardRenderer({
         <ActivityRenderer
           componentKey={queueItem.componentKey}
           activityId={typeof queueItem.props.activityId === 'string' ? queueItem.props.activityId : ''}
-          mode="practice"
+          mode={queueItem.props.practiceMode === 'guided_practice' ? 'guided' : 'practice'}
+          activityProps={queueItem.props}
           onSubmit={handleSubmit}
           onComplete={onComplete}
         />
