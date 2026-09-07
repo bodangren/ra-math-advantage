@@ -5715,6 +5715,146 @@
         "module": "5",
         "lesson": "2"
       }
+    },
+    {
+      "nodeId": "math.im1.skill.5.3.classify-scatter-plot-correlation",
+      "sourceNodeIds": [
+        "math.im1.example.5.3.014"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.3.interpret-scatter-plot-correlation-in-context",
+      "sourceNodeIds": [
+        "math.im1.example.5.3.014"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.3.construct-scatter-plots-from-paired-data",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.3.draw-reasonable-lines-of-fit",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.3.write-line-of-fit-equations-from-specified-points",
+      "sourceNodeIds": [
+        "math.im1.example.5.3.015"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.3.write-equations-from-student-selected-fit-points",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.3.predict-response-values-with-lines-of-fit",
+      "sourceNodeIds": [
+        "math.im1.example.5.3.015"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.3.estimate-explanatory-values-with-lines-of-fit",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.3.evaluate-extrapolation-reliability-and-assumptions",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.3.interpret-line-of-fit-intercepts-in-context",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.3.compare-lines-of-fit-and-justify-model-choice",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.3.create-contexts-with-specified-correlation-patterns",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "3"
+      }
     }
   ]
 }

@@ -6,8 +6,8 @@
     "pilotEdgesPreserved": 0,
     "standardEdgesMerged": 941,
     "suggestedEdges": 1277,
-    "totalEdges": 2298,
-    "totalNodes": 817,
+    "totalEdges": 2310,
+    "totalNodes": 829,
     "normalizedWeights": 539
   },
   "nodes": [
@@ -5243,10 +5243,10 @@
     {
       "id": "math.im1.example.5.3.014",
       "kind": "worked_example",
-      "title": "Example 1: Identify Correlation from Scatter Plots; Write and Use Lines of Fit",
+      "title": "Example 1: Identify Correlation from Scatter Plots",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-5-class-period-plan.md (5-3, Example 1)"
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-3 (Example 1)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -5255,16 +5255,16 @@
         "lesson": "3",
         "exampleNumber": 1,
         "sourceLesson": "5-3",
-        "rawText": "5-3, Examples 1-2 \u2014 Identify Correlation from Scatter Plots; Write and Use Lines of Fit"
+        "rawText": "Example 1: Identify Correlation from Scatter Plots"
       }
     },
     {
       "id": "math.im1.example.5.3.015",
       "kind": "worked_example",
-      "title": "Example 2: Identify Correlation from Scatter Plots; Write and Use Lines of Fit",
+      "title": "Example 2: Write and Use Lines of Fit",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-5-class-period-plan.md (5-3, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-3 (Example 2)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -5273,7 +5273,7 @@
         "lesson": "3",
         "exampleNumber": 2,
         "sourceLesson": "5-3",
-        "rawText": "5-3, Examples 1-2 \u2014 Identify Correlation from Scatter Plots; Write and Use Lines of Fit"
+        "rawText": "Example 2: Write and Use Lines of Fit"
       }
     },
     {
@@ -14373,6 +14373,210 @@
         "course": "im1",
         "module": "5",
         "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.3.classify-scatter-plot-correlation",
+      "kind": "skill",
+      "title": "Classify scatter-plot correlation",
+      "domain": "math.im1",
+      "description": "Classify scatter-plot correlation",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-3"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.3.interpret-scatter-plot-correlation-in-context",
+      "kind": "skill",
+      "title": "Interpret scatter-plot correlation in context",
+      "domain": "math.im1",
+      "description": "Interpret scatter-plot correlation in context",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-3"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.3.construct-scatter-plots-from-paired-data",
+      "kind": "skill",
+      "title": "Construct scatter plots from paired data",
+      "domain": "math.im1",
+      "description": "Construct scatter plots from paired data",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-3"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.3.draw-reasonable-lines-of-fit",
+      "kind": "skill",
+      "title": "Draw reasonable lines of fit",
+      "domain": "math.im1",
+      "description": "Draw reasonable lines of fit",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-3"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.3.write-line-of-fit-equations-from-specified-points",
+      "kind": "skill",
+      "title": "Write line-of-fit equations from specified points",
+      "domain": "math.im1",
+      "description": "Write line-of-fit equations from specified points",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-3"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.3.write-equations-from-student-selected-fit-points",
+      "kind": "skill",
+      "title": "Write equations from student-selected fit points",
+      "domain": "math.im1",
+      "description": "Write equations from student-selected fit points",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-3"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.3.predict-response-values-with-lines-of-fit",
+      "kind": "skill",
+      "title": "Predict response values with lines of fit",
+      "domain": "math.im1",
+      "description": "Predict response values with lines of fit",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-3"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.3.estimate-explanatory-values-with-lines-of-fit",
+      "kind": "skill",
+      "title": "Estimate explanatory values with lines of fit",
+      "domain": "math.im1",
+      "description": "Estimate explanatory values with lines of fit",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-3"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.3.evaluate-extrapolation-reliability-and-assumptions",
+      "kind": "skill",
+      "title": "Evaluate extrapolation reliability and assumptions",
+      "domain": "math.im1",
+      "description": "Evaluate extrapolation reliability and assumptions",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-3"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.3.interpret-line-of-fit-intercepts-in-context",
+      "kind": "skill",
+      "title": "Interpret line-of-fit intercepts in context",
+      "domain": "math.im1",
+      "description": "Interpret line-of-fit intercepts in context",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-3"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.3.compare-lines-of-fit-and-justify-model-choice",
+      "kind": "skill",
+      "title": "Compare lines of fit and justify model choice",
+      "domain": "math.im1",
+      "description": "Compare lines of fit and justify model choice",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-3"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.3.create-contexts-with-specified-correlation-patterns",
+      "kind": "skill",
+      "title": "Create contexts with specified correlation patterns",
+      "domain": "math.im1",
+      "description": "Create contexts with specified correlation patterns",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-3"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "3"
       }
     }
   ],
@@ -58625,6 +58829,198 @@
       "metadata": {
         "module": "5",
         "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.edge.1290",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.3",
+      "targetId": "math.im1.skill.5.3.classify-scatter-plot-correlation",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.edge.1291",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.3",
+      "targetId": "math.im1.skill.5.3.interpret-scatter-plot-correlation-in-context",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.edge.1292",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.3",
+      "targetId": "math.im1.skill.5.3.construct-scatter-plots-from-paired-data",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.edge.1293",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.3",
+      "targetId": "math.im1.skill.5.3.draw-reasonable-lines-of-fit",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.edge.1294",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.3",
+      "targetId": "math.im1.skill.5.3.write-line-of-fit-equations-from-specified-points",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.edge.1295",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.3",
+      "targetId": "math.im1.skill.5.3.write-equations-from-student-selected-fit-points",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.edge.1296",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.3",
+      "targetId": "math.im1.skill.5.3.predict-response-values-with-lines-of-fit",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.edge.1297",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.3",
+      "targetId": "math.im1.skill.5.3.estimate-explanatory-values-with-lines-of-fit",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.edge.1298",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.3",
+      "targetId": "math.im1.skill.5.3.evaluate-extrapolation-reliability-and-assumptions",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.edge.1299",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.3",
+      "targetId": "math.im1.skill.5.3.interpret-line-of-fit-intercepts-in-context",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.edge.1300",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.3",
+      "targetId": "math.im1.skill.5.3.compare-lines-of-fit-and-justify-model-choice",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.edge.1301",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.3",
+      "targetId": "math.im1.skill.5.3.create-contexts-with-specified-correlation-patterns",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "5",
+        "lesson": "3"
       }
     }
   ]
