@@ -18,11 +18,11 @@
 
 ## Correction work
 
-- [ ] F01–F05: Correct technique content, references, media, and component labels.
+- [x] F01–F05: Correct technique content, references, media, and component labels. `69249bf2`
 - [x] F06–F07: Preserve unsaved work and reject future observation evidence. `07c4c342`
 - [x] F08–F09: Preserve existing due dates and exclude inactive plan subjects. `07c4c342`
 - [~] F10–F11: Update displayed data and revisions after successful changes.
-- [ ] F12–F13: Improve navigation, touch targets, and current documentation.
+- [~] F12–F13: Improve navigation, touch targets, and current documentation.
 - [ ] G01–G07: Resolve the product decisions and operational gaps in the report.
 
 The review is complete. The user authorized corrections on 2026-09-07.
