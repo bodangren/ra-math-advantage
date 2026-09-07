@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { COMPONENT_TITLES, type DanielsonComponentId } from '@/lib/proficiency/graph';
 
 import { learnHref, type Technique } from '@/lib/learn/catalog';
 
@@ -9,13 +10,6 @@ const DOMAIN_TITLES: Record<number, string> = {
   4: 'Principled Teaching',
 };
 
-function componentTitle(technique: Technique) {
-  const separator = technique.alignment.indexOf(':');
-  return separator >= 0
-    ? technique.alignment.slice(separator + 1).trim()
-    : technique.alignment;
-}
-
 export function LearnIndex({ techniques }: { techniques: readonly Technique[] }) {
   return (
     <div className="learn-index">
@@ -25,6 +19,7 @@ export function LearnIndex({ techniques }: { techniques: readonly Technique[] })
         <p className="lede">
           Open a skill to review its purpose and action steps. Use the page before coaching, practice, or an observation.
         </p>
+        <p>This reference library does not cover all 22 Danielson components. It includes selected classroom techniques. The component mapping is school-defined.</p>
         <p className="learn-index-count"><strong>{techniques.length}</strong> approved skills</p>
       </header>
 
@@ -40,6 +35,7 @@ export function LearnIndex({ techniques }: { techniques: readonly Technique[] })
                 <h2 id={`learn-domain-${domain}`}>Domain {domain}: {DOMAIN_TITLES[domain]}</h2>
               </div>
             </header>
+            {componentIds.length === 0 ? <p>No technique pages are included for this domain. Use the school rubric and professional learning plan for this work.</p> : null}
             {componentIds.map((componentId) => {
               const componentTechniques = domainTechniques.filter(
                 (technique) => technique.subdomain === componentId,
@@ -48,7 +44,7 @@ export function LearnIndex({ techniques }: { techniques: readonly Technique[] })
               if (!firstTechnique) return null;
               return (
                 <section className="learn-component" key={componentId}>
-                  <h3>{componentId}: {componentTitle(firstTechnique)}</h3>
+                  <h3>{componentId}: {COMPONENT_TITLES[componentId as DanielsonComponentId]}</h3>
                   <ul className="learn-card-grid">
                     {componentTechniques.map((technique) => (
                       <li key={technique.id}>

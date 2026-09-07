@@ -35,13 +35,13 @@ describe('Danielson Learn interfaces', () => {
     );
 
     expect(screen.getByRole('heading', { level: 1, name: 'Cold Call' })).toBeVisible();
-    expect(screen.getByText('3b: Using Questioning')).toBeVisible();
+    expect(screen.getByText('3b: Using Questioning and Discussion Techniques')).toBeVisible();
     expect(screen.getByText(/Via TLAC 3.0/)).toBeVisible();
     expect(screen.getByRole('heading', { name: 'Use the technique' })).toBeVisible();
     expect(within(screen.getByRole('list', { name: 'Cold Call action steps' })).getAllByRole('listitem'))
       .toHaveLength(technique.actionSteps.length);
     expect(screen.getByText('Teach Like a Champion 3.0')).toBeVisible();
-    expect(screen.getByText(/234–242|234-242/)).toBeVisible();
+    expect(screen.getByText('Technique 34')).toBeVisible();
     expect(screen.getByRole('link', { name: 'All Learn pages' })).toHaveAttribute('href', '/learn');
   });
 
@@ -69,4 +69,11 @@ describe('Danielson Learn interfaces', () => {
     );
     expect(screen.queryByTitle('FASE Reading demonstration')).not.toBeInTheDocument();
   });
+});
+
+
+it('uses canonical component names and explains incomplete framework coverage', () => {
+  render(<LearnIndex techniques={LEARN_TECHNIQUES} />);
+  expect(screen.getByRole('heading', { name: '3e: Responding Flexibly to Student Needs' })).toBeVisible();
+  expect(screen.getByText(/does not cover all 22/)).toBeVisible();
 });

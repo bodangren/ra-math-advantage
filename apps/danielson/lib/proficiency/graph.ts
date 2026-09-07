@@ -48,7 +48,7 @@ const DOMAIN_TITLES: Record<string, string> = {
   '4': 'Principled Teaching',
 };
 
-const COMPONENT_TITLES: Record<DanielsonComponentId, string> = {
+export const COMPONENT_TITLES: Record<DanielsonComponentId, string> = {
   '1a': 'Applying Knowledge of Content and Pedagogy',
   '1b': 'Knowing and Valuing Students',
   '1c': 'Setting Instructional Outcomes',
