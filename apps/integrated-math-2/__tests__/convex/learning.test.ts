@@ -1,6 +1,7 @@
 // @vitest-environment node
 import { it, expect } from "vitest";
 import { database, invoke } from "../helpers/database";
+import { getDashboardData } from "../../convex/student";
 import { completePhase, submitAnswer } from "../../convex/learning";
 async function setup() {
   const t = database();
@@ -137,4 +138,16 @@ it("rejects a class whose teacher account is inactive", async () => {
   const t = await setup();
   await t.db.patch(t.teacherCredential, { isActive: false });
   await expect(invoke(completePhase, t.ctx, { userId: t.user, phaseId: t.first })).rejects.toThrow("not_allowed");
+});
+
+it("keeps a current class accessible after more than 100 closed enrollments", async () => {
+  const t = await setup();
+  const current = t.tables.class_enrollments.shift()!;
+  for (let n = 0; n < 101; n++) {
+    await t.db.insert("class_enrollments", { classId: current.classId, studentId: t.user, status: n % 2 ? "withdrawn" : "completed" });
+  }
+  t.tables.class_enrollments.push(current);
+  await expect(invoke(completePhase, t.ctx, { userId: t.user, phaseId: t.first })).resolves.toBeNull();
+  const dashboard = await invoke(getDashboardData, t.ctx, { userId: t.user });
+  expect(dashboard).toHaveLength(1);
 });

@@ -82,6 +82,7 @@ export default defineSchema({
   })
     .index("by_class", ["classId"])
     .index("by_student", ["studentId"])
+    .index("by_student_status", ["studentId", "status"])
     .index("by_class_and_student", ["classId", "studentId"]),
 
   class_lessons: defineTable({

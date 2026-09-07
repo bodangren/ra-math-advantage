@@ -20,7 +20,7 @@ export const getDashboardData = internalQuery({
     if (!user || user.role !== "student") throw new ConvexError("not_allowed");
     const enrollments = await ctx.db
       .query("class_enrollments")
-      .withIndex("by_student", (q) => q.eq("studentId", args.userId))
+      .withIndex("by_student_status", (q) => q.eq("studentId", args.userId).eq("status", "active"))
       .take(100);
     const ids = new Set<Id<"lessons">>();
     for (const enrollment of enrollments) {

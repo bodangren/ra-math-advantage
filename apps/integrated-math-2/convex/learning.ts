@@ -14,7 +14,7 @@ async function accessibleLesson(
   if (!user || user.role !== "student") throw new ConvexError("not_allowed");
   const enrollments = await ctx.db
     .query("class_enrollments")
-    .withIndex("by_student", (q) => q.eq("studentId", userId))
+    .withIndex("by_student_status", (q) => q.eq("studentId", userId).eq("status", "active"))
     .take(100);
   for (const enrollment of enrollments) {
     if (enrollment.status !== "active") continue;
