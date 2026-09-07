@@ -51,6 +51,8 @@ The frontend uses port 3002. Convex uses ports 3222 and 3223. The stack rejects 
 
 Lesson drafts use the 96 Markdown sources and `curriculum/questions.json`. Run `npm run curriculum:build` after a source edit. A build fails if `curriculum/lessons.json` is stale.
 
+An active administrator can open **Review curriculum drafts** from the teacher dashboard. Open a draft to inspect its text, figures, and answers. Select **Publish this revision** after content review. Draft lists have pagination. The server checks the current administrator account for each request.
+
 The internal `publication:publishLesson` mutation validates a selected version before publication. Publication archives an older published version. It preserves its student evidence. Content review is still required. Do not use schema validation as proof of mathematical correctness.
 
 ## Verification

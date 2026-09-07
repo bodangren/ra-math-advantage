@@ -110,3 +110,9 @@ Removed middleware for `/dev/component-approval`. IM2 has no matching route. Pro
 The 14 previously missing lessons now have 53 source objective candidates. Every source lesson has a linked skill or objective candidate. The new objectives remain unavailable for mastery. Their standards gaps appear in both the review queue and teacher projection. There are now 203 blueprint records: one validated generator blueprint and 202 unavailable drafts.
 
 Graph checkpoint verification: 28 test files and 192 tests passed. The generator test checks all 960 variants. Lint, frontend TypeScript, backend TypeScript, production build, node schemas, and graph structure passed. This does not certify the unavailable draft objectives or enable graph practice.
+
+## Administrator publication correction
+
+An active administrator can review draft content and answer keys in the app. The preview links to the source worksheet. Publication uses the current server session and rejects teacher or inactive accounts. Lists have pagination. Structural validation remains separate from mathematical review.
+
+Local browser verification passed for draft selection, preview, and publication of Lesson 1.1 revision 2. The published preview shows the worksheet link. No production content changed. Verification passed with 199 tests, lint, frontend and backend TypeScript, and the production build.

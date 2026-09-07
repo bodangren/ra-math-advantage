@@ -35,3 +35,7 @@ Vite optimized lesson-renderer dependencies during the first lesson navigation a
 ## Open work
 
 The browser journey verifies the basic lesson flow. It does not verify the full mastery, spaced practice, jigsaw, assessment, or knowledge graph contract. The source content still needs complete worked-example review and accessible mathematical notation. The 180-period calendar and graph corrections remain open.
+
+## Administrator draft review
+
+A synthetic local administrator opened the paginated draft list. The administrator inspected Lesson 1.1 revision 2 and its answer key. Publication succeeded. The preview showed published status and the original worksheet link. Automated checks reject teacher and inactive accounts. This test used only the isolated IM2 backend on port 3222.

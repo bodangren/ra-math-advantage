@@ -137,3 +137,14 @@ export async function requireStudentSessionClaims(
 
   redirect("/teacher/dashboard");
 }
+
+export async function requireAdminSessionClaims(
+  loginRedirectPath: string,
+): Promise<SessionClaims> {
+  const claims = await requireServerSessionClaims(loginRedirectPath);
+  if (claims.role !== "admin")
+    redirect(
+      claims.role === "student" ? "/student/dashboard" : "/teacher/dashboard",
+    );
+  return claims;
+}

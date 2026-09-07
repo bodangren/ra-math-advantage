@@ -12,6 +12,11 @@ export default async function TeacherDashboard() {
   return (
     <div className="max-w-4xl mx-auto px-6 py-12">
       <h1 className="text-3xl font-display mb-6">My classes</h1>
+      {claims.role === "admin" && (
+        <p className="mb-6">
+          <Link href="/admin/curriculum">Review curriculum drafts</Link>
+        </p>
+      )}
       <form action={createClass} className="card-surface p-6 space-y-4 mb-8">
         <label htmlFor="class-name">New class name</label>
         <input

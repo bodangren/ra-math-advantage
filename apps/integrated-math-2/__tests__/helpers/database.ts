@@ -5,6 +5,9 @@ export function database() {
   const tables: Record<string, Row[]> = {};
   let sequence = 0;
   const db = {
+    normalizeId(table: string, id: string) {
+      return tables[table]?.some((row) => row._id === id) ? id : null;
+    },
     query(table: string) {
       let descending = false;
       const predicates: Array<(row: Row) => boolean> = [];
