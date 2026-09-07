@@ -53,3 +53,5 @@ Saved phase-evidence correction: `6f12c263`. Saved extractor protection: `2d0399
 Saved student-phase cleanup: `c30fe687`. All gates and local seed replay passed. Vocabulary correction and remaining practice workflows are in progress.
 
 Saved vocabulary correction: `b3384565`. All gates passed. Remaining graph practice, scope limits, standards alignment, and dependency work remain open.
+
+Saved active class-owner correction: `aedbe79b`. All gates passed with 215 tests. Local published-lesson access and preserved progress passed.
