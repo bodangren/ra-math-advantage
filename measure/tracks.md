@@ -1,5 +1,9 @@
 # Project Tracks
 
+- [~] **Track: Graph Node Practice Program** — **IN PROGRESS**
+   *Investigation complete. Correct all five knowledge space graphs and deliver a source-based three-mode rollout. Use gpt-5.6-sol at low reasoning effort with up to three workers. Graph review and course pilots precede broad authoring. Implementation is authorized. Baseline and contract review is in progress.*
+   *Link: [./tracks/graph-node-practice-program_20260907/](./tracks/graph-node-practice-program_20260907/)*
+
 This file tracks all major tracks for the project.
 
 ## Practice Primitives & Components Program
