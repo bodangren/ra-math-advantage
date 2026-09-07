@@ -1,5 +1,7 @@
 # Curriculum and Content Review
 
+Correction status: see [Review corrections](fixes.md). The findings below describe the review baseline.
+
 Date: 2026-09-07. Scope: all 63 published technique modules.
 
 ## Method and limits

@@ -1,5 +1,7 @@
 # Danielson Whole-App Review
 
+Correction status: see [Review corrections](fixes.md). The findings below describe the review baseline.
+
 Date: 2026-09-07.
 Scope: `apps/danielson`, its shared contracts, its Measure specifications, and its curriculum sources.
 Result: The review found material content errors and workflow defects. The app needs correction before use as a reliable teacher-training and evaluation system.

@@ -21,10 +21,24 @@
 - [x] F01–F05: Correct technique content, references, media, and component labels. `69249bf2`
 - [x] F06–F07: Preserve unsaved work and reject future observation evidence. `07c4c342`
 - [x] F08–F09: Preserve existing due dates and exclude inactive plan subjects. `07c4c342`
-- [~] F10–F11: Update displayed data and revisions after successful changes.
-- [~] F12–F13: Improve navigation, touch targets, and current documentation.
-- [ ] G01–G07: Resolve the product decisions and operational gaps in the report.
+- [x] F10–F11: Update displayed data and revisions after successful changes. `b8959159`
+- [x] F12–F13: Improve navigation, touch targets, and current documentation. `b8959159`
+- [x] Fix the additional administration account-status defect. `b8959159`
+- [x] G01–G03: Add rehearsal, rating guidance, and explicit partial-evaluation status. `b8959159`
+- [x] G04–G06: Add actionable GBF steps, assignment visibility, and account recovery. `b8959159`
+- [x] G07: Document operating limits and capacity planning. `b8959159`
+- [x] Verify tests, lint, both TypeScript checks, build, browser flows, and Measure Doctor.
+
+## School decisions still open
+
+- [ ] Supply or approve instruction for components 1b, 1d, and 4a–4f.
+- [ ] Supply the approved component rubric and calibration examples.
+- [ ] Decide whether new formal evaluations require all 22 components.
+- [ ] Define correction of published subject, date, and school-year metadata.
+- [ ] Decide whether to change the supplied GBF edition or assignment lifecycle.
+- [ ] Approve a higher capacity if the documented limits do not meet school needs.
 
 The review is complete. The user authorized corrections on 2026-09-07.
-Correction work is in progress.
+Confirmed defects are corrected. The school decisions above remain open.
+See `fixes.md` for the exact scope and verification.
 The local browser draft was discarded. The review-owned local stack was stopped.
