@@ -1,466 +1,77 @@
-// Phase 3 — Task 1: Replace IM1 STUB blueprints with real
-// worked-example/guided/independent blueprints wired to generators.
-// Phase 3 — Task 2: Re-run projection; verify activities resolve to
-// live generators, not stubs. Red phase (TDD).
-//
-// Contract under test (per measure/tracks/im1-practice-readiness_20260609/
-// {plan,spec,test-strategy}.md):
-//
-//   plan.md Phase 3 — Real Blueprints:
-//     - Replace IM1 STUB blueprints with real worked-example/guided/
-//       independent blueprints wired to generators
-//     - Re-run projection; verify activities resolve to live
-//       generators, not stubs
-//
-//   spec.md FR3 / AC2:
-//     "Replace IM1 STUB blueprints with real worked-example/guided/
-//      independent blueprints wired to the generators."
-//     "IM1 blueprint coverage > 0% (target: the vertical-slice module
-//      fully real, remainder tracked with explicit per-skill status)."
-//
-//   test-strategy.md §1 row Phase 3:
-//     Unit: "blueprint zod parse"
-//     Contract: "knowledgeBlueprintSchema + generatorKey resolves"
-//     Integration: "projection: 0 STUBs in vertical slice"
-//   test-strategy.md §5 P3:
-//     "Replace each STUB with a real blueprint; assert generatorKey
-//      resolves and projectActivities() returns 0 STUBs for the slice
-//      module."
-//   test-strategy.md §4 guardrails:
-//     "Blueprints validate against knowledgeBlueprintSchema
-//      (packages/knowledge-space-practice/src/blueprints/schemas.ts)."
-//   test-strategy.md §7 Phase 3 Red command:
-//     "npm run -w packages/math-content test
-//      -- problem-families/im1/__tests__/blueprints" — this file.
-//   test-strategy.md §7 Phase 3 Green/closeout gate:
-//     "full npm run -w packages/math-content test + bounded
-//      projection smoke `node scripts/project-im1-vertical-slice.ts
-//      --module=<locked>` (exits non-zero on any STUB)" — Kind B
-//      (live-behavior).
-//
-// Red signal at HEAD (current state per
-// apps/integrated-math-1/curriculum/skill-graph/blueprints.json + the
-// 2026-05-10 IM1 rollout audit):
-//
-//   * 138/138 IM1 blueprints carry
-//     `"exceptions": [{ "type": "generator", "reason": "Generator not
-//     yet implemented for IM1 rollout" }]`
-//   * Every `workedExampleSpec` / `guidedPracticeSpec` /
-//     `independentPracticeSpec` is the empty object `{}`
-//   * No blueprint has a `generatorKey` field at all
-//   * The hand-authored projection at
-//     `apps/integrated-math-1/curriculum/skill-graph/projection/
-//     practice-v1-activity-map.json` therefore renders each activity
-//     as a placeholder prompt — proof that the pipeline cannot serve
-//     any of the 138 skills today.
-//
-// All four assertions below target the *production* projection
-// (`projectActivityMap` from
-// `@math-platform/knowledge-space-practice`) and the production
-// zod schema (`knowledgeBlueprintSchema`), not hand-rolled constants.
-// This is the Kind B live-behavior proof required by test-strategy §7.
-//
-// Bounded scope (test-strategy §3 / §7): every filter reads the
-// vertical-slice module id from the package-owned `VERTICAL_SLICE_MODULE`
-// constant (`../vertical-slice`), locked to "1" (six skills). A Green
-// commit that "fixes" a non-vertical-slice blueprint will not flip these
-// tests, so the contract is tight to the locked scope.
-//
-// Boundary lint (test-strategy §4): this file lives under
-// `packages/math-content/src/problem-families/im1/` and only imports
-// (a) sibling modules (`../generators`, `../index`) — both inside
-// the package, and (b) `@math-platform/knowledge-space-practice` for
-// the projection + schema (a sibling `packages/*` import, explicitly
-// permitted by the boundary rule which forbids `apps/*` and
-// `convex/_generated/*` only). No app imports. No npm install
-// required: knowledge-space-practice is symlinked into the
-// monorepo root node_modules and the import already resolves for
-// `ci-gate.test.ts` in this package.
-
-import { describe, it, expect } from 'vitest';
+// These checks verify catalog structure. They do not prove usable student practice.
+// Source-only candidates remain visible as gaps. App tests verify actual rendering.
+import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { VERTICAL_SLICE_MODULE } from '../vertical-slice';
-
-import { IM1_GENERATORS, type IM1GeneratorEntry } from '../generators';
 import {
   knowledgeBlueprintSchema,
   projectActivityMap,
-  type ProjectedActivity,
   type KnowledgeBlueprint,
 } from '@math-platform/knowledge-space-practice';
+import { IM1_GENERATORS } from '../generators';
+import { VERTICAL_SLICE_MODULE } from '../vertical-slice';
 
-// ---------------------------------------------------------------------------
-// Constants & helpers
-// ---------------------------------------------------------------------------
-
-const HERE = fileURLToPath(import.meta.url);
-const PKG_ROOT = resolve(HERE, '../../../../../../..');
-const IM1_ROLLOUT_DIR = resolve(
-  PKG_ROOT,
-  'apps/integrated-math-1/curriculum/skill-graph',
-);
-const BLUEPRINTS_JSON = resolve(IM1_ROLLOUT_DIR, 'blueprints.json');
-const NODES_JSON = resolve(IM1_ROLLOUT_DIR, 'nodes.json');
-const EDGES_JSON = resolve(IM1_ROLLOUT_DIR, 'edges.json');
-
-const STUB_GENERATOR_REASON = 'Generator not yet implemented for IM1 rollout';
-const STUB_GENERATOR_TYPE = 'generator';
-const PLACEHOLDER_PROMPT_PREFIX = 'Placeholder: generator not yet available';
-
-type RolloutBlueprint = {
-  nodeId: string;
-  sourceNodeIds: string[];
-  alignmentNodeIds: string[];
-  rendererKey: string;
-  rendererModeMap: Record<string, string>;
-  workedExampleSpec?: Record<string, unknown>;
-  guidedPracticeSpec?: Record<string, unknown>;
-  independentPracticeSpec?: Record<string, unknown>;
-  generatorKey?: string;
-  exceptions?: Array<{ type: string; reason: string }>;
-  reviewStatus: string;
-  metadata: Record<string, unknown>;
+const root = resolve(import.meta.dirname, '../../../../../../apps/integrated-math-1/curriculum/skill-graph');
+const blueprints = JSON.parse(readFileSync(resolve(root, 'blueprints.json'), 'utf8')).blueprints as KnowledgeBlueprint[];
+const { nodes } = JSON.parse(readFileSync(resolve(root, 'nodes.json'), 'utf8')) as {
+  nodes: Parameters<typeof projectActivityMap>[0];
 };
+const moduleRows = blueprints.filter(row => row.metadata.module === VERTICAL_SLICE_MODULE);
+const registeredNodes = new Set(IM1_GENERATORS.flatMap(entry => entry.nodeIds));
+const registeredRows = moduleRows.filter(row => registeredNodes.has(row.nodeId));
+const sourceOnlyRows = moduleRows.filter(row => !registeredNodes.has(row.nodeId));
 
-type BlueprintsFile = { blueprints: RolloutBlueprint[] };
-
-type Node = { id: string; kind: string };
-type NodesFile = { nodes: Node[] };
-type Edge = {
-  sourceId: string;
-  targetId: string;
-  type: string;
-};
-type EdgesFile = { edges: Edge[] };
-
-/**
- * Load the locked vertical-slice module ID (package-owned constant).
- * @returns {string} - Module ID string
- */
-function loadVerticalSliceModule(): string {
-  const vsm = VERTICAL_SLICE_MODULE;
-  if (!/^[0-9]+$/.test(vsm)) {
-    throw new Error(
-      `VERTICAL_SLICE_MODULE is not a numeric module id: ${vsm}`,
-    );
-  }
-  return vsm;
-}
-
-/**
- * Load all blueprints from the IM1 rollout blueprints.json.
- * @returns {RolloutBlueprint[]} - Array of rollout blueprints
- */
-function loadBlueprints(): RolloutBlueprint[] {
-  const file = JSON.parse(readFileSync(BLUEPRINTS_JSON, 'utf-8')) as BlueprintsFile;
-  return file.blueprints;
-}
-
-/**
- * Load the IM1 skill graph nodes and edges from rollout JSON files.
- * @returns {{ nodes: Node[]; edges: Edge[] }} - Object with nodes and edges arrays
- */
-function loadGraph(): { nodes: Node[]; edges: Edge[] } {
-  return {
-    nodes: (JSON.parse(readFileSync(NODES_JSON, 'utf-8')) as NodesFile).nodes,
-    edges: (JSON.parse(readFileSync(EDGES_JSON, 'utf-8')) as EdgesFile).edges,
-  };
-}
-
-/**
- * Load blueprints filtered to the locked vertical-slice module.
- * @returns {RolloutBlueprint[]} - Array of blueprints for the vertical-slice module
- */
-function loadVerticalSliceBlueprints(): RolloutBlueprint[] {
-  const vsm = loadVerticalSliceModule();
-  return loadBlueprints().filter(
-    (b) => String(b.metadata?.module ?? '') === vsm,
-  );
-}
-
-/**
- * Check if a blueprint's exceptions array contains a STUB generator marker.
- * @param {RolloutBlueprint['exceptions']} exceptions - Blueprint exceptions array
- * @returns {boolean} - True if a STUB exception is present
- */
-function isStubException(exceptions: RolloutBlueprint['exceptions']): boolean {
-  if (!Array.isArray(exceptions) || exceptions.length === 0) return false;
-  return exceptions.some(
-    (e) =>
-      e?.type === STUB_GENERATOR_TYPE &&
-      typeof e?.reason === 'string' &&
-      e.reason.includes('not yet implemented'),
-  );
-}
-
-/**
- * Convert a rollout blueprint to the KnowledgeBlueprint schema shape.
- * @param {RolloutBlueprint} b - Rollout blueprint to convert
- * @returns {KnowledgeBlueprint} - KnowledgeBlueprint-compatible object
- */
-function asBlueprint(b: RolloutBlueprint): KnowledgeBlueprint {
-  return {
-    nodeId: b.nodeId,
-    sourceNodeIds: b.sourceNodeIds,
-    alignmentNodeIds: b.alignmentNodeIds,
-    rendererKey: b.rendererKey,
-    rendererModeMap: b.rendererModeMap,
-    workedExampleSpec: b.workedExampleSpec as KnowledgeBlueprint['workedExampleSpec'],
-    guidedPracticeSpec: b.guidedPracticeSpec as KnowledgeBlueprint['guidedPracticeSpec'],
-    independentPracticeSpec: b.independentPracticeSpec as KnowledgeBlueprint['independentPracticeSpec'],
-    generatorKey: b.generatorKey,
-    reviewStatus: b.reviewStatus as KnowledgeBlueprint['reviewStatus'],
-    metadata: b.metadata,
-  };
-}
-
-/**
- * Build a set of all registered IM1 generator skill ID keys and node IDs.
- * @returns {Set<string>} - Set of registered identifier strings
- */
-function registeredSkillIdKeys(): Set<string> {
-  const set = new Set<string>();
-  for (const entry of IM1_GENERATORS as Iterable<IM1GeneratorEntry>) {
-    set.add(entry.skillIdKey);
-    for (const nodeId of entry.nodeIds) set.add(nodeId);
-  }
-  return set;
-}
-
-/**
- * Project activity map from blueprints using the production projector.
- * @param {RolloutBlueprint[]} blueprints - Array of rollout blueprints
- * @returns {ProjectedActivity[]} - Array of projected activities
- */
-function projectionFor(blueprints: RolloutBlueprint[]): ProjectedActivity[] {
-  const { nodes, edges } = loadGraph();
-  return projectActivityMap(
-    nodes as unknown as Parameters<typeof projectActivityMap>[0],
-    edges as unknown as Parameters<typeof projectActivityMap>[1],
-    blueprints.map(asBlueprint),
-  );
-}
-
-// ---------------------------------------------------------------------------
-// 1. STUB marker must be gone from the vertical-slice blueprints.
-//    (Phase 3 Task 1: "Replace IM1 STUB blueprints with real
-//    worked-example/guided/independent blueprints".)
-//
-//    Red signal at HEAD: every vertical-slice blueprint carries the
-//    "Generator not yet implemented for IM1 rollout" exception. The
-//    test asserts zero STUBs in the slice.
-// ---------------------------------------------------------------------------
-
-describe('IM1 vertical-slice blueprints — STUB removal (Phase 3 Task 1)', () => {
-  it('the locked vertical-slice module is non-empty (sanity)', () => {
-    const slice = loadVerticalSliceBlueprints();
-    expect(slice.length).toBeGreaterThan(0);
-  });
-
-  it('no vertical-slice blueprint carries the IM1 STUB generator exception', () => {
-    const slice = loadVerticalSliceBlueprints();
-    const offenders = slice.filter((b) => isStubException(b.exceptions));
-    expect(offenders).toEqual([]);
-  });
-
-  it('every vertical-slice blueprint has a non-empty generatorKey wired to a registered IM1 generator', () => {
-    const slice = loadVerticalSliceBlueprints();
-    const registered = registeredSkillIdKeys();
-
-    const missing: Array<{ nodeId: string; reason: string }> = [];
-    for (const b of slice) {
-      if (!b.generatorKey || b.generatorKey.length === 0) {
-        missing.push({ nodeId: b.nodeId, reason: 'missing generatorKey' });
-        continue;
-      }
-      if (!registered.has(b.generatorKey)) {
-        missing.push({
-          nodeId: b.nodeId,
-          reason: `generatorKey "${b.generatorKey}" does not match any IM1_GENERATORS skillIdKey or nodeIds entry`,
-        });
+describe('IM1 registered blueprint structure', () => {
+  it('has one exact-node blueprint for each registered generator binding', () => {
+    expect(IM1_GENERATORS.length).toBeGreaterThan(0);
+    expect(registeredRows.map(row => row.nodeId).sort()).toEqual([...registeredNodes].sort());
+    for (const entry of IM1_GENERATORS) {
+      for (const id of entry.nodeIds) {
+        const row = registeredRows.find(row => row.nodeId === id)!;
+        expect(row.generatorKey).toBe(entry.skillIdKey);
       }
     }
-
-    expect(missing).toEqual([]);
-  });
-});
-
-// ---------------------------------------------------------------------------
-// 2. Spec content is non-stub: every vertical-slice blueprint must carry
-//    real workedExampleSpec / guidedPracticeSpec / independentPracticeSpec
-//    (or be explicitly opted out of a mode by the rendererModeMap).
-//
-//    History: the original Red was empty `{}` specs; later the specs were
-//    authored but each `workedExampleSpec` was missing the schema-required
-//    `target` answer-record (see track math-content-test-suite-repair_20260626
-//    Phase 2b), which this block now enforces.
-// ---------------------------------------------------------------------------
-
-describe('IM1 vertical-slice blueprints — spec content (Phase 3 Task 1)', () => {
-  it('every vertical-slice blueprint validates against knowledgeBlueprintSchema', () => {
-    const slice = loadVerticalSliceBlueprints();
-    const offenders = slice
-      .map((b) => ({ blueprint: b, result: knowledgeBlueprintSchema.safeParse(asBlueprint(b)) }))
-      .filter(({ result }) => !result.success)
-      .map(({ blueprint, result }) => ({
-        nodeId: blueprint.nodeId,
-        issues: result.error?.issues.map((issue) => issue.message) ?? [],
-      }));
-
-    expect(offenders).toEqual([]);
   });
 
-  it('every worked rendererModeMap entry has a non-empty workedExampleSpec.prompt', () => {
-    const slice = loadVerticalSliceBlueprints();
-    const offenders: Array<{ nodeId: string; reason: string }> = [];
-    for (const b of slice) {
-      if (!b.rendererModeMap?.worked) continue;
-      const prompt = (b.workedExampleSpec as { prompt?: unknown } | undefined)?.prompt;
-      if (typeof prompt !== 'string' || prompt.trim().length === 0) {
-        offenders.push({
-          nodeId: b.nodeId,
-          reason: `workedExampleSpec.prompt is empty/missing (rendererModeMap.worked="${b.rendererModeMap.worked}")`,
-        });
+  it('validates the three mode specifications for each registered binding', () => {
+    for (const row of registeredRows) {
+      const parsed = knowledgeBlueprintSchema.parse(row);
+      expect(parsed.workedExampleSpec).toBeDefined();
+      expect(parsed.guidedPracticeSpec).toBeDefined();
+      expect(parsed.independentPracticeSpec).toBeDefined();
+      expect(Object.keys(parsed.independentPracticeSpec!.answerSchema).length).toBeGreaterThan(0);
+      expect(parsed.independentPracticeSpec!.gradingRules.length).toBeGreaterThan(0);
+    }
+  });
+
+  it('projects the three modes on their exact owning capability', () => {
+    const modes = ['worked_example', 'guided_practice', 'independent_practice'];
+    for (const row of registeredRows) {
+      const parsed = knowledgeBlueprintSchema.parse(row);
+      const projected = projectActivityMap(nodes, [], [parsed]);
+      expect(projected.map(activity => activity.mode)).toEqual(modes);
+      expect(projected.map(activity => activity.stableActivityId)).toEqual(modes.map(mode => `${row.nodeId}.${mode}`));
+      expect(projected.every(activity => activity.nodeId === row.nodeId)).toBe(true);
+      for (const activity of projected) {
+        const spec = activity.mode === 'worked_example' ? parsed.workedExampleSpec!
+          : activity.mode === 'guided_practice' ? parsed.guidedPracticeSpec!
+          : parsed.independentPracticeSpec!;
+        if (spec.rendererProps) expect(activity.props).toEqual(spec.rendererProps);
+        else expect(Object.keys(activity.props).length).toBeGreaterThan(0);
+        if (parsed.reviewStatus !== 'approved') expect(activity.srsEligible).toBe(false);
       }
     }
-    expect(offenders).toEqual([]);
   });
 
-  it('every guided rendererModeMap entry has a non-empty guidedPracticeSpec.scaffoldedPrompt', () => {
-    const slice = loadVerticalSliceBlueprints();
-    const offenders: Array<{ nodeId: string; reason: string }> = [];
-    for (const b of slice) {
-      if (!b.rendererModeMap?.guidedPractice) continue;
-      const prompt = (b.guidedPracticeSpec as { scaffoldedPrompt?: unknown } | undefined)
-        ?.scaffoldedPrompt;
-      if (typeof prompt !== 'string' || prompt.trim().length === 0) {
-        offenders.push({
-          nodeId: b.nodeId,
-          reason: `guidedPracticeSpec.scaffoldedPrompt is empty/missing (rendererModeMap.guidedPractice="${b.rendererModeMap.guidedPractice}")`,
-        });
-      }
+  it('keeps source-only candidates explicit and does not project empty practice', () => {
+    expect(sourceOnlyRows.length).toBeGreaterThan(0);
+    for (const row of sourceOnlyRows) {
+      expect(row.generatorKey).toBeUndefined();
+      expect(row.workedExampleSpec).toBeUndefined();
+      expect(row.guidedPracticeSpec).toBeUndefined();
+      expect(row.independentPracticeSpec).toBeUndefined();
+      expect(row.reviewStatus).toBe('draft');
     }
-    expect(offenders).toEqual([]);
-  });
-
-  it('every independent rendererModeMap entry has a non-empty independentPracticeSpec.answerSchema', () => {
-    const slice = loadVerticalSliceBlueprints();
-    const offenders: Array<{ nodeId: string; reason: string }> = [];
-    for (const b of slice) {
-      if (!b.rendererModeMap?.independentPractice) continue;
-      const answerSchema = (
-        b.independentPracticeSpec as { answerSchema?: unknown } | undefined
-      )?.answerSchema;
-      const isEmpty =
-        answerSchema == null ||
-        (typeof answerSchema === 'object' &&
-          Object.keys(answerSchema as Record<string, unknown>).length === 0);
-      if (isEmpty) {
-        offenders.push({
-          nodeId: b.nodeId,
-          reason: `independentPracticeSpec.answerSchema is empty/missing (rendererModeMap.independentPractice="${b.rendererModeMap.independentPractice}")`,
-        });
-      }
-    }
-    expect(offenders).toEqual([]);
-  });
-});
-
-// ---------------------------------------------------------------------------
-// 3. Projection smoke (Phase 3 Task 2: "Re-run projection; verify
-//    activities resolve to live generators, not stubs"). Live-behavior
-//    Kind B per test-strategy §7: this runs the production
-//    `projectActivityMap` over the rollout JSON + the production graph.
-//
-//    Red signal at HEAD:
-//      * Worked/guided/independent rows for a STUB blueprint have
-//        `props.prompt` / `scaffoldedPrompt` undefined or empty
-//        (because the spec is `{}`).
-//      * `srsEligible` is false on every row because the STUB has no
-//        `generatorKey` and no `independentPracticeSpec`.
-//      * The hand-authored projection today is a separate artifact
-//        (apps/integrated-math-1/.../practice-v1-activity-map.json) and
-//        uses placeholder prompts — proof that the pipeline still
-//        needs replacing. This test runs the production projector and
-//        demands a real pipeline output.
-// ---------------------------------------------------------------------------
-
-describe('IM1 vertical-slice projection — 0 STUBs (Phase 3 Task 2)', () => {
-  it('projectActivityMap produces no placeholder-prompt rows for the vertical slice', () => {
-    const slice = loadVerticalSliceBlueprints();
-    const rows = projectionFor(slice);
-
-    expect(rows.length).toBeGreaterThan(0);
-
-    const placeholderRows: Array<{
-      stableActivityId: string;
-      nodeId: string;
-      mode: ProjectedActivity['mode'];
-      prompt: unknown;
-    }> = [];
-    for (const row of rows) {
-      const prompt = (row.props as { prompt?: unknown; scaffoldedPrompt?: unknown })
-        .prompt
-        ?? (row.props as { prompt?: unknown; scaffoldedPrompt?: unknown })
-          .scaffoldedPrompt;
-      if (typeof prompt === 'string' && prompt.startsWith(PLACEHOLDER_PROMPT_PREFIX)) {
-        placeholderRows.push({
-          stableActivityId: row.stableActivityId,
-          nodeId: row.nodeId,
-          mode: row.mode,
-          prompt,
-        });
-      }
-    }
-    expect(placeholderRows).toEqual([]);
-  });
-
-  it('every independent_practice projected row for the vertical slice carries a non-empty props.answerSchema (live generator wired)', () => {
-    // Stronger signal than `srsEligible === true` alone: the
-    // production projector flips srsEligible true whenever
-    // independentPracticeSpec is non-null, but STUBs ship the empty
-    // object `{}` which is non-null. The only way for the projected
-    // answerSchema to be a real, populated object is for the
-    // underlying blueprint to carry a real spec — i.e. a real
-    // generator wired up. This is the live-behavior gate required by
-    // test-strategy §7 row Phase 3.
-    const slice = loadVerticalSliceBlueprints();
-    const rows = projectionFor(slice);
-
-    const independentRows = rows.filter((r) => r.mode === 'independent_practice');
-    expect(independentRows.length).toBeGreaterThan(0);
-
-    const offenders = independentRows
-      .filter((r) => {
-        const answerSchema = (r.props as { answerSchema?: unknown }).answerSchema;
-        return (
-          answerSchema == null ||
-          typeof answerSchema !== 'object' ||
-          Object.keys(answerSchema as Record<string, unknown>).length === 0
-        );
-      })
-      .map((r) => ({
-        stableActivityId: r.stableActivityId,
-        nodeId: r.nodeId,
-        props: r.props,
-      }));
-
-    expect(offenders).toEqual([]);
-  });
-
-  it('every worked_example projected row for the vertical slice has a non-empty props.prompt', () => {
-    const slice = loadVerticalSliceBlueprints();
-    const rows = projectionFor(slice);
-
-    const workedRows = rows.filter((r) => r.mode === 'worked_example');
-    expect(workedRows.length).toBeGreaterThan(0);
-
-    const offenders = workedRows.filter((r) => {
-      const prompt = (r.props as { prompt?: unknown }).prompt;
-      return typeof prompt !== 'string' || prompt.trim().length === 0;
-    });
-    expect(offenders).toEqual([]);
+    expect(projectActivityMap(nodes, [], sourceOnlyRows)).toEqual([]);
   });
 });

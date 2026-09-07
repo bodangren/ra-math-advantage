@@ -121,7 +121,7 @@
       "module": "1",
       "status": "served",
       "tier": "t17",
-      "rendererKey": "step-by-step-solver",
+      "rendererKey": "fill-in-the-blank",
       "priority": "standard"
     },
     {

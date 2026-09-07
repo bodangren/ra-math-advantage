@@ -20,6 +20,7 @@ export function projectSrsInputs(
   edges: KnowledgeSpaceEdge[],
   blueprints: KnowledgeBlueprint[],
 ): SrsProjectionEntry[] {
+  edges = edges.filter(edge => edge.reviewStatus !== 'rejected');
   const blueprintByNodeId = new Map(blueprints.map((b) => [b.nodeId, b]));
   const acceptedSkillIds = new Set(nodes
     .filter((node) => node.kind === 'skill' && node.reviewStatus === 'approved')

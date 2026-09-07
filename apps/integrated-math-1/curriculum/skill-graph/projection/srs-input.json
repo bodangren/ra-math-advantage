@@ -8,14 +8,11 @@
     {
       "nodeId": "math.im1.skill.1.1.translate-verbal-descriptions-into-correct-numerical-express",
       "blueprintId": "math.im1.skill.1.1.translate-verbal-descriptions-into-correct-numerical-express",
-      "standards": [
-        "math.standard.ccss.6-ee-a-1",
-        "math.standard.ccss.6-ee-a-2"
-      ],
+      "standards": [],
       "prerequisites": [],
-      "difficulty": 0.5,
-      "rendererKey": "step-by-step-solver",
-      "generatorKey": null,
+      "difficulty": 1,
+      "rendererKey": "fill-in-the-blank",
+      "generatorKey": "1-1-verbal-to-numerical",
       "generatorReady": false
     },
     {

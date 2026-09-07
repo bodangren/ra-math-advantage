@@ -30000,10 +30000,9 @@
           "note": "Mapped via lesson standard"
         }
       ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via lesson standard mapping for module-1-lesson-1",
+      "derived": false,
+      "reviewStatus": "rejected",
+      "rationale": "The selected source examples do not assess whole-number exponents required by 6.EE.A.1.",
       "metadata": {
         "isPrimary": false,
         "course": "im1"
@@ -30023,10 +30022,9 @@
           "note": "Mapped via lesson standard (primary)"
         }
       ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via lesson standard mapping for module-1-lesson-1",
+      "derived": false,
+      "reviewStatus": "rejected",
+      "rationale": "The selected source examples use numbers only. They do not assess expressions in which letters stand for numbers as required by 6.EE.A.2.",
       "metadata": {
         "isPrimary": true,
         "course": "im1",

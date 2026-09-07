@@ -7,98 +7,136 @@
         "math.im1.example.1.1.002",
         "math.im1.example.1.1.source-003"
       ],
-      "alignmentNodeIds": [
-        "math.standard.ccss.6-ee-a-1",
-        "math.standard.ccss.6-ee-a-2"
-      ],
-      "rendererKey": "step-by-step-solver",
+      "alignmentNodeIds": [],
+      "rendererKey": "fill-in-the-blank",
       "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
+        "worked": "fill-in-the-blank",
+        "guidedPractice": "fill-in-the-blank",
+        "independentPractice": "fill-in-the-blank"
       },
       "workedExampleSpec": {
-        "prompt": "Write a numerical expression for: the sum of 5 and 8. Then evaluate it.",
+        "prompt": "Write a numerical expression for: the sum of 16 and 17, divided by 12.",
         "givens": [
-          "the sum of 5 and 8"
+          "the sum of 16 and 17, divided by 12"
         ],
         "target": {
-          "expression": "5 + 8",
-          "value": "13"
+          "expression": "(16 + 17) / 12"
         },
         "steps": [
           {
-            "description": "Identify the operation",
-            "expression": "\"sum\" means addition",
-            "explanation": "The word sum tells us to add."
+            "description": "Identify the operations",
+            "expression": "\"sum\" then \"divided by\""
           },
           {
-            "description": "Write the expression",
-            "expression": "5 + 8",
-            "explanation": "Replace the verbal phrases with numbers and operators."
+            "description": "Write the sum",
+            "expression": "16 + 17"
           },
           {
-            "description": "Evaluate",
-            "expression": "5 + 8 = 13",
-            "explanation": "Add the numbers."
+            "description": "Write the full expression",
+            "expression": "(16 + 17) \u00f7 12"
           }
         ],
-        "explanation": "The sum of 5 and 8 is written as 5 + 8, which equals 13."
+        "explanation": "Use operation symbols and grouping to write the verbal description as a numerical expression.",
+        "rendererProps": {
+          "activityId": "math.im1.skill.1.1.translate-verbal-descriptions-into-correct-numerical-express.worked_example",
+          "mode": "teaching",
+          "template": "Write a numerical expression for \u201cthe sum of 16 and 17, divided by 12\u201d: {{blank:expression}}",
+          "blanks": [
+            {
+              "id": "expression",
+              "isMath": true,
+              "correctAnswer": "(16 + 17) / 12",
+              "acceptedAnswers": [
+                "(16 + 17) / 12",
+                "(16 + 17) \u00f7 12"
+              ]
+            }
+          ],
+          "reasoningSteps": [
+            {
+              "description": "Identify the operations",
+              "expression": "\"sum\" then \"divided by\""
+            },
+            {
+              "description": "Write the sum",
+              "expression": "16 + 17"
+            },
+            {
+              "description": "Write the full expression",
+              "expression": "(16 + 17) \u00f7 12"
+            }
+          ]
+        }
       },
       "guidedPracticeSpec": {
-        "scaffoldedPrompt": "Write a numerical expression for the verbal phrase, then evaluate it.",
+        "scaffoldedPrompt": "Write a numerical expression for the verbal description.",
         "stepPrompts": [
-          "Identify the operation words",
-          "Write the numerical expression",
-          "Evaluate the expression"
+          "Identify each operation.",
+          "Keep the stated order and grouping.",
+          "Write the complete expression."
         ],
         "hints": [
-          "Look for keywords like sum, difference, product, quotient",
-          "Replace words with math symbols",
-          "Perform the arithmetic"
+          "Identify the operations. The word \"sum\" means addition. The phrase \"divided by\" means division.",
+          "Write the grouped sum before you divide."
         ],
         "checksPerStep": [
           {
-            "check": "Operation identified correctly"
-          },
-          {
-            "check": "Expression uses correct operators and numbers"
-          },
-          {
-            "check": "Final value is correct"
+            "check": "The expression uses the stated numbers, operation order, and grouping."
           }
         ],
-        "revealPolicy": "one_at_a_time"
+        "revealPolicy": "after_attempt",
+        "rendererProps": {
+          "activityId": "math.im1.skill.1.1.translate-verbal-descriptions-into-correct-numerical-express.guided_practice",
+          "mode": "guided",
+          "template": "Write a numerical expression for \u201cthe sum of 9 and 11, divided by 10\u201d: {{blank:expression}}",
+          "blanks": [
+            {
+              "id": "expression",
+              "isMath": true,
+              "correctAnswer": "(9 + 11) / 10",
+              "acceptedAnswers": [
+                "(9 + 11) / 10",
+                "(9 + 11) \u00f7 10"
+              ]
+            }
+          ],
+          "guidedSupport": {
+            "feedback": "on_check",
+            "hints": [
+              "Identify the operations \"sum\" then \"divided by\"",
+              "Write the sum 9 + 11"
+            ],
+            "revealAfterAttempts": 1
+          }
+        }
       },
       "independentPracticeSpec": {
-        "variantParameters": {
-          "a": {
-            "type": "integer",
-            "min": 2,
-            "max": 20,
-            "step": 1,
-            "description": "First number"
-          },
-          "b": {
-            "type": "integer",
-            "min": 2,
-            "max": 20,
-            "step": 1,
-            "description": "Second number"
-          }
+        "variantParameters": {},
+        "generatorInputConstraints": {
+          "difficulty": 1
         },
         "answerSchema": {
-          "result": "number"
+          "expression": "string"
         },
         "gradingRules": [
           {
-            "partId": "result",
-            "ruleType": "numeric_tolerance",
-            "tolerance": 0.01,
-            "maxScore": 5
+            "partId": "expression",
+            "ruleType": "custom",
+            "maxScore": 1
           }
         ],
-        "replayPolicy": "unique_seeds"
+        "replayPolicy": "unique_seeds",
+        "rendererProps": {
+          "activityId": "math.im1.skill.1.1.translate-verbal-descriptions-into-correct-numerical-express.independent_practice",
+          "mode": "practice",
+          "template": "Write a numerical expression for \u201cthe product of 17 and the difference between 25 and 7\u201d: {{blank:expression}}",
+          "blanks": [
+            {
+              "id": "expression",
+              "isMath": true
+            }
+          ]
+        }
       },
       "reviewStatus": "draft",
       "metadata": {
@@ -106,7 +144,14 @@
         "module": "1",
         "lesson": "1"
       },
-      "generatorKey": "1-1-verbal-to-numerical"
+      "generatorKey": "1-1-verbal-to-numerical",
+      "gradingSpec": {
+        "partIds": [
+          "expression"
+        ],
+        "passingScore": 1,
+        "partialCredit": false
+      }
     },
     {
       "nodeId": "math.im1.skill.1.2.translate-between-algebraic-expressions-and-verbal-expressio",
@@ -256,7 +301,7 @@
         "steps": [
           {
             "description": "Recognize the pattern",
-            "expression": "a = b ∧ b = c → a = c",
+            "expression": "a = b \u2227 b = c \u2192 a = c",
             "explanation": "Two equalities sharing a middle term imply the outer terms are equal."
           },
           {
@@ -346,23 +391,23 @@
         "independentPractice": "step-by-step-solver"
       },
       "workedExampleSpec": {
-        "prompt": "Apply the distributive property to rewrite and evaluate: 4 × (6 + 3)",
+        "prompt": "Apply the distributive property to rewrite and evaluate: 4 \u00d7 (6 + 3)",
         "givens": [
-          "4 × (6 + 3)"
+          "4 \u00d7 (6 + 3)"
         ],
         "target": {
-          "expression": "4×6 + 4×3",
+          "expression": "4\u00d76 + 4\u00d73",
           "value": "36"
         },
         "steps": [
           {
             "description": "Identify the pattern",
-            "expression": "a × (b + c) = a×b + a×c",
+            "expression": "a \u00d7 (b + c) = a\u00d7b + a\u00d7c",
             "explanation": "The distributive property multiplies each term inside the parentheses."
           },
           {
             "description": "Distribute",
-            "expression": "4×6 + 4×3",
+            "expression": "4\u00d76 + 4\u00d73",
             "explanation": "Multiply 4 by each term inside."
           },
           {
@@ -376,7 +421,7 @@
             "explanation": "Add the results."
           }
         ],
-        "explanation": "Using the distributive property, 4 × (6 + 3) = 4×6 + 4×3 = 24 + 12 = 36."
+        "explanation": "Using the distributive property, 4 \u00d7 (6 + 3) = 4\u00d76 + 4\u00d73 = 24 + 12 = 36."
       },
       "guidedPracticeSpec": {
         "scaffoldedPrompt": "Apply the distributive property to rewrite and evaluate the expression.",
@@ -387,9 +432,9 @@
           "Combine for the final answer"
         ],
         "hints": [
-          "a × (b + c) = a×b + a×c",
+          "a \u00d7 (b + c) = a\u00d7b + a\u00d7c",
           "Distribute the multiplication to each addend",
-          "Be careful with subtraction: a × (b - c) = a×b - a×c"
+          "Be careful with subtraction: a \u00d7 (b - c) = a\u00d7b - a\u00d7c"
         ],
         "checksPerStep": [
           {
@@ -512,7 +557,7 @@
         "hints": [
           "Distance = |a - b|",
           "Absolute value makes negative results positive",
-          "You can also use |b - a| — same result"
+          "You can also use |b - a| \u2014 same result"
         ],
         "checksPerStep": [
           {
@@ -616,7 +661,7 @@
           },
           {
             "description": "Calculate percentage",
-            "expression": "(18/30) × 100 = 60%",
+            "expression": "(18/30) \u00d7 100 = 60%",
             "explanation": "Divide part by whole, multiply by 100."
           }
         ],
@@ -633,7 +678,7 @@
         "hints": [
           "Ratio compares two quantities",
           "Simplify by dividing by the GCF",
-          "Percentage = (part/total) × 100"
+          "Percentage = (part/total) \u00d7 100"
         ],
         "checksPerStep": [
           {

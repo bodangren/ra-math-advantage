@@ -25,6 +25,7 @@ export function projectTeacherEvidence(
   edges: KnowledgeSpaceEdge[],
   classStats: Record<string, { mastered: number; total: number }> = {},
 ): TeacherEvidence {
+  edges = edges.filter(edge => edge.reviewStatus !== 'rejected');
   const nodeMap = new Map(nodes.map((n) => [n.id, n]));
   const acceptedSkillIds = new Set(nodes
     .filter((node) => node.kind === 'skill' && node.reviewStatus === 'approved')

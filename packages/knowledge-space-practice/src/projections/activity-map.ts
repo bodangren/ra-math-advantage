@@ -81,6 +81,7 @@ export function projectActivityMap(
   edges: KnowledgeSpaceEdge[],
   blueprints: KnowledgeBlueprint[],
 ): ProjectedActivity[] {
+  edges = edges.filter(edge => edge.reviewStatus !== 'rejected');
   const rows: ProjectedActivity[] = [];
 
   for (const bp of blueprints) {
