@@ -57,184 +57,21 @@ The first two equations give a=(-10-c)/2 and b=c+15. Substitute into the third a
 
 ## Example 3 — Real-World Applications
 
-### Problem 1: Animal Nutrition
+### Problem
 
-A veterinarian wants to make a food mix for guinea pigs that contains 23 grams of protein, 6.2 grams of fat, and 16 grams of moisture. The composition of three available mixtures is shown in the table.
+A mathematical food model uses three 100 g portions. Their protein, fat, and moisture amounts in grams are (10, 2, 6), (5, 4, 5), and (3, 1, 8). Fractions of a portion are allowed. Find the portions needed for 23 g protein, 6.2 g fat, and 16 g moisture.
 
-How many grams of each mix should be used to make the desired new mix?
+At an arcade, six racing games, two pinball games, and one air hockey game cost 6 dollars. Three racing games, four pinball games, and five air hockey games cost 12 dollars. Two racing games, seven pinball games, and four air hockey games cost 12.25 dollars. Find each price.
 
-### Step 1: Define Variables
+A 16 oz trail mix costs 3.18 dollars. Apples cost 4.48 dollars per pound, raisins cost 2.40, and peanuts cost 3.44. The mix contains twice as much peanut mass as apple mass. Find each ingredient mass.
 
-Let [m_1], [m_2], and [m_3] represent the grams of Mix 1, Mix 2, and Mix 3.
+### Solution
 
-Write equations based on the nutritional requirements:
+Let x, y, and z be the numbers of food portions. The equations are $10x+5y+3z=23$, $2x+4y+z=6.2$, and $6x+5y+8z=16$. Eliminate z to obtain $4x-7y=4.4$ and $-10x-27y=-33.6$. Elimination gives $y=226/445$, then $x=177/89$ and $z=17/89$. Thus the masses are approximately 198.88 g, 50.79 g, and 19.10 g. Keep exact fractions until the last step.
 
-$$
-\text{Protein: } 10m_1 + 5m_2 + 3m_3 = 23
-$$
-$$
-\text{Fat: } 2m_1 + 4m_2 + m_3 = 6.2
-$$
-$
-\text{Moisture: } 6m_1 + 5m_2 + 8m_3 = 16
-$
+Let r, p, and a be the arcade prices in dollars. The equations are $6r+2p+a=6$, $3r+4p+5a=12$, and $2r+7p+4a=12.25$. Substitute $a=6-6r-2p$ into the other two equations to obtain $9r+2p=6$ and $22r+p=11.75$. Subtract the first equation from twice the second: $35r=17.5$. Thus $r=0.50$, $p=0.75$, and $a=1.50$. These values satisfy all three original equations.
 
-### Step 2: Solve the System
-
-Use elimination to solve. Multiply the fat equation by -3 and add to the protein equation:
-
-[
-10m_1 + 5m_2 + 3m_3 = 23
-]
-[
--6m_1 - 12m_2 - 3m_3 = -18.6
-]
-
-[
-4m_1 - 7m_2 = 4.4
-]
-
-Multiply the fat equation by -8 and add to the moisture equation:
-
-[
-6m_1 + 5m_2 + 8m_3 = 16
-]
-[
--16m_1 - 32m_2 - 8m_3 = -49.6
-]
-
-[
--10m_1 - 27m_2 = -33.6
-]
-
-Solve the two-variable system:
-
-[
-4m_1 - 7m_2 = 4.4
-]
-[
--10m_1 - 27m_2 = -33.6
-]
-
-Multiply the first equation by 5 and the second by 2:
-
-[
-20m_1 - 35m_2 = 22
-]
-[
--20m_1 - 54m_2 = -67.2
-]
-
-[
--89m_2 = -45.2
-]
-$$
-m_2 = \frac{45.2}{89} \approx 0.51
-$$
-Substitute back to find [m_1] and [m_3]:
-
-[
-4m_1 - 7(0.51) = 4.4
-]
-[
-4m_1 = 4.4 + 3.57 = 7.97
-]
-$$
-m_1 = \frac{7.97}{4} \approx 1.99
-$$
-[
-2(1.99) + 4(0.51) + m_3 = 6.2
-]
-[
-3.98 + 2.04 + m_3 = 6.2
-]
-[
-m_3 = 0.18
-]
-
-The veterinarian should use approximately 1.99 g of Mix 1, 0.51 g of Mix 2, and 0.18 g of Mix 3.
-
-### Problem 2: Entertainment Pricing
-
-At the arcade, Marcos, Sara, and Darius played video racing games, pinball, and air hockey. Marcos spent $[6] for 6 racing games, 2 pinball games, and 1 game of air hockey. Sara spent $[12] for 3 racing games, 4 pinball games, and 5 games of air hockey. Darius spent $[12.25] for 2 racing games, 7 pinball games, and 4 games of air hockey. How much did each of the games cost?
-
-### Step 1: Define Variables
-
-Let [r] = cost of one racing game, [p] = cost of one pinball game, [a] = cost of one air hockey game.
-
-[
-6r + 2p + a = 6
-]
-[
-3r + 4p + 5a = 12
-]
-[
-2r + 7p + 4a = 12.25
-]
-
-### Step 2: Solve the System
-
-Solving yields: [r = 0.50], [p = 0.75], [a = 1.50].
-
-Each racing game costs $[0.50], each pinball game costs $[0.75, and each air hockey game costs $[1.50].
-
-### Problem 3: Trail Mix
-
-A natural food store makes its own brand of trail mix from dried apples, raisins, and peanuts. A one-pound bag of the trail mix costs $[3.18]. It contains twice as much peanuts by weight as apples. If a pound of dried apples costs $[4.48], a pound of raisins is $[2.40], and a pound of peanuts is $[3.44], how many ounces of each ingredient are contained in 1 pound of the trail mix?
-
-### Step 1: Define Variables
-
-Let [a] = ounces of dried apples, [r] = ounces of raisins, [n] = ounces of peanuts.
-
-Total weight constraint:
-
-[
-a + r + n = 16
-]
-
-Peanut-to-apple ratio:
-
-[
-n = 2a
-]
-
-Cost equation:
-
-$$
-4.48a + 2.40r + 3.44n = 3.18 \times 16 = 50.88
-$$
-### Step 2: Solve
-
-Substitute [n = 2a] into the weight equation:
-
-[
-a + r + 2a = 16
-]
-[
-r = 16 - 3a
-]
-
-Substitute into the cost equation:
-
-[
-4.48a + 2.40(16 - 3a) + 3.44(2a) = 50.88
-]
-[
-4.48a + 38.40 - 7.20a + 6.88a = 50.88
-]
-[
-4.16a + 38.40 = 50.88
-]
-[
-4.16a = 12.48
-]
-[
-a = 3
-]
-
-Then [n = 2(3) = 6] and [r = 16 - 9 = 7].
-
-The trail mix contains 3 oz dried apples, 7 oz raisins, and 6 oz peanuts.
+Let a, r, and n be ingredient masses in ounces. Then $a+r+n=16$, $n=2a$, and $4.48a+2.40r+3.44n=3.18(16)$. Substitute $r=16-3a$ and $n=2a$ to get $4.16a+38.40=50.88$. Therefore a=3, n=6, and r=7. The bag contains 3 oz apples, 7 oz raisins, and 6 oz peanuts.
 
 ## Mixed Exercises
 

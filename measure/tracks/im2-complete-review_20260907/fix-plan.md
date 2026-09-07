@@ -186,3 +186,11 @@ Verification passed with 207 tests, lint, frontend and backend TypeScript, and p
 Completed 37 quadratic examples. The compiled curriculum now has 382 complete worked-example sections. Earlier cumulative counts omitted five sections that were already complete. Corrected integer profit thresholds, physical time domains, and the condition that a quadratic coefficient must be nonzero. Regression examples now state which model families are compared. Exact rational calculations checked the fitted coefficients and predictions.
 
 Verification passed with 207 tests, lint, frontend and backend TypeScript, and production build.
+
+## Module 13 and complete example inventory
+
+Completed the remaining 21 Module 13 sections and corrected five older sections with incomplete problem/solution structure. All 403 compiled worked-example sections now have explicit problem and solution headings. This is a structural completeness check. It does not certify every lesson explanation or the full practice bank.
+
+Corrected trigonometric inverse-value interval selection and original-domain restrictions. The food-mixture example now uses 100 g portions with physically consistent composition units. Exact elimination gives the third portion as 17/89, rather than the earlier prematurely rounded 0.18.
+
+Verification passed with 208 tests, lint, frontend and backend TypeScript, and production build. The new completeness test failed against the old bundle and passed after correction.

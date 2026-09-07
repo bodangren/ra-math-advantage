@@ -43,83 +43,43 @@ For some identities, transforming one side is very difficult. In these cases, tr
 
 ## Example 1 — Verify by Transforming One Side
 
-Verify [cos^2 theta + tan^2 theta * cos^2 theta = 1]
+### Problem
 
-### Step 1: Factor the Left Side
+Verify $\cos^2\theta+\tan^2\theta\cos^2\theta=1$ and state the original domain condition.
 
-[cos^2 theta + tan^2 theta * cos^2 theta = cos^2 theta (1 + tan^2 theta)]
+### Solution
 
-### Step 2: Apply the Pythagorean Identity
-
-Recall: [1 + tan^2 theta = sec^2 theta]
-
-[cos^2 theta * sec^2 theta = cos^2 theta * (1/cos^2 theta) = 1]
-
-### Step 3: Conclude
-
-Left side simplifies to 1, matching the right side. Verified.
+The tangent requires $\cos\theta\ne0$. On that domain, replace tangent by sine over cosine. The left side becomes $\cos^2\theta+\sin^2\theta=1$. Simplification does not make the original expression defined at angles where cosine is zero.
 
 ## Example 2 — Verify Using Multiple Identities
 
-Verify [cot theta (cot theta + tan theta) = csc^2 theta]
+### Problem
 
-### Step 1: Expand the Left Side
+Verify $\cot\theta(\cot\theta+\tan\theta)=\csc^2\theta$.
 
-[cot theta * cot theta + cot theta * tan theta = cot^2 theta + 1]
+### Solution
 
-### Step 2: Apply the Pythagorean Identity
-
-Recall: [1 + cot^2 theta = csc^2 theta]
-
-[cot^2 theta + 1 = csc^2 theta]
-
-### Step 3: Conclude
-
-Left side simplifies to [csc^2 theta]. Verified.
+The original expression requires both $\sin\theta\ne0$ and $\cos\theta\ne0$. Expand the left side to $\cot^2\theta+\cot\theta\tan\theta$. The product is 1 on this domain, so the result is $\cot^2\theta+1=\csc^2\theta$.
 
 ## Example 3 — Transform Each Side Independently
 
-Verify [(sin theta + cot theta / csc theta)^2 = (2 + sec theta * csc theta) / (sec theta * csc theta)]
+### Problem
 
-### Step 1: Simplify the Left Side
+Verify $(\sin\theta+\cot\theta/\csc\theta)^2=(2+\sec\theta\csc\theta)/(\sec\theta\csc\theta)$ on its common domain.
 
-First, note that [cot theta / csc theta = (cos theta / sin theta) / (1/sin theta) = cos theta]
+### Solution
 
-So [(sin theta + cos theta)^2 = sin^2 theta + 2 sin theta cos theta + cos^2 theta = 1 + 2 sin theta cos theta]
-
-### Step 2: Simplify the Right Side
-
-[(2 + sec theta * csc theta) / (sec theta * csc theta) = 2/(sec theta * csc theta) + 1]
-
-[sec theta * csc theta = (1/cos theta)(1/sin theta) = 1/(sin theta cos theta)]
-
-So [2/(sec theta * csc theta) = 2 sin theta cos theta]
-
-Thus, the right side equals [1 + 2 sin theta cos theta]
-
-### Step 3: Both Sides Match
-
-Both sides simplify to [1 + 2 sin theta cos theta]. Verified.
+Both sine and cosine must be nonzero. On the left, $\cot\theta/\csc\theta=\cos\theta$, so the square becomes $1+2\sin\theta\cos\theta$. On the right, divide terms by $\sec\theta\csc\theta$ to get $1+2\sin\theta\cos\theta$. Both sides match wherever the original expressions are defined.
 
 ## Example 4 — Verify the Cofunction Identity
 
-Verify [cos(theta - pi/2) = sin theta] (or equivalently [cos(pi/2 - theta) = sin theta])
+### Problem
 
-### Step 1: Apply the Cosine Difference Identity
+Verify $\cos(\theta-\pi/2)=\sin\theta$ for real angles in radians using the unit circle.
 
-[cos(A - B) = cos A cos B + sin A sin B]
+### Solution
 
-[cos(theta - pi/2) = cos theta * cos(pi/2) + sin theta * sin(pi/2)]
-
-### Step 2: Substitute Known Values
-
-[cos(pi/2) = 0] and [sin(pi/2) = 1]
-
-[cos theta * 0 + sin theta * 1 = sin theta]
-
-### Step 3: Conclude
-
-[cos(theta - pi/2) = sin theta]. Verified.
+The point at angle theta is $(\cos\theta,\sin\theta)$. A clockwise quarter-turn changes coordinates (x,y) to (y,-x). The rotated point is at angle $\theta-\pi/2$, so its first coordinate is both $\cos(\theta-\pi/2)$ and $\sin\theta$. The identity follows for every real theta.
 
 ## Mixed Exercises
 

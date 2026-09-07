@@ -25,6 +25,14 @@ describe("current source curriculum", () => {
       lessons.length,
     );
   });
+  it("gives explicit problems and solutions for every worked example", () => {
+    const examples = lessons.flatMap((lesson) => lesson.phases.filter((phase) => phase.phaseType === "worked_example"));
+    expect(examples).toHaveLength(403);
+    for (const example of examples) {
+      expect(example.markdown, example.title).toMatch(/^### Problem$/m);
+      expect(example.markdown, example.title).toMatch(/^### Solution$/m);
+    }
+  });
   it.each(sourceFiles)(
     "%s has goals, examples, valid phases, and accessible local images",
     (slug) => {

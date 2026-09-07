@@ -4605,7 +4605,7 @@
         "phaseNumber": 7,
         "title": "Example 3 — Real-World Applications",
         "phaseType": "worked_example",
-        "markdown": "### Problem 1: Animal Nutrition\n\nA veterinarian wants to make a food mix for guinea pigs that contains 23 grams of protein, 6.2 grams of fat, and 16 grams of moisture. The composition of three available mixtures is shown in the table.\n\nHow many grams of each mix should be used to make the desired new mix?\n\n### Step 1: Define Variables\n\nLet [m_1], [m_2], and [m_3] represent the grams of Mix 1, Mix 2, and Mix 3.\n\nWrite equations based on the nutritional requirements:\n\n$$\n\\text{Protein: } 10m_1 + 5m_2 + 3m_3 = 23\n$$\n$$\n\\text{Fat: } 2m_1 + 4m_2 + m_3 = 6.2\n$$\n$\n\\text{Moisture: } 6m_1 + 5m_2 + 8m_3 = 16\n$\n\n### Step 2: Solve the System\n\nUse elimination to solve. Multiply the fat equation by -3 and add to the protein equation:\n\n[\n10m_1 + 5m_2 + 3m_3 = 23\n]\n[\n-6m_1 - 12m_2 - 3m_3 = -18.6\n]\n\n[\n4m_1 - 7m_2 = 4.4\n]\n\nMultiply the fat equation by -8 and add to the moisture equation:\n\n[\n6m_1 + 5m_2 + 8m_3 = 16\n]\n[\n-16m_1 - 32m_2 - 8m_3 = -49.6\n]\n\n[\n-10m_1 - 27m_2 = -33.6\n]\n\nSolve the two-variable system:\n\n[\n4m_1 - 7m_2 = 4.4\n]\n[\n-10m_1 - 27m_2 = -33.6\n]\n\nMultiply the first equation by 5 and the second by 2:\n\n[\n20m_1 - 35m_2 = 22\n]\n[\n-20m_1 - 54m_2 = -67.2\n]\n\n[\n-89m_2 = -45.2\n]\n$$\nm_2 = \\frac{45.2}{89} \\approx 0.51\n$$\nSubstitute back to find [m_1] and [m_3]:\n\n[\n4m_1 - 7(0.51) = 4.4\n]\n[\n4m_1 = 4.4 + 3.57 = 7.97\n]\n$$\nm_1 = \\frac{7.97}{4} \\approx 1.99\n$$\n[\n2(1.99) + 4(0.51) + m_3 = 6.2\n]\n[\n3.98 + 2.04 + m_3 = 6.2\n]\n[\nm_3 = 0.18\n]\n\nThe veterinarian should use approximately 1.99 g of Mix 1, 0.51 g of Mix 2, and 0.18 g of Mix 3.\n\n### Problem 2: Entertainment Pricing\n\nAt the arcade, Marcos, Sara, and Darius played video racing games, pinball, and air hockey. Marcos spent $[6] for 6 racing games, 2 pinball games, and 1 game of air hockey. Sara spent $[12] for 3 racing games, 4 pinball games, and 5 games of air hockey. Darius spent $[12.25] for 2 racing games, 7 pinball games, and 4 games of air hockey. How much did each of the games cost?\n\n### Step 1: Define Variables\n\nLet [r] = cost of one racing game, [p] = cost of one pinball game, [a] = cost of one air hockey game.\n\n[\n6r + 2p + a = 6\n]\n[\n3r + 4p + 5a = 12\n]\n[\n2r + 7p + 4a = 12.25\n]\n\n### Step 2: Solve the System\n\nSolving yields: [r = 0.50], [p = 0.75], [a = 1.50].\n\nEach racing game costs $[0.50], each pinball game costs $[0.75, and each air hockey game costs $[1.50].\n\n### Problem 3: Trail Mix\n\nA natural food store makes its own brand of trail mix from dried apples, raisins, and peanuts. A one-pound bag of the trail mix costs $[3.18]. It contains twice as much peanuts by weight as apples. If a pound of dried apples costs $[4.48], a pound of raisins is $[2.40], and a pound of peanuts is $[3.44], how many ounces of each ingredient are contained in 1 pound of the trail mix?\n\n### Step 1: Define Variables\n\nLet [a] = ounces of dried apples, [r] = ounces of raisins, [n] = ounces of peanuts.\n\nTotal weight constraint:\n\n[\na + r + n = 16\n]\n\nPeanut-to-apple ratio:\n\n[\nn = 2a\n]\n\nCost equation:\n\n$$\n4.48a + 2.40r + 3.44n = 3.18 \\times 16 = 50.88\n$$\n### Step 2: Solve\n\nSubstitute [n = 2a] into the weight equation:\n\n[\na + r + 2a = 16\n]\n[\nr = 16 - 3a\n]\n\nSubstitute into the cost equation:\n\n[\n4.48a + 2.40(16 - 3a) + 3.44(2a) = 50.88\n]\n[\n4.48a + 38.40 - 7.20a + 6.88a = 50.88\n]\n[\n4.16a + 38.40 = 50.88\n]\n[\n4.16a = 12.48\n]\n[\na = 3\n]\n\nThen [n = 2(3) = 6] and [r = 16 - 9 = 7].\n\nThe trail mix contains 3 oz dried apples, 7 oz raisins, and 6 oz peanuts."
+        "markdown": "### Problem\n\nA mathematical food model uses three 100 g portions. Their protein, fat, and moisture amounts in grams are (10, 2, 6), (5, 4, 5), and (3, 1, 8). Fractions of a portion are allowed. Find the portions needed for 23 g protein, 6.2 g fat, and 16 g moisture.\n\nAt an arcade, six racing games, two pinball games, and one air hockey game cost 6 dollars. Three racing games, four pinball games, and five air hockey games cost 12 dollars. Two racing games, seven pinball games, and four air hockey games cost 12.25 dollars. Find each price.\n\nA 16 oz trail mix costs 3.18 dollars. Apples cost 4.48 dollars per pound, raisins cost 2.40, and peanuts cost 3.44. The mix contains twice as much peanut mass as apple mass. Find each ingredient mass.\n\n### Solution\n\nLet x, y, and z be the numbers of food portions. The equations are $10x+5y+3z=23$, $2x+4y+z=6.2$, and $6x+5y+8z=16$. Eliminate z to obtain $4x-7y=4.4$ and $-10x-27y=-33.6$. Elimination gives $y=226/445$, then $x=177/89$ and $z=17/89$. Thus the masses are approximately 198.88 g, 50.79 g, and 19.10 g. Keep exact fractions until the last step.\n\nLet r, p, and a be the arcade prices in dollars. The equations are $6r+2p+a=6$, $3r+4p+5a=12$, and $2r+7p+4a=12.25$. Substitute $a=6-6r-2p$ into the other two equations to obtain $9r+2p=6$ and $22r+p=11.75$. Subtract the first equation from twice the second: $35r=17.5$. Thus $r=0.50$, $p=0.75$, and $a=1.50$. These values satisfy all three original equations.\n\nLet a, r, and n be ingredient masses in ounces. Then $a+r+n=16$, $n=2a$, and $4.48a+2.40r+3.44n=3.18(16)$. Substitute $r=16-3a$ and $n=2a$ to get $4.16a+38.40=50.88$. Therefore a=3, n=6, and r=7. The bag contains 3 oz apples, 7 oz raisins, and 6 oz peanuts."
       },
       {
         "phaseNumber": 8,
@@ -6323,31 +6323,31 @@
         "phaseNumber": 5,
         "title": "Example 1 — Find Exact Values Given One Trigonometric Ratio",
         "phaseType": "worked_example",
-        "markdown": "Given one trig ratio, find the exact values of other trig functions using identities and the Pythagorean theorem.\n\n### Step 1: Identify Known Information\n\nIf [sin theta = 3/5] and [0 degrees < theta < 90 degrees] (Q1), find [cos theta].\n\n### Step 2: Apply the Pythagorean Identity\n\n[sin^2 theta + cos^2 theta = 1]\n\n[(3/5)^2 + cos^2 theta = 1]\n\n[9/25 + cos^2 theta = 1]\n\n### Step 3: Solve for cos theta\n\n[cos^2 theta = 1 - 9/25 = 16/25]\n\nSince Q1, [cos theta = 4/5]\n\n### Step 4: Find tan theta Using Quotient Identity\n\n[tan theta = sin theta / cos theta = (3/5) / (4/5) = 3/4]"
+        "markdown": "### Problem\n\nGiven $\\sin\\theta=3/5$ and $0^\\circ<\\theta<90^\\circ$, find cosine and tangent exactly.\n\n### Solution\n\nThe identity $\\sin^2\\theta+\\cos^2\\theta=1$ gives $\\cos^2\\theta=16/25$. The first-quadrant condition selects $\\cos\\theta=4/5$. Then $\\tan\\theta=(3/5)/(4/5)=3/4$. Without a quadrant condition, the sign of cosine would not be determined."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Find Values in Different Quadrants",
         "phaseType": "worked_example",
-        "markdown": "Use quadrant information to determine the correct sign for trigonometric values.\n\n### Problem: If sin theta = -1/2 and [180 degrees < theta < 270 degrees] (Q3), find cos theta.\n\n### Step 1: Apply Pythagorean Identity\n\n[sin^2 theta + cos^2 theta = 1]\n\n[(-1/2)^2 + cos^2 theta = 1]\n\n[1/4 + cos^2 theta = 1]\n\n### Step 2: Solve for cos^2 theta\n\n[cos^2 theta = 3/4]\n\n### Step 3: Determine the Sign\n\nIn Q3, cosine is negative. So [cos theta = -sqrt(3)/2]."
+        "markdown": "### Problem\n\nGiven $\\sin\\theta=-1/2$ and $180^\\circ<\\theta<270^\\circ$, find cosine exactly.\n\n### Solution\n\nThe Pythagorean identity gives $\\cos^2\\theta=1-1/4=3/4$. Cosine is negative in the third quadrant. Therefore $\\cos\\theta=-\\sqrt3/2$."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Simplify Trigonometric Expressions",
         "phaseType": "worked_example",
-        "markdown": "Use reciprocal and quotient identities to simplify expressions.\n\n### Problem: Simplify sec theta * tan^2 theta + sec theta\n\n### Step 1: Factor Out Common Term\n\n[sec theta * tan^2 theta + sec theta = sec theta (tan^2 theta + 1)]\n\n### Step 2: Apply Pythagorean Identity\n\nRecall: [1 + tan^2 theta = sec^2 theta]\n\n[sec theta (tan^2 theta + 1) = sec theta * sec^2 theta = sec^3 theta]"
+        "markdown": "### Problem\n\nSimplify $\\sec\\theta\\tan^2\\theta+\\sec\\theta$. State its domain.\n\n### Solution\n\nFactor to obtain $\\sec\\theta(\\tan^2\\theta+1)$. The identity $1+\\tan^2\\theta=\\sec^2\\theta$ gives $\\sec^3\\theta$. Both expressions require $\\cos\\theta\\ne0$."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — Simplify Cofunction Expressions",
         "phaseType": "worked_example",
-        "markdown": "Simplify expressions involving complementary angle relationships.\n\n### Problem: Simplify cos(pi/2 - theta) * cot theta\n\n### Step 1: Apply Cofunction Identity\n\n[cos(pi/2 - theta) = sin theta]\n\n### Step 2: Substitute\n\n[sin theta * cot theta = sin theta * (cos theta / sin theta) = cos theta]"
+        "markdown": "### Problem\n\nUse the cofunction identity $\\cos(\\pi/2-\\theta)=\\sin\\theta$ to simplify $\\cos(\\pi/2-\\theta)\\cot\\theta$. State the original domain.\n\n### Solution\n\nSubstitute to get $\\sin\\theta(\\cos\\theta/\\sin\\theta)=\\cos\\theta$. The original expression requires $\\sin\\theta\\ne0$. Retain this restriction after simplification."
       },
       {
         "phaseNumber": 9,
         "title": "Example 5 — Simplify Real-World Wave Equations",
         "phaseType": "worked_example",
-        "markdown": "Apply trigonometric identities to simplify expressions that model physical phenomena.\n\n### Problem: WAVES — The path P of a wave is given by [P = (1 + sin^2 theta * sec^2 theta) / sec^2 theta - cos^2 theta]. Simplify this expression.\n\n### Step 1: Rewrite in Terms of sin and cos\n\n[sec^2 theta = 1/cos^2 theta]\n\n[P = (1 + sin^2 theta / cos^2 theta) / (1/cos^2 theta) - cos^2 theta]\n\n### Step 2: Simplify the Complex Fraction\n\n[P = (1 + sin^2 theta / cos^2 theta) * cos^2 theta - cos^2 theta]\n\n[P = cos^2 theta + sin^2 theta - cos^2 theta]\n\n### Step 3: Apply Pythagorean Identity\n\n[P = sin^2 theta]\n\n### Problem: LIGHT WAVE — The distance d is given by [d = sin^2 theta + tan^2 theta + cos^2 theta]. Simplify.\n\n### Step 1: Apply Identities\n\nRecall: [tan^2 theta = sin^2 theta / cos^2 theta]\n\n[d = sin^2 theta + sin^2 theta / cos^2 theta + cos^2 theta]\n\n### Step 2: Find Common Denominator\n\n[d = sin^2 theta + cos^2 theta + sin^2 theta / cos^2 theta]\n\n[d = 1 + sin^2 theta / cos^2 theta]\n\n### Step 3: Apply the Pythagorean Identity\n\n[d = 1 + tan^2 theta = sec^2 theta].\nThe domain requires [cos theta != 0]. At [theta = pi/4], the original expression and [sec^2 theta] both equal 2."
+        "markdown": "### Problem\n\nTwo dimensionless expressions in a mathematical wave model are $P=(1+\\sin^2\\theta\\sec^2\\theta)/\\sec^2\\theta-\\cos^2\\theta$ and $D=\\sin^2\\theta+\\tan^2\\theta+\\cos^2\\theta$. Simplify each expression. State the domain.\n\n### Solution\n\nReplace $\\sec^2\\theta$ with $1/\\cos^2\\theta$. Then $P=\\cos^2\\theta+\\sin^2\\theta-\\cos^2\\theta=\\sin^2\\theta$. For the second expression, $D=1+\\tan^2\\theta=\\sec^2\\theta$. Both original expressions require $\\cos\\theta\\ne0$. The simplified P retains this restriction. These formulas alone do not specify a physical distance or its units."
       },
       {
         "phaseNumber": 10,
@@ -6397,25 +6397,25 @@
         "phaseNumber": 5,
         "title": "Example 1 — Verify by Transforming One Side",
         "phaseType": "worked_example",
-        "markdown": "Verify [cos^2 theta + tan^2 theta * cos^2 theta = 1]\n\n### Step 1: Factor the Left Side\n\n[cos^2 theta + tan^2 theta * cos^2 theta = cos^2 theta (1 + tan^2 theta)]\n\n### Step 2: Apply the Pythagorean Identity\n\nRecall: [1 + tan^2 theta = sec^2 theta]\n\n[cos^2 theta * sec^2 theta = cos^2 theta * (1/cos^2 theta) = 1]\n\n### Step 3: Conclude\n\nLeft side simplifies to 1, matching the right side. Verified."
+        "markdown": "### Problem\n\nVerify $\\cos^2\\theta+\\tan^2\\theta\\cos^2\\theta=1$ and state the original domain condition.\n\n### Solution\n\nThe tangent requires $\\cos\\theta\\ne0$. On that domain, replace tangent by sine over cosine. The left side becomes $\\cos^2\\theta+\\sin^2\\theta=1$. Simplification does not make the original expression defined at angles where cosine is zero."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Verify Using Multiple Identities",
         "phaseType": "worked_example",
-        "markdown": "Verify [cot theta (cot theta + tan theta) = csc^2 theta]\n\n### Step 1: Expand the Left Side\n\n[cot theta * cot theta + cot theta * tan theta = cot^2 theta + 1]\n\n### Step 2: Apply the Pythagorean Identity\n\nRecall: [1 + cot^2 theta = csc^2 theta]\n\n[cot^2 theta + 1 = csc^2 theta]\n\n### Step 3: Conclude\n\nLeft side simplifies to [csc^2 theta]. Verified."
+        "markdown": "### Problem\n\nVerify $\\cot\\theta(\\cot\\theta+\\tan\\theta)=\\csc^2\\theta$.\n\n### Solution\n\nThe original expression requires both $\\sin\\theta\\ne0$ and $\\cos\\theta\\ne0$. Expand the left side to $\\cot^2\\theta+\\cot\\theta\\tan\\theta$. The product is 1 on this domain, so the result is $\\cot^2\\theta+1=\\csc^2\\theta$."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Transform Each Side Independently",
         "phaseType": "worked_example",
-        "markdown": "Verify [(sin theta + cot theta / csc theta)^2 = (2 + sec theta * csc theta) / (sec theta * csc theta)]\n\n### Step 1: Simplify the Left Side\n\nFirst, note that [cot theta / csc theta = (cos theta / sin theta) / (1/sin theta) = cos theta]\n\nSo [(sin theta + cos theta)^2 = sin^2 theta + 2 sin theta cos theta + cos^2 theta = 1 + 2 sin theta cos theta]\n\n### Step 2: Simplify the Right Side\n\n[(2 + sec theta * csc theta) / (sec theta * csc theta) = 2/(sec theta * csc theta) + 1]\n\n[sec theta * csc theta = (1/cos theta)(1/sin theta) = 1/(sin theta cos theta)]\n\nSo [2/(sec theta * csc theta) = 2 sin theta cos theta]\n\nThus, the right side equals [1 + 2 sin theta cos theta]\n\n### Step 3: Both Sides Match\n\nBoth sides simplify to [1 + 2 sin theta cos theta]. Verified."
+        "markdown": "### Problem\n\nVerify $(\\sin\\theta+\\cot\\theta/\\csc\\theta)^2=(2+\\sec\\theta\\csc\\theta)/(\\sec\\theta\\csc\\theta)$ on its common domain.\n\n### Solution\n\nBoth sine and cosine must be nonzero. On the left, $\\cot\\theta/\\csc\\theta=\\cos\\theta$, so the square becomes $1+2\\sin\\theta\\cos\\theta$. On the right, divide terms by $\\sec\\theta\\csc\\theta$ to get $1+2\\sin\\theta\\cos\\theta$. Both sides match wherever the original expressions are defined."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — Verify the Cofunction Identity",
         "phaseType": "worked_example",
-        "markdown": "Verify [cos(theta - pi/2) = sin theta] (or equivalently [cos(pi/2 - theta) = sin theta])\n\n### Step 1: Apply the Cosine Difference Identity\n\n[cos(A - B) = cos A cos B + sin A sin B]\n\n[cos(theta - pi/2) = cos theta * cos(pi/2) + sin theta * sin(pi/2)]\n\n### Step 2: Substitute Known Values\n\n[cos(pi/2) = 0] and [sin(pi/2) = 1]\n\n[cos theta * 0 + sin theta * 1 = sin theta]\n\n### Step 3: Conclude\n\n[cos(theta - pi/2) = sin theta]. Verified."
+        "markdown": "### Problem\n\nVerify $\\cos(\\theta-\\pi/2)=\\sin\\theta$ for real angles in radians using the unit circle.\n\n### Solution\n\nThe point at angle theta is $(\\cos\\theta,\\sin\\theta)$. A clockwise quarter-turn changes coordinates (x,y) to (y,-x). The rotated point is at angle $\\theta-\\pi/2$, so its first coordinate is both $\\cos(\\theta-\\pi/2)$ and $\\sin\\theta$. The identity follows for every real theta."
       },
       {
         "phaseNumber": 9,
@@ -6465,31 +6465,31 @@
         "phaseNumber": 5,
         "title": "Example 1 — Find Exact Values Using Sum Identities",
         "phaseType": "worked_example",
-        "markdown": "Find the exact value of [sin 135 degrees].\n\n### Step 1: Rewrite as a Sum of Known Angles\n\n[135 degrees = 90 degrees + 45 degrees]\n\n[sin(90 degrees + 45 degrees) = sin 90 degrees cos 45 degrees + cos 90 degrees sin 45 degrees]\n\n### Step 2: Substitute Known Values\n\n[sin 90 degrees = 1], [cos 45 degrees = sqrt(2)/2]\n[cos 90 degrees = 0], [sin 45 degrees = sqrt(2)/2]\n\n[= 1 * sqrt(2)/2 + 0 * sqrt(2)/2 = sqrt(2)/2]\n\n### Step 3: Conclude\n\n[sin 135 degrees = sqrt(2)/2]"
+        "markdown": "### Problem\n\nFind $\\sin135^\\circ$ using a sum identity.\n\n### Solution\n\nWrite 135°=90°+45°. Then $\\sin135^\\circ=\\sin90^\\circ\\cos45^\\circ+\\cos90^\\circ\\sin45^\\circ=\\sqrt{2}/2$."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Find cos 165 degrees Using Difference Identity",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Rewrite as a Difference\n\n[165 degrees = 180 degrees - 15 degrees] (or [135 degrees + 30 degrees])\n\nUsing [cos(A - B) = cos A cos B + sin A sin B]:\n\n[cos 165 degrees = cos(180 degrees - 15 degrees) = -cos 15 degrees]\n\n### Step 2: Find cos 15 degrees\n\n[cos 15 degrees = cos(45 degrees - 30 degrees)]\n\n[= cos 45 degrees cos 30 degrees + sin 45 degrees sin 30 degrees]\n\n[= (sqrt(2)/2)(sqrt(3)/2) + (sqrt(2)/2)(1/2) = (sqrt(6) + sqrt(2))/4]\n\n### Step 3: Apply Sign\n\nSince [cos(180 degrees - 15 degrees) = -cos 15 degrees]:\n\n[cos 165 degrees = -(sqrt(6) + sqrt(2))/4]"
+        "markdown": "### Problem\n\nFind $\\cos165^\\circ$ exactly using difference identities.\n\n### Solution\n\nUse $\\cos165^\\circ=-\\cos15^\\circ$. Then $\\cos15^\\circ=\\cos(45^\\circ-30^\\circ)=(\\sqrt6+\\sqrt2)/4$. Therefore $\\cos165^\\circ=-(\\sqrt6+\\sqrt2)/4$, with the negative sign expected in quadrant II."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Apply Identities to Real-World Problem",
         "phaseType": "worked_example",
-        "markdown": "ART: Two triangular tiles with sides (3, 4, 5) and (4, 4sqrt(3), 8) are placed with 4-inch sides together.\n\n### Part a: Find sin A and cos A for the 3-4-5 triangle\n\nFor the 3-4-5 triangle: [sin A = 4/5], [cos A = 3/5]\n\n### Part b: Find the measure of angle A\n\nUse the identity for the combined triangle. The angle can be found using the dot product of vectors.\n\n### Part c: Determine if the combined triangle is a right triangle\n\nCheck if the Pythagorean theorem holds for the combined sides."
+        "markdown": "### Problem\n\nA triangular tile has two sides of 5 inches and 8 inches with included angle 75°. Use a sum identity to find its exact area.\n\n### Solution\n\nThe sine sum identity gives $\\sin75^\\circ=(\\sqrt6+\\sqrt2)/4$. The triangle area is $K=\\tfrac12(5)(8)\\sin75^\\circ=5(\\sqrt6+\\sqrt2)$ square inches. The specified angle must be between the two given sides."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — Verify Identities Using Sum/Difference Formulas",
         "phaseType": "worked_example",
-        "markdown": "Verify [cos(60 degrees + theta) = sin(30 degrees - theta)]\n\n### Step 1: Apply Cosine Sum Identity\n\n[cos(60 degrees + theta) = cos 60 degrees cos theta - sin 60 degrees sin theta]\n\n[= (1/2) cos theta - (sqrt(3)/2) sin theta]\n\n### Step 2: Apply Sine Difference Identity\n\n[sin(30 degrees - theta) = sin 30 degrees cos theta - cos 30 degrees sin theta]\n\n[= (1/2) cos theta - (sqrt(3)/2) sin theta]\n\n### Step 3: Conclude\n\nBoth expressions match. Verified."
+        "markdown": "### Problem\n\nVerify $\\cos(60^\\circ+\\theta)=\\sin(30^\\circ-\\theta)$ for angles in degrees.\n\n### Solution\n\nThe cosine sum formula gives $(1/2)\\cos\\theta-(\\sqrt3/2)\\sin\\theta$. The sine difference formula gives the same expression because sine 30° is 1/2 and cosine 30° is $\\sqrt3/2$. Both sides are defined for all real theta."
       },
       {
         "phaseNumber": 9,
         "title": "Example 5 — Use Sum/Difference Identities to Write Single Expressions",
         "phaseType": "worked_example",
-        "markdown": "Write [sin 19 degrees cos 11 degrees + cos 19 degrees sin 11 degrees] as a single trigonometric function.\n\n### Step 1: Recognize the Pattern\n\nThis matches [sin A cos B + cos A sin B = sin(A + B)]\n\n### Step 2: Apply\n\n[sin 19 degrees cos 11 degrees + cos 19 degrees sin 11 degrees = sin(19 degrees + 11 degrees) = sin 30 degrees]\n\n### Step 3: State the Value\n\n[sin 30 degrees = 1/2]"
+        "markdown": "### Problem\n\nWrite $\\sin19^\\circ\\cos11^\\circ+\\cos19^\\circ\\sin11^\\circ$ as one trigonometric expression and evaluate.\n\n### Solution\n\nThe expression matches the sine sum identity. It equals $\\sin(19^\\circ+11^\\circ)=\\sin30^\\circ=1/2$."
       },
       {
         "phaseNumber": 10,
@@ -6539,31 +6539,31 @@
         "phaseNumber": 5,
         "title": "Example 1 — Find sin(2theta), cos(2theta), sin(theta/2), cos(theta/2)",
         "phaseType": "worked_example",
-        "markdown": "Given [sin theta = 2/3] and [90 degrees < theta < 180 degrees] (Q2), find all four values.\n\n### Step 1: Find cos theta\n\n[sin^2 theta + cos^2 theta = 1]\n\n[cos^2 theta = 1 - 4/9 = 5/9]\n\nIn Q2, cosine is negative: [cos theta = -sqrt(5)/3]\n\n### Step 2: Find sin(2theta)\n\n[sin(2theta) = 2 sin theta cos theta = 2 * (2/3) * (-sqrt(5)/3) = -4 sqrt(5)/9]\n\n### Step 3: Find cos(2theta)\n\n[cos(2theta) = cos^2 theta - sin^2 theta = 5/9 - 4/9 = 1/9]\n\n### Step 4: Find sin(theta/2)\n\nSince [90 degrees < theta < 180 degrees], [45 degrees < theta/2 < 90 degrees] (Q1).\n\n[sin(theta/2) = sqrt((1 - cos theta)/2) = sqrt((1 - (-sqrt(5)/3))/2) = sqrt((1 + sqrt(5)/3)/2)]\n\n### Step 5: Find cos(theta/2)\n\n[cos(theta/2) = sqrt((1 + cos theta)/2) = sqrt((1 - sqrt(5)/3)/2)]\n\nSince theta/2 is in Q1, both sin and cos are positive."
+        "markdown": "### Problem\n\nGiven $\\sin\\theta=2/3$ with $90^\\circ<\\theta<180^\\circ$, find $\\sin2\\theta$, $\\cos2\\theta$, $\\sin(\\theta/2)$, and $\\cos(\\theta/2)$ exactly.\n\n### Solution\n\nQuadrant II gives $\\cos\\theta=-\\sqrt5/3$. Thus $\\sin2\\theta=2\\sin\\theta\\cos\\theta=-4\\sqrt5/9$ and $\\cos2\\theta=1-2\\sin^2\\theta=1/9$. The half-angle is in quadrant I. Therefore $\\sin(\\theta/2)=\\sqrt{(3+\\sqrt5)/6}$ and $\\cos(\\theta/2)=\\sqrt{(3-\\sqrt5)/6}$, both positive."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Apply Double-Angle to Sound Wave Problem",
         "phaseType": "worked_example",
-        "markdown": "SOUND WAVES: The sound from a tuning fork is represented by [S = 2 sin 2theta]. Rewrite this formula in terms of sin theta and cos theta.\n\n### Step 1: Apply Double-Angle Identity\n\n[S = 2 sin(2theta) = 2 * (2 sin theta cos theta) = 4 sin theta cos theta]\n\n### Step 2: Interpret\n\nThe formula shows the wave can be expressed as [4 sin theta cos theta], which relates to the product-to-sum identities."
+        "markdown": "### Problem\n\nA wave model is $S(\\theta)=2\\sin(2\\theta)$. Rewrite it using sine and cosine of theta.\n\n### Solution\n\nThe double-angle identity is $\\sin(2\\theta)=2\\sin\\theta\\cos\\theta$. Therefore $S(\\theta)=4\\sin\\theta\\cos\\theta$. The outer factor 2 multiplies the factor 2 from the identity."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Find Exact Values Using Half-Angle Formulas",
         "phaseType": "worked_example",
-        "markdown": "Find the exact value of [sin 75 degrees].\n\n### Step 1: Write as a Half-Angle\n\n[75 degrees = 150 degrees / 2]\n\n[sin 75 degrees = sin(150 degrees / 2)]\n\n### Step 2: Apply Half-Angle Formula\n\n[sin(theta/2) = sqrt((1 - cos theta)/2)]\n\n[sin 75 degrees = sqrt((1 - cos 150 degrees)/2)]\n\n### Step 3: Substitute Known Values\n\n[cos 150 degrees = -sqrt(3)/2]\n\n[sin 75 degrees = sqrt((1 - (-sqrt(3)/2))/2) = sqrt((1 + sqrt(3)/2)/2)]\n\n### Step 4: Simplify\n\n[= sqrt((2 + sqrt(3))/4) = sqrt(2 + sqrt(3))/2]\n\nAlternatively, using [75 degrees = 45 degrees + 30 degrees]:\n\n[sin 75 degrees = sin 45 degrees cos 30 degrees + cos 45 degrees sin 30 degrees]\n\n[= (sqrt(2)/2)(sqrt(3)/2) + (sqrt(2)/2)(1/2) = (sqrt(6) + sqrt(2))/4]"
+        "markdown": "### Problem\n\nFind $\\sin75^\\circ$ with a half-angle identity.\n\n### Solution\n\nUse 75°=150°/2. Since 75° is in quadrant I, select the positive square root: $\\sin75^\\circ=\\sqrt{(1-\\cos150^\\circ)/2}=\\sqrt{2+\\sqrt3}/2$. This equals $(\\sqrt6+\\sqrt2)/4$."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — Find tan 165 degrees",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Write as Sum or Difference\n\n[165 degrees = 180 degrees - 15 degrees] or [330 degrees / 2]\n\nUsing [tan(180 degrees - theta) = -tan theta]:\n\n[tan 165 degrees = -tan 15 degrees]\n\n### Step 2: Find tan 15 degrees Using Half-Angle\n\n[tan(15 degrees) = tan(30 degrees/2)]\n\nUsing [tan(theta/2) = sin theta / (1 + cos theta)]:\n\n[tan 15 degrees = sin 30 degrees / (1 + cos 30 degrees) = (1/2) / (1 + sqrt(3)/2) = 1/(2 + sqrt(3))]\n\nRationalize: [= (2 - sqrt(3))/1 = 2 - sqrt(3)]\n\n### Step 3: Apply Sign\n\n[tan 165 degrees = -tan 15 degrees = -(2 - sqrt(3)) = sqrt(3) - 2]"
+        "markdown": "### Problem\n\nFind $\\tan165^\\circ$ exactly.\n\n### Solution\n\nFirst use $\\tan15^\\circ=\\sin30^\\circ/(1+\\cos30^\\circ)=1/(2+\\sqrt3)=2-\\sqrt3$. Tangent is negative in quadrant II, so $\\tan165^\\circ=-\\tan15^\\circ=\\sqrt3-2$. The denominator in the half-angle form is nonzero here."
       },
       {
         "phaseNumber": 9,
         "title": "Example 5 — Structure Problem with Isosceles Right Triangle",
         "phaseType": "worked_example",
-        "markdown": "STRUCTURE: A large isosceles right triangle has a small triangle formed by bisecting each acute angle.\n\n### Part a: Find sine and cosine for the congruent angles of the small triangle\n\nEach acute angle of the large triangle is 45 degrees. When bisected, each becomes 22.5 degrees.\n\n[sin 22.5 degrees = sqrt((1 - cos 45 degrees)/2) = sqrt((1 - sqrt(2)/2)/2)]\n\n[cos 22.5 degrees = sqrt((1 + cos 45 degrees)/2) = sqrt((1 + sqrt(2)/2)/2)]\n\n### Part b: Find sine and cosine for the obtuse angle of the small triangle\n\nThe obtuse angle is [180 degrees - 22.5 degrees - 22.5 degrees = 135 degrees].\n\n[sin 135 degrees = sqrt(2)/2], [cos 135 degrees = -sqrt(2)/2]"
+        "markdown": "### Problem\n\nTriangle ABC has A=B=45° and C=90°. The internal angle bisectors from A and B meet at I. Find the angles of triangle AIB and the sine and cosine of its angle at I.\n\n### Solution\n\nThe angles at A and B in triangle AIB are each 22.5°. Their sum leaves angle AIB=135°. Thus sin(135°)=√2/2 and cos(135°)=-√2/2. Stating which rays form the smaller triangle is necessary to identify its angles."
       },
       {
         "phaseNumber": 10,
@@ -6607,43 +6607,43 @@
         "phaseNumber": 4,
         "title": "Learn: Solving Trigonometric Equations",
         "phaseType": "learn",
-        "markdown": "### Key Concept: General Strategy\n\n1. Isolate the trig function or rewrite as a quadratic in the trig function\n2. Find all angles in the given interval that satisfy the equation\n3. Write the general solution if requested\n4. Check for extraneous solutions\n\n### Key Concept: Reference Angles and Quadrants\n\nFor [sin theta = k] (where [-1 <= k <= 1]):\n* Reference angle = [arcsin(k)]\n* Solutions in [[0, 2pi)]: reference angle and [pi - reference angle]\n\nFor [cos theta = k]:\n* Reference angle = [arccos(k)]\n* Solutions in [[0, 2pi)]: reference angle and [2pi - reference angle]\n\nFor [tan theta = k]:\n* Reference angle = [arctan(k)]\n* Solutions in [[0, 2pi)]: reference angle and [reference angle + pi]"
+        "markdown": "### Key Concept: General Strategy\n\n1. Isolate the trig function or rewrite as a quadratic in the trig function\n2. Find all angles in the given interval that satisfy the equation\n3. Write the general solution if requested\n4. Check for extraneous solutions\n\n### Key Concept: Reference Angles and Quadrants\n\nFor $\\sin\\theta=k$, require $-1\\le k\\le1$. Set $\\alpha=\\arcsin k$, where $-\\pi/2\\le\\alpha\\le\\pi/2$. The general solutions are $\\theta=\\alpha+2\\pi n$ and $\\theta=\\pi-\\alpha+2\\pi n$.\n\nFor $\\cos\\theta=k$, require $-1\\le k\\le1$. Set $\\alpha=\\arccos k$, where $0\\le\\alpha\\le\\pi$. The general solutions are $\\theta=\\pm\\alpha+2\\pi n$.\n\nFor $\\tan\\theta=k$, set $\\alpha=\\arctan k$, where $-\\pi/2<\\alpha<\\pi/2$. The general solution is $\\theta=\\alpha+\\pi n$.\n\nIn these formulas, n is any integer. For a restricted interval, select the values of n that put each angle in the interval. Remove duplicate solutions. An inverse-function value is not always a positive reference angle. For example, $\\arcsin(-1/2)=-\\pi/6$. The sine solutions on $[0,2\\pi)$ are $7\\pi/6$ and $11\\pi/6$."
       },
       {
         "phaseNumber": 5,
         "title": "Example 1 — Solve on a Restricted Interval",
         "phaseType": "worked_example",
-        "markdown": "Solve [cos^2 theta = 1/4] for [0 degrees <= theta <= 360 degrees].\n\n### Step 1: Take the Square Root\n\n[cos^2 theta = 1/4]\n\n[cos theta = +/- 1/2]\n\n### Step 2: Find Solutions for cos theta = 1/2\n\nReference angle = [60 degrees]. Cosine is positive in Q1 and Q4.\n\n[theta = 60 degrees] or [theta = 300 degrees]\n\n### Step 3: Find Solutions for cos theta = -1/2\n\nReference angle = [60 degrees]. Cosine is negative in Q2 and Q3.\n\n[theta = 120 degrees] or [theta = 240 degrees]\n\n### Step 4: List All Solutions\n\n[theta = 60 degrees, 120 degrees, 240 degrees, 300 degrees]"
+        "markdown": "### Problem\n\nSolve $\\cos^2\\theta=1/4$ for $0^\\circ\\le\\theta\\le360^\\circ$.\n\n### Solution\n\nTaking square roots gives $\\cos\\theta=1/2$ or $\\cos\\theta=-1/2$. The solutions in the interval are 60°, 120°, 240°, and 300°. Neither endpoint satisfies the equation."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Solve for All Values (Radians)",
         "phaseType": "worked_example",
-        "markdown": "Solve [cos 2theta + 3 cos theta = 1] for all values of theta if theta is measured in radians.\n\n### Step 1: Use Double-Angle Identity\n\n[cos 2theta = 2 cos^2 theta - 1]\n\n[2 cos^2 theta - 1 + 3 cos theta = 1]\n\n[2 cos^2 theta + 3 cos theta - 2 = 0]\n\n### Step 2: Factor (Quadratic in cos theta)\n\nLet [u = cos theta]:\n\n[2u^2 + 3u - 2 = 0]\n\n[(2u - 1)(u + 2) = 0]\n\n### Step 3: Solve for u\n\n[u = 1/2] or [u = -2]\n\nSince [cos theta = -2] has no solutions (cosine range is [-1, 1]), we have [cos theta = 1/2].\n\n### Step 4: Find theta\n\n[cos theta = 1/2] when [theta = pi/3 + 2pi n] or [theta = 5pi/3 + 2pi n]\n\n### Step 5: Write General Solution\n\n[theta = +/- pi/3 + 2pi n] (or equivalently [theta = pi/3 + 2pi n] and [theta = 5pi/3 + 2pi n])"
+        "markdown": "### Problem\n\nSolve $\\cos2\\theta+3\\cos\\theta=1$ for all real theta in radians.\n\n### Solution\n\nSubstitute $\\cos2\\theta=2\\cos^2\\theta-1$. Then $2\\cos^2\\theta+3\\cos\\theta-2=0$, which factors as $(2\\cos\\theta-1)(\\cos\\theta+2)=0$. Cosine cannot equal -2. Thus $\\cos\\theta=1/2$, giving $\\theta=2\\pi n\\pm\\pi/3$ for every integer n."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Apply to Real-World Model",
         "phaseType": "worked_example",
-        "markdown": "SANDCASTLES: Water level follows [y = 7 + 7 sin(pi/6 * t)], where y is feet above low tide and t is hours past 6 A.M. Nashiko built her sandcastle 10 feet above low tide at 2 P.M. When will the waterline reach the sandcastle?\n\n### Step 1: Set Up the Equation\n\n[10 = 7 + 7 sin(pi/6 * t)]\n\n[3 = 7 sin(pi/6 * t)]\n\n[sin(pi/6 * t) = 3/7]\n\n### Step 2: Find the Reference Angle\n\n[arcsin(3/7) ≈ 0.442 radians] (or about [25.3 degrees])\n\n### Step 3: Find the Next Time After Construction\n\nThe solutions in one 12-hour period are [t ≈ 0.845898] and [t ≈ 5.154102]. Both are hours after 6 A.M.\nThe sandcastle is built at 2 P.M., when [t = 8]. Add 12 hours to the first solution to obtain the next crossing: [t ≈ 12.845898].\n\n### Step 4: Interpret the Time\n\nThe water reaches the sandcastle at about **6:51 P.M.** The sine curve is rising at this crossing."
+        "markdown": "### Problem\n\nWater level follows $y=7+7\\sin(\\pi t/6)$ feet above low tide, with t in hours after 6 A.M. A sandcastle at height 10 ft is built at 2 P.M. Find the next time the modeled water reaches it.\n\n### Solution\n\nSet y=10 to get $\\sin(\\pi t/6)=3/7$. The first two nonnegative crossings are $t\\approx0.845898$ and $t\\approx5.154102$. The period is 12 hours. Construction occurs at t=8, so the next crossing is $t\\approx12.845898$, about 6:51 P.M. The level is rising there. Choosing an earlier crossing would ignore the construction time."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — Solve Trigonometric Inequalities",
         "phaseType": "worked_example",
-        "markdown": "Solve [3 csc theta <= 2] for [0 degrees <= theta <= 360 degrees].\n\n### Step 1: Rewrite in Terms of Sine\n\n[csc theta = 1/sin theta]\n\n[3/sin theta <= 2]\n\n### Step 2: Consider Cases\n\nCase 1: [sin theta > 0] (Q1 and Q2)\n[3 <= 2 sin theta] → [sin theta >= 3/2] (no solution since sin theta <= 1)\n\nCase 2: [sin theta < 0] (Q3 and Q4)\n[3 >= 2 sin theta] → [sin theta <= 3/2] (always true when sin theta < 0)\n\n### Step 3: State the Domain and Solution\n\nCosecant is undefined when sine is zero. Exclude [0 degrees], [180 degrees], and [360 degrees].\nNo positive-sine value satisfies [3/sin theta <= 2]. Every negative-sine value satisfies it.\nThe solution is [180 degrees < theta < 360 degrees]."
+        "markdown": "### Problem\n\nSolve $3\\csc\\theta\\le2$ for $0^\\circ\\le\\theta\\le360^\\circ$.\n\n### Solution\n\nSine cannot be zero. Where sine is positive, $3/\\sin\\theta$ is at least 3, so no solution occurs. Where sine is negative, the left side is negative and hence at most 2. Therefore $180^\\circ<\\theta<360^\\circ$. The excluded endpoints are undefined, not solutions."
       },
       {
         "phaseNumber": 9,
         "title": "Example 5 — Solve Equations with Multiple Trig Functions",
         "phaseType": "worked_example",
-        "markdown": "Solve [cos theta + 1 = sin theta] for [0, 2pi).\n\n### Step 1: Rearrange\n\n[cos theta - sin theta = -1]\n\n### Step 2: Square Both Sides (Caution: Check for Extraneous Solutions)\n\n[(cos theta - sin theta)^2 = 1]\n\n[cos^2 theta - 2 sin theta cos theta + sin^2 theta = 1]\n\n### Step 3: Simplify Using Pythagorean Identity\n\n[1 - 2 sin theta cos theta = 1]\n\n[-2 sin theta cos theta = 0]\n\n[sin theta cos theta = 0]\n\n### Step 4: Solve sin theta cos theta = 0\n\n[sin theta = 0] gives [theta = 0, pi]\n\n[cos theta = 0] gives [theta = pi/2, 3pi/2]\n\n### Step 5: Check Against Original Equation\n\nFor [theta = 0]: [cos 0 + 1 = 1 + 1 = 2], [sin 0 = 0]. [2 != 0] (extraneous)\n\nFor [theta = pi]: [cos pi + 1 = -1 + 1 = 0], [sin pi = 0]. [0 = 0] ✓\n\nFor [theta = pi/2]: [cos(pi/2) + 1 = 0 + 1 = 1], [sin(pi/2) = 1]. [1 = 1] ✓\n\nFor [theta = 3pi/2]: [cos(3pi/2) + 1 = 0 + 1 = 1], [sin(3pi/2) = -1]. [1 != -1] (extraneous)\n\n### Step 6: Solution\n\n[theta = pi/2, pi]"
+        "markdown": "### Problem\n\nSolve $\\cos\\theta+1=\\sin\\theta$ on $[0,2\\pi)$.\n\n### Solution\n\nRearrange to cosine minus sine equal to -1, then square. Using the Pythagorean identity gives $\\sin\\theta\\cos\\theta=0$. The candidates are 0, $\\pi/2$, $\\pi$, and $3\\pi/2$. Checking the original equation rejects 0 and $3\\pi/2$. The solutions are $\\pi/2$ and $\\pi$. Squaring can add extraneous candidates."
       },
       {
         "phaseNumber": 10,
         "title": "Example 6 — Solve with Double-Angle",
         "phaseType": "worked_example",
-        "markdown": "Solve [tan 3theta = 1] for theta measured in degrees.\n\n### Step 1: Find Reference Angle for tan\n\n[tan phi = 1] when [phi = 45 degrees] (and + 180 degrees n)\n\n### Step 2: Set Up the Equation\n\n[3theta = 45 degrees + 180 degrees n]\n\n### Step 3: Solve for theta\n\n[theta = 15 degrees + 60 degrees n]\n\n### Step 4: List Solutions\n\nFor [n = 0]: [theta = 15 degrees]\nFor [n = 1]: [theta = 75 degrees]\nFor [n = 2]: [theta = 135 degrees]\nFor [n = 3]: [theta = 195 degrees]\nFor [n = 4]: [theta = 255 degrees]\nFor [n = 5]: [theta = 315 degrees]\n\nWithin [0, 360 degrees]: [theta = 15 degrees, 75 degrees, 135 degrees, 195 degrees, 255 degrees, 315 degrees]"
+        "markdown": "### Problem\n\nSolve $\\tan(2\\theta)=1$ in degrees. Give the general solution and the solutions on $[0^\\circ,360^\\circ)$.\n\n### Solution\n\nTangent equals 1 at $45^\\circ+180^\\circ n$. Thus $2\\theta=45^\\circ+180^\\circ n$, giving $\\theta=22.5^\\circ+90^\\circ n$ for integer n. The interval solutions are 22.5°, 112.5°, 202.5°, and 292.5°. Tangent is defined at each doubled angle."
       },
       {
         "phaseNumber": 11,

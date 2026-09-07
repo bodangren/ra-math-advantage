@@ -44,100 +44,53 @@ Why doesn't [sin(A + B) = sin A + sin B]? Can you find a counterexample using sp
 
 ## Example 1 — Find Exact Values Using Sum Identities
 
-Find the exact value of [sin 135 degrees].
+### Problem
 
-### Step 1: Rewrite as a Sum of Known Angles
+Find $\sin135^\circ$ using a sum identity.
 
-[135 degrees = 90 degrees + 45 degrees]
+### Solution
 
-[sin(90 degrees + 45 degrees) = sin 90 degrees cos 45 degrees + cos 90 degrees sin 45 degrees]
-
-### Step 2: Substitute Known Values
-
-[sin 90 degrees = 1], [cos 45 degrees = sqrt(2)/2]
-[cos 90 degrees = 0], [sin 45 degrees = sqrt(2)/2]
-
-[= 1 * sqrt(2)/2 + 0 * sqrt(2)/2 = sqrt(2)/2]
-
-### Step 3: Conclude
-
-[sin 135 degrees = sqrt(2)/2]
+Write 135°=90°+45°. Then $\sin135^\circ=\sin90^\circ\cos45^\circ+\cos90^\circ\sin45^\circ=\sqrt{2}/2$.
 
 ## Example 2 — Find cos 165 degrees Using Difference Identity
 
-### Step 1: Rewrite as a Difference
+### Problem
 
-[165 degrees = 180 degrees - 15 degrees] (or [135 degrees + 30 degrees])
+Find $\cos165^\circ$ exactly using difference identities.
 
-Using [cos(A - B) = cos A cos B + sin A sin B]:
+### Solution
 
-[cos 165 degrees = cos(180 degrees - 15 degrees) = -cos 15 degrees]
-
-### Step 2: Find cos 15 degrees
-
-[cos 15 degrees = cos(45 degrees - 30 degrees)]
-
-[= cos 45 degrees cos 30 degrees + sin 45 degrees sin 30 degrees]
-
-[= (sqrt(2)/2)(sqrt(3)/2) + (sqrt(2)/2)(1/2) = (sqrt(6) + sqrt(2))/4]
-
-### Step 3: Apply Sign
-
-Since [cos(180 degrees - 15 degrees) = -cos 15 degrees]:
-
-[cos 165 degrees = -(sqrt(6) + sqrt(2))/4]
+Use $\cos165^\circ=-\cos15^\circ$. Then $\cos15^\circ=\cos(45^\circ-30^\circ)=(\sqrt6+\sqrt2)/4$. Therefore $\cos165^\circ=-(\sqrt6+\sqrt2)/4$, with the negative sign expected in quadrant II.
 
 ## Example 3 — Apply Identities to Real-World Problem
 
-ART: Two triangular tiles with sides (3, 4, 5) and (4, 4sqrt(3), 8) are placed with 4-inch sides together.
+### Problem
 
-### Part a: Find sin A and cos A for the 3-4-5 triangle
+A triangular tile has two sides of 5 inches and 8 inches with included angle 75°. Use a sum identity to find its exact area.
 
-For the 3-4-5 triangle: [sin A = 4/5], [cos A = 3/5]
+### Solution
 
-### Part b: Find the measure of angle A
-
-Use the identity for the combined triangle. The angle can be found using the dot product of vectors.
-
-### Part c: Determine if the combined triangle is a right triangle
-
-Check if the Pythagorean theorem holds for the combined sides.
+The sine sum identity gives $\sin75^\circ=(\sqrt6+\sqrt2)/4$. The triangle area is $K=\tfrac12(5)(8)\sin75^\circ=5(\sqrt6+\sqrt2)$ square inches. The specified angle must be between the two given sides.
 
 ## Example 4 — Verify Identities Using Sum/Difference Formulas
 
-Verify [cos(60 degrees + theta) = sin(30 degrees - theta)]
+### Problem
 
-### Step 1: Apply Cosine Sum Identity
+Verify $\cos(60^\circ+\theta)=\sin(30^\circ-\theta)$ for angles in degrees.
 
-[cos(60 degrees + theta) = cos 60 degrees cos theta - sin 60 degrees sin theta]
+### Solution
 
-[= (1/2) cos theta - (sqrt(3)/2) sin theta]
-
-### Step 2: Apply Sine Difference Identity
-
-[sin(30 degrees - theta) = sin 30 degrees cos theta - cos 30 degrees sin theta]
-
-[= (1/2) cos theta - (sqrt(3)/2) sin theta]
-
-### Step 3: Conclude
-
-Both expressions match. Verified.
+The cosine sum formula gives $(1/2)\cos\theta-(\sqrt3/2)\sin\theta$. The sine difference formula gives the same expression because sine 30° is 1/2 and cosine 30° is $\sqrt3/2$. Both sides are defined for all real theta.
 
 ## Example 5 — Use Sum/Difference Identities to Write Single Expressions
 
-Write [sin 19 degrees cos 11 degrees + cos 19 degrees sin 11 degrees] as a single trigonometric function.
+### Problem
 
-### Step 1: Recognize the Pattern
+Write $\sin19^\circ\cos11^\circ+\cos19^\circ\sin11^\circ$ as one trigonometric expression and evaluate.
 
-This matches [sin A cos B + cos A sin B = sin(A + B)]
+### Solution
 
-### Step 2: Apply
-
-[sin 19 degrees cos 11 degrees + cos 19 degrees sin 11 degrees = sin(19 degrees + 11 degrees) = sin 30 degrees]
-
-### Step 3: State the Value
-
-[sin 30 degrees = 1/2]
+The expression matches the sine sum identity. It equals $\sin(19^\circ+11^\circ)=\sin30^\circ=1/2$.
 
 ## Mixed Exercises
 
