@@ -78,6 +78,8 @@ Scheduling: one worker owns shared graph mechanisms. Two workers can review disj
 
 ### Bounded graph repair tasks
 
+- [x] Task Q3: Add the interval component and strict mode schema. Await durable submission. Retain answers after a failed save. Describe actual graph points without giving classification answers. Two regressions failed before the fix. Thirteen focused tests, package lint, standalone TypeScript, and build pass. Commit `b9e7cb21`. App integration remains open.
+
 - [x] Task Q2: Use the existing Next Link component for the IM1 login and registration links. The two observed app lint errors are resolved. Full app lint, standalone TypeScript, and build pass. Commit `fae19087`.
 
 - [x] Task Q1: Declare the existing KaTeX stylesheet import for the shared lesson renderer. TypeScript, package lint, and both package tests pass. Commit `97b46bfc`.
@@ -93,10 +95,13 @@ Scheduling: one worker owns shared graph mechanisms. Two workers can review disj
 
 - [x] Task G7: Align the IM1 translation blueprint and saved mode projection with expression-only grading. Preserve source identity and draft review status. Correct remaining current-count claims in the debt registry. Commit `43c0ac98`.
 
+- [~] Task G8: Review IM1 Module 3 capabilities against the full current lesson bodies and class-period objectives. Correct missing or mixed draft capabilities and exact source references. Preserve stable identities and keep unreviewed relationships inactive.
+
 ## Phase 4 — Implement the minimum shared repairs and five pilots
 
 - [~] Task 4.1: Repair shared projection and registration gaps required by pilots.
   Reuse the current projector and registries. Preserve app ownership. Avoid a new generated-instance framework or broad primitive program.
+  The current interval component repair must await durable submission and describe actual graph coordinates without revealing the classification.
 - [~] Task 4.2: Complete and verify the IM3 reference pilot.
   Connect source, all three modes, generator, renderer, server grading, stored submission, and exact-node evidence. Verify the real student route.
 - [~] Task 4.3: Complete and verify the Precalculus pilot.

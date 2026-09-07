@@ -115,3 +115,17 @@ The constant-interval generator initially used a special case for seed 2 only. A
 Independent IM2 review found missing teacher-first evidence policy, incomplete Guided interaction, repeat entry, and missing return validators. The author is repairing these findings. The canonical rule is `evaluateLearningEvidenceV1` in practice-core. Student acknowledgement does not establish teacher-led exposure. IM1 currently stores selected graded evidence but does not update SRS or mastery. Its full historical-evidence and teacher-first bridge remains open under Tasks 2.3, 3.6, and 4.4. Incorrect grades must remain available for later learning decisions.
 
 IM3 canonical seed and direct-submission publication checks are now implemented by the worker. The worker is resolving seed TypeScript errors caused by the shared optional-answer display schema. The Convex private-answer requirement must remain intact. Business Math implementation is awaiting independent integration review.
+
+## Durable interval submission and current review findings
+
+The previous goal turn stated the active goal. It did not change implementation. This continuation resumed bounded workers and verified the current files.
+
+`b9e7cb21`: the interval component now awaits its submission callback. It disables input during the save and retains answers after failure. Its accessible graph description lists the actual coordinates. It no longer exposes a fixed classification pattern. Two regressions failed before the repair. All 13 focused component and schema tests pass. Coverage is 100 percent for lines and 91.17 percent for branches. Package lint, standalone TypeScript, and build pass.
+
+The affected Precalculus app checks found two stale dashboard query mocks. They now use actual saved mode props for a hypothetical approved query result. The unavailable publication test remains separate. All 16 affected app tests pass. App integration and live verification remain open.
+
+IM1 now stores every graded Guided and Independent attempt as history. It applies the canonical teacher-first decision to mastery eligibility. The worker added a teacher dashboard action, a trusted exposure route, and an exact-node SRS bridge. The author reports 22 backend tests and 25 backend/route tests passing. Independent review is in progress. This report does not approve the implementation or curriculum.
+
+The Business Math review found two release blockers. The generated three-mode path conflicts with the reviewed blueprint. The Independent component reveals the expected answer before the server grade is saved. The author is repairing publication checks and answer disclosure. Task 4.6 remains open.
+
+G8 found six omitted Module 3 objectives and one omitted source example. The worker restored draft identities and exact source references. Several objectives still combine separate capabilities. Source image review and capability splitting remain open. The parent has not yet accepted G8.
