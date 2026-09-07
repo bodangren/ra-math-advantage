@@ -12,4 +12,4 @@ The availability query no longer treats a correct score alone as accepted learni
 
 The parent ran 60 focused tests and five student component tests. All 65 tests pass. App lint, standalone app TypeScript, Convex TypeScript, and production build pass. API module entries were checked with the installed Convex template against 47 local source modules. The existing generated API scaffold remains intact.
 
-The teacher display and authenticated routes remain separate integration groups. No live backend was changed. The positive publication fixtures are tests, not curriculum approval. A real signed-in browser journey remains unverified.
+The teacher display and authenticated routes were integrated in later commits. The positive publication fixtures are tests, not curriculum approval. The parent then verified the draft gate in a real signed-in browser with the existing local demo student. The page showed `This practice is not available.` No curriculum approval or learner attempt was changed. The positive three-mode browser journey remains unverified.

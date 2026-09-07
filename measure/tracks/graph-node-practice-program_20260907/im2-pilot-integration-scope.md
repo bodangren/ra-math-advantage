@@ -123,7 +123,7 @@ The required shared packages are already declared dependencies of the IM2 app:
 
 ## Behavioral Blockers
 
-No verified backend logic blocker remains in the reviewed flow. The 18 main backend tests cover current draft rejection, current publication withdrawal, authentication data, organization scope, class ownership, active enrollment, assignment time, exact activity identity, server grading, canonical teacher replay, conflicting keys, Independent evidence, SRS writes, and SRS replay.
+No verified backend logic blocker remains in the reviewed flow. The 23 main backend tests cover current draft rejection, current publication withdrawal, authentication data, organization scope, class ownership, active enrollment, assignment time, exact activity identity, server grading, canonical teacher replay, conflicting keys, Independent evidence, SRS writes, and SRS replay.
 
 Two verification gaps remain before this pilot is ready for a production release:
 
@@ -138,7 +138,7 @@ Curriculum approval is separate from code integration. Keep the selected node, b
 
 Browser acceptance is also pending. Test the direct `/student/practice` page, Guided hint timing, durable retry, teacher confirmation, and Independent completion after the code groups compile together. The current navigation does not link to `/student/practice`. Treat route discovery as a product integration decision, not as a backend security defect.
 
-The IM2 front end currently listens on port 3002. No IM2 Convex backend listens on the ports 3222 or 3223 that `scripts/dev-stack.mjs` expects. The service on ports 3210 and 3211 belongs to `apps/danielson`. Do not use that service for IM2 acceptance. This missing IM2 backend is the current browser acceptance blocker. This audit did not write to a live backend.
+The parent rechecked the local runtime after integration. Frontend port 3002 and backend ports 3222 and 3223 are active. The backend process working directory is `apps/integrated-math-2`. The earlier missing-backend observation is resolved. Do not use the Danielson backend on ports 3210 and 3211 for IM2 acceptance.
 
 ## Verification Order
 
@@ -182,4 +182,4 @@ Verification results:
 
 The parent corrected the concurrent projector assertion. The current 65 focused tests, app lint, app TypeScript, Convex TypeScript, and production build pass.
 
-The browser acceptance blocker remains. No IM2 Convex backend listens on ports 3222 or 3223.
+The parent signed in through the real login page with the existing local demo student. `/student/practice` showed its title and `This practice is not available.` This verifies the current draft gate in the real app. No new account, approval, seed, or attempt was created. The positive three-mode journey still requires approved curriculum and activity publication.
