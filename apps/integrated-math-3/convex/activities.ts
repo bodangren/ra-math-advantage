@@ -1,4 +1,4 @@
-import { internalMutation, internalQuery, type MutationCtx } from "./_generated/server";
+import { internalMutation, internalQuery, type MutationCtx, type QueryCtx } from "./_generated/server";
 import { v } from "convex/values";
 import { internal } from "./_generated/api";
 import { practiceSubmissionEnvelopeValidator } from "./practice_submission";
@@ -737,4 +737,49 @@ export const createServerOwnedSubmission = internalMutation({
     ...args,
     submissionData: practiceSubmissionEnvelopeSchema.parse(args.submissionData),
   }),
+});
+
+export async function getSelectedWorkedAcknowledgementHandler(
+  ctx: QueryCtx,
+  args: { userId: Id<"profiles">; activityId: Id<"activities"> },
+  publication: Im3PilotPublication = currentIm3PilotPublication,
+) {
+  const profile = await ctx.db.get(args.userId);
+  const credential = profile
+    ? await ctx.db.query("auth_credentials")
+      .withIndex("by_username", (query) => query.eq("username", profile.username))
+      .unique()
+    : null;
+  const activity = await ctx.db.get(args.activityId);
+  if (
+    !profile || profile.role !== "student" || !credential || !credential.isActive
+    || credential.profileId !== profile._id || credential.username !== profile.username
+    || credential.role !== profile.role || credential.organizationId !== profile.organizationId
+    || !activity || !isIm3GraphPilotPublished(publication) || !isSelectedWorkedActivity(activity)
+  ) return null;
+  const submission = await ctx.db.query("activity_submissions")
+    .withIndex("by_user_activity_idempotency_key", (query) => query
+      .eq("userId", args.userId)
+      .eq("activityId", args.activityId)
+      .eq("idempotencyKey", `worked-example:${String(args.activityId)}`))
+    .unique();
+  if (
+    !submission || submission.masteryContractVersion !== "learning-evidence.v1"
+    || !Number.isInteger(submission.attemptOrdinal) || (submission.attemptOrdinal ?? 0) < 1
+    || !Number.isFinite(submission.submittedAt)
+    || submission.submissionData.activityId !== String(args.activityId)
+    || submission.submissionData.attemptNumber !== submission.attemptOrdinal
+    || submission.score !== undefined || submission.maxScore !== undefined || submission.gradedAt !== undefined
+    || !isSelectedWorkedAcknowledgement(submission.submissionData as PracticeSubmissionEnvelope)
+  ) return null;
+  return { submissionId: submission._id, acknowledged: true as const };
+}
+
+export const getSelectedWorkedAcknowledgement = internalQuery({
+  args: { userId: v.id("profiles"), activityId: v.id("activities") },
+  returns: v.union(v.null(), v.object({
+    submissionId: v.id("activity_submissions"),
+    acknowledged: v.literal(true),
+  })),
+  handler: getSelectedWorkedAcknowledgementHandler,
 });

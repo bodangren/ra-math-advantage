@@ -100,3 +100,7 @@ Verification after the repair:
 The owner added four lookup corruption tests. The original query accepted an envelope for another physical activity, a missing learning-evidence contract, a zero ordinal, and a mismatched envelope attempt. All four tests failed before the repair. The lookup now checks the exact physical envelope, contract, positive server ordinal, matching attempt, and finite server timestamp.
 
 The combined current app check passes 138 tests, lint, standalone TypeScript, and build. These tests include the rendered caller and actual route dispatch. Backend handler tests use controlled database fixtures. They do not prove a deployed or approved student journey. Selected-only HEAD integration remains open.
+
+## Selected patch integration
+
+The owner reviewed `/tmp/im3-q12-selected-head.patch`. The isolated patch contains only the selected quadratic Worked caller, lookup, route, client, and tests. It removes the untrusted activity-completion callback. It preserves the saved payload on retry and uses the existing lookup to recover an ambiguous response. The isolated 33-test suite and lint pass. The main client reuse passes 17 tests, lint, standalone TypeScript, and build. Isolated TypeScript still reports the three known shared-output baseline errors. No curriculum approval or deployed student journey is claimed.

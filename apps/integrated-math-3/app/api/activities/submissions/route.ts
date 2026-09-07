@@ -1,7 +1,36 @@
 import { NextResponse } from "next/server";
 import { practiceSubmissionEnvelopeSchema } from "@math-platform/practice-core/contract";
 import { requireStudentRequestClaims } from "@/lib/auth/server";
-import { fetchInternalMutation, internal } from "@/lib/convex/server";
+import { fetchInternalMutation, fetchInternalQuery, internal } from "@/lib/convex/server";
+
+export async function GET(request: Request) {
+  const claims = await requireStudentRequestClaims(request);
+  if (claims instanceof Response) return claims;
+  const activityId = new URL(request.url).searchParams.get("activityId")?.trim();
+  if (!activityId) {
+    return NextResponse.json({ error: "activityId is required" }, {
+      status: 400,
+      headers: { "Cache-Control": "private, no-store" },
+    });
+  }
+  try {
+    const result = await fetchInternalQuery(
+      internal.activities.getSelectedWorkedAcknowledgement,
+      {
+        userId: claims.sub as `profiles:${string}`,
+        activityId: activityId as `activities:${string}`,
+      },
+    );
+    return NextResponse.json(result ?? { acknowledged: false }, {
+      headers: { "Cache-Control": "private, no-store" },
+    });
+  } catch {
+    return NextResponse.json({ error: "Failed to read Worked acknowledgement" }, {
+      status: 503,
+      headers: { "Cache-Control": "private, no-store" },
+    });
+  }
+}
 
 function finitePoints(value: unknown): boolean {
   return (

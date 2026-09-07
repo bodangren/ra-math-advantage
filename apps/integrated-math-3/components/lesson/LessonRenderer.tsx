@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { LessonPageLayout, type PhaseNavItem } from '@/components/textbook/LessonPageLayout';
 import { LessonStepper, type StepperPhase } from './LessonStepper';
 import { PhaseRenderer, type PhaseSection } from './PhaseRenderer';
@@ -8,9 +8,11 @@ import { PhaseCompleteButton } from './PhaseCompleteButton';
 import { LessonSkeleton } from './LessonSkeleton';
 import { LessonCompleteScreen } from './LessonCompleteScreen';
 import { LessonChatbot } from '@/components/student/LessonChatbot';
-import { submitActivity, type PracticeMode, type SubmitActivityInput } from '@/lib/activities/submission';
-import { isPracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
+import { createServerOwnedActivitySubmission, getSelectedWorkedAcknowledgement, submitActivity, type PracticeMode, type SubmitActivityInput } from '@/lib/activities/submission';
+import { toConvexActivityId } from '@math-platform/practice-core';
+import { isPracticeSubmissionEnvelope, type PracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
 import type { PhaseType } from '@math-platform/activity-runtime/phase-types';
+import { IM3_PILOT_NODE, IM3_TEACHER_LED_ACTIVITY_ID } from '@/lib/practice/learning-evidence-pilot';
 
 export interface LessonPhase {
   phaseId: string;
@@ -61,6 +63,10 @@ export function LessonRenderer({
   const [completedActivities, setCompletedActivities] = useState<Set<string>>(new Set());
   const [completedPhases, setCompletedPhases] = useState<Set<number>>(new Set());
   const [showLessonComplete, setShowLessonComplete] = useState(false);
+  const workedPayloads = useRef(new Map<string, PracticeSubmissionEnvelope>());
+  const workedInFlight = useRef(new Set<string>());
+  const [workedErrorActivityId, setWorkedErrorActivityId] = useState<string | null>(null);
+  const [savingWorkedActivityId, setSavingWorkedActivityId] = useState<string | null>(null);
 
   const requiredActivityIds = useMemo(() => {
     if (!activePhase) return [];
@@ -75,6 +81,33 @@ export function LessonRenderer({
   }, [requiredActivityIds, completedActivities]);
 
   const isPhaseGated = requiredActivityIds.length > 0 && !allActivitiesComplete && !activePhase?.completed;
+
+  const selectedWorkedSource = useMemo<Extract<PhaseSection, { sectionType: 'activity' }> | null>(() => {
+    if (!activePhase || activePhase.phaseType !== 'worked_example' || mode === 'teaching') return null;
+    return activePhase.sections.find((section): section is Extract<PhaseSection, { sectionType: 'activity' }> => (
+      section.sectionType === 'activity'
+      && section.content.componentKey === 'graphing-explorer'
+      && section.content.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID
+      && section.content.masteryNodeId === IM3_PILOT_NODE
+      && section.content.learningEvidenceMode === 'worked_example'
+      && section.content.srsEligible === false
+      && !completedActivities.has(section.content.activityId)
+    )) ?? null;
+  }, [activePhase, completedActivities, mode]);
+
+  useEffect(() => {
+    if (!selectedWorkedSource) return;
+    let active = true;
+    void getSelectedWorkedAcknowledgement(selectedWorkedSource.content.activityId).then((acknowledged) => {
+      if (active && acknowledged) {
+        setCompletedActivities((previous) => new Set([
+          ...previous,
+          selectedWorkedSource.content.activityId,
+        ]));
+      }
+    });
+    return () => { active = false; };
+  }, [selectedWorkedSource]);
 
   useEffect(() => {
     const phaseNumbers = phases.map(p => p.phaseNumber).sort((a, b) => a - b);
@@ -136,12 +169,50 @@ export function LessonRenderer({
     }
   }, [mode]);
 
-  const handleActivityComplete = useCallback((activityId: string) => {
-    setCompletedActivities(prev => {
-      if (prev.has(activityId)) return prev;
-      return new Set([...prev, activityId]);
-    });
-  }, []);
+  const deliverSelectedWorked = useCallback(async () => {
+    if (!selectedWorkedSource) return;
+    const activityId = selectedWorkedSource.content.activityId;
+    if (workedInFlight.current.has(activityId)) return;
+    const payload = workedPayloads.current.get(activityId) ?? {
+      contractVersion: 'practice.v1',
+      activityId: toConvexActivityId(activityId),
+      mode: 'worked_example',
+      status: 'submitted',
+      attemptNumber: 1,
+      submittedAt: new Date().toISOString(),
+      answers: {},
+      parts: [],
+    } satisfies PracticeSubmissionEnvelope;
+    workedPayloads.current.set(activityId, payload);
+    workedInFlight.current.add(activityId);
+    setSavingWorkedActivityId(activityId);
+    setWorkedErrorActivityId(null);
+    try {
+      const result = await createServerOwnedActivitySubmission({
+        activityId: payload.activityId,
+        mode: payload.mode,
+        status: payload.status,
+        attemptNumber: payload.attemptNumber,
+        submittedAt: payload.submittedAt,
+        answers: payload.answers,
+        parts: payload.parts,
+        idempotencyKey: `worked-example:${activityId}`,
+      });
+      if (!result.success) throw new Error(result.error);
+      workedPayloads.current.delete(activityId);
+      setCompletedActivities((previous) => new Set([...previous, activityId]));
+    } catch {
+      if (await getSelectedWorkedAcknowledgement(activityId)) {
+        workedPayloads.current.delete(activityId);
+        setCompletedActivities((previous) => new Set([...previous, activityId]));
+      } else {
+        setWorkedErrorActivityId(activityId);
+      }
+    } finally {
+      workedInFlight.current.delete(activityId);
+      setSavingWorkedActivityId(null);
+    }
+  }, [selectedWorkedSource]);
 
   const handlePhaseStatusChange = useCallback((status: 'not_started' | 'in_progress' | 'completed' | 'skipped') => {
     if ((status === 'completed' || status === 'skipped') && activePhase) {
@@ -236,8 +307,26 @@ export function LessonRenderer({
               phaseNumber={activePhase.phaseNumber}
               mode={mode}
               onActivitySubmit={handleActivitySubmit}
-              onActivityComplete={handleActivityComplete}
             />
+          )}
+
+          {selectedWorkedSource && workedErrorActivityId !== selectedWorkedSource.content.activityId && (
+            <button
+              type="button"
+              disabled={savingWorkedActivityId === selectedWorkedSource.content.activityId}
+              onClick={() => void deliverSelectedWorked()}
+            >
+              {savingWorkedActivityId === selectedWorkedSource.content.activityId
+                ? 'Saving your review…'
+                : 'I reviewed this worked example'}
+            </button>
+          )}
+
+          {workedErrorActivityId === selectedWorkedSource?.content.activityId && (
+            <div>
+              <p role="alert">We could not save your progress.</p>
+              <button type="button" onClick={() => void deliverSelectedWorked()}>Try again</button>
+            </div>
           )}
 
           {!isTeachingMode && activePhase && (

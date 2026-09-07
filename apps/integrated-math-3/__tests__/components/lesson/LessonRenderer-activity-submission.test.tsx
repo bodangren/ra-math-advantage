@@ -173,9 +173,9 @@ describe('LessonRenderer - Activity Submission Flow', () => {
       expect(screen.getByTestId('phase-renderer')).toHaveAttribute('data-has-on-submit', 'true');
     });
 
-    it('passes onActivityComplete callback to PhaseRenderer', () => {
+    it('does not pass an untrusted completion callback to PhaseRenderer', () => {
       render(<LessonRenderer {...defaultProps} />);
-      expect(screen.getByTestId('phase-renderer')).toHaveAttribute('data-has-on-complete', 'true');
+      expect(screen.getByTestId('phase-renderer')).toHaveAttribute('data-has-on-complete', 'false');
     });
 
     it('calls submitActivity when activity submits', async () => {

@@ -10,6 +10,7 @@ export interface SubmitActivityInput {
   answers: Record<string, unknown>;
   attemptNumber: number;
   status?: PracticeSubmissionStatus;
+  submittedAt?: string;
   parts?: PracticeSubmissionEnvelope['parts'];
   artifact?: Record<string, unknown>;
   interactionHistory?: unknown[];
@@ -17,6 +18,7 @@ export interface SubmitActivityInput {
   studentFeedback?: string;
   teacherSummary?: string;
   timing?: PracticeTimingSummary;
+  idempotencyKey?: string;
 }
 
 export interface SubmitActivityResultSuccess {
@@ -33,6 +35,51 @@ export interface SubmitActivityResultError {
 
 export type SubmitActivityResult = SubmitActivityResultSuccess | SubmitActivityResultError;
 
+/** Creates one server-owned submission without learning-evidence progression. */
+export async function createServerOwnedActivitySubmission(
+  input: SubmitActivityInput,
+): Promise<SubmitActivityResult> {
+  const idempotencyKey = input.idempotencyKey?.trim();
+  try {
+    const envelope = buildPracticeSubmissionEnvelope({
+      activityId: input.activityId,
+      mode: input.mode,
+      status: input.status,
+      attemptNumber: input.attemptNumber,
+      submittedAt: input.submittedAt,
+      answers: input.answers,
+      parts: input.parts,
+    });
+    const response = await fetch('/api/activities/submissions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...(idempotencyKey ? { 'Idempotency-Key': idempotencyKey } : {}),
+      },
+      body: JSON.stringify(envelope),
+    });
+    const data = await response.json();
+    if (!response.ok || typeof data.submissionId !== 'string') {
+      return { success: false, error: data.error || 'Submission creation failed' };
+    }
+    return { success: true, submissionId: data.submissionId };
+  } catch (error) {
+    return { success: false, error: error instanceof Error ? error.message : 'Unknown error' };
+  }
+}
+
+/** Reads one authenticated selected Worked acknowledgement. */
+export async function getSelectedWorkedAcknowledgement(activityId: string): Promise<boolean> {
+  try {
+    const response = await fetch(`/api/activities/submissions?activityId=${encodeURIComponent(activityId)}`);
+    if (!response.ok) return false;
+    const data = await response.json();
+    return data?.acknowledged === true;
+  } catch {
+    return false;
+  }
+}
+
 /** Submits a practice activity to the server and returns a success or error result. */
 export async function submitActivity(input: SubmitActivityInput): Promise<SubmitActivityResult> {
   try {
@@ -41,6 +88,7 @@ export async function submitActivity(input: SubmitActivityInput): Promise<Submit
       mode: input.mode,
       status: input.status,
       attemptNumber: input.attemptNumber,
+      submittedAt: input.submittedAt,
       answers: input.answers,
       parts: input.parts,
       artifact: input.artifact,
