@@ -54,7 +54,10 @@ async function createHarness() {
   const getServerSession = vi.fn(async () => ({
     user: { id: AUTHENTICATED_LEARNER_ID },
   }));
-  const submitLearningEvidence = vi.fn(async () => ({
+  const submitLearningEvidence = vi.fn(async (_input: {
+    learnerId: string;
+    submissionId: string;
+  }) => ({
     ...SAFE_APPLIED_RESULT,
     submission: { submissionData: { rawAnswer: 'must-not-leave-the-server' } },
   }));
