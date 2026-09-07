@@ -2695,7 +2695,11 @@
     },
     {
       "nodeId": "math.im1.skill.2.1.translate-verbal-sentences-and-real-world-situations-into-al",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im1.example.2.1.001",
+        "math.im1.example.2.1.002",
+        "math.im1.example.2.1.003"
+      ],
       "alignmentNodeIds": [
         "math.standard.ccss.a-ced-a-1",
         "math.standard.ccss.a-ced-a-2"
@@ -2724,7 +2728,10 @@
     },
     {
       "nodeId": "math.im1.skill.2.2.solve-one-step-equations-involving-addition-subtraction-mult",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im1.example.2.2.007",
+        "math.im1.example.2.2.008"
+      ],
       "alignmentNodeIds": [
         "math.standard.ccss.7-ee-b-3",
         "math.standard.ccss.8-ee-c-7"
@@ -2753,7 +2760,9 @@
     },
     {
       "nodeId": "math.im1.skill.2.3.solve-multi-step-linear-equations-using-properties-of-equali",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im1.example.2.3.012"
+      ],
       "alignmentNodeIds": [
         "math.standard.ccss.a-ced-a-4",
         "math.standard.ccss.a-rei-b-3"
@@ -2782,7 +2791,10 @@
     },
     {
       "nodeId": "math.im1.skill.2.4.solve-linear-equations-that-have-the-variable-on-both-sides",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im1.example.2.4.016",
+        "math.im1.example.2.4.017"
+      ],
       "alignmentNodeIds": [
         "math.standard.ccss.a-rei-a-1",
         "math.standard.ccss.a-rei-b-3"
@@ -2811,7 +2823,9 @@
     },
     {
       "nodeId": "math.im1.skill.2.5.graph-the-solution-set-of-an-absolute-value-equation-on-a-nu",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im1.example.2.5.021"
+      ],
       "alignmentNodeIds": [
         "math.standard.ccss.a-ced-a-1",
         "math.standard.ccss.a-rei-a-1"
@@ -2869,7 +2883,10 @@
     },
     {
       "nodeId": "math.im1.skill.2.6.solve-proportions-algebraically-including-those-with-variabl",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im1.example.2.6.022",
+        "math.im1.example.2.6.023"
+      ],
       "alignmentNodeIds": [
         "math.standard.ccss.7-ee-b-3",
         "math.standard.ccss.a-ced-a-1"
@@ -2898,7 +2915,12 @@
     },
     {
       "nodeId": "math.im1.skill.2.7.solve-literal-equations-and-formulas-for-a-specified-variabl",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im1.example.2.7.027",
+        "math.im1.example.2.7.028",
+        "math.im1.example.2.7.029",
+        "math.im1.example.2.7.030"
+      ],
       "alignmentNodeIds": [
         "math.standard.ccss.a-ced-a-4",
         "math.standard.ccss.a-rei-b-3"
@@ -4481,6 +4503,127 @@
       "metadata": {
         "course": "im1",
         "module": "9",
+        "lesson": "7"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.2.1.translate-algebraic-equations-and-formulas-into-complete-ver",
+      "sourceNodeIds": [
+        "math.im1.example.2.1.004",
+        "math.im1.example.2.1.005",
+        "math.im1.example.2.1.006"
+      ],
+      "alignmentNodeIds": [],
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM1 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "2",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.2.2.write-and-solve-one-step-equations-to-model-real-world-situa",
+      "sourceNodeIds": [
+        "math.im1.example.2.2.009",
+        "math.im1.example.2.2.010",
+        "math.im1.example.2.2.011"
+      ],
+      "alignmentNodeIds": [],
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM1 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "2",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.2.3.solve-literal-equations-for-a-specified-variable-and-solve-e",
+      "sourceNodeIds": [
+        "math.im1.example.2.3.015"
+      ],
+      "alignmentNodeIds": [],
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM1 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "2",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.2.4.determine-whether-an-equation-has-one-solution-no-solution-o",
+      "sourceNodeIds": [
+        "math.im1.example.2.4.018",
+        "math.im1.example.2.4.019"
+      ],
+      "alignmentNodeIds": [],
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM1 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "2",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.2.6.apply-proportions-to-percent-situations-scaling-problems-and",
+      "sourceNodeIds": [
+        "math.im1.example.2.6.026"
+      ],
+      "alignmentNodeIds": [],
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM1 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "2",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.2.7.use-dimensional-analysis-to-convert-between-units-of-measure",
+      "sourceNodeIds": [
+        "math.im1.example.2.7.031",
+        "math.im1.example.2.7.032",
+        "math.im1.example.2.7.033"
+      ],
+      "alignmentNodeIds": [],
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM1 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "2",
         "lesson": "7"
       }
     }
