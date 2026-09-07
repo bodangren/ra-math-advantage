@@ -118,18 +118,34 @@ Visualization projection rules:
 7. Do not make shared packages import from `apps/` or `convex/_generated/`.
 8. Render student, parent, and teacher graph visualizations from role-specific projections; do not have UI components infer canonical graph truth.
 
-## Concept Aggregator Resolution Rule
+## Practice and evidence target identity
 
-A `concept` node bundles multiple `skill` children via `contains` edges. Blueprints may target either a skill or a concept. When a blueprint targets a `concept`, the activity-map projection MUST resolve the concept to a single child skill before emitting practice rows so downstream consumers (SRS, planner, visualization, component props) only deal with `skill`-shaped rows.
+A concept can describe a group of capabilities. A concept blueprint does not
+establish that one activity assesses every capability in that group.
 
-Resolution algorithm (implemented in `packages/knowledge-space-practice/src/projections/activity-map.ts`):
+The activity projector accepts a `skill` or `task_blueprint` target. It keeps
+the blueprint node ID as the activity node ID. It does not select a child skill
+or copy concept work to all children. Each assessed child needs its own
+blueprint and grading contract. Concept blueprints produce no activity rows.
 
-1. `findChildSkills(conceptNode, nodes, edges)` returns direct `skill` children via `contains` edges where the concept is the source.
-2. `selectSkill(childSkills)` picks the alphabetically first child skill (deterministic, reviewer-diff stable).
-3. `projectActivityMap` rewrites the row's `nodeId` and `stableActivityId` to use the resolved skill id.
-4. If a concept has zero child skills, the projection skips the blueprint (caller is expected to log a review-queue item).
+The existing graph endpoint rules still control valid containment. This
+practice correction does not add a concept containment exception or modify the
+vendored KST+SRS specification. Source review must resolve each concept's meaning
+before graph authors change its type or relationships.
 
-Concept nodes MUST NOT appear in `blueprints.json` files emitted by domain content — only `skill` and `task_blueprint` nodes are valid blueprint targets. Cleanup is automated by `scripts/remediate-concept-blueprints.ts` which removes any blueprint referencing a concept node id.
+The projector validates each mode specification with its existing schema.
+An empty object cannot create a practice row. For each valid mode, it uses the
+matching `rendererModeMap` entry, then `rendererKey` as a fallback. A missing
+renderer produces no row. The stable activity ID remains the node ID followed
+by the practice mode.
+
+SRS identity links and teacher equivalence groups require an approved
+`equivalent_to` edge and two approved skill endpoints in the supplied catalog.
+Draft and reviewed suggestions remain source-review inputs. They do not
+establish accepted capability identity. Cross-course consumers must supply the
+complete endpoint catalog. A missing foreign endpoint produces no identity
+link. This restriction does not approve other graph relationships or activate
+new practice targets.
 
 ## Current Measure Tracks
 

@@ -532,10 +532,7 @@ describe('Concept Aggregator resolution', () => {
     expect(selectSkill([])).toBeNull();
   });
 
-  it('projectActivityMap emits one row per child skill for a 2-skill concept (FR-13)', () => {
-    // 2-skill concept, 1 spec → 2 rows (one per child skill). Replaces
-    // the prior test that asserted 1 row (the FR-20 anti-pattern that
-    // certified the sibling-dropping limitation).
+  it('projectActivityMap emits no child rows for a 2-skill concept', () => {
     const blueprint: KnowledgeBlueprint = {
       nodeId: conceptNode.id,
       sourceNodeIds: [],
@@ -551,25 +548,15 @@ describe('Concept Aggregator resolution', () => {
       reviewStatus: 'draft',
       metadata: {},
     };
-    // Use only 2 of the 3 skills to mirror the 2-skill original fixture
-    // shape (so the assertion is "2 rows for 2 child skills" — direct
-    // count, not a derived cardinality).
     const twoSkillEdges = conceptEdges.filter((e) => e.targetId !== skillC.id);
     const nodes = [conceptNode, skillA, skillB];
     const rows = projectActivityMap(nodes, twoSkillEdges, [blueprint]);
-    expect(rows).toHaveLength(2);
-    const rowNodeIds = rows.map((r) => r.nodeId).sort();
-    expect(rowNodeIds).toEqual([skillA.id, skillB.id].sort());
-    for (const r of rows) {
-      expect(r.stableActivityId).toBe(`${r.nodeId}.independent_practice`);
-    }
+    expect(rows).toEqual([]);
   });
 
-  it('projectActivityMap emits one row per child skill for a 3-skill concept (FR-13)', () => {
-    // 3-skill concept, 1 spec → 3 rows (one per child skill). The full
-    // unit-circle-trig fixture (sin, cos, tan) covers all 3.
+  it('projectActivityMap emits only the row for an exact child-owned blueprint', () => {
     const blueprint: KnowledgeBlueprint = {
-      nodeId: conceptNode.id,
+      nodeId: skillA.id,
       sourceNodeIds: [],
       alignmentNodeIds: [],
       rendererKey: 'concept-explorer',
@@ -578,20 +565,17 @@ describe('Concept Aggregator resolution', () => {
         prompt: 'Worked example for unit circle trig',
         givens: [],
         target: {},
-        steps: [],
-        explanation: '',
+        steps: [{ description: 'Show the exact child skill.' }],
+        explanation: 'This activity belongs only to the selected skill.',
       },
       reviewStatus: 'draft',
       metadata: {},
     };
     const nodes = [conceptNode, skillA, skillB, skillC];
     const rows = projectActivityMap(nodes, conceptEdges, [blueprint]);
-    expect(rows).toHaveLength(3);
-    const rowNodeIds = rows.map((r) => r.nodeId).sort();
-    expect(rowNodeIds).toEqual([skillA.id, skillB.id, skillC.id].sort());
-    for (const r of rows) {
-      expect(r.mode).toBe('worked_example');
-    }
+    expect(rows).toHaveLength(1);
+    expect(rows[0]?.nodeId).toBe(skillA.id);
+    expect(rows[0]?.stableActivityId).toBe(`${skillA.id}.worked_example`);
   });
 
   it('projectActivityMap emits zero rows for a concept with no child skills (FR-13 edge case)', () => {
@@ -623,9 +607,7 @@ describe('Concept Aggregator resolution', () => {
     expect(rows).toHaveLength(0);
   });
 
-  it('projectActivityMap emits exactly one row for a 1-skill concept (regression guard)', () => {
-    // 1-skill concept → 1 row. This is the limit case for the FR-13
-    // fix; the N-row behavior must collapse to 1 row when N=1.
+  it('projectActivityMap emits no child row for a 1-skill concept', () => {
     const skillOnly: KnowledgeSpaceNode = {
       id: 'math.precalc.skill.unit-circle.tan-definition',
       domain: 'math',
@@ -670,8 +652,7 @@ describe('Concept Aggregator resolution', () => {
     };
     const nodes = [singleConcept, skillOnly];
     const rows = projectActivityMap(nodes, singleEdge, [blueprint]);
-    expect(rows).toHaveLength(1);
-    expect(rows[0]?.nodeId).toBe(skillOnly.id);
+    expect(rows).toEqual([]);
   });
 });
 
