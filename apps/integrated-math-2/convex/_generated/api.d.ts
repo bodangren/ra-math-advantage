@@ -48,6 +48,7 @@ import type * as seed_seed_module_7_lessons from "../seed/seed_module_7_lessons.
 import type * as seed_seed_module_8_lessons from "../seed/seed_module_8_lessons.js";
 import type * as seed_seed_module_9_lessons from "../seed/seed_module_9_lessons.js";
 import type * as seed_seed_objective_policies from "../seed/seed_objective_policies.js";
+import type * as seed_seed_perpendicular_bisector_pilot from "../seed/seed_perpendicular_bisector_pilot.js";
 import type * as seed_seed_problem_families from "../seed/seed_problem_families.js";
 import type * as seed_seed_standards from "../seed/seed_standards.js";
 import type * as seed_standards from "../seed/standards.js";
@@ -102,6 +103,7 @@ declare const fullApi: ApiFromModules<{
   "seed/seed_module_8_lessons": typeof seed_seed_module_8_lessons;
   "seed/seed_module_9_lessons": typeof seed_seed_module_9_lessons;
   "seed/seed_objective_policies": typeof seed_seed_objective_policies;
+  "seed/seed_perpendicular_bisector_pilot": typeof seed_seed_perpendicular_bisector_pilot;
   "seed/seed_problem_families": typeof seed_seed_problem_families;
   "seed/seed_standards": typeof seed_seed_standards;
   "seed/standards": typeof seed_standards;
