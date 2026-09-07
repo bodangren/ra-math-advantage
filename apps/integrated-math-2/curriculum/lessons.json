@@ -4081,31 +4081,31 @@
         "phaseNumber": 5,
         "title": "Example 1 — Solve [3(x + 4) = 2x + 15]",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Distribute\n\n\n[\n3x + 12 = 2x + 15\n]\n\n\n### Step 2: Move Variable Terms to One Side\n\nSubtract [2x] from both sides:\n\n\n[\n3x - 2x + 12 = 15\n]\n\n\n\n[\nx + 12 = 15\n]\n\n\n### Step 3: Move Constants to the Other Side\n\nSubtract 12 from both sides:\n\n\n[\nx = 3\n]\n\n\n### Step 4: Verify\n\n\n[\n3(3 + 4) = 3(7) = 21\n]\n\n\n\n$$\n2(3) + 15 = 6 + 15 = 21 \\checkmark\n$$\n✅ Answer: [x = 3].\n\n---"
+        "markdown": "### Problem\n\nSolve 3(x+4)=2x+15 and check the result.\n\n### Solution\n\nDistribute to get 3x+12=2x+15. Subtract 2x and then 12 to obtain x=3. Substitution gives 3(7)=21 and 2(3)+15=21, so the solution checks."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Solve [5x - 3 = 2x + 9]",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Move Variable Terms to One Side\n\nSubtract [2x] from both sides:\n\n\n[\n5x - 2x - 3 = 9\n]\n\n\n\n[\n3x - 3 = 9\n]\n\n\n### Step 2: Move Constants to the Other Side\n\nAdd 3 to both sides:\n\n\n[\n3x = 12\n]\n\n\n### Step 3: Divide\n\n\n$$\nx = \\frac{12}{3} = 4\n$$\n### Step 4: Verify\n\n\n[\n5(4) - 3 = 20 - 3 = 17\n]\n\n\n\n$$\n2(4) + 9 = 8 + 9 = 17 \\checkmark\n$$\n✅ Answer: [x = 4].\n\n---"
+        "markdown": "### Problem\n\nSolve 5x-3=2x+9 and check the result.\n\n### Solution\n\nSubtract 2x to get 3x-3=9. Add 3, then divide by 3, to obtain x=4. Both sides of the original equation equal 17."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Solve Equation with Fractions",
         "phaseType": "worked_example",
-        "markdown": "Solve $\\frac{2}{3}x + 5 = \\frac{1}{2}x + 7$.\n\n### Step 1: Clear Fractions by Multiplying by the LCD\n\nThe LCD of 3 and 2 is 6. Multiply every term by 6:\n\n\n$$\n6 \\cdot \\frac{2}{3}x + 6 \\cdot 5 = 6 \\cdot \\frac{1}{2}x + 6 \\cdot 7\n$$\n[\n4x + 30 = 3x + 42\n]\n\n\n### Step 2: Move Variable Terms\n\nSubtract [3x] from both sides:\n\n\n[\nx + 30 = 42\n]\n\n\n### Step 3: Solve\n\n\n[\nx = 42 - 30 = 12\n]\n\n\n### Step 4: Verify\n\n\n$$\n\\frac{2}{3}(12) + 5 = 8 + 5 = 13\n$$\n$$\n\\frac{1}{2}(12) + 7 = 6 + 7 = 13 \\checkmark\n$$\n✅ Answer: [x = 12].\n\n---"
+        "markdown": "### Problem\n\nSolve $(2/3)x+5=(1/2)x+7$.\n\n### Solution\n\nMultiply every term by 6 to get 4x+30=3x+42. Subtract 3x and then 30 to obtain x=12. Substitution in the original equation gives 13 on both sides."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — No Solution vs. Infinite Solutions",
         "phaseType": "worked_example",
-        "markdown": "Solve each equation and classify.\n\n**(a)** [2(x + 3) = 2x + 7]\n\n**(b)** [4(x - 1) + 2 = 4x - 2]\n\n### Step 1: Solve (a)\n\n\n[\n2x + 6 = 2x + 7\n]\n\n\nSubtract [2x] from both sides:\n\n\n[\n6 = 7\n]\n\n\nThis is **false** for all [x]. **No solution.**\n\n### Step 2: Solve (b)\n\n\n[\n4x - 4 + 2 = 4x - 2\n]\n\n\n\n[\n4x - 2 = 4x - 2\n]\n\n\nSubtract [4x] from both sides:\n\n\n[\n-2 = -2\n]\n\n\nThis is **true** for all [x]. **Infinitely many solutions.**\n\n### Step 3: Verify (a)\n\nNo value of [x] makes [2(x + 3) = 2x + 7] true, since [2x + 6] is always 1 less than [2x + 7].\n\n### Step 4: Verify (b)\n\nFor any value of [x], both sides equal [4x - 2]. Every real number is a solution.\n\n✅ Answer: (a) **No solution**; (b) **Infinitely many solutions**.\n\n---"
+        "markdown": "### Problem\n\nClassify the solution sets of (a) 2(x+3)=2x+7 and (b) 4(x-1)+2=4x-2.\n\n### Solution\n\n(a) Expansion and subtraction of 2x give 6=7, which is false. There is no solution. (b) Both sides simplify to 4x-2. Every real x is a solution."
       },
       {
         "phaseNumber": 9,
         "title": "Example 5 — Real-World: Solve for Break-Even Point",
         "phaseType": "worked_example",
-        "markdown": "A company sells widgets for [15] each. The cost to produce [x] widgets is [C(x) = 5x + 200]. Find the break-even point.\n\n### Step 1: Write the Revenue Function\n\n\n[\nR(x) = 15x\n]\n\n\n### Step 2: Set Revenue Equal to Cost\n\n\n[\n15x = 5x + 200\n]\n\n\n### Step 3: Solve\n\n\n[\n15x - 5x = 200\n]\n\n\n\n[\n10x = 200\n]\n\n\n\n[\nx = 20\n]\n\n\n### Step 4: Verify\n\n\n[\nR(20) = 15(20) = 300\n]\n\n\n\n$$\nC(20) = 5(20) + 200 = 100 + 200 = 300 \\checkmark\n$$\nRevenue equals cost at [x = 20].\n\n### Step 5: Interpret\n\nThe company must sell **20 widgets** to break even. At that point, both revenue and cost are [300]. Selling more than 20 generates profit; selling fewer results in a loss.\n\n✅ Answer: Break-even at **[x = 20] widgets** (revenue = cost = \\$300).\n\n---"
+        "markdown": "### Problem\n\nA company sells each item for 15 dollars. Producing x items costs C(x)=5x+200 dollars. Assume every produced item is sold. Find the break-even quantity.\n\n### Solution\n\nRevenue is R(x)=15x. Set revenue equal to cost: 15x=5x+200. Then 10x=200, so x=20 items. Revenue and cost both equal 300 dollars at this quantity."
       },
       {
         "phaseNumber": 10,
@@ -4161,25 +4161,25 @@
         "phaseNumber": 5,
         "title": "Example 1 — Solve Equations with One Absolute Value",
         "phaseType": "worked_example",
-        "markdown": "Solve each equation. Check your solutions.\n\n**1.** [|8 + p| = 2p - 3]\n\nBreak into cases: [8 + p = 2p - 3] or [8 + p = -(2p - 3)]\n\nSolve each case and check for extraneous solutions.\n\n**2.** [|4w - 1| = 5w + 37]\n\n### Step 1: Set Up Cases\n\nSince [5w + 37] must be non-negative for a solution to exist (because absolute value equals it), first find where [5w + 37 >= 0].\n\n### Step 2: Solve Each Case\n\nCase 1: [4w - 1 = 5w + 37] → solve for w\nCase 2: [4w - 1 = -(5w + 37)] → solve for w\n\n### Step 3: Check Solutions\n\nSubstitute each solution back into the original equation to verify.\n\n**3.** [4|2y - 7| + 13 = 9]\n\n**4.** [-2|7 - 3y| - 6 = -14]\n\n**5.** [2|4 - n| = -3n]\n\n**6.** [5 - 3|2 + 2w| = -7]\n\n**7.** [5|2r + 3| - 5 = 0]\n\n**8.** [3 - 5|2d - 3| = 4]"
+        "markdown": "### Problem\n\nSolve |8+p|=2p-3. Check each candidate in the original equation.\n\n### Solution\n\nThe right side must be nonnegative, so p≥1.5. The two algebraic cases are 8+p=2p-3, giving p=11, and 8+p=-(2p-3), giving p=-5/3. The second candidate has a negative right side and fails. At p=11, both sides are 19. The only solution is 11."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Real-World Absolute Value Equations",
         "phaseType": "worked_example",
-        "markdown": "Solve each problem by writing and solving an absolute value equation.\n\n### Step 1: Define the Situation\n\nFor problems involving tolerances, write an equation of the form [|measured - actual| = tolerance].\n\n**9. WEATHER** A thermometer claims accuracy within 1.5 degrees of the actual temperature. If the thermometer reads 87.4°F, write and solve an absolute value equation to find the least and greatest possible temperature.\n\nLet [T] represent the actual temperature in degrees Fahrenheit.\n\n[|87.4 - T| = 1.5]\n\nSolve: [87.4 - T = 1.5] or [87.4 - T = -1.5]\n\n[T = 85.9] or [T = 88.9]\n\nThe least possible temperature is 85.9°F and the greatest is 88.9°F.\n\n**10. OPINION POLLS** A poll shows Candidate Morrison will receive 51% of the votes with a margin of error of ±3%. Write and solve an absolute value equation to find the minimum and maximum percent of the vote.\n\nLet [p] represent the actual percent of votes.\n\n[|51 - p| = 3]\n\nSolve: [51 - p = 3] or [51 - p = -3]\n\n[p = 48] or [p = 54]\n\nThe candidate can expect between 48% and 54% of the vote."
+        "markdown": "### Problem\n\nA thermometer reading is 87.4°F. For this exercise, its absolute measurement error is at most 1.5°F. Find the endpoint temperatures and the full allowable interval.\n\n### Solution\n\nThe endpoints solve |87.4-T|=1.5, giving T=85.9 or T=88.9. The full condition is |87.4-T|≤1.5, so 85.9≤T≤88.9. The equation gives the endpoints only; the inequality gives all allowed temperatures."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Solve Absolute Value Inequalities",
         "phaseType": "worked_example",
-        "markdown": "Solve each inequality. Graph the solution set on a number line.\n\n### Key Concept: Solving |ax + b| <= c and |ax + b| >= c\n\n* [|ax + b| <= c] (where [c > 0]) is equivalent to [-c <= ax + b <= c], an \"and\" compound inequality.\n* [|ax + b| >= c] is equivalent to [ax + b <= -c] or [ax + b >= c], an \"or\" compound inequality.\n* [|<] and [>] strict inequalities do not include the boundary.\n\n### Step 1: Isolate the Absolute Value\n\n**11.** [|2x + 2| - 7 <= -5]\n\nFirst add 7 to both sides: [|2x + 2| <= 2]\n\nThen rewrite as: [-2 <= 2x + 2 <= 2]\n\nSubtract 2: [-4 <= 2x <= 0]\n\nDivide by 2: [-2 <= x <= 0]\n\n**12.** [|x/2 - 5| + 2 > 10]\n\nFirst subtract 2: [|x/2 - 5| > 8]\n\nRewrite as two cases: [x/2 - 5 > 8] or [x/2 - 5 < -8]\n\nSolve each: [x/2 > 13] or [x/2 > -3]\n\nMultiply by 2: [x > 26] or [x < -6]\n\n**13.** [|3b + 5| <= -2]\n\nNo solution, because absolute value is always [>= 0] and cannot be [<= -2].\n\n**14.** [|x| > x - 1]\n\nRewrite as: [x > x - 1] or [x < -(x - 1)]\n\nSimplify: The first case is always true ([0 > -1]). The second gives [x < -x + 1], so [2x < 1], so [x < 0.5].\n\n**15.** [|4 - 5x| < 13]\n\n**16.** [|3n - 2| - 2 < 1]\n\n**17.** [|3x + 1| > 2]\n\n**18.** [|2x - 1| < 5 + 0.5x]"
+        "markdown": "### Problem\n\nSolve (a) |2x+2|-7≤-5 and (b) |x/2-5|+2>10.\n\n### Solution\n\n(a) Isolate the absolute value: |2x+2|≤2. Then -2≤2x+2≤2, so -2≤x≤0. (b) Isolate |x/2-5|>8. Thus x/2-5>8 or x/2-5<-8. These give x>26 or x<-6. Preserve the less-than sign in the second branch."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — Real-World Absolute Value Inequalities",
         "phaseType": "worked_example",
-        "markdown": "Solve each problem by writing and solving an absolute value inequality.\n\n### Step 1: Write the Inequality\n\n**19. RAINFALL** In 90% of the last 30 years, the rainfall at Shell Beach varied no more than 6.5 inches from its mean of 24 inches. Write and solve an absolute value inequality to describe the rainfall in the other 10% of the years.\n\nLet [R] represent the rainfall in inches.\n\nFor the 10% outside the normal range: [|R - 24| > 6.5]\n\nSolve: [R - 24 > 6.5] or [R - 24 < -6.5]\n\n[R > 30.5] or [R < 17.5]\n\nIn the other 10% of years, rainfall was less than 17.5 inches or greater than 30.5 inches.\n\n**20. MANUFACTURING** A soup can states a volume of 14.5 fluid ounces and must not vary by more than 0.08 ounces. Write and solve an absolute value inequality for acceptable volumes.\n\nLet [V] represent the acceptable volume.\n\n[|V - 14.5| <= 0.08]\n\nSolve: [-0.08 <= V - 14.5 <= 0.08]\n\n[14.42 <= V <= 14.58]\n\nAcceptable volumes range from 14.42 to 14.58 fluid ounces."
+        "markdown": "### Problem\n\nA product specification allows a nominal volume of 14.5 fluid ounces to vary by at most 0.08 fluid ounces. Write and solve the acceptance inequality.\n\n### Solution\n\nLet V be volume in fluid ounces. The condition is |V-14.5|≤0.08. Rewrite as -0.08≤V-14.5≤0.08. Add 14.5 to obtain 14.42≤V≤14.58. Both endpoints are allowed."
       },
       {
         "phaseNumber": 9,
@@ -4229,43 +4229,43 @@
         "phaseNumber": 5,
         "title": "Example 1 — Write Equations in Standard Form",
         "phaseType": "worked_example",
-        "markdown": "Write each equation in standard form. Identify A, B, and C.\n\n**1.** [-7x - 5y = 35]\n\nA = -7, B = -5, C = 35\n\n**2.** [8x + 3y + 6 = 0]\n\nRewrite as [8x + 3y = -6]\n\nA = 8, B = 3, C = -6\n\n**3.** [10y - 3x + 6 = 11]\n\nRewrite as [-3x + 10y = 5] or [3x - 10y = -5] (multiply by -1)\n\n**4.** [2/3 y - 3/4 x + 1/6 = 0]\n\nMultiply by 12 to clear fractions: [8y - 9x + 2 = 0]\n\nRewrite as [-9x + 8y = -2] or [9x - 8y = 2]\n\n**5.** [4/5 y + 1/8 x = 4]\n\n**6.** [-0.08x = 1.24y - 3.12]"
+        "markdown": "### Problem\n\nWrite (2/3)y-(3/4)x+1/6=0 in standard form Ax+By=C with integer coefficients and A>0.\n\n### Solution\n\nMultiply by 12 to get 8y-9x+2=0. Rearrange and multiply by -1 to obtain 9x-8y=2. Thus A=9, B=-8, and C=2."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Write Equations in Slope-Intercept Form",
         "phaseType": "worked_example",
-        "markdown": "Write each equation in slope-intercept form. Identify the slope m and y-intercept b.\n\n### Step 1: Solve for y\n\n**7.** [6x + 3y = 12]\n\n[3y = -6x + 12]\n\n[y = -2x + 4]\n\nm = -2, b = 4\n\n**8.** [14x - 7y = 21]\n\n**9.** [2/3 x + 1/6 y = 2]\n\nMultiply by 6: [4x + y = 12]\n\n[y = -4x + 12]\n\n**10.** [5x + 10y = 20]\n\n**11.** [6x + 9y = 15]\n\n**12.** [1/5 x + 1/2 y = 4]"
+        "markdown": "### Problem\n\nWrite 6x+3y=12 in slope-intercept form. Identify the slope and vertical intercept.\n\n### Solution\n\nSubtract 6x and divide by 3: y=-2x+4. The slope is -2. The vertical intercept is the point (0,4)."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Interpret Linear Equations in Context",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Identify What Each Variable Represents\n\n**13. CHARITY** The equation [y - 20x = 83] relates shirts collected, where x is hours since noon and y is total shirts.\n\nWrite in slope-intercept form: [y = 20x + 83]\n\nInterpret: The slope 20 means 20 shirts are collected per hour. The y-intercept 83 means 83 shirts had been collected at noon.\n\n**14. GROWTH** The body length y of a baby snake is given by [4x - 2y = -3], where x is age in months until age 1.\n\nWrite in slope-intercept form: [-2y = -4x - 3] → [y = 2x + 1.5]\n\nInterpret: The snake grows 2 inches per month. At birth (x = 0), the snake is 1.5 inches long."
+        "markdown": "### Problem\n\nA collection model is y-20x=83, where x is hours after noon and y is the number of shirts collected. Interpret the equation in slope-intercept form.\n\n### Solution\n\nThe equation is y=20x+83. The model starts with 83 shirts at noon and adds 20 shirts per hour. Shirt counts are whole numbers; a continuous line represents the modeled collection rate rather than each individual donation."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — Write Equations from Two Points",
         "phaseType": "worked_example",
-        "markdown": "**15. PLUMBER** Two neighbors hire the same plumber. Camila: 3 hours, $191. Conner: 1 hour, $107.\n\n**a.** Define variables: Let [x] = hours worked, [y] = total cost in dollars.\n\n**b.** Find slope and write equation: [m = (191 - 107)/(3 - 1) = 84/2 = 42]\n\nThe plumber charges $42 per hour. Using point (1, 107): [y - 107 = 42(x - 1)]\n\nIn slope-intercept form: [y = 42x + 65]\n\nThe flat fee is $65 per visit.\n\n**c.** Cost for 5 hours: [y = 42(5) + 65 = 210 + 65 = 275]\n\n**16. HIKING** Tim hikes near Big Bear Lake. 9:00 A.M. to 10:30 A.M.: elevation 7200 ft. 11:15 A.M.: elevation 7425 ft.\n\n**a.** Define: Let [x] = hours since 9:00 A.M., [y] = elevation in feet.\n\n**b.** From 9:00 to 10:30 (1.5 hours), elevation increases 225 ft. Slope: [225/1.5 = 150] ft/hour.\n\nEquation: At 9:00 A.M. (x = 0), elevation is 7200 ft, so [y = 150x + 7200].\n\n**c.** 12:30 P.M. is 3.5 hours after 9:00: [y = 150(3.5) + 7200 = 525 + 7200 = 7725] ft."
+        "markdown": "### Problem\n\nA plumber charges a fixed visit fee plus a constant hourly rate. A one-hour visit costs 107 dollars and a three-hour visit costs 191 dollars. Find the cost function and the cost of five hours.\n\n### Solution\n\nThe hourly rate is (191-107)/(3-1)=42 dollars. Use 107=42(1)+b to find b=65 dollars. Thus C(t)=42t+65 for t≥0. A five-hour visit costs 275 dollars under this model."
       },
       {
         "phaseNumber": 9,
         "title": "Example 5 — Write Equations in Point-Slope Form Given Slope and Point",
         "phaseType": "worked_example",
-        "markdown": "Write an equation in point-slope form for the line that satisfies each set of conditions.\n\n**17.** slope of -5, passes through (-3, -8)\n\n[y + 8 = -5(x + 3)]\n\n**18.** slope of 4/5, passes through (10, -3)\n\n[y + 3 = 4/5 (x - 10)]\n\n**19.** slope of -2/3, passes through (6, -8)\n\n**20.** slope of 0, passes through (0, -10)\n\n[y + 10 = 0(x - 0)] → [y = -10]"
+        "markdown": "### Problem\n\nWrite a point-slope equation for the line with slope -5 through (-3,-8).\n\n### Solution\n\nUse y-y₁=m(x-x₁). Substitution gives y+8=-5(x+3). At x=-3, the equation gives y=-8, so it contains the required point."
       },
       {
         "phaseNumber": 10,
         "title": "Example 6 — Write Equations Given Two Points",
         "phaseType": "worked_example",
-        "markdown": "Write an equation in point-slope form for a line passing through each pair of points.\n\n### Step 1: Find the Slope\n\n**21.** (2, -3) and (1, 5)\n\n[m = (5 - (-3))/(1 - 2) = 8/(-1) = -8]\n\nEquation using (2, -3): [y + 3 = -8(x - 2)]\n\n**22.** (3, 5) and (-6, -4)\n\n**23.** (-1, -2) and (-3, 1)\n\n**24.** (-2, -4) and (1, 8)"
+        "markdown": "### Problem\n\nWrite a point-slope equation for the line through (2,-3) and (1,5).\n\n### Solution\n\nThe slope is (5-(-3))/(1-2)=-8. Using (2,-3), the equation is y+3=-8(x-2). Using the other point gives the equivalent equation y-5=-8(x-1)."
       },
       {
         "phaseNumber": 11,
         "title": "Example 7 — Real-World Point-Slope Applications",
         "phaseType": "worked_example",
-        "markdown": "**25. SALES** Light trucks sold: 5.919 million in 2011, 11.055 million in 2017. Write an equation for y trucks sold x years after 2010.\n\n2011 is x = 1, y = 5.919. 2017 is x = 7, y = 11.055.\n\n[m = (11.055 - 5.919)/(7 - 1) = 5.136/6 = 0.856]\n\nUsing point (1, 5.919): [y - 5.919 = 0.856(x - 1)]\n\n**26. RESTAURANTS** A pizza franchise had 2483 restaurants in 2012, 2606 in 2017. Write an equation for y restaurants x years after 2010."
+        "markdown": "### Problem\n\nA fictional sales model passes through 5.919 million units in year 1 and 11.055 million units in year 7. Write a point-slope equation for sales y, in millions, at year x.\n\n### Solution\n\nThe average modeled change is (11.055-5.919)/(7-1)=0.856 million units per year. The equation is y-5.919=0.856(x-1). This line fits the two given points. Two observations alone do not establish that future sales follow the same line."
       },
       {
         "phaseNumber": 12,
@@ -4315,31 +4315,31 @@
         "phaseNumber": 5,
         "title": "Example 1 — Classify Each System",
         "phaseType": "worked_example",
-        "markdown": "Determine the number of solutions and state whether consistent/inconsistent and independent/dependent.\n\n**1.** [y = 3x] and [y = -3x + 2]\n\nSlopes: 3 and -3 (different) → one solution, consistent and independent.\n\n**2.** [y = x - 5] and [-2x + 2y = -10]\n\nRewrite second: [2y = 2x - 10] → [y = x - 5]\n\nSame line → infinitely many solutions, consistent and dependent.\n\n**3.** [2x - 5y = 10] and [3x + y = 15]\n\nRewrite both in slope-intercept form:\n\nFirst: [-5y = -2x + 10] → [y = 2/5 x - 2]\n\nSecond: [y = -3x + 15]\n\nDifferent slopes → one solution.\n\n**4.** [3x + y = -2] and [6x + 2y = 10]\n\nRewrite first: [y = -3x - 2]\n\nRewrite second: [2y = -6x + 10] → [y = -3x + 5]\n\nSame slope (-3) but different intercepts (-2 vs 5) → no solution, inconsistent.\n\n**5.** [x + 2y = 5] and [3x - 15 = -6y]\n\nRewrite first: [2y = -x + 5] → [y = -1/2 x + 2.5]\n\nRewrite second: [6y = -3x + 15] → [y = -1/2 x + 2.5]\n\nSame line → infinitely many solutions.\n\n**6.** [3x - y = 2] and [x + y = 6]"
+        "markdown": "### Problem\n\nClassify these systems: (a) y=3x and y=-3x+2; (b) y=x-5 and -2x+2y=-10; (c) 3x+y=-2 and 6x+2y=10.\n\n### Solution\n\n(a) Different slopes give one solution, so the system is consistent and independent. (b) Both equations describe y=x-5, so the system is consistent and dependent with infinitely many solutions. (c) The lines have slope -3 and different intercepts -2 and 5, so they are parallel. The system is inconsistent with no solution."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Solve by Graphing (Integer Solutions)",
         "phaseType": "worked_example",
-        "markdown": "Solve the system by graphing. Estimate the solution from the graph, then check algebraically.\n\n### Step 1: Graph Both Lines\n\n**7.** [x - 2y = 0] and [y = 2x - 3]\n\nGraph both lines on the same coordinate plane. Find where they intersect.\n\n**8.** [-4x + 6y = -2] and [2x - 3y = 1]\n\nRewrite in slope-intercept form:\n\nFirst: [6y = 4x - 2] → [y = 2/3 x - 1/3]\n\nSecond: [-3y = -2x + 1] → [y = 2/3 x - 1/3]\n\nSame line → infinitely many solutions.\n\n**9.** [2x + y = 3] and [y = 1/2 x - 9/2]\n\n**10.** [y - x = 3] and [y = 1]\n\n**11.** [2x - 3y = 0] and [4x - 6y = 3]\n\n**12.** [5x - y = 4] and [-2x + 6y = 4]"
+        "markdown": "### Problem\n\nSolve x-2y=0 and y=2x-3 by graphing, then check the intersection.\n\n### Solution\n\nThe first line is y=x/2. It and y=2x-3 intersect at (2,1). Check: 2-2(1)=0 and 1=2(2)-3. Therefore (2,1) is the solution."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Solve by Graphing (Fractional Solutions)",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Graph and Identify Intersection\n\n**13. USE ESTIMATION** Mr. Lycan buys clay from two companies.\n\nCompany A: $24 for 50-pound container + $42 shipping.\nCompany B: $28 for 50-pound container + $25 shipping.\n\n**a.** Write cost equations, where [x] = containers ordered and [y] = total cost.\n\nCompany A: [y = 24x + 42]\nCompany B: [y = 28x + 25]\n\n**b.** Graph both equations. The intersection represents the order size where costs are equal.\n\n**c.** Check algebraically: set [24x + 42 = 28x + 25]\n\n[-4x = -17] → [x = 4.25]\n\nAt 4.25 containers, both cost the same.\n\n**14. USE ESTIMATION** Two moving truck companies.\n\nHaul-n-Save: $30 + $0.79/mile.\nRent It Trucks: $75 + $0.55/mile.\n\n**a.** Write cost equations.\n\n**b.** Graph and estimate miles where costs are equal.\n\n**c.** Check algebraically."
+        "markdown": "### Problem\n\nCompany A charges 24 dollars per whole container plus 42 dollars shipping. Company B charges 28 dollars per whole container plus 25 dollars shipping. Find the intersection of their cost lines and compare costs for integer orders.\n\n### Solution\n\nSet 24x+42=28x+25. The lines intersect at x=4.25 and cost 144 dollars. A whole-container order cannot have x=4.25. Company B costs less for orders of 1 through 4 containers. Company A costs less for 5 or more. There is no integer order with equal costs."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — Use a Graphing Calculator",
         "phaseType": "worked_example",
-        "markdown": "Use a graphing calculator to solve each system. Round to the nearest hundredth.\n\n### Step 1: Enter Equations and Find Intersection\n\n**15.** [12y = 5x - 15] and [4.2y + 6.1x = 11]\n\nRewrite in slope-intercept form:\n\nFirst: [y = (5/12)x - 15/12 = (5/12)x - 1.25]\n\nSecond: [y = (-6.1/4.2)x + 11/4.2]\n\nUse the intersect function on the calculator.\n\n**16.** [-3.8x + 2.9y = 19] and [6.6x - 5.4y = -23]\n\n**17.** [5.8x - 6.3y = 18] and [-4.3x + 8.8y = 32]"
+        "markdown": "### Problem\n\nUse graph intersections to solve 3x+2y=9.9 and x-y=1.3. Round coordinates to the nearest hundredth.\n\n### Solution\n\nEnter y=(9.9-3x)/2 and y=x-1.3. Their intersection is (2.50,1.20). Check: 3(2.5)+2(1.2)=9.9 and 2.5-1.2=1.3. Use a window that includes both lines and the intersection."
       },
       {
         "phaseNumber": 9,
         "title": "Example 5 — Solve an Equation Using a System",
         "phaseType": "worked_example",
-        "markdown": "Use a graphing calculator to solve each equation by using a system of equations. Round to the nearest hundredth.\n\n### Step 1: Rewrite as a System\n\nAn equation like [f(x) = g(x)] becomes a system where you find the intersection of [y = f(x)] and [y = g(x)].\n\n**18.** [-4.7x + 16 = 16.79x - 80.2]\n\nLet [y1 = -4.7x + 16] and [y2 = 16.79x - 80.2]\n\nFind where they intersect.\n\n**19.** [0.0019x + 3.55 = 0.27x + 2.81]\n\n**20.** [471 - 63x = -50.5x + 509]\n\n**21.** [-47.83x - 9 = 33x + 71.019]"
+        "markdown": "### Problem\n\nSolve -4.7x+16=16.79x-80.2 using the intersection of two lines. Round x to the nearest hundredth.\n\n### Solution\n\nGraph y=-4.7x+16 and y=16.79x-80.2. Algebraically, 96.2=21.49x, so x=96.2/21.49, approximately 4.48. The intersection x-coordinate gives the equation solution. Use the exact fraction for a substitution check before rounding."
       },
       {
         "phaseNumber": 10,
@@ -4389,19 +4389,19 @@
         "phaseNumber": 5,
         "title": "Example 1 — Substitution with Simple Coefficients",
         "phaseType": "worked_example",
-        "markdown": "Use substitution to solve each system.\n\n**1.** [2x - y = 9] and [x + 3y = -6]\n\n### Step 1: Solve for y\n\nFrom first equation: [y = 2x - 9]\n\n### Step 2: Substitute\n\n[x + 3(2x - 9) = -6]\n\n[x + 6x - 27 = -6]\n\n[7x = 21] → [x = 3]\n\n### Step 3: Solve for y\n\n[y = 2(3) - 9 = 6 - 9 = -3]\n\nSolution: (3, -3)\n\n**2.** [2x - y = 7] and [6x - 3y = 14]\n\n**3.** [2x + y = 5] and [3x - 3y = 3]"
+        "markdown": "### Problem\n\nSolve 2x-y=9 and x+3y=-6 by substitution.\n\n### Solution\n\nThe first equation gives y=2x-9. Substitute into the second: x+3(2x-9)=-6. Then 7x=21, so x=3 and y=-3. Checks: 2(3)-(-3)=9 and 3+3(-3)=-6."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Substitution with Fractional Coefficients",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Clear Fractions if Needed\n\n**4.** [3x + y = 7] and [4x + 2y = 16]\n\nFrom first: [y = 7 - 3x]\n\nSubstitute: [4x + 2(7 - 3x) = 16]\n\n[4x + 14 - 6x = 16]\n\n[-2x = 2] → [x = -1]\n\n[y = 7 - 3(-1) = 7 + 3 = 10]\n\nSolution: (-1, 10)\n\n**5.** [4x + 2y = 16] and [2x - y/2 = 4]\n\nMultiply second equation by 2: [4x - y = 8]\n\nFrom first: [4x + 2y = 16]\n\nSubtract: [(4x + 2y) - (4x - y) = 16 - 8] → [3y = 8] → [y = 8/3]\n\nSubstitute back: [2x - (8/3)/2 = 4] → [2x - 4/3 = 4] → [2x = 16/3] → [x = 8/3]\n\nSolution: (8/3, 8/3)\n\n**6.** [2x + y = 8] and [3x + 3/2 y = 12]"
+        "markdown": "### Problem\n\nSolve 4x+2y=16 and 2x-y/2=4. Give exact values.\n\n### Solution\n\nMultiply the second equation by 2 to get 4x-y=8. Subtract it from the first equation to obtain 3y=8. Thus y=8/3. Substitute into 4x-y=8 to get x=8/3. Both equations hold at (8/3,8/3)."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Real-World Substitution Problems",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Define Variables\n\n**7. BAKE SALE** Cassandra sold 3 small pies + 14 large pies = $203. Alberto sold 11 small pies + 11 large pies = $220. Find cost of each pie.\n\n**a.** Let [s] = price of small pie, [l] = price of large pie.\n\nSystem:\n[3s + 14l = 203]\n[11s + 11l = 220]\n\nSolve using substitution. From second: [s + l = 20] → [s = 20 - l]\n\nSubstitute: [3(20 - l) + 14l = 203]\n\n[60 - 3l + 14l = 203]\n\n[11l = 143] → [l = 13]\n\n[s = 20 - 13 = 7]\n\nSmall pie: $7, Large pie: $13\n\n**b.** The solution represents the price of each pie.\n\n**c.** Verify: [3(7) + 14(13) = 21 + 182 = 203]. [11(7) + 11(13) = 77 + 143 = 220].\n\n**8. STOCKS** Ms. Patel invested $825 in two stocks. Stock A: $12.41/share. Stock B: $8.62/share. Total 79 shares. How many shares of each?\n\n**a.** Let [a] = shares of Stock A, [b] = shares of Stock B.\n\nSystem:\n[a + b = 79]\n[12.41a + 8.62b = 825]\n\nFrom first: [b = 79 - a]\n\nSubstitute: [12.41a + 8.62(79 - a) = 825]\n\n[12.41a + 680.98 - 8.62a = 825]\n[3.79a = 144.02]\n[a = 38], so [b = 79 - 38 = 41].\n\nCheck: [38(12.41) + 41(8.62) = 471.58 + 353.42 = 825].\n\n**b.** Ms. Patel bought exactly 38 shares of Stock A and 41 shares of Stock B."
+        "markdown": "### Problem\n\nAt a bake sale, three small pies and fourteen large pies cost 203 dollars. Eleven small pies and eleven large pies cost 220 dollars. Find each price.\n\n### Solution\n\nLet s and l be prices in dollars. The equations are 3s+14l=203 and 11s+11l=220. The second gives s+l=20, so s=20-l. Substitute into the first: 60+11l=203, giving l=13 and s=7. Both original totals check."
       },
       {
         "phaseNumber": 8,
@@ -4413,13 +4413,13 @@
         "phaseNumber": 9,
         "title": "Example 4 — Basic Elimination",
         "phaseType": "worked_example",
-        "markdown": "Use elimination to solve each system.\n\n**9.** [3x - 2y = 4] and [5x + 3y = -25]\n\n### Step 1: Make Coefficients Opposites\n\nMultiply first equation by 3 and second by 2:\n\n[9x - 6y = 12]\n[10x + 6y = -50]\n\n### Step 2: Add\n\n[19x = -38] → [x = -2]\n\n### Step 3: Substitute Back\n\n[3(-2) - 2y = 4] → [-6 - 2y = 4] → [-2y = 10] → [y = -5]\n\nSolution: (-2, -5)\n\n**10.** [5x + 2y = 12] and [-6x - 2y = -14]\n\nAdd directly: [-x = -2] → [x = 2]\n\nSubstitute: [5(2) + 2y = 12] → [10 + 2y = 12] → [y = 1]\n\n**11.** [7x + 2y = -1] and [21x + 6y = -9]\n\nMultiply first by 3: [21x + 6y = -3]. This conflicts with [21x + 6y = -9]. No solution.\n\n**12.** [3x - 5y = -9] and [-7x + 3y = 8]"
+        "markdown": "### Problem\n\nSolve 3x-2y=4 and 5x+3y=-25 by elimination.\n\n### Solution\n\nMultiply the first equation by 3 and the second by 2. Add 9x-6y=12 and 10x+6y=-50 to get 19x=-38. Thus x=-2. Substitute to get -6-2y=4, so y=-5. The solution is (-2,-5)."
       },
       {
         "phaseNumber": 10,
         "title": "Example 5 — Elimination with Different Multipliers",
         "phaseType": "worked_example",
-        "markdown": "**13.** [x - 3y = -12] and [2x + y = 11]\n\nMultiply first by -2: [-2x + 6y = 24]\n\nAdd to second: [7y = 35] → [y = 5]\n\nSubstitute: [x - 3(5) = -12] → [x - 15 = -12] → [x = 3]\n\n**14.** [6w - 8z = 16] and [3w - 4z = 8]\n\nMultiply second by -2: [-6w + 8z = -16]\n\nAdd to first: [0 = 0]. Infinitely many solutions — same line."
+        "markdown": "### Problem\n\nSolve (a) x-3y=-12 and 2x+y=11; and (b) 6w-8z=16 and 3w-4z=8.\n\n### Solution\n\n(a) Multiply the first equation by -2 and add the second. This gives 7y=35, so y=5 and x=3. (b) The first equation is twice the second. There are infinitely many solutions on 3w-4z=8, such as w=(8+4z)/3 for any real z."
       },
       {
         "phaseNumber": 11,
@@ -4469,19 +4469,19 @@
         "phaseNumber": 5,
         "title": "Example 1 — Solve Systems of Two Linear Inequalities",
         "phaseType": "worked_example",
-        "markdown": "Graph each system of two linear inequalities and identify the solution region.\n\n### Step 1: Graph Systems with Standard Form Inequalities\n\nRewrite each inequality in slope-intercept form when helpful, then graph the boundary lines and shade the appropriate half-planes.\n\n$$\nx - y \\leq 2\n$$\n$$\nx + 2y \\geq 1\n$$\nRewrite as $y \\geq x - 2$ and $y \\geq -\\frac{1}{2}x + \\frac{1}{2}$. Both boundary lines are solid. Shade above each line. The solution region is the overlap above both boundaries.\n\n$$\n3x - 2y \\leq -1\n$$\n$$\nx + 4y \\geq -12\n$$\nRewrite as $y \\geq \\frac{3}{2}x + \\frac{1}{2}$ and $y \\geq -\\frac{1}{4}x - 3$. Graph both solid boundary lines and shade above each.\n\n### Step 2: Graph Systems with Fractional Coefficients\n\n$$\ny \\geq \\frac{x}{2} - 3\n$$\n[\ny < 2x\n]\n\nGraph $y = \\frac{x}{2} - 3$ as a solid line and shade above. Graph [y = 2x] as a dashed line and shade below. The solution region lies between the two lines.\n\n$$\ny < \\frac{x}{3} + 2\n$$\n[\ny < -2x + 1\n]\n\nBoth inequalities use \"less than,\" so graph both boundaries as dashed lines and shade below each. The solution region is below both lines.\n\n### Step 3: Graph Systems with Mixed Inequality Types\n\n$$\nx + y \\geq 4\n$$\n[\n2x - y > 2\n]\n\nRewrite as $y \\geq -x + 4$ (solid, shade above) and [y < 2x - 2] (dashed, shade below). The solution region is above the solid line and below the dashed line.\n\n[\nx + 3y < 3\n]\n$$\nx - 2y \\geq 4\n$$\nRewrite as $y < -\\frac{x}{3} + 1$ (dashed, shade below) and $y \\leq \\frac{x}{2} - 2$ (solid, shade below). The solution region is below both boundaries."
+        "markdown": "### Problem\n\nGraph the solution set of x-y≤2 and x+2y≥1.\n\n### Solution\n\nThe inequalities become y≥x-2 and y≥-x/2+1/2. Draw both boundaries as solid lines. Their intersection is (5/3,-1/3). Shade the points on or above both lines. For example, (0,1) satisfies both inequalities."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Solve Systems with Three or More Inequalities",
         "phaseType": "worked_example",
-        "markdown": "Graph systems that include multiple boundary lines, including horizontal and vertical lines.\n\n### Step 1: Graph Systems with Slanted Boundaries\n\n$$\ny \\geq -3x + 7\n$$\n$$\ny > \\frac{1}{2}x\n$$\nGraph both boundary lines and shade above each. The first line is solid; the second is dashed.\n\n$$\ny < -\\frac{1}{2}x + 3\n$$\n[\ny > x - 1\n]\n[\ny < 3x + 10\n]\n\nGraph all three boundaries with the correct line styles. Shade below the first dashed line, above the second dashed line, and below the third dashed line.\n\n### Step 2: Graph Systems Including Vertical and Horizontal Lines\n\n[\nx > -3\n]\n$$\ny < -\\frac{1}{3}x + 3\n$$\n$$\ny > \\frac{1}{2}x + 1\n$$\n[\ny < 2\n]\n\nGraph the vertical dashed line [x = -3] and shade to the right. Graph each slanted boundary with the appropriate line style and shade direction. The solution region is a bounded polygon.\n\n### Step 3: Graph Systems Involving the Axes\n\n$$\ny \\leq 0\n$$\n$$\nx \\leq 0\n$$\n$$\ny \\geq -x - 1\n$$\nShade below the x-axis, to the left of the y-axis, and above the line [y = -x - 1]. The solution region lies in the third quadrant and is bounded by the axes.\n\n$$\ny \\leq 3 - x\n$$\n$$\ny \\geq 3\n$$\n$$\ny \\geq x - 2\n$$\n$$\nx \\geq -5\n$$\nGraph all four boundaries. The region satisfying all four constraints is a bounded polygon.\n\n$$\nx \\geq -2\n$$\n$$\nx + y \\leq 2\n$$\nGraph the vertical solid line [x = -2] and shade to the right. Graph $y \\leq -x + 2$ as a solid line and shade below."
+        "markdown": "### Problem\n\nGraph the system x≤0, y≤0, and y≥-x-1. List its vertices.\n\n### Solution\n\nThe first two constraints keep points in the third quadrant and on its axes. The third keeps points on or above x+y=-1. The feasible set is the closed triangle with vertices (-1,0), (0,-1), and (0,0). All boundaries are included."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Real-World Applications",
         "phaseType": "worked_example",
-        "markdown": "Write systems of inequalities to represent constraints, then graph and analyze feasible solutions.\n\n### Step 1: Ticket Sales Problem\n\nA venue has a seat capacity and a revenue goal. Student and adult tickets have different prices. Define variables for the number of each type of ticket sold.\n\nWrite constraints for total attendance and minimum revenue:\n$$\ns + a \\leq 800\n$$\n$$\n4s + 7a \\geq 3400\n$$\nAdd non-negativity constraints: $s \\geq 0$ and $a \\geq 0$.\n\nGraph the system in the first quadrant. The feasible region shows all combinations of student and adult tickets that meet both constraints. Test a specific ordered pair by substituting into both inequalities to determine whether it satisfies the revenue goal.\n\n### Step 2: Hourly Work Problem\n\nA person earns different rates for two jobs and has limits on total hours and minimum earnings. Define variables for hours spent on each activity.\n\nWrite constraints for total hours and minimum earnings:\n$$\nt + b \\leq 14\n$$\n$$\n15t + 10b \\geq 125\n$$\nAdd non-negativity constraints. Graph the feasible region and test ordered pairs by substituting into each inequality to determine which combinations satisfy all constraints."
+        "markdown": "### Problem\n\nA venue holds at most 800 people. Student tickets cost 4 dollars and adult tickets cost 7 dollars. The revenue target is at least 3400 dollars. Write the constraints and test 400 student tickets with 300 adult tickets.\n\n### Solution\n\nLet s and a be nonnegative integers. The constraints are s+a≤800 and 4s+7a≥3400. The proposed counts give attendance 700 and revenue 1600+2100=3700 dollars. They satisfy both constraints. The continuous feasible region helps graph the problem, but valid ticket counts are integer points."
       },
       {
         "phaseNumber": 8,
@@ -4531,19 +4531,19 @@
         "phaseNumber": 5,
         "title": "Example 1 — Find Maximum and Minimum on a Bounded Feasible Region",
         "phaseType": "worked_example",
-        "markdown": "Graph systems of inequalities with vertical, horizontal, and slanted boundaries. Identify the vertices of the feasible region and evaluate the objective function at each vertex to find the maximum and minimum values.\n\n### Step 1: Graph Constraints and Identify Vertices\n\nGraph the boundary lines for the given system and shade the appropriate half-planes. The feasible region is the overlapping shaded area. Find the coordinates of each vertex by solving the systems of equations formed by intersecting boundary pairs.\n\n$$\ny \\geq 2\n$$\n$$\n1 \\leq x \\leq 5\n$$\n$$\ny \\leq x + 3\n$$\n[\nf(x, y) = 3x - 2y\n]\n\nThe vertices of the feasible region are found at the intersections of [x = 1], [x = 5], [y = 2], and [y = x + 3].\n\n$$\ny \\geq -2\n$$\n$$\ny \\geq 2x - 4\n$$\n[\nf(x, y) = 4x - y\n]\n\nFind where the boundary lines meet and test each vertex in the objective function.\n\n$$\nx + y \\geq 2\n$$\n$$\n4y \\leq x + 8\n$$\n$$\ny \\geq 2x - 5\n$$\n[\nf(x, y) = 4x + 3y\n]\n\n$$\nx \\geq 2\n$$\n$$\nx \\leq 5\n$$\n$$\ny \\geq 1\n$$\n$$\ny \\leq 4\n$$\n[\nf(x, y) = x + y\n]\n\n$$\nx \\geq 1\n$$\n$$\ny \\leq 6\n$$\n$$\ny \\geq x - 2\n$$\n[\nf(x, y) = x - y\n]\n\n$$\nx \\geq 0\n$$\n$$\ny \\geq 0\n$$\n$$\ny \\leq 7 - x\n$$\n[\nf(x, y) = 3x + y\n]\n\n### Step 2: Evaluate the Objective Function at Each Vertex\n\nSubstitute the coordinates of each vertex into the objective function. Compare the results to determine the maximum and minimum values.\n\nFor example, if the vertices are [(1, 2)], [(5, 2)], [(1, 4)], and [(5, 8)], evaluate [f(x, y)] at each point:\n[\nf(1, 2) = 3(1) - 2(2) = -1\n]\n[\nf(5, 2) = 3(5) - 2(2) = 11\n]\n[\nf(1, 4) = 3(1) - 2(4) = -5\n]\n[\nf(5, 8) = 3(5) - 2(8) = -1\n]\n\nThe maximum value is [11] and the minimum value is [-5]."
+        "markdown": "### Problem\n\nFind the maximum and minimum of f(x,y)=3x-2y subject to 1≤x≤5, y≥2, and y≤x+3.\n\n### Solution\n\nThe closed feasible polygon has vertices (1,2), (5,2), (5,8), and (1,4). The respective objective values are -1, 11, -1, and -5. The maximum is 11 at (5,2). The minimum is -5 at (1,4). A linear objective on this nonempty bounded polygon attains extrema at vertices, though an entire edge can also be optimal."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Optimization with Unbounded and Multi-Constraint Regions",
         "phaseType": "worked_example",
-        "markdown": "Graph systems that produce both bounded and unbounded feasible regions. Evaluate the objective function at all vertices to determine whether a maximum, minimum, both, or neither exist.\n\n### Step 1: Analyze Unbounded Regions\n\n$$\nx \\geq -1\n$$\n$$\nx + y \\leq 6\n$$\n[\nf(x, y) = x + 2y\n]\n\nGraph the vertical boundary [x = -1] and the slanted boundary [y = -x + 6]. The feasible region extends downward and to the left, so it is unbounded in some directions. Check whether the objective function has both a maximum and a minimum, or if one value does not exist.\n\n$$\ny \\leq 2x\n$$\n$$\ny \\geq 6 - x\n$$\n$$\ny \\leq 6\n$$\n$$\nx \\geq -2\n$$\n[\nf(x, y) = 4x + 3y\n]\n\n### Step 2: Evaluate at Vertices for Bounded Portions\n\n$$\ny \\leq 3x + 6\n$$\n$$\n4y + 3x \\leq 3\n$$\n$$\nx \\geq -2\n$$\n[\nf(x, y) = -x + 3y\n]\n\nFind the vertices by intersecting boundary pairs. Substitute each vertex into the objective function. If the region is unbounded, determine whether the objective function increases or decreases without bound in the allowed direction."
+        "markdown": "### Problem\n\nFind any maximum or minimum of f(x,y)=x+2y subject to x≥-1 and x+y≤6.\n\n### Solution\n\nThe region is unbounded downward and to the right, not to the left of x=-1. Since y≤6-x, f≤x+2(6-x)=12-x≤13. Equality occurs at (-1,7), so the maximum is 13. With x=-1 and y decreasing without bound, f also decreases without bound. There is no minimum."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Real-World Linear Programming",
         "phaseType": "worked_example",
-        "markdown": "Translate resource and cost constraints into a system of inequalities, graph the feasible region, and optimize the objective function in applied contexts.\n\n### Step 1: Define Variables and Write Constraints\n\n**Painting:** A painter has limited supplies of two dyes. Each gallon of color A and color B requires specific amounts of yellow and green dye. Define variables for the gallons of each color mixed.\n\nLet [a] represent gallons of color A and [b] represent gallons of color B.\n\nConstraints based on available dye:\n$$\n4a + b \\leq 32\n$$\n$$\na + 6b \\leq 54\n$$\nNon-negativity constraints:\n$$\na \\geq 0\n$$\n$$\nb \\geq 0\n$$\nObjective: maximize total gallons mixed.\n[\nG = a + b\n]\n\n**Jewelry:** A necklace uses two types of beads with specific quantity limits and a cost relationship. Define variables for the number of clay beads and glass beads.\n\nLet [c] represent clay beads and [g] represent glass beads.\n\nConstraints based on bead limits:\n$$\nc \\leq 10\n$$\n$$\ng \\geq 4\n$$\n$$\n4g \\leq 2c + 8\n$$\nCost function to minimize:\n[\nC = 0.20c + 0.40g\n]\n\n### Step 2: Graph and Find Vertices\n\nGraph each system of constraints in the first quadrant. Identify the feasible region and find the coordinates of each vertex by solving pairs of boundary equations.\n\n### Step 3: Optimize the Objective Function\n\nEvaluate the objective function at every vertex of the feasible region. For the painting problem, the largest value of [G] gives the maximum gallons. For the jewelry problem, the smallest value of [C] gives the minimum cost."
+        "markdown": "### Problem\n\nEach gallon of paint A uses 4 ounces of yellow pigment and 1 ounce of green pigment. Each gallon of paint B uses 1 ounce of yellow and 6 ounces of green. Available pigment is 32 ounces yellow and 54 ounces green. Fractional gallons are allowed. Maximize total gallons.\n\n### Solution\n\nLet a,b≥0 be gallons. The constraints are 4a+b≤32 and a+6b≤54. The feasible vertices are (0,0), (8,0), (6,8), and (0,9). The objective a+b has values 0,8,14,9. The maximum is 14 gallons at a=6 and b=8. This uses all 32 ounces of yellow and 54 ounces of green."
       },
       {
         "phaseNumber": 8,
@@ -4593,13 +4593,13 @@
         "phaseNumber": 5,
         "title": "Example 1 — Solve Using Elimination",
         "phaseType": "worked_example",
-        "markdown": "Solve the system:\n\n[\n2x + 3y - z = 0\n]\n[\nx - 2y - 4z = 14\n]\n[\n3x + y - 8z = 17\n]\n\n### Step 1: Eliminate z\n\nMultiply the first equation by 8 and the third equation by -1 to eliminate z:\n\n[\n16x + 24y - 8z = 0\n]\n[\n-3x - y + 8z = -17\n]\n\nAdd these equations:\n\n[\n13x + 23y = -17\n]\n\n### Step 2: Use the Second Equation\n\nMultiply the first equation by 4. Subtract the second equation.\n[4(2x + 3y - z) - (x - 2y - 4z) = 0 - 14]\n[7x + 14y = -14], so [x + 2y = -2].\n\n### Step 3: Solve for x and y\n\nFrom Step 2, [x = -2 - 2y]. Substitute into [13x + 23y = -17].\n[13(-2 - 2y) + 23y = -17]\n[-26 - 3y = -17], so [y = -3] and [x = 4].\n\n### Step 4: Solve for z\n\nUse the first equation: [2(4) + 3(-3) - z = 0]. Thus [z = -1].\nThe solution is [(4, -3, -1)].\n\n### Step 5: Check All Three Equations\n\n[2(4) + 3(-3) - (-1) = 0]\n[4 - 2(-3) - 4(-1) = 14]\n[3(4) + (-3) - 8(-1) = 17]"
+        "markdown": "### Problem\n\nSolve 2x+3y-z=0, x-2y-4z=14, and 3x+y-8z=17.\n\n### Solution\n\nSubtract the third equation from eight times the first to get 13x+23y=-17. Subtract the second from four times the first to get 7x+14y=-14, or x+2y=-2. Substitute x=-2-2y into the first reduced equation: -26-3y=-17. Hence y=-3 and x=4. The original first equation gives z=-1. Substitution in all three equations gives 0,14,17, respectively."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Systems with Missing Variables",
         "phaseType": "worked_example",
-        "markdown": "Solve the system:\n\n[\n2a + c = -10\n]\n[\nb - c = 15\n]\n[\na - 2b + c = -5\n]\n\n### Step 1: Express Variables in Terms of Others\n\nFrom [b - c = 15], express [b = c + 15].\n\nFrom [2a + c = -10], express $a = \\frac{-10 - c}{2}$.\n\n### Step 2: Substitute into the Third Equation\n\nSubstitute [a] and [b] into [a - 2b + c = -5]:\n\n$$\n\\frac{-10 - c}{2} - 2(c + 15) + c = -5\n$$\nMultiply by 2:\n\n[\n-10 - c - 4(c + 15) + 2c = -10\n]\n[\n-10 - c - 4c - 60 + 2c = -10\n]\n[\n-3c - 70 = -10\n]\n[\n-3c = 60\n]\n[\nc = -20\n]\n\n### Step 3: Find a and b\n\n$$\na = \\frac{-10 - (-20)}{2} = \\frac{10}{2} = 5\n$$\n[\nb = -20 + 15 = -5\n]\n\nSolution: [(5, -5, -20)]"
+        "markdown": "### Problem\n\nSolve 2a+c=-10, b-c=15, and a-2b+c=-5.\n\n### Solution\n\nThe first two equations give a=(-10-c)/2 and b=c+15. Substitute into the third and multiply by 2: -10-c-4(c+15)+2c=-10. Thus -3c=60, so c=-20. Then a=5 and b=-5. Checks: 2(5)-20=-10, -5-(-20)=15, and 5-2(-5)-20=-5."
       },
       {
         "phaseNumber": 7,
@@ -4655,31 +4655,31 @@
         "phaseNumber": 5,
         "title": "Example 1 — Solve Absolute Value Equations by Graphing",
         "phaseType": "worked_example",
-        "markdown": "Students solve absolute value equations by graphing the related function and identifying the x-coordinates of intersection points with a horizontal line.\n\n### Step 1: Isolate the Absolute Value Expression\n\nRewrite each equation so the absolute value term is alone on one side.\n\n$$\n\\lvert x - 4 \\rvert = 5\n$$\n$$\n\\lvert 2x - 3 \\rvert = 17\n$$\n$$\n3 + \\lvert 2x + 1 \\rvert = 3 \\implies \\lvert 2x + 1 \\rvert = 0\n$$\n$$\n\\lvert x - 1 \\rvert + 6 = 4 \\implies \\lvert x - 1 \\rvert = -2\n$$\n$$\n7 + \\lvert 3x - 1 \\rvert = 7 \\implies \\lvert 3x - 1 \\rvert = 0\n$$\n$$\n\\lvert x + 2 \\rvert + 5 = 13 \\implies \\lvert x + 2 \\rvert = 8\n$$\n### Step 2: Graph and Identify Intersection Points\n\nGraph the absolute value function and the horizontal line. The x-coordinates of the intersections are the solutions.\n\nFor $\\lvert x - 4 \\rvert = 5$, graph $y = \\lvert x - 4 \\rvert$ and [y = 5]:\n$$\nx = -1 \\text{ and } x = 9\n$$\nFor $\\lvert 2x - 3 \\rvert = 17$, graph $y = \\lvert 2x - 3 \\rvert$ and [y = 17]:\n$$\nx = -7 \\text{ and } x = 10\n$$\nFor $\\lvert 2x + 1 \\rvert = 0$, graph $y = \\lvert 2x + 1 \\rvert$ and [y = 0]. The graph touches the line at the vertex:\n$$\nx = -\\frac{1}{2}\n$$\n### Step 3: Recognize No-Solution Cases\n\nWhen the isolated absolute value equals a negative number, there are no real solutions.\n\nFor $\\lvert x - 1 \\rvert = -2$:\n$$\n\\text{No solution}\n$$\nFor $\\lvert 3x - 1 \\rvert = 0$, there is one solution at the vertex:\n$$\nx = \\frac{1}{3}\n$$\nFor $\\lvert x + 2 \\rvert = 8$:\n$$\nx = -10 \\text{ and } x = 6\n$$"
+        "markdown": "### Problem\n\nSolve |x-4|=5 by graphing.\n\n### Solution\n\nGraph the V-shaped function y=|x-4| with vertex (4,0), then draw y=5. The intersections are (-1,5) and (9,5). Their x-coordinates, -1 and 9, solve the equation. Both give an absolute difference of 5 from 4."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Solve Absolute Value Equations Using a Graphing Calculator",
         "phaseType": "worked_example",
-        "markdown": "Students use a graphing calculator to find the intersection points of absolute value functions with horizontal lines, including equations with fractional coefficients.\n\n### Step 1: Enter the Functions\n\nEnter the absolute value function and the horizontal line into the calculator.\n\nFor $\\frac{1}{2}\\lvert x - 1 \\rvert + 5 = 9$, enter:\n$$\ny = \\frac{1}{2}\\lvert x - 1 \\rvert + 5\n$$\nand\n[\ny = 9\n]\n\nFor $\\frac{3}{4}\\lvert x + 1 \\rvert + 1 = 7$, enter:\n$$\ny = \\frac{3}{4}\\lvert x + 1 \\rvert + 1\n$$\nand\n[\ny = 7\n]\n\n### Step 2: Find Intersection Points\n\nUse the calculator's intersect feature to determine the x-coordinates.\n\nFor $\\frac{1}{2}\\lvert x - 1 \\rvert + 5 = 9$:\n$$\nx = -7 \\text{ and } x = 9\n$$\nFor $\\frac{3}{4}\\lvert x + 1 \\rvert + 1 = 7$:\n$$\nx = -9 \\text{ and } x = 7\n$$\nFor $\\frac{2}{3}\\lvert x - 2 \\rvert - 4 = 4$:\n$$\nx = -10 \\text{ and } x = 14\n$$\nFor $2\\lvert x + 2 \\rvert = 10$:\n$$\nx = -7 \\text{ and } x = 3\n$$\nFor $\\frac{1}{5}\\lvert x + 6 \\rvert - 1 = 9$:\n$$\nx = -56 \\text{ and } x = 44\n$$\nFor $3\\lvert x + 5 \\rvert - 1 = 11$:\n$$\nx = -9 \\text{ and } x = -1\n$$"
+        "markdown": "### Problem\n\nUse a graphing calculator to solve (2/3)|x-2|-4=4.\n\n### Solution\n\nEnter y=(2/3)|x-2|-4 and y=4. A window such as -15≤x≤20 and -5≤y≤10 contains both intersections. They occur at x=-10 and x=14. Algebra confirms |x-2|=12, giving the same two values."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Solve Absolute Value Equations Algebraically",
         "phaseType": "worked_example",
-        "markdown": "Students solve absolute value equations algebraically by splitting into two cases, then use a graphing calculator to verify the solutions.\n\n### Step 1: Isolate the Absolute Value Expression\n\nDivide or add as needed to isolate the absolute value.\n\n$$\n\\lvert 3x - 6 \\rvert = 42\n$$\n$$\n7\\lvert x + 3 \\rvert = 42 \\implies \\lvert x + 3 \\rvert = 6\n$$\n$$\n-3\\lvert 4x - 9 \\rvert = 24 \\implies \\lvert 4x - 9 \\rvert = -8\n$$\n$$\n-6\\lvert 5 - 2x \\rvert = -9 \\implies \\lvert 5 - 2x \\rvert = \\frac{3}{2}\n$$\n$$\n5\\lvert 2x + 3 \\rvert - 5 = 0 \\implies \\lvert 2x + 3 \\rvert = 1\n$$\n$$\n\\lvert 15 - 2x \\rvert = 45\n$$\n### Step 2: Split into Two Cases and Solve\n\nSet the expression inside the absolute value equal to both the positive and negative values.\n\nFor $\\lvert 3x - 6 \\rvert = 42$:\n$$\n3x - 6 = 42 \\quad \\text{or} \\quad 3x - 6 = -42\n$$\n$$\n3x = 48 \\quad \\text{or} \\quad 3x = -36\n$$\n$$\nx = 16 \\quad \\text{or} \\quad x = -12\n$$\nFor $\\lvert x + 3 \\rvert = 6$:\n$$\nx + 3 = 6 \\quad \\text{or} \\quad x + 3 = -6\n$$\n$$\nx = 3 \\quad \\text{or} \\quad x = -9\n$$\nFor $\\lvert 15 - 2x \\rvert = 45$:\n$$\n15 - 2x = 45 \\quad \\text{or} \\quad 15 - 2x = -45\n$$\n$$\nx = -15 \\quad \\text{or} \\quad x = 30\n$$\n### Step 3: Identify No-Solution Cases\n\nIf the isolated absolute value equals a negative number, there is no solution.\n\nFor $\\lvert 4x - 9 \\rvert = -8$:\n$$\n\\text{No solution}\n$$\nFor $\\lvert 5 - 2x \\rvert = \\frac{3}{2}$:\n$$\n5 - 2x = \\frac{3}{2} \\quad \\text{or} \\quad 5 - 2x = -\\frac{3}{2}\n$$\n$$\nx = \\frac{7}{4} \\quad \\text{or} \\quad x = \\frac{13}{4}\n$$\nFor $\\lvert 2x + 3 \\rvert = 1$:\n$$\n2x + 3 = 1 \\quad \\text{or} \\quad 2x + 3 = -1\n$$\n$$\nx = -1 \\quad \\text{or} \\quad x = -2\n$$"
+        "markdown": "### Problem\n\nSolve -6|5-2x|=-9 algebraically and check both results.\n\n### Solution\n\nDivide by -6 to obtain |5-2x|=3/2. The cases 5-2x=3/2 and 5-2x=-3/2 give x=7/4 and x=13/4. Each gives absolute value 3/2, so multiplication by -6 returns -9."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — Solve Absolute Value Inequalities by Graphing",
         "phaseType": "worked_example",
-        "markdown": "Students solve absolute value inequalities by graphing the related function and identifying the intervals where the graph satisfies the inequality condition.\n\n### Step 1: Rewrite the Inequality\n\nIsolate the absolute value expression, then graph the related function and the boundary line.\n\nFor $\\lvert 2x - 6 \\rvert - 4 \\le 0$, rewrite as:\n$$\n\\lvert 2x - 6 \\rvert \\le 4\n$$\nGraph $y = \\lvert 2x - 6 \\rvert$ and [y = 4].\n\n### Step 2: Identify the Solution Region\n\nFor \"less than or equal to,\" shade between the intersection points. For \"greater than or equal to,\" shade outside.\n\nFor $\\lvert 2x - 6 \\rvert \\le 4$, the solution is the interval between the boundary points:\n$$\n1 \\le x \\le 5\n$$\nFor $\\lvert x - 1 \\rvert - 3 \\le 0$, which simplifies to $\\lvert x - 1 \\rvert \\le 3$:\n$$\n-2 \\le x \\le 4\n$$\nFor $\\lvert 2x - 1 \\rvert \\ge 4$, the solution is the union of the two outer regions:\n$$\nx \\le -\\frac{3}{2} \\quad \\text{or} \\quad x \\ge \\frac{5}{2}\n$$\nFor $\\lvert 3x + 2 \\rvert \\ge 6$:\n$$\nx \\le -\\frac{8}{3} \\quad \\text{or} \\quad x \\ge \\frac{4}{3}\n$$\nFor $2\\lvert x + 2 \\rvert < 8$, which simplifies to $\\lvert x + 2 \\rvert < 4$:\n[\n-6 < x < 2\n]\n\nFor $3\\lvert x - 1 \\rvert < 12$, which simplifies to $\\lvert x - 1 \\rvert < 4$:\n[\n-3 < x < 5\n]"
+        "markdown": "### Problem\n\nSolve |2x-6|≤4 by graphing.\n\n### Solution\n\nGraph y=|2x-6| and y=4. They meet at x=1 and x=5. The absolute-value graph is on or below the horizontal line between these points. The solution is 1≤x≤5. Both endpoints are included."
       },
       {
         "phaseNumber": 9,
         "title": "Example 5 — Solve Absolute Value Inequalities Using a Graphing Calculator",
         "phaseType": "worked_example",
-        "markdown": "Students use a graphing calculator to visualize solution regions and handle special cases such as no solution or all real numbers.\n\n### Step 1: Enter the Functions\n\nEnter the absolute value function and the horizontal boundary line.\n\nFor $\\left\\lvert \\frac{1}{4}x + 4 \\right\\rvert - 1 > 0$, enter:\n$$\ny = \\left\\lvert \\frac{1}{4}x + 4 \\right\\rvert - 1\n$$\nand\n[\ny = 0\n]\n\n### Step 2: Determine the Solution Set\n\nFind the intersection points and determine where the inequality holds.\n\nFor $\\left\\lvert \\frac{1}{4}x + 4 \\right\\rvert - 1 > 0$, the solution is where the graph is above [y = 0]:\n$$\nx < -20 \\quad \\text{or} \\quad x > -12\n$$\nFor $\\frac{2}{5}\\lvert x - 5 \\rvert + 1 > 0$, the left side is always at least 1, so:\n$$\n\\text{All real numbers}\n$$\nFor $\\lvert 3x - 1 \\rvert < 2$, the solution is between the boundary points:\n$$\n-\\frac{1}{3} < x < 1\n$$\nFor $\\lvert 4x + 1 \\rvert \\le 1$:\n$$\n-\\frac{1}{2} \\le x \\le 0\n$$\nFor $\\frac{1}{6}\\lvert x - 1 \\rvert + 1 \\le 0$, the left side is always at least 1, so:\n$$\n\\text{No solution}\n$$\nFor $\\frac{1}{4}\\lvert x + 5 \\rvert - 1 \\le 1$, which simplifies to $\\frac{1}{4}\\lvert x + 5 \\rvert \\le 2$:\n$$\n-13 \\le x \\le 3\n$$"
+        "markdown": "### Problem\n\nUse graphs to solve (a) |x/4+4|-1>0 and (b) |x-1|/6+1≤0.\n\n### Solution\n\n(a) The graph meets y=0 at x=-20 and x=-12. It is above zero outside that interval, so x<-20 or x>-12. Endpoints are excluded. (b) The graph is always at least 1, so it never reaches or falls below zero. There is no solution. Algebra confirms both graphical conclusions."
       },
       {
         "phaseNumber": 10,

@@ -43,111 +43,33 @@ Substitution works well when:
 
 ## Example 1 — Substitution with Simple Coefficients
 
-Use substitution to solve each system.
+### Problem
 
-**1.** [2x - y = 9] and [x + 3y = -6]
+Solve 2x-y=9 and x+3y=-6 by substitution.
 
-### Step 1: Solve for y
+### Solution
 
-From first equation: [y = 2x - 9]
-
-### Step 2: Substitute
-
-[x + 3(2x - 9) = -6]
-
-[x + 6x - 27 = -6]
-
-[7x = 21] → [x = 3]
-
-### Step 3: Solve for y
-
-[y = 2(3) - 9 = 6 - 9 = -3]
-
-Solution: (3, -3)
-
-**2.** [2x - y = 7] and [6x - 3y = 14]
-
-**3.** [2x + y = 5] and [3x - 3y = 3]
+The first equation gives y=2x-9. Substitute into the second: x+3(2x-9)=-6. Then 7x=21, so x=3 and y=-3. Checks: 2(3)-(-3)=9 and 3+3(-3)=-6.
 
 ## Example 2 — Substitution with Fractional Coefficients
 
-### Step 1: Clear Fractions if Needed
+### Problem
 
-**4.** [3x + y = 7] and [4x + 2y = 16]
+Solve 4x+2y=16 and 2x-y/2=4. Give exact values.
 
-From first: [y = 7 - 3x]
+### Solution
 
-Substitute: [4x + 2(7 - 3x) = 16]
-
-[4x + 14 - 6x = 16]
-
-[-2x = 2] → [x = -1]
-
-[y = 7 - 3(-1) = 7 + 3 = 10]
-
-Solution: (-1, 10)
-
-**5.** [4x + 2y = 16] and [2x - y/2 = 4]
-
-Multiply second equation by 2: [4x - y = 8]
-
-From first: [4x + 2y = 16]
-
-Subtract: [(4x + 2y) - (4x - y) = 16 - 8] → [3y = 8] → [y = 8/3]
-
-Substitute back: [2x - (8/3)/2 = 4] → [2x - 4/3 = 4] → [2x = 16/3] → [x = 8/3]
-
-Solution: (8/3, 8/3)
-
-**6.** [2x + y = 8] and [3x + 3/2 y = 12]
+Multiply the second equation by 2 to get 4x-y=8. Subtract it from the first equation to obtain 3y=8. Thus y=8/3. Substitute into 4x-y=8 to get x=8/3. Both equations hold at (8/3,8/3).
 
 ## Example 3 — Real-World Substitution Problems
 
-### Step 1: Define Variables
+### Problem
 
-**7. BAKE SALE** Cassandra sold 3 small pies + 14 large pies = $203. Alberto sold 11 small pies + 11 large pies = $220. Find cost of each pie.
+At a bake sale, three small pies and fourteen large pies cost 203 dollars. Eleven small pies and eleven large pies cost 220 dollars. Find each price.
 
-**a.** Let [s] = price of small pie, [l] = price of large pie.
+### Solution
 
-System:
-[3s + 14l = 203]
-[11s + 11l = 220]
-
-Solve using substitution. From second: [s + l = 20] → [s = 20 - l]
-
-Substitute: [3(20 - l) + 14l = 203]
-
-[60 - 3l + 14l = 203]
-
-[11l = 143] → [l = 13]
-
-[s = 20 - 13 = 7]
-
-Small pie: $7, Large pie: $13
-
-**b.** The solution represents the price of each pie.
-
-**c.** Verify: [3(7) + 14(13) = 21 + 182 = 203]. [11(7) + 11(13) = 77 + 143 = 220].
-
-**8. STOCKS** Ms. Patel invested $825 in two stocks. Stock A: $12.41/share. Stock B: $8.62/share. Total 79 shares. How many shares of each?
-
-**a.** Let [a] = shares of Stock A, [b] = shares of Stock B.
-
-System:
-[a + b = 79]
-[12.41a + 8.62b = 825]
-
-From first: [b = 79 - a]
-
-Substitute: [12.41a + 8.62(79 - a) = 825]
-
-[12.41a + 680.98 - 8.62a = 825]
-[3.79a = 144.02]
-[a = 38], so [b = 79 - 38 = 41].
-
-Check: [38(12.41) + 41(8.62) = 471.58 + 353.42 = 825].
-
-**b.** Ms. Patel bought exactly 38 shares of Stock A and 41 shares of Stock B.
+Let s and l be prices in dollars. The equations are 3s+14l=203 and 11s+11l=220. The second gives s+l=20, so s=20-l. Substitute into the first: 60+11l=203, giving l=13 and s=7. Both original totals check.
 
 ## Learn: The Elimination Method
 
@@ -168,54 +90,23 @@ Elimination works well when:
 
 ## Example 4 — Basic Elimination
 
-Use elimination to solve each system.
+### Problem
 
-**9.** [3x - 2y = 4] and [5x + 3y = -25]
+Solve 3x-2y=4 and 5x+3y=-25 by elimination.
 
-### Step 1: Make Coefficients Opposites
+### Solution
 
-Multiply first equation by 3 and second by 2:
-
-[9x - 6y = 12]
-[10x + 6y = -50]
-
-### Step 2: Add
-
-[19x = -38] → [x = -2]
-
-### Step 3: Substitute Back
-
-[3(-2) - 2y = 4] → [-6 - 2y = 4] → [-2y = 10] → [y = -5]
-
-Solution: (-2, -5)
-
-**10.** [5x + 2y = 12] and [-6x - 2y = -14]
-
-Add directly: [-x = -2] → [x = 2]
-
-Substitute: [5(2) + 2y = 12] → [10 + 2y = 12] → [y = 1]
-
-**11.** [7x + 2y = -1] and [21x + 6y = -9]
-
-Multiply first by 3: [21x + 6y = -3]. This conflicts with [21x + 6y = -9]. No solution.
-
-**12.** [3x - 5y = -9] and [-7x + 3y = 8]
+Multiply the first equation by 3 and the second by 2. Add 9x-6y=12 and 10x+6y=-50 to get 19x=-38. Thus x=-2. Substitute to get -6-2y=4, so y=-5. The solution is (-2,-5).
 
 ## Example 5 — Elimination with Different Multipliers
 
-**13.** [x - 3y = -12] and [2x + y = 11]
+### Problem
 
-Multiply first by -2: [-2x + 6y = 24]
+Solve (a) x-3y=-12 and 2x+y=11; and (b) 6w-8z=16 and 3w-4z=8.
 
-Add to second: [7y = 35] → [y = 5]
+### Solution
 
-Substitute: [x - 3(5) = -12] → [x - 15 = -12] → [x = 3]
-
-**14.** [6w - 8z = 16] and [3w - 4z = 8]
-
-Multiply second by -2: [-6w + 8z = -16]
-
-Add to first: [0 = 0]. Infinitely many solutions — same line.
+(a) Multiply the first equation by -2 and add the second. This gives 7y=35, so y=5 and x=3. (b) The first equation is twice the second. There are infinitely many solutions on 3w-4z=8, such as w=(8+4z)/3 for any real z.
 
 ## Mixed Exercises
 

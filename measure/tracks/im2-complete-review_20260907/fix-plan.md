@@ -162,3 +162,9 @@ The full suite passed with 207 tests using two test workers. Two earlier checks 
 Completed 19 further function examples. The cumulative correction covers 242 headings. The examples now state codomains, discrete domains, piecewise endpoints, and the meaning of floor notation. Corrected the two-end behavior of a nonconstant line. Replaced missing graph references with explicit equations and plotting instructions.
 
 Verification passed with 207 tests, lint, frontend and backend TypeScript, and production build.
+
+## Module 9 worked examples
+
+Completed 39 linear-equation, system, inequality, and optimization examples. There are now 281 complete headings. Corrected an inequality sign during the intermediate solution. The container-cost example now distinguishes the real-valued line intersection from valid integer orders. The optimization example correctly describes its unbounded directions and proves the missing minimum.
+
+Verification passed with 207 tests, lint, frontend and backend TypeScript, and production build.
