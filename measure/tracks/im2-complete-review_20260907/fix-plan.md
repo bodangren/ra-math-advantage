@@ -122,3 +122,13 @@ Local browser verification passed for draft selection, preview, and publication 
 Students can join another class with its code from the dashboard. The server uses the current student identity. It requires an active class, an active teacher, and the same organization. Replay preserves one enrollment. Shared codes cannot reopen withdrawn or completed enrollments. Tests cover these boundaries and forged form identities. The local browser showed a successful enrollment replay without losing lesson progress.
 
 Verification passed with 205 tests, lint, frontend and backend TypeScript, production build, and isolated backend validation.
+
+## Standards seed correction
+
+The shared seed function selects the newest draft. It removes obsolete draft links and preserves published links. Seed replay does not add duplicate links. The complete seed now includes all 13 lesson-standard seed functions after lesson creation. Repeated mutation code was removed from the 13 module files.
+
+Corrected selected mappings for triangle laws, focus/directrix parabolas, multiplication and conditional probability, two-way tables, function transformations, graph-based absolute-value equations, radicals, factoring, and trigonometric identities. The remaining mappings and graph teaching edges still require content review. These draft links do not establish mastery coverage.
+
+Sources: [triangle laws](https://www.thecorestandards.org/Math/Content/HSG/SRT/), [probability](https://www.thecorestandards.org/Math/Content/HSS/CP/), [parabolas](https://www.thecorestandards.org/Math/Content/HSG/GPE/), [function transformations](https://www.thecorestandards.org/Math/Content/HSF/BF/), [graph solutions](https://www.thecorestandards.org/Math/Content/HSA/REI/), [radicals](https://www.thecorestandards.org/Math/Content/HSN/RN/), [factoring](https://www.thecorestandards.org/Math/Content/HSA/SSE/), and [trigonometric identities](https://www.thecorestandards.org/Math/Content/HSF/TF/).
+
+Standards checkpoint verification: 207 tests passed. Lint, frontend and backend TypeScript, production build, and local seed replay passed. The seed replay returned 96 lessons.

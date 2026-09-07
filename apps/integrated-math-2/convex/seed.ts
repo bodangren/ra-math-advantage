@@ -155,6 +155,19 @@ export const seedAll = internalAction({
         {},
       )
     ).lessons.length;
+    await ctx.runMutation(internal.seed.seed_im2_module_1_standards.seedModule1LessonStandards, {});
+    await ctx.runMutation(internal.seed.seed_im2_module_2_standards.seedModule2LessonStandards, {});
+    await ctx.runMutation(internal.seed.seed_im2_module_3_standards.seedModule3LessonStandards, {});
+    await ctx.runMutation(internal.seed.seed_im2_module_4_standards.seedModule4LessonStandards, {});
+    await ctx.runMutation(internal.seed.seed_im2_module_5_standards.seedModule5LessonStandards, {});
+    await ctx.runMutation(internal.seed.seed_im2_module_6_standards.seedModule6LessonStandards, {});
+    await ctx.runMutation(internal.seed.seed_im2_module_7_standards.seedModule7LessonStandards, {});
+    await ctx.runMutation(internal.seed.seed_im2_module_8_standards.seedModule8LessonStandards, {});
+    await ctx.runMutation(internal.seed.seed_im2_module_9_standards.seedModule9LessonStandards, {});
+    await ctx.runMutation(internal.seed.seed_im2_module_10_standards.seedModule10LessonStandards, {});
+    await ctx.runMutation(internal.seed.seed_im2_module_11_standards.seedModule11LessonStandards, {});
+    await ctx.runMutation(internal.seed.seed_im2_module_12_standards.seedModule12LessonStandards, {});
+    await ctx.runMutation(internal.seed.seed_im2_module_13_standards.seedModule13LessonStandards, {});
     return { lessons };
   },
 });

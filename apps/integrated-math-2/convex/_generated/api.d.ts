@@ -16,6 +16,7 @@ import type * as public_ from "../public.js";
 import type * as publication from "../publication.js";
 import type * as seed from "../seed.js";
 import type * as seed_lesson_content from "../seed/lesson_content.js";
+import type * as seed_lesson_standards from "../seed/lesson_standards.js";
 import type * as seed_objective_policies from "../seed/objective_policies.js";
 import type * as seed_seed_class_lessons from "../seed/seed_class_lessons.js";
 import type * as seed_seed_demo_env from "../seed/seed_demo_env.js";
@@ -69,6 +70,7 @@ declare const fullApi: ApiFromModules<{
   publication: typeof publication;
   seed: typeof seed;
   "seed/lesson_content": typeof seed_lesson_content;
+  "seed/lesson_standards": typeof seed_lesson_standards;
   "seed/objective_policies": typeof seed_objective_policies;
   "seed/seed_class_lessons": typeof seed_seed_class_lessons;
   "seed/seed_demo_env": typeof seed_seed_demo_env;

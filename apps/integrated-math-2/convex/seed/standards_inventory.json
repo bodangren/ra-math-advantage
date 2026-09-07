@@ -25,7 +25,22 @@
     "framework": "CCSS-M"
   },
   {
+    "code": "A-APR.A.1",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "A-APR.B.2",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
     "code": "A-APR.B.3",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "A-APR.C.4",
     "source": "Common Core State Standards Initiative",
     "framework": "CCSS-M"
   },
@@ -80,6 +95,12 @@
     "framework": "CCSS-M"
   },
   {
+    "code": "A-REI.D.11",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M",
+    "citation": "https://www.thecorestandards.org/Math/Content/HSA/REI/D/11/"
+  },
+  {
     "code": "A-REI.D.12",
     "source": "Common Core State Standards Initiative",
     "framework": "CCSS-M"
@@ -105,7 +126,22 @@
     "framework": "CCSS-M"
   },
   {
+    "code": "F-BF.A.2",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
     "code": "F-BF.B.3",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "F-IF.A.1",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "F-IF.A.2",
     "source": "Common Core State Standards Initiative",
     "framework": "CCSS-M"
   },
@@ -115,7 +151,22 @@
     "framework": "CCSS-M"
   },
   {
+    "code": "F-IF.B.5",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "F-IF.B.6",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
     "code": "F-IF.C.7",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "F-IF.C.7b",
     "source": "Common Core State Standards Initiative",
     "framework": "CCSS-M"
   },
@@ -255,6 +306,12 @@
     "framework": "CCSS-M"
   },
   {
+    "code": "G-GPE.A.2",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M",
+    "citation": "https://www.thecorestandards.org/Math/Content/HSG/GPE/A/2/"
+  },
+  {
     "code": "G-GPE.B.4",
     "source": "Common Core State Standards Initiative",
     "framework": "CCSS-M"
@@ -320,49 +377,10 @@
     "framework": "CCSS-M"
   },
   {
-    "code": "A-APR.A.1",
+    "code": "G-SRT.D.11",
     "source": "Common Core State Standards Initiative",
-    "framework": "CCSS-M"
-  },
-  {
-    "code": "A-APR.B.2",
-    "source": "Common Core State Standards Initiative",
-    "framework": "CCSS-M"
-  },
-  {
-    "code": "A-APR.C.4",
-    "source": "Common Core State Standards Initiative",
-    "framework": "CCSS-M"
-  },
-  {
-    "code": "F-BF.A.2",
-    "source": "Common Core State Standards Initiative",
-    "framework": "CCSS-M"
-  },
-  {
-    "code": "F-IF.A.1",
-    "source": "Common Core State Standards Initiative",
-    "framework": "CCSS-M"
-  },
-  {
-    "code": "F-IF.A.2",
-    "source": "Common Core State Standards Initiative",
-    "framework": "CCSS-M"
-  },
-  {
-    "code": "F-IF.B.5",
-    "source": "Common Core State Standards Initiative",
-    "framework": "CCSS-M"
-  },
-  {
-    "code": "F-IF.B.6",
-    "source": "Common Core State Standards Initiative",
-    "framework": "CCSS-M"
-  },
-  {
-    "code": "F-IF.C.7b",
-    "source": "Common Core State Standards Initiative",
-    "framework": "CCSS-M"
+    "framework": "CCSS-M",
+    "citation": "https://www.thecorestandards.org/Math/Content/HSG/SRT/D/11/"
   },
   {
     "code": "N-CN.A.2",
@@ -388,6 +406,12 @@
     "code": "S-CP.A.2",
     "source": "Common Core State Standards Initiative",
     "framework": "CCSS-M"
+  },
+  {
+    "code": "S-CP.A.4",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M",
+    "citation": "https://www.thecorestandards.org/Math/Content/HSS/CP/A/4/"
   },
   {
     "code": "S-CP.B.6",

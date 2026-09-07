@@ -13,6 +13,28 @@ export const seedStandards = internalMutation({
   handler: async (ctx) => {
     const standards: SeedCompetencyStandard[] = [
       {
+        code: "G-SRT.D.11",
+        description: "Apply the laws of sines and cosines to find measurements in right and non-right triangles.",
+        studentFriendlyDescription: "I can use the laws of sines and cosines to solve triangles.",
+        category: "Geometry",
+        isActive: true,
+      },
+      {
+        code: "G-GPE.A.2",
+        description: "Derive a parabola equation from its focus and directrix.",
+        studentFriendlyDescription: "I can find a parabola equation from its focus and directrix.",
+        category: "Geometry",
+        isActive: true,
+      },
+      {
+        code: "A-REI.D.11",
+        description: "Explain why intersections of y = f(x) and y = g(x) solve f(x) = g(x). Approximate these solutions for polynomial, rational, absolute value, exponential, and logarithmic functions.",
+        studentFriendlyDescription: "I can use graph intersections to approximate equation solutions.",
+        category: "Algebra",
+        isActive: true,
+      },
+
+      {
         code: "G-CO.A.1",
         description:
           "Know precise definitions of angle, perpendicular line, parallel line, and line segment",
