@@ -39,3 +39,9 @@ Label the added ball, temperature, and numeric tables as authored material. Pres
 ## Disposition
 
 The source repair can proceed after the author revises the two overlapping or unsupported capability proposals and verifies the cited objective text. Preserve source givens, graph descriptions, solutions, and endpoint rules. Keep all restored and new rows draft and inactive. This review does not approve curriculum publication.
+
+## Revised proposal accepted for authoring
+
+The parent independently read official CED PDF pages 39 and 40. They confirm the revised objectives and concavity statements. They do not explicitly state constant behavior. Label the pilot constant segment as authored extension content. The graph-construction objective remains a coverage gap because selecting a supplied graph does not prove construction mastery.
+
+The revised three-candidate source repair is accepted for draft authoring. Preserve the two existing skill identities, restore the ten missing numbered examples, and correct readiness, vocabulary, authored attribution, and source mappings. This acceptance does not approve curriculum publication or complete Topic 1.1 coverage.
