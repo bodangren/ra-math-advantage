@@ -23,6 +23,10 @@ export default defineSchema({
     .index("by_organization", ["organizationId"])
     .index("by_username", ["username"]),
 
+  auth_attempts: defineTable({
+    key: v.string(), requestCount: v.number(), windowStart: v.number(),
+  }).index('by_key', ['key']).index('by_window', ['windowStart']),
+
   auth_credentials: defineTable({
     profileId: v.id("profiles"),
     username: v.string(),

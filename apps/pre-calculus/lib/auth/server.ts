@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 import { NextResponse } from 'next/server';
 
 import { SESSION_COOKIE_NAME, getAuthJwtSecret, verifySessionToken } from '@math-platform/core-auth';
+import { fetchInternalQuery, internal } from '@/lib/convex/server';
 import type { SessionClaims } from '@math-platform/core-auth';
 
 export async function getServerSessionClaims(): Promise<SessionClaims | null> {
@@ -10,7 +11,11 @@ export async function getServerSessionClaims(): Promise<SessionClaims | null> {
   const token = cookieStore.get(SESSION_COOKIE_NAME)?.value;
   if (!token) return null;
 
-  return verifySessionToken(token, getAuthJwtSecret());
+  const claims = await verifySessionToken(token, getAuthJwtSecret());
+  if (!claims) return null;
+  const account = await fetchInternalQuery(internal.auth.getAccountSettingsContext, { profileId: claims.sub });
+  if (!account) return null;
+  return { ...claims, username: account.username, role: account.role, organizationId: account.organizationId };
 }
 
 function getCookieValueFromHeader(cookieHeader: string | null, key: string): string | null {
@@ -27,7 +32,7 @@ function getCookieValueFromHeader(cookieHeader: string | null, key: string): str
     const name = trimmed.slice(0, separatorIndex).trim();
     if (name !== key) continue;
 
-    return decodeURIComponent(trimmed.slice(separatorIndex + 1));
+    try { return decodeURIComponent(trimmed.slice(separatorIndex + 1)); } catch { return null; }
   }
 
   return null;
@@ -37,7 +42,11 @@ export async function getRequestSessionClaims(request: Request): Promise<Session
   const token = getCookieValueFromHeader(request.headers.get('cookie'), SESSION_COOKIE_NAME);
   if (!token) return null;
 
-  return verifySessionToken(token, getAuthJwtSecret());
+  const claims = await verifySessionToken(token, getAuthJwtSecret());
+  if (!claims) return null;
+  const account = await fetchInternalQuery(internal.auth.getAccountSettingsContext, { profileId: claims.sub });
+  if (!account) return null;
+  return { ...claims, username: account.username, role: account.role, organizationId: account.organizationId };
 }
 
 function buildRequestUnauthorizedResponse(message = 'Unauthorized') {
@@ -58,6 +67,23 @@ export async function requireRequestSessionClaims(
   }
 
   return claims;
+}
+
+export async function requireStudentRequestClaims(
+  request: Request,
+  unauthorizedMessage = 'Unauthorized',
+  forbiddenMessage = 'Forbidden',
+): Promise<SessionClaims | Response> {
+  const claimsOrResponse = await requireRequestSessionClaims(request, unauthorizedMessage);
+  if (claimsOrResponse instanceof Response) {
+    return claimsOrResponse;
+  }
+
+  if (claimsOrResponse.role !== 'student') {
+    return buildRequestForbiddenResponse(forbiddenMessage);
+  }
+
+  return claimsOrResponse;
 }
 
 export async function requireTeacherRequestClaims(
@@ -110,5 +136,5 @@ export async function requireStudentSessionClaims(
     return claims;
   }
 
-  redirect('/teacher');
+  redirect('/teacher/dashboard');
 }

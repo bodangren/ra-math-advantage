@@ -20,6 +20,8 @@ export async function GET(request: Request) {
       profileId: claims.sub,
     });
 
+    if (!accountContext) return NextResponse.json({ authenticated: false });
+
     return NextResponse.json({
       authenticated: true,
       user: { id: claims.sub },
