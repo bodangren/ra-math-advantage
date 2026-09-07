@@ -4296,10 +4296,10 @@
     {
       "id": "math.im1.example.4.1.001",
       "kind": "worked_example",
-      "title": "Example 1: Graph by Making a Table; Graph Using x- and y-Intercepts",
+      "title": "Example 1: Graph by Making a Table",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4-1, Example 1)"
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-1 (heading at line 42)"
       ],
       "reviewStatus": "approved",
       "metadata": {
@@ -4308,16 +4308,16 @@
         "lesson": "1",
         "exampleNumber": 1,
         "sourceLesson": "4-1",
-        "rawText": "4-1, Examples 1-2 \u2014 Graph by Making a Table; Graph Using x- and y-Intercepts"
+        "rawText": "Example 1 \u2014 Graph by Making a Table"
       }
     },
     {
       "id": "math.im1.example.4.1.002",
       "kind": "worked_example",
-      "title": "Example 2: Graph by Making a Table; Graph Using x- and y-Intercepts",
+      "title": "Example 2: Graph Using x- and y-Intercepts",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4-1, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-1 (heading at line 68)"
       ],
       "reviewStatus": "approved",
       "metadata": {
@@ -4326,34 +4326,16 @@
         "lesson": "1",
         "exampleNumber": 2,
         "sourceLesson": "4-1",
-        "rawText": "4-1, Examples 1-2 \u2014 Graph by Making a Table; Graph Using x- and y-Intercepts"
-      }
-    },
-    {
-      "id": "math.im1.example.4.1.003",
-      "kind": "worked_example",
-      "title": "Example 2: Graph Using x- and y-Intercepts (continued); Interpret Intercepts in Context",
-      "domain": "math.im1",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4-1, Example 2)"
-      ],
-      "reviewStatus": "approved",
-      "metadata": {
-        "course": "im1",
-        "module": "4",
-        "lesson": "1",
-        "exampleNumber": 2,
-        "sourceLesson": "4-1",
-        "rawText": "4-1, Examples 2-3 \u2014 Graph Using x- and y-Intercepts (continued); Interpret Intercepts in Context"
+        "rawText": "Example 2 \u2014 Graph Using x- and y-Intercepts"
       }
     },
     {
       "id": "math.im1.example.4.1.004",
       "kind": "worked_example",
-      "title": "Example 3: Graph Using x- and y-Intercepts (continued); Interpret Intercepts in Context",
+      "title": "Example 3: Interpret Intercepts in Context",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4-1, Example 3)"
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-1 (heading at line 98)"
       ],
       "reviewStatus": "approved",
       "metadata": {
@@ -4362,7 +4344,7 @@
         "lesson": "1",
         "exampleNumber": 3,
         "sourceLesson": "4-1",
-        "rawText": "4-1, Examples 2-3 \u2014 Graph Using x- and y-Intercepts (continued); Interpret Intercepts in Context"
+        "rawText": "Example 3 \u2014 Interpret Intercepts in Context"
       }
     },
     {
