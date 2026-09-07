@@ -82,6 +82,6 @@ The selected source uses the normalized original solver props. The domain-range 
 
 The main selected seed and seeded-submission tests pass. The production build passes. A separate regression proved that a student domain-range Worked acknowledgement incorrectly produced teacher-led evidence. That branch now returns no evidence. Verified teacher integration for that capability remains open.
 
-The first broader compatibility run had 17 failures and 162 passes. Explicit test-only physical approval and SRS eligibility, corrected x² fixtures, and draft seed assertions resolved 15 failures. Two active-identity fixture repairs remain under verification. The full main integration is not accepted yet. No publication, database seed, or deployment occurred.
+The first broader compatibility run had 17 failures and 162 passes. Explicit test-only physical approval and SRS eligibility, corrected x² fixtures, and draft seed assertions resolved 15 failures. The two active-identity fixtures now include matching active credentials. The combined main run passes 186 tests. Independent helper review also passes 16 related tests, including source conflicts and the complete linked-activity contract. The full main integration is not accepted yet. No publication, database seed, or deployment occurred.
 
 The root package test command was started in error during compatibility verification and was stopped. Its result does not support app acceptance. The compatibility counts above come from the IM3 app directory.
