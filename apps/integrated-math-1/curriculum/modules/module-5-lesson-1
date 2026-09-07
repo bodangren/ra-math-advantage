@@ -113,6 +113,8 @@ Variations in the worksheet include:
 * Vertical lines (e.g., [ (-6, 5) ] and [ (-6, -4) ], undefined slope)
 * Points with fractional coordinates (e.g., [ \left(\frac{5}{4}, 1\right) ] and [ \left(-\frac{1}{4}, \frac{3}{4}\right) ])
 
+The points [ (-6, 5) ] and [ (-6, -4) ] define [ x = -6 ]. A vertical line does not have slope-intercept form.
+
 ## Example 4 — Write Equations from Data and Models
 
 Use given data points, tables, or models to write linear equations representing real-world contexts.
@@ -129,7 +131,11 @@ Apply the same process as Example 3. For the population of Laredo (123,000 in 19
 [
 m = \frac{215500 - 123000}{2007 - 1990} = \frac{92500}{17} \approx 5441
 ]
-Then use an integer slope and solve for [ b ].
+Since [ t ] is years after 1990, [ b = 123000 ]. The requested integer-slope model is:
+[
+p = 5441t + 123000
+]
+This rounded model gives [ p(17) = 215497 ], which is 3 less than the reported 2007 population.
 
 ### Step 3: Write the Final Equation
 

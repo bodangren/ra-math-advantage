@@ -3,7 +3,7 @@
 **Generated**: 2026-05-10
 **Updated**: 2026-09-07
 **Track**: skill-rollout-im1 (T9)
-**Current inventory**: 793 canonical nodes. The edge artifact contains 793 embedded nodes and 2,276 edges. Both embedded catalogs use the current draft nodes and 77 canonical standard nodes. Their node content now agrees with these sources. Review status remains separate from canonical approval. The frozen validation result appears below.
+**Current inventory**: 803 canonical nodes. The edge artifact contains 803 embedded nodes and 2,286 edges. Both embedded catalogs use the current draft nodes and 77 canonical standard nodes. Their node content now agrees with these sources. Review status remains separate from canonical approval. The frozen validation result appears below.
 
 ## Overview
 
@@ -11,20 +11,20 @@ This audit contains a frozen 2026-05-10 baseline and a current source-inventory 
 
 ## Current Source Inventory
 
-- Current skill candidates: 204.
+- Current skill candidates: 214.
 - Historical frozen skill baseline: 138.
 - Registered generator bindings: 6.
-- Skills without a registered generator binding: 198.
-- Skills with a blueprint row: 200.
+- Skills without a registered generator binding: 208.
+- Skills with a blueprint row: 210.
 - Skills without a blueprint row: 4.
 - Blueprint rows with three schema-valid mode specifications: 6.
 - Blueprint rows with three empty mode specifications: 126.
-- Source-only blueprint rows without mode specifications: 68.
+- Source-only blueprint rows without mode specifications: 78.
 - Approved skill nodes in the current graph: 137.
 
 The legacy coverage matrix status `served` means only that `IM1_GENERATORS` contains the node ID. It does not mean that the application serves a complete Worked, Guided, and Independent practice path. It does not prove renderer wiring, answer concealment, server grading, evidence persistence, or readiness approval. No production-served total is established by this inventory.
 
-The current `generator-gap-queue.json` contains 198 current skill candidates. This includes six restored objectives in each of Modules 1, 2, and 3. These 18 candidates do not have generator bindings. All 15 Module 3 blueprints are source-only draft rows. Three new rows separate numerical evaluation, algebraic evaluation, and interpretation in context. The legacy 3d objective remains an inactive aggregate. Two new Lesson 4-1 rows separate contextual intercept interpretation from equivalent-form rewriting. Six new Lesson 4-2 rows separate table, graph, contextual data, linearity, two-point slope, and unknown-coordinate capabilities. Four new Lesson 4-3 rows separate equation writing, form rewriting, contextual modeling and interpretation, and graphing. Six provisional Lesson 4-4 goal candidates separate translations, dilations, reflections, vertical and horizontal classification, verbal rules, and contextual rules. The original worksheet confirms the linear parent `f(x) = x`. For this parent, some horizontal and vertical descriptions give the same resulting graph and simplified function. These candidates remain draft and inactive. A future assessment must handle this nonuniqueness. Seven provisional Lesson 4-5 candidates separate common-difference calculation, sequence extension, explicit-equation writing, specified-term evaluation, contextual modeling, discrete graphing, and contextual answers. The source correction defines the cooler model as `f(n) = 128 - 4n` for integer `0 <= n <= 32`; 72 ounces remain after cup 14. Twelve provisional Lesson 4-6 candidates separate piecewise and step graphing, domain and range, contextual modeling, and writing from tables, graphs, and verbal descriptions. The extraction now distinguishes the continuous half-hour domain in Problem 13 from the integer box-count domain in Problem 14. Problems 15 and 20 give constant prices on rounded weight intervals, so a task must not interpolate between table rows. The Problem 17 prompt requests a step function, but its original figure has sloped rays. That item cannot supply assessment content until the mismatch is resolved. Eight provisional Lesson 4-7 candidates separate translation, dilation, reflection, combined transformation, equation writing, graphing, domain and range, and contextual modeling. The source correction restores Example 15 graph modeling and records that reflecting the even parent `|x|` across the y-axis does not change its graph. The Lesson 4-2 contextual-data row has no source example mapping because the source examples use context only as part of another worked method. Some legacy objectives still combine separate capabilities. Four Module 1 candidates do not have a blueprint row. The six schema-valid blueprint bundles are not proof of production readiness.
+The current `generator-gap-queue.json` contains 208 current skill candidates. This includes six restored objectives in each of Modules 1, 2, and 3. These 18 candidates do not have generator bindings. All 15 Module 3 blueprints are source-only draft rows. Three new rows separate numerical evaluation, algebraic evaluation, and interpretation in context. The legacy 3d objective remains an inactive aggregate. Two new Lesson 4-1 rows separate contextual intercept interpretation from equivalent-form rewriting. Six new Lesson 4-2 rows separate table, graph, contextual data, linearity, two-point slope, and unknown-coordinate capabilities. Four new Lesson 4-3 rows separate equation writing, form rewriting, contextual modeling and interpretation, and graphing. Six provisional Lesson 4-4 goal candidates separate translations, dilations, reflections, vertical and horizontal classification, verbal rules, and contextual rules. The original worksheet confirms the linear parent `f(x) = x`. For this parent, some horizontal and vertical descriptions give the same resulting graph and simplified function. These candidates remain draft and inactive. A future assessment must handle this nonuniqueness. Seven provisional Lesson 4-5 candidates separate common-difference calculation, sequence extension, explicit-equation writing, specified-term evaluation, contextual modeling, discrete graphing, and contextual answers. The source correction defines the cooler model as `f(n) = 128 - 4n` for integer `0 <= n <= 32`; 72 ounces remain after cup 14. Twelve provisional Lesson 4-6 candidates separate piecewise and step graphing, domain and range, contextual modeling, and writing from tables, graphs, and verbal descriptions. The extraction now distinguishes the continuous half-hour domain in Problem 13 from the integer box-count domain in Problem 14. Problems 15 and 20 give constant prices on rounded weight intervals, so a task must not interpolate between table rows. The Problem 17 prompt requests a step function, but its original figure has sloped rays. That item cannot supply assessment content until the mismatch is resolved. Eight provisional Lesson 4-7 candidates separate translation, dilation, reflection, combined transformation, equation writing, graphing, domain and range, and contextual modeling. The source correction restores Example 15 graph modeling and records that reflecting the even parent `|x|` across the y-axis does not change its graph. Ten provisional Lesson 5-1 candidates separate equation writing from a point and slope, contextual modeling from a rate and initial value, equation writing from two points, horizontal and vertical line equations, contextual modeling from two data points, point membership, finding an additional point, equations from graphs, equations from tables, and interpretation of slope and y-intercept. The extraction now states that the two points with x-coordinate -6 define the vertical line `x = -6`, which has no slope-intercept form. It also states that the integer-slope population model `p = 5441t + 123000` is an approximation and gives 215,497 for 2007, which is 3 less than the reported value. The Lesson 4-2 contextual-data row has no source example mapping because the source examples use context only as part of another worked method. Some legacy objectives still combine separate capabilities. Four Module 1 candidates do not have a blueprint row. The six schema-valid blueprint bundles are not proof of production readiness.
 
 ## Frozen 2026-05-10 Baseline
 
@@ -135,7 +135,7 @@ Renderer distribution across 138 skills:
 
 ## Tracked Long Tail
 
-198 skill candidates outside the registered generator set remain without a current binding. The table below is the historical 132-skill baseline. It does not include the 18 restored objectives or the 48 provisional capability rows:
+208 skill candidates outside the registered generator set remain without a current binding. The table below is the historical 132-skill baseline. It does not include the 18 restored objectives or the 58 provisional capability rows:
 
 | Module | Skills Without Generators | Notes |
 |--------|--------------------------|-------|
@@ -154,7 +154,7 @@ Renderer distribution across 138 skills:
 | 14: Congruent Figures | 14 | |
 | **Total long tail** | **132** | **138 − 6 (Module 1 vertical slice)** |
 
-Each long-tail skill retains its `.pending.test.ts` in `_pending/` until promoted. The current `generator-gap-queue.json` lists all 198 unbound skill candidates.
+Each long-tail skill retains its `.pending.test.ts` in `_pending/` until promoted. The current `generator-gap-queue.json` lists all 208 unbound skill candidates.
 
 ## Historical Validation Results
 

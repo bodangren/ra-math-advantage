@@ -1781,10 +1781,100 @@
       "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
       "gap": "No generator binding or complete three-mode blueprint",
       "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.5.1.write-slope-intercept-equations-from-a-point-and-slope",
+      "title": "Write slope-intercept equations from a point and slope",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.1.model-contexts-from-a-rate-and-initial-value",
+      "title": "Model real-world contexts from a rate and initial value",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.1.write-slope-intercept-equations-from-two-points",
+      "title": "Write slope-intercept equations from two points",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.1.write-horizontal-and-vertical-line-equations-from-two-points",
+      "title": "Write horizontal and vertical line equations from two points",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.1.model-contexts-from-two-data-points",
+      "title": "Model real-world contexts from two data points",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.1.determine-whether-a-point-lies-on-a-line",
+      "title": "Determine whether a point lies on a line",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.1.find-an-additional-point-on-a-line",
+      "title": "Find an additional point on a line",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.1.write-linear-equations-from-graphs",
+      "title": "Write linear equations from graphs",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.1.write-linear-equations-from-tables",
+      "title": "Write linear equations from tables",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.1.interpret-slope-and-y-intercept-in-context",
+      "title": "Interpret slope and y-intercept in context",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
     }
   ],
   "meta": {
-    "totalSkills": 198,
+    "totalSkills": 208,
     "allNeedGenerators": true
   }
 }

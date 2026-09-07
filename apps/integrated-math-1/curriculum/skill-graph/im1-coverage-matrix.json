@@ -1,10 +1,10 @@
 {
   "version": 1,
   "course": "im1",
-  "totalSkills": 204,
+  "totalSkills": 214,
   "counts": {
     "served": 6,
-    "gap": 198,
+    "gap": 208,
     "newComponent": 0
   },
   "byModule": [
@@ -38,9 +38,9 @@
     },
     {
       "module": "5",
-      "totalSkills": 6,
+      "totalSkills": 16,
       "served": 0,
-      "gap": 6,
+      "gap": 16,
       "newComponent": 0
     },
     {
@@ -861,11 +861,91 @@
       "priority": "medium"
     },
     {
+      "skillId": "math.im1.skill.5.1.determine-whether-a-point-lies-on-a-line",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.1.find-an-additional-point-on-a-line",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.1.interpret-slope-and-y-intercept-in-context",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.1.model-contexts-from-a-rate-and-initial-value",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.1.model-contexts-from-two-data-points",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.1.write-horizontal-and-vertical-line-equations-from-two-points",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.1.write-linear-equations-from-graphs",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.1.write-linear-equations-from-tables",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
       "skillId": "math.im1.skill.5.1.write-linear-equations-in-slope-intercept-form-given-a-point",
       "module": "5",
       "status": "gap",
       "tier": "none",
       "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.1.write-slope-intercept-equations-from-a-point-and-slope",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.1.write-slope-intercept-equations-from-two-points",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
       "priority": "standard"
     },
     {

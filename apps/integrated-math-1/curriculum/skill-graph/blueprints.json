@@ -5441,6 +5441,126 @@
         "module": "4",
         "lesson": "7"
       }
+    },
+    {
+      "nodeId": "math.im1.skill.5.1.write-slope-intercept-equations-from-a-point-and-slope",
+      "sourceNodeIds": [
+        "math.im1.example.5.1.001"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.1.model-contexts-from-a-rate-and-initial-value",
+      "sourceNodeIds": [
+        "math.im1.example.5.1.002"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.1.write-slope-intercept-equations-from-two-points",
+      "sourceNodeIds": [
+        "math.im1.example.5.1.003"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.1.write-horizontal-and-vertical-line-equations-from-two-points",
+      "sourceNodeIds": [
+        "math.im1.example.5.1.003"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.1.model-contexts-from-two-data-points",
+      "sourceNodeIds": [
+        "math.im1.example.5.1.006"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.1.determine-whether-a-point-lies-on-a-line",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.1.find-an-additional-point-on-a-line",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.1.write-linear-equations-from-graphs",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.1.write-linear-equations-from-tables",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.1.interpret-slope-and-y-intercept-in-context",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "1"
+      }
     }
   ]
 }

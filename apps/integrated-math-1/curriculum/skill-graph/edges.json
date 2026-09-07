@@ -6,8 +6,8 @@
     "pilotEdgesPreserved": 0,
     "standardEdgesMerged": 941,
     "suggestedEdges": 1277,
-    "totalEdges": 2276,
-    "totalNodes": 793,
+    "totalEdges": 2286,
+    "totalNodes": 803,
     "normalizedWeights": 539
   },
   "nodes": [
@@ -5009,10 +5009,10 @@
     {
       "id": "math.im1.example.5.1.001",
       "kind": "worked_example",
-      "title": "Example 1: Write an Equation Given a Point and a Slope; Model Real-World Situations with Linear Equations; Write an Equation Given Two Points",
+      "title": "Example 1: Write an Equation Given a Point and a Slope",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-5-class-period-plan.md (5-1, Example 1)"
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-1 (Example 1)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -5021,16 +5021,16 @@
         "lesson": "1",
         "exampleNumber": 1,
         "sourceLesson": "5-1",
-        "rawText": "5-1, Examples 1-3 \u2014 Write an Equation Given a Point and a Slope; Model Real-World Situations with Linear Equations; Write an Equation Given Two Points"
+        "rawText": "Example 1: Write an Equation Given a Point and a Slope"
       }
     },
     {
       "id": "math.im1.example.5.1.002",
       "kind": "worked_example",
-      "title": "Example 2: Write an Equation Given a Point and a Slope; Model Real-World Situations with Linear Equations; Write an Equation Given Two Points",
+      "title": "Example 2: Model Real-World Situations with Linear Equations",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-5-class-period-plan.md (5-1, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-1 (Example 2)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -5039,16 +5039,16 @@
         "lesson": "1",
         "exampleNumber": 2,
         "sourceLesson": "5-1",
-        "rawText": "5-1, Examples 1-3 \u2014 Write an Equation Given a Point and a Slope; Model Real-World Situations with Linear Equations; Write an Equation Given Two Points"
+        "rawText": "Example 2: Model Real-World Situations with Linear Equations"
       }
     },
     {
       "id": "math.im1.example.5.1.003",
       "kind": "worked_example",
-      "title": "Example 3: Write an Equation Given a Point and a Slope; Model Real-World Situations with Linear Equations; Write an Equation Given Two Points",
+      "title": "Example 3: Write an Equation Given Two Points",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-5-class-period-plan.md (5-1, Example 3)"
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-1 (Example 3)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -5057,16 +5057,16 @@
         "lesson": "1",
         "exampleNumber": 3,
         "sourceLesson": "5-1",
-        "rawText": "5-1, Examples 1-3 \u2014 Write an Equation Given a Point and a Slope; Model Real-World Situations with Linear Equations; Write an Equation Given Two Points"
+        "rawText": "Example 3: Write an Equation Given Two Points"
       }
     },
     {
       "id": "math.im1.example.5.1.004",
       "kind": "worked_example",
-      "title": "Example 2: Model Real-World Situations (continued); Write Equations from Data and Models",
+      "title": "Example 2: Model Real-World Situations with Linear Equations",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-5-class-period-plan.md (5-1, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-1 (Example 2)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -5075,16 +5075,16 @@
         "lesson": "1",
         "exampleNumber": 2,
         "sourceLesson": "5-1",
-        "rawText": "5-1, Examples 2-4 \u2014 Model Real-World Situations (continued); Write Equations from Data and Models"
+        "rawText": "Example 2: Model Real-World Situations with Linear Equations"
       }
     },
     {
       "id": "math.im1.example.5.1.005",
       "kind": "worked_example",
-      "title": "Example 3: Model Real-World Situations (continued); Write Equations from Data and Models",
+      "title": "Example 3: Write an Equation Given Two Points",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-5-class-period-plan.md (5-1, Example 3)"
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-1 (Example 3)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -5093,16 +5093,16 @@
         "lesson": "1",
         "exampleNumber": 3,
         "sourceLesson": "5-1",
-        "rawText": "5-1, Examples 2-4 \u2014 Model Real-World Situations (continued); Write Equations from Data and Models"
+        "rawText": "Example 3: Write an Equation Given Two Points"
       }
     },
     {
       "id": "math.im1.example.5.1.006",
       "kind": "worked_example",
-      "title": "Example 4: Model Real-World Situations (continued); Write Equations from Data and Models",
+      "title": "Example 4: Write Equations from Data and Models",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-5-class-period-plan.md (5-1, Example 4)"
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-1 (Example 4)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -5111,7 +5111,7 @@
         "lesson": "1",
         "exampleNumber": 4,
         "sourceLesson": "5-1",
-        "rawText": "5-1, Examples 2-4 \u2014 Model Real-World Situations (continued); Write Equations from Data and Models"
+        "rawText": "Example 4: Write Equations from Data and Models"
       }
     },
     {
@@ -13963,6 +13963,176 @@
         "course": "im1",
         "module": "4",
         "lesson": "7"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.1.write-slope-intercept-equations-from-a-point-and-slope",
+      "kind": "skill",
+      "title": "Write slope-intercept equations from a point and slope",
+      "domain": "math.im1",
+      "description": "Write slope-intercept equations from a point and slope",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-1"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.1.model-contexts-from-a-rate-and-initial-value",
+      "kind": "skill",
+      "title": "Model real-world contexts from a rate and initial value",
+      "domain": "math.im1",
+      "description": "Model real-world contexts from a rate and initial value",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-1"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.1.write-slope-intercept-equations-from-two-points",
+      "kind": "skill",
+      "title": "Write slope-intercept equations from two points",
+      "domain": "math.im1",
+      "description": "Write slope-intercept equations from two points",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-1"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.1.write-horizontal-and-vertical-line-equations-from-two-points",
+      "kind": "skill",
+      "title": "Write horizontal and vertical line equations from two points",
+      "domain": "math.im1",
+      "description": "Write horizontal and vertical line equations from two points",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-1"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.1.model-contexts-from-two-data-points",
+      "kind": "skill",
+      "title": "Model real-world contexts from two data points",
+      "domain": "math.im1",
+      "description": "Model real-world contexts from two data points",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-1"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.1.determine-whether-a-point-lies-on-a-line",
+      "kind": "skill",
+      "title": "Determine whether a point lies on a line",
+      "domain": "math.im1",
+      "description": "Determine whether a point lies on a line",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-1"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.1.find-an-additional-point-on-a-line",
+      "kind": "skill",
+      "title": "Find an additional point on a line",
+      "domain": "math.im1",
+      "description": "Find an additional point on a line",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-1"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.1.write-linear-equations-from-graphs",
+      "kind": "skill",
+      "title": "Write linear equations from graphs",
+      "domain": "math.im1",
+      "description": "Write linear equations from graphs",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-1"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.1.write-linear-equations-from-tables",
+      "kind": "skill",
+      "title": "Write linear equations from tables",
+      "domain": "math.im1",
+      "description": "Write linear equations from tables",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-1"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.1.interpret-slope-and-y-intercept-in-context",
+      "kind": "skill",
+      "title": "Interpret slope and y-intercept in context",
+      "domain": "math.im1",
+      "description": "Interpret slope and y-intercept in context",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-1"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "1"
       }
     }
   ],
@@ -57863,6 +58033,166 @@
       "metadata": {
         "module": "4",
         "lesson": "7"
+      }
+    },
+    {
+      "id": "math.im1.source-correction.5.1.write-slope-intercept-equations-from-a-point-and-slope.contains",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.1",
+      "targetId": "math.im1.skill.5.1.write-slope-intercept-equations-from-a-point-and-slope",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "lesson-5-1-source-review-20260907",
+      "rationale": "Lesson 5-1 contains this source capability.",
+      "metadata": {
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.source-correction.5.1.model-contexts-from-a-rate-and-initial-value.contains",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.1",
+      "targetId": "math.im1.skill.5.1.model-contexts-from-a-rate-and-initial-value",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "lesson-5-1-source-review-20260907",
+      "rationale": "Lesson 5-1 contains this source capability.",
+      "metadata": {
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.source-correction.5.1.write-slope-intercept-equations-from-two-points.contains",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.1",
+      "targetId": "math.im1.skill.5.1.write-slope-intercept-equations-from-two-points",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "lesson-5-1-source-review-20260907",
+      "rationale": "Lesson 5-1 contains this source capability.",
+      "metadata": {
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.source-correction.5.1.write-horizontal-and-vertical-line-equations-from-two-points.contains",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.1",
+      "targetId": "math.im1.skill.5.1.write-horizontal-and-vertical-line-equations-from-two-points",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "lesson-5-1-source-review-20260907",
+      "rationale": "Lesson 5-1 contains this source capability.",
+      "metadata": {
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.source-correction.5.1.model-contexts-from-two-data-points.contains",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.1",
+      "targetId": "math.im1.skill.5.1.model-contexts-from-two-data-points",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "lesson-5-1-source-review-20260907",
+      "rationale": "Lesson 5-1 contains this source capability.",
+      "metadata": {
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.source-correction.5.1.determine-whether-a-point-lies-on-a-line.contains",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.1",
+      "targetId": "math.im1.skill.5.1.determine-whether-a-point-lies-on-a-line",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "lesson-5-1-source-review-20260907",
+      "rationale": "Lesson 5-1 contains this source capability.",
+      "metadata": {
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.source-correction.5.1.find-an-additional-point-on-a-line.contains",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.1",
+      "targetId": "math.im1.skill.5.1.find-an-additional-point-on-a-line",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "lesson-5-1-source-review-20260907",
+      "rationale": "Lesson 5-1 contains this source capability.",
+      "metadata": {
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.source-correction.5.1.write-linear-equations-from-graphs.contains",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.1",
+      "targetId": "math.im1.skill.5.1.write-linear-equations-from-graphs",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "lesson-5-1-source-review-20260907",
+      "rationale": "Lesson 5-1 contains this source capability.",
+      "metadata": {
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.source-correction.5.1.write-linear-equations-from-tables.contains",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.1",
+      "targetId": "math.im1.skill.5.1.write-linear-equations-from-tables",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "lesson-5-1-source-review-20260907",
+      "rationale": "Lesson 5-1 contains this source capability.",
+      "metadata": {
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.source-correction.5.1.interpret-slope-and-y-intercept-in-context.contains",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.5.1",
+      "targetId": "math.im1.skill.5.1.interpret-slope-and-y-intercept-in-context",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "lesson-5-1-source-review-20260907",
+      "rationale": "Lesson 5-1 contains this source capability.",
+      "metadata": {
+        "module": "5",
+        "lesson": "1"
       }
     }
   ]
