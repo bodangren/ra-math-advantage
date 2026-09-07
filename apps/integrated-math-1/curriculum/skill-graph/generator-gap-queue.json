@@ -2222,10 +2222,163 @@
       "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
       "gap": "No generator binding or complete three-mode blueprint",
       "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.find-inverse-relations-from-tables",
+      "title": "Find inverse relations from tables",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.find-inverse-relations-from-ordered-pairs",
+      "title": "Find inverse relations from ordered pairs",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.relate-domain-and-range-under-inversion",
+      "title": "Relate domain and range under inversion",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.graph-inverse-relations-by-reflecting-across-y-equals-x",
+      "title": "Graph inverse relations by reflecting across y = x",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.find-inverses-of-nonconstant-linear-functions-algebraically",
+      "title": "Find inverses of nonconstant linear functions algebraically",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.interpret-inverse-function-inputs-and-outputs-in-context",
+      "title": "Interpret inverse-function inputs and outputs in context",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.use-inverse-functions-to-solve-contextual-problems",
+      "title": "Use inverse functions to solve contextual problems",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.write-inverse-functions-from-linear-equations-in-two-variables",
+      "title": "Write inverse functions from linear equations in two variables",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.construct-inverse-linear-equations-from-slope-and-point-conditions",
+      "title": "Construct inverse linear equations from slope and point conditions",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.match-linear-functions-with-graphs-of-their-inverses",
+      "title": "Match linear functions with graphs of their inverses",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.verify-inverse-relations-by-reversing-ordered-pairs",
+      "title": "Verify inverse relations by reversing ordered pairs",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.verify-inverse-functions-by-graphing-with-y-equals-x",
+      "title": "Verify inverse functions by graphing with y = x",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.relate-slopes-of-nonconstant-linear-functions-and-their-inverses",
+      "title": "Relate slopes of nonconstant linear functions and their inverses",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.relate-intercepts-of-linear-relations-and-their-inverses",
+      "title": "Relate intercepts of linear relations and their inverses",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.distinguish-inverse-function-notation-from-reciprocal-notation",
+      "title": "Distinguish inverse-function notation from reciprocal notation",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.solve-unknown-parameters-from-inverse-function-conditions",
+      "title": "Solve unknown parameters from inverse-function conditions",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.evaluate-whether-point-evidence-proves-functions-are-inverses",
+      "title": "Evaluate whether point evidence proves functions are inverses",
+      "module": "5",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
     }
   ],
   "meta": {
-    "totalSkills": 247,
+    "totalSkills": 264,
     "allNeedGenerators": true
   }
 }

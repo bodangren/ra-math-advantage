@@ -6044,6 +6044,210 @@
         "module": "5",
         "lesson": "5"
       }
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.find-inverse-relations-from-tables",
+      "sourceNodeIds": [
+        "math.im1.example.5.6.022"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.find-inverse-relations-from-ordered-pairs",
+      "sourceNodeIds": [
+        "math.im1.example.5.6.023"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.relate-domain-and-range-under-inversion",
+      "sourceNodeIds": [
+        "math.im1.example.5.6.022",
+        "math.im1.example.5.6.023"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.graph-inverse-relations-by-reflecting-across-y-equals-x",
+      "sourceNodeIds": [
+        "math.im1.example.5.6.024"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.find-inverses-of-nonconstant-linear-functions-algebraically",
+      "sourceNodeIds": [
+        "math.im1.example.5.6.025",
+        "math.im1.example.5.6.026",
+        "math.im1.example.5.6.027"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.interpret-inverse-function-inputs-and-outputs-in-context",
+      "sourceNodeIds": [
+        "math.im1.example.5.6.027"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.use-inverse-functions-to-solve-contextual-problems",
+      "sourceNodeIds": [
+        "math.im1.example.5.6.027"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.write-inverse-functions-from-linear-equations-in-two-variables",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.construct-inverse-linear-equations-from-slope-and-point-conditions",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.match-linear-functions-with-graphs-of-their-inverses",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.verify-inverse-relations-by-reversing-ordered-pairs",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.verify-inverse-functions-by-graphing-with-y-equals-x",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.relate-slopes-of-nonconstant-linear-functions-and-their-inverses",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.relate-intercepts-of-linear-relations-and-their-inverses",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.distinguish-inverse-function-notation-from-reciprocal-notation",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.solve-unknown-parameters-from-inverse-function-conditions",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.evaluate-whether-point-evidence-proves-functions-are-inverses",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "6"
+      }
     }
   ]
 }

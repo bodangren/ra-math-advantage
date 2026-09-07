@@ -1,10 +1,10 @@
 {
   "version": 1,
   "course": "im1",
-  "totalSkills": 253,
+  "totalSkills": 270,
   "counts": {
     "served": 6,
-    "gap": 247,
+    "gap": 264,
     "newComponent": 0
   },
   "byModule": [
@@ -38,9 +38,9 @@
     },
     {
       "module": "5",
-      "totalSkills": 55,
+      "totalSkills": 72,
       "served": 0,
-      "gap": 55,
+      "gap": 72,
       "newComponent": 0
     },
     {
@@ -1293,11 +1293,147 @@
       "priority": "standard"
     },
     {
+      "skillId": "math.im1.skill.5.6.construct-inverse-linear-equations-from-slope-and-point-conditions",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.6.distinguish-inverse-function-notation-from-reciprocal-notation",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.6.evaluate-whether-point-evidence-proves-functions-are-inverses",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.6.find-inverse-relations-from-ordered-pairs",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.6.find-inverse-relations-from-tables",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.6.find-inverses-of-nonconstant-linear-functions-algebraically",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
       "skillId": "math.im1.skill.5.6.find-the-inverse-of-a-relation-given-its-graph-table-or-set",
       "module": "5",
       "status": "gap",
       "tier": "none",
       "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.6.graph-inverse-relations-by-reflecting-across-y-equals-x",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.6.interpret-inverse-function-inputs-and-outputs-in-context",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.6.match-linear-functions-with-graphs-of-their-inverses",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.6.relate-domain-and-range-under-inversion",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.6.relate-intercepts-of-linear-relations-and-their-inverses",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.6.relate-slopes-of-nonconstant-linear-functions-and-their-inverses",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.6.solve-unknown-parameters-from-inverse-function-conditions",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.6.use-inverse-functions-to-solve-contextual-problems",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.6.verify-inverse-functions-by-graphing-with-y-equals-x",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.6.verify-inverse-relations-by-reversing-ordered-pairs",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.5.6.write-inverse-functions-from-linear-equations-in-two-variables",
+      "module": "5",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
       "priority": "standard"
     },
     {

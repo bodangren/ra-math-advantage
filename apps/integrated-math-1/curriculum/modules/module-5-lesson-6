@@ -1,171 +1,142 @@
 # Lesson 5-6 — Inverses of Linear Functions
 
-Source: (Module 5, Lesson 5-6, Int1_0506_practice.docx)
+Source: Module 5, Lesson 5-6, `Int1_0506_practice.docx`
 
 ## Today's Goals
 
-* Find the inverse of a relation given its graph, table, or set of ordered pairs.
-* Find the inverse of a linear function algebraically using the switch-and-solve method.
-* Graph the inverse of a function by reflecting points across the line [ y = x ].
-* Use inverse functions to solve real-world problems and interpret their meaning in context.
+* Find an inverse relation from a table or ordered pairs.
+* Find the inverse of a nonconstant linear function algebraically.
+* Graph an inverse relation by reflecting points across `y = x`.
+* Use and interpret inverse functions in context.
 
-## Vocabulary
+## Inverse relation and inverse function
 
-* **Inverse relation** — a relation obtained by switching the coordinates of each ordered pair in the original relation.
-* **Inverse function** — a function that undoes the action of another function; if [ f(a) = b ], then [ f^{-1}(b) = a ].
-* **Reflection** — a transformation that flips a graph across a line; the graph of an inverse function is the reflection of the original function across [ y = x ].
+Switch both coordinates to form an inverse relation: `(x, y) -> (y, x)`. The inverse domain is the original range. The inverse range is the original domain.
 
-## Learn: Finding Inverses of Relations
+Every relation has an inverse relation. The inverse relation is a function only when the original relation is one-to-one on its stated domain. A constant linear function does not have an inverse function on its full domain. Its inverse relation is vertical.
 
-To find the inverse of a relation, switch the [ x ]- and [ y ]-values of each ordered pair.
+For `f(x) = mx + b` with `m != 0`, switch `x` and `y` and solve for `y`. The inverse slope is `1/m`, not `-1/m`. The graph of the inverse is the reflection of the original graph across `y = x`.
 
-### Key Concept: Inverse of a Relation
+An original x-intercept `(a, 0)` becomes the inverse y-intercept `(0, a)`. An original y-intercept `(0, b)` becomes the inverse x-intercept `(b, 0)`.
 
-* If a relation contains the ordered pair [ (a, b) ], its inverse contains [ (b, a) ].
-* The domain of the inverse is the range of the original relation, and the range of the inverse is the domain of the original relation.
+## Examples 1 and 2: Inverse relations
 
-## Learn: Finding Inverses of Functions Algebraically
+### Example 1: Find the Inverse from a Table
 
-To find the inverse of a function [ f(x) ]:
+Problems 1 through 3 give these relations:
 
-1. Replace [ f(x) ] with [ y ].
-2. Switch [ x ] and [ y ].
-3. Solve for [ y ].
-4. Replace [ y ] with [ f^{-1}(x) ].
+1. `{(-9, -1), (-7, -4), (-5, -7), (-3, -10), (-1, -13)}`
+2. `{(1, 8), (2, 6), (3, 4), (4, 2), (5, 0)}`
+3. `{(-4, -2), (-2, -1), (0, 1), (2, 0), (4, 2)}`
 
-### Key Concept: Inverse of a Linear Function
+Switch each coordinate pair. For example, the first pair in Problem 1 becomes `(-1, -9)`.
 
-* The inverse of a linear function is also a linear function.
-* The graph of [ f^{-1}(x) ] is the reflection of the graph of [ f(x) ] across the line [ y = x ].
-* The slopes of inverse linear functions are reciprocals of each other.
-* The [ x ]-intercept of [ f(x) ] becomes the [ y ]-intercept of [ f^{-1}(x) ], and vice versa.
+### Example 2: Find the Inverse from Ordered Pairs
 
-## Example 1 — Find the Inverse from a Graph or Table
+Problems 4 through 9 give these relations:
 
-Given a linear function represented by a graph or table, find its inverse relation.
+4. `{(-3, 2), (-1, 8), (1, 14), (3, 20)}`
+5. `{(5, -3), (2, -9), (-1, -15), (-4, -21)}`
+6. `{(4, 6), (3, 1), (2, -4), (1, -9)}`
+7. `{(-1, 16), (-2, 12), (-3, 8), (-4, 4)}`
+8. `{(-5, 13), (6, 10.8), (3, 11.4), (-10, 14)}`
+9. `{(-4, -49), (8, 35), (-1, -28), (4, 7)}`
 
-### Step 1: Read Ordered Pairs
+For Problem 4, the inverse is `{(2, -3), (8, -1), (14, 1), (20, 3)}`.
 
-Identify several points [ (x, y) ] from the graph or table.
+## Example 3: Graph the Inverse of a Function
 
-### Step 2: Switch Coordinates
+Problems 10 through 15 show six line graphs. Reflect reliable points across `y = x`. The visible grid supports these representative equations:
 
-Write the inverse relation by switching each [ x ]- and [ y ]-coordinate:
-[
-(x, y) \rightarrow (y, x)
-]
+* Problem 10: `y = (1/2)x - 4`, so the inverse is `y = 2x + 8`.
+* Problem 13: `y = -2x + 3`, so the inverse is `y = -(1/2)x + 3/2`.
+* Problem 14: `y = (1/2)x - 1`, so the inverse is `y = 2x + 2`.
+* Problem 15: `y = -(3/4)x - 2`, so the inverse is `y = -(4/3)x - 8/3`.
 
-## Example 2 — Find the Inverse from Ordered Pairs
+A graph response can use any correct reflected points and the correct line. It does not require one drawing trace.
 
-Given a set of ordered pairs, write the inverse relation by switching the coordinates of each pair.
+## Examples 4 and 5: Algebraic inverses
 
-For a relation [ \{(-3, 2), (-1, 8), (1, 14), (3, 20)\} ], the inverse is:
-[
-\{(2, -3), (8, -1), (14, 1), (20, 3)\}
-]
+### Example 4: Find the Inverse of a Linear Function
 
-## Example 3 — Graph the Inverse of a Function
+16. `f(x) = 8x - 5`, so `f^-1(x) = (x + 5) / 8`.
+17. `f(x) = 6(x + 7)`, so `f^-1(x) = x / 6 - 7`.
+18. `f(x) = (3/4)x + 9`, so `f^-1(x) = (4/3)x - 12`.
 
-Given the graph of a function, sketch the graph of its inverse.
+### Example 5: Find the Inverse of Linear Functions with Fractional Coefficients
 
-### Step 1: Identify Points on the Original Graph
+19. `f(x) = -16 + (2/5)x`, so `f^-1(x) = (5/2)x + 40`.
+20. `f(x) = (3x + 5) / 4`, so `f^-1(x) = (4x - 5) / 3`.
+21. `f(x) = (-4x + 1) / 5`, so `f^-1(x) = (1 - 5x) / 4`.
 
-Locate several points on the given function.
+The algebraic operation is the same in Examples 4 and 5. Fractions change the item complexity, not the assessed method.
 
-### Step 2: Reflect Across [ y = x ] 
+## Example 6: Use Inverse Functions in Context
 
-Switch the [ x ]- and [ y ]-coordinates of each point to find corresponding points on the inverse:
-[
-(2, 4) \rightarrow (4, 2)
-]
+### Problem 22: Lemonade
 
-### Step 3: Sketch the Inverse
+`P(x) = 1.25x - 15` gives profit from `x` glasses. Therefore, `P^-1(x) = (x + 15) / 1.25 = 0.8x + 12`. The inverse input is profit in dollars. Its output is the number of glasses. A profit of $10 requires 20 glasses.
 
-Plot the reflected points and draw the line through them.
+### Problem 23: Brownies
 
-## Example 4 — Find the Inverse of a Linear Function
+`P(x) = 7.6x - 36` gives profit from `x` dozen brownies. Therefore, `P^-1(x) = (x + 36) / 7.6`. Positive profit requires more than `36 / 7.6`, or approximately 4.74 dozen. Whole-dozen sales require at least 5 dozen.
 
-Find the inverse of linear functions given in slope-intercept or similar form.
+### Problem 24: Season pass
 
-### Step 1: Write as [ y = ] 
+`C(x) = 70x + 50` gives cost for `x` family members. Therefore, `C^-1(x) = (x - 50) / 70`. A total charge of $470 gives 6 family members.
 
-Replace [ f(x) ] with [ y ]:
-[
-f(x) = 8x - 5 \quad \rightarrow \quad y = 8x - 5
-]
+### Problem 25: Garden beds
 
-### Step 2: Switch [ x ] and [ y ] 
+`C(x) = 125 + 16x` gives cost for `x` pieces of wood. Therefore, `C^-1(x) = (x - 125) / 16`. A total cost of $269 gives 9 pieces and `108 feet` of wood when each piece is 12 feet long.
 
-[
-x = 8y - 5
-]
+### Problem 26: Water tank
 
-### Step 3: Solve for [ y ] 
+The base area is `12π` square feet. The volume function is `V(h) = 12πh`. Thus, `V^-1(x) = x / (12π)`. A volume of `420π cubic feet gives a height of 35 feet`. The inverse input represents volume, even though the printed prompt writes `V^-1(h)`.
 
-[
-x + 5 = 8y \quad \rightarrow \quad y = \frac{x + 5}{8}
-]
-
-### Step 4: Write in Inverse Notation
-
-[
-f^{-1}(x) = \frac{x + 5}{8}
-]
-
-## Example 5 — Find the Inverse of Rational Linear Functions
-
-Find the inverse of linear functions expressed as fractions or with fractional coefficients.
-
-For a function such as:
-[
-f(x) = \frac{3x + 5}{4}
-]
-
-Switch [ x ] and [ y ], then solve:
-[
-x = \frac{3y + 5}{4} \quad \rightarrow \quad 4x = 3y + 5 \quad \rightarrow \quad y = \frac{4x - 5}{3}
-]
-
-So:
-[
-f^{-1}(x) = \frac{4x - 5}{3}
-]
-
-## Example 6 — Inverse Functions in Context
-
-Use inverse functions to solve real-world problems.
-
-### Step 1: Identify the Original Function
-
-Read the problem to find the function that relates two quantities, such as profit and number of items sold.
-
-### Step 2: Find the Inverse Function
-
-Use the switch-and-solve method to find [ f^{-1}(x) ].
-
-### Step 3: Interpret the Inverse
-
-Describe what the input and output of the inverse function represent in the context of the problem. For example, if [ P(x) = 1.25x - 15 ] represents profit from selling [ x ] glasses of lemonade, then [ P^{-1}(x) ] gives the number of glasses that must be sold to earn a profit of [ x ] dollars.
-
-### Step 4: Answer the Question
-
-Substitute the given value into the inverse function and evaluate.
+Counts of glasses, dozens, family members, and wood pieces require whole-number interpretation. Water height can be continuous. Keep the units in each answer.
 
 ## Mixed Exercises
 
-The mixed exercises section provides comprehensive practice with inverse functions across multiple representations and problem types. Students practice:
+### Inverses from equations
 
-* Writing the inverse of linear equations in standard form by solving for [ y ] and then switching variables, or by switching first and then solving.
-* Constructing the equation of an inverse function from given conditions, such as the slope of the original function and a point on the inverse graph.
-* Matching linear functions to the graphs of their inverses by analyzing slopes and intercepts.
-* Writing inverses of functions given in fractional form and verifying by graphing.
-* Reasoning about the properties of inverse functions, including how to check an inverse using ordered pairs and the relationship between slopes and intercepts.
-* Analyzing common errors, such as confusing the inverse notation [ f^{-1}(x) ] with the reciprocal.
-* Solving challenge problems involving unknown parameters in a function and its inverse.
-* Determining whether statements about inverse functions are sometimes, always, or never true, with explanation.
+Problems 27 through 32 have these results:
 
-## Review Notes
+27. `f^-1(x) = x/4 + 6`
+28. `f^-1(x) = 10 - 3x`
+29. `f^-1(x) = 6x - 42`
+30. `f^-1(x) = (3/2)x + 12`
+31. `f^-1(x) = (7/2)x - 14`
+32. `f^-1(x) = 12x - 7`
 
-* Problems 1–3 require reading inverse relations from graphs or tables shown in images. The images contain three separate graphs/tables that students use to find inverse relations by switching coordinates.
-* Problems 10–15 require graphing the inverse of functions shown in images. Six separate graphs are provided; students must reflect each across [ y = x ] to sketch the inverse.
-* Problems 37–39 require matching three functions to the graphs of their inverses labeled A, B, and C. The three graphs are shown in images.
+### Inverses from conditions
+
+Problems 33 through 36 have these results:
+
+33. `f^-1(x) = x/7 - 6/7`
+34. `f^-1(x) = (3/2)x - 12`
+35. `f^-1(x) = 2x - 22`
+36. `f^-1(x) = x/4 + 3/4`
+
+### Match functions and inverse graphs
+
+For Problems 37 through 39, function 37 matches graph B. Function 38 matches graph C. Function 39 matches graph A.
+
+### Structure and reasoning
+
+Problem 40 gives `f^-1(x) = 3x + 10`, `g^-1(x) = (4/3)x - 8`, and `h^-1(x) = -(x + 7)/5`. Its graph check must show reflection across `y = x`.
+
+Problem 41 reverses the given inverse relation to `{(-k, b), (p, -g), (-m, -w), (q, r)}`.
+
+Problem 42 asks how ordered pairs verify an inverse. Each original pair `(a, b)` must have the inverse pair `(b, a)`.
+
+Problem 43 asks about slopes. For nonconstant linear functions, the slopes are reciprocals.
+
+Problem 44 asks about intercepts. Coordinate reversal exchanges the x- and y-intercepts as ordered points.
+
+Problem 45 corrects a notation error. `f^-1(x)` does not mean `1/f(x)`.
+
+Problem 46 gives `a = 15`. Problem 47 gives `a = 2` and `b = 14`.
+
+Problem 48 is always true when `f` and `g` are inverse functions. Problem 49 is sometimes true. One reversed input-output pair does not prove that two complete functions are inverses.
+
+Problem 50 asks the student to create and graph a function, its inverse, and `y = x`. Problem 51 asks why inverse functions are useful.

@@ -5376,10 +5376,10 @@
     {
       "id": "math.im1.example.5.6.022",
       "kind": "worked_example",
-      "title": "Example 1: Find the Inverse from a Graph or Table; Find the Inverse from Ordered Pairs; Graph the Inverse of a Function; Find the Inverse of a Linear Function",
+      "title": "Example 1: Find the Inverse from a Table",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-5-class-period-plan.md (5-6, Example 1)"
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-6 (Example 1)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -5388,16 +5388,16 @@
         "lesson": "6",
         "exampleNumber": 1,
         "sourceLesson": "5-6",
-        "rawText": "5-6, Examples 1-4 \u2014 Find the Inverse from a Graph or Table; Find the Inverse from Ordered Pairs; Graph the Inverse of a Function; Find the Inverse of a Linear Function"
+        "rawText": "Example 1: Find the Inverse from a Table"
       }
     },
     {
       "id": "math.im1.example.5.6.023",
       "kind": "worked_example",
-      "title": "Example 2: Find the Inverse from a Graph or Table; Find the Inverse from Ordered Pairs; Graph the Inverse of a Function; Find the Inverse of a Linear Function",
+      "title": "Example 2: Find the Inverse from Ordered Pairs",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-5-class-period-plan.md (5-6, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-6 (Example 2)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -5406,16 +5406,16 @@
         "lesson": "6",
         "exampleNumber": 2,
         "sourceLesson": "5-6",
-        "rawText": "5-6, Examples 1-4 \u2014 Find the Inverse from a Graph or Table; Find the Inverse from Ordered Pairs; Graph the Inverse of a Function; Find the Inverse of a Linear Function"
+        "rawText": "Example 2: Find the Inverse from Ordered Pairs"
       }
     },
     {
       "id": "math.im1.example.5.6.024",
       "kind": "worked_example",
-      "title": "Example 3: Find the Inverse from a Graph or Table; Find the Inverse from Ordered Pairs; Graph the Inverse of a Function; Find the Inverse of a Linear Function",
+      "title": "Example 3: Graph the Inverse of a Function",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-5-class-period-plan.md (5-6, Example 3)"
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-6 (Example 3)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -5424,16 +5424,16 @@
         "lesson": "6",
         "exampleNumber": 3,
         "sourceLesson": "5-6",
-        "rawText": "5-6, Examples 1-4 \u2014 Find the Inverse from a Graph or Table; Find the Inverse from Ordered Pairs; Graph the Inverse of a Function; Find the Inverse of a Linear Function"
+        "rawText": "Example 3: Graph the Inverse of a Function"
       }
     },
     {
       "id": "math.im1.example.5.6.025",
       "kind": "worked_example",
-      "title": "Example 4: Find the Inverse from a Graph or Table; Find the Inverse from Ordered Pairs; Graph the Inverse of a Function; Find the Inverse of a Linear Function",
+      "title": "Example 4: Find the Inverse of a Linear Function",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-5-class-period-plan.md (5-6, Example 4)"
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-6 (Example 4)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -5442,16 +5442,16 @@
         "lesson": "6",
         "exampleNumber": 4,
         "sourceLesson": "5-6",
-        "rawText": "5-6, Examples 1-4 \u2014 Find the Inverse from a Graph or Table; Find the Inverse from Ordered Pairs; Graph the Inverse of a Function; Find the Inverse of a Linear Function"
+        "rawText": "Example 4: Find the Inverse of a Linear Function"
       }
     },
     {
       "id": "math.im1.example.5.6.026",
       "kind": "worked_example",
-      "title": "Example 5: Find the Inverse of Rational Linear Functions; Inverse Functions in Context",
+      "title": "Example 5: Find the Inverse of Linear Functions with Fractional Coefficients",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-5-class-period-plan.md (5-6, Example 5)"
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-6 (Example 5)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -5460,16 +5460,16 @@
         "lesson": "6",
         "exampleNumber": 5,
         "sourceLesson": "5-6",
-        "rawText": "5-6, Examples 5-6 \u2014 Find the Inverse of Rational Linear Functions; Inverse Functions in Context"
+        "rawText": "Example 5: Find the Inverse of Linear Functions with Fractional Coefficients"
       }
     },
     {
       "id": "math.im1.example.5.6.027",
       "kind": "worked_example",
-      "title": "Example 6: Find the Inverse of Rational Linear Functions; Inverse Functions in Context",
+      "title": "Example 6: Use Inverse Functions in Context",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-5-class-period-plan.md (5-6, Example 6)"
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-6 (Example 6)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -5478,7 +5478,7 @@
         "lesson": "6",
         "exampleNumber": 6,
         "sourceLesson": "5-6",
-        "rawText": "5-6, Examples 5-6 \u2014 Find the Inverse of Rational Linear Functions; Inverse Functions in Context"
+        "rawText": "Example 6: Use Inverse Functions in Context"
       }
     },
     {
@@ -14821,6 +14821,295 @@
         "course": "im1",
         "module": "5",
         "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.6.find-inverse-relations-from-tables",
+      "kind": "skill",
+      "title": "Find inverse relations from tables",
+      "domain": "math.im1",
+      "description": "Find inverse relations from tables",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-6"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.6.find-inverse-relations-from-ordered-pairs",
+      "kind": "skill",
+      "title": "Find inverse relations from ordered pairs",
+      "domain": "math.im1",
+      "description": "Find inverse relations from ordered pairs",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-6"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.6.relate-domain-and-range-under-inversion",
+      "kind": "skill",
+      "title": "Relate domain and range under inversion",
+      "domain": "math.im1",
+      "description": "Relate domain and range under inversion",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-6"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.6.graph-inverse-relations-by-reflecting-across-y-equals-x",
+      "kind": "skill",
+      "title": "Graph inverse relations by reflecting across y = x",
+      "domain": "math.im1",
+      "description": "Graph inverse relations by reflecting across y = x",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-6"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.6.find-inverses-of-nonconstant-linear-functions-algebraically",
+      "kind": "skill",
+      "title": "Find inverses of nonconstant linear functions algebraically",
+      "domain": "math.im1",
+      "description": "Find inverses of nonconstant linear functions algebraically",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-6"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.6.interpret-inverse-function-inputs-and-outputs-in-context",
+      "kind": "skill",
+      "title": "Interpret inverse-function inputs and outputs in context",
+      "domain": "math.im1",
+      "description": "Interpret inverse-function inputs and outputs in context",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-6"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.6.use-inverse-functions-to-solve-contextual-problems",
+      "kind": "skill",
+      "title": "Use inverse functions to solve contextual problems",
+      "domain": "math.im1",
+      "description": "Use inverse functions to solve contextual problems",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-6"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.6.write-inverse-functions-from-linear-equations-in-two-variables",
+      "kind": "skill",
+      "title": "Write inverse functions from linear equations in two variables",
+      "domain": "math.im1",
+      "description": "Write inverse functions from linear equations in two variables",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-6"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.6.construct-inverse-linear-equations-from-slope-and-point-conditions",
+      "kind": "skill",
+      "title": "Construct inverse linear equations from slope and point conditions",
+      "domain": "math.im1",
+      "description": "Construct inverse linear equations from slope and point conditions",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-6"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.6.match-linear-functions-with-graphs-of-their-inverses",
+      "kind": "skill",
+      "title": "Match linear functions with graphs of their inverses",
+      "domain": "math.im1",
+      "description": "Match linear functions with graphs of their inverses",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-6"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.6.verify-inverse-relations-by-reversing-ordered-pairs",
+      "kind": "skill",
+      "title": "Verify inverse relations by reversing ordered pairs",
+      "domain": "math.im1",
+      "description": "Verify inverse relations by reversing ordered pairs",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-6"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.6.verify-inverse-functions-by-graphing-with-y-equals-x",
+      "kind": "skill",
+      "title": "Verify inverse functions by graphing with y = x",
+      "domain": "math.im1",
+      "description": "Verify inverse functions by graphing with y = x",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-6"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.6.relate-slopes-of-nonconstant-linear-functions-and-their-inverses",
+      "kind": "skill",
+      "title": "Relate slopes of nonconstant linear functions and their inverses",
+      "domain": "math.im1",
+      "description": "Relate slopes of nonconstant linear functions and their inverses",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-6"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.6.relate-intercepts-of-linear-relations-and-their-inverses",
+      "kind": "skill",
+      "title": "Relate intercepts of linear relations and their inverses",
+      "domain": "math.im1",
+      "description": "Relate intercepts of linear relations and their inverses",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-6"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.6.distinguish-inverse-function-notation-from-reciprocal-notation",
+      "kind": "skill",
+      "title": "Distinguish inverse-function notation from reciprocal notation",
+      "domain": "math.im1",
+      "description": "Distinguish inverse-function notation from reciprocal notation",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-6"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.6.solve-unknown-parameters-from-inverse-function-conditions",
+      "kind": "skill",
+      "title": "Solve unknown parameters from inverse-function conditions",
+      "domain": "math.im1",
+      "description": "Solve unknown parameters from inverse-function conditions",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-6"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.skill.5.6.evaluate-whether-point-evidence-proves-functions-are-inverses",
+      "kind": "skill",
+      "title": "Evaluate whether point evidence proves functions are inverses",
+      "domain": "math.im1",
+      "description": "Evaluate whether point evidence proves functions are inverses",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-5-lesson-6"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "5",
+        "lesson": "6"
       }
     }
   ],
