@@ -114,7 +114,8 @@ Scheduling: one worker owns shared graph mechanisms. Two workers can review disj
 - [x] Task G14: Restore IM1 Lesson 4-3 capability and source-example identities. Four draft goals and exact available source links passed independent review. Existing IDs and edges remain intact. Inventory and app gates passed. Commit `73280b7b`.
 - [x] Task G15: Record IM1 Lesson 4-4 goals and example identities from the full extraction. Preserve existing IDs. Six provisional draft candidates and the notation caveat passed source inventory review. Commit `fe6476d9`. Assessable boundaries remain unapproved.
 - [x] Task G16: Verify the original Lesson 4-4 worksheet and correct the extraction note. The source confirms the linear parent and intentional equivalent descriptions. Commit `501c5952`.
-- [~] Task G17: Review Lesson 4-5 goals and example identities against the full extraction and original worksheet. Keep new capabilities draft.
+- [x] Task G17: Review Lesson 4-5 goals and example identities against the full extraction and original worksheet. Correct the cooler indexing error. Preserve all previous IDs and edges. Nine source tests, 40 inventory tests, and app gates pass. Commit `de78dbca`. New capabilities remain draft.
+- [~] Task G18: Review Lesson 4-6 goals and source-example identities. Read the full extraction and original worksheet. Preserve existing IDs and keep new capabilities draft.
 
 ## Phase 4 — Implement the minimum shared repairs and five pilots
 

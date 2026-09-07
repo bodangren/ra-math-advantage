@@ -251,3 +251,7 @@ The BM2 review confirms that classification and totals do not prove complete acc
 Commit `bca8c9e6` prevents repeated pending clicks from skipping a practice phase. Unchanged retries keep their request key. Edited answers get a new key. Five UI tests and 18 backend flow tests pass. IM2 lint, standalone TypeScript, and build pass. The backend changes remain pending integration.
 
 Commit `1128aef8` repairs malformed SVG function paths. The curve now uses the same pixel coordinates as plotted points. Commit `83d0710d` adds the complete Worked quadratic view with steps, table, plotted points, domain, and range. Independent isolated checks and current-workspace checks pass. The current check covers one graph-core test and 12 activity-component tests. Both packages pass lint, standalone TypeScript, and build. These changes do not approve source content or complete the app pilot.
+
+## G17 arithmetic sequence source review
+
+Commit `de78dbca` restores seven provisional source capabilities and corrects four retained example descriptions. Independent review confirms the source mapping and the cooler model correction. Existing node IDs, edge arrays, and gap queue entries remain intact. The current inventory has 184 candidates, six bindings, and 178 gaps. Nine source tests and 40 inventory tests pass. IM1 lint, standalone TypeScript, and build pass. G18 continues the source review. Curriculum approval remains open.
