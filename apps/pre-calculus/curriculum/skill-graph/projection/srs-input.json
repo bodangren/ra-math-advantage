@@ -6,34 +6,6 @@
   },
   "inputs": [
     {
-      "nodeId": "math.precalc.skill.1.1.describe-covariation-in-tandem-change",
-      "blueprintId": "math.precalc.skill.1.1.describe-covariation-in-tandem-change",
-      "standards": [
-        "math.standard.ccss.hsf-if-a-2",
-        "math.standard.ccss.hsf-if-b-4"
-      ],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "generatorReady": false,
-      "apTopic": "AP-aligned",
-      "calculatorRequired": false,
-      "frqTaskModel": null
-    },
-    {
-      "nodeId": "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs",
-      "blueprintId": "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs",
-      "standards": [
-        "math.standard.ccss.hsf-if-a-2",
-        "math.standard.ccss.hsf-if-b-4"
-      ],
-      "prerequisites": [],
-      "difficulty": 0.5,
-      "generatorReady": false,
-      "apTopic": "AP-aligned",
-      "calculatorRequired": false,
-      "frqTaskModel": null
-    },
-    {
       "nodeId": "math.precalc.skill.1.2.compute-and-interpret-average-rate-of-change",
       "blueprintId": "math.precalc.skill.1.2.compute-and-interpret-average-rate-of-change",
       "standards": [
@@ -1028,6 +1000,64 @@
       "apTopic": "AP-aligned",
       "calculatorRequired": false,
       "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.1.1.describe-covariation-in-tandem-change",
+      "blueprintId": "srs.math.precalc.skill.1.1.describe-covariation-in-tandem-change",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.precalc.skill.1.1.determine-rate-of-change-sign-from-graphs",
+      "blueprintId": "math.precalc.skill.1.1.determine-rate-of-change-sign-from-graphs.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.precalc.skill.1.1.identify-function-sign-on-intervals-from-graphs",
+      "blueprintId": "math.precalc.skill.1.1.identify-function-sign-on-intervals-from-graphs.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs",
+      "blueprintId": "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs.blueprint",
+      "standards": [
+        "math.standard.ccss.hsf-if-b-4"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.precalc.skill.1.1.identify-rate-change-and-concavity-on-intervals",
+      "blueprintId": "math.precalc.skill.1.1.identify-rate-change-and-concavity-on-intervals.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.precalc.skill.1.1.select-a-graph-that-models-a-physical-context",
+      "blueprintId": "math.precalc.skill.1.1.select-a-graph-that-models-a-physical-context.blueprint",
+      "standards": [
+        "math.standard.ccss.hsf-if-b-4"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
     }
   ]
 }

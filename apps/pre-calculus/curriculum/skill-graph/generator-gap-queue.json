@@ -2,27 +2,54 @@
   "metadata": {
     "course": "precalc",
     "generatedAt": "2026-05-10T06:50:05.613Z",
-    "description": "PreCalc generator gap queue. All skills have STUB blueprints; 0% generator readiness."
+    "description": "PreCalc generator gap queue."
   },
   "items": [
-    {
-      "nodeId": "math.precalc.skill.1.1.describe-covariation-in-tandem-change",
-      "title": "Describe covariation and tandem change of functions",
-      "unit": "1",
-      "lesson": "1",
-      "rendererKey": "comprehension-quiz",
-      "gapType": "generator",
-      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
-      "priority": "medium"
-    },
     {
       "nodeId": "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs",
       "title": "Identify intervals of increase, decrease, and constant behavior from graphs",
       "unit": "1",
       "lesson": "1",
-      "rendererKey": "graphing-explorer",
       "gapType": "generator",
-      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "reason": "Source-only draft. Usable practice and generator integration remain open.",
+      "priority": "medium",
+      "rendererKey": "interval-classification"
+    },
+    {
+      "nodeId": "math.precalc.skill.1.1.select-a-graph-that-models-a-physical-context",
+      "title": "Select a graph that models a physical context",
+      "unit": "1",
+      "lesson": "1",
+      "gapType": "generator",
+      "reason": "Source-only draft. Usable practice and generator integration remain open.",
+      "priority": "medium",
+      "rendererKey": "physical-context-graph-choice"
+    },
+    {
+      "nodeId": "math.precalc.skill.1.1.identify-function-sign-on-intervals-from-graphs",
+      "title": "Identify function sign on intervals from graphs",
+      "unit": "1",
+      "lesson": "1",
+      "gapType": "generator",
+      "reason": "Source-only draft. Usable practice and generator integration remain open.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.1.1.determine-rate-of-change-sign-from-graphs",
+      "title": "Determine the sign of rate of change from graphs",
+      "unit": "1",
+      "lesson": "1",
+      "gapType": "generator",
+      "reason": "Source-only draft. Usable practice and generator integration remain open.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.1.1.identify-rate-change-and-concavity-on-intervals",
+      "title": "Identify change in rate and concavity on intervals",
+      "unit": "1",
+      "lesson": "1",
+      "gapType": "generator",
+      "reason": "Source-only draft. Usable practice and generator integration remain open.",
       "priority": "medium"
     },
     {

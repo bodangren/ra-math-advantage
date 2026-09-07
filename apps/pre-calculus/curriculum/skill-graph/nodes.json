@@ -1132,42 +1132,6 @@
       }
     },
     {
-      "id": "math.precalc.example.1.1.001",
-      "kind": "worked_example",
-      "title": "Example 1: The table shows values of function [g]:",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-1/lesson.md (1-1, Example 1)"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "1",
-        "lesson": "1",
-        "exampleNumber": 1,
-        "sourceLesson": "1-1",
-        "rawText": "The table shows values of function [g]:\n| x | -2 | 0 | 2 | 4 | 6 |\n|---|---|---|---|---|---|\n| g(x) | 11 | 7 | 3 | 3 | 7 |\nDescribe the tandem change over each interval.\n**Solution:**\n- As [x] increases from [-2] to [0], [g(x)] decreases by 4 (from 11 to 7).\n- As [x] increases from [0] to [2], [g(x)] decreases by 4 (from 7 to 3).\n- As [x] increases from [2] to [4], [g(x)] remains constant at 3.\n- As [x] increases from [4] to [6], [g(x)] increases by 4 (from 3 to 7)."
-      }
-    },
-    {
-      "id": "math.precalc.example.1.1.002",
-      "kind": "worked_example",
-      "title": "Example 2: A piecewise function graph shows three segments. On [[-3, -1]], the graph rises.",
-      "domain": "math.precalc",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/modules/unit-01-polynomial-rational/lesson-1-1/lesson.md (1-1, Example 2)"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "module": "1",
-        "lesson": "1",
-        "exampleNumber": 2,
-        "sourceLesson": "1-1",
-        "rawText": "A piecewise function graph shows three segments. On [[-3, -1]], the graph rises. On [[-1, 3]], the graph falls. On [[3, 5]], the graph is horizontal.\n**Solution:**\n- \"As [x] increases from [-3] to [-1], [y] increases.\" → f is increasing on [[-3, -1]].\n- \"As [x] increases from [-1] to [3], [y] decreases.\" → f is decreasing on [[-1, 3]].\n- \"As [x] increases from [3] to [5], [y] remains constant.\" → f is constant on [[3, 5]]."
-      }
-    },
-    {
       "id": "math.precalc.example.1.10.001",
       "kind": "worked_example",
       "title": "Example 1: Classify each denominator zero as a hole or VA for [f(x) = (x - 2)(x + 3) / ((x ",
@@ -3976,42 +3940,6 @@
       }
     },
     {
-      "id": "math.precalc.skill.1.1.describe-covariation-in-tandem-change",
-      "kind": "skill",
-      "title": "Describe covariation and tandem change of functions",
-      "domain": "math.precalc",
-      "description": "Describe increasing, decreasing, and constant behavior on intervals using covariation language. Distinguish positive/negative from increasing/decreasing.",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
-        "apps/pre-calculus/curriculum/source/passwater/unit-1.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "unit": "1",
-        "lesson": "1"
-      },
-      "rendererKey": "comprehension-quiz"
-    },
-    {
-      "id": "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs",
-      "kind": "skill",
-      "title": "Identify intervals of increase, decrease, and constant behavior from graphs",
-      "domain": "math.precalc",
-      "description": "Given a function graph, labeled points, or verbal description, write precise interval descriptions for increasing, decreasing, and constant behavior.",
-      "sourceRefs": [
-        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
-        "apps/pre-calculus/curriculum/source/passwater/unit-1.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "unit": "1",
-        "lesson": "1"
-      },
-      "rendererKey": "graphing-explorer"
-    },
-    {
       "id": "math.precalc.skill.1.2.compute-and-interpret-average-rate-of-change",
       "kind": "skill",
       "title": "Compute and interpret the average rate of change",
@@ -6026,6 +5954,336 @@
         "framework": "ccss",
         "code": "HSN-VM.B.4"
       }
+    },
+    {
+      "id": "math.precalc.example.1.1.001",
+      "kind": "worked_example",
+      "title": "Example 1: Select the graph for a filling vase",
+      "domain": "math.precalc",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=4"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "module": "1",
+        "lesson": "1",
+        "exampleNumber": 1,
+        "sourceLesson": "1-1",
+        "rawText": "An empty vase has a flat narrow base, a wide rounded body, and a short narrow neck. Water enters at a constant volume rate. Option A is linear increasing. Option B changes from gentle to steep to gentle. Option C rises, falls, and rises. Option D always rises and changes from steep to gentle to steep. Select graph D."
+      }
+    },
+    {
+      "id": "math.precalc.example.1.1.002",
+      "kind": "worked_example",
+      "title": "Example 2: Find increasing intervals from a graph",
+      "domain": "math.precalc",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=5"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "module": "1",
+        "lesson": "1",
+        "exampleNumber": 2,
+        "sourceLesson": "1-1",
+        "rawText": "The graph of f on 0 <= x <= 9 uses straight segments from (0, -2) to (3, 4), from (3, 4) to (7, 1), and from (7, 1) to (9, 3). It increases from 0 to 3 and from 7 to 9."
+      }
+    },
+    {
+      "id": "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs",
+      "kind": "skill",
+      "title": "Identify intervals of increase, decrease, and constant behavior from graphs",
+      "domain": "math.precalc",
+      "description": "Given a function graph, write precise intervals where the function is increasing, decreasing, or constant.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=5"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "1"
+      },
+      "rendererKey": "interval-classification",
+      "independentPracticeReady": false
+    },
+    {
+      "id": "math.precalc.skill.1.1.select-a-graph-that-models-a-physical-context",
+      "kind": "skill",
+      "title": "Select a graph that models a physical context",
+      "domain": "math.precalc",
+      "description": "Given a physical context, select a graph whose direction and changing rate fit the context.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=4"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "1"
+      },
+      "rendererKey": "physical-context-graph-choice",
+      "independentPracticeReady": false
+    },
+    {
+      "id": "math.precalc.example.1.1.003",
+      "kind": "worked_example",
+      "title": "Example 3: Classify function behavior from F to G",
+      "domain": "math.precalc",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=6"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "module": "1",
+        "lesson": "1",
+        "exampleNumber": 3,
+        "sourceLesson": "1-1",
+        "rawText": "The graph h is a smooth periodic curve with midline h = 0. It has maximum F(-6, 4), midline crossing G(-3, 0), minimum J(0, -4), midline crossing K(3, 0), and maximum P(6, 4). The arc from F to G is concave down. On the open interval from F to G, h is positive and decreasing, and its rate of change is decreasing."
+      }
+    },
+    {
+      "id": "math.precalc.example.1.1.004",
+      "kind": "worked_example",
+      "title": "Example 4: Classify function behavior from K to P",
+      "domain": "math.precalc",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=6"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "module": "1",
+        "lesson": "1",
+        "exampleNumber": 4,
+        "sourceLesson": "1-1",
+        "rawText": "The graph h is a smooth periodic curve with midline h = -4. It has maximum F(0, -1), midline crossing G(3, -4), minimum J(6, -7), midline crossing K(9, -4), and maximum P(12, -1). The arc from K to P is concave down. On the open interval from K to P, h is negative and increasing, and its rate of change is decreasing."
+      }
+    },
+    {
+      "id": "math.precalc.example.1.1.005",
+      "kind": "worked_example",
+      "title": "Example 5: Select where a function is negative and decreasing",
+      "domain": "math.precalc",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=7"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "module": "1",
+        "lesson": "1",
+        "exampleNumber": 5,
+        "sourceLesson": "1-1",
+        "rawText": "Examples 5 through 8 use a smooth graph through A(0, -2), B(2, 0), C(4, 2), D(7, -1), E(8, -2), and F(9, -1). It rises A-B-C, falls C-D-E, and rises E-F. It is concave up A-B, concave down B-C-D, and concave up D-E-F. Example 5 asks where k is negative and decreasing. Choices: A-B, B-C, D-E, E-F. Correct: D-E."
+      }
+    },
+    {
+      "id": "math.precalc.example.1.1.006",
+      "kind": "worked_example",
+      "title": "Example 6: Identify a positive rate of change",
+      "domain": "math.precalc",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=7"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "module": "1",
+        "lesson": "1",
+        "exampleNumber": 6,
+        "sourceLesson": "1-1",
+        "rawText": "Use the smooth graph through A(0, -2), B(2, 0), C(4, 2), D(7, -1), E(8, -2), and F(9, -1). Choose the true statement: rate negative A-B; rate negative B-C; rate positive D-E; rate positive E-F. Correct: rate positive E-F."
+      }
+    },
+    {
+      "id": "math.precalc.example.1.1.007",
+      "kind": "worked_example",
+      "title": "Example 7: Identify where rate of change increases",
+      "domain": "math.precalc",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=7"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "module": "1",
+        "lesson": "1",
+        "exampleNumber": 7,
+        "sourceLesson": "1-1",
+        "rawText": "Use the smooth graph through A(0, -2), B(2, 0), C(4, 2), D(7, -1), E(8, -2), and F(9, -1). Choose the true statement: rate decreasing A-B; rate increasing B-C; rate increasing D-E; rate decreasing E-F. Correct: rate increasing D-E."
+      }
+    },
+    {
+      "id": "math.precalc.example.1.1.008",
+      "kind": "worked_example",
+      "title": "Example 8: Identify increasing and concave-down behavior",
+      "domain": "math.precalc",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=7"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "module": "1",
+        "lesson": "1",
+        "exampleNumber": 8,
+        "sourceLesson": "1-1",
+        "rawText": "Use the smooth graph through A(0, -2), B(2, 0), C(4, 2), D(7, -1), E(8, -2), and F(9, -1). It is concave up A-B, concave down B-C-D, and concave up D-E-F. Choose where k is increasing and concave down: A-B, B-C, C-D, or D-E. Correct: B-C."
+      }
+    },
+    {
+      "id": "math.precalc.example.1.1.009",
+      "kind": "worked_example",
+      "title": "Example 9: Find decreasing intervals",
+      "domain": "math.precalc",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=8"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "module": "1",
+        "lesson": "1",
+        "exampleNumber": 9,
+        "sourceLesson": "1-1",
+        "rawText": "The graph of f on -5 <= x <= 5 uses straight segments from (-5, -2) to (-1, 2), from (-1, 2) to (2, 0), and from (2, 0) to (5, 2). It decreases for -1 < x < 2."
+      }
+    },
+    {
+      "id": "math.precalc.example.1.1.010",
+      "kind": "worked_example",
+      "title": "Example 10: Find where a function is negative and increasing",
+      "domain": "math.precalc",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=8"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "module": "1",
+        "lesson": "1",
+        "exampleNumber": 10,
+        "sourceLesson": "1-1",
+        "rawText": "The piecewise graph f on -5 <= x <= 5 passes through (-5, -2), (-1, 2), (2, 0), and (5, 2). It is negative and increasing for -5 < x < -3. The graph crosses the horizontal axis at x = -3, so that endpoint is excluded."
+      }
+    },
+    {
+      "id": "math.precalc.example.1.1.011",
+      "kind": "worked_example",
+      "title": "Example 11: Find decreasing and concave-up behavior",
+      "domain": "math.precalc",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=8"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "module": "1",
+        "lesson": "1",
+        "exampleNumber": 11,
+        "sourceLesson": "1-1",
+        "rawText": "The smooth graph g on -5 <= x <= 5 has a local maximum near x = -3, a change in concavity at A(-1, 0), and a local minimum near x = 1. It is concave down for -5 < x < -1 and concave up for -1 < x < 5. It decreases and is concave up for -1 < x < 1."
+      }
+    },
+    {
+      "id": "math.precalc.example.1.1.012",
+      "kind": "worked_example",
+      "title": "Example 12: Find where rate is positive and decreasing",
+      "domain": "math.precalc",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=8"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "module": "1",
+        "lesson": "1",
+        "exampleNumber": 12,
+        "sourceLesson": "1-1",
+        "rawText": "The same smooth graph g is concave down for -5 < x < -1 and concave up for -1 < x < 5. It increases from x = -5 to the local maximum near x = -3. Its rate is positive and decreasing for -5 < x < -3."
+      }
+    },
+    {
+      "id": "math.precalc.skill.1.1.identify-function-sign-on-intervals-from-graphs",
+      "kind": "skill",
+      "title": "Identify function sign on intervals from graphs",
+      "domain": "math.precalc",
+      "description": "Given a function graph, identify intervals where function values are positive or negative.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=5"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "1"
+      },
+      "independentPracticeReady": false
+    },
+    {
+      "id": "math.precalc.skill.1.1.determine-rate-of-change-sign-from-graphs",
+      "kind": "skill",
+      "title": "Determine the sign of rate of change from graphs",
+      "domain": "math.precalc",
+      "description": "Given a function graph, determine whether its rate of change is positive, negative, or zero on an interval.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=7"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "1"
+      },
+      "independentPracticeReady": false
+    },
+    {
+      "id": "math.precalc.skill.1.1.identify-rate-change-and-concavity-on-intervals",
+      "kind": "skill",
+      "title": "Identify change in rate and concavity on intervals",
+      "domain": "math.precalc",
+      "description": "Given a function graph, identify where rate of change increases or decreases and where the graph is concave up or concave down.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/APPC  Unit 1 Passwater.pdf#page=6"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "1"
+      },
+      "independentPracticeReady": false
+    },
+    {
+      "id": "math.precalc.skill.1.1.describe-covariation-in-tandem-change",
+      "kind": "skill",
+      "title": "Describe covariation and tandem change of functions",
+      "domain": "math.precalc",
+      "description": "Describe increasing, decreasing, and constant behavior on intervals using covariation language. Distinguish positive or negative values from increasing or decreasing behavior.",
+      "sourceRefs": [
+        "apps/pre-calculus/curriculum/unit-1-class-period-plan.md",
+        "apps/pre-calculus/curriculum/source/passwater/unit-1.md"
+      ],
+      "reviewStatus": "rejected",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "1"
+      },
+      "rendererKey": "comprehension-quiz",
+      "independentPracticeReady": false,
+      "exceptions": [
+        {
+          "type": "other",
+          "reason": "This identifier duplicates the existing interval-direction operation. The reviewed Topic 1.1 source does not provide a distinct assessed covariation task.",
+          "reviewer": "graph-node-practice-program",
+          "date": "2026-09-08"
+        }
+      ]
     }
   ]
 }

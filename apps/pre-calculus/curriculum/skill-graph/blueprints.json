@@ -1,118 +1,6 @@
 {
   "blueprints": [
     {
-      "nodeId": "math.precalc.skill.1.1.describe-covariation-in-tandem-change",
-      "sourceNodeIds": [],
-      "alignmentNodeIds": [
-        "math.standard.ccss.hsf-if-a-2",
-        "math.standard.ccss.hsf-if-b-4"
-      ],
-      "rendererKey": "comprehension-quiz",
-      "rendererModeMap": {
-        "worked": "comprehension-quiz",
-        "guidedPractice": "comprehension-quiz"
-      },
-      "workedExampleSpec": {
-        "prompt": "Worked example for Describe covariation and tandem change of functions",
-        "givens": [
-          "See curriculum source"
-        ],
-        "target": {},
-        "steps": [
-          {
-            "description": "Step 1",
-            "expression": "See curriculum"
-          }
-        ],
-        "explanation": "See curriculum source material."
-      },
-      "guidedPracticeSpec": {
-        "scaffolderPrompt": "Guided practice for Describe covariation and tandem change of functions",
-        "stepPrompts": [
-          "Step 1"
-        ],
-        "hints": [
-          "Hint 1"
-        ],
-        "checksPerStep": [
-          {
-            "check": "See curriculum"
-          }
-        ],
-        "revealPolicy": "one_at_a_time"
-      },
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "unit": "1",
-        "lesson": "1"
-      },
-      "exceptions": [
-        {
-          "type": "generator",
-          "reason": "STUB: No generator exists for PreCalc. Blueprint is a placeholder for future generator implementation.",
-          "reviewer": "t12-rollout",
-          "date": "2026-05-10"
-        }
-      ]
-    },
-    {
-      "nodeId": "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs",
-      "sourceNodeIds": [],
-      "alignmentNodeIds": [
-        "math.standard.ccss.hsf-if-a-2",
-        "math.standard.ccss.hsf-if-b-4"
-      ],
-      "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {
-        "prompt": "Worked example for Identify intervals of increase, decrease, and constant behavior from graphs",
-        "givens": [
-          "See curriculum source"
-        ],
-        "target": {},
-        "steps": [
-          {
-            "description": "Step 1",
-            "expression": "See curriculum"
-          }
-        ],
-        "explanation": "See curriculum source material."
-      },
-      "guidedPracticeSpec": {
-        "scaffolderPrompt": "Guided practice for Identify intervals of increase, decrease, and constant behavior from graphs",
-        "stepPrompts": [
-          "Step 1"
-        ],
-        "hints": [
-          "Hint 1"
-        ],
-        "checksPerStep": [
-          {
-            "check": "See curriculum"
-          }
-        ],
-        "revealPolicy": "one_at_a_time"
-      },
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "precalc",
-        "unit": "1",
-        "lesson": "1"
-      },
-      "exceptions": [
-        {
-          "type": "generator",
-          "reason": "STUB: No generator exists for PreCalc. Blueprint is a placeholder for future generator implementation.",
-          "reviewer": "t12-rollout",
-          "date": "2026-05-10"
-        }
-      ]
-    },
-    {
       "nodeId": "math.precalc.skill.1.2.compute-and-interpret-average-rate-of-change",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
@@ -4089,6 +3977,90 @@
           "date": "2026-05-10"
         }
       ]
+    },
+    {
+      "nodeId": "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs",
+      "sourceNodeIds": [
+        "math.precalc.example.1.1.002",
+        "math.precalc.example.1.1.009"
+      ],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsf-if-b-4"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "1"
+      },
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.precalc.skill.1.1.select-a-graph-that-models-a-physical-context",
+      "sourceNodeIds": [
+        "math.precalc.example.1.1.001"
+      ],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsf-if-b-4"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "1"
+      },
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.precalc.skill.1.1.identify-function-sign-on-intervals-from-graphs",
+      "sourceNodeIds": [
+        "math.precalc.example.1.1.003",
+        "math.precalc.example.1.1.004",
+        "math.precalc.example.1.1.005",
+        "math.precalc.example.1.1.010"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.precalc.skill.1.1.determine-rate-of-change-sign-from-graphs",
+      "sourceNodeIds": [
+        "math.precalc.example.1.1.006",
+        "math.precalc.example.1.1.012"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.precalc.skill.1.1.identify-rate-change-and-concavity-on-intervals",
+      "sourceNodeIds": [
+        "math.precalc.example.1.1.003",
+        "math.precalc.example.1.1.004",
+        "math.precalc.example.1.1.007",
+        "math.precalc.example.1.1.008",
+        "math.precalc.example.1.1.011",
+        "math.precalc.example.1.1.012"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "1"
+      }
     }
   ]
 }

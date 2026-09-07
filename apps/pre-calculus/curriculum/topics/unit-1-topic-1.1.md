@@ -1,79 +1,62 @@
 # Topic 1.1: Change in Tandem
 
-## CED Identity
+## Source scope
 
-- Unit: 1
-- Unit title: Polynomial and Rational Functions
-- AP Exam status: `assessed-on-ap-exam`
-- CED topic ID: `1.1`
-- Learning-objective family: `1.1.A`
-- Essential-knowledge family: `1.1.A.*`
-- Mathematical practices: `1.A`, `1.B`, `1.C`, `2.A`, `2.B`, `3.A`, `3.B`, `3.C`
+Topic 1.1 belongs to AP Precalculus Unit 1, Polynomial and Rational Functions.
 
-## Source References
+- Official Course and Exam Description (CED): `source/originals/ap-precalculus-course-and-exam-description.pdf`, PDF pages 39 and 40.
+- Original instructional source: `APPC  Unit 1 Passwater.pdf`, notes on PDF pages 3 through 8 and Worksheet A on pages 9 through 12.
+- Repaired lesson: `modules/unit-01-polynomial-rational/lesson-1-1/lesson.md`.
 
-- CED topic index: `source/college-board/ced-topic-index.json`
-- CED errata: `source/college-board/clarification-guidance.md`
-- Passwater instructional source: `source/passwater/unit-1.md`
+The original figures control graph shape and point labels. Use the repaired accessible descriptions with the source figures.
 
-## CED Learning Objectives
+## CED objectives
 
-- LO 1.1.A: Identify how two quantities change together in a functional relationship from a graph, table, or verbal description.
+- Learning Objective (LO) 1.1.A: Describe how the input and output values of a function vary together by comparing function values.
+- LO 1.1.B: Construct a graph representing two quantities that vary with respect to each other in a contextual scenario.
 
-## CED Essential Knowledge
+Essential Knowledge (EK) 1.1.A.1 defines functions, domain, range, and input and output variables. EK 1.1.A.2 permits graphical, numerical, analytical, and verbal function rules. EK 1.1.A.3 and 1.1.A.4 define increasing and decreasing behavior.
 
-- EK 1.1.A.1: A function can model the relationship between two quantities that change together. The independent variable represents the input, and the dependent variable represents the output.
-- EK 1.1.A.2: A function can be represented verbally, graphically, with a table, or with a formula.
-- EK 1.1.A.3: The behavior of a function can be described by identifying where the function is increasing, decreasing, or constant, and by describing the rate at which the function is changing.
+EK 1.1.B.3 and 1.1.B.4 link change in rate to concavity. EK 1.1.B.5 links zeros to intersections with the horizontal axis.
 
-## Passwater Scaffolding Notes
+The CED treats Topic 1.1 as introductory. It does not require immediate proficiency during these instructional days.
 
-- Topic introduction: Passwater opens with a warm-up table where students describe how y changes as x increases in a non-linear relationship. This primes covariation thinking before formal function notation.
-- Vocabulary to introduce: independent variable, dependent variable, input, output, increasing, decreasing, constant, covariation. Fill-in-the-blank terms from notes: "function" maps each input to exactly ___one___ output; inputs = ___domain___ (___independent___ variable); outputs = ___range___ (___dependent___ variable).
-- Key conceptual move: shift from "find y when x = 3" (single-point evaluation) to "describe what happens to y as x goes from -2 to 5" (interval-level behavior).
-- Critical distinction Passwater emphasizes: "f is increasing" is VERY different from "the rate of change of f is increasing." Students must not conflate position (positive/negative) with direction of movement (increasing/decreasing).
-- Passwater's four representations framework: graphical, analytical (equations), numerical (tables), and verbal. All four are used throughout the course.
-- Common misconception: Students confuse "y is increasing" with "y is positive." Emphasize that a function can be increasing while being negative (e.g., f(x) = x on the interval [-5, -1]).
-- Common misconception: Students describe covariation using correlation language ("x and y are related") instead of directional language ("as x increases by 1, y decreases by approximately 3").
-- When describing features on graphs, use intervals written with the input variable (x), not the output variable.
+## Source instruction
 
-## Guided Practice
+The notes start with vocabulary and function representations. A variable is not a domain or range. The domain is the set of input values. The range is the set of output values.
 
-- Passwater worked example 1: A table shows the height of a ball thrown upward at 0.5-second intervals. Students describe the height change over each interval and identify where the function increases and decreases.
-- Passwater worked example 2: A graph of a piecewise function is given. Students verbally describe the tandem change over three distinct intervals and match each interval to a sentence frame ("As x increases from __ to __, y ...").
-- Scaffolding move: Passwater provides sentence starters for the verbal descriptions: "As x increases from ___ to ___, y increases/decreases/remains constant by approximately ___." Students fill in the blanks, then eventually write descriptions without the frame.
+Example 1 asks the learner to select a water-height graph for a vase that fills at a constant volume rate. The prompt supplies the input and output variable roles. It does not assess variable-role identification.
 
-## Independent Practice Description
+Examples 2 and 9 ask for intervals of increase or decrease. Examples 3 through 8 and 10 through 12 combine function sign, function direction, rate sign, rate change, and concavity. Worksheet A provides new graphs for these classification actions.
 
-- AP-style tasks: Students receive a table of values and must (a) describe intervals of increase/decrease, (b) estimate the average change over a specified interval, and (c) identify whether the rate of change is constant or varying.
-- Typical item: "The table shows values of a function f. Over which interval does f show the greatest rate of change? Justify your answer."
-- Emphasis: justify using data, not just visual estimation.
+Keep these five capability targets separate:
 
-## FRQ Expectations
+1. Select a graph that models a physical context.
+2. Identify intervals of increasing, decreasing, or constant behavior.
+3. Identify intervals where function values are positive or negative.
+4. Determine the sign of the rate of change.
+5. Identify changes in rate and the corresponding concavity.
 
-- FRQ 1 (Function Concepts): Students may be asked to describe how two quantities change together from a table or graph, then identify intervals of increasing/decreasing behavior. Calculator allowed.
-- FRQ alignment: Interpret function behavior from graphical and numerical information (FRQ 1 task model subskill).
-- AP mathematical practices targeted:
-  - 1.A: Identify information presented in mathematical or equivalent forms (tables, graphs).
-  - 2.A: Identify information presented in mathematical representations.
-  - 3.A: Explain the steps and purpose of mathematical procedures.
-  - 3.B: Verify that conclusions are correct by checking them against available evidence.
+A combined prompt can require more than one capability. Do not create another mastery target for each combination or representation.
 
-## App-Build Notes
+## Worked and practice content
 
-- Recommended componentKey: `fill-in-the-blank`
-- Rationale: Topic 1.1 is primarily definitional and vocabulary-driven. Students practice identifying and describing covariation patterns using structured sentence frames. Fill-in-the-blank supports the "complete the description" task shape.
-- Alternative mode: `comprehension-quiz` for multiple-choice covariation identification.
-- Calculator requirement: Not required for this topic.
-- Graphing needs: Students should see graphs, but the primary task is description, not graph construction. The `fill-in-the-blank` component can embed graph images as part of the prompt.
-- Phase package daily phases:
-  - Warm-Up: Give a simple table and ask "How does y change as x increases?"
-  - Topic Introduction: Present the covariation concept with a real-world example (e.g., distance-time).
-  - Scaffolded Examples: Work through the two Passwater examples with the class.
-  - Guided Practice: Students complete sentence frames for a new table/graph.
-  - Independent Practice: Students describe covariation without sentence frames.
-- Exit Evidence: One table with a request to identify intervals of increase and decrease.
-- CAP Reflection: "What persistence move did you make when the pattern was unclear?"
-- Pacing: 2 class periods. Notes take 1 period; Worksheet A takes 1 period.
-- Assessment: Included in Quiz 1.1–1.3 and Review 1.1–1.3 station block.
-- Graph image embedding: The fill-in-the-blank component can embed graph images from the Passwater worksheets as part of the prompt, showing students the exact graphs they need to describe.
+Use all 12 numbered source examples. Preserve the givens, graph shape, choices, reasoning, and endpoint conditions. Use Worksheet A as practice material. Do not label its problems as additional numbered worked examples.
+
+The ball-height table, temperature table, other numeric tables, and sentence frames in the local lesson are authored extensions. They are not Passwater examples. A finite table gives sampled values. State a model assumption before inferring behavior between samples.
+
+For the authored ball model, restrict physical height above ground to the interval before the ball reaches the ground. The negative value at 3 seconds is an algebraic continuation.
+
+The constant interval in the local Independent pilot is an authored zero-change case. The reviewed Passwater examples and CED pages do not give direct constant-segment support.
+
+Average-rate calculation belongs to Topic 1.2. It is not an additional Topic 1.1 mastery target in this source repair.
+
+## Application requirements and remaining gaps
+
+The graph remains draft and inactive. Source-only blueprints do not establish usable practice. Verify the generator, renderer, grading, and evidence path before enabling each capability.
+
+The interval pilot assesses interval classification. The physical-context pilot assesses graph selection. LO 1.1.B graph construction remains a coverage gap. Selecting a supplied graph does not establish construction mastery.
+
+Use readable graphs or complete accessible descriptions. Guided practice must require student work. Independent practice must conceal solutions until submission. State one endpoint convention in each prompt and use that convention in its grader.
+
+The class plan allocates three instructional periods to Topic 1.1. Course publication, complete representation coverage, and the full student journey remain open.
