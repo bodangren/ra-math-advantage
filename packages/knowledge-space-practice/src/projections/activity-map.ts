@@ -121,13 +121,9 @@ export function projectActivityMap(
           partIds: bp.gradingSpec.partIds,
           passingScore: bp.gradingSpec.passingScore,
           partialCredit: bp.gradingSpec.partialCredit,
-          rubric: bp.gradingSpec.rubric,
+          ...(bp.gradingSpec.rubric === undefined ? {} : { rubric: bp.gradingSpec.rubric }),
         }
       : {};
-
-    const srsEligible =
-      bp.independentPracticeSpec != null ||
-      (bp.generatorKey != null && bp.generatorKey.length > 0);
 
     for (const { specKey, rendererModeKey, mode } of SPEC_TO_MODE) {
       const spec = bp[specKey];
@@ -139,7 +135,9 @@ export function projectActivityMap(
       const stableActivityId = `${blueprintNode.id}.${mode}`;
 
       let props: Record<string, unknown> = {};
-      if (specKey === 'workedExampleSpec') {
+      if (spec.rendererProps) {
+        props = spec.rendererProps;
+      } else if (specKey === 'workedExampleSpec') {
         const wspec = spec as WorkedExampleSpec;
         props = {
           prompt: wspec.prompt,
@@ -175,7 +173,11 @@ export function projectActivityMap(
         alignmentNodeIds: allAlignmentIds,
         props,
         gradingConfig,
-        srsEligible,
+        srsEligible:
+          (mode === 'guided_practice' || mode === 'independent_practice') &&
+          blueprintNode.independentPracticeReady === true &&
+          blueprintNode.reviewStatus === 'approved' &&
+          bp.reviewStatus === 'approved',
       });
     }
   }

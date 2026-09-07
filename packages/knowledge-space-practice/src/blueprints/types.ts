@@ -24,6 +24,7 @@ export interface WorkedExampleSpec {
   steps: WorkedStep[];
   explanation: string;
   visualArtifact?: Record<string, unknown>;
+  rendererProps?: Record<string, unknown>;
 }
 
 export interface WorkedStep {
@@ -39,6 +40,7 @@ export interface GuidedPracticeSpec {
   hints: string[];
   checksPerStep: Array<{ check: string; answerPattern?: string }>;
   revealPolicy: 'all_at_once' | 'one_at_a_time' | 'after_attempt';
+  rendererProps?: Record<string, unknown>;
 }
 
 export interface IndependentPracticeSpec {
@@ -47,6 +49,7 @@ export interface IndependentPracticeSpec {
   answerSchema: Record<string, unknown>;
   gradingRules: GradingRule[];
   replayPolicy: 'any_seed' | 'unique_seeds' | 'uniq_seeds_per_learner';
+  rendererProps?: Record<string, unknown>;
 }
 
 export interface VariantParameter {

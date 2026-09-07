@@ -84,6 +84,113 @@ describe('Activity map projection', () => {
       'math.im3.standard.ccss.hsa.rei.b.4b',
     );
   });
+
+  it('marks Guided and Independent rows SRS eligible for an approved and explicitly ready node, but not Worked', () => {
+    const node: KnowledgeSpaceNode = {
+      id: 'math.test.skill.ready',
+      kind: 'skill',
+      title: 'Ready skill',
+      domain: 'math.test',
+      reviewStatus: 'approved',
+      metadata: {},
+      independentPracticeReady: true,
+    };
+    const blueprint: KnowledgeBlueprint = {
+      nodeId: node.id,
+      sourceNodeIds: [],
+      alignmentNodeIds: [],
+      rendererKey: 'graphing-explorer',
+      rendererModeMap: {},
+      workedExampleSpec: {
+        prompt: 'Worked prompt',
+        givens: [],
+        target: {},
+        steps: [{ description: 'Show the completed graph.' }],
+        explanation: 'Worked explanation',
+      },
+      guidedPracticeSpec: {
+        scaffoldedPrompt: 'Guided prompt',
+        stepPrompts: [],
+        hints: [],
+        checksPerStep: [],
+        revealPolicy: 'after_attempt',
+      },
+      independentPracticeSpec: {
+        variantParameters: {},
+        answerSchema: {},
+        gradingRules: [],
+        replayPolicy: 'unique_seeds',
+      },
+      reviewStatus: 'approved',
+      metadata: {},
+    };
+
+    const rows = projectActivityMap([node], [], [blueprint]);
+
+    expect(Object.fromEntries(rows.map((row) => [row.mode, row.srsEligible]))).toEqual({
+      worked_example: false,
+      guided_practice: true,
+      independent_practice: true,
+    });
+    for (const status of ['draft', 'reviewed', 'rejected'] as const) {
+      const unapprovedNodeRows = projectActivityMap([{ ...node, reviewStatus: status }], [], [blueprint]);
+      const unapprovedBlueprintRows = projectActivityMap([node], [], [{ ...blueprint, reviewStatus: status }]);
+      expect(unapprovedNodeRows).toHaveLength(3);
+      expect(unapprovedBlueprintRows).toHaveLength(3);
+      expect(unapprovedNodeRows.every(row => !row.srsEligible)).toBe(true);
+      expect(unapprovedBlueprintRows.every(row => !row.srsEligible)).toBe(true);
+    }
+  });
+
+  it('does not infer activity eligibility from a specification or generator key', () => {
+    const node: KnowledgeSpaceNode = {
+      id: 'math.test.skill.not-ready',
+      kind: 'skill',
+      title: 'Unavailable skill',
+      domain: 'math.test',
+      reviewStatus: 'draft',
+      metadata: {},
+      independentPracticeReady: false,
+    };
+    const blueprint: KnowledgeBlueprint = {
+      nodeId: node.id,
+      sourceNodeIds: [],
+      alignmentNodeIds: [],
+      rendererKey: 'graphing-explorer',
+      rendererModeMap: {},
+      workedExampleSpec: {
+        prompt: 'Worked prompt',
+        givens: [],
+        target: {},
+        steps: [{ description: 'Show the completed graph.' }],
+        explanation: 'Worked explanation',
+      },
+      guidedPracticeSpec: {
+        scaffoldedPrompt: 'Guided prompt',
+        stepPrompts: [],
+        hints: [],
+        checksPerStep: [],
+        revealPolicy: 'after_attempt',
+      },
+      independentPracticeSpec: {
+        variantParameters: {},
+        answerSchema: {},
+        gradingRules: [],
+        replayPolicy: 'unique_seeds',
+      },
+      generatorKey: 'pilot-stub-generator',
+      reviewStatus: 'draft',
+      metadata: {},
+    };
+
+    const rows = projectActivityMap([node], [], [blueprint]);
+
+    expect(Object.fromEntries(rows.map((row) => [row.mode, row.srsEligible]))).toEqual({
+      worked_example: false,
+      guided_practice: false,
+      independent_practice: false,
+    });
+  });
 });
 
 // ---------------------------------------------------------------------------
@@ -102,6 +209,68 @@ describe('Component props validation', () => {
       expect(row.props).not.toBeNull();
       expect(Object.keys(row.props).length).toBeGreaterThan(0);
     }
+  });
+
+  it('copies explicit modality renderer props without blueprint display fields', () => {
+    const skill = syntheticMathFixture.nodes.find((node) => node.kind === 'skill');
+    expect(skill).toBeDefined();
+
+    const blueprint = {
+      nodeId: skill!.id,
+      sourceNodeIds: [],
+      alignmentNodeIds: [],
+      rendererKey: 'graphing-explorer',
+      rendererModeMap: {
+        worked: 'graphing-explorer',
+        guidedPractice: 'graphing-explorer',
+        independentPractice: 'graphing-explorer',
+      },
+      workedExampleSpec: {
+        prompt: 'Worked prompt',
+        givens: ['f(x) = x^2 - 4'],
+        target: {},
+        steps: [{ description: 'Graph the function.' }],
+        explanation: 'Worked explanation',
+        rendererProps: { equation: 'f(x) = x^2 - 4', variant: 'plot_from_equation' },
+      },
+      guidedPracticeSpec: {
+        scaffoldedPrompt: 'Guided prompt',
+        stepPrompts: ['Graph the function.'],
+        hints: ['Use the vertex.'],
+        checksPerStep: [{ check: 'The graph is correct.' }],
+        revealPolicy: 'after_attempt',
+        rendererProps: { equation: 'f(x) = x^2 - 2x - 3', variant: 'plot_from_equation' },
+      },
+      independentPracticeSpec: {
+        variantParameters: {},
+        answerSchema: { answer: 'graph' },
+        gradingRules: [],
+        replayPolicy: 'unique_seeds',
+        rendererProps: {
+          equation: 'y = x^2 - 4',
+          variant: 'plot_from_equation',
+          responseVariant: 'quadratic_features',
+        },
+      },
+      reviewStatus: 'draft',
+      metadata: {},
+    } as unknown as KnowledgeBlueprint;
+
+    const rows = projectActivityMap(
+      syntheticMathFixture.nodes,
+      syntheticMathFixture.edges,
+      [blueprint],
+    );
+
+    expect(rows.map((row) => row.props)).toEqual([
+      { equation: 'f(x) = x^2 - 4', variant: 'plot_from_equation' },
+      { equation: 'f(x) = x^2 - 2x - 3', variant: 'plot_from_equation' },
+      {
+        equation: 'y = x^2 - 4',
+        variant: 'plot_from_equation',
+        responseVariant: 'quadratic_features',
+      },
+    ]);
   });
 });
 

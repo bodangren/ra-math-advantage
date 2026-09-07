@@ -43,6 +43,7 @@ export const workedExampleSpecSchema = z.object({
   steps: z.array(workedStepSchema).min(1),
   explanation: z.string().min(1),
   visualArtifact: z.record(z.string(), z.unknown()).optional(),
+  rendererProps: z.record(z.string(), z.unknown()).optional(),
 });
 
 const revealPolicySchema = z.enum(['all_at_once', 'one_at_a_time', 'after_attempt']);
@@ -58,6 +59,7 @@ export const guidedPracticeSpecSchema = z.object({
   hints: z.array(z.string()),
   checksPerStep: z.array(stepCheckSchema),
   revealPolicy: revealPolicySchema,
+  rendererProps: z.record(z.string(), z.unknown()).optional(),
 });
 
 const replayPolicySchema = z.enum(['any_seed', 'unique_seeds', 'uniq_seeds_per_learner']);
@@ -68,6 +70,7 @@ export const independentPracticeSpecSchema = z.object({
   answerSchema: z.record(z.string(), z.unknown()),
   gradingRules: z.array(gradingRuleSchema),
   replayPolicy: replayPolicySchema,
+  rendererProps: z.record(z.string(), z.unknown()).optional(),
 });
 
 export const gradingSpecSchema = z.object({
