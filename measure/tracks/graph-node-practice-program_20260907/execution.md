@@ -49,3 +49,9 @@ The polynomial-extrema test passes in isolation: 5 tests, including all 10,000 s
 IM1 full-suite result: 38 passed, one assertion failed, and one suite failed to load. The two failures concern an obsolete CI job name and a source-text assertion about the Convex provider. Neither is in the graph source batch.
 
 `ecedf2b1`: fixed objective extraction and table-cell parsing. All 55 extraction tests, package lint, and standalone TypeScript pass. Catalog integration is a separate task.
+
+## Current continuation
+
+The parent integrates the completed shared boundaries and IM1 Module 1 source repair. The runtime worker reviews the source repair. The inventory worker implements expression input for the IM1 translation pilot. The readiness worker resolves the parent nearly-ready state defect and adds a behavioral test. Each worker has separate file ownership. Other course correction commits continue in the shared checkout.
+
+`b11b5032`: committed the approved-equivalence boundary. All eight focused tests pass. Current standalone shared-practice TypeScript, root lint, and all package builds pass. Earlier shared-practice full-suite result: 469 passed. Other pending SRS generator-readiness changes remain outside this commit.
