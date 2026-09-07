@@ -1,13 +1,15 @@
 'use client';
 
 import React, { useState, useCallback, useRef } from 'react';
+import InlineMath from '@matejmazur/react-katex';
+import 'katex/dist/katex.min.css';
 import { GraphingCanvas, Point, FunctionPlot } from './GraphingCanvas';
 import { InteractiveTableOfValues } from './InteractiveTableOfValues';
 import { HintPanel, HintData } from './HintPanel';
 import { InterceptIdentification, InterceptData } from './InterceptIdentification';
 import { toConvexActivityId } from '@math-platform/practice-core';
 import type { PracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
-import { parseQuadratic, parseLinear } from '@math-platform/graphing-core';
+import { evaluateFunction, parseQuadratic, parseLinear } from '@math-platform/graphing-core';
 
 export interface GraphingExplorerProps {
   activityId: string;
@@ -380,6 +382,37 @@ export function GraphingExplorer({
   const isPractice = mode === 'practice';
   const isExplore = mode === 'explore';
 
+  const workedExample = (() => {
+    if (!isTeaching || variant !== 'plot_from_equation') return null;
+    const coefficients = parseQuadratic(equation);
+    if (!coefficients || coefficients.a === 0) return null;
+
+    let axisX = -coefficients.b / (2 * coefficients.a);
+    if (Object.is(axisX, -0)) axisX = 0;
+    const vertexY = evaluateFunction(equation, axisX);
+    const xValues = Array.from({ length: 5 }, (_, index) => axisX + index - 2);
+    const points: Point[] = xValues.map((x) => ({
+      x,
+      y: evaluateFunction(equation, x),
+      label: `${x}, ${evaluateFunction(equation, x)}`,
+      type: x === axisX ? 'vertex' : undefined,
+    }));
+
+    return {
+      coefficients,
+      axisX,
+      vertexY,
+      xValues,
+      points,
+      preFilledValues: Object.fromEntries(points.map((point) => [point.x, point.y])),
+    };
+  })();
+
+  const formatNumber = (value: number): string => {
+    const rounded = Number(value.toFixed(4));
+    return String(Object.is(rounded, -0) ? 0 : rounded);
+  };
+
   const formatCoefficient = (coeff: number, variable: string, isFirst: boolean): string => {
     if (coeff === 0) return '';
     const sign = coeff > 0 ? (isFirst ? '' : ' + ') : ' - ';
@@ -523,8 +556,15 @@ export function GraphingExplorer({
       ) : (
       <>
         <div>
+          {workedExample && (
+            <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-primary">
+              Worked example
+            </p>
+          )}
           <h2 className="text-xl font-semibold text-foreground mb-2">
-            {variant === 'compare_functions'
+            {workedExample
+              ? 'Graph a Quadratic Function by Using a Table'
+              : variant === 'compare_functions'
               ? 'Compare the Functions'
               : variant === 'find_intercepts'
               ? 'Find the X-Intercepts'
@@ -532,22 +572,57 @@ export function GraphingExplorer({
               ? 'Graph the System of Equations'
               : 'Graph the Function'}
           </h2>
-          <p className="text-muted-foreground">
-            {equation}
-            {variant === 'compare_functions' && comparisonEquation && (
-              <>
-                <br />
-                {comparisonEquation}
-              </>
-            )}
-            {variant === 'graph_system' && linearEquation && (
-              <>
-                <br />
-                {linearEquation}
-              </>
-            )}
-          </p>
+          {workedExample ? (
+            <div className="text-muted-foreground" data-testid="worked-equation">
+              <InlineMath math={equation} />
+            </div>
+          ) : (
+            <p className="text-muted-foreground">
+              {equation}
+              {variant === 'compare_functions' && comparisonEquation && (
+                <>
+                  <br />
+                  {comparisonEquation}
+                </>
+              )}
+              {variant === 'graph_system' && linearEquation && (
+                <>
+                  <br />
+                  {linearEquation}
+                </>
+              )}
+            </p>
+          )}
         </div>
+
+        {workedExample && (
+          <section className="space-y-3 rounded-lg border border-border bg-card p-4 text-foreground">
+            <h3 className="text-lg font-semibold">Step 1: Analyze the function</h3>
+            <p>
+              <InlineMath
+                math={`a = ${formatNumber(workedExample.coefficients.a)},\\quad b = ${formatNumber(workedExample.coefficients.b)},\\quad c = ${formatNumber(workedExample.coefficients.c)}`}
+              />
+            </p>
+            <p>
+              The y-intercept is{' '}
+              <InlineMath math={`${formatNumber(workedExample.coefficients.c)}`} />.
+            </p>
+            <p data-testid="worked-axis">
+              Axis of symmetry:{' '}
+              <InlineMath
+                math={`x = -\\frac{b}{2a} = ${formatNumber(workedExample.axisX)}`}
+              />
+            </p>
+            <p>
+              The vertex is{' '}
+              <InlineMath
+                math={`(${formatNumber(workedExample.axisX)}, ${formatNumber(workedExample.vertexY)})`}
+              />.
+              {' '}The parabola opens {workedExample.coefficients.a > 0 ? 'upward' : 'downward'},
+              so the vertex is a {workedExample.coefficients.a > 0 ? 'minimum' : 'maximum'}.
+            </p>
+          </section>
+        )}
 
         {variant === 'graph_system' && (
         <p className="text-sm text-muted-foreground">
@@ -563,6 +638,21 @@ export function GraphingExplorer({
           assessmentMode={isDeferredTableGraph ? 'deferred' : undefined}
           readonly={isTeaching}
         />
+      )}
+
+      {workedExample && (
+        <section aria-labelledby="worked-graph-step" className="space-y-3">
+          <h3 id="worked-graph-step" className="text-lg font-semibold text-foreground">
+            Step 2: Graph the function
+          </h3>
+          <InteractiveTableOfValues
+            xValues={workedExample.xValues}
+            functionExpression={equation}
+            onTableComplete={() => undefined}
+            preFilledValues={workedExample.preFilledValues}
+            readonly
+          />
+        </section>
       )}
 
       {isGuided && tableComplete && (
@@ -583,13 +673,35 @@ export function GraphingExplorer({
         domain={domain}
         range={range}
         functions={isDeferredTableGraph ? [] : functions}
-        points={[...preSetPoints, ...placedPoints]}
+        points={workedExample
+          ? [
+              ...workedExample.points,
+              ...preSetPoints.filter((point) => !workedExample.points.some(
+                (workedPoint) => workedPoint.x === point.x && workedPoint.y === point.y,
+              )),
+            ]
+          : [...preSetPoints, ...placedPoints]}
         onPointAdd={(!isTeaching && (isDeferredTableGraph ? tableComplete : (isPractice || tableComplete))) ? handlePointAdd : undefined}
         onPointRemove={(!isTeaching && (isDeferredTableGraph ? tableComplete : (isPractice || tableComplete))) ? handlePointRemove : undefined}
         readonly={isTeaching}
         snapToGrid={isGuided}
         onAnnounce={setFeedbackMessage}
       />
+
+      {workedExample && (
+        <section className="space-y-2 rounded-lg border border-border bg-card p-4 text-foreground">
+          <h3 className="text-lg font-semibold">Step 3: Analyze the graph</h3>
+          <p>The domain is all real numbers.</p>
+          <p data-testid="worked-range">
+            Range:{' '}
+            <InlineMath
+              math={workedExample.coefficients.a > 0
+                ? `\\{y \\mid y \\ge ${formatNumber(workedExample.vertexY)}\\}`
+                : `\\{y \\mid y \\le ${formatNumber(workedExample.vertexY)}\\}`}
+            />
+          </p>
+        </section>
+      )}
 
       {isGuided && tableComplete && !isDeferredTableGraph && (
         <InterceptIdentification
