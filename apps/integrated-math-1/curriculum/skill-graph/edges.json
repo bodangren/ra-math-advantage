@@ -7,7 +7,7 @@
     "standardEdgesMerged": 941,
     "suggestedEdges": 1277,
     "totalEdges": 2239,
-    "totalNodes": 746,
+    "totalNodes": 756,
     "normalizedWeights": 539
   },
   "nodes": [
@@ -3731,10 +3731,10 @@
     {
       "id": "math.im1.example.3.1.001",
       "kind": "worked_example",
-      "title": "Example 1: Multiple Representations of a Relation; Independent and Dependent Variables from Graphs; Graph Data from a Table",
+      "title": "Example 1: Multiple Representations of a Relation",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-1, Example 1)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-1 (Example 1 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3743,16 +3743,16 @@
         "lesson": "1",
         "exampleNumber": 1,
         "sourceLesson": "3-1",
-        "rawText": "3-1, Examples 1-3 \u2014 Multiple Representations of a Relation; Independent and Dependent Variables from Graphs; Graph Data from a Table"
+        "rawText": "Example 1 \u2014 Multiple Representations of a Relation"
       }
     },
     {
       "id": "math.im1.example.3.1.002",
       "kind": "worked_example",
-      "title": "Example 2: Multiple Representations of a Relation; Independent and Dependent Variables from Graphs; Graph Data from a Table",
+      "title": "Example 2: Independent and Dependent Variables from Graphs",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-1, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-1 (Example 2 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3761,16 +3761,16 @@
         "lesson": "1",
         "exampleNumber": 2,
         "sourceLesson": "3-1",
-        "rawText": "3-1, Examples 1-3 \u2014 Multiple Representations of a Relation; Independent and Dependent Variables from Graphs; Graph Data from a Table"
+        "rawText": "Example 2 \u2014 Independent and Dependent Variables from Graphs"
       }
     },
     {
       "id": "math.im1.example.3.1.003",
       "kind": "worked_example",
-      "title": "Example 3: Multiple Representations of a Relation; Independent and Dependent Variables from Graphs; Graph Data from a Table",
+      "title": "Example 3: Graph Data from a Table",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-1, Example 3)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-1 (Example 3 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3779,16 +3779,16 @@
         "lesson": "1",
         "exampleNumber": 3,
         "sourceLesson": "3-1",
-        "rawText": "3-1, Examples 1-3 \u2014 Multiple Representations of a Relation; Independent and Dependent Variables from Graphs; Graph Data from a Table"
+        "rawText": "Example 3 \u2014 Graph Data from a Table"
       }
     },
     {
       "id": "math.im1.example.3.1.004",
       "kind": "worked_example",
-      "title": "Example 4: Graph Data from Ordered Pairs; Interpret Axes, Scale, and Origin",
+      "title": "Example 4: Graph Data from Ordered Pairs",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-1, Example 4)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-1 (Example 4 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3797,16 +3797,16 @@
         "lesson": "1",
         "exampleNumber": 4,
         "sourceLesson": "3-1",
-        "rawText": "3-1, Examples 4-5 \u2014 Graph Data from Ordered Pairs; Interpret Axes, Scale, and Origin"
+        "rawText": "Example 4 \u2014 Graph Data from Ordered Pairs"
       }
     },
     {
       "id": "math.im1.example.3.1.005",
       "kind": "worked_example",
-      "title": "Example 5: Graph Data from Ordered Pairs; Interpret Axes, Scale, and Origin",
+      "title": "Example 5: Interpret Axes, Scale, and Origin",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-1, Example 5)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-1 (Example 5 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3815,16 +3815,16 @@
         "lesson": "1",
         "exampleNumber": 5,
         "sourceLesson": "3-1",
-        "rawText": "3-1, Examples 4-5 \u2014 Graph Data from Ordered Pairs; Interpret Axes, Scale, and Origin"
+        "rawText": "Example 5 \u2014 Interpret Axes, Scale, and Origin"
       }
     },
     {
       "id": "math.im1.example.3.2.006",
       "kind": "worked_example",
-      "title": "Example 1: Determine Whether a Relation Is a Function; Domain and Range from Real-World Data",
+      "title": "Example 1: Determine Whether a Relation Is a Function",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-2, Example 1)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-2 (Example 1 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3833,16 +3833,16 @@
         "lesson": "2",
         "exampleNumber": 1,
         "sourceLesson": "3-2",
-        "rawText": "3-2, Examples 1-2 \u2014 Determine Whether a Relation Is a Function; Domain and Range from Real-World Data"
+        "rawText": "Example 1 \u2014 Determine Whether a Relation Is a Function"
       }
     },
     {
       "id": "math.im1.example.3.2.007",
       "kind": "worked_example",
-      "title": "Example 2: Determine Whether a Relation Is a Function; Domain and Range from Real-World Data",
+      "title": "Example 2: Domain and Range from Real-World Data",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-2, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-2 (Example 2 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3851,16 +3851,16 @@
         "lesson": "2",
         "exampleNumber": 2,
         "sourceLesson": "3-2",
-        "rawText": "3-2, Examples 1-2 \u2014 Determine Whether a Relation Is a Function; Domain and Range from Real-World Data"
+        "rawText": "Example 2 \u2014 Domain and Range from Real-World Data"
       }
     },
     {
       "id": "math.im1.example.3.2.008",
       "kind": "worked_example",
-      "title": "Example 3: Evaluate Functions; Interpret Functions in Context",
+      "title": "Example 3: Evaluate Functions",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-2, Example 3)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-2 (Example 3 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3869,16 +3869,16 @@
         "lesson": "2",
         "exampleNumber": 3,
         "sourceLesson": "3-2",
-        "rawText": "3-2, Examples 3-4 \u2014 Evaluate Functions; Interpret Functions in Context"
+        "rawText": "Example 3 \u2014 Evaluate Functions"
       }
     },
     {
       "id": "math.im1.example.3.2.009",
       "kind": "worked_example",
-      "title": "Example 4: Evaluate Functions; Interpret Functions in Context",
+      "title": "Example 4: Interpret Functions in Context",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-2, Example 4)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-2 (Example 4 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3887,16 +3887,16 @@
         "lesson": "2",
         "exampleNumber": 4,
         "sourceLesson": "3-2",
-        "rawText": "3-2, Examples 3-4 \u2014 Evaluate Functions; Interpret Functions in Context"
+        "rawText": "Example 4 \u2014 Interpret Functions in Context"
       }
     },
     {
       "id": "math.im1.example.3.3.010",
       "kind": "worked_example",
-      "title": "Example 1: Classify Functions from Graphs; Classify Real-World Functions from Graphs",
+      "title": "Example 1: Classify Functions from Graphs",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-3, Example 1)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-3 (Example 1 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3905,16 +3905,16 @@
         "lesson": "3",
         "exampleNumber": 1,
         "sourceLesson": "3-3",
-        "rawText": "3-3, Examples 1-2 \u2014 Classify Functions from Graphs; Classify Real-World Functions from Graphs"
+        "rawText": "Example 1 \u2014 Classify Functions from Graphs"
       }
     },
     {
       "id": "math.im1.example.3.3.011",
       "kind": "worked_example",
-      "title": "Example 2: Classify Functions from Graphs; Classify Real-World Functions from Graphs",
+      "title": "Example 2: Classify Real-World Functions from Graphs",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-3, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-3 (Example 2 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3923,16 +3923,16 @@
         "lesson": "3",
         "exampleNumber": 2,
         "sourceLesson": "3-3",
-        "rawText": "3-3, Examples 1-2 \u2014 Classify Functions from Graphs; Classify Real-World Functions from Graphs"
+        "rawText": "Example 2 \u2014 Classify Real-World Functions from Graphs"
       }
     },
     {
       "id": "math.im1.example.3.3.012",
       "kind": "worked_example",
-      "title": "Example 3: Determine Linearity from Equations; Determine Linearity from Graphs; Determine Linearity from Tables",
+      "title": "Example 3: Determine Linearity from Equations",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-3, Example 3)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-3 (Example 3 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3941,16 +3941,16 @@
         "lesson": "3",
         "exampleNumber": 3,
         "sourceLesson": "3-3",
-        "rawText": "3-3, Examples 3-5 \u2014 Determine Linearity from Equations; Determine Linearity from Graphs; Determine Linearity from Tables"
+        "rawText": "Example 3 \u2014 Determine Linearity from Equations"
       }
     },
     {
       "id": "math.im1.example.3.3.013",
       "kind": "worked_example",
-      "title": "Example 4: Determine Linearity from Equations; Determine Linearity from Graphs; Determine Linearity from Tables",
+      "title": "Example 4: Determine Linearity from Graphs",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-3, Example 4)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-3 (Example 4 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3959,16 +3959,16 @@
         "lesson": "3",
         "exampleNumber": 4,
         "sourceLesson": "3-3",
-        "rawText": "3-3, Examples 3-5 \u2014 Determine Linearity from Equations; Determine Linearity from Graphs; Determine Linearity from Tables"
+        "rawText": "Example 4 \u2014 Determine Linearity from Graphs"
       }
     },
     {
       "id": "math.im1.example.3.3.014",
       "kind": "worked_example",
-      "title": "Example 5: Determine Linearity from Equations; Determine Linearity from Graphs; Determine Linearity from Tables",
+      "title": "Example 5: Determine Linearity from Tables",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-3, Example 5)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-3 (Example 5 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3977,16 +3977,16 @@
         "lesson": "3",
         "exampleNumber": 5,
         "sourceLesson": "3-3",
-        "rawText": "3-3, Examples 3-5 \u2014 Determine Linearity from Equations; Determine Linearity from Graphs; Determine Linearity from Tables"
+        "rawText": "Example 5 \u2014 Determine Linearity from Tables"
       }
     },
     {
       "id": "math.im1.example.3.4.015",
       "kind": "worked_example",
-      "title": "Example 1: Estimate Intercepts from a Graph; Interpret Intercepts in Context; Find and Interpret Intercepts from a Table",
+      "title": "Example 1: Estimate Intercepts from a Graph",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-4, Example 1)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-4 (Example 1 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3995,16 +3995,16 @@
         "lesson": "4",
         "exampleNumber": 1,
         "sourceLesson": "3-4",
-        "rawText": "3-4, Examples 1-3 \u2014 Estimate Intercepts from a Graph; Interpret Intercepts in Context; Find and Interpret Intercepts from a Table"
+        "rawText": "Examples 1 and 2 \u2014 Estimate Intercepts from a Graph"
       }
     },
     {
       "id": "math.im1.example.3.4.016",
       "kind": "worked_example",
-      "title": "Example 2: Estimate Intercepts from a Graph; Interpret Intercepts in Context; Find and Interpret Intercepts from a Table",
+      "title": "Example 2: Estimate Intercepts from a Graph",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-4, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-4 (Example 2 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4013,16 +4013,16 @@
         "lesson": "4",
         "exampleNumber": 2,
         "sourceLesson": "3-4",
-        "rawText": "3-4, Examples 1-3 \u2014 Estimate Intercepts from a Graph; Interpret Intercepts in Context; Find and Interpret Intercepts from a Table"
+        "rawText": "Examples 1 and 2 \u2014 Estimate Intercepts from a Graph"
       }
     },
     {
       "id": "math.im1.example.3.4.017",
       "kind": "worked_example",
-      "title": "Example 3: Estimate Intercepts from a Graph; Interpret Intercepts in Context; Find and Interpret Intercepts from a Table",
+      "title": "Example 3: Interpret Intercepts in Context",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-4, Example 3)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-4 (Example 3 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4031,16 +4031,16 @@
         "lesson": "4",
         "exampleNumber": 3,
         "sourceLesson": "3-4",
-        "rawText": "3-4, Examples 1-3 \u2014 Estimate Intercepts from a Graph; Interpret Intercepts in Context; Find and Interpret Intercepts from a Table"
+        "rawText": "Example 3 \u2014 Interpret Intercepts in Context"
       }
     },
     {
       "id": "math.im1.example.3.4.018",
       "kind": "worked_example",
-      "title": "Example 5: Solve Equations by Graphing; Find and Interpret the Zero of a Function",
+      "title": "Example 5: Solve Equations by Graphing",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-4, Example 5)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-4 (Example 5 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4049,16 +4049,16 @@
         "lesson": "4",
         "exampleNumber": 5,
         "sourceLesson": "3-4",
-        "rawText": "3-4, Examples 5-8 \u2014 Solve Equations by Graphing; Find and Interpret the Zero of a Function"
+        "rawText": "Examples 5, 6, and 7 \u2014 Solve Equations by Graphing"
       }
     },
     {
       "id": "math.im1.example.3.4.019",
       "kind": "worked_example",
-      "title": "Example 6: Solve Equations by Graphing; Find and Interpret the Zero of a Function",
+      "title": "Example 6: Solve Equations by Graphing",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-4, Example 6)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-4 (Example 6 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4067,16 +4067,16 @@
         "lesson": "4",
         "exampleNumber": 6,
         "sourceLesson": "3-4",
-        "rawText": "3-4, Examples 5-8 \u2014 Solve Equations by Graphing; Find and Interpret the Zero of a Function"
+        "rawText": "Examples 5, 6, and 7 \u2014 Solve Equations by Graphing"
       }
     },
     {
       "id": "math.im1.example.3.4.020",
       "kind": "worked_example",
-      "title": "Example 7: Solve Equations by Graphing; Find and Interpret the Zero of a Function",
+      "title": "Example 7: Solve Equations by Graphing",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-4, Example 7)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-4 (Example 7 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4085,16 +4085,16 @@
         "lesson": "4",
         "exampleNumber": 7,
         "sourceLesson": "3-4",
-        "rawText": "3-4, Examples 5-8 \u2014 Solve Equations by Graphing; Find and Interpret the Zero of a Function"
+        "rawText": "Examples 5, 6, and 7 \u2014 Solve Equations by Graphing"
       }
     },
     {
       "id": "math.im1.example.3.4.021",
       "kind": "worked_example",
-      "title": "Example 8: Solve Equations by Graphing; Find and Interpret the Zero of a Function",
+      "title": "Example 8: Find and Interpret the Zero of a Function",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-4, Example 8)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-4 (Example 8 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4103,16 +4103,16 @@
         "lesson": "4",
         "exampleNumber": 8,
         "sourceLesson": "3-4",
-        "rawText": "3-4, Examples 5-8 \u2014 Solve Equations by Graphing; Find and Interpret the Zero of a Function"
+        "rawText": "Example 8 \u2014 Find and Interpret the Zero of a Function"
       }
     },
     {
       "id": "math.im1.example.3.5.022",
       "kind": "worked_example",
-      "title": "Example 1: Determine Line Symmetry; Interpret Symmetry in Context; Determine Where f(x) Is Increasing and/or Decreasing",
+      "title": "Example 1: Determine Line Symmetry",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-5, Example 1)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-5 (Example 1 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4121,16 +4121,16 @@
         "lesson": "5",
         "exampleNumber": 1,
         "sourceLesson": "3-5",
-        "rawText": "3-5, Examples 1-3 \u2014 Determine Line Symmetry; Interpret Symmetry in Context; Determine Where f(x) Is Increasing and/or Decreasing"
+        "rawText": "Example 1 \u2014 Determine Line Symmetry"
       }
     },
     {
       "id": "math.im1.example.3.5.023",
       "kind": "worked_example",
-      "title": "Example 2: Determine Line Symmetry; Interpret Symmetry in Context; Determine Where f(x) Is Increasing and/or Decreasing",
+      "title": "Example 2: Interpret Symmetry in Context",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-5, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-5 (Example 2 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4139,16 +4139,16 @@
         "lesson": "5",
         "exampleNumber": 2,
         "sourceLesson": "3-5",
-        "rawText": "3-5, Examples 1-3 \u2014 Determine Line Symmetry; Interpret Symmetry in Context; Determine Where f(x) Is Increasing and/or Decreasing"
+        "rawText": "Example 2 \u2014 Interpret Symmetry in Context"
       }
     },
     {
       "id": "math.im1.example.3.5.024",
       "kind": "worked_example",
-      "title": "Example 3: Determine Line Symmetry; Interpret Symmetry in Context; Determine Where f(x) Is Increasing and/or Decreasing",
+      "title": "Example 3: Determine Where f(x) Is Increasing and/or Decreasing",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-5, Example 3)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-5 (Example 3 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4157,16 +4157,16 @@
         "lesson": "5",
         "exampleNumber": 3,
         "sourceLesson": "3-5",
-        "rawText": "3-5, Examples 1-3 \u2014 Determine Line Symmetry; Interpret Symmetry in Context; Determine Where f(x) Is Increasing and/or Decreasing"
+        "rawText": "Example 3 \u2014 Determine Where f(x) Is Increasing and/or Decreasing"
       }
     },
     {
       "id": "math.im1.example.3.5.025",
       "kind": "worked_example",
-      "title": "Example 4: Determine Extrema; Interpret Extrema in Context; Determine End Behavior",
+      "title": "Example 4: Determine Extrema",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-5, Example 4)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-5 (Example 4 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4175,16 +4175,16 @@
         "lesson": "5",
         "exampleNumber": 4,
         "sourceLesson": "3-5",
-        "rawText": "3-5, Examples 4-7 \u2014 Determine Extrema; Interpret Extrema in Context; Determine End Behavior"
+        "rawText": "Example 4 \u2014 Determine Extrema"
       }
     },
     {
       "id": "math.im1.example.3.5.026",
       "kind": "worked_example",
-      "title": "Example 5: Determine Extrema; Interpret Extrema in Context; Determine End Behavior",
+      "title": "Example 5: Interpret Extrema in Context",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-5, Example 5)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-5 (Example 5 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4193,16 +4193,16 @@
         "lesson": "5",
         "exampleNumber": 5,
         "sourceLesson": "3-5",
-        "rawText": "3-5, Examples 4-7 \u2014 Determine Extrema; Interpret Extrema in Context; Determine End Behavior"
+        "rawText": "Example 5 \u2014 Interpret Extrema in Context"
       }
     },
     {
       "id": "math.im1.example.3.5.027",
       "kind": "worked_example",
-      "title": "Example 6: Determine Extrema; Interpret Extrema in Context; Determine End Behavior",
+      "title": "Example 6: Determine End Behavior",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-5, Example 6)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-5 (Example 6 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4211,16 +4211,16 @@
         "lesson": "5",
         "exampleNumber": 6,
         "sourceLesson": "3-5",
-        "rawText": "3-5, Examples 4-7 \u2014 Determine Extrema; Interpret Extrema in Context; Determine End Behavior"
+        "rawText": "Examples 6 and 7 \u2014 Determine End Behavior"
       }
     },
     {
       "id": "math.im1.example.3.5.028",
       "kind": "worked_example",
-      "title": "Example 7: Determine Extrema; Interpret Extrema in Context; Determine End Behavior",
+      "title": "Example 7: Determine End Behavior",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-5, Example 7)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-5 (Example 7 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4229,16 +4229,16 @@
         "lesson": "5",
         "exampleNumber": 7,
         "sourceLesson": "3-5",
-        "rawText": "3-5, Examples 4-7 \u2014 Determine Extrema; Interpret Extrema in Context; Determine End Behavior"
+        "rawText": "Examples 6 and 7 \u2014 Determine End Behavior"
       }
     },
     {
       "id": "math.im1.example.3.6.029",
       "kind": "worked_example",
-      "title": "Example 1: Sketch Linear Functions from Verbal Descriptions; Sketch Nonlinear Functions and Interpret Key Features; Sketch and Interpret Real-World Data Trends",
+      "title": "Example 1: Sketch Linear Functions from Verbal Descriptions",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-6, Example 1)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-6 (Example 1 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4247,16 +4247,16 @@
         "lesson": "6",
         "exampleNumber": 1,
         "sourceLesson": "3-6",
-        "rawText": "3-6, Examples 1-3 \u2014 Sketch Linear Functions from Verbal Descriptions; Sketch Nonlinear Functions and Interpret Key Features; Sketch and Interpret Real-World Data Trends"
+        "rawText": "Example 1 \u2014 Sketch Linear Functions from Verbal Descriptions"
       }
     },
     {
       "id": "math.im1.example.3.6.030",
       "kind": "worked_example",
-      "title": "Example 2: Sketch Linear Functions from Verbal Descriptions; Sketch Nonlinear Functions and Interpret Key Features; Sketch and Interpret Real-World Data Trends",
+      "title": "Example 2: Sketch Nonlinear Functions and Interpret Key Features",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-6, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-6 (Example 2 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4265,16 +4265,16 @@
         "lesson": "6",
         "exampleNumber": 2,
         "sourceLesson": "3-6",
-        "rawText": "3-6, Examples 1-3 \u2014 Sketch Linear Functions from Verbal Descriptions; Sketch Nonlinear Functions and Interpret Key Features; Sketch and Interpret Real-World Data Trends"
+        "rawText": "Example 2 \u2014 Sketch Nonlinear Functions and Interpret Key Features"
       }
     },
     {
       "id": "math.im1.example.3.6.031",
       "kind": "worked_example",
-      "title": "Example 3: Sketch Linear Functions from Verbal Descriptions; Sketch Nonlinear Functions and Interpret Key Features; Sketch and Interpret Real-World Data Trends",
+      "title": "Example 3: Sketch and Interpret Real-World Data Trends",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-6, Example 3)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-6 (Example 3 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4283,7 +4283,7 @@
         "lesson": "6",
         "exampleNumber": 3,
         "sourceLesson": "3-6",
-        "rawText": "3-6, Examples 1-3 \u2014 Sketch Linear Functions from Verbal Descriptions; Sketch Nonlinear Functions and Interpret Key Features; Sketch and Interpret Real-World Data Trends"
+        "rawText": "Example 3 \u2014 Sketch and Interpret Real-World Data Trends"
       }
     },
     {
@@ -4292,7 +4292,7 @@
       "title": "Example 4: Compare Functions from Descriptions and Graphs",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-6, Example 4)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-6 (Example 4 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4301,7 +4301,7 @@
         "lesson": "6",
         "exampleNumber": 4,
         "sourceLesson": "3-6",
-        "rawText": "3-6, Example 4 \u2014 Compare Functions from Descriptions and Graphs"
+        "rawText": "Example 4 \u2014 Compare Functions from Descriptions and Graphs"
       }
     },
     {
@@ -13161,6 +13161,179 @@
         "course": "im1",
         "module": "4",
         "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.example.3.4.source-004",
+      "kind": "worked_example",
+      "title": "Example 4: Find and Interpret Intercepts from a Table",
+      "domain": "math.im1",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-4 (Example 4 heading)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "3",
+        "lesson": "4",
+        "exampleNumber": 4,
+        "sourceLesson": "3-4",
+        "rawText": "Example 4 \u2014 Find and Interpret Intercepts from a Table"
+      }
+    },
+    {
+      "id": "math.im1.skill.3.1.distinguish-independent-and-dependent-variables-in-real-worl",
+      "kind": "skill",
+      "title": "3b: Distinguish independent and dependent variables in real-world situations and interpret the meaning of axes, scale, and origin on a graph",
+      "domain": "math.im1",
+      "description": "Distinguish independent and dependent variables in real-world situations and interpret the meaning of axes, scale, and origin on a graph",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-1"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "3",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.3.2.evaluate-functions-using-function-notation-for-numerical-and",
+      "kind": "skill",
+      "title": "3d: Evaluate functions using function notation for numerical and algebraic inputs and interpret function values in real-world contexts",
+      "domain": "math.im1",
+      "description": "Evaluate functions using function notation for numerical and algebraic inputs and interpret function values in real-world contexts",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-2"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "3",
+        "lesson": "2",
+        "taxonomyRole": "legacy_objective_aggregator"
+      },
+      "independentPracticeReady": false
+    },
+    {
+      "id": "math.im1.skill.3.3.determine-whether-a-function-represented-by-an-equation-grap",
+      "kind": "skill",
+      "title": "3f: Determine whether a function represented by an equation, graph, or table is linear or nonlinear",
+      "domain": "math.im1",
+      "description": "Determine whether a function represented by an equation, graph, or table is linear or nonlinear",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-3"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "3",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.3.4.solve-linear-and-quadratic-equations-by-graphing-and-find-th",
+      "kind": "skill",
+      "title": "3h: Solve linear and quadratic equations by graphing and find the zero of a linear function and explain its meaning in context",
+      "domain": "math.im1",
+      "description": "Solve linear and quadratic equations by graphing and find the zero of a linear function and explain its meaning in context",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-4"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "3",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.3.5.locate-relative-maxima-and-minima-on-a-graph-and-describe-th",
+      "kind": "skill",
+      "title": "3j: Locate relative maxima and minima on a graph and describe the end behavior of a function using limit notation",
+      "domain": "math.im1",
+      "description": "Locate relative maxima and minima on a graph and describe the end behavior of a function using limit notation",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-5"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "3",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.3.6.compare-two-functions-by-interpreting-their-key-features-fro",
+      "kind": "skill",
+      "title": "3l: Compare two functions by interpreting their key features from descriptions and graphs and write and analyze linear functions that model cost, revenue, and profit",
+      "domain": "math.im1",
+      "description": "Compare two functions by interpreting their key features from descriptions and graphs and write and analyze linear functions that model cost, revenue, and profit",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-6"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "3",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.skill.3.2.evaluate-functions-at-numerical-inputs",
+      "kind": "skill",
+      "title": "Evaluate functions at numerical inputs",
+      "domain": "math.im1",
+      "description": "Substitute a numerical input in a function rule. Calculate the output, including negative inputs and expressions that use the output.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-2:75"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.3.2.evaluate-functions-at-algebraic-inputs",
+      "kind": "skill",
+      "title": "Evaluate functions at algebraic inputs",
+      "domain": "math.im1",
+      "description": "Substitute an algebraic expression in a function rule. Simplify the resulting expression without treating the input as a numerical value.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-2:75"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.3.2.interpret-function-values-in-context",
+      "kind": "skill",
+      "title": "Interpret function values in context",
+      "domain": "math.im1",
+      "description": "Explain the input, output, and units of a function value in its stated context. A numerical output alone does not show this capability.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-2:105"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "3",
+        "lesson": "2"
       }
     }
   ],

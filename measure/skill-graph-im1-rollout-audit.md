@@ -3,7 +3,7 @@
 **Generated**: 2026-05-10
 **Updated**: 2026-09-07
 **Track**: skill-rollout-im1 (T9)
-**Current inventory**: 756 canonical nodes. The edge artifact contains 746 embedded nodes and 2,239 edges. The frozen validation result appears below.
+**Current inventory**: 756 canonical nodes. The edge artifact contains 756 embedded nodes and 2,239 edges. Both embedded catalogs use the current draft nodes and 77 canonical standard nodes. Their node content now agrees with these sources. Review status remains separate from canonical approval. The frozen validation result appears below.
 
 ## Overview
 

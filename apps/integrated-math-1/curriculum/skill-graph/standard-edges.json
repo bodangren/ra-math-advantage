@@ -30,10 +30,10 @@
     {
       "id": "math.im1.example.1.1.001",
       "kind": "worked_example",
-      "title": "Example 1: Write Numerical Expressions from Verbal Descriptions; Verbal Expressions with Sum, Difference, Product, and Quotient",
+      "title": "Example 1: Write Numerical Expressions from Verbal Descriptions",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md (1-1, Example 1)"
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-1 (heading at line 47)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -42,16 +42,16 @@
         "lesson": "1",
         "exampleNumber": 1,
         "sourceLesson": "1-1",
-        "rawText": "1-1, Examples 1-2 \u2014 Write Numerical Expressions from Verbal Descriptions; Verbal Expressions with Sum, Difference, Product, and Quotient"
+        "rawText": "Example 1 \u2014 Write Numerical Expressions from Verbal Descriptions"
       }
     },
     {
       "id": "math.im1.example.1.1.002",
       "kind": "worked_example",
-      "title": "Example 2: Write Numerical Expressions from Verbal Descriptions; Verbal Expressions with Sum, Difference, Product, and Quotient",
+      "title": "Example 2: Verbal Expressions with Sum, Difference, Product, and Quotient",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md (1-1, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-1 (heading at line 99)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -60,16 +60,16 @@
         "lesson": "1",
         "exampleNumber": 2,
         "sourceLesson": "1-1",
-        "rawText": "1-1, Examples 1-2 \u2014 Write Numerical Expressions from Verbal Descriptions; Verbal Expressions with Sum, Difference, Product, and Quotient"
+        "rawText": "Example 2 \u2014 Verbal Expressions with Sum, Difference, Product, and Quotient"
       }
     },
     {
       "id": "math.im1.example.1.1.003",
       "kind": "worked_example",
-      "title": "Example 4: Evaluate Numerical Expressions; Evaluate Real-World Expressions",
+      "title": "Example 4: Evaluate Numerical Expressions",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md (1-1, Example 4)"
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-1 (heading at line 212)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -78,16 +78,16 @@
         "lesson": "1",
         "exampleNumber": 4,
         "sourceLesson": "1-1",
-        "rawText": "1-1, Examples 4-7 \u2014 Evaluate Numerical Expressions; Evaluate Real-World Expressions"
+        "rawText": "Examples 4, 5, and 7 \u2014 Evaluate Numerical Expressions"
       }
     },
     {
       "id": "math.im1.example.1.1.004",
       "kind": "worked_example",
-      "title": "Example 5: Evaluate Numerical Expressions; Evaluate Real-World Expressions",
+      "title": "Example 5: Evaluate Numerical Expressions",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md (1-1, Example 5)"
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-1 (heading at line 212)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -96,16 +96,16 @@
         "lesson": "1",
         "exampleNumber": 5,
         "sourceLesson": "1-1",
-        "rawText": "1-1, Examples 4-7 \u2014 Evaluate Numerical Expressions; Evaluate Real-World Expressions"
+        "rawText": "Examples 4, 5, and 7 \u2014 Evaluate Numerical Expressions"
       }
     },
     {
       "id": "math.im1.example.1.1.005",
       "kind": "worked_example",
-      "title": "Example 6: Evaluate Numerical Expressions; Evaluate Real-World Expressions",
+      "title": "Example 6: Evaluate Real-World Expressions",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md (1-1, Example 6)"
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-1 (heading at line 500)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -114,16 +114,16 @@
         "lesson": "1",
         "exampleNumber": 6,
         "sourceLesson": "1-1",
-        "rawText": "1-1, Examples 4-7 \u2014 Evaluate Numerical Expressions; Evaluate Real-World Expressions"
+        "rawText": "Example 6 \u2014 Evaluate Real-World Expressions"
       }
     },
     {
       "id": "math.im1.example.1.1.006",
       "kind": "worked_example",
-      "title": "Example 7: Evaluate Numerical Expressions; Evaluate Real-World Expressions",
+      "title": "Example 7: Evaluate Numerical Expressions",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md (1-1, Example 7)"
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-1 (heading at line 212)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -132,16 +132,16 @@
         "lesson": "1",
         "exampleNumber": 7,
         "sourceLesson": "1-1",
-        "rawText": "1-1, Examples 4-7 \u2014 Evaluate Numerical Expressions; Evaluate Real-World Expressions"
+        "rawText": "Examples 4, 5, and 7 \u2014 Evaluate Numerical Expressions"
       }
     },
     {
       "id": "math.im1.example.1.2.007",
       "kind": "worked_example",
-      "title": "Example 1: Write Verbal Expressions for Algebraic Expressions; Write Algebraic Expressions for Verbal Expressions; Write Expressions for Real-World Situations",
+      "title": "Example 1: Write Verbal Expressions for Algebraic Expressions",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md (1-2, Example 1)"
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-2 (heading at line 32)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -150,16 +150,16 @@
         "lesson": "2",
         "exampleNumber": 1,
         "sourceLesson": "1-2",
-        "rawText": "1-2, Examples 1-3 \u2014 Write Verbal Expressions for Algebraic Expressions; Write Algebraic Expressions for Verbal Expressions; Write Expressions for Real-World Situations"
+        "rawText": "Example 1 \u2014 Write Verbal Expressions for Algebraic Expressions"
       }
     },
     {
       "id": "math.im1.example.1.2.008",
       "kind": "worked_example",
-      "title": "Example 2: Write Verbal Expressions for Algebraic Expressions; Write Algebraic Expressions for Verbal Expressions; Write Expressions for Real-World Situations",
+      "title": "Example 2: Write Algebraic Expressions for Verbal Expressions",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md (1-2, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-2 (heading at line 60)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -168,16 +168,16 @@
         "lesson": "2",
         "exampleNumber": 2,
         "sourceLesson": "1-2",
-        "rawText": "1-2, Examples 1-3 \u2014 Write Verbal Expressions for Algebraic Expressions; Write Algebraic Expressions for Verbal Expressions; Write Expressions for Real-World Situations"
+        "rawText": "Example 2 \u2014 Write Algebraic Expressions for Verbal Expressions"
       }
     },
     {
       "id": "math.im1.example.1.2.009",
       "kind": "worked_example",
-      "title": "Example 3: Write Verbal Expressions for Algebraic Expressions; Write Algebraic Expressions for Verbal Expressions; Write Expressions for Real-World Situations",
+      "title": "Example 3: Write Expressions for Real-World Situations",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md (1-2, Example 3)"
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-2 (heading at line 87)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -186,16 +186,16 @@
         "lesson": "2",
         "exampleNumber": 3,
         "sourceLesson": "1-2",
-        "rawText": "1-2, Examples 1-3 \u2014 Write Verbal Expressions for Algebraic Expressions; Write Algebraic Expressions for Verbal Expressions; Write Expressions for Real-World Situations"
+        "rawText": "Example 3 \u2014 Write Expressions for Real-World Situations"
       }
     },
     {
       "id": "math.im1.example.1.2.010",
       "kind": "worked_example",
-      "title": "Example 4: Evaluate Algebraic Expressions; Write and Evaluate Expressions from Word Problems; Mixed Review with Structure and Reasoning",
+      "title": "Example 4: Evaluate Algebraic Expressions",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md (1-2, Example 4)"
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-2 (heading at line 105)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -204,16 +204,16 @@
         "lesson": "2",
         "exampleNumber": 4,
         "sourceLesson": "1-2",
-        "rawText": "1-2, Examples 4-6 \u2014 Evaluate Algebraic Expressions; Write and Evaluate Expressions from Word Problems; Mixed Review with Structure and Reasoning"
+        "rawText": "Example 4 \u2014 Evaluate Algebraic Expressions"
       }
     },
     {
       "id": "math.im1.example.1.2.011",
       "kind": "worked_example",
-      "title": "Example 5: Evaluate Algebraic Expressions; Write and Evaluate Expressions from Word Problems; Mixed Review with Structure and Reasoning",
+      "title": "Example 5: Write and Evaluate Expressions from Word Problems",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md (1-2, Example 5)"
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-2 (heading at line 135)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -222,16 +222,16 @@
         "lesson": "2",
         "exampleNumber": 5,
         "sourceLesson": "1-2",
-        "rawText": "1-2, Examples 4-6 \u2014 Evaluate Algebraic Expressions; Write and Evaluate Expressions from Word Problems; Mixed Review with Structure and Reasoning"
+        "rawText": "Example 5 \u2014 Write and Evaluate Expressions from Word Problems"
       }
     },
     {
       "id": "math.im1.example.1.2.012",
       "kind": "worked_example",
-      "title": "Example 6: Evaluate Algebraic Expressions; Write and Evaluate Expressions from Word Problems; Mixed Review with Structure and Reasoning",
+      "title": "Example 6: Mixed Review with Structure and Reasoning",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md (1-2, Example 6)"
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-2 (heading at line 153)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -240,16 +240,16 @@
         "lesson": "2",
         "exampleNumber": 6,
         "sourceLesson": "1-2",
-        "rawText": "1-2, Examples 4-6 \u2014 Evaluate Algebraic Expressions; Write and Evaluate Expressions from Word Problems; Mixed Review with Structure and Reasoning"
+        "rawText": "Example 6 \u2014 Mixed Review with Structure and Reasoning"
       }
     },
     {
       "id": "math.im1.example.1.3.013",
       "kind": "worked_example",
-      "title": "Example 1: Identify Properties of Equality; Apply Properties of Equality to Complete Statements; Real-World Application: Toll Roads",
+      "title": "Example 1: Identify Properties of Equality",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md (1-3, Example 1)"
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-3 (heading at line 35)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -258,16 +258,16 @@
         "lesson": "3",
         "exampleNumber": 1,
         "sourceLesson": "1-3",
-        "rawText": "1-3, Examples 1-3 \u2014 Identify Properties of Equality; Apply Properties of Equality to Complete Statements; Real-World Application: Toll Roads"
+        "rawText": "Example 1 \u2014 Identify Properties of Equality"
       }
     },
     {
       "id": "math.im1.example.1.3.014",
       "kind": "worked_example",
-      "title": "Example 2: Identify Properties of Equality; Apply Properties of Equality to Complete Statements; Real-World Application: Toll Roads",
+      "title": "Example 2: Apply Properties of Equality to Complete Statements",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md (1-3, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-3 (heading at line 49)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -276,16 +276,16 @@
         "lesson": "3",
         "exampleNumber": 2,
         "sourceLesson": "1-3",
-        "rawText": "1-3, Examples 1-3 \u2014 Identify Properties of Equality; Apply Properties of Equality to Complete Statements; Real-World Application: Toll Roads"
+        "rawText": "Example 2 \u2014 Apply Properties of Equality to Complete Statements"
       }
     },
     {
       "id": "math.im1.example.1.3.015",
       "kind": "worked_example",
-      "title": "Example 3: Identify Properties of Equality; Apply Properties of Equality to Complete Statements; Real-World Application: Toll Roads",
+      "title": "Example 3: Real-World Application: Toll Roads",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md (1-3, Example 3)"
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-3 (heading at line 67)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -294,16 +294,16 @@
         "lesson": "3",
         "exampleNumber": 3,
         "sourceLesson": "1-3",
-        "rawText": "1-3, Examples 1-3 \u2014 Identify Properties of Equality; Apply Properties of Equality to Complete Statements; Real-World Application: Toll Roads"
+        "rawText": "Example 3 \u2014 Real-World Application: Toll Roads"
       }
     },
     {
       "id": "math.im1.example.1.3.016",
       "kind": "worked_example",
-      "title": "Example 4: Evaluate Expressions and Name Properties; Simplify Expressions Using Properties of Numbers; Evaluate Algebraic Expressions",
+      "title": "Example 4: Evaluate Expressions and Name Properties",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md (1-3, Example 4)"
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-3 (heading at line 91)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -312,16 +312,16 @@
         "lesson": "3",
         "exampleNumber": 4,
         "sourceLesson": "1-3",
-        "rawText": "1-3, Examples 4-6 \u2014 Evaluate Expressions and Name Properties; Simplify Expressions Using Properties of Numbers; Evaluate Algebraic Expressions"
+        "rawText": "Example 4 \u2014 Evaluate Expressions and Name Properties"
       }
     },
     {
       "id": "math.im1.example.1.3.017",
       "kind": "worked_example",
-      "title": "Example 5: Evaluate Expressions and Name Properties; Simplify Expressions Using Properties of Numbers; Evaluate Algebraic Expressions",
+      "title": "Example 5: Simplify Expressions Using Properties of Numbers",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md (1-3, Example 5)"
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-3 (heading at line 121)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -330,16 +330,16 @@
         "lesson": "3",
         "exampleNumber": 5,
         "sourceLesson": "1-3",
-        "rawText": "1-3, Examples 4-6 \u2014 Evaluate Expressions and Name Properties; Simplify Expressions Using Properties of Numbers; Evaluate Algebraic Expressions"
+        "rawText": "Example 5 \u2014 Simplify Expressions Using Properties of Numbers"
       }
     },
     {
       "id": "math.im1.example.1.3.018",
       "kind": "worked_example",
-      "title": "Example 6: Evaluate Expressions and Name Properties; Simplify Expressions Using Properties of Numbers; Evaluate Algebraic Expressions",
+      "title": "Example 6: Evaluate Algebraic Expressions",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md (1-3, Example 6)"
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-3 (heading at line 143)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -348,16 +348,16 @@
         "lesson": "3",
         "exampleNumber": 6,
         "sourceLesson": "1-3",
-        "rawText": "1-3, Examples 4-6 \u2014 Evaluate Expressions and Name Properties; Simplify Expressions Using Properties of Numbers; Evaluate Algebraic Expressions"
+        "rawText": "Example 6 \u2014 Evaluate Algebraic Expressions"
       }
     },
     {
       "id": "math.im1.example.1.4.019",
       "kind": "worked_example",
-      "title": "Example 1: Evaluate Numerical Expressions; Mental Math with the Distributive Property; Simplify Algebraic Expressions",
+      "title": "Example 1: Evaluate Numerical Expressions",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md (1-4, Example 1)"
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-4 (heading at line 35)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -366,16 +366,16 @@
         "lesson": "4",
         "exampleNumber": 1,
         "sourceLesson": "1-4",
-        "rawText": "1-4, Examples 1-3 \u2014 Evaluate Numerical Expressions; Mental Math with the Distributive Property; Simplify Algebraic Expressions"
+        "rawText": "Example 1 \u2014 Evaluate Numerical Expressions"
       }
     },
     {
       "id": "math.im1.example.1.4.020",
       "kind": "worked_example",
-      "title": "Example 2: Evaluate Numerical Expressions; Mental Math with the Distributive Property; Simplify Algebraic Expressions",
+      "title": "Example 2: Mental Math with the Distributive Property",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md (1-4, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-4 (heading at line 81)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -384,16 +384,16 @@
         "lesson": "4",
         "exampleNumber": 2,
         "sourceLesson": "1-4",
-        "rawText": "1-4, Examples 1-3 \u2014 Evaluate Numerical Expressions; Mental Math with the Distributive Property; Simplify Algebraic Expressions"
+        "rawText": "Example 2 \u2014 Mental Math with the Distributive Property"
       }
     },
     {
       "id": "math.im1.example.1.4.021",
       "kind": "worked_example",
-      "title": "Example 3: Evaluate Numerical Expressions; Mental Math with the Distributive Property; Simplify Algebraic Expressions",
+      "title": "Example 3: Simplify Algebraic Expressions",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md (1-4, Example 3)"
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-4 (heading at line 119)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -402,16 +402,16 @@
         "lesson": "4",
         "exampleNumber": 3,
         "sourceLesson": "1-4",
-        "rawText": "1-4, Examples 1-3 \u2014 Evaluate Numerical Expressions; Mental Math with the Distributive Property; Simplify Algebraic Expressions"
+        "rawText": "Examples 3 and 4 \u2014 Simplify Algebraic Expressions"
       }
     },
     {
       "id": "math.im1.example.1.4.023",
       "kind": "worked_example",
-      "title": "Example 4: Simplify Algebraic Expressions (continued); Combine Like Terms; Translate and Simplify Verbal Expressions",
+      "title": "Example 4: Simplify Algebraic Expressions",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md (1-4, Example 4)"
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-4 (heading at line 119)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -420,16 +420,16 @@
         "lesson": "4",
         "exampleNumber": 4,
         "sourceLesson": "1-4",
-        "rawText": "1-4, Examples 3-6 \u2014 Simplify Algebraic Expressions (continued); Combine Like Terms; Translate and Simplify Verbal Expressions"
+        "rawText": "Examples 3 and 4 \u2014 Simplify Algebraic Expressions"
       }
     },
     {
       "id": "math.im1.example.1.4.024",
       "kind": "worked_example",
-      "title": "Example 5: Simplify Algebraic Expressions (continued); Combine Like Terms; Translate and Simplify Verbal Expressions",
+      "title": "Example 5: Combine Like Terms",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md (1-4, Example 5)"
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-4 (heading at line 179)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -438,16 +438,16 @@
         "lesson": "4",
         "exampleNumber": 5,
         "sourceLesson": "1-4",
-        "rawText": "1-4, Examples 3-6 \u2014 Simplify Algebraic Expressions (continued); Combine Like Terms; Translate and Simplify Verbal Expressions"
+        "rawText": "Example 5 \u2014 Combine Like Terms"
       }
     },
     {
       "id": "math.im1.example.1.4.025",
       "kind": "worked_example",
-      "title": "Example 6: Simplify Algebraic Expressions (continued); Combine Like Terms; Translate and Simplify Verbal Expressions",
+      "title": "Example 6: Translate and Simplify Verbal Expressions",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md (1-4, Example 6)"
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-4 (heading at line 221)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -456,16 +456,16 @@
         "lesson": "4",
         "exampleNumber": 6,
         "sourceLesson": "1-4",
-        "rawText": "1-4, Examples 3-6 \u2014 Simplify Algebraic Expressions (continued); Combine Like Terms; Translate and Simplify Verbal Expressions"
+        "rawText": "Example 6 \u2014 Translate and Simplify Verbal Expressions"
       }
     },
     {
       "id": "math.im1.example.1.5.026",
       "kind": "worked_example",
-      "title": "Example 1: Write Absolute Value Expressions for Real-World Accuracy; Evaluate Absolute Value Expressions with Integers",
+      "title": "Example 1: Write Absolute Value Expressions for Real-World Accuracy",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md (1-5, Example 1)"
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-5 (heading at line 27)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -474,16 +474,16 @@
         "lesson": "5",
         "exampleNumber": 1,
         "sourceLesson": "1-5",
-        "rawText": "1-5, Examples 1-2 \u2014 Write Absolute Value Expressions for Real-World Accuracy; Evaluate Absolute Value Expressions with Integers"
+        "rawText": "Example 1 \u2014 Write Absolute Value Expressions for Real-World Accuracy"
       }
     },
     {
       "id": "math.im1.example.1.5.027",
       "kind": "worked_example",
-      "title": "Example 2: Write Absolute Value Expressions for Real-World Accuracy; Evaluate Absolute Value Expressions with Integers",
+      "title": "Example 2: Evaluate Absolute Value Expressions with Integers",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md (1-5, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-5 (heading at line 49)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -492,16 +492,16 @@
         "lesson": "5",
         "exampleNumber": 2,
         "sourceLesson": "1-5",
-        "rawText": "1-5, Examples 1-2 \u2014 Write Absolute Value Expressions for Real-World Accuracy; Evaluate Absolute Value Expressions with Integers"
+        "rawText": "Example 2 \u2014 Evaluate Absolute Value Expressions with Integers"
       }
     },
     {
       "id": "math.im1.example.1.5.029",
       "kind": "worked_example",
-      "title": "Example 3: Evaluate Absolute Value Expressions (continued); Evaluate Absolute Value Expressions with Integers, Decimals, and Fractions",
+      "title": "Example 3: Evaluate Absolute Value Expressions with Integers, Decimals, and Fractions",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md (1-5, Example 3)"
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-5 (heading at line 79)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -510,16 +510,16 @@
         "lesson": "5",
         "exampleNumber": 3,
         "sourceLesson": "1-5",
-        "rawText": "1-5, Examples 2-3 \u2014 Evaluate Absolute Value Expressions (continued); Evaluate Absolute Value Expressions with Integers, Decimals, and Fractions"
+        "rawText": "Example 3 \u2014 Evaluate Absolute Value Expressions with Integers, Decimals, and Fractions"
       }
     },
     {
       "id": "math.im1.example.1.6.030",
       "kind": "worked_example",
-      "title": "Example 1: Set Up and Evaluate Ratios as Metrics; Calculate and Compare Using Different Methods; Apply Context-Appropriate Rounding",
+      "title": "Example 1: Set Up and Evaluate Ratios as Metrics",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md (1-6, Example 1)"
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-6 (heading at line 30)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -528,16 +528,16 @@
         "lesson": "6",
         "exampleNumber": 1,
         "sourceLesson": "1-6",
-        "rawText": "1-6, Examples 1-3 \u2014 Set Up and Evaluate Ratios as Metrics; Calculate and Compare Using Different Methods; Apply Context-Appropriate Rounding"
+        "rawText": "Example 1 \u2014 Set Up and Evaluate Ratios as Metrics"
       }
     },
     {
       "id": "math.im1.example.1.6.031",
       "kind": "worked_example",
-      "title": "Example 2: Set Up and Evaluate Ratios as Metrics; Calculate and Compare Using Different Methods; Apply Context-Appropriate Rounding",
+      "title": "Example 2: Calculate and Compare Using Different Methods",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md (1-6, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-6 (heading at line 81)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -546,16 +546,16 @@
         "lesson": "6",
         "exampleNumber": 2,
         "sourceLesson": "1-6",
-        "rawText": "1-6, Examples 1-3 \u2014 Set Up and Evaluate Ratios as Metrics; Calculate and Compare Using Different Methods; Apply Context-Appropriate Rounding"
+        "rawText": "Example 2 \u2014 Calculate and Compare Using Different Methods"
       }
     },
     {
       "id": "math.im1.example.1.6.032",
       "kind": "worked_example",
-      "title": "Example 3: Set Up and Evaluate Ratios as Metrics; Calculate and Compare Using Different Methods; Apply Context-Appropriate Rounding",
+      "title": "Example 3: Apply Context-Appropriate Rounding",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md (1-6, Example 3)"
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-6 (heading at line 111)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -564,16 +564,16 @@
         "lesson": "6",
         "exampleNumber": 3,
         "sourceLesson": "1-6",
-        "rawText": "1-6, Examples 1-3 \u2014 Set Up and Evaluate Ratios as Metrics; Calculate and Compare Using Different Methods; Apply Context-Appropriate Rounding"
+        "rawText": "Example 3 \u2014 Apply Context-Appropriate Rounding"
       }
     },
     {
       "id": "math.im1.example.1.6.033",
       "kind": "worked_example",
-      "title": "Example 4: Compute with Reasonable Accuracy; Evaluate Accuracy of Reported Data",
+      "title": "Example 4: Compute with Reasonable Accuracy",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md (1-6, Example 4)"
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-6 (heading at line 142)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -582,16 +582,16 @@
         "lesson": "6",
         "exampleNumber": 4,
         "sourceLesson": "1-6",
-        "rawText": "1-6, Examples 4-5 \u2014 Compute with Reasonable Accuracy; Evaluate Accuracy of Reported Data"
+        "rawText": "Example 4 \u2014 Compute with Reasonable Accuracy"
       }
     },
     {
       "id": "math.im1.example.1.6.034",
       "kind": "worked_example",
-      "title": "Example 5: Compute with Reasonable Accuracy; Evaluate Accuracy of Reported Data",
+      "title": "Example 5: Evaluate Accuracy of Reported Data",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md (1-6, Example 5)"
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-6 (heading at line 184)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -600,7 +600,7 @@
         "lesson": "6",
         "exampleNumber": 5,
         "sourceLesson": "1-6",
-        "rawText": "1-6, Examples 4-5 \u2014 Compute with Reasonable Accuracy; Evaluate Accuracy of Reported Data"
+        "rawText": "Example 5 \u2014 Evaluate Accuracy of Reported Data"
       }
     },
     {
@@ -3162,10 +3162,10 @@
     {
       "id": "math.im1.example.2.1.001",
       "kind": "worked_example",
-      "title": "Example 1: Write an Equation from a Verbal Sentence; Write an Equation from a Real-World Situation; Translate Sentences into Equations or Formulas",
+      "title": "Example 1: Write an Equation from a Verbal Sentence",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md (2-1, Example 1)"
+        "apps/integrated-math-1/curriculum/modules/module-2-lesson-1 (heading at line 32)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3174,16 +3174,16 @@
         "lesson": "1",
         "exampleNumber": 1,
         "sourceLesson": "2-1",
-        "rawText": "2-1, Examples 1-3 \u2014 Write an Equation from a Verbal Sentence; Write an Equation from a Real-World Situation; Translate Sentences into Equations or Formulas"
+        "rawText": "Example 1 \u2014 Write an Equation from a Verbal Sentence"
       }
     },
     {
       "id": "math.im1.example.2.1.002",
       "kind": "worked_example",
-      "title": "Example 2: Write an Equation from a Verbal Sentence; Write an Equation from a Real-World Situation; Translate Sentences into Equations or Formulas",
+      "title": "Example 2: Write an Equation from a Real-World Situation",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md (2-1, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-2-lesson-1 (heading at line 55)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3192,16 +3192,16 @@
         "lesson": "1",
         "exampleNumber": 2,
         "sourceLesson": "2-1",
-        "rawText": "2-1, Examples 1-3 \u2014 Write an Equation from a Verbal Sentence; Write an Equation from a Real-World Situation; Translate Sentences into Equations or Formulas"
+        "rawText": "Example 2 \u2014 Write an Equation from a Real-World Situation"
       }
     },
     {
       "id": "math.im1.example.2.1.003",
       "kind": "worked_example",
-      "title": "Example 3: Write an Equation from a Verbal Sentence; Write an Equation from a Real-World Situation; Translate Sentences into Equations or Formulas",
+      "title": "Example 3: Translate Sentences into Equations or Formulas",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md (2-1, Example 3)"
+        "apps/integrated-math-1/curriculum/modules/module-2-lesson-1 (heading at line 77)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3210,16 +3210,16 @@
         "lesson": "1",
         "exampleNumber": 3,
         "sourceLesson": "2-1",
-        "rawText": "2-1, Examples 1-3 \u2014 Write an Equation from a Verbal Sentence; Write an Equation from a Real-World Situation; Translate Sentences into Equations or Formulas"
+        "rawText": "Example 3 \u2014 Translate Sentences into Equations or Formulas"
       }
     },
     {
       "id": "math.im1.example.2.1.004",
       "kind": "worked_example",
-      "title": "Example 4: Write a Sentence for Each Equation; Interpret Formulas in Context",
+      "title": "Example 4: Write a Sentence for Each Equation",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md (2-1, Example 4)"
+        "apps/integrated-math-1/curriculum/modules/module-2-lesson-1 (heading at line 103)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3228,16 +3228,16 @@
         "lesson": "1",
         "exampleNumber": 4,
         "sourceLesson": "2-1",
-        "rawText": "2-1, Examples 4-6 \u2014 Write a Sentence for Each Equation; Interpret Formulas in Context"
+        "rawText": "Example 4 and 5 \u2014 Write a Sentence for Each Equation"
       }
     },
     {
       "id": "math.im1.example.2.1.005",
       "kind": "worked_example",
-      "title": "Example 5: Write a Sentence for Each Equation; Interpret Formulas in Context",
+      "title": "Example 5: Write a Sentence for Each Equation",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md (2-1, Example 5)"
+        "apps/integrated-math-1/curriculum/modules/module-2-lesson-1 (heading at line 103)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3246,16 +3246,16 @@
         "lesson": "1",
         "exampleNumber": 5,
         "sourceLesson": "2-1",
-        "rawText": "2-1, Examples 4-6 \u2014 Write a Sentence for Each Equation; Interpret Formulas in Context"
+        "rawText": "Example 4 and 5 \u2014 Write a Sentence for Each Equation"
       }
     },
     {
       "id": "math.im1.example.2.1.006",
       "kind": "worked_example",
-      "title": "Example 6: Write a Sentence for Each Equation; Interpret Formulas in Context",
+      "title": "Example 6: Interpret Formulas in Context",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md (2-1, Example 6)"
+        "apps/integrated-math-1/curriculum/modules/module-2-lesson-1 (heading at line 129)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3264,16 +3264,16 @@
         "lesson": "1",
         "exampleNumber": 6,
         "sourceLesson": "2-1",
-        "rawText": "2-1, Examples 4-6 \u2014 Write a Sentence for Each Equation; Interpret Formulas in Context"
+        "rawText": "Example 6 \u2014 Interpret Formulas in Context"
       }
     },
     {
       "id": "math.im1.example.2.2.007",
       "kind": "worked_example",
-      "title": "Example 1: Solve Addition and Subtraction Equations with Integers; Solve Multiplication and Division Equations with Integers",
+      "title": "Example 1: Solve Addition and Subtraction Equations with Integers",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md (2-2, Example 1)"
+        "apps/integrated-math-1/curriculum/modules/module-2-lesson-2 (heading at line 32)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3282,16 +3282,16 @@
         "lesson": "2",
         "exampleNumber": 1,
         "sourceLesson": "2-2",
-        "rawText": "2-2, Examples 1-2 \u2014 Solve Addition and Subtraction Equations with Integers; Solve Multiplication and Division Equations with Integers"
+        "rawText": "Example 1 \u2014 Solve Addition and Subtraction Equations with Integers"
       }
     },
     {
       "id": "math.im1.example.2.2.008",
       "kind": "worked_example",
-      "title": "Example 2: Solve Addition and Subtraction Equations with Integers; Solve Multiplication and Division Equations with Integers",
+      "title": "Example 2: Solve Multiplication and Division Equations with Integers",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md (2-2, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-2-lesson-2 (heading at line 87)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3300,16 +3300,16 @@
         "lesson": "2",
         "exampleNumber": 2,
         "sourceLesson": "2-2",
-        "rawText": "2-2, Examples 1-2 \u2014 Solve Addition and Subtraction Equations with Integers; Solve Multiplication and Division Equations with Integers"
+        "rawText": "Example 2 \u2014 Solve Multiplication and Division Equations with Integers"
       }
     },
     {
       "id": "math.im1.example.2.2.009",
       "kind": "worked_example",
-      "title": "Example 3: Write and Solve Real-World Equations; Solve Equations with Fractions; Multi-Part Application with Percentages",
+      "title": "Example 3: Write and Solve Real-World Equations",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md (2-2, Example 3)"
+        "apps/integrated-math-1/curriculum/modules/module-2-lesson-2 (heading at line 137)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3318,16 +3318,16 @@
         "lesson": "2",
         "exampleNumber": 3,
         "sourceLesson": "2-2",
-        "rawText": "2-2, Examples 3-5 \u2014 Write and Solve Real-World Equations; Solve Equations with Fractions; Multi-Part Application with Percentages"
+        "rawText": "Example 3 \u2014 Write and Solve Real-World Equations"
       }
     },
     {
       "id": "math.im1.example.2.2.010",
       "kind": "worked_example",
-      "title": "Example 4: Write and Solve Real-World Equations; Solve Equations with Fractions; Multi-Part Application with Percentages",
+      "title": "Example 4: Solve Equations with Fractions",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md (2-2, Example 4)"
+        "apps/integrated-math-1/curriculum/modules/module-2-lesson-2 (heading at line 180)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3336,16 +3336,16 @@
         "lesson": "2",
         "exampleNumber": 4,
         "sourceLesson": "2-2",
-        "rawText": "2-2, Examples 3-5 \u2014 Write and Solve Real-World Equations; Solve Equations with Fractions; Multi-Part Application with Percentages"
+        "rawText": "Example 4 \u2014 Solve Equations with Fractions"
       }
     },
     {
       "id": "math.im1.example.2.2.011",
       "kind": "worked_example",
-      "title": "Example 5: Write and Solve Real-World Equations; Solve Equations with Fractions; Multi-Part Application with Percentages",
+      "title": "Example 5: Multi-Part Application with Percentages",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md (2-2, Example 5)"
+        "apps/integrated-math-1/curriculum/modules/module-2-lesson-2 (heading at line 255)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3354,16 +3354,16 @@
         "lesson": "2",
         "exampleNumber": 5,
         "sourceLesson": "2-2",
-        "rawText": "2-2, Examples 3-5 \u2014 Write and Solve Real-World Equations; Solve Equations with Fractions; Multi-Part Application with Percentages"
+        "rawText": "Example 5 \u2014 Multi-Part Application with Percentages"
       }
     },
     {
       "id": "math.im1.example.2.3.012",
       "kind": "worked_example",
-      "title": "Example 1: Solve Linear Equations Using Properties of Equality; Write and Solve Equations from Word Problems",
+      "title": "Example 1: Solve Linear Equations Using Properties of Equality",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md (2-3, Example 1)"
+        "apps/integrated-math-1/curriculum/modules/module-2-lesson-3 (heading at line 28)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3372,16 +3372,16 @@
         "lesson": "3",
         "exampleNumber": 1,
         "sourceLesson": "2-3",
-        "rawText": "2-3, Examples 1-2 \u2014 Solve Linear Equations Using Properties of Equality; Write and Solve Equations from Word Problems"
+        "rawText": "Example 1 \u2014 Solve Linear Equations Using Properties of Equality"
       }
     },
     {
       "id": "math.im1.example.2.3.013",
       "kind": "worked_example",
-      "title": "Example 2: Solve Linear Equations Using Properties of Equality; Write and Solve Equations from Word Problems",
+      "title": "Example 2: Write and Solve Equations from Word Problems",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md (2-3, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-2-lesson-3 (heading at line 74)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3390,16 +3390,16 @@
         "lesson": "3",
         "exampleNumber": 2,
         "sourceLesson": "2-3",
-        "rawText": "2-3, Examples 1-2 \u2014 Solve Linear Equations Using Properties of Equality; Write and Solve Equations from Word Problems"
+        "rawText": "Example 2 \u2014 Write and Solve Equations from Word Problems"
       }
     },
     {
       "id": "math.im1.example.2.3.015",
       "kind": "worked_example",
-      "title": "Example 3: Write and Solve Equations from Word Problems (continued); Solve Literal Equations",
+      "title": "Example 3: Solve Literal Equations",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md (2-3, Example 3)"
+        "apps/integrated-math-1/curriculum/modules/module-2-lesson-3 (heading at line 109)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3408,16 +3408,16 @@
         "lesson": "3",
         "exampleNumber": 3,
         "sourceLesson": "2-3",
-        "rawText": "2-3, Examples 2-3 \u2014 Write and Solve Equations from Word Problems (continued); Solve Literal Equations"
+        "rawText": "Example 3 \u2014 Solve Literal Equations"
       }
     },
     {
       "id": "math.im1.example.2.4.016",
       "kind": "worked_example",
-      "title": "Example 1: Solve Equations with Variables on Both Sides; Write and Solve Equations from Word Problems",
+      "title": "Example 1: Solve Equations with Variables on Both Sides",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md (2-4, Example 1)"
+        "apps/integrated-math-1/curriculum/modules/module-2-lesson-4 (heading at line 33)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3426,16 +3426,16 @@
         "lesson": "4",
         "exampleNumber": 1,
         "sourceLesson": "2-4",
-        "rawText": "2-4, Examples 1-2 \u2014 Solve Equations with Variables on Both Sides; Write and Solve Equations from Word Problems"
+        "rawText": "Example 1 \u2014 Solve Equations with Variables on Both Sides"
       }
     },
     {
       "id": "math.im1.example.2.4.017",
       "kind": "worked_example",
-      "title": "Example 2: Solve Equations with Variables on Both Sides; Write and Solve Equations from Word Problems",
+      "title": "Example 2: Write and Solve Equations from Word Problems",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md (2-4, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-2-lesson-4 (heading at line 97)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3444,16 +3444,16 @@
         "lesson": "4",
         "exampleNumber": 2,
         "sourceLesson": "2-4",
-        "rawText": "2-4, Examples 1-2 \u2014 Solve Equations with Variables on Both Sides; Write and Solve Equations from Word Problems"
+        "rawText": "Example 2 \u2014 Write and Solve Equations from Word Problems"
       }
     },
     {
       "id": "math.im1.example.2.4.018",
       "kind": "worked_example",
-      "title": "Example 3: Geometry Applications; Classify Equations",
+      "title": "Example 3: Geometry Applications",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md (2-4, Example 3)"
+        "apps/integrated-math-1/curriculum/modules/module-2-lesson-4 (heading at line 127)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3462,16 +3462,16 @@
         "lesson": "4",
         "exampleNumber": 3,
         "sourceLesson": "2-4",
-        "rawText": "2-4, Examples 3-4 \u2014 Geometry Applications; Classify Equations"
+        "rawText": "Example 3 \u2014 Geometry Applications"
       }
     },
     {
       "id": "math.im1.example.2.4.019",
       "kind": "worked_example",
-      "title": "Example 4: Geometry Applications; Classify Equations",
+      "title": "Example 4: Classify Equations",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md (2-4, Example 4)"
+        "apps/integrated-math-1/curriculum/modules/module-2-lesson-4 (heading at line 155)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3480,16 +3480,16 @@
         "lesson": "4",
         "exampleNumber": 4,
         "sourceLesson": "2-4",
-        "rawText": "2-4, Examples 3-4 \u2014 Geometry Applications; Classify Equations"
+        "rawText": "Example 4 \u2014 Classify Equations"
       }
     },
     {
       "id": "math.im1.example.2.5.020",
       "kind": "worked_example",
-      "title": "Example 3: Apply Absolute Value to Real-World Problems (continued); Write Absolute Value Equations from Graphs",
+      "title": "Example 3: Apply Absolute Value to Real-World Problems",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md (2-5, Example 3)"
+        "apps/integrated-math-1/curriculum/modules/module-2-lesson-5 (heading at line 82)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3498,16 +3498,16 @@
         "lesson": "5",
         "exampleNumber": 3,
         "sourceLesson": "2-5",
-        "rawText": "2-5, Examples 3-4 \u2014 Apply Absolute Value to Real-World Problems (continued); Write Absolute Value Equations from Graphs"
+        "rawText": "Example 3 \u2014 Apply Absolute Value to Real-World Problems"
       }
     },
     {
       "id": "math.im1.example.2.5.021",
       "kind": "worked_example",
-      "title": "Example 4: Apply Absolute Value to Real-World Problems (continued); Write Absolute Value Equations from Graphs",
+      "title": "Example 4: Write Absolute Value Equations from Graphs",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md (2-5, Example 4)"
+        "apps/integrated-math-1/curriculum/modules/module-2-lesson-5 (heading at line 114)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3516,16 +3516,16 @@
         "lesson": "5",
         "exampleNumber": 4,
         "sourceLesson": "2-5",
-        "rawText": "2-5, Examples 3-4 \u2014 Apply Absolute Value to Real-World Problems (continued); Write Absolute Value Equations from Graphs"
+        "rawText": "Example 4 \u2014 Write Absolute Value Equations from Graphs"
       }
     },
     {
       "id": "math.im1.example.2.6.022",
       "kind": "worked_example",
-      "title": "Example 1: Basic Proportions; Proportions with Linear Expressions; Real-World Proportion Problems",
+      "title": "Example 1: Basic Proportions",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md (2-6, Example 1)"
+        "apps/integrated-math-1/curriculum/modules/module-2-lesson-6 (heading at line 29)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3534,16 +3534,16 @@
         "lesson": "6",
         "exampleNumber": 1,
         "sourceLesson": "2-6",
-        "rawText": "2-6, Examples 1-3 \u2014 Basic Proportions; Proportions with Linear Expressions; Real-World Proportion Problems"
+        "rawText": "Example 1 \u2014 Basic Proportions"
       }
     },
     {
       "id": "math.im1.example.2.6.023",
       "kind": "worked_example",
-      "title": "Example 2: Basic Proportions; Proportions with Linear Expressions; Real-World Proportion Problems",
+      "title": "Example 2: Proportions with Linear Expressions",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md (2-6, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-2-lesson-6 (heading at line 56)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3552,16 +3552,16 @@
         "lesson": "6",
         "exampleNumber": 2,
         "sourceLesson": "2-6",
-        "rawText": "2-6, Examples 1-3 \u2014 Basic Proportions; Proportions with Linear Expressions; Real-World Proportion Problems"
+        "rawText": "Example 2 \u2014 Proportions with Linear Expressions"
       }
     },
     {
       "id": "math.im1.example.2.6.024",
       "kind": "worked_example",
-      "title": "Example 3: Basic Proportions; Proportions with Linear Expressions; Real-World Proportion Problems",
+      "title": "Example 3: Real-World Proportion Problems",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md (2-6, Example 3)"
+        "apps/integrated-math-1/curriculum/modules/module-2-lesson-6 (heading at line 82)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3570,16 +3570,16 @@
         "lesson": "6",
         "exampleNumber": 3,
         "sourceLesson": "2-6",
-        "rawText": "2-6, Examples 1-3 \u2014 Basic Proportions; Proportions with Linear Expressions; Real-World Proportion Problems"
+        "rawText": "Example 3 \u2014 Real-World Proportion Problems"
       }
     },
     {
       "id": "math.im1.example.2.6.026",
       "kind": "worked_example",
-      "title": "Example 4: Real-World Proportion Problems (continued); Percent and Mixture Problems",
+      "title": "Example 4: Percent and Mixture Problems",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md (2-6, Example 4)"
+        "apps/integrated-math-1/curriculum/modules/module-2-lesson-6 (heading at line 101)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3588,16 +3588,16 @@
         "lesson": "6",
         "exampleNumber": 4,
         "sourceLesson": "2-6",
-        "rawText": "2-6, Examples 3-4 \u2014 Real-World Proportion Problems (continued); Percent and Mixture Problems"
+        "rawText": "Example 4 \u2014 Percent and Mixture Problems"
       }
     },
     {
       "id": "math.im1.example.2.7.027",
       "kind": "worked_example",
-      "title": "Example 1: Solve for a Specified Variable; Apply Formulas to Real-World Situations; Solve Formulas with Constraints",
+      "title": "Example 1: Solve for a Specified Variable",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md (2-7, Example 1)"
+        "apps/integrated-math-1/curriculum/modules/module-2-lesson-7 (heading at line 31)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3606,16 +3606,16 @@
         "lesson": "7",
         "exampleNumber": 1,
         "sourceLesson": "2-7",
-        "rawText": "2-7, Examples 1-4 \u2014 Solve for a Specified Variable; Apply Formulas to Real-World Situations; Solve Formulas with Constraints"
+        "rawText": "Example 1 and 2 \u2014 Solve for a Specified Variable"
       }
     },
     {
       "id": "math.im1.example.2.7.028",
       "kind": "worked_example",
-      "title": "Example 2: Solve for a Specified Variable; Apply Formulas to Real-World Situations; Solve Formulas with Constraints",
+      "title": "Example 2: Solve for a Specified Variable",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md (2-7, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-2-lesson-7 (heading at line 31)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3624,16 +3624,16 @@
         "lesson": "7",
         "exampleNumber": 2,
         "sourceLesson": "2-7",
-        "rawText": "2-7, Examples 1-4 \u2014 Solve for a Specified Variable; Apply Formulas to Real-World Situations; Solve Formulas with Constraints"
+        "rawText": "Example 1 and 2 \u2014 Solve for a Specified Variable"
       }
     },
     {
       "id": "math.im1.example.2.7.029",
       "kind": "worked_example",
-      "title": "Example 3: Solve for a Specified Variable; Apply Formulas to Real-World Situations; Solve Formulas with Constraints",
+      "title": "Example 3: Apply Formulas to Real-World Situations",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md (2-7, Example 3)"
+        "apps/integrated-math-1/curriculum/modules/module-2-lesson-7 (heading at line 96)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3642,16 +3642,16 @@
         "lesson": "7",
         "exampleNumber": 3,
         "sourceLesson": "2-7",
-        "rawText": "2-7, Examples 1-4 \u2014 Solve for a Specified Variable; Apply Formulas to Real-World Situations; Solve Formulas with Constraints"
+        "rawText": "Example 3 \u2014 Apply Formulas to Real-World Situations"
       }
     },
     {
       "id": "math.im1.example.2.7.030",
       "kind": "worked_example",
-      "title": "Example 4: Solve for a Specified Variable; Apply Formulas to Real-World Situations; Solve Formulas with Constraints",
+      "title": "Example 4: Solve Formulas with Constraints",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md (2-7, Example 4)"
+        "apps/integrated-math-1/curriculum/modules/module-2-lesson-7 (heading at line 122)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3660,7 +3660,7 @@
         "lesson": "7",
         "exampleNumber": 4,
         "sourceLesson": "2-7",
-        "rawText": "2-7, Examples 1-4 \u2014 Solve for a Specified Variable; Apply Formulas to Real-World Situations; Solve Formulas with Constraints"
+        "rawText": "Example 4 \u2014 Solve Formulas with Constraints"
       }
     },
     {
@@ -3669,7 +3669,7 @@
       "title": "Example 5: Dimensional Analysis and Unit Conversion",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md (2-7, Example 5)"
+        "apps/integrated-math-1/curriculum/modules/module-2-lesson-7 (heading at line 150)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3678,7 +3678,7 @@
         "lesson": "7",
         "exampleNumber": 5,
         "sourceLesson": "2-7",
-        "rawText": "2-7, Examples 5-7 \u2014 Dimensional Analysis and Unit Conversion"
+        "rawText": "Examples 5-7 \u2014 Dimensional Analysis and Unit Conversion"
       }
     },
     {
@@ -3687,7 +3687,7 @@
       "title": "Example 6: Dimensional Analysis and Unit Conversion",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md (2-7, Example 6)"
+        "apps/integrated-math-1/curriculum/modules/module-2-lesson-7 (heading at line 150)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3696,7 +3696,7 @@
         "lesson": "7",
         "exampleNumber": 6,
         "sourceLesson": "2-7",
-        "rawText": "2-7, Examples 5-7 \u2014 Dimensional Analysis and Unit Conversion"
+        "rawText": "Examples 5-7 \u2014 Dimensional Analysis and Unit Conversion"
       }
     },
     {
@@ -3705,7 +3705,7 @@
       "title": "Example 7: Dimensional Analysis and Unit Conversion",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md (2-7, Example 7)"
+        "apps/integrated-math-1/curriculum/modules/module-2-lesson-7 (heading at line 150)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3714,16 +3714,16 @@
         "lesson": "7",
         "exampleNumber": 7,
         "sourceLesson": "2-7",
-        "rawText": "2-7, Examples 5-7 \u2014 Dimensional Analysis and Unit Conversion"
+        "rawText": "Examples 5-7 \u2014 Dimensional Analysis and Unit Conversion"
       }
     },
     {
       "id": "math.im1.example.3.1.001",
       "kind": "worked_example",
-      "title": "Example 1: Multiple Representations of a Relation; Independent and Dependent Variables from Graphs; Graph Data from a Table",
+      "title": "Example 1: Multiple Representations of a Relation",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-1, Example 1)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-1 (Example 1 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3732,16 +3732,16 @@
         "lesson": "1",
         "exampleNumber": 1,
         "sourceLesson": "3-1",
-        "rawText": "3-1, Examples 1-3 \u2014 Multiple Representations of a Relation; Independent and Dependent Variables from Graphs; Graph Data from a Table"
+        "rawText": "Example 1 \u2014 Multiple Representations of a Relation"
       }
     },
     {
       "id": "math.im1.example.3.1.002",
       "kind": "worked_example",
-      "title": "Example 2: Multiple Representations of a Relation; Independent and Dependent Variables from Graphs; Graph Data from a Table",
+      "title": "Example 2: Independent and Dependent Variables from Graphs",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-1, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-1 (Example 2 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3750,16 +3750,16 @@
         "lesson": "1",
         "exampleNumber": 2,
         "sourceLesson": "3-1",
-        "rawText": "3-1, Examples 1-3 \u2014 Multiple Representations of a Relation; Independent and Dependent Variables from Graphs; Graph Data from a Table"
+        "rawText": "Example 2 \u2014 Independent and Dependent Variables from Graphs"
       }
     },
     {
       "id": "math.im1.example.3.1.003",
       "kind": "worked_example",
-      "title": "Example 3: Multiple Representations of a Relation; Independent and Dependent Variables from Graphs; Graph Data from a Table",
+      "title": "Example 3: Graph Data from a Table",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-1, Example 3)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-1 (Example 3 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3768,16 +3768,16 @@
         "lesson": "1",
         "exampleNumber": 3,
         "sourceLesson": "3-1",
-        "rawText": "3-1, Examples 1-3 \u2014 Multiple Representations of a Relation; Independent and Dependent Variables from Graphs; Graph Data from a Table"
+        "rawText": "Example 3 \u2014 Graph Data from a Table"
       }
     },
     {
       "id": "math.im1.example.3.1.004",
       "kind": "worked_example",
-      "title": "Example 4: Graph Data from Ordered Pairs; Interpret Axes, Scale, and Origin",
+      "title": "Example 4: Graph Data from Ordered Pairs",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-1, Example 4)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-1 (Example 4 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3786,16 +3786,16 @@
         "lesson": "1",
         "exampleNumber": 4,
         "sourceLesson": "3-1",
-        "rawText": "3-1, Examples 4-5 \u2014 Graph Data from Ordered Pairs; Interpret Axes, Scale, and Origin"
+        "rawText": "Example 4 \u2014 Graph Data from Ordered Pairs"
       }
     },
     {
       "id": "math.im1.example.3.1.005",
       "kind": "worked_example",
-      "title": "Example 5: Graph Data from Ordered Pairs; Interpret Axes, Scale, and Origin",
+      "title": "Example 5: Interpret Axes, Scale, and Origin",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-1, Example 5)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-1 (Example 5 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3804,16 +3804,16 @@
         "lesson": "1",
         "exampleNumber": 5,
         "sourceLesson": "3-1",
-        "rawText": "3-1, Examples 4-5 \u2014 Graph Data from Ordered Pairs; Interpret Axes, Scale, and Origin"
+        "rawText": "Example 5 \u2014 Interpret Axes, Scale, and Origin"
       }
     },
     {
       "id": "math.im1.example.3.2.006",
       "kind": "worked_example",
-      "title": "Example 1: Determine Whether a Relation Is a Function; Domain and Range from Real-World Data",
+      "title": "Example 1: Determine Whether a Relation Is a Function",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-2, Example 1)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-2 (Example 1 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3822,16 +3822,16 @@
         "lesson": "2",
         "exampleNumber": 1,
         "sourceLesson": "3-2",
-        "rawText": "3-2, Examples 1-2 \u2014 Determine Whether a Relation Is a Function; Domain and Range from Real-World Data"
+        "rawText": "Example 1 \u2014 Determine Whether a Relation Is a Function"
       }
     },
     {
       "id": "math.im1.example.3.2.007",
       "kind": "worked_example",
-      "title": "Example 2: Determine Whether a Relation Is a Function; Domain and Range from Real-World Data",
+      "title": "Example 2: Domain and Range from Real-World Data",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-2, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-2 (Example 2 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3840,16 +3840,16 @@
         "lesson": "2",
         "exampleNumber": 2,
         "sourceLesson": "3-2",
-        "rawText": "3-2, Examples 1-2 \u2014 Determine Whether a Relation Is a Function; Domain and Range from Real-World Data"
+        "rawText": "Example 2 \u2014 Domain and Range from Real-World Data"
       }
     },
     {
       "id": "math.im1.example.3.2.008",
       "kind": "worked_example",
-      "title": "Example 3: Evaluate Functions; Interpret Functions in Context",
+      "title": "Example 3: Evaluate Functions",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-2, Example 3)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-2 (Example 3 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3858,16 +3858,16 @@
         "lesson": "2",
         "exampleNumber": 3,
         "sourceLesson": "3-2",
-        "rawText": "3-2, Examples 3-4 \u2014 Evaluate Functions; Interpret Functions in Context"
+        "rawText": "Example 3 \u2014 Evaluate Functions"
       }
     },
     {
       "id": "math.im1.example.3.2.009",
       "kind": "worked_example",
-      "title": "Example 4: Evaluate Functions; Interpret Functions in Context",
+      "title": "Example 4: Interpret Functions in Context",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-2, Example 4)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-2 (Example 4 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3876,16 +3876,16 @@
         "lesson": "2",
         "exampleNumber": 4,
         "sourceLesson": "3-2",
-        "rawText": "3-2, Examples 3-4 \u2014 Evaluate Functions; Interpret Functions in Context"
+        "rawText": "Example 4 \u2014 Interpret Functions in Context"
       }
     },
     {
       "id": "math.im1.example.3.3.010",
       "kind": "worked_example",
-      "title": "Example 1: Classify Functions from Graphs; Classify Real-World Functions from Graphs",
+      "title": "Example 1: Classify Functions from Graphs",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-3, Example 1)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-3 (Example 1 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3894,16 +3894,16 @@
         "lesson": "3",
         "exampleNumber": 1,
         "sourceLesson": "3-3",
-        "rawText": "3-3, Examples 1-2 \u2014 Classify Functions from Graphs; Classify Real-World Functions from Graphs"
+        "rawText": "Example 1 \u2014 Classify Functions from Graphs"
       }
     },
     {
       "id": "math.im1.example.3.3.011",
       "kind": "worked_example",
-      "title": "Example 2: Classify Functions from Graphs; Classify Real-World Functions from Graphs",
+      "title": "Example 2: Classify Real-World Functions from Graphs",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-3, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-3 (Example 2 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3912,16 +3912,16 @@
         "lesson": "3",
         "exampleNumber": 2,
         "sourceLesson": "3-3",
-        "rawText": "3-3, Examples 1-2 \u2014 Classify Functions from Graphs; Classify Real-World Functions from Graphs"
+        "rawText": "Example 2 \u2014 Classify Real-World Functions from Graphs"
       }
     },
     {
       "id": "math.im1.example.3.3.012",
       "kind": "worked_example",
-      "title": "Example 3: Determine Linearity from Equations; Determine Linearity from Graphs; Determine Linearity from Tables",
+      "title": "Example 3: Determine Linearity from Equations",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-3, Example 3)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-3 (Example 3 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3930,16 +3930,16 @@
         "lesson": "3",
         "exampleNumber": 3,
         "sourceLesson": "3-3",
-        "rawText": "3-3, Examples 3-5 \u2014 Determine Linearity from Equations; Determine Linearity from Graphs; Determine Linearity from Tables"
+        "rawText": "Example 3 \u2014 Determine Linearity from Equations"
       }
     },
     {
       "id": "math.im1.example.3.3.013",
       "kind": "worked_example",
-      "title": "Example 4: Determine Linearity from Equations; Determine Linearity from Graphs; Determine Linearity from Tables",
+      "title": "Example 4: Determine Linearity from Graphs",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-3, Example 4)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-3 (Example 4 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3948,16 +3948,16 @@
         "lesson": "3",
         "exampleNumber": 4,
         "sourceLesson": "3-3",
-        "rawText": "3-3, Examples 3-5 \u2014 Determine Linearity from Equations; Determine Linearity from Graphs; Determine Linearity from Tables"
+        "rawText": "Example 4 \u2014 Determine Linearity from Graphs"
       }
     },
     {
       "id": "math.im1.example.3.3.014",
       "kind": "worked_example",
-      "title": "Example 5: Determine Linearity from Equations; Determine Linearity from Graphs; Determine Linearity from Tables",
+      "title": "Example 5: Determine Linearity from Tables",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-3, Example 5)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-3 (Example 5 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3966,16 +3966,16 @@
         "lesson": "3",
         "exampleNumber": 5,
         "sourceLesson": "3-3",
-        "rawText": "3-3, Examples 3-5 \u2014 Determine Linearity from Equations; Determine Linearity from Graphs; Determine Linearity from Tables"
+        "rawText": "Example 5 \u2014 Determine Linearity from Tables"
       }
     },
     {
       "id": "math.im1.example.3.4.015",
       "kind": "worked_example",
-      "title": "Example 1: Estimate Intercepts from a Graph; Interpret Intercepts in Context; Find and Interpret Intercepts from a Table",
+      "title": "Example 1: Estimate Intercepts from a Graph",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-4, Example 1)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-4 (Example 1 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3984,16 +3984,16 @@
         "lesson": "4",
         "exampleNumber": 1,
         "sourceLesson": "3-4",
-        "rawText": "3-4, Examples 1-3 \u2014 Estimate Intercepts from a Graph; Interpret Intercepts in Context; Find and Interpret Intercepts from a Table"
+        "rawText": "Examples 1 and 2 \u2014 Estimate Intercepts from a Graph"
       }
     },
     {
       "id": "math.im1.example.3.4.016",
       "kind": "worked_example",
-      "title": "Example 2: Estimate Intercepts from a Graph; Interpret Intercepts in Context; Find and Interpret Intercepts from a Table",
+      "title": "Example 2: Estimate Intercepts from a Graph",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-4, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-4 (Example 2 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4002,16 +4002,16 @@
         "lesson": "4",
         "exampleNumber": 2,
         "sourceLesson": "3-4",
-        "rawText": "3-4, Examples 1-3 \u2014 Estimate Intercepts from a Graph; Interpret Intercepts in Context; Find and Interpret Intercepts from a Table"
+        "rawText": "Examples 1 and 2 \u2014 Estimate Intercepts from a Graph"
       }
     },
     {
       "id": "math.im1.example.3.4.017",
       "kind": "worked_example",
-      "title": "Example 3: Estimate Intercepts from a Graph; Interpret Intercepts in Context; Find and Interpret Intercepts from a Table",
+      "title": "Example 3: Interpret Intercepts in Context",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-4, Example 3)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-4 (Example 3 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4020,16 +4020,16 @@
         "lesson": "4",
         "exampleNumber": 3,
         "sourceLesson": "3-4",
-        "rawText": "3-4, Examples 1-3 \u2014 Estimate Intercepts from a Graph; Interpret Intercepts in Context; Find and Interpret Intercepts from a Table"
+        "rawText": "Example 3 \u2014 Interpret Intercepts in Context"
       }
     },
     {
       "id": "math.im1.example.3.4.018",
       "kind": "worked_example",
-      "title": "Example 5: Solve Equations by Graphing; Find and Interpret the Zero of a Function",
+      "title": "Example 5: Solve Equations by Graphing",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-4, Example 5)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-4 (Example 5 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4038,16 +4038,16 @@
         "lesson": "4",
         "exampleNumber": 5,
         "sourceLesson": "3-4",
-        "rawText": "3-4, Examples 5-8 \u2014 Solve Equations by Graphing; Find and Interpret the Zero of a Function"
+        "rawText": "Examples 5, 6, and 7 \u2014 Solve Equations by Graphing"
       }
     },
     {
       "id": "math.im1.example.3.4.019",
       "kind": "worked_example",
-      "title": "Example 6: Solve Equations by Graphing; Find and Interpret the Zero of a Function",
+      "title": "Example 6: Solve Equations by Graphing",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-4, Example 6)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-4 (Example 6 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4056,16 +4056,16 @@
         "lesson": "4",
         "exampleNumber": 6,
         "sourceLesson": "3-4",
-        "rawText": "3-4, Examples 5-8 \u2014 Solve Equations by Graphing; Find and Interpret the Zero of a Function"
+        "rawText": "Examples 5, 6, and 7 \u2014 Solve Equations by Graphing"
       }
     },
     {
       "id": "math.im1.example.3.4.020",
       "kind": "worked_example",
-      "title": "Example 7: Solve Equations by Graphing; Find and Interpret the Zero of a Function",
+      "title": "Example 7: Solve Equations by Graphing",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-4, Example 7)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-4 (Example 7 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4074,16 +4074,16 @@
         "lesson": "4",
         "exampleNumber": 7,
         "sourceLesson": "3-4",
-        "rawText": "3-4, Examples 5-8 \u2014 Solve Equations by Graphing; Find and Interpret the Zero of a Function"
+        "rawText": "Examples 5, 6, and 7 \u2014 Solve Equations by Graphing"
       }
     },
     {
       "id": "math.im1.example.3.4.021",
       "kind": "worked_example",
-      "title": "Example 8: Solve Equations by Graphing; Find and Interpret the Zero of a Function",
+      "title": "Example 8: Find and Interpret the Zero of a Function",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-4, Example 8)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-4 (Example 8 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4092,16 +4092,16 @@
         "lesson": "4",
         "exampleNumber": 8,
         "sourceLesson": "3-4",
-        "rawText": "3-4, Examples 5-8 \u2014 Solve Equations by Graphing; Find and Interpret the Zero of a Function"
+        "rawText": "Example 8 \u2014 Find and Interpret the Zero of a Function"
       }
     },
     {
       "id": "math.im1.example.3.5.022",
       "kind": "worked_example",
-      "title": "Example 1: Determine Line Symmetry; Interpret Symmetry in Context; Determine Where f(x) Is Increasing and/or Decreasing",
+      "title": "Example 1: Determine Line Symmetry",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-5, Example 1)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-5 (Example 1 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4110,16 +4110,16 @@
         "lesson": "5",
         "exampleNumber": 1,
         "sourceLesson": "3-5",
-        "rawText": "3-5, Examples 1-3 \u2014 Determine Line Symmetry; Interpret Symmetry in Context; Determine Where f(x) Is Increasing and/or Decreasing"
+        "rawText": "Example 1 \u2014 Determine Line Symmetry"
       }
     },
     {
       "id": "math.im1.example.3.5.023",
       "kind": "worked_example",
-      "title": "Example 2: Determine Line Symmetry; Interpret Symmetry in Context; Determine Where f(x) Is Increasing and/or Decreasing",
+      "title": "Example 2: Interpret Symmetry in Context",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-5, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-5 (Example 2 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4128,16 +4128,16 @@
         "lesson": "5",
         "exampleNumber": 2,
         "sourceLesson": "3-5",
-        "rawText": "3-5, Examples 1-3 \u2014 Determine Line Symmetry; Interpret Symmetry in Context; Determine Where f(x) Is Increasing and/or Decreasing"
+        "rawText": "Example 2 \u2014 Interpret Symmetry in Context"
       }
     },
     {
       "id": "math.im1.example.3.5.024",
       "kind": "worked_example",
-      "title": "Example 3: Determine Line Symmetry; Interpret Symmetry in Context; Determine Where f(x) Is Increasing and/or Decreasing",
+      "title": "Example 3: Determine Where f(x) Is Increasing and/or Decreasing",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-5, Example 3)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-5 (Example 3 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4146,16 +4146,16 @@
         "lesson": "5",
         "exampleNumber": 3,
         "sourceLesson": "3-5",
-        "rawText": "3-5, Examples 1-3 \u2014 Determine Line Symmetry; Interpret Symmetry in Context; Determine Where f(x) Is Increasing and/or Decreasing"
+        "rawText": "Example 3 \u2014 Determine Where f(x) Is Increasing and/or Decreasing"
       }
     },
     {
       "id": "math.im1.example.3.5.025",
       "kind": "worked_example",
-      "title": "Example 4: Determine Extrema; Interpret Extrema in Context; Determine End Behavior",
+      "title": "Example 4: Determine Extrema",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-5, Example 4)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-5 (Example 4 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4164,16 +4164,16 @@
         "lesson": "5",
         "exampleNumber": 4,
         "sourceLesson": "3-5",
-        "rawText": "3-5, Examples 4-7 \u2014 Determine Extrema; Interpret Extrema in Context; Determine End Behavior"
+        "rawText": "Example 4 \u2014 Determine Extrema"
       }
     },
     {
       "id": "math.im1.example.3.5.026",
       "kind": "worked_example",
-      "title": "Example 5: Determine Extrema; Interpret Extrema in Context; Determine End Behavior",
+      "title": "Example 5: Interpret Extrema in Context",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-5, Example 5)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-5 (Example 5 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4182,16 +4182,16 @@
         "lesson": "5",
         "exampleNumber": 5,
         "sourceLesson": "3-5",
-        "rawText": "3-5, Examples 4-7 \u2014 Determine Extrema; Interpret Extrema in Context; Determine End Behavior"
+        "rawText": "Example 5 \u2014 Interpret Extrema in Context"
       }
     },
     {
       "id": "math.im1.example.3.5.027",
       "kind": "worked_example",
-      "title": "Example 6: Determine Extrema; Interpret Extrema in Context; Determine End Behavior",
+      "title": "Example 6: Determine End Behavior",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-5, Example 6)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-5 (Example 6 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4200,16 +4200,16 @@
         "lesson": "5",
         "exampleNumber": 6,
         "sourceLesson": "3-5",
-        "rawText": "3-5, Examples 4-7 \u2014 Determine Extrema; Interpret Extrema in Context; Determine End Behavior"
+        "rawText": "Examples 6 and 7 \u2014 Determine End Behavior"
       }
     },
     {
       "id": "math.im1.example.3.5.028",
       "kind": "worked_example",
-      "title": "Example 7: Determine Extrema; Interpret Extrema in Context; Determine End Behavior",
+      "title": "Example 7: Determine End Behavior",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-5, Example 7)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-5 (Example 7 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4218,16 +4218,16 @@
         "lesson": "5",
         "exampleNumber": 7,
         "sourceLesson": "3-5",
-        "rawText": "3-5, Examples 4-7 \u2014 Determine Extrema; Interpret Extrema in Context; Determine End Behavior"
+        "rawText": "Examples 6 and 7 \u2014 Determine End Behavior"
       }
     },
     {
       "id": "math.im1.example.3.6.029",
       "kind": "worked_example",
-      "title": "Example 1: Sketch Linear Functions from Verbal Descriptions; Sketch Nonlinear Functions and Interpret Key Features; Sketch and Interpret Real-World Data Trends",
+      "title": "Example 1: Sketch Linear Functions from Verbal Descriptions",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-6, Example 1)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-6 (Example 1 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4236,16 +4236,16 @@
         "lesson": "6",
         "exampleNumber": 1,
         "sourceLesson": "3-6",
-        "rawText": "3-6, Examples 1-3 \u2014 Sketch Linear Functions from Verbal Descriptions; Sketch Nonlinear Functions and Interpret Key Features; Sketch and Interpret Real-World Data Trends"
+        "rawText": "Example 1 \u2014 Sketch Linear Functions from Verbal Descriptions"
       }
     },
     {
       "id": "math.im1.example.3.6.030",
       "kind": "worked_example",
-      "title": "Example 2: Sketch Linear Functions from Verbal Descriptions; Sketch Nonlinear Functions and Interpret Key Features; Sketch and Interpret Real-World Data Trends",
+      "title": "Example 2: Sketch Nonlinear Functions and Interpret Key Features",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-6, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-6 (Example 2 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4254,16 +4254,16 @@
         "lesson": "6",
         "exampleNumber": 2,
         "sourceLesson": "3-6",
-        "rawText": "3-6, Examples 1-3 \u2014 Sketch Linear Functions from Verbal Descriptions; Sketch Nonlinear Functions and Interpret Key Features; Sketch and Interpret Real-World Data Trends"
+        "rawText": "Example 2 \u2014 Sketch Nonlinear Functions and Interpret Key Features"
       }
     },
     {
       "id": "math.im1.example.3.6.031",
       "kind": "worked_example",
-      "title": "Example 3: Sketch Linear Functions from Verbal Descriptions; Sketch Nonlinear Functions and Interpret Key Features; Sketch and Interpret Real-World Data Trends",
+      "title": "Example 3: Sketch and Interpret Real-World Data Trends",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-6, Example 3)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-6 (Example 3 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4272,7 +4272,7 @@
         "lesson": "6",
         "exampleNumber": 3,
         "sourceLesson": "3-6",
-        "rawText": "3-6, Examples 1-3 \u2014 Sketch Linear Functions from Verbal Descriptions; Sketch Nonlinear Functions and Interpret Key Features; Sketch and Interpret Real-World Data Trends"
+        "rawText": "Example 3 \u2014 Sketch and Interpret Real-World Data Trends"
       }
     },
     {
@@ -4281,7 +4281,7 @@
       "title": "Example 4: Compare Functions from Descriptions and Graphs",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md (3-6, Example 4)"
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-6 (Example 4 heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4290,7 +4290,7 @@
         "lesson": "6",
         "exampleNumber": 4,
         "sourceLesson": "3-6",
-        "rawText": "3-6, Example 4 \u2014 Compare Functions from Descriptions and Graphs"
+        "rawText": "Example 4 \u2014 Compare Functions from Descriptions and Graphs"
       }
     },
     {
@@ -10152,9 +10152,9 @@
     {
       "id": "math.im1.skill.2.5.solve-absolute-value-equations-of-the-form",
       "kind": "skill",
-      "title": "2i: Solve absolute value equations of the form",
+      "title": "2i: Solve absolute value equations of the form |expression| = constant and recognize when no solution exists",
       "domain": "math.im1",
-      "description": "Solve absolute value equations of the form",
+      "description": "Solve absolute value equations of the form |expression| = constant and recognize when no solution exists.",
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/module-2-class-period-plan.md"
       ],
@@ -12838,6 +12838,491 @@
         "framework": "ccss",
         "code": "S-ID.B.5",
         "isPlaceholder": true
+      }
+    },
+    {
+      "id": "math.im1.skill.1.1.evaluate-numerical-expressions-accurately-using-the-order-of",
+      "kind": "skill",
+      "title": "1b: Evaluate numerical expressions accurately using the order of operations",
+      "domain": "math.im1",
+      "description": "Evaluate numerical expressions accurately using the order of operations.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-1"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "1",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.1.2.evaluate-algebraic-expressions-by-substituting-given-values",
+      "kind": "skill",
+      "title": "1d: Evaluate algebraic expressions by substituting given values for variables and following the order of operations",
+      "domain": "math.im1",
+      "description": "Evaluate algebraic expressions by substituting given values for variables and following the order of operations.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-2"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "1",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.1.3.use-the-commutative-associative-identity-and-inverse-propert",
+      "kind": "skill",
+      "title": "1f: Use the commutative, associative, identity, and inverse properties to simplify calculations and justify each step",
+      "domain": "math.im1",
+      "description": "Use the commutative, associative, identity, and inverse properties to simplify calculations and justify each step. Apply the multiplicative inverse only to nonzero values.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-3"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "1",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.1.4.use-the-distributive-property-to-simplify-algebraic-expressi",
+      "kind": "skill",
+      "title": "1h: Use the Distributive Property to simplify algebraic expressions and combine like terms",
+      "domain": "math.im1",
+      "description": "Use the Distributive Property to simplify algebraic expressions and combine like terms, including negative and fractional coefficients.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-4"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "1",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.1.5.evaluate-absolute-value-expressions-by-substituting-given-va",
+      "kind": "skill",
+      "title": "1j: Evaluate absolute value expressions by substituting given values and simplify correctly",
+      "domain": "math.im1",
+      "description": "Evaluate absolute value expressions by substituting given values and simplify correctly.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-5"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "1",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.1.6.determine-a-reasonable-level-of-accuracy-when-performing-mul",
+      "kind": "skill",
+      "title": "1l: Determine a reasonable level of accuracy when performing multi-step calculations and evaluate the accuracy of reported data",
+      "domain": "math.im1",
+      "description": "Determine a reasonable level of accuracy for multi-step calculations. Evaluate the accuracy of reported data from its context and source.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/module-1-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-6"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "1",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.skill.2.1.translate-algebraic-equations-and-formulas-into-complete-ver",
+      "kind": "skill",
+      "title": "2b: Translate algebraic equations and formulas into complete verbal sentences and interpret formulas in context",
+      "domain": "math.im1",
+      "description": "Translate algebraic equations and formulas into complete verbal sentences and interpret formulas in context.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/modules/module-2-lesson-1"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "2",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.2.2.write-and-solve-one-step-equations-to-model-real-world-situa",
+      "kind": "skill",
+      "title": "2d: Write and solve one-step equations to model real-world situations and apply the correct Property of Equality to verify solutions",
+      "domain": "math.im1",
+      "description": "Write and solve one-step equations to model real-world situations and apply the correct Property of Equality to verify solutions.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/modules/module-2-lesson-2"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "2",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.2.3.solve-literal-equations-for-a-specified-variable-and-solve-e",
+      "kind": "skill",
+      "title": "2f: Solve literal equations for a specified variable and solve equations requiring the Distributive Property",
+      "domain": "math.im1",
+      "description": "Solve literal equations for a specified variable and solve equations requiring the Distributive Property.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/modules/module-2-lesson-3"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "2",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.2.4.determine-whether-an-equation-has-one-solution-no-solution-o",
+      "kind": "skill",
+      "title": "2h: Determine whether an equation has one solution, no solution, or is an identity and apply equations to geometric situations",
+      "domain": "math.im1",
+      "description": "Determine whether an equation has one solution, no solution, or is an identity and apply equations to geometric situations.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/modules/module-2-lesson-4"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "2",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.2.6.apply-proportions-to-percent-situations-scaling-problems-and",
+      "kind": "skill",
+      "title": "2l: Apply proportions to percent situations, scaling problems, and mixture contexts",
+      "domain": "math.im1",
+      "description": "Apply proportions to percent situations, scaling problems, and mixture contexts.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/modules/module-2-lesson-6"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "2",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.skill.2.7.use-dimensional-analysis-to-convert-between-units-of-measure",
+      "kind": "skill",
+      "title": "2n: Use dimensional analysis to convert between units of measurement and apply formulas to solve real-world problems",
+      "domain": "math.im1",
+      "description": "Use dimensional analysis to convert between units of measurement and apply formulas to solve real-world problems.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/module-2-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/modules/module-2-lesson-7"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "2",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.im1.example.1.1.source-003",
+      "kind": "worked_example",
+      "title": "Example 3: Real-World Applications",
+      "domain": "math.im1",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-1 (heading at line 175)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "1",
+        "lesson": "1",
+        "exampleNumber": 3,
+        "sourceLesson": "1-1",
+        "rawText": "Example 3 \u2014 Real-World Applications"
+      }
+    },
+    {
+      "id": "math.im1.example.1.1.source-008",
+      "kind": "worked_example",
+      "title": "Example 8: Multi-Step Real-World Problem",
+      "domain": "math.im1",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-1-lesson-1 (heading at line 540)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "1",
+        "lesson": "1",
+        "exampleNumber": 8,
+        "sourceLesson": "1-1",
+        "rawText": "Example 8 \u2014 Multi-Step Real-World Problem"
+      }
+    },
+    {
+      "id": "math.im1.example.2.5.source-001",
+      "kind": "worked_example",
+      "title": "Example 1: Solve and Graph Simple Absolute Value Equations",
+      "domain": "math.im1",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-2-lesson-5 (heading at line 31)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "2",
+        "lesson": "5",
+        "exampleNumber": 1,
+        "sourceLesson": "2-5",
+        "rawText": "Example 1 \u2014 Solve and Graph Simple Absolute Value Equations"
+      }
+    },
+    {
+      "id": "math.im1.example.2.5.source-002",
+      "kind": "worked_example",
+      "title": "Example 2: Identify Equations with No Solution",
+      "domain": "math.im1",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-2-lesson-5 (heading at line 59)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "2",
+        "lesson": "5",
+        "exampleNumber": 2,
+        "sourceLesson": "2-5",
+        "rawText": "Example 2 \u2014 Identify Equations with No Solution"
+      }
+    },
+    {
+      "id": "math.im1.example.3.4.source-004",
+      "kind": "worked_example",
+      "title": "Example 4: Find and Interpret Intercepts from a Table",
+      "domain": "math.im1",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-4 (Example 4 heading)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "3",
+        "lesson": "4",
+        "exampleNumber": 4,
+        "sourceLesson": "3-4",
+        "rawText": "Example 4 \u2014 Find and Interpret Intercepts from a Table"
+      }
+    },
+    {
+      "id": "math.im1.skill.3.1.distinguish-independent-and-dependent-variables-in-real-worl",
+      "kind": "skill",
+      "title": "3b: Distinguish independent and dependent variables in real-world situations and interpret the meaning of axes, scale, and origin on a graph",
+      "domain": "math.im1",
+      "description": "Distinguish independent and dependent variables in real-world situations and interpret the meaning of axes, scale, and origin on a graph",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-1"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "3",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.3.2.evaluate-functions-using-function-notation-for-numerical-and",
+      "kind": "skill",
+      "title": "3d: Evaluate functions using function notation for numerical and algebraic inputs and interpret function values in real-world contexts",
+      "domain": "math.im1",
+      "description": "Evaluate functions using function notation for numerical and algebraic inputs and interpret function values in real-world contexts",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-2"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "3",
+        "lesson": "2",
+        "taxonomyRole": "legacy_objective_aggregator"
+      },
+      "independentPracticeReady": false
+    },
+    {
+      "id": "math.im1.skill.3.3.determine-whether-a-function-represented-by-an-equation-grap",
+      "kind": "skill",
+      "title": "3f: Determine whether a function represented by an equation, graph, or table is linear or nonlinear",
+      "domain": "math.im1",
+      "description": "Determine whether a function represented by an equation, graph, or table is linear or nonlinear",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-3"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "3",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.3.4.solve-linear-and-quadratic-equations-by-graphing-and-find-th",
+      "kind": "skill",
+      "title": "3h: Solve linear and quadratic equations by graphing and find the zero of a linear function and explain its meaning in context",
+      "domain": "math.im1",
+      "description": "Solve linear and quadratic equations by graphing and find the zero of a linear function and explain its meaning in context",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-4"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "3",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.3.5.locate-relative-maxima-and-minima-on-a-graph-and-describe-th",
+      "kind": "skill",
+      "title": "3j: Locate relative maxima and minima on a graph and describe the end behavior of a function using limit notation",
+      "domain": "math.im1",
+      "description": "Locate relative maxima and minima on a graph and describe the end behavior of a function using limit notation",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-5"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "3",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.3.6.compare-two-functions-by-interpreting-their-key-features-fro",
+      "kind": "skill",
+      "title": "3l: Compare two functions by interpreting their key features from descriptions and graphs and write and analyze linear functions that model cost, revenue, and profit",
+      "domain": "math.im1",
+      "description": "Compare two functions by interpreting their key features from descriptions and graphs and write and analyze linear functions that model cost, revenue, and profit",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/module-3-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-6"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "3",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.skill.3.2.evaluate-functions-at-numerical-inputs",
+      "kind": "skill",
+      "title": "Evaluate functions at numerical inputs",
+      "domain": "math.im1",
+      "description": "Substitute a numerical input in a function rule. Calculate the output, including negative inputs and expressions that use the output.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-2:75"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.3.2.evaluate-functions-at-algebraic-inputs",
+      "kind": "skill",
+      "title": "Evaluate functions at algebraic inputs",
+      "domain": "math.im1",
+      "description": "Substitute an algebraic expression in a function rule. Simplify the resulting expression without treating the input as a numerical value.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-2:75"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.3.2.interpret-function-values-in-context",
+      "kind": "skill",
+      "title": "Interpret function values in context",
+      "domain": "math.im1",
+      "description": "Explain the input, output, and units of a function value in its stated context. A numerical output alone does not show this capability.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-2:105"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.1.interpret-intercepts-in-the-context-of-real-world-situations",
+      "kind": "skill",
+      "title": "Interpret intercepts in the context of real-world situations modeled by linear functions",
+      "domain": "math.im1",
+      "description": "Interpret the x-intercept and y-intercept in the context of a real-world situation modeled by a linear function.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4b)",
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-1 (Example 3)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.1.rewrite-linear-equations-in-equivalent-forms-to-identify-int",
+      "kind": "skill",
+      "title": "Rewrite linear equations in equivalent forms to identify intercepts and slope",
+      "domain": "math.im1",
+      "description": "Rewrite a linear equation in an equivalent form that makes its intercepts or slope easier to identify.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4b)",
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-1 (Today's Goals)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "1"
       }
     }
   ],
@@ -34258,8 +34743,8 @@
     "course": "im1",
     "generatedAt": "2026-05-09T14:20:42.419Z",
     "alignmentStats": {
-      "totalEdges": 941,
-      "highConfidence": 941,
+      "totalEdges": 931,
+      "highConfidence": 931,
       "mediumConfidence": 0,
       "lowConfidence": 0,
       "exceptions": 0,
