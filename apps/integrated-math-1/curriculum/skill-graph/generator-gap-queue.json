@@ -1448,10 +1448,46 @@
       "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
       "gap": "No generator binding or complete three-mode blueprint",
       "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.3.write-slope-intercept-equations-from-slope-and-y-intercept",
+      "title": "Write linear equations in slope-intercept form from a slope and y-intercept",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.3.rewrite-standard-form-equations-in-slope-intercept-form",
+      "title": "Rewrite linear equations from standard form into slope-intercept form",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.3.model-contexts-with-slope-intercept-equations-and-interpret-parameters",
+      "title": "Model real-world situations with slope-intercept equations and interpret slope and intercept",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.4.3.graph-linear-functions-from-slope-intercept-or-standard-form",
+      "title": "Graph linear functions given in slope-intercept form or standard form",
+      "module": "4",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
     }
   ],
   "meta": {
-    "totalSkills": 155,
+    "totalSkills": 165,
     "allNeedGenerators": true
   }
 }

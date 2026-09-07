@@ -1,10 +1,10 @@
 {
   "version": 1,
   "course": "im1",
-  "totalSkills": 167,
+  "totalSkills": 171,
   "counts": {
     "served": 6,
-    "gap": 161,
+    "gap": 165,
     "newComponent": 0
   },
   "byModule": [
@@ -31,9 +31,9 @@
     },
     {
       "module": "4",
-      "totalSkills": 16,
+      "totalSkills": 20,
       "served": 0,
-      "gap": 16,
+      "gap": 20,
       "newComponent": 0
     },
     {
@@ -525,12 +525,44 @@
       "priority": "medium"
     },
     {
+      "skillId": "math.im1.skill.4.3.graph-linear-functions-from-slope-intercept-or-standard-form",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
+      "skillId": "math.im1.skill.4.3.model-contexts-with-slope-intercept-equations-and-interpret-parameters",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
+      "skillId": "math.im1.skill.4.3.rewrite-standard-form-equations-in-slope-intercept-form",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
       "skillId": "math.im1.skill.4.3.write-linear-equations-in-slope-intercept-form-given-the-slo",
       "module": "4",
       "status": "gap",
       "tier": "none",
       "rendererKey": "graphing-explorer",
       "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.4.3.write-slope-intercept-equations-from-slope-and-y-intercept",
+      "module": "4",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
     },
     {
       "skillId": "math.im1.skill.4.4.describe-translations-dilations-and-reflections-of-linear-fu",

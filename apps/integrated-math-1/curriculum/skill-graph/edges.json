@@ -6,8 +6,8 @@
     "pilotEdgesPreserved": 0,
     "standardEdgesMerged": 941,
     "suggestedEdges": 1277,
-    "totalEdges": 2239,
-    "totalNodes": 756,
+    "totalEdges": 2243,
+    "totalNodes": 760,
     "normalizedWeights": 539
   },
   "nodes": [
@@ -4487,10 +4487,10 @@
     {
       "id": "math.im1.example.4.3.012",
       "kind": "worked_example",
-      "title": "Example 1: Write Equations from Slope and y-Intercept; Rewrite in Slope-Intercept Form",
+      "title": "Example 1: Write Equations from Slope and y-Intercept",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4-3, Example 1)"
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-3 (Example 1)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4499,16 +4499,16 @@
         "lesson": "3",
         "exampleNumber": 1,
         "sourceLesson": "4-3",
-        "rawText": "4-3, Examples 1-2 \u2014 Write Equations from Slope and y-Intercept; Rewrite in Slope-Intercept Form"
+        "rawText": "Example 1: Write Equations from Slope and y-Intercept"
       }
     },
     {
       "id": "math.im1.example.4.3.013",
       "kind": "worked_example",
-      "title": "Example 2: Write Equations from Slope and y-Intercept; Rewrite in Slope-Intercept Form",
+      "title": "Example 2: Rewrite in Slope-Intercept Form",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4-3, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-3 (Example 2)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4517,16 +4517,16 @@
         "lesson": "3",
         "exampleNumber": 2,
         "sourceLesson": "4-3",
-        "rawText": "4-3, Examples 1-2 \u2014 Write Equations from Slope and y-Intercept; Rewrite in Slope-Intercept Form"
+        "rawText": "Example 2: Rewrite in Slope-Intercept Form"
       }
     },
     {
       "id": "math.im1.example.4.3.014",
       "kind": "worked_example",
-      "title": "Example 3: Model Real-World Situations; Graph from Slope and y-Intercept; Equation, Graph, and Evaluation",
+      "title": "Example 3: Model Real-World Situations",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4-3, Example 3)"
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-3 (Example 3)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4535,16 +4535,16 @@
         "lesson": "3",
         "exampleNumber": 3,
         "sourceLesson": "4-3",
-        "rawText": "4-3, Examples 3-7 \u2014 Model Real-World Situations; Graph from Slope and y-Intercept; Equation, Graph, and Evaluation"
+        "rawText": "Example 3: Model Real-World Situations"
       }
     },
     {
       "id": "math.im1.example.4.3.015",
       "kind": "worked_example",
-      "title": "Example 4: Model Real-World Situations; Graph from Slope and y-Intercept; Equation, Graph, and Evaluation",
+      "title": "Example 4: Graph from Slope and y-Intercept",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4-3, Example 4)"
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-3 (Example 4)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4553,16 +4553,16 @@
         "lesson": "3",
         "exampleNumber": 4,
         "sourceLesson": "4-3",
-        "rawText": "4-3, Examples 3-7 \u2014 Model Real-World Situations; Graph from Slope and y-Intercept; Equation, Graph, and Evaluation"
+        "rawText": "Example 4: Graph from Slope and y-Intercept"
       }
     },
     {
       "id": "math.im1.example.4.3.016",
       "kind": "worked_example",
-      "title": "Example 5: Model Real-World Situations; Graph from Slope and y-Intercept; Equation, Graph, and Evaluation",
+      "title": "Example 5: Graph Linear Functions",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4-3, Example 5)"
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-3 (Examples 5 and 6)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4571,16 +4571,16 @@
         "lesson": "3",
         "exampleNumber": 5,
         "sourceLesson": "4-3",
-        "rawText": "4-3, Examples 3-7 \u2014 Model Real-World Situations; Graph from Slope and y-Intercept; Equation, Graph, and Evaluation"
+        "rawText": "Examples 5 and 6 \u2014 Graph Linear Functions"
       }
     },
     {
       "id": "math.im1.example.4.3.017",
       "kind": "worked_example",
-      "title": "Example 6: Model Real-World Situations; Graph from Slope and y-Intercept; Equation, Graph, and Evaluation",
+      "title": "Example 6: Graph Linear Functions",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4-3, Example 6)"
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-3 (Examples 5 and 6)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4589,16 +4589,16 @@
         "lesson": "3",
         "exampleNumber": 6,
         "sourceLesson": "4-3",
-        "rawText": "4-3, Examples 3-7 \u2014 Model Real-World Situations; Graph from Slope and y-Intercept; Equation, Graph, and Evaluation"
+        "rawText": "Examples 5 and 6 \u2014 Graph Linear Functions"
       }
     },
     {
       "id": "math.im1.example.4.3.018",
       "kind": "worked_example",
-      "title": "Example 7: Model Real-World Situations; Graph from Slope and y-Intercept; Equation, Graph, and Evaluation",
+      "title": "Example 7: Equation, Graph, and Evaluation",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-4-class-period-plan.md (4-3, Example 7)"
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-3 (Example 7)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4607,7 +4607,7 @@
         "lesson": "3",
         "exampleNumber": 7,
         "sourceLesson": "4-3",
-        "rawText": "4-3, Examples 3-7 \u2014 Model Real-World Situations; Graph from Slope and y-Intercept; Equation, Graph, and Evaluation"
+        "rawText": "Example 7: Equation, Graph, and Evaluation"
       }
     },
     {
@@ -13334,6 +13334,74 @@
         "course": "im1",
         "module": "3",
         "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.3.write-slope-intercept-equations-from-slope-and-y-intercept",
+      "kind": "skill",
+      "title": "Write linear equations in slope-intercept form from a slope and y-intercept",
+      "domain": "math.im1",
+      "description": "Write linear equations in slope-intercept form from a slope and y-intercept",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-3"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.3.rewrite-standard-form-equations-in-slope-intercept-form",
+      "kind": "skill",
+      "title": "Rewrite linear equations from standard form into slope-intercept form",
+      "domain": "math.im1",
+      "description": "Rewrite linear equations from standard form into slope-intercept form",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-3"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.3.model-contexts-with-slope-intercept-equations-and-interpret-parameters",
+      "kind": "skill",
+      "title": "Model real-world situations with slope-intercept equations and interpret slope and intercept",
+      "domain": "math.im1",
+      "description": "Model real-world situations with slope-intercept equations and interpret slope and intercept",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-3"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.4.3.graph-linear-functions-from-slope-intercept-or-standard-form",
+      "kind": "skill",
+      "title": "Graph linear functions given in slope-intercept form or standard form",
+      "domain": "math.im1",
+      "description": "Graph linear functions given in slope-intercept form or standard form",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-3"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "3"
       }
     }
   ],
@@ -56642,6 +56710,70 @@
       "metadata": {
         "module": "4",
         "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.source-correction.4.3.write-slope-intercept-equations-from-slope-and-y-intercept.contains",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.4.3",
+      "targetId": "math.im1.skill.4.3.write-slope-intercept-equations-from-slope-and-y-intercept",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "lesson-4-3-source-review-20260907",
+      "rationale": "Lesson 4-3 contains this source capability.",
+      "metadata": {
+        "module": "4",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.source-correction.4.3.rewrite-standard-form-equations-in-slope-intercept-form.contains",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.4.3",
+      "targetId": "math.im1.skill.4.3.rewrite-standard-form-equations-in-slope-intercept-form",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "lesson-4-3-source-review-20260907",
+      "rationale": "Lesson 4-3 contains this source capability.",
+      "metadata": {
+        "module": "4",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.source-correction.4.3.model-contexts-with-slope-intercept-equations-and-interpret-parameters.contains",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.4.3",
+      "targetId": "math.im1.skill.4.3.model-contexts-with-slope-intercept-equations-and-interpret-parameters",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "lesson-4-3-source-review-20260907",
+      "rationale": "Lesson 4-3 contains this source capability.",
+      "metadata": {
+        "module": "4",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.source-correction.4.3.graph-linear-functions-from-slope-intercept-or-standard-form.contains",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.4.3",
+      "targetId": "math.im1.skill.4.3.graph-linear-functions-from-slope-intercept-or-standard-form",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "lesson-4-3-source-review-20260907",
+      "rationale": "Lesson 4-3 contains this source capability.",
+      "metadata": {
+        "module": "4",
+        "lesson": "3"
       }
     }
   ]

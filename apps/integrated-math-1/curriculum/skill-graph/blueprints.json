@@ -4962,6 +4962,62 @@
         "module": "4",
         "lesson": "2"
       }
+    },
+    {
+      "nodeId": "math.im1.skill.4.3.write-slope-intercept-equations-from-slope-and-y-intercept",
+      "sourceNodeIds": [
+        "math.im1.example.4.3.012"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.4.3.rewrite-standard-form-equations-in-slope-intercept-form",
+      "sourceNodeIds": [
+        "math.im1.example.4.3.013"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.4.3.model-contexts-with-slope-intercept-equations-and-interpret-parameters",
+      "sourceNodeIds": [
+        "math.im1.example.4.3.014",
+        "math.im1.example.4.3.018"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.4.3.graph-linear-functions-from-slope-intercept-or-standard-form",
+      "sourceNodeIds": [
+        "math.im1.example.4.3.015",
+        "math.im1.example.4.3.016",
+        "math.im1.example.4.3.017",
+        "math.im1.example.4.3.018"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "4",
+        "lesson": "3"
+      }
     }
   ]
 }
