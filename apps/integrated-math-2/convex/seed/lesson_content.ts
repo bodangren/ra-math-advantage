@@ -1,4 +1,4 @@
-import { v } from "convex/values";
+import { v, ConvexError } from "convex/values";
 import type { MutationCtx } from "../_generated/server";
 import type { PhaseType } from "./types";
 import lessons from "../../curriculum/lessons.json";
@@ -57,7 +57,73 @@ export async function seedModule(ctx: MutationCtx, unitNumber: number) {
           status: "draft",
           createdAt: now,
         });
-    if (previous) await ctx.db.patch(previous._id, { title: lesson.title });
+    if (previous) {
+      const oldPhases = await ctx.db
+        .query("phase_versions")
+        .withIndex("by_lesson_version", (q) =>
+          q.eq("lessonVersionId", previous._id),
+        )
+        .take(101);
+      if (oldPhases.length > 100)
+        throw new ConvexError("too_many_draft_phases");
+      // A draft with legacy evidence requires a separate revision. Do not rewrite it.
+      for (const phase of oldPhases) {
+        const progress = await ctx.db
+          .query("student_progress")
+          .withIndex("by_phase", (q) => q.eq("phaseId", phase._id))
+          .first();
+        const resource = await ctx.db
+          .query("resources")
+          .withIndex("by_phase", (q) => q.eq("phaseId", phase._id))
+          .first();
+        if (progress || resource) throw new ConvexError("draft_has_evidence");
+        const sections = await ctx.db
+          .query("phase_sections")
+          .withIndex("by_phase_version", (q) =>
+            q.eq("phaseVersionId", phase._id),
+          )
+          .take(101);
+        if (sections.length > 100)
+          throw new ConvexError("too_many_draft_sections");
+        for (const section of sections) {
+          if (
+            section.sectionType === "activity" &&
+            section.content?.activityId
+          ) {
+            for (const table of [
+              "activity_submissions",
+              "activity_completions",
+              "student_spreadsheet_responses",
+            ] as const) {
+              const evidence = await ctx.db
+                .query(table)
+                .withIndex("by_activity", (q) =>
+                  q.eq(
+                    "activityId",
+                    section.content.activityId as Id<"activities">,
+                  ),
+                )
+                .first();
+              if (evidence) throw new ConvexError("draft_has_evidence");
+            }
+          }
+        }
+      }
+      for (const phase of oldPhases) {
+        const sections = await ctx.db
+          .query("phase_sections")
+          .withIndex("by_phase_version", (q) =>
+            q.eq("phaseVersionId", phase._id),
+          )
+          .take(100);
+        const obsolete = phase.phaseNumber > lesson.phases.length + 1;
+        for (const section of sections)
+          if (obsolete || section.sequenceOrder !== 1)
+            await ctx.db.delete(section._id);
+        if (obsolete) await ctx.db.delete(phase._id);
+      }
+      await ctx.db.patch(previous._id, { title: lesson.title });
+    }
     let phasesCreated = 0;
     let activitiesCreated = 0;
     if (!previous || previous.status === "draft") {
@@ -88,7 +154,8 @@ export async function seedModule(ctx: MutationCtx, unitNumber: number) {
           )
           .unique();
         const content = { markdown: phase.markdown };
-        if (section) await ctx.db.patch(section._id, { content });
+        if (section)
+          await ctx.db.patch(section._id, { content, sectionType: "text" });
         else
           await ctx.db.insert("phase_sections", {
             phaseVersionId: phaseId,

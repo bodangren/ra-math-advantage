@@ -90,3 +90,9 @@ The example correction passes the graph validator. Seventy-three restored headin
 Ninety-one worked-example sections now have complete givens and solutions. This includes every worked example in Modules 1 and 2. The correction replaces general instructions in those sections. It also corrects drawing-based length inference, vertical-line slope handling, and an unsupported centroid claim for an arbitrary collage. The original worksheets remain available as source documents.
 
 Source, asset, and math-rendering checks pass after this update. This does not establish complete practice variants or a full mathematical review of every remaining source section.
+
+## Draft replay correction
+
+Seed replay removes obsolete draft phases and extra sections. It restores text sections when a former checkpoint position becomes source text. It refuses to overwrite draft content with progress, submissions, completions, spreadsheet responses, or linked phase resources. Published revisions remain unchanged.
+
+Verification: 186 tests passed. Lint, frontend and backend TypeScript, build, and isolated local Convex deployment validation passed.
