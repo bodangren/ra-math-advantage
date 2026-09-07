@@ -183,6 +183,6 @@ Images in the source:
 * Problem 62: Rectangle with perimeter expression.
 * Problem 67: Ignatio and Samantha work for solving a quadratic.
 
-![](media/image1.png) ![](media/image2.png) ![](media/image3.png)
-![](media/image4.png) ![](media/image5.png) ![](media/image6.png)
-![](media/image7.png) ![](media/image8.png)
+![Worksheet figure 1](/curriculum/module-12-lesson-4/image1.png) ![Worksheet figure 2](/curriculum/module-12-lesson-4/image2.png) ![Worksheet figure 3](/curriculum/module-12-lesson-4/image3.png)
+![Worksheet figure 4](/curriculum/module-12-lesson-4/image4.png) ![Worksheet figure 5](/curriculum/module-12-lesson-4/image5.png) ![Worksheet figure 6](/curriculum/module-12-lesson-4/image6.png)
+![Worksheet figure 7](/curriculum/module-12-lesson-4/image7.png) ![Worksheet figure 8](/curriculum/module-12-lesson-4/image8.png)

@@ -49,12 +49,12 @@ Integrated Math 2 is a web-based learning management system for high school Inte
 
 The full curriculum specification lives in `curriculum/` at the app root.
 
-**Summary**: 13 units, ~67 lessons covering geometry, algebra, trigonometry, and probability.
+**Summary**: 13 units, 96 lessons covering geometry, algebra, trigonometry, and probability.
 
 ```
 Course (Integrated Math 2)
 └── Units (1–13)
-    └── Lessons (~67 total)
+    └── Lessons (96 total)
         └── Lesson Versions (draft/review/published/archived)
             └── Phases (1–N, variable count)
                 └── Phase Sections (text | callout | activity | video | image)
@@ -62,18 +62,18 @@ Course (Integrated Math 2)
 
 | Unit | Title | Lessons |
 |------|-------|---------|
-| 1 | Relationships in Triangles | 6 |
-| 2 | Quadrilaterals | 5 |
-| 3 | Similarity | 5 |
-| 4 | Right Triangles & Trigonometry | 6 |
-| 5 | Circles | 5 |
-| 6 | Measurement | 5 |
-| 7 | Probability | 6 |
-| 8 | Relations and Functions | 6 |
-| 9 | Linear Equations, Inequalities & Systems | 5 |
-| 10 | Exponents and Roots | 5 |
-| 11 | Polynomials | 6 |
-| 12 | Quadratic Functions | 5 |
+| 1 | Relationships in Triangles | 7 |
+| 2 | Quadrilaterals | 6 |
+| 3 | Similarity | 6 |
+| 4 | Right Triangles & Trigonometry | 8 |
+| 5 | Circles | 8 |
+| 6 | Measurement | 9 |
+| 7 | Probability | 8 |
+| 8 | Relations and Functions | 7 |
+| 9 | Linear Equations, Inequalities & Systems | 9 |
+| 10 | Exponents and Roots | 7 |
+| 11 | Polynomials | 7 |
+| 12 | Quadratic Functions | 9 |
 | 13 | Trigonometric Identities & Equations | 5 |
 
 ## Instructional Model

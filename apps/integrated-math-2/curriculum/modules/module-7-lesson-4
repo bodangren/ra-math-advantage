@@ -30,12 +30,12 @@ Why is the probability of being chosen as captain and co-captain different from 
 
 When finding the probability that specific items are selected in a particular order, use permutations for both favorable outcomes and total outcomes.
 
-[P(E) = \frac{_{n}P_{r}}{\,_{n}P_{r}}] or use counts directly
+[P(E) = \frac{\text{favorable ordered outcomes}}{\text{total ordered outcomes}}]
 
 **Example:** Cheerleading squad of 12 girls, captain and co-captain selected randomly. Probability that Chantel and Clover are chosen as the two leaders (in any order).
 
 Total ways to choose 2 leaders from 12: [_{12}P_{2} = 12 \times 11 = 132]
-Favorable ways (Chantel and Clover as the pair): There is only 1 way for them to be the two chosen, but since they can be in either order (captain/co-captain or co-captain/captain), we need to check the problem's interpretation.
+Favorable ordered outcomes: 2. Either girl can be captain. [P = 2/132 = 1/66].
 
 ### Key Concept: Probability with Combinations
 
@@ -64,13 +64,13 @@ Favorable ways (the specific 3 flavors): [\binom{3}{3} = 1] (since the set {vani
 
 **Problem 1:** 12 girls, captain and co-captain selected. Probability Chantel and Clover are chosen.
 Total ways: [_{12}P_{2} = 132]
-If the two positions are distinct (captain vs. co-captain), there are 2 ways to assign Chantel and Clover to the two positions. But if only the pair matters and positions are randomly assigned, there is 1 favorable pair out of 132.
+If the two positions are distinct (captain vs. co-captain), there are 2 ways to assign Chantel and Clover to the two positions. Thus [P = 2/132 = 1/66]. If we count unordered pairs instead, [P = 1/binom(12,2) = 1/66].
 
 **Problem 2:** 6 textbooks (Spanish, English, Chemistry, Geometry, History, Psychology). Choosing 4 to arrange on a shelf. Probability Geometry is first and Chemistry is second from the left.
 Total arrangements of 4 from 6: [_{6}P_{4} = 360]
-Favorable: Geometry in position 1 AND Chemistry in position 2 — only 1 specific sequence.
+Favorable: Geometry and Chemistry occupy the first two positions. The other two positions have [4P2 = 12] arrangements. [P = 12/360 = 1/30].
 
-**Problem 3:** 50 raffle tickets, Alfonso gets 14 and Cordell gets 23. Probability their specific tickets are drawn.
+**Problem 3:** 50 raffle tickets, Alfonso and Cordell each buy one ticket. Their ticket numbers are 14 and 23. The two tickets are drawn in that order. Probability their specific tickets are drawn.
 Total ways to assign 2 specific tickets: [50 \times 49 = 2450]
 Favorable: 1 specific assignment.
 [P = \frac{1}{2450}]
@@ -85,9 +85,9 @@ Favorable: 1 specific assignment.
 ### Step 1: Count Total and Favorable Outcomes
 
 **Problem 5:** Phone number generated using digits 2, 3, 2, 5, 2, 7, 3. Probability of getting 222-3357.
-Total possible arrangements of the 7 digits: [\frac{7!}{3! \times 2! \times 2!} = 210]
+Total possible arrangements of the 7 digits: [\frac{7!}{3! \times 2!} = 420]
 Only 1 favorable arrangement (the exact sequence).
-[P = \frac{1}{210}]
+[P = \frac{1}{420}]
 
 **Problem 6:** 5-digit identification numbers from digits 1–9, no repetition. Probability of 25938.
 Total: [_{9}P_{5} = 15,120]
@@ -132,8 +132,8 @@ Favorable: 1
 
 **Problem 13:** 12 attractions (4 roller coasters, 2 carousels, 2 drop towers, 2 gravity rides, 2 dark rides). App suggests 4 in order. Probability the first 4 suggested are the four roller coasters.
 Total ordered sequences of 4 from 12: [_{12}P_{4} = 11,880]
-Favorable: specific sequence of the 4 roller coasters = 1
-[P = \frac{1}{11,880}]
+Favorable: the 4 roller coasters in any order = [4! = 24].
+[P = 24/11,880 = 1/495]
 
 ## Mixed Exercises
 
@@ -159,11 +159,11 @@ Problems 14–30 provide practice with all skills:
 
 ## Review Notes
 
-* ![](media/image1.png) — Row of seats diagram for Problem 4
-* ![](media/image2.png) — Class president finalists table for Problem 7
-* ![](media/image3.png) — Conference selection diagram for Problem 14
-* ![](media/image4.png) — Silverware place setting for Problem 15
-* ![](media/image5.png) — Five card lineup for Problem 16
-* ![](media/image6.png) — Decorative letters for Problem 18
-* ![](media/image7.png) — Game show contestant list for Problem 20
-* ![](media/image8.png) — Hair salon discount coupons for Problem 21
+* ![Worksheet figure 1](/curriculum/module-7-lesson-4/image1.png) — Row of seats diagram for Problem 4
+* ![Worksheet figure 2](/curriculum/module-7-lesson-4/image2.png) — Class president finalists table for Problem 7
+* ![Worksheet figure 3](/curriculum/module-7-lesson-4/image3.png) — Conference selection diagram for Problem 14
+* ![Worksheet figure 4](/curriculum/module-7-lesson-4/image4.png) — Silverware place setting for Problem 15
+* ![Worksheet figure 5](/curriculum/module-7-lesson-4/image5.png) — Five card lineup for Problem 16
+* ![Worksheet figure 6](/curriculum/module-7-lesson-4/image6.png) — Decorative letters for Problem 18
+* ![Worksheet figure 7](/curriculum/module-7-lesson-4/image7.png) — Game show contestant list for Problem 20
+* ![Worksheet figure 8](/curriculum/module-7-lesson-4/image8.png) — Hair salon discount coupons for Problem 21

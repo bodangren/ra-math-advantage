@@ -24,7 +24,7 @@ const module7LessonStandards: LessonStandardLink[] = [
   },
   {
     lessonSlug: "module-7-lesson-4",
-    standardCode: "S-CP.C.9",
+    standardCode: "S-CP.B.9",
     isPrimary: true,
   },
   {

@@ -69,7 +69,7 @@ Find each product using the appropriate special pattern.
 A city roundabout has radius r for the traffic circle and a 18-foot wide road surrounding it. Write a polynomial for the total area A of the traffic circle.
 
 Total radius = [r + 18]
-[A = π(r + 18)^2 = π(r^2 + 36r + 324) = πr^2 + 36πr + 324π] ![](media/image1.png)
+[A = π(r + 18)^2 = π(r^2 + 36r + 324) = πr^2 + 36πr + 324π] ![Worksheet figure 1](/curriculum/module-11-lesson-4/image1.png)
 
 ### Step 2: Number Cube Problem
 
@@ -77,7 +77,7 @@ Cube A has edges 3 mm less than cube B. If cube B has edge length x mm, write a 
 
 Cube B edge: x mm
 Cube A edge: [x - 3] mm
-Surface area of cube A: [6(x - 3)^2 = 6(x^2 - 6x + 9) = 6x^2 - 36x + 54] square mm ![](media/image2.png)
+Surface area of cube A: [6(x - 3)^2 = 6(x^2 - 6x + 9) = 6x^2 - 36x + 54] square mm ![Worksheet figure 2](/curriculum/module-11-lesson-4/image2.png)
 
 ### Step 3: Probability with Square of a Sum
 
@@ -138,15 +138,15 @@ Practice includes:
 * Raising products to powers: [(f + g)(f - g)(f + g)], [(k - m)^2(k + m)]
 * Geometry problem: A rectangle's length is the sum of two whole numbers, width is the difference of the same two numbers. Write a verbal expression for the area.
 * Product of (10 - 4t) and (10 + 4t) — identify the special product type.
-* Storage problem: A cylindrical tank and PVC pipe in a corner. Given tank radius r and pipe radius s, use the Pythagorean Theorem to write a relationship, then write a polynomial to solve for s when r = 20 inches. ![](media/image4.png)
-* Structure investigation: Tanisha investigates square growth patterns. How much more area does a square with side s + 1 have than one with side s? With side s + 2 compared to s + 1? With side s + 3 compared to s + 2? ![](media/image5.png)
-* Which one doesn't belong: Which expression does not belong with the others? ![](media/image6.png)
+* Storage problem: A cylindrical tank and PVC pipe in a corner. Given tank radius r and pipe radius s, use the Pythagorean Theorem to write a relationship, then write a polynomial to solve for s when r = 20 inches. ![Worksheet figure 4](/curriculum/module-11-lesson-4/image4.png)
+* Structure investigation: Tanisha investigates square growth patterns. How much more area does a square with side s + 1 have than one with side s? With side s + 2 compared to s + 1? With side s + 3 compared to s + 2? ![Worksheet figure 5](/curriculum/module-11-lesson-4/image5.png)
+* Which one doesn't belong: Which expression does not belong with the others? ![Worksheet figure 6](/curriculum/module-11-lesson-4/image6.png)
 * Pattern investigation: Find (a + b)^3 by multiplying (a + b)(a + b)(a + b), then use it to find (x + 2)^3, and describe a geometric model.
 * Find c so that [25x^2 - 90x + c] is a perfect square trinomial.
 
 ## Review Notes
 
-* Images referenced: ![](media/image1.png) — Roundabout traffic circle diagram. ![](media/image2.png) — Number cubes comparison. ![](media/image3.png) — Probability spinner. ![](media/image4.png) — Cylindrical tank and PVC pipe side view. ![](media/image5.png) — Square growth pattern diagram. ![](media/image6.png) — Four expressions for "Which One Doesn't Belong?". Teachers should consult the original worksheet for exact diagrams.
+* Images referenced: ![Worksheet figure 1](/curriculum/module-11-lesson-4/image1.png) — Roundabout traffic circle diagram. ![Worksheet figure 2](/curriculum/module-11-lesson-4/image2.png) — Number cubes comparison. ![Worksheet figure 3](/curriculum/module-11-lesson-4/image3.png) — Probability spinner. ![Worksheet figure 4](/curriculum/module-11-lesson-4/image4.png) — Cylindrical tank and PVC pipe side view. ![Worksheet figure 5](/curriculum/module-11-lesson-4/image5.png) — Square growth pattern diagram. ![Worksheet figure 6](/curriculum/module-11-lesson-4/image6.png) — Four expressions for "Which One Doesn't Belong?". Teachers should consult the original worksheet for exact diagrams.
 * The worksheet contains 80 practice problems.
 * Key patterns to remember:
   * (a + b)(a - b) = [a^2 - b^2]

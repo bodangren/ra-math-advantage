@@ -351,5 +351,5 @@ So d1 ≈ 10.6 cm and d2 ≈ 31.8 cm.
 
 * The worksheet contains image references for geometric figures that could not be fully captured. Teachers should consult the original DOCX for exact diagrams.
 * Students should verify that their height measurements are perpendicular to the base when calculating parallelogram areas.
-* The formula [A = d1 * d2 / 2] applies to both rhombuses and kites since both have perpendicular diagonals that bisect each other.
+* The formula [A = d1 * d2 / 2] applies to both rhombuses and kites because both have perpendicular diagonals. In a general kite, one diagonal bisects the other. In a rhombus, both diagonals bisect each other.
 * When solving real-world problems, students should identify the quadrilateral type first, then select the appropriate area formula.

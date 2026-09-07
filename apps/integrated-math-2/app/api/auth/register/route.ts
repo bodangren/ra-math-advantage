@@ -1,44 +1,70 @@
 import { NextResponse } from "next/server";
-import { hashPassword, generatePasswordSalt, PASSWORD_HASH_ITERATIONS } from "@math-platform/core-auth";
+import {
+  hashPassword,
+  generatePasswordSalt,
+  PASSWORD_HASH_ITERATIONS,
+  validatePasswordForRole,
+} from "@math-platform/core-auth";
 import { fetchInternalMutation, internal } from "@/lib/convex/server";
+import { readCredentials } from "@/lib/auth/input";
 
 export async function POST(request: Request) {
+  const input = await readCredentials(request);
+  if (!input)
+    return NextResponse.json(
+      { error: "Enter a username and password." },
+      { status: 400 },
+    );
+  const { username, password, body } = input;
+  const passwordError = validatePasswordForRole("student", password);
+  if (passwordError)
+    return NextResponse.json({ error: passwordError }, { status: 400 });
+  if (
+    typeof body.classCode !== "string" ||
+    !body.classCode.trim() ||
+    body.classCode.length > 80
+  )
+    return NextResponse.json(
+      { error: "Enter the class code from your teacher." },
+      { status: 400 },
+    );
   try {
-    const body = await request.json();
-    const { username, password } = body;
-
-    if (!username || typeof username !== "string" || username.trim().length === 0) {
-      return NextResponse.json({ error: "Username is required" }, { status: 400 });
-    }
-
-    if (!password || typeof password !== "string" || password.length < 6) {
-      return NextResponse.json({ error: "Password must be at least 6 characters" }, { status: 400 });
-    }
-
+    const attempt = await fetchInternalMutation(
+      internal.auth.consumeAuthAttempt,
+      { username, operation: "register" },
+    );
+    if (!attempt.allowed)
+      return NextResponse.json(
+        { error: "Too many attempts. Wait one minute." },
+        { status: 429, headers: { "Retry-After": "60" } },
+      );
     const salt = generatePasswordSalt();
-    const passwordHash = await hashPassword(password, salt, PASSWORD_HASH_ITERATIONS);
-
-    const ensureResult = await fetchInternalMutation(internal.auth.ensureProfileByUsername, {
-      username: username.trim(),
-      role: "student",
-      displayName: username.trim(),
-    });
-
-    if (!ensureResult || !ensureResult.ok) {
-      return NextResponse.json({ error: "Failed to create profile" }, { status: 500 });
-    }
-
-    await fetchInternalMutation(internal.auth.upsertCredentialByUsername, {
-      username: username.trim(),
-      role: "student",
-      passwordHash,
+    const result = await fetchInternalMutation(internal.auth.registerStudent, {
+      username,
+      classCode: body.classCode.trim(),
+      passwordHash: await hashPassword(
+        password,
+        salt,
+        PASSWORD_HASH_ITERATIONS,
+      ),
       passwordSalt: salt,
       passwordHashIterations: PASSWORD_HASH_ITERATIONS,
-      isActive: true,
     });
-
+    if (!result.ok)
+      return NextResponse.json(
+        {
+          error:
+            result.reason === "username_taken"
+              ? "Username is already in use."
+              : "Class code is not valid.",
+        },
+        { status: result.reason === "username_taken" ? 409 : 400 },
+      );
     return NextResponse.json({ success: true });
   } catch {
-    return NextResponse.json({ error: "Registration failed" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Registration is unavailable. Try again later." },
+      { status: 503 },
+    );
   }
 }

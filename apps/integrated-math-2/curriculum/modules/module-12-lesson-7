@@ -139,42 +139,20 @@ Rearrange the linear equation: [y = -x - 1]. Substitute into the quadratic:
 -x - 1 = x^2 - 6x + 5
 ]
 
-### Step 2: Rearrange to Standard Quadratic Form
+### Step 2: Solve Each Resulting Equation
 
-Move all terms to one side so the equation equals zero.
+First system: [x^2 - 2x - 8 = 0]. Factor to get [(x - 4)(x + 2) = 0].
+Thus [x = 4] or [x = -2]. With [y = 3], the solutions are [(4, 3)] and [(-2, 3)].
 
-[
-x^2 - 2x - 8 = 0
-]
-[
-x^2 - x - 2 = 0
-]
+Second system: [x^2 + x - 2 = 0]. Factor to get [(x + 2)(x - 1) = 0].
+Thus [x = -2] or [x = 1]. With [y = 3x + 1], the solutions are [(-2, -5)] and [(1, 4)].
 
-### Step 3: Solve the Quadratic Equation
+Third system: [x^2 - 5x + 6 = 0]. Factor to get [(x - 2)(x - 3) = 0].
+Thus [x = 2] or [x = 3]. With [y = -x - 1], the solutions are [(2, -3)] and [(3, -4)].
 
-Factor, complete the square, or use the quadratic formula to find the [x]-values.
+### Step 3: Check Both Coordinates
 
-[
-(x - 4)(x + 2) = 0
-]
-[
-(x - 2)(x + 1) = 0
-]
-
-### Step 4: Substitute Back to Find [y]
-
-Plug each [x]-value into one of the original equations to find the corresponding [y]-value.
-
-For [x = 4] and [x = -2] in the first system:
-[
-y = 3
-]
-
-The solutions are [(4, 3)] and [(-2, 3)].
-
-### Step 5: Check All Solutions in Both Equations
-
-Verify that each solution pair satisfies both original equations.
+Substitute each pair into both original equations. For example, the second system gives [(-2)^2 + 4(-2) - 1 = -5] and [3(-2) + 1 = -5].
 
 ## Example 3 — Real-World Systems
 
@@ -235,7 +213,7 @@ The mixed exercises provide practice with all skills from the lesson:
 * Problems 14–27: Solve each system by graphing or algebraically. Equations include parabolas intersecting horizontal, vertical, and slanted lines.
 * Problems 28–33: Rearrange each equation into standard quadratic form and solve using a system approach.
 * Problem 34 (Wingsuit): A wingsuit flyer model with a quadratic freefall function and a linear post-deployment function. Find deployment time and height.
-* Problem 35 (Reasoning): Analyze a graph showing a parabola and horizontal line [y = k]. Determine the number of solutions for the original line and after vertical shifts. ![](media/image1.png)
+* Problem 35 (Reasoning): Analyze a graph showing a parabola and horizontal line [y = k]. Determine the number of solutions for the original line and after vertical shifts. ![Worksheet figure 1](/curriculum/module-12-lesson-7/image1.png)
 * Problem 36 (Use a Model): Write a cost function from given data and solve a revenue-cost system. Interpret break-even points.
 * Problem 37 (Use Tools): A video game with rubber bands on a linear path and a target on a parabolic path. Graph and approximate intersection points, then use a calculator to find precise coordinates.
 * Problem 38 (Rockets): A rocket launch with line-of-sight constraints. Set up, solve graphically, solve algebraically, and interpret results in context.
@@ -244,16 +222,16 @@ The mixed exercises provide practice with all skills from the lesson:
 * Problem 41 (Construct Arguments): A rock kicked off a cliff with both rock path and cliff face modeled. Determine whether the rock lands on the cliff or in the river.
 * Problems 42–43 (Persevere): Use a graphing calculator to solve a system of quadratics and a system involving a circle.
 * Problems 44–45 (Analyze): Find the value of [k] that produces exactly one solution for a quadratic-line system and justify using the discriminant.
-* Problem 46 (Create): Write a problem using a provided graph and table of values, then solve it. ![](media/image2.png)
+* Problem 46 (Create): Write a problem using a provided graph and table of values, then solve it. ![Worksheet figure 2](/curriculum/module-12-lesson-7/image2.png)
 * Problem 47 (Write): Determine and explain the maximum number of solutions for a linear-quadratic system versus a linear-linear system.
-* Problem 48 (Find the Error): Identify the mistake in Xavier's solution and correct the work. ![](media/image3.png)
+* Problem 48 (Find the Error): Identify the mistake in Xavier's solution and correct the work. [Original worked solution in the worksheet](/curriculum/worksheets/Int2_1207_practice.pdf)
 * Problem 49 (Which One Doesn't Belong): Identify which of three systems does not share a property with the others and explain the reasoning.
 
 ## Review Notes
 
-* Problem 35 references ![](media/image1.png) showing a parabola and horizontal line [y = k]; the exact values should be confirmed against the original worksheet image.
-* Problem 46 includes ![](media/image2.png) a graph and table of values (approximately 3.84 in by 1.75 in) that describe two equations, one linear and one quadratic. The visual reference is needed to write an accurate problem.
-* Problem 48 contains ![](media/image3.png) a step-by-step solution with multiple equations; the original document shows the work in a two-column format with "Step 1" through "Step 7" labels.
+* Problem 35 references ![Worksheet figure 1](/curriculum/module-12-lesson-7/image1.png) showing a parabola and horizontal line [y = k]; the exact values should be confirmed against the original worksheet image.
+* Problem 46 includes ![Worksheet figure 2](/curriculum/module-12-lesson-7/image2.png) a graph and table of values (approximately 3.84 in by 1.75 in) that describe two equations, one linear and one quadratic. The visual reference is needed to write an accurate problem.
+* Problem 48 contains [Original worked solution in the worksheet](/curriculum/worksheets/Int2_1207_practice.pdf) a step-by-step solution with multiple equations; the original document shows the work in a two-column format with "Step 1" through "Step 7" labels.
 * The worksheet contains 49 total problems across three examples and mixed exercises.
 
 (End of file - total 261 lines)

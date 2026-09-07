@@ -54,12 +54,14 @@ Determine whether each triangle has no solution, one solution, or two solutions.
 
 ### Step 1: Analyze Given Information
 
-For SSA conditions, the height [h = b sin A] determines the number of solutions:
+For SSA conditions with an acute given angle [A], let [a] be opposite [A] and let [b] be the other given side. The height [h = b sin A] determines the number of solutions:
 
 * If [a < h]: No solution
 * If [a = h]: One solution (right triangle)
 * If [a > h] and [a < b]: Two solutions
 * If [a ≥ b]: One solution
+
+For a right or obtuse given angle [A], there is one triangle if [a > b]. There is no triangle if [a ≤ b].
 
 15-26. Classify and solve each triangle.
 
@@ -94,4 +96,4 @@ For SSA conditions, the height [h = b sin A] determines the number of solutions:
 ## Review Notes
 
 * Images referenced in this lesson:
-  * ![](media/image1.png) through ![](media/image24.png) — various Law of Sines application diagrams
+  * ![Worksheet figure 1](/curriculum/module-4-lesson-7/image1.png) through ![Worksheet figure 24](/curriculum/module-4-lesson-7/image24.png) — various Law of Sines application diagrams

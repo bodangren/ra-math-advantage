@@ -137,18 +137,18 @@ Practice includes:
 * Squaring binomials: (a - 2b)^2, (3c + 4d)^2
 * Cubing binomials: (2r - 3t)^3, (5g + 2h)^3
 * Mixed operations with brackets: [(m + 2)[(m^2 + 3m - 6) + (m^2 - 2m + 4)]]
-* A mural frame problem: A museum mural has length 5 feet longer than its width, with a 2-foot wide frame covering 100 square feet total. Write expressions for the mural area, frame area, and solve for mural dimensions. ![](media/image2.png)
-* A composite figure area problem: Write and simplify a quadratic expression for the area of a figure with dimensions given in terms of triangle height h. If h = 1.42 units, find the area to the nearest hundredth. ![](media/image3.png)
-* A profit model problem: Monthly profit is given by P = n(p - U) - F, where n = 5000 - 40p is monthly sales, U = $30 unit cost, and F = $3000 fixed cost. Write profit as a quadratic in p, then find profit when p = $77.50. ![](media/image4.png)
+* A mural frame problem: A museum mural has length 5 feet longer than its width, with a 2-foot wide frame covering 100 square feet total. Write expressions for the mural area, frame area, and solve for mural dimensions. ![Worksheet figure 2](/curriculum/module-11-lesson-3/image2.png)
+* A composite figure area problem: Write and simplify a quadratic expression for the area of a figure with dimensions given in terms of triangle height h. If h = 1.42 units, find the area to the nearest hundredth. ![Worksheet figure 3](/curriculum/module-11-lesson-3/image3.png)
+* A profit model problem: Monthly profit is given by P = n(p - U) - F, where n = 5000 - 40p is monthly sales, U = $30 unit cost, and F = $3000 fixed cost. Write profit as a quadratic in p, then find profit when p = $77.50. ![Worksheet figure 4](/curriculum/module-11-lesson-3/image4.png)
 * A rectangular prism volume problem: Find an expression for the volume given polynomial dimensions.
 * Analyzing whether the FOIL method can multiply a binomial and trinomial (and why or why not)
 * Simplifying expressions with exponents: [x^{4p+1}(x^{1-2p})^2p+3]
-* Which one doesn't belong: Identify which of four polynomial expressions does not belong with the others. ![](media/image5.png)
-* Finding errors in multiplication: Two students incorrectly multiplied (2x + 1)(x - 4). Find their mistakes. ![](media/image6.png)
+* Which one doesn't belong: Identify which of four polynomial expressions does not belong with the others. ![Worksheet figure 5](/curriculum/module-11-lesson-3/image5.png)
+* Finding errors in multiplication: Two students incorrectly multiplied (2x + 1)(x - 4). Find their mistakes. ![Worksheet figure 6](/curriculum/module-11-lesson-3/image6.png)
 
 ## Review Notes
 
-* Images referenced: ![](media/image1.png) — Flag case diagram. ![](media/image2.png) — Frame and mural dimensions. ![](media/image3.png) — Composite figure with triangular height. ![](media/image4.png) — Profit model diagram. ![](media/image5.png) — Four polynomial expressions for "Which One Doesn't Belong?". ![](media/image6.png) — Student work for (2x + 1)(x - 4). Teachers should consult the original worksheet for exact diagrams.
+* Images referenced: ![Worksheet figure 1](/curriculum/module-11-lesson-3/image1.png) — Flag case diagram. ![Worksheet figure 2](/curriculum/module-11-lesson-3/image2.png) — Frame and mural dimensions. ![Worksheet figure 3](/curriculum/module-11-lesson-3/image3.png) — Composite figure with triangular height. ![Worksheet figure 4](/curriculum/module-11-lesson-3/image4.png) — Profit model diagram. ![Worksheet figure 5](/curriculum/module-11-lesson-3/image5.png) — Four polynomial expressions for "Which One Doesn't Belong?". ![Worksheet figure 6](/curriculum/module-11-lesson-3/image6.png) — Student work for (2x + 1)(x - 4). Teachers should consult the original worksheet for exact diagrams.
 * The worksheet contains 68 practice problems.
 * FOIL only applies to binomials — for larger polynomials, use distribution or vertical multiplication.
 * The sum and difference pattern (a + b)(a - b) always produces a difference of squares.

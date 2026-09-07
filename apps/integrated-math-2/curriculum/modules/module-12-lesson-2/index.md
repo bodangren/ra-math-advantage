@@ -113,7 +113,7 @@ Problems 36-38: Use the graph of each function to write its equation.
 
 The spring constant problem compares [U_s = (1/2)kx^2] for k = 10 versus k = 2. The larger spring constant produces a steeper, narrower parabola.
 
-The falling ball problem [h = -16t^2 + 20] is a vertical stretch (wider than [y = t^2]) combined with a reflection across the x-axis and a vertical shift up 20 units.
+The falling ball problem [h = -16t^2 + 20] is a vertical stretch (narrower than [y = t^2]) combined with a reflection across the x-axis and a vertical shift up 20 units.
 
 The racing car problem compares [d = 3t^2] and [d = 2t^2 + 100]. The second car's equation represents a vertical stretch factor of 2 and a vertical translation up 100 units.
 
@@ -142,7 +142,7 @@ Images in the source:
 * Problem 61: Graph showing two parabolas for comparison.
 * Problem 64: Parabola for creating a function.
 
-![](media/image1.png) ![](media/image2.png) ![](media/image3.png)
-![](media/image4.png) ![](media/image5.png) ![](media/image6.png) ![](media/image7.png)
-![](media/image8.png) ![](media/image9.png) ![](media/image10.png)
-![](media/image11.png) ![](media/image12.png) ![](media/image13.png) ![](media/image14.png)
+![Worksheet figure 1](/curriculum/module-12-lesson-2/image1.png) ![Worksheet figure 2](/curriculum/module-12-lesson-2/image2.png) ![Worksheet figure 3](/curriculum/module-12-lesson-2/image3.png)
+![Worksheet figure 4](/curriculum/module-12-lesson-2/image4.png) ![Worksheet figure 5](/curriculum/module-12-lesson-2/image5.png) ![Worksheet figure 6](/curriculum/module-12-lesson-2/image6.png) ![Worksheet figure 7](/curriculum/module-12-lesson-2/image7.png)
+![Worksheet figure 8](/curriculum/module-12-lesson-2/image8.png) ![Worksheet figure 9](/curriculum/module-12-lesson-2/image9.png) ![Worksheet figure 10](/curriculum/module-12-lesson-2/image10.png)
+![Worksheet figure 11](/curriculum/module-12-lesson-2/image11.png) ![Worksheet figure 12](/curriculum/module-12-lesson-2/image12.png) ![Worksheet figure 13](/curriculum/module-12-lesson-2/image13.png) ![Worksheet figure 14](/curriculum/module-12-lesson-2/image14.png)

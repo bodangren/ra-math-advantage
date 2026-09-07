@@ -22,7 +22,7 @@ Source: (Module 13, Lesson 13-5, Int2_1305_practice.docx)
 The equation [sin theta = 1/2] has infinitely many solutions because sine repeats every [2pi]. Within [[0, 2pi)], the solutions are [pi/6] and [5pi/6]. The general solution is [theta = pi/6 + 2pi n] or [theta = 5pi/6 + 2pi n].
 
 Inquiry Question:
-Why does [sin theta = 1/2] have two solutions in [[0, 2pi)] while [tan theta = 1/2] has only one? How does periodicity affect the number of solutions?
+Both [sin theta = 1/2] and [tan theta = 1/2] have two solutions in [[0, 2pi)]. For tangent, the solutions are [arctan(1/2)] and [arctan(1/2) + pi]. How does each function's period determine these solutions?
 
 ## Learn: Solving Trigonometric Equations
 
@@ -123,17 +123,14 @@ SANDCASTLES: Water level follows [y = 7 + 7 sin(pi/6 * t)], where y is feet abov
 
 [arcsin(3/7) ≈ 0.442 radians] (or about [25.3 degrees])
 
-### Step 3: Find Solutions in Context
+### Step 3: Find the Next Time After Construction
 
-Since 2 P.M. is [t = 8] hours past 6 A.M., we look for solutions after t = 8.
+The solutions in one 12-hour period are [t ≈ 0.845898] and [t ≈ 5.154102]. Both are hours after 6 A.M.
+The sandcastle is built at 2 P.M., when [t = 8]. Add 12 hours to the first solution to obtain the next crossing: [t ≈ 12.845898].
 
-First solution: [pi/6 * t = 0.442] gives [t ≈ 0.84] hours (before 6 A.M.)
+### Step 4: Interpret the Time
 
-Second solution in Q2: [pi/6 * t = pi - 0.442 = 2.70] gives [t ≈ 16.4] hours past 6 A.M.
-
-### Step 4: Interpret
-
-[t ≈ 16.4] hours past 6 A.M. is about [10:24 P.M.]. Since the water rises then falls, it will reach 10 feet again earlier in the day.
+The water reaches the sandcastle at about **6:51 P.M.** The sine curve is rising at this crossing.
 
 ## Example 4 — Solve Trigonometric Inequalities
 
@@ -153,19 +150,11 @@ Case 1: [sin theta > 0] (Q1 and Q2)
 Case 2: [sin theta < 0] (Q3 and Q4)
 [3 >= 2 sin theta] → [sin theta <= 3/2] (always true when sin theta < 0)
 
-### Step 3: Find Where csc theta = 2
+### Step 3: State the Domain and Solution
 
-[csc theta = 2] when [sin theta = 1/2]
-
-[theta = 30 degrees] or [theta = 150 degrees]
-
-### Step 4: Determine Solution Regions
-
-Since [csc theta <= 2] means [1/sin theta <= 2], we need:
-* [sin theta >= 1/2] when [sin theta > 0]
-* OR [sin theta < 0] (any negative sine satisfies the inequality)
-
-[theta in [30 degrees, 150 degrees]] from the first condition, plus [theta in [180 degrees, 360 degrees]] from the second.
+Cosecant is undefined when sine is zero. Exclude [0 degrees], [180 degrees], and [360 degrees].
+No positive-sine value satisfies [3/sin theta <= 2]. Every negative-sine value satisfies it.
+The solution is [180 degrees < theta < 360 degrees].
 
 ## Example 5 — Solve Equations with Multiple Trig Functions
 
@@ -254,7 +243,7 @@ The mixed exercises provide practice with:
 
 ## Review Notes
 
-* Image references: ![](media/image1.png) — Problem 53 shows table of daylight hours data. ![](media/image2.png) — Problem 55 shows graph for business profit model. ![](media/image3.png) — Problem 62 shows Ms. Rollins' student work. Consult original worksheet for exact diagrams and values.
+* Image references: ![Worksheet figure 1](/curriculum/module-13-lesson-5/image1.png) — Problem 53 shows table of daylight hours data. ![Worksheet figure 2](/curriculum/module-13-lesson-5/image2.png) — Problem 55 shows graph for business profit model. ![Worksheet figure 3](/curriculum/module-13-lesson-5/image3.png) — Problem 62 shows Ms. Rollins' student work. Consult original worksheet for exact diagrams and values.
 * The worksheet contains 62 practice problems across worked examples and mixed exercises.
 * Problems 51-56 involve applying trigonometric equations to real-world modeling situations.
 * Problems 57-62 involve analysis, comparison, and creation tasks.

@@ -5,7 +5,7 @@
       "kind": "domain",
       "title": "Integrated Math 2",
       "domain": "math.im2",
-      "description": "Students develop understanding of triangle properties, congruence, and reasoning through proof and construction.",
+      "description": "Geometry, probability, algebra, and trigonometry across 13 modules and 96 source lessons.",
       "sourceRefs": [
         "apps/integrated-math-2/curriculum/module-1-class-period-plan.md",
         "apps/integrated-math-2/curriculum/module-10-class-period-plan.md",
@@ -7229,10 +7229,10 @@
     {
       "id": "math.im2.lesson.1.1",
       "kind": "instructional_unit",
-      "title": "Classifying Triangles",
+      "title": "Perpendicular Bisectors",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-1-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-1-lesson-1"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7244,10 +7244,10 @@
     {
       "id": "math.im2.lesson.1.2",
       "kind": "instructional_unit",
-      "title": "Triangle Angle Relationships",
+      "title": "Angle Bisectors",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-1-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-1-lesson-2"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7259,10 +7259,10 @@
     {
       "id": "math.im2.lesson.1.3",
       "kind": "instructional_unit",
-      "title": "Triangle Inequality Theorem",
+      "title": "Medians and Altitudes of Triangles",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-1-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-1-lesson-3"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7274,10 +7274,10 @@
     {
       "id": "math.im2.lesson.1.4",
       "kind": "instructional_unit",
-      "title": "Congruence Criteria (SSS, SAS, ASA, AAS, HL)",
+      "title": "Inequalities in One Triangle",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-1-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-1-lesson-4"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7289,10 +7289,10 @@
     {
       "id": "math.im2.lesson.1.5",
       "kind": "instructional_unit",
-      "title": "Proving Triangle Congruence",
+      "title": "Indirect Proof",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-1-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-1-lesson-5"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7304,10 +7304,10 @@
     {
       "id": "math.im2.lesson.1.6",
       "kind": "instructional_unit",
-      "title": "Isosceles & Equilateral Triangle Properties",
+      "title": "The Triangle Inequality",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-1-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-1-lesson-6"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7319,10 +7319,10 @@
     {
       "id": "math.im2.lesson.1.7",
       "kind": "instructional_unit",
-      "title": "Lesson 1-7",
+      "title": "Inequalities in Two Triangles",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-1-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-1-lesson-7"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7334,10 +7334,10 @@
     {
       "id": "math.im2.lesson.10.1",
       "kind": "instructional_unit",
-      "title": "Laws of Exponents",
+      "title": "Multiplication Properties of Exponents",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-10-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-10-lesson-1"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7349,10 +7349,10 @@
     {
       "id": "math.im2.lesson.10.2",
       "kind": "instructional_unit",
-      "title": "Negative and Rational Exponents",
+      "title": "Division Properties of Exponents",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-10-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-10-lesson-2"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7364,10 +7364,10 @@
     {
       "id": "math.im2.lesson.10.3",
       "kind": "instructional_unit",
-      "title": "Scientific Notation",
+      "title": "Negative Exponents",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-10-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-10-lesson-3"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7379,10 +7379,10 @@
     {
       "id": "math.im2.lesson.10.4",
       "kind": "instructional_unit",
-      "title": "Radical Expressions",
+      "title": "Rational Exponents",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-10-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-10-lesson-4"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7394,10 +7394,10 @@
     {
       "id": "math.im2.lesson.10.5",
       "kind": "instructional_unit",
-      "title": "Solving Radical Equations",
+      "title": "Simplifying Radical Expressions",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-10-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-10-lesson-5"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7409,10 +7409,10 @@
     {
       "id": "math.im2.lesson.11.1",
       "kind": "instructional_unit",
-      "title": "Polynomial Vocabulary",
+      "title": "Adding and Subtracting Polynomials",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-11-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-11-lesson-1"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7424,10 +7424,10 @@
     {
       "id": "math.im2.lesson.11.2",
       "kind": "instructional_unit",
-      "title": "Adding and Subtracting Polynomials",
+      "title": "Multiplying Polynomials by Monomials",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-11-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-11-lesson-2"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7442,7 +7442,7 @@
       "title": "Multiplying Polynomials",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-11-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-11-lesson-3"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7457,7 +7457,7 @@
       "title": "Special Products",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-11-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-11-lesson-4"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7469,10 +7469,10 @@
     {
       "id": "math.im2.lesson.11.5",
       "kind": "instructional_unit",
-      "title": "Factoring Techniques",
+      "title": "Using the Distributive Property",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-11-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-11-lesson-5"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7484,10 +7484,10 @@
     {
       "id": "math.im2.lesson.11.6",
       "kind": "instructional_unit",
-      "title": "Solving Polynomial Equations by Factoring",
+      "title": "Factoring Quadratic Trinomials",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-11-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-11-lesson-6"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7499,10 +7499,10 @@
     {
       "id": "math.im2.lesson.12.1",
       "kind": "instructional_unit",
-      "title": "Graphing Quadratics in Vertex Form",
+      "title": "Graphing Quadratic Functions",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-12-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-12-lesson-1"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7514,10 +7514,10 @@
     {
       "id": "math.im2.lesson.12.2",
       "kind": "instructional_unit",
-      "title": "Factoring Quadratics",
+      "title": "Transformations of Quadratic Functions",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-12-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-12-lesson-2"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7529,10 +7529,10 @@
     {
       "id": "math.im2.lesson.12.3",
       "kind": "instructional_unit",
-      "title": "Completing the Square",
+      "title": "Solving Quadratic Equations by Graphing",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-12-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-12-lesson-3"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7544,10 +7544,10 @@
     {
       "id": "math.im2.lesson.12.4",
       "kind": "instructional_unit",
-      "title": "Quadratic Formula and the Discriminant",
+      "title": "Solving Quadratic Equations by Factoring",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-12-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-12-lesson-4"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7559,10 +7559,10 @@
     {
       "id": "math.im2.lesson.12.5",
       "kind": "instructional_unit",
-      "title": "Applications of Quadratic Models",
+      "title": "Solving Quadratic Equations by Completing the Square",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-12-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-12-lesson-5"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7574,10 +7574,10 @@
     {
       "id": "math.im2.lesson.13.1",
       "kind": "instructional_unit",
-      "title": "Fundamental Trig Identities",
+      "title": "Trigonometric Identities",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-13-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-13-lesson-1"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7589,10 +7589,10 @@
     {
       "id": "math.im2.lesson.13.2",
       "kind": "instructional_unit",
-      "title": "Pythagorean Identities",
+      "title": "Verifying Trigonometric Identities",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-13-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-13-lesson-2"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7607,7 +7607,7 @@
       "title": "Sum and Difference Identities",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-13-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-13-lesson-3"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7622,7 +7622,7 @@
       "title": "Double-Angle and Half-Angle Identities",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-13-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-13-lesson-4"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7637,7 +7637,7 @@
       "title": "Solving Trigonometric Equations",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-13-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-13-lesson-5"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7649,10 +7649,10 @@
     {
       "id": "math.im2.lesson.2.1",
       "kind": "instructional_unit",
-      "title": "Polygon Basics & Angle Sums",
+      "title": "Angles of Polygons",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-2-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-2-lesson-1"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7664,10 +7664,10 @@
     {
       "id": "math.im2.lesson.2.2",
       "kind": "instructional_unit",
-      "title": "Parallelogram Properties",
+      "title": "Parallelograms",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-2-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-2-lesson-2"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7679,10 +7679,10 @@
     {
       "id": "math.im2.lesson.2.3",
       "kind": "instructional_unit",
-      "title": "Special Parallelograms (Rectangle, Rhombus, Square)",
+      "title": "Tests for Parallelograms",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-2-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-2-lesson-3"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7694,10 +7694,10 @@
     {
       "id": "math.im2.lesson.2.4",
       "kind": "instructional_unit",
-      "title": "Trapezoids and Isosceles Trapezoids",
+      "title": "Rectangles",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-2-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-2-lesson-4"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7709,10 +7709,10 @@
     {
       "id": "math.im2.lesson.2.5",
       "kind": "instructional_unit",
-      "title": "Coordinate Proofs with Quadrilaterals",
+      "title": "Rhombi and Squares",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-2-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-2-lesson-5"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7724,10 +7724,10 @@
     {
       "id": "math.im2.lesson.2.6",
       "kind": "instructional_unit",
-      "title": "Lesson 2-6",
+      "title": "Trapezoids and Kites",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-2-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-2-lesson-6"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7739,10 +7739,10 @@
     {
       "id": "math.im2.lesson.3.1",
       "kind": "instructional_unit",
-      "title": "Similar Figures and Scale Factors",
+      "title": "Dilations",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-3-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-3-lesson-1"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7754,10 +7754,10 @@
     {
       "id": "math.im2.lesson.3.2",
       "kind": "instructional_unit",
-      "title": "Triangle Similarity (AA, SAS, SSS)",
+      "title": "Similar Polygons",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-3-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-3-lesson-2"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7769,10 +7769,10 @@
     {
       "id": "math.im2.lesson.3.3",
       "kind": "instructional_unit",
-      "title": "Proportions and Indirect Measurement",
+      "title": "Similar Triangles: AA Similarity",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-3-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-3-lesson-3"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7784,10 +7784,10 @@
     {
       "id": "math.im2.lesson.3.4",
       "kind": "instructional_unit",
-      "title": "Similarity Proofs",
+      "title": "Similar Triangles: SSS and SAS Similarity",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-3-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-3-lesson-4"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7799,10 +7799,10 @@
     {
       "id": "math.im2.lesson.3.5",
       "kind": "instructional_unit",
-      "title": "Applications of Similarity",
+      "title": "Triangle Proportionality",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-3-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-3-lesson-5"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7814,10 +7814,10 @@
     {
       "id": "math.im2.lesson.3.6",
       "kind": "instructional_unit",
-      "title": "Lesson 3-6",
+      "title": "Parts of Similar Triangles",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-3-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-3-lesson-6"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7829,10 +7829,10 @@
     {
       "id": "math.im2.lesson.4.1",
       "kind": "instructional_unit",
-      "title": "Pythagorean Theorem",
+      "title": "Geometric Mean",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-4-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-4-lesson-1"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7844,10 +7844,10 @@
     {
       "id": "math.im2.lesson.4.2",
       "kind": "instructional_unit",
-      "title": "Special Right Triangles (30-60-90, 45-45-90)",
+      "title": "Pythagorean Theorem and Its Converse",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-4-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-4-lesson-2"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7859,10 +7859,10 @@
     {
       "id": "math.im2.lesson.4.3",
       "kind": "instructional_unit",
-      "title": "Introduction to Sine, Cosine, Tangent",
+      "title": "Coordinates in Space",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-4-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-4-lesson-3"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7874,10 +7874,10 @@
     {
       "id": "math.im2.lesson.4.4",
       "kind": "instructional_unit",
-      "title": "Solving Right Triangles",
+      "title": "Special Right Triangles",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-4-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-4-lesson-4"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7889,10 +7889,10 @@
     {
       "id": "math.im2.lesson.4.5",
       "kind": "instructional_unit",
-      "title": "Law of Sines",
+      "title": "Trigonometry",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-4-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-4-lesson-5"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7904,10 +7904,10 @@
     {
       "id": "math.im2.lesson.4.6",
       "kind": "instructional_unit",
-      "title": "Law of Cosines",
+      "title": "Applying Trigonometry",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-4-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-4-lesson-6"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7919,10 +7919,10 @@
     {
       "id": "math.im2.lesson.4.7",
       "kind": "instructional_unit",
-      "title": "Lesson 4-7",
+      "title": "The Law of Sines",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-4-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-4-lesson-7"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7934,10 +7934,10 @@
     {
       "id": "math.im2.lesson.4.8",
       "kind": "instructional_unit",
-      "title": "Lesson 4-8",
+      "title": "The Law of Cosines",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-4-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-4-lesson-8"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7949,10 +7949,10 @@
     {
       "id": "math.im2.lesson.5.1",
       "kind": "instructional_unit",
-      "title": "Circle Vocabulary and Basic Properties",
+      "title": "Circles and Circumference",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-5-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-5-lesson-1"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7964,10 +7964,10 @@
     {
       "id": "math.im2.lesson.5.2",
       "kind": "instructional_unit",
-      "title": "Central Angles and Inscribed Angles",
+      "title": "Measuring Angles and Arcs",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-5-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-5-lesson-2"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7982,7 +7982,7 @@
       "title": "Arcs and Chords",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-5-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-5-lesson-3"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7994,10 +7994,10 @@
     {
       "id": "math.im2.lesson.5.4",
       "kind": "instructional_unit",
-      "title": "Tangent and Secant Lines",
+      "title": "Inscribed Angles",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-5-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-5-lesson-4"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -8009,10 +8009,10 @@
     {
       "id": "math.im2.lesson.5.5",
       "kind": "instructional_unit",
-      "title": "Equations of Circles",
+      "title": "Tangents",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-5-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-5-lesson-5"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -8024,10 +8024,10 @@
     {
       "id": "math.im2.lesson.5.6",
       "kind": "instructional_unit",
-      "title": "Lesson 5-6",
+      "title": "Tangents, Secants, and Angle Measures",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-5-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-5-lesson-6"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -8039,10 +8039,10 @@
     {
       "id": "math.im2.lesson.5.7",
       "kind": "instructional_unit",
-      "title": "Lesson 5-7",
+      "title": "Equations of Circles",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-5-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-5-lesson-7"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -8054,10 +8054,10 @@
     {
       "id": "math.im2.lesson.5.8",
       "kind": "instructional_unit",
-      "title": "Lesson 5-8",
+      "title": "Equations of Parabolas",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-5-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-5-lesson-8"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -8069,10 +8069,10 @@
     {
       "id": "math.im2.lesson.6.1",
       "kind": "instructional_unit",
-      "title": "Area of Polygons",
+      "title": "Areas of Quadrilaterals",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-6-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-6-lesson-1"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -8084,10 +8084,10 @@
     {
       "id": "math.im2.lesson.6.2",
       "kind": "instructional_unit",
-      "title": "Surface Area of Solids",
+      "title": "Areas of Regular Polygons",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-6-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-6-lesson-2"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -8099,10 +8099,10 @@
     {
       "id": "math.im2.lesson.6.3",
       "kind": "instructional_unit",
-      "title": "Volume of Prisms and Cylinders",
+      "title": "Areas of Circles and Sectors",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-6-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-6-lesson-3"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -8114,10 +8114,10 @@
     {
       "id": "math.im2.lesson.6.4",
       "kind": "instructional_unit",
-      "title": "Volume of Cones and Spheres",
+      "title": "Surface Area",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-6-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-6-lesson-4"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -8129,10 +8129,10 @@
     {
       "id": "math.im2.lesson.6.5",
       "kind": "instructional_unit",
-      "title": "Cross-Sections and Composite Solids",
+      "title": "Cross Sections and Solids of Revolution",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-6-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-6-lesson-5"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -8144,10 +8144,10 @@
     {
       "id": "math.im2.lesson.6.6",
       "kind": "instructional_unit",
-      "title": "Lesson 6-6",
+      "title": "Volumes of Prisms and Pyramids",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-6-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-6-lesson-6"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -8159,10 +8159,10 @@
     {
       "id": "math.im2.lesson.6.7",
       "kind": "instructional_unit",
-      "title": "Lesson 6-7",
+      "title": "Volumes of Cylinders, Cones, and Spheres",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-6-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-6-lesson-7"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -8174,10 +8174,10 @@
     {
       "id": "math.im2.lesson.6.8",
       "kind": "instructional_unit",
-      "title": "Lesson 6-8",
+      "title": "Applying Similarity to Solid Figures",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-6-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-6-lesson-8"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -8189,10 +8189,10 @@
     {
       "id": "math.im2.lesson.6.9",
       "kind": "instructional_unit",
-      "title": "Lesson 6-9",
+      "title": "Density",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-6-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-6-lesson-9"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -8204,10 +8204,10 @@
     {
       "id": "math.im2.lesson.7.1",
       "kind": "instructional_unit",
-      "title": "Basic Probability",
+      "title": "Sample Spaces",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-7-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-7-lesson-1"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -8219,10 +8219,10 @@
     {
       "id": "math.im2.lesson.7.2",
       "kind": "instructional_unit",
-      "title": "Fundamental Counting Principle and Tree Diagrams",
+      "title": "Probability and Counting",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-7-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-7-lesson-2"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -8234,10 +8234,10 @@
     {
       "id": "math.im2.lesson.7.3",
       "kind": "instructional_unit",
-      "title": "Permutations",
+      "title": "Geometric Probability",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-7-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-7-lesson-3"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -8249,10 +8249,10 @@
     {
       "id": "math.im2.lesson.7.4",
       "kind": "instructional_unit",
-      "title": "Combinations",
+      "title": "Probability with Permutations and Combinations",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-7-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-7-lesson-4"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -8264,10 +8264,10 @@
     {
       "id": "math.im2.lesson.7.5",
       "kind": "instructional_unit",
-      "title": "Compound Probability",
+      "title": "Probability and the Multiplication Rule",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-7-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-7-lesson-5"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -8279,10 +8279,10 @@
     {
       "id": "math.im2.lesson.7.6",
       "kind": "instructional_unit",
-      "title": "Expected Value and Fair Decisions",
+      "title": "Probability and the Addition Rule",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-7-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-7-lesson-6"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -8294,10 +8294,10 @@
     {
       "id": "math.im2.lesson.8.1",
       "kind": "instructional_unit",
-      "title": "Relations vs Functions",
+      "title": "Functions and Continuity",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-8-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-8-lesson-1"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -8309,10 +8309,10 @@
     {
       "id": "math.im2.lesson.8.2",
       "kind": "instructional_unit",
-      "title": "Domain and Range",
+      "title": "Linearity, Intercepts, and Symmetry",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-8-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-8-lesson-2"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -8324,10 +8324,10 @@
     {
       "id": "math.im2.lesson.8.3",
       "kind": "instructional_unit",
-      "title": "Function Notation f(x)",
+      "title": "Extrema and End Behavior",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-8-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-8-lesson-3"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -8339,10 +8339,10 @@
     {
       "id": "math.im2.lesson.8.4",
       "kind": "instructional_unit",
-      "title": "Linear vs Nonlinear Functions",
+      "title": "Sketching Graphs and Comparing Functions",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-8-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-8-lesson-4"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -8354,10 +8354,10 @@
     {
       "id": "math.im2.lesson.8.5",
       "kind": "instructional_unit",
-      "title": "Function Transformations",
+      "title": "Graphing Linear Functions and Inequalities",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-8-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-8-lesson-5"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -8369,10 +8369,10 @@
     {
       "id": "math.im2.lesson.8.6",
       "kind": "instructional_unit",
-      "title": "Comparing Functions",
+      "title": "Special Functions",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-8-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-8-lesson-6"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -8387,7 +8387,7 @@
       "title": "Solving Multi-Step Linear Equations",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-9-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-9-lesson-1"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -8399,10 +8399,10 @@
     {
       "id": "math.im2.lesson.9.2",
       "kind": "instructional_unit",
-      "title": "Graphing Linear Equations",
+      "title": "Solving Absolute Value Equations and Inequalities",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-9-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-9-lesson-2"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -8414,10 +8414,10 @@
     {
       "id": "math.im2.lesson.9.3",
       "kind": "instructional_unit",
-      "title": "Solving and Graphing Linear Inequalities",
+      "title": "Equations of Linear Functions",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-9-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-9-lesson-3"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -8429,10 +8429,10 @@
     {
       "id": "math.im2.lesson.9.4",
       "kind": "instructional_unit",
-      "title": "Systems of Equations",
+      "title": "Solving Systems of Equations Graphically",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-9-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-9-lesson-4"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -8444,10 +8444,10 @@
     {
       "id": "math.im2.lesson.9.5",
       "kind": "instructional_unit",
-      "title": "Systems of Inequalities",
+      "title": "Solving Systems of Equations Algebraically",
       "domain": "math.im2",
       "sourceRefs": [
-        "apps/integrated-math-2/curriculum/module-9-class-period-plan.md"
+        "apps/integrated-math-2/curriculum/modules/module-9-lesson-5"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -8461,7 +8461,7 @@
       "kind": "content_group",
       "title": "Relationships in Triangles",
       "domain": "math.im2",
-      "description": "Students develop understanding of triangle properties, congruence, and reasoning through proof and construction.",
+      "description": "Triangle properties, congruence criteria, and reasoning through proofs.",
       "sourceRefs": [
         "apps/integrated-math-2/curriculum/module-1-class-period-plan.md"
       ],
@@ -8476,7 +8476,7 @@
       "kind": "content_group",
       "title": "Exponents and Roots",
       "domain": "math.im2",
-      "description": "Students extend their understanding of exponents to include negative and rational exponents, apply laws of exponents, work with scientific notation, simplify radical expressions, and solve radical equations.",
+      "description": "Laws of exponents, rational exponents, scientific notation, and radicals.",
       "sourceRefs": [
         "apps/integrated-math-2/curriculum/module-10-class-period-plan.md"
       ],
@@ -8491,7 +8491,7 @@
       "kind": "content_group",
       "title": "Polynomials",
       "domain": "math.im2",
-      "description": "Students work with polynomial expressions \u2014 classifying, adding, subtracting, multiplying, and factoring them. They learn special product patterns, develop fluency with factoring techniques, and solve polynomial equations using the zero product property.",
+      "description": "Polynomial operations, factoring techniques, and solving polynomial equations.",
       "sourceRefs": [
         "apps/integrated-math-2/curriculum/module-11-class-period-plan.md"
       ],
@@ -8506,7 +8506,7 @@
       "kind": "content_group",
       "title": "Quadratic Functions",
       "domain": "math.im2",
-      "description": "Students explore quadratic functions in depth \u2014 graphing in vertex form, factoring and solving quadratic equations, completing the square, using the quadratic formula, and applying quadratic models to real-world problems involving projectile motion, optimization, and area.",
+      "description": "Graphing, factoring, completing the square, and the quadratic formula.",
       "sourceRefs": [
         "apps/integrated-math-2/curriculum/module-12-class-period-plan.md"
       ],
@@ -8521,7 +8521,7 @@
       "kind": "content_group",
       "title": "Trigonometric Identities & Equations",
       "domain": "math.im2",
-      "description": "Students develop fluency with trigonometric identities \u2014 fundamental, Pythagorean, sum/difference, and double/half-angle \u2014 and use them to simplify expressions, verify identities, and solve trigonometric equations algebraically and graphically.",
+      "description": "Fundamental identities, sum/difference, double/half-angle, and solving trig equations.",
       "sourceRefs": [
         "apps/integrated-math-2/curriculum/module-13-class-period-plan.md"
       ],
@@ -8536,7 +8536,7 @@
       "kind": "content_group",
       "title": "Quadrilaterals",
       "domain": "math.im2",
-      "description": "Students develop understanding of quadrilateral properties, classifications, and coordinate geometry proofs involving parallelograms, trapezoids, and special quadrilaterals.",
+      "description": "Properties and classification of quadrilaterals, coordinate proofs.",
       "sourceRefs": [
         "apps/integrated-math-2/curriculum/module-2-class-period-plan.md"
       ],
@@ -8551,7 +8551,7 @@
       "kind": "content_group",
       "title": "Similarity",
       "domain": "math.im2",
-      "description": "Students develop understanding of similar figures, triangle similarity criteria, and proportional reasoning used in indirect measurement and real-world applications.",
+      "description": "Scale factors, proportional reasoning, and similarity proofs.",
       "sourceRefs": [
         "apps/integrated-math-2/curriculum/module-3-class-period-plan.md"
       ],
@@ -8566,7 +8566,7 @@
       "kind": "content_group",
       "title": "Right Triangles & Trigonometry",
       "domain": "math.im2",
-      "description": "Students develop understanding of right triangle relationships, the Pythagorean theorem, special right triangles, trigonometric ratios, and the Law of Sines and Cosines for solving any triangle.",
+      "description": "Pythagorean theorem, special right triangles, trigonometric ratios, and laws.",
       "sourceRefs": [
         "apps/integrated-math-2/curriculum/module-4-class-period-plan.md"
       ],
@@ -8581,7 +8581,7 @@
       "kind": "content_group",
       "title": "Circles",
       "domain": "math.im2",
-      "description": "Students develop understanding of circle vocabulary, angle and arc relationships, chord properties, tangent and secant lines, and the equation of a circle in the coordinate plane.",
+      "description": "Circle geometry, angles, arcs, tangents, and coordinate equations.",
       "sourceRefs": [
         "apps/integrated-math-2/curriculum/module-5-class-period-plan.md"
       ],
@@ -8596,7 +8596,7 @@
       "kind": "content_group",
       "title": "Measurement",
       "domain": "math.im2",
-      "description": "Students extend their understanding of area, surface area, and volume to two-dimensional polygons and three-dimensional solids including prisms, pyramids, cylinders, cones, and spheres.",
+      "description": "Area, surface area, volume, and composite solids.",
       "sourceRefs": [
         "apps/integrated-math-2/curriculum/module-6-class-period-plan.md"
       ],
@@ -8611,7 +8611,7 @@
       "kind": "content_group",
       "title": "Probability",
       "domain": "math.im2",
-      "description": "Students develop understanding of counting principles, probability models, permutations, combinations, compound probability, and expected value for making fair decisions.",
+      "description": "Counting principles, permutations, combinations, and compound probability.",
       "sourceRefs": [
         "apps/integrated-math-2/curriculum/module-7-class-period-plan.md"
       ],
@@ -8626,7 +8626,7 @@
       "kind": "content_group",
       "title": "Relations and Functions",
       "domain": "math.im2",
-      "description": "Students develop understanding of relations, functions, domain and range, function notation, linear vs nonlinear functions, transformations of functions, and comparing functions across multiple representations.",
+      "description": "Function concepts, notation, transformations, and comparisons.",
       "sourceRefs": [
         "apps/integrated-math-2/curriculum/module-8-class-period-plan.md"
       ],
@@ -8641,7 +8641,7 @@
       "kind": "content_group",
       "title": "Linear Equations, Inequalities & Systems",
       "domain": "math.im2",
-      "description": "Students solve multi-step linear equations, graph linear equations in multiple forms, solve and graph linear inequalities, solve systems of equations using three methods, and analyze systems of inequalities to find feasible regions.",
+      "description": "Solving and graphing linear equations, inequalities, and systems.",
       "sourceRefs": [
         "apps/integrated-math-2/curriculum/module-9-class-period-plan.md"
       ],
@@ -11034,6 +11034,216 @@
         "module": "9",
         "lesson": "5"
       }
+    },
+    {
+      "id": "math.im2.lesson.7.7",
+      "kind": "instructional_unit",
+      "domain": "math.im2",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "7",
+        "lesson": "7"
+      },
+      "title": "Conditional Probability",
+      "sourceRefs": [
+        "apps/integrated-math-2/curriculum/modules/module-7-lesson-7"
+      ]
+    },
+    {
+      "id": "math.im2.lesson.7.8",
+      "kind": "instructional_unit",
+      "domain": "math.im2",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "7",
+        "lesson": "8"
+      },
+      "title": "Two-Way Frequency Tables",
+      "sourceRefs": [
+        "apps/integrated-math-2/curriculum/modules/module-7-lesson-8"
+      ]
+    },
+    {
+      "id": "math.im2.lesson.8.7",
+      "kind": "instructional_unit",
+      "domain": "math.im2",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "8",
+        "lesson": "7"
+      },
+      "title": "Transformations of Functions",
+      "sourceRefs": [
+        "apps/integrated-math-2/curriculum/modules/module-8-lesson-7"
+      ]
+    },
+    {
+      "id": "math.im2.lesson.9.6",
+      "kind": "instructional_unit",
+      "domain": "math.im2",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "9",
+        "lesson": "6"
+      },
+      "title": "Solving Systems of Inequalities",
+      "sourceRefs": [
+        "apps/integrated-math-2/curriculum/modules/module-9-lesson-6"
+      ]
+    },
+    {
+      "id": "math.im2.lesson.9.7",
+      "kind": "instructional_unit",
+      "domain": "math.im2",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "9",
+        "lesson": "7"
+      },
+      "title": "Optimization with Linear Programming",
+      "sourceRefs": [
+        "apps/integrated-math-2/curriculum/modules/module-9-lesson-7"
+      ]
+    },
+    {
+      "id": "math.im2.lesson.9.8",
+      "kind": "instructional_unit",
+      "domain": "math.im2",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "9",
+        "lesson": "8"
+      },
+      "title": "Systems of Equations in Three Variables",
+      "sourceRefs": [
+        "apps/integrated-math-2/curriculum/modules/module-9-lesson-8"
+      ]
+    },
+    {
+      "id": "math.im2.lesson.9.9",
+      "kind": "instructional_unit",
+      "domain": "math.im2",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "9",
+        "lesson": "9"
+      },
+      "title": "Solving Absolute Value Equations and Inequalities by Graphing",
+      "sourceRefs": [
+        "apps/integrated-math-2/curriculum/modules/module-9-lesson-9"
+      ]
+    },
+    {
+      "id": "math.im2.lesson.10.6",
+      "kind": "instructional_unit",
+      "domain": "math.im2",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "10",
+        "lesson": "6"
+      },
+      "title": "Operations with Radical Expressions",
+      "sourceRefs": [
+        "apps/integrated-math-2/curriculum/modules/module-10-lesson-6"
+      ]
+    },
+    {
+      "id": "math.im2.lesson.10.7",
+      "kind": "instructional_unit",
+      "domain": "math.im2",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "10",
+        "lesson": "7"
+      },
+      "title": "Exponential Equations",
+      "sourceRefs": [
+        "apps/integrated-math-2/curriculum/modules/module-10-lesson-7"
+      ]
+    },
+    {
+      "id": "math.im2.lesson.11.7",
+      "kind": "instructional_unit",
+      "domain": "math.im2",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "11",
+        "lesson": "7"
+      },
+      "title": "Factoring Special Products",
+      "sourceRefs": [
+        "apps/integrated-math-2/curriculum/modules/module-11-lesson-7"
+      ]
+    },
+    {
+      "id": "math.im2.lesson.12.6",
+      "kind": "instructional_unit",
+      "domain": "math.im2",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "12",
+        "lesson": "6"
+      },
+      "title": "Solving Quadratic Equations by Using the Quadratic Formula",
+      "sourceRefs": [
+        "apps/integrated-math-2/curriculum/modules/module-12-lesson-6"
+      ]
+    },
+    {
+      "id": "math.im2.lesson.12.7",
+      "kind": "instructional_unit",
+      "domain": "math.im2",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "12",
+        "lesson": "7"
+      },
+      "title": "Solving Systems of Linear and Quadratic Equations",
+      "sourceRefs": [
+        "apps/integrated-math-2/curriculum/modules/module-12-lesson-7"
+      ]
+    },
+    {
+      "id": "math.im2.lesson.12.8",
+      "kind": "instructional_unit",
+      "domain": "math.im2",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "12",
+        "lesson": "8"
+      },
+      "title": "Modeling and Curve Fitting",
+      "sourceRefs": [
+        "apps/integrated-math-2/curriculum/modules/module-12-lesson-8"
+      ]
+    },
+    {
+      "id": "math.im2.lesson.12.9",
+      "kind": "instructional_unit",
+      "domain": "math.im2",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "12",
+        "lesson": "9"
+      },
+      "title": "Combining Functions",
+      "sourceRefs": [
+        "apps/integrated-math-2/curriculum/modules/module-12-lesson-9"
+      ]
     }
   ]
 }

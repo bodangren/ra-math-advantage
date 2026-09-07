@@ -107,9 +107,9 @@ Solve each equation by first simplifying both sides using the Distributive Prope
 [7(t^2 + 5t - 9) + t = t(7t - 2) + 13]
 = [7t^2 + 35t - 63 + t = 7t^2 - 2t + 13]
 = [7t^2 + 36t - 63 = 7t^2 - 2t + 13]
-= [36t + 13 = -2t + 13]
-= [38t = 0]
-= [t = 0]
+= [36t - 63 = -2t + 13]
+= [38t = 76]
+= [t = 2]
 
 [w(4w + 6) + 2w = 2(2w^2 + 7w - 3)]
 = [4w^2 + 6w + 2w = 4w^2 + 14w - 6]
@@ -128,18 +128,18 @@ The mixed exercises section provides practice with all skills. Problems include:
 * Combining distribution with addition/subtraction: [w(3w + 2) + 5w], [f(5f - 3) - 2f]
 * Multi-term distribution: [4b(-5b - 3) - 2(b^2 - 7b - 4)], [-5q^2w^3(4q + 7w) + 4qw^2(7q^2w + 2q) - 3qw(3q^2w^2 + 9)]
 * Solving basic linear equations before multi-step versions
-* A landmarks problem: A circle of 50 flags with a 12-foot sidewalk around it. The outside circumference is 1.10 times the inside circumference. Write and solve an equation for the radius. Recall C = 2πr. ![](media/image2.png)
-* A structure problem: Write and simplify an expression for the area of a trapezoid given polynomial expressions for the base lengths in terms of height h. ![](media/image3.png)
-* A volume problem: Write and simplify an expression for the volume of a right rectangular prism given polynomial dimensions. ![](media/image4.png) ![](media/image5.png)
-* A revenue problem: A company expects to sell [45 - 5x] products at a price of [$1.25x] per product. Write and simplify a revenue expression, then determine the price and revenue when x = 4.5. ![](media/image6.png)
-* An enclosure area problem: Write and simplify an expression for the area enclosed by a fence with polynomial side lengths. ![](media/image7.png)
+* A landmarks problem: A circle of 50 flags with a 12-foot sidewalk around it. The outside circumference is 1.10 times the inside circumference. Write and solve an equation for the radius. Recall C = 2πr. ![Worksheet figure 2](/curriculum/module-11-lesson-2/image2.png)
+* A structure problem: Write and simplify an expression for the area of a trapezoid given polynomial expressions for the base lengths in terms of height h. ![Worksheet figure 3](/curriculum/module-11-lesson-2/image3.png)
+* A volume problem: Write and simplify an expression for the volume of a right rectangular prism given polynomial dimensions. ![Worksheet figure 4](/curriculum/module-11-lesson-2/image4.png) ![Worksheet figure 5](/curriculum/module-11-lesson-2/image5.png)
+* A revenue problem: A company expects to sell [45 - 5x] products at a price of [$1.25x] per product. Write and simplify a revenue expression, then determine the price and revenue when x = 4.5. ![Worksheet figure 6](/curriculum/module-11-lesson-2/image6.png)
+* An enclosure area problem: Write and simplify an expression for the area enclosed by a fence with polynomial side lengths. ![Worksheet figure 7](/curriculum/module-11-lesson-2/image7.png)
 * Finding a value p such that [3x^p(4x^{2p} + 3 + 2x^{3p} - 2) = 12x^{12} + 6x^{10}]
 * Simplifying an expression with negative exponents: [4x^{-3}y^2(2x^5y^{-4} + 6x^{-7}y^6 - 4x^0y^{-2})]
 * Analyzing whether a value of x exists that makes [(x + 2)^2 = x^2 + 2^2] true
 
 ## Review Notes
 
-* Images referenced: ![](media/image1.png) — Farmers market vegetable problem context. ![](media/image2.png) — Circle of flags and sidewalk diagram. ![](media/image3.png) — Trapezoid with polynomial base lengths. ![](media/image4.png) and ![](media/image5.png) — Student work showing simplification errors. ![](media/image6.png) — Revenue problem context. ![](media/image7.png) — Enclosure fence diagram with polynomial side lengths. Teachers should consult the original worksheet for exact diagrams and values.
+* Images referenced: ![Worksheet figure 1](/curriculum/module-11-lesson-2/image1.png) — Farmers market vegetable problem context. ![Worksheet figure 2](/curriculum/module-11-lesson-2/image2.png) — Circle of flags and sidewalk diagram. ![Worksheet figure 3](/curriculum/module-11-lesson-2/image3.png) — Trapezoid with polynomial base lengths. ![Worksheet figure 4](/curriculum/module-11-lesson-2/image4.png) and ![Worksheet figure 5](/curriculum/module-11-lesson-2/image5.png) — Student work showing simplification errors. ![Worksheet figure 6](/curriculum/module-11-lesson-2/image6.png) — Revenue problem context. ![Worksheet figure 7](/curriculum/module-11-lesson-2/image7.png) — Enclosure fence diagram with polynomial side lengths. Teachers should consult the original worksheet for exact diagrams and values.
 * The worksheet contains 64 practice problems covering multiplication of monomials by polynomials, equation solving, and real-world applications.
 * When multiplying monomials by polynomials, each term gets multiplied and like terms are combined.
 * Negative exponents require care: subtract exponents when dividing like bases.

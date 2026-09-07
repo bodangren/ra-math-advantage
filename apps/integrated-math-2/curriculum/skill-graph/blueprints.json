@@ -2614,7 +2614,7 @@
       "nodeId": "math.im2.skill.7.4.compute-combinations-and-interpret-ncr-in-context",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.s-cp-c-9"
+        "math.standard.ccss.s-cp-b-9"
       ],
       "rendererKey": "comprehension-quiz",
       "rendererModeMap": {
@@ -2642,7 +2642,7 @@
       "nodeId": "math.im2.skill.7.4.use-combinations-and-permutations-to-solve-real-world-select",
       "sourceNodeIds": [],
       "alignmentNodeIds": [
-        "math.standard.ccss.s-cp-c-9"
+        "math.standard.ccss.s-cp-b-9"
       ],
       "rendererKey": "step-by-step-solver",
       "rendererModeMap": {

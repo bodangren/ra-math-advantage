@@ -157,13 +157,10 @@ Recall: [tan^2 theta = sin^2 theta / cos^2 theta]
 
 [d = 1 + sin^2 theta / cos^2 theta]
 
-### Step 3: Write as Single Fraction
+### Step 3: Apply the Pythagorean Identity
 
-[d = (cos^2 theta + sin^2 theta) / cos^2 theta + sin^2 theta / cos^2 theta - sin^2 theta]
-
-This simplifies to [d = 1 + sin^2 theta (1/cos^2 theta - 1)]
-
-For specific values, this reduces further.
+[d = 1 + tan^2 theta = sec^2 theta].
+The domain requires [cos theta != 0]. At [theta = pi/4], the original expression and [sec^2 theta] both equal 2.
 
 ## Mixed Exercises
 
@@ -178,6 +175,6 @@ The mixed exercises provide practice with:
 
 ## Review Notes
 
-* Image reference: ![](media/image1.png) — Problem 47 shows graphs for Jordan and Ebony's simplification comparison. Consult original worksheet for exact graph values.
+* Image reference: ![Worksheet figure 1](/curriculum/module-13-lesson-1/image1.png) — Problem 47 shows graphs for Jordan and Ebony's simplification comparison. Consult original worksheet for exact graph values.
 * The worksheet contains 48 practice problems across worked examples and mixed exercises.
 * Problems 42-48 involve proof and reasoning skills.

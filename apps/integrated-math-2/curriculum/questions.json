@@ -1,0 +1,578 @@
+{
+  "module-1-lesson-1": {
+    "kind": "numeric",
+    "prompt": "P lies on the perpendicular bisector of segment AB. PA = 3x + 2 and PB = 5x - 6. Find x.",
+    "answer": 4.0,
+    "explanation": "A point on the perpendicular bisector is equidistant from the endpoints. Thus 3x + 2 = 5x - 6, so x = 4."
+  },
+  "module-1-lesson-2": {
+    "kind": "numeric",
+    "prompt": "P lies inside angle ABC on its angle bisector. The perpendicular distances from P to BA and BC are 2x + 1 and 5x - 8. Find x.",
+    "answer": 3.0,
+    "explanation": "A point on an angle bisector has equal perpendicular distances to the sides. Solve 2x + 1 = 5x - 8 to get x = 3."
+  },
+  "module-1-lesson-3": {
+    "kind": "numeric",
+    "prompt": "G is the centroid of triangle ABC. M is the midpoint of BC. If median AM has length 18 cm, find AG in centimeters.",
+    "answer": 12.0,
+    "explanation": "The centroid divides each median in a 2:1 ratio from the vertex. AG = (2/3)(18) = 12 cm."
+  },
+  "module-1-lesson-4": {
+    "kind": "numeric",
+    "prompt": "A triangle has angles A = 50 degrees, B = 60 degrees, and C = 70 degrees. Side AB is opposite C and has length 12 cm. What is the length of the longest side, in centimeters?",
+    "answer": 12.0,
+    "explanation": "The longest side is opposite the largest angle. C is the largest angle, so AB is the longest side and has length 12 cm."
+  },
+  "module-1-lesson-5": {
+    "kind": "numeric",
+    "prompt": "An indirect proof assumes that integer n is even, so n = 2k for an integer k. It follows that n squared = c times k squared. Find c. This would contradict a given statement that n squared is odd.",
+    "answer": 4.0,
+    "explanation": "Substitute n = 2k. Then n squared = (2k) squared = 4k squared, which is even. This contradicts the given odd square."
+  },
+  "module-1-lesson-6": {
+    "kind": "numeric",
+    "prompt": "Two sides of a triangle have lengths 5 cm and 8 cm. The third side has an integer length. Find its greatest possible length in centimeters.",
+    "answer": 12.0,
+    "explanation": "The triangle inequality gives 3 < x < 13. The greatest integer in this interval is 12."
+  },
+  "module-1-lesson-7": {
+    "kind": "numeric",
+    "prompt": "Two triangles have corresponding side lengths 5 cm and 7 cm. Their included angles are 40 degrees and 70 degrees. Which included angle belongs to the triangle with the longer third side? Enter the angle in degrees.",
+    "answer": 70,
+    "explanation": "By the Hinge Theorem, equal corresponding side pairs give a longer third side when their included angle is larger. The required included angle is 70 degrees."
+  },
+  "module-2-lesson-1": {
+    "kind": "numeric",
+    "prompt": "Find the sum of the interior angles of a convex hexagon, in degrees.",
+    "answer": 720.0,
+    "explanation": "For n sides, the interior-angle sum is (n - 2) times 180 degrees. For n = 6, the sum is 720 degrees."
+  },
+  "module-2-lesson-2": {
+    "kind": "numeric",
+    "prompt": "ABCD is a parallelogram. Angle A is 68 degrees. Find angle B in degrees.",
+    "answer": 112.0,
+    "explanation": "Consecutive angles of a parallelogram are supplementary. B = 180 - 68 = 112 degrees."
+  },
+  "module-2-lesson-3": {
+    "kind": "numeric",
+    "prompt": "The diagonals of quadrilateral ABCD meet at E. AE = CE = 6, BE = 3x - 1, and DE = 11. Find x so the diagonals bisect each other and ABCD is a parallelogram.",
+    "answer": 4.0,
+    "explanation": "One diagonal is already bisected because AE = CE. Set BE = DE: 3x - 1 = 11. Then x = 4."
+  },
+  "module-2-lesson-4": {
+    "kind": "numeric",
+    "prompt": "A rectangle has diagonal length 13 cm and width 5 cm. Find its length in centimeters.",
+    "answer": 12.0,
+    "explanation": "A diagonal forms a right triangle. The length is the positive square root of 13 squared minus 5 squared, which is 12 cm."
+  },
+  "module-2-lesson-5": {
+    "kind": "numeric",
+    "prompt": "A rhombus has diagonals of lengths 6 cm and 8 cm. Find its side length in centimeters.",
+    "answer": 5.0,
+    "explanation": "The diagonals bisect each other at right angles. Half-diagonals 3 and 4 are legs of a right triangle, so a side is 5 cm."
+  },
+  "module-2-lesson-6": {
+    "kind": "numeric",
+    "prompt": "A trapezoid has parallel bases of lengths 9 cm and 15 cm. Find the length of its midsegment in centimeters.",
+    "answer": 12.0,
+    "explanation": "The midsegment length is the mean of the base lengths: (9 + 15)/2 = 12 cm."
+  },
+  "module-3-lesson-1": {
+    "kind": "numeric",
+    "prompt": "A dilation centered at the origin has scale factor 3. Point P = (2, -1) maps to P prime. Find the x-coordinate of P prime.",
+    "answer": 6.0,
+    "explanation": "Multiply both coordinates by 3. P prime = (6, -3), so its x-coordinate is 6."
+  },
+  "module-3-lesson-2": {
+    "kind": "numeric",
+    "prompt": "Two similar polygons have corresponding side lengths 4 cm and 10 cm. A second side of the smaller polygon is 6 cm. Find the corresponding side of the larger polygon in centimeters.",
+    "answer": 15.0,
+    "explanation": "The scale factor from small to large is 10/4 = 2.5. The required side is 6 times 2.5 = 15 cm."
+  },
+  "module-3-lesson-3": {
+    "kind": "numeric",
+    "prompt": "Triangle ABC has A = 40 degrees and B = 65 degrees. Triangle DEF has D = 40 degrees and E = 65 degrees. They are similar by AA. Find angle F in degrees.",
+    "answer": 75.0,
+    "explanation": "The third angle is 180 - 40 - 65 = 75 degrees."
+  },
+  "module-3-lesson-4": {
+    "kind": "numeric",
+    "prompt": "Triangle ABC has sides AB = 3, BC = 4, and CA = 5. Triangle DEF has DE = 6, EF = 8, and FD = x. Find x so the triangles are similar by SSS in the stated order.",
+    "answer": 10.0,
+    "explanation": "The corresponding ratios DE/AB and EF/BC both equal 2. Thus FD/CA must equal 2, so x = 10."
+  },
+  "module-3-lesson-5": {
+    "kind": "numeric",
+    "prompt": "In triangle ABC, D lies on AB and E lies on AC. DE is parallel to BC. AD = 3, DB = 2, and AE = 6. Find EC.",
+    "answer": 4.0,
+    "explanation": "Parallel lines divide the sides proportionally. AD/DB = AE/EC, so 3/2 = 6/EC. Thus EC = 4."
+  },
+  "module-3-lesson-6": {
+    "kind": "numeric",
+    "prompt": "Two similar triangles have corresponding side lengths 6 cm and 9 cm. The altitude to the 6 cm side is 4 cm. Find the altitude to the 9 cm side, in centimeters.",
+    "answer": 6.0,
+    "explanation": "Corresponding altitudes have the same ratio as corresponding sides. The altitude is 4 times 9/6 = 6 cm."
+  },
+  "module-4-lesson-1": {
+    "kind": "numeric",
+    "prompt": "Find the positive geometric mean of 4 and 9.",
+    "answer": 6.0,
+    "explanation": "The positive geometric mean is the square root of 4 times 9, which is 6."
+  },
+  "module-4-lesson-2": {
+    "kind": "numeric",
+    "prompt": "A right triangle has legs 9 cm and 12 cm. Find the hypotenuse length in centimeters.",
+    "answer": 15.0,
+    "explanation": "The hypotenuse is the square root of 9 squared plus 12 squared, or the square root of 225. Its length is 15 cm."
+  },
+  "module-4-lesson-3": {
+    "kind": "numeric",
+    "prompt": "Find the distance from (0, 0, 0) to (2, 3, 6).",
+    "answer": 7.0,
+    "explanation": "The distance is the square root of 2 squared plus 3 squared plus 6 squared. This is the square root of 49, or 7."
+  },
+  "module-4-lesson-4": {
+    "kind": "numeric",
+    "prompt": "A 30-60-90 triangle has hypotenuse 14 cm. Find the length of the side opposite 30 degrees, in centimeters.",
+    "answer": 7.0,
+    "explanation": "In a 30-60-90 triangle, the shorter leg is half the hypotenuse. Its length is 7 cm."
+  },
+  "module-4-lesson-5": {
+    "kind": "numeric",
+    "prompt": "In a right triangle, angle theta has opposite side 3 cm and hypotenuse 5 cm. Find sin(theta). Enter a fraction or decimal.",
+    "answer": 0.6,
+    "explanation": "Sine is opposite divided by hypotenuse, so sin(theta) = 3/5 = 0.6."
+  },
+  "module-4-lesson-6": {
+    "kind": "numeric",
+    "prompt": "A 10 m ladder makes an angle of 30 degrees with level ground. Find the vertical height of its top in meters.",
+    "answer": 5.0,
+    "explanation": "The height is 10 sin(30 degrees) = 10 times 1/2 = 5 m."
+  },
+  "module-4-lesson-7": {
+    "kind": "numeric",
+    "prompt": "In triangle ABC, angle A is 30 degrees, angle B is 90 degrees, and side a opposite A is 5 cm. Find side b opposite B, in centimeters.",
+    "answer": 10.0,
+    "explanation": "By the Law of Sines, b/sin(90 degrees) = 5/sin(30 degrees). Thus b = 10 cm."
+  },
+  "module-4-lesson-8": {
+    "kind": "numeric",
+    "prompt": "A triangle has sides a = 5 and b = 7 with included angle C = 60 degrees. Find c squared, where c is opposite C.",
+    "answer": 39.0,
+    "explanation": "By the Law of Cosines, c squared = 25 + 49 - 2(5)(7)cos(60 degrees) = 74 - 35 = 39."
+  },
+  "module-5-lesson-1": {
+    "kind": "numeric",
+    "prompt": "A circle has radius 7 cm. Its circumference is k times pi centimeters. Find k.",
+    "answer": 14.0,
+    "explanation": "Circumference is 2 times pi times radius. With radius 7, the circumference is 14 pi cm."
+  },
+  "module-5-lesson-2": {
+    "kind": "numeric",
+    "prompt": "A central angle intercepts a minor arc that measures 80 degrees. Find the central angle in degrees.",
+    "answer": 80.0,
+    "explanation": "A central angle has the same degree measure as its intercepted arc, so the angle is 80 degrees."
+  },
+  "module-5-lesson-3": {
+    "kind": "numeric",
+    "prompt": "A circle has radius 5 cm. A chord is 3 cm from the center. Find the chord length in centimeters.",
+    "answer": 8.0,
+    "explanation": "The perpendicular from the center bisects the chord. Half the chord is the square root of 25 - 9, or 4 cm. The whole chord is 8 cm."
+  },
+  "module-5-lesson-4": {
+    "kind": "numeric",
+    "prompt": "An inscribed angle intercepts an arc of 110 degrees. Find the angle measure in degrees.",
+    "answer": 55.0,
+    "explanation": "An inscribed angle measures half its intercepted arc. The angle is 110/2 = 55 degrees."
+  },
+  "module-5-lesson-5": {
+    "kind": "numeric",
+    "prompt": "Two tangent segments from the same external point have lengths 2x + 3 and 5x - 9. Find x.",
+    "answer": 4.0,
+    "explanation": "Tangent segments from the same external point are equal. Solve 2x + 3 = 5x - 9 to get x = 4."
+  },
+  "module-5-lesson-6": {
+    "kind": "numeric",
+    "prompt": "Two secants meet outside a circle. Their intercepted arcs measure 140 degrees and 60 degrees. Find the external angle in degrees.",
+    "answer": 40.0,
+    "explanation": "An external secant angle is half the difference of its intercepted arcs. The angle is (140 - 60)/2 = 40 degrees."
+  },
+  "module-5-lesson-7": {
+    "kind": "numeric",
+    "prompt": "The circle equation is (x - 2) squared + (y + 3) squared = 25. Find its radius.",
+    "answer": 5.0,
+    "explanation": "The right-hand side is the radius squared. The radius is the positive square root of 25, or 5."
+  },
+  "module-5-lesson-8": {
+    "kind": "numeric",
+    "prompt": "The parabola equation is x squared = 8y. Its vertex is at the origin. Find the y-coordinate of its focus.",
+    "answer": 2.0,
+    "explanation": "Compare x squared = 8y with x squared = 4py. Then 4p = 8, so p = 2. The focus is (0, 2)."
+  },
+  "module-6-lesson-1": {
+    "kind": "numeric",
+    "prompt": "A trapezoid has parallel bases 6 cm and 10 cm and perpendicular height 4 cm. Find its area in square centimeters.",
+    "answer": 32.0,
+    "explanation": "Area is half the sum of the bases times the height: (6 + 10)(4)/2 = 32 square centimeters."
+  },
+  "module-6-lesson-2": {
+    "kind": "numeric",
+    "prompt": "A regular polygon has perimeter 24 cm and apothem 3 cm. Find its area in square centimeters.",
+    "answer": 36.0,
+    "explanation": "The area is half the apothem times the perimeter: (3)(24)/2 = 36 square centimeters."
+  },
+  "module-6-lesson-3": {
+    "kind": "numeric",
+    "prompt": "A sector has central angle 90 degrees in a circle of radius 6 cm. Its area is k times pi square centimeters. Find k.",
+    "answer": 9.0,
+    "explanation": "The sector is one quarter of the circle. Its area is (90/360) times pi times 36, or 9 pi square centimeters."
+  },
+  "module-6-lesson-4": {
+    "kind": "numeric",
+    "prompt": "A closed rectangular prism has dimensions 2 cm by 3 cm by 4 cm. Find its surface area in square centimeters.",
+    "answer": 52.0,
+    "explanation": "Surface area is 2(lw + lh + wh) = 2(6 + 8 + 12) = 52 square centimeters."
+  },
+  "module-6-lesson-5": {
+    "kind": "numeric",
+    "prompt": "A rectangle of width 3 cm and height 5 cm rotates about the line containing one of its height sides. The result is a cylinder. Find its radius in centimeters.",
+    "answer": 3.0,
+    "explanation": "The width extends 3 cm from the rotation axis. It becomes the cylinder radius."
+  },
+  "module-6-lesson-6": {
+    "kind": "numeric",
+    "prompt": "A pyramid has base area 30 square centimeters and perpendicular height 6 cm. Find its volume in cubic centimeters.",
+    "answer": 60.0,
+    "explanation": "A pyramid has volume Bh/3. The volume is (30)(6)/3 = 60 cubic centimeters."
+  },
+  "module-6-lesson-7": {
+    "kind": "numeric",
+    "prompt": "A cone has radius 3 cm and height 4 cm. Its volume is k times pi cubic centimeters. Find k.",
+    "answer": 12.0,
+    "explanation": "Cone volume is pi times radius squared times height divided by 3. This gives pi times 9 times 4 divided by 3 = 12 pi."
+  },
+  "module-6-lesson-8": {
+    "kind": "numeric",
+    "prompt": "Two similar solids have corresponding length ratio small:large = 2:3. The smaller volume is 16 cubic centimeters. Find the larger volume in cubic centimeters.",
+    "answer": 54.0,
+    "explanation": "Volumes scale by the cube of the length factor. The larger volume is 16 times (3/2) cubed = 54 cubic centimeters."
+  },
+  "module-6-lesson-9": {
+    "kind": "numeric",
+    "prompt": "An object has mass 120 g and volume 15 cubic centimeters. Find its density in grams per cubic centimeter.",
+    "answer": 8.0,
+    "explanation": "Density is mass divided by volume. The density is 120/15 = 8 grams per cubic centimeter."
+  },
+  "module-7-lesson-1": {
+    "kind": "numeric",
+    "prompt": "A fair coin is tossed and a six-sided die is rolled. How many outcomes are in the sample space?",
+    "answer": 12.0,
+    "explanation": "There are 2 coin outcomes and 6 die outcomes. The product gives 12 outcomes."
+  },
+  "module-7-lesson-2": {
+    "kind": "numeric",
+    "prompt": "A code consists of one letter chosen from A, B, and C followed by one digit chosen from 0, 1, 2, and 3. How many codes are possible?",
+    "answer": 12.0,
+    "explanation": "There are 3 choices for the letter and 4 for the digit. The product is 12 codes."
+  },
+  "module-7-lesson-3": {
+    "kind": "numeric",
+    "prompt": "A point is chosen uniformly on a line segment of length 10 cm. What is the probability it lies in a specified subsegment of length 3 cm?",
+    "answer": 0.3,
+    "explanation": "For a uniform choice along a segment, probability is favorable length divided by total length. The probability is 3/10."
+  },
+  "module-7-lesson-4": {
+    "kind": "numeric",
+    "prompt": "A committee of 2 is selected from 5 students. Order does not matter. How many committees are possible?",
+    "answer": 10.0,
+    "explanation": "Use combinations: 5 choose 2 = (5 times 4)/(2 times 1) = 10."
+  },
+  "module-7-lesson-5": {
+    "kind": "numeric",
+    "prompt": "A bag contains 3 red balls and 2 blue balls. Two balls are drawn without replacement. Find the probability both are red.",
+    "answer": 0.3,
+    "explanation": "The first red probability is 3/5. After a red draw, the second red probability is 2/4. Their product is 3/10."
+  },
+  "module-7-lesson-6": {
+    "kind": "numeric",
+    "prompt": "For events A and B, P(A) = 0.4, P(B) = 0.3, and P(A and B) = 0.1. Find P(A or B).",
+    "answer": 0.6,
+    "explanation": "The addition rule gives P(A or B) = 0.4 + 0.3 - 0.1 = 0.6."
+  },
+  "module-7-lesson-7": {
+    "kind": "numeric",
+    "prompt": "In a group of 20 students, 8 play soccer. Of those 8, 6 also play basketball. Find the probability that a student plays basketball given that the student plays soccer.",
+    "answer": 0.75,
+    "explanation": "The condition restricts the group to the 8 soccer players. Of these, 6 play basketball, so the probability is 6/8 = 3/4."
+  },
+  "module-7-lesson-8": {
+    "kind": "numeric",
+    "prompt": "A two-way table records 12 bus riders and 8 walkers in grade 10, and 9 bus riders and 11 walkers in grade 11. How many students in the whole table ride the bus?",
+    "answer": 21.0,
+    "explanation": "Add the bus-rider counts from both grades: 12 + 9 = 21."
+  },
+  "module-8-lesson-1": {
+    "kind": "numeric",
+    "prompt": "A relation contains (1, 3), (2, 5), and (3, 7). It defines a function f. Find f(2).",
+    "answer": 5.0,
+    "explanation": "Each input occurs once. The ordered pair with input 2 is (2, 5), so f(2) = 5."
+  },
+  "module-8-lesson-2": {
+    "kind": "numeric",
+    "prompt": "Find the x-intercept of y = 2x - 6. Enter its x-coordinate.",
+    "answer": 3.0,
+    "explanation": "At the x-intercept, y = 0. Solve 0 = 2x - 6 to get x = 3."
+  },
+  "module-8-lesson-3": {
+    "kind": "numeric",
+    "prompt": "The function f(x) = (x - 2) squared + 3 has a global minimum. Find its minimum value.",
+    "answer": 3.0,
+    "explanation": "A square is nonnegative. It is zero at x = 2, so the minimum function value is 3."
+  },
+  "module-8-lesson-4": {
+    "kind": "numeric",
+    "prompt": "Compare f(x) = 2x + 1 and g(x) = x squared at x = 3. Find g(3) - f(3).",
+    "answer": 2.0,
+    "explanation": "At x = 3, f(3) = 7 and g(3) = 9. The difference is 9 - 7 = 2."
+  },
+  "module-8-lesson-5": {
+    "kind": "numeric",
+    "prompt": "The line y = -2x + 4 is the boundary of y <= -2x + 4. Find the y-coordinate of the boundary point with x = 1.",
+    "answer": 2.0,
+    "explanation": "Substitute x = 1 into the boundary equation: y = -2 + 4 = 2. The boundary is included because the inequality uses <=."
+  },
+  "module-8-lesson-6": {
+    "kind": "numeric",
+    "prompt": "The greatest-integer function floor(x) gives the greatest integer less than or equal to x. Find floor(-1.2).",
+    "answer": -2.0,
+    "explanation": "-2 is the greatest integer that does not exceed -1.2. The value is -2, not -1."
+  },
+  "module-8-lesson-7": {
+    "kind": "numeric",
+    "prompt": "Let f(x) = x squared and g(x) = 2f(x - 1) + 3. Find g(3).",
+    "answer": 11.0,
+    "explanation": "Evaluate inside first: f(3 - 1) = f(2) = 4. Then g(3) = 2(4) + 3 = 11."
+  },
+  "module-9-lesson-1": {
+    "kind": "numeric",
+    "prompt": "Solve 3(x - 2) + 4 = 16. Enter x.",
+    "answer": 6.0,
+    "explanation": "Expand to 3x - 2 = 16. Add 2 and divide by 3 to get x = 6."
+  },
+  "module-9-lesson-2": {
+    "kind": "numeric",
+    "prompt": "Solve absolute value of (2x - 3) = 7. Enter the larger solution.",
+    "answer": 5.0,
+    "explanation": "The two cases are 2x - 3 = 7 and 2x - 3 = -7. They give x = 5 and x = -2. The larger solution is 5."
+  },
+  "module-9-lesson-3": {
+    "kind": "numeric",
+    "prompt": "A line passes through (1, 4) and (3, 10). Find its slope.",
+    "answer": 3.0,
+    "explanation": "Slope is change in y divided by change in x: (10 - 4)/(3 - 1) = 6/2 = 3."
+  },
+  "module-9-lesson-4": {
+    "kind": "numeric",
+    "prompt": "The lines y = x + 1 and y = -x + 5 intersect. Find the x-coordinate of the intersection.",
+    "answer": 2.0,
+    "explanation": "At the intersection the y-values agree. Solve x + 1 = -x + 5 to get x = 2."
+  },
+  "module-9-lesson-5": {
+    "kind": "numeric",
+    "prompt": "Solve the system 2x + y = 11 and x - y = 1. Enter x.",
+    "answer": 4.0,
+    "explanation": "Add the equations to eliminate y: 3x = 12. Thus x = 4, and y = 3."
+  },
+  "module-9-lesson-6": {
+    "kind": "numeric",
+    "prompt": "For the system y >= 2x and y <= 6, set x = 2. Find the least permitted value of y.",
+    "answer": 4.0,
+    "explanation": "With x = 2, the first inequality gives y >= 4. Together they give 4 <= y <= 6, so the least value is 4."
+  },
+  "module-9-lesson-7": {
+    "kind": "numeric",
+    "prompt": "Maximize P = 3x + 2y subject to x >= 0, y >= 0, and x + y <= 4. Enter the maximum value of P.",
+    "answer": 12.0,
+    "explanation": "The feasible vertices are (0, 0), (4, 0), and (0, 4). Their P-values are 0, 12, and 8. The maximum is 12."
+  },
+  "module-9-lesson-8": {
+    "kind": "numeric",
+    "prompt": "Solve x + y + z = 6, x - y = 0, and z = 2. Enter x.",
+    "answer": 2.0,
+    "explanation": "Substitute z = 2 to get x + y = 4. Since x = y, 2x = 4 and x = 2."
+  },
+  "module-9-lesson-9": {
+    "kind": "numeric",
+    "prompt": "The graphs y = absolute value of (x - 2) and y = 3 intersect twice. Find the smaller intersection x-coordinate.",
+    "answer": -1.0,
+    "explanation": "Solve x - 2 = 3 or x - 2 = -3. The solutions are 5 and -1. The smaller x-coordinate is -1."
+  },
+  "module-10-lesson-1": {
+    "kind": "numeric",
+    "prompt": "Simplify x cubed times x to the fourth power as x to the power n. Find n.",
+    "answer": 7.0,
+    "explanation": "When multiplying powers with the same base, add exponents. n = 3 + 4 = 7."
+  },
+  "module-10-lesson-2": {
+    "kind": "numeric",
+    "prompt": "For nonzero x, simplify x to the eighth power divided by x cubed as x to the power n. Find n.",
+    "answer": 5.0,
+    "explanation": "When dividing powers with the same nonzero base, subtract exponents. n = 8 - 3 = 5."
+  },
+  "module-10-lesson-3": {
+    "kind": "numeric",
+    "prompt": "Evaluate 2 to the power -3.",
+    "answer": 0.125,
+    "explanation": "A negative exponent gives the reciprocal. 2 to the power -3 is 1/(2 cubed) = 1/8 = 0.125."
+  },
+  "module-10-lesson-4": {
+    "kind": "numeric",
+    "prompt": "Evaluate 27 to the power 2/3.",
+    "answer": 9.0,
+    "explanation": "Take the cube root first, then square. The cube root of 27 is 3, and 3 squared is 9."
+  },
+  "module-10-lesson-5": {
+    "kind": "numeric",
+    "prompt": "Write the square root of 72 as a times the square root of 2, where a is positive. Find a.",
+    "answer": 6.0,
+    "explanation": "72 = 36 times 2. The square root of 72 is 6 times the square root of 2, so a = 6."
+  },
+  "module-10-lesson-6": {
+    "kind": "numeric",
+    "prompt": "Simplify 3 times the square root of 5 plus 2 times the square root of 5 as a times the square root of 5. Find a.",
+    "answer": 5.0,
+    "explanation": "The radicals are like terms. Add the coefficients 3 + 2 = 5."
+  },
+  "module-10-lesson-7": {
+    "kind": "numeric",
+    "prompt": "Solve 3 to the power (x + 1) = 81. Enter x.",
+    "answer": 3.0,
+    "explanation": "81 is 3 to the fourth power. Equal powers of base 3 have equal exponents, so x + 1 = 4 and x = 3."
+  },
+  "module-11-lesson-1": {
+    "kind": "numeric",
+    "prompt": "Add (3x squared + 2x - 1) and (x squared - 5x + 4). Find the coefficient of x in the result.",
+    "answer": -3.0,
+    "explanation": "Combine the linear terms 2x - 5x = -3x. The full sum is 4x squared - 3x + 3."
+  },
+  "module-11-lesson-2": {
+    "kind": "numeric",
+    "prompt": "Expand 3x(2x squared - x + 4). Find the coefficient of x squared.",
+    "answer": -3.0,
+    "explanation": "Distribute 3x to each term. The product is 6x cubed - 3x squared + 12x. The requested coefficient is -3."
+  },
+  "module-11-lesson-3": {
+    "kind": "numeric",
+    "prompt": "Expand (x + 2)(x + 3). Find the coefficient of x.",
+    "answer": 5.0,
+    "explanation": "The product is x squared + 3x + 2x + 6 = x squared + 5x + 6. The coefficient is 5."
+  },
+  "module-11-lesson-4": {
+    "kind": "numeric",
+    "prompt": "Expand (x - 4) squared. Find the coefficient of x.",
+    "answer": -8.0,
+    "explanation": "Use (a - b) squared = a squared - 2ab + b squared. The result is x squared - 8x + 16."
+  },
+  "module-11-lesson-5": {
+    "kind": "numeric",
+    "prompt": "Factor 6x squared + 9x as 3x(ax + b). Find a.",
+    "answer": 2.0,
+    "explanation": "Divide each term by the greatest common factor 3x. The factorization is 3x(2x + 3), so a = 2."
+  },
+  "module-11-lesson-6": {
+    "kind": "numeric",
+    "prompt": "Factor x squared + 7x + 12 as (x + a)(x + b), where 0 < a < b. Find a.",
+    "answer": 3.0,
+    "explanation": "The numbers 3 and 4 multiply to 12 and add to 7. The factorization is (x + 3)(x + 4), so a = 3."
+  },
+  "module-11-lesson-7": {
+    "kind": "numeric",
+    "prompt": "Factor x squared - 25 as (x - a)(x + a), where a is positive. Find a.",
+    "answer": 5.0,
+    "explanation": "This is a difference of squares: x squared - 5 squared = (x - 5)(x + 5). Thus a = 5."
+  },
+  "module-12-lesson-1": {
+    "kind": "numeric",
+    "prompt": "Find the x-coordinate of the vertex of y = x squared - 6x + 5.",
+    "answer": 3.0,
+    "explanation": "The vertex x-coordinate is -b/(2a). Here it is 6/2 = 3."
+  },
+  "module-12-lesson-2": {
+    "kind": "numeric",
+    "prompt": "The graph of y = x squared is shifted 4 units right and 2 units down. Find the y-coordinate of its new vertex.",
+    "answer": -2.0,
+    "explanation": "The new equation is y = (x - 4) squared - 2. Its vertex is (4, -2)."
+  },
+  "module-12-lesson-3": {
+    "kind": "numeric",
+    "prompt": "The graph y = x squared - 4 crosses the x-axis twice. Find the positive x-intercept.",
+    "answer": 2.0,
+    "explanation": "At the x-axis, y = 0. Solve x squared = 4 to get x = -2 or 2. The positive intercept is 2."
+  },
+  "module-12-lesson-4": {
+    "kind": "numeric",
+    "prompt": "Solve x squared - 5x + 6 = 0 by factoring. Enter the smaller solution.",
+    "answer": 2.0,
+    "explanation": "Factor to (x - 2)(x - 3) = 0. The roots are 2 and 3. The smaller solution is 2."
+  },
+  "module-12-lesson-5": {
+    "kind": "numeric",
+    "prompt": "Complete the square: x squared + 6x + c = (x + 3) squared. Find c.",
+    "answer": 9.0,
+    "explanation": "Half of 6 is 3. Its square is 9, so c = 9."
+  },
+  "module-12-lesson-6": {
+    "kind": "numeric",
+    "prompt": "For 2x squared - 3x - 2 = 0, calculate the discriminant b squared - 4ac.",
+    "answer": 25.0,
+    "explanation": "With a = 2, b = -3, and c = -2, the discriminant is 9 - 4(2)(-2) = 25."
+  },
+  "module-12-lesson-7": {
+    "kind": "numeric",
+    "prompt": "Solve y = x squared and y = x + 2 together. Find the larger intersection x-coordinate.",
+    "answer": 2.0,
+    "explanation": "Set x squared = x + 2. Factor x squared - x - 2 as (x - 2)(x + 1). The x-values are 2 and -1, so the larger is 2."
+  },
+  "module-12-lesson-8": {
+    "kind": "numeric",
+    "prompt": "A quadratic model y = ax squared + bx + c passes through (0, 1), (1, 4), and (2, 9). Find a.",
+    "answer": 1.0,
+    "explanation": "The first point gives c = 1. The others give a + b = 3 and 4a + 2b = 8. Subtract twice the first equation to get 2a = 2, so a = 1."
+  },
+  "module-12-lesson-9": {
+    "kind": "numeric",
+    "prompt": "Let f(x) = x + 1 and g(x) = x squared. Find the composition f(g(3)).",
+    "answer": 10.0,
+    "explanation": "First compute g(3) = 9. Then compute f(9) = 10."
+  },
+  "module-13-lesson-1": {
+    "kind": "numeric",
+    "prompt": "For an acute angle theta, sin(theta) = 3/5. Find cos(theta).",
+    "answer": 0.8,
+    "explanation": "Use sin squared theta + cos squared theta = 1. Cos squared theta = 16/25. The angle is acute, so cosine is positive: 4/5."
+  },
+  "module-13-lesson-2": {
+    "kind": "numeric",
+    "prompt": "For an angle where cos(theta) is nonzero, sin(theta)/cos(theta) = tan(theta). If sin(theta) = 3/5 and cos(theta) = 4/5, find tan(theta).",
+    "answer": 0.75,
+    "explanation": "Divide (3/5) by (4/5). The result is 3/4 = 0.75. This uses the quotient identity."
+  },
+  "module-13-lesson-3": {
+    "kind": "numeric",
+    "prompt": "Use a difference identity to evaluate cos(60 degrees - 30 degrees) squared.",
+    "answer": 0.75,
+    "explanation": "Cos(60 - 30) = cos60 cos30 + sin60 sin30 = square root of 3 divided by 2. Squaring gives 3/4."
+  },
+  "module-13-lesson-4": {
+    "kind": "numeric",
+    "prompt": "For an acute angle theta, sin(theta) = 3/5 and cos(theta) = 4/5. Find sin(2 theta).",
+    "answer": 0.96,
+    "explanation": "The double-angle identity gives sin(2 theta) = 2 sin(theta) cos(theta) = 2(3/5)(4/5) = 24/25."
+  },
+  "module-13-lesson-5": {
+    "kind": "numeric",
+    "prompt": "Solve sin(theta) = 1/2 for 0 <= theta < 360 degrees. Enter the larger solution in degrees.",
+    "answer": 150.0,
+    "explanation": "The reference angle is 30 degrees. Sine is positive in quadrants I and II, so theta is 30 or 150 degrees. The larger solution is 150."
+  }
+}

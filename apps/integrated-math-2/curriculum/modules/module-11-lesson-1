@@ -169,7 +169,7 @@ Practice covers all skills from the lesson. Problems include:
 
 * Classifying polynomials by degree and number of terms
 * Adding three or more polynomials with multiple variables
-* A rocket height problem: Two toy rockets are launched straight up. Rocket A height is [-16t^2 + 122t] and Rocket B height is [-16t^2 + 84t]. Write an equation to find the difference in height after t seconds, then predict the difference after 5 seconds. ![](media/image1.png)
+* A rocket height problem: Two toy rockets are launched straight up. Rocket A height is [-16t^2 + 122t] and Rocket B height is [-16t^2 + 84t]. Write an equation to find the difference in height after t seconds, then predict the difference after 5 seconds. ![Worksheet figure 1](/curriculum/module-11-lesson-1/image1.png)
 * A surface area problem: Two identical cylindrical drums with radius r and height h have surface area [S = 2πrh + 2πr^2]. Write a polynomial for the total surface area of both drums, then evaluate when h = 2 m and r = 0.5 m.
 * A box volume problem: A company ships products in cubic boxes of volume [x^3]. A new box is 3 inches longer in one dimension and 1 inch shorter in another, with volume [x^3 + 2x^2 - 3x]. Write expressions for the total volume of 4 of each kind of box and the difference in volume between the boxes.
 * Analyzing whether polynomials are closed under addition using a counterexample
@@ -182,7 +182,7 @@ Practice covers all skills from the lesson. Problems include:
 
 ## Review Notes
 
-* Images referenced: ![](media/image1.png) — Rocket diagram for the toy rocket problem. ![](media/image2.png) — Student work showing two incorrect approaches to polynomial subtraction. Teachers should consult the original worksheet for the exact diagrams and student examples.
+* Images referenced: ![Worksheet figure 1](/curriculum/module-11-lesson-1/image1.png) — Rocket diagram for the toy rocket problem. ![Worksheet figure 2](/curriculum/module-11-lesson-1/image2.png) — Student work showing two incorrect approaches to polynomial subtraction. Teachers should consult the original worksheet for the exact diagrams and student examples.
 * The worksheet contains 58 practice problems covering classification, standard form, polynomial operations, and real-world applications.
 * Key concept: Polynomials are closed under addition — the sum of any two polynomials is always a polynomial.
 * When subtracting polynomials, order matters: (a - b) ≠ (b - a) in general.

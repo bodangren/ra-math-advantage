@@ -168,7 +168,7 @@ x = -9 \text{ and } x = 7
 
 For [\frac{2}{3}\lvert x - 2 \rvert - 4 = 4]:
 [
-x = -2 \text{ and } x = 10
+x = -10 \text{ and } x = 14
 ]
 
 For [2\lvert x + 2 \rvert = 10]:
@@ -390,7 +390,7 @@ The mixed exercises provide practice with all skills from the lesson: solving ab
 
 ## Review Notes
 
-* ![](media/image1.png) Images referenced in the worksheet (graph for the construct-arguments problem) could not be fully described without visual reference. Teachers should consult the original worksheet for exact values and diagrams.
+* ![Worksheet figure 1](/curriculum/module-9-lesson-9/image1.png) Images referenced in the worksheet (graph for the construct-arguments problem) could not be fully described without visual reference. Teachers should consult the original worksheet for exact values and diagrams.
 * All absolute value expressions use proper LaTeX delimiters with `\lvert` and `\rvert` for vertical bars to avoid ambiguity with division operators.
 
 (End of file - total 397 lines)

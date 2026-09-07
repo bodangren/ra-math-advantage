@@ -191,4 +191,4 @@ Images in the source:
 * Problem 31: Rectangle with area 352.
 * Problem 37: Four expressions in boxes, one of which does not belong.
 
-![](media/image1.png) ![](media/image2.png) ![](media/image3.png)
+![Worksheet figure 1](/curriculum/module-12-lesson-5/image1.png) ![Worksheet figure 2](/curriculum/module-12-lesson-5/image2.png) ![Worksheet figure 3](/curriculum/module-12-lesson-5/image3.png)

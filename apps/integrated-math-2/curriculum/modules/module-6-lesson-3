@@ -297,10 +297,10 @@ One sector has an area of 167 square inches and arc measure of 110 degrees.
 A_circle = 167 * (360/110)
 ]
 [
-A_circle = 167 * 3.27
+A_circle = 167 * (36/11)
 ]
 [
-A_circle = 546.1 in^2
+A_circle = 546.5 in^2
 ]
 
 One sector has an area of 98 square meters and arc measure of 40 degrees.
@@ -319,10 +319,10 @@ One sector has an area of 412 square inches and arc measure of 82 degrees.
 A_circle = 412 * (360/82)
 ]
 [
-A_circle = 412 * 4.39
+A_circle = 412 * (180/41)
 ]
 [
-A_circle = 1808.7 in^2
+A_circle = 1808.8 in^2
 ]
 
 ## Mixed Exercises
@@ -345,6 +345,22 @@ A_circle = 1808.7 in^2
 
 ## Review Notes
 
-* ![](media/) — Image references for diagrams in the original DOCX could not be fully captured. Teachers should consult the original worksheet for figures.
+* ![Worksheet figure 1](/curriculum/module-6-lesson-3/image1.png)
+![Worksheet figure 2](/curriculum/module-6-lesson-3/image10.png)
+![Worksheet figure 3](/curriculum/module-6-lesson-3/image11.png)
+![Worksheet figure 4](/curriculum/module-6-lesson-3/image12.png)
+![Worksheet figure 5](/curriculum/module-6-lesson-3/image13.png)
+![Worksheet figure 6](/curriculum/module-6-lesson-3/image14.png)
+![Worksheet figure 7](/curriculum/module-6-lesson-3/image15.png)
+![Worksheet figure 8](/curriculum/module-6-lesson-3/image16.png)
+![Worksheet figure 9](/curriculum/module-6-lesson-3/image17.png)
+![Worksheet figure 10](/curriculum/module-6-lesson-3/image2.png)
+![Worksheet figure 11](/curriculum/module-6-lesson-3/image3.png)
+![Worksheet figure 12](/curriculum/module-6-lesson-3/image4.png)
+![Worksheet figure 13](/curriculum/module-6-lesson-3/image5.png)
+![Worksheet figure 14](/curriculum/module-6-lesson-3/image6.png)
+![Worksheet figure 15](/curriculum/module-6-lesson-3/image7.png)
+![Worksheet figure 16](/curriculum/module-6-lesson-3/image8.png)
+![Worksheet figure 17](/curriculum/module-6-lesson-3/image9.png) — Image references for diagrams in the original DOCX could not be fully captured. Teachers should consult the original worksheet for figures.
 * Remember: sector area is a fraction of the whole circle's area, determined by the ratio of the central angle to 360 degrees.
 * When finding the radius or diameter from a given area, divide by pi first, then take the square root.

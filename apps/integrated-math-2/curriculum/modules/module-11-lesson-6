@@ -92,7 +92,7 @@ A cosmetics case has width that is 2 cm greater than the length x. The area is [
 
 Find numbers that multiply to 168 and add to 26: 12 and 14.
 [x^2 + 26x + 168 = (x + 12)(x + 14)]
-The length is x + 12 and the width is x + 14 (or vice versa). ![](media/image1.png)
+The length is x + 12 and the width is x + 14 (or vice versa). ![Worksheet figure 1](/curriculum/module-11-lesson-6/image1.png)
 
 ### Step 2: Carpentry Crate Problem
 
@@ -107,7 +107,7 @@ Find numbers that multiply to -40 and add to -3: -8 and 5.
 A cable's height above the deck at distance d yards from the first tower is [d^2 - 36d + 324]. Factor this expression.
 
 Find numbers that multiply to 324 and add to -36: -18 and -18.
-[d^2 - 36d + 324 = (d - 18)^2] ![](media/image2.png)
+[d^2 - 36d + 324 = (d - 18)^2] ![Worksheet figure 2](/curriculum/module-11-lesson-6/image2.png)
 
 ### Step 4: Break-Even Point
 
@@ -165,10 +165,10 @@ Practice includes:
 * Prime identification: [x^2 + 2x - 15], [x^2 - 6x - 7], [p^2 - 10p + 21], [x^2 + x - 20]
 * Factor with different variable arrangements: [9p^2 + 6p - 8], [6q^2 - 13q + 6], [q^2 + 11qr + 18r^2], [x^2 - 14xy - 51y^2], [x^2 - 6xy + 5y^2], [a^2 + 10ab - 39b^2]
 * Negative coefficient trinomials: [-6x^2 - 23x - 20], [-4x^2 - 15x - 14], [-5x^2 + 18x + 8], [-6x^2 + 31x - 35], [-4x^2 + 5x - 12], [-12x^2 + x + 20]
-* Pyramidal monument problem: A stone monument has height 9 feet, base length is 5 feet greater than width, and volume is [3x^2 - 15x - 150]. Factor the expression and interpret each factor. ![](media/image2.png)
-* Projectile time problem: A T-shirt is launched from 32 feet above ground at 16 ft/s initial velocity. The height model is [-16t^2 + 16t + 32]. Write and factor an expression for the time in the air. ![](media/image3.png)
-* Which one doesn't belong: Which expression does not belong with the others? ![](media/image3.png)
-* Find the error: Jamaall and Charles factored [x^2 + 6x - 16] differently. Determine who is correct. ![](media/image4.png)
+* Pyramidal monument problem: A stone monument has height 9 feet, base length is 5 feet greater than width, and volume is [3x^2 - 15x - 150]. Factor the expression and interpret each factor. ![Worksheet figure 2](/curriculum/module-11-lesson-6/image2.png)
+* Projectile time problem: A T-shirt is launched from 32 feet above ground at 16 ft/s initial velocity. The height model is [-16t^2 + 16t + 32]. Write and factor an expression for the time in the air. ![Worksheet figure 3](/curriculum/module-11-lesson-6/image3.png)
+* Which one doesn't belong: Which expression does not belong with the others? ![Worksheet figure 3](/curriculum/module-11-lesson-6/image3.png)
+* Find the error: Jamaall and Charles factored [x^2 + 6x - 16] differently. Determine who is correct. ![Worksheet figure 4](/curriculum/module-11-lesson-6/image4.png)
 * Analyze problems: Find all values of k so that [x^2 + kx - 19] and [x^2 + kx + 14] can be factored with integers. Find k values so that [x^2 - 8x + k] and [x^2 - 5x + k] with k > 0 are factorable.
 * Determine whether the absolute value of b is sometimes, always, or never less than the absolute value of c in factorable trinomials [x^2 + bx + c].
 * Persevere: Factor [(4y - 5)^2 + 3(4y - 5) - 70] by treating (4y - 5) as a single variable.
@@ -177,7 +177,7 @@ Practice includes:
 
 ## Review Notes
 
-* Images referenced: ![](media/image1.png) — Cosmetics case diagram. ![](media/image2.png) — Suspension bridge cable diagram. ![](media/image3.png) — Four expressions for "Which One Doesn't Belong?". ![](media/image4.png) — Student work for factoring [x^2 + 6x - 16]. Teachers should consult the original worksheet for exact diagrams.
+* Images referenced: ![Worksheet figure 1](/curriculum/module-11-lesson-6/image1.png) — Cosmetics case diagram. ![Worksheet figure 2](/curriculum/module-11-lesson-6/image2.png) — Suspension bridge cable diagram. ![Worksheet figure 3](/curriculum/module-11-lesson-6/image3.png) — Four expressions for "Which One Doesn't Belong?". ![Worksheet figure 4](/curriculum/module-11-lesson-6/image4.png) — Student work for factoring [x^2 + 6x - 16]. Teachers should consult the original worksheet for exact diagrams.
 * The worksheet contains 85 practice problems covering factoring techniques and applications.
 * For [x^2 + bx + c]: Find two numbers that multiply to c and add to b.
 * For [ax^2 + bx + c]: Use the AC method — multiply a and c, find two numbers that multiply to ac and add to b, then rewrite and group.

@@ -1,0 +1,13 @@
+
+> lint
+> oxlint --config ../../.oxlintrc.json . --max-warnings 0
+
+app/auth/login/page.tsx:90:11: error next(no-html-link-for-pages): Do not use `<a>` elements to navigate between Next.js pages. help: Use `<Link />` from `next/link` instead for internal navigation. See https://nextjs.org/docs/messages/no-html-link-for-pages
+app/auth/register/page.tsx:120:11: error next(no-html-link-for-pages): Do not use `<a>` elements to navigate between Next.js pages. help: Use `<Link />` from `next/link` instead for internal navigation. See https://nextjs.org/docs/messages/no-html-link-for-pages
+npm error Lifecycle script `lint` failed with error:
+npm error code 1
+npm error path /Users/daniel.bodanske/Desktop/ra-math-advantage/apps/integrated-math-2
+npm error workspace undefined
+npm error location /Users/daniel.bodanske/Desktop/ra-math-advantage/apps/integrated-math-2
+npm error command failed
+npm error command sh -c oxlint --config ../../.oxlintrc.json . --max-warnings 0

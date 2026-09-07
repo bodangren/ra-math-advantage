@@ -141,21 +141,13 @@ From first: [b = 79 - a]
 
 Substitute: [12.41a + 8.62(79 - a) = 825]
 
-[12.41a + 681.58 - 8.62a = 825]
+[12.41a + 680.98 - 8.62a = 825]
+[3.79a = 144.02]
+[a = 38], so [b = 79 - 38 = 41].
 
-[3.79a = 143.42] → [a = 37.84]. Not an integer — check calculation.
+Check: [38(12.41) + 41(8.62) = 471.58 + 353.42 = 825].
 
-Wait: [12.41a + 8.62(79 - a) = 12.41a + 681.58 - 8.62a = 3.79a + 681.58]
-
-[3.79a = 825 - 681.58 = 143.42]
-
-[a ≈ 37.84]. Let me recalculate with exact values.
-
-Actually: [3.79a = 143.42] → [a ≈ 37.84]. This suggests approximately 38 shares of A and 41 shares of B.
-
-Let me verify: [38 × 12.41 + 41 × 8.62 = 471.58 + 353.42 = 825]. Yes.
-
-**b.** Ms. Patel bought about 38 shares of Stock A and 41 shares of Stock B.
+**b.** Ms. Patel bought exactly 38 shares of Stock A and 41 shares of Stock B.
 
 ## Learn: The Elimination Method
 
@@ -255,7 +247,7 @@ Use substitution or elimination to solve each system.
 
 **25. FIND THE ERROR** Gloria and Syreeta solving [6x - 4y = 26] and [-3x + 4y = -17]. Is either correct?
 
-![](media/image1.png)
+![Worksheet figure 1](/curriculum/module-9-lesson-5/image1.png)
 
 **26. CREATE** Write a system requiring multiplication by 3 for one equation and 4 for the other to solve by elimination. Then solve.
 
@@ -265,4 +257,4 @@ Use substitution or elimination to solve each system.
 
 * Problem 25 references an image showing Gloria's and Syreeta's algebraic work on the system.
 * The worksheet contains 27 problems across six examples and mixed exercises.
-* ![](media/image1.png)
+* ![Worksheet figure 1](/curriculum/module-9-lesson-5/image1.png)

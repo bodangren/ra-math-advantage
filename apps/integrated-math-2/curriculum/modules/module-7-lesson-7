@@ -54,7 +54,7 @@ If knowing A occurred does not change the probability of B, the events are indep
 ### Step 1: Identify the Given Event and Apply Definition
 
 **Problem 1:** Spanish Club — 10 students draw cards 1–10. Odd numbers bring main dishes, even numbers bring desserts. Given Cynthia is bringing a dessert, what is P(she drew 10)?
-Given: Cynthia drew an even number (1, 2, 4, 6, 8, 10) — sample space size = 5
+Given: Cynthia drew an even number (2, 4, 6, 8, 10) — sample space size = 5
 Favorable: 10 is one of the options
 [P(10 | even) = \frac{1}{5}]
 
@@ -99,4 +99,4 @@ Problems 5–14 provide practice with all skills:
 
 ## Review Notes
 
-* ![](media/image1.png) — Venn diagram of library and home study preferences for Problem 11
+* ![Worksheet figure 1](/curriculum/module-7-lesson-7/image1.png) — Venn diagram of library and home study preferences for Problem 11

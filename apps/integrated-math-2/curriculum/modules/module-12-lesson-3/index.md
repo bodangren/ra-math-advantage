@@ -40,11 +40,11 @@ If the vertex lies on the x-axis, there is one solution (a double root). If the 
 
 In real-world problems, a zero of the function often has a physical meaning. For a ball thrown upward, the zeros represent when the ball is at ground level (height = 0). The positive zero is when it lands.
 
-## Example 1 — Solve Quadratics with Integer Solutions
+## Example 1 — Identify a Quadratic with No Real Solutions
 
 ### Step 1: Graph the Function
 
-For [x^2 + 7x + 14 = 0], graph [y = x^2 + 7x + 14].
+For [x^2 + 7x + 14 = 0], graph [y = x^2 + 7x + 14]. The discriminant is [7^2 - 4(1)(14) = -7]. The graph has no x-intercepts, so the equation has no real solutions.
 
 ### Step 2: Find the X-Intercepts
 
@@ -110,5 +110,5 @@ Images in the source:
 * Problem 30: Quadratic inequality graph.
 * Problem 31: Graph for finding solutions greater than 2.
 
-![](media/image1.png) ![](media/image2.png) ![](media/image3.png)
-![](media/image4.png) ![](media/image5.png)
+![Worksheet figure 1](/curriculum/module-12-lesson-3/image1.png) ![Worksheet figure 2](/curriculum/module-12-lesson-3/image2.png) ![Worksheet figure 3](/curriculum/module-12-lesson-3/image3.png)
+![Worksheet figure 4](/curriculum/module-12-lesson-3/image4.png) ![Worksheet figure 5](/curriculum/module-12-lesson-3/image5.png)

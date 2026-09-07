@@ -1,6 +1,11 @@
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
-import type { SeedStudentProgress } from "./types";
+interface SeedStudentProgress {
+  studentUsername: string;
+  lessonSlug: string;
+  phaseNumber: number;
+  status: "not_started" | "in_progress" | "completed";
+}
 
 interface SeedDemoProgressResult {
   studentUsername: string;
@@ -14,9 +19,24 @@ export const seedDemoProgress = internalMutation({
     const now = Date.now();
 
     const studentProgress: SeedStudentProgress[] = [
-      { studentUsername: "demo_student_1", lessonSlug: "1-1-classifying-triangles", phaseNumber: 4, status: "completed" },
-      { studentUsername: "demo_student_1", lessonSlug: "1-2-triangle-angle-relationships", phaseNumber: 3, status: "in_progress" },
-      { studentUsername: "demo_student_1", lessonSlug: "1-3-triangle-inequality-theorem", phaseNumber: 2, status: "in_progress" },
+      {
+        studentUsername: "demo_student",
+        lessonSlug: "module-1-lesson-1",
+        phaseNumber: 4,
+        status: "completed",
+      },
+      {
+        studentUsername: "demo_student",
+        lessonSlug: "module-1-lesson-2",
+        phaseNumber: 3,
+        status: "in_progress",
+      },
+      {
+        studentUsername: "demo_student",
+        lessonSlug: "module-1-lesson-3",
+        phaseNumber: 2,
+        status: "in_progress",
+      },
     ];
 
     const results: SeedDemoProgressResult[] = [];
@@ -24,7 +44,9 @@ export const seedDemoProgress = internalMutation({
     for (const progress of studentProgress) {
       const student = await ctx.db
         .query("profiles")
-        .withIndex("by_username", (q) => q.eq("username", progress.studentUsername))
+        .withIndex("by_username", (q) =>
+          q.eq("username", progress.studentUsername),
+        )
         .unique();
 
       if (!student) {
@@ -65,15 +87,14 @@ export const seedDemoProgress = internalMutation({
       }
 
       let completionsCreated = 0;
-      const phasesToComplete = progress.status === "not_started"
-        ? 0
-        : progress.phaseNumber;
+      const phasesToComplete =
+        progress.status === "not_started" ? 0 : progress.phaseNumber;
 
       for (let phase = 1; phase <= phasesToComplete; phase++) {
         const phaseVersion = await ctx.db
           .query("phase_versions")
           .withIndex("by_lesson_version_and_phase", (q) =>
-            q.eq("lessonVersionId", lessonVersion._id).eq("phaseNumber", phase)
+            q.eq("lessonVersionId", lessonVersion._id).eq("phaseNumber", phase),
           )
           .first();
 
@@ -82,12 +103,12 @@ export const seedDemoProgress = internalMutation({
         const phaseSections = await ctx.db
           .query("phase_sections")
           .withIndex("by_phase_version_and_sequence", (q) =>
-            q.eq("phaseVersionId", phaseVersion._id)
+            q.eq("phaseVersionId", phaseVersion._id),
           )
           .collect();
 
         const activitySections = phaseSections.filter(
-          (section) => section.sectionType === "activity"
+          (section) => section.sectionType === "activity",
         );
 
         for (const section of activitySections) {
@@ -98,7 +119,9 @@ export const seedDemoProgress = internalMutation({
 
           const existing = await ctx.db
             .query("activity_completions")
-            .withIndex("by_idempotency_key", (q) => q.eq("idempotencyKey", idempotencyKey))
+            .withIndex("by_idempotency_key", (q) =>
+              q.eq("idempotencyKey", idempotencyKey),
+            )
             .unique();
 
           if (existing) continue;
@@ -125,7 +148,9 @@ export const seedDemoProgress = internalMutation({
 
           const existing = await ctx.db
             .query("activity_completions")
-            .withIndex("by_idempotency_key", (q) => q.eq("idempotencyKey", idempotencyKey))
+            .withIndex("by_idempotency_key", (q) =>
+              q.eq("idempotencyKey", idempotencyKey),
+            )
             .unique();
 
           if (!existing) {
@@ -136,7 +161,10 @@ export const seedDemoProgress = internalMutation({
               phaseNumber: phase,
               completedAt: now,
               idempotencyKey,
-              completionData: { type: "phase_completion", phaseType: phaseVersion.phaseType },
+              completionData: {
+                type: "phase_completion",
+                phaseType: phaseVersion.phaseType,
+              },
               createdAt: now,
               updatedAt: now,
             });

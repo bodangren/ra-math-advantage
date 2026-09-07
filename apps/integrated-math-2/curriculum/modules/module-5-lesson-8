@@ -90,7 +90,7 @@ The level section is modeled by [y = 70]. To find the maximum width, solve for [
 
 For a tunnel with focus at (4, -2.5) and directrix at [y = 2.5]: the vertex is at (4, 0), [p = -2.5]. The equation is [(x - 4)² = -10y].
 
-To check the width at 5 feet above ground ([y = -5]): [(-5 - 4)² = -10(-5)], so [81 = 50]. This is false, so the width at 5 feet is not 14 feet.
+At the horizontal line [y = -5], solve [(x - 4)^2 = 50]. The endpoints are [x = 4 - 5sqrt(2)] and [x = 4 + 5sqrt(2)]. The width is [10sqrt(2) ≈ 14.14] feet. The height is 5 feet below the vertex. The road elevation must be given before this can be called 5 feet above ground. A width of 14 feet fits at this line, but that alone does not establish clearance above the road.
 
 ## Mixed Exercises
 
@@ -106,4 +106,4 @@ Practice with all skills from the lesson, including:
 
 ## Review Notes
 
-* ![](media/image1.png) — parabolic reflector diagram for mixed exercises (flashlight/headlight context)
+* ![Worksheet figure 1](/curriculum/module-5-lesson-8/image1.png) — parabolic reflector diagram for mixed exercises (flashlight/headlight context)

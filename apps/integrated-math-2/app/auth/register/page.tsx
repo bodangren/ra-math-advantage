@@ -1,9 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function RegisterPage() {
+  const [classCode, setClassCode] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -26,7 +28,7 @@ export default function RegisterPage() {
       const response = await fetch("/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ username, password, classCode }),
       });
 
       if (!response.ok) {
@@ -46,7 +48,10 @@ export default function RegisterPage() {
     <div className="min-h-[80vh] flex items-center justify-center px-6">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="text-primary-text mb-2 font-display" style={{ fontSize: '32px', fontWeight: 700 }}>
+          <h1
+            className="text-primary-text mb-2 font-display"
+            style={{ fontSize: "32px", fontWeight: 700 }}
+          >
             Register
           </h1>
           <p className="text-secondary-text">
@@ -55,14 +60,34 @@ export default function RegisterPage() {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label htmlFor="class-code">Class code</label>
+            <input
+              id="class-code"
+              className="input-field w-full"
+              value={classCode}
+              onChange={(e) => setClassCode(e.target.value)}
+              maxLength={80}
+              required
+              autoComplete="off"
+            />
+            <p className="text-sm">Enter the code from your teacher.</p>
+          </div>
           {error && (
-            <div className="bg-error/10 border border-error/30 rounded-md p-3 text-sm text-error">
+            <div
+              role="alert"
+              className="bg-error/10 border border-error/30 rounded-md p-3 text-sm text-error"
+            >
               {error}
             </div>
           )}
 
           <div>
-            <label htmlFor="username" className="block text-sm text-secondary-text mb-1" style={{ fontWeight: 500 }}>
+            <label
+              htmlFor="username"
+              className="block text-sm text-secondary-text mb-1"
+              style={{ fontWeight: 500 }}
+            >
               Username
             </label>
             <input
@@ -72,17 +97,23 @@ export default function RegisterPage() {
               onChange={(e) => setUsername(e.target.value)}
               className="input-field w-full"
               required
+              maxLength={80}
               autoComplete="username"
             />
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-sm text-secondary-text mb-1" style={{ fontWeight: 500 }}>
+            <label
+              htmlFor="password"
+              className="block text-sm text-secondary-text mb-1"
+              style={{ fontWeight: 500 }}
+            >
               Password
             </label>
             <input
               id="password"
               type="password"
+              maxLength={128}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="input-field w-full"
@@ -92,12 +123,17 @@ export default function RegisterPage() {
           </div>
 
           <div>
-            <label htmlFor="confirm-password" className="block text-sm text-secondary-text mb-1" style={{ fontWeight: 500 }}>
+            <label
+              htmlFor="confirm-password"
+              className="block text-sm text-secondary-text mb-1"
+              style={{ fontWeight: 500 }}
+            >
               Confirm Password
             </label>
             <input
               id="confirm-password"
               type="password"
+              maxLength={128}
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               className="input-field w-full"
@@ -117,9 +153,12 @@ export default function RegisterPage() {
 
         <p className="text-center text-muted-text text-sm mt-6">
           Already have an account?{" "}
-          <a href="/auth/login" className="text-accent hover:text-accent-light transition-colors">
+          <Link
+            href="/auth/login"
+            className="text-accent hover:text-accent-light transition-colors"
+          >
             Sign in
-          </a>
+          </Link>
         </p>
       </div>
     </div>

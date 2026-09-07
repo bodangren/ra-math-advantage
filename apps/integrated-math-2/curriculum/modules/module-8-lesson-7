@@ -30,7 +30,7 @@ How can you look at an equation and know exactly how the graph will be transform
 ### Key Concept: Translation Patterns
 
 * [y = x^2 + k] — vertical shift up by [k] (or down if [k] is negative)
-* [y = x^2 - h] — horizontal shift right by [h] (note: [y = (x - h)^2] shifts right by [h])
+* [y = x^2 - h] — vertical shift down by [h] for positive [h]. The function [y = (x - h)^2] shifts right by [h].
 * [y = |x| + k] — vertical shift
 * [y = |x + h|] — horizontal shift left by [h]
 
@@ -87,17 +87,17 @@ Describe each transformation as it relates to the graph of the parent function.
 ### Step 1: Break Down the Transformation
 
 * [y = -6|x| - 4] — reflect over x-axis, vertical stretch 6, shift down 4
-* [y = 3x + 11] — slope increase from 1 to 3, shift up 11 (but this is a linear function, not a dilation of [y = x] in the traditional sense)
+* [y = 3x + 11] — vertical stretch by 3 of [y = x], then shift up 11
 * [y = (1/3)x^2 - 2] — vertical compression by 1/3, shift down 2
 * [y = (1/2)|x - 1| + 14] — horizontal shift right 1, vertical compression 1/2, shift up 14
 * [y = -0.8(x + 3)] — shift left 3, reflection/dilation
-* [y = (1.5x)^2 + 22] — horizontal stretch, shift up 22
+* [y = (1.5x)^2 + 22] — horizontal compression by 2/3, shift up 22
 
 ## Example 6 — Real-World Transformation Problems
 
 ### Step 1: BILLIARDS
 
-[g(x) = |0.5x|] models a cue ball path. The absolute value creates the V-shape; the 0.5 compresses it horizontally. The x-axis represents the edge of the table.
+[g(x) = |0.5x|] models a cue ball path. The absolute value creates the V-shape; the 0.5 stretches it horizontally by a factor of 2. The x-axis represents the edge of the table.
 
 ### Step 2: SALAD
 
@@ -142,14 +142,14 @@ Problems 37–59 provide extensive practice:
 
 ## Review Notes
 
-* ![](media/image1.png)![](media/image2.png) — Graphs for problems 7–8
-* ![](media/image3.png)![](media/image4.png) — Graphs for problems 9–10
-* ![](media/image5.png)![](media/image6.png) — Graphs for problems 11–12
-* ![](media/image7.png) — Write equation from graph (problem 31)
-* ![](media/image8.png) — Write equation from graph (problem 32)
-* ![](media/image9.png)![](media/image10.png) — Graphs for problems 33–34
-* ![](media/image11.png)![](media/image12.png) — Graphs for problems 35–36
-* ![](media/image13.png) — ARCHITECTURE roof figure (problem 46)
-* ![](media/image14.png) — GEOMETRY graph (problem 49)
-* ![](media/image15.png) — BUSINESS Maria income graph (problem 51)
-* ![](media/image16.png) — PERSEVERE model rocket graph (problem 53)
+* ![Worksheet figure 1](/curriculum/module-8-lesson-7/image1.png)![Worksheet figure 2](/curriculum/module-8-lesson-7/image2.png) — Graphs for problems 7–8
+* ![Worksheet figure 3](/curriculum/module-8-lesson-7/image3.png)![Worksheet figure 4](/curriculum/module-8-lesson-7/image4.png) — Graphs for problems 9–10
+* ![Worksheet figure 5](/curriculum/module-8-lesson-7/image5.png)![Worksheet figure 6](/curriculum/module-8-lesson-7/image6.png) — Graphs for problems 11–12
+* ![Worksheet figure 7](/curriculum/module-8-lesson-7/image7.png) — Write equation from graph (problem 31)
+* ![Worksheet figure 8](/curriculum/module-8-lesson-7/image8.png) — Write equation from graph (problem 32)
+* ![Worksheet figure 9](/curriculum/module-8-lesson-7/image9.png)![Worksheet figure 10](/curriculum/module-8-lesson-7/image10.png) — Graphs for problems 33–34
+* ![Worksheet figure 11](/curriculum/module-8-lesson-7/image11.png)![Worksheet figure 12](/curriculum/module-8-lesson-7/image12.png) — Graphs for problems 35–36
+* ![Worksheet figure 13](/curriculum/module-8-lesson-7/image13.png) — ARCHITECTURE roof figure (problem 46)
+* ![Worksheet figure 14](/curriculum/module-8-lesson-7/image14.png) — GEOMETRY graph (problem 49)
+* ![Worksheet figure 15](/curriculum/module-8-lesson-7/image15.png) — BUSINESS Maria income graph (problem 51)
+* ![Worksheet figure 16](/curriculum/module-8-lesson-7/image16.png) — PERSEVERE model rocket graph (problem 53)

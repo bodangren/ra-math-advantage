@@ -5,6 +5,8 @@
 @import "tailwindcss";
 @config "../tailwind.config.ts";
 @source "../";
+@source "../../../packages/app-shell/src";
+@source "../../../packages/lesson-renderer/src";
 @tailwind components;
 @tailwind utilities;
 

@@ -28,9 +28,9 @@ If you double all the dimensions of a solid, by what factor does the surface are
 
 ### Key Concept: Scale Factor from Areas
 
-If two similar figures have areas A1 and A2, the scale factor is:
+If two similar figures have areas A1 and A2, the scale factor from figure 1 to figure 2 is [k = L2/L1]:
 [
-k = sqrt(A1/A2)
+k = sqrt(A2/A1)
 ]
 
 ### Key Concept: Finding Missing Areas
@@ -42,9 +42,9 @@ A2 = k^2 * A1
 
 ### Key Concept: Scale Factor from Volumes
 
-If two similar solids have volumes V1 and V2, the scale factor is:
+If two similar solids have volumes V1 and V2, the scale factor from figure 1 to figure 2 is [k = L2/L1]:
 [
-k = cube_root(V1/V2)
+k = cube_root(V2/V1)
 ]
 
 ### Key Concept: Volume of Similar Solids
@@ -226,8 +226,28 @@ P_large = 12 * 3 = 36 cm
 
 ## Review Notes
 
-* ![](media/) — Image references for similar figure diagrams could not be fully captured.
+* ![Worksheet figure 1](/curriculum/module-6-lesson-8/image1.png)
+![Worksheet figure 2](/curriculum/module-6-lesson-8/image10.png)
+![Worksheet figure 3](/curriculum/module-6-lesson-8/image11.png)
+![Worksheet figure 4](/curriculum/module-6-lesson-8/image12.png)
+![Worksheet figure 5](/curriculum/module-6-lesson-8/image13.png)
+![Worksheet figure 6](/curriculum/module-6-lesson-8/image14.png)
+![Worksheet figure 7](/curriculum/module-6-lesson-8/image15.png)
+![Worksheet figure 8](/curriculum/module-6-lesson-8/image16.png)
+![Worksheet figure 9](/curriculum/module-6-lesson-8/image17.png)
+![Worksheet figure 10](/curriculum/module-6-lesson-8/image18.png)
+![Worksheet figure 11](/curriculum/module-6-lesson-8/image19.png)
+![Worksheet figure 12](/curriculum/module-6-lesson-8/image2.png)
+![Worksheet figure 13](/curriculum/module-6-lesson-8/image20.png)
+![Worksheet figure 14](/curriculum/module-6-lesson-8/image21.png)
+![Worksheet figure 15](/curriculum/module-6-lesson-8/image3.png)
+![Worksheet figure 16](/curriculum/module-6-lesson-8/image4.png)
+![Worksheet figure 17](/curriculum/module-6-lesson-8/image5.png)
+![Worksheet figure 18](/curriculum/module-6-lesson-8/image6.png)
+![Worksheet figure 19](/curriculum/module-6-lesson-8/image7.png)
+![Worksheet figure 20](/curriculum/module-6-lesson-8/image8.png)
+![Worksheet figure 21](/curriculum/module-6-lesson-8/image9.png) — Image references for similar figure diagrams could not be fully captured.
 * Key formulas: If scale factor is k, then area ratio is k^2 and volume ratio is k^3.
-* To find scale factor from areas: k = sqrt(A1/A2).
-* To find scale factor from volumes: k = cube_root(V1/V2).
+* To find scale factor from areas: k = sqrt(A2/A1).
+* To find scale factor from volumes: k = cube_root(V2/V1).
 * When working with similar solids, ALL linear dimensions scale by k, including height, radius, slant height, perimeter, etc.

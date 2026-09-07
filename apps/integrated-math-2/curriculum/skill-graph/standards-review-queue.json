@@ -2097,9 +2097,9 @@
       "nodeId": "math.im2.example.7.4.013",
       "title": "Example 1: Combination Formula; nCr in Context; Combinations vs. Permutations",
       "issue": "PLACEHOLDER_ALIGNMENT",
-      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.s-cp-c-9']",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.s-cp-b-9']",
       "placeholderStandardIds": [
-        "math.standard.ccss.s-cp-c-9"
+        "math.standard.ccss.s-cp-b-9"
       ],
       "module": "7",
       "lesson": "4"
@@ -2108,9 +2108,9 @@
       "nodeId": "math.im2.example.7.4.014",
       "title": "Example 2: Combination Formula; nCr in Context; Combinations vs. Permutations",
       "issue": "PLACEHOLDER_ALIGNMENT",
-      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.s-cp-c-9']",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.s-cp-b-9']",
       "placeholderStandardIds": [
-        "math.standard.ccss.s-cp-c-9"
+        "math.standard.ccss.s-cp-b-9"
       ],
       "module": "7",
       "lesson": "4"
@@ -2119,9 +2119,9 @@
       "nodeId": "math.im2.example.7.4.015",
       "title": "Example 3: Combination Formula; nCr in Context; Combinations vs. Permutations",
       "issue": "PLACEHOLDER_ALIGNMENT",
-      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.s-cp-c-9']",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.s-cp-b-9']",
       "placeholderStandardIds": [
-        "math.standard.ccss.s-cp-c-9"
+        "math.standard.ccss.s-cp-b-9"
       ],
       "module": "7",
       "lesson": "4"
@@ -2130,9 +2130,9 @@
       "nodeId": "math.im2.example.7.4.016",
       "title": "Example 4: Selection Problems; Mixed Permutation/Combination; Real-World Application",
       "issue": "PLACEHOLDER_ALIGNMENT",
-      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.s-cp-c-9']",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.s-cp-b-9']",
       "placeholderStandardIds": [
-        "math.standard.ccss.s-cp-c-9"
+        "math.standard.ccss.s-cp-b-9"
       ],
       "module": "7",
       "lesson": "4"
@@ -2141,9 +2141,9 @@
       "nodeId": "math.im2.example.7.4.017",
       "title": "Example 5: Selection Problems; Mixed Permutation/Combination; Real-World Application",
       "issue": "PLACEHOLDER_ALIGNMENT",
-      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.s-cp-c-9']",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.s-cp-b-9']",
       "placeholderStandardIds": [
-        "math.standard.ccss.s-cp-c-9"
+        "math.standard.ccss.s-cp-b-9"
       ],
       "module": "7",
       "lesson": "4"
@@ -2152,9 +2152,9 @@
       "nodeId": "math.im2.example.7.4.018",
       "title": "Example 6: Selection Problems; Mixed Permutation/Combination; Real-World Application",
       "issue": "PLACEHOLDER_ALIGNMENT",
-      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.s-cp-c-9']",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.s-cp-b-9']",
       "placeholderStandardIds": [
-        "math.standard.ccss.s-cp-c-9"
+        "math.standard.ccss.s-cp-b-9"
       ],
       "module": "7",
       "lesson": "4"
@@ -3395,9 +3395,9 @@
       "nodeId": "math.im2.skill.7.4.compute-combinations-and-interpret-ncr-in-context",
       "title": "7e: Compute combinations and interpret nCr in context",
       "issue": "PLACEHOLDER_ALIGNMENT",
-      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.s-cp-c-9']",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.s-cp-b-9']",
       "placeholderStandardIds": [
-        "math.standard.ccss.s-cp-c-9"
+        "math.standard.ccss.s-cp-b-9"
       ],
       "module": "7",
       "lesson": "4"
@@ -3406,9 +3406,9 @@
       "nodeId": "math.im2.skill.7.4.use-combinations-and-permutations-to-solve-real-world-select",
       "title": "7f: Use combinations and permutations to solve real-world selection problems",
       "issue": "PLACEHOLDER_ALIGNMENT",
-      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.s-cp-c-9']",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.s-cp-b-9']",
       "placeholderStandardIds": [
-        "math.standard.ccss.s-cp-c-9"
+        "math.standard.ccss.s-cp-b-9"
       ],
       "module": "7",
       "lesson": "4"

@@ -1,10 +1,208 @@
 import { internalQuery } from "./_generated/server";
-import { v } from "convex/values";
-
+import type { Id } from "./_generated/dataModel";
+import { v, ConvexError } from "convex/values";
+import { teacherAccount, teacherClass } from "./classes";
 export const getTeacherDashboardData = internalQuery({
   args: { teacherId: v.id("profiles") },
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  handler: async (_ctx, _args) => {
-    return { students: [], classes: [] };
+  returns: v.object({
+    classes: v.array(
+      v.object({ id: v.id("classes"), name: v.string(), joinCode: v.string() }),
+    ),
+  }),
+  handler: async (ctx, args) => {
+    await teacherAccount(ctx, args.teacherId);
+    const rows = await ctx.db
+      .query("classes")
+      .withIndex("by_teacher", (q) => q.eq("teacherId", args.teacherId))
+      .take(101);
+    if (rows.length > 100) throw new ConvexError("classes_require_pagination");
+    return {
+      classes: rows
+        .filter((row) => !row.archived)
+        .map((row) => ({
+          id: row._id,
+          name: row.name,
+          joinCode: row.joinCode ?? "",
+        })),
+    };
+  },
+});
+export const getStudentEvidence = internalQuery({
+  args: {
+    teacherId: v.id("profiles"),
+    classId: v.id("classes"),
+    studentId: v.id("profiles"),
+    cursor: v.optional(v.string()),
+  },
+  returns: v.object({
+    name: v.string(),
+    nextCursor: v.union(v.null(), v.string()),
+    submissions: v.array(
+      v.object({
+        id: v.id("activity_submissions"),
+        activity: v.string(),
+        answer: v.string(),
+        score: v.number(),
+        maxScore: v.number(),
+        feedback: v.string(),
+        submittedAt: v.number(),
+      }),
+    ),
+  }),
+  handler: async (ctx, args) => {
+    await teacherClass(ctx, args.teacherId, args.classId);
+    const enrollment = await ctx.db
+      .query("class_enrollments")
+      .withIndex("by_class_and_student", (q) =>
+        q.eq("classId", args.classId).eq("studentId", args.studentId),
+      )
+      .unique();
+    const student = await ctx.db.get(args.studentId);
+    const teacher = await ctx.db.get(args.teacherId);
+    if (
+      !student ||
+      enrollment?.status !== "active" ||
+      student.organizationId !== teacher?.organizationId
+    )
+      throw new ConvexError("not_allowed");
+    const page = await ctx.db
+      .query("activity_submissions")
+      .withIndex("by_user", (q) => q.eq("userId", args.studentId))
+      .order("desc")
+      .paginate({ numItems: 20, cursor: args.cursor ?? null });
+    const assigned = await ctx.db
+      .query("class_lessons")
+      .withIndex("by_class_and_lesson", (q) => q.eq("classId", args.classId))
+      .take(200);
+    const rows = page.page.filter((row) =>
+      assigned.some((a) => a.lessonId === row.lessonId),
+    );
+    const submissions = await Promise.all(
+      rows.map(async (row) => ({
+        id: row._id,
+        activity: (await ctx.db.get(row.activityId))?.displayName ?? "Practice",
+        answer:
+          typeof row.submissionData?.answers?.response === "string"
+            ? row.submissionData.answers.response
+            : "",
+        score: row.score ?? 0,
+        maxScore: row.maxScore ?? 1,
+        feedback: row.feedback ?? "",
+        submittedAt: row.submittedAt,
+      })),
+    );
+    return {
+      name: student.displayName ?? student.username,
+      submissions,
+      nextCursor: page.isDone ? null : page.continueCursor,
+    };
+  },
+});
+
+export const getGradebook = internalQuery({
+  args: {
+    teacherId: v.id("profiles"),
+    classId: v.id("classes"),
+    unitNumber: v.number(),
+    cursor: v.optional(v.string()),
+  },
+  returns: v.object({
+    className: v.string(),
+    nextCursor: v.union(v.null(), v.string()),
+    lessons: v.array(
+      v.object({ id: v.id("lessons"), title: v.string(), total: v.number() }),
+    ),
+    students: v.array(
+      v.object({
+        id: v.id("profiles"),
+        name: v.string(),
+        completed: v.array(v.number()),
+      }),
+    ),
+  }),
+  handler: async (ctx, args) => {
+    const classroom = await teacherClass(ctx, args.teacherId, args.classId);
+    if (
+      !Number.isInteger(args.unitNumber) ||
+      args.unitNumber < 1 ||
+      args.unitNumber > 13
+    )
+      throw new ConvexError("invalid_unit");
+    const assigned = await ctx.db
+      .query("class_lessons")
+      .withIndex("by_class_and_lesson", (q) => q.eq("classId", args.classId))
+      .take(200);
+    const rows = await ctx.db
+      .query("lessons")
+      .withIndex("by_unit_and_order", (q) =>
+        q.eq("unitNumber", args.unitNumber),
+      )
+      .take(30);
+    const lessons: Array<{ id: Id<"lessons">; title: string; total: number }> =
+      [];
+    const phaseIds: Array<Set<Id<"phase_versions">>> = [];
+    for (const lesson of rows.filter((row) =>
+      assigned.some((a) => a.lessonId === row._id),
+    )) {
+      const versions = await ctx.db
+        .query("lesson_versions")
+        .withIndex("by_lesson_and_version", (q) => q.eq("lessonId", lesson._id))
+        .order("desc")
+        .take(100);
+      const version = versions.find((v) => v.status === "published");
+      if (!version) continue;
+      const phases = await ctx.db
+        .query("phase_versions")
+        .withIndex("by_lesson_version", (q) =>
+          q.eq("lessonVersionId", version._id),
+        )
+        .take(100);
+      lessons.push({
+        id: lesson._id,
+        title: lesson.title,
+        total: phases.length,
+      });
+      phaseIds.push(new Set(phases.map((p) => p._id)));
+    }
+    const page = await ctx.db
+      .query("class_enrollments")
+      .withIndex("by_class", (q) => q.eq("classId", args.classId))
+      .paginate({ numItems: 20, cursor: args.cursor ?? null });
+    const students = [];
+    const teacher = await ctx.db.get(args.teacherId);
+    for (const enrollment of page.page) {
+      const student = await ctx.db.get(enrollment.studentId);
+      if (
+        enrollment.status !== "active" ||
+        !student ||
+        student.organizationId !== teacher?.organizationId
+      )
+        continue;
+      const completed = [];
+      for (let i = 0; i < lessons.length; i++) {
+        const progress = await ctx.db
+          .query("student_progress")
+          .withIndex("by_user_and_lesson", (q) =>
+            q.eq("userId", student._id).eq("lessonId", lessons[i].id),
+          )
+          .take(100);
+        completed.push(
+          progress.filter(
+            (p) => p.status === "completed" && phaseIds[i].has(p.phaseId),
+          ).length,
+        );
+      }
+      students.push({
+        id: student._id,
+        name: student.displayName ?? student.username,
+        completed,
+      });
+    }
+    return {
+      className: classroom.name,
+      lessons,
+      students,
+      nextCursor: page.isDone ? null : page.continueCursor,
+    };
   },
 });

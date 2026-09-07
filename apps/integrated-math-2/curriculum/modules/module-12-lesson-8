@@ -163,34 +163,20 @@ Then b = 48 − (−16) = 64.
 
 Plot the points (0, 0), (1, 62), (2, 95), (3, 108), (4, 115), (5, 120). The relationship appears to increase rapidly at first, then level off — suggesting an exponential or logarithmic model.
 
-### Step 2: Test regression types
+### Step 2: Fit and Compare Models
 
-Use a graphing calculator to compare linear, quadratic, and exponential regression:
+Use least squares on the six stated points. The quadratic fit has [R^2 ≈ 0.983240]. A standard log-linear exponential fit cannot include the zero height at [t = 0]. Do not remove that observation without explaining the change to the data.
 
-- **Linear regression**: R² ≈ 0.847
-- **Quadratic regression**: R² ≈ 0.991
-- **Exponential regression**: R² ≈ 0.953
+### Step 3: Write the Quadratic Fit
 
-The **quadratic model has R² closest to 1**.
+[h = -(389/56)t^2 + (15901/280)t + 141/28]
+Approximately, [h = -6.94643t^2 + 56.78929t + 5.03571].
+The observed domain is [0 ≤ t ≤ 5]. The observed heights range from 0 to 120 feet. The fitted curve is an estimate and need not pass through every observation.
 
-### Step 3: Write the regression equation
+### Step 4: Estimate at t = 7
 
-The quadratic regression yields:
-
-[h = -4.8t^2 + 35.2t + 0.8]
-
-R² ≈ 0.991 (99.1% of variation is explained by the model).
-
-**Domain:** In context, t ≥ 0 (time after launch) up to when the drone lands.  
-**Range:** h ≥ 0 (height above ground).
-
-### Step 4: Predict at t = 7
-
-[h = -4.8(7)^2 + 35.2(7) + 0.8 = -4.8(49) + 246.4 + 0.8 = -235.2 + 246.4 + 0.8 = 12]
-
-**Answer (d):** Approximately 12 feet.
-
----
+[h(7) ≈ 62.1857] feet.
+This is an extrapolation beyond the observations. More data are needed to confirm the drone's actual height at 7 seconds.
 
 ## Mixed Exercises
 
@@ -250,7 +236,7 @@ R² ≈ 0.991 (99.1% of variation is explained by the model).
 
 ## Review Notes
 
-* ![](media/image1.png) through ![](media/image23.png) — Tables and scatter plots from the original worksheet are embedded in the source document and should be rendered alongside the appropriate problems.
+* ![Worksheet figure 1](/curriculum/module-12-lesson-8/image1.png) through ![Worksheet figure 23](/curriculum/module-12-lesson-8/image23.png) — Tables and scatter plots from the original worksheet are embedded in the source document and should be rendered alongside the appropriate problems.
 * **Graphing calculator skills** are required for Examples 4 and Mixed Exercises 15–19, 23–26 to compute regression equations and R² values.
 * **Problem 23 (Nuclear Waste)** connects to real-world applications of exponential decay and half-life calculations.
 * **Problem 27 (Use a Source)** is a research-based activity requiring external data lookup.

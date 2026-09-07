@@ -71,12 +71,12 @@ Cross-multiply and solve.
 
 **ROOFING (Problem 9):** Find [x] such that triangles DEF and FBC in the roof outline are similar.
 
-**RADIO (Problem 10):** Radio tower shadow = 8 ft, yardstick shadow = 0.5 ft (1/2 in = 1/12 ft), yardstick height = 3 ft.
+**RADIO (Problem 10):** Radio tower shadow = 8 ft, yardstick shadow = 1/2 in = 1/24 ft, yardstick height = 3 ft.
 [
-\frac{tower\ height}{8} = \frac{3}{0.5}
+\frac{tower\ height}{8} = \frac{3}{1/24}
 ]
 [
-tower\ height = 3 \times \frac{8}{0.5} = 48\ ft
+tower\ height = 3 \times \frac{8}{1/24} = 576\ ft
 ]
 
 **SAILING (Problem 11):** Find [x] given similar sails.
@@ -103,21 +103,21 @@ The mixed exercises section provides practice with all skills from the lesson. P
 ## Review Notes
 
 * Images referenced in the worksheet (triangle pairs for problems 1–4, similar triangle figures for problems 5–9, roof structure for problem 9, radio tower diagram for problem 10, sailboats for problem 11, mountain peak diagram for problem 12, Mia's triangles for problem 13, proof figure for problem 14, triangle for problem 16, triangle for problem 17, triangle for problem 18) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and values.
-* ![](media/image1.png) — Triangle for problem 1
-* ![](media/image2.png) — Triangle for problem 2
-* ![](media/image3.png) — Triangle for problem 3
-* ![](media/image4.png) — Triangle for problem 4
-* ![](media/image5.png) — Triangle for problem 5
-* ![](media/image6.png) — Triangle for problem 6
-* ![](media/image7.png) — Triangle for problem 7
-* ![](media/image8.png) — Triangle for problem 8
-* ![](media/image9.png) — Triangle for problem 9
-* ![](media/image10.png) — Triangle for problem 10
-* ![](media/image11.png) — Mountain diagram for problem 12
-* ![](media/image12.png) — Triangle for problem 12
-* ![](media/image13.png) — Mia's triangles for problem 13
-* ![](media/image14.png) — Proof figure for problem 14
-* ![](media/image15.png) — Triangle for problem 17
+* ![Worksheet figure 1](/curriculum/module-3-lesson-4/image1.png) — Triangle for problem 1
+* ![Worksheet figure 2](/curriculum/module-3-lesson-4/image2.png) — Triangle for problem 2
+* ![Worksheet figure 3](/curriculum/module-3-lesson-4/image3.png) — Triangle for problem 3
+* ![Worksheet figure 4](/curriculum/module-3-lesson-4/image4.png) — Triangle for problem 4
+* ![Worksheet figure 5](/curriculum/module-3-lesson-4/image5.png) — Triangle for problem 5
+* ![Worksheet figure 6](/curriculum/module-3-lesson-4/image6.png) — Triangle for problem 6
+* ![Worksheet figure 7](/curriculum/module-3-lesson-4/image7.png) — Triangle for problem 7
+* ![Worksheet figure 8](/curriculum/module-3-lesson-4/image8.png) — Triangle for problem 8
+* ![Worksheet figure 9](/curriculum/module-3-lesson-4/image9.png) — Triangle for problem 9
+* ![Worksheet figure 10](/curriculum/module-3-lesson-4/image10.png) — Triangle for problem 10
+* ![Worksheet figure 11](/curriculum/module-3-lesson-4/image11.png) — Mountain diagram for problem 12
+* ![Worksheet figure 12](/curriculum/module-3-lesson-4/image12.png) — Triangle for problem 12
+* ![Worksheet figure 13](/curriculum/module-3-lesson-4/image13.png) — Mia's triangles for problem 13
+* ![Worksheet figure 14](/curriculum/module-3-lesson-4/image14.png) — Proof figure for problem 14
+* ![Worksheet figure 15](/curriculum/module-3-lesson-4/image15.png) — Triangle for problem 17
 * The worksheet contains 18 practice problems across three examples and mixed exercises.
 
 (End of file - total 161 lines)

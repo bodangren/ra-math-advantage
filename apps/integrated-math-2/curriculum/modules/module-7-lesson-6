@@ -82,11 +82,10 @@ Mutually exclusive to green (only one color at a time).
 **Problem 6:** Graduate students — 4 of 5 females are international, 2 of 3 males are international. Probability of male or international student.
 Not mutually exclusive — some males are international, some internationals are male.
 Use general addition rule:
-Total females = 5, total males = 3+2 = 5 (2 international males included)
-Total students = 10
-P(male) = 5/10 = 0.5, P(international) = (4+2)/10 = 0.6
-P(male and international) = 2/10 = 0.2
-P(male or international) = 0.5 + 0.6 - 0.2 = 0.9
+Total females = 5. Total males = 3. The 2 international men are part of the 3 men.
+Total students = 8.
+[P(male) = 3/8], [P(international) = 6/8], and [P(male and international) = 2/8].
+[P(male or international) = 3/8 + 6/8 - 2/8 = 7/8 = 0.875].
 
 ## Mixed Exercises
 
@@ -112,10 +111,10 @@ Problems 7–30 provide practice with all skills:
 
 ## Review Notes
 
-* ![](media/image1.png) — T-shirt colors and sizes table for Problem 2
-* ![](media/image2.png) — Senior class Venn diagram for Problem 16
-* ![](media/image3.png) — Sports complex age and participation table for Problem 21
-* ![](media/image4.png) — Dice game probability table for Problem 22
-* ![](media/image5.png) — Parks and Recreation table for Problem 23
-* ![](media/image6.png) — Flower garden bulb table for Problem 24
-* ![](media/image7.png) — Teo and Mason's marble probability comparison
+* ![Worksheet figure 1](/curriculum/module-7-lesson-6/image1.png) — T-shirt colors and sizes table for Problem 2
+* ![Worksheet figure 2](/curriculum/module-7-lesson-6/image2.png) — Senior class Venn diagram for Problem 16
+* ![Worksheet figure 3](/curriculum/module-7-lesson-6/image3.png) — Sports complex age and participation table for Problem 21
+* ![Worksheet figure 4](/curriculum/module-7-lesson-6/image4.png) — Dice game probability table for Problem 22
+* ![Worksheet figure 5](/curriculum/module-7-lesson-6/image5.png) — Parks and Recreation table for Problem 23
+* ![Worksheet figure 6](/curriculum/module-7-lesson-6/image6.png) — Flower garden bulb table for Problem 24
+* ![Worksheet figure 7](/curriculum/module-7-lesson-6/image7.png) — Teo and Mason's marble probability comparison

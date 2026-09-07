@@ -782,13 +782,7 @@ export const seedStandards = internalMutation({
         category: "Statistics",
         isActive: true,
       },
-      {
-        code: "S-CP.C.9",
-        description: "Use permutations and combinations to compute probabilities of compound events and solve problems",
-        studentFriendlyDescription: "I can use counting methods to solve probability problems.",
-        category: "Statistics",
-        isActive: true,
-      },
+
     ];
 
     const results: { code: string; id: string }[] = [];

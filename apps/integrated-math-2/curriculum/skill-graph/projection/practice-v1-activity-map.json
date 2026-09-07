@@ -9069,7 +9069,7 @@
       "rendererKey": "comprehension-quiz",
       "mode": "guided_practice",
       "alignmentNodeIds": [
-        "math.standard.ccss.s-cp-c-9"
+        "math.standard.ccss.s-cp-b-9"
       ],
       "props": {
         "prompt": "Placeholder: generator not yet available for IM2",
@@ -9092,7 +9092,7 @@
       "rendererKey": "comprehension-quiz",
       "mode": "independent_practice",
       "alignmentNodeIds": [
-        "math.standard.ccss.s-cp-c-9"
+        "math.standard.ccss.s-cp-b-9"
       ],
       "props": {
         "prompt": "Placeholder: generator not yet available for IM2",
@@ -9115,7 +9115,7 @@
       "rendererKey": "comprehension-quiz",
       "mode": "worked_example",
       "alignmentNodeIds": [
-        "math.standard.ccss.s-cp-c-9"
+        "math.standard.ccss.s-cp-b-9"
       ],
       "props": {
         "prompt": "Placeholder: generator not yet available for IM2",
@@ -9138,7 +9138,7 @@
       "rendererKey": "step-by-step-solver",
       "mode": "guided_practice",
       "alignmentNodeIds": [
-        "math.standard.ccss.s-cp-c-9"
+        "math.standard.ccss.s-cp-b-9"
       ],
       "props": {
         "prompt": "Placeholder: generator not yet available for IM2",
@@ -9161,7 +9161,7 @@
       "rendererKey": "step-by-step-solver",
       "mode": "independent_practice",
       "alignmentNodeIds": [
-        "math.standard.ccss.s-cp-c-9"
+        "math.standard.ccss.s-cp-b-9"
       ],
       "props": {
         "prompt": "Placeholder: generator not yet available for IM2",
@@ -9184,7 +9184,7 @@
       "rendererKey": "step-by-step-solver",
       "mode": "worked_example",
       "alignmentNodeIds": [
-        "math.standard.ccss.s-cp-c-9"
+        "math.standard.ccss.s-cp-b-9"
       ],
       "props": {
         "prompt": "Placeholder: generator not yet available for IM2",
