@@ -289,13 +289,13 @@ describe('Coverage matrix — integration with rollout-audit (Phase 1, Task 1↔
     expect(schemaValid.map((row) => row.nodeId).sort()).toEqual(
       IM1_GENERATORS.flatMap((entry) => entry.nodeIds).sort(),
     );
-    expect(empty).toHaveLength(132);
-    expect(sourceOnly).toHaveLength(8);
+    expect(empty.length + sourceOnly.length + schemaValid.length).toBe(bp.blueprints.length);
+    expect(sourceOnly.filter((row) => row.nodeId.startsWith('math.im1.skill.3.'))).toHaveLength(12);
 
     const audit = readFileSync(AUDIT_MD, 'utf-8');
     expect(audit).toMatch(/Blueprint rows with three schema-valid mode specifications: 6\./);
-    expect(audit).toMatch(/Blueprint rows with three empty mode specifications: 132\./);
-    expect(audit).toMatch(/Source-only blueprint rows without mode specifications: 8\./);
+    expect(audit).toContain(`Blueprint rows with three empty mode specifications: ${empty.length}.`);
+    expect(audit).toContain(`Source-only blueprint rows without mode specifications: ${sourceOnly.length}.`);
     expect(audit).toMatch(/Skills without a blueprint row: 4\./);
   });
 

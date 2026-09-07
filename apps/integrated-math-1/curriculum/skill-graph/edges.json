@@ -55120,118 +55120,6 @@
       }
     },
     {
-      "id": "math.im1.edge.1235",
-      "type": "prerequisite_for",
-      "sourceId": "math.im1.skill.2.7.solve-literal-equations-and-formulas-for-a-specified-variabl",
-      "targetId": "math.im1.skill.3.1.express-a-relation-as-a-table-a-graph-a-mapping-and-a-set-of",
-      "weight": 0.5,
-      "confidence": "low",
-      "reviewStatus": "draft",
-      "derived": true,
-      "derivationMethod": "lesson-sequence-prerequisite-v1",
-      "rationale": "Lesson-sequence prerequisite: last lesson of module 2 precedes first lesson of module 3",
-      "metadata": {
-        "fromLesson": "2.7",
-        "toLesson": "3.1"
-      }
-    },
-    {
-      "id": "math.im1.edge.1236",
-      "type": "prerequisite_for",
-      "sourceId": "math.im1.skill.3.1.express-a-relation-as-a-table-a-graph-a-mapping-and-a-set-of",
-      "targetId": "math.im1.skill.3.2.determine-whether-a-relation-represented-as-a-graph-table-ma",
-      "weight": 0.5,
-      "confidence": "low",
-      "reviewStatus": "draft",
-      "derived": true,
-      "derivationMethod": "lesson-sequence-prerequisite-v1",
-      "rationale": "Lesson-sequence prerequisite: lesson 1 precedes lesson 2 in module 3",
-      "metadata": {
-        "fromLesson": "3.1",
-        "toLesson": "3.2"
-      }
-    },
-    {
-      "id": "math.im1.edge.1237",
-      "type": "prerequisite_for",
-      "sourceId": "math.im1.skill.3.2.determine-whether-a-relation-represented-as-a-graph-table-ma",
-      "targetId": "math.im1.skill.3.3.determine-whether-a-function-represented-by-a-graph-equation",
-      "weight": 0.5,
-      "confidence": "low",
-      "reviewStatus": "draft",
-      "derived": true,
-      "derivationMethod": "lesson-sequence-prerequisite-v1",
-      "rationale": "Lesson-sequence prerequisite: lesson 2 precedes lesson 3 in module 3",
-      "metadata": {
-        "fromLesson": "3.2",
-        "toLesson": "3.3"
-      }
-    },
-    {
-      "id": "math.im1.edge.1238",
-      "type": "prerequisite_for",
-      "sourceId": "math.im1.skill.3.3.determine-whether-a-function-represented-by-a-graph-equation",
-      "targetId": "math.im1.skill.3.4.estimate-and-interpret-the-x-and-y-intercepts-of-a-function",
-      "weight": 0.5,
-      "confidence": "low",
-      "reviewStatus": "draft",
-      "derived": true,
-      "derivationMethod": "lesson-sequence-prerequisite-v1",
-      "rationale": "Lesson-sequence prerequisite: lesson 3 precedes lesson 4 in module 3",
-      "metadata": {
-        "fromLesson": "3.3",
-        "toLesson": "3.4"
-      }
-    },
-    {
-      "id": "math.im1.edge.1239",
-      "type": "prerequisite_for",
-      "sourceId": "math.im1.skill.3.4.estimate-and-interpret-the-x-and-y-intercepts-of-a-function",
-      "targetId": "math.im1.skill.3.5.identify-line-symmetry-in-the-graph-of-a-function-and-determ",
-      "weight": 0.5,
-      "confidence": "low",
-      "reviewStatus": "draft",
-      "derived": true,
-      "derivationMethod": "lesson-sequence-prerequisite-v1",
-      "rationale": "Lesson-sequence prerequisite: lesson 4 precedes lesson 5 in module 3",
-      "metadata": {
-        "fromLesson": "3.4",
-        "toLesson": "3.5"
-      }
-    },
-    {
-      "id": "math.im1.edge.1240",
-      "type": "prerequisite_for",
-      "sourceId": "math.im1.skill.3.5.identify-line-symmetry-in-the-graph-of-a-function-and-determ",
-      "targetId": "math.im1.skill.3.6.sketch-graphs-of-real-world-functions-from-verbal-descriptio",
-      "weight": 0.5,
-      "confidence": "low",
-      "reviewStatus": "draft",
-      "derived": true,
-      "derivationMethod": "lesson-sequence-prerequisite-v1",
-      "rationale": "Lesson-sequence prerequisite: lesson 5 precedes lesson 6 in module 3",
-      "metadata": {
-        "fromLesson": "3.5",
-        "toLesson": "3.6"
-      }
-    },
-    {
-      "id": "math.im1.edge.1241",
-      "type": "prerequisite_for",
-      "sourceId": "math.im1.skill.3.6.sketch-graphs-of-real-world-functions-from-verbal-descriptio",
-      "targetId": "math.im1.skill.4.1.graph-linear-equations-by-making-a-table-of-values-and-by-fi",
-      "weight": 0.5,
-      "confidence": "low",
-      "reviewStatus": "draft",
-      "derived": true,
-      "derivationMethod": "lesson-sequence-prerequisite-v1",
-      "rationale": "Lesson-sequence prerequisite: last lesson of module 3 precedes first lesson of module 4",
-      "metadata": {
-        "fromLesson": "3.6",
-        "toLesson": "4.1"
-      }
-    },
-    {
       "id": "math.im1.edge.1242",
       "type": "prerequisite_for",
       "sourceId": "math.im1.skill.4.1.graph-linear-equations-by-making-a-table-of-values-and-by-fi",
@@ -56033,6 +55921,230 @@
       "metadata": {
         "module": "2",
         "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.source-correction.module-3.1.appears",
+      "type": "appears_in_context",
+      "sourceId": "math.im1.skill.3.1.distinguish-independent-and-dependent-variables-in-real-worl",
+      "targetId": "math.im1.lesson.3.1",
+      "weight": 0.75,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "module-3-source-review-20260907",
+      "rationale": "Skill appears in the audited lesson source",
+      "metadata": {
+        "module": "3",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.source-correction.module-3.1.contains",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.3.1",
+      "targetId": "math.im1.skill.3.1.distinguish-independent-and-dependent-variables-in-real-worl",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "module-3-source-review-20260907",
+      "rationale": "Lesson contains the audited skill",
+      "metadata": {
+        "module": "3",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.source-correction.module-3.2.appears",
+      "type": "appears_in_context",
+      "sourceId": "math.im1.skill.3.2.evaluate-functions-using-function-notation-for-numerical-and",
+      "targetId": "math.im1.lesson.3.2",
+      "weight": 0.75,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "module-3-source-review-20260907",
+      "rationale": "Skill appears in the audited lesson source",
+      "metadata": {
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.source-correction.module-3.2.contains",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.3.2",
+      "targetId": "math.im1.skill.3.2.evaluate-functions-using-function-notation-for-numerical-and",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "module-3-source-review-20260907",
+      "rationale": "Lesson contains the audited skill",
+      "metadata": {
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.source-correction.module-3.3.appears",
+      "type": "appears_in_context",
+      "sourceId": "math.im1.skill.3.3.determine-whether-a-function-represented-by-an-equation-grap",
+      "targetId": "math.im1.lesson.3.3",
+      "weight": 0.75,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "module-3-source-review-20260907",
+      "rationale": "Skill appears in the audited lesson source",
+      "metadata": {
+        "module": "3",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.source-correction.module-3.3.contains",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.3.3",
+      "targetId": "math.im1.skill.3.3.determine-whether-a-function-represented-by-an-equation-grap",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "module-3-source-review-20260907",
+      "rationale": "Lesson contains the audited skill",
+      "metadata": {
+        "module": "3",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.source-correction.module-3.4.appears",
+      "type": "appears_in_context",
+      "sourceId": "math.im1.skill.3.4.solve-linear-and-quadratic-equations-by-graphing-and-find-th",
+      "targetId": "math.im1.lesson.3.4",
+      "weight": 0.75,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "module-3-source-review-20260907",
+      "rationale": "Skill appears in the audited lesson source",
+      "metadata": {
+        "module": "3",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.source-correction.module-3.4.contains",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.3.4",
+      "targetId": "math.im1.skill.3.4.solve-linear-and-quadratic-equations-by-graphing-and-find-th",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "module-3-source-review-20260907",
+      "rationale": "Lesson contains the audited skill",
+      "metadata": {
+        "module": "3",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.source-correction.module-3.5.appears",
+      "type": "appears_in_context",
+      "sourceId": "math.im1.skill.3.5.locate-relative-maxima-and-minima-on-a-graph-and-describe-th",
+      "targetId": "math.im1.lesson.3.5",
+      "weight": 0.75,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "module-3-source-review-20260907",
+      "rationale": "Skill appears in the audited lesson source",
+      "metadata": {
+        "module": "3",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.source-correction.module-3.5.contains",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.3.5",
+      "targetId": "math.im1.skill.3.5.locate-relative-maxima-and-minima-on-a-graph-and-describe-th",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "module-3-source-review-20260907",
+      "rationale": "Lesson contains the audited skill",
+      "metadata": {
+        "module": "3",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.source-correction.module-3.6.appears",
+      "type": "appears_in_context",
+      "sourceId": "math.im1.skill.3.6.compare-two-functions-by-interpreting-their-key-features-fro",
+      "targetId": "math.im1.lesson.3.6",
+      "weight": 0.75,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "module-3-source-review-20260907",
+      "rationale": "Skill appears in the audited lesson source",
+      "metadata": {
+        "module": "3",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.source-correction.module-3.6.contains",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.3.6",
+      "targetId": "math.im1.skill.3.6.compare-two-functions-by-interpreting-their-key-features-fro",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "module-3-source-review-20260907",
+      "rationale": "Lesson contains the audited skill",
+      "metadata": {
+        "module": "3",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.source-correction.module-3.4.example-4.appears",
+      "type": "appears_in_context",
+      "sourceId": "math.im1.example.3.4.source-004",
+      "targetId": "math.im1.lesson.3.4",
+      "weight": 0.75,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "module-3-source-review-20260907",
+      "rationale": "Worked example appears in the audited lesson source",
+      "metadata": {
+        "module": "3",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.source-correction.module-3.4.example-4.contains",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.3.4",
+      "targetId": "math.im1.example.3.4.source-004",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "module-3-source-review-20260907",
+      "rationale": "Lesson contains the audited worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "4"
       }
     }
   ]

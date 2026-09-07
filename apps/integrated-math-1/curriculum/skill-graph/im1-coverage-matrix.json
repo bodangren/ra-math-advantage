@@ -1,10 +1,10 @@
 {
   "version": 1,
   "course": "im1",
-  "totalSkills": 150,
+  "totalSkills": 156,
   "counts": {
     "served": 6,
-    "gap": 144,
+    "gap": 150,
     "newComponent": 0
   },
   "byModule": [
@@ -24,9 +24,9 @@
     },
     {
       "module": "3",
-      "totalSkills": 6,
+      "totalSkills": 12,
       "served": 0,
-      "gap": 6,
+      "gap": 12,
       "newComponent": 0
     },
     {
@@ -317,11 +317,19 @@
       "priority": "medium"
     },
     {
+      "skillId": "math.im1.skill.3.1.distinguish-independent-and-dependent-variables-in-real-worl",
+      "module": "3",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
       "skillId": "math.im1.skill.3.1.express-a-relation-as-a-table-a-graph-a-mapping-and-a-set-of",
       "module": "3",
       "status": "gap",
       "tier": "none",
-      "rendererKey": "comprehension-quiz",
+      "rendererKey": "unknown",
       "priority": "standard"
     },
     {
@@ -329,39 +337,79 @@
       "module": "3",
       "status": "gap",
       "tier": "none",
-      "rendererKey": "graphing-explorer",
+      "rendererKey": "unknown",
       "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.3.2.evaluate-functions-using-function-notation-for-numerical-and",
+      "module": "3",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
     },
     {
       "skillId": "math.im1.skill.3.3.determine-whether-a-function-represented-by-a-graph-equation",
       "module": "3",
       "status": "gap",
       "tier": "none",
-      "rendererKey": "graphing-explorer",
+      "rendererKey": "unknown",
       "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.3.3.determine-whether-a-function-represented-by-an-equation-grap",
+      "module": "3",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
     },
     {
       "skillId": "math.im1.skill.3.4.estimate-and-interpret-the-x-and-y-intercepts-of-a-function",
       "module": "3",
       "status": "gap",
       "tier": "none",
-      "rendererKey": "graphing-explorer",
+      "rendererKey": "unknown",
       "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.3.4.solve-linear-and-quadratic-equations-by-graphing-and-find-th",
+      "module": "3",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
     },
     {
       "skillId": "math.im1.skill.3.5.identify-line-symmetry-in-the-graph-of-a-function-and-determ",
       "module": "3",
       "status": "gap",
       "tier": "none",
-      "rendererKey": "graphing-explorer",
+      "rendererKey": "unknown",
       "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.3.5.locate-relative-maxima-and-minima-on-a-graph-and-describe-th",
+      "module": "3",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
+      "skillId": "math.im1.skill.3.6.compare-two-functions-by-interpreting-their-key-features-fro",
+      "module": "3",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
     },
     {
       "skillId": "math.im1.skill.3.6.sketch-graphs-of-real-world-functions-from-verbal-descriptio",
       "module": "3",
       "status": "gap",
       "tier": "none",
-      "rendererKey": "graphing-explorer",
+      "rendererKey": "unknown",
       "priority": "standard"
     },
     {

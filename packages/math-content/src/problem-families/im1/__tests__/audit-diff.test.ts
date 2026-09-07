@@ -412,13 +412,13 @@ describe('IM1 audit refresh — long-tail tracking section (Phase 5 Task 1)', ()
     ).toBe(true);
   });
 
-  it('long-tail section labels 132 as frozen and reports 144 current gaps', () => {
+  it('long-tail section separates the frozen baseline from current candidates', () => {
     const audit = loadAuditText();
     const longTailRe = /^#{2,3}\s+(Long\s*tail|Tracked\s*long\s*tail)\b([\s\S]*?)(?=\n#{2,3}\s|\Z)/im;
     const m = audit.match(longTailRe);
     expect(m).not.toBeNull();
     const body = m![2];
-    expect(body).toMatch(/144 skills outside the registered generator set/);
+    expect(body).toMatch(/\d+ skill candidates outside the registered generator set/);
     expect(body).toMatch(/historical 132-skill baseline/);
   });
 });
@@ -437,7 +437,7 @@ describe('IM1 audit refresh — live bindings vs. audit doc (Phase 5 Task 1)', (
     const gapQueue = JSON.parse(readFileSync(GENERATOR_GAP_QUEUE_JSON, 'utf-8')) as {
       queue: Array<{ nodeId: string }>;
     };
-    const longTail = audit.match(/\b(\d+)\s+skills outside the registered generator set/i);
+    const longTail = audit.match(/\b(\d+)\s+skill candidates outside the registered generator set/i);
     expect(longTail).not.toBeNull();
     expect(Number(longTail![1])).toBe(gapQueue.queue.length);
     expect(gapQueue.queue.length).toBeGreaterThan(132);

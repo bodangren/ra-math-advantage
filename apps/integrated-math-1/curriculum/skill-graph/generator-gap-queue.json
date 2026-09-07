@@ -706,8 +706,8 @@
       "nodeId": "math.im1.skill.3.1.express-a-relation-as-a-table-a-graph-a-mapping-and-a-set-of",
       "title": "3a: Express a relation as a table, a graph, a mapping, and a set of ordered pairs and identify the domain and range",
       "module": "3",
-      "rendererKey": "comprehension-quiz",
-      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -715,8 +715,8 @@
       "nodeId": "math.im1.skill.3.2.determine-whether-a-relation-represented-as-a-graph-table-ma",
       "title": "3c: Determine whether a relation represented as a graph, table, mapping, set of ordered pairs, or equation is a function",
       "module": "3",
-      "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -724,8 +724,8 @@
       "nodeId": "math.im1.skill.3.3.determine-whether-a-function-represented-by-a-graph-equation",
       "title": "3e: Determine whether a function represented by a graph, equation, table, or real-world situation is discrete, continuous, or neither",
       "module": "3",
-      "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -733,8 +733,8 @@
       "nodeId": "math.im1.skill.3.4.estimate-and-interpret-the-x-and-y-intercepts-of-a-function",
       "title": "3g: Estimate and interpret the x- and y-intercepts of a function from its graph and describe where the function is positive and negative",
       "module": "3",
-      "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -742,8 +742,8 @@
       "nodeId": "math.im1.skill.3.5.identify-line-symmetry-in-the-graph-of-a-function-and-determ",
       "title": "3i: Identify line symmetry in the graph of a function and determine the intervals where a function is increasing, decreasing, or constant",
       "module": "3",
-      "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -751,8 +751,8 @@
       "nodeId": "math.im1.skill.3.6.sketch-graphs-of-real-world-functions-from-verbal-descriptio",
       "title": "3k: Sketch graphs of real-world functions from verbal descriptions, identifying intercepts, intervals of increase and decrease, end behavior, extrema, and symmetry",
       "module": "3",
-      "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -1295,10 +1295,64 @@
       "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
       "gap": "No generator binding or complete three-mode blueprint",
       "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.3.1.distinguish-independent-and-dependent-variables-in-real-worl",
+      "title": "3b: Distinguish independent and dependent variables in real-world situations and interpret the meaning of axes, scale, and origin on a graph",
+      "module": "3",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.3.2.evaluate-functions-using-function-notation-for-numerical-and",
+      "title": "3d: Evaluate functions using function notation for numerical and algebraic inputs and interpret function values in real-world contexts",
+      "module": "3",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.3.3.determine-whether-a-function-represented-by-an-equation-grap",
+      "title": "3f: Determine whether a function represented by an equation, graph, or table is linear or nonlinear",
+      "module": "3",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.3.4.solve-linear-and-quadratic-equations-by-graphing-and-find-th",
+      "title": "3h: Solve linear and quadratic equations by graphing and find the zero of a linear function and explain its meaning in context",
+      "module": "3",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.3.5.locate-relative-maxima-and-minima-on-a-graph-and-describe-th",
+      "title": "3j: Locate relative maxima and minima on a graph and describe the end behavior of a function using limit notation",
+      "module": "3",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.3.6.compare-two-functions-by-interpreting-their-key-features-fro",
+      "title": "3l: Compare two functions by interpreting their key features from descriptions and graphs and write and analyze linear functions that model cost, revenue, and profit",
+      "module": "3",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
     }
   ],
   "meta": {
-    "totalSkills": 138,
+    "totalSkills": 150,
     "allNeedGenerators": true
   }
 }
