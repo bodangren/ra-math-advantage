@@ -92,11 +92,12 @@ records or change proficiency.
 The interface review contains 35 desktop screenshots and six mobile
 screenshots.
 
-The Senior Leadership Team (SLT) presentation contains 15 slides. It includes
-desktop and mobile walkthrough views and the Learn pages.
+The Senior Leadership Team (SLT) presentation contains 16 slides. It connects
+leadership attention, observation evidence, coaching, and progress review.
+It includes current demo screens and the proposed AI feature.
 
-- [Screenshot catalog](../../outputs/danielson-hdkwa-system-review_20260821/screenshots/)
-- [SLT presentation](../../outputs/danielson-hdkwa-system-review_20260821/HDKWA-Danielson-System-Review.pptx)
+- [August screenshot catalog](../../outputs/danielson-hdkwa-system-review_20260821/screenshots/)
+- [SLT presentation](../../outputs/danielson-slt_20260907/output/HDKWA-Danielson-SLT-Feature-Review-Final.pptx)
 
 The screenshots use fictional local data. Teacher screenshots do not contain
 private leadership comments.
