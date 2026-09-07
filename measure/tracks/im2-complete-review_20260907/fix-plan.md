@@ -132,3 +132,13 @@ Corrected selected mappings for triangle laws, focus/directrix parabolas, multip
 Sources: [triangle laws](https://www.thecorestandards.org/Math/Content/HSG/SRT/), [probability](https://www.thecorestandards.org/Math/Content/HSS/CP/), [parabolas](https://www.thecorestandards.org/Math/Content/HSG/GPE/), [function transformations](https://www.thecorestandards.org/Math/Content/HSF/BF/), [graph solutions](https://www.thecorestandards.org/Math/Content/HSA/REI/), [radicals](https://www.thecorestandards.org/Math/Content/HSN/RN/), [factoring](https://www.thecorestandards.org/Math/Content/HSA/SSE/), and [trigonometric identities](https://www.thecorestandards.org/Math/Content/HSF/TF/).
 
 Standards checkpoint verification: 207 tests passed. Lint, frontend and backend TypeScript, production build, and local seed replay passed. The seed replay returned 96 lessons.
+
+## Modules 3 and 4 worked examples
+
+Completed 44 further worked-example sections. Every worked example in Modules 1 through 4 now has explicit givens and a full solution. The cumulative correction covers 135 of 403 worked-example headings. The remaining 268 headings still need the same content review.
+
+Module 3.5 had two further errors. One solution treated AC as AE + ED although the segments were on different triangle sides. The corrected proportionality gives AE = 15. Another solution compared PN/PM with RM/QM. It must compare MN/MP with MR/MQ. Both ratios are 2/3, so the lines are parallel. Module 3.3 now retains the exact shadow conversion before calculating the tower height.
+
+Module 4 examples now specify geometric positions, angle units, and the requested values. Independent calculations checked the trigonometric values and rounding. The area lesson uses a previously taught right-triangle method. It does not require the next lesson's law of sines.
+
+Modules 3 and 4 verification: 207 tests, lint, frontend and backend TypeScript, and production build passed.

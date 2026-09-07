@@ -34,36 +34,33 @@ This allows you to find unknown sides or angles when you know either:
 
 ## Examples 1 and 2 — Find the Value of x
 
-Find [x] to the nearest tenth.
+### Problem
 
-### Step 1: Set Up the Law of Sines Proportion
+Triangle ABC has A = 30°, B = 45°, and side a = 10 cm opposite A. Find side b and the third angle C. Round b to the nearest tenth.
 
-1-12. Apply [a/sin A = b/sin B] and solve for the unknown side.
+### Solution
+
+The law of sines gives $b/\sin45^\circ=10/\sin30^\circ$. Thus $b=10\sqrt{2}\approx14.1$ cm. The angle sum gives $C=105^\circ$.
 
 ## Example 3 — Real-World Applications
 
-### Step 1: Draw a Diagram and Apply the Law of Sines
+### Problem
 
-13. Wildlife: Boat travels north to first osprey site, then 5° north of west for 2.14 miles to second site, then 6.7 miles back to dock. Find distance from dock to first site.
+Survey stations A and B are 100 m apart. They observe a marker C on the same side of AB. The triangle angles at A and B are 40° and 65°. Find AC to the nearest tenth of a meter.
 
-14. Sailing: Two towers 100 feet apart measure angles to sailboat. Find distance [d] from Tower A.
+### Solution
+
+The third angle is $C=75^\circ$. Side AC is opposite angle B. Use $AC/\sin65^\circ=100/\sin75^\circ$. Therefore $AC\approx93.8$ m.
 
 ## Examples 4-6 — Ambiguous Case
 
-Determine whether each triangle has no solution, one solution, or two solutions. Then solve the triangle.
+### Problem
 
-### Step 1: Analyze Given Information
+Triangle ABC has A = 30°, a = 7 cm, and b = 10 cm, where each lowercase side is opposite its matching angle. Determine how many triangles exist and solve both to the nearest tenth.
 
-For SSA conditions with an acute given angle [A], let [a] be opposite [A] and let [b] be the other given side. The height [h = b sin A] determines the number of solutions:
+### Solution
 
-* If [a < h]: No solution
-* If [a = h]: One solution (right triangle)
-* If [a > h] and [a < b]: Two solutions
-* If [a ≥ b]: One solution
-
-For a right or obtuse given angle [A], there is one triangle if [a > b]. There is no triangle if [a ≤ b].
-
-15-26. Classify and solve each triangle.
+The height is $h=b\sin A=5$ cm. Since $5<7<10$, there are two triangles. The law of sines gives $\sin B=5/7$. The two angles are $B_1\approx45.6^\circ$ and $B_2\approx134.4^\circ$. Then $C_1\approx104.4^\circ$ and $C_2\approx15.6^\circ$. Using unrounded angles, $c_1=14\sin C_1\approx13.6$ cm and $c_2=14\sin C_2\approx3.8$ cm. For an acute given A, compare a with h and b. For a right or obtuse A, a must exceed b for a triangle to exist.
 
 ## Mixed Exercises
 

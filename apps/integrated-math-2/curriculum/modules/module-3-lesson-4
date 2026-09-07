@@ -68,18 +68,13 @@ DE/AB = 15/5 = 3. Corresponding sides have the same scale factor, so DF = 3(7) =
 
 ## Example 3 — Apply Similarity to Real-World Problems
 
-**ROOFING (Problem 9):** Find [x] such that triangles DEF and FBC in the roof outline are similar.
+### Problem
 
-**RADIO (Problem 10):** Radio tower shadow = 8 ft, yardstick shadow = 1/2 in = 1/24 ft, yardstick height = 3 ft.
-$$
-\frac{tower\ height}{8} = \frac{3}{1/24}
-$$
-$$
-tower\ height = 3 \times \frac{8}{1/24} = 576\ ft
-$$
-**SAILING (Problem 11):** Find [x] given similar sails.
+Two triangular sails have equal included angles. The sides next to that angle in the smaller sail are 6 ft and 8 ft. Their corresponding sides in the larger sail are 9 ft and x ft. Find x so the sails are similar by SAS.
 
-**MOUNTAIN PEAKS (Problem 12):** Marcus and Skye measure distances to a mountain peak. Given the actual distance between houses is $1\frac{1}{2}$ miles, find distances from each house to the peak.
+### Solution
+
+SAS similarity requires equal ratios for the two sides next to the equal included angle. Set $9/6 = x/8$. Then $x = 12$ ft. Both side ratios are $3/2$, so SAS establishes similarity. Equal ratios without the included-angle condition would not establish SAS similarity.
 
 ## Mixed Exercises
 

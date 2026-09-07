@@ -51,59 +51,33 @@ If three parallel lines intersect two transversals, they divide the transversals
 
 ## Example 1 — Apply the Triangle Proportionality Theorem
 
-### Step 1: Identify the Proportion
+### Problem
 
-Given [AB = 6], [BC = 4], and [AE = 9], find [ED].
+In triangle ACD, B lies between A and C, E lies between A and D, and BE is parallel to CD. (a) If AB = 6, BC = 4, and AE = 9, find ED. (b) In a second triangle with the same conditions, AB = 12, AC = 16, and ED = 5. Find AE.
 
-Using [
-\frac{AB}{BC} = \frac{AE}{ED}
-]:
-$$
-\frac{6}{4} = \frac{9}{ED}
-$$
-$$
-ED = \frac{9 \times 4}{6} = 6
-$$
-### Step 2: Solve for the Unknown
+### Solution
 
-Given [AB = 12], [AC = 16], and [ED = 5], find [AE].
-
-Since [AC = AE + ED], we have [16 = AE + 5], so [AE = 11].
+Parallel lines divide the two sides proportionally: $AB/BC = AE/ED$. For (a), $6/4 = 9/ED$, so ED = 6. For (b), BC = AC - AB = 4. Thus $12/4 = AE/5$, so AE = 15. AC and AD are different sides; AC does not equal AE + ED.
 
 ## Example 2 — Determine Whether Lines Are Parallel
 
-### Step 1: Check the Proportion
+### Problem
 
-To determine if [NR ∥ PQ], verify whether the segments are divided proportionally.
+In triangle MPQ, N lies between M and P, and R lies between M and Q. MP = 18, PN = 6, MQ = 24, and MR = 16. Determine whether NR is parallel to PQ.
 
-**Problem 3:** [PM = 18], [PN = 6], [QM = 24], [RM = 16]
-$$
-\frac{PN}{PM} = \frac{6}{18} = \frac{1}{3}
-$$
-$$
-\frac{RM}{QM} = \frac{16}{24} = \frac{2}{3}
-$$
-Since $\frac{1}{3} ≠ \frac{2}{3}$, [NR] is **not** parallel to [PQ].
+### Solution
 
-**Problem 4:** [QM = 31], [RM = 21], [PM = 4PN]
-Let [PN = x], then [PM = 4x].
-$$
-\frac{PN}{PM} = \frac{x}{4x} = \frac{1}{4}
-$$
-$$
-\frac{RM}{QM} = \frac{21}{31}
-$$
-For [NR ∥ PQ], we need $\frac{PN}{PM} = \frac{RM}{QM}$, which requires $\frac{1}{4} = \frac{21}{31}$, which is false. So [NR] is **not** parallel to [PQ].
+First find MN = MP - PN = 12. Compare distances from the same vertex M: $MN/MP = 12/18 = 2/3$ and $MR/MQ = 16/24 = 2/3$. The ratios are equal, so NR is parallel to PQ by the converse of the triangle proportionality theorem. Comparing PN/MP with MR/MQ uses distances from different ends and gives an incorrect result.
 
 ## Example 3 — Find Values with Midsegments
 
-### Step 1: Identify Midpoints and Apply the Midsegment Theorem
+### Problem
 
-**Midsegments of △UWY:** If [VR], [VZ], and [ZR] are midsegments, then each is parallel to one side and half its length.
+In triangle UWY, V is the midpoint of UW and R is the midpoint of UY. WY = 18 cm and VR = 2x + 1 cm. Find x and VR.
 
-### Step 2: Set Up Equations
+### Solution
 
-Use the given lengths to solve for [x] in each problem (Problems 5–8).
+VR joins two side midpoints. The midsegment theorem gives $VR = WY/2 = 9$ cm and VR parallel to WY. Solve $2x + 1 = 9$ to obtain x = 4.
 
 ## Example 4 — Apply to Real-World Problems
 

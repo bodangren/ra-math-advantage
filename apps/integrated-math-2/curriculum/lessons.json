@@ -941,19 +941,19 @@
         "phaseNumber": 5,
         "title": "Example 1 — Identify Enlargement or Reduction",
         "phaseType": "worked_example",
-        "markdown": "Determine whether each dilation is an enlargement or reduction, then find the scale factor.\n\n### Step 1: Compare Image to Original\n\nFor each figure pair, compare corresponding lengths. If the image is larger, it is an enlargement. If smaller, it is a reduction.\n\n$$\nscale\\ factor = \\frac{image\\ length}{original\\ length}\n$$\n### Step 2: Classify the Dilation\n\nBased on the scale factor value, classify as enlargement ([k > 1]), reduction ([0 < k < 1]), or identity ([k = 1])."
+        "markdown": "### Problem\n\nA dilation changes a segment of length 8 cm to an image segment of length 12 cm. Find the scale factor and classify the dilation.\n\n### Solution\n\nDivide the image length by the original length: $k = 12/8 = 3/2$. Since $k > 1$, the dilation is an enlargement."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Dilations with Scale Factors",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Apply the Scale Factor\n\nWhen a dilation has scale factor $k = \\frac{1}{2}$, the image dimensions are half the original dimensions. The perimeter of the image is also half the original perimeter.\n\n**BLUEPRINTS:** Ezra is redrawing a blueprint so that the image is $k = \\frac{1}{2}$ the size of the original. If the original perimeter is [P], the new perimeter is $\\frac{1}{2}P$."
+        "markdown": "### Problem\n\nEzra reduces a rectangular blueprint with length 18 cm and width 10 cm by a scale factor of $1/2$. Find the image dimensions and perimeter.\n\n### Solution\n\nMultiply each dimension by $1/2$. The image is 9 cm by 5 cm. Its perimeter is $2(9 + 5) = 28$ cm. The original perimeter is 56 cm, so the perimeter also has scale factor $1/2$."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Graph Dilated Triangles",
         "phaseType": "worked_example",
-        "markdown": "For each set of triangle vertices, graph the image after a dilation centered at the origin with the given scale factor.\n\n### Step 1: Multiply Coordinates by the Scale Factor\n\nMultiply each coordinate of the original vertices by the scale factor [k].\n\n*Problem 6:* [J(-8, 0)], [K(-4, 4)], [L(-2, 0)], [k = 0.5]\nImage vertices: [J'(-4, 0)], [K'(-2, 2)], [L'(-1, 0)]\n\n*Problem 7:* [S(0, 0)], [T(-4, 0)], [V(-8, -8)], [k = 1.25]\nImage vertices: [S'(0, 0)], [T'(-5, 0)], [V'(-10, -10)]\n\n### Step 2: Plot and Connect\n\nPlot the original triangle and its dilated image on the coordinate plane."
+        "markdown": "### Problem\n\nDilate triangle JKL about the origin with scale factor $1/2$. Its vertices are J(-8, 0), K(-4, 4), and L(-2, 0). Find and plot the image vertices.\n\n### Solution\n\nUse $(x,y) \\mapsto (x/2,y/2)$. The image vertices are J'(-4, 0), K'(-2, 2), and L'(-1, 0). Plot these three points and connect them. Each image point lies halfway from the origin to its original point."
       },
       {
         "phaseNumber": 8,
@@ -1009,7 +1009,7 @@
         "phaseNumber": 5,
         "title": "Example 1 — Identify Corresponding Parts",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: List Congruent Angles\n\nFor similar polygons, identify the pairs of congruent angles by matching vertex positions in the similarity statement.\n\n*Problem 1:* [ABCD ∼ WXYZ]\nCongruent angles: [∠A ≅ ∠W], [∠B ≅ ∠X], [∠C ≅ ∠Y], [∠D ≅ ∠Z]\n\n### Step 2: Write the Proportion\n\nWrite proportions relating corresponding sides using the similarity statement.\n\n$$\n\\frac{AB}{WX} = \\frac{BC}{XY} = \\frac{CD}{YZ} = \\frac{DA}{ZW}\n$$"
+        "markdown": "### Problem\n\nQuadrilaterals ABCD and WXYZ are similar in the stated order. List corresponding angles and write a proportion for corresponding sides.\n\n### Solution\n\nThe vertex order gives A with W, B with X, C with Y, and D with Z. Each pair of corresponding angles is congruent. The corresponding sides satisfy $AB/WX = BC/XY = CD/YZ = DA/ZW$."
       },
       {
         "phaseNumber": 6,
@@ -1027,7 +1027,7 @@
         "phaseNumber": 8,
         "title": "Example 4 — Apply Similarity to Real-World Problems",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Extract Given Information\n\nIdentify the actual distances or measurements from the problem.\n\n*Problem 15 (GAMING):* Map distances: home to health food store = 2 cm, health food store to dungeon = 8 cm, dungeon to home = 7 cm. Actual distance from health food store to dungeon = 4 km.\n\n### Step 2: Find the Scale Factor\n\n$$\nk = \\frac{actual\\ distance}{map\\ distance}\n$$\n### Step 3: Calculate the Requested Distance\n\nApply the scale factor to find other actual distances.\n\n*Problem 16 (LAWN CARE):* Perimeter = 126 m, ratio length:width = 5:2.\nLet [l = 5x] and [w = 2x]. Then [2(5x + 2x) = 126], so [x = 9], and [w = 18] m."
+        "markdown": "### Problem\n\nA game map shows home to a store as 2 cm, the store to a dungeon as 8 cm, and the dungeon to home as 7 cm. The actual store-to-dungeon distance is 4 km. Find the other two actual distances.\n\n### Solution\n\nThe map scale is $4/8 = 0.5$ km per centimeter. Home to the store is $2(0.5) = 1$ km. The dungeon to home is $7(0.5) = 3.5$ km."
       },
       {
         "phaseNumber": 9,
@@ -1083,7 +1083,7 @@
         "phaseNumber": 6,
         "title": "Example 2 — Indirect Measurement with AA Similarity",
         "phaseType": "worked_example",
-        "markdown": "Use similar triangles to find distances that cannot be measured directly.\n\n### Step 1: Set Up the Proportion\n\n**CELL TOWERS (Problem 7):** Tower shadow = 100 ft, Lia's shadow = 3 ft 4 in (3.33 ft), Lia's height = 4 ft 6 in (4.5 ft).\n\nThe tower and Lia form similar triangles with their shadows:\n$$\n\\frac{tower\\ height}{tower\\ shadow} = \\frac{Lia's\\ height}{Lia's\\ shadow}\n$$\n$$\n\\frac{h}{100} = \\frac{4.5}{3.33}\n$$\n### Step 2: Solve for the Unknown\n\n$$\nh = \\frac{4.5 \\times 100}{3.33} ≈ 135\\ ft\n$$\n**LIGHTHOUSE (Problem 8):** Maya's shadow coincides with the lighthouse shadow. Use the similar triangles formed by each object and its shadow to find distances [x] and [y]."
+        "markdown": "### Problem\n\nOn level ground at the same time, a vertical tower casts a 100 ft shadow. Lia is 4 ft 6 in tall and casts a 3 ft 4 in shadow. Find the tower height.\n\n### Solution\n\nThe vertical objects form right angles with the ground. Parallel sunlight gives equal acute angles, so the triangles are similar by AA. Convert exactly: Lia's height is $9/2$ ft and her shadow is $10/3$ ft. Then $h/100 = (9/2)/(10/3) = 27/20$, so $h = 135$ ft. Do not round the shadow to 3.33 ft before calculation."
       },
       {
         "phaseNumber": 7,
@@ -1145,7 +1145,7 @@
         "phaseNumber": 7,
         "title": "Example 3 — Apply Similarity to Real-World Problems",
         "phaseType": "worked_example",
-        "markdown": "**ROOFING (Problem 9):** Find [x] such that triangles DEF and FBC in the roof outline are similar.\n\n**RADIO (Problem 10):** Radio tower shadow = 8 ft, yardstick shadow = 1/2 in = 1/24 ft, yardstick height = 3 ft.\n$$\n\\frac{tower\\ height}{8} = \\frac{3}{1/24}\n$$\n$$\ntower\\ height = 3 \\times \\frac{8}{1/24} = 576\\ ft\n$$\n**SAILING (Problem 11):** Find [x] given similar sails.\n\n**MOUNTAIN PEAKS (Problem 12):** Marcus and Skye measure distances to a mountain peak. Given the actual distance between houses is $1\\frac{1}{2}$ miles, find distances from each house to the peak."
+        "markdown": "### Problem\n\nTwo triangular sails have equal included angles. The sides next to that angle in the smaller sail are 6 ft and 8 ft. Their corresponding sides in the larger sail are 9 ft and x ft. Find x so the sails are similar by SAS.\n\n### Solution\n\nSAS similarity requires equal ratios for the two sides next to the equal included angle. Set $9/6 = x/8$. Then $x = 12$ ft. Both side ratios are $3/2$, so SAS establishes similarity. Equal ratios without the included-angle condition would not establish SAS similarity."
       },
       {
         "phaseNumber": 8,
@@ -1195,19 +1195,19 @@
         "phaseNumber": 5,
         "title": "Example 1 — Apply the Triangle Proportionality Theorem",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Identify the Proportion\n\nGiven [AB = 6], [BC = 4], and [AE = 9], find [ED].\n\nUsing [\n\\frac{AB}{BC} = \\frac{AE}{ED}\n]:\n$$\n\\frac{6}{4} = \\frac{9}{ED}\n$$\n$$\nED = \\frac{9 \\times 4}{6} = 6\n$$\n### Step 2: Solve for the Unknown\n\nGiven [AB = 12], [AC = 16], and [ED = 5], find [AE].\n\nSince [AC = AE + ED], we have [16 = AE + 5], so [AE = 11]."
+        "markdown": "### Problem\n\nIn triangle ACD, B lies between A and C, E lies between A and D, and BE is parallel to CD. (a) If AB = 6, BC = 4, and AE = 9, find ED. (b) In a second triangle with the same conditions, AB = 12, AC = 16, and ED = 5. Find AE.\n\n### Solution\n\nParallel lines divide the two sides proportionally: $AB/BC = AE/ED$. For (a), $6/4 = 9/ED$, so ED = 6. For (b), BC = AC - AB = 4. Thus $12/4 = AE/5$, so AE = 15. AC and AD are different sides; AC does not equal AE + ED."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Determine Whether Lines Are Parallel",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Check the Proportion\n\nTo determine if [NR ∥ PQ], verify whether the segments are divided proportionally.\n\n**Problem 3:** [PM = 18], [PN = 6], [QM = 24], [RM = 16]\n$$\n\\frac{PN}{PM} = \\frac{6}{18} = \\frac{1}{3}\n$$\n$$\n\\frac{RM}{QM} = \\frac{16}{24} = \\frac{2}{3}\n$$\nSince $\\frac{1}{3} ≠ \\frac{2}{3}$, [NR] is **not** parallel to [PQ].\n\n**Problem 4:** [QM = 31], [RM = 21], [PM = 4PN]\nLet [PN = x], then [PM = 4x].\n$$\n\\frac{PN}{PM} = \\frac{x}{4x} = \\frac{1}{4}\n$$\n$$\n\\frac{RM}{QM} = \\frac{21}{31}\n$$\nFor [NR ∥ PQ], we need $\\frac{PN}{PM} = \\frac{RM}{QM}$, which requires $\\frac{1}{4} = \\frac{21}{31}$, which is false. So [NR] is **not** parallel to [PQ]."
+        "markdown": "### Problem\n\nIn triangle MPQ, N lies between M and P, and R lies between M and Q. MP = 18, PN = 6, MQ = 24, and MR = 16. Determine whether NR is parallel to PQ.\n\n### Solution\n\nFirst find MN = MP - PN = 12. Compare distances from the same vertex M: $MN/MP = 12/18 = 2/3$ and $MR/MQ = 16/24 = 2/3$. The ratios are equal, so NR is parallel to PQ by the converse of the triangle proportionality theorem. Comparing PN/MP with MR/MQ uses distances from different ends and gives an incorrect result."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Find Values with Midsegments",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Identify Midpoints and Apply the Midsegment Theorem\n\n**Midsegments of △UWY:** If [VR], [VZ], and [ZR] are midsegments, then each is parallel to one side and half its length.\n\n### Step 2: Set Up Equations\n\nUse the given lengths to solve for [x] in each problem (Problems 5–8)."
+        "markdown": "### Problem\n\nIn triangle UWY, V is the midpoint of UW and R is the midpoint of UY. WY = 18 cm and VR = 2x + 1 cm. Find x and VR.\n\n### Solution\n\nVR joins two side midpoints. The midsegment theorem gives $VR = WY/2 = 9$ cm and VR parallel to WY. Solve $2x + 1 = 9$ to obtain x = 4."
       },
       {
         "phaseNumber": 8,
@@ -1275,13 +1275,13 @@
         "phaseNumber": 6,
         "title": "Example 2 — Altitudes in Similar Triangles",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Identify Corresponding Altitudes\n\nIf △RST ∼ △EFG and [SH] is an altitude of △RST and [FJ] is an altitude of △EFG, then [SH] and [FJ] are corresponding altitudes.\n\n### Step 2: Apply the Proportion\n\n**Problem 5:** △RST ∼ △EFG, [ST = 6], [SH = 5], [FJ = 7], find [FG].\n\nSince [\n\\frac{SH}{FJ} = \\frac{ST}{FG}\n]:\n$$\n\\frac{5}{7} = \\frac{6}{FG}\n$$\n$$\nFG = \\frac{6 \\times 7}{5} = 8.4\n$$\n**Problem 6:** △ABC ∼ △MNP, [AB = 24], [AD = 14], [MQ = 10.5], find [MN].\n\nSince [\n\\frac{AD}{MQ} = \\frac{AB}{MN}\n]:\n$$\n\\frac{14}{10.5} = \\frac{24}{MN}\n$$\n$$\nMN = \\frac{24 \\times 10.5}{14} = 18\n$$"
+        "markdown": "### Problem\n\nTriangles RST and EFG are similar in the stated order. SH is the altitude from S to RT, and FJ is the altitude from F to EG. ST = 6, SH = 5, and FJ = 7. Find FG.\n\n### Solution\n\nCorresponding altitudes have the same scale factor as corresponding sides. The scale from RST to EFG is $FJ/SH = 7/5$. Therefore $FG = ST(7/5) = 6(7/5) = 8.4$."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Real-World Application",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Set Up the Proportion\n\n**SCENERY (Problem 7):** Two similar triangles formed by paths. [AC = 50] yd, [MP = 35] yd. Fountain is 5 yd from intersection.\n\nUse the scale factor [\nk = \\frac{MP}{AC} = \\frac{35}{50} = \\frac{7}{10}\n].\n\n### Step 2: Find the Unknown Distance\n\nDistance from intersection to stadium entrance is proportional to [AC] and [MP]."
+        "markdown": "### Problem\n\nTwo similar triangular garden layouts have corresponding bases of 50 yd and 35 yd. A fountain in the smaller layout lies at the foot of an altitude that is 5 yd long. Find the corresponding altitude in the larger layout.\n\n### Solution\n\nThe scale from the smaller layout to the larger layout is $50/35 = 10/7$. Corresponding altitudes have this ratio. The larger altitude is $5(10/7) = 50/7$ yd, approximately 7.14 yd."
       },
       {
         "phaseNumber": 8,
@@ -1331,25 +1331,25 @@
         "phaseNumber": 5,
         "title": "Example 1 — Find the Geometric Mean",
         "phaseType": "worked_example",
-        "markdown": "Find the geometric mean between each pair of numbers.\n\n### Step 1: Apply the Formula\n\nFor two numbers [a] and [b], the geometric mean is [x = √(ab)].\n\n1. 4 and 6: [x = √(4 · 6) = √24 = 2√6]\n2. [1/2] and 2: [x = √((1/2) · 2) = √1 = 1]\n3. 4 and 25: [x = √(4 · 25) = √100 = 10]\n4. 12 and 20: [x = √(12 · 20) = √240 = 4√15]\n5. 17 and 3: [x = √(17 · 3) = √51]\n6. 3 and 24: [x = √(3 · 24) = √72 = 6√2]"
+        "markdown": "### Problem\n\nFind the geometric mean of 4 and 6. Give an exact answer.\n\n### Solution\n\nThe geometric mean of two positive numbers is the positive square root of their product. Thus $g = \\sqrt{4(6)} = \\sqrt{24} = 2\\sqrt{6}$. Its square is 24, as required."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Similarity Statements for Right Triangles",
         "phaseType": "worked_example",
-        "markdown": "Write a similarity statement identifying the three similar right triangles in each figure.\n\n### Step 1: Identify Corresponding Parts\n\nWhen an altitude is drawn from the right angle to the hypotenuse, three similar right triangles are formed. Use the geometric mean relationships to write proportions.\n\n7. (diagram with altitude to hypotenuse)\n8. (diagram with altitude to hypotenuse)\n9. (diagram with altitude to hypotenuse)\n10. (diagram with altitude to hypotenuse)"
+        "markdown": "### Problem\n\nTriangle ABC has a right angle at C. D is the foot of the altitude from C to hypotenuse AB. Write a correctly ordered similarity statement for the three triangles.\n\n### Solution\n\nEach small triangle has a right angle at D. Triangle ACD shares angle A with ABC, so its remaining angle at C equals angle B. Triangle CBD shares angle B with ABC, so its remaining angle at C equals angle A. Therefore triangle ABC is similar to triangle ACD and to triangle CBD, in those vertex orders."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Find Unknown Values",
         "phaseType": "worked_example",
-        "markdown": "Find the values of [x], [y], and [z].\n\n### Step 1: Set Up Proportions\n\nUse the geometric mean relationships from similar triangles.\n\n11. (right triangle diagram)\n12. (right triangle diagram)\n13. (right triangle diagram)\n14. (right triangle diagram)"
+        "markdown": "### Problem\n\nIn right triangle ABC, CD is the altitude to hypotenuse AB. D lies between A and B. AD = 4 cm and DB = 9 cm. Find CD, AC, and BC.\n\n### Solution\n\nThe hypotenuse AB is 13 cm. The altitude relation gives $CD^2 = AD(DB) = 36$, so CD = 6 cm. The leg relations give $AC^2 = AB(AD) = 52$ and $BC^2 = AB(DB) = 117$. Thus $AC = 2\\sqrt{13}$ cm and $BC = 3\\sqrt{13}$ cm. Check: $52 + 117 = 169 = 13^2$."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — Real-World Applications",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Model the Situation\n\n15. Museum Statue: A 15-foot railing forms a right triangle with legs of 12 feet and 9 feet. Approximate how close visitors can get.\n\n16. Photography: Point A is 90 feet from the walkway entrance, point B is 40 feet from the entrance. With a 90° viewing angle, where should Noah stop?\n\n17. Highway Service Road: An airport and factory are 6.0 miles apart. Their distances from a shopping center are 3.6 miles and 4.8 miles. Find the shortest service road length."
+        "markdown": "### Problem\n\nA statue is at the right-angle vertex of a triangular display. The two perpendicular sides from the statue are 9 ft and 12 ft. A straight railing joins their other endpoints. Find the shortest distance from the statue to the railing.\n\n### Solution\n\nThe railing is the hypotenuse, with length 15 ft. Compute the display area using its legs: 9(12)/2 = 54 square feet. If h is the perpendicular distance to the railing, the same area is 15h/2. Thus h = 108/15 = 7.2 ft."
       },
       {
         "phaseNumber": 9,
@@ -1399,25 +1399,25 @@
         "phaseNumber": 5,
         "title": "Example 1 — Find the Value of x",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Apply the Pythagorean Theorem\n\n1-6. Solve [a² + b² = c²] for the unknown side length in each right triangle."
+        "markdown": "### Problem\n\nA right triangle has one leg of 5 cm and a hypotenuse of 13 cm. Find the other leg x.\n\n### Solution\n\nThe hypotenuse is the longest side. Use 5² + x² = 13². Then x² = 169 - 25 = 144. A length is positive, so x = 12 cm."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Use Pythagorean Triples",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Recognize Common Triples\n\nPythagorean triples include (3, 4, 5), (5, 12, 13), (7, 24, 25), (8, 15, 17), and (9, 40, 41).\n\n7-12. Identify and use Pythagorean triples to find values more efficiently."
+        "markdown": "### Problem\n\nA right triangle has legs of 14 m and 48 m. Find its hypotenuse using a Pythagorean triple.\n\n### Solution\n\nThe legs are twice 7 and 24. The triple (7, 24, 25) gives a hypotenuse of 2(25) = 50 m. Check: 14² + 48² = 196 + 2304 = 2500 = 50²."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Real-World Applications",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Set Up the Problem\n\n13. Ramp: The bottom of a ramp is 10 feet from the dock. The ramp is 11 feet long. How high is the dock?\n\n14. Flight: An airplane lands 60 miles east and 25 miles north of where it took off. How far apart are the airports?"
+        "markdown": "### Problem\n\nA straight ramp is 11 ft long. Its lower end is 10 ft horizontally from the vertical dock wall. Find the dock height to the nearest hundredth of a foot.\n\n### Solution\n\nThe ramp is the hypotenuse. Use $h^2 + 10^2 = 11^2$. Thus $h = \\sqrt{21}$ ft, approximately 4.58 ft."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — Classify Triangles",
         "phaseType": "worked_example",
-        "markdown": "Determine whether points X, Y, and Z can be vertices of a triangle. If so, classify as acute, right, or obtuse.\n\n### Step 1: Check Triangle Inequality and Side Lengths\n\n15. X(−3, −2), Y(−1, 0), Z(0, −1)\n16. X(−7, −3), Y(−2, −5), Z(−4, −1)\n17. X(1, 2), Y(4, 6), Z(6, 6)\n18. X(3, 1), Y(3, 7), Z(11, 1)"
+        "markdown": "### Problem\n\nClassify the triangle with X(-3, -2), Y(-1, 0), and Z(0, -1) as acute, right, or obtuse.\n\n### Solution\n\nThe squared side lengths are XY² = 2² + 2² = 8, YZ² = 1² + (-1)² = 2, and XZ² = 3² + 1² = 10. The points are not collinear. Since 8 + 2 = 10, the triangle is right. The right angle is at Y, opposite the longest side XZ."
       },
       {
         "phaseNumber": 9,
@@ -1467,19 +1467,19 @@
         "phaseNumber": 5,
         "title": "Example 1 — Graph a Rectangular Solid",
         "phaseType": "worked_example",
-        "markdown": "Graph a rectangular solid that contains the given point and the origin as vertices. Label the coordinates of each vertex.\n\n### Step 1: Plot the Point and Origin\n\n1. A(2, 1, 5)\n2. P(−1, 4, 2)\n3. C(−2, 2, 2)\n4. R(3, −4, 1)\n5. H(4, 5, −3)\n6. G(4, 1, −3)"
+        "markdown": "### Problem\n\nAn axis-aligned rectangular solid has opposite vertices O(0, 0, 0) and A(2, 1, 5). List all eight vertices.\n\n### Solution\n\nEach x-coordinate is 0 or 2. Each y-coordinate is 0 or 1. Each z-coordinate is 0 or 5. The vertices are (0,0,0), (2,0,0), (0,1,0), (2,1,0), (0,0,5), (2,0,5), (0,1,5), and (2,1,5). Join pairs that differ in exactly one coordinate to draw the edges."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Distance in Space",
         "phaseType": "worked_example",
-        "markdown": "Determine the distance between each pair of points.\n\n### Step 1: Apply the Distance Formula\n\n[d = √((x₂ - x₁)² + (y₂ - y₁)² + (z₂ - z₁)²)]\n\n7. F(0, 0, 0) and G(2, 4, 3): [d = √(2² + 4² + 3²) = √(4 + 16 + 9) = √29]\n8. X(−2, 5, −1) and Y(9, 0, 4)\n9. A(4, −6, 0) and B(1, 0, 1)\n10. C(8, 7, −2) and D(0, 0, 0)\n\n11. Air Traffic: Find distance from aircraft to tower at (0, 0, 0).\n\n12. Animators: Find distance between point R (nose) and point T (tail) on character."
+        "markdown": "### Problem\n\nFind the distance from F(0, 0, 0) to G(2, 4, 3). Give an exact answer.\n\n### Solution\n\nApply the three-dimensional distance formula: $d = \\sqrt{(2-0)^2+(4-0)^2+(3-0)^2} = \\sqrt{29}$. The distance is approximately 5.39 units."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Midpoint in Space",
         "phaseType": "worked_example",
-        "markdown": "Determine the coordinates of the midpoint [M] of the segment joining each pair of points.\n\n### Step 1: Apply the Midpoint Formula\n\n[M = ((x₁ + x₂)/2, (y₁ + y₂)/2, (z₁ + z₂)/2)]\n\n13. K(−2, −4, −4) and L(4, 2, 0): [M = (1, −1, −2)]\n14. W(−1, −3, −6) and Z(−1, 5, 10)\n15. R(3, 3, 4) and V(5, 4, 13)\n16. A(4, 6, −8) and B(0, 0, 0)\n17. C(8, 7, 11) and D(2, 1, 8)\n18. T(−1, −7, 9) and U(5, −1, −6)"
+        "markdown": "### Problem\n\nFind the midpoint of the segment from K(-2, -4, -4) to L(4, 2, 0).\n\n### Solution\n\nAverage each pair of coordinates. The midpoint is ((-2+4)/2, (-4+2)/2, (-4+0)/2) = (1, -1, -2). Both endpoint-to-midpoint vectors have coordinate magnitudes 3, 3, and 2."
       },
       {
         "phaseNumber": 8,
@@ -1529,31 +1529,31 @@
         "phaseNumber": 5,
         "title": "Example 1 — 45°-45°-90° Triangles",
         "phaseType": "worked_example",
-        "markdown": "Find the value of [x].\n\n### Step 1: Identify the Ratio\n\nFor a 45°-45°-90° triangle, if the leg is [l], the hypotenuse is [l√2].\n\n1-6. Find [x] using the 45°-45°-90° ratio."
+        "markdown": "### Problem\n\nA 45°-45°-90° triangle has a leg of 7 cm. Find its other leg and hypotenuse.\n\n### Solution\n\nThe legs are equal, so the other leg is 7 cm. The hypotenuse is the leg times $\\sqrt{2}$, so it is $7\\sqrt{2}$ cm."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — 30°-60°-90° Triangles",
         "phaseType": "worked_example",
-        "markdown": "Find the value of [x].\n\n### Step 1: Identify the Shorter Leg\n\nFor a 30°-60°-90° triangle, if the shorter leg is [x], the longer leg is [x√3] and the hypotenuse is [2x].\n\n7-12. Find [x] using the 30°-60°-90° ratio."
+        "markdown": "### Problem\n\nA 30°-60°-90° triangle has a hypotenuse of 18 cm. Find both legs.\n\n### Solution\n\nThe side ratio, opposite 30°, 60°, and 90°, is $1:\\sqrt{3}:2$. The shorter leg is 18/2 = 9 cm. The longer leg is $9\\sqrt{3}$ cm."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Mixed Special Triangles",
         "phaseType": "worked_example",
-        "markdown": "Find the value of [x].\n\n### Step 1: Determine Which Special Triangle Applies\n\n13-18. Apply the appropriate ratio based on the given angle measures."
+        "markdown": "### Problem\n\nA square and an equilateral triangle each have side length 8 cm. Find the square diagonal and the triangle altitude.\n\n### Solution\n\nThe square diagonal is the hypotenuse of a 45°-45°-90° triangle with legs 8, so it is $8\\sqrt{2}$ cm. The equilateral triangle altitude splits its base into lengths of 4 cm. Each half is a 30°-60°-90° triangle, so the altitude is $4\\sqrt{3}$ cm."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — Find x and y",
         "phaseType": "worked_example",
-        "markdown": "Find the values of [x] and [y].\n\n### Step 1: Use Both Ratios\n\n19-24. For 30°-60°-90° triangles, find the shorter leg [x] first, then use ratios to find [y]."
+        "markdown": "### Problem\n\nA 30°-60°-90° triangle has a longer leg of $6\\sqrt{3}$ m. Its shorter leg is x and its hypotenuse is y. Find x and y.\n\n### Solution\n\nThe longer leg equals the shorter leg times $\\sqrt{3}$. Thus $x\\sqrt{3}=6\\sqrt{3}$, so x = 6 m. The hypotenuse is twice the shorter leg, so y = 12 m."
       },
       {
         "phaseNumber": 9,
         "title": "Example 5 — Real-World Applications",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Apply Special Triangle Ratios\n\n25. Escalators: A 40-foot escalator rises at a 30° angle. How high is the second floor?\n\n26. Windows: Height of window using six 30°-60°-90° triangles.\n\n27. Certificate: Will a 12-cm equilateral triangle fit in a 12-cm by 10-cm frame?\n\n28. Chocolate Box: Hexagon with side length 3 inches inside rectangular box."
+        "markdown": "### Problem\n\nA 40 ft escalator makes a 30° angle with the horizontal floor. Find its vertical rise.\n\n### Solution\n\nThe escalator is the hypotenuse of a 30°-60°-90° triangle. The vertical rise is opposite the 30° angle. It is half the hypotenuse, so the rise is 20 ft."
       },
       {
         "phaseNumber": 10,
@@ -1603,31 +1603,31 @@
         "phaseNumber": 5,
         "title": "Example 1 — Find Trigonometric Ratios",
         "phaseType": "worked_example",
-        "markdown": "Find sin [L], cos [L], tan [L], sin [M], cos [M], and tan [M].\n\n### Step 1: Identify Sides Relative to Each Angle\n\n1. l = 15, m = 36, n = 39\n2. l = 12, m = 12√3, n = 24\n3-4. Find ratios for triangles RST and JKL."
+        "markdown": "### Problem\n\nRight triangle LMN has its right angle at N. MN = 15, LN = 36, and LM = 39. Find sine, cosine, and tangent for angles L and M.\n\n### Solution\n\nRelative to L, the opposite leg is MN and the adjacent leg is LN. Thus sin L = 15/39 = 5/13, cos L = 36/39 = 12/13, and tan L = 15/36 = 5/12. Relative to M, the legs exchange roles: sin M = 12/13, cos M = 5/13, and tan M = 12/5."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Special Triangle Trigonometry",
         "phaseType": "worked_example",
-        "markdown": "Use a special right triangle to express each trigonometric ratio.\n\n### Step 1: Use Known Values from Special Triangles\n\n5. sin 30° = 1/2\n6. tan 45° = 1\n7. cos 60° = 1/2\n8. sin 60° = √3/2\n9. tan 30° = 1/√3 = √3/3\n10. cos 45° = √2/2"
+        "markdown": "### Problem\n\nUse a special right triangle to find sin 60° and tan 30° exactly.\n\n### Solution\n\nA 30°-60°-90° triangle can have shorter leg 1, longer leg $\\sqrt{3}$, and hypotenuse 2. Therefore $\\sin 60^\\circ = \\sqrt{3}/2$ and $\\tan 30^\\circ = 1/\\sqrt{3} = \\sqrt{3}/3$."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Find the Value of x",
         "phaseType": "worked_example",
-        "markdown": "Find [x] to the nearest hundredth.\n\n### Step 1: Choose the Appropriate Ratio\n\n11-14. Set up the trigonometric equation and solve for [x].\n\n15. Geology: Shan measures 43 meters at 36° angle. Find height.\n\n16. Ramps: 60-foot ramp at 15° angle. Find height."
+        "markdown": "### Problem\n\nA 60 ft ramp makes a 15° angle with level ground. Find the vertical rise to the nearest hundredth of a foot.\n\n### Solution\n\nThe rise h is opposite 15°, and the ramp is the hypotenuse. Thus $\\sin 15^\\circ = h/60$, so $h = 60\\sin 15^\\circ \\approx 15.53$ ft. Use degree mode."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — Find Angle Measures",
         "phaseType": "worked_example",
-        "markdown": "Use a calculator to find [m∠B] to the nearest tenth.\n\n### Step 1: Use Inverse Trigonometric Functions\n\n16-21. Use [sin⁻¹], [cos⁻¹], or [tan⁻¹] to find angle measures."
+        "markdown": "### Problem\n\nIn a right triangle, the leg opposite acute angle B is 8 cm and the adjacent leg is 15 cm. Find B to the nearest tenth of a degree.\n\n### Solution\n\nUse $\\tan B = 8/15$. Then $B = \\arctan(8/15) \\approx 28.1^\\circ$. Use the inverse tangent in degree mode."
       },
       {
         "phaseNumber": 9,
         "title": "Example 5 — Solve Right Triangles",
         "phaseType": "worked_example",
-        "markdown": "Solve each right triangle. Round side measures to the nearest tenth and angle measures to the nearest degree.\n\n### Step 1: Find All Missing Measures\n\n22-27. Use trigonometric ratios and triangle sum to find all sides and angles."
+        "markdown": "### Problem\n\nRight triangle ABC has C = 90°, A = 35°, and hypotenuse AB = 12 cm. Find B and both legs. Round lengths to the nearest tenth.\n\n### Solution\n\nThe angle sum gives $B = 180^\\circ - 90^\\circ - 35^\\circ = 55^\\circ$. The opposite leg is $BC = 12\\sin35^\\circ \\approx 6.9$ cm. The adjacent leg is $AC = 12\\cos35^\\circ \\approx 9.8$ cm."
       },
       {
         "phaseNumber": 10,
@@ -1677,31 +1677,31 @@
         "phaseNumber": 5,
         "title": "Example 1 — Angle of Elevation Problems",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Set Up the Diagram and Equation\n\n1. Lighthouses: Sailors spot light at 25° elevation. Light is 30 meters above sea level. Find distance from shore.\n\n2. Water Towers: Student is 110 feet from water tower. Tower is 32.5 feet tall. Eye level is 6 feet above ground. Find angle of elevation.\n\n3. Construction: Ladder reaches 30-foot roof at 55° angle. How far is ladder from wall?\n\n4. Mountain Biking: Nabuko is 60 meters from base, bridges are 100 meters up. Eye level is 5 meters above ground. Find angle of elevation."
+        "markdown": "### Problem\n\nA lighthouse light is 30 m above sea level. A sailor at sea level observes it at an angle of elevation of 25°. Find the horizontal distance to the lighthouse base, to the nearest tenth of a meter.\n\n### Solution\n\nLet d be the horizontal distance. Then $\\tan25^\\circ = 30/d$. Solve $d = 30/\\tan25^\\circ \\approx 64.3$ m."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Angle of Depression Problems",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Use the Congruent Angle Relationship\n\n5. Rooftop: Lucia is 5.5 feet tall on 80-foot building. Fountain is 122 feet from base. Find angle of depression.\n\n6. Air Traffic: From 120-foot tower, airplane observed at 19° angle of depression. Find distance from base.\n\n7. Aviation: Flying at 528 feet altitude with 2000 feet horizontal distance until runway. Find angle of depression.\n\n8. Indirect Measurement: Kenneth on 30-foot pier (eye level 3 feet above pier). Angle of depression to whale is 20°. Find distance."
+        "markdown": "### Problem\n\nAn aircraft is 528 ft above a level runway. Its horizontal distance from the landing point is 2000 ft. Find the angle of depression to the nearest tenth of a degree.\n\n### Solution\n\nThe angle of depression equals the angle of elevation from the landing point because the horizontal lines are parallel. Thus $\\tan\\theta = 528/2000$. Therefore $\\theta = \\arctan(528/2000) \\approx 14.8^\\circ$."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Indirect Measurement with Two Angles",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Set Up a System of Equations\n\n9. Garage: Carlos sights top at 42°, steps back 20 feet and sights at 10°. Carlos is 6 feet tall. Find garage height.\n\n10. Cliff: Sarah sights top at 60°, steps back 50 meters and sights at 30°. Sarah is 1.8 meters tall. Find cliff height.\n\n11. Balloon: Person on ground, steps back 10 feet, angle changes from 36° to 25°. Person is 6 feet tall. Find balloon height.\n\n12. Mr. Dominguez on 40-foot bluff, eye level 6 feet above ground. Angles of depression are 34° and 48° to two friends. Find distance between friends."
+        "markdown": "### Problem\n\nOn level ground, Sarah observes the top of a vertical cliff at 60°. She moves 50 m directly away from the cliff and observes it at 30°. Her eye height is 1.8 m. Find the cliff height to the nearest tenth of a meter.\n\n### Solution\n\nLet d be the first horizontal distance and h the height above Sarah\\'s eyes. Then $h=d\\sqrt{3}$ and $h=(d+50)/\\sqrt{3}$. Equating these gives $3d=d+50$, so d = 25. The cliff height is $25\\sqrt{3}+1.8 \\approx 45.1$ m."
       },
       {
         "phaseNumber": 8,
         "title": "Example 4 — Area Using Trigonometry",
         "phaseType": "worked_example",
-        "markdown": "Use trigonometry to find the area of △ABC to the nearest tenth.\n\n### Step 1: Use the Formula [Area = (1/2)ab sin C]\n\n13-18. Given two sides and the included angle, find the area."
+        "markdown": "### Problem\n\nTwo sides of a triangle are 8 cm and 10 cm. Their included angle is 30°. Find the area.\n\n### Solution\n\nUse $K=\\tfrac12 ab\\sin C$ with the included angle C. Thus $K=\\tfrac12(8)(10)\\sin30^\\circ=20$ square centimeters."
       },
       {
         "phaseNumber": 9,
         "title": "Example 5 — Area with Different Given Information",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Find the Necessary Components First\n\n19-21. Solve for missing sides or angles, then use the area formula."
+        "markdown": "### Problem\n\nTriangle ABC has A = 30°, B = 60°, and side AB = 10 cm. Find its area to the nearest tenth of a square centimeter.\n\n### Solution\n\nThe third angle is 90°, so AB is the hypotenuse. The 30°-60°-90° ratios give BC = 5 cm and $AC = 5\\sqrt{3}$ cm. These legs are perpendicular. The area is $K = \\tfrac12(5)(5\\sqrt{3}) = 25\\sqrt{3}/2$, approximately 21.7 square centimeters."
       },
       {
         "phaseNumber": 10,
@@ -1751,19 +1751,19 @@
         "phaseNumber": 5,
         "title": "Examples 1 and 2 — Find the Value of x",
         "phaseType": "worked_example",
-        "markdown": "Find [x] to the nearest tenth.\n\n### Step 1: Set Up the Law of Sines Proportion\n\n1-12. Apply [a/sin A = b/sin B] and solve for the unknown side."
+        "markdown": "### Problem\n\nTriangle ABC has A = 30°, B = 45°, and side a = 10 cm opposite A. Find side b and the third angle C. Round b to the nearest tenth.\n\n### Solution\n\nThe law of sines gives $b/\\sin45^\\circ=10/\\sin30^\\circ$. Thus $b=10\\sqrt{2}\\approx14.1$ cm. The angle sum gives $C=105^\\circ$."
       },
       {
         "phaseNumber": 6,
         "title": "Example 3 — Real-World Applications",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Draw a Diagram and Apply the Law of Sines\n\n13. Wildlife: Boat travels north to first osprey site, then 5° north of west for 2.14 miles to second site, then 6.7 miles back to dock. Find distance from dock to first site.\n\n14. Sailing: Two towers 100 feet apart measure angles to sailboat. Find distance [d] from Tower A."
+        "markdown": "### Problem\n\nSurvey stations A and B are 100 m apart. They observe a marker C on the same side of AB. The triangle angles at A and B are 40° and 65°. Find AC to the nearest tenth of a meter.\n\n### Solution\n\nThe third angle is $C=75^\\circ$. Side AC is opposite angle B. Use $AC/\\sin65^\\circ=100/\\sin75^\\circ$. Therefore $AC\\approx93.8$ m."
       },
       {
         "phaseNumber": 7,
         "title": "Examples 4-6 — Ambiguous Case",
         "phaseType": "worked_example",
-        "markdown": "Determine whether each triangle has no solution, one solution, or two solutions. Then solve the triangle.\n\n### Step 1: Analyze Given Information\n\nFor SSA conditions with an acute given angle [A], let [a] be opposite [A] and let [b] be the other given side. The height [h = b sin A] determines the number of solutions:\n\n* If [a < h]: No solution\n* If [a = h]: One solution (right triangle)\n* If [a > h] and [a < b]: Two solutions\n* If [a ≥ b]: One solution\n\nFor a right or obtuse given angle [A], there is one triangle if [a > b]. There is no triangle if [a ≤ b].\n\n15-26. Classify and solve each triangle."
+        "markdown": "### Problem\n\nTriangle ABC has A = 30°, a = 7 cm, and b = 10 cm, where each lowercase side is opposite its matching angle. Determine how many triangles exist and solve both to the nearest tenth.\n\n### Solution\n\nThe height is $h=b\\sin A=5$ cm. Since $5<7<10$, there are two triangles. The law of sines gives $\\sin B=5/7$. The two angles are $B_1\\approx45.6^\\circ$ and $B_2\\approx134.4^\\circ$. Then $C_1\\approx104.4^\\circ$ and $C_2\\approx15.6^\\circ$. Using unrounded angles, $c_1=14\\sin C_1\\approx13.6$ cm and $c_2=14\\sin C_2\\approx3.8$ cm. For an acute given A, compare a with h and b. For a right or obtuse A, a must exceed b for a triangle to exist."
       },
       {
         "phaseNumber": 8,
@@ -1813,19 +1813,19 @@
         "phaseNumber": 5,
         "title": "Examples 1 and 2 — Find the Value of x",
         "phaseType": "worked_example",
-        "markdown": "Find [x] to the nearest tenth for side lengths and nearest degree for angle measures.\n\n### Step 1: Identify SAS or SSS\n\n1-6. Apply the appropriate Law of Cosines formula."
+        "markdown": "### Problem\n\nA triangle has sides a = 5 cm and b = 7 cm with included angle C = 60°. Find c to the nearest tenth. Then find the angle opposite the side of length 7 in a triangle with side lengths 5, 6, and 7, to the nearest degree.\n\n### Solution\n\nFor the first triangle, $c^2=5^2+7^2-2(5)(7)\\cos60^\\circ=39$. Thus $c=\\sqrt{39}\\approx6.2$ cm. For the second triangle, $\\cos B=(5^2+6^2-7^2)/(2(5)(6))=1/5$. Therefore $B=\\arccos(1/5)\\approx78^\\circ$."
       },
       {
         "phaseNumber": 6,
         "title": "Example 3 — Real-World Applications",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Set Up the Diagram and Equation\n\n7. Radar: Two stations 2.4 miles apart track an airplane. Station A to plane is 7.4 miles, Station B to plane is 6.9 miles. Find angle of elevation from Station A.\n\n8. Drafting: Marion draws segment AB = 4.2 inches. From B, she draws segment BC = 6.4 inches at 42° to AB. Find AC."
+        "markdown": "### Problem\n\nTwo radar stations A and B are 2.4 miles apart on level ground. An aircraft P is in the vertical plane through AB, on the side toward B as seen from A. AP = 7.4 miles and BP = 6.9 miles. Find its angle of elevation at A to the nearest degree.\n\n### Solution\n\nThe angle at A is between horizontal AB and AP. Apply the law of cosines: $\\cos A=(2.4^2+7.4^2-6.9^2)/(2(2.4)(7.4))$. This is approximately 0.3635, so $A\\approx69^\\circ$."
       },
       {
         "phaseNumber": 7,
         "title": "Examples 4 and 5 — Solve Triangles",
         "phaseType": "worked_example",
-        "markdown": "Solve each triangle. Round side lengths to the nearest tenth and angle measures to the nearest degree.\n\n### Step 1: Choose Law of Cosines or Law of Sines\n\nFor SAS: Use Law of Cosines first to find the third side.\nFor SSS: Use Law of Cosines first to find the largest angle.\n\n9-14. Solve each triangle."
+        "markdown": "### Problem\n\nSolve a triangle with side lengths a = 5, b = 6, and c = 7. Round angles to the nearest degree.\n\n### Solution\n\nFind the largest angle first: $\\cos C=(5^2+6^2-7^2)/(2(5)(6))=1/5$, so $C\\approx78^\\circ$. Then $\\cos A=(6^2+7^2-5^2)/(2(6)(7))=5/7$, so $A\\approx44^\\circ$. The angle sum gives $B\\approx58^\\circ$. Use unrounded values before rounding the final angles."
       },
       {
         "phaseNumber": 8,

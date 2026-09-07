@@ -33,54 +33,53 @@ For a right triangle with acute angle [A]:
 
 ## Example 1 — Find Trigonometric Ratios
 
-Find sin [L], cos [L], tan [L], sin [M], cos [M], and tan [M].
+### Problem
 
-### Step 1: Identify Sides Relative to Each Angle
+Right triangle LMN has its right angle at N. MN = 15, LN = 36, and LM = 39. Find sine, cosine, and tangent for angles L and M.
 
-1. l = 15, m = 36, n = 39
-2. l = 12, m = 12√3, n = 24
-3-4. Find ratios for triangles RST and JKL.
+### Solution
+
+Relative to L, the opposite leg is MN and the adjacent leg is LN. Thus sin L = 15/39 = 5/13, cos L = 36/39 = 12/13, and tan L = 15/36 = 5/12. Relative to M, the legs exchange roles: sin M = 12/13, cos M = 5/13, and tan M = 12/5.
 
 ## Example 2 — Special Triangle Trigonometry
 
-Use a special right triangle to express each trigonometric ratio.
+### Problem
 
-### Step 1: Use Known Values from Special Triangles
+Use a special right triangle to find sin 60° and tan 30° exactly.
 
-5. sin 30° = 1/2
-6. tan 45° = 1
-7. cos 60° = 1/2
-8. sin 60° = √3/2
-9. tan 30° = 1/√3 = √3/3
-10. cos 45° = √2/2
+### Solution
+
+A 30°-60°-90° triangle can have shorter leg 1, longer leg $\sqrt{3}$, and hypotenuse 2. Therefore $\sin 60^\circ = \sqrt{3}/2$ and $\tan 30^\circ = 1/\sqrt{3} = \sqrt{3}/3$.
 
 ## Example 3 — Find the Value of x
 
-Find [x] to the nearest hundredth.
+### Problem
 
-### Step 1: Choose the Appropriate Ratio
+A 60 ft ramp makes a 15° angle with level ground. Find the vertical rise to the nearest hundredth of a foot.
 
-11-14. Set up the trigonometric equation and solve for [x].
+### Solution
 
-15. Geology: Shan measures 43 meters at 36° angle. Find height.
-
-16. Ramps: 60-foot ramp at 15° angle. Find height.
+The rise h is opposite 15°, and the ramp is the hypotenuse. Thus $\sin 15^\circ = h/60$, so $h = 60\sin 15^\circ \approx 15.53$ ft. Use degree mode.
 
 ## Example 4 — Find Angle Measures
 
-Use a calculator to find [m∠B] to the nearest tenth.
+### Problem
 
-### Step 1: Use Inverse Trigonometric Functions
+In a right triangle, the leg opposite acute angle B is 8 cm and the adjacent leg is 15 cm. Find B to the nearest tenth of a degree.
 
-16-21. Use [sin⁻¹], [cos⁻¹], or [tan⁻¹] to find angle measures.
+### Solution
+
+Use $\tan B = 8/15$. Then $B = \arctan(8/15) \approx 28.1^\circ$. Use the inverse tangent in degree mode.
 
 ## Example 5 — Solve Right Triangles
 
-Solve each right triangle. Round side measures to the nearest tenth and angle measures to the nearest degree.
+### Problem
 
-### Step 1: Find All Missing Measures
+Right triangle ABC has C = 90°, A = 35°, and hypotenuse AB = 12 cm. Find B and both legs. Round lengths to the nearest tenth.
 
-22-27. Use trigonometric ratios and triangle sum to find all sides and angles.
+### Solution
+
+The angle sum gives $B = 180^\circ - 90^\circ - 35^\circ = 55^\circ$. The opposite leg is $BC = 12\sin35^\circ \approx 6.9$ cm. The adjacent leg is $AC = 12\cos35^\circ \approx 9.8$ cm.
 
 ## Mixed Exercises
 

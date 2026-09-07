@@ -27,53 +27,53 @@ When solving problems with angles of elevation and depression, draw a diagram an
 
 ## Example 1 — Angle of Elevation Problems
 
-### Step 1: Set Up the Diagram and Equation
+### Problem
 
-1. Lighthouses: Sailors spot light at 25° elevation. Light is 30 meters above sea level. Find distance from shore.
+A lighthouse light is 30 m above sea level. A sailor at sea level observes it at an angle of elevation of 25°. Find the horizontal distance to the lighthouse base, to the nearest tenth of a meter.
 
-2. Water Towers: Student is 110 feet from water tower. Tower is 32.5 feet tall. Eye level is 6 feet above ground. Find angle of elevation.
+### Solution
 
-3. Construction: Ladder reaches 30-foot roof at 55° angle. How far is ladder from wall?
-
-4. Mountain Biking: Nabuko is 60 meters from base, bridges are 100 meters up. Eye level is 5 meters above ground. Find angle of elevation.
+Let d be the horizontal distance. Then $\tan25^\circ = 30/d$. Solve $d = 30/\tan25^\circ \approx 64.3$ m.
 
 ## Example 2 — Angle of Depression Problems
 
-### Step 1: Use the Congruent Angle Relationship
+### Problem
 
-5. Rooftop: Lucia is 5.5 feet tall on 80-foot building. Fountain is 122 feet from base. Find angle of depression.
+An aircraft is 528 ft above a level runway. Its horizontal distance from the landing point is 2000 ft. Find the angle of depression to the nearest tenth of a degree.
 
-6. Air Traffic: From 120-foot tower, airplane observed at 19° angle of depression. Find distance from base.
+### Solution
 
-7. Aviation: Flying at 528 feet altitude with 2000 feet horizontal distance until runway. Find angle of depression.
-
-8. Indirect Measurement: Kenneth on 30-foot pier (eye level 3 feet above pier). Angle of depression to whale is 20°. Find distance.
+The angle of depression equals the angle of elevation from the landing point because the horizontal lines are parallel. Thus $\tan\theta = 528/2000$. Therefore $\theta = \arctan(528/2000) \approx 14.8^\circ$.
 
 ## Example 3 — Indirect Measurement with Two Angles
 
-### Step 1: Set Up a System of Equations
+### Problem
 
-9. Garage: Carlos sights top at 42°, steps back 20 feet and sights at 10°. Carlos is 6 feet tall. Find garage height.
+On level ground, Sarah observes the top of a vertical cliff at 60°. She moves 50 m directly away from the cliff and observes it at 30°. Her eye height is 1.8 m. Find the cliff height to the nearest tenth of a meter.
 
-10. Cliff: Sarah sights top at 60°, steps back 50 meters and sights at 30°. Sarah is 1.8 meters tall. Find cliff height.
+### Solution
 
-11. Balloon: Person on ground, steps back 10 feet, angle changes from 36° to 25°. Person is 6 feet tall. Find balloon height.
-
-12. Mr. Dominguez on 40-foot bluff, eye level 6 feet above ground. Angles of depression are 34° and 48° to two friends. Find distance between friends.
+Let d be the first horizontal distance and h the height above Sarah\'s eyes. Then $h=d\sqrt{3}$ and $h=(d+50)/\sqrt{3}$. Equating these gives $3d=d+50$, so d = 25. The cliff height is $25\sqrt{3}+1.8 \approx 45.1$ m.
 
 ## Example 4 — Area Using Trigonometry
 
-Use trigonometry to find the area of △ABC to the nearest tenth.
+### Problem
 
-### Step 1: Use the Formula [Area = (1/2)ab sin C]
+Two sides of a triangle are 8 cm and 10 cm. Their included angle is 30°. Find the area.
 
-13-18. Given two sides and the included angle, find the area.
+### Solution
+
+Use $K=\tfrac12 ab\sin C$ with the included angle C. Thus $K=\tfrac12(8)(10)\sin30^\circ=20$ square centimeters.
 
 ## Example 5 — Area with Different Given Information
 
-### Step 1: Find the Necessary Components First
+### Problem
 
-19-21. Solve for missing sides or angles, then use the area formula.
+Triangle ABC has A = 30°, B = 60°, and side AB = 10 cm. Find its area to the nearest tenth of a square centimeter.
+
+### Solution
+
+The third angle is 90°, so AB is the hypotenuse. The 30°-60°-90° ratios give BC = 5 cm and $AC = 5\sqrt{3}$ cm. These legs are perpendicular. The area is $K = \tfrac12(5)(5\sqrt{3}) = 25\sqrt{3}/2$, approximately 21.7 square centimeters.
 
 ## Mixed Exercises
 

@@ -36,30 +36,33 @@ Use the Law of Cosines when you have:
 
 ## Examples 1 and 2 — Find the Value of x
 
-Find [x] to the nearest tenth for side lengths and nearest degree for angle measures.
+### Problem
 
-### Step 1: Identify SAS or SSS
+A triangle has sides a = 5 cm and b = 7 cm with included angle C = 60°. Find c to the nearest tenth. Then find the angle opposite the side of length 7 in a triangle with side lengths 5, 6, and 7, to the nearest degree.
 
-1-6. Apply the appropriate Law of Cosines formula.
+### Solution
+
+For the first triangle, $c^2=5^2+7^2-2(5)(7)\cos60^\circ=39$. Thus $c=\sqrt{39}\approx6.2$ cm. For the second triangle, $\cos B=(5^2+6^2-7^2)/(2(5)(6))=1/5$. Therefore $B=\arccos(1/5)\approx78^\circ$.
 
 ## Example 3 — Real-World Applications
 
-### Step 1: Set Up the Diagram and Equation
+### Problem
 
-7. Radar: Two stations 2.4 miles apart track an airplane. Station A to plane is 7.4 miles, Station B to plane is 6.9 miles. Find angle of elevation from Station A.
+Two radar stations A and B are 2.4 miles apart on level ground. An aircraft P is in the vertical plane through AB, on the side toward B as seen from A. AP = 7.4 miles and BP = 6.9 miles. Find its angle of elevation at A to the nearest degree.
 
-8. Drafting: Marion draws segment AB = 4.2 inches. From B, she draws segment BC = 6.4 inches at 42° to AB. Find AC.
+### Solution
+
+The angle at A is between horizontal AB and AP. Apply the law of cosines: $\cos A=(2.4^2+7.4^2-6.9^2)/(2(2.4)(7.4))$. This is approximately 0.3635, so $A\approx69^\circ$.
 
 ## Examples 4 and 5 — Solve Triangles
 
-Solve each triangle. Round side lengths to the nearest tenth and angle measures to the nearest degree.
+### Problem
 
-### Step 1: Choose Law of Cosines or Law of Sines
+Solve a triangle with side lengths a = 5, b = 6, and c = 7. Round angles to the nearest degree.
 
-For SAS: Use Law of Cosines first to find the third side.
-For SSS: Use Law of Cosines first to find the largest angle.
+### Solution
 
-9-14. Solve each triangle.
+Find the largest angle first: $\cos C=(5^2+6^2-7^2)/(2(5)(6))=1/5$, so $C\approx78^\circ$. Then $\cos A=(6^2+7^2-5^2)/(2(6)(7))=5/7$, so $A\approx44^\circ$. The angle sum gives $B\approx58^\circ$. Use unrounded values before rounding the final angles.
 
 ## Mixed Exercises
 

@@ -51,25 +51,13 @@ Two corresponding angle pairs are congruent. Therefore triangle ABC is similar t
 
 ## Example 2 — Indirect Measurement with AA Similarity
 
-Use similar triangles to find distances that cannot be measured directly.
+### Problem
 
-### Step 1: Set Up the Proportion
+On level ground at the same time, a vertical tower casts a 100 ft shadow. Lia is 4 ft 6 in tall and casts a 3 ft 4 in shadow. Find the tower height.
 
-**CELL TOWERS (Problem 7):** Tower shadow = 100 ft, Lia's shadow = 3 ft 4 in (3.33 ft), Lia's height = 4 ft 6 in (4.5 ft).
+### Solution
 
-The tower and Lia form similar triangles with their shadows:
-$$
-\frac{tower\ height}{tower\ shadow} = \frac{Lia's\ height}{Lia's\ shadow}
-$$
-$$
-\frac{h}{100} = \frac{4.5}{3.33}
-$$
-### Step 2: Solve for the Unknown
-
-$$
-h = \frac{4.5 \times 100}{3.33} ≈ 135\ ft
-$$
-**LIGHTHOUSE (Problem 8):** Maya's shadow coincides with the lighthouse shadow. Use the similar triangles formed by each object and its shadow to find distances [x] and [y].
+The vertical objects form right angles with the ground. Parallel sunlight gives equal acute angles, so the triangles are similar by AA. Convert exactly: Lia's height is $9/2$ ft and her shadow is $10/3$ ft. Then $h/100 = (9/2)/(10/3) = 27/20$, so $h = 135$ ft. Do not round the shadow to 3.33 ft before calculation.
 
 ## Mixed Exercises
 

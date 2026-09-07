@@ -39,20 +39,14 @@ When writing similarity statements, list vertices in corresponding order:
 
 ## Example 1 — Identify Corresponding Parts
 
-### Step 1: List Congruent Angles
+### Problem
 
-For similar polygons, identify the pairs of congruent angles by matching vertex positions in the similarity statement.
+Quadrilaterals ABCD and WXYZ are similar in the stated order. List corresponding angles and write a proportion for corresponding sides.
 
-*Problem 1:* [ABCD ∼ WXYZ]
-Congruent angles: [∠A ≅ ∠W], [∠B ≅ ∠X], [∠C ≅ ∠Y], [∠D ≅ ∠Z]
+### Solution
 
-### Step 2: Write the Proportion
+The vertex order gives A with W, B with X, C with Y, and D with Z. Each pair of corresponding angles is congruent. The corresponding sides satisfy $AB/WX = BC/XY = CD/YZ = DA/ZW$.
 
-Write proportions relating corresponding sides using the similarity statement.
-
-$$
-\frac{AB}{WX} = \frac{BC}{XY} = \frac{CD}{YZ} = \frac{DA}{ZW}
-$$
 ## Example 2 — Determine Similarity and Scale Factor
 
 ### Problem
@@ -75,23 +69,13 @@ The scale factor from ABC to DEF is DE/AB = 10/4 = 2.5. Thus EF = 2.5(BC) = 2.5(
 
 ## Example 4 — Apply Similarity to Real-World Problems
 
-### Step 1: Extract Given Information
+### Problem
 
-Identify the actual distances or measurements from the problem.
+A game map shows home to a store as 2 cm, the store to a dungeon as 8 cm, and the dungeon to home as 7 cm. The actual store-to-dungeon distance is 4 km. Find the other two actual distances.
 
-*Problem 15 (GAMING):* Map distances: home to health food store = 2 cm, health food store to dungeon = 8 cm, dungeon to home = 7 cm. Actual distance from health food store to dungeon = 4 km.
+### Solution
 
-### Step 2: Find the Scale Factor
-
-$$
-k = \frac{actual\ distance}{map\ distance}
-$$
-### Step 3: Calculate the Requested Distance
-
-Apply the scale factor to find other actual distances.
-
-*Problem 16 (LAWN CARE):* Perimeter = 126 m, ratio length:width = 5:2.
-Let [l = 5x] and [w = 2x]. Then [2(5x + 2x) = 126], so [x = 9], and [w = 18] m.
+The map scale is $4/8 = 0.5$ km per centimeter. Home to the store is $2(0.5) = 1$ km. The dungeon to home is $7(0.5) = 3.5$ km.
 
 ## Mixed Exercises
 
