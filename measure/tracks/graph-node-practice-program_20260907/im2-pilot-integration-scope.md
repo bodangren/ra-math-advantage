@@ -125,12 +125,9 @@ The required shared packages are already declared dependencies of the IM2 app:
 
 No verified backend logic blocker remains in the reviewed flow. The 23 main backend tests cover current draft rejection, current publication withdrawal, authentication data, organization scope, class ownership, active enrollment, assignment time, exact activity identity, server grading, canonical teacher replay, conflicting keys, Independent evidence, SRS writes, and SRS replay.
 
-Two verification gaps remain before this pilot is ready for a production release:
+Direct route tests now cover role rejection, session-owned identifiers, strict request validation, conflict status, and backend failure status. The actual teacher query test covers eligible source selection and stored answer display. The form test covers a failed save and retry.
 
-1. The new student and teacher API routes have no direct route tests. Add tests for role rejection, session-owned identifiers, strict request validation, conflict status, and backend failure status.
-2. The teacher page has no integration test for candidate display. Add a test that proves only an eligible Guided source shows the action. Also prove that the page handles a backend rejection without a false success message.
-
-These gaps do not require a new framework. Use the existing route and component test patterns in the app.
+The complete teacher page composition and positive signed-in student-to-teacher journey remain unverified. Use the existing app tests and real local browser flow for these checks.
 
 ## Approval and Browser Acceptance
 
