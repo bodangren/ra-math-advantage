@@ -53,3 +53,13 @@ The author reports 58 passing focused tests when the selected package source is 
 ## Disposition
 
 Do not integrate the patch until the current physical activity approval, mode, props, and grading checks are present at the final evidence boundary. Also add the stable activity ID to the candidate query. After these changes, repeat the focused flow tests with the isolated practice-core source and run lint, standalone TypeScript, and build.
+
+## Repair disposition
+
+The isolated repair resolves the blocking findings. The final Guided and Independent evidence boundary now requires current physical approval. It requires the reviewed physical mode state. The current seed contract leaves `learningEvidenceMode` absent for these two modes, so a changed `worked_example` value fails closed. The boundary compares current props and grading configuration with the committed selected seed builders. It also requires `submissionData.contractVersion === "practice.v1"`.
+
+Four new post-write regressions first reproduced the defect. Each test creates a valid server-graded submission. It then withdraws approval, changes the physical mode, changes the equation, or changes the rubric. Each repaired case returns the opaque not-found result and writes no evidence, receipt, SRS card, or review log.
+
+The candidate query now requires `IM3_TEACHER_LED_ACTIVITY_ID`. A new regression rejects a candidate with a different stable activity ID.
+
+The final focused run passes 63 of 63 tests in five files. App lint passes. The full source-mapped standalone TypeScript check passes with `tsconfig.parent-source-check.json`. The check maps practice-core to the isolated HEAD source and excludes no source files. The previous parent production build remains valid for the pre-repair patch. Run the production build again after integration because this repair adds an import from the committed seed builder.

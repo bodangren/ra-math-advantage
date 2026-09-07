@@ -527,6 +527,7 @@ export default defineSchema({
 
   learning_evidence: defineTable({
     learnerId: v.id("profiles"),
+    submissionId: v.optional(v.id("activity_submissions")),
     contractVersion: v.literal("learning-evidence.v1"),
     nodeId: v.string(),
     activityId: v.string(),
@@ -550,7 +551,35 @@ export default defineSchema({
     createdAt: v.number(),
   })
     .index("by_learner_and_node", ["learnerId", "nodeId"])
-    .index("by_learner_and_idempotency_key", ["learnerId", "idempotencyKey"]),
+    .index("by_learner_and_idempotency_key", ["learnerId", "idempotencyKey"])
+    .index("by_learner_and_submission_id", ["learnerId", "submissionId"])
+    .index("by_learner_node_origin_occurred_at", ["learnerId", "nodeId", "origin", "occurredAt"])
+    .index("by_learner_node_activity_origin_attempt", ["learnerId", "nodeId", "activityId", "origin", "attemptOrdinal"]),
+
+  learning_evidence_receipts: defineTable({
+    learnerId: v.id("profiles"),
+    submissionId: v.id("activity_submissions"),
+    evidenceId: v.optional(v.id("learning_evidence")),
+    persisted: v.boolean(),
+    masteryApplied: v.boolean(),
+    kstApplied: v.boolean(),
+    decision: v.object({
+      idempotency: v.union(v.literal("new"), v.literal("replay"), v.literal("conflict")),
+      exposureState: v.union(v.literal("awaiting_teacher_exposure"), v.literal("introduced")),
+      eligible: v.boolean(),
+      reason: v.union(
+        v.literal("node_not_enabled"),
+        v.literal("idempotency_conflict"),
+        v.literal("teacher_led"),
+        v.literal("awaiting_teacher_exposure"),
+        v.literal("ungraded_evidence"),
+        v.literal("eligible"),
+      ),
+      masteryBearing: v.boolean(),
+    }),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  }).index("by_learner_and_submission_id", ["learnerId", "submissionId"]),
 
   student_spreadsheet_responses: defineTable({
     studentId: v.id("profiles"),

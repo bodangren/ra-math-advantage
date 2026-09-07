@@ -19,8 +19,13 @@ export interface Im3LearningEvidenceStore {
   listByLearnerAndNode(
     learnerId: string,
     nodeId: string,
+    options?: Im3LearningEvidenceHistoryOptions,
   ): Promise<readonly LearningEvidenceV1[]>;
-  append(learnerId: string, evidence: LearningEvidenceV1): Promise<void>;
+  append(
+    learnerId: string,
+    evidence: LearningEvidenceV1,
+    submissionId?: string,
+  ): Promise<string | void>;
 }
 
 /** The existing IM3 SRS/KST bridge for eligible Mastery Advantage evidence. */
@@ -78,6 +83,11 @@ export function createIm3LearningEvidenceAdapter({
     const acceptedEvidence = await store.listByLearnerAndNode(
       input.learnerId,
       evidence.nodeId,
+      {
+        activityId: evidence.activityId,
+        origin: evidence.origin,
+        occurredAt: evidence.occurredAt,
+      },
     );
     const decision = evaluateLearningEvidenceV1({
       evidence,
@@ -169,3 +179,10 @@ export const IM3_MASTERY_ADVANTAGE_ACTIVITY_ID =
 export const IM3_TEACHER_LED_ACTIVITY_ID = `${IM3_PILOT_NODE}.worked_example` as const;
 export const IM3_GUIDED_VARIANT_KEY = IM3_GUIDED_PRACTICE_ACTIVITY_ID;
 export const IM3_PILOT_VARIANT_KEY = IM3_MASTERY_ADVANTAGE_ACTIVITY_ID;
+export const IM3_LEARNING_EVIDENCE_CONTRACT_VERSION = 'learning-evidence.v1' as const;
+
+export interface Im3LearningEvidenceHistoryOptions {
+  activityId?: string;
+  origin?: LearningEvidenceV1['origin'];
+  occurredAt?: string;
+}

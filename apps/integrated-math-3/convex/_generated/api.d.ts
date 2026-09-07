@@ -17,6 +17,7 @@ import type * as edgeCalibration from "../edgeCalibration.js";
 import type * as efficacy_cohort from "../efficacy/cohort.js";
 import type * as efficacy_suppression from "../efficacy/suppression.js";
 import type * as exports from "../exports.js";
+import type * as learningEvidence from "../learningEvidence.js";
 import type * as migration_operator from "../migration_operator.js";
 import type * as migrations from "../migrations.js";
 import type * as migrations_rename_problem_family from "../migrations/rename_problem_family.js";
@@ -132,6 +133,7 @@ declare const fullApi: ApiFromModules<{
   "efficacy/cohort": typeof efficacy_cohort;
   "efficacy/suppression": typeof efficacy_suppression;
   exports: typeof exports;
+  learningEvidence: typeof learningEvidence;
   migration_operator: typeof migration_operator;
   migrations: typeof migrations;
   "migrations/rename_problem_family": typeof migrations_rename_problem_family;
