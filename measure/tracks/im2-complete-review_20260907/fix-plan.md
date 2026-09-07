@@ -142,3 +142,9 @@ Module 3.5 had two further errors. One solution treated AC as AE + ED although t
 Module 4 examples now specify geometric positions, angle units, and the requested values. Independent calculations checked the trigonometric values and rounding. The area lesson uses a previously taught right-triangle method. It does not require the next lesson's law of sines.
 
 Modules 3 and 4 verification: 207 tests, lint, frontend and backend TypeScript, and production build passed.
+
+## Module 5 worked examples
+
+Completed the remaining 20 circle and parabola examples. There are now 155 complete worked-example sections. Corrected common tangent counts: four for separate circles, three for external tangency, two for two intersections, one for internal tangency, and zero for strict containment. Removed an unsupported inference about arbitrary chords in congruent circles. Specified full-precision pi before rounding. The tunnel problem now gives road elevation and distinguishes road width from overhead clearance.
+
+Verification passed with 207 tests, lint, frontend and backend TypeScript, and production build.

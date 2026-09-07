@@ -45,11 +45,13 @@ Opposite angles of an inscribed quadrilateral are supplementary. If a quadrilate
 
 ## Example 1 — Find Measures of Inscribed Angles
 
-Find [mAC], [m∠N], [m∠QSR], [m∠XY], [m∠E], and [m∠R] from circle diagrams.
+### Problem
 
-### Step 1: Apply the Inscribed Angle Theorem
+Points A, B, and C lie on a circle. The arc AC that does not contain B measures 110°. Find angle ABC.
 
-Use the relationship [m∠ = (1/2)m(intercepted arc)]. Identify the intercepted arc for each inscribed angle.
+### Solution
+
+Angle ABC is an inscribed angle. It intercepts the specified arc AC. The inscribed angle theorem gives angle ABC = 110°/2 = 55°.
 
 ## Example 2 — Find Angle Measures in Overlapping Triangles
 
@@ -63,21 +65,13 @@ Angles ACB and ADB intercept the same arc AB. Inscribed angles that intercept th
 
 ## Example 3 — Prove Inscribed Angle Theorems
 
-Write paragraph and two-column proofs involving inscribed angles.
+### Problem
 
-### Step 1: Paragraph Proof
+AB is a diameter of a circle with center O. C is a different point on the circle. Prove that angle ACB is a right angle.
 
-**Given:** [m∠T = (1/2)m∠S]
-**Prove:** [mTUR = 2mURS]
+### Solution
 
-Use the relationship between central and inscribed angles, or the relationship between an inscribed angle and its intercepted arc.
-
-### Step 2: Two-Column Proof
-
-**Given:** ⊙*C*
-**Prove:** [△KML ∼ △JMH]
-
-Use inscribed angle properties to establish angle congruence, then conclude similarity.
+Join O to C. Let angle OAC = alpha and angle OBC = beta. Since OA = OC, triangle AOC is isosceles and angle ACO = alpha. Since OB = OC, triangle BOC is isosceles and angle OCB = beta. Therefore angle ACB = alpha + beta. The angles of triangle ABC sum to alpha + beta + (alpha + beta) = 180°. Hence alpha + beta = 90°, which proves the result.
 
 ## Mixed Exercises
 

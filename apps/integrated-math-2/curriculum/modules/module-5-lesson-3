@@ -43,27 +43,23 @@ If two chords are equidistant from the center, they are congruent. This is the c
 
 ## Example 1 — Find Missing Values Using Chord Relationships
 
-Given congruent circles or chord relationships, find the value of [x].
+### Problem
 
-### Step 1: Apply Theorems About Chords and Arcs
+In circle P, radius PQ is perpendicular to chord RS at T. T lies between P and Q. PQ = 13 cm and RS = 24 cm. Find RT, PT, and TQ.
 
-If [PQ = 13] and [RS = 24] in ⊙*P*, find [RT], [PT], and [TQ]. Use the fact that perpendicular radii bisect chords.
+### Solution
 
-If in ⊙*A*, [EB = 12], [CD = 8], and [mCD = 90°], find [mDE], [FD], and [AF]. Round to the nearest hundredth if necessary.
-
-### Step 2: Solve for Unknowns
-
-If [TS = 21] and [UV = 3x] in ⊙*R*, find [x]: [3x = 21], so [x = 7].
-
-If [CD ≅ CB] in ⊙*Q*, with [GQ = x + 5] and [EQ = 3x - 6], find [x]. Since [CD ≅ CB], the distances from the center to these chords are equal, so [GQ = EQ]. Solve: [x + 5 = 3x - 6], giving [2x = 11], so [x = 5.5].
+A radius perpendicular to a chord bisects that chord, so RT = 12 cm. PR is also a radius, so PR = 13 cm. Right triangle PTR gives PT² + 12² = 13². Thus PT = 5 cm. Since T is between P and Q, TQ = 13 - 5 = 8 cm.
 
 ## Example 2 — Use the Perpendicular Bisector to Find Chord Length
 
-Use the distance from the center to a chord to find the chord's length.
+### Problem
 
-### Step 1: Apply the Distance–Chord Relationship
+A circle has radius 2.5 cm. The perpendicular distance from its center to a chord is 0.7 cm. Find the chord length.
 
-A chord located 0.7 cm from the center of a circle with radius 2.5 cm: the chord's half-length is found using the Pythagorean theorem: [sqrt(2.5^2 - 0.7^2) = sqrt(6.25 - 0.49) = sqrt(5.76) = 2.4 cm]. The full chord length is [2 × 2.4 = 4.8 cm] to the nearest tenth.
+### Solution
+
+The perpendicular from the center bisects the chord. If t is the half-length, then $t^2+0.7^2=2.5^2$. Thus $t=\sqrt{5.76}=2.4$ cm. The full chord length is 4.8 cm.
 
 ## Mixed Exercises
 

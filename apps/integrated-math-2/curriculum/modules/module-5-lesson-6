@@ -45,29 +45,33 @@ For a tangent and secant: [m∠ = (1/2)(m larger intercepted arc - m smaller int
 
 ## Example 1 — Find Angle Measures from Diagrams
 
-Find [m∠2], [m∠1], [mGH], [m∠5], [m∠1], and [m∠2] from circle diagrams.
+### Problem
 
-### Step 1: Identify the Type of Angle
+Chords AB and CD intersect at E inside a circle. The arc AC intercepted by angle AEC measures 100°. The arc BD intercepted by its vertical angle measures 60°. Find angle AEC.
 
-Determine whether each angle is an interior angle, an inscribed angle, or an exterior angle based on the location of its vertex. Apply the appropriate formula.
+### Solution
+
+An angle formed by intersecting chords inside a circle equals half the sum of the two intercepted arcs. Thus angle AEC = (100° + 60°)/2 = 80°. This sum rule differs from the exterior-angle difference rule.
 
 ## Example 2 — Find Measures with Tangents and Secants
 
-Find [m∠1], [m∠3], [mRT], [m∠6], [m∠3], and [m∠4] in tangent–secant configurations. Assume segments that appear tangent are tangent.
+### Problem
 
-### Step 1: Apply the Exterior Angle Theorem
+A tangent PT and a secant through external point P form an angle. The two arcs intercepted by its rays, each ending at T, measure 150° and 50°. Find the angle at P.
 
-For an angle formed by a tangent and a secant intersecting outside the circle, [m∠ = (1/2)(m major arc - m minor arc)]. Identify the intercepted arcs for each angle.
+### Solution
+
+The vertex is outside the circle. The angle equals half the larger intercepted arc minus the smaller intercepted arc: (150° - 50°)/2 = 50°. Tangency is a given condition, not an inference from the drawing.
 
 ## Example 3 — Find Angle Measures and Arc Measures
 
-Find [m∠R], [m∠U], and [mDPA] in tangent–secant configurations.
+### Problem
 
-### Step 1: Set Up Equations Using Arc Differences
+Two secants intersect outside a circle at P. Their far intercepted arc measures 140°, and their near intercepted arc measures x°. The angle at P is 35°. Find x.
 
-If [m∠R = (1/2)(m major arc - m minor arc)], set up the equation using the given arc measures and solve for the unknown.
+### Solution
 
-For [m∠R], the intercepted arcs come from the secant and tangent lines. The angle exterior to the circle equals half the difference between the far arc and the near arc.
+Use the exterior-angle relation: 35 = (140 - x)/2. Multiply by 2 to obtain 70 = 140 - x. Therefore x = 70°. Substitution gives (140 - 70)/2 = 35°, as required.
 
 ## Mixed Exercises
 

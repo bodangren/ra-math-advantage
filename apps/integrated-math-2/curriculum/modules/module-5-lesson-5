@@ -41,36 +41,33 @@ If two tangent segments are drawn from the same external point to a circle, they
 
 ## Example 1 — Identify Common Tangents
 
-Identify the number of common tangents between pairs of circles.
+### Problem
 
-### Step 1: Analyze the Position of Two Circles
+Two circles have radii 3 cm and 2 cm. Find the number of distinct common tangent lines when the distance d between their centers is (a) 8 cm, (b) 5 cm, (c) 4 cm, (d) 1 cm, and (e) 0.5 cm.
 
-If the circles are separate and do not overlap, there are typically 2 common tangents (one external, one internal).
-If one circle is inside the other without touching, there are 0 common tangents.
-If the circles touch externally at one point, there is 1 common tangent.
-If the circles intersect at two points, there are 2 common tangents.
+### Solution
+
+The sum of the radii is 5 cm and their difference is 1 cm. (a) With d > 5, the circles are separate and have four common tangents. (b) With d = 5, they touch externally and have three. (c) With 1 < d < 5, they intersect at two points and have two. (d) With d = 1, they touch internally and have one. (e) With d < 1, one lies strictly inside the other and they have none.
 
 ## Example 2 — Determine Whether a Segment Is Tangent
 
-Check whether [HI], [AB], [MP], or [QR] is tangent to the given circle. Justify your answer.
+### Problem
 
-### Step 1: Apply the Converse of the Tangent–Radius Theorem
+O is a circle center, T is on the circle, and P is outside it. OT = 5 cm, TP = 12 cm, and OP = 13 cm. Determine whether PT is tangent at T.
 
-If a segment from a point outside the circle to a point on the circle is perpendicular to the radius drawn to that point, then the segment is tangent. Use the Pythagorean theorem to check perpendicularity.
+### Solution
 
-For [HI]: check whether [HI^2 = GI^2 + GH^2] or similar relationship holds.
+Check the angle at T. Since OT² + TP² = 25 + 144 = 169 = OP², triangle OTP is right at T by the converse of the Pythagorean theorem. Therefore OT is perpendicular to PT. A line perpendicular to a radius at its endpoint on the circle is tangent, so PT is tangent at T.
 
 ## Example 3 — Find Values Involving Tangents
 
-Find the value of [x] in tangent–secant configurations.
+### Problem
 
-### Step 1: Use the Tangent–Chord Angle Theorem
+PA and PB are tangent segments from external point P to the same circle, with tangent points A and B. PA = 3x + 4 cm and PB = 5x - 6 cm. Find x and both segment lengths.
 
-An angle formed by a tangent and a chord through the point of tangency equals half the intercepted arc. If [m∠BDC = 12x°] and [m∠A = (4x + 4)°], find [m∠A]. The angle formed by the tangent and chord equals half the measure of the intercepted arc. Set up an equation using this relationship.
+### Solution
 
-### Step 2: Solve for [x]
-
-[m∠A = 4x + 4] and [m∠BDC = 12x]. Since the angle formed by the tangent and chord relates to the intercepted arc, and the intercepted arc relates to the other angle, solve: [12x = 2(4x + 4)] gives [12x = 8x + 8], so [4x = 8] and [x = 2]. Then [m∠A = 4(2) + 4 = 12°].
+Tangent segments from the same external point have equal lengths. Set 3x + 4 = 5x - 6. Then 2x = 10, so x = 5. Both tangent segments have length 19 cm.
 
 ## Example 4 — Find Perimeter of Circumscribed Polygons
 

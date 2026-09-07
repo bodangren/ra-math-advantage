@@ -58,41 +58,33 @@ To find where a circle and a line intersect, substitute the linear equation into
 
 ## Example 1 — Write Equations of Circles
 
-Write the equation of each circle described.
+### Problem
 
-### Step 1: Identify Known Information
+Write the equation of a circle with center (-2, 6) and diameter 8.
 
-For center at (0, 0) with radius 8: [(x - 0)² + (y - 0)² = 64], or [x² + y² = 64].
+### Solution
 
-For center at (-2, 6) with diameter 8: radius is 4. [(x + 2)² + (y - 6)² = 16].
-
-For a circle centered at (3, -4) passing through (-1, -4): the radius is the distance [sqrt((3 - (-1))² + (-4 - (-4))²) = sqrt(16 + 0) = 4]. [(x - 3)² + (y + 4)² = 16].
-
-### Step 2: Write the Standard Form
-
-For center (0, 3) passing through (2, 0): radius = [sqrt((0-2)² + (3-0)²) = sqrt(4 + 9) = sqrt(13)]. [x² + (y - 3)² = 13].
+The radius is half the diameter, so r = 4. Use $(x-h)^2+(y-k)^2=r^2$. With h = -2 and k = 6, the equation is $(x+2)^2+(y-6)^2=16$.
 
 ## Example 2 — Identify Center and Radius from an Equation
 
-State the coordinates of the center and the radius. Then graph.
+### Problem
 
-### Step 1: Complete the Square or Use Standard Form
+Find the center and radius of the circle x² + y² + 6x - 6y + 9 = 0.
 
-For [x² + y² = 16]: center is (0, 0), radius is [r = 4].
+### Solution
 
-For [(x - 1)² + (y - 4)² = 9]: center is (1, 4), radius is [r = 3].
-
-For [x² + y² - 4 = 0]: rewrite as [x² + y² = 4], center is (0, 0), radius is [r = 2].
-
-For [x² + y² + 6x - 6y + 9 = 0]: complete the square: [(x² + 6x) + (y² - 6y) = -9]. [(x + 3)² + (y - 3)² = -9 + 9 + 9 = 9]. Center is (-3, 3), radius is [r = 3].
+Group the variable terms: $(x^2+6x)+(y^2-6y)=-9$. Add 9 for each square to both sides. This gives $(x+3)^2+(y-3)^2=9$. The center is (-3, 3), and the radius is 3.
 
 ## Example 3 — Circle Equations in Real-World Contexts
 
-### Step 1: Define the Circle from the Context
+### Problem
 
-For the dog leash problem: [RS] is a diameter of ⊙*Q*. With endpoints R(-4, 1) and S(8, 7), the center is the midpoint: [Q = ((-4+8)/2, (1+7)/2) = (2, 4)]. The radius is half the distance between R and S: [r = (1/2)sqrt((8-(-4))² + (7-1)²) = (1/2)sqrt(144 + 36) = (1/2)sqrt(180) = 3sqrt(5)]. The equation is [(x - 2)² + (y - 4)² = 45].
+A dog is tied at the center of a circular reach region. Opposite endpoints of a diameter are R(-4, 1) and S(8, 7), measured in meters. Find the center, leash length, and equation of the boundary.
 
-For the pizza delivery problem: points A(-2, 2), B(2, -2), and C(6, 2) lie on ⊙*P*, with [AC] as a diameter. The center is the midpoint of A and C: [P = ((-2+6)/2, (2+2)/2) = (2, 2)]. The radius is half the distance between A and C: [r = (1/2)sqrt((6-(-2))² + (2-2)²) = (1/2)(8) = 4]. The equation is [(x - 2)² + (y - 2)² = 16].
+### Solution
+
+The center is the midpoint (2, 4). The diameter length is $\sqrt{12^2+6^2}=6\sqrt{5}$ m, so the leash length is $3\sqrt{5}$ m. The boundary equation is $(x-2)^2+(y-4)^2=45$. Points inside the reach region satisfy the corresponding inequality with left side at most 45.
 
 ## Mixed Exercises
 

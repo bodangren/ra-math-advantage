@@ -1875,13 +1875,13 @@
         "phaseNumber": 5,
         "title": "Example 1 — Identify Parts of Circles",
         "phaseType": "worked_example",
-        "markdown": "Use the figures to identify circles, radii, chords, and diameters. Understand the naming conventions for these elements.\n\n### Step 1: Identify the Circle and Its Center\n\nA circle is named using the symbol ⊙ followed by the center point. For example, ⊙*R* is a circle with center *R*. A radius is any segment from the center to a point on the circle, such as [AR]. A diameter is a chord that passes through the center, such as [AB] if *A* and *B* are on the circle and the segment passes through *R*.\n\nIn the figure for Exercises 9–11, if [AB = 18 millimeters], then [AR = 9 millimeters] because the diameter is twice the radius. Similarly, if [RY = 10 inches], then [AR = 10 inches] and [AB = 20 inches].\n\n### Step 2: Identify Chords\n\nA chord is any segment whose endpoints lie on the circle. A diameter is a special type of chord. In the circle, chords do not necessarily pass through the center unless they are diameters.\n\nIn the circle ⊙*R*, determine whether [AB ≅ XY] by noting that congruent circles have congruent radii, and if the circles are congruent, corresponding chords are congruent."
+        "markdown": "### Problem\n\nCircle R has center R. Points A, B, and Y lie on the circle. Segment AB passes through R and has length 18 mm. Identify two radii, a diameter, and a chord. Find the radius.\n\n### Solution\n\nRA and RY are radii. AB is a diameter because it passes through the center with both endpoints on the circle. AY is a chord. Every diameter is also a chord. The radius is half of 18 mm, so it is 9 mm. Equal radii in congruent circles do not imply that arbitrary chords have equal lengths."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Find Radius, Diameter, and Circumference",
         "phaseType": "worked_example",
-        "markdown": "Use the given measures to find missing radius, diameter, and circumference values.\n\n### Step 1: Given a Diameter, Find Radius and Circumference\n\nIf the diameter of a bicycle tire is 26 inches, then the radius is [r = 13 inches]. The circumference is found using [C = 2πr = 2π(13) = 26π inches].\n\nIf the diameter of a sundial is 9.5 inches, the radius is [r = 4.75 inches] and the circumference is [C = 2π(4.75) = 9.5π ≈ 29.85 inches] to the nearest hundredth. Assumptions include treating the sundial as a perfect circle and using π ≈ 3.14.\n\n### Step 2: Given Circumference, Find Radius and Diameter\n\nIf [C = 40 inches], then [d = 40 ÷ π ≈ 12.73 inches] and [r = d ÷ 2 ≈ 6.37 inches].\n\nIf [C = 256 feet], then [d = 256 ÷ π ≈ 81.49 feet] and [r = d ÷ 2 ≈ 40.75 feet].\n\nIf [C = 15.62 meters], then [d = 15.62 ÷ π ≈ 4.97 meters] and [r = d ÷ 2 ≈ 2.49 meters].\n\nIf [C = 79.5 yards], then [d = 79.5 ÷ π ≈ 25.31 yards] and [r = d ÷ 2 ≈ 12.66 yards].\n\nIf [C = 204.16 meters], then [d = 204.16 ÷ π ≈ 64.99 meters] and [r = d ÷ 2 ≈ 32.50 meters].\n\n### Step 3: Algebraic Circumference\n\nIf [C = 35x cm], then [d = 35x ÷ π] and [r = 35x ÷ (2π)].\n\nIf [r = x/8], then [d = x/4] and [C = 2π(x/8) = (πx)/4]."
+        "markdown": "### Problem\n\nA circular sundial has diameter 9.5 inches. Find its radius and circumference. Round only the final circumference to the nearest hundredth.\n\n### Solution\n\nThe radius is 9.5/2 = 4.75 inches. The circumference is $C=\\pi d=9.5\\pi$, approximately 29.85 inches. Use the full calculator value of pi before rounding. More generally, a positive radius $x/8$ gives diameter $x/4$ and circumference $\\pi x/4$."
       },
       {
         "phaseNumber": 7,
@@ -1931,13 +1931,13 @@
         "phaseNumber": 5,
         "title": "Example 1 — Find Angle Measures in Circles",
         "phaseType": "worked_example",
-        "markdown": "Find the value of [x] using geometric relationships in circle diagrams.\n\n### Step 1: Apply Angle Relationships\n\nUse the fact that angles around a point sum to 360°, vertical angles are congruent, and linear pairs sum to 180°."
+        "markdown": "### Problem\n\nRadii OA, OB, and OC divide a circle into three sectors with central angles x°, 2x°, and 3x°. Find all three angles.\n\n### Solution\n\nAngles around O sum to 360°. Thus x + 2x + 3x = 360, so x = 60. The three central angles are 60°, 120°, and 180°. Each sector arc has the same degree measure as its central angle."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Classify Arcs and Find Arc Measures",
         "phaseType": "worked_example",
-        "markdown": "In ⊙*R*, [AC] and [EB] are diameters. Identify each arc as major, minor, or semicircle, then find its measure.\n\n### Step 1: Identify Arc Type and Apply 360°\n\nFor arc [EA]: since *E* and *A* are endpoints and the arc does not pass through the opposite side of the circle, [mEA = 60°] or similar, making it a minor arc.\n\nFor arc [DEB]: this arc passes through *D* and *E* to *B*, spanning more than 180°, making it a major arc. Its measure is [360° - mED - mDC - mCB - mBA] or similar decomposition.\n\nFor arc [AB]: if [AB] is a diameter, then [mAB = 180°], making it a semicircle.\n\nFor arc [CDA]: this arc goes from *C* through *D* to *A*, passing through the opposite side of the circle. [mCDA = 180°], making it a semicircle.\n\n### Step 2: Find Specific Arc Measures\n\nIf [m∠HCG = 2x°] and [m∠HCD = (6x + 28)°], and [HE] and [GD] are diameters, then find the arc measures using the relationship between inscribed angles and arcs."
+        "markdown": "### Problem\n\nIn circle O, A and C are endpoints of a diameter. Point B lies on one semicircle from A to C. The minor arc AB measures 60°. Classify and measure minor arc BC, arc ABC, and the arc from A to B that passes through C.\n\n### Solution\n\nThe semicircle ABC measures 180°, so minor arc BC measures 180° - 60° = 120°. Arc ABC is a semicircle. The arc from A through C to B is the major arc AB and measures 360° - 60° = 300°. Three letters identify which path between the endpoints is intended."
       },
       {
         "phaseNumber": 7,
@@ -1987,13 +1987,13 @@
         "phaseNumber": 5,
         "title": "Example 1 — Find Missing Values Using Chord Relationships",
         "phaseType": "worked_example",
-        "markdown": "Given congruent circles or chord relationships, find the value of [x].\n\n### Step 1: Apply Theorems About Chords and Arcs\n\nIf [PQ = 13] and [RS = 24] in ⊙*P*, find [RT], [PT], and [TQ]. Use the fact that perpendicular radii bisect chords.\n\nIf in ⊙*A*, [EB = 12], [CD = 8], and [mCD = 90°], find [mDE], [FD], and [AF]. Round to the nearest hundredth if necessary.\n\n### Step 2: Solve for Unknowns\n\nIf [TS = 21] and [UV = 3x] in ⊙*R*, find [x]: [3x = 21], so [x = 7].\n\nIf [CD ≅ CB] in ⊙*Q*, with [GQ = x + 5] and [EQ = 3x - 6], find [x]. Since [CD ≅ CB], the distances from the center to these chords are equal, so [GQ = EQ]. Solve: [x + 5 = 3x - 6], giving [2x = 11], so [x = 5.5]."
+        "markdown": "### Problem\n\nIn circle P, radius PQ is perpendicular to chord RS at T. T lies between P and Q. PQ = 13 cm and RS = 24 cm. Find RT, PT, and TQ.\n\n### Solution\n\nA radius perpendicular to a chord bisects that chord, so RT = 12 cm. PR is also a radius, so PR = 13 cm. Right triangle PTR gives PT² + 12² = 13². Thus PT = 5 cm. Since T is between P and Q, TQ = 13 - 5 = 8 cm."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Use the Perpendicular Bisector to Find Chord Length",
         "phaseType": "worked_example",
-        "markdown": "Use the distance from the center to a chord to find the chord's length.\n\n### Step 1: Apply the Distance–Chord Relationship\n\nA chord located 0.7 cm from the center of a circle with radius 2.5 cm: the chord's half-length is found using the Pythagorean theorem: [sqrt(2.5^2 - 0.7^2) = sqrt(6.25 - 0.49) = sqrt(5.76) = 2.4 cm]. The full chord length is [2 × 2.4 = 4.8 cm] to the nearest tenth."
+        "markdown": "### Problem\n\nA circle has radius 2.5 cm. The perpendicular distance from its center to a chord is 0.7 cm. Find the chord length.\n\n### Solution\n\nThe perpendicular from the center bisects the chord. If t is the half-length, then $t^2+0.7^2=2.5^2$. Thus $t=\\sqrt{5.76}=2.4$ cm. The full chord length is 4.8 cm."
       },
       {
         "phaseNumber": 7,
@@ -2043,7 +2043,7 @@
         "phaseNumber": 5,
         "title": "Example 1 — Find Measures of Inscribed Angles",
         "phaseType": "worked_example",
-        "markdown": "Find [mAC], [m∠N], [m∠QSR], [m∠XY], [m∠E], and [m∠R] from circle diagrams.\n\n### Step 1: Apply the Inscribed Angle Theorem\n\nUse the relationship [m∠ = (1/2)m(intercepted arc)]. Identify the intercepted arc for each inscribed angle."
+        "markdown": "### Problem\n\nPoints A, B, and C lie on a circle. The arc AC that does not contain B measures 110°. Find angle ABC.\n\n### Solution\n\nAngle ABC is an inscribed angle. It intercepts the specified arc AC. The inscribed angle theorem gives angle ABC = 110°/2 = 55°."
       },
       {
         "phaseNumber": 6,
@@ -2055,7 +2055,7 @@
         "phaseNumber": 7,
         "title": "Example 3 — Prove Inscribed Angle Theorems",
         "phaseType": "worked_example",
-        "markdown": "Write paragraph and two-column proofs involving inscribed angles.\n\n### Step 1: Paragraph Proof\n\n**Given:** [m∠T = (1/2)m∠S]\n**Prove:** [mTUR = 2mURS]\n\nUse the relationship between central and inscribed angles, or the relationship between an inscribed angle and its intercepted arc.\n\n### Step 2: Two-Column Proof\n\n**Given:** ⊙*C*\n**Prove:** [△KML ∼ △JMH]\n\nUse inscribed angle properties to establish angle congruence, then conclude similarity."
+        "markdown": "### Problem\n\nAB is a diameter of a circle with center O. C is a different point on the circle. Prove that angle ACB is a right angle.\n\n### Solution\n\nJoin O to C. Let angle OAC = alpha and angle OBC = beta. Since OA = OC, triangle AOC is isosceles and angle ACO = alpha. Since OB = OC, triangle BOC is isosceles and angle OCB = beta. Therefore angle ACB = alpha + beta. The angles of triangle ABC sum to alpha + beta + (alpha + beta) = 180°. Hence alpha + beta = 90°, which proves the result."
       },
       {
         "phaseNumber": 8,
@@ -2105,19 +2105,19 @@
         "phaseNumber": 5,
         "title": "Example 1 — Identify Common Tangents",
         "phaseType": "worked_example",
-        "markdown": "Identify the number of common tangents between pairs of circles.\n\n### Step 1: Analyze the Position of Two Circles\n\nIf the circles are separate and do not overlap, there are typically 2 common tangents (one external, one internal).\nIf one circle is inside the other without touching, there are 0 common tangents.\nIf the circles touch externally at one point, there is 1 common tangent.\nIf the circles intersect at two points, there are 2 common tangents."
+        "markdown": "### Problem\n\nTwo circles have radii 3 cm and 2 cm. Find the number of distinct common tangent lines when the distance d between their centers is (a) 8 cm, (b) 5 cm, (c) 4 cm, (d) 1 cm, and (e) 0.5 cm.\n\n### Solution\n\nThe sum of the radii is 5 cm and their difference is 1 cm. (a) With d > 5, the circles are separate and have four common tangents. (b) With d = 5, they touch externally and have three. (c) With 1 < d < 5, they intersect at two points and have two. (d) With d = 1, they touch internally and have one. (e) With d < 1, one lies strictly inside the other and they have none."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Determine Whether a Segment Is Tangent",
         "phaseType": "worked_example",
-        "markdown": "Check whether [HI], [AB], [MP], or [QR] is tangent to the given circle. Justify your answer.\n\n### Step 1: Apply the Converse of the Tangent–Radius Theorem\n\nIf a segment from a point outside the circle to a point on the circle is perpendicular to the radius drawn to that point, then the segment is tangent. Use the Pythagorean theorem to check perpendicularity.\n\nFor [HI]: check whether [HI^2 = GI^2 + GH^2] or similar relationship holds."
+        "markdown": "### Problem\n\nO is a circle center, T is on the circle, and P is outside it. OT = 5 cm, TP = 12 cm, and OP = 13 cm. Determine whether PT is tangent at T.\n\n### Solution\n\nCheck the angle at T. Since OT² + TP² = 25 + 144 = 169 = OP², triangle OTP is right at T by the converse of the Pythagorean theorem. Therefore OT is perpendicular to PT. A line perpendicular to a radius at its endpoint on the circle is tangent, so PT is tangent at T."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Find Values Involving Tangents",
         "phaseType": "worked_example",
-        "markdown": "Find the value of [x] in tangent–secant configurations.\n\n### Step 1: Use the Tangent–Chord Angle Theorem\n\nAn angle formed by a tangent and a chord through the point of tangency equals half the intercepted arc. If [m∠BDC = 12x°] and [m∠A = (4x + 4)°], find [m∠A]. The angle formed by the tangent and chord equals half the measure of the intercepted arc. Set up an equation using this relationship.\n\n### Step 2: Solve for [x]\n\n[m∠A = 4x + 4] and [m∠BDC = 12x]. Since the angle formed by the tangent and chord relates to the intercepted arc, and the intercepted arc relates to the other angle, solve: [12x = 2(4x + 4)] gives [12x = 8x + 8], so [4x = 8] and [x = 2]. Then [m∠A = 4(2) + 4 = 12°]."
+        "markdown": "### Problem\n\nPA and PB are tangent segments from external point P to the same circle, with tangent points A and B. PA = 3x + 4 cm and PB = 5x - 6 cm. Find x and both segment lengths.\n\n### Solution\n\nTangent segments from the same external point have equal lengths. Set 3x + 4 = 5x - 6. Then 2x = 10, so x = 5. Both tangent segments have length 19 cm."
       },
       {
         "phaseNumber": 8,
@@ -2173,19 +2173,19 @@
         "phaseNumber": 5,
         "title": "Example 1 — Find Angle Measures from Diagrams",
         "phaseType": "worked_example",
-        "markdown": "Find [m∠2], [m∠1], [mGH], [m∠5], [m∠1], and [m∠2] from circle diagrams.\n\n### Step 1: Identify the Type of Angle\n\nDetermine whether each angle is an interior angle, an inscribed angle, or an exterior angle based on the location of its vertex. Apply the appropriate formula."
+        "markdown": "### Problem\n\nChords AB and CD intersect at E inside a circle. The arc AC intercepted by angle AEC measures 100°. The arc BD intercepted by its vertical angle measures 60°. Find angle AEC.\n\n### Solution\n\nAn angle formed by intersecting chords inside a circle equals half the sum of the two intercepted arcs. Thus angle AEC = (100° + 60°)/2 = 80°. This sum rule differs from the exterior-angle difference rule."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Find Measures with Tangents and Secants",
         "phaseType": "worked_example",
-        "markdown": "Find [m∠1], [m∠3], [mRT], [m∠6], [m∠3], and [m∠4] in tangent–secant configurations. Assume segments that appear tangent are tangent.\n\n### Step 1: Apply the Exterior Angle Theorem\n\nFor an angle formed by a tangent and a secant intersecting outside the circle, [m∠ = (1/2)(m major arc - m minor arc)]. Identify the intercepted arcs for each angle."
+        "markdown": "### Problem\n\nA tangent PT and a secant through external point P form an angle. The two arcs intercepted by its rays, each ending at T, measure 150° and 50°. Find the angle at P.\n\n### Solution\n\nThe vertex is outside the circle. The angle equals half the larger intercepted arc minus the smaller intercepted arc: (150° - 50°)/2 = 50°. Tangency is a given condition, not an inference from the drawing."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Find Angle Measures and Arc Measures",
         "phaseType": "worked_example",
-        "markdown": "Find [m∠R], [m∠U], and [mDPA] in tangent–secant configurations.\n\n### Step 1: Set Up Equations Using Arc Differences\n\nIf [m∠R = (1/2)(m major arc - m minor arc)], set up the equation using the given arc measures and solve for the unknown.\n\nFor [m∠R], the intercepted arcs come from the secant and tangent lines. The angle exterior to the circle equals half the difference between the far arc and the near arc."
+        "markdown": "### Problem\n\nTwo secants intersect outside a circle at P. Their far intercepted arc measures 140°, and their near intercepted arc measures x°. The angle at P is 35°. Find x.\n\n### Solution\n\nUse the exterior-angle relation: 35 = (140 - x)/2. Multiply by 2 to obtain 70 = 140 - x. Therefore x = 70°. Substitution gives (140 - 70)/2 = 35°, as required."
       },
       {
         "phaseNumber": 8,
@@ -2235,19 +2235,19 @@
         "phaseNumber": 5,
         "title": "Example 1 — Write Equations of Circles",
         "phaseType": "worked_example",
-        "markdown": "Write the equation of each circle described.\n\n### Step 1: Identify Known Information\n\nFor center at (0, 0) with radius 8: [(x - 0)² + (y - 0)² = 64], or [x² + y² = 64].\n\nFor center at (-2, 6) with diameter 8: radius is 4. [(x + 2)² + (y - 6)² = 16].\n\nFor a circle centered at (3, -4) passing through (-1, -4): the radius is the distance [sqrt((3 - (-1))² + (-4 - (-4))²) = sqrt(16 + 0) = 4]. [(x - 3)² + (y + 4)² = 16].\n\n### Step 2: Write the Standard Form\n\nFor center (0, 3) passing through (2, 0): radius = [sqrt((0-2)² + (3-0)²) = sqrt(4 + 9) = sqrt(13)]. [x² + (y - 3)² = 13]."
+        "markdown": "### Problem\n\nWrite the equation of a circle with center (-2, 6) and diameter 8.\n\n### Solution\n\nThe radius is half the diameter, so r = 4. Use $(x-h)^2+(y-k)^2=r^2$. With h = -2 and k = 6, the equation is $(x+2)^2+(y-6)^2=16$."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Identify Center and Radius from an Equation",
         "phaseType": "worked_example",
-        "markdown": "State the coordinates of the center and the radius. Then graph.\n\n### Step 1: Complete the Square or Use Standard Form\n\nFor [x² + y² = 16]: center is (0, 0), radius is [r = 4].\n\nFor [(x - 1)² + (y - 4)² = 9]: center is (1, 4), radius is [r = 3].\n\nFor [x² + y² - 4 = 0]: rewrite as [x² + y² = 4], center is (0, 0), radius is [r = 2].\n\nFor [x² + y² + 6x - 6y + 9 = 0]: complete the square: [(x² + 6x) + (y² - 6y) = -9]. [(x + 3)² + (y - 3)² = -9 + 9 + 9 = 9]. Center is (-3, 3), radius is [r = 3]."
+        "markdown": "### Problem\n\nFind the center and radius of the circle x² + y² + 6x - 6y + 9 = 0.\n\n### Solution\n\nGroup the variable terms: $(x^2+6x)+(y^2-6y)=-9$. Add 9 for each square to both sides. This gives $(x+3)^2+(y-3)^2=9$. The center is (-3, 3), and the radius is 3."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Circle Equations in Real-World Contexts",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Define the Circle from the Context\n\nFor the dog leash problem: [RS] is a diameter of ⊙*Q*. With endpoints R(-4, 1) and S(8, 7), the center is the midpoint: [Q = ((-4+8)/2, (1+7)/2) = (2, 4)]. The radius is half the distance between R and S: [r = (1/2)sqrt((8-(-4))² + (7-1)²) = (1/2)sqrt(144 + 36) = (1/2)sqrt(180) = 3sqrt(5)]. The equation is [(x - 2)² + (y - 4)² = 45].\n\nFor the pizza delivery problem: points A(-2, 2), B(2, -2), and C(6, 2) lie on ⊙*P*, with [AC] as a diameter. The center is the midpoint of A and C: [P = ((-2+6)/2, (2+2)/2) = (2, 2)]. The radius is half the distance between A and C: [r = (1/2)sqrt((6-(-2))² + (2-2)²) = (1/2)(8) = 4]. The equation is [(x - 2)² + (y - 2)² = 16]."
+        "markdown": "### Problem\n\nA dog is tied at the center of a circular reach region. Opposite endpoints of a diameter are R(-4, 1) and S(8, 7), measured in meters. Find the center, leash length, and equation of the boundary.\n\n### Solution\n\nThe center is the midpoint (2, 4). The diameter length is $\\sqrt{12^2+6^2}=6\\sqrt{5}$ m, so the leash length is $3\\sqrt{5}$ m. The boundary equation is $(x-2)^2+(y-4)^2=45$. Points inside the reach region satisfy the corresponding inequality with left side at most 45."
       },
       {
         "phaseNumber": 8,
@@ -2297,19 +2297,19 @@
         "phaseNumber": 5,
         "title": "Example 1 — Write Equations with Vertical Axes",
         "phaseType": "worked_example",
-        "markdown": "Write the equation of the parabola with the given focus and directrix.\n\n### Step 1: Find the Vertex and Value of p\n\nThe vertex is at the midpoint between the focus and directrix along the axis of symmetry. The value of [p] is the distance from the vertex to the focus (or directrix).\n\nFor focus (0, 8) and directrix [y = -8]: vertex at (0, 0), [p = 8], so [x² = 32y].\n\nFor focus (0, -9) and directrix [y = 9]: vertex at (0, 0), [p = -9], so [x² = -36y]."
+        "markdown": "### Problem\n\nWrite the equation of a parabola with focus (0, -9) and directrix y = 9.\n\n### Solution\n\nThe vertex is (0, 0), halfway between the focus and directrix along the vertical axis. The signed parameter is p = -9 because the focus is below the vertex. Use $x^2=4py$ to get $x^2=-36y$. The parabola opens downward."
       },
       {
         "phaseNumber": 6,
         "title": "Example 2 — Write Equations with Horizontal or Off-Axis Parabolas",
         "phaseType": "worked_example",
-        "markdown": "For focus (8, 0) and directrix [y = 4]: the axis of symmetry is vertical through [x = 8]. The vertex is at (8, 2). The distance [p = -2] (focus is below directrix, so it opens downward). The equation is [(x - 8)² = -8(y - 2)].\n\n### Step 1: Identify the Axis of Symmetry\n\nThe axis of symmetry is perpendicular to the directrix and passes through the focus. Determine whether the parabola opens vertically (up/down) or horizontally (left/right) based on whether the directrix is horizontal or vertical.\n\n### Step 2: Apply the Formula\n\nFor a vertical axis: [(x - h)² = 4p(y - k)].\nFor a horizontal axis: [(y - k)² = 4p(x - h)]."
+        "markdown": "### Problem\n\nWrite equations for (a) focus (8, 0) and directrix y = 4, and (b) focus (5, 2) and directrix x = 1.\n\n### Solution\n\n(a) The vertical axis is x = 8. The vertex is (8, 2), and p = -2. Thus $(x-8)^2=-8(y-2)$. (b) The horizontal axis is y = 2. The vertex is (3, 2), and p = 2. Thus $(y-2)^2=8(x-3)$. The sign of p determines the opening direction."
       },
       {
         "phaseNumber": 7,
         "title": "Example 3 — Parabolas in the Real World",
         "phaseType": "worked_example",
-        "markdown": "### Step 1: Highway Valley\n\nFor a highway section modeled by a parabola with focus at (100, 55) and directrix at [y = 5]: the vertex is at (100, 30), and [p = 25]. The equation is [(x - 100)² = 100(y - 30)].\n\nThe level section is modeled by [y = 70]. To find the maximum width, solve for [x] when [y = 70]: [(x - 100)² = 100(40) = 4000]. [x - 100 = ± sqrt(4000) = ± 20sqrt(10) ≈ ±63.25]. The width is approximately [126.5] km.\n\n### Step 2: Tunnel Design\n\nFor a tunnel with focus at (4, -2.5) and directrix at [y = 2.5]: the vertex is at (4, 0), [p = -2.5]. The equation is [(x - 4)² = -10y].\n\nAt the horizontal line [y = -5], solve [(x - 4)^2 = 50]. The endpoints are [x = 4 - 5sqrt(2)] and [x = 4 + 5sqrt(2)]. The width is [10sqrt(2) ≈ 14.14] feet. The height is 5 feet below the vertex. The road elevation must be given before this can be called 5 feet above ground. A width of 14 feet fits at this line, but that alone does not establish clearance above the road."
+        "markdown": "### Problem\n\nA tunnel cross-section has focus (4, -2.5) and directrix y = 2.5. Coordinates are in feet. The road is the horizontal line y = -5. Find the tunnel width at road level and the clearance above the road at the center.\n\n### Solution\n\nThe vertex is (4, 0), and p = -2.5. The equation is $(x-4)^2=-10y$. At road level, $(x-4)^2=50$, so the endpoints have $x=4\\pm5\\sqrt{2}$. The width is $10\\sqrt{2}\\approx14.14$ ft. The center clearance is 0 - (-5) = 5 ft. A vehicle-width check alone does not establish overhead clearance across the full vehicle width."
       },
       {
         "phaseNumber": 8,

@@ -52,29 +52,23 @@ To convert radians to degrees: multiply by [180/π].
 
 ## Example 1 — Find Angle Measures in Circles
 
-Find the value of [x] using geometric relationships in circle diagrams.
+### Problem
 
-### Step 1: Apply Angle Relationships
+Radii OA, OB, and OC divide a circle into three sectors with central angles x°, 2x°, and 3x°. Find all three angles.
 
-Use the fact that angles around a point sum to 360°, vertical angles are congruent, and linear pairs sum to 180°.
+### Solution
+
+Angles around O sum to 360°. Thus x + 2x + 3x = 360, so x = 60. The three central angles are 60°, 120°, and 180°. Each sector arc has the same degree measure as its central angle.
 
 ## Example 2 — Classify Arcs and Find Arc Measures
 
-In ⊙*R*, [AC] and [EB] are diameters. Identify each arc as major, minor, or semicircle, then find its measure.
+### Problem
 
-### Step 1: Identify Arc Type and Apply 360°
+In circle O, A and C are endpoints of a diameter. Point B lies on one semicircle from A to C. The minor arc AB measures 60°. Classify and measure minor arc BC, arc ABC, and the arc from A to B that passes through C.
 
-For arc [EA]: since *E* and *A* are endpoints and the arc does not pass through the opposite side of the circle, [mEA = 60°] or similar, making it a minor arc.
+### Solution
 
-For arc [DEB]: this arc passes through *D* and *E* to *B*, spanning more than 180°, making it a major arc. Its measure is [360° - mED - mDC - mCB - mBA] or similar decomposition.
-
-For arc [AB]: if [AB] is a diameter, then [mAB = 180°], making it a semicircle.
-
-For arc [CDA]: this arc goes from *C* through *D* to *A*, passing through the opposite side of the circle. [mCDA = 180°], making it a semicircle.
-
-### Step 2: Find Specific Arc Measures
-
-If [m∠HCG = 2x°] and [m∠HCD = (6x + 28)°], and [HE] and [GD] are diameters, then find the arc measures using the relationship between inscribed angles and arcs.
+The semicircle ABC measures 180°, so minor arc BC measures 180° - 60° = 120°. Arc ABC is a semicircle. The arc from A through C to B is the major arc AB and measures 360° - 60° = 300°. Three letters identify which path between the endpoints is intended.
 
 ## Mixed Exercises
 
