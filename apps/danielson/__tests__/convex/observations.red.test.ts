@@ -1187,7 +1187,7 @@ describe('Danielson observation Convex boundary', () => {
     expectKind(await handler(amendObservation)(db.context(), amendmentCommand), 'amended');
 
     const second = await createCompletedDraft(db, 'first_rated', {
-      observedAt: '2026-09-16T07:45:00.000Z',
+      observedAt: '2026-09-15T07:46:00.000Z',
     });
     const beforeConflict = structuredClone(db.allRows());
     expectKind(await handler(submitObservation)(db.context(), {

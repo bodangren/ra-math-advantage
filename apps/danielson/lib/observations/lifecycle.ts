@@ -227,6 +227,7 @@ export function submitObservationDraft(
   }
   const submissionKey = requireNonEmptyString(command.submissionKey, 'submissionKey');
   const now = requireTimestamp(command.now, 'now');
+  if (Date.parse(draft.observedAt) > now) return { kind: 'future_observed_at' as const };
   const fingerprint = observationSubmissionFingerprint(draft, submissionKey);
   const observationId = `observation_records:${encodeURIComponent(submissionKey)}`;
   const record: SubmittedObservation = {

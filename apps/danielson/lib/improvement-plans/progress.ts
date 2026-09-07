@@ -34,7 +34,11 @@ export function applyPipPriorityOverlay(input: {
   now: number;
 }) {
   const baseTime = input.latestRatedEvidenceAt ?? input.approvedAt;
-  const dueTimestamp = Math.min(baseTime + 7 * DAY_MS, input.planEndAt);
+  const existingDueAt = input.priority.dueAt ? Date.parse(input.priority.dueAt) : Number.NaN;
+  const dueTimestamp = Math.min(
+    baseTime + 7 * DAY_MS, input.planEndAt,
+    Number.isFinite(existingDueAt) ? existingDueAt : Number.POSITIVE_INFINITY,
+  );
   const due = input.now >= dueTimestamp;
   return {
     ...structuredClone(input.priority),
@@ -70,7 +74,7 @@ export function projectImprovementPlanProgress(input: {
         event.skillId === target.skillId
         && event.kind === 'rated'
         && event.occurredAt >= input.approvedAt
-        && event.occurredAt <= input.planEndAt
+        && event.occurredAt <= Math.min(input.planEndAt, input.now)
         && event.rating !== undefined,
       )
       .sort((left, right) => compareEvidence(right, left))[0];

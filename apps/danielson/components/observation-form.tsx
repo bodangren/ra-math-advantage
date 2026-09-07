@@ -173,7 +173,7 @@ export function ObservationForm({
             {reasonLabel(item.priorityReason) ? (
               <p><span className="status attention">{reasonLabel(item.priorityReason)}</span></p>
             ) : null}
-            {item.skillId ? <p><Link href={learnHref(item.skillId)}>Learn {title}</Link></p> : null}
+            {item.skillId ? <p><Link href={learnHref(item.skillId)} target="_blank" rel="noopener noreferrer">Learn {title}</Link></p> : null}
             <div className="rating-options" aria-label={`Outcome for ${title}`}>
               {([1, 2, 3, 4] as const).map((rating) => (
                 <label className="rating-option" key={rating}>

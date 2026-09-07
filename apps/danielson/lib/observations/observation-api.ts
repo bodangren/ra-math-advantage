@@ -10,6 +10,9 @@ export function observationResultResponse(result: ObservationResult) {
   if (result.kind === 'denied') {
     return NextResponse.json({ error: result.reason ?? 'Access denied' }, { status: 403 });
   }
+  if (result.kind === 'future_observed_at') {
+    return NextResponse.json({ error: 'The observation time cannot be in the future.' }, { status: 400 });
+  }
   const conflicts = new Set([
     'revision_conflict',
     'version_conflict',

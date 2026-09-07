@@ -245,3 +245,11 @@ describe('observation form accessibility', () => {
     resolveSave?.({ ok: false, json: async () => ({ error: 'Stop test.' }) });
   });
 });
+
+
+it('opens training in a separate tab so the observation form retains unsaved evidence', () => {
+  render(<ObservationForm draft={draft} onSave={vi.fn()} onSubmit={vi.fn()} />);
+  fireEvent.change(screen.getByLabelText('Evidence note for Double Plan'), { target: { value: 'Unsaved evidence' } });
+  expect(screen.getByRole('link', { name: 'Learn Double Plan' })).toHaveAttribute('target', '_blank');
+  expect(screen.getByLabelText('Evidence note for Double Plan')).toHaveValue('Unsaved evidence');
+});

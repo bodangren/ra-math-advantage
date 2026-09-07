@@ -169,3 +169,13 @@ describe('observation draft lifecycle', () => {
     expect(commands.every((command) => command.scoringEffect === false)).toBe(true);
   });
 });
+
+
+it('rejects publication of future observed evidence', () => {
+  const draft = walkthroughDraft({
+    observedAt: new Date(OBSERVATION_NOW_MS + 60_000).toISOString(),
+    items: walkthroughDraft().items.map((item) => ({ ...item, outcome: { kind: 'rated', rating: 3 } })),
+  });
+  expect(submitObservationDraft(draft, { submissionKey: 'future', now: OBSERVATION_NOW_MS }))
+    .toEqual({ kind: 'future_observed_at' });
+});

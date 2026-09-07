@@ -1513,3 +1513,22 @@ describe('PIP final independent-review regressions', () => {
     });
   });
 });
+
+
+it.each(['school_head', 'coach'])('excludes an inactive subject account from the %s plan list', async (role) => {
+  const db = new MemoryDb();
+  seedBase(db);
+  const actor = 'accounts:review-supervisor';
+  seedAccount(db, actor, 'Review supervisor');
+  seedRole(db, actor, role);
+  db.seed('coach_assignments', 'coach_assignments:review', {
+    organizationId: ORG, accountId: actor, teacherProfileId: TEACHER,
+    status: 'active', createdByAccountId: SLT, createdAt: NOW,
+  });
+  seedPlan(db, 'review-inactive', TEACHER, NOW);
+  await db.patch(TEACHER_ACCOUNT, { isActive: false });
+  const result = await handler(listScopedImprovementPlans)(db.context(), {
+    actorAccountId: actor, paginationOpts: { cursor: null, numItems: 10 }, now: NOW,
+  });
+  expect(result).toMatchObject({ kind: 'allowed', page: { page: [] } });
+});

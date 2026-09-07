@@ -256,6 +256,7 @@ const discardDraftResultValidator = v.union(
 const submissionResultValidator = v.union(
   ...draftErrorValidators,
   v.object({ kind: v.literal('incomplete_items'), itemIds: v.array(v.string()) }),
+  v.object({ kind: v.literal('future_observed_at') }),
   v.object({ kind: v.literal('idempotency_conflict') }),
   v.object({ kind: v.literal('formal_observation_exists') }),
   v.object({

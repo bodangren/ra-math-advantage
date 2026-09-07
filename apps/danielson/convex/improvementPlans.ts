@@ -1461,8 +1461,13 @@ export const listScopedImprovementPlans = internalQuery({
         .eq('isActive', true))
       .take(251);
     if (profiles.length > 250) return { kind: 'capacity_exceeded' as const };
+    const subjectAccounts = await Promise.all(profiles.map((profile) => ctx.db.get(profile.accountId)));
+    const activeProfiles = profiles.filter((profile, index) => {
+      const account = subjectAccounts[index];
+      return account?.isActive && account.organizationId === actor.organizationId;
+    });
     const organizationWide = supervisorRoles.has('school_head') || supervisorRoles.has('slt');
-    let scopedTeacherIds = new Set(profiles
+    let scopedTeacherIds = new Set(activeProfiles
       .filter((profile) => String(profile.accountId) !== String(actor._id))
       .map((profile) => String(profile._id)));
     if (!organizationWide) {
@@ -1509,7 +1514,7 @@ export const listScopedImprovementPlans = internalQuery({
         ]));
       }
       const coachTeacherIds = new Set(coachAssignments.map((assignment) => String(assignment.teacherProfileId)));
-      scopedTeacherIds = new Set(profiles
+      scopedTeacherIds = new Set(activeProfiles
         .filter((profile) => (
           String(profile.accountId) !== String(actor._id)
           && (

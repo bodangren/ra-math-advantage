@@ -307,3 +307,24 @@ describe('PIP cadence and progress', () => {
     expect(result).not.toHaveProperty('recommendation');
   });
 });
+
+
+describe('review regressions: plan evidence dates', () => {
+  it('preserves an existing overdue SRS date', () => {
+    const result = applyPipPriorityOverlay({
+      priority: { ...basePriority(), due: true, dueAt: '2026-08-31T00:00:00.000Z', overdueDays: 1 },
+      approvedAt: APPROVED_AT, planEndAt: END_AT, latestRatedEvidenceAt: null, now: APPROVED_AT,
+    });
+    expect(result).toMatchObject({ due: true, dueAt: '2026-08-31T00:00:00.000Z', overdueDays: 1 });
+  });
+
+  it('excludes future evidence from current plan progress', () => {
+    const result = projectImprovementPlanProgress({
+      planId: 'plan', version: 1, approvedAt: APPROVED_AT, planEndAt: END_AT,
+      reviewMeetingAt: REVIEW_AT, now: APPROVED_AT,
+      targets: [{ componentId: COMPONENT_ID, skillId: SKILL_ID, expectedRating: 3 }],
+      evidence: [{ skillId: SKILL_ID, kind: 'rated', rating: 4, occurredAt: REVIEW_AT }],
+    });
+    expect(result.targets[0]).toMatchObject({ currentRating: null, state: 'no_plan_evidence' });
+  });
+});
