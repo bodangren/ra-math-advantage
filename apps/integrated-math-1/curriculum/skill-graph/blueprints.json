@@ -4814,6 +4814,45 @@
         "module": "3",
         "lesson": "6"
       }
+    },
+    {
+      "nodeId": "math.im1.skill.3.2.evaluate-functions-at-numerical-inputs",
+      "sourceNodeIds": [
+        "math.im1.example.3.2.008"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.3.2.evaluate-functions-at-algebraic-inputs",
+      "sourceNodeIds": [
+        "math.im1.example.3.2.008"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.3.2.interpret-function-values-in-context",
+      "sourceNodeIds": [
+        "math.im1.example.3.2.009"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "3",
+        "lesson": "2"
+      }
     }
   ]
 }

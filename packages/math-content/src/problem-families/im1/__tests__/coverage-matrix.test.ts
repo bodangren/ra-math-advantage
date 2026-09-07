@@ -290,7 +290,9 @@ describe('Coverage matrix — integration with rollout-audit (Phase 1, Task 1↔
       IM1_GENERATORS.flatMap((entry) => entry.nodeIds).sort(),
     );
     expect(empty.length + sourceOnly.length + schemaValid.length).toBe(bp.blueprints.length);
-    expect(sourceOnly.filter((row) => row.nodeId.startsWith('math.im1.skill.3.'))).toHaveLength(12);
+    expect(sourceOnly.filter((row) => row.nodeId.startsWith('math.im1.skill.3.')).map((row) => row.nodeId).sort()).toEqual(
+      bp.blueprints.filter((row) => row.nodeId.startsWith('math.im1.skill.3.')).map((row) => row.nodeId).sort(),
+    );
 
     const audit = readFileSync(AUDIT_MD, 'utf-8');
     expect(audit).toMatch(/Blueprint rows with three schema-valid mode specifications: 6\./);

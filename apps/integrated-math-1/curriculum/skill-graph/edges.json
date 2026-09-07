@@ -56146,6 +56146,54 @@
         "module": "3",
         "lesson": "4"
       }
+    },
+    {
+      "id": "math.im1.source-correction.3.2.evaluate-functions-at-numerical-inputs.contains",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.3.2",
+      "targetId": "math.im1.skill.3.2.evaluate-functions-at-numerical-inputs",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "module-3-source-review-20260907",
+      "rationale": "Lesson 3-2 teaches this operation in the cited example.",
+      "metadata": {
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.source-correction.3.2.evaluate-functions-at-algebraic-inputs.contains",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.3.2",
+      "targetId": "math.im1.skill.3.2.evaluate-functions-at-algebraic-inputs",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "module-3-source-review-20260907",
+      "rationale": "Lesson 3-2 teaches this operation in the cited example.",
+      "metadata": {
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.source-correction.3.2.interpret-function-values-in-context.contains",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.3.2",
+      "targetId": "math.im1.skill.3.2.interpret-function-values-in-context",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "derivationMethod": "module-3-source-review-20260907",
+      "rationale": "Lesson 3-2 teaches this operation in the cited example.",
+      "metadata": {
+        "module": "3",
+        "lesson": "2"
+      }
     }
   ]
 }

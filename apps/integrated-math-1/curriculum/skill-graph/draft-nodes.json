@@ -11404,8 +11404,10 @@
       "metadata": {
         "course": "im1",
         "module": "3",
-        "lesson": "2"
-      }
+        "lesson": "2",
+        "taxonomyRole": "legacy_objective_aggregator"
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.skill.3.3.determine-whether-a-function-represented-by-an-equation-grap",
@@ -11473,6 +11475,57 @@
         "course": "im1",
         "module": "3",
         "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.skill.3.2.evaluate-functions-at-numerical-inputs",
+      "kind": "skill",
+      "title": "Evaluate functions at numerical inputs",
+      "domain": "math.im1",
+      "description": "Substitute a numerical input in a function rule. Calculate the output, including negative inputs and expressions that use the output.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-2:75"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.3.2.evaluate-functions-at-algebraic-inputs",
+      "kind": "skill",
+      "title": "Evaluate functions at algebraic inputs",
+      "domain": "math.im1",
+      "description": "Substitute an algebraic expression in a function rule. Simplify the resulting expression without treating the input as a numerical value.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-2:75"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.3.2.interpret-function-values-in-context",
+      "kind": "skill",
+      "title": "Interpret function values in context",
+      "domain": "math.im1",
+      "description": "Explain the input, output, and units of a function value in its stated context. A numerical output alone does not show this capability.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-3-lesson-2:105"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "3",
+        "lesson": "2"
       }
     }
   ]

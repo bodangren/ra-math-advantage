@@ -1,10 +1,10 @@
 {
   "version": 1,
   "course": "im1",
-  "totalSkills": 156,
+  "totalSkills": 159,
   "counts": {
     "served": 6,
-    "gap": 150,
+    "gap": 153,
     "newComponent": 0
   },
   "byModule": [
@@ -24,9 +24,9 @@
     },
     {
       "module": "3",
-      "totalSkills": 12,
+      "totalSkills": 15,
       "served": 0,
-      "gap": 12,
+      "gap": 15,
       "newComponent": 0
     },
     {
@@ -341,7 +341,31 @@
       "priority": "standard"
     },
     {
+      "skillId": "math.im1.skill.3.2.evaluate-functions-at-algebraic-inputs",
+      "module": "3",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
+      "skillId": "math.im1.skill.3.2.evaluate-functions-at-numerical-inputs",
+      "module": "3",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
       "skillId": "math.im1.skill.3.2.evaluate-functions-using-function-notation-for-numerical-and",
+      "module": "3",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "medium"
+    },
+    {
+      "skillId": "math.im1.skill.3.2.interpret-function-values-in-context",
       "module": "3",
       "status": "gap",
       "tier": "none",

@@ -1349,10 +1349,37 @@
       "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
       "gap": "No generator binding or complete three-mode blueprint",
       "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.3.2.evaluate-functions-at-numerical-inputs",
+      "title": "Evaluate functions at numerical inputs",
+      "module": "3",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.3.2.evaluate-functions-at-algebraic-inputs",
+      "title": "Evaluate functions at algebraic inputs",
+      "module": "3",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.3.2.interpret-function-values-in-context",
+      "title": "Interpret function values in context",
+      "module": "3",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "medium"
     }
   ],
   "meta": {
-    "totalSkills": 150,
+    "totalSkills": 153,
     "allNeedGenerators": true
   }
 }
