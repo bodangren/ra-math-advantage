@@ -92,7 +92,10 @@ export function ObservationStartForm({
       </div>
       <div className="field">
         <label htmlFor={`observed-${teacherProfileId ?? 'formal'}`}>Observation time</label>
-        <input id={`observed-${teacherProfileId ?? 'formal'}`} name="observedAt" type="datetime-local" required />
+        <input id={`observed-${teacherProfileId ?? 'formal'}`} name="observedAt" type="datetime-local" required onFocus={(event) => {
+          const now = new Date();
+          event.currentTarget.max = new Date(now.getTime() - now.getTimezoneOffset() * 60_000).toISOString().slice(0, 16);
+        }} />
       </div>
       {type !== 'walkthrough' ? (
         <div className="field">

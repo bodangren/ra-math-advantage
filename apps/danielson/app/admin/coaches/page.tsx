@@ -22,6 +22,7 @@ export default async function CoachesPage({
     <>
       <SiteHeader isAuthenticated showAdministration />
       <main id="main-content" className="page-shell">
+        <p><Link href="/admin/relationships">View current assignments</Link></p>
         <p className="eyebrow">Administration / coaches</p>
         <h1>Coach assignments</h1>
         <p className="lede">Assign a coach account to a teacher account. Both accounts must be active members of this organization.</p>

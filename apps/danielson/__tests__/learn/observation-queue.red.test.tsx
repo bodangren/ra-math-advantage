@@ -8,6 +8,7 @@ vi.mock('@/lib/observations/observation-page', () => ({
 }));
 
 vi.mock('@math-platform/app-shell', () => ({
+  useAuth: () => ({ profile: null }),
   LogoutButton: () => <button type="button">Logout</button>,
 }));
 

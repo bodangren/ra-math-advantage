@@ -2,43 +2,58 @@
 
 ## Purpose
 
-The application helps the school improve teacher proficiency against the
-Danielson Framework for Teaching. It gives teachers and leaders one record of
-evidence, target skills, and improvement work.
-
-Track 1 creates the application foundation. It creates accounts, roles,
-organization scopes, and system-administrator workflows. Later tracks add the
-rubric, observations, reports, improvement plans, and Get Better Faster (GBF)
-sequence.
+The app helps a school collect observation evidence and plan teacher development.
+It keeps published evidence, current proficiency, and improvement work together.
 
 ## Users
 
-- A teacher views their published evaluation records.
-- A Head of Department (HOD) works with teachers in assigned departments.
-- A coach works with assigned teachers.
-- A school head works with all teachers in one organization.
-- A Senior Leadership Team (SLT) member works with all teachers in one
-  organization.
-- A system administrator manages accounts and access. This role does not grant
-  access to evaluation records.
+- Teachers read their published observations, reports, public comments, and plans.
+- Heads of Department (HODs) observe teachers in their assigned departments.
+- Coaches observe their assigned teachers.
+- School heads and Senior Leadership Team (SLT) members review their organization.
+- System administrators manage accounts, roles, departments, and assignments.
 
-One person has one account. One account can have more than one role.
+One account can have several roles. System administration does not grant access
+to evaluation records. Supervisors cannot evaluate themselves or read private
+leadership comments about themselves.
 
-## Track 1 Outcomes
+## Current functions
 
-- The app is a first-class monorepo workspace.
-- The app uses the shared session, Convex, and shell packages.
-- The app stores current role and assignment data in its own Convex boundary.
-- The server checks current role and assignment data for every protected action.
-- A system administrator can manage accounts, departments, roles, and
-  assignments.
-- A supervisor cannot evaluate themselves or read private leadership data about
-  themselves.
+- Create, save, resume, discard, and submit walkthroughs.
+- Record Quarter 1 and Quarter 4 formal observations.
+- Amend published ratings and notes while retaining the original evidence.
+- View proficiency, evidence gaps, and spaced repetition system (SRS) priorities.
+- Propose, approve, acknowledge, revise, and close improvement plans.
+- Assign the supplied Get Better Faster (GBF) sequence and view practice targets.
+- Read 63 Teach Like a Champion 3.0 reference pages and rehearse the techniques.
+- Inspect current account assignments and reset another account's password.
 
-## Product Boundaries
+Password changes and resets invalidate older sessions. A reset issues a temporary
+password that the account owner must change. A system administrator uses the
+normal change-password page for their own account. Another administrator must
+perform recovery when that password is lost.
 
-This track does not add the Danielson rubric, proficiency scores, observation
-forms, reports, improvement plans, or GBF sequence.
+## Curriculum and evaluation boundaries
 
-The product does not score culture fit, staff attitude, or labor-market
-availability.
+The technique library covers 14 of 22 framework components. It does not provide
+complete Danielson training. Components 1b, 1d, and 4a–4f need separate instruction.
+The technique mapping is school-defined. It is not an official equivalence.
+
+Observers must use the school's approved component descriptors. The app's rating
+labels and technique guidance do not replace that rubric. The supplied GBF source
+does not state its edition. Changing to another edition requires a curriculum
+decision. Mapped skill evidence does not prove direct observation of every step.
+
+The app does not score culture fit, staff attitude, or labor-market availability.
+It does not make employment decisions. A person records each plan closure outcome.
+
+## Operating limits
+
+The current portfolio supports at most 250 teachers and 1,000 accounts per
+organization. Several histories have a 2,000-row limit. The portfolio limit
+includes formal records across school years. Plan capacity before the limit is
+reached. The system returns a capacity error instead of a partial result.
+
+Published observation metadata is immutable. The school must define a correction
+policy for a wrong subject, date, or school year. Do not replace published evidence
+through a direct database edit.

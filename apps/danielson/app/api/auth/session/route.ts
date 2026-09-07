@@ -1,6 +1,7 @@
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 import { getAuthJwtSecret, SESSION_COOKIE_NAME, verifySessionToken } from '@/lib/auth/session';
+import type { SessionClaims } from '@/lib/auth/session';
 import { clearDanielsonSessionCookieOptions } from '@/lib/auth/login-policy';
 import { fetchInternalQuery, internal } from '@/lib/convex/server';
 
@@ -16,7 +17,8 @@ export async function GET() {
       return NextResponse.json({ authenticated: false });
     }
     const account = await fetchInternalQuery(internal.auth.getAccountById, { accountId: claims.sub });
-    if (!account?.accountIsActive || !account.organizationIsActive || !account.credentialIsActive) {
+    if (!account?.accountIsActive || !account.organizationIsActive || !account.credentialIsActive
+      || account.credentialUpdatedAt !== (claims as SessionClaims).credentialUpdatedAt) {
       cookieStore.set(SESSION_COOKIE_NAME, '', clearDanielsonSessionCookieOptions());
       return NextResponse.json({ authenticated: false });
     }

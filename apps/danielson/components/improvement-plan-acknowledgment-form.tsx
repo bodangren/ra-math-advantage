@@ -1,5 +1,7 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 
 export function ImprovementPlanAcknowledgmentForm({
@@ -13,6 +15,7 @@ export function ImprovementPlanAcknowledgmentForm({
   expectedRevision: number;
   kind?: 'teacher' | 'supervisor';
 }) {
+  const router = useRouter();
   const [confirmed, setConfirmed] = useState(false);
   const [pending, setPending] = useState(false);
   const [error, setError] = useState('');
@@ -48,6 +51,7 @@ export function ImprovementPlanAcknowledgmentForm({
         return;
       }
       setSaved(true);
+      router.refresh();
       requestIdRef.current = null;
     } catch {
       setError('The acknowledgment was not saved.');

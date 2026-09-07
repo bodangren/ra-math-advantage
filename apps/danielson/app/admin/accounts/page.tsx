@@ -40,6 +40,10 @@ export default async function AccountsPage({
         </section>
         <div className="card narrow"><AccountCreateForm /></div>
         <div className="card-grid" style={{ marginTop: '1rem' }}>
+          <div className="card"><AdminChangeForm endpoint="/api/admin/accounts" method="PATCH" title="Reset another account password" submitLabel="Reset password" fields={[
+            { name: 'kind', label: 'Action', type: 'select', required: true, options: [{ value: 'account.reset_password', label: 'Reset password' }] },
+            { name: 'targetAccountId', label: 'Account', type: 'select', required: true, options: accountOptions.filter((option) => option.value !== directory.actorAccountId) },
+          ]} /></div>
           <div className="card"><AdminChangeForm endpoint="/api/admin/accounts" method="PATCH" title="Update account" submitLabel="Save account" fields={[
             { name: 'kind', label: 'Action', type: 'select', required: true, options: [{ value: 'account.update', label: 'Update account' }] },
             { name: 'targetAccountId', label: 'Account', type: 'select', required: true, options: accountOptions },

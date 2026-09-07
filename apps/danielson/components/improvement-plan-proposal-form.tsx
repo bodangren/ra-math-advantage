@@ -1,5 +1,7 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 
 import { PIP_SOURCE_CONTRACT } from '@/lib/improvement-plans/source';
@@ -49,6 +51,7 @@ export function ImprovementPlanProposalForm({
     targets: Array<{ skillId: string; expectedRating: number }>;
   }>;
 }) {
+  const router = useRouter();
   const departments = departmentOptions ?? [{ departmentId, departmentName }];
   const [selectedDepartmentId, setSelectedDepartmentId] = useState(departmentId);
   const [rows, setRows] = useState(initial?.targets ?? [{ skillId: targetOptions[0]?.skillId ?? '', expectedRating: 3 }]);
@@ -99,13 +102,15 @@ export function ImprovementPlanProposalForm({
           targets,
         }),
       });
-      const result = await response.json() as { error?: string };
+      const result = await response.json() as { error?: string; planId?: string };
       if (!response.ok) {
         requestIdRef.current = null;
         setError(result.error ?? 'The proposal was not saved.');
         return;
       }
       setSaved(true);
+      router.refresh();
+      if (result.planId) router.push(`/improvement-plans/${encodeURIComponent(result.planId)}`);
       requestIdRef.current = null;
     } catch {
       setError('The proposal was not saved.');
@@ -218,7 +223,7 @@ export function ImprovementPlanProposalForm({
         <h2 id="pip-acknowledgment-heading">Acknowledgment</h2>
         <p>{PIP_SOURCE_CONTRACT.fixedText.acknowledgmentText}</p>
       </section>
-      <button type="submit" disabled={pending}>{pending ? 'Saving…' : 'Propose plan'}</button>
+      <button type="submit" disabled={pending || saved}>{pending ? 'Saving…' : 'Propose plan'}</button>
     </form>
   );
 }

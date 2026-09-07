@@ -22,7 +22,7 @@ export function ChangePasswordForm() {
       });
       const payload = await response.json().catch(() => ({})) as { error?: string };
       if (!response.ok) setError(payload.error ?? 'Unable to update password.');
-      else { setSaved(true); router.push('/'); router.refresh(); }
+      else { setSaved(true); router.push('/auth/login'); router.refresh(); }
     } catch {
       setError('Unable to update password. Try again.');
     } finally {

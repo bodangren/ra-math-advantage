@@ -1,8 +1,11 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+
 import { FormEvent, useState } from 'react';
 
 export function AccountCreateForm() {
+  const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [temporaryPassword, setTemporaryPassword] = useState<string | null>(null);
   const [targetId, setTargetId] = useState<string | null>(null);
@@ -27,6 +30,7 @@ export function AccountCreateForm() {
         setTemporaryPassword(payload.temporaryPassword ?? null);
         setTargetId(payload.targetId ?? null);
         form.reset();
+      router.refresh();
       }
     } catch {
       setError('The account could not be created. Try again.');

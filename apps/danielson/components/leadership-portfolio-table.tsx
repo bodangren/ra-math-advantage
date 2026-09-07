@@ -11,6 +11,7 @@ function statusLabel(value: string) {
   if (value === 'not_enough_evidence') return 'Not enough evidence';
   if (value === 'not_configured') return 'Not configured';
   if (value === 'overdue') return 'Overdue';
+  if (value === 'current') return 'Current';
   if (value === 'due') return 'Due';
   if (value === 'pending_approval') return 'Pending approval';
   if (value === 'active') return 'Active';
@@ -58,8 +59,8 @@ export function LeadershipPortfolioTable({
                   <Link href={`/reports/teachers/${encodeURIComponent(row.teacherProfileId)}`}>
                     {row.displayName}
                   </Link>
-                  {row.improvementPlan.state === 'not_configured'
-                    || row.improvementPlan.state === 'closed' ? (
+                  {row.canStartPlan !== false && (row.improvementPlan.state === 'not_configured'
+                    || row.improvementPlan.state === 'closed') ? (
                       <>
                         {' · '}
                         <Link href={`/improvement-plans/new?teacherProfileId=${encodeURIComponent(row.teacherProfileId)}`}>

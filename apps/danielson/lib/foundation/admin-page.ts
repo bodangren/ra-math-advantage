@@ -3,6 +3,7 @@ import { requireDanielsonSession } from '@/lib/auth/server';
 import { fetchInternalQuery, internal } from '@/lib/convex/server';
 
 export type AdministrationDirectory = {
+  actorAccountId?: string;
   accountPage: {
     items: Array<{
       accountId: string;
@@ -96,6 +97,7 @@ export async function getAdministrationDirectory(
     redirect('/unauthorized');
   }
   return {
+    actorAccountId: session.claims.sub,
     accountPage: accountResult.accountPage,
     departmentPage: departmentResult.departmentPage,
   };

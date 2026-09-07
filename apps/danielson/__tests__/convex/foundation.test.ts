@@ -5,6 +5,7 @@ import {
   applyAdministrationChange,
   bootstrapFirstSysadmin,
   listAdministrationAccounts,
+  listAdministrationAssignments,
   listAdministrationDepartments,
   resolveAccessContext,
 } from '../../convex/foundation';
@@ -724,6 +725,7 @@ describe('Danielson Convex authentication handlers', () => {
 
     await expect(changePassword(db.context(), {
       accountId: 'accounts:admin',
+      expectedPasswordSalt: 'old-salt',
       passwordHash: 'new-hash',
       passwordSalt: 'new-salt',
       passwordHashIterations: 120000,
@@ -748,4 +750,53 @@ describe('Danielson Convex authentication handlers', () => {
     await expect(clearRateLimit(db.context(), { key: 'login-key' })).resolves.toEqual({ ok: true });
     expect(db.rows('login_rate_limits')).toHaveLength(0);
   });
+});
+
+it('lets an administrator reset another account without exposing stored credentials', async () => {
+  const db = new MemoryDb();
+  seedAdministrator(db);
+  const created = await applyChange(db.context(), administrationArgs('create', {
+    kind: 'account.create', username: 'reset-target', displayName: 'Target',
+    passwordHash: 'old-hash', passwordSalt: 'old-salt', passwordHashIterations: 120000,
+  }));
+  const targetId = created.targetId;
+  const previous = db.rows('auth_credentials')[0].updatedAt;
+  const result = await applyChange(db.context(), administrationArgs('reset', {
+    kind: 'account.reset_password', targetAccountId: targetId,
+    passwordHash: 'new-hash', passwordSalt: 'new-salt', passwordHashIterations: 120000,
+  }));
+  expect(result).toMatchObject({ kind: 'applied', targetId });
+  expect(result).not.toHaveProperty('passwordHash');
+  expect(db.rows('auth_credentials')[0]).toMatchObject({ passwordHash: 'new-hash', mustChangePassword: true });
+  expect(Number(db.rows('auth_credentials')[0].updatedAt)).toBeGreaterThan(Number(previous));
+});
+
+
+it('lists current assignments within the administrator organization', async () => {
+  const db = new MemoryDb();
+  seedAdministrator(db);
+  db.seed('accounts', 'accounts:teacher', { organizationId: 'organizations:school', displayName: 'Teacher', isActive: true });
+  db.seed('teacher_profiles', 'teacher_profiles:teacher', { organizationId: 'organizations:school', accountId: 'accounts:teacher', isActive: true });
+  db.seed('departments', 'departments:math', { organizationId: 'organizations:school', name: 'Math', isActive: true });
+  db.seed('department_memberships', 'department_memberships:current', { organizationId: 'organizations:school', departmentId: 'departments:math', teacherProfileId: 'teacher_profiles:teacher', status: 'active' });
+  db.seed('department_memberships', 'department_memberships:other', { organizationId: 'organizations:other', departmentId: 'departments:math', teacherProfileId: 'teacher_profiles:teacher', status: 'active' });
+  const result = await handler<Record<string, unknown>, Record<string, unknown>>(listAdministrationAssignments)(db.context(), {
+    actorAccountId: 'accounts:admin', kind: 'department_memberships', paginationOpts: { cursor: null, numItems: 25 },
+  });
+  expect(result).toMatchObject({ kind: 'allowed', items: [{ person: 'Teacher', assignment: 'Math' }] });
+});
+
+it('does not overwrite a password reset with an earlier password-change request', async () => {
+  const db = new MemoryDb();
+  seedAdministrator(db);
+  db.seed('auth_credentials', 'auth_credentials:admin', {
+    accountId: 'accounts:admin', username: 'admin', passwordHash: 'reset-hash', passwordSalt: 'reset-salt',
+    passwordHashIterations: 120000, isActive: true, mustChangePassword: true, createdAt: 1, updatedAt: 2,
+  });
+  const result = await changePassword(db.context(), {
+    accountId: 'accounts:admin', expectedPasswordSalt: 'old-salt',
+    passwordHash: 'stale-hash', passwordSalt: 'stale-salt', passwordHashIterations: 120000,
+  });
+  expect(result.ok).toBe(false);
+  expect(db.rows('auth_credentials')[0].passwordHash).toBe('reset-hash');
 });

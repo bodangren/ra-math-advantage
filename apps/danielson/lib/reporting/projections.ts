@@ -57,6 +57,7 @@ export function applyPriorityOverlays(input: {
 }
 
 export type PortfolioRow = {
+  canStartPlan?: boolean;
   teacherProfileId: string;
   displayName: string;
   danielson: {
@@ -335,7 +336,7 @@ export function projectOfficialEvaluation(input: {
     (component) => component.rawRating !== null && component.rawRating < 3,
   )
     ? 'below_proficient'
-    : components.length > 0 && components.every(
+    : components.length === allComponentIds.length && components.every(
       (component) => component.rawRating !== null && component.rawRating >= 3,
     )
       ? 'proficient'

@@ -128,3 +128,22 @@ production use:
 - Assign a deployment owner and a support path.
 
 Do not seed fictional pilot accounts in a hosted Convex deployment.
+
+## Session and account recovery
+
+Sessions include the current credential change time. A password change or reset
+invalidates older sessions. After the first deployment of this change, existing
+users must sign in again. No data migration is required.
+
+A system administrator can reset another account from Accounts and roles. Give
+the displayed temporary password to the account owner. The owner must change it
+after sign-in. Use the change-password page for your own account. Keep access to
+a second administrator for recovery of the first administrator's password.
+
+## Capacity planning
+
+The current portfolio limit is 250 teachers and 1,000 accounts per organization.
+Formal records across school years and several evidence histories have a
+2,000-row limit. At 250 teachers and two formal records each year, four years
+reaches the formal-record limit. Plan a bounded query change before reaching
+that limit. The app returns a capacity error instead of a partial portfolio.

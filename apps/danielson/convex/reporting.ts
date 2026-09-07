@@ -139,6 +139,7 @@ const gbfProgressValidator = v.union(
   }),
 );
 const portfolioRowValidator = v.object({
+  canStartPlan: v.optional(v.boolean()),
   teacherProfileId: v.string(),
   displayName: v.string(),
   danielson: v.object({
@@ -662,7 +663,7 @@ export const readLeadershipPortfolio = internalQuery({
         assignment: gbfAssignments.assignmentsByTeacher.get(teacherProfileId) ?? null,
         priorities,
       });
-      return [projectPortfolioRow({
+      return [{ ...projectPortfolioRow({
         teacherProfileId,
         displayName: account.displayName,
         priorities,
@@ -670,7 +671,7 @@ export const readLeadershipPortfolio = internalQuery({
         componentEvidence: formalEvidence.evidenceByTeacher.get(teacherProfileId) ?? [],
         improvementPlan,
         gbf,
-      })];
+      }), canStartPlan: profile.accountId !== actor._id }];
     }).sort(comparePortfolioRows);
     try {
       return {

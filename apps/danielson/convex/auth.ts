@@ -13,6 +13,7 @@ const credentialResult = v.union(
     passwordHash: v.string(),
     passwordSalt: v.string(),
     passwordHashIterations: v.number(),
+    credentialUpdatedAt: v.number(),
     mustChangePassword: v.boolean(),
   }),
 );
@@ -41,6 +42,7 @@ export const getCredentialByUsername = internalQuery({
       passwordHash: credential.passwordHash,
       passwordSalt: credential.passwordSalt,
       passwordHashIterations: credential.passwordHashIterations,
+      credentialUpdatedAt: credential.updatedAt,
       mustChangePassword: credential.mustChangePassword,
     };
   },
@@ -70,6 +72,7 @@ export const getCredentialByAccountId = internalQuery({
       passwordHash: credential.passwordHash,
       passwordSalt: credential.passwordSalt,
       passwordHashIterations: credential.passwordHashIterations,
+      credentialUpdatedAt: credential.updatedAt,
       mustChangePassword: credential.mustChangePassword,
     };
   },
@@ -98,6 +101,7 @@ export const getAccountById = internalQuery({
       accountIsActive: v.boolean(),
       organizationIsActive: v.boolean(),
       credentialIsActive: v.boolean(),
+      credentialUpdatedAt: v.number(),
       mustChangePassword: v.boolean(),
     }),
   ),
@@ -120,6 +124,7 @@ export const getAccountById = internalQuery({
       accountIsActive: account.isActive,
       organizationIsActive: organization?.isActive ?? false,
       credentialIsActive: credential?.isActive ?? false,
+      credentialUpdatedAt: credential?.updatedAt ?? 0,
       mustChangePassword: credential?.mustChangePassword ?? false,
     };
   },
@@ -128,13 +133,14 @@ export const getAccountById = internalQuery({
 export const changeOwnPassword = internalMutation({
   args: {
     accountId: v.id('accounts'),
+    expectedPasswordSalt: v.string(),
     passwordHash: v.string(),
     passwordSalt: v.string(),
     passwordHashIterations: v.number(),
   },
   returns: v.union(
     v.object({ ok: v.literal(true), username: v.string() }),
-    v.object({ ok: v.literal(false), reason: v.union(v.literal('account_inactive'), v.literal('credential_not_found')) }),
+    v.object({ ok: v.literal(false), reason: v.union(v.literal('account_inactive'), v.literal('credential_not_found'), v.literal('credential_changed')) }),
   ),
   handler: async (ctx, args) => {
     const account = await ctx.db.get(args.accountId);
@@ -143,14 +149,20 @@ export const changeOwnPassword = internalMutation({
       .query('auth_credentials')
       .withIndex('by_accountId', (query) => query.eq('accountId', account._id))
       .unique();
-    if (!credential) return { ok: false as const, reason: 'credential_not_found' as const };
+    if (!credential?.isActive) return { ok: false as const, reason: 'credential_not_found' as const };
+
+    if (credential.passwordSalt !== args.expectedPasswordSalt) {
+      return { ok: false as const, reason: 'credential_changed' as const };
+    }
+    const organization = await ctx.db.get(account.organizationId);
+    if (!organization?.isActive) return { ok: false as const, reason: 'account_inactive' as const };
 
     await ctx.db.patch(credential._id, {
       passwordHash: args.passwordHash,
       passwordSalt: args.passwordSalt,
       passwordHashIterations: args.passwordHashIterations,
       mustChangePassword: false,
-      updatedAt: Date.now(),
+      updatedAt: Math.max(Date.now(), credential.updatedAt + 1),
     });
     return { ok: true as const, username: account.username };
   },

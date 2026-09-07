@@ -203,3 +203,10 @@ describe('GBF report interface', () => {
 
   });
 });
+
+
+it('links named due skills and evidence gaps to training', () => {
+  render(<TeacherReportView report={report} canComment={false} canRespond={false} />);
+  expect(screen.getByRole('link', { name: 'Routine Building' })).toHaveAttribute('href', '/learn/routine-building');
+  expect(screen.getByRole('link', { name: 'Knowledge Organizers' })).toHaveAttribute('href', '/learn/knowledge-organizers');
+});

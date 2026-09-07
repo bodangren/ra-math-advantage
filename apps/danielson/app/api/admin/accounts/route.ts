@@ -32,9 +32,19 @@ export async function POST(request: Request) {
 export async function PATCH(request: Request) {
   const prepared = await readAdminChange(request);
   if (prepared instanceof Response) return prepared;
-  const allowed = new Set(['account.update', 'account.activate', 'account.deactivate', 'role.assign', 'role.revoke']);
+  const allowed = new Set(['account.reset_password', 'account.update', 'account.activate', 'account.deactivate', 'role.assign', 'role.revoke']);
   if (!allowed.has(prepared.change.kind)) return NextResponse.json({ error: 'Unsupported account action' }, { status: 400 });
+  let temporaryPassword: string | undefined;
+  if (prepared.change.kind === 'account.reset_password') {
+    temporaryPassword = generateRandomPassword(16);
+    const salt = generatePasswordSalt();
+    prepared.change = {
+      ...prepared.change,
+      passwordHash: await hashPassword(temporaryPassword, salt, PASSWORD_HASH_ITERATIONS),
+      passwordSalt: salt, passwordHashIterations: PASSWORD_HASH_ITERATIONS,
+    };
+  }
   const result = await applyAdminChange(prepared);
   if (result instanceof Response) return result;
-  return NextResponse.json({ ok: true, targetId: result.targetId });
+  return NextResponse.json({ ok: true, targetId: result.targetId, temporaryPassword });
 }

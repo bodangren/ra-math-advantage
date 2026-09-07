@@ -9,7 +9,7 @@
 - the Convex schema and functions
 - Danielson accounts, roles, and scopes
 - the design system and domain components
-- all later Danielson rubric and evidence content
+- Danielson rubric, training, and evidence content
 
 The app has no public package entry point. Other apps and shared packages must
 not import it.
@@ -27,7 +27,7 @@ The app can import these shared packages:
 The app must not copy code from these packages. A new shared dependency needs
 an approved architecture change.
 
-## Initial Routes
+## Routes
 
 | Route | Access | Purpose |
 |---|---|---|
@@ -42,8 +42,25 @@ an approved architecture change.
 | `/api/auth/logout` | Authenticated POST | Clear the session |
 | `/api/auth/session` | Authenticated GET | Return the current app access context |
 
-Later tracks can add evaluation routes. Track 1 reserves no evaluation data
-shape.
+| `/auth/change-password` | Authenticated account | Replace the current password |
+| `/learn` and `/learn/[slug]` | Authenticated account | Read technique guidance |
+| `/observations` | Scoped supervisor | Select a teacher and start an observation |
+| `/observations/drafts/[recordId]` | Authorized draft owner | Save or submit evidence |
+| `/observations/records/[recordId]` | Authorized reader | Read published evidence |
+| `/observations/records/[recordId]/amend` | Authorized supervisor | Correct outcomes and notes |
+| `/my-observations` and `/my-report` | Teacher | Read own published evidence |
+| `/reports` and `/reports/teachers/[teacherProfileId]` | Scoped supervisor | Review proficiency and priorities |
+| `/improvement-plans` and plan detail, new, and revise routes | Authorized participant | Manage improvement work |
+| `/admin/relationships` | System administrator | Inspect current assignments |
+
+Observation, reporting, and plan API routes use the same current authorization
+checks as their page workflows. Successful client mutations refresh their server
+data. Training links from a draft open separately to preserve unsaved evidence.
+
+Signed sessions carry the existing credential change time. Protected requests
+compare that value with the current credential. Password changes, resets, and
+account status changes invalidate older sessions. No separate session ledger is
+stored.
 
 ## Convex Boundary
 

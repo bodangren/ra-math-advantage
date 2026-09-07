@@ -1,5 +1,7 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from 'react';
 
 function newRequestId(prefix: string) {
@@ -21,6 +23,7 @@ function DecisionForm({
   disabled?: boolean;
   command: (requestId: string) => { path: string; body: Record<string, unknown> };
 }) {
+  const router = useRouter();
   const [pending, setPending] = useState(false);
   const [error, setError] = useState('');
   const [saved, setSaved] = useState(false);
@@ -49,6 +52,7 @@ function DecisionForm({
         return;
       }
       setSaved(true);
+      router.refresh();
       requestIdRef.current = null;
     } catch {
       setError(`The plan ${action.toLowerCase()} action failed.`);

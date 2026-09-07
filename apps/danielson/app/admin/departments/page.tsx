@@ -28,6 +28,7 @@ export default async function DepartmentsPage({
     <>
       <SiteHeader isAuthenticated showAdministration />
       <main id="main-content" className="page-shell">
+        <p><Link href="/admin/relationships">View current assignments</Link></p>
         <p className="eyebrow">Administration / departments</p>
         <h1>Departments</h1>
         <p className="lede">Create and maintain department records. Assign teachers to departments before you assign HOD access.</p>

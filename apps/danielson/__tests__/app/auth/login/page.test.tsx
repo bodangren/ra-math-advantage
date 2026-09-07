@@ -3,6 +3,8 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import LoginPage from '../../../../app/auth/login/page';
 import { DEMO_USERNAMES } from '../../../../lib/demo/scenarios';
 
+vi.mock('@math-platform/app-shell', () => ({ useAuth: () => ({ profile: null }), LogoutButton: () => null }));
+
 describe('LoginPage pilot accounts', () => {
   afterEach(() => vi.unstubAllEnvs());
 

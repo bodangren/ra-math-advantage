@@ -24,7 +24,7 @@ export async function getServerSessionClaims(): Promise<SessionClaims | null> {
 
 export async function getCurrentDanielsonAccount(claims: SessionClaims) {
   const account = await fetchInternalQuery(internal.auth.getAccountById, { accountId: claims.sub });
-  if (!account) return null;
+  if (!account || account.credentialUpdatedAt !== claims.credentialUpdatedAt) return null;
   const context = await fetchInternalQuery(internal.foundation.resolveAccessContext, {
     actorAccountId: claims.sub,
   });
@@ -54,7 +54,8 @@ export async function requireDanielsonApiSession(
     (token) => verifySessionToken(token, getAuthJwtSecret()),
     async (claims) => {
       const account = await fetchInternalQuery(internal.auth.getAccountById, { accountId: claims.sub });
-      return Boolean(account?.accountIsActive && account.organizationIsActive && account.credentialIsActive);
+      return Boolean(account?.accountIsActive && account.organizationIsActive && account.credentialIsActive
+        && account.credentialUpdatedAt === (claims as SessionClaims).credentialUpdatedAt);
     },
     { cookieName: SESSION_COOKIE_NAME, unauthorizedMessage: 'Unauthorized' },
   );

@@ -62,12 +62,14 @@ export async function authenticateDanielsonLogin(
     : false;
   if (!credential || !valid) return { kind: 'invalid_credentials' };
 
-  const sessionToken = await signSessionToken({
+  const sessionInput = {
+    credentialUpdatedAt: credential.credentialUpdatedAt,
     sub: credential.accountId,
     username: credential.username,
     role: credential.sharedSessionRole,
     organizationId: credential.organizationId,
-  }, getAuthJwtSecret(), SESSION_TTL_SECONDS);
+  };
+  const sessionToken = await signSessionToken(sessionInput, getAuthJwtSecret(), SESSION_TTL_SECONDS);
   await fetchInternalMutation(internal.auth.clearLoginRateLimit, { key });
   return { kind: 'authenticated', sessionToken, mustChangePassword: credential.mustChangePassword };
 }

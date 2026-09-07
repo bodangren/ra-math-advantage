@@ -4,6 +4,7 @@ import {
   latestFormalRecord,
   projectLatestFormalComponentEvidence,
 } from '../../lib/reporting/formal-evidence';
+import { projectOfficialEvaluation } from '../../lib/reporting/projections';
 import type { ObservationAmendment, SubmittedObservation } from '../../lib/observations/contracts';
 
 function record(input: {
@@ -137,4 +138,11 @@ describe('formal evidence projection', () => {
     });
     expect(latestFormalRecord([sameEvent, later], 'formal_q4')?.observationId).toBe('same-event');
   });
+});
+
+
+it('does not label a one-component formal record as a complete proficient evaluation', () => {
+  const result = projectOfficialEvaluation({ record: record({ observationId: 'partial', observationType: 'formal_q1', schoolYear: '2026-2027', observedAt: '2026-09-01T00:00:00.000Z', rating: 3 }), amendments: [], observerDisplayName: 'Observer' });
+  expect(result.status).toBe('not_enough_evidence');
+  expect(result.components[0].rawRating).toBe(3);
 });

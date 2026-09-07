@@ -1,5 +1,7 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 
 export function ReportCommentForm({
@@ -9,6 +11,7 @@ export function ReportCommentForm({
   observationId: string;
   commentType: 'public' | 'private';
 }) {
+  const router = useRouter();
   const [error, setError] = useState('');
   const [saved, setSaved] = useState(false);
   const [pending, setPending] = useState(false);
@@ -40,6 +43,7 @@ export function ReportCommentForm({
       }
       formElement.reset();
       setSaved(true);
+      router.refresh();
     } catch {
       setError('The comment was not saved.');
     } finally {

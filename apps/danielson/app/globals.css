@@ -43,7 +43,7 @@ p { margin: 0 0 1rem; }
 .brand-text strong { font-size: 1rem; letter-spacing: .06em; }
 .brand-text span { color: var(--muted-ink); font-size: .72rem; font-weight: 600; letter-spacing: .02em; }
 .site-nav { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
-.site-nav a { color: var(--forest); text-decoration: none; font-size: .9rem; font-weight: 650; }
+.site-nav a { display: inline-flex; align-items: center; min-height: 44px; color: var(--forest); text-decoration: none; font-size: .9rem; font-weight: 650; }
 .site-nav a:hover { text-decoration: underline; }
 .page-shell { padding: 3rem 0 5rem; }
 .narrow { width: min(560px, 100%); }
@@ -110,7 +110,7 @@ details[open] > summary { margin-bottom: 1rem; }
 .teacher-proficiency-graph-heading { display: flex; gap: 1rem; align-items: flex-start; justify-content: space-between; }
 .teacher-proficiency-graph-heading h2 { margin-bottom: .35rem; }
 .teacher-proficiency-graph-controls { display: flex; gap: .5rem; flex-wrap: wrap; justify-content: flex-end; }
-.teacher-proficiency-graph-controls button { min-height: 2.4rem; padding: .45rem .7rem; font-size: .9rem; }
+.teacher-proficiency-graph-controls button { min-height: 44px; padding: .45rem .7rem; font-size: .9rem; }
 .teacher-proficiency-graph-legend { display: flex; flex-wrap: wrap; gap: .55rem 1rem; color: var(--muted-ink); font-size: .9rem; font-weight: 700; }
 .teacher-proficiency-graph-legend span { display: inline-flex; align-items: center; gap: .35rem; }
 .teacher-proficiency-graph-legend i { width: .8rem; height: .8rem; border: 1px solid var(--line); border-radius: 50%; }

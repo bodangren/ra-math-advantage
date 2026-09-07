@@ -48,7 +48,7 @@ describe('observation form accessibility', () => {
   it('uses native grouped controls, visible labels, text status, and keyboard actions', () => {
     render(<ObservationForm draft={draft} onSave={vi.fn()} onSubmit={vi.fn()} />);
 
-    const groups = screen.getAllByRole('group');
+    const groups = screen.getAllByRole('group').filter((element) => element.tagName === 'FIELDSET');
     expect(groups).toHaveLength(3);
     expect(groups[0]).toHaveAccessibleName(/Double Plan.*1e: Planning Coherent Instruction/i);
     expect(screen.getAllByRole('radio')).toHaveLength(15);
@@ -82,7 +82,7 @@ describe('observation form accessibility', () => {
     expect(summary).toHaveTextContent('Select an outcome for each target.');
     expect(onSubmit).not.toHaveBeenCalled();
 
-    for (const group of screen.getAllByRole('group')) {
+    for (const group of screen.getAllByRole('group').filter((element) => element.tagName === 'FIELDSET')) {
       const errorId = group.getAttribute('aria-describedby');
       expect(errorId).toBeTruthy();
       expect(document.getElementById(String(errorId))).toHaveTextContent('Select an outcome.');
@@ -252,4 +252,18 @@ it('opens training in a separate tab so the observation form retains unsaved evi
   fireEvent.change(screen.getByLabelText('Evidence note for Double Plan'), { target: { value: 'Unsaved evidence' } });
   expect(screen.getByRole('link', { name: 'Learn Double Plan' })).toHaveAttribute('target', '_blank');
   expect(screen.getByLabelText('Evidence note for Double Plan')).toHaveValue('Unsaved evidence');
+});
+
+it('warns before closing a form with unsaved edits and stops warning after save', async () => {
+  render(<ObservationForm draft={draft} onSave={async () => ({ revision: 2 })} onSubmit={vi.fn()} />);
+  fireEvent.change(screen.getByLabelText('Evidence note for Double Plan'), { target: { value: 'Evidence' } });
+  const dirtyEvent = new Event('beforeunload', { cancelable: true });
+  window.dispatchEvent(dirtyEvent);
+  expect(dirtyEvent.defaultPrevented).toBe(true);
+  fireEvent.click(screen.getByRole('button', { name: 'Save draft' }));
+  await waitFor(() => {
+    const savedEvent = new Event('beforeunload', { cancelable: true });
+    window.dispatchEvent(savedEvent);
+    expect(savedEvent.defaultPrevented).toBe(false);
+  });
 });

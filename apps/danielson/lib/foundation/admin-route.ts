@@ -37,7 +37,7 @@ export async function applyAdminChange(prepared: Awaited<ReturnType<typeof readA
   const account = await fetchInternalQuery(internal.auth.getAccountById, {
     accountId: prepared.claims.sub,
   });
-  if (!account?.isActive) {
+  if (!account?.accountIsActive || !account.organizationIsActive || !account.credentialIsActive) {
     return new Response(JSON.stringify({ error: 'account_inactive' }), { status: 401 });
   }
   const result = await fetchInternalMutation(internal.foundation.applyAdministrationChange, {

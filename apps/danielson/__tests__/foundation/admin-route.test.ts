@@ -6,7 +6,14 @@ vi.mock('@/lib/auth/server', () => ({
   requireDanielsonApiSession: mockRequireDanielsonApiSession,
 }));
 
-const { readAdminChange } = await import('../../lib/foundation/admin-route');
+const mockQuery = vi.hoisted(() => vi.fn());
+const mockMutation = vi.hoisted(() => vi.fn());
+vi.mock('@/lib/convex/server', () => ({
+  fetchInternalQuery: mockQuery, fetchInternalMutation: mockMutation,
+  internal: { auth: { getAccountById: 'account' }, foundation: { applyAdministrationChange: 'change' } },
+}));
+
+const { readAdminChange, applyAdminChange } = await import('../../lib/foundation/admin-route');
 
 describe('administrator request parsing', () => {
   beforeEach(() => {
@@ -46,4 +53,14 @@ describe('administrator request parsing', () => {
       change: { kind: 'account.deactivate', targetAccountId: 'accounts:teacher' },
     });
   });
+});
+
+
+it('accepts the active account shape returned by the real auth query', async () => {
+  mockQuery.mockResolvedValue({ accountId: 'accounts:admin', organizationId: 'org', accountIsActive: true, credentialIsActive: true, organizationIsActive: true });
+  mockMutation.mockResolvedValue({ kind: 'applied', targetId: 'department' });
+  const prepared = await readAdminChange(new Request('http://localhost/api/admin/departments', {
+    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ kind: 'department.create', name: 'Math', key: 'math' }),
+  }));
+  expect(await applyAdminChange(prepared)).toEqual({ kind: 'applied', targetId: 'department' });
 });

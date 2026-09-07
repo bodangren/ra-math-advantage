@@ -177,3 +177,9 @@ describe('report interface accessibility', () => {
     ))).toBe(false);
   });
 });
+
+
+it('does not offer a plan action when the row does not permit it', () => {
+  render(<LeadershipPortfolioTable rows={[{ ...row, canStartPlan: false, improvementPlan: { contractVersion: 'danielson.ip-progress.v1', state: 'not_configured' } }]} />);
+  expect(screen.queryByRole('link', { name: 'Start improvement plan' })).not.toBeInTheDocument();
+});

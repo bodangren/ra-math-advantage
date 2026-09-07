@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { LogoutButton } from '@math-platform/app-shell';
+import { LogoutButton, useAuth } from '@math-platform/app-shell';
 import { useOrganizationBranding } from '@/components/organization-branding';
 import type { OrganizationBranding } from '@/lib/organization-branding';
 
@@ -27,6 +27,14 @@ export function SiteHeader({
   organizationName?: string;
   branding?: OrganizationBranding;
 }) {
+  const { profile } = useAuth();
+  const roles = profile?.metadata?.danielsonRoles;
+  if (Array.isArray(roles)) {
+    const canObserve = roles.some((role) => ['hod', 'coach', 'school_head', 'slt'].includes(role));
+    showAdministration = roles.includes('sysadmin');
+    showObservations = showReports = showImprovementPlans = canObserve;
+    showMyObservations = showMyReport = roles.includes('teacher');
+  }
   const shellBrand = useOrganizationBranding();
   const currentBranding = shellBrand.branding ?? branding;
   const currentOrganizationName = shellBrand.organizationName ?? organizationName ?? currentBranding?.displayName;

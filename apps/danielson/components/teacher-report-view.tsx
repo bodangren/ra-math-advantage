@@ -1,5 +1,7 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+
 import { useState } from 'react';
 import Link from 'next/link';
 
@@ -7,6 +9,8 @@ import { ReportCommentForm } from '@/components/report-comment-form';
 import { TeacherResponseForm } from '@/components/teacher-response-form';
 import { TeacherProficiencyGraph } from '@/components/teacher-proficiency-graph';
 import { learnHref } from '@/lib/learn/href';
+import { APPROVED_TLAC_SOURCE_INVENTORY } from '@/lib/proficiency/source-inventory';
+import { GBF_ACTION_STEPS, GBF_MAPPINGS } from '@/lib/gbf/source';
 import type {
   PrivateTeacherReport,
   PublicTeacherReport,
@@ -73,6 +77,7 @@ export function TeacherReportView({
   publicCommentsNextHref?: string | null;
   privateCommentsNextHref?: string | null;
 }) {
+  const router = useRouter();
   const privateComments = 'privateComments' in report ? report.privateComments : [];
   const priorityBySkill = new Map(
     report.currentProficiency.priorityTargets.map((target) => [target.skillId, target]),
@@ -90,6 +95,7 @@ export function TeacherReportView({
         },
       );
       setGbfAssignmentState(response.ok ? 'assigned' : 'error');
+      if (response.ok) router.refresh();
     } catch {
       setGbfAssignmentState('error');
     }
@@ -131,6 +137,34 @@ export function TeacherReportView({
             <div><dt>Due skills</dt><dd>{report.gbf.dueSkillIds.length}</dd></div>
             <div><dt>Unresolved gaps</dt><dd>{report.gbf.unresolvedGapSkillIds.length}</dd></div>
           </dl>
+          <p>Progress uses mapped skill evidence. It does not confirm direct observation of every action step.</p>
+          {(['management', 'rigor'] as const).map((trajectory) => {
+            if (report.gbf.state === 'not_configured') return null;
+            const progress = report.gbf.trajectories[trajectory];
+            const steps = GBF_ACTION_STEPS.filter((step) => step.trajectory === trajectory
+              && step.phaseId === progress.currentPhaseId
+              && progress.requiredActionStepIds.includes(step.actionStepId)
+              && !progress.completedActionStepIds.includes(step.actionStepId));
+            return <div key={trajectory}>
+              <h3>{trajectory === 'management' ? 'Management' : 'Rigor'}: next action steps</h3>
+              {steps.length ? <ul>{steps.map((step) => <li key={step.actionStepId}>
+                {step.name}
+                <ul>{GBF_MAPPINGS.filter((mapping) => mapping.actionStepId === step.actionStepId).map((mapping) => (
+                  <li key={mapping.skillId}><Link href={learnHref(mapping.skillId)}>
+                    {APPROVED_TLAC_SOURCE_INVENTORY.find((skill) => skill.id === mapping.skillId.replace('danielson.tlac.skill.', ''))?.title ?? mapping.skillId}
+                  </Link></li>
+                ))}</ul>
+              </li>)}</ul> : <p>No incomplete action steps in this phase.</p>}
+            </div>;
+          })}
+          {[{ title: 'Due skills to practice', ids: report.gbf.dueSkillIds },
+            { title: 'Skills that need evidence', ids: report.gbf.unresolvedGapSkillIds }].map((group) => (
+            <div key={group.title}><h3>{group.title}</h3>
+              {group.ids.length ? <ul>{group.ids.map((skillId) => <li key={skillId}>
+                <Link href={learnHref(skillId)}>{APPROVED_TLAC_SOURCE_INVENTORY.find((skill) => skill.id === skillId.replace('danielson.tlac.skill.', ''))?.title ?? skillId}</Link>
+              </li>)}</ul> : <p>None.</p>}
+            </div>
+          ))}
         </section>
       ) : canAssignGbf && !isSubjectTeacher ? (
         <section className="card" aria-labelledby="gbf-progress-heading">
@@ -174,9 +208,10 @@ export function TeacherReportView({
             {report.officialEvaluations.map((evaluation) => (
               <details key={evaluation.observationId}>
                 <summary>
-                  {evaluation.observationType === 'formal_q1' ? 'Q1' : 'Q4'} · {evaluation.schoolYear} · {stateLabel(evaluation.status)}
+                  {evaluation.components.length < 22 ? 'Partial · ' : ''}{evaluation.observationType === 'formal_q1' ? 'Q1' : 'Q4'} · {evaluation.schoolYear} · {stateLabel(evaluation.status)}
                 </summary>
                 <p>Observed {new Date(evaluation.observedAt).toLocaleDateString()} by {evaluation.observerDisplayName}.</p>
+                <p>Components recorded: {evaluation.components.length} of 22.</p>
                 <p>Amendments: {evaluation.amendmentCount}</p>
                 <div className="table-wrap">
                   <table>

@@ -68,6 +68,8 @@ export function ObservationForm({
   submissionBusy?: boolean;
 }) {
   const [items, setItems] = useState(() => structuredClone(draft.items));
+  const [savedItems, setSavedItems] = useState(() => structuredClone(draft.items));
+  const hasUnsavedChanges = JSON.stringify(items) !== JSON.stringify(savedItems);
   const [revision, setRevision] = useState(draft.revision);
   const [missingItemIds, setMissingItemIds] = useState<string[]>([]);
   const errorSummaryRef = useRef<HTMLDivElement>(null);
@@ -75,6 +77,29 @@ export function ObservationForm({
   useEffect(() => {
     if (missingItemIds.length > 0) errorSummaryRef.current?.focus();
   }, [missingItemIds]);
+
+  useEffect(() => {
+    if (!hasUnsavedChanges) return;
+    function beforeUnload(event: BeforeUnloadEvent) {
+      event.preventDefault();
+      event.returnValue = '';
+    }
+    function beforeNavigation(event: MouseEvent) {
+      const link = event.target instanceof Element ? event.target.closest('a') : null;
+      if (!link || link.target === '_blank' || event.ctrlKey || event.metaKey || event.shiftKey
+        || link.getAttribute('href')?.startsWith('#')) return;
+      if (!window.confirm('Leave this observation? Unsaved changes will be lost.')) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+    }
+    window.addEventListener('beforeunload', beforeUnload);
+    document.addEventListener('click', beforeNavigation, true);
+    return () => {
+      window.removeEventListener('beforeunload', beforeUnload);
+      document.removeEventListener('click', beforeNavigation, true);
+    };
+  }, [hasUnsavedChanges]);
 
   function setOutcome(itemId: string, outcome: Exclude<FormOutcome, null>) {
     setItems((current) => current.map((item) => (
@@ -112,7 +137,10 @@ export function ObservationForm({
         evidenceNote: item.evidenceNote?.trim() || null,
       })),
     });
-    if (result?.revision !== undefined) setRevision(result.revision);
+    if (result?.revision !== undefined) {
+      setRevision(result.revision);
+      setSavedItems(structuredClone(items));
+    }
   }
 
   function discard() {
@@ -152,6 +180,18 @@ export function ObservationForm({
         </div>
       ) : null}
 
+      <details className="card">
+        <summary>Rating guide</summary>
+        <p>Use the school-approved descriptor for the component. Record the observed action and student response.</p>
+        <ul>
+          <li>1 — Unsatisfactory</li>
+          <li>2 — Basic</li>
+          <li>3 — Proficient</li>
+          <li>4 — Distinguished</li>
+        </ul>
+        <p>Select “Not enough evidence” when this visit does not support a rating.</p>
+        <p><a href="https://danielsongroup.org/the-framework-for-teaching/" target="_blank" rel="noopener noreferrer">Framework for Teaching reference</a></p>
+      </details>
       {items.map((item, index) => {
         const title = item.skillTitle ?? item.skillId ?? item.componentTitle;
         const groupId = `observation-item-${item.itemId}`;

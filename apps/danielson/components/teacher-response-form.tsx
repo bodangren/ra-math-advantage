@@ -1,8 +1,11 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 
 export function TeacherResponseForm({ observationId }: { observationId: string }) {
+  const router = useRouter();
   const [error, setError] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [pending, setPending] = useState(false);
@@ -30,6 +33,7 @@ export function TeacherResponseForm({ observationId }: { observationId: string }
         return;
       }
       setSubmitted(true);
+      router.refresh();
     } catch {
       setError('The response was not submitted.');
     } finally {

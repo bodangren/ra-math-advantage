@@ -15,6 +15,7 @@ const roleValidator = v.union(
 );
 const actionValidator = v.union(
   v.literal('account.create'),
+  v.literal('account.reset_password'),
   v.literal('account.update'),
   v.literal('account.activate'),
   v.literal('account.deactivate'),
@@ -64,6 +65,7 @@ const changeValidator = v.object({
 type Role = 'teacher' | 'hod' | 'coach' | 'school_head' | 'slt' | 'sysadmin';
 type Action =
   | 'account.create'
+  | 'account.reset_password'
   | 'account.update'
   | 'account.activate'
   | 'account.deactivate'
@@ -90,7 +92,8 @@ function isRole(value: string | undefined): value is Role {
 }
 
 function isAction(value: string): value is Action {
-  return value === 'account.create'
+  return value === 'account.reset_password'
+    || value === 'account.create'
     || value === 'account.update'
     || value === 'account.activate'
     || value === 'account.deactivate'
@@ -569,7 +572,22 @@ export const applyAdministrationChange = internalMutation({
       const target = accountId ? await ctx.db.get(accountId) : null;
       if (!target || target.organizationId !== args.organizationId) return { kind: 'invalid' as const, reason: 'target_not_found' as const };
       targetId = String(target._id);
-      if (action === 'account.update') {
+      if (action === 'account.reset_password') {
+        if (!target.isActive || target._id === actor._id) {
+          return { kind: 'invalid' as const, reason: 'invalid_account' as const };
+        }
+        const credential = await ctx.db.query('auth_credentials')
+          .withIndex('by_accountId', (query) => query.eq('accountId', target._id)).unique();
+        if (!credential?.isActive || !args.change.passwordHash || !args.change.passwordSalt
+          || !Number.isInteger(args.change.passwordHashIterations) || Number(args.change.passwordHashIterations) < 1) {
+          return { kind: 'invalid' as const, reason: 'invalid_account' as const };
+        }
+        await ctx.db.patch(credential._id, {
+          passwordHash: args.change.passwordHash, passwordSalt: args.change.passwordSalt,
+          passwordHashIterations: Number(args.change.passwordHashIterations), mustChangePassword: true,
+          updatedAt: Math.max(now, credential.updatedAt + 1),
+        });
+      } else if (action === 'account.update') {
         const username = args.change.username?.trim().toLowerCase() || target.username;
         const displayName = args.change.displayName?.trim() || target.displayName;
         if (username === target.username && displayName === target.displayName) {
@@ -585,7 +603,7 @@ export const applyAdministrationChange = internalMutation({
           updatedAt: now,
         });
         const credential = await ctx.db.query('auth_credentials').withIndex('by_accountId', (query) => query.eq('accountId', target._id)).unique();
-        if (credential && username !== target.username) await ctx.db.patch(credential._id, { username, updatedAt: now });
+        if (credential && username !== target.username) await ctx.db.patch(credential._id, { username, updatedAt: Math.max(now, credential.updatedAt + 1) });
       } else {
         const isActive = action === 'account.activate';
         if (target.isActive === isActive) {
@@ -606,7 +624,7 @@ export const applyAdministrationChange = internalMutation({
         }
         await ctx.db.patch(target._id, { isActive, updatedAt: now });
         const credential = await ctx.db.query('auth_credentials').withIndex('by_accountId', (query) => query.eq('accountId', target._id)).unique();
-        if (credential) await ctx.db.patch(credential._id, { isActive, updatedAt: now });
+        if (credential) await ctx.db.patch(credential._id, { isActive, updatedAt: Math.max(now, credential.updatedAt + 1) });
       }
     } else if (action === 'role.assign' || action === 'role.revoke') {
       if (!isRole(args.change.role)) return { kind: 'invalid' as const, reason: 'invalid_role' as const };
@@ -754,5 +772,48 @@ export const applyAdministrationChange = internalMutation({
     }
 
     return { kind: 'applied' as const, targetId };
+  },
+});
+
+/** List existing relationships so administrators can inspect and revoke them. */
+export const listAdministrationAssignments = internalQuery({
+  args: {
+    actorAccountId: v.id('accounts'),
+    kind: v.union(v.literal('department_memberships'), v.literal('hod_assignments'), v.literal('coach_assignments')),
+    paginationOpts: paginationOptsValidator,
+  },
+  returns: v.union(
+    v.object({ kind: v.literal('denied'), reason: v.string() }),
+    v.object({ kind: v.literal('allowed'), items: v.array(v.object({
+      assignmentId: v.string(), person: v.string(), assignment: v.string(),
+    })), nextCursor: v.union(v.string(), v.null()) }),
+  ),
+  handler: async (ctx, args) => {
+    const access = await resolveSysadminActor(ctx, args.actorAccountId);
+    if (access.kind === 'denied') return access;
+    const organizationId = access.actor.organizationId;
+    const pagination = { ...args.paginationOpts, numItems: Math.max(1, Math.min(50, args.paginationOpts.numItems)) };
+    const result = args.kind === 'department_memberships'
+      ? await ctx.db.query('department_memberships').withIndex('by_organizationId_and_status', (q) => q.eq('organizationId', organizationId).eq('status', 'active')).paginate(pagination)
+      : args.kind === 'hod_assignments'
+        ? await ctx.db.query('hod_assignments').withIndex('by_organizationId_and_accountId_and_status', (q) => q.eq('organizationId', organizationId)).paginate(pagination)
+        : await ctx.db.query('coach_assignments').withIndex('by_organizationId_and_accountId_and_status', (q) => q.eq('organizationId', organizationId)).paginate(pagination);
+    const items = await Promise.all(result.page.filter((row) => row.status === 'active').map(async (row) => {
+      const profile = 'teacherProfileId' in row ? await ctx.db.get(row.teacherProfileId) : null;
+      if (profile && profile.organizationId !== organizationId) return null;
+      const [person, department, teacher] = await Promise.all([
+        'accountId' in row ? ctx.db.get(row.accountId) : profile ? ctx.db.get(profile.accountId) : null,
+        'departmentId' in row ? ctx.db.get(row.departmentId) : null,
+        profile ? ctx.db.get(profile.accountId) : null,
+      ]);
+      if (!person || person.organizationId !== organizationId
+        || (department && department.organizationId !== organizationId)
+        || (teacher && teacher.organizationId !== organizationId)) return null;
+      return {
+        assignmentId: String(row._id), person: `${person.displayName}${person.isActive ? '' : ' (inactive)'}`,
+        assignment: department?.name ?? teacher?.displayName ?? 'Unavailable subject',
+      };
+    }));
+    return { kind: 'allowed' as const, items: items.filter((item) => item !== null), nextCursor: result.isDone ? null : result.continueCursor };
   },
 });

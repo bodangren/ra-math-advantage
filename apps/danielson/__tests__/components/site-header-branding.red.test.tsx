@@ -54,3 +54,12 @@ describe('SiteHeader organization brand', () => {
     expect(screen.getByRole('link', { name: 'Danielson Teacher Growth' })).toBeVisible();
   });
 });
+
+
+it('keeps navigation available across pages for the current roles', () => {
+  mockUseAuth.mockReturnValue({ profile: { metadata: { danielsonRoles: ['teacher', 'coach', 'sysadmin'] } } });
+  render(<SiteHeader isAuthenticated showObservations />);
+  for (const name of ['Reports', 'Improvement plans', 'My report', 'My observations', 'Administration']) {
+    expect(screen.getByRole('link', { name })).toBeVisible();
+  }
+});

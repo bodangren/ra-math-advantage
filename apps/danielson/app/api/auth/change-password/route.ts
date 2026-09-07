@@ -43,6 +43,7 @@ export async function POST(request: Request) {
   const passwordHash = await hashPassword(newPassword, salt, PASSWORD_HASH_ITERATIONS);
   const result = await fetchInternalMutation(internal.auth.changeOwnPassword, {
     accountId: claimsOrResponse.sub,
+    expectedPasswordSalt: credential.passwordSalt,
     passwordHash,
     passwordSalt: salt,
     passwordHashIterations: PASSWORD_HASH_ITERATIONS,

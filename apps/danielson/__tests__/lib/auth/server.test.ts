@@ -132,3 +132,11 @@ describe('Danielson protected API session', () => {
     )).resolves.toEqual(claims);
   });
 });
+
+
+it('rejects an older signed session after the credential changes', async () => {
+  mockFetchInternalQuery.mockResolvedValue(account({ credentialUpdatedAt: 100 }));
+  const result = await requireDanielsonApiSession(new Request('http://localhost/api/admin/accounts'));
+  expect(result).toBeInstanceOf(Response);
+  expect((result as Response).status).toBe(401);
+});
