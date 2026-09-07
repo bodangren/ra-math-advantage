@@ -117,7 +117,8 @@ Scheduling: one worker owns shared graph mechanisms. Two workers can review disj
 - [x] Task G17: Review Lesson 4-5 goals and example identities against the full extraction and original worksheet. Correct the cooler indexing error. Preserve all previous IDs and edges. Nine source tests, 40 inventory tests, and app gates pass. Commit `de78dbca`. New capabilities remain draft.
 - [x] Task G18: Restore Lesson 4-6 source goals and example identities. Correct the rounding domains and record the Problem 17 mismatch. Preserve existing IDs and edges. Ten source tests, 40 inventory tests, and app gates pass. Commit `ec9e0b71`. Candidates remain draft.
 - [x] Task G19: Correct Lesson 4-7 source extraction and preserve retained example identities. Eight draft candidates passed source inventory review. Nine source tests, 40 inventory tests, and app gates pass. Commit `4c4797ef`.
-- [~] Task G20: Review Lesson 5-1 goals and example identities against the full extraction and original worksheet. Preserve existing IDs. Keep capability boundaries draft.
+- [x] Task G20: Restore Lesson 5-1 source capability candidates and retained example descriptions. Independent source review and app gates pass. Commit `228082b5`. Ten candidates remain draft.
+- [~] Task G21: Review Lesson 5-2 goals and source-example identities against the full extraction and original worksheet. Preserve previous IDs and keep capability boundaries draft.
 
 ## Phase 4 — Implement the minimum shared repairs and five pilots
 
