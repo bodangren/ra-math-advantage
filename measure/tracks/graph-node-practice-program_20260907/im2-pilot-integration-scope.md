@@ -127,7 +127,7 @@ No verified backend logic blocker remains in the reviewed flow. The 23 main back
 
 Direct route tests now cover role rejection, session-owned identifiers, strict request validation, conflict status, and backend failure status. The actual teacher query test covers eligible source selection and stored answer display. The form test covers a failed save and retry.
 
-The complete teacher page composition and positive signed-in student-to-teacher journey remain unverified. Use the existing app tests and real local browser flow for these checks.
+The teacher page composition now passes two integration tests. The positive signed-in student-to-teacher journey remains unverified. Use the real local browser flow for this check.
 
 ## Approval and Browser Acceptance
 
@@ -180,3 +180,13 @@ Verification results:
 The parent corrected the concurrent projector assertion. The current 65 focused tests, app lint, app TypeScript, Convex TypeScript, and production build pass.
 
 The parent signed in through the real login page with the existing local demo student. `/student/practice` showed its title and `This practice is not available.` This verifies the current draft gate in the real app. No new account, approval, seed, or attempt was created. The positive three-mode journey still requires approved curriculum and activity publication.
+
+## Teacher Page Composition Verification
+
+The new composition test runs the actual teacher page, source query, form, POST route, and exposure handler. The fixture creates its Guided source with the actual student handler. Authentication, backend transport, and curriculum publication use test fixtures. This test does not approve the real curriculum.
+
+Both save attempts call the actual POST route. The first request stores the evidence before the simulated response loss. The form shows failure and does not show success. The retry uses the same request key. The backend returns the existing evidence row. The test confirms that one evidence row remains.
+
+A second case changes the source component to an invalid value. The page still shows the raw answer. It does not show the teacher confirmation action.
+
+Parent verification passed both tests, full app lint, standalone TypeScript, and the production build. The build log is `/tmp/im2-teacher-composition-root-build.log`. The earlier 65-test integration result remains a separate check. Positive browser acceptance remains open.
