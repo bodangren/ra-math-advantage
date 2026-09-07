@@ -1,196 +1,124 @@
 # Lesson 6-1 — Solving One-Step Inequalities
 
-Source: (Module 6, Lesson 6-1, Int1_0601_practice.docx)
+Source: Module 6, Lesson 6-1, `Int1_0601_practice.docx`
 
 ## Today's Goals
 
-* Graph the solution set of a one-step inequality on a number line.
-* Write an inequality that matches a given number-line graph.
-* Solve one-step inequalities using addition, subtraction, multiplication, and division, including when the coefficient is negative.
-* Translate real-world situations into inequalities, solve them, and interpret the solutions.
+* Graph a solution set on a number line.
+* Write an inequality from a number-line graph.
+* Solve inequalities by addition, subtraction, multiplication, and division.
+* Reverse the inequality symbol when multiplication or division uses a negative number.
+* Write, solve, and interpret contextual inequalities.
 
-## Vocabulary
+## Number-line rules
 
-* **inequality** — A mathematical statement that compares two expressions using symbols such as [<], [>], [\le], or [\ge].
-* **solution set** — The set of all values that make an inequality true.
-* **open circle** — Used on a number line to show that a boundary value is *not* included in the solution.
-* **closed circle** — Used on a number line to show that a boundary value *is* included in the solution.
-* **at least** — Means greater than or equal to, [\ge].
-* **at most** — Means less than or equal to, [\le].
+Use an open circle for `<` or `>`. Use a closed circle for `<=` or `>=`. Shade left for values less than the boundary. Shade right for values greater than the boundary.
 
-## Learn: Solving One-Step Inequalities
+Add or subtract the same quantity on both sides without changing the inequality symbol. Multiply or divide both sides by a positive number without changing the symbol. Reverse the symbol only when you multiply or divide both sides by a negative number.
 
-Solving a one-step inequality uses the same inverse-operation strategy as solving a one-step equation. The goal is to isolate the variable on one side.
+## Example 1: Graph Solution Sets
 
-### Key Concept: One-Step Inequalities
+Problems 1 through 6 ask students to graph `x <= -5`, `y >= -2`, `g > 5`, `h < -6`, `a < 7`, and `b <= 6`.
 
-* To undo addition, subtract the same number from both sides.
-* To undo subtraction, add the same number to both sides.
-* To undo multiplication, divide both sides by the same nonzero number.
-* To undo division, multiply both sides by the same nonzero number.
-* **Critical rule:** When you multiply or divide both sides of an inequality by a *negative* number, you **must reverse** the inequality symbol.
+## Example 2: Write Inequalities from Graphs
 
-## Example 1 — Graph Solution Sets
+The visible number lines give:
 
-Graph the solution set of each inequality on a number line.
+7. `x < -1`
+8. `x > -6`
+9. `x < 5`
+10. `x <= 1`
+11. `x >= -5`
+12. `x <= -6`
 
-### Step 1: Identify the Boundary and Direction
+## Examples 3–5: Solve Inequalities by Addition and Subtraction
 
-Determine whether the boundary value is included (closed circle for [\le] or [\ge]) or excluded (open circle for [<] or [>]). Then shade the number line in the direction indicated by the inequality symbol.
+Problems 13 through 24 isolate a variable by addition or subtraction. Problems 25 through 28 and Problem 30 collect like variable terms before isolation.
 
-Representative inequalities:
-[
-x \le -5
-]
-[
-y \ge -2
-]
-[
-g > 5
-]
-[
-a < 7
-]
+Problem 29 is `6x + 5 >= 7z` in the original. It contains two different variables. It can be rewritten in terms of either variable, but it does not reduce to one numeric ray without more information. The earlier extraction incorrectly changed `z` to `x`.
 
-## Example 2 — Write Inequalities from Graphs
+## Example 6: Model and Solve Contextual Inequalities
 
-Write an inequality that represents each number-line graph.
+### Problem 31: Pizza
 
-### Step 1: Read the Graph
+Tara eats 3 of 10 slices and pays $4.50. Her payment is at least her fair share. If `c` is the total pizza cost, then `4.50 >= (3/10)c`. Thus, `c <= 15`.
 
-Identify the boundary value, whether the circle is open or closed, and the direction of the shaded ray. Translate these features into the correct inequality symbol and value.
+### Problem 32: Tornado wind speeds
 
-## Examples 3–5 — Solve One-Step Inequalities (Addition and Subtraction)
+The visible Fujita table gives these ranges in miles per hour: F0 40–72, F1 73–112, F2 113–157, F3 158–206, F4 207–260, F5 261–318, and F6 319–379.
 
-Solve each inequality.
+For part a, `162 + x >= 207`, so the wind speed must increase by at least 45 mph. For part b, a speed of at least 158 mph is at least 118 mph greater than the slowest listed speed of 40 mph.
 
-### Step 1: Isolate the Variable
+## Example 7: Solve and Interpret Contextual Inequalities
 
-Use the inverse operation to move the constant to the other side.
+Problem 33 gives at most `4.6 - 2.5 = 2.1` pounds for landfill. The phrase “at least 2.5 pounds could be recycled” does not make the landfill amount exactly 2.1 pounds.
 
-Representative problems:
-[
-m - 4 < 3
-]
-[
-p - 6 \ge 3
-]
-[
-b + 2 \ge 4
-]
-[
-13 > 18 + r
-]
+Problem 34 gives Marshall's service as `2079 + 10463 = 12542` days. Surpassing the record requires more than 12,542 days.
 
-### Step 2: Variables on Both Sides
+Problem 35 says that at least 25,000 pieces are lost and 98% are found. Therefore, at least 500 pieces remain lost. The result is a lower bound, not an exact count.
 
-When the variable appears on both sides, collect variable terms on one side first by adding or subtracting the smaller variable term.
+Problem 36 gives `(86 + 88 + 78 + x) / 4 >= 83`, so `x >= 80`.
 
-Representative problems:
-[
-2a \le -4 + a
-]
-[
-z + 4 \ge 2z
-]
-[
-3y \le 2y - 6
-]
-[
-6x + 5 \ge 7x
-]
+## Examples 8–10: Solve and Graph by Multiplication and Division
 
-## Example 6 — Apply Inequalities to Real-World Problems
+The source presents Examples 8 through 10 under one joint heading. Problems 37 through 54 have these solutions:
 
-Define a variable, write an inequality, and solve.
+37. `m <= -68`
+38. `a < 40`
+39. `c > 121`
+40. `d >= 68`
+41. `x <= 20`
+42. `f < 432`
+43. `h > 21`
+44. `j <= -16`
+45. `n >= 108`
+46. `p <= 16`
+47. `r < 16`
+48. `y > -16`
+49. `t > -1`
+50. `v < 12`
+51. `z >= 11`
+52. `b <= -3/4`
+53. `d > -5/2`
+54. `f < -5/7`
 
-### Step 1: Pizza Cost
-
-Tara eats 3 of 10 slices and pays $4.50, which is at least her fair share. Write and solve an inequality to find the total cost of the pizza.
-
-### Step 2: Tornado Wind Speeds
-
-Use the Fujita tornado classification table to write and solve inequalities about wind speeds.
-
-* **Part a:** An F3 tornado has winds of 162 mph. Determine how much the winds must increase to become an F4 tornado.
-* **Part b:** A tornado has wind speeds of at least 158 mph. Describe how much greater these speeds are than the slowest tornado.
-
-## Example 7 — Mixed Real-World Applications
-
-Define a variable, write an inequality, and solve each problem.
-
-### Step 1: Garbage and Recycling
-
-The average American creates 4.6 pounds of garbage daily. If at least 2.5 pounds could be recycled, determine how much still goes to a landfill.
-
-### Step 2: Supreme Court Service
-
-John Jay served 2,079 days as Chief Justice, which is 10,463 days fewer than John Marshall. Determine how many days the current Chief Justice must serve to surpass Marshall's record.
-
-### Step 3: Lost Luggage
-
-At least 25,000 pieces of luggage are lost daily, and 98% are located within 5 days. Find the minimum number still lost after 5 days.
-
-### Step 4: Test Average
-
-Gilberto earned scores of 86, 88, and 78 on three tests. Find the lowest score he can earn on the fourth test to have an average of at least 83.
-
-## Examples 8–10 — Solve and Graph Inequalities (Multiplication and Division)
-
-Solve each inequality and graph the solution on a number line.
-
-### Step 1: Undo Multiplication or Division
-
-Divide or multiply both sides by the coefficient of the variable. Remember to reverse the inequality symbol when multiplying or dividing by a negative number.
-
-Representative problems with fractions:
-[
-\frac{1}{4}m \le -17
-]
-[
-\frac{2}{3}h > 14
-]
-[
--\frac{3}{4}j \ge 12
-]
-
-Representative problems with negative divisors:
-[
--10 \le \frac{x}{-2}
-]
-[
--72 < \frac{f}{-6}
-]
-
-Representative problems with negative coefficients:
-[
--2d < 5
-]
-[
--7f > 5
-]
-[
--33 \ge -3z
-]
+Problems 39 through 42, 44, 45, 48, 50, 51, 53, and 54 require negative-factor sign checks. Problems 43 and 52 use positive coefficients and do not require reversal. Graph each final solution with the correct boundary and ray.
 
 ## Mixed Exercises
 
-The mixed exercises provide comprehensive practice across all skills in the lesson:
+### Match inequalities and verbal statements
 
-* **Matching (55–60):** Match symbolic inequalities such as [
-3n < 9 ], [
-\frac{1}{3}n \ge 9 ], and [
--3n > 9 ] to their corresponding verbal descriptions.
-* **Translate and Solve (61–66):** Define a variable, write a one-step inequality from a verbal statement, solve it, and check the solution. Statements include "seven more than a number is less than or equal to [
--18 ]" and "one eighth of a number is less than or equal to 3."
-* **Structure Problems (67–74):** Solve an inequality, check the solution, and graph it on a number line. Problems involve integer, decimal, and fractional coefficients.
-* **Extended Applications (75–78):** Solve multi-step word problems involving event-planning costs, vitamin requirements, sound-level comparisons, and exam-score interpretations.
-* **Reasoning (79–82):** Identify which inequality does not belong to a given solution set, analyze a worked error example, solve inequalities with a literal coefficient [
-a ], and determine whether a reciprocal statement is sometimes, always, or never true.
+The answers for Problems 55 through 60 are 55-d, 56-f, 57-a, 58-c, 59-b, and 60-e.
 
-## Review Notes
+### Translate, solve, and check
 
-* **Example 2:** Number-line graphs for problems 7–12 are image-based and must be reviewed from the original worksheet.
-* **Example 6 (problem 32):** The Fujita tornado classification table is an image and must be reviewed from the original worksheet.
-* **Example 7 (problem 77):** The image of the African cicada and blue whale must be reviewed from the original worksheet.
-* **Mixed Exercises (problem 80):** Marty and Heath's worked solutions are shown in an image and must be reviewed from the original worksheet.
+Problems 61 through 66 give:
+
+61. `n <= -25`
+62. `n >= 35`
+63. `n <= -1`
+64. `n <= 24`
+65. `n >= -7`
+66. `n >= 2`
+
+Problems 67 through 74 give `c > 4`, `b >= -6`, `x < 36`, `x <= 20`, `m < 5.4`, `n > 1`, `c >= 3.7`, and `k > -5/12`. Each problem also asks for a check and a number-line graph.
+
+### Extended applications
+
+Problem 75 gives `225x >= 5000`. The lower bound is approximately $22.222 per person. A charge in cents must be at least $22.23 per person.
+
+Problem 76 gives `6a >= 50`. A person needs at least 9 whole apples.
+
+Problem 77 states that an African cicada can reach 105 decibels and that a blue whale can reach up to 83 decibels more. The stated upper level is 188 decibels. The problem requires an external source check. This worksheet alone does not establish that current factual claim.
+
+Problem 78 says that Michelle loses less than 27 points from 100. Her score is greater than 73. For whole-number scores, she earns at least 74, which is grade C or higher in the visible table. Part a incorrectly changes her name to Mary.
+
+### Reasoning
+
+Problem 79 has answer B. Choice B gives `x > -2`; the other choices give `x < -2`.
+
+Problem 80 shows `3m >= -21`. Heath correctly gets `m >= -7`. Marty incorrectly reverses the symbol while dividing by positive 3.
+
+Problem 81 states that `a != 0`. Each result needs a sign case. For `ax < 7`, `x < 7/a` when `a > 0`, and `x > 7/a` when `a < 0`. The same rule applies to the other parts.
+
+Problem 82 is sometimes true. If `a > b`, then `1/a > 1/b` is false when both values are positive and false when both are negative. It is true when `a` is positive and `b` is negative. Values of zero make a reciprocal undefined.

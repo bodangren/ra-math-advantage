@@ -5484,10 +5484,10 @@
     {
       "id": "math.im1.example.6.1.001",
       "kind": "worked_example",
-      "title": "Example 1: Graph Solution Sets; Write Inequalities from Graphs",
+      "title": "Example 1: Graph Solution Sets",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-6-class-period-plan.md (6-1, Example 1)"
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-1 (Example 1)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -5496,16 +5496,16 @@
         "lesson": "1",
         "exampleNumber": 1,
         "sourceLesson": "6-1",
-        "rawText": "6-1, Examples 1-2 \u2014 Graph Solution Sets; Write Inequalities from Graphs"
+        "rawText": "Example 1: Graph Solution Sets"
       }
     },
     {
       "id": "math.im1.example.6.1.002",
       "kind": "worked_example",
-      "title": "Example 2: Graph Solution Sets; Write Inequalities from Graphs",
+      "title": "Example 2: Write Inequalities from Graphs",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-6-class-period-plan.md (6-1, Example 2)"
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-1 (Example 2)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -5514,16 +5514,16 @@
         "lesson": "1",
         "exampleNumber": 2,
         "sourceLesson": "6-1",
-        "rawText": "6-1, Examples 1-2 \u2014 Graph Solution Sets; Write Inequalities from Graphs"
+        "rawText": "Example 2: Write Inequalities from Graphs"
       }
     },
     {
       "id": "math.im1.example.6.1.003",
       "kind": "worked_example",
-      "title": "Example 3: Solve and Graph Inequalities (Addition and Subtraction); Apply Inequalities to Real-World Problems; Solve and Graph Inequalities (Multiplication and Division)",
+      "title": "Example 3: Solve Inequalities by Addition and Subtraction",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-6-class-period-plan.md (6-1, Example 3)"
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-1 (Example 3)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -5532,16 +5532,16 @@
         "lesson": "1",
         "exampleNumber": 3,
         "sourceLesson": "6-1",
-        "rawText": "6-1, Examples 3-7 \u2014 Solve and Graph Inequalities (Addition and Subtraction); Apply Inequalities to Real-World Problems; Solve and Graph Inequalities (Multiplication and Division)"
+        "rawText": "Example 3: Solve Inequalities by Addition and Subtraction"
       }
     },
     {
       "id": "math.im1.example.6.1.004",
       "kind": "worked_example",
-      "title": "Example 4: Solve and Graph Inequalities (Addition and Subtraction); Apply Inequalities to Real-World Problems; Solve and Graph Inequalities (Multiplication and Division)",
+      "title": "Example 4: Solve Inequalities by Addition and Subtraction",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-6-class-period-plan.md (6-1, Example 4)"
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-1 (Example 4)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -5550,16 +5550,16 @@
         "lesson": "1",
         "exampleNumber": 4,
         "sourceLesson": "6-1",
-        "rawText": "6-1, Examples 3-7 \u2014 Solve and Graph Inequalities (Addition and Subtraction); Apply Inequalities to Real-World Problems; Solve and Graph Inequalities (Multiplication and Division)"
+        "rawText": "Example 4: Solve Inequalities by Addition and Subtraction"
       }
     },
     {
       "id": "math.im1.example.6.1.005",
       "kind": "worked_example",
-      "title": "Example 5: Solve and Graph Inequalities (Addition and Subtraction); Apply Inequalities to Real-World Problems; Solve and Graph Inequalities (Multiplication and Division)",
+      "title": "Example 5: Solve Inequalities by Addition and Subtraction",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-6-class-period-plan.md (6-1, Example 5)"
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-1 (Example 5)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -5568,16 +5568,16 @@
         "lesson": "1",
         "exampleNumber": 5,
         "sourceLesson": "6-1",
-        "rawText": "6-1, Examples 3-7 \u2014 Solve and Graph Inequalities (Addition and Subtraction); Apply Inequalities to Real-World Problems; Solve and Graph Inequalities (Multiplication and Division)"
+        "rawText": "Example 5: Solve Inequalities by Addition and Subtraction"
       }
     },
     {
       "id": "math.im1.example.6.1.006",
       "kind": "worked_example",
-      "title": "Example 6: Solve and Graph Inequalities (Addition and Subtraction); Apply Inequalities to Real-World Problems; Solve and Graph Inequalities (Multiplication and Division)",
+      "title": "Example 6: Model and Solve Contextual Inequalities",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-6-class-period-plan.md (6-1, Example 6)"
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-1 (Example 6)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -5586,16 +5586,16 @@
         "lesson": "1",
         "exampleNumber": 6,
         "sourceLesson": "6-1",
-        "rawText": "6-1, Examples 3-7 \u2014 Solve and Graph Inequalities (Addition and Subtraction); Apply Inequalities to Real-World Problems; Solve and Graph Inequalities (Multiplication and Division)"
+        "rawText": "Example 6: Model and Solve Contextual Inequalities"
       }
     },
     {
       "id": "math.im1.example.6.1.007",
       "kind": "worked_example",
-      "title": "Example 7: Solve and Graph Inequalities (Addition and Subtraction); Apply Inequalities to Real-World Problems; Solve and Graph Inequalities (Multiplication and Division)",
+      "title": "Example 7: Solve and Interpret Contextual Inequalities",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-6-class-period-plan.md (6-1, Example 7)"
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-1 (Example 7)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -5604,7 +5604,7 @@
         "lesson": "1",
         "exampleNumber": 7,
         "sourceLesson": "6-1",
-        "rawText": "6-1, Examples 3-7 \u2014 Solve and Graph Inequalities (Addition and Subtraction); Apply Inequalities to Real-World Problems; Solve and Graph Inequalities (Multiplication and Division)"
+        "rawText": "Example 7: Solve and Interpret Contextual Inequalities"
       }
     },
     {
@@ -13493,6 +13493,315 @@
         "course": "im1",
         "module": "5",
         "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.example.6.1.source-008",
+      "kind": "worked_example",
+      "title": "Example 8: Solve and Graph Inequalities by Multiplication and Division",
+      "domain": "math.im1",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-1 (Examples 8\u201310 joint heading; Example 8)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "1",
+        "exampleNumber": 8,
+        "sourceLesson": "6-1",
+        "rawText": "Examples 8\u201310: Solve and Graph Inequalities by Multiplication and Division"
+      }
+    },
+    {
+      "id": "math.im1.example.6.1.source-009",
+      "kind": "worked_example",
+      "title": "Example 9: Solve and Graph Inequalities by Multiplication and Division",
+      "domain": "math.im1",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-1 (Examples 8\u201310 joint heading; Example 9)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "1",
+        "exampleNumber": 9,
+        "sourceLesson": "6-1",
+        "rawText": "Examples 8\u201310: Solve and Graph Inequalities by Multiplication and Division"
+      }
+    },
+    {
+      "id": "math.im1.example.6.1.source-010",
+      "kind": "worked_example",
+      "title": "Example 10: Solve and Graph Inequalities by Multiplication and Division",
+      "domain": "math.im1",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-1 (Examples 8\u201310 joint heading; Example 10)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "1",
+        "exampleNumber": 10,
+        "sourceLesson": "6-1",
+        "rawText": "Examples 8\u201310: Solve and Graph Inequalities by Multiplication and Division"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.1.graph-symbolic-inequalities-on-number-lines",
+      "kind": "skill",
+      "title": "Graph symbolic inequalities on number lines",
+      "domain": "math.im1",
+      "description": "Graph symbolic inequalities on number lines",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-1"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.1.write-inequalities-from-number-line-graphs",
+      "kind": "skill",
+      "title": "Write inequalities from number-line graphs",
+      "domain": "math.im1",
+      "description": "Write inequalities from number-line graphs",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-1"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.1.solve-one-step-inequalities-by-addition-or-subtraction",
+      "kind": "skill",
+      "title": "Solve one-step inequalities by addition or subtraction",
+      "domain": "math.im1",
+      "description": "Solve one-step inequalities by addition or subtraction",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-1"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.1.solve-inequalities-with-variable-terms-on-both-sides",
+      "kind": "skill",
+      "title": "Solve inequalities with variable terms on both sides",
+      "domain": "math.im1",
+      "description": "Solve inequalities with variable terms on both sides",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-1"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.1.write-inequalities-from-contextual-statements",
+      "kind": "skill",
+      "title": "Write inequalities from contextual statements",
+      "domain": "math.im1",
+      "description": "Write inequalities from contextual statements",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-1"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.1.solve-contextual-inequalities",
+      "kind": "skill",
+      "title": "Solve contextual inequalities",
+      "domain": "math.im1",
+      "description": "Solve contextual inequalities",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-1"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.1.interpret-inequality-solutions-in-context",
+      "kind": "skill",
+      "title": "Interpret inequality solutions in context",
+      "domain": "math.im1",
+      "description": "Interpret inequality solutions in context",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-1"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.1.solve-one-step-inequalities-with-positive-factors",
+      "kind": "skill",
+      "title": "Solve one-step inequalities with positive factors",
+      "domain": "math.im1",
+      "description": "Solve one-step inequalities with positive factors",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-1"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.1.solve-one-step-inequalities-with-negative-factors",
+      "kind": "skill",
+      "title": "Solve one-step inequalities with negative factors and reverse the inequality symbol",
+      "domain": "math.im1",
+      "description": "Solve one-step inequalities with negative factors and reverse the inequality symbol",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-1"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.1.graph-solved-one-step-inequalities-on-number-lines",
+      "kind": "skill",
+      "title": "Graph solved one-step inequalities on number lines",
+      "domain": "math.im1",
+      "description": "Graph solved one-step inequalities on number lines",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-1"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.1.translate-comparative-statements-into-symbolic-inequalities",
+      "kind": "skill",
+      "title": "Translate comparative statements into symbolic inequalities",
+      "domain": "math.im1",
+      "description": "Translate comparative statements into symbolic inequalities",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-1"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.1.check-whether-values-satisfy-inequalities",
+      "kind": "skill",
+      "title": "Check whether values satisfy inequalities",
+      "domain": "math.im1",
+      "description": "Check whether values satisfy inequalities",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-1"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.1.diagnose-inequality-solving-errors",
+      "kind": "skill",
+      "title": "Diagnose inequality-solving errors",
+      "domain": "math.im1",
+      "description": "Diagnose inequality-solving errors",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-1"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.1.solve-literal-inequalities-with-unknown-coefficient-signs",
+      "kind": "skill",
+      "title": "Solve literal inequalities with unknown coefficient signs",
+      "domain": "math.im1",
+      "description": "Solve literal inequalities with unknown coefficient signs",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-1"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.1.analyze-reciprocal-inequality-order-across-sign-cases",
+      "kind": "skill",
+      "title": "Analyze reciprocal inequality order across sign cases",
+      "domain": "math.im1",
+      "description": "Analyze reciprocal inequality order across sign cases",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-1"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "1"
       }
     }
   ]

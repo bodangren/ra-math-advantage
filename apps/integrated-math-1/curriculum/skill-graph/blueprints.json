@@ -6248,6 +6248,204 @@
         "module": "5",
         "lesson": "6"
       }
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.graph-symbolic-inequalities-on-number-lines",
+      "sourceNodeIds": [
+        "math.im1.example.6.1.001"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.write-inequalities-from-number-line-graphs",
+      "sourceNodeIds": [
+        "math.im1.example.6.1.002"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.solve-one-step-inequalities-by-addition-or-subtraction",
+      "sourceNodeIds": [
+        "math.im1.example.6.1.003",
+        "math.im1.example.6.1.004",
+        "math.im1.example.6.1.005"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.solve-inequalities-with-variable-terms-on-both-sides",
+      "sourceNodeIds": [
+        "math.im1.example.6.1.003",
+        "math.im1.example.6.1.004",
+        "math.im1.example.6.1.005"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.write-inequalities-from-contextual-statements",
+      "sourceNodeIds": [
+        "math.im1.example.6.1.006",
+        "math.im1.example.6.1.007"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.solve-contextual-inequalities",
+      "sourceNodeIds": [
+        "math.im1.example.6.1.006",
+        "math.im1.example.6.1.007"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.interpret-inequality-solutions-in-context",
+      "sourceNodeIds": [
+        "math.im1.example.6.1.006",
+        "math.im1.example.6.1.007"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.solve-one-step-inequalities-with-positive-factors",
+      "sourceNodeIds": [
+        "math.im1.example.6.1.source-008",
+        "math.im1.example.6.1.source-009",
+        "math.im1.example.6.1.source-010"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.solve-one-step-inequalities-with-negative-factors",
+      "sourceNodeIds": [
+        "math.im1.example.6.1.source-008",
+        "math.im1.example.6.1.source-009",
+        "math.im1.example.6.1.source-010"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.graph-solved-one-step-inequalities-on-number-lines",
+      "sourceNodeIds": [
+        "math.im1.example.6.1.source-008",
+        "math.im1.example.6.1.source-009",
+        "math.im1.example.6.1.source-010"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.translate-comparative-statements-into-symbolic-inequalities",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.check-whether-values-satisfy-inequalities",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.diagnose-inequality-solving-errors",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.solve-literal-inequalities-with-unknown-coefficient-signs",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.analyze-reciprocal-inequality-order-across-sign-cases",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "1"
+      }
     }
   ]
 }

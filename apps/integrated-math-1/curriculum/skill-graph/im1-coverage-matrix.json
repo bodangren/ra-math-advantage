@@ -1,10 +1,10 @@
 {
   "version": 1,
   "course": "im1",
-  "totalSkills": 270,
+  "totalSkills": 285,
   "counts": {
     "served": 6,
-    "gap": 264,
+    "gap": 279,
     "newComponent": 0
   },
   "byModule": [
@@ -45,9 +45,9 @@
     },
     {
       "module": "6",
-      "totalSkills": 6,
+      "totalSkills": 21,
       "served": 0,
-      "gap": 6,
+      "gap": 21,
       "newComponent": 0
     },
     {
@@ -1437,11 +1437,131 @@
       "priority": "standard"
     },
     {
+      "skillId": "math.im1.skill.6.1.analyze-reciprocal-inequality-order-across-sign-cases",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.1.check-whether-values-satisfy-inequalities",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.1.diagnose-inequality-solving-errors",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.1.graph-solved-one-step-inequalities-on-number-lines",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.1.graph-symbolic-inequalities-on-number-lines",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
       "skillId": "math.im1.skill.6.1.graph-the-solution-set-of-a-one-step-inequality-on-a-number",
       "module": "6",
       "status": "gap",
       "tier": "none",
       "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.1.interpret-inequality-solutions-in-context",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.1.solve-contextual-inequalities",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.1.solve-inequalities-with-variable-terms-on-both-sides",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.1.solve-literal-inequalities-with-unknown-coefficient-signs",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.1.solve-one-step-inequalities-by-addition-or-subtraction",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.1.solve-one-step-inequalities-with-negative-factors",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.1.solve-one-step-inequalities-with-positive-factors",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.1.translate-comparative-statements-into-symbolic-inequalities",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.1.write-inequalities-from-contextual-statements",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.1.write-inequalities-from-number-line-graphs",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "unknown",
       "priority": "standard"
     },
     {

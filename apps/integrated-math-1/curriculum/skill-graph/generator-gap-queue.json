@@ -2375,10 +2375,145 @@
       "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
       "gap": "No generator binding or complete three-mode blueprint",
       "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.graph-symbolic-inequalities-on-number-lines",
+      "title": "Graph symbolic inequalities on number lines",
+      "module": "6",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.write-inequalities-from-number-line-graphs",
+      "title": "Write inequalities from number-line graphs",
+      "module": "6",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.solve-one-step-inequalities-by-addition-or-subtraction",
+      "title": "Solve one-step inequalities by addition or subtraction",
+      "module": "6",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.solve-inequalities-with-variable-terms-on-both-sides",
+      "title": "Solve inequalities with variable terms on both sides",
+      "module": "6",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.write-inequalities-from-contextual-statements",
+      "title": "Write inequalities from contextual statements",
+      "module": "6",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.solve-contextual-inequalities",
+      "title": "Solve contextual inequalities",
+      "module": "6",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.interpret-inequality-solutions-in-context",
+      "title": "Interpret inequality solutions in context",
+      "module": "6",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.solve-one-step-inequalities-with-positive-factors",
+      "title": "Solve one-step inequalities with positive factors",
+      "module": "6",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.solve-one-step-inequalities-with-negative-factors",
+      "title": "Solve one-step inequalities with negative factors and reverse the inequality symbol",
+      "module": "6",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.graph-solved-one-step-inequalities-on-number-lines",
+      "title": "Graph solved one-step inequalities on number lines",
+      "module": "6",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.translate-comparative-statements-into-symbolic-inequalities",
+      "title": "Translate comparative statements into symbolic inequalities",
+      "module": "6",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.check-whether-values-satisfy-inequalities",
+      "title": "Check whether values satisfy inequalities",
+      "module": "6",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.diagnose-inequality-solving-errors",
+      "title": "Diagnose inequality-solving errors",
+      "module": "6",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.solve-literal-inequalities-with-unknown-coefficient-signs",
+      "title": "Solve literal inequalities with unknown coefficient signs",
+      "module": "6",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.analyze-reciprocal-inequality-order-across-sign-cases",
+      "title": "Analyze reciprocal inequality order across sign cases",
+      "module": "6",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
     }
   ],
   "meta": {
-    "totalSkills": 264,
+    "totalSkills": 279,
     "allNeedGenerators": true
   }
 }
