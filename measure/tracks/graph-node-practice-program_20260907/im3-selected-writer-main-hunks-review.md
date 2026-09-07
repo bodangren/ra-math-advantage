@@ -61,3 +61,5 @@ The final focused set adds a corrupt stored-attempt test and a registered-mutati
 The integration commit uses the reviewed HEAD patch for the selected writer, schema fields and indexes, authenticated route, and the two new test files. It preserves the broader pending app files in the working tree. The legacy fixture modernization remains working-tree verification until its own integration scope closes.
 
 No live schema update, curriculum approval, seed, or deployment occurred. The selected draft catalog still rejects publication. Positive student-to-teacher evidence integration remains open.
+
+Integration commit: `8470fd2b`. Final focused verification passed 41 tests in both the main app and isolated patch. Coverage includes 57 of 59 added writer statement entries and all 14 added writer functions. The route has 93.75 percent statement coverage and 100 percent function coverage. Existing unrelated activity handlers are outside this focused coverage result.
