@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import { GraphingCanvas, Point, FunctionPlot } from './GraphingCanvas';
 import { InteractiveTableOfValues } from './InteractiveTableOfValues';
 import { HintPanel, HintData } from './HintPanel';
@@ -12,8 +12,9 @@ import { parseQuadratic, parseLinear } from '@math-platform/graphing-core';
 export interface GraphingExplorerProps {
   activityId: string;
   mode: 'teaching' | 'guided' | 'practice' | 'explore';
-  onSubmit?: (payload: PracticeSubmissionEnvelope) => void;
+  onSubmit?: (payload: PracticeSubmissionEnvelope) => void | Promise<void>;
   variant?: 'plot_from_equation' | 'compare_functions' | 'find_intercepts' | 'graph_system';
+  responseVariant?: 'quadratic_features' | 'table_graph' | 'one_real_solution';
   equation: string;
   domain?: [number, number];
   range?: [number, number];
@@ -40,6 +41,7 @@ export function GraphingExplorer({
   mode,
   onSubmit,
   variant = 'plot_from_equation',
+  responseVariant,
   equation,
   domain = DEFAULT_DOMAIN,
   range = DEFAULT_RANGE,
@@ -54,10 +56,15 @@ export function GraphingExplorer({
 }: GraphingExplorerProps) {
   const [placedPoints, setPlacedPoints] = useState<Point[]>([]);
   const [tableComplete, setTableComplete] = useState(false);
+  const [tableValues, setTableValues] = useState<Array<{ x: number; y: number }>>([]);
   const [hints, setHints] = useState<HintData[]>([]);
   const [intercepts, setIntercepts] = useState<InterceptData[]>([]);
   const [interactionHistory, setInteractionHistory] = useState<Array<{ type: string; timestamp: number; data?: unknown }>>([]);
   const [showSolution, setShowSolution] = useState(false);
+  const [deferredSubmitted, setDeferredSubmitted] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+  const [saveError, setSaveError] = useState(false);
+  const savingRef = useRef(false);
   const [comparisonAnswerSelected, setComparisonAnswerSelected] = useState<'first' | 'second' | null>(null);
   const [showComparisonFeedback, setShowComparisonFeedback] = useState(false);
   const [intersectionPoints, setIntersectionPoints] = useState<Point[]>([]);
@@ -70,6 +77,7 @@ export function GraphingExplorer({
   // screen readers from missing announcements when multiple status regions
   // exist on the same surface.
   const [feedbackMessage, setFeedbackMessage] = useState('');
+  const isDeferredTableGraph = (mode === 'practice' || mode === 'guided') && responseVariant === 'table_graph' && variant === 'plot_from_equation';
 
   const addInteraction = useCallback((type: string, data?: unknown) => {
     setInteractionHistory(prev => [...prev, { type, timestamp: Date.now(), data }]);
@@ -111,7 +119,8 @@ export function GraphingExplorer({
   }, [addInteraction, variant]);
 
   const handleTableComplete = useCallback((points: Array<{ x: number; y: number }>) => {
-    setTableComplete(true);
+    setTableValues(points);
+    setTableComplete(points.length > 0);
     addInteraction('table_complete', { points });
   }, [addInteraction]);
 
@@ -187,6 +196,58 @@ export function GraphingExplorer({
   }, [equation, linearEquation]);
 
   const handleSubmit = useCallback(() => {
+    if (isDeferredTableGraph) {
+      if (savingRef.current) return;
+      const submittedTableValues = tableValues.map(({ x, y }) => ({ x, y }));
+      const submittedPlacedPoints = placedPoints.map(({ x, y }) => ({ x, y }));
+      const envelope: PracticeSubmissionEnvelope = {
+        contractVersion: 'practice.v1',
+        activityId: toConvexActivityId(activityId),
+        mode: mode === 'guided' ? 'guided_practice' : 'independent_practice',
+        status: 'submitted',
+        attemptNumber: 1,
+        submittedAt: new Date().toISOString(),
+        answers: {
+          table_values: submittedTableValues,
+          placed_points: submittedPlacedPoints,
+        },
+        parts: [
+          { partId: 'table_values', rawAnswer: submittedTableValues },
+          { partId: 'placed_points', rawAnswer: submittedPlacedPoints },
+        ],
+        artifact: {
+          graphState: {
+            equation,
+            tableValues: submittedTableValues,
+            placedPoints: submittedPlacedPoints,
+          },
+        },
+        interactionHistory,
+      };
+      savingRef.current = true;
+      setIsSaving(true);
+      setSaveError(false);
+      setDeferredSubmitted(false);
+      setFeedbackMessage('Saving your submission.');
+      setShowSolution(false);
+      setShowComparisonFeedback(false);
+      void (async () => {
+        try {
+          if (!onSubmit) throw new Error('Missing submission handler');
+          await onSubmit(envelope);
+          setFeedbackMessage('Submission recorded for grading.');
+          setDeferredSubmitted(true);
+        } catch {
+          setFeedbackMessage('Your submission could not be saved. Try again.');
+          setSaveError(true);
+        } finally {
+          savingRef.current = false;
+          setIsSaving(false);
+        }
+      })();
+      return;
+    }
+
     const parts: Array<{
       partId: string;
       rawAnswer: unknown;
@@ -286,7 +347,7 @@ export function GraphingExplorer({
     onSubmit(envelope);
     setShowSolution(true);
     setShowComparisonFeedback(true);
-  }, [activityId, mode, onSubmit, placedPoints, intercepts, hints, interactionHistory, equation, comparisonEquation, linearEquation, domain, range, assessPointsCorrectness, assessInterceptsCorrectness, variant, comparisonAnswerSelected, assessComparisonCorrectness, intersectionPoints]);
+  }, [activityId, mode, onSubmit, placedPoints, intercepts, hints, interactionHistory, equation, comparisonEquation, linearEquation, domain, range, assessPointsCorrectness, assessInterceptsCorrectness, variant, comparisonAnswerSelected, assessComparisonCorrectness, intersectionPoints, isDeferredTableGraph, tableValues]);
 
   const functions: FunctionPlot[] = [
     {
@@ -494,18 +555,19 @@ export function GraphingExplorer({
         </p>
       )}
 
-      {isGuided && !tableComplete && (
+      {(isDeferredTableGraph || (isGuided && !tableComplete)) && (
         <InteractiveTableOfValues
           xValues={[-2, -1, 0, 1, 2]}
           functionExpression={equation}
           onTableComplete={handleTableComplete}
+          assessmentMode={isDeferredTableGraph ? 'deferred' : undefined}
           readonly={isTeaching}
         />
       )}
 
       {isGuided && tableComplete && (
         <div className="bg-green-50 border border-green-200 rounded-md p-3">
-          <p className="text-green-800 text-sm">Great! Now plot the points on the graph.</p>
+          <p className="text-green-800 text-sm">The table is complete. Plot your points on the graph.</p>
         </div>
       )}
 
@@ -520,16 +582,16 @@ export function GraphingExplorer({
       <GraphingCanvas
         domain={domain}
         range={range}
-        functions={functions}
+        functions={isDeferredTableGraph ? [] : functions}
         points={[...preSetPoints, ...placedPoints]}
-        onPointAdd={(!isTeaching && (isPractice || tableComplete)) ? handlePointAdd : undefined}
-        onPointRemove={(!isTeaching && (isPractice || tableComplete)) ? handlePointRemove : undefined}
+        onPointAdd={(!isTeaching && (isDeferredTableGraph ? tableComplete : (isPractice || tableComplete))) ? handlePointAdd : undefined}
+        onPointRemove={(!isTeaching && (isDeferredTableGraph ? tableComplete : (isPractice || tableComplete))) ? handlePointRemove : undefined}
         readonly={isTeaching}
         snapToGrid={isGuided}
         onAnnounce={setFeedbackMessage}
       />
 
-      {isGuided && tableComplete && (
+      {isGuided && tableComplete && !isDeferredTableGraph && (
         <InterceptIdentification
           functionExpression={equation}
           onInterceptIdentified={handleInterceptIdentified}
@@ -637,13 +699,16 @@ export function GraphingExplorer({
       )}
 
       {!isTeaching && (
-        (variant === 'compare_functions'
-          ? comparisonAnswerSelected
-          : isPractice || tableComplete
+        (isDeferredTableGraph
+          ? tableComplete
+          : variant === 'compare_functions'
+            ? comparisonAnswerSelected
+            : isPractice || tableComplete
         ) && (
           <button
             type="submit"
             onClick={handleSubmit}
+            disabled={isDeferredTableGraph && isSaving}
             className="px-6 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
           >
             Submit
@@ -658,6 +723,14 @@ export function GraphingExplorer({
       <div role="status" aria-live="polite" className="sr-only">
         {feedbackMessage}
       </div>
+      {isDeferredTableGraph && saveError && (
+        <p role="alert">Your submission could not be saved. Try again.</p>
+      )}
+      {isDeferredTableGraph && deferredSubmitted && (
+        <p className="text-sm text-muted-foreground" data-testid="deferred-submission-recorded">
+          Submission recorded for grading.
+        </p>
+      )}
     </div>
   );
 }

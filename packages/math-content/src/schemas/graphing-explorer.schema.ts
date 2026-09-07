@@ -4,6 +4,7 @@ import type { PracticeSubmissionPart } from '@math-platform/practice-core/submis
 export const graphingExplorerSchema = z
   .object({
     variant: z.enum(['plot_from_equation', 'compare_functions', 'find_intercepts', 'graph_system']).optional(),
+    responseVariant: z.literal('table_graph').optional(),
     equation: z.string().min(1),
     domain: z.tuple([z.number(), z.number()]).optional(),
     range: z.tuple([z.number(), z.number()]).optional(),
