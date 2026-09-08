@@ -37,3 +37,11 @@ The author reports ten tests, lint, build, and source-mapped TypeScript passing.
 `convex-test` is absent from the current manifests and installed modules inspected by the parent. Do not install it without dependency approval. Real transactional rollback and concurrent delivery verification remain an explicit gap. A memory store cannot prove either property.
 
 The trusted teacher producer and positive student-to-teacher flow remain separate prerequisites. Source approval remains open.
+
+## Parent revision 2 verification
+
+The parent passes all 19 revised focused tests in an isolated candidate. The runtime reference now uses the committed hyphenated module. The raw stored-data checks address the first review findings. Independent code review accepts the bounded consumer, subject to the stated integration limits.
+
+A further direct route check finds incomplete decision validation. With valid outer receipt fields, `decision: { reason: "eligible" }` still returns HTTP 200. A decision whose `reason` is an object also returns HTTP 200 and forwards that value. Both requests must return a controlled server error. The two added tests fail with actual status 200 instead of expected 500. Log: `/tmp/precalc-q18-evidence-v2-receipt-parent-red.log`.
+
+Require all five decision fields with their exact contract types and enum values. Keep the real writer-to-handler tests and actual transactional verification limits open. Do not accept a partial decision as successful delivery.
