@@ -509,3 +509,5 @@ Q39 reuses the completed G50/G52 archive after its committed-file checks and a f
 Q39 is committed as `1fe8529a4`. The actual stale-source browser layout now fits the 1280-pixel viewport. Parent lint, build, and post-build TypeScript pass. The square-root expression is visually correct. Removed the completed G50/G52/Q39 archive after complete tracked-file and extra-file checks. See `precalc-lesson-layout-candidate-cleanup.md`.
 
 Removed saved worktree 2711 after independent semantic review and parent checks of all 360 paths. Main preserves 219 exact states, and retained sibling 18ee preserves 127 exact states. Four deletions and ten unique obsolete or reproducible paths were reviewed. The other 21 saved worktrees remain intact. See `saved-2711-full-preservation-review.md`.
+
+Q38 first implementation is rejected. Parent review found hidden historical work, shared saved-retry/new-attempt identity state, unlabeled dashboard results, and source-string-only query tests. Corrections require executed handler and user-action regressions. See `precalc-saved-practice-views-parent-first-review.md`.
