@@ -335,7 +335,7 @@ Q37 unit 4 review rejected raw section content in the learner query. Real seeded
 
 G46 graph correction is committed as `a161f18b`. The parent accepted the corrected Problem 5 and Problem 6 references after independent review identified the defect.
 
-- [~] Task G47: Review IM1 Lesson 9-4 from its original worksheet. Inspect all prompts and native figures. Propose exact capabilities, reuse, source identities, and manual boundaries before source or graph implementation.
+- [x] Task G47: Review IM1 Lesson 9-4 from its original worksheet. Inspect all prompts and native figures. Propose exact capabilities, reuse, source identities, and manual boundaries before source or graph implementation.
 
 Q37 unit 5 seed dependency review is recorded in `precalc-runtime-unit5-seed-review.md`. Unit 4 is accepted and committed. Unit 5 integration remains open.
 
@@ -371,3 +371,9 @@ G48 first proposal includes incorrect box-plot construction references for compa
 
 - [x] Remove 85 stale worktree records. All directories were absent. All recorded commits are ancestors of HEAD. The 26 remaining records include the main checkout, one active graph candidate, and 24 saved Codex worktrees with uncommitted changes. Preserve those changes.
 - [~] Commit each verified integration before removing its temporary checkout. Review saved worktree changes before cleanup.
+
+G47 source and graph review is complete. Source commit: `fbc8d457`. Graph commit: `c1cf77d9`. Parent 339 curriculum/seed tests, 37 coverage/audit tests, lint, build, and standalone TypeScript passed. All ten new capabilities remain inactive. See `im1-lesson94-graph-integration.md`.
+
+Q37 unit 5 is committed as `923bf572`. Parent and independent review passed the corrected valid historical fixtures and exact source parity. Unit 6 query is committed as `a40ca6e2`. Parent and independent authority checks passed. Unit 6 route, form, dashboard, and full composed browser sequence remain open. A fresh candidate now implements the teacher surface.
+
+Cleanup after integration: removed the completed G47 worktree and both completed Precalculus archive candidates. Compared each owned file against the committed blob before removal. Shared dependency directories remain intact. Review of the 24 saved Codex worktrees continues without removal of uncommitted work.
