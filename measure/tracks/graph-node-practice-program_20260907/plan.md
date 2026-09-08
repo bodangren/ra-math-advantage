@@ -632,8 +632,12 @@ The public quadratic-formula response uses the fixed fields `discriminant`, `x1`
 
 G55 parent source review accepts 54 prompts and 15 native images for restoration. It corrected the baseball extension and symbolic figure description. Mixed Exercises use the existing lesson identity. The proposed seven-atom graph inventory remains provisional pending equivalence review. See `im1-lesson104-parent-source-review.md`.
 
-- [~] Task G55 source: Restore all 54 original Lesson 10-4 prompts and 15 native figures in the extensionless lesson file. Preserve headings, exact response demands, native notation, and figure semantics. Add app-discovered source regressions. Reuse the current IM1 candidate. Add no graph change, answer key, approval, or executable mode.
+- [x] Task G55 source: Restore all 54 original Lesson 10-4 prompts and 15 native figures in the extensionless lesson file. Preserve headings, exact response demands, native notation, and figure semantics. Add app-discovered source regressions. Reuse the current IM1 candidate. Add no graph change, answer key, approval, or executable mode.
 
 IM3-QF component integration also requires a bounded ActivityRenderer correction. The current renderer discards the asynchronous submission result and recomputes timing on each retry. Forward the promise and preserve the first timing-enriched QF envelope. Prevent activity props from replacing the trusted QF mode, identity, and callbacks. Test deferred rejection and exact retry through the real renderer before acceptance.
 
 Cleanup review found 718 working states across saved worktrees b5f1 and b615. Worktree b5f1 has 11 files without exact copies in main, 02d6, or 18ee. Worktree b615 has one mixed blueprint file; each of its seven objects has an exact preserved copy in its history or the retained sources. Keep both directories pending independent full-state review and any needed preservation.
+
+G55 source is committed as `e207af2d1`. Parent and independent source review passed. All 17 staged paths matched the final candidate. Parent checks passed 419 tests, lint, build, and separate TypeScript. The graph atom inventory remains provisional. See `im1-lesson104-source-final-review.md`.
+
+QF component first review found two defects in the real renderer: absent timing could become timing on retry, and a new activity ID could retain old answer state. Correct both before integration. Full shared-activity tests also found the directly affected six-key registry expectation and one unrelated legacy blank-answer schema expectation. See `im3-quadratic-formula-component-first-review.md`.
