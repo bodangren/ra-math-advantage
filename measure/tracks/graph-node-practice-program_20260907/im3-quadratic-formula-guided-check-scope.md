@@ -93,3 +93,11 @@ Parent source tracing is complete.
 The assigned subagent stopped at the account usage limit before writing its scope report.
 Independent scope review remains pending.
 No Guided check code has been written in this batch.
+
+## Independent scope acceptance
+
+The reviewer resumed and accepts the backend-first scope.
+The client callback must bind the stored activity ID from the trusted section.
+The route receives that ID as untrusted input and verifies its stored Guided authority.
+The final writer must retain its complete three-part validation and grading.
+Backend implementation review and component integration remain open.

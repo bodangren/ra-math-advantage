@@ -30,3 +30,12 @@ Only the clean source test was materialized in main.
 The five mixed graph working files remain intact.
 Only main remains registered as a Git worktree.
 The current IM3 candidate remains in use.
+
+## Final independent acceptance
+
+The reviewer resumed and accepts commit `5dce1bd3c`.
+Native page 46 and all five catalogs were checked again.
+Only .039 and .040 changed.
+The app-discovered source test passed.
+Final source implementation acceptance is complete.
+Source approval and practice readiness remain separate.
