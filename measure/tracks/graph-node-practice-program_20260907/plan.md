@@ -357,7 +357,7 @@ Q37 unit 5 first candidate failed parent source review. Its ordinary bodies pred
 
 G47 Lesson 9-4 source restoration is committed as `fbc8d457`. Final parent and independent checks passed seven source tests, lint, build, standalone TypeScript, and three native-image comparisons. The first rejected wording and invalid Green claim are corrected. Graph implementation is in progress. See `im1-lesson94-source-integration.md`.
 
-- [~] Task G48: Inspect IM1 Lesson 9-5 original worksheet while G47 graph and selected-seed checks run. Record source tasks, native figures, stable identities, and ambiguity boundaries before proposing capabilities.
+- [x] Task G48: Inspect IM1 Lesson 9-5 original worksheet while G47 graph and selected-seed checks run. Record source tasks, native figures, stable identities, and ambiguity boundaries before proposing capabilities.
 
 Execution recovery: the execution context changed after the unit 5 independent review. Temporary candidate directories, logs, and agent sessions are absent. Committed source and runtime changes remain intact. Reconstruct the uncommitted unit 5 seed and G47 graph patches from HEAD and the accepted source records. Repeat verification before integration. G48 proposal work continues in parallel. Prior temporary results do not prove the reconstructed files.
 
@@ -423,3 +423,9 @@ G49 corrected source inventory is accepted for exact source restoration. It pres
 - [~] Task Q37 Worked pending guard: The real browser sent two POST requests from two clicks in one event cycle. Add an immediate in-flight ref guard to the existing Worked acknowledgement component. Add a deferred-request regression with same-cycle clicks and verify same-key retry after failure. Keep receipt checks and the completed acknowledgement value-comparison fix.
 
 Q37 actual browser confirms the committed acknowledgement replay fix. The first accepted response was aborted. Visible retry used the same key and body and succeeded with one submission and no mastery effects. The pending double-click defect remains separate. Parent inspection confirms the post-Independent state is exactly equal after lesson reload: five submissions, five evidence rows, four receipts, one card, and two reviews. See `precalc-runtime-unit7-browser-progress.md`. Requested assistance implementation is now in progress in a separate candidate.
+
+G48 source and graph repair are committed as `f6eaf15c` and `df7883c69`. Final independent review accepts the corrected content and derived inventory. Parent verification passed 368 curriculum and seed tests, 37 coverage and audit tests, lint, build, and standalone TypeScript. See `im1-lesson95-graph-integration.md`. The completed graph candidate is under cleanup review.
+
+The Worked in-flight guard is committed as `116b0ac6d`. Parent verification passed 73 tests and all app gates. Removed its completed candidate after both changed files matched committed bytes. Actual browser verification of the guard remains open.
+
+G49 first source review found one native-data transcription error. The seventh monthly temperature is 86°F, not 88°F. The test repeated the same incorrect value. The candidate is under correction, with complete accessible-table checks required. Source restoration remains uncommitted.
