@@ -3749,31 +3749,19 @@
     },
     {
       "nodeId": "math.im1.skill.7.4.solve-systems-of-linear-equations-using-elimination-when-mul",
-      "sourceNodeIds": [],
       "alignmentNodeIds": [
         "math.standard.ccss.a-rei-c-5"
-      ],
-      "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
-      "exceptions": [
-        {
-          "type": "generator",
-          "reason": "Generator not yet implemented for IM1 rollout"
-        }
       ],
       "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "7",
         "lesson": "4"
-      }
+      },
+      "sourceNodeIds": [
+        "math.im1.example.7.4.014",
+        "math.im1.example.7.4.source-003"
+      ]
     },
     {
       "nodeId": "math.im1.skill.7.5.graph-systems-of-linear-inequalities-and-identify-the-overla",
@@ -6978,7 +6966,8 @@
       "sourceNodeIds": [
         "math.im1.example.7.1.004",
         "math.im1.example.7.1.007",
-        "math.im1.example.7.2.009"
+        "math.im1.example.7.2.009",
+        "math.im1.example.7.4.source-003"
       ],
       "alignmentNodeIds": [],
       "reviewStatus": "draft",
@@ -6993,7 +6982,8 @@
       "sourceNodeIds": [
         "math.im1.example.7.1.004",
         "math.im1.example.7.1.007",
-        "math.im1.example.7.2.009"
+        "math.im1.example.7.2.009",
+        "math.im1.example.7.4.source-003"
       ],
       "alignmentNodeIds": [],
       "reviewStatus": "draft",
@@ -7167,6 +7157,76 @@
         "course": "im1",
         "module": "7",
         "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.7.4.select-equation-scale-factors-for-elimination",
+      "sourceNodeIds": [
+        "math.im1.example.7.4.014"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.7.4.solve-one-solution-systems-by-scaled-elimination",
+      "sourceNodeIds": [
+        "math.im1.example.7.4.014"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.7.4.diagnose-equation-combination-errors-in-elimination",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.7.4.choose-between-substitution-and-elimination",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.7.4.construct-a-system-for-a-specified-elimination-multiplier",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.7.4.find-a-missing-solution-coordinate-and-equation-parameter",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "4"
       }
     }
   ]

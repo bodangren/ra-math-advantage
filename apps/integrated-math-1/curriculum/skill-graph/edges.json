@@ -6,8 +6,8 @@
     "pilotEdgesPreserved": 0,
     "standardEdgesMerged": 941,
     "suggestedEdges": 1277,
-    "totalEdges": 2452,
-    "totalNodes": 941,
+    "totalEdges": 2463,
+    "totalNodes": 948,
     "normalizedWeights": 539
   },
   "nodes": [
@@ -6214,10 +6214,11 @@
     {
       "id": "math.im1.example.7.4.014",
       "kind": "worked_example",
-      "title": "Example 1: Solve by Elimination (Multiplication); Applications of Systems of Equations",
+      "title": "Examples 1 and 2: Solve systems by elimination after scaling equations",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-7-class-period-plan.md (7-4, Example 1)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0704_practice.docx (Examples 1 and 2, Problems 1-12)",
+        "apps/integrated-math-1/curriculum/modules/module-7-lesson-4 (Examples 1 and 2, Problems 1-12)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -6226,26 +6227,25 @@
         "lesson": "4",
         "exampleNumber": 1,
         "sourceLesson": "7-4",
-        "rawText": "7-4, Examples 1-2 \u2014 Solve by Elimination (Multiplication); Applications of Systems of Equations"
+        "rawText": "7-4, Examples 1 and 2 \u2014 Solve systems by elimination after scaling equations"
       }
     },
     {
       "id": "math.im1.example.7.4.015",
       "kind": "worked_example",
-      "title": "Example 2: Solve by Elimination (Multiplication); Applications of Systems of Equations",
+      "title": "Examples 1 and 2: Duplicate source identity",
       "domain": "math.im1",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-7-class-period-plan.md (7-4, Example 2)"
-      ],
-      "reviewStatus": "draft",
+      "sourceRefs": [],
+      "reviewStatus": "rejected",
       "metadata": {
         "course": "im1",
         "module": "7",
         "lesson": "4",
         "exampleNumber": 2,
         "sourceLesson": "7-4",
-        "rawText": "7-4, Examples 1-2 \u2014 Solve by Elimination (Multiplication); Applications of Systems of Equations"
-      }
+        "rawText": "7-4, Examples 1 and 2 \u2014 Duplicate of math.im1.example.7.4.014"
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.7.5.016",
@@ -10974,7 +10974,8 @@
         "course": "im1",
         "module": "7",
         "lesson": "4"
-      }
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.skill.7.5.graph-systems-of-linear-inequalities-and-identify-the-overla",
@@ -16529,6 +16530,134 @@
         "course": "im1",
         "module": "7",
         "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.example.7.4.source-003",
+      "kind": "worked_example",
+      "title": "Example 3: Model and solve contextual systems by scaled elimination",
+      "domain": "math.im1",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0704_practice.docx (Example 3, Problems 13-14)",
+        "apps/integrated-math-1/curriculum/modules/module-7-lesson-4 (Example 3, Problems 13-14)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "4",
+        "exampleNumber": 3,
+        "sourceLesson": "7-4",
+        "rawText": "7-4, Example 3 \u2014 Model and solve contextual systems by scaled elimination"
+      }
+    },
+    {
+      "id": "math.im1.skill.7.4.select-equation-scale-factors-for-elimination",
+      "kind": "skill",
+      "title": "Select one or two equation scale factors that create equal or opposite coefficients",
+      "domain": "math.im1",
+      "description": "Select one or two equation scale factors that create equal or opposite coefficients",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0704_practice.docx (Examples 1 and 2, Problems 1-12; Mixed Exercises, Problem 18)",
+        "apps/integrated-math-1/curriculum/modules/module-7-lesson-4 (Examples 1 and 2, Problems 1-12; Mixed Exercises, Problem 18)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.7.4.solve-one-solution-systems-by-scaled-elimination",
+      "kind": "skill",
+      "title": "Solve a one-solution linear system by scaling equations and elimination",
+      "domain": "math.im1",
+      "description": "Solve a one-solution linear system by scaling equations and elimination",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0704_practice.docx (Examples 1 and 2, Problems 1-12; Mixed Exercises, Problem 18)",
+        "apps/integrated-math-1/curriculum/modules/module-7-lesson-4 (Examples 1 and 2, Problems 1-12; Mixed Exercises, Problem 18)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.7.4.diagnose-equation-combination-errors-in-elimination",
+      "kind": "skill",
+      "title": "Diagnose and correct equation-combination errors in an elimination solution",
+      "domain": "math.im1",
+      "description": "Diagnose and correct equation-combination errors in an elimination solution",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0704_practice.docx (Mixed Exercises, Problem 21, Jason and Daniela shown work)",
+        "apps/integrated-math-1/curriculum/modules/module-7-lesson-4 (Mixed Exercises, Problem 21, Jason and Daniela shown work)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.7.4.choose-between-substitution-and-elimination",
+      "kind": "skill",
+      "title": "Choose substitution or elimination for a linear system and justify the choice",
+      "domain": "math.im1",
+      "description": "Choose substitution or elimination for a linear system and justify the choice",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0704_practice.docx (Mixed Exercises, Problem 25)",
+        "apps/integrated-math-1/curriculum/modules/module-7-lesson-4 (Mixed Exercises, Problem 25)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.7.4.construct-a-system-for-a-specified-elimination-multiplier",
+      "kind": "skill",
+      "title": "Construct a linear system that supports a specified elimination multiplier",
+      "domain": "math.im1",
+      "description": "Construct a linear system that supports a specified elimination multiplier",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0704_practice.docx (Mixed Exercises, Problem 23)",
+        "apps/integrated-math-1/curriculum/modules/module-7-lesson-4 (Mixed Exercises, Problem 23)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.7.4.find-a-missing-solution-coordinate-and-equation-parameter",
+      "kind": "skill",
+      "title": "Determine a missing solution coordinate and equation parameter from a partially specified system solution",
+      "domain": "math.im1",
+      "description": "Determine a missing solution coordinate and equation parameter from a partially specified system solution",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0704_practice.docx (Mixed Exercises, Problem 24, partial solution (3, a))",
+        "apps/integrated-math-1/curriculum/modules/module-7-lesson-4 (Mixed Exercises, Problem 24, partial solution (3, a))"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "4"
       }
     }
   ],
@@ -55129,22 +55258,6 @@
       }
     },
     {
-      "id": "math.im1.edge.1015",
-      "type": "contains",
-      "sourceId": "math.im1.lesson.7.4",
-      "targetId": "math.im1.example.7.4.015",
-      "weight": 1,
-      "confidence": "high",
-      "reviewStatus": "draft",
-      "derived": true,
-      "derivationMethod": "lesson-sequence-containment-v1",
-      "rationale": "Lesson contains worked example",
-      "metadata": {
-        "module": "7",
-        "lesson": "4"
-      }
-    },
-    {
       "id": "math.im1.edge.1016",
       "type": "contains",
       "sourceId": "math.im1.lesson.7.4",
@@ -58809,22 +58922,6 @@
       "metadata": {
         "fromLesson": "6.3",
         "toLesson": "6.4"
-      }
-    },
-    {
-      "id": "math.im1.edge.1263",
-      "type": "prerequisite_for",
-      "sourceId": "math.im1.skill.7.4.solve-systems-of-linear-equations-using-elimination-when-mul",
-      "targetId": "math.im1.skill.7.5.graph-systems-of-linear-inequalities-and-identify-the-overla",
-      "weight": 0.5,
-      "confidence": "low",
-      "reviewStatus": "draft",
-      "derived": true,
-      "derivationMethod": "lesson-sequence-prerequisite-v1",
-      "rationale": "Lesson-sequence prerequisite: lesson 4 precedes lesson 5 in module 7",
-      "metadata": {
-        "fromLesson": "7.4",
-        "toLesson": "7.5"
       }
     },
     {
@@ -63155,6 +63252,201 @@
       "metadata": {
         "module": "7",
         "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.g36.contains.source003",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.7.4",
+      "targetId": "math.im1.example.7.4.source-003",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 7-4 source review confirms this capability appears in the lesson.",
+      "metadata": {
+        "module": "7",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.g36.contains.skill.1",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.7.4",
+      "targetId": "math.im1.skill.7.4.select-equation-scale-factors-for-elimination",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 7-4 source review confirms this capability appears in the lesson.",
+      "metadata": {
+        "module": "7",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.g36.contains.skill.2",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.7.4",
+      "targetId": "math.im1.skill.7.4.solve-one-solution-systems-by-scaled-elimination",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 7-4 source review confirms this capability appears in the lesson.",
+      "metadata": {
+        "module": "7",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.g36.contains.skill.3",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.7.4",
+      "targetId": "math.im1.skill.7.4.diagnose-equation-combination-errors-in-elimination",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 7-4 source review confirms this capability appears in the lesson.",
+      "metadata": {
+        "module": "7",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.g36.contains.skill.4",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.7.4",
+      "targetId": "math.im1.skill.7.4.choose-between-substitution-and-elimination",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 7-4 source review confirms this capability appears in the lesson.",
+      "metadata": {
+        "module": "7",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.g36.contains.skill.5",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.7.4",
+      "targetId": "math.im1.skill.7.4.construct-a-system-for-a-specified-elimination-multiplier",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 7-4 source review confirms this capability appears in the lesson.",
+      "metadata": {
+        "module": "7",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.g36.contains.skill.6",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.7.4",
+      "targetId": "math.im1.skill.7.4.find-a-missing-solution-coordinate-and-equation-parameter",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 7-4 source review confirms this capability appears in the lesson.",
+      "metadata": {
+        "module": "7",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.g36.contains.reuse.1",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.7.4",
+      "targetId": "math.im1.skill.7.1.write-a-two-equation-system-from-a-context",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 7-4 source review confirms this capability appears in the lesson.",
+      "metadata": {
+        "module": "7",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.g36.contains.reuse.2",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.7.4",
+      "targetId": "math.im1.skill.7.1.solve-and-interpret-a-contextual-system",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 7-4 source review confirms this capability appears in the lesson.",
+      "metadata": {
+        "module": "7",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.g36.contains.reuse.3",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.7.4",
+      "targetId": "math.im1.skill.7.1.classify-a-linear-system-by-its-solution-set",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 7-4 source review confirms this capability appears in the lesson.",
+      "metadata": {
+        "module": "7",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.g36.contains.reuse.4",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.7.4",
+      "targetId": "math.im1.skill.7.1.determine-the-number-of-solutions-from-equation-structure",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 7-4 source review confirms this capability appears in the lesson.",
+      "metadata": {
+        "module": "7",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.g36.contains.reuse.5",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.7.4",
+      "targetId": "math.im1.skill.7.3.choose-addition-or-subtraction-for-direct-elimination",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 7-4 source review confirms this capability appears in the lesson.",
+      "metadata": {
+        "module": "7",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.g36.contains.reuse.6",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.7.4",
+      "targetId": "math.im1.skill.7.3.solve-one-solution-systems-by-direct-elimination",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 7-4 source review confirms this capability appears in the lesson.",
+      "metadata": {
+        "module": "7",
+        "lesson": "4"
       }
     }
   ]

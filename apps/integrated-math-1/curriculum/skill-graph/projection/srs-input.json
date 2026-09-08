@@ -1693,9 +1693,7 @@
         "math.standard.ccss.a-ced-a-3",
         "math.standard.ccss.a-rei-d-12"
       ],
-      "prerequisites": [
-        "math.im1.skill.7.4.solve-systems-of-linear-equations-using-elimination-when-mul"
-      ],
+      "prerequisites": [],
       "difficulty": 0.5,
       "rendererKey": "graphing-explorer",
       "generatorKey": null,
@@ -2222,6 +2220,66 @@
       "rendererKey": null,
       "generatorKey": null,
       "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.7.4.select-equation-scale-factors-for-elimination",
+      "blueprintId": "math.im1.skill.7.4.select-equation-scale-factors-for-elimination.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.4.solve-one-solution-systems-by-scaled-elimination",
+      "blueprintId": "math.im1.skill.7.4.solve-one-solution-systems-by-scaled-elimination.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.4.diagnose-equation-combination-errors-in-elimination",
+      "blueprintId": "math.im1.skill.7.4.diagnose-equation-combination-errors-in-elimination.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.4.choose-between-substitution-and-elimination",
+      "blueprintId": "math.im1.skill.7.4.choose-between-substitution-and-elimination.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.4.construct-a-system-for-a-specified-elimination-multiplier",
+      "blueprintId": "math.im1.skill.7.4.construct-a-system-for-a-specified-elimination-multiplier.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.4.find-a-missing-solution-coordinate-and-equation-parameter",
+      "blueprintId": "math.im1.skill.7.4.find-a-missing-solution-coordinate-and-equation-parameter.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
     }
   ]
 }

@@ -1,10 +1,10 @@
 {
   "version": 1,
   "course": "im1",
-  "totalSkills": 344,
+  "totalSkills": 350,
   "counts": {
     "served": 6,
-    "gap": 338,
+    "gap": 344,
     "newComponent": 0
   },
   "byModule": [
@@ -52,9 +52,9 @@
     },
     {
       "module": "7",
-      "totalSkills": 26,
+      "totalSkills": 32,
       "served": 0,
-      "gap": 26,
+      "gap": 32,
       "newComponent": 0
     },
     {
@@ -2094,6 +2094,54 @@
     },
     {
       "skillId": "math.im1.skill.7.3.solve-systems-of-linear-equations-using-elimination-by-addit",
+      "module": "7",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.7.4.choose-between-substitution-and-elimination",
+      "module": "7",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.7.4.construct-a-system-for-a-specified-elimination-multiplier",
+      "module": "7",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.7.4.diagnose-equation-combination-errors-in-elimination",
+      "module": "7",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.7.4.find-a-missing-solution-coordinate-and-equation-parameter",
+      "module": "7",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.7.4.select-equation-scale-factors-for-elimination",
+      "module": "7",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.7.4.solve-one-solution-systems-by-scaled-elimination",
       "module": "7",
       "status": "gap",
       "tier": "none",

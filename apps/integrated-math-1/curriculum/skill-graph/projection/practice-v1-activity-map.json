@@ -7828,76 +7828,6 @@
       "srsEligible": false
     },
     {
-      "stableActivityId": "math.im1.skill.7.4.solve-systems-of-linear-equations-using-elimination-when-mul.worked_example",
-      "nodeId": "math.im1.skill.7.4.solve-systems-of-linear-equations-using-elimination-when-mul",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-rei-c-5"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.7.4.solve-systems-of-linear-equations-using-elimination-when-mul",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.7.4.solve-systems-of-linear-equations-using-elimination-when-mul.guided_practice",
-      "nodeId": "math.im1.skill.7.4.solve-systems-of-linear-equations-using-elimination-when-mul",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-rei-c-5"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 7g: Solve systems of linear equations using elimination when multiplication of one or both equations is required",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.7.4.solve-systems-of-linear-equations-using-elimination-when-mul.independent_practice",
-      "nodeId": "math.im1.skill.7.4.solve-systems-of-linear-equations-using-elimination-when-mul",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-rei-c-5"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
       "stableActivityId": "math.im1.skill.7.5.graph-systems-of-linear-inequalities-and-identify-the-overla.worked_example",
       "nodeId": "math.im1.skill.7.5.graph-systems-of-linear-inequalities-and-identify-the-overla",
       "sourceNodeIds": [],
@@ -11330,9 +11260,7 @@
         "math.standard.ccss.a-ced-a-3",
         "math.standard.ccss.a-rei-d-12"
       ],
-      "prerequisites": [
-        "math.im1.skill.7.4.solve-systems-of-linear-equations-using-elimination-when-mul"
-      ],
+      "prerequisites": [],
       "difficulty": 0.5,
       "rendererKey": "graphing-explorer",
       "generatorKey": null,
@@ -11859,6 +11787,66 @@
       "rendererKey": null,
       "generatorKey": null,
       "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.7.4.select-equation-scale-factors-for-elimination",
+      "blueprintId": "math.im1.skill.7.4.select-equation-scale-factors-for-elimination.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.4.solve-one-solution-systems-by-scaled-elimination",
+      "blueprintId": "math.im1.skill.7.4.solve-one-solution-systems-by-scaled-elimination.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.4.diagnose-equation-combination-errors-in-elimination",
+      "blueprintId": "math.im1.skill.7.4.diagnose-equation-combination-errors-in-elimination.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.4.choose-between-substitution-and-elimination",
+      "blueprintId": "math.im1.skill.7.4.choose-between-substitution-and-elimination.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.4.construct-a-system-for-a-specified-elimination-multiplier",
+      "blueprintId": "math.im1.skill.7.4.construct-a-system-for-a-specified-elimination-multiplier.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.4.find-a-missing-solution-coordinate-and-equation-parameter",
+      "blueprintId": "math.im1.skill.7.4.find-a-missing-solution-coordinate-and-equation-parameter.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
     }
   ],
   "teacherEvidence": {

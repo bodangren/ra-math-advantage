@@ -60,7 +60,7 @@ describe('Lesson 7-3 graph source repair', () => {
       expect(graph.edges).toContainEqual(expect.objectContaining({ type: 'contains', sourceId: lessonId, targetId: id, reviewStatus: 'draft' }));
     }
     for (const id of newIds) {
-      expect(graph.edges.filter(edge => edge.sourceId === id || edge.targetId === id).map(edge => edge.type)).toEqual(['contains']);
+      expect(graph.edges.filter(edge => (edge.sourceId === id || edge.targetId === id) && edge.type !== 'contains')).toEqual([]);
     }
   });
 

@@ -69,3 +69,32 @@ I ran:
 Vitest found the new focused graph test. Result: 5 tests passed in 1 file. The other two requested paths do not exist under those names in this candidate.
 
 The focused test proves the main lifecycle, containment, placeholder, prerequisite, and derived-array rules. It does not test exact Mixed Exercises locations on the six node source references. It also does not compare the audit prose with the actual blueprint count. Add those assertions with the two corrections.
+
+## Final review after correction
+
+### Decision
+
+Accept the corrected G36 graph change for integration.
+
+Both prior P1 findings are resolved in the applied main files. Each of the six new capability rows now has its exact worksheet location in `nodes.json`, `draft-nodes.json`, and the embedded node arrays in `edges.json` and `standard-edges.json`. The locations distinguish Problems 1 through 12 and Problem 18, the Jason and Daniela work in Problem 21, Problem 23, the partial solution `(3, a)` in Problem 24, and Problem 25.
+
+The rollout audit now agrees with the current arrays:
+
+- 948 nodes
+- 2,463 edges
+- 346 blueprint rows
+- 175 SRS planning rows
+- 396 projected activities
+- 220 source-only blueprint rows
+
+The six new capability nodes remain draft and inactive in all four catalogs. Each new node has only a lesson `contains` edge. The test update for Lesson 7-3 permits the new reuse containment while it still rejects each non-`contains` edge that touches those Lesson 7-3 nodes. It does not permit a prerequisite, equivalence, alignment, or evidence-transfer edge.
+
+The new G36 audit regression derives the inventory totals from the current arrays. Its string type guard also keeps the check valid under TypeScript. This correction does not weaken the source assertions.
+
+I reran these tests against the applied main files:
+
+`npx vitest run __tests__/curriculum/lesson-7-4-capabilities-source.test.ts __tests__/curriculum/lesson-7-4-source.test.ts __tests__/curriculum/lesson-7-3-graph-source.test.ts`
+
+Result: 17 tests passed in 3 files. The suites contain 6 G36 graph tests, 5 Lesson 7-4 source tests, and 6 Lesson 7-3 graph tests.
+
+No remaining G36 source or graph blocker was found in this final review.

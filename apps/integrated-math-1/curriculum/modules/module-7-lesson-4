@@ -1,137 +1,211 @@
 # Lesson 7-4 — Elimination Using Multiplication
 
-Source: (Module 7, Lesson 7-4, Int1_0704_practice.docx)
+Source: Module 7, Lesson 7-4, `Int1_0704_practice.docx`.
 
 ## Today's Goals
 
-* Solve systems of linear equations using elimination when multiplication of one or both equations is required.
-* Recognize when to multiply one equation versus both equations to create opposite coefficients.
-* Write and solve systems of equations to model real-world situations.
-* Evaluate and compare solution methods for systems of linear equations.
-
-## Vocabulary
-
-* **elimination method** — an algebraic technique for solving a system by combining equations to eliminate one variable.
-* **system of equations** — a set of two or more equations containing the same variables.
-* **solution of a system** — an ordered pair that satisfies every equation in the system simultaneously.
+* Solve a system by elimination when one or both equations must be multiplied.
+* Write and solve a system for a context.
+* Evaluate a solution method for a system.
 
 ## Learn: Elimination Using Multiplication
 
-When the coefficients of a variable are not already opposites or identical, multiply one or both equations by constants to create opposite coefficients. Then add the equations to eliminate a variable.
+Select a variable. Multiply one or both complete equations so that its coefficients are equal or opposite. Add or subtract the complete equations. Solve the resulting equation. Substitute the result into an original equation. Check the ordered pair in both equations.
 
-### Key Concept: Elimination with Multiplication
+## Examples 1 and 2
 
-* Identify which variable to eliminate by finding the least common multiple of its coefficients.
-* Multiply one or both equations by constants so that the chosen variable has opposite coefficients.
-* Add the modified equations to eliminate that variable, then solve for the remaining variable.
-* Substitute the found value back into either original equation to solve for the eliminated variable.
-* Check the solution in both original equations.
+Use elimination to solve each system of equations.
 
-## Example 1 — Solve by Elimination (Multiplication)
+### Problem 1
+* `x + y = 2`
+* `-3x + 4y = 15`
 
-Use elimination to solve systems of linear equations. Determine whether to multiply one equation, both equations, or neither to create opposite coefficients.
+### Problem 2
+* `x - y = -8`
+* `7x + 5y = 16`
 
-### Step 1: Choose a Variable to Eliminate
+### Problem 3
+* `x + 5y = 17`
+* `-4x + 3y = 24`
 
-Examine the coefficients of [ x ] and [ y ] in both equations. Select the variable whose coefficients have the smallest least common multiple.
+### Problem 4
+* `6x + y = -39`
+* `3x + 2y = -15`
 
-Representative systems include:
-[
-x + y = 2 \quad \text{and} \quad -3x + 4y = 15
-]
+### Problem 5
+* `2x + 5y = 11`
+* `4x + 3y = 1`
 
-[
-8x + 3y = 4 \quad \text{and} \quad -7x + 5y = -34
-]
+### Problem 6
+* `3x - 3y = -6`
+* `-5x + 6y = 12`
 
-### Step 2: Multiply to Create Opposite Coefficients
+### Problem 7
+* `3x + 4y = 29`
+* `6x + 5y = 43`
 
-Multiply one or both equations by constants so that the chosen variable has opposite coefficients.
+### Problem 8
+* `8x + 3y = 4`
+* `-7x + 5y = -34`
 
-For example, to eliminate [ y ] in:
-[
-2x + 5y = 11 \quad \text{and} \quad 4x + 3y = 1
-]
+### Problem 9
+* `8x + 3y = -7`
+* `7x + 2y = -3`
 
-Multiply the first equation by 3 and the second by 5:
-[
-6x + 15y = 33
-]
-[
-20x + 15y = 5
-]
+### Problem 10
+* `4x + 7y = -80`
+* `3x + 5y = -58`
 
-Or, to eliminate [ x ] in:
-[
-4x + 7y = -80 \quad \text{and} \quad 3x + 5y = -58
-]
+### Problem 11
+* `12x - 3y = -3`
+* `6x + y = 1`
 
-Multiply the first equation by 3 and the second by 4.
+### Problem 12
+* `-4x + 2y = 0`
+* `10x + 3y = 8`
 
-Some systems require multiplying only one equation. For example:
-[
-3x + 4y = 29 \quad \text{and} \quad 6x + 5y = 43
-]
+## Example 3
 
-Multiply the first equation by 2 to match the [ x ]-coefficients.
+### Problem 13
 
-### Step 3: Add and Solve
+**Sports.** The Fan Cost Index (FCI) tracks the average costs for attending sporting events, including tickets, drinks, food, parking, programs, and souvenirs. According to the FCI, a family of four would spend a total of $592.30 to attend two Major League Baseball (MLB) games and one National Basketball Association (NBA) game. The family would spend $691.31 to attend one MLB game and two NBA games.
 
-Add the modified equations to eliminate one variable, then solve for the remaining variable.
+a. Write a system of equations to find the family's costs for each kind of game according to the FCI.
 
-### Step 4: Substitute and Verify
+b. Solve the system of equations to find the cost for a family of four to attend each kind of game according to the FCI.
 
-Substitute the value found into either original equation to find the other variable. Check the solution in both equations.
+### Problem 14
 
-## Example 2 — Applications of Systems of Equations
+**Art.** Mr. Santos, the curator of the children's museum, recently made two purchases of firing clay and polymer clay for a visiting artist to sculpt. Use the table to find the cost of each product per kilogram.
 
-Write and solve systems of equations to model real-world situations.
+| Firing Clay (kg) | Polymer Clay (kg) | Total Cost |
+|---:|---:|---:|
+| 5 | 24 | $64.05 |
+| 25 | 8 | $51.45 |
 
-### Step 1: Define Variables
+a. Write a system of equations to find the cost of each product per kilogram.
 
-Identify the two unknown quantities and assign variables.
-
-### Step 2: Write a System of Equations
-
-Translate the given information into two equations.
-
-**Sports Problem:** A family of four spends [ 592.30 ] to attend two MLB games and one NBA game. The same family would spend [ 691.31 ] to attend one MLB game and two NBA games.
-
-Let [ m ] = cost of one MLB game and [ n ] = cost of one NBA game.
-[
-2m + n = 592.30
-]
-[
-m + 2n = 691.31
-]
-
-**Art Supplies Problem:** A curator makes two purchases of firing clay and polymer clay. Use data from a table showing the quantities purchased in each order to write a system and find the cost per kilogram of each product.
-
-Let [ f ] = cost per kilogram of firing clay and [ p ] = cost per kilogram of polymer clay.
-
-> Review Note: The purchase table for problem 14 (`media/image1.png`) cannot be described here. It shows the kilograms of firing clay and polymer clay purchased in two separate orders.
-
-### Step 3: Solve and Interpret
-
-Use elimination with multiplication to solve the system. State the answer in the context of the problem.
+b. Solve the system of equations to find the cost of each product per kilogram.
 
 ## Mixed Exercises
 
-The mixed exercises extend practice across a variety of problem types and contexts.
+### Problem 15
 
-* **Translation problems:** Convert verbal descriptions into systems of equations and solve. For example, "Two times a number plus three times another number equals 13. The sum of the two numbers is 7."
-* **Real-world applications:** Solve contextual problems involving car washing and vacuuming rates to raise money.
-* **Structure and reasoning:** Consider a given system and describe two different ways to solve it by elimination. Explain why a particular multiplication strategy (such as multiplying the first equation by 6 and the second by 5) is not useful for solving the system, then solve correctly.
-* **Mixture problems:** Use a table to write a system of equations for mixing two juice drinks to obtain a desired amount and concentration. Solve the system and explain what the solution represents.
-* **Modeling with currency:** Write a system to find the number of five-dollar and ten-dollar bills given the total number of bills and total value. Define variables, solve, and interpret.
-* **Error analysis:** Examine worked solutions from two students solving a system and determine whether either is correct. Explain the reasoning.
-* **True/false analysis:** Determine whether a statement about systems having infinitely many solutions is true or false, and justify the argument.
-* **Creation tasks:** Write a system of equations that can be solved by multiplying one equation by [ -3 ] and then adding.
-* **Persevere in problem solving:** Given that [ (3, a) ] is the solution to a system with an unknown constant [ b ], find the values of [ a ] and [ b ] and discuss the steps used.
-* **Method comparison:** Explain why substitution is sometimes more helpful than elimination, and vice versa.
+Two times a number plus three times another number equals 13. The sum of the two numbers is 7. What are the numbers?
 
-## Review Notes
+### Problem 16
 
-* Problem 14 references a table of purchase data for firing clay and polymer clay (`media/image1.png`). The table shows two purchases with different quantities of each product, which is needed to write the system in parts a–b.
-* Problem 19 references a juice mixture table or diagram (`media/image2.png`) for mixing Tropical Breeze and Kona Cooler. The image data is needed to write the system in parts a–b.
-* Problem 21 shows worked student solutions from Jason and Daniela (`media/image3.png`). The image displays their steps for solving a system of equations and is needed for the error analysis.
+Four times a number minus twice another number is `-16`. The sum of the two numbers is `-1`. Find the numbers.
+
+### Problem 17
+
+**Fundraising.** Trisha and Byron are washing and vacuuming cars to raise money for a class trip. Trisha raised $38 by washing 5 cars and vacuuming 4 cars. Byron raised $28 by washing 4 cars and vacuuming 2 cars. Find the amount they charged to wash a car and vacuum a car.
+
+### Problem 18
+
+**Structure.** Consider the system of equations `-2x + 3y = -5` and `3x - 4y = 6`.
+
+a. Describe two different ways to solve the system by elimination.
+
+b. Explain why multiplying the first equation by `6` and the second equation by `5` and then adding is not useful for solving the system.
+
+c. Solve the system by elimination.
+
+### Problem 19
+
+**Reasoning.** The owner of a juice stand wants to make a new juice drink. He would like to mix Tropical Breeze, `t`, and Kona Cooler, `k`, to make 10 quarts of a new drink that is 40% pineapple juice.
+
+| Juice Drink | Pineapple Juice |
+|---|---:|
+| Tropical Breeze | 20% pineapple juice |
+| Kona Cooler | 50% pineapple juice |
+
+a. Make a table to help write a system of equations that the owner of the juice stand can solve to determine the amount of each drink he should use to make the new drink.
+
+b. Solve the system and explain what your solution represents.
+
+c. Explain how you know your answer is correct.
+
+### Problem 20
+
+**Use a model.** Marlene works as a cashier at a grocery store. At the end of the day, she has a total of 125 five-dollar bills and ten-dollar bills. The total value of these bills is $990.
+
+a. Write a system of equations that you can use to find the number of five-dollar bills and the number of ten-dollar bills. Describe what each variable represents.
+
+b. Solve the system and explain what your solution represents.
+
+### Problem 21
+
+**Find the error.** Jason and Daniela are solving a system of equations. Is either of them correct? Explain your reasoning.
+
+The following columns transcribe the complete work that the worksheet gives to the learner.
+
+#### Jason
+
+`2r + 7t = 11`
+
+`r - 9t = -7`
+
+`2r + 7t = 11`
+
+`(-) 2r - 18t = -14`
+
+`25t = 25`
+
+`t = 1`
+
+`2r + 7t = 11`
+
+`2r + 7(1) = 11`
+
+`2r + 7 = 11`
+
+`2r = 4`
+
+`2r / 2 = 4 / 2`
+
+`r = 2`
+
+The solution is `(2, 1)`.
+
+#### Daniela
+
+`2r + 7t = 11`
+
+`(-) r - 9t = -7`
+
+`r = 18`
+
+`2r + 7t = 11`
+
+`2(18) + 7t = 11`
+
+`36 + 7t = 11`
+
+`7t = -25`
+
+`7t / 7 = 25 / 7`
+
+`t = -3.6`
+
+The solution is `(18, -3.6)`.
+
+### Problem 22
+
+**Analyze.** Determine whether the following statement is true or false: A system of linear equations will only have infinitely many solutions if the equations have the same coefficients. Justify your argument.
+
+### Problem 23
+
+**Create.** Write a system of equations that can be solved by multiplying one equation by `-3` and then adding the two equations together.
+
+### Problem 24
+
+**Persevere.** The solution of the system `4x + 5y = 2` and `6x - 2y = b` is `(3, a)`. Find the values of `a` and `b`. Discuss the steps you used.
+
+### Problem 25
+
+**Write.** Why is substitution sometimes more helpful than elimination, and vice versa?
+
+## Source Notes
+
+The Problem 14 and Problem 19 tables are accessible transcriptions of the worksheet figures. The Problem 21 work is a line-by-line transcription of the worksheet figure. Its arithmetic and signs are source givens for the error-analysis task.
