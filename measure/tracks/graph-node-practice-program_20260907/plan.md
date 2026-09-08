@@ -507,3 +507,5 @@ G51 exact source restoration is committed as `8bca01b6f`. Parent 393 curriculum 
 Q39 reuses the completed G50/G52 archive after its committed-file checks and a fresh HEAD overlay. The one-file repair imports the existing KaTeX stylesheet in the root layout. Independent review accepts the repair. The parent is completing browser and app verification.
 
 Q39 is committed as `1fe8529a4`. The actual stale-source browser layout now fits the 1280-pixel viewport. Parent lint, build, and post-build TypeScript pass. The square-root expression is visually correct. Removed the completed G50/G52/Q39 archive after complete tracked-file and extra-file checks. See `precalc-lesson-layout-candidate-cleanup.md`.
+
+Removed saved worktree 2711 after independent semantic review and parent checks of all 360 paths. Main preserves 219 exact states, and retained sibling 18ee preserves 127 exact states. Four deletions and ten unique obsolete or reproducible paths were reviewed. The other 21 saved worktrees remain intact. See `saved-2711-full-preservation-review.md`.
