@@ -1,10 +1,19 @@
 import {
+  evaluateLearningEvidenceV1,
   learningEvidenceFingerprintV1,
   learningEvidenceV1Schema,
   normalizeLearningEvidenceV1,
+  PracticeSubmissionEnvelopeSchema,
   type LearningEvidenceV1,
 } from '@math-platform/practice-core';
 import { toConvexActivityId } from '@math-platform/practice-core/contract';
+import {
+  isPrecalculusPilotPublished,
+  PRECALCULUS_PILOT_ACTIVITY_ID,
+  PRECALCULUS_PILOT_COMPONENT_KEY,
+  PRECALCULUS_PILOT_INDEPENDENT_ACTIVITY_ID,
+} from './activities';
+import { gradeTopic11IntervalGraph } from '../lib/practice/topic11-interval-graph';
 import {
   SubmissionSrsAdapter,
   type PracticeSubmissionEnvelope,
@@ -19,6 +28,8 @@ import { v } from 'convex/values';
 
 import {
   createPrecalculusLearningEvidenceRuntime,
+  PRECALCULUS_LEARNING_EVIDENCE_PILOT_NODE_IDS,
+  PRECALCULUS_PILOT_NODE_ID,
   type PrecalculusLearningEvidenceProcessResult,
   type PrecalculusLearningEvidenceStore,
 } from '../lib/learning-evidence/precalc-pilot';
@@ -75,6 +86,19 @@ const learningEvidenceResultValidator = v.object({
   decision: learningEvidenceDecisionValidator,
   kstApplied: v.literal(false),
 });
+
+const submissionLearningEvidenceResultValidator = v.union(
+  v.object({
+    persisted: v.boolean(), masteryApplied: v.boolean(), kstApplied: v.literal(false),
+    delivery: v.union(v.literal('new'), v.literal('replay')),
+    decision: learningEvidenceDecisionValidator,
+  }),
+  v.object({ accepted: v.literal(false), reason: v.literal('submission_not_found') }),
+  v.object({
+    accepted: v.literal(false), reason: v.literal('attempt_ordinal_conflict'),
+    latestAttemptOrdinal: v.number(), receivedAttemptOrdinal: v.number(),
+  }),
+);
 
 export interface PrecalculusLearningEvidenceHandlerDependencies {
   store: PrecalculusLearningEvidenceStore;
@@ -469,4 +493,271 @@ export const submit = internalMutation({
       kstApplied: false as const,
     };
   },
+});
+
+type SelectedReceipt = {
+  persisted: boolean;
+  masteryApplied: boolean;
+  kstApplied: false;
+  decision: ReturnType<typeof evaluateLearningEvidenceV1>;
+};
+
+type SelectedStoredSubmission = {
+  submissionId: string;
+  userId: string;
+  activityId: string;
+  stableActivityId?: string;
+  masteryContractVersion?: string;
+  submissionData: unknown;
+  attemptOrdinal?: number;
+  score?: number;
+  maxScore?: number;
+  submittedAt: number;
+  gradedAt?: number;
+};
+
+export interface SelectedEvidenceDependencies {
+  authenticateLearner(learnerId: string): Promise<boolean>;
+  findReceipt(learnerId: string, submissionId: string): Promise<SelectedReceipt | null>;
+  loadSubmission(submissionId: string): Promise<SelectedStoredSubmission | null>;
+  sourceIsCurrent(submission: SelectedStoredSubmission): Promise<boolean>;
+  findEvidence(learnerId: string, idempotencyKey: string): Promise<LearningEvidenceV1 | null>;
+  listHistory(learnerId: string, nodeId: string): Promise<readonly LearningEvidenceV1[]>;
+  appendEvidence(learnerId: string, submissionId: string, evidence: LearningEvidenceV1): Promise<void>;
+  applySrs(learnerId: string, submissionId: string, envelope: PracticeSubmissionEnvelope): Promise<void>;
+  appendReceipt(learnerId: string, submissionId: string, receipt: SelectedReceipt): Promise<void>;
+}
+
+function selectedStoredEvidence(
+  submission: SelectedStoredSubmission,
+  learnerId: string,
+): { evidence: LearningEvidenceV1; envelope: PracticeSubmissionEnvelope; masteryBearing: boolean } | null {
+  const parsed = PracticeSubmissionEnvelopeSchema.safeParse(submission.submissionData);
+  if (!parsed.success) return null;
+  const rawEnvelope = submission.submissionData as Record<string, unknown>;
+  const allowedEnvelopeKeys = new Set([
+    'activityId', 'answers', 'attemptNumber', 'contractVersion', 'mode', 'parts',
+    'status', 'submittedAt', 'artifact', 'interactionHistory', 'analytics',
+    'studentFeedback', 'teacherSummary', 'timing',
+  ]);
+  if (Object.keys(rawEnvelope).some((key) => !allowedEnvelopeKeys.has(key))) return null;
+  const envelope: PracticeSubmissionEnvelope = {
+    ...parsed.data,
+    activityId: toConvexActivityId(parsed.data.activityId),
+  };
+  const mode = envelope.mode;
+  const expectedActivityId = mode === 'guided_practice'
+    ? PRECALCULUS_PILOT_ACTIVITY_ID
+    : mode === 'independent_practice'
+      ? PRECALCULUS_PILOT_INDEPENDENT_ACTIVITY_ID
+      : null;
+  if (
+    !expectedActivityId
+    || submission.userId !== learnerId
+    || submission.stableActivityId !== expectedActivityId
+    || envelope.activityId !== expectedActivityId
+    || envelope.status !== 'graded'
+    || submission.masteryContractVersion !== 'learning-evidence.v1'
+    || !Number.isSafeInteger(submission.attemptOrdinal)
+    || submission.attemptOrdinal! < 1
+    || envelope.attemptNumber !== submission.attemptOrdinal
+    || !Number.isFinite(submission.submittedAt)
+    || Date.parse(envelope.submittedAt) !== submission.submittedAt
+    || submission.gradedAt !== submission.submittedAt
+    || !Number.isSafeInteger(submission.score)
+    || !Number.isSafeInteger(submission.maxScore)
+    || submission.maxScore !== 3
+  ) return null;
+  const answers = envelope.answers as {
+    increasingIntervals?: unknown; decreasingIntervals?: unknown; constantIntervals?: unknown;
+  };
+  if (
+    Object.keys(answers).sort().join('|') !== 'constantIntervals|decreasingIntervals|increasingIntervals'
+    ||
+    typeof answers.increasingIntervals !== 'string'
+    || typeof answers.decreasingIntervals !== 'string'
+    || typeof answers.constantIntervals !== 'string'
+  ) return null;
+  const grade = gradeTopic11IntervalGraph(mode === 'guided_practice' ? 0 : 2, {
+    increasingIntervals: answers.increasingIntervals,
+    decreasingIntervals: answers.decreasingIntervals,
+    constantIntervals: answers.constantIntervals,
+  });
+  if (
+    grade.score !== submission.score
+    || grade.maxScore !== submission.maxScore
+    || envelope.parts.length !== grade.parts.length
+    || grade.parts.some((expected, index) => {
+      const part = envelope.parts[index];
+      const rawPart = (rawEnvelope.parts as unknown[])[index];
+      return typeof rawPart !== 'object' || rawPart === null || Array.isArray(rawPart)
+        || Object.keys(rawPart).sort().join('|') !== 'changedCount|hintsUsed|isCorrect|maxScore|partId|rawAnswer|revealStepsSeen|score'
+        || part?.partId !== expected.partId
+        || part.rawAnswer !== expected.rawAnswer
+        || part.isCorrect !== expected.isCorrect
+        || part.score !== expected.score
+        || part.maxScore !== expected.maxScore;
+    })
+  ) return null;
+  const occurredAt = new Date(submission.submittedAt).toISOString();
+  return {
+    envelope,
+    masteryBearing: mode === 'independent_practice',
+    evidence: normalizeLearningEvidenceV1({
+      contractVersion: 'learning-evidence.v1',
+      nodeId: PRECALCULUS_PILOT_NODE_ID,
+      activityId: expectedActivityId,
+      attemptOrdinal: submission.attemptOrdinal!,
+      origin: 'mastery_advantage',
+      mode,
+      occurredAt,
+      ...(mode === 'independent_practice' ? {
+        gradedEvidence: {
+          isCorrect: grade.score === grade.maxScore,
+          score: grade.score,
+          maxScore: grade.maxScore,
+        },
+      } : {}),
+      idempotencyKey: `precalc:mastery-advantage:submission:${submission.submissionId}`,
+    }),
+  };
+}
+
+export function createSelectedSubmissionEvidenceHandler(deps: SelectedEvidenceDependencies) {
+  return async (input: { learnerId: string; submissionId: string }) => {
+    if (!await deps.authenticateLearner(input.learnerId)) {
+      throw new Error('Inactive student identity');
+    }
+    const receipt = await deps.findReceipt(input.learnerId, input.submissionId);
+    if (receipt) return { ...receipt, delivery: 'replay' as const };
+    const submission = await deps.loadSubmission(input.submissionId);
+    if (!submission) return { accepted: false as const, reason: 'submission_not_found' as const };
+    const stored = selectedStoredEvidence(submission, input.learnerId);
+    if (submission.submissionId !== input.submissionId || !stored || !await deps.sourceIsCurrent(submission)) {
+      return { accepted: false as const, reason: 'submission_not_found' as const };
+    }
+    const existing = await deps.findEvidence(input.learnerId, stored.evidence.idempotencyKey);
+    const history = await deps.listHistory(input.learnerId, PRECALCULUS_PILOT_NODE_ID);
+    if (existing) {
+      throw new Error('Learning evidence exists without its submission receipt');
+    }
+    const latest = history
+      .filter((item) => item.origin === 'mastery_advantage' && item.activityId === stored.evidence.activityId)
+      .reduce((value, item) => Math.max(value, item.attemptOrdinal), 0);
+    if (stored.evidence.attemptOrdinal <= latest) {
+      return {
+        accepted: false as const, reason: 'attempt_ordinal_conflict' as const,
+        latestAttemptOrdinal: latest, receivedAttemptOrdinal: stored.evidence.attemptOrdinal,
+      };
+    }
+    const evaluated = evaluateLearningEvidenceV1({
+      evidence: stored.evidence,
+      acceptedEvidence: history,
+      enabledNodeIds: PRECALCULUS_LEARNING_EVIDENCE_PILOT_NODE_IDS,
+    });
+    const decision = stored.masteryBearing
+      ? evaluated
+      : { ...evaluated, masteryBearing: false };
+    if (!['eligible', 'ungraded_evidence'].includes(decision.reason)) {
+      return { persisted: false, masteryApplied: false, kstApplied: false as const, decision, delivery: 'new' as const };
+    }
+    if (stored.masteryBearing) {
+      await deps.applySrs(input.learnerId, input.submissionId, stored.envelope);
+    }
+    await deps.appendEvidence(input.learnerId, input.submissionId, stored.evidence);
+    const nextReceipt: SelectedReceipt = {
+      persisted: true, masteryApplied: stored.masteryBearing, kstApplied: false, decision,
+    };
+    await deps.appendReceipt(input.learnerId, input.submissionId, nextReceipt);
+    return { ...nextReceipt, delivery: 'new' as const };
+  };
+}
+
+async function authenticateSelectedLearner(ctx: MutationCtx, learnerId: Id<'profiles'>) {
+  const profile = await ctx.db.get('profiles', learnerId);
+  const credential = profile
+    ? await ctx.db.query('auth_credentials').withIndex('by_username', (q) => q.eq('username', profile.username)).unique()
+    : null;
+  return Boolean(profile && profile.role === 'student' && credential?.isActive
+    && credential.profileId === profile._id && credential.username === profile.username
+    && credential.role === profile.role && credential.organizationId === profile.organizationId);
+}
+
+async function sourceIsCurrent(ctx: MutationCtx, submission: SelectedStoredSubmission) {
+  if (!isPrecalculusPilotPublished()) return false;
+  const activity = await ctx.db.get('activities', submission.activityId as Id<'activities'>);
+  const mode = submission.stableActivityId === PRECALCULUS_PILOT_ACTIVITY_ID
+    ? 'guided_practice' : 'independent_practice';
+  const seed = mode === 'guided_practice' ? 0 : 2;
+  const displayName = mode === 'guided_practice'
+    ? 'Mastery Advantage: Identify Graph Intervals'
+    : 'Independent Practice: Classify Graph Intervals';
+  const description = mode === 'guided_practice'
+    ? 'Classify the increasing, decreasing, and constant intervals from a graph.'
+    : 'Classify the increasing, decreasing, and constant intervals from a generated graph.';
+  const props = activity?.props as Record<string, unknown> | undefined;
+  const grading = activity?.gradingConfig as Record<string, unknown> | undefined;
+  return Boolean(activity && activity._id === submission.activityId
+    && activity.stableActivityId === submission.stableActivityId
+    && activity.componentKey === PRECALCULUS_PILOT_COMPONENT_KEY
+    && activity.displayName === displayName
+    && activity.description === description
+    && activity.approval?.status === 'approved'
+    && props && Object.keys(props).length === 2 && props.nodeId === PRECALCULUS_PILOT_NODE_ID && props.mode === mode
+    && grading && Object.keys(grading).length === 1 && grading.variantSeed === seed);
+}
+
+export async function submitSelectedEvidenceHandler(
+  ctx: MutationCtx,
+  args: { learnerId: Id<'profiles'>; submissionId: Id<'activity_submissions'> },
+) {
+  const now = Date.now();
+  const handler = createSelectedSubmissionEvidenceHandler({
+    authenticateLearner: (learnerId) => authenticateSelectedLearner(ctx, learnerId as Id<'profiles'>),
+    findReceipt: async (learnerId, submissionId) => {
+      const row = await ctx.db.query('learning_evidence_receipts')
+        .withIndex('by_learner_and_submission_id', (q) => q.eq('learnerId', learnerId as Id<'profiles'>).eq('submissionId', submissionId as Id<'activity_submissions'>)).unique();
+      return row ? { persisted: row.persisted, masteryApplied: row.masteryApplied, kstApplied: false, decision: row.decision } : null;
+    },
+    loadSubmission: async (submissionId) => {
+      const row = await ctx.db.get('activity_submissions', submissionId as Id<'activity_submissions'>);
+      return row ? { ...row, submissionId: String(row._id), userId: String(row.userId), activityId: String(row.activityId) } : null;
+    },
+    sourceIsCurrent: (submission) => sourceIsCurrent(ctx, submission),
+    findEvidence: async (learnerId, key) => {
+      const row = await ctx.db.query('learning_evidence').withIndex('by_learner_and_idempotency_key', (q) => q.eq('learnerId', learnerId as Id<'profiles'>).eq('idempotencyKey', key)).unique();
+      return row ? toContractEvidence(row) : null;
+    },
+    listHistory: async (learnerId, nodeId) => (await ctx.db.query('learning_evidence').withIndex('by_learner_and_node', (q) => q.eq('learnerId', learnerId as Id<'profiles'>).eq('nodeId', nodeId)).collect()).map(toContractEvidence),
+    appendEvidence: async (learnerId, submissionId, evidence) => {
+      const occurredAt = Date.parse(evidence.occurredAt);
+      await ctx.db.insert('learning_evidence', {
+        learnerId: learnerId as Id<'profiles'>, submissionId: submissionId as Id<'activity_submissions'>,
+        nodeId: evidence.nodeId, activityId: evidence.activityId, attemptOrdinal: evidence.attemptOrdinal,
+        origin: evidence.origin, mode: evidence.mode, occurredAt,
+        ...(evidence.gradedEvidence ? { gradedEvidence: evidence.gradedEvidence } : {}),
+        idempotencyKey: evidence.idempotencyKey, fingerprint: learningEvidenceFingerprintV1(evidence), createdAt: now,
+      });
+    },
+    applySrs: async (learnerId, submissionId, envelope) => {
+      const { cardStore, reviewLogStore } = createSrsStores(ctx);
+      const adapter = new SubmissionSrsAdapter({
+        cardStore, reviewLogStore,
+        resolver: { resolve: async () => ({ variantKey: envelope.activityId, objectiveId: PRECALCULUS_PILOT_NODE_ID }) },
+        baselineResolver: { getBaseline: async () => null }, requireAtomicPersistence: true,
+      });
+      const result = await adapter.processSubmission({ submission: envelope, studentId: learnerId, activityId: envelope.activityId, now: new Date(now).toISOString(), submissionId });
+      if (!result.ok) throw new Error('Precalculus SRS processing failed');
+    },
+    appendReceipt: async (learnerId, submissionId, receipt) => {
+      await ctx.db.insert('learning_evidence_receipts', { learnerId: learnerId as Id<'profiles'>, submissionId: submissionId as Id<'activity_submissions'>, ...receipt, createdAt: now });
+    },
+  });
+  return handler({ learnerId: String(args.learnerId), submissionId: String(args.submissionId) });
+}
+
+export const submitSelected = internalMutation({
+  args: { learnerId: v.id('profiles'), submissionId: v.id('activity_submissions') },
+  returns: submissionLearningEvidenceResultValidator,
+  handler: submitSelectedEvidenceHandler,
 });

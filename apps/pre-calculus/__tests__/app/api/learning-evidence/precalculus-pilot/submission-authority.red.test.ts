@@ -8,7 +8,7 @@ const SUBMISSION_ID = 'opaque-precalc-activity-submission-id';
 const SAFE_APPLIED_RESULT = {
   persisted: true,
   masteryApplied: true,
-  kstApplied: true,
+  kstApplied: false,
   delivery: 'new',
   decision: {
     idempotency: 'new',
@@ -24,7 +24,7 @@ type Route = {
 };
 
 type RouteFactory = (dependencies: {
-  getServerSession: () => Promise<{ user: { id: string } } | null>;
+  getServerSession: (_request: Request) => Promise<{ user: { id: string } } | null>;
   submitLearningEvidence: (input: {
     learnerId: string;
     submissionId: string;
@@ -57,7 +57,7 @@ async function createHarness() {
   const submitLearningEvidence = vi.fn(async (_input: {
     learnerId: string;
     submissionId: string;
-  }) => ({
+  }): Promise<unknown> => ({
     ...SAFE_APPLIED_RESULT,
     submission: { submissionData: { rawAnswer: 'must-not-leave-the-server' } },
   }));
@@ -104,5 +104,43 @@ describe('AP Precalculus public learning-evidence submission authority', () => {
       error: expect.stringContaining(field),
     }));
     expect(submitLearningEvidence).not.toHaveBeenCalled();
+  });
+
+  it.each([undefined, {}, { persisted: true }])(
+    'fails closed for malformed server result %#',
+    async (result) => {
+      const harness = await createHarness();
+      harness.submitLearningEvidence.mockResolvedValueOnce(result);
+      const response = await harness.route.POST(makeRequest({ submissionId: SUBMISSION_ID }));
+      expect(response.status).toBe(500);
+      await expect(response.json()).resolves.toEqual({ error: 'Unable to record learning evidence' });
+    },
+  );
+
+  it.each([
+    { reason: { private: 'details' } },
+    { reason: 'eligible' },
+    { idempotency: 'new', exposureState: 'introduced', eligible: true, reason: 'private', masteryBearing: true },
+  ])('rejects malformed decision %#', async (decision) => {
+    const harness = await createHarness();
+    harness.submitLearningEvidence.mockResolvedValueOnce({
+      persisted: true, masteryApplied: false, kstApplied: false, delivery: 'new', decision,
+    });
+    const response = await harness.route.POST(makeRequest({ submissionId: SUBMISSION_ID }));
+    expect(response.status).toBe(500);
+  });
+
+  it.each([
+    { idempotency: ['new'], exposureState: 'introduced', reason: 'eligible' },
+    { idempotency: 'new', exposureState: ['introduced'], reason: 'eligible' },
+    { idempotency: 'new', exposureState: 'introduced', reason: ['eligible'] },
+  ])('rejects coerced decision enum %#', async (fields) => {
+    const harness = await createHarness();
+    harness.submitLearningEvidence.mockResolvedValueOnce({
+      persisted: true, masteryApplied: true, kstApplied: false, delivery: 'new',
+      decision: { ...SAFE_APPLIED_RESULT.decision, ...fields },
+    });
+    const response = await harness.route.POST(makeRequest({ submissionId: SUBMISSION_ID }));
+    expect(response.status).toBe(500);
   });
 });

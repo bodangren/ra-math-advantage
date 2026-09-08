@@ -1,178 +1,46 @@
 import { describe, expect, it, vi } from 'vitest';
+import { createPrecalculusPilotRoute } from '@/app/api/learning-evidence/precalculus-pilot/route';
 
-import type { LearningEvidenceV1 } from '@math-platform/practice-core/learning-evidence';
-
-const ROUTE_MODULE = '../../../../../app/api/learning-evidence/precalculus-pilot/route';
-const SERVER_LEARNER_ID = 'session-learner-precalc';
-const CLIENT_LEARNER_ID = 'client-supplied-learner';
-const PILOT_NODE_ID = 'math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs';
-
-type ServerSession = {
-  user: {
-    id: string;
-  };
-};
-
-type SubmittedEvidence = {
-  learnerId: string;
-  evidence: LearningEvidenceV1;
-};
-
-type PrecalculusPilotRoute = {
-  POST(request: Request): Promise<Response>;
-};
-
-type PrecalculusPilotRouteFactory = (dependencies: {
-  getServerSession: () => Promise<ServerSession | null>;
-  submitLearningEvidence: (input: SubmittedEvidence) => Promise<unknown>;
-}) => PrecalculusPilotRoute;
-
-function makeEvidence(
-  overrides: Partial<LearningEvidenceV1> = {},
-): LearningEvidenceV1 {
-  return {
-    contractVersion: 'learning-evidence.v1',
-    nodeId: PILOT_NODE_ID,
-    activityId: `${PILOT_NODE_ID}.guided_practice`,
-    attemptOrdinal: 1,
-    origin: 'mastery_advantage',
-    mode: 'guided_practice',
-    occurredAt: '2026-08-19T10:00:00.000Z',
-    gradedEvidence: { isCorrect: true, score: 1, maxScore: 1 },
-    idempotencyKey: 'precalc-route-attempt-1',
-    ...overrides,
-  };
+const result = {
+  persisted: true, masteryApplied: true, kstApplied: false, delivery: 'new',
+  decision: { idempotency: 'new', exposureState: 'introduced', eligible: true, reason: 'eligible', masteryBearing: true },
+} as const;
+function request(body: unknown) {
+  return new Request('http://local/evidence', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) });
 }
-
-function makeRequest(body: Record<string, unknown>): Request {
-  return new Request('http://localhost/api/learning-evidence/precalculus-pilot', {
-    method: 'POST',
-    headers: { 'content-type': 'application/json' },
-    body: JSON.stringify(body),
+function harness() {
+  const submitLearningEvidence = vi.fn(async () => result);
+  const route = createPrecalculusPilotRoute({
+    getServerSession: async () => ({ user: { id: 'student', role: 'student' } }),
+    submitLearningEvidence,
   });
+  return { route, submitLearningEvidence };
 }
-
-async function loadPrecalculusPilotRouteFactory(): Promise<PrecalculusPilotRouteFactory> {
-  let loadedModule: Record<string, unknown>;
-
-  try {
-    loadedModule = await vi.importActual<Record<string, unknown>>(ROUTE_MODULE);
-  } catch (error) {
-    const detail = error instanceof Error ? ` ${error.message}` : '';
-    throw new Error(
-      'Missing AP Precalculus learning-evidence route boundary. '
-      + 'Add apps/pre-calculus/app/api/learning-evidence/precalculus-pilot/route.ts '
-      + `and export createPrecalculusPilotRoute(dependencies).${detail}`,
-    );
-  }
-
-  const factory = loadedModule.createPrecalculusPilotRoute;
-  if (typeof factory !== 'function') {
-    throw new Error(
-      'AP Precalculus learning-evidence route must export '
-      + 'createPrecalculusPilotRoute(dependencies).',
-    );
-  }
-
-  return factory as PrecalculusPilotRouteFactory;
-}
-
-async function createHarness() {
-  const getServerSession = vi.fn(async (): Promise<ServerSession> => ({
-    user: { id: SERVER_LEARNER_ID },
-  }));
-  const submitLearningEvidence = vi.fn(async (): Promise<unknown> => ({ accepted: true }));
-  const factory = await loadPrecalculusPilotRouteFactory();
-  const route = factory({ getServerSession, submitLearningEvidence });
-
-  return { getServerSession, route, submitLearningEvidence };
-}
-
 describe('AP Precalculus learning-evidence route', () => {
-  it('resolves the learner from the server session before it submits evidence', async () => {
-    const { getServerSession, route, submitLearningEvidence } = await createHarness();
-    const evidence = makeEvidence();
-
-    const response = await route.POST(makeRequest({ evidence }));
-
-    expect(response.ok).toBe(true);
-    expect(getServerSession).toHaveBeenCalledTimes(1);
-    expect(submitLearningEvidence).toHaveBeenCalledWith(expect.objectContaining({
-      learnerId: SERVER_LEARNER_ID,
-      evidence,
-    }));
+  it('submits only the authenticated learner and opaque submission ID', async () => {
+    const h = harness();
+    const response = await h.route.POST(request({ submissionId: 'activity_submissions:1' }));
+    expect(response.status).toBe(200);
+    expect(h.submitLearningEvidence).toHaveBeenCalledWith({ learnerId: 'student', submissionId: 'activity_submissions:1' });
   });
-
-  it('does not allow a client-supplied learner ID to select the learner', async () => {
-    const { getServerSession, route, submitLearningEvidence } = await createHarness();
-    const evidence = makeEvidence({ idempotencyKey: 'precalc-route-client-learner-id' });
-
-    const response = await route.POST(makeRequest({
-      learnerId: CLIENT_LEARNER_ID,
-      evidence,
-    }));
-
-    expect(getServerSession).toHaveBeenCalledTimes(1);
-
-    if (response.status >= 400 && response.status < 500) {
-      expect(submitLearningEvidence).not.toHaveBeenCalled();
-      return;
-    }
-
-    expect(response.ok).toBe(true);
-    expect(submitLearningEvidence).toHaveBeenCalledWith(expect.objectContaining({
-      learnerId: SERVER_LEARNER_ID,
-      evidence,
-    }));
-    expect(submitLearningEvidence).not.toHaveBeenCalledWith(expect.objectContaining({
-      learnerId: CLIENT_LEARNER_ID,
-    }));
-  });
-
-  it.each([
-    ['a non-positive attempt ordinal', { attemptOrdinal: 0 }],
-    ['an invalid graded score pair', { gradedEvidence: { score: 2, maxScore: 1 } }],
-  ])('returns 400 for %s', async (_label, evidenceOverrides) => {
-    const { route, submitLearningEvidence } = await createHarness();
-
-    const response = await route.POST(makeRequest({
-      evidence: makeEvidence(evidenceOverrides as Partial<LearningEvidenceV1>),
-    }));
-
+  it('rejects client evidence and learner identity', async () => {
+    const h = harness();
+    const response = await h.route.POST(request({ submissionId: 'activity_submissions:1', learnerId: 'other', evidence: {} }));
     expect(response.status).toBe(400);
-    await expect(response.json()).resolves.toEqual({ error: 'Invalid learning evidence' });
+    expect(h.submitLearningEvidence).not.toHaveBeenCalled();
+  });
+  it('rejects a teacher session', async () => {
+    const submitLearningEvidence = vi.fn();
+    const route = createPrecalculusPilotRoute({ getServerSession: async () => ({ user: { id: 'teacher', role: 'teacher' } }), submitLearningEvidence });
+    expect((await route.POST(request({ submissionId: 'activity_submissions:1' }))).status).toBe(403);
     expect(submitLearningEvidence).not.toHaveBeenCalled();
   });
-
-  it('returns only the decision projection and never raw answer data', async () => {
-    const { route, submitLearningEvidence } = await createHarness();
-    submitLearningEvidence.mockResolvedValueOnce({
-      persisted: true,
-      masteryApplied: true,
-      decision: {
-        idempotency: 'new',
-        exposureState: 'introduced',
-        eligible: true,
-        reason: 'eligible',
-        masteryBearing: true,
-      },
-      evidence: { rawAnswer: 'do-not-return' },
-    });
-
-    const response = await route.POST(makeRequest({ evidence: makeEvidence() }));
-    const body = await response.json();
-
-    expect(body).toEqual({
-      persisted: true,
-      masteryApplied: true,
-      decision: {
-        idempotency: 'new',
-        exposureState: 'introduced',
-        eligible: true,
-        reason: 'eligible',
-        masteryBearing: true,
-      },
-    });
-    expect(JSON.stringify(body)).not.toContain('do-not-return');
+  it('does not return private server fields', async () => {
+    const h = harness();
+    h.submitLearningEvidence.mockResolvedValueOnce(
+      { ...result, privateAnswer: 'hidden' } as unknown as typeof result,
+    );
+    const body = await (await h.route.POST(request({ submissionId: 'activity_submissions:1' }))).json();
+    expect(body).toEqual(result);
   });
 });
