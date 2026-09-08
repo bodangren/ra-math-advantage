@@ -45,3 +45,13 @@ The parent passes all 19 revised focused tests in an isolated candidate. The run
 A further direct route check finds incomplete decision validation. With valid outer receipt fields, `decision: { reason: "eligible" }` still returns HTTP 200. A decision whose `reason` is an object also returns HTTP 200 and forwards that value. Both requests must return a controlled server error. The two added tests fail with actual status 200 instead of expected 500. Log: `/tmp/precalc-q18-evidence-v2-receipt-parent-red.log`.
 
 Require all five decision fields with their exact contract types and enum values. Keep the real writer-to-handler tests and actual transactional verification limits open. Do not accept a partial decision as successful delivery.
+
+## Parent revision 4 verification
+
+The new composition tests call the real physical writer and selected evidence handler. They use the evidence, receipt, and SRS store adapters. This improves test scope. It does not prove Convex rollback or concurrency.
+
+The route still coerces three decision enum fields with `String(...)`. An array containing a valid enum value can pass that check. Require the original value to be a string. Add direct rejection tests for each enum field.
+
+The parent also ran the complete route test directory. Two committed older test files still expect browser-supplied evidence and old authentication mocks. Update these tests for the opaque submission ID contract while preserving authentication coverage.
+
+The parent composition run reached a shared serializer resolution failure. Check isolated shared-package resolution before using this run as application evidence. No integration is accepted from this run.
