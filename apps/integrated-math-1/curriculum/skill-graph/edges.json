@@ -6,8 +6,8 @@
     "pilotEdgesPreserved": 0,
     "standardEdgesMerged": 941,
     "suggestedEdges": 1277,
-    "totalEdges": 2448,
-    "totalNodes": 939,
+    "totalEdges": 2452,
+    "totalNodes": 941,
     "normalizedWeights": 539
   },
   "nodes": [
@@ -6140,28 +6140,30 @@
     {
       "id": "math.im1.example.7.3.010",
       "kind": "worked_example",
-      "title": "Example 1: Solve by Elimination (Addition); Word Problems with Elimination",
+      "title": "Examples 1 and 3: Solve systems by direct elimination",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-7-class-period-plan.md (7-3, Example 1)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0703_practice.docx (Examples 1, 3, Problems 1-27)",
+        "apps/integrated-math-1/curriculum/modules/module-7-lesson-3 (Examples 1, 3, Problems 1-27)"
       ],
       "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "7",
         "lesson": "3",
-        "exampleNumber": 1,
         "sourceLesson": "7-3",
-        "rawText": "7-3, Examples 1-2 \u2014 Solve by Elimination (Addition); Word Problems with Elimination"
+        "rawText": "Examples 1, 3 (Problems 1-27) \u2014 Solve systems by direct elimination",
+        "historicalExampleNumber": 1
       }
     },
     {
       "id": "math.im1.example.7.3.011",
       "kind": "worked_example",
-      "title": "Example 2: Solve by Elimination (Addition); Word Problems with Elimination",
+      "title": "Example 2: Model number relationships with a system and solve by elimination",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-7-class-period-plan.md (7-3, Example 2)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0703_practice.docx (Example 2, Problems 28-30)",
+        "apps/integrated-math-1/curriculum/modules/module-7-lesson-3 (Example 2, Problems 28-30)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -6170,34 +6172,34 @@
         "lesson": "3",
         "exampleNumber": 2,
         "sourceLesson": "7-3",
-        "rawText": "7-3, Examples 1-2 \u2014 Solve by Elimination (Addition); Word Problems with Elimination"
+        "rawText": "Example 2 (Problems 28-30) \u2014 Model number relationships with a system and solve by elimination"
       }
     },
     {
       "id": "math.im1.example.7.3.012",
       "kind": "worked_example",
-      "title": "Example 3: Solve by Elimination (Subtraction); Real-World Applications",
+      "title": "Historical duplicate of Examples 1 and 3",
       "domain": "math.im1",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-7-class-period-plan.md (7-3, Example 3)"
-      ],
-      "reviewStatus": "draft",
+      "sourceRefs": [],
+      "reviewStatus": "rejected",
       "metadata": {
         "course": "im1",
         "module": "7",
         "lesson": "3",
-        "exampleNumber": 3,
         "sourceLesson": "7-3",
-        "rawText": "7-3, Examples 3-4 \u2014 Solve by Elimination (Subtraction); Real-World Applications"
-      }
+        "rawText": "Historical duplicate of math.im1.example.7.3.010; no distinct source group.",
+        "historicalExampleNumber": 3
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.7.3.013",
       "kind": "worked_example",
-      "title": "Example 4: Solve by Elimination (Subtraction); Real-World Applications",
+      "title": "Example 4: Model and solve contextual systems by elimination",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-7-class-period-plan.md (7-3, Example 4)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0703_practice.docx (Example 4, Problems 31-32)",
+        "apps/integrated-math-1/curriculum/modules/module-7-lesson-3 (Example 4, Problems 31-32)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -6206,7 +6208,7 @@
         "lesson": "3",
         "exampleNumber": 4,
         "sourceLesson": "7-3",
-        "rawText": "7-3, Examples 3-4 \u2014 Solve by Elimination (Subtraction); Real-World Applications"
+        "rawText": "Example 4 (Problems 31-32) \u2014 Model and solve contextual systems by elimination"
       }
     },
     {
@@ -10955,7 +10957,8 @@
         "course": "im1",
         "module": "7",
         "lesson": "3"
-      }
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.skill.7.4.solve-systems-of-linear-equations-using-elimination-when-mul",
@@ -16490,6 +16493,42 @@
         "course": "im1",
         "module": "7",
         "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.7.3.choose-addition-or-subtraction-for-direct-elimination",
+      "kind": "skill",
+      "title": "Choose addition or subtraction to eliminate a variable from an aligned linear system",
+      "domain": "math.im1",
+      "description": "Choose addition when coefficients are opposites or subtraction when coefficients are equal so that one variable is eliminated.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0703_practice.docx (Examples 1, 3, Problems 1-27; Mixed Exercises, Problems 43, 46, and 49)",
+        "apps/integrated-math-1/curriculum/modules/module-7-lesson-3"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.7.3.solve-one-solution-systems-by-direct-elimination",
+      "kind": "skill",
+      "title": "Solve a one-solution linear system by direct elimination and show the equation-combination step",
+      "domain": "math.im1",
+      "description": "Add or subtract aligned equations to eliminate one variable, solve the resulting equation, and substitute to find the second coordinate.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0703_practice.docx (Examples 1, 3, Problems 1-27; Mixed Exercises, Problems 33-38)",
+        "apps/integrated-math-1/curriculum/modules/module-7-lesson-3"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "3"
       }
     }
   ],
@@ -44498,22 +44537,6 @@
       }
     },
     {
-      "id": "math.im1.edge.0346",
-      "type": "appears_in_context",
-      "sourceId": "math.im1.example.7.3.012",
-      "targetId": "math.im1.lesson.7.3",
-      "weight": 0.75,
-      "confidence": "medium",
-      "reviewStatus": "draft",
-      "derived": true,
-      "derivationMethod": "lesson-sequence-placement-v1",
-      "rationale": "Worked example appears in lesson context",
-      "metadata": {
-        "module": "7",
-        "lesson": "3"
-      }
-    },
-    {
       "id": "math.im1.edge.0347",
       "type": "appears_in_context",
       "sourceId": "math.im1.example.7.3.013",
@@ -55058,22 +55081,6 @@
       }
     },
     {
-      "id": "math.im1.edge.1011",
-      "type": "contains",
-      "sourceId": "math.im1.lesson.7.3",
-      "targetId": "math.im1.example.7.3.012",
-      "weight": 1,
-      "confidence": "high",
-      "reviewStatus": "draft",
-      "derived": true,
-      "derivationMethod": "lesson-sequence-containment-v1",
-      "rationale": "Lesson contains worked example",
-      "metadata": {
-        "module": "7",
-        "lesson": "3"
-      }
-    },
-    {
       "id": "math.im1.edge.1012",
       "type": "contains",
       "sourceId": "math.im1.lesson.7.3",
@@ -58802,22 +58809,6 @@
       "metadata": {
         "fromLesson": "6.3",
         "toLesson": "6.4"
-      }
-    },
-    {
-      "id": "math.im1.edge.1262",
-      "type": "prerequisite_for",
-      "sourceId": "math.im1.skill.7.3.solve-systems-of-linear-equations-using-elimination-by-addit",
-      "targetId": "math.im1.skill.7.4.solve-systems-of-linear-equations-using-elimination-when-mul",
-      "weight": 0.5,
-      "confidence": "low",
-      "reviewStatus": "draft",
-      "derived": true,
-      "derivationMethod": "lesson-sequence-prerequisite-v1",
-      "rationale": "Lesson-sequence prerequisite: lesson 3 precedes lesson 4 in module 7",
-      "metadata": {
-        "fromLesson": "7.3",
-        "toLesson": "7.4"
       }
     },
     {
@@ -63066,6 +63057,104 @@
       "metadata": {
         "module": "7",
         "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.edge.lesson-7-3-choose-addition-or-subtraction-for-direct-elimination",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.7.3",
+      "targetId": "math.im1.skill.7.3.choose-addition-or-subtraction-for-direct-elimination",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Lesson 7-3 directly assesses this operation.",
+      "metadata": {
+        "module": "7",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.edge.lesson-7-3-solve-one-solution-systems-by-direct-elimination",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.7.3",
+      "targetId": "math.im1.skill.7.3.solve-one-solution-systems-by-direct-elimination",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Lesson 7-3 directly assesses this operation.",
+      "metadata": {
+        "module": "7",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.edge.lesson-7-3-reuse-write-a-two-equation-system-from-a-context",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.7.3",
+      "targetId": "math.im1.skill.7.1.write-a-two-equation-system-from-a-context",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Lesson 7-3 directly reuses this operation.",
+      "metadata": {
+        "module": "7",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.edge.lesson-7-3-reuse-solve-and-interpret-a-contextual-system",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.7.3",
+      "targetId": "math.im1.skill.7.1.solve-and-interpret-a-contextual-system",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Lesson 7-3 directly reuses this operation.",
+      "metadata": {
+        "module": "7",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.edge.lesson-7-3-reuse-determine-a-system-solution-from-a-graph",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.7.3",
+      "targetId": "math.im1.skill.7.1.determine-a-system-solution-from-a-graph",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Lesson 7-3 directly reuses this operation.",
+      "metadata": {
+        "module": "7",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.edge.lesson-7-3-reuse-classify-a-linear-system-by-its-solution-set",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.7.3",
+      "targetId": "math.im1.skill.7.1.classify-a-linear-system-by-its-solution-set",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Lesson 7-3 directly reuses this operation.",
+      "metadata": {
+        "module": "7",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.edge.lesson-7-3-reuse-construct-systems-with-a-specified-number-of-solutions",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.7.3",
+      "targetId": "math.im1.skill.7.1.construct-systems-with-a-specified-number-of-solutions",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Lesson 7-3 directly reuses this operation.",
+      "metadata": {
+        "module": "7",
+        "lesson": "3"
       }
     }
   ]

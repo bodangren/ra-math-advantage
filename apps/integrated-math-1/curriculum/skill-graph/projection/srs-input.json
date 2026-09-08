@@ -1670,7 +1670,7 @@
       ],
       "prerequisites": [],
       "difficulty": 0.5,
-      "rendererKey": "graphing-explorer",
+      "rendererKey": null,
       "generatorKey": null,
       "generatorReady": false
     },
@@ -1680,9 +1680,7 @@
       "standards": [
         "math.standard.ccss.a-rei-c-5"
       ],
-      "prerequisites": [
-        "math.im1.skill.7.3.solve-systems-of-linear-equations-using-elimination-by-addit"
-      ],
+      "prerequisites": [],
       "difficulty": 0.5,
       "rendererKey": "graphing-explorer",
       "generatorKey": null,
@@ -2204,6 +2202,26 @@
       "generatorKey": null,
       "generatorReady": false,
       "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.3.choose-addition-or-subtraction-for-direct-elimination",
+      "blueprintId": "math.im1.skill.7.3.choose-addition-or-subtraction-for-direct-elimination",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": null,
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.7.3.solve-one-solution-systems-by-direct-elimination",
+      "blueprintId": "math.im1.skill.7.3.solve-one-solution-systems-by-direct-elimination",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": null,
+      "generatorKey": null,
+      "generatorReady": false
     }
   ]
 }

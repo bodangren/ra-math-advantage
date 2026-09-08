@@ -7828,76 +7828,6 @@
       "srsEligible": false
     },
     {
-      "stableActivityId": "math.im1.skill.7.3.solve-systems-of-linear-equations-using-elimination-by-addit.worked_example",
-      "nodeId": "math.im1.skill.7.3.solve-systems-of-linear-equations-using-elimination-by-addit",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-rei-c-6"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.7.3.solve-systems-of-linear-equations-using-elimination-by-addit",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.7.3.solve-systems-of-linear-equations-using-elimination-by-addit.guided_practice",
-      "nodeId": "math.im1.skill.7.3.solve-systems-of-linear-equations-using-elimination-by-addit",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-rei-c-6"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 7e: Solve systems of linear equations using elimination by addition or subtraction and recognize when adding or subtracting equations will eliminate a variable",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.7.3.solve-systems-of-linear-equations-using-elimination-by-addit.independent_practice",
-      "nodeId": "math.im1.skill.7.3.solve-systems-of-linear-equations-using-elimination-by-addit",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-rei-c-6"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
       "stableActivityId": "math.im1.skill.7.4.solve-systems-of-linear-equations-using-elimination-when-mul.worked_example",
       "nodeId": "math.im1.skill.7.4.solve-systems-of-linear-equations-using-elimination-when-mul",
       "sourceNodeIds": [],
@@ -11377,7 +11307,7 @@
       ],
       "prerequisites": [],
       "difficulty": 0.5,
-      "rendererKey": "graphing-explorer",
+      "rendererKey": null,
       "generatorKey": null,
       "generatorReady": false
     },
@@ -11387,9 +11317,7 @@
       "standards": [
         "math.standard.ccss.a-rei-c-5"
       ],
-      "prerequisites": [
-        "math.im1.skill.7.3.solve-systems-of-linear-equations-using-elimination-by-addit"
-      ],
+      "prerequisites": [],
       "difficulty": 0.5,
       "rendererKey": "graphing-explorer",
       "generatorKey": null,
@@ -11911,6 +11839,26 @@
       "generatorKey": null,
       "generatorReady": false,
       "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.3.choose-addition-or-subtraction-for-direct-elimination",
+      "blueprintId": "math.im1.skill.7.3.choose-addition-or-subtraction-for-direct-elimination",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": null,
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.7.3.solve-one-solution-systems-by-direct-elimination",
+      "blueprintId": "math.im1.skill.7.3.solve-one-solution-systems-by-direct-elimination",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": null,
+      "generatorKey": null,
+      "generatorReady": false
     }
   ],
   "teacherEvidence": {
@@ -13313,12 +13261,11 @@
           "math.im1.example.7.2.009",
           "math.im1.example.7.3.010",
           "math.im1.example.7.3.011",
-          "math.im1.example.7.3.012",
           "math.im1.example.7.3.013",
           "math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met",
           "math.im1.skill.7.3.solve-systems-of-linear-equations-using-elimination-by-addit"
         ],
-        "workedExampleCount": 6,
+        "workedExampleCount": 5,
         "guidedPracticeCount": 2,
         "independentPracticeCount": 0
       },
@@ -15274,6 +15221,24 @@
       {
         "nodeId": "math.im1.skill.7.2.generalize-a-complementary-angle-sum-and-difference-system",
         "title": "Generalize a complementary-angle sum-and-difference system",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.7.3.choose-addition-or-subtraction-for-direct-elimination",
+        "title": "Choose addition or subtraction to eliminate a variable from an aligned linear system",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.7.3.solve-one-solution-systems-by-direct-elimination",
+        "title": "Solve a one-solution linear system by direct elimination and show the equation-combination step",
         "kind": "skill",
         "standardsCovered": [],
         "prerequisitesMet": true,

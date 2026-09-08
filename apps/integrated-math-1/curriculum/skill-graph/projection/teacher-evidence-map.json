@@ -1398,12 +1398,11 @@
         "math.im1.example.7.2.009",
         "math.im1.example.7.3.010",
         "math.im1.example.7.3.011",
-        "math.im1.example.7.3.012",
         "math.im1.example.7.3.013",
         "math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met",
         "math.im1.skill.7.3.solve-systems-of-linear-equations-using-elimination-by-addit"
       ],
-      "workedExampleCount": 6,
+      "workedExampleCount": 5,
       "guidedPracticeCount": 2,
       "independentPracticeCount": 0
     },
@@ -3359,6 +3358,24 @@
     {
       "nodeId": "math.im1.skill.7.2.generalize-a-complementary-angle-sum-and-difference-system",
       "title": "Generalize a complementary-angle sum-and-difference system",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.3.choose-addition-or-subtraction-for-direct-elimination",
+      "title": "Choose addition or subtraction to eliminate a variable from an aligned linear system",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.3.solve-one-solution-systems-by-direct-elimination",
+      "title": "Solve a one-solution linear system by direct elimination and show the equation-combination step",
       "kind": "skill",
       "standardsCovered": [],
       "prerequisitesMet": true,

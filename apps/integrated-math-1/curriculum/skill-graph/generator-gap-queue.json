@@ -3023,10 +3023,28 @@
       "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
       "gap": "No generator available for IM1",
       "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.7.3.choose-addition-or-subtraction-for-direct-elimination",
+      "title": "Choose addition or subtraction to eliminate a variable from an aligned linear system",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.7.3.solve-one-solution-systems-by-direct-elimination",
+      "title": "Solve a one-solution linear system by direct elimination and show the equation-combination step",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
     }
   ],
   "meta": {
-    "totalSkills": 336,
+    "totalSkills": 338,
     "allNeedGenerators": true
   }
 }

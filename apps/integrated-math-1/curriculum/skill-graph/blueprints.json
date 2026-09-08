@@ -3732,24 +3732,13 @@
     },
     {
       "nodeId": "math.im1.skill.7.3.solve-systems-of-linear-equations-using-elimination-by-addit",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im1.example.7.3.010",
+        "math.im1.example.7.3.011",
+        "math.im1.example.7.3.013"
+      ],
       "alignmentNodeIds": [
         "math.standard.ccss.a-rei-c-6"
-      ],
-      "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
-      "exceptions": [
-        {
-          "type": "generator",
-          "reason": "Generator not yet implemented for IM1 rollout"
-        }
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7152,6 +7141,32 @@
         "course": "im1",
         "module": "7",
         "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.7.3.choose-addition-or-subtraction-for-direct-elimination",
+      "sourceNodeIds": [
+        "math.im1.example.7.3.010"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.7.3.solve-one-solution-systems-by-direct-elimination",
+      "sourceNodeIds": [
+        "math.im1.example.7.3.010"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "3"
       }
     }
   ]

@@ -1,10 +1,10 @@
 {
   "version": 1,
   "course": "im1",
-  "totalSkills": 342,
+  "totalSkills": 344,
   "counts": {
     "served": 6,
-    "gap": 336,
+    "gap": 338,
     "newComponent": 0
   },
   "byModule": [
@@ -52,9 +52,9 @@
     },
     {
       "module": "7",
-      "totalSkills": 24,
+      "totalSkills": 26,
       "served": 0,
-      "gap": 24,
+      "gap": 26,
       "newComponent": 0
     },
     {
@@ -2070,6 +2070,22 @@
     },
     {
       "skillId": "math.im1.skill.7.2.substitute-an-isolated-expression-to-solve-a-one-solution-li",
+      "module": "7",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.7.3.choose-addition-or-subtraction-for-direct-elimination",
+      "module": "7",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.7.3.solve-one-solution-systems-by-direct-elimination",
       "module": "7",
       "status": "gap",
       "tier": "none",
