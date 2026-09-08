@@ -594,7 +594,7 @@ G54 source is committed as `84bfbef58`. Final review accepted the corrected brac
 
 IM3-P1 eligibility is committed as `9d1afd4de`. Six stored booleans now match the approval gate. All 54 legacy pilot tests pass. Independent review and 26 shared projection tests pass. Parent lint, build, and post-build TypeScript pass. The nine unrelated curriculum baseline failures remain open. See `im3-pilot-eligibility-final-review.md`.
 
-- [~] Task G54 graph: Implement the corrected Lesson 10-3 inventory after source commit. Preserve existing source IDs and the shared Examples 1-2 group. Add the reviewed Example 5 identity and five draft inactive capabilities. Use exact approved and draft capability reuse only at the accepted response stages. Remove unsupported edge 1193. Leave edge 1194 unresolved for Lesson 10-4 review. Review standard links before changes. Preserve unrelated graph state and add no executable practice or approval claim.
+- [x] Task G54 graph: Implement the corrected Lesson 10-3 inventory after source commit. Preserve existing source IDs and the shared Examples 1-2 group. Add the reviewed Example 5 identity and five draft inactive capabilities. Use exact approved and draft capability reuse only at the accepted response stages. Remove unsupported edge 1193. Leave edge 1194 unresolved for Lesson 10-4 review. Review standard links before changes. Preserve unrelated graph state and add no executable practice or approval claim.
 
 G54 standards review confirms twelve unsupported transformation or coordinate-proof alignments across four Example nodes and both existing skills. Remove these edges and clear two blueprint alignment arrays. Preserve identities and unrelated fields. See `im1-lesson103-standards-alignment-review.md`.
 
@@ -619,3 +619,5 @@ Lesson 1.6 runtime review is complete. The current solver submits step-index ans
 - [~] Task IM3-QF response contract: Find and reuse existing expression parsing, root equivalence, protected attempt, grading, and receipt contracts. Define one public answer contract for all supported quadratic root regimes. Preserve unordered root equivalence and strict invalid-input rejection. Do not add a separate permanent pilot or new registry.
 
 - [~] Task G55 inventory: Review IM1 Lesson 10-4 from its committed worksheet. Inventory all prompts and native figures. Identify exact assessable responses, stable source identities, and supported prerequisite dispositions, including unresolved edge 1194. Propose bounded source and graph corrections before implementation.
+
+G54 graph is committed as `2d8bf1df6`. Parent and final independent review passed. All 16 staged paths matched the accepted candidate. Parent tests passed 71 files and 415 cases, followed by lint, build, and post-build TypeScript. The missing Example 5 link was corrected before acceptance. Lesson 10-3 source and graph repairs are complete. Executable practice remains separate work. See `im1-lesson103-graph-final-review.md`.
