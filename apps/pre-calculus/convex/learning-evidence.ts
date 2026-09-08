@@ -9,6 +9,8 @@ import {
 import { toConvexActivityId } from '@math-platform/practice-core/contract';
 import {
   isPrecalculusPilotPublished,
+  hasCurrentTopic11Source,
+  isTopic11WorkedSourcePublished,
   PRECALCULUS_PILOT_ACTIVITY_ID,
   PRECALCULUS_PILOT_COMPONENT_KEY,
   PRECALCULUS_PILOT_INDEPENDENT_ACTIVITY_ID,
@@ -30,6 +32,8 @@ import {
   createPrecalculusLearningEvidenceRuntime,
   PRECALCULUS_LEARNING_EVIDENCE_PILOT_NODE_IDS,
   PRECALCULUS_PILOT_NODE_ID,
+  PRECALCULUS_TOPIC_11_SOURCE_ACTIVITY_ID,
+  PRECALCULUS_TOPIC_11_SOURCE_COMPONENT_KEY,
   type PrecalculusLearningEvidenceProcessResult,
   type PrecalculusLearningEvidenceStore,
 } from '../lib/learning-evidence/precalc-pilot';
@@ -99,6 +103,14 @@ const submissionLearningEvidenceResultValidator = v.union(
     latestAttemptOrdinal: v.number(), receivedAttemptOrdinal: v.number(),
   }),
 );
+
+const topic11TeacherResultValidator = v.object({
+  persisted: v.boolean(),
+  masteryApplied: v.literal(false),
+  decision: learningEvidenceDecisionValidator,
+  kstApplied: v.literal(false),
+  delivery: v.union(v.literal('new'), v.literal('replay')),
+});
 
 export interface PrecalculusLearningEvidenceHandlerDependencies {
   store: PrecalculusLearningEvidenceStore;
@@ -760,4 +772,137 @@ export const submitSelected = internalMutation({
   args: { learnerId: v.id('profiles'), submissionId: v.id('activity_submissions') },
   returns: submissionLearningEvidenceResultValidator,
   handler: submitSelectedEvidenceHandler,
+});
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
+function isExactTopic11Acknowledgement(
+  submission: Record<string, unknown>,
+  activity: Record<string, unknown>,
+): boolean {
+  const data = submission.submissionData;
+  return submission.stableActivityId === PRECALCULUS_TOPIC_11_SOURCE_ACTIVITY_ID
+    && submission.masteryContractVersion === 'learning-evidence.v1'
+    && Number.isInteger(submission.attemptOrdinal)
+    && (submission.attemptOrdinal as number) > 0
+    && typeof submission.submittedAt === 'number'
+    && Number.isFinite(submission.submittedAt)
+    && submission.score === undefined
+    && submission.maxScore === undefined
+    && submission.feedback === undefined
+    && submission.gradedAt === undefined
+    && activity.stableActivityId === PRECALCULUS_TOPIC_11_SOURCE_ACTIVITY_ID
+    && activity.componentKey === PRECALCULUS_TOPIC_11_SOURCE_COMPONENT_KEY
+    && activity.displayName === 'Topic 1.1: Identify Graph Intervals with Your Teacher'
+    && activity.description === 'Worked-example source activity for classifying increasing, decreasing, and constant intervals.'
+    && isRecord(activity.props)
+    && Object.keys(activity.props).sort().join('|') === 'mode|nodeId|source'
+    && activity.props.nodeId === PRECALCULUS_PILOT_NODE_ID
+    && activity.props.mode === 'worked_example'
+    && activity.props.source === 'teacher_led'
+    && isRecord(activity.gradingConfig)
+    && Object.keys(activity.gradingConfig).join('|') === 'variantSeed'
+    && activity.gradingConfig.variantSeed === 0
+    && activity.approval !== undefined
+    && isRecord(activity.approval)
+    && activity.approval.status === 'approved'
+    && isRecord(data)
+    && Object.keys(data).sort().join('|') === 'activityId|answers|contractVersion|mode|parts|status'
+    && data.contractVersion === 'practice.v1'
+    && data.activityId === PRECALCULUS_TOPIC_11_SOURCE_ACTIVITY_ID
+    && data.mode === 'worked_example'
+    && data.status === 'submitted'
+    && isRecord(data.answers)
+    && Object.keys(data.answers).length === 0
+    && Array.isArray(data.parts)
+    && data.parts.length === 0;
+}
+
+/** Confirms a verified learner acknowledgement as teacher-led exposure. */
+export const submitTopic11TeacherSubmission = internalMutation({
+  args: {
+    teacherId: v.id('profiles'),
+    learnerId: v.id('profiles'),
+    classId: v.id('classes'),
+    submissionId: v.id('activity_submissions'),
+  },
+  returns: topic11TeacherResultValidator,
+  handler: async (ctx, args) => {
+    const [teacher, learner, classroom, enrollment, submission] = await Promise.all([
+      ctx.db.get('profiles', args.teacherId),
+      ctx.db.get('profiles', args.learnerId),
+      ctx.db.get('classes', args.classId),
+      ctx.db.query('class_enrollments').withIndex('by_class_and_student', (query) => (
+        query.eq('classId', args.classId).eq('studentId', args.learnerId)
+      )).unique(),
+      ctx.db.get('activity_submissions', args.submissionId),
+    ]);
+    const [teacherCredential, learnerCredential] = await Promise.all([
+      teacher ? ctx.db.query('auth_credentials').withIndex('by_username', (query) => query.eq('username', teacher.username)).unique() : null,
+      learner ? ctx.db.query('auth_credentials').withIndex('by_username', (query) => query.eq('username', learner.username)).unique() : null,
+    ]);
+    const validCredential = (profile: typeof teacher, credential: typeof teacherCredential) => (
+      profile && credential && credential.isActive && credential.profileId === profile._id
+      && credential.username === profile.username && credential.role === profile.role
+      && credential.organizationId === profile.organizationId
+    );
+    if (!teacher || teacher.role !== 'teacher' || !validCredential(teacher, teacherCredential)
+      || !learner || learner.role !== 'student' || !validCredential(learner, learnerCredential)
+      || teacher.organizationId !== learner.organizationId
+      || !classroom || classroom.teacherId !== args.teacherId || classroom.archived
+      || enrollment?.status !== 'active' || !submission || submission.userId !== args.learnerId) {
+      throw new Error('unauthorized_exposure');
+    }
+    const activity = await ctx.db.get('activities', submission.activityId);
+    const now = Date.now();
+    if (!activity || !isExactTopic11Acknowledgement(submission, activity)
+      || submission.submittedAt > now
+      || !Number.isFinite(activity.createdAt) || activity.createdAt > submission.submittedAt
+      || !isRecord(activity.approval) || !Number.isFinite(activity.approval.reviewedAt)
+      || (activity.approval.reviewedAt as number) > submission.submittedAt) {
+      throw new Error('invalid_source_submission');
+    }
+    const lesson = await ctx.db.query('lessons')
+      .withIndex('by_unit_and_order', (query) => query.eq('unitNumber', 1).eq('orderIndex', 1)).unique();
+    const assignment = lesson ? await ctx.db.query('class_lessons')
+      .withIndex('by_class_and_lesson', (query) => query.eq('classId', args.classId).eq('lessonId', lesson._id)).unique() : null;
+    if (!lesson || !assignment || enrollment.enrolledAt > submission.submittedAt
+      || assignment.assignedAt > submission.submittedAt) {
+      throw new Error('invalid_source_assignment');
+    }
+    const attemptOrdinal = submission.attemptOrdinal;
+    if (attemptOrdinal === undefined) throw new Error('invalid_source_submission');
+    const evidence = normalizeLearningEvidenceV1({
+      contractVersion: 'learning-evidence.v1',
+      nodeId: PRECALCULUS_PILOT_NODE_ID,
+      activityId: PRECALCULUS_TOPIC_11_SOURCE_ACTIVITY_ID,
+      attemptOrdinal,
+      origin: 'teacher_led',
+      mode: 'teaching',
+      occurredAt: new Date(submission.submittedAt).toISOString(),
+      idempotencyKey: `precalc:teacher-led:submission:${String(args.submissionId)}`,
+    });
+    const runtime = createPrecalculusLearningEvidenceRuntime({
+      store: createEvidenceStore(ctx),
+      masteryBridge: async () => undefined,
+    });
+    const prior = await ctx.db.query('learning_evidence')
+      .withIndex('by_learner_and_idempotency_key', (query) => (
+        query.eq('learnerId', args.learnerId).eq('idempotencyKey', evidence.idempotencyKey)
+      )).unique();
+    if (!prior && (!isTopic11WorkedSourcePublished()
+      || !await hasCurrentTopic11Source(ctx, lesson._id, activity._id, submission.submittedAt))) {
+      throw new Error('invalid_source_assignment');
+    }
+    const result = await runtime.process({ learnerId: String(args.learnerId), evidence });
+    if (result.decision.idempotency === 'conflict') throw new Error('idempotency_conflict');
+    return {
+      ...result,
+      masteryApplied: false as const,
+      kstApplied: false as const,
+      delivery: result.decision.idempotency === 'replay' ? 'replay' as const : 'new' as const,
+    };
+  },
 });

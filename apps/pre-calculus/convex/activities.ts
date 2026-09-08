@@ -1,8 +1,13 @@
-import { internalMutation, internalQuery } from "./_generated/server";
+import { internalMutation, internalQuery, type MutationCtx } from "./_generated/server";
+import type { Id } from "./_generated/dataModel";
 import { v } from "convex/values";
 import nodesDocument from "../curriculum/skill-graph/nodes.json";
 import blueprintsDocument from "../curriculum/skill-graph/blueprints.json";
-import { PRECALCULUS_PILOT_NODE_ID } from "../lib/learning-evidence/precalc-pilot";
+import {
+  PRECALCULUS_PILOT_NODE_ID,
+  PRECALCULUS_TOPIC_11_SOURCE_ACTIVITY_ID,
+  PRECALCULUS_TOPIC_11_SOURCE_COMPONENT_KEY,
+} from "../lib/learning-evidence/precalc-pilot";
 import { gradeTopic11IntervalGraph } from "../lib/practice/topic11-interval-graph";
 import { PracticeSubmissionEnvelopeSchema } from "@math-platform/practice-core";
 import { generateTopic11IntervalGraphOutput } from "@math-platform/math-content/knowledge-space";
@@ -19,6 +24,7 @@ type Publication = {
     reviewStatus?: string;
     rendererKey?: string;
     rendererModeMap?: Record<string, unknown>;
+    workedExampleSpec?: unknown;
     guidedPracticeSpec?: unknown;
     independentPracticeSpec?: unknown;
     generatorKey?: string;
@@ -81,6 +87,39 @@ const SELECTED_ENVELOPE_KEYS = new Set([
 ]);
 const SELECTED_STORED_PART_KEYS =
   "changedCount|hintsUsed|isCorrect|maxScore|partId|rawAnswer|revealStepsSeen|score";
+const TOPIC_11_WORKED_SPEC = {
+  prompt: "The graph of f is shown on 0 <= x <= 9. Find all intervals where f is increasing, decreasing, and constant.",
+  givens: ["Domain: 0 <= x <= 9", "Change points: x=3 and x=7"],
+  target: {
+    increasingIntervals: "[0,3] and [7,9].",
+    decreasingIntervals: "[3,7].",
+    constantIntervals: "none.",
+  },
+  steps: [
+    { description: "Read the graph from left to right.", expression: "x = 0 to x = 9" },
+    { description: "The graph rises from x=0 to x=3.", expression: "0 < x < 3" },
+    { description: "The graph falls from x=3 to x=7.", expression: "3 < x < 7" },
+    { description: "The graph rises from x=7 to x=9.", expression: "7 < x < 9" },
+    { description: "State all interval classifications.", expression: "Increasing: [0,3] and [7,9]; decreasing: [3,7]; constant: none." },
+  ],
+  explanation: "Read the graph from left to right. It rises on [0,3] and [7,9]. It falls on [3,7]. It has no constant interval.",
+  rendererProps: {
+    title: "Worked Example: Classify Graph Intervals",
+    prompt: "The graph of f is shown on 0 <= x <= 9. Find all intervals where f is increasing, decreasing, and constant.",
+    domain: [0, 9],
+    changePoints: [3, 7],
+    points: [{ x: 0, y: 1 }, { x: 3, y: 7 }, { x: 7, y: 2 }, { x: 9, y: 6 }],
+    presentationMode: "worked_example",
+    steps: [
+      { description: "Read the graph from left to right.", expression: "x = 0 to x = 9" },
+      { description: "The graph rises from x=0 to x=3.", expression: "0 < x < 3" },
+      { description: "The graph falls from x=3 to x=7.", expression: "3 < x < 7" },
+      { description: "The graph rises from x=7 to x=9.", expression: "7 < x < 9" },
+      { description: "State all interval classifications.", expression: "Increasing: [0,3] and [7,9]; decreasing: [3,7]; constant: none." },
+    ],
+    finalAnswer: "Increasing: [0,3] and [7,9]; decreasing: [3,7]; constant: none.",
+  },
+};
 
 export function isPrecalculusPilotPublished(
   value: Publication = publication,
@@ -244,6 +283,170 @@ const resultValidator = v.object({
   attemptOrdinal: v.number(),
   feedback: v.string(),
 });
+
+export function isTopic11WorkedSourcePublished(value: Publication = publication): boolean {
+  return isPrecalculusPilotPublished({
+    nodes: value.nodes,
+    blueprints: value.blueprints.filter((blueprint) =>
+      blueprint.rendererModeMap?.worked === "interval-classification"
+      && sameJson(blueprint.workedExampleSpec, TOPIC_11_WORKED_SPEC)),
+  });
+}
+
+const topic11AcknowledgementValidator = v.object({
+  contractVersion: v.literal("practice.v1"),
+  activityId: v.literal(PRECALCULUS_TOPIC_11_SOURCE_ACTIVITY_ID),
+  mode: v.literal("worked_example"),
+  status: v.literal("submitted"),
+  answers: v.object({}),
+  parts: v.array(v.object({})),
+});
+const topic11AcknowledgementResultValidator = v.object({
+  submissionId: v.id("activity_submissions"),
+  attemptOrdinal: v.number(),
+  submittedAt: v.string(),
+});
+
+function hasTopic11SourceActivityIdentity(activity: Record<string, unknown>): boolean {
+  return activity.stableActivityId === PRECALCULUS_TOPIC_11_SOURCE_ACTIVITY_ID
+    && activity.componentKey === PRECALCULUS_TOPIC_11_SOURCE_COMPONENT_KEY
+    && activity.displayName === "Topic 1.1: Identify Graph Intervals with Your Teacher"
+    && activity.description === "Worked-example source activity for classifying increasing, decreasing, and constant intervals."
+    && sameRecord(activity.props, {
+      nodeId: PRECALCULUS_PILOT_NODE_ID,
+      mode: "worked_example",
+      source: "teacher_led",
+    })
+    && sameRecord(activity.gradingConfig, { variantSeed: 0 });
+}
+
+export async function hasCurrentTopic11Source(
+  ctx: MutationCtx,
+  lessonId: Id<"lessons">,
+  activityId: Id<"activities">,
+  acknowledgedAt: number,
+): Promise<boolean> {
+  const versions = (await ctx.db.query("lesson_versions")
+    .withIndex("by_lesson", (query) => query.eq("lessonId", lessonId)).collect())
+    .filter((version) => version.status === "published")
+    .sort((left, right) => right.version - left.version);
+  if (versions.length === 0 || versions.length > 1 && versions[0]!.version === versions[1]!.version
+    || !Number.isFinite(versions[0]!.createdAt) || versions[0]!.createdAt > acknowledgedAt) return false;
+  const phases = await ctx.db.query("phase_versions")
+    .withIndex("by_lesson_version", (query) => query.eq("lessonVersionId", versions[0]!._id)).collect();
+  const matches: unknown[] = [];
+  for (const phase of phases) {
+    if (phase.phaseType !== "worked_example" || !Number.isFinite(phase.createdAt)
+      || phase.createdAt > acknowledgedAt) continue;
+    const sections = await ctx.db.query("phase_sections")
+      .withIndex("by_phase_version", (query) => query.eq("phaseVersionId", phase._id)).collect();
+    for (const section of sections) {
+      if (section.sectionType !== "activity" || !record(section.content)
+        || !Number.isFinite(section.createdAt) || section.createdAt > acknowledgedAt) continue;
+      if (String(section.content.activityId) === String(activityId)
+        && section.content.componentKey === PRECALCULUS_TOPIC_11_SOURCE_COMPONENT_KEY) matches.push(section);
+    }
+  }
+  return matches.length === 1;
+}
+
+function isCanonicalTopic11Acknowledgement(value: unknown): boolean {
+  return record(value)
+    && Object.keys(value).sort().join("|") === "activityId|answers|contractVersion|mode|parts|status"
+    && value.contractVersion === "practice.v1"
+    && value.activityId === PRECALCULUS_TOPIC_11_SOURCE_ACTIVITY_ID
+    && value.mode === "worked_example"
+    && value.status === "submitted"
+    && record(value.answers) && Object.keys(value.answers).length === 0
+    && Array.isArray(value.parts) && value.parts.length === 0;
+}
+
+/** Stores an ungraded learner acknowledgement for the reviewed Topic 1.1 source. */
+export const createTopic11DailySubmission = internalMutation({
+  args: {
+    userId: v.id("profiles"),
+    activityId: v.string(),
+    idempotencyKey: v.string(),
+    submissionData: topic11AcknowledgementValidator,
+  },
+  returns: topic11AcknowledgementResultValidator,
+  handler: async (ctx, args) => {
+    if (args.activityId !== PRECALCULUS_TOPIC_11_SOURCE_ACTIVITY_ID) {
+      throw new Error("Invalid Precalculus Topic 1.1 source activity");
+    }
+    const key = args.idempotencyKey;
+    if (!key.trim() || key.length > 256) throw new Error("Invalid create idempotency key");
+    if (!isCanonicalTopic11Acknowledgement(args.submissionData)) {
+      throw new Error("Invalid Precalculus Topic 1.1 acknowledgement");
+    }
+    const profile = await ctx.db.get("profiles", args.userId);
+    const credential = profile
+      ? await ctx.db.query("auth_credentials")
+        .withIndex("by_username", (query) => query.eq("username", profile.username)).unique()
+      : null;
+    if (!profile || profile.role !== "student" || !credential || !credential.isActive
+      || credential.profileId !== profile._id || credential.username !== profile.username
+      || credential.role !== profile.role || credential.organizationId !== profile.organizationId) {
+      throw new Error("Inactive student identity");
+    }
+    const existing = await ctx.db.query("activity_submissions")
+      .withIndex("by_user_and_create_idempotency_key", (query) => (
+        query.eq("userId", args.userId).eq("createIdempotencyKey", key)
+      )).unique();
+    if (existing) {
+      const data = existing.submissionData;
+      const originalActivity = await ctx.db.get("activities", existing.activityId);
+      if (existing.stableActivityId !== PRECALCULUS_TOPIC_11_SOURCE_ACTIVITY_ID
+        || existing.masteryContractVersion !== "learning-evidence.v1"
+        || !isCanonicalTopic11Acknowledgement(data)
+        || !sameRecord(data, args.submissionData)
+        || !Number.isInteger(existing.attemptOrdinal) || (existing.attemptOrdinal ?? 0) < 1
+        || !Number.isFinite(existing.submittedAt) || existing.submittedAt < 0
+        || existing.submittedAt > 8_640_000_000_000_000
+        || existing.score !== undefined || existing.maxScore !== undefined
+        || existing.feedback !== undefined || existing.gradedAt !== undefined
+        || (originalActivity && !hasTopic11SourceActivityIdentity(originalActivity))) {
+        throw new Error("idempotency_conflict");
+      }
+      return {
+        submissionId: existing._id,
+        attemptOrdinal: existing.attemptOrdinal!,
+        submittedAt: new Date(existing.submittedAt).toISOString(),
+      };
+    }
+    if (!isTopic11WorkedSourcePublished()) throw new Error("Precalculus pilot curriculum is not approved");
+    const activity = await ctx.db.query("activities")
+      .withIndex("by_stable_activity_id", (query) => query.eq("stableActivityId", PRECALCULUS_TOPIC_11_SOURCE_ACTIVITY_ID))
+      .unique();
+    if (!activity || !hasTopic11SourceActivityIdentity(activity) || activity.approval?.status !== "approved") {
+      throw new Error("Precalculus Topic 1.1 source activity is not approved");
+    }
+    const lesson = await ctx.db.query("lessons")
+      .withIndex("by_unit_and_order", (query) => query.eq("unitNumber", 1).eq("orderIndex", 1)).unique();
+    const now = Date.now();
+    if (!lesson || !await hasCurrentTopic11Source(ctx, lesson._id, activity._id, now)) {
+      throw new Error("Precalculus Topic 1.1 source is not published");
+    }
+    const latest = await ctx.db.query("activity_submissions")
+      .withIndex("by_user_and_activity_and_attempt_ordinal", (query) => (
+        query.eq("userId", args.userId).eq("activityId", activity._id)
+      )).order("desc").first();
+    const attemptOrdinal = (latest?.attemptOrdinal ?? 0) + 1;
+    const submissionId = await ctx.db.insert("activity_submissions", {
+      userId: args.userId,
+      activityId: activity._id,
+      stableActivityId: PRECALCULUS_TOPIC_11_SOURCE_ACTIVITY_ID,
+      submissionData: args.submissionData,
+      masteryContractVersion: "learning-evidence.v1",
+      createIdempotencyKey: key,
+      attemptOrdinal,
+      submittedAt: now,
+      createdAt: now,
+      updatedAt: now,
+    });
+    return { submissionId, attemptOrdinal, submittedAt: new Date(now).toISOString() };
+  },
+});
 const expectedActivity = (
   mode: "guided_practice" | "independent_practice",
 ) => ({
@@ -264,6 +467,19 @@ const expectedActivity = (
 });
 function record(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+function sameJson(left: unknown, right: unknown): boolean {
+  if (Array.isArray(left) || Array.isArray(right)) {
+    return Array.isArray(left) && Array.isArray(right)
+      && left.length === right.length
+      && left.every((value, index) => sameJson(value, right[index]));
+  }
+  if (record(left) || record(right)) {
+    return record(left) && record(right)
+      && Object.keys(left).sort().join("|") === Object.keys(right).sort().join("|")
+      && Object.keys(left).every((key) => sameJson(left[key], right[key]));
+  }
+  return Object.is(left, right);
 }
 function sameRecord(a: unknown, b: Record<string, unknown>): boolean {
   return (

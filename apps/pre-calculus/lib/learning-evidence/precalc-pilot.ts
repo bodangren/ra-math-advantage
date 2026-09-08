@@ -8,6 +8,11 @@ import {
 export const PRECALCULUS_PILOT_NODE_ID =
   'math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs' as const;
 
+export const PRECALCULUS_TOPIC_11_SOURCE_ACTIVITY_ID =
+  `${PRECALCULUS_PILOT_NODE_ID}.worked_example` as const;
+export const PRECALCULUS_TOPIC_11_SOURCE_COMPONENT_KEY =
+  'precalculus-topic-1-1-daily-curriculum' as const;
+
 export const PRECALCULUS_LEARNING_EVIDENCE_PILOT_NODE_IDS = Object.freeze([
   PRECALCULUS_PILOT_NODE_ID,
 ] as const);
