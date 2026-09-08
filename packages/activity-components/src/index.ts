@@ -20,6 +20,7 @@ export type {
   ProblemType,
   AlgebraicSubmissionInput,
   SourceType,
+  IntervalClassificationProps,
 } from './schemas/index';
 
 // ComprehensionQuiz
@@ -65,6 +66,10 @@ export type { GraphingExplorerActivityProps } from './components/graphing/Graphi
 export type { Point, FunctionPlot } from './components/graphing/GraphingCanvas';
 export type { HintData } from './components/graphing/HintPanel';
 export type { InterceptData } from './components/graphing/InterceptIdentification';
+
+// IntervalClassification
+export { IntervalClassificationActivity } from './components/intervals/IntervalClassificationActivity';
+export type { IntervalClassificationActivityProps } from './components/intervals/IntervalClassificationActivity';
 
 // ActivityRenderer
 export { ActivityRenderer } from './renderer/ActivityRenderer';

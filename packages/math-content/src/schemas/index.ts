@@ -39,3 +39,4 @@ export * from './comprehension-quiz.schema';
 export * from './fill-in-the-blank.schema';
 export * from './rate-of-change-calculator.schema';
 export * from './discriminant-analyzer.schema';
+export * from './interval-classification.schema';

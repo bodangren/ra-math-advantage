@@ -31,3 +31,6 @@ export {
 export {
   buildAlgebraicSubmission,
 } from '@math-platform/math-content/schemas';
+
+export { intervalClassificationSchema } from './interval-classification.schema';
+export type { IntervalClassificationProps } from './interval-classification.schema';
