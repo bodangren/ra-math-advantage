@@ -455,3 +455,9 @@ G50 corrected 17-capability proposal and exact source restoration passed indepen
 Q37 actual assistance browser verification passed. Guided retry preserved its key, body, and counters without mastery effects. Correct assisted Independent scored 3/3 and created one Hard review. Parent inspection confirms three submissions, three evidence rows, two receipts, one card, and one review. See `precalc-runtime-assistance-browser.md`.
 
 - [~] Task Q37 teacher date rendering: Correct the date hydration mismatch in Topic11ExposureForm. The server renders UTC date text but an Asia/Shanghai browser renders local date text. Use a fixed locale and UTC timezone with an explicit UTC label. Add a server/client timezone regression. Keep the existing stored timestamp and query contract. See `precalc-runtime-teacher-date-hydration-diagnosis.md`.
+
+G50 exact source restoration is committed as `9b3a7c1bd`. Parent 382 curriculum/seed tests and all app gates pass after committed G49 graph integration. Independent review accepts the source and corrected 17-capability proposal. The completed source archive will be refreshed from HEAD and reused for the bounded G50 graph implementation.
+
+Removed the completed G49 graph archive after independent cleanup review and parent comparison of all 18 committed patch files. All authored content is preserved in `334f17643`.
+
+- [~] Task G50 graph: Implement the accepted 17-capability Lesson 9-7 proposal from the restored source. Preserve exact prior table-construction reuse, observed response stages, stable source identities, and Problem 33 ambiguity. Do not add lesson-order prerequisites or executable placeholders. Derive all graph counts from the corrected records.
