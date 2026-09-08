@@ -55,7 +55,7 @@ Use these source identities for restored content:
 18. **SHOPPING.** Use the 20% clothing discount and 30% accessory discount with facts about Jaisa and Sheree. Make one conclusion about the purchases.
 19. **WRITE.** Compare a game or sport rule and a play with an axiom and a conclusion. Decide whether the play violates the rule or follows it. Explain.
 20. **CREATE.** Draw a model with five points, two lines, at least two points on each line, and no points outside the five specified points.
-21. **WHICH ONE DOESN'T BELONG?** Test three diagrams against the four axioms of three-point geometry. Identify a diagram that fails and justify the choice.
+21. **WHICH ONE DOESN'T BELONG?** Select a supplied diagram that does not satisfy all four axioms of three-point geometry. Justify the choice.
 22. **FIND THE ERROR.** Check Grant's conclusions about a game with four keys on each of ten levels when a level ends at the third key. Explain the error.
 23. **WHICH ONE DOESN'T BELONG?** Compare three geometry figures. Select a figure that does not belong under a stated analytic-or-synthetic criterion. Justify the criterion and selection.
 
@@ -83,7 +83,7 @@ The source has these 17 native files. A source restoration must keep their exact
 
 ## Proposed minimal capability set
 
-The count remains provisional. This correction proposes six new draft, inactive capabilities. It reuses the existing lesson skills only for their exact scopes.
+The count remains provisional. This correction proposes five new draft, inactive capabilities. It reuses the existing lesson skills only for their exact scopes.
 
 ### Exact reuse
 
@@ -94,10 +94,9 @@ The count remains provisional. This correction proposes six new draft, inactive 
 
 1. **Derive a supported conclusion from stated axioms and facts.** Use for Problems 1 through 4, 11, the conclusion in Problem 14, Problem 18, and the conclusion in Problem 19. Score each requested conclusion separately. Uniqueness and converse checks remain rubric rules inside this atom. Do not create a separate uniqueness atom unless a later prompt directly observes and requests that check.
 2. **Author axioms from observed categorical data.** Use only for the three authored axioms in Problem 14. Score each authored axiom separately. Use the derive-supported-conclusion atom for the later conclusion. Do not award authored-axiom evidence again for the conclusion.
-3. **Evaluate whether a supplied candidate model satisfies every stated axiom.** Use for Problems 17 and 21. For Problem 17, the candidate is the full three-route system. For Problem 21, each supplied diagram can be tested against the full axiom set.
-4. **Map a game rule and a play to an axiom and a conclusion.** Use for the separately observed mapping in Problem 19. The selected game content is open. Reuse the existing role-distinction skill only for identifying the rule and play roles.
-5. **Construct a model that satisfies stated incidence constraints.** Use for Problem 20. Inspect the drawing against every listed constraint.
-6. **Diagnose why a stated conclusion does not follow from the axioms.** Use for Problem 22. Require the invalid inference and its explanation.
+3. **Evaluate whether a supplied candidate model satisfies every stated axiom.** Use for Problems 17 and 21. For Problem 17, the candidate is the full three-route system. For Problem 21, score the selected diagram, its failure decision, and the cited failed axiom. Do not award evidence for unobserved tests of the other two diagrams.
+4. **Construct a model that satisfies stated incidence constraints.** Use for Problem 20. Inspect the drawing against every listed constraint.
+5. **Evaluate whether stated conclusions follow from axioms and diagnose an invalid inference.** Use for Problem 22. Score all three judgments separately. The first two conclusions follow from the key counts. The third does not follow because a level ends at its third key. Require an explanation of the invalid inference.
 
 Do not add arithmetic atoms for discounts, bundle costs, or key counts. Do not add context-specific conclusion atoms. Do not add a Problem 23 odd-one-out atom. Its assessable evidence is the existing classification skill with a stated criterion and justification.
 
@@ -109,7 +108,7 @@ The approved axiomatic-system skill is broad. Its approval does not approve each
 - Do not infer generator readiness from approval.
 - Remove empty executable mode specifications and placeholder executable activities if they are present.
 - Keep the current approval state unless the parent review explicitly authorizes a status change. This proposal does not independently approve or reject the aggregate.
-- Use the six new draft atoms only for evidence that the existing skills do not separately observe.
+- Use the five new draft atoms only for evidence that the existing skills do not separately observe.
 
 ## Inference and scoring boundaries
 
@@ -120,7 +119,7 @@ The current lesson Step 3 is not valid as a general rule. It says that a matchin
 Apply this boundary to each source context:
 
 - In Problem 2, test all allowed bundles and color restrictions. Do not infer a shirt type from a total until the permitted combinations make it unique.
-- In Problem 3, a time longer than one hour does not by itself identify mulching. Cleanup plus mowing uses 65 minutes if both services are allowed. A price can also represent combined services.
+- In Problem 3, a time longer than one hour does not by itself identify mulching. The stated average times for cleanup and mowing sum to 65 minutes. Average times are not guaranteed durations. Use all fee and total-payment premises before drawing a conclusion about the services. A price can also represent combined services.
 - In Problem 4, $3 identifies a large cupcake only because the displayed size prices are distinct. It does not identify the flavor.
 - In Problem 11, $7.99 is not a unique salad identity. It can be a $7.99 Cobb salad without chicken or a $5.99 spinach salad with the $2 chicken option. A scorer must not require the unsupported converse conclusion.
 - A response can state a conditional conclusion when the missing uniqueness condition is explicit.
@@ -133,7 +132,7 @@ Classify the work from its method and representation. Do not use a blanket rule 
 - Incidence, axioms, compass-and-straightedge construction, and coordinate-free proof support a synthetic classification.
 - A number, measurement, photograph, or ungridded picture alone does not determine the classification.
 - The absence of numbers does not prove that work is synthetic.
-- Problem 12 is intentionally probabilistic. The compass and straightedge support a likely synthetic classification. The protractor also measures angles. Accept a classification that states a coherent assumption about how the tools are used.
+- Problem 12 is intentionally probabilistic. The compass and straightedge support a likely synthetic classification. A protractor alone does not support an analytic classification. An analytic alternative requires an explicit coordinate or algebraic method assumption.
 - Problem 15 supports analytic geometry only if Sydney uses the grid as a coordinate system or uses numerical relations from it. The prompt explicitly requires the assumption.
 - Problem 16 supplies objects, not a method. The ball, cube, and can do not determine analytic or synthetic geometry without a stated method assumption.
 - Problem 23 permits different selections only when the learner states a consistent criterion about analytic or synthetic geometry methods and cites visible evidence. Color, object type, or an arbitrary shape feature is not sufficient.
@@ -148,7 +147,7 @@ Use manual review for Problems 1 through 4, 11, 12, and 14 through 23. These pro
 - Problem 17: score one decision about the full three-route system. Check local route conditions and global cross-route conditions. Stadium District appears on all three routes, so the system violates the at-most-two-routes axiom. Route 3 also repeats Stadium District, so it violates the no-repeat condition. A response can cite either defect, but the scoring record must preserve which axiom the learner used.
 - Problem 19: accept different games and plays when the rule-to-axiom and play-to-conclusion mapping is correct.
 - Problem 20: inspect the diagram against all four conditions. Do not require one layout.
-- Problem 21: inspect each diagram against all four stated axioms. Preserve the curved-line issue as a source condition. Do not silently impose a Euclidean definition of line that the axioms do not state.
+- Problem 21: inspect the selected failing diagram and the cited axiom. Do not score unobserved analysis of the other diagrams. Preserve the curved-line issue as a source condition. Do not silently impose a Euclidean definition of line that the axioms do not state.
 - Problem 22: distinguish the 30 keys required to finish ten levels from the 40 keys that exist. Finishing at the third key does not prove that all four keys on a level can be collected.
 - Problem 23: accept more than one defensible answer only when the criterion concerns analytic or synthetic methods, is explicit, and is consistently applied. Do not accept an unrelated color or shape criterion.
 
@@ -164,4 +163,8 @@ Correct the current lesson before it becomes an approved source:
 
 ## Review decision
 
-This corrected proposal is ready for parent review as a provisional six-new-capability inventory. It does not treat the existing role-distinction skill as derivation evidence. The new-capability count remains subject to parent review. The uniqueness check remains a rubric boundary inside derive-supported-conclusion evidence.
+This corrected proposal is ready for parent review as a provisional five-new-capability inventory. It does not treat the existing role-distinction skill as derivation evidence. The new-capability count remains subject to parent review. The uniqueness check remains a rubric boundary inside derive-supported-conclusion evidence.
+
+## Parent correction after independent review
+
+The parent accepts the five-atom draft scope. The game rule and play mapping reuses the existing role-distinction skill. Problem 21 records only the requested selection and justification. Problem 22 records all three conclusion judgments. No source or graph approval follows from this scope decision.
