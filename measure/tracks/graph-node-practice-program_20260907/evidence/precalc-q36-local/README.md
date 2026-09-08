@@ -6,4 +6,4 @@ The browser scripts perform the Worked acknowledgement, teacher confirmation, an
 
 The dashboard reload created no new rows. This is a stable read check. It does not test an ambiguous network response or request replay.
 
-The initial lesson page showed an unwanted generic Worked response form. The independent review records this defect. Full browser acceptance remains open until the correction and fresh lesson-page check pass review.
+The initial lesson page showed an unwanted generic Worked response form. The independent review records this defect. The corrected lesson screenshot and fresh lesson-page check now pass independent review. This completes the bounded local positive browser sequence. Committed runtime integration remains open in Q37. Wrong answers, assistance events, and ambiguous-network retries were not exercised by this browser run.
