@@ -562,7 +562,7 @@ G53 source is committed as `63886deda`. Final independent review passed. Parent 
 
 Removed saved worktrees 61c4 and 6457 after independent and parent review of all 719 states. Branch `codex/preserve-saved-61c4-im3-lesson18` preserves two accepted detached commits. Their Lesson 1.8 source remains pending integration review against committed HEAD. The other 14 saved worktrees remain intact. See `saved-61c4-6457-preservation-review.md`.
 
-- [x] Task G54 inventory: Review IM1 Lesson 10-3 from committed `Int1_1003_practice.docx`. Inventory all original prompts and native figures. Compare exact graph identities and assessable responses. Propose bounded source and graph corrections. This task does not authorize graph changes before review.
+- [~] Task G54 inventory: Review IM1 Lesson 10-3 from committed `Int1_1003_practice.docx`. Inventory all original prompts and native figures. Compare exact graph identities and assessable responses. Propose bounded source and graph corrections. This task does not authorize graph changes before review.
 
 Cleanup review started for saved worktrees 2968 and 64b9. Parent comparison found 720 working states. The Lesson 1.5 reconciliation in 2968 has two blueprint records preserved in the main working tree but absent from committed HEAD. Worktree 64b9 has an older executable Example candidate. Keep both directories until independent semantic review and detached-history preservation are complete.
 
@@ -587,3 +587,5 @@ Removed saved worktrees 68f8 and 74da after independent and parent review of 715
 IM3 Lesson 1.8 recovery is committed as `efbbdb2ed`. All 13 staged paths matched the accepted candidate. Parent lint, build, and post-build TypeScript passed. Independent reconciliation/projection tests passed 32 cases. Provenance tests passed nine cases. The full curriculum/seed run had 850 passing cases and nine failures reproduced unchanged on the committed baseline. The remaining baseline pilot eligibility failure has a separate correction task. See `im3-lesson18-recovery-final-review.md`.
 
 - [~] Task IM3-P1 eligibility: Correct the obsolete universal Independent SRS-eligibility test. Synchronize the three affected pilot activities in the module and course stored projections with the current approval gate. Preserve node and blueprint review states, all other activity fields, unrelated rows, and order. Review each derived field before changing artifacts. Reuse the completed Lesson 1.8 candidate.
+
+G54 parent native-image review withdraws the P1/P4 direct-reading classification. The brackets span PS and HK, respectively. Both tasks require segment subtraction. Source descriptions, inventory results, and approved-skill mappings are being corrected before source commit. All other native bracket spans are under final review. See `im1-lesson103-parent-bracket-review.md`.
