@@ -3421,6 +3421,30 @@
       "priority": "high"
     },
     {
+      "skillId": "math.im1.skill.10.1.author-axioms-from-observed-categorical-data",
+      "module": "10",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.10.1.construct-a-model-that-satisfies-stated-incidence-constraints",
+      "module": "10",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.10.1.derive-a-supported-conclusion-from-stated-axioms-and-facts",
+      "module": "10",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
       "skillId": "math.im1.skill.10.1.differentiate-between-synthetic-geometry-and-analytic-geomet",
       "module": "10",
       "status": "gap",
@@ -3429,12 +3453,36 @@
       "priority": "standard"
     },
     {
+      "skillId": "math.im1.skill.10.1.evaluate-whether-a-supplied-candidate-model-satisfies-every-stated-axiom",
+      "module": "10",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.10.1.evaluate-whether-stated-conclusions-follow-from-axioms-and-diagnose-an-invalid-inference",
+      "module": "10",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
       "skillId": "math.im1.skill.10.1.understand-the-structure-of-an-axiomatic-system-and-distingu",
       "module": "10",
       "status": "gap",
       "tier": "none",
       "rendererKey": "fill-in-the-blank",
       "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.10.2.determine-the-maximum-number-of-distinct-lines-or-planes-formed-by-point-subsets",
+      "module": "10",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
     },
     {
       "skillId": "math.im1.skill.10.2.draw-and-label-figures-that-accurately-represent-given-geome",
@@ -3461,12 +3509,52 @@
       "priority": "standard"
     },
     {
+      "skillId": "math.im1.skill.10.3.classify-and-justify-a-part-whole-segment-inequality-from-betweenness",
+      "module": "10",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
       "skillId": "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n",
       "module": "10",
       "status": "gap",
       "tier": "none",
       "rendererKey": "graphing-explorer",
       "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.10.3.model-two-segment-constraints-as-a-linear-system",
+      "module": "10",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.10.3.solve-a-segment-addition-equation-with-quadratic-expressions-and-reject-a-negative-length-root",
+      "module": "10",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.10.3.use-congruent-subsegments-equal-spacing-or-a-midpoint-to-determine-segment-measures",
+      "module": "10",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.10.3.write-a-segment-addition-equation-or-statement-from-betweenness",
+      "module": "10",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
     },
     {
       "skillId": "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems",
@@ -4011,94 +4099,6 @@
       "tier": "none",
       "rendererKey": "graphing-explorer",
       "priority": "standard"
-    },
-    {
-      "skillId": "math.im1.skill.10.1.author-axioms-from-observed-categorical-data",
-      "module": "10",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.10.1.construct-a-model-that-satisfies-stated-incidence-constraints",
-      "module": "10",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.10.1.derive-a-supported-conclusion-from-stated-axioms-and-facts",
-      "module": "10",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.10.1.evaluate-whether-a-supplied-candidate-model-satisfies-every-stated-axiom",
-      "module": "10",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.10.1.evaluate-whether-stated-conclusions-follow-from-axioms-and-diagnose-an-invalid-inference",
-      "module": "10",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.10.2.determine-the-maximum-number-of-distinct-lines-or-planes-formed-by-point-subsets",
-      "module": "10",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.10.3.classify-and-justify-a-part-whole-segment-inequality-from-betweenness",
-      "module": "10",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.10.3.model-two-segment-constraints-as-a-linear-system",
-      "module": "10",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.10.3.solve-a-segment-addition-equation-with-quadratic-expressions-and-reject-a-negative-length-root",
-      "module": "10",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.10.3.use-congruent-subsegments-equal-spacing-or-a-midpoint-to-determine-segment-measures",
-      "module": "10",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
-    },
-    {
-      "skillId": "math.im1.skill.10.3.write-a-segment-addition-equation-or-statement-from-betweenness",
-      "module": "10",
-      "status": "gap",
-      "tier": "none",
-      "rendererKey": "comprehension-quiz",
-      "priority": "high"
     }
   ]
 }
