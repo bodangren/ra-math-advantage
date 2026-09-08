@@ -350,3 +350,5 @@ Q37 unit 4 is committed as `177d65d4`. Parent verification passed 200 tests in 1
 Q37 unit 6 dependency tracing found the selected teacher writer already committed in `selectedLearningEvidence.ts`. The pending route uses a different uncommitted module name. The teacher dashboard is still a committed placeholder. A bounded teacher query, route, form, and dashboard integration is specified in `precalc-runtime-unit6-plan.md`. Unit 5 remains in progress.
 
 Independent review accepted the G47 ten-candidate proposal and the median-to-five-number-summary prerequisite proposal. Edge 1273 is absent from the active graph but remains in a review queue. Its consumer and historical status are under inspection before any queue change. See `im1-lesson94-proposal-independent-review.md`.
+
+G47 first source candidate failed parent review. It changed several mathematical variables and contexts despite six passing source tests. No source patch was applied. Complete original wording and full-context regressions are required. See `im1-lesson94-source-first-review.md`.
