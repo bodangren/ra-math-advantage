@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest';
+import { seedLesson6 } from '@/convex/seed/seed_lesson_1_6';
 import type { SeedLesson, SeedPhase } from '@/convex/seed/types';
 
 describe('seed-lesson-1-6', () => {
@@ -90,24 +91,6 @@ describe('seed-lesson-1-6', () => {
       'discriminant-analyzer',
     ] as const;
 
-    it('worked examples should use step-by-step-solver activity', () => {
-      const workedExampleSection = {
-        sequenceOrder: 1,
-        sectionType: 'activity' as const,
-        content: {
-          componentKey: 'step-by-step-solver' as const,
-          props: {
-            problemType: 'quadratic-formula',
-            equation: 'x^2 + 5x + 6 = 0',
-            steps: [],
-          },
-        },
-      };
-
-      expect(workedExampleSection.content.componentKey).toBe('step-by-step-solver');
-      expect(validComponentKeys).toContain(workedExampleSection.content.componentKey);
-    });
-
     it('discriminant examples should use discriminant-analyzer activity', () => {
       const discriminantSection = {
         sequenceOrder: 1,
@@ -123,6 +106,90 @@ describe('seed-lesson-1-6', () => {
       expect(discriminantSection.content.componentKey).toBe('discriminant-analyzer');
       expect(validComponentKeys).toContain(discriminantSection.content.componentKey);
     });
+  });
+});
+
+type StoredRow = Record<string, unknown> & { _id: string };
+
+function makeSeedContext() {
+  const stores = new Map<string, StoredRow[]>();
+  let nextId = 1;
+  const rows = (table: string) => {
+    const value = stores.get(table) ?? [];
+    stores.set(table, value);
+    return value;
+  };
+  const db = {
+    query(table: string) {
+      const filters: Array<[string, unknown]> = [];
+      const chain = {
+        withIndex(_name: string, apply: (q: { eq: (field: string, value: unknown) => unknown }) => unknown) {
+          const q = { eq(field: string, value: unknown) { filters.push([field, value]); return q; } };
+          apply(q);
+          return chain;
+        },
+        async unique() { const found = rows(table).filter(row => filters.every(([key, value]) => row[key] === value)); return found.length === 1 ? found[0] : null; },
+        async first() { return rows(table).find(row => filters.every(([key, value]) => row[key] === value)) ?? null; },
+        async take(limit: number) { return rows(table).filter(row => filters.every(([key, value]) => row[key] === value)).slice(0, limit); },
+      };
+      return chain;
+    },
+    async insert(table: string, value: Record<string, unknown>) {
+      const id = `${table}:${nextId++}`;
+      rows(table).push({ _id: id, ...value });
+      return id;
+    },
+    async patch(id: string, value: Record<string, unknown>) {
+      for (const tableRows of stores.values()) {
+        const row = tableRows.find(candidate => candidate._id === id);
+        if (row) Object.assign(row, value);
+      }
+    },
+  };
+  return { ctx: { db }, rows };
+}
+
+describe('Lesson 1.6 source-worked seed documents', () => {
+  it('creates exact .036-.038 PDF worked examples as text-only phases', async () => {
+    const memory = makeSeedContext();
+    await (seedLesson6 as unknown as { _handler: (ctx: unknown) => Promise<unknown> })._handler(memory.ctx);
+
+    const phases = memory.rows('phase_versions');
+    const sections = memory.rows('phase_sections');
+    const markdownByPhase = new Map(
+      phases.filter(phase => [4, 5, 6].includes(phase.phaseNumber as number)).map(phase => {
+        const phaseSections = sections.filter(section => section.phaseVersionId === phase._id);
+        expect(phaseSections).toHaveLength(1);
+        expect(phaseSections[0].sectionType).toBe('text');
+        return [phase.phaseNumber, (phaseSections[0].content as { markdown: string }).markdown];
+      }),
+    );
+
+    expect(markdownByPhase.get(4)).toContain('**CONTEST** At the World Championship Punkin Chunkin contest in Bridgeville, Delaware');
+    expect(markdownByPhase.get(4)).toContain('0 = -4.9t^2 + 11.7t + 42');
+    expect(markdownByPhase.get(4)).toContain('\\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}');
+    expect(markdownByPhase.get(4)).toContain('\\frac{-11.7 \\pm \\sqrt{(11.7)^2 - 4(-4.9)(42)}}{2(-4.9)}');
+    expect(markdownByPhase.get(4)).toContain('\\frac{-11.7 \\pm \\sqrt{136.89 + 823.2}}{-9.8}');
+    expect(markdownByPhase.get(4)).toContain('\\frac{-11.7 \\pm \\sqrt{960.09}}{-9.8}');
+    expect(markdownByPhase.get(4)).toContain('\\frac{11.7 + \\sqrt{960.09}}{9.8} \\text{ or } t = \\frac{11.7 - \\sqrt{960.09}}{9.8}');
+    expect(markdownByPhase.get(4)).toContain('The approximate solutions are $4.4$ seconds and $-2.0$ seconds.');
+    expect(markdownByPhase.get(4)).toContain('The negative root does not make sense in this context because the pumpkin launches at 0 seconds. The pumpkin lands after 4.4 seconds.');
+
+    expect(markdownByPhase.get(5)).toContain('Solve $x^2 + 4x - 17 = 0$ by using the Quadratic Formula.');
+    expect(markdownByPhase.get(5)).toContain('\\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}');
+    expect(markdownByPhase.get(5)).toContain('\\frac{-4 \\pm \\sqrt{(4)^2 - 4(1)(-17)}}{2(1)}');
+    expect(markdownByPhase.get(5)).toContain('\\frac{-4 \\pm \\sqrt{84}}{2}');
+    expect(markdownByPhase.get(5)).toContain('\\frac{-4 \\pm \\sqrt{4} \\cdot \\sqrt{21}}{2}');
+    expect(markdownByPhase.get(5)).toContain('\\frac{-4 \\pm 2\\sqrt{21}}{2}');
+    expect(markdownByPhase.get(5)).toContain('$x = -2 \\pm \\sqrt{21}$');
+
+    expect(markdownByPhase.get(6)).toContain('Solve $5x^2 + 8x + 11 = 0$ by using the Quadratic Formula.');
+    expect(markdownByPhase.get(6)).toContain('\\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}');
+    expect(markdownByPhase.get(6)).toContain('\\frac{-8 \\pm \\sqrt{8^2 - 4(5)(11)}}{2(5)}');
+    expect(markdownByPhase.get(6)).toContain('\\frac{-8 \\pm \\sqrt{-156}}{10}');
+    expect(markdownByPhase.get(6)).toContain('\\frac{-8 \\pm \\sqrt{-1} \\cdot \\sqrt{4} \\cdot \\sqrt{39}}{10}');
+    expect(markdownByPhase.get(6)).toContain('\\frac{-8 \\pm 2i\\sqrt{39}}{10}');
+    expect(markdownByPhase.get(6)).toContain('$x = \\frac{-4 \\pm i\\sqrt{39}}{5}$');
   });
 });
 

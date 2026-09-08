@@ -177,101 +177,87 @@ export const seedLesson6 = internalMutation({
           },
         ],
       },
+      // math.im3.example.1.6.036 — curriculum/IM3-reveal-module-1.pdf, page 43.
       {
         phaseNumber: 4,
         title: "Worked Example 1",
         phaseType: "worked_example" as const,
         estimatedMinutes: 10,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "text" as const,
-            content: {
-              markdown: "## Example 1: Use the Quadratic Formula\n\nSolve $x^2 + 5x + 6 = 0$\n\n**Step 1**: Identify coefficients: $a = 1$, $b = 5$, $c = 6$\n\n**Step 2**: Substitute into the formula:\n$$x = \\frac{-5 \\pm \\sqrt{5^2 - 4(1)(6)}}{2(1)}$$\n\n**Step 3**: Simplify:\n$$x = \\frac{-5 \\pm \\sqrt{25 - 24}}{2} = \\frac{-5 \\pm 1}{2}$$\n\n**Solutions**: $x = -2$ or $x = -3$",
-            },
-          },
-          {
-            sequenceOrder: 2,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "step-by-step-solver",
-              props: {
-                problemType: "quadratic-formula",
-                equation: "x^2 + 5x + 6 = 0",
-                steps: [
-                  { expression: "a=1, b=5, c=6", explanation: "Identify coefficients" },
-                  { expression: "x = (-5 ± √(25-24))/2", explanation: "Substitute into formula" },
-                  { expression: "x = (-5 ± 1)/2", explanation: "Simplify" },
-                  { expression: "x = -2 or x = -3", explanation: "Solutions" },
-                ],
-              },
-            },
-          },
-        ],
+        sections: [{ sequenceOrder: 1, sectionType: "text" as const, content: { markdown: `## Example 1 Real Roots, $c$ Is Positive
+
+**CONTEST** At the World Championship Punkin Chunkin contest in Bridgeville, Delaware, pumpkins are launched hundreds of yards. The path of a pumpkin can be modeled by $h = -4.9t^2 + 11.7t + 42$, where $h$ is the height and $t$ is the number of seconds after launch.
+
+### Part A
+
+Use the Quadratic Formula to solve $0 = -4.9t^2 + 11.7t + 42$.
+
+Identify the coefficients: $a = -4.9$, $b = 11.7$, and $c = 42$.
+
+$$t = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$$
+
+$$t = \\frac{-11.7 \\pm \\sqrt{(11.7)^2 - 4(-4.9)(42)}}{2(-4.9)}$$
+
+$$t = \\frac{-11.7 \\pm \\sqrt{136.89 + 823.2}}{-9.8}$$
+
+$$t = \\frac{-11.7 \\pm \\sqrt{960.09}}{-9.8}$$
+
+$$t = \\frac{11.7 + \\sqrt{960.09}}{9.8} \\text{ or } t = \\frac{11.7 - \\sqrt{960.09}}{9.8}$$
+
+The approximate solutions are $4.4$ seconds and $-2.0$ seconds.
+
+### Part B
+
+Interpret the roots.
+
+The negative root does not make sense in this context because the pumpkin launches at 0 seconds. The pumpkin lands after 4.4 seconds.` } }],
       },
+      // math.im3.example.1.6.037 — curriculum/IM3-reveal-module-1.pdf, page 44.
       {
         phaseNumber: 5,
         title: "Worked Example 2",
         phaseType: "worked_example" as const,
         estimatedMinutes: 10,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "text" as const,
-            content: {
-              markdown: "## Example 2: Non-Factorable Equation\n\nSolve $x^2 - 4x - 1 = 0$\n\n**Step 1**: Identify coefficients: $a = 1$, $b = -4$, $c = -1$\n\n**Step 2**: Substitute:\n$$x = \\frac{4 \\pm \\sqrt{(-4)^2 - 4(1)(-1)}}{2}$$\n\n**Step 3**: Simplify:\n$$x = \\frac{4 \\pm \\sqrt{16 + 4}}{2} = \\frac{4 \\pm \\sqrt{20}}{2}$$\n\n**Step 4**: Simplify radical:\n$$x = \\frac{4 \\pm 2\\sqrt{5}}{2} = 2 \\pm \\sqrt{5}$$",
-            },
-          },
-          {
-            sequenceOrder: 2,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "step-by-step-solver",
-              props: {
-                problemType: "quadratic-formula",
-                equation: "x^2 - 4x - 1 = 0",
-                steps: [
-                  { expression: "a=1, b=-4, c=-1", explanation: "Identify coefficients" },
-                  { expression: "x = (4 ± √(16+4))/2", explanation: "Substitute into formula" },
-                  { expression: "x = (4 ± √20)/2", explanation: "Simplify radicand" },
-                  { expression: "x = 2 ± √5", explanation: "Solutions" },
-                ],
-              },
-            },
-          },
-        ],
+        sections: [{ sequenceOrder: 1, sectionType: "text" as const, content: { markdown: `## Example 2 Real Roots, $c$ Is Negative
+
+Solve $x^2 + 4x - 17 = 0$ by using the Quadratic Formula.
+
+Identify the coefficients: $a = 1$, $b = 4$, and $c = -17$.
+
+$$x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$$
+
+$$x = \\frac{-4 \\pm \\sqrt{(4)^2 - 4(1)(-17)}}{2(1)}$$
+
+$$x = \\frac{-4 \\pm \\sqrt{84}}{2}$$
+
+$$x = \\frac{-4 \\pm \\sqrt{4} \\cdot \\sqrt{21}}{2}$$
+
+$$x = \\frac{-4 \\pm 2\\sqrt{21}}{2}$$
+
+$$x = -2 \\pm \\sqrt{21}$$` } }],
       },
+      // math.im3.example.1.6.038 — curriculum/IM3-reveal-module-1.pdf, page 44.
       {
         phaseNumber: 6,
         title: "Worked Example 3",
         phaseType: "worked_example" as const,
         estimatedMinutes: 10,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "text" as const,
-            content: {
-              markdown: "## Example 3: Imaginary Solutions\n\nSolve $x^2 + 2x + 5 = 0$\n\n**Step 1**: Identify coefficients: $a = 1$, $b = 2$, $c = 5$\n\n**Step 2**: Substitute:\n$$x = \\frac{-2 \\pm \\sqrt{2^2 - 4(1)(5)}}{2}$$\n\n**Step 3**: Simplify:\n$$x = \\frac{-2 \\pm \\sqrt{4 - 20}}{2} = \\frac{-2 \\pm \\sqrt{-16}}{2}$$\n\n**Step 4**: Simplify imaginary:\n$$x = \\frac{-2 \\pm 4i}{2} = -1 \\pm 2i$$",
-            },
-          },
-          {
-            sequenceOrder: 2,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "step-by-step-solver",
-              props: {
-                problemType: "quadratic-formula",
-                equation: "x^2 + 2x + 5 = 0",
-                steps: [
-                  { expression: "a=1, b=2, c=5", explanation: "Identify coefficients" },
-                  { expression: "x = (-2 ± √(4-20))/2", explanation: "Substitute into formula" },
-                  { expression: "x = (-2 ± √(-16))/2", explanation: "Negative discriminant" },
-                  { expression: "x = -1 ± 2i", explanation: "Complex solutions" },
-                ],
-              },
-            },
-          },
-        ],
+        sections: [{ sequenceOrder: 1, sectionType: "text" as const, content: { markdown: `## Example 3 Complex Roots
+
+Solve $5x^2 + 8x + 11 = 0$ by using the Quadratic Formula.
+
+Identify the coefficients: $a = 5$, $b = 8$, and $c = 11$.
+
+$$x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$$
+
+$$x = \\frac{-8 \\pm \\sqrt{8^2 - 4(5)(11)}}{2(5)}$$
+
+$$x = \\frac{-8 \\pm \\sqrt{-156}}{10}$$
+
+$$x = \\frac{-8 \\pm \\sqrt{-1} \\cdot \\sqrt{4} \\cdot \\sqrt{39}}{10}$$
+
+$$x = \\frac{-8 \\pm 2i\\sqrt{39}}{10}$$
+
+$$x = \\frac{-4 \\pm i\\sqrt{39}}{5}$$` } }],
       },
       {
         phaseNumber: 7,
