@@ -445,3 +445,5 @@ The Worked pending guard passed actual browser verification. Two synchronous cli
 Removed the completed G49 source archive. All 12 source patch paths match commit `67131a0b9`. Independent review found no unpreserved authored content. The G49 graph and local browser candidates remain active. All 24 saved dirty Codex worktrees remain intact.
 
 G50 parent source review accepts all 38 prompts and eight native figures for exact restoration. First graph review requires corrected joint and marginal mappings and a bounded Problem 33 conversion contract. Exact source restoration is in progress in a fresh archive. See `im1-lesson97-parent-source-review.md`.
+
+Removed the completed assistance archive after parent comparison of all tracked source files. All four owned paths match `20c8dd821`; all 22 older source states match `fbaf88a93`. See `precalc-runtime-assistance-cleanup-review.md`. The live browser candidate remains active.
