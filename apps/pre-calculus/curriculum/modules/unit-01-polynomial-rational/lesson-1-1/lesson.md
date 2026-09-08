@@ -14,7 +14,9 @@ AP Exam: assessed-on-ap-exam
 |---|---|---|---|---|---|---|---|
 | h(t) (feet) | 6 | 30 | 42 | 42 | 30 | 6 | -30 |
 
-As $t$ increases from $0$ to $1.5$, what happens to $h(t)$? As $t$ increases from $2.0$ to $3.0$, what happens to $h(t)$? Describe the direction of change. For physical height above the ground, use only $0 \le t \le (5+\sqrt{29})/4$, or approximately 2.60 seconds. The negative value at 3 seconds is an algebraic continuation of the model.
+Use the algebraic model to describe the change. The vertex occurs at $t=1.25$ seconds, where $h(t)=43.5$ feet. The height increases through $t=1.25$ and then decreases. The equal sampled values at $t=1$ and $t=1.5$ do not show a constant interval.
+
+For physical height above the ground, use only $0 \le t \le (5+\sqrt{29})/4$, or approximately 2.60 seconds. The negative value at 3 seconds is an algebraic continuation of the model.
 
 ## Vocabulary
 
@@ -24,18 +26,18 @@ As $t$ increases from $0$ to $1.5$, what happens to $h(t)$? As $t$ increases fro
 - **Dependent variable**: The variable that represents the output value. Its value depends on the input. It is often represented by $y$ or $f(x)$.
 - **Domain**: The domain is the set of input values.
 - **Range**: The range is the set of output values.
-- **Covariation**: Describing how two quantities change together. Focus on directional language: "As $x$ increases from $a$ to $b$, $y$ increases/decreases/remains constant by approximately $amount$."
-- **Increasing**: A function is increasing on an interval if $y$ values rise as $x$ values move left to right.
-- **Decreasing**: A function is decreasing on an interval if $y$ values fall as $x$ values move left to right.
-- **Constant**: A function is constant on an interval if $y$ values stay the same as $x$ values change.
+- **Covariation**: A description of how two quantities change together. Use directional language: "As $x$ increases from $a$ to $b$, $y$ increases, decreases, or remains constant."
+- **Increasing**: A function is increasing on an interval if the output values rise as the input values move from left to right.
+- **Decreasing**: A function is decreasing on an interval if the output values fall as the input values move from left to right.
+- **Constant**: A function is constant on an interval if the output values stay the same as the input values change.
 
-A function maps each input to exactly **one** output. The input values form the **domain**. The output values form the **range**.
+A function maps each input to exactly one output. The input values form the **domain**. The output values form the **range**.
 
 ## Learn
 
-A finite table gives only sampled values. It does not prove behavior between inputs. When a question asks you to infer behavior between table entries, state the model assumption.
-
 ### Section: text
+
+A finite table gives only sampled values. It does not prove behavior between inputs. When a question asks you to infer behavior between table entries, state the model assumption.
 
 A function can model the relationship between two quantities that change together. A function can be represented in four ways: **verbally**, **graphically**, **numerically** (tables), and **analytically** (equations).
 
@@ -45,7 +47,9 @@ The behavior of a function is described by identifying where it is increasing, d
 
 When describing behavior, always use intervals written with the **input variable**: "f is increasing on $[a, b]$," not "f is increasing from $f(a)$ to $f(b)$."
 
-Use sentence frames: "As $x$ increases from ___ to ___, $y$ increases/decreases/remains constant by approximately ___."
+Use this sentence frame: "As $x$ increases from ___ to ___, $y$ increases, decreases, or remains constant by approximately ___."
+
+The local table activities are authored extensions. They are not Passwater examples.
 
 ## Worked Examples from the original source
 
@@ -118,11 +122,38 @@ Examples 5 through 8 use one graph. The graph is a smooth curve through A(0,-2),
 
 ## Authored practice
 
-The following tables and text-only graphs are authored extensions. They are not recovered Passwater examples. A finite table gives sampled values only. State a model assumption before you infer behavior between entries.
+The following tables and text-only graphs are authored extensions. They are not recovered Passwater examples.
+
+## Authored Worked Examples
+
+### Section: text
+
+**Authored worked example A:** The table shows sampled values of function $g$:
+
+| x | -2 | 0 | 2 | 4 | 6 |
+|---|---|---|---|---|---|
+| g(x) | 11 | 7 | 3 | 3 | 7 |
+
+Compare each pair of consecutive displayed values. Do not infer behavior between the displayed inputs.
+
+**Solution:**
+- From $x=-2$ to $x=0$, $g(x)$ decreases by 4, from 11 to 7.
+- From $x=0$ to $x=2$, $g(x)$ decreases by 4, from 7 to 3.
+- From $x=2$ to $x=4$, the displayed values remain 3.
+- From $x=4$ to $x=6$, $g(x)$ increases by 4, from 3 to 7.
+
+**Authored worked example B:** A piecewise linear function has three segments. On $[-3,-1]$, the graph rises. On $[-1,3]$, the graph falls. On $[3,5]$, the graph is horizontal.
+
+**Solution:**
+- The function is increasing on $[-3,-1]$.
+- The function is decreasing on $[-1,3]$.
+- The function is constant on $[3,5]$.
 
 ## Guided Practice
 
 ### Section: text
+
+**Authored practice:** These tasks are not recovered Passwater examples.
 
 **Problem 1:** The table shows the temperature $T$ at hour $h$ during a day.
 
@@ -130,17 +161,21 @@ The following tables and text-only graphs are authored extensions. They are not 
 |---|---|---|---|---|---|---|---|
 | T(h) | 58 | 62 | 70 | 76 | 78 | 72 | 65 |
 
-On which interval(s) is $T$ increasing? Decreasing? Use the sentence frame to describe the interval from $h = 10$ to $h = 12$.
+Assume that the temperature changes linearly between each pair of consecutive recorded hours.
 
-**Hint:** Check whether the output values go up or down as the input values increase. Use directional language, not just the sign of the temperature.
+On which interval(s) is $T$ increasing? Decreasing? Use the sentence frame to describe the interval from $h=10$ to $h=12$.
 
-**Problem 2:** A graph shows $f(x)$ on $[-4, 4]$. The function is below the x-axis on $[-4, -1]$, crosses the x-axis at $x = -1$, and is above the x-axis on $[-1, 4]$. The function is increasing everywhere. Can $f$ be increasing while negative? Explain.
+**Hint:** Check whether the output values go up or down as the input values increase. Use directional language, not only the sign of the temperature.
 
-**Hint:** Yes — increasing describes direction, not position. Being negative describes position.
+**Problem 2:** A graph shows $f(x)$ on $[-4,4]$. The function is below the x-axis on $[-4,-1)$, crosses the x-axis at $x=-1$, and is above the x-axis on $(-1,4]$. The function is increasing everywhere. Can $f$ be increasing while negative? Explain.
+
+**Hint:** Yes. Increasing describes direction. Negative describes position.
 
 ## Independent Practice
 
 ### Section: text
+
+**Authored practice:** This table is not a recovered Passwater example. Assume that $p$ changes linearly between consecutive displayed inputs.
 
 **Problem 1:** The table shows values of $p$:
 
@@ -150,20 +185,22 @@ On which interval(s) is $T$ increasing? Decreasing? Use the sentence frame to de
 
 Identify all intervals where $p$ is increasing, decreasing, or constant.
 
-**Problem 2:** Over which interval in Problem 1 does $p$ show the greatest rate of change? Justify your answer using data from the table.
+**Problem 2:** Which consecutive pair of displayed inputs has the greatest increase in $p(x)$? Justify your answer by comparing the displayed function values.
 
-**Problem 3:** Describe in words how $x$ and $p(x)$ change together on the interval from $x = 5$ to $x = 9$.
+**Topic 1.2 preview:** Which interval has the greatest average rate of change? Justify your answer using the table. This preview does not supply Topic 1.1 mastery evidence.
+
+**Problem 3:** Describe in words how $x$ and $p(x)$ change together on the interval from $x=5$ to $x=9$.
 
 ## Reflection
 
 ### Section: text
 
-**Exit Ticket:** The table below shows values of a function $m$:
+**Authored exit ticket:** This table is not a recovered Passwater example. Assume that $m$ changes linearly between consecutive displayed inputs.
 
 | x | 0 | 2 | 4 | 6 | 8 |
 |---|---|---|---|---|---|
 | m(x) | 15 | 9 | 5 | 5 | 12 |
 
-Identify one interval where $m$ is increasing and one interval where $m$ is decreasing. Then describe the tandem change on the interval $[0, 4]$ using the sentence frame.
+Identify one interval where $m$ is increasing and one interval where $m$ is decreasing. Then describe the tandem change on the interval $[0,4]$ using the sentence frame.
 
-**Lesson Summary:** Functions model relationships between two quantities that change together. We describe function behavior using four representations — verbal, graphical, numerical, and analytical. On any interval, a function can be increasing, decreasing, or constant. Always describe behavior using directional language tied to the input variable, and remember: a function can be increasing while its values are negative.
+**Lesson summary:** Functions model relationships between two quantities that change together. A function can have verbal, graphical, numerical, or analytical representations. On an interval, a function can be increasing, decreasing, or constant. Describe behavior with directional language tied to the input variable. A function can be increasing while its values are negative.
