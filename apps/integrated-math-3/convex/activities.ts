@@ -1,10 +1,11 @@
 import { internalMutation, internalQuery, type MutationCtx, type QueryCtx } from "./_generated/server";
 import { v } from "convex/values";
+import { convexToJson } from "convex/values";
 import { internal } from "./_generated/api";
 import { practiceSubmissionEnvelopeValidator } from "./practice_submission";
 import type { Doc, Id } from "./_generated/dataModel";
 import { practiceSubmissionEnvelopeSchema, type PracticeSubmissionEnvelope } from "@math-platform/practice-core/contract";
-import { gradeServerOwnedSubmission } from "../lib/activities/server-grading";
+import { gradeServerOwnedSubmission, IM3_QF_DRAFT_MAPPINGS, IM3_QF_NODE } from "../lib/activities/server-grading";
 import nodesDocument from "../curriculum/skill-graph/nodes.json";
 import blueprintsDocument from "../curriculum/skill-graph/blueprints.json";
 import { IM3_GUIDED_PRACTICE_ACTIVITY_ID, IM3_MASTERY_ADVANTAGE_ACTIVITY_ID, IM3_PILOT_NODE, IM3_TEACHER_LED_ACTIVITY_ID } from "../lib/practice/learning-evidence-pilot";
@@ -341,6 +342,14 @@ export const getActivityById = internalQuery({
   },
 });
 
+async function hasQuadraticFormulaVariantLink(ctx: MutationCtx, activityId: Id<"activities">): Promise<boolean> {
+  for await (const item of ctx.db.query("practice_items").withIndex("by_activityId", q => q.eq("activityId", activityId))) {
+    const variants = await ctx.db.query("practice_variants").withIndex("by_variantKey", q => q.eq("variantKey", item.variantKey)).take(2);
+    if (variants.length !== 1 || variants[0].componentKey === "quadratic-formula") return true;
+  }
+  return false;
+}
+
 /**
  * Internal mutation that records a graded assessment submission (no
  * competency or SRS side effects — see `submitActivity` for that path).
@@ -356,6 +365,14 @@ export const submitAssessment = internalMutation({
     feedback: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
+    const activity = await ctx.db.get(args.activityId);
+    const hasQfLink = activity ? await hasQuadraticFormulaVariantLink(ctx, activity._id) : false;
+    if (activity && (activity.stableActivityId === IM3_QF_DRAFT_MAPPINGS.guided_practice.stableActivityId
+      || activity.stableActivityId === IM3_QF_DRAFT_MAPPINGS.independent_practice.stableActivityId
+      || (activity.masteryNodeId === IM3_QF_NODE && activity.componentKey === "quadratic-formula")
+      || hasQfLink)) {
+      throw new Error("Draft quadratic-formula submissions must use the server-owned create path");
+    }
     const now = Date.now();
 
     const id = await ctx.db.insert("activity_submissions", {
@@ -395,6 +412,13 @@ export const submitActivity = internalMutation({
     const activity = await ctx.db.get(args.activityId);
     if (!activity) {
       throw new Error("Activity not found");
+    }
+    const hasQfLink = await hasQuadraticFormulaVariantLink(ctx, activity._id);
+    if (activity.stableActivityId === IM3_QF_DRAFT_MAPPINGS.guided_practice.stableActivityId
+      || activity.stableActivityId === IM3_QF_DRAFT_MAPPINGS.independent_practice.stableActivityId
+      || (activity.masteryNodeId === IM3_QF_NODE && activity.componentKey === "quadratic-formula")
+      || hasQfLink) {
+      throw new Error("Draft quadratic-formula submissions must use the server-owned create path");
     }
 
     const submissionScore = args.submissionData.parts.reduce((sum, part) => sum + (part.score ?? 0), 0);
@@ -500,6 +524,27 @@ function canonicalWorkedPayload(value: PracticeSubmissionEnvelope): string {
     parts: value.parts,
   });
 }
+function canonicalQfPayload(value: PracticeSubmissionEnvelope): string {
+  const parts = [...value.parts]
+    .sort((left, right) => left.partId.localeCompare(right.partId))
+    .map(({ isCorrect: _isCorrect, score: _score, maxScore: _maxScore, ...part }) => part);
+  return JSON.stringify(convexToJson({
+    ...value,
+    status: "submitted",
+    parts,
+  } as never));
+}
+
+function validateQfEnvelope(value: PracticeSubmissionEnvelope): void {
+  const ids = ["discriminant", "x1", "x2"];
+  if (value.status !== "submitted" || !["guided_practice", "independent_practice"].includes(value.mode)
+    || Object.keys(value.answers).sort().join("|") !== ids.slice().sort().join("|")
+    || value.parts.length !== 3 || new Set(value.parts.map((part) => part.partId)).size !== 3
+    || value.parts.some((part) => !ids.includes(part.partId) || part.isCorrect !== undefined || part.score !== undefined || part.maxScore !== undefined
+      || JSON.stringify(part.rawAnswer) !== JSON.stringify(value.answers[part.partId]))) {
+    throw new Error("Invalid quadratic-formula response envelope");
+  }
+}
 
 function validateSelectedEnvelope(value: PracticeSubmissionEnvelope): void {
   if (
@@ -585,8 +630,44 @@ export async function createServerOwnedSubmissionHandler(
       "Submission activityId must match the server activity document",
     );
   const activity = await ctx.db.get(args.activityId);
+  const qfMapping = IM3_QF_DRAFT_MAPPINGS[args.submissionData.mode as keyof typeof IM3_QF_DRAFT_MAPPINGS];
+  const isQf = Boolean(activity && qfMapping && (activity.stableActivityId === qfMapping.stableActivityId
+    || (activity.masteryNodeId === IM3_QF_NODE && activity.componentKey === "quadratic-formula")));
   const isWorked = args.submissionData.mode === "worked_example";
-  if (isWorked) {
+  let qfPrivateGenerator: { generatorKey: "quadratic-formula"; seed: number } | undefined;
+  if (isQf && activity && qfMapping) {
+    validateQfEnvelope(args.submissionData);
+    if (activity.stableActivityId !== qfMapping.stableActivityId || activity.masteryNodeId !== IM3_QF_NODE
+      || activity.componentKey !== "quadratic-formula" || activity.srsEligible !== false
+      || activity.approval?.status !== "unreviewed"
+      || (activity.props as { presentationMode?: unknown }).presentationMode !== qfMapping.presentationMode) {
+      throw new Error("Invalid draft quadratic-formula activity authority");
+    }
+    const graphNodes = publication.nodes.filter(row => row.id === IM3_QF_NODE);
+    const graphBlueprints = publication.blueprints.filter(row => row.nodeId === IM3_QF_NODE);
+    if (graphNodes.length !== 1 || graphBlueprints.length !== 1
+      || graphNodes[0].kind !== "skill" || graphNodes[0].reviewStatus !== "draft"
+      || graphBlueprints[0].reviewStatus !== "draft") {
+      throw new Error("Quadratic-formula server path requires the reviewed draft graph state");
+    }
+    const items = await ctx.db.query("practice_items").withIndex("by_activityId", (q) => q.eq("activityId", activity._id)).take(2);
+    if (items.length !== 1) throw new Error("Invalid quadratic-formula practice item relation");
+    if (items[0].variantKey !== qfMapping.stableActivityId) throw new Error("Invalid quadratic-formula practice item relation");
+    const reverseItems = await ctx.db.query("practice_items").withIndex("by_variantKey", q => q.eq("variantKey", items[0].variantKey)).take(2);
+    if (reverseItems.length !== 1 || reverseItems[0]._id !== items[0]._id) throw new Error("Invalid quadratic-formula reverse item relation");
+    const variants = await ctx.db.query("practice_variants").withIndex("by_variantKey", (q) => q.eq("variantKey", items[0].variantKey)).take(2);
+    if (variants.length !== 1) throw new Error("Invalid quadratic-formula private variant authority");
+    const variant = variants[0];
+    const metadata = variant?.metadata as Record<string, unknown> | undefined;
+    if (!variant || variant.componentKey !== "quadratic-formula"
+      || JSON.stringify(variant.objectiveIds) !== JSON.stringify([IM3_QF_NODE])
+      || Object.keys(metadata ?? {}).sort().join("|") !== "generatorKey|mode|seed|stableActivityId"
+      || metadata?.generatorKey !== "quadratic-formula" || metadata.seed !== qfMapping.seed
+      || metadata.stableActivityId !== qfMapping.stableActivityId || metadata.mode !== args.submissionData.mode) {
+      throw new Error("Invalid quadratic-formula private variant authority");
+    }
+    qfPrivateGenerator = { generatorKey: "quadratic-formula", seed: qfMapping.seed };
+  } else if (isWorked) {
     if (!isSelectedWorkedAcknowledgement(args.submissionData))
       throw new Error("Invalid selected IM3 Worked acknowledgement");
   } else {
@@ -596,7 +677,9 @@ export async function createServerOwnedSubmissionHandler(
     args.submissionData.mode === "guided_practice"
       ? IM3_GUIDED_PRACTICE_ACTIVITY_ID
       : IM3_MASTERY_ADVANTAGE_ACTIVITY_ID;
-  if (isWorked) {
+  if (isQf) {
+    // The draft authority was validated above. It does not use the approved pilot gate.
+  } else if (isWorked) {
     if (!activity || !isIm3GraphPilotPublished(publication) || !isSelectedWorkedActivity(activity))
       throw new Error("IM3 pilot activity metadata does not match the approved server-owned create mapping");
   } else if (
@@ -622,9 +705,9 @@ export async function createServerOwnedSubmissionHandler(
     .unique();
   if (existing) {
     if (
-      (isWorked ? canonicalWorkedPayload : canonicalPayload)(
+      (isQf ? canonicalQfPayload : isWorked ? canonicalWorkedPayload : canonicalPayload)(
         existing.submissionData as PracticeSubmissionEnvelope,
-      ) !== (isWorked ? canonicalWorkedPayload : canonicalPayload)(args.submissionData)
+      ) !== (isQf ? canonicalQfPayload : isWorked ? canonicalWorkedPayload : canonicalPayload)(args.submissionData)
     )
       throw new Error("idempotency_conflict");
     if (existing.attemptOrdinal === undefined
@@ -675,13 +758,14 @@ export async function createServerOwnedSubmissionHandler(
   }
   const graded = gradeServerOwnedSubmission(
     {
-      id: String(activity._id),
-      stableActivityId: activity.stableActivityId,
-      masteryNodeId: activity.masteryNodeId,
-      componentKey: activity.componentKey,
-      srsEligible: activity.srsEligible,
-      props: activity.props as Record<string, unknown>,
-      gradingConfig: activity.gradingConfig,
+      id: String(activity!._id),
+      stableActivityId: activity!.stableActivityId,
+      masteryNodeId: activity!.masteryNodeId,
+      componentKey: activity!.componentKey,
+      srsEligible: activity!.srsEligible,
+      props: activity!.props as Record<string, unknown>,
+      gradingConfig: activity!.gradingConfig,
+      ...(qfPrivateGenerator ? { privateGenerator: qfPrivateGenerator } : {}),
     },
     args.submissionData,
   );
@@ -692,7 +776,7 @@ export async function createServerOwnedSubmissionHandler(
   const now = Date.now();
   const submissionData = {
     ...graded.submissionData,
-    attemptNumber: attemptOrdinal,
+    attemptNumber: isQf ? args.submissionData.attemptNumber : attemptOrdinal,
   };
   const submissionId = await ctx.db.insert("activity_submissions", {
     userId: args.userId,
@@ -703,7 +787,7 @@ export async function createServerOwnedSubmissionHandler(
     score,
     maxScore,
     gradedAt: now,
-    masteryContractVersion: graded.masteryContractVersion,
+    ...(graded.masteryContractVersion ? { masteryContractVersion: graded.masteryContractVersion } : {}),
     submittedAt: now,
     createdAt: now,
     updatedAt: now,

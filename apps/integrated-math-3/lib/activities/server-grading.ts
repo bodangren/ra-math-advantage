@@ -1,4 +1,6 @@
 import { parseQuadratic } from '@math-platform/graphing-core';
+import { generateQuadraticFormula } from '@math-platform/math-content';
+import { quadraticFormulaActivitySchema } from '@math-platform/math-content/schemas';
 import {
   toConvexActivityId,
   type PracticeSubmissionEnvelope,
@@ -8,6 +10,17 @@ import {
   IM3_MASTERY_ADVANTAGE_ACTIVITY_ID,
   IM3_PILOT_NODE,
 } from '../practice/learning-evidence-pilot';
+import { gradeQuadraticFormulaResponse } from './quadratic-formula-grader';
+
+export const IM3_QF_NODE = 'math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations';
+export const IM3_QF_DRAFT_MAPPINGS = {
+  guided_practice: {
+    stableActivityId: `${IM3_QF_NODE}.guided_practice`, seed: 1, presentationMode: 'guided',
+  },
+  independent_practice: {
+    stableActivityId: `${IM3_QF_NODE}.independent_practice`, seed: 2, presentationMode: 'independent',
+  },
+} as const;
 
 export interface ServerOwnedActivity {
   readonly id: string;
@@ -20,6 +33,7 @@ export interface ServerOwnedActivity {
     readonly partIds?: readonly string[];
     readonly rubric?: readonly { readonly partId?: string; readonly points: number }[];
   };
+  readonly privateGenerator?: { readonly generatorKey: 'quadratic-formula'; readonly seed: number };
 }
 
 export interface ServerGradedSubmission {
@@ -133,6 +147,32 @@ export function gradeServerOwnedSubmission(
   activity: ServerOwnedActivity,
   envelope: PracticeSubmissionEnvelope,
 ): ServerGradedSubmission {
+  if (activity.masteryNodeId === IM3_QF_NODE && activity.componentKey === 'quadratic-formula') {
+    const identity = activity.privateGenerator;
+    if (!identity || identity.generatorKey !== 'quadratic-formula'
+      || !Number.isSafeInteger(identity.seed) || identity.seed < 0) {
+      throw new Error('Invalid private quadratic-formula generator identity');
+    }
+    const props = quadraticFormulaActivitySchema.parse(activity.props);
+    const problem = generateQuadraticFormula({ seed: identity.seed });
+    if (props.equation !== problem.quadratic) throw new Error('Quadratic-formula equation does not match its private seed');
+    const partsById = new Map(envelope.parts.map((part) => [part.partId, part]));
+    const grade = gradeQuadraticFormulaResponse(problem, {
+      discriminant: envelope.answers.discriminant,
+      x1: envelope.answers.x1,
+      x2: envelope.answers.x2,
+    });
+    return {
+      submissionData: {
+        ...envelope,
+        activityId: toConvexActivityId(activity.id),
+        status: 'graded',
+        parts: grade.parts.map((part) => ({ ...part, ...preserveStudentTelemetry(partsById.get(part.partId)) })),
+      },
+      score: grade.score,
+      maxScore: grade.maxScore,
+    };
+  }
   const isPilot = activity.masteryNodeId === IM3_PILOT_NODE
     && activity.componentKey === 'graphing-explorer'
     && (

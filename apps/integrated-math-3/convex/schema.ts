@@ -122,6 +122,27 @@ const discriminantAnalyzerPropsValidator = v.object({
   coefficients: v.optional(v.object({ a: v.number(), b: v.number(), c: v.number() })),
 });
 
+const quadraticFormulaSharedProps = {
+  title: v.optional(v.string()),
+  prompt: v.string(),
+  equation: v.string(),
+};
+const quadraticFormulaPropsValidator = v.union(
+  v.object({
+    ...quadraticFormulaSharedProps,
+    presentationMode: v.literal("worked"),
+    workedSteps: v.array(v.object({ description: v.string(), expression: v.optional(v.string()) })),
+  }),
+  v.object({
+    ...quadraticFormulaSharedProps,
+    presentationMode: v.literal("guided"),
+    fieldHelp: v.optional(v.object({
+      discriminant: v.optional(v.string()), x1: v.optional(v.string()), x2: v.optional(v.string()),
+    })),
+  }),
+  v.object({ ...quadraticFormulaSharedProps, presentationMode: v.literal("independent") }),
+);
+
 const activityPropsValidator = v.union(
   graphingExplorerPropsValidator,
   stepByStepSolverPropsValidator,
@@ -129,6 +150,7 @@ const activityPropsValidator = v.union(
   fillInTheBlankPropsValidator,
   rateOfChangeCalculatorPropsValidator,
   discriminantAnalyzerPropsValidator,
+  quadraticFormulaPropsValidator,
 );
 
 const phaseSectionContentValidator = v.union(

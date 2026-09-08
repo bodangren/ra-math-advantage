@@ -68,6 +68,20 @@ function validSelectedEnvelope(
     value.status !== "submitted"
   )
     return false;
+  const qfIds = ["discriminant", "x1", "x2"];
+  if (Object.keys(value.answers).sort().join("|") === qfIds.slice().sort().join("|")) {
+    if (value.parts.length !== 3 || new Set(value.parts.map((part) => part.partId)).size !== 3)
+      return false;
+    return qfIds.every((key) => {
+      const answer = value.answers[key];
+      const part = value.parts.find((candidate) => candidate.partId === key);
+      return part !== undefined
+        && (typeof answer === "string" || (typeof answer === "number" && Number.isFinite(answer)))
+        && JSON.stringify(answer) === JSON.stringify(part.rawAnswer)
+        && part.isCorrect === undefined && part.score === undefined && part.maxScore === undefined;
+    }) && String(value.answers.discriminant).trim() !== ""
+      && String(value.answers.x1).trim() !== "";
+  }
   if (
     Object.keys(value.answers).sort().join("|") !==
       "placed_points|table_values" ||

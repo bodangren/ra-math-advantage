@@ -49,6 +49,31 @@ beforeEach(() => {
   });
 });
 describe("selected quadratic submission route", () => {
+  it("accepts the fixed quadratic-formula answer shape", async () => {
+    const qf = envelope({
+      answers: { discriminant: 0, x1: "3", x2: "" },
+      parts: [
+        { partId: "discriminant", rawAnswer: 0 },
+        { partId: "x1", rawAnswer: "3" },
+        { partId: "x2", rawAnswer: "" },
+      ],
+    });
+    expect((await POST(request(qf))).status).toBe(200);
+    expect(mocks.mutate).toHaveBeenCalledOnce();
+  });
+
+  it("rejects changed or client-graded quadratic-formula parts", async () => {
+    const qf = envelope({
+      answers: { discriminant: 0, x1: "3", x2: "" },
+      parts: [
+        { partId: "discriminant", rawAnswer: 1 },
+        { partId: "x1", rawAnswer: "3", isCorrect: true },
+        { partId: "x2", rawAnswer: "" },
+      ],
+    });
+    expect((await POST(request(qf))).status).toBe(400);
+    expect(mocks.mutate).not.toHaveBeenCalled();
+  });
   it("uses authenticated student identity and returns the physical submission ID", async () => {
     const response = await POST(request(envelope()));
     expect(response.status).toBe(200);

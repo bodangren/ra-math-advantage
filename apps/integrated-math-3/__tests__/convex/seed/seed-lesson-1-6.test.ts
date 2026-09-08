@@ -125,3 +125,17 @@ describe('seed-lesson-1-6', () => {
     });
   });
 });
+
+describe('Lesson 1.6 draft quadratic-formula records', () => {
+  it.each([
+    ['guided_practice', 1, 'guided'],
+    ['independent_practice', 2, 'independent'],
+  ] as const)('builds exact private %s authority', async (mode, seed, presentationMode) => {
+    const { buildIm3QuadraticFormulaDraftDocuments } = await import('@/convex/seed/seed_lesson_1_6');
+    const docs = buildIm3QuadraticFormulaDraftDocuments(mode, 'activities:qf' as never, 123);
+    expect(docs.activity).toMatchObject({ componentKey: 'quadratic-formula', masteryNodeId: 'math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations', srsEligible: false, approval: { status: 'unreviewed' }, props: { presentationMode } });
+    expect(docs.variant).toMatchObject({ componentKey: 'quadratic-formula', objectiveIds: ['math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations'], metadata: { generatorKey: 'quadratic-formula', seed, mode } });
+    expect(docs.item).toMatchObject({ activityId: 'activities:qf', variantKey: docs.activity.stableActivityId });
+    expect(JSON.stringify(docs.activity)).not.toMatch(/\"seed\"|roots|canonical/);
+  });
+});

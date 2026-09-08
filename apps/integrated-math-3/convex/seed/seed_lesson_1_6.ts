@@ -1,4 +1,9 @@
+import { generateQuadraticFormula } from "@math-platform/math-content";
+import { quadraticFormulaActivitySchema } from "@math-platform/math-content/schemas";
+import { convexToJson } from "convex/values";
+import { IM3_QF_DRAFT_MAPPINGS, IM3_QF_NODE } from "../../lib/activities/server-grading";
 import { internalMutation } from "../_generated/server";
+import type { MutationCtx } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { SeedActivityContent } from "./types";
 
@@ -7,6 +12,80 @@ interface SeedLesson6Result {
   lessonVersionId: Id<"lesson_versions">;
   phasesCreated: number;
   activitiesCreated: number;
+}
+
+export function buildIm3QuadraticFormulaDraftDocuments(
+  mode: keyof typeof IM3_QF_DRAFT_MAPPINGS,
+  activityId: Id<"activities">,
+  now: number,
+) {
+  const mapping = IM3_QF_DRAFT_MAPPINGS[mode];
+  const generated = generateQuadraticFormula({ seed: mapping.seed });
+  const props = quadraticFormulaActivitySchema.parse({
+    prompt: "Use the Quadratic Formula to solve the equation.",
+    equation: generated.quadratic,
+    presentationMode: mapping.presentationMode,
+    ...(mode === "guided_practice" ? { fieldHelp: {
+      discriminant: "Calculate b² - 4ac.", x1: "Enter one root.", x2: "Enter the other root. Leave this blank for a repeated root.",
+    } } : {}),
+  });
+  const variantKey = mapping.stableActivityId;
+  return {
+    activity: {
+      componentKey: "quadratic-formula", displayName: mode === "guided_practice" ? "Guided quadratic-formula practice" : "Independent quadratic-formula practice",
+      description: "Solve a generated quadratic equation by using the Quadratic Formula.", props,
+      gradingConfig: { autoGrade: true, partialCredit: true, passingScore: 3, partIds: ["discriminant", "x1", "x2"] },
+      stableActivityId: mapping.stableActivityId, masteryNodeId: IM3_QF_NODE,
+      approval: { status: "unreviewed" as const }, srsEligible: false, createdAt: now, updatedAt: now,
+    },
+    variant: { variantKey, componentKey: "quadratic-formula", displayName: mode === "guided_practice" ? "Guided quadratic-formula practice" : "Independent quadratic-formula practice", description: "A draft generated quadratic-formula variant.", objectiveIds: [IM3_QF_NODE], difficulty: "standard", metadata: { generatorKey: "quadratic-formula", seed: mapping.seed, stableActivityId: mapping.stableActivityId, mode } },
+    item: { practiceItemId: `${variantKey}:seed-${mapping.seed}`, activityId, variantKey, variantLabel: `Seed ${mapping.seed}` },
+  };
+}
+
+function qfActivityContent(value: Record<string, unknown>) {
+  return convexToJson({
+    componentKey: value.componentKey, displayName: value.displayName, description: value.description,
+    props: value.props, gradingConfig: value.gradingConfig, stableActivityId: value.stableActivityId,
+    masteryNodeId: value.masteryNodeId, approval: value.approval, srsEligible: value.srsEligible,
+  } as never);
+}
+
+export async function upsertIm3QuadraticFormulaDrafts(ctx: MutationCtx, now: number): Promise<void> {
+  for (const mode of ["guided_practice", "independent_practice"] as const) {
+    const mapping = IM3_QF_DRAFT_MAPPINGS[mode];
+    const existing = await ctx.db.query("activities").withIndex("by_stable_activity_id", q => q.eq("stableActivityId", mapping.stableActivityId)).unique();
+    if (existing && (existing.approval?.status !== "unreviewed"
+      || existing.stableActivityId !== mapping.stableActivityId
+      || existing.masteryNodeId !== IM3_QF_NODE
+      || existing.componentKey !== "quadratic-formula"
+      || existing.srsEligible !== false
+      || (existing.props as { presentationMode?: unknown }).presentationMode !== mapping.presentationMode)) {
+      throw new Error("Existing quadratic-formula activity is not the exact unreviewed draft");
+    }
+    const provisional = buildIm3QuadraticFormulaDraftDocuments(mode, (existing?._id ?? "activities:pending") as Id<"activities">, now);
+    if (existing && JSON.stringify(qfActivityContent(existing)) !== JSON.stringify(qfActivityContent(provisional.activity))) {
+      throw new Error("Existing quadratic-formula activity content changed");
+    }
+    const activityId = existing?._id ?? await ctx.db.insert("activities", provisional.activity);
+    if (existing) await ctx.db.patch(existing._id, { ...provisional.activity, createdAt: existing.createdAt });
+    const docs = buildIm3QuadraticFormulaDraftDocuments(mode, activityId, now);
+    const variants = await ctx.db.query("practice_variants").withIndex("by_variantKey", q => q.eq("variantKey", docs.variant.variantKey)).take(2);
+    const items = await ctx.db.query("practice_items").withIndex("by_activityId", q => q.eq("activityId", activityId)).take(2);
+    const reverseItems = await ctx.db.query("practice_items").withIndex("by_variantKey", q => q.eq("variantKey", docs.item.variantKey)).take(2);
+    if (variants.length > 1 || items.length > 1 || variants[0] || items[0]) {
+      const coherent = variants.length === 1 && items.length === 1 && reverseItems.length === 1
+        && reverseItems[0]._id === items[0]._id
+        && variants[0].componentKey === docs.variant.componentKey
+        && JSON.stringify(variants[0].objectiveIds) === JSON.stringify(docs.variant.objectiveIds)
+        && JSON.stringify(variants[0].metadata) === JSON.stringify(docs.variant.metadata)
+        && items[0].variantKey === docs.item.variantKey;
+      if (!coherent) throw new Error("Existing quadratic-formula storage relation is inconsistent");
+    } else {
+      await ctx.db.insert("practice_variants", docs.variant);
+      await ctx.db.insert("practice_items", docs.item);
+    }
+  }
 }
 
 /**
@@ -373,6 +452,8 @@ export const seedLesson6 = internalMutation({
         }
       }
     }
+
+    await upsertIm3QuadraticFormulaDrafts(ctx, now);
 
     return {
       lessonId,
