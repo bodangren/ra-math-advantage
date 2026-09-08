@@ -156,7 +156,7 @@ describe("Lesson 10-3 capability graph", () => {
           ),
         ).toBe(false);
     expect(edges.some((x: any) => x.id === "math.im1.edge.1193")).toBe(false);
-    expect(edges.some((x: any) => x.id === "math.im1.edge.1194")).toBe(true);
+    expect(edges.some((x: any) => x.id === "math.im1.edge.1194")).toBe(false);
   });
   it("keeps affected projections and counts consistent", () => {
     for (const id of [S, L23, L24, L74, ...defs.map((x) => x[0])]) {

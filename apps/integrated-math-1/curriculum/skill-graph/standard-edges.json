@@ -806,77 +806,81 @@
       }
     },
     {
-      "id": "math.im1.example.10.4.012",
-      "kind": "worked_example",
-      "title": "Example 1: Find Segment Lengths on a Number Line; Determine Whether Segments Are Congruent; Find the Distance Between Two Points",
-      "domain": "math.im1",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md (10-4, Example 1)"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "im1",
-        "module": "10",
-        "lesson": "4",
-        "exampleNumber": 1,
-        "sourceLesson": "10-4",
-        "rawText": "10-4, Examples 1-3 — Find Segment Lengths on a Number Line; Determine Whether Segments Are Congruent; Find the Distance Between Two Points"
-      }
-    },
+          "id": "math.im1.example.10.4.012",
+          "kind": "worked_example",
+          "title": "Example 1: Find Segment Lengths on a Number Line; Determine Whether Segments Are Congruent; Find the Distance Between Two Points",
+          "domain": "math.im1",
+          "sourceRefs": [
+            "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1004_practice.docx (Example 1, Problems 1–14)",
+            "apps/integrated-math-1/curriculum/modules/module-10-lesson-4 (Example 1, Problems 1–14)"
+          ],
+          "reviewStatus": "draft",
+          "metadata": {
+            "course": "im1",
+            "module": "10",
+            "lesson": "4",
+            "exampleNumber": 1,
+            "sourceLesson": "10-4",
+            "rawText": "10-4, Examples 1-3 — Find Segment Lengths on a Number Line; Determine Whether Segments Are Congruent; Find the Distance Between Two Points"
+          }
+        },
     {
-      "id": "math.im1.example.10.4.013",
-      "kind": "worked_example",
-      "title": "Example 2: Find Segment Lengths on a Number Line; Determine Whether Segments Are Congruent; Find the Distance Between Two Points",
-      "domain": "math.im1",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md (10-4, Example 2)"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "im1",
-        "module": "10",
-        "lesson": "4",
-        "exampleNumber": 2,
-        "sourceLesson": "10-4",
-        "rawText": "10-4, Examples 1-3 — Find Segment Lengths on a Number Line; Determine Whether Segments Are Congruent; Find the Distance Between Two Points"
-      }
-    },
+          "id": "math.im1.example.10.4.013",
+          "kind": "worked_example",
+          "title": "Example 2: Find Segment Lengths on a Number Line; Determine Whether Segments Are Congruent; Find the Distance Between Two Points",
+          "domain": "math.im1",
+          "sourceRefs": [
+            "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1004_practice.docx (Example 2, Problems 15–20)",
+            "apps/integrated-math-1/curriculum/modules/module-10-lesson-4 (Example 2, Problems 15–20)"
+          ],
+          "reviewStatus": "draft",
+          "metadata": {
+            "course": "im1",
+            "module": "10",
+            "lesson": "4",
+            "exampleNumber": 2,
+            "sourceLesson": "10-4",
+            "rawText": "10-4, Examples 1-3 — Find Segment Lengths on a Number Line; Determine Whether Segments Are Congruent; Find the Distance Between Two Points"
+          }
+        },
     {
-      "id": "math.im1.example.10.4.014",
-      "kind": "worked_example",
-      "title": "Example 3: Find Segment Lengths on a Number Line; Determine Whether Segments Are Congruent; Find the Distance Between Two Points",
-      "domain": "math.im1",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md (10-4, Example 3)"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "im1",
-        "module": "10",
-        "lesson": "4",
-        "exampleNumber": 3,
-        "sourceLesson": "10-4",
-        "rawText": "10-4, Examples 1-3 — Find Segment Lengths on a Number Line; Determine Whether Segments Are Congruent; Find the Distance Between Two Points"
-      }
-    },
+          "id": "math.im1.example.10.4.014",
+          "kind": "worked_example",
+          "title": "Example 3: Find Segment Lengths on a Number Line; Determine Whether Segments Are Congruent; Find the Distance Between Two Points",
+          "domain": "math.im1",
+          "sourceRefs": [
+            "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1004_practice.docx (Example 3, Problems 21–26)",
+            "apps/integrated-math-1/curriculum/modules/module-10-lesson-4 (Example 3, Problems 21–26)"
+          ],
+          "reviewStatus": "draft",
+          "metadata": {
+            "course": "im1",
+            "module": "10",
+            "lesson": "4",
+            "exampleNumber": 3,
+            "sourceLesson": "10-4",
+            "rawText": "10-4, Examples 1-3 — Find Segment Lengths on a Number Line; Determine Whether Segments Are Congruent; Find the Distance Between Two Points"
+          }
+        },
     {
-      "id": "math.im1.example.10.4.015",
-      "kind": "worked_example",
-      "title": "Example 4: Apply the Distance Formula to Real-World Problems",
-      "domain": "math.im1",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md (10-4, Example 4)"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "im1",
-        "module": "10",
-        "lesson": "4",
-        "exampleNumber": 4,
-        "sourceLesson": "10-4",
-        "rawText": "10-4, Example 4 — Apply the Distance Formula to Real-World Problems"
-      }
-    },
+          "id": "math.im1.example.10.4.015",
+          "kind": "worked_example",
+          "title": "Example 4: Apply the Distance Formula to Real-World Problems",
+          "domain": "math.im1",
+          "sourceRefs": [
+            "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1004_practice.docx (Example 4, Problems 27–30)",
+            "apps/integrated-math-1/curriculum/modules/module-10-lesson-4 (Example 4, Problems 27–30)"
+          ],
+          "reviewStatus": "draft",
+          "metadata": {
+            "course": "im1",
+            "module": "10",
+            "lesson": "4",
+            "exampleNumber": 4,
+            "sourceLesson": "10-4",
+            "rawText": "10-4, Example 4 — Apply the Distance Formula to Real-World Problems"
+          }
+        },
     {
       "id": "math.im1.example.10.5.016",
       "kind": "worked_example",
@@ -9138,53 +9142,59 @@
       }
     },
     {
-      "id": "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n",
-      "kind": "skill",
-      "title": "10e: Find the length of a segment by reading coordinates from a number line",
-      "domain": "math.im1",
-      "description": "Find the length of a segment by reading coordinates from a number line",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "im1",
-        "module": "10",
-        "lesson": "3"
-      }
-    },
+          "id": "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n",
+          "kind": "skill",
+          "title": "10e: Find the length of a segment by reading coordinates from a number line",
+          "domain": "math.im1",
+          "description": "Find the length of a segment by reading coordinates from a number line",
+          "sourceRefs": [
+            "apps/integrated-math-1/curriculum/module-10-class-period-plan.md",
+            "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1004_practice.docx (Example 1, Problems 1–14; each requested number-line segment measure)",
+            "apps/integrated-math-1/curriculum/modules/module-10-lesson-4 (Example 1, Problems 1–14; each requested number-line segment measure)"
+          ],
+          "reviewStatus": "draft",
+          "metadata": {
+            "course": "im1",
+            "module": "10",
+            "lesson": "3"
+          }
+        },
     {
-      "id": "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems",
-      "kind": "skill",
-      "title": "10h: Apply the Distance Formula to solve real-world problems",
-      "domain": "math.im1",
-      "description": "Apply the Distance Formula to solve real-world problems",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "im1",
-        "module": "10",
-        "lesson": "4"
-      }
-    },
+          "id": "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems",
+          "kind": "skill",
+          "title": "10h: Apply the Distance Formula to solve real-world problems",
+          "domain": "math.im1",
+          "description": "Apply the Distance Formula to solve real-world problems",
+          "sourceRefs": [
+            "apps/integrated-math-1/curriculum/module-10-class-period-plan.md",
+            "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1004_practice.docx (Example 4 and Mixed Exercises, Problems 28–30 and 47–48; Problem 29 also observes a manually reviewed justification)",
+            "apps/integrated-math-1/curriculum/modules/module-10-lesson-4 (Example 4 and Mixed Exercises, Problems 28–30 and 47–48; Problem 29 also observes a manually reviewed justification)"
+          ],
+          "reviewStatus": "draft",
+          "metadata": {
+            "course": "im1",
+            "module": "10",
+            "lesson": "4"
+          }
+        },
     {
-      "id": "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po",
-      "kind": "skill",
-      "title": "10g: Use the Distance Formula to find the distance between two points in the coordinate plane",
-      "domain": "math.im1",
-      "description": "Use the Distance Formula to find the distance between two points in the coordinate plane",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "im1",
-        "module": "10",
-        "lesson": "4"
-      }
-    },
+          "id": "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po",
+          "kind": "skill",
+          "title": "10g: Use the Distance Formula to find the distance between two points in the coordinate plane",
+          "domain": "math.im1",
+          "description": "Use the Distance Formula to find the distance between two points in the coordinate plane",
+          "sourceRefs": [
+            "apps/integrated-math-1/curriculum/module-10-class-period-plan.md",
+            "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1004_practice.docx (Example 3 Problems 21–26; Example 4 Problem 27 only; Mixed Exercises Problems 31–42, 52, and 54; Problem 52 observes learner-supplied points and a consistent distance; Problem 54 observes a manually reviewed general symbolic method)",
+            "apps/integrated-math-1/curriculum/modules/module-10-lesson-4 (Example 3 Problems 21–26; Example 4 Problem 27 only; Mixed Exercises Problems 31–42, 52, and 54; Problem 52 observes learner-supplied points and a consistent distance; Problem 54 observes a manually reviewed general symbolic method)"
+          ],
+          "reviewStatus": "draft",
+          "metadata": {
+            "course": "im1",
+            "module": "10",
+            "lesson": "4"
+          }
+        },
     {
       "id": "math.im1.skill.10.5.find-the-coordinate-of-a-point-located-at-a-fractional-dista",
       "kind": "skill",
@@ -9218,21 +9228,23 @@
       }
     },
     {
-      "id": "math.im1.skill.10.6.find-the-coordinates-of-a-point-that-divides-a-segment-in-a",
-      "kind": "skill",
-      "title": "10k: Find the coordinates of a point that divides a segment in a given ratio on a coordinate plane",
-      "domain": "math.im1",
-      "description": "Find the coordinates of a point that divides a segment in a given ratio on a coordinate plane",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md"
-      ],
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "im1",
-        "module": "10",
-        "lesson": "6"
-      }
-    },
+          "id": "math.im1.skill.10.6.find-the-coordinates-of-a-point-that-divides-a-segment-in-a",
+          "kind": "skill",
+          "title": "10k: Find the coordinates of a point that divides a segment in a given ratio on a coordinate plane",
+          "domain": "math.im1",
+          "description": "Find the coordinates of a point that divides a segment in a given ratio on a coordinate plane",
+          "sourceRefs": [
+            "apps/integrated-math-1/curriculum/module-10-class-period-plan.md",
+            "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1004_practice.docx (Mixed Exercises, Problem 51 only; observe the requested coordinate pair)",
+            "apps/integrated-math-1/curriculum/modules/module-10-lesson-4 (Mixed Exercises, Problem 51 only; observe the requested coordinate pair)"
+          ],
+          "reviewStatus": "draft",
+          "metadata": {
+            "course": "im1",
+            "module": "10",
+            "lesson": "6"
+          }
+        },
     {
       "id": "math.im1.skill.10.7.find-the-coordinates-of-a-missing-endpoint-when-the-midpoint",
       "kind": "skill",
@@ -19472,7 +19484,79 @@
         "module": "10",
         "lesson": "3"
       }
-    }
+    },
+    {
+          "id": "math.im1.skill.10.4.determine-whether-two-coordinate-defined-segments-are-congruent-by-comparing-their-lengths",
+          "kind": "skill",
+          "title": "Determine whether two coordinate-defined segments are congruent by comparing their lengths",
+          "domain": "math.im1",
+          "description": "Determine whether two coordinate-defined segments are congruent by comparing their lengths",
+          "sourceRefs": [
+            "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1004_practice.docx (Problems 15–20, 43, and 46. Observe each final congruence decision; length calculations are task stages.)",
+            "apps/integrated-math-1/curriculum/modules/module-10-lesson-4 (Problems 15–20, 43, and 46. Observe each final congruence decision; length calculations are task stages.)"
+          ],
+          "reviewStatus": "draft",
+          "independentPracticeReady": false,
+          "metadata": {
+            "course": "im1",
+            "module": "10",
+            "lesson": "4"
+          }
+        },
+    {
+          "id": "math.im1.skill.10.4.find-possible-values-of-one-coordinate-from-a-fixed-coordinate-and-distance",
+          "kind": "skill",
+          "title": "Find possible values of one coordinate from a fixed coordinate and distance",
+          "domain": "math.im1",
+          "description": "Find possible values of one coordinate from a fixed coordinate and distance",
+          "sourceRefs": [
+            "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1004_practice.docx (Problems 44, 45, and 53. Problems 44–45 require an unordered pair of possible points. Problem 53 requires the explanatory method and no separate coordinate answer.)",
+            "apps/integrated-math-1/curriculum/modules/module-10-lesson-4 (Problems 44, 45, and 53. Problems 44–45 require an unordered pair of possible points. Problem 53 requires the explanatory method and no separate coordinate answer.)"
+          ],
+          "reviewStatus": "draft",
+          "independentPracticeReady": false,
+          "metadata": {
+            "course": "im1",
+            "module": "10",
+            "lesson": "4"
+          }
+        },
+    {
+          "id": "math.im1.skill.10.4.determine-and-justify-segment-congruence-from-rectangle-side-lengths-and-midpoints",
+          "kind": "skill",
+          "title": "Determine and justify segment congruence from rectangle side lengths and midpoints",
+          "domain": "math.im1",
+          "description": "Determine and justify segment congruence from rectangle side lengths and midpoints",
+          "sourceRefs": [
+            "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1004_practice.docx (Problem 49 only. Manually review the decision and reason from the stated lengths and midpoint conditions.)",
+            "apps/integrated-math-1/curriculum/modules/module-10-lesson-4 (Problem 49 only. Manually review the decision and reason from the stated lengths and midpoint conditions.)"
+          ],
+          "reviewStatus": "draft",
+          "independentPracticeReady": false,
+          "metadata": {
+            "course": "im1",
+            "module": "10",
+            "lesson": "4"
+          }
+        },
+    {
+          "id": "math.im1.skill.10.4.explain-how-the-pythagorean-theorem-produces-the-distance-formula",
+          "kind": "skill",
+          "title": "Explain how the Pythagorean Theorem produces the Distance Formula",
+          "domain": "math.im1",
+          "description": "Explain how the Pythagorean Theorem produces the Distance Formula",
+          "sourceRefs": [
+            "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1004_practice.docx (Problem 50 only. Manually review the coordinate differences, right triangle, and hypotenuse relationship.)",
+            "apps/integrated-math-1/curriculum/modules/module-10-lesson-4 (Problem 50 only. Manually review the coordinate differences, right triangle, and hypotenuse relationship.)"
+          ],
+          "reviewStatus": "draft",
+          "independentPracticeReady": false,
+          "metadata": {
+            "course": "im1",
+            "module": "10",
+            "lesson": "4"
+          }
+        }
   ],
   "edges": [
     {
@@ -20994,189 +21078,28 @@
       }
     },
     {
-      "id": "math.alignment.im1-example-10-4-012-to-ccss-g-gpe-b-4",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im1.example.10.4.012",
-      "targetId": "math.standard.ccss.g-gpe-b-4",
-      "weight": 0.8,
-      "confidence": "high",
-      "sourceRefs": [
-        {
-          "source": "lesson-standards",
-          "location": "module-10-lesson-4",
-          "note": "Mapped via lesson standard (primary)"
-        }
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via lesson standard mapping for module-10-lesson-4",
-      "metadata": {
-        "isPrimary": true,
-        "course": "im1"
-      }
-    },
-    {
-      "id": "math.alignment.im1-example-10-4-012-to-ccss-g-mg-a-1",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im1.example.10.4.012",
-      "targetId": "math.standard.ccss.g-mg-a-1",
-      "weight": 0.5,
-      "confidence": "high",
-      "sourceRefs": [
-        {
-          "source": "lesson-standards",
-          "location": "module-10-lesson-4",
-          "note": "Mapped via lesson standard"
-        }
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via lesson standard mapping for module-10-lesson-4",
-      "metadata": {
-        "isPrimary": false,
-        "course": "im1"
-      }
-    },
-    {
-      "id": "math.alignment.im1-example-10-4-013-to-ccss-g-gpe-b-4",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im1.example.10.4.013",
-      "targetId": "math.standard.ccss.g-gpe-b-4",
-      "weight": 0.8,
-      "confidence": "high",
-      "sourceRefs": [
-        {
-          "source": "lesson-standards",
-          "location": "module-10-lesson-4",
-          "note": "Mapped via lesson standard (primary)"
-        }
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via lesson standard mapping for module-10-lesson-4",
-      "metadata": {
-        "isPrimary": true,
-        "course": "im1"
-      }
-    },
-    {
-      "id": "math.alignment.im1-example-10-4-013-to-ccss-g-mg-a-1",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im1.example.10.4.013",
-      "targetId": "math.standard.ccss.g-mg-a-1",
-      "weight": 0.5,
-      "confidence": "high",
-      "sourceRefs": [
-        {
-          "source": "lesson-standards",
-          "location": "module-10-lesson-4",
-          "note": "Mapped via lesson standard"
-        }
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via lesson standard mapping for module-10-lesson-4",
-      "metadata": {
-        "isPrimary": false,
-        "course": "im1"
-      }
-    },
-    {
-      "id": "math.alignment.im1-example-10-4-014-to-ccss-g-gpe-b-4",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im1.example.10.4.014",
-      "targetId": "math.standard.ccss.g-gpe-b-4",
-      "weight": 0.8,
-      "confidence": "high",
-      "sourceRefs": [
-        {
-          "source": "lesson-standards",
-          "location": "module-10-lesson-4",
-          "note": "Mapped via lesson standard (primary)"
-        }
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via lesson standard mapping for module-10-lesson-4",
-      "metadata": {
-        "isPrimary": true,
-        "course": "im1"
-      }
-    },
-    {
-      "id": "math.alignment.im1-example-10-4-014-to-ccss-g-mg-a-1",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im1.example.10.4.014",
-      "targetId": "math.standard.ccss.g-mg-a-1",
-      "weight": 0.5,
-      "confidence": "high",
-      "sourceRefs": [
-        {
-          "source": "lesson-standards",
-          "location": "module-10-lesson-4",
-          "note": "Mapped via lesson standard"
-        }
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via lesson standard mapping for module-10-lesson-4",
-      "metadata": {
-        "isPrimary": false,
-        "course": "im1"
-      }
-    },
-    {
-      "id": "math.alignment.im1-example-10-4-015-to-ccss-g-gpe-b-4",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im1.example.10.4.015",
-      "targetId": "math.standard.ccss.g-gpe-b-4",
-      "weight": 0.8,
-      "confidence": "high",
-      "sourceRefs": [
-        {
-          "source": "lesson-standards",
-          "location": "module-10-lesson-4",
-          "note": "Mapped via lesson standard (primary)"
-        }
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via lesson standard mapping for module-10-lesson-4",
-      "metadata": {
-        "isPrimary": true,
-        "course": "im1"
-      }
-    },
-    {
-      "id": "math.alignment.im1-example-10-4-015-to-ccss-g-mg-a-1",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im1.example.10.4.015",
-      "targetId": "math.standard.ccss.g-mg-a-1",
-      "weight": 0.5,
-      "confidence": "high",
-      "sourceRefs": [
-        {
-          "source": "lesson-standards",
-          "location": "module-10-lesson-4",
-          "note": "Mapped via lesson standard"
-        }
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via lesson standard mapping for module-10-lesson-4",
-      "metadata": {
-        "isPrimary": false,
-        "course": "im1"
-      }
-    },
+          "id": "math.alignment.im1-example-10-4-015-to-ccss-g-mg-a-1",
+          "type": "aligned_to_standard",
+          "sourceId": "math.im1.example.10.4.015",
+          "targetId": "math.standard.ccss.g-mg-a-1",
+          "weight": 0.5,
+          "confidence": "high",
+          "sourceRefs": [
+            {
+              "source": "worksheet-source-review",
+              "location": "module-10-lesson-4",
+              "note": "Example 4 Problems 27–30 model contextual geometric measures for a spiral trace, migration, a cycling route, and a baseball diamond."
+            }
+          ],
+          "derived": true,
+          "derivationMethod": "standards-alignment-script",
+          "reviewStatus": "draft",
+          "rationale": "Example 4 Problems 27–30 model contextual geometric measures for a spiral trace, migration, a cycling route, and a baseball diamond.",
+          "metadata": {
+            "isPrimary": false,
+            "course": "im1"
+          }
+        },
     {
       "id": "math.alignment.im1-example-10-5-016-to-ccss-g-gpe-b-4",
       "type": "aligned_to_standard",
@@ -35574,97 +35497,28 @@
       }
     },
     {
-      "id": "math.alignment.im1-skill-10-4-apply-the-distance-formula-to-solve-real-world-problems-to-ccss-g-gpe-b-4",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems",
-      "targetId": "math.standard.ccss.g-gpe-b-4",
-      "weight": 0.8,
-      "confidence": "high",
-      "sourceRefs": [
-        {
-          "source": "lesson-standards",
-          "location": "module-10-lesson-4",
-          "note": "Mapped via lesson standard (primary)"
-        }
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via lesson standard mapping for module-10-lesson-4",
-      "metadata": {
-        "isPrimary": true,
-        "course": "im1"
-      }
-    },
-    {
-      "id": "math.alignment.im1-skill-10-4-apply-the-distance-formula-to-solve-real-world-problems-to-ccss-g-mg-a-1",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems",
-      "targetId": "math.standard.ccss.g-mg-a-1",
-      "weight": 0.5,
-      "confidence": "high",
-      "sourceRefs": [
-        {
-          "source": "lesson-standards",
-          "location": "module-10-lesson-4",
-          "note": "Mapped via lesson standard"
-        }
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via lesson standard mapping for module-10-lesson-4",
-      "metadata": {
-        "isPrimary": false,
-        "course": "im1"
-      }
-    },
-    {
-      "id": "math.alignment.im1-skill-10-4-use-the-distance-formula-to-find-the-distance-between-two-po-to-ccss-g-gpe-b-4",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po",
-      "targetId": "math.standard.ccss.g-gpe-b-4",
-      "weight": 0.8,
-      "confidence": "high",
-      "sourceRefs": [
-        {
-          "source": "lesson-standards",
-          "location": "module-10-lesson-4",
-          "note": "Mapped via lesson standard (primary)"
-        }
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via lesson standard mapping for module-10-lesson-4",
-      "metadata": {
-        "isPrimary": true,
-        "course": "im1"
-      }
-    },
-    {
-      "id": "math.alignment.im1-skill-10-4-use-the-distance-formula-to-find-the-distance-between-two-po-to-ccss-g-mg-a-1",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po",
-      "targetId": "math.standard.ccss.g-mg-a-1",
-      "weight": 0.5,
-      "confidence": "high",
-      "sourceRefs": [
-        {
-          "source": "lesson-standards",
-          "location": "module-10-lesson-4",
-          "note": "Mapped via lesson standard"
-        }
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via lesson standard mapping for module-10-lesson-4",
-      "metadata": {
-        "isPrimary": false,
-        "course": "im1"
-      }
-    },
+          "id": "math.alignment.im1-skill-10-4-apply-the-distance-formula-to-solve-real-world-problems-to-ccss-g-mg-a-1",
+          "type": "aligned_to_standard",
+          "sourceId": "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems",
+          "targetId": "math.standard.ccss.g-mg-a-1",
+          "weight": 0.5,
+          "confidence": "high",
+          "sourceRefs": [
+            {
+              "source": "worksheet-source-review",
+              "location": "module-10-lesson-4",
+              "note": "Problems 28–30 and 47–48 use geometric distance and perimeter to model contextual routes, a baseball throw, a scarf, and an artifact."
+            }
+          ],
+          "derived": true,
+          "derivationMethod": "standards-alignment-script",
+          "reviewStatus": "draft",
+          "rationale": "Problems 28–30 and 47–48 use geometric distance and perimeter to model contextual routes, a baseball throw, a scarf, and an artifact.",
+          "metadata": {
+            "isPrimary": false,
+            "course": "im1"
+          }
+        },
     {
       "id": "math.alignment.im1-skill-10-5-find-the-coordinate-of-a-point-located-at-a-fractional-dista-to-ccss-g-gpe-b-4",
       "type": "aligned_to_standard",
@@ -41866,14 +41720,15 @@
     "course": "im1",
     "generatedAt": "2026-05-09T14:20:42.419Z",
     "alignmentStats": {
-      "totalEdges": 1012,
-      "highConfidence": 932,
+      "totalEdges": 1002,
+      "highConfidence": 922,
       "mediumConfidence": 0,
       "lowConfidence": 0,
       "exceptions": 0,
       "missingStandards": 124,
       "reviewQueue": 0
     },
-    "totalNodes": 1091
+    "totalNodes": 1101,
+    "totalEdges": null
   }
 }

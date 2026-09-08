@@ -73,6 +73,42 @@
       "priority": "standard"
     },
     {
+      "nodeId": "math.im1.skill.10.4.determine-whether-two-coordinate-defined-segments-are-congruent-by-comparing-their-lengths",
+      "title": "Determine whether two coordinate-defined segments are congruent by comparing their lengths",
+      "module": "10",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.10.4.find-possible-values-of-one-coordinate-from-a-fixed-coordinate-and-distance",
+      "title": "Find possible values of one coordinate from a fixed coordinate and distance",
+      "module": "10",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.10.4.determine-and-justify-segment-congruence-from-rectangle-side-lengths-and-midpoints",
+      "title": "Determine and justify segment congruence from rectangle side lengths and midpoints",
+      "module": "10",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.10.4.explain-how-the-pythagorean-theorem-produces-the-distance-formula",
+      "title": "Explain how the Pythagorean Theorem produces the Distance Formula",
+      "module": "10",
+      "rendererKey": "unknown",
+      "rendererAssignmentReason": "No reviewed renderer assignment in the current blueprint",
+      "gap": "No generator binding or complete three-mode blueprint",
+      "priority": "standard"
+    },
+    {
       "nodeId": "math.im1.skill.10.5.find-the-coordinate-of-a-point-located-at-a-fractional-dista",
       "title": "10i: Find the coordinate of a point located at a fractional distance between two given points on a number line",
       "module": "10",
@@ -4403,8 +4439,8 @@
     }
   ],
   "meta": {
-    "totalSkills": 489,
+    "totalSkills": 493,
     "allNeedGenerators": true,
-    "total": 489
+    "total": 493
   }
 }

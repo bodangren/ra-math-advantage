@@ -873,7 +873,9 @@
     },
     {
       "nodeId": "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im1.example.10.4.012"
+      ],
       "alignmentNodeIds": [],
       "rendererKey": "graphing-explorer",
       "rendererModeMap": {
@@ -896,9 +898,11 @@
     },
     {
       "nodeId": "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im1.example.10.4.015",
+        "math.im1.lesson.10.4"
+      ],
       "alignmentNodeIds": [
-        "math.standard.ccss.g-gpe-b-4",
         "math.standard.ccss.g-mg-a-1"
       ],
       "rendererKey": "step-by-step-solver",
@@ -907,9 +911,6 @@
         "guidedPractice": "step-by-step-solver",
         "independentPractice": "step-by-step-solver"
       },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
       "exceptions": [
         {
           "type": "generator",
@@ -925,20 +926,18 @@
     },
     {
       "nodeId": "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po",
-      "sourceNodeIds": [],
-      "alignmentNodeIds": [
-        "math.standard.ccss.g-gpe-b-4",
-        "math.standard.ccss.g-mg-a-1"
+      "sourceNodeIds": [
+        "math.im1.example.10.4.014",
+        "math.im1.example.10.4.015",
+        "math.im1.lesson.10.4"
       ],
+      "alignmentNodeIds": [],
       "rendererKey": "graphing-explorer",
       "rendererModeMap": {
         "worked": "graphing-explorer",
         "guidedPractice": "graphing-explorer",
         "independentPractice": "graphing-explorer"
       },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
       "exceptions": [
         {
           "type": "generator",
@@ -1012,7 +1011,9 @@
     },
     {
       "nodeId": "math.im1.skill.10.6.find-the-coordinates-of-a-point-that-divides-a-segment-in-a",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im1.lesson.10.4"
+      ],
       "alignmentNodeIds": [
         "math.standard.ccss.g-gpe-b-5",
         "math.standard.ccss.g-gpe-b-6"
@@ -8694,6 +8695,59 @@
         "course": "im1",
         "module": "10",
         "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.10.4.determine-whether-two-coordinate-defined-segments-are-congruent-by-comparing-their-lengths",
+      "sourceNodeIds": [
+        "math.im1.example.10.4.013",
+        "math.im1.lesson.10.4"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "10",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.10.4.find-possible-values-of-one-coordinate-from-a-fixed-coordinate-and-distance",
+      "sourceNodeIds": [
+        "math.im1.lesson.10.4"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "10",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.10.4.determine-and-justify-segment-congruence-from-rectangle-side-lengths-and-midpoints",
+      "sourceNodeIds": [
+        "math.im1.lesson.10.4"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "10",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.10.4.explain-how-the-pythagorean-theorem-produces-the-distance-formula",
+      "sourceNodeIds": [
+        "math.im1.lesson.10.4"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "10",
+        "lesson": "4"
       }
     }
   ]

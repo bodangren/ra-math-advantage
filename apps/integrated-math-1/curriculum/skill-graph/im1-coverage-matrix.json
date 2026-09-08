@@ -1,10 +1,10 @@
 {
   "version": 1,
   "course": "im1",
-  "totalSkills": 495,
+  "totalSkills": 499,
   "counts": {
     "served": 6,
-    "gap": 489,
+    "gap": 493,
     "newComponent": 0
   },
   "byModule": [
@@ -73,9 +73,9 @@
     },
     {
       "module": "10",
-      "totalSkills": 19,
+      "totalSkills": 28,
       "served": 0,
-      "gap": 19,
+      "gap": 28,
       "newComponent": 0
     },
     {
@@ -3476,6 +3476,38 @@
       "rendererKey": "step-by-step-solver",
       "priority": "standard"
     },
+    {
+          "skillId": "math.im1.skill.10.4.determine-and-justify-segment-congruence-from-rectangle-side-lengths-and-midpoints",
+          "module": "10",
+          "status": "gap",
+          "tier": "none",
+          "rendererKey": "unknown",
+          "priority": "standard"
+        },
+    {
+          "skillId": "math.im1.skill.10.4.determine-whether-two-coordinate-defined-segments-are-congruent-by-comparing-their-lengths",
+          "module": "10",
+          "status": "gap",
+          "tier": "none",
+          "rendererKey": "unknown",
+          "priority": "standard"
+        },
+    {
+          "skillId": "math.im1.skill.10.4.explain-how-the-pythagorean-theorem-produces-the-distance-formula",
+          "module": "10",
+          "status": "gap",
+          "tier": "none",
+          "rendererKey": "unknown",
+          "priority": "standard"
+        },
+    {
+          "skillId": "math.im1.skill.10.4.find-possible-values-of-one-coordinate-from-a-fixed-coordinate-and-distance",
+          "module": "10",
+          "status": "gap",
+          "tier": "none",
+          "rendererKey": "unknown",
+          "priority": "standard"
+        },
     {
       "skillId": "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po",
       "module": "10",

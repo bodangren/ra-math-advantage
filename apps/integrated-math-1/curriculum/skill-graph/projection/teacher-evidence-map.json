@@ -255,16 +255,8 @@
     },
     {
       "standardId": "math.standard.ccss.g-gpe-b-4",
-      "standardTitle": "math.standard.ccss.g-gpe-b-4",
+      "standardTitle": "G-GPE.B.4 (placeholder)",
       "nodeIds": [
-        "math.im1.example.10.3.008",
-        "math.im1.example.10.3.009",
-        "math.im1.example.10.3.010",
-        "math.im1.example.10.3.011",
-        "math.im1.example.10.4.012",
-        "math.im1.example.10.4.013",
-        "math.im1.example.10.4.014",
-        "math.im1.example.10.4.015",
         "math.im1.example.10.5.016",
         "math.im1.example.10.5.017",
         "math.im1.example.10.5.018",
@@ -284,10 +276,6 @@
         "math.im1.example.14.7.024",
         "math.im1.example.14.7.025",
         "math.im1.example.14.7.026",
-        "math.im1.skill.10.3.apply-the-segment-addition-postulate-to-find-missing-segment",
-        "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n",
-        "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems",
-        "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po",
         "math.im1.skill.10.5.find-the-coordinate-of-a-point-located-at-a-fractional-dista",
         "math.im1.skill.10.5.locate-a-point-that-divides-a-segment-on-a-number-line-in-a",
         "math.im1.skill.10.7.find-the-coordinates-of-a-missing-endpoint-when-the-midpoint",
@@ -298,17 +286,14 @@
         "math.im1.skill.14.7.position-and-label-triangles-on-the-coordinate-plane-using-g",
         "math.im1.skill.14.7.write-coordinate-proofs-for-geometric-statements-about-trian"
       ],
-      "workedExampleCount": 27,
-      "guidedPracticeCount": 13,
+      "workedExampleCount": 19,
+      "guidedPracticeCount": 0,
       "independentPracticeCount": 0
     },
     {
       "standardId": "math.standard.ccss.g-mg-a-1",
-      "standardTitle": "math.standard.ccss.g-mg-a-1",
+      "standardTitle": "G-MG.A.1 (placeholder)",
       "nodeIds": [
-        "math.im1.example.10.4.012",
-        "math.im1.example.10.4.013",
-        "math.im1.example.10.4.014",
         "math.im1.example.10.4.015",
         "math.im1.example.11.6.019",
         "math.im1.example.11.6.020",
@@ -316,12 +301,11 @@
         "math.im1.example.11.6.022",
         "math.im1.example.11.6.023",
         "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems",
-        "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po",
         "math.im1.skill.11.6.interpret-orthographic-drawings-to-build-models-of-three-dim",
         "math.im1.skill.11.6.use-nets-to-identify-solids-find-surface-area-and-construct"
       ],
-      "workedExampleCount": 9,
-      "guidedPracticeCount": 4,
+      "workedExampleCount": 6,
+      "guidedPracticeCount": 0,
       "independentPracticeCount": 0
     },
     {
@@ -1743,22 +1727,56 @@
       "title": "10h: Apply the Distance Formula to solve real-world problems",
       "kind": "skill",
       "standardsCovered": [
-        "math.standard.ccss.g-gpe-b-4",
         "math.standard.ccss.g-mg-a-1"
       ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po",
       "title": "10g: Use the Distance Formula to find the distance between two points in the coordinate plane",
       "kind": "skill",
-      "standardsCovered": [
-        "math.standard.ccss.g-gpe-b-4",
-        "math.standard.ccss.g-mg-a-1"
-      ],
-      "prerequisitesMet": false,
-      "independentPracticeReady": false
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.10.4.determine-whether-two-coordinate-defined-segments-are-congruent-by-comparing-their-lengths",
+      "title": "Determine whether two coordinate-defined segments are congruent by comparing their lengths",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.10.4.find-possible-values-of-one-coordinate-from-a-fixed-coordinate-and-distance",
+      "title": "Find possible values of one coordinate from a fixed coordinate and distance",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.10.4.determine-and-justify-segment-congruence-from-rectangle-side-lengths-and-midpoints",
+      "title": "Determine and justify segment congruence from rectangle side lengths and midpoints",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.10.4.explain-how-the-pythagorean-theorem-produces-the-distance-formula",
+      "title": "Explain how the Pythagorean Theorem produces the Distance Formula",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im1.skill.10.5.find-the-coordinate-of-a-point-located-at-a-fractional-dista",
@@ -1790,8 +1808,9 @@
         "math.standard.ccss.g-gpe-b-5",
         "math.standard.ccss.g-gpe-b-6"
       ],
-      "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "prerequisitesMet": false,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im1.skill.10.7.find-the-coordinates-of-a-missing-endpoint-when-the-midpoint",

@@ -3,9 +3,9 @@
     "course": "im1",
     "generatedAt": "2026-05-10T06:41:48.253Z",
     "description": "IM1 practice.v1 activity map projection from skill graph",
-    "totalActivities": 297,
-    "totalSrsInputs": 321,
-    "totalSkills": 321
+    "totalActivities": 291,
+    "totalSrsInputs": 325,
+    "totalSkills": 325
   },
   "activities": [
     {
@@ -483,152 +483,6 @@
       "alignmentNodeIds": [
         "math.standard.ccss.6-ee-a-2",
         "math.standard.ccss.a-ced-a-1"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems.worked_example",
-      "nodeId": "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems",
-      "sourceNodeIds": [],
-      "rendererKey": "step-by-step-solver",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.g-gpe-b-4",
-        "math.standard.ccss.g-mg-a-1"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems.guided_practice",
-      "nodeId": "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems",
-      "sourceNodeIds": [],
-      "rendererKey": "step-by-step-solver",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.g-gpe-b-4",
-        "math.standard.ccss.g-mg-a-1"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 10h: Apply the Distance Formula to solve real-world problems",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems.independent_practice",
-      "nodeId": "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems",
-      "sourceNodeIds": [],
-      "rendererKey": "step-by-step-solver",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.g-gpe-b-4",
-        "math.standard.ccss.g-mg-a-1"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po.worked_example",
-      "nodeId": "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.g-gpe-b-4",
-        "math.standard.ccss.g-mg-a-1"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po.guided_practice",
-      "nodeId": "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.g-gpe-b-4",
-        "math.standard.ccss.g-mg-a-1"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 10g: Use the Distance Formula to find the distance between two points in the coordinate plane",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po.independent_practice",
-      "nodeId": "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.g-gpe-b-4",
-        "math.standard.ccss.g-mg-a-1"
       ],
       "props": {
         "variantParameters": {},
@@ -7339,31 +7193,59 @@
     },
     {
       "nodeId": "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems",
-      "blueprintId": "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems",
+      "blueprintId": "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems.blueprint",
       "standards": [
-        "math.standard.ccss.g-gpe-b-4",
-        "math.standard.ccss.g-mg-a-1"
-      ],
-      "prerequisites": [
-        "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n"
-      ],
-      "difficulty": 0.5,
-      "rendererKey": "step-by-step-solver",
-      "generatorKey": null,
-      "generatorReady": false
-    },
-    {
-      "nodeId": "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po",
-      "blueprintId": "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po",
-      "standards": [
-        "math.standard.ccss.g-gpe-b-4",
         "math.standard.ccss.g-mg-a-1"
       ],
       "prerequisites": [],
       "difficulty": 0.5,
-      "rendererKey": "graphing-explorer",
-      "generatorKey": null,
-      "generatorReady": false
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po",
+      "blueprintId": "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.10.4.determine-whether-two-coordinate-defined-segments-are-congruent-by-comparing-their-lengths",
+      "blueprintId": "math.im1.skill.10.4.determine-whether-two-coordinate-defined-segments-are-congruent-by-comparing-their-lengths.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.10.4.find-possible-values-of-one-coordinate-from-a-fixed-coordinate-and-distance",
+      "blueprintId": "math.im1.skill.10.4.find-possible-values-of-one-coordinate-from-a-fixed-coordinate-and-distance.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.10.4.determine-and-justify-segment-congruence-from-rectangle-side-lengths-and-midpoints",
+      "blueprintId": "math.im1.skill.10.4.determine-and-justify-segment-congruence-from-rectangle-side-lengths-and-midpoints.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.10.4.explain-how-the-pythagorean-theorem-produces-the-distance-formula",
+      "blueprintId": "math.im1.skill.10.4.explain-how-the-pythagorean-theorem-produces-the-distance-formula.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im1.skill.10.5.find-the-coordinate-of-a-point-located-at-a-fractional-dista",
@@ -7395,7 +7277,7 @@
     },
     {
       "nodeId": "math.im1.skill.10.6.find-the-coordinates-of-a-point-that-divides-a-segment-in-a",
-      "blueprintId": "math.im1.skill.10.6.find-the-coordinates-of-a-point-that-divides-a-segment-in-a",
+      "blueprintId": "math.im1.skill.10.6.find-the-coordinates-of-a-point-that-divides-a-segment-in-a.blueprint",
       "standards": [
         "math.standard.ccss.g-gpe-b-5",
         "math.standard.ccss.g-gpe-b-6"
@@ -7404,9 +7286,8 @@
         "math.im1.skill.10.5.locate-a-point-that-divides-a-segment-on-a-number-line-in-a"
       ],
       "difficulty": 0.5,
-      "rendererKey": "graphing-explorer",
-      "generatorKey": null,
-      "generatorReady": false
+      "generatorReady": true,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im1.skill.10.7.find-the-coordinates-of-a-missing-endpoint-when-the-midpoint",
@@ -9511,6 +9392,7 @@
       "standards": [],
       "prerequisites": [],
       "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
       "generatorKey": null,
       "generatorReady": false,
       "equivalentNodeIds": []
@@ -9521,6 +9403,7 @@
       "standards": [],
       "prerequisites": [],
       "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
       "generatorKey": null,
       "generatorReady": false,
       "equivalentNodeIds": []
@@ -9531,6 +9414,7 @@
       "standards": [],
       "prerequisites": [],
       "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
       "generatorKey": null,
       "generatorReady": false,
       "equivalentNodeIds": []
@@ -9541,6 +9425,7 @@
       "standards": [],
       "prerequisites": [],
       "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
       "generatorKey": null,
       "generatorReady": false,
       "equivalentNodeIds": []
@@ -9551,6 +9436,7 @@
       "standards": [],
       "prerequisites": [],
       "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
       "generatorKey": null,
       "generatorReady": false,
       "equivalentNodeIds": []
@@ -9561,6 +9447,7 @@
       "standards": [],
       "prerequisites": [],
       "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
       "generatorKey": null,
       "generatorReady": false,
       "equivalentNodeIds": []
@@ -9571,6 +9458,7 @@
       "standards": [],
       "prerequisites": [],
       "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
       "generatorKey": null,
       "generatorReady": false,
       "equivalentNodeIds": []
@@ -9581,6 +9469,7 @@
       "standards": [],
       "prerequisites": [],
       "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
       "generatorKey": null,
       "generatorReady": false,
       "equivalentNodeIds": []
@@ -9591,6 +9480,7 @@
       "standards": [],
       "prerequisites": [],
       "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
       "generatorKey": null,
       "generatorReady": false,
       "equivalentNodeIds": []
@@ -9601,6 +9491,7 @@
       "standards": [],
       "prerequisites": [],
       "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
       "generatorKey": null,
       "generatorReady": false,
       "equivalentNodeIds": []
@@ -9611,6 +9502,7 @@
       "standards": [],
       "prerequisites": [],
       "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
       "generatorKey": null,
       "generatorReady": false,
       "equivalentNodeIds": []
@@ -9621,6 +9513,7 @@
       "standards": [],
       "prerequisites": [],
       "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
       "generatorKey": null,
       "generatorReady": false,
       "equivalentNodeIds": []
@@ -9631,6 +9524,7 @@
       "standards": [],
       "prerequisites": [],
       "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
       "generatorKey": null,
       "generatorReady": false,
       "equivalentNodeIds": []
@@ -9641,6 +9535,7 @@
       "standards": [],
       "prerequisites": [],
       "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
       "generatorKey": null,
       "generatorReady": false,
       "equivalentNodeIds": []
@@ -9651,6 +9546,7 @@
       "standards": [],
       "prerequisites": [],
       "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
       "generatorKey": null,
       "generatorReady": false,
       "equivalentNodeIds": []
@@ -11092,8 +10988,12 @@
       },
       {
         "standardId": "math.standard.ccss.g-co-a-2",
-        "standardTitle": "G-CO.A.2 (placeholder)",
+        "standardTitle": "math.standard.ccss.g-co-a-2",
         "nodeIds": [
+          "math.im1.example.10.3.008",
+          "math.im1.example.10.3.009",
+          "math.im1.example.10.3.010",
+          "math.im1.example.10.3.011",
           "math.im1.example.11.4.010",
           "math.im1.example.11.4.011",
           "math.im1.example.11.4.012",
@@ -11119,6 +11019,8 @@
           "math.im1.example.13.4.016",
           "math.im1.example.13.4.017",
           "math.im1.example.13.4.018",
+          "math.im1.skill.10.3.apply-the-segment-addition-postulate-to-find-missing-segment",
+          "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n",
           "math.im1.skill.11.4.apply-reflections-translations-and-rotations-to-figures-on-t",
           "math.im1.skill.11.4.identify-rigid-motions-reflection-translation-rotation-from",
           "math.im1.skill.12.3.apply-the-law-of-detachment-and-the-law-of-syllogism-to-draw",
@@ -11132,18 +11034,14 @@
           "math.im1.skill.13.4.graph-the-image-of-a-figure-after-a-glide-reflection-or-othe",
           "math.im1.skill.13.4.identify-a-single-transformation-that-is-equivalent-to-a-com"
         ],
-        "workedExampleCount": 25,
-        "guidedPracticeCount": 0,
+        "workedExampleCount": 29,
+        "guidedPracticeCount": 14,
         "independentPracticeCount": 0
       },
       {
         "standardId": "math.standard.ccss.g-gpe-b-4",
         "standardTitle": "G-GPE.B.4 (placeholder)",
         "nodeIds": [
-          "math.im1.example.10.4.012",
-          "math.im1.example.10.4.013",
-          "math.im1.example.10.4.014",
-          "math.im1.example.10.4.015",
           "math.im1.example.10.5.016",
           "math.im1.example.10.5.017",
           "math.im1.example.10.5.018",
@@ -11163,8 +11061,6 @@
           "math.im1.example.14.7.024",
           "math.im1.example.14.7.025",
           "math.im1.example.14.7.026",
-          "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems",
-          "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po",
           "math.im1.skill.10.5.find-the-coordinate-of-a-point-located-at-a-fractional-dista",
           "math.im1.skill.10.5.locate-a-point-that-divides-a-segment-on-a-number-line-in-a",
           "math.im1.skill.10.7.find-the-coordinates-of-a-missing-endpoint-when-the-midpoint",
@@ -11175,17 +11071,14 @@
           "math.im1.skill.14.7.position-and-label-triangles-on-the-coordinate-plane-using-g",
           "math.im1.skill.14.7.write-coordinate-proofs-for-geometric-statements-about-trian"
         ],
-        "workedExampleCount": 23,
+        "workedExampleCount": 19,
         "guidedPracticeCount": 0,
         "independentPracticeCount": 0
       },
       {
         "standardId": "math.standard.ccss.g-mg-a-1",
-        "standardTitle": "math.standard.ccss.g-mg-a-1",
+        "standardTitle": "G-MG.A.1 (placeholder)",
         "nodeIds": [
-          "math.im1.example.10.4.012",
-          "math.im1.example.10.4.013",
-          "math.im1.example.10.4.014",
           "math.im1.example.10.4.015",
           "math.im1.example.11.6.019",
           "math.im1.example.11.6.020",
@@ -11193,12 +11086,11 @@
           "math.im1.example.11.6.022",
           "math.im1.example.11.6.023",
           "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems",
-          "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po",
           "math.im1.skill.11.6.interpret-orthographic-drawings-to-build-models-of-three-dim",
           "math.im1.skill.11.6.use-nets-to-identify-solids-find-surface-area-and-construct"
         ],
-        "workedExampleCount": 9,
-        "guidedPracticeCount": 4,
+        "workedExampleCount": 6,
+        "guidedPracticeCount": 0,
         "independentPracticeCount": 0
       },
       {
@@ -12620,22 +12512,56 @@
         "title": "10h: Apply the Distance Formula to solve real-world problems",
         "kind": "skill",
         "standardsCovered": [
-          "math.standard.ccss.g-gpe-b-4",
           "math.standard.ccss.g-mg-a-1"
         ],
         "prerequisitesMet": true,
-        "independentPracticeReady": false
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
       },
       {
         "nodeId": "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po",
         "title": "10g: Use the Distance Formula to find the distance between two points in the coordinate plane",
         "kind": "skill",
-        "standardsCovered": [
-          "math.standard.ccss.g-gpe-b-4",
-          "math.standard.ccss.g-mg-a-1"
-        ],
-        "prerequisitesMet": false,
-        "independentPracticeReady": false
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.10.4.determine-whether-two-coordinate-defined-segments-are-congruent-by-comparing-their-lengths",
+        "title": "Determine whether two coordinate-defined segments are congruent by comparing their lengths",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.10.4.find-possible-values-of-one-coordinate-from-a-fixed-coordinate-and-distance",
+        "title": "Find possible values of one coordinate from a fixed coordinate and distance",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.10.4.determine-and-justify-segment-congruence-from-rectangle-side-lengths-and-midpoints",
+        "title": "Determine and justify segment congruence from rectangle side lengths and midpoints",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.10.4.explain-how-the-pythagorean-theorem-produces-the-distance-formula",
+        "title": "Explain how the Pythagorean Theorem produces the Distance Formula",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
       },
       {
         "nodeId": "math.im1.skill.10.5.find-the-coordinate-of-a-point-located-at-a-fractional-dista",
@@ -12667,8 +12593,9 @@
           "math.standard.ccss.g-gpe-b-5",
           "math.standard.ccss.g-gpe-b-6"
         ],
-        "prerequisitesMet": true,
-        "independentPracticeReady": false
+        "prerequisitesMet": false,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
       },
       {
         "nodeId": "math.im1.skill.10.7.find-the-coordinates-of-a-missing-endpoint-when-the-midpoint",

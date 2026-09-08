@@ -154,31 +154,59 @@
     },
     {
       "nodeId": "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems",
-      "blueprintId": "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems",
+      "blueprintId": "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems.blueprint",
       "standards": [
-        "math.standard.ccss.g-gpe-b-4",
-        "math.standard.ccss.g-mg-a-1"
-      ],
-      "prerequisites": [
-        "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n"
-      ],
-      "difficulty": 0.5,
-      "rendererKey": "step-by-step-solver",
-      "generatorKey": null,
-      "generatorReady": false
-    },
-    {
-      "nodeId": "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po",
-      "blueprintId": "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po",
-      "standards": [
-        "math.standard.ccss.g-gpe-b-4",
         "math.standard.ccss.g-mg-a-1"
       ],
       "prerequisites": [],
       "difficulty": 0.5,
-      "rendererKey": "graphing-explorer",
-      "generatorKey": null,
-      "generatorReady": false
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po",
+      "blueprintId": "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.10.4.determine-whether-two-coordinate-defined-segments-are-congruent-by-comparing-their-lengths",
+      "blueprintId": "math.im1.skill.10.4.determine-whether-two-coordinate-defined-segments-are-congruent-by-comparing-their-lengths.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.10.4.find-possible-values-of-one-coordinate-from-a-fixed-coordinate-and-distance",
+      "blueprintId": "math.im1.skill.10.4.find-possible-values-of-one-coordinate-from-a-fixed-coordinate-and-distance.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.10.4.determine-and-justify-segment-congruence-from-rectangle-side-lengths-and-midpoints",
+      "blueprintId": "math.im1.skill.10.4.determine-and-justify-segment-congruence-from-rectangle-side-lengths-and-midpoints.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.10.4.explain-how-the-pythagorean-theorem-produces-the-distance-formula",
+      "blueprintId": "math.im1.skill.10.4.explain-how-the-pythagorean-theorem-produces-the-distance-formula.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im1.skill.10.5.find-the-coordinate-of-a-point-located-at-a-fractional-dista",
@@ -210,7 +238,7 @@
     },
     {
       "nodeId": "math.im1.skill.10.6.find-the-coordinates-of-a-point-that-divides-a-segment-in-a",
-      "blueprintId": "math.im1.skill.10.6.find-the-coordinates-of-a-point-that-divides-a-segment-in-a",
+      "blueprintId": "math.im1.skill.10.6.find-the-coordinates-of-a-point-that-divides-a-segment-in-a.blueprint",
       "standards": [
         "math.standard.ccss.g-gpe-b-5",
         "math.standard.ccss.g-gpe-b-6"
@@ -219,9 +247,8 @@
         "math.im1.skill.10.5.locate-a-point-that-divides-a-segment-on-a-number-line-in-a"
       ],
       "difficulty": 0.5,
-      "rendererKey": "graphing-explorer",
-      "generatorKey": null,
-      "generatorReady": false
+      "generatorReady": true,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im1.skill.10.7.find-the-coordinates-of-a-missing-endpoint-when-the-midpoint",

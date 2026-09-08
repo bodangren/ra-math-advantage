@@ -811,7 +811,8 @@
       "title": "Example 1: Find Segment Lengths on a Number Line; Determine Whether Segments Are Congruent; Find the Distance Between Two Points",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md (10-4, Example 1)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1004_practice.docx (Example 1, Problems 1–14)",
+        "apps/integrated-math-1/curriculum/modules/module-10-lesson-4 (Example 1, Problems 1–14)"
       ],
       "reviewStatus": "approved",
       "metadata": {
@@ -829,7 +830,8 @@
       "title": "Example 2: Find Segment Lengths on a Number Line; Determine Whether Segments Are Congruent; Find the Distance Between Two Points",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md (10-4, Example 2)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1004_practice.docx (Example 2, Problems 15–20)",
+        "apps/integrated-math-1/curriculum/modules/module-10-lesson-4 (Example 2, Problems 15–20)"
       ],
       "reviewStatus": "approved",
       "metadata": {
@@ -847,7 +849,8 @@
       "title": "Example 3: Find Segment Lengths on a Number Line; Determine Whether Segments Are Congruent; Find the Distance Between Two Points",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md (10-4, Example 3)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1004_practice.docx (Example 3, Problems 21–26)",
+        "apps/integrated-math-1/curriculum/modules/module-10-lesson-4 (Example 3, Problems 21–26)"
       ],
       "reviewStatus": "approved",
       "metadata": {
@@ -865,7 +868,8 @@
       "title": "Example 4: Apply the Distance Formula to Real-World Problems",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md (10-4, Example 4)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1004_practice.docx (Example 4, Problems 27–30)",
+        "apps/integrated-math-1/curriculum/modules/module-10-lesson-4 (Example 4, Problems 27–30)"
       ],
       "reviewStatus": "approved",
       "metadata": {
@@ -9246,7 +9250,9 @@
       "domain": "math.im1",
       "description": "Find the length of a segment by reading coordinates from a number line",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md"
+        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1004_practice.docx (Example 1, Problems 1–14; each requested number-line segment measure)",
+        "apps/integrated-math-1/curriculum/modules/module-10-lesson-4 (Example 1, Problems 1–14; each requested number-line segment measure)"
       ],
       "reviewStatus": "approved",
       "metadata": {
@@ -9262,7 +9268,9 @@
       "domain": "math.im1",
       "description": "Apply the Distance Formula to solve real-world problems",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md"
+        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1004_practice.docx (Example 4 and Mixed Exercises, Problems 28–30 and 47–48; Problem 29 also observes a manually reviewed justification)",
+        "apps/integrated-math-1/curriculum/modules/module-10-lesson-4 (Example 4 and Mixed Exercises, Problems 28–30 and 47–48; Problem 29 also observes a manually reviewed justification)"
       ],
       "reviewStatus": "approved",
       "metadata": {
@@ -9278,7 +9286,9 @@
       "domain": "math.im1",
       "description": "Use the Distance Formula to find the distance between two points in the coordinate plane",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md"
+        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1004_practice.docx (Example 3 Problems 21–26; Example 4 Problem 27 only; Mixed Exercises Problems 31–42, 52, and 54; Problem 52 observes learner-supplied points and a consistent distance; Problem 54 observes a manually reviewed general symbolic method)",
+        "apps/integrated-math-1/curriculum/modules/module-10-lesson-4 (Example 3 Problems 21–26; Example 4 Problem 27 only; Mixed Exercises Problems 31–42, 52, and 54; Problem 52 observes learner-supplied points and a consistent distance; Problem 54 observes a manually reviewed general symbolic method)"
       ],
       "reviewStatus": "approved",
       "metadata": {
@@ -9326,7 +9336,9 @@
       "domain": "math.im1",
       "description": "Find the coordinates of a point that divides a segment in a given ratio on a coordinate plane",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md"
+        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1004_practice.docx (Mixed Exercises, Problem 51 only; observe the requested coordinate pair)",
+        "apps/integrated-math-1/curriculum/modules/module-10-lesson-4 (Mixed Exercises, Problem 51 only; observe the requested coordinate pair)"
       ],
       "reviewStatus": "approved",
       "metadata": {
@@ -19471,6 +19483,78 @@
         "course": "im1",
         "module": "10",
         "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.10.4.determine-whether-two-coordinate-defined-segments-are-congruent-by-comparing-their-lengths",
+      "kind": "skill",
+      "title": "Determine whether two coordinate-defined segments are congruent by comparing their lengths",
+      "domain": "math.im1",
+      "description": "Determine whether two coordinate-defined segments are congruent by comparing their lengths",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1004_practice.docx (Problems 15–20, 43, and 46. Observe each final congruence decision; length calculations are task stages.)",
+        "apps/integrated-math-1/curriculum/modules/module-10-lesson-4 (Problems 15–20, 43, and 46. Observe each final congruence decision; length calculations are task stages.)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "10",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.10.4.find-possible-values-of-one-coordinate-from-a-fixed-coordinate-and-distance",
+      "kind": "skill",
+      "title": "Find possible values of one coordinate from a fixed coordinate and distance",
+      "domain": "math.im1",
+      "description": "Find possible values of one coordinate from a fixed coordinate and distance",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1004_practice.docx (Problems 44, 45, and 53. Problems 44–45 require an unordered pair of possible points. Problem 53 requires the explanatory method and no separate coordinate answer.)",
+        "apps/integrated-math-1/curriculum/modules/module-10-lesson-4 (Problems 44, 45, and 53. Problems 44–45 require an unordered pair of possible points. Problem 53 requires the explanatory method and no separate coordinate answer.)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "10",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.10.4.determine-and-justify-segment-congruence-from-rectangle-side-lengths-and-midpoints",
+      "kind": "skill",
+      "title": "Determine and justify segment congruence from rectangle side lengths and midpoints",
+      "domain": "math.im1",
+      "description": "Determine and justify segment congruence from rectangle side lengths and midpoints",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1004_practice.docx (Problem 49 only. Manually review the decision and reason from the stated lengths and midpoint conditions.)",
+        "apps/integrated-math-1/curriculum/modules/module-10-lesson-4 (Problem 49 only. Manually review the decision and reason from the stated lengths and midpoint conditions.)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "10",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.10.4.explain-how-the-pythagorean-theorem-produces-the-distance-formula",
+      "kind": "skill",
+      "title": "Explain how the Pythagorean Theorem produces the Distance Formula",
+      "domain": "math.im1",
+      "description": "Explain how the Pythagorean Theorem produces the Distance Formula",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1004_practice.docx (Problem 50 only. Manually review the coordinate differences, right triangle, and hypotenuse relationship.)",
+        "apps/integrated-math-1/curriculum/modules/module-10-lesson-4 (Problem 50 only. Manually review the coordinate differences, right triangle, and hypotenuse relationship.)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "10",
+        "lesson": "4"
       }
     }
   ]
