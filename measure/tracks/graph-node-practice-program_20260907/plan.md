@@ -562,7 +562,7 @@ G53 source is committed as `63886deda`. Final independent review passed. Parent 
 
 Removed saved worktrees 61c4 and 6457 after independent and parent review of all 719 states. Branch `codex/preserve-saved-61c4-im3-lesson18` preserves two accepted detached commits. Their Lesson 1.8 source remains pending integration review against committed HEAD. The other 14 saved worktrees remain intact. See `saved-61c4-6457-preservation-review.md`.
 
-- [~] Task G54 inventory: Review IM1 Lesson 10-3 from committed `Int1_1003_practice.docx`. Inventory all original prompts and native figures. Compare exact graph identities and assessable responses. Propose bounded source and graph corrections. This task does not authorize graph changes before review.
+- [x] Task G54 inventory: Review IM1 Lesson 10-3 from committed `Int1_1003_practice.docx`. Inventory all original prompts and native figures. Compare exact graph identities and assessable responses. Propose bounded source and graph corrections. This task does not authorize graph changes before review.
 
 Cleanup review started for saved worktrees 2968 and 64b9. Parent comparison found 720 working states. The Lesson 1.5 reconciliation in 2968 has two blueprint records preserved in the main working tree but absent from committed HEAD. Worktree 64b9 has an older executable Example candidate. Keep both directories until independent semantic review and detached-history preservation are complete.
 
@@ -573,3 +573,5 @@ Lesson 1.8 recovery proposal passed direct PDF review of all seven examples and 
 Removed saved worktrees 2968 and 64b9 after independent and parent review of 720 states. Preservation branches retain their three detached commits. Twelve saved worktrees remain. Lesson 1.5 recovery remains open. See `saved-2968-64b9-preservation-review.md`.
 
 IM3 Lesson 1.8 projection review corrected the recovery scope to 12 paths. Add two inactive SRS inventory rows, the missing teacher skill rows, and seven source attempt-artifact rows. Add no activities. The new app-discovered source test failed three cases before source repair and then passed all three. Further parity tests and projection repair are in progress. See `im3-lesson18-recovery-independent-scope.md`.
+
+G54 inventory passed final independent review. Preserve 51 prompts, 23 native figures, the shared Examples 1-2 source group, and append-only Example 5 identity. Five new draft capabilities are proposed. Problems 1 and 4 remain task-local supplied-measure reading. No source or graph edit is included in this acceptance. See `im1-lesson103-inventory-proposal.md` and `im1-lesson103-inventory-final-review.md`.
