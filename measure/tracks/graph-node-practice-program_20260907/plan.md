@@ -461,3 +461,5 @@ G50 exact source restoration is committed as `9b3a7c1bd`. Parent 382 curriculum/
 Removed the completed G49 graph archive after independent cleanup review and parent comparison of all 18 committed patch files. All authored content is preserved in `334f17643`.
 
 - [~] Task G50 graph: Implement the accepted 17-capability Lesson 9-7 proposal from the restored source. Preserve exact prior table-construction reuse, observed response stages, stable source identities, and Problem 33 ambiguity. Do not add lesson-order prerequisites or executable placeholders. Derive all graph counts from the corrected records.
+
+The bounded 54d1 review classified seven IM3 graph files as superseded by the accepted current repair. Their only valid unique source addition is already preserved in main. Do not integrate these stale rows. The remaining dirty files are outside this review, so retain the saved worktree. See `saved-54d1-im3-reconciliation-review.md`.
