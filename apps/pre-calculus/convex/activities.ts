@@ -1061,6 +1061,11 @@ export const createServerOwnedSubmission = internalMutation({
     }
     if (!isPrecalculusPilotPublished())
       throw new Error("Precalculus pilot curriculum is not approved");
+    const deliveryState = await getTopic11LearnerDeliveryStateHandler(ctx, {
+      learnerId: args.userId,
+    });
+    if (deliveryState !== "ready_for_practice")
+      throw new Error("practice_unavailable");
     const activity = await ctx.db
       .query("activities")
       .withIndex("by_stable_activity_id", (q) =>

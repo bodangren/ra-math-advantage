@@ -242,6 +242,9 @@ export function createPrecalculusPilotSubmissionRoute({
         return jsonResponse(projectSubmissionResult(result), 200);
       } catch (error) {
         const message = error instanceof Error ? error.message : "";
+        if (message.includes("practice_unavailable")) {
+          return jsonResponse({ error: "Practice is not available" }, 409);
+        }
         if (message.includes("idempotency_conflict")) {
           return jsonResponse(
             {

@@ -22,6 +22,34 @@ const catalogs = vi.hoisted(() => ({
           guidedPractice: "interval-classification",
           independentPractice: "interval-classification",
         },
+        workedExampleSpec: {
+          prompt: "The graph of f is shown on 0 <= x <= 9. Find all intervals where f is increasing, decreasing, and constant.",
+          givens: ["Domain: 0 <= x <= 9", "Change points: x=3 and x=7"],
+          target: { increasingIntervals: "[0,3] and [7,9].", decreasingIntervals: "[3,7].", constantIntervals: "none." },
+          steps: [
+            { description: "Read the graph from left to right.", expression: "x = 0 to x = 9" },
+            { description: "The graph rises from x=0 to x=3.", expression: "0 < x < 3" },
+            { description: "The graph falls from x=3 to x=7.", expression: "3 < x < 7" },
+            { description: "The graph rises from x=7 to x=9.", expression: "7 < x < 9" },
+            { description: "State all interval classifications.", expression: "Increasing: [0,3] and [7,9]; decreasing: [3,7]; constant: none." },
+          ],
+          explanation: "Read the graph from left to right. It rises on [0,3] and [7,9]. It falls on [3,7]. It has no constant interval.",
+          rendererProps: {
+            title: "Worked Example: Classify Graph Intervals",
+            prompt: "The graph of f is shown on 0 <= x <= 9. Find all intervals where f is increasing, decreasing, and constant.",
+            domain: [0, 9], changePoints: [3, 7],
+            points: [{ x: 0, y: 1 }, { x: 3, y: 7 }, { x: 7, y: 2 }, { x: 9, y: 6 }],
+            presentationMode: "worked_example",
+            steps: [
+              { description: "Read the graph from left to right.", expression: "x = 0 to x = 9" },
+              { description: "The graph rises from x=0 to x=3.", expression: "0 < x < 3" },
+              { description: "The graph falls from x=3 to x=7.", expression: "3 < x < 7" },
+              { description: "The graph rises from x=7 to x=9.", expression: "7 < x < 9" },
+              { description: "State all interval classifications.", expression: "Increasing: [0,3] and [7,9]; decreasing: [3,7]; constant: none." },
+            ],
+            finalAnswer: "Increasing: [0,3] and [7,9]; decreasing: [3,7]; constant: none.",
+          },
+        },
         guidedPracticeSpec: {
           scaffoldedPrompt:
             "Identify the intervals where the graph increases, decreases, and stays constant.",
@@ -148,11 +176,13 @@ const NODE =
   "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs";
 const GUIDED = `${NODE}.guided_practice`;
 const INDEPENDENT = `${NODE}.independent_practice`;
+const SOURCE = `${NODE}.worked_example`;
 type Row = Record<string, any> & { _id: string };
 
 function harness(
   stableActivityId = GUIDED,
   overrides: Record<string, unknown> = {},
+  ready = true,
 ) {
   const mode =
     stableActivityId === GUIDED ? "guided_practice" : "independent_practice";
@@ -193,13 +223,38 @@ function harness(
         approval: { status: "approved" },
         ...overrides,
       },
+      {
+        _id: "activities:worked", stableActivityId: SOURCE,
+        componentKey: "precalculus-topic-1-1-daily-curriculum",
+        displayName: "Topic 1.1: Identify Graph Intervals with Your Teacher",
+        description: "Worked-example source activity for classifying increasing, decreasing, and constant intervals.",
+        props: { nodeId: NODE, mode: "worked_example", source: "teacher_led" },
+        gradingConfig: { variantSeed: 0 }, approval: { status: "approved", reviewedAt: 1 }, createdAt: 1,
+      },
     ],
+    lessons: [{ _id: "lessons:1", unitNumber: 1, orderIndex: 1 }],
+    lesson_versions: [{ _id: "lesson_versions:1", lessonId: "lessons:1", version: 1, status: "published", createdAt: 1 }],
+    phase_versions: [{ _id: "phase_versions:1", lessonVersionId: "lesson_versions:1", phaseNumber: 4, phaseType: "worked_example", createdAt: 1 }],
+    phase_sections: [{ _id: "phase_sections:1", phaseVersionId: "phase_versions:1", sequenceOrder: 2, sectionType: "activity", createdAt: 1, content: { activityId: "activities:worked", componentKey: "precalculus-topic-1-1-daily-curriculum" } }],
     activity_submissions: [],
+    learning_evidence: [],
+  };
+  const authorityRows: Record<string, Row[]> = {
+    activity_submissions: ready ? [{
+      _id: "activity_submissions:ack", userId: "profiles:student", activityId: "activities:worked",
+      stableActivityId: SOURCE, masteryContractVersion: "learning-evidence.v1",
+      submissionData: { contractVersion: "practice.v1", activityId: SOURCE, mode: "worked_example", status: "submitted", answers: {}, parts: [] },
+      attemptOrdinal: 1, submittedAt: 2, createdAt: 2, updatedAt: 2,
+    }] : [],
+    learning_evidence: ready ? [{
+      _id: "learning_evidence:confirmation", learnerId: "profiles:student", nodeId: NODE,
+      activityId: SOURCE, attemptOrdinal: 1, origin: "teacher_led", mode: "teaching",
+      occurredAt: 2, idempotencyKey: "precalc:teacher-led:submission:activity_submissions:ack", createdAt: 2,
+    }] : [],
   };
   const db = {
     get: async (_table: string, id: string) =>
-      Object.values(rows)
-        .flat()
+      [...Object.values(rows).flat(), ...Object.values(authorityRows).flat()]
         .find((row) => row._id === id) ?? null,
     insert: async (table: string, value: Record<string, unknown>) => {
       const row = { _id: `${table}:${rows[table].length + 1}`, ...value };
@@ -217,10 +272,11 @@ function harness(
         };
         configure(q);
         const selected = () =>
-          rows[table].filter((row) =>
+          [...rows[table], ...(authorityRows[table] ?? [])].filter((row) =>
             [...conditions].every(([key, value]) => row[key] === value),
           );
         return {
+          collect: async () => selected(),
           unique: async () => {
             const found = selected();
             if (found.length > 1) throw new Error("duplicate");
@@ -236,7 +292,7 @@ function harness(
       },
     }),
   };
-  return { ctx: { db }, rows };
+  return { ctx: { db }, rows, authorityRows };
 }
 
 function envelope(activityId = GUIDED, mode = "guided_practice") {
@@ -285,7 +341,7 @@ function addEvidenceTables(h: ReturnType<typeof harness>) {
     query.withIndex = (index: string, configure: (q: any) => any) => {
       const result = originalWithIndex(index, configure);
       const selected = async () => {
-        const all = h.rows[table] ?? [];
+        const all = [...(h.rows[table] ?? []), ...(h.authorityRows[table] ?? [])];
         const conditions = new Map<string, unknown>();
         const q: any = { eq(field: string, value: unknown) { conditions.set(field, value); return q; } };
         configure(q);
@@ -303,15 +359,6 @@ function addEvidenceTables(h: ReturnType<typeof harness>) {
   return h;
 }
 
-function addTeacherExposure(h: ReturnType<typeof harness>, occurredAt: number) {
-  h.rows.learning_evidence.push({
-    _id: 'learning_evidence:teacher', learnerId: 'profiles:student' as any, nodeId: NODE,
-    activityId: 'topic11-worked-source', attemptOrdinal: 1, origin: 'teacher_led',
-    mode: 'worked_example', occurredAt,
-    idempotencyKey: 'teacher:verified-source', fingerprint: 'existing', createdAt: occurredAt,
-  });
-}
-
 async function createStored(h: ReturnType<typeof harness>, activityId: string, body: any, key: string) {
   return (await handler())(h.ctx as any, {
     userId: 'profiles:student', activityId, submissionData: body, idempotencyKey: key,
@@ -322,7 +369,6 @@ describe('selected Topic 1.1 writer to actual evidence stores', () => {
   it('stores Guided participation without an SRS row', async () => {
     const h = addEvidenceTables(harness());
     const created = await createStored(h, GUIDED, envelope(), 'guided-flow');
-    addTeacherExposure(h, h.rows.activity_submissions[0].submittedAt - 1);
     await expect((await evidenceHandler())(h.ctx as any, {
       learnerId: 'profiles:student' as any, submissionId: created.submissionId,
     })).resolves.toMatchObject({ persisted: true, masteryApplied: false, decision: { reason: 'ungraded_evidence' } });
@@ -339,7 +385,6 @@ describe('selected Topic 1.1 writer to actual evidence stores', () => {
     body.answers = { increasingIntervals: answer(generated.increasingIntervals), decreasingIntervals: answer(generated.decreasingIntervals), constantIntervals: answer(generated.constantIntervals) };
     body.parts = Object.entries(body.answers).map(([partId, rawAnswer]) => ({ partId, rawAnswer, hintsUsed: 1 }));
     const created = await createStored(h, INDEPENDENT, body, 'independent-flow');
-    addTeacherExposure(h, h.rows.activity_submissions[0].submittedAt - 1);
     const consume = await evidenceHandler();
     await expect(consume(h.ctx as any, { learnerId: 'profiles:student' as any, submissionId: created.submissionId }))
       .resolves.toMatchObject({ persisted: true, masteryApplied: true, delivery: 'new' });
@@ -355,14 +400,14 @@ describe('selected Topic 1.1 writer to actual evidence stores', () => {
     });
   });
 
-  it('creates no effects while teacher exposure is absent', async () => {
-    const h = addEvidenceTables(harness(INDEPENDENT));
+  it('rejects a new submission while the learner has no teacher introduction', async () => {
+    const h = addEvidenceTables(harness(INDEPENDENT, {}, false));
     const body = envelope(INDEPENDENT, 'independent_practice');
     body.answers = { increasingIntervals: '[0,2]', decreasingIntervals: '[4,8]', constantIntervals: '[2,4]' };
     body.parts = Object.entries(body.answers).map(([partId, rawAnswer]) => ({ partId, rawAnswer }));
-    const created = await createStored(h, INDEPENDENT, body, 'awaiting-flow');
-    await expect((await evidenceHandler())(h.ctx as any, { learnerId: 'profiles:student' as any, submissionId: created.submissionId }))
-      .resolves.toMatchObject({ persisted: false, decision: { reason: 'awaiting_teacher_exposure' } });
+    await expect(createStored(h, INDEPENDENT, body, 'awaiting-flow'))
+      .rejects.toThrow('practice_unavailable');
+    expect(h.rows.activity_submissions).toHaveLength(0);
     expect(h.rows.learning_evidence).toHaveLength(0);
     expect(h.rows.learning_evidence_receipts).toHaveLength(0);
     expect(h.rows.srs_cards).toHaveLength(0);
@@ -371,7 +416,6 @@ describe('selected Topic 1.1 writer to actual evidence stores', () => {
   it('rejects inactive learner authority before receipt replay', async () => {
     const h = addEvidenceTables(harness());
     const created = await createStored(h, GUIDED, envelope(), 'inactive-flow');
-    addTeacherExposure(h, h.rows.activity_submissions[0].submittedAt - 1);
     const consume = await evidenceHandler();
     await expect(consume(h.ctx as any, {
       learnerId: 'profiles:student' as any, submissionId: created.submissionId,
@@ -390,7 +434,6 @@ describe('selected Topic 1.1 writer to actual evidence stores', () => {
     body.parts = Object.entries(body.answers).map(([partId, rawAnswer]) => ({ partId, rawAnswer, hintsUsed: 2 }));
     const created = await createStored(h, INDEPENDENT, body, 'wrong-assisted');
     expect(created.score).toBe(2);
-    addTeacherExposure(h, h.rows.activity_submissions[0].submittedAt - 1);
     await expect((await evidenceHandler())(h.ctx as any, { learnerId: 'profiles:student' as any, submissionId: created.submissionId }))
       .resolves.toMatchObject({ persisted: true, masteryApplied: true });
     expect(h.rows.learning_evidence.at(-1)?.gradedEvidence).toEqual({ isCorrect: false, score: 2, maxScore: 3 });
@@ -412,7 +455,6 @@ describe('selected Topic 1.1 writer to actual evidence stores', () => {
     const h = addEvidenceTables(harness());
     const created = await createStored(h, GUIDED, envelope(), 'changed-source');
     h.rows.activities[0].description = 'Changed content';
-    addTeacherExposure(h, h.rows.activity_submissions[0].submittedAt - 1);
     await expect((await evidenceHandler())(h.ctx as any, { learnerId: 'profiles:student' as any, submissionId: created.submissionId }))
       .resolves.toEqual({ accepted: false, reason: 'submission_not_found' });
     expect(h.rows.learning_evidence_receipts).toHaveLength(0);
