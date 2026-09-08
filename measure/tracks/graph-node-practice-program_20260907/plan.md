@@ -495,3 +495,7 @@ Q38 independent review accepts the bounded indexed read and saved-result UI prop
 G52 is committed as `c808c365f`. Both projections now equal the 66 direct canonical prerequisite pairs. Parent 389 curriculum and seed tests and all app gates pass. The completed graph archive is under cleanup review.
 
 Removed saved worktree 32fb after its complete preservation review and parent semantic, inventory, ignored-file, and ancestry checks. The other 22 saved worktrees remain intact. See `saved-32fb-full-preservation-review.md`. Removed the completed Q37 readiness archive after all five changed files matched `91bfd0320` and independent review found no unique authored content. Q38 uses a fresh current-HEAD archive.
+
+Q37 row 8 now passes after `91bfd0320`. Actual stale-source browser requests reject new Guided and Independent attempts with safe HTTP 409. Historical accepted retries return their original IDs with HTTP 200. Parent complete-row comparisons are unchanged in both tests. See `precalc-readiness-writer-browser-verification.md`.
+
+- [~] Task Q39 lesson math layout: Investigate the actual 1280-pixel lesson viewport with a 6641-pixel document and 6400-pixel SVG. Identify the responsible math output and CSS before implementation. Do not hide all overflow without fixing its cause. Keep this full-page defect separate from accepted readiness behavior.
