@@ -1,146 +1,238 @@
 # Lesson 8-3 — Writing Exponential Functions
 
-Source: (Module 8, Lesson 8-3, Int1_0803_practice.docx)
+Source: Module 8, Lesson 8-3, `Int1_0803_practice.docx`
 
 ## Today's Goals
 
-* Write an exponential function [ y = ab^x ] given two points on its graph.
-* Determine an exponential model from a graphed curve by extracting coordinates.
-* Translate real-world growth and decay scenarios into exponential functions and use them to make predictions.
-* Apply the compound-interest formula [ A = P(1 + \frac{r}{n})^{nt} ] to investment and depreciation problems.
+- Write an exponential function in the form `y = ab^x` from two points or a graph.
+- Write and use exponential growth and decay models.
+- Write and use the compound-interest formula `A = P(1 + r/n)^(nt)`.
+- Explain the meaning and limits of an exponential model.
 
 ## Vocabulary
 
-* **Exponential function** — A function of the form [ y = ab^x ] where [ a \ne 0 ], [ b > 0 ], and [ b \ne 1 ].
-* **Growth factor** — The base [ b ] in an exponential function when [ b > 1 ]; the quantity increases by a constant percent each time period.
-* **Decay factor** — The base [ b ] in an exponential function when [ 0 < b < 1 ]; the quantity decreases by a constant percent each time period.
-* **Compound interest** — Interest earned on both the principal and any previously accumulated interest.
-* **Depreciation** — The decrease in value of an asset over time, often modeled with exponential decay.
+- **Initial value**: The output when the input is zero. It is `a` in `y = ab^x`.
+- **Growth factor**: The base `b` when `b > 1`.
+- **Decay factor**: The base `b` when `0 < b < 1`.
+- **Compound interest**: Interest on the principal and prior interest.
+- **Depreciation**: A decrease in value over time.
 
-## Learn: Writing Exponential Functions from Points
+## Method
 
-An exponential function has the form [ y = ab^x ]. When two points on the graph are known, substitute them into the equation to create a system. Dividing the equations eliminates [ a ] and lets you solve for [ b ]. Then substitute [ b ] back to find [ a ].
+For two points, substitute each point into `y = ab^x`. Divide the equations to find `b`. Then substitute to find `a`.
 
-### Key Concept: Two-Point Method
+For a context, identify the initial value and the change factor. Define the time unit before you write the function.
 
-* Substitute each point into [ y = ab^x ] to obtain two equations.
-* Divide one equation by the other to eliminate [ a ] and solve for [ b ].
-* Substitute [ b ] into either equation to solve for [ a ].
-* Write the final function [ f(x) = ab^x ].
+For compound interest, use `A = P(1 + r/n)^(nt)`. In this formula, `P` is the principal, `r` is the annual rate as a decimal, `n` is the number of compounding periods in one year, and `t` is time in years.
 
-## Learn: Compound Interest and Growth Models
+## Example 1
 
-Real-world quantities that grow or decay by a fixed percentage are modeled exponentially. For compound interest, the formula is:
+Write an exponential function for a graph that passes through the points.
 
-[
-A = P\left(1 + \frac{r}{n}\right)^{nt}
-]
+### Problem 1
 
-where [ P ] is the principal, [ r ] is the annual rate, [ n ] is the number of compounding periods per year, and [ t ] is time in years.
+`(2, 16)` and `(3, 32)`
 
-### Key Concept: Modeling with Exponential Functions
+### Problem 2
 
-* Identify the initial amount [ a ] (or principal [ P ]).
-* Determine the growth or decay factor from the rate: [ b = 1 + r ] for growth, [ b = 1 - r ] for decay.
-* For compound interest, adjust the rate per period and the total number of periods.
-* Substitute values and solve for the unknown quantity or time.
+`(1, 1)` and `(3, 0.25)`
 
-## Example 1 — Write a Function from Two Points
+### Problem 3
 
-Given two points on an exponential graph, determine the function [ y = ab^x ].
+`(2, 90)` and `(4, 810)`
 
-### Step 1: Set Up the System
+### Problem 4
 
-Substitute each point into [ y = ab^x ].
+`(-2, 4)` and `(1, 0.5)`
 
-For example, with points [ (2, 16) ] and [ (3, 32) ]:
-[
-16 = ab^2 \quad \text{and} \quad 32 = ab^3
-]
+### Problem 5
 
-### Step 2: Solve for the Growth Factor
+`(1, 12)` and `(3, 192)`
 
-Divide the second equation by the first to eliminate [ a ]:
-[
-\frac{32}{16} = \frac{ab^3}{ab^2} \implies 2 = b
-]
+### Problem 6
 
-### Step 3: Solve for the Initial Value
+`(1, 18)` and `(3, 72)`
 
-Substitute [ b = 2 ] back into [ 16 = ab^2 ]:
-[
-16 = a(2)^2 \implies 16 = 4a \implies a = 4
-]
+## Example 2
 
-The function is [ y = 4(2)^x ].
+### Problem 7
 
-## Example 2 — Write a Function from a Graph
+Write an exponential function for the graph.
 
-Given the graph of an exponential function, write its equation.
+![Source graph for Problem 7](/curriculum/module-8-lesson-3/source-image-1.png)
 
-### Step 1: Read Coordinates from the Graph
+Accessible source data: Both axes use one-unit grid intervals. The x-axis is the horizontal asymptote `y = 0`. The increasing curve passes through readable points `(0, 3)` and `(-1, 1.5)`.
 
-Identify two clearly marked points on the curve, such as the y-intercept and another point.
+### Problem 8
 
-### Step 2: Apply the Two-Point Method
+Write an exponential function for the graph.
 
-Use the same process as Example 1: set up [ y = ab^x ], divide to find [ b ], and solve for [ a ].
+![Source graph for Problem 8](/curriculum/module-8-lesson-3/source-image-2.png)
 
-## Example 3 — Model Real-World Growth and Decay
+Accessible source data: Both axes use one-unit grid intervals. The x-axis is the horizontal asymptote `y = 0`. The decreasing negative curve passes through readable points `(0, -1)` and `(1, -3)`.
 
-Write an exponential function to describe a real-world scenario, then use it to answer questions.
+### Problem 9
 
-### Step 1: Identify the Model Type
+Write an exponential function for the graph.
 
-Determine whether the situation represents growth or decay, and identify the initial value and rate.
+![Source graph for Problem 9](/curriculum/module-8-lesson-3/source-image-3.png)
 
-* Bacteria doubling: [ y = 50(2)^x ] where [ x ] is the number of 30-minute periods.
-* Depreciation at 12% per year: [ y = 32500(0.88)^x ].
+Accessible source data: Both axes use one-unit grid intervals. The x-axis is the horizontal asymptote `y = 0`. The decreasing positive curve passes through readable points `(0, 1)` and `(-1, 4)`.
 
-### Step 2: Write and Evaluate the Function
+### Problem 10
 
-Substitute the appropriate time or other known value to find the desired quantity.
+Write an exponential function for the graph.
 
-## Examples 4–6 — Apply Compound Interest and Exponential Models
+![Source graph for Problem 10](/curriculum/module-8-lesson-3/source-image-4.png)
 
-Solve multi-step financial and population problems using the compound-interest formula or exponential growth/decay models.
+Accessible source data: Both axes use one-unit grid intervals. The x-axis is the horizontal asymptote `y = 0`. The increasing negative curve passes through readable points `(0, -1)` and `(-1, -2)`.
 
-### Step 1: Choose the Correct Formula
+## Example 3
 
-For compound interest:
-[
-A = P\left(1 + \frac{r}{n}\right)^{nt}
-]
+### Problem 11
 
-For continuous exponential growth or decay:
-[
-y = ab^x \quad \text{or} \quad y = a(1 + r)^t
-]
+**Biology.** A certain species of bacteria in a laboratory culture begins with 50 cells and doubles in number every 30 minutes. Write a function to model the situation.
 
-### Step 2: Substitute Known Values
+### Problem 12
 
-Identify [ P ], [ r ], [ n ], and [ t ] from the problem statement. Watch for whether the rate is given as a percent or decimal.
+**Depreciation.** Amrita bought a new delivery van for $32,500. The value of this van depreciates at a rate of 12% each year. Write a function to model the value of the van after `x` years of ownership.
 
-### Step 3: Solve and Interpret
+### Problem 13
 
-Evaluate the expression to find the account balance, population, or remaining value. Round as directed by the problem context.
+**Communication.** Cell phone usage grew about 23% each year from 2010 to 2016. If cell phone usage in 2010 was 43 million, write a function to model U.S. cell phone usage over that time period.
+
+## Examples 4–6
+
+### Problem 14
+
+**Investing.** Robyn invests $1500 at 4.85% compounded quarterly. Write an equation to represent the amount of money she will have in `t` years.
+
+### Problem 15
+
+**Population.** The population of New York City increased from 8,192,426 in 2010 to 8,550,405 in 2015. The annual rate of population increase for the period was about 0.9%.
+
+- a. Write an equation for the population, `P`, `t` years after 2010.
+- b. Use the equation to predict the population of New York City in 2025.
+
+### Problem 16
+
+**Savings.** A company has a bonus incentive for its employees. The company pays employees an initial signing bonus of $1000 and invests that amount for the employees. Suppose the investment earns 8% interest compounded quarterly.
+
+- a. If an employee withdraws the balance after 5 years, how much will be in the account?
+- b. If an employee withdraws the balance after 35 years, how much will be in the account?
+
+### Problem 17
+
+**Manufacturing.** A textile company bought a piece of weaving equipment for $60,000. It is expected to depreciate at an average rate of 10% per year.
+
+- a. Write an equation for the value of the equipment, `Z`, after `t` years.
+- b. Find the value of the equipment after 6 years.
+
+### Problem 18
+
+**Higher education.** The table lists the average annual costs of attending a four-year college in the United States during a recent year.
+
+![Source college-cost table for Problem 18](/curriculum/module-8-lesson-3/source-image-5.png)
+
+| College sector | Tuition and fees | Room and board |
+| --- | ---: | ---: |
+| Four-year public | $9,410 | $10,138 |
+| Four-year private | $32,410 | $11,516 |
+
+Source shown in the worksheet: College Board.
+
+Rayelle's parents plan to invest $15,000 in a mutual fund earning an average of 4.5% interest, compounded monthly. After 15 years, for how many years will this investment cover the tuition, fees, room, and board for Rayelle at a public college if costs stay the same? Round your answer to the nearest month.
+
+### Problem 19
+
+**Depreciation.** The value of a home theater system depreciates by about 7% each year. Aeryn purchases a home theater system for $3000. What is its value 4 years after purchase? Round your answer to the nearest hundred.
+
+### Problem 20
+
+**Money.** Hans opens a savings account by depositing $1200. The account earns 0.2% interest compounded weekly. How much will be in the account in 10 years if he makes no more deposits? Assume that there are exactly 52 weeks in a year. Round your answer to the nearest cent.
+
+### Problem 21
+
+**Population.** In 2016, the U.S. Census Bureau estimated the population of the United States at 322 million. If the annual rate of growth was about 0.81%, find the expected population at the time of the 2030 census. Round your answer to the nearest ten million.
 
 ## Mixed Exercises
 
-The mixed exercises combine all skills from the lesson:
+Write an exponential function for a graph that passes through the points in Problems 22–24.
 
-* Writing exponential functions from two given points.
-* Modeling population growth and decline with exponential functions.
-* Applying the compound-interest formula to investments and savings accounts.
-* Working with half-life and decay models in medicine and science contexts.
-* Analyzing whether an investment is increasing or decreasing from its equation.
-* Using technology to estimate when an investment reaches a target value.
-* Comparing exponential and linear growth through average rate of change.
-* Explaining structural features of exponential models and justifying arguments about growth rates.
-* Creating original exponential models for combined investment and depreciation scenarios.
+### Problem 22
 
-## Review Notes
+`(2, 1.4)` and `(4, 5.6)`
 
-* Example 2 (problems 7–10) requires four graph images (`media/image1.png` through `media/image4.png`) that cannot be described in text. A teacher or curriculum reviewer should verify the coordinates shown on each graph so that the two-point method can be applied.
-* Problem 18 includes a table of average annual college costs (`media/image5.png`) that must be reviewed to extract the dollar amounts for public-college tuition, fees, room, and board.
-* Problem 29 includes a table of deer-population data (`media/image6.png`) that must be reviewed to extract the year-by-year population values needed to fit an exponential function.
+### Problem 23
+
+`(1, 10.4)` and `(4, 665.6)`
+
+### Problem 24
+
+`(1, 42)` and `(3, 2688)`
+
+### Problem 25
+
+**Population.** The population of Camden, New Jersey, has been decreasing by 0.12% a year on average. If this trend continues, and the population was 79,318 in 2006, estimate Camden's population in 2025.
+
+### Problem 26
+
+**Medicine.** When doctors prescribe medication, they have to consider the rate at which the body filters a drug from the bloodstream. Suppose it takes the human body 6 days to filter out half of a certain vaccine. The amount of the vaccine remaining in the bloodstream `x` days after an injection is given by `y = y_0(0.5)^(x/6)`, where `y_0` is the initial amount. Suppose a doctor injects a patient with 20 μg (micrograms) of the vaccine.
+
+- a. How much of the vaccine will remain after 1 day? Round your answer to the nearest tenth, if necessary.
+- b. How much of the vaccine will remain after 12 days? Round your answer to the nearest tenth, if necessary.
+- c. After how many days will the amount of vaccine be less than 1 μg?
+
+### Problem 27
+
+**Use tools.** Graham invested money to save for a car. After `x` years, the value of Graham's investment can be modeled by `y = 2400(0.95)^x`. How much did Graham originally invest? Is the value of his investment increasing or decreasing? Explain your reasoning. Use technology to find when the investment will be worth half of its starting value.
+
+### Problem 28
+
+**Use a model.** There is a leak in a container that holds a certain nontoxic gas. Each hour, it loses 10% of its volume.
+
+- a. Write an equation that models the amount of gas left after `x` hours, assuming there were 300 cubic centimeters in the container before the leak. Then use your equation to determine the amount left after 11 hours. Round your answer to the nearest tenth.
+- b. Dewanda believes a graph of this function should be a scatter plot instead of a continuous curve. Do you agree? Explain how this relates to the domain of the function.
+
+### Problem 29
+
+**Structure.** A wildlife researcher is studying the population of deer in a forest.
+
+![Source deer-population table for Problem 29](/curriculum/module-8-lesson-3/source-image-6.png)
+
+| Years of Study | 0 | 1 | 2 | 3 |
+| --- | ---: | ---: | ---: | ---: |
+| Population | 128 | 160 | 200 | 250 |
+
+- a. The table shows the estimated number of deer over a 3-year period. Write an exponential function that fits the data and can predict the deer population in future years.
+- b. The average rate of change is the change in the dependent variable divided by the change in the independent variable. What was the average rate of change in population during those three years?
+- c. If population growth follows the model from part a, do you expect the population to continue to increase by the value from part b? Explain.
+- d. Use the values in the table to show how you know the function is exponential, not linear.
+
+### Problem 30
+
+**Analyze.** Determine the growth rate (as a percent) of a population that quadruples every year. Justify your argument.
+
+### Problem 31
+
+**Persevere.** Santos invested $1200 in an account with an interest rate of 8% compounded monthly. Use a calculator to approximate how long it will take for Santos's investment to reach $2500.
+
+### Problem 32
+
+**Analyze.** The amount of water in a container doubles every minute. After 8 minutes, the container is full. After how many minutes was the container half-full? Justify your argument.
+
+### Problem 33
+
+**Write.** What should you consider when using exponential models to make decisions?
+
+### Problem 34
+
+**Write.** Compare and contrast the exponential growth formula and the exponential decay formula.
+
+### Problem 35
+
+**Create.** Honovi purchased a new car for $25,000 and has $5000 left to invest.
+
+- a. Choose an annual interest rate between 4% and 7% for Honovi's investment. Find how long it will take for the investment to double.
+- b. Choose an annual depreciation rate from 8% to 10% for the car. Find how long it will take for the car's value to equal one-half of the purchase price.
+- c. Use the rates from parts a and b. Find how long it will take for the investment to equal the value of the car. What is the value at that time?
