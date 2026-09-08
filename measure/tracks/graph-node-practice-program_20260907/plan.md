@@ -714,4 +714,6 @@ The IM1 stored coverage order defect is corrected in `02954d9d6`. All 499 record
 
 - [~] Task IM3-QF learner integration scope: Trace the committed LessonRenderer submission flow and Lesson 1.6 source placements after the draft backend commit. Define the smallest source-based Worked, Guided, and Independent integration that uses the existing server receipt path. Identify required Guided step checks and later-attempt variation. Preserve draft approval and no-progression behavior. Reuse the current IM3 candidate. Do not add a pilot, storage system, or live seed.
 
-- [~] Task completed IM1 candidate cleanup: Remove the completed G53 through G55 candidate after final process checks. All 8,576 regular tracked files have reachable Git copies. Independent review found no unique authored content or mode changes. The remaining dependency links and build output are disposable. Preserve the current IM3 candidate.
+- [x] Task completed IM1 candidate cleanup: Remove the completed G53 through G55 candidate after final process checks. All 8,576 regular tracked files have reachable Git copies. Independent review found no unique authored content or mode changes. The remaining dependency links and build output are disposable. Preserve the current IM3 candidate.
+
+Removed the completed IM1 candidate after parent and independent content checks. All accepted source, graph, and coverage changes remain committed. See `im1-completed-candidate-cleanup-review.md`. The current IM3 candidate remains active.
