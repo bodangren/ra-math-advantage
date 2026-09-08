@@ -529,3 +529,5 @@ Q38 saved-result implementation is committed as `ffca7ea29`. Final independent r
 - [~] Task Q40 Precalculus brand symbol: Correct the literal Unicode escape visible in the actual header and footer. Reuse the existing integral-symbol prop. Verify both rendered symbols and the browser result. Keep this separate from Q38 saved-result acceptance.
 
 Removed saved worktree 0485 after full state and semantic review. Retained 02d6 preserves 355 of its 356 states. The sole unique aggregate is superseded. Branch `codex/preserve-0485-im3-lesson17` preserves four committed Lesson 1.7 changes that were not in main history. The other 19 saved worktrees remain intact. See `saved-0485-full-preservation-review.md`.
+
+Removed the completed Q38 applied verification archive after exact committed-file checks and parent browser success. Reused the author archive for Q40 after preservation checks and a fresh HEAD overlay. See `precalc-saved-practice-views-cleanup-review.md`.
