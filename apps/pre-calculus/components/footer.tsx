@@ -22,7 +22,7 @@ export function Footer() {
     <FooterBase
       brandName="AP Precalculus"
       brandDescription="An interactive course platform for AP Precalculus."
-      brandIcon="\u222B"
+      brandIcon="∫"
       sections={sections}
       copyright="© 2026 Daniel Bodanske"
       accentColor="oklch(0.55 0.20 275)"

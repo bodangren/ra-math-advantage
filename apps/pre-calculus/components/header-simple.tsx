@@ -14,7 +14,7 @@ export function HeaderSimple() {
       navItems={navItems}
       brandFull="AP Precalculus"
       brandShort="APPC"
-      brandIcon="\u222B"
+      brandIcon="∫"
       brandSubtitle="Interactive Course"
       accentColor="oklch(0.55 0.20 275)"
       userMenu={<UserMenu />}
