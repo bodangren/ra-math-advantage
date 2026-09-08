@@ -537,3 +537,5 @@ Removed the completed Q38 applied verification archive after exact committed-fil
 Q38 browser verification is accepted. Lesson and dashboard reads preserve all learner records with zero POSTs. Saved receipt retry preserves attempt identity; new attempt 3 uses a new identity. Independent review accepts the full evidence. See `precalc-saved-practice-views-browser-verification.md`. The full Q37 matrix review remains in progress.
 
 Q40 is committed as `e8770f29b`. Parent and independent render tests and all app gates pass. Actual browser checks show the integral symbol in header and footer. Unit 7 independent review closes all nine required browser rows for the selected Topic 1.1 flow. Evidence preservation and live-environment cleanup are in progress. See `precalc-unit7-final-matrix-independent-review.md`.
+
+Preserved the 20 remaining accepted Unit 7 browser method and visual files. Parent checks found no local credential, session token, or admin key in the selected text files. The owned backend and frontend are stopped. Ports 43160, 43161, and 43162 have no listener. Full archive cleanup review remains in progress.
