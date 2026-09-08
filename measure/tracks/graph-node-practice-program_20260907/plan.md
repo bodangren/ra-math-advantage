@@ -380,7 +380,7 @@ Cleanup after integration: removed the completed G47 worktree and both completed
 
 G48 second proposal review accepts the complete prompt inventory for source restoration. Graph review remains open because several proposed nodes repeat existing component operations or combine separate comparisons. Exact source restoration is in progress in an isolated candidate. See `im1-lesson95-proposal-second-review.md`.
 
-- [~] Task Q37 unit 7: Prepare and run the full committed selected-seed browser flow after the teacher surface integration. Cached backend and installed headless Chrome readiness are verified. See `precalc-runtime-unit7-verification-plan.md`.
+- [x] Task Q37 unit 7: Prepare and run the full committed selected-seed browser flow after the teacher surface integration. Cached backend and installed headless Chrome readiness are verified. See `precalc-runtime-unit7-verification-plan.md`.
 
 Saved-worktree review checked 54d1, bda5, and b5f1. Each retains distinct IM3 graph states that are not preserved in the current worktree or reachable commits. Retain them pending reconciliation. This finding does not block the active program candidates.
 
@@ -541,3 +541,5 @@ Q40 is committed as `e8770f29b`. Parent and independent render tests and all app
 Preserved the 20 remaining accepted Unit 7 browser method and visual files. Parent checks found no local credential, session token, or admin key in the selected text files. The owned backend and frontend are stopped. Ports 43160, 43161, and 43162 have no listener. Full archive cleanup review remains in progress.
 
 Removed the completed Q38/Q40 author archive after full independent tree review, exact committed-byte checks, and actual browser acceptance. See `precalc-brand-symbol-cleanup-review.md`. The stopped Unit 7 environment is under final tree review before deletion.
+
+Q37 Unit 7 is complete for the selected Topic 1.1 flow. All nine required rows passed independent review. Accepted runtime fixes and useful evidence are committed. The parent removed the stopped local archive, database, credentials, and generated output after full review. Ports 43160, 43161, and 43162 are clear. See `precalc-unit7-final-cleanup-review.md`. The 19 saved worktrees remain intact.
