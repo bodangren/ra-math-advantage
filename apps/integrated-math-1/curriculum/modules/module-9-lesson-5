@@ -1,168 +1,263 @@
 # Lesson 9-5 — Distributions of Data
 
-Source: (Module 9, Lesson 9-5, Int1_0905_practice.docx)
+Source: Module 9, Lesson 9-5, `Int1_0905_practice.docx`.
 
-## Today's Goals
+## Example 1
 
-* Construct and interpret histograms and box plots to visualize the shape of a data distribution
-* Choose appropriate measures of center and spread based on whether a distribution is symmetric or skewed
-* Analyze the effect of outliers on statistical summaries and justify the choice of statistics
+Use a graphing calculator to construct a histogram and a box plot for the data. Then describe the shape of the distribution.
 
-## Vocabulary
+### Problem 1
 
-* **Histogram** — A bar graph that shows the frequency of data values within equal intervals
-* **Box Plot** — A graphical display of the five-number summary of a data set
-* **Symmetric Distribution** — A distribution whose left and right sides are approximately mirror images
-* **Skewed Distribution** — A distribution whose tail extends farther to one side; skewed left if the tail is on the left, skewed right if the tail is on the right
-* **Five-Number Summary** — The minimum, first quartile, median, third quartile, and maximum of a data set
-* **Outlier** — A data value that is much greater or much less than the other values in the data set
-* **Mean** — The average of a data set, found by summing all values and dividing by the number of values
-* **Standard Deviation** — A measure of spread that describes the typical distance of data values from the mean
-* **Interquartile Range (IQR)** — The difference between the third quartile and the first quartile, [ Q_3 - Q_1 ] 
+55, 65, 70, 73, 25, 36, 33, 47, 52, 54, 55, 60, 45, 39, 48, 55, 46, 38, 50, 54, 63, 31, 49, 54, 68, 35, 27, 45, 53, 62, 47, 41, 50, 76, 67, 49
 
-## Explore: What Shape Does the Data Take?
+### Problem 2
 
-Students sketch what they think a histogram of test scores or household incomes might look like. They discuss whether the data would cluster in the middle, tail off to one side, or have gaps, and how that shape affects which statistics they trust most.
+42, 48, 51, 39, 47, 50, 48, 51, 54, 46, 49, 36, 50, 55, 51, 43, 46, 37, 50, 52, 43, 40, 33, 51, 45, 53, 44, 40, 52, 54, 48, 51, 47, 43, 50, 46
 
-Inquiry Question:
-How does the shape of a distribution help us choose the best measures of center and spread?
+## Example 2
 
-## Learn: Describing Distributions
+Describe the center and spread of the data using either the mean and standard deviation or the five-number summary. Justify your choice by constructing a histogram for the data.
 
-When analyzing a data set, begin by creating a visual display to identify the overall shape. Then choose statistics that best represent the center and spread without being distorted by outliers or skewness.
+### Problem 3
 
-### Key Concept: Choosing Measures of Center and Spread
+32, 44, 50, 49, 21, 12, 27, 41, 48, 30, 50, 23, 37, 16, 49, 53, 33, 25, 35, 40, 48, 39, 50, 24, 15, 29, 37, 50, 36, 43, 49, 44, 46, 27, 42, 47
 
-* For a **symmetric** distribution, use the **mean** and **standard deviation** to describe center and spread
-* For a **skewed** distribution or one with outliers, use the **median** and the **five-number summary** (or IQR) to describe center and spread
-* Always justify the choice by referencing the shape shown in the histogram or box plot
+### Problem 4
 
-## Example 1 — Construct Histograms and Box Plots
+82, 86, 74, 90, 70, 81, 89, 88, 75, 72, 69, 91, 96, 82, 80, 78, 74, 94, 85, 77, 80, 67, 76, 84, 80, 83, 88, 92, 87, 79, 84, 96, 85, 73, 82, 83
 
-Use a graphing calculator or statistical software to construct a histogram and a box plot for a given data set, then describe the shape of the distribution.
+## Example 3
 
-### Step 1: Enter the Data
+Describe the center and spread of the data using either the mean and standard deviation or the five-number summary. Justify your choice by constructing a box plot for the data.
 
-Input all data values into a list.
+### Problem 5
 
-### Step 2: Create the Graphs
+47, 16, 70, 80, 28, 33, 91, 55, 60, 45, 86, 54, 30, 98, 34, 87, 44, 35, 64, 58, 27, 67, 72, 68, 31, 95, 37, 41, 97, 56, 49, 71, 84, 66, 45, 93
 
-Generate a histogram and a box plot from the data list.
+### Problem 6
 
-### Step 3: Describe the Shape
+64, 36, 32, 65, 41, 38, 50, 44, 39, 34, 47, 35, 46, 36, 53, 35, 68, 40, 36, 62, 34, 38, 59, 46, 63, 38, 67, 39, 59, 43, 39, 36, 60, 47, 52, 45
 
-Identify whether the distribution is approximately symmetric, skewed left, or skewed right by examining the histogram and box plot. Note the direction of the longest tail.
+## Example 4
 
-Representative data set:
-[
-14, 71, 63, 42, 24, 76, 34, 77, 37, 69, 54, 64, 47, 74, 59, 43, 76, 56,
-78, 52, 18, 54, 39, 28, 56, 74, 68, 36, 20, 49, 67, 47, 69, 68, 72, 69
-]
+### Problem 7
 
-## Example 2 — Describe Center and Spread Using a Histogram
+FLYING The various prices of a flight from Los Angeles to New York are shown.
 
-Describe the center and spread of a data set using either the mean and standard deviation or the five-number summary. Justify the choice by constructing a histogram.
+$182, $234, $264, $271, $277, $314, $317, $455
 
-### Step 1: Construct a Histogram
+a. Make a box plot of the data.
 
-Create a histogram to visualize the shape of the distribution.
+b. Calculate the statistics which best represent the data.
 
-### Step 2: Determine the Shape
+c. Describe the effect of the outlier.
 
-Examine the histogram to decide whether the distribution is symmetric or skewed. Look for tails, gaps, or clusters.
+### Problem 8
 
-### Step 3: Choose and Calculate Statistics
+EXERCISE Yoshiko tracked her minutes of exercise each day for 10 days as shown.
 
-* If symmetric, report the mean [ \bar{x} ] and standard deviation [ \sigma ] 
-* If skewed or containing outliers, report the five-number summary: [ \text{min}, Q_1, \text{median}, Q_3, \text{max} ] 
-
-Representative data set:
-[
-32, 44, 50, 49, 21, 12, 27, 41, 48, 30, 50, 23, 37, 16, 49, 53, 33, 25,
-35, 40, 48, 39, 50, 24, 15, 29, 37, 50, 36, 43, 49, 44, 46, 27, 42, 47
-]
-
-## Example 3 — Describe Center and Spread Using a Box Plot
-
-Describe the center and spread of a data set using either the mean and standard deviation or the five-number summary. Justify the choice by constructing a box plot.
-
-### Step 1: Construct a Box Plot
-
-Create a box plot from the data to visualize the spread and identify any outliers.
-
-### Step 2: Determine the Shape
-
-Use the box plot to assess symmetry. A symmetric distribution has the median roughly centered in the box and whiskers of similar length. Skewed distributions have a longer whisker on one side and the median closer to one end of the box.
-
-### Step 3: Choose and Calculate Statistics
-
-* If the box plot shows symmetry, use the mean and standard deviation
-* If the box plot shows skewness or outliers, use the five-number summary
-
-Representative data set:
-[
-47, 16, 70, 80, 28, 33, 91, 55, 60, 45, 86, 54, 30, 98, 34, 87, 44, 35,
-64, 58, 27, 67, 72, 68, 31, 95, 37, 41, 97, 56, 49, 71, 84, 66, 45, 93
-]
-
-## Example 4 — Analyze Outliers and Their Effects
-
-In real-world contexts, identify outliers in a data set, construct a box plot, calculate appropriate statistics, and describe how the outlier affects the measures of center and spread.
-
-### Step 1: Identify Potential Outliers
-
-Examine the data for values that are substantially different from the rest. For example, in a data set of daily exercise minutes, a value of 10 minutes might be an outlier if most values cluster around 55–62 minutes.
-
-### Step 2: Construct a Box Plot
-
-Create a box plot to confirm the presence of outliers visually.
-
-### Step 3: Calculate Statistics With and Without the Outlier
-
-Calculate appropriate measures of center and spread for the full data set. Then remove the outlier and recalculate to compare.
-
-### Step 4: Describe the Effect
-
-Explain how the outlier influences the mean, median, standard deviation, or range. Outliers typically have a larger effect on the mean and standard deviation than on the median and IQR.
-
-Representative contexts:
-
-* Flight prices from Los Angeles to New York:
-[
-182, 234, 264, 271, 277, 314, 317, 455
-]
-
-* Exercise minutes tracked over 10 days:
-[
 57, 60, 53, 59, 57, 61, 61, 54, 62, 10
-]
+
+a. Make a box plot of the data.
+
+b. Calculate the statistics which best represent the data.
+
+c. Describe the effect of the outlier.
 
 ## Mixed Exercises
 
-The mixed exercises provide practice across all skills from this lesson. Problems include:
+USE TOOLS Use a graphing calculator to construct a histogram and a box plot for the data. Then describe the shape of the distribution.
 
-* Constructing histograms and box plots for raw data sets and describing distribution shape
-* Selecting and justifying appropriate measures of center and spread for symmetric versus skewed data
-* Working with contextual data sets involving outliers and analyzing their effect on statistics
-* Comparing two data sets or distributions using statistical summaries and graphical displays
-* Removing outliers from a data set, reconstructing the box plot, and comparing means and medians before and after
-* Matching histograms to their corresponding box plots
-* Interpreting real-world data presented in tables and graphs
-* Researching and defining distribution types such as bimodal distributions
-* Creating examples of symmetric and non-symmetric real-world data
-* Explaining why the mean and standard deviation are used for symmetric distributions while the five-number summary is preferred for skewed distributions
+### Problem 9
 
-Some problems present data in tables or graphs that require reading values before analysis.
+14, 71, 63, 42, 24, 76, 34, 77, 37, 69, 54, 64, 47, 74, 59, 43, 76, 56, 78, 52, 18, 54, 39, 28, 56, 74, 68, 36, 20, 49, 67, 47, 69, 68, 72, 69
 
-## Review Notes
+### Problem 10
 
-* **Image needed:** Problem 13 (GOLF) contains a box plot or table image (`media/image1.png`) showing miniature golf scores that cannot be described from the source
-* **Image needed:** Problem 15 (PRESIDENTS) contains a table of presidential inauguration ages as an image (`media/image2.png`) that cannot be described from the source
-* **Image needed:** Problem 16 (AUTOMOTIVE) contains two images (`media/image3.png`, `media/image4.png`) showing cars serviced per day data that cannot be described from the source
-* **Image needed:** Problem 17 (COMMUTE) contains an image (`media/image5.png`) showing weekly miles driven data that cannot be described from the source
-* **Image needed:** Problem 19 (USE A MODEL) contains a histogram image (`media/image6.png`) comparing two brands of pasta weights that cannot be described from the source
-* **Image needed:** Problem 20 (STRUCTURE) contains a table image (`media/image7.png`) of Space Shuttle flight durations that cannot be described from the source
-* **Image needed:** Problem 22 contains two box plot images (`media/image8.png`, `media/image9.png`) for comparison that cannot be described from the source
-* **Image needed:** Problem 23 (SUPREME COURT) references a table of Supreme Court Justice ages that appears to be an embedded image not described in the source text
-* **Image needed:** Problem 24 contains a histogram image (`media/image10.png`) and three box plot images (`media/image11.png` labeled A, B, C) for matching that cannot be described from the source
-* **Missing data:** Problem 18 (ELEVATION) references a table of 10 U.S. elevations, but the actual values are not present in the extracted source text
+53, 34, 36, 38, 43, 49, 52, 36, 39, 37, 58, 45, 37, 38, 46, 52, 45, 39, 55, 39, 40, 55, 38, 40, 42, 38, 45, 36, 46, 39, 35, 41, 49, 43, 52, 34
+
+### Problem 11
+
+51, 19, 46, 64, 29, 51, 58, 30, 55, 31, 34, 31, 50, 37, 40, 39, 40, 41, 42, 32, 24, 48, 43, 45, 38, 43, 58, 47, 34, 36, 50, 54, 46, 28, 60, 22
+
+### Problem 12
+
+TRACK Daryn recorded the number of laps he walked around the track each week. Use a graphing calculator to construct a histogram for the data, and describe the shape of the distribution.
+
+17, 21, 23, 26, 27, 28, 28, 27, 33, 34, 33, 27, 29, 22, 19, 28, 35
+
+### Problem 13
+
+GOLF Mr. Swatsky’s geometry class’s miniature golf scores are shown below. Use a graphing calculator to construct a box plot for the data, and describe the shape of the distribution.
+
+![A table of Mr. Swatsky's class miniature golf scores.](/curriculum/module-9-lesson-5/source-image-1.png)
+
+| Scores |
+| --- |
+| 36, 38, 38, 39, 40, 42, 44, 46, 46, 47, 48, 48, 50, 52, 52, 53, 54, 55, 56, 56, 56, 60, 57, 58, 63 |
+
+### Problem 14
+
+HAIR LENGTH Ruth recorded the lengths, in centimeters, of hair of students in her school. Describe the center and spread of the data using either the mean and standard deviation or the five-number summary. Justify your choice by creating a box plot for the data.
+
+40, 39, 37, 26, 25, 40, 35, 34, 26, 39, 42, 33, 26, 25, 34, 38, 41, 34, 37, 39, 32, 30, 22, 38, 36, 28, 27, 39, 34, 26, 36, 38, 25, 39, 23, 8
+
+### Problem 15
+
+PRESIDENTS The ages of the presidents of the United States at the time of their inaugurations are shown. Describe the center and spread of the data using either the mean and standard deviation or the five-number summary. Justify your choice by creating a box plot for the data.
+
+![A table of the ages of presidents at inauguration.](/curriculum/module-9-lesson-5/source-image-2.png)
+
+| Ages of Presidents |
+| --- |
+| 57, 61, 57, 57, 58, 57, 61, 54, 68, 51, 49, 64, 50, 48, 65, 52, 56, 46, 54, 49, 51, 47, 55, 55, 54, 42, 51, 56, 55, 51, 54, 51, 60, 62, 43, 55, 56, 61, 52, 69, 64, 46, 54, 47 |
+
+### Problem 16
+
+AUTOMOTIVE A service station tracks the number of cars they service per day.
+
+![A table of the number of cars serviced each day.](/curriculum/module-9-lesson-5/source-image-3.png)
+
+| Cars Serviced per Day |
+| --- |
+| 40, 47, 37, 42, 46, 31, 50, 41, 17, 43, 36, 45, 21, 43, 45, 23, 49, 50, 48, 26, 42, 46, 35, 52, 27, 51, 31, 44, 35, 27, 46, 39, 33, 50, 45, 50 |
+
+a. Use a graphing calculator to construct a histogram for the data, and describe the shape of the distribution.
+
+b. Describe the center and spread of the data using either the mean and standard deviation or the five-number summary. Justify your choice.
+
+### Problem 17
+
+COMMUTE The number of miles that Armando drove each week during a 15-week period is shown.
+
+![A table of Armando's weekly miles.](/curriculum/module-9-lesson-5/source-image-4.png)
+
+| Weekly Miles |
+| --- |
+| 62, 110, 92, 430, 73, 84, 525, 123, 86, 290, 114, 98, 103, 312, 71 |
+
+a. Use a graphing calculator to construct a box plot. Describe the center and spread of the data.
+
+b. Armando visited four colleges during this period, and these visits account for the four highest weekly totals. Remove these four values from the data set. Use a graphing calculator to construct a box plot that reflects this change. Then describe the center and spread of the new data set.
+
+c. Calculate and compare the mean and median for the original data set to the mean and median for the data set from part b.
+
+### Problem 18
+
+ELEVATION The table contains data about 10 elevations in the United States.
+
+![A table of ten United States mountain elevations.](/curriculum/module-9-lesson-5/source-image-5.png)
+
+| Mountain | Elevation |
+| --- | ---: |
+| Mt McKinley, AK | 20,237 |
+| Mt Whitney, CA | 14,494 |
+| Mt Elbert, CO | 14,433 |
+| Mt Rainier, WA | 14,410 |
+| Gannett Peak, WY | 13,804 |
+| Mauna Kea, HI | 13,796 |
+| Kings Peak, UT | 13,528 |
+| Wheeler Peak NM | 13,161 |
+| Boundary Peak, NV | 13,140 |
+| Granite Peak, MT | 12,799 |
+
+a. Use a graphing calculator to construct a box plot for the data, and describe the shape of the distribution.
+
+b. Describe the center and spread of the data using either the mean and standard deviation or the five-number summary. Justify your choice.
+
+c. If there is an outlier, describe its effect on the statistics.
+
+### Problem 19
+
+USE A MODEL The histograms show the weight of sample boxes of two brands of pasta.
+
+![Histograms for Cucina Leonardo and Rafaello Pasta sample box weights, with smooth curves across their tops.](/curriculum/module-9-lesson-5/source-image-6.png)
+
+The Cucina Leonardo and Rafaello Pasta vertical axes run from 0 to 60. Their horizontal axes run from 200 to 250 grams and from 210 to 260 grams, respectively. Both smooth curves peak near 225 to 230 grams. The Cucina Leonardo curve extends across a broader range. The Rafaello Pasta curve is narrower. Both curves rise to one peak and fall on the other side.
+
+a. Do the two packages of pasta likely have the same advertised weight? Which manufacturer’s quantity control appears better? Explain your answers based on the distributions.
+
+b. Infer the two population distribution shapes by analyzing the smooth curves across the tops of the histograms. Describe the shapes you observe.
+
+### Problem 20
+
+STRUCTURE The United States has been sending astronauts up in the Space Shuttle since 1981. The table provides data regarding the duration of Space Shuttle flights from 1981 to 1985, and then from 2005 to 2011.
+
+![A table of Space Shuttle flight durations for 1981–1985 and 2005–2011.](/curriculum/module-9-lesson-5/source-image-7.png)
+
+| Years | Duration (days) |
+| --- | --- |
+| 1981–1985 | 2, 2, 8, 7, 5, 5, 6, 6, 10, 8, 7, 6, 8, 8, 3, 7, 7, 7, 8, 7, 4, 7, 7 |
+| 2005–2011 | 14, 13, 12, 13, 14, 13, 15, 13, 16, 14, 15, 13, 13, 16, 14, 11, 14, 15, 12, 13, 16, 13 |
+
+Choose and calculate the statistics appropriate for the distribution of the data sets. Use the statistics to compare the two sets.
+
+### Problem 21
+
+REASONING Gerardo live streams with 15 of his friends. Most of his streams have lasted 10-15 days so far, however he has two streams that have lasted 93 days. Describe what Gerardo’s data distribution would look like currently and how it would be affected if he lost his longest streams.
+
+### Problem 22
+
+CONSTRUCT ARGUMENTS Examine the two box plots shown. Without knowing the data points but assuming the same scale, what conclusion can be made? Justify your argument.
+
+![Two horizontal box plots. The upper box plot has a wider box and longer whiskers than the lower box plot.](/curriculum/module-9-lesson-5/source-image-8.png)
+
+On the common unlabeled scale, the upper box plot has a larger range and interquartile range. The upper median is left of the lower median. In the upper plot, the median is closer to the right side of the box. In the lower plot, the median is closer to the left side of the box. The upper plot extends farther on both sides.
+
+### Problem 23
+
+SUPREME COURT The table gives the ages of the current Supreme Court Justices in 2017.
+
+![A table of the ages of the current Supreme Court Justices in 2017.](/curriculum/module-9-lesson-5/source-image-9.png)
+
+| Justice | Age |
+| --- | ---: |
+| Neil Gorsuch | 49 |
+| Elena Kagan | 57 |
+| Sonia Sotomayor | 62 |
+| Samuel Anthony Alito | 67 |
+| Stephen G. Breyer | 78 |
+| Ruth Bader Ginsburg | 84 |
+| Clarence Thomas | 68 |
+| Anthony M Kennedy | 80 |
+| John G. Roberts Jr. | 62 |
+
+a. Use a graphing calculator to construct a histogram for the data, and describe the shape of the distribution.
+
+b. Describe the center and spread of the data using appropriate statistics. Justify your choice.
+
+c. If there is an outlier, describe its effect on the statistics.
+
+### Problem 24
+
+PERSEVERE Identify the box plot that corresponds to each of the following histograms.
+
+![Box plots i, ii, and iii.](/curriculum/module-9-lesson-5/source-image-10.png)
+
+Plot i: The left whisker is longer than the right whisker. The median is closer to the right side of the box.
+
+Plot ii: The left and right whiskers have similar lengths. The median is near the center of the box.
+
+Plot iii: The right whisker is longer than the left whisker. The median is closer to the left side of the box.
+
+![Histograms A, B, and C.](/curriculum/module-9-lesson-5/source-image-11.png)
+
+The histograms are A, B, and C from left to right.
+
+A. The bars reach their maximum near the left. Their heights then decrease toward the right. The distribution extends farther to the right.
+
+B. The bars rise toward the right before the final bar decreases. The distribution extends farther to the left.
+
+C. The bars rise to a central maximum and then decrease by similar amounts. The distribution is approximately symmetric.
+
+### Problem 25
+
+ANALYZE Research and write a definition for a bimodal distribution. How can the measures of center and spread of a bimodal distribution be described?
+
+### Problem 26
+
+CREATE Give an example of a set of real-world data with a distribution that is symmetric and one with a distribution that is not symmetric.
+
+### Problem 27
+
+WRITE Explain why the mean and standard deviation are used to describe the center and spread of a symmetrical distribution and the five-number summary is used to describe the center and spread of a skewed distribution.
