@@ -270,7 +270,7 @@ async function handler() {
 
 
 async function evidenceHandler() {
-  const loadedModule = await import('@/convex/learning-evidence');
+  const loadedModule = await import('@/convex/selectedLearningEvidence');
   return loadedModule.submitSelectedEvidenceHandler;
 }
 

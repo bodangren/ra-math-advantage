@@ -4,7 +4,7 @@ import { resolve } from 'node:path';
 
 import type { LearningEvidenceV1 } from '@math-platform/practice-core/learning-evidence';
 
-const LEARNING_EVIDENCE_MODULE = '../../convex/learning-evidence';
+const LEARNING_EVIDENCE_MODULE = '../../convex/selectedLearningEvidence';
 const LEARNER_ID = 'student-precalc-pilot';
 const PILOT_NODE_ID = 'math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs';
 const PILOT_ACTIVITY_ID = `${PILOT_NODE_ID}.guided_practice`;
@@ -96,7 +96,7 @@ async function loadLearningEvidenceHandlerFactory(): Promise<LearningEvidenceHan
     const detail = error instanceof Error ? ` ${error.message}` : '';
     throw new Error(
       'Missing AP Precalculus learning-evidence production boundary. '
-      + 'Add apps/pre-calculus/convex/learning-evidence.ts and export '
+      + 'Add apps/pre-calculus/convex/selectedLearningEvidence.ts and export '
       + `createPrecalculusLearningEvidenceHandler(dependencies).${detail}`,
     );
   }
@@ -138,7 +138,7 @@ async function createHarness() {
 describe('AP Precalculus Convex learning-evidence boundary', () => {
   it('declares the exact return validator on the internal submit mutation', async () => {
     const source = await readFile(
-      resolve(process.cwd(), 'convex/learning-evidence.ts'),
+      resolve(process.cwd(), 'convex/selectedLearningEvidence.ts'),
       'utf8',
     );
 

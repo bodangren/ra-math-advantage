@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from 'vitest';
 import {
   createSelectedSubmissionEvidenceHandler,
   type SelectedEvidenceDependencies,
-} from '@/convex/learning-evidence';
+} from '@/convex/selectedLearningEvidence';
 import {
   PRECALCULUS_PILOT_ACTIVITY_ID,
   PRECALCULUS_PILOT_INDEPENDENT_ACTIVITY_ID,
@@ -54,7 +54,7 @@ function setup(stored = submission('independent_practice'), history = [teacherEv
   const deps: SelectedEvidenceDependencies = {
     authenticateLearner: vi.fn(async () => true),
     findReceipt: vi.fn(async (_learner, id) => receipts.get(id) ?? null),
-    loadSubmission: vi.fn(async (id) => id === stored.submissionId ? stored : null),
+    loadSubmission: vi.fn(async (id) => stored && id === stored.submissionId ? stored : null),
     sourceIsCurrent: vi.fn(async () => true),
     findEvidence: vi.fn(async (_learner, key) => evidence.find((row) => row.idempotencyKey === key) ?? null),
     listHistory: vi.fn(async () => evidence),
@@ -118,18 +118,31 @@ describe('selected Topic 1.1 stored-submission evidence', () => {
     expect(state.deps.appendEvidence).toHaveBeenCalledTimes(1);
   });
 
+  it('rejects an unknown stored submission without effects', async () => {
+    const state = setup(null as any);
+    await expect(state.handler({ learnerId, submissionId: 'activity_submissions:missing' }))
+      .resolves.toEqual({ accepted: false, reason: 'submission_not_found' });
+    expect(state.deps.appendEvidence).not.toHaveBeenCalled();
+    expect(state.deps.appendReceipt).not.toHaveBeenCalled();
+    expect(state.deps.applySrs).not.toHaveBeenCalled();
+  });
+
   it.each([
     ['top-level field', (stored: any) => { stored.submissionData.unexpected = true; }],
     ['answer field', (stored: any) => { stored.submissionData.answers.unexpected = 'x'; }],
     ['part field', (stored: any) => { stored.submissionData.parts[0].misconceptionTags = ['x']; }],
     ['missing assistance', (stored: any) => { delete stored.submissionData.parts[0].hintsUsed; }],
     ['wrong stored row ID', (stored: any) => { stored.submissionId = 'activity_submissions:other'; }],
+    ['wrong learner owner', (stored: any) => { stored.userId = 'profiles:other'; }],
+    ['non-pilot stable activity', (stored: any) => { stored.stableActivityId = 'other.activity'; }],
   ])('rejects a stored %s mismatch', async (_name, mutate) => {
     const stored = submission('independent_practice');
     mutate(stored);
     const state = setup(stored);
     await expect(state.handler({ learnerId, submissionId: 'activity_submissions:independent_practice:1' }))
       .resolves.toEqual({ accepted: false, reason: 'submission_not_found' });
+    expect(state.deps.appendEvidence).not.toHaveBeenCalled();
+    expect(state.deps.appendReceipt).not.toHaveBeenCalled();
     expect(state.deps.applySrs).not.toHaveBeenCalled();
   });
 });

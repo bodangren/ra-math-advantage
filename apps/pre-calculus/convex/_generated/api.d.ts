@@ -10,7 +10,7 @@
 
 import type * as activities from "../activities.js";
 import type * as auth from "../auth.js";
-import type * as learning_evidence from "../learning-evidence.js";
+import type * as selectedLearningEvidence from "../selectedLearningEvidence.js";
 import type * as public_ from "../public.js";
 import type * as seed from "../seed.js";
 import type * as student from "../student.js";
@@ -25,7 +25,7 @@ import type {
 declare const fullApi: ApiFromModules<{
   activities: typeof activities;
   auth: typeof auth;
-  "learning-evidence": typeof learning_evidence;
+  selectedLearningEvidence: typeof selectedLearningEvidence;
   public: typeof public_;
   seed: typeof seed;
   student: typeof student;

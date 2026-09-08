@@ -176,7 +176,7 @@ vi.mock("@/curriculum/skill-graph/blueprints.json", () => ({
 import {
   createTopic11DailySubmission,
 } from "@/convex/activities";
-import { submitTopic11TeacherSubmission } from "@/convex/learning-evidence";
+import { submitTopic11TeacherSubmission } from "@/convex/selectedLearningEvidence";
 import { PRECALCULUS_TOPIC_11_SOURCE_COMPONENT_KEY } from "@/lib/learning-evidence/precalc-pilot";
 import { evaluateLearningEvidenceV1 } from "@math-platform/practice-core";
 const S = `${N}.worked_example`,
