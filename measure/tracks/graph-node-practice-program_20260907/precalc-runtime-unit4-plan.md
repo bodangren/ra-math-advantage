@@ -32,7 +32,7 @@ Add a narrow `apps/pre-calculus/convex/course.ts` file from the current main imp
 
 Do not include teacher candidates, roster management, grading, later-topic helpers, or broad teacher data.
 
-`getLesson` must return the raw activity section `activityId` and `componentKey`. The seed already stores the exact selected physical activity at Topic 1.1, Phase 4, sequence 2. Do not add a second selected identity to the lesson result.
+`getLesson` must return the raw activity section `activityId` and `componentKey`. The pending Q22 seed stores the exact selected physical activity at Topic 1.1, Phase 4, sequence 2. The committed legacy seed does not. Unit 5 must integrate this dependency before a real selected seeded flow can pass. Do not add a second selected identity to the lesson result.
 
 Use explicit argument and return validators. Replace the current `v.any()` result validators with the minimum exact public result validators when this unit is implemented.
 
@@ -122,7 +122,7 @@ Add focused tests with the production page and components. Do not use the full t
    - prove Independent has no Guided hints or Worked answer fields.
 
 5. `topic11-selected-lesson-page.test.tsx`
-   - use the actual seeded Phase 4 section shape and the real page;
+   - use an explicitly hypothetical selected Phase 4 section fixture and the real page; verify the actual selected seed in unit 5;
    - test all three learner states;
    - test source draft, physical withdrawal, wrong physical ID, and wrong component;
    - test the Q36 null-source and missing-field regression;
