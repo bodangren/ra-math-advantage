@@ -724,10 +724,11 @@
     {
       "id": "math.im3.example.1.6.039",
       "kind": "worked_example",
-      "title": "Example 4: Use the Discriminant",
+      "title": "Example 4 The Discriminant, Real Roots",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-6, Example 4)"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-6, Example 4)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=46"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -736,16 +737,21 @@
         "lesson": "6",
         "exampleNumber": 4,
         "sourceLesson": "1-6",
-        "rawText": "1-6, Examples 4-5 — Use the Discriminant; Use the Discriminant"
+        "rawText": "Example 4 The Discriminant, Real Roots\nExamine 2x² - 10x + 7 = 0.\nPart A Find the value of the discriminant for 2x² - 10x + 7 = 0.\na = 2, b = -10, c = 7\nb² - 4ac = (-10)² - 4(2)(7)\n= 100 - 56\n= 44\nPart B Describe the number and type of roots for the equation.\nThe discriminant is nonzero, so there are two roots. The discriminant is positive and not a perfect square, so the roots are irrational.",
+        "pdfPage": 46,
+        "authoredTitle": "The Discriminant, Real Roots",
+        "prompt": "Examine 2x² - 10x + 7 = 0. Part A Find the value of the discriminant for 2x² - 10x + 7 = 0. Part B Describe the number and type of roots for the equation.",
+        "demonstratedCapability": "Use the discriminant to calculate its value and classify two real irrational roots."
       }
     },
     {
       "id": "math.im3.example.1.6.040",
       "kind": "worked_example",
-      "title": "Example 5: Use the Discriminant",
+      "title": "Example 5 The Discriminant, Complex Roots",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-6, Example 5)"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-6, Example 5)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=46"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -754,7 +760,11 @@
         "lesson": "6",
         "exampleNumber": 5,
         "sourceLesson": "1-6",
-        "rawText": "1-6, Examples 4-5 — Use the Discriminant; Use the Discriminant"
+        "rawText": "Example 5 The Discriminant, Complex Roots\nExamine -5x² + 10x - 15 = 0.\nPart A Find the value of the discriminant for -5x² + 10x - 15 = 0.\na = -5, b = 10, c = -15\nb² - 4ac = (10)² - 4(-5)(-15)\n= 100 - 300\n= -200\nPart B Describe the number and type of roots for the equation.\nThe discriminant is nonzero, so there are two roots. The discriminant is negative, so the roots are complex.",
+        "pdfPage": 46,
+        "authoredTitle": "The Discriminant, Complex Roots",
+        "prompt": "Examine -5x² + 10x - 15 = 0. Part A Find the value of the discriminant for -5x² + 10x - 15 = 0. Part B Describe the number and type of roots for the equation.",
+        "demonstratedCapability": "Use the discriminant to calculate its value and classify two complex roots."
       }
     },
     {

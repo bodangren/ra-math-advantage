@@ -55,6 +55,30 @@ const examples = [
     rawText:
       "Example 3 Complex Roots\nSolve 5x² + 8x + 11 = 0 by using the Quadratic Formula.\na = 5, b = 8, c = 11\nx = (-b ± √(b² - 4ac))/(2a)\nx = (-8 ± √(8² - 4(5)(11)))/(2(5))\nx = (-8 ± √-156)/10\nx = (-8 ± √-1 · √4 · √39)/10\nx = (-8 ± 2i√39)/10\nx = (-4 ± i√39)/5",
   },
+  {
+    id: "math.im3.example.1.6.039",
+    number: 4,
+    page: 46,
+    title: "The Discriminant, Real Roots",
+    prompt:
+      "Examine 2x² - 10x + 7 = 0. Part A Find the value of the discriminant for 2x² - 10x + 7 = 0. Part B Describe the number and type of roots for the equation.",
+    capability:
+      "Use the discriminant to calculate its value and classify two real irrational roots.",
+    rawText:
+      "Example 4 The Discriminant, Real Roots\nExamine 2x² - 10x + 7 = 0.\nPart A Find the value of the discriminant for 2x² - 10x + 7 = 0.\na = 2, b = -10, c = 7\nb² - 4ac = (-10)² - 4(2)(7)\n= 100 - 56\n= 44\nPart B Describe the number and type of roots for the equation.\nThe discriminant is nonzero, so there are two roots. The discriminant is positive and not a perfect square, so the roots are irrational.",
+  },
+  {
+    id: "math.im3.example.1.6.040",
+    number: 5,
+    page: 46,
+    title: "The Discriminant, Complex Roots",
+    prompt:
+      "Examine -5x² + 10x - 15 = 0. Part A Find the value of the discriminant for -5x² + 10x - 15 = 0. Part B Describe the number and type of roots for the equation.",
+    capability:
+      "Use the discriminant to calculate its value and classify two complex roots.",
+    rawText:
+      "Example 5 The Discriminant, Complex Roots\nExamine -5x² + 10x - 15 = 0.\nPart A Find the value of the discriminant for -5x² + 10x - 15 = 0.\na = -5, b = 10, c = -15\nb² - 4ac = (10)² - 4(-5)(-15)\n= 100 - 300\n= -200\nPart B Describe the number and type of roots for the equation.\nThe discriminant is nonzero, so there are two roots. The discriminant is negative, so the roots are complex.",
+  },
 ] as const;
 
 describe("IM3 Lesson 1-6 Worked source restoration", () => {
@@ -67,7 +91,9 @@ describe("IM3 Lesson 1-6 Worked source restoration", () => {
         expect(matches).toHaveLength(1);
         const [node] = matches;
         expect(node?.title).toBe(
-          `Example ${expected.number}: ${expected.title}`,
+          expected.number <= 3
+            ? `Example ${expected.number}: ${expected.title}`
+            : `Example ${expected.number} ${expected.title}`,
         );
         expect(node?.sourceRefs).toEqual([
           `apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-6, Example ${expected.number})`,
