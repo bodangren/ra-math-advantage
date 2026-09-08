@@ -430,7 +430,7 @@ The Worked in-flight guard is committed as `116b0ac6d`. Parent verification pass
 
 G49 first source review found one native-data transcription error. The seventh monthly temperature is 86°F, not 88°F. The test repeated the same incorrect value. The candidate is under correction, with complete accessible-table checks required. Source restoration remains uncommitted.
 
-- [~] Task G50: Review IM1 Lesson 9-7 from `Int1_0907_practice.docx`. Inventory all source prompts, native figures, exact prior reuse, stable source identities, and manual response boundaries before source or graph implementation.
+- [x] Task G50: Review IM1 Lesson 9-7 from `Int1_0907_practice.docx`. Inventory all source prompts, native figures, exact prior reuse, stable source identities, and manual response boundaries before source or graph implementation.
 
 G49 exact source restoration is committed as `67131a0b9`. Parent verification passed all 373 curriculum and seed tests, lint, build, and standalone TypeScript after the committed G48 graph overlay. The corrected ten-candidate graph proposal is accepted for draft implementation. It removes duplicate ordered-affine spread evidence and requires explicit Problem 30 and Problem 32 explanations. See `im1-lesson96-proposal-independent-review.md`.
 
@@ -460,7 +460,7 @@ G50 exact source restoration is committed as `9b3a7c1bd`. Parent 382 curriculum/
 
 Removed the completed G49 graph archive after independent cleanup review and parent comparison of all 18 committed patch files. All authored content is preserved in `334f17643`.
 
-- [~] Task G50 graph: Implement the accepted 17-capability Lesson 9-7 proposal from the restored source. Preserve exact prior table-construction reuse, observed response stages, stable source identities, and Problem 33 ambiguity. Do not add lesson-order prerequisites or executable placeholders. Derive all graph counts from the corrected records.
+- [x] Task G50 graph: Implement the accepted 17-capability Lesson 9-7 proposal from the restored source. Preserve exact prior table-construction reuse, observed response stages, stable source identities, and Problem 33 ambiguity. Do not add lesson-order prerequisites or executable placeholders. Derive all graph counts from the corrected records.
 
 The bounded 54d1 review classified seven IM3 graph files as superseded by the accepted current repair. Their only valid unique source addition is already preserved in main. Do not integrate these stale rows. The remaining dirty files are outside this review, so retain the saved worktree. See `saved-54d1-im3-reconciliation-review.md`.
 
@@ -481,3 +481,7 @@ Q37 row 8 failed at the server boundary. A browser request inserted Guided pract
 Q38 parent investigation confirms that the saved physical result is absent from server page data and exists only in client state. Existing indexed submissions and receipts can supply the missing read. The bounded proposal preserves explicit retry and separates historical results from new-attempt and lesson-completion state. See `precalc-saved-practice-views-investigation.md`.
 
 G51 parent source review inspected all 23 prompts and 17 native figures. Exact source restoration is accepted to proceed. The corrected six-capability proposal remains provisional. Preserve average-time, combined-route, curved-line, and complete-premise boundaries. See `im1-lesson101-parent-source-review.md`.
+
+G50 graph repair is committed as `2bfeb9796`. Parent 387 curriculum and seed tests, 37 audit tests, and all app gates pass. Independent review accepts the final source bindings and removal of edge 1277 from both projections. All 13 candidate paths match the commit. The archive is refreshed from HEAD for G52 reuse.
+
+G52 independent review confirms 14 stale projected sequence pairs. The valid median-to-five-number-summary relationship remains separate. Repair both projections and normalize its canonical prerequisite type to the existing contract. Do not add a second prerequisite authority. See `im1-projected-prerequisites-independent-review.md`.
