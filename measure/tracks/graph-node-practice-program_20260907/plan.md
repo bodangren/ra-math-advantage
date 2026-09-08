@@ -323,4 +323,4 @@ Q37 dependency tracing is complete. See `precalc-runtime-integration-dependencie
 
 Q37 unit 3 is in progress from isolated HEAD `250a4167`. It adds the three selected learner queries and exact source-layout checks. See `precalc-runtime-unit3-plan.md`.
 
-- [~] Task G45: Review IM1 Lesson 9-2 from its original worksheet. Verify each prompt, existing exact reuse, stable identities, and manual or ambiguous response boundaries before implementation.
+- [~] Task G45: Review IM1 Lesson 9-2 from its original worksheet. Verify each prompt, existing exact reuse, stable identities, and manual or ambiguous response boundaries before implementation. Parent review accepted the revised 16-candidate proposal after it split four bundled data-reading operations and removed invented source groups. The source-only restoration is in progress. See `im1-lesson92-capabilities-review.md` and `im1-lesson92-proposal-parent-review.md`.
