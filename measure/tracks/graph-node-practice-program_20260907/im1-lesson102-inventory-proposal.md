@@ -75,9 +75,9 @@ Each response is a drawing. More than one drawing can satisfy each prompt.
 
 ### Example 4 on source page 2
 
-25. `How many planes are shown in the figure?` Response: `2`.
-26. `How many of the planes contain points F and E?` Response: `1`.
-27. `Name four points that are coplanar.` Response: `F`, `D`, `E`, and `B` are one valid set.
+25. `How many planes are shown in the figure?` Response: `5`: planes `ABC` (or `W`), `FED`, `FEBA`, `EDCB`, and `FDCA`.
+26. `How many of the planes contain points F and E?` Response: `2`: planes `FED` and `FEBA`.
+27. `Name four points that are coplanar.` Response: one valid set is `F, E, A, B`, `E, D, B, C`, or `F, D, A, C`.
 28. `Are points A, B, and C coplanar? Explain.` Response: `Yes`; all three lie in plane `W`.
 
 Problems 25-27 have exact responses. Problem 28 requires an explanation.
