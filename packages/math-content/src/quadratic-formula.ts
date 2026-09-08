@@ -128,12 +128,13 @@ function caseIrrational(rand: () => number): Case {
   const disc = bb * bb - 4 * aa * cc;
   const negB = -bb;
   const den = 2 * aa;
-  const rootStr = `(${negB} ± √${disc})/${den}`;
+  const plusRoot = `(${negB} + √${disc})/${den}`;
+  const minusRoot = `(${negB} - √${disc})/${den}`;
   return {
     a: aa, b: bb, c: cc,
     roots: [
-      { value: rootStr, type: 'irrational' },
-      { value: rootStr, type: 'irrational' },
+      { value: plusRoot, type: 'irrational' },
+      { value: minusRoot, type: 'irrational' },
     ],
     rootKind: 'irrational',
     rootTypeDesc: 'two irrational roots (radical form)',
@@ -159,12 +160,13 @@ function caseComplex(rand: () => number): Case {
   const negB = -bb;
   const radMag = -disc;
   const den = 2 * aa;
-  const rootStr = `(${negB} ± i√${radMag})/${den}`;
+  const plusRoot = `(${negB} + i√${radMag})/${den}`;
+  const minusRoot = `(${negB} - i√${radMag})/${den}`;
   return {
     a: aa, b: bb, c: cc,
     roots: [
-      { value: rootStr, type: 'complex' },
-      { value: rootStr, type: 'complex' },
+      { value: plusRoot, type: 'complex' },
+      { value: minusRoot, type: 'complex' },
     ],
     rootKind: 'complex',
     rootTypeDesc: 'two complex conjugate roots',
@@ -185,7 +187,7 @@ function buildSteps(
 ): string[] {
   const steps: string[] = [];
   steps.push(`Identify the coefficients: a = ${a}, b = ${b}, c = ${c}. The quadratic is ${formatQuadratic(a, b, c)}.`);
-  steps.push(`Compute the discriminant: b^2 - 4ac = ${b}^2 - 4(${a})(${c}) = ${disc}.`);
+  steps.push(`Compute the discriminant: b^2 - 4ac = (${b})^2 - 4(${a})(${c}) = ${disc}.`);
   steps.push(`Because the discriminant is ${disc > 0 ? 'positive' : disc === 0 ? 'zero' : 'negative'}, the root type (nature) is ${rootTypeDesc}.`);
   steps.push(`Apply the quadratic formula: x = (-b ± √(discriminant)) / (2a) = (-(${b}) ± √${disc}) / (2·${a}).`);
   steps.push(`Simplify to obtain the root(s): x = ${rootSample}.`);
@@ -193,8 +195,7 @@ function buildSteps(
 }
 
 function rootSample(roots: QuadraticFormulaRoot[]): string {
-  if (roots.length === 1) return String(roots[0].value);
-  return String(roots[0].value);
+  return roots.map((root) => String(root.value)).join(', ');
 }
 
 // ---------------------------------------------------------------------------

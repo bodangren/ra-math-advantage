@@ -1,5 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { generateQuadraticFormula } from '../quadratic-formula';
+import { getGenerator } from '../knowledge-space/generators/registry';
 import * as prng from '../utils/prng';
 
 /**
@@ -47,7 +48,7 @@ function evaluateRoot(root: number | string): EvaluatedRoot {
   const complexExplicit = s.match(/^\(([-+]?\d+)\s*([+-])\s*i√(\d+)\)\/(\d+)$/);
   if (complexExplicit) {
     const real = Number(complexExplicit[1]) / Number(complexExplicit[4]);
-    const imag = Number(complexExplicit[3] === '0' ? 0 : complexExplicit[3]) / Number(complexExplicit[4]);
+    const imag = Math.sqrt(Number(complexExplicit[3])) / Number(complexExplicit[4]);
     return { value: real, isComplex: true, imag: complexExplicit[2] === '+' ? imag : -imag };
   }
 
@@ -55,7 +56,7 @@ function evaluateRoot(root: number | string): EvaluatedRoot {
   const complexPlusMinus = s.match(/^\(([-+]?\d+)\s*±\s*i√(\d+)\)\/(\d+)$/);
   if (complexPlusMinus) {
     const real = Number(complexPlusMinus[1]) / Number(complexPlusMinus[3]);
-    const imag = Number(complexPlusMinus[2]) / Number(complexPlusMinus[3]);
+    const imag = Math.sqrt(Number(complexPlusMinus[2])) / Number(complexPlusMinus[3]);
     return { value: real, isComplex: true, imag };
   }
 
@@ -340,5 +341,59 @@ describe('quadratic-formula single-pass generation', () => {
     } finally {
       spy.mockRestore();
     }
+  });
+});
+
+
+describe('quadratic-formula exact root contract', () => {
+  it('returns two distinct explicit irrational and complex roots with valid residuals', () => {
+    for (let seed = 0; seed < 100; seed++) {
+      const result = generateQuadraticFormula({ seed });
+      if (result.roots[0]?.type !== 'irrational' && result.roots[0]?.type !== 'complex') continue;
+      expect(result.roots).toHaveLength(2);
+      expect(result.roots[0].value).not.toBe(result.roots[1].value);
+      for (const root of result.roots) {
+        const parsed = evaluateRoot(root.value);
+        if (parsed.isComplex) {
+          const real = parsed.value;
+          const imaginary = parsed.imag ?? 0;
+          expect(result.a * (real * real - imaginary * imaginary) + result.b * real + result.c).toBeCloseTo(0, 9);
+          expect(2 * result.a * real * imaginary + result.b * imaginary).toBeCloseTo(0, 9);
+        } else {
+          expect(evaluateAt(result.a, result.b, result.c, parsed.value)).toBeCloseTo(0, 9);
+        }
+      }
+    }
+  });
+
+  it('puts every root in the final worked step', () => {
+    for (let seed = 0; seed < 100; seed++) {
+      const result = generateQuadraticFormula({ seed });
+      const finalStep = result.steps.at(-1) ?? '';
+      for (const root of result.roots) expect(finalStep).toContain(String(root.value));
+    }
+  });
+
+  it('maps each generated root to a distinct adapter answer field', () => {
+    const generator = getGenerator('quadratic-formula');
+    for (let seed = 0; seed < 100; seed++) {
+      const problem = generateQuadraticFormula({ seed });
+      const output = generator.generate({ seed, nodeId: generator.nodeIds[0], difficulty: 0.5 });
+      expect(output.expectedAnswer.discriminant).toBe(problem.discriminant);
+      expect(output.gradingMetadata.partAnswers.discriminant).toBe(problem.discriminant);
+      for (let index = 0; index < problem.roots.length; index++) {
+        const partId = `x${index + 1}`;
+        expect(output.expectedAnswer[partId]).toBe(problem.roots[index].value);
+        expect(output.gradingMetadata.partAnswers[partId]).toBe(problem.roots[index].value);
+      }
+      expect(Object.keys(output.expectedAnswer)).toHaveLength(problem.roots.length + 1);
+    }
+  });
+
+  it('parenthesizes a negative b value in the discriminant substitution', () => {
+    const result = Array.from({ length: 100 }, (_, seed) => generateQuadraticFormula({ seed }))
+      .find((problem) => problem.b < 0);
+    expect(result).toBeDefined();
+    expect(result?.steps[1]).toContain(`(${result?.b})^2`);
   });
 });

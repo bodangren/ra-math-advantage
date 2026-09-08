@@ -655,10 +655,10 @@ describe('T17 adversarial — generateQuadraticFormula edge cases', () => {
     }
   });
 
-  it('across 100 seeds: irrational roots have a parseable (N ± √M)/D radical form', () => {
+  it('across 100 seeds: irrational roots have parseable explicit-sign radical forms', () => {
     // A7 probe: the irrational-form regex must match all generated strings
     // of type "irrational". If the format drifts, the probe fails.
-    const radicalForm = /^\(([-+]?\d+)\s*±\s*√(\d+)\)\/(\d+)$/;
+    const radicalForm = /^\(([-+]?\d+)\s*[+-]\s*√(\d+)\)\/(\d+)$/;
     for (let seed = 0; seed < 100; seed++) {
       const r = generateQuadraticFormula({ seed });
       for (const root of r.roots) {
@@ -687,8 +687,8 @@ describe('T17 adversarial — generateQuadraticFormula edge cases', () => {
     expect(r.c).toBe(-5);
     expect(r.discriminant).toBe(45);
     expect(r.roots).toEqual([
-      { value: '(-5 ± √45)/2', type: 'irrational' },
-      { value: '(-5 ± √45)/2', type: 'irrational' },
+      { value: '(-5 + √45)/2', type: 'irrational' },
+      { value: '(-5 - √45)/2', type: 'irrational' },
     ]);
   });
 });
