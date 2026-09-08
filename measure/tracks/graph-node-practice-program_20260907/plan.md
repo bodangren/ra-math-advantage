@@ -502,7 +502,7 @@ Q37 row 8 now passes after `91bfd0320`. Actual stale-source browser requests rej
 
 G51 exact source restoration is committed as `8bca01b6f`. Parent 393 curriculum and seed tests and all app gates pass. Final independent review accepts the corrected source and accessible coordinates. All 19 source paths match the commit. The candidate is refreshed from HEAD for graph reuse.
 
-- [~] Task G51 graph: Implement the accepted five-atom Lesson 10-1 draft scope. Reuse existing axiom-role and geometry-method skills only for exact observed responses. Preserve source identities, all premise and manual-review boundaries, and the existing approval states. Remove empty executable placeholders where present. Derive current graph counts.
+- [x] Task G51 graph: Implement the accepted five-atom Lesson 10-1 draft scope. Reuse existing axiom-role and geometry-method skills only for exact observed responses. Preserve source identities, all premise and manual-review boundaries, and the existing approval states. Remove empty executable placeholders where present. Derive current graph counts.
 
 Q39 reuses the completed G50/G52 archive after its committed-file checks and a fresh HEAD overlay. The one-file repair imports the existing KaTeX stylesheet in the root layout. Independent review accepts the repair. The parent is completing browser and app verification.
 
@@ -517,3 +517,5 @@ Removed saved worktree dd99 after independent semantic review and parent compari
 Removed the completed parent native-image directories for G49 and G50. All 18 image files match their committed public source assets. No authored content was removed. G51 native figures remain available while its graph review is active.
 
 Removed ten completed verification/base helpers and one G51 media extraction directory after full baseline and owned-file comparisons. The active G51 graph, Q38 saved-view, and live browser candidates remain intact. See `completed-verification-helper-cleanup-review.md`.
+
+G51 graph is committed as `2ee8bcc1a`. The format repair is committed as `3e1d0097a`. The repair preserves all record values and nested order. Parent 397 tests and independent 31 tests pass. See `im1-lesson101-format-independent-review.md`. The completed archive is under final cleanup review.
