@@ -519,3 +519,7 @@ Removed the completed parent native-image directories for G49 and G50. All 18 im
 Removed ten completed verification/base helpers and one G51 media extraction directory after full baseline and owned-file comparisons. The active G51 graph, Q38 saved-view, and live browser candidates remain intact. See `completed-verification-helper-cleanup-review.md`.
 
 G51 graph is committed as `2ee8bcc1a`. The format repair is committed as `3e1d0097a`. The repair preserves all record values and nested order. Parent 397 tests and independent 31 tests pass. See `im1-lesson101-format-independent-review.md`. The completed archive is under final cleanup review.
+
+Q38 final review found a saved-result state defect. A new saved submission could retain the previous submission's delivery state. The bounded correction keys the existing saved-result component by submission identity. Add an actual rerender regression and invalid creation/update timestamp query cases before final integration.
+
+Removed the completed G51 source/graph archive and its 17-image native extraction directory. Every authored byte is committed. See `im1-lesson101-final-cleanup-review.md`. The 20 saved Codex worktrees remain intact.
