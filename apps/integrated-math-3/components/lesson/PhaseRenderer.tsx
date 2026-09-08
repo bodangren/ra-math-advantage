@@ -65,7 +65,7 @@ export interface PhaseRendererProps {
   lessonId?: string;
   phaseNumber?: number;
   mode?: 'teaching' | 'guided' | 'practice';
-  onActivitySubmit?: (activityId: string, payload: unknown) => void;
+  onActivitySubmit?: (activityId: string, payload: unknown) => void | Promise<void>;
   onActivityComplete?: (activityId: string) => void;
 }
 
@@ -119,7 +119,7 @@ export function PhaseRenderer({
 /**
  * Renders the appropriate content block for a single section type.
  *
- * @param {{ section: PhaseSection; lessonId?: string; phaseNumber?: number; mode: 'teaching' | 'guided' | 'practice'; onActivitySubmit?: (activityId: string, payload: unknown) => void; onActivityComplete?: (activityId: string) => void; }} props - Section block configuration.
+ * @param {{ section: PhaseSection; lessonId?: string; phaseNumber?: number; mode: 'teaching' | 'guided' | 'practice'; onActivitySubmit?: (activityId: string, payload: unknown) => void | Promise<void>; onActivityComplete?: (activityId: string) => void; }} props - Section block configuration.
  * @returns {JSX.Element} A rendered section block.
  */
 function SectionBlock({
@@ -134,7 +134,7 @@ function SectionBlock({
   lessonId?: string;
   phaseNumber?: number;
   mode: 'teaching' | 'guided' | 'practice';
-  onActivitySubmit?: (activityId: string, payload: unknown) => void;
+  onActivitySubmit?: (activityId: string, payload: unknown) => void | Promise<void>;
   onActivityComplete?: (activityId: string) => void;
 }) {
   switch (section.sectionType) {
@@ -161,7 +161,7 @@ function SectionBlock({
     case 'activity': {
       const activityId = section.content.activityId as string;
       const handleSubmit = (payload: unknown) => {
-        onActivitySubmit?.(activityId, payload);
+        return onActivitySubmit?.(activityId, payload);
       };
       const handleComplete = () => {
         onActivityComplete?.(activityId);
@@ -174,7 +174,7 @@ function SectionBlock({
           phaseNumber={phaseNumber}
           mode={section.content.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID ? 'teaching' : mode}
           activityProps={section.content.activityProps as Record<string, unknown> | undefined}
-          onSubmit={handleSubmit}
+          onSubmit={onActivitySubmit ? handleSubmit : undefined}
           onComplete={handleComplete}
         />
       );
