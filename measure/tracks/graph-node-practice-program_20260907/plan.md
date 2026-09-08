@@ -780,10 +780,14 @@ The graph binding scope is active. Parent corrections use truthful any_seed repl
 
 Independent scope review adds the existing canonical SRS projection to the graph batch. The graph author owns fifteen paths. The parent owns the existing writer test. Five new parent cases call the default canonical publication and preserve invalid-publication rejection. They fail before the missing blueprint is added.
 
-- [~] Task IM3-QF later-attempt allocation scope: Define the smallest immutable later-attempt allocation using existing activities, practice_items, and practice_variants. Trace reload, concurrency, ownership, stable activity selection, and exact replay constraints. Keep prior stored variants immutable and server grading authoritative. This is read-only scope work. Do not add tables, schema fields, routes, or allocation code before the existing contracts are checked.
+- [x] Task IM3-QF later-attempt allocation scope: Define the smallest immutable later-attempt allocation using existing activities, practice_items, and practice_variants. Trace reload, concurrency, ownership, stable activity selection, and exact replay constraints. Keep prior stored variants immutable and server grading authoritative. This is read-only scope work. Do not add tables, schema fields, routes, or allocation code before the existing contracts are checked.
 
 Parent and independent allocation review found legacy replay, public equation, reload, pending-row consumer, and seed rerun gaps. The first proposal is not accepted. A proposed optional variant reference still needs schema and consumer review. No allocation code is authorized by this scope review. See `im3-quadratic-formula-allocation-review-findings.md`.
 
 - [~] Task IM3-QF pending consumer correction: Exclude draft submission rows before teacher latest-evidence selection and from submission exports. Use the existing teacher and export handlers. Add tests with an older final QF row and a newer draft row. Preserve final evidence and export pagination. The exact pending contract has no score or timing; other readers need regression coverage, not speculative production changes. See `im3-quadratic-formula-pending-consumer-audit.md`.
 
 Graph binding correction is committed as `a85d31f16`. Parent and independent review accepted all sixteen paths. Default canonical authority now passes both draft modes. Teacher readiness and SRS eligibility remain false. See `im3-lesson16-binding-final-review.md`.
+
+- [x] Task IM3-QF later-attempt allocation scope: The implementation scope now defines the minimum private variant reference, shared scheduled variants, canonical first attempt, immutable legacy replay, explicit Start, reload, exact public output, and seed rerun behavior. See `im3-quadratic-formula-allocation-implementation-scope.md`.
+
+- [~] Task IM3-QF immutable allocation backend: Implement the seven backend paths and focused tests in the allocation implementation scope. Keep the teacher/export correction separate. Client integration, real transaction verification, browser use, and draft publication remain open.
