@@ -1,4 +1,6 @@
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { renderToString } from 'react-dom/server';
+import { hydrateRoot } from 'react-dom/client';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { Topic11ExposureForm } from '@/components/course/Topic11ExposureForm';
 
@@ -17,6 +19,31 @@ describe('Topic 1.1 teacher confirmation', () => {
     expect(screen.getByText('Worked example: Intervals of increase and decrease')).toBeInTheDocument();
     expect(screen.getByText('Student acknowledgement saved. Teacher confirmation is pending.')).toBeInTheDocument();
     expect(document.querySelector('time')).toHaveAttribute('dateTime', new Date(props.submittedAt).toISOString());
+    expect(document.querySelector('time')).toHaveTextContent('9/7/2026, 10:00:00 AM UTC');
+  });
+
+  it('hydrates the server timestamp in an Asia/Shanghai browser without a text mismatch', async () => {
+    const originalTimezone = process.env.TZ;
+    const consoleError = vi.spyOn(console, 'error').mockImplementation(() => undefined);
+    const container = document.createElement('div');
+    let root: ReturnType<typeof hydrateRoot> | undefined;
+    try {
+      process.env.TZ = 'UTC';
+      container.innerHTML = renderToString(<Topic11ExposureForm {...props} />);
+      document.body.append(container);
+      process.env.TZ = 'Asia/Shanghai';
+      await act(async () => {
+        root = hydrateRoot(container, <Topic11ExposureForm {...props} />);
+      });
+      expect(consoleError.mock.calls.flat().join(' ')).not.toContain('Hydration failed');
+      expect(container.querySelector('time')).toHaveTextContent('9/7/2026, 10:00:00 AM UTC');
+    } finally {
+      await act(async () => root?.unmount());
+      container.remove();
+      if (originalTimezone === undefined) delete process.env.TZ;
+      else process.env.TZ = originalTimezone;
+      consoleError.mockRestore();
+    }
   });
 
   it('locks selection while pending, retains the request after failure, and confirms success', async () => {

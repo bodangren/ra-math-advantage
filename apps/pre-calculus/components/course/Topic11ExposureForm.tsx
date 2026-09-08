@@ -23,7 +23,9 @@ export function Topic11ExposureForm({ studentId, studentName, submissionId, less
     <h4>Unit 1 Topic 1.1: {lessonTitle}</h4>
     <p>{studentName}</p>
     <p>Worked example: Intervals of increase and decrease</p>
-    <p>Submitted: <time dateTime={new Date(submittedAt).toISOString()}>{new Date(submittedAt).toLocaleString()}</time></p>
+    <p>Submitted: <time dateTime={new Date(submittedAt).toISOString()}>
+      {new Date(submittedAt).toLocaleString('en-US', { timeZone: 'UTC' })} UTC
+    </time></p>
     {confirmed || teacherConfirmed ? <p role="status">Classroom introduction confirmed.</p> : <>
       <p>Student acknowledgement saved. Teacher confirmation is pending.</p>
       {classes.length === 0 ? <p>No active class has this lesson assigned.</p> : <form className="mt-3 grid gap-3" onSubmit={async event => {
