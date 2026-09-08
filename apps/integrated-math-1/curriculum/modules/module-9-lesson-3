@@ -1,155 +1,95 @@
-# Lesson 9-3 — Using Data
+# Lesson 9-3 — Using Data Practice
 
-Source: (Module 9, Lesson 9-3, Int1_0903_practice.docx)
+Source: Module 9, Lesson 9-3, `Int1_0903_practice.docx`.
 
-## Today's Goals
+## Example 1
 
-* Identify sample bias in survey and sampling methods and explain how it affects results.
-* Recognize biased survey questions and identify whose interests they may serve.
-* Calculate and compare measures of center (mean, median, mode) to determine which best represents a data set.
-* Evaluate whether graphs or charts misrepresent data through scale or visual design choices.
+### Problem 1
+**SPORTS** Awan wants to know what the favorite sport is among students. To find out, he asks everyone he sees leaving school after basketball practice. Identify the intended population and determine the potential sample bias.
 
-## Vocabulary
+### Problem 2
+**STORES** Raya wants to conduct a survey at a nearby mall to determine which are the mall’s most popular stores. How could she choose a sample that is unbiased?
 
-* **Population** — The entire group of individuals or items that a researcher wants to know about.
-* **Sample** — A subset of the population selected to represent the whole group in a survey or study.
-* **Bias** — A systematic distortion in a sample or question that favors a particular outcome.
-* **Mean** — The average of a data set, found by summing all values and dividing by the number of values.
-* **Median** — The middle value of a data set when values are arranged in order.
-* **Mode** — The value that appears most frequently in a data set.
-* **Outlier** — A data value that is much greater or much less than the other values in the set.
+## Example 2
 
-## Explore: Can Statistics Be Misleading?
+### Problem 3
+**MUSIC** Shea is shopping online, and a survey question pops up that says, “Music education enriches student learning. Do you support music education in schools?”
 
-Students look at a news headline based on survey data and discuss whether the headline is fair. They consider who was surveyed, how the question was worded, and whether the graph's scale might change the story.
+a. Identify potential bias in the question.
 
-Inquiry Question:
-How can the way data is collected or displayed change what people believe about it?
+b. Identify whose interests may be served by the question.
 
-## Learn: Sampling and Survey Bias
+### Problem 4
+**CANDIDATES** There are three candidates for mayor. To investigate how the townspeople feel about the candidates, a newspaper posts a poll that lists the three candidates and asks which candidate people support. The poll appears on the same page as an opinion piece in support of one of the candidates.
 
-Understanding how data is collected is just as important as analyzing the data itself. A biased sample or a leading question can produce misleading conclusions.
+a. Identify potential bias in the question.
 
-### Key Concept: Sampling Bias
+b. Identify whose interests may be served by the question.
 
-* A sample is biased when some members of the population are more likely to be included than others.
-* Bias can arise from where, when, and how a sample is chosen.
-* An unbiased sample should represent the whole population fairly.
+## Example 3
 
-### Key Concept: Survey Question Bias
+### Problem 5
+**BUTTERFLIES** Tania recorded the number of butterflies she saw on her daily runs each day for a week. The numbers are: 1, 8, 2, 2, 5, 6, and 4. Find the mean, median, and mode of the data. Which measure(s) are appropriate to accurately summarize the data?
 
-* Questions that suggest a desired answer or include emotional language are biased.
-* The placement of a question or surrounding content can also introduce bias.
-* Biased questions may serve the interests of a particular group or viewpoint.
+### Problem 6
+**OUTLIERS** In a data set with an outlier, which measure of center, mean or median, is the better measure to use to describe the center of the data? Explain your reasoning.
 
-## Learn: Measures of Center
+## Example 4
 
-Different measures of center describe a data set in different ways. Choosing the right one depends on the data values and whether outliers are present.
+### Problem 7
+**SALES** The graphs show the number of T-shirts sold at a baseball tournament for two years by two different vendors. The tournament director wants to compare the vendors. Do the graphs misrepresent the data? How does that difference affect the interpretation?
 
-### Key Concept: Mean, Median, and Mode
+Accessible graph description: Both vendors show 70 T-shirts in 2016 and 120 in 2017. Vendor 1 prints 60, 80, 100, 120, 140, and 160 on its vertical axis. Its unlabeled bottom grid line corresponds to an inferred value of 40. Vendor 2 prints 20, 40, 60, 80, 100, 120, and 140 on its vertical axis.
 
-* The mean is sensitive to outliers; a single extreme value can pull the mean up or down significantly.
-* The median is resistant to outliers and is often a better measure when the data contains extreme values.
-* The mode is useful for categorical data or when identifying the most common value matters.
+![Source Vendor 1 and Vendor 2 graphs](/curriculum/module-9-lesson-3/source-image-1.png)
 
-### Key Concept: Effects of Transformations on Data
-
-* Adding a constant to every data value increases the mean and median by that same constant.
-* The mode also shifts by the same constant if it was a single value.
-
-## Example 1 — Identify Sample Bias
-
-Given a survey scenario, determine the intended population and identify potential bias in the sampling method. Then describe how to choose an unbiased sample.
-
-### Step 1: Identify the Population
-
-Determine the entire group the researcher wants to study.
-
-### Step 2: Analyze the Sampling Method
-
-Evaluate whether the sampling method gives every member of the population an equal chance of being selected. Consider where and when the survey is conducted.
-
-*Example:* Surveying only students leaving basketball practice to find the favorite sport of all students introduces bias because athletes are overrepresented.
-
-### Step 3: Design an Unbiased Sample
-
-Describe a method that represents the population fairly, such as random sampling across grade levels or locations within the population.
-
-## Example 2 — Identify Survey Question Bias
-
-Analyze survey questions and the context in which they appear to identify potential bias. Determine whose interests may be served by a biased question.
-
-### Step 1: Read the Question Carefully
-
-Look for leading phrases, emotional language, or assumptions that suggest a preferred answer.
-
-*Example:* "Music education enriches student learning. Do you support music education in schools?" uses a leading premise that encourages a positive response.
-
-### Step 2: Consider Contextual Bias
-
-Examine where the question appears. Placement next to an opinion piece or advertisement can influence responses.
-
-*Example:* A poll about mayoral candidates placed on the same page as an opinion piece supporting one candidate introduces contextual bias.
-
-### Step 3: Identify Whose Interests Are Served
-
-Determine which group or viewpoint benefits from the biased wording or placement.
-
-## Example 3 — Calculate and Choose Measures of Center
-
-For a given data set, calculate the mean, median, and mode. Determine which measure(s) most accurately summarize the data, especially in the presence of outliers.
-
-### Step 1: Calculate the Mean
-
-Sum all data values and divide by the number of values.
-
-[
-\text{mean} = \frac{1 + 8 + 2 + 2 + 5 + 6 + 4}{7}
-]
-
-### Step 2: Find the Median
-
-Arrange the data in order and identify the middle value.
-
-[
-1, \ 2, \ 2, \ 4, \ 5, \ 6, \ 8 \quad \Rightarrow \quad \text{median} = 4
-]
-
-### Step 3: Identify the Mode
-
-Find the value that occurs most frequently.
-
-[
-\text{mode} = 2
-]
-
-### Step 4: Select the Appropriate Measure
-
-Compare the three measures. If they are similar, any may be appropriate. If outliers are present, the median is usually the better choice.
-
-## Example 4 — Analyze Graphs for Misrepresentation
-
-Compare graphs of the same or related data to determine whether differences in scale or visual design misrepresent the information. Explain how those differences affect interpretation.
-
-### Step 1: Compare the Scales
-
-Examine the [y]-axis scales on each graph. A truncated or stretched scale can exaggerate or minimize differences between data sets.
-
-### Step 2: Evaluate the Visual Impact
-
-Determine whether the graph makes differences appear larger or smaller than they actually are.
-
-*Example:* Graphing the same data with a [y]-axis from [0] to [10] versus [0] to [100] will make fluctuations look more dramatic on the narrower scale.
-
-### Step 3: Draw a Conclusion About Misrepresentation
-
-State whether the graph is misleading and explain how the scale choice affects the viewer's interpretation.
+### Problem 8
+**SCALE** If the same set of data is graphed with a scale of 0 to 10 on the y-axis and then with a scale of 0-100 on the y-axis, what effect does that have on the representation of the data?
 
 ## Mixed Exercises
 
-The mixed exercises provide practice across all skills from the lesson. Problems include identifying and correcting biased sampling methods, analyzing survey questions and their context for bias, calculating and comparing measures of center with and without outliers, evaluating graphs and charts for misleading design choices, and reasoning about how transformations such as adding a constant affect the mean and median. Some problems ask students to construct their own biased and unbiased examples or to justify their reasoning in writing.
+### Problem 9
+**SCIENCE** A school wants to know which area of science; physics, biology, or chemistry, is most interesting to its students. Would it be better to survey students in a class that is an elective or required to get a sample with the least bias? Explain your reasoning.
 
-## Review Notes
+### Problem 10
+**TAX** Before surveying people about whether they favor or oppose a proposed tax, the surveyors want to present information about the tax. Suppose the surveyors give facts about the tax without giving opinions. How could the facts given by the surveyors introduce bias?
 
-* **Image 1** (`media/image1.png`): A pair of graphs comparing T-shirt sales by two vendors at a baseball tournament over two years. The graphs appear to use different vertical scales. The curriculum file describes the general concept (comparing scales) but does not reproduce the exact data or visual layout. Reviewer should verify the specific values and scale differences.
-* **Image 2** (`media/image2.png`): A graph or chart related to a food drive showing canned goods collected by Valley High School in 2012 and 2017. The curriculum file describes the general scenario but does not reproduce the exact visual representation. Reviewer should verify the data values and whether the graph is misleading.
+### Problem 11
+**CONSTRUCT ARGUMENTS** The weights, in pounds, of several dolphins at a sea animal care facility are 185, 222, 755, 801, 835, 990, and 1104. Which measure of center best represents the data? Justify your conclusion.
+
+### Problem 12
+**FOOD DRIVE** The chart shows the number of canned goods collected by Valley High School in 2012 and 2017. Is the graph misleading? Explain.
+
+Accessible graph description: The chart title is `Canned Goods Drive`. The vertical axis says `Canned Goods (1000 lbs)`, while the prompt refers to the number of canned goods. The 2012 and 2017 pictures reach approximately 20 and 40 thousand pounds. The 2017 can is both wider and taller than the 2012 can.
+
+![Source canned-goods pictorial graph](/curriculum/module-9-lesson-3/source-image-2.png)
+
+### Problem 13
+**REASONING** The number of participants at reading club for six weeks are 11, 12, 10, 13, 10, and 10. Without calculating the measures of center, how would adding an outlier of 24 participants affect which measure of center most appropriately represents the data?
+
+### Problem 14
+**PRECISION** A community garden has 8 tomato plants with heights ranging from 0.4 to 0.9 meters. Regina found the median to be 0.7 meters, which she rounded and reported as 1 meter. Is Regina’s report of the median accurate? Explain your reasoning.
+
+### Problem 15
+**REGULARITY** Describe a general method for assessing a sample for bias.
+
+### Problem 16
+**STRUCTURE** How are the median and mean scores affected if all data values in a set are increased by a specific value, such as 10?
+
+### Problem 17
+**CREATE** Create two sets of data and display them in a graph or chart that shows bias towards one of the sets of data.
+
+### Problem 18
+**WRITE** Write two scenarios that have different examples of sample bias. Have a classmate rewrite your statements without bias.
+
+### Problem 19
+**CREATE** Think of a topic about which you can survey the teachers at your school. Conduct the survey. Explain if your survey question(s) introduce bias.
+
+### Problem 20
+**ANALYZE** Is a biased sample sometimes, always, or never valid? Justify your argument.
+
+### Problem 21
+**PERSEVERE** If the mean, median and mode of a data set are equal, the data set is symmetric. If a data set has a mean that is less than its median, what does that tell you about the data set?
+
+### Problem 22
+**FIND THE ERROR** Two students collected data on the sizes of box turtle shells. Olivia measured 8 turtles from a pond near her school. Caleb measured 2 turtles from each of 4 ponds around town. Which is more likely to be free of sample bias? Explain your reasoning.
