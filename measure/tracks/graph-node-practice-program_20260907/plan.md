@@ -311,6 +311,6 @@ Additional observed test debt: `topic11-interval-blueprint.acceptance.test.ts` e
 
 - [~] Task Q36: Prepare and verify the actual signed-in Precalculus student and teacher sequence on the disposable local backend. Use real authentication, pages, routes, and teacher action. Keep hypothetical source approval and local-only credentials explicit. Do not substitute Q34 render tests for browser verification.
 
-- [~] Task G43: Review IM1 Lesson 8-6 from its original worksheet. Verify recursive and explicit sequence operations, exact prior reuse, stable source identities, and manual tasks before implementation.
+- [~] Task G43: Review IM1 Lesson 8-6 from its original worksheet. Verify recursive and explicit sequence operations, exact prior reuse, stable source identities, and manual tasks before implementation. Parent inspection and independent review accepted the corrected proposal. It contains six new candidates, including four conversion operations and two rule-writing operations, and three exact reuses. Problem 40 is direct affine rule-writing evidence. Full source restoration is in progress.
 
 Q36 positive browser actions and persisted local effects passed independent review. Full browser acceptance remains open. The actual lesson page still renders a generic Worked response form after the selected acknowledgement. A bounded correction and fresh lesson reload check are in progress. See `precalc-browser-positive-path-review.md`.
