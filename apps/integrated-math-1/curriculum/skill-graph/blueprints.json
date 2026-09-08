@@ -788,19 +788,17 @@
     },
     {
       "nodeId": "math.im1.skill.10.2.draw-and-label-figures-that-accurately-represent-given-geome",
-      "sourceNodeIds": [],
-      "alignmentNodeIds": [
-        "math.standard.ccss.g-co-a-2"
+      "sourceNodeIds": [
+        "math.im1.example.10.2.005",
+        "math.im1.lesson.10.2"
       ],
+      "alignmentNodeIds": [],
       "rendererKey": "fill-in-the-blank",
       "rendererModeMap": {
         "worked": "fill-in-the-blank",
         "guidedPractice": "fill-in-the-blank",
         "independentPractice": "fill-in-the-blank"
       },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
       "exceptions": [
         {
           "type": "generator",
@@ -816,19 +814,20 @@
     },
     {
       "nodeId": "math.im1.skill.10.2.identify-and-name-points-lines-and-planes-from-geometric-fig",
-      "sourceNodeIds": [],
-      "alignmentNodeIds": [
-        "math.standard.ccss.g-co-a-2"
+      "sourceNodeIds": [
+        "math.im1.example.10.2.003",
+        "math.im1.example.10.2.004",
+        "math.im1.example.10.2.006",
+        "math.im1.example.10.2.007",
+        "math.im1.lesson.10.2"
       ],
+      "alignmentNodeIds": [],
       "rendererKey": "fill-in-the-blank",
       "rendererModeMap": {
         "worked": "fill-in-the-blank",
         "guidedPractice": "fill-in-the-blank",
         "independentPractice": "fill-in-the-blank"
       },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
       "exceptions": [
         {
           "type": "generator",
@@ -1705,19 +1704,16 @@
     },
     {
       "nodeId": "math.im1.skill.12.4.apply-geometric-postulates-about-points-lines-and-planes-to",
-      "sourceNodeIds": [],
-      "alignmentNodeIds": [
-        "math.standard.ccss.g-co-a-4"
+      "sourceNodeIds": [
+        "math.im1.lesson.10.2"
       ],
+      "alignmentNodeIds": [],
       "rendererKey": "fill-in-the-blank",
       "rendererModeMap": {
         "worked": "fill-in-the-blank",
         "guidedPractice": "fill-in-the-blank",
         "independentPractice": "fill-in-the-blank"
       },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
       "exceptions": [
         {
           "type": "generator",
@@ -8623,6 +8619,19 @@
         "course": "im1",
         "module": "10",
         "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.10.2.determine-the-maximum-number-of-distinct-lines-or-planes-formed-by-point-subsets",
+      "sourceNodeIds": [
+        "math.im1.lesson.10.2"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "10",
+        "lesson": "2"
       }
     }
   ]

@@ -9188,7 +9188,9 @@
       "domain": "math.im1",
       "description": "Draw and label figures that accurately represent given geometric relationships",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md"
+        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1002_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1002_practice.docx (Problems 20–24, 32–34, 39–42, 45, and 50)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -9204,7 +9206,9 @@
       "domain": "math.im1",
       "description": "Identify and name points, lines, and planes from geometric figures",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md"
+        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1002_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1002_practice.docx (Problems 1–19, 25–31, 35–38, and 43–44)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -9700,7 +9704,9 @@
       "domain": "math.im1",
       "description": "Apply geometric postulates about points, lines, and planes to justify statements",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-12-class-period-plan.md"
+        "apps/integrated-math-1/curriculum/module-12-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1002_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1002_practice.docx (Problem 46 only)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -17708,6 +17714,24 @@
         "course": "im1",
         "module": "10",
         "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.10.2.determine-the-maximum-number-of-distinct-lines-or-planes-formed-by-point-subsets",
+      "kind": "skill",
+      "title": "Determine the maximum number of distinct lines or planes formed by point subsets",
+      "domain": "math.im1",
+      "description": "Determine the maximum number of distinct lines or planes formed by point subsets.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1002_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1002_practice.docx (Problem 47: line count and required double-counting explanation; Problem 48: maximum plane count only; keep the two evidence variants separate)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "10",
+        "lesson": "2"
       }
     }
   ]

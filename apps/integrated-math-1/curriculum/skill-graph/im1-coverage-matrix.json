@@ -1,10 +1,10 @@
 {
   "version": 1,
   "course": "im1",
-  "totalSkills": 489,
+  "totalSkills": 490,
   "counts": {
     "served": 6,
-    "gap": 483,
+    "gap": 484,
     "newComponent": 0
   },
   "byModule": [
@@ -73,9 +73,9 @@
     },
     {
       "module": "10",
-      "totalSkills": 18,
+      "totalSkills": 19,
       "served": 0,
-      "gap": 18,
+      "gap": 19,
       "newComponent": 0
     },
     {
@@ -4014,6 +4014,14 @@
     },
     {
       "skillId": "math.im1.skill.10.1.evaluate-whether-stated-conclusions-follow-from-axioms-and-diagnose-an-invalid-inference",
+      "module": "10",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.10.2.determine-the-maximum-number-of-distinct-lines-or-planes-formed-by-point-subsets",
       "module": "10",
       "status": "gap",
       "tier": "none",

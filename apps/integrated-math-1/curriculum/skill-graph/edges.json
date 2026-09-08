@@ -6,8 +6,8 @@
     "pilotEdgesPreserved": 0,
     "standardEdgesMerged": 941,
     "suggestedEdges": 1277,
-    "totalEdges": 2626,
-    "totalNodes": 1090,
+    "totalEdges": 2620,
+    "totalNodes": 1091,
     "normalizedWeights": 539
   },
   "nodes": [
@@ -9199,7 +9199,9 @@
       "domain": "math.im1",
       "description": "Draw and label figures that accurately represent given geometric relationships",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md"
+        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1002_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1002_practice.docx (Problems 20\u201324, 32\u201334, 39\u201342, 45, and 50)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -9215,7 +9217,9 @@
       "domain": "math.im1",
       "description": "Identify and name points, lines, and planes from geometric figures",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md"
+        "apps/integrated-math-1/curriculum/module-10-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1002_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1002_practice.docx (Problems 1\u201319, 25\u201331, 35\u201338, and 43\u201344)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -9711,7 +9715,9 @@
       "domain": "math.im1",
       "description": "Apply geometric postulates about points, lines, and planes to justify statements",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-12-class-period-plan.md"
+        "apps/integrated-math-1/curriculum/module-12-class-period-plan.md",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1002_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1002_practice.docx (Problem 46 only)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -19337,6 +19343,24 @@
         "module": "10",
         "lesson": "1"
       }
+    },
+    {
+      "id": "math.im1.skill.10.2.determine-the-maximum-number-of-distinct-lines-or-planes-formed-by-point-subsets",
+      "kind": "skill",
+      "title": "Determine the maximum number of distinct lines or planes formed by point subsets",
+      "domain": "math.im1",
+      "description": "Determine the maximum number of distinct lines or planes formed by point subsets.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1002_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_1002_practice.docx (Problem 47: line count and required double-counting explanation; Problem 48: maximum plane count only; keep the two evidence variants separate)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "10",
+        "lesson": "2"
+      }
     }
   ],
   "edges": [
@@ -21003,131 +21027,6 @@
       "derivationMethod": "standards-alignment-script",
       "reviewStatus": "draft",
       "rationale": "Aligned via lesson standard mapping for module-10-lesson-1",
-      "metadata": {
-        "isPrimary": true,
-        "course": "im1",
-        "originalWeight": 0.8,
-        "weightNormalization": "t5-review-remediation"
-      }
-    },
-    {
-      "id": "math.alignment.im1-example-10-2-003-to-ccss-g-co-a-2",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im1.example.10.2.003",
-      "targetId": "math.standard.ccss.g-co-a-2",
-      "weight": 0.75,
-      "confidence": "high",
-      "sourceRefs": [
-        {
-          "source": "lesson-standards",
-          "location": "module-10-lesson-2",
-          "note": "Mapped via lesson standard (primary)"
-        }
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via lesson standard mapping for module-10-lesson-2",
-      "metadata": {
-        "isPrimary": true,
-        "course": "im1",
-        "originalWeight": 0.8,
-        "weightNormalization": "t5-review-remediation"
-      }
-    },
-    {
-      "id": "math.alignment.im1-example-10-2-004-to-ccss-g-co-a-2",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im1.example.10.2.004",
-      "targetId": "math.standard.ccss.g-co-a-2",
-      "weight": 0.75,
-      "confidence": "high",
-      "sourceRefs": [
-        {
-          "source": "lesson-standards",
-          "location": "module-10-lesson-2",
-          "note": "Mapped via lesson standard (primary)"
-        }
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via lesson standard mapping for module-10-lesson-2",
-      "metadata": {
-        "isPrimary": true,
-        "course": "im1",
-        "originalWeight": 0.8,
-        "weightNormalization": "t5-review-remediation"
-      }
-    },
-    {
-      "id": "math.alignment.im1-example-10-2-005-to-ccss-g-co-a-2",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im1.example.10.2.005",
-      "targetId": "math.standard.ccss.g-co-a-2",
-      "weight": 0.75,
-      "confidence": "high",
-      "sourceRefs": [
-        {
-          "source": "lesson-standards",
-          "location": "module-10-lesson-2",
-          "note": "Mapped via lesson standard (primary)"
-        }
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via lesson standard mapping for module-10-lesson-2",
-      "metadata": {
-        "isPrimary": true,
-        "course": "im1",
-        "originalWeight": 0.8,
-        "weightNormalization": "t5-review-remediation"
-      }
-    },
-    {
-      "id": "math.alignment.im1-example-10-2-006-to-ccss-g-co-a-2",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im1.example.10.2.006",
-      "targetId": "math.standard.ccss.g-co-a-2",
-      "weight": 0.75,
-      "confidence": "high",
-      "sourceRefs": [
-        {
-          "source": "lesson-standards",
-          "location": "module-10-lesson-2",
-          "note": "Mapped via lesson standard (primary)"
-        }
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via lesson standard mapping for module-10-lesson-2",
-      "metadata": {
-        "isPrimary": true,
-        "course": "im1",
-        "originalWeight": 0.8,
-        "weightNormalization": "t5-review-remediation"
-      }
-    },
-    {
-      "id": "math.alignment.im1-example-10-2-007-to-ccss-g-co-a-2",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im1.example.10.2.007",
-      "targetId": "math.standard.ccss.g-co-a-2",
-      "weight": 0.75,
-      "confidence": "high",
-      "sourceRefs": [
-        {
-          "source": "lesson-standards",
-          "location": "module-10-lesson-2",
-          "note": "Mapped via lesson standard (primary)"
-        }
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via lesson standard mapping for module-10-lesson-2",
       "metadata": {
         "isPrimary": true,
         "course": "im1",
@@ -36630,56 +36529,6 @@
       }
     },
     {
-      "id": "math.alignment.im1-skill-10-2-draw-and-label-figures-that-accurately-represent-given-geome-to-ccss-g-co-a-2",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im1.skill.10.2.draw-and-label-figures-that-accurately-represent-given-geome",
-      "targetId": "math.standard.ccss.g-co-a-2",
-      "weight": 0.75,
-      "confidence": "high",
-      "sourceRefs": [
-        {
-          "source": "lesson-standards",
-          "location": "module-10-lesson-2",
-          "note": "Mapped via lesson standard (primary)"
-        }
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via lesson standard mapping for module-10-lesson-2",
-      "metadata": {
-        "isPrimary": true,
-        "course": "im1",
-        "originalWeight": 0.8,
-        "weightNormalization": "t5-review-remediation"
-      }
-    },
-    {
-      "id": "math.alignment.im1-skill-10-2-identify-and-name-points-lines-and-planes-from-geometric-fig-to-ccss-g-co-a-2",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im1.skill.10.2.identify-and-name-points-lines-and-planes-from-geometric-fig",
-      "targetId": "math.standard.ccss.g-co-a-2",
-      "weight": 0.75,
-      "confidence": "high",
-      "sourceRefs": [
-        {
-          "source": "lesson-standards",
-          "location": "module-10-lesson-2",
-          "note": "Mapped via lesson standard (primary)"
-        }
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via lesson standard mapping for module-10-lesson-2",
-      "metadata": {
-        "isPrimary": true,
-        "course": "im1",
-        "originalWeight": 0.8,
-        "weightNormalization": "t5-review-remediation"
-      }
-    },
-    {
       "id": "math.alignment.im1-skill-10-3-apply-the-segment-addition-postulate-to-find-missing-segment-to-ccss-g-co-a-2",
       "type": "aligned_to_standard",
       "sourceId": "math.im1.skill.10.3.apply-the-segment-addition-postulate-to-find-missing-segment",
@@ -37905,31 +37754,6 @@
       "derivationMethod": "standards-alignment-script",
       "reviewStatus": "draft",
       "rationale": "Aligned via lesson standard mapping for module-12-lesson-3",
-      "metadata": {
-        "isPrimary": true,
-        "course": "im1",
-        "originalWeight": 0.8,
-        "weightNormalization": "t5-review-remediation"
-      }
-    },
-    {
-      "id": "math.alignment.im1-skill-12-4-apply-geometric-postulates-about-points-lines-and-planes-to-to-ccss-g-co-a-4",
-      "type": "aligned_to_standard",
-      "sourceId": "math.im1.skill.12.4.apply-geometric-postulates-about-points-lines-and-planes-to",
-      "targetId": "math.standard.ccss.g-co-a-4",
-      "weight": 0.75,
-      "confidence": "high",
-      "sourceRefs": [
-        {
-          "source": "lesson-standards",
-          "location": "module-12-lesson-4",
-          "note": "Mapped via lesson standard (primary)"
-        }
-      ],
-      "derived": true,
-      "derivationMethod": "standards-alignment-script",
-      "reviewStatus": "draft",
-      "rationale": "Aligned via lesson standard mapping for module-12-lesson-4",
       "metadata": {
         "isPrimary": true,
         "course": "im1",
@@ -68389,6 +68213,35 @@
       "metadata": {
         "program": "graph-node-practice-program",
         "lesson": "10.1"
+      }
+    },
+    {
+      "id": "math.im1.g53.contains.001",
+      "sourceId": "math.im1.lesson.10.2",
+      "targetId": "math.im1.skill.10.2.determine-the-maximum-number-of-distinct-lines-or-planes-formed-by-point-subsets",
+      "type": "contains",
+      "weight": 1,
+      "derived": false,
+      "rationale": "Lesson 10-2 directly contains Problem 47 line-count evidence and Problem 48 maximum-plane-count evidence as separate variants.",
+      "reviewStatus": "draft",
+      "metadata": {
+        "program": "graph-node-practice-program",
+        "lesson": "10.2"
+      }
+    },
+    {
+      "id": "math.im1.g53.contains.002",
+      "sourceId": "math.im1.lesson.10.2",
+      "targetId": "math.im1.skill.12.4.apply-geometric-postulates-about-points-lines-and-planes-to",
+      "type": "contains",
+      "weight": 1,
+      "derived": false,
+      "rationale": "Lesson 10-2 Problem 46 directly requires applying point-line-plane postulates to justify the response.",
+      "reviewStatus": "draft",
+      "metadata": {
+        "program": "graph-node-practice-program",
+        "lesson": "10.2",
+        "problem": "46"
       }
     }
   ]

@@ -205,11 +205,6 @@
       "standardId": "math.standard.ccss.g-co-a-2",
       "standardTitle": "math.standard.ccss.g-co-a-2",
       "nodeIds": [
-        "math.im1.example.10.2.003",
-        "math.im1.example.10.2.004",
-        "math.im1.example.10.2.005",
-        "math.im1.example.10.2.006",
-        "math.im1.example.10.2.007",
         "math.im1.example.10.3.008",
         "math.im1.example.10.3.009",
         "math.im1.example.10.3.010",
@@ -239,8 +234,6 @@
         "math.im1.example.13.4.016",
         "math.im1.example.13.4.017",
         "math.im1.example.13.4.018",
-        "math.im1.skill.10.2.draw-and-label-figures-that-accurately-represent-given-geome",
-        "math.im1.skill.10.2.identify-and-name-points-lines-and-planes-from-geometric-fig",
         "math.im1.skill.10.3.apply-the-segment-addition-postulate-to-find-missing-segment",
         "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n",
         "math.im1.skill.11.4.apply-reflections-translations-and-rotations-to-figures-on-t",
@@ -256,8 +249,8 @@
         "math.im1.skill.13.4.graph-the-image-of-a-figure-after-a-glide-reflection-or-othe",
         "math.im1.skill.13.4.identify-a-single-transformation-that-is-equivalent-to-a-com"
       ],
-      "workedExampleCount": 34,
-      "guidedPracticeCount": 16,
+      "workedExampleCount": 29,
+      "guidedPracticeCount": 14,
       "independentPracticeCount": 0
     },
     {
@@ -580,7 +573,6 @@
         "math.im1.example.13.4.016",
         "math.im1.example.13.4.017",
         "math.im1.example.13.4.018",
-        "math.im1.skill.12.4.apply-geometric-postulates-about-points-lines-and-planes-to",
         "math.im1.skill.12.4.write-two-column-proofs-using-given-information-definitions",
         "math.im1.skill.12.9.apply-parallel-line-theorems-to-solve-real-world-and-geometr",
         "math.im1.skill.12.9.use-angle-relationships-formed-by-a-transversal-to-prove-tha",
@@ -588,7 +580,7 @@
         "math.im1.skill.13.4.identify-a-single-transformation-that-is-equivalent-to-a-com"
       ],
       "workedExampleCount": 12,
-      "guidedPracticeCount": 6,
+      "guidedPracticeCount": 5,
       "independentPracticeCount": 0
     },
     {
@@ -1716,9 +1708,7 @@
       "nodeId": "math.im1.skill.10.2.draw-and-label-figures-that-accurately-represent-given-geome",
       "title": "10d: Draw and label figures that accurately represent given geometric relationships",
       "kind": "skill",
-      "standardsCovered": [
-        "math.standard.ccss.g-co-a-2"
-      ],
+      "standardsCovered": [],
       "prerequisitesMet": true,
       "independentPracticeReady": false
     },
@@ -1726,9 +1716,7 @@
       "nodeId": "math.im1.skill.10.2.identify-and-name-points-lines-and-planes-from-geometric-fig",
       "title": "10c: Identify and name points, lines, and planes from geometric figures",
       "kind": "skill",
-      "standardsCovered": [
-        "math.standard.ccss.g-co-a-2"
-      ],
+      "standardsCovered": [],
       "prerequisitesMet": false,
       "independentPracticeReady": false
     },
@@ -2057,9 +2045,7 @@
       "nodeId": "math.im1.skill.12.4.apply-geometric-postulates-about-points-lines-and-planes-to",
       "title": "12g: Apply geometric postulates about points, lines, and planes to justify statements",
       "kind": "skill",
-      "standardsCovered": [
-        "math.standard.ccss.g-co-a-4"
-      ],
+      "standardsCovered": [],
       "prerequisitesMet": true,
       "independentPracticeReady": false
     },
@@ -3381,6 +3367,15 @@
       "prerequisitesMet": true,
       "independentPracticeReady": false,
       "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.10.2.determine-the-maximum-number-of-distinct-lines-or-planes-formed-by-point-subsets",
+      "title": "Determine the maximum number of distinct lines or planes formed by point subsets",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     }
   ],
   "prerequisiteGaps": [
@@ -3611,6 +3606,11 @@
     },
     {
       "nodeId": "math.im1.skill.9.6.describe-how-adding-or-multiplying-every-value-in-a-data-set",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.10.2.determine-the-maximum-number-of-distinct-lines-or-planes-formed-by-point-subsets",
       "gap": "no_prerequisite_skills_assigned",
       "description": "Skill has no prerequisite skills in the graph"
     }

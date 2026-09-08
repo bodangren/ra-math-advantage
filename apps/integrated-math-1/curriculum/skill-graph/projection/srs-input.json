@@ -117,9 +117,7 @@
     {
       "nodeId": "math.im1.skill.10.2.draw-and-label-figures-that-accurately-represent-given-geome",
       "blueprintId": "math.im1.skill.10.2.draw-and-label-figures-that-accurately-represent-given-geome",
-      "standards": [
-        "math.standard.ccss.g-co-a-2"
-      ],
+      "standards": [],
       "prerequisites": [],
       "difficulty": 0.5,
       "rendererKey": "fill-in-the-blank",
@@ -129,9 +127,7 @@
     {
       "nodeId": "math.im1.skill.10.2.identify-and-name-points-lines-and-planes-from-geometric-fig",
       "blueprintId": "math.im1.skill.10.2.identify-and-name-points-lines-and-planes-from-geometric-fig",
-      "standards": [
-        "math.standard.ccss.g-co-a-2"
-      ],
+      "standards": [],
       "prerequisites": [],
       "difficulty": 0.5,
       "rendererKey": "fill-in-the-blank",
@@ -556,9 +552,7 @@
     {
       "nodeId": "math.im1.skill.12.4.apply-geometric-postulates-about-points-lines-and-planes-to",
       "blueprintId": "math.im1.skill.12.4.apply-geometric-postulates-about-points-lines-and-planes-to",
-      "standards": [
-        "math.standard.ccss.g-co-a-4"
-      ],
+      "standards": [],
       "prerequisites": [
         "math.im1.skill.12.3.distinguish-between-inductive-and-deductive-reasoning-in-giv"
       ],
@@ -3673,6 +3667,16 @@
     {
       "nodeId": "math.im1.skill.10.1.evaluate-whether-stated-conclusions-follow-from-axioms-and-diagnose-an-invalid-inference",
       "blueprintId": "math.im1.skill.10.1.evaluate-whether-stated-conclusions-follow-from-axioms-and-diagnose-an-invalid-inference",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.10.2.determine-the-maximum-number-of-distinct-lines-or-planes-formed-by-point-subsets",
+      "blueprintId": "math.im1.skill.10.2.determine-the-maximum-number-of-distinct-lines-or-planes-formed-by-point-subsets",
       "standards": [],
       "prerequisites": [],
       "difficulty": 0.5,

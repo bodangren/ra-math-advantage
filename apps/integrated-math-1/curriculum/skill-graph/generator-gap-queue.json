@@ -4346,11 +4346,20 @@
       "rendererAssignmentReason": "Planning classification only",
       "gap": "No reviewed renderer contract",
       "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.10.2.determine-the-maximum-number-of-distinct-lines-or-planes-formed-by-point-subsets",
+      "title": "Determine the maximum number of distinct lines or planes formed by point subsets",
+      "module": "10",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "No reviewed renderer contract",
+      "priority": "high"
     }
   ],
   "meta": {
-    "totalSkills": 483,
+    "totalSkills": 484,
     "allNeedGenerators": true,
-    "total": 483
+    "total": 484
   }
 }
