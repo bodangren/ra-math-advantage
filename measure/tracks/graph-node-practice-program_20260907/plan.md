@@ -443,3 +443,5 @@ Q37 assistance is committed as `20c8dd821`. Independent review accepts the blank
 The Worked pending guard passed actual browser verification. Two synchronous clicks sent one pending POST. After server acceptance and response interruption, visible retry used the same key and body. The database retained exactly one acknowledgement and no other learner effects. See `precalc-runtime-worked-pending-guard-browser.md`.
 
 Removed the completed G49 source archive. All 12 source patch paths match commit `67131a0b9`. Independent review found no unpreserved authored content. The G49 graph and local browser candidates remain active. All 24 saved dirty Codex worktrees remain intact.
+
+G50 parent source review accepts all 38 prompts and eight native figures for exact restoration. First graph review requires corrected joint and marginal mappings and a bounded Problem 33 conversion contract. Exact source restoration is in progress in a fresh archive. See `im1-lesson97-parent-source-review.md`.
