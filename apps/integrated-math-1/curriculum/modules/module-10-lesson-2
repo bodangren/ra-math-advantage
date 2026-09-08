@@ -1,184 +1,224 @@
-# Lesson 10-2 — Points, Lines, and Planes
+# Points, Lines, and Planes ⸱ Practice
 
-Source: (Module 10, Lesson 10-2, Int1_1002_practice.docx)
+Source: Module 10, Lesson 10-2, `Int1_1002_practice.docx`
 
-## Today's Goals
+## Example 1
 
-* Identify and name points, lines, and planes from geometric figures.
-* Determine relationships between points, lines, and planes, including collinear, coplanar, and intersecting.
-* Model real-world objects and situations with correct geometric terms.
-* Draw and label figures that accurately represent given geometric relationships.
+Refer to the figure for Exercises 1-7.
 
-## Vocabulary
+![Two planes. Plane ℛ contains A, B, C, E, and F and lines 𝓂 and 𝓉. Plane 𝒬 contains G, H, L, and P and lines 𝓃 and 𝓆. Line p passes through D, C, M, and H. The lines 𝓃 and 𝓆 have different directions and have no parallel marks.](/curriculum/module-10-lesson-2/image1.png)
 
-* **Point** — A location in space with no size, represented by a dot and named with a capital letter.
-* **Line** — A straight path that extends infinitely in opposite directions.
-* **Plane** — A flat surface that extends infinitely in all directions.
-* **Collinear** — Points that lie on the same line.
-* **Coplanar** — Points or lines that lie in the same plane.
-* **Intersection** — The set of points that two or more geometric figures share.
-* **Line Segment** — Part of a line consisting of two endpoints and all points between them.
-* **Ray** — Part of a line with one endpoint that extends infinitely in one direction.
+### Problem 1
 
-## Explore: How Do Points, Lines, and Planes Connect?
+Name the lines that are only in plane 𝒬.
+### Problem 2
 
-Students explore the fundamental building blocks of geometry. Consider how a point with no dimension, a line with one dimension, and a plane with two dimensions relate to each other and to the physical world.
+How many planes are labeled in the figure?
+### Problem 3
 
-Inquiry Question:
-How can three undefined terms — point, line, and plane — form the foundation for all of geometry?
+Name the plane containing the lines 𝓂 and 𝓉.
+### Problem 4
 
-## Learn: Points, Lines, and Planes
+Name the intersection of lines 𝓂 and 𝓉.
+### Problem 5
 
-Points, lines, and planes are the undefined terms of geometry. They are described and understood through examples and relationships rather than formal definitions.
+Name a point that is not coplanar with points A, B, and C.
+### Problem 6
 
-### Key Concept: Undefined Terms and Their Dimensions
+Are points F, M, G, and P coplanar? Explain.
+### Problem 7
 
-* A point has no dimension; it is represented by a dot and named with a capital letter.
-* A line has one dimension; it extends without end in two directions and is named by any two points on the line or by a lowercase script letter.
-* A plane has two dimensions; it extends without end and is named by a capital script letter or by three non-collinear points.
+Does line 𝓃 intersect line 𝓆? Explain.
 
-### Key Concept: Relationships Between Geometric Figures
+## Example 2
 
-* Collinear points lie on the same line.
-* Coplanar points or lines lie in the same plane.
-* Two distinct lines intersect at exactly one point.
-* Two distinct planes intersect in exactly one line.
-* A line and a plane can intersect at one point, or the line can lie entirely in the plane.
+Name the geometric terms modeled by each object or phrase.
 
-## Example 1 — Identify Lines, Planes, and Relationships from a Figure
+### Problem 8
 
-Analyze a three-dimensional figure containing labeled points, lines, and planes to answer questions about containment, coplanarity, and intersection.
+roof of a house
 
-### Step 1: Identify Lines in a Given Plane
+![Roof of a house.](/curriculum/module-10-lesson-2/image2.png)
 
-Name the lines that lie entirely within a specified plane.
+### Problem 9
 
-### Step 2: Count Labeled Planes
+a tabletop
 
-Determine the total number of distinct planes that are labeled in the figure.
+![Tabletop with dishes.](/curriculum/module-10-lesson-2/image3.png)
 
-### Step 3: Name the Plane Containing Two Lines
+### Problem 10
 
-Identify the plane that contains both of two given lines.
+bridge support beam
 
-### Step 4: Find the Intersection of Two Lines
+![Bridge support beam.](/curriculum/module-10-lesson-2/image4.png)
 
-Name the point where two given lines cross.
+### Problem 11
 
-### Step 5: Identify a Non-Coplanar Point
+a chessboard
 
-Find a point that does not lie in the same plane as three given points.
+![Chessboard.](/curriculum/module-10-lesson-2/image5.png)
 
-### Step 6: Determine Whether Points Are Coplanar
+### Problem 12
 
-Explain whether four specified points all lie in a single plane.
+![Two vertical planes that intersect.](/curriculum/module-10-lesson-2/image6.png)
 
-### Step 7: Determine Whether Two Lines Intersect
+### Problem 13
 
-Explain whether two given lines share a common point.
+![A marked point on a horizontal line.](/curriculum/module-10-lesson-2/image7.jpg)
 
-## Example 2 — Model Real-World Objects with Geometric Terms
+### Problem 14
 
-Match everyday objects, images, and phrases to the geometric terms they best represent.
+a wall and the floor
+### Problem 15
 
-### Step 1: Identify Geometric Terms from Descriptions
+the edge of a table
+### Problem 16
 
-Consider common objects such as a roof, a tabletop, or a support beam, and name the geometric term each object models.
+two connected walls
+### Problem 17
 
-### Step 2: Identify Geometric Terms from Images
+a blanket
+### Problem 18
 
-Examine images of various objects and name the geometric term each represents, such as a point, line, plane, line segment, or ray.
+a telephone pole
+### Problem 19
 
-### Step 3: Identify Intersections and Spatial Relationships
+a tablet computer
 
-Consider phrases describing spatial relationships, such as where a wall meets the floor or the edge of a table, and name the geometric concept.
+## Example 3
 
-### Step 4: Apply Terminology to Additional Objects
+**USE TOOLS** Draw and label a figure for each relationship.
 
-Name the geometric term modeled by objects such as a blanket, a telephone pole, or a tablet computer.
+### Problem 20
 
-## Example 3 — Draw and Label Geometric Figures
+Points X and Y lie on $\overleftrightarrow{CD}$.
+### Problem 21
 
-Use tools to construct figures that illustrate specified geometric relationships.
+Two planes do not intersect.
+### Problem 22
 
-### Step 1: Draw Points on a Line
+Line 𝓂 intersects plane ℛ at a single point.
+### Problem 23
 
-Sketch a line and mark two points that lie on it.
+Three lines intersect at point J but do not all lie in the same plane.
+### Problem 24
 
-For example, points X and Y lie on:
-[
-\overleftrightarrow{CD}
-]
+Points A(2, 3), B(2, –3), C, and D are collinear, but A, B, C, D, and F are not.
 
-### Step 2: Draw Non-Intersecting Planes
+## Example 4
 
-Sketch two planes that do not share any points.
+Refer to the figure for Exercises 25-28.
 
-### Step 3: Draw a Line Intersecting a Plane
+![A labeled three-dimensional figure. Segments form upper triangle F-E-D-F. Points A, B, and C lie in plane W. Segments A-B and B-C are visible, and segment A-C is dashed. Segments F-A, E-B, and D-C connect the two triangles.](/curriculum/module-10-lesson-2/image8.png)
 
-Sketch a line that crosses a plane at exactly one point.
+### Problem 25
 
-### Step 4: Draw Non-Coplanar Lines Through a Point
+How many planes are shown in the figure?
+### Problem 26
 
-Sketch three lines that all pass through one point but do not all lie in the same plane.
+How many of the planes contain points F and E?
+### Problem 27
 
-### Step 5: Draw Collinear and Non-Collinear Points
+Name four points that are coplanar.
+### Problem 28
 
-Sketch points that are collinear in one group but include an additional point that is not collinear with the others.
+Are points A, B, and C coplanar? Explain.
 
-## Example 4 — Analyze a Three-Dimensional Figure for Planes and Coplanarity
+## Example 5
 
-Examine a figure showing multiple planes to answer questions about planes and coplanar points.
+### Problem 29
 
-### Step 1: Count Planes in the Figure
+**BUILDING** The roof and exterior walls of a house represent intersecting planes. Using the image, name all the lines that are formed by the intersecting planes.
 
-Determine the total number of planes shown.
+![A house with upper vertices A, B, G, H, and F and lower wall vertices C, D, and E. Visible segments connect A-B, A-G, A-H, B-H, G-F, H-F, B-C, H-D, F-E, C-D, and D-E. The roof and two exterior wall faces meet along these labeled boundaries.](/curriculum/module-10-lesson-2/image9.png)
 
-### Step 2: Find Planes Containing Two Points
+### Problem 30
 
-Count how many of the shown planes contain two specified points.
+If the surface of a lake represents a plane, what geometric term is represented by the intersection of a fishing line and the lake’s surface?
+### Problem 31
 
-### Step 3: Name Coplanar Points
+**ART** Perspective drawing is a method that artists use to create paintings and drawings of three-dimensional objects. The artist first draws the horizon line and two vanishing points along the horizon. Buildings or other objects are created by drawing receding lines and vertical lines.
 
-Identify four points that all lie in the same plane.
+![A horizon line with a vanishing point at each end and receding lines from building edges to the vanishing points. The drawing shows vertical building faces and side faces bounded by vertical and receding lines. It also shows a flat ground surface below the buildings.](/curriculum/module-10-lesson-2/image10.png)
 
-### Step 4: Determine if Points Are Coplanar
-
-Explain whether three given points lie in the same plane.
-
-## Example 5 — Apply Geometric Concepts to Real-World Contexts
-
-Use geometric terminology to describe and analyze real-world situations.
-
-### Step 1: Identify Lines Formed by Intersecting Planes
-
-Using an image of a house, name all the lines formed where the roof and exterior walls intersect.
-
-### Step 2: Model a Line and Plane Intersection
-
-If the surface of a lake represents a plane, name the geometric term represented by where a fishing line meets the lake's surface.
-
-### Step 3: Analyze Perspective Drawing
-
-a. Identify where receding lines and horizon lines intersect in an artist's perspective drawing.
-
-b. Identify examples of planes within the perspective drawing.
+a. Where do the receding lines and horizon lines intersect?
+b. Identify examples of planes within this picture.
 
 ## Mixed Exercises
 
-The mixed exercises provide practice with all skills from the lesson: identifying geometric relationships from figures, modeling real-world objects with geometric terms, and drawing figures to represent relationships. Problems include:
+**USE TOOLS** Draw and label a figure for each relationship.
 
-* Drawing and labeling figures for coplanar non-intersecting lines, intersecting lines with coordinates, and a third line that does not intersect either of two given lines.
-* Referring to figures to name lines containing given points, points contained in given lines, alternate names for lines, and planes containing given lines.
-* Drawing figures showing a point on a line, a plane containing a line, a line in a plane that contains some points but not others, and intersecting lines in a plane.
-* Naming geometric terms modeled by everyday objects.
-* Sketching three planes that intersect in a single point.
-* Analyzing whether two points on the surface of a prism can be neither collinear nor coplanar, and justifying the argument.
-* Finding errors in student reasoning about the greatest number of lines that can be drawn through four random points.
-* Determining the greatest number of planes determined by four points, with no three collinear.
-* Writing about finite planes and real-world examples, and explaining whether an infinite plane can exist in real life.
-* Sketching three planes that intersect in a line.
+### Problem 32
 
-## Review Notes
+$\overleftrightarrow{LM}$ and $\overleftrightarrow{NP}$ are coplanar but do not intersect.
+### Problem 33
 
-* Images referenced in the worksheet (geometric figures for Examples 1 and 4; real-world object images for Example 2; house and perspective drawing images for Example 5; figures for Mixed Exercises; error analysis diagram; four-point diagram) could not be fully described without visual reference. Teachers should consult the original worksheet for exact figures and diagrams.
+$\overleftrightarrow{FG}$ and $\overleftrightarrow{JK}$ intersect at P(4, 3), where point F is at (–2, 5) and point J is at (7, 9).
+### Problem 34
+
+Lines 𝓈 and 𝓉 intersect, and line 𝓋 does not intersect either one.
+
+Refer to the figure for Exercises 35-38.
+
+![Plane ABC. Line 𝓅 contains C and D. Line 𝓃 contains A and B. Line 𝓆 contains B, G, and E.](/curriculum/module-10-lesson-2/image11.png)
+
+### Problem 35
+
+Name a line that contains point E.
+### Problem 36
+
+Name a point contained in line 𝓃.
+### Problem 37
+
+What is another name for line 𝓅?
+### Problem 38
+
+Name the plane containing lines 𝓃 and 𝓅.
+
+**USE TOOLS** Draw and label a figure for each relationship.
+
+### Problem 39
+
+Point K lies on $\overleftrightarrow{RT}$.
+### Problem 40
+
+Plane 𝒥 contains line 𝓈.
+### Problem 41
+
+$\overleftrightarrow{YP}$ lies in plane ℬ and contains point C, but does not contain point H.
+### Problem 42
+
+Lines 𝓆 and 𝒻 intersect at point Z in plane 𝒰.
+### Problem 43
+
+Name the geometric term modeled by the object.
+
+![A table with a flat tabletop.](/curriculum/module-10-lesson-2/image12.png)
+
+### Problem 44
+
+Name the geometric term modeled by a partially-opened folder.
+### Problem 45
+
+**CREATE** Sketch three planes that intersect in a point.
+### Problem 46
+
+**ANALYZE** Is it possible for two points on the surface of a prism to be neither collinear nor coplanar? Justify your argument.
+### Problem 47
+
+**FIND THE ERROR** Camille and Hiroshi are trying to determine the greatest number of lines that can be drawn using any two of four random points. Is either correct? Explain your reasoning.
+
+![Camille says, “Because there are four points, 4 · 3 or 12 lines can be drawn between the points.” Hiroshi says, “You can draw 3 + 2 + 1 or 6 lines between the points.”](/curriculum/module-10-lesson-2/image13.png)
+
+### Problem 48
+
+**PERSEVERE** What is the greatest number of planes determined using any three of the points A, B, C, and D if no three points are collinear?
+### Problem 49
+
+**WRITE** A finite plane is a plane that has boundaries, or does not extend indefinitely. The sides of a cereal box shown are finite planes. Give a real-life example of a finite plane. Is it possible to have a real-life object that is an infinite plane? Explain your reasoning.
+
+![A cereal box with bounded flat faces.](/curriculum/module-10-lesson-2/image14.png)
+
+### Problem 50
+
+**CREATE** Sketch three planes that intersect in a line.
