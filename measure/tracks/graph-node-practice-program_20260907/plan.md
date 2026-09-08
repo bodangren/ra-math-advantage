@@ -691,3 +691,5 @@ G55 full parent app tests pass 73 files and 425 cases. Independent semantic chec
 The backend independent review confirms the storage replay failure and identifies missing executed seed, public-consumer privacy, and zero-progression tests. It also finds inconsistent-content overwrite and ambiguous publication acceptance. These findings remain open. See `im3-quadratic-formula-server-independent-review.md`.
 
 Removed the completed G55 native extraction after all 44 files matched the committed DOCX archive. All fifteen extracted images also matched the committed public assets. Removed two generated contact sheets. The original worksheet, restored lesson, and public figures remain committed.
+
+- [~] Task b73d and bc11 cleanup review: Compare each saved working state with retained copies and Git history. Identify unique content, file modes, links, ignored files, and active use. Keep both directories until independent preservation review permits removal.
