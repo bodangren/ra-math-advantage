@@ -2,7 +2,7 @@
 
 ## Current prerequisites
 
-Unit 5 seed is committed as 923bf572. Unit 6 teacher query is committed as a40ca6e2. The teacher route, form, and dashboard candidate is in progress. Integrate and verify that candidate before the complete browser run.
+Unit 5 seed is committed as 923bf572. Unit 6 teacher query is committed as a40ca6e2. The teacher route, form, and dashboard are committed as 9de80ba8. Required public exports are committed as c8358384. Their isolated tests, lint, build, and standalone TypeScript checks pass. The complete browser run is in progress.
 
 The parent checked the installed local tools. The cached Convex backend is precompiled-2026-08-25-7cce8fb. Its executable responds to --help. Existing JavaScript Playwright successfully launched installed Chrome headlessly with a fresh profile. No browser or package installation is required. Python Playwright is absent in both available Python environments. Use the installed JavaScript tool for this run.
 
