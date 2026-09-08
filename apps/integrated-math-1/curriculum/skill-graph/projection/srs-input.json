@@ -1823,9 +1823,7 @@
         "math.standard.ccss.f-bf-a-2",
         "math.standard.ccss.f-if-a-3"
       ],
-      "prerequisites": [
-        "math.im1.skill.8.5.write-and-use-explicit-formulas-to-model-real-world-situatio"
-      ],
+      "prerequisites": [],
       "difficulty": 0.5,
       "rendererKey": "step-by-step-solver",
       "generatorKey": null,
@@ -2649,6 +2647,66 @@
       "prerequisites": [],
       "difficulty": 0.5,
       "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.6.write-a-recursive-formula-from-displayed-sequence-terms",
+      "blueprintId": "math.im1.skill.8.6.write-a-recursive-formula-from-displayed-sequence-terms",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": null,
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.6.write-a-recursive-formula-from-a-discrete-sequence-graph",
+      "blueprintId": "math.im1.skill.8.6.write-a-recursive-formula-from-a-discrete-sequence-graph",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": null,
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.6.convert-an-explicit-arithmetic-formula-to-a-recursive-formula",
+      "blueprintId": "math.im1.skill.8.6.convert-an-explicit-arithmetic-formula-to-a-recursive-formula",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": null,
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.6.convert-a-recursive-arithmetic-formula-to-an-explicit-formula",
+      "blueprintId": "math.im1.skill.8.6.convert-a-recursive-arithmetic-formula-to-an-explicit-formula",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": null,
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.6.convert-an-explicit-geometric-formula-to-a-recursive-formula",
+      "blueprintId": "math.im1.skill.8.6.convert-an-explicit-geometric-formula-to-a-recursive-formula",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": null,
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.6.convert-a-recursive-geometric-formula-to-an-explicit-formula",
+      "blueprintId": "math.im1.skill.8.6.convert-a-recursive-geometric-formula-to-an-explicit-formula",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": null,
       "generatorKey": null,
       "generatorReady": false
     }

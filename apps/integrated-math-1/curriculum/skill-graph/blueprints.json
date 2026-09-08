@@ -33,14 +33,14 @@
           },
           {
             "description": "Write the full expression",
-            "expression": "(16 + 17) \u00f7 12"
+            "expression": "(16 + 17) ÷ 12"
           }
         ],
         "explanation": "Use operation symbols and grouping to write the verbal description as a numerical expression.",
         "rendererProps": {
           "activityId": "math.im1.skill.1.1.translate-verbal-descriptions-into-correct-numerical-express.worked_example",
           "mode": "teaching",
-          "template": "Write a numerical expression for \u201cthe sum of 16 and 17, divided by 12\u201d: {{blank:expression}}",
+          "template": "Write a numerical expression for “the sum of 16 and 17, divided by 12”: {{blank:expression}}",
           "blanks": [
             {
               "id": "expression",
@@ -48,7 +48,7 @@
               "correctAnswer": "(16 + 17) / 12",
               "acceptedAnswers": [
                 "(16 + 17) / 12",
-                "(16 + 17) \u00f7 12"
+                "(16 + 17) ÷ 12"
               ]
             }
           ],
@@ -63,7 +63,7 @@
             },
             {
               "description": "Write the full expression",
-              "expression": "(16 + 17) \u00f7 12"
+              "expression": "(16 + 17) ÷ 12"
             }
           ]
         }
@@ -88,7 +88,7 @@
         "rendererProps": {
           "activityId": "math.im1.skill.1.1.translate-verbal-descriptions-into-correct-numerical-express.guided_practice",
           "mode": "guided",
-          "template": "Write a numerical expression for \u201cthe sum of 9 and 11, divided by 10\u201d: {{blank:expression}}",
+          "template": "Write a numerical expression for “the sum of 9 and 11, divided by 10”: {{blank:expression}}",
           "blanks": [
             {
               "id": "expression",
@@ -96,7 +96,7 @@
               "correctAnswer": "(9 + 11) / 10",
               "acceptedAnswers": [
                 "(9 + 11) / 10",
-                "(9 + 11) \u00f7 10"
+                "(9 + 11) ÷ 10"
               ]
             }
           ],
@@ -129,7 +129,7 @@
         "rendererProps": {
           "activityId": "math.im1.skill.1.1.translate-verbal-descriptions-into-correct-numerical-express.independent_practice",
           "mode": "practice",
-          "template": "Write a numerical expression for \u201cthe product of 17 and the difference between 25 and 7\u201d: {{blank:expression}}",
+          "template": "Write a numerical expression for “the product of 17 and the difference between 25 and 7”: {{blank:expression}}",
           "blanks": [
             {
               "id": "expression",
@@ -301,7 +301,7 @@
         "steps": [
           {
             "description": "Recognize the pattern",
-            "expression": "a = b \u2227 b = c \u2192 a = c",
+            "expression": "a = b ∧ b = c → a = c",
             "explanation": "Two equalities sharing a middle term imply the outer terms are equal."
           },
           {
@@ -391,23 +391,23 @@
         "independentPractice": "step-by-step-solver"
       },
       "workedExampleSpec": {
-        "prompt": "Apply the distributive property to rewrite and evaluate: 4 \u00d7 (6 + 3)",
+        "prompt": "Apply the distributive property to rewrite and evaluate: 4 × (6 + 3)",
         "givens": [
-          "4 \u00d7 (6 + 3)"
+          "4 × (6 + 3)"
         ],
         "target": {
-          "expression": "4\u00d76 + 4\u00d73",
+          "expression": "4×6 + 4×3",
           "value": "36"
         },
         "steps": [
           {
             "description": "Identify the pattern",
-            "expression": "a \u00d7 (b + c) = a\u00d7b + a\u00d7c",
+            "expression": "a × (b + c) = a×b + a×c",
             "explanation": "The distributive property multiplies each term inside the parentheses."
           },
           {
             "description": "Distribute",
-            "expression": "4\u00d76 + 4\u00d73",
+            "expression": "4×6 + 4×3",
             "explanation": "Multiply 4 by each term inside."
           },
           {
@@ -421,7 +421,7 @@
             "explanation": "Add the results."
           }
         ],
-        "explanation": "Using the distributive property, 4 \u00d7 (6 + 3) = 4\u00d76 + 4\u00d73 = 24 + 12 = 36."
+        "explanation": "Using the distributive property, 4 × (6 + 3) = 4×6 + 4×3 = 24 + 12 = 36."
       },
       "guidedPracticeSpec": {
         "scaffoldedPrompt": "Apply the distributive property to rewrite and evaluate the expression.",
@@ -432,9 +432,9 @@
           "Combine for the final answer"
         ],
         "hints": [
-          "a \u00d7 (b + c) = a\u00d7b + a\u00d7c",
+          "a × (b + c) = a×b + a×c",
           "Distribute the multiplication to each addend",
-          "Be careful with subtraction: a \u00d7 (b - c) = a\u00d7b - a\u00d7c"
+          "Be careful with subtraction: a × (b - c) = a×b - a×c"
         ],
         "checksPerStep": [
           {
@@ -557,7 +557,7 @@
         "hints": [
           "Distance = |a - b|",
           "Absolute value makes negative results positive",
-          "You can also use |b - a| \u2014 same result"
+          "You can also use |b - a| — same result"
         ],
         "checksPerStep": [
           {
@@ -661,7 +661,7 @@
           },
           {
             "description": "Calculate percentage",
-            "expression": "(18/30) \u00d7 100 = 60%",
+            "expression": "(18/30) × 100 = 60%",
             "explanation": "Divide part by whole, multiply by 100."
           }
         ],
@@ -678,7 +678,7 @@
         "hints": [
           "Ratio compares two quantities",
           "Simplify by dividing by the GCF",
-          "Percentage = (part/total) \u00d7 100"
+          "Percentage = (part/total) × 100"
         ],
         "checksPerStep": [
           {
@@ -3958,15 +3958,11 @@
         "math.standard.ccss.f-bf-a-2",
         "math.standard.ccss.f-if-a-3"
       ],
-      "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
         "worked": "step-by-step-solver",
         "guidedPractice": "step-by-step-solver",
         "independentPractice": "step-by-step-solver"
       },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
       "exceptions": [
         {
           "type": "generator",
@@ -3982,20 +3978,18 @@
     },
     {
       "nodeId": "math.im1.skill.8.6.find-the-first-several-terms-of-a-sequence-given-a-recursive",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im1.example.8.6.019"
+      ],
       "alignmentNodeIds": [
         "math.standard.ccss.f-bf-a-2",
         "math.standard.ccss.f-if-a-3"
       ],
-      "rendererKey": "step-by-step-solver",
       "rendererModeMap": {
         "worked": "step-by-step-solver",
         "guidedPractice": "step-by-step-solver",
         "independentPractice": "step-by-step-solver"
       },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
       "exceptions": [
         {
           "type": "generator",
@@ -7541,6 +7535,85 @@
         "course": "im1",
         "module": "8",
         "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.8.6.write-a-recursive-formula-from-displayed-sequence-terms",
+      "sourceNodeIds": [
+        "math.im1.example.8.6.021",
+        "math.im1.example.8.6.023"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.8.6.write-a-recursive-formula-from-a-discrete-sequence-graph",
+      "sourceNodeIds": [
+        "math.im1.example.8.6.022"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.8.6.convert-an-explicit-arithmetic-formula-to-a-recursive-formula",
+      "sourceNodeIds": [
+        "math.im1.example.8.6.024"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.8.6.convert-a-recursive-arithmetic-formula-to-an-explicit-formula",
+      "sourceNodeIds": [
+        "math.im1.example.8.6.024"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.8.6.convert-an-explicit-geometric-formula-to-a-recursive-formula",
+      "sourceNodeIds": [
+        "math.im1.example.8.6.024"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.8.6.convert-a-recursive-geometric-formula-to-an-explicit-formula",
+      "sourceNodeIds": [
+        "math.im1.example.8.6.024"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "6"
       }
     }
   ]

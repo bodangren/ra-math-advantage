@@ -3392,11 +3392,65 @@
       "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "Planning classification only; no reviewed renderer contract",
       "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.6.write-a-recursive-formula-from-displayed-sequence-terms",
+      "title": "Write a recursive formula from displayed sequence terms",
+      "module": "8",
+      "rendererKey": null,
+      "rendererAssignmentReason": "Source-only draft capability",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.6.write-a-recursive-formula-from-a-discrete-sequence-graph",
+      "title": "Write a recursive formula from a discrete sequence graph",
+      "module": "8",
+      "rendererKey": null,
+      "rendererAssignmentReason": "Source-only draft capability",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.6.convert-an-explicit-arithmetic-formula-to-a-recursive-formula",
+      "title": "Convert an explicit arithmetic formula to a recursive formula",
+      "module": "8",
+      "rendererKey": null,
+      "rendererAssignmentReason": "Source-only draft capability",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.6.convert-a-recursive-arithmetic-formula-to-an-explicit-formula",
+      "title": "Convert a recursive arithmetic formula to an explicit formula",
+      "module": "8",
+      "rendererKey": null,
+      "rendererAssignmentReason": "Source-only draft capability",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.6.convert-an-explicit-geometric-formula-to-a-recursive-formula",
+      "title": "Convert an explicit geometric formula to a recursive formula",
+      "module": "8",
+      "rendererKey": null,
+      "rendererAssignmentReason": "Source-only draft capability",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.6.convert-a-recursive-geometric-formula-to-an-explicit-formula",
+      "title": "Convert a recursive geometric formula to an explicit formula",
+      "module": "8",
+      "rendererKey": null,
+      "rendererAssignmentReason": "Source-only draft capability",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
     }
   ],
   "meta": {
-    "totalSkills": 377,
+    "totalSkills": 383,
     "allNeedGenerators": true,
-    "total": 371
+    "total": 383
   }
 }

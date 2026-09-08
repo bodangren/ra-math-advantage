@@ -48,8 +48,12 @@ describe('Lesson 8-5 exact source boundaries', () => {
     for (const [suffix] of definitions.slice(1)) {
       const id = prefix + suffix;
       const incident = graph.edges.filter((e: any) => e.sourceId === id || e.targetId === id);
-      expect(incident).toHaveLength(1);
-      expect(incident[0]).toMatchObject({ type: 'contains', sourceId: 'math.im1.lesson.8.5', targetId: id });
+      expect(incident).toContainEqual(expect.objectContaining({ type: 'contains', sourceId: 'math.im1.lesson.8.5', targetId: id }));
+      const allowedLessons = id.endsWith('write-an-explicit-formula-for-a-geometric-sequence-from-displayed-terms')
+        ? ['math.im1.lesson.8.5', 'math.im1.lesson.8.6'] : ['math.im1.lesson.8.5'];
+      expect(incident.every((edge: any) => edge.type === 'contains' && allowedLessons.includes(edge.sourceId))).toBe(true);
+      expect(incident).toHaveLength(allowedLessons.length);
+      expect(incident.map((edge: any) => edge.sourceId).sort()).toEqual(allowedLessons.sort());
     }
   });
 

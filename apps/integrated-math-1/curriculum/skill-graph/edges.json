@@ -6,8 +6,8 @@
     "pilotEdgesPreserved": 0,
     "standardEdgesMerged": 941,
     "suggestedEdges": 1277,
-    "totalEdges": 2496,
-    "totalNodes": 982,
+    "totalEdges": 2504,
+    "totalNodes": 988,
     "normalizedWeights": 539
   },
   "nodes": [
@@ -53,7 +53,7 @@
         "lesson": "1",
         "exampleNumber": 1,
         "sourceLesson": "1-1",
-        "rawText": "Example 1 \u2014 Write Numerical Expressions from Verbal Descriptions"
+        "rawText": "Example 1 — Write Numerical Expressions from Verbal Descriptions"
       }
     },
     {
@@ -71,7 +71,7 @@
         "lesson": "1",
         "exampleNumber": 2,
         "sourceLesson": "1-1",
-        "rawText": "Example 2 \u2014 Verbal Expressions with Sum, Difference, Product, and Quotient"
+        "rawText": "Example 2 — Verbal Expressions with Sum, Difference, Product, and Quotient"
       }
     },
     {
@@ -89,7 +89,7 @@
         "lesson": "1",
         "exampleNumber": 4,
         "sourceLesson": "1-1",
-        "rawText": "Examples 4, 5, and 7 \u2014 Evaluate Numerical Expressions"
+        "rawText": "Examples 4, 5, and 7 — Evaluate Numerical Expressions"
       }
     },
     {
@@ -107,7 +107,7 @@
         "lesson": "1",
         "exampleNumber": 5,
         "sourceLesson": "1-1",
-        "rawText": "Examples 4, 5, and 7 \u2014 Evaluate Numerical Expressions"
+        "rawText": "Examples 4, 5, and 7 — Evaluate Numerical Expressions"
       }
     },
     {
@@ -125,7 +125,7 @@
         "lesson": "1",
         "exampleNumber": 6,
         "sourceLesson": "1-1",
-        "rawText": "Example 6 \u2014 Evaluate Real-World Expressions"
+        "rawText": "Example 6 — Evaluate Real-World Expressions"
       }
     },
     {
@@ -143,7 +143,7 @@
         "lesson": "1",
         "exampleNumber": 7,
         "sourceLesson": "1-1",
-        "rawText": "Examples 4, 5, and 7 \u2014 Evaluate Numerical Expressions"
+        "rawText": "Examples 4, 5, and 7 — Evaluate Numerical Expressions"
       }
     },
     {
@@ -161,7 +161,7 @@
         "lesson": "2",
         "exampleNumber": 1,
         "sourceLesson": "1-2",
-        "rawText": "Example 1 \u2014 Write Verbal Expressions for Algebraic Expressions"
+        "rawText": "Example 1 — Write Verbal Expressions for Algebraic Expressions"
       }
     },
     {
@@ -179,7 +179,7 @@
         "lesson": "2",
         "exampleNumber": 2,
         "sourceLesson": "1-2",
-        "rawText": "Example 2 \u2014 Write Algebraic Expressions for Verbal Expressions"
+        "rawText": "Example 2 — Write Algebraic Expressions for Verbal Expressions"
       }
     },
     {
@@ -197,7 +197,7 @@
         "lesson": "2",
         "exampleNumber": 3,
         "sourceLesson": "1-2",
-        "rawText": "Example 3 \u2014 Write Expressions for Real-World Situations"
+        "rawText": "Example 3 — Write Expressions for Real-World Situations"
       }
     },
     {
@@ -215,7 +215,7 @@
         "lesson": "2",
         "exampleNumber": 4,
         "sourceLesson": "1-2",
-        "rawText": "Example 4 \u2014 Evaluate Algebraic Expressions"
+        "rawText": "Example 4 — Evaluate Algebraic Expressions"
       }
     },
     {
@@ -233,7 +233,7 @@
         "lesson": "2",
         "exampleNumber": 5,
         "sourceLesson": "1-2",
-        "rawText": "Example 5 \u2014 Write and Evaluate Expressions from Word Problems"
+        "rawText": "Example 5 — Write and Evaluate Expressions from Word Problems"
       }
     },
     {
@@ -251,7 +251,7 @@
         "lesson": "2",
         "exampleNumber": 6,
         "sourceLesson": "1-2",
-        "rawText": "Example 6 \u2014 Mixed Review with Structure and Reasoning"
+        "rawText": "Example 6 — Mixed Review with Structure and Reasoning"
       }
     },
     {
@@ -269,7 +269,7 @@
         "lesson": "3",
         "exampleNumber": 1,
         "sourceLesson": "1-3",
-        "rawText": "Example 1 \u2014 Identify Properties of Equality"
+        "rawText": "Example 1 — Identify Properties of Equality"
       }
     },
     {
@@ -287,7 +287,7 @@
         "lesson": "3",
         "exampleNumber": 2,
         "sourceLesson": "1-3",
-        "rawText": "Example 2 \u2014 Apply Properties of Equality to Complete Statements"
+        "rawText": "Example 2 — Apply Properties of Equality to Complete Statements"
       }
     },
     {
@@ -305,7 +305,7 @@
         "lesson": "3",
         "exampleNumber": 3,
         "sourceLesson": "1-3",
-        "rawText": "Example 3 \u2014 Real-World Application: Toll Roads"
+        "rawText": "Example 3 — Real-World Application: Toll Roads"
       }
     },
     {
@@ -323,7 +323,7 @@
         "lesson": "3",
         "exampleNumber": 4,
         "sourceLesson": "1-3",
-        "rawText": "Example 4 \u2014 Evaluate Expressions and Name Properties"
+        "rawText": "Example 4 — Evaluate Expressions and Name Properties"
       }
     },
     {
@@ -341,7 +341,7 @@
         "lesson": "3",
         "exampleNumber": 5,
         "sourceLesson": "1-3",
-        "rawText": "Example 5 \u2014 Simplify Expressions Using Properties of Numbers"
+        "rawText": "Example 5 — Simplify Expressions Using Properties of Numbers"
       }
     },
     {
@@ -359,7 +359,7 @@
         "lesson": "3",
         "exampleNumber": 6,
         "sourceLesson": "1-3",
-        "rawText": "Example 6 \u2014 Evaluate Algebraic Expressions"
+        "rawText": "Example 6 — Evaluate Algebraic Expressions"
       }
     },
     {
@@ -377,7 +377,7 @@
         "lesson": "4",
         "exampleNumber": 1,
         "sourceLesson": "1-4",
-        "rawText": "Example 1 \u2014 Evaluate Numerical Expressions"
+        "rawText": "Example 1 — Evaluate Numerical Expressions"
       }
     },
     {
@@ -395,7 +395,7 @@
         "lesson": "4",
         "exampleNumber": 2,
         "sourceLesson": "1-4",
-        "rawText": "Example 2 \u2014 Mental Math with the Distributive Property"
+        "rawText": "Example 2 — Mental Math with the Distributive Property"
       }
     },
     {
@@ -413,7 +413,7 @@
         "lesson": "4",
         "exampleNumber": 3,
         "sourceLesson": "1-4",
-        "rawText": "Examples 3 and 4 \u2014 Simplify Algebraic Expressions"
+        "rawText": "Examples 3 and 4 — Simplify Algebraic Expressions"
       }
     },
     {
@@ -431,7 +431,7 @@
         "lesson": "4",
         "exampleNumber": 4,
         "sourceLesson": "1-4",
-        "rawText": "Examples 3 and 4 \u2014 Simplify Algebraic Expressions"
+        "rawText": "Examples 3 and 4 — Simplify Algebraic Expressions"
       }
     },
     {
@@ -449,7 +449,7 @@
         "lesson": "4",
         "exampleNumber": 5,
         "sourceLesson": "1-4",
-        "rawText": "Example 5 \u2014 Combine Like Terms"
+        "rawText": "Example 5 — Combine Like Terms"
       }
     },
     {
@@ -467,7 +467,7 @@
         "lesson": "4",
         "exampleNumber": 6,
         "sourceLesson": "1-4",
-        "rawText": "Example 6 \u2014 Translate and Simplify Verbal Expressions"
+        "rawText": "Example 6 — Translate and Simplify Verbal Expressions"
       }
     },
     {
@@ -485,7 +485,7 @@
         "lesson": "5",
         "exampleNumber": 1,
         "sourceLesson": "1-5",
-        "rawText": "Example 1 \u2014 Write Absolute Value Expressions for Real-World Accuracy"
+        "rawText": "Example 1 — Write Absolute Value Expressions for Real-World Accuracy"
       }
     },
     {
@@ -503,7 +503,7 @@
         "lesson": "5",
         "exampleNumber": 2,
         "sourceLesson": "1-5",
-        "rawText": "Example 2 \u2014 Evaluate Absolute Value Expressions with Integers"
+        "rawText": "Example 2 — Evaluate Absolute Value Expressions with Integers"
       }
     },
     {
@@ -521,7 +521,7 @@
         "lesson": "5",
         "exampleNumber": 3,
         "sourceLesson": "1-5",
-        "rawText": "Example 3 \u2014 Evaluate Absolute Value Expressions with Integers, Decimals, and Fractions"
+        "rawText": "Example 3 — Evaluate Absolute Value Expressions with Integers, Decimals, and Fractions"
       }
     },
     {
@@ -539,7 +539,7 @@
         "lesson": "6",
         "exampleNumber": 1,
         "sourceLesson": "1-6",
-        "rawText": "Example 1 \u2014 Set Up and Evaluate Ratios as Metrics"
+        "rawText": "Example 1 — Set Up and Evaluate Ratios as Metrics"
       }
     },
     {
@@ -557,7 +557,7 @@
         "lesson": "6",
         "exampleNumber": 2,
         "sourceLesson": "1-6",
-        "rawText": "Example 2 \u2014 Calculate and Compare Using Different Methods"
+        "rawText": "Example 2 — Calculate and Compare Using Different Methods"
       }
     },
     {
@@ -575,7 +575,7 @@
         "lesson": "6",
         "exampleNumber": 3,
         "sourceLesson": "1-6",
-        "rawText": "Example 3 \u2014 Apply Context-Appropriate Rounding"
+        "rawText": "Example 3 — Apply Context-Appropriate Rounding"
       }
     },
     {
@@ -593,7 +593,7 @@
         "lesson": "6",
         "exampleNumber": 4,
         "sourceLesson": "1-6",
-        "rawText": "Example 4 \u2014 Compute with Reasonable Accuracy"
+        "rawText": "Example 4 — Compute with Reasonable Accuracy"
       }
     },
     {
@@ -611,7 +611,7 @@
         "lesson": "6",
         "exampleNumber": 5,
         "sourceLesson": "1-6",
-        "rawText": "Example 5 \u2014 Evaluate Accuracy of Reported Data"
+        "rawText": "Example 5 — Evaluate Accuracy of Reported Data"
       }
     },
     {
@@ -629,7 +629,7 @@
         "lesson": "1",
         "exampleNumber": 1,
         "sourceLesson": "10-1",
-        "rawText": "10-1, Example 1 \u2014 Draw Conclusions from Axioms"
+        "rawText": "10-1, Example 1 — Draw Conclusions from Axioms"
       }
     },
     {
@@ -647,7 +647,7 @@
         "lesson": "1",
         "exampleNumber": 2,
         "sourceLesson": "10-1",
-        "rawText": "10-1, Example 2 \u2014 Classify Synthetic and Analytic Geometry"
+        "rawText": "10-1, Example 2 — Classify Synthetic and Analytic Geometry"
       }
     },
     {
@@ -665,7 +665,7 @@
         "lesson": "2",
         "exampleNumber": 1,
         "sourceLesson": "10-2",
-        "rawText": "10-2, Examples 1-2 \u2014 Identify Lines, Planes, and Relationships from a Figure; Model Real-World Objects with Geometric Terms"
+        "rawText": "10-2, Examples 1-2 — Identify Lines, Planes, and Relationships from a Figure; Model Real-World Objects with Geometric Terms"
       }
     },
     {
@@ -683,7 +683,7 @@
         "lesson": "2",
         "exampleNumber": 2,
         "sourceLesson": "10-2",
-        "rawText": "10-2, Examples 1-2 \u2014 Identify Lines, Planes, and Relationships from a Figure; Model Real-World Objects with Geometric Terms"
+        "rawText": "10-2, Examples 1-2 — Identify Lines, Planes, and Relationships from a Figure; Model Real-World Objects with Geometric Terms"
       }
     },
     {
@@ -701,7 +701,7 @@
         "lesson": "2",
         "exampleNumber": 3,
         "sourceLesson": "10-2",
-        "rawText": "10-2, Examples 3-5 \u2014 Draw and Label Geometric Figures; Analyze a Three-Dimensional Figure for Planes and Coplanarity"
+        "rawText": "10-2, Examples 3-5 — Draw and Label Geometric Figures; Analyze a Three-Dimensional Figure for Planes and Coplanarity"
       }
     },
     {
@@ -719,7 +719,7 @@
         "lesson": "2",
         "exampleNumber": 4,
         "sourceLesson": "10-2",
-        "rawText": "10-2, Examples 3-5 \u2014 Draw and Label Geometric Figures; Analyze a Three-Dimensional Figure for Planes and Coplanarity"
+        "rawText": "10-2, Examples 3-5 — Draw and Label Geometric Figures; Analyze a Three-Dimensional Figure for Planes and Coplanarity"
       }
     },
     {
@@ -737,7 +737,7 @@
         "lesson": "2",
         "exampleNumber": 5,
         "sourceLesson": "10-2",
-        "rawText": "10-2, Examples 3-5 \u2014 Draw and Label Geometric Figures; Analyze a Three-Dimensional Figure for Planes and Coplanarity"
+        "rawText": "10-2, Examples 3-5 — Draw and Label Geometric Figures; Analyze a Three-Dimensional Figure for Planes and Coplanarity"
       }
     },
     {
@@ -755,7 +755,7 @@
         "lesson": "3",
         "exampleNumber": 1,
         "sourceLesson": "10-3",
-        "rawText": "10-3, Examples 1-2 \u2014 Find Segment Lengths from Number Lines"
+        "rawText": "10-3, Examples 1-2 — Find Segment Lengths from Number Lines"
       }
     },
     {
@@ -773,7 +773,7 @@
         "lesson": "3",
         "exampleNumber": 2,
         "sourceLesson": "10-3",
-        "rawText": "10-3, Examples 1-2 \u2014 Find Segment Lengths from Number Lines"
+        "rawText": "10-3, Examples 1-2 — Find Segment Lengths from Number Lines"
       }
     },
     {
@@ -791,7 +791,7 @@
         "lesson": "3",
         "exampleNumber": 3,
         "sourceLesson": "10-3",
-        "rawText": "10-3, Examples 3-4 \u2014 Apply the Segment Addition Postulate Algebraically; Solve Real-World Problems Using Segment Addition"
+        "rawText": "10-3, Examples 3-4 — Apply the Segment Addition Postulate Algebraically; Solve Real-World Problems Using Segment Addition"
       }
     },
     {
@@ -809,7 +809,7 @@
         "lesson": "3",
         "exampleNumber": 4,
         "sourceLesson": "10-3",
-        "rawText": "10-3, Examples 3-4 \u2014 Apply the Segment Addition Postulate Algebraically; Solve Real-World Problems Using Segment Addition"
+        "rawText": "10-3, Examples 3-4 — Apply the Segment Addition Postulate Algebraically; Solve Real-World Problems Using Segment Addition"
       }
     },
     {
@@ -827,7 +827,7 @@
         "lesson": "4",
         "exampleNumber": 1,
         "sourceLesson": "10-4",
-        "rawText": "10-4, Examples 1-3 \u2014 Find Segment Lengths on a Number Line; Determine Whether Segments Are Congruent; Find the Distance Between Two Points"
+        "rawText": "10-4, Examples 1-3 — Find Segment Lengths on a Number Line; Determine Whether Segments Are Congruent; Find the Distance Between Two Points"
       }
     },
     {
@@ -845,7 +845,7 @@
         "lesson": "4",
         "exampleNumber": 2,
         "sourceLesson": "10-4",
-        "rawText": "10-4, Examples 1-3 \u2014 Find Segment Lengths on a Number Line; Determine Whether Segments Are Congruent; Find the Distance Between Two Points"
+        "rawText": "10-4, Examples 1-3 — Find Segment Lengths on a Number Line; Determine Whether Segments Are Congruent; Find the Distance Between Two Points"
       }
     },
     {
@@ -863,7 +863,7 @@
         "lesson": "4",
         "exampleNumber": 3,
         "sourceLesson": "10-4",
-        "rawText": "10-4, Examples 1-3 \u2014 Find Segment Lengths on a Number Line; Determine Whether Segments Are Congruent; Find the Distance Between Two Points"
+        "rawText": "10-4, Examples 1-3 — Find Segment Lengths on a Number Line; Determine Whether Segments Are Congruent; Find the Distance Between Two Points"
       }
     },
     {
@@ -881,7 +881,7 @@
         "lesson": "4",
         "exampleNumber": 4,
         "sourceLesson": "10-4",
-        "rawText": "10-4, Example 4 \u2014 Apply the Distance Formula to Real-World Problems"
+        "rawText": "10-4, Example 4 — Apply the Distance Formula to Real-World Problems"
       }
     },
     {
@@ -899,7 +899,7 @@
         "lesson": "5",
         "exampleNumber": 1,
         "sourceLesson": "10-5",
-        "rawText": "10-5, Examples 1-2 \u2014 Locate Points Using Fractional Distances; Real-World Problems with Fractional Distances and Ratios"
+        "rawText": "10-5, Examples 1-2 — Locate Points Using Fractional Distances; Real-World Problems with Fractional Distances and Ratios"
       }
     },
     {
@@ -917,7 +917,7 @@
         "lesson": "5",
         "exampleNumber": 2,
         "sourceLesson": "10-5",
-        "rawText": "10-5, Examples 1-2 \u2014 Locate Points Using Fractional Distances; Real-World Problems with Fractional Distances and Ratios"
+        "rawText": "10-5, Examples 1-2 — Locate Points Using Fractional Distances; Real-World Problems with Fractional Distances and Ratios"
       }
     },
     {
@@ -935,7 +935,7 @@
         "lesson": "5",
         "exampleNumber": 3,
         "sourceLesson": "10-5",
-        "rawText": "10-5, Examples 3-4 \u2014 Locate Points Using Ratios on a Number Line; Partitioning Physical Objects"
+        "rawText": "10-5, Examples 3-4 — Locate Points Using Ratios on a Number Line; Partitioning Physical Objects"
       }
     },
     {
@@ -953,7 +953,7 @@
         "lesson": "5",
         "exampleNumber": 4,
         "sourceLesson": "10-5",
-        "rawText": "10-5, Examples 3-4 \u2014 Locate Points Using Ratios on a Number Line; Partitioning Physical Objects"
+        "rawText": "10-5, Examples 3-4 — Locate Points Using Ratios on a Number Line; Partitioning Physical Objects"
       }
     },
     {
@@ -971,7 +971,7 @@
         "lesson": "6",
         "exampleNumber": 1,
         "sourceLesson": "10-6",
-        "rawText": "10-6, Examples 1-2 \u2014 Find a Point at a Fractional Distance; Find a Point That Divides a Segment in a Given Ratio"
+        "rawText": "10-6, Examples 1-2 — Find a Point at a Fractional Distance; Find a Point That Divides a Segment in a Given Ratio"
       }
     },
     {
@@ -989,7 +989,7 @@
         "lesson": "6",
         "exampleNumber": 2,
         "sourceLesson": "10-6",
-        "rawText": "10-6, Examples 1-2 \u2014 Find a Point at a Fractional Distance; Find a Point That Divides a Segment in a Given Ratio"
+        "rawText": "10-6, Examples 1-2 — Find a Point at a Fractional Distance; Find a Point That Divides a Segment in a Given Ratio"
       }
     },
     {
@@ -1007,7 +1007,7 @@
         "lesson": "7",
         "exampleNumber": 1,
         "sourceLesson": "10-7",
-        "rawText": "10-7, Examples 1-3 \u2014 Find the Midpoint on a Number Line; Real-World Midpoint Applications; Find the Midpoint in the Coordinate Plane"
+        "rawText": "10-7, Examples 1-3 — Find the Midpoint on a Number Line; Real-World Midpoint Applications; Find the Midpoint in the Coordinate Plane"
       }
     },
     {
@@ -1025,7 +1025,7 @@
         "lesson": "7",
         "exampleNumber": 2,
         "sourceLesson": "10-7",
-        "rawText": "10-7, Examples 1-3 \u2014 Find the Midpoint on a Number Line; Real-World Midpoint Applications; Find the Midpoint in the Coordinate Plane"
+        "rawText": "10-7, Examples 1-3 — Find the Midpoint on a Number Line; Real-World Midpoint Applications; Find the Midpoint in the Coordinate Plane"
       }
     },
     {
@@ -1043,7 +1043,7 @@
         "lesson": "7",
         "exampleNumber": 3,
         "sourceLesson": "10-7",
-        "rawText": "10-7, Examples 1-3 \u2014 Find the Midpoint on a Number Line; Real-World Midpoint Applications; Find the Midpoint in the Coordinate Plane"
+        "rawText": "10-7, Examples 1-3 — Find the Midpoint on a Number Line; Real-World Midpoint Applications; Find the Midpoint in the Coordinate Plane"
       }
     },
     {
@@ -1061,7 +1061,7 @@
         "lesson": "7",
         "exampleNumber": 4,
         "sourceLesson": "10-7",
-        "rawText": "10-7, Examples 4-6 \u2014 Find a Missing Endpoint; Algebraic Midpoint Problems"
+        "rawText": "10-7, Examples 4-6 — Find a Missing Endpoint; Algebraic Midpoint Problems"
       }
     },
     {
@@ -1079,7 +1079,7 @@
         "lesson": "7",
         "exampleNumber": 5,
         "sourceLesson": "10-7",
-        "rawText": "10-7, Examples 4-6 \u2014 Find a Missing Endpoint; Algebraic Midpoint Problems"
+        "rawText": "10-7, Examples 4-6 — Find a Missing Endpoint; Algebraic Midpoint Problems"
       }
     },
     {
@@ -1097,7 +1097,7 @@
         "lesson": "7",
         "exampleNumber": 6,
         "sourceLesson": "10-7",
-        "rawText": "10-7, Examples 4-6 \u2014 Find a Missing Endpoint; Algebraic Midpoint Problems"
+        "rawText": "10-7, Examples 4-6 — Find a Missing Endpoint; Algebraic Midpoint Problems"
       }
     },
     {
@@ -1115,7 +1115,7 @@
         "lesson": "1",
         "exampleNumber": 1,
         "sourceLesson": "11-1",
-        "rawText": "11-1, Example 1 \u2014 Identify Parts of an Angle and Use Proper Notation"
+        "rawText": "11-1, Example 1 — Identify Parts of an Angle and Use Proper Notation"
       }
     },
     {
@@ -1133,7 +1133,7 @@
         "lesson": "1",
         "exampleNumber": 2,
         "sourceLesson": "11-1",
-        "rawText": "11-1, Examples 2-3 \u2014 Apply the Definition of an Angle Bisector; Identify Angle Relationships and Solve for Variables"
+        "rawText": "11-1, Examples 2-3 — Apply the Definition of an Angle Bisector; Identify Angle Relationships and Solve for Variables"
       }
     },
     {
@@ -1151,7 +1151,7 @@
         "lesson": "1",
         "exampleNumber": 3,
         "sourceLesson": "11-1",
-        "rawText": "11-1, Examples 2-3 \u2014 Apply the Definition of an Angle Bisector; Identify Angle Relationships and Solve for Variables"
+        "rawText": "11-1, Examples 2-3 — Apply the Definition of an Angle Bisector; Identify Angle Relationships and Solve for Variables"
       }
     },
     {
@@ -1169,7 +1169,7 @@
         "lesson": "2",
         "exampleNumber": 1,
         "sourceLesson": "11-2",
-        "rawText": "11-2, Example 1 \u2014 Solve Problems Using Complementary and Supplementary Angles"
+        "rawText": "11-2, Example 1 — Solve Problems Using Complementary and Supplementary Angles"
       }
     },
     {
@@ -1187,7 +1187,7 @@
         "lesson": "2",
         "exampleNumber": 2,
         "sourceLesson": "11-2",
-        "rawText": "11-2, Examples 2-3 \u2014 Use Perpendicular Lines to Find Unknown Measures; Determine Assumptions from a Figure"
+        "rawText": "11-2, Examples 2-3 — Use Perpendicular Lines to Find Unknown Measures; Determine Assumptions from a Figure"
       }
     },
     {
@@ -1205,7 +1205,7 @@
         "lesson": "2",
         "exampleNumber": 3,
         "sourceLesson": "11-2",
-        "rawText": "11-2, Examples 2-3 \u2014 Use Perpendicular Lines to Find Unknown Measures; Determine Assumptions from a Figure"
+        "rawText": "11-2, Examples 2-3 — Use Perpendicular Lines to Find Unknown Measures; Determine Assumptions from a Figure"
       }
     },
     {
@@ -1223,7 +1223,7 @@
         "lesson": "3",
         "exampleNumber": 1,
         "sourceLesson": "11-3",
-        "rawText": "11-3, Examples 1-2 \u2014 Find Perimeter and Area from Grid Figures; Calculate Measurements Using Two-Dimensional Models"
+        "rawText": "11-3, Examples 1-2 — Find Perimeter and Area from Grid Figures; Calculate Measurements Using Two-Dimensional Models"
       }
     },
     {
@@ -1241,7 +1241,7 @@
         "lesson": "3",
         "exampleNumber": 2,
         "sourceLesson": "11-3",
-        "rawText": "11-3, Examples 1-2 \u2014 Find Perimeter and Area from Grid Figures; Calculate Measurements Using Two-Dimensional Models"
+        "rawText": "11-3, Examples 1-2 — Find Perimeter and Area from Grid Figures; Calculate Measurements Using Two-Dimensional Models"
       }
     },
     {
@@ -1259,7 +1259,7 @@
         "lesson": "3",
         "exampleNumber": 3,
         "sourceLesson": "11-3",
-        "rawText": "11-3, Example 3 \u2014 Solve Real-World Problems with Perimeter and Area"
+        "rawText": "11-3, Example 3 — Solve Real-World Problems with Perimeter and Area"
       }
     },
     {
@@ -1277,7 +1277,7 @@
         "lesson": "4",
         "exampleNumber": 1,
         "sourceLesson": "11-4",
-        "rawText": "11-4, Example 1 \u2014 Identify Rigid Motions from Diagrams"
+        "rawText": "11-4, Example 1 — Identify Rigid Motions from Diagrams"
       }
     },
     {
@@ -1295,7 +1295,7 @@
         "lesson": "4",
         "exampleNumber": 2,
         "sourceLesson": "11-4",
-        "rawText": "11-4, Examples 2-4 \u2014 Reflect Figures on the Coordinate Plane; Translate Figures; Rotate Figures"
+        "rawText": "11-4, Examples 2-4 — Reflect Figures on the Coordinate Plane; Translate Figures; Rotate Figures"
       }
     },
     {
@@ -1313,7 +1313,7 @@
         "lesson": "4",
         "exampleNumber": 3,
         "sourceLesson": "11-4",
-        "rawText": "11-4, Examples 2-4 \u2014 Reflect Figures on the Coordinate Plane; Translate Figures; Rotate Figures"
+        "rawText": "11-4, Examples 2-4 — Reflect Figures on the Coordinate Plane; Translate Figures; Rotate Figures"
       }
     },
     {
@@ -1331,7 +1331,7 @@
         "lesson": "4",
         "exampleNumber": 4,
         "sourceLesson": "11-4",
-        "rawText": "11-4, Examples 2-4 \u2014 Reflect Figures on the Coordinate Plane; Translate Figures; Rotate Figures"
+        "rawText": "11-4, Examples 2-4 — Reflect Figures on the Coordinate Plane; Translate Figures; Rotate Figures"
       }
     },
     {
@@ -1349,7 +1349,7 @@
         "lesson": "5",
         "exampleNumber": 1,
         "sourceLesson": "11-5",
-        "rawText": "11-5, Examples 1-2 \u2014 Identify and Classify Three-Dimensional Figures; Model Real-World Objects with Three-Dimensional Figures"
+        "rawText": "11-5, Examples 1-2 — Identify and Classify Three-Dimensional Figures; Model Real-World Objects with Three-Dimensional Figures"
       }
     },
     {
@@ -1367,7 +1367,7 @@
         "lesson": "5",
         "exampleNumber": 2,
         "sourceLesson": "11-5",
-        "rawText": "11-5, Examples 1-2 \u2014 Identify and Classify Three-Dimensional Figures; Model Real-World Objects with Three-Dimensional Figures"
+        "rawText": "11-5, Examples 1-2 — Identify and Classify Three-Dimensional Figures; Model Real-World Objects with Three-Dimensional Figures"
       }
     },
     {
@@ -1385,7 +1385,7 @@
         "lesson": "5",
         "exampleNumber": 3,
         "sourceLesson": "11-5",
-        "rawText": "11-5, Examples 3-5 \u2014 Find Surface Area and Volume of Solids; Solve Real-World Problems with Surface Area and Volume"
+        "rawText": "11-5, Examples 3-5 — Find Surface Area and Volume of Solids; Solve Real-World Problems with Surface Area and Volume"
       }
     },
     {
@@ -1403,7 +1403,7 @@
         "lesson": "5",
         "exampleNumber": 4,
         "sourceLesson": "11-5",
-        "rawText": "11-5, Examples 3-5 \u2014 Find Surface Area and Volume of Solids; Solve Real-World Problems with Surface Area and Volume"
+        "rawText": "11-5, Examples 3-5 — Find Surface Area and Volume of Solids; Solve Real-World Problems with Surface Area and Volume"
       }
     },
     {
@@ -1421,7 +1421,7 @@
         "lesson": "5",
         "exampleNumber": 5,
         "sourceLesson": "11-5",
-        "rawText": "11-5, Examples 3-5 \u2014 Find Surface Area and Volume of Solids; Solve Real-World Problems with Surface Area and Volume"
+        "rawText": "11-5, Examples 3-5 — Find Surface Area and Volume of Solids; Solve Real-World Problems with Surface Area and Volume"
       }
     },
     {
@@ -1439,7 +1439,7 @@
         "lesson": "6",
         "exampleNumber": 1,
         "sourceLesson": "11-6",
-        "rawText": "11-6, Examples 1-2 \u2014 Build a Model from an Orthographic Drawing; Make an Orthographic Drawing from a Model"
+        "rawText": "11-6, Examples 1-2 — Build a Model from an Orthographic Drawing; Make an Orthographic Drawing from a Model"
       }
     },
     {
@@ -1457,7 +1457,7 @@
         "lesson": "6",
         "exampleNumber": 2,
         "sourceLesson": "11-6",
-        "rawText": "11-6, Examples 1-2 \u2014 Build a Model from an Orthographic Drawing; Make an Orthographic Drawing from a Model"
+        "rawText": "11-6, Examples 1-2 — Build a Model from an Orthographic Drawing; Make an Orthographic Drawing from a Model"
       }
     },
     {
@@ -1475,7 +1475,7 @@
         "lesson": "6",
         "exampleNumber": 3,
         "sourceLesson": "11-6",
-        "rawText": "11-6, Examples 3-5 \u2014 Identify Solids and Find Surface Area from Nets; Draw a Net for Prisms and Pyramids"
+        "rawText": "11-6, Examples 3-5 — Identify Solids and Find Surface Area from Nets; Draw a Net for Prisms and Pyramids"
       }
     },
     {
@@ -1493,7 +1493,7 @@
         "lesson": "6",
         "exampleNumber": 4,
         "sourceLesson": "11-6",
-        "rawText": "11-6, Examples 3-5 \u2014 Identify Solids and Find Surface Area from Nets; Draw a Net for Prisms and Pyramids"
+        "rawText": "11-6, Examples 3-5 — Identify Solids and Find Surface Area from Nets; Draw a Net for Prisms and Pyramids"
       }
     },
     {
@@ -1511,7 +1511,7 @@
         "lesson": "6",
         "exampleNumber": 5,
         "sourceLesson": "11-6",
-        "rawText": "11-6, Examples 3-5 \u2014 Identify Solids and Find Surface Area from Nets; Draw a Net for Prisms and Pyramids"
+        "rawText": "11-6, Examples 3-5 — Identify Solids and Find Surface Area from Nets; Draw a Net for Prisms and Pyramids"
       }
     },
     {
@@ -1529,7 +1529,7 @@
         "lesson": "7",
         "exampleNumber": 1,
         "sourceLesson": "11-7",
-        "rawText": "11-7, Examples 1-2 \u2014 Analyze Accuracy and Precision from Data; Calculate Approximate Error"
+        "rawText": "11-7, Examples 1-2 — Analyze Accuracy and Precision from Data; Calculate Approximate Error"
       }
     },
     {
@@ -1547,7 +1547,7 @@
         "lesson": "7",
         "exampleNumber": 2,
         "sourceLesson": "11-7",
-        "rawText": "11-7, Examples 1-2 \u2014 Analyze Accuracy and Precision from Data; Calculate Approximate Error"
+        "rawText": "11-7, Examples 1-2 — Analyze Accuracy and Precision from Data; Calculate Approximate Error"
       }
     },
     {
@@ -1565,7 +1565,7 @@
         "lesson": "8",
         "exampleNumber": 1,
         "sourceLesson": "11-8",
-        "rawText": "11-8, Examples 1-2 \u2014 Count Significant Digits in Measurements; Find the Possible Range of a Segment Length"
+        "rawText": "11-8, Examples 1-2 — Count Significant Digits in Measurements; Find the Possible Range of a Segment Length"
       }
     },
     {
@@ -1583,7 +1583,7 @@
         "lesson": "8",
         "exampleNumber": 2,
         "sourceLesson": "11-8",
-        "rawText": "11-8, Examples 1-2 \u2014 Count Significant Digits in Measurements; Find the Possible Range of a Segment Length"
+        "rawText": "11-8, Examples 1-2 — Count Significant Digits in Measurements; Find the Possible Range of a Segment Length"
       }
     },
     {
@@ -1601,7 +1601,7 @@
         "lesson": "1",
         "exampleNumber": 1,
         "sourceLesson": "12-1",
-        "rawText": "12-1, Examples 1-2 \u2014 Write Conjectures for Sequences; Make Conjectures about Numbers and Geometry"
+        "rawText": "12-1, Examples 1-2 — Write Conjectures for Sequences; Make Conjectures about Numbers and Geometry"
       }
     },
     {
@@ -1619,7 +1619,7 @@
         "lesson": "1",
         "exampleNumber": 2,
         "sourceLesson": "12-1",
-        "rawText": "12-1, Examples 1-2 \u2014 Write Conjectures for Sequences; Make Conjectures about Numbers and Geometry"
+        "rawText": "12-1, Examples 1-2 — Write Conjectures for Sequences; Make Conjectures about Numbers and Geometry"
       }
     },
     {
@@ -1637,7 +1637,7 @@
         "lesson": "1",
         "exampleNumber": 3,
         "sourceLesson": "12-1",
-        "rawText": "12-1, Examples 3-4 \u2014 Make a Conjecture from a Table; Determine Whether Conjectures Are True or False"
+        "rawText": "12-1, Examples 3-4 — Make a Conjecture from a Table; Determine Whether Conjectures Are True or False"
       }
     },
     {
@@ -1655,7 +1655,7 @@
         "lesson": "1",
         "exampleNumber": 4,
         "sourceLesson": "12-1",
-        "rawText": "12-1, Examples 3-4 \u2014 Make a Conjecture from a Table; Determine Whether Conjectures Are True or False"
+        "rawText": "12-1, Examples 3-4 — Make a Conjecture from a Table; Determine Whether Conjectures Are True or False"
       }
     },
     {
@@ -1673,7 +1673,7 @@
         "lesson": "10",
         "exampleNumber": 1,
         "sourceLesson": "12-10",
-        "rawText": "12-10, Examples 1-2 \u2014 Find the Distance from a Point to a Line (Slanted Lines); Find the Distance from a Point to a Horizontal or Vertical Line"
+        "rawText": "12-10, Examples 1-2 — Find the Distance from a Point to a Line (Slanted Lines); Find the Distance from a Point to a Horizontal or Vertical Line"
       }
     },
     {
@@ -1691,7 +1691,7 @@
         "lesson": "10",
         "exampleNumber": 2,
         "sourceLesson": "12-10",
-        "rawText": "12-10, Examples 1-2 \u2014 Find the Distance from a Point to a Line (Slanted Lines); Find the Distance from a Point to a Horizontal or Vertical Line"
+        "rawText": "12-10, Examples 1-2 — Find the Distance from a Point to a Line (Slanted Lines); Find the Distance from a Point to a Horizontal or Vertical Line"
       }
     },
     {
@@ -1709,7 +1709,7 @@
         "lesson": "2",
         "exampleNumber": 1,
         "sourceLesson": "12-2",
-        "rawText": "12-2, Examples 1-2 \u2014 Evaluate Conjunctions and Disjunctions; Evaluate Negations of Compound Statements"
+        "rawText": "12-2, Examples 1-2 — Evaluate Conjunctions and Disjunctions; Evaluate Negations of Compound Statements"
       }
     },
     {
@@ -1727,7 +1727,7 @@
         "lesson": "2",
         "exampleNumber": 2,
         "sourceLesson": "12-2",
-        "rawText": "12-2, Examples 1-2 \u2014 Evaluate Conjunctions and Disjunctions; Evaluate Negations of Compound Statements"
+        "rawText": "12-2, Examples 1-2 — Evaluate Conjunctions and Disjunctions; Evaluate Negations of Compound Statements"
       }
     },
     {
@@ -1745,7 +1745,7 @@
         "lesson": "2",
         "exampleNumber": 3,
         "sourceLesson": "12-2",
-        "rawText": "12-2, Examples 3-5 \u2014 Identify Hypothesis and Conclusion; Rewrite Statements in If-Then Form; Write Converse, Inverse, and Contrapositive"
+        "rawText": "12-2, Examples 3-5 — Identify Hypothesis and Conclusion; Rewrite Statements in If-Then Form; Write Converse, Inverse, and Contrapositive"
       }
     },
     {
@@ -1763,7 +1763,7 @@
         "lesson": "2",
         "exampleNumber": 4,
         "sourceLesson": "12-2",
-        "rawText": "12-2, Examples 3-5 \u2014 Identify Hypothesis and Conclusion; Rewrite Statements in If-Then Form; Write Converse, Inverse, and Contrapositive"
+        "rawText": "12-2, Examples 3-5 — Identify Hypothesis and Conclusion; Rewrite Statements in If-Then Form; Write Converse, Inverse, and Contrapositive"
       }
     },
     {
@@ -1781,7 +1781,7 @@
         "lesson": "2",
         "exampleNumber": 5,
         "sourceLesson": "12-2",
-        "rawText": "12-2, Examples 3-5 \u2014 Identify Hypothesis and Conclusion; Rewrite Statements in If-Then Form; Write Converse, Inverse, and Contrapositive"
+        "rawText": "12-2, Examples 3-5 — Identify Hypothesis and Conclusion; Rewrite Statements in If-Then Form; Write Converse, Inverse, and Contrapositive"
       }
     },
     {
@@ -1799,7 +1799,7 @@
         "lesson": "3",
         "exampleNumber": 1,
         "sourceLesson": "12-3",
-        "rawText": "12-3, Example 1 \u2014 Distinguish Inductive and Deductive Reasoning"
+        "rawText": "12-3, Example 1 — Distinguish Inductive and Deductive Reasoning"
       }
     },
     {
@@ -1817,7 +1817,7 @@
         "lesson": "3",
         "exampleNumber": 2,
         "sourceLesson": "12-3",
-        "rawText": "12-3, Examples 2-3 \u2014 Determine Whether a Conclusion Is Valid; Apply the Law of Syllogism"
+        "rawText": "12-3, Examples 2-3 — Determine Whether a Conclusion Is Valid; Apply the Law of Syllogism"
       }
     },
     {
@@ -1835,7 +1835,7 @@
         "lesson": "3",
         "exampleNumber": 3,
         "sourceLesson": "12-3",
-        "rawText": "12-3, Examples 2-3 \u2014 Determine Whether a Conclusion Is Valid; Apply the Law of Syllogism"
+        "rawText": "12-3, Examples 2-3 — Determine Whether a Conclusion Is Valid; Apply the Law of Syllogism"
       }
     },
     {
@@ -1853,7 +1853,7 @@
         "lesson": "4",
         "exampleNumber": 1,
         "sourceLesson": "12-4",
-        "rawText": "12-4, Example 1 \u2014 Apply Postulates about Points, Lines, and Planes"
+        "rawText": "12-4, Example 1 — Apply Postulates about Points, Lines, and Planes"
       }
     },
     {
@@ -1871,7 +1871,7 @@
         "lesson": "4",
         "exampleNumber": 2,
         "sourceLesson": "12-4",
-        "rawText": "12-4, Examples 2-4 \u2014 Write and Complete Two-Column Proofs; Write and Complete Flow Proofs"
+        "rawText": "12-4, Examples 2-4 — Write and Complete Two-Column Proofs; Write and Complete Flow Proofs"
       }
     },
     {
@@ -1889,7 +1889,7 @@
         "lesson": "4",
         "exampleNumber": 3,
         "sourceLesson": "12-4",
-        "rawText": "12-4, Examples 2-4 \u2014 Write and Complete Two-Column Proofs; Write and Complete Flow Proofs"
+        "rawText": "12-4, Examples 2-4 — Write and Complete Two-Column Proofs; Write and Complete Flow Proofs"
       }
     },
     {
@@ -1907,7 +1907,7 @@
         "lesson": "4",
         "exampleNumber": 4,
         "sourceLesson": "12-4",
-        "rawText": "12-4, Examples 2-4 \u2014 Write and Complete Two-Column Proofs; Write and Complete Flow Proofs"
+        "rawText": "12-4, Examples 2-4 — Write and Complete Two-Column Proofs; Write and Complete Flow Proofs"
       }
     },
     {
@@ -1925,7 +1925,7 @@
         "lesson": "5",
         "exampleNumber": 1,
         "sourceLesson": "12-5",
-        "rawText": "12-5, Examples 1-2 \u2014 Complete a Two-Column Proof; Write a Two-Column Proof"
+        "rawText": "12-5, Examples 1-2 — Complete a Two-Column Proof; Write a Two-Column Proof"
       }
     },
     {
@@ -1943,7 +1943,7 @@
         "lesson": "5",
         "exampleNumber": 2,
         "sourceLesson": "12-5",
-        "rawText": "12-5, Examples 1-2 \u2014 Complete a Two-Column Proof; Write a Two-Column Proof"
+        "rawText": "12-5, Examples 1-2 — Complete a Two-Column Proof; Write a Two-Column Proof"
       }
     },
     {
@@ -1961,7 +1961,7 @@
         "lesson": "6",
         "exampleNumber": 1,
         "sourceLesson": "12-6",
-        "rawText": "12-6, Examples 1-4 \u2014 Apply the Angle Addition Postulate; Write Two-Column Proofs with Congruent Angles; Prove Angle Congruence Using Supplements"
+        "rawText": "12-6, Examples 1-4 — Apply the Angle Addition Postulate; Write Two-Column Proofs with Congruent Angles; Prove Angle Congruence Using Supplements"
       }
     },
     {
@@ -1979,7 +1979,7 @@
         "lesson": "6",
         "exampleNumber": 2,
         "sourceLesson": "12-6",
-        "rawText": "12-6, Examples 1-4 \u2014 Apply the Angle Addition Postulate; Write Two-Column Proofs with Congruent Angles; Prove Angle Congruence Using Supplements"
+        "rawText": "12-6, Examples 1-4 — Apply the Angle Addition Postulate; Write Two-Column Proofs with Congruent Angles; Prove Angle Congruence Using Supplements"
       }
     },
     {
@@ -1997,7 +1997,7 @@
         "lesson": "6",
         "exampleNumber": 3,
         "sourceLesson": "12-6",
-        "rawText": "12-6, Examples 1-4 \u2014 Apply the Angle Addition Postulate; Write Two-Column Proofs with Congruent Angles; Prove Angle Congruence Using Supplements"
+        "rawText": "12-6, Examples 1-4 — Apply the Angle Addition Postulate; Write Two-Column Proofs with Congruent Angles; Prove Angle Congruence Using Supplements"
       }
     },
     {
@@ -2015,7 +2015,7 @@
         "lesson": "6",
         "exampleNumber": 4,
         "sourceLesson": "12-6",
-        "rawText": "12-6, Examples 1-4 \u2014 Apply the Angle Addition Postulate; Write Two-Column Proofs with Congruent Angles; Prove Angle Congruence Using Supplements"
+        "rawText": "12-6, Examples 1-4 — Apply the Angle Addition Postulate; Write Two-Column Proofs with Congruent Angles; Prove Angle Congruence Using Supplements"
       }
     },
     {
@@ -2033,7 +2033,7 @@
         "lesson": "7",
         "exampleNumber": 1,
         "sourceLesson": "12-7",
-        "rawText": "12-7, Examples 1-3 \u2014 Identify Parallel, Skew, and Perpendicular Segments; Identify Transversals and Classify Angle Pairs"
+        "rawText": "12-7, Examples 1-3 — Identify Parallel, Skew, and Perpendicular Segments; Identify Transversals and Classify Angle Pairs"
       }
     },
     {
@@ -2051,7 +2051,7 @@
         "lesson": "7",
         "exampleNumber": 2,
         "sourceLesson": "12-7",
-        "rawText": "12-7, Examples 1-3 \u2014 Identify Parallel, Skew, and Perpendicular Segments; Identify Transversals and Classify Angle Pairs"
+        "rawText": "12-7, Examples 1-3 — Identify Parallel, Skew, and Perpendicular Segments; Identify Transversals and Classify Angle Pairs"
       }
     },
     {
@@ -2069,7 +2069,7 @@
         "lesson": "7",
         "exampleNumber": 3,
         "sourceLesson": "12-7",
-        "rawText": "12-7, Examples 1-3 \u2014 Identify Parallel, Skew, and Perpendicular Segments; Identify Transversals and Classify Angle Pairs"
+        "rawText": "12-7, Examples 1-3 — Identify Parallel, Skew, and Perpendicular Segments; Identify Transversals and Classify Angle Pairs"
       }
     },
     {
@@ -2087,7 +2087,7 @@
         "lesson": "7",
         "exampleNumber": 4,
         "sourceLesson": "12-7",
-        "rawText": "12-7, Examples 4-5 \u2014 Find Angle Measures Using Parallel Line Properties; Solve for Variables in Figures with Parallel Lines"
+        "rawText": "12-7, Examples 4-5 — Find Angle Measures Using Parallel Line Properties; Solve for Variables in Figures with Parallel Lines"
       }
     },
     {
@@ -2105,7 +2105,7 @@
         "lesson": "7",
         "exampleNumber": 5,
         "sourceLesson": "12-7",
-        "rawText": "12-7, Examples 4-5 \u2014 Find Angle Measures Using Parallel Line Properties; Solve for Variables in Figures with Parallel Lines"
+        "rawText": "12-7, Examples 4-5 — Find Angle Measures Using Parallel Line Properties; Solve for Variables in Figures with Parallel Lines"
       }
     },
     {
@@ -2123,7 +2123,7 @@
         "lesson": "8",
         "exampleNumber": 1,
         "sourceLesson": "12-8",
-        "rawText": "12-8, Examples 1-2 \u2014 Determine Whether Lines Through Given Points Are Parallel, Perpendicular, or Neither; Determine Whether Graphed Lines Are Parallel, Perpendicular, or Neither"
+        "rawText": "12-8, Examples 1-2 — Determine Whether Lines Through Given Points Are Parallel, Perpendicular, or Neither; Determine Whether Graphed Lines Are Parallel, Perpendicular, or Neither"
       }
     },
     {
@@ -2141,7 +2141,7 @@
         "lesson": "8",
         "exampleNumber": 2,
         "sourceLesson": "12-8",
-        "rawText": "12-8, Examples 1-2 \u2014 Determine Whether Lines Through Given Points Are Parallel, Perpendicular, or Neither; Determine Whether Graphed Lines Are Parallel, Perpendicular, or Neither"
+        "rawText": "12-8, Examples 1-2 — Determine Whether Lines Through Given Points Are Parallel, Perpendicular, or Neither; Determine Whether Graphed Lines Are Parallel, Perpendicular, or Neither"
       }
     },
     {
@@ -2159,7 +2159,7 @@
         "lesson": "8",
         "exampleNumber": 3,
         "sourceLesson": "12-8",
-        "rawText": "12-8, Examples 3-5 \u2014 Determine Whether Lines Given by Equations Are Parallel, Perpendicular, or Neither; Graph Lines Using Parallel and Perpendicular Relationships; Write Equations for Parallel and Perpendicular Lines"
+        "rawText": "12-8, Examples 3-5 — Determine Whether Lines Given by Equations Are Parallel, Perpendicular, or Neither; Graph Lines Using Parallel and Perpendicular Relationships; Write Equations for Parallel and Perpendicular Lines"
       }
     },
     {
@@ -2177,7 +2177,7 @@
         "lesson": "8",
         "exampleNumber": 4,
         "sourceLesson": "12-8",
-        "rawText": "12-8, Examples 3-5 \u2014 Determine Whether Lines Given by Equations Are Parallel, Perpendicular, or Neither; Graph Lines Using Parallel and Perpendicular Relationships; Write Equations for Parallel and Perpendicular Lines"
+        "rawText": "12-8, Examples 3-5 — Determine Whether Lines Given by Equations Are Parallel, Perpendicular, or Neither; Graph Lines Using Parallel and Perpendicular Relationships; Write Equations for Parallel and Perpendicular Lines"
       }
     },
     {
@@ -2195,7 +2195,7 @@
         "lesson": "8",
         "exampleNumber": 5,
         "sourceLesson": "12-8",
-        "rawText": "12-8, Examples 3-5 \u2014 Determine Whether Lines Given by Equations Are Parallel, Perpendicular, or Neither; Graph Lines Using Parallel and Perpendicular Relationships; Write Equations for Parallel and Perpendicular Lines"
+        "rawText": "12-8, Examples 3-5 — Determine Whether Lines Given by Equations Are Parallel, Perpendicular, or Neither; Graph Lines Using Parallel and Perpendicular Relationships; Write Equations for Parallel and Perpendicular Lines"
       }
     },
     {
@@ -2213,7 +2213,7 @@
         "lesson": "9",
         "exampleNumber": 1,
         "sourceLesson": "12-9",
-        "rawText": "12-9, Examples 1-2 \u2014 Determine Which Lines Are Parallel; Find the Value of x That Makes Lines Parallel"
+        "rawText": "12-9, Examples 1-2 — Determine Which Lines Are Parallel; Find the Value of x That Makes Lines Parallel"
       }
     },
     {
@@ -2231,7 +2231,7 @@
         "lesson": "9",
         "exampleNumber": 2,
         "sourceLesson": "12-9",
-        "rawText": "12-9, Examples 1-2 \u2014 Determine Which Lines Are Parallel; Find the Value of x That Makes Lines Parallel"
+        "rawText": "12-9, Examples 1-2 — Determine Which Lines Are Parallel; Find the Value of x That Makes Lines Parallel"
       }
     },
     {
@@ -2249,7 +2249,7 @@
         "lesson": "9",
         "exampleNumber": 3,
         "sourceLesson": "12-9",
-        "rawText": "12-9, Example 3 \u2014 Apply Parallel Line Theorems to Real-World Problems"
+        "rawText": "12-9, Example 3 — Apply Parallel Line Theorems to Real-World Problems"
       }
     },
     {
@@ -2267,7 +2267,7 @@
         "lesson": "1",
         "exampleNumber": 1,
         "sourceLesson": "13-1",
-        "rawText": "13-1, Examples 1-2 \u2014 Graph the Image of a Figure Under a Reflection"
+        "rawText": "13-1, Examples 1-2 — Graph the Image of a Figure Under a Reflection"
       }
     },
     {
@@ -2285,7 +2285,7 @@
         "lesson": "1",
         "exampleNumber": 2,
         "sourceLesson": "13-1",
-        "rawText": "13-1, Examples 1-2 \u2014 Graph the Image of a Figure Under a Reflection"
+        "rawText": "13-1, Examples 1-2 — Graph the Image of a Figure Under a Reflection"
       }
     },
     {
@@ -2303,7 +2303,7 @@
         "lesson": "1",
         "exampleNumber": 3,
         "sourceLesson": "13-1",
-        "rawText": "13-1, Examples 3-4 \u2014 Determine Coordinates After a Reflection; Apply Reflections to Real-World Problems"
+        "rawText": "13-1, Examples 3-4 — Determine Coordinates After a Reflection; Apply Reflections to Real-World Problems"
       }
     },
     {
@@ -2321,7 +2321,7 @@
         "lesson": "1",
         "exampleNumber": 4,
         "sourceLesson": "13-1",
-        "rawText": "13-1, Examples 3-4 \u2014 Determine Coordinates After a Reflection; Apply Reflections to Real-World Problems"
+        "rawText": "13-1, Examples 3-4 — Determine Coordinates After a Reflection; Apply Reflections to Real-World Problems"
       }
     },
     {
@@ -2339,7 +2339,7 @@
         "lesson": "2",
         "exampleNumber": 1,
         "sourceLesson": "13-2",
-        "rawText": "13-2, Examples 1-2 \u2014 Determine Whether a Triangle Is a Translation Image; Determine Whether a Quadrilateral Is a Translation Image"
+        "rawText": "13-2, Examples 1-2 — Determine Whether a Triangle Is a Translation Image; Determine Whether a Quadrilateral Is a Translation Image"
       }
     },
     {
@@ -2357,7 +2357,7 @@
         "lesson": "2",
         "exampleNumber": 2,
         "sourceLesson": "13-2",
-        "rawText": "13-2, Examples 1-2 \u2014 Determine Whether a Triangle Is a Translation Image; Determine Whether a Quadrilateral Is a Translation Image"
+        "rawText": "13-2, Examples 1-2 — Determine Whether a Triangle Is a Translation Image; Determine Whether a Quadrilateral Is a Translation Image"
       }
     },
     {
@@ -2375,7 +2375,7 @@
         "lesson": "2",
         "exampleNumber": 3,
         "sourceLesson": "13-2",
-        "rawText": "13-2, Examples 3-4 \u2014 Find Missing Coordinates in a Translation Pattern; Describe a Translation and Apply It to Another Figure"
+        "rawText": "13-2, Examples 3-4 — Find Missing Coordinates in a Translation Pattern; Describe a Translation and Apply It to Another Figure"
       }
     },
     {
@@ -2393,7 +2393,7 @@
         "lesson": "2",
         "exampleNumber": 4,
         "sourceLesson": "13-2",
-        "rawText": "13-2, Examples 3-4 \u2014 Find Missing Coordinates in a Translation Pattern; Describe a Translation and Apply It to Another Figure"
+        "rawText": "13-2, Examples 3-4 — Find Missing Coordinates in a Translation Pattern; Describe a Translation and Apply It to Another Figure"
       }
     },
     {
@@ -2411,7 +2411,7 @@
         "lesson": "3",
         "exampleNumber": 1,
         "sourceLesson": "13-3",
-        "rawText": "13-3, Examples 1-2 \u2014 Rotate Polygons About a Given Point"
+        "rawText": "13-3, Examples 1-2 — Rotate Polygons About a Given Point"
       }
     },
     {
@@ -2429,13 +2429,13 @@
         "lesson": "3",
         "exampleNumber": 2,
         "sourceLesson": "13-3",
-        "rawText": "13-3, Examples 1-2 \u2014 Rotate Polygons About a Given Point"
+        "rawText": "13-3, Examples 1-2 — Rotate Polygons About a Given Point"
       }
     },
     {
       "id": "math.im1.example.13.3.011",
       "kind": "worked_example",
-      "title": "Example 3: Rotate a Quadrilateral 90\u00b0; Apply Rotation to a Real-World Scale Drawing",
+      "title": "Example 3: Rotate a Quadrilateral 90°; Apply Rotation to a Real-World Scale Drawing",
       "domain": "math.im1",
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/module-13-class-period-plan.md (13-3, Example 3)"
@@ -2447,13 +2447,13 @@
         "lesson": "3",
         "exampleNumber": 3,
         "sourceLesson": "13-3",
-        "rawText": "13-3, Examples 3-5 \u2014 Rotate a Quadrilateral 90\u00b0; Apply Rotation to a Real-World Scale Drawing"
+        "rawText": "13-3, Examples 3-5 — Rotate a Quadrilateral 90°; Apply Rotation to a Real-World Scale Drawing"
       }
     },
     {
       "id": "math.im1.example.13.3.012",
       "kind": "worked_example",
-      "title": "Example 4: Rotate a Quadrilateral 90\u00b0; Apply Rotation to a Real-World Scale Drawing",
+      "title": "Example 4: Rotate a Quadrilateral 90°; Apply Rotation to a Real-World Scale Drawing",
       "domain": "math.im1",
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/module-13-class-period-plan.md (13-3, Example 4)"
@@ -2465,13 +2465,13 @@
         "lesson": "3",
         "exampleNumber": 4,
         "sourceLesson": "13-3",
-        "rawText": "13-3, Examples 3-5 \u2014 Rotate a Quadrilateral 90\u00b0; Apply Rotation to a Real-World Scale Drawing"
+        "rawText": "13-3, Examples 3-5 — Rotate a Quadrilateral 90°; Apply Rotation to a Real-World Scale Drawing"
       }
     },
     {
       "id": "math.im1.example.13.3.013",
       "kind": "worked_example",
-      "title": "Example 5: Rotate a Quadrilateral 90\u00b0; Apply Rotation to a Real-World Scale Drawing",
+      "title": "Example 5: Rotate a Quadrilateral 90°; Apply Rotation to a Real-World Scale Drawing",
       "domain": "math.im1",
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/module-13-class-period-plan.md (13-3, Example 5)"
@@ -2483,7 +2483,7 @@
         "lesson": "3",
         "exampleNumber": 5,
         "sourceLesson": "13-3",
-        "rawText": "13-3, Examples 3-5 \u2014 Rotate a Quadrilateral 90\u00b0; Apply Rotation to a Real-World Scale Drawing"
+        "rawText": "13-3, Examples 3-5 — Rotate a Quadrilateral 90°; Apply Rotation to a Real-World Scale Drawing"
       }
     },
     {
@@ -2501,7 +2501,7 @@
         "lesson": "4",
         "exampleNumber": 1,
         "sourceLesson": "13-4",
-        "rawText": "13-4, Examples 1-2 \u2014 Graph the Image of a Figure Under a Glide Reflection; Graph the Image of a Figure Under a Composition of Transformations"
+        "rawText": "13-4, Examples 1-2 — Graph the Image of a Figure Under a Glide Reflection; Graph the Image of a Figure Under a Composition of Transformations"
       }
     },
     {
@@ -2519,7 +2519,7 @@
         "lesson": "4",
         "exampleNumber": 2,
         "sourceLesson": "13-4",
-        "rawText": "13-4, Examples 1-2 \u2014 Graph the Image of a Figure Under a Glide Reflection; Graph the Image of a Figure Under a Composition of Transformations"
+        "rawText": "13-4, Examples 1-2 — Graph the Image of a Figure Under a Glide Reflection; Graph the Image of a Figure Under a Composition of Transformations"
       }
     },
     {
@@ -2537,7 +2537,7 @@
         "lesson": "4",
         "exampleNumber": 3,
         "sourceLesson": "13-4",
-        "rawText": "13-4, Examples 3-5 \u2014 Identify a Single Transformation Equivalent to Two Reflections; Determine Congruence and Find a Composition of Transformations"
+        "rawText": "13-4, Examples 3-5 — Identify a Single Transformation Equivalent to Two Reflections; Determine Congruence and Find a Composition of Transformations"
       }
     },
     {
@@ -2555,7 +2555,7 @@
         "lesson": "4",
         "exampleNumber": 4,
         "sourceLesson": "13-4",
-        "rawText": "13-4, Examples 3-5 \u2014 Identify a Single Transformation Equivalent to Two Reflections; Determine Congruence and Find a Composition of Transformations"
+        "rawText": "13-4, Examples 3-5 — Identify a Single Transformation Equivalent to Two Reflections; Determine Congruence and Find a Composition of Transformations"
       }
     },
     {
@@ -2573,7 +2573,7 @@
         "lesson": "4",
         "exampleNumber": 5,
         "sourceLesson": "13-4",
-        "rawText": "13-4, Examples 3-5 \u2014 Identify a Single Transformation Equivalent to Two Reflections; Determine Congruence and Find a Composition of Transformations"
+        "rawText": "13-4, Examples 3-5 — Identify a Single Transformation Equivalent to Two Reflections; Determine Congruence and Find a Composition of Transformations"
       }
     },
     {
@@ -2591,7 +2591,7 @@
         "lesson": "5",
         "exampleNumber": 1,
         "sourceLesson": "13-5",
-        "rawText": "13-5, Examples 1-2 \u2014 Determine Whether Regular Polygons Tessellate; Determine Whether Semiregular Uniform Tessellations Exist"
+        "rawText": "13-5, Examples 1-2 — Determine Whether Regular Polygons Tessellate; Determine Whether Semiregular Uniform Tessellations Exist"
       }
     },
     {
@@ -2609,7 +2609,7 @@
         "lesson": "5",
         "exampleNumber": 2,
         "sourceLesson": "13-5",
-        "rawText": "13-5, Examples 1-2 \u2014 Determine Whether Regular Polygons Tessellate; Determine Whether Semiregular Uniform Tessellations Exist"
+        "rawText": "13-5, Examples 1-2 — Determine Whether Regular Polygons Tessellate; Determine Whether Semiregular Uniform Tessellations Exist"
       }
     },
     {
@@ -2627,7 +2627,7 @@
         "lesson": "5",
         "exampleNumber": 3,
         "sourceLesson": "13-5",
-        "rawText": "13-5, Examples 3-4 \u2014 Classify Tessellation Patterns; Tessellations from General Figures"
+        "rawText": "13-5, Examples 3-4 — Classify Tessellation Patterns; Tessellations from General Figures"
       }
     },
     {
@@ -2645,7 +2645,7 @@
         "lesson": "5",
         "exampleNumber": 4,
         "sourceLesson": "13-5",
-        "rawText": "13-5, Examples 3-4 \u2014 Classify Tessellation Patterns; Tessellations from General Figures"
+        "rawText": "13-5, Examples 3-4 — Classify Tessellation Patterns; Tessellations from General Figures"
       }
     },
     {
@@ -2663,7 +2663,7 @@
         "lesson": "6",
         "exampleNumber": 1,
         "sourceLesson": "13-6",
-        "rawText": "13-6, Example 1 \u2014 Identify and Draw Lines of Symmetry"
+        "rawText": "13-6, Example 1 — Identify and Draw Lines of Symmetry"
       }
     },
     {
@@ -2681,7 +2681,7 @@
         "lesson": "6",
         "exampleNumber": 2,
         "sourceLesson": "13-6",
-        "rawText": "13-6, Examples 2-3 \u2014 Determine Rotational Symmetry in Real-World Objects; Order and Magnitude of Rotational Symmetry"
+        "rawText": "13-6, Examples 2-3 — Determine Rotational Symmetry in Real-World Objects; Order and Magnitude of Rotational Symmetry"
       }
     },
     {
@@ -2699,7 +2699,7 @@
         "lesson": "6",
         "exampleNumber": 3,
         "sourceLesson": "13-6",
-        "rawText": "13-6, Examples 2-3 \u2014 Determine Rotational Symmetry in Real-World Objects; Order and Magnitude of Rotational Symmetry"
+        "rawText": "13-6, Examples 2-3 — Determine Rotational Symmetry in Real-World Objects; Order and Magnitude of Rotational Symmetry"
       }
     },
     {
@@ -2717,7 +2717,7 @@
         "lesson": "1",
         "exampleNumber": 1,
         "sourceLesson": "14-1",
-        "rawText": "14-1, Examples 1-2 \u2014 Find Unknown Angle Measures in Triangles; Solve for Angle Measures Using Algebra"
+        "rawText": "14-1, Examples 1-2 — Find Unknown Angle Measures in Triangles; Solve for Angle Measures Using Algebra"
       }
     },
     {
@@ -2735,7 +2735,7 @@
         "lesson": "1",
         "exampleNumber": 2,
         "sourceLesson": "14-1",
-        "rawText": "14-1, Examples 1-2 \u2014 Find Unknown Angle Measures in Triangles; Solve for Angle Measures Using Algebra"
+        "rawText": "14-1, Examples 1-2 — Find Unknown Angle Measures in Triangles; Solve for Angle Measures Using Algebra"
       }
     },
     {
@@ -2753,7 +2753,7 @@
         "lesson": "1",
         "exampleNumber": 3,
         "sourceLesson": "14-1",
-        "rawText": "14-1, Example 3 \u2014 Use the Exterior Angle Theorem"
+        "rawText": "14-1, Example 3 — Use the Exterior Angle Theorem"
       }
     },
     {
@@ -2771,7 +2771,7 @@
         "lesson": "2",
         "exampleNumber": 1,
         "sourceLesson": "14-2",
-        "rawText": "14-2, Examples 1-2 \u2014 Identify Congruent Corresponding Parts and Write a Congruence Statement; Find Unknown Values Using Congruence"
+        "rawText": "14-2, Examples 1-2 — Identify Congruent Corresponding Parts and Write a Congruence Statement; Find Unknown Values Using Congruence"
       }
     },
     {
@@ -2789,7 +2789,7 @@
         "lesson": "2",
         "exampleNumber": 2,
         "sourceLesson": "14-2",
-        "rawText": "14-2, Examples 1-2 \u2014 Identify Congruent Corresponding Parts and Write a Congruence Statement; Find Unknown Values Using Congruence"
+        "rawText": "14-2, Examples 1-2 — Identify Congruent Corresponding Parts and Write a Congruence Statement; Find Unknown Values Using Congruence"
       }
     },
     {
@@ -2807,7 +2807,7 @@
         "lesson": "2",
         "exampleNumber": 3,
         "sourceLesson": "14-2",
-        "rawText": "14-2, Examples 3-4 \u2014 Apply Congruent Triangles to Real-World Problems; Write Proofs of Triangle Congruence"
+        "rawText": "14-2, Examples 3-4 — Apply Congruent Triangles to Real-World Problems; Write Proofs of Triangle Congruence"
       }
     },
     {
@@ -2825,7 +2825,7 @@
         "lesson": "2",
         "exampleNumber": 4,
         "sourceLesson": "14-2",
-        "rawText": "14-2, Examples 3-4 \u2014 Apply Congruent Triangles to Real-World Problems; Write Proofs of Triangle Congruence"
+        "rawText": "14-2, Examples 3-4 — Apply Congruent Triangles to Real-World Problems; Write Proofs of Triangle Congruence"
       }
     },
     {
@@ -2843,7 +2843,7 @@
         "lesson": "3",
         "exampleNumber": 1,
         "sourceLesson": "14-3",
-        "rawText": "14-3, Examples 1-2 \u2014 Write Proofs Using the SSS Postulate; Determine Triangle Congruence on the Coordinate Plane"
+        "rawText": "14-3, Examples 1-2 — Write Proofs Using the SSS Postulate; Determine Triangle Congruence on the Coordinate Plane"
       }
     },
     {
@@ -2861,7 +2861,7 @@
         "lesson": "3",
         "exampleNumber": 2,
         "sourceLesson": "14-3",
-        "rawText": "14-3, Examples 1-2 \u2014 Write Proofs Using the SSS Postulate; Determine Triangle Congruence on the Coordinate Plane"
+        "rawText": "14-3, Examples 1-2 — Write Proofs Using the SSS Postulate; Determine Triangle Congruence on the Coordinate Plane"
       }
     },
     {
@@ -2879,7 +2879,7 @@
         "lesson": "3",
         "exampleNumber": 3,
         "sourceLesson": "14-3",
-        "rawText": "14-3, Example 3 \u2014 Write Proofs Using the SAS Postulate"
+        "rawText": "14-3, Example 3 — Write Proofs Using the SAS Postulate"
       }
     },
     {
@@ -2897,7 +2897,7 @@
         "lesson": "4",
         "exampleNumber": 1,
         "sourceLesson": "14-4",
-        "rawText": "14-4, Examples 1-2 \u2014 Write Proofs Using ASA and AAS; Apply ASA and AAS to Real-World Problems"
+        "rawText": "14-4, Examples 1-2 — Write Proofs Using ASA and AAS; Apply ASA and AAS to Real-World Problems"
       }
     },
     {
@@ -2915,7 +2915,7 @@
         "lesson": "4",
         "exampleNumber": 2,
         "sourceLesson": "14-4",
-        "rawText": "14-4, Examples 1-2 \u2014 Write Proofs Using ASA and AAS; Apply ASA and AAS to Real-World Problems"
+        "rawText": "14-4, Examples 1-2 — Write Proofs Using ASA and AAS; Apply ASA and AAS to Real-World Problems"
       }
     },
     {
@@ -2933,7 +2933,7 @@
         "lesson": "4",
         "exampleNumber": 3,
         "sourceLesson": "14-4",
-        "rawText": "14-4, Example 3 \u2014 Write Advanced Proofs Using ASA and AAS"
+        "rawText": "14-4, Example 3 — Write Advanced Proofs Using ASA and AAS"
       }
     },
     {
@@ -2951,7 +2951,7 @@
         "lesson": "5",
         "exampleNumber": 1,
         "sourceLesson": "14-5",
-        "rawText": "14-5, Examples 1-2 \u2014 Write Two-Column Proofs for Right Triangle Congruence; Determine Whether Triangles Are Congruent and Name the Theorem"
+        "rawText": "14-5, Examples 1-2 — Write Two-Column Proofs for Right Triangle Congruence; Determine Whether Triangles Are Congruent and Name the Theorem"
       }
     },
     {
@@ -2969,7 +2969,7 @@
         "lesson": "5",
         "exampleNumber": 2,
         "sourceLesson": "14-5",
-        "rawText": "14-5, Examples 1-2 \u2014 Write Two-Column Proofs for Right Triangle Congruence; Determine Whether Triangles Are Congruent and Name the Theorem"
+        "rawText": "14-5, Examples 1-2 — Write Two-Column Proofs for Right Triangle Congruence; Determine Whether Triangles Are Congruent and Name the Theorem"
       }
     },
     {
@@ -2987,7 +2987,7 @@
         "lesson": "5",
         "exampleNumber": 3,
         "sourceLesson": "14-5",
-        "rawText": "14-5, Examples 3-5 \u2014 Identify Corresponding Parts Needed for a Specific Theorem; Write Proofs Using Perpendicular Segments and Congruent Parts; Write a Paragraph Proof for Right Triangle Congruence"
+        "rawText": "14-5, Examples 3-5 — Identify Corresponding Parts Needed for a Specific Theorem; Write Proofs Using Perpendicular Segments and Congruent Parts; Write a Paragraph Proof for Right Triangle Congruence"
       }
     },
     {
@@ -3005,7 +3005,7 @@
         "lesson": "5",
         "exampleNumber": 4,
         "sourceLesson": "14-5",
-        "rawText": "14-5, Examples 3-5 \u2014 Identify Corresponding Parts Needed for a Specific Theorem; Write Proofs Using Perpendicular Segments and Congruent Parts; Write a Paragraph Proof for Right Triangle Congruence"
+        "rawText": "14-5, Examples 3-5 — Identify Corresponding Parts Needed for a Specific Theorem; Write Proofs Using Perpendicular Segments and Congruent Parts; Write a Paragraph Proof for Right Triangle Congruence"
       }
     },
     {
@@ -3023,7 +3023,7 @@
         "lesson": "5",
         "exampleNumber": 5,
         "sourceLesson": "14-5",
-        "rawText": "14-5, Examples 3-5 \u2014 Identify Corresponding Parts Needed for a Specific Theorem; Write Proofs Using Perpendicular Segments and Congruent Parts; Write a Paragraph Proof for Right Triangle Congruence"
+        "rawText": "14-5, Examples 3-5 — Identify Corresponding Parts Needed for a Specific Theorem; Write Proofs Using Perpendicular Segments and Congruent Parts; Write a Paragraph Proof for Right Triangle Congruence"
       }
     },
     {
@@ -3041,7 +3041,7 @@
         "lesson": "6",
         "exampleNumber": 1,
         "sourceLesson": "14-6",
-        "rawText": "14-6, Examples 1-2 \u2014 Write Two-Column Proofs Using Isosceles Triangle Properties; Find Side Lengths and Angle Measures in Isosceles Triangles"
+        "rawText": "14-6, Examples 1-2 — Write Two-Column Proofs Using Isosceles Triangle Properties; Find Side Lengths and Angle Measures in Isosceles Triangles"
       }
     },
     {
@@ -3059,7 +3059,7 @@
         "lesson": "6",
         "exampleNumber": 2,
         "sourceLesson": "14-6",
-        "rawText": "14-6, Examples 1-2 \u2014 Write Two-Column Proofs Using Isosceles Triangle Properties; Find Side Lengths and Angle Measures in Isosceles Triangles"
+        "rawText": "14-6, Examples 1-2 — Write Two-Column Proofs Using Isosceles Triangle Properties; Find Side Lengths and Angle Measures in Isosceles Triangles"
       }
     },
     {
@@ -3077,7 +3077,7 @@
         "lesson": "6",
         "exampleNumber": 3,
         "sourceLesson": "14-6",
-        "rawText": "14-6, Examples 3-4 \u2014 Solve for Unknowns in Isosceles and Equilateral Triangles"
+        "rawText": "14-6, Examples 3-4 — Solve for Unknowns in Isosceles and Equilateral Triangles"
       }
     },
     {
@@ -3095,7 +3095,7 @@
         "lesson": "6",
         "exampleNumber": 4,
         "sourceLesson": "14-6",
-        "rawText": "14-6, Examples 3-4 \u2014 Solve for Unknowns in Isosceles and Equilateral Triangles"
+        "rawText": "14-6, Examples 3-4 — Solve for Unknowns in Isosceles and Equilateral Triangles"
       }
     },
     {
@@ -3113,7 +3113,7 @@
         "lesson": "7",
         "exampleNumber": 1,
         "sourceLesson": "14-7",
-        "rawText": "14-7, Examples 1-2 \u2014 Position and Label Triangles on the Coordinate Plane; Find Missing Coordinates of Triangles"
+        "rawText": "14-7, Examples 1-2 — Position and Label Triangles on the Coordinate Plane; Find Missing Coordinates of Triangles"
       }
     },
     {
@@ -3131,7 +3131,7 @@
         "lesson": "7",
         "exampleNumber": 2,
         "sourceLesson": "14-7",
-        "rawText": "14-7, Examples 1-2 \u2014 Position and Label Triangles on the Coordinate Plane; Find Missing Coordinates of Triangles"
+        "rawText": "14-7, Examples 1-2 — Position and Label Triangles on the Coordinate Plane; Find Missing Coordinates of Triangles"
       }
     },
     {
@@ -3149,7 +3149,7 @@
         "lesson": "7",
         "exampleNumber": 3,
         "sourceLesson": "14-7",
-        "rawText": "14-7, Examples 3-4 \u2014 Write Coordinate Proofs"
+        "rawText": "14-7, Examples 3-4 — Write Coordinate Proofs"
       }
     },
     {
@@ -3167,7 +3167,7 @@
         "lesson": "7",
         "exampleNumber": 4,
         "sourceLesson": "14-7",
-        "rawText": "14-7, Examples 3-4 \u2014 Write Coordinate Proofs"
+        "rawText": "14-7, Examples 3-4 — Write Coordinate Proofs"
       }
     },
     {
@@ -3185,7 +3185,7 @@
         "lesson": "1",
         "exampleNumber": 1,
         "sourceLesson": "2-1",
-        "rawText": "Example 1 \u2014 Write an Equation from a Verbal Sentence"
+        "rawText": "Example 1 — Write an Equation from a Verbal Sentence"
       }
     },
     {
@@ -3203,7 +3203,7 @@
         "lesson": "1",
         "exampleNumber": 2,
         "sourceLesson": "2-1",
-        "rawText": "Example 2 \u2014 Write an Equation from a Real-World Situation"
+        "rawText": "Example 2 — Write an Equation from a Real-World Situation"
       }
     },
     {
@@ -3221,7 +3221,7 @@
         "lesson": "1",
         "exampleNumber": 3,
         "sourceLesson": "2-1",
-        "rawText": "Example 3 \u2014 Translate Sentences into Equations or Formulas"
+        "rawText": "Example 3 — Translate Sentences into Equations or Formulas"
       }
     },
     {
@@ -3239,7 +3239,7 @@
         "lesson": "1",
         "exampleNumber": 4,
         "sourceLesson": "2-1",
-        "rawText": "Example 4 and 5 \u2014 Write a Sentence for Each Equation"
+        "rawText": "Example 4 and 5 — Write a Sentence for Each Equation"
       }
     },
     {
@@ -3257,7 +3257,7 @@
         "lesson": "1",
         "exampleNumber": 5,
         "sourceLesson": "2-1",
-        "rawText": "Example 4 and 5 \u2014 Write a Sentence for Each Equation"
+        "rawText": "Example 4 and 5 — Write a Sentence for Each Equation"
       }
     },
     {
@@ -3275,7 +3275,7 @@
         "lesson": "1",
         "exampleNumber": 6,
         "sourceLesson": "2-1",
-        "rawText": "Example 6 \u2014 Interpret Formulas in Context"
+        "rawText": "Example 6 — Interpret Formulas in Context"
       }
     },
     {
@@ -3293,7 +3293,7 @@
         "lesson": "2",
         "exampleNumber": 1,
         "sourceLesson": "2-2",
-        "rawText": "Example 1 \u2014 Solve Addition and Subtraction Equations with Integers"
+        "rawText": "Example 1 — Solve Addition and Subtraction Equations with Integers"
       }
     },
     {
@@ -3311,7 +3311,7 @@
         "lesson": "2",
         "exampleNumber": 2,
         "sourceLesson": "2-2",
-        "rawText": "Example 2 \u2014 Solve Multiplication and Division Equations with Integers"
+        "rawText": "Example 2 — Solve Multiplication and Division Equations with Integers"
       }
     },
     {
@@ -3329,7 +3329,7 @@
         "lesson": "2",
         "exampleNumber": 3,
         "sourceLesson": "2-2",
-        "rawText": "Example 3 \u2014 Write and Solve Real-World Equations"
+        "rawText": "Example 3 — Write and Solve Real-World Equations"
       }
     },
     {
@@ -3347,7 +3347,7 @@
         "lesson": "2",
         "exampleNumber": 4,
         "sourceLesson": "2-2",
-        "rawText": "Example 4 \u2014 Solve Equations with Fractions"
+        "rawText": "Example 4 — Solve Equations with Fractions"
       }
     },
     {
@@ -3365,7 +3365,7 @@
         "lesson": "2",
         "exampleNumber": 5,
         "sourceLesson": "2-2",
-        "rawText": "Example 5 \u2014 Multi-Part Application with Percentages"
+        "rawText": "Example 5 — Multi-Part Application with Percentages"
       }
     },
     {
@@ -3383,7 +3383,7 @@
         "lesson": "3",
         "exampleNumber": 1,
         "sourceLesson": "2-3",
-        "rawText": "Example 1 \u2014 Solve Linear Equations Using Properties of Equality"
+        "rawText": "Example 1 — Solve Linear Equations Using Properties of Equality"
       }
     },
     {
@@ -3401,7 +3401,7 @@
         "lesson": "3",
         "exampleNumber": 2,
         "sourceLesson": "2-3",
-        "rawText": "Example 2 \u2014 Write and Solve Equations from Word Problems"
+        "rawText": "Example 2 — Write and Solve Equations from Word Problems"
       }
     },
     {
@@ -3419,7 +3419,7 @@
         "lesson": "3",
         "exampleNumber": 3,
         "sourceLesson": "2-3",
-        "rawText": "Example 3 \u2014 Solve Literal Equations"
+        "rawText": "Example 3 — Solve Literal Equations"
       }
     },
     {
@@ -3437,7 +3437,7 @@
         "lesson": "4",
         "exampleNumber": 1,
         "sourceLesson": "2-4",
-        "rawText": "Example 1 \u2014 Solve Equations with Variables on Both Sides"
+        "rawText": "Example 1 — Solve Equations with Variables on Both Sides"
       }
     },
     {
@@ -3455,7 +3455,7 @@
         "lesson": "4",
         "exampleNumber": 2,
         "sourceLesson": "2-4",
-        "rawText": "Example 2 \u2014 Write and Solve Equations from Word Problems"
+        "rawText": "Example 2 — Write and Solve Equations from Word Problems"
       }
     },
     {
@@ -3473,7 +3473,7 @@
         "lesson": "4",
         "exampleNumber": 3,
         "sourceLesson": "2-4",
-        "rawText": "Example 3 \u2014 Geometry Applications"
+        "rawText": "Example 3 — Geometry Applications"
       }
     },
     {
@@ -3491,7 +3491,7 @@
         "lesson": "4",
         "exampleNumber": 4,
         "sourceLesson": "2-4",
-        "rawText": "Example 4 \u2014 Classify Equations"
+        "rawText": "Example 4 — Classify Equations"
       }
     },
     {
@@ -3509,7 +3509,7 @@
         "lesson": "5",
         "exampleNumber": 3,
         "sourceLesson": "2-5",
-        "rawText": "Example 3 \u2014 Apply Absolute Value to Real-World Problems"
+        "rawText": "Example 3 — Apply Absolute Value to Real-World Problems"
       }
     },
     {
@@ -3527,7 +3527,7 @@
         "lesson": "5",
         "exampleNumber": 4,
         "sourceLesson": "2-5",
-        "rawText": "Example 4 \u2014 Write Absolute Value Equations from Graphs"
+        "rawText": "Example 4 — Write Absolute Value Equations from Graphs"
       }
     },
     {
@@ -3545,7 +3545,7 @@
         "lesson": "6",
         "exampleNumber": 1,
         "sourceLesson": "2-6",
-        "rawText": "Example 1 \u2014 Basic Proportions"
+        "rawText": "Example 1 — Basic Proportions"
       }
     },
     {
@@ -3563,7 +3563,7 @@
         "lesson": "6",
         "exampleNumber": 2,
         "sourceLesson": "2-6",
-        "rawText": "Example 2 \u2014 Proportions with Linear Expressions"
+        "rawText": "Example 2 — Proportions with Linear Expressions"
       }
     },
     {
@@ -3581,7 +3581,7 @@
         "lesson": "6",
         "exampleNumber": 3,
         "sourceLesson": "2-6",
-        "rawText": "Example 3 \u2014 Real-World Proportion Problems"
+        "rawText": "Example 3 — Real-World Proportion Problems"
       }
     },
     {
@@ -3599,7 +3599,7 @@
         "lesson": "6",
         "exampleNumber": 4,
         "sourceLesson": "2-6",
-        "rawText": "Example 4 \u2014 Percent and Mixture Problems"
+        "rawText": "Example 4 — Percent and Mixture Problems"
       }
     },
     {
@@ -3617,7 +3617,7 @@
         "lesson": "7",
         "exampleNumber": 1,
         "sourceLesson": "2-7",
-        "rawText": "Example 1 and 2 \u2014 Solve for a Specified Variable"
+        "rawText": "Example 1 and 2 — Solve for a Specified Variable"
       }
     },
     {
@@ -3635,7 +3635,7 @@
         "lesson": "7",
         "exampleNumber": 2,
         "sourceLesson": "2-7",
-        "rawText": "Example 1 and 2 \u2014 Solve for a Specified Variable"
+        "rawText": "Example 1 and 2 — Solve for a Specified Variable"
       }
     },
     {
@@ -3653,7 +3653,7 @@
         "lesson": "7",
         "exampleNumber": 3,
         "sourceLesson": "2-7",
-        "rawText": "Example 3 \u2014 Apply Formulas to Real-World Situations"
+        "rawText": "Example 3 — Apply Formulas to Real-World Situations"
       }
     },
     {
@@ -3671,7 +3671,7 @@
         "lesson": "7",
         "exampleNumber": 4,
         "sourceLesson": "2-7",
-        "rawText": "Example 4 \u2014 Solve Formulas with Constraints"
+        "rawText": "Example 4 — Solve Formulas with Constraints"
       }
     },
     {
@@ -3689,7 +3689,7 @@
         "lesson": "7",
         "exampleNumber": 5,
         "sourceLesson": "2-7",
-        "rawText": "Examples 5-7 \u2014 Dimensional Analysis and Unit Conversion"
+        "rawText": "Examples 5-7 — Dimensional Analysis and Unit Conversion"
       }
     },
     {
@@ -3707,7 +3707,7 @@
         "lesson": "7",
         "exampleNumber": 6,
         "sourceLesson": "2-7",
-        "rawText": "Examples 5-7 \u2014 Dimensional Analysis and Unit Conversion"
+        "rawText": "Examples 5-7 — Dimensional Analysis and Unit Conversion"
       }
     },
     {
@@ -3725,7 +3725,7 @@
         "lesson": "7",
         "exampleNumber": 7,
         "sourceLesson": "2-7",
-        "rawText": "Examples 5-7 \u2014 Dimensional Analysis and Unit Conversion"
+        "rawText": "Examples 5-7 — Dimensional Analysis and Unit Conversion"
       }
     },
     {
@@ -3743,7 +3743,7 @@
         "lesson": "1",
         "exampleNumber": 1,
         "sourceLesson": "3-1",
-        "rawText": "Example 1 \u2014 Multiple Representations of a Relation"
+        "rawText": "Example 1 — Multiple Representations of a Relation"
       }
     },
     {
@@ -3761,7 +3761,7 @@
         "lesson": "1",
         "exampleNumber": 2,
         "sourceLesson": "3-1",
-        "rawText": "Example 2 \u2014 Independent and Dependent Variables from Graphs"
+        "rawText": "Example 2 — Independent and Dependent Variables from Graphs"
       }
     },
     {
@@ -3779,7 +3779,7 @@
         "lesson": "1",
         "exampleNumber": 3,
         "sourceLesson": "3-1",
-        "rawText": "Example 3 \u2014 Graph Data from a Table"
+        "rawText": "Example 3 — Graph Data from a Table"
       }
     },
     {
@@ -3797,7 +3797,7 @@
         "lesson": "1",
         "exampleNumber": 4,
         "sourceLesson": "3-1",
-        "rawText": "Example 4 \u2014 Graph Data from Ordered Pairs"
+        "rawText": "Example 4 — Graph Data from Ordered Pairs"
       }
     },
     {
@@ -3815,7 +3815,7 @@
         "lesson": "1",
         "exampleNumber": 5,
         "sourceLesson": "3-1",
-        "rawText": "Example 5 \u2014 Interpret Axes, Scale, and Origin"
+        "rawText": "Example 5 — Interpret Axes, Scale, and Origin"
       }
     },
     {
@@ -3833,7 +3833,7 @@
         "lesson": "2",
         "exampleNumber": 1,
         "sourceLesson": "3-2",
-        "rawText": "Example 1 \u2014 Determine Whether a Relation Is a Function"
+        "rawText": "Example 1 — Determine Whether a Relation Is a Function"
       }
     },
     {
@@ -3851,7 +3851,7 @@
         "lesson": "2",
         "exampleNumber": 2,
         "sourceLesson": "3-2",
-        "rawText": "Example 2 \u2014 Domain and Range from Real-World Data"
+        "rawText": "Example 2 — Domain and Range from Real-World Data"
       }
     },
     {
@@ -3869,7 +3869,7 @@
         "lesson": "2",
         "exampleNumber": 3,
         "sourceLesson": "3-2",
-        "rawText": "Example 3 \u2014 Evaluate Functions"
+        "rawText": "Example 3 — Evaluate Functions"
       }
     },
     {
@@ -3887,7 +3887,7 @@
         "lesson": "2",
         "exampleNumber": 4,
         "sourceLesson": "3-2",
-        "rawText": "Example 4 \u2014 Interpret Functions in Context"
+        "rawText": "Example 4 — Interpret Functions in Context"
       }
     },
     {
@@ -3905,7 +3905,7 @@
         "lesson": "3",
         "exampleNumber": 1,
         "sourceLesson": "3-3",
-        "rawText": "Example 1 \u2014 Classify Functions from Graphs"
+        "rawText": "Example 1 — Classify Functions from Graphs"
       }
     },
     {
@@ -3923,7 +3923,7 @@
         "lesson": "3",
         "exampleNumber": 2,
         "sourceLesson": "3-3",
-        "rawText": "Example 2 \u2014 Classify Real-World Functions from Graphs"
+        "rawText": "Example 2 — Classify Real-World Functions from Graphs"
       }
     },
     {
@@ -3941,7 +3941,7 @@
         "lesson": "3",
         "exampleNumber": 3,
         "sourceLesson": "3-3",
-        "rawText": "Example 3 \u2014 Determine Linearity from Equations"
+        "rawText": "Example 3 — Determine Linearity from Equations"
       }
     },
     {
@@ -3959,7 +3959,7 @@
         "lesson": "3",
         "exampleNumber": 4,
         "sourceLesson": "3-3",
-        "rawText": "Example 4 \u2014 Determine Linearity from Graphs"
+        "rawText": "Example 4 — Determine Linearity from Graphs"
       }
     },
     {
@@ -3977,7 +3977,7 @@
         "lesson": "3",
         "exampleNumber": 5,
         "sourceLesson": "3-3",
-        "rawText": "Example 5 \u2014 Determine Linearity from Tables"
+        "rawText": "Example 5 — Determine Linearity from Tables"
       }
     },
     {
@@ -3995,7 +3995,7 @@
         "lesson": "4",
         "exampleNumber": 1,
         "sourceLesson": "3-4",
-        "rawText": "Examples 1 and 2 \u2014 Estimate Intercepts from a Graph"
+        "rawText": "Examples 1 and 2 — Estimate Intercepts from a Graph"
       }
     },
     {
@@ -4013,7 +4013,7 @@
         "lesson": "4",
         "exampleNumber": 2,
         "sourceLesson": "3-4",
-        "rawText": "Examples 1 and 2 \u2014 Estimate Intercepts from a Graph"
+        "rawText": "Examples 1 and 2 — Estimate Intercepts from a Graph"
       }
     },
     {
@@ -4031,7 +4031,7 @@
         "lesson": "4",
         "exampleNumber": 3,
         "sourceLesson": "3-4",
-        "rawText": "Example 3 \u2014 Interpret Intercepts in Context"
+        "rawText": "Example 3 — Interpret Intercepts in Context"
       }
     },
     {
@@ -4049,7 +4049,7 @@
         "lesson": "4",
         "exampleNumber": 5,
         "sourceLesson": "3-4",
-        "rawText": "Examples 5, 6, and 7 \u2014 Solve Equations by Graphing"
+        "rawText": "Examples 5, 6, and 7 — Solve Equations by Graphing"
       }
     },
     {
@@ -4067,7 +4067,7 @@
         "lesson": "4",
         "exampleNumber": 6,
         "sourceLesson": "3-4",
-        "rawText": "Examples 5, 6, and 7 \u2014 Solve Equations by Graphing"
+        "rawText": "Examples 5, 6, and 7 — Solve Equations by Graphing"
       }
     },
     {
@@ -4085,7 +4085,7 @@
         "lesson": "4",
         "exampleNumber": 7,
         "sourceLesson": "3-4",
-        "rawText": "Examples 5, 6, and 7 \u2014 Solve Equations by Graphing"
+        "rawText": "Examples 5, 6, and 7 — Solve Equations by Graphing"
       }
     },
     {
@@ -4103,7 +4103,7 @@
         "lesson": "4",
         "exampleNumber": 8,
         "sourceLesson": "3-4",
-        "rawText": "Example 8 \u2014 Find and Interpret the Zero of a Function"
+        "rawText": "Example 8 — Find and Interpret the Zero of a Function"
       }
     },
     {
@@ -4121,7 +4121,7 @@
         "lesson": "5",
         "exampleNumber": 1,
         "sourceLesson": "3-5",
-        "rawText": "Example 1 \u2014 Determine Line Symmetry"
+        "rawText": "Example 1 — Determine Line Symmetry"
       }
     },
     {
@@ -4139,7 +4139,7 @@
         "lesson": "5",
         "exampleNumber": 2,
         "sourceLesson": "3-5",
-        "rawText": "Example 2 \u2014 Interpret Symmetry in Context"
+        "rawText": "Example 2 — Interpret Symmetry in Context"
       }
     },
     {
@@ -4157,7 +4157,7 @@
         "lesson": "5",
         "exampleNumber": 3,
         "sourceLesson": "3-5",
-        "rawText": "Example 3 \u2014 Determine Where f(x) Is Increasing and/or Decreasing"
+        "rawText": "Example 3 — Determine Where f(x) Is Increasing and/or Decreasing"
       }
     },
     {
@@ -4175,7 +4175,7 @@
         "lesson": "5",
         "exampleNumber": 4,
         "sourceLesson": "3-5",
-        "rawText": "Example 4 \u2014 Determine Extrema"
+        "rawText": "Example 4 — Determine Extrema"
       }
     },
     {
@@ -4193,7 +4193,7 @@
         "lesson": "5",
         "exampleNumber": 5,
         "sourceLesson": "3-5",
-        "rawText": "Example 5 \u2014 Interpret Extrema in Context"
+        "rawText": "Example 5 — Interpret Extrema in Context"
       }
     },
     {
@@ -4211,7 +4211,7 @@
         "lesson": "5",
         "exampleNumber": 6,
         "sourceLesson": "3-5",
-        "rawText": "Examples 6 and 7 \u2014 Determine End Behavior"
+        "rawText": "Examples 6 and 7 — Determine End Behavior"
       }
     },
     {
@@ -4229,7 +4229,7 @@
         "lesson": "5",
         "exampleNumber": 7,
         "sourceLesson": "3-5",
-        "rawText": "Examples 6 and 7 \u2014 Determine End Behavior"
+        "rawText": "Examples 6 and 7 — Determine End Behavior"
       }
     },
     {
@@ -4247,7 +4247,7 @@
         "lesson": "6",
         "exampleNumber": 1,
         "sourceLesson": "3-6",
-        "rawText": "Example 1 \u2014 Sketch Linear Functions from Verbal Descriptions"
+        "rawText": "Example 1 — Sketch Linear Functions from Verbal Descriptions"
       }
     },
     {
@@ -4265,7 +4265,7 @@
         "lesson": "6",
         "exampleNumber": 2,
         "sourceLesson": "3-6",
-        "rawText": "Example 2 \u2014 Sketch Nonlinear Functions and Interpret Key Features"
+        "rawText": "Example 2 — Sketch Nonlinear Functions and Interpret Key Features"
       }
     },
     {
@@ -4283,7 +4283,7 @@
         "lesson": "6",
         "exampleNumber": 3,
         "sourceLesson": "3-6",
-        "rawText": "Example 3 \u2014 Sketch and Interpret Real-World Data Trends"
+        "rawText": "Example 3 — Sketch and Interpret Real-World Data Trends"
       }
     },
     {
@@ -4301,7 +4301,7 @@
         "lesson": "6",
         "exampleNumber": 4,
         "sourceLesson": "3-6",
-        "rawText": "Example 4 \u2014 Compare Functions from Descriptions and Graphs"
+        "rawText": "Example 4 — Compare Functions from Descriptions and Graphs"
       }
     },
     {
@@ -4319,7 +4319,7 @@
         "lesson": "1",
         "exampleNumber": 1,
         "sourceLesson": "4-1",
-        "rawText": "Example 1 \u2014 Graph by Making a Table"
+        "rawText": "Example 1 — Graph by Making a Table"
       }
     },
     {
@@ -4337,7 +4337,7 @@
         "lesson": "1",
         "exampleNumber": 2,
         "sourceLesson": "4-1",
-        "rawText": "Example 2 \u2014 Graph Using x- and y-Intercepts"
+        "rawText": "Example 2 — Graph Using x- and y-Intercepts"
       }
     },
     {
@@ -4355,7 +4355,7 @@
         "lesson": "1",
         "exampleNumber": 3,
         "sourceLesson": "4-1",
-        "rawText": "Example 3 \u2014 Interpret Intercepts in Context"
+        "rawText": "Example 3 — Interpret Intercepts in Context"
       }
     },
     {
@@ -4571,7 +4571,7 @@
         "lesson": "3",
         "exampleNumber": 5,
         "sourceLesson": "4-3",
-        "rawText": "Examples 5 and 6 \u2014 Graph Linear Functions"
+        "rawText": "Examples 5 and 6 — Graph Linear Functions"
       }
     },
     {
@@ -4589,7 +4589,7 @@
         "lesson": "3",
         "exampleNumber": 6,
         "sourceLesson": "4-3",
-        "rawText": "Examples 5 and 6 \u2014 Graph Linear Functions"
+        "rawText": "Examples 5 and 6 — Graph Linear Functions"
       }
     },
     {
@@ -5291,7 +5291,7 @@
         "lesson": "3",
         "exampleNumber": 2,
         "sourceLesson": "5-3",
-        "rawText": "5-3, Example 2 \u2014 Write and Use Lines of Fit (continued)"
+        "rawText": "5-3, Example 2 — Write and Use Lines of Fit (continued)"
       }
     },
     {
@@ -5634,7 +5634,7 @@
         "lesson": "2",
         "exampleNumber": 1,
         "sourceLesson": "6-2",
-        "rawText": "Example 1 \u2014 Write and Solve Contextual Inequalities"
+        "rawText": "Example 1 — Write and Solve Contextual Inequalities"
       }
     },
     {
@@ -5653,7 +5653,7 @@
         "lesson": "2",
         "exampleNumber": 2,
         "sourceLesson": "6-2",
-        "rawText": "Example 2 \u2014 Translate, Solve, and Graph Verbal Inequalities"
+        "rawText": "Example 2 — Translate, Solve, and Graph Verbal Inequalities"
       }
     },
     {
@@ -5672,7 +5672,7 @@
         "lesson": "2",
         "exampleNumber": 3,
         "sourceLesson": "6-2",
-        "rawText": "Example 3 \u2014 Solve and Graph Multi-Step Inequalities"
+        "rawText": "Example 3 — Solve and Graph Multi-Step Inequalities"
       }
     },
     {
@@ -5691,7 +5691,7 @@
         "lesson": "2",
         "exampleNumber": 2,
         "sourceLesson": "6-2",
-        "rawText": "Example 2 \u2014 Translate, Solve, and Graph Verbal Inequalities (schedule repeat)"
+        "rawText": "Example 2 — Translate, Solve, and Graph Verbal Inequalities (schedule repeat)"
       }
     },
     {
@@ -5710,7 +5710,7 @@
         "lesson": "2",
         "exampleNumber": 3,
         "sourceLesson": "6-2",
-        "rawText": "Example 3 \u2014 Solve and Graph Multi-Step Inequalities (schedule repeat)"
+        "rawText": "Example 3 — Solve and Graph Multi-Step Inequalities (schedule repeat)"
       }
     },
     {
@@ -5719,7 +5719,7 @@
       "title": "Example 1: Solve and Graph Compound Inequalities",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/modules/module-6-lesson-3 (Examples 1, 3, and 4 \u2014 Solve and Graph Compound Inequalities heading)"
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-3 (Examples 1, 3, and 4 — Solve and Graph Compound Inequalities heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -5728,7 +5728,7 @@
         "lesson": "3",
         "exampleNumber": 1,
         "sourceLesson": "6-3",
-        "rawText": "Examples 1, 3, and 4 \u2014 Solve and Graph Compound Inequalities"
+        "rawText": "Examples 1, 3, and 4 — Solve and Graph Compound Inequalities"
       }
     },
     {
@@ -5737,7 +5737,7 @@
       "title": "Example 2: Model, Solve, and Graph Contextual Compound Inequalities",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/modules/module-6-lesson-3 (Example 2 \u2014 Model, Solve, and Graph Contextual Compound Inequalities heading)"
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-3 (Example 2 — Model, Solve, and Graph Contextual Compound Inequalities heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -5746,7 +5746,7 @@
         "lesson": "3",
         "exampleNumber": 2,
         "sourceLesson": "6-3",
-        "rawText": "Example 2 \u2014 Model, Solve, and Graph Contextual Compound Inequalities"
+        "rawText": "Example 2 — Model, Solve, and Graph Contextual Compound Inequalities"
       }
     },
     {
@@ -5764,7 +5764,7 @@
         "lesson": "3",
         "exampleNumber": 2,
         "sourceLesson": "6-3",
-        "rawText": "Example 2 \u2014 Model, Solve, and Graph Contextual Compound Inequalities (schedule repeat)"
+        "rawText": "Example 2 — Model, Solve, and Graph Contextual Compound Inequalities (schedule repeat)"
       }
     },
     {
@@ -5773,7 +5773,7 @@
       "title": "Example 3: Solve and Graph Compound Inequalities",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/modules/module-6-lesson-3 (Examples 1, 3, and 4 \u2014 Solve and Graph Compound Inequalities heading)"
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-3 (Examples 1, 3, and 4 — Solve and Graph Compound Inequalities heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -5782,7 +5782,7 @@
         "lesson": "3",
         "exampleNumber": 3,
         "sourceLesson": "6-3",
-        "rawText": "Examples 1, 3, and 4 \u2014 Solve and Graph Compound Inequalities"
+        "rawText": "Examples 1, 3, and 4 — Solve and Graph Compound Inequalities"
       }
     },
     {
@@ -5800,7 +5800,7 @@
         "lesson": "4",
         "exampleNumber": 1,
         "sourceLesson": "6-4",
-        "rawText": "6-4, Examples 1, 2, 4, 5 \u2014 Solve and graph absolute value inequalities"
+        "rawText": "6-4, Examples 1, 2, 4, 5 — Solve and graph absolute value inequalities"
       }
     },
     {
@@ -5818,7 +5818,7 @@
         "lesson": "4",
         "exampleNumber": 2,
         "sourceLesson": "6-4",
-        "rawText": "6-4, Examples 1, 2, 4, 5 \u2014 Solve and graph absolute value inequalities"
+        "rawText": "6-4, Examples 1, 2, 4, 5 — Solve and graph absolute value inequalities"
       }
     },
     {
@@ -5836,7 +5836,7 @@
         "lesson": "4",
         "exampleNumber": 3,
         "sourceLesson": "6-4",
-        "rawText": "6-4, Example 3 \u2014 Model absolute value inequalities in context"
+        "rawText": "6-4, Example 3 — Model absolute value inequalities in context"
       }
     },
     {
@@ -5854,7 +5854,7 @@
         "lesson": "4",
         "exampleNumber": 4,
         "sourceLesson": "6-4",
-        "rawText": "6-4, Examples 1, 2, 4, 5 \u2014 Solve and graph absolute value inequalities"
+        "rawText": "6-4, Examples 1, 2, 4, 5 — Solve and graph absolute value inequalities"
       }
     },
     {
@@ -5872,7 +5872,7 @@
         "lesson": "4",
         "exampleNumber": 5,
         "sourceLesson": "6-4",
-        "rawText": "6-4, Examples 1, 2, 4, 5 \u2014 Solve and graph absolute value inequalities"
+        "rawText": "6-4, Examples 1, 2, 4, 5 — Solve and graph absolute value inequalities"
       }
     },
     {
@@ -5890,7 +5890,7 @@
         "lesson": "5",
         "exampleNumber": 1,
         "sourceLesson": "6-5",
-        "rawText": "6-5, Examples 1 and 2 \u2014 Graph inequalities in slope-intercept and standard form"
+        "rawText": "6-5, Examples 1 and 2 — Graph inequalities in slope-intercept and standard form"
       }
     },
     {
@@ -5908,7 +5908,7 @@
         "lesson": "5",
         "exampleNumber": 2,
         "sourceLesson": "6-5",
-        "rawText": "6-5, Examples 1 and 2 \u2014 Graph inequalities in slope-intercept and standard form"
+        "rawText": "6-5, Examples 1 and 2 — Graph inequalities in slope-intercept and standard form"
       }
     },
     {
@@ -5926,7 +5926,7 @@
         "lesson": "5",
         "exampleNumber": 3,
         "sourceLesson": "6-5",
-        "rawText": "6-5, Example 3 \u2014 Write and graph inequalities from context"
+        "rawText": "6-5, Example 3 — Write and graph inequalities from context"
       }
     },
     {
@@ -5944,7 +5944,7 @@
         "lesson": "5",
         "exampleNumber": 3,
         "sourceLesson": "6-5",
-        "rawText": "6-5, Example 3 \u2014 Duplicate of math.im1.example.6.5.024"
+        "rawText": "6-5, Example 3 — Duplicate of math.im1.example.6.5.024"
       },
       "independentPracticeReady": false
     },
@@ -5963,7 +5963,7 @@
         "lesson": "5",
         "exampleNumber": 4,
         "sourceLesson": "6-5",
-        "rawText": "6-5, Example 4 \u2014 Graph special-case inequalities"
+        "rawText": "6-5, Example 4 — Graph special-case inequalities"
       }
     },
     {
@@ -5981,7 +5981,7 @@
         "module": "7",
         "lesson": "1",
         "sourceLesson": "7-1",
-        "rawText": "7-1, Examples 1 and 2 \u2014 Use a graph to determine the number of solutions and classify systems",
+        "rawText": "7-1, Examples 1 and 2 — Use a graph to determine the number of solutions and classify systems",
         "historicalExampleNumber": 1
       }
     },
@@ -6000,7 +6000,7 @@
         "module": "7",
         "lesson": "1",
         "sourceLesson": "7-1",
-        "rawText": "7-1, Examples 3 and 4 \u2014 Determine the number of solutions and classify systems from equations",
+        "rawText": "7-1, Examples 3 and 4 — Determine the number of solutions and classify systems from equations",
         "historicalExampleNumber": 2
       }
     },
@@ -6019,7 +6019,7 @@
         "module": "7",
         "lesson": "1",
         "sourceLesson": "7-1",
-        "rawText": "7-1, Examples 5 and 6 \u2014 Graph systems and find solutions",
+        "rawText": "7-1, Examples 5 and 6 — Graph systems and find solutions",
         "historicalExampleNumber": 3
       }
     },
@@ -6038,7 +6038,7 @@
         "module": "7",
         "lesson": "1",
         "sourceLesson": "7-1",
-        "rawText": "7-1, Example 7 \u2014 Write, graph, solve, and interpret contextual systems",
+        "rawText": "7-1, Example 7 — Write, graph, solve, and interpret contextual systems",
         "historicalExampleNumber": 4
       }
     },
@@ -6057,7 +6057,7 @@
         "module": "7",
         "lesson": "1",
         "sourceLesson": "7-1",
-        "rawText": "7-1, Example 8 \u2014 Graph both sides to solve linear equations",
+        "rawText": "7-1, Example 8 — Graph both sides to solve linear equations",
         "historicalExampleNumber": 5
       }
     },
@@ -6076,7 +6076,7 @@
         "module": "7",
         "lesson": "1",
         "sourceLesson": "7-1",
-        "rawText": "7-1, Example 9 \u2014 Solve decimal systems to the nearest hundredth",
+        "rawText": "7-1, Example 9 — Solve decimal systems to the nearest hundredth",
         "historicalExampleNumber": 6
       }
     },
@@ -6095,7 +6095,7 @@
         "module": "7",
         "lesson": "1",
         "sourceLesson": "7-1",
-        "rawText": "7-1, Example 10 \u2014 Solve and interpret contextual systems",
+        "rawText": "7-1, Example 10 — Solve and interpret contextual systems",
         "historicalExampleNumber": 7
       }
     },
@@ -6152,7 +6152,7 @@
         "module": "7",
         "lesson": "3",
         "sourceLesson": "7-3",
-        "rawText": "Examples 1, 3 (Problems 1-27) \u2014 Solve systems by direct elimination",
+        "rawText": "Examples 1, 3 (Problems 1-27) — Solve systems by direct elimination",
         "historicalExampleNumber": 1
       }
     },
@@ -6172,7 +6172,7 @@
         "lesson": "3",
         "exampleNumber": 2,
         "sourceLesson": "7-3",
-        "rawText": "Example 2 (Problems 28-30) \u2014 Model number relationships with a system and solve by elimination"
+        "rawText": "Example 2 (Problems 28-30) — Model number relationships with a system and solve by elimination"
       }
     },
     {
@@ -6208,7 +6208,7 @@
         "lesson": "3",
         "exampleNumber": 4,
         "sourceLesson": "7-3",
-        "rawText": "Example 4 (Problems 31-32) \u2014 Model and solve contextual systems by elimination"
+        "rawText": "Example 4 (Problems 31-32) — Model and solve contextual systems by elimination"
       }
     },
     {
@@ -6227,7 +6227,7 @@
         "lesson": "4",
         "exampleNumber": 1,
         "sourceLesson": "7-4",
-        "rawText": "7-4, Examples 1 and 2 \u2014 Solve systems by elimination after scaling equations"
+        "rawText": "7-4, Examples 1 and 2 — Solve systems by elimination after scaling equations"
       }
     },
     {
@@ -6243,7 +6243,7 @@
         "lesson": "4",
         "exampleNumber": 2,
         "sourceLesson": "7-4",
-        "rawText": "7-4, Examples 1 and 2 \u2014 Duplicate of math.im1.example.7.4.014"
+        "rawText": "7-4, Examples 1 and 2 — Duplicate of math.im1.example.7.4.014"
       },
       "independentPracticeReady": false
     },
@@ -6263,7 +6263,7 @@
         "lesson": "5",
         "exampleNumber": 1,
         "sourceLesson": "7-5",
-        "rawText": "Examples 1 and 2 \u2014 Problems 1-12"
+        "rawText": "Examples 1 and 2 — Problems 1-12"
       },
       "independentPracticeReady": false
     },
@@ -6280,7 +6280,7 @@
         "lesson": "5",
         "exampleNumber": 2,
         "sourceLesson": "7-5",
-        "rawText": "7-5, Examples 1-2 \u2014 Graph Systems in Slope-Intercept Form; Graph Systems with Horizontal, Vertical, and Standard-Form Boundaries"
+        "rawText": "7-5, Examples 1-2 — Graph Systems in Slope-Intercept Form; Graph Systems with Horizontal, Vertical, and Standard-Form Boundaries"
       },
       "independentPracticeReady": false
     },
@@ -6297,7 +6297,7 @@
         "lesson": "5",
         "exampleNumber": 2,
         "sourceLesson": "7-5",
-        "rawText": "7-5, Examples 2-3 \u2014 Graph Systems with Horizontal, Vertical, and Standard-Form Boundaries (continued); Model Real-World Situations"
+        "rawText": "7-5, Examples 2-3 — Graph Systems with Horizontal, Vertical, and Standard-Form Boundaries (continued); Model Real-World Situations"
       },
       "independentPracticeReady": false
     },
@@ -6317,7 +6317,7 @@
         "lesson": "5",
         "exampleNumber": 3,
         "sourceLesson": "7-5",
-        "rawText": "Example 3 \u2014 Problems 13-14"
+        "rawText": "Example 3 — Problems 13-14"
       },
       "independentPracticeReady": false
     },
@@ -6337,7 +6337,7 @@
         "lesson": "1",
         "exampleNumber": 1,
         "sourceLesson": "8-1",
-        "rawText": "Example 1 \u2014 Problems 1-5"
+        "rawText": "Example 1 — Problems 1-5"
       },
       "independentPracticeReady": false
     },
@@ -6357,7 +6357,7 @@
         "lesson": "1",
         "exampleNumber": 2,
         "sourceLesson": "8-1",
-        "rawText": "Examples 2 and 3 \u2014 Problems 6-8"
+        "rawText": "Examples 2 and 3 — Problems 6-8"
       },
       "independentPracticeReady": false
     },
@@ -6374,18 +6374,18 @@
         "lesson": "1",
         "exampleNumber": 3,
         "sourceLesson": "8-1",
-        "rawText": "8-1, Examples 2-3 \u2014 Analyze Exponential Functions in Context"
+        "rawText": "8-1, Examples 2-3 — Analyze Exponential Functions in Context"
       },
       "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.8.2.004",
       "kind": "worked_example",
-      "title": "Examples 1\u20133, 6\u20137, and 10\u201312: Describe exponential transformations from equations",
+      "title": "Examples 1–3, 6–7, and 10–12: Describe exponential transformations from equations",
       "domain": "math.im1",
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx (Examples 1\u20133, 6\u20137, and 10\u201312; Problems 1\u201312)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx (Examples 1–3, 6–7, and 10–12; Problems 1–12)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -6394,18 +6394,18 @@
         "lesson": "2",
         "exampleNumber": 1,
         "sourceLesson": "8-2",
-        "rawText": "Examples 1\u20133, 6\u20137, and 10\u201312 \u2014 Problems 1\u201312"
+        "rawText": "Examples 1–3, 6–7, and 10–12 — Problems 1–12"
       },
       "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.8.2.005",
       "kind": "worked_example",
-      "title": "Examples 4\u20135 and 9: Write transformed exponential equations from graphs",
+      "title": "Examples 4–5 and 9: Write transformed exponential equations from graphs",
       "domain": "math.im1",
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx (Examples 4\u20135 and 9; Problems 13\u201316)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx (Examples 4–5 and 9; Problems 13–16)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -6414,7 +6414,7 @@
         "lesson": "2",
         "exampleNumber": 4,
         "sourceLesson": "8-2",
-        "rawText": "Examples 4\u20135 and 9 \u2014 Problems 13\u201316"
+        "rawText": "Examples 4–5 and 9 — Problems 13–16"
       },
       "independentPracticeReady": false
     },
@@ -6425,7 +6425,7 @@
       "domain": "math.im1",
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx (Example 8; Problems 17\u201320)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx (Example 8; Problems 17–20)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -6434,7 +6434,7 @@
         "lesson": "2",
         "exampleNumber": 8,
         "sourceLesson": "8-2",
-        "rawText": "Example 8 \u2014 Problems 17\u201320"
+        "rawText": "Example 8 — Problems 17–20"
       },
       "independentPracticeReady": false
     },
@@ -6445,7 +6445,7 @@
       "domain": "math.im1",
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx (Example 1; Problems 1\u20136)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx (Example 1; Problems 1–6)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -6454,7 +6454,7 @@
         "lesson": "3",
         "exampleNumber": 1,
         "sourceLesson": "8-3",
-        "rawText": "Example 1 \u2014 Problems 1\u20136"
+        "rawText": "Example 1 — Problems 1–6"
       },
       "independentPracticeReady": false
     },
@@ -6465,7 +6465,7 @@
       "domain": "math.im1",
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx (Example 2; Problems 7\u201310)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx (Example 2; Problems 7–10)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -6474,7 +6474,7 @@
         "lesson": "3",
         "exampleNumber": 2,
         "sourceLesson": "8-3",
-        "rawText": "Example 2 \u2014 Problems 7\u201310"
+        "rawText": "Example 2 — Problems 7–10"
       },
       "independentPracticeReady": false
     },
@@ -6485,7 +6485,7 @@
       "domain": "math.im1",
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx (Example 3; Problems 11\u201313)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx (Example 3; Problems 11–13)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -6494,18 +6494,18 @@
         "lesson": "3",
         "exampleNumber": 3,
         "sourceLesson": "8-3",
-        "rawText": "Example 3 \u2014 Problems 11\u201313"
+        "rawText": "Example 3 — Problems 11–13"
       },
       "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.8.3.010",
       "kind": "worked_example",
-      "title": "Examples 4\u20136: Apply exponential and compound-interest models",
+      "title": "Examples 4–6: Apply exponential and compound-interest models",
       "domain": "math.im1",
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx (Examples 4\u20136; Problems 14\u201321)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx (Examples 4–6; Problems 14–21)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -6514,7 +6514,7 @@
         "lesson": "3",
         "exampleNumber": 4,
         "sourceLesson": "8-3",
-        "rawText": "Examples 4\u20136 \u2014 Problems 14\u201321"
+        "rawText": "Examples 4–6 — Problems 14–21"
       },
       "independentPracticeReady": false
     },
@@ -6533,7 +6533,7 @@
         "lesson": "3",
         "exampleNumber": 5,
         "sourceLesson": "8-3",
-        "rawText": "8-3, Examples 3-6 \u2014 Model Real-World Growth and Decay; Apply Compound Interest and Exponential Models"
+        "rawText": "8-3, Examples 3-6 — Model Real-World Growth and Decay; Apply Compound Interest and Exponential Models"
       },
       "independentPracticeReady": false
     },
@@ -6552,7 +6552,7 @@
         "lesson": "3",
         "exampleNumber": 6,
         "sourceLesson": "8-3",
-        "rawText": "8-3, Examples 3-6 \u2014 Model Real-World Growth and Decay; Apply Compound Interest and Exponential Models"
+        "rawText": "8-3, Examples 3-6 — Model Real-World Growth and Decay; Apply Compound Interest and Exponential Models"
       },
       "independentPracticeReady": false
     },
@@ -6571,7 +6571,7 @@
         "lesson": "4",
         "exampleNumber": 1,
         "sourceLesson": "8-4",
-        "rawText": "Example 1, Problems 1-5 \u2014 Rewrite and compare exponential rates across time units"
+        "rawText": "Example 1, Problems 1-5 — Rewrite and compare exponential rates across time units"
       },
       "independentPracticeReady": false
     },
@@ -6673,10 +6673,11 @@
     {
       "id": "math.im1.example.8.6.019",
       "kind": "worked_example",
-      "title": "Example 1: Find Terms from a Recursive Formula (Arithmetic and Geometric Types)",
+      "title": "Examples 1 and 2, Problems 1-6: Generate terms from recursive rules",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-8-class-period-plan.md (8-6, Example 1)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0806_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0806_practice.docx (Examples 1 and 2, Problems 1-6)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -6685,34 +6686,38 @@
         "lesson": "6",
         "exampleNumber": 1,
         "sourceLesson": "8-6",
-        "rawText": "8-6, Examples 1-2 \u2014 Find Terms from a Recursive Formula (Arithmetic and Geometric Types)"
-      }
+        "rawText": "Examples 1 and 2, Problems 1-6: Generate terms from recursive rules"
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.8.6.020",
       "kind": "worked_example",
-      "title": "Example 2: Find Terms from a Recursive Formula (Arithmetic and Geometric Types)",
+      "title": "Examples 1 and 2: rejected duplicate source identity",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-8-class-period-plan.md (8-6, Example 2)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0806_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0806_practice.docx (Examples 1 and 2, duplicate)"
       ],
-      "reviewStatus": "draft",
+      "reviewStatus": "rejected",
       "metadata": {
         "course": "im1",
         "module": "8",
         "lesson": "6",
         "exampleNumber": 2,
         "sourceLesson": "8-6",
-        "rawText": "8-6, Examples 1-2 \u2014 Find Terms from a Recursive Formula (Arithmetic and Geometric Types)"
-      }
+        "rawText": "Examples 1 and 2: rejected duplicate source identity"
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.8.6.021",
       "kind": "worked_example",
-      "title": "Example 3: Write a Recursive Formula for a Sequence; Convert Between Recursive and Explicit Formulas",
+      "title": "Example 3, Problems 7-12: Write recursive formulas from displayed sequences",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-8-class-period-plan.md (8-6, Example 3)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0806_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0806_practice.docx (Example 3, Problems 7-12)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -6721,16 +6726,18 @@
         "lesson": "6",
         "exampleNumber": 3,
         "sourceLesson": "8-6",
-        "rawText": "8-6, Examples 3-6 \u2014 Write a Recursive Formula for a Sequence; Convert Between Recursive and Explicit Formulas"
-      }
+        "rawText": "Example 3, Problems 7-12: Write recursive formulas from displayed sequences"
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.8.6.022",
       "kind": "worked_example",
-      "title": "Example 4: Write a Recursive Formula for a Sequence; Convert Between Recursive and Explicit Formulas",
+      "title": "Example 4, Problems 13-18: Write recursive formulas from discrete graphs",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-8-class-period-plan.md (8-6, Example 4)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0806_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0806_practice.docx (Example 4, Problems 13-18)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -6739,16 +6746,18 @@
         "lesson": "6",
         "exampleNumber": 4,
         "sourceLesson": "8-6",
-        "rawText": "8-6, Examples 3-6 \u2014 Write a Recursive Formula for a Sequence; Convert Between Recursive and Explicit Formulas"
-      }
+        "rawText": "Example 4, Problems 13-18: Write recursive formulas from discrete graphs"
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.8.6.023",
       "kind": "worked_example",
-      "title": "Example 5: Write a Recursive Formula for a Sequence; Convert Between Recursive and Explicit Formulas",
+      "title": "Example 5, Problems 19-21: Write recursive and explicit formulas in contexts",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-8-class-period-plan.md (8-6, Example 5)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0806_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0806_practice.docx (Example 5, Problems 19-21)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -6757,16 +6766,18 @@
         "lesson": "6",
         "exampleNumber": 5,
         "sourceLesson": "8-6",
-        "rawText": "8-6, Examples 3-6 \u2014 Write a Recursive Formula for a Sequence; Convert Between Recursive and Explicit Formulas"
-      }
+        "rawText": "Example 5, Problems 19-21: Write recursive and explicit formulas in contexts"
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.8.6.024",
       "kind": "worked_example",
-      "title": "Example 6: Write a Recursive Formula for a Sequence; Convert Between Recursive and Explicit Formulas",
+      "title": "Example 6, Problems 22-29: Convert between recursive and explicit formulas",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-8-class-period-plan.md (8-6, Example 6)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0806_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0806_practice.docx (Example 6, Problems 22-29)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -6775,8 +6786,9 @@
         "lesson": "6",
         "exampleNumber": 6,
         "sourceLesson": "8-6",
-        "rawText": "8-6, Examples 3-6 \u2014 Write a Recursive Formula for a Sequence; Convert Between Recursive and Explicit Formulas"
-      }
+        "rawText": "Example 6, Problems 22-29: Convert between recursive and explicit formulas"
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.9.1.001",
@@ -6793,7 +6805,7 @@
         "lesson": "1",
         "exampleNumber": 1,
         "sourceLesson": "9-1",
-        "rawText": "9-1, Examples 1-2 \u2014 Find Mean, Median, and Mode; Find Percentile Rank"
+        "rawText": "9-1, Examples 1-2 — Find Mean, Median, and Mode; Find Percentile Rank"
       }
     },
     {
@@ -6811,7 +6823,7 @@
         "lesson": "1",
         "exampleNumber": 2,
         "sourceLesson": "9-1",
-        "rawText": "9-1, Examples 1-2 \u2014 Find Mean, Median, and Mode; Find Percentile Rank"
+        "rawText": "9-1, Examples 1-2 — Find Mean, Median, and Mode; Find Percentile Rank"
       }
     },
     {
@@ -6829,7 +6841,7 @@
         "lesson": "2",
         "exampleNumber": 1,
         "sourceLesson": "9-2",
-        "rawText": "9-2, Examples 1-3 \u2014 Make a Dot Plot from a Table; Make a Bar Graph from a Survey; Discrete vs. Continuous Data"
+        "rawText": "9-2, Examples 1-3 — Make a Dot Plot from a Table; Make a Bar Graph from a Survey; Discrete vs. Continuous Data"
       }
     },
     {
@@ -6847,7 +6859,7 @@
         "lesson": "2",
         "exampleNumber": 2,
         "sourceLesson": "9-2",
-        "rawText": "9-2, Examples 1-3 \u2014 Make a Dot Plot from a Table; Make a Bar Graph from a Survey; Discrete vs. Continuous Data"
+        "rawText": "9-2, Examples 1-3 — Make a Dot Plot from a Table; Make a Bar Graph from a Survey; Discrete vs. Continuous Data"
       }
     },
     {
@@ -6865,7 +6877,7 @@
         "lesson": "2",
         "exampleNumber": 3,
         "sourceLesson": "9-2",
-        "rawText": "9-2, Examples 1-3 \u2014 Make a Dot Plot from a Table; Make a Bar Graph from a Survey; Discrete vs. Continuous Data"
+        "rawText": "9-2, Examples 1-3 — Make a Dot Plot from a Table; Make a Bar Graph from a Survey; Discrete vs. Continuous Data"
       }
     },
     {
@@ -6883,7 +6895,7 @@
         "lesson": "2",
         "exampleNumber": 4,
         "sourceLesson": "9-2",
-        "rawText": "9-2, Examples 4-5 \u2014 Bar Graph or Histogram?; Analyze Graphs for Misrepresentation"
+        "rawText": "9-2, Examples 4-5 — Bar Graph or Histogram?; Analyze Graphs for Misrepresentation"
       }
     },
     {
@@ -6901,7 +6913,7 @@
         "lesson": "2",
         "exampleNumber": 5,
         "sourceLesson": "9-2",
-        "rawText": "9-2, Examples 4-5 \u2014 Bar Graph or Histogram?; Analyze Graphs for Misrepresentation"
+        "rawText": "9-2, Examples 4-5 — Bar Graph or Histogram?; Analyze Graphs for Misrepresentation"
       }
     },
     {
@@ -6919,7 +6931,7 @@
         "lesson": "3",
         "exampleNumber": 1,
         "sourceLesson": "9-3",
-        "rawText": "9-3, Example 1 \u2014 Identify Sample Bias"
+        "rawText": "9-3, Example 1 — Identify Sample Bias"
       }
     },
     {
@@ -6937,7 +6949,7 @@
         "lesson": "3",
         "exampleNumber": 2,
         "sourceLesson": "9-3",
-        "rawText": "9-3, Examples 2-3 \u2014 Identify Survey Question Bias; Calculate and Choose Measures of Center"
+        "rawText": "9-3, Examples 2-3 — Identify Survey Question Bias; Calculate and Choose Measures of Center"
       }
     },
     {
@@ -6955,7 +6967,7 @@
         "lesson": "3",
         "exampleNumber": 3,
         "sourceLesson": "9-3",
-        "rawText": "9-3, Examples 2-3 \u2014 Identify Survey Question Bias; Calculate and Choose Measures of Center"
+        "rawText": "9-3, Examples 2-3 — Identify Survey Question Bias; Calculate and Choose Measures of Center"
       }
     },
     {
@@ -6973,7 +6985,7 @@
         "lesson": "4",
         "exampleNumber": 1,
         "sourceLesson": "9-4",
-        "rawText": "9-4, Examples 1-2 \u2014 Find the Range; Five-Number Summary and Box Plot"
+        "rawText": "9-4, Examples 1-2 — Find the Range; Five-Number Summary and Box Plot"
       }
     },
     {
@@ -6991,7 +7003,7 @@
         "lesson": "4",
         "exampleNumber": 2,
         "sourceLesson": "9-4",
-        "rawText": "9-4, Examples 1-2 \u2014 Find the Range; Five-Number Summary and Box Plot"
+        "rawText": "9-4, Examples 1-2 — Find the Range; Five-Number Summary and Box Plot"
       }
     },
     {
@@ -7009,7 +7021,7 @@
         "lesson": "4",
         "exampleNumber": 3,
         "sourceLesson": "9-4",
-        "rawText": "9-4, Examples 3-4 \u2014 Find the Interquartile Range; Find the Standard Deviation"
+        "rawText": "9-4, Examples 3-4 — Find the Interquartile Range; Find the Standard Deviation"
       }
     },
     {
@@ -7027,7 +7039,7 @@
         "lesson": "4",
         "exampleNumber": 4,
         "sourceLesson": "9-4",
-        "rawText": "9-4, Examples 3-4 \u2014 Find the Interquartile Range; Find the Standard Deviation"
+        "rawText": "9-4, Examples 3-4 — Find the Interquartile Range; Find the Standard Deviation"
       }
     },
     {
@@ -7045,7 +7057,7 @@
         "lesson": "5",
         "exampleNumber": 1,
         "sourceLesson": "9-5",
-        "rawText": "9-5, Examples 1-2 \u2014 Construct Histograms and Box Plots; Describe Center and Spread Using a Histogram"
+        "rawText": "9-5, Examples 1-2 — Construct Histograms and Box Plots; Describe Center and Spread Using a Histogram"
       }
     },
     {
@@ -7063,7 +7075,7 @@
         "lesson": "5",
         "exampleNumber": 2,
         "sourceLesson": "9-5",
-        "rawText": "9-5, Examples 1-2 \u2014 Construct Histograms and Box Plots; Describe Center and Spread Using a Histogram"
+        "rawText": "9-5, Examples 1-2 — Construct Histograms and Box Plots; Describe Center and Spread Using a Histogram"
       }
     },
     {
@@ -7081,7 +7093,7 @@
         "lesson": "5",
         "exampleNumber": 3,
         "sourceLesson": "9-5",
-        "rawText": "9-5, Examples 3-4 \u2014 Describe Center and Spread Using a Box Plot; Analyze Outliers and Their Effects"
+        "rawText": "9-5, Examples 3-4 — Describe Center and Spread Using a Box Plot; Analyze Outliers and Their Effects"
       }
     },
     {
@@ -7099,7 +7111,7 @@
         "lesson": "5",
         "exampleNumber": 4,
         "sourceLesson": "9-5",
-        "rawText": "9-5, Examples 3-4 \u2014 Describe Center and Spread Using a Box Plot; Analyze Outliers and Their Effects"
+        "rawText": "9-5, Examples 3-4 — Describe Center and Spread Using a Box Plot; Analyze Outliers and Their Effects"
       }
     },
     {
@@ -7117,7 +7129,7 @@
         "lesson": "6",
         "exampleNumber": 1,
         "sourceLesson": "9-6",
-        "rawText": "9-6, Examples 1-2 \u2014 Add a Constant and Find Statistics; Multiply by a Constant and Find Statistics"
+        "rawText": "9-6, Examples 1-2 — Add a Constant and Find Statistics; Multiply by a Constant and Find Statistics"
       }
     },
     {
@@ -7135,7 +7147,7 @@
         "lesson": "6",
         "exampleNumber": 2,
         "sourceLesson": "9-6",
-        "rawText": "9-6, Examples 1-2 \u2014 Add a Constant and Find Statistics; Multiply by a Constant and Find Statistics"
+        "rawText": "9-6, Examples 1-2 — Add a Constant and Find Statistics; Multiply by a Constant and Find Statistics"
       }
     },
     {
@@ -7153,7 +7165,7 @@
         "lesson": "6",
         "exampleNumber": 3,
         "sourceLesson": "9-6",
-        "rawText": "9-6, Examples 3-4 \u2014 Compare Data Sets with Graphs and Statistics"
+        "rawText": "9-6, Examples 3-4 — Compare Data Sets with Graphs and Statistics"
       }
     },
     {
@@ -7171,7 +7183,7 @@
         "lesson": "6",
         "exampleNumber": 4,
         "sourceLesson": "9-6",
-        "rawText": "9-6, Examples 3-4 \u2014 Compare Data Sets with Graphs and Statistics"
+        "rawText": "9-6, Examples 3-4 — Compare Data Sets with Graphs and Statistics"
       }
     },
     {
@@ -7189,7 +7201,7 @@
         "lesson": "7",
         "exampleNumber": 1,
         "sourceLesson": "9-7",
-        "rawText": "9-7, Examples 1-2 \u2014 Construct a Two-Way Frequency Table; Construct and Interpret a Relative Frequency Table"
+        "rawText": "9-7, Examples 1-2 — Construct a Two-Way Frequency Table; Construct and Interpret a Relative Frequency Table"
       }
     },
     {
@@ -7207,7 +7219,7 @@
         "lesson": "7",
         "exampleNumber": 2,
         "sourceLesson": "9-7",
-        "rawText": "9-7, Examples 1-2 \u2014 Construct a Two-Way Frequency Table; Construct and Interpret a Relative Frequency Table"
+        "rawText": "9-7, Examples 1-2 — Construct a Two-Way Frequency Table; Construct and Interpret a Relative Frequency Table"
       }
     },
     {
@@ -7743,7 +7755,7 @@
       "kind": "instructional_unit",
       "title": "Lesson 13-3",
       "domain": "math.im1",
-      "description": "Graph the image of a polygon after a rotation of 90\u00b0, 180\u00b0, or 270\u00b0 about a given point on the coordinate plane; Analyze properties preserved under rotations and identify common errors in reasoning about rotations",
+      "description": "Graph the image of a polygon after a rotation of 90°, 180°, or 270° about a given point on the coordinate plane; Analyze properties preserved under rotations and identify common errors in reasoning about rotations",
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/module-13-class-period-plan.md"
       ],
@@ -9893,9 +9905,9 @@
     {
       "id": "math.im1.skill.13.3.graph-the-image-of-a-polygon-after-a-rotation-of-90-180-or-2",
       "kind": "skill",
-      "title": "13e: Graph the image of a polygon after a rotation of 90\u00b0, 180\u00b0, or 270\u00b0 about a given point on the coordinate plane",
+      "title": "13e: Graph the image of a polygon after a rotation of 90°, 180°, or 270° about a given point on the coordinate plane",
       "domain": "math.im1",
-      "description": "Graph the image of a polygon after a rotation of 90\u00b0, 180\u00b0, or 270\u00b0 about a given point on the coordinate plane",
+      "description": "Graph the image of a polygon after a rotation of 90°, 180°, or 270° about a given point on the coordinate plane",
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/module-13-class-period-plan.md"
       ],
@@ -11063,7 +11075,7 @@
       "description": "Describe transformations of exponential functions verbally and in function notation.",
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx (Lesson 8-2, Problems 1\u201350; broad planning aggregate)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx (Lesson 8-2, Problems 1–50; broad planning aggregate)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -11081,8 +11093,8 @@
       "description": "Write an equation for a transformed exponential function from its graph.",
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx (Examples 4\u20135 and 9, Problems 13\u201316; Mixed Exercises, Problems 37\u201340)",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx (Example 2, Problems 7\u201310)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx (Examples 4–5 and 9, Problems 13–16; Mixed Exercises, Problems 37–40)",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx (Example 2, Problems 7–10)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -11100,7 +11112,7 @@
       "description": "Calculate a compound-interest balance from principal, rate, compounding frequency, and time.",
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx (Examples 4\u20136, Problems 16 and 20)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx (Examples 4–6, Problems 16 and 20)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -11118,7 +11130,7 @@
       "description": "Write an exponential function from two points.",
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx (Example 1, Problems 1\u20136; Mixed Exercises, Problems 22\u201324)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx (Example 1, Problems 1–6; Mixed Exercises, Problems 22–24)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -11187,32 +11199,36 @@
       "kind": "skill",
       "title": "8k: Convert between recursive and explicit formulas for arithmetic and geometric sequences",
       "domain": "math.im1",
-      "description": "Convert between recursive and explicit formulas for arithmetic and geometric sequences",
+      "description": "Broad planning aggregate for conversion between recursive and explicit arithmetic and geometric formulas.",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-8-class-period-plan.md"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0806_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0806_practice.docx (Lesson 8-6 broad planning aggregate)"
       ],
       "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "8",
         "lesson": "6"
-      }
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.skill.8.6.find-the-first-several-terms-of-a-sequence-given-a-recursive",
       "kind": "skill",
-      "title": "8j: Find the first several terms of a sequence given a recursive formula",
+      "title": "Generate terms of a sequence from an initial condition and recursive rule",
       "domain": "math.im1",
-      "description": "Find the first several terms of a sequence given a recursive formula",
+      "description": "Generate consecutive sequence terms by applying a supplied first-order recursive rule. Include affine, arithmetic, geometric, negative-factor, and fractional-coefficient rules.",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-8-class-period-plan.md"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0806_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0806_practice.docx (Examples 1 and 2, Problems 1-6; includes affine, arithmetic, geometric, negative-factor, and fractional-coefficient rules)"
       ],
       "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "8",
         "lesson": "6"
-      }
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.skill.9.1.calculate-the-mean-median-and-mode-of-a-data-set",
@@ -11411,7 +11427,7 @@
       "kind": "standard",
       "title": "6.EE.A.1 (placeholder)",
       "domain": "math",
-      "description": "Standard 6.EE.A.1 \u2014 definition not yet available in seed data",
+      "description": "Standard 6.EE.A.1 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -11432,7 +11448,7 @@
       "kind": "standard",
       "title": "6.EE.A.2 (placeholder)",
       "domain": "math",
-      "description": "Standard 6.EE.A.2 \u2014 definition not yet available in seed data",
+      "description": "Standard 6.EE.A.2 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -11453,7 +11469,7 @@
       "kind": "standard",
       "title": "6.EE.A.3 (placeholder)",
       "domain": "math",
-      "description": "Standard 6.EE.A.3 \u2014 definition not yet available in seed data",
+      "description": "Standard 6.EE.A.3 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -11474,7 +11490,7 @@
       "kind": "standard",
       "title": "6.EE.B.5 (placeholder)",
       "domain": "math",
-      "description": "Standard 6.EE.B.5 \u2014 definition not yet available in seed data",
+      "description": "Standard 6.EE.B.5 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -11495,7 +11511,7 @@
       "kind": "standard",
       "title": "6.SP.B.4 (placeholder)",
       "domain": "math",
-      "description": "Standard 6.SP.B.4 \u2014 definition not yet available in seed data",
+      "description": "Standard 6.SP.B.4 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -11516,7 +11532,7 @@
       "kind": "standard",
       "title": "6.SP.B.5 (placeholder)",
       "domain": "math",
-      "description": "Standard 6.SP.B.5 \u2014 definition not yet available in seed data",
+      "description": "Standard 6.SP.B.5 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -11537,7 +11553,7 @@
       "kind": "standard",
       "title": "6.SP.B.5d (placeholder)",
       "domain": "math",
-      "description": "Standard 6.SP.B.5d \u2014 definition not yet available in seed data",
+      "description": "Standard 6.SP.B.5d — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -11558,7 +11574,7 @@
       "kind": "standard",
       "title": "7.EE.A.1 (placeholder)",
       "domain": "math",
-      "description": "Standard 7.EE.A.1 \u2014 definition not yet available in seed data",
+      "description": "Standard 7.EE.A.1 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -11579,7 +11595,7 @@
       "kind": "standard",
       "title": "7.EE.B.3 (placeholder)",
       "domain": "math",
-      "description": "Standard 7.EE.B.3 \u2014 definition not yet available in seed data",
+      "description": "Standard 7.EE.B.3 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -11600,7 +11616,7 @@
       "kind": "standard",
       "title": "7.EE.B.4 (placeholder)",
       "domain": "math",
-      "description": "Standard 7.EE.B.4 \u2014 definition not yet available in seed data",
+      "description": "Standard 7.EE.B.4 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -11621,7 +11637,7 @@
       "kind": "standard",
       "title": "8.EE.C.7 (placeholder)",
       "domain": "math",
-      "description": "Standard 8.EE.C.7 \u2014 definition not yet available in seed data",
+      "description": "Standard 8.EE.C.7 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -11642,7 +11658,7 @@
       "kind": "standard",
       "title": "8.EE.C.8 (placeholder)",
       "domain": "math",
-      "description": "Standard 8.EE.C.8 \u2014 definition not yet available in seed data",
+      "description": "Standard 8.EE.C.8 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -11663,7 +11679,7 @@
       "kind": "standard",
       "title": "8.F.A.1 (placeholder)",
       "domain": "math",
-      "description": "Standard 8.F.A.1 \u2014 definition not yet available in seed data",
+      "description": "Standard 8.F.A.1 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -11684,7 +11700,7 @@
       "kind": "standard",
       "title": "8.F.A.2 (placeholder)",
       "domain": "math",
-      "description": "Standard 8.F.A.2 \u2014 definition not yet available in seed data",
+      "description": "Standard 8.F.A.2 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -11705,7 +11721,7 @@
       "kind": "standard",
       "title": "8.F.B.4 (placeholder)",
       "domain": "math",
-      "description": "Standard 8.F.B.4 \u2014 definition not yet available in seed data",
+      "description": "Standard 8.F.B.4 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -11726,7 +11742,7 @@
       "kind": "standard",
       "title": "8.G.A.1 (placeholder)",
       "domain": "math",
-      "description": "Standard 8.G.A.1 \u2014 definition not yet available in seed data",
+      "description": "Standard 8.G.A.1 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -11747,7 +11763,7 @@
       "kind": "standard",
       "title": "8.G.A.2 (placeholder)",
       "domain": "math",
-      "description": "Standard 8.G.A.2 \u2014 definition not yet available in seed data",
+      "description": "Standard 8.G.A.2 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -11768,7 +11784,7 @@
       "kind": "standard",
       "title": "8.G.A.4 (placeholder)",
       "domain": "math",
-      "description": "Standard 8.G.A.4 \u2014 definition not yet available in seed data",
+      "description": "Standard 8.G.A.4 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -11789,7 +11805,7 @@
       "kind": "standard",
       "title": "8.G.A.5 (placeholder)",
       "domain": "math",
-      "description": "Standard 8.G.A.5 \u2014 definition not yet available in seed data",
+      "description": "Standard 8.G.A.5 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -11810,7 +11826,7 @@
       "kind": "standard",
       "title": "8.SP.A.1 (placeholder)",
       "domain": "math",
-      "description": "Standard 8.SP.A.1 \u2014 definition not yet available in seed data",
+      "description": "Standard 8.SP.A.1 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -11831,7 +11847,7 @@
       "kind": "standard",
       "title": "8.SP.A.2 (placeholder)",
       "domain": "math",
-      "description": "Standard 8.SP.A.2 \u2014 definition not yet available in seed data",
+      "description": "Standard 8.SP.A.2 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -11852,7 +11868,7 @@
       "kind": "standard",
       "title": "A-CED.A.1 (placeholder)",
       "domain": "math",
-      "description": "Standard A-CED.A.1 \u2014 definition not yet available in seed data",
+      "description": "Standard A-CED.A.1 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -11873,7 +11889,7 @@
       "kind": "standard",
       "title": "A-CED.A.2 (placeholder)",
       "domain": "math",
-      "description": "Standard A-CED.A.2 \u2014 definition not yet available in seed data",
+      "description": "Standard A-CED.A.2 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -11894,7 +11910,7 @@
       "kind": "standard",
       "title": "A-CED.A.3 (placeholder)",
       "domain": "math",
-      "description": "Standard A-CED.A.3 \u2014 definition not yet available in seed data",
+      "description": "Standard A-CED.A.3 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -11915,7 +11931,7 @@
       "kind": "standard",
       "title": "A-CED.A.4 (placeholder)",
       "domain": "math",
-      "description": "Standard A-CED.A.4 \u2014 definition not yet available in seed data",
+      "description": "Standard A-CED.A.4 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -11936,7 +11952,7 @@
       "kind": "standard",
       "title": "A-REI.A.1 (placeholder)",
       "domain": "math",
-      "description": "Standard A-REI.A.1 \u2014 definition not yet available in seed data",
+      "description": "Standard A-REI.A.1 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -11957,7 +11973,7 @@
       "kind": "standard",
       "title": "A-REI.B.3 (placeholder)",
       "domain": "math",
-      "description": "Standard A-REI.B.3 \u2014 definition not yet available in seed data",
+      "description": "Standard A-REI.B.3 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -11978,7 +11994,7 @@
       "kind": "standard",
       "title": "A-REI.C.5 (placeholder)",
       "domain": "math",
-      "description": "Standard A-REI.C.5 \u2014 definition not yet available in seed data",
+      "description": "Standard A-REI.C.5 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -11999,7 +12015,7 @@
       "kind": "standard",
       "title": "A-REI.C.6 (placeholder)",
       "domain": "math",
-      "description": "Standard A-REI.C.6 \u2014 definition not yet available in seed data",
+      "description": "Standard A-REI.C.6 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12020,7 +12036,7 @@
       "kind": "standard",
       "title": "A-REI.D.10 (placeholder)",
       "domain": "math",
-      "description": "Standard A-REI.D.10 \u2014 definition not yet available in seed data",
+      "description": "Standard A-REI.D.10 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12041,7 +12057,7 @@
       "kind": "standard",
       "title": "A-REI.D.12 (placeholder)",
       "domain": "math",
-      "description": "Standard A-REI.D.12 \u2014 definition not yet available in seed data",
+      "description": "Standard A-REI.D.12 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12062,7 +12078,7 @@
       "kind": "standard",
       "title": "A-SSE.A.1 (placeholder)",
       "domain": "math",
-      "description": "Standard A-SSE.A.1 \u2014 definition not yet available in seed data",
+      "description": "Standard A-SSE.A.1 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12083,7 +12099,7 @@
       "kind": "standard",
       "title": "F-BF.A.1 (placeholder)",
       "domain": "math",
-      "description": "Standard F-BF.A.1 \u2014 definition not yet available in seed data",
+      "description": "Standard F-BF.A.1 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12104,7 +12120,7 @@
       "kind": "standard",
       "title": "F-BF.A.2 (placeholder)",
       "domain": "math",
-      "description": "Standard F-BF.A.2 \u2014 definition not yet available in seed data",
+      "description": "Standard F-BF.A.2 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12125,7 +12141,7 @@
       "kind": "standard",
       "title": "F-BF.B.3 (placeholder)",
       "domain": "math",
-      "description": "Standard F-BF.B.3 \u2014 definition not yet available in seed data",
+      "description": "Standard F-BF.B.3 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12146,7 +12162,7 @@
       "kind": "standard",
       "title": "F-IF.A.1 (placeholder)",
       "domain": "math",
-      "description": "Standard F-IF.A.1 \u2014 definition not yet available in seed data",
+      "description": "Standard F-IF.A.1 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12167,7 +12183,7 @@
       "kind": "standard",
       "title": "F-IF.A.2 (placeholder)",
       "domain": "math",
-      "description": "Standard F-IF.A.2 \u2014 definition not yet available in seed data",
+      "description": "Standard F-IF.A.2 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12188,7 +12204,7 @@
       "kind": "standard",
       "title": "F-IF.A.3 (placeholder)",
       "domain": "math",
-      "description": "Standard F-IF.A.3 \u2014 definition not yet available in seed data",
+      "description": "Standard F-IF.A.3 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12209,7 +12225,7 @@
       "kind": "standard",
       "title": "F-IF.B.4 (placeholder)",
       "domain": "math",
-      "description": "Standard F-IF.B.4 \u2014 definition not yet available in seed data",
+      "description": "Standard F-IF.B.4 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12230,7 +12246,7 @@
       "kind": "standard",
       "title": "F-IF.B.5 (placeholder)",
       "domain": "math",
-      "description": "Standard F-IF.B.5 \u2014 definition not yet available in seed data",
+      "description": "Standard F-IF.B.5 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12251,7 +12267,7 @@
       "kind": "standard",
       "title": "F-IF.B.6 (placeholder)",
       "domain": "math",
-      "description": "Standard F-IF.B.6 \u2014 definition not yet available in seed data",
+      "description": "Standard F-IF.B.6 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12272,7 +12288,7 @@
       "kind": "standard",
       "title": "F-IF.C.7 (placeholder)",
       "domain": "math",
-      "description": "Standard F-IF.C.7 \u2014 definition not yet available in seed data",
+      "description": "Standard F-IF.C.7 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12293,7 +12309,7 @@
       "kind": "standard",
       "title": "F-IF.C.7e (placeholder)",
       "domain": "math",
-      "description": "Standard F-IF.C.7e \u2014 definition not yet available in seed data",
+      "description": "Standard F-IF.C.7e — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12314,7 +12330,7 @@
       "kind": "standard",
       "title": "F-IF.C.8 (placeholder)",
       "domain": "math",
-      "description": "Standard F-IF.C.8 \u2014 definition not yet available in seed data",
+      "description": "Standard F-IF.C.8 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12335,7 +12351,7 @@
       "kind": "standard",
       "title": "F-IF.C.9 (placeholder)",
       "domain": "math",
-      "description": "Standard F-IF.C.9 \u2014 definition not yet available in seed data",
+      "description": "Standard F-IF.C.9 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12356,7 +12372,7 @@
       "kind": "standard",
       "title": "F-LE.A.1 (placeholder)",
       "domain": "math",
-      "description": "Standard F-LE.A.1 \u2014 definition not yet available in seed data",
+      "description": "Standard F-LE.A.1 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12377,7 +12393,7 @@
       "kind": "standard",
       "title": "F-LE.A.2 (placeholder)",
       "domain": "math",
-      "description": "Standard F-LE.A.2 \u2014 definition not yet available in seed data",
+      "description": "Standard F-LE.A.2 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12398,7 +12414,7 @@
       "kind": "standard",
       "title": "F-LE.A.4 (placeholder)",
       "domain": "math",
-      "description": "Standard F-LE.A.4 \u2014 definition not yet available in seed data",
+      "description": "Standard F-LE.A.4 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12419,7 +12435,7 @@
       "kind": "standard",
       "title": "F-LE.B.5 (placeholder)",
       "domain": "math",
-      "description": "Standard F-LE.B.5 \u2014 definition not yet available in seed data",
+      "description": "Standard F-LE.B.5 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12440,7 +12456,7 @@
       "kind": "standard",
       "title": "G-CO.A.1 (placeholder)",
       "domain": "math",
-      "description": "Standard G-CO.A.1 \u2014 definition not yet available in seed data",
+      "description": "Standard G-CO.A.1 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12461,7 +12477,7 @@
       "kind": "standard",
       "title": "G-CO.A.2 (placeholder)",
       "domain": "math",
-      "description": "Standard G-CO.A.2 \u2014 definition not yet available in seed data",
+      "description": "Standard G-CO.A.2 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12482,7 +12498,7 @@
       "kind": "standard",
       "title": "G-CO.A.3 (placeholder)",
       "domain": "math",
-      "description": "Standard G-CO.A.3 \u2014 definition not yet available in seed data",
+      "description": "Standard G-CO.A.3 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12503,7 +12519,7 @@
       "kind": "standard",
       "title": "G-CO.A.4 (placeholder)",
       "domain": "math",
-      "description": "Standard G-CO.A.4 \u2014 definition not yet available in seed data",
+      "description": "Standard G-CO.A.4 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12524,7 +12540,7 @@
       "kind": "standard",
       "title": "G-CO.A.5 (placeholder)",
       "domain": "math",
-      "description": "Standard G-CO.A.5 \u2014 definition not yet available in seed data",
+      "description": "Standard G-CO.A.5 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12545,7 +12561,7 @@
       "kind": "standard",
       "title": "G-CO.B.6 (placeholder)",
       "domain": "math",
-      "description": "Standard G-CO.B.6 \u2014 definition not yet available in seed data",
+      "description": "Standard G-CO.B.6 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12566,7 +12582,7 @@
       "kind": "standard",
       "title": "G-CO.B.7 (placeholder)",
       "domain": "math",
-      "description": "Standard G-CO.B.7 \u2014 definition not yet available in seed data",
+      "description": "Standard G-CO.B.7 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12587,7 +12603,7 @@
       "kind": "standard",
       "title": "G-CO.B.8 (placeholder)",
       "domain": "math",
-      "description": "Standard G-CO.B.8 \u2014 definition not yet available in seed data",
+      "description": "Standard G-CO.B.8 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12608,7 +12624,7 @@
       "kind": "standard",
       "title": "G-CO.C.10 (placeholder)",
       "domain": "math",
-      "description": "Standard G-CO.C.10 \u2014 definition not yet available in seed data",
+      "description": "Standard G-CO.C.10 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12629,7 +12645,7 @@
       "kind": "standard",
       "title": "G-CO.C.9 (placeholder)",
       "domain": "math",
-      "description": "Standard G-CO.C.9 \u2014 definition not yet available in seed data",
+      "description": "Standard G-CO.C.9 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12650,7 +12666,7 @@
       "kind": "standard",
       "title": "G-GMD.A.3 (placeholder)",
       "domain": "math",
-      "description": "Standard G-GMD.A.3 \u2014 definition not yet available in seed data",
+      "description": "Standard G-GMD.A.3 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12671,7 +12687,7 @@
       "kind": "standard",
       "title": "G-GMD.B.4 (placeholder)",
       "domain": "math",
-      "description": "Standard G-GMD.B.4 \u2014 definition not yet available in seed data",
+      "description": "Standard G-GMD.B.4 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12692,7 +12708,7 @@
       "kind": "standard",
       "title": "G-GPE.B.4 (placeholder)",
       "domain": "math",
-      "description": "Standard G-GPE.B.4 \u2014 definition not yet available in seed data",
+      "description": "Standard G-GPE.B.4 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12713,7 +12729,7 @@
       "kind": "standard",
       "title": "G-GPE.B.5 (placeholder)",
       "domain": "math",
-      "description": "Standard G-GPE.B.5 \u2014 definition not yet available in seed data",
+      "description": "Standard G-GPE.B.5 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12734,7 +12750,7 @@
       "kind": "standard",
       "title": "G-GPE.B.6 (placeholder)",
       "domain": "math",
-      "description": "Standard G-GPE.B.6 \u2014 definition not yet available in seed data",
+      "description": "Standard G-GPE.B.6 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12755,7 +12771,7 @@
       "kind": "standard",
       "title": "G-GPE.B.7 (placeholder)",
       "domain": "math",
-      "description": "Standard G-GPE.B.7 \u2014 definition not yet available in seed data",
+      "description": "Standard G-GPE.B.7 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12776,7 +12792,7 @@
       "kind": "standard",
       "title": "G-MG.A.1 (placeholder)",
       "domain": "math",
-      "description": "Standard G-MG.A.1 \u2014 definition not yet available in seed data",
+      "description": "Standard G-MG.A.1 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12797,7 +12813,7 @@
       "kind": "standard",
       "title": "G-MG.A.2 (placeholder)",
       "domain": "math",
-      "description": "Standard G-MG.A.2 \u2014 definition not yet available in seed data",
+      "description": "Standard G-MG.A.2 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12818,7 +12834,7 @@
       "kind": "standard",
       "title": "G-MG.A.3 (placeholder)",
       "domain": "math",
-      "description": "Standard G-MG.A.3 \u2014 definition not yet available in seed data",
+      "description": "Standard G-MG.A.3 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12839,7 +12855,7 @@
       "kind": "standard",
       "title": "S-IC.A.1 (placeholder)",
       "domain": "math",
-      "description": "Standard S-IC.A.1 \u2014 definition not yet available in seed data",
+      "description": "Standard S-IC.A.1 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12860,7 +12876,7 @@
       "kind": "standard",
       "title": "S-ID.A.1 (placeholder)",
       "domain": "math",
-      "description": "Standard S-ID.A.1 \u2014 definition not yet available in seed data",
+      "description": "Standard S-ID.A.1 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12881,7 +12897,7 @@
       "kind": "standard",
       "title": "S-ID.A.2 (placeholder)",
       "domain": "math",
-      "description": "Standard S-ID.A.2 \u2014 definition not yet available in seed data",
+      "description": "Standard S-ID.A.2 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12902,7 +12918,7 @@
       "kind": "standard",
       "title": "S-ID.A.3 (placeholder)",
       "domain": "math",
-      "description": "Standard S-ID.A.3 \u2014 definition not yet available in seed data",
+      "description": "Standard S-ID.A.3 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12923,7 +12939,7 @@
       "kind": "standard",
       "title": "S-ID.B.5 (placeholder)",
       "domain": "math",
-      "description": "Standard S-ID.B.5 \u2014 definition not yet available in seed data",
+      "description": "Standard S-ID.B.5 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12944,7 +12960,7 @@
       "kind": "standard",
       "title": "S-ID.B.6 (placeholder)",
       "domain": "math",
-      "description": "Standard S-ID.B.6 \u2014 definition not yet available in seed data",
+      "description": "Standard S-ID.B.6 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12965,7 +12981,7 @@
       "kind": "standard",
       "title": "S-ID.C.7 (placeholder)",
       "domain": "math",
-      "description": "Standard S-ID.C.7 \u2014 definition not yet available in seed data",
+      "description": "Standard S-ID.C.7 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -12986,7 +13002,7 @@
       "kind": "standard",
       "title": "S-ID.C.8 (placeholder)",
       "domain": "math",
-      "description": "Standard S-ID.C.8 \u2014 definition not yet available in seed data",
+      "description": "Standard S-ID.C.8 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -13007,7 +13023,7 @@
       "kind": "standard",
       "title": "S-ID.C.9 (placeholder)",
       "domain": "math",
-      "description": "Standard S-ID.C.9 \u2014 definition not yet available in seed data",
+      "description": "Standard S-ID.C.9 — definition not yet available in seed data",
       "sourceRefs": [
         {
           "source": "lesson-standards-inference",
@@ -13140,7 +13156,7 @@
         "lesson": "1",
         "exampleNumber": 3,
         "sourceLesson": "1-1",
-        "rawText": "Example 3 \u2014 Real-World Applications"
+        "rawText": "Example 3 — Real-World Applications"
       }
     },
     {
@@ -13158,7 +13174,7 @@
         "lesson": "1",
         "exampleNumber": 8,
         "sourceLesson": "1-1",
-        "rawText": "Example 8 \u2014 Multi-Step Real-World Problem"
+        "rawText": "Example 8 — Multi-Step Real-World Problem"
       }
     },
     {
@@ -13176,7 +13192,7 @@
         "lesson": "5",
         "exampleNumber": 1,
         "sourceLesson": "2-5",
-        "rawText": "Example 1 \u2014 Solve and Graph Simple Absolute Value Equations"
+        "rawText": "Example 1 — Solve and Graph Simple Absolute Value Equations"
       }
     },
     {
@@ -13194,7 +13210,7 @@
         "lesson": "5",
         "exampleNumber": 2,
         "sourceLesson": "2-5",
-        "rawText": "Example 2 \u2014 Identify Equations with No Solution"
+        "rawText": "Example 2 — Identify Equations with No Solution"
       }
     },
     {
@@ -13248,7 +13264,7 @@
         "lesson": "4",
         "exampleNumber": 4,
         "sourceLesson": "3-4",
-        "rawText": "Example 4 \u2014 Find and Interpret Intercepts from a Table"
+        "rawText": "Example 4 — Find and Interpret Intercepts from a Table"
       }
     },
     {
@@ -15201,7 +15217,7 @@
       "title": "Example 8: Solve and Graph Inequalities by Multiplication and Division",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/modules/module-6-lesson-1 (Examples 8\u201310 joint heading; Example 8)"
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-1 (Examples 8–10 joint heading; Example 8)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -15210,7 +15226,7 @@
         "lesson": "1",
         "exampleNumber": 8,
         "sourceLesson": "6-1",
-        "rawText": "Examples 8\u201310: Solve and Graph Inequalities by Multiplication and Division"
+        "rawText": "Examples 8–10: Solve and Graph Inequalities by Multiplication and Division"
       }
     },
     {
@@ -15219,7 +15235,7 @@
       "title": "Example 9: Solve and Graph Inequalities by Multiplication and Division",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/modules/module-6-lesson-1 (Examples 8\u201310 joint heading; Example 9)"
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-1 (Examples 8–10 joint heading; Example 9)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -15228,7 +15244,7 @@
         "lesson": "1",
         "exampleNumber": 9,
         "sourceLesson": "6-1",
-        "rawText": "Examples 8\u201310: Solve and Graph Inequalities by Multiplication and Division"
+        "rawText": "Examples 8–10: Solve and Graph Inequalities by Multiplication and Division"
       }
     },
     {
@@ -15237,7 +15253,7 @@
       "title": "Example 10: Solve and Graph Inequalities by Multiplication and Division",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/modules/module-6-lesson-1 (Examples 8\u201310 joint heading; Example 10)"
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-1 (Examples 8–10 joint heading; Example 10)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -15246,7 +15262,7 @@
         "lesson": "1",
         "exampleNumber": 10,
         "sourceLesson": "6-1",
-        "rawText": "Examples 8\u201310: Solve and Graph Inequalities by Multiplication and Division"
+        "rawText": "Examples 8–10: Solve and Graph Inequalities by Multiplication and Division"
       }
     },
     {
@@ -15629,7 +15645,7 @@
       "title": "Example 4: Solve and Graph Compound Inequalities",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/modules/module-6-lesson-3 (Examples 1, 3, and 4 \u2014 Solve and Graph Compound Inequalities heading)"
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-3 (Examples 1, 3, and 4 — Solve and Graph Compound Inequalities heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -15638,7 +15654,7 @@
         "lesson": "3",
         "exampleNumber": 4,
         "sourceLesson": "6-3",
-        "rawText": "Examples 1, 3, and 4 \u2014 Solve and Graph Compound Inequalities"
+        "rawText": "Examples 1, 3, and 4 — Solve and Graph Compound Inequalities"
       }
     },
     {
@@ -15647,7 +15663,7 @@
       "title": "Example 5: Write Compound Inequalities from Graphs",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/modules/module-6-lesson-3 (Examples 5 and 6 \u2014 Write Compound Inequalities from Graphs heading)"
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-3 (Examples 5 and 6 — Write Compound Inequalities from Graphs heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -15656,7 +15672,7 @@
         "lesson": "3",
         "exampleNumber": 5,
         "sourceLesson": "6-3",
-        "rawText": "Examples 5 and 6 \u2014 Write Compound Inequalities from Graphs"
+        "rawText": "Examples 5 and 6 — Write Compound Inequalities from Graphs"
       }
     },
     {
@@ -15665,7 +15681,7 @@
       "title": "Example 6: Write Compound Inequalities from Graphs",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/modules/module-6-lesson-3 (Examples 5 and 6 \u2014 Write Compound Inequalities from Graphs heading)"
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-3 (Examples 5 and 6 — Write Compound Inequalities from Graphs heading)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -15674,7 +15690,7 @@
         "lesson": "3",
         "exampleNumber": 6,
         "sourceLesson": "6-3",
-        "rawText": "Examples 5 and 6 \u2014 Write Compound Inequalities from Graphs"
+        "rawText": "Examples 5 and 6 — Write Compound Inequalities from Graphs"
       }
     },
     {
@@ -16594,7 +16610,7 @@
         "lesson": "4",
         "exampleNumber": 3,
         "sourceLesson": "7-4",
-        "rawText": "7-4, Example 3 \u2014 Model and solve contextual systems by scaled elimination"
+        "rawText": "7-4, Example 3 — Model and solve contextual systems by scaled elimination"
       }
     },
     {
@@ -16983,7 +16999,7 @@
       "description": "Describe vertical translations of exponential functions from equations.",
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx (Examples 1\u20133, 6\u20137, and 10\u201312, Problems 1, 6\u20138, and 12; Mixed Exercises, Problems 21, 24, 42, and 43)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx (Examples 1–3, 6–7, and 10–12, Problems 1, 6–8, and 12; Mixed Exercises, Problems 21, 24, 42, and 43)"
       ],
       "reviewStatus": "draft",
       "independentPracticeReady": false,
@@ -17001,7 +17017,7 @@
       "description": "Describe horizontal translations of exponential functions from equations.",
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx (Examples 1\u20133, 6\u20137, and 10\u201312, Problems 5 and 11; Mixed Exercises, Problem 42)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx (Examples 1–3, 6–7, and 10–12, Problems 5 and 11; Mixed Exercises, Problem 42)"
       ],
       "reviewStatus": "draft",
       "independentPracticeReady": false,
@@ -17019,7 +17035,7 @@
       "description": "Describe reflections of exponential functions from equations.",
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx (Examples 1\u20133, 6\u20137, and 10\u201312, Problems 2 and 5\u20138; Mixed Exercises, Problems 23, 25\u201326, 43, and 46)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx (Examples 1–3, 6–7, and 10–12, Problems 2 and 5–8; Mixed Exercises, Problems 23, 25–26, 43, and 46)"
       ],
       "reviewStatus": "draft",
       "independentPracticeReady": false,
@@ -17037,7 +17053,7 @@
       "description": "Describe vertical dilations of exponential functions from equations.",
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx (Examples 1\u20133, 6\u20137, and 10\u201312, Problems 9\u201310; Example 8, Problems 17\u201319 and 20(b); Mixed Exercises, Problems 22\u201323, 26, 42\u201343, and 46)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx (Examples 1–3, 6–7, and 10–12, Problems 9–10; Example 8, Problems 17–19 and 20(b); Mixed Exercises, Problems 22–23, 26, 42–43, and 46)"
       ],
       "reviewStatus": "draft",
       "independentPracticeReady": false,
@@ -17055,7 +17071,7 @@
       "description": "Describe horizontal dilations of exponential functions from equations.",
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx (Examples 1\u20133, 6\u20137, and 10\u201312, Problems 3\u20134; Mixed Exercises, Problem 46)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx (Examples 1–3, 6–7, and 10–12, Problems 3–4; Mixed Exercises, Problem 46)"
       ],
       "reviewStatus": "draft",
       "independentPracticeReady": false,
@@ -17073,7 +17089,7 @@
       "description": "Write a transformed exponential equation from a verbal description.",
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx (Example 8, Problem 20(a); Mixed Exercises, Problems 27\u201336)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx (Example 8, Problem 20(a); Mixed Exercises, Problems 27–36)"
       ],
       "reviewStatus": "draft",
       "independentPracticeReady": false,
@@ -17127,7 +17143,7 @@
       "description": "Write an exponential growth or decay model from context.",
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx (Example 3, Problems 11\u201313; Examples 4\u20136, Problems 15(a) and 17(a); Mixed Exercises, Problem 28(a))"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx (Example 3, Problems 11–13; Examples 4–6, Problems 15(a) and 17(a); Mixed Exercises, Problem 28(a))"
       ],
       "reviewStatus": "draft",
       "independentPracticeReady": false,
@@ -17145,7 +17161,7 @@
       "description": "Write a compound-interest model from financial terms.",
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx (Examples 4\u20136, Problem 14)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx (Examples 4–6, Problem 14)"
       ],
       "reviewStatus": "draft",
       "independentPracticeReady": false,
@@ -17235,7 +17251,7 @@
       "description": "Convert exponential rates to a common interval and compare their equivalent growth or decay.",
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0804_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0804_practice.docx (Example 1, Problems 1(b), 2(b), and 3\u20135; Mixed Exercises, Problems 7\u201311; Problem 16)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0804_practice.docx (Example 1, Problems 1(b), 2(b), and 3–5; Mixed Exercises, Problems 7–11; Problem 16)"
       ],
       "reviewStatus": "draft",
       "independentPracticeReady": false,
@@ -17253,7 +17269,7 @@
       "description": "Extend a geometric sequence forward or backward using its common ratio.",
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0805_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0805_practice.docx (Example 3, Problems 13\u201324; Mixed Exercises, Problem 41)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0805_practice.docx (Example 3, Problems 13–24; Mixed Exercises, Problem 41)"
       ],
       "reviewStatus": "draft",
       "independentPracticeReady": false,
@@ -17271,7 +17287,7 @@
       "description": "Evaluate a specified term of a geometric sequence with an explicit formula.",
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0805_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0805_practice.docx (Example 4, Problems 25\u201328; Mixed Exercises, Problems 34\u201338, term-evaluation portions only)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0805_practice.docx (Example 4, Problems 25–28; Mixed Exercises, Problems 34–38, term-evaluation portions only)"
       ],
       "reviewStatus": "draft",
       "independentPracticeReady": false,
@@ -17289,7 +17305,7 @@
       "description": "Write an explicit formula for a geometric sequence from displayed terms.",
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0805_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0805_practice.docx (Example 5, Problem 29; Mixed Exercises, Problems 34\u201338, formula-writing portions only)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0805_practice.docx (Example 5, Problem 29; Mixed Exercises, Problems 34–38, formula-writing portions only)"
       ],
       "reviewStatus": "draft",
       "independentPracticeReady": false,
@@ -17316,6 +17332,114 @@
         "module": "8",
         "lesson": "5"
       }
+    },
+    {
+      "id": "math.im1.skill.8.6.write-a-recursive-formula-from-displayed-sequence-terms",
+      "kind": "skill",
+      "title": "Write a recursive formula from displayed sequence terms",
+      "domain": "math.im1",
+      "description": "Determine an initial condition and recursive update rule from displayed sequence terms. A finite list can support more than one valid recursive rule. Accept a rule that reproduces the displayed terms.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0806_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0806_practice.docx (Example 3, Problems 7-12; Example 5, Problems 19(b), 20(a), and 21(a); Mixed Exercises, Problem 40)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "6"
+      },
+      "independentPracticeReady": false
+    },
+    {
+      "id": "math.im1.skill.8.6.write-a-recursive-formula-from-a-discrete-sequence-graph",
+      "kind": "skill",
+      "title": "Write a recursive formula from a discrete sequence graph",
+      "domain": "math.im1",
+      "description": "Read sequence values from a discrete graph. Determine an initial condition and recursive update rule.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0806_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0806_practice.docx (Example 4, Problems 13-18)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "6"
+      },
+      "independentPracticeReady": false
+    },
+    {
+      "id": "math.im1.skill.8.6.convert-an-explicit-arithmetic-formula-to-a-recursive-formula",
+      "kind": "skill",
+      "title": "Convert an explicit arithmetic formula to a recursive formula",
+      "domain": "math.im1",
+      "description": "Convert an explicit arithmetic sequence formula to an initial condition and recursive update rule.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0806_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0806_practice.docx (Example 6, Problems 25 and 27; Mixed Exercises, Problem 30)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "6"
+      },
+      "independentPracticeReady": false
+    },
+    {
+      "id": "math.im1.skill.8.6.convert-a-recursive-arithmetic-formula-to-an-explicit-formula",
+      "kind": "skill",
+      "title": "Convert a recursive arithmetic formula to an explicit formula",
+      "domain": "math.im1",
+      "description": "Convert an arithmetic sequence initial condition and recursive update rule to an explicit formula.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0806_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0806_practice.docx (Example 6, Problems 23 and 26)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "6"
+      },
+      "independentPracticeReady": false
+    },
+    {
+      "id": "math.im1.skill.8.6.convert-an-explicit-geometric-formula-to-a-recursive-formula",
+      "kind": "skill",
+      "title": "Convert an explicit geometric formula to a recursive formula",
+      "domain": "math.im1",
+      "description": "Convert an explicit geometric sequence formula to an initial condition and recursive update rule.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0806_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0806_practice.docx (Example 6, Problems 22 and 28)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "6"
+      },
+      "independentPracticeReady": false
+    },
+    {
+      "id": "math.im1.skill.8.6.convert-a-recursive-geometric-formula-to-an-explicit-formula",
+      "kind": "skill",
+      "title": "Convert a recursive geometric formula to an explicit formula",
+      "domain": "math.im1",
+      "description": "Convert a geometric sequence initial condition and recursive update rule to an explicit formula.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0806_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0806_practice.docx (Example 6, Problems 24 and 29; Mixed Exercises, Problem 31)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "6"
+      },
+      "independentPracticeReady": false
     }
   ],
   "edges": [
@@ -56347,22 +56471,6 @@
       }
     },
     {
-      "id": "math.im1.edge.1050",
-      "type": "contains",
-      "sourceId": "math.im1.lesson.8.6",
-      "targetId": "math.im1.example.8.6.020",
-      "weight": 1,
-      "confidence": "high",
-      "reviewStatus": "draft",
-      "derived": true,
-      "derivationMethod": "lesson-sequence-containment-v1",
-      "rationale": "Lesson contains worked example",
-      "metadata": {
-        "module": "8",
-        "lesson": "6"
-      }
-    },
-    {
       "id": "math.im1.edge.1051",
       "type": "contains",
       "sourceId": "math.im1.lesson.8.6",
@@ -56436,7 +56544,7 @@
       "reviewStatus": "draft",
       "derived": true,
       "derivationMethod": "lesson-sequence-containment-v1",
-      "rationale": "Lesson contains skill",
+      "rationale": "Lesson 8-6 retains this broad source-only planning aggregate.",
       "metadata": {
         "module": "8",
         "lesson": "6"
@@ -56452,7 +56560,7 @@
       "reviewStatus": "draft",
       "derived": true,
       "derivationMethod": "lesson-sequence-containment-v1",
-      "rationale": "Lesson contains skill",
+      "rationale": "Lesson 8-6 Examples 1 and 2, Problems 1-6 assess recursive sequence evaluation.",
       "metadata": {
         "module": "8",
         "lesson": "6"
@@ -64503,7 +64611,7 @@
       "sourceRefs": [
         {
           "source": "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0804_practice.docx",
-          "location": "Example 1, Problems 1(b), 2(b), and 3\u20135; Mixed Exercises, Problems 7\u201311 and 16"
+          "location": "Example 1, Problems 1(b), 2(b), and 3–5; Mixed Exercises, Problems 7–11 and 16"
         }
       ],
       "metadata": {
@@ -64607,6 +64715,96 @@
         "lesson": "5",
         "program": "graph-node-practice-program_20260907"
       }
+    },
+    {
+      "id": "math.im1.edge.g43.write-a-recursive-formula-from-displayed-sequence-terms",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.8.6",
+      "targetId": "math.im1.skill.8.6.write-a-recursive-formula-from-displayed-sequence-terms",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Lesson 8-6 Example 3, Problems 7-12; Example 5, Problems 19(b), 20(a), and 21(a); Mixed Exercises, Problem 40 assesses this response directly."
+    },
+    {
+      "id": "math.im1.edge.g43.write-a-recursive-formula-from-a-discrete-sequence-graph",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.8.6",
+      "targetId": "math.im1.skill.8.6.write-a-recursive-formula-from-a-discrete-sequence-graph",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Lesson 8-6 Example 4, Problems 13-18 assesses this response directly."
+    },
+    {
+      "id": "math.im1.edge.g43.convert-an-explicit-arithmetic-formula-to-a-recursive-formula",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.8.6",
+      "targetId": "math.im1.skill.8.6.convert-an-explicit-arithmetic-formula-to-a-recursive-formula",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Lesson 8-6 Example 6, Problems 25 and 27; Mixed Exercises, Problem 30 assesses this response directly."
+    },
+    {
+      "id": "math.im1.edge.g43.convert-a-recursive-arithmetic-formula-to-an-explicit-formula",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.8.6",
+      "targetId": "math.im1.skill.8.6.convert-a-recursive-arithmetic-formula-to-an-explicit-formula",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Lesson 8-6 Example 6, Problems 23 and 26 assesses this response directly."
+    },
+    {
+      "id": "math.im1.edge.g43.convert-an-explicit-geometric-formula-to-a-recursive-formula",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.8.6",
+      "targetId": "math.im1.skill.8.6.convert-an-explicit-geometric-formula-to-a-recursive-formula",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Lesson 8-6 Example 6, Problems 22 and 28 assesses this response directly."
+    },
+    {
+      "id": "math.im1.edge.g43.convert-a-recursive-geometric-formula-to-an-explicit-formula",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.8.6",
+      "targetId": "math.im1.skill.8.6.convert-a-recursive-geometric-formula-to-an-explicit-formula",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Lesson 8-6 Example 6, Problems 24 and 29; Mixed Exercises, Problem 31 assesses this response directly."
+    },
+    {
+      "id": "math.im1.edge.g43.reuse-arithmetic-extension",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.8.6",
+      "targetId": "math.im1.skill.4.5.extend-an-arithmetic-sequence",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Lesson 8-6 Problem 19(a) assesses arithmetic sequence extension."
+    },
+    {
+      "id": "math.im1.edge.g43.reuse-arithmetic-explicit",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.8.6",
+      "targetId": "math.im1.skill.4.5.write-an-explicit-equation-for-an-arithmetic-sequence",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Lesson 8-6 Problem 19(c) assesses explicit arithmetic formula writing."
+    },
+    {
+      "id": "math.im1.edge.g43.reuse-geometric-explicit",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.8.6",
+      "targetId": "math.im1.skill.8.5.write-an-explicit-formula-for-a-geometric-sequence-from-displayed-terms",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Lesson 8-6 Problems 20(b) and 21(b) assess explicit geometric formula writing from exact tables."
     }
   ]
 }

@@ -61,9 +61,13 @@ describe('Lesson 4-5 source capabilities', () => {
         nodeId: id, sourceNodeIds, alignmentNodeIds: [], reviewStatus: 'draft',
         metadata: { course: 'im1', module: '4', lesson: '5' },
       });
-      expect(graph.edges.filter((edge) => edge.sourceId === id || edge.targetId === id)).toEqual([
-        expect.objectContaining({ type: 'contains', sourceId: lessonId, targetId: id, reviewStatus: 'draft' }),
-      ]);
+      const incident = graph.edges.filter((edge) => edge.sourceId === id || edge.targetId === id);
+      expect(incident).toContainEqual(expect.objectContaining({ type: 'contains', sourceId: lessonId, targetId: id, reviewStatus: 'draft' }));
+      const allowedLessons = id.endsWith('extend-an-arithmetic-sequence') || id.endsWith('write-an-explicit-equation-for-an-arithmetic-sequence')
+        ? [lessonId, 'math.im1.lesson.8.6'] : [lessonId];
+      expect(incident.every((edge) => edge.type === 'contains' && allowedLessons.includes(edge.sourceId))).toBe(true);
+      expect(incident).toHaveLength(allowedLessons.length);
+      expect(incident.map((edge) => edge.sourceId).sort()).toEqual(allowedLessons.sort());
     }
   });
 });
