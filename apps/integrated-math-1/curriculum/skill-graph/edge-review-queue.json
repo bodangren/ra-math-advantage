@@ -615,13 +615,6 @@
       "reviewAction": "confirm, upgrade-to-medium, or remove"
     },
     {
-      "edgeId": "math.im1.edge.1276",
-      "sourceId": "math.im1.skill.9.6.describe-how-adding-or-multiplying-every-value-in-a-data-set",
-      "targetId": "math.im1.skill.9.7.construct-and-complete-two-way-frequency-tables-from-verbal",
-      "rationale": "Lesson-sequence prerequisite: lesson 6 precedes lesson 7 in module 9",
-      "reviewAction": "confirm, upgrade-to-medium, or remove"
-    },
-    {
       "edgeId": "math.im1.edge.1277",
       "sourceId": "math.im1.skill.9.7.construct-and-complete-two-way-frequency-tables-from-verbal",
       "targetId": "math.im1.skill.10.1.differentiate-between-synthetic-geometry-and-analytic-geomet",
@@ -907,7 +900,7 @@
     },
     {
       "nodeId": "math.im1.skill.13.3.graph-the-image-of-a-polygon-after-a-rotation-of-90-180-or-2",
-      "title": "13e: Graph the image of a polygon after a rotation of 90\u00b0, 180\u00b0, or 270\u00b0 about a given point on the coordinate plane",
+      "title": "13e: Graph the image of a polygon after a rotation of 90°, 180°, or 270° about a given point on the coordinate plane",
       "reviewAction": "assign renderer node when component registry is extended"
     },
     {
@@ -1599,7 +1592,7 @@
     },
     {
       "nodeId": "math.im1.skill.13.3.graph-the-image-of-a-polygon-after-a-rotation-of-90-180-or-2",
-      "title": "13e: Graph the image of a polygon after a rotation of 90\u00b0, 180\u00b0, or 270\u00b0 about a given point on the coordinate plane",
+      "title": "13e: Graph the image of a polygon after a rotation of 90°, 180°, or 270° about a given point on the coordinate plane",
       "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
     },
     {
@@ -2014,7 +2007,7 @@
     }
   ],
   "counts": {
-    "lowConfidencePrerequisites": 89,
+    "lowConfidencePrerequisites": 88,
     "skillsMissingRenderer": 138,
     "skillsMissingMisconceptionTaxonomy": 138
   }

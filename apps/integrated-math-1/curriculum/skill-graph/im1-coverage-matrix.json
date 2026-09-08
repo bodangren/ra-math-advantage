@@ -1,10 +1,10 @@
 {
   "version": 1,
   "course": "im1",
-  "totalSkills": 457,
+  "totalSkills": 467,
   "counts": {
     "served": 6,
-    "gap": 451,
+    "gap": 461,
     "newComponent": 0
   },
   "byModule": [
@@ -66,9 +66,9 @@
     },
     {
       "module": "9",
-      "totalSkills": 80,
+      "totalSkills": 90,
       "served": 0,
-      "gap": 80,
+      "gap": 90,
       "newComponent": 0
     },
     {
@@ -3181,6 +3181,22 @@
       "priority": "high"
     },
     {
+      "skillId": "math.im1.skill.9.6.compare-the-information-shown-by-histograms-and-box-plots",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.9.6.construct-a-data-table-with-a-specified-mean",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
       "skillId": "math.im1.skill.9.6.construct-and-interpret-box-plots-and-histograms-to-compare",
       "module": "9",
       "status": "gap",
@@ -3190,6 +3206,70 @@
     },
     {
       "skillId": "math.im1.skill.9.6.describe-how-adding-or-multiplying-every-value-in-a-data-set",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.9.6.determine-a-named-center-statistic-after-adding-a-constant",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.9.6.determine-a-named-center-statistic-after-an-ordered-affine-transformation",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.9.6.determine-a-named-center-statistic-after-multiplying-by-a-constant",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.9.6.determine-a-named-spread-statistic-after-adding-a-constant",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.9.6.determine-a-named-spread-statistic-after-multiplying-by-a-constant",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.9.6.evaluate-which-sample-appears-more-representative-using-sample-evidence",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.9.6.make-a-contextual-choice-from-compared-distributions",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.9.6.update-an-overall-mean-after-equal-changes-to-a-subgroup",
       "module": "9",
       "status": "gap",
       "tier": "none",

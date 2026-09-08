@@ -46,7 +46,7 @@ describe('Lesson 9-1 capability inventory', () => {
     expect(graph.edges.filter((edge: any) => edge.sourceId === 'math.im1.lesson.9.1' && edge.targetId === id && edge.type === 'contains')).toHaveLength(1);
     const incident = graph.edges.filter((edge: any) => edge.sourceId === id || edge.targetId === id);
     const expectedLessons = sourceNodeIds[0] === 'math.im1.example.9.1.001'
-      ? ['math.im1.lesson.9.1', 'math.im1.lesson.9.3', ...(['calculate-the-arithmetic-mean-of-a-data-set', 'determine-the-median-of-a-data-set'].includes(suffix) ? ['math.im1.lesson.9.5'] : [])]
+      ? ['math.im1.lesson.9.1', 'math.im1.lesson.9.3', 'math.im1.lesson.9.6', ...(['calculate-the-arithmetic-mean-of-a-data-set', 'determine-the-median-of-a-data-set'].includes(suffix) ? ['math.im1.lesson.9.5'] : [])]
       : ['math.im1.lesson.9.1'];
     const expectedPrerequisite = suffix === 'determine-the-median-of-a-data-set'
       ? ['math.im1.skill.9.4.determine-the-five-number-summary-of-a-data-set']

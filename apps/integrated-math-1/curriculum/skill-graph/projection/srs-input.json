@@ -3391,6 +3391,106 @@
       "rendererKey": "comprehension-quiz",
       "generatorKey": null,
       "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.determine-a-named-center-statistic-after-adding-a-constant",
+      "blueprintId": "math.im1.skill.9.6.determine-a-named-center-statistic-after-adding-a-constant",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.determine-a-named-spread-statistic-after-adding-a-constant",
+      "blueprintId": "math.im1.skill.9.6.determine-a-named-spread-statistic-after-adding-a-constant",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.determine-a-named-center-statistic-after-multiplying-by-a-constant",
+      "blueprintId": "math.im1.skill.9.6.determine-a-named-center-statistic-after-multiplying-by-a-constant",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.determine-a-named-spread-statistic-after-multiplying-by-a-constant",
+      "blueprintId": "math.im1.skill.9.6.determine-a-named-spread-statistic-after-multiplying-by-a-constant",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.determine-a-named-center-statistic-after-an-ordered-affine-transformation",
+      "blueprintId": "math.im1.skill.9.6.determine-a-named-center-statistic-after-an-ordered-affine-transformation",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.construct-a-data-table-with-a-specified-mean",
+      "blueprintId": "math.im1.skill.9.6.construct-a-data-table-with-a-specified-mean",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.evaluate-which-sample-appears-more-representative-using-sample-evidence",
+      "blueprintId": "math.im1.skill.9.6.evaluate-which-sample-appears-more-representative-using-sample-evidence",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.make-a-contextual-choice-from-compared-distributions",
+      "blueprintId": "math.im1.skill.9.6.make-a-contextual-choice-from-compared-distributions",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.compare-the-information-shown-by-histograms-and-box-plots",
+      "blueprintId": "math.im1.skill.9.6.compare-the-information-shown-by-histograms-and-box-plots",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.update-an-overall-mean-after-equal-changes-to-a-subgroup",
+      "blueprintId": "math.im1.skill.9.6.update-an-overall-mean-after-equal-changes-to-a-subgroup",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
     }
   ]
 }

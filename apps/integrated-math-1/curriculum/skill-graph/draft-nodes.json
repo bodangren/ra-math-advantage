@@ -7142,10 +7142,11 @@
     {
       "id": "math.im1.example.9.6.019",
       "kind": "worked_example",
-      "title": "Example 1: Add a Constant and Find Statistics; Multiply by a Constant and Find Statistics",
+      "title": "Example 1",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-9-class-period-plan.md (9-6, Example 1)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx (Example 1, Problems 1-4)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7153,17 +7154,18 @@
         "module": "9",
         "lesson": "6",
         "exampleNumber": 1,
-        "sourceLesson": "9-6",
-        "rawText": "9-6, Examples 1-2 — Add a Constant and Find Statistics; Multiply by a Constant and Find Statistics"
-      }
+        "sourceLesson": "9-6"
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.9.6.020",
       "kind": "worked_example",
-      "title": "Example 2: Add a Constant and Find Statistics; Multiply by a Constant and Find Statistics",
+      "title": "Example 2",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-9-class-period-plan.md (9-6, Example 2)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx (Example 2, Problems 5-8)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7171,17 +7173,18 @@
         "module": "9",
         "lesson": "6",
         "exampleNumber": 2,
-        "sourceLesson": "9-6",
-        "rawText": "9-6, Examples 1-2 — Add a Constant and Find Statistics; Multiply by a Constant and Find Statistics"
-      }
+        "sourceLesson": "9-6"
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.9.6.021",
       "kind": "worked_example",
-      "title": "Example 3: Compare Data Sets with Graphs and Statistics",
+      "title": "Examples 3 and 4",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-9-class-period-plan.md (9-6, Example 3)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx (Examples 3 and 4, Problems 9-10)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7189,27 +7192,28 @@
         "module": "9",
         "lesson": "6",
         "exampleNumber": 3,
-        "sourceLesson": "9-6",
-        "rawText": "9-6, Examples 3-4 — Compare Data Sets with Graphs and Statistics"
-      }
+        "sourceLesson": "9-6"
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.9.6.022",
       "kind": "worked_example",
-      "title": "Example 4: Compare Data Sets with Graphs and Statistics",
+      "title": "Examples 3 and 4 duplicate",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-9-class-period-plan.md (9-6, Example 4)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx (Rejected duplicate of the combined Examples 3 and 4 heading)"
       ],
-      "reviewStatus": "draft",
+      "reviewStatus": "rejected",
       "metadata": {
         "course": "im1",
         "module": "9",
         "lesson": "6",
         "exampleNumber": 4,
-        "sourceLesson": "9-6",
-        "rawText": "9-6, Examples 3-4 — Compare Data Sets with Graphs and Statistics"
-      }
+        "sourceLesson": "9-6"
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.9.7.023",
@@ -11607,7 +11611,8 @@
         "course": "im1",
         "module": "9",
         "lesson": "6"
-      }
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.skill.9.6.describe-how-adding-or-multiplying-every-value-in-a-data-set",
@@ -11623,7 +11628,8 @@
         "course": "im1",
         "module": "9",
         "lesson": "6"
-      }
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.skill.9.7.construct-and-complete-two-way-frequency-tables-from-verbal",
@@ -17105,6 +17111,186 @@
         "course": "im1",
         "module": "9",
         "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.6.determine-a-named-center-statistic-after-adding-a-constant",
+      "kind": "skill",
+      "title": "Determine a named center statistic after adding a constant",
+      "domain": "math.im1",
+      "description": "Apply +c to one named mean, median, or mode.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx (Problems 1-4, 11, 14, 15, 18, and 21(b), center responses)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.6.determine-a-named-spread-statistic-after-adding-a-constant",
+      "kind": "skill",
+      "title": "Determine a named spread statistic after adding a constant",
+      "domain": "math.im1",
+      "description": "Determine that one named range or standard deviation is unchanged after +c.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx (Problems 1-4, 11, 14, 15, 18, and 21(b), spread responses; Problem 32 separately observed addition-invariance explanation)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.6.determine-a-named-center-statistic-after-multiplying-by-a-constant",
+      "kind": "skill",
+      "title": "Determine a named center statistic after multiplying by a constant",
+      "domain": "math.im1",
+      "description": "Multiply one named mean, median, or mode by a signed nonzero constant k.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx (Problems 5-8, 12, 13, 17, 22(b), and Problem 30 general rule and reason; manual review)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.6.determine-a-named-spread-statistic-after-multiplying-by-a-constant",
+      "kind": "skill",
+      "title": "Determine a named spread statistic after multiplying by a constant",
+      "domain": "math.im1",
+      "description": "Multiply one named range or standard deviation by |k|.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx (Problems 5-8, 12, 13, 16, 17, 19, 20, 22(b), 23(b), and Problem 30 general rule and reason; Problem 32 separately observed multiplication-scaling explanation; manual review)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.6.determine-a-named-center-statistic-after-an-ordered-affine-transformation",
+      "kind": "skill",
+      "title": "Determine a named center statistic after an ordered affine transformation",
+      "domain": "math.im1",
+      "description": "Compose the stated operations in source order for one named mean, median, or mode. Keep the sign of each nonzero multiplier.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx (Problems 16, 19, 20, 23(b), and Problem 32 source-order general rule and reason; manual review)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.6.construct-a-data-table-with-a-specified-mean",
+      "kind": "skill",
+      "title": "Construct a data table with a specified mean",
+      "domain": "math.im1",
+      "description": "Construct a table that satisfies a stated mean and explain the constraint.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx (Problem 25(a); multiple valid tables; manual or constraint review)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.6.evaluate-which-sample-appears-more-representative-using-sample-evidence",
+      "kind": "skill",
+      "title": "Evaluate which sample appears more representative using sample evidence",
+      "domain": "math.im1",
+      "description": "Make a qualified judgment and cite evidence from two samples without claiming population truth.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx (Problem 26(b); manual claim-and-evidence rubric)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.6.make-a-contextual-choice-from-compared-distributions",
+      "kind": "skill",
+      "title": "Make a contextual choice from compared distributions",
+      "domain": "math.im1",
+      "description": "Choose a stated option and justify it with relevant distribution evidence.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx (Problem 28(b); manual claim-and-evidence rubric)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.6.compare-the-information-shown-by-histograms-and-box-plots",
+      "kind": "skill",
+      "title": "Compare the information shown by histograms and box plots",
+      "domain": "math.im1",
+      "description": "Compare shape detail, grouped frequencies, median, quartiles, and compact comparison.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx (Problem 29; manual bounded rubric)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.6.update-an-overall-mean-after-equal-changes-to-a-subgroup",
+      "kind": "skill",
+      "title": "Update an overall mean after equal changes to a subgroup",
+      "domain": "math.im1",
+      "description": "Update a total or overall mean when each member of a known-size subgroup changes equally.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0906_practice.docx (Problem 31)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "6"
       }
     }
   ]

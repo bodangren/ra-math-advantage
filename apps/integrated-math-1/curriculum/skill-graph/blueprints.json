@@ -4253,15 +4253,6 @@
         "math.standard.ccss.s-id-a-2",
         "math.standard.ccss.s-id-a-3"
       ],
-      "rendererKey": "comprehension-quiz",
-      "rendererModeMap": {
-        "worked": "comprehension-quiz",
-        "guidedPractice": "comprehension-quiz",
-        "independentPractice": "comprehension-quiz"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
       "exceptions": [
         {
           "type": "generator",
@@ -4282,15 +4273,6 @@
         "math.standard.ccss.s-id-a-2",
         "math.standard.ccss.s-id-a-3"
       ],
-      "rendererKey": "comprehension-quiz",
-      "rendererModeMap": {
-        "worked": "comprehension-quiz",
-        "guidedPractice": "comprehension-quiz",
-        "independentPractice": "comprehension-quiz"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
       "exceptions": [
         {
           "type": "generator",
@@ -8282,6 +8264,124 @@
         "course": "im1",
         "module": "9",
         "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.determine-a-named-center-statistic-after-adding-a-constant",
+      "sourceNodeIds": [
+        "math.im1.example.9.6.019"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.determine-a-named-spread-statistic-after-adding-a-constant",
+      "sourceNodeIds": [
+        "math.im1.example.9.6.019"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.determine-a-named-center-statistic-after-multiplying-by-a-constant",
+      "sourceNodeIds": [
+        "math.im1.example.9.6.020"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.determine-a-named-spread-statistic-after-multiplying-by-a-constant",
+      "sourceNodeIds": [
+        "math.im1.example.9.6.020"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.determine-a-named-center-statistic-after-an-ordered-affine-transformation",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.construct-a-data-table-with-a-specified-mean",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.evaluate-which-sample-appears-more-representative-using-sample-evidence",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.make-a-contextual-choice-from-compared-distributions",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.compare-the-information-shown-by-histograms-and-box-plots",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.update-an-overall-mean-after-equal-changes-to-a-subgroup",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "6"
       }
     }
   ]

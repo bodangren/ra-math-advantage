@@ -3,9 +3,9 @@
     "course": "im1",
     "generatedAt": "2026-05-10T06:41:48.253Z",
     "description": "IM1 practice.v1 activity map projection from skill graph",
-    "totalActivities": 333,
-    "totalSrsInputs": 283,
-    "totalSkills": 283
+    "totalActivities": 327,
+    "totalSrsInputs": 293,
+    "totalSkills": 293
   },
   "activities": [
     {
@@ -7831,152 +7831,6 @@
       "srsEligible": false
     },
     {
-      "stableActivityId": "math.im1.skill.9.6.construct-and-interpret-box-plots-and-histograms-to-compare.worked_example",
-      "nodeId": "math.im1.skill.9.6.construct-and-interpret-box-plots-and-histograms-to-compare",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.s-id-a-2",
-        "math.standard.ccss.s-id-a-3"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.9.6.construct-and-interpret-box-plots-and-histograms-to-compare",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.6.construct-and-interpret-box-plots-and-histograms-to-compare.guided_practice",
-      "nodeId": "math.im1.skill.9.6.construct-and-interpret-box-plots-and-histograms-to-compare",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.s-id-a-2",
-        "math.standard.ccss.s-id-a-3"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 9k: Construct and interpret box plots and histograms to compare the shape, center, and spread of two data sets",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.6.construct-and-interpret-box-plots-and-histograms-to-compare.independent_practice",
-      "nodeId": "math.im1.skill.9.6.construct-and-interpret-box-plots-and-histograms-to-compare",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.s-id-a-2",
-        "math.standard.ccss.s-id-a-3"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.6.describe-how-adding-or-multiplying-every-value-in-a-data-set.worked_example",
-      "nodeId": "math.im1.skill.9.6.describe-how-adding-or-multiplying-every-value-in-a-data-set",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.s-id-a-2",
-        "math.standard.ccss.s-id-a-3"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.9.6.describe-how-adding-or-multiplying-every-value-in-a-data-set",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.6.describe-how-adding-or-multiplying-every-value-in-a-data-set.guided_practice",
-      "nodeId": "math.im1.skill.9.6.describe-how-adding-or-multiplying-every-value-in-a-data-set",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.s-id-a-2",
-        "math.standard.ccss.s-id-a-3"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 9j: Describe how adding or multiplying every value in a data set affects the mean, median, mode, range, and standard deviation",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.6.describe-how-adding-or-multiplying-every-value-in-a-data-set.independent_practice",
-      "nodeId": "math.im1.skill.9.6.describe-how-adding-or-multiplying-every-value-in-a-data-set",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.s-id-a-2",
-        "math.standard.ccss.s-id-a-3"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
       "stableActivityId": "math.im1.skill.9.7.construct-and-complete-two-way-frequency-tables-from-verbal.worked_example",
       "nodeId": "math.im1.skill.9.7.construct-and-complete-two-way-frequency-tables-from-verbal",
       "sourceNodeIds": [],
@@ -11416,6 +11270,106 @@
     {
       "nodeId": "math.im1.skill.9.5.explain-why-median-and-quartiles-help-describe-a-skewed-distribution",
       "blueprintId": "math.im1.skill.9.5.explain-why-median-and-quartiles-help-describe-a-skewed-distribution",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.determine-a-named-center-statistic-after-adding-a-constant",
+      "blueprintId": "math.im1.skill.9.6.determine-a-named-center-statistic-after-adding-a-constant",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.determine-a-named-spread-statistic-after-adding-a-constant",
+      "blueprintId": "math.im1.skill.9.6.determine-a-named-spread-statistic-after-adding-a-constant",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.determine-a-named-center-statistic-after-multiplying-by-a-constant",
+      "blueprintId": "math.im1.skill.9.6.determine-a-named-center-statistic-after-multiplying-by-a-constant",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.determine-a-named-spread-statistic-after-multiplying-by-a-constant",
+      "blueprintId": "math.im1.skill.9.6.determine-a-named-spread-statistic-after-multiplying-by-a-constant",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.determine-a-named-center-statistic-after-an-ordered-affine-transformation",
+      "blueprintId": "math.im1.skill.9.6.determine-a-named-center-statistic-after-an-ordered-affine-transformation",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.construct-a-data-table-with-a-specified-mean",
+      "blueprintId": "math.im1.skill.9.6.construct-a-data-table-with-a-specified-mean",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.evaluate-which-sample-appears-more-representative-using-sample-evidence",
+      "blueprintId": "math.im1.skill.9.6.evaluate-which-sample-appears-more-representative-using-sample-evidence",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.make-a-contextual-choice-from-compared-distributions",
+      "blueprintId": "math.im1.skill.9.6.make-a-contextual-choice-from-compared-distributions",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.compare-the-information-shown-by-histograms-and-box-plots",
+      "blueprintId": "math.im1.skill.9.6.compare-the-information-shown-by-histograms-and-box-plots",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.update-an-overall-mean-after-equal-changes-to-a-subgroup",
+      "blueprintId": "math.im1.skill.9.6.update-an-overall-mean-after-equal-changes-to-a-subgroup",
       "standards": [],
       "prerequisites": [],
       "difficulty": 0.5,

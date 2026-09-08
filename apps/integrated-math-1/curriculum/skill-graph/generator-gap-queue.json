@@ -4058,11 +4058,101 @@
       "rendererAssignmentReason": "Planning classification only",
       "gap": "Planning classification only; no reviewed renderer contract",
       "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.determine-a-named-center-statistic-after-adding-a-constant",
+      "title": "Determine a named center statistic after adding a constant",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "No reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.determine-a-named-spread-statistic-after-adding-a-constant",
+      "title": "Determine a named spread statistic after adding a constant",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "No reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.determine-a-named-center-statistic-after-multiplying-by-a-constant",
+      "title": "Determine a named center statistic after multiplying by a constant",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "No reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.determine-a-named-spread-statistic-after-multiplying-by-a-constant",
+      "title": "Determine a named spread statistic after multiplying by a constant",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "No reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.determine-a-named-center-statistic-after-an-ordered-affine-transformation",
+      "title": "Determine a named center statistic after an ordered affine transformation",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "No reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.construct-a-data-table-with-a-specified-mean",
+      "title": "Construct a data table with a specified mean",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "No reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.evaluate-which-sample-appears-more-representative-using-sample-evidence",
+      "title": "Evaluate which sample appears more representative using sample evidence",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "No reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.make-a-contextual-choice-from-compared-distributions",
+      "title": "Make a contextual choice from compared distributions",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "No reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.compare-the-information-shown-by-histograms-and-box-plots",
+      "title": "Compare the information shown by histograms and box plots",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "No reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.update-an-overall-mean-after-equal-changes-to-a-subgroup",
+      "title": "Update an overall mean after equal changes to a subgroup",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "No reviewed renderer contract",
+      "priority": "high"
     }
   ],
   "meta": {
-    "totalSkills": 451,
+    "totalSkills": 461,
     "allNeedGenerators": true,
-    "total": 451
+    "total": 461
   }
 }
