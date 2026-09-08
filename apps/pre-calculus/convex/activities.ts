@@ -688,7 +688,7 @@ export const createTopic11DailySubmission = internalMutation({
       if (existing.stableActivityId !== PRECALCULUS_TOPIC_11_SOURCE_ACTIVITY_ID
         || existing.masteryContractVersion !== "learning-evidence.v1"
         || !isCanonicalTopic11Acknowledgement(data)
-        || !sameRecord(data, args.submissionData)
+        || !sameJson(data, args.submissionData)
         || !Number.isInteger(existing.attemptOrdinal) || (existing.attemptOrdinal ?? 0) < 1
         || !Number.isFinite(existing.submittedAt) || existing.submittedAt < 0
         || existing.submittedAt > 8_640_000_000_000_000

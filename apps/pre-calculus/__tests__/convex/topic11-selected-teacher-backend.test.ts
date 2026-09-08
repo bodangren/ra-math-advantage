@@ -330,6 +330,27 @@ describe("trusted Topic 1.1 teacher flow", () => {
     expect(r.learning_evidence).toHaveLength(0);
   });
 
+  it("replays a persisted acknowledgement after nested data loses object identity", async () => {
+    const { ctx, r } = db();
+    const first = await h(createTopic11DailySubmission)(ctx, structuredClone(ack));
+    r.activity_submissions[0].submissionData = JSON.parse(
+      JSON.stringify(r.activity_submissions[0].submissionData),
+    );
+
+    await expect(
+      h(createTopic11DailySubmission)(ctx, structuredClone(ack)),
+    ).resolves.toEqual(first);
+    expect(r.activity_submissions).toHaveLength(1);
+    expect(r.learning_evidence).toHaveLength(0);
+
+    r.activity_submissions[0].submissionData.answers = { changed: true };
+    await expect(
+      h(createTopic11DailySubmission)(ctx, structuredClone(ack)),
+    ).rejects.toThrow(/idempotency_conflict/);
+    expect(r.activity_submissions).toHaveLength(1);
+    expect(r.learning_evidence).toHaveLength(0);
+  });
+
   it("requires the exact source to be published before it stores the acknowledgement", async () => {
     const { ctx, r } = db();
     r.lesson_versions[0].status = "draft";
