@@ -708,7 +708,7 @@ QF backend integration is committed as `91e71dd6d`. All nine staged files matche
 
 Removed b73d and bc11 after exact preservation and independent review. Recovery commits `9b8064d8d` and `1a0de0c90` preserve their 23 unique files. The other 701 states have retained copies. Four saved worktrees remain. See `saved-b73d-bc11-final-cleanup-review.md`.
 
-- [~] Task bda5 and d243 cleanup review: Inspect the last two duplicate saved candidates before the retained reference worktrees. Compare every working state with retained copies and reachable history. Identify unique files, modes, links, ignored content, and active processes. Keep both directories until exact preservation and independent checks pass.
+- [x] Task bda5 and d243 cleanup review: Inspect the last two duplicate saved candidates before the retained reference worktrees. Compare every working state with retained copies and reachable history. Identify unique files, modes, links, ignored content, and active processes. Keep both directories until exact preservation and independent checks pass.
 
 The IM1 stored coverage order defect is corrected in `02954d9d6`. All 499 record bodies and all aggregate values are unchanged. Parent and independent checks passed all 37 audit and coverage tests. Builder parity now passes. See `im1-coverage-order-final-review.md`.
 
@@ -718,4 +718,6 @@ The IM1 stored coverage order defect is corrected in `02954d9d6`. All 499 record
 
 Removed the completed IM1 candidate after parent and independent content checks. All accepted source, graph, and coverage changes remain committed. See `im1-completed-candidate-cleanup-review.md`. The current IM3 candidate remains active.
 
-- [~] Task bda5 and d243 preservation: Save ten unique bda5 files and eleven unique d243 files in separate recovery commits on their exact saved base. Preserve bytes and modes. The older graph proposals remain unreviewed. Remove the directories only after independent snapshot checks and final process checks.
+- [x] Task bda5 and d243 preservation: Save ten unique bda5 files and eleven unique d243 files in separate recovery commits on their exact saved base. Preserve bytes and modes. The older graph proposals remain unreviewed. Remove the directories only after independent snapshot checks and final process checks.
+
+Removed bda5 and d243 after parent and independent preservation checks. Recovery commits `e1f0b8b87` and `727d2bf22` preserve their 21 unique files. Only two saved worktrees remain: `02d6` and `18ee`. They retain shared working states and require separate review. See `saved-bda5-d243-final-cleanup-review.md`.
