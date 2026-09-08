@@ -1652,17 +1652,15 @@
     },
     {
       "nodeId": "math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met",
-      "blueprintId": "math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met",
+      "blueprintId": "math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met.blueprint",
       "standards": [
         "math.standard.ccss.a-rei-c-6"
       ],
-      "prerequisites": [
-        "math.im1.skill.7.1.graph-systems-of-linear-equations-and-determine-the-number-o"
-      ],
+      "prerequisites": [],
       "difficulty": 0.5,
-      "rendererKey": "graphing-explorer",
       "generatorKey": null,
-      "generatorReady": false
+      "generatorReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im1.skill.7.3.solve-systems-of-linear-equations-using-elimination-by-addit",
@@ -1670,9 +1668,7 @@
       "standards": [
         "math.standard.ccss.a-rei-c-6"
       ],
-      "prerequisites": [
-        "math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met"
-      ],
+      "prerequisites": [],
       "difficulty": 0.5,
       "rendererKey": "graphing-explorer",
       "generatorKey": null,
@@ -2142,6 +2138,66 @@
     {
       "nodeId": "math.im1.skill.7.1.explain-the-limits-of-graphing-as-a-system-solving-method",
       "blueprintId": "math.im1.skill.7.1.explain-the-limits-of-graphing-as-a-system-solving-method.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.2.substitute-an-isolated-expression-to-solve-a-one-solution-li",
+      "blueprintId": "math.im1.skill.7.2.substitute-an-isolated-expression-to-solve-a-one-solution-li.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.2.recognize-no-solution-or-infinitely-many-solutions-during-su",
+      "blueprintId": "math.im1.skill.7.2.recognize-no-solution-or-infinitely-many-solutions-during-su.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.2.represent-a-two-digit-number-and-its-digit-reversal-with-lin",
+      "blueprintId": "math.im1.skill.7.2.represent-a-two-digit-number-and-its-digit-reversal-with-lin.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.2.diagnose-and-correct-an-algebraic-substitution-error",
+      "blueprintId": "math.im1.skill.7.2.diagnose-and-correct-an-algebraic-substitution-error.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.2.choose-an-efficient-substitution-expression-and-justify-the",
+      "blueprintId": "math.im1.skill.7.2.choose-an-efficient-substitution-expression-and-justify-the.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.2.generalize-a-complementary-angle-sum-and-difference-system",
+      "blueprintId": "math.im1.skill.7.2.generalize-a-complementary-angle-sum-and-difference-system.blueprint",
       "standards": [],
       "prerequisites": [],
       "difficulty": 0.5,

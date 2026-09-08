@@ -3716,24 +3716,12 @@
     },
     {
       "nodeId": "math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im1.example.7.2.008",
+        "math.im1.example.7.2.009"
+      ],
       "alignmentNodeIds": [
         "math.standard.ccss.a-rei-c-6"
-      ],
-      "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
-      "exceptions": [
-        {
-          "type": "generator",
-          "reason": "Generator not yet implemented for IM1 rollout"
-        }
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4942,7 +4930,8 @@
       "sourceNodeIds": [
         "math.im1.example.4.3.013",
         "math.im1.example.6.5.022",
-        "math.im1.example.6.5.023"
+        "math.im1.example.6.5.023",
+        "math.im1.example.7.2.008"
       ],
       "alignmentNodeIds": [],
       "reviewStatus": "draft",
@@ -6999,7 +6988,8 @@
       "nodeId": "math.im1.skill.7.1.write-a-two-equation-system-from-a-context",
       "sourceNodeIds": [
         "math.im1.example.7.1.004",
-        "math.im1.example.7.1.007"
+        "math.im1.example.7.1.007",
+        "math.im1.example.7.2.009"
       ],
       "alignmentNodeIds": [],
       "reviewStatus": "draft",
@@ -7013,7 +7003,8 @@
       "nodeId": "math.im1.skill.7.1.solve-and-interpret-a-contextual-system",
       "sourceNodeIds": [
         "math.im1.example.7.1.004",
-        "math.im1.example.7.1.007"
+        "math.im1.example.7.1.007",
+        "math.im1.example.7.2.009"
       ],
       "alignmentNodeIds": [],
       "reviewStatus": "draft",
@@ -7091,6 +7082,76 @@
         "course": "im1",
         "module": "7",
         "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.7.2.substitute-an-isolated-expression-to-solve-a-one-solution-li",
+      "sourceNodeIds": [
+        "math.im1.example.7.2.008"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.7.2.recognize-no-solution-or-infinitely-many-solutions-during-su",
+      "sourceNodeIds": [
+        "math.im1.example.7.2.008"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.7.2.represent-a-two-digit-number-and-its-digit-reversal-with-lin",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.7.2.diagnose-and-correct-an-algebraic-substitution-error",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.7.2.choose-an-efficient-substitution-expression-and-justify-the",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.7.2.generalize-a-complementary-angle-sum-and-difference-system",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "2"
       }
     }
   ]

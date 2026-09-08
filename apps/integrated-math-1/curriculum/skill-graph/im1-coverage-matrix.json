@@ -1,10 +1,10 @@
 {
   "version": 1,
   "course": "im1",
-  "totalSkills": 336,
+  "totalSkills": 342,
   "counts": {
     "served": 6,
-    "gap": 330,
+    "gap": 336,
     "newComponent": 0
   },
   "byModule": [
@@ -52,9 +52,9 @@
     },
     {
       "module": "7",
-      "totalSkills": 18,
+      "totalSkills": 24,
       "served": 0,
-      "gap": 18,
+      "gap": 24,
       "newComponent": 0
     },
     {
@@ -2021,7 +2021,55 @@
       "priority": "standard"
     },
     {
+      "skillId": "math.im1.skill.7.2.choose-an-efficient-substitution-expression-and-justify-the",
+      "module": "7",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.7.2.diagnose-and-correct-an-algebraic-substitution-error",
+      "module": "7",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.7.2.generalize-a-complementary-angle-sum-and-difference-system",
+      "module": "7",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.7.2.recognize-no-solution-or-infinitely-many-solutions-during-su",
+      "module": "7",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.7.2.represent-a-two-digit-number-and-its-digit-reversal-with-lin",
+      "module": "7",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
       "skillId": "math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met",
+      "module": "7",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.7.2.substitute-an-isolated-expression-to-solve-a-one-solution-li",
       "module": "7",
       "status": "gap",
       "tier": "none",

@@ -1,156 +1,94 @@
 # Lesson 7-2 — Substitution
 
-Source: (Module 7, Lesson 7-2, Int1_0702_practice.docx)
+Source: `Int1_0702_practice.docx`
 
-## Today's Goals
+## Goals
 
-* Solve systems of linear equations using the substitution method
-* Write and solve systems of equations to model real-world situations
-* Solve systems containing decimals, fractions, and special angle or digit relationships
-* Analyze and compare solution methods for systems of equations
+- Solve a linear system by substitution.
+- Write, solve, and interpret contextual systems.
+- Use decimal and fractional coefficients as substitution input variants.
+- Analyze solution methods and errors.
 
-## Vocabulary
+## Substitution method
 
-* **system of equations** — a set of two or more equations containing the same variables
-* **substitution method** — an algebraic technique for solving a system by replacing a variable with an equivalent expression from another equation
-* **solution of a system** — an ordered pair that satisfies every equation in the system simultaneously
+Use an isolated expression in the other equation. Solve the resulting one-variable equation. Back-substitute. Check the ordered pair in both original equations. If simplification gives a true identity, the system has infinitely many solutions. If it gives a contradiction, the system has no solution.
 
-## Learn: The Substitution Method
+## Examples 1-3 (Problems 1-15)
 
-The substitution method solves a system of equations by expressing one variable in terms of another and replacing that variable in the second equation.
+Use substitution to solve each system.
 
-### Key Concept: Solving by Substitution
+1. `y = 5x + 1`; `4x + y = 10`. Solution: `(1, 6)`.
+2. `y = 4x + 5`; `2x + y = 17`. Solution: `(2, 13)`.
+3. `y = 3x - 34`; `y = 2x - 5`. Solution: `(29, 53)`.
+4. `y = 3x - 2`; `y = 2x - 5`. Solution: `(-3, -11)`.
+5. `2x + y = 3`; `4x + 4y = 8`. Rewrite `y = 3 - 2x`. Solution: `(1, 1)`.
+6. `3x + 4y = -3`; `x + 2y = -1`. Solution: `(-1, 0)`.
+7. `y = -3x + 4`; `-6x - 2y = -8`. The equations reduce to an identity. Infinitely many solutions.
+8. `-1 = 2x - y`; `8x - 4y = -4`. The equations reduce to an identity. Infinitely many solutions.
+9. `x = y - 1`; `-x + y = -1`. The first equation gives `-x + y = 1`, which contradicts the second equation. No solution.
+10. `y = -4x + 11`; `3x + y = 9`. Solution: `(2, 3)`.
+11. `y = -3x + 1`; `2x + y = 1`. Solution: `(0, 1)`.
+12. `3x + y = -5`; `6x + 2y = 10`. The equations contradict. No solution.
+13. `5x - y = 5`; `-x + 3y = 13`. Solution: `(2, 5)`.
+14. `2x + y = 4`; `-2x + y = -4`. Solution: `(2, 0)`.
+15. `-5x + 4y = 20`; `10x - 8y = -40`. The equations reduce to an identity. Infinitely many solutions.
 
-* Isolate one variable in one of the equations (if it is not already isolated).
-* Substitute the resulting expression into the other equation.
-* Solve the new equation for the remaining variable.
-* Substitute that value back into the isolated equation to find the first variable.
-* Check the ordered pair in both original equations.
+## Example 4 (Problems 16-17)
 
-## Example 1 — Solve Systems by Substitution
+16. Harvey has some 1-dollar bills and some 5-dollar bills. He has 6 bills in all. They are worth 22 dollars. Let `x` be the number of 1-dollar bills. Let `y` be the number of 5-dollar bills. Write a system and use substitution to find each number. Use `x + y = 6` and `x + 5y = 22`. The solution is `(2, 4)`: two 1-dollar bills and four 5-dollar bills.
 
-Use substitution to solve linear systems. The problems fall into three categories based on how the equations are structured.
-
-### Step 1: Substitute When One Variable Is Isolated
-
-When one equation is already solved for [ y ] or [ x ], substitute that expression directly into the other equation.
-
-For example, given:
-[
-y = 5x + 1
-]
-[
-4x + y = 10
-]
-
-Substitute [ 5x + 1 ] for [ y ] in the second equation:
-[
-4x + (5x + 1) = 10
-]
-
-Solve for [ x ], then substitute back to find [ y ].
-
-Other problems in this group provide the system with [ x ] isolated, such as:
-[
-x = y - 1
-]
-[
--x + y = -1
-]
-
-### Step 2: Set Equal When Both Equations Are Solved for the Same Variable
-
-When both equations express [ y ] in terms of [ x ], set the two expressions equal to each other.
-
-For example:
-[
-y = 3x - 2
-]
-[
-y = 2x - 5
-]
-
-Set the right sides equal:
-[
-3x - 2 = 2x - 5
-]
-
-Solve for [ x ], then substitute into either equation to find [ y ].
-
-### Step 3: Isolate First, Then Substitute
-
-When neither equation is solved for a variable, isolate a variable in one equation before substituting.
-
-For example:
-[
-2x + y = 3
-]
-[
-4x + 4y = 8
-]
-
-Solve the first equation for [ y ]:
-[
-y = 3 - 2x
-]
-
-Then substitute into the second equation and solve.
-
-Some problems involve negative coefficients or require careful simplification, such as:
-[
--1 = 2x - y
-]
-[
-8x - 4y = -4
-]
-
-## Example 2 — Applications of Systems of Equations
-
-Set up systems of equations from verbal descriptions and solve them using substitution.
-
-### Step 1: Define Variables and Write the System
-
-Identify the unknown quantities, assign variables, and translate the words into two equations.
-
-For example, Harvey has [ x ] [ 1 ]-dollar bills and [ y ] [ 5 ]-dollar bills. He has 6 bills worth [ 22 ] dollars total:
-[
-x + y = 6
-]
-[
-x + 5y = 22
-]
-
-### Step 2: Solve and Interpret
-
-Use substitution to solve the system, then state the answer in the context of the problem.
-
-In the chemistry problem, Shelby and Calvin need 5 milliliters of a 65% acid solution by mixing from two beakers: Beaker A (70% acid) and Beaker B (20% acid). Let [ a ] be milliliters from Beaker A and [ b ] be milliliters from Beaker B.
-
-The system is:
-[
-a + b = 5
-]
-[
-0.70a + 0.20b = 3.25
-]
-
-Solve by substitution to find how many milliliters are needed from each beaker.
+17. Shelby and Calvin need 5 mL of a solution that is 65% acid and 35% distilled water. There is no undiluted acid in the chemistry lab. Beaker A is 70% acid and 30% distilled water. Beaker B is 20% acid and 80% distilled water. Part a asks for a system that finds how many milliliters to pour from each beaker. Part b asks the learner to solve and interpret that system. Let `a` and `b` be the amounts from A and B. Use `a + b = 5` and `0.70a + 0.20b = 3.25`. The solution is `(4.5, 0.5)` mL.
 
 ## Mixed Exercises
 
-The mixed exercises extend substitution practice to a variety of problem types and contexts.
+Use substitution to solve each system in Problems 18-20.
 
-* **Decimals and fractions:** Solve systems with decimal coefficients, such as [ y = 3.2x + 1.9 ] and [ 2.3x + 2y = 17.72 ], and systems with fractional coefficients, such as [ y = \frac{1}{4}x - \frac{1}{2} ] and [ 8x + 12y = -\frac{1}{2} ].
-* **Geometry:** Angle [ A ] and angle [ B ] are complementary with a difference of [ 20^\circ ]. Write and solve a system to find their measures, then generalize the method.
-* **Number theory:** A two-digit number decreases by 45 when its digits are interchanged. The tens digit is 1 more than 3 times the units digit. Define variables and write a system to find the original number.
-* **Data modeling:** Use data from a table of zoo visitors to write equations relating adults and children at different exhibits, solve the system, and extend to a ticket-sales problem.
-* **Error analysis:** Evaluate two students' work solving a system about pounds of apples and bananas, determine who is correct, and explain the reasoning.
-* **Ratios:** A charity has 60 volunteers with a boy-to-girl ratio of 7:5. Find the number of boys and girls.
-* **Method comparison:** Compare and contrast solving the same system by graphing versus by substitution.
-* **Creation and explanation:** Create a real-world system with one solution and explain how to choose what to substitute.
+18. `y = 3.2x + 1.9`; `2.3x + 2y = 17.72`. Solution: `(1.6, 7.02)`.
+19. `y = (1/4)x - 1/2`; `8x + 12y = -1/2`. Solution: `(1/2, -3/8)`.
+20. `y = -10x - 6.8`; `-50x - 10.5y = 60.4`. Solution: `(-0.2, -4.8)`.
 
-## Review Notes
+Problem 21 remains a data-dependent manual task. Research population trends in South America. Select two countries. State the data source and model assumptions. Write and solve a system to predict when the populations are equal. The worksheet supplies no fixed dataset or answer.
 
-* Problem 24 references a table of zoo visitors (`image2.png`) that is not described in the extracted text. The table data is needed to model the relationships in parts a–c.
-* Problem 25 includes student work (`image3.png`) that cannot be described. Human review is needed to evaluate Guillermo's and Cara's solutions.
-* Problem 22 has an adjacent image (`image1.png`) preceding the problem text that cannot be described.
+22. Angles A and B are complementary. Their measures have an absolute difference of 20 degrees. Find the measures and generalize the method. The measures are the unordered pair `{35 degrees, 55 degrees}`. For absolute difference `d`, the unordered pair is `{(90 - d)/2, (90 + d)/2}` with `0 <= d <= 90`. If both angles must be nondegenerate, use `0 <= d < 90`. Require `d > 0` only when the angles must be unequal. The source does not identify which named angle is larger. The adjacent figure shows a right angle divided into angles A and B. It adds no ordering condition.
+
+23. A two-digit number decreases by 45 when its digits are reversed. The tens digit is 1 more than 3 times the units digit. Let `t` and `u` be the digits. Use `(10t + u) - (10u + t) = 45` and `t = 3u + 1`. The number is 72.
+
+24. The source table is:
+
+- Big Cats adults: `x`
+- Big Cats children: `1024`
+- Petting Zoo adults: `21`
+- Petting Zoo children: `y`
+
+Part a states that three times the total number of adults was 17 less than the number of children at the Petting Zoo. Write an equation for this relationship. This gives `y = 3(x + 21) + 17 = 3x + 80`. Part b states that the total number of children was 681 less than 10 times the number of adults at Big Cats. Write an equation. This gives `1024 + y = 10x - 681`. Part c asks the learner to solve the system and find the total visitors at the two exhibits. It gives `x = 255`, `y = 845`, and 2,145 total visitors. Part d states that adult tickets cost 25 dollars and child tickets cost 10 dollars. Sales were 47,750 dollars. The number of children was 270 more than 6 times the number of adults. Write and solve a system to find the total visitors. The equations are `25a + 10c = 47750` and `c = 6a + 270`. There are 530 adults, 3,450 children, and 3,980 visitors.
+
+25. The system is `a + b = 7` and `1.29a + 0.49b = 6.63`. Here, `a` is pounds of apples and `b` is pounds of bananas. The source asks: Is either student correct? Explain the reasoning.
+
+Guillermo shows:
+
+- `1.29a + 0.49b = 6.63`
+- `1.29a + 0.49(a + 7) = 6.63`
+- `1.29a + 0.49a + 3.43 = 6.63`
+- `1.78a = 3.2`
+- `a = 1.8`
+- `a + b = 7`, so `b = 5.2`
+
+He interprets this as 1.8 pounds of apples and 5.2 pounds of bananas. Guillermo substitutes `b = a + 7`, which is incorrect. The correct rewrite is `b = 7 - a`.
+
+Cara shows:
+
+- `1.29a + 0.49b = 6.63`
+- `1.29(7 - b) + 0.49b = 6.63`
+- `9.03 - 1.29b + 0.49b = 6.63`
+- `-0.8b = -2.4`
+- `b = 3`
+
+Cara correctly obtains `b = 3`, but she says that this means 3 pounds of apples and 3 pounds of bananas. The correct interpretation is 4 pounds of apples and 3 pounds of bananas.
+
+26. A charity has 60 volunteers. The ratio of boys to girls is `7:5`. Use `b + g = 60` and `5b = 7g`. The result is 35 boys and 25 girls.
+
+Problem 27 remains a manual comparison task. Compare the solution of the same system by graphing and substitution. Both methods find a common solution. A graph can show or approximate an intersection. Substitution can give an exact algebraic value when the equations permit it.
+
+28. Create a system with one solution. Give a real-world context. Explain the solution in that context. More than one response is valid.
+
+29. Explain what to substitute. Select an expression that is already isolated. If none is isolated, isolate a variable with simple coefficients. Preserve equation equivalence. More than one justified choice can be valid.

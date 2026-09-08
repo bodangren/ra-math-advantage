@@ -3310,6 +3310,60 @@
       "prerequisitesMet": true,
       "independentPracticeReady": false,
       "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.2.substitute-an-isolated-expression-to-solve-a-one-solution-li",
+      "title": "Substitute an isolated expression to solve a one-solution linear system",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.2.recognize-no-solution-or-infinitely-many-solutions-during-su",
+      "title": "Recognize no solution or infinitely many solutions during substitution",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.2.represent-a-two-digit-number-and-its-digit-reversal-with-lin",
+      "title": "Represent a two-digit number and its digit reversal with linear equations",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.2.diagnose-and-correct-an-algebraic-substitution-error",
+      "title": "Diagnose and correct an algebraic substitution error",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.2.choose-an-efficient-substitution-expression-and-justify-the",
+      "title": "Choose an efficient substitution expression and justify the choice",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.2.generalize-a-complementary-angle-sum-and-difference-system",
+      "title": "Generalize a complementary-angle sum-and-difference system",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     }
   ],
   "prerequisiteGaps": [

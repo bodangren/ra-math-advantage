@@ -6,8 +6,8 @@
     "pilotEdgesPreserved": 0,
     "standardEdgesMerged": 941,
     "suggestedEdges": 1277,
-    "totalEdges": 2439,
-    "totalNodes": 933,
+    "totalEdges": 2448,
+    "totalNodes": 939,
     "normalizedWeights": 539
   },
   "nodes": [
@@ -6102,37 +6102,39 @@
     {
       "id": "math.im1.example.7.2.008",
       "kind": "worked_example",
-      "title": "Example 1: Solve Systems by Substitution; Applications of Systems of Equations",
+      "title": "Examples 1-3: Solve Systems by Substitution",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-7-class-period-plan.md (7-2, Example 1)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0702_practice.docx (Examples 1-3 (Problems 1-15))",
+        "apps/integrated-math-1/curriculum/modules/module-7-lesson-2 (Examples 1-3 (Problems 1-15))"
       ],
       "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "7",
         "lesson": "2",
-        "exampleNumber": 1,
         "sourceLesson": "7-2",
-        "rawText": "7-2, Examples 1-2 \u2014 Solve Systems by Substitution; Applications of Systems of Equations"
+        "rawText": "7-2, Examples 1-3 (Problems 1-15)",
+        "historicalExampleNumber": 1
       }
     },
     {
       "id": "math.im1.example.7.2.009",
       "kind": "worked_example",
-      "title": "Example 2: Solve Systems by Substitution; Applications of Systems of Equations",
+      "title": "Example 4: Model and Solve Systems by Substitution",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-7-class-period-plan.md (7-2, Example 2)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0702_practice.docx (Example 4 (Problems 16-17))",
+        "apps/integrated-math-1/curriculum/modules/module-7-lesson-2 (Example 4 (Problems 16-17))"
       ],
       "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "7",
         "lesson": "2",
-        "exampleNumber": 2,
         "sourceLesson": "7-2",
-        "rawText": "7-2, Examples 1-2 \u2014 Solve Systems by Substitution; Applications of Systems of Equations"
+        "rawText": "7-2, Example 4 (Problems 16-17)",
+        "historicalExampleNumber": 2
       }
     },
     {
@@ -10927,14 +10929,17 @@
       "domain": "math.im1",
       "description": "Solve systems of linear equations using the substitution method",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-7-class-period-plan.md"
+        "apps/integrated-math-1/curriculum/module-7-class-period-plan.md (objective 7c)",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0702_practice.docx (Examples 1-3; Example 4)",
+        "apps/integrated-math-1/curriculum/modules/module-7-lesson-2"
       ],
       "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "7",
         "lesson": "2"
-      }
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.skill.7.3.solve-systems-of-linear-equations-using-elimination-by-addit",
@@ -13376,7 +13381,9 @@
       "domain": "math.im1",
       "description": "Rewrite linear equations from standard form into slope-intercept form",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/modules/module-4-lesson-3"
+        "apps/integrated-math-1/curriculum/modules/module-4-lesson-3",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0702_practice.docx (Examples 1-3, Problems 5, 6, 13, and 14)",
+        "apps/integrated-math-1/curriculum/modules/module-7-lesson-2 (Examples 1-3, Problems 5, 6, 13, and 14)"
       ],
       "reviewStatus": "draft",
       "independentPracticeReady": false,
@@ -16240,7 +16247,9 @@
       "domain": "math.im1",
       "description": "Write a two-equation system from a context",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/modules/module-7-lesson-1"
+        "apps/integrated-math-1/curriculum/modules/module-7-lesson-1",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0702_practice.docx (Example 4, Problems 16-17; Mixed Exercises, Problems 22, 24, and 28)",
+        "apps/integrated-math-1/curriculum/modules/module-7-lesson-2 (Example 4, Problems 16-17; Mixed Exercises, Problems 22, 24, and 28)"
       ],
       "reviewStatus": "draft",
       "independentPracticeReady": false,
@@ -16257,7 +16266,9 @@
       "domain": "math.im1",
       "description": "Solve and interpret a contextual system",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/modules/module-7-lesson-1"
+        "apps/integrated-math-1/curriculum/modules/module-7-lesson-1",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0702_practice.docx (Example 4, Problems 16-17; Mixed Exercises, Problems 22-26)",
+        "apps/integrated-math-1/curriculum/modules/module-7-lesson-2 (Example 4, Problems 16-17; Mixed Exercises, Problems 22-26)"
       ],
       "reviewStatus": "draft",
       "independentPracticeReady": false,
@@ -16342,7 +16353,9 @@
       "domain": "math.im1",
       "description": "Construct systems with a specified number of solutions",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/modules/module-7-lesson-1"
+        "apps/integrated-math-1/curriculum/modules/module-7-lesson-1",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0702_practice.docx (Mixed Exercises, Problem 28)",
+        "apps/integrated-math-1/curriculum/modules/module-7-lesson-2 (Mixed Exercises, Problem 28)"
       ],
       "reviewStatus": "draft",
       "independentPracticeReady": false,
@@ -16359,7 +16372,9 @@
       "domain": "math.im1",
       "description": "Explain the limits of graphing as a system-solving method",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/modules/module-7-lesson-1"
+        "apps/integrated-math-1/curriculum/modules/module-7-lesson-1",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0702_practice.docx (Mixed Exercises, Problem 27)",
+        "apps/integrated-math-1/curriculum/modules/module-7-lesson-2 (Mixed Exercises, Problem 27)"
       ],
       "reviewStatus": "draft",
       "independentPracticeReady": false,
@@ -16367,6 +16382,114 @@
         "course": "im1",
         "module": "7",
         "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.7.2.substitute-an-isolated-expression-to-solve-a-one-solution-li",
+      "kind": "skill",
+      "title": "Substitute an isolated expression to solve a one-solution linear system",
+      "domain": "math.im1",
+      "description": "Substitute an isolated expression to solve a one-solution linear system",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0702_practice.docx (Examples 1-3, Problems 1-6 and 10-14; Mixed Exercises, Problems 18-20)",
+        "apps/integrated-math-1/curriculum/modules/module-7-lesson-2 (Problems 1-6, 10-14, and 18-20)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.7.2.recognize-no-solution-or-infinitely-many-solutions-during-su",
+      "kind": "skill",
+      "title": "Recognize no solution or infinitely many solutions during substitution",
+      "domain": "math.im1",
+      "description": "Recognize no solution or infinitely many solutions during substitution",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0702_practice.docx (Examples 1-3, Problems 7-9, 12, and 15)",
+        "apps/integrated-math-1/curriculum/modules/module-7-lesson-2 (Problems 7-9, 12, and 15)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.7.2.represent-a-two-digit-number-and-its-digit-reversal-with-lin",
+      "kind": "skill",
+      "title": "Represent a two-digit number and its digit reversal with linear equations",
+      "domain": "math.im1",
+      "description": "Represent a two-digit number and its digit reversal with linear equations",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0702_practice.docx (Mixed Exercises, Problem 23)",
+        "apps/integrated-math-1/curriculum/modules/module-7-lesson-2 (Problem 23)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.7.2.diagnose-and-correct-an-algebraic-substitution-error",
+      "kind": "skill",
+      "title": "Diagnose and correct an algebraic substitution error",
+      "domain": "math.im1",
+      "description": "Diagnose and correct an algebraic substitution error",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0702_practice.docx (Mixed Exercises, Problem 25, Guillermo work)",
+        "apps/integrated-math-1/curriculum/modules/module-7-lesson-2 (Problem 25, Guillermo work)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.7.2.choose-an-efficient-substitution-expression-and-justify-the",
+      "kind": "skill",
+      "title": "Choose an efficient substitution expression and justify the choice",
+      "domain": "math.im1",
+      "description": "Choose an efficient substitution expression and justify the choice",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0702_practice.docx (Mixed Exercises, Problem 29)",
+        "apps/integrated-math-1/curriculum/modules/module-7-lesson-2 (Problem 29)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.7.2.generalize-a-complementary-angle-sum-and-difference-system",
+      "kind": "skill",
+      "title": "Generalize a complementary-angle sum-and-difference system",
+      "domain": "math.im1",
+      "description": "Generalize a complementary-angle sum-and-difference system",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0702_practice.docx (Mixed Exercises, Problem 22)",
+        "apps/integrated-math-1/curriculum/modules/module-7-lesson-2 (Problem 22)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "2"
       }
     }
   ],
@@ -58682,38 +58805,6 @@
       }
     },
     {
-      "id": "math.im1.edge.1260",
-      "type": "prerequisite_for",
-      "sourceId": "math.im1.skill.7.1.graph-systems-of-linear-equations-and-determine-the-number-o",
-      "targetId": "math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met",
-      "weight": 0.5,
-      "confidence": "low",
-      "reviewStatus": "draft",
-      "derived": true,
-      "derivationMethod": "lesson-sequence-prerequisite-v1",
-      "rationale": "Lesson-sequence prerequisite: lesson 1 precedes lesson 2 in module 7",
-      "metadata": {
-        "fromLesson": "7.1",
-        "toLesson": "7.2"
-      }
-    },
-    {
-      "id": "math.im1.edge.1261",
-      "type": "prerequisite_for",
-      "sourceId": "math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met",
-      "targetId": "math.im1.skill.7.3.solve-systems-of-linear-equations-using-elimination-by-addit",
-      "weight": 0.5,
-      "confidence": "low",
-      "reviewStatus": "draft",
-      "derived": true,
-      "derivationMethod": "lesson-sequence-prerequisite-v1",
-      "rationale": "Lesson-sequence prerequisite: lesson 2 precedes lesson 3 in module 7",
-      "metadata": {
-        "fromLesson": "7.2",
-        "toLesson": "7.3"
-      }
-    },
-    {
       "id": "math.im1.edge.1262",
       "type": "prerequisite_for",
       "sourceId": "math.im1.skill.7.3.solve-systems-of-linear-equations-using-elimination-by-addit",
@@ -62821,6 +62912,160 @@
       "metadata": {
         "module": "7",
         "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.edge.lesson-7-2-substitute-an-isolated-expression-to-solve-a-one-solution-li",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.7.2",
+      "targetId": "math.im1.skill.7.2.substitute-an-isolated-expression-to-solve-a-one-solution-li",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Lesson 7-2 directly assesses this operation.",
+      "metadata": {
+        "module": "7",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.edge.lesson-7-2-recognize-no-solution-or-infinitely-many-solutions-during-su",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.7.2",
+      "targetId": "math.im1.skill.7.2.recognize-no-solution-or-infinitely-many-solutions-during-su",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Lesson 7-2 directly assesses this operation.",
+      "metadata": {
+        "module": "7",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.edge.lesson-7-2-represent-a-two-digit-number-and-its-digit-reversal-with-lin",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.7.2",
+      "targetId": "math.im1.skill.7.2.represent-a-two-digit-number-and-its-digit-reversal-with-lin",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Lesson 7-2 directly assesses this operation.",
+      "metadata": {
+        "module": "7",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.edge.lesson-7-2-diagnose-and-correct-an-algebraic-substitution-error",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.7.2",
+      "targetId": "math.im1.skill.7.2.diagnose-and-correct-an-algebraic-substitution-error",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Lesson 7-2 directly assesses this operation.",
+      "metadata": {
+        "module": "7",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.edge.lesson-7-2-choose-an-efficient-substitution-expression-and-justify-the",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.7.2",
+      "targetId": "math.im1.skill.7.2.choose-an-efficient-substitution-expression-and-justify-the",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Lesson 7-2 directly assesses this operation.",
+      "metadata": {
+        "module": "7",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.edge.lesson-7-2-generalize-a-complementary-angle-sum-and-difference-system",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.7.2",
+      "targetId": "math.im1.skill.7.2.generalize-a-complementary-angle-sum-and-difference-system",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Lesson 7-2 directly assesses this operation.",
+      "metadata": {
+        "module": "7",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.edge.lesson-7-2-reuse-rewrite-standard-form-equations-in-slope-intercept-form",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.7.2",
+      "targetId": "math.im1.skill.4.3.rewrite-standard-form-equations-in-slope-intercept-form",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Lesson 7-2 directly reuses this reviewed operation.",
+      "metadata": {
+        "module": "7",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.edge.lesson-7-2-reuse-write-a-two-equation-system-from-a-context",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.7.2",
+      "targetId": "math.im1.skill.7.1.write-a-two-equation-system-from-a-context",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Lesson 7-2 directly reuses this reviewed operation.",
+      "metadata": {
+        "module": "7",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.edge.lesson-7-2-reuse-solve-and-interpret-a-contextual-system",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.7.2",
+      "targetId": "math.im1.skill.7.1.solve-and-interpret-a-contextual-system",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Lesson 7-2 directly reuses this reviewed operation.",
+      "metadata": {
+        "module": "7",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.edge.lesson-7-2-reuse-construct-systems-with-a-specified-number-of-solutions",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.7.2",
+      "targetId": "math.im1.skill.7.1.construct-systems-with-a-specified-number-of-solutions",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Lesson 7-2 directly reuses this reviewed operation.",
+      "metadata": {
+        "module": "7",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.edge.lesson-7-2-reuse-explain-the-limits-of-graphing-as-a-system-solving-method",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.7.2",
+      "targetId": "math.im1.skill.7.1.explain-the-limits-of-graphing-as-a-system-solving-method",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Lesson 7-2 directly reuses this reviewed operation.",
+      "metadata": {
+        "module": "7",
+        "lesson": "2"
       }
     }
   ]

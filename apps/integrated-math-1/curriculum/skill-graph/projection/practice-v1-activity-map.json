@@ -7828,76 +7828,6 @@
       "srsEligible": false
     },
     {
-      "stableActivityId": "math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met.worked_example",
-      "nodeId": "math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-rei-c-6"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met.guided_practice",
-      "nodeId": "math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-rei-c-6"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 7c: Solve systems of linear equations using the substitution method",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met.independent_practice",
-      "nodeId": "math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-rei-c-6"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
       "stableActivityId": "math.im1.skill.7.3.solve-systems-of-linear-equations-using-elimination-by-addit.worked_example",
       "nodeId": "math.im1.skill.7.3.solve-systems-of-linear-equations-using-elimination-by-addit",
       "sourceNodeIds": [],
@@ -11429,17 +11359,15 @@
     },
     {
       "nodeId": "math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met",
-      "blueprintId": "math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met",
+      "blueprintId": "math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met.blueprint",
       "standards": [
         "math.standard.ccss.a-rei-c-6"
       ],
-      "prerequisites": [
-        "math.im1.skill.7.1.graph-systems-of-linear-equations-and-determine-the-number-o"
-      ],
+      "prerequisites": [],
       "difficulty": 0.5,
-      "rendererKey": "graphing-explorer",
       "generatorKey": null,
-      "generatorReady": false
+      "generatorReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im1.skill.7.3.solve-systems-of-linear-equations-using-elimination-by-addit",
@@ -11447,9 +11375,7 @@
       "standards": [
         "math.standard.ccss.a-rei-c-6"
       ],
-      "prerequisites": [
-        "math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met"
-      ],
+      "prerequisites": [],
       "difficulty": 0.5,
       "rendererKey": "graphing-explorer",
       "generatorKey": null,
@@ -11919,6 +11845,66 @@
     {
       "nodeId": "math.im1.skill.7.1.explain-the-limits-of-graphing-as-a-system-solving-method",
       "blueprintId": "math.im1.skill.7.1.explain-the-limits-of-graphing-as-a-system-solving-method.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.2.substitute-an-isolated-expression-to-solve-a-one-solution-li",
+      "blueprintId": "math.im1.skill.7.2.substitute-an-isolated-expression-to-solve-a-one-solution-li.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.2.recognize-no-solution-or-infinitely-many-solutions-during-su",
+      "blueprintId": "math.im1.skill.7.2.recognize-no-solution-or-infinitely-many-solutions-during-su.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.2.represent-a-two-digit-number-and-its-digit-reversal-with-lin",
+      "blueprintId": "math.im1.skill.7.2.represent-a-two-digit-number-and-its-digit-reversal-with-lin.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.2.diagnose-and-correct-an-algebraic-substitution-error",
+      "blueprintId": "math.im1.skill.7.2.diagnose-and-correct-an-algebraic-substitution-error.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.2.choose-an-efficient-substitution-expression-and-justify-the",
+      "blueprintId": "math.im1.skill.7.2.choose-an-efficient-substitution-expression-and-justify-the.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.2.generalize-a-complementary-angle-sum-and-difference-system",
+      "blueprintId": "math.im1.skill.7.2.generalize-a-complementary-angle-sum-and-difference-system.blueprint",
       "standards": [],
       "prerequisites": [],
       "difficulty": 0.5,
@@ -13563,10 +13549,7 @@
         "nodeId": "math.im1.skill.1.1.translate-verbal-descriptions-into-correct-numerical-express",
         "title": "1a: Translate verbal descriptions into correct numerical expressions using operation symbols and grouping",
         "kind": "skill",
-        "standardsCovered": [
-          "math.standard.ccss.6-ee-a-1",
-          "math.standard.ccss.6-ee-a-2"
-        ],
+        "standardsCovered": [],
         "prerequisitesMet": false,
         "independentPracticeReady": false
       },
@@ -15134,6 +15117,168 @@
         ],
         "prerequisitesMet": true,
         "independentPracticeReady": false
+      },
+      {
+        "nodeId": "math.im1.skill.7.1.determine-a-system-solution-from-a-graph",
+        "title": "Determine a system solution from a graph",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.7.1.determine-the-number-of-solutions-from-a-graph",
+        "title": "Determine the number of solutions from a graph",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.7.1.classify-a-linear-system-by-its-solution-set",
+        "title": "Classify a linear system by its solution set",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.7.1.determine-the-number-of-solutions-from-equation-structure",
+        "title": "Determine the number of solutions from equation structure",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.7.1.write-a-two-equation-system-from-a-context",
+        "title": "Write a two-equation system from a context",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.7.1.solve-and-interpret-a-contextual-system",
+        "title": "Solve and interpret a contextual system",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.7.1.solve-a-linear-equation-by-graphing-its-two-sides-as-a-system",
+        "title": "Solve a linear equation by graphing its two sides as a system",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.7.1.report-an-approximate-system-solution-to-a-specified-precision",
+        "title": "Report an approximate system solution to a specified precision",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.7.1.evaluate-a-graphical-claim-when-an-intersection-is-outside-the-viewing-window",
+        "title": "Evaluate a graphical claim when an intersection is outside the viewing window",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.7.1.reason-about-common-solutions-of-three-linear-equations",
+        "title": "Reason about common solutions of three linear equations",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.7.1.construct-systems-with-a-specified-number-of-solutions",
+        "title": "Construct systems with a specified number of solutions",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.7.1.explain-the-limits-of-graphing-as-a-system-solving-method",
+        "title": "Explain the limits of graphing as a system-solving method",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.7.2.substitute-an-isolated-expression-to-solve-a-one-solution-li",
+        "title": "Substitute an isolated expression to solve a one-solution linear system",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.7.2.recognize-no-solution-or-infinitely-many-solutions-during-su",
+        "title": "Recognize no solution or infinitely many solutions during substitution",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.7.2.represent-a-two-digit-number-and-its-digit-reversal-with-lin",
+        "title": "Represent a two-digit number and its digit reversal with linear equations",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.7.2.diagnose-and-correct-an-algebraic-substitution-error",
+        "title": "Diagnose and correct an algebraic substitution error",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.7.2.choose-an-efficient-substitution-expression-and-justify-the",
+        "title": "Choose an efficient substitution expression and justify the choice",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
+      },
+      {
+        "nodeId": "math.im1.skill.7.2.generalize-a-complementary-angle-sum-and-difference-system",
+        "title": "Generalize a complementary-angle sum-and-difference system",
+        "kind": "skill",
+        "standardsCovered": [],
+        "prerequisitesMet": true,
+        "independentPracticeReady": false,
+        "equivalentNodeIds": []
       }
     ],
     "prerequisiteGaps": [
