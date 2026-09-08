@@ -67198,7 +67198,7 @@
       "id": "math.im1.g47.prerequisite.001",
       "sourceId": "math.im1.skill.9.1.determine-the-median-of-a-data-set",
       "targetId": "math.im1.skill.9.4.determine-the-five-number-summary-of-a-data-set",
-      "type": "prerequisite",
+      "type": "prerequisite_for",
       "weight": 1,
       "confidence": "high",
       "derived": false,

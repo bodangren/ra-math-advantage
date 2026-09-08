@@ -53,7 +53,7 @@ describe('Lesson 9-1 capability inventory', () => {
       : [];
     expect(incident.filter((edge: any) => edge.type === 'contains').every((edge: any) => edge.targetId === id && expectedLessons.includes(edge.sourceId))).toBe(true);
     expect(incident.filter((edge: any) => edge.type === 'contains').map((edge: any) => edge.sourceId).sort()).toEqual(expectedLessons.sort());
-    expect(incident.filter((edge: any) => edge.type === 'prerequisite').map((edge: any) => edge.targetId)).toEqual(expectedPrerequisite);
+    expect(incident.filter((edge: any) => edge.type === 'prerequisite_for').map((edge: any) => edge.targetId)).toEqual(expectedPrerequisite);
   });
 
   it('keeps 9a source-only and removes unsupported lesson-sequence prerequisites', () => {

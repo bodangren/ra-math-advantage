@@ -84,7 +84,7 @@ describe("Lesson 9-4 capability inventory", () => {
         ? [expect.objectContaining({
             sourceId: "math.im1.skill.9.1.determine-the-median-of-a-data-set",
             targetId: id,
-            type: "prerequisite",
+            type: "prerequisite_for",
           })]
         : []),
     ]);
