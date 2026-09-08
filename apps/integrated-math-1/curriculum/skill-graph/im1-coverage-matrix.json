@@ -1,10 +1,10 @@
 {
   "version": 1,
   "course": "im1",
-  "totalSkills": 389,
+  "totalSkills": 393,
   "counts": {
     "served": 6,
-    "gap": 383,
+    "gap": 387,
     "newComponent": 0
   },
   "byModule": [
@@ -66,9 +66,9 @@
     },
     {
       "module": "9",
-      "totalSkills": 12,
+      "totalSkills": 16,
       "served": 0,
-      "gap": 12,
+      "gap": 16,
       "newComponent": 0
     },
     {
@@ -2565,12 +2565,44 @@
       "priority": "standard"
     },
     {
+      "skillId": "math.im1.skill.9.1.calculate-a-percentile-rank-under-a-stated-counting-convention",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.9.1.calculate-the-arithmetic-mean-of-a-data-set",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
+    },
+    {
       "skillId": "math.im1.skill.9.1.calculate-the-mean-median-and-mode-of-a-data-set",
       "module": "9",
       "status": "gap",
       "tier": "none",
       "rendererKey": "comprehension-quiz",
       "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.9.1.determine-the-median-of-a-data-set",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.9.1.identify-all-modes-of-a-data-set",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
     },
     {
       "skillId": "math.im1.skill.9.2.analyze-data-displays-to-draw-conclusions-and-answer-questio",

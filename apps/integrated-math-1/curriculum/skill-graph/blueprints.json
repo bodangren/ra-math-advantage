@@ -4009,21 +4009,6 @@
       "alignmentNodeIds": [
         "math.standard.ccss.s-id-a-2"
       ],
-      "rendererKey": "comprehension-quiz",
-      "rendererModeMap": {
-        "worked": "comprehension-quiz",
-        "guidedPractice": "comprehension-quiz",
-        "independentPractice": "comprehension-quiz"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
-      "exceptions": [
-        {
-          "type": "generator",
-          "reason": "Generator not yet implemented for IM1 rollout"
-        }
-      ],
       "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
@@ -7614,6 +7599,58 @@
         "course": "im1",
         "module": "8",
         "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.1.calculate-the-arithmetic-mean-of-a-data-set",
+      "sourceNodeIds": [
+        "math.im1.example.9.1.001"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.1.determine-the-median-of-a-data-set",
+      "sourceNodeIds": [
+        "math.im1.example.9.1.001"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.1.identify-all-modes-of-a-data-set",
+      "sourceNodeIds": [
+        "math.im1.example.9.1.001"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.1.calculate-a-percentile-rank-under-a-stated-counting-convention",
+      "sourceNodeIds": [
+        "math.im1.example.9.1.002"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "1"
       }
     }
   ]

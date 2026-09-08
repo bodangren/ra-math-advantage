@@ -3446,11 +3446,47 @@
       "rendererAssignmentReason": "Source-only draft capability",
       "gap": "No generator available for IM1",
       "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.1.calculate-the-arithmetic-mean-of-a-data-set",
+      "title": "Calculate the arithmetic mean of a data set",
+      "module": "9",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Calculation skill → step-by-step-solver",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.1.determine-the-median-of-a-data-set",
+      "title": "Determine the median of a data set",
+      "module": "9",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Calculation skill → step-by-step-solver",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.1.identify-all-modes-of-a-data-set",
+      "title": "Identify all modes of a data set",
+      "module": "9",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Calculation skill → step-by-step-solver",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.1.calculate-a-percentile-rank-under-a-stated-counting-convention",
+      "title": "Calculate a percentile rank under a stated counting convention",
+      "module": "9",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Calculation skill → step-by-step-solver",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
     }
   ],
   "meta": {
-    "totalSkills": 383,
+    "totalSkills": 387,
     "allNeedGenerators": true,
-    "total": 383
+    "total": 387
   }
 }

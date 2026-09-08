@@ -6782,38 +6782,42 @@
     {
       "id": "math.im1.example.9.1.001",
       "kind": "worked_example",
-      "title": "Example 1: Find Mean, Median, and Mode; Find Percentile Rank",
+      "title": "Example 1: Find Mean, Median, and Mode",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-9-class-period-plan.md (9-1, Example 1)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0901_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0901_practice.docx (Example 1, Problems 1–9)"
       ],
-      "reviewStatus": "approved",
+      "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "9",
         "lesson": "1",
         "exampleNumber": 1,
         "sourceLesson": "9-1",
-        "rawText": "9-1, Examples 1-2 — Find Mean, Median, and Mode; Find Percentile Rank"
-      }
+        "rawText": "Example 1 — Find Mean, Median, and Mode"
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.9.1.002",
       "kind": "worked_example",
-      "title": "Example 2: Find Mean, Median, and Mode; Find Percentile Rank",
+      "title": "Example 2: Find Percentile Rank",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-9-class-period-plan.md (9-1, Example 2)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0901_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0901_practice.docx (Example 2, Problems 10–12)"
       ],
-      "reviewStatus": "approved",
+      "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "9",
         "lesson": "1",
         "exampleNumber": 2,
         "sourceLesson": "9-1",
-        "rawText": "9-1, Examples 1-2 — Find Mean, Median, and Mode; Find Percentile Rank"
-      }
+        "rawText": "Example 2 — Find Percentile Rank"
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.9.2.003",
@@ -11226,14 +11230,16 @@
       "domain": "math.im1",
       "description": "Calculate the mean, median, and mode of a data set",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-9-class-period-plan.md"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0901_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0901_practice.docx (Lesson 9-1 broad planning aggregate)"
       ],
-      "reviewStatus": "approved",
+      "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "9",
         "lesson": "1"
-      }
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.skill.9.2.analyze-data-displays-to-draw-conclusions-and-answer-questio",
@@ -17429,6 +17435,78 @@
         "lesson": "6"
       },
       "independentPracticeReady": false
+    },
+    {
+      "id": "math.im1.skill.9.1.calculate-the-arithmetic-mean-of-a-data-set",
+      "kind": "skill",
+      "title": "Calculate the arithmetic mean of a data set",
+      "domain": "math.im1",
+      "description": "Calculate the arithmetic mean of a data set.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0901_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0901_practice.docx (mean responses in Problems 1–9; Mixed Exercises, Problems 15, 17, 19, 24(a), 25(a), 26, and 30(a), mean responses only)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.1.determine-the-median-of-a-data-set",
+      "kind": "skill",
+      "title": "Determine the median of a data set",
+      "domain": "math.im1",
+      "description": "Determine the median of a data set.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0901_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0901_practice.docx (median responses in Problems 1–9; Mixed Exercises, Problems 15, 19, 24(a), 25(a), 26, and 30(a), median responses only)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.1.identify-all-modes-of-a-data-set",
+      "kind": "skill",
+      "title": "Identify all modes of a data set",
+      "domain": "math.im1",
+      "description": "Identify all modes of a data set, including no mode and multiple modes.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0901_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0901_practice.docx (mode responses in Problems 1–9; Mixed Exercises, Problems 15, 19, 22, 24(a), 25(a), 26, and 30(a), mode responses only)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.1.calculate-a-percentile-rank-under-a-stated-counting-convention",
+      "kind": "skill",
+      "title": "Calculate a percentile rank under a stated counting convention",
+      "domain": "math.im1",
+      "description": "Calculate a percentile rank under a stated counting convention.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0901_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0901_practice.docx (Problems 10–12; Mixed Exercises, Problems 18, 20, 23, 24(c), and 31)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "1"
+      }
     }
   ]
 }
