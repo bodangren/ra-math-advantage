@@ -61,3 +61,7 @@ Saved additional standards correction: `793549bf`. All gates passed with 219 tes
 Saved presentation correction: `f26dd7dd`. Saved math rendering correction: `4729840b`. All gates passed with 221 tests. Local seed replay returned 96 lessons. Dependency candidates are recorded in `dependencies.md`. See the current open work section in `fix-plan.md`. The full task remains open.
 
 Saved closed enrollment history correction: `478431ae`. All gates passed with 222 tests. The local backend accepted the new index. The full correction task remains open.
+
+- [x] Task: Correct the dependency review scope from the 2026-09-08 production and full audits. Record nested PostCSS copies and required deployment-path checks. Do not change dependencies.
+
+Both read-only audits completed. The production result has six high package entries. The full result has 18 entries. The corrected plan includes all three PostCSS copies and separate deployed-runtime review. Dependency changes remain unapproved.
