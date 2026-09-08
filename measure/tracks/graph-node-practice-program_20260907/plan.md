@@ -379,3 +379,7 @@ Q37 unit 5 is committed as `923bf572`. Parent and independent review passed the 
 Cleanup after integration: removed the completed G47 worktree and both completed Precalculus archive candidates. Compared each owned file against the committed blob before removal. Shared dependency directories remain intact. Review of the 24 saved Codex worktrees continues without removal of uncommitted work.
 
 G48 second proposal review accepts the complete prompt inventory for source restoration. Graph review remains open because several proposed nodes repeat existing component operations or combine separate comparisons. Exact source restoration is in progress in an isolated candidate. See `im1-lesson95-proposal-second-review.md`.
+
+- [~] Task Q37 unit 7: Prepare and run the full committed selected-seed browser flow after the teacher surface integration. Cached backend and installed headless Chrome readiness are verified. See `precalc-runtime-unit7-verification-plan.md`.
+
+Saved-worktree review checked 54d1, bda5, and b5f1. Each retains distinct IM3 graph states that are not preserved in the current worktree or reachable commits. Retain them pending reconciliation. This finding does not block the active program candidates.
