@@ -437,3 +437,9 @@ G49 exact source restoration is committed as `67131a0b9`. Parent verification pa
 Removed the completed G48 graph candidate after independent cleanup review and parent checks of all 17 committed patch paths. The archive had 16 modified existing files and one new test. All were preserved.
 
 Assistance parent review requires two corrections before acceptance: prevent blank first submissions before the attempt freezes, and use an immediate ref to keep same-event callbacks from changing the frozen attempt. The author is adding these regressions within the four-path scope.
+
+Q37 assistance is committed as `20c8dd821`. Independent review accepts the blank-answer validation and immediate freeze guard. Parent verification passed 105 tests, lint, build, and standalone TypeScript with all 21 candidate-local workspace packages. Actual assisted browser verification is in progress.
+
+The Worked pending guard passed actual browser verification. Two synchronous clicks sent one pending POST. After server acceptance and response interruption, visible retry used the same key and body. The database retained exactly one acknowledgement and no other learner effects. See `precalc-runtime-worked-pending-guard-browser.md`.
+
+Removed the completed G49 source archive. All 12 source patch paths match commit `67131a0b9`. Independent review found no unpreserved authored content. The G49 graph and local browser candidates remain active. All 24 saved dirty Codex worktrees remain intact.
