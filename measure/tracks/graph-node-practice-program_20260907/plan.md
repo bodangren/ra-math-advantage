@@ -307,6 +307,8 @@ Additional observed test debt: `topic11-interval-blueprint.acceptance.test.ts` e
 
 - [x] Task G41: Review IM1 Lesson 8-4 from its original worksheet. Verify model-rate interval assumptions, exact capabilities, prior reuse, and manual tasks before source or graph implementation. Source repair is committed as `63781185` after independent review, seven parent tests, lint, build, and standalone TypeScript. Parent review records interest-rate ambiguity and nonconstant table ratios in `im1-lesson84-parent-rate-review.md`. Graph repair is committed as `61bebf4d` after independent review, 219 parent curriculum and seed tests, 37 coverage tests, lint, build, and standalone TypeScript.
 
-- [~] Task G42: Review IM1 Lesson 8-5 from its original worksheet. Verify geometric-sequence operations, exact reuse, source identities, and manual tasks before implementation.
+- [~] Task G42: Review IM1 Lesson 8-5 from its original worksheet. Verify geometric-sequence operations, exact reuse, source identities, and manual tasks before implementation. Source restoration is committed as `7f988634`. All 52 prompts and five original images passed independent review, seven parent tests, lint, build, and standalone TypeScript. The source review records the tests-after-code deviation. The graph candidate is under independent review.
 
 - [~] Task Q36: Prepare and verify the actual signed-in Precalculus student and teacher sequence on the disposable local backend. Use real authentication, pages, routes, and teacher action. Keep hypothetical source approval and local-only credentials explicit. Do not substitute Q34 render tests for browser verification.
+
+- [~] Task G43: Review IM1 Lesson 8-6 from its original worksheet. Verify recursive and explicit sequence operations, exact prior reuse, stable source identities, and manual tasks before implementation.
