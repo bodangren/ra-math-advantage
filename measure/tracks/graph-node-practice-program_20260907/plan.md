@@ -652,7 +652,7 @@ Broader tests retain baseline failures. The shared activity suite passed 159 of 
 
 G55 capability review replaces the provisional seven-atom proposal with four draft inactive capabilities. Merge the inverse-distance response variants. Reuse the approved Distance Formula capability for Problems 52 and 54 at the stated response stages. Remove unsupported sequence edge 1194 without replacement. Preserve all source identities and approval states. See `im1-lesson104-capability-equivalence-review.md`.
 
-- [~] Task G55 graph scope: Review existing Lesson 10-4 standard alignments and placeholder fields against the source. Update the graph proposal to the accepted four-atom inventory. Define exact bounded graph changes before authoring.
+- [x] Task G55 graph scope: Review existing Lesson 10-4 standard alignments and placeholder fields against the source. Update the graph proposal to the accepted four-atom inventory. Define exact bounded graph changes before authoring.
 
 - [~] Task IM3-QF server integration scope: Trace the stored activity and protected attempt contracts after the grader and component commits. Define the minimum extension to the existing server-owned route, writer, grading, and receipt flow. Preserve fixed public fields and draft no-progression behavior. Reuse existing activity storage. Add no parallel pilot or evidence system.
 
@@ -661,3 +661,7 @@ G55 capability review replaces the provisional seven-atom proposal with four dra
 Removed saved worktree b615 after parent and independent review of all 356 states. Both preservation branches remain. Seven saved worktrees remain. See `saved-b615-final-cleanup-review.md`.
 
 G55 final alignment scope remains under parent review. A proposed blanket removal of G-MG.A.1 requires a source-level check of the contextual distance and perimeter tasks. Do not treat an unverified alignment as demonstrably false. No G55 graph changes are authorized until that disposition is resolved.
+
+G55 final graph scope is accepted after parent correction. Keep the Example 4 and contextual-distance skill G-MG.A.1 edges. Remove the other ten reviewed alignments. A yes/no segment-congruence answer does not show the algebraic proof required by G-GPE.B.4. Remove six exact placeholder activities and their empty specifications. Preserve approved source and skill identities. See `im1-lesson104-final-graph-scope.md` and `im1-lesson104-alignment-disposition.md`.
+
+- [~] Task G55 graph: Implement the accepted four-atom inventory and exact approved response-stage reuse. Preserve two supported modeling alignments and remove ten unsupported alignments. Remove edge 1194 and six reviewed placeholder activities. Use real projectors with changes limited to affected rows. Preserve edge 1195, unrelated content, row order, and approval states. Reuse the current IM1 candidate. Add behavioral graph and projection regressions before implementation.
