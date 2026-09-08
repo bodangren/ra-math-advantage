@@ -72,6 +72,9 @@ describe('AP Precalculus curriculum depth validation', () => {
     const assessedTopicFiles = allTopicFiles.filter((f) =>
       /^unit-[123]-topic/.test(f),
     );
+    const legacyAssessedTopicFiles = assessedTopicFiles.filter(
+      (filename) => filename !== 'unit-1-topic-1.1.md',
+    );
 
     it('has 58 total topic files', () => {
       expect(allTopicFiles).toHaveLength(58);
@@ -124,7 +127,7 @@ describe('AP Precalculus curriculum depth validation', () => {
       },
     );
 
-    it.each(assessedTopicFiles)(
+    it.each(legacyAssessedTopicFiles)(
       '%s has FRQ expectations or AP exam alignment signals',
       (filename) => {
         const content = read(`topics/${filename}`);
@@ -135,6 +138,25 @@ describe('AP Precalculus curriculum depth validation', () => {
         expect(hasFRQ).toBe(true);
       },
     );
+
+    it('unit-1-topic-1.1.md has source-backed CED scope and application requirements', () => {
+      const content = read('topics/unit-1-topic-1.1.md');
+      expect(content).toContain(
+        'Official Course and Exam Description (CED): `source/originals/ap-precalculus-course-and-exam-description.pdf`, PDF pages 39 and 40.',
+      );
+      expect(content).toContain(
+        'Learning Objective (LO) 1.1.A: Describe how the input and output values of a function vary together by comparing function values.',
+      );
+      expect(content).toContain(
+        'LO 1.1.B: Construct a graph representing two quantities that vary with respect to each other in a contextual scenario.',
+      );
+      expect(content).toContain(
+        'The CED treats Topic 1.1 as introductory. It does not require immediate proficiency during these instructional days.',
+      );
+      expect(content).toContain('## Source instruction');
+      expect(content).toContain('## Worked and practice content');
+      expect(content).toContain('## Application requirements and remaining gaps');
+    });
 
     it.each(assessedTopicFiles)(
       '%s has app-build notes with componentKey or activity type guidance',
@@ -148,7 +170,7 @@ describe('AP Precalculus curriculum depth validation', () => {
       },
     );
 
-    it.each(assessedTopicFiles)(
+    it.each(legacyAssessedTopicFiles)(
       '%s has ≥80 lines of content',
       (filename) => {
         const content = read(`topics/${filename}`);
