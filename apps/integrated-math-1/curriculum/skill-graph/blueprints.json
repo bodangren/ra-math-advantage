@@ -4023,21 +4023,6 @@
         "math.standard.ccss.6-sp-b-4",
         "math.standard.ccss.s-id-a-1"
       ],
-      "rendererKey": "comprehension-quiz",
-      "rendererModeMap": {
-        "worked": "comprehension-quiz",
-        "guidedPractice": "comprehension-quiz",
-        "independentPractice": "comprehension-quiz"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
-      "exceptions": [
-        {
-          "type": "generator",
-          "reason": "Generator not yet implemented for IM1 rollout"
-        }
-      ],
       "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
@@ -4051,21 +4036,6 @@
       "alignmentNodeIds": [
         "math.standard.ccss.6-sp-b-4",
         "math.standard.ccss.s-id-a-1"
-      ],
-      "rendererKey": "comprehension-quiz",
-      "rendererModeMap": {
-        "worked": "comprehension-quiz",
-        "guidedPractice": "comprehension-quiz",
-        "independentPractice": "comprehension-quiz"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
-      "exceptions": [
-        {
-          "type": "generator",
-          "reason": "Generator not yet implemented for IM1 rollout"
-        }
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7651,6 +7621,188 @@
         "course": "im1",
         "module": "9",
         "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.construct-a-quantitative-dot-plot",
+      "sourceNodeIds": [
+        "math.im1.example.9.2.003"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.scale-a-dot-plot-number-line",
+      "sourceNodeIds": [
+        "math.im1.example.9.2.003"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.construct-a-bar-graph-from-categorical-frequencies",
+      "sourceNodeIds": [
+        "math.im1.example.9.2.005"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.construct-a-histogram-from-grouped-frequencies",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.classify-count-data-as-discrete",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.select-an-appropriate-data-display-and-justify-the-choice",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.choose-histogram-intervals-for-measurement-data",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.construct-a-categorical-dot-display-from-frequencies",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.identify-the-greatest-value-in-a-data-set",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.count-values-below-a-threshold",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.count-represented-categories",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.identify-the-category-with-the-greatest-frequency",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.draw-and-justify-conclusions-from-a-data-display",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.explain-when-and-how-to-construct-a-histogram",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.explain-why-a-dot-plot-scale-may-be-needed",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.compare-bar-graphs-and-histograms",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "2"
       }
     }
   ]

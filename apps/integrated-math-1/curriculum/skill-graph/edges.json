@@ -6,8 +6,8 @@
     "pilotEdgesPreserved": 0,
     "standardEdgesMerged": 941,
     "suggestedEdges": 1277,
-    "totalEdges": 2506,
-    "totalNodes": 992,
+    "totalEdges": 2518,
+    "totalNodes": 1008,
     "normalizedWeights": 539
   },
   "nodes": [
@@ -6833,10 +6833,11 @@
     {
       "id": "math.im1.example.9.2.003",
       "kind": "worked_example",
-      "title": "Example 1: Make a Dot Plot from a Table; Make a Bar Graph from a Survey; Discrete vs. Continuous Data",
+      "title": "Examples 1 and 2: Construct quantitative dot plots",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-9-class-period-plan.md (9-2, Example 1)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx (Examples 1 and 2, Problems 1 and 2)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -6845,34 +6846,38 @@
         "lesson": "2",
         "exampleNumber": 1,
         "sourceLesson": "9-2",
-        "rawText": "9-2, Examples 1-3 — Make a Dot Plot from a Table; Make a Bar Graph from a Survey; Discrete vs. Continuous Data"
-      }
+        "rawText": "Examples 1 and 2: Construct quantitative dot plots"
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.9.2.004",
       "kind": "worked_example",
-      "title": "Example 2: Make a Dot Plot from a Table; Make a Bar Graph from a Survey; Discrete vs. Continuous Data",
+      "title": "Examples 1 and 2: rejected duplicate source identity",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-9-class-period-plan.md (9-2, Example 2)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx (Examples 1 and 2, rejected duplicate source identity)"
       ],
-      "reviewStatus": "draft",
+      "reviewStatus": "rejected",
       "metadata": {
         "course": "im1",
         "module": "9",
         "lesson": "2",
         "exampleNumber": 2,
         "sourceLesson": "9-2",
-        "rawText": "9-2, Examples 1-3 — Make a Dot Plot from a Table; Make a Bar Graph from a Survey; Discrete vs. Continuous Data"
-      }
+        "rawText": "Examples 1 and 2: rejected duplicate source identity"
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.9.2.005",
       "kind": "worked_example",
-      "title": "Example 3: Make a Dot Plot from a Table; Make a Bar Graph from a Survey; Discrete vs. Continuous Data",
+      "title": "Examples 3 and 4: Construct a categorical bar graph and classify data",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-9-class-period-plan.md (9-2, Example 3)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx (Examples 3 and 4, Problems 3 and 4)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -6881,44 +6886,49 @@
         "lesson": "2",
         "exampleNumber": 3,
         "sourceLesson": "9-2",
-        "rawText": "9-2, Examples 1-3 — Make a Dot Plot from a Table; Make a Bar Graph from a Survey; Discrete vs. Continuous Data"
-      }
+        "rawText": "Examples 3 and 4: Construct a categorical bar graph and classify data"
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.9.2.006",
       "kind": "worked_example",
-      "title": "Example 4: Bar Graph or Histogram?; Analyze Graphs for Misrepresentation",
+      "title": "Examples 3 and 4: rejected duplicate source identity",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-9-class-period-plan.md (9-2, Example 4)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx (Examples 3 and 4, rejected duplicate source identity)"
       ],
-      "reviewStatus": "draft",
+      "reviewStatus": "rejected",
       "metadata": {
         "course": "im1",
         "module": "9",
         "lesson": "2",
         "exampleNumber": 4,
         "sourceLesson": "9-2",
-        "rawText": "9-2, Examples 4-5 — Bar Graph or Histogram?; Analyze Graphs for Misrepresentation"
-      }
+        "rawText": "Examples 3 and 4: rejected duplicate source identity"
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.9.2.007",
       "kind": "worked_example",
-      "title": "Example 5: Bar Graph or Histogram?; Analyze Graphs for Misrepresentation",
+      "title": "Example 5: rejected phantom source identity",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-9-class-period-plan.md (9-2, Example 5)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx (Example 5, rejected phantom source identity)"
       ],
-      "reviewStatus": "draft",
+      "reviewStatus": "rejected",
       "metadata": {
         "course": "im1",
         "module": "9",
         "lesson": "2",
         "exampleNumber": 5,
         "sourceLesson": "9-2",
-        "rawText": "9-2, Examples 4-5 — Bar Graph or Histogram?; Analyze Graphs for Misrepresentation"
-      }
+        "rawText": "Example 5: rejected phantom source identity"
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.9.3.008",
@@ -11259,14 +11269,16 @@
       "domain": "math.im1",
       "description": "Analyze data displays to draw conclusions and answer questions about a data set",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-9-class-period-plan.md"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx (Lesson 9-2 broad planning aggregate)"
       ],
       "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "9",
         "lesson": "2"
-      }
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.skill.9.2.construct-dot-plots-bar-graphs-and-histograms-to-represent-d",
@@ -11275,14 +11287,16 @@
       "domain": "math.im1",
       "description": "Construct dot plots, bar graphs, and histograms to represent data sets",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-9-class-period-plan.md"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx (Lesson 9-2 broad planning aggregate)"
       ],
       "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "9",
         "lesson": "2"
-      }
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.skill.9.3.identify-sample-bias-in-survey-and-sampling-methods-and-expl",
@@ -17517,6 +17531,294 @@
         "course": "im1",
         "module": "9",
         "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.2.construct-a-quantitative-dot-plot",
+      "kind": "skill",
+      "title": "Construct a quantitative dot plot from raw values",
+      "domain": "math.im1",
+      "description": "Construct a quantitative dot plot from raw values.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx (Problems 1 and 2)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.2.scale-a-dot-plot-number-line",
+      "kind": "skill",
+      "title": "Scale a dot-plot number line",
+      "domain": "math.im1",
+      "description": "Scale a dot-plot number line.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx (Problem 2)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.2.construct-a-bar-graph-from-categorical-frequencies",
+      "kind": "skill",
+      "title": "Construct a bar graph from categorical frequencies",
+      "domain": "math.im1",
+      "description": "Construct a bar graph from categorical frequencies.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx (Problem 3)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.2.construct-a-histogram-from-grouped-frequencies",
+      "kind": "skill",
+      "title": "Construct a histogram from grouped frequencies",
+      "domain": "math.im1",
+      "description": "Construct a histogram from grouped frequencies.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx (Problem 5)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.2.classify-count-data-as-discrete",
+      "kind": "skill",
+      "title": "Classify count data as discrete",
+      "domain": "math.im1",
+      "description": "Classify count data as discrete.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx (Mixed Exercises, Problem 6, classification response only)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.2.select-an-appropriate-data-display-and-justify-the-choice",
+      "kind": "skill",
+      "title": "Select an appropriate data display and justify the choice",
+      "domain": "math.im1",
+      "description": "Select an appropriate data display and justify the choice.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx (Mixed Exercises, Problem 8(a))"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.2.choose-histogram-intervals-for-measurement-data",
+      "kind": "skill",
+      "title": "Choose histogram intervals for measurement data",
+      "domain": "math.im1",
+      "description": "Choose histogram intervals for measurement data.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx (Mixed Exercises, Problem 11)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.2.construct-a-categorical-dot-display-from-frequencies",
+      "kind": "skill",
+      "title": "Construct a categorical dot display from frequencies",
+      "domain": "math.im1",
+      "description": "Construct a categorical dot display from frequencies.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx (Mixed Exercises, Problem 12(a))"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.2.identify-the-greatest-value-in-a-data-set",
+      "kind": "skill",
+      "title": "Identify the greatest value in a data set",
+      "domain": "math.im1",
+      "description": "Identify the greatest value in a data set.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx (Mixed Exercises, Problem 7(c))"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.2.count-values-below-a-threshold",
+      "kind": "skill",
+      "title": "Count values below a threshold",
+      "domain": "math.im1",
+      "description": "Count values below a threshold.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx (Mixed Exercises, Problem 9(b))"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.2.count-represented-categories",
+      "kind": "skill",
+      "title": "Count represented categories",
+      "domain": "math.im1",
+      "description": "Count represented categories.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx (Mixed Exercises, Problem 12(b))"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.2.identify-the-category-with-the-greatest-frequency",
+      "kind": "skill",
+      "title": "Identify the category with the greatest frequency",
+      "domain": "math.im1",
+      "description": "Identify the category with the greatest frequency.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx (Mixed Exercises, Problem 12(c))"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.2.draw-and-justify-conclusions-from-a-data-display",
+      "kind": "skill",
+      "title": "Draw and justify conclusions from a data display",
+      "domain": "math.im1",
+      "description": "Draw and justify conclusions from a data display.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx (Mixed Exercises, Problems 13 and 16)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.2.explain-when-and-how-to-construct-a-histogram",
+      "kind": "skill",
+      "title": "Explain when and how to construct a histogram",
+      "domain": "math.im1",
+      "description": "Explain when and how to construct a histogram.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx (Mixed Exercises, Problem 14)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.2.explain-why-a-dot-plot-scale-may-be-needed",
+      "kind": "skill",
+      "title": "Explain why a dot-plot scale may be needed",
+      "domain": "math.im1",
+      "description": "Explain why a dot-plot scale may be needed.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx (Mixed Exercises, Problem 15)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.2.compare-bar-graphs-and-histograms",
+      "kind": "skill",
+      "title": "Compare bar graphs and histograms",
+      "domain": "math.im1",
+      "description": "Compare bar graphs and histograms.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0902_practice.docx (Mixed Exercises, Problem 17)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "2"
       }
     }
   ],
@@ -56709,58 +57011,10 @@
       }
     },
     {
-      "id": "math.im1.edge.1061",
-      "type": "contains",
-      "sourceId": "math.im1.lesson.9.2",
-      "targetId": "math.im1.example.9.2.004",
-      "weight": 1,
-      "confidence": "high",
-      "reviewStatus": "draft",
-      "derived": true,
-      "derivationMethod": "lesson-sequence-containment-v1",
-      "rationale": "Lesson contains worked example",
-      "metadata": {
-        "module": "9",
-        "lesson": "2"
-      }
-    },
-    {
       "id": "math.im1.edge.1062",
       "type": "contains",
       "sourceId": "math.im1.lesson.9.2",
       "targetId": "math.im1.example.9.2.005",
-      "weight": 1,
-      "confidence": "high",
-      "reviewStatus": "draft",
-      "derived": true,
-      "derivationMethod": "lesson-sequence-containment-v1",
-      "rationale": "Lesson contains worked example",
-      "metadata": {
-        "module": "9",
-        "lesson": "2"
-      }
-    },
-    {
-      "id": "math.im1.edge.1063",
-      "type": "contains",
-      "sourceId": "math.im1.lesson.9.2",
-      "targetId": "math.im1.example.9.2.006",
-      "weight": 1,
-      "confidence": "high",
-      "reviewStatus": "draft",
-      "derived": true,
-      "derivationMethod": "lesson-sequence-containment-v1",
-      "rationale": "Lesson contains worked example",
-      "metadata": {
-        "module": "9",
-        "lesson": "2"
-      }
-    },
-    {
-      "id": "math.im1.edge.1064",
-      "type": "contains",
-      "sourceId": "math.im1.lesson.9.2",
-      "targetId": "math.im1.example.9.2.007",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -59653,22 +59907,6 @@
       "metadata": {
         "fromLesson": "6.3",
         "toLesson": "6.4"
-      }
-    },
-    {
-      "id": "math.im1.edge.1272",
-      "type": "prerequisite_for",
-      "sourceId": "math.im1.skill.9.2.construct-dot-plots-bar-graphs-and-histograms-to-represent-d",
-      "targetId": "math.im1.skill.9.3.identify-sample-bias-in-survey-and-sampling-methods-and-expl",
-      "weight": 0.5,
-      "confidence": "low",
-      "reviewStatus": "draft",
-      "derived": true,
-      "derivationMethod": "lesson-sequence-prerequisite-v1",
-      "rationale": "Lesson-sequence prerequisite: lesson 2 precedes lesson 3 in module 9",
-      "metadata": {
-        "fromLesson": "9.2",
-        "toLesson": "9.3"
       }
     },
     {
@@ -64906,6 +65144,230 @@
       "metadata": {
         "program": "graph-node-practice-program",
         "lesson": "9.1"
+      }
+    },
+    {
+      "id": "math.im1.g45.contains.001",
+      "sourceId": "math.im1.lesson.9.2",
+      "targetId": "math.im1.skill.9.2.construct-a-quantitative-dot-plot",
+      "type": "contains",
+      "weight": 1,
+      "derived": false,
+      "rationale": "Lesson 9-2 directly contains the Problems 1 and 2 response.",
+      "reviewStatus": "draft",
+      "metadata": {
+        "program": "graph-node-practice-program",
+        "lesson": "9.2"
+      }
+    },
+    {
+      "id": "math.im1.g45.contains.002",
+      "sourceId": "math.im1.lesson.9.2",
+      "targetId": "math.im1.skill.9.2.scale-a-dot-plot-number-line",
+      "type": "contains",
+      "weight": 1,
+      "derived": false,
+      "rationale": "Lesson 9-2 directly contains the Problem 2 response.",
+      "reviewStatus": "draft",
+      "metadata": {
+        "program": "graph-node-practice-program",
+        "lesson": "9.2"
+      }
+    },
+    {
+      "id": "math.im1.g45.contains.003",
+      "sourceId": "math.im1.lesson.9.2",
+      "targetId": "math.im1.skill.9.2.construct-a-bar-graph-from-categorical-frequencies",
+      "type": "contains",
+      "weight": 1,
+      "derived": false,
+      "rationale": "Lesson 9-2 directly contains the Problem 3 response.",
+      "reviewStatus": "draft",
+      "metadata": {
+        "program": "graph-node-practice-program",
+        "lesson": "9.2"
+      }
+    },
+    {
+      "id": "math.im1.g45.contains.004",
+      "sourceId": "math.im1.lesson.9.2",
+      "targetId": "math.im1.skill.9.2.construct-a-histogram-from-grouped-frequencies",
+      "type": "contains",
+      "weight": 1,
+      "derived": false,
+      "rationale": "Lesson 9-2 directly contains the Problem 5 response.",
+      "reviewStatus": "draft",
+      "metadata": {
+        "program": "graph-node-practice-program",
+        "lesson": "9.2"
+      }
+    },
+    {
+      "id": "math.im1.g45.contains.005",
+      "sourceId": "math.im1.lesson.9.2",
+      "targetId": "math.im1.skill.9.2.classify-count-data-as-discrete",
+      "type": "contains",
+      "weight": 1,
+      "derived": false,
+      "rationale": "Lesson 9-2 directly contains the Mixed Exercises, Problem 6, classification response only response.",
+      "reviewStatus": "draft",
+      "metadata": {
+        "program": "graph-node-practice-program",
+        "lesson": "9.2"
+      }
+    },
+    {
+      "id": "math.im1.g45.contains.006",
+      "sourceId": "math.im1.lesson.9.2",
+      "targetId": "math.im1.skill.9.2.select-an-appropriate-data-display-and-justify-the-choice",
+      "type": "contains",
+      "weight": 1,
+      "derived": false,
+      "rationale": "Lesson 9-2 directly contains the Mixed Exercises, Problem 8(a) response.",
+      "reviewStatus": "draft",
+      "metadata": {
+        "program": "graph-node-practice-program",
+        "lesson": "9.2"
+      }
+    },
+    {
+      "id": "math.im1.g45.contains.007",
+      "sourceId": "math.im1.lesson.9.2",
+      "targetId": "math.im1.skill.9.2.choose-histogram-intervals-for-measurement-data",
+      "type": "contains",
+      "weight": 1,
+      "derived": false,
+      "rationale": "Lesson 9-2 directly contains the Mixed Exercises, Problem 11 response.",
+      "reviewStatus": "draft",
+      "metadata": {
+        "program": "graph-node-practice-program",
+        "lesson": "9.2"
+      }
+    },
+    {
+      "id": "math.im1.g45.contains.008",
+      "sourceId": "math.im1.lesson.9.2",
+      "targetId": "math.im1.skill.9.2.construct-a-categorical-dot-display-from-frequencies",
+      "type": "contains",
+      "weight": 1,
+      "derived": false,
+      "rationale": "Lesson 9-2 directly contains the Mixed Exercises, Problem 12(a) response.",
+      "reviewStatus": "draft",
+      "metadata": {
+        "program": "graph-node-practice-program",
+        "lesson": "9.2"
+      }
+    },
+    {
+      "id": "math.im1.g45.contains.009",
+      "sourceId": "math.im1.lesson.9.2",
+      "targetId": "math.im1.skill.9.2.identify-the-greatest-value-in-a-data-set",
+      "type": "contains",
+      "weight": 1,
+      "derived": false,
+      "rationale": "Lesson 9-2 directly contains the Mixed Exercises, Problem 7(c) response.",
+      "reviewStatus": "draft",
+      "metadata": {
+        "program": "graph-node-practice-program",
+        "lesson": "9.2"
+      }
+    },
+    {
+      "id": "math.im1.g45.contains.010",
+      "sourceId": "math.im1.lesson.9.2",
+      "targetId": "math.im1.skill.9.2.count-values-below-a-threshold",
+      "type": "contains",
+      "weight": 1,
+      "derived": false,
+      "rationale": "Lesson 9-2 directly contains the Mixed Exercises, Problem 9(b) response.",
+      "reviewStatus": "draft",
+      "metadata": {
+        "program": "graph-node-practice-program",
+        "lesson": "9.2"
+      }
+    },
+    {
+      "id": "math.im1.g45.contains.011",
+      "sourceId": "math.im1.lesson.9.2",
+      "targetId": "math.im1.skill.9.2.count-represented-categories",
+      "type": "contains",
+      "weight": 1,
+      "derived": false,
+      "rationale": "Lesson 9-2 directly contains the Mixed Exercises, Problem 12(b) response.",
+      "reviewStatus": "draft",
+      "metadata": {
+        "program": "graph-node-practice-program",
+        "lesson": "9.2"
+      }
+    },
+    {
+      "id": "math.im1.g45.contains.012",
+      "sourceId": "math.im1.lesson.9.2",
+      "targetId": "math.im1.skill.9.2.identify-the-category-with-the-greatest-frequency",
+      "type": "contains",
+      "weight": 1,
+      "derived": false,
+      "rationale": "Lesson 9-2 directly contains the Mixed Exercises, Problem 12(c) response.",
+      "reviewStatus": "draft",
+      "metadata": {
+        "program": "graph-node-practice-program",
+        "lesson": "9.2"
+      }
+    },
+    {
+      "id": "math.im1.g45.contains.013",
+      "sourceId": "math.im1.lesson.9.2",
+      "targetId": "math.im1.skill.9.2.draw-and-justify-conclusions-from-a-data-display",
+      "type": "contains",
+      "weight": 1,
+      "derived": false,
+      "rationale": "Lesson 9-2 directly contains the Mixed Exercises, Problems 13 and 16 response.",
+      "reviewStatus": "draft",
+      "metadata": {
+        "program": "graph-node-practice-program",
+        "lesson": "9.2"
+      }
+    },
+    {
+      "id": "math.im1.g45.contains.014",
+      "sourceId": "math.im1.lesson.9.2",
+      "targetId": "math.im1.skill.9.2.explain-when-and-how-to-construct-a-histogram",
+      "type": "contains",
+      "weight": 1,
+      "derived": false,
+      "rationale": "Lesson 9-2 directly contains the Mixed Exercises, Problem 14 response.",
+      "reviewStatus": "draft",
+      "metadata": {
+        "program": "graph-node-practice-program",
+        "lesson": "9.2"
+      }
+    },
+    {
+      "id": "math.im1.g45.contains.015",
+      "sourceId": "math.im1.lesson.9.2",
+      "targetId": "math.im1.skill.9.2.explain-why-a-dot-plot-scale-may-be-needed",
+      "type": "contains",
+      "weight": 1,
+      "derived": false,
+      "rationale": "Lesson 9-2 directly contains the Mixed Exercises, Problem 15 response.",
+      "reviewStatus": "draft",
+      "metadata": {
+        "program": "graph-node-practice-program",
+        "lesson": "9.2"
+      }
+    },
+    {
+      "id": "math.im1.g45.contains.016",
+      "sourceId": "math.im1.lesson.9.2",
+      "targetId": "math.im1.skill.9.2.compare-bar-graphs-and-histograms",
+      "type": "contains",
+      "weight": 1,
+      "derived": false,
+      "rationale": "Lesson 9-2 directly contains the Mixed Exercises, Problem 17 response.",
+      "reviewStatus": "draft",
+      "metadata": {
+        "program": "graph-node-practice-program",
+        "lesson": "9.2"
       }
     }
   ]

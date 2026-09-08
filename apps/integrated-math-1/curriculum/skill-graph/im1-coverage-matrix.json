@@ -1,10 +1,10 @@
 {
   "version": 1,
   "course": "im1",
-  "totalSkills": 393,
+  "totalSkills": 409,
   "counts": {
     "served": 6,
-    "gap": 387,
+    "gap": 403,
     "newComponent": 0
   },
   "byModule": [
@@ -66,9 +66,9 @@
     },
     {
       "module": "9",
-      "totalSkills": 16,
+      "totalSkills": 32,
       "served": 0,
-      "gap": 16,
+      "gap": 32,
       "newComponent": 0
     },
     {
@@ -2613,12 +2613,140 @@
       "priority": "high"
     },
     {
+      "skillId": "math.im1.skill.9.2.choose-histogram-intervals-for-measurement-data",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.9.2.classify-count-data-as-discrete",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.9.2.compare-bar-graphs-and-histograms",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.9.2.construct-a-bar-graph-from-categorical-frequencies",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.9.2.construct-a-categorical-dot-display-from-frequencies",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.9.2.construct-a-histogram-from-grouped-frequencies",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.9.2.construct-a-quantitative-dot-plot",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
       "skillId": "math.im1.skill.9.2.construct-dot-plots-bar-graphs-and-histograms-to-represent-d",
       "module": "9",
       "status": "gap",
       "tier": "none",
       "rendererKey": "comprehension-quiz",
       "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.9.2.count-represented-categories",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.9.2.count-values-below-a-threshold",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.9.2.draw-and-justify-conclusions-from-a-data-display",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.9.2.explain-when-and-how-to-construct-a-histogram",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.9.2.explain-why-a-dot-plot-scale-may-be-needed",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.9.2.identify-the-category-with-the-greatest-frequency",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.9.2.identify-the-greatest-value-in-a-data-set",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.9.2.scale-a-dot-plot-number-line",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.9.2.select-an-appropriate-data-display-and-justify-the-choice",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
     },
     {
       "skillId": "math.im1.skill.9.3.identify-sample-bias-in-survey-and-sampling-methods-and-expl",

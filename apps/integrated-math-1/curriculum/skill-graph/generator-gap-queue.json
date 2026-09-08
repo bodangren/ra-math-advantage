@@ -3482,11 +3482,155 @@
       "rendererAssignmentReason": "Calculation skill → step-by-step-solver",
       "gap": "Planning classification only; no reviewed renderer contract",
       "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.construct-a-quantitative-dot-plot",
+      "title": "Construct a quantitative dot plot from raw values",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.scale-a-dot-plot-number-line",
+      "title": "Scale a dot-plot number line",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.construct-a-bar-graph-from-categorical-frequencies",
+      "title": "Construct a bar graph from categorical frequencies",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.construct-a-histogram-from-grouped-frequencies",
+      "title": "Construct a histogram from grouped frequencies",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.classify-count-data-as-discrete",
+      "title": "Classify count data as discrete",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.select-an-appropriate-data-display-and-justify-the-choice",
+      "title": "Select an appropriate data display and justify the choice",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.choose-histogram-intervals-for-measurement-data",
+      "title": "Choose histogram intervals for measurement data",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.construct-a-categorical-dot-display-from-frequencies",
+      "title": "Construct a categorical dot display from frequencies",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.identify-the-greatest-value-in-a-data-set",
+      "title": "Identify the greatest value in a data set",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.count-values-below-a-threshold",
+      "title": "Count values below a threshold",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.count-represented-categories",
+      "title": "Count represented categories",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.identify-the-category-with-the-greatest-frequency",
+      "title": "Identify the category with the greatest frequency",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.draw-and-justify-conclusions-from-a-data-display",
+      "title": "Draw and justify conclusions from a data display",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.explain-when-and-how-to-construct-a-histogram",
+      "title": "Explain when and how to construct a histogram",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.explain-why-a-dot-plot-scale-may-be-needed",
+      "title": "Explain why a dot-plot scale may be needed",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.compare-bar-graphs-and-histograms",
+      "title": "Compare bar graphs and histograms",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
     }
   ],
   "meta": {
-    "totalSkills": 387,
+    "totalSkills": 403,
     "allNeedGenerators": true,
-    "total": 387
+    "total": 403
   }
 }

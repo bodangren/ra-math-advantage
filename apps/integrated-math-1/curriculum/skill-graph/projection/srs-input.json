@@ -2749,6 +2749,166 @@
       "rendererKey": "step-by-step-solver",
       "generatorKey": null,
       "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.construct-a-quantitative-dot-plot",
+      "blueprintId": "math.im1.skill.9.2.construct-a-quantitative-dot-plot",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.scale-a-dot-plot-number-line",
+      "blueprintId": "math.im1.skill.9.2.scale-a-dot-plot-number-line",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.construct-a-bar-graph-from-categorical-frequencies",
+      "blueprintId": "math.im1.skill.9.2.construct-a-bar-graph-from-categorical-frequencies",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.construct-a-histogram-from-grouped-frequencies",
+      "blueprintId": "math.im1.skill.9.2.construct-a-histogram-from-grouped-frequencies",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.classify-count-data-as-discrete",
+      "blueprintId": "math.im1.skill.9.2.classify-count-data-as-discrete",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.select-an-appropriate-data-display-and-justify-the-choice",
+      "blueprintId": "math.im1.skill.9.2.select-an-appropriate-data-display-and-justify-the-choice",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.choose-histogram-intervals-for-measurement-data",
+      "blueprintId": "math.im1.skill.9.2.choose-histogram-intervals-for-measurement-data",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.construct-a-categorical-dot-display-from-frequencies",
+      "blueprintId": "math.im1.skill.9.2.construct-a-categorical-dot-display-from-frequencies",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.identify-the-greatest-value-in-a-data-set",
+      "blueprintId": "math.im1.skill.9.2.identify-the-greatest-value-in-a-data-set",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.count-values-below-a-threshold",
+      "blueprintId": "math.im1.skill.9.2.count-values-below-a-threshold",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.count-represented-categories",
+      "blueprintId": "math.im1.skill.9.2.count-represented-categories",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.identify-the-category-with-the-greatest-frequency",
+      "blueprintId": "math.im1.skill.9.2.identify-the-category-with-the-greatest-frequency",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.draw-and-justify-conclusions-from-a-data-display",
+      "blueprintId": "math.im1.skill.9.2.draw-and-justify-conclusions-from-a-data-display",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.explain-when-and-how-to-construct-a-histogram",
+      "blueprintId": "math.im1.skill.9.2.explain-when-and-how-to-construct-a-histogram",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.explain-why-a-dot-plot-scale-may-be-needed",
+      "blueprintId": "math.im1.skill.9.2.explain-why-a-dot-plot-scale-may-be-needed",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.compare-bar-graphs-and-histograms",
+      "blueprintId": "math.im1.skill.9.2.compare-bar-graphs-and-histograms",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
     }
   ]
 }

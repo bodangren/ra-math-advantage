@@ -64,11 +64,11 @@ All proposed nodes are draft, inactive, and source-only. The suffixes are stable
 | Stable identifier | Atomic capability | Direct source evidence | Manual boundary |
 |---|---|---|---|
 | `math.im1.skill.9.2.construct-a-quantitative-dot-plot` | Construct a quantitative dot plot from raw values. | 1, 2 | Permit equivalent scales. |
-| `math.im1.skill.9.2.scale-a-dot-plot-number-line` | Select and apply a useful number-line scale for a dot plot. | 2; explanation in 15 | More than one scale can be valid. |
+| `math.im1.skill.9.2.scale-a-dot-plot-number-line` | Select and apply a useful number-line scale for a dot plot. | 2 only | More than one scale can be valid. |
 | `math.im1.skill.9.2.construct-a-bar-graph-from-categorical-frequencies` | Construct a bar graph from category-frequency pairs. | 3 | Permit category reordering and equivalent vertical scales. |
 | `math.im1.skill.9.2.construct-a-histogram-from-grouped-frequencies` | Construct a histogram from supplied intervals and frequencies. | 5 | State the interval endpoint convention in generated forms. |
 | `math.im1.skill.9.2.classify-count-data-as-discrete` | Classify numerical count data as discrete and give a reason. | 6 classification only | This source supplies one-sided evidence for count data. Do not generalize it into a complete discrete-or-continuous classifier. Do not use Problem 4 as clean evidence because its variable is categorical. Do not encode a graph-type rule. |
-| `math.im1.skill.9.2.select-an-appropriate-data-display-and-justify-the-choice` | Select a suitable display for a data set and justify the selection. | 5 choice, 7a, 8a, 9a | Several responses can be valid. Use an explicit accepted set or manual review. |
+| `math.im1.skill.9.2.select-an-appropriate-data-display-and-justify-the-choice` | Select a suitable display for a data set and justify the selection. | 8a only | Several responses can be valid. Use an explicit accepted set or manual review. |
 | `math.im1.skill.9.2.choose-histogram-intervals-for-measurement-data` | Choose intervals that cover measurement data for a histogram. | 11 | Require non-overlap, complete coverage, and a stated endpoint convention. Do not require one unique width. |
 | `math.im1.skill.9.2.construct-a-categorical-dot-display-from-frequencies` | Construct the source's categorical dot display while preserving category labels. | 12a | Keep this separate from a quantitative dot plot. Manual review is required until the display convention is explicit. |
 | `math.im1.skill.9.2.identify-the-greatest-value-in-a-data-set` | Identify the greatest value in a numerical data set. | 7c | Direct response is `8`. |
@@ -114,3 +114,7 @@ The repair must preserve these exact visual facts:
 An implementation must test exact source text, data values, subpart order, image count, canonical joint-example identities, rejected duplicate containment removal, and the absence of a new `Example 5`. Graph tests must assert the exact Lesson 9-2 incident edges and exact capability source references. They must also assert that no prerequisite, equivalence, approval, readiness, or Mixed Exercise `assesses` edges were added.
 
 The proposal does not authorize graph activation. It does not make a readiness decision.
+
+## Exact evidence correction
+
+Graph review limits scale construction to Problem 2. Problem 15 remains evidence for the separate explanation capability. Selection with justification uses Problem 8(a) only. Problems 5, 7(a), and 9(a) ask for display selection or construction without an explicit justification request. Their broader manual tasks remain in the source inventory.

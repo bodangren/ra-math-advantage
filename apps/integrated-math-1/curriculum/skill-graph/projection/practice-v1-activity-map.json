@@ -7830,152 +7830,6 @@
       "srsEligible": false
     },
     {
-      "stableActivityId": "math.im1.skill.9.2.analyze-data-displays-to-draw-conclusions-and-answer-questio.worked_example",
-      "nodeId": "math.im1.skill.9.2.analyze-data-displays-to-draw-conclusions-and-answer-questio",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.6-sp-b-4",
-        "math.standard.ccss.s-id-a-1"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.9.2.analyze-data-displays-to-draw-conclusions-and-answer-questio",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.2.analyze-data-displays-to-draw-conclusions-and-answer-questio.guided_practice",
-      "nodeId": "math.im1.skill.9.2.analyze-data-displays-to-draw-conclusions-and-answer-questio",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.6-sp-b-4",
-        "math.standard.ccss.s-id-a-1"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 9c: Analyze data displays to draw conclusions and answer questions about a data set",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.2.analyze-data-displays-to-draw-conclusions-and-answer-questio.independent_practice",
-      "nodeId": "math.im1.skill.9.2.analyze-data-displays-to-draw-conclusions-and-answer-questio",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.6-sp-b-4",
-        "math.standard.ccss.s-id-a-1"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.2.construct-dot-plots-bar-graphs-and-histograms-to-represent-d.worked_example",
-      "nodeId": "math.im1.skill.9.2.construct-dot-plots-bar-graphs-and-histograms-to-represent-d",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.6-sp-b-4",
-        "math.standard.ccss.s-id-a-1"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.9.2.construct-dot-plots-bar-graphs-and-histograms-to-represent-d",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.2.construct-dot-plots-bar-graphs-and-histograms-to-represent-d.guided_practice",
-      "nodeId": "math.im1.skill.9.2.construct-dot-plots-bar-graphs-and-histograms-to-represent-d",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.6-sp-b-4",
-        "math.standard.ccss.s-id-a-1"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 9b: Construct dot plots, bar graphs, and histograms to represent data sets",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.2.construct-dot-plots-bar-graphs-and-histograms-to-represent-d.independent_practice",
-      "nodeId": "math.im1.skill.9.2.construct-dot-plots-bar-graphs-and-histograms-to-represent-d",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.6-sp-b-4",
-        "math.standard.ccss.s-id-a-1"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
       "stableActivityId": "math.im1.skill.9.3.identify-sample-bias-in-survey-and-sampling-methods-and-expl.worked_example",
       "nodeId": "math.im1.skill.9.3.identify-sample-bias-in-survey-and-sampling-methods-and-expl",
       "sourceNodeIds": [],
@@ -11355,6 +11209,166 @@
       "prerequisites": [],
       "difficulty": 0.5,
       "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.construct-a-quantitative-dot-plot",
+      "blueprintId": "math.im1.skill.9.2.construct-a-quantitative-dot-plot",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.scale-a-dot-plot-number-line",
+      "blueprintId": "math.im1.skill.9.2.scale-a-dot-plot-number-line",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.construct-a-bar-graph-from-categorical-frequencies",
+      "blueprintId": "math.im1.skill.9.2.construct-a-bar-graph-from-categorical-frequencies",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.construct-a-histogram-from-grouped-frequencies",
+      "blueprintId": "math.im1.skill.9.2.construct-a-histogram-from-grouped-frequencies",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.classify-count-data-as-discrete",
+      "blueprintId": "math.im1.skill.9.2.classify-count-data-as-discrete",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.select-an-appropriate-data-display-and-justify-the-choice",
+      "blueprintId": "math.im1.skill.9.2.select-an-appropriate-data-display-and-justify-the-choice",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.choose-histogram-intervals-for-measurement-data",
+      "blueprintId": "math.im1.skill.9.2.choose-histogram-intervals-for-measurement-data",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.construct-a-categorical-dot-display-from-frequencies",
+      "blueprintId": "math.im1.skill.9.2.construct-a-categorical-dot-display-from-frequencies",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.identify-the-greatest-value-in-a-data-set",
+      "blueprintId": "math.im1.skill.9.2.identify-the-greatest-value-in-a-data-set",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.count-values-below-a-threshold",
+      "blueprintId": "math.im1.skill.9.2.count-values-below-a-threshold",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.count-represented-categories",
+      "blueprintId": "math.im1.skill.9.2.count-represented-categories",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.identify-the-category-with-the-greatest-frequency",
+      "blueprintId": "math.im1.skill.9.2.identify-the-category-with-the-greatest-frequency",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.draw-and-justify-conclusions-from-a-data-display",
+      "blueprintId": "math.im1.skill.9.2.draw-and-justify-conclusions-from-a-data-display",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.explain-when-and-how-to-construct-a-histogram",
+      "blueprintId": "math.im1.skill.9.2.explain-when-and-how-to-construct-a-histogram",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.explain-why-a-dot-plot-scale-may-be-needed",
+      "blueprintId": "math.im1.skill.9.2.explain-why-a-dot-plot-scale-may-be-needed",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.compare-bar-graphs-and-histograms",
+      "blueprintId": "math.im1.skill.9.2.compare-bar-graphs-and-histograms",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
       "generatorKey": null,
       "generatorReady": false
     }
