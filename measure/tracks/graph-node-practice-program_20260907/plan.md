@@ -532,7 +532,7 @@ Removed saved worktree 0485 after full state and semantic review. Retained 02d6 
 
 Removed the completed Q38 applied verification archive after exact committed-file checks and parent browser success. Reused the author archive for Q40 after preservation checks and a fresh HEAD overlay. See `precalc-saved-practice-views-cleanup-review.md`.
 
-- [~] Task G53: Review IM1 Lesson 10-2 from `Int1_1002_practice.docx`. Inventory every source prompt and diagram. Identify exact assessable responses, existing stable source identities, valid skill reuse, manual-review boundaries, and evidence for prerequisite claims. Do not use lesson order as a prerequisite. Produce a bounded proposal before source or graph edits.
+- [x] Task G53: Review IM1 Lesson 10-2 from `Int1_1002_practice.docx`. Inventory every source prompt and diagram. Identify exact assessable responses, existing stable source identities, valid skill reuse, manual-review boundaries, and evidence for prerequisite claims. Do not use lesson order as a prerequisite. Produce a bounded proposal before source or graph edits.
 
 Q38 browser verification is accepted. Lesson and dashboard reads preserve all learner records with zero POSTs. Saved receipt retry preserves attempt identity; new attempt 3 uses a new identity. Independent review accepts the full evidence. See `precalc-saved-practice-views-browser-verification.md`. The full Q37 matrix review remains in progress.
 
@@ -543,3 +543,7 @@ Preserved the 20 remaining accepted Unit 7 browser method and visual files. Pare
 Removed the completed Q38/Q40 author archive after full independent tree review, exact committed-byte checks, and actual browser acceptance. See `precalc-brand-symbol-cleanup-review.md`. The stopped Unit 7 environment is under final tree review before deletion.
 
 Q37 Unit 7 is complete for the selected Topic 1.1 flow. All nine required rows passed independent review. Accepted runtime fixes and useful evidence are committed. The parent removed the stopped local archive, database, credentials, and generated output after full review. Ports 43160, 43161, and 43162 are clear. See `precalc-unit7-final-cleanup-review.md`. The 19 saved worktrees remain intact.
+
+- [~] Task G53 source: Restore all 50 original Lesson 10-2 prompts and all 14 native figures in the extensionless lesson source. Preserve the five existing Example groups and Mixed Exercises. Add exact source regressions. Do not add answers, extra response requirements, source approval, or graph changes. The corrected source inventory is in final independent review.
+
+G53 corrected inventory is accepted. It preserves 50 prompts, five existing Example identities, and 14 native figures. It proposes one inactive maximum-count atom with separate line and plane evidence variants. No new prerequisite is accepted. Problem 49 remains task-local manual evidence. Exact source restoration is in progress in one isolated candidate. See `im1-lesson102-inventory-independent-review.md`.
