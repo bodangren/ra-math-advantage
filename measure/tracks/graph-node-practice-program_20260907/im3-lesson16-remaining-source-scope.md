@@ -12,7 +12,7 @@ The source authority is `apps/integrated-math-3/curriculum/IM3-reveal-module-1.p
 
 ### `.036`, page 43
 
-Retain the accepted Example 1 record. Add this Check text:
+Retain the accepted Example 1 record. The adjacent printed Check reads:
 
 `DIVING A diver jumps from a diving board that is 10 feet high, and she wants to figure out how far from the board she is before she enters the water. Her arc can be modeled by y = -4.9x² + 2.5x + 10, where y is her height in meters and x is time in seconds. Part A Solve 0 = -4.9x² + 2.5x + 10. Part B Interpret the roots. The diver enters the water after approximately ___ seconds.`
 
@@ -20,13 +20,13 @@ The source says that the board is `10 feet` high. The same prompt says that `y` 
 
 ### `.037`, page 44
 
-Retain the accepted Example 2 record. Add this Check text:
+Retain the accepted Example 2 record. The adjacent printed Check reads:
 
 `Solve 3x² - 5x - 1 = 0 by using the Quadratic Formula.`
 
 ### `.038`, page 44
 
-Retain the accepted Example 3 record. Add this Check text:
+Retain the accepted Example 3 record. The adjacent printed Check reads:
 
 `Solve 9x² - 3x + 18 = 0 by using the Quadratic Formula.`
 
@@ -49,7 +49,7 @@ Preserve this printed interpretation:
 
 `The discriminant is nonzero, so there are two roots. The discriminant is positive and not a perfect square, so the roots are irrational.`
 
-Add this unanswered Check:
+The adjacent unanswered Check reads:
 
 `Examine 2x² + 8x + 8 = 0. Part A Find the value of the discriminant for 2x² + 8x + 8 = 0. b² - 4ac = ___. Part B Describe the number and type of roots for the equation. There is/are ___ root(s).`
 
@@ -74,7 +74,7 @@ Preserve this printed interpretation:
 
 `The discriminant is nonzero, so there are two roots. The discriminant is negative, so the roots are complex.`
 
-Add this unanswered Check:
+The adjacent unanswered Check reads:
 
 `Examine 10x² - 4x + 7 = 0. Part A Find the value of the discriminant for 10x² - 4x + 7 = 0. b² - 4ac = ___. Part B Describe the number and type of roots for the equation. There is/are ___ root(s).`
 
