@@ -1,0 +1,79 @@
+{
+  "guidedWriter": {
+    "attemptOrdinal": 1,
+    "feedback": "3/3 interval classifications matched the server rubric.",
+    "maxScore": 3,
+    "score": 3,
+    "submissionId": "jd7dc4fcnvsaxt2pjkqd0jdmxn8e1b0f"
+  },
+  "guidedConcurrent": [
+    {
+      "decision": {
+        "eligible": false,
+        "exposureState": "introduced",
+        "idempotency": "new",
+        "masteryBearing": false,
+        "reason": "ungraded_evidence"
+      },
+      "delivery": "new",
+      "kstApplied": false,
+      "masteryApplied": false,
+      "persisted": true
+    },
+    {
+      "decision": {
+        "eligible": false,
+        "exposureState": "introduced",
+        "idempotency": "new",
+        "masteryBearing": false,
+        "reason": "ungraded_evidence"
+      },
+      "delivery": "replay",
+      "kstApplied": false,
+      "masteryApplied": false,
+      "persisted": true
+    }
+  ],
+  "guidedEffectDelta": {
+    "cards": 0,
+    "evidence": 1,
+    "receipts": 1,
+    "reviews": 0
+  },
+  "guidedEvidence": {
+    "_creationTime": 1788847343183.526,
+    "_id": "ks79ykm764h830725qk8xacxmx8e0n7w",
+    "activityId": "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs.guided_practice",
+    "attemptOrdinal": 1,
+    "createdAt": 1788847343183,
+    "idempotencyKey": "precalc:mastery-advantage:submission:jd7dc4fcnvsaxt2pjkqd0jdmxn8e1b0f",
+    "learnerId": "nd7dppjhqvfvfg8mc2kf8rfxwn8e058q",
+    "mode": "guided_practice",
+    "nodeId": "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs",
+    "occurredAt": 1788847342285,
+    "origin": "mastery_advantage",
+    "submissionId": "jd7dc4fcnvsaxt2pjkqd0jdmxn8e1b0f"
+  },
+  "guidedReceipt": {
+    "_creationTime": 1788847343183.5261,
+    "_id": "kx76hwpr0nzt1sh6avj0wcrqex8e1261",
+    "createdAt": 1788847343183,
+    "decision": {
+      "eligible": false,
+      "exposureState": "introduced",
+      "idempotency": "new",
+      "masteryBearing": false,
+      "reason": "ungraded_evidence"
+    },
+    "kstApplied": false,
+    "learnerId": "nd7dppjhqvfvfg8mc2kf8rfxwn8e058q",
+    "masteryApplied": false,
+    "persisted": true,
+    "submissionId": "jd7dc4fcnvsaxt2pjkqd0jdmxn8e1b0f",
+    "updatedAt": 1788847343183
+  },
+  "disabledNewRejected": true,
+  "disabledReplayRejected": true,
+  "disabledEffectsUnchanged": true,
+  "credentialRestored": true
+}
