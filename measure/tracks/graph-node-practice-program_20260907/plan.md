@@ -559,3 +559,5 @@ G53 source review corrected the triangular-prism interpretation. Problems 25-27 
 G53 source is committed as `63886deda`. Final independent review passed. Parent checks passed 68 test files and 400 tests, lint, build, and post-build standalone TypeScript. All 14 image files match the worksheet bytes. See `im1-lesson102-source-final-review.md`.
 
 - [~] Task G53 graph: Reuse the two Lesson 10-2 skills and the Lesson 12-4 postulate skill for exact source tasks. Add one inactive maximum-count atom with separate evidence variants. Remove eight unsupported standard alignments and empty activity placeholders for the touched skills. Update affected projections. Preserve stable identities, approval states, row order, and unrelated fields. Add no prerequisite or executable practice claim.
+
+Removed saved worktrees 61c4 and 6457 after independent and parent review of all 719 states. Branch `codex/preserve-saved-61c4-im3-lesson18` preserves two accepted detached commits. Their Lesson 1.8 source remains pending integration review against committed HEAD. The other 14 saved worktrees remain intact. See `saved-61c4-6457-preservation-review.md`.
