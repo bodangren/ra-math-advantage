@@ -1,6 +1,9 @@
 import { describe, expect, it, vi } from "vitest";
 import { getLesson, getLessons, saveResponse } from "@/convex/course";
 import { seedLesson1_1 } from "@/convex/seed/seed_lesson_1_1";
+import { getApprovedTopic11WorkedSourceHandler } from "@/convex/activities";
+import { PRECALCULUS_TOPIC_11_SOURCE_ACTIVITY_ID } from "@/lib/learning-evidence/precalc-pilot";
+import { TOPIC11_APPROVED_PUBLICATION } from "./topic11-approved-publication.fixture";
 const h = (x: unknown) =>
   Reflect.get(x as object, "_handler") as (ctx: any, args: any) => Promise<any>;
 function fixture() {
@@ -136,7 +139,7 @@ describe("selected lesson course boundary", () => {
     ]);
   });
 
-  it("projects safe fields from the actual legacy seed nested activity section", async () => {
+  it("projects the physical selected ID from the actual version-2 seed without private fields", async () => {
     const seeded = fixture();
     seeded.rows.lessons = [];
     seeded.rows.lesson_versions = [];
@@ -152,12 +155,47 @@ describe("selected lesson course boundary", () => {
       .flatMap((phase: any) => phase.sections)
       .filter((section: any) => section.sectionType === "activity");
     expect(activities.length).toBeGreaterThan(0);
+    const source = seeded.rows.activities.find(
+      (activity: any) =>
+        activity.stableActivityId === PRECALCULUS_TOPIC_11_SOURCE_ACTIVITY_ID,
+    );
+    expect(source.approval).toEqual({ status: "unreviewed" });
+    expect(activities).toContainEqual(
+      expect.objectContaining({
+        content: {
+          activityId: source._id,
+          componentKey: "precalculus-topic-1-1-daily-curriculum",
+        },
+      }),
+    );
     expect(activities.some((section: any) => section.content.props)).toBe(
       false,
     );
     expect(JSON.stringify(activities)).not.toMatch(
-      /equation|steps|answerKey|gradingConfig/,
+      /equation|steps|answer|answerKey|gradingConfig|finalAnswer|nodeId|source/,
     );
+
+    const publication = {
+      nodes: TOPIC11_APPROVED_PUBLICATION.nodes.nodes,
+      blueprints: TOPIC11_APPROVED_PUBLICATION.blueprints.blueprints,
+    };
+    await expect(
+      getApprovedTopic11WorkedSourceHandler(seeded.ctx as never, publication as never),
+    ).resolves.toBeNull();
+
+    source.approval = {
+      status: "approved",
+      reviewedAt: source.createdAt,
+      reviewedBy: "reviewer:1",
+    };
+    await expect(
+      getApprovedTopic11WorkedSourceHandler(seeded.ctx as never, publication as never),
+    ).resolves.toMatchObject({
+      activityId: source._id,
+      stableActivityId: PRECALCULUS_TOPIC_11_SOURCE_ACTIVITY_ID,
+      componentKey: "precalculus-topic-1-1-daily-curriculum",
+      mode: "worked_example",
+    });
   });
   it.each([null, 1, "private", ["private"]])(
     "projects invalid stored section content %j as an empty public object",
