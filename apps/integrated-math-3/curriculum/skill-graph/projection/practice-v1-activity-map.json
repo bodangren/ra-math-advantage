@@ -264,7 +264,7 @@
           }
         ]
       },
-      "srsEligible": true
+      "srsEligible": false
     },
     {
       "stableActivityId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change.worked_example",
@@ -505,7 +505,7 @@
           }
         ]
       },
-      "srsEligible": true
+      "srsEligible": false
     },
     {
       "stableActivityId": "math.im3.skill.1.2.solve-quadratic-equations-by-graphing.worked_example",
@@ -696,7 +696,7 @@
           }
         ]
       },
-      "srsEligible": true
+      "srsEligible": false
     },
     {
       "stableActivityId": "math.im3.skill.1.4.solve-quadratic-equations-by-factoring.worked_example",

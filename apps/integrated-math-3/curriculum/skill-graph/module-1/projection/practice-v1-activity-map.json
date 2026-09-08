@@ -251,7 +251,7 @@
           }
         ]
       },
-      "srsEligible": true
+      "srsEligible": false
     },
     {
       "stableActivityId": "math.im3.skill.1.1.graph-quadratic-functions.worked_example",
@@ -518,7 +518,7 @@
           }
         ]
       },
-      "srsEligible": true
+      "srsEligible": false
     },
     {
       "stableActivityId": "math.im3.skill.1.2.solve-quadratic-equations-by-graphing.worked_example",
@@ -712,7 +712,7 @@
           }
         ]
       },
-      "srsEligible": true
+      "srsEligible": false
     },
     {
       "stableActivityId": "math.im3.skill.1.4.solve-quadratic-equations-by-factoring.worked_example",

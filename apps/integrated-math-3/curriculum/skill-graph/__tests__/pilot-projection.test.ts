@@ -94,12 +94,26 @@ describe('Module 1 Runtime Projection', () => {
     expect(modes.has('independent_practice')).toBe(true);
   });
 
-  it('independent practice activities are SRS-eligible', () => {
+  it('independent practice eligibility follows the approval gate', () => {
     const activities = projectActivityMap(graph.nodes, graph.edges, blueprints);
     const independentActivities = activities.filter(a => a.mode === 'independent_practice');
     for (const act of independentActivities) {
-      expect(act.srsEligible).toBe(true);
+      const node = graph.nodes.find(candidate => candidate.id === act.nodeId);
+      const blueprint = blueprints.find(candidate => candidate.nodeId === act.nodeId);
+      const expected = node?.independentPracticeReady === true
+        && node.reviewStatus === 'approved'
+        && blueprint?.reviewStatus === 'approved';
+      expect(act.srsEligible).toBe(expected);
     }
+    const draftPilotIds = [
+      'math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change',
+      'math.im3.skill.1.1.graph-quadratic-functions',
+      'math.im3.skill.1.2.solve-quadratic-equations-by-graphing',
+    ];
+    expect(independentActivities.filter(activity => draftPilotIds.includes(activity.nodeId)))
+      .toHaveLength(3);
+    expect(independentActivities.filter(activity => draftPilotIds.includes(activity.nodeId))
+      .every(activity => activity.srsEligible === false)).toBe(true);
   });
 
   it('every blueprint has at least one alignment through edges or blueprint alignmentNodeIds', () => {
