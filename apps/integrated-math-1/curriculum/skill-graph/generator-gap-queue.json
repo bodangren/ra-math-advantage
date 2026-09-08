@@ -3626,11 +3626,191 @@
       "rendererAssignmentReason": "Planning classification only",
       "gap": "Planning classification only; no reviewed renderer contract",
       "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.identify-the-intended-population-for-a-survey",
+      "title": "Identify the intended population for a survey",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.identify-sample-bias-in-a-sampling-method",
+      "title": "Identify sample bias in a sampling method",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.design-an-unbiased-sampling-method",
+      "title": "Design an unbiased sampling method",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.identify-bias-in-survey-wording",
+      "title": "Identify bias in survey wording",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.identify-contextual-bias-around-a-survey",
+      "title": "Identify contextual bias around a survey",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.identify-who-benefits-from-survey-bias",
+      "title": "Identify who benefits from survey bias",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.select-a-measure-of-center-and-justify-the-selection",
+      "title": "Select a measure of center and justify the selection",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.evaluate-graph-scale-misrepresentation",
+      "title": "Evaluate graph scale misrepresentation",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.explain-how-axis-scale-affects-a-data-display",
+      "title": "Explain how axis scale affects a data display",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.compare-sampling-frames-for-bias",
+      "title": "Compare sampling frames for bias",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.explain-bias-from-selected-survey-information",
+      "title": "Explain bias from selected survey information",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.evaluate-pictorial-graph-misrepresentation",
+      "title": "Evaluate pictorial graph misrepresentation",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.predict-how-an-outlier-affects-measure-selection",
+      "title": "Predict how an outlier affects measure selection",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.evaluate-contextual-accuracy-of-a-rounded-statistic",
+      "title": "Evaluate contextual accuracy of a rounded statistic",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.describe-a-method-for-assessing-sample-bias",
+      "title": "Describe a method for assessing sample bias",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.predict-the-mean-after-adding-a-constant-to-all-values",
+      "title": "Predict the mean after adding a constant to all values",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.predict-the-median-after-adding-a-constant-to-all-values",
+      "title": "Predict the median after adding a constant to all values",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.construct-a-biased-comparative-data-display",
+      "title": "Construct a biased comparative data display",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.create-a-scenario-with-sample-bias",
+      "title": "Create a scenario with sample bias",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.evaluate-when-a-biased-sample-can-be-valid",
+      "title": "Evaluate when a biased sample can be valid",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
     }
   ],
   "meta": {
-    "totalSkills": 403,
+    "totalSkills": 423,
     "allNeedGenerators": true,
-    "total": 403
+    "total": 423
   }
 }

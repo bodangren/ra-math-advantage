@@ -6922,10 +6922,11 @@
     {
       "id": "math.im1.example.9.3.008",
       "kind": "worked_example",
-      "title": "Example 1: Identify Sample Bias",
+      "title": "Example 1: Identify sample bias and design an unbiased sample",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-9-class-period-plan.md (9-3, Example 1)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx (Example 1, Problems 1 and 2)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -6934,16 +6935,18 @@
         "lesson": "3",
         "exampleNumber": 1,
         "sourceLesson": "9-3",
-        "rawText": "9-3, Example 1 — Identify Sample Bias"
-      }
+        "rawText": "Example 1: Identify sample bias and design an unbiased sample"
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.9.3.009",
       "kind": "worked_example",
-      "title": "Example 2: Identify Survey Question Bias; Calculate and Choose Measures of Center",
+      "title": "Example 2: Identify wording and contextual survey bias",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-9-class-period-plan.md (9-3, Example 2)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx (Example 2, Problems 3 and 4)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -6952,16 +6955,18 @@
         "lesson": "3",
         "exampleNumber": 2,
         "sourceLesson": "9-3",
-        "rawText": "9-3, Examples 2-3 — Identify Survey Question Bias; Calculate and Choose Measures of Center"
-      }
+        "rawText": "Example 2: Identify wording and contextual survey bias"
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.9.3.010",
       "kind": "worked_example",
-      "title": "Example 3: Identify Survey Question Bias; Calculate and Choose Measures of Center",
+      "title": "Example 3: Calculate and select measures of center",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-9-class-period-plan.md (9-3, Example 3)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx (Example 3, Problems 5 and 6)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -6970,8 +6975,9 @@
         "lesson": "3",
         "exampleNumber": 3,
         "sourceLesson": "9-3",
-        "rawText": "9-3, Examples 2-3 — Identify Survey Question Bias; Calculate and Choose Measures of Center"
-      }
+        "rawText": "Example 3: Calculate and select measures of center"
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.9.4.011",
@@ -11294,14 +11300,16 @@
       "domain": "math.im1",
       "description": "Identify sample bias in survey and sampling methods and explain how it affects results",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-9-class-period-plan.md"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx (Lesson 9-3 broad planning aggregate)"
       ],
       "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "9",
         "lesson": "3"
-      }
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.skill.9.3.recognize-biased-survey-questions-and-identify-whose-interes",
@@ -11310,14 +11318,16 @@
       "domain": "math.im1",
       "description": "Recognize biased survey questions and identify whose interests they may serve",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-9-class-period-plan.md"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx (Lesson 9-3 broad planning aggregate)"
       ],
       "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "9",
         "lesson": "3"
-      }
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.skill.9.4.calculate-the-range-interquartile-range-and-standard-deviati",
@@ -16191,6 +16201,386 @@
         "course": "im1",
         "module": "9",
         "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.example.9.3.025",
+      "kind": "worked_example",
+      "title": "Example 4: Evaluate graph-scale misrepresentation",
+      "domain": "math.im1",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx (Example 4, Problems 7 and 8)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "3",
+        "exampleNumber": 4,
+        "sourceLesson": "9-3",
+        "rawText": "Example 4: Evaluate graph-scale misrepresentation"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.3.identify-the-intended-population-for-a-survey",
+      "kind": "skill",
+      "title": "Identify the intended population for a survey",
+      "domain": "math.im1",
+      "description": "Identify the intended population for a survey.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx (Problem 1, population response only)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.3.identify-sample-bias-in-a-sampling-method",
+      "kind": "skill",
+      "title": "Identify sample bias in a sampling method",
+      "domain": "math.im1",
+      "description": "Identify sample bias in a sampling method.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx (Problem 1, bias response only)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.3.design-an-unbiased-sampling-method",
+      "kind": "skill",
+      "title": "Design an unbiased sampling method",
+      "domain": "math.im1",
+      "description": "Design an unbiased sampling method.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx (Problem 2)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.3.identify-bias-in-survey-wording",
+      "kind": "skill",
+      "title": "Identify bias in survey wording",
+      "domain": "math.im1",
+      "description": "Identify bias in survey wording.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx (Problem 3(a); Mixed Exercises, Problem 19 question-bias evaluation only)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.3.identify-contextual-bias-around-a-survey",
+      "kind": "skill",
+      "title": "Identify contextual bias around a survey",
+      "domain": "math.im1",
+      "description": "Identify contextual bias around a survey.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx (Problem 4(a))"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.3.identify-who-benefits-from-survey-bias",
+      "kind": "skill",
+      "title": "Identify who benefits from survey bias",
+      "domain": "math.im1",
+      "description": "Identify who benefits from survey bias.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx (Problems 3(b) and 4(b))"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.3.select-a-measure-of-center-and-justify-the-selection",
+      "kind": "skill",
+      "title": "Select a measure of center and justify the selection",
+      "domain": "math.im1",
+      "description": "Select a measure of center and justify the selection.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx (Problem 5, selection response only; Problem 6, selection and justification)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.3.evaluate-graph-scale-misrepresentation",
+      "kind": "skill",
+      "title": "Evaluate graph scale misrepresentation",
+      "domain": "math.im1",
+      "description": "Evaluate graph scale misrepresentation.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx (Problem 7)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.3.explain-how-axis-scale-affects-a-data-display",
+      "kind": "skill",
+      "title": "Explain how axis scale affects a data display",
+      "domain": "math.im1",
+      "description": "Explain how axis scale affects a data display.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx (Problem 8)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.3.compare-sampling-frames-for-bias",
+      "kind": "skill",
+      "title": "Compare sampling frames for bias",
+      "domain": "math.im1",
+      "description": "Compare sampling frames for bias.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx (Mixed Exercises, Problems 9 and 22)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.3.explain-bias-from-selected-survey-information",
+      "kind": "skill",
+      "title": "Explain bias from selected survey information",
+      "domain": "math.im1",
+      "description": "Explain bias from selected survey information.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx (Mixed Exercises, Problem 10)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.3.evaluate-pictorial-graph-misrepresentation",
+      "kind": "skill",
+      "title": "Evaluate pictorial graph misrepresentation",
+      "domain": "math.im1",
+      "description": "Evaluate pictorial graph misrepresentation.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx (Mixed Exercises, Problem 12)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.3.predict-how-an-outlier-affects-measure-selection",
+      "kind": "skill",
+      "title": "Predict how an outlier affects measure selection",
+      "domain": "math.im1",
+      "description": "Predict how an outlier affects measure selection.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx (Mixed Exercises, Problem 13)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.3.evaluate-contextual-accuracy-of-a-rounded-statistic",
+      "kind": "skill",
+      "title": "Evaluate contextual accuracy of a rounded statistic",
+      "domain": "math.im1",
+      "description": "Evaluate contextual accuracy of a rounded statistic.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx (Mixed Exercises, Problem 14)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.3.describe-a-method-for-assessing-sample-bias",
+      "kind": "skill",
+      "title": "Describe a method for assessing sample bias",
+      "domain": "math.im1",
+      "description": "Describe a method for assessing sample bias.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx (Mixed Exercises, Problem 15)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.3.predict-the-mean-after-adding-a-constant-to-all-values",
+      "kind": "skill",
+      "title": "Predict the mean after adding a constant to all values",
+      "domain": "math.im1",
+      "description": "Predict the mean after adding a constant to all values.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx (Mixed Exercises, Problem 16, mean response only)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.3.predict-the-median-after-adding-a-constant-to-all-values",
+      "kind": "skill",
+      "title": "Predict the median after adding a constant to all values",
+      "domain": "math.im1",
+      "description": "Predict the median after adding a constant to all values.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx (Mixed Exercises, Problem 16, median response only)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.3.construct-a-biased-comparative-data-display",
+      "kind": "skill",
+      "title": "Construct a biased comparative data display",
+      "domain": "math.im1",
+      "description": "Construct a biased comparative data display.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx (Mixed Exercises, Problem 17; manual rubric required)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.3.create-a-scenario-with-sample-bias",
+      "kind": "skill",
+      "title": "Create a scenario with sample bias",
+      "domain": "math.im1",
+      "description": "Create a scenario with sample bias.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx (Mixed Exercises, Problem 18, two scenarios with different sample biases; manual rubric required)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.3.evaluate-when-a-biased-sample-can-be-valid",
+      "kind": "skill",
+      "title": "Evaluate when a biased sample can be valid",
+      "domain": "math.im1",
+      "description": "Evaluate when a biased sample can be valid.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0903_practice.docx (Mixed Exercises, Problem 20; manual rubric required)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "3"
       }
     }
   ]

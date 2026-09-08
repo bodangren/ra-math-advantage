@@ -44,7 +44,10 @@ describe('Lesson 9-1 capability inventory', () => {
     expect(blueprint).toMatchObject({ sourceNodeIds, alignmentNodeIds: [], reviewStatus: 'draft' });
     expect(Object.keys(blueprint).sort()).toEqual(['alignmentNodeIds', 'metadata', 'nodeId', 'reviewStatus', 'sourceNodeIds']);
     expect(graph.edges.filter((edge: any) => edge.sourceId === 'math.im1.lesson.9.1' && edge.targetId === id && edge.type === 'contains')).toHaveLength(1);
-    expect(graph.edges.filter((edge: any) => edge.sourceId === id || edge.targetId === id)).toHaveLength(1);
+    const incident = graph.edges.filter((edge: any) => edge.sourceId === id || edge.targetId === id);
+    const expectedLessons = sourceNodeIds[0] === 'math.im1.example.9.1.001' ? ['math.im1.lesson.9.1', 'math.im1.lesson.9.3'] : ['math.im1.lesson.9.1'];
+    expect(incident.every((edge: any) => edge.type === 'contains' && edge.targetId === id && expectedLessons.includes(edge.sourceId))).toBe(true);
+    expect(incident.map((edge: any) => edge.sourceId).sort()).toEqual(expectedLessons.sort());
   });
 
   it('keeps 9a source-only and removes unsupported lesson-sequence prerequisites', () => {

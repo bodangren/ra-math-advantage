@@ -7830,146 +7830,6 @@
       "srsEligible": false
     },
     {
-      "stableActivityId": "math.im1.skill.9.3.identify-sample-bias-in-survey-and-sampling-methods-and-expl.worked_example",
-      "nodeId": "math.im1.skill.9.3.identify-sample-bias-in-survey-and-sampling-methods-and-expl",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.s-ic-a-1"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.9.3.identify-sample-bias-in-survey-and-sampling-methods-and-expl",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.3.identify-sample-bias-in-survey-and-sampling-methods-and-expl.guided_practice",
-      "nodeId": "math.im1.skill.9.3.identify-sample-bias-in-survey-and-sampling-methods-and-expl",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.s-ic-a-1"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 9d: Identify sample bias in survey and sampling methods and explain how it affects results",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.3.identify-sample-bias-in-survey-and-sampling-methods-and-expl.independent_practice",
-      "nodeId": "math.im1.skill.9.3.identify-sample-bias-in-survey-and-sampling-methods-and-expl",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.s-ic-a-1"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.3.recognize-biased-survey-questions-and-identify-whose-interes.worked_example",
-      "nodeId": "math.im1.skill.9.3.recognize-biased-survey-questions-and-identify-whose-interes",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.s-ic-a-1"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.9.3.recognize-biased-survey-questions-and-identify-whose-interes",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.3.recognize-biased-survey-questions-and-identify-whose-interes.guided_practice",
-      "nodeId": "math.im1.skill.9.3.recognize-biased-survey-questions-and-identify-whose-interes",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.s-ic-a-1"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 9e: Recognize biased survey questions and identify whose interests they may serve",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.3.recognize-biased-survey-questions-and-identify-whose-interes.independent_practice",
-      "nodeId": "math.im1.skill.9.3.recognize-biased-survey-questions-and-identify-whose-interes",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.s-ic-a-1"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
       "stableActivityId": "math.im1.skill.9.4.calculate-the-range-interquartile-range-and-standard-deviati.worked_example",
       "nodeId": "math.im1.skill.9.4.calculate-the-range-interquartile-range-and-standard-deviati",
       "sourceNodeIds": [],
@@ -11365,6 +11225,206 @@
     {
       "nodeId": "math.im1.skill.9.2.compare-bar-graphs-and-histograms",
       "blueprintId": "math.im1.skill.9.2.compare-bar-graphs-and-histograms",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.identify-the-intended-population-for-a-survey",
+      "blueprintId": "math.im1.skill.9.3.identify-the-intended-population-for-a-survey",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.identify-sample-bias-in-a-sampling-method",
+      "blueprintId": "math.im1.skill.9.3.identify-sample-bias-in-a-sampling-method",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.design-an-unbiased-sampling-method",
+      "blueprintId": "math.im1.skill.9.3.design-an-unbiased-sampling-method",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.identify-bias-in-survey-wording",
+      "blueprintId": "math.im1.skill.9.3.identify-bias-in-survey-wording",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.identify-contextual-bias-around-a-survey",
+      "blueprintId": "math.im1.skill.9.3.identify-contextual-bias-around-a-survey",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.identify-who-benefits-from-survey-bias",
+      "blueprintId": "math.im1.skill.9.3.identify-who-benefits-from-survey-bias",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.select-a-measure-of-center-and-justify-the-selection",
+      "blueprintId": "math.im1.skill.9.3.select-a-measure-of-center-and-justify-the-selection",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.evaluate-graph-scale-misrepresentation",
+      "blueprintId": "math.im1.skill.9.3.evaluate-graph-scale-misrepresentation",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.explain-how-axis-scale-affects-a-data-display",
+      "blueprintId": "math.im1.skill.9.3.explain-how-axis-scale-affects-a-data-display",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.compare-sampling-frames-for-bias",
+      "blueprintId": "math.im1.skill.9.3.compare-sampling-frames-for-bias",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.explain-bias-from-selected-survey-information",
+      "blueprintId": "math.im1.skill.9.3.explain-bias-from-selected-survey-information",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.evaluate-pictorial-graph-misrepresentation",
+      "blueprintId": "math.im1.skill.9.3.evaluate-pictorial-graph-misrepresentation",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.predict-how-an-outlier-affects-measure-selection",
+      "blueprintId": "math.im1.skill.9.3.predict-how-an-outlier-affects-measure-selection",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.evaluate-contextual-accuracy-of-a-rounded-statistic",
+      "blueprintId": "math.im1.skill.9.3.evaluate-contextual-accuracy-of-a-rounded-statistic",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.describe-a-method-for-assessing-sample-bias",
+      "blueprintId": "math.im1.skill.9.3.describe-a-method-for-assessing-sample-bias",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.predict-the-mean-after-adding-a-constant-to-all-values",
+      "blueprintId": "math.im1.skill.9.3.predict-the-mean-after-adding-a-constant-to-all-values",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.predict-the-median-after-adding-a-constant-to-all-values",
+      "blueprintId": "math.im1.skill.9.3.predict-the-median-after-adding-a-constant-to-all-values",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.construct-a-biased-comparative-data-display",
+      "blueprintId": "math.im1.skill.9.3.construct-a-biased-comparative-data-display",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.create-a-scenario-with-sample-bias",
+      "blueprintId": "math.im1.skill.9.3.create-a-scenario-with-sample-bias",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.evaluate-when-a-biased-sample-can-be-valid",
+      "blueprintId": "math.im1.skill.9.3.evaluate-when-a-biased-sample-can-be-valid",
       "standards": [],
       "prerequisites": [],
       "difficulty": 0.5,

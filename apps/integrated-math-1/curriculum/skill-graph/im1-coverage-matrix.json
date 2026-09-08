@@ -1,10 +1,10 @@
 {
   "version": 1,
   "course": "im1",
-  "totalSkills": 409,
+  "totalSkills": 429,
   "counts": {
     "served": 6,
-    "gap": 403,
+    "gap": 423,
     "newComponent": 0
   },
   "byModule": [
@@ -66,9 +66,9 @@
     },
     {
       "module": "9",
-      "totalSkills": 32,
+      "totalSkills": 52,
       "served": 0,
-      "gap": 32,
+      "gap": 52,
       "newComponent": 0
     },
     {
@@ -2749,6 +2749,118 @@
       "priority": "standard"
     },
     {
+      "skillId": "math.im1.skill.9.3.compare-sampling-frames-for-bias",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.9.3.construct-a-biased-comparative-data-display",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.9.3.create-a-scenario-with-sample-bias",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.9.3.describe-a-method-for-assessing-sample-bias",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.9.3.design-an-unbiased-sampling-method",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.9.3.evaluate-contextual-accuracy-of-a-rounded-statistic",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.9.3.evaluate-graph-scale-misrepresentation",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.9.3.evaluate-pictorial-graph-misrepresentation",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.9.3.evaluate-when-a-biased-sample-can-be-valid",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.9.3.explain-bias-from-selected-survey-information",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.9.3.explain-how-axis-scale-affects-a-data-display",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.9.3.identify-bias-in-survey-wording",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.9.3.identify-contextual-bias-around-a-survey",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.9.3.identify-sample-bias-in-a-sampling-method",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
       "skillId": "math.im1.skill.9.3.identify-sample-bias-in-survey-and-sampling-methods-and-expl",
       "module": "9",
       "status": "gap",
@@ -2757,12 +2869,60 @@
       "priority": "high"
     },
     {
+      "skillId": "math.im1.skill.9.3.identify-the-intended-population-for-a-survey",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.9.3.identify-who-benefits-from-survey-bias",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.9.3.predict-how-an-outlier-affects-measure-selection",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.9.3.predict-the-mean-after-adding-a-constant-to-all-values",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.9.3.predict-the-median-after-adding-a-constant-to-all-values",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
       "skillId": "math.im1.skill.9.3.recognize-biased-survey-questions-and-identify-whose-interes",
       "module": "9",
       "status": "gap",
       "tier": "none",
       "rendererKey": "comprehension-quiz",
       "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.9.3.select-a-measure-of-center-and-justify-the-selection",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
     },
     {
       "skillId": "math.im1.skill.9.4.calculate-the-range-interquartile-range-and-standard-deviati",

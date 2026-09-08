@@ -4050,21 +4050,6 @@
       "alignmentNodeIds": [
         "math.standard.ccss.s-ic-a-1"
       ],
-      "rendererKey": "comprehension-quiz",
-      "rendererModeMap": {
-        "worked": "comprehension-quiz",
-        "guidedPractice": "comprehension-quiz",
-        "independentPractice": "comprehension-quiz"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
-      "exceptions": [
-        {
-          "type": "generator",
-          "reason": "Generator not yet implemented for IM1 rollout"
-        }
-      ],
       "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
@@ -4077,21 +4062,6 @@
       "sourceNodeIds": [],
       "alignmentNodeIds": [
         "math.standard.ccss.s-ic-a-1"
-      ],
-      "rendererKey": "comprehension-quiz",
-      "rendererModeMap": {
-        "worked": "comprehension-quiz",
-        "guidedPractice": "comprehension-quiz",
-        "independentPractice": "comprehension-quiz"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
-      "exceptions": [
-        {
-          "type": "generator",
-          "reason": "Generator not yet implemented for IM1 rollout"
-        }
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7803,6 +7773,244 @@
         "course": "im1",
         "module": "9",
         "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.identify-the-intended-population-for-a-survey",
+      "sourceNodeIds": [
+        "math.im1.example.9.3.008"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.identify-sample-bias-in-a-sampling-method",
+      "sourceNodeIds": [
+        "math.im1.example.9.3.008"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.design-an-unbiased-sampling-method",
+      "sourceNodeIds": [
+        "math.im1.example.9.3.008"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.identify-bias-in-survey-wording",
+      "sourceNodeIds": [
+        "math.im1.example.9.3.009"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.identify-contextual-bias-around-a-survey",
+      "sourceNodeIds": [
+        "math.im1.example.9.3.009"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.identify-who-benefits-from-survey-bias",
+      "sourceNodeIds": [
+        "math.im1.example.9.3.009"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.select-a-measure-of-center-and-justify-the-selection",
+      "sourceNodeIds": [
+        "math.im1.example.9.3.010"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.evaluate-graph-scale-misrepresentation",
+      "sourceNodeIds": [
+        "math.im1.example.9.3.025"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.explain-how-axis-scale-affects-a-data-display",
+      "sourceNodeIds": [
+        "math.im1.example.9.3.025"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.compare-sampling-frames-for-bias",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.explain-bias-from-selected-survey-information",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.evaluate-pictorial-graph-misrepresentation",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.predict-how-an-outlier-affects-measure-selection",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.evaluate-contextual-accuracy-of-a-rounded-statistic",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.describe-a-method-for-assessing-sample-bias",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.predict-the-mean-after-adding-a-constant-to-all-values",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.predict-the-median-after-adding-a-constant-to-all-values",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.construct-a-biased-comparative-data-display",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.create-a-scenario-with-sample-bias",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.evaluate-when-a-biased-sample-can-be-valid",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "3"
       }
     }
   ]
