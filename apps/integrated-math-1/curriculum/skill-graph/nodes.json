@@ -6548,20 +6548,21 @@
     {
       "id": "math.im1.example.8.4.013",
       "kind": "worked_example",
-      "title": "Example 1: Compare Compounding Interest and Growth Rates",
+      "title": "Example 1, Problems 1-5: Rewrite and compare exponential rates across time units",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-8-class-period-plan.md (8-4, Example 1)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0804_practice.docx (Example 1, Problems 1-5)"
       ],
-      "reviewStatus": "approved",
+      "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "8",
         "lesson": "4",
         "exampleNumber": 1,
         "sourceLesson": "8-4",
-        "rawText": "8-4, Example 1 \u2014 Compare Compounding Interest and Growth Rates"
-      }
+        "rawText": "Example 1, Problems 1-5 \u2014 Rewrite and compare exponential rates across time units"
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.8.5.014",
@@ -11114,18 +11115,20 @@
     {
       "id": "math.im1.skill.8.4.rewrite-exponential-functions-so-rates-share-the-same-time-u",
       "kind": "skill",
-      "title": "8g: Rewrite exponential functions so rates share the same time unit for direct comparison",
+      "title": "Rewrite an exponential model with an equivalent factor for a specified time unit",
       "domain": "math.im1",
-      "description": "Rewrite exponential functions so rates share the same time unit for direct comparison",
+      "description": "Rewrite an exponential model with an equivalent factor for a specified time unit.",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-8-class-period-plan.md"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0804_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0804_practice.docx (Example 1, Problems 1(a) and 2(a); Mixed Exercises, Problem 13)"
       ],
-      "reviewStatus": "approved",
+      "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "8",
         "lesson": "4"
-      }
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.skill.8.5.determine-whether-a-given-sequence-is-geometric-by-checking",
@@ -17184,6 +17187,42 @@
         "course": "im1",
         "module": "8",
         "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.8.4.determine-an-effective-percent-rate-for-a-specified-time-interval",
+      "kind": "skill",
+      "title": "Determine an effective percent rate for a specified time interval",
+      "domain": "math.im1",
+      "description": "Determine an effective percent increase or decrease for a specified time interval by converting the periodic factor.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0804_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0804_practice.docx (Example 1, Problems 1(c) and 2(c); Mixed Exercises, Problems 6(c) and 12(c))"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.8.4.compare-exponential-growth-or-decay-rates-across-different-time-units",
+      "kind": "skill",
+      "title": "Compare exponential growth or decay rates across different time units",
+      "domain": "math.im1",
+      "description": "Convert exponential rates to a common interval and compare their equivalent growth or decay.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0804_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0804_practice.docx (Example 1, Problems 1(b), 2(b), and 3\u20135; Mixed Exercises, Problems 7\u201311; Problem 16)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "4"
       }
     }
   ]

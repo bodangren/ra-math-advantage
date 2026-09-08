@@ -1,10 +1,10 @@
 {
   "version": 1,
   "course": "im1",
-  "totalSkills": 377,
+  "totalSkills": 379,
   "counts": {
     "served": 6,
-    "gap": 371,
+    "gap": 373,
     "newComponent": 0
   },
   "byModule": [
@@ -59,9 +59,9 @@
     },
     {
       "module": "8",
-      "totalSkills": 31,
+      "totalSkills": 33,
       "served": 0,
-      "gap": 31,
+      "gap": 33,
       "newComponent": 0
     },
     {
@@ -2422,6 +2422,22 @@
     },
     {
       "skillId": "math.im1.skill.8.3.write-an-exponential-growth-or-decay-model-from-context",
+      "module": "8",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.8.4.compare-exponential-growth-or-decay-rates-across-different-time-units",
+      "module": "8",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.8.4.determine-an-effective-percent-rate-for-a-specified-time-interval",
       "module": "8",
       "status": "gap",
       "tier": "none",

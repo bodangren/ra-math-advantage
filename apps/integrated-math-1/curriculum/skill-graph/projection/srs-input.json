@@ -2575,6 +2575,32 @@
       "rendererKey": "step-by-step-solver",
       "generatorKey": null,
       "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.4.determine-an-effective-percent-rate-for-a-specified-time-interval",
+      "blueprintId": "math.im1.skill.8.4.determine-an-effective-percent-rate-for-a-specified-time-interval",
+      "standards": [
+        "math.standard.ccss.f-le-a-4",
+        "math.standard.ccss.f-le-b-5"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.4.compare-exponential-growth-or-decay-rates-across-different-time-units",
+      "blueprintId": "math.im1.skill.8.4.compare-exponential-growth-or-decay-rates-across-different-time-units",
+      "standards": [
+        "math.standard.ccss.f-le-a-4",
+        "math.standard.ccss.f-le-b-5"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
     }
   ]
 }

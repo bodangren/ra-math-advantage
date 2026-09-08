@@ -3874,20 +3874,18 @@
     },
     {
       "nodeId": "math.im1.skill.8.4.rewrite-exponential-functions-so-rates-share-the-same-time-u",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im1.example.8.4.013"
+      ],
       "alignmentNodeIds": [
         "math.standard.ccss.f-le-a-4",
         "math.standard.ccss.f-le-b-5"
       ],
-      "rendererKey": "graphing-explorer",
       "rendererModeMap": {
         "worked": "graphing-explorer",
         "guidedPractice": "graphing-explorer",
         "independentPractice": "graphing-explorer"
       },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
       "exceptions": [
         {
           "type": "generator",
@@ -7475,6 +7473,30 @@
         "course": "im1",
         "module": "8",
         "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.8.4.determine-an-effective-percent-rate-for-a-specified-time-interval",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.8.4.compare-exponential-growth-or-decay-rates-across-different-time-units",
+      "sourceNodeIds": [
+        "math.im1.example.8.4.013"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "4"
       }
     }
   ]

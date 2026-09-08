@@ -5,7 +5,7 @@
       "title": "10b: Differentiate between synthetic geometry and analytic geometry based on their defining characteristics",
       "module": "10",
       "rendererKey": "fill-in-the-blank",
-      "rendererAssignmentReason": "Geometry identification/concept skill \u2192 fill-in-the-blank",
+      "rendererAssignmentReason": "Geometry identification/concept skill → fill-in-the-blank",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -14,7 +14,7 @@
       "title": "10a: Understand the structure of an axiomatic system and distinguish between axioms and conclusions",
       "module": "10",
       "rendererKey": "fill-in-the-blank",
-      "rendererAssignmentReason": "Proof/theorem/logic skill \u2192 fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -23,7 +23,7 @@
       "title": "10d: Draw and label figures that accurately represent given geometric relationships",
       "module": "10",
       "rendererKey": "fill-in-the-blank",
-      "rendererAssignmentReason": "Geometry identification/concept skill \u2192 fill-in-the-blank",
+      "rendererAssignmentReason": "Geometry identification/concept skill → fill-in-the-blank",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -32,7 +32,7 @@
       "title": "10c: Identify and name points, lines, and planes from geometric figures",
       "module": "10",
       "rendererKey": "fill-in-the-blank",
-      "rendererAssignmentReason": "Geometry identification/concept skill \u2192 fill-in-the-blank",
+      "rendererAssignmentReason": "Geometry identification/concept skill → fill-in-the-blank",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -41,7 +41,7 @@
       "title": "10f: Apply the Segment Addition Postulate to find missing segment lengths",
       "module": "10",
       "rendererKey": "fill-in-the-blank",
-      "rendererAssignmentReason": "Proof/theorem/logic skill \u2192 fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -50,7 +50,7 @@
       "title": "10e: Find the length of a segment by reading coordinates from a number line",
       "module": "10",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -59,7 +59,7 @@
       "title": "10h: Apply the Distance Formula to solve real-world problems",
       "module": "10",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -68,7 +68,7 @@
       "title": "10g: Use the Distance Formula to find the distance between two points in the coordinate plane",
       "module": "10",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -77,7 +77,7 @@
       "title": "10i: Find the coordinate of a point located at a fractional distance between two given points on a number line",
       "module": "10",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -86,7 +86,7 @@
       "title": "10j: Locate a point that divides a segment on a number line in a given ratio",
       "module": "10",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -95,7 +95,7 @@
       "title": "10k: Find the coordinates of a point that divides a segment in a given ratio on a coordinate plane",
       "module": "10",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -104,7 +104,7 @@
       "title": "10m: Find the coordinates of a missing endpoint when the midpoint and one endpoint are known",
       "module": "10",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -113,7 +113,7 @@
       "title": "10l: Use the Midpoint Formula to find the coordinates of the midpoint of a segment in the coordinate plane",
       "module": "10",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -122,7 +122,7 @@
       "title": "11b: Apply the Angle Addition Postulate and the definition of an angle bisector to find unknown angle measures",
       "module": "11",
       "rendererKey": "fill-in-the-blank",
-      "rendererAssignmentReason": "Proof/theorem/logic skill \u2192 fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -131,7 +131,7 @@
       "title": "11a: Identify and name the parts of an angle, including the vertex and sides",
       "module": "11",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -140,7 +140,7 @@
       "title": "11c: Solve problems involving complementary, supplementary, and vertical angle relationships using algebra",
       "module": "11",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -149,7 +149,7 @@
       "title": "11d: Use the fact that perpendicular lines form right angles to write and solve equations for unknown angle measures",
       "module": "11",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -158,7 +158,7 @@
       "title": "11f: Apply coordinate geometry to identify figures from vertices and compute their measurements",
       "module": "11",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -167,7 +167,7 @@
       "title": "11e: Calculate the perimeter, circumference, and area of two-dimensional figures from coordinate grids and labeled diagrams",
       "module": "11",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -176,7 +176,7 @@
       "title": "11h: Apply reflections, translations, and rotations to figures on the coordinate plane",
       "module": "11",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -185,7 +185,7 @@
       "title": "11g: Identify rigid motions (reflection, translation, rotation) from diagrams",
       "module": "11",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -194,7 +194,7 @@
       "title": "11j: Calculate the surface area and volume of prisms, cylinders, pyramids, and cones",
       "module": "11",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -203,7 +203,7 @@
       "title": "11i: Identify and classify three-dimensional figures as polyhedra or non-polyhedra",
       "module": "11",
       "rendererKey": "fill-in-the-blank",
-      "rendererAssignmentReason": "Geometry identification/concept skill \u2192 fill-in-the-blank",
+      "rendererAssignmentReason": "Geometry identification/concept skill → fill-in-the-blank",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -212,7 +212,7 @@
       "title": "11k: Interpret orthographic drawings to build models of three-dimensional figures",
       "module": "11",
       "rendererKey": "comprehension-quiz",
-      "rendererAssignmentReason": "Statistics/data skill \u2192 comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -221,7 +221,7 @@
       "title": "11l: Use nets to identify solids, find surface area, and construct models",
       "module": "11",
       "rendererKey": "comprehension-quiz",
-      "rendererAssignmentReason": "Statistics/data skill \u2192 comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -230,7 +230,7 @@
       "title": "11m: Distinguish between accuracy and precision in measurement contexts",
       "module": "11",
       "rendererKey": "fill-in-the-blank",
-      "rendererAssignmentReason": "Geometry identification/concept skill \u2192 fill-in-the-blank",
+      "rendererAssignmentReason": "Geometry identification/concept skill → fill-in-the-blank",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -239,7 +239,7 @@
       "title": "11n: Count the number of significant digits in a given measurement using the rules for significance",
       "module": "11",
       "rendererKey": "fill-in-the-blank",
-      "rendererAssignmentReason": "Geometry identification/concept skill \u2192 fill-in-the-blank",
+      "rendererAssignmentReason": "Geometry identification/concept skill → fill-in-the-blank",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -248,7 +248,7 @@
       "title": "12b: Determine whether a given conjecture is true or false",
       "module": "12",
       "rendererKey": "fill-in-the-blank",
-      "rendererAssignmentReason": "Proof/theorem/logic skill \u2192 fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -257,7 +257,7 @@
       "title": "12a: Recognize patterns in numerical, geometric, and real-world sequences and express them as conjectures",
       "module": "12",
       "rendererKey": "fill-in-the-blank",
-      "rendererAssignmentReason": "Proof/theorem/logic skill \u2192 fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -266,7 +266,7 @@
       "title": "12q: Find the distance from a point to a line in the coordinate plane",
       "module": "12",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -275,7 +275,7 @@
       "title": "12c: Determine the truth value of compound statements formed by conjunction and disjunction",
       "module": "12",
       "rendererKey": "fill-in-the-blank",
-      "rendererAssignmentReason": "Proof/theorem/logic skill \u2192 fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -284,7 +284,7 @@
       "title": "12d: Identify the hypothesis and conclusion of a conditional statement and write the converse, inverse, and contrapositive",
       "module": "12",
       "rendererKey": "fill-in-the-blank",
-      "rendererAssignmentReason": "Proof/theorem/logic skill \u2192 fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -293,7 +293,7 @@
       "title": "12f: Apply the Law of Detachment and the Law of Syllogism to draw valid conclusions from conditional statements",
       "module": "12",
       "rendererKey": "fill-in-the-blank",
-      "rendererAssignmentReason": "Proof/theorem/logic skill \u2192 fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -302,7 +302,7 @@
       "title": "12e: Distinguish between inductive and deductive reasoning in given arguments",
       "module": "12",
       "rendererKey": "fill-in-the-blank",
-      "rendererAssignmentReason": "Proof/theorem/logic skill \u2192 fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -311,7 +311,7 @@
       "title": "12g: Apply geometric postulates about points, lines, and planes to justify statements",
       "module": "12",
       "rendererKey": "fill-in-the-blank",
-      "rendererAssignmentReason": "Proof/theorem/logic skill \u2192 fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -320,7 +320,7 @@
       "title": "12h: Write two-column proofs using given information, definitions, and properties",
       "module": "12",
       "rendererKey": "fill-in-the-blank",
-      "rendererAssignmentReason": "Proof/theorem/logic skill \u2192 fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -329,7 +329,7 @@
       "title": "12i: Complete two-column proofs by supplying missing statements and reasons",
       "module": "12",
       "rendererKey": "fill-in-the-blank",
-      "rendererAssignmentReason": "Proof/theorem/logic skill \u2192 fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -338,7 +338,7 @@
       "title": "12j: Write two-column proofs to justify angle relationships including congruent supplements, congruent complements, and right angles",
       "module": "12",
       "rendererKey": "fill-in-the-blank",
-      "rendererAssignmentReason": "Proof/theorem/logic skill \u2192 fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -347,7 +347,7 @@
       "title": "12k: Classify angle pairs formed by two lines cut by a transversal as alternate interior, alternate exterior, corresponding, or consecutive interior angles",
       "module": "12",
       "rendererKey": "fill-in-the-blank",
-      "rendererAssignmentReason": "Geometry identification/concept skill \u2192 fill-in-the-blank",
+      "rendererAssignmentReason": "Geometry identification/concept skill → fill-in-the-blank",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -356,7 +356,7 @@
       "title": "12l: Use properties of parallel lines and transversals to find unknown angle measures",
       "module": "12",
       "rendererKey": "fill-in-the-blank",
-      "rendererAssignmentReason": "Geometry module fallback \u2192 fill-in-the-blank",
+      "rendererAssignmentReason": "Geometry module fallback → fill-in-the-blank",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -365,7 +365,7 @@
       "title": "12m: Calculate the slope of a line through two given points and interpret its meaning",
       "module": "12",
       "rendererKey": "comprehension-quiz",
-      "rendererAssignmentReason": "Statistics/data skill \u2192 comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -374,7 +374,7 @@
       "title": "12n: Write equations of lines in slope-intercept form that are parallel or perpendicular to a given line and pass through a given point",
       "module": "12",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -383,7 +383,7 @@
       "title": "12p: Apply parallel line theorems to solve real-world and geometric problems",
       "module": "12",
       "rendererKey": "fill-in-the-blank",
-      "rendererAssignmentReason": "Proof/theorem/logic skill \u2192 fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -392,7 +392,7 @@
       "title": "12o: Use angle relationships formed by a transversal to prove that two lines are parallel",
       "module": "12",
       "rendererKey": "fill-in-the-blank",
-      "rendererAssignmentReason": "Geometry module fallback \u2192 fill-in-the-blank",
+      "rendererAssignmentReason": "Geometry module fallback → fill-in-the-blank",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -401,7 +401,7 @@
       "title": "13b: Determine the coordinates of the image of a point after a reflection in a horizontal or vertical line",
       "module": "13",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -410,7 +410,7 @@
       "title": "13a: Graph the image of a figure after a reflection over a given line on the coordinate plane",
       "module": "13",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -419,7 +419,7 @@
       "title": "13c: Determine whether a given transformation between two figures is a translation and justify the answer",
       "module": "13",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -428,7 +428,7 @@
       "title": "13d: Find the translation vector that maps a preimage to its image and apply it",
       "module": "13",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -437,16 +437,16 @@
       "title": "13f: Analyze properties preserved under rotations and identify common errors in reasoning about rotations",
       "module": "13",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
     {
       "nodeId": "math.im1.skill.13.3.graph-the-image-of-a-polygon-after-a-rotation-of-90-180-or-2",
-      "title": "13e: Graph the image of a polygon after a rotation of 90\u00b0, 180\u00b0, or 270\u00b0 about a given point on the coordinate plane",
+      "title": "13e: Graph the image of a polygon after a rotation of 90°, 180°, or 270° about a given point on the coordinate plane",
       "module": "13",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -455,7 +455,7 @@
       "title": "13g: Graph the image of a figure after a glide reflection or other composition of transformations on the coordinate plane",
       "module": "13",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -464,7 +464,7 @@
       "title": "13h: Identify a single transformation that is equivalent to a composition of two reflections",
       "module": "13",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -473,7 +473,7 @@
       "title": "13i: Determine whether a regular polygon will tessellate the plane by examining its interior angle measure",
       "module": "13",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Default fallback \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Default fallback → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -482,7 +482,7 @@
       "title": "13j: Determine whether a tessellation can be created from a given figure and describe the transformation(s) used",
       "module": "13",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -491,7 +491,7 @@
       "title": "13l: Determine whether a figure has rotational symmetry and justify the answer",
       "module": "13",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -500,7 +500,7 @@
       "title": "13k: Identify and draw lines of symmetry for two-dimensional figures",
       "module": "13",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -509,7 +509,7 @@
       "title": "14a: Apply the Triangle Angle-Sum Theorem to find unknown interior angle measures",
       "module": "14",
       "rendererKey": "fill-in-the-blank",
-      "rendererAssignmentReason": "Proof/theorem/logic skill \u2192 fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -518,7 +518,7 @@
       "title": "14b: Use the Exterior Angle Theorem to relate exterior and remote interior angles",
       "module": "14",
       "rendererKey": "fill-in-the-blank",
-      "rendererAssignmentReason": "Proof/theorem/logic skill \u2192 fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -527,7 +527,7 @@
       "title": "14c: Identify all congruent corresponding parts of polygons and write correct congruence statements",
       "module": "14",
       "rendererKey": "fill-in-the-blank",
-      "rendererAssignmentReason": "Proof/theorem/logic skill \u2192 fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -536,7 +536,7 @@
       "title": "14d: Write two-column proofs and paragraph proofs to show that two triangles are congruent",
       "module": "14",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -545,7 +545,7 @@
       "title": "14f: Identify the included angle and apply the SAS Congruence Postulate correctly",
       "module": "14",
       "rendererKey": "fill-in-the-blank",
-      "rendererAssignmentReason": "Proof/theorem/logic skill \u2192 fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -554,7 +554,7 @@
       "title": "14e: Write two-column, paragraph, and flow proofs to prove triangle congruence using the SSS and SAS postulates",
       "module": "14",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -563,7 +563,7 @@
       "title": "14h: Use properties of parallel lines, midpoints, and angle bisectors to find congruent parts needed for ASA or AAS proofs",
       "module": "14",
       "rendererKey": "fill-in-the-blank",
-      "rendererAssignmentReason": "Proof/theorem/logic skill \u2192 fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -572,7 +572,7 @@
       "title": "14g: Write two-column, paragraph, and flow proofs to prove triangle congruence using the ASA and AAS theorems",
       "module": "14",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -581,7 +581,7 @@
       "title": "14i: Apply the Leg-Leg (LL), Hypotenuse-Angle (HA), Leg-Angle (LA), and Hypotenuse-Leg (HL) theorems to prove right triangles congruent",
       "module": "14",
       "rendererKey": "fill-in-the-blank",
-      "rendererAssignmentReason": "Proof/theorem/logic skill \u2192 fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -590,7 +590,7 @@
       "title": "14j: Write two-column proofs and paragraph proofs for right triangle congruence in real-world contexts",
       "module": "14",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -599,7 +599,7 @@
       "title": "14l: Solve for unknown variables using properties of isosceles and equilateral triangles",
       "module": "14",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -608,7 +608,7 @@
       "title": "14k: Write two-column proofs using the Isosceles Triangle Theorem and its converse",
       "module": "14",
       "rendererKey": "fill-in-the-blank",
-      "rendererAssignmentReason": "Proof/theorem/logic skill \u2192 fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -617,7 +617,7 @@
       "title": "14m: Position and label triangles on the coordinate plane using given side lengths and properties",
       "module": "14",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -626,7 +626,7 @@
       "title": "14n: Write coordinate proofs for geometric statements about triangles",
       "module": "14",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -635,7 +635,7 @@
       "title": "2a: Translate verbal sentences and real-world situations into algebraic equations and formulas",
       "module": "2",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "medium"
     },
@@ -644,7 +644,7 @@
       "title": "2c: Solve one-step equations involving addition, subtraction, multiplication, and division using the Properties of Equality",
       "module": "2",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "medium"
     },
@@ -653,7 +653,7 @@
       "title": "2e: Solve multi-step linear equations using properties of equality and check solutions by substitution",
       "module": "2",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "medium"
     },
@@ -662,7 +662,7 @@
       "title": "2g: Solve linear equations that have the variable on both sides of the equation, including those with fractions and grouping symbols",
       "module": "2",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "medium"
     },
@@ -671,7 +671,7 @@
       "title": "2j: Graph the solution set of an absolute value equation on a number line and write absolute value equations from graphs",
       "module": "2",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "medium"
     },
@@ -680,7 +680,7 @@
       "title": "2i: Solve absolute value equations of the form",
       "module": "2",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "medium"
     },
@@ -689,7 +689,7 @@
       "title": "2k: Solve proportions algebraically, including those with variable expressions in numerators and denominators",
       "module": "2",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "medium"
     },
@@ -698,7 +698,7 @@
       "title": "2m: Solve literal equations and formulas for a specified variable using inverse operations",
       "module": "2",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "medium"
     },
@@ -761,7 +761,7 @@
       "title": "4a: Graph linear equations by making a table of values and by finding and plotting the x- and y-intercepts",
       "module": "4",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -770,7 +770,7 @@
       "title": "4c: Calculate the rate of change from tables, graphs, and real-world data and compute the slope of a line passing through two given points",
       "module": "4",
       "rendererKey": "comprehension-quiz",
-      "rendererAssignmentReason": "Statistics/data skill \u2192 comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -779,7 +779,7 @@
       "title": "4e: Interpret slope and rate of change in real-world contexts including grade, elevation, and positioning",
       "module": "4",
       "rendererKey": "rate-of-change-calculator",
-      "rendererAssignmentReason": "Rate of change skill \u2192 rate-of-change-calculator",
+      "rendererAssignmentReason": "Rate of change skill → rate-of-change-calculator",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -788,7 +788,7 @@
       "title": "4f: Write linear equations in slope-intercept form given the slope and y-intercept and rewrite linear equations from standard form into slope-intercept form",
       "module": "4",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -797,7 +797,7 @@
       "title": "4h: Describe translations, dilations, and reflections of linear functions in relation to the parent function f(x) = x",
       "module": "4",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -806,7 +806,7 @@
       "title": "4j: Determine whether a given sequence is arithmetic and justify the reasoning using the common difference",
       "module": "4",
       "rendererKey": "fill-in-the-blank",
-      "rendererAssignmentReason": "Proof/theorem/logic skill \u2192 fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -815,7 +815,7 @@
       "title": "4l: Graph piecewise-defined functions and step functions (greatest integer functions) and identify their domain and range",
       "module": "4",
       "rendererKey": "comprehension-quiz",
-      "rendererAssignmentReason": "Statistics/data skill \u2192 comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -824,7 +824,7 @@
       "title": "4n: Describe translations, dilations, and reflections of absolute value functions from their equations and graph absolute value functions",
       "module": "4",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -833,7 +833,7 @@
       "title": "5a: Write linear equations in slope-intercept form given a point and a slope and given two points",
       "module": "5",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -842,7 +842,7 @@
       "title": "5c: Write linear equations in point-slope form given a point and a slope or two points and convert equations between point-slope, slope-intercept, and standard forms",
       "module": "5",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -851,7 +851,7 @@
       "title": "5e: Analyze scatter plots to determine whether they show positive, negative, or no correlation and interpret the meaning in context",
       "module": "5",
       "rendererKey": "comprehension-quiz",
-      "rendererAssignmentReason": "Statistics/data skill \u2192 comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -860,7 +860,7 @@
       "title": "5g: Distinguish between correlation and causation in real-world contexts and explain reasoning for whether a relationship is merely correlated or causal, identifying possible lurking variables",
       "module": "5",
       "rendererKey": "comprehension-quiz",
-      "rendererAssignmentReason": "Statistics/data skill \u2192 comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -869,7 +869,7 @@
       "title": "5h: Use technology to calculate the equation of a best-fit line and the correlation coefficient for a bivariate data set and interpret the correlation coefficient r in context",
       "module": "5",
       "rendererKey": "comprehension-quiz",
-      "rendererAssignmentReason": "Statistics/data skill \u2192 comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -878,7 +878,7 @@
       "title": "5j: Find the inverse of a relation given its graph, table, or set of ordered pairs and find the inverse of a linear function algebraically using the switch-and-solve method",
       "module": "5",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -887,7 +887,7 @@
       "title": "6a: Graph the solution set of a one-step inequality on a number line and write an inequality that matches a given number-line graph",
       "module": "6",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -896,7 +896,7 @@
       "title": "6c: Solve multi-step linear inequalities using the Distributive Property, combining like terms, and inverse operations",
       "module": "6",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -905,7 +905,7 @@
       "title": "6e: Solve compound inequalities involving \"and\" and \"or\" and express the solution algebraically",
       "module": "6",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -914,7 +914,7 @@
       "title": "6g: Solve absolute value inequalities and rewrite them as compound inequalities using and or or",
       "module": "6",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -941,7 +941,7 @@
       "title": "7a: Graph systems of linear equations and determine the number of solutions; classify systems as consistent or inconsistent and as independent or dependent",
       "module": "7",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -959,7 +959,7 @@
       "title": "7e: Solve systems of linear equations using elimination by addition or subtraction and recognize when adding or subtracting equations will eliminate a variable",
       "module": "7",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -1013,7 +1013,7 @@
       "title": "Calculate a compound-interest balance from principal, rate, compounding frequency, and time",
       "module": "8",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "Planning classification only; no reviewed renderer contract",
       "priority": "standard"
     },
@@ -1022,7 +1022,7 @@
       "title": "Write an exponential function from two points",
       "module": "8",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "Planning classification only; no reviewed renderer contract",
       "priority": "standard"
     },
@@ -1031,7 +1031,7 @@
       "title": "8g: Rewrite exponential functions so rates share the same time unit for direct comparison",
       "module": "8",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -1040,7 +1040,7 @@
       "title": "8h: Determine whether a given sequence is geometric by checking for a constant common ratio",
       "module": "8",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -1049,7 +1049,7 @@
       "title": "8i: Write and use explicit formulas to model real-world situations involving exponential growth and decay",
       "module": "8",
       "rendererKey": "comprehension-quiz",
-      "rendererAssignmentReason": "Statistics/data skill \u2192 comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -1058,7 +1058,7 @@
       "title": "8k: Convert between recursive and explicit formulas for arithmetic and geometric sequences",
       "module": "8",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -1067,7 +1067,7 @@
       "title": "8j: Find the first several terms of a sequence given a recursive formula",
       "module": "8",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -1076,7 +1076,7 @@
       "title": "9a: Calculate the mean, median, and mode of a data set",
       "module": "9",
       "rendererKey": "comprehension-quiz",
-      "rendererAssignmentReason": "Statistics/data skill \u2192 comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
       "gap": "No generator available for IM1",
       "priority": "high"
     },
@@ -1085,7 +1085,7 @@
       "title": "9c: Analyze data displays to draw conclusions and answer questions about a data set",
       "module": "9",
       "rendererKey": "comprehension-quiz",
-      "rendererAssignmentReason": "Statistics/data skill \u2192 comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
       "gap": "No generator available for IM1",
       "priority": "high"
     },
@@ -1094,7 +1094,7 @@
       "title": "9b: Construct dot plots, bar graphs, and histograms to represent data sets",
       "module": "9",
       "rendererKey": "comprehension-quiz",
-      "rendererAssignmentReason": "Statistics/data skill \u2192 comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
       "gap": "No generator available for IM1",
       "priority": "high"
     },
@@ -1103,7 +1103,7 @@
       "title": "9d: Identify sample bias in survey and sampling methods and explain how it affects results",
       "module": "9",
       "rendererKey": "comprehension-quiz",
-      "rendererAssignmentReason": "Statistics/data skill \u2192 comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
       "gap": "No generator available for IM1",
       "priority": "high"
     },
@@ -1112,7 +1112,7 @@
       "title": "9e: Recognize biased survey questions and identify whose interests they may serve",
       "module": "9",
       "rendererKey": "comprehension-quiz",
-      "rendererAssignmentReason": "Statistics/data skill \u2192 comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
       "gap": "No generator available for IM1",
       "priority": "high"
     },
@@ -1121,7 +1121,7 @@
       "title": "9f: Calculate the range, interquartile range, and standard deviation of a data set",
       "module": "9",
       "rendererKey": "comprehension-quiz",
-      "rendererAssignmentReason": "Statistics/data skill \u2192 comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
       "gap": "No generator available for IM1",
       "priority": "high"
     },
@@ -1130,7 +1130,7 @@
       "title": "9g: Determine the five-number summary and construct a box plot from a data set",
       "module": "9",
       "rendererKey": "comprehension-quiz",
-      "rendererAssignmentReason": "Statistics/data skill \u2192 comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
       "gap": "No generator available for IM1",
       "priority": "high"
     },
@@ -1139,7 +1139,7 @@
       "title": "9i: Choose appropriate measures of center and spread based on whether a distribution is symmetric or skewed",
       "module": "9",
       "rendererKey": "comprehension-quiz",
-      "rendererAssignmentReason": "Statistics/data skill \u2192 comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
       "gap": "No generator available for IM1",
       "priority": "high"
     },
@@ -1148,7 +1148,7 @@
       "title": "9h: Construct and interpret histograms and box plots to visualize the shape of a data distribution",
       "module": "9",
       "rendererKey": "comprehension-quiz",
-      "rendererAssignmentReason": "Statistics/data skill \u2192 comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
       "gap": "No generator available for IM1",
       "priority": "high"
     },
@@ -1157,7 +1157,7 @@
       "title": "9k: Construct and interpret box plots and histograms to compare the shape, center, and spread of two data sets",
       "module": "9",
       "rendererKey": "comprehension-quiz",
-      "rendererAssignmentReason": "Statistics/data skill \u2192 comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
       "gap": "No generator available for IM1",
       "priority": "high"
     },
@@ -1166,7 +1166,7 @@
       "title": "9j: Describe how adding or multiplying every value in a data set affects the mean, median, mode, range, and standard deviation",
       "module": "9",
       "rendererKey": "comprehension-quiz",
-      "rendererAssignmentReason": "Statistics/data skill \u2192 comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
       "gap": "No generator available for IM1",
       "priority": "high"
     },
@@ -1175,7 +1175,7 @@
       "title": "9l: Construct and complete two-way frequency tables from verbal descriptions or given data",
       "module": "9",
       "rendererKey": "comprehension-quiz",
-      "rendererAssignmentReason": "Statistics/data skill \u2192 comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
       "gap": "No generator available for IM1",
       "priority": "high"
     },
@@ -2507,7 +2507,7 @@
       "title": "Solve multi-step linear inequalities by simplifying and collecting terms",
       "module": "6",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -2516,7 +2516,7 @@
       "title": "Apply the Distributive Property in linear inequalities, including a negative factor",
       "module": "6",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -2525,7 +2525,7 @@
       "title": "Classify inequalities as no solution or all real numbers after variable terms cancel",
       "module": "6",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -2534,7 +2534,7 @@
       "title": "Generalize contextual inequality models with parameterized unit intervals",
       "module": "6",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -2543,7 +2543,7 @@
       "title": "Construct multi-step inequalities with specified solution sets and algebraic properties",
       "module": "6",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -2552,7 +2552,7 @@
       "title": "Explain and justify transformations in multi-step inequality solutions",
       "module": "6",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -2561,7 +2561,7 @@
       "title": "Analyze dependent geometric constraints with linear inequalities",
       "module": "6",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -2570,7 +2570,7 @@
       "title": "Solve compound inequalities joined by and as intersections",
       "module": "6",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -2579,7 +2579,7 @@
       "title": "Solve compound inequalities joined by or as unions",
       "module": "6",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -2588,7 +2588,7 @@
       "title": "Solve three-part linear inequalities by applying each operation to all three parts",
       "module": "6",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -2597,7 +2597,7 @@
       "title": "Simplify compound solution sets with overlap, absorption, all real numbers, or the empty set",
       "module": "6",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -2606,7 +2606,7 @@
       "title": "Graph compound inequality solution sets on number lines",
       "module": "6",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -2615,7 +2615,7 @@
       "title": "Write compound inequalities from number-line graphs",
       "module": "6",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -2624,7 +2624,7 @@
       "title": "Model bounded contextual ranges with compound inequalities",
       "module": "6",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -2633,7 +2633,7 @@
       "title": "Model exterior or disjoint contextual conditions with compound inequalities",
       "module": "6",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -2642,7 +2642,7 @@
       "title": "Compare unions and intersections of graphed solution sets",
       "module": "6",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -2651,7 +2651,7 @@
       "title": "Classify structural claims about compound inequalities as always, sometimes, or never true",
       "module": "6",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -2660,7 +2660,7 @@
       "title": "Rewrite and solve less-than absolute value inequalities as bounded and inequalities",
       "module": "6",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -2669,7 +2669,7 @@
       "title": "Rewrite and solve greater-than absolute value inequalities as exterior or inequalities",
       "module": "6",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -2678,7 +2678,7 @@
       "title": "Classify negative-bound absolute value inequalities as no solution or all real numbers",
       "module": "6",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -2687,7 +2687,7 @@
       "title": "Isolate scaled or rational absolute value expressions before solving",
       "module": "6",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -2696,7 +2696,7 @@
       "title": "Model centered within-tolerance ranges with absolute value inequalities",
       "module": "6",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -2705,7 +2705,7 @@
       "title": "Model values outside centered ranges with absolute value inequalities",
       "module": "6",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -2714,7 +2714,7 @@
       "title": "Write absolute value inequalities from symmetric bounded number-line graphs",
       "module": "6",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -2723,7 +2723,7 @@
       "title": "Write absolute value inequalities from symmetric exterior number-line graphs",
       "module": "6",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -2732,7 +2732,7 @@
       "title": "Solve two-sided bounds on absolute value expressions",
       "module": "6",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -2741,7 +2741,7 @@
       "title": "Analyze equivalence and structural claims about absolute value and compound inequalities",
       "module": "6",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -2750,7 +2750,7 @@
       "title": "Construct absolute value inequalities from specified numerical constraints",
       "module": "6",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
     },
@@ -3299,7 +3299,7 @@
       "title": "Write an exponential growth or decay model from context",
       "module": "8",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "Planning classification only; no reviewed renderer contract",
       "priority": "standard"
     },
@@ -3308,7 +3308,7 @@
       "title": "Write a compound-interest model from financial terms",
       "module": "8",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "Planning classification only; no reviewed renderer contract",
       "priority": "standard"
     },
@@ -3317,7 +3317,7 @@
       "title": "Write an exponential function from equally spaced table data",
       "module": "8",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
       "gap": "Planning classification only; no reviewed renderer contract",
       "priority": "standard"
     },
@@ -3326,7 +3326,7 @@
       "title": "Solve an exponential model for time with technology",
       "module": "8",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "Planning classification only; no reviewed renderer contract",
       "priority": "standard"
     },
@@ -3335,13 +3335,31 @@
       "title": "Determine the percent growth rate from an exponential growth factor",
       "module": "8",
       "rendererKey": "step-by-step-solver",
-      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.4.determine-an-effective-percent-rate-for-a-specified-time-interval",
+      "title": "Determine an effective percent rate for a specified time interval",
+      "module": "8",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.4.compare-exponential-growth-or-decay-rates-across-different-time-units",
+      "title": "Compare exponential growth or decay rates across different time units",
+      "module": "8",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "Planning classification only; no reviewed renderer contract",
       "priority": "standard"
     }
   ],
   "meta": {
-    "totalSkills": 371,
+    "totalSkills": 373,
     "allNeedGenerators": true,
     "total": 371
   }
