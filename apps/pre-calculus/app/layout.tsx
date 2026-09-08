@@ -4,6 +4,7 @@ import { AuthProvider } from "@/components/auth/AuthProvider";
 import { HeaderSimple } from "@/components/header-simple";
 import { Footer } from "@/components/footer";
 import { ConvexClientProvider } from "@/components/ConvexClientProvider";
+import "katex/dist/katex.min.css";
 import "./globals.css";
 
 const defaultUrl = process.env.VERCEL_URL
