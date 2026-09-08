@@ -581,3 +581,5 @@ G53 first graph review found four bounded defects: missing prompt-level reused-s
 G53 graph is committed as `123c142b5`. All 13 staged paths matched the reviewed candidate. Final independent review and parent checks passed. The source and graph repairs for Lesson 10-2 are complete. These inactive records do not establish executable practice coverage. See `im1-lesson102-graph-final-review.md`.
 
 - [~] Task G54 source: Restore the 51 original Lesson 10-3 prompts and all 23 native figures from the accepted inventory. Preserve the combined Examples 1-2 heading and all other source boundaries. Add an app-discovered source regression. Reuse the completed G53 candidate directory. Add no graph change, answer key, source approval, or executable practice.
+
+Removed saved worktrees 68f8 and 74da after independent and parent review of 715 states. Branch `codex/preserve-saved-68f8-im3-lesson12` preserves two detached commits. Ten saved worktrees remain. Lesson 1.2 recovery remains open. See `saved-68f8-74da-preservation-review.md`.
