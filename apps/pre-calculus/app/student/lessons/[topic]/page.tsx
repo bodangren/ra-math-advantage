@@ -4,7 +4,7 @@ import { LessonWrittenResponse } from "@/components/course/LessonWrittenResponse
 import { requireStudentSessionClaims } from "@/lib/auth/server";
 import { fetchInternalQuery, internal } from "@/lib/convex/server";
 import { PrecalculusTopic11DailyCurriculumPilot } from "@/components/student/PrecalculusTopic11DailyCurriculumPilot";
-import { PrecalculusMasteryAdvantagePilot } from "@/components/student/PrecalculusMasteryAdvantagePilot";
+import { PrecalculusMasteryAdvantagePilot, SavedPrecalculusPracticeResult, type SavedPrecalculusPractice } from "@/components/student/PrecalculusMasteryAdvantagePilot";
 import { LessonResponse } from "@/components/course/LessonResponse";
 import type { IntervalClassificationProps } from "@math-platform/math-content/schemas";
 
@@ -35,7 +35,7 @@ export default async function LessonPage({
   if (!/^[1-4]\.\d{1,2}$/.test(topic)) notFound();
   const [unit, number] = topic.split(".").map(Number);
   const selectedTopic = unit === 1 && number === 1;
-  const [lesson, workedSource, deliveryState, approvedPilot] =
+  const [lesson, workedSource, deliveryState, approvedPilot, savedPractice] =
     await Promise.all([
       fetchInternalQuery(internal.course.getLesson, {
         learnerId: claims.sub,
@@ -60,6 +60,9 @@ export default async function LessonPage({
             {},
           )
         : Promise.resolve([]),
+      selectedTopic
+        ? fetchInternalQuery(internal.activities.getSavedTopic11Practice, { learnerId: claims.sub })
+        : Promise.resolve(null),
     ]);
   if (!lesson) notFound();
   return (
@@ -167,9 +170,19 @@ export default async function LessonPage({
                 mode={item.mode}
                 stableActivityId={item.stableActivityId}
                 activityProps={item.props}
+                savedResult={(savedPractice?.[item.mode === "guided_practice" ? "guidedPractice" : "independentPractice"] ?? null) as SavedPrecalculusPractice | null}
               />
             ),
           )}
+      {savedPractice && [savedPractice.guidedPractice, savedPractice.independentPractice]
+        .filter((item): item is SavedPrecalculusPractice => Boolean(item))
+        .filter((item) => deliveryState !== "ready_for_practice" || !approvedPilot.some((activity: { mode: string }) => activity.mode === item.mode))
+        .map((item) => (
+          <SavedPrecalculusPracticeResult
+            key={item.submissionId}
+            result={item}
+          />
+        ))}
     </main>
   );
 }

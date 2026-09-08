@@ -81,6 +81,7 @@ type PilotComponent = React.ComponentType<{
   mode?: "guided_practice" | "independent_practice";
   stableActivityId: string;
   activityProps: import("@math-platform/math-content/schemas").IntervalClassificationProps;
+  savedResult?: { mode: "guided_practice" | "independent_practice"; submissionId: string; attemptOrdinal: number; submittedAt: number; score: number; maxScore: number; feedback: string; deliveryState: "delivered" | "needs_delivery" | "invalid_receipt" } | null;
 }>;
 
 function projectedProps(
@@ -211,6 +212,100 @@ describe("PrecalculusMasteryAdvantagePilot acceptance", () => {
   afterEach(() => {
     vi.unstubAllGlobals();
     vi.restoreAllMocks();
+  });
+
+  it("shows a saved result without a write and starts a blank new attempt", async () => {
+    const Pilot = await loadPilot();
+    render(<Pilot {...pilotProps()} savedResult={{ mode: "guided_practice", submissionId: SERVER_SUBMISSION_ID, attemptOrdinal: 4, submittedAt: 10, score: 2, maxScore: 3, feedback: "Stored feedback.", deliveryState: "delivered" }} />);
+    expect(screen.getByText("Saved score: 2/3")).toBeInTheDocument();
+    expect(screen.getByText("Stored feedback.")).toBeInTheDocument();
+    expect(screen.queryByRole("textbox", { name: /increasing intervals/i })).not.toBeInTheDocument();
+    expect(fetchMock).not.toHaveBeenCalled();
+    fireEvent.click(screen.getByRole("button", { name: "Start new attempt" }));
+    expect(screen.getByRole("textbox", { name: /increasing intervals/i })).toHaveValue("");
+    expect(screen.getByText("Saved score: 2/3")).toBeInTheDocument();
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+
+  it("retries a missing receipt with only the saved submission ID", async () => {
+    fetchMock.mockResolvedValueOnce(jsonResponse({ persisted: true, masteryApplied: false, kstApplied: false, delivery: "replay", decision: { idempotency: "new", exposureState: "introduced", eligible: false, reason: "ungraded_evidence", masteryBearing: false } }));
+    const Pilot = await loadPilot();
+    render(<Pilot {...pilotProps()} savedResult={{ mode: "guided_practice", submissionId: SERVER_SUBMISSION_ID, attemptOrdinal: 4, submittedAt: 10, score: 2, maxScore: 3, feedback: "Stored feedback.", deliveryState: "needs_delivery" }} />);
+    expect(fetchMock).not.toHaveBeenCalled();
+    fireEvent.click(screen.getByRole("button", { name: "Retry evidence delivery" }));
+    await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(1));
+    expect(fetchMock.mock.calls[0]?.[0]).toBe("/api/learning-evidence/precalculus-pilot");
+    expect(requestBody(fetchMock.mock.calls[0] ?? [])).toStrictEqual({ submissionId: SERVER_SUBMISSION_ID });
+  });
+
+  it("keeps saved delivery separate from a fresh attempt and guards a double click", async () => {
+    fetchMock
+      .mockResolvedValueOnce(jsonResponse({ persisted: true, masteryApplied: false, kstApplied: false, delivery: "replay", decision: { idempotency: "new", exposureState: "introduced", eligible: false, reason: "ungraded_evidence", masteryBearing: false } }))
+      .mockResolvedValueOnce(jsonResponse({ submissionId: "activity_submissions:fresh", score: 3, maxScore: 3, attemptOrdinal: 5, feedback: SAFE_SERVER_FEEDBACK }))
+      .mockResolvedValueOnce(jsonResponse({ persisted: true, masteryApplied: false, kstApplied: false, delivery: "new", decision: { idempotency: "new", exposureState: "introduced", eligible: false, reason: "ungraded_evidence", masteryBearing: false } }));
+    const Pilot = await loadPilot();
+    render(<Pilot {...pilotProps()} savedResult={{ mode: "guided_practice", submissionId: SERVER_SUBMISSION_ID, attemptOrdinal: 4, submittedAt: 10, score: 2, maxScore: 3, feedback: "Stored feedback.", deliveryState: "needs_delivery" }} />);
+    fireEvent.click(screen.getByRole("button", { name: "Start new attempt" }));
+    const retry = screen.getByRole("button", { name: "Retry evidence delivery" });
+    fireEvent.click(retry);
+    fireEvent.click(retry);
+    await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(1));
+    completeTopicOnePointOne();
+    await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(3));
+    expect(fetchMock.mock.calls[1]?.[0]).toBe("/api/activities/precalculus-pilot/submissions");
+    expect(requestBody(fetchMock.mock.calls[1] ?? [])).toMatchObject({ activityId: PILOT_ACTIVITY_ID, status: "submitted" });
+    expect(requestBody(fetchMock.mock.calls[2] ?? [])).toStrictEqual({ submissionId: "activity_submissions:fresh" });
+  });
+
+  it("keeps a malformed saved delivery response available for an explicit retry", async () => {
+    fetchMock.mockResolvedValueOnce(jsonResponse({ persisted: true }));
+    const Pilot = await loadPilot();
+    render(<Pilot {...pilotProps()} savedResult={{ mode: "guided_practice", submissionId: SERVER_SUBMISSION_ID, attemptOrdinal: 4, submittedAt: 10, score: 2, maxScore: 3, feedback: "Stored feedback.", deliveryState: "needs_delivery" }} />);
+    fireEvent.click(screen.getByRole("button", { name: "Retry evidence delivery" }));
+    expect(await screen.findByRole("alert")).toHaveTextContent("Evidence delivery failed. Please retry.");
+    expect(screen.getByRole("button", { name: "Retry evidence delivery" })).toBeInTheDocument();
+  });
+
+  it("keeps a teacher-blocked saved receipt undelivered", async () => {
+    fetchMock.mockResolvedValueOnce(jsonResponse({
+      persisted: false,
+      masteryApplied: false,
+      kstApplied: false,
+      delivery: "new",
+      decision: {
+        idempotency: "new",
+        exposureState: "awaiting_teacher_exposure",
+        eligible: false,
+        reason: "awaiting_teacher_exposure",
+        masteryBearing: false,
+      },
+    }));
+    const Pilot = await loadPilot();
+    render(<Pilot {...pilotProps()} savedResult={{ mode: "guided_practice", submissionId: SERVER_SUBMISSION_ID, attemptOrdinal: 4, submittedAt: 10, score: 2, maxScore: 3, feedback: "Stored feedback.", deliveryState: "needs_delivery" }} />);
+    fireEvent.click(screen.getByRole("button", { name: "Retry evidence delivery" }));
+    expect(await screen.findByRole("alert")).toHaveTextContent(/teacher.*retry evidence delivery/i);
+    expect(screen.getByText("Evidence delivery is required.")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Retry evidence delivery" })).toBeInTheDocument();
+  });
+
+  it("replaces saved delivery state when the saved submission changes", async () => {
+    const Pilot = await loadPilot();
+    const view = render(<Pilot {...pilotProps()} savedResult={{ mode: "guided_practice", submissionId: "submission:old", attemptOrdinal: 4, submittedAt: 10, score: 2, maxScore: 3, feedback: "Old feedback.", deliveryState: "needs_delivery" }} />);
+    expect(screen.getByText("Evidence delivery is required.")).toBeInTheDocument();
+    view.rerender(<Pilot {...pilotProps()} savedResult={{ mode: "guided_practice", submissionId: "submission:new", attemptOrdinal: 5, submittedAt: 20, score: 3, maxScore: 3, feedback: "New feedback.", deliveryState: "delivered" }} />);
+    expect(screen.getByText("Attempt 5")).toBeInTheDocument();
+    expect(screen.getByText("Saved score: 3/3")).toBeInTheDocument();
+    expect(screen.getByText("Evidence delivered.")).toBeInTheDocument();
+    expect(screen.queryByText("Evidence delivery is required.")).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Retry evidence delivery" })).not.toBeInTheDocument();
+  });
+
+  it("does not offer delivery retry for an invalid saved receipt", async () => {
+    const Pilot = await loadPilot();
+    render(<Pilot {...pilotProps()} savedResult={{ mode: "guided_practice", submissionId: SERVER_SUBMISSION_ID, attemptOrdinal: 4, submittedAt: 10, score: 2, maxScore: 3, feedback: "Stored feedback.", deliveryState: "invalid_receipt" }} />);
+    expect(screen.getByText("The saved evidence receipt is invalid.")).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Retry evidence delivery" })).not.toBeInTheDocument();
+    expect(fetchMock).not.toHaveBeenCalled();
   });
 
   it("sends all three raw Topic 1.1 classifications to the producer, then only an opaque ID to evidence", async () => {

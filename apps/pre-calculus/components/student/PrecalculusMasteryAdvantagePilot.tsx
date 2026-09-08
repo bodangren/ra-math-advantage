@@ -38,6 +38,16 @@ function createIdempotencyKey(): string {
 }
 
 export type PrecalculusPilotMode = "guided_practice" | "independent_practice";
+export type SavedPrecalculusPractice = {
+  mode: PrecalculusPilotMode;
+  submissionId: string;
+  attemptOrdinal: number;
+  submittedAt: number;
+  score: number;
+  maxScore: number;
+  feedback: string;
+  deliveryState: "delivered" | "needs_delivery" | "invalid_receipt";
+};
 
 async function readJson(response: Response): Promise<Record<string, unknown>> {
   const value: unknown = await response.json().catch(() => null);
@@ -146,16 +156,92 @@ function parseEvidenceReceipt(
   return value as unknown as EvidenceResponse;
 }
 
+export function SavedPrecalculusPracticeResult({
+  result,
+}: {
+  result: SavedPrecalculusPractice;
+}) {
+  const router = useRouter();
+  const [deliveryState, setDeliveryState] = useState(result.deliveryState);
+  const [message, setMessage] = useState<string | null>(null);
+  const submittingRef = useRef(false);
+
+  async function retryDelivery() {
+    if (submittingRef.current) return;
+    submittingRef.current = true;
+    setMessage(null);
+    try {
+      const response = await fetch("/api/learning-evidence/precalculus-pilot", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ submissionId: result.submissionId }),
+      });
+      const body = await readJson(response);
+      if (!response.ok) {
+        throw new Error("Evidence delivery failed. Please retry.");
+      }
+      const evidence = parseEvidenceReceipt(body, result.mode);
+      if (!evidence.persisted) {
+        setMessage(
+          "Complete this skill with your teacher before you retry evidence delivery.",
+        );
+        return;
+      }
+      setDeliveryState("delivered");
+      router.refresh();
+    } catch (error) {
+      setMessage(
+        error instanceof Error
+          ? error.message
+          : "Evidence delivery failed. Please retry.",
+      );
+    } finally {
+      submittingRef.current = false;
+    }
+  }
+
+  return (
+    <div className="mb-4 rounded border border-subtle bg-background p-3">
+      <h2>
+        Saved {result.mode === "guided_practice" ? "guided" : "independent"}{" "}
+        attempt
+      </h2>
+      <p>Attempt {result.attemptOrdinal}</p>
+      <p>Saved score: {result.score}/{result.maxScore}</p>
+      <p>{result.feedback}</p>
+      <p>
+        {deliveryState === "delivered"
+          ? "Evidence delivered."
+          : deliveryState === "needs_delivery"
+            ? "Evidence delivery is required."
+            : "The saved evidence receipt is invalid."}
+      </p>
+      {deliveryState === "needs_delivery" && (
+        <button
+          type="button"
+          className="btn-secondary"
+          onClick={() => { void retryDelivery(); }}
+        >
+          Retry evidence delivery
+        </button>
+      )}
+      {message && <p role="alert">{message}</p>}
+    </div>
+  );
+}
+
 export function PrecalculusMasteryAdvantagePilot({
   knowledgeState,
   mode = "guided_practice",
   stableActivityId,
   activityProps,
+  savedResult = null,
 }: {
   knowledgeState?: PrecalculusPilotKnowledgeState;
   mode?: PrecalculusPilotMode;
   stableActivityId: string;
   activityProps: IntervalClassificationProps;
+  savedResult?: SavedPrecalculusPractice | null;
 }) {
   const activityId = stableActivityId;
   const [attemptKey, setAttemptKey] = useState(0);
@@ -170,6 +256,7 @@ export function PrecalculusMasteryAdvantagePilot({
     maxScore: number;
   } | null>(null);
   const [hasOpaqueSubmission, setHasOpaqueSubmission] = useState(false);
+  const [showFreshAttempt, setShowFreshAttempt] = useState(savedResult === null);
   const envelopeRef = useRef<Record<string, unknown> | null>(null);
   const createKeyRef = useRef<string | null>(null);
   const submissionIdRef = useRef<string | null>(null);
@@ -297,13 +384,21 @@ export function PrecalculusMasteryAdvantagePilot({
           </p>
         </div>
       )}
-      <IntervalClassificationActivity
-        key={attemptKey}
-        {...activityProps}
-        activityId={activityId}
-        mode={mode === "guided_practice" ? "guided" : "practice"}
-        onSubmit={submit}
-      />
+      {savedResult && (
+        <SavedPrecalculusPracticeResult
+          key={savedResult.submissionId}
+          result={savedResult}
+        />
+      )}
+      {showFreshAttempt && (
+        <IntervalClassificationActivity
+          key={attemptKey}
+          {...activityProps}
+          activityId={activityId}
+          mode={mode === "guided_practice" ? "guided" : "practice"}
+          onSubmit={submit}
+        />
+      )}
       {serverScore && (
         <p className="mt-4">
           {`Server score: ${serverScore.score}/${serverScore.maxScore}`}
@@ -333,7 +428,7 @@ export function PrecalculusMasteryAdvantagePilot({
         </div>
       )}
 
-      {status === "ready" && (
+      {(status === "ready" || (savedResult && !showFreshAttempt)) && (
         <button
           type="button"
           className="btn-secondary mt-4"
@@ -346,6 +441,7 @@ export function PrecalculusMasteryAdvantagePilot({
             setServerScore(null);
             setHasOpaqueSubmission(false);
             setStatus("idle");
+            setShowFreshAttempt(true);
             setAttemptKey((key) => key + 1);
           }}
         >

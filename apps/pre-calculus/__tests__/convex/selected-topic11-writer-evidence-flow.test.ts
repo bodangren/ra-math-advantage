@@ -184,6 +184,7 @@ function harness(
   overrides: Record<string, unknown> = {},
   ready = true,
 ) {
+  const operations: string[] = [];
   const mode =
     stableActivityId === GUIDED ? "guided_practice" : "independent_practice";
   const rows: Record<string, Row[]> = {
@@ -262,7 +263,8 @@ function harness(
       return row._id;
     },
     query: (table: string) => ({
-      withIndex: (_index: string, configure: (q: any) => any) => {
+      withIndex: (index: string, configure: (q: any) => any) => {
+        operations.push(`${table}:${index}`);
         const conditions = new Map<string, unknown>();
         const q = {
           eq(field: string, value: unknown) {
@@ -282,17 +284,21 @@ function harness(
             if (found.length > 1) throw new Error("duplicate");
             return found[0] ?? null;
           },
-          order: () => ({
-            first: async () =>
+          order: (direction: string) => ({
+            first: async () => {
+              operations.push(`${table}:${index}:order:${direction}:first`);
+              return (
               selected().sort(
                 (a, b) => (b.attemptOrdinal ?? 0) - (a.attemptOrdinal ?? 0),
-              )[0] ?? null,
+              )[0] ?? null
+              );
+            },
           }),
         };
       },
     }),
   };
-  return { ctx: { db }, rows, authorityRows };
+  return { ctx: { db }, rows, authorityRows, operations };
 }
 
 function envelope(activityId = GUIDED, mode = "guided_practice") {
@@ -328,6 +334,14 @@ async function handler() {
 async function evidenceHandler() {
   const loadedModule = await import('@/convex/selectedLearningEvidence');
   return loadedModule.submitSelectedEvidenceHandler;
+}
+
+async function savedHandler() {
+  const loadedModule = await import("@/convex/activities");
+  return (loadedModule.getSavedTopic11Practice as any)._handler as (
+    ctx: any,
+    args: any,
+  ) => Promise<any>;
 }
 
 function addEvidenceTables(h: ReturnType<typeof harness>) {
@@ -366,6 +380,115 @@ async function createStored(h: ReturnType<typeof harness>, activityId: string, b
 }
 
 describe('selected Topic 1.1 writer to actual evidence stores', () => {
+  it("reads the latest writer-created result without writes after approval changes", async () => {
+    const h = addEvidenceTables(harness());
+    await createStored(h, GUIDED, envelope(), "older");
+    const latest = await createStored(h, GUIDED, envelope(), "latest");
+    h.rows.activity_submissions.push({
+      ...h.rows.activity_submissions.at(-1)!,
+      _id: "activity_submissions:other",
+      userId: "profiles:other",
+      attemptOrdinal: 99,
+    });
+    delete h.rows.activities[0]!.approval;
+    const before = Object.values(h.rows).map((rows) => rows.length);
+    const result = await (await savedHandler())(h.ctx, {
+      learnerId: "profiles:student",
+    });
+    expect(result.guidedPractice).toMatchObject({
+      submissionId: latest.submissionId,
+      attemptOrdinal: 2,
+      deliveryState: "needs_delivery",
+    });
+    expect(result.independentPractice).toBeNull();
+    expect(h.operations).toContain(
+      "activity_submissions:by_user_and_activity_and_attempt_ordinal:order:desc:first",
+    );
+    expect(Object.values(h.rows).map((rows) => rows.length)).toEqual(before);
+  });
+
+  it("reads an Independent writer result and validates its exact receipt", async () => {
+    const h = addEvidenceTables(harness(INDEPENDENT));
+    h.rows.activities.push(harness(GUIDED).rows.activities[0]!);
+    const generated = (await import('@/lib/practice/topic11-interval-graph')).generateTopic11IntervalGraph(2);
+    const answer = (value: readonly (readonly [number, number])[]) => value.length
+      ? value.map(([a, b]) => `[${a},${b}]`).join('U')
+      : 'none';
+    const body = envelope(INDEPENDENT, 'independent_practice');
+    body.answers = {
+      increasingIntervals: answer(generated.increasingIntervals),
+      decreasingIntervals: answer(generated.decreasingIntervals),
+      constantIntervals: answer(generated.constantIntervals),
+    };
+    body.parts = Object.entries(body.answers).map(([partId, rawAnswer]) => ({
+      partId,
+      rawAnswer,
+      hintsUsed: 0,
+    }));
+    const created = await createStored(h, INDEPENDENT, body, 'saved-independent');
+    await (await evidenceHandler())(h.ctx as any, {
+      learnerId: 'profiles:student',
+      submissionId: created.submissionId,
+    } as any);
+    h.operations.length = 0;
+    const result = await (await savedHandler())(h.ctx, {
+      learnerId: 'profiles:student',
+    });
+    expect(result.independentPractice).toMatchObject({
+      submissionId: created.submissionId,
+      deliveryState: 'delivered',
+    });
+    expect(h.operations.filter((operation) => operation ===
+      "activity_submissions:by_user_and_activity_and_attempt_ordinal:order:desc:first"))
+      .toHaveLength(2);
+    expect(h.operations).toContain(
+      "learning_evidence_receipts:by_learner_and_submission_id",
+    );
+  });
+
+  it("rejects inactive learners and hides malformed stored authority", async () => {
+    const h = addEvidenceTables(harness());
+    await createStored(h, GUIDED, envelope(), "saved");
+    h.rows.activity_submissions.at(-1)!.score = 0;
+    expect((await (await savedHandler())(h.ctx, { learnerId: "profiles:student" })).guidedPractice).toBeNull();
+    h.rows.activity_submissions.at(-1)!.score = 3;
+    h.rows.activity_submissions.at(-1)!.gradedAt = Number.NaN;
+    expect((await (await savedHandler())(h.ctx, { learnerId: "profiles:student" })).guidedPractice).toBeNull();
+    h.rows.auth_credentials[0]!.isActive = false;
+    await expect((await savedHandler())(h.ctx, { learnerId: "profiles:student" }))
+      .rejects.toThrow("Inactive student identity");
+  });
+
+  it.each([
+    ["nonfinite createdAt", { createdAt: Number.NaN }],
+    ["createdAt before submission", { createdAt: 0 }],
+    ["nonfinite updatedAt", { updatedAt: Number.POSITIVE_INFINITY }],
+    ["updatedAt before grading", { updatedAt: 0 }],
+  ])("hides saved authority with %s", async (_label, damage) => {
+    const h = addEvidenceTables(harness());
+    await createStored(h, GUIDED, envelope(), "damaged-timestamp");
+    Object.assign(h.rows.activity_submissions.at(-1)!, damage);
+    const result = await (await savedHandler())(h.ctx, {
+      learnerId: "profiles:student",
+    });
+    expect(result.guidedPractice).toBeNull();
+  });
+
+  it("distinguishes a matching receipt from a malformed receipt", async () => {
+    const h = addEvidenceTables(harness());
+    const created = await createStored(h, GUIDED, envelope(), "saved");
+    await (await evidenceHandler())(h.ctx as any, {
+      learnerId: "profiles:student",
+      submissionId: created.submissionId,
+    } as any);
+    const read = await savedHandler();
+    expect((await read(h.ctx, { learnerId: "profiles:student" })).guidedPractice.deliveryState).toBe("delivered");
+    h.rows.learning_evidence_receipts[0]!.masteryApplied = true;
+    expect((await read(h.ctx, { learnerId: "profiles:student" })).guidedPractice.deliveryState).toBe("invalid_receipt");
+    h.rows.learning_evidence_receipts[0]!.masteryApplied = false;
+    h.rows.learning_evidence_receipts[0]!.decision.idempotency = "replay";
+    expect((await read(h.ctx, { learnerId: "profiles:student" })).guidedPractice.deliveryState).toBe("invalid_receipt");
+  });
   it('stores Guided participation without an SRS row', async () => {
     const h = addEvidenceTables(harness());
     const created = await createStored(h, GUIDED, envelope(), 'guided-flow');

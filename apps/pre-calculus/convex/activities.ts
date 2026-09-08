@@ -1131,6 +1131,100 @@ export const createServerOwnedSubmission = internalMutation({
   },
 });
 
+const savedPracticeValidator = v.object({
+  mode: v.union(v.literal("guided_practice"), v.literal("independent_practice")),
+  submissionId: v.id("activity_submissions"),
+  attemptOrdinal: v.number(),
+  submittedAt: v.number(),
+  score: v.number(),
+  maxScore: v.number(),
+  feedback: v.string(),
+  deliveryState: v.union(
+    v.literal("delivered"),
+    v.literal("needs_delivery"),
+    v.literal("invalid_receipt"),
+  ),
+});
+
+function validStoredReceipt(receipt: Record<string, unknown>, mode: "guided_practice" | "independent_practice", now: number) {
+  if (!Number.isFinite(receipt.createdAt) || Number(receipt.createdAt) < 0 || Number(receipt.createdAt) > now
+    || receipt.persisted !== true || receipt.kstApplied !== false
+    || !record(receipt.decision)) return false;
+  const decision = receipt.decision;
+  const independent = mode === "independent_practice";
+  return decision.idempotency === "new"
+    && decision.exposureState === "introduced"
+    && decision.eligible === independent
+    && decision.reason === (independent ? "eligible" : "ungraded_evidence")
+    && decision.masteryBearing === independent
+    && receipt.masteryApplied === independent;
+}
+
+async function readSavedPractice(ctx: QueryCtx, learnerId: Id<"profiles">, mode: "guided_practice" | "independent_practice") {
+  const now = Date.now();
+  const expected = expectedActivity(mode);
+  const activity = await ctx.db.query("activities")
+    .withIndex("by_stable_activity_id", (q) => q.eq("stableActivityId", expected.stableActivityId)).unique();
+  if (!activity || !hasExpectedActivityIdentity(activity, expected)) return null;
+  const submission = await ctx.db.query("activity_submissions")
+    .withIndex("by_user_and_activity_and_attempt_ordinal", (q) => q.eq("userId", learnerId).eq("activityId", activity._id))
+    .order("desc").first();
+  if (!submission || submission.userId !== learnerId || submission.activityId !== activity._id
+    || submission.stableActivityId !== expected.stableActivityId
+    || submission.masteryContractVersion !== "learning-evidence.v1"
+    || !Number.isInteger(submission.attemptOrdinal) || (submission.attemptOrdinal ?? 0) < 1
+    || !Number.isFinite(submission.submittedAt) || submission.submittedAt < 0 || submission.submittedAt > now
+    || !Number.isFinite(submission.gradedAt) || Number(submission.gradedAt) < submission.submittedAt || Number(submission.gradedAt) > now
+    || !Number.isFinite(submission.createdAt) || Number(submission.createdAt) < submission.submittedAt || Number(submission.createdAt) > now
+    || !Number.isFinite(submission.updatedAt) || Number(submission.updatedAt) < Number(submission.createdAt) || Number(submission.updatedAt) < Number(submission.gradedAt) || Number(submission.updatedAt) > now
+    || !record(submission.submissionData) || submission.submissionData.status !== "graded"
+    || submission.submissionData.attemptNumber !== submission.attemptOrdinal
+    || submission.submissionData.submittedAt !== new Date(submission.submittedAt).toISOString()) return null;
+  let submitted;
+  try {
+    const ungradedParts = Array.isArray(submission.submissionData.parts)
+      ? submission.submissionData.parts.map((part) => record(part) ? ({
+        partId: part.partId, rawAnswer: part.rawAnswer, hintsUsed: part.hintsUsed,
+        revealStepsSeen: part.revealStepsSeen, changedCount: part.changedCount,
+      }) : part)
+      : submission.submissionData.parts;
+    submitted = canonical({ ...submission.submissionData, status: "submitted", parts: ungradedParts }, expected.stableActivityId, mode);
+  } catch {
+    return null;
+  }
+  const graded = gradeTopic11IntervalGraph(expected.variantSeed, submitted.answers);
+  const feedback = `${graded.score}/${graded.maxScore} interval classifications matched the server rubric.`;
+  if (submission.score !== graded.score || submission.maxScore !== graded.maxScore || submission.feedback !== feedback
+    || !sameJson(submission.submissionData.parts, graded.parts.map((part) => ({
+      ...submitted.parts.get(part.partId), ...part,
+      rawAnswer: submitted.answers[part.partId as keyof typeof submitted.answers],
+    })))) return null;
+  const receipt = await ctx.db.query("learning_evidence_receipts")
+    .withIndex("by_learner_and_submission_id", (q) => q.eq("learnerId", learnerId).eq("submissionId", submission._id)).unique();
+  const deliveryState: "delivered" | "needs_delivery" | "invalid_receipt" = !receipt ? "needs_delivery" : receipt.learnerId === learnerId
+    && receipt.submissionId === submission._id && validStoredReceipt(receipt, mode, now) ? "delivered" : "invalid_receipt";
+  return { mode, submissionId: submission._id, attemptOrdinal: submission.attemptOrdinal!, submittedAt: submission.submittedAt,
+    score: submission.score!, maxScore: submission.maxScore!, feedback: submission.feedback!, deliveryState };
+}
+
+export const getSavedTopic11Practice = internalQuery({
+  args: { learnerId: v.id("profiles") },
+  returns: v.object({ guidedPractice: v.union(v.null(), savedPracticeValidator), independentPractice: v.union(v.null(), savedPracticeValidator) }),
+  handler: async (ctx, { learnerId }) => {
+    const profile = await ctx.db.get("profiles", learnerId);
+    const credential = profile ? await ctx.db.query("auth_credentials")
+      .withIndex("by_username", (q) => q.eq("username", profile.username)).unique() : null;
+    if (!profile || profile.role !== "student" || !credential || !credential.isActive
+      || credential.profileId !== profile._id || credential.username !== profile.username
+      || credential.role !== profile.role || credential.organizationId !== profile.organizationId) throw new Error("Inactive student identity");
+    const [guidedPractice, independentPractice] = await Promise.all([
+      readSavedPractice(ctx, learnerId, "guided_practice"),
+      readSavedPractice(ctx, learnerId, "independent_practice"),
+    ]);
+    return { guidedPractice, independentPractice };
+  },
+});
+
 export const getProfileByUsername = internalQuery({
   args: { username: v.string() },
   handler: async (ctx, args) => {
