@@ -465,3 +465,7 @@ Removed the completed G49 graph archive after independent cleanup review and par
 The bounded 54d1 review classified seven IM3 graph files as superseded by the accepted current repair. Their only valid unique source addition is already preserved in main. Do not integrate these stale rows. The remaining dirty files are outside this review, so retain the saved worktree. See `saved-54d1-im3-reconciliation-review.md`.
 
 Teacher date rendering is committed as `cd6c8ba5d`. Parent 17 related tests, lint, build, and standalone TypeScript pass. Independent review accepts the cross-timezone hydration test. Removed the completed candidate and two helper archives after committed-byte checks and cleanup review. The live browser environment remains active for normal-timezone and remaining full-flow checks.
+
+Q37 teacher date rendering passed the actual Asia/Shanghai browser check with no hydration error or development overlay. The real confirmation form remained usable and created one teacher-led evidence row without receipts or SRS effects. The parent inspected the screenshot and persisted state. Stale-source submission rejection and both-dashboard reload checks remain in progress.
+
+- [~] Task G51: Review IM1 Lesson 10-1 from Int1_1001_practice.docx. Inventory all source prompts, axioms, diagrams, valid logical conclusions, synthetic and analytic distinctions, exact prior reuse, stable source identities, and manual response boundaries. Check the current lesson's price-to-category converse inference against the actual source axioms before source or graph changes.
