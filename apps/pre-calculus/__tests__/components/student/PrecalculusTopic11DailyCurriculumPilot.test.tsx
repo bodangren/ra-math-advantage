@@ -1,7 +1,7 @@
 import projection from '@/curriculum/skill-graph/projection/practice-v1-activity-map.json';
 import type { ComponentType } from 'react';
 
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 
@@ -163,6 +163,30 @@ describe('AP Precalculus Topic 1.1 daily curriculum producer', () => {
     expect(String((retryCall[1] as RequestInit).body)).toBe(firstBody);
     expect(new Headers((retryCall[1] as RequestInit).headers).get('Idempotency-Key'))
       .toBe(firstHeaders.get('Idempotency-Key'));
+  });
+
+  it('starts only one request for two synchronous Worked review clicks', async () => {
+    let resolveRequest!: (response: Response) => void;
+    const fetchMock = vi.fn().mockImplementation(() => new Promise<Response>((resolve) => {
+      resolveRequest = resolve;
+    }));
+    vi.stubGlobal('fetch', fetchMock);
+    const DailyProducer = await loadDailyProducer();
+
+    renderDaily(DailyProducer);
+    const submit = screen.getByRole('button', { name: /mark worked example reviewed/i });
+    act(() => {
+      submit.click();
+      submit.click();
+    });
+
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    resolveRequest(new Response(
+      JSON.stringify({ submissionId: 'activity_submissions:precalc-daily-source', attemptOrdinal: 1, submittedAt: '2026-09-08T00:00:00.000Z' }),
+      { status: 200, headers: { 'content-type': 'application/json' } },
+    ));
+    await screen.findByRole('status');
+    expect(fetchMock).toHaveBeenCalledTimes(1);
   });
 
   it('disables daily submission after a successful source delivery', async () => {
