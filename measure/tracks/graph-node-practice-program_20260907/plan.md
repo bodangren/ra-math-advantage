@@ -558,7 +558,7 @@ G53 source review corrected the triangular-prism interpretation. Problems 25-27 
 
 G53 source is committed as `63886deda`. Final independent review passed. Parent checks passed 68 test files and 400 tests, lint, build, and post-build standalone TypeScript. All 14 image files match the worksheet bytes. See `im1-lesson102-source-final-review.md`.
 
-- [~] Task G53 graph: Reuse the two Lesson 10-2 skills and the Lesson 12-4 postulate skill for exact source tasks. Add one inactive maximum-count atom with separate evidence variants. Remove eight unsupported standard alignments and empty activity placeholders for the touched skills. Update affected projections. Preserve stable identities, approval states, row order, and unrelated fields. Add no prerequisite or executable practice claim.
+- [x] Task G53 graph: Reuse the two Lesson 10-2 skills and the Lesson 12-4 postulate skill for exact source tasks. Add one inactive maximum-count atom with separate evidence variants. Remove eight unsupported standard alignments and empty activity placeholders for the touched skills. Update affected projections. Preserve stable identities, approval states, row order, and unrelated fields. Add no prerequisite or executable practice claim.
 
 Removed saved worktrees 61c4 and 6457 after independent and parent review of all 719 states. Branch `codex/preserve-saved-61c4-im3-lesson18` preserves two accepted detached commits. Their Lesson 1.8 source remains pending integration review against committed HEAD. The other 14 saved worktrees remain intact. See `saved-61c4-6457-preservation-review.md`.
 
@@ -577,3 +577,7 @@ IM3 Lesson 1.8 projection review corrected the recovery scope to 12 paths. Add t
 G54 inventory passed final independent review. Preserve 51 prompts, 23 native figures, the shared Examples 1-2 source group, and append-only Example 5 identity. Five new draft capabilities are proposed. Problems 1 and 4 remain task-local supplied-measure reading. No source or graph edit is included in this acceptance. See `im1-lesson103-inventory-proposal.md` and `im1-lesson103-inventory-final-review.md`.
 
 G53 first graph review found four bounded defects: missing prompt-level reused-skill references, a vacuous prerequisite test, an incorrect teacher prerequisite status, and 15 unrelated embedded SRS rewrites. The corrected candidate now passes parent verification: 69 test files, 406 tests, lint, build, and post-build standalone TypeScript. Final independent review is pending. The 15 older embedded-versus-standalone rendererKey differences remain separate technical debt. See `im1-lesson102-graph-first-review.md`.
+
+G53 graph is committed as `123c142b5`. All 13 staged paths matched the reviewed candidate. Final independent review and parent checks passed. The source and graph repairs for Lesson 10-2 are complete. These inactive records do not establish executable practice coverage. See `im1-lesson102-graph-final-review.md`.
+
+- [~] Task G54 source: Restore the 51 original Lesson 10-3 prompts and all 23 native figures from the accepted inventory. Preserve the combined Examples 1-2 heading and all other source boundaries. Add an app-discovered source regression. Reuse the completed G53 candidate directory. Add no graph change, answer key, source approval, or executable practice.
