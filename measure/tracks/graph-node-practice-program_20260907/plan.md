@@ -565,3 +565,5 @@ Removed saved worktrees 61c4 and 6457 after independent and parent review of all
 - [~] Task G54 inventory: Review IM1 Lesson 10-3 from committed `Int1_1003_practice.docx`. Inventory all original prompts and native figures. Compare exact graph identities and assessable responses. Propose bounded source and graph corrections. This task does not authorize graph changes before review.
 
 Cleanup review started for saved worktrees 2968 and 64b9. Parent comparison found 720 working states. The Lesson 1.5 reconciliation in 2968 has two blueprint records preserved in the main working tree but absent from committed HEAD. Worktree 64b9 has an older executable Example candidate. Keep both directories until independent semantic review and detached-history preservation are complete.
+
+Lesson 1.8 recovery proposal passed direct PDF review of all seven examples and their mathematical results. The saved accepted source is useful. Integrate object-level changes against committed HEAD after a separate source review. Do not copy old aggregate files. No executable practice is supported by these inactive blueprints. See `im3-lesson18-detached-integration-proposal.md`.
