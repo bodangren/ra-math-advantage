@@ -2,7 +2,7 @@
 
 - [~] **Track: Graph Node Practice Program** — **IN PROGRESS**
    Correct all five knowledge space graphs. Deliver source-based Worked, Guided, and Independent practice. Implementation is authorized. Use gpt-5.6-sol at low effort with up to three workers and one integration owner.
-   Current IM1 work: Lesson 9-4, 9-5, 9-6, 9-7, and 10-1 source and graph repairs are committed. Lesson 10-2 source and graph repairs are committed. Lesson 10-3 source restoration is in progress. Draft graph records do not establish practice coverage.
+   Current IM1 work: Lesson 9-4, 9-5, 9-6, 9-7, and 10-1 source and graph repairs are committed. Lesson 10-2 source and graph repairs are committed. Lesson 10-3 source is committed. Its graph repair is in progress. Draft graph records do not establish practice coverage.
    Current Precalculus work: All nine selected Topic 1.1 browser rows passed independent review. Saved results, receipt retries, readiness checks, and layout fixes are committed. The disposable environment and local database are removed after evidence preservation.
    Cleanup: Removed 85 stale worktree records and completed integration candidates after content checks. Packed Git objects without discarding recovery data. Removed saved worktrees 54d1, 32fb, 2711, and dd99 after full preservation reviews. Preserve the other 10 saved Codex worktrees with uncommitted changes. Commit verified changes before candidate removal.
    Source approval, full course coverage, all five course pilots, and complete browser verification remain open. See the track plan for exact scope, commit history, evidence, and remaining work.

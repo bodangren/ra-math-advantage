@@ -24,10 +24,10 @@ The source also has Example 5 for Problems 28-33. No current Lesson 10-3 identit
 
 Direction: `Find the measure of each segment.`
 
-1. `PR`: Figure 1 shows `PR = 5.8 mm`. Response: `5.8 mm`.
+1. `PR`: Figure 1 shows `PS = 5.8 mm` and `RS = 3.7 mm`. Response: `PR = 2.1 mm`.
 2. `EF`: Figure 2 shows `EG = 2.5 in.` and `GF = 2.8 in.` Response: `5.3 in.`
 3. `JL`: Figure 3 shows `JK = 0.75 cm` and `KL = 0.35 cm`. Response: `1.10 cm`.
-4. `HJ`: Figure 4 shows `HJ = 12.2 ft` and `JK = 3.1 ft`. Response: `12.2 ft`.
+4. `HJ`: Figure 4 shows `HK = 12.2 ft` and `JK = 3.1 ft`. Response: `HJ = 9.1 ft`.
 5. `AC`: Figure 5 shows `AB = 0.4 m` and `BC = 1.6 m`. Response: `2.0 m`.
 6. `SV`: Figure 6 shows `ST = 4.1 in.` and `VT = 2.6 in.` Response: `1.5 in.`
 7. `NQ`: Figure 7 shows `QP = 1 in.` and `PN = 1 1/4 in.` Response: `2 1/4 in.`
@@ -106,10 +106,10 @@ The printed direction requests only the final segment measure. Treat intermediat
 
 All 23 source images are PNG files in `/tmp/im1-g54-native`.
 
-1. `image1.png`: points P-R-S; `PR = 5.8 mm`, `RS = 3.7 mm`.
+1. `image1.png`: points P-R-S; total `PS = 5.8 mm`, `RS = 3.7 mm`.
 2. `image2.png`: points E-G-F; `EG = 2.5 in.`, `GF = 2.8 in.`
 3. `image3.png`: points J-K-L; `JK = 0.75 cm`, `KL = 0.35 cm`.
-4. `image4.png`: points H-J-K; `HJ = 12.2 ft`, `JK = 3.1 ft`.
+4. `image4.png`: points H-J-K; total `HK = 12.2 ft`, `JK = 3.1 ft`.
 5. `image5.png`: points A-B-C; `AB = 0.4 m`, `BC = 1.6 m`.
 6. `image6.png`: points S-V-T; `ST = 4.1 in.`, `VT = 2.6 in.`
 7. `image7.png`: points Q-P-N; `QP = 1 in.`, `PN = 1 1/4 in.`
@@ -166,10 +166,10 @@ Keep all five atoms draft and inactive. Add no executable specification.
 
 | Problem | Source | Stages | Observed response boundary |
 | ---: | --- | --- | --- |
-| 1 | `.008`, `.009` | Task-local supplied-measure reading | `PR = 5.8 mm` |
+| 1 | `.008`, `.009` | S | `PR = 2.1 mm` |
 | 2 | `.008`, `.009` | S | `EF = 5.3 in.` |
 | 3 | `.008`, `.009` | S | `JL = 1.10 cm` |
-| 4 | `.008`, `.009` | Task-local supplied-measure reading | `HJ = 12.2 ft` |
+| 4 | `.008`, `.009` | S | `HJ = 9.1 ft` |
 | 5 | `.008`, `.009` | S | `AC = 2.0 m` |
 | 6 | `.008`, `.009` | S | `SV = 1.5 in.` |
 | 7 | `.008`, `.009` | S | `NQ = 2 1/4 in.` |
@@ -231,4 +231,4 @@ Do not copy G-CO.A.2 or G-GPE.B.4 alignments to new atoms. This worksheet does n
 
 Restore the exact 51 prompts, five Example groups, Mixed Exercises, Office Math notation, and 23 native images. Preserve accessible figure details and separate response parts. Add `.028` for Example 5. Add only the five draft inactive atoms. Remove edge `1193`. Do not approve content, activate practice, add placeholder modes, decide edge `1194`, or renumber existing IDs.
 
-Problems 1 and 4 read the requested measures directly from the figures. They do not observe segment addition or coordinate reading. The approved segment-addition skill applies to Problems 2, 3, and 5-9 and the later specified part-whole stages.
+Problems 1 and 4 require subtraction from the labeled whole segment. They observe segment addition. The approved segment-addition skill applies to Problems 1–9 and the later specified part-whole stages. These figures give measures, not coordinates.

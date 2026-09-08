@@ -562,7 +562,7 @@ G53 source is committed as `63886deda`. Final independent review passed. Parent 
 
 Removed saved worktrees 61c4 and 6457 after independent and parent review of all 719 states. Branch `codex/preserve-saved-61c4-im3-lesson18` preserves two accepted detached commits. Their Lesson 1.8 source remains pending integration review against committed HEAD. The other 14 saved worktrees remain intact. See `saved-61c4-6457-preservation-review.md`.
 
-- [~] Task G54 inventory: Review IM1 Lesson 10-3 from committed `Int1_1003_practice.docx`. Inventory all original prompts and native figures. Compare exact graph identities and assessable responses. Propose bounded source and graph corrections. This task does not authorize graph changes before review.
+- [x] Task G54 inventory: Review IM1 Lesson 10-3 from committed `Int1_1003_practice.docx`. Inventory all original prompts and native figures. Compare exact graph identities and assessable responses. Propose bounded source and graph corrections. This task does not authorize graph changes before review.
 
 Cleanup review started for saved worktrees 2968 and 64b9. Parent comparison found 720 working states. The Lesson 1.5 reconciliation in 2968 has two blueprint records preserved in the main working tree but absent from committed HEAD. Worktree 64b9 has an older executable Example candidate. Keep both directories until independent semantic review and detached-history preservation are complete.
 
@@ -580,12 +580,18 @@ G53 first graph review found four bounded defects: missing prompt-level reused-s
 
 G53 graph is committed as `123c142b5`. All 13 staged paths matched the reviewed candidate. Final independent review and parent checks passed. The source and graph repairs for Lesson 10-2 are complete. These inactive records do not establish executable practice coverage. See `im1-lesson102-graph-final-review.md`.
 
-- [~] Task G54 source: Restore the 51 original Lesson 10-3 prompts and all 23 native figures from the accepted inventory. Preserve the combined Examples 1-2 heading and all other source boundaries. Add an app-discovered source regression. Reuse the completed G53 candidate directory. Add no graph change, answer key, source approval, or executable practice.
+- [x] Task G54 source: Restore the 51 original Lesson 10-3 prompts and all 23 native figures from the accepted inventory. Preserve the combined Examples 1-2 heading and all other source boundaries. Add an app-discovered source regression. Reuse the completed G53 candidate directory. Add no graph change, answer key, source approval, or executable practice.
 
 Removed saved worktrees 68f8 and 74da after independent and parent review of 715 states. Branch `codex/preserve-saved-68f8-im3-lesson12` preserves two detached commits. Ten saved worktrees remain. Lesson 1.2 recovery remains open. See `saved-68f8-74da-preservation-review.md`.
 
 IM3 Lesson 1.8 recovery is committed as `efbbdb2ed`. All 13 staged paths matched the accepted candidate. Parent lint, build, and post-build TypeScript passed. Independent reconciliation/projection tests passed 32 cases. Provenance tests passed nine cases. The full curriculum/seed run had 850 passing cases and nine failures reproduced unchanged on the committed baseline. The remaining baseline pilot eligibility failure has a separate correction task. See `im3-lesson18-recovery-final-review.md`.
 
-- [~] Task IM3-P1 eligibility: Correct the obsolete universal Independent SRS-eligibility test. Synchronize the three affected pilot activities in the module and course stored projections with the current approval gate. Preserve node and blueprint review states, all other activity fields, unrelated rows, and order. Review each derived field before changing artifacts. Reuse the completed Lesson 1.8 candidate.
+- [x] Task IM3-P1 eligibility: Correct the obsolete universal Independent SRS-eligibility test. Synchronize the three affected pilot activities in the module and course stored projections with the current approval gate. Preserve node and blueprint review states, all other activity fields, unrelated rows, and order. Review each derived field before changing artifacts. Reuse the completed Lesson 1.8 candidate.
 
 G54 parent native-image review withdraws the P1/P4 direct-reading classification. The brackets span PS and HK, respectively. Both tasks require segment subtraction. Source descriptions, inventory results, and approved-skill mappings are being corrected before source commit. All other native bracket spans are under final review. See `im1-lesson103-parent-bracket-review.md`.
+
+G54 source is committed as `84bfbef58`. Final review accepted the corrected bracket interpretation and the native segment overlines in Problems 37 and 46. All 25 staged paths matched the reviewed candidate after removal of one extra EOF blank line. Parent checks passed 70 files and 410 tests, lint, build, and post-build TypeScript. The corrected inventory restores approved segment-addition reuse for Problems 1 and 4. See `im1-lesson103-source-final-review.md`.
+
+IM3-P1 eligibility is committed as `9d1afd4de`. Six stored booleans now match the approval gate. All 54 legacy pilot tests pass. Independent review and 26 shared projection tests pass. Parent lint, build, and post-build TypeScript pass. The nine unrelated curriculum baseline failures remain open. See `im3-pilot-eligibility-final-review.md`.
+
+- [~] Task G54 graph: Implement the corrected Lesson 10-3 inventory after source commit. Preserve existing source IDs and the shared Examples 1-2 group. Add the reviewed Example 5 identity and five draft inactive capabilities. Use exact approved and draft capability reuse only at the accepted response stages. Remove unsupported edge 1193. Leave edge 1194 unresolved for Lesson 10-4 review. Review standard links before changes. Preserve unrelated graph state and add no executable practice or approval claim.
