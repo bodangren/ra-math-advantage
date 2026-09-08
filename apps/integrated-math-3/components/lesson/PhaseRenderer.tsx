@@ -57,6 +57,34 @@ export type PhaseSection =
   | ActivitySection
   | ImageSection;
 
+const IM3_QF_NODE = 'math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations';
+const IM3_QF_GUIDED_ACTIVITY_ID = `${IM3_QF_NODE}.guided_practice`;
+const IM3_QF_INDEPENDENT_ACTIVITY_ID = `${IM3_QF_NODE}.independent_practice`;
+
+export function getQuadraticFormulaSectionMode(
+  content: ActivitySection['content'],
+): 'guided' | 'practice' | 'invalid' | null {
+  const hasIdentitySignal = content.componentKey === 'quadratic-formula'
+    || content.masteryNodeId === IM3_QF_NODE
+    || content.stableActivityId === IM3_QF_GUIDED_ACTIVITY_ID
+    || content.stableActivityId === IM3_QF_INDEPENDENT_ACTIVITY_ID;
+  if (!hasIdentitySignal) return null;
+  const guided = content.componentKey === 'quadratic-formula'
+    && content.masteryNodeId === IM3_QF_NODE
+    && content.stableActivityId === IM3_QF_GUIDED_ACTIVITY_ID
+    && content.learningEvidenceMode === 'guided_practice'
+    && content.srsEligible === false
+    && (content.activityProps as { presentationMode?: unknown } | undefined)?.presentationMode === 'guided';
+  if (guided) return 'guided';
+  const independent = content.componentKey === 'quadratic-formula'
+    && content.masteryNodeId === IM3_QF_NODE
+    && content.stableActivityId === IM3_QF_INDEPENDENT_ACTIVITY_ID
+    && content.learningEvidenceMode === 'independent_practice'
+    && content.srsEligible === false
+    && (content.activityProps as { presentationMode?: unknown } | undefined)?.presentationMode === 'independent';
+  return independent ? 'practice' : 'invalid';
+}
+
 // ── Props ─────────────────────────────────────────────────────────────────────
 
 export interface PhaseRendererProps {
@@ -160,6 +188,7 @@ function SectionBlock({
 
     case 'activity': {
       const activityId = section.content.activityId as string;
+      const quadraticFormulaMode = getQuadraticFormulaSectionMode(section.content);
       const handleSubmit = (payload: unknown) => {
         return onActivitySubmit?.(activityId, payload);
       };
@@ -172,7 +201,11 @@ function SectionBlock({
           activityId={activityId}
           lessonId={lessonId}
           phaseNumber={phaseNumber}
-          mode={section.content.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID ? 'teaching' : mode}
+          mode={section.content.stableActivityId === IM3_TEACHER_LED_ACTIVITY_ID
+            ? 'teaching'
+            : quadraticFormulaMode === 'guided' || quadraticFormulaMode === 'practice'
+              ? quadraticFormulaMode
+              : mode}
           activityProps={section.content.activityProps as Record<string, unknown> | undefined}
           onSubmit={onActivitySubmit ? handleSubmit : undefined}
           onComplete={handleComplete}

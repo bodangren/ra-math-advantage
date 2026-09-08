@@ -3,13 +3,17 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { LessonRenderer, type LessonRendererProps } from '@/components/lesson/LessonRenderer';
 import type { PhaseSection } from '@/components/lesson/PhaseRenderer';
-import { submitActivity } from '@/lib/activities/submission';
+import { createServerOwnedActivitySubmission, submitActivity } from '@/lib/activities/submission';
 
 vi.mock('@/lib/activities/submission', () => ({
   submitActivity: vi.fn(),
+  createServerOwnedActivitySubmission: vi.fn(),
+  getSelectedWorkedAcknowledgement: vi.fn().mockResolvedValue(false),
 }));
 
 const mockSubmitActivity = vi.mocked(submitActivity);
+const mockCreateServerOwnedActivitySubmission = vi.mocked(createServerOwnedActivitySubmission);
+vi.stubGlobal('crypto', { randomUUID: vi.fn(() => 'strict-receipt-key') });
 
 // Mock heavy sub-components
 vi.mock('@/components/textbook/LessonPageLayout', () => ({
@@ -45,10 +49,11 @@ vi.mock('@/components/lesson/LessonStepper', () => ({
   ),
 }));
 
-vi.mock('@/components/lesson/PhaseRenderer', () => ({
+vi.mock('@/components/lesson/PhaseRenderer', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/components/lesson/PhaseRenderer')>()),
   PhaseRenderer: ({ phaseType, sections, onActivitySubmit, onActivityComplete }: {
     phaseType: string;
-    sections: Array<{ id: string; content: { activityId?: string } }>;
+    sections: Array<{ id: string; content: { activityId?: string; componentKey?: string; learningEvidenceMode?: string; payloadActivityId?: string; payloadOverrides?: Record<string, unknown>; capturePayload?: (payload: Record<string, unknown>) => void } }>;
     onActivitySubmit?: (activityId: string, payload: unknown) => void;
     onActivityComplete?: (activityId: string) => void;
   }) => (
@@ -67,15 +72,22 @@ vi.mock('@/components/lesson/PhaseRenderer', () => ({
           onClick={() => {
             const activityId = s.content?.activityId;
             if (activityId) {
+              const isQuadraticFormula = s.content.componentKey === 'quadratic-formula';
               const payload = {
                 contractVersion: 'practice.v1',
-                activityId,
-                mode: 'independent_practice',
+                activityId: s.content.payloadActivityId ?? activityId,
+                mode: s.content.learningEvidenceMode ?? 'independent_practice',
                 status: 'submitted',
                 attemptNumber: 1,
                 submittedAt: '2026-01-01T00:00:00.000Z',
-                answers: { q1: 'A' },
-                parts: [{ partId: 'q1', rawAnswer: 'A', isCorrect: true, score: 1, maxScore: 1 }],
+                answers: isQuadraticFormula ? { discriminant: '16', x1: '2', x2: '-2' } : { q1: 'A' },
+                parts: isQuadraticFormula
+                  ? [
+                      { partId: 'discriminant', rawAnswer: '16' },
+                      { partId: 'x1', rawAnswer: '2' },
+                      { partId: 'x2', rawAnswer: '-2' },
+                    ]
+                  : [{ partId: 'q1', rawAnswer: 'A', isCorrect: true, score: 1, maxScore: 1 }],
                 timing: {
                   startedAt: '2026-01-01T00:00:00.000Z',
                   submittedAt: '2026-01-01T00:01:00.000Z',
@@ -87,7 +99,9 @@ vi.mock('@/components/lesson/PhaseRenderer', () => ({
                   visibilityHiddenCount: 0,
                   confidence: 'high',
                 },
+                ...s.content.payloadOverrides,
               };
+              s.content.capturePayload?.(payload);
               const result = onActivitySubmit?.(activityId, payload);
               if (result && typeof (result as Promise<unknown>).catch === 'function') {
                 (result as Promise<unknown>).catch(() => {});
@@ -165,6 +179,8 @@ describe('LessonRenderer - Activity Submission Flow', () => {
   beforeEach(() => {
     mockSubmitActivity.mockReset();
     mockSubmitActivity.mockResolvedValue({ success: true, submissionId: 'sub-123' });
+    mockCreateServerOwnedActivitySubmission.mockReset();
+    mockCreateServerOwnedActivitySubmission.mockResolvedValue({ success: true, submissionId: 'qf-123', score: 3, maxScore: 3 });
   });
 
   describe('activity submission wiring', () => {
@@ -433,4 +449,199 @@ describe('LessonRenderer - Activity Submission Flow', () => {
       });
     });
   });
+});
+
+describe('LessonRenderer strict quadratic-formula receipts', () => {
+  const nodeId = 'math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations';
+  const qfSection = (mode: 'guided_practice' | 'independent_practice', extra: Record<string, unknown> = {}): PhaseSection => ({
+    id: `qf-${mode}`,
+    sequenceOrder: 1,
+    sectionType: 'activity',
+    content: {
+      activityId: `activities:${mode}`,
+      componentKey: 'quadratic-formula',
+      stableActivityId: `${nodeId}.${mode}`,
+      masteryNodeId: nodeId,
+      learningEvidenceMode: mode,
+      srsEligible: false,
+      activityProps: { presentationMode: mode === 'guided_practice' ? 'guided' : 'independent' },
+      ...extra,
+    },
+  });
+  const propsFor = (section: PhaseSection): LessonRendererProps => ({
+    ...defaultProps,
+    phases: [{
+      phaseId: 'qf-phase', phaseNumber: 1, phaseType: 'independent_practice', title: 'Practice',
+      sections: [section], status: 'current', completed: false,
+    }],
+  });
+
+  beforeEach(() => {
+    mockSubmitActivity.mockReset();
+    mockSubmitActivity.mockResolvedValue({ success: true, submissionId: 'generic' });
+    mockCreateServerOwnedActivitySubmission.mockReset();
+    mockCreateServerOwnedActivitySubmission.mockResolvedValue({ success: true, submissionId: 'qf', score: 3, maxScore: 3 });
+  });
+
+  it.each(['guided_practice', 'independent_practice'] as const)(
+    'uses the strict writer for exact %s metadata and waits for its receipt',
+    async (selectedMode) => {
+      let resolve!: (value: { success: true; submissionId: string; score: number; maxScore: number }) => void;
+      mockCreateServerOwnedActivitySubmission.mockReturnValue(new Promise((done) => { resolve = done; }));
+      const section = qfSection(selectedMode);
+      render(<LessonRenderer {...propsFor(section)} />);
+      fireEvent.click(screen.getByTestId(`activity-submit-activities:${selectedMode}`));
+
+      expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
+      await waitFor(() => expect(mockCreateServerOwnedActivitySubmission).toHaveBeenCalledTimes(1));
+      expect(mockCreateServerOwnedActivitySubmission.mock.calls[0][0]).toMatchObject({
+        activityId: `activities:${selectedMode}`,
+        mode: selectedMode,
+        status: 'submitted',
+        attemptNumber: 1,
+        submittedAt: '2026-01-01T00:00:00.000Z',
+        answers: { discriminant: '16', x1: '2', x2: '-2' },
+        parts: [
+          { partId: 'discriminant', rawAnswer: '16' },
+          { partId: 'x1', rawAnswer: '2' },
+          { partId: 'x2', rawAnswer: '-2' },
+        ],
+        timing: expect.objectContaining({ activeMs: 60000 }),
+        idempotencyKey: expect.any(String),
+      });
+      expect(mockSubmitActivity).not.toHaveBeenCalled();
+      resolve({ success: true, submissionId: 'qf', score: 3, maxScore: 3 });
+      await waitFor(() => expect(screen.getByTestId('phase-complete-btn')).not.toBeDisabled());
+    },
+  );
+
+  it('retries an ambiguous strict failure with the exact body and key', async () => {
+    mockCreateServerOwnedActivitySubmission
+      .mockRejectedValueOnce(new Error('response lost'))
+      .mockResolvedValueOnce({ success: true, submissionId: 'qf', score: 3, maxScore: 3 });
+    const section = qfSection('independent_practice');
+    render(<LessonRenderer {...propsFor(section)} />);
+    const submit = screen.getByTestId('activity-submit-activities:independent_practice');
+    fireEvent.click(submit);
+    await waitFor(() => expect(mockCreateServerOwnedActivitySubmission).toHaveBeenCalledTimes(1));
+    fireEvent.click(submit);
+    await waitFor(() => expect(mockCreateServerOwnedActivitySubmission).toHaveBeenCalledTimes(2));
+    expect(mockCreateServerOwnedActivitySubmission.mock.calls[1][0])
+      .toEqual(mockCreateServerOwnedActivitySubmission.mock.calls[0][0]);
+    expect(mockCreateServerOwnedActivitySubmission.mock.calls[1][0].answers)
+      .toEqual({ discriminant: '16', x1: '2', x2: '-2' });
+    expect(mockCreateServerOwnedActivitySubmission.mock.calls[1][0].parts)
+      .toEqual([
+        { partId: 'discriminant', rawAnswer: '16' },
+        { partId: 'x1', rawAnswer: '2' },
+        { partId: 'x2', rawAnswer: '-2' },
+      ]);
+  });
+
+  it.each([
+    ['component', { componentKey: 'fill-in-the-blank' }],
+    ['stable ID', { stableActivityId: `${nodeId}.wrong` }],
+    ['node', { masteryNodeId: `${nodeId}.wrong` }],
+    ['mode', { learningEvidenceMode: 'worked_example' }],
+    ['SRS', { srsEligible: true }],
+    ['presentation', { activityProps: { presentationMode: 'guided' } }],
+  ])('rejects a partial QF identity with invalid %s before a write', async (_label, change) => {
+    const section = qfSection('independent_practice', change);
+    render(<LessonRenderer {...propsFor(section)} />);
+    fireEvent.click(screen.getByTestId('activity-submit-activities:independent_practice'));
+    await new Promise(resolve => setTimeout(resolve, 0));
+    expect(mockCreateServerOwnedActivitySubmission).not.toHaveBeenCalled();
+    expect(mockSubmitActivity).not.toHaveBeenCalled();
+    expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
+  });
+
+  it('rejects mismatched outer and payload activity IDs before a write', async () => {
+    const section = qfSection('independent_practice', { payloadActivityId: 'activities:other' });
+    render(<LessonRenderer {...propsFor(section)} />);
+    fireEvent.click(screen.getByTestId('activity-submit-activities:independent_practice'));
+    await new Promise(resolve => setTimeout(resolve, 0));
+    expect(mockCreateServerOwnedActivitySubmission).not.toHaveBeenCalled();
+    expect(mockSubmitActivity).not.toHaveBeenCalled();
+    expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
+  });
+
+  it.each([
+    { success: false as const, error: 'not saved' },
+    { success: true as const, submissionId: '   ' },
+  ])('keeps a generic activity incomplete without a valid positive receipt', async (receipt) => {
+    mockSubmitActivity.mockResolvedValue(receipt);
+    const section = activitySection('generic', 'activities:generic');
+    render(<LessonRenderer {...propsFor(section)} />);
+    fireEvent.click(screen.getByTestId('activity-submit-activities:generic'));
+    await waitFor(() => expect(mockSubmitActivity).toHaveBeenCalledTimes(1));
+    expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
+  });
+
+  it.each([
+    { success: false as const, error: 'not saved' },
+    { success: true as const, submissionId: '   ', score: 3, maxScore: 3 },
+  ])('keeps strict activity incomplete without a valid positive receipt', async (receipt) => {
+    mockCreateServerOwnedActivitySubmission.mockResolvedValue(receipt);
+    const section = qfSection('independent_practice');
+    render(<LessonRenderer {...propsFor(section)} />);
+    fireEvent.click(screen.getByTestId('activity-submit-activities:independent_practice'));
+    await waitFor(() => expect(mockCreateServerOwnedActivitySubmission).toHaveBeenCalledTimes(1));
+    expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
+  });
+
+  it('uses one request for a strict double submit while the receipt is pending', async () => {
+    let resolve!: (value: { success: true; submissionId: string; score: number; maxScore: number }) => void;
+    mockCreateServerOwnedActivitySubmission.mockReturnValue(new Promise((done) => { resolve = done; }));
+    const section = qfSection('independent_practice');
+    render(<LessonRenderer {...propsFor(section)} />);
+    const submit = screen.getByTestId('activity-submit-activities:independent_practice');
+    fireEvent.click(submit);
+    fireEvent.click(submit);
+    await waitFor(() => expect(mockCreateServerOwnedActivitySubmission).toHaveBeenCalledTimes(1));
+    resolve({ success: true, submissionId: 'qf', score: 3, maxScore: 3 });
+    await waitFor(() => expect(screen.getByTestId('phase-complete-btn')).not.toBeDisabled());
+  });
+
+  it('reuses the first frozen strict body when a retry supplies changed answers', async () => {
+    mockCreateServerOwnedActivitySubmission
+      .mockResolvedValueOnce({ success: false, error: 'response lost' })
+      .mockResolvedValueOnce({ success: true, submissionId: 'qf', score: 3, maxScore: 3 });
+    let firstPayload: Record<string, unknown> | undefined;
+    const section = qfSection('independent_practice', {
+      capturePayload: (payload: Record<string, unknown>) => { firstPayload = payload; },
+    });
+    const { rerender } = render(<LessonRenderer {...propsFor(section)} />);
+    fireEvent.click(screen.getByTestId('activity-submit-activities:independent_practice'));
+    await waitFor(() => expect(mockCreateServerOwnedActivitySubmission).toHaveBeenCalledTimes(1));
+    (firstPayload?.answers as Record<string, unknown>).x1 = 'changed after delivery';
+    const changed = qfSection('independent_practice', {
+      payloadOverrides: { answers: { discriminant: '0', x1: '0', x2: '' } },
+    });
+    rerender(<LessonRenderer {...propsFor(changed)} />);
+    fireEvent.click(screen.getByTestId('activity-submit-activities:independent_practice'));
+    await waitFor(() => expect(mockCreateServerOwnedActivitySubmission).toHaveBeenCalledTimes(2));
+    expect(mockCreateServerOwnedActivitySubmission.mock.calls[1][0])
+      .toEqual(mockCreateServerOwnedActivitySubmission.mock.calls[0][0]);
+    expect(mockCreateServerOwnedActivitySubmission.mock.calls[1][0].answers)
+      .toEqual({ discriminant: '16', x1: '2', x2: '-2' });
+    expect(mockCreateServerOwnedActivitySubmission.mock.calls[1][0].parts)
+      .toEqual([
+        { partId: 'discriminant', rawAnswer: '16' },
+        { partId: 'x1', rawAnswer: '2' },
+        { partId: 'x2', rawAnswer: '-2' },
+      ]);
+  });
+
+  it('rejects a payload mode that differs from the exact selected mode', async () => {
+    const section = qfSection('guided_practice', {
+      payloadOverrides: { mode: 'independent_practice' },
+    });
+    render(<LessonRenderer {...propsFor(section)} />);
+    fireEvent.click(screen.getByTestId('activity-submit-activities:guided_practice'));
+    await new Promise(resolve => setTimeout(resolve, 0));
+    expect(mockCreateServerOwnedActivitySubmission).not.toHaveBeenCalled();
+    expect(mockSubmitActivity).not.toHaveBeenCalled();
+    expect(screen.getByTestId('phase-complete-btn')).toBeDisabled();
+  });
+
 });

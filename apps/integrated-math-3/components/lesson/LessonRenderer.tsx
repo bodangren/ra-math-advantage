@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { LessonPageLayout, type PhaseNavItem } from '@/components/textbook/LessonPageLayout';
 import { LessonStepper, type StepperPhase } from './LessonStepper';
-import { PhaseRenderer, type PhaseSection } from './PhaseRenderer';
+import { PhaseRenderer, getQuadraticFormulaSectionMode, type PhaseSection } from './PhaseRenderer';
 import { PhaseCompleteButton } from './PhaseCompleteButton';
 import { LessonSkeleton } from './LessonSkeleton';
 import { LessonCompleteScreen } from './LessonCompleteScreen';
@@ -67,6 +67,8 @@ export function LessonRenderer({
   const workedInFlight = useRef(new Set<string>());
   const [workedErrorActivityId, setWorkedErrorActivityId] = useState<string | null>(null);
   const [savingWorkedActivityId, setSavingWorkedActivityId] = useState<string | null>(null);
+  const quadraticFormulaRequests = useRef(new Map<string, SubmitActivityInput>());
+  const quadraticFormulaInFlight = useRef(new Map<string, Promise<void>>());
 
   const requiredActivityIds = useMemo(() => {
     if (!activePhase) return [];
@@ -132,43 +134,77 @@ export function LessonRenderer({
 
   const handleActivitySubmit = useCallback(async (activityId: string, payload: unknown) => {
     if (selectedWorkedSource?.content.activityId === activityId) return;
-    setCompletedActivities(prev => new Set([...prev, activityId]));
-    try {
-      let input: SubmitActivityInput;
-      if (isPracticeSubmissionEnvelope(payload)) {
-        input = {
-          activityId: payload.activityId,
-          mode: payload.mode,
-          answers: payload.answers,
-          attemptNumber: payload.attemptNumber,
-          status: payload.status,
-          parts: payload.parts,
-          artifact: payload.artifact,
-          interactionHistory: payload.interactionHistory,
-          analytics: payload.analytics,
-          studentFeedback: payload.studentFeedback,
-          teacherSummary: payload.teacherSummary,
-          timing: payload.timing,
-        };
-      } else {
-        input = {
-          activityId,
-          mode: mode as PracticeMode,
-          answers: payload && typeof payload === 'object' ? (payload as Record<string, unknown>) : {},
-          attemptNumber: 1,
-          status: 'submitted',
-        };
-      }
-      await submitActivity(input);
-    } catch (err) {
-      setCompletedActivities(prev => {
-        const next = new Set(prev);
-        next.delete(activityId);
-        return next;
-      });
-      throw err;
+    const section = activePhase?.sections.find((candidate): candidate is Extract<PhaseSection, { sectionType: 'activity' }> => (
+      candidate.sectionType === 'activity' && candidate.content.activityId === activityId
+    ));
+    if (!section) throw new Error('Activity section is not active');
+    const quadraticFormulaMode = getQuadraticFormulaSectionMode(section.content);
+    if (quadraticFormulaMode === 'invalid') throw new Error('Quadratic Formula activity metadata is invalid');
+
+    let input: SubmitActivityInput;
+    if (isPracticeSubmissionEnvelope(payload)) {
+      if (payload.activityId !== activityId) throw new Error('Submission activityId does not match the lesson section');
+      if (
+        (quadraticFormulaMode === 'guided' && payload.mode !== 'guided_practice')
+        || (quadraticFormulaMode === 'practice' && payload.mode !== 'independent_practice')
+      ) throw new Error('Submission mode does not match the lesson section');
+      input = {
+        activityId: payload.activityId,
+        mode: payload.mode,
+        answers: payload.answers,
+        attemptNumber: payload.attemptNumber,
+        submittedAt: payload.submittedAt,
+        status: payload.status,
+        parts: payload.parts,
+        artifact: payload.artifact,
+        interactionHistory: payload.interactionHistory,
+        analytics: payload.analytics,
+        studentFeedback: payload.studentFeedback,
+        teacherSummary: payload.teacherSummary,
+        timing: payload.timing,
+      };
+    } else {
+      if (quadraticFormulaMode) throw new Error('Quadratic Formula activity requires a practice.v1 submission');
+      input = {
+        activityId,
+        mode: mode as PracticeMode,
+        answers: payload && typeof payload === 'object' ? (payload as Record<string, unknown>) : {},
+        attemptNumber: 1,
+        status: 'submitted',
+      };
     }
-  }, [mode, selectedWorkedSource]);
+    if (quadraticFormulaMode) {
+      const existingInFlight = quadraticFormulaInFlight.current.get(activityId);
+      if (existingInFlight) return existingInFlight;
+      const frozenInput = quadraticFormulaRequests.current.get(activityId) ?? structuredClone({
+        ...input,
+        idempotencyKey: crypto.randomUUID(),
+      });
+      quadraticFormulaRequests.current.set(activityId, frozenInput);
+      const request = (async () => {
+        const result = await createServerOwnedActivitySubmission(frozenInput);
+        if (!result.success) throw new Error(result.error);
+        if (typeof result.submissionId !== 'string' || result.submissionId.trim().length === 0) {
+          throw new Error('Submission creation did not return a server-owned submission ID');
+        }
+        quadraticFormulaRequests.current.delete(activityId);
+        setCompletedActivities(prev => new Set([...prev, activityId]));
+      })();
+      quadraticFormulaInFlight.current.set(activityId, request);
+      try {
+        await request;
+      } finally {
+        quadraticFormulaInFlight.current.delete(activityId);
+      }
+      return;
+    }
+    const result = await submitActivity(input);
+    if (!result.success) throw new Error(result.error);
+    if (typeof result.submissionId !== 'string' || result.submissionId.trim().length === 0) {
+      throw new Error('Submission did not return a submission ID');
+    }
+    setCompletedActivities(prev => new Set([...prev, activityId]));
+  }, [activePhase, mode, selectedWorkedSource]);
 
   const deliverSelectedWorked = useCallback(async () => {
     if (!selectedWorkedSource) return;
