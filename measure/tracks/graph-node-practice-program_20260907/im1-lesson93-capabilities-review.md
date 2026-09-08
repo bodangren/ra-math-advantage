@@ -74,7 +74,7 @@ All candidates are draft, inactive, and source-only.
 | `math.im1.skill.9.3.identify-bias-in-survey-wording` | Identify or evaluate bias in the wording of a survey question. | 3a; Problem 19 question-bias evaluation only |
 | `math.im1.skill.9.3.identify-contextual-bias-around-a-survey` | Identify bias caused by the context around a survey. | 4a |
 | `math.im1.skill.9.3.identify-who-benefits-from-survey-bias` | Identify whose interests a stated survey bias can serve. | 3b, 4b |
-| `math.im1.skill.9.3.select-a-measure-of-center-and-justify-the-selection` | Select a suitable measure of center and justify it from the data shape. | 5 selection, 6; Problem 11 stays manual until `best` has a defined objective |
+| `math.im1.skill.9.3.select-a-measure-of-center-and-justify-the-selection` | Select a suitable measure of center and justify it from the data shape. | Problem 5, selection response only; Problem 6, selection and justification; Problem 11 stays manual until `best` has a defined objective |
 | `math.im1.skill.9.3.evaluate-graph-scale-misrepresentation` | Decide whether axis-scale choices misrepresent data and explain the effect. | 7 |
 | `math.im1.skill.9.3.explain-how-axis-scale-affects-a-data-display` | Explain how a stated axis scale changes visual emphasis. | 8 |
 | `math.im1.skill.9.3.compare-sampling-frames-for-bias` | Compare stated sampling frames and justify which is less biased. | 9, 22 |
