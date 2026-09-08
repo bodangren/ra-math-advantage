@@ -515,3 +515,5 @@ Q38 first implementation is rejected. Parent review found hidden historical work
 Removed saved worktree dd99 after independent semantic review and parent comparison of all 360 paths. Main preserves 219 exact states; retained sibling 02d6 preserves 128 exact states. The other 20 saved worktrees remain intact. See `saved-dd99-full-preservation-review.md`.
 
 Removed the completed parent native-image directories for G49 and G50. All 18 image files match their committed public source assets. No authored content was removed. G51 native figures remain available while its graph review is active.
+
+Removed ten completed verification/base helpers and one G51 media extraction directory after full baseline and owned-file comparisons. The active G51 graph, Q38 saved-view, and live browser candidates remain intact. See `completed-verification-helper-cleanup-review.md`.
