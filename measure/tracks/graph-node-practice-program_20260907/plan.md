@@ -377,3 +377,5 @@ G47 source and graph review is complete. Source commit: `fbc8d457`. Graph commit
 Q37 unit 5 is committed as `923bf572`. Parent and independent review passed the corrected valid historical fixtures and exact source parity. Unit 6 query is committed as `a40ca6e2`. Parent and independent authority checks passed. Unit 6 route, form, dashboard, and full composed browser sequence remain open. A fresh candidate now implements the teacher surface.
 
 Cleanup after integration: removed the completed G47 worktree and both completed Precalculus archive candidates. Compared each owned file against the committed blob before removal. Shared dependency directories remain intact. Review of the 24 saved Codex worktrees continues without removal of uncommitted work.
+
+G48 second proposal review accepts the complete prompt inventory for source restoration. Graph review remains open because several proposed nodes repeat existing component operations or combine separate comparisons. Exact source restoration is in progress in an isolated candidate. See `im1-lesson95-proposal-second-review.md`.
