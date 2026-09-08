@@ -717,3 +717,5 @@ The IM1 stored coverage order defect is corrected in `02954d9d6`. All 499 record
 - [x] Task completed IM1 candidate cleanup: Remove the completed G53 through G55 candidate after final process checks. All 8,576 regular tracked files have reachable Git copies. Independent review found no unique authored content or mode changes. The remaining dependency links and build output are disposable. Preserve the current IM3 candidate.
 
 Removed the completed IM1 candidate after parent and independent content checks. All accepted source, graph, and coverage changes remain committed. See `im1-completed-candidate-cleanup-review.md`. The current IM3 candidate remains active.
+
+- [~] Task bda5 and d243 preservation: Save ten unique bda5 files and eleven unique d243 files in separate recovery commits on their exact saved base. Preserve bytes and modes. The older graph proposals remain unreviewed. Remove the directories only after independent snapshot checks and final process checks.
