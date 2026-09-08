@@ -6,8 +6,8 @@
     "pilotEdgesPreserved": 0,
     "standardEdgesMerged": 941,
     "suggestedEdges": 1277,
-    "totalEdges": 2483,
-    "totalNodes": 971,
+    "totalEdges": 2491,
+    "totalNodes": 976,
     "normalizedWeights": 539
   },
   "nodes": [
@@ -6441,10 +6441,11 @@
     {
       "id": "math.im1.example.8.3.007",
       "kind": "worked_example",
-      "title": "Example 1: Write a Function from Two Points; Write a Function from a Graph",
+      "title": "Example 1: Write an exponential function from two points",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-8-class-period-plan.md (8-3, Example 1)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx (Example 1; Problems 1\u20136)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -6453,16 +6454,18 @@
         "lesson": "3",
         "exampleNumber": 1,
         "sourceLesson": "8-3",
-        "rawText": "8-3, Examples 1-2 \u2014 Write a Function from Two Points; Write a Function from a Graph"
-      }
+        "rawText": "Example 1 \u2014 Problems 1\u20136"
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.8.3.008",
       "kind": "worked_example",
-      "title": "Example 2: Write a Function from Two Points; Write a Function from a Graph",
+      "title": "Example 2: Write an exponential function from a graph",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-8-class-period-plan.md (8-3, Example 2)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx (Example 2; Problems 7\u201310)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -6471,16 +6474,18 @@
         "lesson": "3",
         "exampleNumber": 2,
         "sourceLesson": "8-3",
-        "rawText": "8-3, Examples 1-2 \u2014 Write a Function from Two Points; Write a Function from a Graph"
-      }
+        "rawText": "Example 2 \u2014 Problems 7\u201310"
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.8.3.009",
       "kind": "worked_example",
-      "title": "Example 3: Model Real-World Growth and Decay; Apply Compound Interest and Exponential Models",
+      "title": "Example 3: Write exponential growth and decay models",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-8-class-period-plan.md (8-3, Example 3)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx (Example 3; Problems 11\u201313)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -6489,16 +6494,18 @@
         "lesson": "3",
         "exampleNumber": 3,
         "sourceLesson": "8-3",
-        "rawText": "8-3, Examples 3-6 \u2014 Model Real-World Growth and Decay; Apply Compound Interest and Exponential Models"
-      }
+        "rawText": "Example 3 \u2014 Problems 11\u201313"
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.8.3.010",
       "kind": "worked_example",
-      "title": "Example 4: Model Real-World Growth and Decay; Apply Compound Interest and Exponential Models",
+      "title": "Examples 4\u20136: Apply exponential and compound-interest models",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-8-class-period-plan.md (8-3, Example 4)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx (Examples 4\u20136; Problems 14\u201321)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -6507,8 +6514,9 @@
         "lesson": "3",
         "exampleNumber": 4,
         "sourceLesson": "8-3",
-        "rawText": "8-3, Examples 3-6 \u2014 Model Real-World Growth and Decay; Apply Compound Interest and Exponential Models"
-      }
+        "rawText": "Examples 4\u20136 \u2014 Problems 14\u201321"
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.8.3.011",
@@ -6518,7 +6526,7 @@
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/module-8-class-period-plan.md (8-3, Example 5)"
       ],
-      "reviewStatus": "draft",
+      "reviewStatus": "rejected",
       "metadata": {
         "course": "im1",
         "module": "8",
@@ -6526,7 +6534,8 @@
         "exampleNumber": 5,
         "sourceLesson": "8-3",
         "rawText": "8-3, Examples 3-6 \u2014 Model Real-World Growth and Decay; Apply Compound Interest and Exponential Models"
-      }
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.8.3.012",
@@ -6536,7 +6545,7 @@
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/module-8-class-period-plan.md (8-3, Example 6)"
       ],
-      "reviewStatus": "draft",
+      "reviewStatus": "rejected",
       "metadata": {
         "course": "im1",
         "module": "8",
@@ -6544,7 +6553,8 @@
         "exampleNumber": 6,
         "sourceLesson": "8-3",
         "rawText": "8-3, Examples 3-6 \u2014 Model Real-World Growth and Decay; Apply Compound Interest and Exponential Models"
-      }
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.8.4.013",
@@ -11065,7 +11075,8 @@
       "description": "Write an equation for a transformed exponential function from its graph.",
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx",
-        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx (Examples 4\u20135 and 9, Problems 13\u201316; Mixed Exercises, Problems 37\u201340)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0802_practice.docx (Examples 4\u20135 and 9, Problems 13\u201316; Mixed Exercises, Problems 37\u201340)",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx (Example 2, Problems 7\u201310)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -11078,34 +11089,38 @@
     {
       "id": "math.im1.skill.8.3.apply-the-compound-interest-formula-to-investment-and-deprec",
       "kind": "skill",
-      "title": "8f: Apply the compound-interest formula to investment and depreciation problems",
+      "title": "Calculate a compound-interest balance from principal, rate, compounding frequency, and time",
       "domain": "math.im1",
-      "description": "Apply the compound-interest formula to investment and depreciation problems",
+      "description": "Calculate a compound-interest balance from principal, rate, compounding frequency, and time.",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-8-class-period-plan.md"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx (Examples 4\u20136, Problems 16 and 20)"
       ],
       "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "8",
         "lesson": "3"
-      }
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.skill.8.3.write-an-exponential-function-given-two-points-on-its-graph",
       "kind": "skill",
-      "title": "8e: Write an exponential function given two points on its graph",
+      "title": "Write an exponential function from two points",
       "domain": "math.im1",
-      "description": "Write an exponential function given two points on its graph",
+      "description": "Write an exponential function from two points.",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-8-class-period-plan.md"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx (Example 1, Problems 1\u20136; Mixed Exercises, Problems 22\u201324)"
       ],
       "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "8",
         "lesson": "3"
-      }
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.skill.8.4.rewrite-exponential-functions-so-rates-share-the-same-time-u",
@@ -17090,6 +17105,96 @@
         "course": "im1",
         "module": "8",
         "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.skill.8.3.write-an-exponential-growth-or-decay-model-from-context",
+      "kind": "skill",
+      "title": "Write an exponential growth or decay model from context",
+      "domain": "math.im1",
+      "description": "Write an exponential growth or decay model from context.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx (Example 3, Problems 11\u201313; Examples 4\u20136, Problems 15(a) and 17(a); Mixed Exercises, Problem 28(a))"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.8.3.write-a-compound-interest-model-from-financial-terms",
+      "kind": "skill",
+      "title": "Write a compound-interest model from financial terms",
+      "domain": "math.im1",
+      "description": "Write a compound-interest model from financial terms.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx (Examples 4\u20136, Problem 14)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.8.3.write-an-exponential-function-from-equally-spaced-table-data",
+      "kind": "skill",
+      "title": "Write an exponential function from equally spaced table data",
+      "domain": "math.im1",
+      "description": "Write an exponential function from equally spaced table data.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx (Mixed Exercises, Problem 29(a))"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.8.3.solve-an-exponential-model-for-time-with-technology",
+      "kind": "skill",
+      "title": "Solve an exponential model for time with technology",
+      "domain": "math.im1",
+      "description": "Solve an exponential model for time with technology.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx (Mixed Exercises, Problems 26(c), 27, and 31)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.8.3.determine-the-percent-growth-rate-from-an-exponential-growth-factor",
+      "kind": "skill",
+      "title": "Determine the percent growth rate from an exponential growth factor",
+      "domain": "math.im1",
+      "description": "Determine the percent growth rate from an exponential growth factor.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0803_practice.docx (Mixed Exercises, Problem 30)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "3"
       }
     }
   ],
@@ -55946,38 +56051,6 @@
       }
     },
     {
-      "id": "math.im1.edge.1036",
-      "type": "contains",
-      "sourceId": "math.im1.lesson.8.3",
-      "targetId": "math.im1.example.8.3.011",
-      "weight": 1,
-      "confidence": "high",
-      "reviewStatus": "draft",
-      "derived": true,
-      "derivationMethod": "lesson-sequence-containment-v1",
-      "rationale": "Lesson contains worked example",
-      "metadata": {
-        "module": "8",
-        "lesson": "3"
-      }
-    },
-    {
-      "id": "math.im1.edge.1037",
-      "type": "contains",
-      "sourceId": "math.im1.lesson.8.3",
-      "targetId": "math.im1.example.8.3.012",
-      "weight": 1,
-      "confidence": "high",
-      "reviewStatus": "draft",
-      "derived": true,
-      "derivationMethod": "lesson-sequence-containment-v1",
-      "rationale": "Lesson contains worked example",
-      "metadata": {
-        "module": "8",
-        "lesson": "3"
-      }
-    },
-    {
       "id": "math.im1.edge.1038",
       "type": "contains",
       "sourceId": "math.im1.lesson.8.3",
@@ -59290,22 +59363,6 @@
       "metadata": {
         "fromLesson": "6.3",
         "toLesson": "6.4"
-      }
-    },
-    {
-      "id": "math.im1.edge.1267",
-      "type": "prerequisite_for",
-      "sourceId": "math.im1.skill.8.3.write-an-exponential-function-given-two-points-on-its-graph",
-      "targetId": "math.im1.skill.8.4.rewrite-exponential-functions-so-rates-share-the-same-time-u",
-      "weight": 0.5,
-      "confidence": "low",
-      "reviewStatus": "draft",
-      "derived": true,
-      "derivationMethod": "lesson-sequence-prerequisite-v1",
-      "rationale": "Lesson-sequence prerequisite: lesson 3 precedes lesson 4 in module 8",
-      "metadata": {
-        "fromLesson": "8.3",
-        "toLesson": "8.4"
       }
     },
     {
@@ -64172,6 +64229,171 @@
       "metadata": {
         "module": "8",
         "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im1.g40.contains.skill.1",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.8.3",
+      "targetId": "math.im1.skill.8.3.write-an-exponential-growth-or-decay-model-from-context",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 8-3 source contains this exact capability.",
+      "metadata": {
+        "module": "8",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.g40.contains.skill.2",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.8.3",
+      "targetId": "math.im1.skill.8.3.write-a-compound-interest-model-from-financial-terms",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 8-3 source contains this exact capability.",
+      "metadata": {
+        "module": "8",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.g40.contains.skill.3",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.8.3",
+      "targetId": "math.im1.skill.8.3.write-an-exponential-function-from-equally-spaced-table-data",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 8-3 source contains this exact capability.",
+      "metadata": {
+        "module": "8",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.g40.contains.skill.4",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.8.3",
+      "targetId": "math.im1.skill.8.3.solve-an-exponential-model-for-time-with-technology",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 8-3 source contains this exact capability.",
+      "metadata": {
+        "module": "8",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.g40.contains.skill.5",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.8.3",
+      "targetId": "math.im1.skill.8.3.determine-the-percent-growth-rate-from-an-exponential-growth-factor",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 8-3 source contains this exact capability.",
+      "metadata": {
+        "module": "8",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.g40.contains.reuse.1",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.8.3",
+      "targetId": "math.im1.skill.8.1.evaluate-and-interpret-an-exponential-model-at-a-given-input",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 8-3 directly reuses this capability.",
+      "metadata": {
+        "module": "8",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.g40.contains.reuse.2",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.8.3",
+      "targetId": "math.im1.skill.8.1.determine-the-initial-value-or-y-intercept-of-an-exponential-function",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 8-3 directly reuses this capability.",
+      "metadata": {
+        "module": "8",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.g40.contains.reuse.3",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.8.3",
+      "targetId": "math.im1.skill.8.1.classify-growth-or-decay-in-an-exponential-model",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 8-3 directly reuses this capability.",
+      "metadata": {
+        "module": "8",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.g40.contains.reuse.4",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.8.3",
+      "targetId": "math.im1.skill.8.1.identify-exponential-behavior-from-data-using-common-ratios",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 8-3 directly reuses this capability.",
+      "metadata": {
+        "module": "8",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.g40.contains.reuse.5",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.8.3",
+      "targetId": "math.im1.skill.8.2.write-equations-for-transformed-exponential-functions-given",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 8-3 directly reuses this capability.",
+      "metadata": {
+        "module": "8",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.g40.contains.reuse.6",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.8.3",
+      "targetId": "math.im1.skill.4.2.calculate-the-rate-of-change-from-a-table",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 8-3 directly reuses this capability.",
+      "metadata": {
+        "module": "8",
+        "lesson": "3"
       }
     }
   ]

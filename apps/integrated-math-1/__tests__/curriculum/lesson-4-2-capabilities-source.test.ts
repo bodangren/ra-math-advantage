@@ -70,8 +70,9 @@ describe('Lesson 4-2 source capabilities', () => {
     const ids = [...skills.map(([id]) => id), ...examples.slice(6, 9).map(([id]) => id)];
     for (const id of ids) {
       const related = graph.edges.filter((edge) => edge.sourceId === id || edge.targetId === id);
-      expect(related).toHaveLength(1);
-      expect(related[0]).toMatchObject({ type: 'contains', sourceId: lessonId, targetId: id, reviewStatus: 'draft' });
+      expect(related).toHaveLength(id === 'math.im1.skill.4.2.calculate-the-rate-of-change-from-a-table' ? 2 : 1);
+      expect(related).toEqual(expect.arrayContaining([expect.objectContaining({ type: 'contains', sourceId: lessonId, targetId: id, reviewStatus: 'draft' })]));
+      expect(related.every((edge) => edge.type === 'contains' && edge.targetId === id)).toBe(true);
     }
   });
 

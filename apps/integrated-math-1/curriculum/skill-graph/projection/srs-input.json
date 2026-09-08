@@ -1784,9 +1784,7 @@
         "math.standard.ccss.f-le-a-4",
         "math.standard.ccss.f-le-b-5"
       ],
-      "prerequisites": [
-        "math.im1.skill.8.3.write-an-exponential-function-given-two-points-on-its-graph"
-      ],
+      "prerequisites": [],
       "difficulty": 0.5,
       "rendererKey": "graphing-explorer",
       "generatorKey": null,
@@ -2527,6 +2525,56 @@
       "generatorKey": null,
       "generatorReady": false,
       "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.3.write-an-exponential-growth-or-decay-model-from-context",
+      "blueprintId": "math.im1.skill.8.3.write-an-exponential-growth-or-decay-model-from-context",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.3.write-a-compound-interest-model-from-financial-terms",
+      "blueprintId": "math.im1.skill.8.3.write-a-compound-interest-model-from-financial-terms",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.3.write-an-exponential-function-from-equally-spaced-table-data",
+      "blueprintId": "math.im1.skill.8.3.write-an-exponential-function-from-equally-spaced-table-data",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.3.solve-an-exponential-model-for-time-with-technology",
+      "blueprintId": "math.im1.skill.8.3.solve-an-exponential-model-for-time-with-technology",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.3.determine-the-percent-growth-rate-from-an-exponential-growth-factor",
+      "blueprintId": "math.im1.skill.8.3.determine-the-percent-growth-rate-from-an-exponential-growth-factor",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
     }
   ]
 }

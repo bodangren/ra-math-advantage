@@ -3826,7 +3826,8 @@
     {
       "nodeId": "math.im1.skill.8.2.write-equations-for-transformed-exponential-functions-given",
       "sourceNodeIds": [
-        "math.im1.example.8.2.005"
+        "math.im1.example.8.2.005",
+        "math.im1.example.8.3.008"
       ],
       "alignmentNodeIds": [
         "math.standard.ccss.f-bf-a-1",
@@ -3841,25 +3842,12 @@
     },
     {
       "nodeId": "math.im1.skill.8.3.apply-the-compound-interest-formula-to-investment-and-deprec",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im1.example.8.3.010"
+      ],
       "alignmentNodeIds": [
         "math.standard.ccss.a-ced-a-1",
         "math.standard.ccss.f-le-a-2"
-      ],
-      "rendererKey": "step-by-step-solver",
-      "rendererModeMap": {
-        "worked": "step-by-step-solver",
-        "guidedPractice": "step-by-step-solver",
-        "independentPractice": "step-by-step-solver"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
-      "exceptions": [
-        {
-          "type": "generator",
-          "reason": "Generator not yet implemented for IM1 rollout"
-        }
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -3870,25 +3858,12 @@
     },
     {
       "nodeId": "math.im1.skill.8.3.write-an-exponential-function-given-two-points-on-its-graph",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im1.example.8.3.007"
+      ],
       "alignmentNodeIds": [
         "math.standard.ccss.a-ced-a-1",
         "math.standard.ccss.f-le-a-2"
-      ],
-      "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
-      "exceptions": [
-        {
-          "type": "generator",
-          "reason": "Generator not yet implemented for IM1 rollout"
-        }
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7440,6 +7415,66 @@
         "course": "im1",
         "module": "8",
         "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.8.3.write-an-exponential-growth-or-decay-model-from-context",
+      "sourceNodeIds": [
+        "math.im1.example.8.3.009",
+        "math.im1.example.8.3.010"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.8.3.write-a-compound-interest-model-from-financial-terms",
+      "sourceNodeIds": [
+        "math.im1.example.8.3.010"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.8.3.write-an-exponential-function-from-equally-spaced-table-data",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.8.3.solve-an-exponential-model-for-time-with-technology",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.8.3.determine-the-percent-growth-rate-from-an-exponential-growth-factor",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "3"
       }
     }
   ]

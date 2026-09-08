@@ -2,7 +2,9 @@
   "metadata": {
     "course": "im1",
     "generatedAt": "2026-05-10T06:41:48.253Z",
-    "description": "IM1 practice.v1 activity map projection from skill graph"
+    "description": "IM1 practice.v1 activity map projection from skill graph",
+    "totalActivities": 375,
+    "totalSrsInputs": 203
   },
   "activities": [
     {
@@ -7828,152 +7830,6 @@
       "srsEligible": false
     },
     {
-      "stableActivityId": "math.im1.skill.8.3.apply-the-compound-interest-formula-to-investment-and-deprec.worked_example",
-      "nodeId": "math.im1.skill.8.3.apply-the-compound-interest-formula-to-investment-and-deprec",
-      "sourceNodeIds": [],
-      "rendererKey": "step-by-step-solver",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-ced-a-1",
-        "math.standard.ccss.f-le-a-2"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.8.3.apply-the-compound-interest-formula-to-investment-and-deprec",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.8.3.apply-the-compound-interest-formula-to-investment-and-deprec.guided_practice",
-      "nodeId": "math.im1.skill.8.3.apply-the-compound-interest-formula-to-investment-and-deprec",
-      "sourceNodeIds": [],
-      "rendererKey": "step-by-step-solver",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-ced-a-1",
-        "math.standard.ccss.f-le-a-2"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 8f: Apply the compound-interest formula to investment and depreciation problems",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.8.3.apply-the-compound-interest-formula-to-investment-and-deprec.independent_practice",
-      "nodeId": "math.im1.skill.8.3.apply-the-compound-interest-formula-to-investment-and-deprec",
-      "sourceNodeIds": [],
-      "rendererKey": "step-by-step-solver",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-ced-a-1",
-        "math.standard.ccss.f-le-a-2"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.8.3.write-an-exponential-function-given-two-points-on-its-graph.worked_example",
-      "nodeId": "math.im1.skill.8.3.write-an-exponential-function-given-two-points-on-its-graph",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-ced-a-1",
-        "math.standard.ccss.f-le-a-2"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.8.3.write-an-exponential-function-given-two-points-on-its-graph",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.8.3.write-an-exponential-function-given-two-points-on-its-graph.guided_practice",
-      "nodeId": "math.im1.skill.8.3.write-an-exponential-function-given-two-points-on-its-graph",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-ced-a-1",
-        "math.standard.ccss.f-le-a-2"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 8e: Write an exponential function given two points on its graph",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.8.3.write-an-exponential-function-given-two-points-on-its-graph.independent_practice",
-      "nodeId": "math.im1.skill.8.3.write-an-exponential-function-given-two-points-on-its-graph",
-      "sourceNodeIds": [],
-      "rendererKey": "graphing-explorer",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.a-ced-a-1",
-        "math.standard.ccss.f-le-a-2"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
       "stableActivityId": "math.im1.skill.8.4.rewrite-exponential-functions-so-rates-share-the-same-time-u.worked_example",
       "nodeId": "math.im1.skill.8.4.rewrite-exponential-functions-so-rates-share-the-same-time-u",
       "sourceNodeIds": [],
@@ -10986,9 +10842,7 @@
         "math.standard.ccss.f-le-a-4",
         "math.standard.ccss.f-le-b-5"
       ],
-      "prerequisites": [
-        "math.im1.skill.8.3.write-an-exponential-function-given-two-points-on-its-graph"
-      ],
+      "prerequisites": [],
       "difficulty": 0.5,
       "rendererKey": "graphing-explorer",
       "generatorKey": null,
@@ -11714,6 +11568,56 @@
       "generatorKey": null,
       "generatorReady": false,
       "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.3.write-an-exponential-growth-or-decay-model-from-context",
+      "blueprintId": "math.im1.skill.8.3.write-an-exponential-growth-or-decay-model-from-context",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.3.write-a-compound-interest-model-from-financial-terms",
+      "blueprintId": "math.im1.skill.8.3.write-a-compound-interest-model-from-financial-terms",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.3.write-an-exponential-function-from-equally-spaced-table-data",
+      "blueprintId": "math.im1.skill.8.3.write-an-exponential-function-from-equally-spaced-table-data",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.3.solve-an-exponential-model-for-time-with-technology",
+      "blueprintId": "math.im1.skill.8.3.solve-an-exponential-model-for-time-with-technology",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.3.determine-the-percent-growth-rate-from-an-exponential-growth-factor",
+      "blueprintId": "math.im1.skill.8.3.determine-the-percent-growth-rate-from-an-exponential-growth-factor",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
     }
   ],
   "teacherEvidence": {

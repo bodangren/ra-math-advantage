@@ -1,10 +1,10 @@
 {
   "version": 1,
   "course": "im1",
-  "totalSkills": 372,
+  "totalSkills": 377,
   "counts": {
     "served": 6,
-    "gap": 366,
+    "gap": 371,
     "newComponent": 0
   },
   "byModule": [
@@ -59,9 +59,9 @@
     },
     {
       "module": "8",
-      "totalSkills": 26,
+      "totalSkills": 31,
       "served": 0,
-      "gap": 26,
+      "gap": 31,
       "newComponent": 0
     },
     {
@@ -2381,11 +2381,51 @@
       "priority": "standard"
     },
     {
+      "skillId": "math.im1.skill.8.3.determine-the-percent-growth-rate-from-an-exponential-growth-factor",
+      "module": "8",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.8.3.solve-an-exponential-model-for-time-with-technology",
+      "module": "8",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.8.3.write-a-compound-interest-model-from-financial-terms",
+      "module": "8",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.8.3.write-an-exponential-function-from-equally-spaced-table-data",
+      "module": "8",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
       "skillId": "math.im1.skill.8.3.write-an-exponential-function-given-two-points-on-its-graph",
       "module": "8",
       "status": "gap",
       "tier": "none",
       "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.8.3.write-an-exponential-growth-or-decay-model-from-context",
+      "module": "8",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "step-by-step-solver",
       "priority": "standard"
     },
     {

@@ -1010,20 +1010,20 @@
     },
     {
       "nodeId": "math.im1.skill.8.3.apply-the-compound-interest-formula-to-investment-and-deprec",
-      "title": "8f: Apply the compound-interest formula to investment and depreciation problems",
+      "title": "Calculate a compound-interest balance from principal, rate, compounding frequency, and time",
       "module": "8",
       "rendererKey": "step-by-step-solver",
       "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
-      "gap": "No generator available for IM1",
+      "gap": "Planning classification only; no reviewed renderer contract",
       "priority": "standard"
     },
     {
       "nodeId": "math.im1.skill.8.3.write-an-exponential-function-given-two-points-on-its-graph",
-      "title": "8e: Write an exponential function given two points on its graph",
+      "title": "Write an exponential function from two points",
       "module": "8",
       "rendererKey": "graphing-explorer",
       "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
-      "gap": "No generator available for IM1",
+      "gap": "Planning classification only; no reviewed renderer contract",
       "priority": "standard"
     },
     {
@@ -3293,10 +3293,56 @@
       "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
       "gap": "No generator available for IM1",
       "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.3.write-an-exponential-growth-or-decay-model-from-context",
+      "title": "Write an exponential growth or decay model from context",
+      "module": "8",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.3.write-a-compound-interest-model-from-financial-terms",
+      "title": "Write a compound-interest model from financial terms",
+      "module": "8",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.3.write-an-exponential-function-from-equally-spaced-table-data",
+      "title": "Write an exponential function from equally spaced table data",
+      "module": "8",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill \u2192 graphing-explorer",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.3.solve-an-exponential-model-for-time-with-technology",
+      "title": "Solve an exponential model for time with technology",
+      "module": "8",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.3.determine-the-percent-growth-rate-from-an-exponential-growth-factor",
+      "title": "Determine the percent growth rate from an exponential growth factor",
+      "module": "8",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill \u2192 step-by-step-solver",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "standard"
     }
   ],
   "meta": {
-    "totalSkills": 366,
-    "allNeedGenerators": true
+    "totalSkills": 371,
+    "allNeedGenerators": true,
+    "total": 371
   }
 }

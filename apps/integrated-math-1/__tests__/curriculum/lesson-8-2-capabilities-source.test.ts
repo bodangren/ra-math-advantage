@@ -62,7 +62,7 @@ describe('Lesson 8-2 graph source boundary', () => {
       expect(copy.nodes.find((node) => node.id === graphEquation)).toMatchObject({ title: 'Write an equation for a transformed exponential function from its graph', reviewStatus: 'draft', independentPracticeReady: false });
     }
     expect(catalog.blueprints.find((row) => row.nodeId === aggregate)).toMatchObject({ sourceNodeIds: [], reviewStatus: 'draft' });
-    expect(catalog.blueprints.find((row) => row.nodeId === graphEquation)).toMatchObject({ sourceNodeIds: ['math.im1.example.8.2.005'], reviewStatus: 'draft' });
+    expect(catalog.blueprints.find((row) => row.nodeId === graphEquation)).toMatchObject({ sourceNodeIds: ['math.im1.example.8.2.005', 'math.im1.example.8.3.008'], reviewStatus: 'draft' });
     expect(map.activities.filter((row) => [aggregate, graphEquation].includes(row.nodeId))).toEqual([]);
   });
 
