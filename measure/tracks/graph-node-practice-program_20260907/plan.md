@@ -702,10 +702,12 @@ G55 graph repair is committed as `cd3966d85`. Four new capabilities remain draft
 
 - [x] Task b73d and bc11 preservation: Save the eleven unique b73d files and twelve unique bc11 files in separate recovery commits on their exact saved base. Verify bytes and modes. These snapshots preserve historical candidates without integrating or approving them. Keep both directories until independent final state review passes.
 
-- [~] Task IM1 coverage order: Correct the demonstrated stored matrix order defect in one separate change. Use the existing coverage builder order. Preserve all 499 records and all aggregate values. Change only the stored coverage matrix and do not change the builder or test contract. The existing parity test fails on committed HEAD before this repair. Verify parity and audit tests after repair.
+- [x] Task IM1 coverage order: Correct the demonstrated stored matrix order defect in one separate change. Use the existing coverage builder order. Preserve all 499 records and all aggregate values. Change only the stored coverage matrix and do not change the builder or test contract. The existing parity test fails on committed HEAD before this repair. Verify parity and audit tests after repair.
 
 QF backend integration is committed as `91e71dd6d`. All nine staged files matched the accepted candidate. Parent and independent checks passed 42 tests. Lint, build, and separate TypeScript passed. Source placement, Guided step checks, varied later attempts, approval, and learner-flow verification remain open. See `im3-quadratic-formula-server-final-review.md`.
 
 Removed b73d and bc11 after exact preservation and independent review. Recovery commits `9b8064d8d` and `1a0de0c90` preserve their 23 unique files. The other 701 states have retained copies. Four saved worktrees remain. See `saved-b73d-bc11-final-cleanup-review.md`.
 
 - [~] Task bda5 and d243 cleanup review: Inspect the last two duplicate saved candidates before the retained reference worktrees. Compare every working state with retained copies and reachable history. Identify unique files, modes, links, ignored content, and active processes. Keep both directories until exact preservation and independent checks pass.
+
+The IM1 stored coverage order defect is corrected in `02954d9d6`. All 499 record bodies and all aggregate values are unchanged. Parent and independent checks passed all 37 audit and coverage tests. Builder parity now passes. See `im1-coverage-order-final-review.md`.
