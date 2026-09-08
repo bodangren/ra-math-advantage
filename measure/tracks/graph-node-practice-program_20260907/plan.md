@@ -419,3 +419,5 @@ G48 broad parent tests found 14 failures in derived counts and audit text. The c
 - [~] Task Q37 assistance: Add requested per-part hints and answer reveals to the selected interval activity. Preserve counters through the parent envelope, freeze the attempt through ambiguous retry, and verify server grading and rating effects. Use the existing per-segment endpoint, union, and none conventions. See `precalc-runtime-assistance-plan.md`.
 
 G49 corrected source inventory is accepted for exact source restoration. It preserves separate Example 1 and Example 2 identities and explicitly treats combined Examples 3 and 4. The 11-candidate graph count remains provisional pending combined-operation and explanation review. See `im1-lesson96-capabilities-review.md`.
+
+- [~] Task Q37 Worked pending guard: The real browser sent two POST requests from two clicks in one event cycle. Add an immediate in-flight ref guard to the existing Worked acknowledgement component. Add a deferred-request regression with same-cycle clicks and verify same-key retry after failure. Keep receipt checks and the completed acknowledgement value-comparison fix.
