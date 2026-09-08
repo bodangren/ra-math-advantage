@@ -340,3 +340,5 @@ G46 graph correction is committed as `a161f18b`. The parent accepted the correct
 Q37 unit 5 seed dependency review is recorded in `precalc-runtime-unit5-seed-review.md`. Integration remains pending unit 4 acceptance.
 
 Q37 unit 4 parent inspection also found a browser-generated Guided and Independent fallback that conflicts with the selected server-props contract. The worker must remove it before acceptance. The unit 4 plan now distinguishes the committed legacy seed from the pending selected seed. Unit 5 is specified in `precalc-runtime-unit5-plan.md` and waits for unit 4 integration.
+
+G47 parent inspection verified all three native figures. The first proposal needs separate Problem 27 responses, removal of an added independence assumption, and an odd-size quartile convention boundary. Conditional prerequisite proposals remain unaccepted. See `im1-lesson94-parent-source-review.md`.
