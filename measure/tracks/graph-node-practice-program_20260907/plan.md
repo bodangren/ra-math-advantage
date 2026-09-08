@@ -526,7 +526,7 @@ Removed the completed G51 source/graph archive and its 17-image native extractio
 
 Q38 saved-result implementation is committed as `ffca7ea29`. Final independent review accepts all eight paths. Parent 114 tests, lint, build, post-build TypeScript, and 21 workspace resolutions pass. Actual saved-result browser verification is in progress. See `precalc-saved-practice-views-integration.md`.
 
-- [~] Task Q40 Precalculus brand symbol: Correct the literal Unicode escape visible in the actual header and footer. Reuse the existing integral-symbol prop. Verify both rendered symbols and the browser result. Keep this separate from Q38 saved-result acceptance.
+- [x] Task Q40 Precalculus brand symbol: Correct the literal Unicode escape visible in the actual header and footer. Reuse the existing integral-symbol prop. Verify both rendered symbols and the browser result. Keep this separate from Q38 saved-result acceptance.
 
 Removed saved worktree 0485 after full state and semantic review. Retained 02d6 preserves 355 of its 356 states. The sole unique aggregate is superseded. Branch `codex/preserve-0485-im3-lesson17` preserves four committed Lesson 1.7 changes that were not in main history. The other 19 saved worktrees remain intact. See `saved-0485-full-preservation-review.md`.
 
@@ -535,3 +535,5 @@ Removed the completed Q38 applied verification archive after exact committed-fil
 - [~] Task G53: Review IM1 Lesson 10-2 from `Int1_1002_practice.docx`. Inventory every source prompt and diagram. Identify exact assessable responses, existing stable source identities, valid skill reuse, manual-review boundaries, and evidence for prerequisite claims. Do not use lesson order as a prerequisite. Produce a bounded proposal before source or graph edits.
 
 Q38 browser verification is accepted. Lesson and dashboard reads preserve all learner records with zero POSTs. Saved receipt retry preserves attempt identity; new attempt 3 uses a new identity. Independent review accepts the full evidence. See `precalc-saved-practice-views-browser-verification.md`. The full Q37 matrix review remains in progress.
+
+Q40 is committed as `e8770f29b`. Parent and independent render tests and all app gates pass. Actual browser checks show the integral symbol in header and footer. Unit 7 independent review closes all nine required browser rows for the selected Topic 1.1 flow. Evidence preservation and live-environment cleanup are in progress. See `precalc-unit7-final-matrix-independent-review.md`.
