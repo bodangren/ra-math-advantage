@@ -1,152 +1,151 @@
 # Lesson 8-1 — Exponential Functions
 
-Source: (Module 8, Lesson 8-1, Int1_0801_practice.docx)
+Source: Module 8, Lesson 8-1, `Int1_0801_practice.docx`.
 
 ## Today's Goals
 
-* Determine whether a table of values represents an exponential relationship by examining common ratios.
-* Identify key features of exponential functions, including initial value, growth or decay factor, domain, range, and asymptote.
-* Graph exponential functions and interpret them in real-world contexts.
-* Compare exponential functions to linear functions using tables, graphs, and key characteristics.
+* Determine whether data displays exponential behavior.
+* Identify key features of exponential functions.
+* Graph exponential functions.
+* Interpret exponential models in context.
 
-## Vocabulary
+## Learn: Exponential Functions
 
-* **Exponential function** — A function of the form [ y = ab^x ], where [ a \ne 0 ], [ b > 0 ], and [ b \ne 1 ].
-* **Exponential growth** — A situation modeled by an exponential function with base [ b > 1 ], where values increase over time.
-* **Exponential decay** — A situation modeled by an exponential function with base [ 0 < b < 1 ], where values decrease over time.
-* **Half-life** — The time required for a quantity to decrease to half its initial value.
-* **Asymptote** — A line that a graph approaches but never touches; for basic exponential functions, the horizontal asymptote is [ y = 0 ].
-* **Common ratio** — The constant factor by which each term in an exponential sequence is multiplied to get the next term.
-* **Initial value** — The value of [ y ] when [ x = 0 ], represented by the parameter [ a ] in [ y = ab^x ].
+For equally spaced input values, compare each output with the preceding output. A constant positive output ratio other than 1 is evidence of exponential behavior. When you graph an exponential equation, use the equation to select points. Identify the intercept, domain, range, and horizontal asymptote from the completed graph and equation. Apply the stated domain and units when the equation models a context.
 
-## Learn: Recognizing Exponential Behavior
+## Example 1
 
-To determine whether a table displays exponential behavior, check whether the ratio of successive outputs is constant.
+Determine whether each set of data displays exponential behavior. Write yes or no. Explain why or why not.
 
-### Key Concept: Common Ratio Test
+### Problem 1
 
-* For equally spaced [ x ]-values, divide each [ y ]-value by the previous [ y ]-value.
-* If the ratio is constant, the data is exponential.
-* If the ratio is not constant (for example, first differences are constant), the data may be linear instead.
+| Variable | Value 1 | Value 2 | Value 3 | Value 4 |
+|---|---:|---:|---:|---:|
+| x | -3 | -2 | -1 | 0 |
+| y | 9 | 12 | 15 | 18 |
 
-## Learn: Key Features of Exponential Functions
+### Problem 2
 
-Exponential functions have a distinctive shape and predictable properties that make them useful for modeling growth and decay.
+| Variable | Value 1 | Value 2 | Value 3 | Value 4 |
+|---|---:|---:|---:|---:|
+| x | 0 | 5 | 10 | 15 |
+| y | 20 | 10 | 5 | 2.5 |
 
-### Key Concept: Exponential Function Features
+### Problem 3
 
-* The graph passes through [ (0, a) ], so the [ y ]-intercept is the initial value [ a ].
-* The domain is all real numbers: [ (-\infty, \infty) ].
-* The range depends on the sign of [ a ]: if [ a > 0 ], range is [ (0, \infty) ]; if [ a < 0 ], range is [ (-\infty, 0) ].
-* The horizontal asymptote is [ y = 0 ] unless the function is shifted vertically.
-* For [ b > 1 ], the function shows growth; for [ 0 < b < 1 ], it shows decay.
+| Variable | Value 1 | Value 2 | Value 3 | Value 4 |
+|---|---:|---:|---:|---:|
+| x | 4 | 8 | 12 | 16 |
+| y | 20 | 40 | 80 | 160 |
 
-## Example 1 — Identify Exponential Behavior from Data
+### Problem 4
 
-Determine whether a given table of values represents an exponential relationship. Write yes or no and explain.
+| Variable | Value 1 | Value 2 | Value 3 | Value 4 |
+|---|---:|---:|---:|---:|
+| x | 50 | 30 | 10 | -10 |
+| y | 90 | 70 | 50 | 30 |
 
-### Step 1: Check the Common Ratio
+### Problem 5
 
-For a table with equally spaced [ x ]-values, divide consecutive [ y ]-values to test for a constant ratio.
+**Picture frames.** A picture frame includes a border, so the picture must be smaller in area than the entire frame. The table shows the relationship between picture area and frame length for a particular line of frames. Is this an exponential relationship? Explain.
 
-For example, given:
-[
-\begin{array}{c|c}
-x & y \\
-\hline
-0 & 3 \\
-1 & 6 \\
-2 & 12 \\
-3 & 24 \\
-\end{array}
-]
+| Measure | Value 1 | Value 2 | Value 3 | Value 4 | Value 5 |
+|---|---:|---:|---:|---:|---:|
+| Frame length (in.) | 5 | 6 | 7 | 8 | 9 |
+| Picture area (in²) | 6 | 12 | 20 | 30 | 42 |
 
-Compute ratios:
-[
-\frac{6}{3} = 2, \quad \frac{12}{6} = 2, \quad \frac{24}{12} = 2
-]
+## Examples 2 and 3
 
-Since the ratio is constant, the data displays exponential behavior.
+### Problem 6
 
-### Step 2: Explain the Reasoning
+**Waste.** Suppose the waste generated by nonrecycled paper and cardboard products in tons y after x days can be approximated by the function `y = 1000(2)^(0.3x)`.
 
-State whether the relationship is exponential based on the common ratio test. If the ratios are not constant, identify what type of relationship the data does represent (for example, linear if first differences are constant).
+a. Identify key features.
 
-### Application: Picture Frames
+b. Graph the function.
 
-A table shows the relationship between picture area and frame length for a line of frames. Apply the common ratio test to determine whether the relationship is exponential and justify the answer.
+![Blank coordinate grid for Problem 6.](/curriculum/module-8-lesson-1/blank-coordinate-grid.png)
 
-## Examples 2 and 3 — Analyze Exponential Functions in Context
+c. Identify relevant domain and range.
 
-Given an exponential function that models a real-world situation, identify key features, graph the function, and determine the relevant domain and range.
+### Problem 7
 
-### Step 1: Identify Key Features
+**Iodine.** Iodine 131 is a radioisotope that is related to nuclear energy, medical diagnostic and treatment procedures, and natural gas production. A scientist is testing 50 milligrams of Iodine 131. The scientist knows that the half-life of Iodine 131 is about 8.02 days. The function `y = 50(1/2)^(x/8.02)` represents the amount of Iodine 131 remaining in milligrams y after x days.
 
-For a function such as:
-[
-y = 1000(2)^{0.3x}
-]
+a. Identify key features.
 
-Identify:
-* Initial value: [ a = 1000 ] 
-* Base: [ b = 2 ] 
-* Growth or decay: since [ b > 1 ], this is exponential growth
-* Horizontal asymptote: [ y = 0 ] 
+b. Graph the function.
 
-For a half-life function such as:
-[
-y = 50\left(\frac{1}{2}\right)^{\frac{x}{8.02}}
-]
+![Blank coordinate grid for Problem 7.](/curriculum/module-8-lesson-1/blank-coordinate-grid.png)
 
-Identify:
-* Initial amount: [ a = 50 ] milligrams
-* Decay factor: [ \frac{1}{2} ] 
-* Half-life: [ 8.02 ] days
-* Horizontal asymptote: [ y = 0 ] 
+c. Identify relevant domain and range.
 
-### Step 2: Graph the Function
+### Problem 8
 
-Plot the [ y ]-intercept at [ (0, a) ]. Use the growth or decay factor to find additional points. Sketch a smooth curve approaching the horizontal asymptote.
-
-### Step 3: Identify Relevant Domain and Range
-
-For real-world contexts, the domain is often restricted to non-negative values:
-[
-\text{Domain: } \lbrack 0, \infty)
-]
-
-The range depends on the initial value and whether the function represents growth or decay:
-[
-\text{Range: } (0, a] \text{ for decay, or } [a, \infty) \text{ for growth}
-]
-
-### Step 4: Evaluate the Function
-
-To find a value at a specific input, substitute into the equation. For example, given:
-[
-y = 4000(0.87)^x
-]
-
-to find the value 5 years after purchase, evaluate:
-[
-y = 4000(0.87)^5
-]
-
-Round to the nearest dollar as appropriate.
+**Depreciation.** Suppose a company's computer equipment is decreasing in value according to the function `y = 4000(0.87)^x`. In the equation, x represents the number of years that have elapsed since the equipment was purchased, and y represents the value in dollars. What was the value 5 years after the computer equipment was purchased? Round your answer to the nearest dollar.
 
 ## Mixed Exercises
 
-The mixed exercises provide comprehensive practice with exponential functions. Students graph functions, find [ y ]-intercepts, and state the domain, range, and equation of the horizontal asymptote. The exercises include functions with various bases and coefficients, such as:
-[
-y = 2\left(\frac{1}{6}\right)^x, \quad y = \left(\frac{1}{12}\right)^x, \quad y = -3(9)^x, \quad y = -4(10)^x, \quad y = 3(11)^x, \quad y = 4^x + 3
-]
+Graph each function. Find the y-intercept and state the domain, range, and the equation of the asymptote.
 
-Word problems apply exponential functions to atmospheric pressure, requiring students to evaluate the function at sea level and at a given altitude and to describe how pressure changes as altitude increases. Additional problems ask students to compare exponential and linear functions using tables and graphs, create an exponential function passing through two given points, analyze whether an exponential graph can have an [ x ]-intercept, and write a real-world situation modeled by an exponential function.
+### Problem 9
 
-## Review Notes
+`y = 2(1/6)^x`
 
-* Problems 1–4 contain tables of values presented as images; the specific [ x ] and [ y ] values were not transcribed. A human reviewer should verify the table contents from the original worksheet.
-* Problem 5 contains a table (picture area versus frame length) presented as an image; the specific values should be verified from the original worksheet.
-* Graphing grids for problems 6b, 7b, and 9–14 are presented as images and cannot be displayed in this source file. These are standard coordinate-plane grids for hand-sketching exponential curves.
-* The half-life of Iodine 131 is stated as approximately 8.02 days in the original worksheet.
-* The meteorology problem uses the function [ f(x) = 1038(1.000134)^{-x} ] for atmospheric pressure at altitude [ x ] meters, where [ 0 \le x \le 10{,}000 ].
+![Blank coordinate grid for Problem 9.](/curriculum/module-8-lesson-1/blank-coordinate-grid.png)
+
+### Problem 10
+
+`y = (1/12)^x`
+
+![Blank coordinate grid for Problem 10.](/curriculum/module-8-lesson-1/blank-coordinate-grid.png)
+
+### Problem 11
+
+`y = -3(9^x)`
+
+![Blank coordinate grid for Problem 11.](/curriculum/module-8-lesson-1/blank-coordinate-grid.png)
+
+### Problem 12
+
+`y = -4(10^x)`
+
+![Blank coordinate grid for Problem 12.](/curriculum/module-8-lesson-1/blank-coordinate-grid.png)
+
+### Problem 13
+
+`y = 3(11^x)`
+
+![Blank coordinate grid for Problem 13.](/curriculum/module-8-lesson-1/blank-coordinate-grid.png)
+
+### Problem 14
+
+`y = 4^x + 3`
+
+![Blank coordinate grid for Problem 14.](/curriculum/module-8-lesson-1/blank-coordinate-grid.png)
+
+### Problem 15
+
+**Meteorology.** The atmospheric pressure in millibars at altitude x meters above sea level can be approximated by the function `f(x) = 1038(1.000134)^(-x)` when x is between 0 and 10,000.
+
+a. What is the atmospheric pressure at sea level?
+
+b. The McDonald Observatory in Texas is at an altitude of 2000 meters. What is the approximate atmospheric pressure there?
+
+c. As altitude increases, what happens to atmospheric pressure?
+
+### Problem 16
+
+**Persevere.** Use tables and graphs to compare and contrast an exponential function `f(x) = ab^x + c`, where `a != 0`, `b > 0`, and `b != 1`, and a linear function `g(x) = ax + c`. Include intercepts, symmetry, end behavior, extrema, and intervals where the functions are increasing, decreasing, positive, or negative.
+
+### Problem 17
+
+**Create.** Write an exponential function for which the graph passes through `(0, 3)` and `(1, 6)`.
+
+### Problem 18
+
+**Analyze.** Determine whether the graph of `y = ab^x`, where `a != 0`, `b > 0`, and `b != 1`, sometimes, always, or never has an x-intercept. Justify your argument.
+
+### Problem 19
+
+**Write.** Find an exponential function that represents a real-world situation, and graph the function. Analyze the graph, and explain why the situation is modeled by an exponential function rather than a linear function.
