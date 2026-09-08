@@ -12,7 +12,7 @@ The patch removes prerequisite edge `1263` and the rejected duplicate source con
 
 ## Current inventory
 
-The artifacts contain 948 nodes, 2,463 edges, 350 skill candidates, 346 blueprints, 396 projected activities, and 175 SRS planning rows. There are 344 generator gaps, six registered bindings, and 132 approved skill nodes. The 220 source-only blueprints and 120 empty-mode blueprints do not establish production readiness.
+The artifacts contain 948 nodes, 2,463 edges, 350 skill candidates, 346 blueprints, 396 projected activities, and 175 SRS planning rows. There are 344 generator gaps, six registered bindings, and 131 approved skill nodes. The 220 source-only blueprints and 120 empty-mode blueprints do not establish production readiness.
 
 ## Review corrections
 
@@ -29,3 +29,7 @@ Logs are `/tmp/im1-g36-parent-main-final-tests.log`, `/tmp/im1-g36-parent-covera
 ## Remaining work
 
 The six new capabilities remain draft and inactive. Source approval and usable three-mode practice remain open. No live seed or deployment ran. Lesson 7-5 source review is active.
+
+## Count correction
+
+A later comparison with the committed node array corrected the approved-skill count from 132 to 131. G36 changed legacy 7g from approved to draft. The earlier total did not subtract that row. This correction does not change a node review state.

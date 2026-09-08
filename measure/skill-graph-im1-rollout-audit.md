@@ -20,7 +20,7 @@ This audit contains a frozen 2026-05-10 baseline and a current source-inventory 
 - Blueprint rows with three schema-valid mode specifications: 6.
 - Blueprint rows with three empty mode specifications: 120.
 - Source-only blueprint rows without mode specifications: 220.
-- Approved skill nodes in the current graph: 132.
+- Approved skill nodes in the current graph: 131.
 
 The legacy coverage matrix status `served` means only that `IM1_GENERATORS` contains the node ID. It does not mean that the application serves a complete Worked, Guided, and Independent practice path. It does not prove renderer wiring, answer concealment, server grading, evidence persistence, or readiness approval. No production-served total is established by this inventory.
 
