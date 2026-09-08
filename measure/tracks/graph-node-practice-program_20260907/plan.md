@@ -383,3 +383,5 @@ G48 second proposal review accepts the complete prompt inventory for source rest
 - [~] Task Q37 unit 7: Prepare and run the full committed selected-seed browser flow after the teacher surface integration. Cached backend and installed headless Chrome readiness are verified. See `precalc-runtime-unit7-verification-plan.md`.
 
 Saved-worktree review checked 54d1, bda5, and b5f1. Each retains distinct IM3 graph states that are not preserved in the current worktree or reachable commits. Retain them pending reconciliation. This finding does not block the active program candidates.
+
+G48 parent and independent review accept the corrected 18-candidate graph proposal for later implementation. Removed the duplicate mean/median comparison and unsupported exact range/IQR calculation claims. Source restoration must pass review and commit first. See `im1-lesson95-capabilities-review.md` and `im1-lesson95-proposal-independent-review.md`.
