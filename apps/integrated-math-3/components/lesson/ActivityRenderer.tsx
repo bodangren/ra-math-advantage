@@ -16,6 +16,7 @@ export interface ActivityRendererProps {
   mode?: 'teaching' | 'guided' | 'practice';
   onSubmit?: (payload: unknown) => void | Promise<void>;
   onComplete?: () => void;
+  onCheckDiscriminant?: (rawAnswer: string) => Promise<boolean>;
   /** Optional activity-specific configuration props (e.g. equation, questions,
    *  template). Forwarded to the registered activity component via spread, so
    *  authored/previewed content reaches the same rendering path a student sees. */
@@ -34,6 +35,7 @@ export function ActivityRenderer({
   mode = 'practice',
   onSubmit,
   onComplete,
+  onCheckDiscriminant,
   activityProps,
 }: ActivityRendererProps) {
   const isStudentContext = mode !== 'teaching';
@@ -93,6 +95,7 @@ export function ActivityRenderer({
           mode,
           onSubmit: onSubmit ? handleSubmit : undefined,
           onComplete,
+          onCheckDiscriminant,
         })}
       </Suspense>
     </div>

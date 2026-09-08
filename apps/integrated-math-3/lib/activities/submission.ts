@@ -50,6 +50,31 @@ export interface SubmitActivityResultError {
 
 export type SubmitActivityResult = SubmitActivityResultSuccess | SubmitActivityResultError;
 
+/** Checks one Guided discriminant without exposing the generated answer. */
+export async function checkQuadraticFormulaDiscriminant(input: {
+  activityId: string;
+  rawAnswer: string;
+}): Promise<boolean> {
+  const response = await fetch('/api/activities/quadratic-formula/check', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      activityId: input.activityId,
+      fieldId: 'discriminant',
+      rawAnswer: input.rawAnswer,
+    }),
+  });
+  const data: unknown = await response.json();
+  if (!response.ok || typeof data !== 'object' || data === null || Array.isArray(data)) {
+    throw new Error('Discriminant check failed');
+  }
+  const record = data as Record<string, unknown>;
+  if (Object.keys(record).length !== 1 || typeof record.isCorrect !== 'boolean') {
+    throw new Error('Discriminant check returned an invalid response');
+  }
+  return record.isCorrect;
+}
+
 /** Creates one server-owned submission without applying learning-evidence progression. */
 export async function createServerOwnedActivitySubmission(
   input: SubmitActivityInput,

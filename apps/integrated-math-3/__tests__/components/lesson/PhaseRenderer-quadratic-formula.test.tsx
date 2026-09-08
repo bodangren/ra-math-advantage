@@ -3,15 +3,17 @@ import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 import { PhaseRenderer, type PhaseSection } from '@/components/lesson/PhaseRenderer';
 import { LessonRenderer } from '@/components/lesson/LessonRenderer';
-import { createServerOwnedActivitySubmission } from '@/lib/activities/submission';
+import { checkQuadraticFormulaDiscriminant, createServerOwnedActivitySubmission } from '@/lib/activities/submission';
 
 vi.mock('@/lib/activities/submission', () => ({
   createServerOwnedActivitySubmission: vi.fn(),
+  checkQuadraticFormulaDiscriminant: vi.fn(),
   submitActivity: vi.fn(),
   getSelectedWorkedAcknowledgement: vi.fn().mockResolvedValue(false),
 }));
 
 const strictSubmit = vi.mocked(createServerOwnedActivitySubmission);
+const checkDiscriminant = vi.mocked(checkQuadraticFormulaDiscriminant);
 
 vi.mock('@/components/practice-timing', () => ({ usePracticeTiming: () => ({ getTiming: () => undefined }) }));
 
@@ -81,12 +83,16 @@ describe('PhaseRenderer selected quadratic-formula mode', () => {
   });
 
   it('renders the exact Guided section in Guided mode under a normal lesson', async () => {
+    checkDiscriminant.mockResolvedValue(true);
     const save = vi.fn().mockResolvedValue(undefined);
     render(<PhaseRenderer phaseType="independent_practice" sections={[selectedSection('guided_practice')]}
       mode="practice" onActivitySubmit={save} />);
     expect(await screen.findByRole('button', { name: 'Show hint for Discriminant' })).toBeInTheDocument();
     const user = userEvent.setup();
     await user.type(screen.getByLabelText('Discriminant'), '16');
+    await user.click(screen.getByRole('button', { name: 'Check discriminant' }));
+    await screen.findByText('The discriminant is correct. Enter the roots.');
+    expect(checkDiscriminant).toHaveBeenCalledWith({ activityId: 'activities:guided_practice', rawAnswer: '16' });
     await user.type(screen.getByLabelText('First root'), '2');
     await user.type(screen.getByLabelText('Second root'), '-2');
     await user.click(screen.getByRole('button', { name: 'Submit answer' }));
@@ -107,6 +113,23 @@ describe('PhaseRenderer selected quadratic-formula mode', () => {
     await user.click(screen.getByRole('button', { name: 'Submit answer' }));
     await waitFor(() => expect(save).toHaveBeenCalledTimes(1));
     expect((save.mock.calls[0][1] as { mode: string }).mode).toBe('independent_practice');
+  });
+
+  it('does not apply a pending check to a changed activity', async () => {
+    let resolve!: (value: boolean) => void;
+    checkDiscriminant.mockImplementation(() => new Promise<boolean>((done) => { resolve = done; }));
+    const first = selectedSection('guided_practice');
+    const second = selectedSection('guided_practice');
+    if (second.sectionType !== 'activity') throw new Error('Expected an activity section');
+    second.content.activityId = 'activities:guided_practice:new';
+    const { rerender } = render(<PhaseRenderer phaseType="guided_practice" sections={[first]} mode="guided" />);
+    const user = userEvent.setup();
+    await user.type(await screen.findByLabelText('Discriminant'), '16');
+    await user.click(screen.getByRole('button', { name: 'Check discriminant' }));
+    rerender(<PhaseRenderer phaseType="guided_practice" sections={[second]} mode="guided" />);
+    resolve(true);
+    await waitFor(() => expect((screen.getByLabelText('First root') as HTMLInputElement).disabled).toBe(true));
+    expect(screen.queryByText('The discriminant is correct. Enter the roots.')).toBeNull();
   });
 
   it('shows retry feedback through the real lesson and activity callback chain', async () => {

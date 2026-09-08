@@ -72,9 +72,14 @@ describe('QuadraticFormulaActivity', () => {
     const onSubmit = vi.fn().mockRejectedValueOnce(new Error('lost response')).mockResolvedValueOnce(undefined);
     const onComplete = vi.fn();
     render(<QuadraticFormulaActivity {...base} mode="guided" presentationMode="guided"
-      fieldHelp={{ discriminant: 'Compute the discriminant.' }} onSubmit={onSubmit} onComplete={onComplete} />);
+      fieldHelp={{ discriminant: 'Compute the discriminant.' }} onCheckDiscriminant={async () => true}
+      onSubmit={onSubmit} onComplete={onComplete} />);
     fireEvent.click(screen.getByRole('button', { name: 'Show hint for Discriminant' }));
-    const user = await enterRequiredAnswers();
+    const user = userEvent.setup();
+    await user.type(screen.getByLabelText('Discriminant'), '84');
+    await user.click(screen.getByRole('button', { name: 'Check discriminant' }));
+    await screen.findByText('The discriminant is correct. Enter the roots.');
+    await user.type(screen.getByLabelText('First root'), '-2 + sqrt(21)');
     await user.type(screen.getByLabelText('Second root'), '-2 - sqrt(21)');
     await user.click(screen.getByRole('button', { name: 'Submit answer' }));
     await screen.findByRole('alert');
@@ -86,6 +91,107 @@ describe('QuadraticFormulaActivity', () => {
     expect(onSubmit.mock.calls[1][0]).toBe(first);
     expect((first as PracticeSubmissionEnvelope).parts[0].hintsUsed).toBe(1);
     expect(onComplete).toHaveBeenCalledOnce();
+  });
+
+  it('locks Guided roots until the current discriminant is accepted and clears roots after an edit', async () => {
+    const check = vi.fn().mockResolvedValue(true);
+    render(<QuadraticFormulaActivity {...base} mode="guided" presentationMode="guided"
+      onCheckDiscriminant={check} onSubmit={vi.fn()} />);
+    const user = userEvent.setup();
+    expect((screen.getByLabelText('First root') as HTMLInputElement).disabled).toBe(true);
+    await user.type(screen.getByLabelText('Discriminant'), '84');
+    await user.click(screen.getByRole('button', { name: 'Check discriminant' }));
+    await screen.findByText('The discriminant is correct. Enter the roots.');
+    await user.type(screen.getByLabelText('First root'), '2');
+    await user.clear(screen.getByLabelText('Discriminant'));
+    await user.type(screen.getByLabelText('Discriminant'), '85');
+    expect((screen.getByLabelText('First root') as HTMLInputElement).disabled).toBe(true);
+    expect((screen.getByLabelText('First root') as HTMLInputElement).value).toBe('');
+    expect((screen.getByRole('button', { name: 'Submit answer' }) as HTMLButtonElement).disabled).toBe(true);
+  });
+
+  it('does not unlock Guided roots from a stale response after an edit away and back', async () => {
+    let resolve!: (value: boolean) => void;
+    const check = vi.fn(() => new Promise<boolean>((done) => { resolve = done; }));
+    render(<QuadraticFormulaActivity {...base} mode="guided" presentationMode="guided"
+      onCheckDiscriminant={check} onSubmit={vi.fn()} />);
+    const user = userEvent.setup();
+    const discriminant = screen.getByLabelText('Discriminant');
+    await user.type(discriminant, '84');
+    await user.click(screen.getByRole('button', { name: 'Check discriminant' }));
+    await user.clear(discriminant);
+    await user.type(discriminant, '85');
+    await user.clear(discriminant);
+    await user.type(discriminant, '84');
+    resolve(true);
+    await waitFor(() => expect((screen.getByRole('button', { name: 'Check discriminant' }) as HTMLButtonElement).disabled).toBe(false));
+    expect((screen.getByLabelText('First root') as HTMLInputElement).disabled).toBe(true);
+    expect(screen.queryByText('The discriminant is correct. Enter the roots.')).toBeNull();
+  });
+
+  it('keeps Guided roots locked without a check callback and after incorrect or failed checks', async () => {
+    const { rerender } = render(<QuadraticFormulaActivity {...base} mode="guided" presentationMode="guided" onSubmit={vi.fn()} />);
+    expect((screen.getByRole('button', { name: 'Check discriminant' }) as HTMLButtonElement).disabled).toBe(true);
+    expect((screen.getByLabelText('First root') as HTMLInputElement).disabled).toBe(true);
+
+    const check = vi.fn().mockResolvedValueOnce(false).mockRejectedValueOnce(new Error('offline')).mockResolvedValueOnce(true);
+    rerender(<QuadraticFormulaActivity {...base} mode="guided" presentationMode="guided"
+      onCheckDiscriminant={check} onSubmit={vi.fn()} />);
+    const user = userEvent.setup();
+    await user.type(screen.getByLabelText('Discriminant'), '84');
+    await user.click(screen.getByRole('button', { name: 'Check discriminant' }));
+    expect((await screen.findByRole('alert')).textContent).toContain('not correct');
+    expect((screen.getByLabelText('First root') as HTMLInputElement).disabled).toBe(true);
+    await user.click(screen.getByRole('button', { name: 'Check discriminant' }));
+    expect((await screen.findByRole('alert')).textContent).toContain('could not be checked');
+    await user.click(screen.getByRole('button', { name: 'Check discriminant' }));
+    await screen.findByText('The discriminant is correct. Enter the roots.');
+    expect((screen.getByLabelText('First root') as HTMLInputElement).disabled).toBe(false);
+  });
+
+  it('keeps the newest Guided check accepted when an older check settles later', async () => {
+    const resolvers: Array<(value: boolean) => void> = [];
+    const check = vi.fn(() => new Promise<boolean>((resolve) => { resolvers.push(resolve); }));
+    render(<QuadraticFormulaActivity {...base} mode="guided" presentationMode="guided"
+      onCheckDiscriminant={check} onSubmit={vi.fn()} />);
+    const user = userEvent.setup();
+    const discriminant = screen.getByLabelText('Discriminant');
+    await user.type(discriminant, '84');
+    await user.click(screen.getByRole('button', { name: 'Check discriminant' }));
+    expect((screen.getByLabelText('First root') as HTMLInputElement).disabled).toBe(true);
+    await user.clear(discriminant);
+    await user.type(discriminant, '85');
+    await user.click(screen.getByRole('button', { name: 'Check discriminant' }));
+    resolvers[1](true);
+    await screen.findByText('The discriminant is correct. Enter the roots.');
+    resolvers[0](false);
+    await waitFor(() => expect(screen.getByText('The discriminant is correct. Enter the roots.')).toBeTruthy());
+    expect((screen.getByLabelText('First root') as HTMLInputElement).disabled).toBe(false);
+  });
+
+  it('does not clear Independent roots when the discriminant changes', async () => {
+    render(<QuadraticFormulaActivity {...base} mode="practice" presentationMode="independent" onSubmit={vi.fn()} />);
+    const user = userEvent.setup();
+    await user.type(screen.getByLabelText('First root'), '2');
+    await user.type(screen.getByLabelText('Second root'), '-2');
+    await user.type(screen.getByLabelText('Discriminant'), '16');
+    expect((screen.getByLabelText('First root') as HTMLInputElement).value).toBe('2');
+    expect((screen.getByLabelText('Second root') as HTMLInputElement).value).toBe('-2');
+  });
+
+  it('locks an accepted Guided result when the check callback disappears', async () => {
+    const check = vi.fn().mockResolvedValue(true);
+    const onSubmit = vi.fn();
+    const { rerender } = render(<QuadraticFormulaActivity {...base} mode="guided" presentationMode="guided"
+      onCheckDiscriminant={check} onSubmit={onSubmit} />);
+    const user = userEvent.setup();
+    await user.type(screen.getByLabelText('Discriminant'), '84');
+    await user.click(screen.getByRole('button', { name: 'Check discriminant' }));
+    await screen.findByText('The discriminant is correct. Enter the roots.');
+    rerender(<QuadraticFormulaActivity {...base} mode="guided" presentationMode="guided" onSubmit={onSubmit} />);
+    expect((screen.getByLabelText('First root') as HTMLInputElement).disabled).toBe(true);
+    expect((screen.getByRole('button', { name: 'Submit answer' }) as HTMLButtonElement).disabled).toBe(true);
+    expect(screen.queryByText('The discriminant is correct. Enter the roots.')).toBeNull();
   });
 
   it('does not report a save when no submission handler is connected', async () => {

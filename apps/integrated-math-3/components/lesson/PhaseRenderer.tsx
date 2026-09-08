@@ -5,6 +5,7 @@ import { CalloutBox } from '@/components/textbook/CalloutBox';
 import dynamic from 'next/dynamic';
 import { VideoPlayer } from './VideoPlayer';
 import { ActivityRenderer } from './ActivityRenderer';
+import { checkQuadraticFormulaDiscriminant } from '@/lib/activities/submission';
 import { ContentBlockErrorBoundary } from './ContentBlockErrorBoundary';
 import { IM3_TEACHER_LED_ACTIVITY_ID } from '@/lib/practice/learning-evidence-pilot';
 
@@ -209,6 +210,9 @@ function SectionBlock({
           activityProps={section.content.activityProps as Record<string, unknown> | undefined}
           onSubmit={onActivitySubmit ? handleSubmit : undefined}
           onComplete={handleComplete}
+          onCheckDiscriminant={quadraticFormulaMode === 'guided'
+            ? (rawAnswer) => checkQuadraticFormulaDiscriminant({ activityId, rawAnswer })
+            : undefined}
         />
       );
     }

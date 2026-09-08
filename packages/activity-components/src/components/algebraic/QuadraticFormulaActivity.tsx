@@ -25,10 +25,11 @@ export type QuadraticFormulaActivityProps = PublicProps & {
   mode: 'teaching' | 'guided' | 'practice';
   onSubmit?: (payload: unknown) => void | Promise<void>;
   onComplete?: () => void;
+  onCheckDiscriminant?: (rawAnswer: string) => Promise<boolean>;
 };
 
 export function QuadraticFormulaActivity(props: QuadraticFormulaActivityProps) {
-  const { activityId, mode, prompt, equation, onSubmit, onComplete } = props;
+  const { activityId, mode, prompt, equation, onSubmit, onComplete, onCheckDiscriminant } = props;
   const instanceId = useId();
   const [answers, setAnswers] = useState<Record<Field, string>>({ discriminant: '', x1: '', x2: '' });
   const [hintsUsed, setHintsUsed] = useState<Counts>(zeroCounts);
@@ -40,6 +41,10 @@ export function QuadraticFormulaActivity(props: QuadraticFormulaActivityProps) {
   const lockedRef = useRef(false);
   const pendingRef = useRef(false);
   const frozenEnvelopeRef = useRef<PracticeSubmissionEnvelope | null>(null);
+  const discriminantRevisionRef = useRef(0);
+  const discriminantValueRef = useRef('');
+  const activeCheckRevisionsRef = useRef(new Set<number>());
+  const [checkState, setCheckState] = useState<'idle' | 'pending' | 'correct' | 'incorrect' | 'error'>('idle');
 
   const expectedPresentationMode = mode === 'teaching' ? 'worked' : mode === 'guided' ? 'guided' : 'independent';
   if (props.presentationMode !== expectedPresentationMode) {
@@ -66,8 +71,36 @@ export function QuadraticFormulaActivity(props: QuadraticFormulaActivityProps) {
 
   const changeAnswer = (field: Field, value: string) => {
     if (lockedRef.current) return;
-    setAnswers((current) => ({ ...current, [field]: value }));
+    if (field === 'discriminant' && mode === 'guided') {
+      discriminantRevisionRef.current += 1;
+      discriminantValueRef.current = value;
+      setCheckState('idle');
+      setAnswers((current) => ({ ...current, discriminant: value, x1: '', x2: '' }));
+    } else {
+      setAnswers((current) => ({ ...current, [field]: value }));
+    }
     setChangedCount((current) => ({ ...current, [field]: current[field] + 1 }));
+  };
+
+  const checkDiscriminant = async () => {
+    const rawAnswer = discriminantValueRef.current;
+    if (mode !== 'guided' || !onCheckDiscriminant || !rawAnswer.trim()) return;
+    const revision = discriminantRevisionRef.current;
+    if (activeCheckRevisionsRef.current.has(revision)) return;
+    activeCheckRevisionsRef.current.add(revision);
+    setCheckState('pending');
+    try {
+      const isCorrect = await onCheckDiscriminant(rawAnswer);
+      if (revision === discriminantRevisionRef.current && rawAnswer === discriminantValueRef.current) {
+        setCheckState(isCorrect ? 'correct' : 'incorrect');
+      }
+    } catch {
+      if (revision === discriminantRevisionRef.current && rawAnswer === discriminantValueRef.current) {
+        setCheckState('error');
+      }
+    } finally {
+      activeCheckRevisionsRef.current.delete(revision);
+    }
   };
 
   const showHint = (field: Field) => {
@@ -95,6 +128,7 @@ export function QuadraticFormulaActivity(props: QuadraticFormulaActivityProps) {
 
   const submit = () => {
     if (!onSubmit || lockedRef.current || pendingRef.current) return;
+    if (mode === 'guided' && (!onCheckDiscriminant || checkState !== 'correct')) return;
     if (!answers.discriminant.trim() || !answers.x1.trim()) {
       const firstInvalid: Field = !answers.discriminant.trim() ? 'discriminant' : 'x1';
       document.getElementById(`${instanceId}-${firstInvalid}`)?.focus();
@@ -142,7 +176,21 @@ export function QuadraticFormulaActivity(props: QuadraticFormulaActivityProps) {
             <div key={field} className="space-y-2">
               <MathInputField inputId={`${instanceId}-${field}`} describedBy={[formatHelpId, hintsUsed[field] ? helpId : undefined].filter(Boolean).join(' ')}
                 value={answers[field]} onChange={(value) => changeAnswer(field, value)} label={label}
-                disabled={locked} required={field !== 'x2'} placeholder={field === 'x2' ? 'Leave blank for a repeated root' : undefined} />
+                disabled={locked || (mode === 'guided' && field !== 'discriminant'
+                  && (!onCheckDiscriminant || checkState !== 'correct'))}
+                required={field !== 'x2'} placeholder={field === 'x2' ? 'Leave blank for a repeated root' : undefined} />
+              {mode === 'guided' && field === 'discriminant' && (
+                <div className="space-y-2">
+                  <button type="button" disabled={locked || checkState === 'pending' || !answers.discriminant.trim() || !onCheckDiscriminant}
+                    onClick={() => void checkDiscriminant()}>
+                    {checkState === 'pending' ? 'Checking discriminant…' : 'Check discriminant'}
+                  </button>
+                  {checkState === 'correct' && onCheckDiscriminant
+                    && <p role="status">The discriminant is correct. Enter the roots.</p>}
+                  {checkState === 'incorrect' && <p role="alert">The discriminant is not correct. Try again.</p>}
+                  {checkState === 'error' && <p role="alert">The discriminant could not be checked. Try again.</p>}
+                </div>
+              )}
               {mode === 'guided' && (
                 <button type="button" disabled={locked || hintsUsed[field] > 0} onClick={() => showHint(field)}>
                   {`Show hint for ${label}`}
@@ -152,7 +200,8 @@ export function QuadraticFormulaActivity(props: QuadraticFormulaActivityProps) {
             </div>
           );
         })}
-        <button type="submit" disabled={!onSubmit || locked || pending}>
+        <button type="submit" disabled={!onSubmit || locked || pending
+          || (mode === 'guided' && (!onCheckDiscriminant || checkState !== 'correct'))}>
           {pending ? 'Saving answer…' : saved ? 'Answer saved' : submitError && locked ? 'Submission failed' : locked ? 'Submission locked' : 'Submit answer'}
         </button>
       </form>
