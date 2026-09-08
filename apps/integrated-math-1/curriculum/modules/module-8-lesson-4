@@ -1,83 +1,112 @@
 # Lesson 8-4 — Transforming Exponential Expressions
 
-Source: (Module 8, Lesson 8-4, Int1_0804_practice.docx)
+Source: `Int1_0804_practice.docx`
 
-## Today's Goals
+**Added interpretation note:** For Problems 9–11, state whether each rate is a rate per compounding period or a nominal annual rate before you compare the accounts.
 
-* Rewrite exponential growth and decay functions so rates share the same time unit for direct comparison
-* Calculate effective annual, quarterly, and monthly rates using properties of exponents
-* Analyze and explain which of two exponential models represents faster growth or decay
+## Example 1
 
-## Vocabulary
+### Problem 1
 
-* **Compound interest** — Interest calculated on the initial principal and on the accumulated interest from previous periods
-* **Effective rate** — The equivalent rate over a specified time period that produces the same final amount as a given compounding rate
-* **Exponential growth/decay** — A quantity that increases or decreases by a constant percent rate per unit time, modeled by [ A(t) = A_0(1 + r)^t ] or [ A(t) = A_0(1 - r)^t ] 
+**INVESTING** Kimiyo is planning to invest money in a savings account. She is comparing the interest rates of savings accounts at two banks. Bank A offers a savings account with 2.1% interest compounded annually. Bank B offers a savings account with a quarterly compounded interest rate of 0.8%.
 
-## Learn: Transforming Exponential Expressions
+- a. Write a function to represent the amount `A` that Kimiyo would earn after `t` years through Bank A, assuming an initial investment of $1. Then write an equivalent function that represents quarterly compounding.
+- b. Which is the better plan? Explain.
+- c. What is the approximate effective annual interest rate at Bank B? How does your result relate to your answer to part b?
 
-When two exponential models use different compounding periods, rewrite one function so both use the same time unit. Use the exponent property:
+### Problem 2
 
-[
-(a^m)^n = a^{mn}
-]
+**COLLECTIONS** Keandra is comparing the growth rates in the value of two items in a collection. The value of a necklace increases by 3.2% per year. The value of a ring increases by 0.33% per month.
 
-For example, to convert an annual growth factor to a quarterly equivalent, adjust the exponent to match the number of compounding periods per year.
+- a. Write a function to represent the value `A` of the necklace after `t` years, assuming an initial value of $1. Then write an equivalent function that represents monthly compounding.
+- b. Which item is increasing in value at a faster rate? Explain.
+- c. What is the approximate annual rate of growth of the ring? How does your result relate to your answer to part b?
 
-### Key Concept: Comparing Rates with Different Compounding Periods
+### Problem 3
 
-* Rewrite [ A(t) = A_0(1 + r_{\text{annual}})^t ] as an equivalent function with a different compounding period by adjusting the base and exponent
-* To compare two rates directly, ensure both functions use the same time unit (annual, quarterly, monthly, etc.)
-* The effective annual rate reveals the true yearly growth when compounding occurs more than once per year
+**SAVINGS** Amir is trying to decide between two savings account plans at two different banks. Bank A offers a quarterly compounded interest rate of 0.95%. Bank B offers 3.75% interest compounded annually. Which is the better plan? Explain.
 
-## Example 1 — Compare Compounding Interest and Growth Rates
+### Problem 4
 
-Given two exponential growth or decay scenarios with different compounding periods, write equivalent functions using the same time unit and determine which rate is more favorable.
+**BACTERIA** A scientist found that Bacteria A has a growth rate of 0.99% per minute. Bacteria B has a growth rate of 0.018% per second. Determine which bacterium has a faster growth rate. Explain.
 
-### Step 1: Write the Initial Function
+### Problem 5
 
-For an investment or quantity with periodic rate [ r ]:
-
-[
-A(t) = A_0(1 + r_{\text{period}})^{\text{number of periods in } t}
-]
-
-### Step 2: Rewrite with a Common Time Unit
-
-Use properties of exponents to convert one function so both use the same compounding period.
-
-Convert an annual rate to a quarterly equivalent:
-
-[
-A(t) = A_0(1.021)^t = A_0\left((1.021)^{\frac{1}{4}}\right)^{4t}
-]
-
-Convert a quarterly rate to an annual effective rate:
-
-[
-A(t) = A_0(1.008)^{4t} = A_0\left((1.008)^4\right)^t \approx A_0(1.0324)^t
-]
-
-### Step 3: Compare and Explain
-
-Compare the effective rates or growth factors. The larger effective rate corresponds to faster growth (or, for decay, a faster decrease). Explain which plan, item, or population is increasing or decreasing at the faster rate.
-
-Variations include:
-* Comparing annual vs. quarterly vs. monthly compounding for investments
-* Comparing growth rates per minute vs. per second for populations
-* Comparing decay rates per quarter vs. per year for declining populations
+**POPULATION** The population of Species A is decreasing at a rate of about 0.25% per quarter. The population of Species B is decreasing at a rate of about 1.34% per year. Determine which species has a population that is decreasing at a faster rate. Explain.
 
 ## Mixed Exercises
 
-The mixed exercises apply the skill of transforming exponential expressions to a range of contexts. Students:
-* Interpret population data from tables to write exponential functions [ P(t) ] and find effective monthly rates
-* Compare bank accounts, investments, certificate of deposit plans, and car depreciation rates with different compounding periods
-* Rewrite a cooling function so the coefficient of [ t ] in the exponent is 1
-* Explain in writing why consumers must compare rates in the same unit before making financial decisions
-* Create an original scenario comparing two accounts with different compounding periods
-* Analyze and correct a common error when comparing a monthly interest rate directly to an annual interest rate
+### Problem 6
 
-## Review Notes
+**POPULATION** The table shows the population of two small towns that experience increases in population.
 
-* Problems 6 and 12 reference tables (images) showing population data for two towns and hawk populations in two nature preserves. The tables must be described or recreated from the original worksheet.
-* Problem 13 involves the cooling function [ T(t) = 72 + (212 - 72)(2.72)^{-0.4t} ]. The value 2.72 may be an approximation of [ e ]; verify the base and coefficients against the original worksheet.
+| Year | Population Town A | Population Town B |
+|---:|---:|---:|
+| 2012 | 8,000 | 9,500 |
+| 2013 | 8,480 | 9,975 |
+| 2014 | 8,989 | 10,474 |
+| 2015 | 9,528 | 10,997 |
+| 2016 | 10,100 | 11,547 |
+
+![Original town-population table](/curriculum/module-8-lesson-4/source-image-1.png)
+
+- a. Write a function that can be used to estimate the population `P(t)` of Town A `t` years after 2012.
+- b. Write a function that can be used to estimate the population `P(t)` of Town B `t` years after 2012.
+- c. Use your equations and properties of exponents to find the approximate effective monthly increase in the populations of Town A and Town B.
+
+**Added model note:** The values do not have one exact constant ratio. State the method that you use to estimate each exponential model.
+
+### Problem 7
+
+**ACCOUNTS** Dominic is trying to decide between two checking account plans. Plan A offers a monthly compounded interest rate of 0.05%. Plan B offers 0.5% interest compounded annually. Which is the better plan?
+
+### Problem 8
+
+**CAR DEPRECIATION** Juana is deciding between two cars to purchase. Car A depreciates annually at a rate of 3.5%. Car B depreciates monthly at a rate of 0.32%. Which car has a better effective rate of depreciation?
+
+### Problem 9
+
+**INVESTMENT** As a wedding gift, Dotty and Brad received $10,000 cash from Dotty’s grandparents. The couple is trying to decide where to invest the money. Account A offers 2.3% interest compounded semi-annually. Account B offers 4.2% interest compounded annually. Which account has the better rate? Explain.
+
+### Problem 10
+
+**SAVINGS** Hernando is deciding between two certificate of deposit accounts. Account Y offers 4.5% interest compounded annually. Account Z offers 1.13% interest compounded quarterly. Which is the better deal? Explain.
+
+### Problem 11
+
+**FINANCE** Gita is deciding between two retirement accounts. Account A offers 0.5% interest compounded monthly. Account B offers 2.5% interest compounded annually. Which is the better deal? Explain.
+
+### Problem 12
+
+**WILDLIFE** The table shows that the population of hawks in two different nature preserves has been decreasing.
+
+| Year | Hawk Population, Preserve A | Hawk Population, Preserve B |
+|---:|---:|---:|
+| 2013 | 114 | 120 |
+| 2014 | 111 | 115 |
+| 2015 | 108 | 110 |
+| 2016 | 105 | 106 |
+
+![Original hawk-population table](/curriculum/module-8-lesson-4/source-image-2.png)
+
+- a. Write a function that can be used to estimate the population `P(t)` of the hawks in Nature Preserve A `t` years after 2013.
+- b. Write a function that can be used to estimate the population `P(t)` of the hawks in Nature Preserve B `t` years after 2013.
+- c. Use your equations and properties of exponents to find the approximate effective quarterly decrease in population of hawks in Nature Preserve A and Nature Preserve B.
+
+**Added model note:** The values do not have one exact constant ratio. State the method that you use to estimate each exponential model.
+
+### Problem 13
+
+**PERSEVERE** The rate at which an object cools is related to the temperature of the surrounding environment. At the time of an experiment, Mrs. Haubner’s lab temperature was 72°F. The approximate temperature of the water at time `t` in minutes is predicted by `T(t) = 72 + (212 - 72)(2.72)^(-0.4t)`, where `-0.4` per minute is defined as the rate of cooling. Rewrite this function so that the coefficient of `t` in the exponent is 1.
+
+### Problem 14
+
+**WRITE** Explain why it is important for a consumer to compare rates in the same unit before making a purchase.
+
+### Problem 15
+
+**CREATE** Write a scenario that compares two accounts with interest rates compounded at different rate units. Then determine which account has the better rate.
+
+### Problem 16
+
+**FIND THE ERROR** Marsha is opening a savings account. Eagle Savings Bank is offering her an account with a 0.13% monthly interest rate. Admiral Savings Bank is offering an account with a 1% annual interest rate. Marsha believes the account at Admiral Savings Bank is better because 1% is a greater interest rate than 0.13%. Why is Marsha incorrect? Explain your reasoning.
