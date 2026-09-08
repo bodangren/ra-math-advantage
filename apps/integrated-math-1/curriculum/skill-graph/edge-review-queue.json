@@ -615,20 +615,6 @@
       "reviewAction": "confirm, upgrade-to-medium, or remove"
     },
     {
-      "edgeId": "math.im1.edge.1274",
-      "sourceId": "math.im1.skill.9.4.determine-the-five-number-summary-and-construct-a-box-plot-f",
-      "targetId": "math.im1.skill.9.5.choose-appropriate-measures-of-center-and-spread-based-on-wh",
-      "rationale": "Lesson-sequence prerequisite: lesson 4 precedes lesson 5 in module 9",
-      "reviewAction": "confirm, upgrade-to-medium, or remove"
-    },
-    {
-      "edgeId": "math.im1.edge.1275",
-      "sourceId": "math.im1.skill.9.5.construct-and-interpret-histograms-and-box-plots-to-visualiz",
-      "targetId": "math.im1.skill.9.6.construct-and-interpret-box-plots-and-histograms-to-compare",
-      "rationale": "Lesson-sequence prerequisite: lesson 5 precedes lesson 6 in module 9",
-      "reviewAction": "confirm, upgrade-to-medium, or remove"
-    },
-    {
       "edgeId": "math.im1.edge.1276",
       "sourceId": "math.im1.skill.9.6.describe-how-adding-or-multiplying-every-value-in-a-data-set",
       "targetId": "math.im1.skill.9.7.construct-and-complete-two-way-frequency-tables-from-verbal",
@@ -2028,7 +2014,7 @@
     }
   ],
   "counts": {
-    "lowConfidencePrerequisites": 91,
+    "lowConfidencePrerequisites": 89,
     "skillsMissingRenderer": 138,
     "skillsMissingMisconceptionTaxonomy": 138
   }

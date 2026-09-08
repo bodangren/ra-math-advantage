@@ -3211,6 +3211,186 @@
       "rendererKey": "comprehension-quiz",
       "generatorKey": null,
       "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.group-raw-values-into-stated-histogram-intervals",
+      "blueprintId": "math.im1.skill.9.5.group-raw-values-into-stated-histogram-intervals",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.describe-distribution-shape-from-a-histogram",
+      "blueprintId": "math.im1.skill.9.5.describe-distribution-shape-from-a-histogram",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.describe-bounded-shape-features-from-a-box-plot",
+      "blueprintId": "math.im1.skill.9.5.describe-bounded-shape-features-from-a-box-plot",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.describe-distribution-center-from-a-box-plot",
+      "blueprintId": "math.im1.skill.9.5.describe-distribution-center-from-a-box-plot",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.describe-distribution-spread-from-a-box-plot",
+      "blueprintId": "math.im1.skill.9.5.describe-distribution-spread-from-a-box-plot",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.select-a-measure-of-spread-and-justify-the-selection",
+      "blueprintId": "math.im1.skill.9.5.select-a-measure-of-spread-and-justify-the-selection",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.describe-an-outliers-effect-on-a-named-center-statistic",
+      "blueprintId": "math.im1.skill.9.5.describe-an-outliers-effect-on-a-named-center-statistic",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.describe-an-outliers-effect-on-a-named-spread-statistic",
+      "blueprintId": "math.im1.skill.9.5.describe-an-outliers-effect-on-a-named-spread-statistic",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.compare-distribution-centers-using-given-evidence",
+      "blueprintId": "math.im1.skill.9.5.compare-distribution-centers-using-given-evidence",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.compare-distribution-spreads-using-given-evidence",
+      "blueprintId": "math.im1.skill.9.5.compare-distribution-spreads-using-given-evidence",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.describe-a-distribution-from-partial-frequency-and-extreme-value-information",
+      "blueprintId": "math.im1.skill.9.5.describe-a-distribution-from-partial-frequency-and-extreme-value-information",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.describe-the-effect-of-removing-extreme-values-on-a-distribution",
+      "blueprintId": "math.im1.skill.9.5.describe-the-effect-of-removing-extreme-values-on-a-distribution",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.match-histograms-and-box-plots-by-distribution-features",
+      "blueprintId": "math.im1.skill.9.5.match-histograms-and-box-plots-by-distribution-features",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.define-a-bimodal-distribution-using-researched-sources",
+      "blueprintId": "math.im1.skill.9.5.define-a-bimodal-distribution-using-researched-sources",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.describe-center-and-spread-for-a-bimodal-distribution",
+      "blueprintId": "math.im1.skill.9.5.describe-center-and-spread-for-a-bimodal-distribution",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.create-a-real-world-data-example-with-a-stated-distribution-shape",
+      "blueprintId": "math.im1.skill.9.5.create-a-real-world-data-example-with-a-stated-distribution-shape",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.explain-when-mean-and-standard-deviation-suit-a-symmetrical-distribution",
+      "blueprintId": "math.im1.skill.9.5.explain-when-mean-and-standard-deviation-suit-a-symmetrical-distribution",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.explain-why-median-and-quartiles-help-describe-a-skewed-distribution",
+      "blueprintId": "math.im1.skill.9.5.explain-why-median-and-quartiles-help-describe-a-skewed-distribution",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
     }
   ]
 }

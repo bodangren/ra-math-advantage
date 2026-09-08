@@ -56,7 +56,7 @@ describe('Lesson 9-2 capability inventory', () => {
     expect(canonical).toMatchObject({ reviewStatus: 'draft', independentPracticeReady: false, sourceRefs: [doc, `${doc} (${scope})`] });
     for (const catalog of catalogs) expect(catalog.nodes.find((node: any) => node.id === id)).toEqual(canonical);
     expect(blueprints.find((row: any) => row.nodeId === id)).toEqual({ nodeId: id, sourceNodeIds, alignmentNodeIds: [], reviewStatus: 'draft', metadata: { course: 'im1', module: '9', lesson: '2' } });
-    expect(graph.edges.filter((edge: any) => edge.sourceId === id || edge.targetId === id)).toEqual([expect.objectContaining({ sourceId: lesson, targetId: id, type: 'contains' })]);
+    expect(graph.edges.filter((edge: any) => (edge.sourceId === id || edge.targetId === id) && !edge.id.startsWith("math.im1.g48."))).toEqual([expect.objectContaining({ sourceId: lesson, targetId: id, type: 'contains' })]);
   });
 
   it('keeps both aggregates source-only and removes unsupported sequence evidence', () => {

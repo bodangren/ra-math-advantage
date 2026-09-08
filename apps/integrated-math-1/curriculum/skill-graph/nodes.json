@@ -7062,74 +7062,82 @@
     {
       "id": "math.im1.example.9.5.015",
       "kind": "worked_example",
-      "title": "Example 1: Construct Histograms and Box Plots; Describe Center and Spread Using a Histogram",
+      "title": "Example 1",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-9-class-period-plan.md (9-5, Example 1)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx (Example 1, Problems 1 and 2)"
       ],
-      "reviewStatus": "approved",
+      "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "9",
         "lesson": "5",
         "exampleNumber": 1,
-        "sourceLesson": "9-5",
-        "rawText": "9-5, Examples 1-2 — Construct Histograms and Box Plots; Describe Center and Spread Using a Histogram"
-      }
+        "sourceLesson": "9-5"
+      },
+      "independentPracticeReady": false,
+      "description": "Construct a histogram and a box plot. Describe the distribution shape."
     },
     {
       "id": "math.im1.example.9.5.016",
       "kind": "worked_example",
-      "title": "Example 2: Construct Histograms and Box Plots; Describe Center and Spread Using a Histogram",
+      "title": "Example 2",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-9-class-period-plan.md (9-5, Example 2)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx (Example 2, Problems 3 and 4)"
       ],
-      "reviewStatus": "approved",
+      "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "9",
         "lesson": "5",
         "exampleNumber": 2,
-        "sourceLesson": "9-5",
-        "rawText": "9-5, Examples 1-2 — Construct Histograms and Box Plots; Describe Center and Spread Using a Histogram"
-      }
+        "sourceLesson": "9-5"
+      },
+      "independentPracticeReady": false,
+      "description": "Select and calculate center and spread statistics. Justify the selection with a histogram."
     },
     {
       "id": "math.im1.example.9.5.017",
       "kind": "worked_example",
-      "title": "Example 3: Describe Center and Spread Using a Box Plot; Analyze Outliers and Their Effects",
+      "title": "Example 3",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-9-class-period-plan.md (9-5, Example 3)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx (Example 3, Problems 5 and 6)"
       ],
-      "reviewStatus": "approved",
+      "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "9",
         "lesson": "5",
         "exampleNumber": 3,
-        "sourceLesson": "9-5",
-        "rawText": "9-5, Examples 3-4 — Describe Center and Spread Using a Box Plot; Analyze Outliers and Their Effects"
-      }
+        "sourceLesson": "9-5"
+      },
+      "independentPracticeReady": false,
+      "description": "Select and calculate center and spread statistics. Justify the selection with a box plot."
     },
     {
       "id": "math.im1.example.9.5.018",
       "kind": "worked_example",
-      "title": "Example 4: Describe Center and Spread Using a Box Plot; Analyze Outliers and Their Effects",
+      "title": "Example 4",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-9-class-period-plan.md (9-5, Example 4)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx (Example 4, Problems 7 and 8)"
       ],
-      "reviewStatus": "approved",
+      "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "9",
         "lesson": "5",
         "exampleNumber": 4,
-        "sourceLesson": "9-5",
-        "rawText": "9-5, Examples 3-4 — Describe Center and Spread Using a Box Plot; Analyze Outliers and Their Effects"
-      }
+        "sourceLesson": "9-5"
+      },
+      "independentPracticeReady": false,
+      "description": "Construct a box plot. Calculate representative statistics. Describe the outlier effect."
     },
     {
       "id": "math.im1.example.9.6.019",
@@ -11560,12 +11568,13 @@
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/module-9-class-period-plan.md"
       ],
-      "reviewStatus": "approved",
+      "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "9",
         "lesson": "5"
-      }
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.skill.9.5.construct-and-interpret-histograms-and-box-plots-to-visualiz",
@@ -11576,12 +11585,13 @@
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/module-9-class-period-plan.md"
       ],
-      "reviewStatus": "approved",
+      "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "9",
         "lesson": "5"
-      }
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.skill.9.6.construct-and-interpret-box-plots-and-histograms-to-compare",
@@ -18388,6 +18398,330 @@
         "course": "im1",
         "module": "9",
         "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.5.group-raw-values-into-stated-histogram-intervals",
+      "kind": "skill",
+      "title": "Group raw values into stated histogram intervals",
+      "domain": "math.im1",
+      "description": "Count raw numerical values in stated, nonoverlapping intervals with explicit endpoint ownership.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx (Problems 1-4, 9-12, 16(a), and 23(a), grouping stage only)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.5.describe-distribution-shape-from-a-histogram",
+      "kind": "skill",
+      "title": "Describe distribution shape from a histogram",
+      "domain": "math.im1",
+      "description": "Describe specified visible features of a supplied histogram or smooth histogram curve.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx (Problems 1, 2, 9-12, 16(a), 19(b) for each curve, and 23(a), shape response only)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.5.describe-bounded-shape-features-from-a-box-plot",
+      "kind": "skill",
+      "title": "Describe bounded shape features from a box plot",
+      "domain": "math.im1",
+      "description": "Describe visible relative quartile and whisker lengths and make only a qualified possible-skew claim.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx (Problems 13 and 18(a), shape response only)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.5.describe-distribution-center-from-a-box-plot",
+      "kind": "skill",
+      "title": "Describe distribution center from a box plot",
+      "domain": "math.im1",
+      "description": "Describe the visible median position from a supplied box plot without inventing an unmarked value.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx (Problem 17(a), original center description; Problem 17(b), new center description)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.5.describe-distribution-spread-from-a-box-plot",
+      "kind": "skill",
+      "title": "Describe distribution spread from a box plot",
+      "domain": "math.im1",
+      "description": "Describe visible range and interquartile spread from a supplied box plot without inventing unmarked values.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx (Problem 17(a), original spread description; Problem 17(b), new spread description)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.5.select-a-measure-of-spread-and-justify-the-selection",
+      "kind": "skill",
+      "title": "Select a measure of spread and justify the selection",
+      "domain": "math.im1",
+      "description": "Select a spread statistic and justify the selection from distribution shape and influential observations.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx (Problems 3-6, 7(b), 8(b), 14, 15, 16(b), 18(b), 20, and 23(b), spread-selection and justification response only)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.5.describe-an-outliers-effect-on-a-named-center-statistic",
+      "kind": "skill",
+      "title": "Describe an outlier's effect on a named center statistic",
+      "domain": "math.im1",
+      "description": "Describe how a stated outlier affects one named center statistic.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx (Problems 7(c), 8(c), 18(c), and 23(c), center-statistic response only)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.5.describe-an-outliers-effect-on-a-named-spread-statistic",
+      "kind": "skill",
+      "title": "Describe an outlier's effect on a named spread statistic",
+      "domain": "math.im1",
+      "description": "Describe how a stated outlier affects one named spread statistic.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx (Problems 7(c), 8(c), 18(c), and 23(c), spread-statistic response only)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.5.compare-distribution-centers-using-given-evidence",
+      "kind": "skill",
+      "title": "Compare distribution centers using given evidence",
+      "domain": "math.im1",
+      "description": "Compare two distribution locations and cite supplied displays or supplied or separately calculated center statistics.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx (Problem 17(c), two center comparisons; Problems 19(a), 20, and 22, center claims)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.5.compare-distribution-spreads-using-given-evidence",
+      "kind": "skill",
+      "title": "Compare distribution spreads using given evidence",
+      "domain": "math.im1",
+      "description": "Compare the spread or consistency of two distributions and cite supplied displays or supplied or separately calculated spread statistics.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx (Problems 19(a), 20, and 22, spread claims)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.5.describe-a-distribution-from-partial-frequency-and-extreme-value-information",
+      "kind": "skill",
+      "title": "Describe a distribution from partial frequency and extreme-value information",
+      "domain": "math.im1",
+      "description": "Describe only the distribution features supported by stated frequency ranges and identified extreme values.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx (Problem 21, current-distribution description; manual rubric required)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.5.describe-the-effect-of-removing-extreme-values-on-a-distribution",
+      "kind": "skill",
+      "title": "Describe the effect of removing extreme values on a distribution",
+      "domain": "math.im1",
+      "description": "Describe how removing identified extreme values changes qualitative shape, center, or spread without inventing missing raw values.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx (Problem 21, effect of losing the longest streams; manual rubric required)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.5.match-histograms-and-box-plots-by-distribution-features",
+      "kind": "skill",
+      "title": "Match histograms and box plots by distribution features",
+      "domain": "math.im1",
+      "description": "Match supplied histograms and box plots by location, relative spread, and visible quartile and whisker lengths.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx (Problem 24, three labeled matches; manual justification required)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.5.define-a-bimodal-distribution-using-researched-sources",
+      "kind": "skill",
+      "title": "Define a bimodal distribution using researched sources",
+      "domain": "math.im1",
+      "description": "Research and define a bimodal distribution with suitable cited sources.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx (Problem 25, research and definition response; manual review required)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.5.describe-center-and-spread-for-a-bimodal-distribution",
+      "kind": "skill",
+      "title": "Describe center and spread for a bimodal distribution",
+      "domain": "math.im1",
+      "description": "Describe useful center and spread information without claiming that one statistic fully describes both modes.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx (Problem 25, statistical-description response; manual rubric required)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.5.create-a-real-world-data-example-with-a-stated-distribution-shape",
+      "kind": "skill",
+      "title": "Create a real-world data example with a stated distribution shape",
+      "domain": "math.im1",
+      "description": "Create a plausible real-world data example and justify its stated symmetric or nonsymmetric shape.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx (Problem 26, two examples with separate evidence records; manual rubric required)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.5.explain-when-mean-and-standard-deviation-suit-a-symmetrical-distribution",
+      "kind": "skill",
+      "title": "Explain when mean and standard deviation suit a symmetrical distribution",
+      "domain": "math.im1",
+      "description": "Explain why mean and standard deviation are commonly useful for a roughly unimodal symmetrical distribution without influential outliers.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx (Problem 27, symmetrical-distribution explanation; manual bounded rubric required)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.5.explain-why-median-and-quartiles-help-describe-a-skewed-distribution",
+      "kind": "skill",
+      "title": "Explain why median and quartiles help describe a skewed distribution",
+      "domain": "math.im1",
+      "description": "Explain why median and quartiles are robust for suitable small perturbations, while the minimum and maximum are not resistant.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0905_practice.docx (Problem 27, five-number-summary explanation; manual bounded rubric required)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "5"
       }
     }
   ]

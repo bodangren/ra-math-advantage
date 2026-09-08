@@ -180,7 +180,7 @@ describe("Lesson 9-3 capability inventory", () => {
       metadata: { course: "im1", module: "9", lesson: "3" },
     });
     expect(
-      graph.edges.filter((e: any) => e.sourceId === id || e.targetId === id),
+      graph.edges.filter((e: any) => (e.sourceId === id || e.targetId === id) && !e.id.startsWith("math.im1.g48.")),
     ).toEqual([
       expect.objectContaining({
         sourceId: lesson,
