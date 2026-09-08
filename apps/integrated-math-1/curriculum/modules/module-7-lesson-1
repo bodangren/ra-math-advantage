@@ -1,262 +1,221 @@
 # Lesson 7-1 — Graphing Systems of Equations
 
-Source: (Module 7, Lesson 7-1, Int1_0701_practice.docx)
+Source: Module 7, Lesson 7-1, `Int1_0701_practice.docx`.
 
-## Today's Goals
+## Goals
 
-* Graph systems of linear equations and determine the number of solutions.
-* Classify systems as consistent or inconsistent and as independent or dependent.
-* Write and solve systems of equations to model real-world situations.
-* Use graphing to solve linear equations and systems with decimal coefficients.
+- Graph systems of linear equations and determine the number of solutions.
+- Classify systems as consistent or inconsistent and independent or dependent.
+- Write and solve systems that model contexts.
+- Use graphing to solve equations and systems with decimal coefficients.
 
-## Vocabulary
+## Vocabulary and solution structure
 
-* **system of equations** — a set of two or more equations with the same variables
-* **solution of a system** — an ordered pair that satisfies all equations in the system
-* **consistent** — a system that has at least one solution
-* **inconsistent** — a system that has no solution
-* **independent** — a consistent system with exactly one solution
-* **dependent** — a consistent system with infinitely many solutions
+A system contains two or more equations with the same variables. A solution satisfies every equation. A system is consistent when it has at least one solution. A consistent system is independent when it has exactly one solution. A consistent system is dependent when it has infinitely many solutions. An inconsistent system has no solution.
 
-## Learn: Graphing Systems of Linear Equations
+Different slopes give one solution. Equal slopes with different intercepts give no solution. Equivalent equations give infinitely many solutions.
 
-A system of two linear equations can be graphed on the same coordinate plane. The point(s) of intersection represent the solution(s).
+## Examples 1 and 2 — Use a graph to classify systems
 
-### Key Concept: Number of Solutions
+Problems 1-4 use one labeled coordinate graph. The graph has four distinct geometric lines and six visible equation labels. The equations `x-y=-4` and `y=x+4` coincide. The equations `2x-2y=2` and `y=x-1` also coincide.
 
-* **One solution** — The lines intersect at exactly one point. The system is consistent and independent.
-* **No solution** — The lines are parallel and never intersect. The system is inconsistent.
-* **Infinitely many solutions** — The lines coincide (are the same line). The system is consistent and dependent.
+1. `y=x-1` and `y=-x+1`: one solution, `(1,0)`; consistent and independent.
+2. `x-y=-4` and `y=x+4`: infinitely many solutions; consistent and dependent.
+3. `y=x+4` and `2x-2y=2`: no solution; inconsistent.
+4. `y=2x-3` and `2x-2y=2`: one solution, `(2,1)`; consistent and independent.
 
-### Key Concept: Classification from Slope-Intercept Form
+## Examples 3 and 4 — Classify from equations
 
-When both equations are written as [ y = mx + b ], compare slopes and y-intercepts:
+5. `y=(1/2)x` and `y=x+2`: one solution.
+6. `4x-6y=12` and `-2x+3y=-6`: infinitely many solutions.
+7. `8x-4y=16` and `-5x-5y=5`: one solution.
+8. `2x+3y=10` and `4x+6y=12`: no solution.
+9. `y=-(3/2)x+5` and `y=-(2/3)x+5`: one solution.
+10. `y=x-3` and `y=-4x+3`: one solution.
 
-* Different slopes → one solution (consistent, independent)
-* Same slope, different intercepts → no solution (inconsistent)
-* Same slope, same intercept → infinitely many solutions (consistent, dependent)
+## Examples 5 and 6 — Graph and find solutions
 
-## Example 1 — Determine Solutions from a Graph
+11. `y=-3` and `y=x-3`: `(0,-3)`.
+12. `y=4x+2` and `y=-2x-4`: `(-1,-2)`.
+13. `y=x-6` and `y=x+2`: no solution.
+14. `x+y=4` and `3x+3y=12`: infinitely many solutions.
+15. `x-y=-2` and `-x+y=2`: infinitely many solutions.
+16. `2x+3y=12` and `2x-y=4`: `(3,2)`.
 
-Use a provided graph to identify how many times the two lines intersect, then classify the system.
+## Example 7 — Model and solve contexts
 
-### Step 1: Inspect the Graph
+17. Aviation: `y=400x+1000` and `y=-300x+5900`. The planes have equal altitude after 7 minutes at 3800 meters.
+18. Tables: `8r+10t=124` and `r=t+2`. The solution is 8 round tables and 6 rectangular tables. Table counts must be whole numbers.
 
-Locate the point(s) where the two lines cross.
+## Example 8 — Graph both sides of an equation
 
-### Step 2: Classify the System
+19. `3x+6=6`: `x=0`.
+20. `2x-17=x-10`: `x=7`.
+21. `-12x+90=30`: `x=5`.
+22. `13x-28=24`: `x=4`.
+23. `2x+5=2x+5`: all real values.
+24. `x+1=x+3`: no solution.
 
-* If the lines intersect once, state the solution and classify as consistent and independent.
-* If the lines are parallel, classify as inconsistent.
-* If the lines overlap, classify as consistent and dependent.
+## Example 9 — Approximate decimal-system solutions
 
-[
-y = x - 1 \quad \text{and} \quad y = -x + 1
-]
+25. `2.5x+3.75y=10.5` and `1.25x-8.5y=-5.25`: `(1113/415,84/83)`, approximately `(2.68,1.01)`.
+26. `2.2x+1.8y=-3.6` and `-4.8x+12.4y=10.6`: `(-1593/898,151/898)`, approximately `(-1.77,0.17)`.
+27. `1.12x-2.24y=4.96` and `-3.56x-2.48y=-7.32`: `(1121/420,-739/840)`, approximately `(2.67,-0.88)`.
 
-> Review Note: The graph for Examples 1–2 (image1.png) is not described here.
+## Example 10 — Solve and interpret contexts
 
-## Example 2 — Determine Solutions Algebraically
+28. Elevators: `y=-2.2x+35` and `y=1.7x`. The intersection is `(350/39,595/39)`, approximately `(8.97,15.26)`. The elevators have equal height after approximately 8.97 seconds at 15.26 feet.
+29. Bookstore: `2.50x+0.75y=450` and `x+y=260`. The algebraic intersection is `(1020/7,800/7)`. These values are not whole numbers. The stated sales context has no feasible whole-number solution.
 
-Without graphing, determine the number of solutions and classify the system by rewriting each equation in slope-intercept form.
+## Mixed exercises
 
-### Step 1: Rewrite in Slope-Intercept Form
+Problems 30-39 graph and classify systems. Problem 40 shows parallel lines `y=200x+300` and `y=200x+100`. Problem 41 gives `20t=15t+150`, so the race lasts 30 seconds and the finish is 600 feet from Olivia's start.
 
-Solve each equation for [ y ]:
+Problem 42 compares `y=1.21x-3` with `5y-5=6x`, or `y=1.2x+1`. The intersection is `(400,481)`. A restricted graph window can hide it.
 
-[
-4x - 6y = 12 \quad \Rightarrow \quad y = \frac{2}{3}x - 2
-]
+Problem 43 gives a 20-minute walk and a 5-minute bicycle ride. Problem 44 is false because two common points force coincident lines and infinitely many common points. Problem 45 has common solution `(-2,3)`. Problem 46 is always: two lines through `(0,0)` and `(2,2)` coincide.
 
-[
--2x + 3y = -6 \quad \Rightarrow \quad y = \frac{2}{3}x - 2
-]
+Problem 47 displays four systems. The third system has no solution. The other three have one solution. Problems 48 and 50 construct systems with specified solution counts. Problem 49 asks for advantages and limits of graphing.
 
-### Step 2: Compare Slopes and Intercepts
+Problem 51 compares 10% with $10. The percentage discount is larger above $100. The discounts are equal at $100. The $10 discount is larger below $100.
 
-* Same slope, same intercept → infinitely many solutions (consistent, dependent)
-* Same slope, different intercepts → no solution (inconsistent)
-* Different slopes → one solution (consistent, independent)
+## Original learner prompts and complete givens
 
-Representative systems include:
+### Problems 1-4
 
-[
-y = \frac{1}{2}x \quad \text{and} \quad y = x + 2
-]
+Use the provided graph to determine the number of solutions for each system. Then state whether each system is consistent or inconsistent and independent or dependent. The systems are the four systems listed in Examples 1 and 2 above.
 
-[
-8x - 4y = 16 \quad \text{and} \quad -5x - 5y = 5
-]
+**Figure 1 accessible description.** A coordinate plane shows four distinct geometric lines. The rising line through `(0,-1)` is labeled `y=x-1` and `2x-2y=2`. The parallel rising line through `(0,4)` is labeled `x-y=-4` and `y=x+4`. A falling line is labeled `y=-x+1`. A steeper rising line is labeled `y=2x-3`. The labels show that each pair of equivalent equations occupies one line.
 
-[
-y = -\frac{3}{2}x + 5 \quad \text{and} \quad y = -\frac{2}{3}x + 5
-]
+### Problems 5-10
 
-## Example 3 — Graph a System and Find the Solution
+Determine the number of solutions for each listed system without graphing. Then state whether the system is consistent or inconsistent and independent or dependent. Show the equation rewrite or slope-and-intercept comparison that supports the classification.
 
-Graph each system of equations on the same coordinate plane. Determine the number of solutions. If there is exactly one solution, identify its coordinates.
+### Problems 11-16
 
-### Step 1: Graph Each Equation
+Graph each listed system on one coordinate plane. Determine the number of solutions. If the system has one solution, give the intersection coordinates.
 
-Use slope-intercept form or intercepts to graph each line.
+### Problem 17 — Aviation
 
-### Step 2: Identify the Intersection
+An air traffic controller monitors two planes near an airport. The first plane starts at 1000 meters and ascends at 400 meters per minute. The second plane starts at 5900 meters and descends at 300 meters per minute.
 
-Read the coordinates of the intersection point, if it exists.
+- Define `x` as time in minutes and `y` as altitude in meters.
+- Write and graph one equation for each plane.
+- Predict when the planes have the same altitude.
 
-Representative systems include:
+The equations and checked solution appear in Example 7 above.
 
-[
-y = -3 \quad \text{and} \quad y = x - 3
-]
+### Problem 18 — Table seating
 
-[
-y = 4x + 2 \quad \text{and} \quad y = -2x - 4
-]
+Gustavo sets up tables for a caterer. A round table seats 8 people. A rectangular table seats 10 people. He must seat 124 people. He uses 2 more round tables than rectangular tables.
 
-[
-x + y = 4 \quad \text{and} \quad 3x + 3y = 12
-]
+- Define the variables.
+- Write a two-equation system.
+- Solve the system graphically.
+- State the whole-number table counts.
 
-[
-2x + 3y = 12 \quad \text{and} \quad 2x - y = 4
-]
+### Problems 19-24
 
-## Example 4 — Write and Solve a System from a Word Problem
+Write and graph a system of two equations to solve each listed linear equation. Treat the left side and right side as separate functions. Use the intersection set to distinguish one solution, all real values, and no solution.
 
-Define variables, write a system of equations, and solve graphically to answer questions about a real-world scenario.
+### Problems 25-27
 
-### Aviation Problem
+Solve each listed decimal-coefficient system. State each coordinate to the nearest hundredth. Keep the exact values during calculation before rounding.
 
-Two planes are in flight. One starts at 1000 meters and ascends at 400 meters per minute. The other starts at 5900 meters and descends at 300 meters per minute. Write a system where [ x ] is time in minutes and [ y ] is altitude in meters, graph the system, and predict when the planes will be at the same altitude.
+### Problem 28 — Elevators
 
-[
-y = 400x + 1000
-]
+One elevator starts on the fourth floor, 35 feet above ground, and descends at 2.2 feet per second. A second elevator starts at ground level and rises at 1.7 feet per second. Write and solve a system. Determine when the elevators have the same height. Interpret both coordinates with units.
 
-[
-y = -300x + 5900
-]
+### Problem 29 — Bookstore
 
-### Table-Seating Problem
+A bookstore earns $2.50 profit for each book and $0.75 for each magazine. The weekly profit is $450. The store sold 260 publications. Let `x` be the number of books and `y` be the number of magazines. Write and solve a system. Interpret the result and check the whole-number sales domain.
 
-Round tables seat 8 people; rectangular tables seat 10 people. Set up tables for 124 people using 2 more round tables than rectangular tables. Define variables, write a system, and solve graphically.
+### Problems 30-39
 
-Let [ r ] = number of round tables and [ t ] = number of rectangular tables.
+Graph each system. Determine its solution count. Give the coordinates when there is one solution. Then classify the system.
 
-[
-8r + 10t = 124
-]
+30. `2x-y=-3` and `2x+y=-1`.
+31. `2x+y=4` and `y=-2x-2`.
+32. `2y=5+x` and `3x-6y=-15`.
+33. `2x-y=5` and `x+y=-2`.
+34. `2y=1.2x-10` and `4y=2.4x`.
+35. `x=6-(3/8)y` and `4=(2/3)x+(1/4)y`.
+36. `x-y=3` and `x-2y=3`.
+37. `x+2y=4` and `y=-(1/2)x+2`.
+38. `y=2x+3` and `3y=6x-6`.
+39. `y-x=-1` and `x+y=3`.
 
-[
-r = t + 2
-]
+### Problem 40 — Business graph
 
-## Example 5 — Solve a Linear Equation by Graphing a System
+Store 1 uses `y=200x+300`. Store 2 uses `y=200x+100`. Here, `x` is days and `y` is items sold. Use the provided graph to decide whether the system has no solution, one solution, or infinitely many solutions.
 
-Rewrite a single linear equation as a system of two equations, then graph the system to find the solution.
+**Figure 2 accessible description.** The horizontal axis is Days from 0 through 6. The vertical axis is Items Sold from 0 through 900. Two rising parallel lines are labeled `y=200x+300` for Store 1 and `y=200x+100` for Store 2. The lines do not intersect in the displayed plane or elsewhere.
 
-### Step 1: Split the Equation
+### Problem 41 — Bicycle race
 
-Write the left side as one equation and the right side as another, both in terms of [ x ].
+Olivia rides 20 feet per second. William rides 15 feet per second. Olivia gives William a 150-foot head start. The race ends in a tie.
 
-For [ 3x + 6 = 6 ]:
+- Define variables and write a system.
+- Graph the system.
+- Find the finish-line distance from Olivia's start.
 
-[
-y = 3x + 6 \quad \text{and} \quad y = 6
-]
+### Problem 42 — Calculator-window argument
 
-### Step 2: Graph and Find the Intersection
+Abhijit graphs `y=1.21x-3` and `5y-5=6x`. He concludes that the system has no solution. Decide whether you agree. Explain the effect of the graph window and the small slope difference.
 
-The [ x ]-coordinate of the intersection is the solution to the original equation.
+**Figure 3 accessible description.** A calculator screen uses a restricted window. The two rising lines appear parallel at that scale. The screen does not show their intersection at `(400,481)`. The image cannot support a no-solution conclusion.
 
-Other representative equations include:
+### Problem 43 — Travel time
 
-[
-2x - 17 = x - 10
-]
+Cayley sometimes walks to school and sometimes rides a bicycle. Walking takes 15 minutes longer than riding. Last week she walked on 3 days and rode on 2 days. Her total travel time to school was 1 hour 10 minutes.
 
-[
--12x + 90 = 30
-]
+- Define variables and write a system.
+- Graph the system.
+- Find her walking time.
 
-[
-2x + 5 = 2x + 5
-]
+### Problem 44 — Three equations
 
-[
-x + 1 = x + 3
-]
+Maureen says that a system of three linear equations can have exactly two solutions. Decide whether she is correct. Use a graph and the common-point structure of lines to justify the answer.
 
-## Example 6 — Solve Decimal Systems
+### Problem 45 — Three-equation system
 
-Solve systems of linear equations with decimal coefficients. State the solution to the nearest hundredth.
+Use graphing to find the common solution of `2x+3y=5`, `3x+4y=6`, and `4x+5y=7`.
 
-### Step 1: Choose a Method
+### Problem 46 — Two known common points
 
-Graphing or substitution/elimination may be used. Graphing is often practical with decimal coefficients.
+A system of two linear equations has `(0,0)` and `(2,2)` as solutions. Decide whether it sometimes, always, or never has other solutions. Justify the answer.
 
-### Step 2: Round Appropriately
+### Problem 47 — Which one does not belong?
 
-If the solution is not exact, round each coordinate to the nearest hundredth.
+Identify one system that does not belong. Justify the selected property.
 
-Representative systems include:
+**Figure 4 accessible description.** Four cards show these systems:
 
-[
-2.5x + 3.75y = 10.5 \quad \text{and} \quad 1.25x - 8.5y = -5.25
-]
+1. `4x-y=5` and `-2x+y=-1`.
+2. `-x+4y=8` and `3x-6y=6`.
+3. `4x+2y=14` and `12x+6y=16`.
+4. `3x-2y=1` and `2x+3y=18`.
 
-[
-2.2x + 1.8y = -3.6 \quad \text{and} \quad -4.8x + 12.4y = 10.6
-]
+The third system has no solution. Each other system has one solution. Other answers require a stated and correct distinguishing property.
 
-[
-1.12x - 2.24y = 4.96 \quad \text{and} \quad -3.56x - 2.48y = -7.32
-]
+### Problem 48 — Construct three systems
 
-## Example 7 — More Word Problems with Systems
+Write three equations that each pair with `y=5x-3`. Make one inconsistent system, one consistent and independent system, and one consistent and dependent system.
 
-Write and solve systems of equations to interpret real-world scenarios.
+### Problem 49 — Evaluate graphing
 
-### Elevator Problem
+Describe advantages and disadvantages of solving systems by graphing. Address visual interpretation, exactness, graph scale, and intersections outside a viewing window.
 
-One elevator starts on the 4th floor, 35 feet above ground, descending at 2.2 feet per second. Another starts at ground level, rising at 1.7 feet per second. Write and solve a system to find when both elevators are at the same height, and interpret the result.
+### Problem 50 — Construct by solution count
 
-[
-y = -2.2x + 35 \quad \text{and} \quad y = 1.7x
-]
+For each case, write and graph a system. Then classify it as consistent or inconsistent and independent or dependent.
 
-### Bookstore Profit Problem
+- One solution.
+- Infinitely many solutions.
+- No solution.
 
-A store makes [ 2.50 ] profit per book and [ 0.75 ] profit per magazine. Total profit for the week is [ 450 ], and total publications sold is 260. Find the number of books and magazines sold.
+### Problem 51 — Compare discounts
 
-Let [ x ] = books and [ y ] = magazines.
+Store A offers 10% off electronics. Store B offers $10 off electronics. Decide whether either student's statement is correct. Explain the price conditions.
 
-[
-2.50x + 0.75y = 450
-]
-
-[
-x + y = 260
-]
-
-## Mixed Exercises
-
-The mixed exercises section provides comprehensive practice across all skills from this lesson. Problems include:
-
-* Graphing systems and determining the number of solutions, then classifying as consistent/inconsistent and independent/dependent
-* Systems with integer, fractional, and decimal coefficients
-* Parallel and coincident lines
-* Word problems involving business, racing, and daily routines
-* Error analysis and reasoning about the nature of solutions
-* Construction of systems with specified numbers of solutions
-
-Students must apply graphing skills, algebraic classification, and contextual interpretation throughout.
-
-## Review Notes
-
-* The graph for Examples 1–2 (image1.png) could not be described; it should show two linear equations for visual classification.
-* The graph for problem 40 (image2.png) could not be described; it shows two parallel lines for a business application.
-* The calculator screen for problem 42 (image3.png) could not be described; it shows a graphed system used in an argument about whether the system has no solution.
-* The four systems for problem 47 (image4.png) could not be described; students must identify which system does not belong.
-* The discussion between Francisca and Alan for problem 51 (image5.png) could not be described; it presents two students' reasoning about comparing a 10% discount versus a 10-dollar discount.
+**Figure 5 accessible description.** Francisca says, “You cannot determine which store has the better offer unless you know the price of the items.” Alan says, “Store A has the better offer because 10% of the sale price is a greater discount than $10.” Francisca's statement is correct. Alan's claim is true only above $100.

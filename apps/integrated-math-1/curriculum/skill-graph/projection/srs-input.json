@@ -1646,8 +1646,9 @@
       ],
       "prerequisites": [],
       "difficulty": 0.5,
-      "generatorReady": true,
-      "equivalentNodeIds": []
+      "generatorReady": false,
+      "equivalentNodeIds": [],
+      "generatorKey": null
     },
     {
       "nodeId": "math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met",
@@ -2027,6 +2028,126 @@
       "rendererKey": "comprehension-quiz",
       "generatorKey": null,
       "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.determine-a-system-solution-from-a-graph",
+      "blueprintId": "math.im1.skill.7.1.determine-a-system-solution-from-a-graph.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.determine-the-number-of-solutions-from-a-graph",
+      "blueprintId": "math.im1.skill.7.1.determine-the-number-of-solutions-from-a-graph.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.classify-a-linear-system-by-its-solution-set",
+      "blueprintId": "math.im1.skill.7.1.classify-a-linear-system-by-its-solution-set.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.determine-the-number-of-solutions-from-equation-structure",
+      "blueprintId": "math.im1.skill.7.1.determine-the-number-of-solutions-from-equation-structure.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.write-a-two-equation-system-from-a-context",
+      "blueprintId": "math.im1.skill.7.1.write-a-two-equation-system-from-a-context.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.solve-and-interpret-a-contextual-system",
+      "blueprintId": "math.im1.skill.7.1.solve-and-interpret-a-contextual-system.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.solve-a-linear-equation-by-graphing-its-two-sides-as-a-system",
+      "blueprintId": "math.im1.skill.7.1.solve-a-linear-equation-by-graphing-its-two-sides-as-a-system.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.report-an-approximate-system-solution-to-a-specified-precision",
+      "blueprintId": "math.im1.skill.7.1.report-an-approximate-system-solution-to-a-specified-precision.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.evaluate-a-graphical-claim-when-an-intersection-is-outside-the-viewing-window",
+      "blueprintId": "math.im1.skill.7.1.evaluate-a-graphical-claim-when-an-intersection-is-outside-the-viewing-window.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.reason-about-common-solutions-of-three-linear-equations",
+      "blueprintId": "math.im1.skill.7.1.reason-about-common-solutions-of-three-linear-equations.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.construct-systems-with-a-specified-number-of-solutions",
+      "blueprintId": "math.im1.skill.7.1.construct-systems-with-a-specified-number-of-solutions.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.explain-the-limits-of-graphing-as-a-system-solving-method",
+      "blueprintId": "math.im1.skill.7.1.explain-the-limits-of-graphing-as-a-system-solving-method.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
     }
   ]
 }

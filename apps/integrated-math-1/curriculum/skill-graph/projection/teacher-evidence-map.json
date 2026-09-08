@@ -3202,6 +3202,114 @@
       ],
       "prerequisitesMet": true,
       "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.determine-a-system-solution-from-a-graph",
+      "title": "Determine a system solution from a graph",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.determine-the-number-of-solutions-from-a-graph",
+      "title": "Determine the number of solutions from a graph",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.classify-a-linear-system-by-its-solution-set",
+      "title": "Classify a linear system by its solution set",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.determine-the-number-of-solutions-from-equation-structure",
+      "title": "Determine the number of solutions from equation structure",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.write-a-two-equation-system-from-a-context",
+      "title": "Write a two-equation system from a context",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.solve-and-interpret-a-contextual-system",
+      "title": "Solve and interpret a contextual system",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.solve-a-linear-equation-by-graphing-its-two-sides-as-a-system",
+      "title": "Solve a linear equation by graphing its two sides as a system",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.report-an-approximate-system-solution-to-a-specified-precision",
+      "title": "Report an approximate system solution to a specified precision",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.evaluate-a-graphical-claim-when-an-intersection-is-outside-the-viewing-window",
+      "title": "Evaluate a graphical claim when an intersection is outside the viewing window",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.reason-about-common-solutions-of-three-linear-equations",
+      "title": "Reason about common solutions of three linear equations",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.construct-systems-with-a-specified-number-of-solutions",
+      "title": "Construct systems with a specified number of solutions",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.explain-the-limits-of-graphing-as-a-system-solving-method",
+      "title": "Explain the limits of graphing as a system-solving method",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     }
   ],
   "prerequisiteGaps": [

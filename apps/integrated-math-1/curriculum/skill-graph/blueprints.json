@@ -3701,15 +3701,6 @@
         "math.standard.ccss.8-ee-c-8",
         "math.standard.ccss.a-rei-d-10"
       ],
-      "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
       "exceptions": [
         {
           "type": "generator",
@@ -4984,7 +4975,8 @@
         "math.im1.example.4.3.018",
         "math.im1.example.6.5.022",
         "math.im1.example.6.5.023",
-        "math.im1.example.6.5.026"
+        "math.im1.example.6.5.026",
+        "math.im1.example.7.1.003"
       ],
       "alignmentNodeIds": [],
       "reviewStatus": "draft",
@@ -6947,6 +6939,158 @@
         "course": "im1",
         "module": "6",
         "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.determine-a-system-solution-from-a-graph",
+      "sourceNodeIds": [
+        "math.im1.example.7.1.003"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.determine-the-number-of-solutions-from-a-graph",
+      "sourceNodeIds": [
+        "math.im1.example.7.1.001",
+        "math.im1.example.7.1.003"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.classify-a-linear-system-by-its-solution-set",
+      "sourceNodeIds": [
+        "math.im1.example.7.1.001",
+        "math.im1.example.7.1.002"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.determine-the-number-of-solutions-from-equation-structure",
+      "sourceNodeIds": [
+        "math.im1.example.7.1.002"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.write-a-two-equation-system-from-a-context",
+      "sourceNodeIds": [
+        "math.im1.example.7.1.004",
+        "math.im1.example.7.1.007"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.solve-and-interpret-a-contextual-system",
+      "sourceNodeIds": [
+        "math.im1.example.7.1.004",
+        "math.im1.example.7.1.007"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.solve-a-linear-equation-by-graphing-its-two-sides-as-a-system",
+      "sourceNodeIds": [
+        "math.im1.example.7.1.005"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.report-an-approximate-system-solution-to-a-specified-precision",
+      "sourceNodeIds": [
+        "math.im1.example.7.1.006"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.evaluate-a-graphical-claim-when-an-intersection-is-outside-the-viewing-window",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.reason-about-common-solutions-of-three-linear-equations",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.construct-systems-with-a-specified-number-of-solutions",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.explain-the-limits-of-graphing-as-a-system-solving-method",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "7",
+        "lesson": "1"
       }
     }
   ]

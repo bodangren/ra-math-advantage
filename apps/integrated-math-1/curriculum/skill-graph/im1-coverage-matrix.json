@@ -1,10 +1,10 @@
 {
   "version": 1,
   "course": "im1",
-  "totalSkills": 324,
+  "totalSkills": 336,
   "counts": {
     "served": 6,
-    "gap": 318,
+    "gap": 330,
     "newComponent": 0
   },
   "byModule": [
@@ -52,9 +52,9 @@
     },
     {
       "module": "7",
-      "totalSkills": 6,
+      "totalSkills": 18,
       "served": 0,
-      "gap": 6,
+      "gap": 18,
       "newComponent": 0
     },
     {
@@ -1917,7 +1917,103 @@
       "priority": "standard"
     },
     {
+      "skillId": "math.im1.skill.7.1.classify-a-linear-system-by-its-solution-set",
+      "module": "7",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.7.1.construct-systems-with-a-specified-number-of-solutions",
+      "module": "7",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.7.1.determine-a-system-solution-from-a-graph",
+      "module": "7",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.7.1.determine-the-number-of-solutions-from-a-graph",
+      "module": "7",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.7.1.determine-the-number-of-solutions-from-equation-structure",
+      "module": "7",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.7.1.evaluate-a-graphical-claim-when-an-intersection-is-outside-the-viewing-window",
+      "module": "7",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.7.1.explain-the-limits-of-graphing-as-a-system-solving-method",
+      "module": "7",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
       "skillId": "math.im1.skill.7.1.graph-systems-of-linear-equations-and-determine-the-number-o",
+      "module": "7",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.7.1.reason-about-common-solutions-of-three-linear-equations",
+      "module": "7",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.7.1.report-an-approximate-system-solution-to-a-specified-precision",
+      "module": "7",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.7.1.solve-a-linear-equation-by-graphing-its-two-sides-as-a-system",
+      "module": "7",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.7.1.solve-and-interpret-a-contextual-system",
+      "module": "7",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.7.1.write-a-two-equation-system-from-a-context",
       "module": "7",
       "status": "gap",
       "tier": "none",
