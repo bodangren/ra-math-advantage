@@ -67,7 +67,7 @@ Dependencies:
 - [~] **Business Math Review Fixes (2026-09-07)** — 41 local corrections verified. Dependency approval and integration of overlapping changes remain open. See `fixes.md`.
   *Link: [./tracks/business-math-review-fixes_20260907/](./tracks/business-math-review-fixes_20260907/)*
 
-- [~] **IM2 Complete Review (2026-09-07)** — Corrections in progress. Runtime, 96-lesson inventory, and 180-period calendar verified. Graph teaching coverage and full practice remain open. See `fix-plan.md`.
+- [~] **IM2 Complete Review (2026-09-07)** — Corrections in progress. Runtime, 96-lesson inventory, and 180-period calendar verified. Graph teaching coverage and full practice remain open. The dependency plan now includes both audit scopes and all three PostCSS copies. See `fix-plan.md`.
   *Link: [./tracks/im2-complete-review_20260907/](./tracks/im2-complete-review_20260907/)*
 
 - [x] **Business Math Complete Review (2026-09-07)** — Review complete. The correction track verifies 41 local fixes. One dependency finding remains open. See the correction report for release limits.
