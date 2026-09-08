@@ -6,6 +6,238 @@ import {
   type QueryCtx,
 } from "./_generated/server";
 import type { Id } from "./_generated/dataModel";
+import {
+  getApprovedTopic11WorkedSourceHandler,
+  hasCurrentTopic11Source,
+  isStoredTopic11Acknowledgement,
+  isTopic11TeacherConfirmationForSubmission,
+} from "./activities";
+import nodesDocument from "../curriculum/skill-graph/nodes.json";
+import blueprintsDocument from "../curriculum/skill-graph/blueprints.json";
+
+const topic11TeacherCandidateValidator = v.object({
+  learnerId: v.id("profiles"),
+  learnerName: v.string(),
+  submissionId: v.id("activity_submissions"),
+  acknowledgedAt: v.number(),
+  lessonLabel: v.string(),
+  classChoices: v.array(
+    v.object({ classId: v.id("classes"), className: v.string() }),
+  ),
+});
+
+type Topic11Publication = NonNullable<
+  Parameters<typeof getApprovedTopic11WorkedSourceHandler>[1]
+>;
+
+const topic11Publication: Topic11Publication = {
+  nodes: nodesDocument.nodes,
+  blueprints: blueprintsDocument.blueprints,
+};
+
+function hasActiveCredential(
+  profile: Record<string, unknown>,
+  credential: Record<string, unknown> | null,
+): boolean {
+  return Boolean(credential?.isActive)
+    && credential?.profileId === profile._id
+    && credential?.username === profile.username
+    && credential?.role === profile.role
+    && credential?.organizationId === profile.organizationId;
+}
+
+/** Gets canonical Topic 1.1 acknowledgements that this teacher can confirm. */
+export async function getTopic11TeacherCandidatesHandler(
+  ctx: QueryCtx,
+  args: { teacherId: Id<"profiles"> },
+  publication: Topic11Publication = topic11Publication,
+) {
+  const teacher = await ctx.db.get("profiles", args.teacherId);
+  const teacherCredential = teacher
+    ? await ctx.db
+        .query("auth_credentials")
+        .withIndex("by_username", (query) =>
+          query.eq("username", teacher.username),
+        )
+        .unique()
+    : null;
+  if (
+    !teacher
+    || teacher.role !== "teacher"
+    || !hasActiveCredential(teacher, teacherCredential)
+  ) {
+    throw new Error("Forbidden");
+  }
+
+  const source = await getApprovedTopic11WorkedSourceHandler(ctx, publication);
+  if (!source) return [];
+  const [activity, lessons, classes] = await Promise.all([
+    ctx.db.get("activities", source.activityId),
+    ctx.db
+      .query("lessons")
+      .withIndex("by_unit_and_order", (query) =>
+        query.eq("unitNumber", 1).eq("orderIndex", 1),
+      )
+      .collect(),
+    ctx.db
+      .query("classes")
+      .withIndex("by_teacher", (query) =>
+        query.eq("teacherId", args.teacherId),
+      )
+      .collect(),
+  ]);
+  if (!activity || lessons.length !== 1) return [];
+  const lesson = lessons[0]!;
+  const publishedVersions = (
+    await ctx.db
+      .query("lesson_versions")
+      .withIndex("by_lesson", (query) => query.eq("lessonId", lesson._id))
+      .collect()
+  )
+    .filter((version) => version.status === "published")
+    .sort((left, right) => right.version - left.version);
+  if (
+    publishedVersions.length === 0
+    || publishedVersions[1]?.version === publishedVersions[0]!.version
+  ) {
+    return [];
+  }
+  const lessonLabel = publishedVersions[0]!.title ?? lesson.title;
+  const now = Date.now();
+  if (!Number.isFinite(now)) return [];
+
+  const classContexts = await Promise.all(
+    classes
+      .filter((classroom) => !classroom.archived)
+      .map(async (classroom) => ({
+        classroom,
+        enrollments: await ctx.db
+          .query("class_enrollments")
+          .withIndex("by_class", (query) =>
+            query.eq("classId", classroom._id),
+          )
+          .collect(),
+        assignments: await ctx.db
+          .query("class_lessons")
+          .withIndex("by_class_and_lesson", (query) =>
+            query.eq("classId", classroom._id).eq("lessonId", lesson._id),
+          )
+          .collect(),
+      })),
+  );
+  const learnerIds = [
+    ...new Set(
+      classContexts.flatMap(({ enrollments }) =>
+        enrollments
+          .filter((enrollment) => enrollment.status === "active")
+          .map((enrollment) => enrollment.studentId),
+      ),
+    ),
+  ];
+  const candidates = [];
+  for (const learnerId of learnerIds) {
+    const learner = await ctx.db.get("profiles", learnerId);
+    const credential = learner
+      ? await ctx.db
+          .query("auth_credentials")
+          .withIndex("by_username", (query) =>
+            query.eq("username", learner.username),
+          )
+          .unique()
+      : null;
+    if (
+      !learner
+      || learner.role !== "student"
+      || learner.organizationId !== teacher.organizationId
+      || !hasActiveCredential(learner, credential)
+    ) {
+      continue;
+    }
+    const submissions = await ctx.db
+      .query("activity_submissions")
+      .withIndex("by_user_and_activity", (query) =>
+        query.eq("userId", learnerId).eq("activityId", source.activityId),
+      )
+      .collect();
+    for (const submission of submissions) {
+      const acknowledgedAt = Number(submission.submittedAt);
+      const reviewedAt = activity.approval?.reviewedAt;
+      if (
+        !isStoredTopic11Acknowledgement(
+          submission,
+          learnerId,
+          source.activityId,
+          now,
+        )
+        || !Number.isFinite(acknowledgedAt)
+        || !Number.isFinite(activity.createdAt)
+        || activity.createdAt > acknowledgedAt
+        || !Number.isFinite(reviewedAt)
+        || Number(reviewedAt) > acknowledgedAt
+        || !(await hasCurrentTopic11Source(
+          ctx,
+          lesson._id,
+          source.activityId,
+          acknowledgedAt,
+        ))
+      ) {
+        continue;
+      }
+      const confirmation = await ctx.db
+        .query("learning_evidence")
+        .withIndex("by_learner_and_idempotency_key", (query) =>
+          query
+            .eq("learnerId", learnerId)
+            .eq(
+              "idempotencyKey",
+              `precalc:teacher-led:submission:${String(submission._id)}`,
+            ),
+        )
+        .unique();
+      if (
+        confirmation
+        && isTopic11TeacherConfirmationForSubmission(confirmation, submission)
+      ) {
+        continue;
+      }
+      const classChoices = classContexts.flatMap(
+        ({ classroom, enrollments, assignments }) => {
+          const enrollment = enrollments.filter(
+            (row) => row.studentId === learnerId,
+          );
+          const enrolledAt = enrollment[0]?.enrolledAt;
+          const assignedAt = assignments[0]?.assignedAt;
+          return enrollment.length === 1
+            && enrollment[0]!.status === "active"
+            && Number.isFinite(enrolledAt)
+            && Number(enrolledAt) <= acknowledgedAt
+            && assignments.length === 1
+            && Number.isFinite(assignedAt)
+            && Number(assignedAt) <= acknowledgedAt
+            ? [{ classId: classroom._id, className: classroom.name }]
+            : [];
+        },
+      );
+      if (classChoices.length > 0) {
+        candidates.push({
+          learnerId,
+          learnerName: learner.displayName ?? learner.username,
+          submissionId: submission._id,
+          acknowledgedAt,
+          lessonLabel,
+          classChoices,
+        });
+      }
+    }
+  }
+  return candidates;
+}
+
+export const getTopic11TeacherCandidates = internalQuery({
+  args: { teacherId: v.id("profiles") },
+  returns: v.array(topic11TeacherCandidateValidator),
+  handler: (ctx, args) => getTopic11TeacherCandidatesHandler(ctx, args),
+});
 
 const responseValidator = v.object({
   _id: v.id("lesson_responses"),
