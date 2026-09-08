@@ -56,7 +56,7 @@ Use these results only in tests and author review:
 - Problem 37 is `y = 5^x - 2`.
 - Problem 38 is `y = -5^x + 3`.
 - Problem 39 is `y = 5^(x - 4)`.
-- Problem 40 is `y = 5^(1 - x)`. The original graph passes through `(0, 5)` and `(1, 1)`.
+- Problem 40 is `y = 5^(2 - x)`. The original graph passes through `(1, 5)` and `(2, 1)`.
 - Problem 41 shows a vertical translation of 500 dollars. The antique value is approximately 500 dollars from the graph.
 - Problem 44 has intersection `(0, 4)` because `2^x = 5^x` only at `x = 0`.
 - Problem 45 compares identical functions because `4^(x + 2) = 16 * 4^x`.
@@ -187,3 +187,5 @@ The corrected scope has eight new capabilities, repaired stable 8d, and two G38 
 The parent viewed all four nonblank source pages and the original graph assets. Problem 15 uses `image3.png`. Problem 40 uses `image10.png`. The corrected equations above follow those assets. Problem 41 uses `image8.JPG`, while Problem 39 uses `image9.png`. File order does not match problem order.
 
 Problem 11 is a horizontal translation right 3. Problem 12 is a vertical translation down 5. Problem 42 has no reflection or horizontal dilation. Problem 43 has a reflection, vertical dilation, and vertical translation, but no horizontal dilation. For Problem 8, one valid relative description is reflection across the x-axis followed by translation up 5. For Problem 7, one valid description is reflection across the y-axis followed by translation up 4. Preserve equivalent valid descriptions with a stated order.
+
+The parent withdrew the earlier Problem 40 correction after checking the original grid coordinates. The curve crosses the y=1 grid line at x=2. The original proposed exponent `2 - x` is correct.

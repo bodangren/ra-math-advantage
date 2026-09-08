@@ -121,3 +121,7 @@ The relative descriptions for Problems 7 and 8 are correct. Problem 7 can be des
 Problem 20(a) correctly maps `.006` to the verbal-description-to-equation skill. Problems 17 through 19 and 20(b) map `.006` to the vertical-dilation skill. No composition, context-only dilation, or changed-initial-value duplicate remains.
 
 The corrected equations for Problems 15 and 40 remain in the proposal. The final lifecycle and relationship scope also remain correct: eight new draft inactive skills, repaired 8d, two G38 reuses, no new prerequisite or equivalence edge, and removal of edges `1265` and `1266`.
+
+## Problem 40 correction to the independent review
+
+My earlier review accepted an incorrect reading of the Problem 40 graph. The original graph passes through `(1, 5)` and `(2, 1)`. The correct equation is `5^(2-x)`. The revised proposal now uses this result. This correction supersedes each earlier statement in this review that gives `5^(1-x)` or points `(0, 5)` and `(1, 1)`.
