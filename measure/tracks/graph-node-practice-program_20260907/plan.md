@@ -360,3 +360,9 @@ G47 Lesson 9-4 source restoration is committed as `fbc8d457`. Final parent and i
 - [~] Task G48: Inspect IM1 Lesson 9-5 original worksheet while G47 graph and selected-seed checks run. Record source tasks, native figures, stable identities, and ambiguity boundaries before proposing capabilities.
 
 Execution recovery: the execution context changed after the unit 5 independent review. Temporary candidate directories, logs, and agent sessions are absent. Committed source and runtime changes remain intact. Reconstruct the uncommitted unit 5 seed and G47 graph patches from HEAD and the accepted source records. Repeat verification before integration. G48 proposal work continues in parallel. Prior temporary results do not prove the reconstructed files.
+
+Q37 unit 6 query preparation is in progress in an isolated HEAD candidate. The query uses already committed activity and evidence handlers. Its baseline tests can run before unit 5 integration. The final teacher surface and composed seed flow still require unit 5. No main runtime file is changed by this preparation.
+
+Unit 6 query preparation now has a valid 21-test missing-query baseline. The first pending fixture failed publication before reaching that boundary. The corrected fixture reuses the complete committed hypothetical publication. See `precalc-runtime-unit6-query-preparation.md`.
+
+G48 first proposal includes incorrect box-plot construction references for comparison, histogram, and matching tasks. Correct exact evidence references and review combined response boundaries before acceptance. See `im1-lesson95-proposal-first-review.md`.
