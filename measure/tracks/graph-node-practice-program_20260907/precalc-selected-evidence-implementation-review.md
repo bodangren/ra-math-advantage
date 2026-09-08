@@ -55,3 +55,7 @@ The route still coerces three decision enum fields with `String(...)`. An array 
 The parent also ran the complete route test directory. Two committed older test files still expect browser-supplied evidence and old authentication mocks. Update these tests for the opaque submission ID contract while preserving authentication coverage.
 
 The parent composition run reached a shared serializer resolution failure. Check isolated shared-package resolution before using this run as application evidence. No integration is accepted from this run.
+
+The parent repeated all 28 author tests with local package aliases that resolve to the isolated committed sources. All 28 pass. The serializer failure came from the parent test setup loading a package from the dirty main checkout. It is not a defect in the bounded patch. Log: `/tmp/precalc-q18-evidence-v4-isolated-parent-tests.log`.
+
+Three added enum-array cases fail with HTTP 200 instead of HTTP 500. The two earlier malformed-decision tests now pass. Log: `/tmp/precalc-q18-evidence-v4-enum-parent-red.log`.
