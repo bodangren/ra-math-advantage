@@ -693,3 +693,7 @@ The backend independent review confirms the storage replay failure and identifie
 Removed the completed G55 native extraction after all 44 files matched the committed DOCX archive. All fifteen extracted images also matched the committed public assets. Removed two generated contact sheets. The original worksheet, restored lesson, and public figures remain committed.
 
 - [~] Task b73d and bc11 cleanup review: Compare each saved working state with retained copies and Git history. Identify unique content, file modes, links, ignored files, and active use. Keep both directories until independent preservation review permits removal.
+
+The corrected QF backend passes the real Convex serialization replay test, final build, and separate TypeScript. The focused suite has 42 passing cases. Parent review found that the new lesson and teacher privacy fixtures return empty results. Add relevant records and positive result assertions before acceptance. No backend source is committed yet.
+
+The next cleanup comparison found 11 unique whole files in b73d and 12 in bc11. None has an exact whole-file copy in the eleven checked recovery branches. Keep both saved directories while independent review determines the required preservation snapshots.
