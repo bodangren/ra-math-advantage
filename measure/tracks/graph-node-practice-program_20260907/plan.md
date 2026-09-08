@@ -755,3 +755,5 @@ Strict lesson receipts are committed as `3293568f5`. All four staged paths match
 Remaining discriminant sources are implemented in `5dce1bd3c`. Parent tests passed seven cases. Lint, build, and separate TypeScript passed. All unrelated catalog bytes are unchanged. Final independent acceptance remains open because the reviewer stopped at the account usage limit. Keep the task in progress. See `im3-lesson16-discriminant-source-implementation-review.md`.
 
 The parent completed Guided check source tracing after the assigned subagent stopped at the same usage limit. The seven-production-path proposal reuses existing authority and parser code. It covers Guided gating and stale responses. Independent scope review remains open. See `im3-quadratic-formula-guided-check-scope.md`.
+
+- [~] Task IM3-QF Guided check backend: Implement the server authority and authenticated route from the Guided check scope first. Change server-grading.ts, convex/activities.ts, the new check route, and focused tests. Reuse the existing final-writer relation checks and exact parser. Keep the component callback and learner gating as the next required part. No live seed or deployment.
