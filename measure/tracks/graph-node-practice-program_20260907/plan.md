@@ -523,3 +523,5 @@ G51 graph is committed as `2ee8bcc1a`. The format repair is committed as `3e1d00
 Q38 final review found a saved-result state defect. A new saved submission could retain the previous submission's delivery state. The bounded correction keys the existing saved-result component by submission identity. Add an actual rerender regression and invalid creation/update timestamp query cases before final integration.
 
 Removed the completed G51 source/graph archive and its 17-image native extraction directory. Every authored byte is committed. See `im1-lesson101-final-cleanup-review.md`. The 20 saved Codex worktrees remain intact.
+
+Q38 saved-result implementation is committed as `ffca7ea29`. Final independent review accepts all eight paths. Parent 114 tests, lint, build, post-build TypeScript, and 21 workspace resolutions pass. Actual saved-result browser verification is in progress. See `precalc-saved-practice-views-integration.md`.
