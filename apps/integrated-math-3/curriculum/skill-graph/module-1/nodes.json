@@ -835,10 +835,11 @@
     {
       "id": "math.im3.example.1.8.046",
       "kind": "worked_example",
-      "title": "Example 1: Solve by Substitution or Elimination",
+      "title": "Example 1: Solve a Linear-Quadratic System by Using Substitution",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 1)"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 1)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=57"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -847,16 +848,21 @@
         "lesson": "8",
         "exampleNumber": 1,
         "sourceLesson": "1-8",
-        "rawText": "1-8, Examples 1-4 — Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing"
+        "rawText": "1-8, Examples 1-4 — Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing",
+        "pdfPage": 57,
+        "authoredTitle": "Solve a Linear-Quadratic System by Using Substitution",
+        "prompt": "Solve the system of equations: x = 2y^2 + 3y + 1; -x + y = -1.",
+        "demonstratedCapability": "Solve a linear-quadratic system by substitution and report both ordered-pair solutions."
       }
     },
     {
       "id": "math.im3.example.1.8.047",
       "kind": "worked_example",
-      "title": "Example 2: Solve by Substitution or Elimination",
+      "title": "Example 2: Solve a Linear-Quadratic System by Using Elimination",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 2)"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 2)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=58"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -865,16 +871,21 @@
         "lesson": "8",
         "exampleNumber": 2,
         "sourceLesson": "1-8",
-        "rawText": "1-8, Examples 1-4 — Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing"
+        "rawText": "1-8, Examples 1-4 — Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing",
+        "pdfPage": 58,
+        "authoredTitle": "Solve a Linear-Quadratic System by Using Elimination",
+        "prompt": "Solve the system of equations: x^2 = y + 5; -x + y = 7.",
+        "demonstratedCapability": "Solve a linear-quadratic system by elimination and report both ordered-pair solutions."
       }
     },
     {
       "id": "math.im3.example.1.8.048",
       "kind": "worked_example",
-      "title": "Example 3: Use Systems to Solve Quadratic Equations",
+      "title": "Example 3: Use a System to Solve a Quadratic Equation",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 3)"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 3)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=58"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -883,16 +894,21 @@
         "lesson": "8",
         "exampleNumber": 3,
         "sourceLesson": "1-8",
-        "rawText": "1-8, Examples 1-4 — Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing"
+        "rawText": "1-8, Examples 1-4 — Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing",
+        "pdfPage": 58,
+        "authoredTitle": "Use a System to Solve a Quadratic Equation",
+        "prompt": "Use a system of equations to solve x^2 - 2x + 6 = 4x + 1.",
+        "demonstratedCapability": "Rewrite a quadratic equation as a linear-quadratic system and use intersections to find the equation solutions."
       }
     },
     {
       "id": "math.im3.example.1.8.049",
       "kind": "worked_example",
-      "title": "Example 4: Apply to Civil Engineering",
+      "title": "Example 4: Solve a Linear-Quadratic System by Graphing",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 4)"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 4)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=59"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -901,16 +917,21 @@
         "lesson": "8",
         "exampleNumber": 4,
         "sourceLesson": "1-8",
-        "rawText": "1-8, Examples 1-4 — Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing"
+        "rawText": "1-8, Examples 1-4 — Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing",
+        "pdfPage": 59,
+        "authoredTitle": "Solve a Linear-Quadratic System by Graphing",
+        "prompt": "A software developer determines that her company can model their revenue R from a given product in hundreds of thousands of dollars given the unit price of the product x in dollars with the function R = -0.1x^2 + 4x. Create a linear-quadratic system and solve it graphically to determine the price for which the company will earn $4.2 million.",
+        "demonstratedCapability": "Model a revenue condition as a linear-quadratic system, graph it, and interpret zero intersections in context."
       }
     },
     {
       "id": "math.im3.example.1.8.050",
       "kind": "worked_example",
-      "title": "Example 5: Solve by Graphing",
+      "title": "Example 5: Solve a Quadratic-Quadratic System Graphically",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 5)"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 5)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=60"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -919,16 +940,21 @@
         "lesson": "8",
         "exampleNumber": 5,
         "sourceLesson": "1-8",
-        "rawText": "1-8, Examples 5-7 — Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation"
+        "rawText": "1-8, Examples 5-7 — Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation",
+        "pdfPage": 60,
+        "authoredTitle": "Solve a Quadratic-Quadratic System Graphically",
+        "prompt": "Solve the system of equations by graphing: y = x^2; x = 1/5(y - 6)^2 + 6/5.",
+        "demonstratedCapability": "Solve a system of two quadratic relations graphically by constructing a value table and identifying intersections."
       }
     },
     {
       "id": "math.im3.example.1.8.051",
       "kind": "worked_example",
-      "title": "Example 6: Solve Quadratic-Quadratic Systems Algebraically",
+      "title": "Example 6: Solve a Quadratic-Quadratic System Algebraically",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 6)"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 6)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=61"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -937,16 +963,21 @@
         "lesson": "8",
         "exampleNumber": 6,
         "sourceLesson": "1-8",
-        "rawText": "1-8, Examples 5-7 — Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation"
+        "rawText": "1-8, Examples 5-7 — Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation",
+        "pdfPage": 61,
+        "authoredTitle": "Solve a Quadratic-Quadratic System Algebraically",
+        "prompt": "Solve the system of equations: 2x^2 - y = 4; y = -1/2x^2 + 6.",
+        "demonstratedCapability": "Solve a system of two quadratic equations algebraically by substitution and verify the ordered-pair solutions."
       }
     },
     {
       "id": "math.im3.example.1.8.052",
       "kind": "worked_example",
-      "title": "Example 7: More Systems Leading to Quadratic Equations",
+      "title": "Example 7: Use a System to Solve a Quadratic Equation",
       "domain": "math.im3",
       "sourceRefs": [
-        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 7)"
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 7)",
+        "apps/integrated-math-3/curriculum/IM3-reveal-module-1.pdf#page=62"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -955,7 +986,11 @@
         "lesson": "8",
         "exampleNumber": 7,
         "sourceLesson": "1-8",
-        "rawText": "1-8, Examples 5-7 — Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation"
+        "rawText": "1-8, Examples 5-7 — Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation",
+        "pdfPage": 62,
+        "authoredTitle": "Use a System to Solve a Quadratic Equation",
+        "prompt": "Use a system of equations to solve 2x^2 - 3x + 8 = 11 - 4x^2.",
+        "demonstratedCapability": "Rewrite an equation as a system of two quadratic functions and use graph intersections to find the equation solutions."
       }
     },
     {

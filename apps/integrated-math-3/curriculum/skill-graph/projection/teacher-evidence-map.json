@@ -1505,6 +1505,28 @@
       "standardsCovered": [],
       "prerequisitesMet": true,
       "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.1.8.solve-systems-involving-a-linear-and-a-quadratic-equation",
+      "title": "1s: Solve systems involving a linear and a quadratic equation",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.hsa-rei-c-7"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im3.skill.1.8.solve-systems-of-two-quadratic-equations",
+      "title": "1t: Solve systems of two quadratic equations",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.hsa-rei-c-7"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     }
   ],
   "prerequisiteGaps": [
@@ -1560,6 +1582,41 @@
         "solution_2"
       ],
       "submissionProvenance": "skill-graph-rollout:math.im3.skill.1.2.solve-quadratic-equations-by-graphing"
+    },
+    {
+      "nodeId": "math.im3.example.1.8.046",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.8.047",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.8.048",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.8.049",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.8.050",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.8.051",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
+    },
+    {
+      "nodeId": "math.im3.example.1.8.052",
+      "partIds": [],
+      "submissionProvenance": "knowledge-space.math.im3"
     }
   ]
 }

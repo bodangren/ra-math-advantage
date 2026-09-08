@@ -3,7 +3,11 @@ import { getGenerator } from '@math-platform/math-content/knowledge-space';
 import type { GeneratorInput } from '@math-platform/knowledge-space-practice';
 import { genericEvidenceToSubmissionParts } from '@math-platform/knowledge-space-practice';
 import type { GenericEvidenceResult } from '@math-platform/knowledge-space-practice';
+import { projectTeacherEvidence } from '@math-platform/knowledge-space-practice';
+import type { KnowledgeSpaceEdge, KnowledgeSpaceNode } from '@math-platform/knowledge-space-core';
 import projectionJson from '../module-1/projection/practice-v1-activity-map.json';
+import courseNodesJson from '../nodes.json';
+import courseEdgesJson from '../edges.json';
 
 const projection = projectionJson as {
   metadata: { course: string; module: string; description: string };
@@ -120,8 +124,16 @@ describe('Module 1 Teacher Evidence Projection', () => {
     for (const artifact of projection.teacherEvidence.attemptArtifacts) {
       expect(artifact.nodeId).toBeTruthy();
       expect(artifact.partIds).toBeDefined();
-      expect(artifact.submissionProvenance).toContain('skill-graph-pilot');
+      if (!artifact.nodeId.startsWith('math.im3.example.1.8.')) {
+        expect(artifact.submissionProvenance).toContain('skill-graph-pilot');
+      }
     }
+    const fresh = projectTeacherEvidence(
+      courseNodesJson.nodes as KnowledgeSpaceNode[],
+      courseEdgesJson.edges as KnowledgeSpaceEdge[],
+    );
+    expect(projection.teacherEvidence.attemptArtifacts.filter(artifact => artifact.nodeId.startsWith('math.im3.example.1.8.')))
+      .toEqual(fresh.attemptArtifacts.filter(artifact => artifact.nodeId.startsWith('math.im3.example.1.8.')));
   });
 
   it('SRS inputs have generator keys for generator-ready blueprints', () => {

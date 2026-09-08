@@ -666,6 +666,45 @@
           "date": "2026-05-10"
         }
       ]
+    },
+    {
+      "nodeId": "math.im3.skill.1.8.solve-systems-involving-a-linear-and-a-quadratic-equation",
+      "sourceNodeIds": [
+        "math.im3.example.1.8.046",
+        "math.im3.example.1.8.047",
+        "math.im3.example.1.8.048",
+        "math.im3.example.1.8.049"
+      ],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsa-rei-c-7"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "8"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.1.8.solve-systems-of-two-quadratic-equations",
+      "sourceNodeIds": [
+        "math.im3.example.1.8.050",
+        "math.im3.example.1.8.051",
+        "math.im3.example.1.8.052"
+      ],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsa-rei-c-7"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "8"
+      }
     }
   ]
 }

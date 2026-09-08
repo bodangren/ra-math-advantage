@@ -1425,6 +1425,32 @@
       "prerequisites": [],
       "difficulty": 0.5,
       "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.1.8.solve-systems-involving-a-linear-and-a-quadratic-equation",
+      "blueprintId": "math.im3.skill.1.8.solve-systems-involving-a-linear-and-a-quadratic-equation.blueprint",
+      "standards": [
+        "math.standard.ccss.hsa-rei-c-7"
+      ],
+      "prerequisites": [
+        "math.im3.skill.1.1.graph-quadratic-functions"
+      ],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im3.skill.1.8.solve-systems-of-two-quadratic-equations",
+      "blueprintId": "math.im3.skill.1.8.solve-systems-of-two-quadratic-equations.blueprint",
+      "standards": [
+        "math.standard.ccss.hsa-rei-c-7"
+      ],
+      "prerequisites": [
+        "math.im3.skill.1.7.graph-quadratic-inequalities-in-two-variables"
+      ],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
     }
   ]
 }
