@@ -476,7 +476,7 @@ Q37 row 8 failed at the server boundary. A browser request inserted Guided pract
 
 - [x] Task Q37 new-submission readiness: Reuse getTopic11LearnerDeliveryStateHandler before a new Guided or Independent insert. Require ready_for_practice. Preserve the accepted replay branch. Return a safe practice-unavailable response from the existing route. Test no acknowledgement, no teacher confirmation, stale source, a valid new attempt, and historical accepted replay. See `precalc-runtime-stale-writer-fix-plan.md`.
 - [~] Task Q38 saved practice views: Restore the selected physical practice result on lesson reload and replace the student dashboard placeholder with the relevant persisted learner view. Trace the existing queries, receipts, and UI before implementation. Preserve ordinary responses, source gating, and accepted attempt identities. Do not infer physical completion from submission count alone.
-- [~] Task G52 projected prerequisites: Inspect and remove stale SRS prerequisite entries whose canonical edges were removed in earlier repairs. Parent inspection found 14 existing residues in HEAD. G50 separately removes the Lesson 9-7 to Lesson 10-1 residue. Keep one writer per projection file. Add a relationship consistency regression and preserve valid prerequisites.
+- [x] Task G52 projected prerequisites: Inspect and remove stale SRS prerequisite entries whose canonical edges were removed in earlier repairs. Parent inspection found 14 existing residues in HEAD. G50 separately removes the Lesson 9-7 to Lesson 10-1 residue. Keep one writer per projection file. Add a relationship consistency regression and preserve valid prerequisites.
 
 Q38 parent investigation confirms that the saved physical result is absent from server page data and exists only in client state. Existing indexed submissions and receipts can supply the missing read. The bounded proposal preserves explicit retry and separates historical results from new-attempt and lesson-completion state. See `precalc-saved-practice-views-investigation.md`.
 
@@ -491,3 +491,7 @@ Q37 new-submission readiness is committed as `91bfd0320`. Parent and independent
 G51 independent review removed duplicate game-role evidence. Parent accepts five new draft capabilities plus the two exact existing skill reuses. Problem 21 records one failing-diagram selection and justification. Problem 22 records all three conclusion judgments. Exact source restoration is in progress in one fresh candidate.
 
 Q38 independent review accepts the bounded indexed read and saved-result UI proposal. Reuse stored submissions and validated receipts. Keep reload read-only and missing-receipt retry explicit. See `precalc-saved-practice-views-independent-review.md`.
+
+G52 is committed as `c808c365f`. Both projections now equal the 66 direct canonical prerequisite pairs. Parent 389 curriculum and seed tests and all app gates pass. The completed graph archive is under cleanup review.
+
+Removed saved worktree 32fb after its complete preservation review and parent semantic, inventory, ignored-file, and ancestry checks. The other 22 saved worktrees remain intact. See `saved-32fb-full-preservation-review.md`. Removed the completed Q37 readiness archive after all five changed files matched `91bfd0320` and independent review found no unique authored content. Q38 uses a fresh current-HEAD archive.
