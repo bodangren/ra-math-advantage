@@ -37,3 +37,11 @@ The candidate removes exactly six legacy Lesson 6-5 placeholder activities. Ever
 A direct assertion found an incomplete prerequisite repair. The graph removes edge `math.im1.edge.1259`, but the Lesson 7-1 systems capability still lists the legacy Lesson 6-5 systems row as a prerequisite in both `projection/srs-input.json` and the embedded SRS inputs in `projection/practice-v1-activity-map.json`.
 
 Regenerate the exact affected Lesson 7-1 projection through the existing projector. Preserve its other fields. Add a regression that checks the withdrawn prerequisite in both consumer projections. Also check prerequisite gaps derived from the two removed edges. Graph edge removal alone does not complete this repair.
+
+## Final candidate verification
+
+The revised lesson restores the missing givens. The four modified source examples are draft in all node copies. The existing standards edge objects are unchanged. Both saved SRS projections now omit the withdrawn Lesson 6-5 to Lesson 7-1 prerequisite. The parent reran the direct assertion and it passed.
+
+The parent candidate passes 105 curriculum tests, lint, a fresh build, and post-build standalone TypeScript. Logs: `/tmp/im1-g32-parent-tests.log`, `/tmp/im1-g32-parent-lint.log`, `/tmp/im1-g32-parent-build.log`, and `/tmp/im1-g32-parent-tsc.log`.
+
+Commit `2c231607` integrates the separate test-only typing prerequisite. It widens three inferred source ID arrays for string membership checks. It changes no assertion or curriculum data. The final source patch remains pending parent integration and shared-worktree preservation checks.
