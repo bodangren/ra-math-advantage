@@ -569,3 +569,5 @@ Cleanup review started for saved worktrees 2968 and 64b9. Parent comparison foun
 Lesson 1.8 recovery proposal passed direct PDF review of all seven examples and their mathematical results. The saved accepted source is useful. Integrate object-level changes against committed HEAD after a separate source review. Do not copy old aggregate files. No executable practice is supported by these inactive blueprints. See `im3-lesson18-detached-integration-proposal.md`.
 
 - [~] Task IM3-L18 recovery: Integrate the verified seven Lesson 1.8 source records and two inactive blueprints from preserved commit `0b5392a36`. Synchronize only the affected existing catalogs. Preserve later records and all approval states. Add source and projection regressions. Keep unsupported runtime modes unavailable.
+
+Removed saved worktrees 2968 and 64b9 after independent and parent review of 720 states. Preservation branches retain their three detached commits. Twelve saved worktrees remain. Lesson 1.5 recovery remains open. See `saved-2968-64b9-preservation-review.md`.
