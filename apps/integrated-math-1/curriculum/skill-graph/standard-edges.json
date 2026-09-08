@@ -6982,10 +6982,11 @@
     {
       "id": "math.im1.example.9.4.011",
       "kind": "worked_example",
-      "title": "Example 1: Find the Range; Five-Number Summary and Box Plot",
+      "title": "Example 1: Find the range",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-9-class-period-plan.md (9-4, Example 1)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0904_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0904_practice.docx (Example 1, Problems 1-5)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -6995,15 +6996,17 @@
         "exampleNumber": 1,
         "sourceLesson": "9-4",
         "rawText": "9-4, Examples 1-2 — Find the Range; Five-Number Summary and Box Plot"
-      }
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.9.4.012",
       "kind": "worked_example",
-      "title": "Example 2: Find the Range; Five-Number Summary and Box Plot",
+      "title": "Example 2: Determine a five-number summary and construct a box plot",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-9-class-period-plan.md (9-4, Example 2)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0904_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0904_practice.docx (Example 2, Problems 6-10)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7013,15 +7016,17 @@
         "exampleNumber": 2,
         "sourceLesson": "9-4",
         "rawText": "9-4, Examples 1-2 — Find the Range; Five-Number Summary and Box Plot"
-      }
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.9.4.013",
       "kind": "worked_example",
-      "title": "Example 3: Find the Interquartile Range; Find the Standard Deviation",
+      "title": "Example 3: Find the interquartile range",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-9-class-period-plan.md (9-4, Example 3)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0904_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0904_practice.docx (Example 3, Problems 11-15)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7031,15 +7036,17 @@
         "exampleNumber": 3,
         "sourceLesson": "9-4",
         "rawText": "9-4, Examples 3-4 — Find the Interquartile Range; Find the Standard Deviation"
-      }
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.9.4.014",
       "kind": "worked_example",
-      "title": "Example 4: Find the Interquartile Range; Find the Standard Deviation",
+      "title": "Example 4: Find the standard deviation",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-9-class-period-plan.md (9-4, Example 4)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0904_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0904_practice.docx (Example 4, Problems 16-20)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7049,7 +7056,8 @@
         "exampleNumber": 4,
         "sourceLesson": "9-4",
         "rawText": "9-4, Examples 3-4 — Find the Interquartile Range; Find the Standard Deviation"
-      }
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.9.5.015",
@@ -11234,14 +11242,15 @@
       "domain": "math.im1",
       "description": "Calculate the range, interquartile range, and standard deviation of a data set",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-9-class-period-plan.md"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0904_practice.docx"
       ],
       "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "9",
         "lesson": "4"
-      }
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.skill.9.4.determine-the-five-number-summary-and-construct-a-box-plot-f",
@@ -11250,9 +11259,190 @@
       "domain": "math.im1",
       "description": "Determine the five-number summary and construct a box plot from a data set",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-9-class-period-plan.md"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0904_practice.docx"
       ],
       "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "4"
+      },
+      "independentPracticeReady": false
+    },
+    {
+      "id": "math.im1.skill.9.4.calculate-the-range-of-a-data-set",
+      "kind": "skill",
+      "title": "Calculate the range of a data set",
+      "domain": "math.im1",
+      "description": "Calculate maximum minus minimum.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0904_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0904_practice.docx (Problems 1-5; Mixed Exercises, Problems 25 and 26; Problem 29, range calculation only)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.4.determine-the-five-number-summary-of-a-data-set",
+      "kind": "skill",
+      "title": "Determine the five-number summary of a data set",
+      "domain": "math.im1",
+      "description": "Determine the minimum, first quartile, median, third quartile, and maximum under a stated quartile convention.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0904_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0904_practice.docx (Problems 6-10; Mixed Exercises, Problems 23(a), 24(a), 25, and 26; Problem 29, five-number-summary calculation only)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.4.construct-a-box-plot-from-a-five-number-summary",
+      "kind": "skill",
+      "title": "Construct a box plot from a five-number summary",
+      "domain": "math.im1",
+      "description": "Construct a box plot from a supplied five-number summary.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0904_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0904_practice.docx (Problems 6-10; Mixed Exercises, Problems 23(b), 24(b), 25, and 26; Problem 29, box-plot construction only)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.4.calculate-the-interquartile-range-of-a-data-set",
+      "kind": "skill",
+      "title": "Calculate the interquartile range of a data set",
+      "domain": "math.im1",
+      "description": "Calculate the third quartile minus the first quartile under a stated quartile convention.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0904_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0904_practice.docx (Problems 11-15; Mixed Exercises, Problems 25 and 26; Problem 29, interquartile-range calculation only)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.4.calculate-standard-deviation-under-a-stated-divisor-convention",
+      "kind": "skill",
+      "title": "Calculate standard deviation under a stated divisor convention",
+      "domain": "math.im1",
+      "description": "Calculate standard deviation when the population or sample divisor and rounding rule are stated.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0904_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0904_practice.docx (Problems 16-22; Mixed Exercises, Problems 25 and 26; Problem 29, standard-deviation calculation only)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.4.interpret-standard-deviation-in-context",
+      "kind": "skill",
+      "title": "Interpret standard deviation in context",
+      "domain": "math.im1",
+      "description": "Interpret a supplied or calculated standard deviation in the variable's units.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0904_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0904_practice.docx (Mixed Exercises, Problems 21 and 22, interpretation response only)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.4.evaluate-outlier-removal-as-a-way-to-decrease-standard-deviation",
+      "kind": "skill",
+      "title": "Evaluate outlier removal as a way to decrease standard deviation",
+      "domain": "math.im1",
+      "description": "Evaluate Jennifer's proposal and state the data-membership assumption.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0904_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0904_practice.docx (Mixed Exercises, Problem 27, Jennifer response only; manual rubric required)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.4.evaluate-adding-mean-values-as-a-way-to-decrease-standard-deviation",
+      "kind": "skill",
+      "title": "Evaluate adding mean values as a way to decrease standard deviation",
+      "domain": "math.im1",
+      "description": "Evaluate Megan's proposal and state divisor, nonempty-set, and variance assumptions.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0904_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0904_practice.docx (Mixed Exercises, Problem 27, Megan response only; manual rubric required)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.4.evaluate-variability-of-statistics-across-random-samples",
+      "kind": "skill",
+      "title": "Evaluate variability of statistics across random samples",
+      "domain": "math.im1",
+      "description": "Evaluate whether two random samples from one population must have equal mean and standard deviation.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0904_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0904_practice.docx (Mixed Exercises, Problem 28; manual rubric required)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.4.explain-interquartile-range-as-middle-half-spread",
+      "kind": "skill",
+      "title": "Explain interquartile range as middle-half spread",
+      "domain": "math.im1",
+      "description": "Explain what interquartile range states about the spread of the middle half around the median.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0904_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0904_practice.docx (Mixed Exercises, Problem 30; manual rubric required)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
       "metadata": {
         "course": "im1",
         "module": "9",
@@ -39777,9 +39967,9 @@
       "mediumConfidence": 0,
       "lowConfidence": 0,
       "exceptions": 0,
-      "missingStandards": 114,
+      "missingStandards": 124,
       "reviewQueue": 0
     },
-    "totalNodes": 1029
+    "totalNodes": 1039
   }
 }

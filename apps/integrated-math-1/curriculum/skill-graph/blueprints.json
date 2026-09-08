@@ -4077,21 +4077,6 @@
         "math.standard.ccss.6-sp-b-5d",
         "math.standard.ccss.s-id-a-2"
       ],
-      "rendererKey": "comprehension-quiz",
-      "rendererModeMap": {
-        "worked": "comprehension-quiz",
-        "guidedPractice": "comprehension-quiz",
-        "independentPractice": "comprehension-quiz"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
-      "exceptions": [
-        {
-          "type": "generator",
-          "reason": "Generator not yet implemented for IM1 rollout"
-        }
-      ],
       "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
@@ -4106,21 +4091,126 @@
         "math.standard.ccss.6-sp-b-5d",
         "math.standard.ccss.s-id-a-2"
       ],
-      "rendererKey": "comprehension-quiz",
-      "rendererModeMap": {
-        "worked": "comprehension-quiz",
-        "guidedPractice": "comprehension-quiz",
-        "independentPractice": "comprehension-quiz"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
-      "exceptions": [
-        {
-          "type": "generator",
-          "reason": "Generator not yet implemented for IM1 rollout"
-        }
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.calculate-the-range-of-a-data-set",
+      "sourceNodeIds": [
+        "math.im1.example.9.4.011"
       ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.determine-the-five-number-summary-of-a-data-set",
+      "sourceNodeIds": [
+        "math.im1.example.9.4.012"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.construct-a-box-plot-from-a-five-number-summary",
+      "sourceNodeIds": [
+        "math.im1.example.9.4.012"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.calculate-the-interquartile-range-of-a-data-set",
+      "sourceNodeIds": [
+        "math.im1.example.9.4.013"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.calculate-standard-deviation-under-a-stated-divisor-convention",
+      "sourceNodeIds": [
+        "math.im1.example.9.4.014"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.interpret-standard-deviation-in-context",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.evaluate-outlier-removal-as-a-way-to-decrease-standard-deviation",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.evaluate-adding-mean-values-as-a-way-to-decrease-standard-deviation",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.evaluate-variability-of-statistics-across-random-samples",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.explain-interquartile-range-as-middle-half-spread",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
       "reviewStatus": "draft",
       "metadata": {
         "course": "im1",

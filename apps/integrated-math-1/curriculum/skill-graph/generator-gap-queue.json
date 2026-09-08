@@ -1135,6 +1135,96 @@
       "priority": "high"
     },
     {
+      "nodeId": "math.im1.skill.9.4.calculate-the-range-of-a-data-set",
+      "title": "Calculate the range of a data set",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.determine-the-five-number-summary-of-a-data-set",
+      "title": "Determine the five-number summary of a data set",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.construct-a-box-plot-from-a-five-number-summary",
+      "title": "Construct a box plot from a five-number summary",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.calculate-the-interquartile-range-of-a-data-set",
+      "title": "Calculate the interquartile range of a data set",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.calculate-standard-deviation-under-a-stated-divisor-convention",
+      "title": "Calculate standard deviation under a stated divisor convention",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.interpret-standard-deviation-in-context",
+      "title": "Interpret standard deviation in context",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.evaluate-outlier-removal-as-a-way-to-decrease-standard-deviation",
+      "title": "Evaluate outlier removal as a way to decrease standard deviation",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.evaluate-adding-mean-values-as-a-way-to-decrease-standard-deviation",
+      "title": "Evaluate adding mean values as a way to decrease standard deviation",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.evaluate-variability-of-statistics-across-random-samples",
+      "title": "Evaluate variability of statistics across random samples",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.explain-interquartile-range-as-middle-half-spread",
+      "title": "Explain interquartile range as middle-half spread",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "Planning classification only; no reviewed renderer contract",
+      "priority": "high"
+    },
+    {
       "nodeId": "math.im1.skill.9.5.choose-appropriate-measures-of-center-and-spread-based-on-wh",
       "title": "9i: Choose appropriate measures of center and spread based on whether a distribution is symmetric or skewed",
       "module": "9",
@@ -3809,8 +3899,8 @@
     }
   ],
   "meta": {
-    "totalSkills": 423,
+    "totalSkills": 433,
     "allNeedGenerators": true,
-    "total": 423
+    "total": 433
   }
 }

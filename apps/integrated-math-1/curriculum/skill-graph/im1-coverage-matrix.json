@@ -1,10 +1,10 @@
 {
   "version": 1,
   "course": "im1",
-  "totalSkills": 429,
+  "totalSkills": 439,
   "counts": {
     "served": 6,
-    "gap": 423,
+    "gap": 433,
     "newComponent": 0
   },
   "byModule": [
@@ -66,9 +66,9 @@
     },
     {
       "module": "9",
-      "totalSkills": 52,
+      "totalSkills": 62,
       "served": 0,
-      "gap": 52,
+      "gap": 62,
       "newComponent": 0
     },
     {
@@ -2925,6 +2925,22 @@
       "priority": "standard"
     },
     {
+      "skillId": "math.im1.skill.9.4.calculate-standard-deviation-under-a-stated-divisor-convention",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.9.4.calculate-the-interquartile-range-of-a-data-set",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
       "skillId": "math.im1.skill.9.4.calculate-the-range-interquartile-range-and-standard-deviati",
       "module": "9",
       "status": "gap",
@@ -2933,7 +2949,71 @@
       "priority": "high"
     },
     {
+      "skillId": "math.im1.skill.9.4.calculate-the-range-of-a-data-set",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.9.4.construct-a-box-plot-from-a-five-number-summary",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
       "skillId": "math.im1.skill.9.4.determine-the-five-number-summary-and-construct-a-box-plot-f",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.9.4.determine-the-five-number-summary-of-a-data-set",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.9.4.evaluate-adding-mean-values-as-a-way-to-decrease-standard-deviation",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.9.4.evaluate-outlier-removal-as-a-way-to-decrease-standard-deviation",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.9.4.evaluate-variability-of-statistics-across-random-samples",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.9.4.explain-interquartile-range-as-middle-half-spread",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.9.4.interpret-standard-deviation-in-context",
       "module": "9",
       "status": "gap",
       "tier": "none",

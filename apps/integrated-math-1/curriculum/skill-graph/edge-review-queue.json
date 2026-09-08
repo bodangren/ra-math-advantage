@@ -615,13 +615,6 @@
       "reviewAction": "confirm, upgrade-to-medium, or remove"
     },
     {
-      "edgeId": "math.im1.edge.1273",
-      "sourceId": "math.im1.skill.9.3.recognize-biased-survey-questions-and-identify-whose-interes",
-      "targetId": "math.im1.skill.9.4.calculate-the-range-interquartile-range-and-standard-deviati",
-      "rationale": "Lesson-sequence prerequisite: lesson 3 precedes lesson 4 in module 9",
-      "reviewAction": "confirm, upgrade-to-medium, or remove"
-    },
-    {
       "edgeId": "math.im1.edge.1274",
       "sourceId": "math.im1.skill.9.4.determine-the-five-number-summary-and-construct-a-box-plot-f",
       "targetId": "math.im1.skill.9.5.choose-appropriate-measures-of-center-and-spread-based-on-wh",
@@ -2035,7 +2028,7 @@
     }
   ],
   "counts": {
-    "lowConfidencePrerequisites": 92,
+    "lowConfidencePrerequisites": 91,
     "skillsMissingRenderer": 138,
     "skillsMissingMisconceptionTaxonomy": 138
   }
