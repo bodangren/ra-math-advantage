@@ -1,0 +1,10 @@
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+const mocks=vi.hoisted(()=>({auth:vi.fn(),mutate:vi.fn()}));
+vi.mock('@/lib/auth/server',()=>({requireStudentRequestClaims:mocks.auth}));
+vi.mock('@/lib/convex/server',()=>({internal:{course:{saveResponse:'save'}},fetchInternalMutation:mocks.mutate}));
+import { POST } from '@/app/api/course/response/route';
+const request=(body:unknown)=>new Request('http://x',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(body)});
+describe('ordinary lesson response route',()=>{beforeEach(()=>{vi.clearAllMocks();mocks.auth.mockResolvedValue({sub:'learner',role:'student'});mocks.mutate.mockResolvedValue('response:1');});
+it('passes bounded text and authenticated learner identity to the real course mutation reference',async()=>{const response=await POST(request({phaseId:'phase:1',response:'Explain'}));expect(response.status).toBe(200);expect(mocks.mutate).toHaveBeenCalledWith('save',{learnerId:'learner',phaseId:'phase:1',response:'Explain'});});
+it('rejects unauthenticated and invalid text without a write',async()=>{mocks.auth.mockResolvedValueOnce(new Response(null,{status:401}));expect((await POST(request({phaseId:'phase:1',response:'Explain'}))).status).toBe(401);expect((await POST(request({phaseId:'phase:1',response:' '}))).status).toBe(400);expect((await POST(request({phaseId:'phase:1',response:'x'.repeat(10001)}))).status).toBe(400);expect(mocks.mutate).not.toHaveBeenCalled();});
+it('returns a safe failure when the course writer rejects a wrong phase',async()=>{mocks.mutate.mockRejectedValueOnce(new Error('Phase not found'));const response=await POST(request({phaseId:'wrong',response:'Explain'}));expect(response.status).toBe(400);expect(await response.json()).toEqual({error:'Could not save response'});});});

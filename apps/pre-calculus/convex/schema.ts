@@ -218,6 +218,20 @@ export default defineSchema({
     .index("by_lesson", ["lessonId"])
     .index("by_phase", ["phaseId"]),
 
+  lesson_responses: defineTable({
+    learnerId: v.id('profiles'),
+    phaseId: v.id('phase_versions'),
+    response: v.string(),
+    createdAt: v.number(),
+    score: v.optional(v.number()),
+    maxScore: v.optional(v.number()),
+    feedback: v.optional(v.string()),
+    gradedBy: v.optional(v.id('profiles')),
+    gradedAt: v.optional(v.number()),
+  })
+    .index('by_learner', ['learnerId'])
+    .index('by_learner_and_phase', ['learnerId', 'phaseId']),
+
   student_progress: defineTable({
     userId: v.id("profiles"),
     phaseId: v.id("phase_versions"),
