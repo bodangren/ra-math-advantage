@@ -32,7 +32,7 @@ Retain the accepted Example 3 record. The adjacent printed Check reads:
 
 ### `.039`, page 46
 
-Use the title `Example 4: The Discriminant, Real Roots`.
+Use the title `Example 4 The Discriminant, Real Roots`.
 
 The prompt is:
 
@@ -57,7 +57,7 @@ The demonstrated capability is: `Use the discriminant to calculate its value and
 
 ### `.040`, page 46
 
-Use the title `Example 5: The Discriminant, Complex Roots`.
+Use the title `Example 5 The Discriminant, Complex Roots`.
 
 The prompt is:
 
@@ -109,4 +109,4 @@ The app-discovered source test must assert exactly one record per ID and catalog
 
 ## Parent review
 
-This is a pending source-only scope. Implementation has not started. Native page 46 needs parent visual review before acceptance. The source Check notes do not establish approved practice content.
+This is a pending source-only scope. Implementation has not started. Parent visual review of native page 46 confirms both worked sequences and interpretations. The source headings have no added colon. The source Check notes do not establish approved practice content.
