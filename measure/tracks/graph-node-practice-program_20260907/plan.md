@@ -621,3 +621,5 @@ Lesson 1.6 runtime review is complete. The current solver submits step-index ans
 - [~] Task G55 inventory: Review IM1 Lesson 10-4 from its committed worksheet. Inventory all prompts and native figures. Identify exact assessable responses, stable source identities, and supported prerequisite dispositions, including unresolved edge 1194. Propose bounded source and graph corrections before implementation.
 
 G54 graph is committed as `2d8bf1df6`. Parent and final independent review passed. All 16 staged paths matched the accepted candidate. Parent tests passed 71 files and 415 cases, followed by lint, build, and post-build TypeScript. The missing Example 5 link was corrected before acceptance. Lesson 10-3 source and graph repairs are complete. Executable practice remains separate work. See `im1-lesson103-graph-final-review.md`.
+
+Removed the completed G54 native extraction after all 23 image files matched committed public images exactly. The worksheet, accessible source, and graph review remain committed. The IM1 and IM3 candidate directories remain in use for the next authorized tasks.
