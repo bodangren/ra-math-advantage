@@ -468,7 +468,7 @@ Teacher date rendering is committed as `cd6c8ba5d`. Parent 17 related tests, lin
 
 Q37 teacher date rendering passed the actual Asia/Shanghai browser check with no hydration error or development overlay. The real confirmation form remained usable and created one teacher-led evidence row without receipts or SRS effects. The parent inspected the screenshot and persisted state. Stale-source submission rejection and both-dashboard reload checks remain in progress.
 
-- [~] Task G51: Review IM1 Lesson 10-1 from Int1_1001_practice.docx. Inventory all source prompts, axioms, diagrams, valid logical conclusions, synthetic and analytic distinctions, exact prior reuse, stable source identities, and manual response boundaries. Check the current lesson's price-to-category converse inference against the actual source axioms before source or graph changes.
+- [x] Task G51: Review IM1 Lesson 10-1 from Int1_1001_practice.docx. Inventory all source prompts, axioms, diagrams, valid logical conclusions, synthetic and analytic distinctions, exact prior reuse, stable source identities, and manual response boundaries. Check the current lesson's price-to-category converse inference against the actual source axioms before source or graph changes.
 
 Removed saved worktree 54d1 after the complete 360-path preservation audit, independent semantic review, parent byte checks, ignored-file check, and commit-ancestry check. Current files or reachable Git history preserve 346 paths. The remaining paths were reviewed deletions, rejected stale states, or a generated source image. The other 23 saved worktrees remain intact. See `saved-54d1-full-preservation-review.md`.
 
@@ -499,3 +499,9 @@ Removed saved worktree 32fb after its complete preservation review and parent se
 Q37 row 8 now passes after `91bfd0320`. Actual stale-source browser requests reject new Guided and Independent attempts with safe HTTP 409. Historical accepted retries return their original IDs with HTTP 200. Parent complete-row comparisons are unchanged in both tests. See `precalc-readiness-writer-browser-verification.md`.
 
 - [~] Task Q39 lesson math layout: Investigate the actual 1280-pixel lesson viewport with a 6641-pixel document and 6400-pixel SVG. Identify the responsible math output and CSS before implementation. Do not hide all overflow without fixing its cause. Keep this full-page defect separate from accepted readiness behavior.
+
+G51 exact source restoration is committed as `8bca01b6f`. Parent 393 curriculum and seed tests and all app gates pass. Final independent review accepts the corrected source and accessible coordinates. All 19 source paths match the commit. The candidate is refreshed from HEAD for graph reuse.
+
+- [~] Task G51 graph: Implement the accepted five-atom Lesson 10-1 draft scope. Reuse existing axiom-role and geometry-method skills only for exact observed responses. Preserve source identities, all premise and manual-review boundaries, and the existing approval states. Remove empty executable placeholders where present. Derive current graph counts.
+
+Q39 reuses the completed G50/G52 archive after its committed-file checks and a fresh HEAD overlay. The one-file repair imports the existing KaTeX stylesheet in the root layout. Independent review accepts the repair. The parent is completing browser and app verification.
