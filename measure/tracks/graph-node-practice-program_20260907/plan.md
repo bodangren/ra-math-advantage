@@ -654,7 +654,7 @@ G55 capability review replaces the provisional seven-atom proposal with four dra
 
 - [x] Task G55 graph scope: Review existing Lesson 10-4 standard alignments and placeholder fields against the source. Update the graph proposal to the accepted four-atom inventory. Define exact bounded graph changes before authoring.
 
-- [~] Task IM3-QF server integration scope: Trace the stored activity and protected attempt contracts after the grader and component commits. Define the minimum extension to the existing server-owned route, writer, grading, and receipt flow. Preserve fixed public fields and draft no-progression behavior. Reuse existing activity storage. Add no parallel pilot or evidence system.
+- [x] Task IM3-QF server integration scope: Trace the stored activity and protected attempt contracts after the grader and component commits. Define the minimum extension to the existing server-owned route, writer, grading, and receipt flow. Preserve fixed public fields and draft no-progression behavior. Reuse existing activity storage. Add no parallel pilot or evidence system.
 
 - [x] Task b615 cleanup: Independently verify all saved states, modes, links, ignored files, history, and active processes. Confirm exact preservation of the mixed blueprint objects before directory removal. Keep b5f1 and all other saved worktrees during this review.
 
@@ -669,3 +669,7 @@ G55 final graph scope is accepted after parent correction. Keep the Example 4 an
 - [x] Task b5f1 preservation: Preserve the eleven unique saved Lesson 1.4 candidate files in a separate recovery commit. Compare exact bytes and modes. Verify all 362 states and final process status before directory removal. This snapshot does not integrate or approve the candidate.
 
 Removed b5f1 after exact preservation of eleven unique files in recovery commit `e99a846fb` and parent plus independent review of all 362 states. Six saved worktrees remain. See `saved-b5f1-final-cleanup-review.md`.
+
+QF server scope is accepted with parent corrections. Reuse private practice-variant metadata and the existing activity relation. Use Guided seed 1 and Independent seed 2 for the first draft records. Reject QF writes through both legacy client-graded submission paths. Keep the original request attempt number as telemetry; allocate the authoritative ordinal in the existing indexed field. No protected QF attempt exists before submission. See `im3-quadratic-formula-server-integration-scope.md`.
+
+- [~] Task IM3-QF server integration: Implement the accepted five-file backend scope and behavioral tests in the current IM3 candidate. Regenerate private canonical answers, validate the complete stored relation, persist one server grade, and preserve exact retries. Reject alternate client-graded writes and all progression effects for these draft records. Keep source placement, Guided step checks, later attempt diversity, approval, and learner-flow verification open. Do not deploy or seed a live database.
