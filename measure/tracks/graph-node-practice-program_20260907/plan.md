@@ -687,3 +687,7 @@ G55 parent artifact review corrects one scope count. The standard-edge catalog c
 Parent review rejects the second frozen QF backend batch. The actual Convex value serializer changes key order and makes an unchanged stored receipt retry fail. The memory-clone test missed this failure. Build and separate TypeScript pass, but replay remains incorrect. The author must use the existing serializer and add the real storage round-trip regression. See `im3-quadratic-formula-server-serialization-review.md`.
 
 G55 full parent app tests pass 73 files and 425 cases. Independent semantic checks pass, but source integration remains held for unrelated Unicode serialization and coverage-row order changes. Restore the baseline representation before refreezing.
+
+The backend independent review confirms the storage replay failure and identifies missing executed seed, public-consumer privacy, and zero-progression tests. It also finds inconsistent-content overwrite and ambiguous publication acceptance. These findings remain open. See `im3-quadratic-formula-server-independent-review.md`.
+
+Removed the completed G55 native extraction after all 44 files matched the committed DOCX archive. All fifteen extracted images also matched the committed public assets. Removed two generated contact sheets. The original worksheet, restored lesson, and public figures remain committed.
