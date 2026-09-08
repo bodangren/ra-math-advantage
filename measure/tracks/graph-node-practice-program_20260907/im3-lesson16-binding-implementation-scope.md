@@ -119,10 +119,11 @@ The bounded implementation has these artifact groups:
    - `curriculum/skill-graph/module-1/blueprints.json`
 3. The module edge catalog:
    - `curriculum/skill-graph/module-1/edges.json`
-4. Three stored projections:
+4. Four stored projections:
    - `curriculum/skill-graph/projection/practice-v1-activity-map.json`
    - `curriculum/skill-graph/module-1/projection/practice-v1-activity-map.json`
    - `curriculum/skill-graph/projection/teacher-evidence-map.json`
+   - `curriculum/skill-graph/projection/srs-input.json`
 5. `packages/math-content/src/knowledge-space/renderers/registry.ts` and a focused `packages/math-content/src/__tests__/quadratic-formula-renderer-registry.test.ts` regression.
 6. One app-discovered Lesson 1.6 binding and projection test.
 
@@ -153,3 +154,5 @@ The phase 8 and 9 source seed repair is a separate two-path batch. Later-attempt
 The parent executed the existing generator. Seed 1 produces x² + 5x - 5 with discriminant 45 and two distinct roots. Seed 2 produces x² - 2x - 6 with discriminant 28 and two distinct roots. These observations are private test design inputs, not additional public props.
 
 The parent owns the existing quadratic-formula-server-writer.test.ts additions. They must call the default publication without an override, grade both stored variants, and execute the Guided check. Missing and invalid publication fixtures must still reject. The graph author owns the listed graph, registry, and projection tests.
+
+The independent scope review found the missing existing srs-input.json path. Include it as the fifteenth graph-author path. Change only the two touched skill rows through projectSrsInputs. There is no module SRS artifact. The parent writer test makes sixteen total implementation paths.
