@@ -429,3 +429,11 @@ G48 source and graph repair are committed as `f6eaf15c` and `df7883c69`. Final i
 The Worked in-flight guard is committed as `116b0ac6d`. Parent verification passed 73 tests and all app gates. Removed its completed candidate after both changed files matched committed bytes. Actual browser verification of the guard remains open.
 
 G49 first source review found one native-data transcription error. The seventh monthly temperature is 86°F, not 88°F. The test repeated the same incorrect value. The candidate is under correction, with complete accessible-table checks required. Source restoration remains uncommitted.
+
+- [~] Task G50: Review IM1 Lesson 9-7 from `Int1_0907_practice.docx`. Inventory all source prompts, native figures, exact prior reuse, stable source identities, and manual response boundaries before source or graph implementation.
+
+G49 exact source restoration is committed as `67131a0b9`. Parent verification passed all 373 curriculum and seed tests, lint, build, and standalone TypeScript after the committed G48 graph overlay. The corrected ten-candidate graph proposal is accepted for draft implementation. It removes duplicate ordered-affine spread evidence and requires explicit Problem 30 and Problem 32 explanations. See `im1-lesson96-proposal-independent-review.md`.
+
+Removed the completed G48 graph candidate after independent cleanup review and parent checks of all 17 committed patch paths. The archive had 16 modified existing files and one new test. All were preserved.
+
+Assistance parent review requires two corrections before acceptance: prevent blank first submissions before the attempt freezes, and use an immediate ref to keep same-event callbacks from changing the frozen attempt. The author is adding these regressions within the four-path scope.
