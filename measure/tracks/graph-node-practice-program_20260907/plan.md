@@ -563,3 +563,5 @@ G53 source is committed as `63886deda`. Final independent review passed. Parent 
 Removed saved worktrees 61c4 and 6457 after independent and parent review of all 719 states. Branch `codex/preserve-saved-61c4-im3-lesson18` preserves two accepted detached commits. Their Lesson 1.8 source remains pending integration review against committed HEAD. The other 14 saved worktrees remain intact. See `saved-61c4-6457-preservation-review.md`.
 
 - [~] Task G54 inventory: Review IM1 Lesson 10-3 from committed `Int1_1003_practice.docx`. Inventory all original prompts and native figures. Compare exact graph identities and assessable responses. Propose bounded source and graph corrections. This task does not authorize graph changes before review.
+
+Cleanup review started for saved worktrees 2968 and 64b9. Parent comparison found 720 working states. The Lesson 1.5 reconciliation in 2968 has two blueprint records preserved in the main working tree but absent from committed HEAD. Worktree 64b9 has an older executable Example candidate. Keep both directories until independent semantic review and detached-history preservation are complete.
