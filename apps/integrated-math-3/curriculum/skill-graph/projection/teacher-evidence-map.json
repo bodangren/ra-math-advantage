@@ -149,7 +149,19 @@
         "math.standard.ccss.hsa-rei-b-4"
       ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations",
+      "title": "1n: Use the Quadratic Formula to solve equations",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.hsa-rei-b-4"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.1.7.graph-quadratic-inequalities-in-two-variables",
@@ -1542,12 +1554,7 @@
       "gapType": "unverified",
       "status": "needs_review"
     },
-    {
-      "nodeId": "math.im3.skill.1.6.use-the-discriminant-to-determine-the-number-and-type-of-sol",
-      "prerequisiteId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations",
-      "gapType": "unverified",
-      "status": "needs_review"
-    },
+
     {
       "nodeId": "math.im3.skill.1.7.graph-quadratic-inequalities-in-two-variables",
       "prerequisiteId": "math.im3.skill.1.1.graph-quadratic-functions",

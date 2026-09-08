@@ -553,44 +553,93 @@
     {
       "nodeId": "math.im3.skill.1.6.use-the-discriminant-to-determine-the-number-and-type-of-sol",
       "sourceNodeIds": [
-        "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations"
+        "math.im3.example.1.6.039",
+        "math.im3.example.1.6.040"
       ],
       "alignmentNodeIds": [
         "math.standard.ccss.hsa-rei-b-4"
       ],
       "rendererKey": "discriminant-analyzer",
+      "rendererModeMap": {},
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "6",
+        "pilotSequence": 0
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations",
+      "sourceNodeIds": [
+        "math.im3.example.1.6.036",
+        "math.im3.example.1.6.037",
+        "math.im3.example.1.6.038"
+      ],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsa-rei-b-4"
+      ],
+      "rendererKey": "quadratic-formula",
       "rendererModeMap": {
-        "worked": "discriminant-analyzer",
-        "guidedPractice": "discriminant-analyzer"
-      },
-      "workedExampleSpec": {
-        "prompt": "Worked example for 1o: Use the discriminant to determine the number and type of solutions",
-        "givens": [
-          "See curriculum source"
-        ],
-        "target": {},
-        "steps": [
-          {
-            "description": "Step 1",
-            "expression": "See curriculum"
-          }
-        ],
-        "explanation": "See curriculum source material."
+        "guidedPractice": "quadratic-formula",
+        "independentPractice": "quadratic-formula"
       },
       "guidedPracticeSpec": {
-        "scaffoldedPrompt": "Guided practice for 1o: Use the discriminant to determine the number and type of solutions",
-        "stepPrompts": [
-          "Step 1"
-        ],
-        "hints": [
-          "Hint 1"
-        ],
-        "checksPerStep": [
+        "scaffoldedPrompt": "Use the Quadratic Formula to solve the equation.",
+        "stepPrompts": [],
+        "hints": [],
+        "checksPerStep": [],
+        "revealPolicy": "after_attempt",
+        "rendererProps": {
+          "prompt": "Use the Quadratic Formula to solve the equation.",
+          "equation": "x^2 + 5x - 5",
+          "presentationMode": "guided",
+          "fieldHelp": {
+            "discriminant": "Calculate b² - 4ac.",
+            "x1": "Enter one root.",
+            "x2": "Enter the other root. Leave this blank for a repeated root."
+          }
+        }
+      },
+      "independentPracticeSpec": {
+        "variantParameters": {},
+        "answerSchema": {
+          "discriminant": "string",
+          "x1": "string",
+          "x2": "string"
+        },
+        "gradingRules": [
           {
-            "check": "See curriculum"
+            "partId": "discriminant",
+            "ruleType": "custom",
+            "maxScore": 1
+          },
+          {
+            "partId": "x1",
+            "ruleType": "custom",
+            "maxScore": 1
+          },
+          {
+            "partId": "x2",
+            "ruleType": "custom",
+            "maxScore": 1
           }
         ],
-        "revealPolicy": "one_at_a_time"
+        "replayPolicy": "any_seed",
+        "rendererProps": {
+          "prompt": "Use the Quadratic Formula to solve the equation.",
+          "equation": "x^2 - 2x - 6",
+          "presentationMode": "independent"
+        }
+      },
+      "generatorKey": "quadratic-formula",
+      "gradingSpec": {
+        "partIds": [
+          "discriminant",
+          "x1",
+          "x2"
+        ],
+        "partialCredit": true
       },
       "reviewStatus": "draft",
       "metadata": {
@@ -598,15 +647,7 @@
         "module": "1",
         "lesson": "6",
         "pilotSequence": 0
-      },
-      "exceptions": [
-        {
-          "type": "generator",
-          "reason": "Generator not yet implemented for pilot",
-          "reviewer": "pilot",
-          "date": "2026-05-10"
-        }
-      ]
+      }
     },
     {
       "nodeId": "math.im3.skill.1.7.graph-quadratic-inequalities-in-two-variables",

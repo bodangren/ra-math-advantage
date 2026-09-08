@@ -1,3 +1,5 @@
+import canonicalNodes from '@/curriculum/skill-graph/nodes.json';
+import canonicalBlueprints from '@/curriculum/skill-graph/blueprints.json';
 import { describe, expect, it, vi } from 'vitest';
 import { generateQuadraticFormula } from '@math-platform/math-content';
 import { convexToJson, jsonToConvex } from 'convex/values';
@@ -227,6 +229,44 @@ describe('Guided discriminant check', () => {
     if (cause === 'approval') f.table('activities')[0].approval.status = 'approved';
     const graph = cause === 'graph' ? { ...publication, nodes: [...publication.nodes, ...publication.nodes] } : publication;
     await expect(check(f, cause === 'oversize' ? '1'.repeat(161) : '1', graph)).rejects.toThrow();
+    expect(f.table('activity_submissions')).toHaveLength(0);
+    expect(f.scheduled).toEqual([]);
+  });
+});
+
+
+describe('QF canonical graph integration', () => {
+  it.each(['guided_practice', 'independent_practice'] as const)('grades %s using the default canonical publication', async mode => {
+    const f = await fixture(mode);
+    const input = { userId: f.userId, activityId: f.activityId, idempotencyKey: 'canonical', submissionData: f.submissionData };
+    const result = await createServerOwnedSubmissionHandler(f.ctx as never, input as never);
+    expect(result.score).toBe(result.maxScore);
+    expect(result.maxScore).toBeGreaterThan(0);
+    const rows = f.table('activity_submissions');
+    expect(rows).toHaveLength(1);
+    expect(rows[0].masteryContractVersion).toBeUndefined();
+    expect(rows[0].submissionData.status).toBe('graded');
+    expect(f.scheduled).toEqual([]);
+    if (mode === 'guided_practice') {
+      const decision = await checkQuadraticFormulaDiscriminantHandler(f.ctx as never, {
+        userId: f.userId, activityId: f.activityId, fieldId: 'discriminant',
+        rawAnswer: String(f.submissionData.answers.discriminant),
+      } as never);
+      expect(decision).toEqual({ isCorrect: true });
+      expect(rows).toHaveLength(1);
+    }
+  });
+
+  it.each(['missing', 'duplicate', 'approved'] as const)('keeps the actual publication guard when the QF blueprint is %s', async invalid => {
+    const f = await fixture('guided_practice');
+    const blueprint = canonicalBlueprints.blueprints.find(row => row.nodeId === IM3_QF_NODE);
+    expect(blueprint).toBeDefined();
+    const other = canonicalBlueprints.blueprints.filter(row => row.nodeId !== IM3_QF_NODE);
+    const blueprints = invalid === 'missing' ? other : invalid === 'duplicate'
+      ? [...other, blueprint!, blueprint!] : [...other, { ...blueprint!, reviewStatus: 'approved' }];
+    const brokenPublication = { nodes: canonicalNodes.nodes, blueprints };
+    await expect(createServerOwnedSubmissionHandler(f.ctx as never, { userId: f.userId, activityId: f.activityId, idempotencyKey: 'invalid', submissionData: f.submissionData } as never, brokenPublication)).rejects.toThrow(/draft graph state/);
+    await expect(checkQuadraticFormulaDiscriminantHandler(f.ctx as never, { userId: f.userId, activityId: f.activityId, fieldId: 'discriminant', rawAnswer: '45' } as never, brokenPublication)).rejects.toThrow(/draft graph state/);
     expect(f.table('activity_submissions')).toHaveLength(0);
     expect(f.scheduled).toEqual([]);
   });

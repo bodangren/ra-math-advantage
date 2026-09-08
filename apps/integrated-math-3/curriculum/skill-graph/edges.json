@@ -5857,6 +5857,24 @@
       }
     },
     {
+      "id": "math.im3.renderer.quadratic-formula",
+      "kind": "renderer",
+      "title": "Quadratic Formula Renderer",
+      "domain": "math.im3",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Existing React component"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "registered-renderer",
+      "reviewStatus": "approved",
+      "metadata": {
+        "rendererKey": "quadratic-formula"
+      }
+    },
+    {
       "id": "math.im3.renderer.graphing-explorer",
       "kind": "renderer",
       "title": "Graphing Explorer Renderer",
@@ -6100,7 +6118,8 @@
         "course": "im3",
         "module": "1",
         "lesson": "6"
-      }
+      },
+      "rendererKey": "quadratic-formula"
     },
     {
       "id": "math.im3.skill.1.7.graph-quadratic-inequalities-in-two-variables",
@@ -31555,50 +31574,8 @@
         }
       ]
     },
-    {
-      "id": "math.im3.edge.m1.062",
-      "type": "prerequisite_for",
-      "sourceId": "math.im3.skill.1.5.solve-quadratic-equations-by-completing-the-square",
-      "targetId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations",
-      "weight": 0.75,
-      "confidence": "high",
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "im3",
-        "module": "1",
-        "originalWeight": 0.8,
-        "weightNormalization": "t5-review-remediation"
-      },
-      "rationale": "Completing the square derives the quadratic formula",
-      "sourceRefs": [
-        {
-          "source": "curriculum",
-          "note": "Module 1 lesson sequencing and content dependencies"
-        }
-      ]
-    },
-    {
-      "id": "math.im3.edge.m1.063",
-      "type": "prerequisite_for",
-      "sourceId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations",
-      "targetId": "math.im3.skill.1.6.use-the-discriminant-to-determine-the-number-and-type-of-sol",
-      "weight": 1,
-      "confidence": "high",
-      "reviewStatus": "draft",
-      "metadata": {
-        "course": "im3",
-        "module": "1",
-        "originalWeight": 0.9,
-        "weightNormalization": "t5-review-remediation"
-      },
-      "rationale": "Quadratic formula leads to discriminant analysis",
-      "sourceRefs": [
-        {
-          "source": "curriculum",
-          "note": "Module 1 lesson sequencing and content dependencies"
-        }
-      ]
-    },
+
+
     {
       "id": "math.im3.edge.m1.064",
       "type": "prerequisite_for",
@@ -31887,7 +31864,7 @@
       "id": "math.im3.edge.m1.077",
       "type": "rendered_by",
       "sourceId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations",
-      "targetId": "math.im3.renderer.step-by-step-solver",
+      "targetId": "math.im3.renderer.quadratic-formula",
       "weight": 1,
       "confidence": "high",
       "reviewStatus": "draft",
@@ -31895,7 +31872,7 @@
         "course": "im3",
         "module": "1"
       },
-      "rationale": "Skill math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations rendered by math.im3.renderer.step-by-step-solver",
+      "rationale": "Skill math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations rendered by math.im3.renderer.quadratic-formula",
       "sourceRefs": [
         {
           "source": "component-registry",

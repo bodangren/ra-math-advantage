@@ -5,6 +5,7 @@
 // this registry only references their key + props schema.
 
 import { z } from 'zod';
+import { quadraticFormulaActivitySchema } from '../../schemas/quadratic-formula-activity.schema';
 
 export interface MathRendererDescriptor {
   key: string;
@@ -102,6 +103,10 @@ const RENDERER_REGISTRY: Record<string, MathRendererDescriptor> = {
   'discriminant-analyzer': {
     key: 'discriminant-analyzer',
     propsSchema: discriminantAnalyzerPropsSchema,
+  },
+  'quadratic-formula': {
+    key: 'quadratic-formula',
+    propsSchema: quadraticFormulaActivitySchema,
   },
 };
 

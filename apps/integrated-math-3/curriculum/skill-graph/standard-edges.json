@@ -5919,7 +5919,8 @@
         "course": "im3",
         "module": "1",
         "lesson": "6"
-      }
+      },
+      "rendererKey": "quadratic-formula"
     },
     {
       "id": "math.im3.skill.1.7.graph-quadratic-inequalities-in-two-variables",

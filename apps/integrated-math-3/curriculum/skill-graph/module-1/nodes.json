@@ -1369,7 +1369,7 @@
         "module": "1",
         "lesson": "6"
       },
-      "rendererKey": "step-by-step-solver"
+      "rendererKey": "quadratic-formula"
     },
     {
       "id": "math.im3.skill.1.7.graph-quadratic-inequalities-in-two-variables",
@@ -2749,6 +2749,24 @@
       "reviewStatus": "approved",
       "metadata": {
         "rendererKey": "discriminant-analyzer"
+      }
+    },
+    {
+      "id": "math.im3.renderer.quadratic-formula",
+      "kind": "renderer",
+      "title": "Quadratic Formula Renderer",
+      "domain": "math.im3",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Existing React component"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "registered-renderer",
+      "reviewStatus": "approved",
+      "metadata": {
+        "rendererKey": "quadratic-formula"
       }
     },
     {

@@ -773,61 +773,66 @@
       "srsEligible": false
     },
     {
-      "stableActivityId": "math.im3.skill.1.6.use-the-discriminant-to-determine-the-number-and-type-of-sol.worked_example",
-      "nodeId": "math.im3.skill.1.6.use-the-discriminant-to-determine-the-number-and-type-of-sol",
+      "stableActivityId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.guided_practice",
+      "nodeId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations",
       "sourceNodeIds": [
-        "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations",
-        "math.im3.skill.1.aleks.discriminant-analysis"
+        "math.im3.example.1.6.036",
+        "math.im3.example.1.6.037",
+        "math.im3.example.1.6.038",
+        "math.im3.skill.1.aleks.quadratic-formula"
       ],
-      "rendererKey": "discriminant-analyzer",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.hsa-rei-b-4"
-      ],
-      "props": {
-        "prompt": "Worked example for 1o: Use the discriminant to determine the number and type of solutions",
-        "givens": [
-          "See curriculum source"
-        ],
-        "steps": [
-          {
-            "description": "Step 1",
-            "expression": "See curriculum"
-          }
-        ],
-        "explanation": "See curriculum source material."
-      },
-      "gradingConfig": {},
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im3.skill.1.6.use-the-discriminant-to-determine-the-number-and-type-of-sol.guided_practice",
-      "nodeId": "math.im3.skill.1.6.use-the-discriminant-to-determine-the-number-and-type-of-sol",
-      "sourceNodeIds": [
-        "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations",
-        "math.im3.skill.1.aleks.discriminant-analysis"
-      ],
-      "rendererKey": "discriminant-analyzer",
+      "rendererKey": "quadratic-formula",
       "mode": "guided_practice",
       "alignmentNodeIds": [
         "math.standard.ccss.hsa-rei-b-4"
       ],
       "props": {
-        "scaffoldedPrompt": "Guided practice for 1o: Use the discriminant to determine the number and type of solutions",
-        "stepPrompts": [
-          "Step 1"
-        ],
-        "hints": [
-          "Hint 1"
-        ],
-        "checksPerStep": [
-          {
-            "check": "See curriculum"
-          }
-        ],
-        "revealPolicy": "one_at_a_time"
+        "prompt": "Use the Quadratic Formula to solve the equation.",
+        "equation": "x^2 + 5x - 5",
+        "presentationMode": "guided",
+        "fieldHelp": {
+          "discriminant": "Calculate b² - 4ac.",
+          "x1": "Enter one root.",
+          "x2": "Enter the other root. Leave this blank for a repeated root."
+        }
       },
-      "gradingConfig": {},
+      "gradingConfig": {
+        "partIds": [
+          "discriminant",
+          "x1",
+          "x2"
+        ],
+        "partialCredit": true
+      },
+      "srsEligible": false
+    },
+    {
+      "stableActivityId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations.independent_practice",
+      "nodeId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations",
+      "sourceNodeIds": [
+        "math.im3.example.1.6.036",
+        "math.im3.example.1.6.037",
+        "math.im3.example.1.6.038",
+        "math.im3.skill.1.aleks.quadratic-formula"
+      ],
+      "rendererKey": "quadratic-formula",
+      "mode": "independent_practice",
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsa-rei-b-4"
+      ],
+      "props": {
+        "prompt": "Use the Quadratic Formula to solve the equation.",
+        "equation": "x^2 - 2x - 6",
+        "presentationMode": "independent"
+      },
+      "gradingConfig": {
+        "partIds": [
+          "discriminant",
+          "x1",
+          "x2"
+        ],
+        "partialCredit": true
+      },
       "srsEligible": false
     },
     {
@@ -951,15 +956,14 @@
     },
     {
       "nodeId": "math.im3.skill.1.6.use-the-discriminant-to-determine-the-number-and-type-of-sol",
-      "blueprintId": "math.im3.skill.1.6.use-the-discriminant-to-determine-the-number-and-type-of-sol",
+      "blueprintId": "math.im3.skill.1.6.use-the-discriminant-to-determine-the-number-and-type-of-sol.blueprint",
       "standards": [
         "math.standard.ccss.hsa-rei-b-4"
       ],
-      "prerequisites": [
-        "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations"
-      ],
+      "prerequisites": [],
       "difficulty": 0.5,
-      "generatorReady": false
+      "generatorReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im3.skill.1.7.graph-quadratic-inequalities-in-two-variables",
@@ -1323,25 +1327,23 @@
         "independentPracticeReady": false
       },
       {
-        "nodeId": "math.im3.skill.1.6.use-the-discriminant-to-determine-the-number-and-type-of-sol",
-        "title": "1o: Use the discriminant to determine the number and type of solutions",
-        "kind": "skill",
-        "standardsCovered": [
-          "math.standard.ccss.hsa-rei-b-4"
-        ],
-        "prerequisitesMet": true,
-        "independentPracticeReady": false
-      },
+      "nodeId": "math.im3.skill.1.6.use-the-discriminant-to-determine-the-number-and-type-of-sol",
+      "title": "1o: Use the discriminant to determine the number and type of solutions",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
       {
-        "nodeId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations",
-        "title": "1n: Use the Quadratic Formula to solve equations",
-        "kind": "skill",
-        "standardsCovered": [
-          "math.standard.ccss.hsa-rei-b-4"
-        ],
-        "prerequisitesMet": true,
-        "independentPracticeReady": false
-      },
+      "nodeId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations",
+      "title": "1n: Use the Quadratic Formula to solve equations",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
       {
         "nodeId": "math.im3.skill.1.7.graph-quadratic-inequalities-in-two-variables",
         "title": "1p: Graph quadratic inequalities in two variables",
@@ -1539,11 +1541,7 @@
         "partIds": [],
         "submissionProvenance": "skill-graph-pilot:math.im3.skill.1.4.solve-quadratic-equations-by-factoring"
       },
-      {
-        "nodeId": "math.im3.skill.1.6.use-the-discriminant-to-determine-the-number-and-type-of-sol",
-        "partIds": [],
-        "submissionProvenance": "skill-graph-pilot:math.im3.skill.1.6.use-the-discriminant-to-determine-the-number-and-type-of-sol"
-      },
+
       {
         "nodeId": "math.im3.skill.1.7.graph-quadratic-inequalities-in-two-variables",
         "partIds": [],
