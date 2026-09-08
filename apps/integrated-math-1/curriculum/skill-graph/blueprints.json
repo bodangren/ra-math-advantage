@@ -3795,25 +3795,12 @@
     },
     {
       "nodeId": "math.im1.skill.8.1.identify-exponential-behavior-from-data-using-common-ratios",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im1.example.8.1.001"
+      ],
       "alignmentNodeIds": [
         "math.standard.ccss.f-if-c-7e",
         "math.standard.ccss.f-le-a-1"
-      ],
-      "rendererKey": "comprehension-quiz",
-      "rendererModeMap": {
-        "worked": "comprehension-quiz",
-        "guidedPractice": "comprehension-quiz",
-        "independentPractice": "comprehension-quiz"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
-      "exceptions": [
-        {
-          "type": "generator",
-          "reason": "Generator not yet implemented for IM1 rollout"
-        }
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7280,6 +7267,106 @@
         "course": "im1",
         "module": "7",
         "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.determine-the-initial-value-or-y-intercept-of-an-exponential-function",
+      "sourceNodeIds": [
+        "math.im1.example.8.1.002"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.classify-growth-or-decay-in-an-exponential-model",
+      "sourceNodeIds": [
+        "math.im1.example.8.1.002"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.determine-the-horizontal-asymptote-of-an-exponential-function",
+      "sourceNodeIds": [
+        "math.im1.example.8.1.002"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.graph-an-exponential-function-from-its-equation",
+      "sourceNodeIds": [
+        "math.im1.example.8.1.002"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.determine-the-domain-and-range-of-an-exponential-function",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.determine-a-context-relevant-domain-and-range-for-an-exponential-model",
+      "sourceNodeIds": [
+        "math.im1.example.8.1.002"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.evaluate-and-interpret-an-exponential-model-at-a-given-input",
+      "sourceNodeIds": [
+        "math.im1.example.8.1.002"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.justify-why-a-nonzero-exponential-function-has-no-x-intercept",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "1"
       }
     }
   ]

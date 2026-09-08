@@ -983,11 +983,11 @@
     },
     {
       "nodeId": "math.im1.skill.8.1.identify-exponential-behavior-from-data-using-common-ratios",
-      "title": "8a: Identify exponential behavior from data using common ratios",
+      "title": "Identify exponential behavior from equally spaced table data using common ratios",
       "module": "8",
       "rendererKey": "comprehension-quiz",
-      "rendererAssignmentReason": "Statistics/data skill \u2192 comprehension-quiz",
-      "gap": "No generator available for IM1",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No reviewed three-mode generator for this source capability",
       "priority": "standard"
     },
     {
@@ -3149,10 +3149,82 @@
       "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
       "gap": "No generator available for IM1",
       "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.determine-the-initial-value-or-y-intercept-of-an-exponential-function",
+      "title": "Determine and interpret the initial value or y-intercept of an exponential function",
+      "module": "8",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.classify-growth-or-decay-in-an-exponential-model",
+      "title": "Classify growth or decay in an exponential model and explain the direction of change",
+      "module": "8",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.determine-the-horizontal-asymptote-of-an-exponential-function",
+      "title": "Determine the horizontal asymptote of an exponential function from its equation or graph",
+      "module": "8",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.graph-an-exponential-function-from-its-equation",
+      "title": "Graph an exponential function from its equation",
+      "module": "8",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.determine-the-domain-and-range-of-an-exponential-function",
+      "title": "Determine the domain and range of an exponential function from its equation or graph",
+      "module": "8",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.determine-a-context-relevant-domain-and-range-for-an-exponential-model",
+      "title": "Determine and interpret a context-relevant domain and range for an exponential model",
+      "module": "8",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.evaluate-and-interpret-an-exponential-model-at-a-given-input",
+      "title": "Evaluate and interpret an exponential model at a given input",
+      "module": "8",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.justify-why-a-nonzero-exponential-function-has-no-x-intercept",
+      "title": "Justify why a nonzero exponential function has no x-intercept",
+      "module": "8",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
     }
   ],
   "meta": {
-    "totalSkills": 350,
+    "totalSkills": 358,
     "allNeedGenerators": true
   }
 }

@@ -1,10 +1,10 @@
 {
   "version": 1,
   "course": "im1",
-  "totalSkills": 356,
+  "totalSkills": 364,
   "counts": {
     "served": 6,
-    "gap": 350,
+    "gap": 358,
     "newComponent": 0
   },
   "byModule": [
@@ -59,9 +59,9 @@
     },
     {
       "module": "8",
-      "totalSkills": 10,
+      "totalSkills": 18,
       "served": 0,
-      "gap": 10,
+      "gap": 18,
       "newComponent": 0
     },
     {
@@ -2221,7 +2221,71 @@
       "priority": "standard"
     },
     {
+      "skillId": "math.im1.skill.8.1.classify-growth-or-decay-in-an-exponential-model",
+      "module": "8",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.8.1.determine-a-context-relevant-domain-and-range-for-an-exponential-model",
+      "module": "8",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.8.1.determine-the-domain-and-range-of-an-exponential-function",
+      "module": "8",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.8.1.determine-the-horizontal-asymptote-of-an-exponential-function",
+      "module": "8",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.8.1.determine-the-initial-value-or-y-intercept-of-an-exponential-function",
+      "module": "8",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.8.1.evaluate-and-interpret-an-exponential-model-at-a-given-input",
+      "module": "8",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.8.1.graph-an-exponential-function-from-its-equation",
+      "module": "8",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
       "skillId": "math.im1.skill.8.1.identify-exponential-behavior-from-data-using-common-ratios",
+      "module": "8",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.8.1.justify-why-a-nonzero-exponential-function-has-no-x-intercept",
       "module": "8",
       "status": "gap",
       "tier": "none",

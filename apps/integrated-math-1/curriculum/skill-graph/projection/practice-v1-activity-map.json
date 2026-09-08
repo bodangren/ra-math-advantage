@@ -7828,79 +7828,6 @@
       "srsEligible": false
     },
     {
-      "stableActivityId": "math.im1.skill.8.1.identify-exponential-behavior-from-data-using-common-ratios.worked_example",
-      "nodeId": "math.im1.skill.8.1.identify-exponential-behavior-from-data-using-common-ratios",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.f-if-c-7e",
-        "math.standard.ccss.f-le-a-1"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 \u2014 math.im1.skill.8.1.identify-exponential-behavior-from-data-using-common-ratios",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.8.1.identify-exponential-behavior-from-data-using-common-ratios.guided_practice",
-      "nodeId": "math.im1.skill.8.1.identify-exponential-behavior-from-data-using-common-ratios",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.f-if-c-7e",
-        "math.standard.ccss.f-le-a-1"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 8a: Identify exponential behavior from data using common ratios",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.8.1.identify-exponential-behavior-from-data-using-common-ratios.independent_practice",
-      "nodeId": "math.im1.skill.8.1.identify-exponential-behavior-from-data-using-common-ratios",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.f-if-c-7e",
-        "math.standard.ccss.f-le-a-1"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
       "stableActivityId": "math.im1.skill.8.2.describe-transformations-of-exponential-functions-verbally-a.worked_example",
       "nodeId": "math.im1.skill.8.2.describe-transformations-of-exponential-functions-verbally-a",
       "sourceNodeIds": [],
@@ -11763,6 +11690,86 @@
     {
       "nodeId": "math.im1.skill.7.5.find-the-area-of-a-bounded-feasible-region",
       "blueprintId": "math.im1.skill.7.5.find-the-area-of-a-bounded-feasible-region.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.determine-the-initial-value-or-y-intercept-of-an-exponential-function",
+      "blueprintId": "math.im1.skill.8.1.determine-the-initial-value-or-y-intercept-of-an-exponential-function.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.classify-growth-or-decay-in-an-exponential-model",
+      "blueprintId": "math.im1.skill.8.1.classify-growth-or-decay-in-an-exponential-model.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.determine-the-horizontal-asymptote-of-an-exponential-function",
+      "blueprintId": "math.im1.skill.8.1.determine-the-horizontal-asymptote-of-an-exponential-function.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.graph-an-exponential-function-from-its-equation",
+      "blueprintId": "math.im1.skill.8.1.graph-an-exponential-function-from-its-equation.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.determine-the-domain-and-range-of-an-exponential-function",
+      "blueprintId": "math.im1.skill.8.1.determine-the-domain-and-range-of-an-exponential-function.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.determine-a-context-relevant-domain-and-range-for-an-exponential-model",
+      "blueprintId": "math.im1.skill.8.1.determine-a-context-relevant-domain-and-range-for-an-exponential-model.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.evaluate-and-interpret-an-exponential-model-at-a-given-input",
+      "blueprintId": "math.im1.skill.8.1.evaluate-and-interpret-an-exponential-model-at-a-given-input.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.justify-why-a-nonzero-exponential-function-has-no-x-intercept",
+      "blueprintId": "math.im1.skill.8.1.justify-why-a-nonzero-exponential-function-has-no-x-intercept.blueprint",
       "standards": [],
       "prerequisites": [],
       "difficulty": 0.5,

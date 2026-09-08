@@ -2355,6 +2355,94 @@
       "generatorKey": null,
       "generatorReady": false,
       "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.determine-the-initial-value-or-y-intercept-of-an-exponential-function",
+      "blueprintId": "math.im1.skill.8.1.determine-the-initial-value-or-y-intercept-of-an-exponential-function.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.classify-growth-or-decay-in-an-exponential-model",
+      "blueprintId": "math.im1.skill.8.1.classify-growth-or-decay-in-an-exponential-model.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.determine-the-horizontal-asymptote-of-an-exponential-function",
+      "blueprintId": "math.im1.skill.8.1.determine-the-horizontal-asymptote-of-an-exponential-function.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.graph-an-exponential-function-from-its-equation",
+      "blueprintId": "math.im1.skill.8.1.graph-an-exponential-function-from-its-equation.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.determine-the-domain-and-range-of-an-exponential-function",
+      "blueprintId": "math.im1.skill.8.1.determine-the-domain-and-range-of-an-exponential-function.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.determine-a-context-relevant-domain-and-range-for-an-exponential-model",
+      "blueprintId": "math.im1.skill.8.1.determine-a-context-relevant-domain-and-range-for-an-exponential-model.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.evaluate-and-interpret-an-exponential-model-at-a-given-input",
+      "blueprintId": "math.im1.skill.8.1.evaluate-and-interpret-an-exponential-model-at-a-given-input.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.justify-why-a-nonzero-exponential-function-has-no-x-intercept",
+      "blueprintId": "math.im1.skill.8.1.justify-why-a-nonzero-exponential-function-has-no-x-intercept.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false,
+      "equivalentNodeIds": []
     }
   ]
 }

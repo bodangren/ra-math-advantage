@@ -6,8 +6,8 @@
     "pilotEdgesPreserved": 0,
     "standardEdgesMerged": 941,
     "suggestedEdges": 1277,
-    "totalEdges": 2467,
-    "totalNodes": 955,
+    "totalEdges": 2475,
+    "totalNodes": 963,
     "normalizedWeights": 539
   },
   "nodes": [
@@ -6324,10 +6324,11 @@
     {
       "id": "math.im1.example.8.1.001",
       "kind": "worked_example",
-      "title": "Example 1: Identify Exponential Behavior from Data",
+      "title": "Example 1: Identify exponential behavior from tables",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-8-class-period-plan.md (8-1, Example 1)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0801_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0801_practice.docx (Example 1, Problems 1-5)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -6336,16 +6337,18 @@
         "lesson": "1",
         "exampleNumber": 1,
         "sourceLesson": "8-1",
-        "rawText": "8-1, Example 1 \u2014 Identify Exponential Behavior from Data"
-      }
+        "rawText": "Example 1 \u2014 Problems 1-5"
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.8.1.002",
       "kind": "worked_example",
-      "title": "Example 2: Analyze Exponential Functions in Context",
+      "title": "Examples 2 and 3: Analyze exponential functions in context",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-8-class-period-plan.md (8-1, Example 2)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0801_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0801_practice.docx (Examples 2 and 3, Problems 6-8)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -6354,18 +6357,17 @@
         "lesson": "1",
         "exampleNumber": 2,
         "sourceLesson": "8-1",
-        "rawText": "8-1, Examples 2-3 \u2014 Analyze Exponential Functions in Context"
-      }
+        "rawText": "Examples 2 and 3 \u2014 Problems 6-8"
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.8.1.003",
       "kind": "worked_example",
       "title": "Example 3: Analyze Exponential Functions in Context",
       "domain": "math.im1",
-      "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-8-class-period-plan.md (8-1, Example 3)"
-      ],
-      "reviewStatus": "draft",
+      "sourceRefs": [],
+      "reviewStatus": "rejected",
       "metadata": {
         "course": "im1",
         "module": "8",
@@ -6373,7 +6375,8 @@
         "exampleNumber": 3,
         "sourceLesson": "8-1",
         "rawText": "8-1, Examples 2-3 \u2014 Analyze Exponential Functions in Context"
-      }
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.8.2.004",
@@ -11015,18 +11018,20 @@
     {
       "id": "math.im1.skill.8.1.identify-exponential-behavior-from-data-using-common-ratios",
       "kind": "skill",
-      "title": "8a: Identify exponential behavior from data using common ratios",
+      "title": "Identify exponential behavior from equally spaced table data using common ratios",
       "domain": "math.im1",
-      "description": "Identify exponential behavior from data using common ratios",
+      "description": "Identify exponential behavior from equally spaced table data using common ratios.",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-8-class-period-plan.md"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0801_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0801_practice.docx (Example 1, Problems 1-5)"
       ],
       "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "8",
         "lesson": "1"
-      }
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.skill.8.2.describe-transformations-of-exponential-functions-verbally-a",
@@ -16787,6 +16792,150 @@
         "course": "im1",
         "module": "7",
         "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.8.1.determine-the-initial-value-or-y-intercept-of-an-exponential-function",
+      "kind": "skill",
+      "title": "Determine and interpret the initial value or y-intercept of an exponential function",
+      "domain": "math.im1",
+      "description": "Determine and interpret the initial value or y-intercept of an exponential function",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0801_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0801_practice.docx (Examples 2 and 3, Problems 6-7; Mixed Exercises, Problems 9-14)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.8.1.classify-growth-or-decay-in-an-exponential-model",
+      "kind": "skill",
+      "title": "Classify growth or decay in an exponential model and explain the direction of change",
+      "domain": "math.im1",
+      "description": "Classify growth or decay in an exponential model and explain the direction of change",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0801_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0801_practice.docx (Examples 2 and 3, Problems 6-7; Mixed Exercises, Problem 15(c))"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.8.1.determine-the-horizontal-asymptote-of-an-exponential-function",
+      "kind": "skill",
+      "title": "Determine the horizontal asymptote of an exponential function from its equation or graph",
+      "domain": "math.im1",
+      "description": "Determine the horizontal asymptote of an exponential function from its equation or graph",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0801_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0801_practice.docx (Examples 2 and 3, Problems 6-7; Mixed Exercises, Problems 9-14)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.8.1.graph-an-exponential-function-from-its-equation",
+      "kind": "skill",
+      "title": "Graph an exponential function from its equation",
+      "domain": "math.im1",
+      "description": "Graph an exponential function from its equation",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0801_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0801_practice.docx (Examples 2 and 3, Problems 6-7; Mixed Exercises, Problems 9-14)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.8.1.determine-the-domain-and-range-of-an-exponential-function",
+      "kind": "skill",
+      "title": "Determine the domain and range of an exponential function from its equation or graph",
+      "domain": "math.im1",
+      "description": "Determine the domain and range of an exponential function from its equation or graph",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0801_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0801_practice.docx (Mixed Exercises, Problems 9-14)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.8.1.determine-a-context-relevant-domain-and-range-for-an-exponential-model",
+      "kind": "skill",
+      "title": "Determine and interpret a context-relevant domain and range for an exponential model",
+      "domain": "math.im1",
+      "description": "Determine and interpret a context-relevant domain and range for an exponential model",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0801_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0801_practice.docx (Examples 2 and 3, Problems 6-7)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.8.1.evaluate-and-interpret-an-exponential-model-at-a-given-input",
+      "kind": "skill",
+      "title": "Evaluate and interpret an exponential model at a given input",
+      "domain": "math.im1",
+      "description": "Evaluate and interpret an exponential model at a given input",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0801_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0801_practice.docx (Examples 2 and 3, Problem 8; Mixed Exercises, Problem 15(a-b))"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.skill.8.1.justify-why-a-nonzero-exponential-function-has-no-x-intercept",
+      "kind": "skill",
+      "title": "Justify why a nonzero exponential function has no x-intercept",
+      "domain": "math.im1",
+      "description": "Justify why a nonzero exponential function has no x-intercept",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0801_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0801_practice.docx (Mixed Exercises, Problem 18)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "8",
+        "lesson": "1"
       }
     }
   ],
@@ -55483,22 +55632,6 @@
       }
     },
     {
-      "id": "math.im1.edge.1025",
-      "type": "contains",
-      "sourceId": "math.im1.lesson.8.1",
-      "targetId": "math.im1.example.8.1.003",
-      "weight": 1,
-      "confidence": "high",
-      "reviewStatus": "draft",
-      "derived": true,
-      "derivationMethod": "lesson-sequence-containment-v1",
-      "rationale": "Lesson contains worked example",
-      "metadata": {
-        "module": "8",
-        "lesson": "1"
-      }
-    },
-    {
       "id": "math.im1.edge.1026",
       "type": "contains",
       "sourceId": "math.im1.lesson.8.1",
@@ -63632,6 +63765,141 @@
       "metadata": {
         "module": "7",
         "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.g38.contains.skill.1",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.8.1",
+      "targetId": "math.im1.skill.8.1.determine-the-initial-value-or-y-intercept-of-an-exponential-function",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 8-1 source contains this exact capability.",
+      "metadata": {
+        "module": "8",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.g38.contains.skill.2",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.8.1",
+      "targetId": "math.im1.skill.8.1.classify-growth-or-decay-in-an-exponential-model",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 8-1 source contains this exact capability.",
+      "metadata": {
+        "module": "8",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.g38.contains.skill.3",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.8.1",
+      "targetId": "math.im1.skill.8.1.determine-the-horizontal-asymptote-of-an-exponential-function",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 8-1 source contains this exact capability.",
+      "metadata": {
+        "module": "8",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.g38.contains.skill.4",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.8.1",
+      "targetId": "math.im1.skill.8.1.graph-an-exponential-function-from-its-equation",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 8-1 source contains this exact capability.",
+      "metadata": {
+        "module": "8",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.g38.contains.skill.5",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.8.1",
+      "targetId": "math.im1.skill.8.1.determine-the-domain-and-range-of-an-exponential-function",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 8-1 source contains this exact capability.",
+      "metadata": {
+        "module": "8",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.g38.contains.skill.6",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.8.1",
+      "targetId": "math.im1.skill.8.1.determine-a-context-relevant-domain-and-range-for-an-exponential-model",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 8-1 source contains this exact capability.",
+      "metadata": {
+        "module": "8",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.g38.contains.skill.7",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.8.1",
+      "targetId": "math.im1.skill.8.1.evaluate-and-interpret-an-exponential-model-at-a-given-input",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 8-1 source contains this exact capability.",
+      "metadata": {
+        "module": "8",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.g38.contains.skill.8",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.8.1",
+      "targetId": "math.im1.skill.8.1.justify-why-a-nonzero-exponential-function-has-no-x-intercept",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Lesson 8-1 source contains this exact capability.",
+      "metadata": {
+        "module": "8",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im1.g38.contains.reuse.1",
+      "type": "contains",
+      "sourceId": "math.im1.lesson.8.1",
+      "targetId": "math.im1.skill.8.3.write-an-exponential-function-given-two-points-on-its-graph",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": false,
+      "rationale": "Problem 17 directly reuses this capability.",
+      "metadata": {
+        "module": "8",
+        "lesson": "1"
       }
     }
   ]
