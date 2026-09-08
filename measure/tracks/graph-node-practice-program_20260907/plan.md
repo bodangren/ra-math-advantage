@@ -356,3 +356,5 @@ G47 first source candidate failed parent review. It changed several mathematical
 Q37 unit 5 first candidate failed parent source review. Its ordinary bodies predate the accepted Q23 lesson. The required version-2 layout and exact seven-body parity dependency are now explicit. Use the committed lesson from `7aabe987`; preserve all selected activity data. See `precalc-runtime-unit5-first-review.md`.
 
 G47 Lesson 9-4 source restoration is committed as `fbc8d457`. Final parent and independent checks passed seven source tests, lint, build, standalone TypeScript, and three native-image comparisons. The first rejected wording and invalid Green claim are corrected. Graph implementation is in progress. See `im1-lesson94-source-integration.md`.
+
+- [~] Task G48: Inspect IM1 Lesson 9-5 original worksheet while G47 graph and selected-seed checks run. Record source tasks, native figures, stable identities, and ambiguity boundaries before proposing capabilities.
