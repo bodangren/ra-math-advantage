@@ -549,3 +549,7 @@ Q37 Unit 7 is complete for the selected Topic 1.1 flow. All nine required rows p
 G53 corrected inventory is accepted. It preserves 50 prompts, five existing Example identities, and 14 native figures. It proposes one inactive maximum-count atom with separate line and plane evidence variants. No new prerequisite is accepted. Problem 49 remains task-local manual evidence. Exact source restoration is in progress in one isolated candidate. See `im1-lesson102-inventory-independent-review.md`.
 
 Removed saved worktree 4e21 after parent and independent checks of all 355 states. All states are preserved in main, 02d6, or 18ee. Branch `codex/preserve-saved-4e21-im3-lesson11` preserves its two detached commits. The other 18 saved worktrees remain intact. See `saved-4e21-full-preservation-review.md`.
+
+G53 graph preparation found draft standard placeholders in the existing alignment fields. Review the exact standard scope for the two Lesson 10-2 skills and the reused Lesson 12-4 postulate skill before graph implementation. Do not copy those alignments to the new maximum-count atom without evidence. This review does not change the source-restoration scope.
+
+Removed saved worktrees 4f74 and 54ed after full parent and independent review of 712 states. The superseded source candidates need no integration. Branch `codex/preserve-saved-54ed-im3-projection-repair` preserves two detached commits. The other 16 saved worktrees remain intact. See `saved-4f74-54ed-preservation-review.md`.
