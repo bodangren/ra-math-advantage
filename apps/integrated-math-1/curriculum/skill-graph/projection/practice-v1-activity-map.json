@@ -3,9 +3,9 @@
     "course": "im1",
     "generatedAt": "2026-05-10T06:41:48.253Z",
     "description": "IM1 practice.v1 activity map projection from skill graph",
-    "totalActivities": 327,
-    "totalSrsInputs": 293,
-    "totalSkills": 293
+    "totalActivities": 324,
+    "totalSrsInputs": 310,
+    "totalSkills": 310
   },
   "activities": [
     {
@@ -7829,79 +7829,6 @@
         "rubric": []
       },
       "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.7.construct-and-complete-two-way-frequency-tables-from-verbal.worked_example",
-      "nodeId": "math.im1.skill.9.7.construct-and-complete-two-way-frequency-tables-from-verbal",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "worked_example",
-      "alignmentNodeIds": [
-        "math.standard.ccss.s-id-b-5",
-        "math.standard.ccss.s-id-b-6"
-      ],
-      "props": {
-        "prompt": "Placeholder: generator not yet available for IM1 — math.im1.skill.9.7.construct-and-complete-two-way-frequency-tables-from-verbal",
-        "givens": [],
-        "steps": [],
-        "explanation": "This activity requires generator implementation"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.7.construct-and-complete-two-way-frequency-tables-from-verbal.guided_practice",
-      "nodeId": "math.im1.skill.9.7.construct-and-complete-two-way-frequency-tables-from-verbal",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "guided_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.s-id-b-5",
-        "math.standard.ccss.s-id-b-6"
-      ],
-      "props": {
-        "scaffoldedPrompt": "Placeholder guided practice: 9l: Construct and complete two-way frequency tables from verbal descriptions or given data",
-        "stepPrompts": [],
-        "hints": [],
-        "checksPerStep": [],
-        "revealPolicy": "one_at_a_time"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
-    },
-    {
-      "stableActivityId": "math.im1.skill.9.7.construct-and-complete-two-way-frequency-tables-from-verbal.independent_practice",
-      "nodeId": "math.im1.skill.9.7.construct-and-complete-two-way-frequency-tables-from-verbal",
-      "sourceNodeIds": [],
-      "rendererKey": "comprehension-quiz",
-      "mode": "independent_practice",
-      "alignmentNodeIds": [
-        "math.standard.ccss.s-id-b-5",
-        "math.standard.ccss.s-id-b-6"
-      ],
-      "props": {
-        "variantParameters": {},
-        "answerSchema": {},
-        "gradingRules": [],
-        "replayPolicy": "unique_seeds"
-      },
-      "gradingConfig": {
-        "partIds": [],
-        "passingScore": 0,
-        "partialCredit": false,
-        "rubric": []
-      },
-      "srsEligible": false
     }
   ],
   "srsInputs": [
@@ -7996,9 +7923,7 @@
       "standards": [
         "math.standard.ccss.g-co-a-1"
       ],
-      "prerequisites": [
-        "math.im1.skill.9.7.construct-and-complete-two-way-frequency-tables-from-verbal"
-      ],
+      "prerequisites": [],
       "difficulty": 0.5,
       "rendererKey": "fill-in-the-blank",
       "generatorKey": null,
@@ -11370,6 +11295,176 @@
     {
       "nodeId": "math.im1.skill.9.6.update-an-overall-mean-after-equal-changes-to-a-subgroup",
       "blueprintId": "math.im1.skill.9.6.update-an-overall-mean-after-equal-changes-to-a-subgroup",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.read-a-joint-frequency-from-a-two-way-frequency-table",
+      "blueprintId": "math.im1.skill.9.7.read-a-joint-frequency-from-a-two-way-frequency-table",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.read-a-marginal-frequency-from-a-two-way-frequency-table",
+      "blueprintId": "math.im1.skill.9.7.read-a-marginal-frequency-from-a-two-way-frequency-table",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.calculate-a-difference-between-named-frequencies",
+      "blueprintId": "math.im1.skill.9.7.calculate-a-difference-between-named-frequencies",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.construct-an-overall-two-way-relative-frequency-table",
+      "blueprintId": "math.im1.skill.9.7.construct-an-overall-two-way-relative-frequency-table",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.calculate-an-overall-joint-relative-frequency",
+      "blueprintId": "math.im1.skill.9.7.calculate-an-overall-joint-relative-frequency",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.calculate-an-overall-marginal-relative-frequency",
+      "blueprintId": "math.im1.skill.9.7.calculate-an-overall-marginal-relative-frequency",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.calculate-a-conditional-relative-frequency-in-a-stated-direction",
+      "blueprintId": "math.im1.skill.9.7.calculate-a-conditional-relative-frequency-in-a-stated-direction",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.construct-a-conditional-relative-frequency-table-for-a-stated-conditioning-variable",
+      "blueprintId": "math.im1.skill.9.7.construct-a-conditional-relative-frequency-table-for-a-stated-conditioning-variable",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.interpret-a-joint-or-marginal-relative-frequency-in-context",
+      "blueprintId": "math.im1.skill.9.7.interpret-a-joint-or-marginal-relative-frequency-in-context",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.interpret-a-conditional-relative-frequency-in-context",
+      "blueprintId": "math.im1.skill.9.7.interpret-a-conditional-relative-frequency-in-context",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.distinguish-reversed-conditional-questions",
+      "blueprintId": "math.im1.skill.9.7.distinguish-reversed-conditional-questions",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.estimate-joint-and-marginal-counts-from-rounded-relative-frequencies-and-a-grand-total",
+      "blueprintId": "math.im1.skill.9.7.estimate-joint-and-marginal-counts-from-rounded-relative-frequencies-and-a-grand-total",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.compare-overall-and-conditional-relative-frequency-scaling",
+      "blueprintId": "math.im1.skill.9.7.compare-overall-and-conditional-relative-frequency-scaling",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.evaluate-association-between-two-categorical-variables-from-a-two-way-table",
+      "blueprintId": "math.im1.skill.9.7.evaluate-association-between-two-categorical-variables-from-a-two-way-table",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.create-a-related-question-and-consistent-solution-from-an-accepted-two-way-table",
+      "blueprintId": "math.im1.skill.9.7.create-a-related-question-and-consistent-solution-from-an-accepted-two-way-table",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.compare-overall-and-conditional-two-way-relative-frequency-tables",
+      "blueprintId": "math.im1.skill.9.7.compare-overall-and-conditional-two-way-relative-frequency-tables",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.evaluate-categorical-data-claims-with-conditional-evidence",
+      "blueprintId": "math.im1.skill.9.7.evaluate-categorical-data-claims-with-conditional-evidence",
       "standards": [],
       "prerequisites": [],
       "difficulty": 0.5,

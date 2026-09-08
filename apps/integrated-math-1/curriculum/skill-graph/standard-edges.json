@@ -7218,10 +7218,11 @@
     {
       "id": "math.im1.example.9.7.023",
       "kind": "worked_example",
-      "title": "Example 1: Construct a Two-Way Frequency Table; Construct and Interpret a Relative Frequency Table",
+      "title": "Example 1",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-9-class-period-plan.md (9-7, Example 1)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx (Example 1, Problems 1-4)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7229,17 +7230,18 @@
         "module": "9",
         "lesson": "7",
         "exampleNumber": 1,
-        "sourceLesson": "9-7",
-        "rawText": "9-7, Examples 1-2 — Construct a Two-Way Frequency Table; Construct and Interpret a Relative Frequency Table"
-      }
+        "sourceLesson": "9-7"
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.9.7.024",
       "kind": "worked_example",
-      "title": "Example 2: Construct a Two-Way Frequency Table; Construct and Interpret a Relative Frequency Table",
+      "title": "Example 2",
       "domain": "math.im1",
       "sourceRefs": [
-        "apps/integrated-math-1/curriculum/module-9-class-period-plan.md (9-7, Example 2)"
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx (Example 2, Problems 5-7)"
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -7247,9 +7249,9 @@
         "module": "9",
         "lesson": "7",
         "exampleNumber": 2,
-        "sourceLesson": "9-7",
-        "rawText": "9-7, Examples 1-2 — Construct a Two-Way Frequency Table; Construct and Interpret a Relative Frequency Table"
-      }
+        "sourceLesson": "9-7"
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.lesson.1.1",
@@ -18908,6 +18910,331 @@
         "course": "im1",
         "module": "9",
         "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im1.example.9.7.025",
+      "kind": "worked_example",
+      "title": "Example 3",
+      "domain": "math.im1",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx (Example 3, Problems 8-10)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "7",
+        "exampleNumber": 3,
+        "sourceLesson": "9-7"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.7.read-a-joint-frequency-from-a-two-way-frequency-table",
+      "kind": "skill",
+      "title": "Read a joint frequency from a two-way frequency table",
+      "domain": "math.im1",
+      "description": "Read the cell at a stated row and column.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx (Problems 2 and 15 after an accepted Problem 1 or Problem 13 table; Problems 11, 24, and 25 from supplied tables; Problem 15 has two separate cells)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.7.read-a-marginal-frequency-from-a-two-way-frequency-table",
+      "kind": "skill",
+      "title": "Read a marginal frequency from a two-way frequency table",
+      "domain": "math.im1",
+      "description": "Read a stated row or column total.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx (Problem 3 after an accepted Problem 1 table; Problems 21-23 from supplied tables)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.7.calculate-a-difference-between-named-frequencies",
+      "kind": "skill",
+      "title": "Calculate a difference between named frequencies",
+      "domain": "math.im1",
+      "description": "Subtract two supplied or accepted named frequencies.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx (Problems 4, 12, 14, and 16 after the two named counts are supplied or accepted; Problems 4, 14, and 16 use accepted prior tables)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.7.construct-an-overall-two-way-relative-frequency-table",
+      "kind": "skill",
+      "title": "Construct an overall two-way relative frequency table",
+      "domain": "math.im1",
+      "description": "Divide table frequencies by the grand total under a stated rounding rule.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx (Problems 5 and 17 from supplied tables; Problem 29 after an accepted completed table)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.7.calculate-an-overall-joint-relative-frequency",
+      "kind": "skill",
+      "title": "Calculate an overall joint relative frequency",
+      "domain": "math.im1",
+      "description": "Divide a stated joint frequency by the grand total.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx (Problems 6, 18, and 30; Problem 30 preserves the representativeness assumption)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.7.calculate-an-overall-marginal-relative-frequency",
+      "kind": "skill",
+      "title": "Calculate an overall marginal relative frequency",
+      "domain": "math.im1",
+      "description": "Divide a stated marginal frequency by the grand total.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx (Problems 26-28)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.7.calculate-a-conditional-relative-frequency-in-a-stated-direction",
+      "kind": "skill",
+      "title": "Calculate a conditional relative frequency in a stated direction",
+      "domain": "math.im1",
+      "description": "Use the explicitly stated condition and denominator category.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx (Problems 10, 19, 20, 31, and 38; condition and denominator must be explicit)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.7.construct-a-conditional-relative-frequency-table-for-a-stated-conditioning-variable",
+      "kind": "skill",
+      "title": "Construct a conditional relative frequency table for a stated conditioning variable",
+      "domain": "math.im1",
+      "description": "Construct a table with row or column denominators as stated.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx (Problems 8 and 31; state denominator direction)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.7.interpret-a-joint-or-marginal-relative-frequency-in-context",
+      "kind": "skill",
+      "title": "Interpret a joint or marginal relative frequency in context",
+      "domain": "math.im1",
+      "description": "State category, reference group, and magnitude for the response type supplied.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx (Problem 7 only for the interpretation type the learner states; manual bounded rubric)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.7.interpret-a-conditional-relative-frequency-in-context",
+      "kind": "skill",
+      "title": "Interpret a conditional relative frequency in context",
+      "domain": "math.im1",
+      "description": "State the conditioning group, outcome group, and magnitude.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx (Problems 9, 31, 32, and 38; manual review where open)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.7.distinguish-reversed-conditional-questions",
+      "kind": "skill",
+      "title": "Distinguish reversed conditional questions",
+      "domain": "math.im1",
+      "description": "Identify both denominators and explain why reversed conditional probabilities differ.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx (Problem 10, two probabilities and explanation)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.7.estimate-joint-and-marginal-counts-from-rounded-relative-frequencies-and-a-grand-total",
+      "kind": "skill",
+      "title": "Estimate joint and marginal counts from rounded relative frequencies and a grand total",
+      "domain": "math.im1",
+      "description": "Convert rounded percentages under an explicit reconciliation rule and accept all compatible integer tables.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx (Problem 33; 215 and whole percentages give no unique exact integer table; method must be separately observed)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.7.compare-overall-and-conditional-relative-frequency-scaling",
+      "kind": "skill",
+      "title": "Compare overall and conditional relative-frequency scaling",
+      "domain": "math.im1",
+      "description": "Give the common scale factor and explain the denominator change.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx (Problem 34 AWD responses; no individual-frequency calculation required)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.7.evaluate-association-between-two-categorical-variables-from-a-two-way-table",
+      "kind": "skill",
+      "title": "Evaluate association between two categorical variables from a two-way table",
+      "domain": "math.im1",
+      "description": "Compare conditional distributions or equivalent evidence and explain the judgment.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx (Problem 35; raw-count difference alone is insufficient)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.7.create-a-related-question-and-consistent-solution-from-an-accepted-two-way-table",
+      "kind": "skill",
+      "title": "Create a related question and consistent solution from an accepted two-way table",
+      "domain": "math.im1",
+      "description": "Create a question and solution that are consistent with an accepted table.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx (Problem 36 after an accepted two-way table; manual review; no duplicate table-construction evidence)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.7.compare-overall-and-conditional-two-way-relative-frequency-tables",
+      "kind": "skill",
+      "title": "Compare overall and conditional two-way relative-frequency tables",
+      "domain": "math.im1",
+      "description": "Explain denominator and interpretation differences.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx (Problem 37; manual bounded rubric)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.im1.skill.9.7.evaluate-categorical-data-claims-with-conditional-evidence",
+      "kind": "skill",
+      "title": "Evaluate categorical-data claims with conditional evidence",
+      "domain": "math.im1",
+      "description": "Decide a stated claim and cite correct conditional evidence.",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx",
+        "apps/integrated-math-1/curriculum/source-materials/practice-worksheet-student-bundle/Int1_0907_practice.docx (Problem 38; Magdalena and Ben scored separately; manual claim-and-evidence rubric)"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "7"
       }
     }
   ],
@@ -41246,13 +41573,265 @@
         "program": "graph-node-practice-program",
         "lesson": "9.6"
       }
+    },
+    {
+      "id": "math.im1.g50.contains.001",
+      "sourceId": "math.im1.lesson.9.7",
+      "targetId": "math.im1.skill.9.7.read-a-joint-frequency-from-a-two-way-frequency-table",
+      "type": "contains",
+      "weight": 1,
+      "derived": false,
+      "rationale": "Lesson 9-7 directly contains Problems 2 and 15 after an accepted Problem 1 or Problem 13 table; Problems 11, 24, and 25 from supplied tables; Problem 15 has two separate cells.",
+      "reviewStatus": "draft",
+      "metadata": {
+        "program": "graph-node-practice-program",
+        "lesson": "9.7"
+      }
+    },
+    {
+      "id": "math.im1.g50.contains.002",
+      "sourceId": "math.im1.lesson.9.7",
+      "targetId": "math.im1.skill.9.7.read-a-marginal-frequency-from-a-two-way-frequency-table",
+      "type": "contains",
+      "weight": 1,
+      "derived": false,
+      "rationale": "Lesson 9-7 directly contains Problem 3 after an accepted Problem 1 table; Problems 21-23 from supplied tables.",
+      "reviewStatus": "draft",
+      "metadata": {
+        "program": "graph-node-practice-program",
+        "lesson": "9.7"
+      }
+    },
+    {
+      "id": "math.im1.g50.contains.003",
+      "sourceId": "math.im1.lesson.9.7",
+      "targetId": "math.im1.skill.9.7.calculate-a-difference-between-named-frequencies",
+      "type": "contains",
+      "weight": 1,
+      "derived": false,
+      "rationale": "Lesson 9-7 directly contains Problems 4, 12, 14, and 16 after the two named counts are supplied or accepted; Problems 4, 14, and 16 use accepted prior tables.",
+      "reviewStatus": "draft",
+      "metadata": {
+        "program": "graph-node-practice-program",
+        "lesson": "9.7"
+      }
+    },
+    {
+      "id": "math.im1.g50.contains.004",
+      "sourceId": "math.im1.lesson.9.7",
+      "targetId": "math.im1.skill.9.7.construct-an-overall-two-way-relative-frequency-table",
+      "type": "contains",
+      "weight": 1,
+      "derived": false,
+      "rationale": "Lesson 9-7 directly contains Problems 5 and 17 from supplied tables; Problem 29 after an accepted completed table.",
+      "reviewStatus": "draft",
+      "metadata": {
+        "program": "graph-node-practice-program",
+        "lesson": "9.7"
+      }
+    },
+    {
+      "id": "math.im1.g50.contains.005",
+      "sourceId": "math.im1.lesson.9.7",
+      "targetId": "math.im1.skill.9.7.calculate-an-overall-joint-relative-frequency",
+      "type": "contains",
+      "weight": 1,
+      "derived": false,
+      "rationale": "Lesson 9-7 directly contains Problems 6, 18, and 30; Problem 30 preserves the representativeness assumption.",
+      "reviewStatus": "draft",
+      "metadata": {
+        "program": "graph-node-practice-program",
+        "lesson": "9.7"
+      }
+    },
+    {
+      "id": "math.im1.g50.contains.006",
+      "sourceId": "math.im1.lesson.9.7",
+      "targetId": "math.im1.skill.9.7.calculate-an-overall-marginal-relative-frequency",
+      "type": "contains",
+      "weight": 1,
+      "derived": false,
+      "rationale": "Lesson 9-7 directly contains Problems 26-28.",
+      "reviewStatus": "draft",
+      "metadata": {
+        "program": "graph-node-practice-program",
+        "lesson": "9.7"
+      }
+    },
+    {
+      "id": "math.im1.g50.contains.007",
+      "sourceId": "math.im1.lesson.9.7",
+      "targetId": "math.im1.skill.9.7.calculate-a-conditional-relative-frequency-in-a-stated-direction",
+      "type": "contains",
+      "weight": 1,
+      "derived": false,
+      "rationale": "Lesson 9-7 directly contains Problems 10, 19, 20, 31, and 38; condition and denominator must be explicit.",
+      "reviewStatus": "draft",
+      "metadata": {
+        "program": "graph-node-practice-program",
+        "lesson": "9.7"
+      }
+    },
+    {
+      "id": "math.im1.g50.contains.008",
+      "sourceId": "math.im1.lesson.9.7",
+      "targetId": "math.im1.skill.9.7.construct-a-conditional-relative-frequency-table-for-a-stated-conditioning-variable",
+      "type": "contains",
+      "weight": 1,
+      "derived": false,
+      "rationale": "Lesson 9-7 directly contains Problems 8 and 31; state denominator direction.",
+      "reviewStatus": "draft",
+      "metadata": {
+        "program": "graph-node-practice-program",
+        "lesson": "9.7"
+      }
+    },
+    {
+      "id": "math.im1.g50.contains.009",
+      "sourceId": "math.im1.lesson.9.7",
+      "targetId": "math.im1.skill.9.7.interpret-a-joint-or-marginal-relative-frequency-in-context",
+      "type": "contains",
+      "weight": 1,
+      "derived": false,
+      "rationale": "Lesson 9-7 directly contains Problem 7 only for the interpretation type the learner states; manual bounded rubric.",
+      "reviewStatus": "draft",
+      "metadata": {
+        "program": "graph-node-practice-program",
+        "lesson": "9.7"
+      }
+    },
+    {
+      "id": "math.im1.g50.contains.010",
+      "sourceId": "math.im1.lesson.9.7",
+      "targetId": "math.im1.skill.9.7.interpret-a-conditional-relative-frequency-in-context",
+      "type": "contains",
+      "weight": 1,
+      "derived": false,
+      "rationale": "Lesson 9-7 directly contains Problems 9, 31, 32, and 38; manual review where open.",
+      "reviewStatus": "draft",
+      "metadata": {
+        "program": "graph-node-practice-program",
+        "lesson": "9.7"
+      }
+    },
+    {
+      "id": "math.im1.g50.contains.011",
+      "sourceId": "math.im1.lesson.9.7",
+      "targetId": "math.im1.skill.9.7.distinguish-reversed-conditional-questions",
+      "type": "contains",
+      "weight": 1,
+      "derived": false,
+      "rationale": "Lesson 9-7 directly contains Problem 10, two probabilities and explanation.",
+      "reviewStatus": "draft",
+      "metadata": {
+        "program": "graph-node-practice-program",
+        "lesson": "9.7"
+      }
+    },
+    {
+      "id": "math.im1.g50.contains.012",
+      "sourceId": "math.im1.lesson.9.7",
+      "targetId": "math.im1.skill.9.7.estimate-joint-and-marginal-counts-from-rounded-relative-frequencies-and-a-grand-total",
+      "type": "contains",
+      "weight": 1,
+      "derived": false,
+      "rationale": "Lesson 9-7 directly contains Problem 33; 215 and whole percentages give no unique exact integer table; method must be separately observed.",
+      "reviewStatus": "draft",
+      "metadata": {
+        "program": "graph-node-practice-program",
+        "lesson": "9.7"
+      }
+    },
+    {
+      "id": "math.im1.g50.contains.013",
+      "sourceId": "math.im1.lesson.9.7",
+      "targetId": "math.im1.skill.9.7.compare-overall-and-conditional-relative-frequency-scaling",
+      "type": "contains",
+      "weight": 1,
+      "derived": false,
+      "rationale": "Lesson 9-7 directly contains Problem 34 AWD responses; no individual-frequency calculation required.",
+      "reviewStatus": "draft",
+      "metadata": {
+        "program": "graph-node-practice-program",
+        "lesson": "9.7"
+      }
+    },
+    {
+      "id": "math.im1.g50.contains.014",
+      "sourceId": "math.im1.lesson.9.7",
+      "targetId": "math.im1.skill.9.7.evaluate-association-between-two-categorical-variables-from-a-two-way-table",
+      "type": "contains",
+      "weight": 1,
+      "derived": false,
+      "rationale": "Lesson 9-7 directly contains Problem 35; raw-count difference alone is insufficient.",
+      "reviewStatus": "draft",
+      "metadata": {
+        "program": "graph-node-practice-program",
+        "lesson": "9.7"
+      }
+    },
+    {
+      "id": "math.im1.g50.contains.015",
+      "sourceId": "math.im1.lesson.9.7",
+      "targetId": "math.im1.skill.9.7.create-a-related-question-and-consistent-solution-from-an-accepted-two-way-table",
+      "type": "contains",
+      "weight": 1,
+      "derived": false,
+      "rationale": "Lesson 9-7 directly contains Problem 36 after an accepted two-way table; manual review; no duplicate table-construction evidence.",
+      "reviewStatus": "draft",
+      "metadata": {
+        "program": "graph-node-practice-program",
+        "lesson": "9.7"
+      }
+    },
+    {
+      "id": "math.im1.g50.contains.016",
+      "sourceId": "math.im1.lesson.9.7",
+      "targetId": "math.im1.skill.9.7.compare-overall-and-conditional-two-way-relative-frequency-tables",
+      "type": "contains",
+      "weight": 1,
+      "derived": false,
+      "rationale": "Lesson 9-7 directly contains Problem 37; manual bounded rubric.",
+      "reviewStatus": "draft",
+      "metadata": {
+        "program": "graph-node-practice-program",
+        "lesson": "9.7"
+      }
+    },
+    {
+      "id": "math.im1.g50.contains.017",
+      "sourceId": "math.im1.lesson.9.7",
+      "targetId": "math.im1.skill.9.7.evaluate-categorical-data-claims-with-conditional-evidence",
+      "type": "contains",
+      "weight": 1,
+      "derived": false,
+      "rationale": "Lesson 9-7 directly contains Problem 38; Magdalena and Ben scored separately; manual claim-and-evidence rubric.",
+      "reviewStatus": "draft",
+      "metadata": {
+        "program": "graph-node-practice-program",
+        "lesson": "9.7"
+      }
+    },
+    {
+      "id": "math.im1.g50.contains.reuse-001",
+      "sourceId": "math.im1.lesson.9.7",
+      "targetId": "math.im1.skill.9.7.construct-and-complete-two-way-frequency-tables-from-verbal",
+      "type": "contains",
+      "weight": 1,
+      "derived": false,
+      "rationale": "Lesson 9-7 directly contains Problems 1 and 13; Problem 29 after supplied partial data; Problem 33 after accepted rounded-percentage conversion; Problem 36 with learner-selected data.",
+      "reviewStatus": "draft",
+      "metadata": {
+        "program": "graph-node-practice-program",
+        "lesson": "9.7"
+      }
     }
   ],
   "metadata": {
     "course": "im1",
     "generatedAt": "2026-05-09T14:20:42.419Z",
     "alignmentStats": {
-      "totalEdges": 997,
+      "totalEdges": 1015,
       "highConfidence": 942,
       "mediumConfidence": 0,
       "lowConfidence": 0,
@@ -41260,6 +41839,6 @@
       "missingStandards": 124,
       "reviewQueue": 0
     },
-    "totalNodes": 1067
+    "totalNodes": 1085
   }
 }

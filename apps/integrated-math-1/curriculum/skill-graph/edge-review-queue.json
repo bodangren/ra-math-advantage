@@ -613,13 +613,6 @@
       "targetId": "math.im1.skill.9.3.identify-sample-bias-in-survey-and-sampling-methods-and-expl",
       "rationale": "Lesson-sequence prerequisite: lesson 2 precedes lesson 3 in module 9",
       "reviewAction": "confirm, upgrade-to-medium, or remove"
-    },
-    {
-      "edgeId": "math.im1.edge.1277",
-      "sourceId": "math.im1.skill.9.7.construct-and-complete-two-way-frequency-tables-from-verbal",
-      "targetId": "math.im1.skill.10.1.differentiate-between-synthetic-geometry-and-analytic-geomet",
-      "rationale": "Lesson-sequence prerequisite: last lesson of module 9 precedes first lesson of module 10",
-      "reviewAction": "confirm, upgrade-to-medium, or remove"
     }
   ],
   "skillsMissingRenderer": [
@@ -2007,7 +2000,7 @@
     }
   ],
   "counts": {
-    "lowConfidencePrerequisites": 88,
+    "lowConfidencePrerequisites": 87,
     "skillsMissingRenderer": 138,
     "skillsMissingMisconceptionTaxonomy": 138
   }

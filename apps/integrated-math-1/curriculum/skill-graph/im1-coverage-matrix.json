@@ -1,10 +1,10 @@
 {
   "version": 1,
   "course": "im1",
-  "totalSkills": 467,
+  "totalSkills": 484,
   "counts": {
     "served": 6,
-    "gap": 461,
+    "gap": 478,
     "newComponent": 0
   },
   "byModule": [
@@ -66,9 +66,9 @@
     },
     {
       "module": "9",
-      "totalSkills": 90,
+      "totalSkills": 107,
       "served": 0,
-      "gap": 90,
+      "gap": 107,
       "newComponent": 0
     },
     {
@@ -3277,7 +3277,143 @@
       "priority": "high"
     },
     {
+      "skillId": "math.im1.skill.9.7.calculate-a-conditional-relative-frequency-in-a-stated-direction",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.9.7.calculate-a-difference-between-named-frequencies",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.9.7.calculate-an-overall-joint-relative-frequency",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.9.7.calculate-an-overall-marginal-relative-frequency",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.9.7.compare-overall-and-conditional-relative-frequency-scaling",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.9.7.compare-overall-and-conditional-two-way-relative-frequency-tables",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.9.7.construct-a-conditional-relative-frequency-table-for-a-stated-conditioning-variable",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.9.7.construct-an-overall-two-way-relative-frequency-table",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
       "skillId": "math.im1.skill.9.7.construct-and-complete-two-way-frequency-tables-from-verbal",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.9.7.create-a-related-question-and-consistent-solution-from-an-accepted-two-way-table",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.9.7.distinguish-reversed-conditional-questions",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.9.7.estimate-joint-and-marginal-counts-from-rounded-relative-frequencies-and-a-grand-total",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.9.7.evaluate-association-between-two-categorical-variables-from-a-two-way-table",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.9.7.evaluate-categorical-data-claims-with-conditional-evidence",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.9.7.interpret-a-conditional-relative-frequency-in-context",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.9.7.interpret-a-joint-or-marginal-relative-frequency-in-context",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.9.7.read-a-joint-frequency-from-a-two-way-frequency-table",
+      "module": "9",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "comprehension-quiz",
+      "priority": "high"
+    },
+    {
+      "skillId": "math.im1.skill.9.7.read-a-marginal-frequency-from-a-two-way-frequency-table",
       "module": "9",
       "status": "gap",
       "tier": "none",

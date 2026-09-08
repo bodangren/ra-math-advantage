@@ -4148,11 +4148,164 @@
       "rendererAssignmentReason": "Planning classification only",
       "gap": "No reviewed renderer contract",
       "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.read-a-joint-frequency-from-a-two-way-frequency-table",
+      "title": "Read a joint frequency from a two-way frequency table",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "No reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.read-a-marginal-frequency-from-a-two-way-frequency-table",
+      "title": "Read a marginal frequency from a two-way frequency table",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "No reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.calculate-a-difference-between-named-frequencies",
+      "title": "Calculate a difference between named frequencies",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "No reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.construct-an-overall-two-way-relative-frequency-table",
+      "title": "Construct an overall two-way relative frequency table",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "No reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.calculate-an-overall-joint-relative-frequency",
+      "title": "Calculate an overall joint relative frequency",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "No reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.calculate-an-overall-marginal-relative-frequency",
+      "title": "Calculate an overall marginal relative frequency",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "No reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.calculate-a-conditional-relative-frequency-in-a-stated-direction",
+      "title": "Calculate a conditional relative frequency in a stated direction",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "No reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.construct-a-conditional-relative-frequency-table-for-a-stated-conditioning-variable",
+      "title": "Construct a conditional relative frequency table for a stated conditioning variable",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "No reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.interpret-a-joint-or-marginal-relative-frequency-in-context",
+      "title": "Interpret a joint or marginal relative frequency in context",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "No reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.interpret-a-conditional-relative-frequency-in-context",
+      "title": "Interpret a conditional relative frequency in context",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "No reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.distinguish-reversed-conditional-questions",
+      "title": "Distinguish reversed conditional questions",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "No reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.estimate-joint-and-marginal-counts-from-rounded-relative-frequencies-and-a-grand-total",
+      "title": "Estimate joint and marginal counts from rounded relative frequencies and a grand total",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "No reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.compare-overall-and-conditional-relative-frequency-scaling",
+      "title": "Compare overall and conditional relative-frequency scaling",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "No reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.evaluate-association-between-two-categorical-variables-from-a-two-way-table",
+      "title": "Evaluate association between two categorical variables from a two-way table",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "No reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.create-a-related-question-and-consistent-solution-from-an-accepted-two-way-table",
+      "title": "Create a related question and consistent solution from an accepted two-way table",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "No reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.compare-overall-and-conditional-two-way-relative-frequency-tables",
+      "title": "Compare overall and conditional two-way relative-frequency tables",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "No reviewed renderer contract",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.evaluate-categorical-data-claims-with-conditional-evidence",
+      "title": "Evaluate categorical-data claims with conditional evidence",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Planning classification only",
+      "gap": "No reviewed renderer contract",
+      "priority": "high"
     }
   ],
   "meta": {
-    "totalSkills": 461,
+    "totalSkills": 478,
     "allNeedGenerators": true,
-    "total": 461
+    "total": 478
   }
 }

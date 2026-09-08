@@ -4288,20 +4288,13 @@
     },
     {
       "nodeId": "math.im1.skill.9.7.construct-and-complete-two-way-frequency-tables-from-verbal",
-      "sourceNodeIds": [],
+      "sourceNodeIds": [
+        "math.im1.example.9.7.023"
+      ],
       "alignmentNodeIds": [
         "math.standard.ccss.s-id-b-5",
         "math.standard.ccss.s-id-b-6"
       ],
-      "rendererKey": "comprehension-quiz",
-      "rendererModeMap": {
-        "worked": "comprehension-quiz",
-        "guidedPractice": "comprehension-quiz",
-        "independentPractice": "comprehension-quiz"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
       "exceptions": [
         {
           "type": "generator",
@@ -8382,6 +8375,213 @@
         "course": "im1",
         "module": "9",
         "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.read-a-joint-frequency-from-a-two-way-frequency-table",
+      "sourceNodeIds": [
+        "math.im1.example.9.7.023"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "7"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.read-a-marginal-frequency-from-a-two-way-frequency-table",
+      "sourceNodeIds": [
+        "math.im1.example.9.7.023"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "7"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.calculate-a-difference-between-named-frequencies",
+      "sourceNodeIds": [
+        "math.im1.example.9.7.023"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "7"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.construct-an-overall-two-way-relative-frequency-table",
+      "sourceNodeIds": [
+        "math.im1.example.9.7.024"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "7"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.calculate-an-overall-joint-relative-frequency",
+      "sourceNodeIds": [
+        "math.im1.example.9.7.024"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "7"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.calculate-an-overall-marginal-relative-frequency",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "7"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.calculate-a-conditional-relative-frequency-in-a-stated-direction",
+      "sourceNodeIds": [
+        "math.im1.example.9.7.025"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "7"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.construct-a-conditional-relative-frequency-table-for-a-stated-conditioning-variable",
+      "sourceNodeIds": [
+        "math.im1.example.9.7.025"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "7"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.interpret-a-joint-or-marginal-relative-frequency-in-context",
+      "sourceNodeIds": [
+        "math.im1.example.9.7.024"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "7"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.interpret-a-conditional-relative-frequency-in-context",
+      "sourceNodeIds": [
+        "math.im1.example.9.7.025"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "7"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.distinguish-reversed-conditional-questions",
+      "sourceNodeIds": [
+        "math.im1.example.9.7.025"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "7"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.estimate-joint-and-marginal-counts-from-rounded-relative-frequencies-and-a-grand-total",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "7"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.compare-overall-and-conditional-relative-frequency-scaling",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "7"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.evaluate-association-between-two-categorical-variables-from-a-two-way-table",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "7"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.create-a-related-question-and-consistent-solution-from-an-accepted-two-way-table",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "7"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.compare-overall-and-conditional-two-way-relative-frequency-tables",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "7"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.evaluate-categorical-data-claims-with-conditional-evidence",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "9",
+        "lesson": "7"
       }
     }
   ]
