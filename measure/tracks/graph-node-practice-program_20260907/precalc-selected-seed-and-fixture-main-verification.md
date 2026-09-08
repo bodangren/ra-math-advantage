@@ -4,7 +4,7 @@ Checked on 2026-09-08.
 
 ## Result
 
-The parent applied the independently reviewed Q18 evidence-fixture repair and Q22 Worked source seed repair to the shared worktree. The combined run passed 212 tests. Four old source assertions failed. Those assertions expect source text and mappings from before the accepted Topic 1.1 source correction. Their separate reconciliation remains active.
+The parent applied the independently reviewed Q18 evidence-fixture repair and Q22 Worked source seed repair to the shared worktree. The combined run passed 212 tests. Four old source assertions failed. Those assertions expected source text and mappings from before the accepted Topic 1.1 source correction. Independent review accepted their correction. The parent applied that test-only patch and reran all seven files. All 216 tests passed. The exact source descriptions and both interval source mappings remain asserted.
 
 The parent ran all seven files together:
 
@@ -30,7 +30,7 @@ The seed rejects duplicate source rows, duplicate current lesson versions, dupli
 
 ## Remaining work
 
-Reconcile the four stale source assertions. Correct ordinary lesson and seed text under Q23. Then deliver the strict Worked projection, learner acknowledgement, teacher action, and mode visibility from the accepted teacher delivery plan.
+Correct ordinary lesson and seed text under Q23. Then deliver the strict Worked projection, learner acknowledgement, teacher action, and mode visibility from the accepted teacher delivery plan.
 
 No source was approved. No live seed or deployment ran. Real Convex rollback and concurrency checks and the positive signed-in student flow remain open. Later-topic code and catalogs remain pending in the shared worktree. This record does not commit or approve those changes.
 
@@ -40,3 +40,5 @@ No source was approved. No live seed or deployment ran. Real Convex rollback and
 - `/tmp/precalc-q18-q22-parent-main-lint.log`
 - `/tmp/precalc-q18-q22-parent-main-build.log`
 - `/tmp/precalc-q18-q22-parent-main-tsc.log`
+
+Final combined test log: `/tmp/precalc-q18-q22-parent-main-final-tests.log`. Source fixture review: `precalc-source-fixture-independent-review.md`.
