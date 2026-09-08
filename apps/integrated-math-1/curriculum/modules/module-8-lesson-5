@@ -1,198 +1,278 @@
 # Lesson 8-5 — Geometric Sequences
 
-Source: (Module 8, Lesson 8-5, Int1_0805_practice.docx)
+Source: `Int1_0805_practice.docx`
 
-## Today's Goals
+## Examples 1 and 2
 
-* Determine whether a given sequence is geometric by checking for a constant common ratio.
-* Find missing terms and specific terms of a geometric sequence using the common ratio and explicit formula.
-* Write and use explicit formulas to model real-world situations involving exponential growth and decay.
-* Compare geometric sequences to arithmetic sequences and analyze their graphs and properties.
+### Problem 1
 
-## Vocabulary
+Determine whether the sequence `4, 1, 2, …` is geometric. Explain.
 
-* **Geometric sequence** — A sequence in which the ratio of any term to the previous term is constant.
-* **Common ratio** — The constant factor [ r ] by which each term in a geometric sequence is multiplied to obtain the next term, where [ r = \frac{a_n}{a_{n-1}} ].
-* **Explicit formula** — A formula for the [ n ]th term of a sequence that depends only on [ n ], written as [ a_n = a_1 \cdot r^{n-1} ] for geometric sequences.
-* **Exponential equation** — An equation of the form [ f(x) = a \cdot b^x ] that can represent a geometric sequence when [ x ] is a positive integer.
+### Problem 2
 
-## Learn: Identifying Geometric Sequences
+Determine whether the sequence `10, 20, 30, 40, …` is geometric. Explain.
 
-A sequence is geometric if the ratio between consecutive terms is constant. This is different from an arithmetic sequence, where the difference between consecutive terms is constant.
+### Problem 3
 
-### Key Concept: Common Ratio Test
+Determine whether `4, 20, 100, …` is geometric. Explain.
 
-* Divide each term by the term that precedes it.
-* If all ratios are equal, the sequence is geometric and the constant value is the common ratio [ r ].
-* If the ratios are not equal, the sequence is not geometric (it may be arithmetic, or neither).
+### Problem 4
 
-For example, given the sequence [ 4, 20, 100, \dots ]:
-[
-\frac{20}{4} = 5, \quad \frac{100}{20} = 5
-]
+Determine whether `212, 106, 53, …` is geometric. Explain.
 
-The common ratio is [ r = 5 ], so the sequence is geometric.
+### Problem 5
 
-## Learn: Explicit Formula for a Geometric Sequence
+Determine whether `-10, -8, -6, -4, …` is geometric. Explain.
 
-Once the first term [ a_1 ] and common ratio [ r ] are known, any term can be found directly without listing all intermediate terms.
+### Problem 6
 
-### Key Concept: Explicit Formula
+Determine whether `5, -10, 20, 40, …` is geometric. Explain.
 
-[
-a_n = a_1 \cdot r^{n-1}
-]
+### Problem 7
 
-* [ a_n ] is the [ n ]th term.
-* [ a_1 ] is the first term.
-* [ r ] is the common ratio.
-* [ n ] is the term number.
+Determine whether `-96, -48, -24, -12, …` is geometric. Explain.
 
-## Example 1 — Determine Whether a Sequence Is Geometric
+### Problem 8
 
-Given a list of terms, determine whether the sequence is geometric. Explain your reasoning by computing the ratio between consecutive terms.
+Determine whether `7, 13, 19, 25, …` is geometric. Explain.
 
-### Step 1: Compute Consecutive Ratios
+### Problem 9
 
-For each pair of adjacent terms, divide the later term by the earlier term.
+Determine whether `3, 9, 81, 6561, …` is geometric. Explain.
 
-For example, for [ 212, 106, 53, \dots ]:
-[
-\frac{106}{212} = \frac{1}{2}, \quad \frac{53}{106} = \frac{1}{2}
-]
+### Problem 10
 
-The common ratio is [ r = \frac{1}{2} ], so the sequence is geometric.
+Determine whether `108, 66, 141, 99, …` is geometric. Explain.
 
-For [ 10, 20, 30, 40, \dots ]:
-[
-\frac{20}{10} = 2, \quad \frac{30}{20} = \frac{3}{2}
-]
+### Problem 11
 
-The ratios are not equal, so the sequence is not geometric.
+Determine whether `3/8, -1/8, -5/8, -9/8, …` is geometric. Explain.
 
-### Step 2: State the Conclusion
+### Problem 12
 
-Classify the sequence as geometric (and state [ r ]), arithmetic (and state the common difference), or neither. Sequences involving fractions and negative numbers should be checked with the same ratio test.
+Determine whether `7/3, 14, 84, 504, …` is geometric. Explain.
 
-For example, for [ \frac{7}{3}, 14, 84, 504, \dots ]:
-[
-\frac{14}{\frac{7}{3}} = 6, \quad \frac{84}{14} = 6
-]
+## Example 3
 
-The common ratio is [ r = 6 ].
+### Problem 13
 
-## Example 2 — Explain Your Reasoning for Non-Geometric Sequences
+Find the next three terms in `2, -10, 50, …`.
 
-Some sequences may have an inconsistent ratio or may follow a different pattern altogether. Students must verify the ratio across all consecutive pairs and explain why the sequence fails the geometric test.
+### Problem 14
 
-For example, for [ 3, 9, 81, 6561, \dots ]:
-[
-\frac{9}{3} = 3, \quad \frac{81}{9} = 9
-]
+Find the next three terms in `36, 12, 4, …`.
 
-Since [ 3 \ne 9 ], the sequence is not geometric.
+### Problem 15
 
-## Example 3 — Find the Next Three Terms
+Find the next three terms in `4, 12, 36, …`.
 
-Given a geometric sequence, identify the common ratio and extend the pattern to find the next three terms.
+### Problem 16
 
-### Step 1: Identify the Common Ratio
+Find the next three terms in `400, 100, 25, …`.
 
-Divide any term by its preceding term. For [ 36, 12, 4, \dots ]:
-[
-r = \frac{12}{36} = \frac{1}{3}
-]
+### Problem 17
 
-### Step 2: Multiply to Find Subsequent Terms
+Find the next three terms in `-6, -42, -294, …`.
 
-Multiply the last given term by [ r ] repeatedly to generate the next three terms:
-[
-4 \cdot \frac{1}{3} = \frac{4}{3}, \quad \frac{4}{3} \cdot \frac{1}{3} = \frac{4}{9}, \quad \frac{4}{9} \cdot \frac{1}{3} = \frac{4}{27}
-]
+### Problem 18
 
-Sequences may have negative or fractional common ratios, such as [ -4, 24, -144, \dots ] where [ r = -6 ], or [ 1024, -128, 16, \dots ] where [ r = -\frac{1}{8} ].
+Find the next three terms in `1024, -128, 16, …`.
 
-## Example 4 — Find the 10th Term Using the Explicit Formula
+### Problem 19
 
-Use the explicit formula [ a_n = a_1 \cdot r^{n-1} ] to find a specific term without listing all terms.
+Find the next three terms in `2, 6, 18, …`.
 
-### Step 1: Identify [ a_1 ] and [ r ] 
+### Problem 20
 
-For the sequence [ 1, 9, 81, 729, \dots ]:
-[
-a_1 = 1, \quad r = \frac{9}{1} = 9
-]
+Find the next three terms in `2500, 500, 100, …`.
 
-### Step 2: Substitute into the Explicit Formula
+### Problem 21
 
-To find the 10th term, substitute [ n = 10 ]:
-[
-a_{10} = 1 \cdot 9^{10-1} = 9^9
-]
+Find the next three terms in `4/5, 2/5, 1/5, …`.
 
-For the sequence [ 6, -24, 96, -384, \dots ]:
-[
-a_1 = 6, \quad r = \frac{-24}{6} = -4
-]
+### Problem 22
 
-[
-a_{10} = 6 \cdot (-4)^{10-1} = 6 \cdot (-4)^9
-]
+Find the next three terms in `-4, 24, -144, …`.
 
-## Example 5 — Apply Geometric Sequences to Real-World Situations
+### Problem 23
 
-Write and use an explicit formula to model exponential growth or decay in context.
+Find the next three terms in `72, 12, 2, …`.
 
-### Museums
+### Problem 24
 
-A table shows projected annual museum visitors (in millions) over several years. Identify the pattern as geometric, determine the common ratio, and write an equation for the projected number of visitors after [ n ] years.
+Find the next three terms in `-3, -12, -48, …`.
 
-### World Population Growth
+## Example 4
 
-The world population grows at a fixed annual percentage rate. Given an initial population and a growth rate:
+### Problem 25
 
-* Write an equation for the population after [ n ] years in the form:
-[
-P(n) = P_0 \cdot (1 + r)^n
-]
-* Evaluate the equation for a specific future year by determining the correct value of [ n ].
+Use an explicit formula to find the 10th term of `1, 9, 81, 729, …`.
 
-### Depreciation
+### Problem 26
 
-An asset loses a fixed fraction of its value each year. Given an initial value and an annual decay factor, calculate the remaining value after a specified number of years using the explicit formula.
+Use an explicit formula to find the 10th term of `2, 8, 32, 128, …`.
 
-For example, a computer system purchased for $5000 loses one-fifth of its value each year. The decay factor is [ \frac{4}{5} ], so the value after 6 years is:
-[
-V(6) = 5000 \cdot \left(\frac{4}{5}\right)^6
-]
+### Problem 27
+
+Use an explicit formula to find the 10th term of `-9, 27, -81, 243, …`.
+
+### Problem 28
+
+Use an explicit formula to find the 10th term of `6, -24, 96, -384, …`.
+
+## Example 5
+
+### Problem 29
+
+**MUSEUMS** The table shows annual museum visitors in millions. Write an equation for the projected number after `n` years.
+
+| Year | Visitors (millions) |
+|---:|---:|
+|1|4|
+|2|6|
+|3|9|
+|4|13 1/2|
+|n|?|
+
+![Original museum table](/curriculum/module-8-lesson-5/source-image-1.png)
+
+### Problem 30
+
+**WORLD POPULATION** The CIA estimates that world population grows 1.167% each year. The 2015 population was about 7.3 billion.
+
+- a. Write an equation for the population after `n` years.
+- b. Find the estimated population in 2025.
+
+### Problem 31
+
+**DEPRECIATION** Te’Andra bought a computer system for $5000. Each year it loses one-fifth of its then-current value. How much will it be worth after 6 years?
 
 ## Mixed Exercises
 
-The mixed exercises provide comprehensive practice with geometric sequences across a range of skills and contexts. Students identify whether sequences are geometric or arithmetic, find missing terms and specific terms using the explicit formula, and apply geometric sequences to real-world scenarios including savings accounts with monthly interest, population projections, salary growth, and depreciation.
+### Problem 32
 
-Additional problem types include:
+**POPULATION** The table shows projected United States population through 2060. Does it show an arithmetic sequence, geometric sequence, or neither? Explain.
 
-* Writing an explicit formula for a given geometric sequence and then finding a specific term, such as the 5th, 7th, 8th, or 9th term. Sequences include positive, negative, and fractional values, such as [ 1000, 200, 40, \dots ] with [ r = \frac{1}{5} ], and [ -8, -2, -\frac{1}{2}, \dots ] with [ r = \frac{1}{4} ].
-* Filling in missing terms of a geometric sequence, writing the corresponding exponential equation, and using it to determine the 10th term.
-* Finding previous terms by working backwards: divide by the common ratio instead of multiplying.
-* Comparing two geometric sequences that start with the same initial value but have reciprocal common ratios (for example, [ r ] and [ \frac{1}{r} ]), then analyzing and graphing their behavior including intercepts, asymptotes, and end behavior.
-* Comparing two payment plans—one linear and one geometric—described in a table, writing equations for each, and choosing the better plan for a two-year commitment.
-* Comparing two sequences given in different forms (one by explicit formula, one by two known terms) to determine which has the greater common ratio and identifying the initial term of each.
-* Investigating whether the relationship between the number of sides of a polygon and the sum of its interior angles forms a geometric sequence, using known angle sums to justify the answer.
-* Finding a sequence that is both geometric and arithmetic, and explaining why this is possible.
-* Error analysis: evaluating two students' work for finding a term of a geometric sequence and determining who is correct.
-* Writing a sequence that is neither arithmetic nor geometric and justifying the reasoning.
-* Open-ended writing prompts about how graphs of geometric sequences and exponential functions are similar and different, and summarizing how to find a specific term of a geometric sequence.
-* Creating a counterexample to the statement that as [ n ] increases in a geometric sequence, the value of [ a_n ] always moves farther away from zero.
-* Writing an original geometric sequence and explaining why it satisfies the definition.
+|Year|Population|
+|---:|---:|
+|2020|334,503,000|
+|2030|359,402,000|
+|2040|380,219,000|
+|2050|398,328,000|
+|2060|416,795,000|
 
-## Review Notes
+Source label: U.S. Census Bureau.
 
-* Problem 29 contains a table of annual museum visitors presented as an image. The specific values should be verified from the original worksheet.
-* Problem 32 contains a table of projected U.S. population through 2060 presented as an image. The specific values should be verified from the original worksheet.
-* Problem 40 is a multi-part structure problem asking students to fill in missing terms, write an exponential equation, and find the 10th term for two different geometric sequences.
-* Problem 42 asks students to graph two geometric sequences with reciprocal common ratios. No graphing grid is provided in the source text; a standard coordinate plane should be used.
-* Problem 43 contains a table comparing two payment methods presented as an image. The specific payment values and structure should be verified from the original worksheet.
-* Problem 44 defines one sequence with the formula [ a_n = 512(0.5)^x ] and gives two terms of a second sequence, [ b_3 = 7168 ] and [ b_7 = 28 ]. Students must find the common ratio and initial term of the second sequence.
-* Problem 47 contains an image showing the work of two students (Haro and Matthew) finding the ninth term of the geometric sequence [ -5, 10, -20, \dots ]. The specific work shown should be verified from the original worksheet.
-* An additional image (image4.png) appears near problem 46 in the original document; its intended placement or association should be verified by a human reviewer.
+![Original population table](/curriculum/module-8-lesson-5/source-image-2.png)
+
+### Problem 33
+
+**SAVINGS ACCOUNTS** A bank account earns 0.5% interest each month.
+
+- a. Write an equation for the balance after `n` months.
+- b. Given an initial deposit of $500, find the balance after 15 months.
+
+### Problem 34
+
+Write an equation for the nth term of the geometric sequence `3, -24, 192, …`. Then find the 9th term.
+
+### Problem 35
+
+Write an equation for the nth term of the geometric sequence `9/16, 3/8, 1/4, …`. Then find the 7th term.
+
+### Problem 36
+
+Write an equation for the nth term of the geometric sequence `1000, 200, 40, …`. Then find the 5th term.
+
+### Problem 37
+
+Write an equation for the nth term of the geometric sequence `-8, -2, -1/2, …`. Find the 8th term.
+
+### Problem 38
+
+Write an equation for the nth term of the geometric sequence `32, 48, 72, …`. Find the 6th term.
+
+### Problem 39
+
+**USE A SOURCE** Research the average annual salary for a 25-year-old and the average annual rate of increase. Write an equation for the nth year of employment. Find and interpret the 20th term.
+
+### Problem 40
+
+**STRUCTURE** For each geometric sequence, fill in the missing terms, write the corresponding exponential equation, and use it to determine the 10th term.
+
+- a. `0.5, 6, ___, ___, ___`; `f(x)=___`; 10th term: `___`.
+- b. `___, 10, ___, 40, ___`; `g(x)=___`; 10th term: `___`.
+
+**Added assumption note:** Part b permits positive or negative common ratios unless the learner states a sign assumption.
+
+### Problem 41
+
+**REASONING** Find the previous three terms of the geometric sequence `-192, -768, -3072, …`.
+
+### Problem 42
+
+**STATE YOUR ASSUMPTION** Consider two different geometric sequences. Each starts with the same constant. The positive common ratio of the first is the reciprocal of the common ratio of the second. Compare their graphs by intercepts, asymptotes, and end behavior. Then graph an example.
+
+### Problem 43
+
+**REASONING** A part-time employer offers the two payment methods in the table.
+
+|Month|Method 1|Method 2|
+|---:|---:|---:|
+|1|$100.00|$0.01|
+|2|$108.00|$0.02|
+|3|$116.00|$0.04|
+|4|$124.00|$0.08|
+
+- a. Describe both methods.
+- b. Identify and write a model for each. Explain.
+- c. You plan to work at this job for two years. Your manager promises to raise your salary as shown in the table as long as you meet the minimum performance rating each month. Which payment plan would you choose? Explain your reasoning.
+
+![Original payment table](/curriculum/module-8-lesson-5/source-image-3.png)
+
+### Problem 44
+
+**CONSTRUCT ARGUMENTS** `a_n=512(0.5)^x`. A second sequence has `b_3=7168` and `b_7=28`.
+
+- a. Determine which sequence has the greater common ratio.
+- b. What is the initial term of each sequence? Explain.
+
+**Added notation note:** The printed first formula mixes subscripts `n` with exponent variable `x`. State the index convention.
+
+### Problem 45
+
+**REGULARITY** Triangle interior angles sum to 180°. Pentagon interior angles sum to 540°. Is the relationship between polygon side count and interior-angle sum geometric? Use the square sum to justify.
+
+![Original polygon diagram](/curriculum/module-8-lesson-5/source-image-4.png)
+
+### Problem 46
+
+**PERSEVERE** Write a sequence that is both geometric and arithmetic. Explain.
+
+### Problem 47
+
+**FIND THE ERROR** Haro and Matthew find the ninth term of `-5, 10, -20, …`. Is either correct? Explain.
+
+Haro shows `r=10/-5=-2`, `a_9=-5(-2)^(9-1)`, `=-5(512)`, `=-2560`. Matthew shows `r=10/-5=-2`, `a_9=-5·(-2)^(9-1)`, `=-5·-256`, `=1280`.
+
+![Original student work](/curriculum/module-8-lesson-5/source-image-5.png)
+
+### Problem 48
+
+**ANALYZE** Write a patterned sequence that is neither arithmetic nor geometric. Justify.
+
+### Problem 49
+
+**WRITE** How are graphs of geometric sequences and exponential functions similar and different?
+
+### Problem 50
+
+**WRITE** Summarize how to find a specific term of a geometric sequence.
+
+### Problem 51
+
+**CREATE** Give a counterexample: “As `n` increases in a geometric sequence, `a_n` moves farther from zero.”
+
+### Problem 52
+
+**CREATE** Write a geometric sequence. Explain why it is geometric.
