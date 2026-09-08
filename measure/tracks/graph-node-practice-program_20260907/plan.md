@@ -385,3 +385,7 @@ G48 second proposal review accepts the complete prompt inventory for source rest
 Saved-worktree review checked 54d1, bda5, and b5f1. Each retains distinct IM3 graph states that are not preserved in the current worktree or reachable commits. Retain them pending reconciliation. This finding does not block the active program candidates.
 
 G48 parent and independent review accept the corrected 18-candidate graph proposal for later implementation. Removed the duplicate mean/median comparison and unsupported exact range/IQR calculation claims. Source restoration must pass review and commit first. See `im1-lesson95-capabilities-review.md` and `im1-lesson95-proposal-independent-review.md`.
+
+Q37 true workspace isolation found two missing committed public exports. The selected component and schema files already exist. A bounded dependency correction is in progress before teacher surface acceptance. Earlier shared-link builds do not prove wholly committed workspace builds. See `precalc-runtime-workspace-resolution-review.md`. The actual local backend seed and zero-effect initial state are verified; browser verification remains open.
+
+G48 first source review found a changed native label, an invented unit, missing visible A/B/C labels, and incomplete figure descriptions. Exact prompt text and image bytes pass. Corrections and regression tests are in progress. See `im1-lesson95-source-first-review.md`.
