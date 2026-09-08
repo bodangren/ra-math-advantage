@@ -463,3 +463,5 @@ Removed the completed G49 graph archive after independent cleanup review and par
 - [~] Task G50 graph: Implement the accepted 17-capability Lesson 9-7 proposal from the restored source. Preserve exact prior table-construction reuse, observed response stages, stable source identities, and Problem 33 ambiguity. Do not add lesson-order prerequisites or executable placeholders. Derive all graph counts from the corrected records.
 
 The bounded 54d1 review classified seven IM3 graph files as superseded by the accepted current repair. Their only valid unique source addition is already preserved in main. Do not integrate these stale rows. The remaining dirty files are outside this review, so retain the saved worktree. See `saved-54d1-im3-reconciliation-review.md`.
+
+Teacher date rendering is committed as `cd6c8ba5d`. Parent 17 related tests, lint, build, and standalone TypeScript pass. Independent review accepts the cross-timezone hydration test. Removed the completed candidate and two helper archives after committed-byte checks and cleanup review. The live browser environment remains active for normal-timezone and remaining full-flow checks.
