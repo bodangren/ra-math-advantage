@@ -88,7 +88,7 @@ Use exact rationales. Example 4 models contextual geometric measures in Problems
 
 Remove the other 10 canonical Lesson 10-4 alignment edges. Remove every G-GPE.B.4 edge. Example 2 requests only yes/no congruence decisions and does not observe an algebraic coordinate proof. Also remove G-MG.A.1 from Examples 1–3 and from 10g because those rows do not observe geometric modeling.
 
-Only four Lesson 10-4 skill rows exist in `standard-edges.json`. Keep the 10h-to-G-MG.A.1 row and remove the other three rows. Set the 10g blueprint `alignmentNodeIds` to an empty array. Set the 10h blueprint array to only `math.standard.ccss.g-mg-a-1`. Update only affected teacher and SRS standard fields. Preserve all standard nodes.
+The `standard-edges.json` catalog contains all twelve reviewed source and skill alignments. Remove the same ten rows as the canonical edge catalog. Keep the Example 4 and 10h G-MG.A.1 rows. Set the 10g blueprint `alignmentNodeIds` to an empty array. Set the 10h blueprint array to only `math.standard.ccss.g-mg-a-1`. Update only affected teacher and SRS standard fields. Preserve all standard nodes.
 
 G-GPE.B.7 is a closer candidate for coordinate distance and perimeter, but this task has no accepted replacement-alignment review. Add no replacement alignment in G55.
 
