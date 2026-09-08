@@ -319,4 +319,8 @@ Q36 positive browser actions and persisted local effects passed independent revi
 
 Q37 dependency tracing is complete. See `precalc-runtime-integration-dependencies.md`. The isolated first-unit check found the selected contracts, grader, schema, and writers already present in HEAD. Its 95 focused tests pass. Independent verification accepted this reuse. Unit 2 is committed as `04e6dbd1`. It renames the existing selected evidence module with no production-body change. Independent review and 77 focused tests pass, with lint, build, and mapped standalone TypeScript. The next unit traces the remaining course and teacher-flow dependencies. See `precalc-runtime-unit1-report.md`.
 
-- [~] Task G44: Review IM1 Lesson 9-1 from the original worksheet. Verify center-measure capabilities, percentile-rank conventions, source tables, exact existing reuse, and manual reasoning tasks before implementation. The current summary uses conflicting percentile definitions and omits source tables.
+- [~] Task G44: Review IM1 Lesson 9-1 from the original worksheet. Verify center-measure capabilities, percentile-rank conventions, source tables, exact existing reuse, and manual reasoning tasks before implementation. The current summary uses conflicting percentile definitions and omits source tables. Parent inspection and independent review accepted the four-candidate proposal. Source restoration is committed as `092901ac` after independent review, five parent source tests, lint, build, standalone TypeScript, and 10 original-media byte comparisons. Graph-only implementation is in progress.
+
+Q37 unit 3 is in progress from isolated HEAD `250a4167`. It adds the three selected learner queries and exact source-layout checks. See `precalc-runtime-unit3-plan.md`.
+
+- [~] Task G45: Review IM1 Lesson 9-2 from its original worksheet. Verify each prompt, existing exact reuse, stable identities, and manual or ambiguous response boundaries before implementation.
