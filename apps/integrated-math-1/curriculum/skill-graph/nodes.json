@@ -5867,91 +5867,92 @@
     {
       "id": "math.im1.example.6.5.022",
       "kind": "worked_example",
-      "title": "Example 1: Graph Inequalities in Slope-Intercept Form; Graph Inequalities in Standard Form; Write and Graph Inequalities from Context",
+      "title": "Example 1: Graph Inequalities in Slope-Intercept and Standard Form",
       "domain": "math.im1",
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/module-6-class-period-plan.md (6-5, Example 1)"
       ],
-      "reviewStatus": "approved",
+      "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "6",
         "lesson": "5",
         "exampleNumber": 1,
         "sourceLesson": "6-5",
-        "rawText": "6-5, Examples 1-3 \u2014 Graph Inequalities in Slope-Intercept Form; Graph Inequalities in Standard Form; Write and Graph Inequalities from Context"
+        "rawText": "6-5, Examples 1 and 2 \u2014 Graph inequalities in slope-intercept and standard form"
       }
     },
     {
       "id": "math.im1.example.6.5.023",
       "kind": "worked_example",
-      "title": "Example 2: Graph Inequalities in Slope-Intercept Form; Graph Inequalities in Standard Form; Write and Graph Inequalities from Context",
+      "title": "Example 2: Graph Inequalities in Slope-Intercept and Standard Form",
       "domain": "math.im1",
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/module-6-class-period-plan.md (6-5, Example 2)"
       ],
-      "reviewStatus": "approved",
+      "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "6",
         "lesson": "5",
         "exampleNumber": 2,
         "sourceLesson": "6-5",
-        "rawText": "6-5, Examples 1-3 \u2014 Graph Inequalities in Slope-Intercept Form; Graph Inequalities in Standard Form; Write and Graph Inequalities from Context"
+        "rawText": "6-5, Examples 1 and 2 \u2014 Graph inequalities in slope-intercept and standard form"
       }
     },
     {
       "id": "math.im1.example.6.5.024",
       "kind": "worked_example",
-      "title": "Example 3: Graph Inequalities in Slope-Intercept Form; Graph Inequalities in Standard Form; Write and Graph Inequalities from Context",
+      "title": "Example 3: Write and Graph Inequalities from Context",
       "domain": "math.im1",
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/module-6-class-period-plan.md (6-5, Example 3)"
       ],
-      "reviewStatus": "approved",
+      "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "6",
         "lesson": "5",
         "exampleNumber": 3,
         "sourceLesson": "6-5",
-        "rawText": "6-5, Examples 1-3 \u2014 Graph Inequalities in Slope-Intercept Form; Graph Inequalities in Standard Form; Write and Graph Inequalities from Context"
+        "rawText": "6-5, Example 3 \u2014 Write and graph inequalities from context"
       }
     },
     {
       "id": "math.im1.example.6.5.025",
       "kind": "worked_example",
-      "title": "Example 3: Write and Graph Inequalities from Context (continued); Graph Special-Case Inequalities",
+      "title": "Example 3: Duplicate source identity",
       "domain": "math.im1",
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/module-6-class-period-plan.md (6-5, Example 3)"
       ],
-      "reviewStatus": "approved",
+      "reviewStatus": "rejected",
       "metadata": {
         "course": "im1",
         "module": "6",
         "lesson": "5",
         "exampleNumber": 3,
         "sourceLesson": "6-5",
-        "rawText": "6-5, Examples 3-4 \u2014 Write and Graph Inequalities from Context (continued); Graph Special-Case Inequalities"
-      }
+        "rawText": "6-5, Example 3 \u2014 Duplicate of math.im1.example.6.5.024"
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.example.6.5.026",
       "kind": "worked_example",
-      "title": "Example 4: Write and Graph Inequalities from Context (continued); Graph Special-Case Inequalities",
+      "title": "Example 4: Graph Special-Case Inequalities",
       "domain": "math.im1",
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/module-6-class-period-plan.md (6-5, Example 4)"
       ],
-      "reviewStatus": "approved",
+      "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "6",
         "lesson": "5",
         "exampleNumber": 4,
         "sourceLesson": "6-5",
-        "rawText": "6-5, Examples 3-4 \u2014 Write and Graph Inequalities from Context (continued); Graph Special-Case Inequalities"
+        "rawText": "6-5, Example 4 \u2014 Graph special-case inequalities"
       }
     },
     {
@@ -10859,12 +10860,13 @@
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/module-6-class-period-plan.md"
       ],
-      "reviewStatus": "approved",
+      "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "6",
         "lesson": "5"
-      }
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.skill.6.5.write-systems-of-inequalities-that-correspond-to-a-given-gra",
@@ -10875,12 +10877,13 @@
       "sourceRefs": [
         "apps/integrated-math-1/curriculum/module-6-class-period-plan.md"
       ],
-      "reviewStatus": "approved",
+      "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "6",
         "lesson": "5"
-      }
+      },
+      "independentPracticeReady": false
     },
     {
       "id": "math.im1.skill.7.1.graph-systems-of-linear-equations-and-determine-the-number-o",
@@ -15954,6 +15957,193 @@
         "course": "im1",
         "module": "6",
         "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.5.graph-linear-inequalities-in-slope-intercept-form",
+      "kind": "skill",
+      "title": "Graph linear inequalities in slope-intercept form",
+      "domain": "math.im1",
+      "description": "Graph linear inequalities in slope-intercept form",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-5"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.5.rewrite-and-graph-linear-inequalities-from-standard-form-wit",
+      "kind": "skill",
+      "title": "Rewrite and graph linear inequalities from standard form with a positive y coefficient",
+      "domain": "math.im1",
+      "description": "Rewrite and graph linear inequalities from standard form with a positive y coefficient",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-5"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.5.use-boundary-inclusion-and-a-valid-test-point-to-select-a-so",
+      "kind": "skill",
+      "title": "Use boundary inclusion and a valid test point to select a solution half-plane",
+      "domain": "math.im1",
+      "description": "Use boundary inclusion and a valid test point to select a solution half-plane",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-5"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.5.graph-one-variable-inequalities-as-horizontal-or-vertical-ha",
+      "kind": "skill",
+      "title": "Graph one-variable inequalities as horizontal or vertical half-planes",
+      "domain": "math.im1",
+      "description": "Graph one-variable inequalities as horizontal or vertical half-planes",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-5"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.5.model-a-contextual-constraint-with-one-two-variable-linear-i",
+      "kind": "skill",
+      "title": "Model a contextual constraint with one two-variable linear inequality and state the source-supported variable domain",
+      "domain": "math.im1",
+      "description": "Model a contextual constraint with one two-variable linear inequality and state the source-supported variable domain",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-5"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.5.check-whether-an-ordered-pair-satisfies-a-two-variable-inequ",
+      "kind": "skill",
+      "title": "Check whether an ordered pair satisfies a two-variable inequality",
+      "domain": "math.im1",
+      "description": "Check whether an ordered pair satisfies a two-variable inequality",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-5"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.5.find-and-interpret-feasible-integer-solutions-to-one-context",
+      "kind": "skill",
+      "title": "Find and interpret feasible integer solutions to one contextual linear inequality",
+      "domain": "math.im1",
+      "description": "Find and interpret feasible integer solutions to one contextual linear inequality",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-5"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.5.optimize-a-discrete-integer-quantity-under-one-contextual-li",
+      "kind": "skill",
+      "title": "Optimize a discrete integer quantity under one contextual linear inequality",
+      "domain": "math.im1",
+      "description": "Optimize a discrete integer quantity under one contextual linear inequality",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-5"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.5.analyze-a-continuous-bound-and-whether-an-endpoint-is-attain",
+      "kind": "skill",
+      "title": "Analyze a continuous bound and whether an endpoint is attained",
+      "domain": "math.im1",
+      "description": "Analyze a continuous bound and whether an endpoint is attained",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-5"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.5.construct-a-two-variable-linear-inequality-from-required-sol",
+      "kind": "skill",
+      "title": "Construct a two-variable linear inequality from required solution and nonsolution points",
+      "domain": "math.im1",
+      "description": "Construct a two-variable linear inequality from required solution and nonsolution points",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-5"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im1.skill.6.5.analyze-and-explain-errors-in-a-graph-of-a-two-variable-ineq",
+      "kind": "skill",
+      "title": "Analyze and explain errors in a graph of a two-variable inequality",
+      "domain": "math.im1",
+      "description": "Analyze and explain errors in a graph of a two-variable inequality",
+      "sourceRefs": [
+        "apps/integrated-math-1/curriculum/modules/module-6-lesson-5"
+      ],
+      "reviewStatus": "draft",
+      "independentPracticeReady": false,
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "5"
       }
     }
   ]

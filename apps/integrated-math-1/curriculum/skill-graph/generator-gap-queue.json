@@ -923,8 +923,8 @@
       "title": "6i: Graph linear inequalities in two variables written in slope-intercept and standard form and write linear inequalities to model real-world constraints",
       "module": "6",
       "rendererKey": "comprehension-quiz",
-      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
-      "gap": "No generator available for IM1",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "Aggregate capability requires atomic source boundaries",
       "priority": "standard"
     },
     {
@@ -932,8 +932,8 @@
       "title": "6k: Write systems of inequalities that correspond to a given graph and determine whether an ordered pair is a solution to a system without graphing",
       "module": "6",
       "rendererKey": "graphing-explorer",
-      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
-      "gap": "No generator available for IM1",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "Lesson 6-5 worksheet does not support this systems capability",
       "priority": "standard"
     },
     {
@@ -2762,10 +2762,109 @@
       "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
       "gap": "No generator available for IM1",
       "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.graph-linear-inequalities-in-slope-intercept-form",
+      "title": "Graph linear inequalities in slope-intercept form",
+      "module": "6",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.rewrite-and-graph-linear-inequalities-from-standard-form-wit",
+      "title": "Rewrite and graph linear inequalities from standard form with a positive y coefficient",
+      "module": "6",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.use-boundary-inclusion-and-a-valid-test-point-to-select-a-so",
+      "title": "Use boundary inclusion and a valid test point to select a solution half-plane",
+      "module": "6",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.graph-one-variable-inequalities-as-horizontal-or-vertical-ha",
+      "title": "Graph one-variable inequalities as horizontal or vertical half-planes",
+      "module": "6",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.model-a-contextual-constraint-with-one-two-variable-linear-i",
+      "title": "Model a contextual constraint with one two-variable linear inequality and state the source-supported variable domain",
+      "module": "6",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.check-whether-an-ordered-pair-satisfies-a-two-variable-inequ",
+      "title": "Check whether an ordered pair satisfies a two-variable inequality",
+      "module": "6",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.find-and-interpret-feasible-integer-solutions-to-one-context",
+      "title": "Find and interpret feasible integer solutions to one contextual linear inequality",
+      "module": "6",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.optimize-a-discrete-integer-quantity-under-one-contextual-li",
+      "title": "Optimize a discrete integer quantity under one contextual linear inequality",
+      "module": "6",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.analyze-a-continuous-bound-and-whether-an-endpoint-is-attain",
+      "title": "Analyze a continuous bound and whether an endpoint is attained",
+      "module": "6",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.construct-a-two-variable-linear-inequality-from-required-sol",
+      "title": "Construct a two-variable linear inequality from required solution and nonsolution points",
+      "module": "6",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.analyze-and-explain-errors-in-a-graph-of-a-two-variable-ineq",
+      "title": "Analyze and explain errors in a graph of a two-variable inequality",
+      "module": "6",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Planning classification only; no reviewed renderer contract",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
     }
   ],
   "meta": {
-    "totalSkills": 307,
+    "totalSkills": 318,
     "allNeedGenerators": true
   }
 }

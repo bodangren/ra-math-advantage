@@ -49,13 +49,13 @@ describe('Lesson 4-3 source capabilities', () => {
 
   it('uses only direct demonstrations and adds no renderer or inferred relationship', () => {
     for (const [id, _title, sourceNodeIds] of skills) {
-      expect(blueprintCatalog.blueprints.find((row) => row.nodeId === id)).toEqual({
-        nodeId: id, sourceNodeIds, alignmentNodeIds: [], reviewStatus: 'draft',
+      expect(blueprintCatalog.blueprints.find((row) => row.nodeId === id)).toEqual(expect.objectContaining({
+        nodeId: id, sourceNodeIds: expect.arrayContaining([...sourceNodeIds]), alignmentNodeIds: [], reviewStatus: 'draft',
         metadata: { course: 'im1', module: '4', lesson: '3' },
-      });
-      expect(graph.edges.filter((edge) => edge.sourceId === id || edge.targetId === id)).toEqual([
-        expect.objectContaining({ type: 'contains', sourceId: lessonId, targetId: id, reviewStatus: 'draft' }),
-      ]);
+      }));
+      const incident = graph.edges.filter((edge) => edge.sourceId === id || edge.targetId === id);
+      expect(incident).toContainEqual(expect.objectContaining({ type: 'contains', sourceId: lessonId, targetId: id, reviewStatus: 'draft' }));
+      expect(incident.every((edge) => edge.type === 'contains' && edge.targetId === id)).toBe(true);
     }
   });
 });

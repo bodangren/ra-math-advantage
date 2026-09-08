@@ -1515,47 +1515,139 @@
       "generatorReady": false
     },
     {
-      "nodeId": "math.im1.skill.6.5.graph-linear-inequalities-in-two-variables-written-in-slope",
-      "blueprintId": "math.im1.skill.6.5.graph-linear-inequalities-in-two-variables-written-in-slope",
-      "standards": [
-        "math.standard.ccss.a-ced-a-3",
-        "math.standard.ccss.a-rei-d-12"
-      ],
-      "prerequisites": [
-        "math.im1.skill.6.4.solve-absolute-value-inequalities-and-rewrite-them-as-compou"
-      ],
+      "nodeId": "math.im1.skill.6.5.analyze-a-continuous-bound-and-whether-an-endpoint-is-attain",
+      "blueprintId": "math.im1.skill.6.5.analyze-a-continuous-bound-and-whether-an-endpoint-is-attain.blueprint",
+      "standards": [],
+      "prerequisites": [],
       "difficulty": 0.5,
-      "rendererKey": "comprehension-quiz",
-      "generatorKey": null,
-      "generatorReady": false
+      "generatorReady": false,
+      "equivalentNodeIds": []
     },
     {
-      "nodeId": "math.im1.skill.6.5.write-systems-of-inequalities-that-correspond-to-a-given-gra",
-      "blueprintId": "math.im1.skill.6.5.write-systems-of-inequalities-that-correspond-to-a-given-gra",
+      "nodeId": "math.im1.skill.6.5.analyze-and-explain-errors-in-a-graph-of-a-two-variable-ineq",
+      "blueprintId": "math.im1.skill.6.5.analyze-and-explain-errors-in-a-graph-of-a-two-variable-ineq.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.check-whether-an-ordered-pair-satisfies-a-two-variable-inequ",
+      "blueprintId": "math.im1.skill.6.5.check-whether-an-ordered-pair-satisfies-a-two-variable-inequ.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.construct-a-two-variable-linear-inequality-from-required-sol",
+      "blueprintId": "math.im1.skill.6.5.construct-a-two-variable-linear-inequality-from-required-sol.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.find-and-interpret-feasible-integer-solutions-to-one-context",
+      "blueprintId": "math.im1.skill.6.5.find-and-interpret-feasible-integer-solutions-to-one-context.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.graph-linear-inequalities-in-slope-intercept-form",
+      "blueprintId": "math.im1.skill.6.5.graph-linear-inequalities-in-slope-intercept-form.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.graph-linear-inequalities-in-two-variables-written-in-slope",
+      "blueprintId": "math.im1.skill.6.5.graph-linear-inequalities-in-two-variables-written-in-slope.blueprint",
       "standards": [
         "math.standard.ccss.a-ced-a-3",
         "math.standard.ccss.a-rei-d-12"
       ],
       "prerequisites": [],
       "difficulty": 0.5,
-      "rendererKey": "graphing-explorer",
-      "generatorKey": null,
-      "generatorReady": false
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.graph-one-variable-inequalities-as-horizontal-or-vertical-ha",
+      "blueprintId": "math.im1.skill.6.5.graph-one-variable-inequalities-as-horizontal-or-vertical-ha.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.model-a-contextual-constraint-with-one-two-variable-linear-i",
+      "blueprintId": "math.im1.skill.6.5.model-a-contextual-constraint-with-one-two-variable-linear-i.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.optimize-a-discrete-integer-quantity-under-one-contextual-li",
+      "blueprintId": "math.im1.skill.6.5.optimize-a-discrete-integer-quantity-under-one-contextual-li.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.rewrite-and-graph-linear-inequalities-from-standard-form-wit",
+      "blueprintId": "math.im1.skill.6.5.rewrite-and-graph-linear-inequalities-from-standard-form-wit.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.use-boundary-inclusion-and-a-valid-test-point-to-select-a-so",
+      "blueprintId": "math.im1.skill.6.5.use-boundary-inclusion-and-a-valid-test-point-to-select-a-so.blueprint",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.write-systems-of-inequalities-that-correspond-to-a-given-gra",
+      "blueprintId": "math.im1.skill.6.5.write-systems-of-inequalities-that-correspond-to-a-given-gra.blueprint",
+      "standards": [
+        "math.standard.ccss.a-ced-a-3",
+        "math.standard.ccss.a-rei-d-12"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im1.skill.7.1.graph-systems-of-linear-equations-and-determine-the-number-o",
-      "blueprintId": "math.im1.skill.7.1.graph-systems-of-linear-equations-and-determine-the-number-o",
+      "blueprintId": "math.im1.skill.7.1.graph-systems-of-linear-equations-and-determine-the-number-o.blueprint",
       "standards": [
         "math.standard.ccss.8-ee-c-8",
         "math.standard.ccss.a-rei-d-10"
       ],
-      "prerequisites": [
-        "math.im1.skill.6.5.write-systems-of-inequalities-that-correspond-to-a-given-gra"
-      ],
+      "prerequisites": [],
       "difficulty": 0.5,
-      "rendererKey": "graphing-explorer",
-      "generatorKey": null,
-      "generatorReady": false
+      "generatorReady": true,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met",

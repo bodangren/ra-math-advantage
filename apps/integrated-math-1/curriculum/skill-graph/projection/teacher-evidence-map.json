@@ -1333,12 +1333,11 @@
     },
     {
       "standardId": "math.standard.ccss.a-ced-a-3",
-      "standardTitle": "math.standard.ccss.a-ced-a-3",
+      "standardTitle": "A-CED.A.3 (placeholder)",
       "nodeIds": [
         "math.im1.example.6.5.022",
         "math.im1.example.6.5.023",
         "math.im1.example.6.5.024",
-        "math.im1.example.6.5.025",
         "math.im1.example.6.5.026",
         "math.im1.example.7.5.016",
         "math.im1.example.7.5.017",
@@ -1349,18 +1348,17 @@
         "math.im1.skill.7.5.graph-systems-of-linear-inequalities-and-identify-the-overla",
         "math.im1.skill.7.5.solve-real-world-optimization-problems-by-defining-variables"
       ],
-      "workedExampleCount": 9,
-      "guidedPracticeCount": 4,
+      "workedExampleCount": 8,
+      "guidedPracticeCount": 0,
       "independentPracticeCount": 0
     },
     {
       "standardId": "math.standard.ccss.a-rei-d-12",
-      "standardTitle": "math.standard.ccss.a-rei-d-12",
+      "standardTitle": "A-REI.D.12 (placeholder)",
       "nodeIds": [
         "math.im1.example.6.5.022",
         "math.im1.example.6.5.023",
         "math.im1.example.6.5.024",
-        "math.im1.example.6.5.025",
         "math.im1.example.6.5.026",
         "math.im1.example.7.5.016",
         "math.im1.example.7.5.017",
@@ -1371,8 +1369,8 @@
         "math.im1.skill.7.5.graph-systems-of-linear-inequalities-and-identify-the-overla",
         "math.im1.skill.7.5.solve-real-world-optimization-problems-by-defining-variables"
       ],
-      "workedExampleCount": 9,
-      "guidedPracticeCount": 4,
+      "workedExampleCount": 8,
+      "guidedPracticeCount": 0,
       "independentPracticeCount": 0
     },
     {
@@ -2780,6 +2778,60 @@
       "independentPracticeReady": false
     },
     {
+      "nodeId": "math.im1.skill.6.5.analyze-a-continuous-bound-and-whether-an-endpoint-is-attain",
+      "title": "Analyze a continuous bound and whether an endpoint is attained",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.analyze-and-explain-errors-in-a-graph-of-a-two-variable-ineq",
+      "title": "Analyze and explain errors in a graph of a two-variable inequality",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.check-whether-an-ordered-pair-satisfies-a-two-variable-inequ",
+      "title": "Check whether an ordered pair satisfies a two-variable inequality",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.construct-a-two-variable-linear-inequality-from-required-sol",
+      "title": "Construct a two-variable linear inequality from required solution and nonsolution points",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.find-and-interpret-feasible-integer-solutions-to-one-context",
+      "title": "Find and interpret feasible integer solutions to one contextual linear inequality",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.graph-linear-inequalities-in-slope-intercept-form",
+      "title": "Graph linear inequalities in slope-intercept form",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
       "nodeId": "math.im1.skill.6.5.graph-linear-inequalities-in-two-variables-written-in-slope",
       "title": "6i: Graph linear inequalities in two variables written in slope-intercept and standard form and write linear inequalities to model real-world constraints",
       "kind": "skill",
@@ -2788,7 +2840,53 @@
         "math.standard.ccss.a-rei-d-12"
       ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.graph-one-variable-inequalities-as-horizontal-or-vertical-ha",
+      "title": "Graph one-variable inequalities as horizontal or vertical half-planes",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.model-a-contextual-constraint-with-one-two-variable-linear-i",
+      "title": "Model a contextual constraint with one two-variable linear inequality and state the source-supported variable domain",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.optimize-a-discrete-integer-quantity-under-one-contextual-li",
+      "title": "Optimize a discrete integer quantity under one contextual linear inequality",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.rewrite-and-graph-linear-inequalities-from-standard-form-wit",
+      "title": "Rewrite and graph linear inequalities from standard form with a positive y coefficient",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.use-boundary-inclusion-and-a-valid-test-point-to-select-a-so",
+      "title": "Use boundary inclusion and a valid test point to select a solution half-plane",
+      "kind": "skill",
+      "standardsCovered": [],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im1.skill.6.5.write-systems-of-inequalities-that-correspond-to-a-given-gra",
@@ -2798,8 +2896,9 @@
         "math.standard.ccss.a-ced-a-3",
         "math.standard.ccss.a-rei-d-12"
       ],
-      "prerequisitesMet": false,
-      "independentPracticeReady": false
+      "prerequisitesMet": true,
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im1.skill.7.1.graph-systems-of-linear-equations-and-determine-the-number-o",
@@ -2810,7 +2909,8 @@
         "math.standard.ccss.a-rei-d-10"
       ],
       "prerequisitesMet": true,
-      "independentPracticeReady": false
+      "independentPracticeReady": false,
+      "equivalentNodeIds": []
     },
     {
       "nodeId": "math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met",

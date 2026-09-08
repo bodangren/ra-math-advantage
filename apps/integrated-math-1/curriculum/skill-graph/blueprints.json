@@ -3673,21 +3673,6 @@
         "math.standard.ccss.a-ced-a-3",
         "math.standard.ccss.a-rei-d-12"
       ],
-      "rendererKey": "comprehension-quiz",
-      "rendererModeMap": {
-        "worked": "comprehension-quiz",
-        "guidedPractice": "comprehension-quiz",
-        "independentPractice": "comprehension-quiz"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
-      "exceptions": [
-        {
-          "type": "generator",
-          "reason": "Generator not yet implemented for IM1 rollout"
-        }
-      ],
       "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
@@ -3701,21 +3686,6 @@
       "alignmentNodeIds": [
         "math.standard.ccss.a-ced-a-3",
         "math.standard.ccss.a-rei-d-12"
-      ],
-      "rendererKey": "graphing-explorer",
-      "rendererModeMap": {
-        "worked": "graphing-explorer",
-        "guidedPractice": "graphing-explorer",
-        "independentPractice": "graphing-explorer"
-      },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
-      "exceptions": [
-        {
-          "type": "generator",
-          "reason": "Generator not yet implemented for IM1 rollout"
-        }
       ],
       "reviewStatus": "draft",
       "metadata": {
@@ -4979,7 +4949,9 @@
     {
       "nodeId": "math.im1.skill.4.3.rewrite-standard-form-equations-in-slope-intercept-form",
       "sourceNodeIds": [
-        "math.im1.example.4.3.013"
+        "math.im1.example.4.3.013",
+        "math.im1.example.6.5.022",
+        "math.im1.example.6.5.023"
       ],
       "alignmentNodeIds": [],
       "reviewStatus": "draft",
@@ -5009,7 +4981,10 @@
         "math.im1.example.4.3.015",
         "math.im1.example.4.3.016",
         "math.im1.example.4.3.017",
-        "math.im1.example.4.3.018"
+        "math.im1.example.4.3.018",
+        "math.im1.example.6.5.022",
+        "math.im1.example.6.5.023",
+        "math.im1.example.6.5.026"
       ],
       "alignmentNodeIds": [],
       "reviewStatus": "draft",
@@ -6835,6 +6810,143 @@
         "course": "im1",
         "module": "6",
         "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.graph-linear-inequalities-in-slope-intercept-form",
+      "sourceNodeIds": [
+        "math.im1.example.6.5.022",
+        "math.im1.example.6.5.023"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.rewrite-and-graph-linear-inequalities-from-standard-form-wit",
+      "sourceNodeIds": [
+        "math.im1.example.6.5.022",
+        "math.im1.example.6.5.023"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.use-boundary-inclusion-and-a-valid-test-point-to-select-a-so",
+      "sourceNodeIds": [
+        "math.im1.example.6.5.022",
+        "math.im1.example.6.5.023",
+        "math.im1.example.6.5.026"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.graph-one-variable-inequalities-as-horizontal-or-vertical-ha",
+      "sourceNodeIds": [
+        "math.im1.example.6.5.026"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.model-a-contextual-constraint-with-one-two-variable-linear-i",
+      "sourceNodeIds": [
+        "math.im1.example.6.5.024"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.check-whether-an-ordered-pair-satisfies-a-two-variable-inequ",
+      "sourceNodeIds": [
+        "math.im1.example.6.5.024"
+      ],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.find-and-interpret-feasible-integer-solutions-to-one-context",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.optimize-a-discrete-integer-quantity-under-one-contextual-li",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.analyze-a-continuous-bound-and-whether-an-endpoint-is-attain",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.construct-a-two-variable-linear-inequality-from-required-sol",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.analyze-and-explain-errors-in-a-graph-of-a-two-variable-ineq",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im1",
+        "module": "6",
+        "lesson": "5"
       }
     }
   ]

@@ -41,6 +41,7 @@ const lesson64Reuses = new Set([
 const lesson64BlueprintSources = new Map([
   ['math.im1.skill.6.1.interpret-inequality-solutions-in-context', ['math.im1.example.6.4.019']],
 ]);
+const lesson65Reuses = new Set(['math.im1.skill.6.1.interpret-inequality-solutions-in-context']);
 const definitions = [
   ['graph-symbolic-inequalities-on-number-lines', 'Graph symbolic inequalities on number lines', ['math.im1.example.6.1.001']],
   ['write-inequalities-from-number-line-graphs', 'Write inequalities from number-line graphs', ['math.im1.example.6.1.002']],
@@ -100,7 +101,10 @@ describe('Lesson 6-1 source capabilities', () => {
       if (lesson64Reuses.has(id)) {
         expect(incident).toContainEqual(expect.objectContaining({ type: 'contains', sourceId: 'math.im1.lesson.6.4', targetId: id, reviewStatus: 'draft' }));
       }
-      expect(incident).toHaveLength(1 + Number(lesson62Reuses.has(id)) + Number(lesson63Reuses.has(id)) + Number(lesson64Reuses.has(id)));
+      if (lesson65Reuses.has(id)) {
+        expect(incident).toContainEqual(expect.objectContaining({ type: 'contains', sourceId: 'math.im1.lesson.6.5', targetId: id, reviewStatus: 'draft' }));
+      }
+      expect(incident).toHaveLength(1 + Number(lesson62Reuses.has(id)) + Number(lesson63Reuses.has(id)) + Number(lesson64Reuses.has(id)) + Number(lesson65Reuses.has(id)));
     }
   });
 

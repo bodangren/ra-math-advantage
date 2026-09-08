@@ -1,10 +1,10 @@
 {
   "version": 1,
   "course": "im1",
-  "totalSkills": 313,
+  "totalSkills": 324,
   "counts": {
     "served": 6,
-    "gap": 307,
+    "gap": 318,
     "newComponent": 0
   },
   "byModule": [
@@ -45,9 +45,9 @@
     },
     {
       "module": "6",
-      "totalSkills": 49,
+      "totalSkills": 60,
       "served": 0,
-      "gap": 49,
+      "gap": 60,
       "newComponent": 0
     },
     {
@@ -1813,11 +1813,99 @@
       "priority": "standard"
     },
     {
+      "skillId": "math.im1.skill.6.5.analyze-a-continuous-bound-and-whether-an-endpoint-is-attain",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.5.analyze-and-explain-errors-in-a-graph-of-a-two-variable-ineq",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.5.check-whether-an-ordered-pair-satisfies-a-two-variable-inequ",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.5.construct-a-two-variable-linear-inequality-from-required-sol",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.5.find-and-interpret-feasible-integer-solutions-to-one-context",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.5.graph-linear-inequalities-in-slope-intercept-form",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
       "skillId": "math.im1.skill.6.5.graph-linear-inequalities-in-two-variables-written-in-slope",
       "module": "6",
       "status": "gap",
       "tier": "none",
       "rendererKey": "comprehension-quiz",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.5.graph-one-variable-inequalities-as-horizontal-or-vertical-ha",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.5.model-a-contextual-constraint-with-one-two-variable-linear-i",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.5.optimize-a-discrete-integer-quantity-under-one-contextual-li",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.5.rewrite-and-graph-linear-inequalities-from-standard-form-wit",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
+      "priority": "standard"
+    },
+    {
+      "skillId": "math.im1.skill.6.5.use-boundary-inclusion-and-a-valid-test-point-to-select-a-so",
+      "module": "6",
+      "status": "gap",
+      "tier": "none",
+      "rendererKey": "graphing-explorer",
       "priority": "standard"
     },
     {
