@@ -447,3 +447,11 @@ Removed the completed G49 source archive. All 12 source patch paths match commit
 G50 parent source review accepts all 38 prompts and eight native figures for exact restoration. First graph review requires corrected joint and marginal mappings and a bounded Problem 33 conversion contract. Exact source restoration is in progress in a fresh archive. See `im1-lesson97-parent-source-review.md`.
 
 Removed the completed assistance archive after parent comparison of all tracked source files. All four owned paths match `20c8dd821`; all 22 older source states match `fbaf88a93`. See `precalc-runtime-assistance-cleanup-review.md`. The live browser candidate remains active.
+
+G49 graph repair is committed as `334f17643`. Parent and independent review accept all ten draft capabilities, exact source identities, nonzero multiplier limits, reuse stages, and derived counts. Parent 377 curriculum/seed tests, 37 audit tests, and app gates pass. The completed candidate is under cleanup review.
+
+G50 corrected 17-capability proposal and exact source restoration passed independent review. Parent source checks passed all native prompts and tables. The parent is running app gates after overlaying all 20 committed G49 files into the source candidate.
+
+Q37 actual assistance browser verification passed. Guided retry preserved its key, body, and counters without mastery effects. Correct assisted Independent scored 3/3 and created one Hard review. Parent inspection confirms three submissions, three evidence rows, two receipts, one card, and one review. See `precalc-runtime-assistance-browser.md`.
+
+- [~] Task Q37 teacher date rendering: Correct the date hydration mismatch in Topic11ExposureForm. The server renders UTC date text but an Asia/Shanghai browser renders local date text. Use a fixed locale and UTC timezone with an explicit UTC label. Add a server/client timezone regression. Keep the existing stored timestamp and query contract. See `precalc-runtime-teacher-date-hydration-diagnosis.md`.
