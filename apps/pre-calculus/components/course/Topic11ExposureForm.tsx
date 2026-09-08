@@ -16,7 +16,9 @@ export function Topic11ExposureForm({ studentId, studentName, submissionId, less
   const [saving, setSaving] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
   const [error, setError] = useState(false);
+  const [retryLocked, setRetryLocked] = useState(false);
   const pending = useRef(false);
+  const retryBody = useRef<string | null>(null);
   return <section className="my-4 rounded-panel border border-subtle p-4">
     <h4>Unit 1 Topic 1.1: {lessonTitle}</h4>
     <p>{studentName}</p>
@@ -28,15 +30,23 @@ export function Topic11ExposureForm({ studentId, studentName, submissionId, less
         event.preventDefault();
         if (pending.current) return;
         const classId = new FormData(event.currentTarget).get('classId');
+        const body = retryBody.current ?? JSON.stringify({ action: 'recordTopic11Exposure', classId, studentId, submissionId });
+        retryBody.current = body;
+        setRetryLocked(true);
         pending.current = true;
         setSaving(true);
         setError(false);
         try {
           const response = await fetch('/api/teacher/course', {
             method: 'POST', headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ action: 'recordTopic11Exposure', classId, studentId, submissionId }),
+            body,
           });
           if (!response.ok) throw new Error('Confirmation failed');
+          const result: unknown = await response.json().catch(() => null);
+          if (!result || typeof result !== 'object' || Array.isArray(result) || Object.keys(result).length !== 1
+            || !('delivery' in result) || (result.delivery !== 'new' && result.delivery !== 'replay')) throw new Error('Invalid confirmation receipt');
+          retryBody.current = null;
+          setRetryLocked(false);
           setConfirmed(true);
         } catch {
           setError(true);
@@ -45,7 +55,7 @@ export function Topic11ExposureForm({ studentId, studentName, submissionId, less
           setSaving(false);
         }
       }}>
-        <label>Class<select name="classId" className="input-field w-full" disabled={saving} required>
+        <label>Class<select name="classId" className="input-field w-full" disabled={saving || retryLocked} required>
           {classes.map(classroom => <option key={classroom.id} value={classroom.id}>{classroom.name}</option>)}
         </select></label>
         <p>Confirm only if you taught this skill to this student in the selected class.</p>

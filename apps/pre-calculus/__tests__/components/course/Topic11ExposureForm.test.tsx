@@ -22,7 +22,7 @@ describe('Topic 1.1 teacher confirmation', () => {
   it('locks selection while pending, retains the request after failure, and confirms success', async () => {
     let rejectRequest: (reason: Error) => void = () => {};
     const fetchMock = vi.fn().mockImplementationOnce(() => new Promise((_resolve, reject) => { rejectRequest = reject; }))
-      .mockResolvedValueOnce(new Response(JSON.stringify({ ok: true }), { status: 200 }));
+      .mockResolvedValueOnce(new Response(JSON.stringify({ delivery: 'replay' }), { status: 200 }));
     vi.stubGlobal('fetch', fetchMock);
     render(<Topic11ExposureForm {...props} />);
     const select = screen.getByRole('combobox', { name: 'Class' });
@@ -37,6 +37,31 @@ describe('Topic 1.1 teacher confirmation', () => {
     expect(fetchMock.mock.calls[0][1].body).toBe(fetchMock.mock.calls[1][1].body);
     expect(JSON.parse(fetchMock.mock.calls[0][1].body)).toEqual({ action: 'recordTopic11Exposure', classId: 'class-b', studentId: 'student', submissionId: 'source' });
     expect(screen.queryByRole('button')).not.toBeInTheDocument();
+  });
+
+  it('keeps the selected tuple after a malformed success', async () => {
+    const fetchMock = vi.fn().mockResolvedValueOnce(new Response(JSON.stringify({ ok: true }), { status: 200 }))
+      .mockResolvedValueOnce(new Response(JSON.stringify({ delivery: 'new' }), { status: 200 }));
+    vi.stubGlobal('fetch', fetchMock);
+    render(<Topic11ExposureForm {...props} />);
+    const select = screen.getByRole('combobox', { name: 'Class' });
+    fireEvent.change(select, { target: { value: 'class-b' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Confirm classroom introduction' }));
+    await screen.findByRole('alert');
+    expect(select).toBeDisabled();
+    fireEvent.click(screen.getByRole('button', { name: 'Confirm classroom introduction' }));
+    await screen.findByRole('status');
+    expect(fetchMock.mock.calls[1][1].body).toBe(fetchMock.mock.calls[0][1].body);
+  });
+
+  it('prevents two synchronous submissions', () => {
+    const fetchMock = vi.fn(() => new Promise<Response>(() => undefined));
+    vi.stubGlobal('fetch', fetchMock);
+    render(<Topic11ExposureForm {...props} />);
+    const form = screen.getByRole('button', { name: 'Confirm classroom introduction' }).closest('form')!;
+    fireEvent.submit(form);
+    fireEvent.submit(form);
+    expect(fetchMock).toHaveBeenCalledTimes(1);
   });
 
   it('does not offer confirmation without an eligible class', () => {
